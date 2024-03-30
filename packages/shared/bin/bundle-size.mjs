@@ -2,7 +2,7 @@ import { isCI } from "ci-info";
 import Table from "cli-table3";
 import esbuild from "esbuild";
 import { readFile } from "fs/promises";
-import { basename, parse } from "path";
+import { basename, parse, resolve } from "path";
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
 
@@ -10,7 +10,11 @@ const pkg = JSON.parse(await readFile("./package.json", { encoding: "utf-8" }));
 
 async function compare({ file }) {
   const localReport = await measure({ json: true });
-  const remoteReport = JSON.parse(await readFile(file, { encoding: "utf-8" }));
+  const remoteReport = JSON.parse(
+    await readFile(resolve(process.cwd(), "../../", file), {
+      encoding: "utf-8",
+    }),
+  );
   const { compareResultsInReports } = await import(
     "monosize/src/utils/compareResultsInReports.mjs"
   );
