@@ -12,6 +12,7 @@ const withNextra = createNextra({
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  basePath: "/optimizely-axiom",
   eslint: {
     ignoreDuringBuilds: true,
   },
