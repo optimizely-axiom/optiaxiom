@@ -1,0 +1,27 @@
+{
+  "getting-started": "Getting Started",
+  "-- Styles": {
+    "type": "separator",
+    "title": "Styles"
+  },
+  "css-imports": "CSS Imports",
+  "tokens": "Tokens",
+  "-- Primitives": {
+    "type": "separator",
+    "title": "Primitives"
+  },
+  "box": "Box",
+  "stack": "Stack",
+  "-- Typography": {
+    "type": "separator",
+    "title": "Typography"
+  },
+  "heading": "Heading",
+  "text": "Text",
+  "-- Guides": {
+    "type": "separator",
+    "title": "Guides"
+  },
+  "angular": "Angular",
+  "nextjs": "Next.js"
+}

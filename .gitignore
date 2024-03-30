@@ -1,0 +1,26 @@
+# os
+.DS_Store
+
+# editor
+.idea
+.gitpod.yml
+.vscode/*
+!.vscode/extensions.json
+!.vscode/launch.json
+!.vscode/settings.json
+!.vscode/tasks.json
+
+# node
+node_modules
+
+# build
+dist
+out
+storybook-static
+
+# typescript
+*.tsbuildinfo
+
+# project
+.eslintcache
+.next

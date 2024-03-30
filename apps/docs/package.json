@@ -1,0 +1,25 @@
+{
+  "name": "@optimizely-axiom/docs",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "build": "next build",
+    "dev": "node -e \"require('better-opn')('http://localhost:3000')\" && next dev",
+    "lint": "oas-lint"
+  },
+  "devDependencies": {
+    "@optimizely-axiom/react": "workspace:^",
+    "@optimizely-axiom/shared": "workspace:^",
+    "better-opn": "^3.0.2",
+    "fast-glob": "^3.3.2",
+    "mdast-util-from-markdown": "^2.0.0",
+    "mdast-util-mdx": "^3.0.0",
+    "micromark-extension-mdxjs": "^3.0.0",
+    "next": "^14.1.3",
+    "nextra": "^2.13.4",
+    "nextra-theme-docs": "^2.13.4",
+    "postcss-import": "^16.1.0",
+    "react-docgen-typescript": "^2.2.2",
+    "unist-util-visit": "^5.0.0"
+  }
+}

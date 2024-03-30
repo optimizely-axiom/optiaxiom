@@ -1,0 +1,12 @@
+{
+  "index": {
+    "type": "page",
+    "title": "Axiom",
+    "display": "hidden",
+    "theme": { "layout": "full" }
+  },
+  "docs": {
+    "type": "page",
+    "title": "Documentation"
+  }
+}

@@ -1,0 +1,8 @@
+.tabs button {
+  padding: 0;
+}
+
+.tabs button a {
+  display: block;
+  padding: 8px;
+}

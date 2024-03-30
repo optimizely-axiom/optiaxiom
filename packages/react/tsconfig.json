@@ -1,0 +1,11 @@
+{
+  "extends": "@optimizely-axiom/shared/configs/tsconfig.json",
+  "compilerOptions": {
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "noEmit": true
+  },
+  "include": ["."],
+  "exclude": ["dist", "node_modules"]
+}
