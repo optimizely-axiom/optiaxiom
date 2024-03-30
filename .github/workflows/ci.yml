@@ -90,5 +90,6 @@ jobs:
       - run: pnpm install
 
       - run: |
+          pnpm -F react build
           pnpm lint --no-fix
           pnpm test run
