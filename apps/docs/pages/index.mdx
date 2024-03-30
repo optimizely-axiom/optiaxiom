@@ -1,0 +1,32 @@
+import { Heading, Stack, Text } from "@optimizely-axiom/react";
+import Link from "next/link";
+
+import styles from "./index.module.css";
+
+export function HeroPage() {
+  return (
+    <Stack
+      alignItems="center"
+      className={styles.wrapper}
+      flexDirection="column"
+      gap="xl"
+      justifyContent="center"
+      textAlign="center"
+    >
+      <Heading className={styles.header} level="1">
+        <span className={styles.highlight}>Axiom</span> Design System
+      </Heading>
+
+      <Text className={styles.body}>
+        Axiom is the technical implementation of the Optimizely Design System.
+      </Text>
+
+      <Link href="./docs/getting-started">
+        <button className={styles.button}>Get started</button>
+      </Link>
+    </Stack>
+
+);
+}
+
+<HeroPage />

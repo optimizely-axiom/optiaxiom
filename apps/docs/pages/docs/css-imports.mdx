@@ -1,0 +1,20 @@
+# CSS Imports
+
+All Axiom components import their own CSS files via `import` statements from within the JS code.
+
+Depending on your bundler you might require additional configuration to enable CSS imports.
+
+## Next.js
+
+Add Axiom to the [`transpilePackages`](https://nextjs.org/docs/app/api-reference/next-config-js/transpilePackages) option:
+
+```js filename="next.config.js"
+export default {
+  // ...
+  transpilePackages: ["@optimizely-axiom/react"],
+};
+```
+
+## Webpack
+
+Use [`css-loader`](https://webpack.js.org/loaders/css-loader/) to include the CSS in your bundled code.

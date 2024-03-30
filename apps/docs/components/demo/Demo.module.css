@@ -1,0 +1,13 @@
+.preview {
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+}
+
+.reset {
+  all: unset;
+}
+
+.editor pre {
+  margin-bottom: 0;
+}

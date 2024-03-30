@@ -1,0 +1,22 @@
+{
+  "name": "@optimizely-axiom/storybook",
+  "private": true,
+  "type": "module",
+  "version": "0.0.0",
+  "scripts": {
+    "build": "storybook build --docs",
+    "dev": "storybook dev -p 6006",
+    "lint": "oas-lint"
+  },
+  "devDependencies": {
+    "@optimizely-axiom/react": "workspace:^",
+    "@optimizely-axiom/shared": "workspace:^",
+    "@storybook/addon-essentials": "~8.0.5",
+    "@storybook/addon-links": "~8.0.5",
+    "@storybook/addon-webpack5-compiler-swc": "^1.0.2",
+    "@storybook/react": "~8.0.5",
+    "@storybook/react-webpack5": "~8.0.5",
+    "@swc/core": "^1.4.11",
+    "storybook": "~8.0.5"
+  }
+}

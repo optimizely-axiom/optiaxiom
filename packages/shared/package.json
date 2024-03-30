@@ -1,0 +1,27 @@
+{
+  "name": "@optimizely-axiom/shared",
+  "private": true,
+  "type": "module",
+  "version": "0.0.0",
+  "bin": {
+    "oas-bundle-size": "bin/bundle-size.mjs",
+    "oas-lint": "bin/lint.sh"
+  },
+  "exports": {
+    "./configs/tsconfig.json": "./configs/tsconfig.json"
+  },
+  "scripts": {
+    "lint": "bin/lint.sh"
+  },
+  "dependencies": {
+    "ci-info": "^4.0.0",
+    "cli-table3": "^0.6.4",
+    "gzip-size": "^7.0.0",
+    "monosize": "^0.5.0",
+    "pretty-bytes": "^6.1.1",
+    "yargs": "^17.7.2"
+  },
+  "devDependencies": {
+    "@optimizely-axiom/shared": "workspace:^"
+  }
+}
