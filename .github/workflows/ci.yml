@@ -38,24 +38,9 @@ jobs:
 
       - uses: actions/download-artifact@v4
 
-      - run: pnpm -F react build
-
-      - id: bundle-size-report
-        run: |
-          {
-            echo 'report<<EOF'
-            pnpm -F react exec -- pnpm --silent bundle-size compare artifact/bundle-size-main.json
-            echo EOF
-          } >> $GITHUB_OUTPUT
-
-      - uses: edumserrano/find-create-or-update-comment@v2
-        with:
-          issue-number: ${{ github.event.pull_request.number }}
-          body-includes: "<!-- bundle-size-report -->"
-          body: |
-            <!-- bundle-size-report -->
-            ${{ steps.bundle-size-report.outputs.report }}
-          edit-mode: replace
+      - run: |
+          pnpm -F react build
+          pnpm -F react bundle-size compare artifact/bundle-size-main.json
 
   # chromatic:
   #   runs-on: ubuntu-latest

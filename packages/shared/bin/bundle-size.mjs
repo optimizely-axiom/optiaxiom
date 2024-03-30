@@ -113,30 +113,17 @@ async function measure({ json }) {
 
 yargs(hideBin(process.argv))
   .command({
-    builder: {
-      output: {
-        choices: ["cli", "markdown"],
-        default: isCI ? "markdown" : "cli",
-      },
-    },
     command: "compare <file>",
-    handler: async ({ file, output }) => {
+    handler: async ({ file }) => {
       const report = await compare({ file });
-      if (output === "cli") {
-        const { cliReporter } = await import(
-          "monosize/src/reporters/cliReporter.mjs"
-        );
-        cliReporter(report);
-      } else {
-        const { markdownReporter } = await import(
-          "monosize/src/reporters/markdownReporter.mjs"
-        );
-        markdownReporter(
-          report,
-          "main",
-          `https://github.com/${process.env.GITHUB_REPOSITORY}`,
-        );
-      }
+      const { cliReporter } = await import(
+        "monosize/src/reporters/cliReporter.mjs"
+      );
+      cliReporter(report, {
+        commitSHA: process.env.GITHUB_SHA,
+        deltaFormat: "delta",
+        repository: `https://github.com/${process.env.GITHUB_REPOSITORY}`,
+      });
     },
   })
   .command({
