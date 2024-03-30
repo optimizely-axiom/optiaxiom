@@ -11,13 +11,13 @@ jobs:
     if: ${{ github.event_name != 'push' }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           ref: main
 
       - uses: pnpm/action-setup@v3
 
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
           cache: pnpm
 
@@ -32,7 +32,7 @@ jobs:
           if-no-files-found: error
           path: bundle-size-main.json
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - run: pnpm install
 
@@ -60,11 +60,11 @@ jobs:
   # chromatic:
   #   runs-on: ubuntu-latest
   #   steps:
-  #     - uses: actions/checkout@v3
+  #     - uses: actions/checkout@v4
   #       with:
   #         fetch-depth: 0
 
-  #     - uses: actions/setup-node@v3
+  #     - uses: actions/setup-node@v4
   #       with:
   #         cache: pnpm
 
@@ -79,11 +79,11 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - uses: pnpm/action-setup@v3
 
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
           cache: pnpm
 
