@@ -1,6 +1,6 @@
 import type { ComponentType, ReactNode } from "react";
 
-import { Box } from "@optimizely-axiom/react";
+import { Box, Stack } from "@optimizely-axiom/react";
 
 import styles from "./Demo.module.css";
 
@@ -12,13 +12,11 @@ export function Demo({
   component: ComponentType;
 }) {
   return (
-    <Box borderRadius="xl" marginTop="xl">
+    <Stack marginTop="xl">
       <Box className={styles.preview} padding="md">
-        <div className={styles.reset}>
-          <Component />
-        </div>
+        <Component />
       </Box>
       <Box className={styles.editor}>{children}</Box>
-    </Box>
+    </Stack>
   );
 }
