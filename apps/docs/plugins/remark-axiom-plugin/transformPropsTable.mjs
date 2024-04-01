@@ -100,7 +100,7 @@ export function transformPropsTable(tree) {
 }
 
 function parseType(type, prop) {
-  if (type.raw?.startsWith("ConditionalStyle<")) {
+  if (type.name === "enum") {
     switch (prop) {
       case "background":
       case "color":
@@ -126,8 +126,10 @@ function parseType(type, prop) {
       case "paddingX":
         return "[`theme.spacing`](/docs/tokens/#theme)";
       default:
-        return `\`${type.value
-          .slice(0, -1)
+        return `\`${(type.raw?.startsWith("ConditionalStyle<")
+          ? type.value.slice(0, -1)
+          : type.value
+        )
           .map(({ value }) => value)
           .join(" | ")}\``;
     }
