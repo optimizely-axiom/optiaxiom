@@ -43,13 +43,15 @@ export function transformPropsTable(tree) {
 
       const tree = fromMarkdown(
         [
-          '<table className="nx-w-full nx-text-sm nx-text-left">',
+          `### \`${component}\` component props`,
+          "",
+          '<table className="nx-w-full nx-text-sm nx-text-left nx-mt-6">',
           '  <thead className="nx-text-xs nx-text-gray-700 nx-uppercase nx-bg-gray-100 dark:nx-bg-gray-50/10 dark:nx-text-gray-400">',
           "    <tr>",
-          '      <th className="nx-px-3 nx-py-0.5">',
+          '      <th className="nx-px-3 nx-py-0.5" style={{ width: "25%" }}>',
           "        Name",
           "      </th>",
-          '      <th className="nx-px-3 nx-py-0.5">',
+          '      <th className="nx-px-3 nx-py-0.5" style={{ width: "75%" }}>',
           "        Type",
           "      </th>",
           "    </tr>",
@@ -69,7 +71,7 @@ export function transformPropsTable(tree) {
             .flatMap(([, prop]) => [
               '<tr className="nx-border-b">',
               '  <td className="nx-px-3 nx-py-2 nx-whitespace-nowrap" valign="top">',
-              `**\`${prop.name}\`**`,
+              `**${prop.name}**`,
               "  </td>",
               '  <td className="nx-px-3 nx-py-2" valign="top">',
               [
