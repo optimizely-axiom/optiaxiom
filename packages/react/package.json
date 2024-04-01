@@ -13,6 +13,9 @@
   ],
   "license": "Apache-2.0",
   "module": "dist/index.js",
+  "sideEffects": [
+    "*.css"
+  ],
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "rm -rf dist && NODE_ENV=production rollup -c",
