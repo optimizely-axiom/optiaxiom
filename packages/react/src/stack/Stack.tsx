@@ -1,12 +1,11 @@
-import type { ComponentPropsWithRef, ElementType } from "react";
+import { type ComponentPropsWithRef, forwardRef } from "react";
 
 import type { Sprinkles } from "../box";
 
 import { Box } from "../box";
-import { forwardRef } from "../forwardRef";
 
-type StackProps<T extends ElementType = "div"> = Omit<
-  ComponentPropsWithRef<typeof Box<T>>,
+type StackProps = Omit<
+  ComponentPropsWithRef<"div"> & ComponentPropsWithRef<typeof Box>,
   "align" | "direction" | "gap" | "justify"
 > & {
   align?: Sprinkles["alignItems"];
@@ -15,11 +14,8 @@ type StackProps<T extends ElementType = "div"> = Omit<
   justify?: Sprinkles["justifyContent"];
 };
 
-export const Stack = forwardRef(
-  <T extends ElementType = "div">(
-    { align, direction, gap, justify, ...props }: StackProps<T>,
-    ref: ComponentPropsWithRef<T>["ref"],
-  ) => {
+export const Stack = forwardRef<HTMLDivElement, StackProps>(
+  ({ align, direction, gap, justify, ...props }, ref) => {
     return (
       <Box
         alignItems={align ?? (direction === "row" ? "center" : "stretch")}

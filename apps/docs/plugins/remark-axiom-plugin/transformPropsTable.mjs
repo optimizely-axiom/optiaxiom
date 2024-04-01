@@ -57,7 +57,12 @@ export function transformPropsTable(tree) {
             .sort(([a], [b]) => a.localeCompare(b))
             .filter(
               ([, prop]) =>
-                !exclude.includes(prop.name) && prop.type.name !== "any",
+                !exclude.includes(prop.name) &&
+                prop.type.name !== "any" &&
+                ((prop.declarations.length === 0 && component === "Box") ||
+                  prop.declarations.find(
+                    (decl) => decl.fileName === doc.filePath,
+                  )),
             )
             .flatMap(([, prop]) => [
               '<tr className="nx-border-b">',
