@@ -27,7 +27,6 @@ export default tsEslint.config(
     },
     rules: {
       ...reactRecommended.rules,
-      "react/display-name": "off",
       "react/react-in-jsx-scope": "off",
     },
     settings: {
