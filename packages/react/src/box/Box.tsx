@@ -40,3 +40,5 @@ export const Box = forwardRef<HTMLDivElement, BoxProps>(
     );
   },
 );
+
+Box.displayName = "@optiaxiom/react/Box";

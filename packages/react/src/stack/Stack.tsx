@@ -29,3 +29,5 @@ export const Stack = forwardRef<HTMLDivElement, StackProps>(
     );
   },
 );
+
+Stack.displayName = "@optiaxiom/react/Stack";

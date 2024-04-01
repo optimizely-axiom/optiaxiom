@@ -34,7 +34,9 @@ export function transformPropsTable(tree) {
       const exclude = excludeRaw
         ? JSON.parse(excludeRaw.value)
         : ["key", "ref"];
-      const doc = docs.find((doc) => doc.displayName === component);
+      const doc = docs.find(
+        (doc) => doc.displayName === `@optiaxiom/react/${component}`,
+      );
       if (!doc) {
         throw new Error(`Could not find component doc: ${component}`);
       }
