@@ -1,4 +1,4 @@
-import { theme } from "@optimizely-axiom/react";
+import { theme } from "@optiaxiom/react";
 
 export function App() {
   return (

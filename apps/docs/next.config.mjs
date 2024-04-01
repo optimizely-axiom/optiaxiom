@@ -12,7 +12,7 @@ const withNextra = createNextra({
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  basePath: "/optimizely-axiom",
+  basePath: "/optiaxiom",
   eslint: {
     ignoreDuringBuilds: true,
   },
@@ -21,7 +21,7 @@ const nextConfig = {
   },
   output: "export",
   trailingSlash: true,
-  transpilePackages: ["@optimizely-axiom/react"],
+  transpilePackages: ["@optiaxiom/react"],
 };
 
 export default withNextra(nextConfig);

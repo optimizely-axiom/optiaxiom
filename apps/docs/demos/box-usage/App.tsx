@@ -1,4 +1,4 @@
-import { Box, theme } from "@optimizely-axiom/react";
+import { Box, theme } from "@optiaxiom/react";
 
 export function App() {
   return (

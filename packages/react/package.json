@@ -1,9 +1,9 @@
 {
-  "name": "@optimizely-axiom/react",
+  "name": "@optiaxiom/react",
   "repository": {
     "directory": "packages/react",
     "type": "git",
-    "url": "https://github.com/optimizely-axiom/optimizely-axiom.git"
+    "url": "https://github.com/optimizely-axiom/optiaxiom.git"
   },
   "type": "module",
   "version": "0.1.0-alpha.1",
@@ -30,7 +30,7 @@
     "inter-ui": "^4.0.2"
   },
   "devDependencies": {
-    "@optimizely-axiom/shared": "workspace:^",
+    "@optiaxiom/shared": "workspace:^",
     "@types/node": "^20.11.30",
     "@vanilla-extract/css": "^1.14.1"
   },

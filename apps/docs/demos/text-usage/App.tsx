@@ -1,4 +1,4 @@
-import { Text } from "@optimizely-axiom/react";
+import { Text } from "@optiaxiom/react";
 
 export function App() {
   return (

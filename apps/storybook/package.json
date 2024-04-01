@@ -1,5 +1,5 @@
 {
-  "name": "@optimizely-axiom/storybook",
+  "name": "@optiaxiom/storybook",
   "private": true,
   "type": "module",
   "version": "0.0.0",
@@ -9,8 +9,8 @@
     "lint": "oas-lint"
   },
   "devDependencies": {
-    "@optimizely-axiom/react": "workspace:^",
-    "@optimizely-axiom/shared": "workspace:^",
+    "@optiaxiom/react": "workspace:^",
+    "@optiaxiom/shared": "workspace:^",
     "@storybook/addon-essentials": "~8.0.5",
     "@storybook/addon-links": "~8.0.5",
     "@storybook/addon-webpack5-compiler-swc": "^1.0.2",

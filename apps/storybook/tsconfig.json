@@ -1,9 +1,9 @@
 {
-  "extends": "@optimizely-axiom/shared/configs/tsconfig.json",
+  "extends": "@optiaxiom/shared/configs/tsconfig.json",
   "compilerOptions": {
     "jsx": "react-jsx",
     "paths": {
-      "@optimizely-axiom/react": ["../../packages/react/src"]
+      "@optiaxiom/react": ["../../packages/react/src"]
     }
   }
 }
