@@ -1,4 +1,4 @@
-import { Heading } from "@optimizely-axiom/react";
+import { Heading } from "@optiaxiom/react";
 
 export function App() {
   return (

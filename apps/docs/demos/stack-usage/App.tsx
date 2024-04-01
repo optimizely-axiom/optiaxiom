@@ -1,4 +1,4 @@
-import { Box, Stack } from "@optimizely-axiom/react";
+import { Box, Stack } from "@optiaxiom/react";
 
 export function App() {
   return (

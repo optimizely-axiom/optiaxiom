@@ -1,5 +1,5 @@
 {
-  "name": "@optimizely-axiom/docs",
+  "name": "@optiaxiom/docs",
   "private": true,
   "version": "0.0.0",
   "scripts": {
@@ -8,8 +8,8 @@
     "lint": "oas-lint"
   },
   "devDependencies": {
-    "@optimizely-axiom/react": "workspace:^",
-    "@optimizely-axiom/shared": "workspace:^",
+    "@optiaxiom/react": "workspace:^",
+    "@optiaxiom/shared": "workspace:^",
     "better-opn": "^3.0.2",
     "fast-glob": "^3.3.2",
     "mdast-util-from-markdown": "^2.0.0",

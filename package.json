@@ -1,5 +1,5 @@
 {
-  "name": "optimizely-axiom",
+  "name": "optiaxiom",
   "packageManager": "pnpm@8.15.5",
   "private": true,
   "type": "module",

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Heading } from "@optimizely-axiom/react";
+import { Heading } from "@optiaxiom/react";
 
 const meta: Meta<typeof Heading> = {
   component: Heading,

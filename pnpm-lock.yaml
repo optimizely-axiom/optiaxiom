@@ -92,10 +92,10 @@ importers:
 
   apps/docs:
     devDependencies:
-      '@optimizely-axiom/react':
+      '@optiaxiom/react':
         specifier: workspace:^
         version: link:../../packages/react
-      '@optimizely-axiom/shared':
+      '@optiaxiom/shared':
         specifier: workspace:^
         version: link:../../packages/shared
       better-opn:
@@ -134,10 +134,10 @@ importers:
 
   apps/storybook:
     devDependencies:
-      '@optimizely-axiom/react':
+      '@optiaxiom/react':
         specifier: workspace:^
         version: link:../../packages/react
-      '@optimizely-axiom/shared':
+      '@optiaxiom/shared':
         specifier: workspace:^
         version: link:../../packages/shared
       '@storybook/addon-essentials':
@@ -180,7 +180,7 @@ importers:
         specifier: ^16.14.0 || ^17.0.0 || ^18.0.0
         version: 18.2.0(react@18.2.0)
     devDependencies:
-      '@optimizely-axiom/shared':
+      '@optiaxiom/shared':
         specifier: workspace:^
         version: link:../shared
       '@types/node':
@@ -211,7 +211,7 @@ importers:
         specifier: ^17.7.2
         version: 17.7.2
     devDependencies:
-      '@optimizely-axiom/shared':
+      '@optiaxiom/shared':
         specifier: workspace:^
         version: 'link:'
 

@@ -1,5 +1,5 @@
 {
-  "extends": "@optimizely-axiom/shared/configs/tsconfig.json",
+  "extends": "@optiaxiom/shared/configs/tsconfig.json",
   "compilerOptions": {
     "allowJs": true,
     "baseUrl": ".",

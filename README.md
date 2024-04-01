@@ -5,11 +5,11 @@ Axiom is the technical implementation of the Optimizely Design System.
 ## Getting Started
 
 ```sh
-npm install @optimizely-axiom/react
+npm install @optiaxiom/react
 ```
 
 ```tsx
-import { Text } from "@optimizely-axiom/react";
+import { Text } from "@optiaxiom/react";
 
 function App() {
   return <Text>Hello World!</Text>;

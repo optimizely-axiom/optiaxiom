@@ -1,6 +1,6 @@
 import type { ComponentType, ReactNode } from "react";
 
-import { Box, Stack } from "@optimizely-axiom/react";
+import { Box, Stack } from "@optiaxiom/react";
 
 import styles from "./Demo.module.css";
 

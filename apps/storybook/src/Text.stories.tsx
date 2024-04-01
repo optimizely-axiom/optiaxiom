@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Text } from "@optimizely-axiom/react";
+import { Text } from "@optiaxiom/react";
 
 const meta: Meta<typeof Text> = {
   component: Text,
