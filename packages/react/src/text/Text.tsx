@@ -1,35 +1,35 @@
+import { Slot } from "@radix-ui/react-slot";
 import clsx from "clsx";
 import "inter-ui/inter-variable.css";
-import { type ComponentPropsWithRef, type ElementType } from "react";
+import { type ComponentPropsWithRef, forwardRef } from "react";
 
 import { Box } from "../box";
 import { type Sprinkles } from "../box";
-import { forwardRef } from "../forwardRef";
 import * as styles from "./Text.css";
 
-type TextProps<T extends ElementType = "p"> = Omit<
-  ComponentPropsWithRef<typeof Box<T>>,
+type TextProps = Omit<
+  ComponentPropsWithRef<"p"> & ComponentPropsWithRef<typeof Box>,
   "size"
 > & {
   size?: Sprinkles["fontSize"];
 };
 
-export const Text = forwardRef(
-  <T extends ElementType = "p">(
-    { as, className, size: sizeProp, ...props }: TextProps<T>,
-    ref: ComponentPropsWithRef<T>["ref"],
-  ) => {
+export const Text = forwardRef<HTMLParagraphElement, TextProps>(
+  ({ asChild, children, className, size: sizeProp, ...props }, ref) => {
+    const Comp = asChild ? Slot : "p";
     const size = sizeProp ?? "md";
 
     return (
       <Box
-        as={as ?? "p"}
+        asChild
         className={clsx(className, styles.base)}
         fontSize={size}
         lineHeight={size}
         ref={ref}
         {...props}
-      />
+      >
+        <Comp>{children}</Comp>
+      </Box>
     );
   },
 );

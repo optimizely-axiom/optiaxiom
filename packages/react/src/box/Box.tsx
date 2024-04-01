@@ -1,27 +1,20 @@
+import { Slot } from "@radix-ui/react-slot";
 import clsx from "clsx";
-import { type ComponentPropsWithRef, type ElementType } from "react";
+import { type ComponentPropsWithRef, forwardRef } from "react";
 
 import type { Sprinkles } from "./Box.css";
 
-import { forwardRef } from "../forwardRef";
 import * as styles from "./Box.css";
 
-type BoxProps<T extends ElementType = "div"> = Omit<
-  ComponentPropsWithRef<T>,
-  "as"
-> &
+type BoxProps = Omit<ComponentPropsWithRef<"div">, "asChild" | "className"> &
   Sprinkles & {
-    /** Can be set to any intrinsic element or arbitrary component. */
-    as?: T;
+    asChild?: boolean;
     className?: string;
   };
 
-export const Box = forwardRef(
-  <T extends ElementType = "div">(
-    { as, className, ...props }: BoxProps<T>,
-    ref: ComponentPropsWithRef<T>["ref"],
-  ) => {
-    const Tag = as ?? "div";
+export const Box = forwardRef<HTMLDivElement, BoxProps>(
+  ({ asChild, className, ...props }, ref) => {
+    const Comp = asChild ? Slot : "div";
 
     const sprinkleProps: Record<string, unknown> = {};
     const restProps: Record<string, unknown> = {};
@@ -35,7 +28,7 @@ export const Box = forwardRef(
     }
 
     return (
-      <Tag
+      <Comp
         className={clsx(
           className,
           styles.base,

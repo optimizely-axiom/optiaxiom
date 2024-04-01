@@ -1,12 +1,12 @@
-import type { ComponentPropsWithRef, ElementType } from "react";
+import { Slot } from "@radix-ui/react-slot";
+import { type ComponentPropsWithRef, forwardRef } from "react";
 
 import type { Sprinkles } from "../box";
 
-import { forwardRef } from "../forwardRef";
 import { Text } from "../text";
 
-type HeadingProps<T extends ElementType = "h1"> = Omit<
-  ComponentPropsWithRef<typeof Text<T>>,
+type HeadingProps = Omit<
+  ComponentPropsWithRef<"h1"> & ComponentPropsWithRef<typeof Text>,
   "level" | "size"
 > & {
   level?: keyof typeof mapLevelToTag;
@@ -22,24 +22,23 @@ const mapLevelToTag = {
   6: "h6",
 } as const;
 
-export const Heading = forwardRef(
-  <T extends ElementType = "h1">(
-    { level: levelProp, size: sizeProp, ...props }: HeadingProps<T>,
-    ref: ComponentPropsWithRef<T>["ref"],
-  ) => {
+export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
+  ({ asChild, children, level: levelProp, size: sizeProp, ...props }, ref) => {
     const level = levelProp ?? 1;
-    const Component = mapLevelToTag[level];
+    const Comp = asChild ? Slot : mapLevelToTag[level];
     const size = sizeProp ?? mapLevelToTag[level];
 
     return (
       <Text
-        as={Component}
+        asChild
         fontSize={size}
         fontWeight={700}
         lineHeight={size}
         ref={ref}
         {...props}
-      />
+      >
+        <Comp>{children}</Comp>
+      </Text>
     );
   },
 );
