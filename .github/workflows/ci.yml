@@ -38,9 +38,9 @@ jobs:
 
       - uses: actions/download-artifact@v4
 
-      - run: |
-          pnpm -F react build
-          pnpm -F react bundle-size compare artifact/bundle-size-main.json
+      - run: pnpm -F react build
+
+      - run: pnpm -F react bundle-size compare artifact/bundle-size-main.json
 
   # chromatic:
   #   runs-on: ubuntu-latest
