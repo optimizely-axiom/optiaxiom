@@ -108,9 +108,12 @@ const unresponsiveProperties = defineProperties({
   properties: {
     borderRadius: theme.radius,
     fontSize: theme.fontSizes,
+    fontStyle: ["normal", "italic"],
     fontWeight: [100, 200, 300, 400, 500, 600, 700, 800, 900],
     lineHeight: theme.lineHeights,
     textAlign: ["start", "center", "justify"],
+    textDecoration: ["none", "underline"],
+    textTransform: ["capitalize", "none", "uppercase"],
   },
 });
 
