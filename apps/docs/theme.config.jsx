@@ -9,4 +9,9 @@ export default {
   sidebar: {
     defaultMenuCollapseLevel: 1,
   },
+  useNextSeoProps() {
+    return {
+      titleTemplate: "%s – Axiom",
+    };
+  },
 };

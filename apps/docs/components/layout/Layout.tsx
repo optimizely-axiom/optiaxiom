@@ -2,7 +2,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Tabs } from "nextra/components";
-import { useMDXComponents } from "nextra-theme-docs";
+import { useConfig, useMDXComponents } from "nextra-theme-docs";
 
 import styles from "./Layout.module.css";
 
@@ -15,13 +15,18 @@ const startCase = (str: string) =>
 export function Layout({ tabs, title }: { tabs: string[]; title: string }) {
   const [, selected] = usePathname().split("/").reverse();
   const { h1: H1 = "h1" } = useMDXComponents();
+  const { useNextSeoProps } = useConfig();
+  const seoProps = { titleTemplate: "%s", ...useNextSeoProps() };
   return (
     <>
       <Head>
         <title>
-          {`${startCase(title)}${
-            selected === title ? "" : ` - ${startCase(selected)}`
-          }`}
+          {seoProps.titleTemplate.replace(
+            "%s",
+            `${startCase(title)}${
+              selected === title ? "" : ` – ${startCase(selected)}`
+            }`,
+          )}
         </title>
       </Head>
       <div className={styles.tabs}>
