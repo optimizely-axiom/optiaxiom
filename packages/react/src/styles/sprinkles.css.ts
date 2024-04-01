@@ -1,6 +1,6 @@
 import { createSprinkles, defineProperties } from "@vanilla-extract/sprinkles";
 
-import { app } from "./layers.css";
+import { axiom } from "./layers.css";
 import { theme } from "./theme.css";
 import { tokens } from "./tokens";
 
@@ -27,7 +27,7 @@ const margins = {
 };
 
 const responsiveProperties = defineProperties({
-  "@layer": app,
+  "@layer": axiom,
   conditions: {
     ...mapValues(tokens.breakpoints, (width) => ({
       "@media": `screen and (min-width: ${width})`,
@@ -82,7 +82,7 @@ const responsiveProperties = defineProperties({
 });
 
 const colorProperties = defineProperties({
-  "@layer": app,
+  "@layer": axiom,
   conditions: {
     dark: { selector: "html[class~=dark] &" },
     light: {},
