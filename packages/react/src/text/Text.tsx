@@ -3,8 +3,8 @@ import "inter-ui/inter-variable.css";
 import { type ComponentPropsWithRef, type ElementType } from "react";
 
 import { Box } from "../box";
+import { type Sprinkles } from "../box";
 import { forwardRef } from "../forwardRef";
-import { type Sprinkles } from "../styles";
 import * as styles from "./Text.css";
 
 type TextProps<T extends ElementType = "p"> = Omit<

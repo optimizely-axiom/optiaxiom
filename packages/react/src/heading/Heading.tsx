@@ -1,6 +1,6 @@
 import type { ComponentPropsWithRef, ElementType } from "react";
 
-import type { Sprinkles } from "../styles";
+import type { Sprinkles } from "../box";
 
 import { forwardRef } from "../forwardRef";
 import { Text } from "../text";

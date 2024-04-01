@@ -1,8 +1,9 @@
 import clsx from "clsx";
 import { type ComponentPropsWithRef, type ElementType } from "react";
 
+import type { Sprinkles } from "./Box.css";
+
 import { forwardRef } from "../forwardRef";
-import { type Sprinkles, sprinkles } from "../styles";
 import * as styles from "./Box.css";
 
 type BoxProps<T extends ElementType = "div"> = Omit<
@@ -26,7 +27,7 @@ export const Box = forwardRef(
     const restProps: Record<string, unknown> = {};
 
     for (const [prop, value] of Object.entries(props)) {
-      if (sprinkles.properties.has(prop as keyof Sprinkles)) {
+      if (styles.sprinkles.properties.has(prop as keyof Sprinkles)) {
         sprinkleProps[prop] = value;
       } else {
         restProps[prop] = value;
@@ -35,7 +36,11 @@ export const Box = forwardRef(
 
     return (
       <Tag
-        className={clsx(className, styles.base, sprinkles(sprinkleProps))}
+        className={clsx(
+          className,
+          styles.base,
+          styles.sprinkles(sprinkleProps),
+        )}
         ref={ref}
         {...restProps}
       />
