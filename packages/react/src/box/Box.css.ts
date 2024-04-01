@@ -60,11 +60,8 @@ const responsiveProperties = defineProperties({
       "start",
       "stretch",
     ],
-    borderRadius: theme.radius,
     display: ["none", "flex", "grid", "block", "inline", "inline-flex"],
     flexDirection: ["row", "column"],
-    fontSize: theme.fontSizes,
-    fontWeight: [100, 200, 300, 400, 500, 600, 700, 800, 900],
     gap: theme.spacing,
     justifyContent: [
       "center",
@@ -76,7 +73,6 @@ const responsiveProperties = defineProperties({
       "start",
       "stretch",
     ],
-    lineHeight: theme.lineHeights,
     margin: margins,
     marginBottom: margins,
     marginLeft: margins,
@@ -87,7 +83,6 @@ const responsiveProperties = defineProperties({
     paddingLeft: theme.spacing,
     paddingRight: theme.spacing,
     paddingTop: theme.spacing,
-    textAlign: ["start", "center", "justify"],
   },
   shorthands: {
     marginX: ["marginBottom", "marginTop"],
@@ -108,5 +103,20 @@ const colorProperties = defineProperties({
   },
 });
 
-export const sprinkles = createSprinkles(responsiveProperties, colorProperties);
+const unresponsiveProperties = defineProperties({
+  "@layer": layers.axiom,
+  properties: {
+    borderRadius: theme.radius,
+    fontSize: theme.fontSizes,
+    fontWeight: [100, 200, 300, 400, 500, 600, 700, 800, 900],
+    lineHeight: theme.lineHeights,
+    textAlign: ["start", "center", "justify"],
+  },
+});
+
+export const sprinkles = createSprinkles(
+  responsiveProperties,
+  colorProperties,
+  unresponsiveProperties,
+);
 export type Sprinkles = Parameters<typeof sprinkles>[0];
