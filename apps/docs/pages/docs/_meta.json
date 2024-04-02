@@ -5,7 +5,7 @@
     "title": "Styles"
   },
   "css-imports": "CSS Imports",
-  "tokens": "Tokens",
+  "theme": "Theme",
   "-- Primitives": {
     "type": "separator",
     "title": "Primitives"
