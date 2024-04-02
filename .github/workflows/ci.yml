@@ -42,24 +42,29 @@ jobs:
 
       - run: pnpm -F react bundle-size compare artifact/bundle-size-main.json
 
-  # chromatic:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v4
-  #       with:
-  #         fetch-depth: 0
+  chromatic:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-  #     - uses: actions/setup-node@v4
-  #       with:
-  #         cache: pnpm
+      - uses: pnpm/action-setup@v3
 
-  #     - run: pnpm install
+      - uses: actions/setup-node@v4
+        with:
+          cache: pnpm
 
-  #     - uses: chromaui/action@latest
-  #       with:
-  #         buildScriptName: build:storybook
-  #         exitZeroOnChanges: true
-  #         projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+      - run: |
+          pnpm install
+          pnpm -F react build
+
+      - uses: chromaui/action@latest
+        with:
+          buildScriptName: build
+          exitZeroOnChanges: true
+          projectToken: chpt_1768d7812fc589a
+          workingDir: apps/storybook
 
   test:
     runs-on: ubuntu-latest
