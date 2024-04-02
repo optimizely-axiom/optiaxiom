@@ -11,6 +11,9 @@ const config: StorybookConfig = {
   core: {
     disableTelemetry: true,
   },
+  docs: {
+    docsMode: false,
+  },
   framework: {
     name: "@storybook/react-webpack5",
     options: {},
