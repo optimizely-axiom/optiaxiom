@@ -5,7 +5,11 @@ import { layers, theme } from "../styles";
 const unresponsiveProperties = defineProperties({
   "@layer": layers.axiom,
   properties: {
-    boxShadow: theme.shadows,
+    fontSize: theme.headings.fontSizes,
+    lineHeight: theme.headings.lineHeights,
+  },
+  shorthands: {
+    size: ["fontSize", "lineHeight"],
   },
 });
 

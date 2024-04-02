@@ -9,7 +9,7 @@ type PaperProps = Omit<
   ComponentPropsWithRef<"p"> & ComponentPropsWithRef<typeof Box>,
   "size"
 > & {
-  shadow?: keyof typeof styles.shadows;
+  shadow?: styles.Sprinkles["boxShadow"];
 };
 
 export const Paper = forwardRef<HTMLParagraphElement, PaperProps>(
@@ -18,7 +18,7 @@ export const Paper = forwardRef<HTMLParagraphElement, PaperProps>(
       <Box
         background="white"
         borderRadius="sm"
-        className={clsx(className, styles.shadows[shadow])}
+        className={clsx(className, styles.sprinkles({ boxShadow: shadow }))}
         ref={ref}
         {...props}
       />

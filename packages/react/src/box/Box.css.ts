@@ -2,6 +2,7 @@ import { style } from "@vanilla-extract/css";
 import { createSprinkles, defineProperties } from "@vanilla-extract/sprinkles";
 
 import { layers, theme, tokens } from "../styles";
+import { mapValues } from "../utils";
 
 export const base = style({
   "@layer": {
@@ -17,18 +18,6 @@ export const base = style({
     },
   },
 });
-
-function mapValues<V, K extends KResult, VResult, KResult extends PropertyKey>(
-  obj: Record<K, V>,
-  valueFn: (value: V) => VResult,
-  keyFn: (key: K) => KResult = (key) => key,
-) {
-  const result = {} as Record<KResult, VResult>;
-  for (const [key, value] of Object.entries<V>(obj)) {
-    result[keyFn ? keyFn(key as K) : (key as K)] = valueFn(value);
-  }
-  return result;
-}
 
 const margins = {
   ...theme.spacing,
@@ -50,43 +39,23 @@ const responsiveProperties = defineProperties({
   },
   defaultCondition: "base",
   properties: {
-    alignItems: [
-      "center",
-      "end",
-      "normal",
-      "space-around",
-      "space-between",
-      "space-evenly",
-      "start",
-      "stretch",
-    ],
     display: ["none", "flex", "grid", "block", "inline", "inline-flex"],
-    flexDirection: ["row", "column"],
-    gap: theme.spacing,
-    justifyContent: [
-      "center",
-      "end",
-      "normal",
-      "space-around",
-      "space-between",
-      "space-evenly",
-      "start",
-      "stretch",
-    ],
-    margin: margins,
     marginBottom: margins,
     marginLeft: margins,
     marginRight: margins,
     marginTop: margins,
-    padding: theme.spacing,
     paddingBottom: theme.spacing,
     paddingLeft: theme.spacing,
     paddingRight: theme.spacing,
     paddingTop: theme.spacing,
   },
   shorthands: {
+    margin: ["marginBottom", "marginLeft", "marginRight", "marginTop"],
     marginX: ["marginBottom", "marginTop"],
+    marginY: ["marginLeft", "marginRight"],
+    padding: ["paddingBottom", "paddingLeft", "paddingRight", "paddingTop"],
     paddingX: ["paddingBottom", "paddingTop"],
+    paddingY: ["paddingLeft", "paddingRight"],
   },
 });
 
@@ -107,13 +76,6 @@ const unresponsiveProperties = defineProperties({
   "@layer": layers.axiom,
   properties: {
     borderRadius: theme.radius,
-    fontSize: theme.fontSizes,
-    fontStyle: ["normal", "italic"],
-    fontWeight: [100, 200, 300, 400, 500, 600, 700, 800, 900],
-    lineHeight: theme.lineHeights,
-    textAlign: ["start", "center", "justify"],
-    textDecoration: ["none", "underline"],
-    textTransform: ["capitalize", "none", "uppercase"],
   },
 });
 
