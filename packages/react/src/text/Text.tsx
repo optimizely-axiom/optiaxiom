@@ -4,29 +4,28 @@ import "inter-ui/inter-variable.css";
 import { type ComponentPropsWithRef, forwardRef } from "react";
 
 import { Box } from "../box";
-import { type Sprinkles } from "../box";
+import { extractSprinkles } from "../utils";
 import * as styles from "./Text.css";
 
 type TextProps = Omit<
   ComponentPropsWithRef<"p"> & ComponentPropsWithRef<typeof Box>,
-  "size"
-> & {
-  size?: Sprinkles["fontSize"];
-};
+  keyof styles.Sprinkles
+> &
+  styles.Sprinkles;
 
 export const Text = forwardRef<HTMLParagraphElement, TextProps>(
-  ({ asChild, children, className, size: sizeProp, ...props }, ref) => {
+  ({ asChild, children, className, size = "md", ...props }, ref) => {
     const Comp = asChild ? Slot : "p";
-    const size = sizeProp ?? "md";
 
     return (
       <Box
         asChild
-        className={clsx(className, styles.base)}
-        fontSize={size}
-        lineHeight={size}
         ref={ref}
-        {...props}
+        {...extractSprinkles(styles.sprinkles, {
+          className: clsx(className, styles.base),
+          size,
+          ...props,
+        })}
       >
         <Comp>{children}</Comp>
       </Box>

@@ -70,13 +70,26 @@ export const tokens = {
     md: "14px",
     lg: "16px",
     xl: "18px",
+  },
 
-    h6: "14px",
-    h5: "18px",
-    h4: "20px",
-    h3: "23px",
-    h2: "26px",
-    h1: "29px",
+  headings: {
+    fontSizes: {
+      h6: "14px",
+      h5: "18px",
+      h4: "20px",
+      h3: "23px",
+      h2: "26px",
+      h1: "29px",
+    },
+
+    lineHeights: {
+      h6: "1.71",
+      h5: "1.78",
+      h4: "1.6",
+      h3: "1.74",
+      h2: "1.69",
+      h1: "1.66",
+    },
   },
 
   lineHeights: {
@@ -85,13 +98,6 @@ export const tokens = {
     md: "1.5",
     lg: "1.6",
     xl: "1.65",
-
-    h6: "1.71",
-    h5: "1.78",
-    h4: "1.6",
-    h3: "1.74",
-    h2: "1.69",
-    h1: "1.66",
   },
 
   radius: {
@@ -100,6 +106,11 @@ export const tokens = {
     md: "8px",
     lg: "16px",
     xl: "32px",
+  },
+
+  shadows: {
+    xs: "0 2px 3px rgba(0, 0, 0, 0.1)",
+    sm: "0 2px 6px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(0, 0, 0, 0.07)",
   },
 
   spacing: {

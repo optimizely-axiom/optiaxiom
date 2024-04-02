@@ -1,17 +1,17 @@
 import { Slot } from "@radix-ui/react-slot";
 import { type ComponentPropsWithRef, forwardRef } from "react";
 
-import type { Sprinkles } from "../box";
-
 import { Text } from "../text";
+import { extractSprinkles } from "../utils";
+import * as styles from "./Heading.css";
 
 type HeadingProps = Omit<
   ComponentPropsWithRef<"h1"> & ComponentPropsWithRef<typeof Text>,
-  "level" | "size"
-> & {
-  level?: keyof typeof mapLevelToTag;
-  size?: Sprinkles["fontSize"];
-};
+  "level" | keyof styles.Sprinkles
+> &
+  styles.Sprinkles & {
+    level?: keyof typeof mapLevelToTag;
+  };
 
 const mapLevelToTag = {
   1: "h1",
@@ -23,19 +23,19 @@ const mapLevelToTag = {
 } as const;
 
 export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
-  ({ asChild, children, level: levelProp, size: sizeProp, ...props }, ref) => {
-    const level = levelProp ?? 1;
+  ({ asChild, children, level = 1, size: sizeProp, ...props }, ref) => {
     const Comp = asChild ? Slot : mapLevelToTag[level];
     const size = sizeProp ?? mapLevelToTag[level];
 
     return (
       <Text
         asChild
-        fontSize={size}
         fontWeight={700}
-        lineHeight={size}
         ref={ref}
-        {...props}
+        {...extractSprinkles(styles.sprinkles, {
+          size,
+          ...props,
+        })}
       >
         <Comp>{children}</Comp>
       </Text>
