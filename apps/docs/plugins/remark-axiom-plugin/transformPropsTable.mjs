@@ -20,7 +20,7 @@ export function transformPropsTable(tree) {
         )
         .parse(
           fg.globSync("../../packages/react/src/**/*.tsx", {
-            ignore: ["*.spec.*"],
+            ignore: ["**/*.spec.*"],
           }),
         );
 
