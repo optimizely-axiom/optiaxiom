@@ -76,18 +76,13 @@ export function transformPropsTable(tree) {
               '  <td className="nx-px-3 nx-py-2" valign="top">',
               [
                 parseType(prop.type, prop.name),
-                ...(prop.defaultValue ? ["=", `\`${prop.defaultValue}\``] : []),
+                ...(prop.defaultValue
+                  ? ["=", `\`${prop.defaultValue.value}\``]
+                  : []),
                 "<br/>",
               ].join(" "),
               prop.description,
               "  </td>",
-              prop.defaultValue
-                ? [
-                    '<td valign="top">',
-                    `\`${prop.defaultValue}\``,
-                    "</td>",
-                  ].join("\n")
-                : "",
               "</tr>",
             ]),
           "  </tbody>",
