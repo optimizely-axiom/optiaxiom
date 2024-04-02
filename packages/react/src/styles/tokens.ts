@@ -5,6 +5,9 @@ export const tokens = {
   },
 
   colors: {
+    black: "#000",
+    white: "#fff",
+
     "aqua.50": "#e5f7fb",
     "aqua.200": "#9ae5ef",
     "aqua.500": "#00bdd6",
