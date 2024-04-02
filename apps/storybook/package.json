@@ -17,6 +17,7 @@
     "@storybook/react": "~8.0.5",
     "@storybook/react-webpack5": "~8.0.5",
     "@swc/core": "^1.4.11",
+    "chromatic": "^11.3.0",
     "storybook": "~8.0.5"
   }
 }
