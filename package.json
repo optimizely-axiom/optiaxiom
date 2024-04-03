@@ -6,6 +6,7 @@
   "version": "0.0.0",
   "license": "Apache-2.0",
   "scripts": {
+    "build": "pnpm -F react... build",
     "dev": "pnpm run --parallel dev",
     "lint": "pnpm run -r --stream lint",
     "test": "pnpm run -r test"
