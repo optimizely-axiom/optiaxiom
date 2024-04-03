@@ -13,7 +13,8 @@
     "noEmit": true,
     "paths": {
       "@/components/*": ["components/*"],
-      "@/demos/*": ["demos/*"]
+      "@/demos/*": ["demos/*"],
+      "@optiaxiom/react": ["../../packages/react/src"]
     },
     "plugins": [{ "name": "next" }],
     "strictNullChecks": true
