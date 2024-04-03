@@ -39,7 +39,14 @@ const responsiveProperties = defineProperties({
   },
   defaultCondition: "base",
   properties: {
-    display: ["none", "flex", "grid", "block", "inline", "inline-flex"],
+    display: [
+      "none",
+      "flex",
+      "grid",
+      "block",
+      "inline",
+      "inline-flex",
+    ] as const,
     marginBottom: margins,
     marginLeft: margins,
     marginRight: margins,
