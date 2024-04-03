@@ -1,12 +1,11 @@
-name: Publish
+name: Release
 
 on:
-  release:
-    types: [published]
-  workflow_dispatch:
+  push:
+    branches: [main]
 
 jobs:
-  npm:
+  release:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -19,8 +18,9 @@ jobs:
 
       - run: pnpm install
 
-      - run: pnpm build
-
-      - run: pnpm -r publish
+      - uses: changesets/action@v1
+        with:
+          publish: pnpm release
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
