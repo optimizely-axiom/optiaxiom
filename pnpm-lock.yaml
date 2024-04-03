@@ -225,10 +225,6 @@ importers:
       yargs:
         specifier: ^17.7.2
         version: 17.7.2
-    devDependencies:
-      '@optiaxiom/shared':
-        specifier: workspace:^
-        version: 'link:'
 
 packages:
 
