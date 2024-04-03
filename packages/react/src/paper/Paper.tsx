@@ -13,7 +13,7 @@ type PaperProps = Omit<
 };
 
 export const Paper = forwardRef<HTMLParagraphElement, PaperProps>(
-  ({ className, shadow = "xs", ...props }, ref) => {
+  ({ className, shadow = "sm", ...props }, ref) => {
     return (
       <Box
         background="white"
