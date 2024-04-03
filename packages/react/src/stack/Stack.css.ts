@@ -1,4 +1,8 @@
-import { createSprinkles, defineProperties } from "@vanilla-extract/sprinkles";
+import {
+  createMapValueFn,
+  createSprinkles,
+  defineProperties,
+} from "@vanilla-extract/sprinkles";
 
 import { layers, theme, tokens } from "../styles";
 import { mapValues } from "../utils";
@@ -23,7 +27,12 @@ const responsiveProperties = defineProperties({
       "start",
       "stretch",
     ] as const,
-    flexDirection: ["row", "column"] as const,
+    flexDirection: {
+      column: "column",
+      horizontal: "row",
+      row: "row",
+      vertical: "column",
+    },
     gap: theme.spacing,
     justifyContent: [
       "center",
@@ -39,4 +48,5 @@ const responsiveProperties = defineProperties({
 });
 
 export const sprinkles = createSprinkles(responsiveProperties);
+export const mapValue = createMapValueFn(responsiveProperties);
 export type Sprinkles = Parameters<typeof sprinkles>[0];
