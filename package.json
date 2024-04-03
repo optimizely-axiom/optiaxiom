@@ -9,6 +9,7 @@
     "build": "pnpm -F react... build",
     "dev": "pnpm run --parallel dev",
     "lint": "pnpm run -r --stream lint",
+    "release": "pnpm build && changeset publish",
     "test": "pnpm run -r test"
   },
   "devDependencies": {
