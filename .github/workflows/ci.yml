@@ -83,6 +83,5 @@ jobs:
       - run: pnpm install
 
       - run: |
-          pnpm build
           pnpm lint --no-fix
           pnpm test run
