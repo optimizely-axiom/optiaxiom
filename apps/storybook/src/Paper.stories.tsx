@@ -4,6 +4,7 @@ import { Paper, Stack, Text } from "@optiaxiom/react";
 
 const meta: Meta<typeof Paper> = {
   component: Paper,
+  title: "Primitives / Paper",
 };
 
 export default meta;

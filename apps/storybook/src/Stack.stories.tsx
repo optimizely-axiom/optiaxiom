@@ -4,6 +4,7 @@ import { Stack, Text } from "@optiaxiom/react";
 
 const meta: Meta<typeof Stack> = {
   component: Stack,
+  title: "Primitives / Stack",
 };
 
 export default meta;

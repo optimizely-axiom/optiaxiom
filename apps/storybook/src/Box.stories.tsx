@@ -4,6 +4,7 @@ import { Box, Text } from "@optiaxiom/react";
 
 const meta: Meta<typeof Box> = {
   component: Box,
+  title: "Primitives / Box",
 };
 
 export default meta;
