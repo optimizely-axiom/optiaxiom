@@ -60,7 +60,7 @@ pnpm test run
 Run `build` to build the whole project or individual packages:
 
 ```sh
-npm build
+pnpm build
 
 # build react only
 pnpm -F react build

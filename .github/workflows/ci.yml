@@ -24,7 +24,7 @@ jobs:
       - run: pnpm install
 
       - run: |
-          pnpm -F react build
+          pnpm build
           pnpm -F react exec -- pnpm --silent bundle-size > bundle-size-main.json
 
       - uses: actions/upload-artifact@v4
@@ -38,7 +38,7 @@ jobs:
 
       - uses: actions/download-artifact@v4
 
-      - run: pnpm -F react build
+      - run: pnpm build
 
       - run: pnpm -F react bundle-size compare artifact/bundle-size-main.json
 
@@ -57,7 +57,7 @@ jobs:
 
       - run: |
           pnpm install
-          pnpm -F react build
+          pnpm build
 
       - uses: chromaui/action@latest
         with:
@@ -98,6 +98,6 @@ jobs:
       - run: pnpm install
 
       - run: |
-          pnpm -F react build
+          pnpm build
           pnpm lint --no-fix
           pnpm test run
