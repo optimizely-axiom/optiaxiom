@@ -15,3 +15,15 @@ export const Primary: Story = {
     children: "Lorem ipsum",
   },
 };
+
+export const Sizes: Story = {
+  render: () => (
+    <>
+      <Text size="xs">This is xs size text</Text>
+      <Text size="sm">This is sm size text</Text>
+      <Text size="md">This is md size text</Text>
+      <Text size="lg">This is lg size text</Text>
+      <Text size="xl">This is xl size text</Text>
+    </>
+  ),
+};

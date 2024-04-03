@@ -19,3 +19,12 @@ export const Primary: Story = {
     padding: "lg",
   },
 };
+
+export const Composition: Story = {
+  args: {
+    asChild: true,
+    background: "orange.50",
+    children: <Text>Hello World!</Text>,
+    padding: "lg",
+  },
+};
