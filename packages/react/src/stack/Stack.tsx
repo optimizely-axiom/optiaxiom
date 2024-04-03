@@ -14,18 +14,41 @@ type StackProps = Omit<
   justify?: styles.Sprinkles["justifyContent"];
 };
 
+const mapDirectionToAlign = {
+  column: "stretch",
+  horizontal: "center",
+  row: "center",
+  vertical: "stretch",
+} as const;
+
+const mapDirectionToJustify = {
+  column: "center",
+  horizontal: "start",
+  row: "start",
+  vertical: "center",
+} as const;
+
 export const Stack = forwardRef<HTMLDivElement, StackProps>(
-  ({ align, className, direction, gap, justify, ...props }, ref) => {
+  (
+    { align, className, direction = "column", gap = "md", justify, ...props },
+    ref,
+  ) => {
     return (
       <Box
         className={clsx(
           className,
           styles.sprinkles({
-            alignItems: align ?? (direction === "row" ? "center" : "stretch"),
-            flexDirection: direction ?? "column",
-            gap: gap ?? "md",
+            alignItems:
+              align ??
+              styles.mapValue(direction, (value) => mapDirectionToAlign[value]),
+            flexDirection: direction,
+            gap,
             justifyContent:
-              justify ?? (direction === "row" ? "start" : "center"),
+              justify ??
+              styles.mapValue(
+                direction,
+                (value) => mapDirectionToJustify[value],
+              ),
           }),
         )}
         display="flex"

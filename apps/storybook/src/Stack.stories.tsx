@@ -27,3 +27,22 @@ export const Primary: Story = {
     ),
   },
 };
+
+export const Horizontal: Story = {
+  args: {
+    children: (
+      <>
+        <Text background="aqua.50" padding="md">
+          Text box 1
+        </Text>
+        <Text background="aqua.50" padding="md">
+          Text box 2
+        </Text>
+        <Text background="aqua.50" padding="md">
+          Text box 3
+        </Text>
+      </>
+    ),
+    direction: "row",
+  },
+};
