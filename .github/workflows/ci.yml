@@ -20,6 +20,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           cache: pnpm
+          node-version-file: .node-version
 
       - run: pnpm install
 
@@ -54,6 +55,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           cache: pnpm
+          node-version-file: .node-version
 
       - run: |
           pnpm install
@@ -76,6 +78,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           cache: pnpm
+          node-version-file: .node-version
 
       - run: pnpm install
 
