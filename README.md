@@ -16,6 +16,8 @@ function App() {
 }
 ```
 
+Please read the full [documentation](https://optimizely-axiom.github.io/optiaxiom/) for guides, examples, and API.
+
 ## Contributing
 
 Clone the project and run:
