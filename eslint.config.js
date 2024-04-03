@@ -76,6 +76,11 @@ export default tsEslint.config(
     },
   },
   {
-    ignores: ["**/.next/**", "**/dist/**", "**/out/**"],
+    ignores: [
+      "**/.next/**",
+      "**/dist/**",
+      "**/out/**",
+      "**/storybook-static/**",
+    ],
   },
 );
