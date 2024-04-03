@@ -1,5 +1,6 @@
 import type { Options } from "@swc/core";
 
+import { ReactDocgenTypeScriptPlugin } from "@storybook/react-docgen-typescript-plugin";
 import { StorybookConfig } from "@storybook/react-webpack5";
 
 const config: StorybookConfig = {
@@ -19,7 +20,6 @@ const config: StorybookConfig = {
     options: {},
   },
   stories: ["../src/**/*.mdx", "../src/**/*.stories.tsx"],
-  // TODO: fix docgen
   swc: (config: Options): Options => {
     return {
       ...config,
@@ -30,7 +30,18 @@ const config: StorybookConfig = {
       },
     };
   },
+  typescript: {
+    reactDocgen: false,
+  } as unknown as undefined,
   webpackFinal: async (config) => {
+    config.plugins?.push(
+      new ReactDocgenTypeScriptPlugin({
+        include: ["**/**.tsx", "**/packages/react/**/*.d.ts"],
+        propFilter: (prop) => !prop.parent,
+        savePropValueAsString: true,
+        shouldExtractValuesFromUnion: true,
+      }),
+    );
     config.plugins = config.plugins?.filter(
       (plugin) => !plugin?.constructor.name.includes("ProgressPlugin"),
     );
