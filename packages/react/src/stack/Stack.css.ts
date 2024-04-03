@@ -22,8 +22,8 @@ const responsiveProperties = defineProperties({
       "space-evenly",
       "start",
       "stretch",
-    ],
-    flexDirection: ["row", "column"],
+    ] as const,
+    flexDirection: ["row", "column"] as const,
     gap: theme.spacing,
     justifyContent: [
       "center",
@@ -34,7 +34,7 @@ const responsiveProperties = defineProperties({
       "space-evenly",
       "start",
       "stretch",
-    ],
+    ] as const,
   },
 });
 

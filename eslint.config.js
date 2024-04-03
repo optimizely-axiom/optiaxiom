@@ -5,6 +5,8 @@ import reactHooks from "eslint-plugin-react-hooks";
 import globals from "globals";
 import tsEslint from "typescript-eslint";
 
+import localPlugin from "./.eslintplugin/index.js";
+
 export default tsEslint.config(
   {
     ...eslint.configs.recommended,
@@ -49,8 +51,15 @@ export default tsEslint.config(
     },
   },
   {
+    files: ["**/*.css.ts"],
+    rules: {
+      "local/sprinkles-const-array": "error",
+    },
+  },
+  {
     linterOptions: { reportUnusedDisableDirectives: "error" },
     plugins: {
+      local: localPlugin,
       "react-hooks": reactHooks,
     },
     rules: {
