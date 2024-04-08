@@ -1,0 +1,5 @@
+.container {
+  background: var(--axiom-colors-purple-200);
+  color: var(--axiom-colors-purple-600);
+  padding: var(--axiom-space-md);
+}

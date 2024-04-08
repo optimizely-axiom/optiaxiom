@@ -1,5 +1,38 @@
-import { createGlobalTheme } from "@vanilla-extract/css";
+import {
+  createGlobalTheme,
+  createGlobalThemeContract,
+} from "@vanilla-extract/css";
 
+import { mapValues } from "../utils";
 import { tokens } from "./tokens";
 
-export const theme = createGlobalTheme(":root", tokens);
+type ThemeContract<Obj, Prefix extends string> = {
+  [Prop in keyof Obj]: Obj[Prop] extends string
+    ? Prop extends number | string
+      ? `${Prefix}${ReplaceDot<Prop>}`
+      : never
+    : Obj[Prop] extends Record<number | string, unknown>
+      ? ThemeContract<Obj[Prop], `${Prefix}${Prop & string}-`>
+      : never;
+};
+type ReplaceDot<S extends number | string> =
+  `${S}` extends `${infer L}.${infer R}` ? `${L}-${R}` : S;
+type Tokens = {
+  [key: string]: Tokens | string;
+};
+const createThemeContractFromTokens = <T extends Tokens, P extends string>(
+  tokens: T,
+  path: P,
+): ThemeContract<T, P> => {
+  return mapValues(tokens, (value, key) => {
+    return typeof value === "object"
+      ? createThemeContractFromTokens(value, `${path}${key}-`)
+      : `${path}${key.toString().replaceAll(".", "-")}`;
+  }) as ThemeContract<T, P>;
+};
+
+export const theme = createGlobalThemeContract(
+  createThemeContractFromTokens(tokens, ""),
+  (value) => `axiom-${value}`,
+);
+createGlobalTheme(":root", theme, tokens);
