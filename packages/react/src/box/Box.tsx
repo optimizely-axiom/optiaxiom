@@ -2,15 +2,18 @@ import { Slot } from "@radix-ui/react-slot";
 import clsx from "clsx";
 import { type ComponentPropsWithRef, forwardRef } from "react";
 
+import type { ExtendProps } from "../utils";
 import type { Sprinkles } from "./Box.css";
 
 import * as styles from "./Box.css";
 
-type BoxProps = Omit<ComponentPropsWithRef<"div">, "asChild" | "className"> &
+type BoxProps = ExtendProps<
+  ComponentPropsWithRef<"div">,
   Sprinkles & {
     asChild?: boolean;
     className?: string;
-  };
+  }
+>;
 
 export const Box = forwardRef<HTMLDivElement, BoxProps>(
   ({ asChild, className, ...props }, ref) => {
