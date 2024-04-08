@@ -1,0 +1,43 @@
+import { tokens } from "@optiaxiom/react";
+
+# Responsive Styles
+
+`Box` and `Stack` components support responsive styles for all layout related props.
+
+Use the object prop notation where the key is the breakpoint name to apply responsive styles.
+
+## Usage
+
+<ax-demo iframe="/docs/responsive-styles-demo/" name="responsive-usage" />
+
+## Breakpoints
+
+Currently the following breakpoints are supported:
+
+{<table>
+
+  <thead>
+    <tr>
+      <th>Breakpoint</th>
+      <th>Minimum width</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <strong>base</strong>
+      </td>
+      <td>0px</td>
+    </tr>
+
+    {Object.entries(tokens.breakpoints).map(([name, width]) => (
+      <tr key={name}>
+        <td>
+          <strong>{name}</strong>
+        </td>
+        <td>{width}</td>
+      </tr>
+    ))}
+
+  </tbody>
+</table>}

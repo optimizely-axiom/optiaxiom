@@ -100,6 +100,15 @@ export const tokens = {
     xl: "1.65",
   },
 
+  maxWidth: {
+    xs: "320px",
+    sm: "384px",
+    md: "448px",
+    lg: "512px",
+    xl: "576px",
+    "2xl": "672px",
+  },
+
   radius: {
     xs: "2px",
     sm: "4px",

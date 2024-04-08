@@ -51,6 +51,7 @@ const responsiveProperties = defineProperties({
     marginLeft: margins,
     marginRight: margins,
     marginTop: margins,
+    maxWidth: theme.maxWidth,
     paddingBottom: theme.space,
     paddingLeft: theme.space,
     paddingRight: theme.space,
@@ -83,6 +84,7 @@ const unresponsiveProperties = defineProperties({
   "@layer": layers.axiom,
   properties: {
     borderRadius: theme.radius,
+    overflow: ["auto", "hidden", "visible"] as const,
   },
 });
 

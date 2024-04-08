@@ -22,13 +22,16 @@ export function transformDemos(tree) {
         demoName,
         "App.tsx",
       );
+      const iframe = node.attributes.find(
+        (attr) => attr.name === "iframe",
+      )?.value;
 
       const demo = fromMarkdown(
         [
           needsImport &&
             `import { Demo as DemoRemark } from "@/components/demo";`,
           `import { App as App${id} } from "@/demos/${demoName}/App";`,
-          `<DemoRemark component={App${id}} />`,
+          `<DemoRemark component={App${id}} ${iframe ? `iframe=${JSON.stringify(iframe)}` : ""} />`,
         ]
           .filter(Boolean)
           .join("\n\n"),
