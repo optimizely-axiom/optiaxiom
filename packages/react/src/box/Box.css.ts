@@ -20,9 +20,9 @@ export const base = style({
 });
 
 const margins = {
-  ...theme.spacing,
+  ...theme.space,
   ...mapValues(
-    theme.spacing,
+    theme.space,
     (v) => `calc(-1 * ${v})`,
     (k) => `-${k}`,
   ),
@@ -51,10 +51,10 @@ const responsiveProperties = defineProperties({
     marginLeft: margins,
     marginRight: margins,
     marginTop: margins,
-    paddingBottom: theme.spacing,
-    paddingLeft: theme.spacing,
-    paddingRight: theme.spacing,
-    paddingTop: theme.spacing,
+    paddingBottom: theme.space,
+    paddingLeft: theme.space,
+    paddingRight: theme.space,
+    paddingTop: theme.space,
   },
   shorthands: {
     margin: ["marginBottom", "marginLeft", "marginRight", "marginTop"],

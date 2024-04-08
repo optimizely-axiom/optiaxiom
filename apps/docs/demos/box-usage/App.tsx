@@ -9,7 +9,7 @@ export function App() {
       padding="lg"
       style={{
         border: `1px solid ${theme.colors["brand.200"]}`,
-        padding: theme.spacing.md,
+        padding: theme.space.md,
       }}
     >
       This is a Box
