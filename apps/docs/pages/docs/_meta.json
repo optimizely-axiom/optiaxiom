@@ -5,6 +5,7 @@
     "title": "Styles"
   },
   "css-imports": "CSS Imports",
+  "colors": "Colors",
   "responsive-styles": "Responsive Styles",
   "responsive-styles-demo": {
     "display": "hidden",
