@@ -2,16 +2,16 @@ import { Slot } from "@radix-ui/react-slot";
 import { type ComponentPropsWithRef, forwardRef } from "react";
 
 import { Text } from "../text";
-import { extractSprinkles } from "../utils";
+import { type ExtendProps, extractSprinkles } from "../utils";
 import * as styles from "./Heading.css";
 
-type HeadingProps = Omit<
-  ComponentPropsWithRef<"h1"> & ComponentPropsWithRef<typeof Text>,
-  "level" | keyof styles.Sprinkles
-> &
+type HeadingProps = ExtendProps<
+  ComponentPropsWithRef<"h1">,
+  ComponentPropsWithRef<typeof Text>,
   styles.Sprinkles & {
     level?: keyof typeof mapLevelToTag;
-  };
+  }
+>;
 
 const mapLevelToTag = {
   1: "h1",
