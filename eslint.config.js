@@ -1,4 +1,5 @@
 import eslint from "@eslint/js";
+import jsxA11y from "eslint-plugin-jsx-a11y";
 import perfectionistNatural from "eslint-plugin-perfectionist/configs/recommended-natural";
 import reactRecommended from "eslint-plugin-react/configs/recommended.js";
 import reactHooks from "eslint-plugin-react-hooks";
@@ -27,8 +28,13 @@ export default tsEslint.config(
         ecmaFeatures: { jsx: true },
       },
     },
+    plugins: {
+      ...reactRecommended.plugins,
+      "jsx-a11y": { rules: jsxA11y.rules },
+    },
     rules: {
       ...reactRecommended.rules,
+      ...jsxA11y.configs.recommended.rules,
       "react/react-in-jsx-scope": "off",
     },
     settings: {
