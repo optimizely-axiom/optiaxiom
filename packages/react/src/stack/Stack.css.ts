@@ -33,7 +33,7 @@ const responsiveProperties = defineProperties({
       row: "row",
       vertical: "column",
     },
-    gap: theme.spacing,
+    gap: theme.space,
     justifyContent: [
       "center",
       "end",
