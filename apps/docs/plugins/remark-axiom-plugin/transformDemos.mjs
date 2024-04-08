@@ -16,18 +16,25 @@ export function transformDemos(tree) {
       const demoName = node.attributes.find(
         (attr) => attr.name === "name",
       ).value;
-      const filePath = path.resolve(
-        process.cwd(),
-        "demos",
-        demoName,
-        "App.tsx",
-      );
+      const filesAttr = node.attributes.find((attr) => attr.name === "files");
       const iframe = node.attributes.find(
         (attr) => attr.name === "iframe",
       )?.value;
 
+      const files = filesAttr
+        ? [
+            "App.tsx",
+            ...filesAttr.value.data.estree.body[0].expression.elements.map(
+              (el) => el.value,
+            ),
+          ]
+        : ["App.tsx"];
+      const filesDir = path.resolve(process.cwd(), "demos", demoName);
+
       const demo = fromMarkdown(
         [
+          needsImport &&
+            `import { Tabs as TabsRemark } from 'nextra/components';`,
           needsImport &&
             `import { Demo as DemoRemark } from "@/components/demo";`,
           `import { App as App${id} } from "@/demos/${demoName}/App";`,
@@ -40,11 +47,37 @@ export function transformDemos(tree) {
           mdastExtensions: [mdxFromMarkdown()],
         },
       );
-      demo.children[demo.children.length - 1].children.push({
-        lang: "tsx",
-        type: "code",
-        value: readFileSync(filePath, "utf8").trim(),
-      });
+      demo.children[demo.children.length - 1].children.push(
+        files.length > 1
+          ? {
+              ...fromMarkdown(
+                `<TabsRemark items={${JSON.stringify(files)}} />`,
+                {
+                  extensions: [mdxjs()],
+                  mdastExtensions: [mdxFromMarkdown()],
+                },
+              ).children[0],
+              children: files.map((fileName) => ({
+                children: [
+                  {
+                    lang: path.extname(fileName).slice(1),
+                    type: "code",
+                    value: readFileSync(
+                      path.join(filesDir, fileName),
+                      "utf8",
+                    ).trim(),
+                  },
+                ],
+                name: "TabsRemark.Tab",
+                type: "mdxJsxFlowElement",
+              })),
+            }
+          : {
+              lang: "tsx",
+              type: "code",
+              value: readFileSync(path.join(filesDir, files[0]), "utf8").trim(),
+            },
+      );
       parent.children.splice(index, 1, ...demo.children);
 
       id++;

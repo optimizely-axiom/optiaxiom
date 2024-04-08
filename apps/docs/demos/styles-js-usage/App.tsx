@@ -4,8 +4,9 @@ export function App() {
   return (
     <div
       style={{
-        background: theme.colors["aqua.50"],
-        padding: theme.spacing.md,
+        background: theme.colors["purple.200"],
+        color: theme.colors["purple.600"],
+        padding: theme.space.md,
       }}
     >
       Using CSS variables inline
