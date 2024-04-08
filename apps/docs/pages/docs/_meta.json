@@ -5,6 +5,19 @@
     "title": "Styles"
   },
   "css-imports": "CSS Imports",
+  "responsive-styles": "Responsive Styles",
+  "responsive-styles-demo": {
+    "display": "hidden",
+    "theme": {
+      "breadcrumb": false,
+      "footer": false,
+      "layout": "raw",
+      "navbar": false,
+      "pagination": false,
+      "sidebar": false,
+      "toc": false
+    }
+  },
   "theme": "Theme",
   "-- Primitives": {
     "type": "separator",

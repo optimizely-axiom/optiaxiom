@@ -3,6 +3,17 @@
   border-radius: 12px;
 }
 
+.preview:global(:is(.dark *)) {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.resize {
+  overflow: auto;
+  resize: horizontal;
+  max-width: 100%;
+  min-width: 320px;
+}
+
 .editor pre {
   margin-bottom: 0;
 }
