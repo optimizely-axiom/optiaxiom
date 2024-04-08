@@ -58,11 +58,11 @@ const responsiveProperties = defineProperties({
   },
   shorthands: {
     margin: ["marginBottom", "marginLeft", "marginRight", "marginTop"],
-    marginX: ["marginBottom", "marginTop"],
-    marginY: ["marginLeft", "marginRight"],
+    marginX: ["marginLeft", "marginRight"],
+    marginY: ["marginBottom", "marginTop"],
     padding: ["paddingBottom", "paddingLeft", "paddingRight", "paddingTop"],
-    paddingX: ["paddingBottom", "paddingTop"],
-    paddingY: ["paddingLeft", "paddingRight"],
+    paddingX: ["paddingLeft", "paddingRight"],
+    paddingY: ["paddingBottom", "paddingTop"],
   },
 });
 
