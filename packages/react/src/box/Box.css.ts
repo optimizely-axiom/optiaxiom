@@ -14,6 +14,17 @@ export const base = style({
       margin: 0,
       minWidth: 0,
       padding: 0,
+      selectors: {
+        "&:is(button)": {
+          background: 0,
+        },
+        "&:is(ol, ul)": {
+          listStyle: "none",
+        },
+        "&:is(select)": {
+          appearance: "none",
+        },
+      },
       verticalAlign: "baseline",
     },
   },
