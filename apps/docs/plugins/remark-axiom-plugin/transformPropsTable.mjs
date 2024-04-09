@@ -162,5 +162,5 @@ function parseType(type, prop, component) {
 }
 
 function themeLink(key) {
-  return `[\`theme.${key}\`](/docs/theme/#tokens)`;
+  return `[\`theme.${key}\`](/docs/theme/#design-tokens)`;
 }
