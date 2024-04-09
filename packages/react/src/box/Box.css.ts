@@ -70,7 +70,7 @@ const responsiveProperties = defineProperties({
 const colorProperties = defineProperties({
   "@layer": layers.axiom,
   conditions: {
-    dark: { selector: "html[class~=dark] &" },
+    dark: { selector: "&:is(.dark *)" },
     light: {},
   },
   defaultCondition: "light",
