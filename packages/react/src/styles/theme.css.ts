@@ -4,7 +4,7 @@ import {
 } from "@vanilla-extract/css";
 
 import { mapValues } from "../utils";
-import { tokens } from "./tokens";
+import { tokensDark, tokensLight } from "./tokens";
 
 type ThemeContract<Obj, Prefix extends string> = {
   [Prop in keyof Obj]: Obj[Prop] extends string
@@ -32,7 +32,8 @@ const createThemeContractFromTokens = <T extends Tokens, P extends string>(
 };
 
 export const theme = createGlobalThemeContract(
-  createThemeContractFromTokens(tokens, ""),
+  createThemeContractFromTokens(tokensLight, ""),
   (value) => `axiom-${value}`,
 );
-createGlobalTheme(":root", theme, tokens);
+createGlobalTheme(":root", theme, tokensLight);
+createGlobalTheme(":root.dark", theme, tokensDark);

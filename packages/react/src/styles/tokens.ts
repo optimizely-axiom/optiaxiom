@@ -146,3 +146,27 @@ export const tokens = {
     xl: "32px",
   },
 } as const;
+
+export const tokensLight = {
+  ...tokens,
+  color: {
+    ...tokens.color,
+
+    "bg.information": tokens.color["blue.50"],
+    "bg.danger": tokens.color["red.50"],
+
+    "fg.danger": tokens.color["red.600"],
+  },
+};
+
+export const tokensDark = {
+  ...tokens,
+  color: {
+    ...tokens.color,
+
+    "bg.information": tokens.color["blue.600"],
+    "bg.danger": tokens.color["red.600"],
+
+    "fg.danger": tokens.color["red.50"],
+  },
+};
