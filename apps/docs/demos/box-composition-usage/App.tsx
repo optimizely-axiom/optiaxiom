@@ -7,7 +7,7 @@ export function App() {
   return (
     <Box
       asChild
-      background={{ dark: "blue.600", light: "blue.50" }}
+      background="bg.information"
       borderRadius="md"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
