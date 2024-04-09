@@ -1,10 +1,10 @@
 export const tokens = {
-  breakpoints: {
+  breakpoint: {
     sm: "640px",
     xl: "1280px",
   },
 
-  colors: {
+  color: {
     black: "#000",
     white: "#fff",
 
@@ -64,7 +64,7 @@ export const tokens = {
     "yellow.600": "#d7a204",
   },
 
-  fontSizes: {
+  fontSize: {
     xs: "11px",
     sm: "12px",
     md: "14px",
@@ -72,8 +72,8 @@ export const tokens = {
     xl: "18px",
   },
 
-  headings: {
-    fontSizes: {
+  heading: {
+    fontSize: {
       h6: "14px",
       h5: "18px",
       h4: "20px",
@@ -82,7 +82,7 @@ export const tokens = {
       h1: "29px",
     },
 
-    lineHeights: {
+    lineHeight: {
       h6: "1.71",
       h5: "1.78",
       h4: "1.6",
@@ -92,7 +92,7 @@ export const tokens = {
     },
   },
 
-  lineHeights: {
+  lineHeight: {
     xs: "1.25",
     sm: "1.45",
     md: "1.5",
@@ -117,7 +117,7 @@ export const tokens = {
     xl: "32px",
   },
 
-  shadows: {
+  shadow: {
     xs: "0 1px 2px 0 rgb(0 0 0 / 0.05)",
     sm: "0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)",
     md: "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",

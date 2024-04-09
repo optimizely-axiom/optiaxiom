@@ -8,7 +8,7 @@ export function App() {
       margin="lg"
       padding="lg"
       style={{
-        border: `1px solid ${theme.colors["brand.200"]}`,
+        border: `1px solid ${theme.color["brand.200"]}`,
         padding: theme.space.md,
       }}
     >

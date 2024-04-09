@@ -10,7 +10,7 @@ import { mapValues } from "../utils";
 const responsiveProperties = defineProperties({
   "@layer": layers.axiom,
   conditions: {
-    ...mapValues(tokens.breakpoints, (width) => ({
+    ...mapValues(tokens.breakpoint, (width) => ({
       "@media": `screen and (min-width: ${width})`,
     })),
     base: {},

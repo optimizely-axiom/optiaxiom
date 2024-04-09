@@ -14,10 +14,10 @@ export const base = style({
 const unresponsiveProperties = defineProperties({
   "@layer": layers.axiom,
   properties: {
-    fontSize: theme.fontSizes,
+    fontSize: theme.fontSize,
     fontStyle: ["normal", "italic"] as const,
     fontWeight: [100, 200, 300, 400, 500, 600, 700, 800, 900] as const,
-    lineHeight: theme.lineHeights,
+    lineHeight: theme.lineHeight,
     textAlign: ["start", "center", "justify"] as const,
     textDecoration: ["none", "underline"] as const,
     textTransform: ["capitalize", "none", "uppercase"] as const,
