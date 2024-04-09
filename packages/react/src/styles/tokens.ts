@@ -153,9 +153,7 @@ export const tokensLight = {
     ...tokens.color,
 
     "bg.information": tokens.color["blue.50"],
-    "bg.danger": tokens.color["red.50"],
-
-    "fg.danger": tokens.color["red.600"],
+    "bg.success": tokens.color["green.50"],
   },
 };
 
@@ -165,8 +163,6 @@ export const tokensDark = {
     ...tokens.color,
 
     "bg.information": tokens.color["blue.600"],
-    "bg.danger": tokens.color["red.600"],
-
-    "fg.danger": tokens.color["red.50"],
+    "bg.success": tokens.color["green.600"],
   },
 };
