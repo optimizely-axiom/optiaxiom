@@ -8,7 +8,7 @@
   "scripts": {
     "build": "pnpm -F react... build",
     "dev": "pnpm run --parallel dev",
-    "lint": "pnpm run -r --stream lint",
+    "lint": "pnpm run -r --reporter-hide-prefix --stream lint",
     "release": "pnpm build && changeset publish",
     "test": "pnpm run -r test"
   },
