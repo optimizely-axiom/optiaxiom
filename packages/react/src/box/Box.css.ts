@@ -32,7 +32,7 @@ const margins = {
 const responsiveProperties = defineProperties({
   "@layer": layers.axiom,
   conditions: {
-    ...mapValues(tokens.breakpoints, (width) => ({
+    ...mapValues(tokens.breakpoint, (width) => ({
       "@media": `screen and (min-width: ${width})`,
     })),
     base: {},
@@ -75,8 +75,8 @@ const colorProperties = defineProperties({
   },
   defaultCondition: "light",
   properties: {
-    background: theme.colors,
-    color: theme.colors,
+    background: theme.color,
+    color: theme.color,
   },
 });
 

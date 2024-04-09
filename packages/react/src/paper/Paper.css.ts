@@ -5,7 +5,7 @@ import { layers, theme } from "../styles";
 const unresponsiveProperties = defineProperties({
   "@layer": layers.axiom,
   properties: {
-    boxShadow: theme.shadows,
+    boxShadow: theme.shadow,
   },
 });
 

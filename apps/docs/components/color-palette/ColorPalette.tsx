@@ -4,13 +4,13 @@ export function ColorPalette() {
   return (
     <Stack gap="lg" marginTop="xl">
       {Object.entries(
-        Object.entries(tokens.colors).reduce<
-          Record<string, Array<[string, keyof typeof tokens.colors, string]>>
+        Object.entries(tokens.color).reduce<
+          Record<string, Array<[string, keyof typeof tokens.color, string]>>
         >((result, [name, color]) => {
           const [hue, tone] = name.split(".");
           (result[hue] = result[hue] || []).push([
             tone,
-            name as keyof typeof tokens.colors,
+            name as keyof typeof tokens.color,
             color,
           ]);
           return result;
