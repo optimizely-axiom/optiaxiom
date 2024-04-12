@@ -39,9 +39,16 @@ jobs:
 
       - uses: actions/download-artifact@v4
 
-      - run: pnpm build
+      - run: |
+          mkdir -p ./pr
+          echo ${{ github.event.number }} > ./pr/ID
+          pnpm build
+          pnpm -F react exec -- pnpm --silent bundle-size compare artifact/bundle-size-main.json > ./pr/bundle-size.md
 
-      - run: pnpm -F react bundle-size compare artifact/bundle-size-main.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pr-build
+          path: pr/
 
   chromatic:
     runs-on: ubuntu-latest
