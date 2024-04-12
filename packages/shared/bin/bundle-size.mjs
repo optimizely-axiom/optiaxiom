@@ -113,13 +113,21 @@ async function measure({ json }) {
 
 yargs(hideBin(process.argv))
   .command({
+    builder: {
+      output: {
+        choices: ["cli", "markdown"],
+        default: isCI ? "markdown" : "cli",
+      },
+    },
     command: "compare <file>",
-    handler: async ({ file }) => {
+    handler: async ({ file, output }) => {
       const report = await compare({ file });
-      const { cliReporter } = await import(
-        "monosize/src/reporters/cliReporter.mjs"
-      );
-      cliReporter(report, {
+      const reporter =
+        output === "cli"
+          ? (await import("monosize/src/reporters/cliReporter.mjs")).cliReporter
+          : (await import("monosize/src/reporters/markdownReporter.mjs"))
+              .markdownReporter;
+      reporter(report, {
         commitSHA: process.env.GITHUB_SHA,
         deltaFormat: "delta",
         repository: `https://github.com/${process.env.GITHUB_REPOSITORY}`,
