@@ -19,7 +19,7 @@ export const Paper = forwardRef<HTMLParagraphElement, PaperProps>(
   ({ className, shadow = "sm", ...props }, ref) => {
     return (
       <Box
-        background={{ dark: "dark.500", light: "white" }}
+        background={{ base: "white", dark: "dark.500" }}
         borderRadius="sm"
         className={clsx(className, styles.sprinkles({ boxShadow: shadow }))}
         ref={ref}
