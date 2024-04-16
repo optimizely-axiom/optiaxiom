@@ -1,18 +1,20 @@
 import clsx from "clsx";
 import { type ComponentPropsWithRef, forwardRef } from "react";
 
+import type { ExtendProps } from "../utils";
+
 import { Box } from "../box";
 import * as styles from "./Stack.css";
 
-type StackProps = Omit<
-  ComponentPropsWithRef<"div"> & ComponentPropsWithRef<typeof Box>,
-  "align" | "direction" | "gap" | "justify"
-> & {
-  align?: styles.Sprinkles["alignItems"];
-  direction?: styles.Sprinkles["flexDirection"];
-  gap?: styles.Sprinkles["gap"];
-  justify?: styles.Sprinkles["justifyContent"];
-};
+type StackProps = ExtendProps<
+  ComponentPropsWithRef<typeof Box>,
+  {
+    align?: styles.Sprinkles["alignItems"];
+    direction?: styles.Sprinkles["flexDirection"];
+    gap?: styles.Sprinkles["gap"];
+    justify?: styles.Sprinkles["justifyContent"];
+  }
+>;
 
 const mapDirectionToAlign = {
   column: "stretch",
