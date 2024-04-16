@@ -1,8 +1,10 @@
 {
-  "extends": "@optiaxiom/shared/configs/tsconfig.json",
+  "extends": "@optiaxiom/shared/configs/tsconfig.base.json",
   "compilerOptions": {
     "paths": {
       "@optiaxiom/react": ["../../packages/react/src"]
     }
-  }
+  },
+  "include": [".", ".storybook/*.ts*"],
+  "exclude": ["storybook-static", "node_modules"]
 }

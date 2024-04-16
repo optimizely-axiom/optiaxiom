@@ -7,9 +7,6 @@
     "oas-bundle-size": "bin/bundle-size.mjs",
     "oas-lint": "bin/lint.sh"
   },
-  "exports": {
-    "./configs/tsconfig.json": "./configs/tsconfig.json"
-  },
   "scripts": {
     "lint": "bin/lint.sh"
   },
@@ -20,5 +17,18 @@
     "monosize": "^0.5.0",
     "pretty-bytes": "^6.1.1",
     "yargs": "^17.7.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.7",
+    "@types/yargs": "^17.0.32",
+    "@typescript-eslint/eslint-plugin": "^7.7.0",
+    "@typescript-eslint/parser": "^7.7.0",
+    "eslint": "^8.57.0",
+    "eslint-plugin-jsx-a11y": "^6.8.0",
+    "eslint-plugin-perfectionist": "^2.9.0",
+    "eslint-plugin-react": "^7.34.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "globals": "^15.0.0",
+    "typescript-eslint": "^7.7.0"
   }
 }

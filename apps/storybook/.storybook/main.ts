@@ -1,7 +1,7 @@
+import type { StorybookConfig } from "@storybook/react-webpack5";
 import type { Options } from "@swc/core";
 
 import { ReactDocgenTypeScriptPlugin } from "@storybook/react-docgen-typescript-plugin";
-import { StorybookConfig } from "@storybook/react-webpack5";
 
 const config: StorybookConfig = {
   addons: [
