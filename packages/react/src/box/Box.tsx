@@ -9,10 +9,10 @@ import * as styles from "./Box.css";
 
 type BoxProps = ExtendProps<
   ComponentPropsWithRef<"div">,
-  Sprinkles & {
+  {
     asChild?: boolean;
     className?: string;
-  }
+  } & Sprinkles
 >;
 
 export const Box = forwardRef<HTMLDivElement, BoxProps>(

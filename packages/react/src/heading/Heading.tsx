@@ -8,9 +8,9 @@ import * as styles from "./Heading.css";
 type HeadingProps = ExtendProps<
   ComponentPropsWithRef<"h1">,
   ComponentPropsWithRef<typeof Text>,
-  styles.Sprinkles & {
+  {
     level?: keyof typeof mapLevelToTag;
-  }
+  } & styles.Sprinkles
 >;
 
 const mapLevelToTag = {
