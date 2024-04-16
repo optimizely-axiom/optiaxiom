@@ -8,8 +8,18 @@ import { hideBin } from "yargs/helpers";
 
 const pkg = JSON.parse(await readFile("./package.json", { encoding: "utf-8" }));
 
+/**
+ * @param {{ file: string }} options
+ */
 async function compare({ file }) {
-  const localReport = await measure({ json: true });
+  const localReport = await measure();
+  /**
+   * @type {Array<{
+   *    gzippedSize: number;
+   *    minifiedSize: number;
+   *    name: string;
+   * }>}
+   */
   const remoteReport = JSON.parse(
     await readFile(resolve(process.cwd(), "../../", file), {
       encoding: "utf-8",
@@ -32,11 +42,10 @@ async function compare({ file }) {
   );
 }
 
-async function measure({ json }) {
+async function measure() {
   const { gzipSize } = await import("gzip-size");
-  const { default: prettyBytes } = await import("pretty-bytes");
 
-  const config = {
+  const config = /** @type {const} */ ({
     alias: { [pkg.name]: process.cwd() },
     bundle: true,
     external: Object.keys(pkg.peerDependencies),
@@ -44,7 +53,7 @@ async function measure({ json }) {
     loader: { ".woff2": "empty" },
     outdir: "dist",
     write: false,
-  };
+  });
 
   const bundle = await esbuild.build({
     ...config,
@@ -59,10 +68,9 @@ async function measure({ json }) {
 
   const result = await esbuild.build({
     ...config,
-    entryPoints: imports.reduce((result, name) => {
-      result[name] = `fixture/${name}.js`;
-      return result;
-    }, {}),
+    entryPoints: Object.fromEntries(
+      imports.map((name) => [name, `fixture/${name}.js`], {}),
+    ),
     minify: true,
     plugins: [
       {
@@ -85,33 +93,18 @@ async function measure({ json }) {
     ],
   });
 
-  if (json) {
-    const data = [];
-    for (const outputFile of result.outputFiles) {
-      data.push({
-        gzippedSize: await gzipSize(outputFile.contents),
-        minifiedSize: outputFile.contents.length,
-        name: basename(outputFile.path),
-      });
-    }
-    return data;
-  } else {
-    const table = new Table({
-      colAligns: ["left", "right", "right"],
-      head: ["Export", "Minified size", "GZIP size"],
+  const data = [];
+  for (const outputFile of result.outputFiles) {
+    data.push({
+      gzippedSize: await gzipSize(outputFile.text),
+      minifiedSize: outputFile.text.length,
+      name: basename(outputFile.path),
     });
-    for (const outputFile of result.outputFiles) {
-      table.push([
-        basename(outputFile.path),
-        prettyBytes(outputFile.contents.length),
-        prettyBytes(await gzipSize(outputFile.contents)),
-      ]);
-    }
-    return table;
   }
+  return data;
 }
 
-yargs(hideBin(process.argv))
+void yargs(hideBin(process.argv))
   .command({
     builder: {
       output: {
@@ -128,9 +121,10 @@ yargs(hideBin(process.argv))
           : (await import("monosize/src/reporters/markdownReporter.mjs"))
               .markdownReporter;
       reporter(report, {
-        commitSHA: process.env.GITHUB_SHA,
+        commitSHA: `${process.env.GITHUB_SHA}`,
         deltaFormat: "delta",
         repository: `https://github.com/${process.env.GITHUB_REPOSITORY}`,
+        showUnchanged: true,
       });
     },
   })
@@ -138,8 +132,24 @@ yargs(hideBin(process.argv))
     builder: { json: { boolean: true, default: isCI } },
     command: ["measure", "$0"],
     handler: async ({ json }) => {
-      const result = await measure({ json });
-      console.log(json ? JSON.stringify(result) : result.toString());
+      const result = await measure();
+      if (json) {
+        console.log(JSON.stringify(result));
+      } else {
+        const { default: prettyBytes } = await import("pretty-bytes");
+        const table = new Table({
+          colAligns: ["left", "right", "right"],
+          head: ["Export", "Minified size", "GZIP size"],
+        });
+        for (const entry of result) {
+          table.push([
+            basename(entry.name),
+            prettyBytes(entry.minifiedSize),
+            prettyBytes(entry.gzippedSize),
+          ]);
+        }
+        console.log(table.toString());
+      }
     },
   })
   .parse();

@@ -1,9 +1,10 @@
-/** @type {import('eslint').Rule.RuleModule} */
-export default {
+import { ESLintUtils } from "@typescript-eslint/utils";
+
+export default ESLintUtils.RuleCreator.withoutDocs({
   create(context) {
     return {
       /**
-       * @type {import('eslint').Rule.RuleListener['ArrayExpression']}
+       * @type {import('@typescript-eslint/utils').TSESLint.RuleListener['ArrayExpression']}
        */
       'CallExpression[callee.name="defineProperties"] Property[key.name="properties"] ArrayExpression':
         (node) => {
@@ -20,6 +21,8 @@ export default {
     };
   },
 
+  defaultOptions: [],
+
   meta: {
     fixable: "code",
     messages: {
@@ -28,4 +31,4 @@ export default {
     schema: [],
     type: "suggestion",
   },
-};
+});
