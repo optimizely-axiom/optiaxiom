@@ -4,7 +4,7 @@ export const extractSprinkles = <Sprinkles>(
   sprinkles: ((props: Sprinkles) => string) & {
     properties: Set<keyof Sprinkles>;
   },
-  { className, ...props }: Sprinkles & { className?: string },
+  { className, ...props }: { className?: string } & Sprinkles,
 ) => {
   const sprinkleProps = {} as Sprinkles;
   const restProps: Record<string, unknown> = {};
