@@ -13,6 +13,7 @@ type StackProps = ExtendProps<
     direction?: styles.Sprinkles["flexDirection"];
     gap?: styles.Sprinkles["gap"];
     justify?: styles.Sprinkles["justifyContent"];
+    wrap?: boolean;
   }
 >;
 
@@ -32,7 +33,15 @@ const mapDirectionToJustify = {
 
 export const Stack = forwardRef<HTMLDivElement, StackProps>(
   (
-    { align, className, direction = "column", gap = "md", justify, ...props },
+    {
+      align,
+      className,
+      direction = "column",
+      gap = "md",
+      justify,
+      wrap = false,
+      ...props
+    },
     ref,
   ) => {
     return (
@@ -44,6 +53,9 @@ export const Stack = forwardRef<HTMLDivElement, StackProps>(
               align ??
               styles.mapValue(direction, (value) => mapDirectionToAlign[value]),
             flexDirection: direction,
+            flexWrap: styles.mapValue(wrap, (value) =>
+              value ? "wrap" : undefined,
+            ),
             gap,
             justifyContent:
               justify ??
