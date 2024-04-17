@@ -63,6 +63,9 @@ const responsiveProperties = defineProperties({
       auto: "1 1 auto",
       none: "none",
     },
+    grow: {
+      1: { flexGrow: 1 },
+    },
     marginBottom: margins,
     marginLeft: margins,
     marginRight: margins,
@@ -72,6 +75,9 @@ const responsiveProperties = defineProperties({
     paddingLeft: theme.space,
     paddingRight: theme.space,
     paddingTop: theme.space,
+    shrink: {
+      1: { flexShrink: 1 },
+    },
   },
   shorthands: {
     margin: ["marginBottom", "marginLeft", "marginRight", "marginTop"],

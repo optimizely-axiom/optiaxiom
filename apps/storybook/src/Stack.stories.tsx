@@ -59,3 +59,24 @@ export const Gaps: Story = {
     </Stack>
   ),
 };
+
+export const Grow: Story = {
+  args: {
+    children: (
+      <>
+        <Text background="aqua.50" grow={1} padding="md" textAlign="center">
+          Item 1
+        </Text>
+        <Text background="aqua.50" grow={1} padding="md" textAlign="center">
+          Item 2
+        </Text>
+        <Text background="aqua.50" grow={1} padding="md" textAlign="center">
+          Long Content
+        </Text>
+      </>
+    ),
+    direction: "row",
+    style: { width: "200px" },
+    wrap: true,
+  },
+};

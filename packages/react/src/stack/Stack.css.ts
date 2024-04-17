@@ -33,6 +33,9 @@ const responsiveProperties = defineProperties({
       row: "row",
       vertical: "column",
     },
+    flexWrap: {
+      wrap: "wrap",
+    },
     gap: theme.space,
     justifyContent: [
       "center",
