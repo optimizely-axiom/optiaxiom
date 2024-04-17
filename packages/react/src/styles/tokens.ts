@@ -17,6 +17,7 @@ export const tokens = {
     "blue.200": "#a8d5fa",
     "blue.500": "#2094f3",
     "blue.600": "#1668ac",
+    "blue.900": "#1c2b41",
 
     "brand.50": "#f0f3ff",
     "brand.200": "#b3c3ff",
@@ -37,6 +38,7 @@ export const tokens = {
     "green.200": "#b9dfbb",
     "green.500": "#4cae4f",
     "green.600": "#357937",
+    "green.900": "#1c3329",
 
     "magenta.50": "#f8e7f5",
     "magenta.200": "#e39cd6",
@@ -154,6 +156,7 @@ export const tokensLight = {
 
     "bg.information": tokens.color["blue.50"],
     "bg.success": tokens.color["green.50"],
+    "text.success": tokens.color["green.600"],
   },
 };
 
@@ -162,7 +165,8 @@ export const tokensDark = {
   color: {
     ...tokens.color,
 
-    "bg.information": tokens.color["blue.600"],
-    "bg.success": tokens.color["green.600"],
+    "bg.information": tokens.color["blue.900"],
+    "bg.success": tokens.color["green.900"],
+    "text.success": tokens.color["green.200"],
   },
 };
