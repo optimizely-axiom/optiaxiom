@@ -37,9 +37,8 @@ const config: StorybookConfig = {
     config.plugins?.push(
       new ReactDocgenTypeScriptPlugin({
         include: ["**/**.tsx", "**/packages/react/**/*.d.ts"],
-        propFilter: (prop) => !prop.parent,
         savePropValueAsString: true,
-        shouldExtractValuesFromUnion: true,
+        tsconfigPath: "../tsconfig.json",
       }),
     );
     config.plugins = config.plugins?.filter(
