@@ -1,8 +1,8 @@
-import { Box, Stack, Text, tokens } from "@optiaxiom/react";
+import { Box, Grid, Stack, Text, tokens } from "@optiaxiom/react";
 
 export function ColorPalette() {
   return (
-    <Stack gap="lg" marginTop="xl">
+    <Grid align="start" cols={{ base: 2, sm: 1 }} gap="lg" marginTop="xl">
       {Object.entries(
         Object.entries(tokens.color).reduce<
           Record<string, Array<[string, keyof typeof tokens.color, string]>>
@@ -16,7 +16,11 @@ export function ColorPalette() {
           return result;
         }, {}),
       ).map(([hue, tones]) => (
-        <Stack align="start" direction="horizontal" key={hue}>
+        <Stack
+          align={{ base: "stretch", sm: "start" }}
+          direction={{ base: "vertical", sm: "horizontal" }}
+          key={hue}
+        >
           <Text
             fontWeight={700}
             marginTop={1}
@@ -26,26 +30,33 @@ export function ColorPalette() {
             {hue}
           </Text>
           {tones.map(([tone, name, color]) => (
-            <Box key={`tone-${tone}`} style={{ width: "5rem" }}>
+            <Stack
+              align="start"
+              direction={{ base: "horizontal", sm: "vertical" }}
+              gap={{ base: "sm", sm: 1 }}
+              key={`tone-${tone}`}
+            >
               <Box
                 background={name}
                 borderRadius="sm"
                 style={{
+                  aspectRatio: 100 / 70,
                   border: `1px solid oklch(from ${color} calc(l - 0.1) c h)`,
-                  height: "0",
-                  paddingBottom: "70%",
+                  width: "50px",
                 }}
               />
-              <Text fontWeight={600} marginTop={1} size="sm">
-                {tone}
-              </Text>
-              <Text color="dark.500" marginTop={0.25} size="sm">
-                {color}
-              </Text>
-            </Box>
+              <Box flex={1}>
+                <Text fontWeight={600} size="sm">
+                  {tone}
+                </Text>
+                <Text color="dark.500" marginTop={0.25} size="sm">
+                  {color}
+                </Text>
+              </Box>
+            </Stack>
           ))}
         </Stack>
       ))}
-    </Stack>
+    </Grid>
   );
 }
