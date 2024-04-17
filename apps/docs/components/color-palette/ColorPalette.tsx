@@ -7,6 +7,10 @@ export function ColorPalette() {
         Object.entries(tokens.color).reduce<
           Record<string, Array<[string, keyof typeof tokens.color, string]>>
         >((result, [name, color]) => {
+          if (["current", "transparent"].includes(name)) {
+            return result;
+          }
+
           const [hue, tone] = name.split(".");
           (result[hue] = result[hue] || []).push([
             tone,
