@@ -25,6 +25,7 @@
     "title": "Primitives"
   },
   "box": "Box",
+  "grid": "Grid",
   "paper": "Paper",
   "stack": "Stack",
   "-- Typography": {
