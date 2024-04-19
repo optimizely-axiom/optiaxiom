@@ -108,7 +108,11 @@ export default tsEslint.config(
     },
     rules: {
       ...testingLibrary.configs.react.rules,
+      "local/prefer-testing-library": "error",
       "testing-library/prefer-user-event": "error",
+    },
+    settings: {
+      "testing-library/utils-module": "vitest.rtl",
     },
   },
   {
