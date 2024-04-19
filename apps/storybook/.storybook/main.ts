@@ -6,6 +6,7 @@ import { ReactDocgenTypeScriptPlugin } from "@storybook/react-docgen-typescript-
 const config: StorybookConfig = {
   addons: [
     "@storybook/addon-essentials",
+    "@storybook/addon-interactions",
     "@storybook/addon-links",
     "@storybook/addon-webpack5-compiler-swc",
   ],

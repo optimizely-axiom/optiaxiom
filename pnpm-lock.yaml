@@ -125,6 +125,9 @@ importers:
       '@storybook/addon-essentials':
         specifier: ~8.0.8
         version: 8.0.8(@types/react@18.2.79)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@storybook/addon-interactions':
+        specifier: ^8.0.8
+        version: 8.0.8(vitest@1.5.0(@types/node@20.12.7)(happy-dom@14.7.1)(terser@5.30.3))
       '@storybook/addon-links':
         specifier: ~8.0.8
         version: 8.0.8(react@18.2.0)
@@ -1797,6 +1800,9 @@ packages:
 
   '@storybook/addon-highlight@8.0.8':
     resolution: {integrity: sha512-KKD7xiNhxZQM4fdDidtcla6jSzgN1f9qe1AwFSHLXwIW22+4c97Vgf+AookN7cJvB77HxRUnvQH//zV1CJEDug==}
+
+  '@storybook/addon-interactions@8.0.8':
+    resolution: {integrity: sha512-UOPKOe97uV4psH1O1YeE0oFuUQgD1Vkv95JjHjQG8KiPWvwdiezV7rrjPvw8RApnSKUopjFETs8F5D59i4eARw==}
 
   '@storybook/addon-links@8.0.8':
     resolution: {integrity: sha512-iRI/W9I6fOom5zfZvsu53gfJtuhBSMmhgI/u5uZbAbfEoNL5D1PqpDXD4ygM8Vvlx90AZNZ2W5slEe7gCZOMyA==}
@@ -8583,6 +8589,21 @@ snapshots:
   '@storybook/addon-highlight@8.0.8':
     dependencies:
       '@storybook/global': 5.0.0
+
+  '@storybook/addon-interactions@8.0.8(vitest@1.5.0(@types/node@20.12.7)(happy-dom@14.7.1)(terser@5.30.3))':
+    dependencies:
+      '@storybook/global': 5.0.0
+      '@storybook/instrumenter': 8.0.8
+      '@storybook/test': 8.0.8(vitest@1.5.0(@types/node@20.12.7)(happy-dom@14.7.1)(terser@5.30.3))
+      '@storybook/types': 8.0.8
+      polished: 4.3.1
+      ts-dedent: 2.2.0
+    transitivePeerDependencies:
+      - '@jest/globals'
+      - '@types/bun'
+      - '@types/jest'
+      - jest
+      - vitest
 
   '@storybook/addon-links@8.0.8(react@18.2.0)':
     dependencies:
