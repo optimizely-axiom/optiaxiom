@@ -52,13 +52,16 @@ export default tsEslint.config(
   },
   ...tsEslint.configs.recommended,
   {
-    files: ["**/src/*"],
+    files: ["**/src/**"],
     languageOptions: {
       globals: globals.browser,
     },
+    rules: {
+      "no-console": ["error", { allow: ["warn", "error"] }],
+    },
   },
   {
-    ignores: ["**/src/*"],
+    ignores: ["**/src/**"],
     languageOptions: {
       globals: globals.node,
     },
