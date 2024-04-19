@@ -8,6 +8,8 @@ import perfectionistNatural from "eslint-plugin-perfectionist/configs/recommende
 import reactRecommended from "eslint-plugin-react/configs/recommended.js";
 // @ts-expect-error -- no types
 import reactHooks from "eslint-plugin-react-hooks";
+// @ts-expect-error -- no types
+import testingLibrary from "eslint-plugin-testing-library";
 import globals from "globals";
 import tsEslint from "typescript-eslint";
 
@@ -97,6 +99,16 @@ export default tsEslint.config(
     rules: {
       "@typescript-eslint/await-thenable": "error",
       "@typescript-eslint/no-floating-promises": "error",
+    },
+  },
+  {
+    files: ["**/*.spec.{ts,tsx}"],
+    plugins: {
+      "testing-library": testingLibrary,
+    },
+    rules: {
+      ...testingLibrary.configs.react.rules,
+      "testing-library/prefer-user-event": "error",
     },
   },
   {
