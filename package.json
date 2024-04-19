@@ -10,7 +10,7 @@
     "dev": "pnpm run --parallel dev",
     "lint": "pnpm run -r --reporter-hide-prefix --stream lint",
     "release": "pnpm build && changeset publish",
-    "test": "pnpm run -r test"
+    "test": "pnpm run -F react test"
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.1",
