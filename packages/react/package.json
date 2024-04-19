@@ -25,7 +25,9 @@
     "test": "vitest"
   },
   "dependencies": {
+    "@radix-ui/react-primitive": "^1.0.3",
     "@radix-ui/react-slot": "^1.0.2",
+    "@radix-ui/react-tooltip": "^1.0.7",
     "@vanilla-extract/sprinkles": "^1.6.1",
     "clsx": "^2.1.0",
     "inter-ui": "^4.0.2"
