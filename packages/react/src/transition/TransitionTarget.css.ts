@@ -20,9 +20,9 @@ const presets = {
         dir
           ? (`translate${dir === "down" || dir === "up" ? "Y" : "X"}(${
               dir === "down" || dir === "right" ? "-" : ""
-            }10px` as const)
+            }10px)` as const)
           : ""
-      })` as const,
+      }` as const,
     }) as const,
 };
 
