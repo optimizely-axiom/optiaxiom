@@ -8,14 +8,21 @@ const presets = {
     ({
       opacity: 0,
       transform: dir
-        ? (`translate${dir === "down" || dir === "up" ? "Y" : "X"}(${dir === "down" || dir === "right" ? "-" : ""}15px)` as const)
+        ? (`translate${dir === "down" || dir === "up" ? "Y" : "X"}(${
+            dir === "down" || dir === "right" ? "-" : ""
+          }15px)` as const)
         : undefined,
     }) as const,
   pop: (dir?: "down" | "left" | "right" | "up") =>
     ({
       opacity: 0,
-      transform:
-        `scale(0.9) ${dir ? (`translate${dir === "down" || dir === "up" ? "Y" : "X"}(${dir === "down" || dir === "right" ? "-" : ""}10px` as const) : ""})` as const,
+      transform: `scale(0.9) ${
+        dir
+          ? (`translate${dir === "down" || dir === "up" ? "Y" : "X"}(${
+              dir === "down" || dir === "right" ? "-" : ""
+            }10px` as const)
+          : ""
+      })` as const,
     }) as const,
 };
 
