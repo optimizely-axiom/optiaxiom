@@ -1,4 +1,5 @@
 import * as RadixTooltip from "@radix-ui/react-tooltip";
+import { AnimatePresence } from "framer-motion";
 import {
   type ComponentProps,
   type ReactNode,
@@ -8,7 +9,7 @@ import {
 
 import { Box } from "../box";
 import { Text } from "../text";
-import { Transition, TransitionTarget } from "../transition";
+import { Transition } from "../transition";
 
 type TooltipProps = {
   children: ReactNode;
@@ -27,10 +28,10 @@ export const Tooltip = forwardRef<HTMLButtonElement, TooltipProps>(
             {children}
           </RadixTooltip.Trigger>
 
-          <Transition open={open}>
-            {(tProps) => (
+          <AnimatePresence>
+            {open && (
               <RadixTooltip.Portal forceMount>
-                <TransitionTarget {...tProps} type="pop">
+                <Transition type="pop">
                   <RadixTooltip.Content asChild sideOffset={5} {...props}>
                     <Box
                       background="dark.600"
@@ -43,10 +44,10 @@ export const Tooltip = forwardRef<HTMLButtonElement, TooltipProps>(
                       {withArrow && <RadixTooltip.Arrow />}
                     </Box>
                   </RadixTooltip.Content>
-                </TransitionTarget>
+                </Transition>
               </RadixTooltip.Portal>
             )}
-          </Transition>
+          </AnimatePresence>
         </RadixTooltip.Root>
       </RadixTooltip.Provider>
     );

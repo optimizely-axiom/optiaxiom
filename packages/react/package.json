@@ -30,6 +30,7 @@
     "@radix-ui/react-tooltip": "^1.0.7",
     "@vanilla-extract/sprinkles": "^1.6.1",
     "clsx": "^2.1.0",
+    "framer-motion": "^11.1.7",
     "inter-ui": "^4.0.2"
   },
   "devDependencies": {
