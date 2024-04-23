@@ -37,10 +37,6 @@ describe("Tooltip component", () => {
     ).toBeInTheDocument();
 
     await user.click(screen.getByText("Outside Content"));
-    // manually trigger css event since RTL user event simulations cannot trigger them
-    screen
-      .getByRole("tooltip")
-      .dispatchEvent(new Event("animationend", { bubbles: true }));
     await waitForElementToBeRemoved(
       screen.queryByRole("tooltip", { name: "Tooltip Content" }),
     );
