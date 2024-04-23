@@ -1,94 +1,77 @@
-import { keyframes } from "@vanilla-extract/css";
-import { createSprinkles, defineProperties } from "@vanilla-extract/sprinkles";
+import { style } from "@vanilla-extract/css";
 
 import { layers } from "../styles";
 
-const presets = {
-  fade: (dir?: "down" | "left" | "right" | "up") =>
-    ({
-      opacity: 0,
-      transform: dir
-        ? (`translate${dir === "down" || dir === "up" ? "Y" : "X"}(${
-            dir === "down" || dir === "right" ? "-" : ""
-          }15px)` as const)
-        : undefined,
-    }) as const,
-  pop: (dir?: "down" | "left" | "right" | "up") =>
-    ({
-      opacity: 0,
-      transform: `scale(0.9) ${
-        dir
-          ? (`translate${dir === "down" || dir === "up" ? "Y" : "X"}(${
-              dir === "down" || dir === "right" ? "-" : ""
-            }10px)` as const)
-          : ""
-      }` as const,
-    }) as const,
-};
-
-const animationType = {
-  fade: presets.fade(),
-  "fade-down": presets.fade("down"),
-  "fade-left": presets.fade("left"),
-  "fade-right": presets.fade("right"),
-  "fade-up": presets.fade("up"),
-
-  pop: presets.pop(),
-  "pop-down": presets.pop("down"),
-  "pop-left": presets.pop("left"),
-  "pop-right": presets.pop("right"),
-  "pop-up": presets.pop("up"),
-};
-export type AnimationType = keyof typeof animationType;
-
-const animationName = {
-  "fade.in": keyframes({ "0%": animationType.fade }),
-  "fade.out": keyframes({ "100%": animationType.fade }),
-  "fade-down.in": keyframes({ "0%": animationType["fade-down"] }),
-  "fade-down.out": keyframes({ "100%": animationType["fade-down"] }),
-  "fade-left.in": keyframes({ "0%": animationType["fade-left"] }),
-  "fade-left.out": keyframes({ "100%": animationType["fade-left"] }),
-  "fade-right.in": keyframes({ "0%": animationType["fade-right"] }),
-  "fade-right.out": keyframes({ "100%": animationType["fade-right"] }),
-  "fade-up.in": keyframes({ "0%": animationType["fade-up"] }),
-  "fade-up.out": keyframes({ "100%": animationType["fade-up"] }),
-
-  "pop.in": keyframes({ "0%": animationType["pop"] }),
-  "pop.out": keyframes({ "100%": animationType["pop"] }),
-  "pop-down.in": keyframes({ "0%": animationType["pop-down"] }),
-  "pop-down.out": keyframes({ "100%": animationType["pop-down"] }),
-  "pop-left.in": keyframes({ "0%": animationType["pop-left"] }),
-  "pop-left.out": keyframes({ "100%": animationType["pop-left"] }),
-  "pop-right.in": keyframes({ "0%": animationType["pop-right"] }),
-  "pop-right.out": keyframes({ "100%": animationType["pop-right"] }),
-  "pop-up.in": keyframes({ "0%": animationType["pop-up"] }),
-  "pop-up.out": keyframes({ "100%": animationType["pop-up"] }),
-};
-
-const animationProperties = defineProperties({
-  "@layer": layers.axiom,
-  conditions: {
-    base: {},
-    bottom: { selector: '&:is([data-side="bottom"])' },
-    left: { selector: '&:is([data-side="left"])' },
-    right: { selector: '&:is([data-side="right"])' },
-    top: { selector: '&:is([data-side="top"])' },
-  },
-  defaultCondition: "base",
-  properties: {
-    animationDuration: {
-      lg: "550ms",
-      md: "400ms",
-      sm: "250ms",
-    },
-    animationFillMode: ["forwards"] as const,
-    animationName,
-    animationTimingFunction: ["ease"] as const,
-    transformOrigin: {
-      popper: "var(--radix-popper-transform-origin)",
+export const base = style({
+  "@layer": {
+    [layers.axiom]: {
+      transformOrigin: "var(--radix-popper-transform-origin)",
+      transitionProperty: "opacity, transform",
+      transitionTimingFunction: "ease",
     },
   },
 });
 
-export const sprinkles = createSprinkles(animationProperties);
-export type Sprinkles = Parameters<typeof sprinkles>[0];
+const translate = (dir: "down" | "left" | "right" | "up", value: number) => {
+  if (dir === "down" || dir === "up") {
+    return { y: (dir === "down" ? -1 : 1) * value } as const;
+  } else {
+    return { x: (dir === "right" ? -1 : 1) * value } as const;
+  }
+};
+
+const presets = {
+  fade: (dir?: "down" | "left" | "right" | "up") => ({
+    opacity: 0,
+    ...(dir && translate(dir, 15)),
+  }),
+  pop: (dir?: "down" | "left" | "right" | "up") => ({
+    opacity: 0,
+    scale: 0.9,
+    ...(dir && translate(dir, 10)),
+  }),
+};
+
+const generate = ({
+  opacity,
+  scale,
+  x,
+  y,
+}: {
+  opacity: number;
+  scale?: number;
+  x?: number;
+  y?: number;
+}) =>
+  style({
+    "@layer": {
+      [layers.axiom]: {
+        ...(typeof opacity !== "undefined" && { opacity }),
+        ...((typeof scale !== "undefined" ||
+          typeof x !== "undefined" ||
+          typeof y !== "undefined") && {
+          transform: [
+            typeof scale !== "undefined" && `scale(${scale})`,
+            typeof x !== "undefined" && `translateX(${x}px)`,
+            typeof y !== "undefined" && `translateY(${y}px)`,
+          ]
+            .filter(Boolean)
+            .join(" "),
+        }),
+      },
+    },
+  });
+
+export const transitions = {
+  fade: generate(presets.fade()),
+  "fade-down": generate(presets.fade("down")),
+  "fade-left": generate(presets.fade("left")),
+  "fade-right": generate(presets.fade("right")),
+  "fade-up": generate(presets.fade("up")),
+
+  pop: generate(presets.pop()),
+  "pop-down": generate(presets.pop("down")),
+  "pop-left": generate(presets.pop("left")),
+  "pop-right": generate(presets.pop("right")),
+  "pop-up": generate(presets.pop("up")),
+};

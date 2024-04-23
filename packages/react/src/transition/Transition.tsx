@@ -1,73 +1,55 @@
 import { Slot } from "@radix-ui/react-slot";
 import clsx from "clsx";
 import { usePresence } from "framer-motion";
-import { type ReactNode, forwardRef } from "react";
+import { type ComponentProps, forwardRef, useEffect, useState } from "react";
 
-import { mapValues } from "../utils";
+import type { ExtendProps } from "../utils";
+
 import * as styles from "./Transition.css";
 
-type TransitionProps = {
-  children: ReactNode;
-  className?: string;
-  duration?: styles.Sprinkles["animationDuration"];
-  dynamicSide?: boolean;
-  type?: styles.AnimationType;
+const transitionDuration = {
+  lg: 550,
+  md: 400,
+  sm: 250,
 };
 
-const mapSideToType = {
-  fade: {
-    bottom: "fade-up",
-    left: "fade-right",
-    right: "fade-left",
-    top: "fade-down",
-  },
-  pop: {
-    bottom: "pop-down",
-    left: "pop-left",
-    right: "pop-right",
-    top: "pop-up",
-  },
-} as const;
+type TransitionProps = ExtendProps<
+  ComponentProps<"div">,
+  {
+    duration?: keyof typeof transitionDuration;
+    type?: keyof typeof styles.transitions;
+  }
+>;
 
-export const Transition = forwardRef<HTMLElement, TransitionProps>(
+export const Transition = forwardRef<HTMLDivElement, TransitionProps>(
   (
-    {
-      children,
-      className,
-      duration = "sm",
-      dynamicSide,
-      type = "fade",
-      ...props
-    },
+    { children, className, duration = "sm", style, type = "fade", ...props },
     ref,
   ) => {
     const [isPresent, safeToRemove] = usePresence();
 
-    const animationType = type;
-    const animationName =
-      dynamicSide && (animationType === "fade" || animationType === "pop")
-        ? mapValues(
-            mapSideToType[animationType],
-            (value) => `${value}${isPresent ? ".in" : ".out"}` as const,
-          )
-        : (`${animationType}${isPresent ? ".in" : ".out"}` as const);
+    const [enter, setEnter] = useState(false);
+    useEffect(() => {
+      isPresent && setEnter(true);
+    }, [isPresent]);
+
+    useEffect(() => {
+      !isPresent && setTimeout(safeToRemove, transitionDuration[duration]);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [isPresent]);
 
     return (
       <Slot
         className={clsx(
           className,
-          styles.sprinkles({
-            animationDuration: duration,
-            animationFillMode: "forwards",
-            animationName,
-            animationTimingFunction: "ease",
-            transformOrigin: "popper",
-          }),
+          styles.base,
+          enter !== isPresent && styles.transitions[type],
         )}
-        onAnimationEnd={() => {
-          !isPresent && safeToRemove();
-        }}
         ref={ref}
+        style={{
+          ...style,
+          transitionDuration: `${transitionDuration[duration]}ms`,
+        }}
         {...props}
       >
         {children}
