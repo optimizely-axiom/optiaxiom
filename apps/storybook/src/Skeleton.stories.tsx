@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { Grid, Paper, Skeleton, Stack } from "@optiaxiom/react";
+import { IconUserFilled } from "@tabler/icons-react";
 
 const meta: Meta<typeof Skeleton> = {
   component: Skeleton,
@@ -38,4 +39,14 @@ export const Card: Story = {
       </Stack>
     </Paper>
   ),
+};
+
+export const Children: Story = {
+  args: {
+    borderRadius: "full",
+    children: <IconUserFilled />,
+    color: "white",
+    padding: "xs",
+    size: 6,
+  },
 };
