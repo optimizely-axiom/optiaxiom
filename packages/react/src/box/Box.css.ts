@@ -50,6 +50,10 @@ const responsiveProperties = defineProperties({
   },
   defaultCondition: "base",
   properties: {
+    colSpan: {
+      1: { gridColumn: "span 1 / span 1" },
+      2: { gridColumn: "span 2 / span 2" },
+    },
     display: [
       "none",
       "flex",
@@ -108,6 +112,11 @@ const animations = {
     "50%": { opacity: 0.5 },
   }),
 };
+const sizes = {
+  ...theme.space,
+  auto: "auto",
+  full: "100%",
+} as const;
 
 const unresponsiveProperties = defineProperties({
   "@layer": layers.axiom,
@@ -116,7 +125,12 @@ const unresponsiveProperties = defineProperties({
       pulse: `${animations.pulse} 2s ease-in-out infinite`,
     },
     borderRadius: theme.radius,
+    height: sizes,
     overflow: ["auto", "hidden", "visible"] as const,
+    width: sizes,
+  },
+  shorthands: {
+    size: ["height", "width"],
   },
 });
 
