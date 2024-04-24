@@ -19,7 +19,7 @@
     "@storybook/react-docgen-typescript-plugin": "1.0.6--canary.9.0c3f3b7.0",
     "@storybook/react-webpack5": "~8.0.9",
     "@storybook/test": "^8.0.9",
-    "@swc/core": "^1.4.17",
+    "@swc/core": "^1.5.0",
     "chromatic": "^11.3.0",
     "raw-loader": "^4.0.2",
     "storybook": "~8.0.9"
