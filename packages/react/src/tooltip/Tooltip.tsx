@@ -1,7 +1,7 @@
 import * as RadixTooltip from "@radix-ui/react-tooltip";
 import { AnimatePresence } from "framer-motion";
 import {
-  type ComponentProps,
+  type ComponentPropsWithRef,
   type ReactNode,
   forwardRef,
   useState,
@@ -15,7 +15,7 @@ type TooltipProps = {
   children: ReactNode;
   content?: ReactNode;
   withArrow?: boolean;
-} & ComponentProps<typeof RadixTooltip.Content>;
+} & ComponentPropsWithRef<typeof RadixTooltip.Content>;
 
 export const Tooltip = forwardRef<HTMLButtonElement, TooltipProps>(
   ({ children, content, withArrow, ...props }, ref) => {
