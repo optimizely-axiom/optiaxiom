@@ -97,7 +97,6 @@ const colorProperties = defineProperties({
   "@layer": layers.axiom,
   conditions: {
     base: {},
-    dark: { selector: "&:is(.dark *)" },
   },
   defaultCondition: "base",
   properties: {
