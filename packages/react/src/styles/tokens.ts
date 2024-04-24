@@ -173,6 +173,7 @@ export const tokensLight = {
 
     "bg.information": tokens.color["blue.50"],
     "bg.success": tokens.color["green.50"],
+    surface: tokens.color["white"],
     "text.success": tokens.color["green.600"],
   },
 };
@@ -184,6 +185,7 @@ export const tokensDark = {
 
     "bg.information": tokens.color["blue.900"],
     "bg.success": tokens.color["green.900"],
+    surface: tokens.color["slate.800"],
     "text.success": tokens.color["green.200"],
   },
 };

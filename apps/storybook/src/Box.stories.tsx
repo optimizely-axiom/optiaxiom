@@ -13,7 +13,7 @@ type Story = StoryObj<typeof Box>;
 
 export const Primary: Story = {
   args: {
-    background: { base: "brand.50", dark: "brand.600" },
+    background: "brand.50",
     borderRadius: "sm",
     children: <Text>Hello World!</Text>,
     margin: "lg",
