@@ -1,4 +1,4 @@
-import { style } from "@vanilla-extract/css";
+import { keyframes, style } from "@vanilla-extract/css";
 import { createSprinkles, defineProperties } from "@vanilla-extract/sprinkles";
 
 import { layers, theme, tokens } from "../styles";
@@ -102,9 +102,19 @@ const colorProperties = defineProperties({
   },
 });
 
+const animations = {
+  pulse: keyframes({
+    "0%, 100%": { opacity: 1 },
+    "50%": { opacity: 0.5 },
+  }),
+};
+
 const unresponsiveProperties = defineProperties({
   "@layer": layers.axiom,
   properties: {
+    animation: {
+      pulse: `${animations.pulse} 2s ease-in-out infinite`,
+    },
     borderRadius: theme.radius,
     overflow: ["auto", "hidden", "visible"] as const,
   },
