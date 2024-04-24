@@ -132,6 +132,8 @@ export const tokens = {
     md: "8px",
     lg: "16px",
     xl: "32px",
+
+    full: "100%",
   },
 
   shadow: {
