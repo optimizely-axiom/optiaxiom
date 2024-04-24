@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { type ComponentProps, forwardRef } from "react";
+import { type ComponentPropsWithRef, forwardRef } from "react";
 
 import type { ExtendProps } from "../utils";
 
@@ -7,7 +7,7 @@ import { Box } from "../box";
 import * as styles from "./Grid.css";
 
 type GridProps = ExtendProps<
-  ComponentProps<typeof Box>,
+  ComponentPropsWithRef<typeof Box>,
   {
     align?: styles.Sprinkles["alignItems"];
     cols?: styles.Sprinkles["cols"];

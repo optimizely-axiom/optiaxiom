@@ -107,6 +107,15 @@ export default tsEslint.config(
     },
     rules: {
       "@typescript-eslint/await-thenable": "error",
+      "@typescript-eslint/ban-types": [
+        "error",
+        {
+          types: {
+            ComponentProps:
+              "Please use `ComponentPropsWithRef` or `ComponentPropsWithoutRef` instead.",
+          },
+        },
+      ],
       "@typescript-eslint/no-floating-promises": "error",
     },
   },
