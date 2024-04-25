@@ -6,6 +6,8 @@ import docgen from "react-docgen-typescript";
 import { visit } from "unist-util-visit";
 
 export function transformPropsTable(tree) {
+  let needsImport = true;
+
   visit(
     tree,
     { name: "ax-props-table", type: "mdxJsxFlowElement" },
@@ -48,19 +50,22 @@ export function transformPropsTable(tree) {
 
       const tree = fromMarkdown(
         [
+          needsImport &&
+            `import { Table, Td, Th, Thead, Tr } from "@/components/table";`,
+          "",
           `### \`${component}\` component props`,
           "",
-          '<table className="nx-w-full nx-text-sm nx-text-left nx-mt-6">',
-          '  <thead className="nx-text-xs nx-text-gray-700 nx-uppercase nx-bg-gray-100 dark:nx-bg-gray-50/10 dark:nx-text-gray-400">',
+          "<Table>",
+          "  <Thead>",
           "    <tr>",
-          '      <th className="nx-px-3 nx-py-0.5" style={{ width: "25%" }}>',
+          '      <Th style={{ width: "25%" }}>',
           "        Name",
-          "      </th>",
-          '      <th className="nx-px-3 nx-py-0.5" style={{ width: "75%" }}>',
+          "      </Th>",
+          '      <Th style={{ width: "75%" }}>',
           "        Type",
-          "      </th>",
+          "      </Th>",
           "    </tr>",
-          "  </thead>",
+          "  </Thead>",
           "  <tbody>",
           ...Object.entries(doc.props)
             .sort(([a], [b]) => a.localeCompare(b))
@@ -75,11 +80,11 @@ export function transformPropsTable(tree) {
                   )),
             )
             .flatMap(([, prop]) => [
-              '<tr className="nx-border-b">',
-              '  <td className="nx-px-3 nx-py-2 nx-whitespace-nowrap" valign="top">',
+              "<Tr>",
+              '  <Td className="nx-whitespace-nowrap">',
               `**${prop.name}**`,
-              "  </td>",
-              '  <td className="nx-px-3 nx-py-2" valign="top">',
+              "  </Td>",
+              "  <Td>",
               [
                 parseType(prop.type, prop.name, component),
                 ...(prop.defaultValue
@@ -88,11 +93,11 @@ export function transformPropsTable(tree) {
                 "<br/>",
               ].join(" "),
               prop.description,
-              "  </td>",
-              "</tr>",
+              "  </Td>",
+              "</Tr>",
             ]),
           "  </tbody>",
-          "</table>",
+          "</Table>",
         ].join("\n"),
         {
           extensions: [mdxjs()],
@@ -103,6 +108,8 @@ export function transformPropsTable(tree) {
         node.data = { _mdxExplicitJsx: true };
       });
       parent.children.splice(index, 1, ...tree.children);
+
+      needsImport = false;
 
       return index + tree.children.length;
     },
