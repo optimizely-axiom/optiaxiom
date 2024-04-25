@@ -8,8 +8,8 @@ export const Scale = ({ values }: { values: Record<string, string> }) => (
       <tr>
         <Th width={10}>Name</Th>
         <Th width={10}>Size</Th>
-        <Box asChild display={{ base: "none", sm: "table-cell" }}>
-          <Th></Th>
+        <Box asChild display={["none", "table-cell"]}>
+          <Th />
         </Box>
       </tr>
     </Thead>
@@ -29,7 +29,7 @@ export const Scale = ({ values }: { values: Record<string, string> }) => (
           <Tr key={name}>
             <Td>{name}</Td>
             <Td>{size}</Td>
-            <Box asChild display={{ base: "none", sm: "table-cell" }}>
+            <Box asChild display={["none", "table-cell"]}>
               <Td>
                 <Box
                   background="purple.500"

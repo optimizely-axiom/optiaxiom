@@ -32,6 +32,7 @@ const responsiveProperties = defineProperties({
       },
     },
   },
+  responsiveArray: ["base", "sm", "xl"],
 });
 
 export const sprinkles = createSprinkles(responsiveProperties);
