@@ -1,5 +1,9 @@
 import { keyframes, style } from "@vanilla-extract/css";
-import { createSprinkles, defineProperties } from "@vanilla-extract/sprinkles";
+import {
+  createMapValueFn,
+  createSprinkles,
+  defineProperties,
+} from "@vanilla-extract/sprinkles";
 
 import { layers, theme, tokens } from "../styles";
 import { mapValues } from "../utils";
@@ -50,6 +54,7 @@ const responsiveProperties = defineProperties({
   },
   defaultCondition: "base",
   properties: {
+    alignItems: ["center", "end", "normal", "start", "stretch"] as const,
     colSpan: {
       1: { gridColumn: "span 1 / span 1" },
       2: { gridColumn: "span 2 / span 2" },
@@ -68,9 +73,29 @@ const responsiveProperties = defineProperties({
       auto: "1 1 auto",
       none: "none",
     },
+    flexDirection: {
+      column: "column",
+      horizontal: "row",
+      row: "row",
+      vertical: "column",
+    },
+    flexWrap: {
+      wrap: "wrap",
+    },
+    gap: theme.space,
     grow: {
       1: { flexGrow: 1 },
     },
+    justifyContent: [
+      "center",
+      "end",
+      "normal",
+      "space-around",
+      "space-between",
+      "space-evenly",
+      "start",
+      "stretch",
+    ] as const,
     marginBottom: margins,
     marginLeft: margins,
     marginRight: margins,
@@ -80,11 +105,24 @@ const responsiveProperties = defineProperties({
     paddingLeft: theme.space,
     paddingRight: theme.space,
     paddingTop: theme.space,
+    placeItems: ["center"] as const,
     shrink: {
       1: { flexShrink: 1 },
     },
   },
   shorthands: {
+    /**
+     * An alias for `flexDirection`
+     */
+    direction: ["flexDirection"],
+    /**
+     * An alias for `alignItems`
+     */
+    items: ["alignItems"],
+    /**
+     * An alias for `justifyContent`
+     */
+    justify: ["justifyContent"],
     margin: ["marginBottom", "marginLeft", "marginRight", "marginTop"],
     marginX: ["marginLeft", "marginRight"],
     marginY: ["marginBottom", "marginTop"],
@@ -125,12 +163,6 @@ const unresponsiveProperties = defineProperties({
     },
     height: theme.size,
     overflow: ["auto", "hidden", "visible"] as const,
-    place: {
-      center: {
-        display: "grid",
-        placeItems: "center",
-      },
-    },
     width: theme.size,
   },
   shorthands: {
@@ -143,4 +175,5 @@ export const sprinkles = createSprinkles(
   colorProperties,
   unresponsiveProperties,
 );
+export const mapResponsiveValue = createMapValueFn(responsiveProperties);
 export type Sprinkles = Parameters<typeof sprinkles>[0];

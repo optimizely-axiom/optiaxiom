@@ -21,7 +21,7 @@ export const Card: Story = {
       maxWidth="sm"
       padding="md"
     >
-      <Stack align="start" direction="horizontal">
+      <Stack direction="horizontal" items="start">
         <Skeleton borderRadius="full" size={6} />
 
         <Stack flex={1} paddingY={0.5}>
