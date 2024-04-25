@@ -15,7 +15,7 @@ const startCase = (str: string) =>
 export function Layout({ tabs, title }: { tabs: string[]; title: string }) {
   const [, selected] = usePathname().split("/").reverse();
   const { h1: H1 = "h1" } = useMDXComponents();
-  const { useNextSeoProps } = useConfig();
+  const { useNextSeoProps = () => {} } = useConfig();
   const seoProps = { titleTemplate: "%s", ...useNextSeoProps() };
   return (
     <>
