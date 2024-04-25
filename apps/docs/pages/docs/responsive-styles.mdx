@@ -1,43 +1,39 @@
 import { tokens } from "@optiaxiom/react";
+import { Scale } from "@/components/scale";
 
 # Responsive Styles
 
 `Box` and `Stack` components support responsive styles for all layout related props.
 
-Use the object prop notation where the key is the breakpoint name to apply responsive styles.
+<Scale
+  hidePreview
+  keyLabel="Breakpoint"
+  valueLabel="Minimum width"
+  values={{ base: "0px", ...tokens.breakpoint }}
+/>
 
 ## Usage
 
+Use the object prop notation where the key is the breakpoint name:
+
+```tsx
+import { Stack } from "@optiaxiom/react";
+
+export function App() {
+  return <Stack display={{ base: "vertical", sm: "horizontal" }}>...</Stack>;
+}
+```
+
+Or use the shorter array prop notation with the elements in order of condition:
+
+```tsx
+import { Stack } from "@optiaxiom/react";
+
+export function App() {
+  return <Stack display={["vertical", "horizontal"]}>...</Stack>;
+}
+```
+
+## Example
+
 <ax-demo iframe="/docs/responsive-styles-demo/" name="responsive-usage" />
-
-## Breakpoints
-
-Currently the following breakpoints are supported:
-
-{<table>
-
-  <thead>
-    <tr>
-      <th>Breakpoint</th>
-      <th>Minimum width</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
-        <strong>base</strong>
-      </td>
-      <td>0px</td>
-    </tr>
-
-    {Object.entries(tokens.breakpoint).map(([name, width]) => (
-      <tr key={name}>
-        <td>
-          <strong>{name}</strong>
-        </td>
-        <td>{width}</td>
-      </tr>
-    ))}
-
-  </tbody>
-</table>}

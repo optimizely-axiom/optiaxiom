@@ -2,15 +2,27 @@ import { Box } from "@optiaxiom/react";
 
 import { Table, Td, Th, Tr } from "../table";
 
-export const Scale = ({ values }: { values: Record<string, string> }) => (
+export const Scale = ({
+  hidePreview,
+  keyLabel = "Name",
+  valueLabel = "Size",
+  values,
+}: {
+  hidePreview?: boolean;
+  keyLabel?: string;
+  valueLabel?: string;
+  values: Record<string, string>;
+}) => (
   <Table>
     <thead>
       <tr>
-        <Th width={10}>Name</Th>
-        <Th width={10}>Size</Th>
-        <Box asChild display={["none", "table-cell"]}>
-          <Th />
-        </Box>
+        <Th width={10}>{keyLabel}</Th>
+        <Th width={20}>{valueLabel}</Th>
+        {!hidePreview && (
+          <Box asChild display={["none", "table-cell"]}>
+            <Th />
+          </Box>
+        )}
       </tr>
     </thead>
     <tbody>
@@ -29,15 +41,17 @@ export const Scale = ({ values }: { values: Record<string, string> }) => (
           <Tr key={name}>
             <Td>{name}</Td>
             <Td>{size}</Td>
-            <Box asChild display={["none", "table-cell"]}>
-              <Td>
-                <Box
-                  background="purple.500"
-                  height={2}
-                  style={{ width: size }}
-                />
-              </Td>
-            </Box>
+            {!hidePreview && (
+              <Box asChild display={["none", "table-cell"]}>
+                <Td>
+                  <Box
+                    background="purple.500"
+                    height={2}
+                    style={{ width: size }}
+                  />
+                </Td>
+              </Box>
+            )}
           </Tr>
         ))}
     </tbody>
