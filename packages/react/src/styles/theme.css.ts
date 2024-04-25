@@ -16,7 +16,7 @@ type ThemeContract<Obj, Prefix extends string> = {
       : never;
 };
 type ReplaceDot<S extends number | string> =
-  `${S}` extends `${infer L}.${infer R}` ? `${L}-${R}` : S;
+  `${S}` extends `${infer L}${"." | "/"}${infer R}` ? `${L}-${R}` : S;
 type Tokens = {
   [key: string]: Tokens | string;
 };
@@ -27,7 +27,7 @@ const createThemeContractFromTokens = <T extends Tokens, P extends string>(
   return mapValues(tokens, (value, key) => {
     return typeof value === "object"
       ? createThemeContractFromTokens(value, `${path}${key}-`)
-      : `${path}${key.toString().replaceAll(".", "-")}`;
+      : `${path}${key.toString().replaceAll(/[./]/g, "-")}`;
   }) as ThemeContract<T, P>;
 };
 
