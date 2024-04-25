@@ -118,9 +118,18 @@ const unresponsiveProperties = defineProperties({
     animation: {
       pulse: `${animations.pulse} 2s ease-in-out infinite`,
     },
-    borderRadius: theme.radius,
+    borderRadius: {
+      ...theme.radius,
+      inherit: "inherit",
+    },
     height: theme.size,
     overflow: ["auto", "hidden", "visible"] as const,
+    place: {
+      center: {
+        display: "grid",
+        placeItems: "center",
+      },
+    },
     width: theme.size,
   },
   shorthands: {
