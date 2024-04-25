@@ -1,21 +1,9 @@
-import clsx from "clsx";
 import { type ComponentPropsWithRef, forwardRef } from "react";
 
-import type { ExtendProps } from "../utils";
-
 import { Box } from "../box";
-import * as styles from "./Stack.css";
+import * as styles from "../box/Box.css";
 
-type StackProps = ExtendProps<
-  ComponentPropsWithRef<typeof Box>,
-  {
-    align?: styles.Sprinkles["alignItems"];
-    direction?: styles.Sprinkles["flexDirection"];
-    gap?: styles.Sprinkles["gap"];
-    justify?: styles.Sprinkles["justifyContent"];
-    wrap?: boolean;
-  }
->;
+type StackProps = ComponentPropsWithRef<typeof Box>;
 
 const mapDirectionToAlign = {
   column: "stretch",
@@ -34,38 +22,36 @@ const mapDirectionToJustify = {
 export const Stack = forwardRef<HTMLDivElement, StackProps>(
   (
     {
-      align,
-      className,
-      direction = "column",
+      alignItems,
+      direction,
+      flexDirection,
       gap = "md",
+      items,
       justify,
-      wrap = false,
+      justifyContent,
       ...props
     },
     ref,
   ) => {
+    items ??= alignItems;
+    const dir = direction ?? flexDirection ?? "column";
+    justify ??= justifyContent;
     return (
       <Box
-        className={clsx(
-          className,
-          styles.sprinkles({
-            alignItems:
-              align ??
-              styles.mapValue(direction, (value) => mapDirectionToAlign[value]),
-            flexDirection: direction,
-            flexWrap: styles.mapValue(wrap, (value) =>
-              value ? "wrap" : undefined,
-            ),
-            gap,
-            justifyContent:
-              justify ??
-              styles.mapValue(
-                direction,
-                (value) => mapDirectionToJustify[value],
-              ),
-          }),
-        )}
+        alignItems={
+          items ??
+          styles.mapResponsiveValue(dir, (value) => mapDirectionToAlign[value])
+        }
         display="flex"
+        flexDirection={dir}
+        gap={gap}
+        justifyContent={
+          justify ??
+          styles.mapResponsiveValue(
+            dir,
+            (value) => mapDirectionToJustify[value],
+          )
+        }
         ref={ref}
         {...props}
       />

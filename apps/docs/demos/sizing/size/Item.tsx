@@ -1,26 +1,23 @@
 import { Box, Text } from "@optiaxiom/react";
-import {
-  type ComponentPropsWithRef,
-  type ReactElement,
-  cloneElement,
-} from "react";
+import { type ComponentPropsWithRef, type ReactElement } from "react";
 
 export const Item = ({
   children,
 }: {
   children: ReactElement<ComponentPropsWithRef<typeof Box>>;
 }) => {
-  const label = children.props.children;
-
-  return cloneElement(
-    children,
-    {
-      background: "purple.500",
-      borderRadius: "sm",
-      place: "center",
-    },
-    <Text color="white" fontFamily="mono" fontWeight={600} textAlign="center">
-      {label}
-    </Text>,
+  return (
+    <Box
+      asChild
+      background="purple.500"
+      borderRadius="sm"
+      display="grid"
+      placeItems="center"
+      {...children.props}
+    >
+      <Text color="white" fontFamily="mono" fontWeight={600} textAlign="center">
+        {children.props.children}
+      </Text>
+    </Box>
   );
 };

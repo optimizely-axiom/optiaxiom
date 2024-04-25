@@ -76,7 +76,7 @@ export const Grow: Story = {
       </>
     ),
     direction: "row",
+    flexWrap: "wrap",
     style: { width: "200px" },
-    wrap: true,
   },
 };
