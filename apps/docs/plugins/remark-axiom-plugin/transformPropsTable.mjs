@@ -86,13 +86,16 @@ export function transformPropsTable(tree) {
               "  </Td>",
               "  <Td>",
               [
-                parseType(prop.type, prop.name, component),
-                ...(prop.defaultValue
-                  ? ["=", `\`${prop.defaultValue.value}\``]
-                  : []),
-                "<br/>",
-              ].join(" "),
-              prop.description,
+                [
+                  parseType(prop.type, prop.name, component),
+                  ...(prop.defaultValue
+                    ? ["=", `\`${prop.defaultValue.value}\``]
+                    : []),
+                ].join(" "),
+                prop.description,
+              ]
+                .filter(Boolean)
+                .join("\n\n"),
               "  </Td>",
               "</Tr>",
             ]),
