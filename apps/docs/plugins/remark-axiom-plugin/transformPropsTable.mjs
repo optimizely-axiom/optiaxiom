@@ -170,6 +170,7 @@ function parseType(type, prop, component) {
 
 function themeLink(key) {
   const linkMap = {
+    color: "/colors/",
     radius: "/border-radius/",
   };
   return `[\`theme.${key}\`](/docs${linkMap[key] ?? "/theme/#design-tokens"})`;
