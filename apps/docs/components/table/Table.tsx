@@ -6,8 +6,8 @@ export const Table = ({
   children,
   className = "",
 }: ComponentPropsWithRef<"table">) => (
-  <div className={styles.base}>
-    <table className={`nx-w-full nx-text-sm nx-text-left nx-mt-6 ${className}`}>
+  <div className={`${styles.base} nx-mt-6 nx-max-h-96`}>
+    <table className={`nx-w-full nx-text-sm nx-text-left ${className}`}>
       {children}
     </table>
   </div>

@@ -1,10 +1,10 @@
 import { Box } from "@optiaxiom/react";
 
-import { Table, Td, Th, Thead, Tr } from "../table";
+import { Table, Td, Th, Tr } from "../table";
 
 export const Scale = ({ values }: { values: Record<string, string> }) => (
   <Table>
-    <Thead>
+    <thead>
       <tr>
         <Th width={10}>Name</Th>
         <Th width={10}>Size</Th>
@@ -12,7 +12,7 @@ export const Scale = ({ values }: { values: Record<string, string> }) => (
           <Th />
         </Box>
       </tr>
-    </Thead>
+    </thead>
     <tbody>
       {Object.entries(values)
         .sort(([a], [b]) => {

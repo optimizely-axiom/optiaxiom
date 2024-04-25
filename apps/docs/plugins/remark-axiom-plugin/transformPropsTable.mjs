@@ -51,21 +51,21 @@ export function transformPropsTable(tree) {
       const tree = fromMarkdown(
         [
           needsImport &&
-            `import { Table, Td, Th, Thead, Tr } from "@/components/table";`,
+            `import { Table, Td, Th, Tr } from "@/components/table";`,
           "",
           `### \`${component}\` component props`,
           "",
           "<Table>",
-          "  <Thead>",
+          "  <thead>",
           "    <tr>",
-          '      <Th style={{ width: "25%" }}>',
+          '      <Th asChild style={{ width: "25%" }}>',
           "        Name",
           "      </Th>",
-          '      <Th style={{ width: "75%" }}>',
+          '      <Th asChild style={{ width: "75%" }}>',
           "        Type",
           "      </Th>",
           "    </tr>",
-          "  </Thead>",
+          "  </thead>",
           "  <tbody>",
           ...Object.entries(doc.props)
             .sort(([a], [b]) => a.localeCompare(b))

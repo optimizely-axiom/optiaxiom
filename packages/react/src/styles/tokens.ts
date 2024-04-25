@@ -1,4 +1,11 @@
 export const tokens = {
+  borderWidth: {
+    0: "0",
+    1: "1px",
+    2: "2px",
+    4: "4px",
+  },
+
   breakpoint: {
     sm: "640px",
     xl: "1280px",
@@ -216,6 +223,7 @@ export const tokensLight = {
 
     "bg.information": tokens.color["blue.50"],
     "bg.success": tokens.color["green.50"],
+    border: tokens.color["slate.300"],
     surface: tokens.color["white"],
     "text.success": tokens.color["green.600"],
   },
@@ -228,6 +236,7 @@ export const tokensDark = {
 
     "bg.information": tokens.color["blue.900"],
     "bg.success": tokens.color["green.900"],
+    border: tokens.color["slate.700"],
     surface: tokens.color["slate.800"],
     "text.success": tokens.color["green.200"],
   },
