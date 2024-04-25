@@ -9,7 +9,7 @@ export function App() {
         padding: theme.space.md,
       }}
     >
-      Using CSS variables inline
+      Using inline styles
     </div>
   );
 }
