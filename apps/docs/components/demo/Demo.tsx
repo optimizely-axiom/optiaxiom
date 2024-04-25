@@ -18,7 +18,7 @@ export function Demo({
     <Stack marginTop="xl">
       <Box
         className={[styles.preview, iframe && styles.resize].join(" ")}
-        padding="md"
+        padding="xl"
       >
         {iframe ? <DemoIframe src={iframe} /> : <Component />}
       </Box>

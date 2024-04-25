@@ -1,10 +1,17 @@
 {
   "getting-started": "Getting Started",
+  "-- Guides": {
+    "type": "separator",
+    "title": "Guides"
+  },
+  "angular": "Angular",
+  "css-imports": "CSS Imports",
+  "nextjs": "Next.js",
   "-- Styles": {
     "type": "separator",
     "title": "Styles"
   },
-  "css-imports": "CSS Imports",
+  "border-radius": "Border Radius",
   "colors": "Colors",
   "responsive-styles": "Responsive Styles",
   "responsive-styles-demo": {
@@ -38,11 +45,5 @@
     "type": "separator",
     "title": "Feedback"
   },
-  "skeleton": "Skeleton",
-  "-- Guides": {
-    "type": "separator",
-    "title": "Guides"
-  },
-  "angular": "Angular",
-  "nextjs": "Next.js"
+  "skeleton": "Skeleton"
 }
