@@ -111,11 +111,6 @@ const animations = {
     "50%": { opacity: 0.5 },
   }),
 };
-const sizes = {
-  ...theme.space,
-  auto: "auto",
-  full: "100%",
-} as const;
 
 const unresponsiveProperties = defineProperties({
   "@layer": layers.axiom,
@@ -124,9 +119,9 @@ const unresponsiveProperties = defineProperties({
       pulse: `${animations.pulse} 2s ease-in-out infinite`,
     },
     borderRadius: theme.radius,
-    height: sizes,
+    height: theme.size,
     overflow: ["auto", "hidden", "visible"] as const,
-    width: sizes,
+    width: theme.size,
   },
   shorthands: {
     size: ["height", "width"],
