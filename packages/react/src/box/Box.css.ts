@@ -61,6 +61,7 @@ const responsiveProperties = defineProperties({
       "block",
       "inline",
       "inline-flex",
+      "table-cell",
     ] as const,
     flex: {
       1: "1 1 0%",

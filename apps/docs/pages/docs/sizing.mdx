@@ -1,0 +1,50 @@
+import { tokens } from "@optiaxiom/react";
+import { Scale } from "@/components/scale";
+
+# Sizing
+
+`Box` component supports several props for controlling an element's width and height.
+
+## Scale
+
+The sizing scale includes numeric proportional values and also convenient fractional sizes.
+
+One unit equals **`8px`** so we can easily convert units to pixels by multiplying them by 8.
+
+<Scale values={tokens.size} />
+
+## Size
+
+### Usage
+
+Use the size scale to set both `width` and `height` of elements.
+
+<ax-demo name="sizing/size/usage" />
+
+### Percentage
+
+<ax-demo name="sizing/size/percentage-usage" />
+
+### Reset
+
+<ax-demo name="sizing/size/reset-usage" />
+
+## Width
+
+### Usage
+
+Use the space scale to set the `width` of elements.
+
+<ax-demo name="sizing/width/usage" />
+
+### Percentage
+
+<ax-demo name="sizing/width/percentage-usage" />
+
+## Height
+
+### Usage
+
+Use the space scale to set the `height` of elements.
+
+<ax-demo name="sizing/height/usage" />
