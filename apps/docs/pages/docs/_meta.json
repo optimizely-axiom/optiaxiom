@@ -34,6 +34,11 @@
   },
   "heading": "Heading",
   "text": "Text",
+  "-- Feedback": {
+    "type": "separator",
+    "title": "Feedback"
+  },
+  "skeleton": "Skeleton",
   "-- Guides": {
     "type": "separator",
     "title": "Guides"
