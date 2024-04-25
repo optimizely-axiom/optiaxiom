@@ -119,52 +119,49 @@ export function transformPropsTable(tree) {
   );
 }
 
+const mapThemeToProp = {
+  borderWidth: [
+    "borderBottomWidth",
+    "borderLeftWidth",
+    "borderRightWidth",
+    "borderTopWidth",
+    "borderWidth",
+  ],
+  color: ["background", "color", "borderBottomColor"],
+  fontSize: ["Text[fontSize]"],
+  "headings.fontSize": ["Heading[fontSize]"],
+  "headings.lineHeight": ["Heading[lineHeight]"],
+  lineHeight: ["Text[lineHeight]"],
+  maxWidth: ["maxWidth"],
+  radius: ["borderRadius"],
+  shadow: ["shadow"],
+  size: ["gap", "height", "Box[size]", "width"],
+  space: [
+    "margin",
+    "marginBottom",
+    "marginLeft",
+    "marginRight",
+    "marginTop",
+    "marginX",
+    "marginY",
+    "padding",
+    "paddingBottom",
+    "paddingLeft",
+    "paddingRight",
+    "paddingTop",
+    "paddingX",
+    "paddingY",
+    "top",
+  ],
+};
 function parseType(type, prop, component) {
   if (type.name === "enum") {
-    switch (prop) {
-      case "background":
-      case "color":
-        return themeLink("color");
-      case "borderRadius":
-        return themeLink("radius");
-      case "fontSize":
-        switch (component) {
-          case "Heading":
-            return themeLink("headings.fontSize");
-          default:
-            return themeLink("fontSize");
-        }
-      case "lineHeight":
-        switch (component) {
-          case "Heading":
-            return themeLink("headings.lineHeight");
-          default:
-            return themeLink("lineHeight");
-        }
-      case "gap":
-      case "margin":
-      case "marginBottom":
-      case "marginLeft":
-      case "marginRight":
-      case "marginTop":
-      case "marginX":
-      case "marginY":
-      case "padding":
-      case "paddingBottom":
-      case "paddingLeft":
-      case "paddingRight":
-      case "paddingTop":
-      case "paddingX":
-      case "paddingY":
-        return themeLink("space");
-      case "shadow":
-        return themeLink("shadow");
-      case "size":
-        switch (component) {
-          case "Box":
-            return themeLink("size");
-        }
-        break;
+    for (const [key, matchers] of Object.entries(mapThemeToProp)) {
+      if (matchers.includes(prop)) {
+        return themeLink(key);
+      } else if (matchers.includes(`${component}[${prop}]`)) {
+        return themeLink(key);
+      }
     }
   }
   return type.name === "enum"
