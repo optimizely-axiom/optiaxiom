@@ -26,6 +26,8 @@
       "toc": false
     }
   },
+  "sizing": "Sizing",
+  "spacing": "Spacing",
   "theme": "Theme",
   "-- Primitives": {
     "type": "separator",

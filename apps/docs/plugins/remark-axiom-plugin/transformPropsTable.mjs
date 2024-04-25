@@ -156,22 +156,30 @@ function parseType(type, prop, component) {
         return themeLink("space");
       case "shadow":
         return themeLink("shadow");
-      default:
-        return `\`${(type.raw?.startsWith("ConditionalStyle<")
-          ? type.value.slice(0, -1)
-          : type.value
-        )
-          .map(({ value }) => value)
-          .join(" | ")}\``;
+      case "size":
+        switch (component) {
+          case "Box":
+            return themeLink("size");
+        }
+        break;
     }
   }
-  return `\`${type.raw ?? type.name}\``;
+  return type.name === "enum"
+    ? `\`${(type.raw?.startsWith("ConditionalStyle<")
+        ? type.value.slice(0, -1)
+        : type.value
+      )
+        .map(({ value }) => value)
+        .join(" | ")}\``
+    : `\`${type.raw ?? type.name}\``;
 }
 
 function themeLink(key) {
   const linkMap = {
     color: "/colors/",
     radius: "/border-radius/",
+    size: "/sizing/",
+    space: "/spacing/",
   };
   return `[\`theme.${key}\`](/docs${linkMap[key] ?? "/theme/#design-tokens"})`;
 }
