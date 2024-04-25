@@ -11,7 +11,7 @@ import { mapValues } from "../utils";
 export const base = style({
   "@layer": {
     [layers.reset]: {
-      border: 0,
+      border: `0 solid ${theme.color["border"]}`,
       boxSizing: "border-box",
       font: "inherit",
       fontSize: "100%",
@@ -158,15 +158,26 @@ const unresponsiveProperties = defineProperties({
     animation: {
       pulse: `${animations.pulse} 2s ease-in-out infinite`,
     },
+    borderBottomColor: theme.color,
+    borderBottomWidth: theme.borderWidth,
+    borderLeftWidth: theme.borderWidth,
     borderRadius: {
       ...theme.radius,
       inherit: "inherit",
     },
+    borderRightWidth: theme.borderWidth,
+    borderTopWidth: theme.borderWidth,
     height: theme.size,
     overflow: ["auto", "hidden", "visible"] as const,
     width: theme.size,
   },
   shorthands: {
+    borderWidth: [
+      "borderBottomWidth",
+      "borderLeftWidth",
+      "borderRightWidth",
+      "borderTopWidth",
+    ],
     size: ["height", "width"],
   },
 });
