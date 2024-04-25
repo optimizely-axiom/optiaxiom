@@ -201,10 +201,10 @@ export const tokens = {
     8: "64px",
     10: "80px",
 
-    xs: "10px",
+    xs: "8px",
     sm: "12px",
     md: "16px",
-    lg: "20px",
+    lg: "24px",
     xl: "32px",
   },
 } as const;
