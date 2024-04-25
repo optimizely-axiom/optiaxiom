@@ -15,10 +15,9 @@ export function App() {
         <Box width="2/3">width=2/3</Box>
       </Stack>
 
-      <Stack direction="horizontal">
+      <Stack direction="horizontal" display={["none", "flex"]}>
         <Box width="1/4">width=1/4</Box>
-        <Box width="1/4">width=1/4</Box>
-        <Box width="2/4">width=2/4</Box>
+        <Box width="3/4">width=3/4</Box>
       </Stack>
     </Canvas>
   );
