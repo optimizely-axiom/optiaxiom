@@ -15,7 +15,11 @@ export const Canvas = ({
   children: ReactNode;
   padding?: ComponentPropsWithRef<typeof Box>["padding"];
 }) => (
-  <Stack direction="horizontal" justify="space-around">
+  <Stack
+    direction={["vertical", "horizontal"]}
+    items="center"
+    justify="space-around"
+  >
     {Children.toArray(children)
       .filter(isValidElement<ComponentPropsWithRef<typeof Box>>)
       .map((item, index) => (
