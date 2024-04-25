@@ -20,7 +20,7 @@ const config: StorybookConfig = {
     name: "@storybook/react-webpack5",
     options: {},
   },
-  stories: ["../src/**/*.mdx", "../src/**/*.stories.tsx"],
+  stories: ["../src/**/*.stories.tsx"],
   swc: (config: Options): Options => {
     return {
       ...config,
