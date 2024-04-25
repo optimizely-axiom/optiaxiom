@@ -110,6 +110,7 @@ const responsiveProperties = defineProperties({
       1: { flexShrink: 1 },
     },
   },
+  responsiveArray: ["base", "sm", "xl"],
   shorthands: {
     /**
      * An alias for `flexDirection`

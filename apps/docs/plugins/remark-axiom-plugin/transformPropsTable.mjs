@@ -165,9 +165,11 @@ function parseType(type, prop, component) {
     }
   }
   return type.name === "enum"
-    ? `\`${(type.raw?.startsWith("ConditionalStyle<")
-        ? type.value.slice(0, -1)
-        : type.value
+    ? `\`${(type.raw?.startsWith("ConditionalStyleWithResponsiveArray<")
+        ? type.value.slice(0, -2)
+        : type.raw?.startsWith("ConditionalStyle<")
+          ? type.value.slice(0, -1)
+          : type.value
       )
         .map(({ value }) => value)
         .join(" | ")}\``
