@@ -114,22 +114,22 @@ function parseType(type, prop, component) {
     switch (prop) {
       case "background":
       case "color":
-        return themeLink("colors");
+        return themeLink("color");
       case "borderRadius":
         return themeLink("radius");
       case "fontSize":
         switch (component) {
           case "Heading":
-            return themeLink("headings.fontSizes");
+            return themeLink("headings.fontSize");
           default:
-            return themeLink("fontSizes");
+            return themeLink("fontSize");
         }
       case "lineHeight":
         switch (component) {
           case "Heading":
-            return themeLink("headings.lineHeights");
+            return themeLink("headings.lineHeight");
           default:
-            return themeLink("lineHeights");
+            return themeLink("lineHeight");
         }
       case "gap":
       case "margin":
@@ -146,9 +146,9 @@ function parseType(type, prop, component) {
       case "paddingTop":
       case "paddingX":
       case "paddingY":
-        return themeLink("spacing");
+        return themeLink("space");
       case "shadow":
-        return themeLink("shadows");
+        return themeLink("shadow");
       default:
         return `\`${(type.raw?.startsWith("ConditionalStyle<")
           ? type.value.slice(0, -1)
