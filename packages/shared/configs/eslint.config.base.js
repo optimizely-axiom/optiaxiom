@@ -52,7 +52,7 @@ export default tsEslint.config(
   },
   ...tsEslint.configs.recommended,
   {
-    files: ["**/src/**"],
+    files: ["**/src/**", "**/.storybook/preview.js"],
     languageOptions: {
       globals: globals.browser,
     },
