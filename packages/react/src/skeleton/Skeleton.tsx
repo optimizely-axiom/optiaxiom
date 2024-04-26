@@ -12,10 +12,10 @@ export const Skeleton = forwardRef<HTMLDivElement, SkeletonProps>(
       <Box
         animation="pulse"
         asChild
-        background="slate.200"
+        background="border"
         borderRadius="sm"
         className={clsx(className, styles.base)}
-        color="slate.200"
+        color="border"
         display="block"
         ref={ref}
         {...props}

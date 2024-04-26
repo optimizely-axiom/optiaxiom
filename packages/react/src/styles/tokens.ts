@@ -223,7 +223,7 @@ export const tokensLight = {
 
     "bg.information": tokens.color["blue.50"],
     "bg.success": tokens.color["green.50"],
-    border: tokens.color["slate.300"],
+    border: tokens.color["slate.200"],
     surface: tokens.color["white"],
     "text.success": tokens.color["green.600"],
   },
