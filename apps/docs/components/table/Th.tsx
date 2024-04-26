@@ -11,10 +11,10 @@ export const Th = ({
     <th>
       <Text
         asChild={asChild}
-        borderBottomWidth={1}
-        fontWeight={600}
-        paddingX={1.5}
-        paddingY={0.25}
+        borderBottomWidth="1"
+        fontWeight="600"
+        paddingX="1.5"
+        paddingY="0.25"
       >
         {children ?? <>&nbsp;</>}
       </Text>

@@ -12,7 +12,7 @@ function Demo({ loading }: { loading?: boolean }) {
 
 export function App() {
   return (
-    <Grid cols={2}>
+    <Grid cols="2">
       <Demo loading />
       <Demo />
     </Grid>

@@ -32,6 +32,6 @@ export const Primary: Story = {
         </Text>
       </>
     ),
-    cols: 3,
+    cols: "3",
   },
 };

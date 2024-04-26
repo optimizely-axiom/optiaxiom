@@ -15,7 +15,7 @@ export const Item = ({
       placeItems="center"
       {...children.props}
     >
-      <Text color="white" fontFamily="mono" fontWeight={600} textAlign="center">
+      <Text color="white" fontFamily="mono" fontWeight="600" textAlign="center">
         {children.props.children}
       </Text>
     </Box>

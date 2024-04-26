@@ -21,10 +21,10 @@ const responsiveProperties = defineProperties({
   defaultCondition: "base",
   properties: {
     cols: {
-      1: { vars: { [cols]: 1 } },
-      2: { vars: { [cols]: 2 } },
-      3: { vars: { [cols]: 3 } },
-      4: { vars: { [cols]: 4 } },
+      "1": { vars: { [cols]: 1 } },
+      "2": { vars: { [cols]: 2 } },
+      "3": { vars: { [cols]: 3 } },
+      "4": { vars: { [cols]: 4 } },
     },
     gridTemplateColumns: {
       cols: {

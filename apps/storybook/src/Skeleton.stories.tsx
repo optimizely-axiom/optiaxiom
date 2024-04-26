@@ -22,18 +22,18 @@ export const Card: Story = {
       padding="md"
     >
       <Stack direction="horizontal" items="start">
-        <Skeleton borderRadius="full" size={6} />
+        <Skeleton borderRadius="full" size="6" />
 
-        <Stack flex={1} paddingY={0.5}>
-          <Skeleton height={1.5} />
+        <Stack flex="1" paddingY="0.5">
+          <Skeleton height="1.5" />
 
           <Stack marginTop="md">
-            <Grid className="grid grid-cols-3 gap-4" cols={3}>
-              <Skeleton colSpan={2} height={1.5} />
-              <Skeleton colSpan={1} height={1.5} />
+            <Grid className="grid grid-cols-3 gap-4" cols="3">
+              <Skeleton colSpan="2" height="1.5" />
+              <Skeleton colSpan="1" height="1.5" />
             </Grid>
 
-            <Skeleton height={1.5} />
+            <Skeleton height="1.5" />
           </Stack>
         </Stack>
       </Stack>
@@ -47,6 +47,6 @@ export const Children: Story = {
     children: <IconUserFilled />,
     color: "white",
     padding: "xs",
-    size: 6,
+    size: "6",
   },
 };
