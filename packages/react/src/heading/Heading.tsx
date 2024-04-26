@@ -30,7 +30,7 @@ export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
     return (
       <Text
         asChild
-        fontWeight={700}
+        fontWeight="700"
         ref={ref}
         {...extractSprinkles(styles.sprinkles, {
           size,

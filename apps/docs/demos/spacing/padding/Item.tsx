@@ -18,9 +18,9 @@ export const Item = ({
         borderRadius="inherit"
         color="white"
         fontFamily="mono"
-        fontWeight={600}
-        paddingX={1}
-        paddingY={0.5}
+        fontWeight="600"
+        paddingX="1"
+        paddingY="0.5"
         style={{
           background: `rgb(from ${theme.color["purple.50"]} r g b / 20%)`,
         }}

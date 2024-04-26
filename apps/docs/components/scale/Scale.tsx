@@ -16,8 +16,8 @@ export const Scale = ({
   <Table>
     <thead>
       <tr>
-        <Th width={10}>{keyLabel}</Th>
-        <Th width={20}>{valueLabel}</Th>
+        <Th width="10">{keyLabel}</Th>
+        <Th width="20">{valueLabel}</Th>
         {!hidePreview && (
           <Box asChild display={["none", "table-cell"]}>
             <Th />
@@ -46,7 +46,7 @@ export const Scale = ({
                 <Td>
                   <Box
                     background="purple.500"
-                    height={2}
+                    height="2"
                     style={{ width: size }}
                   />
                 </Td>

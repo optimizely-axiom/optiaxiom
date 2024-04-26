@@ -56,8 +56,8 @@ const responsiveProperties = defineProperties({
   properties: {
     alignItems: ["center", "end", "normal", "start", "stretch"] as const,
     colSpan: {
-      1: { gridColumn: "span 1 / span 1" },
-      2: { gridColumn: "span 2 / span 2" },
+      "1": { gridColumn: "span 1 / span 1" },
+      "2": { gridColumn: "span 2 / span 2" },
     },
     display: [
       "none",
@@ -69,7 +69,7 @@ const responsiveProperties = defineProperties({
       "table-cell",
     ] as const,
     flex: {
-      1: "1 1 0%",
+      "1": "1 1 0%",
       auto: "1 1 auto",
       none: "none",
     },

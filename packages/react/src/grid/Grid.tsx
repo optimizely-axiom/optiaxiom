@@ -14,7 +14,7 @@ type GridProps = ExtendProps<
 >;
 
 export const Grid = forwardRef<HTMLDivElement, GridProps>(
-  ({ className, cols = 1, gap = "md", ...props }, ref) => {
+  ({ className, cols = "1", gap = "md", ...props }, ref) => {
     return (
       <Box
         className={clsx(

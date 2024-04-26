@@ -37,8 +37,8 @@ export const Tooltip = forwardRef<HTMLButtonElement, TooltipProps>(
                       background="dark.600"
                       borderRadius="sm"
                       color="white"
-                      paddingX={0.75}
-                      paddingY={0.5}
+                      paddingX="0.75"
+                      paddingY="0.5"
                     >
                       <Text size="sm">{content}</Text>
                       {withArrow && <RadixTooltip.Arrow />}

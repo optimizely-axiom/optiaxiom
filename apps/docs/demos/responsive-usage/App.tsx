@@ -15,11 +15,11 @@ export function App() {
         </Box>
 
         <Box padding="md">
-          <Text color="magenta.600" fontWeight={600} textTransform="uppercase">
+          <Text color="magenta.600" fontWeight="600" textTransform="uppercase">
             Phasellus auctor
           </Text>
 
-          <Text fontWeight={700} marginY="xs" size="lg">
+          <Text fontWeight="700" marginY="xs" size="lg">
             Nullam rhoncus gravida urna
           </Text>
 
