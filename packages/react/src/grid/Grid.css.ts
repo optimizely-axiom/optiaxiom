@@ -1,9 +1,5 @@
 import { createVar } from "@vanilla-extract/css";
-import {
-  createMapValueFn,
-  createSprinkles,
-  defineProperties,
-} from "@vanilla-extract/sprinkles";
+import { createSprinkles, defineProperties } from "@vanilla-extract/sprinkles";
 
 import { layers, tokens } from "../styles";
 import { mapValues } from "../utils";
@@ -36,5 +32,4 @@ const responsiveProperties = defineProperties({
 });
 
 export const sprinkles = createSprinkles(responsiveProperties);
-export const mapValue = createMapValueFn(responsiveProperties);
 export type Sprinkles = Parameters<typeof sprinkles>[0];
