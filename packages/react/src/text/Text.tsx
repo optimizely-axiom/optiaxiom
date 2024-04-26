@@ -9,12 +9,13 @@ import * as styles from "./Text.css";
 type TextProps = ExtendProps<
   ComponentPropsWithRef<"p">,
   ComponentPropsWithRef<typeof Box>,
-  styles.Sprinkles
+  { as?: "label" | "p" | "span" } & styles.Sprinkles
 >;
 
 export const Text = forwardRef<HTMLParagraphElement, TextProps>(
   (
     {
+      as = "p",
       asChild,
       children,
       className,
@@ -26,7 +27,7 @@ export const Text = forwardRef<HTMLParagraphElement, TextProps>(
     },
     ref,
   ) => {
-    const Comp = asChild ? Slot : "p";
+    const Comp = asChild ? Slot : as;
 
     return (
       <Box
