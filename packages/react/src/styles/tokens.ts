@@ -222,6 +222,7 @@ export const tokensLight = {
     ...tokens.color,
 
     "bg.information": tokens.color["blue.50"],
+    "bg.neutral": tokens.color["slate.100"],
     "bg.success": tokens.color["green.50"],
     border: tokens.color["slate.200"],
     surface: tokens.color["white"],
@@ -235,6 +236,7 @@ export const tokensDark = {
     ...tokens.color,
 
     "bg.information": tokens.color["blue.900"],
+    "bg.neutral": tokens.color["slate.800"],
     "bg.success": tokens.color["green.900"],
     border: tokens.color["slate.700"],
     surface: tokens.color["slate.800"],
