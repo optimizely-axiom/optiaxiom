@@ -1,8 +1,9 @@
 import { Slot } from "@radix-ui/react-slot";
+import clsx from "clsx";
 import { type ComponentPropsWithRef, forwardRef } from "react";
 
 import { Text } from "../text";
-import { type ExtendProps, extractSprinkles } from "../utils";
+import { type ExtendProps } from "../utils";
 import * as styles from "./Heading.css";
 
 type HeadingProps = ExtendProps<
@@ -23,19 +24,36 @@ const mapLevelToTag = {
 } as const;
 
 export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
-  ({ asChild, children, level = 1, size: sizeProp, ...props }, ref) => {
+  (
+    {
+      asChild,
+      children,
+      className,
+      fontSize,
+      level = 1,
+      lineHeight,
+      size: sizeProp,
+      ...props
+    },
+    ref,
+  ) => {
     const Comp = asChild ? Slot : mapLevelToTag[level];
     const size = sizeProp ?? mapLevelToTag[level];
 
     return (
       <Text
         asChild
+        className={clsx(
+          className,
+          styles.sprinkles({
+            fontSize,
+            lineHeight,
+            size,
+          }),
+        )}
         fontWeight="700"
         ref={ref}
-        {...extractSprinkles(styles.sprinkles, {
-          size,
-          ...props,
-        })}
+        {...props}
       >
         <Comp>{children}</Comp>
       </Text>

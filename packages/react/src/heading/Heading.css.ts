@@ -9,6 +9,9 @@ const unresponsiveProperties = defineProperties({
     lineHeight: theme.heading.lineHeight,
   },
   shorthands: {
+    /**
+     * Set both `fontSize` and `lineHeight`
+     */
     size: ["fontSize", "lineHeight"],
   },
 });

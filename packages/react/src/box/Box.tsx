@@ -1,5 +1,6 @@
 import { Slot } from "@radix-ui/react-slot";
 import clsx from "clsx";
+import "inter-ui/inter-variable.css";
 import { type ComponentPropsWithRef, forwardRef } from "react";
 
 import type { ExtendProps } from "../utils";

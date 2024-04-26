@@ -1,9 +1,9 @@
 import { Slot } from "@radix-ui/react-slot";
-import "inter-ui/inter-variable.css";
+import clsx from "clsx";
 import { type ComponentPropsWithRef, forwardRef } from "react";
 
 import { Box } from "../box";
-import { type ExtendProps, extractSprinkles } from "../utils";
+import { type ExtendProps } from "../utils";
 import * as styles from "./Text.css";
 
 type TextProps = ExtendProps<
@@ -13,18 +13,35 @@ type TextProps = ExtendProps<
 >;
 
 export const Text = forwardRef<HTMLParagraphElement, TextProps>(
-  ({ asChild, children, fontFamily = "sans", size = "md", ...props }, ref) => {
+  (
+    {
+      asChild,
+      children,
+      className,
+      fontFamily = "sans",
+      fontSize,
+      lineHeight,
+      size = "md",
+      ...props
+    },
+    ref,
+  ) => {
     const Comp = asChild ? Slot : "p";
 
     return (
       <Box
         asChild
+        className={clsx(
+          className,
+          styles.sprinkles({
+            fontSize,
+            lineHeight,
+            size,
+          }),
+        )}
+        fontFamily={fontFamily}
         ref={ref}
-        {...extractSprinkles(styles.sprinkles, {
-          fontFamily,
-          size,
-          ...props,
-        })}
+        {...props}
       >
         <Comp>{children}</Comp>
       </Box>
