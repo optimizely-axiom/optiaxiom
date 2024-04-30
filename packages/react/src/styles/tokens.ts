@@ -195,6 +195,12 @@ export const tokens = {
   },
 
   space: {
+    xs: "8px",
+    sm: "12px",
+    md: "16px",
+    lg: "24px",
+    xl: "32px",
+
     "0": "0",
     "0.25": "2px",
     "0.5": "4px",
@@ -207,12 +213,6 @@ export const tokens = {
     "6": "48px",
     "8": "64px",
     "10": "80px",
-
-    xs: "8px",
-    sm: "12px",
-    md: "16px",
-    lg: "24px",
-    xl: "32px",
   },
 } as const;
 
