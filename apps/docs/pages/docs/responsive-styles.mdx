@@ -20,7 +20,9 @@ Use the object prop notation where the key is the breakpoint name:
 import { Stack } from "@optiaxiom/react";
 
 export function App() {
-  return <Stack display={{ base: "vertical", sm: "horizontal" }}>...</Stack>;
+  return (
+    <Stack flexDirection={{ base: "vertical", sm: "horizontal" }}>...</Stack>
+  );
 }
 ```
 
@@ -30,7 +32,7 @@ Or use the shorter array prop notation with the elements in order of condition:
 import { Stack } from "@optiaxiom/react";
 
 export function App() {
-  return <Stack display={["vertical", "horizontal"]}>...</Stack>;
+  return <Stack flexDirection={["vertical", "horizontal"]}>...</Stack>;
 }
 ```
 
