@@ -33,7 +33,7 @@ const createThemeContractFromTokens = <T extends Tokens, P extends string>(
 
 export const theme = createGlobalThemeContract(
   createThemeContractFromTokens(tokensLight, ""),
-  (value) => `axiom-${value}`,
+  (value) => `ax-${value}`,
 );
 createGlobalTheme(":root", theme, tokensLight);
 createGlobalTheme(":root.dark", theme, tokensDark);
