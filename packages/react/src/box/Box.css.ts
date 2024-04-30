@@ -34,6 +34,8 @@ export const base = style({
   },
 });
 
+const merge = <A, B>(objA: A, objB: B): A & B => ({ ...objA, ...objB });
+
 const animations = {
   pulse: keyframes({
     "0%, 100%": { opacity: 1 },
@@ -43,15 +45,17 @@ const animations = {
 
 const cols = createVar();
 
-const margins = {
-  ...theme.space,
-  ...mapValues(
+const margins = merge(
+  merge(
     theme.space,
-    (v) => `calc(-1 * ${v})`,
-    (k) => `-${k}`,
+    mapValues(
+      theme.space,
+      (v) => `calc(-1 * ${v})`,
+      (k) => `-${k}`,
+    ),
   ),
-  auto: "auto",
-};
+  { auto: "auto" },
+);
 
 const createBaseProperties = (selector?: string) =>
   [
@@ -154,10 +158,7 @@ const createBaseProperties = (selector?: string) =>
         },
         borderBottomWidth: theme.borderWidth,
         borderLeftWidth: theme.borderWidth,
-        borderRadius: {
-          ...theme.radius,
-          inherit: "inherit",
-        },
+        borderRadius: merge(theme.radius, { inherit: "inherit" }),
         borderRightWidth: theme.borderWidth,
         borderTopWidth: theme.borderWidth,
         fontFamily: {
