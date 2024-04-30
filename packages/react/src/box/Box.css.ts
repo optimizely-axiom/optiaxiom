@@ -119,30 +119,46 @@ const createBaseProperties = (selector?: string) =>
           "start",
           "stretch",
         ] as const,
+        /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/spacing/#single-side} */
         marginBottom: margins,
+        /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/spacing/#single-side} */
         marginLeft: margins,
+        /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/spacing/#single-side} */
         marginRight: margins,
+        /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/spacing/#single-side} */
         marginTop: margins,
         maxWidth: theme.maxWidth,
+        /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/spacing/#single-side-1} */
         paddingBottom: theme.space,
+        /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/spacing/#single-side-1} */
         paddingLeft: theme.space,
+        /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/spacing/#single-side-1} */
         paddingRight: theme.space,
+        /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/spacing/#single-side-1} */
         paddingTop: theme.space,
         placeItems: ["center"] as const,
         shrink: {
           "1": { flexShrink: 1 },
         },
         textAlign: ["start", "center", "justify"] as const,
+        /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/sizing/#width} */
         width: theme.size,
       },
       responsiveArray: ["base", "sm", "xl"],
       shorthands: {
+        /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/spacing/#multiple-sides} */
         margin: ["marginBottom", "marginLeft", "marginRight", "marginTop"],
+        /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/spacing/#multiple-sides} */
         marginX: ["marginLeft", "marginRight"],
+        /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/spacing/#multiple-sides} */
         marginY: ["marginBottom", "marginTop"],
+        /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/spacing/#multiple-sides-1} */
         padding: ["paddingBottom", "paddingLeft", "paddingRight", "paddingTop"],
+        /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/spacing/#multiple-sides-1} */
         paddingX: ["paddingLeft", "paddingRight"],
+        /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/spacing/#multiple-sides-1} */
         paddingY: ["paddingBottom", "paddingTop"],
+        /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/sizing/#size} */
         size: ["height", "width"],
       },
     }),
@@ -158,6 +174,7 @@ const createBaseProperties = (selector?: string) =>
         },
         borderBottomWidth: theme.borderWidth,
         borderLeftWidth: theme.borderWidth,
+        /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/border-radius/} */
         borderRadius: merge(theme.radius, { inherit: "inherit" }),
         borderRightWidth: theme.borderWidth,
         borderTopWidth: theme.borderWidth,
@@ -221,9 +238,11 @@ const createModifierProperties = (selector?: string) =>
       },
       defaultCondition: "base",
       properties: {
+        /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/colors/} */
         background: theme.color,
         borderBottomColor: theme.color,
         boxShadow: theme.shadow,
+        /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/colors/} */
         color: theme.color,
         textDecoration: ["none", "underline"] as const,
       },
