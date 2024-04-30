@@ -102,7 +102,7 @@ const createBaseProperties = (selector?: string) =>
         },
         gap: theme.space,
         grow: {
-          1: { flexGrow: 1 }, // FIXME:
+          "1": { flexGrow: 1 },
         },
         height: theme.size,
         justifyContent: [
@@ -126,7 +126,7 @@ const createBaseProperties = (selector?: string) =>
         paddingTop: theme.space,
         placeItems: ["center"] as const,
         shrink: {
-          1: { flexShrink: 1 }, // FIXME:
+          "1": { flexShrink: 1 },
         },
         textAlign: ["start", "center", "justify"] as const,
         width: theme.size,

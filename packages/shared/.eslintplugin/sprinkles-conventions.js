@@ -4,6 +4,28 @@ export default ESLintUtils.RuleCreator.withoutDocs({
   create(context) {
     return {
       /**
+       * @type {import('@typescript-eslint/utils').TSESLint.RuleListener['Literal']}
+       */
+      'CallExpression[callee.name="defineProperties"] Property[key.name="properties"] > ObjectExpression > Property > ObjectExpression > Property > Literal':
+        (node) => {
+          if (node.type !== "Literal") {
+            return;
+          }
+          if (typeof node.value === "string") {
+            return;
+          }
+
+          context.report({
+            fix: (fixer) => [
+              fixer.insertTextBefore(node, '"'),
+              fixer.insertTextAfter(node, '"'),
+            ],
+            messageId: "string",
+            node,
+          });
+        },
+
+      /**
        * @type {import('@typescript-eslint/utils').TSESLint.RuleListener['ArrayExpression']}
        */
       'CallExpression[callee.name="defineProperties"] Property[key.name="properties"] ArrayExpression':
@@ -14,8 +36,8 @@ export default ESLintUtils.RuleCreator.withoutDocs({
 
           context.report({
             fix: (fixer) => fixer.insertTextAfter(node, " as const"),
-            messageId: "expected",
-            node: node,
+            messageId: "const",
+            node,
           });
         },
     };
@@ -26,7 +48,8 @@ export default ESLintUtils.RuleCreator.withoutDocs({
   meta: {
     fixable: "code",
     messages: {
-      expected: "Please cast arrays using `as const`.",
+      const: "Please cast arrays using `as const`.",
+      string: "Please use string type for sprinkle values.",
     },
     schema: [],
     type: "suggestion",
