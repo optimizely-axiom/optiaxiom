@@ -5,7 +5,7 @@ import beach from "./beach.jpg";
 
 export function App() {
   return (
-    <Paper borderRadius="md" maxWidth={["sm", "2xl"]} overflow="hidden">
+    <Paper maxWidth={["sm", "2xl"]} overflow="hidden">
       <Stack flexDirection={["vertical", "horizontal"]}>
         <Box>
           <Image

@@ -1,16 +1,23 @@
 import { type ComponentPropsWithRef, forwardRef } from "react";
 
-import { Box } from "../box";
+import type { ExtendProps } from "../utils";
 
-type PaperProps = ComponentPropsWithRef<typeof Box>;
+import { Box, type Sprinkles } from "../box";
+
+type PaperProps = ExtendProps<
+  ComponentPropsWithRef<typeof Box>,
+  {
+    elevation?: Sprinkles["boxShadow"];
+  }
+>;
 
 export const Paper = forwardRef<HTMLParagraphElement, PaperProps>(
-  (props, ref) => {
+  ({ elevation = "sm", ...props }, ref) => {
     return (
       <Box
         background="surface"
         borderRadius="sm"
-        boxShadow="sm"
+        boxShadow={elevation}
         ref={ref}
         {...props}
       />
