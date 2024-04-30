@@ -70,7 +70,7 @@ export default tsEslint.config(
     files: ["**/*.css.ts"],
     rules: {
       "local/no-global-styles": "error",
-      "local/sprinkles-const-array": "error",
+      "local/sprinkles-conventions": "error",
     },
   },
   {
