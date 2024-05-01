@@ -4,7 +4,7 @@ export function App() {
   return (
     <Paper maxWidth="sm" p="md">
       <Stack flexDirection="horizontal">
-        <Skeleton rounded="full" size="10" />
+        <Skeleton rounded="full" size="80" />
 
         <Stack flex="1">
           <Grid cols="3">

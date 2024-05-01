@@ -5,14 +5,14 @@ import { Canvas } from "../Canvas";
 export function App() {
   return (
     <Canvas>
-      <Box size="8">size=8</Box>
-      <Box size="10">size=10</Box>
-      <Box size="12">size=12</Box>
-      <Box display={["none", "grid"]} size="16">
-        size=16
+      <Box size="64">size=64</Box>
+      <Box size="80">size=80</Box>
+      <Box size="96">size=96</Box>
+      <Box display={["none", "grid"]} size="128">
+        size=128
       </Box>
-      <Box display={["none", "grid"]} size="20">
-        size=20
+      <Box display={["none", "grid"]} size="160">
+        size=160
       </Box>
     </Canvas>
   );

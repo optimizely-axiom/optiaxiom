@@ -5,11 +5,11 @@ import { Canvas } from "../Canvas";
 export function App() {
   return (
     <Canvas>
-      <Box w="40">w=40</Box>
-      <Box w="32">w=32</Box>
-      <Box w="24">w=24</Box>
-      <Box w="20">w=20</Box>
-      <Box w="16">w=16</Box>
+      <Box w="320">w=320</Box>
+      <Box w="256">w=256</Box>
+      <Box w="192">w=192</Box>
+      <Box w="160">w=160</Box>
+      <Box w="128">w=128</Box>
     </Canvas>
   );
 }

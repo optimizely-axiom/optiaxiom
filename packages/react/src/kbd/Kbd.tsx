@@ -32,7 +32,7 @@ export const Kbd = forwardRef<HTMLElement, KbdProps>(
         borderBottomWidth="2"
         borderWidth="1"
         fontWeight="600"
-        gap="0.5"
+        gap="4"
         whiteSpace="nowrap"
         {...props}
       >

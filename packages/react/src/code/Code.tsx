@@ -18,7 +18,7 @@ export const Code = forwardRef<HTMLElement, CodeProps>(
         display="inline-flex"
         flexDirection="horizontal"
         fontFamily="mono"
-        px="0.5"
+        px="4"
         rounded="sm"
         {...props}
       >
