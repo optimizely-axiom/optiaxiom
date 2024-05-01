@@ -25,12 +25,7 @@ export function ColorPalette() {
           flexDirection={["vertical", "horizontal"]}
           key={hue}
         >
-          <Text
-            fontWeight="700"
-            mt="8"
-            style={{ width: "5rem" }}
-            textTransform="capitalize"
-          >
+          <Text fontWeight="700" mt="8" textTransform="capitalize" w="80">
             {hue}
           </Text>
           {tones.map(([tone, name, color]) => (
@@ -46,8 +41,8 @@ export function ColorPalette() {
                 style={{
                   aspectRatio: 100 / 70,
                   border: `1px solid oklch(from ${color} calc(l - 0.1) c h)`,
-                  width: "50px",
                 }}
+                w="48"
               />
               <Box flex="1">
                 <Text fontSize="sm" fontWeight="600">
