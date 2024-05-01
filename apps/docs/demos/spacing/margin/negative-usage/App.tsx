@@ -4,11 +4,11 @@ import { Canvas } from "../Canvas";
 
 export function App() {
   return (
-    <Canvas padding="xs">
-      <Box marginTop="-0.5">marginTop=-0.5</Box>
-      <Box marginRight="-md">marginRight=-md</Box>
-      <Box marginBottom="-lg">marginBottom=-lg</Box>
-      <Box marginLeft="-xl">marginLeft=-xl</Box>
+    <Canvas p="xs">
+      <Box mt="-0.5">mt=-0.5</Box>
+      <Box mr="-md">mr=-md</Box>
+      <Box mb="-lg">mb=-lg</Box>
+      <Box ml="-xl">ml=-xl</Box>
     </Canvas>
   );
 }

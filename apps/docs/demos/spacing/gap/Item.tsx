@@ -7,12 +7,7 @@ export const Item = ({
   children: ReactElement<ComponentPropsWithRef<typeof Box>>;
 }) => {
   return (
-    <Box
-      background="purple.500"
-      borderRadius="inherit"
-      padding="md"
-      {...children.props}
-    >
+    <Box bg="purple.500" p="md" rounded="inherit" {...children.props}>
       <Text color="white" fontFamily="mono" fontWeight="600" textAlign="center">
         {children.props.children}
       </Text>

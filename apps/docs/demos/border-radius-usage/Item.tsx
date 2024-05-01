@@ -8,7 +8,7 @@ export const Item = ({
 }) => (
   <Stack alignItems="center" gap="1">
     <Box
-      background="purple.500"
+      bg="purple.500"
       display="grid"
       placeItems="center"
       size="8"

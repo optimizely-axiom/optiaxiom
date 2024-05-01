@@ -7,11 +7,11 @@ export function App() {
   return (
     <Box
       asChild
-      background="bg.information"
-      borderRadius="md"
+      bg="bg.information"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      padding="xs"
+      p="xs"
+      rounded="md"
     >
       <span>I am a span {isHovered && "hovered"}</span>
     </Box>

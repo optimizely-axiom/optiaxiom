@@ -6,17 +6,17 @@ import { Item } from "./Item";
 
 export const Container = ({
   children,
-  height,
+  h,
 }: {
   children: ReactElement<ComponentPropsWithRef<typeof Box>>;
-  height?: ComponentPropsWithRef<typeof Box>["height"];
+  h?: ComponentPropsWithRef<typeof Box>["h"];
 }) => {
   return (
     <Box
-      background="purple.50"
-      borderRadius="sm"
-      height={height}
-      padding="xs"
+      bg="purple.50"
+      h={h}
+      p="xs"
+      rounded="sm"
       style={{
         background: `rgb(from ${theme.color["purple.500"]} r g b / 30%)`,
       }}

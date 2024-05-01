@@ -12,8 +12,8 @@ import { Item } from "./Item";
 export const Canvas = ({ children }: { children: ReactElement }) => (
   <Box
     asChild
-    background="purple.50"
-    borderRadius="sm"
+    bg="purple.50"
+    rounded="sm"
     style={{
       background: `rgb(from ${theme.color["purple.500"]} r g b / 30%)`,
     }}

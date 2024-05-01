@@ -15,19 +15,19 @@ export const Primary: Story = {
   args: {
     children: (
       <>
-        <Text background="aqua.50" padding="md">
+        <Text bg="aqua.50" p="md">
           Text box 1
         </Text>
-        <Text background="aqua.50" padding="md">
+        <Text bg="aqua.50" p="md">
           Text box 2
         </Text>
-        <Text background="aqua.50" padding="md">
+        <Text bg="aqua.50" p="md">
           Text box 3
         </Text>
-        <Text background="aqua.50" padding="md">
+        <Text bg="aqua.50" p="md">
           Text box 4
         </Text>
-        <Text background="aqua.50" padding="md">
+        <Text bg="aqua.50" p="md">
           Text box 5
         </Text>
       </>

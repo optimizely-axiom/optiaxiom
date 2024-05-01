@@ -2,7 +2,7 @@ import { Paper, Text } from "@optiaxiom/react";
 
 export function App() {
   return (
-    <Paper padding="md">
+    <Paper p="md">
       <Text>This is a paper</Text>
     </Paper>
   );

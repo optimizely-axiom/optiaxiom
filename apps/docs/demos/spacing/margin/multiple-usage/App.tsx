@@ -5,9 +5,9 @@ import { Canvas } from "../Canvas";
 export function App() {
   return (
     <Canvas>
-      <Box margin="lg">margin=lg</Box>
-      <Box marginX="lg">marginX=lg</Box>
-      <Box marginY="lg">marginY=lg</Box>
+      <Box m="lg">m=lg</Box>
+      <Box mx="lg">mx=lg</Box>
+      <Box my="lg">my=lg</Box>
     </Canvas>
   );
 }

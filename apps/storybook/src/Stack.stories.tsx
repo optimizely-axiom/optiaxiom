@@ -13,13 +13,13 @@ type Story = StoryObj<typeof Stack>;
 
 const Items = ({ label }: { label?: string }) => (
   <>
-    <Text background="aqua.50" padding="md">
+    <Text bg="aqua.50" p="md">
       {label ?? "Text box 1"}
     </Text>
-    <Text background="aqua.50" padding="md">
+    <Text bg="aqua.50" p="md">
       {label ?? "Text box 2"}
     </Text>
-    <Text background="aqua.50" padding="md">
+    <Text bg="aqua.50" p="md">
       {label ?? "Text box 3"}
     </Text>
   </>
@@ -64,13 +64,13 @@ export const Grow: Story = {
   args: {
     children: (
       <>
-        <Text background="aqua.50" grow="1" padding="md" textAlign="center">
+        <Text bg="aqua.50" grow="1" p="md" textAlign="center">
           Item 1
         </Text>
-        <Text background="aqua.50" grow="1" padding="md" textAlign="center">
+        <Text bg="aqua.50" grow="1" p="md" textAlign="center">
           Item 2
         </Text>
-        <Text background="aqua.50" grow="1" padding="md" textAlign="center">
+        <Text bg="aqua.50" grow="1" p="md" textAlign="center">
           Long Content
         </Text>
       </>

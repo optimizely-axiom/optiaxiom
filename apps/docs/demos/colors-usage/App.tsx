@@ -2,7 +2,7 @@ import { Box } from "@optiaxiom/react";
 
 export function App() {
   return (
-    <Box background="bg.success" color="text.success" padding="md">
+    <Box bg="bg.success" color="text.success" p="md">
       Setting background and text colors
     </Box>
   );

@@ -16,20 +16,20 @@ export const Primary: Story = {};
 
 export const Card: Story = {
   render: () => (
-    <Paper maxWidth="sm" padding="md">
+    <Paper maxWidth="sm" p="md">
       <Stack alignItems="start" flexDirection="horizontal">
-        <Skeleton borderRadius="full" size="6" />
+        <Skeleton rounded="full" size="6" />
 
-        <Stack flex="1" paddingY="0.5">
-          <Skeleton height="1.5" />
+        <Stack flex="1" py="0.5">
+          <Skeleton h="1.5" />
 
-          <Stack marginTop="md">
+          <Stack mt="md">
             <Grid cols="3">
-              <Skeleton colSpan="2" height="1.5" />
-              <Skeleton colSpan="1" height="1.5" />
+              <Skeleton colSpan="2" h="1.5" />
+              <Skeleton colSpan="1" h="1.5" />
             </Grid>
 
-            <Skeleton height="1.5" />
+            <Skeleton h="1.5" />
           </Stack>
         </Stack>
       </Stack>
@@ -39,10 +39,10 @@ export const Card: Story = {
 
 export const Children: Story = {
   args: {
-    borderRadius: "full",
     children: <IconUserFilled />,
     color: "white",
-    padding: "xs",
+    p: "xs",
+    rounded: "full",
     size: "6",
   },
 };

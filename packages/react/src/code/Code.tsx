@@ -13,13 +13,13 @@ export const Code = forwardRef<HTMLElement, CodeProps>(
     return (
       <Stack
         asChild
-        background="bg.neutral"
-        borderRadius="sm"
+        bg="bg.neutral"
         className={clsx(className, styles.base)}
         display="inline-flex"
         flexDirection="horizontal"
         fontFamily="mono"
-        paddingX="0.5"
+        px="0.5"
+        rounded="sm"
         {...props}
       >
         <Comp ref={ref}>{children}</Comp>
