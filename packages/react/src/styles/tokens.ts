@@ -89,39 +89,46 @@ export const tokens = {
   },
 
   fontSize: {
-    xs: "11px",
-    sm: "12px",
-    md: "14px",
-    lg: "16px",
-    xl: "18px",
-  },
-
-  heading: {
-    fontSize: {
-      h6: "14px",
-      h5: "18px",
-      h4: "20px",
-      h3: "23px",
-      h2: "26px",
-      h1: "29px",
+    xs: {
+      fontSize: "11px",
+      lineHeight: "1.25",
     },
-
-    lineHeight: {
-      h6: "1.71",
-      h5: "1.78",
-      h4: "1.6",
-      h3: "1.74",
-      h2: "1.69",
-      h1: "1.66",
+    sm: {
+      fontSize: "12px",
+      lineHeight: "1.45",
+    },
+    md: {
+      fontSize: "14px",
+      lineHeight: "1.5",
+    },
+    lg: {
+      fontSize: "16px",
+      lineHeight: "1.6",
+    },
+    xl: {
+      fontSize: "18px",
+      lineHeight: "1.65",
+    },
+    "2xl": {
+      fontSize: "20px",
+      lineHeight: "1.6",
+    },
+    "3xl": {
+      fontSize: "23px",
+      lineHeight: "1.74",
+    },
+    "4xl": {
+      fontSize: "26px",
+      lineHeight: "1.69",
+    },
+    "5xl": {
+      fontSize: "29px",
+      lineHeight: "1.66",
     },
   },
 
   lineHeight: {
-    xs: "1.25",
-    sm: "1.45",
-    md: "1.5",
-    lg: "1.6",
-    xl: "1.65",
+    // FIXME:
   },
 
   maxWidth: {

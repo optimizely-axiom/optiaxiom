@@ -20,20 +20,20 @@ export const Primary: Story = {
 
 export const Shadows: Story = {
   render: () => (
-    <Stack direction="row" gap="xl">
-      <Paper padding="xl" shadow="xs">
+    <Stack flexDirection="row" gap="xl">
+      <Paper boxShadow="xs" padding="xl">
         <Text>Paper with xs shadow</Text>
       </Paper>
-      <Paper padding="xl" shadow="sm">
+      <Paper boxShadow="sm" padding="xl">
         <Text>Paper with sm shadow</Text>
       </Paper>
-      <Paper padding="xl" shadow="md">
+      <Paper boxShadow="md" padding="xl">
         <Text>Paper with md shadow</Text>
       </Paper>
-      <Paper padding="xl" shadow="lg">
+      <Paper boxShadow="lg" padding="xl">
         <Text>Paper with lg shadow</Text>
       </Paper>
-      <Paper padding="xl" shadow="xl">
+      <Paper boxShadow="xl" padding="xl">
         <Text>Paper with xl shadow</Text>
       </Paper>
     </Stack>

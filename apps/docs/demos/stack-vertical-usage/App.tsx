@@ -2,7 +2,7 @@ import { Box, Stack } from "@optiaxiom/react";
 
 export function App() {
   return (
-    <Stack direction="vertical">
+    <Stack flexDirection="vertical">
       <Box background="bg.information" padding="sm">
         Box 1
       </Box>

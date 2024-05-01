@@ -21,7 +21,7 @@ export function transformPropsTable(tree) {
           },
         )
         .parse(
-          fg.globSync("../../packages/react/src/**/*.{css.ts,tsx}", {
+          fg.globSync("../../packages/react/src/**/*.{sprinkles.ts,tsx}", {
             ignore: ["**/*.spec.*"],
           }),
         );
@@ -45,7 +45,7 @@ export function transformPropsTable(tree) {
       const sprinkles = docs.find(
         (sprinkle) =>
           sprinkle.displayName === "sprinkles" &&
-          sprinkle.filePath === doc.filePath.replace(".tsx", ".css.ts"),
+          sprinkle.filePath === doc.filePath.replace(".tsx", ".sprinkles.ts"),
       );
 
       const tree = fromMarkdown(
@@ -73,9 +73,9 @@ export function transformPropsTable(tree) {
               ([, prop]) =>
                 !exclude.includes(prop.name) &&
                 prop.type.name !== "any" &&
-                ((prop.declarations.length === 0 &&
+                (((!prop.declarations || prop.declarations.length === 0) &&
                   Object.hasOwn(sprinkles?.props ?? {}, prop.name)) ||
-                  prop.declarations.find(
+                  prop.declarations?.find(
                     (decl) => decl.fileName === doc.filePath,
                   )),
             )
@@ -128,14 +128,11 @@ const mapThemeToProp = {
     "borderWidth",
   ],
   color: ["background", "color", "borderBottomColor"],
-  fontSize: ["Text[fontSize]"],
-  "headings.fontSize": ["Heading[fontSize]"],
-  "headings.lineHeight": ["Heading[lineHeight]"],
-  lineHeight: ["Text[lineHeight]"],
+  fontSize: ["fontSize"],
   maxWidth: ["maxWidth"],
   radius: ["borderRadius"],
   shadow: ["shadow"],
-  size: ["gap", "height", "Box[size]", "width"],
+  size: ["gap", "height", "size", "width"],
   space: [
     "margin",
     "marginBottom",
