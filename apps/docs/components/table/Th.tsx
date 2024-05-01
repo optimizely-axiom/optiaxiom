@@ -13,8 +13,8 @@ export const Th = ({
         asChild={asChild}
         borderBottomWidth="1"
         fontWeight="600"
-        paddingX="1.5"
-        paddingY="0.25"
+        px="1.5"
+        py="0.25"
       >
         {children ?? <>&nbsp;</>}
       </Text>

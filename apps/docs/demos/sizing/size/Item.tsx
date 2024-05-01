@@ -9,10 +9,10 @@ export const Item = ({
   return (
     <Box
       asChild
-      background="purple.500"
-      borderRadius="sm"
+      bg="purple.500"
       display="grid"
       placeItems="center"
+      rounded="sm"
       {...children.props}
     >
       <Text color="white" fontFamily="mono" fontWeight="600" textAlign="center">

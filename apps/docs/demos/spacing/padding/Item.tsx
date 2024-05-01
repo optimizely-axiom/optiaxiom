@@ -7,20 +7,14 @@ export const Item = ({
   children: ReactElement<ComponentPropsWithRef<typeof Box>>;
 }) => {
   return (
-    <Box
-      background="purple.500"
-      borderRadius="sm"
-      display="inline-flex"
-      {...children.props}
-    >
+    <Box bg="purple.500" display="inline-flex" rounded="sm" {...children.props}>
       <Text
-        background="purple.200"
-        borderRadius="inherit"
+        bg="purple.200"
         color="white"
         fontFamily="mono"
         fontWeight="600"
-        paddingX="1"
-        paddingY="0.5"
+        p="md"
+        rounded="inherit"
         style={{
           background: `rgb(from ${theme.color["purple.50"]} r g b / 20%)`,
         }}

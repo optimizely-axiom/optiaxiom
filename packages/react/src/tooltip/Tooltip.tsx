@@ -34,11 +34,11 @@ export const Tooltip = forwardRef<HTMLButtonElement, TooltipProps>(
                 <Transition type="pop">
                   <RadixTooltip.Content asChild sideOffset={5} {...props}>
                     <Box
-                      background="dark.600"
-                      borderRadius="sm"
+                      bg="dark.600"
                       color="white"
-                      paddingX="0.75"
-                      paddingY="0.5"
+                      px="0.75"
+                      py="0.5"
+                      rounded="sm"
                     >
                       <Text fontSize="sm">{content}</Text>
                       {withArrow && <RadixTooltip.Arrow />}

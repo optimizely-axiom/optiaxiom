@@ -2,7 +2,7 @@ import { Box, Grid, Stack, Text, tokens } from "@optiaxiom/react";
 
 export function ColorPalette() {
   return (
-    <Grid alignItems="start" cols={["2", "1"]} gap="lg" marginTop="xl">
+    <Grid alignItems="start" cols={["2", "1"]} gap="lg" mt="xl">
       {Object.entries(
         Object.entries(tokens.color).reduce<
           Record<string, Array<[string, keyof typeof tokens.color, string]>>
@@ -27,7 +27,7 @@ export function ColorPalette() {
         >
           <Text
             fontWeight="700"
-            marginTop="1"
+            mt="1"
             style={{ width: "5rem" }}
             textTransform="capitalize"
           >
@@ -41,8 +41,8 @@ export function ColorPalette() {
               key={`tone-${tone}`}
             >
               <Box
-                background={name}
-                borderRadius="sm"
+                bg={name}
+                rounded="sm"
                 style={{
                   aspectRatio: 100 / 70,
                   border: `1px solid oklch(from ${color} calc(l - 0.1) c h)`,
@@ -53,7 +53,7 @@ export function ColorPalette() {
                 <Text fontSize="sm" fontWeight="600">
                   {tone}
                 </Text>
-                <Text color="dark.500" fontSize="sm" marginTop="0.25">
+                <Text color="dark.500" fontSize="sm" mt="0.25">
                   {color}
                 </Text>
               </Box>

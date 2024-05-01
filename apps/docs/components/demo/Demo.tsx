@@ -15,10 +15,10 @@ export function Demo({
   iframe?: string;
 }) {
   return (
-    <Stack marginTop="xl">
+    <Stack mt="xl">
       <Box
         className={[styles.preview, iframe && styles.resize].join(" ")}
-        padding="xl"
+        p="xl"
       >
         {iframe ? <DemoIframe src={iframe} /> : <Component />}
       </Box>

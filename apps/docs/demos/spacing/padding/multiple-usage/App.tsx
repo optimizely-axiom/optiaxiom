@@ -5,9 +5,9 @@ import { Canvas } from "../Canvas";
 export function App() {
   return (
     <Canvas>
-      <Box padding="lg">padding=lg</Box>
-      <Box paddingX="lg">paddingX=lg</Box>
-      <Box paddingY="lg">paddingY=lg</Box>
+      <Box p="lg">p=lg</Box>
+      <Box px="lg">px=lg</Box>
+      <Box py="lg">py=lg</Box>
     </Canvas>
   );
 }

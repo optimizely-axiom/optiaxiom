@@ -14,26 +14,26 @@ type Story = StoryObj<typeof Paper>;
 export const Primary: Story = {
   args: {
     children: <Text>Hello World!</Text>,
-    padding: "md",
+    p: "md",
   },
 };
 
 export const Shadows: Story = {
   render: () => (
     <Stack flexDirection="row" gap="xl">
-      <Paper boxShadow="xs" padding="xl">
+      <Paper p="xl" shadow="xs">
         <Text>Paper with xs shadow</Text>
       </Paper>
-      <Paper boxShadow="sm" padding="xl">
+      <Paper p="xl" shadow="sm">
         <Text>Paper with sm shadow</Text>
       </Paper>
-      <Paper boxShadow="md" padding="xl">
+      <Paper p="xl" shadow="md">
         <Text>Paper with md shadow</Text>
       </Paper>
-      <Paper boxShadow="lg" padding="xl">
+      <Paper p="xl" shadow="lg">
         <Text>Paper with lg shadow</Text>
       </Paper>
-      <Paper boxShadow="xl" padding="xl">
+      <Paper p="xl" shadow="xl">
         <Text>Paper with xl shadow</Text>
       </Paper>
     </Stack>

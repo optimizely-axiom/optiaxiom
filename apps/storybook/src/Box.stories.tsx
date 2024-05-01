@@ -13,19 +13,19 @@ type Story = StoryObj<typeof Box>;
 
 export const Primary: Story = {
   args: {
-    background: "brand.50",
-    borderRadius: "sm",
+    bg: "brand.50",
     children: <Text>Hello World!</Text>,
-    margin: "lg",
-    padding: "lg",
+    m: "lg",
+    p: "lg",
+    rounded: "sm",
   },
 };
 
 export const Composition: Story = {
   args: {
     asChild: true,
-    background: "orange.50",
+    bg: "orange.50",
     children: <Text>Hello World!</Text>,
-    padding: "lg",
+    p: "lg",
   },
 };

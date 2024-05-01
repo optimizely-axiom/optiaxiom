@@ -5,15 +5,15 @@ import { Canvas } from "../Canvas";
 export function App() {
   return (
     <Canvas>
-      <Box display={["none", "grid"]} height="40">
-        height=40
+      <Box display={["none", "grid"]} h="40">
+        h=40
       </Box>
-      <Box display={["none", "grid"]} height="32">
-        height=32
+      <Box display={["none", "grid"]} h="32">
+        h=32
       </Box>
-      <Box height="24">height=24</Box>
-      <Box height="20">height=20</Box>
-      <Box height="16">height=16</Box>
+      <Box h="24">h=24</Box>
+      <Box h="20">h=20</Box>
+      <Box h="16">h=16</Box>
     </Canvas>
   );
 }

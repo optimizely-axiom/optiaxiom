@@ -14,12 +14,12 @@ export function App() {
           />
         </Box>
 
-        <Box padding="md">
+        <Box p="md">
           <Text color="magenta.600" fontWeight="600" textTransform="uppercase">
             Phasellus auctor
           </Text>
 
-          <Text fontSize="lg" fontWeight="700" marginY="xs">
+          <Text fontSize="lg" fontWeight="700" my="xs">
             Nullam rhoncus gravida urna
           </Text>
 

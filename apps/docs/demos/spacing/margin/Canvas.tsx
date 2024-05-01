@@ -10,10 +10,10 @@ import { Item } from "./Item";
 
 export const Canvas = ({
   children,
-  padding,
+  p,
 }: {
   children: ReactNode;
-  padding?: ComponentPropsWithRef<typeof Box>["padding"];
+  p?: ComponentPropsWithRef<typeof Box>["p"];
 }) => (
   <Stack
     alignItems="center"
@@ -23,7 +23,7 @@ export const Canvas = ({
     {Children.toArray(children)
       .filter(isValidElement<ComponentPropsWithRef<typeof Box>>)
       .map((item, index) => (
-        <Item key={index} padding={padding}>
+        <Item key={index} p={p}>
           {item}
         </Item>
       ))}

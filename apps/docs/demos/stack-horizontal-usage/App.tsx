@@ -3,15 +3,15 @@ import { Box, Stack } from "@optiaxiom/react";
 export function App() {
   return (
     <Stack flexDirection="row">
-      <Box background="bg.information" padding="sm">
+      <Box bg="bg.information" p="sm">
         Box 1
       </Box>
 
-      <Box background="bg.information" padding="lg">
+      <Box bg="bg.information" p="lg">
         Box 2
       </Box>
 
-      <Box background="bg.information" padding="sm">
+      <Box bg="bg.information" p="sm">
         Box 3
       </Box>
     </Stack>
