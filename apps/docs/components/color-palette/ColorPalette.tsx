@@ -27,7 +27,7 @@ export function ColorPalette() {
         >
           <Text
             fontWeight="700"
-            mt="1"
+            mt="8"
             style={{ width: "5rem" }}
             textTransform="capitalize"
           >
@@ -37,7 +37,7 @@ export function ColorPalette() {
             <Stack
               alignItems="start"
               flexDirection={["horizontal", "vertical"]}
-              gap={["sm", "1"]}
+              gap={["sm", "8"]}
               key={`tone-${tone}`}
             >
               <Box
@@ -53,7 +53,7 @@ export function ColorPalette() {
                 <Text fontSize="sm" fontWeight="600">
                   {tone}
                 </Text>
-                <Text color="dark.500" fontSize="sm" mt="0.25">
+                <Text color="dark.500" fontSize="sm" mt="2">
                   {color}
                 </Text>
               </Box>

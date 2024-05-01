@@ -4,8 +4,8 @@ export function App() {
   return (
     <Stack>
       <Skeleton />
-      <Skeleton h="10" />
-      <Skeleton rounded="full" size="8" />
+      <Skeleton h="80" />
+      <Skeleton rounded="full" size="64" />
     </Stack>
   );
 }

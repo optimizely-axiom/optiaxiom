@@ -18,18 +18,18 @@ export const Card: Story = {
   render: () => (
     <Paper maxWidth="sm" p="md">
       <Stack alignItems="start" flexDirection="horizontal">
-        <Skeleton rounded="full" size="6" />
+        <Skeleton rounded="full" size="48" />
 
-        <Stack flex="1" py="0.5">
-          <Skeleton h="1.5" />
+        <Stack flex="1" py="4">
+          <Skeleton h="12" />
 
           <Stack mt="md">
             <Grid cols="3">
-              <Skeleton colSpan="2" h="1.5" />
-              <Skeleton colSpan="1" h="1.5" />
+              <Skeleton colSpan="2" h="12" />
+              <Skeleton colSpan="1" h="12" />
             </Grid>
 
-            <Skeleton h="1.5" />
+            <Skeleton h="12" />
           </Stack>
         </Stack>
       </Stack>
@@ -43,6 +43,6 @@ export const Children: Story = {
     color: "white",
     p: "xs",
     rounded: "full",
-    size: "6",
+    size: "48",
   },
 };

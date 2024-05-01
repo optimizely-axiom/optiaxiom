@@ -6,7 +6,7 @@ export const Td = ({
   children,
   ...props
 }: ComponentPropsWithRef<typeof Box>) => (
-  <Box asChild px="1.5" py="1" {...props}>
+  <Box asChild px="12" py="8" {...props}>
     <td valign="top">{children}</td>
   </Box>
 );
