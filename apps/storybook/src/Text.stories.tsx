@@ -20,11 +20,11 @@ export const Primary: Story = {
 export const Sizes: Story = {
   render: () => (
     <>
-      <Text size="xs">This is xs size text</Text>
-      <Text size="sm">This is sm size text</Text>
-      <Text size="md">This is md size text</Text>
-      <Text size="lg">This is lg size text</Text>
-      <Text size="xl">This is xl size text</Text>
+      <Text fontSize="xs">This is xs size text</Text>
+      <Text fontSize="sm">This is sm size text</Text>
+      <Text fontSize="md">This is md size text</Text>
+      <Text fontSize="lg">This is lg size text</Text>
+      <Text fontSize="xl">This is xl size text</Text>
     </>
   ),
 };

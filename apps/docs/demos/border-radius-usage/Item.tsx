@@ -6,7 +6,7 @@ export const Item = ({
 }: {
   children: ReactElement<ComponentPropsWithRef<typeof Box>>;
 }) => (
-  <Stack gap="1" items="center">
+  <Stack alignItems="center" gap="1">
     <Box
       background="purple.500"
       display="grid"

@@ -6,7 +6,7 @@ import beach from "./beach.jpg";
 export function App() {
   return (
     <Paper borderRadius="md" maxWidth={["sm", "2xl"]} overflow="hidden">
-      <Stack direction={["vertical", "horizontal"]}>
+      <Stack flexDirection={["vertical", "horizontal"]}>
         <Box>
           <Image
             alt="brown glass bottle beside white book on blue and white textile"
@@ -19,7 +19,7 @@ export function App() {
             Phasellus auctor
           </Text>
 
-          <Text fontWeight="700" marginY="xs" size="lg">
+          <Text fontSize="lg" fontWeight="700" marginY="xs">
             Nullam rhoncus gravida urna
           </Text>
 

@@ -1,17 +1,16 @@
 import { Slot } from "@radix-ui/react-slot";
-import clsx from "clsx";
 import { type ComponentPropsWithRef, forwardRef } from "react";
 
-import { Text } from "../text";
+import { Box } from "../box";
 import { type ExtendProps } from "../utils";
-import * as styles from "./Heading.css";
 
 type HeadingProps = ExtendProps<
   ComponentPropsWithRef<"h1">,
-  ComponentPropsWithRef<typeof Text>,
+  ComponentPropsWithRef<typeof Box>,
   {
     level?: keyof typeof mapLevelToTag;
-  } & styles.Sprinkles
+    variant?: keyof typeof mapTagToFontSize;
+  }
 >;
 
 const mapLevelToTag = {
@@ -22,41 +21,31 @@ const mapLevelToTag = {
   5: "h5",
   6: "h6",
 } as const;
+const mapTagToFontSize = {
+  h1: "5xl",
+  h2: "4xl",
+  h3: "3xl",
+  h4: "2xl",
+  h5: "xl",
+  h6: "md",
+} as const;
 
 export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
-  (
-    {
-      asChild,
-      children,
-      className,
-      fontSize,
-      level = 1,
-      lineHeight,
-      size: sizeProp,
-      ...props
-    },
-    ref,
-  ) => {
+  ({ asChild, children, level = 1, variant, ...props }, ref) => {
     const Comp = asChild ? Slot : mapLevelToTag[level];
-    const size = sizeProp ?? mapLevelToTag[level];
+    const fontSize = mapTagToFontSize[variant ?? mapLevelToTag[level]];
 
     return (
-      <Text
+      <Box
         asChild
-        className={clsx(
-          className,
-          styles.sprinkles({
-            fontSize,
-            lineHeight,
-            size,
-          }),
-        )}
+        fontFamily="sans"
+        fontSize={fontSize}
         fontWeight="700"
         ref={ref}
         {...props}
       >
         <Comp>{children}</Comp>
-      </Text>
+      </Box>
     );
   },
 );

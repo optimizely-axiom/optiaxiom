@@ -16,9 +16,9 @@ export const Canvas = ({
   padding?: ComponentPropsWithRef<typeof Box>["padding"];
 }) => (
   <Stack
-    direction={["vertical", "horizontal"]}
-    items="center"
-    justify="space-around"
+    alignItems="center"
+    flexDirection={["vertical", "horizontal"]}
+    justifyContent="space-around"
   >
     {Children.toArray(children)
       .filter(isValidElement<ComponentPropsWithRef<typeof Box>>)

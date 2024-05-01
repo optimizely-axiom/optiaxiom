@@ -23,32 +23,29 @@ export const Stack = forwardRef<HTMLDivElement, StackProps>(
   (
     {
       alignItems,
-      direction,
-      flexDirection,
+      flexDirection = "column",
       gap = "md",
-      items,
-      justify,
       justifyContent,
       ...props
     },
     ref,
   ) => {
-    items ??= alignItems;
-    const dir = direction ?? flexDirection ?? "column";
-    justify ??= justifyContent;
     return (
       <Box
         alignItems={
-          items ??
-          styles.mapResponsiveValue(dir, (value) => mapDirectionToAlign[value])
+          alignItems ??
+          styles.mapResponsiveValue(
+            flexDirection,
+            (value) => mapDirectionToAlign[value],
+          )
         }
         display="flex"
-        flexDirection={dir}
+        flexDirection={flexDirection}
         gap={gap}
         justifyContent={
-          justify ??
+          justifyContent ??
           styles.mapResponsiveValue(
-            dir,
+            flexDirection,
             (value) => mapDirectionToJustify[value],
           )
         }

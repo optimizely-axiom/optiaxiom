@@ -34,13 +34,13 @@ export const Primary: Story = {
 export const Horizontal: Story = {
   args: {
     children: <Items />,
-    direction: "row",
+    flexDirection: "row",
   },
 };
 
 export const Gaps: Story = {
   render: () => (
-    <Stack direction="horizontal">
+    <Stack flexDirection="horizontal">
       <Stack gap="xs">
         <Items label="xs" />
       </Stack>
@@ -75,7 +75,7 @@ export const Grow: Story = {
         </Text>
       </>
     ),
-    direction: "row",
+    flexDirection: "row",
     flexWrap: "wrap",
     style: { width: "200px" },
   },

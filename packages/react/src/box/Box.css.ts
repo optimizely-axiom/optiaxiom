@@ -1,4 +1,4 @@
-import { keyframes, style } from "@vanilla-extract/css";
+import { createVar, keyframes, style } from "@vanilla-extract/css";
 import {
   createMapValueFn,
   createSprinkles,
@@ -34,6 +34,15 @@ export const base = style({
   },
 });
 
+const animations = {
+  pulse: keyframes({
+    "0%, 100%": { opacity: 1 },
+    "50%": { opacity: 0.5 },
+  }),
+};
+
+const cols = createVar();
+
 const margins = {
   ...theme.space,
   ...mapValues(
@@ -44,168 +53,208 @@ const margins = {
   auto: "auto",
 };
 
-const responsiveProperties = defineProperties({
-  "@layer": layers.axiom,
-  conditions: {
-    ...mapValues(tokens.breakpoint, (width) => ({
-      "@media": `screen and (min-width: ${width})`,
-    })),
-    base: {},
-  },
-  defaultCondition: "base",
-  properties: {
-    alignItems: ["center", "end", "normal", "start", "stretch"] as const,
-    colSpan: {
-      "1": { gridColumn: "span 1 / span 1" },
-      "2": { gridColumn: "span 2 / span 2" },
-    },
-    display: [
-      "none",
-      "flex",
-      "grid",
-      "block",
-      "inline",
-      "inline-flex",
-      "table-cell",
-    ] as const,
-    flex: {
-      "1": "1 1 0%",
-      auto: "1 1 auto",
-      none: "none",
-    },
-    flexDirection: {
-      column: "column",
-      horizontal: "row",
-      row: "row",
-      vertical: "column",
-    },
-    flexWrap: {
-      wrap: "wrap",
-    },
-    gap: theme.space,
-    grow: {
-      1: { flexGrow: 1 },
-    },
-    justifyContent: [
-      "center",
-      "end",
-      "normal",
-      "space-around",
-      "space-between",
-      "space-evenly",
-      "start",
-      "stretch",
-    ] as const,
-    marginBottom: margins,
-    marginLeft: margins,
-    marginRight: margins,
-    marginTop: margins,
-    maxWidth: theme.maxWidth,
-    paddingBottom: theme.space,
-    paddingLeft: theme.space,
-    paddingRight: theme.space,
-    paddingTop: theme.space,
-    placeItems: ["center"] as const,
-    shrink: {
-      1: { flexShrink: 1 },
-    },
-  },
-  responsiveArray: ["base", "sm", "xl"],
-  shorthands: {
-    /**
-     * An alias for `flexDirection`
-     */
-    direction: ["flexDirection"],
-    /**
-     * An alias for `alignItems`
-     */
-    items: ["alignItems"],
-    /**
-     * An alias for `justifyContent`
-     */
-    justify: ["justifyContent"],
-    margin: ["marginBottom", "marginLeft", "marginRight", "marginTop"],
-    marginX: ["marginLeft", "marginRight"],
-    marginY: ["marginBottom", "marginTop"],
-    padding: ["paddingBottom", "paddingLeft", "paddingRight", "paddingTop"],
-    paddingX: ["paddingLeft", "paddingRight"],
-    paddingY: ["paddingBottom", "paddingTop"],
-  },
-});
+const createBaseProperties = (selector?: string) =>
+  [
+    defineProperties({
+      "@layer": layers.axiom,
+      conditions: {
+        ...mapValues(tokens.breakpoint, (width) => ({
+          "@media": `screen and (min-width: ${width})`,
+          ...{ selector },
+        })),
+        base: { selector },
+      },
+      defaultCondition: "base",
+      properties: {
+        alignItems: ["center", "end", "normal", "start", "stretch"] as const,
+        colSpan: {
+          "1": { gridColumn: "span 1 / span 1" },
+          "2": { gridColumn: "span 2 / span 2" },
+        },
+        cols: {
+          "1": { vars: { [cols]: 1 } },
+          "2": { vars: { [cols]: 2 } },
+          "3": { vars: { [cols]: 3 } },
+          "4": { vars: { [cols]: 4 } },
+        },
+        display: [
+          "none",
+          "flex",
+          "grid",
+          "block",
+          "inline",
+          "inline-flex",
+          "table-cell",
+        ] as const,
+        flex: {
+          "1": "1 1 0%",
+          auto: "1 1 auto",
+          none: "none",
+        },
+        flexDirection: {
+          column: "column",
+          horizontal: "row",
+          row: "row",
+          vertical: "column",
+        },
+        flexWrap: {
+          wrap: "wrap",
+        },
+        gap: theme.space,
+        grow: {
+          1: { flexGrow: 1 }, // FIXME:
+        },
+        height: theme.size,
+        justifyContent: [
+          "center",
+          "end",
+          "normal",
+          "space-around",
+          "space-between",
+          "space-evenly",
+          "start",
+          "stretch",
+        ] as const,
+        marginBottom: margins,
+        marginLeft: margins,
+        marginRight: margins,
+        marginTop: margins,
+        maxWidth: theme.maxWidth,
+        paddingBottom: theme.space,
+        paddingLeft: theme.space,
+        paddingRight: theme.space,
+        paddingTop: theme.space,
+        placeItems: ["center"] as const,
+        shrink: {
+          1: { flexShrink: 1 }, // FIXME:
+        },
+        textAlign: ["start", "center", "justify"] as const,
+        width: theme.size,
+      },
+      responsiveArray: ["base", "sm", "xl"],
+      shorthands: {
+        margin: ["marginBottom", "marginLeft", "marginRight", "marginTop"],
+        marginX: ["marginLeft", "marginRight"],
+        marginY: ["marginBottom", "marginTop"],
+        padding: ["paddingBottom", "paddingLeft", "paddingRight", "paddingTop"],
+        paddingX: ["paddingLeft", "paddingRight"],
+        paddingY: ["paddingBottom", "paddingTop"],
+        size: ["height", "width"],
+      },
+    }),
+    defineProperties({
+      "@layer": layers.axiom,
+      conditions: {
+        base: { selector },
+      },
+      defaultCondition: "base",
+      properties: {
+        animation: {
+          pulse: `${animations.pulse} 2s ease-in-out infinite`,
+        },
+        borderBottomWidth: theme.borderWidth,
+        borderLeftWidth: theme.borderWidth,
+        borderRadius: {
+          ...theme.radius,
+          inherit: "inherit",
+        },
+        borderRightWidth: theme.borderWidth,
+        borderTopWidth: theme.borderWidth,
+        fontFamily: {
+          mono: "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace",
+          sans: "InterVariable, system-ui, sans-serif",
+        },
+        fontStyle: ["normal", "italic"] as const,
+        fontWeight: [
+          "100",
+          "200",
+          "300",
+          "400",
+          "500",
+          "600",
+          "700",
+          "800",
+          "900",
+        ] as const,
+        gridTemplateColumns: {
+          cols: {
+            gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))`,
+          },
+        },
+        overflow: ["auto", "hidden", "visible"] as const,
+        textTransform: ["capitalize", "none", "uppercase"] as const,
+        whiteSpace: ["nowrap"] as const,
+      },
+      shorthands: {
+        borderWidth: [
+          "borderBottomWidth",
+          "borderLeftWidth",
+          "borderRightWidth",
+          "borderTopWidth",
+        ],
+      },
+    }),
+  ] as const;
 
-const colorProperties = defineProperties({
-  "@layer": layers.axiom,
-  conditions: {
-    base: {},
-  },
-  defaultCondition: "base",
-  properties: {
-    background: theme.color,
-    color: theme.color,
-  },
-});
+const createModifierProperties = (selector?: string) =>
+  [
+    defineProperties({
+      "@layer": layers.axiom,
+      conditions: {
+        ...mapValues(tokens.breakpoint, (width) => ({
+          "@media": `screen and (min-width: ${width})`,
+          ...{ selector },
+        })),
+        base: { selector },
+      },
+      defaultCondition: "base",
+      properties: {
+        fontSize: theme.fontSize,
+      },
+      responsiveArray: ["base", "sm", "xl"],
+    }),
+    defineProperties({
+      "@layer": layers.axiom,
+      conditions: {
+        base: { selector },
+      },
+      defaultCondition: "base",
+      properties: {
+        background: theme.color,
+        borderBottomColor: theme.color,
+        boxShadow: theme.shadow,
+        color: theme.color,
+        textDecoration: ["none", "underline"] as const,
+      },
+    }),
+  ] as const;
 
-const animations = {
-  pulse: keyframes({
-    "0%, 100%": { opacity: 1 },
-    "50%": { opacity: 0.5 },
-  }),
+const modifiers = {
+  sxFocus: "&:focus",
+  sxHover: "&:hover",
+} as const;
+
+const props = {
+  base: [...createBaseProperties(), ...createModifierProperties()] as const,
+  selectors: mapValues(modifiers, (selector) =>
+    createModifierProperties(selector),
+  ),
+} as const;
+
+export const sprinkles = {
+  base: createSprinkles(...props.base),
+  selectors: mapValues(
+    props.selectors,
+    (properties) => createSprinkles(...properties),
+    (key) => key,
+  ),
+} as const;
+
+export type SprinklesBase = Parameters<typeof sprinkles.base>[0];
+export type SprinklesSelectors = {
+  [Key in keyof typeof sprinkles.selectors]: Parameters<
+    (typeof sprinkles.selectors)[Key]
+  >[0];
 };
 
-const unresponsiveProperties = defineProperties({
-  "@layer": layers.axiom,
-  properties: {
-    animation: {
-      pulse: `${animations.pulse} 2s ease-in-out infinite`,
-    },
-    borderBottomColor: theme.color,
-    borderBottomWidth: theme.borderWidth,
-    borderLeftWidth: theme.borderWidth,
-    borderRadius: {
-      ...theme.radius,
-      inherit: "inherit",
-    },
-    borderRightWidth: theme.borderWidth,
-    borderTopWidth: theme.borderWidth,
-    fontFamily: {
-      mono: "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace",
-      sans: "InterVariable, system-ui, sans-serif",
-    },
-    fontStyle: ["normal", "italic"] as const,
-    fontWeight: [
-      "100",
-      "200",
-      "300",
-      "400",
-      "500",
-      "600",
-      "700",
-      "800",
-      "900",
-    ] as const,
-    height: theme.size,
-    overflow: ["auto", "hidden", "visible"] as const,
-    textAlign: ["start", "center", "justify"] as const,
-    textDecoration: ["none", "underline"] as const,
-    textTransform: ["capitalize", "none", "uppercase"] as const,
-    whiteSpace: ["nowrap"] as const,
-    width: theme.size,
-  },
-  shorthands: {
-    borderWidth: [
-      "borderBottomWidth",
-      "borderLeftWidth",
-      "borderRightWidth",
-      "borderTopWidth",
-    ],
-    size: ["height", "width"],
-  },
-});
-
-export const sprinkles = createSprinkles(
-  responsiveProperties,
-  colorProperties,
-  unresponsiveProperties,
-);
-export const mapResponsiveValue = createMapValueFn(responsiveProperties);
-export type Sprinkles = Parameters<typeof sprinkles>[0];
+export const mapResponsiveValue = createMapValueFn(props.base[0]);
