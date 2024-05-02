@@ -15,6 +15,7 @@ export function HeroPage() {
         fontSize={["4xl", "5xl", "6xl"]}
         fontWeight="800"
         level="1"
+        tracking="tight"
       >
         <span className={styles.highlight}>Axiom</span> Design System
       </Heading>

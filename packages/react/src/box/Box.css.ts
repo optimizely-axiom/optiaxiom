@@ -119,6 +119,7 @@ const createBaseProperties = (selector?: string) =>
           "start",
           "stretch",
         ] as const,
+        letterSpacing: theme.letterSpacing,
         marginBottom: margins,
         marginLeft: margins,
         marginRight: margins,
@@ -169,6 +170,7 @@ const createBaseProperties = (selector?: string) =>
         py: ["paddingBottom", "paddingTop"],
         /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/sizing/#size} */
         size: ["height", "width"],
+        tracking: ["letterSpacing"],
         /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/sizing/#width} */
         w: ["width"],
       },
@@ -291,6 +293,7 @@ type LonghandProps =
   | "borderRadius"
   | "boxShadow"
   | "height"
+  | "letterSpacing"
   | "margin"
   | "marginBottom"
   | "marginLeft"

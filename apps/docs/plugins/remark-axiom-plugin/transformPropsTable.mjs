@@ -126,6 +126,7 @@ const mapThemeToProp = {
   ],
   color: ["bg", "color", "borderBottomColor"],
   fontSize: ["fontSize"],
+  letterSpacing: ["tracking"],
   maxWidth: ["maxWidth"],
   radius: ["rounded"],
   shadow: ["shadow", "Paper[elevation]"],
