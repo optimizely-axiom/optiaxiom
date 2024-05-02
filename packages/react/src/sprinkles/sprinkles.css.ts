@@ -236,7 +236,7 @@ const createModifierProperties = (selector?: string) =>
       },
       defaultCondition: "base",
       properties: {
-        fontSize: theme.fontSize,
+        fontSize: merge(theme.fontSize, { inherit: "inherit" }),
       },
       responsiveArray: ["base", "sm", "xl"],
     }),
