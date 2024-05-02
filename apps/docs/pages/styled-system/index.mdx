@@ -11,3 +11,19 @@ Developers are free to choose any styling solution for components but out of the
 You can directly use props to control styles:
 
 <ax-demo name="styles-prop-usage" />
+
+### `sx` Prop
+
+As an alternative to individual style props you can also use the `sx` prop to control styles and additionally configure `hover` and other modifiers:
+
+<ax-demo name="styles-sx-usage" />
+
+The `sx` prop will take precedence over native props and should not be used together to control the same properties.
+
+<Callout type="warning">
+  Do not mix native props and `sx` props to control the same styles.
+</Callout>
+
+<ax-demo name="styles-sx-order-usage" />
+
+Instead always prefer native props and only use `sx` if have to use `hover` or other modifiers.

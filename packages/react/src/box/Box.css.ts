@@ -266,8 +266,8 @@ const createModifierProperties = (selector?: string) =>
   ] as const;
 
 const modifiers = {
-  sxFocus: "&:focus",
-  sxHover: "&:hover",
+  focus: "&:focus",
+  hover: "&:hover",
 } as const;
 
 const props = {
@@ -282,7 +282,7 @@ export const sprinkles = {
   selectors: mapValues(
     props.selectors,
     (properties) => createSprinkles(...properties),
-    (key) => key,
+    (key) => `:${key}`,
   ),
 } as const;
 

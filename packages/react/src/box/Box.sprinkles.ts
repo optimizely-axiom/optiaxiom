@@ -5,6 +5,7 @@ import * as styles from "./Box.css";
 
 export const sprinkles = ({
   className,
+  sx = {},
   ...props
 }: { className?: string } & Sprinkles) => {
   const baseProps: styles.SprinklesBase = {};
@@ -15,14 +16,21 @@ export const sprinkles = ({
   const restProps: Record<string, unknown> = {};
 
   for (const [name, value] of Object.entries(props)) {
-    if (name in styles.sprinkles.selectors) {
-      selectorsProps[name as keyof typeof styles.sprinkles.selectors] =
-        value as never;
-    } else if (styles.sprinkles.base.properties.has(name as never)) {
+    if (styles.sprinkles.base.properties.has(name as never)) {
       // @ts-expect-error -- too complex
       baseProps[name] = value;
     } else {
       restProps[name] = value;
+    }
+  }
+
+  for (const [name, value] of Object.entries(sx)) {
+    if (name in styles.sprinkles.selectors) {
+      selectorsProps[name as keyof typeof styles.sprinkles.selectors] =
+        value as never;
+    } else {
+      // @ts-expect-error -- too complex
+      baseProps[name] = value;
     }
   }
 
@@ -40,5 +48,7 @@ export const sprinkles = ({
   };
 };
 
-export type Sprinkles = Partial<styles.SprinklesSelectors> &
-  styles.SprinklesBase;
+export type Sprinkles = {
+  sx?: Partial<styles.SprinklesSelectors> & styles.SprinklesBase;
+} & styles.SprinklesBase;
+export type { SprinklesBase } from "./Box.css";

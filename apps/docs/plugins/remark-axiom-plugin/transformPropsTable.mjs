@@ -42,10 +42,12 @@ export function transformPropsTable(tree) {
       if (!doc) {
         throw new Error(`Could not find component doc: ${component}`);
       }
+
+      const sprinklesPath = doc.filePath.replace(".tsx", ".sprinkles.ts");
       const sprinkles = docs.find(
         (sprinkle) =>
           sprinkle.displayName === "sprinkles" &&
-          sprinkle.filePath === doc.filePath.replace(".tsx", ".sprinkles.ts"),
+          sprinkle.filePath === sprinklesPath,
       );
 
       const tree = fromMarkdown(
@@ -75,8 +77,8 @@ export function transformPropsTable(tree) {
                 prop.type.name !== "any" &&
                 (((!prop.declarations || prop.declarations.length === 0) &&
                   Object.hasOwn(sprinkles?.props ?? {}, prop.name)) ||
-                  prop.declarations?.find(
-                    (decl) => decl.fileName === doc.filePath,
+                  prop.declarations?.find((decl) =>
+                    [doc.filePath, sprinklesPath].includes(decl.fileName),
                   )),
             )
             .flatMap(([, prop]) => [
@@ -146,6 +148,10 @@ const mapThemeToProp = {
   ],
 };
 function parseType(type, prop, component) {
+  if (prop === "sx") {
+    return `[Style Props](/styled-system/#sx-prop)`;
+  }
+
   if (type.name === "enum") {
     for (const [key, matchers] of Object.entries(mapThemeToProp)) {
       if (matchers.includes(prop)) {
@@ -155,6 +161,7 @@ function parseType(type, prop, component) {
       }
     }
   }
+
   return type.name === "enum"
     ? `\`${(type.raw?.startsWith("ConditionalStyleWithResponsiveArray<")
         ? type.value.slice(0, -2)
