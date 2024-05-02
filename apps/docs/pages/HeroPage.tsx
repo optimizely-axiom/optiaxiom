@@ -11,7 +11,11 @@ export function HeroPage() {
       gap="xl"
       justifyContent="center"
     >
-      <Heading className={styles.header} level="1">
+      <Heading
+        fontSize={["4xl", "5xl", "6xl"]}
+        fontWeight="800"
+        level="1"
+      >
         <span className={styles.highlight}>Axiom</span> Design System
       </Heading>
 
