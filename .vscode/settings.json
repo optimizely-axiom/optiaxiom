@@ -1,5 +1,9 @@
 {
+  "[mdx]": {
+    "editor.wordWrap": "bounded",
+    "editor.wordWrapColumn": 80
+  },
+  "cSpell.words": ["optiaxiom"],
   "eslint.experimental.useFlatConfig": true,
-  "typescript.tsdk": "node_modules/typescript/lib",
-  "cSpell.words": ["optiaxiom"]
+  "typescript.tsdk": "node_modules/typescript/lib"
 }
