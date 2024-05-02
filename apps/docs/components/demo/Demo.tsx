@@ -16,10 +16,7 @@ export function Demo({
 }) {
   return (
     <Stack mt="xl">
-      <Box
-        className={[styles.preview, iframe && styles.resize].join(" ")}
-        p="xl"
-      >
+      <Box border="1" className={iframe && styles.resize} p="xl" rounded="xl">
         {iframe ? <DemoIframe src={iframe} /> : <Component />}
       </Box>
       <Box className={styles.editor}>{children}</Box>

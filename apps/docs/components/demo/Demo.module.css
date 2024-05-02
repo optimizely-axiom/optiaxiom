@@ -1,12 +1,3 @@
-.preview {
-  border: 1px solid #e5e7eb;
-  border-radius: 12px;
-}
-
-.preview:global(:is(.dark *)) {
-  border-color: rgba(255, 255, 255, 0.1);
-}
-
 .resize {
   overflow: auto;
   resize: horizontal;
