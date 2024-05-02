@@ -3,7 +3,7 @@
     "editor.wordWrap": "bounded",
     "editor.wordWrapColumn": 80
   },
-  "cSpell.words": ["optiaxiom"],
+  "cSpell.words": ["optiaxiom", "optimizely"],
   "eslint.experimental.useFlatConfig": true,
   "typescript.tsdk": "node_modules/typescript/lib"
 }
