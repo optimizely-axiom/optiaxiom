@@ -277,7 +277,7 @@ const props = {
   ),
 } as const;
 
-export const sprinkles = {
+export const sx = {
   base: createSprinkles(...props.base),
   selectors: mapValues(
     props.selectors,
@@ -306,13 +306,10 @@ type LonghandProps =
   | "paddingX"
   | "paddingY"
   | "width";
-export type SprinklesBase = Omit<
-  Parameters<typeof sprinkles.base>[0],
-  LonghandProps
->;
+export type SprinklesBase = Omit<Parameters<typeof sx.base>[0], LonghandProps>;
 export type SprinklesSelectors = {
-  [Key in keyof typeof sprinkles.selectors]: Omit<
-    Parameters<(typeof sprinkles.selectors)[Key]>[0],
+  [Key in keyof typeof sx.selectors]: Omit<
+    Parameters<(typeof sx.selectors)[Key]>[0],
     LonghandProps
   >;
 };

@@ -10,13 +10,13 @@ export const sprinkles = ({
 }: { className?: string } & Sprinkles) => {
   const baseProps: styles.SprinklesBase = {};
   const selectorsProps: styles.SprinklesSelectors = mapValues(
-    styles.sprinkles.selectors,
+    styles.sx.selectors,
     () => ({}),
   );
   const restProps: Record<string, unknown> = {};
 
   for (const [name, value] of Object.entries(props)) {
-    if (styles.sprinkles.base.properties.has(name as never)) {
+    if (styles.sx.base.properties.has(name as never)) {
       // @ts-expect-error -- too complex
       baseProps[name] = value;
     } else {
@@ -25,9 +25,8 @@ export const sprinkles = ({
   }
 
   for (const [name, value] of Object.entries(sx)) {
-    if (name in styles.sprinkles.selectors) {
-      selectorsProps[name as keyof typeof styles.sprinkles.selectors] =
-        value as never;
+    if (name in styles.sx.selectors) {
+      selectorsProps[name as keyof typeof styles.sx.selectors] = value as never;
     } else {
       // @ts-expect-error -- too complex
       baseProps[name] = value;
@@ -37,10 +36,10 @@ export const sprinkles = ({
   return {
     className: clsx(
       className,
-      styles.sprinkles.base(baseProps),
+      styles.sx.base(baseProps),
       ...Object.values(
         mapValues(selectorsProps, (props, name) =>
-          styles.sprinkles.selectors[name](props),
+          styles.sx.selectors[name](props),
         ),
       ),
     ),
