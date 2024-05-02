@@ -118,11 +118,11 @@ export function transformPropsTable(tree) {
 
 const mapThemeToProp = {
   borderWidth: [
-    "borderBottomWidth",
-    "borderLeftWidth",
-    "borderRightWidth",
-    "borderTopWidth",
-    "borderWidth",
+    "borderBottom",
+    "borderLeft",
+    "borderRight",
+    "borderTop",
+    "border",
   ],
   color: ["bg", "color", "borderBottomColor"],
   fontSize: ["fontSize"],

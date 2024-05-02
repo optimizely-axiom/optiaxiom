@@ -216,12 +216,16 @@ const createBaseProperties = (selector?: string) =>
         whiteSpace: ["nowrap"] as const,
       },
       shorthands: {
-        borderWidth: [
+        border: [
           "borderBottomWidth",
           "borderLeftWidth",
           "borderRightWidth",
           "borderTopWidth",
         ],
+        borderBottom: ["borderBottomWidth"],
+        borderLeft: ["borderLeftWidth"],
+        borderRight: ["borderRightWidth"],
+        borderTop: ["borderTopWidth"],
         /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/border-radius/} */
         rounded: ["borderRadius"],
       },
@@ -290,7 +294,11 @@ export const sx = {
 
 type LonghandProps =
   | "background"
+  | "borderBottomWidth"
+  | "borderLeftWidth"
   | "borderRadius"
+  | "borderRightWidth"
+  | "borderTopWidth"
   | "boxShadow"
   | "height"
   | "letterSpacing"
