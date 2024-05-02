@@ -11,7 +11,7 @@ export function HeroPage() {
       gap="xl"
       justifyContent="center"
     >
-      <Heading className={styles.header} level={1}>
+      <Heading className={styles.header} level="1">
         <span className={styles.highlight}>Axiom</span> Design System
       </Heading>
 

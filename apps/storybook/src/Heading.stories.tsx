@@ -20,12 +20,12 @@ export const Primary: Story = {
 export const Levels: Story = {
   render: () => (
     <>
-      <Heading level={1}>This is an h1 heading</Heading>
-      <Heading level={2}>This is an h2 heading</Heading>
-      <Heading level={3}>This is an h3 heading</Heading>
-      <Heading level={4}>This is an h4 heading</Heading>
-      <Heading level={5}>This is an h5 heading</Heading>
-      <Heading level={6}>This is an h6 heading</Heading>
+      <Heading level="1">This is an h1 heading</Heading>
+      <Heading level="2">This is an h2 heading</Heading>
+      <Heading level="3">This is an h3 heading</Heading>
+      <Heading level="4">This is an h4 heading</Heading>
+      <Heading level="5">This is an h5 heading</Heading>
+      <Heading level="6">This is an h6 heading</Heading>
     </>
   ),
 };
