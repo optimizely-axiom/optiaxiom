@@ -156,9 +156,9 @@ export const tokens = {
   radius: {
     xs: "2px",
     sm: "4px",
-    md: "8px",
-    lg: "16px",
-    xl: "32px",
+    md: "6px",
+    lg: "8px",
+    xl: "12px",
 
     full: "100%",
   },
