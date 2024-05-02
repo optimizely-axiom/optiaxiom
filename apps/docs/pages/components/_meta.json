@@ -18,6 +18,11 @@
   },
   "heading": "Heading",
   "text": "Text",
+  "-- Forms": {
+    "type": "separator",
+    "title": "Forms"
+  },
+  "button": "Button",
   "-- Feedback": {
     "type": "separator",
     "title": "Feedback"

@@ -163,7 +163,7 @@ function parseType(type, prop, component) {
     }
   }
 
-  return type.name === "enum"
+  return type.name === "enum" && !["ReactNode"].includes(type.raw)
     ? `\`${(type.raw?.startsWith("ConditionalStyleWithResponsiveArray<")
         ? type.value.slice(0, -2)
         : type.raw?.startsWith("ConditionalStyle<")

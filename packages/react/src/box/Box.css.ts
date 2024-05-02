@@ -57,6 +57,11 @@ const margins = merge(
   { auto: "auto" },
 );
 
+const transitions = {
+  transitionDuration: "150ms",
+  transitionTimingFunction: "ease",
+} as const;
+
 const createBaseProperties = (selector?: string) =>
   [
     defineProperties({
@@ -190,6 +195,7 @@ const createBaseProperties = (selector?: string) =>
         borderRadius: merge(theme.radius, { inherit: "inherit" }),
         borderRightWidth: theme.borderWidth,
         borderTopWidth: theme.borderWidth,
+        cursor: ["default", "pointer"] as const,
         fontFamily: {
           mono: "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace",
           sans: "InterVariable, system-ui, sans-serif",
@@ -213,6 +219,17 @@ const createBaseProperties = (selector?: string) =>
         },
         overflow: ["auto", "hidden", "visible"] as const,
         textTransform: ["capitalize", "none", "uppercase"] as const,
+        transition: {
+          all: {
+            ...transitions,
+            transitionProperty: "all",
+          },
+          colors: {
+            ...transitions,
+            transitionProperty:
+              "background-color, border-color, color, fill, stroke, text-decoration-color",
+          },
+        },
         whiteSpace: ["nowrap"] as const,
       },
       shorthands: {
