@@ -1,0 +1,13 @@
+{
+  "--": {
+    "type": "separator",
+    "title": "Getting Started"
+  },
+  "index": "Installation",
+  "-- Guides": {
+    "type": "separator",
+    "title": "Guides"
+  },
+  "css-imports": "CSS Imports",
+  "nextjs": "Next.js"
+}

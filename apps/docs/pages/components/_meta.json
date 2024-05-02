@@ -1,0 +1,26 @@
+{
+  "--": {
+    "type": "separator",
+    "title": "Components"
+  },
+  "index": "Overview",
+  "-- Primitives": {
+    "type": "separator",
+    "title": "Primitives"
+  },
+  "box": "Box",
+  "grid": "Grid",
+  "paper": "Paper",
+  "stack": "Stack",
+  "-- Typography": {
+    "type": "separator",
+    "title": "Typography"
+  },
+  "heading": "Heading",
+  "text": "Text",
+  "-- Feedback": {
+    "type": "separator",
+    "title": "Feedback"
+  },
+  "skeleton": "Skeleton"
+}

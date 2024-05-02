@@ -174,5 +174,5 @@ function themeLink(key) {
     size: "/sizing/",
     space: "/spacing/",
   };
-  return `[\`theme.${key}\`](/docs${linkMap[key] ?? "/theme/#design-tokens"})`;
+  return `[\`theme.${key}\`](/styled-system${linkMap[key] ?? "/theme/#design-tokens"})`;
 }
