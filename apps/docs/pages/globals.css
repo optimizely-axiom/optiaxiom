@@ -1,1 +1,5 @@
 @import "nextra-theme-docs/style.css" layer(theme);
+
+html {
+  font-family: InterVariable, sans-serif;
+}
