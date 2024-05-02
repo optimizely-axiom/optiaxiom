@@ -118,12 +118,16 @@ export const tokens = {
       lineHeight: "1.74",
     },
     "4xl": {
-      fontSize: "26px",
-      lineHeight: "1.69",
+      fontSize: "36px",
+      lineHeight: "40px",
     },
     "5xl": {
-      fontSize: "29px",
-      lineHeight: "1.66",
+      fontSize: "48px",
+      lineHeight: "1",
+    },
+    "6xl": {
+      fontSize: "60px",
+      lineHeight: "1",
     },
   },
 
