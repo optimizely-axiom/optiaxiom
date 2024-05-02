@@ -21,9 +21,12 @@ export function transformPropsTable(tree) {
           },
         )
         .parse(
-          fg.globSync("../../packages/react/src/**/*.{sprinkles.ts,tsx}", {
-            ignore: ["**/*.spec.*"],
-          }),
+          fg.globSync(
+            "../../packages/react/src/**/*.{recipe.ts,sprinkles.ts,tsx}",
+            {
+              ignore: ["**/*.spec.*"],
+            },
+          ),
         );
 
       const componentRaw = node.attributes.find(
@@ -43,11 +46,14 @@ export function transformPropsTable(tree) {
         throw new Error(`Could not find component doc: ${component}`);
       }
 
-      const sprinklesPath = doc.filePath.replace(".tsx", ".sprinkles.ts");
+      const sprinklesPath = [
+        doc.filePath.replace(".tsx", ".sprinkles.ts"),
+        doc.filePath.replace(".tsx", ".recipe.ts"),
+      ];
       const sprinkles = docs.find(
         (sprinkle) =>
-          sprinkle.displayName === "sprinkles" &&
-          sprinkle.filePath === sprinklesPath,
+          ["recipe", "sprinkles"].includes(sprinkle.displayName) &&
+          sprinklesPath.includes(sprinkle.filePath),
       );
 
       const tree = fromMarkdown(
@@ -78,7 +84,7 @@ export function transformPropsTable(tree) {
                 (((!prop.declarations || prop.declarations.length === 0) &&
                   Object.hasOwn(sprinkles?.props ?? {}, prop.name)) ||
                   prop.declarations?.find((decl) =>
-                    [doc.filePath, sprinklesPath].includes(decl.fileName),
+                    [...sprinklesPath, doc.filePath].includes(decl.fileName),
                   )),
             )
             .flatMap(([, prop]) => [
@@ -130,7 +136,7 @@ const mapThemeToProp = {
   maxWidth: ["maxWidth"],
   radius: ["rounded"],
   shadow: ["shadow", "Paper[elevation]"],
-  size: ["gap", "h", "size", "w"],
+  size: ["gap", "h", "Box[size]", "w"],
   space: [
     "m",
     "mb",
