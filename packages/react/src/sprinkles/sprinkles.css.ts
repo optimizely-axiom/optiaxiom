@@ -191,7 +191,10 @@ const createBaseProperties = (selector?: string) =>
             gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))`,
           },
         },
+        inset: ["0"] as const,
         overflow: ["auto", "hidden", "visible"] as const,
+        pointerEvents: ["none"] as const,
+        position: ["absolute", "relative", "static", "sticky"] as const,
         textTransform: ["capitalize", "none", "uppercase"] as const,
         transition: {
           all: {
@@ -205,6 +208,7 @@ const createBaseProperties = (selector?: string) =>
           },
         },
         whiteSpace: ["nowrap"] as const,
+        zIndex: theme.zIndex,
       },
       shorthands: {
         border: [

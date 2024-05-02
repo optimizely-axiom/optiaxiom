@@ -11,6 +11,7 @@ import {
 
 import type { ExtendProps } from "../utils";
 
+import { Ripple } from "../ripple";
 import { Stack } from "../stack";
 import { Text } from "../text";
 import { type Recipe, recipe } from "./Button.recipe";
@@ -59,6 +60,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         flexDirection="horizontal"
         gap="xs"
         overflow="hidden"
+        position="relative"
         rounded="sm"
         transition="colors"
         {...props}
@@ -67,6 +69,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           {leftSection}
           <Slottable>{children}</Slottable>
           {rightSection}
+          <Ripple targetRef={innerRef} />
         </Comp>
       </Stack>
     );
