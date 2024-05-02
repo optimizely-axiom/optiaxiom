@@ -1,6 +1,6 @@
 import type { ComponentPropsWithRef, ReactElement } from "react";
 
-import { Box, theme } from "@optiaxiom/react";
+import { Box, type Sprinkles, theme } from "@optiaxiom/react";
 
 import { Item } from "./Item";
 
@@ -9,7 +9,7 @@ export const Container = ({
   h,
 }: {
   children: ReactElement<ComponentPropsWithRef<typeof Box>>;
-  h?: ComponentPropsWithRef<typeof Box>["h"];
+  h?: Sprinkles["h"];
 }) => {
   return (
     <Box

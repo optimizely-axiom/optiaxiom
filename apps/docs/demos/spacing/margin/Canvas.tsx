@@ -1,4 +1,4 @@
-import { Box, Stack } from "@optiaxiom/react";
+import { Box, type Sprinkles, Stack } from "@optiaxiom/react";
 import {
   Children,
   type ComponentPropsWithRef,
@@ -13,7 +13,7 @@ export const Canvas = ({
   p,
 }: {
   children: ReactNode;
-  p?: ComponentPropsWithRef<typeof Box>["p"];
+  p?: Sprinkles["p"];
 }) => (
   <Stack
     alignItems="center"
