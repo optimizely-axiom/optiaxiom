@@ -241,6 +241,10 @@ export const tokens = {
     "64": "64px",
     "80": "80px",
   },
+
+  zIndex: {
+    "0": "0",
+  },
 } as const;
 
 export const tokensLight = {
