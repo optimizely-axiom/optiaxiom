@@ -14,12 +14,12 @@ type HeadingProps = ExtendProps<
 >;
 
 const mapLevelToTag = {
-  1: "h1",
-  2: "h2",
-  3: "h3",
-  4: "h4",
-  5: "h5",
-  6: "h6",
+  "1": "h1",
+  "2": "h2",
+  "3": "h3",
+  "4": "h4",
+  "5": "h5",
+  "6": "h6",
 } as const;
 const mapTagToFontSize = {
   h1: "5xl",
@@ -31,7 +31,7 @@ const mapTagToFontSize = {
 } as const;
 
 export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
-  ({ asChild, children, level = 1, variant, ...props }, ref) => {
+  ({ asChild, children, level = "1", variant, ...props }, ref) => {
     const Comp = asChild ? Slot : mapLevelToTag[level];
     const fontSize = mapTagToFontSize[variant ?? mapLevelToTag[level]];
 
