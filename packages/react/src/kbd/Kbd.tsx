@@ -29,8 +29,8 @@ export const Kbd = forwardRef<HTMLElement, KbdProps>(
     return (
       <Code
         asChild
-        borderBottomWidth="2"
-        borderWidth="1"
+        border="1"
+        borderBottom="2"
         fontWeight="600"
         gap="4"
         whiteSpace="nowrap"
