@@ -1,27 +1,9 @@
-.wrapper {
-  height: 100%;
-}
-
-.highlight {
-  color: hsl(187, 100%, 42%);
-}
-
-.body {
-  font-size: 20px;
-  margin: 0 0 24px;
-}
-
 .button {
-  background: hsl(187, 73%, 77%);
-  border-radius: 5px;
-  font-size: 20px;
-  font-weight: 600;
-  padding: 15px 30px;
   transition: all 0.3s;
 }
 
 .button:hover {
-  background: hsl(187, 65%, 70%);
+  filter: brightness(0.95);
 }
 
 html[class~="dark"] .button {
