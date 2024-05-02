@@ -1,0 +1,33 @@
+import { IconBox, IconPalette } from "@tabler/icons-react";
+import { Callout, Card, Cards, Steps } from "nextra/components";
+
+# Installation
+
+<Steps>
+### Install
+
+```sh npm2yarn
+npm install @optiaxiom/react
+```
+
+<Callout type="info">
+  Make sure to setup transpiling to handle [CSS
+  Imports](/getting-started/css-imports).
+</Callout>
+
+### Usage
+
+```jsx
+import { Text } from "@optiaxiom/react";
+
+export function App() {
+  return <Text>Hello World!</Text>;
+}
+```
+
+</Steps>
+
+<Cards num={2}>
+  <Card icon={<IconPalette />} title="Styled System" href="/styled-system" />
+  <Card icon={<IconBox />} title="Components" href="/components" />
+</Cards>

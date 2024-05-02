@@ -1,0 +1,29 @@
+{
+  "--": {
+    "type": "separator",
+    "title": "Styled System"
+  },
+  "index": "Style Props",
+  "theme": "Theme",
+  "-- Utilities": {
+    "type": "separator",
+    "title": "Utilities"
+  },
+  "border-radius": "Border Radius",
+  "colors": "Colors",
+  "responsive-styles": "Responsive Styles",
+  "responsive-styles-demo": {
+    "display": "hidden",
+    "theme": {
+      "breadcrumb": false,
+      "footer": false,
+      "layout": "raw",
+      "navbar": false,
+      "pagination": false,
+      "sidebar": false,
+      "toc": false
+    }
+  },
+  "sizing": "Sizing",
+  "spacing": "Spacing"
+}

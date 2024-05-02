@@ -5,8 +5,16 @@
     "display": "hidden",
     "theme": { "layout": "full" }
   },
-  "docs": {
+  "getting-started": {
     "type": "page",
-    "title": "Documentation"
+    "title": "Getting Started"
+  },
+  "styled-system": {
+    "type": "page",
+    "title": "Styled System"
+  },
+  "components": {
+    "type": "page",
+    "title": "Components"
   }
 }
