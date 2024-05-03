@@ -1,16 +1,25 @@
 import clsx from "clsx";
-import { type CSSProperties } from "react";
+import { type CSSProperties, type ComponentPropsWithRef } from "react";
+
+import type { ExtendProps } from "../utils";
 
 import * as styles from "./RippleChild.css";
+
+type RippleChildProps = ExtendProps<
+  ComponentPropsWithRef<"span">,
+  {
+    isPresent: boolean;
+    safeToRemove: () => void;
+    style: CSSProperties;
+  }
+>;
+
 export const RippleChild = ({
   isPresent,
   safeToRemove,
   style,
-}: {
-  isPresent: boolean;
-  safeToRemove: () => void;
-  style: CSSProperties;
-}) => {
+  ...props
+}: RippleChildProps) => {
   return (
     <span
       className={clsx(styles.base, !isPresent && styles.exit)}
@@ -18,6 +27,7 @@ export const RippleChild = ({
         return !isPresent && safeToRemove();
       }}
       style={style}
+      {...props}
     />
   );
 };
