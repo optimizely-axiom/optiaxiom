@@ -1,53 +1,32 @@
 import clsx from "clsx";
 
-import { mapValues } from "../utils";
-import * as styles from "./Box.css";
+import { type Sprinkles, sprinkles } from "../sprinkles";
 
-export const sprinkles = ({
+export const boxSprinkles = ({
   className,
   sx = {},
   ...props
-}: { className?: string } & Sprinkles) => {
-  const baseProps: styles.SprinklesBase = {};
-  const selectorsProps: styles.SprinklesSelectors = mapValues(
-    styles.sx.selectors,
-    () => ({}),
-  );
+}: { className?: string } & BoxSprinkles) => {
+  const sprinkleProps: Sprinkles = {};
   const restProps: Record<string, unknown> = {};
 
   for (const [name, value] of Object.entries(props)) {
-    if (styles.sx.base.properties.has(name as never)) {
+    if (sprinkles.properties.has(name as never)) {
       // @ts-expect-error -- too complex
-      baseProps[name] = value;
+      sprinkleProps[name] = value;
     } else {
       restProps[name] = value;
     }
   }
 
-  for (const [name, value] of Object.entries(sx)) {
-    if (name in styles.sx.selectors) {
-      selectorsProps[name as keyof typeof styles.sx.selectors] = value as never;
-    } else {
-      // @ts-expect-error -- too complex
-      baseProps[name] = value;
-    }
-  }
-
   return {
-    className: clsx(
-      className,
-      styles.sx.base(baseProps),
-      ...Object.values(
-        mapValues(selectorsProps, (props, name) =>
-          styles.sx.selectors[name](props),
-        ),
-      ),
-    ),
+    className: clsx(className, sprinkles({ ...sprinkleProps, ...sx })),
     ...restProps,
   };
 };
 
-export type Sprinkles = {
-  sx?: Partial<styles.SprinklesSelectors> & styles.SprinklesBase;
-} & styles.SprinklesBase;
-export type { SprinklesBase } from "./Box.css";
+export type BoxSprinkles = {
+  [Key in keyof Sprinkles as Key extends `:${string}`
+    ? never
+    : Key]: Sprinkles[Key];
+} & { sx?: Sprinkles };

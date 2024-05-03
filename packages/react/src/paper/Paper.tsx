@@ -1,8 +1,9 @@
 import { type ComponentPropsWithRef, forwardRef } from "react";
 
+import type { Sprinkles } from "../sprinkles";
 import type { ExtendProps } from "../utils";
 
-import { Box, type Sprinkles } from "../box";
+import { Box } from "../box";
 
 type PaperProps = ExtendProps<
   ComponentPropsWithRef<typeof Box>,

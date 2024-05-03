@@ -1,7 +1,7 @@
 import { type ComponentPropsWithRef, forwardRef } from "react";
 
 import { Box } from "../box";
-import * as styles from "../box/Box.css";
+import { mapResponsiveValue } from "../sprinkles";
 
 type StackProps = ComponentPropsWithRef<typeof Box>;
 
@@ -34,7 +34,7 @@ export const Stack = forwardRef<HTMLDivElement, StackProps>(
       <Box
         alignItems={
           alignItems ??
-          styles.mapResponsiveValue(
+          mapResponsiveValue(
             flexDirection,
             (value) => mapDirectionToAlign[value],
           )
@@ -44,7 +44,7 @@ export const Stack = forwardRef<HTMLDivElement, StackProps>(
         gap={gap}
         justifyContent={
           justifyContent ??
-          styles.mapResponsiveValue(
+          mapResponsiveValue(
             flexDirection,
             (value) => mapDirectionToJustify[value],
           )
