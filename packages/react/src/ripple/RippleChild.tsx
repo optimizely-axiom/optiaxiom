@@ -23,7 +23,7 @@ export const RippleChild = ({
   return (
     <span
       className={clsx(styles.base, !isPresent && styles.exit)}
-      onTransitionEnd={() => {
+      onAnimationEnd={() => {
         return !isPresent && safeToRemove();
       }}
       style={style}
