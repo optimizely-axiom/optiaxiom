@@ -32,7 +32,7 @@ Run the following to start your dev environment:
 pnpm dev
 ```
 
-This will spin up all the apps and packages in `dev` mode. To run individual apps use the [pnpm filtering](https://pnpm.io/filtering):
+This will spin up all the apps and packages in `dev` mode. Use [pnpm filtering](https://pnpm.io/filtering) to run individual apps:
 
 ```sh
 # run docs only (along with all dependencies)
