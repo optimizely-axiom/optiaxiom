@@ -1,0 +1,41 @@
+export default {
+  themeLinks: {
+    color: "/colors/",
+    radius: "/border-radius/",
+    size: "/sizing/",
+    space: "/spacing/",
+  },
+
+  themeProps: {
+    borderWidth: [
+      "borderBottom",
+      "borderLeft",
+      "borderRight",
+      "borderTop",
+      "border",
+    ],
+    color: ["bg", "color", "borderBottomColor"],
+    fontSize: ["fontSize"],
+    letterSpacing: ["tracking"],
+    maxWidth: ["maxWidth"],
+    radius: ["rounded"],
+    shadow: ["shadow", "Paper[elevation]"],
+    size: ["gap", "h", "Box[size]", "w"],
+    space: [
+      "m",
+      "mb",
+      "ml",
+      "mr",
+      "mt",
+      "mx",
+      "my",
+      "p",
+      "pb",
+      "pl",
+      "pr",
+      "pt",
+      "px",
+      "py",
+    ],
+  },
+};
