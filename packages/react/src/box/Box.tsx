@@ -5,20 +5,20 @@ import { type ComponentPropsWithRef, forwardRef } from "react";
 
 import { type ExtendProps } from "../utils";
 import * as styles from "./Box.css";
-import { type Sprinkles, sprinkles } from "./Box.sprinkles";
+import { type BoxSprinkles, boxSprinkles } from "./Box.sprinkles";
 
 type BoxProps = ExtendProps<
   ComponentPropsWithRef<"div">,
   {
     asChild?: boolean;
     className?: string;
-  } & Sprinkles
+  } & BoxSprinkles
 >;
 
 export const Box = forwardRef<HTMLDivElement, BoxProps>(
   ({ asChild, ...props }, ref) => {
     const Comp = asChild ? Slot : "div";
-    const { className, ...restProps } = sprinkles(props);
+    const { className, ...restProps } = boxSprinkles(props);
 
     return (
       <Comp className={clsx(className, styles.base)} ref={ref} {...restProps} />
