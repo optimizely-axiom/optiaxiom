@@ -1,10 +1,11 @@
 import createNextra from "nextra";
 
 import { remarkPlugin } from "./plugins/remark-axiom-plugin/remarkPlugin.mjs";
+import propsConfig from "./props.config.mjs";
 
 const withNextra = createNextra({
   mdxOptions: {
-    remarkPlugins: [remarkPlugin],
+    remarkPlugins: [[remarkPlugin, { propsConfig }]],
   },
   theme: "./theme.tsx",
   themeConfig: "./theme.config.jsx",

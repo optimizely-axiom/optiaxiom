@@ -5,7 +5,7 @@ import { mdxjs } from "micromark-extension-mdxjs";
 import docgen from "react-docgen-typescript";
 import { visit } from "unist-util-visit";
 
-export function transformPropsTable(tree) {
+export function transformPropsTable(propsConfig, tree) {
   let needsImport = true;
 
   visit(
@@ -94,7 +94,7 @@ export function transformPropsTable(tree) {
               "  </Td>",
               "  <Td>",
               [
-                parseType(prop.type, prop.name, component),
+                parseType(propsConfig, prop.type, prop.name, component),
                 ...(prop.defaultValue
                   ? ["=", `\`${prop.defaultValue.value}\``]
                   : []),
@@ -122,49 +122,17 @@ export function transformPropsTable(tree) {
   );
 }
 
-const mapThemeToProp = {
-  borderWidth: [
-    "borderBottom",
-    "borderLeft",
-    "borderRight",
-    "borderTop",
-    "border",
-  ],
-  color: ["bg", "color", "borderBottomColor"],
-  fontSize: ["fontSize"],
-  letterSpacing: ["tracking"],
-  maxWidth: ["maxWidth"],
-  radius: ["rounded"],
-  shadow: ["shadow", "Paper[elevation]"],
-  size: ["gap", "h", "Box[size]", "w"],
-  space: [
-    "m",
-    "mb",
-    "ml",
-    "mr",
-    "mt",
-    "mx",
-    "my",
-    "p",
-    "pb",
-    "pl",
-    "pr",
-    "pt",
-    "px",
-    "py",
-  ],
-};
-function parseType(type, prop, component) {
+function parseType(propsConfig, type, prop, component) {
   if (prop === "sx") {
     return `[Style Props](/styled-system/#sx-prop)`;
   }
 
   if (type.name === "enum") {
-    for (const [key, matchers] of Object.entries(mapThemeToProp)) {
+    for (const [key, matchers] of Object.entries(propsConfig.themeProps)) {
       if (matchers.includes(prop)) {
-        return themeLink(key);
+        return themeLink(propsConfig, key);
       } else if (matchers.includes(`${component}[${prop}]`)) {
-        return themeLink(key);
+        return themeLink(propsConfig, key);
       }
     }
   }
@@ -181,12 +149,6 @@ function parseType(type, prop, component) {
     : `\`${type.raw ?? type.name}\``;
 }
 
-function themeLink(key) {
-  const linkMap = {
-    color: "/colors/",
-    radius: "/border-radius/",
-    size: "/sizing/",
-    space: "/spacing/",
-  };
-  return `[\`theme.${key}\`](/styled-system${linkMap[key] ?? "/theme/#design-tokens"})`;
+function themeLink(propsConfig, key) {
+  return `[\`theme.${key}\`](/styled-system${propsConfig.themeLinks[key] ?? "/theme/#design-tokens"})`;
 }
