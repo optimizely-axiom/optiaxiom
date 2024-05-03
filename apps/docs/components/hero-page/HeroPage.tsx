@@ -28,8 +28,8 @@ export function HeroPage() {
           bg="aqua.200"
           fontSize="2xl"
           fontWeight="600"
-          px="32"
-          py="16"
+          px="24"
+          py="12"
           rounded="md"
         >
           <button className={styles.button}>Get started</button>
