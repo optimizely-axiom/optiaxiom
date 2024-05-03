@@ -4,9 +4,11 @@ import { layers } from "../styles";
 
 const fadeIn = keyframes({
   "0%": { opacity: 0.1, transform: "scale(0)" },
+  "100%": { opacity: 0.3, transform: "scale(1)" },
 });
 const fadeOut = keyframes({
   "0%": { opacity: 0.3 },
+  "100%": { opacity: 0 },
 });
 
 export const base = style({
@@ -19,7 +21,6 @@ export const base = style({
       borderRadius: "50%",
       opacity: 0.3,
       position: "absolute",
-      transform: "scale(1)",
     },
   },
 });
@@ -27,7 +28,7 @@ export const base = style({
 export const exit = style({
   "@layer": {
     [layers.axiom]: {
-      animationName: `${fadeOut}, ${fadeIn}`,
+      animationName: `${fadeIn}, ${fadeOut}`,
       opacity: 0,
     },
   },
