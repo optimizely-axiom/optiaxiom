@@ -76,6 +76,7 @@ export function Ripple({ targetRef, ...props }: RippleProps) {
         return [...ripples, cloneElement(last, { isPresent: false })];
       });
     };
+    element.addEventListener("mouseleave", exit);
     document.addEventListener("mouseup", exit);
 
     return () => {

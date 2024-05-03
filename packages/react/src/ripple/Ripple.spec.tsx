@@ -63,4 +63,29 @@ describe("Ripple component", () => {
 
     expect(screen.queryByTestId("ripple-child")).not.toBeInTheDocument();
   });
+
+  it("should remove ripple on mouse leave", async () => {
+    const { user } = render(<Component />);
+
+    expect(screen.queryByTestId("ripple-child")).not.toBeInTheDocument();
+
+    await act(async () => {
+      await user.pointer({
+        keys: "[MouseLeft>]",
+        target: screen.getByText("Sample Component"),
+      });
+    });
+    expect(screen.getByTestId("ripple-child")).toBeInTheDocument();
+
+    await act(async () => {
+      await user.unhover(screen.getByText("Sample Component"));
+    });
+    screen
+      .getByTestId("ripple-child")
+      .dispatchEvent(new Event("animationend", { bubbles: true }));
+
+    await waitFor(() =>
+      expect(screen.getByTestId("ripple")).toBeEmptyDOMElement(),
+    );
+  });
 });
