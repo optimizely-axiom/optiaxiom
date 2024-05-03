@@ -1,4 +1,5 @@
 import {
+  type ComponentPropsWithRef,
   type RefObject,
   cloneElement,
   useEffect,
@@ -6,10 +7,17 @@ import {
   useState,
 } from "react";
 
+import type { ExtendProps } from "../utils";
+
 import { Box } from "../box";
 import { RippleChild } from "./RippleChild";
 
-export function Ripple({ targetRef }: { targetRef: RefObject<HTMLElement> }) {
+type RippleProps = ExtendProps<
+  ComponentPropsWithRef<typeof Box>,
+  { targetRef: RefObject<HTMLElement> }
+>;
+
+export function Ripple({ targetRef, ...props }: RippleProps) {
   const [, setFlag] = useState(true);
   const ripples = useRef<JSX.Element[]>([]);
   const setRipples = (fn: (ripples: JSX.Element[]) => JSX.Element[]) => {
@@ -43,6 +51,7 @@ export function Ripple({ targetRef }: { targetRef: RefObject<HTMLElement> }) {
       setRipples((ripples) => [
         ...ripples,
         <RippleChild
+          data-testid="ripple-child"
           isPresent
           key={Date.now()}
           safeToRemove={() => setRipples(([_first, ...ripples]) => ripples)}
@@ -83,6 +92,7 @@ export function Ripple({ targetRef }: { targetRef: RefObject<HTMLElement> }) {
       pointerEvents="none"
       position="absolute"
       zIndex="0"
+      {...props}
     >
       <span>{ripples.current}</span>
     </Box>
