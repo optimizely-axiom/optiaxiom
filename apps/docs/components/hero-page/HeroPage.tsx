@@ -5,7 +5,7 @@ import styles from "./HeroPage.module.css";
 
 export function HeroPage() {
   return (
-    <Stack alignItems="center" h="full" justifyContent="center">
+    <Stack alignItems={["start", "center"]} h="full" justifyContent="center">
       <Heading
         fontSize={["4xl", "5xl", "6xl"]}
         fontWeight="800"
