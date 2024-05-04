@@ -264,7 +264,7 @@ const createModifierProperties = (selector?: string) =>
   ] as const;
 
 const modifiers = {
-  focus: "&:focus",
+  "focus-visible": "&:focus-visible",
   hover: "&:hover",
 } as const;
 
