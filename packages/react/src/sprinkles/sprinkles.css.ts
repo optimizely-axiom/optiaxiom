@@ -170,10 +170,7 @@ const createBaseProperties = (selector?: string) =>
         borderRightWidth: theme.borderWidth,
         borderTopWidth: theme.borderWidth,
         cursor: ["default", "pointer"] as const,
-        fontFamily: {
-          mono: "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace",
-          sans: "InterVariable, system-ui, sans-serif",
-        },
+        fontFamily: theme.fontFamily,
         fontStyle: ["normal", "italic"] as const,
         fontWeight: [
           "100",

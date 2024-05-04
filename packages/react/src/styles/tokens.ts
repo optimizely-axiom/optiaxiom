@@ -94,6 +94,11 @@ export const tokens = {
     "yellow.600": "#d7a204",
   },
 
+  fontFamily: {
+    mono: "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace",
+    sans: "InterVariable, system-ui, sans-serif",
+  },
+
   fontSize: {
     xs: {
       fontSize: "11px",
