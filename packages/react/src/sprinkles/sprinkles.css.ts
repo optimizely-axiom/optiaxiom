@@ -36,7 +36,7 @@ const transitions = {
   transitionTimingFunction: "ease",
 } as const;
 
-const createBaseProperties = (selector?: string) =>
+const createBaseOnlyProperties = (selector?: string) =>
   [
     defineProperties({
       "@layer": layers.axiom,
@@ -224,7 +224,7 @@ const createBaseProperties = (selector?: string) =>
     }),
   ] as const;
 
-const createModifierProperties = (selector?: string) =>
+const createBaseAndModifierProperties = (selector?: string) =>
   [
     defineProperties({
       "@layer": layers.axiom,
@@ -269,12 +269,15 @@ const modifiers = {
 } as const;
 
 const props = {
-  base: [...createBaseProperties(), ...createModifierProperties()] as const,
+  base: [
+    ...createBaseOnlyProperties(),
+    ...createBaseAndModifierProperties(),
+  ] as const,
   selectors: mapValues(modifiers, (selector, modifier) => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     process.env.AXIOM_SPRINKLES_MODIFIER = modifier;
-    return createModifierProperties(selector);
+    return createBaseAndModifierProperties(selector);
   }),
 } as const;
 
