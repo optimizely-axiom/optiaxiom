@@ -248,7 +248,7 @@ const createBaseAndModifierProperties = (selector?: string) =>
       },
       defaultCondition: "base",
       properties: {
-        background: theme.color,
+        backgroundColor: theme.color,
         borderBottomColor: theme.color,
         boxShadow: theme.shadow,
         /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/colors/} */
@@ -257,7 +257,7 @@ const createBaseAndModifierProperties = (selector?: string) =>
       },
       shorthands: {
         /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/colors/} */
-        bg: ["background"],
+        bg: ["backgroundColor"],
         shadow: ["boxShadow"],
       },
     }),
@@ -291,7 +291,7 @@ export const sx = {
 } as const;
 
 type LonghandProps =
-  | "background"
+  | "backgroundColor"
   | "borderBottomWidth"
   | "borderLeftWidth"
   | "borderRadius"
