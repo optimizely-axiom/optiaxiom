@@ -92,7 +92,7 @@ export function Ripple({ targetRef, ...props }: RippleProps) {
       overflow="hidden"
       pointerEvents="none"
       position="absolute"
-      zIndex="0"
+      z="0"
       {...props}
     >
       <span>{ripples.current}</span>

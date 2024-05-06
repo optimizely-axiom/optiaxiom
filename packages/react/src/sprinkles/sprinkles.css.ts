@@ -218,6 +218,7 @@ const createBaseOnlyProperties = (selector?: string) =>
         borderTop: ["borderTopWidth"],
         /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/border-radius/} */
         rounded: ["borderRadius"],
+        z: ["zIndex"],
       },
     }),
   ] as const;
@@ -308,6 +309,7 @@ type LonghandProps = keyof Pick<
   | "paddingRight"
   | "paddingTop"
   | "width"
+  | "zIndex"
 >;
 export type SprinklesBase = Omit<Parameters<typeof sx.base>[0], LonghandProps>;
 export type SprinklesSelectors = {
