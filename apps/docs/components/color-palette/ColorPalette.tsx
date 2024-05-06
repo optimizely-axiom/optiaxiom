@@ -4,8 +4,8 @@ export function ColorPalette() {
   return (
     <Grid alignItems="start" cols={["2", "1"]} gap="lg" mt="xl">
       {Object.entries(
-        Object.entries(tokens.color).reduce<
-          Record<string, Array<[string, keyof typeof tokens.color, string]>>
+        Object.entries(tokens.colors).reduce<
+          Record<string, Array<[string, keyof typeof tokens.colors, string]>>
         >((result, [name, color]) => {
           if (["current", "transparent"].includes(name)) {
             return result;
@@ -14,7 +14,7 @@ export function ColorPalette() {
           const [hue, tone] = name.split(".");
           (result[hue] = result[hue] || []).push([
             tone,
-            name as keyof typeof tokens.color,
+            name as keyof typeof tokens.colors,
             color,
           ]);
           return result;

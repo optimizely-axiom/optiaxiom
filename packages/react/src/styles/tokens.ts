@@ -3,6 +3,16 @@ const rem = <P extends `${string}px`>(px: P) =>
   `${(parseFloat(px.slice(0, -2)) / 16).toFixed(3)}rem` as Rem<P>;
 
 export const tokens = {
+  borderRadius: {
+    xs: rem("2px"),
+    sm: rem("4px"),
+    md: rem("6px"),
+    lg: rem("8px"),
+    xl: rem("12px"),
+
+    full: "100%",
+  },
+
   borderWidth: {
     "0": "0",
     "1": rem("1px"),
@@ -10,12 +20,15 @@ export const tokens = {
     "4": rem("4px"),
   },
 
-  breakpoint: {
-    sm: rem("640px"),
-    xl: rem("1280px"),
+  boxShadow: {
+    xs: "0 1px 2px 0 rgb(0 0 0 / 0.05)",
+    sm: "0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)",
+    md: "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
+    lg: "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)",
+    xl: "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)",
   },
 
-  color: {
+  colors: {
     current: "currentColor",
     transparent: "transparent",
 
@@ -168,22 +181,9 @@ export const tokens = {
     "2xl": rem("672px"),
   },
 
-  radius: {
-    xs: rem("2px"),
-    sm: rem("4px"),
-    md: rem("6px"),
-    lg: rem("8px"),
-    xl: rem("12px"),
-
-    full: "100%",
-  },
-
-  shadow: {
-    xs: "0 1px 2px 0 rgb(0 0 0 / 0.05)",
-    sm: "0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)",
-    md: "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
-    lg: "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)",
-    xl: "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)",
+  screens: {
+    sm: rem("640px"),
+    xl: rem("1280px"),
   },
 
   size: {
@@ -229,7 +229,7 @@ export const tokens = {
     fit: "fit-content",
   },
 
-  space: {
+  spacing: {
     xs: rem("8px"),
     sm: rem("12px"),
     md: rem("16px"),
@@ -259,27 +259,27 @@ export const tokens = {
 export const tokensLight = {
   ...tokens,
   color: {
-    ...tokens.color,
+    ...tokens.colors,
 
-    "bg.information": tokens.color["blue.50"],
-    "bg.neutral": tokens.color["slate.100"],
-    "bg.success": tokens.color["green.50"],
-    border: tokens.color["gray.200"],
-    surface: tokens.color["white"],
-    "text.success": tokens.color["green.600"],
+    "bg.information": tokens.colors["blue.50"],
+    "bg.neutral": tokens.colors["slate.100"],
+    "bg.success": tokens.colors["green.50"],
+    border: tokens.colors["gray.200"],
+    surface: tokens.colors["white"],
+    "text.success": tokens.colors["green.600"],
   },
 };
 
 export const tokensDark = {
   ...tokens,
   color: {
-    ...tokens.color,
+    ...tokens.colors,
 
-    "bg.information": tokens.color["blue.900"],
-    "bg.neutral": tokens.color["slate.800"],
-    "bg.success": tokens.color["green.900"],
-    border: tokens.color["gray.800"],
-    surface: tokens.color["gray.900"],
-    "text.success": tokens.color["green.200"],
+    "bg.information": tokens.colors["blue.900"],
+    "bg.neutral": tokens.colors["slate.800"],
+    "bg.success": tokens.colors["green.900"],
+    border: tokens.colors["gray.800"],
+    surface: tokens.colors["gray.900"],
+    "text.success": tokens.colors["green.200"],
   },
 };
