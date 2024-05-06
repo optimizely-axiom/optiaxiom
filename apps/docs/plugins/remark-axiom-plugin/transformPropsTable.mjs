@@ -128,7 +128,9 @@ function parseType(propsConfig, type, prop, component) {
   }
 
   if (type.name === "enum") {
-    for (const [key, matchers] of Object.entries(propsConfig.themeProps)) {
+    for (const [key, { props: matchers }] of Object.entries(
+      propsConfig.theme,
+    )) {
       if (matchers.includes(prop)) {
         return themeLink(propsConfig, key);
       } else if (matchers.includes(`${component}[${prop}]`)) {
@@ -150,5 +152,5 @@ function parseType(propsConfig, type, prop, component) {
 }
 
 function themeLink(propsConfig, key) {
-  return `[\`theme.${key}\`](/styled-system${propsConfig.themeLinks[key] ?? "/theme/#design-tokens"})`;
+  return `[\`theme.${key}\`](/styled-system${propsConfig.theme[key].path ?? "/theme/#design-tokens"})`;
 }
