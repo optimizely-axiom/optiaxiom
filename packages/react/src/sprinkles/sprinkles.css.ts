@@ -290,7 +290,8 @@ export const sx = {
   ),
 } as const;
 
-type LonghandProps =
+type LonghandProps = keyof Pick<
+  Parameters<typeof sx.base>[0],
   | "backgroundColor"
   | "borderBottomWidth"
   | "borderLeftWidth"
@@ -300,21 +301,16 @@ type LonghandProps =
   | "boxShadow"
   | "height"
   | "letterSpacing"
-  | "margin"
   | "marginBottom"
   | "marginLeft"
   | "marginRight"
   | "marginTop"
-  | "marginX"
-  | "marginY"
-  | "padding"
   | "paddingBottom"
   | "paddingLeft"
   | "paddingRight"
   | "paddingTop"
-  | "paddingX"
-  | "paddingY"
-  | "width";
+  | "width"
+>;
 export type SprinklesBase = Omit<Parameters<typeof sx.base>[0], LonghandProps>;
 export type SprinklesSelectors = {
   [Key in keyof typeof sx.selectors]: Omit<
