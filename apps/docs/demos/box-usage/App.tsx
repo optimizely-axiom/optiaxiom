@@ -9,7 +9,7 @@ export function App() {
       rounded="sm"
       style={{
         border: `1px solid oklch(from ${theme.color["blue.600"]} calc(l + 0.2) c h)`,
-        padding: theme.space.md,
+        padding: theme.spacing.md,
       }}
     >
       This is a Box

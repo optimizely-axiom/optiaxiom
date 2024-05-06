@@ -19,9 +19,9 @@ const animations = {
 
 const margins = merge(
   merge(
-    theme.space,
+    theme.spacing,
     mapValues(
-      theme.space,
+      theme.spacing,
       (v) => `calc(-1 * ${v})`,
       (k) => `-${k}`,
     ),
@@ -39,7 +39,7 @@ const createBaseOnlyProperties = (selector?: string) =>
     defineProperties({
       "@layer": layers.axiom,
       conditions: {
-        ...mapValues(tokens.breakpoint, (width) => ({
+        ...mapValues(tokens.screens, (width) => ({
           "@media": `screen and (min-width: ${width})`,
           ...{ selector },
         })),
@@ -86,7 +86,7 @@ const createBaseOnlyProperties = (selector?: string) =>
         flexWrap: {
           wrap: "wrap",
         },
-        gap: theme.space,
+        gap: theme.spacing,
         grow: {
           "1": { flexGrow: 1 },
         },
@@ -107,10 +107,10 @@ const createBaseOnlyProperties = (selector?: string) =>
         marginRight: margins,
         marginTop: margins,
         maxWidth: theme.maxWidth,
-        paddingBottom: theme.space,
-        paddingLeft: theme.space,
-        paddingRight: theme.space,
-        paddingTop: theme.space,
+        paddingBottom: theme.spacing,
+        paddingLeft: theme.spacing,
+        paddingRight: theme.spacing,
+        paddingTop: theme.spacing,
         placeItems: ["center"] as const,
         shrink: {
           "1": { flexShrink: 1 },
@@ -169,7 +169,7 @@ const createBaseOnlyProperties = (selector?: string) =>
         },
         borderBottomWidth: theme.borderWidth,
         borderLeftWidth: theme.borderWidth,
-        borderRadius: merge(theme.radius, { inherit: "inherit" }),
+        borderRadius: merge(theme.borderRadius, { inherit: "inherit" }),
         borderRightWidth: theme.borderWidth,
         borderTopWidth: theme.borderWidth,
         cursor: ["default", "pointer"] as const,
@@ -227,7 +227,7 @@ const createBaseAndModifierProperties = (selector?: string) =>
     defineProperties({
       "@layer": layers.axiom,
       conditions: {
-        ...mapValues(tokens.breakpoint, (width) => ({
+        ...mapValues(tokens.screens, (width) => ({
           "@media": `screen and (min-width: ${width})`,
           ...{ selector },
         })),
@@ -248,7 +248,7 @@ const createBaseAndModifierProperties = (selector?: string) =>
       properties: {
         backgroundColor: theme.color,
         borderBottomColor: theme.color,
-        boxShadow: theme.shadow,
+        boxShadow: theme.boxShadow,
         /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/colors/} */
         color: theme.color,
         textDecoration: ["none", "underline"] as const,

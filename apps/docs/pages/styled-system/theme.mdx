@@ -10,11 +10,11 @@ So given a theme object like this:
 
 ```ts
 const theme = {
-  color: {
+  colors: {
     "aqua.50": "#e5f7fb",
     "aqua.200": "#9ae5ef",
   },
-  space: {
+  spacing: {
     "2": "2px",
     "8": "8px",
     sm: "12px",
@@ -26,11 +26,11 @@ The following css custom properties will be available:
 
 ```css
 :root {
-  --ax-color-aqua-50: "#e5f7fb";
-  --ax-color-aqua-200: "#9ae5ef";
-  --ax-space-2: "2px";
-  --ax-space-8: "8px";
-  --ax-space-sm: "12px";
+  --ax-colors-aqua-50: "#e5f7fb";
+  --ax-colors-aqua-200: "#9ae5ef";
+  --ax-spacing-2: "2px";
+  --ax-spacing-8: "8px";
+  --ax-spacing-sm: "12px";
 }
 ```
 
