@@ -270,9 +270,12 @@ const modifiers = {
 
 const props = {
   base: [...createBaseProperties(), ...createModifierProperties()] as const,
-  selectors: mapValues(modifiers, (selector) =>
-    createModifierProperties(selector),
-  ),
+  selectors: mapValues(modifiers, (selector, modifier) => {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    process.env.AXIOM_SPRINKLES_MODIFIER = modifier;
+    return createModifierProperties(selector);
+  }),
 } as const;
 
 export const sx = {
