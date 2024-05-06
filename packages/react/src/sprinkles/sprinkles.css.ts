@@ -1,4 +1,4 @@
-import { createVar, keyframes } from "@vanilla-extract/css";
+import { keyframes } from "@vanilla-extract/css";
 import {
   createMapValueFn,
   createSprinkles,
@@ -16,8 +16,6 @@ const animations = {
     "50%": { opacity: 0.5 },
   }),
 };
-
-const cols = createVar();
 
 const margins = merge(
   merge(
@@ -54,12 +52,17 @@ const createBaseOnlyProperties = (selector?: string) =>
           "1": { gridColumn: "span 1 / span 1" },
           "2": { gridColumn: "span 2 / span 2" },
         },
-        cols: {
-          "1": { vars: { [cols]: 1 } },
-          "2": { vars: { [cols]: 2 } },
-          "3": { vars: { [cols]: 3 } },
-          "4": { vars: { [cols]: 4 } },
-        },
+        cols: mapValues(
+          {
+            "1": "1",
+            "2": "2",
+            "3": "3",
+            "4": "4",
+          },
+          (cols) => ({
+            gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))`,
+          }),
+        ),
         display: [
           "none",
           "flex",
@@ -183,11 +186,6 @@ const createBaseOnlyProperties = (selector?: string) =>
           "800",
           "900",
         ] as const,
-        gridTemplateColumns: {
-          cols: {
-            gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))`,
-          },
-        },
         inset: ["0"] as const,
         overflow: ["auto", "hidden", "visible"] as const,
         pointerEvents: ["none"] as const,
