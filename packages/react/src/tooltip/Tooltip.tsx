@@ -7,15 +7,20 @@ import {
   useState,
 } from "react";
 
+import type { ExtendProps } from "../utils";
+
 import { Box } from "../box";
 import { Text } from "../text";
 import { Transition } from "../transition";
 
-type TooltipProps = {
-  children: ReactNode;
-  content?: ReactNode;
-  withArrow?: boolean;
-} & ComponentPropsWithRef<typeof RadixTooltip.Content>;
+type TooltipProps = ExtendProps<
+  ComponentPropsWithRef<typeof RadixTooltip.Content>,
+  {
+    children: ReactNode;
+    content?: ReactNode;
+    withArrow?: boolean;
+  }
+>;
 
 export const Tooltip = forwardRef<HTMLButtonElement, TooltipProps>(
   ({ children, content, withArrow, ...props }, ref) => {
