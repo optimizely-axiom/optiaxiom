@@ -1,4 +1,42 @@
-type Rem<P extends string> = P & { __rem__: true };
+/* eslint perfectionist/sort-objects: [
+  "error",
+  {
+    "custom-groups": {
+      xs: "xs",
+      sm: "sm",
+      md: "md",
+      lg: "lg",
+      xl: "xl",
+      Xxl: "*xl",
+      tighter: "tighter",
+      tight: "tight",
+      normal: "normal",
+      wide: "wide",
+      wider: "wider",
+      widest: "widest",
+    },
+    groups: [
+      "xs",
+      "sm",
+      "md",
+      "lg",
+      "xl",
+      "Xxl",
+      "tighter",
+      "tight",
+      "normal",
+      "wide",
+      "wider",
+      "widest",
+      ,
+      "unknown",
+    ],
+    "partition-by-new-line": true,
+    type: "natural",
+  },
+] */
+
+type Rem<P extends string> = { __rem__: true } & P;
 const rem = <P extends `${string}px`>(px: P) =>
   `${(parseFloat(px.slice(0, -2)) / 16).toFixed(3)}rem` as Rem<P>;
 
@@ -216,17 +254,20 @@ export const tokens = {
     "320": rem("320px"),
     "384": rem("384px"),
 
-    auto: "auto",
     "1/2": "50%",
+
     "1/3": "33.333333%",
     "2/3": "66.666666%",
+
     "1/4": "25%",
     "2/4": "50%",
     "3/4": "75%",
-    full: "100%",
-    min: "min-content",
-    max: "max-content",
+
+    auto: "auto",
     fit: "fit-content",
+    full: "100%",
+    max: "max-content",
+    min: "min-content",
   },
 
   spacing: {
