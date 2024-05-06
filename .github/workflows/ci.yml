@@ -99,3 +99,4 @@ jobs:
       - run: |
           pnpm lint --no-fix
           pnpm test run
+          pnpm -F docs... build
