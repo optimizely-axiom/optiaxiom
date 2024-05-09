@@ -4,8 +4,8 @@ export function App() {
   return (
     <div
       style={{
-        background: theme.color["bg.success"],
-        color: theme.color["text.success"],
+        background: theme.colors["bg.success"],
+        color: theme.colors["text.success"],
         padding: theme.spacing.md,
       }}
     >

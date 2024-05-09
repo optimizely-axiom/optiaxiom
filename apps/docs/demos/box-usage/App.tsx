@@ -8,7 +8,7 @@ export function App() {
       p="lg"
       rounded="sm"
       style={{
-        border: `1px solid oklch(from ${theme.color["blue.600"]} calc(l + 0.2) c h)`,
+        border: `1px solid oklch(from ${theme.colors["blue.600"]} calc(l + 0.2) c h)`,
         padding: theme.spacing.md,
       }}
     >

@@ -5,7 +5,7 @@ import { layers, theme } from "../styles";
 export const base = style({
   "@layer": {
     [layers.reset]: {
-      border: `0 solid ${theme.color["border"]}`,
+      border: `0 solid ${theme.colors["border"]}`,
       boxSizing: "border-box",
       font: "inherit",
       fontFeatureSettings: '"cv02", "cv03", "cv04", "cv11"',
@@ -112,7 +112,7 @@ export const base = style({
            * 2. Set the default placeholder color to the user's configured gray 400 color.
            */
           "&:is(input, textarea)::placeholder": {
-            color: theme.color["gray.400"] /* 2 */,
+            color: theme.colors["gray.400"] /* 2 */,
             opacity: 1 /* 1 */,
           },
         },
