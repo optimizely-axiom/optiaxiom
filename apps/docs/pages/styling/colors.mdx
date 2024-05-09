@@ -23,12 +23,12 @@ You can also use the `--ax-colors-*` CSS variables directly in any CSS property.
 
 Semantic color names such as `bg.information`, `bg.success`, etc. support light/dark modes out of the box.
 
-Append the `dark` class name to the root `<html>` element to switch to dark mode.
+Set the [color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme) property on the root `<html>` element to switch to dark mode.
 
-```html /dark/
-<html class="dark">
-  <!-- ... -->
-</html>
+```css
+:root {
+  color-scheme: light dark;
+}
 ```
 
 ## Color Tokens

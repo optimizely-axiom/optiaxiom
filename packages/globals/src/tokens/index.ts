@@ -1,6 +1,6 @@
 import { borderRadius } from "./borderRadius";
 import { boxShadow } from "./boxShadow";
-import { colors, colorsDark } from "./colors";
+import { colors } from "./colors";
 import { fontFamily } from "./fontFamily";
 import { fontSize } from "./fontSize";
 import { maxSize } from "./maxSize";
@@ -18,8 +18,4 @@ export const tokens = {
   screens,
   size,
   zIndex,
-} as const;
-
-export const tokensDark = {
-  colors: colorsDark,
 } as const;

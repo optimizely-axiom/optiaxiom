@@ -1,4 +1,4 @@
-import { theme, tokens, tokensDark } from "@optiaxiom/globals";
+import { theme, tokens } from "@optiaxiom/globals";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
 import { type ReactNode } from "react";
 
@@ -17,13 +17,6 @@ export function ThemeProvider({
         @layer optiaxiom.theme {
           ${selector} {
             ${assignInlineVars(theme, tokens)}
-          }
-        }
-      `}</style>
-      <style>{`
-        @layer optiaxiom.theme {
-          ${selector === ":host" ? ":host-context(:root.dark)" : `${selector}.dark`} {
-            ${assignInlineVars(theme.colors, tokensDark.colors)}
           }
         }
       `}</style>

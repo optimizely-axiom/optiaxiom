@@ -169,4 +169,5 @@ const getStyleValues = (selector: string) => {
 };
 
 const isColorType = (value: unknown) =>
-  typeof value === "string" && value.startsWith("#");
+  typeof value === "string" &&
+  (value.startsWith("#") || value.startsWith("light-dark("));
