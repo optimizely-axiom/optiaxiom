@@ -2,7 +2,7 @@ import { assignInlineVars } from "@vanilla-extract/dynamic";
 import { type ReactNode } from "react";
 
 import { theme } from "../theme";
-import { tokens, tokensDark } from "../tokens";
+import { tokens } from "../tokens";
 
 type ThemeProviderProps = {
   children?: ReactNode;
@@ -18,11 +18,6 @@ export function ThemeProvider({
       <style>{`
         ${selector} {
           ${assignInlineVars(theme, tokens)}
-        }
-      `}</style>
-      <style>{`
-        ${selector === ":host" ? ":host-context(:root.dark)" : `${selector}.dark`} {
-          ${assignInlineVars(theme, tokensDark)}
         }
       `}</style>
       {children}

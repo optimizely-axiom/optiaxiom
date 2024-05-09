@@ -256,18 +256,19 @@ function toTable(rows) {
 }
 
 /**
+ * @template T
  * @param {string} name
- * @param {Record<string, string>} object
+ * @param {Record<string, T>} object
  * @param {{
  *   exported?: boolean;
  *   pre?: string;
- *   transform?: (value: string) => string;
+ *   transform?: (value: T) => string;
  * }} options
  */
 function toVariable(
   name,
   object,
-  { exported = true, pre, transform = (value) => value },
+  { exported = true, pre, transform = (value) => String(value) },
 ) {
   return [
     `${exported ? "export " : ""}const ${name} = {`,
@@ -382,7 +383,7 @@ void yargs(hideBin(process.argv))
       } else {
         console.log(
           toVariable(
-            "colorPalette",
+            "palette",
             Object.fromEntries(
               report
                 .filter(([, value]) => value.light.startsWith("#"))
@@ -396,37 +397,27 @@ void yargs(hideBin(process.argv))
         );
         console.log("");
         console.log(
+          "const ld = <A extends string, B extends string>(a: A, b: B) => `light-dark(${a}, ${b})` as const;",
+        );
+        console.log("");
+        console.log(
           toVariable(
             "colors",
             Object.fromEntries(
               report
                 .filter(([, value]) => !value.light.startsWith("#"))
-                .map(([name, value]) => [name, value.light]),
+                .map(([name, value]) => [
+                  name,
+                  { dark: value.dark, light: value.light },
+                ]),
             ),
             {
               pre: [
                 'current: "currentColor" as const,',
                 '  transparent: "transparent" as const,',
               ].join("\n"),
-              transform: (value) => `colorPalette["${value}"]`,
-            },
-          ),
-        );
-        console.log("");
-        console.log(
-          toVariable(
-            "colorsDark",
-            Object.fromEntries(
-              report
-                .filter(([, value]) => !value.dark.startsWith("#"))
-                .map(([name, value]) => [name, value.dark]),
-            ),
-            {
-              pre: [
-                'current: "currentColor" as const,',
-                '  transparent: "transparent" as const,',
-              ].join("\n"),
-              transform: (value) => `colorPalette["${value}"]`,
+              transform: (value) =>
+                `ld(palette["${value.light}"], palette["${value.dark}"])`,
             },
           ),
         );
