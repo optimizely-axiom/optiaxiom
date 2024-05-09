@@ -1,1 +1,1 @@
-export { tokens, tokensDark } from "@optiaxiom/globals";
+export { tokens } from "@optiaxiom/globals";
