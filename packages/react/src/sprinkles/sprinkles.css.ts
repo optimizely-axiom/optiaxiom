@@ -80,6 +80,7 @@ export const props = [
         "grid",
         "block",
         "inline",
+        "inline-block",
         "inline-flex",
         "table-cell",
       ] as const,
