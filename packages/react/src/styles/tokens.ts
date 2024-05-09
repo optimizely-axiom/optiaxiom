@@ -27,7 +27,7 @@
 
 type Rem<P extends string> = { __rem__: true } & P;
 const rem = <P extends `${string}px`>(px: P) =>
-  `${(parseFloat(px.slice(0, -2)) / 16).toFixed(3)}rem` as Rem<P>;
+  `${parseFloat((parseFloat(px.slice(0, -2)) / 16).toFixed(3))}rem` as Rem<P>;
 
 export const tokens = {
   borderRadius: {
