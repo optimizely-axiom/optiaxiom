@@ -2,6 +2,11 @@ import { Box } from "@optiaxiom/react";
 
 import { Table, Td, Th, Tr } from "../table";
 
+const px = (rem: string) =>
+  rem.endsWith("rem")
+    ? `${parseFloat((parseFloat(rem.slice(0, -3)) * 16).toFixed(3))}px`
+    : rem;
+
 export const Scale = ({
   hidePreview,
   keyLabel = "Name",
@@ -18,6 +23,7 @@ export const Scale = ({
       <tr>
         <Th w="80">{keyLabel}</Th>
         <Th w="160">{valueLabel}</Th>
+        <Th w="160">Pixels</Th>
         {!hidePreview && (
           <Box asChild display={["none", "table-cell"]}>
             <Th />
@@ -41,6 +47,7 @@ export const Scale = ({
           <Tr key={name}>
             <Td>{name}</Td>
             <Td>{size}</Td>
+            <Td>{px(size)}</Td>
             {!hidePreview && (
               <Box asChild display={["none", "table-cell"]}>
                 <Td>
