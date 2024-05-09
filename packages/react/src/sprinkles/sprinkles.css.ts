@@ -247,11 +247,11 @@ export const props = [
     "@layer": layers.axiom,
     modifiers,
     properties: {
-      backgroundColor: theme.color,
-      borderBottomColor: theme.color,
+      backgroundColor: theme.colors,
+      borderBottomColor: theme.colors,
       boxShadow: theme.boxShadow,
       /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/colors/} */
-      color: theme.color,
+      color: theme.colors,
       textDecoration: ["none", "underline"] as const,
     },
     shorthands: {

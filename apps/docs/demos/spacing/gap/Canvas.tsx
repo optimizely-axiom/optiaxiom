@@ -15,7 +15,7 @@ export const Canvas = ({ children }: { children: ReactElement }) => (
     bg="purple.50"
     rounded="sm"
     style={{
-      background: `rgb(from ${theme.color["purple.500"]} r g b / 30%)`,
+      background: `rgb(from ${theme.colors["purple.500"]} r g b / 30%)`,
     }}
   >
     {cloneElement(

@@ -18,7 +18,7 @@ export const Container = ({
       p="xs"
       rounded="sm"
       style={{
-        background: `rgb(from ${theme.color["purple.500"]} r g b / 30%)`,
+        background: `rgb(from ${theme.colors["purple.500"]} r g b / 30%)`,
       }}
     >
       <Item>{children}</Item>

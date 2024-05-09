@@ -16,7 +16,7 @@ export const Item = ({
         p="md"
         rounded="inherit"
         style={{
-          background: `rgb(from ${theme.color["purple.50"]} r g b / 20%)`,
+          background: `rgb(from ${theme.colors["purple.50"]} r g b / 20%)`,
         }}
       >
         {children.props.children}

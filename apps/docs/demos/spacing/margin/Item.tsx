@@ -13,7 +13,7 @@ export const Item = ({
       p={p}
       rounded="sm"
       style={{
-        background: `rgb(from ${theme.color["purple.500"]} r g b / 30%)`,
+        background: `rgb(from ${theme.colors["purple.500"]} r g b / 30%)`,
       }}
     >
       <Box bg="purple.500" p="md" rounded="inherit" {...children.props}>

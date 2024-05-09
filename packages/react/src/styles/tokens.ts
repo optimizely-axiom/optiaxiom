@@ -302,7 +302,7 @@ export const tokens = {
 
 export const tokensLight = {
   ...tokens,
-  color: {
+  colors: {
     ...tokens.colors,
 
     "bg.information": tokens.colors["blue.50"],
@@ -319,7 +319,7 @@ export const tokensLight = {
 
 export const tokensDark = {
   ...tokens,
-  color: {
+  colors: {
     ...tokens.colors,
 
     "bg.information": tokens.colors["blue.900"],
