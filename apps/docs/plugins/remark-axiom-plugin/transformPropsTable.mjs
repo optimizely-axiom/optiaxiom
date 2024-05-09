@@ -5,7 +5,7 @@ import { mdxjs } from "micromark-extension-mdxjs";
 import docgen from "react-docgen-typescript";
 import { visit } from "unist-util-visit";
 
-export function transformPropsTable(propsConfig, tree) {
+export function transformPropsTable(tree) {
   let needsImport = true;
 
   visit(
@@ -49,8 +49,10 @@ export function transformPropsTable(propsConfig, tree) {
 
       const tree = fromMarkdown(
         [
+          needsImport && `import { Box } from "@optiaxiom/react";`,
           needsImport &&
             `import { Table, Td, Th, Tr } from "@/components/table";`,
+          needsImport && `import { PropType } from "@/components/prop-type";`,
           "",
           `### \`${component}\` component props`,
           "",
@@ -80,17 +82,12 @@ export function transformPropsTable(propsConfig, tree) {
             )
             .flatMap(([, prop]) => [
               "<Tr>",
-              '  <Td className="nx-whitespace-nowrap">',
-              `**${prop.name}**`,
+              '  <Td whiteSpace="nowrap">',
+              `    {<Box color="text.accent.magenta" fontFamily="mono">${prop.name}${prop.required ? "*" : ""}</Box>}`,
               "  </Td>",
               "  <Td>",
               [
-                [
-                  parseType(propsConfig, prop.type, prop.name, component),
-                  ...(prop.defaultValue
-                    ? ["=", `\`${prop.defaultValue.value}\``]
-                    : []),
-                ].join(" "),
+                `<PropType component="${component}" prop={${JSON.stringify(prop)}} />`,
                 prop.description
                   .replaceAll(/{@link ([^\s}]+)(?:\s([^}]+))}/g, "[$2]($1)")
                   .replaceAll(/{@link ([^}]+)}/g, "[$1]($1)")
@@ -119,36 +116,4 @@ export function transformPropsTable(propsConfig, tree) {
       return index + tree.children.length;
     },
   );
-}
-
-function parseType(propsConfig, type, prop, component) {
-  if (prop === "sx") {
-    return `[Style Props](/styled-system/#sx-prop)`;
-  }
-
-  if (type.name === "enum") {
-    for (const [key, { props: matchers }] of Object.entries(
-      propsConfig.theme,
-    )) {
-      if (
-        matchers.includes(prop) ||
-        matchers.includes(`${component}[${prop}]`)
-      ) {
-        return themeLink(propsConfig, key);
-      }
-    }
-  }
-
-  return type.name === "enum" &&
-    !["ReactNode"].includes(type.raw) &&
-    type.raw?.startsWith("ResponsiveValue<")
-    ? `\`ResponsiveValue<${type.value
-        .slice(0, -2)
-        .map(({ value }) => value)
-        .join(" | ")}>\``
-    : `\`${type.raw ?? type.name}\``;
-}
-
-function themeLink(propsConfig, key) {
-  return `[\`theme.${key}\`](/styled-system${propsConfig.theme[key].path ?? "/theme/#design-tokens"})`;
 }

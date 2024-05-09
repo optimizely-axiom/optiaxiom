@@ -247,4 +247,10 @@ export default {
   "9l": "underline",
   "9m": "focus-visible",
   "9n": "hover",
+  "9o": "lineHeight",
+  "9p": "loose",
+  "9q": "fontSmoothing",
+  "9r": "text",
+  "9s": "text.accent.magenta",
+  "9t": "text.subtle",
 } as const;
