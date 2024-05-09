@@ -130,23 +130,22 @@ function parseType(propsConfig, type, prop, component) {
     for (const [key, { props: matchers }] of Object.entries(
       propsConfig.theme,
     )) {
-      if (matchers.includes(prop)) {
-        return themeLink(propsConfig, key);
-      } else if (matchers.includes(`${component}[${prop}]`)) {
+      if (
+        matchers.includes(prop) ||
+        matchers.includes(`${component}[${prop}]`)
+      ) {
         return themeLink(propsConfig, key);
       }
     }
   }
 
-  return type.name === "enum" && !["ReactNode"].includes(type.raw)
-    ? `\`${(type.raw?.startsWith("ConditionalStyleWithResponsiveArray<")
-        ? type.value.slice(0, -2)
-        : type.raw?.startsWith("ConditionalStyle<")
-          ? type.value.slice(0, -1)
-          : type.value
-      )
+  return type.name === "enum" &&
+    !["ReactNode"].includes(type.raw) &&
+    type.raw?.startsWith("ResponsiveValue<")
+    ? `\`ResponsiveValue<${type.value
+        .slice(0, -2)
         .map(({ value }) => value)
-        .join(" | ")}\``
+        .join(" | ")}>\``
     : `\`${type.raw ?? type.name}\``;
 }
 
