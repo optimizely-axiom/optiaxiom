@@ -31,6 +31,8 @@ export const Kbd = forwardRef<HTMLElement, KbdProps>(
         asChild
         border="1"
         borderBottom="2"
+        display="inline-flex"
+        flexDirection="horizontal"
         fontWeight="600"
         gap="4"
         whiteSpace="nowrap"

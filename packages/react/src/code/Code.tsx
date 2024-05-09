@@ -15,8 +15,7 @@ export const Code = forwardRef<HTMLElement, CodeProps>(
         asChild
         bg="bg.neutral"
         className={clsx(className, styles.base)}
-        display="inline-flex"
-        flexDirection="horizontal"
+        display="inline-block"
         px="4"
         rounded="sm"
         {...props}

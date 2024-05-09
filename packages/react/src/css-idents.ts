@@ -253,4 +253,5 @@ export default {
   "9r": "text",
   "9s": "text.accent.magenta",
   "9t": "text.subtle",
+  "9u": "inline-block",
 } as const;
