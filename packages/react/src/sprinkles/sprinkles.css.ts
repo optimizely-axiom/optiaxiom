@@ -132,41 +132,41 @@ export const props = [
       width: theme.size,
     },
     shorthands: {
-      /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/sizing/#height} */
+      /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/sizing/#height Documentation} */
       h: ["height"],
       leading: ["lineHeight"],
-      /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/spacing/#multiple-sides} */
+      /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/spacing/#multiple-sides Documentation} */
       m: ["marginBottom", "marginLeft", "marginRight", "marginTop"],
-      /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/spacing/#single-side} */
+      /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/spacing/#single-side Documentation} */
       mb: ["marginBottom"],
-      /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/spacing/#single-side} */
+      /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/spacing/#single-side Documentation} */
       ml: ["marginLeft"],
-      /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/spacing/#single-side} */
+      /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/spacing/#single-side Documentation} */
       mr: ["marginRight"],
-      /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/spacing/#single-side} */
+      /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/spacing/#single-side Documentation} */
       mt: ["marginTop"],
-      /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/spacing/#multiple-sides} */
+      /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/spacing/#multiple-sides Documentation} */
       mx: ["marginLeft", "marginRight"],
-      /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/spacing/#multiple-sides} */
+      /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/spacing/#multiple-sides Documentation} */
       my: ["marginBottom", "marginTop"],
-      /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/spacing/#multiple-sides-1} */
+      /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/spacing/#multiple-sides-1 Documentation} */
       p: ["paddingBottom", "paddingLeft", "paddingRight", "paddingTop"],
-      /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/spacing/#single-side-1} */
+      /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/spacing/#single-side-1 Documentation} */
       pb: ["paddingBottom"],
-      /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/spacing/#single-side-1} */
+      /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/spacing/#single-side-1 Documentation} */
       pl: ["paddingLeft"],
-      /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/spacing/#single-side-1} */
+      /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/spacing/#single-side-1 Documentation} */
       pr: ["paddingRight"],
-      /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/spacing/#single-side-1} */
+      /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/spacing/#single-side-1 Documentation} */
       pt: ["paddingTop"],
-      /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/spacing/#multiple-sides-1} */
+      /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/spacing/#multiple-sides-1 Documentation} */
       px: ["paddingLeft", "paddingRight"],
-      /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/spacing/#multiple-sides-1} */
+      /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/spacing/#multiple-sides-1 Documentation} */
       py: ["paddingBottom", "paddingTop"],
-      /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/sizing/#size} */
+      /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/sizing/#size Documentation} */
       size: ["height", "width"],
       tracking: ["letterSpacing"],
-      /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/sizing/#width} */
+      /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/sizing/#width Documentation} */
       w: ["width"],
     },
   }),
@@ -230,7 +230,7 @@ export const props = [
       borderLeft: ["borderLeftWidth"],
       borderRight: ["borderRightWidth"],
       borderTop: ["borderTopWidth"],
-      /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/border-radius/} */
+      /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/border-radius/ Documentation} */
       rounded: ["borderRadius"],
       z: ["zIndex"],
     },
@@ -250,12 +250,12 @@ export const props = [
       backgroundColor: theme.colors,
       borderBottomColor: theme.colors,
       boxShadow: theme.boxShadow,
-      /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/colors/} */
+      /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/colors/ Documentation} */
       color: theme.colors,
       textDecoration: ["none", "underline"] as const,
     },
     shorthands: {
-      /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/colors/} */
+      /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/colors/ Documentation} */
       bg: ["backgroundColor"],
       shadow: ["boxShadow"],
     },
