@@ -1,38 +1,34 @@
-import clsx from "clsx";
+/**
+ * Forked from https://vanilla-extract.style/documentation/packages/sprinkles/
+ */
 
-import { mapValues } from "../utils";
-import * as styles from "./sprinkles.css";
+import { createMapValueFn } from "./createMapValueFn";
+import { createSprinkles } from "./createSprinkles";
+import { props } from "./sprinkles.css";
 
-export const sprinkles = Object.assign(
-  (props: Sprinkles) => {
-    const baseProps: styles.SprinklesBase = {};
-    const selectorsProps: styles.SprinklesSelectors = mapValues(
-      styles.sx.selectors,
-      () => ({}),
-    );
+export const sprinkles = createSprinkles(...props);
+export const mapResponsiveValue = createMapValueFn(props[0]);
 
-    for (const [name, value] of Object.entries(props)) {
-      if (name in styles.sx.selectors) {
-        selectorsProps[name as keyof typeof styles.sx.selectors] =
-          value as never;
-      } else {
-        // @ts-expect-error -- too complex
-        baseProps[name] = value;
-      }
-    }
-
-    return clsx(
-      styles.sx.base(baseProps),
-      ...Object.values(
-        mapValues(selectorsProps, (props, name) =>
-          styles.sx.selectors[name](props),
-        ),
-      ),
-    );
-  },
-  { properties: styles.sx.base.properties },
-);
-
-export { mapResponsiveValue } from "./sprinkles.css";
-export type Sprinkles = Partial<styles.SprinklesSelectors> &
-  styles.SprinklesBase;
+type LonghandProps = keyof Pick<
+  Parameters<typeof sprinkles>[0],
+  | "backgroundColor"
+  | "borderBottomWidth"
+  | "borderLeftWidth"
+  | "borderRadius"
+  | "borderRightWidth"
+  | "borderTopWidth"
+  | "boxShadow"
+  | "height"
+  | "letterSpacing"
+  | "marginBottom"
+  | "marginLeft"
+  | "marginRight"
+  | "marginTop"
+  | "paddingBottom"
+  | "paddingLeft"
+  | "paddingRight"
+  | "paddingTop"
+  | "width"
+  | "zIndex"
+>;
+export type Sprinkles = Omit<Parameters<typeof sprinkles>[0], LonghandProps>;
