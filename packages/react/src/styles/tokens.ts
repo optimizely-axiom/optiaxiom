@@ -207,7 +207,10 @@ export const tokens = {
   },
 
   lineHeight: {
-    // FIXME:
+    none: "1",
+    tight: "1.25",
+    normal: "1.5",
+    loose: "2",
   },
 
   maxWidth: {
@@ -307,6 +310,9 @@ export const tokensLight = {
     "bg.success": tokens.colors["green.50"],
     border: tokens.colors["gray.200"],
     surface: tokens.colors["white"],
+    text: tokens.colors["dark.600"],
+    "text.accent.magenta": tokens.colors["magenta.600"],
+    "text.subtle": tokens.colors["slate.600"],
     "text.success": tokens.colors["green.600"],
   },
 };
@@ -321,6 +327,9 @@ export const tokensDark = {
     "bg.success": tokens.colors["green.900"],
     border: tokens.colors["gray.800"],
     surface: tokens.colors["gray.900"],
+    text: tokens.colors["gray.100"],
+    "text.accent.magenta": tokens.colors["magenta.200"],
+    "text.subtle": tokens.colors["slate.400"],
     "text.success": tokens.colors["green.200"],
   },
 };

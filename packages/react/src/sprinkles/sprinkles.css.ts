@@ -113,6 +113,7 @@ export const props = [
         "stretch",
       ] as const,
       letterSpacing: theme.letterSpacing,
+      lineHeight: theme.lineHeight,
       marginBottom: margins,
       marginLeft: margins,
       marginRight: margins,
@@ -132,6 +133,7 @@ export const props = [
     shorthands: {
       /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/sizing/#height} */
       h: ["height"],
+      leading: ["lineHeight"],
       /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/spacing/#multiple-sides} */
       m: ["marginBottom", "marginLeft", "marginRight", "marginTop"],
       /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/spacing/#single-side} */
@@ -180,6 +182,11 @@ export const props = [
       borderTopWidth: theme.borderWidth,
       cursor: ["default", "pointer"] as const,
       fontFamily: theme.fontFamily,
+      fontSmoothing: {
+        auto: {
+          WebkitFontSmoothing: "auto",
+        },
+      },
       fontStyle: ["normal", "italic"] as const,
       fontWeight: [
         "100",

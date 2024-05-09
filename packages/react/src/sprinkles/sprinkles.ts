@@ -20,6 +20,7 @@ type LonghandProps = keyof Pick<
   | "boxShadow"
   | "height"
   | "letterSpacing"
+  | "lineHeight"
   | "marginBottom"
   | "marginLeft"
   | "marginRight"
