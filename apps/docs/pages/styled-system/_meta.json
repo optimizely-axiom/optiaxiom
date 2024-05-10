@@ -4,12 +4,6 @@
     "title": "Styled System"
   },
   "index": "Style Props",
-  "theme": "Theme",
-  "-- Utilities": {
-    "type": "separator",
-    "title": "Utilities"
-  },
-  "border-radius": "Border Radius",
   "colors": "Colors",
   "responsive-styles": "Responsive Styles",
   "responsive-styles-demo": {
@@ -24,6 +18,12 @@
       "toc": false
     }
   },
+  "theme": "Theme",
+  "-- Utilities": {
+    "type": "separator",
+    "title": "Utilities"
+  },
+  "border-radius": "Border Radius",
   "sizing": "Sizing",
   "spacing": "Spacing"
 }
