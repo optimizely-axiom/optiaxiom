@@ -43,9 +43,9 @@ export const tokens = {
 
   borderWidth: {
     "0": "0",
-    "1": rem("1px"),
-    "2": rem("2px"),
-    "4": rem("4px"),
+    "1": "1px",
+    "2": "2px",
+    "4": "4px",
   },
 
   boxShadow: {
