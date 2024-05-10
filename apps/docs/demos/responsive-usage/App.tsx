@@ -15,7 +15,11 @@ export function App() {
         </Box>
 
         <Box p="md">
-          <Text color="magenta.600" fontWeight="600" textTransform="uppercase">
+          <Text
+            color="text.accent.magenta"
+            fontWeight="600"
+            textTransform="uppercase"
+          >
             Phasellus auctor
           </Text>
 
