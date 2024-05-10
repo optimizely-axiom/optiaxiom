@@ -158,7 +158,6 @@ export const base = style({
           appearance: "none",
         },
       },
-      verticalAlign: "baseline",
     },
   },
 });
