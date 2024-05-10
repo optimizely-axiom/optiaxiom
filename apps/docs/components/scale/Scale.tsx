@@ -8,11 +8,13 @@ const px = (rem: string) =>
     : rem;
 
 export const Scale = ({
+  hidePixels,
   hidePreview,
   keyLabel = "Name",
   valueLabel = "Size",
   values,
 }: {
+  hidePixels?: boolean;
   hidePreview?: boolean;
   keyLabel?: string;
   valueLabel?: string;
@@ -22,8 +24,8 @@ export const Scale = ({
     <thead>
       <tr>
         <Th w="80">{keyLabel}</Th>
-        <Th w="160">{valueLabel}</Th>
-        <Th w="160">Pixels</Th>
+        <Th w="128">{valueLabel}</Th>
+        {!hidePixels && <Th w="128">Pixels</Th>}
         {!hidePreview && (
           <Box asChild display={["none", "table-cell"]}>
             <Th />
@@ -47,7 +49,7 @@ export const Scale = ({
           <Tr key={name}>
             <Td>{name}</Td>
             <Td>{size}</Td>
-            <Td>{px(size)}</Td>
+            {!hidePixels && <Td>{px(size)}</Td>}
             {!hidePreview && (
               <Box asChild display={["none", "table-cell"]}>
                 <Td>
