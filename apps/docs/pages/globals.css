@@ -4,3 +4,40 @@ html {
   font-family: InterVariable, sans-serif;
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
 }
+
+:root {
+  --docs-bg-shadow-size: 85%;
+
+  &[class~="dark"] {
+    --docs-bg-pillar-opacity: 20%;
+    --docs-bg-shadow-size: 65%;
+  }
+
+  @media screen and (min-width: 640px) {
+    & {
+      --docs-bg-shadow-size: 45%;
+    }
+
+    &[class~="dark"] {
+      --docs-bg-shadow-size: 25%;
+    }
+  }
+}
+
+body {
+  background-image: radial-gradient(
+    var(--docs-bg-shadow-size) 70% at 50% 0%,
+    rgb(from #c4b1e2 r g b / var(--docs-bg-pillar-opacity, 40%)) 0%,
+    transparent 100%
+  );
+  background-repeat: no-repeat;
+  background-size: 100% 50vh;
+}
+
+.nextra-nav-container-blur {
+  background-color: rgb(255 255 255 / 30%);
+
+  &:is(html[class~="dark"] *) {
+    background-color: rgb(17 17 17 / 30%) !important;
+  }
+}
