@@ -1,6 +1,7 @@
 import type { ComponentPropsWithRef, ReactElement } from "react";
 
-import { Box, type Sprinkles, theme } from "@optiaxiom/react";
+import { yellowStripes } from "@/demos/stripes";
+import { Box, type Sprinkles } from "@optiaxiom/react";
 
 import { Item } from "./Item";
 
@@ -12,16 +13,10 @@ export const Container = ({
   h?: Sprinkles["h"];
 }) => {
   return (
-    <Box
-      bg="purple.50"
-      h={h}
-      p="xs"
-      rounded="sm"
-      style={{
-        background: `rgb(from ${theme.colors["purple.500"]} r g b / 30%)`,
-      }}
-    >
-      <Item>{children}</Item>
+    <Box h={h} p="xs" rounded="sm" style={yellowStripes}>
+      <Item>
+        <Box p="xs" {...children.props} />
+      </Item>
     </Box>
   );
 };

@@ -1,4 +1,5 @@
-import { Box, type Sprinkles, Text, theme } from "@optiaxiom/react";
+import { yellowStripes } from "@/demos/stripes";
+import { Box, type Sprinkles, Text } from "@optiaxiom/react";
 import { type ComponentPropsWithRef, type ReactElement } from "react";
 
 export const Item = ({
@@ -9,13 +10,7 @@ export const Item = ({
   p?: Sprinkles["p"];
 }) => {
   return (
-    <Box
-      p={p}
-      rounded="sm"
-      style={{
-        background: `rgb(from ${theme.colors["purple.500"]} r g b / 30%)`,
-      }}
-    >
+    <Box p={p} rounded="sm" style={yellowStripes}>
       <Box bg="purple.500" p="md" rounded="inherit" {...children.props}>
         <Text color="white" fontFamily="mono" fontWeight="600">
           {children.props.children}

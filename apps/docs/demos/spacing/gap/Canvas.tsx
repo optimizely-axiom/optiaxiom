@@ -1,4 +1,5 @@
-import { Box, theme } from "@optiaxiom/react";
+import { yellowStripes } from "@/demos/stripes";
+import { Box } from "@optiaxiom/react";
 import {
   Children,
   type ComponentPropsWithRef,
@@ -10,14 +11,7 @@ import {
 import { Item } from "./Item";
 
 export const Canvas = ({ children }: { children: ReactElement }) => (
-  <Box
-    asChild
-    bg="purple.50"
-    rounded="sm"
-    style={{
-      background: `rgb(from ${theme.colors["purple.500"]} r g b / 30%)`,
-    }}
-  >
+  <Box asChild rounded="sm" style={yellowStripes}>
     {cloneElement(
       children,
       {},
