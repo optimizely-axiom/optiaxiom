@@ -25,6 +25,8 @@ const margins = merge(
   { auto: "auto" },
 );
 
+const radiuses = merge(theme.borderRadius, { inherit: "inherit" });
+
 const transitions = {
   transitionDuration: "150ms",
   transitionTimingFunction: "ease",
@@ -179,10 +181,14 @@ export const props = [
       animation: {
         pulse: `${animations.pulse} 2s ease-in-out infinite`,
       },
+      borderBottomLeftRadius: radiuses,
+      borderBottomRightRadius: radiuses,
       borderBottomWidth: theme.borderWidth,
       borderLeftWidth: theme.borderWidth,
-      borderRadius: merge(theme.borderRadius, { inherit: "inherit" }),
+      borderRadius: radiuses,
       borderRightWidth: theme.borderWidth,
+      borderTopLeftRadius: radiuses,
+      borderTopRightRadius: radiuses,
       borderTopWidth: theme.borderWidth,
       cursor: ["default", "pointer"] as const,
       fontFamily: theme.fontFamily,
@@ -235,6 +241,14 @@ export const props = [
       borderTop: ["borderTopWidth"],
       /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/border-radius/ Documentation} */
       rounded: ["borderRadius"],
+      roundedB: ["borderBottomLeftRadius", "borderBottomRightRadius"],
+      roundedBL: ["borderBottomLeftRadius"],
+      roundedBR: ["borderBottomRightRadius"],
+      roundedL: ["borderBottomLeftRadius", "borderTopLeftRadius"],
+      roundedR: ["borderBottomRightRadius", "borderTopRightRadius"],
+      roundedT: ["borderTopLeftRadius", "borderTopRightRadius"],
+      roundedTL: ["borderTopLeftRadius"],
+      roundedTR: ["borderTopRightRadius"],
       z: ["zIndex"],
     },
   }),

@@ -255,4 +255,8 @@ export default {
   "9t": "text.subtle",
   "9u": "inline-block",
   "9v": "maxHeight",
+  "9w": "borderBottomLeftRadius",
+  "9x": "borderBottomRightRadius",
+  "9y": "borderTopLeftRadius",
+  "9z": "borderTopRightRadius",
 } as const;

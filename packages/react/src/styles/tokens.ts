@@ -37,6 +37,7 @@ export const tokens = {
     lg: rem("8px"),
     xl: rem("12px"),
 
+    none: "0",
     full: "100%",
   },
 
