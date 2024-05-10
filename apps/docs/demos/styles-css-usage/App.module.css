@@ -1,5 +1,5 @@
 .container {
-  background: var(--ax-color-bg-success);
-  color: var(--ax-color-text-success);
-  padding: var(--ax-space-md);
+  background: var(--ax-colors-bg-success);
+  color: var(--ax-colors-text-success);
+  padding: var(--ax-spacing-md);
 }
