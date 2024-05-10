@@ -5,9 +5,9 @@ import beach from "./beach.jpg";
 
 export function App() {
   return (
-    <Paper maxWidth={["sm", "2xl"]} overflow="hidden">
+    <Paper maxW={["sm", "2xl"]} overflow="hidden">
       <Stack flexDirection={["vertical", "horizontal"]}>
-        <Box>
+        <Box asChild>
           <Image
             alt="brown glass bottle beside white book on blue and white textile"
             src={beach}

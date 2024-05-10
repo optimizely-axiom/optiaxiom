@@ -25,6 +25,8 @@ type LonghandProps = keyof Pick<
   | "marginLeft"
   | "marginRight"
   | "marginTop"
+  | "maxHeight"
+  | "maxWidth"
   | "paddingBottom"
   | "paddingLeft"
   | "paddingRight"
