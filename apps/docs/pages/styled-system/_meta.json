@@ -19,11 +19,16 @@
     }
   },
   "theme": "Theme",
+  "-- Borders": {
+    "type": "separator",
+    "title": "Borders"
+  },
+  "border-radius": "Border Radius",
+  "border-width": "Border Width",
   "-- Utilities": {
     "type": "separator",
     "title": "Utilities"
   },
-  "border-radius": "Border Radius",
   "sizing": "Sizing",
   "spacing": "Spacing"
 }
