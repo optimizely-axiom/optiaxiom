@@ -26,6 +26,16 @@ A collection of components should similarly:
 1. Have well defined boundaries; so that component responsibilities do not overlap
 2. Have consistent API across components; so they are intuitive
 
+### Accessible
+
+[Radix Primitives](https://www.radix-ui.com/primitives) is used to build accessible components.
+
+### Desirable
+
+TODO
+
+## Development Guidelines
+
 We should maintain the following guidelines when developing components:
 
 #### Always provide sensible defaults
@@ -63,14 +73,6 @@ Each PR has an associated storybook on chromatic which should be validated with 
 All components should be accompanied by stories. There should be at least one story called **Primary** which should showcase the very basic and default capabilities and usage.
 
 Additional stories should be provided to showcase more advanced use cases of the component. Story names should be concise and each story should only demonstrate a single functionality.
-
-### Accessible
-
-[Radix Primitives](https://www.radix-ui.com/primitives) is used to build accessible components.
-
-### Desirable
-
-TODO
 
 ## How to add new components
 
