@@ -25,10 +25,18 @@
   },
   "border-radius": "Border Radius",
   "border-width": "Border Width",
-  "-- Utilities": {
+  "-- Sizing": {
     "type": "separator",
-    "title": "Utilities"
+    "title": "Sizing"
   },
-  "sizing": "Sizing",
-  "spacing": "Spacing"
+  "height": "Height",
+  "size": "Size",
+  "width": "Width",
+  "-- Spacing": {
+    "type": "separator",
+    "title": "Spacing"
+  },
+  "gap": "Gap",
+  "margin": "Margin",
+  "padding": "Padding"
 }
