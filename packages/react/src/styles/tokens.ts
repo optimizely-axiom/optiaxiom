@@ -202,7 +202,7 @@ export const tokens = {
     loose: "2",
   },
 
-  maxWidth: {
+  maxSize: {
     xs: rem("320px"),
     sm: rem("384px"),
     md: rem("448px"),

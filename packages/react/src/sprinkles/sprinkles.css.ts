@@ -119,7 +119,8 @@ export const props = [
       marginLeft: margins,
       marginRight: margins,
       marginTop: margins,
-      maxWidth: theme.maxWidth,
+      maxHeight: theme.maxSize,
+      maxWidth: theme.maxSize,
       paddingBottom: theme.spacing,
       paddingLeft: theme.spacing,
       paddingRight: theme.spacing,
@@ -137,6 +138,8 @@ export const props = [
       leading: ["lineHeight"],
       /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/spacing/#multiple-sides Documentation} */
       m: ["marginBottom", "marginLeft", "marginRight", "marginTop"],
+      maxH: ["maxHeight"],
+      maxW: ["maxWidth"],
       /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/spacing/#single-side Documentation} */
       mb: ["marginBottom"],
       /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/spacing/#single-side Documentation} */

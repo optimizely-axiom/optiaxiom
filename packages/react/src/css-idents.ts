@@ -254,4 +254,5 @@ export default {
   "9s": "text.accent.magenta",
   "9t": "text.subtle",
   "9u": "inline-block",
+  "9v": "maxHeight",
 } as const;

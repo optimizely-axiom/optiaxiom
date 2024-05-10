@@ -16,7 +16,7 @@ export const Primary: Story = {};
 
 export const Card: Story = {
   render: () => (
-    <Paper maxWidth="sm" p="md">
+    <Paper maxW="sm" p="md">
       <Stack alignItems="start" flexDirection="horizontal">
         <Skeleton rounded="full" size="48" />
 

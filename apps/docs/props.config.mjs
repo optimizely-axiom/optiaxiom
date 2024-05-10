@@ -16,7 +16,7 @@ export default {
     },
     fontSize: { props: ["fontSize"] },
     letterSpacing: { props: ["tracking"] },
-    maxWidth: { props: ["maxWidth"] },
+    maxSize: { props: ["maxH", "maxW"] },
     shadow: { props: ["shadow", "Paper[elevation]"] },
     size: { path: "/sizing/", props: ["gap", "h", "Box[size]", "w"] },
     space: {
