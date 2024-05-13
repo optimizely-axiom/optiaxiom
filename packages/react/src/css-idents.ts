@@ -259,4 +259,7 @@ export default {
   "9x": "borderBottomRightRadius",
   "9y": "borderTopLeftRadius",
   "9z": "borderTopRightRadius",
+  a0: "borderLeftColor",
+  a1: "borderRightColor",
+  a2: "borderTopColor",
 } as const;
