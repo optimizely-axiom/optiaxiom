@@ -266,6 +266,9 @@ export const props = [
     properties: {
       backgroundColor: theme.colors,
       borderBottomColor: theme.colors,
+      borderLeftColor: theme.colors,
+      borderRightColor: theme.colors,
+      borderTopColor: theme.colors,
       boxShadow: theme.boxShadow,
       /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/colors/ Documentation} */
       color: theme.colors,
@@ -274,6 +277,12 @@ export const props = [
     shorthands: {
       /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/colors/ Documentation} */
       bg: ["backgroundColor"],
+      borderColor: [
+        "borderBottomColor",
+        "borderLeftColor",
+        "borderRightColor",
+        "borderTopColor",
+      ],
       shadow: ["boxShadow"],
     },
   }),
