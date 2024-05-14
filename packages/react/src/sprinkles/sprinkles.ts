@@ -12,10 +12,14 @@ export const mapResponsiveValue = createMapValueFn(props[0]);
 type LonghandProps = keyof Pick<
   Parameters<typeof sprinkles>[0],
   | "backgroundColor"
+  | "borderBottomLeftRadius"
+  | "borderBottomRightRadius"
   | "borderBottomWidth"
   | "borderLeftWidth"
   | "borderRadius"
   | "borderRightWidth"
+  | "borderTopLeftRadius"
+  | "borderTopRightRadius"
   | "borderTopWidth"
   | "boxShadow"
   | "height"
