@@ -4,7 +4,7 @@ export function DemoIframe({ src }: { src: string }) {
   return (
     <iframe
       className={styles.base}
-      src={`/optiaxiom${src}`}
+      src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}${src}`}
       title="Demo Preview"
     />
   );
