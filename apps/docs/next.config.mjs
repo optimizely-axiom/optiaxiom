@@ -12,7 +12,7 @@ const withNextra = createNextra({
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  basePath: "/optiaxiom",
+  basePath: process.env.NEXT_PUBLIC_BASE_PATH,
   eslint: {
     ignoreDuringBuilds: true,
   },
