@@ -1,6 +1,19 @@
 export default {
   theme: {
-    borderRadius: { path: "/border-radius/", props: ["rounded"] },
+    borderRadius: {
+      path: "/border-radius/",
+      props: [
+        "rounded",
+        "roundedB",
+        "roundedBL",
+        "roundedBR",
+        "roundedL",
+        "roundedR",
+        "roundedT",
+        "roundedTL",
+        "roundedTR",
+      ],
+    },
     borderWidth: {
       props: [
         "borderBottom",
