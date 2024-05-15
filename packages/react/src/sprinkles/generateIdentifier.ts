@@ -37,9 +37,18 @@ const hash = (value: string) => {
     throw new Error(
       `Could not find short code for value: "${value}".
 
-Maybe add an entry for \`"${(Object.keys(codes).length + 100).toString(36)}": "${value}"\` to "css-idents.ts"?`,
+Maybe add an entry for \`"${nextCode()}": "${value}"\` to "css-idents.ts"?`,
     );
   }
 
   return codes[value];
+};
+
+const nextCode = () => {
+  let nextNumber =
+    Math.max(-1, ...Object.values(codes).map((code) => parseInt(code, 36))) + 1;
+  while (nextNumber.toString(36).match(/^\d+$/)) {
+    nextNumber++;
+  }
+  return nextNumber.toString(36);
 };
