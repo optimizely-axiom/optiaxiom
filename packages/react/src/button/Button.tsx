@@ -1,6 +1,5 @@
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import { Slot, Slottable } from "@radix-ui/react-slot";
-import clsx from "clsx";
 import {
   type ComponentPropsWithRef,
   type ReactNode,
@@ -29,20 +28,7 @@ type ButtonProps = ExtendProps<
 >;
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  (
-    {
-      asChild,
-      children,
-      className,
-      leftSection,
-      rightSection,
-      size,
-      style,
-      variant,
-      ...props
-    },
-    ref,
-  ) => {
+  ({ asChild, children, leftSection, rightSection, ...props }, ref) => {
     const Comp = asChild ? Slot : "button";
     children =
       asChild && isValidElement(children) ? (
@@ -62,12 +48,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const innerRef = useRef<HTMLButtonElement>(null);
     const composedRef = useComposedRefs(ref, innerRef);
 
-    const css = recipe({ size, variant });
-
     return (
       <Stack
         asChild
-        className={clsx(className, css.className)}
         cursor="pointer"
         display="inline-flex"
         flexDirection="horizontal"
@@ -75,9 +58,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         overflow="hidden"
         position="relative"
         rounded="sm"
-        style={{ ...css.style, ...style }}
         transition="colors"
-        {...props}
+        {...recipe(props)}
       >
         <Comp ref={composedRef}>
           {leftSection}
