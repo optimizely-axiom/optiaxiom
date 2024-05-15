@@ -53,14 +53,17 @@ export const createRecipe = <Variants extends VariantGroups>({
   );
 
   return (options?: Resolve<VariantSelection<Variants>>) => {
-    const selections = mapValues(
-      variants,
-      (_v, variantName) =>
-        options?.[variantName] ?? defaultVariants[variantName],
-    ) as VariantSelection<Variants>;
-
     const classNames = [];
     const style = {};
+    const props: Record<string, unknown> = {};
+    const selections = { ...defaultVariants };
+    for (const [name, value] of Object.entries(options ?? {})) {
+      if (name in variants) {
+        selections[name as keyof Variants] = value;
+      } else {
+        props[name] = value;
+      }
+    }
 
     for (const item of defaultClassName) {
       classNames.push(item.className);
@@ -99,7 +102,7 @@ export const createRecipe = <Variants extends VariantGroups>({
       }
     }
 
-    return { className: clsx(classNames), style };
+    return { className: clsx(classNames), style, ...props };
   };
 };
 
