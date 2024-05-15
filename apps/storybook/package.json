@@ -5,7 +5,7 @@
   "version": "0.0.0",
   "scripts": {
     "build": "storybook build --docs",
-    "dev": "storybook dev -p 6006",
+    "dev": "wait-on ../../packages/react/dist/index.d.ts && storybook dev -p 6006",
     "lint": "oas-lint"
   },
   "devDependencies": {
@@ -22,7 +22,8 @@
     "@swc/core": "^1.5.0",
     "chromatic": "^11.3.0",
     "raw-loader": "^4.0.2",
-    "storybook": "~8.0.9"
+    "storybook": "~8.0.9",
+    "wait-on": "^7.2.0"
   },
   "dependencies": {
     "@tabler/icons-react": "^3.2.0"
