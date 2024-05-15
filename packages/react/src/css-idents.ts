@@ -262,12 +262,4 @@ export default {
   a0: "borderLeftColor",
   a1: "borderRightColor",
   a2: "borderTopColor",
-  a3: "gridColumn",
-  a4: "gridTemplateColumns",
-  a5: "flexGrow",
-  a6: "flexShrink",
-  a7: "WebkitFontSmoothing",
-  a8: "transitionDuration",
-  a9: "transitionTimingFunction",
-  aa: "transitionProperty",
 } as const;

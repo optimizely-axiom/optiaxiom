@@ -59,11 +59,7 @@ export const props = defineProperties({
   "@layer": layers.axiom,
   conditions,
   modifiers,
-  properties: {
-    alignItems: ["center", "end", "normal", "start", "stretch"] as const,
-    animation: {
-      pulse: `${animations.pulse} 2s ease-in-out infinite`,
-    },
+  propertiesDynamic: {
     backgroundColor: theme.colors,
     borderBottomColor: theme.colors,
     borderBottomLeftRadius: radiuses,
@@ -79,12 +75,36 @@ export const props = defineProperties({
     borderTopRightRadius: radiuses,
     borderTopWidth: theme.borderWidth,
     boxShadow: theme.boxShadow,
+    /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/colors/ Documentation} */
+    color: theme.colors,
+    fontFamily: theme.fontFamily,
+    fontSize: merge(theme.fontSize, { inherit: "inherit" }),
+    gap: theme.spacing,
+    height: theme.size,
+    letterSpacing: theme.letterSpacing,
+    lineHeight: theme.lineHeight,
+    marginBottom: margins,
+    marginLeft: margins,
+    marginRight: margins,
+    marginTop: margins,
+    maxHeight: theme.maxSize,
+    maxWidth: theme.maxSize,
+    paddingBottom: theme.spacing,
+    paddingLeft: theme.spacing,
+    paddingRight: theme.spacing,
+    paddingTop: theme.spacing,
+    width: theme.size,
+    zIndex: theme.zIndex,
+  },
+  propertiesStatic: {
+    alignItems: ["center", "end", "normal", "start", "stretch"] as const,
+    animation: {
+      pulse: `${animations.pulse} 2s ease-in-out infinite`,
+    },
     colSpan: {
       "1": { gridColumn: "span 1 / span 1" },
       "2": { gridColumn: "span 2 / span 2" },
     },
-    /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/colors/ Documentation} */
-    color: theme.colors,
     cols: mapValues(
       {
         "1": "1",
@@ -121,8 +141,6 @@ export const props = defineProperties({
     flexWrap: {
       wrap: "wrap",
     },
-    fontFamily: theme.fontFamily,
-    fontSize: merge(theme.fontSize, { inherit: "inherit" }),
     fontSmoothing: {
       auto: {
         WebkitFontSmoothing: "auto",
@@ -140,11 +158,9 @@ export const props = defineProperties({
       "800",
       "900",
     ] as const,
-    gap: theme.spacing,
     grow: {
       "1": { flexGrow: 1 },
     },
-    height: theme.size,
     inset: ["0"] as const,
     justifyContent: [
       "center",
@@ -156,19 +172,7 @@ export const props = defineProperties({
       "start",
       "stretch",
     ] as const,
-    letterSpacing: theme.letterSpacing,
-    lineHeight: theme.lineHeight,
-    marginBottom: margins,
-    marginLeft: margins,
-    marginRight: margins,
-    marginTop: margins,
-    maxHeight: theme.maxSize,
-    maxWidth: theme.maxSize,
     overflow: ["auto", "hidden", "visible"] as const,
-    paddingBottom: theme.spacing,
-    paddingLeft: theme.spacing,
-    paddingRight: theme.spacing,
-    paddingTop: theme.spacing,
     placeItems: ["center"] as const,
     pointerEvents: ["none"] as const,
     position: ["absolute", "relative", "static", "sticky"] as const,
@@ -190,8 +194,6 @@ export const props = defineProperties({
       },
     },
     whiteSpace: ["nowrap"] as const,
-    width: theme.size,
-    zIndex: theme.zIndex,
   },
   shorthands: {
     /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/colors/ Documentation} */
