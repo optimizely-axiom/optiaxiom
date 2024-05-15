@@ -9,7 +9,10 @@ import {
 import { Item } from "./Item";
 
 export const Canvas = ({ children }: { children: ReactNode }) => (
-  <Stack flexDirection="horizontal" justifyContent="space-around">
+  <Stack
+    flexDirection={["vertical", "horizontal"]}
+    justifyContent="space-around"
+  >
     {Children.toArray(children)
       .filter(isValidElement<ComponentPropsWithRef<typeof Box>>)
       .map((item, index) => (
