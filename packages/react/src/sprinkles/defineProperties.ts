@@ -20,15 +20,19 @@ import {
 const escapeCss = (value: string) => value.replaceAll(/[\\/.:]/g, "\\$&");
 
 export const defineProperties = <
-  Properties extends AtomicProperties,
-  Shorthands extends { [name: string]: Array<keyof Properties> } = never,
+  PropertiesDynamic extends AtomicProperties,
+  PropertiesStatic extends AtomicProperties,
+  Shorthands extends {
+    [name: string]: Array<keyof PropertiesDynamic | keyof PropertiesStatic>;
+  } = never,
   Conditions extends ConditionProperties = never,
   Modifiers extends Record<`:${string}`, string> = never,
 >(options: {
   "@layer"?: string;
   conditions?: Conditions;
   modifiers?: Modifiers;
-  properties: Properties;
+  propertiesDynamic: PropertiesDynamic;
+  propertiesStatic: PropertiesStatic;
   shorthands?: Shorthands;
 }) => {
   const conditions = options.conditions?.conditions ?? { "": null };
@@ -43,7 +47,7 @@ export const defineProperties = <
   );
   const styleValues: unknown[] = [];
 
-  for (const [property, values] of Object.entries(options.properties)) {
+  const process = (property: string, values: unknown, isStatic = false) => {
     styles[property] = { mappings: [property], values: {} };
     const normalizedValues = Array.isArray(values)
       ? Object.fromEntries(values.map((value) => [value, value]))
@@ -53,17 +57,22 @@ export const defineProperties = <
       protoValue && typeof protoValue === "object"
         ? protoValue
         : { [property]: protoValue };
-    if (!styleValues.includes(normalizedValues)) {
-      styleValues.push(normalizedValues);
+    if (isStatic) {
+      (styles[property] as AtomicStyle<typeof property, unknown>).values =
+        Object.keys(normalizedValues);
+    } else {
+      if (!styleValues.includes(normalizedValues)) {
+        styleValues.push(normalizedValues);
+      }
+      (styles[property] as AtomicStyle<typeof property, unknown>).values =
+        styleValues.indexOf(normalizedValues);
     }
-    (styles[property] as AtomicStyle<typeof property, unknown>).values =
-      Array.isArray(values) ? values : styleValues.indexOf(normalizedValues);
     for (const [rawCondition, query] of Object.entries(conditions)) {
       const condition =
         rawCondition === options.conditions?.defaultCondition
           ? ""
           : rawCondition;
-      if (Array.isArray(values)) {
+      if (isStatic) {
         for (const [name, value] of Object.entries(normalizedValues)) {
           let rule =
             value && typeof value === "object" ? value : { [property]: value };
@@ -133,6 +142,12 @@ export const defineProperties = <
         }
       }
     }
+  };
+  for (const [property, values] of Object.entries(options.propertiesDynamic)) {
+    process(property, values);
+  }
+  for (const [property, values] of Object.entries(options.propertiesStatic)) {
+    process(property, values, true);
   }
 
   return {
@@ -147,7 +162,8 @@ export const defineProperties = <
     ...(options.modifiers && {
       modifiers: Object.keys(options.modifiers),
     }),
-  } as AtomicStyles<Properties> &
+  } as AtomicStyles<PropertiesDynamic> &
+    AtomicStyles<PropertiesStatic> &
     // eslint-disable-next-line perfectionist/sort-intersection-types
     ([Conditions] extends [never] ? unknown : ConditionOptions<Conditions>) &
     ([Modifiers] extends [never] ? unknown : ModifierOptions<Modifiers>) &
