@@ -78,7 +78,12 @@ export const props = defineProperties({
     /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/colors/ Documentation} */
     color: theme.colors,
     fontFamily: theme.fontFamily,
-    fontSize: merge(theme.fontSize, { inherit: "inherit" }),
+    fontSize: merge(theme.fontSize, {
+      inherit: {
+        fontSize: "inherit",
+        lineHeight: "inherit",
+      },
+    }),
     gap: theme.spacing,
     height: theme.size,
     letterSpacing: theme.letterSpacing,
