@@ -33,10 +33,8 @@ type PatternOptions<Variants extends VariantGroups> = {
 type Resolve<T> = { [Key in keyof T]: T[Key] } & NonNullable<unknown>;
 
 function complexSprinkles(rule: RecipeStyleRule) {
-  return clsx(
-    (Array.isArray(rule) ? rule : [rule]).map((rule) =>
-      typeof rule === "string" ? rule : sprinkles(rule),
-    ),
+  return (Array.isArray(rule) ? rule : [rule]).map((rule) =>
+    typeof rule === "string" ? { className: rule } : sprinkles(rule),
   );
 }
 
@@ -61,28 +59,47 @@ export const createRecipe = <Variants extends VariantGroups>({
         options?.[variantName] ?? defaultVariants[variantName],
     ) as VariantSelection<Variants>;
 
-    return clsx(
-      defaultClassName,
-      options &&
-        Object.values(
-          mapValues(
-            variantClassNames,
-            (variant, variantName) =>
-              selections[variantName] &&
-              // @ts-expect-error -- too complex
-              variant[
-                typeof selections[variantName] === "boolean"
-                  ? selections[variantName]
-                    ? "true"
-                    : "false"
-                  : selections[variantName]
-              ],
-          ),
-        ),
-      compounds
-        .filter(([variants]) => shouldApplyCompound(variants, selections))
-        .map(([, compoundClassName]) => compoundClassName),
-    );
+    const classNames = [];
+    const style = {};
+
+    for (const item of defaultClassName) {
+      classNames.push(item.className);
+      if ("style" in item) {
+        Object.assign(style, item.style);
+      }
+    }
+    for (const items of Object.values(
+      mapValues(
+        variantClassNames,
+        (variant, variantName) =>
+          selections[variantName] &&
+          // @ts-expect-error -- too complex
+          variant[
+            typeof selections[variantName] === "boolean"
+              ? selections[variantName]
+                ? "true"
+                : "false"
+              : selections[variantName]
+          ],
+      ),
+    )) {
+      for (const item of items) {
+        classNames.push(item.className);
+        if ("style" in item) {
+          Object.assign(style, item.style);
+        }
+      }
+    }
+    for (const item of compounds
+      .filter(([variants]) => shouldApplyCompound(variants, selections))
+      .flatMap(([, compoundClassName]) => compoundClassName)) {
+      classNames.push(item.className);
+      if ("style" in item) {
+        Object.assign(style, item.style);
+      }
+    }
+
+    return { className: clsx(classNames), style };
   };
 };
 

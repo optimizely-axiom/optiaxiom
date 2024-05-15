@@ -7,9 +7,14 @@ import type {
   Values,
 } from "./types";
 
-import { type Ident, generateIdentifier } from "./generateIdentifier";
+import {
+  type Ident,
+  escapeVar,
+  generateIdentifier,
+} from "./generateIdentifier";
 
 type SprinklesProperties = {
+  styleValues: Array<Record<string, unknown>>;
   styles: {
     [property: string]: AtomicStyle | ShorthandStyle;
   };
@@ -94,6 +99,8 @@ export const createSprinkles = <
       }
 
       const classNames = [];
+      const style: Record<string, unknown> = {};
+
       for (const modifier in normalizedProps) {
         const rule = normalizedProps[modifier];
         for (const property in rule) {
@@ -114,12 +121,15 @@ export const createSprinkles = <
             throw new Error(`"${property}" is not a valid sprinkle prop`);
           }
 
-          const { conditions, modifiers, styles } = config;
+          const { conditions, modifiers, styleValues, styles } = config;
           for (const prop of styles[property].mappings) {
             const sprinkle = styles[prop];
             if (!sprinkle || !("values" in sprinkle)) {
               throw new Error(`"${prop}" is not a valid sprinkle prop`);
             }
+            const values = Array.isArray(sprinkle.values)
+              ? sprinkle.values
+              : styleValues[sprinkle.values as number];
             if (process.env.NODE_ENV !== "production") {
               if (
                 modifier !== baseModifier &&
@@ -155,40 +165,78 @@ export const createSprinkles = <
                 : typeof rawName === "object"
                   ? Object.entries(rawName)
                   : [[config.conditions?.defaultCondition ?? "", rawName]];
-            for (const [condition, name] of normalizedNames) {
+            for (const [rawCondition, name] of normalizedNames) {
               if (process.env.NODE_ENV !== "production") {
-                if (!(sprinkle.values as Array<string>).includes(name)) {
-                  throw new Error(
-                    `"${prop}" has no value ${JSON.stringify(name)}. Possible values are ${JSON.stringify(sprinkle.values)}`,
-                  );
-                }
-
                 if (
                   conditions &&
-                  !conditions.responsiveArray.includes(condition)
+                  !conditions.responsiveArray.includes(rawCondition)
                 ) {
                   throw new Error(
-                    `"${prop}" has no condition named "${condition}". Possible values are ${JSON.stringify(conditions.responsiveArray)}`,
+                    `"${prop}" has no condition named "${rawCondition}". Possible values are ${JSON.stringify(conditions.responsiveArray)}`,
+                  );
+                }
+              }
+              if (Array.isArray(values)) {
+                if (process.env.NODE_ENV !== "production") {
+                  if (!values.includes(name)) {
+                    throw new Error(
+                      `"${prop}" has no value ${JSON.stringify(name)}. Possible values are ${JSON.stringify(values)}`,
+                    );
+                  }
+                }
+              } else {
+                if (!(name in values)) {
+                  throw new Error(
+                    `"${prop}" has no value ${JSON.stringify(name)}. Possible values are ${JSON.stringify(Object.keys(values))}`,
                   );
                 }
               }
 
-              classNames.push(
-                generateIdentifier(
-                  condition === config.conditions?.defaultCondition
-                    ? ""
-                    : condition,
+              const condition =
+                rawCondition === config.conditions?.defaultCondition
+                  ? ""
+                  : rawCondition;
+              if (Array.isArray(values)) {
+                classNames.push(
+                  generateIdentifier(
+                    condition,
+                    modifier.slice(1) as Ident,
+                    prop as Ident,
+                    name,
+                  ),
+                );
+              } else {
+                const id = generateIdentifier(
+                  condition,
                   modifier.slice(1) as Ident,
                   prop as Ident,
-                  name,
-                ),
-              );
+                );
+                classNames.push(id);
+
+                const value = values[name];
+                const rule =
+                  value && typeof value === "object"
+                    ? value
+                    : { [prop]: value };
+                for (const [k, v] of Object.entries(rule)) {
+                  style[
+                    `--${escapeVar(
+                      generateIdentifier(
+                        condition,
+                        modifier.slice(1) as Ident,
+                        prop as Ident,
+                        k as Ident,
+                      ),
+                    )}`
+                  ] = v;
+                }
+              }
             }
           }
         }
       }
 
-      return classNames.join(" ");
+      return { className: classNames.join(" "), style };
     },
     { properties },
   );
