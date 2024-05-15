@@ -55,235 +55,212 @@ const modifiers = {
   ),
 };
 
-export const props = [
-  defineProperties({
-    "@layer": layers.axiom,
-    conditions,
-    properties: {
-      alignItems: ["center", "end", "normal", "start", "stretch"] as const,
-      colSpan: {
-        "1": { gridColumn: "span 1 / span 1" },
-        "2": { gridColumn: "span 2 / span 2" },
-      },
-      cols: mapValues(
-        {
-          "1": "1",
-          "2": "2",
-          "3": "3",
-          "4": "4",
-        },
-        (cols) => ({
-          gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))`,
-        }),
-      ),
-      display: [
-        "none",
-        "flex",
-        "grid",
-        "block",
-        "inline",
-        "inline-block",
-        "inline-flex",
-        "table-cell",
-      ] as const,
-      flex: {
-        "1": "1 1 0%",
-        auto: "1 1 auto",
-        none: "none",
-      },
-      flexDirection: {
-        column: "column",
-        horizontal: "row",
-        row: "row",
-        vertical: "column",
-      },
-      flexWrap: {
-        wrap: "wrap",
-      },
-      gap: theme.spacing,
-      grow: {
-        "1": { flexGrow: 1 },
-      },
-      height: theme.size,
-      justifyContent: [
-        "center",
-        "end",
-        "normal",
-        "space-around",
-        "space-between",
-        "space-evenly",
-        "start",
-        "stretch",
-      ] as const,
-      letterSpacing: theme.letterSpacing,
-      lineHeight: theme.lineHeight,
-      marginBottom: margins,
-      marginLeft: margins,
-      marginRight: margins,
-      marginTop: margins,
-      maxHeight: theme.maxSize,
-      maxWidth: theme.maxSize,
-      paddingBottom: theme.spacing,
-      paddingLeft: theme.spacing,
-      paddingRight: theme.spacing,
-      paddingTop: theme.spacing,
-      placeItems: ["center"] as const,
-      shrink: {
-        "1": { flexShrink: 1 },
-      },
-      textAlign: ["start", "center", "justify"] as const,
-      width: theme.size,
+export const props = defineProperties({
+  "@layer": layers.axiom,
+  conditions,
+  modifiers,
+  properties: {
+    alignItems: ["center", "end", "normal", "start", "stretch"] as const,
+    animation: {
+      pulse: `${animations.pulse} 2s ease-in-out infinite`,
     },
-    shorthands: {
-      /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/sizing/#height Documentation} */
-      h: ["height"],
-      leading: ["lineHeight"],
-      /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/spacing/#multiple-sides Documentation} */
-      m: ["marginBottom", "marginLeft", "marginRight", "marginTop"],
-      maxH: ["maxHeight"],
-      maxW: ["maxWidth"],
-      /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/spacing/#single-side Documentation} */
-      mb: ["marginBottom"],
-      /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/spacing/#single-side Documentation} */
-      ml: ["marginLeft"],
-      /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/spacing/#single-side Documentation} */
-      mr: ["marginRight"],
-      /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/spacing/#single-side Documentation} */
-      mt: ["marginTop"],
-      /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/spacing/#multiple-sides Documentation} */
-      mx: ["marginLeft", "marginRight"],
-      /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/spacing/#multiple-sides Documentation} */
-      my: ["marginBottom", "marginTop"],
-      /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/spacing/#multiple-sides-1 Documentation} */
-      p: ["paddingBottom", "paddingLeft", "paddingRight", "paddingTop"],
-      /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/spacing/#single-side-1 Documentation} */
-      pb: ["paddingBottom"],
-      /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/spacing/#single-side-1 Documentation} */
-      pl: ["paddingLeft"],
-      /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/spacing/#single-side-1 Documentation} */
-      pr: ["paddingRight"],
-      /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/spacing/#single-side-1 Documentation} */
-      pt: ["paddingTop"],
-      /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/spacing/#multiple-sides-1 Documentation} */
-      px: ["paddingLeft", "paddingRight"],
-      /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/spacing/#multiple-sides-1 Documentation} */
-      py: ["paddingBottom", "paddingTop"],
-      /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/sizing/#size Documentation} */
-      size: ["height", "width"],
-      tracking: ["letterSpacing"],
-      /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/sizing/#width Documentation} */
-      w: ["width"],
+    backgroundColor: theme.colors,
+    borderBottomColor: theme.colors,
+    borderBottomLeftRadius: radiuses,
+    borderBottomRightRadius: radiuses,
+    borderBottomWidth: theme.borderWidth,
+    borderLeftColor: theme.colors,
+    borderLeftWidth: theme.borderWidth,
+    borderRadius: radiuses,
+    borderRightColor: theme.colors,
+    borderRightWidth: theme.borderWidth,
+    borderTopColor: theme.colors,
+    borderTopLeftRadius: radiuses,
+    borderTopRightRadius: radiuses,
+    borderTopWidth: theme.borderWidth,
+    boxShadow: theme.boxShadow,
+    colSpan: {
+      "1": { gridColumn: "span 1 / span 1" },
+      "2": { gridColumn: "span 2 / span 2" },
     },
-  }),
-  defineProperties({
-    "@layer": layers.axiom,
-    properties: {
-      animation: {
-        pulse: `${animations.pulse} 2s ease-in-out infinite`,
+    /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/colors/ Documentation} */
+    color: theme.colors,
+    cols: mapValues(
+      {
+        "1": "1",
+        "2": "2",
+        "3": "3",
+        "4": "4",
       },
-      borderBottomLeftRadius: radiuses,
-      borderBottomRightRadius: radiuses,
-      borderBottomWidth: theme.borderWidth,
-      borderLeftWidth: theme.borderWidth,
-      borderRadius: radiuses,
-      borderRightWidth: theme.borderWidth,
-      borderTopLeftRadius: radiuses,
-      borderTopRightRadius: radiuses,
-      borderTopWidth: theme.borderWidth,
-      cursor: ["default", "pointer"] as const,
-      fontFamily: theme.fontFamily,
-      fontSmoothing: {
-        auto: {
-          WebkitFontSmoothing: "auto",
-        },
+      (cols) => ({
+        gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))`,
+      }),
+    ),
+    cursor: ["default", "pointer"] as const,
+    display: [
+      "none",
+      "flex",
+      "grid",
+      "block",
+      "inline",
+      "inline-block",
+      "inline-flex",
+      "table-cell",
+    ] as const,
+    flex: {
+      "1": "1 1 0%",
+      auto: "1 1 auto",
+      none: "none",
+    },
+    flexDirection: {
+      column: "column",
+      horizontal: "row",
+      row: "row",
+      vertical: "column",
+    },
+    flexWrap: {
+      wrap: "wrap",
+    },
+    fontFamily: theme.fontFamily,
+    fontSize: merge(theme.fontSize, { inherit: "inherit" }),
+    fontSmoothing: {
+      auto: {
+        WebkitFontSmoothing: "auto",
       },
-      fontStyle: ["normal", "italic"] as const,
-      fontWeight: [
-        "100",
-        "200",
-        "300",
-        "400",
-        "500",
-        "600",
-        "700",
-        "800",
-        "900",
-      ] as const,
-      inset: ["0"] as const,
-      overflow: ["auto", "hidden", "visible"] as const,
-      pointerEvents: ["none"] as const,
-      position: ["absolute", "relative", "static", "sticky"] as const,
-      textTransform: ["capitalize", "none", "uppercase"] as const,
-      transition: {
-        all: {
-          ...transitions,
-          transitionProperty: "all",
-        },
-        colors: {
-          ...transitions,
-          transitionProperty:
-            "background-color, border-color, color, fill, stroke, text-decoration-color",
-        },
+    },
+    fontStyle: ["normal", "italic"] as const,
+    fontWeight: [
+      "100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "600",
+      "700",
+      "800",
+      "900",
+    ] as const,
+    gap: theme.spacing,
+    grow: {
+      "1": { flexGrow: 1 },
+    },
+    height: theme.size,
+    inset: ["0"] as const,
+    justifyContent: [
+      "center",
+      "end",
+      "normal",
+      "space-around",
+      "space-between",
+      "space-evenly",
+      "start",
+      "stretch",
+    ] as const,
+    letterSpacing: theme.letterSpacing,
+    lineHeight: theme.lineHeight,
+    marginBottom: margins,
+    marginLeft: margins,
+    marginRight: margins,
+    marginTop: margins,
+    maxHeight: theme.maxSize,
+    maxWidth: theme.maxSize,
+    overflow: ["auto", "hidden", "visible"] as const,
+    paddingBottom: theme.spacing,
+    paddingLeft: theme.spacing,
+    paddingRight: theme.spacing,
+    paddingTop: theme.spacing,
+    placeItems: ["center"] as const,
+    pointerEvents: ["none"] as const,
+    position: ["absolute", "relative", "static", "sticky"] as const,
+    shrink: {
+      "1": { flexShrink: 1 },
+    },
+    textAlign: ["start", "center", "justify"] as const,
+    textDecoration: ["none", "underline"] as const,
+    textTransform: ["capitalize", "none", "uppercase"] as const,
+    transition: {
+      all: {
+        ...transitions,
+        transitionProperty: "all",
       },
-      whiteSpace: ["nowrap"] as const,
-      zIndex: theme.zIndex,
+      colors: {
+        ...transitions,
+        transitionProperty:
+          "background-color, border-color, color, fill, stroke, text-decoration-color",
+      },
     },
-    shorthands: {
-      border: [
-        "borderBottomWidth",
-        "borderLeftWidth",
-        "borderRightWidth",
-        "borderTopWidth",
-      ],
-      borderBottom: ["borderBottomWidth"],
-      borderLeft: ["borderLeftWidth"],
-      borderRight: ["borderRightWidth"],
-      borderTop: ["borderTopWidth"],
-      /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/border-radius/ Documentation} */
-      rounded: ["borderRadius"],
-      roundedB: ["borderBottomLeftRadius", "borderBottomRightRadius"],
-      roundedBL: ["borderBottomLeftRadius"],
-      roundedBR: ["borderBottomRightRadius"],
-      roundedL: ["borderBottomLeftRadius", "borderTopLeftRadius"],
-      roundedR: ["borderBottomRightRadius", "borderTopRightRadius"],
-      roundedT: ["borderTopLeftRadius", "borderTopRightRadius"],
-      roundedTL: ["borderTopLeftRadius"],
-      roundedTR: ["borderTopRightRadius"],
-      z: ["zIndex"],
-    },
-  }),
-  defineProperties({
-    "@layer": layers.axiom,
-    conditions,
-    modifiers,
-    properties: {
-      fontSize: merge(theme.fontSize, { inherit: "inherit" }),
-    },
-  }),
-  defineProperties({
-    "@layer": layers.axiom,
-    modifiers,
-    properties: {
-      backgroundColor: theme.colors,
-      borderBottomColor: theme.colors,
-      borderLeftColor: theme.colors,
-      borderRightColor: theme.colors,
-      borderTopColor: theme.colors,
-      boxShadow: theme.boxShadow,
-      /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/colors/ Documentation} */
-      color: theme.colors,
-      textDecoration: ["none", "underline"] as const,
-    },
-    shorthands: {
-      /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/colors/ Documentation} */
-      bg: ["backgroundColor"],
-      borderColor: [
-        "borderBottomColor",
-        "borderLeftColor",
-        "borderRightColor",
-        "borderTopColor",
-      ],
-      shadow: ["boxShadow"],
-    },
-  }),
-] as const;
+    whiteSpace: ["nowrap"] as const,
+    width: theme.size,
+    zIndex: theme.zIndex,
+  },
+  shorthands: {
+    /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/colors/ Documentation} */
+    bg: ["backgroundColor"],
+    border: [
+      "borderBottomWidth",
+      "borderLeftWidth",
+      "borderRightWidth",
+      "borderTopWidth",
+    ],
+    borderBottom: ["borderBottomWidth"],
+    borderColor: [
+      "borderBottomColor",
+      "borderLeftColor",
+      "borderRightColor",
+      "borderTopColor",
+    ],
+    borderLeft: ["borderLeftWidth"],
+    borderRight: ["borderRightWidth"],
+    borderTop: ["borderTopWidth"],
+    /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/sizing/#height Documentation} */
+    h: ["height"],
+    leading: ["lineHeight"],
+    /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/spacing/#multiple-sides Documentation} */
+    m: ["marginBottom", "marginLeft", "marginRight", "marginTop"],
+    maxH: ["maxHeight"],
+    maxW: ["maxWidth"],
+    /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/spacing/#single-side Documentation} */
+    mb: ["marginBottom"],
+    /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/spacing/#single-side Documentation} */
+    ml: ["marginLeft"],
+    /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/spacing/#single-side Documentation} */
+    mr: ["marginRight"],
+    /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/spacing/#single-side Documentation} */
+    mt: ["marginTop"],
+    /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/spacing/#multiple-sides Documentation} */
+    mx: ["marginLeft", "marginRight"],
+    /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/spacing/#multiple-sides Documentation} */
+    my: ["marginBottom", "marginTop"],
+    /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/spacing/#multiple-sides-1 Documentation} */
+    p: ["paddingBottom", "paddingLeft", "paddingRight", "paddingTop"],
+    /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/spacing/#single-side-1 Documentation} */
+    pb: ["paddingBottom"],
+    /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/spacing/#single-side-1 Documentation} */
+    pl: ["paddingLeft"],
+    /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/spacing/#single-side-1 Documentation} */
+    pr: ["paddingRight"],
+    /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/spacing/#single-side-1 Documentation} */
+    pt: ["paddingTop"],
+    /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/spacing/#multiple-sides-1 Documentation} */
+    px: ["paddingLeft", "paddingRight"],
+    /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/spacing/#multiple-sides-1 Documentation} */
+    py: ["paddingBottom", "paddingTop"],
+    /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/border-radius/ Documentation} */
+    rounded: ["borderRadius"],
+    roundedB: ["borderBottomLeftRadius", "borderBottomRightRadius"],
+    roundedBL: ["borderBottomLeftRadius"],
+    roundedBR: ["borderBottomRightRadius"],
+    roundedL: ["borderBottomLeftRadius", "borderTopLeftRadius"],
+    roundedR: ["borderBottomRightRadius", "borderTopRightRadius"],
+    roundedT: ["borderTopLeftRadius", "borderTopRightRadius"],
+    roundedTL: ["borderTopLeftRadius"],
+    roundedTR: ["borderTopRightRadius"],
+    shadow: ["boxShadow"],
+    /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/sizing/#size Documentation} */
+    size: ["height", "width"],
+    tracking: ["letterSpacing"],
+    /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/sizing/#width Documentation} */
+    w: ["width"],
+    z: ["zIndex"],
+  },
+});

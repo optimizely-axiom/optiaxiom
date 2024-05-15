@@ -6,8 +6,8 @@ import { createMapValueFn } from "./createMapValueFn";
 import { createSprinkles } from "./createSprinkles";
 import { props } from "./sprinkles.css";
 
-export const sprinkles = createSprinkles(...props);
-export const mapResponsiveValue = createMapValueFn(props[0]);
+export const sprinkles = createSprinkles(props);
+export const mapResponsiveValue = createMapValueFn(props);
 
 type LonghandProps = keyof Pick<
   Parameters<typeof sprinkles>[0],
