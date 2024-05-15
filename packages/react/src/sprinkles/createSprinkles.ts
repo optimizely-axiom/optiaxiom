@@ -134,10 +134,10 @@ export const createSprinkles = <
               if (
                 modifier !== baseModifier &&
                 modifiers &&
-                !modifier.includes(modifier)
+                !modifiers.includes(modifier)
               ) {
                 throw new Error(
-                  `"${prop}" has no modifier named "${modifier}". Possible values are ${JSON.stringify(Object.keys(modifiers))}`,
+                  `"${prop}" has no modifier named "${modifier}". Possible values are ${JSON.stringify(modifiers)}`,
                 );
               }
             }
