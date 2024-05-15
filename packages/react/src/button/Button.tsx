@@ -37,6 +37,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       leftSection,
       rightSection,
       size,
+      style,
       variant,
       ...props
     },
@@ -61,10 +62,12 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const innerRef = useRef<HTMLButtonElement>(null);
     const composedRef = useComposedRefs(ref, innerRef);
 
+    const css = recipe({ size, variant });
+
     return (
       <Stack
         asChild
-        className={clsx(className, recipe({ size, variant }))}
+        className={clsx(className, css.className)}
         cursor="pointer"
         display="inline-flex"
         flexDirection="horizontal"
@@ -72,6 +75,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         overflow="hidden"
         position="relative"
         rounded="sm"
+        style={{ ...css.style, ...style }}
         transition="colors"
         {...props}
       >

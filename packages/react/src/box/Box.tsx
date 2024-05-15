@@ -20,7 +20,7 @@ type BoxProps = ExtendProps<
 >;
 
 export const Box = forwardRef<HTMLDivElement, BoxProps>(
-  ({ asChild, className, sx = {}, ...props }, ref) => {
+  ({ asChild, className, style, sx = {}, ...props }, ref) => {
     const Comp = asChild ? Slot : "div";
 
     const sprinkleProps: Sprinkles = {};
@@ -35,14 +35,16 @@ export const Box = forwardRef<HTMLDivElement, BoxProps>(
       }
     }
 
+    const css = sprinkles({ ...sprinkleProps, ...sx });
+
     return (
       <Comp
-        className={clsx(
-          className,
-          styles.base,
-          sprinkles({ ...sprinkleProps, ...sx }),
-        )}
+        className={clsx(className, styles.base, css.className)}
         ref={ref}
+        style={{
+          ...css.style,
+          ...style,
+        }}
         {...restProps}
       />
     );

@@ -51,6 +51,7 @@ export type AtomicStyle<M = string, V = unknown> = {
   values: V;
 };
 export type AtomicStyles<Properties> = {
+  styleValues: Array<Record<string, unknown>>;
   styles: {
     [Property in keyof Properties]: AtomicStyle<Property, Properties[Property]>;
   };

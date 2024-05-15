@@ -11,7 +11,13 @@ import type {
 } from "./types";
 
 import { mapValues } from "../utils";
-import { type Ident, generateIdentifier } from "./generateIdentifier";
+import {
+  type Ident,
+  escapeVar,
+  generateIdentifier,
+} from "./generateIdentifier";
+
+const escapeCss = (value: string) => value.replaceAll(/[\\/.:]/g, "\\$&");
 
 export const defineProperties = <
   Properties extends AtomicProperties,
@@ -35,46 +41,102 @@ export const defineProperties = <
     options.shorthands ?? {},
     (mappings) => ({ mappings }),
   );
+  const styleValues: unknown[] = [];
 
   for (const [property, values] of Object.entries(options.properties)) {
-    styles[property] = { mappings: [property], values: [] };
+    styles[property] = { mappings: [property], values: {} };
     const normalizedValues = Array.isArray(values)
       ? Object.fromEntries(values.map((value) => [value, value]))
       : values;
-    for (const [name, value] of Object.entries(normalizedValues)) {
-      (
-        styles[property] as AtomicStyle<typeof property, Array<typeof name>>
-      ).values.push(name);
-      const rule =
-        value && typeof value === "object" ? value : { [property]: value };
-      for (const [condition, query] of Object.entries(conditions)) {
-        let conditionRule = rule;
-        if (query?.["@media"]) {
-          conditionRule = { "@media": { [query["@media"]]: conditionRule } };
+    const [, protoValue] = Object.entries(normalizedValues)[0];
+    const protoRule =
+      protoValue && typeof protoValue === "object"
+        ? protoValue
+        : { [property]: protoValue };
+    if (!styleValues.includes(normalizedValues)) {
+      styleValues.push(normalizedValues);
+    }
+    (styles[property] as AtomicStyle<typeof property, unknown>).values =
+      Array.isArray(values) ? values : styleValues.indexOf(normalizedValues);
+    for (const [rawCondition, query] of Object.entries(conditions)) {
+      const condition =
+        rawCondition === options.conditions?.defaultCondition
+          ? ""
+          : rawCondition;
+      if (Array.isArray(values)) {
+        for (const [name, value] of Object.entries(normalizedValues)) {
+          let rule =
+            value && typeof value === "object" ? value : { [property]: value };
+          if (query?.["@media"]) {
+            rule = { "@media": { [query["@media"]]: rule } };
+          }
+          if (options["@layer"]) {
+            rule = {
+              "@layer": { [options["@layer"]]: rule },
+            };
+          }
+          globalStyle(
+            Object.entries(modifiers)
+              .map(([modifier, selector]) =>
+                selector.replace(
+                  "&",
+                  `.${escapeCss(
+                    generateIdentifier(
+                      condition as Ident,
+                      modifier.slice(1) as Ident,
+                      property as Ident,
+                      name as Ident,
+                    ),
+                  )}`,
+                ),
+              )
+              .join(", "),
+            rule,
+          );
         }
-        if (options["@layer"]) {
-          conditionRule = { "@layer": { [options["@layer"]]: conditionRule } };
-        }
-        const selectors = Object.entries(modifiers).map(
-          ([modifier, selector]) =>
+      } else {
+        for (const [modifier, selector] of Object.entries(modifiers)) {
+          let rule = Object.fromEntries<unknown>(
+            Object.entries(protoRule).map(([name]) => [
+              name,
+              `var(--${escapeVar(
+                generateIdentifier(
+                  condition as Ident,
+                  modifier.slice(1) as Ident,
+                  property as Ident,
+                  name as Ident,
+                ),
+              )})`,
+            ]),
+          );
+          if (query?.["@media"]) {
+            rule = { "@media": { [query["@media"]]: rule } };
+          }
+          if (options["@layer"]) {
+            rule = {
+              "@layer": { [options["@layer"]]: rule },
+            };
+          }
+          globalStyle(
             selector.replace(
               "&",
-              `.${generateIdentifier(
-                (condition === options.conditions?.defaultCondition
-                  ? ""
-                  : condition) as Ident,
-                modifier.slice(1) as Ident,
-                property as Ident,
-                name as Ident,
-              ).replaceAll(/[\\/.:]/g, "\\$&")}`,
+              `.${escapeCss(
+                generateIdentifier(
+                  condition as Ident,
+                  modifier.slice(1) as Ident,
+                  property as Ident,
+                ),
+              )}`,
             ),
-        );
-        globalStyle(selectors.join(", "), conditionRule);
+            rule,
+          );
+        }
       }
     }
   }
 
   return {
+    styleValues,
     styles,
     ...(options.conditions && {
       conditions: {

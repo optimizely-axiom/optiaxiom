@@ -7,22 +7,29 @@ export type Ident = (typeof cssIdents)[keyof typeof cssIdents];
 
 const prefix = "sx";
 
+export const escapeVar = (value: string) =>
+  value.replaceAll(/[^A-Z0-9-_]/gi, "_");
+
 export const generateIdentifier = (
   condition: Ident,
   modifier: Ident,
   property: Ident,
-  name: Ident,
+  name?: Ident,
 ) => {
   return process.env.NODE_ENV === "production"
     ? [
         prefix,
-        ...[condition, modifier, property, name].filter(Boolean).map(hash),
+        ...[condition, modifier, property, name === property ? "" : name ?? ""]
+          .filter(Boolean)
+          .map(hash),
       ].join("")
     : [
         [condition, modifier, prefix].filter(Boolean).join(":"),
         property,
-        name,
-      ].join("-");
+        name === property ? "" : name,
+      ]
+        .filter(Boolean)
+        .join("-");
 };
 
 const hash = (value: string) => {
