@@ -12,24 +12,24 @@
   },
   "dependencies": {
     "ci-info": "^4.0.0",
-    "cli-table3": "^0.6.4",
+    "cli-table3": "^0.6.5",
     "gzip-size": "^7.0.0",
-    "monosize": "^0.5.0",
+    "monosize": "^0.5.1",
     "pretty-bytes": "^6.1.1",
     "yargs": "^17.7.2"
   },
   "devDependencies": {
-    "@types/node": "^20.12.7",
+    "@types/node": "^20.12.12",
     "@types/yargs": "^17.0.32",
-    "@typescript-eslint/eslint-plugin": "^7.7.1",
-    "@typescript-eslint/parser": "^7.7.1",
+    "@typescript-eslint/eslint-plugin": "^7.9.0",
+    "@typescript-eslint/parser": "^7.9.0",
     "eslint": "^8.57.0",
     "eslint-plugin-jsx-a11y": "^6.8.0",
-    "eslint-plugin-perfectionist": "^2.9.0",
+    "eslint-plugin-perfectionist": "^2.10.0",
     "eslint-plugin-react": "^7.34.1",
-    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-testing-library": "^6.2.2",
-    "globals": "^15.0.0",
-    "typescript-eslint": "^7.7.1"
+    "globals": "^15.2.0",
+    "typescript-eslint": "^7.9.0"
   }
 }

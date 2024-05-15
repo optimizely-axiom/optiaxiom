@@ -23,6 +23,6 @@
     "unist-util-visit": "^5.0.0"
   },
   "dependencies": {
-    "@tabler/icons-react": "^3.2.0"
+    "@tabler/icons-react": "^3.3.0"
   }
 }
