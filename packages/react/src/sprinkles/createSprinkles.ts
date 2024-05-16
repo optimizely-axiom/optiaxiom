@@ -51,7 +51,7 @@ type SprinkleStates<Args extends ReadonlyArray<unknown>> = Args extends [
 ]
   ? (L extends SprinklesProperties
       ? L["modifiers"] extends NonNullable<SprinklesProperties["modifiers"]>
-        ? { [Modifier in L["modifiers"][number]]?: InferSprinkleProps<L> }
+        ? Partial<Record<L["modifiers"][number], InferSprinkleProps<L>>>
         : unknown
       : never) &
       SprinkleStates<R>
