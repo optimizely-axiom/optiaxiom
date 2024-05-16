@@ -31,9 +31,16 @@ const createThemeContractFromTokens = <T extends Tokens, P extends string>(
   }) as ThemeContract<T, P>;
 };
 
-export const theme = createGlobalThemeContract(
+const createGlobalThemeContractOptimized = <T extends Tokens>(
+  tokens: ThemeContract<T, "">,
+  mapFn: (value: null | string) => string,
+) => createGlobalThemeContract(tokens, mapFn) as unknown as T;
+
+export const theme = createGlobalThemeContractOptimized(
   createThemeContractFromTokens(tokensLight, ""),
   (value) => `ax-${value}`,
 );
+// @ts-expect-error -- preserve original token types
 createGlobalTheme(":root", theme, tokensLight);
+// @ts-expect-error -- preserve original token types
 createGlobalTheme(":root.dark", theme, tokensDark);
