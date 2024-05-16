@@ -25,17 +25,15 @@ type InferSprinklePropValue<
   Sprinkles extends SprinklesProperties,
   Prop extends keyof Sprinkles["styles"],
 > = Sprinkles["styles"][Prop] extends AtomicStyle
-  ?
-      | (Sprinkles["conditions"] extends NonNullable<
-          SprinklesProperties["conditions"]
-        >
-          ? ResponsiveValue<
-              Sprinkles["styles"][Prop]["values"],
-              Sprinkles["conditions"]["responsiveArray"][number],
-              Sprinkles["conditions"]["responsiveArray"]["length"]
-            >
-          : never)
-      | Values<Sprinkles["styles"][Prop]["values"]>
+  ? Sprinkles["conditions"] extends NonNullable<
+      SprinklesProperties["conditions"]
+    >
+    ? ResponsiveValue<
+        Sprinkles["styles"][Prop]["values"],
+        Sprinkles["conditions"]["responsiveArray"][number],
+        Sprinkles["conditions"]["responsiveArray"]["length"]
+      >
+    : Values<Sprinkles["styles"][Prop]["values"]>
   : Sprinkles["styles"][Prop] extends ShorthandStyle
     ? InferSprinklePropValue<
         Sprinkles,
