@@ -15,6 +15,7 @@ export default {
       ],
     },
     borderWidth: {
+      path: "/border-width/",
       props: [
         "borderBottom",
         "borderLeft",
@@ -22,6 +23,10 @@ export default {
         "borderTop",
         "border",
       ],
+    },
+    boxShadow: {
+      path: "/box-shadow/",
+      props: ["shadow", "Paper[elevation]"],
     },
     colors: {
       path: "/colors/",
@@ -35,14 +40,28 @@ export default {
         "borderTopColor",
       ],
     },
-    fontFamily: { props: ["fontFamily"] },
-    fontSize: { props: ["fontSize"] },
-    letterSpacing: { props: ["tracking"] },
-    lineHeight: { props: ["leading"] },
-    maxSize: { props: ["maxH", "maxW"] },
-    shadow: { props: ["shadow", "Paper[elevation]"] },
-    size: { path: "/sizing/", props: ["gap", "h", "Box[size]", "w"] },
-    space: {
+    fontFamily: {
+      path: "/font-family/",
+      props: ["fontFamily"],
+    },
+    fontSize: {
+      path: "/font-size/",
+      props: ["fontSize"],
+    },
+    letterSpacing: {
+      path: "/letter-spacing/",
+      props: ["tracking"],
+    },
+    lineHeight: {
+      path: "/line-height/",
+      props: ["leading"],
+    },
+    maxSize: {
+      path: "/max-size/",
+      props: ["maxH", "maxW"],
+    },
+    size: { path: "/size/", props: ["gap", "h", "Box[size]", "w"] },
+    spacing: {
       path: "/spacing/",
       props: [
         "m",
