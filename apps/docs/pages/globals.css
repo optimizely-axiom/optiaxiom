@@ -24,7 +24,7 @@ html {
   }
 }
 
-body {
+body:before {
   background-image: radial-gradient(
     var(--docs-bg-shadow-size) 70% at 50% 0%,
     rgb(from #c4b1e2 r g b / var(--docs-bg-pillar-opacity, 40%)) 0%,
@@ -32,6 +32,14 @@ body {
   );
   background-repeat: no-repeat;
   background-size: 100% 50vh;
+  content: "";
+  display: block;
+  height: 50vh;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 20;
 }
 
 .nextra-nav-container-blur {
