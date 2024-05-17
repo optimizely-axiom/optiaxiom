@@ -75,13 +75,13 @@ const ThemeLink = ({
   type,
 }: {
   name: string;
-  path?: string;
+  path: string;
   type: PropItemType;
 }) => {
   return (
     <>
       <span style={{ color: "var(--shiki-token-keyword)" }}>typeof </span>
-      <Link href={`/styled-system${path ?? "/theme/#design-tokens"}`}>
+      <Link href={`/styled-system${path}`}>
         <Box
           asChild
           sx={{
