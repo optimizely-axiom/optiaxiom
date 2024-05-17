@@ -12,6 +12,10 @@ export function ColorPalette() {
           }
 
           const [hue, tone] = name.split(".");
+          if (!tone?.match(/^\d+$/)) {
+            return result;
+          }
+
           (result[hue] = result[hue] || []).push([
             tone,
             name as keyof typeof tokens.colors,

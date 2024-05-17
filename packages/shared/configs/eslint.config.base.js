@@ -23,7 +23,10 @@ export default tsEslint.config(
       "no-undef": "error",
     },
   },
-  perfectionistNatural,
+  {
+    ...perfectionistNatural,
+    ignores: ["**/src/tokens/**"],
+  },
   {
     ...reactRecommended,
     files: ["**/*.tsx"],
