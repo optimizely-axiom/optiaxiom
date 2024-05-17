@@ -1,14 +1,15 @@
 import type { ComponentPropsWithRef } from "react";
 
-import styles from "./Table.module.css";
+import { Box } from "@optiaxiom/react";
 
 export const Table = ({
   children,
   className = "",
-}: ComponentPropsWithRef<"table">) => (
-  <div className={`${styles.base} nx-mt-6 nx-max-h-96`}>
+  ...props
+}: ComponentPropsWithRef<typeof Box>) => (
+  <Box maxW="full" mt="24" {...props}>
     <table className={`nx-w-full nx-text-sm nx-text-left ${className}`}>
       {children}
     </table>
-  </div>
+  </Box>
 );

@@ -114,6 +114,12 @@ const props = defineProperties({
     paddingRight: theme.spacing,
     paddingTop: theme.spacing,
     /**
+     * Set the element's position
+     *
+     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/top-right-bottom-left/ Documentation}
+     */
+    top: theme.spacing,
+    /**
      * Set the element's width
      *
      * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/width/ Documentation}
@@ -229,9 +235,9 @@ const props = defineProperties({
       (cols) => `repeat(${cols}, minmax(0, 1fr))`,
     ),
     /**
-     * Set the element's inset
+     * Set the element's position
      *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/inset/ Documentation}
+     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/top-right-bottom-left/ Documentation}
      */
     inset: ["0"] as const,
     /**

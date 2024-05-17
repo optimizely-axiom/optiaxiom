@@ -7,4 +7,6 @@ export class MaxSize {
   lg = rem("512px");
   xl = rem("576px");
   "2xl" = rem("672px");
+
+  full = "100%";
 }

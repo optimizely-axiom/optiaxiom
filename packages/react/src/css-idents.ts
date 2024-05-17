@@ -114,4 +114,5 @@ export default {
   "4i": "colors",
   "4j": "whiteSpace",
   "4k": "nowrap",
+  "4l": "top",
 } as const;
