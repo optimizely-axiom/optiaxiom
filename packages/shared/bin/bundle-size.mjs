@@ -93,7 +93,14 @@ async function measure() {
     ],
   });
 
-  const data = [];
+  const typesSize = await readFile(pkg.types);
+  const data = [
+    {
+      gzippedSize: await gzipSize(typesSize),
+      minifiedSize: typesSize.length,
+      name: basename(pkg.types),
+    },
+  ];
   for (const outputFile of result.outputFiles) {
     data.push({
       gzippedSize: await gzipSize(outputFile.text),
