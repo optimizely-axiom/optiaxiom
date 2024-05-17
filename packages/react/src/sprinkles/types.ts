@@ -32,7 +32,8 @@ export type ResponsiveValue<
 type AtomicCSSProperties = {
   [Property in keyof CSSProperties]?:
     | ReadonlyArray<CSSProperties[Property]>
-    | Record<string, CSSProperties[Property] | Omit<StyleRule, ConditionKey>>;
+    | Record<string, CSSProperties[Property] | Omit<StyleRule, ConditionKey>>
+    | object;
 };
 type AtomicCustomProperties = Record<
   string,

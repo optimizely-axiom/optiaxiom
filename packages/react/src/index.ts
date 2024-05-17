@@ -12,4 +12,5 @@ export * from "./stack";
 export * from "./strong";
 export * from "./styles";
 export * from "./text";
+export * from "./tokens";
 export * from "./tooltip";

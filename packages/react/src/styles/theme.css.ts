@@ -3,8 +3,8 @@ import {
   createGlobalThemeContract,
 } from "@vanilla-extract/css";
 
+import { tokens, tokensDark } from "../tokens";
 import { mapValues } from "../utils";
-import { tokensDark, tokensLight } from "./tokens";
 
 type ThemeContract<Obj, Prefix extends string> = {
   [Prop in keyof Obj]: Obj[Prop] extends string
@@ -37,10 +37,10 @@ const createGlobalThemeContractOptimized = <T extends Tokens>(
 ) => createGlobalThemeContract(tokens, mapFn) as unknown as T;
 
 export const theme = createGlobalThemeContractOptimized(
-  createThemeContractFromTokens(tokensLight, ""),
+  createThemeContractFromTokens(tokens, ""),
   (value) => `ax-${value}`,
 );
 // @ts-expect-error -- preserve original token types
-createGlobalTheme(":root", theme, tokensLight);
+createGlobalTheme(":root", theme, tokens);
 // @ts-expect-error -- preserve original token types
 createGlobalTheme(":root.dark", theme, tokensDark);

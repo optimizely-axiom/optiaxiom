@@ -1,6 +1,7 @@
 import { keyframes } from "@vanilla-extract/css";
 
-import { layers, theme, tokens } from "../styles";
+import { layers, theme } from "../styles";
+import { tokens } from "../tokens";
 import { mapValues } from "../utils";
 import { defineProperties } from "./defineProperties";
 
@@ -13,17 +14,7 @@ const animations = {
   }),
 };
 
-const margins = merge(
-  merge(
-    theme.spacing,
-    mapValues(
-      theme.spacing,
-      (v) => `calc(-1 * ${v})`,
-      (k) => `-${k}`,
-    ),
-  ),
-  { auto: "auto" },
-);
+const margins = merge(theme.margins, { auto: "auto" });
 
 const radiuses = merge(theme.borderRadius, { inherit: "inherit" });
 
