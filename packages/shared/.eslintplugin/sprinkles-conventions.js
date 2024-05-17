@@ -6,7 +6,7 @@ export default ESLintUtils.RuleCreator.withoutDocs({
       /**
        * @type {import('@typescript-eslint/utils').TSESLint.RuleListener['Literal']}
        */
-      'CallExpression[callee.name="defineProperties"] Property[key.name="properties"] > ObjectExpression > Property > ObjectExpression > Property > Literal':
+      'CallExpression[callee.name="defineProperties"] Property:matches([key.name="propertiesDynamic"], [key.name="propertiesStatic"]) > ObjectExpression > Property > ObjectExpression > Property > Literal':
         (node) => {
           if (node.type !== "Literal") {
             return;
@@ -28,7 +28,7 @@ export default ESLintUtils.RuleCreator.withoutDocs({
       /**
        * @type {import('@typescript-eslint/utils').TSESLint.RuleListener['ArrayExpression']}
        */
-      'CallExpression[callee.name="defineProperties"] Property[key.name="properties"] ArrayExpression':
+      'CallExpression[callee.name="defineProperties"] Property[key.name="propertiesStatic"] ArrayExpression':
         (node) => {
           if (node.parent.type === "TSAsExpression") {
             return;
