@@ -17,6 +17,9 @@ export function transformDemos(tree) {
         (attr) => attr.name === "name",
       ).value;
       const filesAttr = node.attributes.find((attr) => attr.name === "files");
+      const metaAttr = node.attributes.find(
+        (attr) => attr.name === "meta",
+      )?.value;
       const iframe = node.attributes.find(
         (attr) => attr.name === "iframe",
       )?.value;
@@ -74,6 +77,7 @@ export function transformDemos(tree) {
             }
           : {
               lang: "tsx",
+              meta: metaAttr,
               type: "code",
               value: readFileSync(path.join(filesDir, files[0]), "utf8").trim(),
             },

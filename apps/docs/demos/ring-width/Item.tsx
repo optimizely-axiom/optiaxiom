@@ -19,7 +19,6 @@ export const Item = ({
       placeItems="center"
       px="16"
       py="8"
-      ringColor="blue.200"
       rounded="md"
       textAlign="center"
       {...children.props}
