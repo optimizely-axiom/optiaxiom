@@ -337,7 +337,7 @@ const props = defineProperties({
      *
      * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/border-width/ Documentation}
      */
-    borderBottom: ["borderBottomWidth"],
+    borderB: ["borderBottomWidth"],
     /**
      * Set the element's border color on all sides
      *
@@ -354,19 +354,19 @@ const props = defineProperties({
      *
      * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/border-width/ Documentation}
      */
-    borderLeft: ["borderLeftWidth"],
+    borderL: ["borderLeftWidth"],
     /**
      * Set the element's right border width
      *
      * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/border-width/ Documentation}
      */
-    borderRight: ["borderRightWidth"],
+    borderR: ["borderRightWidth"],
     /**
      * Set the element's top border width
      *
      * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/border-width/ Documentation}
      */
-    borderTop: ["borderTopWidth"],
+    borderT: ["borderTopWidth"],
     /**
      * Set the element's size across grid columns
      *
