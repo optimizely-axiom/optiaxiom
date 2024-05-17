@@ -104,7 +104,9 @@ const PropTypeValue = ({ type }: { type: PropItemType }) => {
   return (
     type.name === "enum" && type.raw && !["ReactNode"].includes(type.raw)
       ? type.raw.startsWith("ResponsiveValue<")
-        ? (type.value as Array<{ value: string }>).slice(0, -2)
+        ? (type.value as Array<{ value: string }>).filter(
+            (value) => !("description" in value),
+          )
         : (type.value as Array<{ value: string }>)
       : [{ value: type.raw ?? type.name }]
   ).map(({ value }, index) => (
@@ -129,7 +131,7 @@ const propTypeRaw = (type: PropItemType) => {
     !["ReactNode"].includes(type.raw) &&
     type.raw.startsWith("ResponsiveValue<")
     ? (type.value as Array<{ value: string }>)
-        .slice(0, -2)
+        .filter((value) => !("description" in value))
         .map(({ value }) => value)
         .join(" | ")
     : type.raw ?? type.name;
