@@ -5,8 +5,6 @@ const codes = Object.fromEntries(
 );
 export type Ident = (typeof cssIdents)[keyof typeof cssIdents];
 
-const prefix = "sx";
-
 export const escapeVar = (value: string) =>
   value.replaceAll(/[^A-Z0-9-_]/gi, "_");
 
@@ -14,7 +12,8 @@ export const generateIdentifier = (
   condition: Ident,
   modifier: Ident,
   property: Ident,
-  name?: Ident,
+  name?: Ident | null,
+  prefix = "sx",
 ) => {
   return process.env.NODE_ENV === "production"
     ? [

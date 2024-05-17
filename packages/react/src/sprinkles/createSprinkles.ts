@@ -216,7 +216,23 @@ export const createSprinkles = <
                   value && typeof value === "object"
                     ? value
                     : { [prop]: value };
-                for (const [k, v] of Object.entries(rule)) {
+                const { vars: ruleVars, ...ruleProps } = rule as {
+                  vars?: object;
+                };
+                for (const [k, v] of Object.entries(ruleVars ?? {})) {
+                  style[
+                    `--${escapeVar(
+                      generateIdentifier(
+                        condition,
+                        modifier.slice(1) as Ident,
+                        k.slice("--sx-".length) as Ident,
+                        null,
+                        "sv",
+                      ),
+                    )}`
+                  ] = v;
+                }
+                for (const [k, v] of Object.entries<string>(ruleProps)) {
                   style[
                     `--${escapeVar(
                       generateIdentifier(
@@ -224,6 +240,7 @@ export const createSprinkles = <
                         modifier.slice(1) as Ident,
                         prop as Ident,
                         k as Ident,
+                        "sv",
                       ),
                     )}`
                   ] = v;

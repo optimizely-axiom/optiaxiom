@@ -52,21 +52,40 @@ export const defineProperties = <
     const normalizedValues = Array.isArray(values)
       ? Object.fromEntries(values.map((value) => [value, value]))
       : values;
-    const [, protoValue] = Object.entries(normalizedValues)[0];
-    const protoRule =
-      protoValue && typeof protoValue === "object"
-        ? protoValue
-        : { [property]: protoValue };
     if (isStatic) {
       (styles[property] as AtomicStyle<typeof property, unknown>).values =
         Object.keys(normalizedValues);
     } else {
       if (!styleValues.includes(normalizedValues)) {
+        /**
+         * Replace `var(--foo)` with `--foo` in all `vars` objects
+         */
+        for (const name in normalizedValues) {
+          if (
+            typeof normalizedValues[name] === "object" &&
+            "vars" in normalizedValues[name]
+          ) {
+            for (const [key, value] of Object.entries(
+              normalizedValues[name].vars,
+            )) {
+              delete normalizedValues[name].vars[key];
+              normalizedValues[name].vars[key.slice(4, -1)] = value;
+            }
+          }
+        }
         styleValues.push(normalizedValues);
       }
       (styles[property] as AtomicStyle<typeof property, unknown>).values =
         styleValues.indexOf(normalizedValues);
     }
+    const [, protoValue] = Object.entries(normalizedValues)[0];
+    const protoRule =
+      protoValue && typeof protoValue === "object"
+        ? protoValue
+        : { [property]: protoValue };
+    const { vars: protoRuleVars, ...protoRuleProps } = protoRule as {
+      vars?: object;
+    };
     for (const [rawCondition, query] of Object.entries(conditions)) {
       const condition =
         rawCondition === options.conditions?.defaultCondition
@@ -105,19 +124,45 @@ export const defineProperties = <
         }
       } else {
         for (const [modifier, selector] of Object.entries(modifiers)) {
-          let rule = Object.fromEntries<unknown>(
-            Object.entries(protoRule).map(([name]) => [
-              name,
-              `var(--${escapeVar(
-                generateIdentifier(
-                  condition as Ident,
-                  modifier.slice(1) as Ident,
-                  property as Ident,
-                  name as Ident,
+          /**
+           * In case we have vars we assume the properties depend on these vars
+           * and set their values with our own dynamically injected vars.
+           *
+           * Otherwise we replace each property value with a dynamically
+           * injected var.
+           */
+          let rule = protoRuleVars
+            ? {
+                vars: Object.fromEntries<unknown>(
+                  Object.entries(protoRuleVars).map(([name]) => [
+                    name,
+                    `var(--${escapeVar(
+                      generateIdentifier(
+                        condition as Ident,
+                        modifier.slice(1) as Ident,
+                        name.slice("--sx-".length) as Ident,
+                        null,
+                        "sv",
+                      ),
+                    )})`,
+                  ]),
                 ),
-              )})`,
-            ]),
-          );
+                ...protoRuleProps,
+              }
+            : Object.fromEntries<unknown>(
+                Object.entries(protoRuleProps).map(([name]) => [
+                  name,
+                  `var(--${escapeVar(
+                    generateIdentifier(
+                      condition as Ident,
+                      modifier.slice(1) as Ident,
+                      property as Ident,
+                      name as Ident,
+                      "sv",
+                    ),
+                  )})`,
+                ]),
+              );
           if (query?.["@media"]) {
             rule = { "@media": { [query["@media"]]: rule } };
           }
