@@ -110,6 +110,7 @@ export const props = defineProperties({
         [ringColorVar]: color,
       },
     })),
+    top: theme.spacing,
     width: theme.size,
     zIndex: theme.zIndex,
   },
