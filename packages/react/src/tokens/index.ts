@@ -9,6 +9,7 @@ import { LineHeight } from "./LineHeight";
 import { Margins } from "./Margins";
 import { MaxSize } from "./MaxSize";
 import { Opacity } from "./Opacity";
+import { RingWidth } from "./RingWidth";
 import { Screens } from "./Screens";
 import { Size } from "./Size";
 import { Spacing } from "./Spacing";
@@ -26,6 +27,7 @@ export const tokens = {
   margins: new Margins(),
   maxSize: new MaxSize(),
   opacity: new Opacity(),
+  ringWidth: new RingWidth(),
   screens: new Screens(),
   size: new Size(),
   spacing: new Spacing(),

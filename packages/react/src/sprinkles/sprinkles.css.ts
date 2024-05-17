@@ -1,4 +1,4 @@
-import { keyframes } from "@vanilla-extract/css";
+import { fallbackVar, keyframes } from "@vanilla-extract/css";
 
 import { layers, theme } from "../styles";
 import { tokens } from "../tokens";
@@ -17,6 +17,11 @@ const animations = {
 const margins = merge(theme.margins, { auto: "auto" });
 
 const radiuses = merge(theme.borderRadius, { inherit: "inherit" });
+
+const boxShadowVar = "var(--sx-boxShadowVar)";
+const ringColorVar = "var(--sx-ringColorVar)";
+const ringWidthVar = "var(--sx-ringWidthVar)";
+const boxShadowRingVar = `0 0 0 ${fallbackVar(ringWidthVar, "0")} ${fallbackVar(ringColorVar, "#0000")}`;
 
 const transitions = {
   transitionDuration: "150ms",
@@ -65,7 +70,12 @@ export const props = defineProperties({
     borderTopLeftRadius: radiuses,
     borderTopRightRadius: radiuses,
     borderTopWidth: theme.borderWidth,
-    boxShadow: theme.boxShadow,
+    boxShadow: mapValues(theme.boxShadow, (value) => ({
+      boxShadow: `${boxShadowRingVar}, ${boxShadowVar}`,
+      vars: {
+        [boxShadowVar]: value,
+      },
+    })),
     /** {@link https://optimizely-axiom.github.io/optiaxiom/docs/colors/ Documentation} */
     color: theme.colors,
     fontFamily: theme.fontFamily,
@@ -89,6 +99,17 @@ export const props = defineProperties({
     paddingLeft: theme.spacing,
     paddingRight: theme.spacing,
     paddingTop: theme.spacing,
+    ring: mapValues(theme.ringWidth, (width) => ({
+      boxShadow: `${boxShadowRingVar}, ${fallbackVar(boxShadowVar, "0 0 #0000")}`,
+      vars: {
+        [ringWidthVar]: width,
+      },
+    })),
+    ringColor: mapValues(theme.colors, (color) => ({
+      vars: {
+        [ringColorVar]: color,
+      },
+    })),
     width: theme.size,
     zIndex: theme.zIndex,
   },

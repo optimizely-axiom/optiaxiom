@@ -25,6 +25,8 @@
   },
   "border-radius": "Border Radius",
   "border-width": "Border Width",
+  "ring-width": "Ring Width",
+  "ring-color": "Ring Color",
   "-- Sizing": {
     "type": "separator",
     "title": "Sizing"

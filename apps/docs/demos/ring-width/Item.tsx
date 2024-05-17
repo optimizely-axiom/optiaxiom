@@ -1,4 +1,4 @@
-import { Box, Stack, Text } from "@optiaxiom/react";
+import { Box, Stack } from "@optiaxiom/react";
 import { type ComponentPropsWithRef, type ReactElement } from "react";
 
 export const Item = ({
@@ -8,19 +8,23 @@ export const Item = ({
 }) => (
   <Stack alignItems="center" gap="8">
     <Box
+      asChild
       bg="surface"
-      borderColor="purple.500"
+      border="1"
+      color="text"
       display="grid"
+      fontFamily="sans"
+      fontSize="md"
+      fontWeight="500"
       placeItems="center"
-      px="8"
-      py="16"
-      ring="1"
-      ringColor="border"
+      px="16"
+      py="8"
+      ringColor="blue.200"
+      rounded="md"
+      textAlign="center"
       {...children.props}
     >
-      <Text fontFamily="mono" fontWeight="600" textAlign="center">
-        {children.props.children}
-      </Text>
+      <button>{children.props.children}</button>
     </Box>
   </Stack>
 );

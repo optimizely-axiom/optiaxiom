@@ -60,6 +60,14 @@ export default {
       path: "/max-size/",
       props: ["maxH", "maxW"],
     },
+    ringColor: {
+      path: "/ring-color/",
+      props: ["ringColor"],
+    },
+    ringWidth: {
+      path: "/ring-width/",
+      props: ["ring"],
+    },
     size: { path: "/size/", props: ["gap", "h", "Box[size]", "w"] },
     spacing: {
       path: "/spacing/",

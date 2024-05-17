@@ -114,4 +114,9 @@ export default {
   "4i": "colors",
   "4j": "whiteSpace",
   "4k": "nowrap",
+  "4l": "boxShadowVar",
+  "4m": "ringWidthVar",
+  "4n": "ring",
+  "4o": "ringColorVar",
+  "4p": "ringColor",
 } as const;
