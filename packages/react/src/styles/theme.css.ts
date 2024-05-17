@@ -6,34 +6,24 @@ import {
 import { tokens, tokensDark } from "../tokens";
 import { mapValues } from "../utils";
 
-type ThemeContract<Obj, Prefix extends string> = {
-  [Prop in keyof Obj]: Obj[Prop] extends string
-    ? Prop extends number | string
-      ? `${Prefix}${ReplaceDot<Prop>}`
-      : never
-    : Obj[Prop] extends Record<number | string, unknown>
-      ? ThemeContract<Obj[Prop], `${Prefix}${Prop & string}-`>
-      : never;
-};
-type ReplaceDot<S extends number | string> =
-  `${S}` extends `${infer L}${"." | "/"}${infer R}` ? `${L}-${R}` : S;
-type Tokens = {
-  [key: string]: Tokens | string;
-};
-const createThemeContractFromTokens = <T extends Tokens, P extends string>(
+const createThemeContractFromTokens = <
+  T extends Record<string, unknown>,
+  P extends string,
+>(
   tokens: T,
   path: P,
-): ThemeContract<T, P> => {
+): T => {
   return mapValues(tokens, (value, key) => {
-    return typeof value === "object"
-      ? createThemeContractFromTokens(value, `${path}${key}-`)
+    return value && typeof value === "object"
+      ? createThemeContractFromTokens(value as T, `${path}${key}-`)
       : `${path}${key.toString().replaceAll(/[./]/g, "-")}`;
-  }) as ThemeContract<T, P>;
+  }) as T;
 };
 
-const createGlobalThemeContractOptimized = <T extends Tokens>(
-  tokens: ThemeContract<T, "">,
+const createGlobalThemeContractOptimized = <T extends object>(
+  tokens: T,
   mapFn: (value: null | string) => string,
+  // @ts-expect-error -- preserve original token types
 ) => createGlobalThemeContract(tokens, mapFn) as unknown as T;
 
 export const theme = createGlobalThemeContractOptimized(
