@@ -120,4 +120,5 @@ export default {
   "4o": "ringColorVar",
   "4p": "ringColor",
   "4q": "top",
+  "4r": "outline",
 } as const;

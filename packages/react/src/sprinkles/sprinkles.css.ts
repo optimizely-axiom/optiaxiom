@@ -190,6 +190,11 @@ export const props = defineProperties({
       "start",
       "stretch",
     ] as const,
+    outline: {
+      none: {
+        outline: "2px solid transparent",
+      },
+    },
     overflow: ["auto", "hidden", "visible"] as const,
     placeItems: ["center"] as const,
     pointerEvents: ["none"] as const,
