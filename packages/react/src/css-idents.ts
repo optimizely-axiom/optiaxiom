@@ -115,4 +115,5 @@ export default {
   "4j": "whiteSpace",
   "4k": "nowrap",
   "4l": "top",
+  "4m": "outline",
 } as const;
