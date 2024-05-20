@@ -109,6 +109,11 @@ const props = defineProperties({
     marginTop: margins,
     maxHeight: theme.maxSize,
     maxWidth: theme.maxSize,
+    outlineWidth: {
+      none: {
+        outline: "2px solid transparent",
+      },
+    },
     paddingBottom: theme.spacing,
     paddingLeft: theme.spacing,
     paddingRight: theme.spacing,
@@ -453,6 +458,12 @@ const props = defineProperties({
      */
     my: ["marginBottom", "marginTop"],
     /**
+     * Set the element's outline width
+     *
+     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/outline-width/ Documentation}
+     */
+    outline: ["outlineWidth"],
+    /**
      * Set the element's padding on all sides
      *
      * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/padding/ Documentation}
@@ -611,6 +622,7 @@ type LonghandProps = keyof Pick<
   | "marginTop"
   | "maxHeight"
   | "maxWidth"
+  | "outlineWidth"
   | "paddingBottom"
   | "paddingLeft"
   | "paddingRight"
