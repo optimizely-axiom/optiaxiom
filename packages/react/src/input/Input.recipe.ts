@@ -2,7 +2,7 @@ import { createRecipe } from "../recipes";
 
 export const recipe = createRecipe({
   base: {
-    border: "0",
+    border: "1",
   },
 
   defaultVariants: {
@@ -12,9 +12,9 @@ export const recipe = createRecipe({
 
   variants: {
     size: {
-      lg: { fontSize: "lg", h: "40" },
-      md: { fontSize: "md", h: "32" },
-      sm: { fontSize: "sm", h: "24" },
+      lg: { fontSize: "lg", h: "40", px: "8", w: "256" },
+      md: { fontSize: "md", h: "32", px: "8", w: "256" },
+      sm: { fontSize: "sm", h: "24", px: "8", w: "256" },
     },
     variant: {
       number: {

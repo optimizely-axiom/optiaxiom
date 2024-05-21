@@ -1,7 +1,7 @@
 import { type ComponentPropsWithRef, forwardRef } from "react";
 
 import { Box } from "../box";
-import { Text } from "../text";
+// import { Text } from "../text";
 import { type ExtendProps } from "../utils";
 import { type Recipe, recipe } from "./Input.recipe";
 
@@ -32,6 +32,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
   ) => {
     return (
       <Box
+        asChild
         display="flex"
         flexDirection="column"
         fontFamily="sans"
@@ -40,7 +41,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         ref={ref}
         {...recipe(props)}
       >
-        {label && (
+        {/* {label && (
           <Text as="label">
             {label}{" "}
             {required && (
@@ -49,7 +50,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
               </Text>
             )}
           </Text>
-        )}
+        )} */}
         <input
           disabled={disabled}
           id={id}
@@ -57,11 +58,11 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           required={required}
           type={variant}
         />
-        {note && (
+        {/* {note && (
           <Text as="p" fontSize="sm">
             {note}
           </Text>
-        )}
+        )} */}
       </Box>
     );
   },
