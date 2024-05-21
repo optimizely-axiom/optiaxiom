@@ -48,6 +48,6 @@ export default defineConfig([
       file: pkg.types,
       format: "es",
     },
-    plugins: [dts()],
+    plugins: [dts({ compilerOptions: { types: ["node"] } })],
   },
 ]);
