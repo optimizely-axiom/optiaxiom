@@ -9,7 +9,6 @@ type InputProps = ExtendProps<
   ComponentPropsWithRef<"input">,
   ComponentPropsWithRef<typeof Box>,
   {
-    as?: "input";
     id: string;
     label?: string;
     note?: string;
