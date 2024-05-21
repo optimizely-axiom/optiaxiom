@@ -1,9 +1,8 @@
 import type {
   AtomicStyle,
-  ConditionOptions,
-  ModifierOptions,
   ResponsiveValue,
   ShorthandStyle,
+  SprinklesProperties,
   Values,
 } from "./types";
 
@@ -12,14 +11,6 @@ import {
   escapeVar,
   generateIdentifier,
 } from "./generateIdentifier";
-
-type SprinklesProperties = {
-  styleValues: Array<Record<string, unknown>>;
-  styles: {
-    [property: string]: AtomicStyle | ShorthandStyle;
-  };
-} & Partial<ConditionOptions> &
-  Partial<ModifierOptions>;
 
 type InferSprinklePropValue<
   Sprinkles extends SprinklesProperties,

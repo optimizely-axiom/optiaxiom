@@ -3,7 +3,7 @@ import { keyframes } from "@vanilla-extract/css";
 import { layers, theme } from "../styles";
 import { tokens } from "../tokens";
 import { mapValues } from "../utils";
-import { defineProperties } from "./defineProperties";
+import { createMapValueFn, createSprinkles, defineProperties } from "./lib";
 
 const merge = <A, B>(objA: A, objB: B): A & B => ({ ...objA, ...objB });
 
@@ -46,7 +46,7 @@ const modifiers = {
   ),
 };
 
-export const props = defineProperties({
+const props = defineProperties({
   "@layer": layers.axiom,
   conditions,
   modifiers,
@@ -262,3 +262,37 @@ export const props = defineProperties({
     z: ["zIndex"],
   },
 });
+
+export const sprinkles = createSprinkles(props);
+export const mapResponsiveValue = createMapValueFn(props);
+
+type LonghandProps = keyof Pick<
+  Parameters<typeof sprinkles>[0],
+  | "backgroundColor"
+  | "borderBottomLeftRadius"
+  | "borderBottomRightRadius"
+  | "borderBottomWidth"
+  | "borderLeftWidth"
+  | "borderRadius"
+  | "borderRightWidth"
+  | "borderTopLeftRadius"
+  | "borderTopRightRadius"
+  | "borderTopWidth"
+  | "boxShadow"
+  | "height"
+  | "letterSpacing"
+  | "lineHeight"
+  | "marginBottom"
+  | "marginLeft"
+  | "marginRight"
+  | "marginTop"
+  | "maxHeight"
+  | "maxWidth"
+  | "paddingBottom"
+  | "paddingLeft"
+  | "paddingRight"
+  | "paddingTop"
+  | "width"
+  | "zIndex"
+>;
+export type Sprinkles = Omit<Parameters<typeof sprinkles>[0], LonghandProps>;

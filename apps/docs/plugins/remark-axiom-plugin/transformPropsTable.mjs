@@ -22,7 +22,7 @@ export function transformPropsTable(tree) {
         )
         .parse(
           fg.globSync(
-            "../../packages/react/src/**/{*.recipe.ts,sprinkles.ts,*.tsx}",
+            "../../packages/react/src/**/{*.recipe.ts,sprinkles.css.ts,*.tsx}",
             {
               ignore: ["**/*.spec.*"],
             },

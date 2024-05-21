@@ -1,4 +1,5 @@
 import { globalStyle } from "@vanilla-extract/css";
+import { addFunctionSerializer } from "@vanilla-extract/css/functionSerializer";
 
 import type {
   AtomicProperties,
@@ -8,9 +9,12 @@ import type {
   ConditionProperties,
   ModifierOptions,
   ShorthandStyles,
+  SprinklesProperties,
 } from "./types";
 
 import { mapValues } from "../utils";
+import { createMapValueFn as runtimeCreateMapValueFn } from "./createMapValueFn";
+import { createSprinkles as runtimeCreateSprinkles } from "./createSprinkles";
 import {
   type Ident,
   escapeVar,
@@ -168,4 +172,33 @@ export const defineProperties = <
     ([Conditions] extends [never] ? unknown : ConditionOptions<Conditions>) &
     ([Modifiers] extends [never] ? unknown : ModifierOptions<Modifiers>) &
     ([Shorthands] extends [never] ? unknown : ShorthandStyles<Shorthands>);
+};
+
+export const createSprinkles = <
+  Args extends ReadonlyArray<SprinklesProperties>,
+>(
+  ...configs: Args
+) => {
+  const sprinkles = runtimeCreateSprinkles(...configs);
+
+  addFunctionSerializer(sprinkles, {
+    // @ts-expect-error -- too complex
+    args: configs,
+    importName: "createSprinkles",
+    importPath: "./createSprinkles",
+  });
+
+  return sprinkles;
+};
+
+export const createMapValueFn = <Arg extends ConditionOptions>(config: Arg) => {
+  const mapValueFn = runtimeCreateMapValueFn(config);
+
+  addFunctionSerializer(mapValueFn, {
+    args: [{ conditions: config.conditions }],
+    importName: "createMapValueFn",
+    importPath: "./createMapValueFn",
+  });
+
+  return mapValueFn;
 };

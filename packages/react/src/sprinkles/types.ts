@@ -41,6 +41,14 @@ type AtomicCustomProperties = Record<
 >;
 export type AtomicProperties = AtomicCSSProperties | AtomicCustomProperties;
 
+export type SprinklesProperties = {
+  styleValues: Array<Record<string, unknown>>;
+  styles: {
+    [property: string]: AtomicStyle | ShorthandStyle;
+  };
+} & Partial<ConditionOptions> &
+  Partial<ModifierOptions>;
+
 export type Values<Property> =
   Property extends ReadonlyArray<unknown>
     ? Property[number]
