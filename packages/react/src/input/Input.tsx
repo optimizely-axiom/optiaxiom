@@ -31,12 +31,16 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     },
     ref,
   ) => {
-
     return (
-      <Box display="flex" flexDirection="column" maxW="sm" fontFamily="sans"
-      fontSize="md"
-      ref={ref}
-      {...recipe(props)}>
+      <Box
+        display="flex"
+        flexDirection="column"
+        fontFamily="sans"
+        fontSize="md"
+        maxW="sm"
+        ref={ref}
+        {...recipe(props)}
+      >
         {label && (
           <Text as="label">
             {label}{" "}
@@ -47,13 +51,13 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             )}
           </Text>
         )}
-          <input
-            disabled={disabled}
-            id={id}
-            placeholder={placeholder}
-            required={required}
-            type={variant}
-          />
+        <input
+          disabled={disabled}
+          id={id}
+          placeholder={placeholder}
+          required={required}
+          type={variant}
+        />
         {note && (
           <Text as="p" fontSize="sm">
             {note}
