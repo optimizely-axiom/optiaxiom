@@ -20,6 +20,9 @@ export function transformDemos(tree) {
       const iframe = node.attributes.find(
         (attr) => attr.name === "iframe",
       )?.value;
+      const height = node.attributes.find(
+        (attr) => attr.name === "height",
+      )?.value;
 
       const files = filesAttr
         ? [
@@ -38,7 +41,11 @@ export function transformDemos(tree) {
           needsImport &&
             `import { Demo as DemoRemark } from "@/components/demo";`,
           `import { App as App${id} } from "@/demos/${demoName}/App";`,
-          `<DemoRemark component={App${id}} ${iframe ? `iframe=${JSON.stringify(iframe)}` : ""} />`,
+          `<DemoRemark
+            component={App${id}}
+            ${iframe ? `iframe=${JSON.stringify(iframe)}` : ""}
+            ${height ? `height=${JSON.stringify(height)}` : ""}
+          />`,
         ]
           .filter(Boolean)
           .join("\n\n"),
