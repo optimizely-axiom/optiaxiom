@@ -37,6 +37,9 @@
   },
   "border-radius": "Border Radius",
   "border-width": "Border Width",
+  "outline-width": "Outline Width",
+  "outline-color": "Outline Color",
+  "outline-offset": "Outline Offset",
   "-- Sizing": {
     "type": "separator",
     "title": "Sizing"

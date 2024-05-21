@@ -60,6 +60,18 @@ export default {
       path: "/max-size/",
       props: ["maxH", "maxW"],
     },
+    outlineColor: {
+      path: "/outline-color/",
+      props: ["outlineColor"],
+    },
+    outlineOffset: {
+      path: "/outline-offset/",
+      props: ["outlineOffset"],
+    },
+    outlineWidth: {
+      path: "/outline-width/",
+      props: ["outline"],
+    },
     size: { path: "/size/", props: ["gap", "h", "Box[size]", "w"] },
     spacing: {
       path: "/spacing/",
