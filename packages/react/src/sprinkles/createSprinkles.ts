@@ -31,7 +31,7 @@ type InferSprinklePropValue<
         Sprinkles["styles"][Prop]["mappings"][number]
       >
     : never;
-type InferSprinkleProps<Sprinkles extends SprinklesProperties> = {
+export type InferSprinkleProps<Sprinkles extends SprinklesProperties> = {
   [Prop in keyof Sprinkles["styles"]]?: InferSprinklePropValue<Sprinkles, Prop>;
 };
 type SprinkleStates<Args extends ReadonlyArray<unknown>> = Args extends [
