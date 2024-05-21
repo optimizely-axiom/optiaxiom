@@ -70,6 +70,11 @@ export const base = style({
               backgroundColor: "transparent" /* 2 */,
               backgroundImage: "none" /* 2 */,
             },
+          "&:is(input:where([type=number]))":
+            {
+              textAlign: 'right',
+              MozAppearance: 'textfield', // firefox
+            },
         },
 
         ...{
@@ -92,6 +97,23 @@ export const base = style({
             WebkitAppearance: "button" /* 1 */,
             font: "inherit" /* 2 */,
           },
+        },
+
+        ...{
+          /* 
+          Remove arrow from input as number
+          */
+          "&::-webkit-inner-spin-button":
+            {
+              margin: 0,
+              WebkitAppearance: 'none'
+            },
+
+            "&::-webkit-outer-spin-button":
+            {
+              margin: 0,
+              WebkitAppearance: 'none'
+            },
         },
 
         ...{
