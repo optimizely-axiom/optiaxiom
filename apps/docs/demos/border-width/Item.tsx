@@ -8,8 +8,11 @@ export const Item = ({
 }) => (
   <Stack alignItems="center" gap="8">
     <Box
+      bg="surface"
       borderColor="purple.500"
       display="grid"
+      outline="1"
+      outlineColor="border"
       placeItems="center"
       px="8"
       py="16"

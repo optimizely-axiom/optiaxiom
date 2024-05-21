@@ -109,11 +109,29 @@ const props = defineProperties({
     marginTop: margins,
     maxHeight: theme.maxSize,
     maxWidth: theme.maxSize,
-    outlineWidth: {
-      none: {
-        outline: "2px solid transparent",
+    /**
+     * Set the element's outline color
+     *
+     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/outline-color/ Documentation}
+     */
+    outlineColor: theme.colors,
+    /**
+     * Set the element's outline offset
+     *
+     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/outline-offset/ Documentation}
+     */
+    outlineOffset: theme.outlineWidth,
+    outlineWidth: merge(
+      mapValues(theme.outlineWidth, (outlineWidth) => ({
+        outlineStyle: "solid",
+        outlineWidth,
+      })),
+      {
+        none: {
+          outline: "2px solid transparent",
+        },
       },
-    },
+    ),
     paddingBottom: theme.spacing,
     paddingLeft: theme.spacing,
     paddingRight: theme.spacing,

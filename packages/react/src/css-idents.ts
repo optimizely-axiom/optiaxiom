@@ -116,4 +116,8 @@ export default {
   "4k": "nowrap",
   "4l": "top",
   "4m": "outline",
+  "4n": "outlineColor",
+  "4o": "outlineOffset",
+  "4p": "outlineWidth",
+  "4q": "outlineStyle",
 } as const;
