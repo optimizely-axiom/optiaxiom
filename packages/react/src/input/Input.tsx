@@ -1,5 +1,3 @@
-// import { Slot } from "@radix-ui/react-slot";
-import { Slot } from "@radix-ui/react-slot";
 import { type ComponentPropsWithRef, forwardRef } from "react";
 
 import { Box } from "../box";
@@ -21,9 +19,6 @@ type InputProps = ExtendProps<
 export const Input = forwardRef<HTMLInputElement, InputProps>(
   (
     {
-      as = "input",
-      asChild,
-      children,
       disabled = false,
       id,
       label,
@@ -36,12 +31,14 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     },
     ref,
   ) => {
-    const Comp = asChild ? Slot : as;
 
     return (
-      <Box display="flex" flexDirection="column" maxW="sm">
+      <Box display="flex" flexDirection="column" maxW="sm" fontFamily="sans"
+      fontSize="md"
+      ref={ref}
+      {...recipe(props)}>
         {label && (
-          <Text as="label" fontSize="sm" h="32" pt="lg" px="sm">
+          <Text as="label">
             {label}{" "}
             {required && (
               <Text as="span" color="red.600">
@@ -50,25 +47,15 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             )}
           </Text>
         )}
-        <Box
-          asChild
-          fontFamily="sans"
-          fontSize="md"
-          ref={ref}
-          {...recipe(props)}
-        >
-          <Comp
+          <input
             disabled={disabled}
             id={id}
             placeholder={placeholder}
             required={required}
             type={variant}
-          >
-            {children}
-          </Comp>
-        </Box>
+          />
         {note && (
-          <Text as="p" fontSize="sm" pt="0" px="sm">
+          <Text as="p" fontSize="sm">
             {note}
           </Text>
         )}
