@@ -14,49 +14,82 @@ type Story = StoryObj<typeof Input>;
 export const TextInput: Story = {
   args: {
     bg: "brand.50",
+    disabled: false,
+    id: "id-1",
+    label: "Field label",
     m: "lg",
     p: "sm",
-    rounded: "sm",
-    variant: 'text',
-    id: 'id-1',
-    label: 'Field label',
-    disabled: false,
     placeholder: "Placeholder",
+    rounded: "sm",
+    variant: "text",
   },
 
   render: () => (
     <Stack flexDirection="column" gap="xl">
-      <Input bg="brand.50" id="id-1" rounded="sm" variant="text" p="sm" m="sm" placeholder="Placeholder with label" label="Label" />
-      <Input bg="brand.50" id="id-1" rounded="sm" variant="text" p="sm" m="sm" placeholder="Placeholder" label="Label" required />
-      <Input bg="brand.50" id="id-1" rounded="sm" variant="text" p="sm" m="sm" placeholder="Placeholder without label"/>
-      <Input bg="brand.50" id="id-1" rounded="sm" variant="text" p="sm" m="sm" placeholder="Placeholder with notes" label="Label" note="This is a note."/>
-
+      <Input
+        bg="brand.50"
+        id="id-1"
+        label="Label"
+        m="sm"
+        p="sm"
+        placeholder="Placeholder with label"
+        rounded="sm"
+        variant="text"
+      />
+      <Input
+        bg="brand.50"
+        id="id-1"
+        label="Label"
+        m="sm"
+        p="sm"
+        placeholder="Placeholder"
+        required
+        rounded="sm"
+        variant="text"
+      />
+      <Input
+        bg="brand.50"
+        id="id-1"
+        m="sm"
+        p="sm"
+        placeholder="Placeholder without label"
+        rounded="sm"
+        variant="text"
+      />
+      <Input
+        bg="brand.50"
+        id="id-1"
+        label="Label"
+        m="sm"
+        note="This is a note."
+        p="sm"
+        placeholder="Placeholder with notes"
+        rounded="sm"
+        variant="text"
+      />
     </Stack>
   ),
-  
 };
-
 
 export const NumberInput: Story = {
   args: {
     bg: "brand.50",
+    id: "id-1",
     m: "lg",
     p: "sm",
+    placeholder: "Placeholder",
     rounded: "sm",
-    variant: 'number',
-    id: 'id-1',
-    placeholder: "Placeholder"
+    variant: "number",
   },
 };
 
-
 export const Composite: Story = {
-    args: {
-      bg: "brand.50",
-      asChild: true,
-      children: <Text>Hello World </Text>,
-      m: "lg",
-      p: "sm",
-      rounded: "sm",
-    },
-  };
+  args: {
+    asChild: true,
+    bg: "brand.50",
+    children: <Text>Hello World </Text>,
+    m: "lg",
+    p: "sm",
+    rounded: "sm",
+  },
+};

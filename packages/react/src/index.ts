@@ -6,6 +6,7 @@ export * from "./code";
 export * from "./flex";
 export * from "./grid";
 export * from "./heading";
+export * from "./input";
 export * from "./kbd";
 export * from "./paper";
 export * from "./progress-bar";
@@ -15,4 +16,3 @@ export * from "./styles";
 export * from "./text";
 export * from "./tokens";
 export * from "./tooltip";
-export * from "./input"

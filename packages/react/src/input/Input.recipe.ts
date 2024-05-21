@@ -17,34 +17,33 @@ export const recipe = createRecipe({
       sm: { fontSize: "sm", h: "24", px: "10", py: "6" },
     },
     variant: {
-      text: {
+      number: {
+        ":data-disabled": {
+          bg: "gray.100",
+          pointerEvents: "none",
+        },
+        ":focus-visible": {
+          borderColor: "brand.500",
+        },
         ":hover": {
           borderColor: "brand.500",
-        },
-        ":focus-visible":{
-          borderColor: "brand.500",
-        },
-        ":data-disabled":{
-          bg: "gray.100",
-          pointerEvents: 'none'
         },
         bg: "white",
         color: "dark.600",
       },
-      number: {
+      text: {
+        ":data-disabled": {
+          bg: "gray.100",
+          pointerEvents: "none",
+        },
+        ":focus-visible": {
+          borderColor: "brand.500",
+        },
         ":hover": {
           borderColor: "brand.500",
         },
-        ":focus-visible":{
-          borderColor: "brand.500",
-        },
-        ":data-disabled":{
-          bg: "gray.100",
-          pointerEvents: 'none'
-        },
         bg: "white",
         color: "dark.600",
-        
       },
     },
   },
