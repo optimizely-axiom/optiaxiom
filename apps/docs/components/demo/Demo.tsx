@@ -8,16 +8,18 @@ import { DemoIframe } from "./DemoIframe";
 export function Demo({
   children,
   component: Component,
+  height,
   iframe,
 }: {
   children: ReactNode;
   component: ComponentType;
+  height?: string;
   iframe?: string;
 }) {
   return (
     <Stack mt="xl">
       <Box border="1" className={iframe && styles.resize} p="xl" rounded="xl">
-        {iframe ? <DemoIframe src={iframe} /> : <Component />}
+        {iframe ? <DemoIframe height={height} src={iframe} /> : <Component />}
       </Box>
       <Box className={styles.editor}>{children}</Box>
     </Stack>
