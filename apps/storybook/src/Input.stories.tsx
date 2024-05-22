@@ -14,7 +14,6 @@ type Story = StoryObj<typeof Input>;
 export const TextInput: Story = {
   args: {
     bg: "brand.50",
-    disabled: false,
     id: "id-1",
     label: "Field label",
     m: "lg",
@@ -32,17 +31,21 @@ export const TextInput: Story = {
           Label
         </Text>
         <Input
+          data-disabled
           bg="brand.50"
-          disabled
           id="id-1"
           label="Label"
           p="sm"
-          placeholder="Placeholder with label"
+          placeholder="Disabled placeholder"
           rounded="sm"
           type="text"
         />
       </Box>
-
+      <Box>
+        <Text as="label" fontFamily={"sans"}>
+          {" "}
+          Label
+        </Text>
       <Input
         bg="brand.50"
         id="id-1"
@@ -53,6 +56,7 @@ export const TextInput: Story = {
         rounded="sm"
         type="text"
       />
+      </Box>
       <Input
         bg="brand.50"
         id="id-1"
