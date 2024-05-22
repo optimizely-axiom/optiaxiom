@@ -25,6 +25,7 @@ export const recipe = createRecipe({
         ":focus-visible": {
           borderColor: "slate.300",
           outline: "2",
+          outlineColor: "blue.500",
           outlineOffset: "1",
         },
         ":hover": {
