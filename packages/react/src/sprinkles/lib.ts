@@ -164,7 +164,7 @@ export const defineProperties = <
       },
     }),
     ...(options.modifiers && {
-      modifiers: Object.keys(options.modifiers),
+      modifiers: options.modifiers,
     }),
   } as AtomicStyles<PropertiesDynamic> &
     AtomicStyles<PropertiesStatic> &

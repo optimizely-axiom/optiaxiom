@@ -100,6 +100,6 @@ export type ConditionOptions<
   };
 };
 
-export type ModifierOptions<Modifiers = Record<string, never>> = {
-  modifiers: Array<keyof Modifiers>;
+export type ModifierOptions<Modifiers = Record<string, string>> = {
+  modifiers: Modifiers;
 };
