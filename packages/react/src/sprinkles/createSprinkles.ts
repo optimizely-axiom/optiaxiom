@@ -40,7 +40,7 @@ type SprinkleStates<Args extends ReadonlyArray<unknown>> = Args extends [
 ]
   ? (L extends SprinklesProperties
       ? L["modifiers"] extends NonNullable<SprinklesProperties["modifiers"]>
-        ? Partial<Record<L["modifiers"][number], InferSprinkleProps<L>>>
+        ? Partial<Record<keyof L["modifiers"], InferSprinkleProps<L>>>
         : unknown
       : never) &
       SprinkleStates<R>
@@ -119,16 +119,14 @@ export const createSprinkles = <
             const values = Array.isArray(sprinkle.values)
               ? sprinkle.values
               : styleValues[sprinkle.values as number];
-            if (process.env.NODE_ENV !== "production") {
-              if (
-                modifier !== baseModifier &&
-                modifiers &&
-                !modifiers.includes(modifier)
-              ) {
-                throw new Error(
-                  `"${prop}" has no modifier named "${modifier}". Possible values are ${JSON.stringify(modifiers)}`,
-                );
-              }
+            if (
+              modifier !== baseModifier &&
+              modifiers &&
+              !(modifier in modifiers)
+            ) {
+              throw new Error(
+                `"${prop}" has no modifier named "${modifier}". Possible values are ${JSON.stringify(Object.keys(modifiers))}`,
+              );
             }
             if (
               !conditions &&
