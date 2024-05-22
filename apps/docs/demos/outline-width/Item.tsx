@@ -11,7 +11,7 @@ export const Item = ({
       asChild
       bg="surface"
       border="1"
-      color="text"
+      color="fg.default"
       display="grid"
       fontFamily="sans"
       fontSize="md"

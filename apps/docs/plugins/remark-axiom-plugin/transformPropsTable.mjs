@@ -83,7 +83,7 @@ export function transformPropsTable(tree) {
             .flatMap(([, prop]) => [
               "<Tr>",
               '  <Td whiteSpace="nowrap">',
-              `    {<Box color="text.accent.magenta" fontFamily="mono">${prop.name}${prop.required ? "*" : ""}</Box>}`,
+              `    {<Box color="fg.accent.magenta" fontFamily="mono">${prop.name}${prop.required ? "*" : ""}</Box>}`,
               "  </Td>",
               "  <Td>",
               [
