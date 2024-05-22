@@ -7,7 +7,7 @@ export const recipe = createRecipe({
 
   defaultVariants: {
     size: "md",
-    variant: "text",
+    variant: "default",
   },
 
   variants: {
@@ -17,21 +17,7 @@ export const recipe = createRecipe({
       sm: { fontSize: "sm", h: "24", px: "8", w: "256" },
     },
     variant: {
-      number: {
-        ":data-disabled": {
-          bg: "gray.100",
-          pointerEvents: "none",
-        },
-        ":focus-visible": {
-          borderColor: "brand.500",
-        },
-        ":hover": {
-          borderColor: "brand.500",
-        },
-        bg: "white",
-        color: "dark.600",
-      },
-      text: {
+      default: {
         ":data-disabled": {
           bg: "gray.100",
           pointerEvents: "none",
