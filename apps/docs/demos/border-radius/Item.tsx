@@ -10,7 +10,7 @@ export const Item = ({
   return (
     <Stack alignItems="center" gap="xs">
       <Text
-        color="text.subtle"
+        color="fg.subtle"
         fontFamily="mono"
         fontWeight="600"
         textAlign="center"

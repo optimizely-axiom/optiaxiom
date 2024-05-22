@@ -16,7 +16,7 @@ export function App() {
 
         <Box p="md">
           <Text
-            color="text.accent.magenta"
+            color="fg.accent.magenta"
             fontWeight="600"
             textTransform="uppercase"
           >

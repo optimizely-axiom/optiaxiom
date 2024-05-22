@@ -85,22 +85,28 @@ export class Colors extends ColorPalette {
   "bg.information" = this["blue.50"];
   "bg.neutral" = this["slate.100"];
   "bg.success" = this["green.50"];
+
   border = this["gray.200"];
+
+  "fg.accent.magenta" = this["magenta.600"];
+  "fg.default" = this["dark.600"];
+  "fg.subtle" = this["slate.600"];
+  "fg.success" = this["green.600"];
+
   surface = this["white"];
-  text = this["dark.600"];
-  "text.accent.magenta" = this["magenta.600"];
-  "text.subtle" = this["slate.600"];
-  "text.success" = this["green.600"];
 }
 
 export class ColorsDark extends ColorPalette {
   "bg.information" = this["blue.900"];
   "bg.neutral" = this["slate.800"];
   "bg.success" = this["green.900"];
+
   border = this["gray.800"];
+
+  "fg.accent.magenta" = this["magenta.200"];
+  "fg.default" = this["gray.100"];
+  "fg.subtle" = this["slate.400"];
+  "fg.success" = this["green.200"];
+
   surface = this["gray.900"];
-  text = this["gray.100"];
-  "text.accent.magenta" = this["magenta.200"];
-  "text.subtle" = this["slate.400"];
-  "text.success" = this["green.200"];
 }

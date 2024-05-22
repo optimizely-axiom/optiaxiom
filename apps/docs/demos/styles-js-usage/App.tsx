@@ -5,7 +5,7 @@ export function App() {
     <div
       style={{
         background: theme.colors["bg.success"],
-        color: theme.colors["text.success"],
+        color: theme.colors["fg.success"],
         padding: theme.spacing.md,
       }}
     >
