@@ -16,14 +16,7 @@ type InputProps = ExtendProps<
 >;
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
-  (
-    {
-      placeholder,
-      type,
-      ...props
-    },
-    ref,
-  ) => {
+  ({ placeholder, type, ...props }, ref) => {
     return (
       <Box
         asChild
@@ -45,10 +38,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             )}
           </Text>
         )} */}
-        <input
-          placeholder={placeholder}
-          type={type}
-        />
+        <input placeholder={placeholder} type={type} />
         {/* {note && (
           <Text as="p" fontSize="sm">
             {note}
