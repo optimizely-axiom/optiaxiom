@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Input, Stack } from "@optiaxiom/react";
+import { Box, Input, Stack, Text } from "@optiaxiom/react";
 
 const meta: Meta<typeof Input> = {
   component: Input,
@@ -21,20 +21,28 @@ export const TextInput: Story = {
     p: "sm",
     placeholder: "Placeholder",
     rounded: "sm",
-    variant: "text",
+    variant: "default",
   },
 
   render: () => (
     <Stack flexDirection="column" gap="xl">
-      <Input
-        bg="brand.50"
-        id="id-1"
-        label="Label"
-        p="sm"
-        placeholder="Placeholder with label"
-        rounded="sm"
-        variant="text"
-      />
+      <Box>
+        <Text as="label" fontFamily={"sans"}>
+          {" "}
+          Label
+        </Text>
+        <Input
+          bg="brand.50"
+          disabled
+          id="id-1"
+          label="Label"
+          p="sm"
+          placeholder="Placeholder with label"
+          rounded="sm"
+          type="text"
+        />
+      </Box>
+
       <Input
         bg="brand.50"
         id="id-1"
@@ -43,7 +51,7 @@ export const TextInput: Story = {
         placeholder="Placeholder"
         required
         rounded="sm"
-        variant="text"
+        type="text"
       />
       <Input
         bg="brand.50"
@@ -51,18 +59,25 @@ export const TextInput: Story = {
         p="sm"
         placeholder="Placeholder without label"
         rounded="sm"
-        variant="text"
+        type="text"
       />
-      <Input
-        bg="brand.50"
-        id="id-1"
-        label="Label"
-        note="This is a note."
-        p="sm"
-        placeholder="Placeholder with notes"
-        rounded="sm"
-        variant="text"
-      />
+      <Box>
+        <Text as="label">Label</Text>
+        <Input
+          bg="brand.50"
+          id="id-1"
+          label="Label"
+          note="This is a note."
+          p="sm"
+          placeholder="Placeholder with notes"
+          required
+          rounded="sm"
+          type="text"
+        />
+        <Text as="p" color="blue.200" fontSize="sm">
+          short note about it
+        </Text>
+      </Box>
     </Stack>
   ),
 };
@@ -74,6 +89,7 @@ export const NumberInput: Story = {
     p: "sm",
     placeholder: "Placeholder",
     rounded: "sm",
-    variant: "number",
+    type: "number",
+    variant: "default",
   },
 };
