@@ -23,7 +23,9 @@ export const recipe = createRecipe({
           pointerEvents: "none",
         },
         ":focus-visible": {
-          borderColor: "brand.500",
+          borderColor: "slate.300",
+          outline: "2",
+          outlineOffset: "1",
         },
         ":hover": {
           borderColor: "brand.500",
