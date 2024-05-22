@@ -18,14 +18,8 @@ type InputProps = ExtendProps<
 export const Input = forwardRef<HTMLInputElement, InputProps>(
   (
     {
-      disabled = false,
-      id,
-      label,
-      note,
       placeholder,
-      required,
       type,
-      variant,
       ...props
     },
     ref,
@@ -52,11 +46,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           </Text>
         )} */}
         <input
-          disabled={disabled}
-          id={id}
           placeholder={placeholder}
-          required={required}
-          type={variant}
+          type={type}
         />
         {/* {note && (
           <Text as="p" fontSize="sm">
