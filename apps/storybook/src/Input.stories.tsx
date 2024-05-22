@@ -31,8 +31,8 @@ export const TextInput: Story = {
           Label
         </Text>
         <Input
-          data-disabled
           bg="brand.50"
+          data-disabled
           id="id-1"
           label="Label"
           p="sm"
@@ -46,16 +46,16 @@ export const TextInput: Story = {
           {" "}
           Label
         </Text>
-      <Input
-        bg="brand.50"
-        id="id-1"
-        label="Label"
-        p="sm"
-        placeholder="Placeholder"
-        required
-        rounded="sm"
-        type="text"
-      />
+        <Input
+          bg="brand.50"
+          id="id-1"
+          label="Label"
+          p="sm"
+          placeholder="Placeholder"
+          required
+          rounded="sm"
+          type="text"
+        />
       </Box>
       <Input
         bg="brand.50"
