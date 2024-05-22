@@ -5,7 +5,6 @@
 import clsx from "clsx";
 
 import { type Sprinkles, sprinkles } from "../sprinkles";
-import { mapValues } from "../utils";
 
 type RecipeStyleRule = Array<Sprinkles | string> | Sprinkles | string;
 
@@ -32,30 +31,18 @@ type PatternOptions<Variants extends VariantGroups> = {
 
 type Resolve<T> = { [Key in keyof T]: T[Key] } & NonNullable<unknown>;
 
-function complexSprinkles(rule: RecipeStyleRule) {
-  return (Array.isArray(rule) ? rule : [rule]).map((rule) =>
-    typeof rule === "string" ? { className: rule } : sprinkles(rule),
-  );
-}
-
 export const createRecipe = <Variants extends VariantGroups>({
   base = {},
   compoundVariants = [],
   defaultVariants = {},
   variants,
 }: PatternOptions<Variants>) => {
-  const defaultClassName = complexSprinkles(base);
-  const compounds = compoundVariants.map(
-    ({ style, variants }) => [variants, complexSprinkles(style)] as const,
-  );
-  const variantClassNames = mapValues(variants, (variantGroup) =>
-    mapValues(variantGroup, (styleRule) => complexSprinkles(styleRule)),
-  );
-
   return (options?: Resolve<VariantSelection<Variants>>) => {
-    const classNames = [];
-    const style = {};
-    const props: Record<string, unknown> = {};
+    const classNames: string[] = [];
+    const props: {
+      className?: string;
+      sx?: Sprinkles;
+    } & Record<string, unknown> = {};
     const selections = { ...defaultVariants };
     for (const [name, value] of Object.entries(options ?? {})) {
       if (name in variants) {
@@ -64,45 +51,48 @@ export const createRecipe = <Variants extends VariantGroups>({
         props[name] = value;
       }
     }
+    const sx = props.sx ?? {};
 
-    for (const item of defaultClassName) {
-      classNames.push(item.className);
-      if ("style" in item) {
-        Object.assign(style, item.style);
-      }
-    }
-    for (const items of Object.values(
-      mapValues(
-        variantClassNames,
-        (variant, variantName) =>
-          selections[variantName] &&
-          // @ts-expect-error -- too complex
-          variant[
-            typeof selections[variantName] === "boolean"
-              ? selections[variantName]
-                ? "true"
-                : "false"
-              : selections[variantName]
-          ],
-      ),
-    )) {
-      for (const item of items) {
-        classNames.push(item.className);
-        if ("style" in item) {
-          Object.assign(style, item.style);
+    function process(rule: RecipeStyleRule) {
+      for (const item of Array.isArray(rule) ? rule : [rule]) {
+        if (typeof item === "string") {
+          classNames.push(item);
+        } else {
+          for (const [name, value] of Object.entries(item)) {
+            if (sprinkles.properties.has(name as never)) {
+              props[name] = value;
+            } else {
+              // @ts-expect-error -- too complex
+              Object.assign((sx[name] = sx[name] ?? {}), value);
+            }
+          }
         }
       }
     }
-    for (const item of compounds
-      .filter(([variants]) => shouldApplyCompound(variants, selections))
-      .flatMap(([, compoundClassName]) => compoundClassName)) {
-      classNames.push(item.className);
-      if ("style" in item) {
-        Object.assign(style, item.style);
+
+    process(base);
+    for (const variantName in variants) {
+      if (!selections[variantName]) {
+        continue;
       }
+
+      const variant = variants[variantName];
+      const selection =
+        typeof selections[variantName] === "boolean"
+          ? selections[variantName]
+            ? "true"
+            : "false"
+          : selections[variantName];
+      process(variant[selection as keyof typeof variant]);
+    }
+    for (const { style, variants } of compoundVariants) {
+      if (!shouldApplyCompound(variants, selections)) {
+        continue;
+      }
+      process(style);
     }
 
-    return { className: clsx(classNames), style, ...props };
+    return { ...props, className: clsx(props.className, classNames), sx };
   };
 };
 
