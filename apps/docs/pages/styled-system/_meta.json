@@ -30,6 +30,7 @@
       "toc": false
     }
   },
+  "state-modifiers": "State Modifiers",
   "theme": "Theme",
   "-- Borders": {
     "type": "separator",

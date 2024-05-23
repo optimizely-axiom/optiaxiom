@@ -60,6 +60,10 @@ export const createSprinkles = <
 >(
   ...configs: Args
 ) => {
+  const modifiers = configs.reduce(
+    (result, config) => Object.assign(result, config.modifiers),
+    {},
+  );
   const properties = new Set(
     configs.flatMap((config) => Object.keys(config.styles)),
   ) as Set<keyof SprinkleProps<Args>>;
@@ -225,6 +229,6 @@ export const createSprinkles = <
 
       return { className: classNames.join(" "), style };
     },
-    { properties },
+    { modifiers, properties },
   );
 };
