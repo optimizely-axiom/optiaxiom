@@ -5,7 +5,7 @@ import { layers, theme } from "../styles";
 export const base = style({
   "@layer": {
     [layers.reset]: {
-      border: `0 solid ${theme.colors["border"]}`,
+      border: `0 solid ${theme.colors["border.default"]}`,
       boxSizing: "border-box",
       font: "inherit",
       fontFeatureSettings: '"cv02", "cv03", "cv04", "cv11"',

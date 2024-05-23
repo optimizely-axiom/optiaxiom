@@ -86,7 +86,7 @@ export class Colors extends ColorPalette {
   "bg.neutral" = this["slate.100"];
   "bg.success" = this["green.50"];
 
-  border = this["gray.200"];
+  "border.default" = this["gray.200"];
 
   "fg.accent.magenta" = this["magenta.600"];
   "fg.default" = this["dark.600"];
@@ -101,7 +101,7 @@ export class ColorsDark extends ColorPalette {
   "bg.neutral" = this["slate.800"];
   "bg.success" = this["green.900"];
 
-  border = this["gray.800"];
+  "border.default" = this["gray.800"];
 
   "fg.accent.magenta" = this["magenta.200"];
   "fg.default" = this["gray.100"];
