@@ -7,14 +7,11 @@ import { type Recipe, recipe } from "./Input.recipe";
 
 type InputProps = ExtendProps<
   ComponentPropsWithRef<"input">,
-  ComponentPropsWithRef<typeof Box>,
-  {
-    id: string;
-  } & Recipe
+  ComponentPropsWithRef<typeof Box> & Recipe
 >;
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ id, placeholder, type, ...props }, ref) => {
+  ({ placeholder, type, ...props }, ref) => {
     return (
       <Box
         asChild
@@ -26,7 +23,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         ref={ref}
         {...recipe(props)}
       >
-        <input id={id} placeholder={placeholder} type={type} />
+        <input placeholder={placeholder} type={type} />
       </Box>
     );
   },

@@ -3,6 +3,7 @@ import { createRecipe } from "../recipes";
 export const recipe = createRecipe({
   base: {
     border: "1",
+    rounded: "sm",
   },
 
   defaultVariants: {
@@ -12,34 +13,53 @@ export const recipe = createRecipe({
 
   variants: {
     size: {
-      lg: { fontSize: "lg", h: "40", px: "8", w: "256" },
-      md: { fontSize: "md", h: "32", px: "8", w: "256" },
-      sm: { fontSize: "sm", h: "24", px: "8", w: "256" },
+      lg: { fontSize: "lg", h: "40", px: "8", py: "8", w: "256" },
+      md: { fontSize: "md", h: "32", px: "8", py: "8", w: "256" },
+      sm: { fontSize: "sm", h: "24", px: "8", py: "8", w: "256" },
     },
     variant: {
       default: {
         ":aria-error": {
-          borderColor: "red.200",
-          outline: "2",
-          outlineColor: "red.500",
-          outlineOffset: "1",
+          borderColor: "red.500",
         },
         ":data-disabled": {
-          bg: "gray.100",
+          backgroundColor: "neutral.50",
+          borderColor: "neutral.150",
+          color: "neutral.500",
           pointerEvents: "none",
         },
         ":focus-visible": {
-          borderColor: "slate.300",
           outline: "2",
-          outlineColor: "blue.500",
+          outlineColor: "brand.200",
           outlineOffset: "1",
         },
         ":hover": {
           borderColor: "brand.500",
         },
-
         bg: "white",
         color: "dark.600",
+      },
+      number: {
+        ":aria-error": {
+          borderColor: "red.500",
+        },
+        ":data-disabled": {
+          backgroundColor: "neutral.50",
+          borderColor: "neutral.150",
+          color: "neutral.500",
+          pointerEvents: "none",
+        },
+        ":focus-visible": {
+          outline: "2",
+          outlineColor: "brand.200",
+          outlineOffset: "1",
+        },
+        ":hover": {
+          borderColor: "brand.500",
+        },
+        bg: "white",
+        color: "dark.600",
+        textAlign: "end",
       },
     },
   },
