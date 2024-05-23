@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Box, Input, Stack, Text } from "@optiaxiom/react";
+import { Flex, Input } from "@optiaxiom/react";
 
 const meta: Meta<typeof Input> = {
   component: Input,
@@ -12,84 +12,37 @@ export default meta;
 type Story = StoryObj<typeof Input>;
 
 export const TextInput: Story = {
-  args: {
-    bg: "brand.50",
-    id: "id-1",
-    m: "lg",
-    p: "sm",
-    placeholder: "Placeholder",
-    rounded: "sm",
-    variant: "default",
-  },
-
   render: () => (
-    <Stack flexDirection="column" gap="xl">
-      <Box>
-        <Text as="label" fontFamily={"sans"}>
-          {" "}
-          Label
-        </Text>
-        <Input
-          bg="brand.50"
-          data-disabled
-          id="id-1"
-          p="sm"
-          placeholder="Disabled placeholder"
-          rounded="sm"
-          type="text"
-        />
-      </Box>
-      <Box>
-        <Text as="label" fontFamily={"sans"}>
-          {" "}
-          Label
-        </Text>
-        <Input
-          bg="brand.50"
-          id="id-1"
-          p="sm"
-          placeholder="Placeholder"
-          required
-          rounded="sm"
-          type="text"
-        />
-      </Box>
+    <Flex flexDirection="column" gap="xl">
       <Input
-        bg="brand.50"
-        data-error
-        id="id-1"
-        p="sm"
-        placeholder="Placeholder without label"
-        rounded="sm"
-        type="text"
+        data-disabled
+        defaultValue="Disabled with value"
+        placeholder="Disabled placeholder"
       />
-      <Box>
-        <Text as="label">Label</Text>
-        <Input
-          bg="brand.50"
-          id="id-1"
-          p="sm"
-          placeholder="Placeholder with notes"
-          required
-          rounded="sm"
-          type="text"
-        />
-        <Text as="p" color="blue.200" fontSize="sm">
-          short note about it
-        </Text>
-      </Box>
-    </Stack>
+
+      <Input data-disabled placeholder="Disabled placeholder" />
+      <Input data-error placeholder="Error state" />
+      <Input
+        data-error
+        defaultValue="Error with value"
+        placeholder="Error with value"
+      />
+
+      <Input p="sm" placeholder="Placeholder" type="text" />
+
+      <Input defaultValue="This is a text input" placeholder="Placeholder" />
+    </Flex>
   ),
 };
 
 export const NumberInput: Story = {
-  args: {
-    bg: "brand.50",
-    id: "id-1",
-    p: "sm",
-    placeholder: "Placeholder",
-    rounded: "sm",
-    type: "number",
-    variant: "default",
-  },
+  render: () => (
+    <Flex>
+      <Input defaultValue="20.00" placeholder="00.00" variant="number" />
+
+      <Input placeholder="00.00" variant="number" />
+      <Input data-disabled placeholder="00.00" variant="number" />
+      <Input data-error defaultValue="20.00" variant="number" />
+    </Flex>
+  ),
 };
