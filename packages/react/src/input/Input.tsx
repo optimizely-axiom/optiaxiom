@@ -10,13 +10,11 @@ type InputProps = ExtendProps<
   ComponentPropsWithRef<typeof Box>,
   {
     id: string;
-    label?: string;
-    note?: string;
   } & Recipe
 >;
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ placeholder, type, ...props }, ref) => {
+  ({ id, placeholder, type, ...props }, ref) => {
     return (
       <Box
         asChild
@@ -28,22 +26,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         ref={ref}
         {...recipe(props)}
       >
-        {/* {label && (
-          <Text as="label">
-            {label}{" "}
-            {required && (
-              <Text as="span" color="red.600">
-                *
-              </Text>
-            )}
-          </Text>
-        )} */}
-        <input placeholder={placeholder} type={type} />
-        {/* {note && (
-          <Text as="p" fontSize="sm">
-            {note}
-          </Text>
-        )} */}
+        <input id={id} placeholder={placeholder} type={type} />
       </Box>
     );
   },

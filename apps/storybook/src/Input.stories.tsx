@@ -15,7 +15,6 @@ export const TextInput: Story = {
   args: {
     bg: "brand.50",
     id: "id-1",
-    label: "Field label",
     m: "lg",
     p: "sm",
     placeholder: "Placeholder",
@@ -34,7 +33,6 @@ export const TextInput: Story = {
           bg="brand.50"
           data-disabled
           id="id-1"
-          label="Label"
           p="sm"
           placeholder="Disabled placeholder"
           rounded="sm"
@@ -49,7 +47,6 @@ export const TextInput: Story = {
         <Input
           bg="brand.50"
           id="id-1"
-          label="Label"
           p="sm"
           placeholder="Placeholder"
           required
@@ -59,6 +56,7 @@ export const TextInput: Story = {
       </Box>
       <Input
         bg="brand.50"
+        data-error
         id="id-1"
         p="sm"
         placeholder="Placeholder without label"
@@ -70,8 +68,6 @@ export const TextInput: Story = {
         <Input
           bg="brand.50"
           id="id-1"
-          label="Label"
-          note="This is a note."
           p="sm"
           placeholder="Placeholder with notes"
           required
