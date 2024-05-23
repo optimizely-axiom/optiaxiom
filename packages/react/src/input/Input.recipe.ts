@@ -18,6 +18,12 @@ export const recipe = createRecipe({
     },
     variant: {
       default: {
+        ":aria-error": {
+          borderColor: "red.200",
+          outline: "2",
+          outlineColor: "red.500",
+          outlineOffset: "1",
+        },
         ":data-disabled": {
           bg: "gray.100",
           pointerEvents: "none",
@@ -31,6 +37,7 @@ export const recipe = createRecipe({
         ":hover": {
           borderColor: "brand.500",
         },
+
         bg: "white",
         color: "dark.600",
       },
