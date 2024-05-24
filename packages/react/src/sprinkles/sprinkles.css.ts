@@ -312,7 +312,7 @@ const props = defineProperties({
      *
      * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/text-align/ Documentation}
      */
-    textAlign: ["start", "center", "justify"] as const,
+    textAlign: ["end", "start", "center", "justify"] as const,
     /**
      * Set the element's text decoration
      *
