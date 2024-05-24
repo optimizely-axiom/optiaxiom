@@ -7,6 +7,9 @@ export type Ident = (typeof cssIdents)[keyof typeof cssIdents];
 
 const prefix = "sx";
 
+export const escapeCss = (value: string) =>
+  value.replaceAll(/[\\/.:]/g, "\\$&");
+
 export const escapeVar = (value: string) =>
   value.replaceAll(/[^A-Z0-9-_]/gi, "_");
 

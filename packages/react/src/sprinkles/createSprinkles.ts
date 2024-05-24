@@ -187,7 +187,10 @@ export const createSprinkles = <
                 rawCondition === config.conditions?.defaultCondition
                   ? ""
                   : rawCondition;
-              if (Array.isArray(values)) {
+              if (
+                Array.isArray(values) ||
+                (condition === "" && modifier === baseModifier)
+              ) {
                 classNames.push(
                   generateIdentifier(
                     condition,
