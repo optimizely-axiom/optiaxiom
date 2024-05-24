@@ -179,7 +179,9 @@ const props = defineProperties({
       "inline",
       "inline-block",
       "inline-flex",
+      "table",
       "table-cell",
+      "table-row",
     ] as const,
     /**
      * Set the element's flex

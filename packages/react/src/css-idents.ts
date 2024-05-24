@@ -120,4 +120,6 @@ export default {
   "4o": "outlineOffset",
   "4p": "outlineWidth",
   "4q": "outlineStyle",
+  "4r": "table",
+  "4s": "table-row",
 } as const;
