@@ -7,10 +7,12 @@ import { useRef, useState } from "react";
 
 import { Table as TableBaseline } from "./Table.baseline";
 import { Table as TableSprinkles } from "./Table.sprinkles";
+import { Table as TableStyledJsx } from "./Table.styled-jsx";
 
 const Components = {
   axiom: TableSprinkles,
   baseline: TableBaseline,
+  "styled-jsx": TableStyledJsx,
 };
 
 function avg(samples: number[]) {
@@ -83,6 +85,7 @@ export function Benchmark() {
         >
           <option value="axiom">Axiom</option>
           <option value="baseline">CSS Modules</option>
+          <option value="styled-jsx">styled-jsx</option>
         </select>
 
         <Button
