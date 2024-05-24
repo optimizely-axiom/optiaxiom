@@ -17,11 +17,10 @@ import { createMapValueFn as runtimeCreateMapValueFn } from "./createMapValueFn"
 import { createSprinkles as runtimeCreateSprinkles } from "./createSprinkles";
 import {
   type Ident,
+  escapeCss,
   escapeVar,
   generateIdentifier,
 } from "./generateIdentifier";
-
-const escapeCss = (value: string) => value.replaceAll(/[\\/.:]/g, "\\$&");
 
 export const defineProperties = <
   PropertiesDynamic extends AtomicProperties,
@@ -108,7 +107,38 @@ export const defineProperties = <
           );
         }
       } else {
+        if (condition === "") {
+          for (const [name, value] of Object.entries(normalizedValues)) {
+            let rule =
+              value && typeof value === "object"
+                ? value
+                : { [property]: value };
+            if (query?.["@media"]) {
+              rule = { "@media": { [query["@media"]]: rule } };
+            }
+            if (options["@layer"]) {
+              rule = {
+                "@layer": { [options["@layer"]]: rule },
+              };
+            }
+            globalStyle(
+              `.${escapeCss(
+                generateIdentifier(
+                  condition as Ident,
+                  "" as Ident,
+                  property as Ident,
+                  name as Ident,
+                ),
+              )}`,
+              rule,
+            );
+          }
+        }
         for (const [modifier, selector] of Object.entries(modifiers)) {
+          if (condition === "" && modifier === ":") {
+            continue;
+          }
+
           let rule = Object.fromEntries<unknown>(
             Object.entries(protoRule).map(([name]) => [
               name,
@@ -143,6 +173,18 @@ export const defineProperties = <
             ),
             rule,
           );
+          for (const name of Object.keys(normalizedValues)) {
+            /**
+             * Dummy call to ensure we can generate identifiers and cache styles
+             * for dynamic values during runtime.
+             */
+            generateIdentifier(
+              condition as Ident,
+              modifier.slice(1) as Ident,
+              property as Ident,
+              name as Ident,
+            );
+          }
         }
       }
     }
