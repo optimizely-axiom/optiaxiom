@@ -35,8 +35,11 @@ const conditions = {
 } as const;
 
 const states = {
+  "aria-error": "&[data-error]",
+  "data-disabled": "&[data-disabled]",
   "focus-visible": "&:focus-visible",
   hover: "&:hover",
+  "hover-enabled": "&:hover:enabled",
 } as const;
 const modifiers = {
   ...mapValues(

@@ -338,4 +338,7 @@ export default {
   c4: "-48",
   c5: "-64",
   c6: "-80",
+  c7: "data-disabled",
+  c8: "hover-enabled",
+  c9: "aria-error",
 } as const;
