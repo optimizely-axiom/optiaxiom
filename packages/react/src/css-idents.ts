@@ -352,4 +352,5 @@ export default {
   ci: "30",
   cj: "50",
   ck: "active",
+  cl: "aria-error",
 } as const;
