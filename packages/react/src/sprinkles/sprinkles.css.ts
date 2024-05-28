@@ -368,6 +368,12 @@ const props = defineProperties({
      */
     borderB: ["borderBottomWidth"],
     /**
+     * Set the element's bottom border color
+     *
+     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/border-color/ Documentation}
+     */
+    borderBColor: ["borderBottomColor"],
+    /**
      * Set the element's border color on all sides
      *
      * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/border-width/ Documentation}
@@ -385,17 +391,35 @@ const props = defineProperties({
      */
     borderL: ["borderLeftWidth"],
     /**
+     * Set the element's left border color
+     *
+     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/border-color/ Documentation}
+     */
+    borderLColor: ["borderLeftColor"],
+    /**
      * Set the element's right border width
      *
      * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/border-width/ Documentation}
      */
     borderR: ["borderRightWidth"],
     /**
+     * Set the element's right border color
+     *
+     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/border-color/ Documentation}
+     */
+    borderRColor: ["borderRightColor"],
+    /**
      * Set the element's top border width
      *
      * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/border-width/ Documentation}
      */
     borderT: ["borderTopWidth"],
+    /**
+     * Set the element's top border color
+     *
+     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/border-color/ Documentation}
+     */
+    borderTColor: ["borderTopColor"],
     /**
      * Set the element's size across grid columns
      *
@@ -617,12 +641,16 @@ export const mapResponsiveValue = createMapValueFn(props);
 type LonghandProps = keyof Pick<
   Parameters<typeof sprinkles>[0],
   | "backgroundColor"
+  | "borderBottomColor"
   | "borderBottomLeftRadius"
   | "borderBottomRightRadius"
   | "borderBottomWidth"
+  | "borderLeftColor"
   | "borderLeftWidth"
   | "borderRadius"
+  | "borderRightColor"
   | "borderRightWidth"
+  | "borderTopColor"
   | "borderTopLeftRadius"
   | "borderTopRightRadius"
   | "borderTopWidth"
