@@ -343,4 +343,5 @@ export default {
   c9: "aria-error",
   ca: "fg.accent.blue",
   cb: "fg.accent.purple",
+  cc: "inner",
 } as const;

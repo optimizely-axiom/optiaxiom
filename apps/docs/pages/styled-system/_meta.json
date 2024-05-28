@@ -42,6 +42,11 @@
   "outline-width": "Outline Width",
   "outline-color": "Outline Color",
   "outline-offset": "Outline Offset",
+  "-- Effects": {
+    "type": "separator",
+    "title": "Effects"
+  },
+  "box-shadow": "Box Shadow",
   "-- Sizing": {
     "type": "separator",
     "title": "Sizing"
