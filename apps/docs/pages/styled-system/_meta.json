@@ -33,6 +33,11 @@
   "state-modifiers": "State Modifiers",
   "theme": "Theme",
   "benchmarks": "Benchmarks",
+  "-- Backgrounds": {
+    "type": "separator",
+    "title": "Backgrounds"
+  },
+  "background-color": "Background Color",
   "-- Borders": {
     "type": "separator",
     "title": "Borders"
