@@ -1,6 +1,6 @@
 import type { Props } from "react-docgen-typescript";
 
-import { Code, Flex, Text } from "@optiaxiom/react";
+import { Box, Code, Flex, Text } from "@optiaxiom/react";
 
 import { Table, Td, Th, Tr } from "../table";
 import { ColorTokenItem } from "./ColorTokenItem";
@@ -26,18 +26,24 @@ export function ColorTokens({
   return (
     <Table>
       <thead>
-        <tr>
-          <Th>Token and description</Th>
-          <Th>Light value</Th>
-          <Th>Dark value</Th>
-        </tr>
+        <Box asChild display={["flex", "table-row"]}>
+          <tr>
+            <Th grow="1">Token and description</Th>
+            <Th display={["none", "table-cell"]}>Light value</Th>
+            <Th display={["none", "table-cell"]}>Dark value</Th>
+          </tr>
+        </Box>
       </thead>
       <tbody>
         {Object.values(light)
           .filter((token) => token.name.startsWith(`${namespace}.`))
           .map((token) => (
-            <Tr key={token.name}>
-              <Td py="16">
+            <Tr
+              display={["flex", "table-row"]}
+              flexWrap="wrap"
+              key={token.name}
+            >
+              <Td py="16" w={["full", "auto"]}>
                 <Flex alignItems="start">
                   <Code fontFamily="mono" px="8" py="4" rounded="sm">
                     {token.name}
