@@ -27,14 +27,14 @@ export const Scale = ({
   <Table maxH="sm" overflow="auto">
     <thead>
       <tr>
-        <Th position="sticky" style={headerBg} top="0" w="80">
+        <Th position="sticky" style={headerBg} top="0">
           {keyLabel}
         </Th>
-        <Th position="sticky" style={headerBg} top="0" w="128">
+        <Th position="sticky" style={headerBg} top="0">
           {valueLabel}
         </Th>
         {!hidePixels && (
-          <Th position="sticky" style={headerBg} top="0" w="128">
+          <Th position="sticky" style={headerBg} top="0">
             Pixels
           </Th>
         )}
@@ -44,6 +44,7 @@ export const Scale = ({
             position="sticky"
             style={headerBg}
             top="0"
+            w="full"
           />
         )}
       </tr>
@@ -62,9 +63,9 @@ export const Scale = ({
         })
         .map(([name, size]) => (
           <Tr key={name}>
-            <Td>{name}</Td>
-            <Td>{size}</Td>
-            {!hidePixels && <Td>{px(size)}</Td>}
+            <Td whiteSpace="nowrap">{name}</Td>
+            <Td whiteSpace="nowrap">{size}</Td>
+            {!hidePixels && <Td whiteSpace="nowrap">{px(size)}</Td>}
             {!hidePreview && (
               <Box asChild display={["none", "table-cell"]}>
                 <Td>
