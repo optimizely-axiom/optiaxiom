@@ -11,13 +11,13 @@ import {
 
 import type { ExtendProps } from "../utils";
 
-import { Stack } from "../stack";
+import { Flex } from "../flex";
 import { Text } from "../text";
 import { type Recipe, recipe } from "./Button.recipe";
 
 type ButtonProps = ExtendProps<
   ComponentPropsWithRef<"button">,
-  ComponentPropsWithRef<typeof Stack>,
+  ComponentPropsWithRef<typeof Flex>,
   {
     asChild?: boolean;
     children?: ReactNode;
@@ -48,7 +48,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const composedRef = useComposedRefs(ref, innerRef);
 
     return (
-      <Stack
+      <Flex
         asChild
         cursor="pointer"
         display="inline-flex"
@@ -65,7 +65,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           <Slottable>{children}</Slottable>
           {rightSection}
         </Comp>
-      </Stack>
+      </Flex>
     );
   },
 );

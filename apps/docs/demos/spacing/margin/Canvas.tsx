@@ -1,4 +1,4 @@
-import { Box, type Sprinkles, Stack } from "@optiaxiom/react";
+import { Box, Flex, type Sprinkles } from "@optiaxiom/react";
 import {
   Children,
   type ComponentPropsWithRef,
@@ -15,7 +15,7 @@ export const Canvas = ({
   children: ReactNode;
   p?: Sprinkles["p"];
 }) => (
-  <Stack
+  <Flex
     alignItems="center"
     flexDirection={["vertical", "horizontal"]}
     justifyContent="space-around"
@@ -27,5 +27,5 @@ export const Canvas = ({
           {item}
         </Item>
       ))}
-  </Stack>
+  </Flex>
 );

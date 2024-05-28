@@ -1,4 +1,4 @@
-import { Box, Button, Stack, Text } from "@optiaxiom/react";
+import { Box, Button, Flex, Text } from "@optiaxiom/react";
 import {
   IconPlayerPauseFilled,
   IconPlayerPlayFilled,
@@ -71,7 +71,7 @@ export function Benchmark() {
       flexDirection="column"
       rounded="sm"
     >
-      <Stack
+      <Flex
         borderB="1"
         flexDirection="row"
         grow="1"
@@ -108,7 +108,7 @@ export function Benchmark() {
         <Text fontSize="2xl" fontWeight="600">
           {`${avg(timingRef.current.samples).toFixed(1)}`} fps
         </Text>
-      </Stack>
+      </Flex>
 
       <Table frame={frame} table={table} />
     </Box>

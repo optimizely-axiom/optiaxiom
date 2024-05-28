@@ -2,16 +2,16 @@ import { Slot } from "@radix-ui/react-slot";
 import clsx from "clsx";
 import { type ComponentPropsWithRef, forwardRef } from "react";
 
-import { Stack } from "../stack";
+import { Flex } from "../flex";
 import * as styles from "./Code.css";
 
-type CodeProps = ComponentPropsWithRef<typeof Stack>;
+type CodeProps = ComponentPropsWithRef<typeof Flex>;
 
 export const Code = forwardRef<HTMLElement, CodeProps>(
   ({ asChild, children, className, ...props }, ref) => {
     const Comp = asChild ? Slot : "code";
     return (
-      <Stack
+      <Flex
         asChild
         bg="bg.neutral"
         className={clsx(className, styles.base)}
@@ -21,7 +21,7 @@ export const Code = forwardRef<HTMLElement, CodeProps>(
         {...props}
       >
         <Comp ref={ref}>{children}</Comp>
-      </Stack>
+      </Flex>
     );
   },
 );

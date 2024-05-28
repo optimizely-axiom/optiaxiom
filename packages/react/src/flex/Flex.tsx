@@ -3,7 +3,7 @@ import { type ComponentPropsWithRef, forwardRef } from "react";
 import { Box } from "../box";
 import { mapResponsiveValue } from "../sprinkles";
 
-type StackProps = ComponentPropsWithRef<typeof Box>;
+type FlexProps = ComponentPropsWithRef<typeof Box>;
 
 const mapDirectionToAlign = {
   column: "stretch",
@@ -19,7 +19,7 @@ const mapDirectionToJustify = {
   vertical: "center",
 } as const;
 
-export const Stack = forwardRef<HTMLDivElement, StackProps>(
+export const Flex = forwardRef<HTMLDivElement, FlexProps>(
   (
     {
       alignItems,
@@ -56,4 +56,4 @@ export const Stack = forwardRef<HTMLDivElement, StackProps>(
   },
 );
 
-Stack.displayName = "@optiaxiom/react/Stack";
+Flex.displayName = "@optiaxiom/react/Flex";

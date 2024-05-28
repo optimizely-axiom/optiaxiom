@@ -1,20 +1,20 @@
-import { Grid, Paper, Skeleton, Stack } from "@optiaxiom/react";
+import { Flex, Grid, Paper, Skeleton } from "@optiaxiom/react";
 
 export function App() {
   return (
     <Paper maxW="sm" p="md">
-      <Stack flexDirection="horizontal">
+      <Flex flexDirection="horizontal">
         <Skeleton rounded="full" size="80" />
 
-        <Stack flex="1">
+        <Flex flex="1">
           <Grid cols="3">
             <Skeleton colSpan="2" />
             <Skeleton colSpan="1" />
           </Grid>
 
           <Skeleton />
-        </Stack>
-      </Stack>
+        </Flex>
+      </Flex>
     </Paper>
   );
 }

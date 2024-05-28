@@ -1,15 +1,15 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Stack, Text } from "@optiaxiom/react";
+import { Flex, Text } from "@optiaxiom/react";
 
-const meta: Meta<typeof Stack> = {
-  component: Stack,
-  title: "Primitives / Stack",
+const meta: Meta<typeof Flex> = {
+  component: Flex,
+  title: "Primitives / Flex",
 };
 
 export default meta;
 
-type Story = StoryObj<typeof Stack>;
+type Story = StoryObj<typeof Flex>;
 
 const Items = ({ label }: { label?: string }) => (
   <>
@@ -40,23 +40,23 @@ export const Horizontal: Story = {
 
 export const Gaps: Story = {
   render: () => (
-    <Stack flexDirection="horizontal">
-      <Stack gap="xs">
+    <Flex flexDirection="horizontal">
+      <Flex gap="xs">
         <Items label="xs" />
-      </Stack>
-      <Stack gap="sm">
+      </Flex>
+      <Flex gap="sm">
         <Items label="sm" />
-      </Stack>
-      <Stack gap="md">
+      </Flex>
+      <Flex gap="md">
         <Items label="md" />
-      </Stack>
-      <Stack gap="lg">
+      </Flex>
+      <Flex gap="lg">
         <Items label="lg" />
-      </Stack>
-      <Stack gap="xl">
+      </Flex>
+      <Flex gap="xl">
         <Items label="xl" />
-      </Stack>
-    </Stack>
+      </Flex>
+    </Flex>
   ),
 };
 

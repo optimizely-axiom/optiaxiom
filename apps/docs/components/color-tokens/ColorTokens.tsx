@@ -1,6 +1,6 @@
 import type { Props } from "react-docgen-typescript";
 
-import { Code, Stack, Text } from "@optiaxiom/react";
+import { Code, Flex, Text } from "@optiaxiom/react";
 
 import { Table, Td, Th, Tr } from "../table";
 import { ColorTokenItem } from "./ColorTokenItem";
@@ -38,12 +38,12 @@ export function ColorTokens({
           .map((token) => (
             <Tr key={token.name}>
               <Td py="16">
-                <Stack alignItems="start">
+                <Flex alignItems="start">
                   <Code fontFamily="mono" px="8" py="4" rounded="sm">
                     {token.name}
                   </Code>
                   {token.description && <Text>{token.description}</Text>}
-                </Stack>
+                </Flex>
               </Td>
               <Td py="16" w="160">
                 <ColorTokenItem

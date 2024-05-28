@@ -1,4 +1,4 @@
-import { Box, Stack, Text } from "@optiaxiom/react";
+import { Box, Flex, Text } from "@optiaxiom/react";
 import { type ComponentPropsWithRef, type ReactElement } from "react";
 
 export const Item = ({
@@ -8,7 +8,7 @@ export const Item = ({
 }) => {
   const { children: label, ...props } = children.props;
   return (
-    <Stack alignItems="center" gap="xs">
+    <Flex alignItems="center" gap="xs">
       <Text
         color="fg.tertiary"
         fontFamily="mono"
@@ -25,6 +25,6 @@ export const Item = ({
         size="64"
         {...props}
       />
-    </Stack>
+    </Flex>
   );
 };

@@ -3,7 +3,7 @@ import { Scale } from "@/components/scale";
 
 # Responsive Styles
 
-`Box` and `Stack` components support responsive styles for all layout related props.
+`Box` and `Flex` components support responsive styles for all layout related props.
 
 <Scale
   hidePreview
@@ -17,11 +17,11 @@ import { Scale } from "@/components/scale";
 Use the object prop notation where the key is the breakpoint name:
 
 ```tsx
-import { Stack } from "@optiaxiom/react";
+import { Flex } from "@optiaxiom/react";
 
 export function App() {
   return (
-    <Stack flexDirection={{ base: "vertical", sm: "horizontal" }}>...</Stack>
+    <Flex flexDirection={{ base: "vertical", sm: "horizontal" }}>...</Flex>
   );
 }
 ```
@@ -29,10 +29,10 @@ export function App() {
 Or use the shorter array prop notation with the elements in order of condition:
 
 ```tsx
-import { Stack } from "@optiaxiom/react";
+import { Flex } from "@optiaxiom/react";
 
 export function App() {
-  return <Stack flexDirection={["vertical", "horizontal"]}>...</Stack>;
+  return <Flex flexDirection={["vertical", "horizontal"]}>...</Flex>;
 }
 ```
 

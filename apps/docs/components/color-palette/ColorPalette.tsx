@@ -1,4 +1,4 @@
-import { Box, Grid, Stack, Text, tokens } from "@optiaxiom/react";
+import { Box, Flex, Grid, Text, tokens } from "@optiaxiom/react";
 
 export function ColorPalette() {
   return (
@@ -24,7 +24,7 @@ export function ColorPalette() {
           return result;
         }, {}),
       ).map(([hue, tones]) => (
-        <Stack
+        <Flex
           alignItems={["stretch", "start"]}
           flexDirection={["vertical", "horizontal"]}
           key={hue}
@@ -32,13 +32,13 @@ export function ColorPalette() {
           <Text fontWeight="700" mt="8" textTransform="capitalize" w="80">
             {hue}
           </Text>
-          <Stack
+          <Flex
             flex="1"
             flexDirection={["vertical", "horizontal"]}
             flexWrap="wrap"
           >
             {tones.map(([tone, name, color]) => (
-              <Stack
+              <Flex
                 alignItems="start"
                 flexDirection={["horizontal", "vertical"]}
                 gap={["sm", "8"]}
@@ -61,10 +61,10 @@ export function ColorPalette() {
                     {color}
                   </Text>
                 </Box>
-              </Stack>
+              </Flex>
             ))}
-          </Stack>
-        </Stack>
+          </Flex>
+        </Flex>
       ))}
     </Grid>
   );

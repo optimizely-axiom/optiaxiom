@@ -1,6 +1,6 @@
 import type { ComponentType, ReactNode } from "react";
 
-import { Box, Stack } from "@optiaxiom/react";
+import { Box, Flex } from "@optiaxiom/react";
 
 import styles from "./Demo.module.css";
 import { DemoIframe } from "./DemoIframe";
@@ -17,11 +17,11 @@ export function Demo({
   iframe?: string;
 }) {
   return (
-    <Stack mt="xl">
+    <Flex mt="xl">
       <Box border="1" className={iframe && styles.resize} p="xl" rounded="xl">
         {iframe ? <DemoIframe height={height} src={iframe} /> : <Component />}
       </Box>
       <Box className={styles.editor}>{children}</Box>
-    </Stack>
+    </Flex>
   );
 }
