@@ -65,5 +65,10 @@
   },
   "gap": "Gap",
   "margin": "Margin",
-  "padding": "Padding"
+  "padding": "Padding",
+  "-- Typography": {
+    "type": "separator",
+    "title": "Typography"
+  },
+  "text-color": "Text Color"
 }
