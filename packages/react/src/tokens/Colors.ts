@@ -243,7 +243,7 @@ export class ColorsDark extends ColorPalette {
   "border.error" = this["red.500"];
   "border.secondary" = this["neutral.150"];
   "border.success" = this["green.500"];
-  "border.tertiary" = this["neutral.100"];
+  "border.tertiary" = this["neutral.900"];
   "border.warning" = this["yellow.500"];
 
   "fg.accent.blue" = this["blue.200"];
