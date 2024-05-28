@@ -42,10 +42,14 @@ export const Box = forwardRef<HTMLDivElement, BoxProps>(
       <Comp
         className={clsx(className, styles.base, css.className)}
         ref={ref}
-        style={{
-          ...css.style,
-          ...style,
-        }}
+        style={
+          Object.keys(css.style).length
+            ? {
+                ...css.style,
+                ...style,
+              }
+            : style
+        }
         {...restProps}
       />
     );
