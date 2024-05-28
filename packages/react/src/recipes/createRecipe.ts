@@ -38,8 +38,7 @@ export const createRecipe = <Variants extends VariantGroups>({
   variants,
 }: PatternOptions<Variants>) => {
   return (options?: Resolve<VariantSelection<Variants>>) => {
-    const classNames: string[] = [];
-    const props: {
+    const restProps: {
       className?: string;
       sx?: Sprinkles;
     } & Record<string, unknown> = {};
@@ -48,10 +47,13 @@ export const createRecipe = <Variants extends VariantGroups>({
       if (name in variants) {
         selections[name as keyof Variants] = value;
       } else {
-        props[name] = value;
+        restProps[name] = value;
       }
     }
-    const sx = props.sx ?? {};
+
+    const classNames: string[] = [];
+    const sprinkleProps: Record<string, unknown> = {};
+    const sx = restProps.sx ?? {};
 
     function process(rule: RecipeStyleRule) {
       for (const item of Array.isArray(rule) ? rule : [rule]) {
@@ -60,7 +62,7 @@ export const createRecipe = <Variants extends VariantGroups>({
         } else {
           for (const [name, value] of Object.entries(item)) {
             if (sprinkles.properties.has(name as never)) {
-              props[name] = value;
+              sprinkleProps[name] = value;
             } else {
               // @ts-expect-error -- too complex
               Object.assign((sx[name] = sx[name] ?? {}), value);
@@ -92,7 +94,12 @@ export const createRecipe = <Variants extends VariantGroups>({
       process(style);
     }
 
-    return { ...props, className: clsx(props.className, classNames), sx };
+    return {
+      ...sprinkleProps,
+      ...restProps,
+      className: clsx(restProps.className, classNames),
+      sx,
+    };
   };
 };
 
