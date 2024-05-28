@@ -11,7 +11,7 @@ import { Item } from "./Item";
 export const Canvas = ({ children }: { children: ReactNode }) => (
   <Flex
     alignItems="center"
-    flexDirection={["vertical", "horizontal"]}
+    flexDirection={["column", "row"]}
     justifyContent="space-around"
   >
     {Children.toArray(children)

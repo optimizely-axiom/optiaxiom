@@ -201,12 +201,7 @@ const props = defineProperties({
      *
      * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/flex-direction/ Documentation}
      */
-    flexDirection: {
-      column: "column",
-      horizontal: "row",
-      row: "row",
-      vertical: "column",
-    },
+    flexDirection: ["column", "column-reverse", "row", "row-reverse"] as const,
     flexGrow: ["1"] as const,
     flexShrink: ["1"] as const,
     /**

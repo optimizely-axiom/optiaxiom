@@ -3,7 +3,7 @@ import { Flex, Grid, Paper, Skeleton } from "@optiaxiom/react";
 export function App() {
   return (
     <Paper maxW="sm" p="md">
-      <Flex flexDirection="horizontal">
+      <Flex flexDirection="row">
         <Skeleton rounded="full" size="80" />
 
         <Flex flex="1">

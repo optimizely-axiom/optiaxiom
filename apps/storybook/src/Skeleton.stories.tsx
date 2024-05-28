@@ -17,7 +17,7 @@ export const Primary: Story = {};
 export const Card: Story = {
   render: () => (
     <Paper maxW="sm" p="md">
-      <Flex alignItems="start" flexDirection="horizontal">
+      <Flex alignItems="start" flexDirection="row">
         <Skeleton rounded="full" size="48" />
 
         <Flex flex="1" py="4">

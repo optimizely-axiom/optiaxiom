@@ -52,7 +52,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         asChild
         cursor="pointer"
         display="inline-flex"
-        flexDirection="horizontal"
+        flexDirection="row"
         gap="xs"
         overflow="hidden"
         position="relative"
