@@ -146,7 +146,9 @@ export class Colors extends ColorPalette {
   "border.tertiary" = this["neutral.100"];
   "border.warning" = this["yellow.500"];
 
+  "fg.accent.blue" = this["blue.500"];
   "fg.accent.magenta" = this["magenta.600"];
+  "fg.accent.purple" = this["purple.600"];
   /**
    * Primary brand color useful for accented text, highlights, and subheadings
    */
@@ -244,7 +246,9 @@ export class ColorsDark extends ColorPalette {
   "border.tertiary" = this["neutral.100"];
   "border.warning" = this["yellow.500"];
 
+  "fg.accent.blue" = this["blue.200"];
   "fg.accent.magenta" = this["magenta.200"];
+  "fg.accent.purple" = this["purple.200"];
   "fg.brand" = this["brand.500"];
   "fg.brand.hover" = this["brand.600"];
   "fg.default" = this["gray.100"];

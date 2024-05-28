@@ -1,4 +1,4 @@
-import { Box } from "@optiaxiom/react";
+import { Box, Text } from "@optiaxiom/react";
 
 import { Table, Td, Th, Tr } from "../table";
 
@@ -63,9 +63,38 @@ export const Scale = ({
         })
         .map(([name, size]) => (
           <Tr key={name}>
-            <Td whiteSpace="nowrap">{name}</Td>
-            <Td whiteSpace="nowrap">{size}</Td>
-            {!hidePixels && <Td whiteSpace="nowrap">{px(size)}</Td>}
+            <Td whiteSpace="nowrap">
+              <Text
+                color="fg.accent.blue"
+                fontFamily="mono"
+                fontSize="sm"
+                fontWeight="600"
+              >
+                {name}
+              </Text>
+            </Td>
+            <Td whiteSpace="nowrap">
+              <Text
+                color="fg.accent.purple"
+                fontFamily="mono"
+                fontSize="sm"
+                fontWeight="500"
+              >
+                {size}
+              </Text>
+            </Td>
+            {!hidePixels && (
+              <Td whiteSpace="nowrap">
+                <Text
+                  color="fg.accent.purple"
+                  fontFamily="mono"
+                  fontSize="sm"
+                  fontWeight="500"
+                >
+                  {px(size)}
+                </Text>
+              </Td>
+            )}
             {!hidePreview && (
               <Box asChild display={["none", "table-cell"]}>
                 <Td>
