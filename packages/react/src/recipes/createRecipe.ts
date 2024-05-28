@@ -53,7 +53,7 @@ export const createRecipe = <Variants extends VariantGroups>({
 
     const classNames: string[] = [];
     const sprinkleProps: Record<string, unknown> = {};
-    const sx = restProps.sx ?? {};
+    const sx = {};
 
     function process(rule: RecipeStyleRule) {
       for (const item of Array.isArray(rule) ? rule : [rule]) {
@@ -98,9 +98,31 @@ export const createRecipe = <Variants extends VariantGroups>({
       ...sprinkleProps,
       ...restProps,
       className: clsx(restProps.className, classNames),
-      sx,
+      sx: merge(sx, restProps.sx ?? {}),
     };
   };
+};
+
+const merge = (
+  objA: Record<string, unknown>,
+  objB: Record<string, unknown>,
+) => {
+  const result: Record<string, unknown> = {};
+  for (const name in objA) {
+    result[name] = objA[name];
+  }
+  for (const name in objB) {
+    const resultValue = result[name];
+    const bValue = objB[name];
+    result[name] =
+      bValue &&
+      typeof bValue === "object" &&
+      resultValue &&
+      typeof resultValue === "object"
+        ? { ...resultValue, ...bValue }
+        : objB;
+  }
+  return result;
 };
 
 const shouldApplyCompound = <Variants extends VariantGroups>(
