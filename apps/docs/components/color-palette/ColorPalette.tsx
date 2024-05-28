@@ -26,21 +26,17 @@ export function ColorPalette() {
       ).map(([hue, tones]) => (
         <Flex
           alignItems={["stretch", "start"]}
-          flexDirection={["vertical", "horizontal"]}
+          flexDirection={["column", "row"]}
           key={hue}
         >
           <Text fontWeight="700" mt="8" textTransform="capitalize" w="80">
             {hue}
           </Text>
-          <Flex
-            flex="1"
-            flexDirection={["vertical", "horizontal"]}
-            flexWrap="wrap"
-          >
+          <Flex flex="1" flexDirection={["column", "row"]} flexWrap="wrap">
             {tones.map(([tone, name, color]) => (
               <Flex
                 alignItems="start"
-                flexDirection={["horizontal", "vertical"]}
+                flexDirection={["row", "column"]}
                 gap={["sm", "8"]}
                 key={`tone-${tone}`}
               >

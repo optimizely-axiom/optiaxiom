@@ -2,7 +2,7 @@ import { Box, Flex } from "@optiaxiom/react";
 
 export function App() {
   return (
-    <Flex flexDirection="vertical">
+    <Flex flexDirection="column">
       <Box bg="bg.information" p="sm">
         Box 1
       </Box>

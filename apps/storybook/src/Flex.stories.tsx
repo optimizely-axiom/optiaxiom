@@ -40,7 +40,7 @@ export const Horizontal: Story = {
 
 export const Gaps: Story = {
   render: () => (
-    <Flex flexDirection="horizontal">
+    <Flex flexDirection="row">
       <Flex gap="xs">
         <Items label="xs" />
       </Flex>

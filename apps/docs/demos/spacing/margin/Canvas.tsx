@@ -17,7 +17,7 @@ export const Canvas = ({
 }) => (
   <Flex
     alignItems="center"
-    flexDirection={["vertical", "horizontal"]}
+    flexDirection={["column", "row"]}
     justifyContent="space-around"
   >
     {Children.toArray(children)

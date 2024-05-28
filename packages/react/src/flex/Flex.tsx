@@ -7,16 +7,16 @@ type FlexProps = ComponentPropsWithRef<typeof Box>;
 
 const mapDirectionToAlign = {
   column: "stretch",
-  horizontal: "center",
+  "column-reverse": "stretch",
   row: "center",
-  vertical: "stretch",
+  "row-reverse": "center",
 } as const;
 
 const mapDirectionToJustify = {
   column: "center",
-  horizontal: "start",
+  "column-reverse": "center",
   row: "start",
-  vertical: "center",
+  "row-reverse": "start",
 } as const;
 
 export const Flex = forwardRef<HTMLDivElement, FlexProps>(
