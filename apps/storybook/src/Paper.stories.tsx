@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Paper, Stack, Text } from "@optiaxiom/react";
+import { Flex, Paper, Text } from "@optiaxiom/react";
 
 const meta: Meta<typeof Paper> = {
   component: Paper,
@@ -20,7 +20,7 @@ export const Primary: Story = {
 
 export const Shadows: Story = {
   render: () => (
-    <Stack flexDirection="row" gap="xl">
+    <Flex flexDirection="row" gap="xl">
       <Paper p="xl" shadow="xs">
         <Text>Paper with xs shadow</Text>
       </Paper>
@@ -36,6 +36,6 @@ export const Shadows: Story = {
       <Paper p="xl" shadow="xl">
         <Text>Paper with xl shadow</Text>
       </Paper>
-    </Stack>
+    </Flex>
   ),
 };

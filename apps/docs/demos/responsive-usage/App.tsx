@@ -1,4 +1,4 @@
-import { Box, Paper, Stack, Text } from "@optiaxiom/react";
+import { Box, Flex, Paper, Text } from "@optiaxiom/react";
 import Image from "next/image";
 
 import beach from "./beach.jpg";
@@ -6,7 +6,7 @@ import beach from "./beach.jpg";
 export function App() {
   return (
     <Paper maxW={["sm", "2xl"]} overflow="hidden">
-      <Stack flexDirection={["vertical", "horizontal"]}>
+      <Flex flexDirection={["vertical", "horizontal"]}>
         <Box asChild>
           <Image
             alt="brown glass bottle beside white book on blue and white textile"
@@ -32,7 +32,7 @@ export function App() {
             efficitur feugiat enim, id pretium nisl luctus et.
           </Text>
         </Box>
-      </Stack>
+      </Flex>
     </Paper>
   );
 }

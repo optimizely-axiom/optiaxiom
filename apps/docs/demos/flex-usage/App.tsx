@@ -1,8 +1,8 @@
-import { Box, Stack } from "@optiaxiom/react";
+import { Box, Flex } from "@optiaxiom/react";
 
 export function App() {
   return (
-    <Stack>
+    <Flex>
       <Box bg="bg.information" p="md">
         Box 1
       </Box>
@@ -14,6 +14,6 @@ export function App() {
       <Box bg="bg.information" p="md">
         Box 3
       </Box>
-    </Stack>
+    </Flex>
   );
 }

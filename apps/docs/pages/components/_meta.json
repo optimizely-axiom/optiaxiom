@@ -9,9 +9,9 @@
     "title": "Primitives"
   },
   "box": "Box",
+  "flex": "Flex",
   "grid": "Grid",
   "paper": "Paper",
-  "stack": "Stack",
   "-- Typography": {
     "type": "separator",
     "title": "Typography"

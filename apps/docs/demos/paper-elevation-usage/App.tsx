@@ -1,8 +1,8 @@
-import { Paper, Stack, Text } from "@optiaxiom/react";
+import { Flex, Paper, Text } from "@optiaxiom/react";
 
 export function App() {
   return (
-    <Stack>
+    <Flex>
       <Paper elevation="sm" p="md">
         <Text>This is a paper</Text>
       </Paper>
@@ -14,6 +14,6 @@ export function App() {
       <Paper elevation="lg" p="md">
         <Text>This is a paper</Text>
       </Paper>
-    </Stack>
+    </Flex>
   );
 }

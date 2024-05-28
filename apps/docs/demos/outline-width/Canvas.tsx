@@ -1,4 +1,4 @@
-import { Box, Stack } from "@optiaxiom/react";
+import { Box, Flex } from "@optiaxiom/react";
 import {
   Children,
   type ComponentPropsWithRef,
@@ -9,7 +9,7 @@ import {
 import { Item } from "./Item";
 
 export const Canvas = ({ children }: { children: ReactNode }) => (
-  <Stack
+  <Flex
     flexDirection={["vertical", "horizontal"]}
     justifyContent="space-around"
   >
@@ -18,5 +18,5 @@ export const Canvas = ({ children }: { children: ReactNode }) => (
       .map((item, index) => (
         <Item key={index}>{item}</Item>
       ))}
-  </Stack>
+  </Flex>
 );

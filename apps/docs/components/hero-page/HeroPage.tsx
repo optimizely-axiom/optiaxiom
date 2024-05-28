@@ -1,11 +1,11 @@
-import { Box, Heading, Stack, Text } from "@optiaxiom/react";
+import { Box, Flex, Heading, Text } from "@optiaxiom/react";
 import Link from "next/link";
 
 import styles from "./HeroPage.module.css";
 
 export function HeroPage() {
   return (
-    <Stack alignItems={["start", "center"]} h="full" justifyContent="center">
+    <Flex alignItems={["start", "center"]} h="full" justifyContent="center">
       <Heading
         fontSize={["4xl", "5xl", "6xl"]}
         fontWeight="800"
@@ -35,6 +35,6 @@ export function HeroPage() {
           <button className={styles.button}>Get started</button>
         </Box>
       </Link>
-    </Stack>
+    </Flex>
   );
 }

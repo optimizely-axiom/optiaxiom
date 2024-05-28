@@ -1,6 +1,6 @@
 import type { PropItem } from "react-docgen-typescript";
 
-import { Box, Stack, Text } from "@optiaxiom/react";
+import { Box, Flex, Text } from "@optiaxiom/react";
 
 export function ColorTokenItem({
   mode,
@@ -14,7 +14,7 @@ export function ColorTokenItem({
   const luminance = getColorLuminance(JSON.parse(token.type.name));
 
   return (
-    <Stack
+    <Flex
       bg={mode === "light" ? "white" : "neutral.900"}
       border="1"
       gap="8"
@@ -40,7 +40,7 @@ export function ColorTokenItem({
       >
         {value.name}
       </Text>
-    </Stack>
+    </Flex>
   );
 }
 

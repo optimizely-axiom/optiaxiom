@@ -1,8 +1,8 @@
-import { Stack, Strong, Text } from "@optiaxiom/react";
+import { Flex, Strong, Text } from "@optiaxiom/react";
 
 export function App() {
   return (
-    <Stack>
+    <Flex>
       <Text>
         This is a <Strong>paragraph</Strong> element.
       </Text>
@@ -12,6 +12,6 @@ export function App() {
       <Text as="span">
         This is a <Strong>span</Strong> element.
       </Text>
-    </Stack>
+    </Flex>
   );
 }

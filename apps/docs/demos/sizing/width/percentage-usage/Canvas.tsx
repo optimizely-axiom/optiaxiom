@@ -1,4 +1,4 @@
-import { Box, Stack } from "@optiaxiom/react";
+import { Box, Flex } from "@optiaxiom/react";
 import {
   Children,
   type ComponentPropsWithRef,
@@ -10,9 +10,9 @@ import {
 import { Item } from "../Item";
 
 export const Canvas = ({ children }: { children: ReactNode }) => (
-  <Stack>
+  <Flex>
     {Children.toArray(children)
-      .filter(isValidElement<ComponentPropsWithRef<typeof Stack>>)
+      .filter(isValidElement<ComponentPropsWithRef<typeof Flex>>)
       .map((child, index) =>
         cloneElement(
           child,
@@ -22,5 +22,5 @@ export const Canvas = ({ children }: { children: ReactNode }) => (
             .map((item, index) => <Item key={index}>{item}</Item>),
         ),
       )}
-  </Stack>
+  </Flex>
 );
