@@ -175,6 +175,9 @@ importers:
 
   packages/react:
     dependencies:
+      '@fontsource-variable/fira-code':
+        specifier: ^5.0.18
+        version: 5.0.18
       '@radix-ui/react-compose-refs':
         specifier: ^1.0.1
         version: 1.0.1(@types/react@18.3.2)(react@18.3.1)
@@ -1293,6 +1296,9 @@ packages:
 
   '@floating-ui/utils@0.2.2':
     resolution: {integrity: sha512-J4yDIIthosAsRZ5CPYP/jQvUAQtlZTTD/4suA08/FEnlxqW3sKS9iAhgsa9VYLZ6vDHn/ixJgIqRQPotoBjxIw==}
+
+  '@fontsource-variable/fira-code@5.0.18':
+    resolution: {integrity: sha512-Pmbnf4HukX4y928RY9g47hWyVECQglwV7HLv5taaDQwI3UBXyoLUnyRsjJxeviCPhdwJY5qyLT4GaCMlgC9oCQ==}
 
   '@hapi/hoek@9.3.0':
     resolution: {integrity: sha512-/c6rf4UJlmHlC9b5BaNvzAcFv7HZ2QHaV0D4/HNlBdvFnvQq8RI4kYdhyPCl7Xj+oWvTWQ8ujhqS53LIgAe6KQ==}
@@ -8277,6 +8283,8 @@ snapshots:
       react-dom: 18.3.1(react@18.3.1)
 
   '@floating-ui/utils@0.2.2': {}
+
+  '@fontsource-variable/fira-code@5.0.18': {}
 
   '@hapi/hoek@9.3.0': {}
 
