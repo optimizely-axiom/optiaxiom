@@ -1,3 +1,4 @@
+import "@fontsource-variable/fira-code";
 import { Slot } from "@radix-ui/react-slot";
 import clsx from "clsx";
 import "inter-ui/inter-variable.css";
