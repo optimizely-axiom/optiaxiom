@@ -33,11 +33,11 @@ export default {
       props: [
         "bg",
         "color",
-        "borderBottomColor",
+        "borderBColor",
         "borderColor",
-        "borderLeftColor",
-        "borderRightColor",
-        "borderTopColor",
+        "borderLColor",
+        "borderRColor",
+        "borderTColor",
       ],
     },
     fontFamily: {

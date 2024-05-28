@@ -44,6 +44,7 @@
   },
   "border-radius": "Border Radius",
   "border-width": "Border Width",
+  "border-color": "Border Color",
   "outline-width": "Outline Width",
   "outline-color": "Outline Color",
   "outline-offset": "Outline Offset",
