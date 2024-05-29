@@ -68,6 +68,12 @@ const props = defineProperties({
     borderTopLeftRadius: radiuses,
     borderTopRightRadius: radiuses,
     borderTopWidth: theme.borderWidth,
+    /**
+     * Set the element's position
+     *
+     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/top-right-bottom-left/ Documentation}
+     */
+    bottom: theme.spacing,
     boxShadow: theme.boxShadow,
     /**
      * Set the element's text color
@@ -99,6 +105,12 @@ const props = defineProperties({
      */
     gap: theme.spacing,
     height: theme.size,
+    /**
+     * Set the element's position
+     *
+     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/top-right-bottom-left/ Documentation}
+     */
+    left: theme.spacing,
     letterSpacing: theme.letterSpacing,
     /**
      * Set the element's line height
@@ -139,6 +151,12 @@ const props = defineProperties({
     paddingLeft: theme.spacing,
     paddingRight: theme.spacing,
     paddingTop: theme.spacing,
+    /**
+     * Set the element's position
+     *
+     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/top-right-bottom-left/ Documentation}
+     */
+    right: theme.spacing,
     /**
      * Set the element's position
      *
@@ -260,7 +278,7 @@ const props = defineProperties({
      *
      * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/top-right-bottom-left/ Documentation}
      */
-    inset: ["0"] as const,
+    inset: theme.spacing,
     /**
      * Set the element's justify content
      *
@@ -437,6 +455,18 @@ const props = defineProperties({
      * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/height/ Documentation}
      */
     h: ["height"],
+    /**
+     * Set the element's position
+     *
+     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/top-right-bottom-left/ Documentation}
+     */
+    insetX: ["left", "right"],
+    /**
+     * Set the element's position
+     *
+     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/top-right-bottom-left/ Documentation}
+     */
+    insetY: ["bottom", "top"],
     /**
      * Set the element's line height
      *
