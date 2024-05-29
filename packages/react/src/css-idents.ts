@@ -351,4 +351,5 @@ export default {
   ch: "20",
   ci: "30",
   cj: "50",
+  ck: "active",
 } as const;
