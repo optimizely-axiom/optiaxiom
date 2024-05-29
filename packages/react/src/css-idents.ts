@@ -348,4 +348,7 @@ export default {
   ce: "left",
   cf: "right",
   cg: "justifyItems",
+  ch: "20",
+  ci: "30",
+  cj: "50",
 } as const;
