@@ -209,9 +209,7 @@ const props = defineProperties({
      *
      * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/flex-wrap/ Documentation}
      */
-    flexWrap: {
-      wrap: "wrap",
-    },
+    flexWrap: ["nowrap", "wrap"] as const,
     /**
      * Set the element's font smoothing
      *
