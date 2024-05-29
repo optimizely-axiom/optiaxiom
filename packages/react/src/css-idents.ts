@@ -340,7 +340,7 @@ export default {
   c6: "-80",
   c7: "data-disabled",
   c8: "hover-enabled",
-  c9: "aria-error",
+  c9: "aria-invalid",
   ca: "fg.accent.blue",
   cb: "fg.accent.purple",
   cc: "inner",
