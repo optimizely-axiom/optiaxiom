@@ -22,7 +22,7 @@ export const Scale = ({
   hidePreview?: boolean;
   keyLabel?: string;
   valueLabel?: string;
-  values: Record<string, string>;
+  values: Record<string, string> | string[];
 }) => (
   <Table maxH="sm" overflow="auto">
     <thead>
@@ -50,7 +50,10 @@ export const Scale = ({
       </tr>
     </thead>
     <tbody>
-      {Object.entries(values)
+      {(Array.isArray(values)
+        ? values.map((value) => [value, value])
+        : Object.entries(values)
+      )
         .sort(([a], [b]) => {
           const aMatch = a.match(/^([0-9.]+)$/);
           const aNum = aMatch === null ? NaN : parseFloat(aMatch[1]);
