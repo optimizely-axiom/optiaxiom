@@ -33,6 +33,60 @@
   "state-modifiers": "State Modifiers",
   "theme": "Theme",
   "benchmarks": "Benchmarks",
+  "-- Layout": {
+    "type": "separator",
+    "title": "Layout"
+  },
+  "display": "Display",
+  "overflow": "Overflow",
+  "position": "Position",
+  "top-right-bottom-left": "Top / Right / Bottom / Left",
+  "z-index": "Z-Index",
+  "-- Flexbox & Grid": {
+    "type": "separator",
+    "title": "Flexbox & Grid"
+  },
+  "align-items": "Align Items",
+  "flex-direction": "Flex Direction",
+  "flex-grow": "Flex Grow",
+  "flex-shrink": "Flex Shrink",
+  "flex-wrap": "Flex Wrap",
+  "gap": "Gap",
+  "grid-column": "Grid Column",
+  "grid-template-columns": "Grid Template Columns",
+  "justify-content": "Justify Content",
+  "place-items": "Place Items",
+  "-- Spacing": {
+    "type": "separator",
+    "title": "Spacing"
+  },
+  "margin": "Margin",
+  "padding": "Padding",
+  "-- Sizing": {
+    "type": "separator",
+    "title": "Sizing"
+  },
+  "width": "Width",
+  "max-width": "Max-Width",
+  "height": "Height",
+  "max-height": "Max-Height",
+  "size": "Size",
+  "-- Typography": {
+    "type": "separator",
+    "title": "Typography"
+  },
+  "font-family": "Font Family",
+  "font-size": "Font Size",
+  "font-smoothing": "Font Smoothing",
+  "font-style": "Font Style",
+  "font-weight": "Font Weight",
+  "letter-spacing": "Letter Spacing",
+  "line-height": "Line Height",
+  "text-align": "Text Align",
+  "text-color": "Text Color",
+  "text-decoration": "Text Decoration",
+  "text-transform": "Text Transform",
+  "whitespace": "Whitespace",
   "-- Backgrounds": {
     "type": "separator",
     "title": "Backgrounds"
@@ -53,23 +107,16 @@
     "title": "Effects"
   },
   "box-shadow": "Box Shadow",
-  "-- Sizing": {
+  "-- Transitions & Animation": {
     "type": "separator",
-    "title": "Sizing"
+    "title": "Transitions & Animation"
   },
-  "height": "Height",
-  "size": "Size",
-  "width": "Width",
-  "-- Spacing": {
+  "animation": "Animation",
+  "transition-property": "Transition Property",
+  "-- Interactivity": {
     "type": "separator",
-    "title": "Spacing"
+    "title": "Interactivity"
   },
-  "gap": "Gap",
-  "margin": "Margin",
-  "padding": "Padding",
-  "-- Typography": {
-    "type": "separator",
-    "title": "Typography"
-  },
-  "text-color": "Text Color"
+  "cursor": "Cursor",
+  "pointer-events": "Pointer Events"
 }
