@@ -35,6 +35,7 @@ const conditions = {
 } as const;
 
 const states = {
+  active: "&:active",
   "aria-error": "&[data-error]",
   "data-disabled": "&[data-disabled]",
   "focus-visible": "&:focus-visible",
