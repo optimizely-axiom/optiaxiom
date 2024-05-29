@@ -347,4 +347,5 @@ export default {
   cd: "bottom",
   ce: "left",
   cf: "right",
+  cg: "justifyItems",
 } as const;
