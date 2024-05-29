@@ -295,6 +295,12 @@ const props = defineProperties({
       "stretch",
     ] as const,
     /**
+     * Set the element's justify items
+     *
+     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/justify-items/ Documentation}
+     */
+    justifyItems: ["center", "end", "normal", "start", "stretch"] as const,
+    /**
      * Set the element's overflow
      *
      * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/overflow/ Documentation}
