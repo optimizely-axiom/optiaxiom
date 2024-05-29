@@ -26,8 +26,8 @@ export const fontSize = {
     lineHeight: "1.6",
   },
   "3xl": {
-    fontSize: rem("23px"),
-    lineHeight: "1.74",
+    fontSize: rem("30px"),
+    lineHeight: rem("36px"),
   },
   "4xl": {
     fontSize: rem("36px"),
