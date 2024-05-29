@@ -344,4 +344,7 @@ export default {
   ca: "fg.accent.blue",
   cb: "fg.accent.purple",
   cc: "inner",
+  cd: "bottom",
+  ce: "left",
+  cf: "right",
 } as const;
