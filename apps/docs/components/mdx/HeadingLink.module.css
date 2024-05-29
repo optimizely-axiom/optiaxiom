@@ -1,0 +1,26 @@
+.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.group {
+  position: relative;
+}
+
+.anchor {
+  opacity: 0;
+  position: absolute;
+
+  .group:is(:focus, :hover) & {
+    opacity: 1;
+  }
+}
+
+.pound {
+  outline: 1px solid var(--ax-colors-border-tertiary);
+
+  &:hover {
+    color: var(--ax-colors-fg-secondary);
+    outline-color: var(--ax-colors-border-secondary);
+  }
+}
