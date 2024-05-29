@@ -28,18 +28,26 @@ export default {
       path: "/box-shadow/",
       props: ["shadow", "Paper[elevation]"],
     },
-    colors: {
-      path: "/colors/",
-      props: [
-        "bg",
-        "color",
-        "borderBColor",
-        "borderColor",
-        "borderLColor",
-        "borderRColor",
-        "borderTColor",
-      ],
-    },
+    colors: [
+      {
+        path: "/background-color/",
+        props: ["bg"],
+      },
+      {
+        path: "/border-color/",
+        props: [
+          "borderBColor",
+          "borderColor",
+          "borderLColor",
+          "borderRColor",
+          "borderTColor",
+        ],
+      },
+      {
+        path: "/text-color/",
+        props: ["color"],
+      },
+    ],
     fontFamily: {
       path: "/font-family/",
       props: ["fontFamily"],
@@ -56,10 +64,16 @@ export default {
       path: "/line-height/",
       props: ["leading"],
     },
-    maxSize: {
-      path: "/max-size/",
-      props: ["maxH", "maxW"],
-    },
+    maxSize: [
+      {
+        path: "/max-height/",
+        props: ["maxH"],
+      },
+      {
+        path: "/max-width/",
+        props: ["maxW"],
+      },
+    ],
     outlineColor: {
       path: "/outline-color/",
       props: ["outlineColor"],
@@ -73,24 +87,19 @@ export default {
       props: ["outline"],
     },
     size: { path: "/size/", props: ["gap", "h", "Box[size]", "w"] },
-    spacing: {
-      path: "/spacing/",
-      props: [
-        "m",
-        "mb",
-        "ml",
-        "mr",
-        "mt",
-        "mx",
-        "my",
-        "p",
-        "pb",
-        "pl",
-        "pr",
-        "pt",
-        "px",
-        "py",
-      ],
-    },
+    spacing: [
+      {
+        path: "/top-right-bottom-left/",
+        props: ["bottom", "left", "inset", "insetX", "insetY", "right", "top"],
+      },
+      {
+        path: "/margin/",
+        props: ["m", "mb", "ml", "mr", "mt", "mx", "my"],
+      },
+      {
+        path: "/padding/",
+        props: ["p", "pb", "pl", "pr", "pt", "px", "py"],
+      },
+    ],
   },
 };

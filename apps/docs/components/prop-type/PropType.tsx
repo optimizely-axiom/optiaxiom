@@ -43,13 +43,15 @@ const PropDefinition = ({ component, prop }: PropTypeProps) => {
   let defn: ReactNode = "";
 
   if (prop.type.name === "enum") {
-    for (const [key, config] of Object.entries(propsConfig.theme)) {
-      if (
-        config.props.includes(prop.name) ||
-        config.props.includes(`${component}[${prop.name}]`)
-      ) {
-        defn = <ThemeLink name={key} {...config} type={prop.type} />;
-        break;
+    for (const [key, configs] of Object.entries(propsConfig.theme)) {
+      for (const config of Array.isArray(configs) ? configs : [configs]) {
+        if (
+          config.props.includes(prop.name) ||
+          config.props.includes(`${component}[${prop.name}]`)
+        ) {
+          defn = <ThemeLink name={key} {...config} type={prop.type} />;
+          break;
+        }
       }
     }
   }
