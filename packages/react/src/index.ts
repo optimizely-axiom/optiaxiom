@@ -7,6 +7,7 @@ export * from "./grid";
 export * from "./heading";
 export * from "./kbd";
 export * from "./paper";
+export * from "./progress-bar";
 export * from "./skeleton";
 export * from "./sprinkles";
 export * from "./strong";
