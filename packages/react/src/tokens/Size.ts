@@ -8,6 +8,7 @@ export class Size {
   "8" = rem("8px");
   "12" = rem("12px");
   "16" = rem("16px");
+  "20" = rem("20px");
   "24" = rem("24px");
   "32" = rem("32px");
   "40" = rem("40px");
