@@ -27,5 +27,10 @@
     "type": "separator",
     "title": "Feedback"
   },
-  "skeleton": "Skeleton"
+  "skeleton": "Skeleton",
+  "-- Data Display": {
+    "type": "separator",
+    "title": "Data Display"
+  },
+  "avatar": "Avatar"
 }
