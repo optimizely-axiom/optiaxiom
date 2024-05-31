@@ -13,6 +13,7 @@ type Story = StoryObj<typeof ProgressBar>;
 
 export const Primary: Story = {
   args: {
+    max: 60,
     value: 30,
   },
 };
