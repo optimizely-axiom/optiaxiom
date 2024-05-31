@@ -1,10 +1,9 @@
 import type { ComponentPropsWithoutRef } from "react";
 
 import * as Progress from "@radix-ui/react-progress";
-import clsx from "clsx";
 import React from "react";
 
-import { progressBar, progressIndicator } from "./ProgressBar.css";
+import { Box } from "../box";
 
 type ProgressBarProps = ComponentPropsWithoutRef<typeof Progress.Root>;
 
@@ -12,25 +11,25 @@ export const ProgressBar = React.forwardRef<
   React.ElementRef<typeof Progress.Root>,
   ProgressBarProps
 >(({ className, value, ...props }, ref) => {
-  const [progress, setProgress] = React.useState(value);
-
-  React.useEffect(() => {
-    const timer = setTimeout(() => setProgress(66), 500);
-    return () => clearTimeout(timer);
-  }, []);
+  const widthPercentage = ((value ?? 0) / (props.max ?? 100)) * 100;
 
   return (
-    <Progress.Root
-      className={clsx(progressBar, className)}
-      ref={ref}
-      {...props}
+    <Box
+      asChild
+      bg="white"
+      border="1"
+      className={className}
+      h="6"
+      overflow="hidden"
+      position="relative"
+      w="1/2"
     >
-      <Progress.Indicator
-        className={progressIndicator}
-        // style={{ transform: `translateX(-${100 - (value || 0)}%)` }}
-        style={{ width: `${progress || 0}%` }}
-      />
-    </Progress.Root>
+      <Progress.Root ref={ref} {...props}>
+        <Box asChild bg="bg.brand.solid" h="full" rounded="md" transition="all">
+          <Progress.Indicator style={{ width: `${widthPercentage}%` }} />
+        </Box>
+      </Progress.Root>
+    </Box>
   );
 });
 
