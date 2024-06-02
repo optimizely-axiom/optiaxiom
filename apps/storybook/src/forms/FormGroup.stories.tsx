@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Button, Flex, FormGroup, Input } from "@optiaxiom/react";
+import { Flex, FormGroup, Input } from "@optiaxiom/react";
 import { IconCalendar } from "@tabler/icons-react";
 
 const meta: Meta<typeof FormGroup> = {
@@ -36,12 +36,6 @@ export const InputStyle: Story = {
         note="You have to submit the files"
       >
         <Input placeholder="With error" />
-      </FormGroup>
-
-      <FormGroup label="Form botton">
-        <Button justifyContent="center" mb="2">
-          Click me
-        </Button>
       </FormGroup>
     </Flex>
   ),
