@@ -21,7 +21,7 @@ type FormGroupProps = ExtendProps<
   }
 >;
 
-export const FormGroup = forwardRef<HTMLDivElement, FormGroupProps>(
+export const FormField = forwardRef<HTMLDivElement, FormGroupProps>(
   ({ children, isDisabled, isInvalid, label, note, ...props }, ref) => {
     return (
       <Box display="flex" flexDirection="column" maxW="sm" ref={ref} {...props}>
@@ -44,4 +44,4 @@ export const FormGroup = forwardRef<HTMLDivElement, FormGroupProps>(
   },
 );
 
-FormGroup.displayName = "@optiaxiom/react/FormGroup";
+FormField.displayName = "@optiaxiom/react/FormField";

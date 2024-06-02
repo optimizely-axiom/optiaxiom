@@ -4,7 +4,7 @@ export * from "./box";
 export * from "./button";
 export * from "./code";
 export * from "./flex";
-export * from "./form-group";
+export * from "./form-field";
 export * from "./grid";
 export * from "./heading";
 export * from "./input";
