@@ -13,19 +13,19 @@ export const recipe = createRecipe({
 
   variants: {
     size: {
-      lg: { fontSize: "lg", h: "40", px: "8", py: "8", w: "256" },
-      md: { fontSize: "md", h: "32", px: "8", py: "8", w: "256" },
-      sm: { fontSize: "sm", h: "24", px: "8", py: "8", w: "256" },
+      lg: { fontSize: "lg", h: "40", px: "8", py: "8" },
+      md: { fontSize: "md", h: "32", px: "8", py: "8" },
+      sm: { fontSize: "sm", h: "24", px: "8", py: "8" },
     },
     variant: {
       default: {
-        ":aria-error": {
-          borderColor: "red.500",
+        ":aria-invalid": {
+          borderColor: "border.error",
         },
         ":data-disabled": {
-          backgroundColor: "neutral.50",
-          borderColor: "neutral.150",
-          color: "neutral.500",
+          backgroundColor: "bg.disabled",
+          borderColor: "border.secondary",
+          color: "fg.quaternary",
           pointerEvents: "none",
         },
         ":focus-visible": {
@@ -34,19 +34,19 @@ export const recipe = createRecipe({
           outlineOffset: "1",
         },
         ":hover": {
-          borderColor: "brand.500",
+          borderColor: "border.brand",
         },
         bg: "white",
-        color: "dark.600",
+        color: "fg.default",
       },
       number: {
-        ":aria-error": {
-          borderColor: "red.500",
+        ":aria-invalid": {
+          borderColor: "border.error",
         },
         ":data-disabled": {
-          backgroundColor: "neutral.50",
-          borderColor: "neutral.150",
-          color: "neutral.500",
+          backgroundColor: "bg.disabled",
+          borderColor: "border.secondary",
+          color: "fg.quaternary",
           pointerEvents: "none",
         },
         ":focus-visible": {
@@ -55,10 +55,10 @@ export const recipe = createRecipe({
           outlineOffset: "1",
         },
         ":hover": {
-          borderColor: "brand.500",
+          borderColor: "border.brand",
         },
         bg: "white",
-        color: "dark.600",
+        color: "fg.default",
         textAlign: "end",
       },
     },

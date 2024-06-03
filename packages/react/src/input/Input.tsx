@@ -7,14 +7,17 @@ import { type Recipe, recipe } from "./Input.recipe";
 
 type InputProps = ExtendProps<
   ComponentPropsWithRef<"input">,
-  ComponentPropsWithRef<typeof Box> & Recipe
+  ComponentPropsWithRef<typeof Box>,
+  { isDisabled?: boolean; isInvalid?: boolean } & Recipe
 >;
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ placeholder, type, ...props }, ref) => {
+  ({ isDisabled, isInvalid, placeholder, type, ...props }, ref) => {
     return (
       <Box
+        aria-invalid={isInvalid}
         asChild
+        data-disabled={isDisabled}
         display="flex"
         flexDirection="column"
         fontFamily="sans"
