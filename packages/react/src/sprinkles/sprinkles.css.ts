@@ -36,8 +36,8 @@ const conditions = {
 
 const states = {
   active: "&:active",
-  "aria-invalid": "&[aria-invalid]",
-  "data-disabled": "&[data-disabled]",
+  "aria-invalid": "&[aria-invalid='true']",
+  "data-disabled": "&[data-disabled='true']",
   "focus-visible": "&:focus-visible",
   hover: "&:hover",
   "hover-enabled": "&:hover:enabled",
