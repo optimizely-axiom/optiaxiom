@@ -36,14 +36,14 @@ const ProgressBarHook = ({
   return <ProgressBar max={max} value={progress} />;
 };
 
-export const Secondary: Story = {
+export const CompletionStages: Story = {
   render: () => {
     return (
       <Flex>
-        <ProgressBar max={100} value={0} variant="default" />
-        <ProgressBarHook max={70} value={30} />
-        <ProgressBarHook value={30} />
-        <ProgressBarHook max={150} value={30} />
+        <ProgressBar />
+        <ProgressBarHook max={75} value={12.5} />
+        <ProgressBarHook value={25} />
+        <ProgressBarHook max={200} value={75} />
         <ProgressBar max={100} value={100} />
       </Flex>
     );
