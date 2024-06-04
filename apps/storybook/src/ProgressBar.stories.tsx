@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { ProgressBar } from "@optiaxiom/react";
+import { Flex, ProgressBar } from "@optiaxiom/react";
 import React from "react";
 
 const meta: Meta<typeof ProgressBar> = {
@@ -19,17 +19,33 @@ export const Primary: Story = {
   },
 };
 
-const ProgressBarHook = () => {
-  const [progress, setProgress] = React.useState(13);
+const ProgressBarHook = ({
+  max = 100,
+  value = 0,
+}: {
+  max?: number;
+  value?: number;
+}) => {
+  const [progress, setProgress] = React.useState(value);
 
   React.useEffect(() => {
-    const timer = setTimeout(() => setProgress(66), 500);
+    const timer = setTimeout(() => setProgress(2 * value), 1000);
     return () => clearTimeout(timer);
-  }, []);
+  }, [value]);
 
-  return <ProgressBar value={progress} />;
+  return <ProgressBar max={max} value={progress} />;
 };
 
 export const Secondary: Story = {
-  render: () => <ProgressBarHook />,
+  render: () => {
+    return (
+      <Flex>
+        <ProgressBar max={100} value={0} variant="default" />
+        <ProgressBarHook max={70} value={30} />
+        <ProgressBarHook value={30} />
+        <ProgressBarHook max={150} value={30} />
+        <ProgressBar max={100} value={100} />
+      </Flex>
+    );
+  },
 };
