@@ -1,40 +1,38 @@
-import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import { Slot, Slottable } from "@radix-ui/react-slot";
+import clsx from "clsx";
 import {
   type ComponentPropsWithRef,
   type ReactNode,
   cloneElement,
   forwardRef,
   isValidElement,
-  useRef,
 } from "react";
 
 import type { ExtendProps } from "../utils";
 
-import { Flex } from "../flex";
+import { Box } from "../box";
 import { Text } from "../text";
-import { type Recipe, recipe } from "./Button.recipe";
+import { type ButtonVariants, button } from "./Button.css";
 
 const presets = {
-  basic: { colorScheme: "secondary", variant: "solid" },
-  "basic-link": { colorScheme: "secondary", variant: "link" },
   danger: { colorScheme: "danger", variant: "solid" },
   "danger-outline": { colorScheme: "danger", variant: "outline" },
-  plain: { colorScheme: "secondary", variant: "ghost" },
+  default: { colorScheme: "secondary", variant: "outline" },
   primary: { colorScheme: "primary", variant: "solid" },
-} satisfies Record<string, Recipe>;
+  secondary: { colorScheme: "secondary", variant: "ghost" },
+} satisfies Record<string, ButtonVariants>;
 
 type ButtonProps = ExtendProps<
   ComponentPropsWithRef<"button">,
-  ComponentPropsWithRef<typeof Flex>,
+  ComponentPropsWithRef<typeof Box>,
   {
-    asChild?: boolean;
     children?: ReactNode;
+    disabled?: boolean;
     isLoading?: boolean;
     leftSection?: ReactNode;
     preset?: keyof typeof presets;
     rightSection?: ReactNode;
-  } & Recipe
+  } & ButtonVariants
 >;
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
@@ -42,13 +40,15 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     {
       asChild,
       children,
+      className,
       colorScheme,
       disabled,
       isLoading,
       leftSection,
       onClick,
-      preset = "basic",
+      preset = "default",
       rightSection,
+      size,
       variant,
       ...props
     },
@@ -60,46 +60,43 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         cloneElement(
           children,
           undefined,
-          <Text fontSize="inherit">{children.props.children}</Text>,
+          <Text as="span" fontSize="inherit">
+            {children.props.children}
+          </Text>,
         )
       ) : (
-        <Text fontSize="inherit">{children}</Text>
+        <Text as="span" fontSize="inherit">
+          {children}
+        </Text>
       );
-
-    const innerRef = useRef<HTMLButtonElement>(null);
-    const composedRef = useComposedRefs(ref, innerRef);
 
     const presetProps = presets[preset];
     const finalColorScheme = colorScheme ?? presetProps.colorScheme;
     const finalVariant = variant ?? presetProps.variant;
 
     return (
-      <Flex
+      <Box
         asChild
-        cursor="pointer"
+        className={clsx(
+          button({
+            colorScheme: finalColorScheme,
+            size,
+            variant: finalVariant,
+          }),
+          className,
+        )}
         data-disabled={disabled || isLoading}
-        display="inline-flex"
-        flexDirection="row"
-        gap="xs"
         onClick={disabled || isLoading ? undefined : onClick}
-        overflow="hidden"
-        position="relative"
-        rounded="sm"
-        transition="colors"
-        {...recipe({
-          ...props,
-          colorScheme: finalColorScheme,
-          variant: finalVariant,
-        })}
+        {...props}
       >
-        <Comp ref={composedRef}>
+        <Comp ref={ref}>
           <>
             {leftSection}
             <Slottable>{children}</Slottable>
             {rightSection}
           </>
         </Comp>
-      </Flex>
+      </Box>
     );
   },
 );
