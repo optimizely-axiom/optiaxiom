@@ -7,7 +7,7 @@
     "editor.wordWrap": "bounded",
     "editor.wordWrapColumn": 80
   },
-  "cSpell.words": ["optiaxiom", "optimizely"],
+  "cSpell.words": ["clsx", "optiaxiom", "optimizely"],
   "editor.quickSuggestions": {
     "strings": "on"
   },
