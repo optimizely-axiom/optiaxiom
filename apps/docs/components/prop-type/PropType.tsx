@@ -32,7 +32,12 @@ export const PropType = ({ component, prop }: PropTypeProps) => {
       {prop.defaultValue && (
         <>
           {" "}
-          = <Code>{prop.defaultValue.value}</Code>
+          ={" "}
+          <Code leading="loose" px="8">
+            <span style={{ color: "var(--shiki-token-string-expression)" }}>
+              {JSON.stringify(prop.defaultValue.value)}
+            </span>
+          </Code>
         </>
       )}
     </Text>
