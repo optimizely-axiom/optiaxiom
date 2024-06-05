@@ -51,8 +51,10 @@ const PropDefinition = ({ component, prop }: PropTypeProps) => {
     for (const [key, configs] of Object.entries(propsConfig.theme)) {
       for (const config of Array.isArray(configs) ? configs : [configs]) {
         if (
-          config.props.includes(prop.name) ||
-          config.props.includes(`${component}[${prop.name}]`)
+          (config.props.includes(prop.name) ||
+            config.props.includes(`${component}[${prop.name}]`)) &&
+          (!("exclude" in config && Array.isArray(config.exclude)) ||
+            !config.exclude.includes(`${component}[${prop.name}]`))
         ) {
           defn = <ThemeLink name={key} {...config} type={prop.type} />;
           break;

@@ -36,7 +36,11 @@ export default {
     },
     size: [
       { path: "/height/", props: ["h"] },
-      { path: "/size/", props: ["size"] },
+      {
+        exclude: ["Avatar[size]"],
+        path: "/size/",
+        props: ["size"],
+      },
       { path: "/width/", props: ["w"] },
     ],
     spacing: [
