@@ -4,7 +4,7 @@ import clsx from "clsx";
 import "inter-ui/inter-variable.css";
 import { type ComponentPropsWithRef, forwardRef } from "react";
 
-import { type Sprinkles, sprinkles } from "../sprinkles";
+import { type Sprinkles, extractSprinkles, sprinkles } from "../sprinkles";
 import { type ExtendProps } from "../utils";
 import * as styles from "./Box.css";
 
@@ -19,18 +19,7 @@ type BoxProps = ExtendProps<
 export const Box = forwardRef<HTMLDivElement, BoxProps>(
   ({ asChild, className, ...props }, ref) => {
     const Comp = asChild ? Slot : "div";
-
-    const sprinkleProps: Sprinkles = {};
-    const restProps: Record<string, unknown> = {};
-
-    for (const [name, value] of Object.entries(props)) {
-      if (sprinkles.properties.has(name as never)) {
-        // @ts-expect-error -- too complex
-        sprinkleProps[name] = value;
-      } else {
-        restProps[name] = value;
-      }
-    }
+    const { restProps, sprinkleProps } = extractSprinkles(props);
 
     return (
       <Comp
