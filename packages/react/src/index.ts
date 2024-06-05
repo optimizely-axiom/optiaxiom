@@ -9,6 +9,7 @@ export * from "./heading";
 export * from "./kbd";
 export * from "./paper";
 export * from "./progress-bar";
+export * from "./separator";
 export * from "./skeleton";
 export * from "./sprinkles";
 export * from "./styles";
