@@ -5,12 +5,6 @@ export const recipe = createRecipe({
     border: "1",
     rounded: "sm",
   },
-
-  defaultVariants: {
-    size: "md",
-    variant: "default",
-  },
-
   variants: {
     size: {
       lg: { fontSize: "lg", h: "40", px: "8", py: "8" },
