@@ -1,3 +1,4 @@
+import { yellowStripes } from "@/demos/stripes";
 import { Box, Grid } from "@optiaxiom/react";
 import {
   Children,
@@ -6,7 +7,6 @@ import {
   isValidElement,
 } from "react";
 
-import { yellowStripes } from "../stripes";
 import { Item } from "./Item";
 
 export const Canvas = ({

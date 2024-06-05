@@ -72,9 +72,9 @@ const unresponsiveProps = defineProperties({
      */
     fontFamily: theme.fontFamily,
     /**
-     * Set the element's font weight
+     * Set the element's `font-weight` CSS property
      *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/font-weight/ Documentation}
+     * {@link https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight Documentation}
      */
     fontWeight: [
       "100",
@@ -89,9 +89,9 @@ const unresponsiveProps = defineProperties({
     ] as const,
     letterSpacing: theme.letterSpacing,
     /**
-     * Set the element's `overflow` CSS property
+     * Set the element's `object-fit` CSS property
      *
-     * {@link https://developer.mozilla.org/en-US/docs/Web/CSS/overflow Documentation}
+     * {@link https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit Documentation}
      */
     objectFit: ["contain", "cover", "fill", "none", "scale-down"] as const,
     /**
@@ -101,21 +101,21 @@ const unresponsiveProps = defineProperties({
      */
     overflow: ["auto", "hidden", "visible"] as const,
     /**
-     * Set the element's text align
+     * Set the element's `text-align` CSS property
      *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/text-align/ Documentation}
+     * {@link https://developer.mozilla.org/en-US/docs/Web/CSS/text-align Documentation}
      */
     textAlign: ["end", "start", "center", "justify"] as const,
     /**
-     * Set the element's text transform
+     * Set the element's `text-transform` CSS property
      *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/text-transform/ Documentation}
+     * {@link https://developer.mozilla.org/en-US/docs/Web/CSS/text-transform Documentation}
      */
     textTransform: ["capitalize", "none", "uppercase"] as const,
     /**
      * Control which CSS properties should transition
      *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/transition/ Documentation}
+     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/transition-property/ Documentation}
      */
     transition: {
       all: {
@@ -134,13 +134,18 @@ const unresponsiveProps = defineProperties({
      * {@link https://developer.mozilla.org/en-US/docs/Web/CSS/white-space Documentation}
      */
     whiteSpace: ["nowrap"] as const,
+    /**
+     * Set the element's z-index
+     *
+     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/z-index/ Documentation}
+     */
     zIndex: theme.zIndex,
   },
   shorthands: {
     /**
      * Set the element's background color
      *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/docs/colors/ Documentation}
+     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/background-color/ Documentation}
      */
     bg: ["backgroundColor"],
     /**
@@ -341,13 +346,13 @@ const responsiveProps = defineProperties({
     /**
      * Set the element's max-height
      *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/max-size/ Documentation}
+     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/max-height/ Documentation}
      */
     maxH: ["maxHeight"],
     /**
      * Set the element's max-width
      *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/max-size/ Documentation}
+     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/max-width/ Documentation}
      */
     maxW: ["maxWidth"],
     /**

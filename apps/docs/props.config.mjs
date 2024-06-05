@@ -14,6 +14,10 @@ export default {
         props: ["bg"],
       },
       {
+        path: "/border-color/",
+        props: ["borderColor"],
+      },
+      {
         path: "/text-color/",
         props: ["color"],
       },
