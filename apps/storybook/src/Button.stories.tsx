@@ -23,12 +23,12 @@ type Story = StoryObj<typeof Button>;
 
 const Variants: Story = {
   render: (args) => (
-    <Flex flexDirection={"column"} gap={"sm"}>
-      {variants.map((variant) => (
-        <Flex flexDirection={"row"} gap={"sm"} key={variant}>
+    <Flex flexDirection="column" gap="sm">
+      {variants.map(([variant, label]) => (
+        <Flex flexDirection="row" gap="sm" key={variant}>
           {sizes.map((size) => (
             <Button {...args} key={size} size={size} variant={variant}>
-              {variant} - {size}
+              {label} - {size}
             </Button>
           ))}
           <Button disabled {...args} variant={variant}>
@@ -41,7 +41,24 @@ const Variants: Story = {
 };
 
 const sizes = ["sm", "md", "lg"] as const;
-const variants = ["solid", "outline", "ghost", "link"] as const;
+const presets = [
+  ["default", "Default"],
+  ["primary", "Primary"],
+  ["danger", "Danger"],
+  ["secondary", "Secondary"],
+] as const;
+const variants = [
+  ["solid", "Solid"],
+  ["outline", "Outline"],
+  ["ghost", "Ghost"],
+] as const;
+
+export const Default: Story = {
+  ...Variants,
+  args: {
+    colorScheme: "secondary",
+  },
+};
 
 export const Primary: Story = {
   ...Variants,
@@ -49,21 +66,27 @@ export const Primary: Story = {
     colorScheme: "primary",
   },
 };
-export const Secondary: Story = {
-  ...Variants,
-  args: { colorScheme: "secondary" },
-};
 
 export const Danger: Story = {
   ...Variants,
   args: { colorScheme: "danger" },
 };
 
+export const Secondary: Story = {
+  ...Variants,
+  args: { colorScheme: "secondary" },
+};
+
 export const Preset: Story = {
-  args: {
-    children: "Click Me!",
-    preset: "danger-outline",
-  },
+  render: (args) => (
+    <Flex>
+      {presets.map(([preset, label]) => (
+        <Button {...args} key={preset} preset={preset}>
+          {label}
+        </Button>
+      ))}
+    </Flex>
+  ),
 };
 
 export const StandaloneIcon: Story = {
@@ -78,7 +101,7 @@ export const Icons: Story = {
     size: "lg",
   },
   render: (args) => (
-    <Flex flexDirection={"row"}>
+    <Flex flexDirection="row">
       <Button {...args} leftSection={<IconPhoto />}>
         Gallery
       </Button>
