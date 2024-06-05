@@ -4,13 +4,13 @@ import { IconUser } from "@tabler/icons-react";
 export function App() {
   return (
     <Flex flexDirection="row">
-      <Avatar color="blue" icon={<IconUser />} name="Jake Schildt">
+      <Avatar colorScheme="blue" icon={<IconUser />} name="Jake Schildt">
         PQ
       </Avatar>
-      <Avatar color="blue" name="Keiron Pollard">
+      <Avatar colorScheme="blue" name="Keiron Pollard">
         MQ
       </Avatar>
-      <Avatar color="blue">JL</Avatar>
+      <Avatar colorScheme="blue">JL</Avatar>
     </Flex>
   );
 }

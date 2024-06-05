@@ -30,11 +30,14 @@ function getInitialsFromName(name: string) {
 }
 
 export const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
-  ({ children, className, color, icon, name, size, src, ...props }, ref) => {
+  (
+    { children, className, colorScheme, icon, name, size, src, ...props },
+    ref,
+  ) => {
     return (
       <Box
         asChild
-        className={clsx(styles.avatar({ color, size }), className)}
+        className={clsx(styles.avatar({ colorScheme, size }), className)}
         {...props}
       >
         <RadixAvatar.Root ref={ref}>
