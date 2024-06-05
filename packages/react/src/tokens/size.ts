@@ -1,6 +1,12 @@
 import { rem } from "./rem";
 
 export const size = {
+  xs: rem("20px"),
+  sm: rem("24px"),
+  md: rem("32px"),
+  lg: rem("40px"),
+  xl: rem("64px"),
+
   "0": "0",
   "2": rem("2px"),
   "4": rem("4px"),

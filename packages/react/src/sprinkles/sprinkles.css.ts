@@ -93,6 +93,12 @@ const unresponsiveProps = defineProperties({
      *
      * {@link https://developer.mozilla.org/en-US/docs/Web/CSS/overflow Documentation}
      */
+    objectFit: ["contain", "cover", "fill", "none", "scale-down"] as const,
+    /**
+     * Set the element's `overflow` CSS property
+     *
+     * {@link https://developer.mozilla.org/en-US/docs/Web/CSS/overflow Documentation}
+     */
     overflow: ["auto", "hidden", "visible"] as const,
     /**
      * Set the element's text align
