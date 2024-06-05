@@ -2,9 +2,8 @@ import { Avatar, Flex } from "@optiaxiom/react";
 
 export function App() {
   return (
-    <Flex display="flex" flexDirection="row" gap="10">
-      {/* Neutral is default */}
-      <Avatar>KP</Avatar>
+    <Flex flexDirection="row">
+      <Avatar>KP</Avatar> {/* Neutral is default */}
       <Avatar color="red">KP</Avatar>
       <Avatar color="blue">KP</Avatar>
       <Avatar color="green">KP</Avatar>

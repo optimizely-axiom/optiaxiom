@@ -6,21 +6,18 @@ import type { ExtendProps } from "../utils";
 
 import { Box } from "../box";
 import * as styles from "./Avatar.css";
-import { type Recipe, recipe } from "./Avatar.recipe";
 
 const FALLBACK_DELAY_IN_MS = 600;
 
 type AvatarProps = ExtendProps<
   ComponentPropsWithRef<typeof Box>,
   {
-    alt?: string;
     children?: React.ReactNode;
     className?: string;
     icon?: React.ReactNode;
     name?: string;
     src?: string;
-  },
-  Recipe
+  } & styles.AvatarVariants
 >;
 
 function getInitialsFromName(name: string) {
@@ -33,22 +30,23 @@ function getInitialsFromName(name: string) {
 }
 
 export const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
-  ({ alt, children, className, icon, name, src, ...props }, ref) => {
+  ({ children, className, color, icon, name, size, src, ...props }, ref) => {
     return (
-      <Box {...recipe(props)} asChild>
-        <RadixAvatar.Root className={clsx(styles.base, className)} ref={ref}>
-          <RadixAvatar.Image
-            alt={alt}
-            className={clsx(styles.image)}
-            src={src}
-          />
-          <RadixAvatar.Fallback
-            className={clsx(styles.fallback)}
-            delayMs={FALLBACK_DELAY_IN_MS}
-          >
-            {/* TODO: Add a generic user icon, if `children` is `undefined` */}
-            {icon ? icon : name ? getInitialsFromName(name) : children}
-          </RadixAvatar.Fallback>
+      <Box
+        asChild
+        className={clsx(styles.avatar({ color, size }), className)}
+        {...props}
+      >
+        <RadixAvatar.Root ref={ref}>
+          <Box asChild objectFit="cover" rounded="inherit" size="full">
+            <RadixAvatar.Image alt={name} src={src} />
+          </Box>
+          <Box asChild className={styles.fallback({ size })}>
+            <RadixAvatar.Fallback delayMs={FALLBACK_DELAY_IN_MS}>
+              {/* TODO: Add a generic user icon, if `children` is `undefined` */}
+              {icon ? icon : name ? getInitialsFromName(name) : children}
+            </RadixAvatar.Fallback>
+          </Box>
         </RadixAvatar.Root>
       </Box>
     );

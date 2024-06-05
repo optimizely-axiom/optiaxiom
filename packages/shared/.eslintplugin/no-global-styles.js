@@ -7,9 +7,20 @@ export default ESLintUtils.RuleCreator.withoutDocs({
 
     /**
      *
-     * @param {import('@typescript-eslint/utils').TSESTree.ObjectExpression} rule
+     * @param {import('@typescript-eslint/utils').TSESTree.Node | null} rule
      */
     function process(rule) {
+      if (rule?.type === "ArrayExpression") {
+        for (const item of rule.elements) {
+          process(item);
+        }
+        return;
+      }
+
+      if (rule?.type !== "ObjectExpression") {
+        return;
+      }
+
       const varsType = checker.getTypeAtLocation(
         parserServices.esTreeNodeToTSNodeMap.get(rule),
       );
@@ -73,10 +84,7 @@ export default ESLintUtils.RuleCreator.withoutDocs({
                   variantGroup.type === "Property" &&
                   variantGroup.value.type === "ObjectExpression"
                     ? variantGroup.value.properties.flatMap((variant) =>
-                        variant.type === "Property" &&
-                        variant.value.type === "ObjectExpression"
-                          ? [variant.value]
-                          : [],
+                        variant.type === "Property" ? [variant.value] : [],
                       )
                     : [],
                 )
@@ -84,9 +92,6 @@ export default ESLintUtils.RuleCreator.withoutDocs({
           ),
         ];
         for (const rule of rules) {
-          if (rule?.type !== "ObjectExpression") {
-            continue;
-          }
           process(rule);
         }
       },
@@ -95,12 +100,7 @@ export default ESLintUtils.RuleCreator.withoutDocs({
        * @type {import('@typescript-eslint/utils').TSESLint.RuleListener['CallExpression']}
        */
       'CallExpression:matches([callee.name="style"])': (node) => {
-        const args = node.arguments[0];
-        const rules = args.type === "ArrayExpression" ? args.elements : [args];
-        for (const rule of rules) {
-          if (rule?.type !== "ObjectExpression") {
-            continue;
-          }
+        for (const rule of node.arguments) {
           process(rule);
         }
       },

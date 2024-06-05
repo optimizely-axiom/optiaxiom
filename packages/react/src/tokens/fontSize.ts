@@ -2,7 +2,7 @@ import { rem } from "./rem";
 
 export const fontSize = {
   xs: {
-    fontSize: rem("11px"),
+    fontSize: rem("10px"),
     lineHeight: "1.25",
   },
   sm: {
