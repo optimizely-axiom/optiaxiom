@@ -112,7 +112,7 @@ export const base = style({
            * 2. Set the default placeholder color to the user's configured gray 400 color.
            */
           "&:is(input, textarea)::placeholder": {
-            color: theme.colors["gray.400"] /* 2 */,
+            color: theme.colors["neutral.600"] /* 2 */,
             opacity: 1 /* 1 */,
           },
         },
