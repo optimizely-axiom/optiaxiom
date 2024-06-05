@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Flex, ProgressBar } from "@optiaxiom/react";
-import React from "react";
+import { Button, Flex, ProgressBar } from "@optiaxiom/react";
+import { userEvent, within } from "@storybook/test";
+import { useState } from "react";
 
 const meta: Meta<typeof ProgressBar> = {
   component: ProgressBar,
@@ -19,32 +20,34 @@ export const Primary: Story = {
   },
 };
 
-const ProgressBarHook = ({
-  max = 100,
-  value = 0,
-}: {
-  max?: number;
-  value?: number;
-}) => {
-  const [progress, setProgress] = React.useState(value);
-
-  React.useEffect(() => {
-    const timer = setTimeout(() => setProgress(2 * value), 1000);
-    return () => clearTimeout(timer);
-  }, [value]);
-
-  return <ProgressBar max={max} value={progress} />;
-};
-
+const values = [
+  {},
+  { max: 75, value: 12.5 },
+  { value: 25 },
+  { max: 200, value: 75 },
+  { max: 100, value: 100 },
+];
 export const CompletionStages: Story = {
-  render: () => {
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await userEvent.click(canvas.getByRole("button", { name: "Forward" }));
+  },
+  render: function CompletionStagesComponent() {
+    const [scale, setScale] = useState(1);
     return (
       <Flex>
-        <ProgressBar />
-        <ProgressBarHook max={75} value={12.5} />
-        <ProgressBarHook value={25} />
-        <ProgressBarHook max={200} value={75} />
-        <ProgressBar max={100} value={100} />
+        <Flex flexDirection="row">
+          <Button onClick={() => setScale(1)}>Reset</Button>
+          <Button onClick={() => setScale(2)}>Forward</Button>
+        </Flex>
+
+        {values.map(({ max, value }, index) => (
+          <ProgressBar
+            key={index}
+            max={max}
+            value={typeof value !== "undefined" ? value * scale : undefined}
+          />
+        ))}
       </Flex>
     );
   },
