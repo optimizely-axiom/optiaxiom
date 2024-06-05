@@ -3,31 +3,21 @@ import { createRecipe } from "../recipes";
 export const progressRootRecipe = createRecipe({
   base: {
     border: "1",
+    h: "6",
     overflow: "hidden",
+    w: "1/2",
   },
-  variants: {
-    size: {
-      default: { h: "6", w: "1/2" },
-    },
-    variant: {
-      default: {
-        bg: "white",
-      },
-    },
-  },
+  variants: {},
 });
 
 export const progressIndicatorRecipe = createRecipe({
-  variants: {
-    variant: {
-      default: {
-        bg: "bg.brand.solid",
-        h: "full",
-        rounded: "md",
-        transition: "all",
-      },
-    },
+  base: {
+    bg: "bg.brand.solid",
+    h: "full",
+    rounded: "md",
+    transition: "all",
   },
+  variants: {},
 });
 
 export type Recipe = Parameters<typeof progressRootRecipe>[0];

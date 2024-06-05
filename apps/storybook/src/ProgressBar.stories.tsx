@@ -5,7 +5,7 @@ import React from "react";
 
 const meta: Meta<typeof ProgressBar> = {
   component: ProgressBar,
-  title: "Primitives / ProgressBar",
+  title: "Feedback / ProgressBar",
 };
 
 export default meta;
