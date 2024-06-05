@@ -34,7 +34,7 @@ export const Skeleton = forwardRef<HTMLDivElement, SkeletonProps>(
         h={h}
         ref={ref}
         rounded={circle || rounded === "full" ? "full" : rounded ?? "sm"}
-        w={w ?? (circle || rounded === "full") ? h : undefined}
+        w={w ?? (circle || rounded === "full" ? h : undefined)}
         {...props}
       >
         {children ?? <span />}
