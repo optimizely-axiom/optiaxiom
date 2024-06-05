@@ -1,6 +1,6 @@
 import type { PropItem, PropItemType } from "react-docgen-typescript";
 
-import { Box, Code, Text } from "@optiaxiom/react";
+import { Code, Text } from "@optiaxiom/react";
 import Link from "next/link";
 import { Fragment, type ReactNode } from "react";
 
@@ -84,19 +84,10 @@ const ThemeLink = ({
     <>
       <span style={{ color: "var(--shiki-token-keyword)" }}>typeof </span>
       <Link href={`/styled-system${path}`}>
-        <Box
-          asChild
-          sx={{
-            ":hover": {
-              textDecoration: "underline",
-            },
-          }}
-        >
-          <abbr title={propTypeRaw(type)}>
-            <span style={{ color: "var(--shiki-token-constant)" }}>theme</span>
-            <span style={{ color: "var(--shiki-color-text)" }}>.{name}</span>
-          </abbr>
-        </Box>
+        <abbr className="hover:nx-underline" title={propTypeRaw(type)}>
+          <span style={{ color: "var(--shiki-token-constant)" }}>theme</span>
+          <span style={{ color: "var(--shiki-color-text)" }}>.{name}</span>
+        </abbr>
       </Link>
     </>
   );
