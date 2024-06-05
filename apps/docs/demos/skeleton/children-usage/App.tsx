@@ -3,7 +3,7 @@ import { IconUserFilled } from "@tabler/icons-react";
 
 export function App() {
   return (
-    <Skeleton color="white" p="xs" rounded="full" size="64">
+    <Skeleton circle h="64" p="xs">
       <IconUserFilled />
     </Skeleton>
   );
