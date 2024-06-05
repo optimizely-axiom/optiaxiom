@@ -4,7 +4,6 @@ import { Text } from "@optiaxiom/react";
 
 const meta: Meta<typeof Text> = {
   component: Text,
-  title: "Typography / Text",
 };
 
 export default meta;

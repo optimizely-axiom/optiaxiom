@@ -5,7 +5,6 @@ import { IconUserFilled } from "@tabler/icons-react";
 
 const meta: Meta<typeof Skeleton> = {
   component: Skeleton,
-  title: "Feedback / Skeleton",
 };
 
 export default meta;

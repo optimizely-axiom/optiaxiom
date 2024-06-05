@@ -6,7 +6,6 @@ import { useState } from "react";
 
 const meta: Meta<typeof ProgressBar> = {
   component: ProgressBar,
-  title: "Feedback / ProgressBar",
 };
 
 export default meta;

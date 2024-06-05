@@ -5,7 +5,6 @@ import { IconUser } from "@tabler/icons-react";
 
 const meta: Meta<typeof Avatar> = {
   component: Avatar,
-  title: "Data Display / Avatar",
 };
 
 export default meta;

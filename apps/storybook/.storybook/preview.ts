@@ -12,3 +12,11 @@ export const loaders = isChromatic()
       }),
     ]
   : [];
+
+export const parameters = {
+  options: {
+    storySort: {
+      method: "alphabetical",
+    },
+  },
+};
