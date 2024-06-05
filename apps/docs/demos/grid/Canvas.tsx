@@ -12,7 +12,7 @@ import { Item } from "./Item";
 export const Canvas = ({
   children,
 }: {
-  children: ReactElement<ComponentPropsWithRef<typeof Box>>;
+  children: ReactElement<ComponentPropsWithRef<typeof Grid>>;
 }) => (
   <Grid {...children.props} style={yellowStripes}>
     {Children.toArray(children.props.children)
