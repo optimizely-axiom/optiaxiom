@@ -1,34 +1,30 @@
-import type { ComponentPropsWithRef } from "react";
-
-import * as Progress from "@radix-ui/react-progress";
-import React from "react";
+import * as ProgressPrimitive from "@radix-ui/react-progress";
+import { type ComponentPropsWithRef, type ElementRef, forwardRef } from "react";
 
 import { Box } from "../box";
-import {
-  type Recipe,
-  progressIndicatorRecipe,
-  progressRootRecipe,
-} from "./ProgressBar.recipe";
 
-type ProgressBarProps = ComponentPropsWithRef<typeof Progress.Root> & Recipe;
+type ProgressBarProps = ComponentPropsWithRef<typeof ProgressPrimitive.Root>;
 
-export const ProgressBar = React.forwardRef<
-  React.ElementRef<typeof Progress.Root>,
+export const ProgressBar = forwardRef<
+  ElementRef<typeof ProgressPrimitive.Root>,
   ProgressBarProps
 >((props, ref) => {
   const widthPercentage = ((props.value ?? 0) / (props.max ?? 100)) * 100;
 
   return (
-    <Box {...progressRootRecipe()} asChild>
-      <Progress.Root ref={ref} {...props}>
+    <Box asChild border="1" h="6" overflow="hidden" w="1/2">
+      <ProgressPrimitive.Root ref={ref} {...props}>
         <Box
-          {...progressIndicatorRecipe()}
           asChild
+          bg="bg.brand.solid"
+          h="full"
+          rounded="md"
           style={{ width: `${widthPercentage}%` }}
+          transition="all"
         >
-          <Progress.Indicator />
+          <ProgressPrimitive.Indicator />
         </Box>
-      </Progress.Root>
+      </ProgressPrimitive.Root>
     </Box>
   );
 });
