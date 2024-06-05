@@ -12,7 +12,18 @@ type InputProps = ExtendProps<
 >;
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ isDisabled, isInvalid, placeholder, type, ...props }, ref) => {
+  (
+    {
+      isDisabled,
+      isInvalid,
+      placeholder,
+      size = "md",
+      type,
+      variant = "default",
+      ...props
+    },
+    ref,
+  ) => {
     return (
       <Box
         aria-invalid={isInvalid}
@@ -23,10 +34,10 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         fontFamily="sans"
         fontSize="md"
         maxW="sm"
-        ref={ref}
-        {...recipe(props)}
+        {...recipe({ size, variant })}
+        {...props}
       >
-        <input placeholder={placeholder} type={type} />
+        <input placeholder={placeholder} ref={ref} type={type} />
       </Box>
     );
   },
