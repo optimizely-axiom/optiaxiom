@@ -1,5 +1,10 @@
-import { Box, Button, Grid } from "@optiaxiom/react";
-import { Callout, Card, Cards } from "nextra/components";
+import {
+  DataDisplay,
+  Feedback,
+  Forms,
+  Primitives,
+} from "@/components/overview";
+import { Callout } from "nextra/components";
 
 # Overview
 
@@ -7,32 +12,18 @@ import { Callout, Card, Cards } from "nextra/components";
   This page is a stub. Help us expand it by contributing!
 </Callout>
 
-## Primitives
+### Primitives
 
-<Cards>
-  <Card image title="Box" href="/components/box">
-    <Grid
-      bg="surface"
-      className="nx-pointer-events-none"
-      h="128"
-      placeItems="center"
-      w="full"
-    >
-      <Box bg="bg.neutral" rounded="sm" h="40" w="64" />
-    </Grid>
-  </Card>
+<Primitives />
 
-  <Card image title="Button" href="/components/button">
-    <Grid
-      bg="surface"
-      className="nx-pointer-events-none"
-      h="128"
-      placeItems="center"
-      w="full"
-    >
-      <Button>
-        <Box bg="bg.neutral" rounded="sm" h="6" w="64" />
-      </Button>
-    </Grid>
-  </Card>
-</Cards>
+### Data Display
+
+<DataDisplay />
+
+### Forms
+
+<Forms />
+
+### Feedback
+
+<Feedback />
