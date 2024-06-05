@@ -22,7 +22,7 @@ export function transformPropsTable(tree) {
         )
         .parse(
           fg.globSync(
-            "../../packages/react/src/**/{*.recipe.ts,sprinkles.css.ts,*.tsx}",
+            "../../packages/react/src/**/{*.css.ts,sprinkles.css.ts,*.tsx}",
             {
               ignore: ["**/*.spec.*"],
             },
@@ -41,10 +41,8 @@ export function transformPropsTable(tree) {
       }
 
       const sprinkles = docs.find((doc) => doc.displayName === "sprinkles");
-      const recipes = docs.find(
-        (d) =>
-          d.displayName === "recipe" &&
-          d.filePath === doc.filePath.replace(".tsx", ".recipe.ts"),
+      const styles = docs.filter(
+        (d) => d.filePath === doc.filePath.replace(".tsx", ".css.ts"),
       );
 
       const tree = fromMarkdown(
@@ -76,7 +74,9 @@ export function transformPropsTable(tree) {
                 : prop.declarations.find(
                     (decl) => decl.fileName === doc.filePath,
                   ) ||
-                  Object.hasOwn(recipes?.props ?? {}, prop.name) ||
+                  styles.find((style) =>
+                    Object.hasOwn(style.props, prop.name),
+                  ) ||
                   (component === "Box" &&
                     Object.hasOwn(sprinkles?.props ?? {}, prop.name)),
             )

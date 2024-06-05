@@ -8,21 +8,16 @@ import { type Sprinkles, sprinkles } from "../sprinkles";
 import { type ExtendProps } from "../utils";
 import * as styles from "./Box.css";
 
-type InferSet<S> = S extends Set<infer T> ? T : never;
-
 type BoxProps = ExtendProps<
   ComponentPropsWithRef<"div">,
   {
     asChild?: boolean;
     className?: string;
-  } & { sx?: Sprinkles } & Omit<
-      Sprinkles,
-      Exclude<keyof Sprinkles, InferSet<(typeof sprinkles)["properties"]>>
-    >
+  } & Sprinkles
 >;
 
 export const Box = forwardRef<HTMLDivElement, BoxProps>(
-  ({ asChild, className, style, sx = {}, ...props }, ref) => {
+  ({ asChild, className, ...props }, ref) => {
     const Comp = asChild ? Slot : "div";
 
     const sprinkleProps: Sprinkles = {};
@@ -37,20 +32,10 @@ export const Box = forwardRef<HTMLDivElement, BoxProps>(
       }
     }
 
-    const css = sprinkles({ ...sprinkleProps, ...sx });
-
     return (
       <Comp
-        className={clsx(className, styles.base, css.className)}
+        className={clsx(className, styles.base, sprinkles(sprinkleProps))}
         ref={ref}
-        style={
-          Object.keys(css.style).length
-            ? {
-                ...css.style,
-                ...style,
-              }
-            : style
-        }
         {...restProps}
       />
     );

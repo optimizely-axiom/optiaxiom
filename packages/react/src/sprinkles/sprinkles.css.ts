@@ -1,9 +1,13 @@
 import { keyframes } from "@vanilla-extract/css";
+import {
+  createMapValueFn,
+  createSprinkles,
+  defineProperties,
+} from "@vanilla-extract/sprinkles";
 
 import { layers, theme } from "../styles";
 import { tokens } from "../tokens";
 import { mapValues } from "../utils";
-import { createMapValueFn, createSprinkles, defineProperties } from "./lib";
 
 const merge = <A, B>(objA: A, objB: B): A & B => ({ ...objA, ...objB });
 
@@ -31,51 +35,29 @@ const conditions = {
     base: {},
   },
   defaultCondition: "base",
-  responsiveArray: ["base", "sm", "xl"],
+  responsiveArray: ["base", "sm", "md"],
 } as const;
 
-const states = {
-  active: "&:active",
-  "aria-error": "&[data-error]",
-  "aria-invalid": "&[aria-invalid='true']",
-  "data-disabled": "&[data-disabled='true']",
-  "focus-visible": "&:focus-visible",
-  hover: "&:hover",
-  "hover-enabled": "&:hover:enabled",
-} as const;
-const modifiers = {
-  ...mapValues(
-    states,
-    (selector) => selector,
-    (key) => `:${key}`,
-  ),
-};
-
-const props = defineProperties({
+const unresponsiveProps = defineProperties({
   "@layer": layers.axiom,
-  conditions,
-  modifiers,
-  propertiesDynamic: {
-    backgroundColor: theme.colors,
-    borderBottomColor: theme.colors,
-    borderBottomLeftRadius: radiuses,
-    borderBottomRightRadius: radiuses,
-    borderBottomWidth: theme.borderWidth,
-    borderLeftColor: theme.colors,
-    borderLeftWidth: theme.borderWidth,
-    borderRadius: radiuses,
-    borderRightColor: theme.colors,
-    borderRightWidth: theme.borderWidth,
-    borderTopColor: theme.colors,
-    borderTopLeftRadius: radiuses,
-    borderTopRightRadius: radiuses,
-    borderTopWidth: theme.borderWidth,
+  properties: {
     /**
-     * Set the element's position
+     * Animate element with CSS animations
      *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/top-right-bottom-left/ Documentation}
+     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/animation/ Documentation}
      */
-    bottom: theme.spacing,
+    animation: {
+      pulse: `${animations.pulse} 2s ease-in-out infinite`,
+    },
+    backgroundColor: theme.colors,
+    /**
+     * Set the element's `border-color` CSS property
+     *
+     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/border-color/ Documentation}
+     */
+    borderColor: theme.colors,
+    borderRadius: radiuses,
+    borderWidth: theme.borderWidth,
     boxShadow: theme.boxShadow,
     /**
      * Set the element's text color
@@ -89,163 +71,6 @@ const props = defineProperties({
      * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/font-family/ Documentation}
      */
     fontFamily: theme.fontFamily,
-    /**
-     * Set the element's font size
-     *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/font-size/ Documentation}
-     */
-    fontSize: merge(theme.fontSize, {
-      inherit: {
-        fontSize: "inherit",
-        lineHeight: "inherit",
-      },
-    }),
-    /**
-     * Control the gutter between grid and flexbox items
-     *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/gap/ Documentation}
-     */
-    gap: theme.spacing,
-    height: theme.size,
-    /**
-     * Set the element's position
-     *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/top-right-bottom-left/ Documentation}
-     */
-    left: theme.spacing,
-    letterSpacing: theme.letterSpacing,
-    /**
-     * Set the element's line height
-     *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/line-height/ Documentation}
-     */
-    lineHeight: theme.lineHeight,
-    marginBottom: margins,
-    marginLeft: margins,
-    marginRight: margins,
-    marginTop: margins,
-    maxHeight: theme.maxSize,
-    maxWidth: theme.maxSize,
-    /**
-     * Set the element's outline color
-     *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/outline-color/ Documentation}
-     */
-    outlineColor: theme.colors,
-    /**
-     * Set the element's outline offset
-     *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/outline-offset/ Documentation}
-     */
-    outlineOffset: theme.outlineWidth,
-    outlineWidth: merge(
-      mapValues(theme.outlineWidth, (outlineWidth) => ({
-        outlineStyle: "solid",
-        outlineWidth,
-      })),
-      {
-        none: {
-          outline: "2px solid transparent",
-        },
-      },
-    ),
-    paddingBottom: theme.spacing,
-    paddingLeft: theme.spacing,
-    paddingRight: theme.spacing,
-    paddingTop: theme.spacing,
-    /**
-     * Set the element's position
-     *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/top-right-bottom-left/ Documentation}
-     */
-    right: theme.spacing,
-    /**
-     * Set the element's position
-     *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/top-right-bottom-left/ Documentation}
-     */
-    top: theme.spacing,
-    /**
-     * Set the element's width
-     *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/width/ Documentation}
-     */
-    width: theme.size,
-    zIndex: theme.zIndex,
-  },
-  propertiesStatic: {
-    alignItems: ["center", "end", "normal", "start", "stretch"] as const,
-    /**
-     * Animate element with CSS animations
-     *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/animation/ Documentation}
-     */
-    animation: {
-      pulse: `${animations.pulse} 2s ease-in-out infinite`,
-    },
-    /**
-     * Set the element's cursor
-     *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/cursor/ Documentation}
-     */
-    cursor: ["default", "pointer"] as const,
-    /**
-     * Set the element's display
-     *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/display/ Documentation}
-     */
-    display: [
-      "none",
-      "flex",
-      "grid",
-      "block",
-      "inline",
-      "inline-block",
-      "inline-flex",
-      "table",
-      "table-cell",
-      "table-row",
-    ] as const,
-    /**
-     * Set the element's flex
-     *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/flex/ Documentation}
-     */
-    flex: {
-      "1": "1 1 0%",
-      auto: "1 1 auto",
-      none: "none",
-    },
-    /**
-     * Set the element's flex direction
-     *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/flex-direction/ Documentation}
-     */
-    flexDirection: ["column", "column-reverse", "row", "row-reverse"] as const,
-    flexGrow: ["1"] as const,
-    flexShrink: ["1"] as const,
-    /**
-     * Set the element's flex wrap
-     *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/flex-wrap/ Documentation}
-     */
-    flexWrap: ["nowrap", "wrap"] as const,
-    /**
-     * Set the element's font smoothing
-     *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/font-smoothing/ Documentation}
-     */
-    fontSmoothing: {
-      auto: {
-        WebkitFontSmoothing: "auto",
-      },
-    },
-    /**
-     * Set the element's font style
-     *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/font-style/ Documentation}
-     */
-    fontStyle: ["normal", "italic"] as const,
     /**
      * Set the element's font weight
      *
@@ -262,82 +87,19 @@ const props = defineProperties({
       "800",
       "900",
     ] as const,
-    gridColumn: {
-      "1": "span 1 / span 1",
-      "2": "span 2 / span 2",
-    },
-    gridTemplateColumns: mapValues(
-      {
-        "1": "1",
-        "2": "2",
-        "3": "3",
-        "4": "4",
-      },
-      (cols) => `repeat(${cols}, minmax(0, 1fr))`,
-    ),
+    letterSpacing: theme.letterSpacing,
     /**
-     * Set the element's position
+     * Set the element's `overflow` CSS property
      *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/top-right-bottom-left/ Documentation}
-     */
-    inset: theme.spacing,
-    /**
-     * Set the element's justify content
-     *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/justify-content/ Documentation}
-     */
-    justifyContent: [
-      "center",
-      "end",
-      "normal",
-      "space-around",
-      "space-between",
-      "space-evenly",
-      "start",
-      "stretch",
-    ] as const,
-    /**
-     * Set the element's justify items
-     *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/justify-items/ Documentation}
-     */
-    justifyItems: ["center", "end", "normal", "start", "stretch"] as const,
-    /**
-     * Set the element's overflow
-     *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/overflow/ Documentation}
+     * {@link https://developer.mozilla.org/en-US/docs/Web/CSS/overflow Documentation}
      */
     overflow: ["auto", "hidden", "visible"] as const,
-    /**
-     * Set the element's place items
-     *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/place-items/ Documentation}
-     */
-    placeItems: ["center"] as const,
-    /**
-     * Set the element's pinter events
-     *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/pinter-events/ Documentation}
-     */
-    pointerEvents: ["none"] as const,
-    /**
-     * Set the element's position
-     *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/position/ Documentation}
-     */
-    position: ["absolute", "relative", "static", "sticky"] as const,
     /**
      * Set the element's text align
      *
      * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/text-align/ Documentation}
      */
     textAlign: ["end", "start", "center", "justify"] as const,
-    /**
-     * Set the element's text decoration
-     *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/text-decoration/ Documentation}
-     */
-    textDecoration: ["none", "underline"] as const,
     /**
      * Set the element's text transform
      *
@@ -361,11 +123,12 @@ const props = defineProperties({
       },
     },
     /**
-     * Set the element's white space
+     * Set the element's `white-space` CSS property
      *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/white-space/ Documentation}
+     * {@link https://developer.mozilla.org/en-US/docs/Web/CSS/white-space Documentation}
      */
     whiteSpace: ["nowrap"] as const,
+    zIndex: theme.zIndex,
   },
   shorthands: {
     /**
@@ -375,106 +138,188 @@ const props = defineProperties({
      */
     bg: ["backgroundColor"],
     /**
-     * Set the element's border width on all sides
+     * Set the element's `border-width` CSS property
      *
      * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/border-width/ Documentation}
      */
-    border: [
-      "borderBottomWidth",
-      "borderLeftWidth",
-      "borderRightWidth",
-      "borderTopWidth",
-    ],
+    border: ["borderWidth"],
     /**
-     * Set the element's bottom border width
+     * Set the element's border radius on all corners
      *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/border-width/ Documentation}
+     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/border-radius/ Documentation}
      */
-    borderB: ["borderBottomWidth"],
+    rounded: ["borderRadius"],
     /**
-     * Set the element's bottom border color
+     * Set the element's box shadow
      *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/border-color/ Documentation}
+     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/box-shadow/ Documentation}
      */
-    borderBColor: ["borderBottomColor"],
+    shadow: ["boxShadow"],
     /**
-     * Set the element's border color on all sides
+     * Set the element's letter spacing
      *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/border-width/ Documentation}
+     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/letter-spacing/ Documentation}
      */
-    borderColor: [
-      "borderBottomColor",
-      "borderLeftColor",
-      "borderRightColor",
-      "borderTopColor",
-    ],
+    tracking: ["letterSpacing"],
     /**
-     * Set the element's left border width
+     * Set the element's stack order
      *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/border-width/ Documentation}
+     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/z-index/ Documentation}
      */
-    borderL: ["borderLeftWidth"],
+    z: ["zIndex"],
+  },
+});
+
+const responsiveProps = defineProperties({
+  "@layer": layers.axiom,
+  ...conditions,
+  properties: {
     /**
-     * Set the element's left border color
+     * Set the element's `align-items` CSS property
      *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/border-color/ Documentation}
+     * {@link https://developer.mozilla.org/en-US/docs/Web/CSS/align-items Documentation}
      */
-    borderLColor: ["borderLeftColor"],
+    alignItems: ["center", "end", "normal", "start", "stretch"] as const,
     /**
-     * Set the element's right border width
+     * Set the element's `display` CSS property
      *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/border-width/ Documentation}
+     * {@link https://developer.mozilla.org/en-US/docs/Web/CSS/display Documentation}
      */
-    borderR: ["borderRightWidth"],
+    display: [
+      "none",
+      "flex",
+      "grid",
+      "block",
+      "inline",
+      "inline-block",
+      "inline-flex",
+      "table",
+      "table-cell",
+      "table-row",
+    ] as const,
     /**
-     * Set the element's right border color
+     * Set the element's `flex` CSS property
      *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/border-color/ Documentation}
+     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/flex/ Documentation}
      */
-    borderRColor: ["borderRightColor"],
+    flex: {
+      "1": "1 1 0%",
+      auto: "1 1 auto",
+      initial: "0 1 auto",
+      none: "none",
+    },
     /**
-     * Set the element's top border width
+     * Set the element's `flex-direction` CSS property
      *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/border-width/ Documentation}
+     * {@link https://developer.mozilla.org/en-US/docs/Web/CSS/flex-direction Documentation}
      */
-    borderT: ["borderTopWidth"],
+    flexDirection: ["column", "column-reverse", "row", "row-reverse"] as const,
     /**
-     * Set the element's top border color
+     * Set the element's `flex-wrap` CSS property
      *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/border-color/ Documentation}
+     * {@link https://developer.mozilla.org/en-US/docs/Web/CSS/flex-wrap Documentation}
      */
-    borderTColor: ["borderTopColor"],
+    flexWrap: ["nowrap", "wrap"] as const,
+    /**
+     * Set the element's `font-size` and `line-height` CSS properties
+     *
+     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/font-size/ Documentation}
+     */
+    fontSize: merge(theme.fontSize, {
+      inherit: {
+        fontSize: "inherit",
+        lineHeight: "inherit",
+      },
+    }),
+    /**
+     * Set the element's `gap` CSS property
+     *
+     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/gap/ Documentation}
+     */
+    gap: theme.spacing,
+    gridColumn: mapValues(
+      {
+        "1": "1",
+        "2": "2",
+        "3": "3",
+        "4": "4",
+      },
+      (span) => `span ${span} / span ${span}`,
+    ),
+    gridTemplateColumns: mapValues(
+      {
+        "1": "1",
+        "2": "2",
+        "3": "3",
+        "4": "4",
+      },
+      (cols) => `repeat(${cols}, minmax(0, 1fr))`,
+    ),
+    height: theme.size,
+    /**
+     * Set the element's `justify-content` CSS property
+     *
+     * {@link https://developer.mozilla.org/en-US/docs/Web/CSS/justify-content Documentation}
+     */
+    justifyContent: [
+      "center",
+      "end",
+      "normal",
+      "space-around",
+      "space-between",
+      "space-evenly",
+      "start",
+      "stretch",
+    ] as const,
+    /**
+     * Set the element's `justify-items` CSS property
+     *
+     * {@link https://developer.mozilla.org/en-US/docs/Web/CSS/justify-items Documentation}
+     */
+    justifyItems: ["center", "end", "normal", "start", "stretch"] as const,
+    /**
+     * Set the element's `line-height` CSS property
+     *
+     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/line-height/ Documentation}
+     */
+    lineHeight: theme.lineHeight,
+    marginBottom: margins,
+    marginLeft: margins,
+    marginRight: margins,
+    marginTop: margins,
+    maxHeight: theme.maxSize,
+    maxWidth: theme.maxSize,
+    paddingBottom: theme.spacing,
+    paddingLeft: theme.spacing,
+    paddingRight: theme.spacing,
+    paddingTop: theme.spacing,
+    /**
+     * Set the element's `place-items` CSS property
+     *
+     * {@link https://developer.mozilla.org/en-US/docs/Web/CSS/place-items Documentation}
+     */
+    placeItems: ["center"] as const,
+    width: theme.size,
+  },
+  shorthands: {
     /**
      * Set the element's size across grid columns
      *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/grid-column/ Documentation}
+     * {@link https://optimizely-axiom.github.io/optiaxiom/components/grid/ Documentation}
      */
     colSpan: ["gridColumn"],
     /**
      * Control number of columns in a grid layout
      *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/grid-tenmplate-columns/ Documentation}
+     * {@link https://optimizely-axiom.github.io/optiaxiom/components/grid/ Documentation}
      */
     cols: ["gridTemplateColumns"],
-    grow: ["flexGrow"],
     /**
      * Set the element's height
      *
      * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/height/ Documentation}
      */
     h: ["height"],
-    /**
-     * Set the element's position
-     *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/top-right-bottom-left/ Documentation}
-     */
-    insetX: ["left", "right"],
-    /**
-     * Set the element's position
-     *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/top-right-bottom-left/ Documentation}
-     */
-    insetY: ["bottom", "top"],
     /**
      * Set the element's line height
      *
@@ -536,12 +381,6 @@ const props = defineProperties({
      */
     my: ["marginBottom", "marginTop"],
     /**
-     * Set the element's outline width
-     *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/outline-width/ Documentation}
-     */
-    outline: ["outlineWidth"],
-    /**
      * Set the element's padding on all sides
      *
      * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/padding/ Documentation}
@@ -584,115 +423,33 @@ const props = defineProperties({
      */
     py: ["paddingBottom", "paddingTop"],
     /**
-     * Set the element's border radius on all corners
-     *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/border-radius/ Documentation}
-     */
-    rounded: ["borderRadius"],
-    /**
-     * Set the element's bottom side border radius
-     *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/border-radius/ Documentation}
-     */
-    roundedB: ["borderBottomLeftRadius", "borderBottomRightRadius"],
-    /**
-     * Set the element's bottom left corner border radius
-     *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/border-radius/ Documentation}
-     */
-    roundedBL: ["borderBottomLeftRadius"],
-    /**
-     * Set the element's bottom right corner border radius
-     *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/border-radius/ Documentation}
-     */
-    roundedBR: ["borderBottomRightRadius"],
-    /**
-     * Set the element's left side border radius
-     *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/border-radius/ Documentation}
-     */
-    roundedL: ["borderBottomLeftRadius", "borderTopLeftRadius"],
-    /**
-     * Set the element's right side border radius
-     *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/border-radius/ Documentation}
-     */
-    roundedR: ["borderBottomRightRadius", "borderTopRightRadius"],
-    /**
-     * Set the element's top side border radius
-     *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/border-radius/ Documentation}
-     */
-    roundedT: ["borderTopLeftRadius", "borderTopRightRadius"],
-    /**
-     * Set the element's top left corner border radius
-     *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/border-radius/ Documentation}
-     */
-    roundedTL: ["borderTopLeftRadius"],
-    /**
-     * Set the element's top right corder border radius
-     *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/border-radius/ Documentation}
-     */
-    roundedTR: ["borderTopRightRadius"],
-    /**
-     * Set the element's box shadow
-     *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/box-shadow/ Documentation}
-     */
-    shadow: ["boxShadow"],
-    shrink: ["flexShrink"],
-    /**
      * Set the element's width and height
      *
      * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/size/ Documentation}
      */
     size: ["height", "width"],
     /**
-     * Set the element's letter spacing
-     *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/letter-spacing/ Documentation}
-     */
-    tracking: ["letterSpacing"],
-    /**
      * Set the element's width
      *
      * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/width/ Documentation}
      */
     w: ["width"],
-    /**
-     * Set the element's stack order
-     *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/z-index/ Documentation}
-     */
-    z: ["zIndex"],
   },
 });
 
-export const sprinkles = createSprinkles(props);
-export const mapResponsiveValue = createMapValueFn(props);
+export const sprinkles = createSprinkles(unresponsiveProps, responsiveProps);
+export const mapResponsiveValue = createMapValueFn(
+  defineProperties({
+    ...conditions,
+    properties: {},
+  }),
+);
 
 type LonghandProps = keyof Pick<
   Parameters<typeof sprinkles>[0],
   | "backgroundColor"
-  | "borderBottomColor"
-  | "borderBottomLeftRadius"
-  | "borderBottomRightRadius"
-  | "borderBottomWidth"
-  | "borderLeftColor"
-  | "borderLeftWidth"
   | "borderRadius"
-  | "borderRightColor"
-  | "borderRightWidth"
-  | "borderTopColor"
-  | "borderTopLeftRadius"
-  | "borderTopRightRadius"
-  | "borderTopWidth"
   | "boxShadow"
-  | "flexGrow"
-  | "flexShrink"
   | "gridColumn"
   | "gridTemplateColumns"
   | "height"
@@ -704,7 +461,6 @@ type LonghandProps = keyof Pick<
   | "marginTop"
   | "maxHeight"
   | "maxWidth"
-  | "outlineWidth"
   | "paddingBottom"
   | "paddingLeft"
   | "paddingRight"

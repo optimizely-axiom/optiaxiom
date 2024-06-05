@@ -4,47 +4,25 @@ import { Callout } from "nextra/components";
 
 The `Box` component supports a minimal zero-runtime styled system built with [Vanilla Extract](https://vanilla-extract.style/) similar to **Tailwind CSS**.
 
-Developers are free to choose any styling solution for components but out of the box support is provided for majority styling solutions via style props.
+Developers are free to choose any styling solution for components but out of the box support is provided for consuming our design tokens via style props.
 
 ## Basic usage
 
-You can directly use props to control styles:
+### Using style props
+
+You can use props on the `<Box />` component to control styles:
 
 <ax-demo name="styles-prop-usage" />
 
-### `sx` Prop
-
-As an alternative to individual style props you can also use the `sx` prop to control styles:
-
-<ax-demo name="styles-sx/usage" />
-
-The `sx` prop will take precedence over native props and should not be used together to control the same properties.
-
-<Callout type="warning">
-  Do not mix native props and `sx` props to control the same styles.
-</Callout>
-
-<ax-demo name="styles-sx/order-usage" />
-
-Instead always prefer native props and only use `sx` if have to use `hover` or other modifiers.
+Learn more about consuming [Design Tokens](/styled-system/theme/).
 
 ## Applying conditionally
-
-### Hover, focus, and other states
-
-Use the `sx` prop to conditionally apply styles for different states like `hover`, `focus` etc.
-
-<Callout>Hover over the button to see the background color change:</Callout>
-
-<ax-demo name="styles-sx/hover-usage" />
-
-Check out the documentation on [State Modifiers](/styled-system/state-modifiers/).
 
 ### Breakpoints and media queries
 
 You can also use object or array prop notation to apply styles at various responsive breakpoints.
 
-<Callout>Resize the canvas to see the button color change:</Callout>
+<Callout>Resize the canvas to see the font size change:</Callout>
 
 <ax-demo
   iframe="/styled-system/index-demo/"

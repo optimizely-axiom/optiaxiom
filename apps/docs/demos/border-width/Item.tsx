@@ -1,4 +1,4 @@
-import { Box, Flex, Text } from "@optiaxiom/react";
+import { Box, Flex, Text, theme } from "@optiaxiom/react";
 import { type ComponentPropsWithRef, type ReactElement } from "react";
 
 export const Item = ({
@@ -11,11 +11,10 @@ export const Item = ({
       bg="surface"
       borderColor="purple.500"
       display="grid"
-      outline="1"
-      outlineColor="border.default"
       placeItems="center"
       px="8"
       py="16"
+      style={{ outline: `1px solid ${theme.colors["border.default"]}` }}
       {...children.props}
     >
       <Text fontFamily="mono" fontWeight="600" textAlign="center">

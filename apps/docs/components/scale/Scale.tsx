@@ -27,23 +27,22 @@ export const Scale = ({
   <Table maxH="sm" overflow="auto">
     <thead>
       <tr>
-        <Th position="sticky" style={headerBg} top="0">
+        <Th className="nx-sticky nx-top-0" style={headerBg}>
           {keyLabel}
         </Th>
-        <Th position="sticky" style={headerBg} top="0">
+        <Th className="nx-sticky nx-top-0" style={headerBg}>
           {valueLabel}
         </Th>
         {!hidePixels && (
-          <Th position="sticky" style={headerBg} top="0">
+          <Th className="nx-sticky nx-top-0" style={headerBg}>
             Pixels
           </Th>
         )}
         {!hidePreview && (
           <Th
+            className="nx-sticky nx-top-0"
             display={["none", "table-cell"]}
-            position="sticky"
             style={headerBg}
-            top="0"
             w="full"
           />
         )}
@@ -99,11 +98,9 @@ export const Scale = ({
               </Td>
             )}
             {!hidePreview && (
-              <Box asChild display={["none", "table-cell"]}>
-                <Td>
-                  <Box bg="purple.500" h="16" style={{ width: size }} />
-                </Td>
-              </Box>
+              <Td display={["none", "table-cell"]}>
+                <Box bg="purple.500" h="16" style={{ width: size }} />
+              </Td>
             )}
           </Tr>
         ))}

@@ -16,7 +16,7 @@ export const PropType = ({ component, prop }: PropTypeProps) => {
   return (
     <Text>
       <Code fontSmoothing="auto" leading="loose" px="8">
-        {prop.type.raw?.startsWith("ResponsiveValue<") ? (
+        {prop.type.raw?.startsWith("ConditionalStyleWithResponsiveArray<") ? (
           <>
             <span style={{ color: "var(--shiki-token-function)" }}>
               ResponsiveValue
@@ -105,7 +105,7 @@ const ThemeLink = ({
 const PropTypeValue = ({ type }: { type: PropItemType }) => {
   return (
     type.name === "enum" && type.raw && !["ReactNode"].includes(type.raw)
-      ? type.raw.startsWith("ResponsiveValue<")
+      ? type.raw.startsWith("ConditionalStyleWithResponsiveArray<")
         ? (type.value as Array<{ value: string }>).filter(
             (value) => !("description" in value),
           )
@@ -131,7 +131,7 @@ const propTypeRaw = (type: PropItemType) => {
   return type.name === "enum" &&
     type.raw &&
     !["ReactNode"].includes(type.raw) &&
-    type.raw.startsWith("ResponsiveValue<")
+    type.raw.startsWith("ConditionalStyleWithResponsiveArray<")
     ? (type.value as Array<{ value: string }>)
         .filter((value) => !("description" in value))
         .map(({ value }) => value)

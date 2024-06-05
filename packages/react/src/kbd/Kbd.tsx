@@ -1,6 +1,6 @@
+import clsx from "clsx";
 import { type ComponentPropsWithRef, forwardRef } from "react";
 
-import { Box } from "../box";
 import { Code } from "../code";
 import * as styles from "./Kbd.css";
 
@@ -25,12 +25,13 @@ const mapKeyToCode = {
 };
 
 export const Kbd = forwardRef<HTMLElement, KbdProps>(
-  ({ children, keys, ...props }, ref) => {
+  ({ children, className, keys, ...props }, ref) => {
     return (
       <Code
+        alignItems="center"
         asChild
         border="1"
-        borderB="2"
+        className={clsx(styles.base, className)}
         display="inline-flex"
         flexDirection="row"
         fontWeight="600"
@@ -41,14 +42,9 @@ export const Kbd = forwardRef<HTMLElement, KbdProps>(
         <kbd ref={ref}>
           {keys &&
             (Array.isArray(keys) ? keys : [keys]).map((key) => (
-              <Box
-                asChild
-                className={styles.keys}
-                key={key}
-                textDecoration="none"
-              >
-                <abbr title={key}>{mapKeyToCode[key]}</abbr>
-              </Box>
+              <abbr className={styles.keys} key={key} title={key}>
+                {mapKeyToCode[key]}
+              </abbr>
             ))}
           {children}
         </kbd>
