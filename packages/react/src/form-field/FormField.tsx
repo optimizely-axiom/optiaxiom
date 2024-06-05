@@ -54,7 +54,7 @@ export const FormField = forwardRef<HTMLDivElement, FormGroupProps>(
           required,
         })}
         {description && (
-          <Text as="p" color={"fg.secondary"}>
+          <Text as="p" color={"neutral.600"} fontSize="sm" mt="2">
             {description}
           </Text>
         )}
