@@ -25,7 +25,25 @@ export default tsEslint.config(
   },
   {
     ...perfectionistNatural,
-    ignores: ["**/src/tokens/**"],
+    rules: {
+      ...perfectionistNatural.rules,
+      "perfectionist/sort-objects": [
+        "error",
+        {
+          "custom-groups": {
+            xs: ["xs", "-xs", "tighter"],
+            sm: ["sm", "-sm", "tight"],
+            md: ["md", "-md", "normal"],
+            lg: ["lg", "-lg", "wide"],
+            xl: ["xl", "-xl", "wider", "loose"],
+            Nxl: ["*xl", "widest"],
+          },
+          groups: ["xs", "sm", "md", "lg", "xl", "Nxl", "unknown"],
+          "partition-by-new-line": true,
+          type: "natural",
+        },
+      ],
+    },
   },
   {
     ...reactRecommended,

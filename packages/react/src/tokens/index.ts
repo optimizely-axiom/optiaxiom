@@ -1,40 +1,36 @@
-import { BorderRadius } from "./BorderRadius";
-import { BorderWidth } from "./BorderWidth";
-import { BoxShadow } from "./BoxShadow";
-import { Colors, ColorsDark } from "./Colors";
-import { FontFamily } from "./FontFamily";
-import { FontSize } from "./FontSize";
-import { LetterSpacing } from "./LetterSpacing";
-import { LineHeight } from "./LineHeight";
-import { Margins } from "./Margins";
-import { MaxSize } from "./MaxSize";
-import { Opacity } from "./Opacity";
-import { OutlineWidth } from "./OutlineWidth";
-import { Screens } from "./Screens";
-import { Size } from "./Size";
-import { Spacing } from "./Spacing";
-import { ZIndex } from "./ZIndex";
+import { borderRadius } from "./borderRadius";
+import { borderWidth } from "./borderWidth";
+import { boxShadow } from "./boxShadow";
+import { colors, colorsDark } from "./colors";
+import { fontFamily } from "./fontFamily";
+import { fontSize } from "./fontSize";
+import { letterSpacing } from "./letterSpacing";
+import { lineHeight } from "./lineHeight";
+import { margins } from "./margins";
+import { maxSize } from "./maxSize";
+import { screens } from "./screens";
+import { size } from "./size";
+import { spacing } from "./spacing";
+import { zIndex } from "./zIndex";
 
 export const tokens = {
-  borderRadius: new BorderRadius(),
-  borderWidth: new BorderWidth(),
-  boxShadow: new BoxShadow(),
-  colors: new Colors(),
-  fontFamily: new FontFamily(),
-  fontSize: new FontSize(),
-  letterSpacing: new LetterSpacing(),
-  lineHeight: new LineHeight(),
-  margins: new Margins(),
-  maxSize: new MaxSize(),
-  opacity: new Opacity(),
-  outlineWidth: new OutlineWidth(),
-  screens: new Screens(),
-  size: new Size(),
-  spacing: new Spacing(),
-  zIndex: new ZIndex(),
+  borderRadius,
+  borderWidth,
+  boxShadow,
+  colors,
+  fontFamily,
+  fontSize,
+  letterSpacing,
+  lineHeight,
+  margins,
+  maxSize,
+  screens,
+  size,
+  spacing,
+  zIndex,
 } as const;
 
 export const tokensDark = {
   ...tokens,
-  colors: new ColorsDark(),
+  colors: colorsDark,
 } as const;

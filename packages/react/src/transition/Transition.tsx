@@ -13,9 +13,9 @@ import type { ExtendProps } from "../utils";
 import * as styles from "./Transition.css";
 
 const transitionDuration = {
-  lg: 550,
-  md: 400,
   sm: 250,
+  md: 400,
+  lg: 550,
 };
 
 type TransitionProps = ExtendProps<
