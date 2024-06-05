@@ -31,7 +31,8 @@ export const InputStyle: Story = {
       </FormField>
 
       <FormField
-        description="You have to submit the files"
+        description="Will be used in profile"
+        error="You have to enter valid text"
         isInvalid={true}
         label="Form label"
       >
