@@ -1,10 +1,10 @@
-import { Box, Text } from "@optiaxiom/react";
+import { Box, Flex, Text } from "@optiaxiom/react";
 
 import { Table, Td, Th, Tr } from "../table";
 
 const px = (rem: string) =>
   rem.endsWith("rem")
-    ? `${parseFloat((parseFloat(rem.slice(0, -3)) * 16).toFixed(3))}px`
+    ? `${parseFloat((parseFloat(rem.slice(0, -3)) * 16).toFixed(0))}px`
     : rem;
 
 const headerBg = {
@@ -76,25 +76,45 @@ export const Scale = ({
               </Text>
             </Td>
             <Td whiteSpace="nowrap">
-              <Text
-                color="fg.accent.purple"
-                fontFamily="mono"
-                fontSize="sm"
-                fontWeight="500"
-              >
-                {size}
-              </Text>
+              <Flex gap="xs">
+                {(typeof size === "object"
+                  ? Object.entries(size).map(
+                      ([key, value]) => `${key}: ${value}`,
+                    )
+                  : [size]
+                ).map((value) => (
+                  <Text
+                    color="fg.accent.purple"
+                    fontFamily="mono"
+                    fontSize="sm"
+                    fontWeight="500"
+                    key={value}
+                  >
+                    {value}
+                  </Text>
+                ))}
+              </Flex>
             </Td>
             {!hidePixels && (
               <Td whiteSpace="nowrap">
-                <Text
-                  color="fg.accent.purple"
-                  fontFamily="mono"
-                  fontSize="sm"
-                  fontWeight="500"
-                >
-                  {px(size)}
-                </Text>
+                <Flex gap="xs">
+                  {(typeof size === "object"
+                    ? Object.entries<string>(size).map(
+                        ([key, value]) => `${key}: ${px(value)}`,
+                      )
+                    : [px(size)]
+                  ).map((value) => (
+                    <Text
+                      color="fg.accent.purple"
+                      fontFamily="mono"
+                      fontSize="sm"
+                      fontWeight="500"
+                      key={value}
+                    >
+                      {value}
+                    </Text>
+                  ))}
+                </Flex>
               </Td>
             )}
             {!hidePreview && (

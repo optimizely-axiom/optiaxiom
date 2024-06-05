@@ -54,13 +54,9 @@
   },
   "font-family": "Font Family",
   "font-size": "Font Size",
-  "font-weight": "Font Weight",
   "letter-spacing": "Letter Spacing",
   "line-height": "Line Height",
-  "text-align": "Text Align",
   "text-color": "Text Color",
-  "text-transform": "Text Transform",
-  "white-space": "White Space",
   "-- Backgrounds": {
     "type": "separator",
     "title": "Backgrounds"
