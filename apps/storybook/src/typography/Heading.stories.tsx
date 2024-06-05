@@ -4,7 +4,6 @@ import { Heading } from "@optiaxiom/react";
 
 const meta: Meta<typeof Heading> = {
   component: Heading,
-  title: "Typography / Heading",
 };
 
 export default meta;

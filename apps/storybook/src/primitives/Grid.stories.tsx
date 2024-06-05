@@ -4,7 +4,6 @@ import { Grid, Text } from "@optiaxiom/react";
 
 const meta: Meta<typeof Grid> = {
   component: Grid,
-  title: "Primitives / Grid",
 };
 
 export default meta;

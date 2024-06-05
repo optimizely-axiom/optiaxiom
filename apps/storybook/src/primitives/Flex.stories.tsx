@@ -4,7 +4,6 @@ import { Flex, Text } from "@optiaxiom/react";
 
 const meta: Meta<typeof Flex> = {
   component: Flex,
-  title: "Primitives / Flex",
 };
 
 export default meta;

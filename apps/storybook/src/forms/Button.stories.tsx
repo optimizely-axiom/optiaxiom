@@ -14,7 +14,6 @@ const meta: Meta<typeof Button> = {
   parameters: {
     layout: "centered",
   },
-  title: "Components / Button",
 };
 
 export default meta;

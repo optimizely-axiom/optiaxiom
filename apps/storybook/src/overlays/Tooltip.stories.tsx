@@ -14,7 +14,6 @@ const meta: Meta<typeof Tooltip> = {
   parameters: {
     layout: "centered",
   },
-  title: "Components / Tooltip",
 };
 
 export default meta;
