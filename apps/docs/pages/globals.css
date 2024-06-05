@@ -49,3 +49,7 @@ body:before {
     background-color: rgb(17 17 17 / 30%) !important;
   }
 }
+
+.hover\:nx-underline:hover {
+  text-decoration: underline;
+}
