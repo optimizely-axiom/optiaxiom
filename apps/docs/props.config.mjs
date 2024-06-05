@@ -2,27 +2,7 @@ export default {
   theme: {
     borderRadius: {
       path: "/border-radius/",
-      props: [
-        "rounded",
-        "roundedB",
-        "roundedBL",
-        "roundedBR",
-        "roundedL",
-        "roundedR",
-        "roundedT",
-        "roundedTL",
-        "roundedTR",
-      ],
-    },
-    borderWidth: {
-      path: "/border-width/",
-      props: [
-        "borderBottom",
-        "borderLeft",
-        "borderRight",
-        "borderTop",
-        "border",
-      ],
+      props: ["rounded"],
     },
     boxShadow: {
       path: "/box-shadow/",
@@ -32,16 +12,6 @@ export default {
       {
         path: "/background-color/",
         props: ["bg"],
-      },
-      {
-        path: "/border-color/",
-        props: [
-          "borderBColor",
-          "borderColor",
-          "borderLColor",
-          "borderRColor",
-          "borderTColor",
-        ],
       },
       {
         path: "/text-color/",
@@ -64,34 +34,13 @@ export default {
       path: "/line-height/",
       props: ["leading"],
     },
-    maxSize: [
-      {
-        path: "/max-height/",
-        props: ["maxH"],
-      },
-      {
-        path: "/max-width/",
-        props: ["maxW"],
-      },
+    size: [
+      { path: "/height/", props: ["h"] },
+      { path: "/size/", props: ["size"] },
+      { path: "/width/", props: ["w"] },
     ],
-    outlineColor: {
-      path: "/outline-color/",
-      props: ["outlineColor"],
-    },
-    outlineOffset: {
-      path: "/outline-offset/",
-      props: ["outlineOffset"],
-    },
-    outlineWidth: {
-      path: "/outline-width/",
-      props: ["outline"],
-    },
-    size: { path: "/size/", props: ["gap", "h", "Box[size]", "w"] },
     spacing: [
-      {
-        path: "/top-right-bottom-left/",
-        props: ["bottom", "left", "inset", "insetX", "insetY", "right", "top"],
-      },
+      { path: "/gap/", props: ["gap"] },
       {
         path: "/margin/",
         props: ["m", "mb", "ml", "mr", "mt", "mx", "my"],

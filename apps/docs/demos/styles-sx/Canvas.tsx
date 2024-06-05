@@ -8,14 +8,7 @@ export const Canvas = ({
   children: ReactElement<ComponentPropsWithRef<typeof Box>>;
 }) => {
   return (
-    <Box
-      asChild
-      cursor="pointer"
-      display="inline-flex"
-      p="sm"
-      rounded="sm"
-      {...children.props}
-    >
+    <Box asChild display="inline-flex" p="sm" rounded="sm" {...children.props}>
       <Text color="dark.600" fontWeight="600" textAlign="center">
         {children.props.children}
       </Text>

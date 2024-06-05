@@ -196,6 +196,9 @@ importers:
       '@radix-ui/react-tooltip':
         specifier: ^1.0.7
         version: 1.0.7(@types/react-dom@18.3.0)(@types/react@18.3.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@vanilla-extract/sprinkles':
+        specifier: ^1.6.2
+        version: 1.6.2(@vanilla-extract/css@1.15.1)
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -221,6 +224,9 @@ importers:
       '@vanilla-extract/css':
         specifier: ^1.15.1
         version: 1.15.1
+      '@vanilla-extract/recipes':
+        specifier: ^0.5.3
+        version: 0.5.3(@vanilla-extract/css@1.15.1)
 
   packages/shared:
     dependencies:
@@ -279,6 +285,12 @@ importers:
       typescript-eslint:
         specifier: ^7.9.0
         version: 7.9.0(eslint@8.57.0)(typescript@5.4.5)
+
+  packages/tailwind:
+    devDependencies:
+      tailwindcss:
+        specifier: 4.0.0-alpha.15
+        version: 4.0.0-alpha.15
 
 packages:
 
@@ -2536,10 +2548,20 @@ packages:
   '@vanilla-extract/private@1.0.4':
     resolution: {integrity: sha512-8FGD6AejeC/nXcblgNCM5rnZb9KXa4WNkR03HCWtdJBpANjTgjHEglNLFnhuvdQ78tC6afaxBPI+g7F2NX3tgg==}
 
+  '@vanilla-extract/recipes@0.5.3':
+    resolution: {integrity: sha512-SPREq1NmaoKuvJeOV0pppOkwy3pWZUoDufsyQ6iHrbkHhAU7XQqG9o0iZSmg5JoVgDLIiOr9djQb0x9wuxig7A==}
+    peerDependencies:
+      '@vanilla-extract/css': ^1.0.0
+
   '@vanilla-extract/rollup-plugin@1.3.4':
     resolution: {integrity: sha512-eVOrPH8TYjn4J4T8bSh+c8dQcO2HZSL0GcppU39Kg7PyUbWF1BoNuNQp9JNqSgcsj5sTeasI5+2CYaCNcx6FcQ==}
     peerDependencies:
       rollup: ^2.0.0 || ^3.0.0 || ^4.0.0
+
+  '@vanilla-extract/sprinkles@1.6.2':
+    resolution: {integrity: sha512-SZdrxzpAFIpRImqY/N54wODYyn6swuz+Lerd7Y1ZX5/148e6J9smpsfBf/iQpmGo17OS9b+AdYBOn7OF9cn/vA==}
+    peerDependencies:
+      '@vanilla-extract/css': ^1.0.0
 
   '@vanilla-extract/vite-plugin@4.0.9':
     resolution: {integrity: sha512-O3SU6whsm01lD9Kwpkz9yF14u0SCF0jbGtvMpslXGDZ6f3B9oq0M6PViu94gEYy8Xt2B4y23NF8RCrMOwDn81g==}
@@ -6511,6 +6533,9 @@ packages:
       '@swc/core': ^1.2.147
       webpack: '>=2'
 
+  tailwindcss@4.0.0-alpha.15:
+    resolution: {integrity: sha512-hlL3dKkgKTNz6dXe4OWJMngI9DdcJncGXvhhjdPkMc/Pqc81NCYaV/8Z11DZ4Djy5RSFfLf41HI6+DGeKtvJ2g==}
+
   tapable@2.2.1:
     resolution: {integrity: sha512-GNzQvQTOIP6RyTfE2Qxb8ZVlNmw0n88vp1szwWRimP02mnTsx3Wtn5qRdqY9w2XduFNUgvOwhNnQsjwCp+kqaQ==}
     engines: {node: '>=6'}
@@ -10060,6 +10085,10 @@ snapshots:
 
   '@vanilla-extract/private@1.0.4': {}
 
+  '@vanilla-extract/recipes@0.5.3(@vanilla-extract/css@1.15.1)':
+    dependencies:
+      '@vanilla-extract/css': 1.15.1
+
   '@vanilla-extract/rollup-plugin@1.3.4(@types/node@20.12.12)(rollup@4.17.2)(terser@5.31.0)':
     dependencies:
       '@vanilla-extract/integration': 7.1.4(@types/node@20.12.12)(terser@5.31.0)
@@ -10074,6 +10103,10 @@ snapshots:
       - sugarss
       - supports-color
       - terser
+
+  '@vanilla-extract/sprinkles@1.6.2(@vanilla-extract/css@1.15.1)':
+    dependencies:
+      '@vanilla-extract/css': 1.15.1
 
   '@vanilla-extract/vite-plugin@4.0.9(@types/node@20.12.12)(terser@5.31.0)(vite@5.2.11(@types/node@20.12.12)(terser@5.31.0))':
     dependencies:
@@ -15076,6 +15109,8 @@ snapshots:
       '@swc/core': 1.5.7(@swc/helpers@0.5.5)
       '@swc/counter': 0.1.3
       webpack: 5.91.0(@swc/core@1.5.7(@swc/helpers@0.5.5))(esbuild@0.20.2)
+
+  tailwindcss@4.0.0-alpha.15: {}
 
   tapable@2.2.1: {}
 

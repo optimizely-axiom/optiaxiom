@@ -60,6 +60,7 @@ export default tsEslint.config(
     rules: {
       ...reactRecommended.rules,
       ...jsxA11y.configs.recommended.rules,
+      "react/jsx-curly-brace-presence": "error",
       "react/react-in-jsx-scope": "off",
     },
     settings: {

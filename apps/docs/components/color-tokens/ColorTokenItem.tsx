@@ -22,14 +22,14 @@ export function ColorTokenItem({
       rounded="sm"
     >
       <Box
-        outline={
-          (mode === "light" ? luminance : 255 - luminance) > 200 ? "1" : "0"
-        }
         p="12"
         rounded="sm"
         style={{
           backgroundColor: JSON.parse(token.type.name),
           outlineColor: `oklch(from ${JSON.parse(token.type.name)} calc(l ${mode === "light" ? "-" : "+"} 0.1) c h)`,
+          outlineStyle: "solid",
+          outlineWidth:
+            (mode === "light" ? luminance : 255 - luminance) > 200 ? "1" : "0",
         }}
       />
       <Text

@@ -64,13 +64,13 @@ export const Grow: Story = {
   args: {
     children: (
       <>
-        <Text bg="aqua.50" grow="1" p="md" textAlign="center">
+        <Text bg="aqua.50" flex="auto" p="md" textAlign="center">
           Item 1
         </Text>
-        <Text bg="aqua.50" grow="1" p="md" textAlign="center">
+        <Text bg="aqua.50" flex="auto" p="md" textAlign="center">
           Item 2
         </Text>
-        <Text bg="aqua.50" grow="1" p="md" textAlign="center">
+        <Text bg="aqua.50" flex="auto" p="md" textAlign="center">
           Long Content
         </Text>
       </>

@@ -28,7 +28,7 @@ export function ColorTokens({
       <thead>
         <Box asChild display={["flex", "table-row"]}>
           <tr>
-            <Th grow="1">Token and description</Th>
+            <Th flex="1">Token and description</Th>
             <Th display={["none", "table-cell"]}>Light value</Th>
             <Th display={["none", "table-cell"]}>Dark value</Th>
           </tr>
@@ -45,7 +45,7 @@ export function ColorTokens({
             >
               <Td py="16" w={["full", "auto"]}>
                 <Flex alignItems="start">
-                  <Code fontFamily="mono" px="8" py="4" rounded="sm">
+                  <Code px="8" py="4" rounded="sm">
                     {token.name}
                   </Code>
                   {token.description && <Text>{token.description}</Text>}

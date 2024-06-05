@@ -1,8 +1,8 @@
 export * from "./avatar";
 export * from "./box";
+
 export * from "./button";
 export * from "./code";
-export * from "./em";
 export * from "./flex";
 export * from "./grid";
 export * from "./heading";
@@ -11,7 +11,6 @@ export * from "./paper";
 export * from "./progress-bar";
 export * from "./skeleton";
 export * from "./sprinkles";
-export * from "./strong";
 export * from "./styles";
 export * from "./text";
 export * from "./tokens";
