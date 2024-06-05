@@ -4,17 +4,17 @@ export function App() {
   return (
     <Flex flexDirection="row">
       <Avatar>KP</Avatar> {/* Neutral is default */}
-      <Avatar color="red">KP</Avatar>
-      <Avatar color="blue">KP</Avatar>
-      <Avatar color="green">KP</Avatar>
-      <Avatar color="yellow">KP</Avatar>
-      <Avatar color="orange">KP</Avatar>
-      <Avatar color="magenta">KP</Avatar>
-      <Avatar color="gray">KP</Avatar>
-      <Avatar color="slate">KP</Avatar>
-      <Avatar color="purple">KP</Avatar>
-      <Avatar color="brand">KP</Avatar>
-      <Avatar color="dark">KP</Avatar>
+      <Avatar colorScheme="red">KP</Avatar>
+      <Avatar colorScheme="blue">KP</Avatar>
+      <Avatar colorScheme="green">KP</Avatar>
+      <Avatar colorScheme="yellow">KP</Avatar>
+      <Avatar colorScheme="orange">KP</Avatar>
+      <Avatar colorScheme="magenta">KP</Avatar>
+      <Avatar colorScheme="gray">KP</Avatar>
+      <Avatar colorScheme="slate">KP</Avatar>
+      <Avatar colorScheme="purple">KP</Avatar>
+      <Avatar colorScheme="brand">KP</Avatar>
+      <Avatar colorScheme="dark">KP</Avatar>
     </Flex>
   );
 }

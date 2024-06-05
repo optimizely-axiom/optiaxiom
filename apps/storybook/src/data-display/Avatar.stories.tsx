@@ -21,7 +21,7 @@ const sizes = ["xl", "lg", "md", "sm", "xs"] as const;
 
 export const Sizes: Story = {
   args: {
-    color: "purple",
+    colorScheme: "purple",
     name: "Jamie Lannister",
   },
   render: (args) => (
@@ -53,7 +53,7 @@ export const Image: Story = {
 
 export const Icon: Story = {
   args: {
-    color: "purple",
+    colorScheme: "purple",
     icon: <IconUser />,
     name: "Quiock Hoyon",
   },
@@ -72,24 +72,24 @@ export const Colors: Story = {
   render: () => (
     <Flex flexDirection="row">
       <Avatar>KP</Avatar>
-      <Avatar color="red">KP</Avatar>
-      <Avatar color="blue">KP</Avatar>
-      <Avatar color="green">KP</Avatar>
-      <Avatar color="orange">KP</Avatar>
-      <Avatar color="magenta">KP</Avatar>
-      <Avatar color="gray">KP</Avatar>
-      <Avatar color="slate">KP</Avatar>
-      <Avatar color="brand">KP</Avatar>
-      <Avatar color="purple">KP</Avatar>
-      <Avatar color="yellow">KP</Avatar>
-      <Avatar color="dark">KP</Avatar>
+      <Avatar colorScheme="red">KP</Avatar>
+      <Avatar colorScheme="blue">KP</Avatar>
+      <Avatar colorScheme="green">KP</Avatar>
+      <Avatar colorScheme="orange">KP</Avatar>
+      <Avatar colorScheme="magenta">KP</Avatar>
+      <Avatar colorScheme="gray">KP</Avatar>
+      <Avatar colorScheme="slate">KP</Avatar>
+      <Avatar colorScheme="brand">KP</Avatar>
+      <Avatar colorScheme="purple">KP</Avatar>
+      <Avatar colorScheme="yellow">KP</Avatar>
+      <Avatar colorScheme="dark">KP</Avatar>
     </Flex>
   ),
 };
 
 export const TooltipStory: Story = {
   args: {
-    color: "purple",
+    colorScheme: "purple",
     name: "Jamie Lannister",
   },
   name: "Tooltip",

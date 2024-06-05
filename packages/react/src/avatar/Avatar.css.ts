@@ -19,12 +19,12 @@ export const avatar = recipe({
   },
 
   defaultVariants: {
-    color: "neutral",
+    colorScheme: "neutral",
     size: "md",
   },
 
   variants: {
-    color: mapValues(
+    colorScheme: mapValues(
       {
         blue: "blue",
         brand: "brand",
