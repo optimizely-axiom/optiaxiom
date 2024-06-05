@@ -2,18 +2,22 @@ import { Box, Grid } from "@optiaxiom/react";
 import {
   Children,
   type ComponentPropsWithRef,
-  type ReactNode,
+  type ReactElement,
+  cloneElement,
   isValidElement,
 } from "react";
 
 import { Item } from "./Item";
 
-export const Canvas = ({ children }: { children: ReactNode }) => (
-  <Grid cols="3">
-    {Children.toArray(children)
+export const Canvas = ({
+  children,
+}: {
+  children: ReactElement<ComponentPropsWithRef<typeof Grid>>;
+}) =>
+  cloneElement(
+    children,
+    {},
+    Children.toArray(children.props.children)
       .filter(isValidElement<ComponentPropsWithRef<typeof Box>>)
-      .map((item, index) => (
-        <Item key={index}>{item}</Item>
-      ))}
-  </Grid>
-);
+      .map((item, index) => <Item key={index}>{item}</Item>),
+  );
