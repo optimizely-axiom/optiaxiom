@@ -16,7 +16,7 @@
       "toc": false
     }
   },
-  "colors": "Colors",
+  "design-tokens": "Design Tokens",
   "responsive-styles": "Responsive Styles",
   "responsive-styles-demo": {
     "display": "hidden",
@@ -30,7 +30,7 @@
       "toc": false
     }
   },
-  "theme": "Theme",
+  "colors": "Colors",
   "-- Layout": {
     "type": "separator",
     "title": "Layout"

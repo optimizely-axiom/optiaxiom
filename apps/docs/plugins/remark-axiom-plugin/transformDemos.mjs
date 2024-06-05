@@ -1,7 +1,7 @@
 import { fromMarkdown } from "mdast-util-from-markdown";
 import { mdxFromMarkdown } from "mdast-util-mdx";
 import { mdxjs } from "micromark-extension-mdxjs";
-import { readFileSync } from "node:fs";
+import fs from "node:fs";
 import path from "node:path";
 import { visit } from "unist-util-visit";
 
@@ -16,7 +16,6 @@ export function transformDemos(tree) {
       const demoName = node.attributes.find(
         (attr) => attr.name === "name",
       ).value;
-      const filesAttr = node.attributes.find((attr) => attr.name === "files");
       const metaAttr = node.attributes.find(
         (attr) => attr.name === "meta",
       )?.value;
@@ -27,15 +26,16 @@ export function transformDemos(tree) {
         (attr) => attr.name === "height",
       )?.value;
 
-      const files = filesAttr
-        ? [
-            "App.tsx",
-            ...filesAttr.value.data.estree.body[0].expression.elements.map(
-              (el) => el.value,
-            ),
-          ]
-        : ["App.tsx"];
+      const files = ["App.tsx"];
       const filesDir = path.resolve(process.cwd(), "demos", demoName);
+      for (const file of fs.readdirSync(filesDir)) {
+        if (
+          !files.includes(file) &&
+          (file.endsWith(".css") || file.endsWith(".tsx"))
+        ) {
+          files.push(file);
+        }
+      }
 
       const demo = fromMarkdown(
         [
@@ -72,10 +72,9 @@ export function transformDemos(tree) {
                   {
                     lang: path.extname(fileName).slice(1),
                     type: "code",
-                    value: readFileSync(
-                      path.join(filesDir, fileName),
-                      "utf8",
-                    ).trim(),
+                    value: fs
+                      .readFileSync(path.join(filesDir, fileName), "utf8")
+                      .trim(),
                   },
                 ],
                 name: "TabsRemark.Tab",
@@ -86,7 +85,9 @@ export function transformDemos(tree) {
               lang: "tsx",
               meta: metaAttr,
               type: "code",
-              value: readFileSync(path.join(filesDir, files[0]), "utf8").trim(),
+              value: fs
+                .readFileSync(path.join(filesDir, files[0]), "utf8")
+                .trim(),
             },
       );
       parent.children.splice(index, 1, ...demo.children);

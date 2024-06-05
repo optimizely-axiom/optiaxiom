@@ -1,4 +1,4 @@
-# Theme
+# Design Tokens
 
 Axiom uses **CSS variables** to declare design tokens.
 
@@ -40,14 +40,14 @@ For all react components you can use the various style props to set the styles u
 
 <ax-demo name="styles-prop-usage" />
 
+### Consuming variables from CSS
+
+You can also directly use the CSS variable name in your `.css` files.
+
+<ax-demo name="styles-css-usage" />
+
 ### Consuming variables from JS
 
 You can get the token's CSS variable name from the `theme` object.
 
 <ax-demo name="styles-js-usage" />
-
-### Consuming variables from CSS
-
-You can also directly use the CSS variable name in your `.css` files.
-
-<ax-demo files={['App.module.css']} name="styles-css-usage" />
