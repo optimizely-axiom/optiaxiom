@@ -8,6 +8,7 @@ export const size = {
   xl: rem("64px"),
 
   "0": "0",
+  "1": rem("1px"),
   "2": rem("2px"),
   "4": rem("4px"),
   "6": rem("6px"),

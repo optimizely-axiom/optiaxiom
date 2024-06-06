@@ -15,16 +15,27 @@ export const Primary: Story = {
     orientation: "horizontal",
   },
 
-  render: ({ orientation }) => {
-    const flexProps =
-      orientation === "vertical"
-        ? ({ flexDirection: "row", gap: "0", h: "16" } as const)
-        : ({ flexDirection: "column", gap: "0" } as const);
-
+  render: (args) => {
     return (
-      <Flex {...flexProps}>
+      <Flex flexDirection="column" gap="0">
         <Text>First Item</Text>
-        <Separator orientation={orientation} />
+        <Separator {...args} />
+        <Text>Second Item</Text>
+      </Flex>
+    );
+  },
+};
+
+export const Vertical: Story = {
+  args: {
+    orientation: "vertical",
+  },
+
+  render: (args) => {
+    return (
+      <Flex flexDirection="row" gap="0">
+        <Text>First Item</Text>
+        <Separator {...args} />
         <Text>Second Item</Text>
       </Flex>
     );

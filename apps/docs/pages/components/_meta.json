@@ -30,6 +30,7 @@
     "title": "Data Display"
   },
   "avatar": "Avatar",
+  "separator": "Separator",
   "-- Forms": {
     "type": "separator",
     "title": "Forms"
