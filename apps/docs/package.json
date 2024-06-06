@@ -20,7 +20,6 @@
     "nextra-theme-docs": "^2.13.4",
     "postcss-import": "^16.1.0",
     "react-docgen-typescript": "^2.2.2",
-    "styled-jsx": "^5.1.5",
     "unist-util-visit": "^5.0.0"
   },
   "dependencies": {
