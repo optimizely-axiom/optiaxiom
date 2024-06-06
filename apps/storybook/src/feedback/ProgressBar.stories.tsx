@@ -14,6 +14,7 @@ type Story = StoryObj<typeof ProgressBar>;
 
 export const Primary: Story = {
   args: {
+    h: "12",
     max: 60,
     value: 30,
   },
