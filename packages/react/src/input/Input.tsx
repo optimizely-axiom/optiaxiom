@@ -29,6 +29,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     const { restProps, sprinkleProps } = extractSprinkles(props);
     return (
       <Box
+        aria-disabled={isDisabled}
         aria-invalid={isInvalid}
         asChild
         className={clsx(
@@ -38,7 +39,6 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           }),
           className,
         )}
-        data-disabled={isDisabled}
         {...sprinkleProps}
       >
         <input placeholder={placeholder} ref={ref} type={type} {...restProps} />
