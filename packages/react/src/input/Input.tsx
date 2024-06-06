@@ -4,12 +4,12 @@ import { type ComponentPropsWithRef, forwardRef } from "react";
 import { Box } from "../box";
 import { extractSprinkles } from "../sprinkles";
 import { type ExtendProps } from "../utils";
-import { type InpuVariants, input } from "./Input.css";
+import * as styles from "./Input.css";
 
 type InputProps = ExtendProps<
   ComponentPropsWithRef<"input">,
   ComponentPropsWithRef<typeof Box>,
-  { isDisabled?: boolean; isInvalid?: boolean } & InpuVariants
+  { isDisabled?: boolean; isInvalid?: boolean } & styles.InputVariants
 >;
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
@@ -33,12 +33,14 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         aria-invalid={isInvalid}
         asChild
         className={clsx(
-          input({
+          styles.input({
             size,
             variant,
           }),
           className,
         )}
+        data-disabled={isDisabled}
+        data-invalid={isInvalid}
         {...sprinkleProps}
       >
         <input placeholder={placeholder} ref={ref} type={type} {...restProps} />
