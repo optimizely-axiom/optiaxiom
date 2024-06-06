@@ -6,6 +6,8 @@ Depending on your bundler you might require additional configuration to enable C
 
 ## Next.js
 
+### Transpile packages
+
 Add Axiom to the [`transpilePackages`](https://nextjs.org/docs/app/api-reference/next-config-js/transpilePackages) option:
 
 ```js filename="next.config.js"
@@ -16,5 +18,7 @@ export default {
 ```
 
 ## Webpack
+
+### CSS loader
 
 Use [`css-loader`](https://webpack.js.org/loaders/css-loader/) to include the CSS in your bundled code.
