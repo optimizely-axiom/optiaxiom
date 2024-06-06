@@ -114,9 +114,6 @@ importers:
       react-docgen-typescript:
         specifier: ^2.2.2
         version: 2.2.2(typescript@5.4.5)
-      styled-jsx:
-        specifier: ^5.1.5
-        version: 5.1.5(@babel/core@7.24.5)(react@18.3.1)
       unist-util-visit:
         specifier: ^5.0.0
         version: 5.0.0
@@ -6501,19 +6498,6 @@ packages:
       babel-plugin-macros:
         optional: true
 
-  styled-jsx@5.1.5:
-    resolution: {integrity: sha512-XVyVwGdfwhB8IwPJGaLmF/aPu408uVaWyEJjvvPpNzPaFVg1Kw1+/+XN2mRcQnVNv3z/MlKvAoqokMYLwcG1ew==}
-    engines: {node: '>= 12.0.0'}
-    peerDependencies:
-      '@babel/core': '*'
-      babel-plugin-macros: '*'
-      react: '>= 16.8.0 || 17.x.x || ^18.0.0-0 || ^19.0.0-0'
-    peerDependenciesMeta:
-      '@babel/core':
-        optional: true
-      babel-plugin-macros:
-        optional: true
-
   stylis@4.3.2:
     resolution: {integrity: sha512-bhtUjWd/z6ltJiQwg0dUfxEJ+W+jdqQd8TbWLWyeIJHlnsqmGLRFFd8e5mA0AZi/zx90smXRlN66YMTcaSFifg==}
 
@@ -6758,11 +6742,6 @@ packages:
     peerDependenciesMeta:
       typescript:
         optional: true
-
-  typescript@5.0.4:
-    resolution: {integrity: sha512-cW9T5W9xY37cc+jfEnaUvX91foxtHkza3Nw3wkoF4sSlKn0MONdkdEndig/qPBWXNkmplh3NzayQzCiHM4/hqw==}
-    engines: {node: '>=12.20'}
-    hasBin: true
 
   typescript@5.4.5:
     resolution: {integrity: sha512-vcI4UpRgg81oIRUFwR0WSIHKt11nJ7SAVlYNIu+QpqeyXP+gpQJy/Z4+F0aGxSE4MqwjyXvW/TzgkLAx2AGHwQ==}
@@ -15093,14 +15072,6 @@ snapshots:
     optionalDependencies:
       '@babel/core': 7.24.5
 
-  styled-jsx@5.1.5(@babel/core@7.24.5)(react@18.3.1):
-    dependencies:
-      client-only: 0.0.1
-      react: 18.3.1
-      typescript: 5.0.4
-    optionalDependencies:
-      '@babel/core': 7.24.5
-
   stylis@4.3.2: {}
 
   supports-color@4.5.0:
@@ -15338,8 +15309,6 @@ snapshots:
       typescript: 5.4.5
     transitivePeerDependencies:
       - supports-color
-
-  typescript@5.0.4: {}
 
   typescript@5.4.5: {}
 
