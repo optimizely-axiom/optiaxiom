@@ -1,3 +1,4 @@
+// eslint-disable-next-line local/no-global-styles
 import { style } from "@vanilla-extract/css";
 
 import { layers, theme } from "../styles";

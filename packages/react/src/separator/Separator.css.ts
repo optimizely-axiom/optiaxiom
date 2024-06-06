@@ -1,15 +1,10 @@
-import { type RecipeVariants, recipe } from "@vanilla-extract/recipes";
-
 import { sprinkles } from "../sprinkles";
-import { layers, theme } from "../styles";
+import { theme } from "../styles";
+import { type RecipeVariants, recipe } from "../vanilla-extract";
 
 export const separator = recipe({
   base: {
-    "@layer": {
-      [layers.axiom]: {
-        backgroundColor: theme.colors["bg.brand.solid"],
-      },
-    },
+    backgroundColor: theme.colors["bg.brand.solid"],
   },
   defaultVariants: {
     orientation: "horizontal",
