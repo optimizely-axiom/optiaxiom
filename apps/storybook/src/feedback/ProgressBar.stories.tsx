@@ -45,6 +45,7 @@ export const CompletionStages: Story = {
             key={index}
             max={max}
             value={typeof value !== "undefined" ? value * scale : undefined}
+            w="1/2"
           />
         ))}
       </Flex>
