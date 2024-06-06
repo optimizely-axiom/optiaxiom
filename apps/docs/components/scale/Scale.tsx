@@ -70,7 +70,7 @@ export const Scale = ({
                 color="fg.accent.blue"
                 fontFamily="mono"
                 fontSize="sm"
-                fontWeight="600"
+                fontWeight="500"
               >
                 {name}
               </Text>

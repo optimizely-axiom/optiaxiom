@@ -12,7 +12,9 @@ import { Scale } from "@/components/scale";
   values={{ base: "0px", ...tokens.screens }}
 />
 
-## Usage
+## Basic usage
+
+### Object notation
 
 Use the object prop notation where the key is the breakpoint name:
 
@@ -24,6 +26,8 @@ export function App() {
 }
 ```
 
+### Array notation
+
 Or use the shorter array prop notation with the elements in order of condition:
 
 ```tsx
@@ -34,7 +38,7 @@ export function App() {
 }
 ```
 
-## Example
+### Example
 
 <ax-demo
   iframe="/styled-system/responsive-styles-demo/"

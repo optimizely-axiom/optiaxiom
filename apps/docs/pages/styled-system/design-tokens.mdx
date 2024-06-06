@@ -2,14 +2,16 @@
 
 Axiom uses **CSS variables** to declare design tokens.
 
-## Usage
+## Declaring tokens
 
-All CSS variables are available under the `--ax-*` prefix.
+### CSS variables
 
-So given a theme object like this:
+All tokens are available as CSS variables under the `--ax-*` prefix.
+
+So given a tokens object like this:
 
 ```ts
-const theme = {
+const tokens = {
   colors: {
     "aqua.50": "#e5f7fb",
     "aqua.200": "#9ae5ef",
@@ -34,7 +36,9 @@ The following css custom properties will be available:
 }
 ```
 
-### Using props
+## Consuming tokens
+
+### Using style props
 
 For all react components you can use the various style props to set the styles using tokens.
 
@@ -48,6 +52,8 @@ You can also directly use the CSS variable name in your `.css` files.
 
 ### Consuming variables from JS
 
-You can get the token's CSS variable name from the `theme` object.
+Axiom exports a `theme` contract that contains a map of all tokens to the corresponding CSS custom property name.
+
+You can use this `theme` object when implementing any CSS-in-JS solutions.
 
 <ax-demo name="styles-js-usage" />

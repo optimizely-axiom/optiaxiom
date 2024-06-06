@@ -2,39 +2,44 @@
 
 `Avatar` is an image element with a fallback for representing the user.
 
-## Usage
+## Basic usage
+
+### Usage
 
 <ax-demo name="avatar/usage" />
 
-## Precendence of props
+## Fallback
 
-In case of `src` is not provided, or the `src` url is failed to load the image,
-`Avatar` component takes `icon`, `name` and `children` prop to render the fallback.
-The order of Precendence of the props are
+### How is fallback determined
 
-- icon
-- name
-- children
+In case `src` is not provided, or the browser fails to load the image, `Avatar` component will show a fallback instead.
 
-If nothing is provided, a generic user icon will be shown.
+The fallback renders `icon`, `name` and `children` in that order.
 
-<ax-demo name="avatar/fallback-usage" />
+If none of these are provided a generic user icon will be shown instead.
 
-## Color usage
+### Icon
 
-Only the following `color` variants are supported for now.
+Render the `icon` prop if `src` is not given or fails to load.
 
-- neutral (default)
-- red
-- blue
-- green
-- yellow
-- orange
-- magenta
-- gray
-- slate
-- purple
-- dark
-- brand
+<ax-demo name="avatar/fallback-icon-usage" />
+
+### Name
+
+Generate initials from the `name` prop if `src` and `icon` are not provided.
+
+<ax-demo name="avatar/fallback-name-usage" />
+
+### Children
+
+Render `children` as-is if neither `src`, `icon`, and `name` are provided.
+
+<ax-demo name="avatar/fallback-children-usage" />
+
+## Colors
+
+### Color scheme
+
+Use the `colorScheme` prop to control the avatar fallback background and text colors.
 
 <ax-demo name="avatar/color-usage" />
