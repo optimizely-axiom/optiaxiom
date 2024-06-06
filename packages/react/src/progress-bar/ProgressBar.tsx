@@ -6,17 +6,17 @@ import { type ExtendProps } from "../utils";
 
 type ProgressBarProps = ExtendProps<
   ComponentPropsWithRef<typeof ProgressPrimitive.Root>,
-  Pick<ComponentPropsWithRef<typeof Box>, "w">
+  ComponentPropsWithRef<typeof Box>
 >;
 
 export const ProgressBar = forwardRef<
   ElementRef<typeof ProgressPrimitive.Root>,
   ProgressBarProps
->(({ w = "2/3", ...props }, ref) => {
+>((props, ref) => {
   const widthPercentage = ((props.value ?? 0) / (props.max ?? 100)) * 100;
 
   return (
-    <Box asChild border="1" h="6" overflow="hidden" w={w}>
+    <Box asChild border="1" h="6" overflow="hidden" {...props}>
       <ProgressPrimitive.Root ref={ref} {...props}>
         <Box
           asChild
