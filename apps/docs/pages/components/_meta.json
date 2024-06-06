@@ -16,8 +16,15 @@
     "type": "separator",
     "title": "Typography"
   },
+  "code": "Code",
   "heading": "Heading",
+  "kbd": "Kbd",
   "text": "Text",
+  "-- Overlays": {
+    "type": "separator",
+    "title": "Overlays"
+  },
+  "tooltip": "Tooltip",
   "-- Data Display": {
     "type": "separator",
     "title": "Data Display"
