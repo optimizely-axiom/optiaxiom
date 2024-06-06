@@ -1,5 +1,4 @@
 import * as RadixSeparator from "@radix-ui/react-separator";
-import { Slot } from "@radix-ui/react-slot";
 import clsx from "clsx";
 import { type ComponentPropsWithRef, forwardRef } from "react";
 
@@ -14,9 +13,7 @@ type SeparatorProps = ExtendProps<
   styles.SeparatorVaiants;
 
 export const Separator = forwardRef<HTMLHRElement, SeparatorProps>(
-  ({ asChild, className, orientation, ...props }, ref) => {
-    const Comp = asChild ? Slot : RadixSeparator.Root;
-
+  ({ className, orientation, ...props }, ref) => {
     return (
       <Box
         asChild
@@ -24,7 +21,7 @@ export const Separator = forwardRef<HTMLHRElement, SeparatorProps>(
         ref={ref}
         {...props}
       >
-        <Comp />
+        <RadixSeparator.Root />
       </Box>
     );
   },
