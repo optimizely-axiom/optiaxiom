@@ -28,14 +28,13 @@ export const input = recipe({
           "&:hover": {
             borderColor: theme.colors["border.brand"],
           },
-          '&[aria-invalid="true"]': {
-            borderColor: theme.colors["border.error"],
-          },
-          '&[data-disabled="true"]': {
+          '&[aria-disabled="true"]': {
             backgroundColor: theme.colors["bg.disabled"],
             borderColor: theme.colors["border.secondary"],
-            cursor: "not-allowed",
             pointerEvents: "none",
+          },
+          '&[aria-invalid="true"]': {
+            borderColor: theme.colors["border.error"],
           },
         },
       },
