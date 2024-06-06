@@ -15,7 +15,7 @@ export const Scale = ({
   hidePixels,
   hidePreview,
   keyLabel = "Name",
-  valueLabel = "Size",
+  valueLabel = "Value",
   values,
 }: {
   hidePixels?: boolean;
