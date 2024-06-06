@@ -94,4 +94,4 @@ export const input = recipe({
   },
 });
 
-export type InpuVariants = RecipeVariants<typeof input>;
+export type InputVariants = RecipeVariants<typeof input>;
