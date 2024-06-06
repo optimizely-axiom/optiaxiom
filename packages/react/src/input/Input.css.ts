@@ -1,24 +1,25 @@
 import { theme } from "../styles";
 import { type RecipeVariants, recipe } from "../vanilla-extract";
 
-export const input = recipe({
+export const wrapper = recipe({
   base: {
+    alignItems: "center",
     border: "1px",
     borderColor: theme.colors["border.default"],
     borderRadius: theme.borderRadius.sm,
     borderStyle: "solid",
     color: theme.colors["fg.default"],
     display: "flex",
-    flexDirection: "column",
+    flexDirection: "row",
     fontFamily: theme.fontFamily["sans"],
     selectors: {
-      '&:focus-visible:is([data-invalid="true"])': {
+      '&:focus-within:is([data-invalid="true"])': {
         outlineColor: theme.colors["red.200"],
         outlineOffset: "1px",
         outlineStyle: "solid",
         outlineWidth: "2px",
       },
-      '&:focus-visible:not([data-invalid="true"])': {
+      '&:focus-within:not([data-invalid="true"])': {
         outlineColor: theme.colors["brand.200"],
         outlineOffset: "1px",
         outlineStyle: "solid",
@@ -30,6 +31,7 @@ export const input = recipe({
       '&[data-disabled="true"]': {
         backgroundColor: theme.colors["bg.disabled"],
         borderColor: theme.colors["border.secondary"],
+        cursor: "not-allowed",
         pointerEvents: "none",
       },
       '&[data-invalid="true"]': {
@@ -52,6 +54,7 @@ export const input = recipe({
         lineHeight: theme.fontSize["md"].lineHeight,
         padding: "8px 8px",
       },
+
       lg: {
         fontSize: theme.fontSize["lg"].fontSize,
         height: "40px",
@@ -59,6 +62,26 @@ export const input = recipe({
         padding: "4px 8px",
       },
     },
+    variant: {
+      default: {},
+      number: {},
+    },
+  },
+});
+
+export const input = recipe({
+  base: {
+    background: theme.colors["transparent"],
+    fontFamily: theme.fontFamily["sans"],
+    width: "100%",
+
+    selectors: {
+      "&:focus-visible": {
+        outlineWidth: "0px",
+      },
+    },
+  },
+  variants: {
     variant: {
       default: {
         textAlign: "start",
@@ -70,4 +93,5 @@ export const input = recipe({
   },
 });
 
+export type WrapperVariants = RecipeVariants<typeof wrapper>;
 export type InputVariants = RecipeVariants<typeof input>;
