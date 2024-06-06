@@ -1,21 +1,15 @@
-import { type RecipeVariants, recipe } from "@vanilla-extract/recipes";
-
 import { sprinkles } from "../sprinkles";
-import { layers } from "../styles";
 import { mapValues } from "../utils";
+import { type RecipeVariants, recipe } from "../vanilla-extract";
 
 export const avatar = recipe({
   base: {
-    "@layer": {
-      [layers.axiom]: {
-        alignItems: "center",
-        borderRadius: "100%",
-        display: "inline-flex",
-        justifyContent: "center",
-        overflow: "hidden",
-        userSelect: "none",
-      },
-    },
+    alignItems: "center",
+    borderRadius: "100%",
+    display: "inline-flex",
+    justifyContent: "center",
+    overflow: "hidden",
+    userSelect: "none",
   },
 
   defaultVariants: {

@@ -1,10 +1,9 @@
+import { tokens, tokensDark } from "../tokens";
+import { mapValues } from "../utils";
 import {
   createGlobalTheme,
   createGlobalThemeContract,
-} from "@vanilla-extract/css";
-
-import { tokens, tokensDark } from "../tokens";
-import { mapValues } from "../utils";
+} from "../vanilla-extract";
 
 const createThemeContractFromTokens = <
   T extends Record<string, unknown>,

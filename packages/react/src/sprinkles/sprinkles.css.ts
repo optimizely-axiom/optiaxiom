@@ -1,4 +1,3 @@
-import { keyframes } from "@vanilla-extract/css";
 import {
   createMapValueFn,
   createSprinkles,
@@ -8,6 +7,7 @@ import {
 import { layers, theme } from "../styles";
 import { tokens } from "../tokens";
 import { mapValues } from "../utils";
+import { keyframes } from "../vanilla-extract";
 
 const merge = <A, B>(objA: A, objB: B): A & B => ({ ...objA, ...objB });
 

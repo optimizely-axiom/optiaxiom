@@ -1,24 +1,14 @@
-import { style, styleVariants } from "@vanilla-extract/css";
-
-import { layers } from "../styles";
+import { style, styleVariants } from "../vanilla-extract";
 
 const truncateBase = style({
-  "@layer": {
-    [layers.axiom]: {
-      overflow: "hidden",
-      textOverflow: "ellipsis",
-    },
-  },
+  overflow: "hidden",
+  textOverflow: "ellipsis",
 });
 const lineClampBase = style([
   truncateBase,
   {
-    "@layer": {
-      [layers.axiom]: {
-        WebkitBoxOrient: "vertical",
-        display: "-webkit-box",
-      },
-    },
+    WebkitBoxOrient: "vertical",
+    display: "-webkit-box",
   },
 ]);
 
@@ -35,10 +25,6 @@ export const lineClamp = styleVariants(
 export const truncate = style([
   truncateBase,
   {
-    "@layer": {
-      [layers.axiom]: {
-        whiteSpace: "nowrap",
-      },
-    },
+    whiteSpace: "nowrap",
   },
 ]);

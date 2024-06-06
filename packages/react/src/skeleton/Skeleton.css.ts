@@ -1,13 +1,7 @@
-import { style } from "@vanilla-extract/css";
-
-import { layers } from "../styles";
+import { style } from "../vanilla-extract";
 
 export const base = style({
-  "@layer": {
-    [layers.axiom]: {
-      selectors: {
-        "&:empty:before": { content: '"\\00a0"' },
-      },
-    },
+  selectors: {
+    "&:empty:before": { content: '"\\00a0"' },
   },
 });

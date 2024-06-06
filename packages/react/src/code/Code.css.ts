@@ -1,12 +1,6 @@
-import { style } from "@vanilla-extract/css";
-
-import { layers } from "../styles";
+import { style } from "../vanilla-extract";
 
 export const base = style({
-  "@layer": {
-    [layers.axiom]: {
-      WebkitFontSmoothing: "auto",
-      fontSize: "0.875em",
-    },
-  },
+  WebkitFontSmoothing: "auto",
+  fontSize: "0.875em",
 });
