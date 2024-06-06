@@ -1,12 +1,12 @@
 import { Slot } from "@radix-ui/react-slot";
 import { type ComponentPropsWithRef, forwardRef } from "react";
 
-import { Box } from "../box";
+import { Text } from "../text";
 import { type ExtendProps } from "../utils";
 
 type HeadingProps = ExtendProps<
   ComponentPropsWithRef<"h1">,
-  ComponentPropsWithRef<typeof Box>,
+  ComponentPropsWithRef<typeof Text>,
   {
     level?: keyof typeof mapLevelToTag;
     variant?: keyof typeof mapTagToFontSize;
@@ -36,7 +36,7 @@ export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
     const fontSize = mapTagToFontSize[variant ?? mapLevelToTag[level]];
 
     return (
-      <Box
+      <Text
         asChild
         fontFamily="sans"
         fontSize={fontSize}
@@ -45,7 +45,7 @@ export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
         {...props}
       >
         <Comp>{children}</Comp>
-      </Box>
+      </Text>
     );
   },
 );
