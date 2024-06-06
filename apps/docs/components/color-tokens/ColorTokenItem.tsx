@@ -29,7 +29,9 @@ export function ColorTokenItem({
           outlineColor: `oklch(from ${JSON.parse(token.type.name)} calc(l ${mode === "light" ? "-" : "+"} 0.1) c h)`,
           outlineStyle: "solid",
           outlineWidth:
-            (mode === "light" ? luminance : 255 - luminance) > 200 ? "1" : "0",
+            (mode === "light" ? luminance : 255 - luminance) > 200
+              ? "1px"
+              : "0",
         }}
       />
       <Text
