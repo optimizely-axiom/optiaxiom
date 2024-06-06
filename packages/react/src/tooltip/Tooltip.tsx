@@ -18,16 +18,19 @@ type TooltipProps = ExtendProps<
   {
     children: ReactNode;
     content?: ReactNode;
+    delayDuration?: ComponentPropsWithRef<
+      typeof RadixTooltip.Provider
+    >["delayDuration"];
     withArrow?: boolean;
   }
 >;
 
 export const Tooltip = forwardRef<HTMLButtonElement, TooltipProps>(
-  ({ children, content, withArrow, ...props }, ref) => {
+  ({ children, content, delayDuration, withArrow, ...props }, ref) => {
     const [open, setOpen] = useState(false);
 
     return (
-      <RadixTooltip.Provider>
+      <RadixTooltip.Provider delayDuration={delayDuration}>
         <RadixTooltip.Root onOpenChange={setOpen} open={open}>
           <RadixTooltip.Trigger asChild ref={ref}>
             {children}

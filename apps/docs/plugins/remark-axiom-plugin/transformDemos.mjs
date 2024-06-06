@@ -37,6 +37,14 @@ export function transformDemos(tree) {
         }
       }
 
+      let configExists = false;
+      try {
+        fs.statSync(`${filesDir}/config.ts`);
+        configExists = true;
+      } catch {
+        /* empty */
+      }
+
       const demo = fromMarkdown(
         [
           needsImport &&
@@ -44,8 +52,11 @@ export function transformDemos(tree) {
           needsImport &&
             `import { Demo as DemoRemark } from "@/components/demo";`,
           `import { App as App${id} } from "@/demos/${demoName}/App";`,
+          configExists &&
+            `import config${id} from "@/demos/${demoName}/config";`,
           `<DemoRemark
             component={App${id}}
+            ${configExists ? `controls={config${id}.controls}` : ""}
             ${iframe ? `iframe=${JSON.stringify(iframe)}` : ""}
             ${height ? `height=${JSON.stringify(height)}` : ""}
           />`,
