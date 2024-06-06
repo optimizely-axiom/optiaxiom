@@ -4,7 +4,6 @@ import { Flex, Separator, Text } from "@optiaxiom/react";
 
 const meta: Meta<typeof Separator> = {
   component: Separator,
-  title: "Components / Separator",
 };
 
 export default meta;
