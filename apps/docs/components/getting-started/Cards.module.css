@@ -1,0 +1,9 @@
+.card {
+  &:hover {
+    background-color: var(--ax-colors-bg-disabled);
+  }
+}
+
+.icon {
+  outline: 0.5px solid var(--ax-colors-border-default);
+}
