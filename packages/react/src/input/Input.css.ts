@@ -15,25 +15,27 @@ export const input = recipe({
         flexDirection: "column",
         fontFamily: theme.fontFamily["sans"],
         selectors: {
-          '&:focus-visible:is([aria-invalid="true"])': {
+          '&:focus-visible:is([data-invalid="true"])': {
             outlineColor: theme.colors["red.200"],
-            outlineOffset: "3px",
+            outlineOffset: "1px",
+            outlineStyle: "solid",
             outlineWidth: "2px",
           },
-          '&:focus-visible:not([aria-invalid="true"])': {
+          '&:focus-visible:not([data-invalid="true"])': {
             outlineColor: theme.colors["brand.200"],
-            outlineOffset: "3px",
+            outlineOffset: "1px",
+            outlineStyle: "solid",
             outlineWidth: "2px",
           },
           "&:hover": {
             borderColor: theme.colors["border.brand"],
           },
-          '&[aria-disabled="true"]': {
+          '&[data-disabled="true"]': {
             backgroundColor: theme.colors["bg.disabled"],
             borderColor: theme.colors["border.secondary"],
             pointerEvents: "none",
           },
-          '&[aria-invalid="true"]': {
+          '&[data-invalid="true"]': {
             borderColor: theme.colors["border.error"],
           },
         },
@@ -46,7 +48,6 @@ export const input = recipe({
       sm: {
         "@layer": {
           [layers.axiom]: {
-            // fontSize: "sm", h: "24", px: "8", py: "8"
             fontSize: theme.fontSize["sm"].fontSize,
             height: "24px",
             lineHeight: theme.fontSize["sm"].lineHeight,
@@ -70,7 +71,7 @@ export const input = recipe({
             fontSize: theme.fontSize["lg"].fontSize,
             height: "40px",
             lineHeight: theme.fontSize["lg"].lineHeight,
-            padding: "8px 8px",
+            padding: "4px 8px",
           },
         },
       },
