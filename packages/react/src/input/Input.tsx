@@ -1,19 +1,21 @@
+import clsx from "clsx";
 import { type ComponentPropsWithRef, forwardRef } from "react";
 
 import { Box } from "../box";
-// import { Text } from "../text";
+import { extractSprinkles } from "../sprinkles";
 import { type ExtendProps } from "../utils";
-import { type Recipe, recipe } from "./Input.recipe";
+import { type InpuVariants, input } from "./Input.css";
 
 type InputProps = ExtendProps<
   ComponentPropsWithRef<"input">,
   ComponentPropsWithRef<typeof Box>,
-  { isDisabled?: boolean; isInvalid?: boolean } & Recipe
+  { isDisabled?: boolean; isInvalid?: boolean } & InpuVariants
 >;
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
   (
     {
+      className,
       isDisabled,
       isInvalid,
       placeholder,
@@ -24,20 +26,22 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     },
     ref,
   ) => {
+    const { restProps, sprinkleProps } = extractSprinkles(props);
     return (
       <Box
         aria-invalid={isInvalid}
         asChild
+        className={clsx(
+          input({
+            size,
+            variant,
+          }),
+          className,
+        )}
         data-disabled={isDisabled}
-        display="flex"
-        flexDirection="column"
-        fontFamily="sans"
-        fontSize="md"
-        maxW="sm"
-        {...recipe({ size, variant })}
-        {...props}
+        {...sprinkleProps}
       >
-        <input placeholder={placeholder} ref={ref} type={type} />
+        <input placeholder={placeholder} ref={ref} type={type} {...restProps} />
       </Box>
     );
   },
