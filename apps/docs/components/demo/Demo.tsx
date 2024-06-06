@@ -36,11 +36,12 @@ export function Demo({
       <Box
         alignItems="stretch"
         border="1"
+        className={iframe && styles.resize}
         display="flex"
         flexDirection="row"
         rounded="xl"
       >
-        <Box className={iframe && styles.resize} flex="1" p="xl">
+        <Box flex="1" p="xl">
           {iframe ? (
             <DemoIframe height={height} src={iframe} />
           ) : (
