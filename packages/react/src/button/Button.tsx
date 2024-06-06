@@ -76,6 +76,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
     return (
       <Box
+        aria-disabled={disabled || isLoading}
         asChild
         className={clsx(
           button({
@@ -85,7 +86,6 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           }),
           className,
         )}
-        data-disabled={disabled || isLoading}
         onClick={disabled || isLoading ? undefined : onClick}
         {...props}
       >

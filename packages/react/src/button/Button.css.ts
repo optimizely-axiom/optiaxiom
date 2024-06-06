@@ -26,7 +26,7 @@ export const button = recipe({
         transitionTimingFunction: "ease",
 
         selectors: {
-          '&:active:not([data-disabled="true"])': {
+          '&:active:not([aria-disabled="true"])': {
             boxShadow: theme.boxShadow.inner,
           },
           "&:focus-visible": {
@@ -34,7 +34,7 @@ export const button = recipe({
             outlineStyle: "solid",
             outlineWidth: "1px",
           },
-          '&[data-disabled="true"]': {
+          '&[aria-disabled="true"]': {
             cursor: "not-allowed",
           },
         },
@@ -158,10 +158,10 @@ export const button = recipe({
             color: accentColorVar,
 
             selectors: {
-              '&:hover:not([data-disabled="true"])': {
+              '&:hover:not([aria-disabled="true"])': {
                 backgroundColor: subtleAccentColorVar,
               },
-              '&[data-disabled="true"]': {
+              '&[aria-disabled="true"]': {
                 backgroundColor: theme.colors["bg.disabled"],
                 color: theme.colors["fg.disabled"],
               },
@@ -177,10 +177,10 @@ export const button = recipe({
             color: accentColorVar,
 
             selectors: {
-              '&:hover:not([data-disabled="true"])': {
+              '&:hover:not([aria-disabled="true"])': {
                 backgroundColor: subtleAccentColorVar,
               },
-              '&[data-disabled="true"]': {
+              '&[aria-disabled="true"]': {
                 borderColor: theme.colors["border.disabled"],
                 color: theme.colors["fg.disabled"],
               },
@@ -195,10 +195,10 @@ export const button = recipe({
             color: theme.colors["fg.default.inverse"],
 
             selectors: {
-              '&:hover:not([data-disabled="true"])': {
+              '&:hover:not([aria-disabled="true"])': {
                 backgroundColor: solidAccentColorVar,
               },
-              '&[data-disabled="true"]': {
+              '&[aria-disabled="true"]': {
                 backgroundColor: theme.colors["bg.disabled"],
                 border: `1px solid ${theme.colors["border.disabled"]}`,
                 color: theme.colors["fg.disabled"],
