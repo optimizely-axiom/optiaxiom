@@ -1,28 +1,25 @@
 import { sprinkles } from "../sprinkles";
 import { theme } from "../styles";
-import { type RecipeVariants, recipe } from "../vanilla-extract";
+import { type RecipeVariants, recipe, style } from "../vanilla-extract";
 
 export const separator = recipe({
   base: {
-    backgroundColor: theme.colors["bg.brand.solid"],
+    backgroundColor: theme.colors["border.default"],
   },
-  defaultVariants: {
-    orientation: "horizontal",
-  },
+
   variants: {
     orientation: {
       horizontal: sprinkles({
-        h: "2",
-        my: "6",
-        w: "full",
+        my: "sm",
       }),
-      vertical: sprinkles({
-        h: "full",
-        mx: "6",
-        w: "2",
-      }),
+      vertical: style([
+        { alignSelf: "stretch" },
+        sprinkles({
+          mx: "sm",
+        }),
+      ]),
     },
   },
 });
 
-export type SeparatorVaiants = RecipeVariants<typeof separator>;
+export type SeparatorVariants = RecipeVariants<typeof separator>;
