@@ -9,17 +9,28 @@ import * as styles from "./Text.css";
 type TextProps = ExtendProps<
   ComponentPropsWithRef<"p">,
   ComponentPropsWithRef<typeof Box>,
-  { as?: "label" | "p" | "span"; truncate?: boolean }
+  {
+    as?: "label" | "p" | "span";
+    lineClamp?: keyof typeof styles.lineClamp;
+    truncate?: boolean;
+  }
 >;
 
 export const Text = forwardRef<HTMLParagraphElement, TextProps>(
-  ({ as = "p", asChild, children, className, truncate, ...props }, ref) => {
+  (
+    { as = "p", asChild, children, className, lineClamp, truncate, ...props },
+    ref,
+  ) => {
     const Comp = asChild ? Slot : as;
 
     return (
       <Box
         asChild
-        className={clsx(truncate && styles.truncate, className)}
+        className={clsx(
+          lineClamp && styles.lineClamp[lineClamp],
+          truncate && styles.truncate,
+          className,
+        )}
         fontFamily="sans"
         fontSize="md"
         ref={ref}
