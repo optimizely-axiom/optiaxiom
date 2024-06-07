@@ -49,12 +49,6 @@ export const button = recipe({
     },
   ],
 
-  defaultVariants: {
-    colorScheme: "secondary",
-    size: "md",
-    variant: "solid",
-  },
-
   variants: {
     colorScheme: {
       danger: {

@@ -31,7 +31,16 @@ function getInitialsFromName(name: string) {
 
 export const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
   (
-    { children, className, colorScheme, icon, name, size, src, ...props },
+    {
+      children,
+      className,
+      colorScheme = "neutral",
+      icon,
+      name,
+      size = "md",
+      src,
+      ...props
+    },
     ref,
   ) => {
     return (
