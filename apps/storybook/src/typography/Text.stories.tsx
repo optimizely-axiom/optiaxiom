@@ -16,6 +16,21 @@ export const Primary: Story = {
   },
 };
 
+export const LineClamp: Story = {
+  args: {
+    children: (
+      <>
+        Lorem Ipsum is a placeholder text commonly used in the design and
+        printing industries. Despite its widespread use, the origins of Lorem
+        Ipsum are somewhat mysterious. Several theories exist about who may have
+        invented the text, but no one knows.
+      </>
+    ),
+    lineClamp: "2",
+    w: "256",
+  },
+};
+
 export const Sizes: Story = {
   render: () => (
     <>
@@ -26,4 +41,12 @@ export const Sizes: Story = {
       <Text fontSize="xl">This is xl size text</Text>
     </>
   ),
+};
+
+export const Truncate: Story = {
+  args: {
+    children: "The quick brown fox jumps over the lazy dog.",
+    truncate: true,
+    w: "192",
+  },
 };
