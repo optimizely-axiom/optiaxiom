@@ -3,10 +3,8 @@ import type { ComponentPropsWithRef } from "react";
 import { Text } from "@optiaxiom/react";
 
 export function App({
-  lineClamp,
-}: {
-  lineClamp: ComponentPropsWithRef<typeof Text>["lineClamp"];
-}) {
+  lineClamp = "2",
+}: Pick<ComponentPropsWithRef<typeof Text>, "lineClamp">) {
   return (
     <Text lineClamp={lineClamp}>
       Lorem Ipsum is a placeholder text commonly used in the design and printing

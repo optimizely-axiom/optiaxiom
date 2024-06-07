@@ -3,6 +3,7 @@ import { mdxFromMarkdown } from "mdast-util-mdx";
 import { mdxjs } from "micromark-extension-mdxjs";
 import fs from "node:fs";
 import path from "node:path";
+import docgen from "react-docgen-typescript";
 import { visit } from "unist-util-visit";
 
 export function transformDemos(tree) {
@@ -37,13 +38,15 @@ export function transformDemos(tree) {
         }
       }
 
-      let configExists = false;
-      try {
-        fs.statSync(`${filesDir}/config.ts`);
-        configExists = true;
-      } catch {
-        /* empty */
-      }
+      const docs = docgen
+        .withCompilerOptions(
+          { esModuleInterop: true },
+          {
+            savePropValueAsString: true,
+            shouldExtractValuesFromUnion: true,
+          },
+        )
+        .parse(`${filesDir}/App.tsx`);
 
       const demo = fromMarkdown(
         [
@@ -52,11 +55,9 @@ export function transformDemos(tree) {
           needsImport &&
             `import { Demo as DemoRemark } from "@/components/demo";`,
           `import { App as App${id} } from "@/demos/${demoName}/App";`,
-          configExists &&
-            `import config${id} from "@/demos/${demoName}/config";`,
           `<DemoRemark
             component={App${id}}
-            ${configExists ? `controls={config${id}.controls}` : ""}
+            propTypes={${JSON.stringify(docs.find((doc) => doc.displayName === "App")?.props)}}
             ${iframe ? `iframe=${JSON.stringify(iframe)}` : ""}
             ${height ? `height=${JSON.stringify(height)}` : ""}
           />`,
