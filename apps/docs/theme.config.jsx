@@ -1,6 +1,8 @@
 import { Heading } from "@optiaxiom/react";
 import { HeadingLink } from "@/components/mdx";
 
+import favicon from "./public/brand-logo-white.svg";
+
 /** @type {import('nextra-theme-docs').DocsThemeConfig} */
 export default {
   components: {
@@ -47,7 +49,16 @@ export default {
   footer: {
     text: <span>Copyright {new Date().getFullYear()} © Optimizely.</span>,
   },
-  logo: <strong>Axiom Design System</strong>,
+  head: "",
+  logo: (
+    <strong>
+      <span
+        className="logo"
+        style={{ backgroundImage: `url(${favicon.src})` }}
+      />{" "}
+      Axiom Design System
+    </strong>
+  ),
   project: {
     link: "https://github.com/optimizely-axiom/optiaxiom",
   },
@@ -56,6 +67,7 @@ export default {
   },
   useNextSeoProps() {
     return {
+      description: "Implementation of the Optimizely Design System",
       titleTemplate: "%s – Axiom",
     };
   },
