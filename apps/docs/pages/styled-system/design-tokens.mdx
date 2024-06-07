@@ -1,3 +1,7 @@
+import { Scale } from "@/components/scale";
+import { theme } from "@optiaxiom/react";
+import { Fragment } from "react";
+
 # Design Tokens
 
 Axiom uses **CSS variables** to declare design tokens.
@@ -57,3 +61,15 @@ Axiom exports a `theme` contract that contains a map of all tokens to the corres
 You can use this `theme` object when implementing any CSS-in-JS solutions.
 
 <ax-demo name="styles/js-usage" />
+
+## Reference
+
+{Object.entries(theme).map(([name, values]) => (
+
+<Fragment key="name">
+  <h3 id={name}>
+    <code>{name}</code>
+  </h3>
+  <Scale hidePixels hidePreview values={values} />
+</Fragment>
+))}
