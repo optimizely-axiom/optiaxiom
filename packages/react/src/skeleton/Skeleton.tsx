@@ -11,7 +11,7 @@ type SkeletonProps = ExtendProps<
   ComponentPropsWithRef<typeof Box>,
   {
     /**
-     * Render skeleton as a circle if `true`. Will set the width to be the same as the `height`.
+     * Render skeleton as a circle if `true`. Will set the width to be the same as the height.
      */
     circle?: boolean;
     /**

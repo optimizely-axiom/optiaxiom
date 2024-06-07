@@ -8,7 +8,13 @@ type HeadingProps = ExtendProps<
   ComponentPropsWithRef<"h1">,
   ComponentPropsWithRef<typeof Text>,
   {
+    /**
+     * Presets for each level of heading h1-h6.
+     */
     level?: keyof typeof mapLevelToTag;
+    /**
+     * Control the visual size without changing the semantic tag.
+     */
     variant?: keyof typeof mapTagToFontSize;
   }
 >;
