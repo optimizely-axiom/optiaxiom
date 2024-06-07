@@ -9,10 +9,13 @@ import propsConfig from "../../props.config.mjs";
 type PropTypeProps = {
   component: string;
   prop: PropItem;
+  sprinkle: PropItem | undefined;
 };
 
-export const PropType = ({ component, prop }: PropTypeProps) => {
-  const defn = <PropDefinition component={component} prop={prop} />;
+export const PropType = ({ component, prop, sprinkle }: PropTypeProps) => {
+  const defn = (
+    <PropDefinition component={component} prop={prop} sprinkle={sprinkle} />
+  );
   return (
     <Text>
       <Code leading="loose" px="8">
@@ -44,7 +47,7 @@ export const PropType = ({ component, prop }: PropTypeProps) => {
   );
 };
 
-const PropDefinition = ({ component, prop }: PropTypeProps) => {
+const PropDefinition = ({ component, prop, sprinkle }: PropTypeProps) => {
   let defn: ReactNode = "";
 
   if (prop.type.name === "enum") {
@@ -53,8 +56,7 @@ const PropDefinition = ({ component, prop }: PropTypeProps) => {
         if (
           (config.props.includes(prop.name) ||
             config.props.includes(`${component}[${prop.name}]`)) &&
-          (!("exclude" in config && Array.isArray(config.exclude)) ||
-            !config.exclude.includes(`${component}[${prop.name}]`))
+          (!sprinkle || prop.type.raw === sprinkle.type.raw)
         ) {
           defn = <ThemeLink name={key} {...config} type={prop.type} />;
           break;
