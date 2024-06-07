@@ -1,10 +1,7 @@
+import type { Props } from "react-docgen-typescript";
+
 import { Box, Flex } from "@optiaxiom/react";
-import {
-  type ComponentPropsWithRef,
-  type ComponentType,
-  type ReactNode,
-  useState,
-} from "react";
+import { type ComponentType, type ReactNode, useState } from "react";
 
 import styles from "./Demo.module.css";
 import { DemoControls } from "./DemoControls";
@@ -13,20 +10,20 @@ import { DemoIframe } from "./DemoIframe";
 export function Demo({
   children,
   component: Component,
-  controls,
   height,
   iframe,
+  propTypes = {},
 }: {
   children: ReactNode;
   component: ComponentType;
-  controls: ComponentPropsWithRef<typeof DemoControls>["controls"];
   height?: string;
   iframe?: string;
+  propTypes: Props;
 }) {
   const [props, setProps] = useState(() =>
-    (controls ?? []).reduce(
-      (result, control) =>
-        Object.assign(result, { [control.prop]: control.defaultValue }),
+    Object.entries(propTypes).reduce(
+      (result, [name, item]) =>
+        Object.assign(result, { [name]: item.defaultValue?.value }),
       {},
     ),
   );
@@ -48,8 +45,12 @@ export function Demo({
             <Component {...props} />
           )}
         </Box>
-        {controls && (
-          <DemoControls controls={controls} onChange={setProps} props={props} />
+        {Object.keys(propTypes).length > 0 && (
+          <DemoControls
+            onChange={setProps}
+            propTypes={propTypes}
+            props={props}
+          />
         )}
       </Box>
       <Box className={styles.editor}>{children}</Box>
