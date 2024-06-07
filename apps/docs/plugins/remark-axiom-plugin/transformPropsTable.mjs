@@ -87,7 +87,11 @@ export function transformPropsTable(tree) {
               "  </Td>",
               "  <Td>",
               [
-                `<PropType component="${component}" prop={${JSON.stringify(prop)}} />`,
+                `<PropType
+                  component="${component}"
+                  prop={${JSON.stringify(prop)}}
+                  sprinkle={${JSON.stringify(sprinkles?.props[prop.name])}}
+                />`,
                 prop.description
                   .replaceAll(/{@link ([^\s}]+)(?:\s([^}]+))}/g, "[$2]($1)")
                   .replaceAll(/{@link ([^}]+)}/g, "[$1]($1)")
