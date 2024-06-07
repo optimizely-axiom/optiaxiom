@@ -23,6 +23,25 @@ export function DemoControls({ onChange, propTypes, props }: DemoControlProps) {
         .map(itemToControl)
         .map((item) => (
           <>
+            {item?.type === "dropdown" && (
+              <Flex gap="xs" key={String(item.prop)}>
+                <Text fontWeight="600">{propToLabel(item.prop)}</Text>
+                <select
+                  onChange={(event) =>
+                    onChange((props) => ({
+                      ...props,
+                      [item.prop]: event?.target.value,
+                    }))
+                  }
+                >
+                  {item.options.map((option) => (
+                    <option key={option} value={option}>
+                      {option}
+                    </option>
+                  ))}
+                </select>
+              </Flex>
+            )}
             {item?.type === "number" && (
               <Flex gap="xs" key={String(item.prop)}>
                 <Text fontWeight="600">{propToLabel(item.prop)}</Text>
@@ -59,7 +78,38 @@ function itemToControl(item: PropItem) {
   if (number) {
     return number;
   }
+  const dropdown = isDropdownType(item);
+  if (dropdown) {
+    return dropdown;
+  }
   return;
+}
+
+function isDropdownType(item: PropItem) {
+  const type = item.type;
+  if (type.name !== "enum" || !Array.isArray(type.value)) {
+    return false;
+  }
+
+  const options = [];
+  for (const value of type.value) {
+    if (!(value && typeof value === "object" && "value" in value)) {
+      return false;
+    }
+
+    if ("description" in value) {
+      continue;
+    }
+
+    options.push(JSON.parse(value.value));
+  }
+
+  return {
+    defaultValue: item.defaultValue?.value,
+    options,
+    prop: item.name,
+    type: "dropdown" as const,
+  };
 }
 
 function isNumberType(item: PropItem) {
