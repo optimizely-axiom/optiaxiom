@@ -49,7 +49,15 @@ export default {
   footer: {
     text: <span>Copyright {new Date().getFullYear()} © Optimizely.</span>,
   },
-  head: "",
+  head: (
+    <>
+      <link
+        rel="shortcut icon"
+        type="image/x-icon"
+        href={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/favicon.ico`}
+      />
+    </>
+  ),
   logo: (
     <strong>
       <span
