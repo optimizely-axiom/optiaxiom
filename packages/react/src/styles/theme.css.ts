@@ -1,9 +1,11 @@
-import { tokens, tokensDark } from "../tokens";
-import { mapValues } from "../utils";
 import {
   createGlobalTheme,
   createGlobalThemeContract,
-} from "../vanilla-extract";
+  // eslint-disable-next-line local/no-global-styles
+} from "@vanilla-extract/css";
+
+import { tokens, tokensDark } from "../tokens";
+import { mapValues } from "../utils";
 
 const createThemeContractFromTokens = <
   T extends Record<string, unknown>,
