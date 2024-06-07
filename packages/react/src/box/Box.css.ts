@@ -12,7 +12,6 @@ export const base = style({
       fontFeatureSettings: '"cv02", "cv03", "cv04", "cv11"',
       fontSize: "100%",
       margin: 0,
-      minWidth: 0,
       padding: 0,
       selectors: {
         ...{
