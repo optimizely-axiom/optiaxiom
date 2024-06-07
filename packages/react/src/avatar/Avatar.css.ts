@@ -12,11 +12,6 @@ export const avatar = recipe({
     userSelect: "none",
   },
 
-  defaultVariants: {
-    colorScheme: "neutral",
-    size: "md",
-  },
-
   variants: {
     colorScheme: mapValues(
       {

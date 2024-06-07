@@ -48,7 +48,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       onClick,
       preset = "default",
       rightSection,
-      size,
+      size = "md",
       variant,
       ...props
     },
