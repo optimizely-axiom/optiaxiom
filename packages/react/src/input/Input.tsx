@@ -45,6 +45,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             size,
             variant,
           }),
+          className,
         )}
         data-disabled={isDisabled}
         data-invalid={isInvalid}
@@ -67,6 +68,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             defaultValue={defaultValue}
             id={id}
             placeholder={placeholder}
+            readOnly={isDisabled}
             ref={ref}
             type={type}
             {...restProps}
