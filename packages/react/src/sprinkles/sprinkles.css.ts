@@ -5,8 +5,7 @@ import {
 } from "@vanilla-extract/sprinkles";
 
 import { layers, theme } from "../styles";
-import { tokens } from "../tokens";
-import { mapValues } from "../utils";
+import { conditions, mapValues } from "../utils";
 import { keyframes } from "../vanilla-extract";
 
 const merge = <A, B>(objA: A, objB: B): A & B => ({ ...objA, ...objB });
@@ -25,17 +24,6 @@ const radiuses = merge(theme.borderRadius, { inherit: "inherit" });
 const transitions = {
   transitionDuration: "150ms",
   transitionTimingFunction: "ease",
-} as const;
-
-export const conditions = {
-  conditions: {
-    ...mapValues(tokens.screens, (width) => ({
-      "@media": `screen and (min-width: ${width})`,
-    })),
-    base: {},
-  },
-  defaultCondition: "base",
-  responsiveArray: ["base", "sm", "md"],
 } as const;
 
 const unresponsiveProps = defineProperties({
