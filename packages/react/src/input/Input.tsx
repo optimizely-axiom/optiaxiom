@@ -10,8 +10,8 @@ type InputProps = ExtendProps<
   ComponentPropsWithRef<"input">,
   ComponentPropsWithRef<typeof Box>,
   {
-    isDisabled?: boolean;
-    isInvalid?: boolean;
+    disabled?: boolean;
+    error?: boolean;
     leftSection?: ReactNode;
     rightSection?: ReactNode;
   } & styles.WrapperVariants
@@ -21,15 +21,12 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
   (
     {
       className,
-      defaultValue,
+      disabled,
+      error,
       id,
-      isDisabled,
-      isInvalid,
       leftSection,
-      placeholder,
       rightSection,
       size = "md",
-      type,
       variant = "default",
       ...props
     },
@@ -38,8 +35,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     const { restProps, sprinkleProps } = extractSprinkles(props);
     return (
       <Box
-        aria-disabled={isDisabled}
-        aria-invalid={isInvalid}
+        aria-disabled={disabled}
+        aria-invalid={error}
         className={clsx(
           styles.wrapper({
             size,
@@ -47,8 +44,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           }),
           className,
         )}
-        data-disabled={isDisabled}
-        data-invalid={isInvalid}
+        data-disabled={disabled}
+        data-invalid={error}
         {...sprinkleProps}
       >
         {leftSection && (
@@ -58,21 +55,11 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         )}
         <Box
           asChild
-          className={clsx(
-            styles.input({
-              variant,
-            }),
-          )}
+          className={styles.input({
+            variant,
+          })}
         >
-          <input
-            defaultValue={defaultValue}
-            id={id}
-            placeholder={placeholder}
-            readOnly={isDisabled}
-            ref={ref}
-            type={type}
-            {...restProps}
-          />
+          <input id={id} readOnly={disabled} ref={ref} {...restProps} />
         </Box>
         {rightSection && (
           <Box flex="none" ml="8">
