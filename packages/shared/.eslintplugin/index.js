@@ -1,10 +1,12 @@
 import noGlobalStyles from "./no-global-styles.js";
+import preferStylesImport from "./prefer-styles-import.js";
 import preferTestingLibrary from "./prefer-testing-library.js";
 import sprinklesConventions from "./sprinkles-conventions.js";
 
 export default {
   rules: {
     "no-global-styles": noGlobalStyles,
+    "prefer-styles-import": preferStylesImport,
     "prefer-testing-library": preferTestingLibrary,
     "sprinkles-conventions": sprinklesConventions,
   },

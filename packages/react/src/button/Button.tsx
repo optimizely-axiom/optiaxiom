@@ -12,7 +12,7 @@ import type { ExtendProps } from "../utils";
 
 import { Box } from "../box";
 import { Text } from "../text";
-import { type ButtonVariants, button } from "./Button.css";
+import * as styles from "./Button.css";
 
 const presets = {
   danger: { colorScheme: "danger", variant: "solid" },
@@ -20,7 +20,7 @@ const presets = {
   default: { colorScheme: "secondary", variant: "outline" },
   primary: { colorScheme: "primary", variant: "solid" },
   secondary: { colorScheme: "secondary", variant: "ghost" },
-} satisfies Record<string, ButtonVariants>;
+} satisfies Record<string, styles.ButtonVariants>;
 
 type ButtonProps = ExtendProps<
   ComponentPropsWithRef<"button">,
@@ -32,7 +32,7 @@ type ButtonProps = ExtendProps<
     leftSection?: ReactNode;
     preset?: keyof typeof presets;
     rightSection?: ReactNode;
-  } & ButtonVariants
+  } & styles.ButtonVariants
 >;
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
@@ -79,7 +79,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         aria-disabled={disabled || isLoading}
         asChild
         className={clsx(
-          button({
+          styles.button({
             colorScheme: finalColorScheme,
             size,
             variant: finalVariant,
