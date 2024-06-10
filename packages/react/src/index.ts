@@ -16,6 +16,7 @@ export * from "./separator";
 export * from "./skeleton";
 export * from "./sprinkles";
 export * from "./styles";
+export * from "./switch";
 export * from "./text";
 export * from "./tokens";
 export * from "./tooltip";
