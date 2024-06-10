@@ -11,10 +11,12 @@ import { Item } from "./Item";
 
 export const Canvas = ({
   children,
+  stripes,
 }: {
   children: ReactElement<ComponentPropsWithRef<typeof Grid>>;
+  stripes?: boolean;
 }) => (
-  <Grid {...children.props} style={yellowStripes}>
+  <Grid {...children.props} style={stripes ? yellowStripes : {}}>
     {Children.toArray(children.props.children)
       .filter(isValidElement<ComponentPropsWithRef<typeof Box>>)
       .map((item, index) => (

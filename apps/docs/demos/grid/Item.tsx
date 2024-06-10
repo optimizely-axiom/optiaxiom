@@ -8,7 +8,11 @@ export const Item = ({
 }) => {
   return (
     <Box
-      bg="purple.500"
+      bg={
+        children.props.colSpan || children.type === "div"
+          ? "purple.500"
+          : "purple.200"
+      }
       display="grid"
       p="16"
       placeItems="center"
