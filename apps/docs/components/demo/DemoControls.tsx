@@ -21,54 +21,51 @@ export function DemoControls({ onChange, propTypes, props }: DemoControlProps) {
     >
       {Object.values(propTypes)
         .map(itemToControl)
-        .map((item) => (
-          <>
-            {item?.type === "dropdown" && (
-              <Flex gap="xs" key={String(item.prop)}>
-                <Text fontWeight="600">{propToLabel(item.prop)}</Text>
-                <select
+        .map((item) =>
+          item?.type === "dropdown" ? (
+            <Flex gap="xs" key={String(item.prop)}>
+              <Text fontWeight="600">{propToLabel(item.prop)}</Text>
+              <select
+                onChange={(event) =>
+                  onChange((props) => ({
+                    ...props,
+                    [item.prop]: event?.target.value,
+                  }))
+                }
+              >
+                {item.options.map((option) => (
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
+                ))}
+              </select>
+            </Flex>
+          ) : item?.type === "number" ? (
+            <Flex gap="xs" key={String(item.prop)}>
+              <Text fontWeight="600">{propToLabel(item.prop)}</Text>
+              <Tooltip
+                content={props[item.prop]}
+                delayDuration={0}
+                onPointerDownOutside={(event) => {
+                  event.preventDefault();
+                }}
+              >
+                <input
+                  max={item.max}
+                  min={item.min}
                   onChange={(event) =>
                     onChange((props) => ({
                       ...props,
                       [item.prop]: event?.target.value,
                     }))
                   }
-                >
-                  {item.options.map((option) => (
-                    <option key={option} value={option}>
-                      {option}
-                    </option>
-                  ))}
-                </select>
-              </Flex>
-            )}
-            {item?.type === "number" && (
-              <Flex gap="xs" key={String(item.prop)}>
-                <Text fontWeight="600">{propToLabel(item.prop)}</Text>
-                <Tooltip
-                  content={props[item.prop]}
-                  delayDuration={0}
-                  onPointerDownOutside={(event) => {
-                    event.preventDefault();
-                  }}
-                >
-                  <input
-                    max={item.max}
-                    min={item.min}
-                    onChange={(event) =>
-                      onChange((props) => ({
-                        ...props,
-                        [item.prop]: event?.target.value,
-                      }))
-                    }
-                    type="range"
-                    value={props[item.prop]}
-                  />
-                </Tooltip>
-              </Flex>
-            )}
-          </>
-        ))}
+                  type="range"
+                  value={props[item.prop]}
+                />
+              </Tooltip>
+            </Flex>
+          ) : null,
+        )}
     </Flex>
   );
 }
