@@ -27,7 +27,7 @@ const transitions = {
   transitionTimingFunction: "ease",
 } as const;
 
-const conditions = {
+export const conditions = {
   conditions: {
     ...mapValues(tokens.screens, (width) => ({
       "@media": `screen and (min-width: ${width})`,
