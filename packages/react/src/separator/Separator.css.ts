@@ -1,17 +1,22 @@
+import { createSprinkles, defineProperties } from "@vanilla-extract/sprinkles";
+
+import { conditions } from "../sprinkles";
 import { theme } from "../styles";
-import { type RecipeVariants, recipe } from "../vanilla-extract";
+import { style } from "../vanilla-extract";
 
-export const separator = recipe({
-  base: {
-    backgroundColor: theme.colors["border.default"],
-  },
+export const base = style({
+  backgroundColor: theme.colors["border.default"],
+});
 
-  variants: {
+const props = defineProperties({
+  ...conditions,
+  properties: {
     orientation: {
-      horizontal: {},
-      vertical: { alignSelf: "stretch" },
+      horizontal: { height: "1px", width: "auto" },
+      vertical: { alignSelf: "stretch", height: "auto", width: "1px" },
     },
   },
 });
+export const separator = createSprinkles(props);
 
-export type SeparatorVariants = RecipeVariants<typeof separator>;
+export type SeparatorVariants = Parameters<typeof separator>[0];

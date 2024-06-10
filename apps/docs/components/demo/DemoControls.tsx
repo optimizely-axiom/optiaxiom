@@ -1,4 +1,4 @@
-import type { Dispatch, SetStateAction } from "react";
+import type { ComponentPropsWithRef, Dispatch, SetStateAction } from "react";
 import type { PropItem, Props } from "react-docgen-typescript";
 
 import { Flex, Text, Tooltip } from "@optiaxiom/react";
@@ -7,22 +7,16 @@ type DemoControlProps = {
   onChange: Dispatch<SetStateAction<Record<keyof Props, number | string>>>;
   propTypes: Props;
   propValues: Record<keyof Props, number | string>;
-};
+} & ComponentPropsWithRef<typeof Flex>;
 
 export function DemoControls({
   onChange,
   propTypes,
   propValues,
+  ...props
 }: DemoControlProps) {
   return (
-    <Flex
-      justifyContent="start"
-      p="md"
-      pb="xl"
-      pt="lg"
-      style={{ borderLeftWidth: "1px" }}
-      w="256"
-    >
+    <Flex justifyContent="start" p="md" pb="xl" pt="lg" {...props}>
       {Object.values(propTypes)
         .map(itemToControl)
         .map((item) =>

@@ -1,6 +1,6 @@
 import type { Props } from "react-docgen-typescript";
 
-import { Box, Flex } from "@optiaxiom/react";
+import { Box, Flex, Separator } from "@optiaxiom/react";
 import { type ComponentType, type ReactNode, useState } from "react";
 
 import styles from "./Demo.module.css";
@@ -35,7 +35,7 @@ export function Demo({
         border="1"
         className={iframe && styles.resize}
         display="flex"
-        flexDirection="row"
+        flexDirection={["column", "row"]}
         rounded="xl"
       >
         <Box flex="1" p="xl">
@@ -46,11 +46,15 @@ export function Demo({
           )}
         </Box>
         {Object.keys(propTypes).length > 0 && (
-          <DemoControls
-            onChange={setProps}
-            propTypes={propTypes}
-            propValues={props}
-          />
+          <>
+            <Separator orientation={["horizontal", "vertical"]} />
+            <DemoControls
+              onChange={setProps}
+              propTypes={propTypes}
+              propValues={props}
+              w={["auto", "256"]}
+            />
+          </>
         )}
       </Box>
       <Box className={styles.editor}>{children}</Box>
