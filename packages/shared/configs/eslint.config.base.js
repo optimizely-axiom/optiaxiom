@@ -136,6 +136,7 @@ export default tsEslint.config(
         },
       ],
       "@typescript-eslint/no-floating-promises": "error",
+      "local/prefer-styles-import": "error",
     },
   },
   {
