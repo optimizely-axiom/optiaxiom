@@ -1,7 +1,7 @@
 import { createSprinkles, defineProperties } from "@vanilla-extract/sprinkles";
 
-import { conditions } from "../sprinkles";
 import { theme } from "../styles";
+import { conditions } from "../utils";
 import { style } from "../vanilla-extract";
 
 export const base = style({
