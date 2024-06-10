@@ -1,6 +1,5 @@
-import { sprinkles } from "../sprinkles";
 import { theme } from "../styles";
-import { type RecipeVariants, recipe, style } from "../vanilla-extract";
+import { type RecipeVariants, recipe } from "../vanilla-extract";
 
 export const separator = recipe({
   base: {
@@ -9,15 +8,8 @@ export const separator = recipe({
 
   variants: {
     orientation: {
-      horizontal: sprinkles({
-        my: "sm",
-      }),
-      vertical: style([
-        { alignSelf: "stretch" },
-        sprinkles({
-          mx: "sm",
-        }),
-      ]),
+      horizontal: {},
+      vertical: { alignSelf: "stretch" },
     },
   },
 });
