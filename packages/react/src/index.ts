@@ -1,6 +1,7 @@
 export * from "./box";
 export * from "./button";
 export * from "./code";
+export * from "./dropdown";
 export * from "./em";
 export * from "./grid";
 export * from "./heading";
