@@ -31,7 +31,6 @@ export const wrapper = recipe({
       '&[data-disabled="true"]': {
         backgroundColor: theme.colors["bg.disabled"],
         borderColor: theme.colors["border.secondary"],
-        cursor: "not-allowed",
         pointerEvents: "none",
       },
       '&[data-invalid="true"]': {
@@ -78,6 +77,12 @@ export const input = recipe({
     selectors: {
       "&:focus-visible": {
         outlineWidth: "0px",
+      },
+      '&[data-disabled="true"]': {
+        backgroundColor: theme.colors["bg.disabled"],
+        borderColor: theme.colors["border.secondary"],
+        cursor: "not-allowed",
+        pointerEvents: "none",
       },
     },
   },

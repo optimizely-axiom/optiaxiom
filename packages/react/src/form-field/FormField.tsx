@@ -1,3 +1,5 @@
+import { useId } from "@reach/auto-id";
+import clsx from "clsx";
 import {
   type ComponentPropsWithRef,
   type ReactElement,
@@ -9,16 +11,15 @@ import type { ExtendProps } from "../utils/ExtendProps";
 
 import { Box } from "../box";
 import { Text } from "../text";
-import { useId } from "../utils/useId";
+import * as styles from "./FormField.css";
 type FormGroupProps = ExtendProps<
   ComponentPropsWithRef<typeof Box>,
   {
     children: ReactElement;
     description?: string;
-    error?: string;
+    disabled?: boolean;
+    error?: boolean;
     id?: string;
-    isDisabled?: boolean;
-    isInvalid?: boolean;
     label?: string;
     required?: boolean;
   }
@@ -28,11 +29,11 @@ export const FormField = forwardRef<HTMLDivElement, FormGroupProps>(
   (
     {
       children,
+      className,
       description,
+      disabled,
       error,
       id: _id,
-      isDisabled,
-      isInvalid,
       label,
       required,
       ...props
@@ -41,26 +42,24 @@ export const FormField = forwardRef<HTMLDivElement, FormGroupProps>(
   ) => {
     const id = useId(_id);
     return (
-      <Box display="flex" flexDirection="column" maxW="sm" ref={ref} {...props}>
+      <Box className={clsx(styles.formField, className)} ref={ref} {...props}>
         {label && (
-          <Text asChild color={isInvalid ? "border.error" : "fg.secondary"}>
-            <label htmlFor={id}>{label}</label>
+          <Text asChild className={styles.label}>
+            <label htmlFor={id}>
+              {label}{" "}
+              {required && <span className={styles.labelRequired}>*</span>}
+            </label>
           </Text>
         )}
         {cloneElement(children, {
+          disabled,
+          error,
           id,
-          ["isDisabled"]: isDisabled,
-          ["isInvalid"]: isInvalid,
           required,
         })}
         {description && (
-          <Text as="p" color={"neutral.600"} fontSize="sm" mt="2">
+          <Text as="p" className={error ? styles.error : styles.description}>
             {description}
-          </Text>
-        )}
-        {error && isInvalid && (
-          <Text as="p" color={"border.error"}>
-            {error}
           </Text>
         )}
       </Box>
