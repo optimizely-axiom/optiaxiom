@@ -49,7 +49,7 @@ export function Demo({
           <DemoControls
             onChange={setProps}
             propTypes={propTypes}
-            props={props}
+            propValues={props}
           />
         )}
       </Box>

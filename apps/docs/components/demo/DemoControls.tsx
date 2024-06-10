@@ -6,10 +6,14 @@ import { Flex, Text, Tooltip } from "@optiaxiom/react";
 type DemoControlProps = {
   onChange: Dispatch<SetStateAction<Record<keyof Props, number | string>>>;
   propTypes: Props;
-  props: Record<keyof Props, number | string>;
+  propValues: Record<keyof Props, number | string>;
 };
 
-export function DemoControls({ onChange, propTypes, props }: DemoControlProps) {
+export function DemoControls({
+  onChange,
+  propTypes,
+  propValues,
+}: DemoControlProps) {
   return (
     <Flex
       justifyContent="start"
@@ -44,7 +48,7 @@ export function DemoControls({ onChange, propTypes, props }: DemoControlProps) {
             <Flex gap="xs" key={String(item.prop)}>
               <Text fontWeight="600">{propToLabel(item.prop)}</Text>
               <Tooltip
-                content={props[item.prop]}
+                content={propValues[item.prop]}
                 delayDuration={0}
                 onPointerDownOutside={(event) => {
                   event.preventDefault();
@@ -60,7 +64,7 @@ export function DemoControls({ onChange, propTypes, props }: DemoControlProps) {
                     }))
                   }
                   type="range"
-                  value={props[item.prop]}
+                  value={propValues[item.prop]}
                 />
               </Tooltip>
             </Flex>
