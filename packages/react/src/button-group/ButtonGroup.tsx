@@ -10,17 +10,13 @@ import type { ExtendProps } from "../utils";
 
 import { Box } from "../box";
 import { Flex } from "../flex";
-import {
-  type ButtonGroupVariants,
-  buttonGroup,
-  parentButtonGroup as parent,
-} from "./ButtonGroup.css";
+import * as styles from "./ButtonGroup.css";
 
 type ButtonGroupProps = ExtendProps<
   ComponentPropsWithRef<typeof Flex>,
   {
     children: ReactNode;
-  } & ButtonGroupVariants
+  } & styles.ButtonGroupVariants
 >;
 
 export const ButtonGroup = forwardRef<HTMLDivElement, ButtonGroupProps>(
@@ -31,14 +27,16 @@ export const ButtonGroup = forwardRef<HTMLDivElement, ButtonGroupProps>(
     const mappedChildren = Children.map(children, (child) => (
       <Box
         asChild
-        className={clsx(buttonGroup({ orientation, spacing: gap !== "0" }))}
+        className={clsx(
+          styles.buttonGroup({ orientation, spacing: gap !== "0" }),
+        )}
       >
         {child}
       </Box>
     ));
     return (
       <Flex
-        className={clsx(parent({ orientation }), className)}
+        className={clsx(styles.parentButtonGroup({ orientation }), className)}
         gap={gap}
         ref={ref}
         {...props}
