@@ -19,14 +19,14 @@ export const TextInput: Story = {
     <Flex flexDirection="column" gap="xl" size="full">
       <Input
         defaultValue="Disabled with value"
-        disabled={true}
+        disabled
         placeholder="Disabled placeholder"
       />
-      <Input disabled={true} placeholder="Disabled placeholder" />
-      <Input error={true} placeholder="Error state" />
+      <Input disabled placeholder="Disabled placeholder" />
+      <Input error placeholder="Error state" />
       <Input
         defaultValue="Error with value"
-        error={true}
+        error
         placeholder="Error with value"
       />
       <Input disabled={false} placeholder="Placeholder" type="text" />
@@ -52,12 +52,12 @@ export const TextInputWithIcon: Story = {
         rightSection={<IconCalendar display="block" height="16" width="20" />}
       />
       <Input
-        disabled={true}
+        disabled
         leftSection={<IconCalendar display="block" height="16" width="20" />}
         rightSection={<IconCalendar display="block" height="16" width="20" />}
       />
       <Input
-        error={true}
+        error
         leftSection={<IconCalendar display="block" height="16" width="20" />}
         rightSection={<IconCalendar display="block" height="16" width="20" />}
       />
@@ -70,8 +70,8 @@ export const NumberInput: Story = {
     <Flex>
       <Input defaultValue="20.00" placeholder="00.00" variant="number" />
       <Input placeholder="00.00" variant="number" />
-      <Input disabled={true} placeholder="00.00" variant="number" />
-      <Input defaultValue="20.00" error={true} variant="number" />
+      <Input disabled placeholder="00.00" variant="number" />
+      <Input defaultValue="20.00" error variant="number" />
     </Flex>
   ),
 };
