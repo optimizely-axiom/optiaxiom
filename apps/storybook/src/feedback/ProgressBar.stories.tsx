@@ -14,10 +14,10 @@ type Story = StoryObj<typeof ProgressBar>;
 
 export const Primary: Story = {
   args: {
+    bg: "bg.brand.subtle",
     h: "12",
     max: 60,
     value: 30,
-    bg: "bg.brand.subtle",
   },
 };
 
@@ -44,8 +44,8 @@ export const CompletionStages: Story = {
 
         {values.map(({ max, value }, index) => (
           <ProgressBar
-            key={index}
             bg="bg.brand.subtle"
+            key={index}
             max={max}
             value={typeof value !== "undefined" ? value * scale : undefined}
             w="1/2"
