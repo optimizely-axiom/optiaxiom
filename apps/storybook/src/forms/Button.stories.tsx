@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Button, Flex } from "@optiaxiom/react";
+import { Button, ButtonGroup, Flex } from "@optiaxiom/react";
 import {
   IconArrowRight,
   IconDownload,
@@ -112,5 +112,49 @@ export const Icons: Story = {
         Enter Gallery
       </Button>
     </Flex>
+  ),
+};
+export const HorizontalGroup: Story = {
+  args: {
+    variant: "outline",
+  },
+  render: (args) => (
+    <ButtonGroup>
+      <Button {...args} leftSection={<IconPhoto />}>
+        Gallery
+      </Button>
+      <Button {...args} rightSection={<IconDownload />}>
+        Download
+      </Button>
+      <Button
+        {...args}
+        leftSection={<IconPhoto />}
+        rightSection={<IconArrowRight />}
+      >
+        Enter Gallery
+      </Button>
+    </ButtonGroup>
+  ),
+};
+export const VerticalGroup: Story = {
+  args: {
+    variant: "outline",
+  },
+  render: (args) => (
+    <ButtonGroup orientation="vertical">
+      <Button {...args} leftSection={<IconPhoto />}>
+        Gallery
+      </Button>
+      <Button {...args} rightSection={<IconDownload />}>
+        Download
+      </Button>
+      <Button
+        {...args}
+        leftSection={<IconPhoto />}
+        rightSection={<IconArrowRight />}
+      >
+        Enter Gallery
+      </Button>
+    </ButtonGroup>
   ),
 };
