@@ -1,0 +1,11 @@
+{
+  "mode": "pre",
+  "tag": "next",
+  "initialVersions": {
+    "@optiaxiom/docs": "0.0.0",
+    "@optiaxiom/storybook": "0.0.0",
+    "@optiaxiom/react": "0.1.0-alpha.1",
+    "@optiaxiom/shared": "0.0.0"
+  },
+  "changesets": ["quick-apricots-sparkle", "stale-bears-allow"]
+}
