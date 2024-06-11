@@ -2,6 +2,7 @@ import clsx from "clsx";
 import { type ComponentPropsWithRef, type ReactNode, forwardRef } from "react";
 
 import { Box } from "../box";
+import { Flex } from "../flex";
 import { extractSprinkles } from "../sprinkles";
 import { type ExtendProps } from "../utils";
 import * as styles from "./Input.css";
@@ -37,34 +38,23 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       <Box
         aria-disabled={disabled}
         aria-invalid={error}
-        className={clsx(
-          styles.wrapper({
-            size,
-            variant,
-          }),
-          className,
-        )}
+        className={clsx(styles.wrapper({ size, variant }), className)}
         data-disabled={disabled}
         data-invalid={error}
         {...sprinkleProps}
       >
         {leftSection && (
-          <Box flex="none" mr="8">
+          <Flex gap="0" mr="8">
             {leftSection}
-          </Box>
+          </Flex>
         )}
-        <Box
-          asChild
-          className={styles.input({
-            variant,
-          })}
-        >
+        <Box asChild className={styles.input({ variant })}>
           <input id={id} readOnly={disabled} ref={ref} {...restProps} />
         </Box>
         {rightSection && (
-          <Box flex="none" ml="8">
+          <Flex gap="0" ml="8">
             {rightSection}
-          </Box>
+          </Flex>
         )}
       </Box>
     );
