@@ -2,4 +2,4 @@
 "@optiaxiom/react": patch
 ---
 
-move sprinkles to each component where it is used #7
+use sprinkles, recipes, and style from vanilla-extract #64
