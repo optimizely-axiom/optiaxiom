@@ -17,6 +17,7 @@ export const Primary: Story = {
     h: "12",
     max: 60,
     value: 30,
+    bg: "bg.brand.subtle",
   },
 };
 
@@ -44,6 +45,7 @@ export const CompletionStages: Story = {
         {values.map(({ max, value }, index) => (
           <ProgressBar
             key={index}
+            bg="bg.brand.subtle"
             max={max}
             value={typeof value !== "undefined" ? value * scale : undefined}
             w="1/2"
