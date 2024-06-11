@@ -58,6 +58,7 @@ export function DemoControls({
                       [item.prop]: event?.target.value,
                     }))
                   }
+                  step={item.step}
                   type="range"
                   value={propValues[item.prop]}
                 />
@@ -129,17 +130,22 @@ function isNumberType(item: PropItem) {
       return false;
     }
 
-    if (min === null || maybeNumber < min) {
-      min = maybeNumber;
+    const number = parseFloat(maybeNumber);
+    if (min === null || number < min) {
+      min = number;
     }
-    if (max === null || maybeNumber > max) {
-      max = maybeNumber;
+    if (max === null || number > max) {
+      max = number;
     }
-    list.push(maybeNumber);
-    map[maybeNumber] = true;
+    list.push(number);
+    map[number] = true;
+  }
+  if (min === null || max === null) {
+    return false;
   }
 
-  for (let i = min; i <= max; i++) {
+  const step = (max - min) / (list.length - 1);
+  for (let i = min; i <= max; i += step) {
     if (!map[i]) {
       return false;
     }
@@ -150,6 +156,7 @@ function isNumberType(item: PropItem) {
     max,
     min,
     prop: item.name,
+    step,
     type: "number" as const,
   };
 }
