@@ -1,16 +1,16 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Button, Flex, ProgressBar } from "@optiaxiom/react";
+import { Button, Flex, Progress } from "@optiaxiom/react";
 import { userEvent, within } from "@storybook/test";
 import { useState } from "react";
 
-const meta: Meta<typeof ProgressBar> = {
-  component: ProgressBar,
+const meta: Meta<typeof Progress> = {
+  component: Progress,
 };
 
 export default meta;
 
-type Story = StoryObj<typeof ProgressBar>;
+type Story = StoryObj<typeof Progress>;
 
 export const Primary: Story = {
   args: {
@@ -43,7 +43,7 @@ export const CompletionStages: Story = {
         </Flex>
 
         {values.map(({ max, value }, index) => (
-          <ProgressBar
+          <Progress
             bg="bg.brand.subtle"
             key={index}
             max={max}
