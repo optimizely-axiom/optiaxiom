@@ -16,8 +16,8 @@ export const ProgressBar = forwardRef<
   const widthPercentage = ((props.value ?? 0) / (props.max ?? 100)) * 100;
 
   return (
-    <Box asChild border="1" h="6" overflow="hidden" {...props}>
-      <ProgressPrimitive.Root ref={ref} {...props}>
+    <Box asChild h="6" rounded="lg" {...props}>
+      <ProgressPrimitive.Root ref={ref}>
         <Box
           asChild
           bg="bg.brand.solid"
