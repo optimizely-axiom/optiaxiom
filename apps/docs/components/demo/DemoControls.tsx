@@ -30,6 +30,7 @@ export function DemoControls({
                     [item.prop]: event?.target.value,
                   }))
                 }
+                value={propValues[item.prop]}
               >
                 {item.options.map((option) => (
                   <option key={option} value={option}>
