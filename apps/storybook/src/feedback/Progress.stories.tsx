@@ -24,6 +24,7 @@ export const Primary: Story = {
 const values = [
   {},
   { max: 75, value: 12.5 },
+  { value: 0 },
   { value: 25 },
   { max: 200, value: 75 },
   { max: 100, value: 100 },

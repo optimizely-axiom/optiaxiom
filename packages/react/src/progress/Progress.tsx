@@ -16,7 +16,8 @@ export const Progress = forwardRef<
   const widthPercentage =
     ((props.value ?? 0) / (props.max ?? DEFAULT_MAX)) * 100;
   const isValidValue =
-    props.value &&
+    typeof props.value !== "undefined" &&
+    props.value !== null &&
     props.value >= 0 &&
     props.value <= (props.max ?? DEFAULT_MAX);
 
