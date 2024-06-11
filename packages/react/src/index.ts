@@ -18,6 +18,7 @@ export * from "./sprinkles";
 export * from "./styles";
 export * from "./switch";
 export * from "./text";
+export * from "./textarea";
 export * from "./tokens";
 export * from "./tooltip";
 export * from "./transition";
