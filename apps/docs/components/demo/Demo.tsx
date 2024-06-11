@@ -38,13 +38,13 @@ export function Demo({
         flexDirection={["column", "row"]}
         rounded="xl"
       >
-        <Box flex="1" p="xl">
+        <Flex flex="1" gap="0" p="xl">
           {iframe ? (
             <DemoIframe height={height} src={iframe} />
           ) : (
             <Component {...props} />
           )}
-        </Box>
+        </Flex>
         {Object.keys(propTypes).length > 0 && (
           <>
             <Separator orientation={["horizontal", "vertical"]} />
