@@ -4,14 +4,14 @@ import { type ComponentPropsWithRef, type ElementRef, forwardRef } from "react";
 import { Box } from "../box";
 import { type ExtendProps } from "../utils";
 
-type ProgressBarProps = ExtendProps<
+type ProgressProps = ExtendProps<
   ComponentPropsWithRef<typeof ProgressPrimitive.Root>,
   ComponentPropsWithRef<typeof Box>
 >;
 
-export const ProgressBar = forwardRef<
+export const Progress = forwardRef<
   ElementRef<typeof ProgressPrimitive.Root>,
-  ProgressBarProps
+  ProgressProps
 >((props, ref) => {
   const widthPercentage =
     ((props.value ?? 0) / (props.max ?? DEFAULT_MAX)) * 100;
@@ -41,4 +41,4 @@ export const ProgressBar = forwardRef<
 });
 
 const DEFAULT_MAX = 100;
-ProgressBar.displayName = "@optiaxiom/react/ProgressBar";
+Progress.displayName = "@optiaxiom/react/Progress";

@@ -9,7 +9,7 @@ export * from "./heading";
 export * from "./input";
 export * from "./kbd";
 export * from "./paper";
-export * from "./progress-bar";
+export * from "./progress";
 export * from "./separator";
 export * from "./skeleton";
 export * from "./sprinkles";
