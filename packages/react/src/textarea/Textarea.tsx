@@ -1,42 +1,35 @@
 import clsx from "clsx";
 import { type ComponentPropsWithRef, type ReactNode, forwardRef } from "react";
+import TextareaAutosize from "react-textarea-autosize";
 
 import type { ExtendProps } from "../utils";
 
 import { Box } from "../box";
-import {
-  type ParentRecipeVariants,
-  type TextAreaRecipeVariants,
-  parentBoxRecipe,
-  textAreaBoxRecipe,
-} from "./Textarea.css";
+import * as styles from "./Textarea.css";
 
 type TextareaProps = ExtendProps<
   ComponentPropsWithRef<"textarea">,
   ComponentPropsWithRef<typeof Box>,
   {
-    autoResize?: boolean;
     bottomSection?: ReactNode;
     defaultValue?: string;
-    isDisabled?: boolean;
-    isInvalid?: boolean;
-    isResizeable?: boolean;
+    disabled?: boolean;
+    error?: boolean;
+    resize?: "auto" | "none" | "vertical";
     topSection?: ReactNode;
-  } & ParentRecipeVariants &
-    TextAreaRecipeVariants
+  } & styles.ParentRecipeVariants &
+    styles.TextAreaRecipeVariants
 >;
 
 export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
   (
     {
-      autoResize,
       bottomSection,
       className,
-      defaultValue,
-      isDisabled,
-      isInvalid,
-      isResizeable = true,
+      disabled,
+      error,
       placeholder,
+      resize = "auto",
       rows,
       size,
       topSection,
@@ -44,28 +37,28 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
     },
     ref,
   ) => {
+    const Component = resize !== "none" ? TextareaAutosize : "textarea";
+
     return (
       <Box
-        aria-invalid={isInvalid}
-        border="1"
-        className={clsx(parentBoxRecipe({}))}
-        data-disabled={isDisabled}
+        aria-invalid={error}
+        {...styles.parentBoxRecipe()}
+        data-disabled={disabled}
         {...props}
         style={{
-          resize: isResizeable ? "both" : "none",
+          resize: resize !== "auto" ? "vertical" : "none",
         }}
       >
         {topSection && <Box>{topSection}</Box>}
-        <Box asChild className={clsx(textAreaBoxRecipe({}), className)}>
-          <textarea
-            defaultValue={defaultValue}
-            placeholder={placeholder}
-            ref={ref}
-            rows={rows}
+        <Box asChild className={clsx(styles.textAreaBoxRecipe({}), className)}>
+          <Box
+            asChild
             style={{
-              resize: "none",
+              resize: "none", // Need to fix
             }}
-          ></textarea>
+          >
+            <Component placeholder={placeholder} ref={ref}></Component>
+          </Box>
         </Box>
         {bottomSection && <Box>{bottomSection}</Box>}
       </Box>
