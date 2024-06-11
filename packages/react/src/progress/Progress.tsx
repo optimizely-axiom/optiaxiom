@@ -22,7 +22,7 @@ export const Progress = forwardRef<
     props.value <= (props.max ?? DEFAULT_MAX);
 
   return (
-    <Box asChild h="6" rounded="lg" {...props}>
+    <Box asChild bg="border.disabled" h="6" rounded="lg" {...props}>
       <ProgressPrimitive.Root ref={ref}>
         {isValidValue && (
           <Box
