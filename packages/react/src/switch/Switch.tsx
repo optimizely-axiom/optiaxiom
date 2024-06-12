@@ -12,10 +12,8 @@ type SwitchProps = ExtendProps<
   ComponentPropsWithRef<typeof RadixSwitch.Root>,
   ComponentPropsWithRef<typeof Box>,
   {
-    color?: "blue" | "red" | "yellow";
     offLabel?: string;
     onLabel?: string;
-    side?: "left" | "right";
   }
 >;
 
@@ -27,7 +25,6 @@ export const Switch = forwardRef<HTMLDivElement, SwitchProps>(
       disabled,
       id,
       offLabel,
-      onClick,
       onLabel,
       ...props
     },
