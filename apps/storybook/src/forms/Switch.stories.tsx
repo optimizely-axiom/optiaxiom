@@ -19,7 +19,18 @@ export const Default: Story = {
       <Switch onLabel="hello" />
       <Switch defaultChecked={true} disabled={true} />
       <Switch offLabel="Off" onLabel="On" />
-      <Switch defaultChecked={true} id="test-1" offLabel="Off" onLabel="On" />
+      <Switch defaultChecked={true} offLabel="Off" onLabel="On" />
+    </Flex>
+  ),
+};
+
+export const Large: Story = {
+  render: () => (
+    <Flex>
+      <Switch onLabel="hello" size="lg" />
+      <Switch defaultChecked={true} disabled={true} label="hello" size="lg" />
+      <Switch offLabel="Off" onLabel="On" size="lg" />
+      <Switch defaultChecked={true} offLabel="Off" onLabel="On" size="lg" />
     </Flex>
   ),
 };
