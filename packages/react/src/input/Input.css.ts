@@ -78,12 +78,6 @@ export const input = recipe({
       "&:focus-visible": {
         outlineWidth: "0px",
       },
-      '&[data-disabled="true"]': {
-        backgroundColor: theme.colors["bg.disabled"],
-        borderColor: theme.colors["border.secondary"],
-        cursor: "not-allowed",
-        pointerEvents: "none",
-      },
     },
   },
   variants: {

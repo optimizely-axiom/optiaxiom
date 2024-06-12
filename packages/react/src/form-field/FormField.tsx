@@ -18,7 +18,7 @@ type FormGroupProps = ExtendProps<
     children: ReactElement;
     description?: string;
     disabled?: boolean;
-    error?: boolean;
+    error?: string;
     id?: string;
     label?: string;
     required?: boolean;
@@ -53,13 +53,18 @@ export const FormField = forwardRef<HTMLDivElement, FormGroupProps>(
         )}
         {cloneElement(children, {
           disabled,
-          error,
+          error: !!error,
           id,
           required,
         })}
         {description && (
-          <Text as="p" className={error ? styles.error : styles.description}>
+          <Text as="p" className={styles.description}>
             {description}
+          </Text>
+        )}
+        {error && (
+          <Text as="p" className={styles.error}>
+            {error}
           </Text>
         )}
       </Box>
