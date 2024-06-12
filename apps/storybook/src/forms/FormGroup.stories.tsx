@@ -24,7 +24,7 @@ export const InputStyle: Story = {
         />
       </FormField>
 
-      <FormField error={false} label="Form label">
+      <FormField label="Form label">
         <Input placeholder="Without Icon" />
       </FormField>
 
@@ -32,7 +32,7 @@ export const InputStyle: Story = {
         <Input placeholder="Disabled" />
       </FormField>
 
-      <FormField description="Form note" error label="Form label">
+      <FormField error="Form note" label="Form label">
         <Input placeholder="With error" />
       </FormField>
     </Flex>
