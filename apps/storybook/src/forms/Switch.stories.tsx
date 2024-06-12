@@ -16,10 +16,10 @@ type Story = StoryObj<typeof Switch>;
 export const Default: Story = {
   render: () => (
     <Flex>
-      <Switch onLabel="hello" />
-      <Switch defaultChecked={true} disabled={true} />
-      <Switch offLabel="Off" onLabel="On" />
-      <Switch defaultChecked={true} offLabel="Off" onLabel="On" />
+      <Switch label="On label" />
+      <Switch defaultChecked disabled />
+      <Switch offLabel="Off label" onLabel="On label" />
+      <Switch defaultChecked offLabel="Off label" onLabel="On label" />
     </Flex>
   ),
 };
@@ -27,10 +27,10 @@ export const Default: Story = {
 export const Large: Story = {
   render: () => (
     <Flex>
-      <Switch onLabel="hello" size="lg" />
-      <Switch defaultChecked={true} disabled={true} label="hello" size="lg" />
+      <Switch label="On label" size="lg" />
+      <Switch defaultChecked disabled label="hello" size="lg" />
       <Switch offLabel="Off" onLabel="On" size="lg" />
-      <Switch defaultChecked={true} offLabel="Off" onLabel="On" size="lg" />
+      <Switch defaultChecked offLabel="Off" onLabel="On" size="lg" />
     </Flex>
   ),
 };
