@@ -1,6 +1,6 @@
 import * as RadixSwitch from "@radix-ui/react-switch";
 import clsx from "clsx";
-import { type ComponentPropsWithRef, forwardRef, useState } from "react";
+import { type ComponentPropsWithRef, type ElementRef, forwardRef } from "react";
 
 import { Box } from "../box";
 import { extractSprinkles } from "../sprinkles";
@@ -12,62 +12,68 @@ type SwitchProps = ExtendProps<
   ComponentPropsWithRef<typeof RadixSwitch.Root>,
   ComponentPropsWithRef<typeof Box>,
   {
+    label?: string;
     offLabel?: string;
     onLabel?: string;
-  }
+  } & styles.SwitchVariants
 >;
 
-export const Switch = forwardRef<HTMLDivElement, SwitchProps>(
+export const Switch = forwardRef<
+  ElementRef<typeof RadixSwitch.Root>,
+  SwitchProps
+>(
   (
     {
       className,
-      defaultChecked = false,
       disabled,
       id,
+      label,
       offLabel,
       onLabel,
+      size = "default",
       ...props
     },
     ref,
   ) => {
     const { restProps, sprinkleProps } = extractSprinkles(props);
-    const [switchValue, setSwitchValue] = useState(defaultChecked);
-
-    const handleSwitchChange = () => {
-      setSwitchValue((prevValue) => !prevValue);
-    };
     return (
-      <Box
-        className={clsx(styles.switchBox, className)}
-        ref={ref}
-        {...sprinkleProps}
-      >
-        <Text
-          asChild
-          className={styles.beforeSwitch}
-          data-checked={switchValue}
-        >
-          <label htmlFor={id}> {offLabel}</label>
-        </Text>
+      <Box className={clsx(styles.switchBox, className)} {...sprinkleProps}>
+        {offLabel && (
+          <Text
+            asChild
+            className={styles.leftLabel}
+            color={disabled ? "fg.disabled" : "fg.default"}
+          >
+            <label htmlFor={id}> {offLabel}</label>
+          </Text>
+        )}
         <RadixSwitch.Root
+          ref={ref}
           {...restProps}
-          className={clsx(styles.switchStyle)}
-          defaultChecked={defaultChecked}
+          className={styles.switchStyle({ size })}
           disabled={disabled}
           id={id}
-          onCheckedChange={() => {
-            handleSwitchChange();
-          }}
         >
-          <RadixSwitch.Thumb className={styles.switchThumb} />
+          <RadixSwitch.Thumb className={styles.switchThumb({ size })} />
         </RadixSwitch.Root>
-        <label
-          className={clsx(styles.afterSwitch)}
-          data-checked={switchValue}
-          htmlFor={id}
-        >
-          {onLabel}
-        </label>
+        {onLabel && (
+          <Text
+            asChild
+            className={styles.rightLabel}
+            color={disabled ? "fg.disabled" : "fg.default"}
+          >
+            <label htmlFor={id}> {onLabel}</label>
+          </Text>
+        )}
+        {label && (
+          <Text
+            asChild
+            className={styles.rightLabel}
+            color={disabled ? "fg.disabled" : "fg.default"}
+          >
+            <label htmlFor={id}> {label}</label>
+          </Text>
+        )}
       </Box>
     );
   },
