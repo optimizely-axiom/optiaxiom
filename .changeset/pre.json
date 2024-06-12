@@ -7,5 +7,8 @@
     "@optiaxiom/react": "0.1.0-alpha.1",
     "@optiaxiom/shared": "0.0.0"
   },
-  "changesets": []
+  "changesets": [
+    "quick-apricots-sparkle",
+    "stale-bears-allow"
+  ]
 }
