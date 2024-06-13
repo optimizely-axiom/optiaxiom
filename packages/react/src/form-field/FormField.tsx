@@ -1,3 +1,4 @@
+import * as RadixLabel from "@radix-ui/react-label";
 import { useId } from "@reach/auto-id";
 import clsx from "clsx";
 import {
@@ -44,12 +45,10 @@ export const FormField = forwardRef<HTMLDivElement, FormGroupProps>(
     return (
       <Box className={clsx(styles.formField, className)} ref={ref} {...props}>
         {label && (
-          <Text asChild className={styles.label}>
-            <label htmlFor={id}>
-              {label}{" "}
-              {required && <span className={styles.labelRequired}>*</span>}
-            </label>
-          </Text>
+          <RadixLabel.Root className={styles.label}>
+            {label}{" "}
+            {required && <span className={styles.labelRequired}>*</span>}
+          </RadixLabel.Root>
         )}
         {cloneElement(children, {
           disabled,
