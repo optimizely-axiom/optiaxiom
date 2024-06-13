@@ -1,6 +1,5 @@
 import * as RadixLabel from "@radix-ui/react-label";
 import { useId } from "@reach/auto-id";
-import clsx from "clsx";
 import {
   type ComponentPropsWithRef,
   type ReactElement,
@@ -11,8 +10,8 @@ import {
 import type { ExtendProps } from "../utils/ExtendProps";
 
 import { Box } from "../box";
+import { sprinkles } from "../sprinkles";
 import { Text } from "../text";
-import * as styles from "./FormField.css";
 type FormGroupProps = ExtendProps<
   ComponentPropsWithRef<typeof Box>,
   {
@@ -26,28 +25,40 @@ type FormGroupProps = ExtendProps<
   }
 >;
 
-export const FormField = forwardRef<HTMLDivElement, FormGroupProps>(
+export const Field = forwardRef<HTMLDivElement, FormGroupProps>(
   (
     {
       children,
-      className,
       description,
       disabled,
       error,
-      id: _id,
+      id: idProp,
       label,
       required,
       ...props
     },
     ref,
   ) => {
-    const id = useId(_id);
+    const id = useId(idProp);
     return (
-      <Box className={clsx(styles.formField, className)} ref={ref} {...props}>
+      <Box display="flex" flexDirection="column" maxW="sm" ref={ref} {...props}>
         {label && (
-          <RadixLabel.Root className={styles.label}>
-            {label}{" "}
-            {required && <span className={styles.labelRequired}>*</span>}
+          <RadixLabel.Root
+            className={sprinkles({
+              color: "fg.secondary",
+              fontFamily: "sans",
+              fontSize: "md",
+              mb: "2",
+            })}
+            htmlFor={id}
+          >
+            {label}
+            {required && (
+              <Text aria-hidden="true" as="span" color="border.error">
+                {" "}
+                *
+              </Text>
+            )}
           </RadixLabel.Root>
         )}
         {cloneElement(children, {
@@ -57,12 +68,12 @@ export const FormField = forwardRef<HTMLDivElement, FormGroupProps>(
           required,
         })}
         {description && (
-          <Text as="p" className={styles.description}>
+          <Text as="p" color="fg.default" fontSize="sm" mt="2">
             {description}
           </Text>
         )}
         {error && (
-          <Text as="p" className={styles.error}>
+          <Text as="p" color="border.error" fontSize="sm" mt="2">
             {error}
           </Text>
         )}
@@ -71,4 +82,4 @@ export const FormField = forwardRef<HTMLDivElement, FormGroupProps>(
   },
 );
 
-FormField.displayName = "@optiaxiom/react/FormField";
+Field.displayName = "@optiaxiom/react/Field";
