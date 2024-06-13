@@ -24,14 +24,11 @@ export const switchStyle = recipe({
       "&:hover": {
         backgroundColor: theme.colors["fg.brand.hover"],
       },
-      "&:hover&[data-disabled]": {
-        backgroundColor: theme.colors["fg.tertiary"],
-      },
       "&[data-disabled]": {
-        backgroundColor: theme.colors["fg.disabled"],
+        backgroundColor: theme.colors["border.secondary"],
         cursor: "not-allowed",
       },
-      '&[data-state="unchecked"]': {
+      '&[data-state="unchecked"]&:not([data-disabled])': {
         backgroundColor: theme.colors["border.default"],
       },
     },
@@ -50,11 +47,7 @@ export const switchStyle = recipe({
   },
 });
 
-export const leftLabel = style({
-  marginRight: "8px",
-});
-
-export const rightLabel = style({
+export const label = style({
   marginLeft: "8px",
 });
 

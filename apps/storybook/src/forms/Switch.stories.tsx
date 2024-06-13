@@ -3,7 +3,6 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Flex, Switch } from "@optiaxiom/react";
 
 const meta: Meta<typeof Switch> = {
-  argTypes: { onChange: { action: "click" } },
   component: Switch,
   parameters: {
     layout: "centered",
@@ -16,10 +15,11 @@ type Story = StoryObj<typeof Switch>;
 export const Default: Story = {
   render: () => (
     <Flex>
-      <Switch label="On label" />
-      <Switch defaultChecked disabled />
-      <Switch offLabel="Off label" onLabel="On label" />
-      <Switch defaultChecked offLabel="Off label" onLabel="On label" />
+      <Switch id="switch-1" label="On label" />
+      <Switch defaultChecked disabled label="Disabled" />
+      <Switch label="Read only" readonly />
+      <Switch defaultChecked label="Read only" readonly />
+      <Switch defaultChecked />
     </Flex>
   ),
 };
@@ -27,10 +27,11 @@ export const Default: Story = {
 export const Large: Story = {
   render: () => (
     <Flex>
-      <Switch label="On label" size="lg" />
-      <Switch defaultChecked disabled label="hello" size="lg" />
-      <Switch offLabel="Off" onLabel="On" size="lg" />
-      <Switch defaultChecked offLabel="Off" onLabel="On" size="lg" />
+      <Switch id="switch-1" label="On label" size="lg" />
+      <Switch defaultChecked disabled label="Disabled" size="lg" />
+      <Switch label="Read only" readonly size="lg" />
+      <Switch defaultChecked label="Read only" readonly size="lg" />
+      <Switch defaultChecked size="lg" />
     </Flex>
   ),
 };

@@ -13,8 +13,7 @@ type SwitchProps = ExtendProps<
   ComponentPropsWithRef<typeof Box>,
   {
     label?: string;
-    offLabel?: string;
-    onLabel?: string;
+    readonly?: boolean;
   } & styles.SwitchVariants
 >;
 
@@ -23,52 +22,25 @@ export const Switch = forwardRef<
   SwitchProps
 >(
   (
-    {
-      className,
-      disabled,
-      id,
-      label,
-      offLabel,
-      onLabel,
-      size = "default",
-      ...props
-    },
+    { className, disabled, id, label, readonly, size = "default", ...props },
     ref,
   ) => {
     const { restProps, sprinkleProps } = extractSprinkles(props);
     return (
       <Box className={clsx(styles.switchBox, className)} {...sprinkleProps}>
-        {offLabel && (
-          <Text
-            asChild
-            className={styles.leftLabel}
-            color={disabled ? "fg.disabled" : "fg.default"}
-          >
-            <label htmlFor={id}> {offLabel}</label>
-          </Text>
-        )}
         <RadixSwitch.Root
           ref={ref}
           {...restProps}
           className={styles.switchStyle({ size })}
-          disabled={disabled}
+          disabled={disabled || readonly}
           id={id}
         >
           <RadixSwitch.Thumb className={styles.switchThumb({ size })} />
         </RadixSwitch.Root>
-        {onLabel && (
-          <Text
-            asChild
-            className={styles.rightLabel}
-            color={disabled ? "fg.disabled" : "fg.default"}
-          >
-            <label htmlFor={id}> {onLabel}</label>
-          </Text>
-        )}
         {label && (
           <Text
             asChild
-            className={styles.rightLabel}
+            className={styles.label}
             color={disabled ? "fg.disabled" : "fg.default"}
           >
             <label htmlFor={id}> {label}</label>
