@@ -10,7 +10,7 @@ type TextProps = ExtendProps<
   ComponentPropsWithRef<"p">,
   ComponentPropsWithRef<typeof Box>,
   {
-    as?: "label" | "p" | "span";
+    as?: "p" | "span";
     lineClamp?: keyof typeof styles.lineClamp;
     truncate?: boolean;
   }
