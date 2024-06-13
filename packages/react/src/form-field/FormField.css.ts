@@ -10,6 +10,9 @@ export const description = style({
 
 export const label = style({
   color: theme.colors["fg.secondary"],
+  fontFamily: theme.fontFamily.sans,
+  fontSize: "14px",
+  marginBottom: "2px",
 });
 
 export const formField = style({
