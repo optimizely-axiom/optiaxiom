@@ -1,10 +1,10 @@
+import * as RadixLabel from "@radix-ui/react-label";
 import * as RadixSwitch from "@radix-ui/react-switch";
 import clsx from "clsx";
 import { type ComponentPropsWithRef, type ElementRef, forwardRef } from "react";
 
 import { Box } from "../box";
 import { extractSprinkles } from "../sprinkles";
-import { Text } from "../text";
 import { type ExtendProps } from "../utils";
 import * as styles from "./Switch.css";
 
@@ -38,13 +38,15 @@ export const Switch = forwardRef<
           <RadixSwitch.Thumb className={styles.switchThumb({ size })} />
         </RadixSwitch.Root>
         {label && (
-          <Text
-            asChild
-            className={styles.label}
-            color={disabled ? "fg.disabled" : "fg.default"}
+          <RadixLabel.Root
+            className={clsx(
+              styles.label,
+              disabled ? styles.disabledColor : styles.primaryColor,
+            )}
+            htmlFor={id}
           >
-            <label htmlFor={id}> {label}</label>
-          </Text>
+            {label}
+          </RadixLabel.Root>
         )}
       </Box>
     );

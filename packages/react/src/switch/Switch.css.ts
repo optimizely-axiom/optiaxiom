@@ -2,6 +2,7 @@ import { theme } from "../styles";
 import { type RecipeVariants, recipe, style } from "../vanilla-extract";
 
 export const switchBox = style({
+  alignItems: "center",
   display: "flex",
   flexDirection: "row",
 });
@@ -48,7 +49,17 @@ export const switchStyle = recipe({
 });
 
 export const label = style({
+  fontFamily: theme.fontFamily.sans,
+  fontSize: "14px",
   marginLeft: "8px",
+});
+
+export const disabledColor = style({
+  color: theme.colors["fg.disabled"],
+});
+
+export const primaryColor = style({
+  color: theme.colors["fg.default"],
 });
 
 export const switchThumb = recipe({
