@@ -74,9 +74,11 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const finalColorScheme = colorScheme ?? presetProps.colorScheme;
     const finalVariant = variant ?? presetProps.variant;
 
+    const isDisabled = disabled || isLoading;
+
     return (
       <Box
-        aria-disabled={disabled || isLoading}
+        aria-disabled={isDisabled}
         asChild
         className={clsx(
           styles.button({
@@ -86,7 +88,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           }),
           className,
         )}
-        onClick={disabled || isLoading ? undefined : onClick}
+        data-disabled={isDisabled}
+        onClick={isDisabled ? undefined : onClick}
         {...props}
       >
         <Comp ref={ref}>
