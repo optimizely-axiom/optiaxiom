@@ -11,9 +11,6 @@ import {
 const meta: Meta<typeof Button> = {
   argTypes: { onClick: { action: "click" } },
   component: Button,
-  parameters: {
-    layout: "centered",
-  },
 };
 
 export default meta;

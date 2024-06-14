@@ -14,6 +14,7 @@ export const loaders = isChromatic()
   : [];
 
 export const parameters = {
+  layout: "centered",
   options: {
     storySort: {
       method: "alphabetical",
