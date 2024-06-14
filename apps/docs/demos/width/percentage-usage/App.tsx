@@ -1,10 +1,10 @@
 import { Box, Flex } from "@optiaxiom/react";
 
-import { Canvas } from "./Canvas";
+import { Canvas } from "../Canvas";
 
 export function App() {
   return (
-    <Canvas>
+    <Canvas w="full">
       <Flex flexDirection="row">
         <Box w="1/2">w=1/2</Box>
         <Box w="1/2">w=1/2</Box>

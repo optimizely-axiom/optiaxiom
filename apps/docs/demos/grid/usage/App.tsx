@@ -4,7 +4,7 @@ import { Canvas } from "../Canvas";
 
 export function App() {
   return (
-    <Canvas stripes>
+    <Canvas>
       <Grid cols="3">
         <div>01</div>
         <div>02</div>
