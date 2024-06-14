@@ -5,6 +5,7 @@ import { type ComponentPropsWithRef, type ElementRef, forwardRef } from "react";
 
 import { Box } from "../box";
 import { extractSprinkles } from "../sprinkles";
+import { Text } from "../text";
 import { type ExtendProps } from "../utils";
 import * as styles from "./Switch.css";
 
@@ -27,26 +28,20 @@ export const Switch = forwardRef<
   ) => {
     const { restProps, sprinkleProps } = extractSprinkles(props);
     return (
-      <Box className={clsx(styles.switchBox, className)} {...sprinkleProps}>
+      <Box className={clsx(styles.wrapper, className)} {...sprinkleProps}>
         <RadixSwitch.Root
           ref={ref}
           {...restProps}
-          className={styles.switchStyle({ size })}
+          className={styles.switchRoot({ size })}
           disabled={disabled || readonly}
           id={id}
         >
           <RadixSwitch.Thumb className={styles.switchThumb({ size })} />
         </RadixSwitch.Root>
         {label && (
-          <RadixLabel.Root
-            className={clsx(
-              styles.label,
-              disabled ? styles.disabledColor : styles.primaryColor,
-            )}
-            htmlFor={id}
-          >
-            {label}
-          </RadixLabel.Root>
+          <Text asChild color={disabled ? "fg.disabled" : "fg.default"} ml="8">
+            <RadixLabel.Root htmlFor={id}>{label}</RadixLabel.Root>
+          </Text>
         )}
       </Box>
     );
