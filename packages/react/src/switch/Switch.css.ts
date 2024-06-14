@@ -1,13 +1,14 @@
+import { sprinkles } from "../sprinkles";
 import { theme } from "../styles";
 import { type RecipeVariants, recipe, style } from "../vanilla-extract";
 
-export const switchBox = style({
+export const wrapper = style({
   alignItems: "center",
   display: "flex",
   flexDirection: "row",
 });
 
-export const switchStyle = recipe({
+export const switchRoot = recipe({
   base: {
     all: "unset",
     backgroundColor: theme.colors["fg.brand"],
@@ -48,20 +49,6 @@ export const switchStyle = recipe({
   },
 });
 
-export const label = style({
-  fontFamily: theme.fontFamily.sans,
-  fontSize: "14px",
-  marginLeft: "8px",
-});
-
-export const disabledColor = style({
-  color: theme.colors["fg.disabled"],
-});
-
-export const primaryColor = style({
-  color: theme.colors["fg.default"],
-});
-
 export const switchThumb = recipe({
   base: {
     backgroundColor: "white",
@@ -77,16 +64,16 @@ export const switchThumb = recipe({
   },
   variants: {
     size: {
-      lg: {
-        height: "20px",
-        width: "20px",
-      },
-      default: {
-        height: "16px",
-        width: "16px",
-      },
+      lg: sprinkles({
+        h: "20",
+        w: "20",
+      }),
+      default: sprinkles({
+        h: "16",
+        w: "16",
+      }),
     },
   },
 });
 
-export type SwitchVariants = RecipeVariants<typeof switchStyle>;
+export type SwitchVariants = RecipeVariants<typeof switchRoot>;
