@@ -9,11 +9,10 @@ import {
 
 import type { ExtendProps } from "../utils/ExtendProps";
 
-import { Box } from "../box";
-import { sprinkles } from "../sprinkles";
+import { Flex } from "../flex";
 import { Text } from "../text";
-type FormGroupProps = ExtendProps<
-  ComponentPropsWithRef<typeof Box>,
+type FieldProps = ExtendProps<
+  ComponentPropsWithRef<typeof Flex>,
   {
     children: ReactElement;
     description?: string;
@@ -25,7 +24,7 @@ type FormGroupProps = ExtendProps<
   }
 >;
 
-export const Field = forwardRef<HTMLDivElement, FormGroupProps>(
+export const Field = forwardRef<HTMLDivElement, FieldProps>(
   (
     {
       children,
@@ -41,25 +40,19 @@ export const Field = forwardRef<HTMLDivElement, FormGroupProps>(
   ) => {
     const id = useId(idProp);
     return (
-      <Box display="flex" flexDirection="column" maxW="sm" ref={ref} {...props}>
+      <Flex flexDirection="column" gap="2" maxW="sm" ref={ref} {...props}>
         {label && (
-          <RadixLabel.Root
-            className={sprinkles({
-              color: "fg.secondary",
-              fontFamily: "sans",
-              fontSize: "md",
-              mb: "2",
-            })}
-            htmlFor={id}
-          >
-            {label}
-            {required && (
-              <Text aria-hidden="true" as="span" color="border.error">
-                {" "}
-                *
-              </Text>
-            )}
-          </RadixLabel.Root>
+          <Text asChild>
+            <RadixLabel.Root htmlFor={id}>
+              {label}
+              {required && (
+                <Text aria-hidden="true" as="span" color="fg.error">
+                  {" "}
+                  *
+                </Text>
+              )}
+            </RadixLabel.Root>
+          </Text>
         )}
         {cloneElement(children, {
           disabled,
@@ -68,16 +61,16 @@ export const Field = forwardRef<HTMLDivElement, FormGroupProps>(
           required,
         })}
         {description && (
-          <Text as="p" color="fg.default" fontSize="sm" mt="2">
+          <Text as="p" color="fg.default" fontSize="sm">
             {description}
           </Text>
         )}
         {error && (
-          <Text as="p" color="border.error" fontSize="sm" mt="2">
+          <Text as="p" color="fg.error" fontSize="sm">
             {error}
           </Text>
         )}
-      </Box>
+      </Flex>
     );
   },
 );
