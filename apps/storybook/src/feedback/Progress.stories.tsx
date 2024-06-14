@@ -15,9 +15,9 @@ type Story = StoryObj<typeof Progress>;
 export const Primary: Story = {
   args: {
     bg: "bg.brand.subtle",
-    h: "12",
     max: 60,
     value: 30,
+    w: "384",
   },
 };
 
@@ -37,7 +37,7 @@ export const CompletionStages: Story = {
   render: function CompletionStagesComponent() {
     const [scale, setScale] = useState(1);
     return (
-      <Flex>
+      <Flex w="384">
         <Flex flexDirection="row">
           <Button onClick={() => setScale(1)}>Reset</Button>
           <Button onClick={() => setScale(2)}>Forward</Button>
@@ -49,7 +49,7 @@ export const CompletionStages: Story = {
             key={index}
             max={max}
             value={typeof value !== "undefined" ? value * scale : undefined}
-            w="1/2"
+            w="full"
           />
         ))}
       </Flex>

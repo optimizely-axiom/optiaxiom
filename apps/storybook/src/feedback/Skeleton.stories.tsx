@@ -11,11 +11,15 @@ export default meta;
 
 type Story = StoryObj<typeof Skeleton>;
 
-export const Primary: Story = {};
+export const Primary: Story = {
+  args: {
+    w: "384",
+  },
+};
 
 export const Card: Story = {
   render: () => (
-    <Paper maxW="sm" p="md">
+    <Paper p="md" w="384">
       <Flex alignItems="start" flexDirection="row">
         <Skeleton rounded="full" size="48" />
 
