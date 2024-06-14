@@ -38,6 +38,7 @@ export const DisabledInput: Story = {
     label: "Form label",
   },
 };
+
 export const ErrorInput: Story = {
   args: {
     children: <Input placeholder="With error" />,
