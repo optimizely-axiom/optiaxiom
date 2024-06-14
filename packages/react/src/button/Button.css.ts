@@ -23,7 +23,7 @@ export const button = recipe({
     transitionTimingFunction: "ease",
 
     selectors: {
-      '&:active:not([aria-disabled="true"])': {
+      '&:active:not([data-disabled="true"])': {
         boxShadow: theme.boxShadow.inner,
       },
       "&:focus-visible": {
@@ -31,7 +31,7 @@ export const button = recipe({
         outlineStyle: "solid",
         outlineWidth: "1px",
       },
-      '&[aria-disabled="true"]': {
+      '&[data-disabled="true"]': {
         cursor: "not-allowed",
       },
     },
@@ -117,10 +117,10 @@ export const button = recipe({
         color: accentColorVar,
 
         selectors: {
-          '&:hover:not([aria-disabled="true"])': {
+          '&:hover:not([data-disabled="true"])': {
             backgroundColor: subtleAccentColorVar,
           },
-          '&[aria-disabled="true"]': {
+          '&[data-disabled="true"]': {
             backgroundColor: theme.colors["bg.disabled"],
             color: theme.colors["fg.disabled"],
           },
@@ -132,10 +132,10 @@ export const button = recipe({
         color: accentColorVar,
 
         selectors: {
-          '&:hover:not([aria-disabled="true"])': {
+          '&:hover:not([data-disabled="true"])': {
             backgroundColor: subtleAccentColorVar,
           },
-          '&[aria-disabled="true"]': {
+          '&[data-disabled="true"]': {
             borderColor: theme.colors["border.disabled"],
             color: theme.colors["fg.disabled"],
           },
@@ -146,10 +146,10 @@ export const button = recipe({
         color: theme.colors["fg.default.inverse"],
 
         selectors: {
-          '&:hover:not([aria-disabled="true"])': {
+          '&:hover:not([data-disabled="true"])': {
             backgroundColor: solidAccentColorVar,
           },
-          '&[aria-disabled="true"]': {
+          '&[data-disabled="true"]': {
             backgroundColor: theme.colors["bg.disabled"],
             border: `1px solid ${theme.colors["border.disabled"]}`,
             color: theme.colors["fg.disabled"],
