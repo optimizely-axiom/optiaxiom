@@ -38,7 +38,13 @@ export function Demo({
         flexDirection={["column", "row"]}
         rounded="xl"
       >
-        <Flex flex="1" gap="0" p="xl">
+        <Flex
+          flex="1"
+          flexDirection="row"
+          gap="0"
+          justifyContent="center"
+          p="xl"
+        >
           {iframe ? (
             <DemoIframe height={height} src={iframe} />
           ) : (

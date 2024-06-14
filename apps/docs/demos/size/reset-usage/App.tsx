@@ -1,11 +1,13 @@
-import { Box } from "@optiaxiom/react";
+import { Box, Flex } from "@optiaxiom/react";
 
-import { Container } from "../Container";
+import { Canvas } from "../Canvas";
 
 export function App() {
   return (
-    <Container>
-      <Box size="auto">size=auto</Box>
-    </Container>
+    <Canvas p="xs">
+      <Flex>
+        <Box size="auto">size=auto</Box>
+      </Flex>
+    </Canvas>
   );
 }

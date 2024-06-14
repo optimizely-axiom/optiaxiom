@@ -11,7 +11,7 @@ import {
 import { Item } from "./Item";
 
 export const Canvas = ({ children }: { children: ReactElement }) => (
-  <Box asChild rounded="sm" style={yellowStripes}>
+  <Box asChild rounded="sm" style={yellowStripes} w="full">
     {cloneElement(
       children,
       {},

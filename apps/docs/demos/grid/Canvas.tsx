@@ -1,26 +1,4 @@
-import { yellowStripes } from "@/demos/stripes";
-import { Box, Grid } from "@optiaxiom/react";
-import {
-  Children,
-  type ComponentPropsWithRef,
-  type ReactElement,
-  isValidElement,
-} from "react";
-
+import { withSimpleCanvas } from "../withSimpleCanvas";
 import { Item } from "./Item";
 
-export const Canvas = ({
-  children,
-  stripes,
-}: {
-  children: ReactElement<ComponentPropsWithRef<typeof Grid>>;
-  stripes?: boolean;
-}) => (
-  <Grid {...children.props} style={stripes ? yellowStripes : {}}>
-    {Children.toArray(children.props.children)
-      .filter(isValidElement<ComponentPropsWithRef<typeof Box>>)
-      .map((item, index) => (
-        <Item key={index}>{item}</Item>
-      ))}
-  </Grid>
-);
+export const Canvas = withSimpleCanvas(Item);
