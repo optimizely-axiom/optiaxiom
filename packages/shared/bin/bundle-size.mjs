@@ -6,7 +6,7 @@ import { basename, parse, resolve } from "path";
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
 
-const packages = ["packages/react"];
+const packages = ["packages/react", "packages/web-components"];
 
 /**
  * @param {{ file: string }} options
