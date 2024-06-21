@@ -306,9 +306,6 @@ importers:
       preact:
         specifier: ^10.22.0
         version: 10.22.0
-      preact-custom-element:
-        specifier: ^4.3.0
-        version: 4.3.0(preact@10.22.0)
 
 packages:
 
@@ -6046,11 +6043,6 @@ packages:
   postcss@8.4.38:
     resolution: {integrity: sha512-Wglpdk03BSfXkHoQa3b/oulrotAkwrlLDRSOb9D0bN86FdRyE9lppSp33aHNPgBa0JKCoB+drFLZkQoRRYae5A==}
     engines: {node: ^10 || ^12 || >=14}
-
-  preact-custom-element@4.3.0:
-    resolution: {integrity: sha512-5hG7nQhU4e7RNfCEQklaUqYQiiyibLuJ2wbhR+E2v1m8m9NDsJok5MykW/Nx0YLLBcXr8xnkap6DwByGy2TzDA==}
-    peerDependencies:
-      preact: 10.x
 
   preact@10.22.0:
     resolution: {integrity: sha512-RRurnSjJPj4rp5K6XoP45Ui33ncb7e4H7WiOHVpjbkvqvA3U+N8Z6Qbo0AE6leGYBV66n8EhEaFixvIu3SkxFw==}
@@ -14711,10 +14703,6 @@ snapshots:
       nanoid: 3.3.7
       picocolors: 1.0.1
       source-map-js: 1.2.0
-
-  preact-custom-element@4.3.0(preact@10.22.0):
-    dependencies:
-      preact: 10.22.0
 
   preact@10.22.0: {}
 
