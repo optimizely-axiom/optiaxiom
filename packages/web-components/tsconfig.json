@@ -1,0 +1,11 @@
+{
+  "extends": "@optiaxiom/shared/configs/tsconfig.base.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "paths": {
+      "@optiaxiom/react": ["../react/src"]
+    }
+  },
+  "include": ["."],
+  "exclude": ["dist", "node_modules"]
+}

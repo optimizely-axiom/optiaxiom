@@ -122,6 +122,7 @@ export default tsEslint.config(
           "./apps/storybook/tsconfig.json",
           "./packages/react/tsconfig.json",
           "./packages/shared/tsconfig.json",
+          "./packages/web-components/tsconfig.json",
         ],
         tsconfigRootDir: process.cwd(),
       },
