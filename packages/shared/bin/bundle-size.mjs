@@ -46,7 +46,6 @@ async function measure() {
   const { gzipSize } = await import("gzip-size");
 
   const config = /** @type {const} */ ({
-    alias: { [pkg.name]: process.cwd() },
     bundle: true,
     external: Object.keys(pkg.peerDependencies),
     format: "esm",
@@ -86,6 +85,7 @@ async function measure() {
                 name === "*"
                   ? `import * as pkg from "${pkg.name}"; console.log(pkg)`
                   : `import { ${name} } from "${pkg.name}"; console.log(${name});`,
+              resolveDir: process.cwd(),
             };
           });
         },

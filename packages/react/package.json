@@ -12,7 +12,7 @@
     "LICENSE"
   ],
   "license": "Apache-2.0",
-  "module": "dist/index.js",
+  "exports": "./dist/index.js",
   "sideEffects": [
     "*.css"
   ],
