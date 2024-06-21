@@ -22,8 +22,7 @@
     "@swc/core": "^1.5.27",
     "chromatic": "^11.5.3",
     "raw-loader": "^4.0.2",
-    "storybook": "^8.1.6",
-    "wait-on": "^7.2.0"
+    "storybook": "^8.1.6"
   },
   "dependencies": {
     "@tabler/icons-react": "^3.5.0"
