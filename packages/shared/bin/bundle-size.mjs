@@ -47,44 +47,53 @@ async function measure() {
 
   const config = /** @type {const} */ ({
     bundle: true,
-    external: Object.keys(pkg.peerDependencies),
+    external: Object.keys(pkg.peerDependencies ?? {}),
     format: "esm",
     loader: { ".woff2": "empty" },
     outdir: "dist",
     write: false,
   });
 
-  const bundle = await esbuild.build({
-    ...config,
-    entryPoints: [pkg.name],
-    format: "esm",
-    metafile: true,
-  });
-  const imports = [
-    "*",
-    ...Object.values(bundle.metafile.outputs)[0].exports.sort(),
-  ];
+  const imports =
+    pkg.exports && typeof pkg.exports === "object"
+      ? Object.keys(pkg.exports)
+          .map((name) => (name === "." ? "*" : name.slice(2)))
+          .map((name) => [name, `export/${name}.js`])
+      : [
+          "*",
+          ...Object.values(
+            (
+              await esbuild.build({
+                ...config,
+                entryPoints: [pkg.name],
+                format: "esm",
+                metafile: true,
+              })
+            ).metafile.outputs,
+          )[0].exports.sort(),
+        ].map((name) => [name, `fixture/${name}.js`]);
 
   const result = await esbuild.build({
     ...config,
-    entryPoints: Object.fromEntries(
-      imports.map((name) => [name, `fixture/${name}.js`], {}),
-    ),
+    entryPoints: Object.fromEntries(imports),
     minify: true,
     plugins: [
       {
         name: "fixture",
         setup(build) {
-          build.onResolve({ filter: /^fixture\/(\w+|\*)\.js$/ }, (args) => {
-            return { namespace: "fixture", path: args.path };
-          });
+          build.onResolve(
+            { filter: /^(export|fixture)\/(\w+|\*)\.js$/ },
+            (args) => {
+              return { namespace: "fixture", path: args.path };
+            },
+          );
           build.onLoad({ filter: /.*/, namespace: "fixture" }, (args) => {
-            const name = parse(args.path).name;
+            const { dir, name } = parse(args.path);
             return {
               contents:
                 name === "*"
                   ? `import * as pkg from "${pkg.name}"; console.log(pkg)`
-                  : `import { ${name} } from "${pkg.name}"; console.log(${name});`,
+                  : `import { ${name} } from "${pkg.name}${dir === "export" ? `/${name}` : ""}"; console.log(${name});`,
               resolveDir: process.cwd(),
             };
           });
