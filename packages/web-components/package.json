@@ -13,7 +13,8 @@
   ],
   "license": "Apache-2.0",
   "exports": {
-    ".": "./dist/index.js"
+    ".": "./dist/index.js",
+    "./Box": "./dist/Box.js"
   },
   "types": "dist/index.d.ts",
   "scripts": {
