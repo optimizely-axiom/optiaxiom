@@ -12,6 +12,8 @@ import {
 } from "react";
 import { type Root, createRoot } from "react-dom/client";
 
+import { sheets } from "./styles";
+
 type ComponentEventNames<T> = T extends `on${string}`
   ? Exclude<T, keyof HTMLAttributes<EventTarget>>
   : never;
@@ -37,6 +39,9 @@ export function register<
       super();
 
       this.#root = createRoot(this.attachShadow({ mode: "open" }));
+      if (this.shadowRoot) {
+        this.shadowRoot.adoptedStyleSheets = sheets;
+      }
 
       this.#observer = new MutationObserver((mutationRecords) => {
         mutationRecords.forEach(({ attributeName }) => {

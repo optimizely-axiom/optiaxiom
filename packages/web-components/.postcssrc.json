@@ -1,0 +1,9 @@
+{
+  "plugins": {
+    "cssnano": { "preset": "default" },
+    "postcss-url": {
+      "assetsPath": "assets",
+      "url": "copy"
+    }
+  }
+}
