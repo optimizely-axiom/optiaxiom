@@ -6,6 +6,7 @@ import esbuild from "rollup-plugin-esbuild";
 const env = process.env.NODE_ENV ?? "development";
 
 const input = {
+  Box: "src/Box.ts",
   index: "src/index.ts",
 };
 
