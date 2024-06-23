@@ -27,16 +27,14 @@ export const ButtonGroup = forwardRef<HTMLDivElement, ButtonGroupProps>(
     const mappedChildren = Children.map(children, (child) => (
       <Box
         asChild
-        className={clsx(
-          styles.buttonGroup({ orientation, spacing: gap !== "0" }),
-        )}
+        className={styles.button({ orientation, spacing: gap !== "0" })}
       >
         {child}
       </Box>
     ));
     return (
       <Flex
-        className={clsx(styles.parentButtonGroup({ orientation }), className)}
+        className={clsx(styles.buttonGroup({ orientation }), className)}
         gap={gap}
         ref={ref}
         {...props}
