@@ -1,6 +1,6 @@
 import { type RecipeVariants, createVar, recipe } from "../vanilla-extract";
 const roundedBorderRadius = createVar();
-export const buttonGroup = recipe({
+export const button = recipe({
   base: {
     borderRadius: "0",
     vars: {
@@ -69,7 +69,7 @@ export const buttonGroup = recipe({
   },
 });
 
-export const parentButtonGroup = recipe({
+export const buttonGroup = recipe({
   base: {},
   variants: {
     orientation: {
@@ -82,4 +82,4 @@ export const parentButtonGroup = recipe({
     },
   },
 });
-export type ButtonGroupVariants = RecipeVariants<typeof buttonGroup>;
+export type ButtonGroupVariants = RecipeVariants<typeof button>;
