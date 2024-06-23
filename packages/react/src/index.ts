@@ -1,8 +1,8 @@
 export * from "./avatar";
 export * from "./box";
-
 export * from "./button";
 export * from "./button-group";
+export * from "./checkbox";
 export * from "./code";
 export * from "./field";
 export * from "./flex";
