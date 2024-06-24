@@ -6,7 +6,7 @@ import { basename, parse, resolve } from "path";
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
 
-const pkg = JSON.parse(await readFile("./package.json", { encoding: "utf-8" }));
+const packages = ["packages/react"];
 
 /**
  * @param {{ file: string }} options
@@ -18,10 +18,11 @@ async function compare({ file }) {
    *    gzippedSize: number;
    *    minifiedSize: number;
    *    name: string;
+   *    packageName: string;
    * }>}
    */
   const remoteReport = JSON.parse(
-    await readFile(resolve(process.cwd(), "../../", file), {
+    await readFile(resolve(process.cwd(), file), {
       encoding: "utf-8",
     }),
   );
@@ -31,12 +32,12 @@ async function compare({ file }) {
   return compareResultsInReports(
     localReport.map((value) => ({
       ...value,
-      packageName: basename(pkg.name),
+      packageName: value.packageName ?? "react",
       path: value.name,
     })),
     remoteReport.map((value) => ({
       ...value,
-      packageName: basename(pkg.name),
+      packageName: value.packageName ?? "react",
       path: value.name,
     })),
   );
@@ -45,78 +46,89 @@ async function compare({ file }) {
 async function measure() {
   const { gzipSize } = await import("gzip-size");
 
-  const config = /** @type {const} */ ({
-    bundle: true,
-    external: Object.keys(pkg.peerDependencies ?? {}),
-    format: "esm",
-    loader: { ".woff2": "empty" },
-    outdir: "dist",
-    write: false,
-  });
+  const data = [];
 
-  const imports =
-    pkg.exports && typeof pkg.exports === "object"
-      ? Object.keys(pkg.exports)
-          .map((name) => (name === "." ? "*" : name.slice(2)))
-          .map((name) => [name, `export/${name}.js`])
-      : [
-          "*",
-          ...Object.values(
-            (
-              await esbuild.build({
-                ...config,
-                entryPoints: [pkg.name],
-                format: "esm",
-                metafile: true,
-              })
-            ).metafile.outputs,
-          )[0].exports.sort(),
-        ].map((name) => [name, `fixture/${name}.js`]);
+  for (const packagePath of packages) {
+    const pkg = JSON.parse(
+      await readFile(`${packagePath}/package.json`, { encoding: "utf-8" }),
+    );
 
-  const result = await esbuild.build({
-    ...config,
-    entryPoints: Object.fromEntries(imports),
-    minify: true,
-    plugins: [
-      {
-        name: "fixture",
-        setup(build) {
-          build.onResolve(
-            { filter: /^(export|fixture)\/(\w+|\*)\.js$/ },
-            (args) => {
-              return { namespace: "fixture", path: args.path };
-            },
-          );
-          build.onLoad({ filter: /.*/, namespace: "fixture" }, (args) => {
-            const { dir, name } = parse(args.path);
-            return {
-              contents:
-                name === "*"
-                  ? `import * as pkg from "${pkg.name}"; console.log(pkg)`
-                  : `import { ${name} } from "${pkg.name}${dir === "export" ? `/${name}` : ""}"; console.log(${name});`,
-              resolveDir: process.cwd(),
-            };
-          });
+    const config = /** @type {const} */ ({
+      absWorkingDir: resolve(packagePath),
+      bundle: true,
+      external: Object.keys(pkg.peerDependencies ?? {}),
+      format: "esm",
+      loader: { ".woff2": "empty" },
+      outdir: "dist",
+      write: false,
+    });
+
+    const imports =
+      pkg.exports && typeof pkg.exports === "object"
+        ? Object.keys(pkg.exports)
+            .map((name) => (name === "." ? "*" : name.slice(2)))
+            .map((name) => [name, `export/${name}.js`])
+        : [
+            "*",
+            ...Object.values(
+              (
+                await esbuild.build({
+                  ...config,
+                  entryPoints: [pkg.name],
+                  format: "esm",
+                  metafile: true,
+                })
+              ).metafile.outputs,
+            )[0].exports.sort(),
+          ].map((name) => [name, `fixture/${name}.js`]);
+
+    const result = await esbuild.build({
+      ...config,
+      entryPoints: Object.fromEntries(imports),
+      minify: true,
+      plugins: [
+        {
+          name: "fixture",
+          setup(build) {
+            build.onResolve(
+              { filter: /^(export|fixture)\/(\w+|\*)\.js$/ },
+              (args) => {
+                return { namespace: "fixture", path: args.path };
+              },
+            );
+            build.onLoad({ filter: /.*/, namespace: "fixture" }, (args) => {
+              const { dir, name } = parse(args.path);
+              return {
+                contents:
+                  name === "*"
+                    ? `import * as pkg from "${pkg.name}"; console.log(pkg)`
+                    : `import { ${name} } from "${pkg.name}${dir === "export" ? `/${name}` : ""}"; console.log(${name});`,
+                resolveDir: resolve(packagePath),
+              };
+            });
+          },
         },
-      },
-    ],
-  });
+      ],
+    });
 
-  const typesSize = await readFile(pkg.types);
-  const data = [
-    {
+    const typesSize = await readFile(resolve(packagePath, pkg.types));
+    data.push({
       gzippedSize: await gzipSize(typesSize),
       minifiedSize: typesSize.length,
       name: basename(pkg.types),
-    },
-  ];
-  for (const outputFile of result.outputFiles) {
-    data.push({
-      gzippedSize: await gzipSize(outputFile.text),
-      minifiedSize: outputFile.text.length,
-      name: basename(outputFile.path),
+      packageName: basename(pkg.name),
     });
+
+    for (const outputFile of result.outputFiles) {
+      data.push({
+        gzippedSize: await gzipSize(outputFile.text),
+        minifiedSize: outputFile.text.length,
+        name: basename(outputFile.path),
+        packageName: basename(pkg.name),
+      });
+    }
   }
+
   return data;
 }
 
@@ -159,7 +171,7 @@ void yargs(hideBin(process.argv))
         });
         for (const entry of result) {
           table.push([
-            basename(entry.name),
+            `${entry.packageName}/${basename(entry.name)}`,
             prettyBytes(entry.minifiedSize),
             prettyBytes(entry.gzippedSize),
           ]);
