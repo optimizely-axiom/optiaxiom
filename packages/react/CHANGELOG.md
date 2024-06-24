@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 0.1.0-next.3
+
+### Patch Changes
+
+- 53cae4b: support react <18 and vanilla-extract consumers
+
 ## 0.1.0-next.2
 
 ### Patch Changes

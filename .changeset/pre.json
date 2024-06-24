@@ -8,6 +8,7 @@
     "@optiaxiom/shared": "0.0.0"
   },
   "changesets": [
+    "moody-apples-compare",
     "quick-apricots-sparkle",
     "stale-bears-allow"
   ]
