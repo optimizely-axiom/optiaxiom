@@ -29,6 +29,11 @@ export default defineConfig([
           return "";
         },
         dir: "dist",
+        entryFileNames: (info) => {
+          return info.name.endsWith(".css")
+            ? `${info.name.replace(/\.css$/, "-css")}.js`
+            : "[name].js";
+        },
         format: "es",
         preserveModules: true,
       },
