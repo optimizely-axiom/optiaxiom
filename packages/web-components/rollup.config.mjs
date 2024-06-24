@@ -12,6 +12,9 @@ const env = process.env.NODE_ENV ?? "development";
 
 const input = {
   Box: "src/Box.ts",
+  Button: "src/Button.ts",
+  Paper: "src/Paper.ts",
+  Tooltip: "src/Tooltip.ts",
   index: "src/index.ts",
 };
 

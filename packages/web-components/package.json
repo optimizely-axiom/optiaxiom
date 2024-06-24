@@ -14,7 +14,10 @@
   "license": "Apache-2.0",
   "exports": {
     ".": "./dist/index.js",
-    "./Box": "./dist/Box.js"
+    "./Box": "./dist/Box.js",
+    "./Button": "./dist/Button.js",
+    "./Paper": "./dist/Paper.js",
+    "./Tooltip": "./dist/Tooltip.js"
   },
   "types": "dist/index.d.ts",
   "scripts": {
