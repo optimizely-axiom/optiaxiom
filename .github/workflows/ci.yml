@@ -50,7 +50,7 @@ jobs:
           mkdir ./pr
           echo ${{ github.event.number }} > ./pr/ID
           pnpm build
-          pnpm -F react exec -- pnpm --silent bundle-size compare artifact/bundle-size-main.json > ./pr/bundle-size.md
+          pnpm --silent bundle-size compare artifact/bundle-size-main.json > ./pr/bundle-size.md
 
       - uses: actions/upload-artifact@v4
         with:
