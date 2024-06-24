@@ -33,7 +33,7 @@ export const item = style({
       borderColor: theme.colors["border.secondary"],
     },
     "&[data-state='checked']&:not([data-disabled])": {
-      borderColor: theme.colors["brand.500"],
+      borderColor: theme.colors["border.brand"],
     },
   },
 });
@@ -48,7 +48,7 @@ export const indicator = style({
 
   selectors: {
     "&::after": {
-      backgroundColor: theme.colors["brand.500"],
+      backgroundColor: theme.colors["fg.brand"],
       borderRadius: "50%",
       content: "",
       display: "block",
@@ -67,6 +67,5 @@ export const indicator = style({
 });
 
 export const label = style({
-  display: "block",
   lineHeight: "24px",
 });
