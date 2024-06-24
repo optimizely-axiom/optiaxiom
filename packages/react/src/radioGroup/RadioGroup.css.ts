@@ -1,18 +1,13 @@
 import { theme } from "../styles";
 import { style } from "../vanilla-extract";
 
-export const optionWrapper = style({
-  alignItems: "center",
+export const option = style({
+  alignItems: "flex-start",
   flexDirection: "row",
   gap: "8px",
-  selectors: {
-    ["&:not(:first-child)"]: {
-      marginTop: "12px",
-    },
-  },
 });
 
-export const RadioGroupItem = style({
+export const item = style({
   all: "unset",
   backgroundColor: "white",
   border: "1px",
@@ -20,6 +15,8 @@ export const RadioGroupItem = style({
   borderRadius: "100%",
   borderStyle: "solid",
   height: 16,
+  marginBottom: "3px",
+  marginTop: "3px",
   width: 16,
 
   selectors: {
@@ -41,7 +38,7 @@ export const RadioGroupItem = style({
   },
 });
 
-export const RadioGroupIndicator = style({
+export const indicator = style({
   alignItems: "center",
   display: "flex ",
   height: "100%",
@@ -67,4 +64,9 @@ export const RadioGroupIndicator = style({
       width: 11,
     },
   },
+});
+
+export const label = style({
+  display: "block",
+  lineHeight: "24px",
 });
