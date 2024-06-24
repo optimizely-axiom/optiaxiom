@@ -4,10 +4,9 @@ import { type ComponentPropsWithRef, forwardRef } from "react";
 
 import type { ExtendProps } from "../utils";
 
-import { Box } from "../box";
 import { Flex } from "../flex";
 import { Text } from "../text";
-import * as styles from "./Radio.css";
+import * as styles from "./RadioGroup.css";
 
 type optionProps = {
   description?: string;
@@ -16,9 +15,9 @@ type optionProps = {
   value: string;
 };
 
-type RadioProps = ExtendProps<
+type RadioGroupProps = ExtendProps<
   ComponentPropsWithRef<typeof RadixRadio.RadioGroup>,
-  ComponentPropsWithRef<typeof Box>,
+  ComponentPropsWithRef<typeof Flex>,
   {
     defaultValue?: string;
     label: string;
@@ -27,13 +26,13 @@ type RadioProps = ExtendProps<
   }
 >;
 
-export const Radio = forwardRef<HTMLDivElement, RadioProps>(
+export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>(
   (
     { className, defaultValue, disabled = false, options, readonly, ...props },
     ref,
   ) => {
     return (
-      <Box asChild {...props}>
+      <Flex asChild gap="12" {...props}>
         <RadixRadio.RadioGroup
           className={className}
           defaultValue={defaultValue}
@@ -41,14 +40,14 @@ export const Radio = forwardRef<HTMLDivElement, RadioProps>(
           ref={ref}
         >
           {options.map((option) => (
-            <Flex className={styles.optionWrapper} key={option.value}>
+            <Flex className={styles.option} key={option.value}>
               <RadixRadio.Item
-                className={styles.RadioGroupItem}
+                className={styles.item}
                 disabled={option.disabled}
                 id={option.value}
                 value={option.value}
               >
-                <RadixRadio.Indicator className={styles.RadioGroupIndicator} />
+                <RadixRadio.Indicator className={styles.indicator} />
               </RadixRadio.Item>
               <Text
                 asChild
@@ -57,15 +56,20 @@ export const Radio = forwardRef<HTMLDivElement, RadioProps>(
                 }
               >
                 <RadixLabel.Root htmlFor={option.value}>
-                  {option.label}
+                  <Text as="span" className={styles.label}>
+                    {option.label}
+                  </Text>
+                  <Text as="p" fontSize="sm">
+                    {option.description}
+                  </Text>
                 </RadixLabel.Root>
               </Text>
             </Flex>
           ))}
         </RadixRadio.RadioGroup>
-      </Box>
+      </Flex>
     );
   },
 );
 
-Radio.displayName = "@optiaxiom/react/Radio";
+RadioGroup.displayName = "@optiaxiom/react/RadioGroup";

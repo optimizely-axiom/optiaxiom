@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Radio } from "@optiaxiom/react";
+import { RadioGroup } from "@optiaxiom/react";
 
-const meta: Meta<typeof Radio> = {
-  component: Radio,
+const meta: Meta<typeof RadioGroup> = {
+  component: RadioGroup,
   parameters: {
     layout: "centered",
   },
@@ -11,7 +11,7 @@ const meta: Meta<typeof Radio> = {
 
 export default meta;
 
-type Story = StoryObj<typeof Radio>;
+type Story = StoryObj<typeof RadioGroup>;
 
 const options = [
   {
@@ -19,7 +19,7 @@ const options = [
     label: "Sample 1",
     value: "sample-1",
   },
-  { description: "desc-2", label: "Sample 2", value: "sample-2" },
+  { label: "Sample 2", value: "sample-2" },
   { description: "desc-3", label: "Sample 3", value: "sample-3" },
 ];
 
@@ -32,8 +32,10 @@ export const Basic: Story = {
 
 export const Disabled: Story = {
   args: {
+    alignItems: "start",
     defaultValue: options[0].value,
     disabled: true,
+    flexDirection: "row",
     options: options,
   },
 };
