@@ -1,5 +1,4 @@
 import * as RadixTooltip from "@radix-ui/react-tooltip";
-import { AnimatePresence } from "framer-motion";
 import {
   type ComponentPropsWithRef,
   type ReactNode,
@@ -9,6 +8,7 @@ import {
 
 import type { ExtendProps } from "../utils";
 
+import { AnimatePresence } from "../animate-presence";
 import { Box } from "../box";
 import { Text } from "../text";
 import { Transition } from "../transition";

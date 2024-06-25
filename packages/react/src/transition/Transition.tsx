@@ -1,6 +1,5 @@
 import { Slot } from "@radix-ui/react-slot";
 import clsx from "clsx";
-import { usePresence } from "framer-motion";
 import {
   type ComponentPropsWithRef,
   forwardRef,
@@ -10,6 +9,7 @@ import {
 
 import type { ExtendProps } from "../utils";
 
+import { usePresence } from "../animate-presence";
 import * as styles from "./Transition.css";
 
 const transitionDuration = {
