@@ -1,16 +1,9 @@
 import { theme } from "../styles";
 import { style } from "../vanilla-extract";
 
-export const option = style({
-  alignItems: "flex-start",
-  flexDirection: "row",
-  gap: "8px",
-});
-
 export const item = style({
   backgroundColor: "white",
-  border: "1px",
-  borderColor: theme.colors["fg.tertiary"],
+  border: `1px ${theme.colors["fg.tertiary"]}`,
   borderRadius: "100%",
   borderStyle: "solid",
   height: 16,
@@ -21,15 +14,13 @@ export const item = style({
 
   selectors: {
     "&:focus-visible": {
-      outline: "2px",
-      outlineColor: theme.colors["brand.300"],
+      outline: `2px solid ${theme.colors["brand.300"]}`,
       outlineOffset: "1px",
-      outlineStyle: "solid",
     },
     "&[data-disabled]": {
       borderColor: theme.colors["border.secondary"],
     },
-    "&[data-state='checked']&:not([data-disabled])": {
+    "&[data-state='checked']:not([data-disabled])": {
       borderColor: theme.colors["border.brand"],
     },
   },
