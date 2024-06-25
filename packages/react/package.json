@@ -37,7 +37,6 @@
     "@vanilla-extract/recipes": "^0.5.3",
     "@vanilla-extract/sprinkles": "^1.6.2",
     "clsx": "^2.1.1",
-    "framer-motion": "^6.0.0",
     "inter-ui": "^4.0.2"
   },
   "devDependencies": {
