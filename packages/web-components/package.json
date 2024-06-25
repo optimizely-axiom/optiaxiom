@@ -16,6 +16,7 @@
     ".": "./dist/index.js",
     "./Box": "./dist/Box.js",
     "./Button": "./dist/Button.js",
+    "./Input": "./dist/Input.js",
     "./Paper": "./dist/Paper.js",
     "./Tooltip": "./dist/Tooltip.js"
   },

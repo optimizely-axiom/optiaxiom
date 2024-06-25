@@ -1,6 +1,7 @@
 const mapping = {
   "ax-box": "Box",
   "ax-button": "Button",
+  "ax-input": "Input",
   "ax-paper": "Paper",
   "ax-tooltip": "Tooltip",
 } as const;
