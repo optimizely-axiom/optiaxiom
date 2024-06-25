@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 0.1.0-next.4
+
+### Patch Changes
+
+- 8cdccc5: fix font size reset
+
 ## 0.1.0-next.3
 
 ### Patch Changes
