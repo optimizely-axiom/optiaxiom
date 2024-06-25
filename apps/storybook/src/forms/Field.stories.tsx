@@ -5,9 +5,6 @@ import { IconCalendar } from "@tabler/icons-react";
 
 const meta: Meta<typeof Field> = {
   component: Field,
-  parameters: {
-    layout: "centered",
-  },
 };
 
 export default meta;
