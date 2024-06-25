@@ -31,7 +31,6 @@ export const Text = forwardRef<HTMLParagraphElement, TextProps>(
           truncate && styles.truncate,
           className,
         )}
-        fontFamily="sans"
         fontSize="md"
         ref={ref}
         {...props}

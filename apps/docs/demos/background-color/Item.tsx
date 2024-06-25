@@ -10,7 +10,6 @@ export const Item = ({
     <Box
       asChild
       color="fg.default.inverse"
-      fontFamily="sans"
       fontSize="md"
       fontWeight="500"
       px="16"
