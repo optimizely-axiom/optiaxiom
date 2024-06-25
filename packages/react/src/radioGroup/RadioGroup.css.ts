@@ -8,7 +8,6 @@ export const option = style({
 });
 
 export const item = style({
-  all: "unset",
   backgroundColor: "white",
   border: "1px",
   borderColor: theme.colors["fg.tertiary"],
@@ -17,6 +16,7 @@ export const item = style({
   height: 16,
   marginBottom: "3px",
   marginTop: "3px",
+  padding: 0,
   width: 16,
 
   selectors: {
@@ -25,9 +25,6 @@ export const item = style({
       outlineColor: theme.colors["brand.300"],
       outlineOffset: "1px",
       outlineStyle: "solid",
-    },
-    ["&:not(:first-child)"]: {
-      marginTop: "12px",
     },
     "&[data-disabled]": {
       borderColor: theme.colors["border.secondary"],
@@ -40,7 +37,7 @@ export const item = style({
 
 export const indicator = style({
   alignItems: "center",
-  display: "flex ",
+  display: "flex",
   height: "100%",
   justifyContent: "center",
   position: "relative",
