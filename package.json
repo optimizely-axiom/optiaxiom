@@ -11,7 +11,7 @@
     "dev": "pnpm run --parallel dev",
     "lint": "_m(){ concurrently --raw \"oas-lint $@\" \"pnpm run -r --no-bail --parallel --reporter-hide-prefix lint $@\"; } && _m",
     "release": "pnpm build && changeset publish",
-    "test": "pnpm run -F react test"
+    "test": "vitest"
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.5",

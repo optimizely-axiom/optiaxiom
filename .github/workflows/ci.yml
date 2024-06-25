@@ -106,6 +106,6 @@ jobs:
             ${{ runner.os }}-nextjs-${{ hashFiles('pnpm-lock.yaml') }}-
 
       - run: |
+          pnpm -F docs... -F web-components... build
           pnpm lint --no-fix
           pnpm test run
-          pnpm -F docs... build
