@@ -13,7 +13,7 @@ export * from "./input";
 export * from "./kbd";
 export * from "./paper";
 export * from "./progress";
-export * from "./radioGroup";
+export * from "./radio-group";
 export * from "./separator";
 export * from "./skeleton";
 export * from "./sprinkles";

@@ -1,76 +1,104 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
+import { Text } from "@optiaxiom/react";
 import { RadioGroup } from "@optiaxiom/react";
 
 const meta: Meta<typeof RadioGroup> = {
   component: RadioGroup,
-  parameters: {
-    layout: "centered",
-  },
 };
 
 export default meta;
 
 type Story = StoryObj<typeof RadioGroup>;
 
-const options = [
-  { label: "Sample 1", value: "sample-1" },
-  { label: "Sample 2", value: "sample-2" },
-  { label: "Sample 3", value: "sample-3" },
+const items = [
+  { label: <Text> Sample 1</Text>, value: "sample-1" },
+  { label: <Text> Sample 2</Text>, value: "sample-2" },
+  { label: <Text> Sample 3</Text>, value: "sample-3" },
 ];
 
-const optionsWithDescription = [
-  { description: "desc-1", label: "Sample 1", value: "sample-1" },
-  { description: "desc-2", label: "Sample 2", value: "sample-2" },
-  { description: "desc-3", label: "Sample 3", value: "sample-3" },
+const itemsWithDescription = [
+  {
+    label: (
+      <Text>
+        Sample 1
+        <Text as="p" fontSize="sm">
+          first
+        </Text>
+      </Text>
+    ),
+    value: "sample-1",
+  },
+  {
+    label: (
+      <Text>
+        Sample 2
+        <Text as="p" fontSize="sm">
+          second
+        </Text>
+      </Text>
+    ),
+    value: "sample-2",
+  },
+  {
+    label: (
+      <Text>
+        Sample 3
+        <Text as="p" fontSize="sm">
+          third
+        </Text>
+      </Text>
+    ),
+    value: "sample-3",
+  },
 ];
 
 export const Basic: Story = {
   args: {
-    defaultValue: options[0].value,
-    options: options,
+    defaultValue: items[0].value,
+    items: items,
   },
 };
 
 export const BasicHorizontal: Story = {
   args: {
-    defaultValue: options[0].value,
+    defaultValue: items[0].value,
     flexDirection: "row",
-    options: options,
+    items: items,
   },
 };
 
 export const WithDescription: Story = {
   args: {
-    defaultValue: optionsWithDescription[0].value,
-    options: optionsWithDescription,
+    defaultValue: itemsWithDescription[0].value,
+    items: itemsWithDescription,
   },
 };
 
 export const WithDescriptionHorizontal: Story = {
   args: {
-    defaultValue: optionsWithDescription[0].value,
+    defaultValue: itemsWithDescription[0].value,
     flexDirection: "row",
-    options: optionsWithDescription,
+    items: itemsWithDescription,
   },
 };
 
 export const Disabled: Story = {
   args: {
-    defaultValue: options[0].value,
+    defaultValue: items[0].value,
     disabled: true,
-    options: options,
+    items: items,
   },
 };
 
 export const SingleDisabled: Story = {
   args: {
-    defaultValue: options[0].value,
-    options: [
-      ...options,
+    defaultValue: items[0].value,
+    items: [
+      ...items,
       {
         disabled: true,
-        label: "Sample 4",
+        label: <Text> Sample 4</Text>,
         value: "sample-4",
       },
     ],
@@ -79,8 +107,8 @@ export const SingleDisabled: Story = {
 
 export const Readonly: Story = {
   args: {
-    defaultValue: options[0].value,
-    options: options,
+    defaultValue: items[0].value,
+    items: items,
     readonly: true,
   },
 };
