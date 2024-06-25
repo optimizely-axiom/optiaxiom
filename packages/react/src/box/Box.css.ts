@@ -10,7 +10,6 @@ export const base = style({
       boxSizing: "border-box",
       fontFamily: theme.fontFamily.sans,
       fontFeatureSettings: '"cv02", "cv03", "cv04", "cv11"',
-      fontSize: "100%",
       margin: 0,
       padding: 0,
       selectors: {
@@ -24,6 +23,16 @@ export const base = style({
             borderTopWidth: "1px" /* 3 */,
             color: "inherit" /* 2 */,
             height: 0 /* 1 */,
+          },
+        },
+
+        ...{
+          /**
+           * Remove the default font size and weight for headings.
+           */
+          "&:is(h1, h2, h3, h4, h5, h6)": {
+            fontSize: "inherit",
+            fontWeight: "inherit",
           },
         },
 
@@ -55,6 +64,7 @@ export const base = style({
            */
           "&:is(button, input, optgroup, select, textarea)": {
             color: "inherit" /* 1 */,
+            fontSize: "100%" /* 1 */,
             letterSpacing: "inherit" /* 1 */,
           },
         },
