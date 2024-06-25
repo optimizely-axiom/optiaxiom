@@ -9,7 +9,6 @@ export const Item = ({
   <Flex alignItems="center" gap="8">
     <Box
       asChild
-      fontFamily="sans"
       fontSize="lg"
       fontWeight="500"
       textAlign="center"

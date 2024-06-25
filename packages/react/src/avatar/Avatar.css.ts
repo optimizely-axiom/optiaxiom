@@ -50,7 +50,6 @@ export const fallback = recipe({
   base: sprinkles({
     alignItems: "center",
     display: "flex",
-    fontFamily: "sans",
     justifyContent: "center",
     rounded: "inherit",
     size: "full",

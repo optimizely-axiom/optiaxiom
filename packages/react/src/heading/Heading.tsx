@@ -42,14 +42,7 @@ export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
     const fontSize = mapTagToFontSize[variant ?? mapLevelToTag[level]];
 
     return (
-      <Text
-        asChild
-        fontFamily="sans"
-        fontSize={fontSize}
-        fontWeight="700"
-        ref={ref}
-        {...props}
-      >
+      <Text asChild fontSize={fontSize} fontWeight="700" ref={ref} {...props}>
         <Comp>{children}</Comp>
       </Text>
     );

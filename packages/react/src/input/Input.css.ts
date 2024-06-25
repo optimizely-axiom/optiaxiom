@@ -11,7 +11,6 @@ export const wrapper = recipe({
     color: theme.colors["fg.default"],
     display: "flex",
     flexDirection: "row",
-    fontFamily: theme.fontFamily["sans"],
     selectors: {
       '&:focus-within:is([data-invalid="true"])': {
         outlineColor: theme.colors["red.200"],
@@ -72,7 +71,6 @@ export const wrapper = recipe({
 export const input = recipe({
   base: {
     background: theme.colors["transparent"],
-    fontFamily: theme.fontFamily["sans"],
     width: "100%",
 
     selectors: {
