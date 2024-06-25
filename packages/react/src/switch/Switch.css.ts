@@ -1,27 +1,19 @@
 import { sprinkles } from "../sprinkles";
 import { theme } from "../styles";
-import { type RecipeVariants, recipe, style } from "../vanilla-extract";
+import { type RecipeVariants, recipe } from "../vanilla-extract";
 
-export const wrapper = style({
-  alignItems: "center",
-  display: "flex",
-  flexDirection: "row",
-});
-
-export const switchRoot = recipe({
+export const root = recipe({
   base: {
-    all: "unset",
     backgroundColor: theme.colors["fg.brand"],
+    borderColor: "transparent",
     borderRadius: "24px",
+    padding: 0,
     position: "relative",
 
     selectors: {
       "&:focus-visible": {
-        outline: "1px",
-        outlineColor: theme.colors["fg.brand.hover"],
-        outlineOffset: "2px",
-        outlineStyle: "solid",
-        outlineWidth: "2px",
+        outline: `${theme.colors["brand.300"]} solid 2px`,
+        outlineOffset: "1px",
       },
       "&:hover": {
         backgroundColor: theme.colors["fg.brand.hover"],
@@ -30,7 +22,7 @@ export const switchRoot = recipe({
         backgroundColor: theme.colors["border.secondary"],
         cursor: "not-allowed",
       },
-      '&[data-state="unchecked"]&:not([data-disabled])': {
+      '&[data-state="unchecked"]:not([data-disabled])': {
         backgroundColor: theme.colors["border.default"],
       },
     },
@@ -49,17 +41,17 @@ export const switchRoot = recipe({
   },
 });
 
-export const switchThumb = recipe({
+export const thumb = recipe({
   base: {
     backgroundColor: "white",
     borderRadius: "24px",
     display: "block",
-    transform: "translateX(2px)",
+    transform: "translateX(0px)",
     transition: "transform 100ms",
     willChange: "transform",
 
     selectors: {
-      '&[data-state="checked"]': { transform: "translateX(22px)" },
+      '&[data-state="checked"]': { transform: "translateX(20px)" },
     },
   },
   variants: {
@@ -76,4 +68,4 @@ export const switchThumb = recipe({
   },
 });
 
-export type SwitchVariants = RecipeVariants<typeof switchRoot>;
+export type SwitchVariants = RecipeVariants<typeof root>;

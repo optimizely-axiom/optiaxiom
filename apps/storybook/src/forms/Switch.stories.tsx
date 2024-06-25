@@ -8,9 +8,6 @@ const meta: Meta<typeof Switch> = {
     label: "On label",
   },
   component: Switch,
-  parameters: {
-    layout: "centered",
-  },
 };
 
 export default meta;
