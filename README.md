@@ -18,6 +18,11 @@ function App() {
 
 Please read the full [documentation](https://optimizely-axiom.github.io/optiaxiom/) for guides, examples, and API.
 
+| Package name                                                                                                   | Description      |
+| -------------------------------------------------------------------------------------------------------------- | ---------------- |
+| [`@optiaxiom/react`](https://github.com/optimizely-axiom/optiaxiom/tree/main/packages/react)                   | React components |
+| [`@optiaxiom/web-components`](https://github.com/optimizely-axiom/optiaxiom/tree/main/packages/web-components) | Web components   |
+
 ## Contributing
 
 Clone the project and run:
