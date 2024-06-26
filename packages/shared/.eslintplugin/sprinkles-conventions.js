@@ -40,17 +40,6 @@ export default ESLintUtils.RuleCreator.withoutDocs({
             node,
           });
         },
-
-      /**
-       * @type {import('@typescript-eslint/utils').TSESLint.RuleListener['Property']}
-       */
-      'CallExpression[callee.name="recipe"] Property[key.name="defaultVariants"]':
-        (node) => {
-          context.report({
-            messageId: "defaultVariants",
-            node,
-          });
-        },
     };
   },
 
@@ -60,9 +49,6 @@ export default ESLintUtils.RuleCreator.withoutDocs({
     fixable: "code",
     messages: {
       const: "Please cast arrays using `as const`.",
-      defaultVariants: `Please specify defaults within the component prop types instead.
-
-Otherwise there is a mismatch between the component logic and the styling logic.`,
       string: "Please use string type for sprinkle values.",
     },
     schema: [],
