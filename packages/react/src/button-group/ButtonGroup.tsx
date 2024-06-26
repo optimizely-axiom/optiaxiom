@@ -46,7 +46,7 @@ export const ButtonGroup = forwardRef<HTMLDivElement, ButtonGroupProps>(
         return (
           <Box
             asChild
-            className={styles.button({ orientation, spacing: gap !== "0" })}
+            {...styles.button({ orientation, spacing: gap !== "0" })}
           >
             {cloneElement(child, {
               colorScheme: child.props.colorScheme || colorScheme,

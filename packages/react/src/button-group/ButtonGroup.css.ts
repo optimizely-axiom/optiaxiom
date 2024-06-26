@@ -1,73 +1,73 @@
-import { type RecipeVariants, recipe } from "../vanilla-extract";
+import { type RecipeVariants, recipe, style } from "../vanilla-extract";
 
 export const button = recipe({
-  base: {
+  base: style({
     selectors: {
       "&:not(:first-child):not(:last-child)": {
         borderRadius: 0,
       },
     },
-  },
-  compoundVariants: [
-    {
-      style: {
-        selectors: {
-          ["&:not(:first-child)"]: {
-            borderLeft: "none",
-          },
-        },
-      },
-      variants: {
-        orientation: "horizontal",
-        spacing: false,
-      },
-    },
-    {
-      style: {
-        selectors: {
-          ["&:not(:first-child)"]: {
-            borderTop: "none",
-          },
-        },
-      },
-      variants: {
-        orientation: "vertical",
-        spacing: false,
-      },
-    },
-  ],
+  }),
   variants: {
     orientation: {
-      horizontal: {
+      horizontal: style({
         selectors: {
-          [`&:first-child`]: {
+          "&:first-child": {
             borderBottomRightRadius: 0,
             borderTopRightRadius: 0,
           },
-          [`&:last-child`]: {
+          "&:last-child": {
             borderBottomLeftRadius: 0,
             borderTopLeftRadius: 0,
           },
         },
-      },
-      vertical: {
+      }),
+      vertical: style({
         selectors: {
-          [`&:first-child`]: {
+          "&:first-child": {
             borderBottomLeftRadius: 0,
             borderBottomRightRadius: 0,
           },
-          [`&:last-child`]: {
+          "&:last-child": {
             borderTopLeftRadius: 0,
             borderTopRightRadius: 0,
           },
         },
-      },
+      }),
     },
     spacing: {
       false: {},
       true: {},
     },
   },
+  variantsCompounded: [
+    {
+      style: style({
+        selectors: {
+          "&:not(:first-child)": {
+            borderLeft: "none",
+          },
+        },
+      }),
+      variants: {
+        orientation: "horizontal",
+        spacing: false,
+      },
+    },
+    {
+      style: style({
+        selectors: {
+          "&:not(:first-child)": {
+            borderTop: "none",
+          },
+        },
+      }),
+      variants: {
+        orientation: "vertical",
+        spacing: false,
+      },
+    },
+  ],
 });
 
 export type ButtonGroupVariants = RecipeVariants<typeof button>;

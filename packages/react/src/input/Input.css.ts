@@ -1,63 +1,64 @@
 import { theme } from "../styles";
-import { type RecipeVariants, recipe } from "../vanilla-extract";
+import { type RecipeVariants, recipe, style } from "../vanilla-extract";
 
 export const wrapper = recipe({
-  base: {
-    alignItems: "center",
-    border: "1px",
-    borderColor: theme.colors["border.default"],
-    borderRadius: theme.borderRadius.sm,
-    borderStyle: "solid",
-    color: theme.colors["fg.default"],
-    display: "flex",
-    flexDirection: "row",
-    selectors: {
-      '&:focus-within:is([data-invalid="true"])': {
-        outlineColor: theme.colors["red.200"],
-        outlineOffset: "1px",
-        outlineStyle: "solid",
-        outlineWidth: "2px",
-      },
-      '&:focus-within:not([data-invalid="true"])': {
-        outlineColor: theme.colors["brand.200"],
-        outlineOffset: "1px",
-        outlineStyle: "solid",
-        outlineWidth: "2px",
-      },
-      "&:hover": {
-        borderColor: theme.colors["border.brand"],
-      },
-      '&[data-disabled="true"]': {
-        backgroundColor: theme.colors["bg.disabled"],
-        borderColor: theme.colors["border.secondary"],
-        pointerEvents: "none",
-      },
-      '&[data-invalid="true"]': {
-        borderColor: theme.colors["border.error"],
-      },
+  base: [
+    {
+      alignItems: "center",
+      border: "1",
+      borderColor: "border.default",
+      color: "fg.default",
+      display: "flex",
+      flexDirection: "row",
+      rounded: "sm",
     },
-  },
+    style({
+      selectors: {
+        '&:focus-within:is([data-invalid="true"])': {
+          outlineColor: theme.colors["red.200"],
+          outlineOffset: "1px",
+          outlineStyle: "solid",
+          outlineWidth: "2px",
+        },
+        '&:focus-within:not([data-invalid="true"])': {
+          outlineColor: theme.colors["brand.200"],
+          outlineOffset: "1px",
+          outlineStyle: "solid",
+          outlineWidth: "2px",
+        },
+        "&:hover": {
+          borderColor: theme.colors["border.brand"],
+        },
+        '&[data-disabled="true"]': {
+          backgroundColor: theme.colors["bg.disabled"],
+          borderColor: theme.colors["border.secondary"],
+          pointerEvents: "none",
+        },
+        '&[data-invalid="true"]': {
+          borderColor: theme.colors["border.error"],
+        },
+      },
+    }),
+  ],
 
   variants: {
     size: {
       sm: {
-        fontSize: theme.fontSize["sm"].fontSize,
-        height: "24px",
-        lineHeight: theme.fontSize["sm"].lineHeight,
-        padding: "8px 8px",
+        fontSize: "sm",
+        h: "24",
+        p: "8",
       },
       md: {
-        fontSize: theme.fontSize["md"].fontSize,
-        height: "32px",
-        lineHeight: theme.fontSize["md"].lineHeight,
-        padding: "8px 8px",
+        fontSize: "md",
+        h: "32",
+        p: "8",
       },
 
       lg: {
-        fontSize: theme.fontSize["lg"].fontSize,
-        height: "40px",
-        lineHeight: theme.fontSize["lg"].lineHeight,
-        padding: "4px 8px",
+        fontSize: "lg",
+        h: "40",
+        px: "8",
+        py: "4",
       },
     },
     variant: {
@@ -68,16 +69,19 @@ export const wrapper = recipe({
 });
 
 export const input = recipe({
-  base: {
-    background: theme.colors["transparent"],
-    width: "100%",
-
-    selectors: {
-      "&:focus-visible": {
-        outlineWidth: "0px",
-      },
+  base: [
+    {
+      bg: "transparent",
+      w: "full",
     },
-  },
+    style({
+      selectors: {
+        "&:focus-visible": {
+          outlineWidth: "0px",
+        },
+      },
+    }),
+  ],
   variants: {
     variant: {
       default: {

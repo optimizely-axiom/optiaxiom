@@ -1,5 +1,4 @@
 import { Slot, Slottable } from "@radix-ui/react-slot";
-import clsx from "clsx";
 import {
   type ComponentPropsWithRef,
   type ReactNode,
@@ -80,16 +79,16 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       <Box
         aria-disabled={isDisabled}
         asChild
-        className={clsx(
-          styles.button({
+        data-disabled={isDisabled}
+        onClick={isDisabled ? undefined : onClick}
+        {...styles.button(
+          {
             colorScheme: finalColorScheme,
             size,
             variant: finalVariant,
-          }),
+          },
           className,
         )}
-        data-disabled={isDisabled}
-        onClick={isDisabled ? undefined : onClick}
         {...props}
       >
         <Comp ref={ref}>
