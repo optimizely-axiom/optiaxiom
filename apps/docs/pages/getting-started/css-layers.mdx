@@ -44,7 +44,7 @@ If you are importing a third party library then you can include the layer in the
 
 Because Axiom components import their own CSS files, depending on how your bundler is configured, in certain cases you might end up loading vendor styles before any of your application styles. This will force `optiaxiom` layer to always come first and prevent you from adding any other layer before it.
 
-In these cases you can use the built-in `optiaxiom.base` layer to palce your own styles before any of Axiom's other styles.
+In these cases you can use the built-in `optiaxiom.base` layer to place your own styles before any of Axiom's other styles.
 
 ```css
 @layer optiaxiom.base {
