@@ -115,44 +115,22 @@ export const Icons: Story = {
   ),
 };
 export const HorizontalGroup: Story = {
-  args: {
-    variant: "outline",
-  },
-  render: (args) => (
+  render: () => (
     <ButtonGroup>
-      <Button {...args} leftSection={<IconPhoto />}>
-        Gallery
-      </Button>
-      <Button {...args} rightSection={<IconDownload />}>
-        Download
-      </Button>
-      <Button
-        {...args}
-        leftSection={<IconPhoto />}
-        rightSection={<IconArrowRight />}
-      >
+      <Button leftSection={<IconPhoto />}>Gallery</Button>
+      <Button rightSection={<IconDownload />}>Download</Button>
+      <Button leftSection={<IconPhoto />} rightSection={<IconArrowRight />}>
         Enter Gallery
       </Button>
     </ButtonGroup>
   ),
 };
 export const VerticalGroup: Story = {
-  args: {
-    variant: "outline",
-  },
-  render: (args) => (
+  render: () => (
     <ButtonGroup orientation="vertical">
-      <Button {...args} leftSection={<IconPhoto />}>
-        Gallery
-      </Button>
-      <Button {...args} rightSection={<IconDownload />}>
-        Download
-      </Button>
-      <Button
-        {...args}
-        leftSection={<IconPhoto />}
-        rightSection={<IconArrowRight />}
-      >
+      <Button leftSection={<IconPhoto />}>Gallery</Button>
+      <Button rightSection={<IconDownload />}>Download</Button>
+      <Button leftSection={<IconPhoto />} rightSection={<IconArrowRight />}>
         Enter Gallery
       </Button>
     </ButtonGroup>
