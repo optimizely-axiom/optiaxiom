@@ -1,4 +1,3 @@
-import clsx from "clsx";
 import {
   Children,
   type ComponentPropsWithRef,
@@ -34,7 +33,8 @@ export const ButtonGroup = forwardRef<HTMLDivElement, ButtonGroupProps>(
     ));
     return (
       <Flex
-        className={clsx(styles.buttonGroup({ orientation }), className)}
+        className={className}
+        flexDirection={orientation === "vertical" ? "column" : "row"}
         gap={gap}
         ref={ref}
         {...props}
