@@ -70,17 +70,4 @@ export const button = recipe({
   },
 });
 
-export const buttonGroup = recipe({
-  base: {},
-  variants: {
-    orientation: {
-      horizontal: {
-        flexDirection: "row",
-      },
-      vertical: {
-        flexDirection: "column",
-      },
-    },
-  },
-});
 export type ButtonGroupVariants = RecipeVariants<typeof button>;
