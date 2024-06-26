@@ -11,7 +11,14 @@ export default meta;
 
 type Story = StoryObj<typeof Field>;
 
-export const InputWithIcon: Story = {
+export const Basic: Story = {
+  args: {
+    children: <Input placeholder="This is an Input" />,
+    label: "Form label",
+  },
+};
+
+export const Required: Story = {
   args: {
     children: (
       <Input leftSection={<IconCalendar size="16" />} placeholder="With Icon" />
@@ -21,14 +28,7 @@ export const InputWithIcon: Story = {
   },
 };
 
-export const BasicInput: Story = {
-  args: {
-    children: <Input placeholder="This is an Input" />,
-    label: "Form label",
-  },
-};
-
-export const DisabledInput: Story = {
+export const Disabled: Story = {
   args: {
     children: <Input placeholder="Disabled" />,
     disabled: true,
@@ -36,7 +36,7 @@ export const DisabledInput: Story = {
   },
 };
 
-export const ErrorInput: Story = {
+export const Error: Story = {
   args: {
     children: <Input placeholder="With error" />,
     error: "Form note",
@@ -44,7 +44,7 @@ export const ErrorInput: Story = {
   },
 };
 
-export const InputWithDescription: Story = {
+export const Description: Story = {
   args: {
     children: <Input placeholder="With description" />,
     description: "Form note",
@@ -52,7 +52,7 @@ export const InputWithDescription: Story = {
   },
 };
 
-export const InputWithDescriptionError: Story = {
+export const DescriptionAndError: Story = {
   args: {
     children: <Input placeholder="With error" />,
     description: "Form note",
