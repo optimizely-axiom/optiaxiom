@@ -1,10 +1,11 @@
-import { type RecipeVariants, createVar, recipe } from "../vanilla-extract";
-const roundedBorderRadius = createVar();
+import { type RecipeVariants, recipe } from "../vanilla-extract";
+
 export const button = recipe({
   base: {
-    borderRadius: "0",
-    vars: {
-      [roundedBorderRadius]: "5px",
+    selectors: {
+      "&:not(:first-child):not(:last-child)": {
+        borderRadius: 0,
+      },
     },
   },
   compoundVariants: [
@@ -40,24 +41,24 @@ export const button = recipe({
       horizontal: {
         selectors: {
           [`&:first-child`]: {
-            borderBottomLeftRadius: roundedBorderRadius,
-            borderTopLeftRadius: roundedBorderRadius,
+            borderBottomRightRadius: 0,
+            borderTopRightRadius: 0,
           },
           [`&:last-child`]: {
-            borderBottomRightRadius: roundedBorderRadius,
-            borderTopRightRadius: roundedBorderRadius,
+            borderBottomLeftRadius: 0,
+            borderTopLeftRadius: 0,
           },
         },
       },
       vertical: {
         selectors: {
           [`&:first-child`]: {
-            borderTopLeftRadius: roundedBorderRadius,
-            borderTopRightRadius: roundedBorderRadius,
+            borderBottomLeftRadius: 0,
+            borderBottomRightRadius: 0,
           },
           [`&:last-child`]: {
-            borderBottomLeftRadius: roundedBorderRadius,
-            borderBottomRightRadius: roundedBorderRadius,
+            borderTopLeftRadius: 0,
+            borderTopRightRadius: 0,
           },
         },
       },
