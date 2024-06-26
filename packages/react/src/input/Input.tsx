@@ -1,4 +1,3 @@
-import clsx from "clsx";
 import { type ComponentPropsWithRef, type ReactNode, forwardRef } from "react";
 
 import { Box } from "../box";
@@ -38,9 +37,9 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       <Box
         aria-disabled={disabled}
         aria-invalid={error}
-        className={clsx(styles.wrapper({ size, variant }), className)}
         data-disabled={disabled}
         data-invalid={error}
+        {...styles.wrapper({ size, variant }, className)}
         {...sprinkleProps}
       >
         {leftSection && (
@@ -48,7 +47,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             {leftSection}
           </Flex>
         )}
-        <Box asChild className={styles.input({ variant })}>
+        <Box asChild {...styles.input({ variant })}>
           <input id={id} readOnly={disabled} ref={ref} {...restProps} />
         </Box>
         {rightSection && (

@@ -1,5 +1,5 @@
 import { theme } from "../styles";
-import { createVar } from "../vanilla-extract";
+import { createVar, style } from "../vanilla-extract";
 import { type RecipeVariants, recipe } from "../vanilla-extract";
 
 const accentColorVar = createVar();
@@ -7,51 +7,39 @@ const solidAccentColorVar = createVar();
 const subtleAccentColorVar = createVar();
 
 export const button = recipe({
-  base: {
-    alignItems: "center",
-    border: "0",
-    borderRadius: theme.borderRadius.sm,
-    cursor: "pointer",
-    display: "inline-flex",
-    flexDirection: "row",
-    gap: theme.spacing.xs,
-    justifyContent: "center",
-    overflow: "hidden",
-    position: "relative",
-    transitionDuration: "150ms",
-    transitionProperty: "background-color, border-color, color",
-    transitionTimingFunction: "ease",
-
-    selectors: {
-      '&:active:not([data-disabled="true"])': {
-        boxShadow: theme.boxShadow.inner,
-      },
-      "&:focus-visible": {
-        outlineOffset: "1px",
-        outlineStyle: "solid",
-        outlineWidth: "1px",
-      },
-      '&[data-disabled="true"]': {
-        cursor: "not-allowed",
-      },
-    },
-  },
-
-  compoundVariants: [
+  base: [
     {
-      style: {
-        borderColor: theme.colors["border.default"],
-      },
-      variants: {
-        colorScheme: "secondary",
-        variant: "outline",
-      },
+      alignItems: "center",
+      display: "inline-flex",
+      flexDirection: "row",
+      gap: "xs",
+      justifyContent: "center",
+      overflow: "hidden",
+      transition: "colors",
     },
-  ],
+    style({
+      borderRadius: theme.borderRadius.sm,
+      cursor: "pointer",
+      position: "relative",
 
+      selectors: {
+        '&:active:not([data-disabled="true"])': {
+          boxShadow: theme.boxShadow.inner,
+        },
+        "&:focus-visible": {
+          outlineOffset: "1px",
+          outlineStyle: "solid",
+          outlineWidth: "1px",
+        },
+        '&[data-disabled="true"]': {
+          cursor: "not-allowed",
+        },
+      },
+    }),
+  ],
   variants: {
     colorScheme: {
-      danger: {
+      danger: style({
         vars: {
           [accentColorVar]: theme.colors["bg.error.solid"],
           [solidAccentColorVar]: theme.colors["bg.error.solid.hover"],
@@ -63,8 +51,8 @@ export const button = recipe({
             outlineColor: "red.200",
           },
         },
-      },
-      primary: {
+      }),
+      primary: style({
         vars: {
           [accentColorVar]: theme.colors["bg.brand.solid"],
           [solidAccentColorVar]: theme.colors["bg.brand.solid.hover"],
@@ -76,8 +64,8 @@ export const button = recipe({
             outlineColor: theme.colors["brand.300"],
           },
         },
-      },
-      secondary: {
+      }),
+      secondary: style({
         vars: {
           [accentColorVar]: theme.colors["fg.secondary"],
           [solidAccentColorVar]: theme.colors["fg.secondary.hover"],
@@ -89,30 +77,27 @@ export const button = recipe({
             outlineColor: theme.colors["neutral.500"],
           },
         },
-      },
+      }),
     },
     size: {
       sm: {
-        fontSize: theme.fontSize["sm"].fontSize,
-        height: "24px",
-        lineHeight: theme.fontSize["sm"].lineHeight,
-        paddingInline: "10px",
+        fontSize: "sm",
+        h: "24",
+        px: "10",
       },
       md: {
-        fontSize: theme.fontSize["md"].fontSize,
-        height: "32px",
-        lineHeight: theme.fontSize["md"].lineHeight,
-        paddingInline: "12px",
+        fontSize: "md",
+        h: "32",
+        px: "12",
       },
       lg: {
-        fontSize: theme.fontSize["lg"].fontSize,
-        height: "40px",
-        lineHeight: theme.fontSize["lg"].lineHeight,
-        paddingInline: "16px",
+        fontSize: "lg",
+        h: "40",
+        px: "16",
       },
     },
     variant: {
-      ghost: {
+      ghost: style({
         backgroundColor: "transparent",
         color: accentColorVar,
 
@@ -125,8 +110,8 @@ export const button = recipe({
             color: theme.colors["fg.disabled"],
           },
         },
-      },
-      outline: {
+      }),
+      outline: style({
         backgroundColor: "transparent",
         border: `1px solid ${accentColorVar}`,
         color: accentColorVar,
@@ -140,8 +125,8 @@ export const button = recipe({
             color: theme.colors["fg.disabled"],
           },
         },
-      },
-      solid: {
+      }),
+      solid: style({
         backgroundColor: accentColorVar,
         color: theme.colors["fg.default.inverse"],
 
@@ -155,9 +140,20 @@ export const button = recipe({
             color: theme.colors["fg.disabled"],
           },
         },
-      },
+      }),
     },
   },
+  variantsCompounded: [
+    {
+      style: style({
+        borderColor: theme.colors["border.default"],
+      }),
+      variants: {
+        colorScheme: "secondary",
+        variant: "outline",
+      },
+    },
+  ],
 });
 
 export type ButtonVariants = RecipeVariants<typeof button>;

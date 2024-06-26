@@ -1,16 +1,20 @@
-import { sprinkles } from "../sprinkles";
 import { mapValues } from "../utils";
+import { style } from "../vanilla-extract";
 import { type RecipeVariants, recipe } from "../vanilla-extract";
 
 export const avatar = recipe({
-  base: {
-    alignItems: "center",
-    borderRadius: "100%",
-    display: "inline-flex",
-    justifyContent: "center",
-    overflow: "hidden",
-    userSelect: "none",
-  },
+  base: [
+    {
+      alignItems: "center",
+      display: "inline-flex",
+      justifyContent: "center",
+      overflow: "hidden",
+      rounded: "full",
+    },
+    style({
+      userSelect: "none",
+    }),
+  ],
 
   variants: {
     colorScheme: mapValues(
@@ -28,18 +32,17 @@ export const avatar = recipe({
         slate: "slate",
         yellow: "yellow",
       } as const,
-      (color) =>
-        sprinkles({
-          bg: `${color}.50`,
-          color: `${color}.500`,
-        }),
+      (color) => ({
+        bg: `${color}.50`,
+        color: `${color}.500`,
+      }),
     ),
     size: {
-      xs: sprinkles({ fontSize: "xs", size: "xs" }),
-      sm: sprinkles({ fontSize: "sm", size: "sm" }),
-      md: sprinkles({ fontSize: "md", size: "md" }),
-      lg: sprinkles({ fontSize: "lg", size: "lg" }),
-      xl: sprinkles({ fontSize: "xl", size: "xl" }),
+      xs: { fontSize: "xs", size: "xs" },
+      sm: { fontSize: "sm", size: "sm" },
+      md: { fontSize: "md", size: "md" },
+      lg: { fontSize: "lg", size: "lg" },
+      xl: { fontSize: "xl", size: "xl" },
     },
   },
 });
@@ -47,22 +50,22 @@ export const avatar = recipe({
 export type AvatarVariants = RecipeVariants<typeof avatar>;
 
 export const fallback = recipe({
-  base: sprinkles({
+  base: {
     alignItems: "center",
     display: "flex",
     justifyContent: "center",
     rounded: "inherit",
     size: "full",
     textTransform: "uppercase",
-  }),
+  },
 
   variants: {
     size: {
-      xs: sprinkles({ px: "4" }),
-      sm: sprinkles({ px: "6" }),
-      md: sprinkles({ px: "8" }),
-      lg: sprinkles({ px: "10" }),
-      xl: sprinkles({ px: "20" }),
+      xs: { px: "4" },
+      sm: { px: "6" },
+      md: { px: "8" },
+      lg: { px: "10" },
+      xl: { px: "20" },
     },
   },
 });

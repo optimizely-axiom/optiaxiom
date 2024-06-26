@@ -1,5 +1,4 @@
 import * as RadixAvatar from "@radix-ui/react-avatar";
-import clsx from "clsx";
 import { type ComponentPropsWithRef, forwardRef } from "react";
 
 import type { ExtendProps } from "../utils";
@@ -46,14 +45,14 @@ export const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
     return (
       <Box
         asChild
-        className={clsx(styles.avatar({ colorScheme, size }), className)}
+        {...styles.avatar({ colorScheme, size }, className)}
         {...props}
       >
         <RadixAvatar.Root ref={ref}>
           <Box asChild objectFit="cover" rounded="inherit" size="full">
             <RadixAvatar.Image alt={name} src={src} />
           </Box>
-          <Box asChild className={styles.fallback({ size })}>
+          <Box asChild {...styles.fallback({ size })}>
             <RadixAvatar.Fallback delayMs={FALLBACK_DELAY_IN_MS}>
               {/* TODO: Add a generic user icon, if `children` is `undefined` */}
               {icon ? icon : name ? getInitialsFromName(name) : children}
