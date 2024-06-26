@@ -33,6 +33,13 @@ jobs:
 
       - run: pnpm install
 
+      - uses: actions/cache@v4
+        with:
+          path: apps/docs/.next/cache
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('pnpm-lock.yaml') }}-${{ hashFiles('apps/docs/**/*.mjs', 'apps/docs/**/*.mdx', 'apps/docs/**/*.tsx') }}
+          restore-keys: |
+            ${{ runner.os }}-nextjs-${{ hashFiles('pnpm-lock.yaml') }}-
+
       - run: pnpm -F docs... build && echo '' > ./apps/docs/out/.nojekyll
 
       - uses: actions/upload-pages-artifact@v3
