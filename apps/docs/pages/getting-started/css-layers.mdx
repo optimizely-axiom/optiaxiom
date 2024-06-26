@@ -1,0 +1,63 @@
+# CSS Layers
+
+All Axiom styles are declared inside an [`@layer`](https://developer.mozilla.org/en-US/docs/Web/CSS/@layer) rule called `optiaxiom` to allow controlling the order of precedence of styles.
+
+```css
+@layer optiaxiom {
+  /* all Axiom styles */
+}
+```
+
+## Basic usage
+
+### Global styles
+
+Global styles include reset/normalize rules and rules that target elements without any class modifiers. These global styles can override styles coming from Axiom.
+
+Place all of your existing global styles in a layer before this `optiaxiom` layer.
+
+```css
+@layer app, optiaxiom;
+
+@layer app {
+  * {
+    box-sizing: border-box;
+  }
+
+  a {
+    color: #228be6;
+  }
+
+  /* etc. */
+}
+```
+
+If you are importing a third party library then you can include the layer in the import statement:
+
+```css
+@layer reset, optiaxiom;
+
+@import "nextra-theme-docs/style.css" layer(reset);
+```
+
+### `optiaxiom.base` layer
+
+Because Axiom components import their own CSS files, depending on how your bundler is configured, in certain cases you might end up loading vendor styles before any of your application styles. This will force `optiaxiom` layer to always come first and prevent you from adding any other layer before it.
+
+In these cases you can use the built-in `optiaxiom.base` layer to palce your own styles before any of Axiom's other styles.
+
+```css
+@layer optiaxiom.base {
+  * {
+    box-sizing: border-box;
+  }
+
+  a {
+    color: #228be6;
+  }
+
+  /* etc. */
+}
+```
+
+Internally we place the `optiaxiom.base` layer at the very top followed by all our other layers. This will ensure your global styles come first in the cascade.

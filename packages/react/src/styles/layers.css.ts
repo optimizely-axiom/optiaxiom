@@ -2,5 +2,6 @@
 import { globalLayer, layer } from "@vanilla-extract/css";
 
 export const axiom = globalLayer("optiaxiom");
+export const base = globalLayer({ parent: axiom }, "base");
 export const reset = layer({ parent: axiom }, "reset");
 export const components = layer({ parent: axiom }, "components");
