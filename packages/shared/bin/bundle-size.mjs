@@ -32,12 +32,10 @@ async function compare({ file }) {
   return compareResultsInReports(
     localReport.map((value) => ({
       ...value,
-      packageName: value.packageName ?? "react",
       path: value.name,
     })),
     remoteReport.map((value) => ({
       ...value,
-      packageName: value.packageName ?? "react",
       path: value.name,
     })),
   );

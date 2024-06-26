@@ -26,7 +26,7 @@ jobs:
 
       - run: |
           pnpm build
-          pnpm -F react exec -- pnpm --silent bundle-size > bundle-size-main.json
+          pnpm --silent bundle-size > bundle-size-main.json
 
       - uses: actions/upload-artifact@v4
         with:
