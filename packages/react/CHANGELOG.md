@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 0.1.0-next.5
+
+### Patch Changes
+
+- 9215e9c: add optiaxiom.base layer for controlling cascade
+
 ## 0.1.0-next.4
 
 ### Patch Changes
