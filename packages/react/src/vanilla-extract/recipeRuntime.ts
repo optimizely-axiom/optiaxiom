@@ -1,6 +1,14 @@
+import type { CSSProperties } from "react";
+
+import type { ExtendProps } from "../utils";
+
 import { type Sprinkles } from "../sprinkles";
 
-type RecipeStyleRule = Array<Sprinkles | string> | Sprinkles | string;
+type SprinklesRule = ExtendProps<
+  Partial<Record<"selectors" | "vars" | keyof CSSProperties, never>>,
+  Sprinkles
+>;
+type RecipeStyleRule = Array<SprinklesRule | string> | SprinklesRule | string;
 
 type VariantGroups = Record<string, Record<string, unknown>>;
 
