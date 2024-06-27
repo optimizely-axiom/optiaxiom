@@ -1,15 +1,16 @@
 import { theme } from "../styles";
 import { style } from "../vanilla-extract";
 
-export const dialogContent = style({
+export const content = style({
   backgroundColor: "white",
-  left: "50%",
-  position: "fixed",
-  top: "50%",
-  transform: "translate(-50%, -50%)",
+  boxShadow: "0 2px 4px 0 #464568",
+  maxHeight: "90vh",
+  maxWidth: "480px",
+  minWidth: "350px",
+  position: "absolute",
 });
 
-export const dialogOverlay = style({
+export const overlay = style({
   backgroundColor: theme.colors["dark.200"],
-  position: "fixed",
+  position: "absolute",
 });
