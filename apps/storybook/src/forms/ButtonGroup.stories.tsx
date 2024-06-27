@@ -3,7 +3,9 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Button, ButtonGroup } from "@optiaxiom/react";
 import { IconArrowRight, IconDownload, IconPhoto } from "@tabler/icons-react";
 
-const meta: Meta<typeof ButtonGroup> = {};
+const meta: Meta<typeof ButtonGroup> = {
+  component: ButtonGroup,
+};
 
 export default meta;
 
