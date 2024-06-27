@@ -21,13 +21,15 @@ type VariantDefinition<Variants extends VariantGroups> = {
 
 type Resolve<T> = { [Key in keyof T]: T[Key] } & NonNullable<unknown>;
 
-export const recipeRuntime = <Variants extends VariantGroups>({
+export const recipeRuntime = <
+  Variants extends VariantGroups = Record<string, never>,
+>({
   base = {},
   variants,
   variantsCompounded = [],
 }: {
   base?: RecipeStyleRule;
-  variants: VariantDefinition<Variants>;
+  variants?: VariantDefinition<Variants>;
   variantsCompounded?: Array<CompoundVariant<NoInfer<Variants>>>;
 }) => {
   return (

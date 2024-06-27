@@ -1,6 +1,8 @@
-import { style } from "../vanilla-extract";
+import { recipe, style } from "../vanilla-extract";
 
-export const base = style({
-  WebkitFontSmoothing: "auto",
-  fontSize: "0.875em",
+export const code = recipe({
+  base: style({
+    WebkitFontSmoothing: "auto",
+    fontSize: "0.875em",
+  }),
 });

@@ -1,11 +1,12 @@
 import { createSprinkles, defineProperties } from "@vanilla-extract/sprinkles";
 
-import { theme } from "../styles";
 import { conditions } from "../utils";
-import { style } from "../vanilla-extract";
+import { recipe } from "../vanilla-extract";
 
-export const base = style({
-  backgroundColor: theme.colors["border.default"],
+export const base = recipe({
+  base: {
+    bg: "border.default",
+  },
 });
 
 const props = defineProperties({

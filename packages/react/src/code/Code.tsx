@@ -1,5 +1,4 @@
 import { Slot } from "@radix-ui/react-slot";
-import clsx from "clsx";
 import { type ComponentPropsWithRef, forwardRef } from "react";
 
 import type { ExtendProps } from "../utils";
@@ -19,10 +18,10 @@ export const Code = forwardRef<HTMLElement, CodeProps>(
       <Box
         asChild
         bg="bg.neutral"
-        className={clsx(className, styles.base)}
         display="inline-block"
         px="4"
         rounded="sm"
+        {...styles.code({}, className)}
         {...props}
       >
         <Comp ref={ref}>{children}</Comp>
