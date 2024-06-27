@@ -21,6 +21,7 @@ export const button = recipe({
       borderRadius: theme.borderRadius.sm,
       cursor: "pointer",
       position: "relative",
+      textDecoration: "none",
 
       selectors: {
         '&:active:not([data-disabled="true"])': {
