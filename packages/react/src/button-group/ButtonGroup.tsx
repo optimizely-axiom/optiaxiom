@@ -20,7 +20,7 @@ type ButtonGroupProps = ExtendProps<
     children: ReactNode;
   } & Pick<
     ComponentPropsWithRef<typeof Button>,
-    "colorScheme" | "disabled" | "preset" | "size" | "variant"
+    "appearance" | "colorScheme" | "disabled" | "size" | "variant"
   > &
     styles.ButtonGroupVariants
 >;
@@ -28,13 +28,13 @@ type ButtonGroupProps = ExtendProps<
 export const ButtonGroup = forwardRef<HTMLDivElement, ButtonGroupProps>(
   (
     {
+      appearance,
       children,
       className,
       colorScheme,
       disabled,
       gap = "0",
       orientation = "horizontal",
-      preset,
       size,
       variant,
       ...props
@@ -49,9 +49,9 @@ export const ButtonGroup = forwardRef<HTMLDivElement, ButtonGroupProps>(
             {...styles.button({ orientation, spacing: gap !== "0" })}
           >
             {cloneElement(child, {
+              appearance: child.props.appearance || appearance,
               colorScheme: child.props.colorScheme || colorScheme,
               disabled: child.props.disabled || disabled,
-              preset: child.props.preset || preset,
               size: child.props.size || size,
               variant: child.props.variant || variant,
             })}

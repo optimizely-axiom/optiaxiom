@@ -6,7 +6,7 @@ import type { ExtendProps } from "../utils";
 import { Box } from "../box";
 import * as styles from "./Button.css";
 
-const presets = {
+const appearances = {
   danger: { colorScheme: "danger", variant: "solid" },
   "danger-outline": { colorScheme: "danger", variant: "outline" },
   default: { colorScheme: "secondary", variant: "outline" },
@@ -18,11 +18,11 @@ type ButtonProps = ExtendProps<
   ComponentPropsWithRef<"button">,
   ComponentPropsWithRef<typeof Box>,
   {
+    appearance?: keyof typeof appearances;
     children?: ReactNode;
     disabled?: boolean;
     isLoading?: boolean;
     leftSection?: ReactNode;
-    preset?: keyof typeof presets;
     rightSection?: ReactNode;
   } & styles.ButtonVariants
 >;
@@ -30,6 +30,7 @@ type ButtonProps = ExtendProps<
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
+      appearance = "default",
       asChild,
       children,
       className,
@@ -37,7 +38,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       disabled,
       isLoading,
       leftSection,
-      preset = "default",
+      onClick,
       rightSection,
       size = "md",
       variant,
@@ -47,7 +48,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ) => {
     const Comp = asChild ? Slot : "button";
 
-    const presetProps = presets[preset];
+    const presetProps = appearances[appearance];
     const finalColorScheme = colorScheme ?? presetProps.colorScheme;
     const finalVariant = variant ?? presetProps.variant;
 
