@@ -85,6 +85,13 @@ export const Preset: Story = {
   ),
 };
 
+export const Link: Story = {
+  args: {
+    asChild: true,
+    children: <a href="/">Sample Link</a>,
+  },
+};
+
 export const StandaloneIcon: Story = {
   args: {
     children: <IconHelicopterLanding />,
