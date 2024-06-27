@@ -58,14 +58,23 @@ export const Default: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     await userEvent.click(canvas.getByRole("button"));
-    const alertdialog = await screen.findByRole("alertdialog", {
-      name: "Delete Image",
-    });
-    await expect(alertdialog).toBeInTheDocument();
-    await userEvent.click(
-      await screen.findByRole("button", { name: "Cancel" }),
-    );
-    await expect(alertdialog).not.toBeInTheDocument();
+    // const alertdialog = await screen.findByRole("alertdialog", {
+    //   name: "Delete Image",
+    // });
+    await expect(
+      await screen.findByRole("alertdialog", {
+        name: "Delete Image",
+      }),
+    ).toBeInTheDocument();
+    await expect(
+      screen.getByRole("button", { name: "Confirm" }),
+    ).toBeInTheDocument();
+    await userEvent.click(screen.getByRole("button", { name: "Cancel" }));
+    await expect(
+      screen.queryByRole("alertdialog", {
+        name: "Delete Image",
+      }),
+    ).not.toBeInTheDocument();
   },
 };
 
