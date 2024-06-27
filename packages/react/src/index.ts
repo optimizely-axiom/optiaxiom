@@ -1,3 +1,4 @@
+export * from "./alert-dialog";
 export * from "./animate-presence";
 export * from "./avatar";
 export * from "./box";
