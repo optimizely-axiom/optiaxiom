@@ -1,7 +1,9 @@
-import { style } from "../vanilla-extract";
+import { recipe, style } from "../vanilla-extract";
 
-export const base = style({
-  selectors: {
-    "&:empty:before": { content: '"\\00a0"' },
-  },
+export const skeleton = recipe({
+  base: style({
+    selectors: {
+      "&:empty:before": { content: '"\\00a0"' },
+    },
+  }),
 });

@@ -1,10 +1,4 @@
-import { style } from "../vanilla-extract";
-
-export const base = style({
-  transformOrigin: "var(--radix-popper-transform-origin)",
-  transitionProperty: "opacity, transform",
-  transitionTimingFunction: "ease",
-});
+import { type RecipeVariants, recipe, style } from "../vanilla-extract";
 
 const translate = (dir: "down" | "left" | "right" | "up", value: number) => {
   if (dir === "down" || dir === "up") {
@@ -52,16 +46,28 @@ const generate = ({
     }),
   });
 
-export const transitions = {
-  fade: generate(presets.fade()),
-  "fade-down": generate(presets.fade("down")),
-  "fade-left": generate(presets.fade("left")),
-  "fade-right": generate(presets.fade("right")),
-  "fade-up": generate(presets.fade("up")),
+export const transition = recipe({
+  base: style({
+    transformOrigin: "var(--radix-popper-transform-origin)",
+    transitionProperty: "opacity, transform",
+    transitionTimingFunction: "ease",
+  }),
 
-  pop: generate(presets.pop()),
-  "pop-down": generate(presets.pop("down")),
-  "pop-left": generate(presets.pop("left")),
-  "pop-right": generate(presets.pop("right")),
-  "pop-up": generate(presets.pop("up")),
-};
+  variants: {
+    type: {
+      fade: generate(presets.fade()),
+      "fade-down": generate(presets.fade("down")),
+      "fade-left": generate(presets.fade("left")),
+      "fade-right": generate(presets.fade("right")),
+      "fade-up": generate(presets.fade("up")),
+
+      pop: generate(presets.pop()),
+      "pop-down": generate(presets.pop("down")),
+      "pop-left": generate(presets.pop("left")),
+      "pop-right": generate(presets.pop("right")),
+      "pop-up": generate(presets.pop("up")),
+    },
+  },
+});
+
+export type TransitionVariants = RecipeVariants<typeof transition>;

@@ -2,7 +2,19 @@ import { ESLintUtils } from "@typescript-eslint/utils";
 
 export default ESLintUtils.RuleCreator.withoutDocs({
   create(context) {
+    /**
+     * @type {import('@typescript-eslint/utils').TSESTree.ImportDeclaration}
+     */
+    let styleImportNode;
+
     return {
+      /**
+       * @type {import('@typescript-eslint/utils').TSESLint.RuleListener['ImportDeclaration']}
+       */
+      'ImportDeclaration[source.value="../vanilla-extract"]': (node) => {
+        styleImportNode = node;
+      },
+
       /**
        * @type {import('@typescript-eslint/utils').TSESLint.RuleListener['Property']}
        */
@@ -22,12 +34,29 @@ export default ESLintUtils.RuleCreator.withoutDocs({
         },
 
       /**
-       * @type {import('@typescript-eslint/utils').TSESLint.RuleListener['Property']}
+       * @type {import('@typescript-eslint/utils').TSESLint.RuleListener['CallExpression']}
        */
-      'CallExpression[callee.name="recipe"] Property[key.name="defaultVariants"]':
+      'ExportNamedDeclaration > VariableDeclaration > VariableDeclarator > CallExpression:matches([callee.name="style"], [callee.name="styleVariants"])':
         (node) => {
           context.report({
-            messageId: "defaultVariants",
+            data: { method: "name" in node.callee && node.callee.name },
+            fix: (fixer) => [
+              fixer.insertTextBefore(node, "recipe({ base: "),
+              fixer.insertTextAfter(node, "})"),
+              ...(styleImportNode.specifiers.some(
+                (specifier) =>
+                  specifier.type === "ImportSpecifier" &&
+                  specifier.imported.name === "recipe",
+              )
+                ? []
+                : [
+                    fixer.insertTextBefore(
+                      styleImportNode.specifiers[0],
+                      "recipe, ",
+                    ),
+                  ]),
+            ],
+            messageId: "preferRecipe",
             node,
           });
         },
@@ -40,9 +69,9 @@ export default ESLintUtils.RuleCreator.withoutDocs({
     fixable: "code",
     messages: {
       aria: "Please use data-* attributes instead of aria-* attributes when writing CSS selectors.",
-      defaultVariants: `Please specify defaults within the component prop types instead.
+      preferRecipe: `Please replace {{method}}() with recipe() as top-level export.
 
-Otherwise there is a mismatch between the component logic and the styling logic.`,
+Our convention is to always expose recipes rather than directly exposing raw styles.`,
     },
     schema: [],
     type: "suggestion",

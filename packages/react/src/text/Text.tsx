@@ -1,5 +1,4 @@
 import { Slot } from "@radix-ui/react-slot";
-import clsx from "clsx";
 import { type ComponentPropsWithRef, forwardRef } from "react";
 
 import { Box } from "../box";
@@ -11,9 +10,7 @@ type TextProps = ExtendProps<
   ComponentPropsWithRef<typeof Box>,
   {
     as?: "p" | "span";
-    lineClamp?: keyof typeof styles.lineClamp;
-    truncate?: boolean;
-  }
+  } & styles.TextVariants
 >;
 
 export const Text = forwardRef<HTMLParagraphElement, TextProps>(
@@ -26,13 +23,9 @@ export const Text = forwardRef<HTMLParagraphElement, TextProps>(
     return (
       <Box
         asChild
-        className={clsx(
-          lineClamp && styles.lineClamp[lineClamp],
-          truncate && styles.truncate,
-          className,
-        )}
         fontSize="md"
         ref={ref}
+        {...styles.text({ lineClamp, truncate }, className)}
         {...props}
       >
         <Comp>{children}</Comp>

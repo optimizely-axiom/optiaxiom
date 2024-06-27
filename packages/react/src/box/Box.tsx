@@ -23,8 +23,8 @@ export const Box = forwardRef<HTMLDivElement, BoxProps>(
 
     return (
       <Comp
-        className={clsx(className, styles.base, sprinkles(sprinkleProps))}
         ref={ref}
+        {...styles.box({}, clsx(className, sprinkles(sprinkleProps)))}
         {...restProps}
       />
     );

@@ -1,5 +1,4 @@
 import { Slot } from "@radix-ui/react-slot";
-import clsx from "clsx";
 import {
   type ComponentPropsWithRef,
   forwardRef,
@@ -22,8 +21,7 @@ type TransitionProps = ExtendProps<
   ComponentPropsWithRef<"div">,
   {
     duration?: keyof typeof transitionDuration;
-    type?: keyof typeof styles.transitions;
-  }
+  } & styles.TransitionVariants
 >;
 
 export const Transition = forwardRef<HTMLDivElement, TransitionProps>(
@@ -45,16 +43,15 @@ export const Transition = forwardRef<HTMLDivElement, TransitionProps>(
 
     return (
       <Slot
-        className={clsx(
-          className,
-          styles.base,
-          enter !== isPresent && styles.transitions[type],
-        )}
         ref={ref}
         style={{
           ...style,
           transitionDuration: `${transitionDuration[duration]}ms`,
         }}
+        {...styles.transition(
+          { type: enter !== isPresent ? type : undefined },
+          className,
+        )}
         {...props}
       >
         {children}

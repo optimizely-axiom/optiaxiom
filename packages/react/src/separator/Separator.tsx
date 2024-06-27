@@ -17,12 +17,8 @@ export const Separator = forwardRef<HTMLHRElement, SeparatorProps>(
     return (
       <Box
         asChild
-        className={clsx(
-          styles.base,
-          styles.separator({ orientation }),
-          className,
-        )}
         ref={ref}
+        {...styles.base({}, clsx(styles.separator({ orientation }), className))}
         {...props}
       >
         <RadixSeparator.Root />

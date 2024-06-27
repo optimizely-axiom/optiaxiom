@@ -1,4 +1,3 @@
-import clsx from "clsx";
 import { type ComponentPropsWithRef, forwardRef } from "react";
 
 import type { Sprinkles } from "../sprinkles";
@@ -28,7 +27,7 @@ export const Skeleton = forwardRef<HTMLDivElement, SkeletonProps>(
         animation="pulse"
         asChild
         bg="bg.neutral"
-        className={clsx(className, styles.base)}
+        {...styles.skeleton({}, className)}
         color="surface"
         display="block"
         h={h}
