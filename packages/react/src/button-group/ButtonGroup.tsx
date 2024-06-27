@@ -15,12 +15,14 @@ import { Flex } from "../flex";
 import * as styles from "./ButtonGroup.css";
 
 type ButtonGroupProps = ExtendProps<
-  ComponentPropsWithRef<typeof Button>,
   ComponentPropsWithRef<typeof Flex>,
   {
     children: ReactNode;
-    disabled?: boolean;
-  } & styles.ButtonGroupVariants
+  } & Pick<
+    ComponentPropsWithRef<typeof Button>,
+    "colorScheme" | "disabled" | "preset" | "size" | "variant"
+  > &
+    styles.ButtonGroupVariants
 >;
 
 export const ButtonGroup = forwardRef<HTMLDivElement, ButtonGroupProps>(
@@ -40,22 +42,19 @@ export const ButtonGroup = forwardRef<HTMLDivElement, ButtonGroupProps>(
     ref,
   ) => {
     const mappedChildren = Children.map(children, (child) => {
-      if (isValidElement(child)) {
+      if (isValidElement<ComponentPropsWithRef<typeof Button>>(child)) {
         return (
           <Box
             asChild
             className={styles.button({ orientation, spacing: gap !== "0" })}
           >
-            {cloneElement(
-              child as React.ReactElement<ComponentPropsWithRef<typeof Button>>,
-              {
-                colorScheme: child.props.colorScheme || colorScheme,
-                disabled: child.props.disabled || disabled,
-                preset: child.props.preset || preset,
-                size: child.props.size || size,
-                variant: child.props.variant || variant,
-              },
-            )}
+            {cloneElement(child, {
+              colorScheme: child.props.colorScheme || colorScheme,
+              disabled: child.props.disabled || disabled,
+              preset: child.props.preset || preset,
+              size: child.props.size || size,
+              variant: child.props.variant || variant,
+            })}
           </Box>
         );
       }
