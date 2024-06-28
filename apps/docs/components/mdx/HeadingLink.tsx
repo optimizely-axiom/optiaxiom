@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { ComponentPropsWithRef, ReactNode } from "react";
 
 import { Box, Heading, Text } from "@optiaxiom/react";
 import { useMDXComponents } from "nextra-theme-docs";
@@ -10,9 +10,9 @@ export function HeadingLink({
   id,
   ...props
 }: {
-  children: ReactNode;
-  id: string;
-}) {
+  children?: ReactNode;
+  id?: string;
+} & ComponentPropsWithRef<typeof Heading>) {
   const { h6: H6 = "h6" } = useMDXComponents();
 
   return (
