@@ -59,8 +59,8 @@ export const Scale = ({
           const bMatch = b.match(/^([0-9.]+)$/);
           const bNum = bMatch === null ? NaN : parseFloat(bMatch[1]);
           if (isNaN(aNum) && isNaN(bNum)) return 0;
-          if (isNaN(aNum)) return 1;
-          if (isNaN(bNum)) return -1;
+          if (isNaN(aNum)) return isTShirtSizing(a) ? -1 : 1;
+          if (isNaN(bNum)) return isTShirtSizing(b) ? 1 : -1;
           return aNum - bNum;
         })
         .map(([name, size]) => (
@@ -127,3 +127,6 @@ export const Scale = ({
     </tbody>
   </Table>
 );
+
+const isTShirtSizing = (str: string) =>
+  ["lg", "md", "sm", "xl", "xs"].includes(str);
