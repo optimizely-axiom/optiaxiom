@@ -1,9 +1,16 @@
 import { Slot, Slottable } from "@radix-ui/react-slot";
-import { type ComponentPropsWithRef, type ReactNode, forwardRef } from "react";
+import {
+  type ComponentPropsWithRef,
+  type ReactNode,
+  cloneElement,
+  forwardRef,
+  isValidElement,
+} from "react";
 
 import type { ExtendProps } from "../utils";
 
 import { Box } from "../box";
+import { Text } from "../text";
 import * as styles from "./Button.css";
 
 const appearances = {
@@ -21,9 +28,9 @@ type ButtonProps = ExtendProps<
     appearance?: keyof typeof appearances;
     children?: ReactNode;
     disabled?: boolean;
+    icon?: ReactNode;
+    iconPosition?: "end" | "start";
     isLoading?: boolean;
-    leftSection?: ReactNode;
-    rightSection?: ReactNode;
   } & styles.ButtonVariants
 >;
 
@@ -36,10 +43,10 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       className,
       colorScheme,
       disabled,
+      icon,
+      iconPosition = "start",
       isLoading,
-      leftSection,
       onClick,
-      rightSection,
       size = "md",
       variant,
       ...props
@@ -53,6 +60,46 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const finalVariant = variant ?? presetProps.variant;
 
     const isDisabled = Boolean(disabled || isLoading);
+
+    let content;
+    if (children) {
+      children =
+        asChild && isValidElement(children) ? (
+          cloneElement(
+            children,
+            undefined,
+            <Text
+              as="span"
+              fontSize="inherit"
+              style={{
+                padding: "0px 4px",
+              }}
+            >
+              {children.props.children}
+            </Text>,
+          )
+        ) : (
+          <Text as="span" fontSize="inherit">
+            {children}
+          </Text>
+        );
+
+      content = (
+        <>
+          {icon && iconPosition === "start" && (
+            <Box {...styles.section({ position: iconPosition, size: size })}>
+              {icon}
+            </Box>
+          )}
+          <Slottable>{children}</Slottable>
+          {icon && iconPosition === "end" && (
+            <Box {...styles.section({ position: iconPosition, size: size })}>
+              {icon}
+            </Box>
+          )}
+        </>
+      );
+    }
 
     return (
       <Box
@@ -69,9 +116,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         {...props}
       >
         <Comp disabled={isDisabled} ref={ref}>
-          {leftSection}
-          <Slottable>{children}</Slottable>
-          {rightSection}
+          {content}
         </Comp>
       </Box>
     );
