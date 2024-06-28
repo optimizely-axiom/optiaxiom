@@ -31,6 +31,8 @@ Clone the project and run:
 pnpm install
 ```
 
+### Development
+
 Run the following to start your dev environment:
 
 ```sh
