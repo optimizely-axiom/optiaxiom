@@ -7,7 +7,7 @@ const withNextra = createNextra({
     remarkPlugins: [remarkPlugin],
   },
   theme: "./theme.tsx",
-  themeConfig: "./theme.config.jsx",
+  themeConfig: "./theme.config.tsx",
 });
 
 /** @type {import('next').NextConfig} */
