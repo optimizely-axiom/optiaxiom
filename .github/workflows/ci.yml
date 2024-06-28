@@ -106,4 +106,4 @@ jobs:
       - run: |
           pnpm -F docs... -F web-components... build
           pnpm lint --no-fix
-          pnpm test run
+          pnpm exec vitest run
