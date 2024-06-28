@@ -98,6 +98,10 @@ After verification from the design team you should follow proper development gui
 
 [Nextra](https://nextra.site/docs/docs-theme/start) is used to document the component library.
 
+### Radix Primitives
+
+[Radix Primitives](https://www.radix-ui.com/primitives) is used to build fully accessible components.
+
 ### Vanilla Extract
 
 [Vanilla Extract](https://vanilla-extract.style/) is used for our styling solution. This allows us to build a zero runtime CSS-in-JS styled system utilizing type safe style definitions and design tokens re-use.
