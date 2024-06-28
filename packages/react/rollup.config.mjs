@@ -20,24 +20,22 @@ export default defineConfig([
         ")(?:/.+)?$",
     ),
     input: "src/index.ts",
-    output: [
-      {
-        banner: async (chunk) => {
-          if (bannerFilter(chunk.facadeModuleId)) {
-            return '"use client";';
-          }
-          return "";
-        },
-        dir: "dist",
-        entryFileNames: (info) => {
-          return info.name.endsWith(".css")
-            ? `${info.name.replace(/\.css$/, "-css")}.js`
-            : "[name].js";
-        },
-        format: "es",
-        preserveModules: true,
+    output: {
+      banner: async (chunk) => {
+        if (bannerFilter(chunk.facadeModuleId)) {
+          return '"use client";';
+        }
+        return "";
       },
-    ],
+      dir: "dist",
+      entryFileNames: (info) => {
+        return info.name.endsWith(".css")
+          ? `${info.name.replace(/\.css$/, "-css")}.js`
+          : "[name].js";
+      },
+      format: "es",
+      preserveModules: true,
+    },
     plugins: [
       esbuild({
         define: {

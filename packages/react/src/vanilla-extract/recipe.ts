@@ -16,7 +16,3 @@ export const recipe: typeof recipeRuntime = (options) => {
   });
   return recipe;
 };
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type RecipeVariants<RecipeFn extends (...args: any) => any> =
-  Parameters<RecipeFn>[0];
