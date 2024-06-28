@@ -7,6 +7,7 @@ export default defineConfig({
       headless: true,
       name: "chrome",
     },
+    restoreMocks: true,
     setupFiles: ["./vitest.setup.ts"],
   },
 });

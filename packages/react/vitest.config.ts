@@ -5,6 +5,7 @@ export default defineConfig({
   plugins: [vanillaExtractPlugin()],
   test: {
     environment: "happy-dom",
+    restoreMocks: true,
     setupFiles: ["./vitest.setup.ts"],
   },
 });
