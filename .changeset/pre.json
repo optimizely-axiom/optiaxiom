@@ -5,11 +5,13 @@
     "@optiaxiom/docs": "0.0.0",
     "@optiaxiom/storybook": "0.0.0",
     "@optiaxiom/react": "0.1.0-alpha.1",
-    "@optiaxiom/shared": "0.0.0"
+    "@optiaxiom/shared": "0.0.0",
+    "@optiaxiom/web-components": "0.1.0-next.0"
   },
   "changesets": [
     "hot-maps-reflect",
     "moody-apples-compare",
+    "pink-lizards-flash",
     "quick-apricots-sparkle",
     "stale-bears-allow",
     "tiny-pets-jog"
