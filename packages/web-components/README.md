@@ -24,7 +24,8 @@ Use your favorite CDN to import the package:
 
 ```html
 <script
-  src="https://esm.run/@optiaxiom/web-components@0.1.0"
+  <!-- Make sure to replace `latest` with a fixed version number. -->
+  src="https://cdn.jsdelivr.net/npm/@optiaxiom/web-components@latest/dist/index.js"
   type="module"
 ></script>
 
@@ -39,7 +40,7 @@ By default the index entry of the library lazy loads components to avoid loading
 
 ```html
 <script
-  src="https://esm.run/@optiaxiom/web-components@0.1.0" <!-- index entry -->
+  src="https://cdn.jsdelivr.net/npm/@optiaxiom/web-components@latest/dist/index.js" <!-- `index.js` entry -->
   type="module"
 ></script>
 
@@ -70,7 +71,7 @@ function App() {
 
 ```html
 <script
-  src="https://esm.run/@optiaxiom/web-components@0.1.0/Button" <!-- `/Button` path -->
+  src="https://cdn.jsdelivr.net/npm/@optiaxiom/web-components@latest/dist/Button.js" <!-- `Button.js` entry -->
   type="module"
 ></script>
 
