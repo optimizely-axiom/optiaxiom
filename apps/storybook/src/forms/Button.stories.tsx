@@ -1,12 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { Button, Flex } from "@optiaxiom/react";
-import {
-  IconArrowRight,
-  IconDownload,
-  IconHelicopterLanding,
-  IconPhoto,
-} from "@tabler/icons-react";
+import { IconChevronDown, IconDownload, IconPhoto } from "@tabler/icons-react";
 
 const meta: Meta<typeof Button> = {
   argTypes: { onClick: { action: "click" } },
@@ -37,7 +32,7 @@ const Variants: Story = {
 };
 
 const sizes = ["sm", "md", "lg"] as const;
-const presets = [
+const appearances = [
   ["default", "Default"],
   ["primary", "Primary"],
   ["danger", "Danger"],
@@ -73,11 +68,11 @@ export const Secondary: Story = {
   args: { colorScheme: "secondary" },
 };
 
-export const Preset: Story = {
+export const appearance: Story = {
   render: (args) => (
     <Flex>
-      {presets.map(([preset, label]) => (
-        <Button {...args} key={preset} preset={preset}>
+      {appearances.map(([appearance, label]) => (
+        <Button {...args} appearance={appearance} key={appearance}>
           {label}
         </Button>
       ))}
@@ -94,30 +89,96 @@ export const Link: Story = {
 
 export const StandaloneIcon: Story = {
   args: {
-    children: <IconHelicopterLanding />,
-  },
-};
-
-export const Icons: Story = {
-  args: {
-    colorScheme: "secondary",
-    size: "lg",
+    colorScheme: "danger",
   },
   render: (args) => (
     <Flex flexDirection="row">
-      <Button {...args} leftSection={<IconPhoto />}>
-        Gallery
-      </Button>
-      <Button {...args} rightSection={<IconDownload />}>
-        Download
-      </Button>
-      <Button
-        {...args}
-        leftSection={<IconPhoto />}
-        rightSection={<IconArrowRight />}
-      >
-        Enter Gallery
-      </Button>
+      <Button {...args} icon={<IconChevronDown />} size="sm"></Button>
+      <Button {...args} icon={<IconChevronDown />} size="md"></Button>
+      <Button {...args} icon={<IconChevronDown />} size="lg"></Button>
+    </Flex>
+  ),
+};
+export const Icons: Story = {
+  args: {
+    children: "Button",
+  },
+  render: (args) => (
+    <Flex>
+      <Flex flexDirection="row">
+        <Button
+          {...args}
+          icon={<IconChevronDown />}
+          iconPosition="start"
+          size="sm"
+        />
+        <Button
+          {...args}
+          icon={<IconChevronDown />}
+          iconPosition="start"
+          size="md"
+        />
+        <Button
+          {...args}
+          icon={<IconChevronDown />}
+          iconPosition="start"
+          size="lg"
+        />
+      </Flex>
+      <Flex flexDirection="row">
+        <Button
+          {...args}
+          icon={<IconChevronDown />}
+          iconPosition="end"
+          size="sm"
+        />
+        <Button
+          {...args}
+          icon={<IconChevronDown />}
+          iconPosition="end"
+          size="md"
+        />
+        <Button
+          {...args}
+          icon={<IconChevronDown />}
+          iconPosition="end"
+          size="lg"
+        />
+      </Flex>
+    </Flex>
+  ),
+};
+
+export const Example: Story = {
+  args: {
+    colorScheme: "secondary",
+  },
+  render: (args) => (
+    <Flex flexDirection="column">
+      <Flex flexDirection="row">
+        <Button size="lg" {...args} icon={<IconPhoto />} iconPosition="start">
+          Gallery
+        </Button>
+        <Button {...args} icon={<IconDownload />} iconPosition="end" size="lg">
+          Download
+        </Button>
+      </Flex>
+      <Flex flexDirection="row">
+        <Button size="md" {...args} icon={<IconPhoto />} iconPosition="start">
+          Gallery
+        </Button>
+        <Button {...args} icon={<IconDownload />} iconPosition="end" size="md">
+          Download
+        </Button>
+      </Flex>
+      <Flex flexDirection="row">
+        <Button size="sm" {...args} icon={<IconPhoto />}>
+          Gallery
+        </Button>
+        <Button {...args} icon={<IconDownload />} iconPosition="end" size="sm">
+          Download
+        </Button>
+      </Flex>
     </Flex>
   ),
 };
