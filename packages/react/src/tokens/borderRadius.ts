@@ -6,6 +6,7 @@ export const borderRadius = {
   md: rem("6px"),
   lg: rem("8px"),
   xl: rem("12px"),
+  "2xl": rem("24px"),
 
   full: "9999px",
   none: "0",
