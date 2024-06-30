@@ -7,6 +7,7 @@ import { Box } from "../box";
 import { Button } from "../button";
 import { Flex } from "../flex";
 import * as styles from "./AlertDialog.css";
+
 type AlertDialogProps = ExtendProps<
   ComponentPropsWithRef<typeof RadixAlertDialog.Root>,
   ComponentPropsWithRef<typeof Box>,
@@ -41,16 +42,19 @@ export const AlertDialog = forwardRef<HTMLDivElement, AlertDialogProps>(
             <RadixAlertDialog.Overlay asChild>
               <Flex
                 alignItems="center"
+                bg="dark.200"
                 className={styles.overlay}
                 h="full"
                 w="full"
               >
                 <RadixAlertDialog.Content asChild>
                   <Box
+                    bg="white"
                     className={styles.content}
                     p="24"
                     ref={ref}
                     rounded="sm"
+                    shadow="md"
                     w="full"
                   >
                     <RadixAlertDialog.Title asChild>
@@ -58,12 +62,20 @@ export const AlertDialog = forwardRef<HTMLDivElement, AlertDialogProps>(
                         {title}
                       </Box>
                     </RadixAlertDialog.Title>
+
                     <RadixAlertDialog.Description asChild>
-                      <Box fontSize="md" maxH="xs" my="24" overflow="auto">
+                      <Box
+                        fontSize="md"
+                        maxH="xs"
+                        mr="-24"
+                        my="24"
+                        overflow="auto"
+                        pr="24"
+                      >
                         {children}
                       </Box>
                     </RadixAlertDialog.Description>
-                    <Flex flexDirection="row" gap="8" justifyContent="end">
+                    <Flex flexDirection="row" gap="xs" justifyContent="end">
                       <RadixAlertDialog.Cancel asChild>
                         <Button onClick={onCancel}>{cancel}</Button>
                       </RadixAlertDialog.Cancel>
