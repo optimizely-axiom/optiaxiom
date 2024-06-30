@@ -2,6 +2,7 @@ import * as RadixLabel from "@radix-ui/react-label";
 import * as RadixSwitch from "@radix-ui/react-switch";
 import { type ComponentPropsWithRef, type ElementRef, forwardRef } from "react";
 
+import { Box } from "../box";
 import { Flex } from "../flex";
 import { extractSprinkles } from "../sprinkles";
 import { Text } from "../text";
@@ -31,17 +32,22 @@ export const Switch = forwardRef<
         alignItems="center"
         className={className}
         flexDirection="row"
+        gap="0"
         {...sprinkleProps}
       >
-        <RadixSwitch.Root
-          ref={ref}
-          {...restProps}
-          className={styles.root({ size })}
-          disabled={disabled || readonly}
-          id={id}
-        >
-          <RadixSwitch.Thumb className={styles.thumb({ size })} />
-        </RadixSwitch.Root>
+        <Box asChild borderColor="transparent" p="0" rounded="2xl">
+          <RadixSwitch.Root
+            ref={ref}
+            {...restProps}
+            {...styles.root({ size })}
+            disabled={disabled || readonly}
+            id={id}
+          >
+            <Box asChild bg="white" rounded="2xl" {...styles.thumb({ size })}>
+              <RadixSwitch.Thumb />
+            </Box>
+          </RadixSwitch.Root>
+        </Box>
         {label && (
           <Text asChild color={disabled ? "fg.disabled" : "fg.default"} ml="8">
             <RadixLabel.Root htmlFor={id}>{label}</RadixLabel.Root>

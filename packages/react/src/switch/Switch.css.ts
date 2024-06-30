@@ -1,69 +1,67 @@
-import { sprinkles } from "../sprinkles";
 import { theme } from "../styles";
-import { type RecipeVariants, recipe } from "../vanilla-extract";
+import { type RecipeVariants, recipe, style } from "../vanilla-extract";
 
 export const root = recipe({
-  base: {
-    backgroundColor: theme.colors["fg.brand"],
-    borderColor: "transparent",
-    borderRadius: "24px",
-    padding: 0,
-    position: "relative",
+  base: [
+    style({
+      backgroundColor: theme.colors["fg.brand"],
+      position: "relative",
 
-    selectors: {
-      "&:focus-visible": {
-        outline: `${theme.colors["brand.300"]} solid 2px`,
-        outlineOffset: "1px",
+      selectors: {
+        "&:focus-visible": {
+          outline: `${theme.colors["brand.300"]} solid 2px`,
+          outlineOffset: "1px",
+        },
+        "&:hover": {
+          backgroundColor: theme.colors["fg.brand.hover"],
+        },
+        "&[data-disabled]": {
+          backgroundColor: theme.colors["border.secondary"],
+          cursor: "not-allowed",
+        },
+        '&[data-state="unchecked"]:not([data-disabled])': {
+          backgroundColor: theme.colors["border.default"],
+        },
       },
-      "&:hover": {
-        backgroundColor: theme.colors["fg.brand.hover"],
-      },
-      "&[data-disabled]": {
-        backgroundColor: theme.colors["border.secondary"],
-        cursor: "not-allowed",
-      },
-      '&[data-state="unchecked"]:not([data-disabled])': {
-        backgroundColor: theme.colors["border.default"],
-      },
-    },
-  },
+    }),
+  ],
   variants: {
     size: {
-      lg: {
+      lg: style({
         height: "24px",
         width: "44px",
-      },
-      default: {
+      }),
+      default: style({
         height: "20px",
         width: "40px",
-      },
+      }),
     },
   },
 });
 
 export const thumb = recipe({
-  base: {
-    backgroundColor: "white",
-    borderRadius: "24px",
-    display: "block",
-    transform: "translateX(0px)",
-    transition: "transform 100ms",
-    willChange: "transform",
+  base: [
+    style({
+      display: "block",
+      transform: "translateX(2px)",
+      transition: "transform 100ms",
+      willChange: "transform",
 
-    selectors: {
-      '&[data-state="checked"]': { transform: "translateX(20px)" },
-    },
-  },
+      selectors: {
+        '&[data-state="checked"]': { transform: "translateX(22px)" },
+      },
+    }),
+  ],
   variants: {
     size: {
-      lg: sprinkles({
+      lg: {
         h: "20",
         w: "20",
-      }),
-      default: sprinkles({
+      },
+      default: {
         h: "16",
         w: "16",
-      }),
+      },
     },
   },
 });
