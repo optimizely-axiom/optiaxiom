@@ -6,13 +6,14 @@ export const wrapper = recipe({
     {
       alignItems: "center",
       border: "1",
-      borderColor: "border.default",
       color: "fg.default",
       display: "flex",
       flexDirection: "row",
       rounded: "sm",
     },
     style({
+      borderColor: theme.colors["border.default"],
+
       selectors: {
         '&:focus-within:is([data-invalid="true"])': {
           outlineColor: theme.colors["red.200"],
