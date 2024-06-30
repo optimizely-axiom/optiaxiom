@@ -5,13 +5,6 @@ import { expect, screen, userEvent, within } from "@storybook/test";
 import { useState } from "react";
 
 const meta: Meta<typeof AlertDialog> = {
-  argTypes: {
-    action: { control: "text" },
-    cancel: { control: "text" },
-    onAction: { action: "onAction" },
-    onCancel: { action: "onCancel" },
-    title: { control: "text" },
-  },
   component: AlertDialog,
 };
 
@@ -31,11 +24,9 @@ const Template = (args: React.ComponentProps<typeof AlertDialog>) => {
       <AlertDialog
         {...args}
         onAction={() => {
-          args.onAction();
           handleClose();
         }}
         onCancel={() => {
-          args.onCancel();
           handleClose();
         }}
         open={open}
@@ -48,52 +39,68 @@ const Template = (args: React.ComponentProps<typeof AlertDialog>) => {
 
 export const Default: Story = {
   args: {
-    action: "Confirm",
-    cancel: "Cancel",
     children: "Are you sure you want to delete this image?",
     title: "Delete Image",
   },
-  render: (args) => <Template {...args} />,
-
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     await userEvent.click(canvas.getByRole("button"));
-    // const alertdialog = await screen.findByRole("alertdialog", {
-    //   name: "Delete Image",
-    // });
     await expect(
-      await screen.findByRole("alertdialog", {
-        name: "Delete Image",
-      }),
+      await screen.findByRole("alertdialog", { name: "Delete Image" }),
     ).toBeInTheDocument();
     await expect(
       screen.getByRole("button", { name: "Confirm" }),
     ).toBeInTheDocument();
     await userEvent.click(screen.getByRole("button", { name: "Cancel" }));
     await expect(
-      screen.queryByRole("alertdialog", {
-        name: "Delete Image",
-      }),
+      screen.queryByRole("alertdialog", { name: "Delete Image" }),
     ).not.toBeInTheDocument();
   },
+  render: Template,
 };
 
 export const CustomButtons: Story = {
-  ...Default,
   args: {
     ...Default.args,
     action: "Yes, Delete",
-    cancel: "Cancel",
+    cancel: "No, Keep",
   },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await userEvent.click(canvas.getByRole("button"));
+    await expect(
+      await screen.findByRole("alertdialog", { name: "Delete Image" }),
+    ).toBeInTheDocument();
+    await expect(
+      screen.getByRole("button", { name: "Yes, Delete" }),
+    ).toBeInTheDocument();
+    await expect(
+      screen.getByRole("button", { name: "No, Keep" }),
+    ).toBeInTheDocument();
+    await userEvent.click(screen.getByRole("button", { name: "No, Keep" }));
+    await expect(
+      screen.queryByRole("alertdialog", { name: "Delete Image" }),
+    ).not.toBeInTheDocument();
+  },
+  render: Template,
 };
 
 export const LongContent: Story = {
-  ...Default,
   args: {
     ...Default.args,
-    action: "Confirm",
-    cancel: "Cancel",
     children:
       "This is a longer piece of content that demonstrates how the AlertDialog handles more text. It might wrap to multiple lines depending on the width of the dialog.This is a longer piece of content that demonstrates how the AlertDialog handles more text. It might wrap to multiple lines depending on the width of the dialog.This is a longer piece of content that demonstrates how the AlertDialog handles more text. It might wrap to multiple lines depending on the width of the dialog.This is a longer piece of content that demonstrates how the AlertDialog handles more text. It might wrap to multiple lines depending on the width of the dialog.This is a longer piece of content that demonstrates how the AlertDialog handles more text. It might wrap to multiple lines depending on the width of the dialog.This is a longer piece of content that demonstrates how the AlertDialog handles more text. It might wrap to multiple lines depending on the width of the dialog.This is a longer piece of content that demonstrates how the AlertDialog handles more text. It might wrap to multiple lines depending on the width of the dialog.This is a longer piece of content that demonstrates how the AlertDialog handles more text. It might wrap to multiple lines depending on the width of the dialog.This is a longer piece of content that demonstrates how the AlertDialog handles more text. It might wrap to multiple lines depending on the width of the dialog.",
   },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await userEvent.click(canvas.getByRole("button"));
+    await expect(
+      await screen.findByRole("alertdialog", { name: "Delete Image" }),
+    ).toBeInTheDocument();
+    await userEvent.click(screen.getByRole("button", { name: "Cancel" }));
+    await expect(
+      screen.queryByRole("alertdialog", { name: "Delete Image" }),
+    ).not.toBeInTheDocument();
+  },
+  render: Template,
 };
