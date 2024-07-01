@@ -81,6 +81,10 @@ export const button = recipe({
         },
       }),
     },
+    icon: {
+      false: {},
+      true: {},
+    },
     size: {
       sm: {
         fontSize: "sm",
@@ -155,9 +159,44 @@ export const button = recipe({
         variant: "outline",
       },
     },
+    {
+      style: style({ padding: "0", width: "24px" }),
+      variants: {
+        icon: true,
+        size: "sm",
+      },
+    },
+    {
+      style: style({
+        width: "32px",
+      }),
+      variants: {
+        icon: true,
+        size: "md",
+      },
+    },
+    {
+      style: style({
+        width: "40px",
+      }),
+      variants: {
+        icon: true,
+        size: "lg",
+      },
+    },
   ],
 });
 
+export const icon = recipe({
+  base: [
+    {
+      display: "block",
+    },
+    style({
+      flexShrink: "0",
+    }),
+  ],
+});
 export const section = recipe({
   base: {
     alignItems: "center",
@@ -195,4 +234,4 @@ export const section = recipe({
   },
 });
 
-export type ButtonVariants = RecipeVariants<typeof button>;
+export type ButtonVariants = NonNullable<RecipeVariants<typeof button>>;

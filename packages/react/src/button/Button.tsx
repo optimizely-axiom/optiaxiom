@@ -31,7 +31,7 @@ type ButtonProps = ExtendProps<
     icon?: ReactNode;
     iconPosition?: "end" | "start";
     isLoading?: boolean;
-  } & styles.ButtonVariants
+  } & Omit<styles.ButtonVariants, "icon">
 >;
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
@@ -60,6 +60,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const finalVariant = variant ?? presetProps.variant;
 
     const isDisabled = Boolean(disabled || isLoading);
+    let isIcon = false;
 
     let content;
     if (children) {
@@ -99,6 +100,13 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           )}
         </>
       );
+    } else {
+      isIcon = true;
+      content = (
+        <Box asChild {...styles.icon()}>
+          {icon}
+        </Box>
+      );
     }
 
     return (
@@ -108,6 +116,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         {...styles.button(
           {
             colorScheme: finalColorScheme,
+            icon: isIcon,
             size,
             variant: finalVariant,
           },
