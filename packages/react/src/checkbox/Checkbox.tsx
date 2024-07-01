@@ -11,12 +11,14 @@ import {
 import type { ExtendProps } from "../utils";
 
 import { Box } from "../box";
+import { Text } from "../text";
 import * as styles from "./Checkbox.css";
 
 type CheckboxProps = ExtendProps<
   ComponentPropsWithRef<typeof Box>,
   {
     defaultValue?: boolean;
+    helperText?: string;
     indeterminate?: boolean;
     label: string;
     readonly?: boolean;
@@ -28,6 +30,7 @@ export const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>(
     {
       className,
       defaultValue = false,
+      helperText,
       indeterminate = false,
       label,
       readonly = false,
@@ -54,29 +57,35 @@ export const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>(
 
     return (
       <Box {...props} ref={ref}>
-        <Box className={styles.optionWrapper}>
-          <RadixCheckbox.Root
-            checked={checked}
-            disabled={readonly}
-            onCheckedChange={handleCheckedChange}
-          >
-            <input
-              defaultChecked={defaultValue}
-              readOnly={readonly}
-              ref={inputRef}
-              style={{ display: "none" }}
-              type="checkbox"
-            />
-            <RadixCheckbox.Indicator>
-              {indeterminate
-                ? checkboxIcon.indeterminate
-                : checked
-                  ? checkboxIcon.checked
-                  : checkboxIcon.unchecked}
-            </RadixCheckbox.Indicator>
-          </RadixCheckbox.Root>
+        <Box {...styles.checkbox()}>
+          <Box {...styles.leftSection()}>
+            <Box asChild {...styles.checkboxRoot()}>
+              <RadixCheckbox.Root
+                checked={checked}
+                disabled={readonly}
+                onCheckedChange={handleCheckedChange}
+              >
+                <RadixCheckbox.Indicator>
+                  <Box {...styles.indicator()}>
+                    {indeterminate
+                      ? checkboxIcon.indeterminate
+                      : checked
+                        ? checkboxIcon.checked
+                        : checkboxIcon.unchecked}
+                  </Box>
+                </RadixCheckbox.Indicator>
+              </RadixCheckbox.Root>
+            </Box>
+          </Box>
           <Box>
-            <RadixLabel.Root>{label}</RadixLabel.Root>
+            <Box asChild {...styles.label()}>
+              <RadixLabel.Root>{label}</RadixLabel.Root>
+            </Box>
+            {helperText && (
+              <Box asChild {...styles.helperText()}>
+                <Text>{helperText}</Text>
+              </Box>
+            )}
           </Box>
         </Box>
       </Box>
@@ -111,7 +120,7 @@ const checkboxIcon = {
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        d="M2.85714 3.2C2.35714 3.2 2 3.56666 2 4C2 4.46666 2.35714 4.8 2.85714 4.8H9.14286C9.60714 4.8 10 4.46666 10 4C10 3.56666 9.60714 3.2 9.14286 3.2H2.85714Z"
+        d="M2.85714 3.19995C2.35714 3.19995 2 3.56662 2 3.99995C2 4.46662 2.35714 4.79995 2.85714 4.79995H9.14286C9.60714 4.79995 10 4.46662 10 3.99995C10 3.56662 9.60714 3.19995 9.14286 3.19995H2.85714Z"
         fill="white"
       />
     </svg>
