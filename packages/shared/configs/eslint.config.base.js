@@ -89,10 +89,12 @@ export default tsEslint.config(
   {
     files: ["**/*.css.ts"],
     rules: {
-      "local/css-conventions": "error",
+      "local/no-aria-selectors": "error",
       "local/no-global-styles": "error",
       "local/no-sprinkles-style-conflict": "error",
-      "local/sprinkles-conventions": "error",
+      "local/prefer-recipe-export": "error",
+      "local/sprinkle-const-array": "error",
+      "local/sprinkle-string-type": "error",
     },
   },
   {
