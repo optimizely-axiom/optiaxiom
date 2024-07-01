@@ -39,32 +39,33 @@ export const AlertDialog = forwardRef<HTMLDivElement, AlertDialogProps>(
       <Box asChild>
         <RadixAlertDialog.Root open={open} {...props}>
           <RadixAlertDialog.Portal>
-            <RadixAlertDialog.Overlay asChild>
-              <Flex
-                alignItems="center"
-                bg="dark.200"
-                className={styles.overlay}
-                h="full"
-                w="full"
-              >
-                <RadixAlertDialog.Content asChild>
-                  <Box
-                    bg="white"
-                    className={styles.content}
-                    p="24"
-                    ref={ref}
-                    rounded="sm"
-                    shadow="md"
-                    w="full"
-                  >
-                    <RadixAlertDialog.Title asChild>
-                      <Box fontSize="2xl" fontWeight="600" mb="0">
-                        {title}
+            <Flex
+              alignItems="center"
+              asChild
+              bg="dark.200"
+              h="full"
+              w="full"
+              {...styles.overlay()}
+            >
+              <RadixAlertDialog.Overlay>
+                <Box
+                  asChild
+                  bg="white"
+                  p="24"
+                  ref={ref}
+                  rounded="sm"
+                  shadow="md"
+                  w="full"
+                  {...styles.content()}
+                >
+                  <RadixAlertDialog.Content>
+                    <Box>
+                      <Box asChild fontSize="2xl" fontWeight="600" mb="0">
+                        <RadixAlertDialog.Title>{title}</RadixAlertDialog.Title>
                       </Box>
-                    </RadixAlertDialog.Title>
 
-                    <RadixAlertDialog.Description asChild>
                       <Box
+                        asChild
                         fontSize="md"
                         maxH="xs"
                         mr="-24"
@@ -72,23 +73,25 @@ export const AlertDialog = forwardRef<HTMLDivElement, AlertDialogProps>(
                         overflow="auto"
                         pr="24"
                       >
-                        {children}
+                        <RadixAlertDialog.Description>
+                          {children}
+                        </RadixAlertDialog.Description>
                       </Box>
-                    </RadixAlertDialog.Description>
-                    <Flex flexDirection="row" gap="xs" justifyContent="end">
-                      <RadixAlertDialog.Cancel asChild>
-                        <Button onClick={onCancel}>{cancel}</Button>
-                      </RadixAlertDialog.Cancel>
-                      <RadixAlertDialog.Action asChild>
-                        <Button onClick={onAction} preset="primary">
-                          {action}
-                        </Button>
-                      </RadixAlertDialog.Action>
-                    </Flex>
-                  </Box>
-                </RadixAlertDialog.Content>
-              </Flex>
-            </RadixAlertDialog.Overlay>
+                      <Flex flexDirection="row" gap="xs" justifyContent="end">
+                        <RadixAlertDialog.Cancel asChild>
+                          <Button onClick={onCancel}>{cancel}</Button>
+                        </RadixAlertDialog.Cancel>
+                        <RadixAlertDialog.Action asChild>
+                          <Button onClick={onAction} preset="primary">
+                            {action}
+                          </Button>
+                        </RadixAlertDialog.Action>
+                      </Flex>
+                    </Box>
+                  </RadixAlertDialog.Content>
+                </Box>
+              </RadixAlertDialog.Overlay>
+            </Flex>
           </RadixAlertDialog.Portal>
         </RadixAlertDialog.Root>
       </Box>
