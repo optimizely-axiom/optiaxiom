@@ -1,12 +1,6 @@
 import * as RadixCheckbox from "@radix-ui/react-checkbox";
 import * as RadixLabel from "@radix-ui/react-label";
-import {
-  type ComponentPropsWithRef,
-  forwardRef,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import { type ComponentPropsWithRef, forwardRef, useState } from "react";
 
 import type { ExtendProps } from "../utils";
 
@@ -18,6 +12,7 @@ type CheckboxProps = ExtendProps<
   ComponentPropsWithRef<typeof Box>,
   {
     defaultValue?: boolean;
+    disabled?: boolean;
     helperText?: string;
     indeterminate?: boolean;
     label: string;
@@ -30,7 +25,9 @@ export const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>(
     {
       className,
       defaultValue = false,
+      disabled,
       helperText,
+      id,
       indeterminate = false,
       label,
       readonly = false,
@@ -39,13 +36,6 @@ export const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>(
     ref,
   ) => {
     const [checked, setChecked] = useState(defaultValue);
-    const inputRef = useRef<HTMLInputElement>(null);
-
-    useEffect(() => {
-      if (inputRef.current) {
-        inputRef.current.indeterminate = indeterminate;
-      }
-    }, [indeterminate]);
 
     const handleCheckedChange = (isChecked: "indeterminate" | boolean) => {
       if (isChecked === "indeterminate") {
@@ -56,13 +46,19 @@ export const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>(
     };
 
     return (
-      <Box {...props} ref={ref}>
+      <Box
+        {...props}
+        aria-disabled={disabled}
+        data-disabled={disabled}
+        ref={ref}
+      >
         <Box {...styles.checkbox()}>
           <Box {...styles.leftSection()}>
             <Box asChild {...styles.checkboxRoot()}>
               <RadixCheckbox.Root
                 checked={checked}
                 disabled={readonly}
+                id={id}
                 onCheckedChange={handleCheckedChange}
               >
                 <RadixCheckbox.Indicator>
@@ -77,9 +73,13 @@ export const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>(
               </RadixCheckbox.Root>
             </Box>
           </Box>
-          <Box>
+          <Box
+            style={{
+              paddingTop: "2px",
+            }}
+          >
             <Box asChild {...styles.label()}>
-              <RadixLabel.Root>{label}</RadixLabel.Root>
+              <RadixLabel.Root htmlFor={id}>{label}</RadixLabel.Root>
             </Box>
             {helperText && (
               <Box asChild {...styles.helperText()}>
