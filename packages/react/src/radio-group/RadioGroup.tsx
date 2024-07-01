@@ -4,6 +4,7 @@ import { type ComponentPropsWithRef, type ReactNode, forwardRef } from "react";
 
 import type { ExtendProps } from "../utils";
 
+import { Box } from "../box";
 import { Flex } from "../flex";
 import { Text } from "../text";
 import * as styles from "./RadioGroup.css";
@@ -26,29 +27,48 @@ type RadioGroupProps = ExtendProps<
 export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>(
   ({ disabled = false, items, readonly, ...props }, ref) => {
     return (
-      <Flex asChild gap="12" {...props}>
+      <Flex asChild gap="sm" {...props}>
         <RadixRadio.RadioGroup disabled={disabled || readonly} ref={ref}>
           {items.map((item) => (
             <Flex
               alignItems="start"
               flexDirection="row"
-              gap="8"
+              gap="xs"
               key={item.value}
             >
-              <RadixRadio.Item
-                className={styles.item}
-                disabled={item.disabled}
-                id={item.value}
-                value={item.value}
+              <Box
+                asChild
+                bg="white"
+                border="1"
+                h="16"
+                p="0"
+                rounded="full"
+                w="16"
+                {...styles.item()}
               >
-                <RadixRadio.Indicator className={styles.indicator} />
-              </RadixRadio.Item>
+                <RadixRadio.Item
+                  disabled={item.disabled}
+                  id={item.value}
+                  value={item.value}
+                >
+                  <Flex
+                    alignItems="center"
+                    asChild
+                    h="full"
+                    w="full"
+                    {...styles.indicator()}
+                  >
+                    <RadixRadio.Indicator />
+                  </Flex>
+                </RadixRadio.Item>
+              </Box>
+
               <Text
                 asChild
                 color={disabled || item.disabled ? "fg.disabled" : "fg.default"}
               >
                 <RadixLabel.Root htmlFor={item.value}>
-                  <Text asChild className={styles.label}>
+                  <Text asChild {...styles.label}>
                     {item.label}
                   </Text>
                 </RadixLabel.Root>
