@@ -1,17 +1,19 @@
-import cssConventions from "./css-conventions.js";
-import noGlobalStyles from "./no-global-styles.js";
-import noUselessClsx from "./no-useless-clsx.js";
-import preferStylesImport from "./prefer-styles-import.js";
-import preferTestingLibrary from "./prefer-testing-library.js";
-import sprinklesConventions from "./sprinkles-conventions.js";
+import fs from "node:fs";
+import path from "node:path";
+import url from "node:url";
+
+const dirname = path.dirname(url.fileURLToPath(import.meta.url));
+const self = path.basename(url.fileURLToPath(import.meta.url));
+
+const files = fs.readdirSync(dirname).filter((file) => file !== self);
+/**
+ * @type {Record<string, import('eslint').Rule.RuleModule>}
+ */
+const rules = {};
+for await (const file of files) {
+  rules[path.parse(file).name] = (await import(`./${file}`)).default;
+}
 
 export default {
-  rules: {
-    "css-conventions": cssConventions,
-    "no-global-styles": noGlobalStyles,
-    "no-useless-clsx": noUselessClsx,
-    "prefer-styles-import": preferStylesImport,
-    "prefer-testing-library": preferTestingLibrary,
-    "sprinkles-conventions": sprinklesConventions,
-  },
+  rules,
 };
