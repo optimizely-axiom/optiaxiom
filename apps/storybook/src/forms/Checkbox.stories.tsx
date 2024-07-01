@@ -16,3 +16,10 @@ export const Basic: Story = {
     label: "Test",
   },
 };
+export const AllFunctions: Story = {
+  args: {
+    helperText: "Helper Text",
+    indeterminate: true,
+    label: "Label",
+  },
+};
