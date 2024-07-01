@@ -18,8 +18,9 @@ export const Basic: Story = {
 };
 export const AllFunctions: Story = {
   args: {
+    disabled: true,
     helperText: "Helper Text",
-    indeterminate: true,
+    // indeterminate: true,
     label: "Label",
   },
 };
