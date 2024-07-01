@@ -91,6 +91,7 @@ export default tsEslint.config(
     rules: {
       "local/css-conventions": "error",
       "local/no-global-styles": "error",
+      "local/no-sprinkles-style-conflict": "error",
       "local/sprinkles-conventions": "error",
     },
   },
