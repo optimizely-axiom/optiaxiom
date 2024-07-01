@@ -144,6 +144,7 @@ export default tsEslint.config(
       "@typescript-eslint/no-floating-promises": "error",
       "local/no-useless-clsx": "error",
       "local/prefer-styles-import": "error",
+      "local/recipe-call-is-valid": "error",
     },
   },
   {
