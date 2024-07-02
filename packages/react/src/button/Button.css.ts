@@ -5,7 +5,6 @@ import { type RecipeVariants, recipe } from "../vanilla-extract";
 const accentColorVar = createVar();
 const solidAccentColorVar = createVar();
 const subtleAccentColorVar = createVar();
-const internalSpaceVar = createVar();
 
 export const button = recipe({
   base: [
@@ -13,7 +12,6 @@ export const button = recipe({
       alignItems: "center",
       display: "inline-flex",
       flexDirection: "row",
-      gap: "xs",
       justifyContent: "center",
       overflow: "hidden",
       transition: "colors",
@@ -88,18 +86,20 @@ export const button = recipe({
     size: {
       sm: {
         fontSize: "sm",
-        h: "24",
-        px: "10",
+        h: "sm",
+        px: "4",
       },
       md: {
         fontSize: "md",
-        h: "32",
-        px: "12",
+        gap: "2",
+        h: "md",
+        px: "8",
       },
       lg: {
         fontSize: "lg",
-        h: "40",
-        px: "16",
+        gap: "4",
+        h: "lg",
+        px: "12",
       },
     },
     variant: {
@@ -203,34 +203,6 @@ export const section = recipe({
     display: "inline-flex",
     fontSize: "inherit",
     justifyContent: "center",
-  },
-
-  variants: {
-    position: {
-      end: style({
-        paddingLeft: internalSpaceVar,
-      }),
-      start: style({
-        paddingRight: internalSpaceVar,
-      }),
-    },
-    size: {
-      sm: style({
-        vars: {
-          [internalSpaceVar]: "0",
-        },
-      }),
-      md: style({
-        vars: {
-          [internalSpaceVar]: theme.spacing[2],
-        },
-      }),
-      lg: style({
-        vars: {
-          [internalSpaceVar]: theme.spacing[4],
-        },
-      }),
-    },
   },
 });
 
