@@ -1,4 +1,3 @@
-import clsx from "clsx";
 import { type ComponentPropsWithRef, type ReactNode, forwardRef } from "react";
 import TextareaAutosize from "react-textarea-autosize";
 
@@ -12,13 +11,12 @@ type TextareaProps = ExtendProps<
   ComponentPropsWithRef<typeof Box>,
   {
     bottomSection?: ReactNode;
-    defaultValue?: string;
     disabled?: boolean;
     error?: boolean;
-    resize?: "auto" | "none" | "vertical";
+    resize: "auto" | "none" | "vertical";
     topSection?: ReactNode;
-  } & styles.ParentRecipeVariants &
-    styles.TextAreaRecipeVariants
+  } & styles.TextareaVariants &
+    styles.WrapperVariants
 >;
 
 export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
@@ -42,7 +40,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
     return (
       <Box
         aria-invalid={error}
-        {...styles.parentBoxRecipe()}
+        {...styles.wrapper()}
         data-disabled={disabled}
         {...props}
         style={{
@@ -50,14 +48,14 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
         }}
       >
         {topSection && <Box>{topSection}</Box>}
-        <Box asChild className={clsx(styles.textAreaBoxRecipe({}), className)}>
+        <Box asChild {...styles.textarea({}, String(className))}>
           <Box
             asChild
             style={{
-              resize: "none", // Need to fix
+              resize: "none",
             }}
           >
-            <Component placeholder={placeholder} ref={ref}></Component>
+            <Component placeholder={String(placeholder)} ref={ref}></Component>
           </Box>
         </Box>
         {bottomSection && <Box>{bottomSection}</Box>}
