@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { Button, ButtonGroup } from "@optiaxiom/react";
-import { IconArrowRight, IconDownload, IconPhoto } from "@tabler/icons-react";
+import { IconDownload, IconPhoto } from "@tabler/icons-react";
 
 const meta: Meta<typeof ButtonGroup> = {
   component: ButtonGroup,
@@ -14,10 +14,11 @@ type Story = StoryObj<typeof ButtonGroup>;
 export const Horizontal: Story = {
   render: () => (
     <ButtonGroup>
-      <Button leftSection={<IconPhoto />}>Gallery</Button>
-      <Button rightSection={<IconDownload />}>Download</Button>
-      <Button leftSection={<IconPhoto />} rightSection={<IconArrowRight />}>
-        Enter Gallery
+      <Button icon={<IconPhoto />} iconPosition="start">
+        Gallery
+      </Button>
+      <Button icon={<IconDownload />} iconPosition="end">
+        Download
       </Button>
     </ButtonGroup>
   ),
@@ -25,10 +26,11 @@ export const Horizontal: Story = {
 export const Vertical: Story = {
   render: () => (
     <ButtonGroup orientation="vertical">
-      <Button leftSection={<IconPhoto />}>Gallery</Button>
-      <Button rightSection={<IconDownload />}>Download</Button>
-      <Button leftSection={<IconPhoto />} rightSection={<IconArrowRight />}>
-        Enter Gallery
+      <Button icon={<IconPhoto />} iconPosition="start">
+        Gallery
+      </Button>
+      <Button icon={<IconDownload />} iconPosition="end">
+        Download
       </Button>
     </ButtonGroup>
   ),
