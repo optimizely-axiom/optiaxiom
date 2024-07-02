@@ -8,8 +8,8 @@ import { render, screen, withinShadowRoot } from "../vitest.rtl";
 describe("Component slots", () => {
   function setup(overrides = {}) {
     return render(
-      <Button preset="primary" {...overrides}>
-        <i slot="rightSection">icon</i>
+      <Button appearance="primary" icon-position="end" {...overrides}>
+        <i slot="icon">icon</i>
         Primary
       </Button>,
     );

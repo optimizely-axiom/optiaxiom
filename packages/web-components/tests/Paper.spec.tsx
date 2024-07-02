@@ -26,7 +26,7 @@ describe("Paper component", () => {
       <Paper p="md">
         This is a paper
         <Button
-          preset={preset}
+          appearance={preset}
           // eslint-disable-next-line @typescript-eslint/ban-ts-comment
           // @ts-ignore
           ref={(node) => {

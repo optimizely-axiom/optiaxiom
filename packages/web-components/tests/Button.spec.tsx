@@ -8,7 +8,7 @@ import { render, screen, withinShadowRoot } from "../vitest.rtl";
 describe("Button component", () => {
   function setup(overrides = {}) {
     return render(
-      <Button preset="primary" {...overrides}>
+      <Button appearance="primary" {...overrides}>
         Primary
       </Button>,
     );

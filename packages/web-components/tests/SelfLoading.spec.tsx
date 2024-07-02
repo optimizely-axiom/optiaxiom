@@ -8,7 +8,7 @@ const Button = "ax-button";
 describe("Self-loading components", () => {
   function setup(overrides = {}) {
     return render(
-      <Button preset="primary" {...overrides}>
+      <Button appearance="primary" {...overrides}>
         Primary
       </Button>,
     );
