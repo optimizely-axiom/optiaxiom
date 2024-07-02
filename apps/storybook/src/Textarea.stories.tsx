@@ -4,10 +4,10 @@ import { Button, Flex, Text, Textarea } from "@optiaxiom/react";
 
 const meta: Meta<typeof Textarea> = {
   component: Textarea,
-  // parameters: {
-  //   layout: "centered",
-  // },
-  // title: "Components / Textarea",
+  parameters: {
+    layout: "centered",
+  },
+  title: "Components / Textarea",
 };
 
 export default meta;
@@ -48,7 +48,7 @@ export const TypesOfTextarea: Story = {
         placeholder="Disabled placeholder"
       />
 
-      {/*       <Textarea disabled placeholder="Disabled placeholder" />
+      <Textarea disabled placeholder="Disabled placeholder" />
       <Textarea error placeholder="Error state" />
       <Textarea
         defaultValue="Error with value"
@@ -61,7 +61,7 @@ export const TypesOfTextarea: Story = {
       <Textarea
         defaultValue="This is a text Textarea"
         placeholder="Placeholder"
-      /> */}
+      />
     </Flex>
   ),
 };
