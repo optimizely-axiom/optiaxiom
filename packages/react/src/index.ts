@@ -6,6 +6,7 @@ export * from "./button-group";
 export * from "./code";
 export * from "./field";
 export * from "./file-upload";
+export * from "./file-upload-context";
 export * from "./file-upload-dropzone";
 export * from "./file-upload-label";
 export * from "./file-upload-trigger";
