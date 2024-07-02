@@ -73,14 +73,20 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
               as="span"
               fontSize="inherit"
               style={{
-                padding: "0px 4px",
+                paddingInline: "4px",
               }}
             >
               {children.props.children}
             </Text>,
           )
         ) : (
-          <Text as="span" fontSize="inherit">
+          <Text
+            as="span"
+            fontSize="inherit"
+            style={{
+              paddingInline: "4px",
+            }}
+          >
             {children}
           </Text>
         );
@@ -88,15 +94,11 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       content = (
         <>
           {icon && iconPosition === "start" && (
-            <Box {...styles.section({ position: iconPosition, size: size })}>
-              {icon}
-            </Box>
+            <Box {...styles.section()}>{icon}</Box>
           )}
           <Slottable>{children}</Slottable>
           {icon && iconPosition === "end" && (
-            <Box {...styles.section({ position: iconPosition, size: size })}>
-              {icon}
-            </Box>
+            <Box {...styles.section()}>{icon}</Box>
           )}
         </>
       );
