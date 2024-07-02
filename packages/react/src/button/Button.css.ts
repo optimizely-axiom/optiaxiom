@@ -84,23 +84,23 @@ export const button = recipe({
       true: {},
     },
     size: {
-      sm: {
+      sm: style({
         fontSize: "sm",
-        h: "sm",
-        px: "4",
-      },
-      md: {
+        height: "24px",
+        paddingInline: "4px",
+      }),
+      md: style({
         fontSize: "md",
         gap: "2",
-        h: "md",
-        px: "8",
-      },
-      lg: {
+        height: "32px",
+        paddingInline: "8px",
+      }),
+      lg: style({
         fontSize: "lg",
         gap: "4",
-        h: "lg",
-        px: "12",
-      },
+        height: "40px",
+        paddingInline: "12px",
+      }),
     },
     variant: {
       ghost: style({
