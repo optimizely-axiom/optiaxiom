@@ -12,6 +12,7 @@ type Story = StoryObj<typeof Field>;
 export const Basic: Story = {
   args: {
     children: <Input placeholder="This is an Input" />,
+    hint: "Give a proper input",
     label: "Form label",
   },
 };
@@ -24,6 +25,7 @@ export const Required: Story = {
         startDecorator={<IconCalendar size="16" />}
       />
     ),
+    hint: "Give a proper input",
     label: "Form label",
     required: true,
   },
