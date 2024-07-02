@@ -24,6 +24,7 @@
     "test": "vitest"
   },
   "dependencies": {
+    "@ark-ui/react": "^3.5.0",
     "@fontsource-variable/fira-code": "^5.0.18",
     "@radix-ui/react-avatar": "^1.0.4",
     "@radix-ui/react-compose-refs": "^1.0.1",
@@ -35,6 +36,7 @@
     "@radix-ui/react-tooltip": "^1.0.7",
     "@reach/auto-id": "^0.18.0",
     "@vanilla-extract/sprinkles": "^1.6.2",
+    "@zag-js/file-upload": "^0.59.0",
     "clsx": "^2.1.1",
     "inter-ui": "^4.0.2"
   },
