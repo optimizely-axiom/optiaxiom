@@ -1,5 +1,5 @@
 import { theme } from "../styles";
-import { type RecipeVariants, style } from "../vanilla-extract";
+import { style } from "../vanilla-extract";
 import { recipe } from "../vanilla-extract";
 
 export const textarea = recipe({
@@ -13,7 +13,6 @@ export const textarea = recipe({
       },
     }),
   ],
-  variants: {},
 });
 
 export const wrapper = recipe({
@@ -50,8 +49,7 @@ export const wrapper = recipe({
       },
     }),
   ],
-  variants: {},
 });
 
-export type WrapperVariants = RecipeVariants<typeof wrapper>;
-export type TextareaVariants = RecipeVariants<typeof textarea>;
+// export type WrapperVariants = RecipeVariants<typeof wrapper>;
+// export type TextareaVariants = RecipeVariants<typeof textarea>;

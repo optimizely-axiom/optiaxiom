@@ -13,10 +13,9 @@ type TextareaProps = ExtendProps<
     bottomSection?: ReactNode;
     disabled?: boolean;
     error?: boolean;
-    resize: "auto" | "none" | "vertical";
+    resize?: "auto" | "none" | "vertical";
     topSection?: ReactNode;
-  } & styles.TextareaVariants &
-    styles.WrapperVariants
+  }
 >;
 
 export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
@@ -55,7 +54,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
               resize: "none",
             }}
           >
-            <Component placeholder={String(placeholder)} ref={ref}></Component>
+            <Component placeholder={placeholder} ref={ref}></Component>
           </Box>
         </Box>
         {bottomSection && <Box>{bottomSection}</Box>}
