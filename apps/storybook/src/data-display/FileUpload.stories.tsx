@@ -6,6 +6,7 @@ import {
   FileUploadContext,
   FileUploadDropzone,
   FileUploadLabel,
+  FileUploadTrigger,
   Flex,
 } from "@optiaxiom/react";
 
@@ -23,7 +24,6 @@ export const Primary: Story = {
       <Flex
         alignItems="center"
         asChild
-        bg="bg.brand.subtle"
         border="1"
         justifyContent="center"
         rounded="lg"
@@ -31,41 +31,59 @@ export const Primary: Story = {
       >
         <FileUpload maxFiles={5}>
           <FileUploadLabel>
-            <p>File Upload</p>
+            <>
+              <h3>File Upload </h3>
+              <h5>Maximum 5 Files</h5>
+            </>
           </FileUploadLabel>
           <Flex
             alignItems="center"
-            asChild
-            border="1"
             h="320"
             justifyContent="center"
             rounded="lg"
             w="full"
           >
-            <FileUploadDropzone>
-              <Box border="1" p="10" rounded="sm">
-                Drag your files here
-              </Box>
-            </FileUploadDropzone>
+            <Flex
+              alignItems="center"
+              asChild
+              bg="bg.neutral"
+              border="1"
+              h="full"
+              justifyContent="center"
+              rounded="sm"
+              w="full"
+            >
+              <FileUploadDropzone>Drag your files here</FileUploadDropzone>
+            </Flex>
+            <FileUploadTrigger>
+              <Box>Click to Upload</Box>
+            </FileUploadTrigger>
           </Flex>
           <FileUploadContext>
             {({ acceptedFiles, rejectedFiles }) => {
               return (
-                <Flex alignItems="center" flexDirection="column">
-                  <Box>
-                    <p> Accepted Files </p>
-                    {acceptedFiles.map((file) => (
-                      <p key={file.name}> {file.name}</p>
-                    ))}
+                <Flex
+                  alignItems="start"
+                  flexDirection="column"
+                  justifyContent="start"
+                >
+                  <Box flex="1">
+                    <h4> Accepted Files </h4>
+                    <ul>
+                      {acceptedFiles.map((file) => (
+                        <li key={file.name}> {file.name}</li>
+                      ))}
+                    </ul>
                   </Box>
-                  <Box>
-                    <p> Rejected Files </p>
-                    {rejectedFiles.map((fileRejection) => (
-                      <p key={fileRejection.file.name}>
-                        {" "}
-                        {fileRejection.file.name}
-                      </p>
-                    ))}
+                  <Box flex="1">
+                    <h4> Rejected Files </h4>
+                    <ul>
+                      {rejectedFiles.map((fileRejection) => (
+                        <li key={fileRejection.file.name}>
+                          {fileRejection.file.name}
+                        </li>
+                      ))}
+                    </ul>
                   </Box>
                 </Flex>
               );
