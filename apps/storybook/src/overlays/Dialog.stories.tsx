@@ -6,9 +6,11 @@ import {
   Dialog,
   DialogContent,
   DialogFooter,
+  DialogScrollableContent,
   DialogTitle,
-  DialogTrigger,
+  Flex,
 } from "@optiaxiom/react";
+import { useState } from "react";
 
 const meta: Meta<typeof Dialog> = {
   component: Dialog,
@@ -18,19 +20,84 @@ export default meta;
 
 type Story = StoryObj<typeof Dialog>;
 
-export const Primary: Story = {
-  render: () => (
-    <Dialog>
-      <DialogTrigger asChild>
-        <Button preset="primary"> Open Dialog</Button>
-      </DialogTrigger>
-      <DialogContent>
-        <DialogTitle>Custom</DialogTitle>
-        <Box>This is a custom dialog.</Box>
-        <DialogFooter pt="20">
-          <Button>Close</Button>s<Button preset="primary">Confirm</Button>
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
-  ),
+const LongContentTemplate = () => {
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  return (
+    <Flex>
+      <Button onClick={handleOpen}>Open Dialog</Button>
+      <Dialog onOpenChange={handleClose} open={open}>
+        <DialogContent onInteractOutside={handleClose}>
+          <DialogTitle>Custom</DialogTitle>
+          <DialogScrollableContent>
+            This is a longer piece of content that demonstrates how the
+            AlertDialog handles more text. It might wrap to multiple lines
+            depending on the width of the dialog.This is a longer piece of
+            content that demonstrates how the AlertDialog handles more text. It
+            might wrap to multiple lines depending on the width of the
+            dialog.This is a longer piece of content that demonstrates how the
+            AlertDialog handles more text. It might wrap to multiple lines
+            depending on the width of the dialog.This is a longer piece of
+            content that demonstrates how the AlertDialog handles more text. It
+            might wrap to multiple lines depending on the width of the
+            dialog.This is a longer piece of content that demonstrates how the
+            AlertDialog handles more text. It might wrap to multiple lines
+            depending on the width of the dialog.This is a longer piece of
+            content that demonstrates how the AlertDialog handles more text. It
+            might wrap to multiple lines depending on the width of the
+            dialog.This is a longer piece of content that demonstrates how the
+            AlertDialog handles more text. It might wrap to multiple lines
+            depending on the width of the dialog.This is a longer piece of
+            content that demonstrates how the AlertDialog handles more text. It
+            might wrap to multiple lines depending on the width of the
+            dialog.This is a longer piece of content that demonstrates how the
+            AlertDialog handles more text. It might wrap to multiple lines
+            depending on the width of the dialog.
+          </DialogScrollableContent>
+          <DialogFooter pt="20">
+            <Button onClick={handleClose}>Close</Button>
+            <Button onClick={handleClose} preset="primary">
+              Confirm
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    </Flex>
+  );
+};
+
+const Template = () => {
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  return (
+    <Flex>
+      <Button onClick={handleOpen}>Open Dialog</Button>
+      <Dialog onOpenChange={handleClose} open={open}>
+        <DialogContent onInteractOutside={handleClose}>
+          <DialogTitle>Custom</DialogTitle>
+          <Box>This is a short content.</Box>
+          <DialogFooter pt="20">
+            <Button onClick={handleClose}>Close</Button>
+            <Button onClick={handleClose} preset="primary">
+              Confirm
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    </Flex>
+  );
+};
+
+export const Default: Story = {
+  render: Template,
+};
+
+export const LongContent: Story = {
+  render: LongContentTemplate,
 };

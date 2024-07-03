@@ -28,7 +28,11 @@ export const DialogContent = forwardRef<HTMLDivElement, ContentProps>(
               w="full"
               {...styles.overlay()}
             >
-              <RadixDialog.Content ref={ref} {...props}>
+              <RadixDialog.Content
+                ref={ref}
+                {...props}
+                aria-describedby={undefined}
+              >
                 <Box
                   {...styles.content()}
                   bg="white"
@@ -39,7 +43,7 @@ export const DialogContent = forwardRef<HTMLDivElement, ContentProps>(
                   w="full"
                 >
                   {children}
-                  {hideCloseIcon && (
+                  {!hideCloseIcon && (
                     <Box asChild h="20" p="2" w="20" {...styles.close()}>
                       <RadixDialog.Close aria-label="Close" asChild>
                         <svg
