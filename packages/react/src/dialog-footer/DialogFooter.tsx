@@ -1,10 +1,5 @@
-import * as RadixDialog from "@radix-ui/react-dialog";
-import {
-  Children,
-  type ComponentPropsWithRef,
-  type ReactNode,
-  forwardRef,
-} from "react";
+// import * as RadixDialog from "@radix-ui/react-dialog";
+import { type ComponentPropsWithRef, type ReactNode, forwardRef } from "react";
 
 import type { ExtendProps } from "../utils";
 
@@ -28,11 +23,12 @@ export const DialogFooter = forwardRef<HTMLDivElement, FooterProps>(
         justifyContent="end"
         ref={ref}
       >
-        {Children.map(children, (child, index) => (
+        {/* {Children.map(children, (child, index) => (
           <RadixDialog.Close asChild key={index}>
             {child}
           </RadixDialog.Close>
-        ))}
+        ))} */}
+        {children}
       </Flex>
     );
   },
