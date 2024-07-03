@@ -29,6 +29,7 @@ export * from "./skeleton";
 export * from "./sprinkles";
 export * from "./styles";
 export * from "./switch";
+export * from "./tabs";
 export * from "./text";
 export * from "./textarea";
 export * from "./tokens";
