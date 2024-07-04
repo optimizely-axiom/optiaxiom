@@ -42,10 +42,11 @@ export const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>(
     return (
       <Flex
         aria-disabled={disabled || readonly}
-        ref={ref}
-        {...props}
+        data-disabled={disabled || readonly}
         flexDirection="row"
         gap="8"
+        ref={ref}
+        {...props}
       >
         <Box
           style={{
@@ -54,7 +55,7 @@ export const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>(
             paddingTop: "4px",
           }}
         >
-          <Box asChild {...styles.checkboxRoot()}>
+          <Box asChild {...styles.indicatorRoot()}>
             <RadixCheckbox.Root
               checked={checked}
               data-disabled={disabled || readonly}
@@ -71,12 +72,11 @@ export const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>(
           </Box>
         </Box>
 
-        <RadixLabel.Root htmlFor={checkboxId}>
+        <RadixLabel.Root htmlFor={checkboxId} {...styles.rightSection()}>
           <Text
             color={disabled ? "fg.disabled" : "fg.default"}
             fontSize="md"
             style={{
-              cursor: "pointer",
               letterSpacing: "-.1px",
               lineHeight: "20px",
             }}
@@ -88,7 +88,6 @@ export const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>(
               color={disabled ? "fg.disabled" : "fg.secondary"}
               fontSize="sm"
               style={{
-                cursor: "pointer",
                 letterSpacing: "0.01px",
                 lineHeight: "16px",
               }}
