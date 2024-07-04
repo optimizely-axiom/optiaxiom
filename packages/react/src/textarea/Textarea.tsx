@@ -4,16 +4,19 @@ import TextareaAutosize from "react-textarea-autosize";
 import type { ExtendProps } from "../utils";
 
 import { Box } from "../box";
+import { Flex } from "../flex";
+import { extractSprinkles } from "../sprinkles";
 import * as styles from "./Textarea.css";
 
 type TextareaProps = ExtendProps<
   ComponentPropsWithRef<"textarea">,
   ComponentPropsWithRef<typeof Box>,
   {
+    autoResize?: boolean;
     bottomSection?: ReactNode;
     disabled?: boolean;
     error?: boolean;
-    resize?: "auto" | "none" | "vertical";
+    resize?: "none" | "vertical";
     topSection?: ReactNode;
   }
 >;
@@ -21,44 +24,46 @@ type TextareaProps = ExtendProps<
 export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
   (
     {
+      autoResize = false,
       bottomSection,
       className,
       disabled,
       error,
       placeholder,
-      resize = "auto",
+      resize = "none",
       rows,
-      size,
       topSection,
       ...props
     },
     ref,
   ) => {
-    const Component = resize !== "none" ? TextareaAutosize : "textarea";
+    const Component = autoResize ? TextareaAutosize : "textarea";
+    const { restProps, sprinkleProps } = extractSprinkles(props);
 
     return (
-      <Box
+      <Flex
+        aria-disabled={disabled}
         aria-invalid={error}
-        {...styles.wrapper()}
         data-disabled={disabled}
-        {...props}
+        data-invalid={error}
         style={{
-          resize: resize !== "auto" ? "vertical" : "none",
+          resize: resize === "none" ? "none" : "vertical",
         }}
+        {...styles.wrapper()}
+        {...sprinkleProps}
       >
         {topSection && <Box>{topSection}</Box>}
-        <Box asChild {...styles.textarea({}, String(className))}>
-          <Box
-            asChild
-            style={{
-              resize: "none",
-            }}
-          >
-            <Component placeholder={placeholder} ref={ref}></Component>
-          </Box>
+        <Box asChild {...styles.textarea({}, className)}>
+          <Component
+            placeholder={placeholder}
+            readOnly={disabled}
+            ref={ref}
+            rows={rows}
+            {...restProps}
+          ></Component>
         </Box>
         {bottomSection && <Box>{bottomSection}</Box>}
-      </Box>
+      </Flex>
     );
   },
 );
