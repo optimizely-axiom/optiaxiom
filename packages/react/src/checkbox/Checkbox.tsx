@@ -9,7 +9,7 @@ import { Flex } from "../flex";
 import { Text } from "../text";
 import * as styles from "./Checkbox.css";
 
-type CheckboxProps = ExtendProps<
+export type CheckboxProps = ExtendProps<
   ComponentPropsWithRef<typeof Box>,
   {
     checked?: "indeterminate" | boolean;
@@ -17,6 +17,7 @@ type CheckboxProps = ExtendProps<
     disabled?: boolean;
     helperText?: string;
     label: string;
+    onCheckedChange?: (checked: "indeterminate" | boolean) => void;
     readonly?: boolean;
   }
 >;
@@ -31,6 +32,7 @@ export const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>(
       helperText,
       id,
       label,
+      onCheckedChange,
       readonly = false,
       ...props
     },
@@ -61,6 +63,7 @@ export const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>(
               defaultChecked={defaultChecked}
               disabled={disabled || readonly}
               id={checkboxId}
+              onCheckedChange={onCheckedChange}
             >
               <RadixCheckbox.Indicator {...styles.indicator()}>
                 {checkboxIcon.indeterminate}
