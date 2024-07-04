@@ -1,16 +1,17 @@
-import { type ComponentPropsWithRef, type ReactNode, forwardRef } from "react";
+import React, { type ComponentPropsWithRef, forwardRef } from "react";
 
-// import type { Checkbox } from "../checkbox/Checkbox";
 import type { ExtendProps } from "../utils";
 
 import { Box } from "../box";
+import { Checkbox, type CheckboxProps } from "../checkbox/Checkbox";
 import { Flex } from "../flex";
 import * as styles from "./CheckboxGroup.css";
 
 type CheckboxGroupProps = ExtendProps<
   ComponentPropsWithRef<typeof Box>,
   {
-    children?: ReactNode;
+    checkboxItems: Array<{ id: string } & CheckboxProps>;
+    // children?: ReactNode;
     disabled?: boolean;
     helperText?: string;
     label: string;
@@ -19,11 +20,62 @@ type CheckboxGroupProps = ExtendProps<
 >;
 
 export const CheckboxGroup = forwardRef<HTMLDivElement, CheckboxGroupProps>(
-  ({ children, className, disabled, helperText, label, ...props }, ref) => {
+  (
+    {
+      checkboxItems,
+      className,
+      disabled,
+      helperText,
+      label,
+      readonly,
+      ...props
+    },
+    ref,
+  ) => {
+    const [checkedItems, setCheckedItems] = React.useState<boolean[]>(
+      checkboxItems.map((item) => !!item.defaultChecked),
+    );
+
+    const handleCheckboxChange = (
+      index: number,
+      checked: "indeterminate" | boolean,
+    ) => {
+      const newCheckedItems = [...checkedItems];
+      newCheckedItems[index] = checked === true;
+      setCheckedItems(newCheckedItems);
+    };
+
+    const allChecked = checkedItems.every(Boolean);
+    const isIndeterminate = checkedItems.some(Boolean) && !allChecked;
+
     return (
       <Flex flexDirection="column" ref={ref} {...styles.base()} {...props}>
-        {/* <Box>{children}</Box> */}
-        Checkbox Group
+        <Checkbox
+          checked={isIndeterminate ? "indeterminate" : allChecked}
+          disabled={disabled}
+          helperText={helperText}
+          label={label || ""}
+          onCheckedChange={() => {
+            const newState = !allChecked;
+            setCheckedItems(checkboxItems.map(() => newState));
+          }}
+          readonly={readonly}
+        />
+        <Flex flexDirection="column" gap="8" pl="16">
+          {checkboxItems?.map((checkboxProps, index) => (
+            <Checkbox
+              key={checkboxProps.id}
+              {...checkboxProps}
+              checked={checkedItems[index]}
+              disabled={disabled || checkboxProps.disabled}
+              helperText={checkboxProps.helperText}
+              onCheckedChange={(checked) =>
+                handleCheckboxChange(index, checked)
+              }
+              readonly={readonly || checkboxProps.readonly}
+            />
+          ))}
+        </Flex>
       </Flex>
     );
   },
