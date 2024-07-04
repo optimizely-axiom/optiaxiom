@@ -16,18 +16,14 @@ export const DialogFooter = forwardRef<HTMLDivElement, FooterProps>(
   ({ children, ...props }, ref) => {
     return (
       <Flex
-        {...props}
         alignItems="center"
         flexDirection="row"
         gap="sm"
         justifyContent="end"
+        pt="20"
         ref={ref}
+        {...props}
       >
-        {/* {Children.map(children, (child, index) => (
-          <RadixDialog.Close asChild key={index}>
-            {child}
-          </RadixDialog.Close>
-        ))} */}
         {children}
       </Flex>
     );
