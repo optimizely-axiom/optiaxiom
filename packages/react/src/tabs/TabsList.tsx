@@ -3,12 +3,11 @@ import { type ComponentPropsWithRef, forwardRef } from "react";
 
 import type { ExtendProps } from "../utils";
 
-import { Box } from "../box";
 import { Flex } from "../flex";
 import * as styles from "./Tabs.css";
 
 type TabsProps = ExtendProps<
-  ComponentPropsWithRef<typeof Box>,
+  ComponentPropsWithRef<typeof Flex>,
   ComponentPropsWithRef<typeof RadixTabs.TabsList>
 >;
 
