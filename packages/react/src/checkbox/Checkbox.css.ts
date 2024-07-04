@@ -2,34 +2,51 @@
 import { theme } from "../styles";
 import { recipe, style } from "../vanilla-extract";
 
-export const checkbox = recipe({
+export const iconC = recipe({
   base: [
-    {
-      display: "flex",
-      flexDirection: "row",
-    },
     style({
-      gap: "8px",
+      display: "none",
+      selectors: {
+        '[data-state="checked"] &': {
+          display: "block",
+        },
+      },
     }),
   ],
 });
 
-export const label = recipe({
+export const iconUC = recipe({
   base: [
     style({
-      color: theme.colors["fg.default"],
-      fontStyle: "normal",
-      fontWeight: "400",
-      letterSpacing: "-.1px",
-      lineHeight: "20px",
+      display: "none",
+      selectors: {
+        '[data-state="unchecked"] &': {
+          display: "block",
+        },
+      },
     }),
   ],
 });
+
+export const iconI = recipe({
+  base: [
+    style({
+      display: "none",
+      selectors: {
+        '[data-state="indeterminate"] &': {
+          display: "block",
+        },
+      },
+    }),
+  ],
+});
+
 export const indicator = recipe({
   base: [
     style({
       alignItems: "center",
       background: theme.colors["bg.brand.solid"],
+      borderRadius: theme.borderRadius["xs"],
       color: "black",
       display: "flex",
       height: "100%",
@@ -38,34 +55,10 @@ export const indicator = recipe({
         "&:hover": {
           background: theme.colors["bg.brand.solid.hover"],
         },
-        '&[data-disabled="true"]': {
+        '[data-disabled="true"] &': {
           background: theme.colors["neutral.150"],
         },
       },
-    }),
-  ],
-});
-export const leftSection = recipe({
-  base: [
-    {
-      alignItems: "start",
-      display: "flex",
-    },
-    style({
-      alignItems: "start",
-      padding: "4px 0px",
-    }),
-  ],
-});
-export const helperText = recipe({
-  base: [
-    style({
-      color: theme.colors["fg.secondary"],
-      fontSize: "12px",
-      fontStyle: "normal",
-      fontWeight: "400",
-      letterSpacing: "0.01px",
-      lineHeight: "16px",
     }),
   ],
 });
@@ -73,11 +66,9 @@ export const helperText = recipe({
 export const checkboxRoot = recipe({
   base: [
     style({
-      backgroundColor: theme.colors["white"],
       border: `1px solid ${theme.colors["neutral.500"]}`,
       borderRadius: theme.borderRadius["xs"],
       color: theme.colors.black,
-
       height: theme.spacing["16"],
       justifyContent: "center",
       selectors: {
@@ -93,6 +84,12 @@ export const checkboxRoot = recipe({
         '&[data-disabled="true"]': {
           background: theme.colors["bg.disabled"],
           cursor: "not-allowed",
+        },
+        '&[data-state="checked"] ': {
+          border: "none",
+        },
+        '&[data-state="indeterminate"]': {
+          border: "none",
         },
       },
       width: theme.spacing["16"],
