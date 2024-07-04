@@ -1,12 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import {
-  Box,
   Button,
   Dialog,
+  DialogBody,
   DialogContent,
   DialogFooter,
-  DialogScrollableContent,
   DialogTitle,
   Flex,
 } from "@optiaxiom/react";
@@ -32,7 +31,7 @@ const LongContentTemplate = () => {
       <Dialog onOpenChange={handleClose} open={open}>
         <DialogContent onInteractOutside={handleClose}>
           <DialogTitle>Custom</DialogTitle>
-          <DialogScrollableContent>
+          <DialogBody>
             This is a longer piece of content that demonstrates how the
             AlertDialog handles more text. It might wrap to multiple lines
             depending on the width of the dialog.This is a longer piece of
@@ -56,7 +55,7 @@ const LongContentTemplate = () => {
             dialog.This is a longer piece of content that demonstrates how the
             AlertDialog handles more text. It might wrap to multiple lines
             depending on the width of the dialog.
-          </DialogScrollableContent>
+          </DialogBody>
           <DialogFooter pt="20">
             <Button onClick={handleClose}>Close</Button>
             <Button onClick={handleClose} preset="primary">
@@ -81,8 +80,8 @@ const Template = () => {
       <Dialog onOpenChange={handleClose} open={open}>
         <DialogContent onInteractOutside={handleClose}>
           <DialogTitle>Custom</DialogTitle>
-          <Box>This is a short content.</Box>
-          <DialogFooter pt="20">
+          <DialogBody>This is a short content.</DialogBody>
+          <DialogFooter>
             <Button onClick={handleClose}>Close</Button>
             <Button onClick={handleClose} preset="primary">
               Confirm
