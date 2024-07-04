@@ -13,7 +13,7 @@ export const wrapper = recipe({
     style({
       border: "1",
       borderColor: theme.colors["border.default"],
-      gap: theme.spacing["sm"],
+      gap: theme.spacing["xs"],
       letterSpacing: "-.14px",
       padding: theme.spacing["xs"],
       selectors: {
@@ -45,12 +45,6 @@ export const wrapper = recipe({
           borderColor: theme.colors["border.secondary"],
           pointerEvents: "none",
         },
-        "&[data-disabled=true]": {
-          backgroundColor: "bg.disabled",
-          borderColor: "border.secondary",
-          color: "fg.quaternary",
-          pointerEvents: "none",
-        },
         '&[data-invalid="true"]': {
           borderColor: theme.colors["border.error"],
         },
@@ -77,7 +71,8 @@ export const textarea = recipe({
           outlineWidth: "0px",
         },
         '[data-disabled="true"] &': {
-          backgroundColor: theme.colors["bg.disabled"],
+          backgroundColor: theme.colors["neutral.50"],
+          color: theme.colors["fg.disabled"],
         },
       },
     }),
