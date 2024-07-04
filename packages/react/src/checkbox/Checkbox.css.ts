@@ -63,7 +63,7 @@ export const indicator = recipe({
   ],
 });
 
-export const checkboxRoot = recipe({
+export const indicatorRoot = recipe({
   base: [
     style({
       border: `1px solid ${theme.colors["neutral.500"]}`,
@@ -93,6 +93,19 @@ export const checkboxRoot = recipe({
         },
       },
       width: theme.spacing["16"],
+    }),
+  ],
+});
+
+export const rightSection = recipe({
+  base: [
+    style({
+      cursor: "pointer",
+      selectors: {
+        '[data-disabled="true"] &': {
+          cursor: "not-allowed",
+        },
+      },
     }),
   ],
 });
