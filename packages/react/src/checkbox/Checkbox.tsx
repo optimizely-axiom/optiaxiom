@@ -1,20 +1,21 @@
 import * as RadixCheckbox from "@radix-ui/react-checkbox";
 import * as RadixLabel from "@radix-ui/react-label";
-import { type ComponentPropsWithRef, forwardRef, useState } from "react";
+import { type ComponentPropsWithRef, forwardRef } from "react";
 
 import type { ExtendProps } from "../utils";
 
 import { Box } from "../box";
+import { Flex } from "../flex";
 import { Text } from "../text";
 import * as styles from "./Checkbox.css";
 
 type CheckboxProps = ExtendProps<
   ComponentPropsWithRef<typeof Box>,
   {
-    defaultValue?: boolean;
+    checked?: "indeterminate" | boolean;
+    defaultChecked?: "indeterminate" | boolean;
     disabled?: boolean;
     helperText?: string;
-    indeterminate?: boolean;
     label: string;
     readonly?: boolean;
   }
@@ -23,72 +24,80 @@ type CheckboxProps = ExtendProps<
 export const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>(
   (
     {
+      checked,
       className,
-      defaultValue = false,
+      defaultChecked,
       disabled,
       helperText,
       id,
-      indeterminate = false,
       label,
       readonly = false,
       ...props
     },
     ref,
   ) => {
-    const [checked, setChecked] = useState(defaultValue);
-
-    const handleCheckedChange = (isChecked: "indeterminate" | boolean) => {
-      if (isChecked === "indeterminate") {
-        setChecked(false);
-      } else {
-        setChecked(isChecked);
-      }
-    };
+    const checkboxId =
+      id || `checkbox-${label.replace(/\s+/g, "-").toLowerCase()}`;
 
     return (
-      <Box
-        {...props}
-        aria-disabled={disabled}
-        data-disabled={disabled}
+      <Flex
+        aria-disabled={disabled || readonly}
         ref={ref}
+        {...props}
+        flexDirection="row"
+        gap="8"
       >
-        <Box {...styles.checkbox()}>
-          <Box {...styles.leftSection()}>
-            <Box asChild {...styles.checkboxRoot()}>
-              <RadixCheckbox.Root
-                checked={checked}
-                disabled={readonly}
-                id={id}
-                onCheckedChange={handleCheckedChange}
-              >
-                <RadixCheckbox.Indicator>
-                  <Box {...styles.indicator()}>
-                    {indeterminate
-                      ? checkboxIcon.indeterminate
-                      : checked
-                        ? checkboxIcon.checked
-                        : checkboxIcon.unchecked}
-                  </Box>
-                </RadixCheckbox.Indicator>
-              </RadixCheckbox.Root>
-            </Box>
-          </Box>
-          <Box
-            style={{
-              paddingTop: "2px",
-            }}
-          >
-            <Box asChild {...styles.label()}>
-              <RadixLabel.Root htmlFor={id}>{label}</RadixLabel.Root>
-            </Box>
-            {helperText && (
-              <Box asChild {...styles.helperText()}>
-                <Text>{helperText}</Text>
-              </Box>
-            )}
+        <Box
+          style={{
+            alignSelf: "start",
+            display: "flex",
+            paddingTop: "4px",
+          }}
+        >
+          <Box asChild {...styles.checkboxRoot()}>
+            <RadixCheckbox.Root
+              checked={checked}
+              data-disabled={disabled || readonly}
+              defaultChecked={defaultChecked}
+              disabled={disabled || readonly}
+              id={checkboxId}
+            >
+              <RadixCheckbox.Indicator {...styles.indicator()}>
+                {checkboxIcon.indeterminate}
+                {checkboxIcon.checked}
+                {checkboxIcon.unchecked}
+              </RadixCheckbox.Indicator>
+            </RadixCheckbox.Root>
           </Box>
         </Box>
-      </Box>
+
+        <RadixLabel.Root htmlFor={checkboxId}>
+          <Text
+            color={disabled ? "fg.disabled" : "fg.default"}
+            fontSize="md"
+            style={{
+              cursor: "pointer",
+              letterSpacing: "-.1px",
+              lineHeight: "20px",
+            }}
+          >
+            {label}
+          </Text>
+          {helperText && (
+            <Text
+              color={disabled ? "fg.disabled" : "fg.secondary"}
+              fontSize="sm"
+              style={{
+                cursor: "pointer",
+                letterSpacing: "0.01px",
+                lineHeight: "16px",
+              }}
+            >
+              {helperText}
+            </Text>
+          )}
+        </RadixLabel.Root>
+      </Flex>
     );
   },
 );
@@ -96,6 +105,7 @@ export const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>(
 const checkboxIcon = {
   checked: (
     <svg
+      {...styles.iconC()}
       fill="none"
       height="8"
       viewBox="0 0 12 8"
@@ -113,6 +123,7 @@ const checkboxIcon = {
   ),
   indeterminate: (
     <svg
+      {...styles.iconI()}
       fill="none"
       height="8"
       viewBox="0 0 12 8"
@@ -127,6 +138,7 @@ const checkboxIcon = {
   ),
   unchecked: (
     <svg
+      {...styles.iconUC()}
       fill="none"
       height="8"
       viewBox="0 0 12 8"
@@ -135,7 +147,7 @@ const checkboxIcon = {
     >
       <path
         d="M1.5 3.47059L4.83333 7L10.5 1"
-        stroke="white"
+        stroke="red"
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth="1.5"
