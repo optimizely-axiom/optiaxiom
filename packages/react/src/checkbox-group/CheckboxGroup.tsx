@@ -5,13 +5,10 @@ import type { ExtendProps } from "../utils";
 import { Box } from "../box";
 import { Checkbox, type CheckboxProps } from "../checkbox/Checkbox";
 import { Flex } from "../flex";
-import * as styles from "./CheckboxGroup.css";
-
 type CheckboxGroupProps = ExtendProps<
   ComponentPropsWithRef<typeof Box>,
   {
     checkboxItems: Array<{ id: string } & CheckboxProps>;
-    // children?: ReactNode;
     disabled?: boolean;
     helperText?: string;
     label: string;
@@ -49,7 +46,7 @@ export const CheckboxGroup = forwardRef<HTMLDivElement, CheckboxGroupProps>(
     const isIndeterminate = checkedItems.some(Boolean) && !allChecked;
 
     return (
-      <Flex flexDirection="column" ref={ref} {...styles.base()} {...props}>
+      <Flex flexDirection="column" ref={ref} {...props}>
         <Checkbox
           checked={isIndeterminate ? "indeterminate" : allChecked}
           disabled={disabled}
