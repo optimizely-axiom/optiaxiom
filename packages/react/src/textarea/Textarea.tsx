@@ -16,7 +16,6 @@ type TextareaProps = ExtendProps<
     bottomSection?: ReactNode;
     disabled?: boolean;
     error?: boolean;
-    readonly?: boolean;
     resize?: "none" | "vertical";
     topSection?: ReactNode;
   }
@@ -32,7 +31,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
       error,
       placeholder,
       readOnly,
-      resize = "ve",
+      resize = "vertical",
       rows,
       topSection,
       ...props
@@ -58,9 +57,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
         <Box
           asChild
           {...styles.textarea({}, className)}
-          style={{
-            color: disabled ? "fg.disabled" : "fg.default",
-          }}
+          color={disabled ? "fg.disabled" : "fg.default"}
         >
           <Component
             placeholder={placeholder}
