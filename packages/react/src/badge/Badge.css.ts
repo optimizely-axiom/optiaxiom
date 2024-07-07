@@ -4,23 +4,21 @@ import { recipe, style } from "../vanilla-extract";
 export const badge = recipe({
   base: [
     style({
-      display: "inline-block",
-      textAlign: "center",
       textTransform: "capitalize",
     }),
   ],
   variants: {
     type: {
       danger: style({
-        backgroundColor: theme.colors["fg.error"],
+        backgroundColor: theme.colors["bg.error.solid"],
         color: "white",
       }),
       default: style({
-        backgroundColor: theme.colors["brand.200"],
-        color: theme.colors["dark.600"],
+        backgroundColor: theme.colors["border.default"],
+        color: theme.colors["fg.default"],
       }),
       primary: style({
-        backgroundColor: theme.colors["fg.brand"],
+        backgroundColor: theme.colors["bg.brand.solid"],
         color: "white",
       }),
       secondary: style({
@@ -28,12 +26,12 @@ export const badge = recipe({
         color: "white",
       }),
       success: style({
-        backgroundColor: theme.colors["bg.success"],
-        color: theme.colors["dark.600"],
+        backgroundColor: theme.colors["bg.success.solid"],
+        color: "white",
       }),
       warning: style({
         backgroundColor: theme.colors["bg.warning.solid"],
-        color: "white",
+        color: theme.colors["fg.default"],
       }),
     },
   },
