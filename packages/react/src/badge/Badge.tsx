@@ -2,12 +2,12 @@ import { type ComponentPropsWithRef, type ReactNode, forwardRef } from "react";
 
 import type { ExtendProps } from "../utils";
 
-import { Box } from "../box";
+import { Flex } from "../flex";
 import { Text } from "../text";
 import * as styles from "./Badge.css";
 
 type BadgeProps = ExtendProps<
-  ComponentPropsWithRef<typeof Box>,
+  ComponentPropsWithRef<typeof Flex>,
   {
     children: ReactNode;
     type?:
@@ -23,19 +23,18 @@ type BadgeProps = ExtendProps<
 export const Badge = forwardRef<HTMLDivElement, BadgeProps>(
   ({ children, className, type = "default", ...props }, ref) => {
     return (
-      <Box
-        asChild
-        mb="4"
-        mr="4"
+      <Flex
         px="8"
         py="4"
-        rounded="sm"
+        rounded="md"
         {...props}
         {...styles.badge({ type }, className)}
         ref={ref}
       >
-        <Text as="span">{children}</Text>
-      </Box>
+        <Text as="span" fontSize="inherit">
+          {children}
+        </Text>
+      </Flex>
     );
   },
 );
