@@ -62,12 +62,7 @@ export const Custom: Story = {
   args: {
     autoResize: true,
     bottomSection: (
-      <Flex
-        style={{
-          alignItems: "stretch",
-          justifyContent: "center",
-        }}
-      >
+      <Flex alignItems="stretch" justifyContent="center">
         <Button preset="primary">Bottom Section</Button>
       </Flex>
     ),

@@ -1,41 +1,30 @@
 import { theme } from "../styles";
-import { style } from "../vanilla-extract";
-import { recipe } from "../vanilla-extract";
+import { recipe, style } from "../vanilla-extract";
 
 export const wrapper = recipe({
   base: [
     {
       border: "1",
       fontSize: "md",
+      gap: "xs",
       overflow: "auto",
+      p: "xs",
       rounded: "sm",
     },
     style({
-      border: "1",
-      borderColor: theme.colors["border.default"],
-      gap: theme.spacing["xs"],
-      letterSpacing: "-.14px",
-      padding: theme.spacing["xs"],
+      letterSpacing: "-0.14px",
       selectors: {
-        "&:aria-invalid": {
-          borderColor: "border.error",
-        },
         "&:focus-within": {
-          outline: "2",
-          outlineColor: theme.colors["brand.200"],
-          outlineOffset: "1",
+          outline: `2px solid ${theme.colors["brand.200"]}`,
+          outlineOffset: "1px",
         },
         '&:focus-within:is([data-invalid="true"])': {
-          outlineColor: theme.colors["red.200"],
+          outline: `2px solid ${theme.colors["red.200"]}`,
           outlineOffset: "1px",
-          outlineStyle: "solid",
-          outlineWidth: "2px",
         },
         '&:focus-within:not([data-invalid="true"])': {
-          outlineColor: theme.colors["brand.200"],
+          outline: `2px solid  ${theme.colors["brand.200"]}`,
           outlineOffset: "1px",
-          outlineStyle: "solid",
-          outlineWidth: "2px",
         },
         "&:hover": {
           borderColor: theme.colors["border.brand"],
@@ -49,20 +38,19 @@ export const wrapper = recipe({
           borderColor: theme.colors["border.error"],
         },
       },
-      width: "340px",
     }),
   ],
 });
 export const textarea = recipe({
   base: [
     {
+      alignItems: "start",
+      flex: "1",
       w: "full",
     },
     style({
-      alignItems: "flex-start",
       borderColor: theme.colors["border.default"],
       color: theme.colors["fg.default"],
-      flexGrow: "1",
       lineHeight: "24px",
       minHeight: "108px",
       resize: "none",
