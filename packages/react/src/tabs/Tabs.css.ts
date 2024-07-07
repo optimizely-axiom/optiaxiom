@@ -33,7 +33,6 @@ export const trigger = recipe({
 
 export const list = recipe({
   base: [
-    {},
     style({
       borderBottom: `1px solid ${theme.colors["border.default"]}`,
     }),
