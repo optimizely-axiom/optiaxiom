@@ -2,6 +2,10 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 import {
   Box,
+  Button,
+  Field,
+  Flex,
+  Input,
   Tabs,
   TabsContent,
   TabsList,
@@ -39,30 +43,57 @@ export const Primary: Story = {
 
 export const CustomContent: Story = {
   render: () => (
-    <Tabs defaultValue="tab1">
+    <Tabs defaultValue="login">
       <TabsList>
-        <TabsTrigger value="tab1">Account</TabsTrigger>
-        <TabsTrigger disabled value="tab2">
-          Password
-        </TabsTrigger>
-        <TabsTrigger value="tab3">Settings</TabsTrigger>
+        <TabsTrigger value="login">Login</TabsTrigger>
+        <TabsTrigger value="sign-up">Sign Up</TabsTrigger>
       </TabsList>
-      <TabsContent value="tab1">
+
+      <TabsContent value="login">
         <Box>
-          <h3>Account Information</h3>
-          <p>Manage your account details and preferences here.</p>
+          <form onSubmit={(e) => e.preventDefault()}>
+            <Field label="Email">
+              <Input placeholder="email@example.com" type="email" />
+            </Field>
+
+            <Field label="Password" mt="10">
+              <Input placeholder="Password" type="password" />
+            </Field>
+
+            <Flex>
+              <Button mt="10" preset="primary" type="submit">
+                Log In
+              </Button>
+            </Flex>
+          </form>
         </Box>
       </TabsContent>
-      <TabsContent value="tab2">
+
+      <TabsContent value="sign-up">
         <Box>
-          <h3>Change Password</h3>
-          <p>Update your password and security settings.</p>
-        </Box>
-      </TabsContent>
-      <TabsContent value="tab3">
-        <Box>
-          <h3>User Settings</h3>
-          <p>Customize your application settings and preferences.</p>
+          <form onSubmit={(e) => e.preventDefault()}>
+            <Field label="Full Name">
+              <Input placeholder="John Doe" type="text" />
+            </Field>
+
+            <Field label="Email" mt="10">
+              <Input placeholder="email@example.com" type="email" />
+            </Field>
+
+            <Field label="Password" mt="10">
+              <Input placeholder="Password" type="password" />
+            </Field>
+
+            <Field label="Confirm Password" mt="10">
+              <Input placeholder="Confirm Password" type="password" />
+            </Field>
+
+            <Flex>
+              <Button mt="10" preset="primary" type="submit">
+                Sign Up
+              </Button>
+            </Flex>
+          </form>
         </Box>
       </TabsContent>
     </Tabs>
