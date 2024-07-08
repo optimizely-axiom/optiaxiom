@@ -1,6 +1,15 @@
-// import { theme } from "../styles";
 import { theme } from "../styles";
 import { recipe, style } from "../vanilla-extract";
+
+export const wrapper = recipe({
+  base: [
+    {
+      alignItems: "start",
+      flexDirection: "row",
+      gap: "xs",
+    },
+  ],
+});
 
 export const iconC = recipe({
   base: [
@@ -43,10 +52,12 @@ export const iconI = recipe({
 
 export const indicator = recipe({
   base: [
+    {
+      rounded: "xs",
+    },
     style({
       alignItems: "center",
       background: theme.colors["bg.brand.solid"],
-      borderRadius: theme.borderRadius["xs"],
       color: "black",
       display: "flex",
       height: "100%",
@@ -63,14 +74,17 @@ export const indicator = recipe({
   ],
 });
 
-export const indicatorRoot = recipe({
+export const indicatorWrapper = recipe({
   base: [
-    style({
-      border: `1px solid ${theme.colors["neutral.500"]}`,
-      borderRadius: theme.borderRadius["xs"],
-      color: theme.colors.black,
-      height: theme.spacing["16"],
+    {
+      border: "1",
+      h: "16",
       justifyContent: "center",
+      rounded: "xs",
+      w: "16",
+    },
+    style({
+      borderColor: theme.colors["neutral.500"],
       selectors: {
         "&:focus-visible": {
           outlineColor: theme.colors["brand.300"],
@@ -92,15 +106,18 @@ export const indicatorRoot = recipe({
           border: "none",
         },
       },
-      width: theme.spacing["16"],
     }),
   ],
 });
 
 export const rightSection = recipe({
   base: [
+    {
+      fontSize: "md",
+    },
     style({
       cursor: "pointer",
+      letterSpacing: "-.1px",
       selectors: {
         '[data-disabled="true"] &': {
           cursor: "not-allowed",
