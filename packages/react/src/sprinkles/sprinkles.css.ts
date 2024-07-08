@@ -115,6 +115,10 @@ const unresponsiveProps = defineProperties({
         transitionProperty:
           "background-color, border-color, color, fill, stroke, text-decoration-color",
       },
+      transform: {
+        ...transitions,
+        transitionProperty: "transform",
+      },
     },
     /**
      * Set the element's `white-space` CSS property
