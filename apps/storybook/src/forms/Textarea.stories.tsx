@@ -51,16 +51,8 @@ export const NoResize: Story = {
   },
 };
 
-export const AutoResizeable: Story = {
-  args: {
-    autoResize: true,
-    placeholder: "Enter text....",
-  },
-};
-
 export const Custom: Story = {
   args: {
-    autoResize: true,
     bottomSection: (
       <Flex alignItems="stretch" justifyContent="center">
         <Button preset="primary">Bottom Section</Button>
