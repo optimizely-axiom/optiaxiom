@@ -52,7 +52,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const finalColorScheme = colorScheme ?? presetProps.colorScheme;
     const finalVariant = variant ?? presetProps.variant;
 
-    const isDisabled = disabled || isLoading;
+    const isDisabled = Boolean(disabled || isLoading);
 
     return (
       <Box
