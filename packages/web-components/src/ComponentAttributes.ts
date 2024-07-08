@@ -9,7 +9,7 @@ type KebabCaseKeys<T> = {
     ? never
     : KebabCase<K & string>]: T[K];
 };
-type KebabCase<
+export type KebabCase<
   T extends string,
   A extends string = "",
 > = T extends `${infer F}${infer R}`
