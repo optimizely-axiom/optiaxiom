@@ -37,7 +37,6 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       disabled,
       isLoading,
       leftSection,
-      onClick,
       preset = "default",
       rightSection,
       size = "md",
@@ -56,10 +55,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
     return (
       <Box
-        aria-disabled={isDisabled}
         asChild
         data-disabled={isDisabled}
-        onClick={isDisabled ? undefined : onClick}
         {...styles.button(
           {
             colorScheme: finalColorScheme,
@@ -70,7 +67,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         )}
         {...props}
       >
-        <Comp ref={ref}>
+        <Comp disabled={isDisabled} ref={ref}>
           {leftSection}
           <Slottable>{children}</Slottable>
           {rightSection}
