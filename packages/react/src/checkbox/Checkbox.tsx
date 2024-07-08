@@ -1,6 +1,6 @@
 import * as RadixCheckbox from "@radix-ui/react-checkbox";
 import * as RadixLabel from "@radix-ui/react-label";
-import { type ComponentPropsWithRef, forwardRef } from "react";
+import { type ComponentPropsWithRef, type ReactNode, forwardRef } from "react";
 
 import type { ExtendProps } from "../utils";
 
@@ -15,8 +15,7 @@ type CheckboxProps = ExtendProps<
     checked?: "indeterminate" | boolean;
     defaultChecked?: "indeterminate" | boolean;
     disabled?: boolean;
-    helperText?: string;
-    label: string;
+    label: ReactNode;
     readonly?: boolean;
   }
 >;
@@ -28,7 +27,6 @@ export const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>(
       className,
       defaultChecked,
       disabled,
-      helperText,
       id,
       label,
       readonly = false,
@@ -36,9 +34,6 @@ export const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>(
     },
     ref,
   ) => {
-    const checkboxId =
-      id || `checkbox-${label.replace(/\s+/g, "-").toLowerCase()}`;
-
     return (
       <Flex
         aria-disabled={disabled || readonly}
@@ -61,7 +56,7 @@ export const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>(
               data-disabled={disabled || readonly}
               defaultChecked={defaultChecked}
               disabled={disabled || readonly}
-              id={checkboxId}
+              id={id}
             >
               <RadixCheckbox.Indicator {...styles.indicator()}>
                 {checkboxIcon.indeterminate}
@@ -72,8 +67,9 @@ export const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>(
           </Box>
         </Box>
 
-        <RadixLabel.Root htmlFor={checkboxId} {...styles.rightSection()}>
+        <RadixLabel.Root htmlFor={id} {...styles.rightSection()}>
           <Text
+            asChild
             color={disabled ? "fg.disabled" : "fg.default"}
             fontSize="md"
             style={{
@@ -83,18 +79,6 @@ export const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>(
           >
             {label}
           </Text>
-          {helperText && (
-            <Text
-              color={disabled ? "fg.disabled" : "fg.secondary"}
-              fontSize="sm"
-              style={{
-                letterSpacing: "0.01px",
-                lineHeight: "16px",
-              }}
-            >
-              {helperText}
-            </Text>
-          )}
         </RadixLabel.Root>
       </Flex>
     );
