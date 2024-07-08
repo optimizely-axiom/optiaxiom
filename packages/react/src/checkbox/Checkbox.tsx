@@ -34,29 +34,25 @@ export const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>(
     },
     ref,
   ) => {
+    const checkboxId =
+      id ||
+      (typeof label === "string"
+        ? `checkbox-${label.replace(/\s+/g, "-").toLowerCase()}`
+        : undefined);
     return (
       <Flex
-        aria-disabled={disabled || readonly}
         data-disabled={disabled || readonly}
-        flexDirection="row"
-        gap="8"
         ref={ref}
         {...props}
+        {...styles.wrapper({}, className)}
       >
-        <Box
-          style={{
-            alignSelf: "start",
-            display: "flex",
-            paddingTop: "4px",
-          }}
-        >
-          <Box asChild {...styles.indicatorRoot()}>
+        <Flex pt="4">
+          <Box asChild {...styles.indicatorWrapper()}>
             <RadixCheckbox.Root
               checked={checked}
-              data-disabled={disabled || readonly}
               defaultChecked={defaultChecked}
               disabled={disabled || readonly}
-              id={id}
+              id={checkboxId}
             >
               <RadixCheckbox.Indicator {...styles.indicator()}>
                 {checkboxIcon.indeterminate}
@@ -65,21 +61,15 @@ export const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>(
               </RadixCheckbox.Indicator>
             </RadixCheckbox.Root>
           </Box>
-        </Box>
+        </Flex>
 
-        <RadixLabel.Root htmlFor={id} {...styles.rightSection()}>
-          <Text
-            asChild
-            color={disabled ? "fg.disabled" : "fg.default"}
-            fontSize="md"
-            style={{
-              letterSpacing: "-.1px",
-              lineHeight: "20px",
-            }}
-          >
-            {label}
-          </Text>
-        </RadixLabel.Root>
+        <Box asChild {...styles.rightSection()}>
+          <RadixLabel.Root htmlFor={checkboxId}>
+            <Text asChild color={disabled ? "fg.disabled" : "fg.default"}>
+              {label}
+            </Text>
+          </RadixLabel.Root>
+        </Box>
       </Flex>
     );
   },
