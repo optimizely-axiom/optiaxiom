@@ -1,5 +1,4 @@
 import { type ComponentPropsWithRef, type ReactNode, forwardRef } from "react";
-import TextareaAutosize from "react-textarea-autosize";
 
 import type { ExtendProps } from "../utils";
 
@@ -12,7 +11,6 @@ type TextareaProps = ExtendProps<
   ComponentPropsWithRef<"textarea">,
   ComponentPropsWithRef<typeof Box>,
   {
-    autoResize?: boolean;
     bottomSection?: ReactNode;
     disabled?: boolean;
     error?: boolean;
@@ -24,7 +22,6 @@ type TextareaProps = ExtendProps<
 export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
   (
     {
-      autoResize = false,
       bottomSection,
       className,
       disabled,
@@ -38,7 +35,6 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
     },
     ref,
   ) => {
-    const Component = autoResize ? TextareaAutosize : "textarea";
     const { restProps, sprinkleProps } = extractSprinkles(props);
 
     return (
@@ -59,13 +55,13 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           {...styles.textarea({}, className)}
           color={disabled ? "fg.disabled" : "fg.default"}
         >
-          <Component
+          <textarea
             placeholder={placeholder}
             readOnly={disabled || readOnly}
             ref={ref}
             rows={rows}
             {...restProps}
-          ></Component>
+          ></textarea>
         </Box>
         {bottomSection && <Box>{bottomSection}</Box>}
       </Flex>
