@@ -122,6 +122,9 @@ function toVdom<P>(
     if (shouldProcessSlot && name === "slot") {
       continue;
     }
+    if (name.startsWith("on")) {
+      continue;
+    }
     props[toCamelCase(name)] = value;
   }
 
