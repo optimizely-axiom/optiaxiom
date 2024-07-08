@@ -7,6 +7,6 @@ export const borderRadius = {
   lg: rem("8px"),
   xl: rem("12px"),
 
-  full: "100%",
+  full: "9999px",
   none: "0",
 } as const;
