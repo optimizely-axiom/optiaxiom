@@ -1,5 +1,7 @@
+import json from "@rollup/plugin-json";
 import { nodeResolve } from "@rollup/plugin-node-resolve";
 import { createFilter } from "@rollup/pluginutils";
+import { readFileSync } from "node:fs";
 import { createRequire } from "node:module";
 import postcss from "postcss";
 import postcssrc from "postcss-load-config";
@@ -9,15 +11,14 @@ import esbuild from "rollup-plugin-esbuild";
 
 const require = createRequire(import.meta.url);
 const env = process.env.NODE_ENV ?? "development";
+const pkg = JSON.parse(readFileSync("./package.json"));
 
-const input = {
-  Box: "src/Box.ts",
-  Button: "src/Button.ts",
-  Input: "src/Input.ts",
-  Paper: "src/Paper.ts",
-  Tooltip: "src/Tooltip.ts",
-  index: "src/index.ts",
-};
+const input = Object.fromEntries(
+  Object.entries(pkg.exports).map(([key, value]) => [
+    key === "." ? "index" : key.slice("./".length),
+    value.replace("./dist/", "src/").replace(".js", ".ts"),
+  ]),
+);
 
 export default defineConfig([
   {
@@ -40,6 +41,7 @@ export default defineConfig([
         exclude: [],
         minify: env === "production",
       }),
+      json(),
       nodeResolve({
         preferBuiltins: false,
       }),
