@@ -12,7 +12,7 @@ type Story = StoryObj<typeof Checkbox>;
 
 export const Basic: Story = {
   args: {
-    label: "Test",
+    label: "Label",
   },
 };
 export const HelperText: Story = {
