@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 0.1.0-next.7
+
+### Patch Changes
+
+- 61a8dac: refactored button appearance and icon props
+
 ## 0.1.0-next.6
 
 ### Patch Changes
