@@ -1,16 +1,9 @@
 import { Slot, Slottable } from "@radix-ui/react-slot";
-import {
-  type ComponentPropsWithRef,
-  type ReactNode,
-  cloneElement,
-  forwardRef,
-  isValidElement,
-} from "react";
+import { type ComponentPropsWithRef, type ReactNode, forwardRef } from "react";
 
 import type { ExtendProps } from "../utils";
 
 import { Box } from "../box";
-import { Text } from "../text";
 import * as styles from "./Button.css";
 
 const appearances = {
@@ -57,26 +50,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const presetProps = appearances[appearance];
     const finalColorScheme = colorScheme ?? presetProps.colorScheme;
     const finalVariant = variant ?? presetProps.variant;
-
     const isDisabled = Boolean(disabled || isLoading);
-
-    if (children) {
-      children =
-        asChild && isValidElement(children) ? (
-          cloneElement(
-            children,
-            undefined,
-            <Text as="span" fontSize="inherit" px="4">
-              {children.props.children}
-            </Text>,
-          )
-        ) : (
-          <Text as="span" fontSize="inherit" px="4">
-            {children}
-          </Text>
-        );
-    }
     const isIcon = Boolean(!children && icon);
+
     const content = isIcon ? (
       <Box asChild {...styles.icon()}>
         {icon}
