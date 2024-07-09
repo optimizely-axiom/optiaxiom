@@ -1,3 +1,4 @@
+import { mapValues } from "../utils";
 import { type RecipeVariants, recipe, style } from "../vanilla-extract";
 
 const translate = (dir: "down" | "left" | "right" | "up", value: number) => {
@@ -46,6 +47,12 @@ const generate = ({
     }),
   });
 
+export const transitionDuration = {
+  sm: 250,
+  md: 400,
+  lg: 550,
+} as const;
+
 export const transition = recipe({
   base: style({
     transformOrigin: "var(--radix-popper-transform-origin)",
@@ -54,6 +61,10 @@ export const transition = recipe({
   }),
 
   variants: {
+    duration: mapValues(transitionDuration, (duration) =>
+      style({ transitionDuration: `${duration}ms` }),
+    ),
+
     type: {
       fade: generate(presets.fade()),
       "fade-down": generate(presets.fade("down")),
