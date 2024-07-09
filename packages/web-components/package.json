@@ -30,6 +30,7 @@
     "./Progress": "./dist/Progress.js",
     "./Separator": "./dist/Separator.js",
     "./Skeleton": "./dist/Skeleton.js",
+    "./Switch": "./dist/Switch.js",
     "./Text": "./dist/Text.js",
     "./Tooltip": "./dist/Tooltip.js",
     "./Transition": "./dist/Transition.js"

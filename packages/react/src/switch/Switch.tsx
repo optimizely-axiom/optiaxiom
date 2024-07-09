@@ -1,7 +1,7 @@
 import * as RadixLabel from "@radix-ui/react-label";
 import * as RadixSwitch from "@radix-ui/react-switch";
 import { useId } from "@reach/auto-id";
-import { type ComponentPropsWithRef, type ElementRef, forwardRef } from "react";
+import { type ComponentPropsWithRef, forwardRef } from "react";
 
 import { Box } from "../box";
 import { Flex } from "../flex";
@@ -19,10 +19,7 @@ type SwitchProps = ExtendProps<
   } & styles.SwitchVariants
 >;
 
-export const Switch = forwardRef<
-  ElementRef<typeof RadixSwitch.Root>,
-  SwitchProps
->(
+export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
   (
     { className, disabled, id: idProp, label, readonly, size = "md", ...props },
     ref,
