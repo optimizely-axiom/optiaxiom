@@ -31,6 +31,7 @@
     "./Separator": "./dist/Separator.js",
     "./Skeleton": "./dist/Skeleton.js",
     "./Switch": "./dist/Switch.js",
+    "./Textarea": "./dist/Textarea.js",
     "./Text": "./dist/Text.js",
     "./Tooltip": "./dist/Tooltip.js",
     "./Transition": "./dist/Transition.js"
