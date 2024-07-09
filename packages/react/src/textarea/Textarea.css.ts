@@ -37,6 +37,12 @@ export const wrapper = recipe({
         '&[data-invalid="true"]': {
           borderColor: theme.colors["border.error"],
         },
+        '&[data-resize="none"]': {
+          resize: "none",
+        },
+        '&[data-resize="vertical"]': {
+          resize: "vertical",
+        },
       },
     }),
   ],
