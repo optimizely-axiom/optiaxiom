@@ -15,6 +15,7 @@
   "exports": {
     ".": "./dist/index.js",
     "./Avatar": "./dist/Avatar.js",
+    "./AnimatePresence": "./dist/AnimatePresence.js",
     "./Box": "./dist/Box.js",
     "./Button": "./dist/Button.js",
     "./ButtonGroup": "./dist/ButtonGroup.js",
@@ -30,7 +31,8 @@
     "./Separator": "./dist/Separator.js",
     "./Skeleton": "./dist/Skeleton.js",
     "./Text": "./dist/Text.js",
-    "./Tooltip": "./dist/Tooltip.js"
+    "./Tooltip": "./dist/Tooltip.js",
+    "./Transition": "./dist/Transition.js"
   },
   "types": "dist/index.d.ts",
   "scripts": {
