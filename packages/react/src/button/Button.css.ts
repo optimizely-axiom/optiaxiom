@@ -81,7 +81,9 @@ export const button = recipe({
     },
     icon: {
       false: {},
-      true: {},
+      true: {
+        flex: "none",
+      },
     },
     size: {
       sm: {
@@ -190,16 +192,6 @@ export const button = recipe({
   ],
 });
 
-export const icon = recipe({
-  base: [
-    {
-      display: "block",
-    },
-    style({
-      flexShrink: "0",
-    }),
-  ],
-});
 export const section = recipe({
   base: {
     alignItems: "center",
