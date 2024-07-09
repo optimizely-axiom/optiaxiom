@@ -1,4 +1,3 @@
-import { Slot } from "@radix-ui/react-slot";
 import {
   type ComponentPropsWithRef,
   forwardRef,
@@ -9,6 +8,7 @@ import {
 import type { ExtendProps } from "../utils";
 
 import { usePresence } from "../animate-presence";
+import { Box } from "../box";
 import * as styles from "./Transition.css";
 
 type TransitionProps = ExtendProps<
@@ -32,7 +32,8 @@ export const Transition = forwardRef<HTMLDivElement, TransitionProps>(
     }, [isPresent]);
 
     return (
-      <Slot
+      <Box
+        asChild
         ref={ref}
         {...styles.transition(
           { duration, type: enter !== isPresent ? type : undefined },
@@ -41,7 +42,7 @@ export const Transition = forwardRef<HTMLDivElement, TransitionProps>(
         {...props}
       >
         {children}
-      </Slot>
+      </Box>
     );
   },
 );
