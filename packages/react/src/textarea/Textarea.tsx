@@ -50,8 +50,8 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
         {topSection && <Box>{topSection}</Box>}
         <Box
           asChild
-          {...styles.textarea({}, className)}
           color={disabled ? "fg.disabled" : "fg.default"}
+          {...styles.textarea({}, className)}
         >
           <textarea
             placeholder={placeholder}
