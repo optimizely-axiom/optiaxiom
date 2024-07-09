@@ -69,18 +69,12 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         {...props}
       >
         <Comp disabled={isDisabled} ref={ref}>
-          {isIcon ? (
-            icon
-          ) : (
-            <>
-              {icon && iconPosition === "start" && (
-                <Box {...styles.section()}>{icon}</Box>
-              )}
-              <Slottable>{children}</Slottable>
-              {icon && iconPosition === "end" && (
-                <Box {...styles.section()}>{icon}</Box>
-              )}
-            </>
+          {!isIcon && icon && iconPosition === "start" && (
+            <Box {...styles.section()}>{icon}</Box>
+          )}
+          <Slottable>{isIcon ? icon : children}</Slottable>
+          {!isIcon && icon && iconPosition === "end" && (
+            <Box {...styles.section()}>{icon}</Box>
           )}
         </Comp>
       </Box>
