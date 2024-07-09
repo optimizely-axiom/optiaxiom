@@ -29,6 +29,7 @@
     "./Kbd": "./dist/Kbd.js",
     "./Paper": "./dist/Paper.js",
     "./Progress": "./dist/Progress.js",
+    "./RadioGroup": "./dist/RadioGroup.js",
     "./Separator": "./dist/Separator.js",
     "./Skeleton": "./dist/Skeleton.js",
     "./Switch": "./dist/Switch.js",
