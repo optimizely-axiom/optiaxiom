@@ -13,9 +13,9 @@ type CheckboxProps = ExtendProps<
   ComponentPropsWithRef<typeof Box>,
   {
     checked?: "indeterminate" | boolean;
+    children: ReactNode | string;
     defaultChecked?: "indeterminate" | boolean;
     disabled?: boolean;
-    label: ReactNode;
     readonly?: boolean;
   }
 >;
@@ -24,11 +24,11 @@ export const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>(
   (
     {
       checked,
+      children,
       className,
       defaultChecked,
       disabled,
       id,
-      label,
       readonly = false,
       ...props
     },
@@ -36,8 +36,8 @@ export const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>(
   ) => {
     const checkboxId =
       id ||
-      (typeof label === "string"
-        ? `checkbox-${label.replace(/\s+/g, "-").toLowerCase()}`
+      (typeof children === "string"
+        ? `checkbox-${children.replace(/\s+/g, "-").toLowerCase()}`
         : undefined);
     return (
       <Flex
@@ -66,7 +66,7 @@ export const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>(
         <Box asChild {...styles.rightSection()}>
           <RadixLabel.Root htmlFor={checkboxId}>
             <Text asChild color={disabled ? "fg.disabled" : "fg.default"}>
-              {label}
+              {children}
             </Text>
           </RadixLabel.Root>
         </Box>

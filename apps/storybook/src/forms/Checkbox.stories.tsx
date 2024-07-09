@@ -12,12 +12,12 @@ type Story = StoryObj<typeof Checkbox>;
 
 export const Basic: Story = {
   args: {
-    label: <Text>Label</Text>,
+    children: <Text>Label</Text>,
   },
 };
 export const HelperText: Story = {
   args: {
-    label: (
+    children: (
       <Text>
         Label
         <Text as="p" color="fg.secondary" fontSize="sm">
@@ -30,8 +30,7 @@ export const HelperText: Story = {
 
 export const Disabled: Story = {
   args: {
-    disabled: true,
-    label: (
+    children: (
       <Text>
         Label
         <Text as="p" fontSize="sm">
@@ -39,11 +38,12 @@ export const Disabled: Story = {
         </Text>
       </Text>
     ),
+    disabled: true,
   },
 };
 export const Readonly: Story = {
   args: {
-    label: (
+    children: (
       <Text>
         Label
         <Text as="p" color="fg.secondary" fontSize="sm">
@@ -57,31 +57,39 @@ export const Readonly: Story = {
 
 export const States: Story = {
   args: {
-    label: <Text>Label</Text>,
+    children: <Text>Label</Text>,
   },
   render: () => (
     <Flex flexDirection="column">
-      <Checkbox checked={false} label={<Text>Unchecked</Text>} />
-      <Checkbox checked label={<Text>Checked</Text>} />
-      <Checkbox
-        checked="indeterminate"
-        label={<Text>Checked (Indeterminate)</Text>}
-      />
-      <Checkbox disabled label={<Text>Unchecked (Disabled)</Text>} />
-      <Checkbox checked disabled label={<Text>Checked (Disabled)</Text>} />
-      <Checkbox
-        defaultChecked="indeterminate"
-        disabled
-        label={<Text>Checked (Disabled,Indeterminate)</Text>}
-      />
-      <Checkbox label={<Text>Unchecked (Read-Only)</Text>} readonly />
-      <Checkbox checked label={<Text>Checked (Read-Only)</Text>} readonly />
+      <Checkbox checked={false}>
+        <Text>Unchecked</Text>
+      </Checkbox>
+      <Checkbox checked>
+        <Text>Checked</Text>
+      </Checkbox>
+      <Checkbox checked="indeterminate">
+        <Text>Checked (Indeterminate)</Text>
+      </Checkbox>
 
-      <Checkbox
-        checked="indeterminate"
-        label={<Text>Checked (Read-Only,Indeterminate)</Text>}
-        readonly
-      />
+      <Checkbox disabled>
+        <Text>Unchecked (Disabled)</Text>
+      </Checkbox>
+      <Checkbox checked disabled>
+        <Text>Checked (Disabled)</Text>
+      </Checkbox>
+      <Checkbox defaultChecked="indeterminate" disabled>
+        <Text>Checked (Disabled,Indeterminate)</Text>
+      </Checkbox>
+      <Checkbox readonly>
+        <Text>Unchecked (Read-Only)</Text>
+      </Checkbox>
+      <Checkbox checked readonly>
+        <Text>Checked (Read-Only)</Text>
+      </Checkbox>
+
+      <Checkbox checked="indeterminate" readonly>
+        <Text>Checked (Read-Only,Indeterminate)</Text>
+      </Checkbox>
     </Flex>
   ),
 };
