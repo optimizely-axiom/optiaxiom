@@ -175,6 +175,26 @@ export const button = recipe({
     },
     {
       style: {
+        px: "1",
+      },
+      variants: {
+        iconOnly: true,
+        size: "sm",
+        variant: "outline",
+      },
+    },
+    {
+      style: {
+        px: "3",
+      },
+      variants: {
+        iconOnly: false,
+        size: "sm",
+        variant: "outline",
+      },
+    },
+    {
+      style: {
         px: "6",
       },
       variants: {
@@ -193,6 +213,26 @@ export const button = recipe({
     },
     {
       style: {
+        px: "5",
+      },
+      variants: {
+        iconOnly: true,
+        size: "md",
+        variant: "outline",
+      },
+    },
+    {
+      style: {
+        px: "7",
+      },
+      variants: {
+        iconOnly: false,
+        size: "md",
+        variant: "outline",
+      },
+    },
+    {
+      style: {
         px: "10",
       },
       variants: {
@@ -207,6 +247,26 @@ export const button = recipe({
       variants: {
         iconOnly: false,
         size: "lg",
+      },
+    },
+    {
+      style: {
+        px: "9",
+      },
+      variants: {
+        iconOnly: true,
+        size: "lg",
+        variant: "outline",
+      },
+    },
+    {
+      style: {
+        px: "11",
+      },
+      variants: {
+        iconOnly: false,
+        size: "lg",
+        variant: "outline",
       },
     },
   ],
