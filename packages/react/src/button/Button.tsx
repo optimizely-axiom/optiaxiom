@@ -60,56 +60,39 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const finalVariant = variant ?? presetProps.variant;
 
     const isDisabled = Boolean(disabled || isLoading);
-    let isIcon = false;
 
-    let content;
     if (children) {
       children =
         asChild && isValidElement(children) ? (
           cloneElement(
             children,
             undefined,
-            <Text
-              as="span"
-              fontSize="inherit"
-              style={{
-                paddingInline: "4px",
-              }}
-            >
+            <Text as="span" fontSize="inherit" px="4">
               {children.props.children}
             </Text>,
           )
         ) : (
-          <Text
-            as="span"
-            fontSize="inherit"
-            style={{
-              paddingInline: "4px",
-            }}
-          >
+          <Text as="span" fontSize="inherit" px="4">
             {children}
           </Text>
         );
-
-      content = (
-        <>
-          {icon && iconPosition === "start" && (
-            <Box {...styles.section()}>{icon}</Box>
-          )}
-          <Slottable>{children}</Slottable>
-          {icon && iconPosition === "end" && (
-            <Box {...styles.section()}>{icon}</Box>
-          )}
-        </>
-      );
-    } else {
-      isIcon = true;
-      content = (
-        <Box asChild {...styles.icon()}>
-          {icon}
-        </Box>
-      );
     }
+    const isIcon = Boolean(!children && icon);
+    const content = isIcon ? (
+      <Box asChild {...styles.icon()}>
+        {icon}
+      </Box>
+    ) : (
+      <>
+        {icon && iconPosition === "start" && (
+          <Box {...styles.section()}>{icon}</Box>
+        )}
+        <Slottable>{children}</Slottable>
+        {icon && iconPosition === "end" && (
+          <Box {...styles.section()}>{icon}</Box>
+        )}
+      </>
+    );
 
     return (
       <Box
