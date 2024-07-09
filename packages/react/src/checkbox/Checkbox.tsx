@@ -1,5 +1,6 @@
 import * as RadixCheckbox from "@radix-ui/react-checkbox";
 import * as RadixLabel from "@radix-ui/react-label";
+import { useId } from "@reach/auto-id";
 import { type ComponentPropsWithRef, type ReactNode, forwardRef } from "react";
 
 import type { ExtendProps } from "../utils";
@@ -28,17 +29,14 @@ export const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>(
       className,
       defaultChecked,
       disabled,
-      id,
+      id: idProp,
       readonly = false,
       ...props
     },
     ref,
   ) => {
-    const checkboxId =
-      id ||
-      (typeof children === "string"
-        ? `checkbox-${children.replace(/\s+/g, "-").toLowerCase()}`
-        : undefined);
+    const id = useId(idProp);
+
     return (
       <Flex
         data-disabled={disabled || readonly}
@@ -52,7 +50,7 @@ export const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>(
               checked={checked}
               defaultChecked={defaultChecked}
               disabled={disabled || readonly}
-              id={checkboxId}
+              id={id}
             >
               <RadixCheckbox.Indicator {...styles.indicator()}>
                 {checkboxIcon.indeterminate}
@@ -64,7 +62,7 @@ export const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>(
         </Flex>
 
         <Box asChild {...styles.rightSection()}>
-          <RadixLabel.Root htmlFor={checkboxId}>
+          <RadixLabel.Root htmlFor={id}>
             <Text asChild color={disabled ? "fg.disabled" : "fg.default"}>
               {children}
             </Text>
