@@ -68,7 +68,7 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>(
                 color={disabled || item.disabled ? "fg.disabled" : "fg.default"}
               >
                 <RadixLabel.Root htmlFor={item.value}>
-                  <Text asChild {...styles.label}>
+                  <Text asChild {...styles.label()}>
                     {item.label}
                   </Text>
                 </RadixLabel.Root>
