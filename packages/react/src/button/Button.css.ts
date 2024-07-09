@@ -80,6 +80,10 @@ export const button = recipe({
         },
       }),
     },
+    disabled: {
+      false: {},
+      true: {},
+    },
     iconOnly: {
       false: {},
       true: {},
@@ -185,12 +189,34 @@ export const button = recipe({
     },
     {
       style: {
+        px: "1",
+      },
+      variants: {
+        disabled: true,
+        iconOnly: true,
+        size: "sm",
+        variant: "solid",
+      },
+    },
+    {
+      style: {
         px: "3",
       },
       variants: {
         iconOnly: false,
         size: "sm",
         variant: "outline",
+      },
+    },
+    {
+      style: {
+        px: "3",
+      },
+      variants: {
+        disabled: true,
+        iconOnly: false,
+        size: "sm",
+        variant: "solid",
       },
     },
     {
@@ -223,12 +249,34 @@ export const button = recipe({
     },
     {
       style: {
+        px: "5",
+      },
+      variants: {
+        disabled: true,
+        iconOnly: true,
+        size: "md",
+        variant: "solid",
+      },
+    },
+    {
+      style: {
         px: "7",
       },
       variants: {
         iconOnly: false,
         size: "md",
         variant: "outline",
+      },
+    },
+    {
+      style: {
+        px: "7",
+      },
+      variants: {
+        disabled: true,
+        iconOnly: false,
+        size: "md",
+        variant: "solid",
       },
     },
     {
@@ -261,12 +309,34 @@ export const button = recipe({
     },
     {
       style: {
+        px: "9",
+      },
+      variants: {
+        disabled: true,
+        iconOnly: true,
+        size: "lg",
+        variant: "solid",
+      },
+    },
+    {
+      style: {
         px: "11",
       },
       variants: {
         iconOnly: false,
         size: "lg",
         variant: "outline",
+      },
+    },
+    {
+      style: {
+        px: "11",
+      },
+      variants: {
+        disabled: true,
+        iconOnly: false,
+        size: "lg",
+        variant: "solid",
       },
     },
   ],
