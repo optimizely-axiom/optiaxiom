@@ -24,7 +24,7 @@ type ButtonProps = ExtendProps<
     icon?: ReactNode;
     iconPosition?: "end" | "start";
     isLoading?: boolean;
-  } & Omit<styles.ButtonVariants, "icon">
+  } & Omit<styles.ButtonVariants, "iconOnly">
 >;
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
@@ -51,7 +51,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const finalColorScheme = colorScheme ?? presetProps.colorScheme;
     const finalVariant = variant ?? presetProps.variant;
     const isDisabled = Boolean(disabled || isLoading);
-    const isIcon = Boolean(!children && icon);
+    const isIconOnly = Boolean(!children && icon);
 
     return (
       <Box
@@ -60,7 +60,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         {...styles.button(
           {
             colorScheme: finalColorScheme,
-            icon: isIcon,
+            iconOnly: isIconOnly,
             size,
             variant: finalVariant,
           },
@@ -69,12 +69,36 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         {...props}
       >
         <Comp disabled={isDisabled} ref={ref}>
-          {!isIcon && icon && iconPosition === "start" && (
-            <Box {...styles.section()}>{icon}</Box>
+          {!isIconOnly && (
+            <Box
+              asChild
+              {...styles.section({
+                position: "start",
+                size: icon && iconPosition === "start" ? size : undefined,
+              })}
+            >
+              {icon && iconPosition === "start" ? icon : <div />}
+            </Box>
           )}
-          <Slottable>{isIcon ? icon : children}</Slottable>
-          {!isIcon && icon && iconPosition === "end" && (
-            <Box {...styles.section()}>{icon}</Box>
+          <Slottable>
+            {isIconOnly ? (
+              <Box asChild {...styles.section({ size })}>
+                {icon}
+              </Box>
+            ) : (
+              children
+            )}
+          </Slottable>
+          {!isIconOnly && (
+            <Box
+              asChild
+              {...styles.section({
+                position: "end",
+                size: icon && iconPosition === "end" ? size : undefined,
+              })}
+            >
+              {icon && iconPosition === "end" ? icon : <div />}
+            </Box>
           )}
         </Comp>
       </Box>
