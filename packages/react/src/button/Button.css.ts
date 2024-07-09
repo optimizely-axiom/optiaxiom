@@ -1,10 +1,14 @@
 import { theme } from "../styles";
-import { createVar, style } from "../vanilla-extract";
+import { createVar, fallbackVar, style } from "../vanilla-extract";
 import { type RecipeVariants, recipe } from "../vanilla-extract";
 
 const accentColorVar = createVar();
 const solidAccentColorVar = createVar();
 const subtleAccentColorVar = createVar();
+
+const borderColorVar = createVar();
+const boxShadowBorder = `inset 0 0 0 1px ${fallbackVar(borderColorVar, "transparent")}`;
+const boxShadowVar = createVar();
 
 export const button = recipe({
   base: [
@@ -25,7 +29,11 @@ export const button = recipe({
 
       selectors: {
         '&:active:not([data-disabled="true"])': {
-          boxShadow: theme.boxShadow.inner,
+          vars: {
+            [boxShadowVar]: theme.boxShadow.inner,
+          },
+
+          boxShadow: `${boxShadowBorder}, ${boxShadowVar}`,
         },
         "&:focus-visible": {
           outlineOffset: "1px",
@@ -114,8 +122,12 @@ export const button = recipe({
         },
       }),
       outline: style({
+        vars: {
+          [borderColorVar]: accentColorVar,
+        },
+
         backgroundColor: "transparent",
-        border: `1px solid ${accentColorVar}`,
+        boxShadow: boxShadowBorder,
         color: accentColorVar,
 
         selectors: {
@@ -123,7 +135,10 @@ export const button = recipe({
             backgroundColor: subtleAccentColorVar,
           },
           '&[data-disabled="true"]': {
-            borderColor: theme.colors["border.disabled"],
+            vars: {
+              [borderColorVar]: theme.colors["border.disabled"],
+            },
+
             color: theme.colors["fg.disabled"],
           },
         },
@@ -137,8 +152,12 @@ export const button = recipe({
             backgroundColor: solidAccentColorVar,
           },
           '&[data-disabled="true"]': {
+            vars: {
+              [borderColorVar]: theme.colors["border.disabled"],
+            },
+
             backgroundColor: theme.colors["bg.disabled"],
-            border: `1px solid ${theme.colors["border.disabled"]}`,
+            boxShadow: boxShadowBorder,
             color: theme.colors["fg.disabled"],
           },
         },
@@ -148,7 +167,9 @@ export const button = recipe({
   variantsCompounded: [
     {
       style: style({
-        borderColor: theme.colors["border.default"],
+        vars: {
+          [borderColorVar]: theme.colors["border.default"],
+        },
       }),
       variants: {
         colorScheme: "secondary",
