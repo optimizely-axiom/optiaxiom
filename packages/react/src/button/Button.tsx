@@ -60,6 +60,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         {...styles.button(
           {
             colorScheme: finalColorScheme,
+            disabled: isDisabled,
             iconOnly: isIconOnly,
             size,
             variant: finalVariant,
