@@ -20,6 +20,7 @@
     "./Box": "./dist/Box.js",
     "./Button": "./dist/Button.js",
     "./ButtonGroup": "./dist/ButtonGroup.js",
+    "./Checkbox": "./dist/Checkbox.js",
     "./Code": "./dist/Code.js",
     "./Field": "./dist/Field.js",
     "./Flex": "./dist/Flex.js",
