@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 0.1.0-next.6
+
+### Patch Changes
+
+- de49878: fix tooltip z-index
+
 ## 0.1.0-next.5
 
 ### Patch Changes

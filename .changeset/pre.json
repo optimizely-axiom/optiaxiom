@@ -9,10 +9,12 @@
     "@optiaxiom/web-components": "0.1.0-next.0"
   },
   "changesets": [
+    "cyan-dogs-repair",
     "hot-maps-reflect",
     "moody-apples-compare",
     "pink-lizards-flash",
     "quick-apricots-sparkle",
+    "short-queens-design",
     "stale-bears-allow",
     "tiny-pets-jog"
   ]
