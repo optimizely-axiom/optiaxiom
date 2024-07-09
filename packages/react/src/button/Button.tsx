@@ -53,22 +53,6 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const isDisabled = Boolean(disabled || isLoading);
     const isIcon = Boolean(!children && icon);
 
-    const content = isIcon ? (
-      <Box asChild {...styles.icon()}>
-        {icon}
-      </Box>
-    ) : (
-      <>
-        {icon && iconPosition === "start" && (
-          <Box {...styles.section()}>{icon}</Box>
-        )}
-        <Slottable>{children}</Slottable>
-        {icon && iconPosition === "end" && (
-          <Box {...styles.section()}>{icon}</Box>
-        )}
-      </>
-    );
-
     return (
       <Box
         asChild
@@ -85,7 +69,19 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         {...props}
       >
         <Comp disabled={isDisabled} ref={ref}>
-          {content}
+          {isIcon ? (
+            icon
+          ) : (
+            <>
+              {icon && iconPosition === "start" && (
+                <Box {...styles.section()}>{icon}</Box>
+              )}
+              <Slottable>{children}</Slottable>
+              {icon && iconPosition === "end" && (
+                <Box {...styles.section()}>{icon}</Box>
+              )}
+            </>
+          )}
         </Comp>
       </Box>
     );
