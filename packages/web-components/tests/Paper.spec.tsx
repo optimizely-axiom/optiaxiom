@@ -1,4 +1,8 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import { Button } from "@optiaxiom/web-components/Button";
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import { Paper } from "@optiaxiom/web-components/Paper";
 import { useState } from "react";
 import { describe, expect, it } from "vitest";
@@ -23,6 +27,8 @@ describe("Paper component", () => {
         This is a paper
         <Button
           preset={preset}
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
           ref={(node) => {
             node?.addEventListener("click", () => setPreset("primary"));
           }}

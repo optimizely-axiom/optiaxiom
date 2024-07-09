@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import { Tooltip } from "@optiaxiom/web-components/Tooltip";
 import { describe, expect, it } from "vitest";
 

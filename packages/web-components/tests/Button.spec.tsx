@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import { Button } from "@optiaxiom/web-components/Button";
 import { describe, expect, it } from "vitest";
 
