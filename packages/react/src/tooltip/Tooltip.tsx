@@ -14,6 +14,7 @@ import { Text } from "../text";
 import { Transition } from "../transition";
 
 type TooltipProps = ExtendProps<
+  ComponentPropsWithRef<typeof Box>,
   ComponentPropsWithRef<typeof RadixTooltip.Content>,
   {
     children: ReactNode;
@@ -26,7 +27,10 @@ type TooltipProps = ExtendProps<
 >;
 
 export const Tooltip = forwardRef<HTMLButtonElement, TooltipProps>(
-  ({ children, content, delayDuration, withArrow, ...props }, ref) => {
+  (
+    { children, content, delayDuration, withArrow, z = "popover", ...props },
+    ref,
+  ) => {
     const [open, setOpen] = useState(false);
 
     return (
@@ -41,7 +45,14 @@ export const Tooltip = forwardRef<HTMLButtonElement, TooltipProps>(
               <RadixTooltip.Portal forceMount>
                 <Transition type="pop">
                   <RadixTooltip.Content asChild sideOffset={5} {...props}>
-                    <Box bg="dark.600" color="white" px="6" py="4" rounded="sm">
+                    <Box
+                      bg="dark.600"
+                      color="white"
+                      px="6"
+                      py="4"
+                      rounded="sm"
+                      z={z}
+                    >
                       <Text fontSize="sm">{content}</Text>
                       {withArrow && <RadixTooltip.Arrow />}
                     </Box>
