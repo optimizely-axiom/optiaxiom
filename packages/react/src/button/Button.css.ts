@@ -12,6 +12,7 @@ export const button = recipe({
       alignItems: "center",
       display: "inline-flex",
       flexDirection: "row",
+      gap: "4",
       justifyContent: "center",
       overflow: "hidden",
       transition: "colors",
@@ -79,29 +80,22 @@ export const button = recipe({
         },
       }),
     },
-    icon: {
+    iconOnly: {
       false: {},
-      true: {
-        flex: "none",
-      },
+      true: {},
     },
     size: {
       sm: {
         fontSize: "sm",
         h: "sm",
-        px: "4",
       },
       md: {
         fontSize: "md",
-        gap: "2",
         h: "md",
-        px: "xs",
       },
       lg: {
         fontSize: "lg",
-        gap: "4",
         h: "lg",
-        px: "sm",
       },
     },
     variant: {
@@ -163,29 +157,55 @@ export const button = recipe({
     },
     {
       style: {
-        p: "0",
-        w: "sm",
+        px: "2",
       },
       variants: {
-        icon: true,
+        iconOnly: true,
         size: "sm",
       },
     },
     {
       style: {
-        w: "md",
+        px: "4",
       },
       variants: {
-        icon: true,
+        iconOnly: false,
+        size: "sm",
+      },
+    },
+    {
+      style: {
+        px: "6",
+      },
+      variants: {
+        iconOnly: true,
         size: "md",
       },
     },
     {
       style: {
-        w: "lg",
+        px: "8",
       },
       variants: {
-        icon: true,
+        iconOnly: false,
+        size: "md",
+      },
+    },
+    {
+      style: {
+        px: "10",
+      },
+      variants: {
+        iconOnly: true,
+        size: "lg",
+      },
+    },
+    {
+      style: {
+        px: "12",
+      },
+      variants: {
+        iconOnly: false,
         size: "lg",
       },
     },
@@ -193,12 +213,62 @@ export const button = recipe({
 });
 
 export const section = recipe({
-  base: {
-    alignItems: "center",
-    display: "inline-flex",
-    fontSize: "inherit",
-    justifyContent: "center",
+  variants: {
+    position: {
+      end: {},
+      start: {},
+    },
+    size: {
+      sm: {
+        w: "20",
+      },
+      md: {
+        w: "20",
+      },
+      lg: {
+        w: "20",
+      },
+    },
   },
+
+  variantsCompounded: [
+    {
+      style: {
+        ml: "2",
+      },
+      variants: {
+        position: "end",
+        size: "md",
+      },
+    },
+    {
+      style: {
+        mr: "2",
+      },
+      variants: {
+        position: "start",
+        size: "md",
+      },
+    },
+    {
+      style: {
+        ml: "4",
+      },
+      variants: {
+        position: "end",
+        size: "lg",
+      },
+    },
+    {
+      style: {
+        mr: "4",
+      },
+      variants: {
+        position: "start",
+        size: "lg",
+      },
+    },
+  ],
 });
 
 export type ButtonVariants = NonNullable<RecipeVariants<typeof button>>;

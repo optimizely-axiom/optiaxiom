@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { Button, Flex } from "@optiaxiom/react";
-import { IconChevronDown, IconDownload, IconPhoto } from "@tabler/icons-react";
+import { IconChevronDown } from "@tabler/icons-react";
 
 const meta: Meta<typeof Button> = {
   argTypes: { onClick: { action: "click" } },
@@ -88,14 +88,11 @@ export const Link: Story = {
 };
 
 export const StandaloneIcon: Story = {
-  args: {
-    colorScheme: "danger",
-  },
   render: (args) => (
     <Flex flexDirection="row">
-      <Button {...args} icon={<IconChevronDown />} size="sm"></Button>
-      <Button {...args} icon={<IconChevronDown />} size="md"></Button>
-      <Button {...args} icon={<IconChevronDown />} size="lg"></Button>
+      <Button {...args} icon={<IconChevronDown />} size="sm" />
+      <Button {...args} icon={<IconChevronDown />} size="md" />
+      <Button {...args} icon={<IconChevronDown />} size="lg" />
     </Flex>
   ),
 };
@@ -144,40 +141,6 @@ export const Icons: Story = {
           iconPosition="end"
           size="lg"
         />
-      </Flex>
-    </Flex>
-  ),
-};
-
-export const Example: Story = {
-  args: {
-    colorScheme: "secondary",
-  },
-  render: (args) => (
-    <Flex flexDirection="column">
-      <Flex flexDirection="row">
-        <Button size="lg" {...args} icon={<IconPhoto />} iconPosition="start">
-          Gallery
-        </Button>
-        <Button {...args} icon={<IconDownload />} iconPosition="end" size="lg">
-          Download
-        </Button>
-      </Flex>
-      <Flex flexDirection="row">
-        <Button size="md" {...args} icon={<IconPhoto />} iconPosition="start">
-          Gallery
-        </Button>
-        <Button {...args} icon={<IconDownload />} iconPosition="end" size="md">
-          Download
-        </Button>
-      </Flex>
-      <Flex flexDirection="row">
-        <Button size="sm" {...args} icon={<IconPhoto />}>
-          Gallery
-        </Button>
-        <Button {...args} icon={<IconDownload />} iconPosition="end" size="sm">
-          Download
-        </Button>
       </Flex>
     </Flex>
   ),
