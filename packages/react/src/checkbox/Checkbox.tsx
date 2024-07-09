@@ -63,9 +63,15 @@ export const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>(
 
         <Box asChild {...styles.rightSection()}>
           <RadixLabel.Root htmlFor={id}>
-            <Text asChild color={disabled ? "fg.disabled" : "fg.default"}>
-              {children}
-            </Text>
+            {typeof children === "string" ? (
+              <Text as="p" color={disabled ? "fg.disabled" : "fg.default"}>
+                {children}
+              </Text>
+            ) : (
+              <Text asChild color={disabled ? "fg.disabled" : "fg.default"}>
+                {children}
+              </Text>
+            )}
           </RadixLabel.Root>
         </Box>
       </Flex>
