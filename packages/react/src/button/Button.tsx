@@ -46,7 +46,6 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       icon,
       iconPosition = "start",
       isLoading,
-      onClick,
       size = "md",
       variant,
       ...props
