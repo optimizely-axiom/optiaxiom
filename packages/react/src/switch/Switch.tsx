@@ -1,5 +1,6 @@
 import * as RadixLabel from "@radix-ui/react-label";
 import * as RadixSwitch from "@radix-ui/react-switch";
+import { useId } from "@reach/auto-id";
 import { type ComponentPropsWithRef, type ElementRef, forwardRef } from "react";
 
 import { Box } from "../box";
@@ -23,9 +24,10 @@ export const Switch = forwardRef<
   SwitchProps
 >(
   (
-    { className, disabled, id, label, readonly, size = "default", ...props },
+    { className, disabled, id: idProp, label, readonly, size = "md", ...props },
     ref,
   ) => {
+    const id = useId(idProp);
     const { restProps, sprinkleProps } = extractSprinkles(props);
     return (
       <Flex
@@ -35,15 +37,20 @@ export const Switch = forwardRef<
         gap="0"
         {...sprinkleProps}
       >
-        <Box asChild borderColor="transparent" p="0" rounded="2xl">
+        <Box
+          asChild
+          borderColor="transparent"
+          id={id}
+          p="0"
+          rounded="full"
+          {...styles.root({ size })}
+        >
           <RadixSwitch.Root
+            disabled={disabled || readonly}
             ref={ref}
             {...restProps}
-            {...styles.root({ size })}
-            disabled={disabled || readonly}
-            id={id}
           >
-            <Box asChild bg="white" rounded="2xl" {...styles.thumb({ size })}>
+            <Box asChild bg="white" rounded="full" {...styles.thumb({ size })}>
               <RadixSwitch.Thumb />
             </Box>
           </RadixSwitch.Root>

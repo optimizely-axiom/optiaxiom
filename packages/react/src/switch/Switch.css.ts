@@ -3,6 +3,10 @@ import { type RecipeVariants, recipe, style } from "../vanilla-extract";
 
 export const root = recipe({
   base: [
+    {
+      px: "12",
+      py: "2",
+    },
     style({
       backgroundColor: theme.colors["fg.brand"],
       position: "relative",
@@ -27,40 +31,35 @@ export const root = recipe({
   ],
   variants: {
     size: {
-      lg: style({
-        height: "24px",
-        width: "44px",
-      }),
-      default: style({
-        height: "20px",
-        width: "40px",
-      }),
+      md: {},
+      lg: {},
     },
   },
 });
 
 export const thumb = recipe({
   base: [
-    style({
+    {
       display: "block",
-      transform: "translateX(2px)",
-      transition: "transform 100ms",
-      willChange: "transform",
+      transition: "transform",
+    },
+    style({
+      transform: "translateX(-10px)",
 
       selectors: {
-        '&[data-state="checked"]': { transform: "translateX(22px)" },
+        '&[data-state="checked"]': { transform: "translateX(10px)" },
       },
     }),
   ],
   variants: {
     size: {
+      md: {
+        h: "16",
+        w: "16",
+      },
       lg: {
         h: "20",
         w: "20",
-      },
-      default: {
-        h: "16",
-        w: "16",
       },
     },
   },
