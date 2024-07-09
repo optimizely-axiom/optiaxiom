@@ -43,9 +43,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
         aria-invalid={error}
         data-disabled={disabled}
         data-invalid={error}
-        style={{
-          resize: resize === "none" ? "none" : "vertical",
-        }}
+        data-resize={resize}
         {...styles.wrapper()}
         {...sprinkleProps}
       >
