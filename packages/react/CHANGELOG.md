@@ -1,5 +1,12 @@
 # @optiaxiom/react
 
+## 0.1.0-next.8
+
+### Patch Changes
+
+- 50a4805: fix button outline
+- 50a4805: rename input decorator prop
+
 ## 0.1.0-next.7
 
 ### Patch Changes
