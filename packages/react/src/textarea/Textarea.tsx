@@ -14,9 +14,8 @@ type TextareaProps = ExtendProps<
     bottomSection?: ReactNode;
     disabled?: boolean;
     error?: boolean;
-    resize?: "none" | "vertical";
     topSection?: ReactNode;
-  }
+  } & styles.WrapperVariants
 >;
 
 export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
@@ -29,7 +28,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
       placeholder,
       readOnly,
       resize = "vertical",
-      rows,
+      rows = 3,
       topSection,
       ...props
     },
@@ -43,8 +42,9 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
         aria-invalid={error}
         data-disabled={disabled}
         data-invalid={error}
-        data-resize={resize}
-        {...styles.wrapper()}
+        {...styles.wrapper({
+          resize,
+        })}
         {...sprinkleProps}
       >
         {topSection && <Box>{topSection}</Box>}
