@@ -93,12 +93,12 @@ export const AlertDialog = forwardRef<HTMLDivElement, AlertDialogProps>(
                         {...styles.footer()}
                       >
                         <RadixAlertDialog.Cancel asChild>
-                          <Button onClick={onCancel} preset="secondary">
+                          <Button appearance="secondary" onClick={onCancel}>
                             {cancel}
                           </Button>
                         </RadixAlertDialog.Cancel>
                         <RadixAlertDialog.Action asChild>
-                          <Button onClick={onAction} preset="primary">
+                          <Button appearance="primary" onClick={onAction}>
                             {action}
                           </Button>
                         </RadixAlertDialog.Action>
