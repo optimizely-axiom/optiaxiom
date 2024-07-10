@@ -23,7 +23,6 @@ export const Text = forwardRef<HTMLParagraphElement, TextProps>(
     return (
       <Box
         asChild
-        fontSize="md"
         ref={ref}
         {...styles.text({ lineClamp, truncate }, className)}
         {...props}

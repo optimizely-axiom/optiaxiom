@@ -24,16 +24,12 @@ export const Skeleton = forwardRef<HTMLDivElement, SkeletonProps>(
   ({ children, circle, className, h, rounded, w, ...props }, ref) => {
     return (
       <Box
-        animation="pulse"
         asChild
-        bg="bg.neutral"
-        {...styles.skeleton({}, className)}
-        color="surface"
-        display="block"
         h={h}
         ref={ref}
         rounded={circle || rounded === "full" ? "full" : rounded ?? "sm"}
         w={w ?? (circle || rounded === "full" ? h : undefined)}
+        {...styles.skeleton({}, className)}
         {...props}
       >
         {children ?? <span />}
