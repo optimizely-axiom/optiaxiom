@@ -23,6 +23,12 @@ const input = Object.fromEntries(
 export default defineConfig([
   {
     input,
+    onwarn(warning, warn) {
+      if (warning.code === "MODULE_LEVEL_DIRECTIVE") {
+        return;
+      }
+      warn(warning);
+    },
     output: {
       dir: "dist",
       format: "es",
