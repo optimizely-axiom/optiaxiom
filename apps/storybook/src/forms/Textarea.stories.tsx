@@ -55,7 +55,7 @@ export const Custom: Story = {
   args: {
     bottomSection: (
       <Flex alignItems="stretch" justifyContent="center">
-        <Button preset="primary">Bottom Section</Button>
+        <Button appearance="primary">Bottom Section</Button>
       </Flex>
     ),
     placeholder: "Write your text",
