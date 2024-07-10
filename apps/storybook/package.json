@@ -11,20 +11,20 @@
   "devDependencies": {
     "@optiaxiom/react": "workspace:^",
     "@optiaxiom/shared": "workspace:^",
-    "@storybook/addon-essentials": "^8.1.6",
-    "@storybook/addon-interactions": "^8.1.6",
-    "@storybook/addon-links": "^8.1.6",
-    "@storybook/addon-webpack5-compiler-swc": "^1.0.3",
-    "@storybook/react": "^8.1.6",
+    "@storybook/addon-essentials": "^8.2.1",
+    "@storybook/addon-interactions": "^8.2.1",
+    "@storybook/addon-links": "^8.2.1",
+    "@storybook/addon-webpack5-compiler-swc": "^1.0.4",
+    "@storybook/react": "^8.2.1",
     "@storybook/react-docgen-typescript-plugin": "1.0.6--canary.9.0c3f3b7.0",
-    "@storybook/react-webpack5": "^8.1.6",
-    "@storybook/test": "^8.1.6",
-    "@swc/core": "^1.5.27",
-    "chromatic": "^11.5.3",
+    "@storybook/react-webpack5": "^8.2.1",
+    "@storybook/test": "^8.2.1",
+    "@swc/core": "^1.6.13",
+    "chromatic": "^11.5.5",
     "raw-loader": "^4.0.2",
-    "storybook": "^8.1.6"
+    "storybook": "^8.2.1"
   },
   "dependencies": {
-    "@tabler/icons-react": "^3.5.0"
+    "@tabler/icons-react": "^3.10.0"
   }
 }
