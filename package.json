@@ -1,6 +1,6 @@
 {
   "name": "optiaxiom",
-  "packageManager": "pnpm@9.3.0",
+  "packageManager": "pnpm@9.5.0",
   "private": true,
   "type": "module",
   "version": "0.0.0",
