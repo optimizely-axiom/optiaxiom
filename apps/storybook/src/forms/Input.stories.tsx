@@ -36,27 +36,27 @@ export const TextInputWithIcon: Story = {
   render: () => (
     <Flex>
       <Input
-        leftSection={<IconCalendar size="16" />}
         placeholder="With left Icon"
+        startDecorator={<IconCalendar size="16" />}
       />
       <Input
+        endDecorator={<IconCalendar size="16" />}
         placeholder="With right Icon"
-        rightSection={<IconCalendar size="16" />}
       />
       <Input
-        leftSection={<IconCalendar size="16" />}
+        endDecorator={<IconCalendar size="16" />}
         placeholder="With both Icon"
-        rightSection={<IconCalendar size="16" />}
+        startDecorator={<IconCalendar size="16" />}
       />
       <Input
         disabled
-        leftSection={<IconCalendar size="16" />}
-        rightSection={<IconCalendar size="16" />}
+        endDecorator={<IconCalendar size="16" />}
+        startDecorator={<IconCalendar size="16" />}
       />
       <Input
+        endDecorator={<IconCalendar size="16" />}
         error
-        leftSection={<IconCalendar size="16" />}
-        rightSection={<IconCalendar size="16" />}
+        startDecorator={<IconCalendar size="16" />}
       />
     </Flex>
   ),

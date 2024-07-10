@@ -11,9 +11,9 @@ type InputProps = ExtendProps<
   ComponentPropsWithRef<typeof Box>,
   {
     disabled?: boolean;
+    endDecorator?: ReactNode;
     error?: boolean;
-    leftSection?: ReactNode;
-    rightSection?: ReactNode;
+    startDecorator?: ReactNode;
   } & styles.WrapperVariants
 >;
 
@@ -22,11 +22,11 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     {
       className,
       disabled,
+      endDecorator,
       error,
       id,
-      leftSection,
-      rightSection,
       size = "md",
+      startDecorator,
       variant = "default",
       ...props
     },
@@ -42,17 +42,17 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         {...styles.wrapper({ size, variant }, className)}
         {...sprinkleProps}
       >
-        {leftSection && (
+        {startDecorator && (
           <Flex gap="0" mr="8">
-            {leftSection}
+            {startDecorator}
           </Flex>
         )}
         <Box asChild {...styles.input({ variant })}>
           <input id={id} readOnly={disabled} ref={ref} {...restProps} />
         </Box>
-        {rightSection && (
+        {endDecorator && (
           <Flex gap="0" ml="8">
-            {rightSection}
+            {endDecorator}
           </Flex>
         )}
       </Box>
