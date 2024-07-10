@@ -34,7 +34,7 @@ export const button = recipe({
         "&:focus-visible": {
           outlineOffset: "1px",
           outlineStyle: "solid",
-          outlineWidth: "1px",
+          outlineWidth: "2px",
         },
         '&[data-disabled="true"]': {
           cursor: "not-allowed",
