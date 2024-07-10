@@ -3,12 +3,12 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Button, Flex } from "@optiaxiom/react";
 import { IconChevronDown } from "@tabler/icons-react";
 
-const meta: Meta<typeof Button> = {
-  argTypes: { onClick: { action: "click" } },
+export default {
+  argTypes: {
+    onClick: { action: "click" },
+  },
   component: Button,
-};
-
-export default meta;
+} as Meta<typeof Button>;
 
 type Story = StoryObj<typeof Button>;
 

@@ -3,11 +3,9 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Field, Input } from "@optiaxiom/react";
 import { IconCalendar } from "@tabler/icons-react";
 
-const meta: Meta<typeof Field> = {
+export default {
   component: Field,
-};
-
-export default meta;
+} as Meta<typeof Field>;
 
 type Story = StoryObj<typeof Field>;
 

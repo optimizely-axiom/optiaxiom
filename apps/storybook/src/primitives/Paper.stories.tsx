@@ -2,11 +2,9 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 import { Flex, Paper, Text } from "@optiaxiom/react";
 
-const meta: Meta<typeof Paper> = {
+export default {
   component: Paper,
-};
-
-export default meta;
+} as Meta<typeof Paper>;
 
 type Story = StoryObj<typeof Paper>;
 

@@ -4,11 +4,9 @@ import { Button, Flex, Progress } from "@optiaxiom/react";
 import { userEvent, within } from "@storybook/test";
 import { useState } from "react";
 
-const meta: Meta<typeof Progress> = {
+export default {
   component: Progress,
-};
-
-export default meta;
+} as Meta<typeof Progress>;
 
 type Story = StoryObj<typeof Progress>;
 

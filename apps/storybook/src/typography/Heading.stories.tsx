@@ -2,11 +2,9 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 import { Heading } from "@optiaxiom/react";
 
-const meta: Meta<typeof Heading> = {
+export default {
   component: Heading,
-};
-
-export default meta;
+} as Meta<typeof Heading>;
 
 type Story = StoryObj<typeof Heading>;
 

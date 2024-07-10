@@ -2,11 +2,9 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 import { Grid, Text } from "@optiaxiom/react";
 
-const meta: Meta<typeof Grid> = {
+export default {
   component: Grid,
-};
-
-export default meta;
+} as Meta<typeof Grid>;
 
 type Story = StoryObj<typeof Grid>;
 
