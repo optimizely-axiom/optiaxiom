@@ -14,6 +14,7 @@ export * from "./paper";
 export * from "./progress";
 export * from "./separator";
 export * from "./skeleton";
+export * from "./slider";
 export * from "./sprinkles";
 export * from "./styles";
 export * from "./text";
