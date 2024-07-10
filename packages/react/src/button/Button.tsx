@@ -73,7 +73,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           {!isIconOnly && (
             <Box
               asChild
-              {...styles.section({
+              {...styles.icon({
                 position: "start",
                 size: icon && iconPosition === "start" ? size : undefined,
               })}
@@ -83,7 +83,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           )}
           <Slottable>
             {isIconOnly ? (
-              <Box asChild {...styles.section({ size })}>
+              <Box asChild {...styles.icon({ size })}>
                 {icon}
               </Box>
             ) : (
@@ -93,7 +93,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           {!isIconOnly && (
             <Box
               asChild
-              {...styles.section({
+              {...styles.icon({
                 position: "end",
                 size: icon && iconPosition === "end" ? size : undefined,
               })}
