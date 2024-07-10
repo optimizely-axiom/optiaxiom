@@ -25,6 +25,7 @@ export const button = recipe({
       cursor: "pointer",
       position: "relative",
       textDecoration: "none",
+      userSelect: "none",
 
       selectors: {
         '&:active:not([data-disabled="true"])': {
