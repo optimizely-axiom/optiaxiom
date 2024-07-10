@@ -21,7 +21,10 @@ export const Basic: Story = {
 export const Required: Story = {
   args: {
     children: (
-      <Input leftSection={<IconCalendar size="16" />} placeholder="With Icon" />
+      <Input
+        placeholder="With Icon"
+        startDecorator={<IconCalendar size="16" />}
+      />
     ),
     label: "Form label",
     required: true,

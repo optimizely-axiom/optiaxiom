@@ -89,7 +89,7 @@ Simply set the `slot` attribute to the corresponding prop name in your HTML.
 
 ```html
 <ax-input>
-  <svg slot="leftSection">
+  <svg slot="startDecorator">
     <!-- ... -->
   </svg>
 </ax-input>
