@@ -40,11 +40,8 @@ export const recipeRuntime = <
   variants?: VariantDefinition<Variants>;
   variantsCompounded?: Array<CompoundVariant<NoInfer<Variants>>>;
 }) => {
-  return (
-    options?: Resolve<VariantSelection<Variants>>,
-    className?: string,
-  ) => {
-    const selections: VariantSelection<Variants> = options ?? {};
+  return (props?: Resolve<VariantSelection<Variants>>, className?: string) => {
+    const selections: VariantSelection<Variants> = props ?? {};
 
     const classNames: string[] = className ? [className] : [];
     const sprinkleProps: Record<string, unknown> = {};
