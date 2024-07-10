@@ -8,7 +8,7 @@ export default {
     h1: ({ ...props }) => (
       <Heading
         {...props}
-        fontSize="3xl"
+        fontSize="4xl"
         fontWeight="800"
         mt="8"
         tracking="tight"
