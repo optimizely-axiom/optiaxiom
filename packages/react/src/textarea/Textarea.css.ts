@@ -1,5 +1,5 @@
 import { theme } from "../styles";
-import { recipe, style } from "../vanilla-extract";
+import { type RecipeVariants, recipe, style } from "../vanilla-extract";
 
 export const wrapper = recipe({
   base: [
@@ -12,7 +12,6 @@ export const wrapper = recipe({
       rounded: "sm",
     },
     style({
-      letterSpacing: "-0.14px",
       selectors: {
         "&:focus-within": {
           outline: `2px solid ${theme.colors["brand.200"]}`,
@@ -37,28 +36,30 @@ export const wrapper = recipe({
         '&[data-invalid="true"]': {
           borderColor: theme.colors["border.error"],
         },
-        '&[data-resize="none"]': {
-          resize: "none",
-        },
-        '&[data-resize="vertical"]': {
-          resize: "vertical",
-        },
       },
     }),
   ],
+  variants: {
+    resize: {
+      auto: {},
+      none: style({
+        resize: "none",
+      }),
+      vertical: style({
+        resize: "vertical",
+      }),
+    },
+  },
 });
 export const textarea = recipe({
   base: [
     {
       alignItems: "start",
       flex: "1",
-      w: "full",
     },
     style({
       borderColor: theme.colors["border.default"],
       color: theme.colors["fg.default"],
-      lineHeight: "24px",
-      minHeight: "108px",
       resize: "none",
       selectors: {
         "&:focus-visible": {
@@ -72,3 +73,5 @@ export const textarea = recipe({
     }),
   ],
 });
+
+export type WrapperVariants = NonNullable<RecipeVariants<typeof wrapper>>;
