@@ -7,3 +7,61 @@
 ### Usage
 
 <ax-demo name="button/usage" />
+
+### Appearance
+
+Use the `appearance` prop to select between the different button appearances. You can also alternatively use the `colorScheme` and `variant` props to fine tune the appearance of the button.
+
+<ax-demo name="button/appearance-usage" />
+
+### Different sizes
+
+Use the `size` prop to modify the size of the button.
+
+<ax-demo name="button/size-usage" />
+
+### Disabled state
+
+Set the `disabled` prop to `true` to disable buttons and prevent any interactions.
+
+For accessibility please make sure to include text that explains why the button is disabled or use a tooltip.
+
+<ax-demo name="button/disabled-usage" />
+
+## Icons
+
+### Left and right icons
+
+Use the `icon` prop to add icons to a button. Icons are placed to the left by default but that can be configured using the `iconPosition` prop.
+
+<ax-demo name="button/icon-usage" />
+
+### Icon button
+
+Use the `icon` prop and omit the `children` to display an icon only button.
+
+For accessibility please make sure to include an `aria-label` prop for screen readers and/or use tooltip to clearly denote the button's intent.
+
+<ax-demo name="button/icon-only-usage" />
+
+## Links
+
+### Button as links
+
+Set `asChild` to `true` and pass an `<a>` element as the child to render buttons as links.
+
+<ax-demo name="button/link-usage" />
+
+### Disabled button links
+
+Make sure to prevent interactions manually using `event.preventDefault()` since `<a>` elements do not support the `disabled` prop.
+
+<ax-demo name="button/link-disabled-usage" />
+
+## Loading
+
+### Loading state
+
+import { Callout } from "nextra/components";
+
+<Callout emoji="🚨">This feature has not yet been implemented.</Callout>
