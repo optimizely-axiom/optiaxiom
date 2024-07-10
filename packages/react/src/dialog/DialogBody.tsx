@@ -1,13 +1,26 @@
-import { type ReactNode, forwardRef } from "react";
+import { type ComponentPropsWithRef, type ReactNode, forwardRef } from "react";
+
+import type { ExtendProps } from "../utils";
 
 import { Box } from "../box";
 
-type DialogBodyProps = { children: ReactNode };
+type DialogBodyProps = ExtendProps<
+  ComponentPropsWithRef<typeof Box>,
+  { children: ReactNode }
+>;
 
 export const DialogBody = forwardRef<HTMLDivElement, DialogBodyProps>(
   ({ children, ...props }, ref) => {
     return (
-      <Box {...props} maxH="sm" mr="-24" overflow="auto" pr="24" ref={ref}>
+      <Box
+        {...props}
+        fontSize="md"
+        maxH="xs"
+        overflow="auto"
+        px="24"
+        py="16"
+        ref={ref}
+      >
         {children}
       </Box>
     );

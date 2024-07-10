@@ -4,6 +4,7 @@ import { type ComponentPropsWithRef, type ReactNode, forwardRef } from "react";
 import type { ExtendProps } from "../utils";
 
 import { Flex } from "../flex";
+import * as styles from "./Dialog.css";
 
 type FooterProps = ExtendProps<
   ComponentPropsWithRef<typeof Flex>,
@@ -16,13 +17,14 @@ export const DialogFooter = forwardRef<HTMLDivElement, FooterProps>(
   ({ children, ...props }, ref) => {
     return (
       <Flex
-        alignItems="center"
         flexDirection="row"
-        gap="sm"
+        gap="md"
         justifyContent="end"
-        pt="20"
+        px="24"
+        py="20"
         ref={ref}
         {...props}
+        {...styles.footer()}
       >
         {children}
       </Flex>

@@ -5,7 +5,7 @@ import type { ExtendProps } from "../utils";
 
 import { Box } from "../box";
 import { Flex } from "../flex";
-import * as styles from "./DialogContent.css";
+import * as styles from "./Dialog.css";
 
 type ContentProps = ExtendProps<
   ComponentPropsWithRef<typeof Box>,
@@ -13,34 +13,37 @@ type ContentProps = ExtendProps<
   {
     children: ReactNode;
     hideCloseIcon?: boolean;
-  }
+  } & styles.DialogVariants
 >;
 export const DialogContent = forwardRef<HTMLDivElement, ContentProps>(
-  ({ children, hideCloseIcon = false, ...props }, ref) => {
+  ({ children, hideCloseIcon = false, size = "md", ...props }, ref) => {
     return (
       <Box asChild>
         <RadixDialog.Portal>
-          <RadixDialog.Overlay asChild>
-            <Flex
-              alignItems="center"
-              bg="dark.200"
-              h="full"
-              w="full"
-              {...styles.overlay()}
-            >
-              <RadixDialog.Content
+          <Flex
+            alignItems="center"
+            asChild
+            bg="dark.200"
+            h="full"
+            w="full"
+            {...styles.overlay()}
+          >
+            <RadixDialog.Overlay>
+              <Box
+                asChild
+                bg="white"
                 ref={ref}
-                {...props}
-                aria-describedby={undefined}
+                rounded="lg"
+                shadow="md"
+                {...styles.content({ size })}
               >
-                <Box
-                  {...styles.content()}
+                <RadixDialog.Content
+                  aria-describedby={undefined}
                   bg="white"
-                  p="24"
                   ref={ref}
-                  rounded="sm"
+                  rounded="lg"
                   shadow="md"
-                  w="full"
+                  {...props}
                 >
                   {children}
                   {!hideCloseIcon && (
@@ -61,10 +64,10 @@ export const DialogContent = forwardRef<HTMLDivElement, ContentProps>(
                       </RadixDialog.Close>
                     </Box>
                   )}
-                </Box>
-              </RadixDialog.Content>
-            </Flex>
-          </RadixDialog.Overlay>
+                </RadixDialog.Content>
+              </Box>
+            </RadixDialog.Overlay>
+          </Flex>
         </RadixDialog.Portal>
       </Box>
     );
