@@ -382,7 +382,7 @@ export const button = recipe({
   ],
 });
 
-export const section = recipe({
+export const icon = recipe({
   variants: {
     position: {
       end: {},
