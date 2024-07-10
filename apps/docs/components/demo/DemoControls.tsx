@@ -4,7 +4,9 @@ import type { PropItem, Props } from "react-docgen-typescript";
 import { Flex, Text, Tooltip } from "@optiaxiom/react";
 
 type DemoControlProps = {
-  onChange: Dispatch<SetStateAction<Record<keyof Props, number | string>>>;
+  onChange: Dispatch<
+    SetStateAction<Record<keyof Props, number | string | undefined>>
+  >;
   propTypes: Props;
   propValues: Record<keyof Props, number | string>;
 } & ComponentPropsWithRef<typeof Flex>;
@@ -19,6 +21,8 @@ export function DemoControls({
     <Flex justifyContent="start" p="md" pb="xl" pt="lg" {...props}>
       {Object.values(propTypes)
         .map(itemToControl)
+        .filter((a) => !!a)
+        .sort((a, b) => a.prop.localeCompare(b.prop))
         .map((item) =>
           item?.type === "dropdown" ? (
             <Flex gap="xs" key={String(item.prop)}>
@@ -27,14 +31,17 @@ export function DemoControls({
                 onChange={(event) =>
                   onChange((props) => ({
                     ...props,
-                    [item.prop]: event?.target.value,
+                    [item.prop]:
+                      event?.target.value === ""
+                        ? undefined
+                        : event?.target.value,
                   }))
                 }
                 value={propValues[item.prop]}
               >
                 {item.options.map((option) => (
                   <option key={option} value={option}>
-                    {option}
+                    {option || "<Empty>"}
                   </option>
                 ))}
               </select>
@@ -88,7 +95,7 @@ function isDropdownType(item: PropItem) {
     return false;
   }
 
-  const options = [];
+  const options = item.defaultValue ? [] : [""];
   for (const value of type.value) {
     if (!(value && typeof value === "object" && "value" in value)) {
       return false;
