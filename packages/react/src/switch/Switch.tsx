@@ -34,19 +34,13 @@ export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
         gap="0"
         {...sprinkleProps}
       >
-        <Box
-          asChild
-          borderColor="transparent"
-          id={id}
-          rounded="full"
-          {...styles.root({ size })}
-        >
+        <Box asChild id={id} {...styles.root({ size })}>
           <RadixSwitch.Root
             disabled={disabled || readonly}
             ref={ref}
             {...restProps}
           >
-            <Box asChild bg="white" rounded="full" {...styles.thumb({ size })}>
+            <Box asChild {...styles.thumb({ size })}>
               <RadixSwitch.Thumb />
             </Box>
           </RadixSwitch.Root>

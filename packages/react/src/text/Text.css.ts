@@ -14,6 +14,10 @@ const lineClampBase = [
 ];
 
 export const text = recipe({
+  base: {
+    fontSize: "md",
+  },
+
   variants: {
     lineClamp: mapValues(
       {

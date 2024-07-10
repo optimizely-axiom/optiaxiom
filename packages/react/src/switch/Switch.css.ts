@@ -4,8 +4,10 @@ import { type RecipeVariants, recipe, style } from "../vanilla-extract";
 export const root = recipe({
   base: [
     {
+      borderColor: "transparent",
       px: "12",
       py: "2",
+      rounded: "full",
     },
     style({
       backgroundColor: theme.colors["fg.brand"],
@@ -40,7 +42,9 @@ export const root = recipe({
 export const thumb = recipe({
   base: [
     {
+      bg: "white",
       display: "block",
+      rounded: "full",
       transition: "transform",
     },
     style({

@@ -15,15 +15,7 @@ export const Code = forwardRef<HTMLElement, CodeProps>(
   ({ asChild, children, className, ...props }, ref) => {
     const Comp = asChild ? Slot : "code";
     return (
-      <Box
-        asChild
-        bg="bg.neutral"
-        display="inline-block"
-        px="4"
-        rounded="sm"
-        {...styles.code({}, className)}
-        {...props}
-      >
+      <Box asChild {...styles.code({}, className)} {...props}>
         <Comp ref={ref}>{children}</Comp>
       </Box>
     );
