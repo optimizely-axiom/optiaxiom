@@ -3,11 +3,9 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Flex, Input } from "@optiaxiom/react";
 import { IconCalendar } from "@tabler/icons-react";
 
-const meta: Meta<typeof Input> = {
+export default {
   component: Input,
-};
-
-export default meta;
+} as Meta<typeof Input>;
 
 type Story = StoryObj<typeof Input>;
 

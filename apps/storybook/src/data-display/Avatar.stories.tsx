@@ -3,11 +3,9 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Avatar, Flex, Tooltip } from "@optiaxiom/react";
 import { IconUser } from "@tabler/icons-react";
 
-const meta: Meta<typeof Avatar> = {
+export default {
   component: Avatar,
-};
-
-export default meta;
+} as Meta<typeof Avatar>;
 
 type Story = StoryObj<typeof Avatar>;
 

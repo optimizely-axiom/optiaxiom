@@ -9,11 +9,9 @@ import {
   within,
 } from "@storybook/test";
 
-const meta: Meta<typeof Tooltip> = {
+export default {
   component: Tooltip,
-};
-
-export default meta;
+} as Meta<typeof Tooltip>;
 
 type Story = StoryObj<typeof Tooltip>;
 

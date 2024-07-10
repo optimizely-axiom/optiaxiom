@@ -4,11 +4,9 @@ import type { ComponentPropsWithRef } from "react";
 import { Button, ButtonGroup, Flex } from "@optiaxiom/react";
 import { IconArrowRight, IconDownload, IconPhoto } from "@tabler/icons-react";
 
-const meta: Meta<typeof ButtonGroup> = {
+export default {
   component: ButtonGroup,
-};
-
-export default meta;
+} as Meta<typeof ButtonGroup>;
 
 type Story = StoryObj<typeof ButtonGroup>;
 

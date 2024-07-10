@@ -2,11 +2,9 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 import { Flex, Separator, Text } from "@optiaxiom/react";
 
-const meta: Meta<typeof Separator> = {
+export default {
   component: Separator,
-};
-
-export default meta;
+} as Meta<typeof Separator>;
 
 type Story = StoryObj<typeof Separator>;
 

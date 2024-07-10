@@ -2,16 +2,15 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 import { Switch } from "@optiaxiom/react";
 
-const meta: Meta<typeof Switch> = {
+export default {
   args: {
     label: "On label",
   },
   component: Switch,
-};
-
-export default meta;
+} as Meta<typeof Switch>;
 
 type Story = StoryObj<typeof Switch>;
+
 export const Default: Story = {};
 
 export const Large: Story = {

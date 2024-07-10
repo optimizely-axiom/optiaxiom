@@ -3,11 +3,9 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Flex, Grid, Paper, Skeleton } from "@optiaxiom/react";
 import { IconUserFilled } from "@tabler/icons-react";
 
-const meta: Meta<typeof Skeleton> = {
+export default {
   component: Skeleton,
-};
-
-export default meta;
+} as Meta<typeof Skeleton>;
 
 type Story = StoryObj<typeof Skeleton>;
 
