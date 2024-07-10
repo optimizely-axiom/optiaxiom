@@ -88,7 +88,7 @@ export const button = recipe({
 
         selectors: {
           "&:focus-visible": {
-            outlineColor: "red.200",
+            outlineColor: theme.colors["red.200"],
           },
         },
       }),
