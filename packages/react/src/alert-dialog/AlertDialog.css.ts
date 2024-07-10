@@ -9,9 +9,9 @@ export const content = recipe({
   ],
   variants: {
     size: {
-      sm: style({ maxWidth: "375px", minWidth: "375px" }),
-      md: style({ maxWidth: "600px", minWidth: "600px" }),
-      lg: style({ maxWidth: "800px", minWidth: "800px" }),
+      sm: style({ width: "375px" }),
+      md: style({ width: "600px" }),
+      lg: style({ width: "800px" }),
     },
   },
 });

@@ -55,7 +55,6 @@ export const AlertDialog = forwardRef<HTMLDivElement, AlertDialogProps>(
                   ref={ref}
                   rounded="lg"
                   shadow="md"
-                  w="full"
                   {...styles.content({ size })}
                 >
                   <RadixAlertDialog.Content>
@@ -64,7 +63,6 @@ export const AlertDialog = forwardRef<HTMLDivElement, AlertDialogProps>(
                         asChild
                         fontSize="2xl"
                         fontWeight="600"
-                        mb="0"
                         pb="16"
                         pt="24"
                         px="24"
