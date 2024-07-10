@@ -18,7 +18,7 @@ type AlertDialogProps = ExtendProps<
     onAction: () => void;
     onCancel: () => void;
     title: ReactNode;
-  }
+  } & styles.DialogVariants
 >;
 
 export const AlertDialog = forwardRef<HTMLDivElement, AlertDialogProps>(
@@ -30,6 +30,7 @@ export const AlertDialog = forwardRef<HTMLDivElement, AlertDialogProps>(
       onAction,
       onCancel,
       open,
+      size = "md",
       title,
       ...props
     },
@@ -51,16 +52,23 @@ export const AlertDialog = forwardRef<HTMLDivElement, AlertDialogProps>(
                 <Box
                   asChild
                   bg="white"
-                  p="24"
                   ref={ref}
-                  rounded="sm"
+                  rounded="lg"
                   shadow="md"
                   w="full"
-                  {...styles.content()}
+                  {...styles.content({ size })}
                 >
                   <RadixAlertDialog.Content>
                     <Box>
-                      <Box asChild fontSize="2xl" fontWeight="600" mb="0">
+                      <Box
+                        asChild
+                        fontSize="2xl"
+                        fontWeight="600"
+                        mb="0"
+                        pb="16"
+                        pt="24"
+                        px="24"
+                      >
                         <RadixAlertDialog.Title>{title}</RadixAlertDialog.Title>
                       </Box>
 
@@ -68,18 +76,26 @@ export const AlertDialog = forwardRef<HTMLDivElement, AlertDialogProps>(
                         asChild
                         fontSize="md"
                         maxH="xs"
-                        mr="-24"
-                        my="24"
                         overflow="auto"
-                        pr="24"
+                        px="24"
+                        py="16"
                       >
                         <RadixAlertDialog.Description>
                           {children}
                         </RadixAlertDialog.Description>
                       </Box>
-                      <Flex flexDirection="row" gap="xs" justifyContent="end">
+                      <Flex
+                        flexDirection="row"
+                        gap="md"
+                        justifyContent="end"
+                        px="24"
+                        py="20"
+                        {...styles.footer()}
+                      >
                         <RadixAlertDialog.Cancel asChild>
-                          <Button onClick={onCancel}>{cancel}</Button>
+                          <Button onClick={onCancel} preset="secondary">
+                            {cancel}
+                          </Button>
                         </RadixAlertDialog.Cancel>
                         <RadixAlertDialog.Action asChild>
                           <Button onClick={onAction} preset="primary">
