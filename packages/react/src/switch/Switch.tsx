@@ -38,7 +38,6 @@ export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
           asChild
           borderColor="transparent"
           id={id}
-          p="0"
           rounded="full"
           {...styles.root({ size })}
         >
