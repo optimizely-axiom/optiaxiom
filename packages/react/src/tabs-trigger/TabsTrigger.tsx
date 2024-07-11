@@ -5,7 +5,7 @@ import type { ExtendProps } from "../utils";
 
 import { Box } from "../box";
 import { Flex } from "../flex";
-import * as styles from "./Tabs.css";
+import * as styles from "./TabsTrigger.css";
 
 type TabsTriggerProps = ExtendProps<
   ComponentPropsWithRef<typeof Flex>,
@@ -16,11 +16,9 @@ export const TabsTrigger = forwardRef<HTMLDivElement, TabsTriggerProps>(
   ({ children, ...props }, ref) => {
     return (
       <Flex asChild ref={ref}>
-        <RadixTabs.Trigger {...props} {...styles.triggerWrap()}>
+        <RadixTabs.Trigger {...styles.triggerWrap()} {...props}>
           {Children.map(children, (child) => (
-            <Box mr="24" py="6" {...styles.trigger()}>
-              {child}
-            </Box>
+            <Box {...styles.trigger()}>{child}</Box>
           ))}
         </RadixTabs.Trigger>
       </Flex>
