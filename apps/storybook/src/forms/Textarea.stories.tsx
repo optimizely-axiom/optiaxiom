@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Button, Flex, Text, Textarea } from "@optiaxiom/react";
+import { Flex, Text, Textarea } from "@optiaxiom/react";
 
 const meta: Meta<typeof Textarea> = {
   component: Textarea,
@@ -13,6 +13,13 @@ type Story = StoryObj<typeof Textarea>;
 export const Default: Story = {
   args: {
     placeholder: "Enter text....",
+  },
+};
+
+export const NoResize: Story = {
+  args: {
+    placeholder: "Enter text....",
+    resize: "none",
   },
 };
 
@@ -33,44 +40,34 @@ export const WithBottomSection: Story = {
 export const Disabled: Story = {
   args: {
     disabled: true,
-    placeholder: "Enter text....",
   },
+  render: (args) => (
+    <Flex>
+      <Textarea {...args} defaultValue="Disabled with value" />
+      <Textarea {...args} placeholder="Disabled placeholder" />
+    </Flex>
+  ),
 };
 
 export const Readonly: Story = {
   args: {
-    placeholder: "Enter text....",
     readOnly: true,
   },
-};
-
-export const NoResize: Story = {
-  args: {
-    placeholder: "Enter text....",
-    resize: "none",
-  },
-};
-
-export const Custom: Story = {
-  args: {
-    bottomSection: (
-      <Flex alignItems="stretch" justifyContent="center">
-        <Button appearance="primary">Bottom Section</Button>
-      </Flex>
-    ),
-    placeholder: "Write your text",
-    topSection: <Text>Top Section</Text>,
-  },
-};
-
-export const TypesOfTextarea: Story = {
-  render: () => (
+  render: (args) => (
     <Flex>
-      <Textarea disabled={false} placeholder="Default Placeholder" />
-      <Textarea defaultValue="Disabled with value" disabled />
-      <Textarea disabled placeholder="Disabled placeholder" />
-      <Textarea error placeholder="Error state" />
-      <Textarea defaultValue="Error with value" error />
+      <Textarea {...args} defaultValue="Readonly with value" />
+      <Textarea {...args} placeholder="Readonly placeholder" />
+    </Flex>
+  ),
+};
+export const Error: Story = {
+  args: {
+    error: true,
+  },
+  render: (args) => (
+    <Flex>
+      <Textarea {...args} defaultValue="Error with value" />
+      <Textarea {...args} placeholder="Error placeholder" />
     </Flex>
   ),
 };
