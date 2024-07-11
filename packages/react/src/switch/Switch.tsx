@@ -14,14 +14,22 @@ type SwitchProps = ExtendProps<
   ComponentPropsWithRef<typeof RadixSwitch.Root>,
   ComponentPropsWithRef<typeof Flex>,
   {
-    label?: string;
+    children?: string;
     readonly?: boolean;
   } & styles.SwitchVariants
 >;
 
 export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
   (
-    { className, disabled, id: idProp, label, readonly, size = "md", ...props },
+    {
+      children,
+      className,
+      disabled,
+      id: idProp,
+      readonly,
+      size = "md",
+      ...props
+    },
     ref,
   ) => {
     const id = useId(idProp);
@@ -45,9 +53,9 @@ export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
             </Box>
           </RadixSwitch.Root>
         </Box>
-        {label && (
+        {children && (
           <Text asChild color={disabled ? "fg.disabled" : "fg.default"} ml="8">
-            <RadixLabel.Root htmlFor={id}>{label}</RadixLabel.Root>
+            <RadixLabel.Root htmlFor={id}>{children}</RadixLabel.Root>
           </Text>
         )}
       </Flex>
