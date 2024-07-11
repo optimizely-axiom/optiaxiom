@@ -1,5 +1,6 @@
 import { theme } from "../styles";
 import { recipe, style } from "../vanilla-extract";
+const wrapperMarker = style({});
 
 export const wrapper = recipe({
   base: [
@@ -8,15 +9,16 @@ export const wrapper = recipe({
       flexDirection: "row",
       gap: "xs",
     },
+    wrapperMarker,
   ],
 });
 
-export const iconC = recipe({
+export const iconChecked = recipe({
   base: [
     style({
       display: "none",
       selectors: {
-        '[data-state="checked"] &': {
+        [`${wrapperMarker} [data-state="checked"] &`]: {
           display: "block",
         },
       },
@@ -24,12 +26,12 @@ export const iconC = recipe({
   ],
 });
 
-export const iconUC = recipe({
+export const iconUnchecked = recipe({
   base: [
     style({
       display: "none",
       selectors: {
-        '[data-state="unchecked"] &': {
+        [`${wrapperMarker} [data-state="unchecked"] &`]: {
           display: "block",
         },
       },
@@ -37,12 +39,12 @@ export const iconUC = recipe({
   ],
 });
 
-export const iconI = recipe({
+export const iconIndeterminate = recipe({
   base: [
     style({
       display: "none",
       selectors: {
-        '[data-state="indeterminate"] &': {
+        [`${wrapperMarker} [data-state="indeterminate"] &`]: {
           display: "block",
         },
       },
