@@ -11,25 +11,25 @@ type TextareaProps = ExtendProps<
   ComponentPropsWithRef<"textarea">,
   ComponentPropsWithRef<typeof Box>,
   {
-    bottomSection?: ReactNode;
     disabled?: boolean;
+    endDecorator?: ReactNode;
     error?: boolean;
-    topSection?: ReactNode;
+    startDecorator?: ReactNode;
   } & styles.WrapperVariants
 >;
 
 export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
   (
     {
-      bottomSection,
       className,
       disabled,
+      endDecorator,
       error,
       placeholder,
       readOnly,
       resize = "vertical",
       rows = 3,
-      topSection,
+      startDecorator,
       ...props
     },
     ref,
@@ -47,7 +47,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
         })}
         {...sprinkleProps}
       >
-        {topSection && <Box>{topSection}</Box>}
+        {startDecorator}
         <Box
           asChild
           color={disabled ? "fg.disabled" : "fg.default"}
@@ -61,7 +61,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
             {...restProps}
           ></textarea>
         </Box>
-        {bottomSection && <Box>{bottomSection}</Box>}
+        {endDecorator}
       </Flex>
     );
   },
