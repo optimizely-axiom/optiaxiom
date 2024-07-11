@@ -43,7 +43,13 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(
     return (
       <Flex flexDirection="column" gap="2" maxW="sm" ref={ref} {...props}>
         {label && (
-          <Text alignItems="center" asChild display="flex" gap="2">
+          <Text
+            alignItems="center"
+            asChild
+            display="flex"
+            fontWeight="500"
+            gap="2"
+          >
             <RadixLabel.Root htmlFor={id}>
               {label}
               {required && (
