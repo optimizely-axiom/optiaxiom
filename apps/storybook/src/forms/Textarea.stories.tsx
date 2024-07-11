@@ -26,13 +26,13 @@ export const NoResize: Story = {
 export const WithTopSection: Story = {
   args: {
     placeholder: "Enter text....",
-    topSection: <Text>Top Section</Text>,
+    startDecorator: <Text>Top Section</Text>,
   },
 };
 
 export const WithBottomSection: Story = {
   args: {
-    bottomSection: <Text>Bottom Section</Text>,
+    endDecorator: <Text>Bottom Section</Text>,
     placeholder: "Enter text....",
   },
 };
