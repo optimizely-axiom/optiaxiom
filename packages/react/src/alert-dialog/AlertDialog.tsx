@@ -13,6 +13,12 @@ type AlertDialogProps = ExtendProps<
   ComponentPropsWithRef<typeof Box>,
   {
     action?: string;
+    actionAppearance?:
+      | "danger"
+      | "danger-outline"
+      | "default"
+      | "primary"
+      | "secondary";
     cancel?: string;
     children: ReactNode;
     onAction: () => void;
@@ -25,6 +31,7 @@ export const AlertDialog = forwardRef<HTMLDivElement, AlertDialogProps>(
   (
     {
       action = "Confirm",
+      actionAppearance = "primary",
       cancel = "Cancel",
       children,
       onAction,
@@ -40,68 +47,34 @@ export const AlertDialog = forwardRef<HTMLDivElement, AlertDialogProps>(
       <Box asChild>
         <RadixAlertDialog.Root open={open} {...props}>
           <RadixAlertDialog.Portal>
-            <Flex
-              alignItems="center"
-              asChild
-              bg="dark.200"
-              h="full"
-              w="full"
-              {...styles.overlay()}
-            >
+            <Flex asChild {...styles.overlay()}>
               <RadixAlertDialog.Overlay>
-                <Box
-                  asChild
-                  bg="white"
-                  ref={ref}
-                  rounded="lg"
-                  shadow="md"
-                  {...styles.content({ size })}
-                >
+                <Box asChild {...styles.content({ size })} ref={ref}>
                   <RadixAlertDialog.Content>
-                    <Box>
-                      <Box
-                        asChild
-                        fontSize="2xl"
-                        fontWeight="600"
-                        pb="16"
-                        pt="24"
-                        px="24"
-                      >
-                        <RadixAlertDialog.Title>{title}</RadixAlertDialog.Title>
-                      </Box>
-
-                      <Box
-                        asChild
-                        fontSize="md"
-                        maxH="xs"
-                        overflow="auto"
-                        px="24"
-                        py="16"
-                      >
-                        <RadixAlertDialog.Description>
-                          {children}
-                        </RadixAlertDialog.Description>
-                      </Box>
-                      <Flex
-                        flexDirection="row"
-                        gap="md"
-                        justifyContent="end"
-                        px="24"
-                        py="20"
-                        {...styles.footer()}
-                      >
-                        <RadixAlertDialog.Cancel asChild>
-                          <Button appearance="secondary" onClick={onCancel}>
-                            {cancel}
-                          </Button>
-                        </RadixAlertDialog.Cancel>
-                        <RadixAlertDialog.Action asChild>
-                          <Button appearance="primary" onClick={onAction}>
-                            {action}
-                          </Button>
-                        </RadixAlertDialog.Action>
-                      </Flex>
+                    <Box asChild {...styles.title()}>
+                      <RadixAlertDialog.Title>{title}</RadixAlertDialog.Title>
                     </Box>
+
+                    <Box asChild {...styles.description()}>
+                      <RadixAlertDialog.Description>
+                        {children}
+                      </RadixAlertDialog.Description>
+                    </Box>
+                    <Flex {...styles.footer()}>
+                      <RadixAlertDialog.Cancel asChild>
+                        <Button appearance="secondary" onClick={onCancel}>
+                          {cancel}
+                        </Button>
+                      </RadixAlertDialog.Cancel>
+                      <RadixAlertDialog.Action asChild>
+                        <Button
+                          appearance={actionAppearance}
+                          onClick={onAction}
+                        >
+                          {action}
+                        </Button>
+                      </RadixAlertDialog.Action>
+                    </Flex>
                   </RadixAlertDialog.Content>
                 </Box>
               </RadixAlertDialog.Overlay>
