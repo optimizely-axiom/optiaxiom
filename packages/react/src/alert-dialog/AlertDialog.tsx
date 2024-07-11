@@ -13,12 +13,7 @@ type AlertDialogProps = ExtendProps<
   ComponentPropsWithRef<typeof Box>,
   {
     action?: string;
-    actionAppearance?:
-      | "danger"
-      | "danger-outline"
-      | "default"
-      | "primary"
-      | "secondary";
+    actionAppearance?: ComponentPropsWithRef<typeof Button>["appearance"];
     cancel?: string;
     children: ReactNode;
     onAction: () => void;
@@ -37,7 +32,7 @@ export const AlertDialog = forwardRef<HTMLDivElement, AlertDialogProps>(
       onAction,
       onCancel,
       open,
-      size = "md",
+      size = "sm",
       title,
       ...props
     },
