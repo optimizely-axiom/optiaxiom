@@ -61,7 +61,7 @@ export const CustomContent: Story = {
             </Field>
 
             <Flex>
-              <Button mt="10" preset="primary" type="submit">
+              <Button appearance="primary" mt="10" type="submit">
                 Log In
               </Button>
             </Flex>
@@ -89,7 +89,7 @@ export const CustomContent: Story = {
             </Field>
 
             <Flex>
-              <Button mt="10" preset="primary" type="submit">
+              <Button appearance="primary" mt="10" type="submit">
                 Sign Up
               </Button>
             </Flex>
