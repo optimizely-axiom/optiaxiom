@@ -4,30 +4,33 @@ import { type ComponentPropsWithRef, forwardRef } from "react";
 import type { ExtendProps } from "../utils";
 
 import { Flex } from "../flex";
+import { Heading } from "../heading";
 import { extractSprinkles } from "../sprinkles";
+import { Text } from "../text";
 
 type FooterProps = ExtendProps<
   ComponentPropsWithRef<typeof Flex>,
-  ComponentPropsWithRef<typeof RadixDialog.Title>
+  ComponentPropsWithRef<typeof RadixDialog.Title>,
+  {
+    description?: string;
+  }
 >;
 
 export const DialogTitle = forwardRef<HTMLDivElement, FooterProps>(
-  ({ children, ...props }, ref) => {
+  ({ children, description, ...props }, ref) => {
     const { restProps, sprinkleProps } = extractSprinkles(props);
     return (
-      <Flex
-        asChild
-        fontSize="2xl"
-        fontWeight="600"
-        mb="0"
-        pb="16"
-        pt="24"
-        px="24"
-        {...sprinkleProps}
-      >
-        <RadixDialog.Title ref={ref} {...restProps}>
-          {children}
-        </RadixDialog.Title>
+      <Flex gap="xs" pb="md" pt="lg" px="lg" {...sprinkleProps}>
+        <Heading asChild level="4">
+          <RadixDialog.Title ref={ref} {...restProps}>
+            {children}
+          </RadixDialog.Title>
+        </Heading>
+        {description && (
+          <Text asChild fontWeight="400">
+            <RadixDialog.Description>{description}</RadixDialog.Description>
+          </Text>
+        )}
       </Flex>
     );
   },

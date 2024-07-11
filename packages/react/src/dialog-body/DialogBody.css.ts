@@ -5,8 +5,8 @@ export const body = recipe({
     {
       fontSize: "md",
       overflow: "auto",
-      px: "24",
-      py: "16",
+      px: "lg",
+      py: "md",
     },
     style({
       maxHeight: "50dvh",

@@ -9,7 +9,6 @@ export * from "./chip";
 export * from "./code";
 export * from "./dialog";
 export * from "./dialog-body";
-export * from "./dialog-content";
 export * from "./dialog-footer";
 export * from "./dialog-title";
 export * from "./field";

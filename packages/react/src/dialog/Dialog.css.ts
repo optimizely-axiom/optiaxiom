@@ -1,32 +1,57 @@
-import {
-  type RecipeVariants,
-  createVar,
-  recipe,
-  style,
-} from "../vanilla-extract";
+import { type RecipeVariants, recipe, style } from "../vanilla-extract";
 
-export const sizeVar = createVar();
-export const dialog = recipe({
-  base: [],
+export const content = recipe({
+  base: [
+    {
+      bg: "white",
+      rounded: "lg",
+      shadow: "md",
+    },
+    style({
+      maxWidth: "90dvw",
+      position: "relative",
+    }),
+  ],
   variants: {
     size: {
       sm: style({
-        vars: {
-          [sizeVar]: "375px",
-        },
+        width: "375px",
       }),
       md: style({
-        vars: {
-          [sizeVar]: "600px",
-        },
+        width: "600px",
       }),
       lg: style({
-        vars: {
-          [sizeVar]: "800px",
-        },
+        width: "800px",
       }),
     },
   },
 });
 
-export type DialogVariants = RecipeVariants<typeof dialog>;
+export const overlay = recipe({
+  base: [
+    {
+      alignItems: "center",
+      bg: "dark.200",
+      justifyContent: "center",
+      size: "full",
+    },
+    style({
+      position: "absolute",
+    }),
+  ],
+});
+
+export const close = recipe({
+  base: [
+    {
+      rounded: "full",
+    },
+    style({
+      position: "absolute",
+      right: 24,
+      top: 24,
+    }),
+  ],
+});
+
+export type DialogVariants = RecipeVariants<typeof content>;

@@ -25,7 +25,6 @@
     "./Code": "./dist/Code.js",
     "./Dialog": "./dist/Dialog.js",
     "./DialogBody": "./dist/DialogBody.js",
-    "./DialogContent": "./dist/DialogContent.js",
     "./DialogFooter": "./dist/DialogFooter.js",
     "./DialogTitle": "./dist/DialogTitle.js",
     "./Field": "./dist/Field.js",
