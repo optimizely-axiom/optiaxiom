@@ -1,11 +1,11 @@
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import * as RadixTooltip from "@radix-ui/react-tooltip";
+import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import {
   type ComponentPropsWithRef,
   type ReactNode,
   forwardRef,
   useRef,
-  useState,
 } from "react";
 
 import type { ExtendProps } from "../utils";
@@ -25,9 +25,12 @@ type TooltipProps = ExtendProps<
     auto?: boolean;
     children: ReactNode;
     content?: ReactNode;
+    defaultOpen?: boolean;
     delayDuration?: ComponentPropsWithRef<
       typeof RadixTooltip.Provider
     >["delayDuration"];
+    onOpenChange?: (open: boolean) => void;
+    open?: boolean;
     withArrow?: boolean;
   }
 >;
@@ -38,33 +41,40 @@ export const Tooltip = forwardRef<HTMLButtonElement, TooltipProps>(
       auto,
       children,
       content,
+      defaultOpen,
       delayDuration,
+      onOpenChange,
+      open: openProp,
       withArrow,
       z = "popover",
       ...props
     },
     outerRef,
   ) => {
-    const [open, setOpen] = useState(false);
     const innerRef = useRef<HTMLButtonElement>(null);
     const ref = useComposedRefs(innerRef, outerRef);
 
+    const [open, setOpen] = useControllableState({
+      defaultProp: defaultOpen,
+      onChange:
+        onOpenChange ??
+        ((flag) => {
+          if (auto && flag && innerRef.current) {
+            const { offsetWidth, scrollWidth } = innerRef.current;
+
+            if (offsetWidth >= scrollWidth) {
+              return;
+            }
+          }
+
+          setOpen(flag);
+        }),
+      prop: openProp,
+    });
+
     return (
       <RadixTooltip.Provider delayDuration={delayDuration}>
-        <RadixTooltip.Root
-          onOpenChange={(flag) => {
-            if (auto && flag && innerRef.current) {
-              const { offsetWidth, scrollWidth } = innerRef.current;
-
-              if (offsetWidth >= scrollWidth) {
-                return;
-              }
-            }
-
-            setOpen(flag);
-          }}
-          open={open}
-        >
+        <RadixTooltip.Root onOpenChange={setOpen} open={open}>
           <RadixTooltip.Trigger asChild ref={ref}>
             {children}
           </RadixTooltip.Trigger>
