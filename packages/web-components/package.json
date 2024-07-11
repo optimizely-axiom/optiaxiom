@@ -21,6 +21,7 @@
     "./Button": "./dist/Button.js",
     "./ButtonGroup": "./dist/ButtonGroup.js",
     "./Checkbox": "./dist/Checkbox.js",
+    "./Chip": "./dist/Chip.js",
     "./Code": "./dist/Code.js",
     "./Field": "./dist/Field.js",
     "./Flex": "./dist/Flex.js",
