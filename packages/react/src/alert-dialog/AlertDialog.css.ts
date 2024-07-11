@@ -5,6 +5,7 @@ export const content = recipe({
   base: [
     {
       bg: "white",
+      maxW: "full",
       rounded: "lg",
       shadow: "md",
     },
