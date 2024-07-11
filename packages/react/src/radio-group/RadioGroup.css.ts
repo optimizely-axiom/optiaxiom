@@ -3,11 +3,15 @@ import { recipe, style } from "../vanilla-extract";
 
 export const item = recipe({
   base: [
+    {
+      bg: "white",
+      border: "1",
+      p: "0",
+      rounded: "full",
+      size: "16",
+    },
     style({
       borderColor: theme.colors["fg.tertiary"],
-      marginBottom: "3px",
-      marginTop: "3px",
-
       selectors: {
         "&:focus-visible": {
           outline: `2px solid ${theme.colors["brand.300"]}`,
@@ -24,8 +28,20 @@ export const item = recipe({
   ],
 });
 
+export const wrapper = recipe({
+  base: [
+    {
+      flexDirection: "column",
+      gap: "0",
+    },
+  ],
+});
+
 export const indicator = recipe({
   base: [
+    {
+      alignItems: "center",
+    },
     style({
       position: "relative",
 
@@ -53,8 +69,44 @@ export const indicator = recipe({
 
 export const label = recipe({
   base: [
+    {
+      flex: "1",
+    },
     style({
-      lineHeight: "24px",
+      cursor: "pointer",
     }),
   ],
+  variants: {
+    disabled: {
+      false: style({
+        color: theme.colors["fg.default"],
+        cursor: "pointer",
+      }),
+      true: style({
+        color: theme.colors["fg.disabled"],
+        cursor: "not-allowed",
+      }),
+    },
+  },
+});
+
+export const endDecorator = recipe({
+  base: [
+    {
+      flex: "1",
+      ml: "24",
+    },
+  ],
+  variants: {
+    disabled: {
+      false: style({
+        color: theme.colors["fg.default"],
+        cursor: "pointer",
+      }),
+      true: style({
+        color: theme.colors["fg.disabled"],
+        cursor: "not-allowed",
+      }),
+    },
+  },
 });

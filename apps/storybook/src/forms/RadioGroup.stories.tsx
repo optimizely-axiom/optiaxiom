@@ -12,43 +12,26 @@ export default meta;
 type Story = StoryObj<typeof RadioGroup>;
 
 const items = [
-  { label: <Text> Sample 1</Text>, value: "sample-1" },
-  { label: <Text> Sample 2</Text>, value: "sample-2" },
-  { label: <Text> Sample 3</Text>, value: "sample-3" },
+  { label: "Sample 1", value: "sample-1" },
+  { label: "Sample 2", value: "sample-2" },
+  { label: "Sample 3", value: "sample-3" },
 ];
 
 const itemsWithDescription = [
   {
-    label: (
-      <Text>
-        Sample 1
-        <Text as="p" fontSize="sm">
-          first
-        </Text>
-      </Text>
-    ),
+    endDecorator: <Text>first</Text>,
+    label: "Sample 1",
     value: "sample-1",
   },
   {
-    label: (
-      <Text>
-        Sample 2
-        <Text as="p" fontSize="sm">
-          second
-        </Text>
-      </Text>
-    ),
+    disabled: true,
+    endDecorator: <Text>second</Text>,
+    label: "Sample 2",
     value: "sample-2",
   },
   {
-    label: (
-      <Text>
-        Sample 3
-        <Text as="p" fontSize="sm">
-          third
-        </Text>
-      </Text>
-    ),
+    endDecorator: <Text>third</Text>,
+    label: "Sample 3",
     value: "sample-3",
   },
 ];
@@ -98,7 +81,7 @@ export const SingleDisabled: Story = {
       ...items,
       {
         disabled: true,
-        label: <Text> Sample 4</Text>,
+        label: "Sample 4",
         value: "sample-4",
       },
     ],
