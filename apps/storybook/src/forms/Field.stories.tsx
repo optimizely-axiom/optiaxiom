@@ -63,3 +63,11 @@ export const DescriptionAndError: Story = {
     label: "Form label",
   },
 };
+
+export const Info: Story = {
+  args: {
+    children: <></>,
+    info: "This is a field component",
+    label: "Form label",
+  },
+};

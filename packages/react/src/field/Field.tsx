@@ -8,7 +8,7 @@ import { Box } from "../box";
 import { Flex } from "../flex";
 import { Text } from "../text";
 import { Tooltip } from "../tooltip";
-import { InfoIcon } from "./InfoIcon";
+import { IconInfo } from "./IconInfo";
 
 type FieldProps = BoxProps<
   "div",
@@ -59,9 +59,9 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(
                 </Text>
               )}
               {info && (
-                <Tooltip content={info} side="top">
-                  <Box asChild h="12" ml="2" w="12">
-                    {InfoIcon}
+                <Tooltip content={info}>
+                  <Box asChild ml="2" size="12">
+                    {IconInfo}
                   </Box>
                 </Tooltip>
               )}
