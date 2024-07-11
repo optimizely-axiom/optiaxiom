@@ -4,7 +4,7 @@ export function App() {
   return (
     <Tooltip content="Disabled button link demo">
       <Button asChild disabled onClick={(event) => event.preventDefault()}>
-        <a href="./props">Some</a>
+        <a href="./props">Disabled Link</a>
       </Button>
     </Tooltip>
   );
