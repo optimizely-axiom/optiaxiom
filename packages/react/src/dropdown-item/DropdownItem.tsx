@@ -4,6 +4,7 @@ import { type ComponentPropsWithRef, forwardRef } from "react";
 import type { ExtendProps } from "../utils";
 
 import { Flex } from "../flex";
+import * as styles from "./DropdownItem.css";
 
 type DropdownItemProps = ExtendProps<
   ComponentPropsWithRef<typeof RadixDropdownMenu.Item>,
@@ -13,7 +14,7 @@ type DropdownItemProps = ExtendProps<
 export const DropdownItem = forwardRef<HTMLDivElement, DropdownItemProps>(
   ({ children, className, onSelect, ...props }, ref) => {
     return (
-      <Flex asChild>
+      <Flex asChild {...styles.item()}>
         <RadixDropdownMenu.Item {...props} ref={ref}>
           {children}
         </RadixDropdownMenu.Item>

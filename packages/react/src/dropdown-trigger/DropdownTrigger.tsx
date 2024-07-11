@@ -1,10 +1,9 @@
 import * as RadixDropdownMenu from "@radix-ui/react-dropdown-menu";
-import { Children, type ComponentPropsWithRef, forwardRef } from "react";
+import { type ComponentPropsWithRef, forwardRef } from "react";
 
 import type { Button } from "../button";
 import type { ExtendProps } from "../utils";
 
-import { Box } from "../box";
 import { Flex } from "../flex";
 
 type DropdownTriggerProps = ExtendProps<
@@ -19,9 +18,7 @@ export const DropdownTrigger = forwardRef<
   return (
     <Flex asChild>
       <RadixDropdownMenu.Trigger {...props} ref={ref}>
-        {Children.map(children, (child) => (
-          <Box>{child}</Box>
-        ))}
+        {children}
       </RadixDropdownMenu.Trigger>
     </Flex>
   );
