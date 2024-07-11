@@ -27,10 +27,7 @@ export const overlay = recipe({
 export const footer = recipe({
   base: [
     style({
-      borderTop: "1px",
-
-      borderColor: theme.colors["border.secondary"],
-      borderStyle: "solid",
+      borderTop: `1px solid ${theme.colors["border.secondary"]}`,
     }),
   ],
 });
