@@ -36,12 +36,12 @@ const appearances = [
   ["default", "Default"],
   ["primary", "Primary"],
   ["danger", "Danger"],
-  ["secondary", "Secondary"],
+  // ["secondary", "Secondary"],
 ] as const;
 const variants = [
   ["solid", "Solid"],
   ["outline", "Outline"],
-  ["ghost", "Ghost"],
+  // ["ghost", "Ghost"],
 ] as const;
 
 export const Default: Story = {
@@ -103,44 +103,14 @@ export const Icons: Story = {
   render: (args) => (
     <Flex>
       <Flex flexDirection="row">
-        <Chip
-          {...args}
-          icon={<IconChevronDown />}
-          iconPosition="start"
-          size="sm"
-        />
-        <Chip
-          {...args}
-          icon={<IconChevronDown />}
-          iconPosition="start"
-          size="md"
-        />
-        <Chip
-          {...args}
-          icon={<IconChevronDown />}
-          iconPosition="start"
-          size="lg"
-        />
+        <Chip {...args} icon={<IconChevronDown />} size="sm" />
+        <Chip {...args} icon={<IconChevronDown />} size="md" />
+        <Chip {...args} icon={<IconChevronDown />} size="lg" />
       </Flex>
       <Flex flexDirection="row">
-        <Chip
-          {...args}
-          icon={<IconChevronDown />}
-          iconPosition="end"
-          size="sm"
-        />
-        <Chip
-          {...args}
-          icon={<IconChevronDown />}
-          iconPosition="end"
-          size="md"
-        />
-        <Chip
-          {...args}
-          icon={<IconChevronDown />}
-          iconPosition="end"
-          size="lg"
-        />
+        <Chip {...args} icon={<IconChevronDown />} size="sm" />
+        <Chip {...args} icon={<IconChevronDown />} size="md" />
+        <Chip {...args} icon={<IconChevronDown />} size="lg" />
       </Flex>
     </Flex>
   ),

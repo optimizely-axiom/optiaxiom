@@ -11,23 +11,21 @@ const appearances = {
   "danger-outline": { colorScheme: "danger", variant: "outline" },
   default: { colorScheme: "secondary", variant: "outline" },
   primary: { colorScheme: "primary", variant: "solid" },
-  secondary: { colorScheme: "secondary", variant: "ghost" },
 } satisfies Record<string, styles.ChipVariants>;
 
 type ChipProps = ExtendProps<
-  ComponentPropsWithRef<"button">,
+  ComponentPropsWithRef<"span">,
   ComponentPropsWithRef<typeof Box>,
   {
     appearance?: keyof typeof appearances;
     children?: ReactNode;
     disabled?: boolean;
     icon?: ReactNode;
-    iconPosition?: "end" | "start";
-    isLoading?: boolean;
-  } & Omit<styles.ChipVariants, "iconOnly">
+    isActionable?: boolean;
+  } & Omit<styles.ChipVariants, "actionable">
 >;
 
-export const Chip = forwardRef<HTMLButtonElement, ChipProps>(
+export const Chip = forwardRef<HTMLSpanElement, ChipProps>(
   (
     {
       appearance = "default",
@@ -37,31 +35,26 @@ export const Chip = forwardRef<HTMLButtonElement, ChipProps>(
       colorScheme,
       disabled,
       icon,
-      iconPosition = "start",
-      isLoading,
+      isActionable = false,
       size = "md",
       variant,
       ...props
     },
     ref,
   ) => {
-    const Comp = asChild ? Slot : "button";
+    const Comp = asChild ? Slot : "span";
 
     const presetProps = appearances[appearance];
     const finalColorScheme = colorScheme ?? presetProps.colorScheme;
     const finalVariant = variant ?? presetProps.variant;
-    const isDisabled = Boolean(disabled || isLoading);
-    const isIconOnly = Boolean(!children && icon);
 
     return (
       <Box
         asChild
-        data-disabled={isDisabled}
         {...styles.chip(
           {
+            actionable: isActionable,
             colorScheme: finalColorScheme,
-            disabled: isDisabled,
-            iconOnly: isIconOnly,
             size,
             variant: finalVariant,
           },
@@ -69,39 +62,16 @@ export const Chip = forwardRef<HTMLButtonElement, ChipProps>(
         )}
         {...props}
       >
-        <Comp disabled={isDisabled} ref={ref}>
-          {!isIconOnly && (
+        <Comp ref={ref}>
+          <Slottable>{children}</Slottable>
+          {icon && (
             <Box
               asChild
-              // {...styles.icon({
-              //   position: "start",
-              //   size: icon && iconPosition === "start" ? size : undefined,
-              // })}
+              {...styles.icon({
+                size,
+              })}
             >
-              {icon && iconPosition === "start" ? icon : <div />}
-            </Box>
-          )}
-          <Slottable>
-            {isIconOnly ? (
-              <Box
-                asChild
-                // {...styles.icon({ size })}
-              >
-                {icon}
-              </Box>
-            ) : (
-              children
-            )}
-          </Slottable>
-          {!isIconOnly && (
-            <Box
-              asChild
-              // {...styles.icon({
-              //   position: "end",
-              //   size: icon && iconPosition === "end" ? size : undefined,
-              // })}
-            >
-              {icon && iconPosition === "end" ? icon : <div />}
+              {icon}
             </Box>
           )}
         </Comp>
