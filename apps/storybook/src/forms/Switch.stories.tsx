@@ -4,7 +4,7 @@ import { Switch } from "@optiaxiom/react";
 
 export default {
   args: {
-    label: "On label",
+    children: "On label",
   },
   component: Switch,
 } as Meta<typeof Switch>;
