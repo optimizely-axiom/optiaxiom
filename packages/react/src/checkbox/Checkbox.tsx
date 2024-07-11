@@ -9,6 +9,9 @@ import { Box } from "../box";
 import { Flex } from "../flex";
 import { Text } from "../text";
 import * as styles from "./Checkbox.css";
+import { IconChecked } from "./icons-svg/IconChecked";
+import { IconIndeterminate } from "./icons-svg/IconIndeterminate";
+import { IconUnchecked } from "./icons-svg/IconUnchecked";
 
 type CheckboxProps = ExtendProps<
   ComponentPropsWithRef<typeof Box>,
@@ -53,9 +56,9 @@ export const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>(
           >
             <Box asChild {...styles.indicator()}>
               <RadixCheckbox.Indicator>
-                {checkboxIcon.indeterminate}
-                {checkboxIcon.checked}
-                {checkboxIcon.unchecked}
+                {IconChecked}
+                {IconUnchecked}
+                {IconIndeterminate}
               </RadixCheckbox.Indicator>
             </Box>
           </RadixCheckbox.Root>
@@ -72,59 +75,5 @@ export const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>(
     );
   },
 );
-
-const checkboxIcon = {
-  checked: (
-    <svg
-      {...styles.iconChecked()}
-      fill="none"
-      height="8"
-      viewBox="0 0 12 8"
-      width="12"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M1.5 3.47059L4.83333 7L10.5 1"
-        stroke="white"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="1.5"
-      />
-    </svg>
-  ),
-  indeterminate: (
-    <svg
-      {...styles.iconIndeterminate()}
-      fill="none"
-      height="8"
-      viewBox="0 0 12 8"
-      width="12"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M2.85714 3.19995C2.35714 3.19995 2 3.56662 2 3.99995C2 4.46662 2.35714 4.79995 2.85714 4.79995H9.14286C9.60714 4.79995 10 4.46662 10 3.99995C10 3.56662 9.60714 3.19995 9.14286 3.19995H2.85714Z"
-        fill="white"
-      />
-    </svg>
-  ),
-  unchecked: (
-    <svg
-      {...styles.iconUnchecked()}
-      fill="none"
-      height="8"
-      viewBox="0 0 12 8"
-      width="12"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M1.5 3.47059L4.83333 7L10.5 1"
-        stroke="red"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="1.5"
-      />
-    </svg>
-  ),
-};
 
 Checkbox.displayName = "@optiaxiom/react/Checkbox";
