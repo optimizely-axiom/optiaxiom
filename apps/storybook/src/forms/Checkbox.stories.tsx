@@ -18,12 +18,12 @@ export const Basic: Story = {
 export const HelperText: Story = {
   args: {
     children: (
-      <Text>
+      <>
         Label
         <Text as="p" color="fg.secondary" fontSize="sm">
           Helper Text
         </Text>
-      </Text>
+      </>
     ),
   },
 };
@@ -31,12 +31,12 @@ export const HelperText: Story = {
 export const Disabled: Story = {
   args: {
     children: (
-      <Text>
+      <>
         Label
-        <Text as="p" fontSize="sm">
+        <Text as="p" color="fg.secondary" fontSize="sm">
           Helper Text
         </Text>
-      </Text>
+      </>
     ),
     disabled: true,
   },
@@ -44,12 +44,12 @@ export const Disabled: Story = {
 export const Readonly: Story = {
   args: {
     children: (
-      <Text>
+      <>
         Label
         <Text as="p" color="fg.secondary" fontSize="sm">
           Helper Text
         </Text>
-      </Text>
+      </>
     ),
     readonly: true,
   },

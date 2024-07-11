@@ -14,7 +14,7 @@ type CheckboxProps = ExtendProps<
   ComponentPropsWithRef<typeof Box>,
   {
     checked?: "indeterminate" | boolean;
-    children: ReactNode | string;
+    children: ReactNode;
     defaultChecked?: "indeterminate" | boolean;
     disabled?: boolean;
     readonly?: boolean;
@@ -41,37 +41,31 @@ export const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>(
       <Flex
         data-disabled={disabled || readonly}
         ref={ref}
-        {...props}
         {...styles.wrapper({}, className)}
+        {...props}
       >
-        <Flex pt="4">
-          <Box asChild {...styles.indicatorWrapper()}>
-            <RadixCheckbox.Root
-              checked={checked}
-              defaultChecked={defaultChecked}
-              disabled={disabled || readonly}
-              id={id}
-            >
-              <RadixCheckbox.Indicator {...styles.indicator()}>
+        <Box asChild {...styles.indicatorWrapper()}>
+          <RadixCheckbox.Root
+            checked={checked}
+            defaultChecked={defaultChecked}
+            disabled={disabled || readonly}
+            id={id}
+          >
+            <Box asChild {...styles.indicator()}>
+              <RadixCheckbox.Indicator>
                 {checkboxIcon.indeterminate}
                 {checkboxIcon.checked}
                 {checkboxIcon.unchecked}
               </RadixCheckbox.Indicator>
-            </RadixCheckbox.Root>
-          </Box>
-        </Flex>
+            </Box>
+          </RadixCheckbox.Root>
+        </Box>
 
-        <Box asChild {...styles.rightSection()}>
+        <Box asChild {...styles.label()}>
           <RadixLabel.Root htmlFor={id}>
-            {typeof children === "string" ? (
-              <Text as="p" color={disabled ? "fg.disabled" : "fg.default"}>
-                {children}
-              </Text>
-            ) : (
-              <Text asChild color={disabled ? "fg.disabled" : "fg.default"}>
-                {children}
-              </Text>
-            )}
+            <Text color={disabled ? "fg.disabled" : "fg.default"}>
+              {children}
+            </Text>
           </RadixLabel.Root>
         </Box>
       </Flex>
@@ -82,7 +76,7 @@ export const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>(
 const checkboxIcon = {
   checked: (
     <svg
-      {...styles.iconC()}
+      {...styles.iconChecked()}
       fill="none"
       height="8"
       viewBox="0 0 12 8"
@@ -100,7 +94,7 @@ const checkboxIcon = {
   ),
   indeterminate: (
     <svg
-      {...styles.iconI()}
+      {...styles.iconIndeterminate()}
       fill="none"
       height="8"
       viewBox="0 0 12 8"
@@ -115,7 +109,7 @@ const checkboxIcon = {
   ),
   unchecked: (
     <svg
-      {...styles.iconUC()}
+      {...styles.iconUnchecked()}
       fill="none"
       height="8"
       viewBox="0 0 12 8"

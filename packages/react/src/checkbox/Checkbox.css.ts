@@ -53,15 +53,15 @@ export const iconI = recipe({
 export const indicator = recipe({
   base: [
     {
+      alignItems: "center",
+      color: "black",
+      display: "flex",
+      h: "full",
+      justifyContent: "center",
       rounded: "xs",
     },
     style({
-      alignItems: "center",
       background: theme.colors["bg.brand.solid"],
-      color: "black",
-      display: "flex",
-      height: "100%",
-      justifyContent: "center",
       selectors: {
         "&:hover": {
           background: theme.colors["bg.brand.solid.hover"],
@@ -87,10 +87,8 @@ export const indicatorWrapper = recipe({
       borderColor: theme.colors["neutral.500"],
       selectors: {
         "&:focus-visible": {
-          outlineColor: theme.colors["brand.300"],
+          outline: `2px solid ${theme.colors["brand.300"]}`,
           outlineOffset: "1px",
-          outlineStyle: "solid",
-          outlineWidth: "2px",
         },
         "&:hover": {
           border: `1px solid ${theme.colors["fg.tertiary"]}`,
@@ -110,14 +108,13 @@ export const indicatorWrapper = recipe({
   ],
 });
 
-export const rightSection = recipe({
+export const label = recipe({
   base: [
     {
       fontSize: "md",
     },
     style({
       cursor: "pointer",
-      letterSpacing: "-.1px",
       selectors: {
         '[data-disabled="true"] &': {
           cursor: "not-allowed",
