@@ -11,7 +11,8 @@ import * as styles from "./RadioGroup.css";
 
 type ItemProps = {
   disabled?: boolean;
-  label: ReactNode;
+  endDecorator?: ReactNode;
+  label: string;
   value: string;
 };
 
@@ -25,54 +26,45 @@ type RadioGroupProps = ExtendProps<
 >;
 
 export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>(
-  ({ disabled = false, items, readonly, ...props }, ref) => {
+  ({ disabled, items, readonly, ...props }, ref) => {
     return (
       <Flex asChild gap="sm" {...props}>
         <RadixRadio.RadioGroup disabled={disabled || readonly} ref={ref}>
           {items.map((item) => (
-            <Flex
-              alignItems="start"
-              flexDirection="row"
-              gap="xs"
-              key={item.value}
-            >
-              <Box
-                asChild
-                bg="white"
-                border="1"
-                h="16"
-                p="0"
-                rounded="full"
-                w="16"
-                {...styles.item()}
-              >
-                <RadixRadio.Item
-                  disabled={item.disabled}
-                  id={item.value}
-                  value={item.value}
-                >
-                  <Flex
-                    alignItems="center"
-                    asChild
-                    h="full"
-                    w="full"
-                    {...styles.indicator()}
+            <Flex key={item.value} {...styles.wrapper()}>
+              <Flex flexDirection="row" gap="xs">
+                <Box asChild {...styles.item()}>
+                  <RadixRadio.Item
+                    disabled={item.disabled}
+                    id={item.value}
+                    value={item.value}
                   >
-                    <RadixRadio.Indicator />
-                  </Flex>
-                </RadixRadio.Item>
-              </Box>
-
-              <Text
-                asChild
-                color={disabled || item.disabled ? "fg.disabled" : "fg.default"}
-              >
-                <RadixLabel.Root htmlFor={item.value}>
-                  <Text asChild {...styles.label()}>
+                    <Flex asChild {...styles.indicator()}>
+                      <RadixRadio.Indicator />
+                    </Flex>
+                  </RadixRadio.Item>
+                </Box>
+                <Text
+                  asChild
+                  {...styles.label({ disabled: disabled || item.disabled })}
+                >
+                  <RadixLabel.Root htmlFor={item.value}>
                     {item.label}
-                  </Text>
-                </RadixLabel.Root>
-              </Text>
+                  </RadixLabel.Root>
+                </Text>
+              </Flex>
+              {item.endDecorator && (
+                <Flex
+                  asChild
+                  {...styles.endDecorator({
+                    disabled: disabled || item.disabled,
+                  })}
+                >
+                  <RadixLabel.Root htmlFor={item.value}>
+                    {item.endDecorator}
+                  </RadixLabel.Root>
+                </Flex>
+              )}
             </Flex>
           ))}
         </RadixRadio.RadioGroup>
