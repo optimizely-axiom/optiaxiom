@@ -15,6 +15,10 @@ export const triggerWrap = recipe({
 
 export const trigger = recipe({
   base: [
+    {
+      mr: "24",
+      py: "6",
+    },
     style({
       borderBottom: `2px solid ${theme.colors["transparent"]}`,
       color: theme.colors["fg.tertiary"],
@@ -27,14 +31,6 @@ export const trigger = recipe({
           color: theme.colors["fg.default"],
         },
       },
-    }),
-  ],
-});
-
-export const list = recipe({
-  base: [
-    style({
-      borderBottom: `1px solid ${theme.colors["border.default"]}`,
     }),
   ],
 });

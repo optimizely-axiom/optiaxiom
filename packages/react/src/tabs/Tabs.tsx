@@ -14,7 +14,7 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>(
   ({ children, ...props }, ref) => {
     return (
       <Flex alignItems="center" asChild>
-        <RadixTabs.Root {...props} ref={ref}>
+        <RadixTabs.Root ref={ref} {...props}>
           {children}
         </RadixTabs.Root>
       </Flex>
