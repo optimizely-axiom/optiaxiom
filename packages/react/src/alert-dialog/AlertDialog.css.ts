@@ -26,8 +26,7 @@ export const overlay = recipe({
     {
       alignItems: "center",
       bg: "dark.200",
-      h: "full",
-      w: "full",
+      size: "full",
     },
     style({
       position: "absolute",
