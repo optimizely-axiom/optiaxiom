@@ -55,10 +55,10 @@ export const textarea = recipe({
   base: [
     {
       alignItems: "start",
+      borderColor: "border.default",
       flex: "1",
     },
     style({
-      borderColor: theme.colors["border.default"],
       color: theme.colors["fg.default"],
       resize: "none",
       selectors: {
