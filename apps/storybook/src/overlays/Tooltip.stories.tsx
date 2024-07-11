@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Tooltip } from "@optiaxiom/react";
+import { Flex, Text, Tooltip } from "@optiaxiom/react";
 import {
   expect,
   screen,
@@ -33,4 +33,24 @@ export const Primary: Story = {
       screen.queryByRole("tooltip", { name: "Add to library" }),
     );
   },
+};
+
+export const Truncate: Story = {
+  args: {
+    auto: true,
+    content: "Sample Tooltip",
+  },
+  render: (args) => (
+    <Flex>
+      <Tooltip {...args}>
+        <Text>The quick brown fox jumps over the lazy dog.</Text>
+      </Tooltip>
+
+      <Tooltip {...args}>
+        <Text truncate w="192">
+          The quick brown fox jumps over the lazy dog.
+        </Text>
+      </Tooltip>
+    </Flex>
+  ),
 };

@@ -1,8 +1,10 @@
+import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import * as RadixTooltip from "@radix-ui/react-tooltip";
 import {
   type ComponentPropsWithRef,
   type ReactNode,
   forwardRef,
+  useRef,
   useState,
 } from "react";
 
@@ -17,6 +19,10 @@ type TooltipProps = ExtendProps<
   ComponentPropsWithRef<typeof Box>,
   ComponentPropsWithRef<typeof RadixTooltip.Content>,
   {
+    /**
+     * Enable this option to only show the tooltip when children is partially hidden due to text overflow.
+     */
+    auto?: boolean;
     children: ReactNode;
     content?: ReactNode;
     delayDuration?: ComponentPropsWithRef<
@@ -28,14 +34,37 @@ type TooltipProps = ExtendProps<
 
 export const Tooltip = forwardRef<HTMLButtonElement, TooltipProps>(
   (
-    { children, content, delayDuration, withArrow, z = "popover", ...props },
-    ref,
+    {
+      auto,
+      children,
+      content,
+      delayDuration,
+      withArrow,
+      z = "popover",
+      ...props
+    },
+    outerRef,
   ) => {
     const [open, setOpen] = useState(false);
+    const innerRef = useRef<HTMLButtonElement>(null);
+    const ref = useComposedRefs(innerRef, outerRef);
 
     return (
       <RadixTooltip.Provider delayDuration={delayDuration}>
-        <RadixTooltip.Root onOpenChange={setOpen} open={open}>
+        <RadixTooltip.Root
+          onOpenChange={(flag) => {
+            if (auto && flag && innerRef.current) {
+              const { offsetWidth, scrollWidth } = innerRef.current;
+
+              if (offsetWidth >= scrollWidth) {
+                return;
+              }
+            }
+
+            setOpen(flag);
+          }}
+          open={open}
+        >
           <RadixTooltip.Trigger asChild ref={ref}>
             {children}
           </RadixTooltip.Trigger>
