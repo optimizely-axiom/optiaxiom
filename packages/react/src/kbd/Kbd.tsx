@@ -24,9 +24,20 @@ const mapKeyToCode = {
 };
 
 export const Kbd = forwardRef<HTMLElement, KbdProps>(
-  ({ children, className, keys, ...props }, ref) => {
+  ({ children, keys, ...props }, ref) => {
     return (
-      <Code asChild {...styles.kbd({}, className)} {...props}>
+      <Code
+        alignItems="center"
+        asChild
+        border="1"
+        borderB="2"
+        display="inline-flex"
+        flexDirection="row"
+        fontWeight="600"
+        gap="4"
+        whiteSpace="nowrap"
+        {...props}
+      >
         <kbd ref={ref}>
           {keys &&
             (Array.isArray(keys) ? keys : [keys]).map((key) => (
