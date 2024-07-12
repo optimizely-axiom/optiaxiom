@@ -32,9 +32,8 @@ export const button = recipe({
           boxShadow: theme.boxShadow.inner,
         },
         "&:focus-visible": {
+          outline: `2px solid ${theme.colors["border.outline"]}`,
           outlineOffset: "1px",
-          outlineStyle: "solid",
-          outlineWidth: "2px",
         },
         '&[data-disabled="true"]': {
           cursor: "not-allowed",
@@ -85,12 +84,6 @@ export const button = recipe({
           [solidAccentColorVar]: theme.colors["bg.error.solid.hover"],
           [subtleAccentColorVar]: theme.colors["bg.error.subtle"],
         },
-
-        selectors: {
-          "&:focus-visible": {
-            outlineColor: theme.colors["red.200"],
-          },
-        },
       }),
       primary: style({
         vars: {
@@ -98,24 +91,12 @@ export const button = recipe({
           [solidAccentColorVar]: theme.colors["bg.brand.solid.hover"],
           [subtleAccentColorVar]: theme.colors["bg.brand.subtle"],
         },
-
-        selectors: {
-          "&:focus-visible": {
-            outlineColor: theme.colors["brand.300"],
-          },
-        },
       }),
       secondary: style({
         vars: {
           [accentColorVar]: theme.colors["fg.secondary"],
           [solidAccentColorVar]: theme.colors["fg.secondary.hover"],
           [subtleAccentColorVar]: theme.colors["bg.secondary.hover"],
-        },
-
-        selectors: {
-          "&:focus-visible": {
-            outlineColor: theme.colors["neutral.500"],
-          },
         },
       }),
     },
