@@ -142,21 +142,6 @@ export const button = recipe({
       },
     },
     variant: {
-      ghost: style({
-        backgroundColor: "transparent",
-        borderColor: accentColorVar,
-        color: accentColorVar,
-
-        selectors: {
-          '&:hover:not([data-disabled="true"])': {
-            backgroundColor: subtleAccentColorVar,
-          },
-          '&[data-disabled="true"]': {
-            backgroundColor: theme.colors["bg.disabled"],
-            color: theme.colors["fg.disabled"],
-          },
-        },
-      }),
       outline: style({
         backgroundColor: "transparent",
         border: `1px solid ${accentColorVar}`,
@@ -183,6 +168,21 @@ export const button = recipe({
           '&[data-disabled="true"]': {
             backgroundColor: theme.colors["bg.disabled"],
             border: `1px solid ${theme.colors["border.disabled"]}`,
+            color: theme.colors["fg.disabled"],
+          },
+        },
+      }),
+      subtle: style({
+        backgroundColor: "transparent",
+        borderColor: accentColorVar,
+        color: accentColorVar,
+
+        selectors: {
+          '&:hover:not([data-disabled="true"])': {
+            backgroundColor: subtleAccentColorVar,
+          },
+          '&[data-disabled="true"]': {
+            backgroundColor: theme.colors["bg.disabled"],
             color: theme.colors["fg.disabled"],
           },
         },

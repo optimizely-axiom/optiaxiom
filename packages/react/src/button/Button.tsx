@@ -11,7 +11,7 @@ const appearances = {
   "danger-outline": { colorScheme: "danger", variant: "outline" },
   default: { colorScheme: "secondary", variant: "outline" },
   primary: { colorScheme: "primary", variant: "solid" },
-  secondary: { colorScheme: "secondary", variant: "ghost" },
+  secondary: { colorScheme: "secondary", variant: "subtle" },
 } satisfies Record<string, styles.ButtonVariants>;
 
 type ButtonProps = ExtendProps<
