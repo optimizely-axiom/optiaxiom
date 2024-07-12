@@ -1,38 +1,92 @@
 import { theme } from "../styles";
-import { recipe, style } from "../vanilla-extract";
+import {
+  type RecipeVariants,
+  createVar,
+  recipe,
+  style,
+} from "../vanilla-extract";
+
+const subtleBackgroundColorVar = createVar();
+const subtleColorVar = createVar();
+const accentBackgroundColorVar = createVar();
+const accentColorVar = createVar();
 
 export const badge = recipe({
   base: [
+    {
+      alignItems: "center",
+      fontWeight: "500",
+      justifyContent: "center",
+      px: "8",
+      py: "2",
+      rounded: "sm",
+    },
     style({
       textTransform: "capitalize",
     }),
   ],
   variants: {
-    type: {
+    colorScheme: {
       danger: style({
-        backgroundColor: theme.colors["bg.error.solid"],
-        color: "white",
+        vars: {
+          [accentBackgroundColorVar]: theme.colors["bg.error.solid"],
+          [accentColorVar]: theme.colors["fg.default.inverse"],
+          [subtleBackgroundColorVar]: theme.colors["bg.error.subtle"],
+          [subtleColorVar]: theme.colors["bg.error.solid.hover"],
+        },
       }),
-      default: style({
-        backgroundColor: theme.colors["border.default"],
-        color: theme.colors["fg.default"],
+      info: style({
+        vars: {
+          [accentBackgroundColorVar]: theme.colors["blue.600"],
+          [accentColorVar]: theme.colors["fg.default.inverse"],
+          [subtleBackgroundColorVar]: theme.colors["bg.information"],
+          [subtleColorVar]: theme.colors["blue.600"],
+        },
+      }),
+      neutral: style({
+        vars: {
+          [accentBackgroundColorVar]: theme.colors["border.default"],
+          [accentColorVar]: theme.colors["fg.default"],
+          [subtleBackgroundColorVar]: theme.colors["bg.default.hover"],
+          [subtleColorVar]: theme.colors["fg.secondary"],
+        },
       }),
       primary: style({
-        backgroundColor: theme.colors["bg.brand.solid"],
-        color: "white",
-      }),
-      secondary: style({
-        backgroundColor: theme.colors["fg.secondary"],
-        color: "white",
+        vars: {
+          [accentBackgroundColorVar]: theme.colors["bg.brand.solid"],
+          [accentColorVar]: theme.colors["fg.default.inverse"],
+          [subtleBackgroundColorVar]: theme.colors["bg.brand.subtle"],
+          [subtleColorVar]: theme.colors["brand.700"],
+        },
       }),
       success: style({
-        backgroundColor: theme.colors["bg.success.solid"],
-        color: "white",
+        vars: {
+          [accentBackgroundColorVar]: theme.colors["bg.success.solid"],
+          [accentColorVar]: theme.colors["fg.default.inverse"],
+          [subtleBackgroundColorVar]: theme.colors["bg.success.subtle"],
+          [subtleColorVar]: theme.colors["green.700"],
+        },
       }),
       warning: style({
-        backgroundColor: theme.colors["bg.warning.solid"],
-        color: theme.colors["fg.default"],
+        vars: {
+          [accentBackgroundColorVar]: theme.colors["bg.warning.solid"],
+          [accentColorVar]: theme.colors["fg.default"],
+          [subtleBackgroundColorVar]: theme.colors["bg.warning.subtle"],
+          [subtleColorVar]: theme.colors["yellow.700"],
+        },
+      }),
+    },
+    variant: {
+      accent: style({
+        backgroundColor: accentBackgroundColorVar,
+        color: accentColorVar,
+      }),
+      subtle: style({
+        backgroundColor: subtleBackgroundColorVar,
+        color: subtleColorVar,
       }),
     },
   },
 });
+
+export type BadgeVariants = NonNullable<RecipeVariants<typeof badge>>;

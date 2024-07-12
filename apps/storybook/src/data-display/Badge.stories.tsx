@@ -1,21 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Badge, Box, Flex } from "@optiaxiom/react";
+import { Badge, Flex } from "@optiaxiom/react";
 
 const meta: Meta<typeof Badge> = {
-  argTypes: {
-    type: {
-      control: "select",
-      options: [
-        "danger",
-        "default",
-        "primary",
-        "secondary",
-        "success",
-        "warning",
-      ],
-    },
-  },
   component: Badge,
 };
 
@@ -23,69 +10,72 @@ export default meta;
 
 type Story = StoryObj<typeof Badge>;
 
-export const Default: Story = {
-  args: {
-    children: "Default Badge",
-    type: "default",
-  },
-};
+const appearances = [
+  ["neutral", "Neutral"],
+  ["primary", "Primary"],
+  ["danger", "Danger"],
+  ["info", "Info"],
+  ["warning", "Warning"],
+  ["success", "Success"],
+] as const;
 
-export const Primary: Story = {
-  args: {
-    children: "Primary Badge",
-    type: "primary",
-  },
-};
+const variants = [
+  ["subtle", "Subtle"],
+  ["accent", "Accent"],
+] as const;
 
-export const Secondary: Story = {
-  args: {
-    children: "Secondary Badge",
-    type: "secondary",
-  },
-};
-
-export const Success: Story = {
-  args: {
-    children: "Success Badge",
-    type: "success",
-  },
-};
-
-export const Warning: Story = {
-  args: {
-    children: "Warning Badge",
-    type: "warning",
-  },
-};
-
-export const Danger: Story = {
-  args: {
-    children: "Danger Badge",
-    type: "danger",
-  },
-};
-
-export const AllTypes: Story = {
-  render: () => (
-    <Flex flexDirection="row" gap="sm">
-      <Badge type="default">Default</Badge>
-      <Badge type="primary">Primary</Badge>
-      <Badge type="secondary">Secondary</Badge>
-      <Badge type="success">Success</Badge>
-      <Badge type="warning">Warning</Badge>
-      <Badge type="danger">Danger</Badge>
+const Variants: Story = {
+  render: (args) => (
+    <Flex flexDirection="column" gap="sm">
+      {variants.map(([variant, label]) => (
+        <Badge {...args} content="2" key={variant} variant={variant}>
+          {label}
+        </Badge>
+      ))}
     </Flex>
   ),
 };
 
-export const CustomContent: Story = {
+export const Primary: Story = {
+  ...Variants,
   args: {
-    children: (
-      <Box>
-        <span aria-label="star">⭐ </span>
-        Custom Content
-      </Box>
-    ),
-    type: "primary",
+    colorScheme: "primary",
   },
+};
+
+export const Danger: Story = {
+  ...Variants,
+  args: { colorScheme: "danger" },
+};
+
+export const Info: Story = {
+  ...Variants,
+  args: { colorScheme: "info" },
+};
+
+export const Success: Story = {
+  ...Variants,
+  args: { colorScheme: "success" },
+};
+
+export const Warning: Story = {
+  ...Variants,
+  args: { colorScheme: "warning" },
+};
+
+export const Neutral: Story = {
+  ...Variants,
+  args: { colorScheme: "neutral" },
+};
+
+export const appearance: Story = {
+  render: (args) => (
+    <Flex>
+      {appearances.map(([appearance, label]) => (
+        <Badge {...args} appearance={appearance} key={appearance}>
+          {label}
+        </Badge>
+      ))}
+    </Flex>
+  ),
 };
