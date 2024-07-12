@@ -5,15 +5,13 @@ export const kbd = recipe({
     {
       alignItems: "center",
       border: "1",
+      borderB: "2",
       display: "inline-flex",
       flexDirection: "row",
       fontWeight: "600",
       gap: "4",
       whiteSpace: "nowrap",
     },
-    style({
-      borderBottomWidth: "2px",
-    }),
   ],
 });
 
