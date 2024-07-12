@@ -38,14 +38,17 @@ const unresponsiveProps = defineProperties({
       pulse: `${animations.pulse} 2s ease-in-out infinite`,
     },
     backgroundColor: theme.colors,
+    borderBottomWidth: theme.borderWidth,
     /**
      * Set the element's `border-color` CSS property
      *
      * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/border-color/ Documentation}
      */
     borderColor: theme.colors,
+    borderLeftWidth: theme.borderWidth,
     borderRadius: radiuses,
-    borderWidth: theme.borderWidth,
+    borderRightWidth: theme.borderWidth,
+    borderTopWidth: theme.borderWidth,
     boxShadow: theme.boxShadow,
     /**
      * Set the element's text color
@@ -145,7 +148,36 @@ const unresponsiveProps = defineProperties({
      *
      * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/border-width/ Documentation}
      */
-    border: ["borderWidth"],
+    border: [
+      "borderBottomWidth",
+      "borderLeftWidth",
+      "borderRightWidth",
+      "borderTopWidth",
+    ],
+    /**
+     * Set the element's `border-bottom-width` CSS property
+     *
+     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/border-width/ Documentation}
+     */
+    borderB: ["borderBottomWidth"],
+    /**
+     * Set the element's `border-left-width` CSS property
+     *
+     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/border-width/ Documentation}
+     */
+    borderL: ["borderLeftWidth"],
+    /**
+     * Set the element's `border-right-width` CSS property
+     *
+     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/border-width/ Documentation}
+     */
+    borderR: ["borderRightWidth"],
+    /**
+     * Set the element's `border-top-width` CSS property
+     *
+     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/border-width/ Documentation}
+     */
+    borderT: ["borderTopWidth"],
     /**
      * Set the element's border radius on all corners
      *
@@ -451,7 +483,11 @@ export const mapResponsiveValue = createMapValueFn(
 type LonghandProps = keyof Pick<
   Parameters<typeof sprinkles>[0],
   | "backgroundColor"
+  | "borderBottomWidth"
+  | "borderLeftWidth"
   | "borderRadius"
+  | "borderRightWidth"
+  | "borderTopWidth"
   | "boxShadow"
   | "gridColumn"
   | "gridTemplateColumns"
