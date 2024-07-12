@@ -24,6 +24,7 @@
     "type": "separator",
     "title": "Overlays"
   },
+  "alert-dialog": "Alert Dialog",
   "tooltip": "Tooltip",
   "-- Data Display": {
     "type": "separator",
@@ -36,6 +37,9 @@
     "title": "Forms"
   },
   "button": "Button",
+  "input": "Input",
+  "switch": "Switch",
+  "textarea": "Textarea",
   "-- Feedback": {
     "type": "separator",
     "title": "Feedback"
