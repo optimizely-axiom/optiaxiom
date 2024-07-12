@@ -43,30 +43,31 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(
     return (
       <Flex flexDirection="column" gap="2" maxW="sm" ref={ref} {...props}>
         {label && (
-          <Text
-            alignItems="center"
-            asChild
-            display="flex"
-            fontWeight="500"
-            gap="2"
-          >
-            <RadixLabel.Root htmlFor={id}>
-              {label}
-              {required && (
-                <Text aria-hidden="true" as="span" color="fg.error">
-                  {" "}
-                  *
-                </Text>
-              )}
-              {info && (
-                <Tooltip content={info}>
-                  <Box asChild ml="2" size="12">
-                    {IconInfo}
-                  </Box>
-                </Tooltip>
-              )}
-            </RadixLabel.Root>
-          </Text>
+          <Flex flexDirection="row" gap="4">
+            <Text
+              alignItems="center"
+              asChild
+              display="flex"
+              fontWeight="500"
+              gap="2"
+            >
+              <RadixLabel.Root htmlFor={id}>
+                {label}
+                {required && (
+                  <Text aria-hidden="true" as="span" color="fg.error">
+                    *
+                  </Text>
+                )}
+              </RadixLabel.Root>
+            </Text>
+            {info && (
+              <Tooltip content={info}>
+                <Box aria-label="info" asChild size="12">
+                  {IconInfo}
+                </Box>
+              </Tooltip>
+            )}
+          </Flex>
         )}
         {cloneElement(children, {
           disabled,
