@@ -8,6 +8,14 @@ export default ESLintUtils.RuleCreator.withoutDocs({
        */
       'Program > ExpressionStatement > AssignmentExpression[left.type="MemberExpression"][left.object.type="Identifier"][left.property.name="displayName"][right.type="Literal"]':
         (node) => {
+          if (
+            node.left.type !== "MemberExpression" ||
+            node.left.object.type !== "Identifier" ||
+            node.right.type !== "Literal"
+          ) {
+            return;
+          }
+
           const expected = `@optiaxiom/react/${node.left.object.name}`;
           if (node.right.value !== expected) {
             context.report({
