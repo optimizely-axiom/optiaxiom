@@ -58,7 +58,13 @@ export default ESLintUtils.RuleCreator.withoutDocs({
 
     /**
      * @param {import('@typescript-eslint/utils').TSESTree.CallExpression} recipe
-     * @param {import('@typescript-eslint/utils').TSESTree.Expression} node
+     * @param {
+     *  | import('@typescript-eslint/utils').TSESTree.BlockStatement
+     *  | import('@typescript-eslint/utils').TSESTree.SpreadElement
+     *  | import('@typescript-eslint/utils').TSESTree.Expression
+     *  | import('@typescript-eslint/utils').TSESTree.Property["value"]
+     *  | null
+     * } node
      */
     const process = (recipe, node) => {
       const collection = map.get(recipe) || {
@@ -66,12 +72,12 @@ export default ESLintUtils.RuleCreator.withoutDocs({
         styles: {},
       };
       map.set(recipe, collection);
-      if (node.type === "ArrayExpression") {
+      if (node?.type === "ArrayExpression") {
         for (const element of node.elements) {
           process(recipe, element);
         }
-      } else if (node.type === "CallExpression") {
-        if (node.callee.name === "style") {
+      } else if (node?.type === "CallExpression") {
+        if (node.callee.type === "Identifier" && node.callee.name === "style") {
           const arg = node.arguments[0];
           if (
             arg.type === "ArrayExpression" ||
@@ -80,22 +86,28 @@ export default ESLintUtils.RuleCreator.withoutDocs({
             const params =
               arg.type === "ObjectExpression" ? [arg] : arg.elements;
             for (const param of params) {
-              if (param.type === "ObjectExpression") {
+              if (param?.type === "ObjectExpression") {
                 let stack = [...param.properties];
                 while (stack.length) {
                   const prop = stack.shift();
                   if (!prop) {
                     break;
                   } else if (prop.type === "SpreadElement") {
-                    stack.push(...prop.argument.properties);
-                  } else if (prop.key.name === "vars") {
+                    if (prop.argument.type === "ObjectExpression") {
+                      stack.push(...prop.argument.properties);
+                    }
+                  } else if (
+                    prop.key.type === "Identifier" &&
+                    prop.key.name === "vars"
+                  ) {
                     // skip
                   } else if (prop.value.type === "ObjectExpression") {
                     stack.push(...prop.value.properties);
-                  } else {
-                    for (const name of normalizeStyle[prop.key.name] ?? [
-                      prop.key.name,
-                    ]) {
+                  } else if (prop.key.type === "Identifier") {
+                    for (const name of prop.key.name in normalizeStyle
+                      ? // @ts-expect-error -- TS cannot narrow key type
+                        normalizeStyle[prop.key.name]
+                      : [prop.key.name]) {
                       collection.styles[name] = [
                         ...(collection.styles[name] ?? []),
                         prop,
@@ -107,11 +119,16 @@ export default ESLintUtils.RuleCreator.withoutDocs({
             }
           }
         }
-      } else if (node.type === "ObjectExpression") {
+      } else if (node?.type === "ObjectExpression") {
         for (const prop of node.properties) {
-          for (const name of mapSprinkleToStyle[prop.key.name] ?? [
-            prop.key.name,
-          ]) {
+          if (prop.type !== "Property" || prop.key.type !== "Identifier") {
+            continue;
+          }
+
+          for (const name of prop.key.name in mapSprinkleToStyle
+            ? // @ts-expect-error -- TS cannot narrow key type
+              mapSprinkleToStyle[prop.key.name]
+            : [prop.key.name]) {
             collection.sprinkles[name] = [
               ...(collection.sprinkles[name] ?? []),
               prop,
@@ -128,6 +145,10 @@ export default ESLintUtils.RuleCreator.withoutDocs({
       'CallExpression[callee.name="recipe"] > ObjectExpression > Property[key.name="base"]':
         (node) => {
           const recipe = node.parent.parent;
+          if (recipe?.type !== "CallExpression") {
+            return;
+          }
+
           process(recipe, node.value);
         },
 
@@ -136,9 +157,16 @@ export default ESLintUtils.RuleCreator.withoutDocs({
        */
       'CallExpression[callee.name="recipe"] > ObjectExpression > Property[key.name="variants"] > ObjectExpression > Property':
         (node) => {
-          const recipe = node.parent.parent.parent.parent;
+          const recipe = node.parent.parent?.parent?.parent;
+          if (recipe?.type !== "CallExpression") {
+            return;
+          }
+
           if (node.value.type === "CallExpression") {
-            if (node.value.callee.name === "mapValues") {
+            if (
+              node.value.callee.type === "Identifier" &&
+              node.value.callee.name === "mapValues"
+            ) {
               const arg = node.value.arguments[1];
               if (arg.type === "ArrowFunctionExpression" && arg.expression) {
                 process(recipe, arg.body);
@@ -146,7 +174,9 @@ export default ESLintUtils.RuleCreator.withoutDocs({
             }
           } else if (node.value.type === "ObjectExpression") {
             for (const prop of node.value.properties) {
-              process(recipe, prop.value);
+              if (prop.type === "Property") {
+                process(recipe, prop.value);
+              }
             }
           }
         },
@@ -156,7 +186,11 @@ export default ESLintUtils.RuleCreator.withoutDocs({
        */
       'CallExpression[callee.name="recipe"] > ObjectExpression > Property[key.name="variantsCompounded"] > ArrayExpression > ObjectExpression > Property[key.name="style"]':
         (node) => {
-          const recipe = node.parent.parent.parent.parent.parent;
+          const recipe = node.parent.parent?.parent?.parent?.parent;
+          if (recipe?.type !== "CallExpression") {
+            return;
+          }
+
           process(recipe, node.value);
         },
 
@@ -170,8 +204,11 @@ export default ESLintUtils.RuleCreator.withoutDocs({
         }
 
         const reported = new Map();
+        /**
+         * @param {import('@typescript-eslint/utils').TSESTree.Property} node
+         */
         const report = (node) => {
-          if (reported.has(node)) {
+          if (reported.has(node) || node.key.type !== "Identifier") {
             return;
           }
           reported.set(node, true);
