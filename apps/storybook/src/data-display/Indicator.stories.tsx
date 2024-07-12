@@ -7,6 +7,7 @@ const meta: Meta<typeof Indicator> = {
 };
 
 export default meta;
+type Story = StoryObj<typeof Indicator>;
 
 const appearances = [
   ["neutral", "Neutral"],
@@ -44,8 +45,6 @@ const Variants: Story = {
     </Flex>
   ),
 };
-
-type Story = StoryObj<typeof Indicator>;
 
 export const Primary: Story = {
   ...Variants,
