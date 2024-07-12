@@ -27,7 +27,7 @@ export function HeadingLink({
           <Box
             alignItems="center"
             className={styles.anchor}
-            display="flex"
+            display={["none", "flex"]}
             flexDirection="row"
             ml="-32"
           >
