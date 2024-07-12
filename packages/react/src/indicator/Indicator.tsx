@@ -14,7 +14,7 @@ const appearances = {
   warning: { colorScheme: "warning", variant: "subtle" },
 } satisfies Record<string, styles.IndicatorVariants>;
 
-type BadgeProps = ExtendProps<
+type IndicatorProps = ExtendProps<
   ComponentPropsWithRef<typeof Flex>,
   {
     appearance?: keyof typeof appearances;
@@ -23,7 +23,7 @@ type BadgeProps = ExtendProps<
   } & styles.IndicatorVariants
 >;
 
-export const Indicator = forwardRef<HTMLDivElement, BadgeProps>(
+export const Indicator = forwardRef<HTMLDivElement, IndicatorProps>(
   (
     {
       appearance = "neutral",
@@ -41,7 +41,7 @@ export const Indicator = forwardRef<HTMLDivElement, BadgeProps>(
     const finalColorScheme = colorScheme ?? presetProps.colorScheme;
     const finalVariant = variant ?? presetProps.variant;
     return (
-      <Flex {...props} {...styles.indicatorContainer()} ref={ref}>
+      <Flex {...styles.indicatorContainer()} ref={ref} {...props}>
         <Flex
           {...styles.indicator(
             { colorScheme: finalColorScheme, position, variant: finalVariant },
