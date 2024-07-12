@@ -41,7 +41,7 @@ const appearances = [
 const variants = [
   ["solid", "Solid"],
   ["outline", "Outline"],
-  ["ghost", "Ghost"],
+  ["subtle", "Subtle"],
 ] as const;
 
 export const Default: Story = {

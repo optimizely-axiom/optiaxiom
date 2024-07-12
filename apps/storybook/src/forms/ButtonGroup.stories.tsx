@@ -80,8 +80,8 @@ export const Appearances: Story = {
         </ButtonGroup>
       ))}
       <ButtonGroup {...args}>
-        <BasicContent colorScheme="danger" variant="ghost">
-          Danger Ghost
+        <BasicContent colorScheme="danger" variant="subtle">
+          Danger Subtle
         </BasicContent>
       </ButtonGroup>
     </Flex>
@@ -100,8 +100,8 @@ export const AppearancesSpacing: Story = {
         </ButtonGroup>
       ))}
       <ButtonGroup {...args}>
-        <BasicContent colorScheme="danger" variant="ghost">
-          Danger Ghost
+        <BasicContent colorScheme="danger" variant="subtle">
+          Danger Subtle
         </BasicContent>
       </ButtonGroup>
     </Flex>
