@@ -17,6 +17,7 @@
     "./AlertDialog": "./dist/AlertDialog.js",
     "./Avatar": "./dist/Avatar.js",
     "./AnimatePresence": "./dist/AnimatePresence.js",
+    "./Badge": "./dist/Badge.js",
     "./Box": "./dist/Box.js",
     "./Button": "./dist/Button.js",
     "./ButtonGroup": "./dist/ButtonGroup.js",
