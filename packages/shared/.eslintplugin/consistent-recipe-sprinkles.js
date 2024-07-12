@@ -26,13 +26,16 @@ export default ESLintUtils.RuleCreator.withoutDocs({
           if (attribute.type === "JSXSpreadAttribute") {
             continue;
           }
+          if (attribute.name.type !== "JSXIdentifier") {
+            continue;
+          }
           if (attribute.value?.type !== "Literal") {
             continue;
           }
 
           const source = props
             .getProperty(attribute.name.name)
-            ?.getDeclarations()[0]
+            ?.getDeclarations()?.[0]
             .getSourceFile().fileName;
           if (source?.endsWith("sprinkles.css.ts")) {
             context.report({
