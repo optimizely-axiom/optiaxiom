@@ -32,6 +32,7 @@
     "./Flex": "./dist/Flex.js",
     "./Grid": "./dist/Grid.js",
     "./Heading": "./dist/Heading.js",
+    "./Indicator": "./dist/Indicator.js",
     "./Input": "./dist/Input.js",
     "./Kbd": "./dist/Kbd.js",
     "./Link": "./dist/Link.js",
