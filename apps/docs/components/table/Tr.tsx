@@ -6,12 +6,7 @@ export const Tr = ({
   children,
   ...props
 }: ComponentPropsWithRef<typeof Box>) => (
-  <Box
-    asChild
-    borderColor="border.tertiary"
-    style={{ borderBottomWidth: "1px" }}
-    {...props}
-  >
+  <Box asChild borderB="1" borderColor="border.tertiary" {...props}>
     <tr>{children}</tr>
   </Box>
 );

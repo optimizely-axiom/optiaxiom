@@ -9,13 +9,7 @@ export const Th = ({
 }: ComponentPropsWithRef<typeof Box>) => (
   <Box asChild {...props}>
     <th>
-      <Text
-        asChild={asChild}
-        fontWeight="600"
-        px="12"
-        py="2"
-        style={{ borderBottomWidth: "1px" }}
-      >
+      <Text asChild={asChild} borderB="1" fontWeight="600" px="12" py="2">
         {children ?? <>&nbsp;</>}
       </Text>
     </th>
