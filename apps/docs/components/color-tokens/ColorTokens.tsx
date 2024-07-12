@@ -6,23 +6,12 @@ import { Table, Td, Th, Tr } from "../table";
 import { ColorTokenItem } from "./ColorTokenItem";
 
 export function ColorTokens({
-  dark,
-  light,
   namespace,
+  props,
 }: {
-  dark: Props;
-  light: Props;
   namespace: string;
+  props: Props;
 }) {
-  const palette = Object.fromEntries(
-    Object.values(light)
-      .filter(
-        (token) =>
-          !token.name.startsWith("bg.") && !token.name.startsWith("fg."),
-      )
-      .map((token) => [token.type.name, token]),
-  );
-
   return (
     <Table>
       <thead>
@@ -35,7 +24,7 @@ export function ColorTokens({
         </Box>
       </thead>
       <tbody>
-        {Object.values(light)
+        {Object.values(props)
           .filter((token) => token.name.startsWith(`${namespace}.`))
           .map((token) => (
             <Tr
@@ -52,18 +41,10 @@ export function ColorTokens({
                 </Flex>
               </Td>
               <Td py="16" w="160">
-                <ColorTokenItem
-                  mode="light"
-                  token={token}
-                  value={palette[token.type.name]}
-                />
+                <ColorTokenItem mode="light" token={token} />
               </Td>
               <Td py="16" w="160">
-                <ColorTokenItem
-                  mode="dark"
-                  token={dark[token.name]}
-                  value={palette[dark[token.name].type.name]}
-                />
+                <ColorTokenItem mode="dark" token={token} />
               </Td>
             </Tr>
           ))}

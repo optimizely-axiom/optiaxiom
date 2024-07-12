@@ -4,7 +4,7 @@ import {
   // eslint-disable-next-line local/no-global-styles
 } from "@vanilla-extract/css";
 
-import { tokens, tokensDark } from "../tokens";
+import { tokens } from "../tokens";
 import { mapValues } from "../utils";
 
 const createThemeContractFromTokens = <
@@ -33,5 +33,3 @@ export const theme = createGlobalThemeContractOptimized(
 );
 // @ts-expect-error -- preserve original token types
 createGlobalTheme(":root", theme, tokens);
-// @ts-expect-error -- preserve original token types
-createGlobalTheme(":root.dark", theme, tokensDark);

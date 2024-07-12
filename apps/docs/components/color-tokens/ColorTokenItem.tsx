@@ -5,13 +5,14 @@ import { Box, Flex, Text } from "@optiaxiom/react";
 export function ColorTokenItem({
   mode,
   token,
-  value,
 }: {
   mode: "dark" | "light";
   token: PropItem;
-  value: PropItem;
 }) {
-  const luminance = getColorLuminance(JSON.parse(token.type.name));
+  const name = JSON.parse(token.type.name).match(
+    /\((?<light>.+),\s?(?<dark>.+)\)/,
+  ).groups[mode];
+  const luminance = getColorLuminance(name);
 
   return (
     <Flex
@@ -25,8 +26,8 @@ export function ColorTokenItem({
         p="12"
         rounded="sm"
         style={{
-          backgroundColor: JSON.parse(token.type.name),
-          outlineColor: `oklch(from ${JSON.parse(token.type.name)} calc(l ${mode === "light" ? "-" : "+"} 0.1) c h)`,
+          backgroundColor: name,
+          outlineColor: `oklch(from ${name} calc(l ${mode === "light" ? "-" : "+"} 0.1) c h)`,
           outlineStyle: "solid",
           outlineWidth:
             (mode === "light" ? luminance : 255 - luminance) > 200
@@ -40,7 +41,7 @@ export function ColorTokenItem({
         fontSize="sm"
         px="2"
       >
-        {value.name}
+        {name}
       </Text>
     </Flex>
   );

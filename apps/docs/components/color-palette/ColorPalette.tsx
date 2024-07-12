@@ -7,7 +7,10 @@ export function ColorPalette() {
         Object.entries(tokens.colors).reduce<
           Record<string, Array<[string, keyof typeof tokens.colors, string]>>
         >((result, [name, color]) => {
-          if (["current", "transparent"].includes(name)) {
+          if (
+            ["current", "transparent"].includes(name) ||
+            color.startsWith("light-dark(")
+          ) {
             return result;
           }
 
