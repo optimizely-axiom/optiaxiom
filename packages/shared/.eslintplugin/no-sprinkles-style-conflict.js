@@ -77,7 +77,8 @@ export default ESLintUtils.RuleCreator.withoutDocs({
             arg.type === "ArrayExpression" ||
             arg.type === "ObjectExpression"
           ) {
-            const params = arg.type === "ObjectExpression" ? [arg] : arg;
+            const params =
+              arg.type === "ObjectExpression" ? [arg] : arg.elements;
             for (const param of params) {
               if (param.type === "ObjectExpression") {
                 let stack = [...param.properties];
@@ -139,10 +140,7 @@ export default ESLintUtils.RuleCreator.withoutDocs({
           if (node.value.type === "CallExpression") {
             if (node.value.callee.name === "mapValues") {
               const arg = node.value.arguments[1];
-              if (
-                arg.type === "ArrowFunctionExpression" &&
-                arg.body.expression
-              ) {
+              if (arg.type === "ArrowFunctionExpression" && arg.expression) {
                 process(recipe, arg.body);
               }
             }
