@@ -1,4 +1,5 @@
 import { type ComponentPropsWithRef, type ReactNode, forwardRef } from "react";
+import TextareaAutosize from "react-textarea-autosize";
 
 import type { ExtendProps } from "../utils";
 
@@ -35,6 +36,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
     ref,
   ) => {
     const { restProps, sprinkleProps } = extractSprinkles(props);
+    const Component = resize === "auto" ? TextareaAutosize : "textarea";
 
     return (
       <Flex
@@ -53,13 +55,14 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           color={disabled ? "fg.disabled" : "fg.default"}
           {...styles.textarea({}, className)}
         >
-          <textarea
+          <Component
+            maxRows={5}
             placeholder={placeholder}
             readOnly={disabled || readOnly}
             ref={ref}
             rows={rows}
             {...restProps}
-          ></textarea>
+          />
         </Box>
         {endDecorator}
       </Flex>

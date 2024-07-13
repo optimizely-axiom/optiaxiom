@@ -41,7 +41,9 @@ export const wrapper = recipe({
   ],
   variants: {
     resize: {
-      auto: {},
+      auto: style({
+        resize: "vertical",
+      }),
       none: style({
         resize: "none",
       }),
@@ -56,10 +58,10 @@ export const textarea = recipe({
     {
       alignItems: "start",
       borderColor: "border.default",
-      flex: "1",
     },
     style({
       color: theme.colors["fg.default"],
+      flexGrow: "1",
       resize: "none",
       selectors: {
         "&:focus-visible": {
