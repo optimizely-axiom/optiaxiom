@@ -9,7 +9,7 @@ import { extractSprinkles } from "../sprinkles";
 import * as styles from "./Textarea.css";
 
 type TextareaProps = ExtendProps<
-  ComponentPropsWithRef<"textarea">,
+  ComponentPropsWithRef<typeof TextareaAutosize>,
   ComponentPropsWithRef<typeof Box>,
   {
     disabled?: boolean;
@@ -26,6 +26,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
       disabled,
       endDecorator,
       error,
+      maxRows = 5,
       placeholder,
       readOnly,
       resize = "vertical",
@@ -56,7 +57,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           {...styles.textarea({}, className)}
         >
           <Component
-            maxRows={5}
+            maxRows={maxRows}
             placeholder={placeholder}
             readOnly={disabled || readOnly}
             ref={ref}
