@@ -23,6 +23,13 @@ export const NoResize: Story = {
   },
 };
 
+export const AutoResize: Story = {
+  args: {
+    placeholder: "Enter text....",
+    resize: "auto",
+  },
+};
+
 export const WithTopSection: Story = {
   args: {
     placeholder: "Enter text....",
