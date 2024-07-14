@@ -20,4 +20,4 @@ export const DialogBody = forwardRef<HTMLDivElement, DialogBodyProps>(
   },
 );
 
-DialogBody.displayName = "@optiaxiom/react/DialogScrollableContent";
+DialogBody.displayName = "@optiaxiom/react/DialogBody";
