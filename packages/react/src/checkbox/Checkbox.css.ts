@@ -90,10 +90,9 @@ export const indicatorWrapper = recipe({
   base: [
     {
       border: "1",
-      h: "16",
       justifyContent: "center",
       rounded: "xs",
-      w: "16",
+      size: "16",
     },
     style({
       borderColor: theme.colors["neutral.500"],
@@ -103,7 +102,7 @@ export const indicatorWrapper = recipe({
           outlineOffset: "1px",
         },
         "&:hover": {
-          border: `1px solid ${theme.colors["fg.tertiary"]}`,
+          borderColor: theme.colors["fg.tertiary"],
         },
 
         '&[data-state="checked"] ': {

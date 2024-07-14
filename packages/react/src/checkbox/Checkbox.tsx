@@ -17,7 +17,6 @@ type CheckboxProps = ExtendProps<
   ComponentPropsWithRef<typeof Box>,
   {
     checked?: "indeterminate" | boolean;
-    children: ReactNode;
     defaultChecked?: "indeterminate" | boolean;
     disabled?: boolean;
     endDecorator?: ReactNode;
@@ -35,7 +34,7 @@ export const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>(
       disabled,
       endDecorator,
       id: idProp,
-      readonly = false,
+      readonly,
       ...props
     },
     ref,
@@ -78,13 +77,11 @@ export const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>(
           </Box>
 
           <RadixLabel.Root htmlFor={id}>
-            <Text {...styles.label({ disabled: disabled })}>{children}</Text>
+            <Text {...styles.label({ disabled })}>{children}</Text>
           </RadixLabel.Root>
         </Flex>
         <RadixLabel.Root htmlFor={id}>
-          <Text {...styles.endDecorator({ disabled: disabled })}>
-            {endDecorator}
-          </Text>
+          <Text {...styles.endDecorator({ disabled })}>{endDecorator}</Text>
         </RadixLabel.Root>
       </Flex>
     );
