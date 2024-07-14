@@ -72,7 +72,7 @@ export const Neutral: Story = {
 
 export const AllPositions: Story = {
   args: {
-    colorScheme: "neutral",
+    colorScheme: "info",
     variant: "solid",
   },
   render: (args) => (
@@ -80,7 +80,7 @@ export const AllPositions: Story = {
       {positions.map((position) => (
         <Box key={position}>
           <Indicator {...args} content="2" position={position}>
-            <Button icon={<IconFilter />} size="lg" />
+            <Button bg="gray.100" icon={<IconFilter />} size="lg" />
           </Indicator>
         </Box>
       ))}
