@@ -5,48 +5,32 @@ import type { ExtendProps } from "../utils";
 import { Flex } from "../flex";
 import * as styles from "./Indicator.css";
 
-const appearances = {
-  danger: { colorScheme: "danger", variant: "accent" },
-  info: { colorScheme: "info", variant: "accent" },
-  neutral: { colorScheme: "neutral", variant: "accent" },
-  primary: { colorScheme: "primary", variant: "subtle" },
-  success: { colorScheme: "success", variant: "subtle" },
-  warning: { colorScheme: "warning", variant: "subtle" },
-} satisfies Record<string, styles.IndicatorVariants>;
-
 type IndicatorProps = ExtendProps<
   ComponentPropsWithRef<typeof Flex>,
   {
-    appearance?: keyof typeof appearances;
-    children: ReactNode;
-    content: string;
+    content: ReactNode;
   } & styles.IndicatorVariants
 >;
 
 export const Indicator = forwardRef<HTMLDivElement, IndicatorProps>(
   (
     {
-      appearance = "neutral",
       children,
       className,
-      colorScheme,
+      colorScheme = "neutral",
       content,
       position = "top-right",
-      variant,
+      variant = "solid",
       ...props
     },
     ref,
   ) => {
-    const presetProps = appearances[appearance];
-    const finalColorScheme = colorScheme ?? presetProps.colorScheme;
-    const finalVariant = variant ?? presetProps.variant;
     return (
-      <Flex {...styles.indicatorContainer()} ref={ref} {...props}>
+      <Flex {...styles.indicatorContainer()}>
         <Flex
-          {...styles.indicator(
-            { colorScheme: finalColorScheme, position, variant: finalVariant },
-            className,
-          )}
+          ref={ref}
+          {...styles.indicator({ colorScheme, position, variant }, className)}
+          {...props}
         >
           {content}
         </Flex>
@@ -56,4 +40,4 @@ export const Indicator = forwardRef<HTMLDivElement, IndicatorProps>(
   },
 );
 
-Indicator.displayName = "Indicator";
+Indicator.displayName = "@optiaxiom/react/Indicator";
