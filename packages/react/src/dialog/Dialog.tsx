@@ -12,7 +12,7 @@ import * as styles from "./Dialog.css";
 
 type DialogProps = ExtendProps<
   ComponentPropsWithRef<typeof Box>,
-  ComponentPropsWithRef<typeof RadixDialog.Root>,
+  Pick<ComponentPropsWithRef<typeof RadixDialog.Root>, "modal" | "open">,
   {
     children: ReactNode;
     onClose: () => void;
@@ -25,34 +25,30 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(
     ref,
   ) => {
     return (
-      <Box asChild ref={ref} {...props}>
-        <RadixDialog.Root onOpenChange={onClose}>
-          <Box asChild>
-            <RadixDialog.Portal>
-              <RadixDialog.Overlay asChild>
-                <Flex {...styles.overlay()}>
-                  <Paper asChild {...styles.content({ size })}>
-                    <RadixDialog.Content>
-                      {children}
-                      {withCloseButton && (
-                        <Box asChild {...styles.close()}>
-                          <RadixDialog.Close aria-label="Close" asChild>
-                            <Button
-                              appearance="secondary"
-                              icon={<CloseIcon />}
-                              size="sm"
-                            />
-                          </RadixDialog.Close>
-                        </Box>
-                      )}
-                    </RadixDialog.Content>
-                  </Paper>
-                </Flex>
-              </RadixDialog.Overlay>
-            </RadixDialog.Portal>
-          </Box>
-        </RadixDialog.Root>
-      </Box>
+      <RadixDialog.Root onOpenChange={onClose} {...props}>
+        <RadixDialog.Portal>
+          <Flex asChild {...styles.overlay()} ref={ref}>
+            <RadixDialog.Overlay>
+              <Paper asChild {...styles.content({ size })}>
+                <RadixDialog.Content>
+                  {children}
+                  {withCloseButton && (
+                    <Box asChild {...styles.close()}>
+                      <RadixDialog.Close aria-label="Close" asChild>
+                        <Button
+                          appearance="secondary"
+                          icon={<CloseIcon />}
+                          size="sm"
+                        />
+                      </RadixDialog.Close>
+                    </Box>
+                  )}
+                </RadixDialog.Content>
+              </Paper>
+            </RadixDialog.Overlay>
+          </Flex>
+        </RadixDialog.Portal>
+      </RadixDialog.Root>
     );
   },
 );
