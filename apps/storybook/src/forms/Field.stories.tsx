@@ -12,7 +12,6 @@ type Story = StoryObj<typeof Field>;
 export const Basic: Story = {
   args: {
     children: <Input placeholder="This is an Input" />,
-    info: "Give a proper input",
     label: "Form label",
   },
 };
@@ -22,6 +21,19 @@ export const Required: Story = {
     children: (
       <Input
         placeholder="With Icon"
+        startDecorator={<IconCalendar size="16" />}
+      />
+    ),
+    label: "Form label",
+    required: true,
+  },
+};
+
+export const RequiredWithInfo: Story = {
+  args: {
+    children: (
+      <Input
+        placeholder="Required"
         startDecorator={<IconCalendar size="16" />}
       />
     ),
@@ -66,7 +78,7 @@ export const DescriptionAndError: Story = {
 
 export const Info: Story = {
   args: {
-    children: <></>,
+    children: <Input />,
     info: "This is a field component",
     label: "Form label",
   },
