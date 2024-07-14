@@ -17,40 +17,22 @@ export const Basic: Story = {
 };
 export const HelperText: Story = {
   args: {
-    children: (
-      <>
-        Label
-        <Text as="p" color="fg.secondary" fontSize="sm">
-          Helper Text
-        </Text>
-      </>
-    ),
+    children: <>Label</>,
+    endDecorator: "Helper Text",
   },
 };
 
 export const Disabled: Story = {
   args: {
-    children: (
-      <>
-        Label
-        <Text as="p" color="fg.secondary" fontSize="sm">
-          Helper Text
-        </Text>
-      </>
-    ),
+    children: <>Label</>,
     disabled: true,
+    endDecorator: "Helper Text",
   },
 };
 export const Readonly: Story = {
   args: {
-    children: (
-      <>
-        Label
-        <Text as="p" color="fg.secondary" fontSize="sm">
-          Helper Text
-        </Text>
-      </>
-    ),
+    children: <>Label</>,
+    endDecorator: <>Helper Text</>,
     readonly: true,
   },
 };

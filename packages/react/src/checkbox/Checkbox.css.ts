@@ -5,9 +5,7 @@ const wrapperMarker = style({});
 export const wrapper = recipe({
   base: [
     {
-      alignItems: "start",
-      flexDirection: "row",
-      gap: "xs",
+      gap: "0",
     },
     wrapperMarker,
   ],
@@ -123,5 +121,14 @@ export const label = recipe({
         },
       },
     }),
+  ],
+});
+
+export const endDecorator = recipe({
+  base: [
+    {
+      fontSize: "sm",
+      ml: "24",
+    },
   ],
 });

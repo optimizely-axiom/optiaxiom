@@ -20,6 +20,7 @@ type CheckboxProps = ExtendProps<
     children: ReactNode;
     defaultChecked?: "indeterminate" | boolean;
     disabled?: boolean;
+    endDecorator?: ReactNode;
     readonly?: boolean;
   }
 >;
@@ -32,6 +33,7 @@ export const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>(
       className,
       defaultChecked,
       disabled,
+      endDecorator,
       id: idProp,
       readonly = false,
       ...props
@@ -47,30 +49,38 @@ export const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>(
         {...styles.wrapper({}, className)}
         {...props}
       >
-        <Box asChild {...styles.indicatorWrapper()}>
-          <RadixCheckbox.Root
-            checked={checked}
-            defaultChecked={defaultChecked}
-            disabled={disabled || readonly}
-            id={id}
-          >
-            <Box asChild {...styles.indicator()}>
-              <RadixCheckbox.Indicator>
-                {IconChecked}
-                {IconUnchecked}
-                {IconIndeterminate}
-              </RadixCheckbox.Indicator>
-            </Box>
-          </RadixCheckbox.Root>
-        </Box>
+        <Flex flexDirection="row" gap="xs">
+          <Box asChild {...styles.indicatorWrapper()}>
+            <RadixCheckbox.Root
+              checked={checked}
+              defaultChecked={defaultChecked}
+              disabled={disabled || readonly}
+              id={id}
+            >
+              <Box asChild {...styles.indicator()}>
+                <RadixCheckbox.Indicator>
+                  {IconChecked}
+                  {IconUnchecked}
+                  {IconIndeterminate}
+                </RadixCheckbox.Indicator>
+              </Box>
+            </RadixCheckbox.Root>
+          </Box>
 
-        <Box asChild {...styles.label()}>
-          <RadixLabel.Root htmlFor={id}>
-            <Text color={disabled ? "fg.disabled" : "fg.default"}>
-              {children}
-            </Text>
-          </RadixLabel.Root>
-        </Box>
+          <Box asChild {...styles.label()}>
+            <RadixLabel.Root htmlFor={id}>
+              <Text color={disabled ? "fg.disabled" : "fg.default"}>
+                {children}
+              </Text>
+            </RadixLabel.Root>
+          </Box>
+        </Flex>
+        <Text
+          color={disabled ? "fg.disabled" : "fg.secondary"}
+          {...styles.endDecorator()}
+        >
+          {endDecorator}
+        </Text>
       </Flex>
     );
   },
