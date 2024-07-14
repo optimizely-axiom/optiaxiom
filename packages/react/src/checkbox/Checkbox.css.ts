@@ -9,6 +9,13 @@ export const wrapper = recipe({
     },
     wrapperMarker,
   ],
+  variants: {
+    disabled: {
+      true: style({
+        cursor: "not-allowed",
+      }),
+    },
+  },
 });
 
 export const iconChecked = recipe({
@@ -66,12 +73,17 @@ export const indicator = recipe({
         "&:hover": {
           background: theme.colors["bg.brand.solid.hover"],
         },
-        '[data-disabled="true"] &': {
-          background: theme.colors["neutral.150"],
-        },
       },
     }),
   ],
+  variants: {
+    disabled: {
+      true: style({
+        background: theme.colors["fg.disabled"],
+        cursor: "not-allowed",
+      }),
+    },
+  },
 });
 
 export const indicatorWrapper = recipe({
@@ -93,10 +105,7 @@ export const indicatorWrapper = recipe({
         "&:hover": {
           border: `1px solid ${theme.colors["fg.tertiary"]}`,
         },
-        '&[data-disabled="true"]': {
-          background: theme.colors["bg.disabled"],
-          cursor: "not-allowed",
-        },
+
         '&[data-state="checked"] ': {
           border: "none",
         },
@@ -106,6 +115,15 @@ export const indicatorWrapper = recipe({
       },
     }),
   ],
+  variants: {
+    disabled: {
+      false: {},
+      true: style({
+        borderColor: theme.colors["gray.400"],
+        cursor: "not-allowed",
+      }),
+    },
+  },
 });
 
 export const label = recipe({
@@ -115,13 +133,17 @@ export const label = recipe({
     },
     style({
       cursor: "pointer",
-      selectors: {
-        '[data-disabled="true"] &': {
-          cursor: "not-allowed",
-        },
-      },
     }),
   ],
+  variants: {
+    disabled: {
+      false: {},
+      true: style({
+        color: theme.colors["fg.disabled"],
+        cursor: "not-allowed",
+      }),
+    },
+  },
 });
 
 export const endDecorator = recipe({
@@ -130,5 +152,17 @@ export const endDecorator = recipe({
       fontSize: "sm",
       ml: "24",
     },
+    style({
+      cursor: "pointer",
+    }),
   ],
+  variants: {
+    disabled: {
+      false: {},
+      true: style({
+        color: theme.colors["fg.disabled"],
+        cursor: "not-allowed",
+      }),
+    },
+  },
 });

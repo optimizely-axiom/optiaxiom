@@ -41,23 +41,33 @@ export const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>(
     ref,
   ) => {
     const id = useId(idProp);
+    const isDisabled = Boolean(disabled || readonly);
 
     return (
       <Flex
-        data-disabled={disabled || readonly}
         ref={ref}
-        {...styles.wrapper({}, className)}
+        {...styles.wrapper(
+          {
+            disabled: isDisabled,
+          },
+          className,
+        )}
         {...props}
       >
         <Flex flexDirection="row" gap="xs">
-          <Box asChild {...styles.indicatorWrapper()}>
+          <Box
+            asChild
+            {...styles.indicatorWrapper({
+              disabled: isDisabled,
+            })}
+          >
             <RadixCheckbox.Root
               checked={checked}
               defaultChecked={defaultChecked}
-              disabled={disabled || readonly}
+              disabled={isDisabled}
               id={id}
             >
-              <Box asChild {...styles.indicator()}>
+              <Box asChild {...styles.indicator({ disabled: isDisabled })}>
                 <RadixCheckbox.Indicator>
                   {IconChecked}
                   {IconUnchecked}
@@ -67,20 +77,15 @@ export const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>(
             </RadixCheckbox.Root>
           </Box>
 
-          <Box asChild {...styles.label()}>
-            <RadixLabel.Root htmlFor={id}>
-              <Text color={disabled ? "fg.disabled" : "fg.default"}>
-                {children}
-              </Text>
-            </RadixLabel.Root>
-          </Box>
+          <RadixLabel.Root htmlFor={id}>
+            <Text {...styles.label({ disabled: disabled })}>{children}</Text>
+          </RadixLabel.Root>
         </Flex>
-        <Text
-          color={disabled ? "fg.disabled" : "fg.secondary"}
-          {...styles.endDecorator()}
-        >
-          {endDecorator}
-        </Text>
+        <RadixLabel.Root htmlFor={id}>
+          <Text {...styles.endDecorator({ disabled: disabled })}>
+            {endDecorator}
+          </Text>
+        </RadixLabel.Root>
       </Flex>
     );
   },
