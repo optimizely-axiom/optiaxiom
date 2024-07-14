@@ -14,16 +14,14 @@ const accentColorVar = createVar();
 export const badge = recipe({
   base: [
     {
-      alignItems: "center",
+      display: "inline-flex",
+      fontSize: "sm",
       fontWeight: "500",
       justifyContent: "center",
       px: "8",
       py: "2",
-      rounded: "sm",
+      rounded: "md",
     },
-    style({
-      textTransform: "capitalize",
-    }),
   ],
   variants: {
     colorScheme: {
@@ -77,7 +75,7 @@ export const badge = recipe({
       }),
     },
     variant: {
-      accent: style({
+      solid: style({
         backgroundColor: accentBackgroundColorVar,
         color: accentColorVar,
       }),

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Badge, Flex } from "@optiaxiom/react";
+import { Badge, Flex, Heading, Text } from "@optiaxiom/react";
 
 const meta: Meta<typeof Badge> = {
   component: Badge,
@@ -10,25 +10,16 @@ export default meta;
 
 type Story = StoryObj<typeof Badge>;
 
-const appearances = [
-  ["neutral", "Neutral"],
-  ["primary", "Primary"],
-  ["danger", "Danger"],
-  ["info", "Info"],
-  ["warning", "Warning"],
-  ["success", "Success"],
-] as const;
-
 const variants = [
   ["subtle", "Subtle"],
-  ["accent", "Accent"],
+  ["solid", "Solid"],
 ] as const;
 
 const Variants: Story = {
   render: (args) => (
     <Flex flexDirection="column" gap="sm">
       {variants.map(([variant, label]) => (
-        <Badge {...args} content="2" key={variant} variant={variant}>
+        <Badge {...args} key={variant} variant={variant}>
           {label}
         </Badge>
       ))}
@@ -68,14 +59,24 @@ export const Neutral: Story = {
   args: { colorScheme: "neutral" },
 };
 
-export const appearance: Story = {
-  render: (args) => (
-    <Flex>
-      {appearances.map(([appearance, label]) => (
-        <Badge {...args} appearance={appearance} key={appearance}>
-          {label}
-        </Badge>
-      ))}
+export const TextWithBadge: Story = {
+  render: () => (
+    <Flex flexDirection="row" gap="sm">
+      <Text>Status:</Text>
+      <Badge colorScheme="success" variant="solid">
+        Active
+      </Badge>
+    </Flex>
+  ),
+};
+
+export const HeadingWithBadge: Story = {
+  render: () => (
+    <Flex flexDirection="row" gap="sm">
+      <Heading level="4">Status:</Heading>
+      <Badge colorScheme="success" variant="solid">
+        Active
+      </Badge>
     </Flex>
   ),
 };
