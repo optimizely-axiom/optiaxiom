@@ -9,7 +9,7 @@ import { IconSearch } from "./IconSearch";
 type SearchProps = ComponentPropsWithRef<typeof Input>;
 
 export const Search = forwardRef<HTMLInputElement, SearchProps>(
-  ({ className, defaultValue = "", onChange, ...props }, ref) => {
+  ({ defaultValue = "", onChange, ...props }, ref) => {
     const [inputValue, setInputValue] = useState(defaultValue);
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
