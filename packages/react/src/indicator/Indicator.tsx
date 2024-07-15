@@ -2,11 +2,12 @@ import { type ComponentPropsWithRef, type ReactNode, forwardRef } from "react";
 
 import type { ExtendProps } from "../utils";
 
+import { Badge } from "../badge";
 import { Flex } from "../flex";
 import * as styles from "./Indicator.css";
 
 type IndicatorProps = ExtendProps<
-  ComponentPropsWithRef<typeof Flex>,
+  ComponentPropsWithRef<typeof Badge>,
   {
     content: ReactNode;
   } & styles.IndicatorVariants
@@ -26,14 +27,16 @@ export const Indicator = forwardRef<HTMLDivElement, IndicatorProps>(
     ref,
   ) => {
     return (
-      <Flex {...styles.indicatorContainer()}>
-        <Flex
+      <Flex {...styles.indicator()}>
+        <Badge
+          colorScheme={colorScheme}
           ref={ref}
-          {...styles.indicator({ colorScheme, position, variant }, className)}
+          variant={variant}
+          {...styles.badge({ position }, className)}
           {...props}
         >
           {content}
-        </Flex>
+        </Badge>
         {children}
       </Flex>
     );
