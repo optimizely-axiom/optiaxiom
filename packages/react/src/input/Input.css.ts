@@ -13,4 +13,43 @@ export const input = recipe({
   },
 });
 
+export const decorator = recipe({
+  variants: {
+    position: {
+      end: {
+        mr: "8",
+      },
+      start: {
+        ml: "8",
+      },
+    },
+    size: {
+      sm: {},
+      md: {},
+      lg: {},
+    },
+  },
+
+  variantsCompounded: [
+    {
+      style: {
+        mr: "4",
+      },
+      variants: {
+        position: "end",
+        size: "sm",
+      },
+    },
+    {
+      style: {
+        ml: "4",
+      },
+      variants: {
+        position: "start",
+        size: "sm",
+      },
+    },
+  ],
+});
+
 export type InputVariants = RecipeVariants<typeof input>;

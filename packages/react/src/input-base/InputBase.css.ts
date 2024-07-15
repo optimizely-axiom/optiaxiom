@@ -9,7 +9,6 @@ export const wrapper = recipe({
       color: "fg.default",
       display: "flex",
       flexDirection: "row",
-      gap: "8",
       rounded: "sm",
     },
     style({
@@ -42,28 +41,6 @@ export const wrapper = recipe({
       },
     }),
   ],
-
-  variants: {
-    size: {
-      sm: {
-        fontSize: "sm",
-        h: "24",
-        p: "8",
-      },
-      md: {
-        fontSize: "md",
-        h: "32",
-        p: "8",
-      },
-
-      lg: {
-        fontSize: "lg",
-        h: "40",
-        px: "8",
-        py: "4",
-      },
-    },
-  },
 });
 
 export const input = recipe({
@@ -73,6 +50,9 @@ export const input = recipe({
       flex: "auto",
     },
     style({
+      fontSize: "14px",
+      lineHeight: "22px",
+
       selectors: {
         "&:focus-visible": {
           outlineWidth: "0px",
@@ -80,6 +60,36 @@ export const input = recipe({
       },
     }),
   ],
+
+  variants: {
+    size: {
+      sm: {
+        px: "4",
+        py: "0",
+      },
+      md: {
+        px: "8",
+        py: "4",
+      },
+      lg: {
+        px: "8",
+        py: "8",
+      },
+    },
+  },
 });
 
-export type WrapperVariants = RecipeVariants<typeof wrapper>;
+export const decorator = recipe({
+  variants: {
+    position: {
+      end: {
+        mr: "8",
+      },
+      start: {
+        ml: "8",
+      },
+    },
+  },
+});
+
+export type InputVariants = RecipeVariants<typeof input>;
