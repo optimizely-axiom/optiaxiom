@@ -44,17 +44,11 @@ export const wrapper = recipe({
 
   variants: {
     size: {
-      sm: {
-        fontSize: "sm",
-        h: "24",
-        p: "8",
-      },
       md: {
         fontSize: "md",
         h: "32",
         p: "8",
       },
-
       lg: {
         fontSize: "lg",
         h: "40",
