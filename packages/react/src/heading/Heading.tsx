@@ -1,12 +1,10 @@
 import { Slot } from "@radix-ui/react-slot";
-import { type ComponentPropsWithRef, forwardRef } from "react";
+import { forwardRef } from "react";
 
-import { Text } from "../text";
-import { type ExtendProps } from "../utils";
+import { Text, type TextProps } from "../text";
 
-type HeadingProps = ExtendProps<
-  ComponentPropsWithRef<"h1">,
-  ComponentPropsWithRef<typeof Text>,
+type HeadingProps = TextProps<
+  "h1",
   {
     /**
      * Presets for each level of heading h1-h6.

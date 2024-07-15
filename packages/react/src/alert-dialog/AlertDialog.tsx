@@ -1,16 +1,13 @@
 import * as RadixAlertDialog from "@radix-ui/react-alert-dialog";
 import { type ComponentPropsWithRef, type ReactNode, forwardRef } from "react";
 
-import type { ExtendProps } from "../utils";
-
-import { Box } from "../box";
+import { Box, type BoxProps } from "../box";
 import { Button } from "../button";
 import { Flex } from "../flex";
 import * as styles from "./AlertDialog.css";
 
-type AlertDialogProps = ExtendProps<
-  ComponentPropsWithRef<typeof RadixAlertDialog.Root>,
-  ComponentPropsWithRef<typeof Box>,
+type AlertDialogProps = BoxProps<
+  typeof RadixAlertDialog.Root,
   {
     action?: string;
     actionAppearance?: ComponentPropsWithRef<typeof Button>["appearance"];

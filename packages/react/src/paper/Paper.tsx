@@ -1,12 +1,11 @@
-import { type ComponentPropsWithRef, forwardRef } from "react";
+import { forwardRef } from "react";
 
 import type { Sprinkles } from "../sprinkles";
-import type { ExtendProps } from "../utils";
 
-import { Box } from "../box";
+import { Box, type BoxProps } from "../box";
 
-type PaperProps = ExtendProps<
-  ComponentPropsWithRef<typeof Box>,
+type PaperProps = BoxProps<
+  "div",
   {
     elevation?: Sprinkles["shadow"];
   }

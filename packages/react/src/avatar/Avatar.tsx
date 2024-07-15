@@ -1,15 +1,13 @@
 import * as RadixAvatar from "@radix-ui/react-avatar";
-import { type ComponentPropsWithRef, forwardRef } from "react";
+import { forwardRef } from "react";
 
-import type { ExtendProps } from "../utils";
-
-import { Box } from "../box";
+import { Box, type BoxProps } from "../box";
 import * as styles from "./Avatar.css";
 
 const FALLBACK_DELAY_IN_MS = 600;
 
-type AvatarProps = ExtendProps<
-  ComponentPropsWithRef<typeof Box>,
+type AvatarProps = BoxProps<
+  "span",
   {
     children?: React.ReactNode;
     className?: string;
@@ -28,7 +26,7 @@ function getInitialsFromName(name: string) {
     : firstName.charAt(0);
 }
 
-export const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
+export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
   (
     {
       children,

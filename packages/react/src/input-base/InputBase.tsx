@@ -1,20 +1,26 @@
 import { Slot } from "@radix-ui/react-slot";
-import { type ComponentPropsWithRef, type ReactNode, forwardRef } from "react";
+import { type ElementType, type ReactNode, forwardRef } from "react";
 
-import { Box } from "../box";
+import type { ExtendProps } from "../utils";
+
+import { Box, type BoxProps } from "../box";
 import { Flex } from "../flex";
 import { extractSprinkles } from "../sprinkles";
-import { type ExtendProps } from "../utils";
 import * as styles from "./InputBase.css";
 
-type InputBaseProps = ExtendProps<
-  ComponentPropsWithRef<"input">,
-  ComponentPropsWithRef<typeof Box>,
-  {
-    endDecorator?: ReactNode;
-    error?: boolean;
-    startDecorator?: ReactNode;
-  } & styles.InputVariants
+export type InputBaseProps<
+  T extends ElementType = "input",
+  P = unknown,
+> = BoxProps<
+  T,
+  ExtendProps<
+    {
+      endDecorator?: ReactNode;
+      error?: boolean;
+      startDecorator?: ReactNode;
+    } & styles.InputVariants,
+    P
+  >
 >;
 
 export const InputBase = forwardRef<HTMLInputElement, InputBaseProps>(

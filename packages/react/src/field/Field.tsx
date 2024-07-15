@@ -1,18 +1,13 @@
 import * as RadixLabel from "@radix-ui/react-label";
 import { useId } from "@reach/auto-id";
-import {
-  type ComponentPropsWithRef,
-  type ReactElement,
-  cloneElement,
-  forwardRef,
-} from "react";
+import { type ReactElement, cloneElement, forwardRef } from "react";
 
-import type { ExtendProps } from "../utils/ExtendProps";
+import type { BoxProps } from "../box";
 
 import { Flex } from "../flex";
 import { Text } from "../text";
-type FieldProps = ExtendProps<
-  ComponentPropsWithRef<typeof Flex>,
+type FieldProps = BoxProps<
+  "div",
   {
     children: ReactElement;
     description?: string;

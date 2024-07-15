@@ -8,16 +8,13 @@ import {
   useRef,
 } from "react";
 
-import type { ExtendProps } from "../utils";
-
 import { AnimatePresence } from "../animate-presence";
-import { Box } from "../box";
+import { Box, type BoxProps } from "../box";
 import { Text } from "../text";
 import { Transition } from "../transition";
 
-type TooltipProps = ExtendProps<
-  ComponentPropsWithRef<typeof Box>,
-  ComponentPropsWithRef<typeof RadixTooltip.Content>,
+type TooltipProps = BoxProps<
+  typeof RadixTooltip.Content,
   {
     /**
      * Enable this option to only show the tooltip when children is partially hidden due to text overflow.

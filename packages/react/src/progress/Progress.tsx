@@ -1,13 +1,9 @@
 import * as ProgressPrimitive from "@radix-ui/react-progress";
-import { type ComponentPropsWithRef, forwardRef } from "react";
+import { forwardRef } from "react";
 
-import { Box } from "../box";
-import { type ExtendProps } from "../utils";
+import { Box, type BoxProps } from "../box";
 
-type ProgressProps = ExtendProps<
-  ComponentPropsWithRef<typeof ProgressPrimitive.Root>,
-  ComponentPropsWithRef<typeof Box>
->;
+type ProgressProps = BoxProps<typeof ProgressPrimitive.Root>;
 
 export const Progress = forwardRef<HTMLDivElement, ProgressProps>(
   (props, ref) => {

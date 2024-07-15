@@ -1,14 +1,12 @@
 import * as RadixSeparator from "@radix-ui/react-separator";
 import clsx from "clsx";
-import { type ComponentPropsWithRef, forwardRef } from "react";
+import { forwardRef } from "react";
 
-import { Box } from "../box";
-import { type ExtendProps } from "../utils";
+import { Box, type BoxProps } from "../box";
 import * as styles from "./Separator.css";
 
-type SeparatorProps = ExtendProps<
-  ComponentPropsWithRef<typeof RadixSeparator.Root>,
-  ComponentPropsWithRef<typeof Box>,
+type SeparatorProps = BoxProps<
+  typeof RadixSeparator.Root,
   styles.SeparatorVariants
 >;
 

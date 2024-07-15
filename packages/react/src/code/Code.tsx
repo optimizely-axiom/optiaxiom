@@ -1,22 +1,22 @@
 import { Slot } from "@radix-ui/react-slot";
-import { type ComponentPropsWithRef, forwardRef } from "react";
+import { forwardRef } from "react";
 
-import type { ExtendProps } from "../utils";
-
-import { Box } from "../box";
+import { Box, type BoxProps } from "../box";
+import { extractSprinkles } from "../sprinkles";
 import * as styles from "./Code.css";
 
-type CodeProps = ExtendProps<
-  ComponentPropsWithRef<"code">,
-  ComponentPropsWithRef<typeof Box>
->;
+type CodeProps = BoxProps<"code">;
 
 export const Code = forwardRef<HTMLElement, CodeProps>(
   ({ asChild, children, className, ...props }, ref) => {
     const Comp = asChild ? Slot : "code";
+    const { restProps, sprinkleProps } = extractSprinkles(props);
+
     return (
-      <Box asChild {...styles.code({}, className)} {...props}>
-        <Comp ref={ref}>{children}</Comp>
+      <Box asChild {...styles.code({}, className)} {...sprinkleProps}>
+        <Comp ref={ref} {...restProps}>
+          {children}
+        </Comp>
       </Box>
     );
   },
