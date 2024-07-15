@@ -2,6 +2,7 @@ import { Slot } from "@radix-ui/react-slot";
 import { type ComponentPropsWithRef, type ReactNode, forwardRef } from "react";
 
 import { Box } from "../box";
+import { Flex } from "../flex";
 import { extractSprinkles } from "../sprinkles";
 import { type ExtendProps } from "../utils";
 import * as styles from "./InputBase.css";
@@ -35,7 +36,7 @@ export const InputBase = forwardRef<HTMLInputElement, InputBaseProps>(
     const { restProps, sprinkleProps } = extractSprinkles(props);
 
     return (
-      <Box
+      <Flex
         aria-disabled={disabled}
         aria-invalid={error}
         data-disabled={disabled}
@@ -50,7 +51,7 @@ export const InputBase = forwardRef<HTMLInputElement, InputBaseProps>(
         </Box>
 
         {endDecorator}
-      </Box>
+      </Flex>
     );
   },
 );
