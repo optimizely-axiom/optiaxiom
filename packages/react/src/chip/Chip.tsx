@@ -19,6 +19,7 @@ type ChipProps = ExtendProps<
   ComponentPropsWithRef<typeof Box>,
   {
     appearance?: keyof typeof appearances;
+    avatar?: ReactNode;
     children?: ReactNode;
     disabled?: boolean;
     icon?: ReactNode;
@@ -30,6 +31,7 @@ export const Chip = forwardRef<HTMLSpanElement, ChipProps>(
   (
     {
       appearance = "default",
+      avatar,
       children,
       className,
       colorScheme,
@@ -44,6 +46,8 @@ export const Chip = forwardRef<HTMLSpanElement, ChipProps>(
     const presetProps = appearances[appearance];
     const finalColorScheme = colorScheme ?? presetProps.colorScheme;
     const finalVariant = variant ?? presetProps.variant;
+
+    icon = avatar ? avatar : icon;
 
     return (
       <Box
