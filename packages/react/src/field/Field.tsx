@@ -62,8 +62,8 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(
             </Text>
             {info && (
               <Tooltip content={info}>
-                <Box aria-label="info" asChild size="12">
-                  {IconInfo}
+                <Box aria-label="info" display="flex" size="12">
+                  <IconInfo />
                 </Box>
               </Tooltip>
             )}
