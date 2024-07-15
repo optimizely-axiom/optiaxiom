@@ -52,6 +52,7 @@ export const input = recipe({
     style({
       fontSize: "14px",
       lineHeight: "22px",
+      outline: "2px solid transparent",
 
       selectors: {
         "&:focus-visible": {
