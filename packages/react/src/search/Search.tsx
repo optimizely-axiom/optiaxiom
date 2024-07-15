@@ -31,33 +31,26 @@ export const Search = forwardRef<HTMLInputElement, SearchProps>(
       prop: valueProp,
     });
 
-    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-      setValue(event.target.value);
-    };
-
-    const handleClearInput = () => {
-      setValue("");
-    };
-
     return (
-      <Box asChild {...props}>
-        <Input
-          endDecorator={
-            value && (
-              <Button
-                border="0"
-                icon={<IconCross />}
-                onClick={handleClearInput}
-                size="sm"
-              />
-            )
-          }
-          onChange={handleInputChange}
-          ref={ref}
-          startDecorator={<IconSearch />}
-          value={value}
-        />
-      </Box>
+      <Input
+        endDecorator={
+          value && (
+            <Button
+              appearance="secondary"
+              icon={<IconCross />}
+              onClick={() => setValue("")}
+              size="sm"
+            />
+          )
+        }
+        onChange={(event) => {
+          setValue(event.target.value);
+        }}
+        ref={ref}
+        startDecorator={<IconSearch />}
+        value={value}
+        {...props}
+      />
     );
   },
 );
