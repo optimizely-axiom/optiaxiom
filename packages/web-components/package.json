@@ -38,6 +38,7 @@
     "./Progress": "./dist/Progress.js",
     "./RadioGroup": "./dist/RadioGroup.js",
     "./RadioGroupItem": "./dist/RadioGroupItem.js",
+    "./Search": "./dist/Search.js",
     "./Separator": "./dist/Separator.js",
     "./Skeleton": "./dist/Skeleton.js",
     "./Switch": "./dist/Switch.js",
