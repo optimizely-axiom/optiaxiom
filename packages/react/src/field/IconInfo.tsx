@@ -1,4 +1,4 @@
-export const IconInfo = (
+export const IconInfo = () => (
   <svg
     height="12"
     viewBox="0 0 12 12"
