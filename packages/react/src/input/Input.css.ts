@@ -76,11 +76,7 @@ export const input = recipe({
       w: "full",
     },
     style({
-      selectors: {
-        "&:focus-visible": {
-          outlineWidth: "0px",
-        },
-      },
+      outline: "2px solid transparent",
     }),
   ],
   variants: {
