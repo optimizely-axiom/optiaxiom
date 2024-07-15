@@ -1,10 +1,10 @@
 import * as RadixLabel from "@radix-ui/react-label";
+import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
 import { useId } from "@reach/auto-id";
 import { type ReactElement, cloneElement, forwardRef } from "react";
 
 import type { BoxProps } from "../box";
 
-import { Box } from "../box";
 import { Flex } from "../flex";
 import { Text } from "../text";
 import { Tooltip } from "../tooltip";
@@ -61,11 +61,12 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(
               </RadixLabel.Root>
             </Text>
             {info && (
-              <Tooltip content={info}>
-                <Box aria-label="info" display="flex" size="12">
-                  <IconInfo />
-                </Box>
-              </Tooltip>
+              <>
+                <Tooltip content={info}>
+                  <IconInfo aria-details="iconInfo"></IconInfo>
+                </Tooltip>
+                <VisuallyHidden.Root id="iconInfo">{info}</VisuallyHidden.Root>
+              </>
             )}
           </Flex>
         )}
