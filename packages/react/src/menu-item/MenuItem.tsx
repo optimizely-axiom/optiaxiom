@@ -1,5 +1,5 @@
 import * as RadixMenu from "@radix-ui/react-dropdown-menu";
-import { type ComponentPropsWithRef, forwardRef } from "react";
+import { type ComponentPropsWithRef, type ReactNode, forwardRef } from "react";
 
 import type { ExtendProps } from "../utils";
 
@@ -8,16 +8,23 @@ import * as styles from "./MenuItem.css";
 
 type MenuItemProps = ExtendProps<
   ComponentPropsWithRef<typeof RadixMenu.Item>,
-  ComponentPropsWithRef<typeof Flex>
+  {
+    endDecorator?: ReactNode;
+    startDecorator?: ReactNode;
+  }
 >;
 
 export const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>(
-  ({ children, className, onSelect, ...props }, ref) => {
+  ({ children, className, endDecorator, startDecorator, ...props }, ref) => {
     return (
-      <Flex asChild {...styles.item()}>
-        <RadixMenu.Item {...props} ref={ref}>
-          {children}
-        </RadixMenu.Item>
+      <Flex {...styles.wrapper()}>
+        {startDecorator}
+        <Flex asChild {...styles.item()}>
+          <RadixMenu.Item {...props} ref={ref}>
+            <Flex flexDirection="row">{children}</Flex>
+          </RadixMenu.Item>
+        </Flex>
+        {endDecorator}
       </Flex>
     );
   },
