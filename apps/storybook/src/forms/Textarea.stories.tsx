@@ -16,10 +16,10 @@ export const Default: Story = {
   },
 };
 
-export const NoResize: Story = {
+export const ManualResize: Story = {
   args: {
     placeholder: "Enter text....",
-    resize: "none",
+    resize: "vertical",
   },
 };
 

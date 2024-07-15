@@ -1,72 +1,28 @@
-import { type ComponentPropsWithRef, type ReactNode, forwardRef } from "react";
+import { type ComponentPropsWithRef, forwardRef } from "react";
 import TextareaAutosize from "react-textarea-autosize";
 
 import type { ExtendProps } from "../utils";
 
 import { Box } from "../box";
-import { Flex } from "../flex";
-import { extractSprinkles } from "../sprinkles";
+import { InputBase } from "../input-base";
 import * as styles from "./Textarea.css";
 
 type TextareaProps = ExtendProps<
   ComponentPropsWithRef<typeof TextareaAutosize>,
-  ComponentPropsWithRef<typeof Box>,
-  {
-    disabled?: boolean;
-    endDecorator?: ReactNode;
-    error?: boolean;
-    startDecorator?: ReactNode;
-  } & styles.WrapperVariants
+  ComponentPropsWithRef<typeof InputBase>,
+  NonNullable<styles.WrapperVariants>
 >;
 
 export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
-  (
-    {
-      className,
-      disabled,
-      endDecorator,
-      error,
-      maxRows = 5,
-      placeholder,
-      readOnly,
-      resize = "vertical",
-      rows = 3,
-      startDecorator,
-      ...props
-    },
-    ref,
-  ) => {
-    const { restProps, sprinkleProps } = extractSprinkles(props);
+  ({ className, resize = "none", rows = 3, ...props }, ref) => {
     const Component = resize === "auto" ? TextareaAutosize : "textarea";
 
     return (
-      <Flex
-        aria-disabled={disabled}
-        aria-invalid={error}
-        data-disabled={disabled}
-        data-invalid={error}
-        {...styles.wrapper({
-          resize,
-        })}
-        {...sprinkleProps}
-      >
-        {startDecorator}
-        <Box
-          asChild
-          color={disabled ? "fg.disabled" : "fg.default"}
-          {...styles.textarea({}, className)}
-        >
-          <Component
-            maxRows={maxRows}
-            placeholder={placeholder}
-            readOnly={disabled || readOnly}
-            ref={ref}
-            rows={rows}
-            {...restProps}
-          />
+      <InputBase asChild {...styles.wrapper({ resize }, className)} {...props}>
+        <Box asChild {...styles.textarea({})}>
+          <Component ref={ref} rows={rows} />
         </Box>
-        {endDecorator}
-      </Flex>
+      </InputBase>
     );
   },
 );
