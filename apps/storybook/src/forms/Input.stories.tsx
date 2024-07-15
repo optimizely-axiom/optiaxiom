@@ -9,52 +9,77 @@ export default {
 
 type Story = StoryObj<typeof Input>;
 
-export const TextInput: Story = {
-  render: () => (
-    <Flex flexDirection="column" gap="xl" size="full">
-      <Input
-        defaultValue="Disabled with value"
-        disabled
-        placeholder="Disabled placeholder"
-      />
-      <Input disabled placeholder="Disabled placeholder" />
-      <Input error placeholder="Error state" />
-      <Input
-        defaultValue="Error with value"
-        error
-        placeholder="Error with value"
-      />
-      <Input disabled={false} placeholder="Placeholder" type="text" />
-      <Input defaultValue="This is a text input" placeholder="Placeholder" />
+export const Primary: Story = {
+  args: {
+    placeholder: "Enter text...",
+  },
+};
+
+export const Sizes: Story = {
+  args: {
+    placeholder: "Enter text...",
+  },
+  render: (args) => (
+    <Flex>
+      <Input {...args} size="sm" />
+      <Input {...args} size="md" />
+      <Input {...args} size="lg" />
     </Flex>
   ),
 };
 
-export const TextInputWithIcon: Story = {
-  render: () => (
+export const Value: Story = {
+  args: {
+    defaultValue: "Regular value",
+  },
+};
+
+export const Disabled: Story = {
+  args: {
+    disabled: true,
+    placeholder: "Disabled placeholder",
+  },
+};
+
+export const DisabledValue: Story = {
+  args: {
+    defaultValue: "Disabled value",
+    disabled: true,
+  },
+};
+
+export const Error: Story = {
+  args: {
+    error: true,
+    placeholder: "Required field...",
+  },
+};
+
+export const ErrorValue: Story = {
+  args: {
+    defaultValue: "Error value",
+    error: true,
+  },
+};
+
+export const Decorators: Story = {
+  render: (args) => (
     <Flex>
       <Input
+        {...args}
         placeholder="With left Icon"
-        startDecorator={<IconCalendar size="16" />}
+        startDecorator={<IconCalendar size="20" />}
       />
       <Input
-        endDecorator={<IconCalendar size="16" />}
+        {...args}
+        endDecorator={<IconCalendar size="20" />}
         placeholder="With right Icon"
       />
       <Input
-        endDecorator={<IconCalendar size="16" />}
+        {...args}
+        endDecorator={<IconCalendar size="20" />}
         placeholder="With both Icon"
-        startDecorator={<IconCalendar size="16" />}
-      />
-      <Input
-        disabled
-        endDecorator={<IconCalendar size="16" />}
-        startDecorator={<IconCalendar size="16" />}
-      />
-      <Input
-        endDecorator={<IconCalendar size="16" />}
-        error
-        startDecorator={<IconCalendar size="16" />}
+        startDecorator={<IconCalendar size="20" />}
       />
     </Flex>
   ),
