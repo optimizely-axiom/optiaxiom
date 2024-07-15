@@ -1,20 +1,17 @@
 import * as RadixLabel from "@radix-ui/react-label";
 import * as RadixSwitch from "@radix-ui/react-switch";
 import { useId } from "@reach/auto-id";
-import { type ComponentPropsWithRef, forwardRef } from "react";
+import { forwardRef } from "react";
 
-import { Box } from "../box";
+import { Box, type BoxProps } from "../box";
 import { Flex } from "../flex";
 import { extractSprinkles } from "../sprinkles";
 import { Text } from "../text";
-import { type ExtendProps } from "../utils";
 import * as styles from "./Switch.css";
 
-type SwitchProps = ExtendProps<
-  ComponentPropsWithRef<typeof RadixSwitch.Root>,
-  ComponentPropsWithRef<typeof Flex>,
+type SwitchProps = BoxProps<
+  typeof RadixSwitch.Root,
   {
-    children?: string;
     readonly?: boolean;
   } & styles.SwitchVariants
 >;

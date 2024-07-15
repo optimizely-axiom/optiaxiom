@@ -1,15 +1,14 @@
-import { type ComponentPropsWithRef, forwardRef } from "react";
+import { forwardRef } from "react";
 import TextareaAutosize from "react-textarea-autosize";
 
 import type { ExtendProps } from "../utils";
 
 import { Box } from "../box";
-import { InputBase } from "../input-base";
+import { InputBase, type InputBaseProps } from "../input-base";
 import * as styles from "./Textarea.css";
 
 type TextareaProps = ExtendProps<
-  ComponentPropsWithRef<typeof TextareaAutosize>,
-  ComponentPropsWithRef<typeof InputBase>,
+  InputBaseProps<typeof TextareaAutosize>,
   NonNullable<styles.WrapperVariants>
 >;
 

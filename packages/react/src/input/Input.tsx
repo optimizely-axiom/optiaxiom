@@ -1,14 +1,10 @@
-import { type ComponentPropsWithRef, forwardRef } from "react";
+import { forwardRef } from "react";
 
 import { Box } from "../box";
-import { InputBase } from "../input-base";
-import { type ExtendProps } from "../utils";
+import { InputBase, type InputBaseProps } from "../input-base";
 import * as styles from "./Input.css";
 
-type InputProps = ExtendProps<
-  ComponentPropsWithRef<typeof InputBase>,
-  NonNullable<styles.InputVariants>
->;
+type InputProps = InputBaseProps<"input", NonNullable<styles.InputVariants>>;
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
   (

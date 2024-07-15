@@ -1,16 +1,19 @@
 import { Slot } from "@radix-ui/react-slot";
-import { type ComponentPropsWithRef, forwardRef } from "react";
+import { type ElementType, forwardRef } from "react";
 
-import { Box } from "../box";
-import { type ExtendProps } from "../utils";
+import type { ExtendProps } from "../utils";
+
+import { Box, type BoxProps } from "../box";
 import * as styles from "./Text.css";
 
-type TextProps = ExtendProps<
-  ComponentPropsWithRef<"p">,
-  ComponentPropsWithRef<typeof Box>,
-  {
-    as?: "p" | "span";
-  } & styles.TextVariants
+export type TextProps<T extends ElementType = "p", P = unknown> = BoxProps<
+  T,
+  ExtendProps<
+    {
+      as?: "p" | "span";
+    } & styles.TextVariants,
+    P
+  >
 >;
 
 export const Text = forwardRef<HTMLParagraphElement, TextProps>(

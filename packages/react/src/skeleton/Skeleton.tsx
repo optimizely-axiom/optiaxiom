@@ -1,14 +1,14 @@
-import { type ComponentPropsWithRef, forwardRef } from "react";
+import { type ReactElement, cloneElement, forwardRef } from "react";
 
 import type { Sprinkles } from "../sprinkles";
-import type { ExtendProps } from "../utils";
 
-import { Box } from "../box";
+import { Box, type BoxProps } from "../box";
 import * as styles from "./Skeleton.css";
 
-type SkeletonProps = ExtendProps<
-  ComponentPropsWithRef<typeof Box>,
+type SkeletonProps = BoxProps<
+  "span",
   {
+    children?: ReactElement;
     /**
      * Render skeleton as a circle if `true`. Will set the width to be the same as the height.
      */
@@ -20,19 +20,18 @@ type SkeletonProps = ExtendProps<
   }
 >;
 
-export const Skeleton = forwardRef<HTMLDivElement, SkeletonProps>(
+export const Skeleton = forwardRef<HTMLSpanElement, SkeletonProps>(
   ({ children, circle, className, h, rounded, w, ...props }, ref) => {
     return (
       <Box
         asChild
         h={h}
-        ref={ref}
         rounded={circle || rounded === "full" ? "full" : rounded ?? "sm"}
         w={w ?? (circle || rounded === "full" ? h : undefined)}
         {...styles.skeleton({}, className)}
         {...props}
       >
-        {children ?? <span />}
+        {children ? cloneElement(children, { ref }) : <span ref={ref} />}
       </Box>
     );
   },

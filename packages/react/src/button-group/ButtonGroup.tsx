@@ -1,12 +1,12 @@
-import { type ComponentPropsWithRef, type ReactNode, forwardRef } from "react";
+import { type ReactNode, forwardRef } from "react";
 
-import type { ExtendProps } from "../utils";
+import type { BoxProps } from "../box";
 
 import { Flex } from "../flex";
 import * as styles from "./ButtonGroup.css";
 
-type ButtonGroupProps = ExtendProps<
-  ComponentPropsWithRef<typeof Flex>,
+type ButtonGroupProps = BoxProps<
+  "div",
   {
     children: ReactNode;
     orientation?: "horizontal" | "vertical";
