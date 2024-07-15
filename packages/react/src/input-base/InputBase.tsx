@@ -10,7 +10,6 @@ type InputBaseProps = ExtendProps<
   ComponentPropsWithRef<"input">,
   ComponentPropsWithRef<typeof Box>,
   {
-    disabled?: boolean;
     endDecorator?: ReactNode;
     error?: boolean;
     startDecorator?: ReactNode;
