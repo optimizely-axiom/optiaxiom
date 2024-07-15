@@ -1,4 +1,5 @@
-import { Slot, Slottable } from "@radix-ui/react-slot";
+import { Slottable } from "@radix-ui/react-slot";
+import * as RadixToggle from "@radix-ui/react-toggle";
 import { type ComponentPropsWithRef, type ReactNode, forwardRef } from "react";
 
 import type { ExtendProps } from "../utils";
@@ -14,36 +15,32 @@ const appearances = {
 } satisfies Record<string, styles.ChipVariants>;
 
 type ChipProps = ExtendProps<
-  ComponentPropsWithRef<"span">,
+  ComponentPropsWithRef<typeof RadixToggle.Root>,
   ComponentPropsWithRef<typeof Box>,
   {
     appearance?: keyof typeof appearances;
     children?: ReactNode;
     disabled?: boolean;
     icon?: ReactNode;
-    isActionable?: boolean;
-  } & Omit<styles.ChipVariants, "actionable">
+    onDelete?: () => void;
+  } & styles.ChipVariants
 >;
 
 export const Chip = forwardRef<HTMLSpanElement, ChipProps>(
   (
     {
       appearance = "default",
-      asChild,
       children,
       className,
       colorScheme,
       disabled,
       icon,
-      isActionable = false,
       size = "md",
       variant,
       ...props
     },
     ref,
   ) => {
-    const Comp = asChild ? Slot : "span";
-
     const presetProps = appearances[appearance];
     const finalColorScheme = colorScheme ?? presetProps.colorScheme;
     const finalVariant = variant ?? presetProps.variant;
@@ -53,7 +50,6 @@ export const Chip = forwardRef<HTMLSpanElement, ChipProps>(
         asChild
         {...styles.chip(
           {
-            actionable: isActionable,
             colorScheme: finalColorScheme,
             size,
             variant: finalVariant,
@@ -62,19 +58,16 @@ export const Chip = forwardRef<HTMLSpanElement, ChipProps>(
         )}
         {...props}
       >
-        <Comp ref={ref}>
-          <Slottable>{children}</Slottable>
-          {icon && (
-            <Box
-              asChild
-              {...styles.icon({
-                size,
-              })}
-            >
-              {icon}
-            </Box>
-          )}
-        </Comp>
+        <RadixToggle.Root data-disabled={disabled}>
+          <span ref={ref}>
+            {icon && (
+              <Box asChild {...styles.icon({})}>
+                {icon}
+              </Box>
+            )}
+            <Slottable>{children}</Slottable>
+          </span>
+        </RadixToggle.Root>
       </Box>
     );
   },

@@ -32,17 +32,6 @@ export const chip = recipe({
     }),
   ],
   variants: {
-    actionable: {
-      false: {},
-      true: style({
-        cursor: "pointer",
-        selectors: {
-          "&:hover": {
-            backgroundColor: solidAccentColorVar,
-          },
-        },
-      }),
-    },
     colorScheme: {
       danger: style({
         selectors: {
