@@ -1,4 +1,3 @@
-import { Slottable } from "@radix-ui/react-slot";
 import * as RadixToggle from "@radix-ui/react-toggle";
 import { type ComponentPropsWithRef, type ReactNode, forwardRef } from "react";
 
@@ -19,25 +18,22 @@ type ChipProps = ExtendProps<
   ComponentPropsWithRef<typeof Box>,
   {
     appearance?: keyof typeof appearances;
-    avatar?: ReactNode;
     children?: ReactNode;
     disabled?: boolean;
-    icon?: ReactNode;
-    onDelete?: () => void;
+    startDecorator?: ReactNode;
   } & styles.ChipVariants
 >;
 
-export const Chip = forwardRef<HTMLSpanElement, ChipProps>(
+export const Chip = forwardRef<HTMLButtonElement, ChipProps>(
   (
     {
       appearance = "default",
-      avatar,
       children,
       className,
       colorScheme,
       disabled,
-      icon,
       size = "md",
+      startDecorator: icon,
       variant,
       ...props
     },
@@ -46,8 +42,6 @@ export const Chip = forwardRef<HTMLSpanElement, ChipProps>(
     const presetProps = appearances[appearance];
     const finalColorScheme = colorScheme ?? presetProps.colorScheme;
     const finalVariant = variant ?? presetProps.variant;
-
-    icon = avatar ? avatar : icon;
 
     return (
       <Box
@@ -62,15 +56,13 @@ export const Chip = forwardRef<HTMLSpanElement, ChipProps>(
         )}
         {...props}
       >
-        <RadixToggle.Root data-disabled={disabled}>
-          <span ref={ref}>
-            {icon && (
-              <Box asChild {...styles.icon({})}>
-                {icon}
-              </Box>
-            )}
-            <Slottable>{children}</Slottable>
-          </span>
+        <RadixToggle.Root data-disabled={disabled} ref={ref}>
+          {icon && (
+            <Box asChild {...styles.icon({})}>
+              {icon}
+            </Box>
+          )}
+          {children}
         </RadixToggle.Root>
       </Box>
     );
