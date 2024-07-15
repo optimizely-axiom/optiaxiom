@@ -2,7 +2,6 @@ import { Slot } from "@radix-ui/react-slot";
 import { type ComponentPropsWithRef, type ReactNode, forwardRef } from "react";
 
 import { Box } from "../box";
-import { Flex } from "../flex";
 import { extractSprinkles } from "../sprinkles";
 import { type ExtendProps } from "../utils";
 import * as styles from "./InputBase.css";
@@ -45,19 +44,13 @@ export const InputBase = forwardRef<HTMLInputElement, InputBaseProps>(
         {...styles.wrapper({ size }, className)}
         {...sprinkleProps}
       >
-        {startDecorator && (
-          <Flex gap="0" mr="8">
-            {startDecorator}
-          </Flex>
-        )}
+        {startDecorator && <Box asChild>{startDecorator}</Box>}
+
         <Box asChild {...styles.input()}>
           <Comp id={id} readOnly={disabled} ref={ref} {...restProps} />
         </Box>
-        {endDecorator && (
-          <Flex gap="0" ml="8">
-            {endDecorator}
-          </Flex>
-        )}
+
+        {endDecorator && <Box asChild>{endDecorator}</Box>}
       </Box>
     );
   },

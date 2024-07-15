@@ -9,6 +9,7 @@ export const wrapper = recipe({
       color: "fg.default",
       display: "flex",
       flexDirection: "row",
+      gap: "8",
       rounded: "sm",
     },
     style({
@@ -69,7 +70,7 @@ export const input = recipe({
   base: [
     {
       bg: "transparent",
-      w: "full",
+      flex: "auto",
     },
     style({
       selectors: {
