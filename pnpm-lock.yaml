@@ -220,6 +220,9 @@ importers:
       '@radix-ui/react-use-controllable-state':
         specifier: ^1.1.0
         version: 1.1.0(@types/react@18.3.3)(react@18.3.1)
+      '@radix-ui/react-visually-hidden':
+        specifier: ^1.1.0
+        version: 1.1.0(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@reach/auto-id':
         specifier: ^0.18.0
         version: 0.18.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)

@@ -79,7 +79,7 @@ export const DescriptionAndError: Story = {
 export const Info: Story = {
   args: {
     children: <Input />,
-    info: "This is a field component",
-    label: "Form label",
+    info: "Please enter your home address correctly",
+    label: "Address",
   },
 };
