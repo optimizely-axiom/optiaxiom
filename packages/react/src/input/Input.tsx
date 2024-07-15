@@ -1,61 +1,23 @@
-import { type ComponentPropsWithRef, type ReactNode, forwardRef } from "react";
+import { type ComponentPropsWithRef, forwardRef } from "react";
 
 import { Box } from "../box";
-import { Flex } from "../flex";
-import { extractSprinkles } from "../sprinkles";
+import { InputBase } from "../input-base";
 import { type ExtendProps } from "../utils";
 import * as styles from "./Input.css";
 
 type InputProps = ExtendProps<
-  ComponentPropsWithRef<"input">,
-  ComponentPropsWithRef<typeof Box>,
-  {
-    disabled?: boolean;
-    endDecorator?: ReactNode;
-    error?: boolean;
-    startDecorator?: ReactNode;
-  } & styles.WrapperVariants
+  ComponentPropsWithRef<typeof InputBase>,
+  NonNullable<styles.InputVariants>
 >;
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
-  (
-    {
-      className,
-      disabled,
-      endDecorator,
-      error,
-      id,
-      size = "md",
-      startDecorator,
-      variant = "default",
-      ...props
-    },
-    ref,
-  ) => {
-    const { restProps, sprinkleProps } = extractSprinkles(props);
+  ({ variant = "default", ...props }, ref) => {
     return (
-      <Box
-        aria-disabled={disabled}
-        aria-invalid={error}
-        data-disabled={disabled}
-        data-invalid={error}
-        {...styles.wrapper({ size, variant }, className)}
-        {...sprinkleProps}
-      >
-        {startDecorator && (
-          <Flex gap="0" mr="8">
-            {startDecorator}
-          </Flex>
-        )}
+      <InputBase asChild {...props}>
         <Box asChild {...styles.input({ variant })}>
-          <input id={id} readOnly={disabled} ref={ref} {...restProps} />
+          <input ref={ref} />
         </Box>
-        {endDecorator && (
-          <Flex gap="0" ml="8">
-            {endDecorator}
-          </Flex>
-        )}
-      </Box>
+      </InputBase>
     );
   },
 );
