@@ -13,11 +13,15 @@ type RecipeStyleRule = Array<SprinklesRule | string> | SprinklesRule | string;
 type VariantGroups = Record<string, Record<string, unknown>>;
 
 type StringToBoolean<T> = T extends "false" | "true" ? boolean : T;
-type VariantSelection<Variants extends VariantGroups> = {
-  [VariantGroup in keyof Variants]?: StringToBoolean<
-    keyof Variants[VariantGroup]
-  >;
-};
+type VariantSelection<Variants extends VariantGroups> = [
+  Variants[keyof Variants],
+] extends [never]
+  ? Record<string, never>
+  : {
+      [VariantGroup in keyof Variants]?: StringToBoolean<
+        keyof Variants[VariantGroup]
+      >;
+    };
 
 type CompoundVariant<Variants extends VariantGroups> = {
   style: RecipeStyleRule;
@@ -27,7 +31,9 @@ type VariantDefinition<Variants extends VariantGroups> = {
   [K in keyof Variants]: { [T in keyof Variants[K]]: RecipeStyleRule };
 };
 
-type Resolve<T> = { [Key in keyof T]: T[Key] } & NonNullable<unknown>;
+type Resolve<T> = [T[keyof T]] extends [never]
+  ? Record<string, never>
+  : { [Key in keyof T]: T[Key] } & NonNullable<unknown>;
 
 export const recipeRuntime = <
   Variants extends VariantGroups = Record<string, never>,
@@ -41,7 +47,7 @@ export const recipeRuntime = <
   variantsCompounded?: Array<CompoundVariant<NoInfer<Variants>>>;
 }) => {
   return (props?: Resolve<VariantSelection<Variants>>, className?: string) => {
-    const selections: VariantSelection<Variants> = props ?? {};
+    const selections = (props ?? {}) as VariantSelection<Variants>;
 
     const classNames: string[] = className ? [className] : [];
     const sprinkleProps: Record<string, unknown> = {};
