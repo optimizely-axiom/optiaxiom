@@ -11,9 +11,36 @@ type InputProps = ExtendProps<
 >;
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ variant = "default", ...props }, ref) => {
+  (
+    {
+      endDecorator,
+      size = "md",
+      startDecorator,
+      variant = "default",
+      ...props
+    },
+    ref,
+  ) => {
     return (
-      <InputBase asChild {...props}>
+      <InputBase
+        asChild
+        endDecorator={
+          endDecorator && (
+            <Box asChild {...styles.decorator({ position: "end", size })}>
+              {endDecorator}
+            </Box>
+          )
+        }
+        size={size}
+        startDecorator={
+          startDecorator && (
+            <Box asChild {...styles.decorator({ position: "start", size })}>
+              {startDecorator}
+            </Box>
+          )
+        }
+        {...props}
+      >
         <Box asChild {...styles.input({ variant })}>
           <input ref={ref} />
         </Box>

@@ -14,7 +14,7 @@ type InputBaseProps = ExtendProps<
     endDecorator?: ReactNode;
     error?: boolean;
     startDecorator?: ReactNode;
-  } & styles.WrapperVariants
+  } & styles.InputVariants
 >;
 
 export const InputBase = forwardRef<HTMLInputElement, InputBaseProps>(
@@ -41,16 +41,16 @@ export const InputBase = forwardRef<HTMLInputElement, InputBaseProps>(
         aria-invalid={error}
         data-disabled={disabled}
         data-invalid={error}
-        {...styles.wrapper({ size }, className)}
+        {...styles.wrapper({}, className)}
         {...sprinkleProps}
       >
-        {startDecorator && <Box asChild>{startDecorator}</Box>}
+        {startDecorator}
 
-        <Box asChild {...styles.input()}>
+        <Box asChild {...styles.input({ size })}>
           <Comp id={id} readOnly={disabled} ref={ref} {...restProps} />
         </Box>
 
-        {endDecorator && <Box asChild>{endDecorator}</Box>}
+        {endDecorator}
       </Box>
     );
   },
