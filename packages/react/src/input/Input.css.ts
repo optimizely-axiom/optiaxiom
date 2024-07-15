@@ -16,16 +16,12 @@ export const wrapper = recipe({
 
       selectors: {
         '&:focus-within:is([data-invalid="true"])': {
-          outlineColor: theme.colors["red.200"],
+          outline: `2px solid ${theme.colors["red.200"]}`,
           outlineOffset: "1px",
-          outlineStyle: "solid",
-          outlineWidth: "2px",
         },
         '&:focus-within:not([data-invalid="true"])': {
-          outlineColor: theme.colors["brand.200"],
+          outline: `2px solid ${theme.colors["brand.200"]}`,
           outlineOffset: "1px",
-          outlineStyle: "solid",
-          outlineWidth: "2px",
         },
         "&:hover": {
           borderColor: theme.colors["border.brand"],
