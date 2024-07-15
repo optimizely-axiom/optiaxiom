@@ -68,9 +68,9 @@ export const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>(
             >
               <Box asChild {...styles.indicator({ disabled: isDisabled })}>
                 <RadixCheckbox.Indicator>
-                  {IconChecked}
-                  {IconUnchecked}
-                  {IconIndeterminate}
+                  <IconChecked />
+                  <IconUnchecked />
+                  <IconIndeterminate />
                 </RadixCheckbox.Indicator>
               </Box>
             </RadixCheckbox.Root>
