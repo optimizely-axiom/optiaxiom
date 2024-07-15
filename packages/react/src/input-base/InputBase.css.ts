@@ -4,11 +4,10 @@ import { type RecipeVariants, recipe, style } from "../vanilla-extract";
 export const wrapper = recipe({
   base: [
     {
-      alignItems: "center",
       border: "1",
       color: "fg.default",
-      display: "flex",
       flexDirection: "row",
+      gap: "0",
       rounded: "sm",
     },
     style({
