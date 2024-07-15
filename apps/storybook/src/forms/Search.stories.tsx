@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 import { Box, Flex, Search } from "@optiaxiom/react";
 import { expect, userEvent, within } from "@storybook/test";
-import { type ChangeEvent, useState } from "react";
+import { useState } from "react";
 
 export default {
   component: Search,
@@ -34,11 +34,11 @@ export const Disabled: Story = {
   ),
 };
 
-export const SearchWithState = () => {
+export const Controlled = () => {
   const [value, setValue] = useState("");
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.value);
+  const handleChange = (value: string) => {
+    setValue(value);
   };
 
   return (
