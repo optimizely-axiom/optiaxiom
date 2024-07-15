@@ -1,25 +1,48 @@
 import { forwardRef } from "react";
 import TextareaAutosize from "react-textarea-autosize";
 
-import type { ExtendProps } from "../utils";
-
 import { Box } from "../box";
 import { InputBase, type InputBaseProps } from "../input-base";
+import { extractSprinkles } from "../sprinkles";
 import * as styles from "./Textarea.css";
 
-type TextareaProps = ExtendProps<
-  InputBaseProps<typeof TextareaAutosize>,
-  NonNullable<styles.WrapperVariants>
->;
+type TextareaProps =
+  | ({ resize: "auto" } & InputBaseProps<typeof TextareaAutosize>)
+  | ({ resize: "none" | "vertical" } & InputBaseProps<"textarea">);
 
 export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
-  ({ className, resize = "none", rows = 3, ...props }, ref) => {
-    const Component = resize === "auto" ? TextareaAutosize : "textarea";
+  (
+    {
+      className,
+      endDecorator,
+      error,
+      resize = "none",
+      size,
+      startDecorator,
+      style,
+      ...props
+    },
+    ref,
+  ) => {
+    const { restProps, sprinkleProps } = extractSprinkles(props);
 
     return (
-      <InputBase asChild {...styles.wrapper({ resize }, className)} {...props}>
+      <InputBase
+        asChild
+        endDecorator={endDecorator}
+        error={error}
+        size={size}
+        startDecorator={startDecorator}
+        style={style}
+        {...styles.wrapper({ resize }, className)}
+        {...sprinkleProps}
+      >
         <Box asChild {...styles.textarea({})}>
-          <Component ref={ref} rows={rows} />
+          {resize === "auto" ? (
+            <TextareaAutosize minRows={3} ref={ref} {...restProps} />
+          ) : (
+            <textarea ref={ref} rows={3} {...restProps} />
+          )}
         </Box>
       </InputBase>
     );
