@@ -37,15 +37,17 @@ export const RadioGroupItem = forwardRef<HTMLDivElement, RadioGroupItemProps>(
               value={value}
               {...restProps}
             >
-              <Flex asChild {...styles.indicator()}>
+              <Box asChild {...styles.indicator()}>
                 <RadixRadio.Indicator />
-              </Flex>
+              </Box>
             </RadixRadio.Item>
           </Box>
+
           <Text asChild {...styles.label({ disabled, readonly })}>
             <RadixLabel.Root htmlFor={id}>{children}</RadixLabel.Root>
           </Text>
         </Flex>
+
         {endDecorator && (
           <Flex asChild {...styles.endDecorator({})}>
             {endDecorator}

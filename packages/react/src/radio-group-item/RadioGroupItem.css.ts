@@ -16,12 +16,13 @@ export const item = recipe({
     {
       bg: "white",
       border: "1",
-      p: "0",
+      p: "2",
       rounded: "full",
       size: "16",
     },
     style({
       borderColor: theme.colors["fg.tertiary"],
+
       selectors: {
         "&:focus-visible": {
           outline: `2px solid ${theme.colors["outline.brand"]}`,
@@ -41,27 +42,16 @@ export const item = recipe({
 export const indicator = recipe({
   base: [
     {
-      alignItems: "center",
+      display: "block",
+      rounded: "full",
+      size: "full",
     },
     style({
-      position: "relative",
+      backgroundColor: theme.colors["fg.brand"],
 
       selectors: {
-        "&::after": {
-          backgroundColor: theme.colors["fg.brand"],
-          borderRadius: "50%",
-          content: "",
-          display: "block",
-          height: "11px",
-          width: "11px",
-        },
-        "&[data-disabled]::after": {
+        "&[data-disabled]": {
           backgroundColor: theme.colors["border.secondary"],
-          borderRadius: "50%",
-          content: "",
-          display: "block",
-          height: "11px",
-          width: "11px",
         },
       },
     }),
