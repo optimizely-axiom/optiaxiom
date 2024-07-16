@@ -26,13 +26,11 @@ export const Disabled: Story = {
   args: {
     children: <>Label</>,
     disabled: true,
-    endDecorator: "Helper Text",
   },
 };
 export const Readonly: Story = {
   args: {
     children: <>Label</>,
-    endDecorator: <>Helper Text</>,
     readonly: true,
   },
 };
