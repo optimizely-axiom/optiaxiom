@@ -8,15 +8,14 @@ import {
   isValidElement,
 } from "react";
 
-import type { ExtendProps } from "../utils";
+import type { BoxProps } from "../box";
 
 import { Flex } from "../flex";
 import { RadioGroupItem } from "../radio-group-item";
 import { extractSprinkles } from "../sprinkles";
 
-type RadioGroupProps = ExtendProps<
-  ComponentPropsWithRef<typeof Flex>,
-  ComponentPropsWithRef<typeof RadixRadio.RadioGroup>,
+type RadioGroupProps = BoxProps<
+  typeof RadixRadio.RadioGroup,
   {
     children:
       | ReactElement<typeof RadioGroupItem>
