@@ -38,12 +38,7 @@ export const RadioItem = forwardRef<HTMLDivElement, RadioItemProps>(
           </Text>
         </Flex>
         {endDecorator && (
-          <Flex
-            asChild
-            {...styles.endDecorator({
-              disabled,
-            })}
-          >
+          <Flex asChild {...styles.endDecorator({})}>
             {endDecorator}
           </Flex>
         )}
