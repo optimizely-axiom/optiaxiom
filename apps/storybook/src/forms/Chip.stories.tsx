@@ -54,7 +54,10 @@ export const Primary: Story = {
 
 export const Danger: Story = {
   ...Variants,
-  args: { colorScheme: "danger" },
+  args: {
+    colorScheme: "danger",
+    onPressedChange: () => {},
+  },
 };
 
 export const Link: Story = {

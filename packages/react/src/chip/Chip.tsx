@@ -5,6 +5,7 @@ import type { ExtendProps } from "../utils";
 
 import { Box } from "../box";
 import * as styles from "./Chip.css";
+import { IconCross } from "./IconCross";
 
 type ChipProps = ExtendProps<
   ComponentPropsWithRef<typeof RadixToggle.Root>,
@@ -24,6 +25,8 @@ export const Chip = forwardRef<HTMLButtonElement, ChipProps>(
       className,
       colorScheme = "neutral",
       disabled,
+      endDecorator,
+      onPressedChange,
       size = "md",
       startDecorator: icon,
       variant = "solid",
@@ -51,6 +54,7 @@ export const Chip = forwardRef<HTMLButtonElement, ChipProps>(
             </Box>
           )}
           {children}
+          {endDecorator ?? (!!onPressedChange && <IconCross />)}
         </RadixToggle.Root>
       </Box>
     );
