@@ -80,19 +80,21 @@ export const Tooltip = forwardRef<HTMLButtonElement, TooltipProps>(
             {open && (
               <RadixTooltip.Portal forceMount>
                 <Transition type="pop">
-                  <RadixTooltip.Content asChild sideOffset={5} {...props}>
-                    <Box
-                      bg="dark.600"
-                      color="white"
-                      px="6"
-                      py="4"
-                      rounded="sm"
-                      z={z}
-                    >
+                  <Box
+                    asChild
+                    bg="dark.600"
+                    color="white"
+                    px="6"
+                    py="4"
+                    rounded="sm"
+                    z={z}
+                    {...props}
+                  >
+                    <RadixTooltip.Content sideOffset={5}>
                       <Text fontSize="sm">{content}</Text>
                       {withArrow && <RadixTooltip.Arrow />}
-                    </Box>
-                  </RadixTooltip.Content>
+                    </RadixTooltip.Content>
+                  </Box>
                 </Transition>
               </RadixTooltip.Portal>
             )}
