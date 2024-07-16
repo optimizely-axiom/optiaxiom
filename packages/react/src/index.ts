@@ -14,7 +14,7 @@ export * from "./kbd";
 export * from "./paper";
 export * from "./progress";
 export * from "./radio-group";
-export * from "./radio-item";
+export * from "./radio-group-item";
 export * from "./separator";
 export * from "./skeleton";
 export * from "./sprinkles";
