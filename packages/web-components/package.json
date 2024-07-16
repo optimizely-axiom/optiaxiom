@@ -30,6 +30,7 @@
     "./Paper": "./dist/Paper.js",
     "./Progress": "./dist/Progress.js",
     "./RadioGroup": "./dist/RadioGroup.js",
+    "./RadioItem": "./dist/RadioItem.js",
     "./Separator": "./dist/Separator.js",
     "./Skeleton": "./dist/Skeleton.js",
     "./Switch": "./dist/Switch.js",
