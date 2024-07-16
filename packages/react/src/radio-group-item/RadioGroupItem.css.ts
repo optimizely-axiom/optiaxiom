@@ -24,7 +24,7 @@ export const item = recipe({
       borderColor: theme.colors["fg.tertiary"],
       selectors: {
         "&:focus-visible": {
-          outline: `2px solid ${theme.colors["brand.300"]}`,
+          outline: `2px solid ${theme.colors["outline.brand"]}`,
           outlineOffset: "1px",
         },
         "&[data-disabled]": {

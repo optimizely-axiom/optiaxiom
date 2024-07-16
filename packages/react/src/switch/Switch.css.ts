@@ -15,7 +15,7 @@ export const root = recipe({
 
       selectors: {
         "&:focus-visible": {
-          outline: `${theme.colors["brand.300"]} solid 2px`,
+          outline: `${theme.colors["outline.brand"]} solid 2px`,
           outlineOffset: "1px",
         },
         "&:hover": {

@@ -39,7 +39,7 @@ export const button = recipe({
             "--tw-ring-offset-width": "0",
           },
 
-          outline: `2px solid ${theme.colors["border.outline"]}`,
+          outline: `2px solid ${theme.colors["outline.brand"]}`,
           outlineOffset: "1px",
         },
         '&[data-disabled="true"]': {

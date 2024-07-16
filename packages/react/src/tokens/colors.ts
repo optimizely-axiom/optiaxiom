@@ -145,7 +145,6 @@ export const colors = {
   "border.default": colorPalette["neutral.200"],
   "border.disabled": colorPalette["neutral.75"],
   "border.error": colorPalette["red.500"],
-  "border.outline": colorPalette["brand.300"],
   "border.secondary": colorPalette["neutral.150"],
   "border.success": colorPalette["green.500"],
   "border.tertiary": colorPalette["neutral.100"],
@@ -219,6 +218,8 @@ export const colors = {
    */
   "fg.warning.hover": colorPalette["yellow.600"],
 
+  "outline.brand": colorPalette["brand.300"],
+
   surface: colorPalette["white"],
 } as const;
 
@@ -248,7 +249,6 @@ export const colorsDark = {
   "border.default": colorPalette["gray.800"],
   "border.disabled": colorPalette["neutral.75"],
   "border.error": colorPalette["red.500"],
-  "border.outline": colorPalette["brand.300"],
   "border.secondary": colorPalette["neutral.150"],
   "border.success": colorPalette["green.500"],
   "border.tertiary": colorPalette["neutral.900"],
@@ -273,6 +273,8 @@ export const colorsDark = {
   "fg.tertiary.hover": colorPalette["neutral.700"],
   "fg.warning": colorPalette["yellow.500"],
   "fg.warning.hover": colorPalette["yellow.600"],
+
+  "outline.brand": colorPalette["brand.300"],
 
   surface: colorPalette["gray.900"],
 } as const;
