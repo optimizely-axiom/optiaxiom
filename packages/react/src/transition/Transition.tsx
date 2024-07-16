@@ -1,23 +1,15 @@
-import {
-  type ComponentPropsWithRef,
-  forwardRef,
-  useEffect,
-  useState,
-} from "react";
-
-import type { ExtendProps } from "../utils";
+import { Slot } from "@radix-ui/react-slot";
+import { type ReactElement, forwardRef, useEffect, useState } from "react";
 
 import { usePresence } from "../animate-presence";
-import { Box } from "../box";
 import * as styles from "./Transition.css";
 
-type TransitionProps = ExtendProps<
-  ComponentPropsWithRef<typeof Box>,
-  NonNullable<styles.TransitionVariants>
->;
+type TransitionProps = {
+  children: ReactElement;
+} & NonNullable<styles.TransitionVariants>;
 
 export const Transition = forwardRef<HTMLDivElement, TransitionProps>(
-  ({ children, className, duration = "sm", type = "fade", ...props }, ref) => {
+  ({ children, duration = "sm", type = "fade", ...props }, ref) => {
     const [isPresent, safeToRemove] = usePresence();
 
     const [enter, setEnter] = useState(false);
@@ -32,17 +24,16 @@ export const Transition = forwardRef<HTMLDivElement, TransitionProps>(
     }, [isPresent]);
 
     return (
-      <Box
-        asChild
+      <Slot
         ref={ref}
-        {...styles.transition(
-          { duration, type: enter !== isPresent ? type : undefined },
-          className,
-        )}
+        {...styles.transition({
+          duration,
+          type: enter !== isPresent ? type : undefined,
+        })}
         {...props}
       >
         {children}
-      </Box>
+      </Slot>
     );
   },
 );
