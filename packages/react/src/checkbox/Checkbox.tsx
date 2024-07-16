@@ -11,7 +11,6 @@ import { Text } from "../text";
 import * as styles from "./Checkbox.css";
 import { IconChecked } from "./icons-svg/IconChecked";
 import { IconIndeterminate } from "./icons-svg/IconIndeterminate";
-import { IconUnchecked } from "./icons-svg/IconUnchecked";
 
 type CheckboxProps = ExtendProps<
   ComponentPropsWithRef<typeof Box>,
@@ -70,9 +69,6 @@ export const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>(
                 <RadixCheckbox.Indicator>
                   <Box asChild {...styles.iconChecked()}>
                     <IconChecked />
-                  </Box>
-                  <Box asChild {...styles.iconUnchecked()}>
-                    <IconUnchecked />
                   </Box>
                   <Box asChild {...styles.iconIndeterminate()}>
                     <IconIndeterminate />

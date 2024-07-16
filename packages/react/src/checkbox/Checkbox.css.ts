@@ -21,6 +21,7 @@ export const wrapper = recipe({
 export const iconChecked = recipe({
   base: [
     style({
+      color: "white",
       display: "none",
       selectors: {
         [`${wrapperMarker} [data-state="checked"] &`]: {
@@ -31,22 +32,10 @@ export const iconChecked = recipe({
   ],
 });
 
-export const iconUnchecked = recipe({
-  base: [
-    style({
-      display: "none",
-      selectors: {
-        [`${wrapperMarker} [data-state="unchecked"] &`]: {
-          display: "block",
-        },
-      },
-    }),
-  ],
-});
-
 export const iconIndeterminate = recipe({
   base: [
     style({
+      color: "white",
       display: "none",
       selectors: {
         [`${wrapperMarker} [data-state="indeterminate"] &`]: {

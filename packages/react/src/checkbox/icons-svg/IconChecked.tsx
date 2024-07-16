@@ -12,7 +12,7 @@ export const IconChecked = (props: ComponentPropsWithRef<"svg">) => {
     >
       <path
         d="M1.5 3.47059L4.83333 7L10.5 1"
-        stroke="white"
+        stroke="currentColor"
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth="1.5"
