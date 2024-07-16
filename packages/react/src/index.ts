@@ -12,6 +12,7 @@ export * from "./grid";
 export * from "./heading";
 export * from "./input";
 export * from "./kbd";
+export * from "./link";
 export * from "./paper";
 export * from "./progress";
 export * from "./radio-group";
