@@ -2,17 +2,41 @@ import { theme } from "../styles";
 import { style } from "../vanilla-extract";
 import { recipe } from "../vanilla-extract";
 
+const itemMarker = style({});
+
 export const wrapper = recipe({
   base: [
     {
       flexDirection: "column",
       gap: "0",
     },
+    style({
+      color: theme.colors["fg.default"],
+
+      selectors: {
+        [`&:has(${itemMarker}[data-disabled])`]: {
+          color: theme.colors["fg.disabled"],
+        },
+      },
+    }),
   ],
+
+  variants: {
+    readonly: {
+      true: style({
+        selectors: {
+          [`&:has(${itemMarker}[data-disabled])`]: {
+            color: theme.colors["fg.default"],
+          },
+        },
+      }),
+    },
+  },
 });
 
 export const item = recipe({
   base: [
+    itemMarker,
     {
       bg: "white",
       border: "1",
@@ -65,26 +89,14 @@ export const label = recipe({
     },
     style({
       cursor: "pointer",
+
+      selectors: {
+        [`${itemMarker}[data-disabled] + &`]: {
+          cursor: "default",
+        },
+      },
     }),
   ],
-  variants: {
-    disabled: {
-      false: style({
-        color: theme.colors["fg.default"],
-        cursor: "pointer",
-      }),
-      true: style({
-        color: theme.colors["fg.disabled"],
-        cursor: "not-allowed",
-      }),
-    },
-    readonly: {
-      false: {},
-      true: style({
-        cursor: "default",
-      }),
-    },
-  },
 });
 
 export const endDecorator = recipe({
@@ -94,16 +106,4 @@ export const endDecorator = recipe({
       ml: "24",
     },
   ],
-  variants: {
-    disabled: {
-      false: style({
-        color: theme.colors["fg.default"],
-        cursor: "pointer",
-      }),
-      true: style({
-        color: theme.colors["fg.disabled"],
-        cursor: "not-allowed",
-      }),
-    },
-  },
 });

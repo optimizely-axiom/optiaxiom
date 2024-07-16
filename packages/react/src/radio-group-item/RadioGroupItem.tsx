@@ -28,11 +28,11 @@ export const RadioGroupItem = forwardRef<HTMLDivElement, RadioGroupItemProps>(
     const { restProps, sprinkleProps } = extractSprinkles(props);
     const id = useId(idProp);
     return (
-      <Flex ref={ref} {...styles.wrapper()} {...sprinkleProps}>
+      <Flex ref={ref} {...styles.wrapper({ readonly })} {...sprinkleProps}>
         <Flex flexDirection="row" gap="xs">
           <Box asChild {...styles.item()}>
             <RadixRadio.Item
-              disabled={disabled}
+              disabled={disabled || readonly}
               id={id}
               value={value}
               {...restProps}
@@ -43,13 +43,13 @@ export const RadioGroupItem = forwardRef<HTMLDivElement, RadioGroupItemProps>(
             </RadixRadio.Item>
           </Box>
 
-          <Text asChild {...styles.label({ disabled, readonly })}>
+          <Text asChild {...styles.label()}>
             <RadixLabel.Root htmlFor={id}>{children}</RadixLabel.Root>
           </Text>
         </Flex>
 
         {endDecorator && (
-          <Flex asChild {...styles.endDecorator({})}>
+          <Flex asChild {...styles.endDecorator()}>
             {endDecorator}
           </Flex>
         )}
