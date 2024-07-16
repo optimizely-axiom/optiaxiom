@@ -88,6 +88,12 @@ export const label = recipe({
         cursor: "not-allowed",
       }),
     },
+    readonly: {
+      false: {},
+      true: style({
+        cursor: "default",
+      }),
+    },
   },
 });
 
