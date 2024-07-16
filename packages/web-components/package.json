@@ -27,6 +27,7 @@
     "./Heading": "./dist/Heading.js",
     "./Input": "./dist/Input.js",
     "./Kbd": "./dist/Kbd.js",
+    "./Link": "./dist/Link.js",
     "./Paper": "./dist/Paper.js",
     "./Progress": "./dist/Progress.js",
     "./RadioGroup": "./dist/RadioGroup.js",
