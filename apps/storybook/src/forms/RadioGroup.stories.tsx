@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Text } from "@optiaxiom/react";
-import { RadioGroup } from "@optiaxiom/react";
+import { RadioGroup, RadioItem, Text } from "@optiaxiom/react";
 
 const meta: Meta<typeof RadioGroup> = {
   component: RadioGroup,
@@ -11,87 +10,73 @@ export default meta;
 
 type Story = StoryObj<typeof RadioGroup>;
 
-const items = [
-  { label: "Sample 1", value: "sample-1" },
-  { label: "Sample 2", value: "sample-2" },
-  { label: "Sample 3", value: "sample-3" },
-];
-
-const itemsWithDescription = [
-  {
-    endDecorator: <Text>first</Text>,
-    label: "Sample 1",
-    value: "sample-1",
-  },
-  {
-    disabled: true,
-    endDecorator: <Text>second</Text>,
-    label: "Sample 2",
-    value: "sample-2",
-  },
-  {
-    endDecorator: <Text>third</Text>,
-    label: "Sample 3",
-    value: "sample-3",
-  },
-];
-
 export const Basic: Story = {
-  args: {
-    defaultValue: items[0].value,
-    items: items,
-  },
+  render: () => (
+    <RadioGroup defaultValue="sample-1">
+      <RadioItem value="sample-1">Sample 1</RadioItem>
+      <RadioItem value="sample-2">Sample 2</RadioItem>
+      <RadioItem value="sample-3">Sample 3</RadioItem>
+    </RadioGroup>
+  ),
 };
 
-export const BasicHorizontal: Story = {
-  args: {
-    defaultValue: items[0].value,
-    flexDirection: "row",
-    items: items,
-  },
+export const Horizontal: Story = {
+  render: () => (
+    <RadioGroup defaultValue="sample-1" flexDirection="row">
+      <RadioItem value="sample-1">Sample 1</RadioItem>
+      <RadioItem value="sample-2">Sample 2</RadioItem>
+      <RadioItem value="sample-3">Sample 3</RadioItem>
+    </RadioGroup>
+  ),
 };
 
 export const WithDescription: Story = {
-  args: {
-    defaultValue: itemsWithDescription[0].value,
-    items: itemsWithDescription,
-  },
+  render: () => (
+    <RadioGroup defaultValue="sample-1">
+      <RadioItem endDecorator={<Text>first</Text>} value="sample-1">
+        Sample 1
+      </RadioItem>
+      <RadioItem endDecorator={<Text>second</Text>} value="sample-2">
+        Sample 2
+      </RadioItem>
+      <RadioItem endDecorator={<Text>third</Text>} value="sample-3">
+        Sample 3
+      </RadioItem>
+    </RadioGroup>
+  ),
 };
 
-export const WithDescriptionHorizontal: Story = {
-  args: {
-    defaultValue: itemsWithDescription[0].value,
-    flexDirection: "row",
-    items: itemsWithDescription,
-  },
+export const DisabledGroup: Story = {
+  render: () => (
+    <RadioGroup defaultValue="sample-1" disabled>
+      <RadioItem value="sample-1">Sample 1</RadioItem>
+      <RadioItem value="sample-2">Sample 2</RadioItem>
+      <RadioItem value="sample-3">Sample 3</RadioItem>
+    </RadioGroup>
+  ),
 };
 
-export const Disabled: Story = {
-  args: {
-    defaultValue: items[0].value,
-    disabled: true,
-    items: items,
-  },
-};
-
-export const SingleDisabled: Story = {
-  args: {
-    defaultValue: items[0].value,
-    items: [
-      ...items,
-      {
-        disabled: true,
-        label: "Sample 4",
-        value: "sample-4",
-      },
-    ],
-  },
+export const MixedState: Story = {
+  render: () => (
+    <RadioGroup defaultValue="sample-1">
+      <RadioItem value="sample-1">Sample 1</RadioItem>
+      <RadioItem disabled value="sample-2">
+        Sample 2
+      </RadioItem>
+      <RadioItem value="sample-3">Sample 3</RadioItem>
+      <RadioItem disabled value="sample-4">
+        Sample 4
+      </RadioItem>
+    </RadioGroup>
+  ),
 };
 
 export const Readonly: Story = {
-  args: {
-    defaultValue: items[0].value,
-    items: items,
-    readonly: true,
-  },
+  render: () => (
+    <RadioGroup defaultValue="sample-1" readonly>
+      <RadioItem value="sample-1">Sample 1</RadioItem>
+      <RadioItem value="sample-2">Sample 2</RadioItem>
+      <RadioItem value="sample-3">Sample 3</RadioItem>
+    </RadioGroup>
+  ),
 };

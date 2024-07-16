@@ -1,5 +1,15 @@
 import { theme } from "../styles";
-import { recipe, style } from "../vanilla-extract";
+import { style } from "../vanilla-extract";
+import { recipe } from "../vanilla-extract";
+
+export const wrapper = recipe({
+  base: [
+    {
+      flexDirection: "column",
+      gap: "0",
+    },
+  ],
+});
 
 export const item = recipe({
   base: [
@@ -25,15 +35,6 @@ export const item = recipe({
         },
       },
     }),
-  ],
-});
-
-export const wrapper = recipe({
-  base: [
-    {
-      flexDirection: "column",
-      gap: "0",
-    },
   ],
 });
 
