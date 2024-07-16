@@ -12,11 +12,8 @@ import * as styles from "./RadioGroupItem.css";
 type RadioGroupItemProps = BoxProps<
   typeof RadixRadio.Item,
   {
-    disabled?: boolean;
     endDecorator?: ReactNode;
-    id?: string;
     readonly?: boolean;
-    value: string;
   }
 >;
 
@@ -29,7 +26,7 @@ export const RadioGroupItem = forwardRef<HTMLDivElement, RadioGroupItemProps>(
     const id = useId(idProp);
     return (
       <Flex ref={ref} {...styles.wrapper({ readonly })} {...sprinkleProps}>
-        <Flex flexDirection="row" gap="xs">
+        <Flex flexDirection="row" gap="0">
           <Box asChild {...styles.item()}>
             <RadixRadio.Item
               disabled={disabled || readonly}
@@ -49,9 +46,9 @@ export const RadioGroupItem = forwardRef<HTMLDivElement, RadioGroupItemProps>(
         </Flex>
 
         {endDecorator && (
-          <Flex asChild {...styles.endDecorator()}>
+          <Box asChild ml="lg">
             {endDecorator}
-          </Flex>
+          </Box>
         )}
       </Flex>
     );

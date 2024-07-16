@@ -86,6 +86,7 @@ export const label = recipe({
   base: [
     {
       flex: "1",
+      pl: "xs",
     },
     style({
       cursor: "pointer",
@@ -96,14 +97,5 @@ export const label = recipe({
         },
       },
     }),
-  ],
-});
-
-export const endDecorator = recipe({
-  base: [
-    {
-      flex: "1",
-      ml: "24",
-    },
   ],
 });
