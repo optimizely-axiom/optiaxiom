@@ -44,7 +44,7 @@ export const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>(
     return (
       <Flex
         ref={ref}
-        {...styles.wrapper(
+        {...styles.checkbox(
           {
             disabled: isDisabled,
           },
@@ -55,7 +55,7 @@ export const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>(
         <Flex flexDirection="row" gap="xs">
           <Box
             asChild
-            {...styles.indicatorWrapper({
+            {...styles.indicatorRoot({
               disabled: isDisabled,
             })}
           >
@@ -79,12 +79,14 @@ export const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>(
           </Box>
 
           <RadixLabel.Root htmlFor={id}>
-            <Text {...styles.label({ disabled })}>{children}</Text>
+            <Text {...styles.label({ disabled, readonly })}>{children}</Text>
           </RadixLabel.Root>
         </Flex>
-        <RadixLabel.Root htmlFor={id}>
-          <Text {...styles.endDecorator({ disabled })}>{endDecorator}</Text>
-        </RadixLabel.Root>
+        {endDecorator && (
+          <Box asChild ml="24">
+            {endDecorator}
+          </Box>
+        )}
       </Flex>
     );
   },

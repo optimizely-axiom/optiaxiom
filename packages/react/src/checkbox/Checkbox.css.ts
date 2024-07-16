@@ -1,8 +1,9 @@
 import { theme } from "../styles";
 import { recipe, style } from "../vanilla-extract";
+
 const wrapperMarker = style({});
 
-export const wrapper = recipe({
+export const checkbox = recipe({
   base: [
     {
       gap: "0",
@@ -11,6 +12,7 @@ export const wrapper = recipe({
   ],
   variants: {
     disabled: {
+      false: {},
       true: style({
         cursor: "not-allowed",
       }),
@@ -67,6 +69,7 @@ export const indicator = recipe({
   ],
   variants: {
     disabled: {
+      false: {},
       true: style({
         background: theme.colors["fg.disabled"],
         cursor: "not-allowed",
@@ -75,7 +78,7 @@ export const indicator = recipe({
   },
 });
 
-export const indicatorWrapper = recipe({
+export const indicatorRoot = recipe({
   base: [
     {
       border: "1",
@@ -131,25 +134,10 @@ export const label = recipe({
         cursor: "not-allowed",
       }),
     },
-  },
-});
-
-export const endDecorator = recipe({
-  base: [
-    {
-      fontSize: "sm",
-      ml: "24",
-    },
-    style({
-      cursor: "pointer",
-    }),
-  ],
-  variants: {
-    disabled: {
+    readonly: {
       false: {},
       true: style({
-        color: theme.colors["fg.disabled"],
-        cursor: "not-allowed",
+        cursor: "default",
       }),
     },
   },
