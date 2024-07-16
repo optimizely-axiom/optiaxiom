@@ -28,6 +28,9 @@ export const chip = recipe({
           outlineStyle: "solid",
           outlineWidth: "2px",
         },
+        '&[data-state="on"]': {
+          backgroundColor: solidAccentColorVar,
+        },
       },
     }),
   ],
@@ -45,6 +48,18 @@ export const chip = recipe({
           [subtleAccentColorVar]: theme.colors["bg.error.subtle"],
         },
       }),
+      neutral: style({
+        selectors: {
+          "&:focus-visible": {
+            outlineColor: theme.colors["gray.300"],
+          },
+        },
+        vars: {
+          [accentColorVar]: theme.colors["gray.500"],
+          [solidAccentColorVar]: theme.colors["gray.600"],
+          [subtleAccentColorVar]: theme.colors["gray.50"],
+        },
+      }),
       primary: style({
         selectors: {
           "&:focus-visible": {
@@ -55,42 +70,6 @@ export const chip = recipe({
           [accentColorVar]: theme.colors["bg.brand.solid"],
           [solidAccentColorVar]: theme.colors["bg.brand.solid.hover"],
           [subtleAccentColorVar]: theme.colors["bg.brand.subtle"],
-        },
-      }),
-      secondary: style({
-        selectors: {
-          "&:focus-visible": {
-            outlineColor: theme.colors["neutral.500"],
-          },
-        },
-        vars: {
-          [accentColorVar]: theme.colors["fg.secondary"],
-          [solidAccentColorVar]: theme.colors["fg.secondary.hover"],
-          [subtleAccentColorVar]: theme.colors["bg.secondary.hover"],
-        },
-      }),
-      success: style({
-        selectors: {
-          "&:focus-visible": {
-            outlineColor: theme.colors["green.300"],
-          },
-        },
-        vars: {
-          [accentColorVar]: theme.colors["bg.success.solid"],
-          [solidAccentColorVar]: theme.colors["bg.success.solid.hover"],
-          [subtleAccentColorVar]: theme.colors["bg.success.subtle"],
-        },
-      }),
-      warning: style({
-        selectors: {
-          "&:focus-visible": {
-            outlineColor: theme.colors["yellow.300"],
-          },
-        },
-        vars: {
-          [accentColorVar]: theme.colors["bg.warning.solid"],
-          [solidAccentColorVar]: theme.colors["bg.warning.solid.hover"],
-          [subtleAccentColorVar]: theme.colors["bg.warning.subtle"],
         },
       }),
     },
@@ -116,24 +95,32 @@ export const chip = recipe({
         backgroundColor: "transparent",
         border: `1px solid ${accentColorVar}`,
         color: accentColorVar,
+        selectors: {
+          '&:hover:not([data-disabled="true"])': {
+            backgroundColor: subtleAccentColorVar,
+          },
+          '&[data-disabled="true"]': {
+            borderColor: theme.colors["border.disabled"],
+            color: theme.colors["fg.disabled"],
+          },
+        },
       }),
       solid: style({
         backgroundColor: accentColorVar,
         color: theme.colors["fg.default.inverse"],
+        selectors: {
+          '&:hover:not([data-disabled="true"])': {
+            backgroundColor: solidAccentColorVar,
+          },
+          '&[data-disabled="true"]': {
+            backgroundColor: theme.colors["bg.disabled"],
+            border: `1px solid ${theme.colors["border.disabled"]}`,
+            color: theme.colors["fg.disabled"],
+          },
+        },
       }),
     },
   },
-  variantsCompounded: [
-    {
-      style: style({
-        borderColor: theme.colors["border.default"],
-      }),
-      variants: {
-        colorScheme: "secondary",
-        variant: "outline",
-      },
-    },
-  ],
 });
 
 export const icon = recipe({

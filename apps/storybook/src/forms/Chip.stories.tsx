@@ -32,22 +32,16 @@ const Variants: Story = {
 };
 
 const sizes = ["sm", "md", "lg"] as const;
-const appearances = [
-  ["default", "Default"],
-  ["primary", "Primary"],
-  ["danger", "Danger"],
-  // ["secondary", "Secondary"],
-] as const;
+
 const variants = [
   ["solid", "Solid"],
   ["outline", "Outline"],
-  // ["ghost", "Ghost"],
 ] as const;
 
 export const Default: Story = {
   ...Variants,
   args: {
-    colorScheme: "secondary",
+    colorScheme: "neutral",
   },
 };
 
@@ -63,23 +57,6 @@ export const Danger: Story = {
   args: { colorScheme: "danger" },
 };
 
-export const Secondary: Story = {
-  ...Variants,
-  args: { colorScheme: "secondary" },
-};
-
-export const appearance: Story = {
-  render: (args) => (
-    <Flex>
-      {appearances.map(([appearance, label]) => (
-        <Chip {...args} appearance={appearance} key={appearance}>
-          {label}
-        </Chip>
-      ))}
-    </Flex>
-  ),
-};
-
 export const Link: Story = {
   args: {
     asChild: true,
@@ -90,9 +67,9 @@ export const Link: Story = {
 export const StandaloneIcon: Story = {
   render: (args) => (
     <Flex flexDirection="row">
-      <Chip {...args} icon={<IconChevronDown />} size="sm" />
-      <Chip {...args} icon={<IconChevronDown />} size="md" />
-      <Chip {...args} icon={<IconChevronDown />} size="lg" />
+      <Chip {...args} size="sm" startDecorator={<IconChevronDown />} />
+      <Chip {...args} size="md" startDecorator={<IconChevronDown />} />
+      <Chip {...args} size="lg" startDecorator={<IconChevronDown />} />
     </Flex>
   ),
 };
@@ -103,14 +80,14 @@ export const Icons: Story = {
   render: (args) => (
     <Flex>
       <Flex flexDirection="row">
-        <Chip {...args} icon={<IconChevronDown />} size="sm" />
-        <Chip {...args} icon={<IconChevronDown />} size="md" />
-        <Chip {...args} icon={<IconChevronDown />} size="lg" />
+        <Chip {...args} size="sm" startDecorator={<IconChevronDown />} />
+        <Chip {...args} size="md" startDecorator={<IconChevronDown />} />
+        <Chip {...args} size="lg" startDecorator={<IconChevronDown />} />
       </Flex>
       <Flex flexDirection="row">
-        <Chip {...args} icon={<IconChevronDown />} size="sm" />
-        <Chip {...args} icon={<IconChevronDown />} size="md" />
-        <Chip {...args} icon={<IconChevronDown />} size="lg" />
+        <Chip {...args} size="sm" startDecorator={<IconChevronDown />} />
+        <Chip {...args} size="md" startDecorator={<IconChevronDown />} />
+        <Chip {...args} size="lg" startDecorator={<IconChevronDown />} />
       </Flex>
     </Flex>
   ),

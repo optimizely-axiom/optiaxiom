@@ -6,20 +6,13 @@ import type { ExtendProps } from "../utils";
 import { Box } from "../box";
 import * as styles from "./Chip.css";
 
-const appearances = {
-  danger: { colorScheme: "danger", variant: "solid" },
-  "danger-outline": { colorScheme: "danger", variant: "outline" },
-  default: { colorScheme: "secondary", variant: "outline" },
-  primary: { colorScheme: "primary", variant: "solid" },
-} satisfies Record<string, styles.ChipVariants>;
-
 type ChipProps = ExtendProps<
   ComponentPropsWithRef<typeof RadixToggle.Root>,
   ComponentPropsWithRef<typeof Box>,
   {
-    appearance?: keyof typeof appearances;
     children?: ReactNode;
     disabled?: boolean;
+    endDecorator?: ReactNode;
     startDecorator?: ReactNode;
   } & styles.ChipVariants
 >;
@@ -27,30 +20,25 @@ type ChipProps = ExtendProps<
 export const Chip = forwardRef<HTMLButtonElement, ChipProps>(
   (
     {
-      appearance = "default",
       children,
       className,
-      colorScheme,
+      colorScheme = "neutral",
       disabled,
       size = "md",
       startDecorator: icon,
-      variant,
+      variant = "solid",
       ...props
     },
     ref,
   ) => {
-    const presetProps = appearances[appearance];
-    const finalColorScheme = colorScheme ?? presetProps.colorScheme;
-    const finalVariant = variant ?? presetProps.variant;
-
     return (
       <Box
         asChild
         {...styles.chip(
           {
-            colorScheme: finalColorScheme,
+            colorScheme,
             size,
-            variant: finalVariant,
+            variant,
           },
           className,
         )}
