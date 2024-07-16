@@ -13,3 +13,13 @@
 `Box` component uses the [`@radix-ui` Composition](https://www.radix-ui.com/primitives/docs/guides/composition) approach and accepts an `asChild` prop. By default it renders a `div` element but when `asChild` is set to `true` it will instead render its child element.
 
 <ax-demo name="box/composition-usage" />
+
+### `BoxProps`
+
+We export a `BoxProps` generic type that can be used to define prop types for components that extend `Box`.
+
+The **first argument** is the element or component type which defaults to `div`.
+
+The **second argument** is any additional custom prop types that component accepts.
+
+<ax-code file="apps/docs/demos/box/props-usage/Button.tsx" />
