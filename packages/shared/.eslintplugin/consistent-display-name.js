@@ -16,10 +16,18 @@ export default ESLintUtils.RuleCreator.withoutDocs({
             return;
           }
 
-          const expected = `@optiaxiom/react/${node.left.object.name}`;
-          if (node.right.value !== expected) {
+          const expected = [
+            `@optiaxiom/react/${node.left.object.name}`,
+            `@optiaxiom/docs/${node.left.object.name}`,
+          ];
+          if (
+            !(
+              typeof node.right.value === "string" &&
+              expected.includes(node.right.value)
+            )
+          ) {
             context.report({
-              fix: (fixer) => fixer.replaceText(node.right, `"${expected}"`),
+              fix: (fixer) => fixer.replaceText(node.right, `"${expected[0]}"`),
               messageId: "expected",
               node,
             });
