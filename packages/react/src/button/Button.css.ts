@@ -9,6 +9,8 @@ const accentColorVar = createVar();
 const solidAccentColorVar = createVar();
 const subtleAccentColorVar = createVar();
 
+const paddingInlineVar = createVar();
+
 export const button = recipe({
   base: [
     {
@@ -23,6 +25,7 @@ export const button = recipe({
     style({
       borderRadius: theme.borderRadius.sm,
       cursor: "pointer",
+      paddingInline: paddingInlineVar,
       position: "relative",
       textDecoration: "none",
       userSelect: "none",
@@ -131,6 +134,7 @@ export const button = recipe({
         backgroundColor: "transparent",
         border: `1px solid ${accentColorVar}`,
         color: accentColorVar,
+        paddingInline: `calc(${paddingInlineVar} - 1px)`,
 
         selectors: {
           '&:hover:not([data-disabled="true"])': {
@@ -154,6 +158,7 @@ export const button = recipe({
             backgroundColor: theme.colors["bg.disabled"],
             border: `1px solid ${theme.colors["border.disabled"]}`,
             color: theme.colors["fg.disabled"],
+            paddingInline: `calc(${paddingInlineVar} - 1px)`,
           },
         },
       }),
@@ -185,183 +190,69 @@ export const button = recipe({
       },
     },
     {
-      style: {
-        px: "2",
-      },
+      style: style({
+        vars: {
+          [paddingInlineVar]: "2px",
+        },
+      }),
       variants: {
         iconOnly: true,
         size: "sm",
       },
     },
     {
-      style: {
-        px: "4",
-      },
+      style: style({
+        vars: {
+          [paddingInlineVar]: "4px",
+        },
+      }),
       variants: {
         iconOnly: false,
         size: "sm",
       },
     },
     {
-      style: {
-        px: "1",
-      },
-      variants: {
-        iconOnly: true,
-        size: "sm",
-        variant: "outline",
-      },
-    },
-    {
-      style: {
-        px: "1",
-      },
-      variants: {
-        disabled: true,
-        iconOnly: true,
-        size: "sm",
-        variant: "solid",
-      },
-    },
-    {
-      style: {
-        px: "3",
-      },
-      variants: {
-        iconOnly: false,
-        size: "sm",
-        variant: "outline",
-      },
-    },
-    {
-      style: {
-        px: "3",
-      },
-      variants: {
-        disabled: true,
-        iconOnly: false,
-        size: "sm",
-        variant: "solid",
-      },
-    },
-    {
-      style: {
-        px: "6",
-      },
+      style: style({
+        vars: {
+          [paddingInlineVar]: "6px",
+        },
+      }),
       variants: {
         iconOnly: true,
         size: "md",
       },
     },
     {
-      style: {
-        px: "8",
-      },
+      style: style({
+        vars: {
+          [paddingInlineVar]: "8px",
+        },
+      }),
       variants: {
         iconOnly: false,
         size: "md",
       },
     },
     {
-      style: {
-        px: "5",
-      },
-      variants: {
-        iconOnly: true,
-        size: "md",
-        variant: "outline",
-      },
-    },
-    {
-      style: {
-        px: "5",
-      },
-      variants: {
-        disabled: true,
-        iconOnly: true,
-        size: "md",
-        variant: "solid",
-      },
-    },
-    {
-      style: {
-        px: "7",
-      },
-      variants: {
-        iconOnly: false,
-        size: "md",
-        variant: "outline",
-      },
-    },
-    {
-      style: {
-        px: "7",
-      },
-      variants: {
-        disabled: true,
-        iconOnly: false,
-        size: "md",
-        variant: "solid",
-      },
-    },
-    {
-      style: {
-        px: "10",
-      },
+      style: style({
+        vars: {
+          [paddingInlineVar]: "10px",
+        },
+      }),
       variants: {
         iconOnly: true,
         size: "lg",
       },
     },
     {
-      style: {
-        px: "12",
-      },
+      style: style({
+        vars: {
+          [paddingInlineVar]: "12px",
+        },
+      }),
       variants: {
         iconOnly: false,
         size: "lg",
-      },
-    },
-    {
-      style: {
-        px: "9",
-      },
-      variants: {
-        iconOnly: true,
-        size: "lg",
-        variant: "outline",
-      },
-    },
-    {
-      style: {
-        px: "9",
-      },
-      variants: {
-        disabled: true,
-        iconOnly: true,
-        size: "lg",
-        variant: "solid",
-      },
-    },
-    {
-      style: {
-        px: "11",
-      },
-      variants: {
-        iconOnly: false,
-        size: "lg",
-        variant: "outline",
-      },
-    },
-    {
-      style: {
-        px: "11",
-      },
-      variants: {
-        disabled: true,
-        iconOnly: false,
-        size: "lg",
-        variant: "solid",
       },
     },
   ],
