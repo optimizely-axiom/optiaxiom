@@ -11,14 +11,16 @@ import {
 import type { ExtendProps } from "../utils";
 
 import { Flex } from "../flex";
-import { RadioItem } from "../radio-item";
+import { RadioGroupItem } from "../radio-group-item";
 import { extractSprinkles } from "../sprinkles";
 
 type RadioGroupProps = ExtendProps<
   ComponentPropsWithRef<typeof Flex>,
   ComponentPropsWithRef<typeof RadixRadio.RadioGroup>,
   {
-    children: ReactElement<typeof RadioItem> | ReactElement<typeof RadioItem>[];
+    children:
+      | ReactElement<typeof RadioGroupItem>
+      | ReactElement<typeof RadioGroupItem>[];
     readonly?: boolean;
   }
 >;
@@ -36,7 +38,9 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>(
         >
           {Children.map(children, (child) => {
             if (
-              isValidElement<ComponentPropsWithRef<typeof RadioItem>>(child)
+              isValidElement<ComponentPropsWithRef<typeof RadioGroupItem>>(
+                child,
+              )
             ) {
               return cloneElement(child, {
                 ...child.props,

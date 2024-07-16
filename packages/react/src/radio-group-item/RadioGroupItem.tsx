@@ -9,9 +9,9 @@ import { Box } from "../box";
 import { Flex } from "../flex";
 import { extractSprinkles } from "../sprinkles";
 import { Text } from "../text";
-import * as styles from "./RadioItem.css";
+import * as styles from "./RadioGroupItem.css";
 
-type RadioItemProps = ExtendProps<
+type RadioGroupItemProps = ExtendProps<
   ComponentPropsWithRef<typeof Flex>,
   ComponentPropsWithRef<typeof RadixRadio.Item>,
   {
@@ -23,7 +23,7 @@ type RadioItemProps = ExtendProps<
   }
 >;
 
-export const RadioItem = forwardRef<HTMLDivElement, RadioItemProps>(
+export const RadioGroupItem = forwardRef<HTMLDivElement, RadioGroupItemProps>(
   (
     { children, disabled, endDecorator, id: idProp, readonly, value, ...props },
     ref,
@@ -54,4 +54,4 @@ export const RadioItem = forwardRef<HTMLDivElement, RadioItemProps>(
   },
 );
 
-RadioItem.displayName = "@optiaxiom/react/RadioItem";
+RadioGroupItem.displayName = "@optiaxiom/react/RadioGroupItem";
