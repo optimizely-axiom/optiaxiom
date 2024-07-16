@@ -18,7 +18,7 @@ export const Basic: Story = {
 export const HelperText: Story = {
   args: {
     children: <>Label</>,
-    endDecorator: "Helper Text",
+    endDecorator: <Text fontSize="sm">Helper Text</Text>,
   },
 };
 
