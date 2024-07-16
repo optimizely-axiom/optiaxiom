@@ -1,19 +1,16 @@
 import * as RadixLabel from "@radix-ui/react-label";
 import * as RadixRadio from "@radix-ui/react-radio-group";
 import { useId } from "@reach/auto-id";
-import { type ComponentPropsWithRef, type ReactNode, forwardRef } from "react";
+import { type ReactNode, forwardRef } from "react";
 
-import type { ExtendProps } from "../utils";
-
-import { Box } from "../box";
+import { Box, type BoxProps } from "../box";
 import { Flex } from "../flex";
 import { extractSprinkles } from "../sprinkles";
 import { Text } from "../text";
 import * as styles from "./RadioGroupItem.css";
 
-type RadioGroupItemProps = ExtendProps<
-  ComponentPropsWithRef<typeof Flex>,
-  ComponentPropsWithRef<typeof RadixRadio.Item>,
+type RadioGroupItemProps = BoxProps<
+  typeof RadixRadio.Item,
   {
     disabled?: boolean;
     endDecorator?: ReactNode;
@@ -33,8 +30,13 @@ export const RadioGroupItem = forwardRef<HTMLDivElement, RadioGroupItemProps>(
     return (
       <Flex ref={ref} {...styles.wrapper()} {...sprinkleProps}>
         <Flex flexDirection="row" gap="xs">
-          <Box asChild {...styles.item()} {...restProps}>
-            <RadixRadio.Item disabled={disabled} id={id} value={value}>
+          <Box asChild {...styles.item()}>
+            <RadixRadio.Item
+              disabled={disabled}
+              id={id}
+              value={value}
+              {...restProps}
+            >
               <Flex asChild {...styles.indicator()}>
                 <RadixRadio.Indicator />
               </Flex>
