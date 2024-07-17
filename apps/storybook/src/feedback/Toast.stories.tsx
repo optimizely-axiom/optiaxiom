@@ -46,11 +46,11 @@ const ToastTemplate = (args: ToastProps) => {
   const handleClose = () => setOpen(false);
   return (
     <Flex flexDirection="column" gap="4">
-      <Button onClick={handleOpen} preset="primary">
+      <Button appearance="primary" onClick={handleOpen}>
         Show Toast
       </Button>
 
-      <Toast close="close" onClose={handleClose} open={open}>
+      <Toast close="close" onClose={handleClose} open={open} {...args}>
         {args.children}
       </Toast>
     </Flex>

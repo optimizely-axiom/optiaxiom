@@ -60,12 +60,11 @@ const swipeOut = keyframes({
 export const root = recipe({
   base: [
     style({
-      borderBottom: "1px",
-      borderLeft: "8px",
-      borderRight: "1px",
-      borderTop: "1px",
-
+      borderBottomWidth: "1px",
+      borderLeftWidth: "8px",
+      borderRightWidth: "1px",
       borderStyle: "solid",
+      borderTopWidth: "1px",
 
       selectors: {
         '&[data-state="closed"]': {
@@ -112,13 +111,12 @@ export const root = recipe({
 export const close = recipe({
   base: [
     {
+      flex: "none",
       rounded: "sm",
     },
     style({
       cursor: "pointer",
-      height: "20px",
       marginRight: "14px",
-      width: "16px",
     }),
   ],
 });
@@ -126,6 +124,7 @@ export const close = recipe({
 export const description = recipe({
   base: [
     style({
+      display: "block",
       minWidth: "288px",
     }),
   ],
@@ -133,6 +132,9 @@ export const description = recipe({
 
 export const leftSection = recipe({
   base: [
+    {
+      flex: "none",
+    },
     style({
       height: "20px",
       width: "16px",

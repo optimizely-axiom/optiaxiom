@@ -36,6 +36,7 @@ export * from "./tabs-list";
 export * from "./tabs-trigger";
 export * from "./text";
 export * from "./textarea";
+export * from "./toast";
 export * from "./tokens";
 export * from "./tooltip";
 export * from "./transition";
