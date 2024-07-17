@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 0.1.0-next.9
+
+### Patch Changes
+
+- 80902ae: release controls and dialog components
+
 ## 0.1.0-next.8
 
 ### Patch Changes
