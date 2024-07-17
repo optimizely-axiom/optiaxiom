@@ -37,7 +37,9 @@
     "title": "Forms"
   },
   "button": "Button",
+  "checkbox": "Checkbox",
   "input": "Input",
+  "radio-group": "Radio Group",
   "switch": "Switch",
   "textarea": "Textarea",
   "-- Feedback": {
