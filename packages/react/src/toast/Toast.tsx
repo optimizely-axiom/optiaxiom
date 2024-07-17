@@ -75,8 +75,8 @@ export const Toast = forwardRef<HTMLDivElement, ToastProps>(
                   onOpenChange={onClose}
                   onSwipeStart={onClose}
                   open={open}
-                  {...restProps}
                   {...styles.root({ type })}
+                  {...restProps}
                 >
                   <Flex flexDirection="row" gap="8" px="16" py="16">
                     <Box asChild {...styles.leftSection()}>
