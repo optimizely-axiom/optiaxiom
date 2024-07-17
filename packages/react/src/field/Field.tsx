@@ -63,9 +63,11 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(
             {info && (
               <>
                 <Tooltip content={info}>
-                  <IconInfo aria-details="iconInfo"></IconInfo>
+                  <IconInfo aria-details={`info${id}`}></IconInfo>
                 </Tooltip>
-                <VisuallyHidden.Root id="iconInfo">{info}</VisuallyHidden.Root>
+                <VisuallyHidden.Root id={`info${id}`}>
+                  {info}
+                </VisuallyHidden.Root>
               </>
             )}
           </Flex>
