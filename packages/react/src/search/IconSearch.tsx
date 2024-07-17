@@ -1,5 +1,6 @@
-export const IconSearch = () => (
+export const IconSearch = ({ className }: { className?: string }) => (
   <svg
+    className={className}
     height="16"
     viewBox="0 0 20 16"
     width="20"

@@ -148,6 +148,16 @@ export const box = recipe({
           },
 
           ...{
+            "&::-webkit-search-decoration": {
+              WebkitAppearance: "none",
+            },
+
+            "&::-webkit-search-cancel-button": {
+              WebkitAppearance: "none",
+            },
+          },
+
+          ...{
             /**
              * Make replaced elements `display: block` by default. (https://github.com/mozdevs/cssremedy/issues/14)
              */
