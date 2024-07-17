@@ -9,7 +9,7 @@ export const chip = recipe({
       flexDirection: "row",
       gap: "xs",
       justifyContent: "center",
-      rounded: "md",
+      rounded: "full",
     },
     style({
       backgroundColor: theme.colors["gray.300"],
@@ -22,11 +22,11 @@ export const chip = recipe({
           outline: `2px solid ${theme.colors["gray.300"]}`,
           outlineOffset: "1px",
         },
-        '&:hover:not([data-disabled="true"])': {
+        "&:hover:not([data-disabled])": {
           backgroundColor: theme.colors["gray.600"],
           color: theme.colors["white"],
         },
-        '&[data-disabled="true"]': {
+        "&[data-disabled]": {
           backgroundColor: theme.colors["bg.disabled"],
           border: `1px solid ${theme.colors["border.disabled"]}`,
           color: theme.colors["fg.disabled"],
@@ -54,27 +54,6 @@ export const chip = recipe({
         fontSize: "lg",
         px: "md",
         py: "6",
-      },
-    },
-  },
-});
-
-export const icon = recipe({
-  base: [
-    {
-      ml: "4",
-    },
-  ],
-  variants: {
-    size: {
-      sm: {
-        w: "16",
-      },
-      md: {
-        w: "20",
-      },
-      lg: {
-        w: "24",
       },
     },
   },
