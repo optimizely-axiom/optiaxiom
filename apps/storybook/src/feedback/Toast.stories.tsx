@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { Button, Flex, Toast } from "@optiaxiom/react";
+import { expect, userEvent, within } from "@storybook/test";
 import { useState } from "react";
 
 type ToastProps = {
@@ -108,6 +109,29 @@ export const LongContentToast: Story = {
       "This is a toast with a longer message. It demonstrates how the toast component handles more content and potentially wraps text to multiple lines.",
     position: "bottom",
     type: "info",
+  },
+  render: ToastTemplate,
+};
+
+export const InteractiveTest: Story = {
+  args: {
+    children: "This is an interactive test toast message",
+    position: "bottom-right",
+    type: "info",
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+
+    const showToastButton = canvas.getByText("Show Toast");
+    await userEvent.click(showToastButton);
+
+    const toast = await canvas.findByRole("status");
+    await expect(toast).toBeInTheDocument();
+    await expect(toast).toHaveTextContent(
+      "This is an interactive test toast message",
+    );
+    await userEvent.click(within(toast).getByRole("button", { name: "close" }));
+    await expect(toast).not.toBeInTheDocument();
   },
   render: ToastTemplate,
 };
