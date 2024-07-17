@@ -5,17 +5,15 @@ import { type ReactNode, forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
 import { Flex } from "../flex";
+import { extractSprinkles } from "../sprinkles";
 import { Text } from "../text";
 import * as styles from "./Checkbox.css";
 import { IconChecked } from "./icons-svg/IconChecked";
 import { IconIndeterminate } from "./icons-svg/IconIndeterminate";
 
 type CheckboxProps = BoxProps<
-  "div",
+  typeof RadixCheckbox.Root,
   {
-    checked?: "indeterminate" | boolean;
-    defaultChecked?: "indeterminate" | boolean;
-    disabled?: boolean;
     endDecorator?: ReactNode;
     readonly?: boolean;
   }
@@ -24,10 +22,8 @@ type CheckboxProps = BoxProps<
 export const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>(
   (
     {
-      checked,
       children,
       className,
-      defaultChecked,
       disabled,
       endDecorator,
       id: idProp,
@@ -36,34 +32,23 @@ export const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>(
     },
     ref,
   ) => {
+    const { restProps, sprinkleProps } = extractSprinkles(props);
     const id = useId(idProp);
-    const isDisabled = Boolean(disabled || readonly);
 
     return (
       <Flex
         ref={ref}
-        {...styles.checkbox(
-          {
-            disabled: isDisabled,
-          },
-          className,
-        )}
-        {...props}
+        {...styles.checkbox({ readonly }, className)}
+        {...sprinkleProps}
       >
-        <Flex flexDirection="row" gap="xs">
-          <Box
-            asChild
-            {...styles.indicatorRoot({
-              disabled: isDisabled,
-            })}
-          >
+        <Flex flexDirection="row" gap="0">
+          <Box asChild {...styles.indicatorRoot()}>
             <RadixCheckbox.Root
-              checked={checked}
-              defaultChecked={defaultChecked}
-              disabled={isDisabled}
+              disabled={Boolean(disabled || readonly)}
               id={id}
+              {...restProps}
             >
-              <Box asChild {...styles.indicator({ disabled: isDisabled })}>
+              <Box asChild {...styles.indicator()}>
                 <RadixCheckbox.Indicator>
                   <Box asChild {...styles.iconChecked()}>
                     <IconChecked />
@@ -76,12 +61,13 @@ export const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>(
             </RadixCheckbox.Root>
           </Box>
 
-          <RadixLabel.Root htmlFor={id}>
-            <Text {...styles.label({ disabled, readonly })}>{children}</Text>
-          </RadixLabel.Root>
+          <Text asChild {...styles.label()}>
+            <RadixLabel.Root htmlFor={id}>{children}</RadixLabel.Root>
+          </Text>
         </Flex>
+
         {endDecorator && (
-          <Box asChild ml="24">
+          <Box asChild ml="lg">
             {endDecorator}
           </Box>
         )}

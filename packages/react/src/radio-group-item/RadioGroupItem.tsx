@@ -24,6 +24,7 @@ export const RadioGroupItem = forwardRef<HTMLDivElement, RadioGroupItemProps>(
   ) => {
     const { restProps, sprinkleProps } = extractSprinkles(props);
     const id = useId(idProp);
+
     return (
       <Flex ref={ref} {...styles.wrapper({ readonly })} {...sprinkleProps}>
         <Flex flexDirection="row" gap="0">

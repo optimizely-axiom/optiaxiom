@@ -7,7 +7,6 @@ const itemMarker = style({});
 export const wrapper = recipe({
   base: [
     {
-      flexDirection: "column",
       gap: "0",
     },
     style({
@@ -71,7 +70,7 @@ export const indicator = recipe({
       size: "full",
     },
     style({
-      backgroundColor: theme.colors["fg.brand"],
+      backgroundColor: theme.colors["bg.brand.solid"],
 
       selectors: {
         "&[data-disabled]": {
