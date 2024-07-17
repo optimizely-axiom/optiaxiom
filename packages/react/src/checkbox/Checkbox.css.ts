@@ -8,13 +8,25 @@ export const checkbox = recipe({
     {
       gap: "0",
     },
-    wrapperMarker,
+    style({
+      color: theme.colors["fg.default"],
+
+      selectors: {
+        [`&:has(${wrapperMarker}[data-disabled])`]: {
+          color: theme.colors["fg.disabled"],
+        },
+      },
+    }),
   ],
+
   variants: {
-    disabled: {
-      false: {},
+    readonly: {
       true: style({
-        cursor: "not-allowed",
+        selectors: {
+          [`&:has(${wrapperMarker}[data-disabled])`]: {
+            color: theme.colors["fg.default"],
+          },
+        },
       }),
     },
   },
@@ -23,7 +35,6 @@ export const checkbox = recipe({
 export const iconChecked = recipe({
   base: [
     style({
-      color: "white",
       display: "none",
       selectors: {
         [`${wrapperMarker} [data-state="checked"] &`]: {
@@ -37,7 +48,6 @@ export const iconChecked = recipe({
 export const iconIndeterminate = recipe({
   base: [
     style({
-      color: "white",
       display: "none",
       selectors: {
         [`${wrapperMarker} [data-state="indeterminate"] &`]: {
@@ -48,97 +58,77 @@ export const iconIndeterminate = recipe({
   ],
 });
 
-export const indicator = recipe({
-  base: [
-    {
-      alignItems: "center",
-      color: "black",
-      display: "flex",
-      h: "full",
-      justifyContent: "center",
-      rounded: "xs",
-    },
-    style({
-      background: theme.colors["bg.brand.solid"],
-      selectors: {
-        "&:hover": {
-          background: theme.colors["bg.brand.solid.hover"],
-        },
-      },
-    }),
-  ],
-  variants: {
-    disabled: {
-      false: {},
-      true: style({
-        background: theme.colors["fg.disabled"],
-        cursor: "not-allowed",
-      }),
-    },
-  },
-});
-
 export const indicatorRoot = recipe({
   base: [
+    wrapperMarker,
     {
       border: "1",
-      justifyContent: "center",
+      color: "white",
       rounded: "xs",
       size: "16",
     },
     style({
-      borderColor: theme.colors["neutral.500"],
+      borderColor: theme.colors["border.active"],
+
       selectors: {
         "&:focus-visible": {
-          outline: `2px solid ${theme.colors["brand.300"]}`,
+          outline: `2px solid ${theme.colors["outline.brand"]}`,
           outlineOffset: "1px",
         },
         "&:hover": {
           borderColor: theme.colors["fg.tertiary"],
         },
-
-        '&[data-state="checked"] ': {
+        '&:is([data-state="checked"], [data-state="indeterminate"]) ': {
           border: "none",
         },
-        '&[data-state="indeterminate"]': {
-          border: "none",
+        "&[data-disabled]": {
+          borderColor: theme.colors["border.secondary"],
+          cursor: "not-allowed",
         },
       },
     }),
   ],
-  variants: {
-    disabled: {
-      false: {},
-      true: style({
-        borderColor: theme.colors["gray.400"],
-        cursor: "not-allowed",
-      }),
+});
+
+export const indicator = recipe({
+  base: [
+    {
+      alignItems: "center",
+      display: "flex",
+      justifyContent: "center",
+      p: "2",
+      rounded: "inherit",
+      size: "full",
     },
-  },
+    style({
+      backgroundColor: theme.colors["bg.brand.solid"],
+
+      selectors: {
+        "&[data-disabled]": {
+          backgroundColor: theme.colors["border.secondary"],
+        },
+        [`${wrapperMarker}:hover &:not([data-disabled])`]: {
+          backgroundColor: theme.colors["bg.brand.solid.hover"],
+        },
+      },
+    }),
+  ],
 });
 
 export const label = recipe({
   base: [
     {
-      fontSize: "md",
+      flex: "1",
+      pl: "xs",
     },
     style({
       cursor: "pointer",
+
+      selectors: {
+        [`${wrapperMarker}[data-disabled] + &`]: {
+          cursor: "default",
+        },
+      },
     }),
   ],
-  variants: {
-    disabled: {
-      false: {},
-      true: style({
-        color: theme.colors["fg.disabled"],
-        cursor: "not-allowed",
-      }),
-    },
-    readonly: {
-      false: {},
-      true: style({
-        cursor: "default",
-      }),
-    },
-  },
 });

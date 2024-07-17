@@ -141,6 +141,8 @@ export const colors = {
   "bg.warning.solid.hover": colorPalette["yellow.600"],
   "bg.warning.subtle": colorPalette["yellow.50"],
 
+  "border.active": colorPalette["neutral.500"],
+  "border.active.hover": colorPalette["neutral.600"],
   "border.brand": colorPalette["brand.500"],
   "border.default": colorPalette["neutral.200"],
   "border.disabled": colorPalette["neutral.75"],
@@ -245,6 +247,8 @@ export const colorsDark = {
   "bg.warning.solid.hover": colorPalette["yellow.600"],
   "bg.warning.subtle": colorPalette["yellow.50"],
 
+  "border.active": colorPalette["neutral.500"],
+  "border.active.hover": colorPalette["neutral.600"],
   "border.brand": colorPalette["brand.500"],
   "border.default": colorPalette["gray.800"],
   "border.disabled": colorPalette["neutral.75"],
