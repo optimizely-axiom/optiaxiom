@@ -1,14 +1,9 @@
-import { type ComponentPropsWithRef, type ReactNode, forwardRef } from "react";
-
-import type { ExtendProps } from "../utils";
+import { type ComponentPropsWithRef, forwardRef } from "react";
 
 import { Box } from "../box";
 import * as styles from "./DialogBody.css";
 
-type DialogBodyProps = ExtendProps<
-  ComponentPropsWithRef<typeof Box>,
-  { children: ReactNode }
->;
+type DialogBodyProps = ComponentPropsWithRef<typeof Box>;
 
 export const DialogBody = forwardRef<HTMLDivElement, DialogBodyProps>(
   ({ children, ...props }, ref) => {
