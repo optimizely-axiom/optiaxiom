@@ -55,8 +55,7 @@ export const indicator = recipe({
         },
         "&[data-disabled]": {
           vars: {
-            // TODO: fix?
-            [controlColorVar]: theme.colors["border.secondary"],
+            [controlColorVar]: theme.colors["bg.disabled"],
           },
         },
       },

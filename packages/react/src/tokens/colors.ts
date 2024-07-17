@@ -134,7 +134,7 @@ export const colors = {
   "bg.brand.solid.hover": colorPalette["brand.600"],
   "bg.brand.subtle": colorPalette["brand.50"],
   "bg.default.hover": colorPalette["neutral.75"],
-  "bg.disabled": colorPalette["neutral.50"],
+  "bg.disabled": colorPalette["neutral.1200/18"],
   "bg.discovery": colorPalette["purple.50"],
   "bg.error.solid": colorPalette["red.500"],
   "bg.error.solid.hover": colorPalette["red.600"],
