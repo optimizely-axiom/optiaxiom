@@ -14,13 +14,13 @@ export const wrapper = recipe({
       borderColor: theme.colors["border.default"],
 
       selectors: {
-        '&:focus-within:is([data-invalid="true"])': {
+        "&:focus-within:is([data-invalid])": {
           outlineColor: theme.colors["red.200"],
           outlineOffset: "1px",
           outlineStyle: "solid",
           outlineWidth: "2px",
         },
-        '&:focus-within:not([data-invalid="true"])': {
+        "&:focus-within:not([data-invalid])": {
           outlineColor: theme.colors["brand.200"],
           outlineOffset: "1px",
           outlineStyle: "solid",
@@ -29,12 +29,12 @@ export const wrapper = recipe({
         "&:hover": {
           borderColor: theme.colors["border.brand"],
         },
-        '&[data-disabled="true"]': {
+        "&[data-disabled]": {
           backgroundColor: theme.colors["bg.disabled"],
           borderColor: theme.colors["border.secondary"],
           pointerEvents: "none",
         },
-        '&[data-invalid="true"]': {
+        "&[data-invalid]": {
           borderColor: theme.colors["border.error"],
         },
       },

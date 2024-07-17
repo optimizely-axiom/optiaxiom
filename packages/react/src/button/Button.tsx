@@ -55,11 +55,10 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <Box
         asChild
-        data-disabled={isDisabled}
+        data-disabled={isDisabled ? "" : undefined}
         {...styles.button(
           {
             colorScheme: finalColorScheme,
-            disabled: isDisabled,
             iconOnly: isIconOnly,
             size,
             variant: finalVariant,
