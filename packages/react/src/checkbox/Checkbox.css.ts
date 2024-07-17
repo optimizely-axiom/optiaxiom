@@ -1,43 +1,14 @@
-import { theme } from "../styles";
+import * as styles from "../control-base/ControlBase.css";
 import { recipe, style } from "../vanilla-extract";
 
-const wrapperMarker = style({});
-
-export const checkbox = recipe({
-  base: [
-    {
-      gap: "0",
-    },
-    style({
-      color: theme.colors["fg.default"],
-
-      selectors: {
-        [`&:has(${wrapperMarker}[data-disabled])`]: {
-          color: theme.colors["fg.disabled"],
-        },
-      },
-    }),
-  ],
-
-  variants: {
-    readonly: {
-      true: style({
-        selectors: {
-          [`&:has(${wrapperMarker}[data-disabled])`]: {
-            color: theme.colors["fg.default"],
-          },
-        },
-      }),
-    },
-  },
-});
+const marker = style({});
 
 export const iconChecked = recipe({
   base: [
     style({
       display: "none",
       selectors: {
-        [`${wrapperMarker} [data-state="checked"] &`]: {
+        [`${marker}[data-state="checked"] &`]: {
           display: "block",
         },
       },
@@ -50,7 +21,7 @@ export const iconIndeterminate = recipe({
     style({
       display: "none",
       selectors: {
-        [`${wrapperMarker} [data-state="indeterminate"] &`]: {
+        [`${marker}[data-state="indeterminate"] &`]: {
           display: "block",
         },
       },
@@ -58,9 +29,9 @@ export const iconIndeterminate = recipe({
   ],
 });
 
-export const indicatorRoot = recipe({
+export const checkbox = recipe({
   base: [
-    wrapperMarker,
+    marker,
     {
       border: "1",
       color: "white",
@@ -68,22 +39,11 @@ export const indicatorRoot = recipe({
       size: "16",
     },
     style({
-      borderColor: theme.colors["border.active"],
+      borderColor: styles.controlColorVar,
 
       selectors: {
-        "&:focus-visible": {
-          outline: `2px solid ${theme.colors["outline.brand"]}`,
-          outlineOffset: "1px",
-        },
-        "&:hover": {
-          borderColor: theme.colors["fg.tertiary"],
-        },
-        '&:is([data-state="checked"], [data-state="indeterminate"]) ': {
-          border: "none",
-        },
-        "&[data-disabled]": {
-          borderColor: theme.colors["border.secondary"],
-          cursor: "not-allowed",
+        '&:not([data-state="unchecked"])': {
+          backgroundColor: styles.controlColorVar,
         },
       },
     }),
@@ -96,39 +56,10 @@ export const indicator = recipe({
       alignItems: "center",
       display: "flex",
       justifyContent: "center",
-      p: "2",
-      rounded: "inherit",
       size: "full",
     },
     style({
-      backgroundColor: theme.colors["bg.brand.solid"],
-
-      selectors: {
-        "&[data-disabled]": {
-          backgroundColor: theme.colors["border.secondary"],
-        },
-        [`${wrapperMarker}:hover &:not([data-disabled])`]: {
-          backgroundColor: theme.colors["bg.brand.solid.hover"],
-        },
-      },
-    }),
-  ],
-});
-
-export const label = recipe({
-  base: [
-    {
-      flex: "1",
-      pl: "xs",
-    },
-    style({
-      cursor: "pointer",
-
-      selectors: {
-        [`${wrapperMarker}[data-disabled] + &`]: {
-          cursor: "default",
-        },
-      },
+      padding: "1px",
     }),
   ],
 });
