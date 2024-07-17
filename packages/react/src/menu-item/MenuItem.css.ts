@@ -1,20 +1,47 @@
-import { recipe } from "../vanilla-extract";
-
-export const wrapper = recipe({
-  base: [
-    {
-      gap: "xs",
-    },
-  ],
-});
+import { theme } from "../styles";
+import { recipe, style } from "../vanilla-extract";
 
 export const item = recipe({
   base: [
     {
+      alignItems: "center",
+      display: "flex",
+      flexDirection: "row",
       fontSize: "md",
-      // border: "1",
-      px: "md",
-      py: "10",
+      h: "40",
+      justifyContent: "start",
+      px: "xs",
+      rounded: "sm",
+    },
+    style({
+      selectors: {
+        '&:active:not([data-disabled="true"])': {
+          background: theme.colors["fg.default"],
+        },
+        "&:hover": {
+          background: theme.colors["bg.default.hover"],
+        },
+      },
+    }),
+  ],
+});
+
+export const decorator = recipe({
+  base: [
+    {
+      alignItems: "center",
+      justifyContent: "center",
+      size: "20",
     },
   ],
+  variants: {
+    position: {
+      end: {
+        mr: "0",
+      },
+      start: {
+        ml: "0",
+      },
+    },
+  },
 });
