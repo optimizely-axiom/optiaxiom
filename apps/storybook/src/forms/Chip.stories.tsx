@@ -11,7 +11,13 @@ type Story = StoryObj<typeof Chip>;
 export const Basic: Story = {
   args: {
     children: "Hello",
-    colorScheme: "neutral",
+  },
+};
+
+export const Disabled: Story = {
+  args: {
+    children: "Hello",
+    disabled: true,
   },
 };
 
@@ -38,7 +44,6 @@ export const DifferentSizes: Story = {
 export const WithAvatar: Story = {
   args: {
     children: "Hello",
-    colorScheme: "neutral",
     onPressedChange: () => {},
     startDecorator: <Avatar name="Jamie" size="sm" />,
   },
@@ -47,7 +52,6 @@ export const WithAvatar: Story = {
 export const WithCloseButton: Story = {
   args: {
     children: "Hello",
-    colorScheme: "neutral",
     onPressedChange: () => {},
   },
 };

@@ -23,7 +23,7 @@ export const Chip = forwardRef<HTMLButtonElement, ChipProps>(
       endDecorator,
       onPressedChange,
       size = "md",
-      startDecorator: icon,
+      startDecorator,
       ...props
     },
     ref,
@@ -31,24 +31,19 @@ export const Chip = forwardRef<HTMLButtonElement, ChipProps>(
     const { restProps, sprinkleProps } = extractSprinkles(props);
 
     return (
-      <Box
-        asChild
-        {...styles.chip(
-          {
-            size,
-          },
-          className,
-        )}
-        {...sprinkleProps}
-      >
-        <RadixToggle.Root data-disabled={disabled} ref={ref} {...restProps}>
-          {icon && (
-            <Box asChild {...styles.icon({})}>
-              {icon}
+      <Box asChild {...styles.chip({ size }, className)} {...sprinkleProps}>
+        <RadixToggle.Root disabled={disabled} ref={ref} {...restProps}>
+          {startDecorator && (
+            <Box asChild ml="4">
+              {startDecorator}
             </Box>
           )}
           {children}
-          {endDecorator ?? (!!onPressedChange && <IconCross />)}
+          {endDecorator ? (
+            <Box asChild>{endDecorator}</Box>
+          ) : (
+            !!onPressedChange && <IconCross />
+          )}
         </RadixToggle.Root>
       </Box>
     );
