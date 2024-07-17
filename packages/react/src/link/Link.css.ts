@@ -16,10 +16,14 @@ export const link = recipe({
       selectors: {
         "&:focus-visible": {
           outline: `2px solid ${theme.colors["outline.brand"]}`,
-          outlineOffset: "2px",
+          outlineOffset: "1px",
         },
         "&:hover": {
           textDecoration: "underline",
+        },
+        '&[data-disabled="true"]': {
+          color: theme.colors["fg.disabled"],
+          cursor: "not-allowed",
         },
       },
     }),
