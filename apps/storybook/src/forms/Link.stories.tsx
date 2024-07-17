@@ -11,6 +11,13 @@ type Story = StoryObj<typeof Link>;
 export const Primary: Story = {
   args: {
     children: "Google",
+    href: "https://www.google.com/",
+  },
+};
+
+export const External: Story = {
+  args: {
+    children: "Google",
     external: true,
     href: "https://www.google.com/",
   },
@@ -19,7 +26,6 @@ export const Primary: Story = {
 export const Subtle: Story = {
   args: {
     children: "Google",
-    external: true,
     href: "https://www.google.com/",
     variant: "subtle",
   },
@@ -27,8 +33,6 @@ export const Subtle: Story = {
 export const Invert: Story = {
   args: {
     children: "Google",
-    disabled: true,
-    external: true,
     href: "https://www.google.com/",
     variant: "invert",
   },

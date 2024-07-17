@@ -14,7 +14,18 @@ type LinkProps = BoxProps<
 >;
 
 export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
-  ({ children, className, disabled, external, to, variant, ...props }, ref) => {
+  (
+    {
+      children,
+      className,
+      disabled,
+      external,
+      to,
+      variant = "default",
+      ...props
+    },
+    ref,
+  ) => {
     const isExternal = external || (to && to.startsWith("http"));
     const href = to || props.href;
 
@@ -23,7 +34,7 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
         asChild
         {...styles.link(
           {
-            variant
+            variant,
           },
           className,
         )}
@@ -37,7 +48,11 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
           {...props}
         >
           {children}
-          <Box ml="4">{isExternal && <IconUpRight />}</Box>
+          {isExternal && (
+            <Box ml="4">
+              <IconUpRight />
+            </Box>
+          )}
         </a>
       </Box>
     );

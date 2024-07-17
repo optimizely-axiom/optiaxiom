@@ -15,7 +15,7 @@ export const link = recipe({
 
       selectors: {
         "&:focus-visible": {
-          outline: `2px solid ${theme.colors["border.outline"]}`,
+          outline: `2px solid ${theme.colors["outline.brand"]}`,
           outlineOffset: "2px",
         },
         "&:hover": {
@@ -26,13 +26,36 @@ export const link = recipe({
   ],
   variants: {
     variant: {
-      default: {},
-      invert: {
+      default: style({
+        color: theme.colors["fg.brand"],
+        selectors: {
+          "&:hover": {
+            color: theme.colors["fg.brand.hover"],
+          },
+          "&:visited": {
+            color: theme.colors["purple.500"],
+          },
+        },
+      }),
+      invert: style({
         color: "white",
-      },
-      subtle: {
+        selectors: {
+          "&:hover": {
+            color: theme.colors["white"],
+          },
+          "&:visited": {
+            color: theme.colors["purple.200"],
+          },
+        },
+      }),
+      subtle: style({
         color: "black",
-      },
+        selectors: {
+          "&:visited": {
+            color: theme.colors["purple.500"],
+          },
+        },
+      }),
     },
   },
 });
