@@ -30,3 +30,12 @@ export const Subtle: Story = {
     variant: "subtle",
   },
 };
+
+export const Disabled: Story = {
+  args: {
+    children: "Google",
+    disabled: true,
+    href: "https://www.google.com/",
+    variant: "subtle",
+  },
+};
