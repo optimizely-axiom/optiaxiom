@@ -7,6 +7,7 @@ import {
   MenuItem,
   MenuTrigger,
 } from "@optiaxiom/react";
+import { IconStar } from "@tabler/icons-react";
 
 const meta: Meta<typeof MenuContent> = {
   component: MenuContent,
@@ -24,7 +25,9 @@ export const Basic: Story = {
       </MenuTrigger>
 
       <MenuContent>
-        <MenuItem>New Tab</MenuItem>
+        <MenuItem endDecorator={<IconStar />} startDecorator={<IconStar />}>
+          Label
+        </MenuItem>
         <MenuItem>New Window</MenuItem>
         <MenuItem>New Private Window</MenuItem>
       </MenuContent>
