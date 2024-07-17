@@ -5,10 +5,10 @@ import { Flex, Text, Tooltip } from "@optiaxiom/react";
 
 type DemoControlProps = {
   onChange: Dispatch<
-    SetStateAction<Record<keyof Props, number | string | undefined>>
+    SetStateAction<Record<keyof Props, boolean | number | string | undefined>>
   >;
   propTypes: Props;
-  propValues: Record<keyof Props, number | string>;
+  propValues: Record<keyof Props, boolean | number | string>;
 } & ComponentPropsWithRef<typeof Flex>;
 
 export function DemoControls({
@@ -34,14 +34,18 @@ export function DemoControls({
                     [item.prop]:
                       event?.target.value === ""
                         ? undefined
-                        : event?.target.value,
+                        : event?.target.value === "false"
+                          ? false
+                          : event?.target.value === "true"
+                            ? true
+                            : event?.target.value,
                   }))
                 }
-                value={propValues[item.prop]}
+                value={String(propValues[item.prop])}
               >
                 {item.options.map((option) => (
                   <option key={option} value={option}>
-                    {option || "<Empty>"}
+                    {option === "" ? "<Empty>" : String(option)}
                   </option>
                 ))}
               </select>
@@ -67,7 +71,7 @@ export function DemoControls({
                   }
                   step={item.step}
                   type="range"
-                  value={propValues[item.prop]}
+                  value={String(propValues[item.prop])}
                 />
               </Tooltip>
             </Flex>
