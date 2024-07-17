@@ -25,6 +25,7 @@
     "title": "Overlays"
   },
   "alert-dialog": "Alert Dialog",
+  "dialog": "Dialog",
   "tooltip": "Tooltip",
   "-- Data Display": {
     "type": "separator",
