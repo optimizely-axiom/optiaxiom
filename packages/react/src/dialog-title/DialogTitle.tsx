@@ -1,16 +1,15 @@
 import * as RadixDialog from "@radix-ui/react-dialog";
-import { type ComponentPropsWithRef, forwardRef } from "react";
+import { forwardRef } from "react";
 
-import type { ExtendProps } from "../utils";
+import type { BoxProps } from "../box";
 
 import { Flex } from "../flex";
 import { Heading } from "../heading";
 import { extractSprinkles } from "../sprinkles";
 import { Text } from "../text";
 
-type FooterProps = ExtendProps<
-  ComponentPropsWithRef<typeof Flex>,
-  ComponentPropsWithRef<typeof RadixDialog.Title>,
+type FooterProps = BoxProps<
+  typeof RadixDialog.Title,
   {
     description?: string;
   }

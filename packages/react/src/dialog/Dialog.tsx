@@ -1,24 +1,24 @@
 import * as RadixDialog from "@radix-ui/react-dialog";
-import { type ComponentPropsWithRef, type ReactNode, forwardRef } from "react";
+import { type ReactNode, forwardRef } from "react";
 
-import type { ExtendProps } from "../utils";
-
-import { Box } from "../box";
+import { Box, type BoxProps } from "../box";
 import { Button } from "../button";
 import { Flex } from "../flex";
 import { Paper } from "../paper";
 import { CloseIcon } from "./CloseIcon";
 import * as styles from "./Dialog.css";
 
-type DialogProps = ExtendProps<
-  ComponentPropsWithRef<typeof Box>,
-  Pick<ComponentPropsWithRef<typeof RadixDialog.Root>, "modal" | "open">,
+type DialogProps = BoxProps<
+  typeof RadixDialog.Root,
   {
     children: ReactNode;
+    modal?: boolean;
     onClose: () => void;
+    open?: boolean;
     withCloseButton?: boolean;
   } & styles.DialogVariants
 >;
+
 export const Dialog = forwardRef<HTMLDivElement, DialogProps>(
   (
     { children, onClose, size = "md", withCloseButton = false, ...props },
