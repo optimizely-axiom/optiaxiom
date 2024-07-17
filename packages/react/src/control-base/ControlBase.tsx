@@ -19,33 +19,19 @@ type ControlBaseProps = BoxProps<
     children: ReactElement;
     endDecorator?: ReactNode;
     label?: ReactNode;
-    readonly?: boolean;
   }
 >;
 
 export const ControlBase = forwardRef<HTMLDivElement, ControlBaseProps>(
-  (
-    {
-      children,
-      className,
-      disabled,
-      endDecorator,
-      id: idProp,
-      label,
-      readonly,
-      ...props
-    },
-    ref,
-  ) => {
+  ({ children, className, endDecorator, id: idProp, label, ...props }, ref) => {
     const { restProps, sprinkleProps } = extractSprinkles(props);
     const id = useId(idProp);
 
     return (
       <Flex className={className} gap="0" ref={ref} {...sprinkleProps}>
-        <Flex {...styles.controlBase({ readonly })}>
+        <Flex {...styles.controlBase()}>
           <Box asChild {...styles.indicator()}>
             {cloneElement(children, {
-              disabled: Boolean(disabled || readonly),
               id,
               ...restProps,
             })}

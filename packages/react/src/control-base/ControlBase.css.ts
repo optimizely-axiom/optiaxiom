@@ -42,18 +42,6 @@ export const controlBase = recipe({
       },
     }),
   ],
-
-  variants: {
-    readonly: {
-      true: style({
-        selectors: {
-          [`&:has(${marker}[data-disabled])`]: {
-            color: theme.colors["fg.default"],
-          },
-        },
-      }),
-    },
-  },
 });
 
 export const indicator = recipe({

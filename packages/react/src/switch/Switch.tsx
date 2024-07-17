@@ -10,27 +10,14 @@ type SwitchProps = BoxProps<
   typeof RadixSwitch.Root,
   {
     endDecorator?: ReactNode;
-    readonly?: boolean;
   } & styles.SwitchVariants
 >;
 
 export const Switch = forwardRef<HTMLDivElement, SwitchProps>(
-  (
-    {
-      children,
-      className,
-      disabled,
-      endDecorator,
-      readonly,
-      size = "md",
-      ...props
-    },
-    ref,
-  ) => {
+  ({ children, className, endDecorator, size = "md", ...props }, ref) => {
     const { restProps, sprinkleProps } = extractSprinkles(props);
     return (
       <ControlBase
-        disabled={disabled}
         endDecorator={
           endDecorator && (
             <Box asChild ml="48" pl={size === "lg" ? "4" : undefined}>
@@ -39,7 +26,6 @@ export const Switch = forwardRef<HTMLDivElement, SwitchProps>(
           )
         }
         label={children}
-        readonly={readonly}
         ref={ref}
         {...sprinkleProps}
       >
