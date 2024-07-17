@@ -80,6 +80,7 @@ export function transformPropsTable(tree) {
                   (component === "Box" &&
                     Object.hasOwn(sprinkles?.props ?? {}, prop.name)),
             )
+            .filter(([, prop]) => prop.type.name !== "never")
             .flatMap(([, prop]) => [
               "<Tr>",
               '  <Td whiteSpace="nowrap">',
