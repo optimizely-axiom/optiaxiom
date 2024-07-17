@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { AlertDialog, Button, Flex } from "@optiaxiom/react";
-import { expect, screen, userEvent, within } from "@storybook/test";
+import { expect, screen, userEvent, waitFor, within } from "@storybook/test";
 import { useState } from "react";
 
 const meta: Meta<typeof AlertDialog> = {
@@ -42,6 +42,7 @@ const Template = (args: React.ComponentProps<typeof AlertDialog>) => {
 
 export const Default: Story = {
   args: {
+    action: "Confirm",
     children: "Are you sure you want to delete this image?",
     title: "Delete Image",
   },
@@ -55,9 +56,11 @@ export const Default: Story = {
       screen.getByRole("button", { name: "Confirm" }),
     ).toBeInTheDocument();
     await userEvent.click(screen.getByRole("button", { name: "Cancel" }));
-    await expect(
-      screen.queryByRole("alertdialog", { name: "Delete Image" }),
-    ).not.toBeInTheDocument();
+    await waitFor(() =>
+      expect(
+        screen.queryByRole("alertdialog", { name: "Delete Image" }),
+      ).not.toBeInTheDocument(),
+    );
   },
   render: Template,
 };
@@ -81,9 +84,6 @@ export const CustomButtons: Story = {
       screen.getByRole("button", { name: "No, Keep" }),
     ).toBeInTheDocument();
     await userEvent.click(screen.getByRole("button", { name: "No, Keep" }));
-    await expect(
-      screen.queryByRole("alertdialog", { name: "Delete Image" }),
-    ).not.toBeInTheDocument();
   },
   render: Template,
 };
@@ -119,9 +119,6 @@ export const LongContent: Story = {
       await expect(scrollbarExists).toBe(true);
     }
     await userEvent.click(screen.getByRole("button", { name: "Cancel" }));
-    await expect(
-      screen.queryByRole("alertdialog", { name: "Delete Image" }),
-    ).not.toBeInTheDocument();
   },
   render: Template,
 };

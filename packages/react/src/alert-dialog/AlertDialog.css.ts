@@ -4,20 +4,29 @@ import { type RecipeVariants, recipe, style } from "../vanilla-extract";
 export const content = recipe({
   base: [
     {
-      bg: "white",
-      maxW: "full",
       rounded: "lg",
       shadow: "md",
+      z: "popover",
     },
     style({
-      position: "absolute",
+      left: "50%",
+      maxWidth: "90dvw",
+      position: "fixed",
+      top: "50%",
+      translate: "-50% -50%",
     }),
   ],
   variants: {
     size: {
-      sm: style({ width: "375px" }),
-      md: style({ width: "600px" }),
-      lg: style({ width: "800px" }),
+      sm: style({
+        width: "375px",
+      }),
+      md: style({
+        width: "600px",
+      }),
+      lg: style({
+        width: "800px",
+      }),
     },
   },
 });
@@ -25,12 +34,12 @@ export const content = recipe({
 export const overlay = recipe({
   base: [
     {
-      alignItems: "center",
-      bg: "dark.200",
-      size: "full",
+      bg: "overlay",
+      z: "popover",
     },
     style({
-      position: "absolute",
+      inset: "0",
+      position: "fixed",
     }),
   ],
 });
