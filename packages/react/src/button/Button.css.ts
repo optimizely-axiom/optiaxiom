@@ -31,7 +31,7 @@ export const button = recipe({
       userSelect: "none",
 
       selectors: {
-        '&:active:not([data-disabled="true"])': {
+        "&:active:not([data-disabled])": {
           boxShadow: theme.boxShadow.inner,
         },
         "&:focus-visible": {
@@ -42,7 +42,7 @@ export const button = recipe({
           outline: `2px solid ${theme.colors["outline.brand"]}`,
           outlineOffset: "1px",
         },
-        '&[data-disabled="true"]': {
+        "&[data-disabled]": {
           cursor: "not-allowed",
         },
         [`${group}[data-orientation="horizontal"] &:not(:first-child):not(:last-child)`]:
@@ -107,10 +107,6 @@ export const button = recipe({
         },
       }),
     },
-    disabled: {
-      false: {},
-      true: {},
-    },
     iconOnly: {
       false: {},
       true: {},
@@ -137,10 +133,10 @@ export const button = recipe({
         paddingInline: `calc(${paddingInlineVar} - 1px)`,
 
         selectors: {
-          '&:hover:not([data-disabled="true"])': {
+          "&:hover:not([data-disabled])": {
             backgroundColor: subtleAccentColorVar,
           },
-          '&[data-disabled="true"]': {
+          "&[data-disabled]": {
             borderColor: theme.colors["border.disabled"],
             color: theme.colors["fg.disabled"],
           },
@@ -151,10 +147,10 @@ export const button = recipe({
         color: theme.colors["fg.default.inverse"],
 
         selectors: {
-          '&:hover:not([data-disabled="true"])': {
+          "&:hover:not([data-disabled])": {
             backgroundColor: solidAccentColorVar,
           },
-          '&[data-disabled="true"]': {
+          "&[data-disabled]": {
             backgroundColor: theme.colors["bg.disabled"],
             border: `1px solid ${theme.colors["border.disabled"]}`,
             color: theme.colors["fg.disabled"],
@@ -168,10 +164,10 @@ export const button = recipe({
         color: accentColorVar,
 
         selectors: {
-          '&:hover:not([data-disabled="true"])': {
+          "&:hover:not([data-disabled])": {
             backgroundColor: subtleAccentColorVar,
           },
-          '&[data-disabled="true"]': {
+          "&[data-disabled]": {
             backgroundColor: theme.colors["bg.disabled"],
             color: theme.colors["fg.disabled"],
           },

@@ -45,8 +45,8 @@ export const InputBase = forwardRef<HTMLInputElement, InputBaseProps>(
       <Flex
         aria-disabled={disabled}
         aria-invalid={error}
-        data-disabled={disabled}
-        data-invalid={error}
+        data-disabled={disabled ? "" : undefined}
+        data-invalid={error ? "" : undefined}
         {...styles.wrapper({}, className)}
         {...sprinkleProps}
       >
