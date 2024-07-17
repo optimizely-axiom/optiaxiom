@@ -1,5 +1,5 @@
 import * as RadixAlertDialog from "@radix-ui/react-alert-dialog";
-import { type ComponentPropsWithRef, type ReactNode, forwardRef } from "react";
+import { type ReactNode, forwardRef } from "react";
 
 import { AnimatePresence } from "../animate-presence";
 import { Box, type BoxProps } from "../box";
@@ -13,7 +13,7 @@ type AlertDialogProps = BoxProps<
   typeof RadixAlertDialog.Root,
   {
     action: string;
-    appearance?: ComponentPropsWithRef<typeof Button>["appearance"];
+    appearance?: "danger" | "primary";
     cancel?: string;
     children: ReactNode;
     onAction: () => void;
