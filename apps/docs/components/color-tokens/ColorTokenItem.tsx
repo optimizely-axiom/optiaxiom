@@ -54,9 +54,14 @@ function getColorLuminance(hex: string) {
     throw new Error("Could not parse hex color: " + hex);
   }
   const rgb = {
+    a: result[4] ? parseInt(result[4], 16) / 255 : 1,
     b: parseInt(result[3], 16),
     g: parseInt(result[2], 16),
     r: parseInt(result[1], 16),
   };
-  return 0.2126 * rgb.r + 0.7152 * rgb.g + 0.0722 * rgb.b;
+  return (
+    0.2126 * (255 - rgb.a * (255 - rgb.r)) +
+    0.7152 * (255 - rgb.a * (255 - rgb.g)) +
+    0.0722 * (255 - rgb.a * (255 - rgb.b))
+  );
 }
