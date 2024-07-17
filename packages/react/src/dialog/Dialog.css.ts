@@ -31,12 +31,13 @@ export const overlay = recipe({
   base: [
     {
       alignItems: "center",
-      bg: "dark.200",
+      bg: "overlay",
       justifyContent: "center",
-      size: "full",
+      z: "popover",
     },
     style({
-      position: "absolute",
+      inset: "0",
+      position: "fixed",
     }),
   ],
 });

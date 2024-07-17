@@ -71,6 +71,15 @@ const colorPalette = {
   "neutral.900": "#262B37" as const,
   "neutral.1000": "#1C2029" as const,
   "neutral.1100": "#171A23" as const,
+  "neutral.1200": "#091E42" as const,
+
+  "neutral.50/32": "#F9FAFC52" as const,
+
+  "neutral.1200/5": "#091E420D" as const,
+  "neutral.1200/12": "#091E421F" as const,
+  "neutral.1200/18": "#091E422E" as const,
+  "neutral.1200/22": "#091E4238" as const,
+  "neutral.1200/32": "#091E4252" as const,
 
   "orange.50": "#fff5e5" as const,
   "orange.200": "#ffd699" as const,
@@ -222,6 +231,8 @@ export const colors = {
 
   "outline.brand": colorPalette["brand.300"],
 
+  overlay: colorPalette["neutral.1200/32"],
+
   surface: colorPalette["white"],
 } as const;
 
@@ -279,6 +290,8 @@ export const colorsDark = {
   "fg.warning.hover": colorPalette["yellow.600"],
 
   "outline.brand": colorPalette["brand.300"],
+
+  overlay: colorPalette["neutral.50/32"],
 
   surface: colorPalette["gray.900"],
 } as const;
