@@ -1,10 +1,11 @@
 import * as RadixDialog from "@radix-ui/react-dialog";
 import { type ReactNode, forwardRef } from "react";
 
+import { AnimatePresence } from "../animate-presence";
 import { Box, type BoxProps } from "../box";
 import { Button } from "../button";
-import { Flex } from "../flex";
 import { Paper } from "../paper";
+import { Transition } from "../transition";
 import { CloseIcon } from "./CloseIcon";
 import * as styles from "./Dialog.css";
 
@@ -22,33 +23,42 @@ type DialogProps = BoxProps<
 
 export const Dialog = forwardRef<HTMLDivElement, DialogProps>(
   (
-    { children, onClose, size = "md", withCloseButton = false, ...props },
+    { children, onClose, open, size = "md", withCloseButton = false, ...props },
     ref,
   ) => {
     return (
-      <RadixDialog.Root onOpenChange={onClose} {...props}>
-        <RadixDialog.Portal>
-          <Flex asChild {...styles.overlay()} ref={ref}>
-            <RadixDialog.Overlay>
-              <Paper asChild {...styles.content({ size })}>
-                <RadixDialog.Content>
-                  {children}
-                  {withCloseButton && (
-                    <Box asChild {...styles.close()}>
-                      <RadixDialog.Close aria-label="Close" asChild>
-                        <Button
-                          appearance="secondary"
-                          icon={<CloseIcon />}
-                          size="sm"
-                        />
-                      </RadixDialog.Close>
-                    </Box>
-                  )}
-                </RadixDialog.Content>
-              </Paper>
-            </RadixDialog.Overlay>
-          </Flex>
-        </RadixDialog.Portal>
+      <RadixDialog.Root onOpenChange={onClose} open={open} {...props}>
+        <AnimatePresence>
+          {open && (
+            <RadixDialog.Portal forceMount>
+              <Transition>
+                <Box asChild {...styles.overlay()}>
+                  <RadixDialog.Overlay />
+                </Box>
+              </Transition>
+
+              <Transition type="fade-down">
+                <Paper asChild {...styles.content({ size })}>
+                  <RadixDialog.Content ref={ref}>
+                    {children}
+
+                    {withCloseButton && (
+                      <Box asChild {...styles.close()}>
+                        <RadixDialog.Close aria-label="Close" asChild>
+                          <Button
+                            appearance="secondary"
+                            icon={<CloseIcon />}
+                            size="sm"
+                          />
+                        </RadixDialog.Close>
+                      </Box>
+                    )}
+                  </RadixDialog.Content>
+                </Paper>
+              </Transition>
+            </RadixDialog.Portal>
+          )}
+        </AnimatePresence>
       </RadixDialog.Root>
     );
   },

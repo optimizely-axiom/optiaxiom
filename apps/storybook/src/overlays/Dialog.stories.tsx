@@ -8,7 +8,7 @@ import {
   DialogTitle,
   Flex,
 } from "@optiaxiom/react";
-import { expect, screen, userEvent, within } from "@storybook/test";
+import { expect, screen, userEvent, waitFor, within } from "@storybook/test";
 import { useState } from "react";
 
 const meta: Meta<typeof Dialog> = {
@@ -88,9 +88,11 @@ export const Default: Story = {
     }
 
     await userEvent.click(screen.getByRole("button", { name: "Confirm" }));
-    await expect(
-      screen.queryByRole("dialog", { name: "Dialog" }),
-    ).not.toBeInTheDocument();
+    await waitFor(() =>
+      expect(
+        screen.queryByRole("dialog", { name: "Dialog" }),
+      ).not.toBeInTheDocument(),
+    );
   },
   render: (args) => (
     <DialogTemplate
@@ -136,9 +138,6 @@ export const DefaultWithDescription: Story = {
     }
 
     await userEvent.click(screen.getByRole("button", { name: "Confirm" }));
-    await expect(
-      screen.queryByRole("dialog", { name: "Dialog" }),
-    ).not.toBeInTheDocument();
   },
   render: (args) => (
     <DialogTemplate

@@ -9,15 +9,21 @@ import {
 import { type ComponentPropsWithRef, useState } from "react";
 
 export function App({
+  modal,
   size = "md",
-}: Pick<ComponentPropsWithRef<typeof Dialog>, "size">) {
+}: Pick<ComponentPropsWithRef<typeof Dialog>, "modal" | "size">) {
   const [open, setOpen] = useState(false);
 
   return (
     <>
       <Button onClick={() => setOpen(true)}>Open Dialog</Button>
 
-      <Dialog onClose={() => setOpen(false)} open={open} size={size}>
+      <Dialog
+        modal={modal}
+        onClose={() => setOpen(false)}
+        open={open}
+        size={size}
+      >
         <DialogTitle>Modal Title</DialogTitle>
 
         <DialogBody>

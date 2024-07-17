@@ -3,13 +3,16 @@ import { type RecipeVariants, recipe, style } from "../vanilla-extract";
 export const content = recipe({
   base: [
     {
-      bg: "white",
       rounded: "lg",
       shadow: "md",
+      z: "popover",
     },
     style({
+      left: "50%",
       maxWidth: "90dvw",
-      position: "relative",
+      position: "fixed",
+      top: "50%",
+      translate: "-50% -50%",
     }),
   ],
   variants: {
@@ -30,9 +33,7 @@ export const content = recipe({
 export const overlay = recipe({
   base: [
     {
-      alignItems: "center",
       bg: "overlay",
-      justifyContent: "center",
       z: "popover",
     },
     style({
