@@ -16,23 +16,6 @@ type ToastProps = {
   type?: "danger" | "info" | "success" | "warning";
 };
 const meta: Meta<typeof Toast> = {
-  argTypes: {
-    position: {
-      control: "select",
-      options: [
-        "bottom",
-        "bottom-left",
-        "bottom-right",
-        "top",
-        "top-left",
-        "top-right",
-      ],
-    },
-    type: {
-      control: "select",
-      options: ["danger", "info", "success", "warning"],
-    },
-  },
   component: Toast,
 };
 
@@ -51,7 +34,7 @@ const ToastTemplate = (args: ToastProps) => {
         Show Toast
       </Button>
 
-      <Toast close="close" onClose={handleClose} open={open} {...args}>
+      <Toast onClose={handleClose} open={open} {...args}>
         {args.children}
       </Toast>
     </Flex>

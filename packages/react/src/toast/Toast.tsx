@@ -1,5 +1,5 @@
 import * as RadixToast from "@radix-ui/react-toast";
-import { type ReactNode, forwardRef } from "react";
+import { forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
 import { Button } from "../button";
@@ -15,7 +15,6 @@ import * as styles from "./Toast.css";
 type ToastProps = BoxProps<
   typeof RadixToast.Root,
   {
-    close: ReactNode;
     onClose?: () => void;
     open: boolean;
     position?:
@@ -45,7 +44,6 @@ export const Toast = forwardRef<HTMLDivElement, ToastProps>(
   (
     {
       children,
-      close,
       onClose,
       open,
       position = "bottom-right",
