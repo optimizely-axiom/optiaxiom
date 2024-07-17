@@ -1,57 +1,50 @@
+import * as styles from "../control-base/ControlBase.css";
 import { theme } from "../styles";
 import { type RecipeVariants, recipe, style } from "../vanilla-extract";
 
 export const root = recipe({
   base: [
     {
-      borderColor: "transparent",
       px: "12",
       py: "2",
       rounded: "full",
+      transition: "colors",
     },
     style({
-      backgroundColor: theme.colors["fg.brand"],
+      backgroundColor: styles.controlColorVar,
       position: "relative",
 
       selectors: {
-        "&:focus-visible": {
-          outline: `${theme.colors["outline.brand"]} solid 2px`,
-          outlineOffset: "1px",
-        },
-        "&:hover": {
-          backgroundColor: theme.colors["fg.brand.hover"],
-        },
-        "&[data-disabled]": {
-          backgroundColor: theme.colors["border.secondary"],
-          cursor: "not-allowed",
-        },
         '&[data-state="unchecked"]:not([data-disabled])': {
-          backgroundColor: theme.colors["border.default"],
+          // TODO: fix?
+          backgroundColor: theme.colors["border.secondary"],
         },
       },
     }),
   ],
-  variants: {
-    size: {
-      md: {},
-      lg: {},
-    },
-  },
 });
 
 export const thumb = recipe({
   base: [
     {
-      bg: "white",
       display: "block",
       rounded: "full",
       transition: "transform",
     },
     style({
+      backgroundColor: theme.colors["white"],
       transform: "translateX(-10px)",
 
       selectors: {
-        '&[data-state="checked"]': { transform: "translateX(10px)" },
+        "&:not([data-disabled])": {
+          boxShadow: theme.boxShadow["sm"],
+        },
+        "&[data-disabled]": {
+          backgroundColor: theme.colors["bg.disabled"],
+        },
+        '&[data-state="checked"]': {
+          transform: "translateX(10px)",
+        },
       },
     }),
   ],
@@ -67,4 +60,4 @@ export const thumb = recipe({
   },
 });
 
-export type SwitchVariants = RecipeVariants<typeof root>;
+export type SwitchVariants = RecipeVariants<typeof thumb>;
