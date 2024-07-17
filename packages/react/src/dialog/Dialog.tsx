@@ -14,6 +14,7 @@ type DialogProps = BoxProps<
     children: ReactNode;
     modal?: boolean;
     onClose: () => void;
+    onOpenChange?: never;
     open?: boolean;
     withCloseButton?: boolean;
   } & styles.DialogVariants
