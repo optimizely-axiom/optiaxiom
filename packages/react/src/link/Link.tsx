@@ -1,6 +1,7 @@
 import { forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
+import { extractSprinkles } from "../sprinkles";
 import { IconUpRight } from "./IconUpRight";
 import * as styles from "./Link.css";
 
@@ -9,7 +10,6 @@ type LinkProps = BoxProps<
   {
     disabled?: boolean;
     external?: boolean;
-    to?: string;
   } & styles.LinkVariants
 >;
 
@@ -20,36 +20,27 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
       className,
       disabled,
       external,
-      to,
+      href,
       variant = "default",
       ...props
     },
     ref,
   ) => {
-    const isExternal = external || (to && to.startsWith("http"));
-    const href = to || props.href;
+    const { restProps, sprinkleProps } = extractSprinkles(props);
 
     return (
-      <Box
-        asChild
-        {...styles.link(
-          {
-            variant,
-          },
-          className,
-        )}
-      >
+      <Box asChild {...styles.link({ variant }, className)} {...sprinkleProps}>
         <a
           aria-disabled={disabled}
           data-disabled={disabled}
           href={href}
           ref={ref}
-          {...(isExternal && { rel: "noopener noreferrer", target: "_blank" })}
-          {...props}
+          {...(external && { rel: "noopener noreferrer", target: "_blank" })}
+          {...restProps}
         >
           {children}
-          {isExternal && (
-            <Box ml="4">
+          {external && (
+            <Box asChild ml="4">
               <IconUpRight />
             </Box>
           )}

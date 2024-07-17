@@ -30,10 +30,3 @@ export const Subtle: Story = {
     variant: "subtle",
   },
 };
-export const Invert: Story = {
-  args: {
-    children: "Google",
-    href: "https://www.google.com/",
-    variant: "invert",
-  },
-};

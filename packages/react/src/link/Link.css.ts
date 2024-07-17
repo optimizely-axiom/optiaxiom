@@ -33,21 +33,12 @@ export const link = recipe({
             color: theme.colors["fg.brand.hover"],
           },
           "&:visited": {
+            // TODO: Add a token for visited
             color: theme.colors["purple.500"],
           },
         },
       }),
-      invert: style({
-        color: "white",
-        selectors: {
-          "&:hover": {
-            color: theme.colors["white"],
-          },
-          "&:visited": {
-            color: theme.colors["purple.200"],
-          },
-        },
-      }),
+
       subtle: style({
         color: "black",
         selectors: {
