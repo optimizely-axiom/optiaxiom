@@ -64,17 +64,6 @@ export const HelperText: Story = {
       >
         Sample 3
       </RadioGroupItem>
-      <RadioGroupItem
-        endDecorator={
-          <Text color="fg.secondary" fontSize="sm">
-            Helper Fourth
-          </Text>
-        }
-        readonly
-        value="sample-4"
-      >
-        Sample 4
-      </RadioGroupItem>
     </RadioGroup>
   ),
 };
@@ -100,18 +89,6 @@ export const DisabledItems: Story = {
       <RadioGroupItem disabled value="sample-4">
         Sample 4
       </RadioGroupItem>
-    </RadioGroup>
-  ),
-};
-
-export const Readonly: Story = {
-  render: () => (
-    <RadioGroup defaultValue="sample-1">
-      <RadioGroupItem value="sample-1">Sample 1</RadioGroupItem>
-      <RadioGroupItem readonly value="sample-2">
-        Sample 2
-      </RadioGroupItem>
-      <RadioGroupItem value="sample-3">Sample 3</RadioGroupItem>
     </RadioGroup>
   ),
 };

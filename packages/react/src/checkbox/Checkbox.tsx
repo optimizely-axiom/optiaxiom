@@ -12,20 +12,15 @@ type CheckboxProps = BoxProps<
   typeof RadixCheckbox.Root,
   {
     endDecorator?: ReactNode;
-    readonly?: boolean;
   }
 >;
 
 export const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>(
-  (
-    { children, className, disabled, endDecorator, readonly, ...props },
-    ref,
-  ) => {
+  ({ children, className, endDecorator, ...props }, ref) => {
     const { restProps, sprinkleProps } = extractSprinkles(props);
 
     return (
       <ControlBase
-        disabled={disabled}
         endDecorator={
           endDecorator && (
             <Box asChild ml="lg">
@@ -34,7 +29,6 @@ export const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>(
           )
         }
         label={children}
-        readonly={readonly}
         ref={ref}
         {...sprinkleProps}
       >

@@ -34,13 +34,6 @@ export const Disabled: Story = {
   },
 };
 
-export const Readonly: Story = {
-  args: {
-    children: "Label",
-    readonly: true,
-  },
-};
-
 export const Intermediate: Story = {
   args: {
     checked: "indeterminate",
@@ -67,16 +60,6 @@ export const States: Story = {
         </Checkbox>
         <Checkbox defaultChecked="indeterminate" disabled>
           Checked (Disabled, Indeterminate)
-        </Checkbox>
-      </Flex>
-
-      <Flex>
-        <Checkbox readonly>Unchecked (Read-Only)</Checkbox>
-        <Checkbox checked readonly>
-          Checked (Read-Only)
-        </Checkbox>
-        <Checkbox checked="indeterminate" readonly>
-          Checked (Read-Only, Indeterminate)
         </Checkbox>
       </Flex>
     </Flex>

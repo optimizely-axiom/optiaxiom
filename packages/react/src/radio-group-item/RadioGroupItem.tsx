@@ -10,20 +10,15 @@ type RadioGroupItemProps = BoxProps<
   typeof RadixRadio.Item,
   {
     endDecorator?: ReactNode;
-    readonly?: boolean;
   }
 >;
 
 export const RadioGroupItem = forwardRef<HTMLDivElement, RadioGroupItemProps>(
-  (
-    { children, disabled, endDecorator, id: idProp, readonly, ...props },
-    ref,
-  ) => {
+  ({ children, endDecorator, id: idProp, ...props }, ref) => {
     const { restProps, sprinkleProps } = extractSprinkles(props);
 
     return (
       <ControlBase
-        disabled={disabled}
         endDecorator={
           endDecorator && (
             <Box asChild ml="lg">
@@ -32,7 +27,6 @@ export const RadioGroupItem = forwardRef<HTMLDivElement, RadioGroupItemProps>(
           )
         }
         label={children}
-        readonly={readonly}
         ref={ref}
         {...sprinkleProps}
       >
