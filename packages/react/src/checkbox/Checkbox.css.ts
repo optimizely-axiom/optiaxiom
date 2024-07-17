@@ -33,17 +33,18 @@ export const checkbox = recipe({
   base: [
     marker,
     {
-      border: "1",
       color: "white",
       rounded: "xs",
       size: "16",
     },
     style({
       borderColor: styles.controlColorVar,
+      borderWidth: "1px",
 
       selectors: {
         '&:not([data-state="unchecked"])': {
           backgroundColor: styles.controlColorVar,
+          borderWidth: "0",
         },
       },
     }),
@@ -56,10 +57,8 @@ export const indicator = recipe({
       alignItems: "center",
       display: "flex",
       justifyContent: "center",
+      p: "2",
       size: "full",
     },
-    style({
-      padding: "1px",
-    }),
   ],
 });

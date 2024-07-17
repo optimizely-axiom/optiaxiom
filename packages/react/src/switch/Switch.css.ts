@@ -16,8 +16,7 @@ export const root = recipe({
 
       selectors: {
         '&[data-state="unchecked"]:not([data-disabled])': {
-          // TODO: fix?
-          backgroundColor: theme.colors["border.secondary"],
+          backgroundColor: theme.colors["bg.disabled"],
         },
       },
     }),
