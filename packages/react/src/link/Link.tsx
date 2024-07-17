@@ -40,7 +40,7 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
         >
           {children}
           {external && (
-            <Box asChild ml="4" size="xl">
+            <Box asChild ml="4">
               <IconUpRight />
             </Box>
           )}
