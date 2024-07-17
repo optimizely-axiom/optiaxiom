@@ -11,8 +11,8 @@ export default meta;
 type Story = StoryObj<typeof RadioGroup>;
 
 export const Basic: Story = {
-  render: () => (
-    <RadioGroup defaultValue="sample-1">
+  render: (args) => (
+    <RadioGroup {...args} defaultValue="sample-1">
       <RadioGroupItem value="sample-1">Sample 1</RadioGroupItem>
       <RadioGroupItem value="sample-2">Sample 2</RadioGroupItem>
       <RadioGroupItem value="sample-3">Sample 3</RadioGroupItem>
@@ -21,8 +21,8 @@ export const Basic: Story = {
 };
 
 export const Horizontal: Story = {
-  render: () => (
-    <RadioGroup defaultValue="sample-1" flexDirection="row">
+  render: (args) => (
+    <RadioGroup {...args} defaultValue="sample-1" flexDirection="row">
       <RadioGroupItem value="sample-1">Sample 1</RadioGroupItem>
       <RadioGroupItem value="sample-2">Sample 2</RadioGroupItem>
       <RadioGroupItem value="sample-3">Sample 3</RadioGroupItem>
@@ -30,13 +30,13 @@ export const Horizontal: Story = {
   ),
 };
 
-export const WithDescription: Story = {
+export const HelperText: Story = {
   render: () => (
     <RadioGroup defaultValue="sample-1">
       <RadioGroupItem
         endDecorator={
           <Text color="fg.secondary" fontSize="sm">
-            first
+            Helper First
           </Text>
         }
         value="sample-1"
@@ -47,7 +47,7 @@ export const WithDescription: Story = {
         disabled
         endDecorator={
           <Text color="fg.secondary" fontSize="sm">
-            second
+            Helper Second
           </Text>
         }
         value="sample-2"
@@ -57,7 +57,7 @@ export const WithDescription: Story = {
       <RadioGroupItem
         endDecorator={
           <Text color="fg.secondary" fontSize="sm">
-            third
+            Helper Third
           </Text>
         }
         value="sample-3"
@@ -67,7 +67,7 @@ export const WithDescription: Story = {
       <RadioGroupItem
         endDecorator={
           <Text color="fg.secondary" fontSize="sm">
-            fourth
+            Helper Fourth
           </Text>
         }
         readonly
