@@ -23,11 +23,25 @@ type DialogProps = BoxProps<
 
 export const Dialog = forwardRef<HTMLDivElement, DialogProps>(
   (
-    { children, onClose, open, size = "md", withCloseButton = false, ...props },
+    {
+      children,
+      defaultOpen,
+      modal,
+      onClose,
+      open,
+      size = "md",
+      withCloseButton = false,
+      ...props
+    },
     ref,
   ) => {
     return (
-      <RadixDialog.Root onOpenChange={onClose} open={open} {...props}>
+      <RadixDialog.Root
+        defaultOpen={defaultOpen}
+        modal={modal}
+        onOpenChange={onClose}
+        open={open}
+      >
         <AnimatePresence>
           {open && (
             <RadixDialog.Portal forceMount>
@@ -39,7 +53,7 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(
 
               <Transition type="fade-down">
                 <Paper asChild {...styles.content({ size })}>
-                  <RadixDialog.Content ref={ref}>
+                  <RadixDialog.Content ref={ref} {...props}>
                     {children}
 
                     {withCloseButton && (
