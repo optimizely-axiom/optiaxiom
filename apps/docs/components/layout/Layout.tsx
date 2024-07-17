@@ -6,11 +6,11 @@ import { useConfig, useMDXComponents } from "nextra-theme-docs";
 
 import styles from "./Layout.module.css";
 
-const startCase = (str: string) =>
+const startCase = (str: string, separator = "") =>
   str
-    .split(" ")
+    .split("-")
     .map((s) => s[0].toUpperCase() + s.slice(1))
-    .join(" ");
+    .join(separator);
 
 export function Layout({ tabs, title }: { tabs: string[]; title: string }) {
   const [, selected] = usePathname().split("/").reverse();
@@ -24,7 +24,7 @@ export function Layout({ tabs, title }: { tabs: string[]; title: string }) {
           {seoProps.titleTemplate.replace(
             "%s",
             `${startCase(title)}${
-              selected === title ? "" : ` – ${startCase(selected)}`
+              selected === title ? "" : ` – ${startCase(selected, " ")}`
             }`,
           )}
         </title>
@@ -42,7 +42,7 @@ export function Layout({ tabs, title }: { tabs: string[]; title: string }) {
                 href={`${selected === title ? title : "."}/${tab}`}
                 key={tab}
               >
-                {startCase(tab)}
+                {startCase(tab, " ")}
               </Link>
             )),
           ]}
