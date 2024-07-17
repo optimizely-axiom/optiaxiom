@@ -1,19 +1,17 @@
 import * as RadixCheckbox from "@radix-ui/react-checkbox";
 import * as RadixLabel from "@radix-ui/react-label";
 import { useId } from "@reach/auto-id";
-import { type ComponentPropsWithRef, type ReactNode, forwardRef } from "react";
+import { type ReactNode, forwardRef } from "react";
 
-import type { ExtendProps } from "../utils";
-
-import { Box } from "../box";
+import { Box, type BoxProps } from "../box";
 import { Flex } from "../flex";
 import { Text } from "../text";
 import * as styles from "./Checkbox.css";
 import { IconChecked } from "./icons-svg/IconChecked";
 import { IconIndeterminate } from "./icons-svg/IconIndeterminate";
 
-type CheckboxProps = ExtendProps<
-  ComponentPropsWithRef<typeof Box>,
+type CheckboxProps = BoxProps<
+  "div",
   {
     checked?: "indeterminate" | boolean;
     defaultChecked?: "indeterminate" | boolean;
