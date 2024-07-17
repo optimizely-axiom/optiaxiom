@@ -16,11 +16,20 @@ export const Primary: Story = {
   },
 };
 
-export const Disabled: Story = {
+export const Subtle: Story = {
+  args: {
+    children: "Google",
+    external: true,
+    href: "https://www.google.com/",
+    variant: "subtle",
+  },
+};
+export const Invert: Story = {
   args: {
     children: "Google",
     disabled: true,
     external: true,
     href: "https://www.google.com/",
+    variant: "invert",
   },
 };

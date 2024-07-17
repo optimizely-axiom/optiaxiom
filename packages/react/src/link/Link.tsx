@@ -10,16 +10,24 @@ type LinkProps = BoxProps<
     disabled?: boolean;
     external?: boolean;
     to?: string;
-  }
+  } & styles.LinkVariants
 >;
 
 export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
-  ({ children, className, disabled, external, to, ...props }, ref) => {
+  ({ children, className, disabled, external, to, variant, ...props }, ref) => {
     const isExternal = external || (to && to.startsWith("http"));
     const href = to || props.href;
 
     return (
-      <Box asChild {...styles.link({}, className)}>
+      <Box
+        asChild
+        {...styles.link(
+          {
+            variant
+          },
+          className,
+        )}
+      >
         <a
           aria-disabled={disabled}
           data-disabled={disabled}
