@@ -15,7 +15,7 @@ export const chip = recipe({
       gap: "4",
       justifyContent: "center",
       overflow: "hidden",
-      rounded: "full",
+      rounded: "md",
       transition: "colors",
     },
     style({
@@ -36,18 +36,6 @@ export const chip = recipe({
   ],
   variants: {
     colorScheme: {
-      danger: style({
-        selectors: {
-          "&:focus-visible": {
-            outlineColor: theme.colors["red.200"],
-          },
-        },
-        vars: {
-          [accentColorVar]: theme.colors["bg.error.solid"],
-          [solidAccentColorVar]: theme.colors["bg.error.solid.hover"],
-          [subtleAccentColorVar]: theme.colors["bg.error.subtle"],
-        },
-      }),
       neutral: style({
         selectors: {
           "&:focus-visible": {
@@ -55,21 +43,9 @@ export const chip = recipe({
           },
         },
         vars: {
-          [accentColorVar]: theme.colors["gray.500"],
+          [accentColorVar]: theme.colors["gray.300"],
           [solidAccentColorVar]: theme.colors["gray.600"],
           [subtleAccentColorVar]: theme.colors["gray.50"],
-        },
-      }),
-      primary: style({
-        selectors: {
-          "&:focus-visible": {
-            outlineColor: theme.colors["brand.300"],
-          },
-        },
-        vars: {
-          [accentColorVar]: theme.colors["bg.brand.solid"],
-          [solidAccentColorVar]: theme.colors["bg.brand.solid.hover"],
-          [subtleAccentColorVar]: theme.colors["bg.brand.subtle"],
         },
       }),
     },
@@ -77,37 +53,23 @@ export const chip = recipe({
       sm: {
         fontSize: "sm",
         px: "sm",
-        py: "1",
+        py: "2",
       },
       md: {
         fontSize: "md",
         px: "sm",
-        py: "2",
+        py: "4",
       },
       lg: {
         fontSize: "lg",
-        px: "sm",
-        py: "3",
+        px: "md",
+        py: "6",
       },
     },
     variant: {
-      outline: style({
-        backgroundColor: "transparent",
-        border: `1px solid ${accentColorVar}`,
-        color: accentColorVar,
-        selectors: {
-          '&:hover:not([data-disabled="true"])': {
-            backgroundColor: subtleAccentColorVar,
-          },
-          '&[data-disabled="true"]': {
-            borderColor: theme.colors["border.disabled"],
-            color: theme.colors["fg.disabled"],
-          },
-        },
-      }),
       solid: style({
         backgroundColor: accentColorVar,
-        color: theme.colors["fg.default.inverse"],
+        color: theme.colors["fg.default"],
         selectors: {
           '&:hover:not([data-disabled="true"])': {
             backgroundColor: solidAccentColorVar,
@@ -142,6 +104,14 @@ export const icon = recipe({
       },
     },
   },
+});
+
+export const toggleRoot = recipe({
+  base: [
+    {
+      gap: "xs",
+    },
+  ],
 });
 
 export type ChipVariants = NonNullable<RecipeVariants<typeof chip>>;
