@@ -29,8 +29,10 @@ export const AlertDialog = forwardRef<HTMLDivElement, AlertDialogProps>(
       appearance = "primary",
       cancel = "Cancel",
       children,
+      defaultOpen,
       onAction,
       onCancel,
+      onOpenChange,
       open,
       size = "sm",
       title,
@@ -39,7 +41,11 @@ export const AlertDialog = forwardRef<HTMLDivElement, AlertDialogProps>(
     ref,
   ) => {
     return (
-      <RadixAlertDialog.Root open={open} {...props}>
+      <RadixAlertDialog.Root
+        defaultOpen={defaultOpen}
+        onOpenChange={onOpenChange}
+        open={open}
+      >
         <AnimatePresence>
           {open && (
             <RadixAlertDialog.Portal forceMount>
@@ -51,7 +57,7 @@ export const AlertDialog = forwardRef<HTMLDivElement, AlertDialogProps>(
 
               <Transition type="fade-down">
                 <Paper asChild {...styles.content({ size })}>
-                  <RadixAlertDialog.Content ref={ref}>
+                  <RadixAlertDialog.Content ref={ref} {...props}>
                     <Box asChild {...styles.title()}>
                       <RadixAlertDialog.Title>{title}</RadixAlertDialog.Title>
                     </Box>
