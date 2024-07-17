@@ -45,6 +45,7 @@ const DialogTemplate = ({
         size={size}
         withCloseButton={withCloseButton}
         {...props}
+        {...(!description && { "aria-describedby": undefined })}
       >
         <DialogTitle description={description}>Dialog</DialogTitle>
         <DialogBody>{content}</DialogBody>
