@@ -1,18 +1,14 @@
 import * as RadixToggle from "@radix-ui/react-toggle";
-import { type ComponentPropsWithRef, type ReactNode, forwardRef } from "react";
+import { type ReactNode, forwardRef } from "react";
 
-import type { ExtendProps } from "../utils";
-
-import { Box } from "../box";
+import { Box, type BoxProps } from "../box";
+import { extractSprinkles } from "../sprinkles";
 import * as styles from "./Chip.css";
 import { IconCross } from "./IconCross";
 
-type ChipProps = ExtendProps<
-  ComponentPropsWithRef<typeof RadixToggle.Root>,
-  ComponentPropsWithRef<typeof Box>,
+type ChipProps = BoxProps<
+  typeof RadixToggle.Root,
   {
-    children?: ReactNode;
-    disabled?: boolean;
     endDecorator?: ReactNode;
     startDecorator?: ReactNode;
   } & styles.ChipVariants
@@ -34,6 +30,8 @@ export const Chip = forwardRef<HTMLButtonElement, ChipProps>(
     },
     ref,
   ) => {
+    const { restProps, sprinkleProps } = extractSprinkles(props);
+
     return (
       <Box
         asChild
@@ -45,17 +43,19 @@ export const Chip = forwardRef<HTMLButtonElement, ChipProps>(
           },
           className,
         )}
-        {...props}
+        {...sprinkleProps}
       >
-        <RadixToggle.Root data-disabled={disabled} ref={ref}>
-          {icon && (
-            <Box asChild {...styles.icon({})}>
-              {icon}
-            </Box>
-          )}
-          {children}
-          {endDecorator ?? (!!onPressedChange && <IconCross />)}
-        </RadixToggle.Root>
+        <Box asChild {...styles.toggleRoot()}>
+          <RadixToggle.Root data-disabled={disabled} ref={ref} {...restProps}>
+            {icon && (
+              <Box asChild {...styles.icon({})}>
+                {icon}
+              </Box>
+            )}
+            {children}
+            {endDecorator ?? (!!onPressedChange && <IconCross />)}
+          </RadixToggle.Root>
+        </Box>
       </Box>
     );
   },
