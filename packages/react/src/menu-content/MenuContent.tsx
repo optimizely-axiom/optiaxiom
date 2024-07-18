@@ -11,7 +11,7 @@ export const MenuContent = forwardRef<HTMLDivElement, MenuContentProps>(
     return (
       <RadixMenu.Portal>
         <Box asChild {...styles.content()}>
-          <RadixMenu.Content {...props} ref={ref}>
+          <RadixMenu.Content ref={ref} {...props}>
             {children}
           </RadixMenu.Content>
         </Box>

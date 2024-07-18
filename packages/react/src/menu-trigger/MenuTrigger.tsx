@@ -14,7 +14,7 @@ export const MenuTrigger = forwardRef<HTMLButtonElement, MenuTriggerProps>(
   ({ children, className, ...props }, ref) => {
     return (
       <Flex asChild>
-        <RadixMenu.Trigger {...props} ref={ref}>
+        <RadixMenu.Trigger ref={ref} {...props}>
           {children}
         </RadixMenu.Trigger>
       </Flex>
