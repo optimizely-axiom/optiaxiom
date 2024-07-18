@@ -1,14 +1,11 @@
 import * as RadixMenu from "@radix-ui/react-dropdown-menu";
-import { type ComponentPropsWithRef, forwardRef } from "react";
+import { forwardRef } from "react";
 
-import type { ExtendProps } from "../utils";
+import type { BoxProps } from "../box";
 
 import { Flex } from "../flex";
 
-type MenuProps = ExtendProps<
-  ComponentPropsWithRef<typeof Flex>,
-  ComponentPropsWithRef<typeof RadixMenu.Root>
->;
+type MenuProps = BoxProps<typeof RadixMenu.Root>;
 
 export const Menu = forwardRef<HTMLDivElement, MenuProps>(
   ({ children, className, ...props }, ref) => {
