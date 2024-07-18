@@ -9,8 +9,8 @@ import {
 } from "@optiaxiom/react";
 import { IconStar } from "@tabler/icons-react";
 
-const meta: Meta<typeof MenuContent> = {
-  component: MenuContent,
+const meta: Meta<typeof Menu> = {
+  component: Menu,
 };
 
 export default meta;
@@ -28,8 +28,16 @@ export const Basic: Story = {
         <MenuItem endDecorator={<IconStar />} startDecorator={<IconStar />}>
           Label
         </MenuItem>
-        <MenuItem>New Window</MenuItem>
-        <MenuItem>New Private Window</MenuItem>
+        <MenuItem
+          disabled
+          endDecorator={<IconStar />}
+          startDecorator={<IconStar />}
+        >
+          Label
+        </MenuItem>
+        <MenuItem endDecorator={<IconStar />} startDecorator={<IconStar />}>
+          Label
+        </MenuItem>
       </MenuContent>
     </Menu>
   ),

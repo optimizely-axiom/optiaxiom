@@ -15,11 +15,19 @@ export const item = recipe({
     },
     style({
       selectors: {
-        '&:active:not([data-disabled="true"])': {
-          background: theme.colors["fg.default"],
+        "&:active:not([data-disabled])": {
+          background: theme.colors["neutral.200"],
         },
-        "&:hover": {
+        "&:focus-visible": {
+          outline: `1px solid ${theme.colors["outline.brand"]}`,
+        },
+        "&:hover:not([data-disabled])": {
           background: theme.colors["bg.default.hover"],
+        },
+        "&[data-disabled]": {
+          backgroundColor: theme.colors["bg.disabled"],
+          border: `1px solid ${theme.colors["border.disabled"]}`,
+          color: theme.colors["fg.disabled"],
         },
       },
     }),
@@ -33,6 +41,13 @@ export const decorator = recipe({
       justifyContent: "center",
       size: "20",
     },
+    style({
+      selectors: {
+        "&[data-disabled]": {
+          color: theme.colors["red.300"],
+        },
+      },
+    }),
   ],
   variants: {
     position: {
