@@ -94,20 +94,20 @@ export const button = recipe({
           [subtleAccentColorVar]: theme.colors["bg.error"],
         },
       }),
-      primary: style({
-        vars: {
-          [accentColorVar]: theme.colors["bg.brand.solid"],
-          [solidAccentColorVar]: theme.colors["bg.brand.solid.hover"],
-          [subtleAccentColorVar]: theme.colors["bg.brand"],
-        },
-      }),
-      secondary: style({
+      neutral: style({
         vars: {
           [accentColorVar]: theme.colors["bg.neutral.solid"],
           [solidAccentColorVar]: theme.colors["bg.neutral.solid.hover"],
           [solidTextColorVar]: theme.colors["fg.default"],
           [subtleAccentColorVar]: theme.colors["bg.neutral"],
           [subtleTextColorVar]: theme.colors["fg.default"],
+        },
+      }),
+      primary: style({
+        vars: {
+          [accentColorVar]: theme.colors["bg.brand.solid"],
+          [solidAccentColorVar]: theme.colors["bg.brand.solid.hover"],
+          [subtleAccentColorVar]: theme.colors["bg.brand"],
         },
       }),
     },
@@ -188,7 +188,7 @@ export const button = recipe({
         borderColor: theme.colors["border.default"],
       }),
       variants: {
-        colorScheme: "secondary",
+        colorScheme: "neutral",
         variant: "outline",
       },
     },

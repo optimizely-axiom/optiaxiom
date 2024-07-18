@@ -47,7 +47,7 @@ const variants = [
 export const Default: Story = {
   ...Variants,
   args: {
-    colorScheme: "secondary",
+    colorScheme: "neutral",
   },
 };
 
@@ -61,11 +61,6 @@ export const Primary: Story = {
 export const Danger: Story = {
   ...Variants,
   args: { colorScheme: "danger" },
-};
-
-export const Secondary: Story = {
-  ...Variants,
-  args: { colorScheme: "secondary" },
 };
 
 export const appearance: Story = {

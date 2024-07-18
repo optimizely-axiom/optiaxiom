@@ -8,9 +8,9 @@ import * as styles from "./Button.css";
 const appearances = {
   danger: { colorScheme: "danger", variant: "solid" },
   "danger-outline": { colorScheme: "danger", variant: "outline" },
-  default: { colorScheme: "secondary", variant: "outline" },
+  default: { colorScheme: "neutral", variant: "outline" },
   primary: { colorScheme: "primary", variant: "solid" },
-  secondary: { colorScheme: "secondary", variant: "subtle" },
+  secondary: { colorScheme: "neutral", variant: "subtle" },
 } satisfies Record<string, styles.ButtonVariants>;
 
 type ButtonProps = BoxProps<
