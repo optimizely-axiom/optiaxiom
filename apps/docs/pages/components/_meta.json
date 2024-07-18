@@ -20,6 +20,11 @@
   "heading": "Heading",
   "kbd": "Kbd",
   "text": "Text",
+  "-- Navigation": {
+    "type": "separator",
+    "title": "Navigation"
+  },
+  "link": "Link",
   "-- Overlays": {
     "type": "separator",
     "title": "Overlays"
@@ -32,6 +37,7 @@
     "title": "Data Display"
   },
   "avatar": "Avatar",
+  "badge": "Badge",
   "separator": "Separator",
   "-- Forms": {
     "type": "separator",
@@ -39,8 +45,10 @@
   },
   "button": "Button",
   "checkbox": "Checkbox",
+  "field": "Field",
   "input": "Input",
   "radio-group": "Radio Group",
+  "search": "Search",
   "switch": "Switch",
   "textarea": "Textarea",
   "-- Feedback": {
