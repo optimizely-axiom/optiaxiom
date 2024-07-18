@@ -5,25 +5,24 @@ import { recipe } from "../vanilla-extract";
 export const link = recipe({
   base: [
     {
-      display: "flex",
-      flexDirection: "row",
       fontSize: "md",
-      gap: "4",
     },
     style({
       textDecoration: "none",
 
       selectors: {
         "&:focus-visible": {
-          outline: `2px solid ${theme.colors["outline.brand"]}`,
+          outline: `2px auto ${theme.colors["outline.brand"]}`,
           outlineOffset: "1px",
         },
-        "&:hover": {
+        "&:hover:not([data-disabled])": {
           textDecoration: "underline",
         },
-        '&[data-disabled="true"]': {
+        "&:visited": {
+          color: theme.colors["fg.link.visited"],
+        },
+        "&[data-disabled]": {
           color: theme.colors["fg.disabled"],
-          cursor: "not-allowed",
         },
       },
     }),
@@ -31,25 +30,19 @@ export const link = recipe({
   variants: {
     variant: {
       default: style({
-        color: theme.colors["fg.brand"],
+        color: theme.colors["fg.link"],
+
         selectors: {
-          "&:hover": {
-            color: theme.colors["fg.brand.hover"],
-          },
-          "&:visited": {
-            // TODO: Add a token for visited
-            color: theme.colors["purple.500"],
+          "&:hover:not([data-disabled])": {
+            color: theme.colors["fg.link.hover"],
           },
         },
       }),
-
+      muted: style({
+        color: theme.colors["fg.tertiary"],
+      }),
       subtle: style({
-        color: "black",
-        selectors: {
-          "&:visited": {
-            color: theme.colors["purple.500"],
-          },
-        },
+        color: theme.colors["fg.default"],
       }),
     },
   },

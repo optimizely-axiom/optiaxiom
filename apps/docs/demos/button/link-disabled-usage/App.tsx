@@ -1,10 +1,10 @@
-import { Button, Tooltip } from "@optiaxiom/react";
+import { Button, Link, Tooltip } from "@optiaxiom/react";
 
 export function App() {
   return (
     <Tooltip content="Disabled button link demo">
-      <Button asChild disabled onClick={(event) => event.preventDefault()}>
-        <a href="./props">Disabled Link</a>
+      <Button asChild disabled>
+        <Link href="./props">Disabled Link</Link>
       </Button>
     </Tooltip>
   );

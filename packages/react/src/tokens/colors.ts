@@ -196,6 +196,9 @@ export const colors = {
    * Error text color when in hover state
    */
   "fg.error.hover": colorPalette["red.600"],
+  "fg.link": colorPalette["brand.500"],
+  "fg.link.hover": colorPalette["brand.600"],
+  "fg.link.visited": colorPalette["purple.500"],
   /**
    * Secondary text color for labels and section headings
    */
@@ -280,6 +283,9 @@ export const colorsDark = {
   "fg.disabled": colorPalette["neutral.500"],
   "fg.error": colorPalette["red.500"],
   "fg.error.hover": colorPalette["red.600"],
+  "fg.link": colorPalette["white"],
+  "fg.link.hover": colorPalette["white"],
+  "fg.link.visited": colorPalette["purple.200"],
   "fg.secondary": colorPalette["slate.400"],
   "fg.secondary.hover": colorPalette["neutral.800"],
   "fg.success": colorPalette["green.200"],
