@@ -17,9 +17,12 @@ type MenuItemProps = ExtendProps<
 >;
 
 export const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>(
-  ({ children, className, endDecorator, startDecorator, ...props }, ref) => {
+  (
+    { children, className, disabled, endDecorator, startDecorator, ...props },
+    ref,
+  ) => {
     return (
-      <RadixMenu.Item {...props} ref={ref}>
+      <RadixMenu.Item disabled={disabled} ref={ref} {...props}>
         <Flex {...styles.item()}>
           {startDecorator && (
             <Box
