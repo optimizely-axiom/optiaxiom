@@ -1,15 +1,13 @@
 import * as RadixMenu from "@radix-ui/react-dropdown-menu";
-import { type ComponentPropsWithRef, type ReactNode, forwardRef } from "react";
+import { type ReactNode, forwardRef } from "react";
 
-import type { ExtendProps } from "../utils";
-
-import { Box } from "../box";
+import { Box, type BoxProps } from "../box";
 import { Flex } from "../flex";
 import { Text } from "../text";
 import * as styles from "./MenuItem.css";
 
-type MenuItemProps = ExtendProps<
-  ComponentPropsWithRef<typeof RadixMenu.Item>,
+type MenuItemProps = BoxProps<
+  typeof RadixMenu.Item,
   {
     endDecorator?: ReactNode;
     startDecorator?: ReactNode;

@@ -1,13 +1,12 @@
 import * as RadixMenu from "@radix-ui/react-dropdown-menu";
 import { type ComponentPropsWithRef, forwardRef } from "react";
 
-import type { Button } from "../button";
-import type { ExtendProps } from "../utils";
+import type { BoxProps } from "../box";
 
 import { Flex } from "../flex";
 
-type MenuTriggerProps = ExtendProps<
-  ComponentPropsWithRef<typeof Button>,
+type MenuTriggerProps = BoxProps<
+  "button",
   ComponentPropsWithRef<typeof RadixMenu.Trigger>
 >;
 
