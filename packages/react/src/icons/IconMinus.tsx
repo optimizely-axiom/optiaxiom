@@ -1,6 +1,6 @@
 import type { ComponentPropsWithRef } from "react";
 
-export const IconIndeterminate = (props: ComponentPropsWithRef<"svg">) => {
+export const IconMinus = (props: ComponentPropsWithRef<"svg">) => {
   return (
     <svg
       height="8"
