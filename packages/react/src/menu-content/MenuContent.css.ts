@@ -1,5 +1,3 @@
-import { theme } from "../styles";
-import { style } from "../vanilla-extract";
 import { recipe } from "../vanilla-extract";
 
 export const content = recipe({
@@ -8,9 +6,7 @@ export const content = recipe({
       border: "1",
       py: "xs",
       rounded: "sm",
+      shadow: "md",
     },
-    style({
-      boxShadow: theme.boxShadow.md,
-    }),
   ],
 });
