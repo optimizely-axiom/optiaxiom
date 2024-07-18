@@ -3,10 +3,10 @@ import { type ReactNode, forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
 import { ControlBase } from "../control-base";
+import { IconCheck } from "../icons/IconCheck";
+import { IconMinus } from "../icons/IconMinus";
 import { extractSprinkles } from "../sprinkles";
 import * as styles from "./Checkbox.css";
-import { IconChecked } from "./icons-svg/IconChecked";
-import { IconIndeterminate } from "./icons-svg/IconIndeterminate";
 
 type CheckboxProps = BoxProps<
   typeof RadixCheckbox.Root,
@@ -37,10 +37,10 @@ export const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>(
             <Box asChild {...styles.indicator()}>
               <RadixCheckbox.Indicator>
                 <Box asChild {...styles.iconChecked()}>
-                  <IconChecked />
+                  <IconCheck />
                 </Box>
                 <Box asChild {...styles.iconIndeterminate()}>
-                  <IconIndeterminate />
+                  <IconMinus />
                 </Box>
               </RadixCheckbox.Indicator>
             </Box>

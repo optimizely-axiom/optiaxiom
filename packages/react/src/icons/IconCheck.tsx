@@ -1,6 +1,6 @@
 import type { ComponentPropsWithRef } from "react";
 
-export const IconChecked = (props: ComponentPropsWithRef<"svg">) => {
+export const IconCheck = (props: ComponentPropsWithRef<"svg">) => {
   return (
     <svg
       fill="none"
