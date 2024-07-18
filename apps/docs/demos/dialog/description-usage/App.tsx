@@ -1,11 +1,4 @@
-import {
-  Button,
-  Dialog,
-  DialogBody,
-  DialogFooter,
-  DialogTitle,
-  Text,
-} from "@optiaxiom/react";
+import { Button, Dialog, DialogFooter, DialogTitle } from "@optiaxiom/react";
 import { useState } from "react";
 
 export function App() {
@@ -15,16 +8,10 @@ export function App() {
     <>
       <Button onClick={() => setOpen(true)}>Open Dialog</Button>
 
-      <Dialog
-        aria-describedby={undefined}
-        onClose={() => setOpen(false)}
-        open={open}
-      >
-        <DialogTitle>Modal Title</DialogTitle>
-
-        <DialogBody>
-          <Text>This is the modal body</Text>
-        </DialogBody>
+      <Dialog onClose={() => setOpen(false)} open={open}>
+        <DialogTitle description="This is additional description of the modal">
+          Modal Title
+        </DialogTitle>
 
         <DialogFooter>
           <Button appearance="primary" onClick={() => setOpen(false)}>

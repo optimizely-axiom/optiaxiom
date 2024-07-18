@@ -6,20 +6,18 @@ import {
   DialogTitle,
   Text,
 } from "@optiaxiom/react";
-import { useState } from "react";
+import { type ComponentPropsWithRef, useState } from "react";
 
-export function App() {
+export function App({
+  size,
+}: Pick<ComponentPropsWithRef<typeof Dialog>, "size">) {
   const [open, setOpen] = useState(false);
 
   return (
     <>
       <Button onClick={() => setOpen(true)}>Open Dialog</Button>
 
-      <Dialog
-        aria-describedby={undefined}
-        onClose={() => setOpen(false)}
-        open={open}
-      >
+      <Dialog onClose={() => setOpen(false)} open={open} size={size}>
         <DialogTitle>Modal Title</DialogTitle>
 
         <DialogBody>

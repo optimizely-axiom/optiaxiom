@@ -1,3 +1,5 @@
+import { Callout } from "nextra/components";
+
 <ax-layout />
 
 Display a modal or non-modal dialog box.
@@ -6,4 +8,39 @@ Display a modal or non-modal dialog box.
 
 ### Usage
 
+The dialog state must be controlled from the outside using the `open` prop. Setting it to `true` will open the dialog and setting it back to `false` will close it.
+
+The following props are also required:
+
+- `onClose`: Called when user hits escape key or clicks the overlay to dismiss the dialog.
+
 <ax-demo name="dialog/usage" />
+
+### Sizes
+
+Use the `size` prop to change the size of the dialog box.
+
+<ax-demo name="dialog/size-usage" />
+
+### Close button
+
+Use the `withCloseButton` prop to show a close button to the top right of the modal.
+
+<ax-demo name="dialog/close-usage" />
+
+### Description
+
+You can add accessible description to the modal using the `description` prop on the `DialogTitle` component.
+
+<Callout>
+  Make sure to set `aria-describedby={undefined}` if you are not using a
+  description.
+</Callout>
+
+<ax-demo name="dialog/description-usage" />
+
+### Non modal usage
+
+Set `modal` prop to `false` in order to render a non-modal dialog box. This will remove the backdrop overlay and only render the dialog box.
+
+<ax-demo name="dialog/modal-usage" />
