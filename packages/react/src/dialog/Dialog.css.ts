@@ -9,7 +9,7 @@ export const content = recipe({
     },
     style({
       left: "50%",
-      maxWidth: "90dvw",
+      maxWidth: "calc(100dvw - 2 * 24px)",
       position: "fixed",
       top: "50%",
       translate: "-50% -50%",
@@ -18,7 +18,7 @@ export const content = recipe({
   variants: {
     size: {
       sm: style({
-        width: "375px",
+        width: "400px",
       }),
       md: style({
         width: "600px",
