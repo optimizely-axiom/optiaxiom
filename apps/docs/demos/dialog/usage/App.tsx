@@ -15,11 +15,7 @@ export function App() {
     <>
       <Button onClick={() => setOpen(true)}>Open Dialog</Button>
 
-      <Dialog
-        aria-describedby={undefined}
-        onClose={() => setOpen(false)}
-        open={open}
-      >
+      <Dialog onClose={() => setOpen(false)} open={open}>
         <DialogTitle>Modal Title</DialogTitle>
 
         <DialogBody>
