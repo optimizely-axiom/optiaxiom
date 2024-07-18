@@ -13,6 +13,7 @@ type DialogProps = BoxProps<
   typeof RadixDialog.Root,
   {
     children: ReactNode;
+    defaultOpen?: never;
     modal?: boolean;
     onClose: () => void;
     onOpenChange?: never;
@@ -25,7 +26,6 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(
   (
     {
       children,
-      defaultOpen,
       modal,
       onClose,
       open,
@@ -36,12 +36,7 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(
     ref,
   ) => {
     return (
-      <RadixDialog.Root
-        defaultOpen={defaultOpen}
-        modal={modal}
-        onOpenChange={onClose}
-        open={open}
-      >
+      <RadixDialog.Root modal={modal} onOpenChange={onClose} open={open}>
         <AnimatePresence>
           {open && (
             <RadixDialog.Portal forceMount>

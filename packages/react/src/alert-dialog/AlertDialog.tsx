@@ -16,6 +16,7 @@ type AlertDialogProps = BoxProps<
     appearance?: "danger" | "primary";
     cancel?: string;
     children: ReactNode;
+    defaultOpen?: never;
     onAction: () => void;
     onCancel: () => void;
     title: ReactNode;
@@ -29,7 +30,6 @@ export const AlertDialog = forwardRef<HTMLDivElement, AlertDialogProps>(
       appearance = "primary",
       cancel = "Cancel",
       children,
-      defaultOpen,
       onAction,
       onCancel,
       onOpenChange,
@@ -41,11 +41,7 @@ export const AlertDialog = forwardRef<HTMLDivElement, AlertDialogProps>(
     ref,
   ) => {
     return (
-      <RadixAlertDialog.Root
-        defaultOpen={defaultOpen}
-        onOpenChange={onOpenChange}
-        open={open}
-      >
+      <RadixAlertDialog.Root onOpenChange={onOpenChange} open={open}>
         <AnimatePresence>
           {open && (
             <RadixAlertDialog.Portal forceMount>
