@@ -1,7 +1,9 @@
 import { AlertDialog, Button } from "@optiaxiom/react";
-import { useState } from "react";
+import { type ComponentPropsWithRef, useState } from "react";
 
-export function App() {
+export function App({
+  appearance,
+}: Pick<ComponentPropsWithRef<typeof AlertDialog>, "appearance">) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -10,6 +12,7 @@ export function App() {
 
       <AlertDialog
         action="Yes, Publish"
+        appearance={appearance}
         onAction={() => {
           // perform some action
           setOpen(false);

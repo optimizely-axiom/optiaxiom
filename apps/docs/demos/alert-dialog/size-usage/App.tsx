@@ -1,7 +1,9 @@
 import { AlertDialog, Button } from "@optiaxiom/react";
-import { useState } from "react";
+import { type ComponentPropsWithRef, useState } from "react";
 
-export function App() {
+export function App({
+  size,
+}: Pick<ComponentPropsWithRef<typeof AlertDialog>, "size">) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -16,6 +18,7 @@ export function App() {
         }}
         onCancel={() => setOpen(false)}
         open={open}
+        size={size}
         title="Publish Article"
       >
         Are you sure you want to publish this article?
