@@ -33,10 +33,7 @@ export const Basic: Story = {
           endDecorator={<IconStar />}
           startDecorator={<IconStar />}
         >
-          Label
-        </MenuItem>
-        <MenuItem endDecorator={<IconStar />} startDecorator={<IconStar />}>
-          Label
+          Disabled
         </MenuItem>
       </MenuContent>
     </Menu>

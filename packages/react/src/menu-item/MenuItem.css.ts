@@ -1,6 +1,14 @@
 import { theme } from "../styles";
 import { recipe, style } from "../vanilla-extract";
 
+export const itemRoot = recipe({
+  base: [
+    style({
+      selectors: {},
+    }),
+  ],
+});
+
 export const item = recipe({
   base: [
     {
@@ -24,8 +32,8 @@ export const item = recipe({
         "&:hover:not([data-disabled])": {
           background: theme.colors["bg.default.hover"],
         },
-        "&[data-disabled]": {
-          backgroundColor: theme.colors["bg.disabled"],
+        "[data-disabled] &": {
+          backgroundColor: theme.colors["white"],
           border: `1px solid ${theme.colors["border.disabled"]}`,
           color: theme.colors["fg.disabled"],
         },
