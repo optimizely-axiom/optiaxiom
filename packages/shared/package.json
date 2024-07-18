@@ -5,6 +5,7 @@
   "version": "0.0.0",
   "bin": {
     "oas-bundle-size": "bin/bundle-size.mjs",
+    "oas-design-tokens": "bin/design-tokens.mjs",
     "oas-lint": "bin/lint.sh"
   },
   "main": "src/index.mjs",
