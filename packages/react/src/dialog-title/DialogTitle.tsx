@@ -18,6 +18,7 @@ type FooterProps = BoxProps<
 export const DialogTitle = forwardRef<HTMLDivElement, FooterProps>(
   ({ children, description, ...props }, ref) => {
     const { restProps, sprinkleProps } = extractSprinkles(props);
+
     return (
       <Flex gap="xs" pb="md" pt="lg" px="lg" {...sprinkleProps}>
         <Heading asChild level="4">
@@ -25,11 +26,10 @@ export const DialogTitle = forwardRef<HTMLDivElement, FooterProps>(
             {children}
           </RadixDialog.Title>
         </Heading>
-        {description && (
-          <Text asChild fontWeight="400">
-            <RadixDialog.Description>{description}</RadixDialog.Description>
-          </Text>
-        )}
+
+        <Text asChild empty="hidden" fontWeight="400">
+          <RadixDialog.Description>{description}</RadixDialog.Description>
+        </Text>
       </Flex>
     );
   },

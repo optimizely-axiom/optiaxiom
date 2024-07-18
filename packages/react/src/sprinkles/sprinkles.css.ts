@@ -57,6 +57,18 @@ const unresponsiveProps = defineProperties({
      */
     color: theme.colors,
     /**
+     * Toggle element visibility based on :empty pseudo-class
+     */
+    empty: {
+      hidden: {
+        selectors: {
+          "&:empty": {
+            display: "none",
+          },
+        },
+      },
+    },
+    /**
      * Set the element's font family
      *
      * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/font-family/ Documentation}
