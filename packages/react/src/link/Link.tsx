@@ -32,15 +32,19 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
       <Box asChild {...styles.link({ variant }, className)} {...sprinkleProps}>
         <a
           aria-disabled={disabled}
-          data-disabled={disabled}
+          data-disabled={disabled ? "" : undefined}
           href={href}
           ref={ref}
           {...(external && { rel: "noopener noreferrer", target: "_blank" })}
           {...restProps}
+          {...(disabled && {
+            href: undefined,
+            role: "link",
+          })}
         >
           {children}
           {external && (
-            <Box asChild ml="4">
+            <Box asChild display="inline-flex" ml="4">
               <IconUpRight />
             </Box>
           )}
