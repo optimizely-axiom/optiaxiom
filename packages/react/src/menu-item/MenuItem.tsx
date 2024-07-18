@@ -20,33 +20,35 @@ export const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>(
     ref,
   ) => {
     return (
-      <RadixMenu.Item disabled={disabled} ref={ref} {...props}>
-        <Flex {...styles.item()}>
-          {startDecorator && (
-            <Box
-              asChild
-              {...styles.decorator({
-                position: "start",
-              })}
-            >
-              {startDecorator}
-            </Box>
-          )}
-          <Text flex="1" fontSize="md">
-            {children}
-          </Text>
-          {endDecorator && (
-            <Box
-              asChild
-              {...styles.decorator({
-                position: "end",
-              })}
-            >
-              {endDecorator}
-            </Box>
-          )}
-        </Flex>
-      </RadixMenu.Item>
+      <Flex {...styles.itemRoot()}>
+        <RadixMenu.Item disabled={disabled} ref={ref} {...props}>
+          <Flex {...styles.item()}>
+            {startDecorator && (
+              <Box
+                asChild
+                {...styles.decorator({
+                  position: "start",
+                })}
+              >
+                {startDecorator}
+              </Box>
+            )}
+            <Text flex="1" fontSize="md">
+              {children}
+            </Text>
+            {endDecorator && (
+              <Box
+                asChild
+                {...styles.decorator({
+                  position: "end",
+                })}
+              >
+                {endDecorator}
+              </Box>
+            )}
+          </Flex>
+        </RadixMenu.Item>
+      </Flex>
     );
   },
 );
