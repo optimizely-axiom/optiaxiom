@@ -1,10 +1,9 @@
-import { type ComponentPropsWithRef, forwardRef } from "react";
+import { forwardRef } from "react";
 
-import { Flex } from "../flex";
-import { Text } from "../text";
+import { Text, type TextProps } from "../text";
 import * as styles from "./Badge.css";
 
-type BadgeProps = ComponentPropsWithRef<typeof Flex> & styles.BadgeVariants;
+type BadgeProps = TextProps<"span", styles.BadgeVariants>;
 
 export const Badge = forwardRef<HTMLDivElement, BadgeProps>(
   (
@@ -20,8 +19,8 @@ export const Badge = forwardRef<HTMLDivElement, BadgeProps>(
     return (
       <Text
         as="span"
-        {...styles.badge({ colorScheme, variant }, className)}
         ref={ref}
+        {...styles.badge({ colorScheme, variant }, className)}
         {...props}
       >
         {children}

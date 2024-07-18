@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Badge, Flex, Heading, Text } from "@optiaxiom/react";
+import { Badge, Button, Flex, Heading, Text } from "@optiaxiom/react";
 
 const meta: Meta<typeof Badge> = {
   component: Badge,
@@ -10,139 +10,79 @@ export default meta;
 
 type Story = StoryObj<typeof Badge>;
 
-const variants = [
-  ["subtle", "Subtle"],
-  ["solid", "Solid"],
-] as const;
-
 const Variants: Story = {
   render: (args) => (
-    <Flex flexDirection="column" gap="sm">
-      {variants.map(([variant, label]) => (
-        <Badge {...args} key={variant} variant={variant}>
-          {label}
-        </Badge>
-      ))}
+    <Flex>
+      <Badge colorScheme="primary" {...args} />
+      <Badge colorScheme="success" {...args} />
+      <Badge colorScheme="warning" {...args} />
+      <Badge colorScheme="danger" {...args} />
+      <Badge colorScheme="neutral" {...args} />
+      <Badge colorScheme="information" {...args} />
+      <Badge colorScheme="none" {...args} />
     </Flex>
   ),
 };
 
 export const Primary: Story = {
-  ...Variants,
   args: {
-    colorScheme: "primary",
+    children: "Badge",
   },
 };
 
-export const Danger: Story = {
+export const Solid: Story = {
   ...Variants,
-  args: { colorScheme: "danger" },
+  args: {
+    children: "Badge",
+  },
 };
 
-export const Info: Story = {
+export const Subtle: Story = {
   ...Variants,
-  args: { colorScheme: "info" },
+  args: {
+    children: "Badge",
+    variant: "subtle",
+  },
 };
 
-export const Success: Story = {
-  ...Variants,
-  args: { colorScheme: "success" },
-};
-
-export const Warning: Story = {
-  ...Variants,
-  args: { colorScheme: "warning" },
-};
-
-export const Neutral: Story = {
-  ...Variants,
-  args: { colorScheme: "neutral" },
-};
-
-export const TextWithBadge: Story = {
+export const Count: Story = {
   render: () => (
-    <Flex flexDirection="row" gap="sm">
-      <Text>Status:</Text>
-      <Badge colorScheme="success" variant="solid">
-        Active
-      </Badge>
-    </Flex>
+    <>
+      <Flex flexDirection="row">
+        <Button>
+          Notifications
+          <Badge colorScheme="information" variant="subtle">
+            8
+          </Badge>
+        </Button>
+
+        <Button>
+          Errors
+          <Badge colorScheme="danger">15</Badge>
+        </Button>
+      </Flex>
+    </>
   ),
 };
 
-export const NotificationsCount: Story = {
+export const Inline: Story = {
   render: () => (
     <Flex>
-      <Flex
-        border="1"
-        borderColor="neutral.100"
-        flexDirection="row"
-        gap="2"
-        p="4"
-        rounded="sm"
-      >
-        <Text>Notifications</Text>
-        <Badge colorScheme="primary" rounded="full" variant="solid">
-          8
-        </Badge>
+      <Flex asChild flexDirection="row">
+        <Text>
+          Status
+          <Badge colorScheme="success" variant="subtle">
+            Published
+          </Badge>
+        </Text>
       </Flex>
-      <Flex
-        border="1"
-        borderColor="neutral.100"
-        flexDirection="row"
-        gap="2"
-        p="4"
-        rounded="sm"
-      >
-        <Badge colorScheme="primary" rounded="full" variant="solid">
-          8
-        </Badge>
-        <Text>Notifications</Text>
-      </Flex>
-    </Flex>
-  ),
-};
 
-export const Errors: Story = {
-  render: () => (
-    <Flex>
-      <Flex
-        border="1"
-        borderColor="neutral.100"
-        flexDirection="row"
-        gap="2"
-        p="4"
-        rounded="md"
-      >
-        <Text>Errors</Text>
-        <Badge colorScheme="danger" rounded="full" variant="subtle">
-          8
-        </Badge>
+      <Flex asChild flexDirection="row">
+        <Heading level="4">
+          Sample Heading
+          <Badge colorScheme="success">New</Badge>
+        </Heading>
       </Flex>
-      <Flex
-        border="1"
-        borderColor="neutral.100"
-        flexDirection="row"
-        gap="2"
-        p="4"
-        rounded="md"
-      >
-        <Badge colorScheme="danger" rounded="full" variant="solid">
-          8
-        </Badge>
-        <Text>Errors</Text>
-      </Flex>
-    </Flex>
-  ),
-};
-
-export const HeadingWithBadge: Story = {
-  render: () => (
-    <Flex flexDirection="row" gap="sm">
-      <Heading level="4">Status:</Heading>
-      <Badge colorScheme="success" variant="solid">
-        Active
-      </Badge>
     </Flex>
   ),
 };

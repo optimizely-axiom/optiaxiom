@@ -186,6 +186,7 @@ export const colors = {
    * Error text color for danger and error states
    */
   "fg.error": colorPalette["red.700"],
+  "fg.information": colorPalette["blue.600"],
   "fg.link": colorPalette["brand.500"],
   "fg.link.hover": colorPalette["brand.600"],
   "fg.link.visited": colorPalette["purple.500"],
@@ -256,6 +257,7 @@ export const colorsDark = {
   "fg.default.inverse": colorPalette["white"],
   "fg.disabled": colorPalette["neutral.500"],
   "fg.error": colorPalette["red.500"],
+  "fg.information": colorPalette["blue.600"],
   "fg.link": colorPalette["white"],
   "fg.link.hover": colorPalette["white"],
   "fg.link.visited": colorPalette["purple.200"],

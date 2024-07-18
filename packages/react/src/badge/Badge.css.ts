@@ -18,59 +18,67 @@ export const badge = recipe({
       fontSize: "sm",
       fontWeight: "500",
       justifyContent: "center",
+      leading: "none",
       px: "8",
-      py: "2",
-      rounded: "md",
+      py: "4",
+      rounded: "full",
     },
+    style({
+      vars: {
+        [solidColorVar]: theme.colors["fg.default.inverse"],
+      },
+    }),
   ],
   variants: {
     colorScheme: {
       danger: style({
         vars: {
           [solidBackgroundColorVar]: theme.colors["bg.error.solid"],
-          [solidColorVar]: theme.colors["fg.default.inverse"],
-          [subtleBackgroundColorVar]: theme.colors["bg.error.subtle"],
-          [subtleColorVar]: theme.colors["bg.error.solid.hover"],
+          [subtleBackgroundColorVar]: theme.colors["bg.error"],
+          [subtleColorVar]: theme.colors["fg.error"],
         },
       }),
-      info: style({
+      information: style({
         vars: {
-          [solidBackgroundColorVar]: theme.colors["blue.600"],
-          [solidColorVar]: theme.colors["fg.default.inverse"],
+          [solidBackgroundColorVar]: theme.colors["bg.information.solid"],
           [subtleBackgroundColorVar]: theme.colors["bg.information"],
-          [subtleColorVar]: theme.colors["blue.600"],
+          [subtleColorVar]: theme.colors["fg.information"],
         },
       }),
       neutral: style({
         vars: {
-          [solidBackgroundColorVar]: theme.colors["border.default"],
+          [solidBackgroundColorVar]: theme.colors["bg.neutral.solid"],
           [solidColorVar]: theme.colors["fg.default"],
-          [subtleBackgroundColorVar]: theme.colors["bg.default.hover"],
+          [subtleBackgroundColorVar]: theme.colors["bg.neutral"],
           [subtleColorVar]: theme.colors["fg.secondary"],
+        },
+      }),
+      none: style({
+        vars: {
+          [solidColorVar]: theme.colors["fg.default"],
+          [subtleColorVar]: theme.colors["fg.tertiary"],
         },
       }),
       primary: style({
         vars: {
           [solidBackgroundColorVar]: theme.colors["bg.brand.solid"],
-          [solidColorVar]: theme.colors["fg.default.inverse"],
-          [subtleBackgroundColorVar]: theme.colors["bg.brand.subtle"],
-          [subtleColorVar]: theme.colors["brand.700"],
+          [subtleBackgroundColorVar]: theme.colors["bg.brand"],
+          [subtleColorVar]: theme.colors["fg.brand"],
         },
       }),
       success: style({
         vars: {
           [solidBackgroundColorVar]: theme.colors["bg.success.solid"],
-          [solidColorVar]: theme.colors["fg.default.inverse"],
-          [subtleBackgroundColorVar]: theme.colors["bg.success.subtle"],
-          [subtleColorVar]: theme.colors["green.700"],
+          [subtleBackgroundColorVar]: theme.colors["bg.success"],
+          [subtleColorVar]: theme.colors["fg.success"],
         },
       }),
       warning: style({
         vars: {
           [solidBackgroundColorVar]: theme.colors["bg.warning.solid"],
           [solidColorVar]: theme.colors["fg.default"],
-          [subtleBackgroundColorVar]: theme.colors["bg.warning.subtle"],
-          [subtleColorVar]: theme.colors["yellow.700"],
+          [subtleBackgroundColorVar]: theme.colors["bg.warning"],
+          [subtleColorVar]: theme.colors["fg.warning"],
         },
       }),
     },
