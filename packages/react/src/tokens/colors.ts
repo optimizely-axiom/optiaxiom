@@ -169,19 +169,11 @@ export const colors = {
   /**
    * Primary brand color useful for accented text, highlights, and subheadings
    */
-  "fg.brand": colorPalette["brand.500"],
-  /**
-   * Primary brand color when in hover state
-   */
-  "fg.brand.hover": colorPalette["brand.600"],
+  "fg.brand": colorPalette["brand.700"],
   /**
    * Primary text color for page headings
    */
   "fg.default": colorPalette["neutral.900"],
-  /**
-   * Primary text color when in hover state
-   */
-  "fg.default.hover": colorPalette["neutral.1000"],
   /**
    * Primary text color when used on solid color bg
    */
@@ -193,11 +185,7 @@ export const colors = {
   /**
    * Error text color for danger and error states
    */
-  "fg.error": colorPalette["red.500"],
-  /**
-   * Error text color when in hover state
-   */
-  "fg.error.hover": colorPalette["red.600"],
+  "fg.error": colorPalette["red.700"],
   "fg.link": colorPalette["brand.500"],
   "fg.link.hover": colorPalette["brand.600"],
   "fg.link.visited": colorPalette["purple.500"],
@@ -206,33 +194,17 @@ export const colors = {
    */
   "fg.secondary": colorPalette["neutral.700"],
   /**
-   * Secondary text color when in hover state
-   */
-  "fg.secondary.hover": colorPalette["neutral.800"],
-  /**
    * Success text color
    */
-  "fg.success": colorPalette["green.600"],
-  /**
-   * Success text color when in hover state
-   */
-  "fg.success.hover": colorPalette["green.600"],
+  "fg.success": colorPalette["green.700"],
   /**
    * Tertiary text color for supporting, paragraph, and placeholder text
    */
   "fg.tertiary": colorPalette["neutral.600"],
   /**
-   * Tertiary text color when in hover state
-   */
-  "fg.tertiary.hover": colorPalette["neutral.700"],
-  /**
    * Warning text color
    */
-  "fg.warning": colorPalette["yellow.500"],
-  /**
-   * Warning text color when in hover state
-   */
-  "fg.warning.hover": colorPalette["yellow.600"],
+  "fg.warning": colorPalette["yellow.700"],
 
   "outline.brand": colorPalette["brand.300"],
 
@@ -280,24 +252,17 @@ export const colorsDark = {
   "fg.accent.magenta": colorPalette["magenta.200"],
   "fg.accent.purple": colorPalette["purple.200"],
   "fg.brand": colorPalette["brand.500"],
-  "fg.brand.hover": colorPalette["brand.600"],
   "fg.default": colorPalette["gray.100"],
-  "fg.default.hover": colorPalette["neutral.1000"],
   "fg.default.inverse": colorPalette["white"],
   "fg.disabled": colorPalette["neutral.500"],
   "fg.error": colorPalette["red.500"],
-  "fg.error.hover": colorPalette["red.600"],
   "fg.link": colorPalette["white"],
   "fg.link.hover": colorPalette["white"],
   "fg.link.visited": colorPalette["purple.200"],
   "fg.secondary": colorPalette["slate.400"],
-  "fg.secondary.hover": colorPalette["neutral.800"],
   "fg.success": colorPalette["green.200"],
-  "fg.success.hover": colorPalette["green.600"],
   "fg.tertiary": colorPalette["neutral.600"],
-  "fg.tertiary.hover": colorPalette["neutral.700"],
   "fg.warning": colorPalette["yellow.500"],
-  "fg.warning.hover": colorPalette["yellow.600"],
 
   "outline.brand": colorPalette["brand.300"],
 
