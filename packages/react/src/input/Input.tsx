@@ -2,6 +2,7 @@ import { forwardRef } from "react";
 
 import { Box } from "../box";
 import { InputBase, type InputBaseProps } from "../input-base";
+import { fallbackSpan } from "../utils";
 import * as styles from "./Input.css";
 
 type InputProps = InputBaseProps<
@@ -27,7 +28,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         endDecorator={
           endDecorator && (
             <Box asChild {...styles.decorator({ position: "end", size })}>
-              {endDecorator}
+              {fallbackSpan(endDecorator)}
             </Box>
           )
         }
@@ -35,7 +36,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         startDecorator={
           startDecorator && (
             <Box asChild {...styles.decorator({ position: "start", size })}>
-              {startDecorator}
+              {fallbackSpan(startDecorator)}
             </Box>
           )
         }
