@@ -166,6 +166,7 @@ export const colors = {
   "fg.accent.blue": colorPalette["blue.500"],
   "fg.accent.magenta": colorPalette["magenta.600"],
   "fg.accent.purple": colorPalette["purple.600"],
+  "fg.accent.red": colorPalette["red.500"],
   /**
    * Primary brand color useful for accented text, highlights, and subheadings
    */
@@ -252,6 +253,7 @@ export const colorsDark = {
   "fg.accent.blue": colorPalette["blue.200"],
   "fg.accent.magenta": colorPalette["magenta.200"],
   "fg.accent.purple": colorPalette["purple.200"],
+  "fg.accent.red": colorPalette["red.200"],
   "fg.brand": colorPalette["brand.500"],
   "fg.default": colorPalette["gray.100"],
   "fg.default.inverse": colorPalette["white"],
