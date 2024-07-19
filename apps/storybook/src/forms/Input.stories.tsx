@@ -9,9 +9,15 @@ export default {
 
 type Story = StoryObj<typeof Input>;
 
-export const Primary: Story = {
+export const Basic: Story = {
   args: {
     placeholder: "Enter text...",
+  },
+};
+
+export const Value: Story = {
+  args: {
+    defaultValue: "Some user input value",
   },
 };
 
@@ -28,38 +34,40 @@ export const Sizes: Story = {
   ),
 };
 
-export const Value: Story = {
-  args: {
-    defaultValue: "Regular value",
-  },
-};
-
 export const Disabled: Story = {
   args: {
     disabled: true,
-    placeholder: "Disabled placeholder",
   },
+  render: (args) => (
+    <Flex>
+      <Input {...args} placeholder="Disabled placeholder..." />
+      <Input {...args} defaultValue="Disabled with value" />
+    </Flex>
+  ),
 };
 
-export const DisabledValue: Story = {
+export const Readonly: Story = {
   args: {
-    defaultValue: "Disabled value",
-    disabled: true,
+    readOnly: true,
   },
+  render: (args) => (
+    <Flex>
+      <Input {...args} placeholder="Readonly placeholder..." />
+      <Input {...args} defaultValue="Readonly with value" />
+    </Flex>
+  ),
 };
 
 export const Error: Story = {
   args: {
     error: true,
-    placeholder: "Required field...",
   },
-};
-
-export const ErrorValue: Story = {
-  args: {
-    defaultValue: "Error value",
-    error: true,
-  },
+  render: (args) => (
+    <Flex>
+      <Input {...args} placeholder="Error placeholder..." />
+      <Input {...args} defaultValue="Error with value" />
+    </Flex>
+  ),
 };
 
 export const Decorators: Story = {

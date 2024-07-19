@@ -10,9 +10,15 @@ export default meta;
 
 type Story = StoryObj<typeof Textarea>;
 
-export const Default: Story = {
+export const Basic: Story = {
   args: {
     placeholder: "Enter text....",
+  },
+};
+
+export const Value: Story = {
+  args: {
+    defaultValue: "Some user input value",
   },
 };
 
@@ -23,24 +29,10 @@ export const ManualResize: Story = {
   },
 };
 
-export const AutoResize: Story = {
+export const AutoSize: Story = {
   args: {
     placeholder: "Enter text....",
     resize: "auto",
-  },
-};
-
-export const WithTopSection: Story = {
-  args: {
-    placeholder: "Enter text....",
-    startDecorator: <Text>Top Section</Text>,
-  },
-};
-
-export const WithBottomSection: Story = {
-  args: {
-    endDecorator: <Text>Bottom Section</Text>,
-    placeholder: "Enter text....",
   },
 };
 
@@ -50,8 +42,8 @@ export const Disabled: Story = {
   },
   render: (args) => (
     <Flex>
+      <Textarea {...args} placeholder="Disabled placeholder..." />
       <Textarea {...args} defaultValue="Disabled with value" />
-      <Textarea {...args} placeholder="Disabled placeholder" />
     </Flex>
   ),
 };
@@ -62,19 +54,32 @@ export const Readonly: Story = {
   },
   render: (args) => (
     <Flex>
+      <Textarea {...args} placeholder="Readonly placeholder..." />
       <Textarea {...args} defaultValue="Readonly with value" />
-      <Textarea {...args} placeholder="Readonly placeholder" />
     </Flex>
   ),
 };
+
 export const Error: Story = {
   args: {
     error: true,
   },
   render: (args) => (
     <Flex>
+      <Textarea {...args} placeholder="Error placeholder..." />
       <Textarea {...args} defaultValue="Error with value" />
-      <Textarea {...args} placeholder="Error placeholder" />
+    </Flex>
+  ),
+};
+
+export const Decorators: Story = {
+  args: {
+    placeholder: "Enter text....",
+  },
+  render: (args) => (
+    <Flex>
+      <Textarea {...args} startDecorator={<Text>Top Section</Text>} />
+      <Textarea {...args} endDecorator={<Text>Bottom Section</Text>} />
     </Flex>
   ),
 };
