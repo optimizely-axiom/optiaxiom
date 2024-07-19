@@ -27,9 +27,12 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
       <InputBase {...styles.wrapper({ resize }, className)} {...props}>
         <Box asChild {...styles.textarea()}>
           {resize === "auto" ? (
-            <TextareaAutosize minRows={3} ref={ref} />
+            <TextareaAutosize
+              minRows={"minRows" in props ? props.minRows : 3}
+              ref={ref}
+            />
           ) : (
-            <textarea ref={ref} rows={3} />
+            <textarea ref={ref} rows={"rows" in props ? props.rows : 3} />
           )}
         </Box>
       </InputBase>
