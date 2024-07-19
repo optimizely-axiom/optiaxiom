@@ -1,19 +1,20 @@
 import * as RadixLabel from "@radix-ui/react-label";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { useId } from "@reach/auto-id";
-import { type ReactElement, cloneElement, forwardRef } from "react";
+import { type ReactNode, forwardRef } from "react";
 
 import type { BoxProps } from "../box";
 
 import { Flex } from "../flex";
 import { Text } from "../text";
 import { Tooltip } from "../tooltip";
+import { FieldContext } from "./FieldContext";
 import { IconInfo } from "./IconInfo";
 
 type FieldProps = BoxProps<
   "div",
   {
-    children: ReactElement;
+    children: ReactNode;
     description?: string;
     error?: string;
     id?: string;
@@ -77,11 +78,15 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(
           </Flex>
         )}
 
-        {cloneElement(children, {
-          error: !!error,
-          id,
-          required,
-        })}
+        <FieldContext.Provider
+          value={{
+            error: !!error,
+            id,
+            required,
+          }}
+        >
+          {children}
+        </FieldContext.Provider>
 
         {error && (
           <Text color="fg.accent.red" fontSize="sm">

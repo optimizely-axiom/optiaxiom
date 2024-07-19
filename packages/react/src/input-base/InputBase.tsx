@@ -7,6 +7,7 @@ import {
 } from "react";
 
 import { Box, type BoxProps } from "../box";
+import { useFieldContext } from "../field";
 import { Flex } from "../flex";
 import { extractSprinkles } from "../sprinkles";
 import { Text } from "../text";
@@ -40,7 +41,7 @@ export const InputBase = forwardRef<
       className,
       disabled,
       endDecorator,
-      error,
+      error: errorProp,
       readOnly,
       size = "md",
       startDecorator,
@@ -48,6 +49,7 @@ export const InputBase = forwardRef<
     },
     ref,
   ) => {
+    const { error, id, required } = useFieldContext({ error: errorProp });
     const { restProps, sprinkleProps } = extractSprinkles(props);
 
     return (
@@ -69,7 +71,14 @@ export const InputBase = forwardRef<
           data-readonly={readOnly ? "" : undefined}
           {...styles.input({ size })}
         >
-          {cloneElement(children, { disabled, readOnly, ref, ...restProps })}
+          {cloneElement(children, {
+            disabled,
+            id,
+            readOnly,
+            ref,
+            required,
+            ...restProps,
+          })}
         </Box>
 
         {endDecorator && <Text asChild>{fallbackSpan(endDecorator)}</Text>}
