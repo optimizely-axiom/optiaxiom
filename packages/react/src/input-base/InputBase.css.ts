@@ -1,6 +1,8 @@
 import { theme } from "../styles";
 import { type RecipeVariants, recipe, style } from "../vanilla-extract";
 
+const marker = style({});
+
 export const wrapper = recipe({
   base: [
     {
@@ -14,20 +16,24 @@ export const wrapper = recipe({
       color: theme.colors["fg.default"],
 
       selectors: {
-        "&:focus-within:is([data-invalid])": {
+        [`&:has(${marker}:focus):is([data-invalid])`]: {
           outlineColor: theme.colors["red.200"],
           outlineOffset: "1px",
           outlineStyle: "solid",
           outlineWidth: "2px",
         },
-        "&:focus-within:not([data-invalid])": {
+        [`&:has(${marker}:focus):not([data-invalid]):not([data-readonly])`]: {
+          borderColor: theme.colors["border.brand"],
+        },
+        [`&:has(${marker}:focus):not([data-invalid])`]: {
           outlineColor: theme.colors["brand.200"],
           outlineOffset: "1px",
           outlineStyle: "solid",
           outlineWidth: "2px",
         },
-        "&:is(:focus-within, :hover)": {
-          borderColor: theme.colors["border.brand"],
+
+        "&:hover": {
+          borderColor: theme.colors["border.active"],
         },
         "&[data-invalid]": {
           borderColor: theme.colors["border.error"],
@@ -48,6 +54,7 @@ export const wrapper = recipe({
 
 export const input = recipe({
   base: [
+    marker,
     {
       bg: "transparent",
       flex: "auto",
