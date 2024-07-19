@@ -15,6 +15,12 @@ export const box = recipe({
         margin: 0,
         padding: 0,
         selectors: {
+          "&:focus-visible": {
+            vars: {
+              "--tw-ring-offset-width": "0",
+            },
+          },
+
           ...{
             /**
              * 1. Add the correct height in Firefox.

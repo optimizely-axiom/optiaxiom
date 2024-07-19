@@ -37,10 +37,6 @@ export const button = recipe({
           boxShadow: theme.boxShadow.inner,
         },
         "&:focus-visible": {
-          vars: {
-            "--tw-ring-offset-width": "0",
-          },
-
           outline: `2px solid ${theme.colors["outline.brand"]}`,
           outlineOffset: "1px",
         },
