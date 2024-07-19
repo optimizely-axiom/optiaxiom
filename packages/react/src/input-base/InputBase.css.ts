@@ -58,11 +58,11 @@ export const input = recipe({
     {
       bg: "transparent",
       flex: "auto",
-      w: "full",
     },
     style({
       fontSize: "14px",
       lineHeight: "22px",
+      minWidth: "0",
       outline: "2px solid transparent",
 
       selectors: {
