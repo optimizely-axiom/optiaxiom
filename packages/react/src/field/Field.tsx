@@ -1,5 +1,5 @@
 import * as RadixLabel from "@radix-ui/react-label";
-import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { useId } from "@reach/auto-id";
 import { type ReactElement, cloneElement, forwardRef } from "react";
 
@@ -15,7 +15,6 @@ type FieldProps = BoxProps<
   {
     children: ReactElement;
     description?: string;
-    disabled?: boolean;
     error?: string;
     id?: string;
     info?: string;
@@ -29,7 +28,6 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(
     {
       children,
       description,
-      disabled,
       error,
       id: idProp,
       info,
@@ -41,51 +39,59 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(
   ) => {
     const id = useId(idProp);
     return (
-      <Flex flexDirection="column" gap="2" maxW="sm" ref={ref} {...props}>
+      <Flex flexDirection="column" gap="4" maxW="sm" ref={ref} {...props}>
         {label && (
           <Flex flexDirection="row" gap="4">
             <Text
               alignItems="center"
               asChild
+              color="fg.tertiary"
               display="flex"
               fontWeight="500"
               gap="2"
             >
               <RadixLabel.Root htmlFor={id}>
                 {label}
+
                 {required && (
-                  <Text aria-hidden="true" as="span" color="fg.error">
+                  <Text
+                    aria-hidden="true"
+                    as="span"
+                    color="fg.accent.red"
+                    fontWeight="400"
+                  >
                     *
                   </Text>
                 )}
               </RadixLabel.Root>
             </Text>
+
             {info && (
               <>
                 <Tooltip content={info}>
                   <IconInfo aria-details={`info${id}`}></IconInfo>
                 </Tooltip>
-                <VisuallyHidden.Root id={`info${id}`}>
-                  {info}
-                </VisuallyHidden.Root>
+                <VisuallyHidden id={`info${id}`}>{info}</VisuallyHidden>
               </>
             )}
           </Flex>
         )}
+
         {cloneElement(children, {
-          disabled,
           error: !!error,
           id,
           required,
         })}
-        {description && (
-          <Text as="p" color="fg.default" fontSize="sm">
-            {description}
+
+        {error && (
+          <Text color="fg.accent.red" fontSize="sm">
+            {error}
           </Text>
         )}
-        {error && (
-          <Text as="p" color="fg.error" fontSize="sm">
-            {error}
+
+        {description && (
+          <Text color="fg.tertiary" fontSize="sm">
+            {description}
           </Text>
         )}
       </Flex>

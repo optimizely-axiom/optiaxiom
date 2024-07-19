@@ -4,82 +4,63 @@ import { Field, Input } from "@optiaxiom/react";
 import { IconCalendar } from "@tabler/icons-react";
 
 export default {
+  args: {
+    children: <Input placeholder="Enter text..." />,
+    label: "Form label",
+  },
   component: Field,
 } as Meta<typeof Field>;
 
 type Story = StoryObj<typeof Field>;
 
-export const Basic: Story = {
-  args: {
-    children: <Input placeholder="This is an Input" />,
-    label: "Form label",
-  },
-};
+export const Basic: Story = {};
 
 export const Required: Story = {
   args: {
     children: (
       <Input
-        placeholder="With Icon"
-        startDecorator={<IconCalendar size="16" />}
+        placeholder="Enter date..."
+        startDecorator={<IconCalendar size="20" />}
       />
     ),
-    label: "Form label",
-    required: true,
-  },
-};
-
-export const RequiredWithInfo: Story = {
-  args: {
-    children: (
-      <Input
-        placeholder="Required"
-        startDecorator={<IconCalendar size="16" />}
-      />
-    ),
-    info: "Give a proper input",
-    label: "Form label",
     required: true,
   },
 };
 
 export const Disabled: Story = {
   args: {
-    children: <Input placeholder="Disabled" />,
-    disabled: true,
-    label: "Form label",
-  },
-};
-
-export const Error: Story = {
-  args: {
-    children: <Input placeholder="With error" />,
-    error: "Form note",
-    label: "Form label",
+    children: <Input disabled placeholder="Enter text..." />,
   },
 };
 
 export const Description: Story = {
   args: {
-    children: <Input placeholder="With description" />,
-    description: "Form note",
-    label: "Form label",
+    description: "This is a help text",
+  },
+};
+
+export const Error: Story = {
+  args: {
+    error: "Required field",
   },
 };
 
 export const DescriptionAndError: Story = {
   args: {
-    children: <Input placeholder="With error" />,
-    description: "Form note",
-    error: "There is an error",
-    label: "Form label",
+    ...Description.args,
+    ...Error.args,
   },
 };
 
 export const Info: Story = {
   args: {
-    children: <Input />,
-    info: "Please enter your home address correctly",
-    label: "Address",
+    info: "This is an important input",
+  },
+};
+
+export const RequiredAndInfo: Story = {
+  args: {
+    ...Info.args,
+    ...Required.args,
   },
 };
