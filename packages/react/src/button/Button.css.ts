@@ -265,12 +265,15 @@ export const icon = recipe({
     },
     size: {
       sm: {
+        h: "auto",
         w: "20",
       },
       md: {
+        h: "auto",
         w: "20",
       },
       lg: {
+        h: "auto",
         w: "20",
       },
     },
