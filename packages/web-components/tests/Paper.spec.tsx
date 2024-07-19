@@ -1,3 +1,4 @@
+import { tokens } from "@optiaxiom/react";
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import { Button } from "@optiaxiom/web-components/Button";
@@ -59,7 +60,7 @@ describe("Paper component", () => {
       withinShadowRoot(screen.getByText("Click")).getByRole("button"),
     ).toHaveStyle({
       "background-color": "rgba(0, 0, 0, 0)",
-      color: "rgb(70, 77, 97)",
+      color: tokens.colors["neutral.900"],
     });
     await waitForTransitionEnd(
       withinShadowRoot(screen.getByText("Click")).getByRole("button"),
