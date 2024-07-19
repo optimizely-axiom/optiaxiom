@@ -6,11 +6,11 @@ import {
   forwardRef,
 } from "react";
 
-import type { ExtendProps } from "../utils";
-
 import { Box, type BoxProps } from "../box";
 import { Flex } from "../flex";
 import { extractSprinkles } from "../sprinkles";
+import { Text } from "../text";
+import { type ExtendProps, fallbackSpan } from "../utils";
 import * as styles from "./InputBase.css";
 
 export type InputBaseProps<
@@ -58,7 +58,7 @@ export const InputBase = forwardRef<
         {...styles.wrapper({}, className)}
         {...sprinkleProps}
       >
-        {startDecorator}
+        {startDecorator && <Text asChild>{fallbackSpan(startDecorator)}</Text>}
 
         <Box
           aria-disabled={disabled}
@@ -72,7 +72,7 @@ export const InputBase = forwardRef<
           {cloneElement(children, { disabled, readOnly, ref, ...restProps })}
         </Box>
 
-        {endDecorator}
+        {endDecorator && <Text asChild>{fallbackSpan(endDecorator)}</Text>}
       </Flex>
     );
   },
