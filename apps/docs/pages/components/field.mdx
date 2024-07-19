@@ -1,0 +1,39 @@
+<ax-layout />
+
+Wrapper for inputs to provide context such as label/help/required etc.
+
+## Basic usage
+
+### Usage
+
+Wrap your actual input controls with `Field` to show additional context for the input.
+
+<ax-demo name="field/usage" />
+
+### Required
+
+Enable the `required` prop to display an asterisk for required inputs.
+
+<ax-demo name="field/required-usage" />
+
+The `required` prop will be forwarded to the input element.
+
+### Description
+
+Use the `description` prop to provide help text for the input.
+
+<ax-demo name="field/description-usage" />
+
+### Error
+
+Use the `error` prop to display validation or other errors for the input.
+
+<ax-demo name="field/error-usage" />
+
+The `error` prop will be forwarded as a boolean to the input element.
+
+### Information
+
+Use the `info` prop to display a help icon with additional context for the input.
+
+<ax-demo name="field/info-usage" />
