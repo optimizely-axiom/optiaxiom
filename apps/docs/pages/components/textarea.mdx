@@ -1,0 +1,69 @@
+<ax-layout />
+
+Multi-line text field for capturing user input.
+
+## Basic usage
+
+### Usage
+
+<ax-demo name="textarea/usage" />
+
+### Error state
+
+Enable the `error` prop to display the error state of the text field.
+
+<ax-demo name="textarea/error-usage" />
+
+### Disabled state
+
+Enable the `disabled` prop to display the disabled state of the text field.
+
+<ax-demo name="textarea/disabled-usage" />
+
+### Read-only state
+
+Enable the `readOnly` prop to display the read-only state of the text field.
+
+<ax-demo name="textarea/readonly-usage" />
+
+## Sizing
+
+### Fixed size
+
+By default `Textarea` does not allow resizing and you can use the `rows` prop to set the size.
+
+<ax-demo name="textarea/size-usage" />
+
+### Auto sizing
+
+Use `resize=auto` prop to automatically resize the textarea as the value changes.
+
+<ax-demo name="textarea/size-auto-usage" />
+
+You can use the `maxRows` and `minRows` props to limit the textarea size.
+
+<ax-demo name="textarea/size-auto-minmax-usage" />
+
+### Manual sizing
+
+Use the `resize=vertical` prop to allow users to manually resize the textarea.
+
+You can use `rows` prop to set the initial size of the textarea.
+
+<ax-demo name="textarea/size-manual-usage" />
+
+### Reset sizing
+
+Use the `resize=none` prop to disallow resizing the textarea.
+
+You can use `rows` prop to set the size of the textarea.
+
+<ax-demo name="textarea/size-reset-usage" />
+
+## Decorators
+
+### Left and right decorators
+
+Use the `startDecorator` and `endDecorator` prop to add icons, text, or any other element to the start or end of the text field.
+
+<ax-demo name="textarea/decorator-usage" />
