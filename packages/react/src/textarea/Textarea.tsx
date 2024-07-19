@@ -13,7 +13,7 @@ type TextareaProps =
         size?: never;
       }
     >)
-  | ({ resize: "none" | "vertical" } & InputBaseProps<
+  | ({ resize?: "none" | "vertical" } & InputBaseProps<
       "textarea",
       {
         children?: never;
