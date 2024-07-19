@@ -14,6 +14,10 @@ export const input = recipe({
 });
 
 export const decorator = recipe({
+  base: {
+    flex: "none",
+  },
+
   variants: {
     position: {
       end: {
