@@ -23,7 +23,16 @@ export function Demo({
   const [props, setProps] = useState(() =>
     Object.entries(propTypes).reduce(
       (result, [name, item]) =>
-        Object.assign(result, { [name]: item.defaultValue?.value }),
+        Object.assign(result, {
+          [name]:
+            item.defaultValue?.value === ""
+              ? undefined
+              : item.defaultValue?.value === "false"
+                ? false
+                : item.defaultValue?.value === "true"
+                  ? true
+                  : item.defaultValue?.value,
+        }),
       {},
     ),
   );
