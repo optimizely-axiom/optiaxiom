@@ -16,7 +16,7 @@ type CheckboxProps = BoxProps<
 >;
 
 export const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>(
-  ({ children, className, endDecorator, ...props }, ref) => {
+  ({ children, endDecorator, id, ...props }, ref) => {
     const { restProps, sprinkleProps } = extractSprinkles(props);
 
     return (
@@ -28,6 +28,7 @@ export const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>(
             </Box>
           )
         }
+        id={id}
         label={children}
         ref={ref}
         {...sprinkleProps}

@@ -14,7 +14,7 @@ type RadioGroupItemProps = BoxProps<
 >;
 
 export const RadioGroupItem = forwardRef<HTMLDivElement, RadioGroupItemProps>(
-  ({ children, endDecorator, id: idProp, ...props }, ref) => {
+  ({ children, endDecorator, id, ...props }, ref) => {
     const { restProps, sprinkleProps } = extractSprinkles(props);
 
     return (
@@ -26,6 +26,7 @@ export const RadioGroupItem = forwardRef<HTMLDivElement, RadioGroupItemProps>(
             </Box>
           )
         }
+        id={id}
         label={children}
         ref={ref}
         {...sprinkleProps}
