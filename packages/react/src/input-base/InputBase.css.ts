@@ -5,13 +5,13 @@ export const wrapper = recipe({
   base: [
     {
       border: "1",
-      color: "fg.default",
       flexDirection: "row",
       gap: "0",
       rounded: "sm",
     },
     style({
       borderColor: theme.colors["border.default"],
+      color: theme.colors["fg.default"],
 
       selectors: {
         "&:focus-within:is([data-invalid])": {
@@ -26,16 +26,20 @@ export const wrapper = recipe({
           outlineStyle: "solid",
           outlineWidth: "2px",
         },
-        "&:hover": {
+        "&:is(:focus-within, :hover)": {
           borderColor: theme.colors["border.brand"],
-        },
-        "&[data-disabled]": {
-          backgroundColor: theme.colors["bg.disabled"],
-          borderColor: theme.colors["border.secondary"],
-          pointerEvents: "none",
         },
         "&[data-invalid]": {
           borderColor: theme.colors["border.error"],
+        },
+        "&[data-readonly]": {
+          borderColor: theme.colors["border.tertiary"],
+        },
+
+        "&[data-disabled]": {
+          backgroundColor: theme.colors["bg.input.disabled"],
+          borderColor: theme.colors["border.secondary"],
+          color: theme.colors["fg.disabled"],
         },
       },
     }),
@@ -52,6 +56,18 @@ export const input = recipe({
       fontSize: "14px",
       lineHeight: "22px",
       outline: "2px solid transparent",
+
+      selectors: {
+        "&::placeholder": {
+          color: theme.colors["fg.tertiary"],
+        },
+        "&[data-disabled]::placeholder": {
+          color: theme.colors["fg.disabled"],
+        },
+        "&[data-readonly]": {
+          cursor: "default",
+        },
+      },
     }),
   ],
 

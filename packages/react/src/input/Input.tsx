@@ -4,7 +4,12 @@ import { Box } from "../box";
 import { InputBase, type InputBaseProps } from "../input-base";
 import * as styles from "./Input.css";
 
-type InputProps = InputBaseProps<"input", NonNullable<styles.InputVariants>>;
+type InputProps = InputBaseProps<
+  "input",
+  {
+    children?: never;
+  } & styles.InputVariants
+>;
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
   (
@@ -19,7 +24,6 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
   ) => {
     return (
       <InputBase
-        asChild
         endDecorator={
           endDecorator && (
             <Box asChild {...styles.decorator({ position: "end", size })}>

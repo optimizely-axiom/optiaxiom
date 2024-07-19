@@ -181,7 +181,7 @@ export const colors = {
   /**
    * Disabled text color for more subtle, lower-contrast, and non-interactive text
    */
-  "fg.disabled": colorPalette["neutral.500"],
+  "fg.disabled": colorPalette["neutral.1200/32"],
   /**
    * Error text color for danger and error states
    */
