@@ -5,11 +5,11 @@ import { type ReactNode, forwardRef } from "react";
 
 import type { BoxProps } from "../box";
 
+import { FieldContext } from "../field-context";
 import { Flex } from "../flex";
 import { IconCircleQuestion } from "../icons/IconCircleQuestion";
 import { Text } from "../text";
 import { Tooltip } from "../tooltip";
-import { FieldContext } from "./FieldContext";
 
 type FieldProps = BoxProps<
   "div",

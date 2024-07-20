@@ -7,7 +7,7 @@ import {
 } from "react";
 
 import { Box, type BoxProps } from "../box";
-import { useFieldContext } from "../field";
+import { useFieldContext } from "../field-context";
 import { Flex } from "../flex";
 import { extractSprinkles } from "../sprinkles";
 import { Text } from "../text";
