@@ -4,12 +4,19 @@ import type { KebabCase } from "./ComponentAttributes";
 
 import { exports } from "../package.json";
 
+type ComponentNames = Exclude<
+  keyof {
+    [Key in keyof typeof Components as Key extends `${infer C}${string}`
+      ? C extends Uppercase<C>
+        ? Key
+        : never
+      : never]: never;
+  },
+  "FieldContext"
+>;
+
 type AllComponents = {
-  [Key in keyof typeof Components as Key extends `${infer C}${string}`
-    ? C extends Uppercase<C>
-      ? `ax${KebabCase<Key>}`
-      : never
-    : never]: Key;
+  [Key in ComponentNames as `ax${KebabCase<Key>}`]: Key;
 };
 
 const exported = (
