@@ -1,8 +1,8 @@
 import { forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
+import { IconUpRightFromSquare } from "../icons/IconUpRightFromSquare";
 import { extractSprinkles } from "../sprinkles";
-import { IconUpRight } from "./IconUpRight";
 import * as styles from "./Link.css";
 
 type LinkProps = BoxProps<
@@ -45,7 +45,7 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
           {children}
           {external && (
             <Box asChild display="inline-flex" ml="4">
-              <IconUpRight />
+              <IconUpRightFromSquare />
             </Box>
           )}
         </a>

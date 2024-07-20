@@ -6,10 +6,10 @@ import { type ReactNode, forwardRef } from "react";
 import type { BoxProps } from "../box";
 
 import { Flex } from "../flex";
+import { IconCircleQuestion } from "../icons/IconCircleQuestion";
 import { Text } from "../text";
 import { Tooltip } from "../tooltip";
 import { FieldContext } from "./FieldContext";
-import { IconInfo } from "./IconInfo";
 
 type FieldProps = BoxProps<
   "div",
@@ -70,7 +70,7 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(
             {info && (
               <>
                 <Tooltip content={info}>
-                  <IconInfo aria-details={`info${id}`}></IconInfo>
+                  <IconCircleQuestion aria-details={`info${id}`} />
                 </Tooltip>
                 <VisuallyHidden id={`info${id}`}>{info}</VisuallyHidden>
               </>

@@ -1,6 +1,6 @@
 import type { ComponentPropsWithRef } from "react";
 
-export const IconUpRight = (props: ComponentPropsWithRef<"svg">) => {
+export const IconUpRightFromSquare = (props: ComponentPropsWithRef<"svg">) => {
   return (
     <svg
       fill="none"

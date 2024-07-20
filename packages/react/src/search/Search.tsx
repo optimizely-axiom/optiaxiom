@@ -7,9 +7,9 @@ import {
 } from "react";
 
 import { Button } from "../button";
+import { IconMagnifyingGlass } from "../icons/IconMagnifyingGlass";
+import { IconX } from "../icons/IconX";
 import { Input } from "../input";
-import { IconCross } from "./IconCross";
-import { IconSearch } from "./IconSearch";
 
 type SearchProps = ComponentPropsWithRef<typeof Input>;
 
@@ -26,7 +26,7 @@ export const Search = forwardRef<HTMLInputElement, SearchProps>(
           value && (
             <Button
               appearance="secondary"
-              icon={value && <IconCross />}
+              icon={value && <IconX />}
               onClick={() => {
                 if (!innerRef.current) {
                   return;
@@ -49,7 +49,7 @@ export const Search = forwardRef<HTMLInputElement, SearchProps>(
           setValue(event.target.value);
         }}
         ref={ref}
-        startDecorator={<IconSearch />}
+        startDecorator={<IconMagnifyingGlass />}
         type="search"
         value={value}
         {...props}

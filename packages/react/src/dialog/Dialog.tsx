@@ -4,9 +4,9 @@ import { type ReactNode, forwardRef } from "react";
 import { AnimatePresence } from "../animate-presence";
 import { Box, type BoxProps } from "../box";
 import { Button } from "../button";
+import { IconX } from "../icons/IconX";
 import { Paper } from "../paper";
 import { Transition } from "../transition";
-import { CloseIcon } from "./CloseIcon";
 import * as styles from "./Dialog.css";
 
 type DialogProps = BoxProps<
@@ -56,7 +56,7 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(
                         <RadixDialog.Close aria-label="Close" asChild>
                           <Button
                             appearance="secondary"
-                            icon={<CloseIcon />}
+                            icon={<IconX />}
                             size="sm"
                           />
                         </RadixDialog.Close>
