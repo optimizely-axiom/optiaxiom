@@ -2,9 +2,9 @@ import * as RadixToggle from "@radix-ui/react-toggle";
 import { type ReactNode, forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
+import { IconX } from "../icons/IconX";
 import { extractSprinkles } from "../sprinkles";
 import * as styles from "./Chip.css";
-import { IconCross } from "./IconCross";
 
 type ChipProps = BoxProps<
   typeof RadixToggle.Root,
@@ -42,7 +42,7 @@ export const Chip = forwardRef<HTMLButtonElement, ChipProps>(
           {endDecorator ? (
             <Box asChild>{endDecorator}</Box>
           ) : (
-            !!onPressedChange && <IconCross />
+            !!onPressedChange && <IconX />
           )}
         </RadixToggle.Root>
       </Box>
