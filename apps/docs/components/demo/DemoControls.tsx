@@ -50,7 +50,7 @@ export function DemoControls({
                 ))}
               </select>
             </Flex>
-          ) : item?.type === "number" ? (
+          ) : item?.type === "range" ? (
             <Flex gap="xs" key={String(item.prop)}>
               <Text fontWeight="600">{propToLabel(item.prop)}</Text>
               <Tooltip
@@ -61,17 +61,19 @@ export function DemoControls({
                 }}
               >
                 <input
-                  max={item.max}
-                  min={item.min}
+                  max={item.options.length - 1}
+                  min={0}
                   onChange={(event) =>
                     onChange((props) => ({
                       ...props,
-                      [item.prop]: event?.target.value,
+                      [item.prop]: item.options[parseInt(event?.target.value)],
                     }))
                   }
-                  step={item.step}
+                  step={1}
                   type="range"
-                  value={String(propValues[item.prop])}
+                  value={String(
+                    item.options.indexOf(String(propValues[item.prop])),
+                  )}
                 />
               </Tooltip>
             </Flex>
@@ -81,6 +83,19 @@ export function DemoControls({
   );
 }
 
+const tshirt = [
+  "xs",
+  "sm",
+  "md",
+  "lg",
+  "xl",
+  "2xl",
+  "3xl",
+  "4xl",
+  "5xl",
+  "6xl",
+];
+
 function itemToControl(item: PropItem) {
   const number = isNumberType(item);
   if (number) {
@@ -88,6 +103,12 @@ function itemToControl(item: PropItem) {
   }
   const dropdown = isDropdownType(item);
   if (dropdown) {
+    if (dropdown.options.every((option) => tshirt.includes(option))) {
+      return {
+        ...dropdown,
+        type: "range" as const,
+      };
+    }
     return dropdown;
   }
   return;
@@ -164,11 +185,9 @@ function isNumberType(item: PropItem) {
 
   return {
     defaultValue: item.defaultValue?.value,
-    max,
-    min,
+    options: Object.keys(map),
     prop: item.name,
-    step,
-    type: "number" as const,
+    type: "range" as const,
   };
 }
 
