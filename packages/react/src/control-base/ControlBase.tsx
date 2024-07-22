@@ -8,9 +8,9 @@ import {
 } from "react";
 
 import { Box, type BoxProps } from "../box";
-import { Flex } from "../flex";
 import { extractSprinkles } from "../sprinkles";
 import { Text } from "../text";
+import { fallbackSpan } from "../utils";
 import * as styles from "./ControlBase.css";
 
 type ControlBaseProps = BoxProps<
@@ -28,22 +28,24 @@ export const ControlBase = forwardRef<HTMLDivElement, ControlBaseProps>(
     const id = useId(idProp);
 
     return (
-      <Flex className={className} gap="0" ref={ref} {...sprinkleProps}>
-        <Flex {...styles.controlBase()}>
-          <Box asChild {...styles.indicator()}>
-            {cloneElement(children, {
-              id,
-              ...restProps,
-            })}
+      <Box ref={ref} {...styles.controlBase({}, className)} {...sprinkleProps}>
+        <Box asChild {...styles.indicator()}>
+          {cloneElement(children, {
+            id,
+            ...restProps,
+          })}
+        </Box>
+
+        <Text asChild {...styles.label()}>
+          <RadixLabel.Root htmlFor={id}>{label}</RadixLabel.Root>
+        </Text>
+
+        {endDecorator && (
+          <Box asChild {...styles.decorator()}>
+            {fallbackSpan(endDecorator)}
           </Box>
-
-          <Text asChild {...styles.label()}>
-            <RadixLabel.Root htmlFor={id}>{label}</RadixLabel.Root>
-          </Text>
-        </Flex>
-
-        {endDecorator}
-      </Flex>
+        )}
+      </Box>
     );
   },
 );

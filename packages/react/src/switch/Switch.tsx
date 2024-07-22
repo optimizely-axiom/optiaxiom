@@ -19,13 +19,7 @@ export const Switch = forwardRef<HTMLDivElement, SwitchProps>(
 
     return (
       <ControlBase
-        endDecorator={
-          endDecorator && (
-            <Box asChild ml="48" pl={size === "lg" ? "4" : undefined}>
-              {endDecorator}
-            </Box>
-          )
-        }
+        endDecorator={endDecorator}
         id={id}
         label={children}
         ref={ref}

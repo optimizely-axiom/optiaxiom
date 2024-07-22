@@ -21,13 +21,7 @@ export const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>(
 
     return (
       <ControlBase
-        endDecorator={
-          endDecorator && (
-            <Box asChild ml="lg">
-              {endDecorator}
-            </Box>
-          )
-        }
+        endDecorator={endDecorator}
         id={id}
         label={children}
         ref={ref}

@@ -19,13 +19,7 @@ export const RadioGroupItem = forwardRef<HTMLDivElement, RadioGroupItemProps>(
 
     return (
       <ControlBase
-        endDecorator={
-          endDecorator && (
-            <Box asChild ml="lg">
-              {endDecorator}
-            </Box>
-          )
-        }
+        endDecorator={endDecorator}
         id={id}
         label={children}
         ref={ref}
