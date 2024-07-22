@@ -1,4 +1,5 @@
 export * from "./recipe";
+export { responsiveStyle } from "./responsiveStyle";
 export { style } from "./style";
 export { styleVariants } from "./styleVariants";
 

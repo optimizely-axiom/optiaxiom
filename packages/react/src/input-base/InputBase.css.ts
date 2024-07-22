@@ -1,5 +1,10 @@
 import { theme } from "../styles";
-import { type RecipeVariants, recipe, style } from "../vanilla-extract";
+import {
+  type RecipeVariants,
+  recipe,
+  responsiveStyle,
+  style,
+} from "../vanilla-extract";
 
 const marker = style({});
 
@@ -60,7 +65,7 @@ export const input = recipe({
       flex: "auto",
     },
     style({
-      fontSize: "14px",
+      fontSize: "16px",
       lineHeight: "22px",
       minWidth: "0",
       outline: "2px solid transparent",
@@ -75,6 +80,11 @@ export const input = recipe({
         "&[data-readonly]": {
           cursor: "default",
         },
+      },
+    }),
+    responsiveStyle({
+      sm: {
+        fontSize: "14px",
       },
     }),
   ],
