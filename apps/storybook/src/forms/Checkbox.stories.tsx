@@ -27,6 +27,23 @@ export const HelperText: Story = {
   },
 };
 
+export const MultiLineLabel: Story = {
+  args: {
+    children: "Label",
+    endDecorator: (
+      <Text color="fg.secondary" fontSize="sm">
+        Helper Text
+      </Text>
+    ),
+  },
+  render: (args) => (
+    <Flex w="208">
+      <Checkbox {...args} />
+      <Checkbox {...args}>This is an example of a multi line label</Checkbox>
+    </Flex>
+  ),
+};
+
 export const Disabled: Story = {
   args: {
     children: "Label",

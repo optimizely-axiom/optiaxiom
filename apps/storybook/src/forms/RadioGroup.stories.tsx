@@ -68,6 +68,33 @@ export const HelperText: Story = {
   ),
 };
 
+export const MultiLineLabel: Story = {
+  render: (args) => (
+    <RadioGroup {...args} w="208">
+      <RadioGroupItem
+        endDecorator={
+          <Text color="fg.secondary" fontSize="sm">
+            Helper First
+          </Text>
+        }
+        value="sample-1"
+      >
+        Label
+      </RadioGroupItem>
+      <RadioGroupItem
+        endDecorator={
+          <Text color="fg.secondary" fontSize="sm">
+            Helper Second
+          </Text>
+        }
+        value="sample-2"
+      >
+        This is an example of a multi line label
+      </RadioGroupItem>
+    </RadioGroup>
+  ),
+};
+
 export const DisabledGroup: Story = {
   render: () => (
     <RadioGroup defaultValue="sample-1" disabled>

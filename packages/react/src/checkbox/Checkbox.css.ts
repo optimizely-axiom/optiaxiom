@@ -34,6 +34,7 @@ export const checkbox = recipe({
     marker,
     {
       color: "white",
+      mt: "2",
       rounded: "xs",
       size: "16",
     },

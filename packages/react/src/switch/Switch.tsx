@@ -4,6 +4,8 @@ import { type ReactNode, forwardRef } from "react";
 import { Box, type BoxProps } from "../box";
 import { ControlBase } from "../control-base";
 import { extractSprinkles } from "../sprinkles";
+import { Text } from "../text";
+import { Tooltip } from "../tooltip";
 import * as styles from "./Switch.css";
 
 type SwitchProps = BoxProps<
@@ -21,7 +23,13 @@ export const Switch = forwardRef<HTMLDivElement, SwitchProps>(
       <ControlBase
         endDecorator={endDecorator}
         id={id}
-        label={children}
+        label={
+          <Tooltip auto content={children}>
+            <Text as="span" truncate>
+              {children}
+            </Text>
+          </Tooltip>
+        }
         ref={ref}
         {...sprinkleProps}
       >

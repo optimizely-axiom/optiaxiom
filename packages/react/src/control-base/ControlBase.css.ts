@@ -70,6 +70,9 @@ export const indicator = recipe({
 export const label = recipe({
   base: [
     {
+      alignItems: "center",
+      display: "flex",
+      overflow: "hidden",
       pl: "xs",
     },
     style({

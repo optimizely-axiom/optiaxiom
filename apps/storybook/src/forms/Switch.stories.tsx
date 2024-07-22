@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Switch, Text } from "@optiaxiom/react";
+import { Flex, Switch, Text } from "@optiaxiom/react";
 
 export default {
   args: {
@@ -27,6 +27,26 @@ export const HelperText: Story = {
       </Text>
     ),
   },
+};
+
+export const MultiLineLabel: Story = {
+  args: {
+    children: "Label",
+    endDecorator: (
+      <Text color="fg.secondary" fontSize="sm">
+        Helper Text
+      </Text>
+    ),
+  },
+  render: (args) => (
+    <Flex w="208">
+      <Switch {...args} />
+      <Switch {...args}>This is a medium example of a multi line label</Switch>
+      <Switch {...args} size="lg">
+        This is a large example of a multi line label
+      </Switch>
+    </Flex>
+  ),
 };
 
 export const Disabled: Story = {
