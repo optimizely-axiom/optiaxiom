@@ -39,7 +39,7 @@ export const thumb = recipe({
           boxShadow: theme.boxShadow["sm"],
         },
         "&[data-disabled]": {
-          backgroundColor: theme.colors["bg.disabled"],
+          backgroundColor: theme.colors["neutral.50"],
         },
         '&[data-state="checked"]': {
           transform: "translateX(10px)",
