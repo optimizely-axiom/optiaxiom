@@ -53,25 +53,31 @@ export const Tooltip = forwardRef<HTMLButtonElement, TooltipProps>(
 
     const [open, setOpen] = useControllableState({
       defaultProp: defaultOpen,
-      onChange:
-        onOpenChange ??
-        ((flag) => {
-          if (auto && flag && innerRef.current) {
-            const { offsetWidth, scrollWidth } = innerRef.current;
-
-            if (offsetWidth >= scrollWidth) {
-              return;
-            }
-          }
-
-          setOpen(flag);
-        }),
+      onChange: onOpenChange,
       prop: openProp,
     });
 
     return (
       <RadixTooltip.Provider delayDuration={delayDuration}>
-        <RadixTooltip.Root onOpenChange={setOpen} open={open}>
+        <RadixTooltip.Root
+          onOpenChange={
+            openProp === undefined
+              ? (flag) => {
+                  if (auto && flag && innerRef.current) {
+                    const { offsetWidth, scrollWidth } = innerRef.current;
+
+                    if (offsetWidth >= scrollWidth) {
+                      return;
+                    }
+                  }
+
+                  setOpen(flag);
+                  onOpenChange?.(flag);
+                }
+              : setOpen
+          }
+          open={open}
+        >
           <RadixTooltip.Trigger asChild ref={ref}>
             {children}
           </RadixTooltip.Trigger>
