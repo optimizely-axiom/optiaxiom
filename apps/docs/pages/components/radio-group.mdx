@@ -1,0 +1,41 @@
+<ax-layout />
+
+Basic control to allow selecting only one item from a set.
+
+## Basic usage
+
+### Usage
+
+Use `RadioGroup` and `RadioGroupItem` components together to create sets of radio buttons.
+
+<ax-demo name="radio-group/usage" />
+
+### Label
+
+The `children` prop on `RadioGroupItem` is used as the label of the radio control.
+
+<ax-demo name="radio-group/label-usage" />
+
+### Disabled state
+
+Enable the `disabled` prop on the `RadioGroup` to toggle the disabled state of all the radio controls.
+
+<ax-demo name="radio-group/disabled-group-usage" />
+
+You can also enable the `disabled` prop on each `RadioGroupItem` to toggle the disabled state of each radio control.
+
+<ax-demo name="radio-group/disabled-usage" />
+
+### Controlled
+
+Use the `value` and `defaultValue` props on `RadioGroup` to toggle between controlled and uncontrolled usage. And combine it with `onValueChange` to listen for changes to the value.
+
+<ax-demo name="radio-group/controlled-usage" />
+
+## Decorators
+
+### Bottom decorators
+
+Use the `endDecorator` prop to add helper text or any other element after the checkbox.
+
+<ax-demo name="radio-group/decorator-usage" />
