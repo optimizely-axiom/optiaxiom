@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { Button, Flex } from "@optiaxiom/react";
-import { IconChevronDown } from "@tabler/icons-react";
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
+import { IconChevronDown, IconCloudUpload } from "@tabler/icons-react";
 
 export default {
   argTypes: {
@@ -61,6 +62,34 @@ export const Primary: Story = {
 export const Danger: Story = {
   ...Variants,
   args: { colorScheme: "danger" },
+};
+
+export const Upload: Story = {
+  args: {
+    asChild: true,
+    children: (
+      <label>
+        Upload file
+        <VisuallyHidden>
+          <input type="file" />
+        </VisuallyHidden>
+      </label>
+    ),
+    icon: <IconCloudUpload />,
+  },
+  render: (args) => (
+    <Flex>
+      <Button {...args} />
+      <Button disabled {...args}>
+        <label>
+          Upload file
+          <VisuallyHidden>
+            <input disabled type="file" />
+          </VisuallyHidden>
+        </label>
+      </Button>
+    </Flex>
+  ),
 };
 
 export const appearance: Story = {

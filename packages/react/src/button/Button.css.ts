@@ -36,7 +36,7 @@ export const button = recipe({
         "&:active:not([data-disabled])": {
           boxShadow: theme.boxShadow.inner,
         },
-        "&:focus-visible": {
+        "&:is(:focus-visible, :has(:focus-visible)):not([data-disabled])": {
           outline: `2px solid ${theme.colors["outline.brand"]}`,
           outlineOffset: "1px",
         },
