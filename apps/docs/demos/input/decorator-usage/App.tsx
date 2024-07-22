@@ -6,7 +6,7 @@ export function App() {
   const [hidden, setHidden] = useState(true);
 
   return (
-    <Flex flexDirection="row">
+    <Flex flexDirection={["column", "row"]}>
       <Input placeholder="Email" startDecorator="@" />
       <Input endDecorator="kg" placeholder="Weight" />
       <Input
