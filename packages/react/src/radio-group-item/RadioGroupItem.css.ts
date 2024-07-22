@@ -6,6 +6,7 @@ export const item = recipe({
   base: [
     {
       border: "1",
+      mt: "2",
       p: "2",
       rounded: "full",
       size: "16",
