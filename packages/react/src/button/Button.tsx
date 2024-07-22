@@ -79,6 +79,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
               {icon && iconPosition === "start" ? icon : <div />}
             </Box>
           )}
+
           <Slottable>
             {isIconOnly ? (
               <Box asChild {...styles.icon({ size })}>
@@ -88,6 +89,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
               children
             )}
           </Slottable>
+
           {!isIconOnly && (
             <Box
               asChild
