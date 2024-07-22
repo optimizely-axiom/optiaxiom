@@ -7,8 +7,7 @@ export const controlColorVar = createVar();
 export const controlBase = recipe({
   base: [
     {
-      flexDirection: "row",
-      gap: "0",
+      display: "grid",
     },
     style({
       vars: {
@@ -16,6 +15,9 @@ export const controlBase = recipe({
       },
 
       color: theme.colors["fg.default"],
+      gridTemplate: `
+            "indicator label"     auto
+            ".         decorator" auto / min-content auto`,
 
       selectors: {
         [`&:has(${marker}:not([data-disabled]):not([data-state="unchecked"])):hover`]:
@@ -48,6 +50,8 @@ export const indicator = recipe({
   base: [
     marker,
     style({
+      gridArea: "indicator",
+
       selectors: {
         "&:focus-visible": {
           outline: `2px solid ${theme.colors["outline.brand"]}`,
@@ -66,17 +70,28 @@ export const indicator = recipe({
 export const label = recipe({
   base: [
     {
-      flex: "1",
       pl: "xs",
     },
     style({
       cursor: "pointer",
+      gridArea: "label",
 
       selectors: {
         [`${marker}[data-disabled] + &`]: {
           cursor: "default",
         },
       },
+    }),
+  ],
+});
+
+export const decorator = recipe({
+  base: [
+    {
+      pl: "xs",
+    },
+    style({
+      gridArea: "decorator",
     }),
   ],
 });
