@@ -76,12 +76,11 @@ export const label = recipe({
       pl: "xs",
     },
     style({
-      cursor: "pointer",
       gridArea: "label",
 
       selectors: {
-        [`${marker}[data-disabled] + &`]: {
-          cursor: "default",
+        [`${marker}:not([data-disabled]) + &`]: {
+          cursor: "pointer",
         },
       },
     }),
