@@ -4,9 +4,6 @@ import { recipe } from "../vanilla-extract";
 
 export const link = recipe({
   base: [
-    {
-      fontSize: "md",
-    },
     style({
       textDecoration: "none",
 
@@ -46,6 +43,19 @@ export const link = recipe({
       }),
     },
   },
+});
+
+export const icon = recipe({
+  base: [
+    {
+      display: "inline-flex",
+      ml: "4",
+    },
+    style({
+      height: "auto",
+      width: "0.875em",
+    }),
+  ],
 });
 
 export type LinkVariants = RecipeVariants<typeof link>;
