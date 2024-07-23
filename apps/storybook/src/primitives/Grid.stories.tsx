@@ -8,7 +8,7 @@ export default {
 
 type Story = StoryObj<typeof Grid>;
 
-export const Primary: Story = {
+export const Basic: Story = {
   args: {
     children: (
       <>

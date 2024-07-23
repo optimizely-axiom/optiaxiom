@@ -8,7 +8,7 @@ export default {
 
 type Story = StoryObj<typeof Box>;
 
-export const Primary: Story = {
+export const Basic: Story = {
   args: {
     bg: "brand.50",
     children: <Text>Hello World!</Text>,

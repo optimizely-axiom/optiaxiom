@@ -8,7 +8,7 @@ export default {
 
 type Story = StoryObj<typeof Separator>;
 
-export const Primary: Story = {
+export const Basic: Story = {
   args: {
     my: "sm",
     orientation: "horizontal",

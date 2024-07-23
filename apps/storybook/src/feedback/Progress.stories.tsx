@@ -10,7 +10,7 @@ export default {
 
 type Story = StoryObj<typeof Progress>;
 
-export const Primary: Story = {
+export const Basic: Story = {
   args: {
     bg: "bg.brand",
     max: 60,

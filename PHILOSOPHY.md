@@ -70,7 +70,7 @@ Each PR has an associated storybook on chromatic which should be validated with 
 
 #### Always provide stories
 
-All components should be accompanied by stories. There should be at least one story called **Primary** which should showcase the very basic and default capabilities and usage.
+All components should be accompanied by stories. There should be at least one story called **Basic** which should showcase the very basic and default capabilities and usage.
 
 Additional stories should be provided to showcase more advanced use cases of the component. Story names should be concise and each story should only demonstrate a single functionality.
 
