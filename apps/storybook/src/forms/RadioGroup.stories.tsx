@@ -2,11 +2,9 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 import { RadioGroup, RadioGroupItem, Text } from "@optiaxiom/react";
 
-const meta: Meta<typeof RadioGroup> = {
+export default {
   component: RadioGroup,
-};
-
-export default meta;
+} as Meta<typeof RadioGroup>;
 
 type Story = StoryObj<typeof RadioGroup>;
 
@@ -71,24 +69,8 @@ export const HelperText: Story = {
 export const MultiLineLabel: Story = {
   render: (args) => (
     <RadioGroup {...args} w="208">
-      <RadioGroupItem
-        endDecorator={
-          <Text color="fg.secondary" fontSize="sm">
-            Helper First
-          </Text>
-        }
-        value="sample-1"
-      >
-        Label
-      </RadioGroupItem>
-      <RadioGroupItem
-        endDecorator={
-          <Text color="fg.secondary" fontSize="sm">
-            Helper Second
-          </Text>
-        }
-        value="sample-2"
-      >
+      <RadioGroupItem value="sample-1">Label</RadioGroupItem>
+      <RadioGroupItem value="sample-2">
         This is an example of a multi line label
       </RadioGroupItem>
     </RadioGroup>

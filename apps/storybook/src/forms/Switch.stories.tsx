@@ -11,7 +11,7 @@ export default {
 
 type Story = StoryObj<typeof Switch>;
 
-export const Default: Story = {};
+export const Basic: Story = {};
 
 export const Large: Story = {
   args: {
@@ -30,14 +30,6 @@ export const HelperText: Story = {
 };
 
 export const MultiLineLabel: Story = {
-  args: {
-    children: "Label",
-    endDecorator: (
-      <Text color="fg.secondary" fontSize="sm">
-        Helper Text
-      </Text>
-    ),
-  },
   render: (args) => (
     <Flex w="208">
       <Switch {...args} />
@@ -49,9 +41,26 @@ export const MultiLineLabel: Story = {
   ),
 };
 
-export const Disabled: Story = {
+export const Checked: Story = {
   args: {
     defaultChecked: true,
+  },
+  render: (args) => (
+    <Flex>
+      <Switch {...args} />
+      <Switch {...args} disabled />
+    </Flex>
+  ),
+};
+
+export const Disabled: Story = {
+  args: {
     disabled: true,
   },
+  render: (args) => (
+    <Flex>
+      <Switch {...args} defaultChecked />
+      <Switch {...args} />
+    </Flex>
+  ),
 };
