@@ -16,7 +16,7 @@ type SwitchProps = BoxProps<
 >;
 
 export const Switch = forwardRef<HTMLDivElement, SwitchProps>(
-  ({ children, endDecorator, id, size = "md", ...props }, ref) => {
+  ({ children, className, endDecorator, id, size = "md", ...props }, ref) => {
     const { restProps, sprinkleProps } = extractSprinkles(props);
 
     return (
@@ -31,6 +31,7 @@ export const Switch = forwardRef<HTMLDivElement, SwitchProps>(
           </Tooltip>
         }
         ref={ref}
+        {...styles.container({}, className)}
         {...sprinkleProps}
       >
         <Box asChild {...styles.root()}>
