@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Link, Text } from "@optiaxiom/react";
+import { Heading, Link, Text } from "@optiaxiom/react";
 
 export default {
   component: Link,
@@ -45,4 +45,23 @@ export const Disabled: Story = {
   args: {
     disabled: true,
   },
+};
+
+export const Header: Story = {
+  args: {
+    external: true,
+  },
+  render: (args) => (
+    <Heading level="3">
+      This is{" "}
+      <Link {...args} href="data:,">
+        a text link
+      </Link>{" "}
+      and this is{" "}
+      <Link {...args} href="">
+        a visited link
+      </Link>
+      .
+    </Heading>
+  ),
 };
