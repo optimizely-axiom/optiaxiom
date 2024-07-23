@@ -2,11 +2,9 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 import { Flex, Text, Textarea } from "@optiaxiom/react";
 
-const meta: Meta<typeof Textarea> = {
+export default {
   component: Textarea,
-};
-
-export default meta;
+} as Meta<typeof Textarea>;
 
 type Story = StoryObj<typeof Textarea>;
 
