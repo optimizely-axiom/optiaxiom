@@ -8,7 +8,7 @@ export default {
 
 type Story = StoryObj<typeof Paper>;
 
-export const Primary: Story = {
+export const Basic: Story = {
   args: {
     children: <Text>Hello World!</Text>,
     p: "md",

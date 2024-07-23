@@ -9,7 +9,7 @@ export default {
 
 type Story = StoryObj<typeof Skeleton>;
 
-export const Primary: Story = {
+export const Basic: Story = {
   args: {
     w: "384",
   },

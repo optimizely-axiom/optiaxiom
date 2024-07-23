@@ -22,7 +22,7 @@ const Variants: Story = {
   ),
 };
 
-export const Primary: Story = {
+export const Basic: Story = {
   args: {
     children: "Badge",
   },

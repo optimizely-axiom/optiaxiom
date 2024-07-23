@@ -45,11 +45,8 @@ const variants = [
   ["subtle", "Subtle"],
 ] as const;
 
-export const Default: Story = {
+export const Basic: Story = {
   ...Variants,
-  args: {
-    colorScheme: "neutral",
-  },
 };
 
 export const Primary: Story = {
@@ -61,7 +58,9 @@ export const Primary: Story = {
 
 export const Danger: Story = {
   ...Variants,
-  args: { colorScheme: "danger" },
+  args: {
+    colorScheme: "danger",
+  },
 };
 
 export const Upload: Story = {

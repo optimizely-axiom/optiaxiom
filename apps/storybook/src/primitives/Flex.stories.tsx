@@ -22,7 +22,7 @@ const Items = ({ label }: { label?: string }) => (
   </>
 );
 
-export const Primary: Story = {
+export const Basic: Story = {
   args: {
     children: <Items />,
   },

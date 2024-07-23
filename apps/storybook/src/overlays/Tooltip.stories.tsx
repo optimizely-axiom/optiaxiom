@@ -16,7 +16,7 @@ export default {
 
 type Story = StoryObj<typeof Tooltip>;
 
-export const Primary: Story = {
+export const Basic: Story = {
   args: {
     children: <button>Hover</button>,
     content: "Add to library",

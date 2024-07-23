@@ -9,7 +9,7 @@ export default {
 
 type Story = StoryObj<typeof Avatar>;
 
-export const Primary: Story = {
+export const Basic: Story = {
   args: {
     children: "JD",
   },
