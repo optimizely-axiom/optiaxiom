@@ -2,8 +2,27 @@ import * as styles from "../control-base/ControlBase.css";
 import { theme } from "../styles";
 import { type RecipeVariants, recipe, style } from "../vanilla-extract";
 
+const marker = style({});
+
+export const container = recipe({
+  base: style({
+    vars: {
+      [styles.controlColorVar]: theme.colors["bg.neutral.solid"],
+    },
+
+    selectors: {
+      [`&:has(${marker}:not([data-disabled])[data-state="unchecked"]):hover`]: {
+        vars: {
+          [styles.controlColorVar]: theme.colors["bg.neutral.solid.hover"],
+        },
+      },
+    },
+  }),
+});
+
 export const root = recipe({
   base: [
+    marker,
     {
       px: "12",
       py: "2",
@@ -13,12 +32,6 @@ export const root = recipe({
     style({
       backgroundColor: styles.controlColorVar,
       position: "relative",
-
-      selectors: {
-        '&[data-state="unchecked"]:not([data-disabled])': {
-          backgroundColor: theme.colors["bg.disabled"],
-        },
-      },
     }),
   ],
 });

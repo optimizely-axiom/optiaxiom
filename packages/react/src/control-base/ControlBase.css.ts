@@ -26,18 +26,17 @@ export const controlBase = recipe({
               [controlColorVar]: theme.colors["bg.brand.solid.hover"],
             },
           },
-        [`&:has(${marker}:not([data-disabled]):not([data-state="unchecked"]))`]:
-          {
-            vars: {
-              [controlColorVar]: theme.colors["bg.brand.solid"],
-            },
-          },
         [`&:has(${marker}:not([data-disabled])[data-state="unchecked"]):hover`]:
           {
             vars: {
               [controlColorVar]: theme.colors["border.active.hover"],
             },
           },
+        [`&:has(${marker}:not([data-state="unchecked"]))`]: {
+          vars: {
+            [controlColorVar]: theme.colors["bg.brand.solid"],
+          },
+        },
         [`&:has(${marker}[data-disabled])`]: {
           color: theme.colors["fg.disabled"],
         },
@@ -58,9 +57,7 @@ export const indicator = recipe({
           outlineOffset: "1px",
         },
         "&[data-disabled]": {
-          vars: {
-            [controlColorVar]: theme.colors["bg.disabled"],
-          },
+          opacity: 0.3,
         },
       },
     }),
