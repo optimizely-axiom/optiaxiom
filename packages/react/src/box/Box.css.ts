@@ -11,7 +11,7 @@ export const box = recipe({
         border: `0 solid ${theme.colors["border.default"]}`,
         boxSizing: "border-box",
         fontFamily: theme.fontFamily.sans,
-        fontFeatureSettings: '"cv02", "cv03", "cv04", "cv11"',
+        fontFeatureSettings: '"cv02", "cv03", "cv04"',
         margin: 0,
         padding: 0,
         selectors: {
