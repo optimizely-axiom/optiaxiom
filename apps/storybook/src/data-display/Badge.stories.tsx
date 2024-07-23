@@ -2,11 +2,9 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 import { Badge, Button, Flex, Heading, Text } from "@optiaxiom/react";
 
-const meta: Meta<typeof Badge> = {
+export default {
   component: Badge,
-};
-
-export default meta;
+} as Meta<typeof Badge>;
 
 type Story = StoryObj<typeof Badge>;
 

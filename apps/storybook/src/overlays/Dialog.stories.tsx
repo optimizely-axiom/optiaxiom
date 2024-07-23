@@ -11,11 +11,9 @@ import {
 import { expect, screen, userEvent, waitFor, within } from "@storybook/test";
 import { useState } from "react";
 
-const meta: Meta<typeof Dialog> = {
+export default {
   component: Dialog,
-};
-
-export default meta;
+} as Meta<typeof Dialog>;
 
 type Story = StoryObj<typeof Dialog>;
 

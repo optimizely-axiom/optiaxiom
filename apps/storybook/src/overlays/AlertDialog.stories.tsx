@@ -4,11 +4,9 @@ import { AlertDialog, Button, Flex } from "@optiaxiom/react";
 import { expect, screen, userEvent, waitFor, within } from "@storybook/test";
 import { useState } from "react";
 
-const meta: Meta<typeof AlertDialog> = {
+export default {
   component: AlertDialog,
-};
-
-export default meta;
+} as Meta<typeof AlertDialog>;
 
 type Story = StoryObj<typeof AlertDialog>;
 
