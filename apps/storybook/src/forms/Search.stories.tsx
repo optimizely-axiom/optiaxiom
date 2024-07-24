@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { Button, Flex, Search, Text } from "@optiaxiom/react";
-import { expect, userEvent, within } from "@storybook/test";
+import { expect, userEvent, waitFor, within } from "@storybook/test";
 import { type ChangeEvent, useState } from "react";
 
 export default {
@@ -60,6 +60,13 @@ export const Interactive: Story = {
 
     const clearButton = canvas.getByRole("button");
     await expect(clearButton).toBeInTheDocument();
+
+    // Cross button should go away when input no longer has focus
+    await userEvent.click(document.body);
+    await waitFor(() =>
+      expect(canvas.queryByRole("button")).not.toBeInTheDocument(),
+    );
+
     await userEvent.click(clearButton);
     await expect(searchInput).toHaveValue("");
     await expect(clearButton).not.toBeInTheDocument();
