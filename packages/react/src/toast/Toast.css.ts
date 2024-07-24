@@ -8,8 +8,6 @@ export const viewPort = recipe({
       z: "popover",
     },
     style({
-      listStyle: "none",
-      minWidth: "380px",
       outline: "none",
       position: "fixed",
     }),
@@ -48,30 +46,35 @@ export const viewPort = recipe({
 
 export const root = recipe({
   base: [
+    {
+      alignItems: "center",
+      w: "384",
+    },
     style({
       borderBottomWidth: "1px",
       borderLeftWidth: "8px",
       borderRightWidth: "1px",
       borderStyle: "solid",
       borderTopWidth: "1px",
+      maxWidth: "90dvw",
     }),
   ],
   variants: {
     type: {
       danger: style({
-        backgroundColor: theme.colors["bg.error.subtle"],
+        backgroundColor: theme.colors["bg.error"],
         borderColor: theme.colors["border.error"],
       }),
       info: style({
-        backgroundColor: theme.colors["bg.brand.subtle"],
+        backgroundColor: theme.colors["bg.brand"],
         borderColor: theme.colors["border.brand"],
       }),
       success: style({
-        backgroundColor: theme.colors["bg.success.subtle"],
+        backgroundColor: theme.colors["bg.success"],
         borderColor: theme.colors["border.success"],
       }),
       warning: style({
-        backgroundColor: theme.colors["bg.warning.subtle"],
+        backgroundColor: theme.colors["bg.warning"],
         borderColor: theme.colors["border.warning"],
       }),
     },
@@ -83,6 +86,7 @@ export const close = recipe({
     {
       flex: "none",
       rounded: "sm",
+      size: "20",
     },
     style({
       cursor: "pointer",
@@ -93,14 +97,17 @@ export const close = recipe({
 
 export const description = recipe({
   base: [
+    {
+      flex: "auto",
+    },
     style({
-      display: "block",
-      minWidth: "288px",
+      maxWidth: "65dvw",
+      width: "288px",
     }),
   ],
 });
 
-export const leftSection = recipe({
+export const startDecorator = recipe({
   base: [
     {
       flex: "none",

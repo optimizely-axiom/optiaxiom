@@ -4,12 +4,12 @@ import { forwardRef } from "react";
 import { Box, type BoxProps } from "../box";
 import { Button } from "../button";
 import { Flex } from "../flex";
+import { IconDanger } from "../icons/IconDanger";
+import { IconInfoCircle } from "../icons/IconInfoCircle";
+import { IconSuccess } from "../icons/IconSuccess";
+import { IconWarning } from "../icons/IconWarning";
+import { IconX } from "../icons/IconX";
 import { extractSprinkles } from "../sprinkles";
-import { IconCross } from "./IconCross";
-import { IconDanger } from "./IconDanger";
-import { IconInfoCircle } from "./IconInfoCircle";
-import { IconSuccess } from "./IconSuccess";
-import { IconWarning } from "./IconWarning";
 import * as styles from "./Toast.css";
 
 type ToastProps = BoxProps<
@@ -55,52 +55,48 @@ export const Toast = forwardRef<HTMLDivElement, ToastProps>(
     const { restProps, sprinkleProps } = extractSprinkles(props);
 
     return (
-      <Flex asChild {...sprinkleProps}>
-        <RadixToast.ToastProvider>
-          <Box asChild {...styles.viewPort({ position })}>
-            <RadixToast.Viewport>
-              <Flex
-                alignItems="center"
-                asChild
-                flexDirection="row"
-                gap="10"
-                justifyContent="space-between"
-                ref={ref}
-                rounded="md"
-                {...sprinkleProps}
+      <RadixToast.ToastProvider>
+        <Box asChild {...styles.viewPort({ position })}>
+          <RadixToast.Viewport>
+            <Flex
+              alignItems="center"
+              asChild
+              flexDirection="row"
+              gap="10"
+              justifyContent="space-between"
+              ref={ref}
+              rounded="md"
+              {...sprinkleProps}
+            >
+              <RadixToast.Root
+                onOpenChange={onClose}
+                onSwipeStart={onClose}
+                open={open}
+                {...styles.root({ type })}
+                {...restProps}
               >
-                <RadixToast.Root
-                  onOpenChange={onClose}
-                  onSwipeStart={onClose}
-                  open={open}
-                  {...styles.root({ type })}
-                  {...restProps}
-                >
-                  <Flex flexDirection="row" gap="8" px="16" py="16">
-                    <Box asChild {...styles.leftSection()}>
-                      {getIcon(type)}
-                    </Box>
-                    <Box asChild {...styles.description()}>
-                      <RadixToast.Description>
-                        {children}
-                      </RadixToast.Description>
-                    </Box>
-                  </Flex>
-                  <Flex {...styles.close()}>
-                    <RadixToast.Close
-                      aria-label="close"
-                      asChild
-                      onClick={onClose}
-                    >
-                      <Button appearance="secondary" icon={<IconCross />} />
-                    </RadixToast.Close>
-                  </Flex>
-                </RadixToast.Root>
-              </Flex>
-            </RadixToast.Viewport>
-          </Box>
-        </RadixToast.ToastProvider>
-      </Flex>
+                <Flex flexDirection="row" gap="8" pl="16" py="16">
+                  <Box asChild {...styles.startDecorator()}>
+                    {getIcon(type)}
+                  </Box>
+                  <Box asChild {...styles.description()}>
+                    <RadixToast.Description>{children}</RadixToast.Description>
+                  </Box>
+                </Flex>
+                <Flex {...styles.close()}>
+                  <RadixToast.Close
+                    aria-label="close"
+                    asChild
+                    onClick={onClose}
+                  >
+                    <Button appearance="secondary" icon={<IconX />} p="0" />
+                  </RadixToast.Close>
+                </Flex>
+              </RadixToast.Root>
+            </Flex>
+          </RadixToast.Viewport>
+        </Box>
+      </RadixToast.ToastProvider>
     );
   },
 );
