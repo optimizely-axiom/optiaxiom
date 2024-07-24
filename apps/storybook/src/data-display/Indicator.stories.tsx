@@ -29,6 +29,11 @@ const Variants: Story = {
   ),
 };
 
+export const Default: Story = {
+  ...Variants,
+  args: {},
+};
+
 export const Primary: Story = {
   ...Variants,
   args: {
@@ -43,7 +48,7 @@ export const Danger: Story = {
 
 export const Info: Story = {
   ...Variants,
-  args: { colorScheme: "info" },
+  args: { colorScheme: "information" },
 };
 
 export const Success: Story = {
@@ -56,14 +61,14 @@ export const Warning: Story = {
   args: { colorScheme: "warning" },
 };
 
-export const Neutral: Story = {
+export const None: Story = {
   ...Variants,
-  args: { colorScheme: "neutral" },
+  args: { colorScheme: "none" },
 };
 
 export const AllPositions: Story = {
   args: {
-    colorScheme: "info",
+    colorScheme: "information",
     variant: "solid",
   },
   render: (args) => (
