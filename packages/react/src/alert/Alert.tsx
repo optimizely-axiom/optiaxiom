@@ -2,13 +2,13 @@ import { type ReactNode, forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
 import { Button } from "../button";
-import { IconCross } from "../chip/IconCross";
 import { Flex } from "../flex";
+import { IconDanger } from "../icons/IconDanger";
+import { IconInfoCircle } from "../icons/IconInfoCircle";
+import { IconSuccess } from "../icons/IconSuccess";
+import { IconWarning } from "../icons/IconWarning";
+import { IconX } from "../icons/IconX";
 import { Text } from "../text";
-import { IconDanger } from "../toast/IconDanger";
-import { IconInfoCircle } from "../toast/IconInfoCircle";
-import { IconSuccess } from "../toast/IconSuccess";
-import { IconWarning } from "../toast/IconWarning";
 import * as styles from "./Alert.css";
 
 type AlertProps = BoxProps<
@@ -17,7 +17,6 @@ type AlertProps = BoxProps<
     children: ReactNode;
     onClose?: () => void;
     title?: ReactNode;
-    type?: "danger" | "info" | "success" | "warning";
   } & styles.AlertVariants
 >;
 
@@ -52,7 +51,7 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>(
           <Button
             appearance="secondary"
             color={type == "warning" ? "fg.default" : "white"}
-            icon={<IconCross />}
+            icon={<IconX />}
             onClick={onClose}
             px="2"
             py="4"
