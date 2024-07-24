@@ -22,6 +22,7 @@ export const Search = forwardRef<HTMLInputElement, SearchProps>(
 
     return (
       <Input
+        autoComplete="off"
         endDecorator={
           value && (
             <Button
