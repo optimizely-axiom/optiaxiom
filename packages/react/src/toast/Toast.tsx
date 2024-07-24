@@ -17,15 +17,8 @@ type ToastProps = BoxProps<
   {
     onClose?: () => void;
     open: boolean;
-    position?:
-      | "bottom"
-      | "bottom-left"
-      | "bottom-right"
-      | "top"
-      | "top-left"
-      | "top-right";
-    type?: "danger" | "info" | "success" | "warning";
-  }
+  } & styles.ToastPositionVariants &
+    styles.ToastTypeVariants
 >;
 
 const iconMap = new Map([
