@@ -12,10 +12,12 @@ import { Paper } from "../paper";
 import { extractSprinkles } from "../sprinkles";
 import * as styles from "./Toast.css";
 
-type ToastProps = BoxProps<
+export type ToastProps = BoxProps<
   typeof RadixToast.Root,
   NonNullable<styles.RootVariants>
 >;
+
+export type ToastActionElement = React.ReactElement<typeof RadixToast.Action>;
 
 const iconMap = new Map([
   ["danger", IconDanger],
