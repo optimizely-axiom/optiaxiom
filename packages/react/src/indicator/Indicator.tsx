@@ -1,13 +1,13 @@
-import { type ComponentPropsWithRef, type ReactNode, forwardRef } from "react";
+import { type ReactNode, forwardRef } from "react";
 
-import type { ExtendProps } from "../utils";
+import type { BoxProps } from "../box";
 
 import { Badge } from "../badge";
 import { Flex } from "../flex";
 import * as styles from "./Indicator.css";
 
-type IndicatorProps = ExtendProps<
-  ComponentPropsWithRef<typeof Badge>,
+type IndicatorProps = BoxProps<
+  typeof Badge,
   {
     content: ReactNode;
   } & styles.IndicatorVariants
