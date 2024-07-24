@@ -1,12 +1,10 @@
 import * as RadixTabs from "@radix-ui/react-tabs";
 import { type ComponentPropsWithRef, forwardRef } from "react";
 
-import type { ExtendProps } from "../utils";
+import { Box, type BoxProps } from "../box";
 
-import { Box } from "../box";
-
-type TabsContentProps = ExtendProps<
-  ComponentPropsWithRef<typeof Box>,
+type TabsContentProps = BoxProps<
+  "div",
   ComponentPropsWithRef<typeof RadixTabs.TabsContent>
 >;
 

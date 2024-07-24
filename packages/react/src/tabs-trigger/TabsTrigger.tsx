@@ -1,15 +1,13 @@
 import * as RadixTabs from "@radix-ui/react-tabs";
 import { Children, type ComponentPropsWithRef, forwardRef } from "react";
 
-import type { ExtendProps } from "../utils";
-
-import { Box } from "../box";
+import { Box, type BoxProps } from "../box";
 import { Flex } from "../flex";
 import * as styles from "./TabsTrigger.css";
 
-type TabsTriggerProps = ExtendProps<
-  ComponentPropsWithRef<typeof Flex>,
-  ComponentPropsWithRef<typeof RadixTabs.TabsTrigger>
+type TabsTriggerProps = BoxProps<
+  "div",
+  ComponentPropsWithRef<typeof RadixTabs.Trigger>
 >;
 
 export const TabsTrigger = forwardRef<HTMLDivElement, TabsTriggerProps>(
