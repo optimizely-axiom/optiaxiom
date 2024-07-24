@@ -1,5 +1,5 @@
 import { theme } from "../styles";
-import { recipe, style } from "../vanilla-extract";
+import { type RecipeVariants, recipe, style } from "../vanilla-extract";
 
 export const viewPort = recipe({
   base: [
@@ -118,3 +118,8 @@ export const startDecorator = recipe({
     }),
   ],
 });
+
+export type ToastPositionVariants = NonNullable<
+  RecipeVariants<typeof viewPort>
+>;
+export type ToastTypeVariants = NonNullable<RecipeVariants<typeof root>>;
