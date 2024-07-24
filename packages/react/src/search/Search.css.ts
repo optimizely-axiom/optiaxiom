@@ -14,9 +14,10 @@ export const clear = recipe({
     },
     style({
       selectors: {
-        [`${marker}:not(:focus-within):not(:hover) &`]: {
-          visibility: "hidden",
-        },
+        [`${marker}:is(:not(:focus-within):not(:hover), :has(input:disabled)) &`]:
+          {
+            visibility: "hidden",
+          },
       },
     }),
   ],
