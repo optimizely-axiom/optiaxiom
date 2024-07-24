@@ -1,74 +1,67 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Box, Flex, Search } from "@optiaxiom/react";
+import { Button, Flex, Search, Text } from "@optiaxiom/react";
 import { expect, userEvent, within } from "@storybook/test";
 import { type ChangeEvent, useState } from "react";
 
 export default {
+  args: {
+    placeholder: "Search...",
+    w: "240",
+  },
   component: Search,
 } as Meta<typeof Search>;
 
 type Story = StoryObj<typeof Search>;
 
-export const Basic: Story = {
-  render: () => (
-    <Flex w="240">
-      <Search placeholder="Search..." />
-    </Flex>
-  ),
-};
+export const Basic: Story = {};
 
-export const WithDefaultValue: Story = {
-  render: () => (
-    <Flex w="240">
-      <Search defaultValue="Initial text" placeholder="Search..." />
-    </Flex>
-  ),
+export const Value: Story = {
+  args: {
+    defaultValue: "Initial text",
+  },
 };
 
 export const Disabled: Story = {
-  render: () => (
-    <Flex w="240">
-      <Search disabled placeholder="Search..." />
-    </Flex>
-  ),
+  args: {
+    disabled: true,
+  },
 };
 
-export const Controlled = () => {
-  const [value, setValue] = useState("");
+export const Controlled: Story = {
+  render: function Sample(args) {
+    const [value, setValue] = useState("");
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.value);
-  };
+    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+      setValue(event.target.value);
+    };
 
-  return (
-    <Flex flexDirection="column" gap="sm" w="240">
-      <Search
-        onChange={handleChange}
-        placeholder="Type to search..."
-        value={value}
-      />
-      <Box>Current value: {value}</Box>
-    </Flex>
-  );
+    return (
+      <Flex flexDirection="column" gap="sm" w="240">
+        <Search {...args} onChange={handleChange} value={value} />
+        <Text>Current value: {value}</Text>
+        <Button disabled={!value} onClick={() => setValue("")}>
+          Clear
+        </Button>
+      </Flex>
+    );
+  },
 };
 
 export const Interactive: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const searchInput = canvas.getByPlaceholderText("Type to search...");
+
+    const searchInput = canvas.getByPlaceholderText("Search...");
     await expect(searchInput).toBeInTheDocument();
+
     await userEvent.type(searchInput, "test search");
     await expect(searchInput).toHaveValue("test search");
+
     const clearButton = canvas.getByRole("button");
     await expect(clearButton).toBeInTheDocument();
     await userEvent.click(clearButton);
     await expect(searchInput).toHaveValue("");
     await expect(clearButton).not.toBeInTheDocument();
   },
-  render: () => (
-    <Flex w="240">
-      <Search placeholder="Type to search..." />
-    </Flex>
-  ),
 };
