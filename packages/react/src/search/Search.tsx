@@ -32,13 +32,8 @@ export const Search = forwardRef<HTMLInputElement, SearchProps>(
                 if (!innerRef.current) {
                   return;
                 }
-                Object.getOwnPropertyDescriptor(
-                  innerRef.current.constructor.prototype,
-                  "value",
-                )?.set?.call(innerRef.current, "");
-                innerRef.current?.dispatchEvent(
-                  new Event("change", { bubbles: true }),
-                );
+
+                forceValueChange(innerRef.current, "");
                 innerRef.current.focus();
               }}
               size="sm"
@@ -60,3 +55,11 @@ export const Search = forwardRef<HTMLInputElement, SearchProps>(
 );
 
 Search.displayName = "@optiaxiom/react/Search";
+
+function forceValueChange(input: HTMLInputElement, value: string) {
+  Object.getOwnPropertyDescriptor(
+    input.constructor.prototype,
+    "value",
+  )?.set?.call(input, value);
+  input.dispatchEvent(new Event("change", { bubbles: true }));
+}
