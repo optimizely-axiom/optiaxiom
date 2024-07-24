@@ -25,6 +25,7 @@
     "title": "Navigation"
   },
   "link": "Link",
+  "tabs": "Tabs",
   "-- Overlays": {
     "type": "separator",
     "title": "Overlays"
@@ -38,6 +39,7 @@
   },
   "avatar": "Avatar",
   "badge": "Badge",
+  "indicator": "Indicator",
   "separator": "Separator",
   "-- Forms": {
     "type": "separator",
@@ -45,6 +47,7 @@
   },
   "button": "Button",
   "checkbox": "Checkbox",
+  "chip": "Chip",
   "field": "Field",
   "input": "Input",
   "radio-group": "Radio Group",
