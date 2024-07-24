@@ -10,11 +10,15 @@ import { Button } from "../button";
 import { IconMagnifyingGlass } from "../icons/IconMagnifyingGlass";
 import { IconX } from "../icons/IconX";
 import { Input } from "../input";
+import * as styles from "./Search.css";
 
 type SearchProps = ComponentPropsWithRef<typeof Input>;
 
 export const Search = forwardRef<HTMLInputElement, SearchProps>(
-  ({ defaultValue = "", onChange, value: valueProp, ...props }, outerRef) => {
+  (
+    { className, defaultValue = "", onChange, value: valueProp, ...props },
+    outerRef,
+  ) => {
     const innerRef = useRef<HTMLInputElement>(null);
     const ref = useComposedRefs(innerRef, outerRef);
     const [innerValue, setValue] = useState(defaultValue);
@@ -36,7 +40,7 @@ export const Search = forwardRef<HTMLInputElement, SearchProps>(
                 forceValueChange(innerRef.current, "");
                 innerRef.current.focus();
               }}
-              size="sm"
+              {...styles.clear()}
             />
           )
         }
@@ -48,6 +52,7 @@ export const Search = forwardRef<HTMLInputElement, SearchProps>(
         startDecorator={<IconMagnifyingGlass />}
         type="search"
         value={value}
+        {...styles.search({}, className)}
         {...props}
       />
     );
