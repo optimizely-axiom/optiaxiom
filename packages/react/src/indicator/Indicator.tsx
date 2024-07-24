@@ -27,12 +27,12 @@ export const Indicator = forwardRef<HTMLDivElement, IndicatorProps>(
     ref,
   ) => {
     return (
-      <Flex {...styles.indicator()}>
+      <Flex {...styles.wrapper()}>
         <Badge
           colorScheme={colorScheme}
           ref={ref}
           variant={variant}
-          {...styles.badge({ position }, className)}
+          {...styles.indicator({ position }, className)}
           {...props}
         >
           {content}

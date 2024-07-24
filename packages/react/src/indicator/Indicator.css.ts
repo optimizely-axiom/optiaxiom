@@ -1,6 +1,6 @@
 import { type RecipeVariants, recipe, style } from "../vanilla-extract";
 
-export const badge = recipe({
+export const indicator = recipe({
   base: [
     {
       alignItems: "center",
@@ -35,10 +35,10 @@ export const badge = recipe({
   },
 });
 
-export const indicator = recipe({
+export const wrapper = recipe({
   base: style({
     position: "relative",
   }),
 });
 
-export type IndicatorVariants = NonNullable<RecipeVariants<typeof badge>>;
+export type IndicatorVariants = NonNullable<RecipeVariants<typeof indicator>>;
