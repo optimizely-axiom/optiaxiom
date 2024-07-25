@@ -1,15 +1,12 @@
-import { type ReactNode, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
-import type { ToastActionElement, ToastProps } from "../toast/Toast";
+import type { ToastProps } from "../toast/Toast";
 
 const DEFAULT_TOAST_REMOVE_DELAY = 1000;
 
 type ToasterToast = {
-  action?: ToastActionElement;
-  description?: ReactNode;
   duration?: number;
   id: string;
-  title?: ReactNode;
 } & ToastProps;
 
 const actionTypes = {
