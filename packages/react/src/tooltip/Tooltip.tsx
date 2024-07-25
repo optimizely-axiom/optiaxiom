@@ -26,6 +26,7 @@ type TooltipProps = BoxProps<
     delayDuration?: ComponentPropsWithRef<
       typeof RadixTooltip.Provider
     >["delayDuration"];
+    keepOpenOnActivation?: boolean;
     onOpenChange?: (open: boolean) => void;
     open?: boolean;
     withArrow?: boolean;
@@ -40,6 +41,7 @@ export const Tooltip = forwardRef<HTMLButtonElement, TooltipProps>(
       content,
       defaultOpen,
       delayDuration,
+      keepOpenOnActivation,
       onOpenChange,
       open: openProp,
       withArrow,
@@ -78,7 +80,15 @@ export const Tooltip = forwardRef<HTMLButtonElement, TooltipProps>(
           }
           open={open}
         >
-          <RadixTooltip.Trigger asChild ref={ref}>
+          <RadixTooltip.Trigger
+            asChild
+            onClick={
+              keepOpenOnActivation
+                ? (event) => event.preventDefault()
+                : undefined
+            }
+            ref={ref}
+          >
             {children}
           </RadixTooltip.Trigger>
 
@@ -88,17 +98,27 @@ export const Tooltip = forwardRef<HTMLButtonElement, TooltipProps>(
                 <Transition type="pop">
                   <Box
                     asChild
-                    bg="dark.600"
+                    bg="neutral.900"
                     color="white"
-                    px="6"
-                    py="4"
-                    rounded="sm"
+                    px="12"
+                    py="8"
+                    rounded="md"
                     z={z}
                     {...props}
                   >
-                    <RadixTooltip.Content sideOffset={5}>
+                    <RadixTooltip.Content
+                      onPointerDownOutside={
+                        keepOpenOnActivation
+                          ? (event: CustomEvent) => {
+                              if (event.target === innerRef.current)
+                                event.preventDefault();
+                            }
+                          : undefined
+                      }
+                      sideOffset={5}
+                    >
                       <Text fontSize="sm">{content}</Text>
-                      {withArrow && <RadixTooltip.Arrow />}
+                      {withArrow && <RadixTooltip.Arrow height={4} width={8} />}
                     </RadixTooltip.Content>
                   </Box>
                 </Transition>

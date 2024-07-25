@@ -7,7 +7,7 @@ export const fontSize = {
   },
   sm: {
     fontSize: rem("12px"),
-    lineHeight: rem("18px"),
+    lineHeight: rem("16px"),
   },
   md: {
     fontSize: rem("14px"),

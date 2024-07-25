@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Flex, Switch, Text, Tooltip } from "@optiaxiom/react";
+import { Button, Flex, Grid, Switch, Text, Tooltip } from "@optiaxiom/react";
 import {
   expect,
   screen,
@@ -17,7 +17,7 @@ type Story = StoryObj<typeof Tooltip>;
 
 export const Basic: Story = {
   args: {
-    children: <button>Hover</button>,
+    children: <Button>Hover</Button>,
     content: "Add to library",
     side: "top",
     withArrow: false,
@@ -80,10 +80,59 @@ export const Controlled: Story = {
 
 export const DefaultOpen: Story = {
   args: {
-    children: <button>Hover</button>,
+    children: <Button>Hover</Button>,
     content: "Add to library",
     defaultOpen: true,
   },
+};
+
+export const AllPositions: Story = {
+  args: {
+    withArrow: true,
+  },
+  render: (args) => (
+    <Grid gap="16">
+      <Tooltip align="start" content="Top Start" side="top" {...args}>
+        <Button style={{ gridColumn: "2", gridRow: "1" }}>Top Start</Button>
+      </Tooltip>
+      <Tooltip align="center" content="Top Center" side="top" {...args}>
+        <Button style={{ gridColumn: "3", gridRow: "1" }}>Top Center</Button>
+      </Tooltip>
+      <Tooltip align="end" content="Top End" side="top" {...args}>
+        <Button style={{ gridColumn: "4", gridRow: "1" }}>Top End</Button>
+      </Tooltip>
+
+      <Tooltip align="start" content="Right Start" side="right" {...args}>
+        <Button style={{ gridColumn: "5", gridRow: "2" }}>Right Start</Button>
+      </Tooltip>
+      <Tooltip align="center" content="Right Center" side="right" {...args}>
+        <Button style={{ gridColumn: "5", gridRow: "3" }}>Right Center</Button>
+      </Tooltip>
+      <Tooltip align="end" content="Right End" side="right" {...args}>
+        <Button style={{ gridColumn: "5", gridRow: "4" }}>Right End</Button>
+      </Tooltip>
+
+      <Tooltip align="start" content="Bottom Start" side="bottom" {...args}>
+        <Button style={{ gridColumn: "2", gridRow: "5" }}>Bottom Start</Button>
+      </Tooltip>
+      <Tooltip align="center" content="Bottom Center" side="bottom" {...args}>
+        <Button style={{ gridColumn: "3", gridRow: "5" }}>Bottom Center</Button>
+      </Tooltip>
+      <Tooltip align="end" content="Bottom End" side="bottom" {...args}>
+        <Button style={{ gridColumn: "4", gridRow: "5" }}>Bottom End</Button>
+      </Tooltip>
+
+      <Tooltip align="start" content="Left Start" side="left" {...args}>
+        <Button style={{ gridColumn: "1", gridRow: "2" }}>Left Start</Button>
+      </Tooltip>
+      <Tooltip align="center" content="Left Center" side="left" {...args}>
+        <Button style={{ gridColumn: "1", gridRow: "3" }}>Left Center</Button>
+      </Tooltip>
+      <Tooltip align="end" content="Left End" side="left" {...args}>
+        <Button style={{ gridColumn: "1", gridRow: "4" }}>Left End</Button>
+      </Tooltip>
+    </Grid>
+  ),
 };
 
 export const Truncate: Story = {
