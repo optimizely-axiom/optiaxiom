@@ -4,21 +4,26 @@ import { type RecipeVariants, recipe, style } from "../vanilla-extract";
 export const alert = recipe({
   base: [
     {
-      alignItems: "center",
-      flexDirection: "row",
-      gap: "10",
-      justifyContent: "space-between",
+      display: "grid",
+      gap: "xs",
+      pl: "md",
       py: "md",
       rounded: "md",
     },
     style({
+      gridTemplateAreas: '"start content close"',
+      gridTemplateColumns: "auto 1fr auto",
       maxWidth: "90dvw",
     }),
   ],
   variants: {
     size: {
-      md: style({ width: "380px" }),
-      lg: style({ width: "640px" }),
+      md: style({
+        width: "380px",
+      }),
+      lg: style({
+        width: "640px",
+      }),
     },
     type: {
       danger: style({
@@ -44,11 +49,14 @@ export const alert = recipe({
 export const close = recipe({
   base: [
     {
+      px: "2",
+      py: "4",
       rounded: "sm",
       size: "sm",
     },
     style({
       cursor: "pointer",
+      gridArea: "close",
       marginRight: "14px",
     }),
   ],
@@ -57,19 +65,34 @@ export const close = recipe({
 export const content = recipe({
   base: [
     {
-      flex: "auto",
+      display: "flex",
+      flexDirection: "column",
       gap: "xs",
+      overflow: "hidden",
     },
+    style({
+      gridArea: "content",
+    }),
   ],
+  variants: {
+    size: {
+      md: style({ minWidth: "288px" }),
+      lg: style({ minWidth: "540px" }),
+    },
+  },
 });
 
 export const startDecorator = recipe({
   base: [
     {
       flex: "none",
-      h: "xs",
-      w: "16",
+      mt: "2",
+      size: "xs",
     },
+    style({
+      alignSelf: "start",
+      gridArea: "start",
+    }),
   ],
 });
 

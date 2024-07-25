@@ -35,29 +35,31 @@ const getIcon = (type: string) => {
 export const Alert = forwardRef<HTMLDivElement, AlertProps>(
   ({ children, onClose, size = "md", title, type = "info", ...props }, ref) => {
     return (
-      <Flex ref={ref} {...styles.alert({ size, type })} {...props}>
-        <Flex alignItems="start" flexDirection="row" gap="xs" pl="md">
-          <Box asChild {...styles.startDecorator()}>
-            {getIcon(type)}
+      <Box ref={ref} {...styles.alert({ size, type })} {...props}>
+        <Box asChild {...styles.startDecorator()}>
+          {getIcon(type)}
+        </Box>
+        <Flex {...styles.content()}>
+          {title && (
+            <Text fontWeight="600" mt="2">
+              {title}
+            </Text>
+          )}
+          <Box fontSize="md" fontWeight="400">
+            {children}
           </Box>
-          <Flex {...styles.content()}>
-            {title && <Text fontWeight="600">{title}</Text>}
-            <Box fontSize="md" fontWeight="400">
-              {children}
-            </Box>
-          </Flex>
         </Flex>
-        <Flex {...styles.close()}>
+        <Box {...styles.close()}>
           <Button
             appearance="secondary"
             color={type == "warning" ? "fg.default" : "white"}
+            h="16"
             icon={<IconX />}
             onClick={onClose}
-            px="2"
-            py="4"
+            p="0"
           />
-        </Flex>
-      </Flex>
+        </Box>
+      </Box>
     );
   },
 );
