@@ -24,6 +24,7 @@ export const withIcon = (
         fill={fill}
         height={height}
         ref={ref}
+        role="img"
         viewBox={`0 0 ${width} ${height}`}
         width={width}
         xmlns="http://www.w3.org/2000/svg"
