@@ -53,9 +53,11 @@ export const badge = recipe({
           [subtleColorVar]: theme.colors["fg.secondary"],
         },
       }),
-      none: style({
+      plain: style({
         vars: {
+          [solidBackgroundColorVar]: theme.colors["surface"],
           [solidColorVar]: theme.colors["fg.default"],
+          [subtleBackgroundColorVar]: theme.colors["surface"],
           [subtleColorVar]: theme.colors["fg.tertiary"],
         },
       }),

@@ -17,7 +17,7 @@ const Variants: Story = {
       <Badge colorScheme="danger" {...args} />
       <Badge colorScheme="neutral" {...args} />
       <Badge colorScheme="information" {...args} />
-      <Badge colorScheme="none" {...args} />
+      <Badge colorScheme="plain" {...args} />
     </Flex>
   ),
 };
