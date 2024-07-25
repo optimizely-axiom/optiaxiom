@@ -4,15 +4,14 @@ import { type RecipeVariants, recipe, style } from "../vanilla-extract";
 export const alert = recipe({
   base: [
     {
-      display: "grid",
+      alignItems: "start",
+      flexDirection: "row",
       gap: "xs",
       pl: "md",
       py: "md",
       rounded: "md",
     },
     style({
-      gridTemplateAreas: '"start content close"',
-      gridTemplateColumns: "auto 1fr auto",
       maxWidth: "90dvw",
     }),
   ],
@@ -65,14 +64,12 @@ export const close = recipe({
 export const content = recipe({
   base: [
     {
-      display: "flex",
+      flex: "1",
       flexDirection: "column",
       gap: "xs",
+      mt: "2",
       overflow: "hidden",
     },
-    style({
-      gridArea: "content",
-    }),
   ],
   variants: {
     size: {
@@ -89,10 +86,6 @@ export const startDecorator = recipe({
       mt: "2",
       size: "xs",
     },
-    style({
-      alignSelf: "start",
-      gridArea: "start",
-    }),
   ],
 });
 
