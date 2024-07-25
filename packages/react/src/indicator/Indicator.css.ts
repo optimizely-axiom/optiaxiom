@@ -1,4 +1,4 @@
-import { recipe, style } from "../vanilla-extract";
+import { createVar, recipe, style } from "../vanilla-extract";
 
 export const indicator = recipe({
   base: [
@@ -11,6 +11,8 @@ export const indicator = recipe({
   ],
 });
 
+const offsetVar = createVar();
+
 export const floating = recipe({
   base: [
     {
@@ -18,6 +20,10 @@ export const floating = recipe({
       z: "10",
     },
     style({
+      vars: {
+        [offsetVar]: "50%",
+      },
+
       position: "absolute",
       right: 0,
     }),
@@ -27,12 +33,20 @@ export const floating = recipe({
     align: {
       end: style({
         bottom: 0,
-        transform: "translate(50%, 50%)",
+        transform: `translate(${offsetVar}, ${offsetVar})`,
       }),
       start: style({
         top: 0,
-        transform: "translate(50%, -50%)",
+        transform: `translate(${offsetVar}, calc(-1 * ${offsetVar}))`,
       }),
+    },
+    offset: {
+      false: style({
+        vars: {
+          [offsetVar]: "2px",
+        },
+      }),
+      true: {},
     },
   },
 });

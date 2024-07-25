@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Box, Button, Flex, Indicator } from "@optiaxiom/react";
-import { IconBell } from "@tabler/icons-react";
+import { Avatar, Box, Button, Flex, Indicator } from "@optiaxiom/react";
+import { IconBell, IconClockFilled } from "@tabler/icons-react";
 
 export default {
   args: {
@@ -86,5 +86,30 @@ export const Ping: Story = {
     content: "",
     ping: true,
     variant: "solid",
+  },
+};
+
+export const Presence: Story = {
+  args: {
+    align: "end",
+    asChild: true,
+    children: (
+      <Avatar
+        name="John Snow"
+        src="https://images.unsplash.com/photo-1511485977113-f34c92461ad9?ixlib=rb-1.2.1&w=128&h=128&dpr=2&q=80"
+      />
+    ),
+    content: (
+      <Box
+        asChild
+        bg="white"
+        color="bg.warning.solid"
+        p="0"
+        style={{ transform: "none" }}
+      >
+        <IconClockFilled size="14" />
+      </Box>
+    ),
+    offset: false,
   },
 };
