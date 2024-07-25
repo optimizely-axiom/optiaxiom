@@ -1,33 +1,35 @@
-import { type RecipeVariants, recipe, style } from "../vanilla-extract";
+import { recipe, style } from "../vanilla-extract";
 
 export const indicator = recipe({
   base: [
     {
-      alignItems: "center",
-      fontSize: "sm",
-      fontWeight: "500",
-      justifyContent: "center",
-      p: "2",
-      rounded: "xl",
+      display: "inline-flex",
     },
     style({
-      minHeight: "20px",
-      minWidth: "20px",
+      position: "relative",
+    }),
+  ],
+});
+
+export const floating = recipe({
+  base: [
+    {
+      display: "inline-flex",
+      z: "10",
+    },
+    style({
       position: "absolute",
-      zIndex: 1,
+      right: 0,
     }),
   ],
 
   variants: {
-    position: {
-      "bottom-right": style({
+    align: {
+      end: style({
         bottom: 0,
-        right: 0,
         transform: "translate(50%, 50%)",
       }),
-
-      "top-right": style({
-        right: 0,
+      start: style({
         top: 0,
         transform: "translate(50%, -50%)",
       }),
@@ -35,10 +37,8 @@ export const indicator = recipe({
   },
 });
 
-export const wrapper = recipe({
+export const badge = recipe({
   base: style({
     position: "relative",
   }),
 });
-
-export type IndicatorVariants = NonNullable<RecipeVariants<typeof indicator>>;

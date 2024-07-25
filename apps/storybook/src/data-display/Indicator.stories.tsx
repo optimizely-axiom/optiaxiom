@@ -1,106 +1,81 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Avatar, Box, Button, Flex, Indicator } from "@optiaxiom/react";
-import { IconBell, IconFilter } from "@tabler/icons-react";
+import { Box, Button, Flex, Indicator } from "@optiaxiom/react";
+import { IconBell } from "@tabler/icons-react";
 
-const meta: Meta<typeof Indicator> = {
+export default {
+  args: {
+    children: <Button icon={<IconBell />} />,
+    content: "4",
+  },
   component: Indicator,
-};
+} as Meta<typeof Indicator>;
 
-export default meta;
 type Story = StoryObj<typeof Indicator>;
 
-const variants = [
-  ["subtle", "Subtle"],
-  ["solid", "Solid"],
+const colorSchemes = [
+  "primary",
+  "success",
+  "warning",
+  "danger",
+  "neutral",
+  "information",
+  "plain",
 ] as const;
 
-const positions = ["top-right", "bottom-right"] as const;
+const alignments = ["start", "end"] as const;
 
 const Variants: Story = {
   render: (args) => (
     <Flex flexDirection="column" gap="sm">
-      {variants.map(([variant]) => (
-        <Indicator {...args} content="4" key={variant} variant={variant}>
-          <Button icon={<IconBell />} size="md" />
+      {colorSchemes.map((colorScheme) => (
+        <Indicator
+          {...args}
+          colorScheme={colorScheme}
+          content="4"
+          key={colorScheme}
+        >
+          <Button icon={<IconBell />} />
         </Indicator>
       ))}
     </Flex>
   ),
 };
 
-export const Default: Story = {
-  ...Variants,
-  args: {},
-};
+export const Basic: Story = {};
 
-export const Primary: Story = {
+export const Solid: Story = {
   ...Variants,
   args: {
-    colorScheme: "primary",
+    variant: "solid",
   },
 };
 
-export const Danger: Story = {
+export const Subtle: Story = {
   ...Variants,
-  args: { colorScheme: "danger" },
-};
-
-export const Info: Story = {
-  ...Variants,
-  args: { colorScheme: "information" },
-};
-
-export const Success: Story = {
-  ...Variants,
-  args: { colorScheme: "success" },
-};
-
-export const Warning: Story = {
-  ...Variants,
-  args: { colorScheme: "warning" },
-};
-
-export const None: Story = {
-  ...Variants,
-  args: { colorScheme: "none" },
-};
-
-export const AllPositions: Story = {
   args: {
-    colorScheme: "information",
+    variant: "subtle",
+  },
+};
+
+export const Disabled: Story = {
+  args: {
+    disabled: true,
+  },
+};
+
+export const Align: Story = {
+  args: {
+    colorScheme: "danger",
     variant: "solid",
   },
   render: (args) => (
     <Flex gap="lg">
-      {positions.map((position) => (
-        <Box key={position}>
-          <Indicator {...args} content="2" position={position}>
-            <Button bg="gray.100" icon={<IconFilter />} size="lg" />
-          </Indicator>
+      {alignments.map((align) => (
+        <Box key={align}>
+          <Indicator {...args} align={align} />
         </Box>
       ))}
-    </Flex>
-  ),
-};
-
-export const Active: Story = {
-  render: (args) => (
-    <Flex flexDirection="column">
-      <Indicator
-        {...args}
-        borderColor="gray.100"
-        colorScheme="success"
-        content=""
-        position="top-right"
-      >
-        <Avatar
-          name="John Snow"
-          rounded="lg"
-          size="lg"
-          src="https://images.unsplash.com/photo-1511485977113-f34c92461ad9?ixlib=rb-1.2.1&w=128&h=128&dpr=2&q=80"
-        />
-      </Indicator>
     </Flex>
   ),
 };
