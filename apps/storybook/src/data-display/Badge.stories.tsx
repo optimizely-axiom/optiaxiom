@@ -32,6 +32,7 @@ export const Solid: Story = {
   ...Variants,
   args: {
     children: "Badge",
+    variant: "solid",
   },
 };
 
