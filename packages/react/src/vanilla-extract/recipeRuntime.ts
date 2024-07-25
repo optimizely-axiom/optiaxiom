@@ -66,7 +66,10 @@ export const recipeRuntime = <
 
     process(base);
     for (const variantName in variants) {
-      if (!selections[variantName]) {
+      if (
+        selections[variantName] === null ||
+        selections[variantName] === undefined
+      ) {
         continue;
       }
 
