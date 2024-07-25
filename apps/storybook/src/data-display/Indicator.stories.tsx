@@ -23,7 +23,7 @@ const colorSchemes = [
   "plain",
 ] as const;
 
-const alignments = ["start", "end"] as const;
+const positions = ["top-right", "bottom-right"] as const;
 
 const Variants: Story = {
   render: (args) => (
@@ -64,16 +64,16 @@ export const Disabled: Story = {
   },
 };
 
-export const Align: Story = {
+export const Position: Story = {
   args: {
     colorScheme: "danger",
     variant: "solid",
   },
   render: (args) => (
     <Flex gap="lg">
-      {alignments.map((align) => (
-        <Box key={align}>
-          <Indicator {...args} align={align} />
+      {positions.map((position) => (
+        <Box key={position}>
+          <Indicator {...args} position={position} />
         </Box>
       ))}
     </Flex>
@@ -91,7 +91,6 @@ export const Ping: Story = {
 
 export const Presence: Story = {
   args: {
-    align: "end",
     asChild: true,
     children: (
       <Avatar
@@ -111,5 +110,6 @@ export const Presence: Story = {
       </Box>
     ),
     offset: false,
+    position: "bottom-right",
   },
 };

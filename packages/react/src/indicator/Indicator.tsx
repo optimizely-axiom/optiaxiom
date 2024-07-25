@@ -8,18 +8,17 @@ import * as styles from "./Indicator.css";
 type IndicatorProps = BoxProps<
   typeof Badge,
   {
-    align?: "end" | "start";
     content: ReactNode;
     disabled?: boolean;
     offset?: boolean;
     ping?: boolean;
+    position?: "bottom-right" | "top-right";
   }
 >;
 
 export const Indicator = forwardRef<HTMLDivElement, IndicatorProps>(
   (
     {
-      align = "start",
       asChild,
       children,
       className,
@@ -28,6 +27,7 @@ export const Indicator = forwardRef<HTMLDivElement, IndicatorProps>(
       disabled,
       offset = true,
       ping,
+      position = "top-right",
       variant,
       ...props
     },
@@ -36,7 +36,7 @@ export const Indicator = forwardRef<HTMLDivElement, IndicatorProps>(
     return (
       <Flex ref={ref} {...styles.indicator({}, className)} {...props}>
         {!disabled && (
-          <Box {...styles.floating({ align, offset })}>
+          <Box {...styles.floating({ offset, position })}>
             {ping && (
               <Badge
                 aria-hidden="true"
