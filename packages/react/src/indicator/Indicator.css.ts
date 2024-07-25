@@ -47,4 +47,19 @@ export const badge = recipe({
       },
     },
   }),
+
+  variants: {
+    ping: {
+      false: {},
+      true: [
+        {
+          animation: "ping",
+          color: "transparent",
+        },
+        style({
+          position: "absolute",
+        }),
+      ],
+    },
+  },
 });
