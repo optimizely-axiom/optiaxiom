@@ -15,6 +15,8 @@ import * as styles from "./Toast.css";
 type ToastProps = BoxProps<
   typeof RadixToast.Root,
   {
+    action?: string;
+    onAction?: () => void;
     onClose?: () => void;
     open: boolean;
   } & styles.ToastPositionVariants &
@@ -36,7 +38,9 @@ const getIcon = (type: string) => {
 export const Toast = forwardRef<HTMLDivElement, ToastProps>(
   (
     {
+      action,
       children,
+      onAction,
       onClose,
       open,
       position = "bottom-right",
@@ -76,6 +80,19 @@ export const Toast = forwardRef<HTMLDivElement, ToastProps>(
                     <RadixToast.Description>{children}</RadixToast.Description>
                   </Box>
                 </Flex>
+                {action && (
+                  <Flex {...styles.action()}>
+                    <RadixToast.Action
+                      altText={action ?? "action"}
+                      asChild
+                      onClick={onAction}
+                    >
+                      <Button appearance="secondary" border="1" size="sm">
+                        {action}
+                      </Button>
+                    </RadixToast.Action>
+                  </Flex>
+                )}
                 <Flex {...styles.close()}>
                   <RadixToast.Close
                     aria-label="close"

@@ -48,7 +48,6 @@ export const root = recipe({
   base: [
     {
       alignItems: "center",
-      w: "384",
     },
     style({
       borderBottomWidth: "1px",
@@ -56,7 +55,7 @@ export const root = recipe({
       borderRightWidth: "1px",
       borderStyle: "solid",
       borderTopWidth: "1px",
-      maxWidth: "90dvw",
+      maxWidth: "384px",
     }),
   ],
   variants: {
@@ -95,15 +94,20 @@ export const close = recipe({
   ],
 });
 
+export const action = recipe({
+  base: [
+    {
+      flex: "none",
+      rounded: "sm",
+    },
+  ],
+});
+
 export const description = recipe({
   base: [
     {
-      flex: "auto",
+      flex: "1",
     },
-    style({
-      maxWidth: "65dvw",
-      width: "288px",
-    }),
   ],
 });
 
