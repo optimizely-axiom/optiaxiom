@@ -19,14 +19,14 @@ export const badge = recipe({
       fontWeight: "500",
       justifyContent: "center",
       leading: "none",
-      px: "8",
-      py: "4",
       rounded: "full",
     },
     style({
       vars: {
         [solidColorVar]: theme.colors["fg.default.inverse"],
       },
+
+      padding: "4px 8px",
     }),
   ],
   variants: {
