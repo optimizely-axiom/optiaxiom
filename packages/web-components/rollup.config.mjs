@@ -1,3 +1,4 @@
+import commonjs from "@rollup/plugin-commonjs";
 import json from "@rollup/plugin-json";
 import { nodeResolve } from "@rollup/plugin-node-resolve";
 import { createFilter } from "@rollup/pluginutils";
@@ -39,6 +40,12 @@ export default defineConfig([
         "react/jsx-runtime": "preact/jsx-runtime",
         "react-dom": "preact/compat",
         "react-dom/client": "preact/compat/client",
+      }),
+      commonjs({
+        include: [
+          "**/node_modules/attr-accept/**",
+          "**/node_modules/prop-types/**",
+        ],
       }),
       esbuild({
         define: {
