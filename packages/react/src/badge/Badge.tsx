@@ -20,6 +20,7 @@ export const Badge = forwardRef<HTMLDivElement, BadgeProps>(
       <Text
         as="span"
         ref={ref}
+        role="presentation"
         {...styles.badge({ colorScheme, variant }, className)}
         {...props}
       >
