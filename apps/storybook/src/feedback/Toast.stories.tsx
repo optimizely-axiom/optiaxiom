@@ -5,7 +5,9 @@ import { expect, userEvent, within } from "@storybook/test";
 import { useState } from "react";
 
 type ToastProps = {
+  action?: string;
   children: React.ReactNode;
+  onAction?: () => void;
   position?:
     | "bottom"
     | "bottom-left"
@@ -81,6 +83,15 @@ export const CustomPositionedToast: Story = {
   args: {
     children: "This toast appears in the top-left corner.",
     position: "top-left",
+    type: "info",
+  },
+  render: ToastTemplate,
+};
+
+export const WithAction: Story = {
+  args: {
+    action: "Undo",
+    children: "This toast is with an action.",
     type: "info",
   },
   render: ToastTemplate,
