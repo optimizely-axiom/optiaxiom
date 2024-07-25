@@ -11,6 +11,9 @@ import { keyframes } from "../vanilla-extract";
 const merge = <A, B>(objA: A, objB: B): A & B => ({ ...objA, ...objB });
 
 const animations = {
+  ping: keyframes({
+    "75%, 100%": { opacity: 0, scale: 2 },
+  }),
   pulse: keyframes({
     "0%, 100%": { opacity: 1 },
     "50%": { opacity: 0.5 },
@@ -35,6 +38,7 @@ const unresponsiveProps = defineProperties({
      * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/animation/ Documentation}
      */
     animation: {
+      ping: `${animations.ping} 1s cubic-bezier(0, 0, 0.2, 1) infinite`,
       pulse: `${animations.pulse} 2s ease-in-out infinite`,
     },
     backgroundColor: theme.colors,

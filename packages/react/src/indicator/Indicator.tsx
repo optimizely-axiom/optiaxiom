@@ -11,6 +11,7 @@ type IndicatorProps = BoxProps<
     align?: "end" | "start";
     content: ReactNode;
     disabled?: boolean;
+    ping?: boolean;
   }
 >;
 
@@ -24,6 +25,7 @@ export const Indicator = forwardRef<HTMLDivElement, IndicatorProps>(
       colorScheme,
       content,
       disabled,
+      ping,
       variant,
       ...props
     },
@@ -33,6 +35,18 @@ export const Indicator = forwardRef<HTMLDivElement, IndicatorProps>(
       <Flex ref={ref} {...styles.indicator({}, className)} {...props}>
         {!disabled && (
           <Box {...styles.floating({ align })}>
+            {ping && (
+              <Badge
+                aria-hidden="true"
+                asChild={asChild}
+                colorScheme={colorScheme}
+                variant={variant}
+                {...styles.badge({ ping: true })}
+              >
+                {content}
+              </Badge>
+            )}
+
             <Badge
               asChild={asChild}
               colorScheme={colorScheme}

@@ -79,3 +79,12 @@ export const Align: Story = {
     </Flex>
   ),
 };
+
+export const Ping: Story = {
+  args: {
+    colorScheme: "information",
+    content: "",
+    ping: true,
+    variant: "solid",
+  },
+};
