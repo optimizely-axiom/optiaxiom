@@ -47,6 +47,7 @@
     "@vanilla-extract/sprinkles": "^1.6.2",
     "clsx": "^2.1.1",
     "inter-ui": "^4.0.2",
+    "react-dropzone": "^14.2.3",
     "react-textarea-autosize": "^8.5.3"
   },
   "devDependencies": {

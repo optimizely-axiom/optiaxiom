@@ -13,6 +13,7 @@ export * from "./dialog-body";
 export * from "./dialog-footer";
 export * from "./dialog-title";
 export * from "./field";
+export * from "./file-upload";
 export * from "./flex";
 export * from "./grid";
 export * from "./heading";
