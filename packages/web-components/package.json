@@ -59,7 +59,6 @@
     "./TabsTrigger": "./dist/TabsTrigger.js",
     "./Textarea": "./dist/Textarea.js",
     "./Text": "./dist/Text.js",
-    "./Toast": "./dist/Toast.js",
     "./Tooltip": "./dist/Tooltip.js",
     "./Transition": "./dist/Transition.js"
   },
