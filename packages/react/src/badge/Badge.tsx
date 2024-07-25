@@ -8,6 +8,7 @@ type BadgeProps = TextProps<"span", styles.BadgeVariants>;
 export const Badge = forwardRef<HTMLDivElement, BadgeProps>(
   (
     {
+      asChild,
       children,
       className,
       colorScheme = "neutral",
@@ -19,6 +20,7 @@ export const Badge = forwardRef<HTMLDivElement, BadgeProps>(
     return (
       <Text
         as="span"
+        asChild={asChild}
         ref={ref}
         role="presentation"
         {...styles.badge({ colorScheme, variant }, className)}
