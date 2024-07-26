@@ -39,7 +39,7 @@ function processNode(node: Node) {
   if (!(nodeName in mapping)) {
     return;
   }
-  import(`./${mapping[nodeName as keyof typeof mapping]}.js`);
+  void import(`./${mapping[nodeName as keyof typeof mapping]}.js`);
 }
 
 document.querySelectorAll("*").forEach(processNode);
