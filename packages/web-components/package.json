@@ -51,6 +51,9 @@
     "./Text": "./dist/components/Text.js",
     "./Textarea": "./dist/components/Textarea.js",
     "./Toast": "./dist/components/Toast.js",
+    "./ToastAction": "./dist/components/ToastAction.js",
+    "./ToastTitle": "./dist/components/ToastTitle.js",
+    "./Toaster": "./dist/components/Toaster.js",
     "./Tooltip": "./dist/components/Tooltip.js",
     "./Transition": "./dist/components/Transition.js"
   },
