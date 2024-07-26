@@ -136,5 +136,5 @@ const propTypeRaw = (type: PropItemType) => {
         .filter((value) => !("description" in value))
         .map(({ value }) => value)
         .join(" | ")
-    : type.raw ?? type.name;
+    : (type.raw ?? type.name);
 };
