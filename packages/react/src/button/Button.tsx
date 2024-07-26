@@ -1,5 +1,7 @@
 import { Slot, Slottable } from "@radix-ui/react-slot";
-import { type ReactNode, forwardRef } from "react";
+import { type ElementType, type ReactNode, forwardRef } from "react";
+
+import type { ExtendProps } from "../utils";
 
 import { Box, type BoxProps } from "../box";
 import { extractSprinkles } from "../sprinkles";
@@ -13,16 +15,22 @@ const appearances = {
   secondary: { colorScheme: "neutral", variant: "subtle" },
 } satisfies Record<string, styles.ButtonVariants>;
 
-type ButtonProps = BoxProps<
-  "button",
-  {
-    appearance?: keyof typeof appearances;
-    children?: ReactNode;
-    disabled?: boolean;
-    icon?: ReactNode;
-    iconPosition?: "end" | "start";
-    isLoading?: boolean;
-  } & Omit<styles.ButtonVariants, "iconOnly">
+export type ButtonProps<
+  T extends ElementType = "button",
+  P = unknown,
+> = BoxProps<
+  T,
+  ExtendProps<
+    {
+      appearance?: keyof typeof appearances;
+      children?: ReactNode;
+      disabled?: boolean;
+      icon?: ReactNode;
+      iconPosition?: "end" | "start";
+      isLoading?: boolean;
+    } & Omit<styles.ButtonVariants, "iconOnly">,
+    P
+  >
 >;
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
