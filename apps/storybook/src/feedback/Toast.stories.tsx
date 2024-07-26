@@ -43,29 +43,29 @@ type Story = StoryObj<typeof Toast>;
 
 export const Basic: Story = {};
 
-export const SuccessToast: Story = {
+export const Success: Story = {
   args: {
     type: "success",
   },
 };
 
-export const WarningToast: Story = {
+export const Warning: Story = {
   args: {
     type: "warning",
   },
 };
 
-export const DangerToast: Story = {
+export const Danger: Story = {
   args: {
     type: "danger",
   },
 };
 
-export const CustomPositionedToast: Story = {
+export const Position: Story = {
   render: withRender({ position: "top-left" }),
 };
 
-export const WithAction: Story = {
+export const Action: Story = {
   args: {
     children: (
       <>
@@ -78,7 +78,7 @@ export const WithAction: Story = {
   },
 };
 
-export const LongContentToast: Story = {
+export const LongContent: Story = {
   args: {
     children: (
       <ToastTitle>
