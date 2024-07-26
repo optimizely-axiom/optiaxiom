@@ -43,7 +43,13 @@ export default {
         <Button onClick={handleOpen}>Show Toast</Button>
 
         <Toaster position={position}>
-          <Toast {...args} onOpenChange={handleClose} open={open} />
+          {open && (
+            <Toast
+              {...args}
+              forceMount
+              onOpenChange={() => setTimeout(handleClose, 200)}
+            />
+          )}
         </Toaster>
       </Flex>
     );
