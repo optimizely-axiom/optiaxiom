@@ -56,19 +56,19 @@ export const Basic: Story = {};
 
 export const Success: Story = {
   args: {
-    type: "success",
+    colorScheme: "success",
   },
 };
 
 export const Warning: Story = {
   args: {
-    type: "warning",
+    colorScheme: "warning",
   },
 };
 
 export const Danger: Story = {
   args: {
-    type: "danger",
+    colorScheme: "danger",
   },
 };
 
