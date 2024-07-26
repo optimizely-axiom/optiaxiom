@@ -30,14 +30,17 @@ const getIcon = (type: string) => {
 };
 
 export const Toast = forwardRef<HTMLLIElement, ToastProps>(
-  ({ children, onOpenChange, open, type = "neutral", ...props }, ref) => {
+  (
+    { children, colorScheme = "neutral", onOpenChange, open, ...props },
+    ref,
+  ) => {
     const { restProps, sprinkleProps } = extractSprinkles(props);
 
     return (
       <Paper
         asChild
         elevation="md"
-        {...styles.root({ type })}
+        {...styles.root({ colorScheme })}
         {...sprinkleProps}
       >
         <RadixToast.Root
@@ -47,7 +50,7 @@ export const Toast = forwardRef<HTMLLIElement, ToastProps>(
           {...restProps}
         >
           <Box asChild {...styles.icon()}>
-            {getIcon(type)}
+            {getIcon(colorScheme)}
           </Box>
 
           {children}

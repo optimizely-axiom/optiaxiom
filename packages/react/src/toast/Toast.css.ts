@@ -69,7 +69,7 @@ export const root = recipe({
     }),
   ],
   variants: {
-    type: {
+    colorScheme: {
       brand: style({
         vars: {
           [accentColorVar]: theme.colors["border.brand"],
