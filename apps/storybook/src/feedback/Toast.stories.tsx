@@ -12,10 +12,28 @@ import { action } from "@storybook/addon-actions";
 import { expect, userEvent, within } from "@storybook/test";
 import { type ComponentPropsWithoutRef, useState } from "react";
 
-const withRender = ({
-  position,
-}: ComponentPropsWithoutRef<typeof Toaster> = {}) =>
-  function Render(args: ComponentPropsWithoutRef<typeof Toast>) {
+type StoryProps = ComponentPropsWithoutRef<typeof Toast> &
+  Pick<ComponentPropsWithoutRef<typeof Toaster>, "position">;
+
+export default {
+  argTypes: {
+    position: {
+      control: "radio",
+      options: [
+        "bottom",
+        "bottom-left",
+        "bottom-right",
+        "top",
+        "top-left",
+        "top-right",
+      ],
+    },
+  },
+  args: {
+    children: <ToastTitle>This is an example toast message.</ToastTitle>,
+  },
+  component: Toast,
+  render: function Render({ position, ...args }) {
     const [open, setOpen] = useState(false);
 
     const handleOpen = () => setOpen(true);
@@ -29,17 +47,10 @@ const withRender = ({
         </Toaster>
       </Flex>
     );
-  };
-
-export default {
-  args: {
-    children: <ToastTitle>This is an example toast message.</ToastTitle>,
   },
-  component: Toast,
-  render: withRender(),
-} as Meta<typeof Toast>;
+} as Meta<StoryProps>;
 
-type Story = StoryObj<typeof Toast>;
+type Story = StoryObj<StoryProps>;
 
 export const Basic: Story = {};
 
@@ -62,7 +73,9 @@ export const Danger: Story = {
 };
 
 export const Position: Story = {
-  render: withRender({ position: "top-left" }),
+  args: {
+    position: "top-left",
+  },
 };
 
 export const Action: Story = {
