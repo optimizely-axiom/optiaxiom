@@ -3,29 +3,23 @@ import { forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
 import { Button } from "../button";
-import { Flex } from "../flex";
 import { IconDanger } from "../icons/IconDanger";
 import { IconInfoCircle } from "../icons/IconInfoCircle";
 import { IconSuccess } from "../icons/IconSuccess";
 import { IconWarning } from "../icons/IconWarning";
 import { IconX } from "../icons/IconX";
+import { Paper } from "../paper";
 import { extractSprinkles } from "../sprinkles";
 import * as styles from "./Toast.css";
 
 type ToastProps = BoxProps<
   typeof RadixToast.Root,
-  {
-    action?: string;
-    onAction?: () => void;
-    onClose?: () => void;
-    open: boolean;
-  } & styles.ToastPositionVariants &
-    styles.ToastTypeVariants
+  NonNullable<styles.RootVariants>
 >;
 
 const iconMap = new Map([
   ["danger", IconDanger],
-  ["info", IconInfoCircle],
+  ["neutral", IconInfoCircle],
   ["success", IconSuccess],
   ["warning", IconWarning],
 ]);
@@ -35,78 +29,39 @@ const getIcon = (type: string) => {
   return IconComponent ? <IconComponent /> : null;
 };
 
-export const Toast = forwardRef<HTMLDivElement, ToastProps>(
-  (
-    {
-      action,
-      children,
-      onAction,
-      onClose,
-      open,
-      position = "bottom-right",
-      type = "info",
-      ...props
-    },
-    ref,
-  ) => {
+export const Toast = forwardRef<HTMLLIElement, ToastProps>(
+  ({ children, onOpenChange, open, type = "neutral", ...props }, ref) => {
     const { restProps, sprinkleProps } = extractSprinkles(props);
 
     return (
-      <RadixToast.ToastProvider>
-        <Box asChild {...styles.viewPort({ position })}>
-          <RadixToast.Viewport>
-            <Flex
-              alignItems="center"
-              asChild
-              flexDirection="row"
-              gap="10"
-              justifyContent="space-between"
-              ref={ref}
-              rounded="md"
-              {...sprinkleProps}
-            >
-              <RadixToast.Root
-                onOpenChange={onClose}
-                onSwipeStart={onClose}
-                open={open}
-                {...styles.root({ type })}
-                {...restProps}
-              >
-                <Flex flexDirection="row" gap="8" pl="16" py="16">
-                  <Box asChild {...styles.startDecorator()}>
-                    {getIcon(type)}
-                  </Box>
-                  <Box asChild {...styles.description()}>
-                    <RadixToast.Description>{children}</RadixToast.Description>
-                  </Box>
-                </Flex>
-                {action && (
-                  <Flex {...styles.action()}>
-                    <RadixToast.Action
-                      altText={action ?? "action"}
-                      asChild
-                      onClick={onAction}
-                    >
-                      <Button appearance="secondary" border="1" size="sm">
-                        {action}
-                      </Button>
-                    </RadixToast.Action>
-                  </Flex>
-                )}
-                <Flex {...styles.close()}>
-                  <RadixToast.Close
-                    aria-label="close"
-                    asChild
-                    onClick={onClose}
-                  >
-                    <Button appearance="secondary" icon={<IconX />} p="0" />
-                  </RadixToast.Close>
-                </Flex>
-              </RadixToast.Root>
-            </Flex>
-          </RadixToast.Viewport>
-        </Box>
-      </RadixToast.ToastProvider>
+      <Paper
+        asChild
+        elevation="md"
+        {...styles.root({ type })}
+        {...sprinkleProps}
+      >
+        <RadixToast.Root
+          onOpenChange={onOpenChange}
+          open={open}
+          ref={ref}
+          {...restProps}
+        >
+          <Box asChild {...styles.icon()}>
+            {getIcon(type)}
+          </Box>
+
+          {children}
+
+          <RadixToast.Close asChild>
+            <Button
+              appearance="secondary"
+              aria-label="close"
+              icon={<IconX />}
+              size="sm"
+            />
+          </RadixToast.Close>
+        </RadixToast.Root>
+      </Paper>
     );
   },
 );
