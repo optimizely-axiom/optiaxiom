@@ -37,9 +37,9 @@
     "@radix-ui/react-separator": "^1.1.0",
     "@radix-ui/react-slot": "^1.1.0",
     "@radix-ui/react-switch": "^1.1.0",
+    "@radix-ui/react-tabs": "^1.1.0",
     "@radix-ui/react-toast": "^1.2.1",
     "@radix-ui/react-toggle": "^1.1.0",
-    "@radix-ui/react-tabs": "^1.1.0",
     "@radix-ui/react-tooltip": "^1.1.2",
     "@radix-ui/react-use-controllable-state": "^1.1.0",
     "@radix-ui/react-visually-hidden": "^1.1.0",
@@ -51,7 +51,7 @@
   },
   "devDependencies": {
     "@optiaxiom/shared": "workspace:^",
-    "@types/node": "^20.14.10",
+    "@types/node": "^20.14.12",
     "@vanilla-extract/css": "^1.15.3"
   },
   "peerDependencies": {
