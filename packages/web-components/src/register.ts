@@ -9,6 +9,8 @@ import {
   type FunctionComponent,
   cloneElement,
   createElement,
+  forwardRef,
+  useLayoutEffect,
 } from "react";
 import { type Root, createRoot } from "react-dom/client";
 
@@ -106,6 +108,33 @@ export function register<
   }
 }
 
+/**
+ * Forward correct ref when wrapping children in slot in root node.
+ *
+ * Instead of forwarding the ref to the <slot> element inside the shadow root
+ * we instead assign it to the source HTML element from which we created the
+ * slot.
+ */
+const withSlot = (element: Node) =>
+  forwardRef((props, ref) => {
+    useLayoutEffect(() => {
+      if (typeof ref === "function") {
+        ref(element);
+      } else if (ref && "current" in ref) {
+        ref.current = element;
+      }
+
+      return () => {
+        if (typeof ref === "function") {
+          ref(null);
+        } else if (ref && "current" in ref) {
+          ref.current = undefined;
+        }
+      };
+    }, [ref]);
+    return createElement("slot", { ...props, ref: ref });
+  });
+
 function toVdom<P>(
   element: unknown,
   nodeName?: ComponentType<P>,
@@ -128,6 +157,7 @@ function toVdom<P>(
     props[toCamelCase(name)] = value;
   }
 
+  let firstChildElement: Node | null = null;
   const children = [];
   for (const child of element.childNodes) {
     if (isRootNode && child instanceof Element && child.slot) {
@@ -138,6 +168,7 @@ function toVdom<P>(
       );
     } else {
       children.push(child instanceof Text ? child.data : toVdom(child));
+      firstChildElement = child;
     }
   }
 
@@ -145,7 +176,11 @@ function toVdom<P>(
     // @ts-expect-error -- too complex
     nodeName || element.nodeName.toLowerCase(),
     props,
-    isRootNode ? createElement("slot", null, children) : children,
+    isRootNode
+      ? firstChildElement
+        ? createElement(withSlot(firstChildElement), null, children)
+        : []
+      : children,
   );
 }
 
