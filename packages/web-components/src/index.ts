@@ -1,6 +1,6 @@
 import * as Components from "@optiaxiom/react";
 
-import type { KebabCase } from "./ComponentAttributes";
+import type { KebabCase } from "./components/ComponentAttributes";
 
 import { exports } from "../package.json";
 
@@ -39,7 +39,7 @@ function processNode(node: Node) {
   if (!(nodeName in mapping)) {
     return;
   }
-  void import(`./${mapping[nodeName as keyof typeof mapping]}.js`);
+  void import(`./components/${mapping[nodeName as keyof typeof mapping]}.js`);
 }
 
 document.querySelectorAll("*").forEach(processNode);
