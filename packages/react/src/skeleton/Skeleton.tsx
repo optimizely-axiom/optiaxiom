@@ -26,7 +26,7 @@ export const Skeleton = forwardRef<HTMLSpanElement, SkeletonProps>(
       <Box
         asChild
         h={h}
-        rounded={circle || rounded === "full" ? "full" : rounded ?? "sm"}
+        rounded={circle || rounded === "full" ? "full" : (rounded ?? "sm")}
         w={w ?? (circle || rounded === "full" ? h : undefined)}
         {...styles.skeleton({}, className)}
         {...props}
