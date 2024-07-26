@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { Button, Flex, Search, Text } from "@optiaxiom/react";
-import { expect, userEvent, waitFor, within } from "@storybook/test";
+import { expect, userEvent, waitFor } from "@storybook/test";
 import { type ChangeEvent, useState } from "react";
 
 export default {
@@ -49,9 +49,7 @@ export const Controlled: Story = {
 };
 
 export const Interactive: Story = {
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-
+  play: async ({ canvas }) => {
     const searchInput = canvas.getByPlaceholderText("Search...");
     await expect(searchInput).toBeInTheDocument();
 

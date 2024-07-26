@@ -113,9 +113,7 @@ export const InteractiveTest: Story = {
     position: "bottom-right",
     type: "info",
   },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-
+  play: async ({ canvas }) => {
     const showToastButton = canvas.getByText("Show Toast");
     await userEvent.click(showToastButton);
 

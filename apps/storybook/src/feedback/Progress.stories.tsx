@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { Button, Flex, Progress } from "@optiaxiom/react";
-import { userEvent, within } from "@storybook/test";
+import { userEvent } from "@storybook/test";
 import { useState } from "react";
 
 export default {
@@ -28,8 +28,7 @@ const values = [
   { max: 100, value: 100 },
 ];
 export const CompletionStages: Story = {
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
+  play: async ({ canvas }) => {
     await userEvent.click(canvas.getByRole("button", { name: "Forward" }));
   },
   render: function CompletionStagesComponent() {

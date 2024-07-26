@@ -6,7 +6,6 @@ import {
   screen,
   userEvent,
   waitForElementToBeRemoved,
-  within,
 } from "@storybook/test";
 import { useState } from "react";
 
@@ -23,8 +22,7 @@ export const Basic: Story = {
     side: "top",
     withArrow: false,
   },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
+  play: async ({ canvas }) => {
     await userEvent.hover(canvas.getByRole("button"));
     await expect(
       await screen.findByRole("tooltip", { name: "Add to library" }),
@@ -42,9 +40,7 @@ export const Controlled: Story = {
     content: "Add to library",
     defaultOpen: true,
   },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-
+  play: async ({ canvas }) => {
     await userEvent.hover(canvas.getByRole("button"));
     await expect(
       await screen.findByRole("tooltip", { name: "Add to library" }),
