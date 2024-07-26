@@ -6,6 +6,7 @@ export default defineConfig({
       enabled: true,
       headless: true,
       name: "chrome",
+      provider: "webdriverio",
     },
     restoreMocks: true,
     retry: 1,
