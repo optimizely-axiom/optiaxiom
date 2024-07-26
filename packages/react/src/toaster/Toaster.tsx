@@ -17,6 +17,15 @@ type ToastProps = BoxProps<
     styles.ViewportVariants
 >;
 
+const mapPositionToSwipeDirection = {
+  bottom: "down",
+  "bottom-left": "left",
+  "bottom-right": "right",
+  top: "up",
+  "top-left": "left",
+  "top-right": "right",
+} as const;
+
 export const Toaster = forwardRef<HTMLOListElement, ToastProps>(
   (
     {
@@ -36,7 +45,7 @@ export const Toaster = forwardRef<HTMLOListElement, ToastProps>(
       <RadixToast.ToastProvider
         duration={duration}
         label={label}
-        swipeDirection={swipeDirection}
+        swipeDirection={swipeDirection ?? mapPositionToSwipeDirection[position]}
         swipeThreshold={swipeThreshold}
       >
         {children}
