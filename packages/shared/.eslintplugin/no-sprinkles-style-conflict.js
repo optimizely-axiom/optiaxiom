@@ -77,7 +77,11 @@ export default ESLintUtils.RuleCreator.withoutDocs({
           process(recipe, element);
         }
       } else if (node?.type === "CallExpression") {
-        if (node.callee.type === "Identifier" && node.callee.name === "style") {
+        if (
+          node.callee.type === "Identifier" &&
+          (node.callee.name === "style" ||
+            node.callee.name === "responsiveStyle")
+        ) {
           const arg = node.arguments[0];
           if (
             arg.type === "ArrayExpression" ||
