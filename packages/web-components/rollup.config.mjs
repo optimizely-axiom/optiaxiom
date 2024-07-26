@@ -16,7 +16,7 @@ const pkg = JSON.parse(readFileSync("./package.json"));
 
 const input = Object.fromEntries(
   Object.entries(pkg.exports).map(([key, value]) => [
-    key === "." ? "index" : key.slice("./".length),
+    key === "." ? "index" : value.replace("./dist/", "").replace(".js", ""),
     value.replace("./dist/", "src/").replace(".js", ".ts"),
   ]),
 );
