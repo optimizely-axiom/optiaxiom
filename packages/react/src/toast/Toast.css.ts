@@ -18,7 +18,6 @@ export const root = recipe({
       p: "16",
       pr: "10",
       rounded: "sm",
-      w: "384",
     },
     style({
       borderColor: accentColorVar,
