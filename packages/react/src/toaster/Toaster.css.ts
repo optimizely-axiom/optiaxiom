@@ -8,6 +8,9 @@ import {
 export const viewport = recipe({
   base: [
     {
+      justifyContent: "normal",
+      maxH: "full",
+      overflow: "auto",
       p: "24",
       z: "popover",
     },

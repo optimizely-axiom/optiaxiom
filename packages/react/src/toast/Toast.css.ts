@@ -87,6 +87,12 @@ export const root = recipe({
             [swipeEndVar]: "0 calc(-100% - 24px)",
           },
         },
+        '[data-position^="bottom"] &:first-child': {
+          marginTop: "auto",
+        },
+        '[data-position^="top"] &:last-child': {
+          marginBottom: "auto",
+        },
       },
     }),
   ],

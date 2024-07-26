@@ -1,13 +1,17 @@
+import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import * as RadixToast from "@radix-ui/react-toast";
 import {
   type ComponentPropsWithoutRef,
   type ReactNode,
   forwardRef,
+  useRef,
 } from "react";
 
-import { Box, type BoxProps } from "../box";
+import { type BoxProps } from "../box";
+import { Flex } from "../flex";
 import { extractSprinkles } from "../sprinkles";
 import * as styles from "./Toaster.css";
+import { useOverflowAnchor } from "./useOverflowAnchor";
 
 type ToastProps = BoxProps<
   typeof RadixToast.Viewport,
@@ -37,9 +41,16 @@ export const Toaster = forwardRef<HTMLOListElement, ToastProps>(
       swipeThreshold,
       ...props
     },
-    ref,
+    outerRef,
   ) => {
     const { restProps, sprinkleProps } = extractSprinkles(props);
+
+    const innerRef = useRef<HTMLOListElement>(null);
+    const ref = useComposedRefs(innerRef, outerRef);
+    useOverflowAnchor(
+      innerRef,
+      position.startsWith("bottom") ? "bottom" : "top",
+    );
 
     return (
       <RadixToast.ToastProvider
@@ -50,9 +61,17 @@ export const Toaster = forwardRef<HTMLOListElement, ToastProps>(
       >
         {children}
 
-        <Box asChild {...styles.viewport({ position })} {...sprinkleProps}>
+        <Flex
+          asChild
+          data-position={position}
+          flexDirection={
+            position.startsWith("bottom") ? "column" : "column-reverse"
+          }
+          {...styles.viewport({ position })}
+          {...sprinkleProps}
+        >
           <RadixToast.Viewport ref={ref} {...restProps} />
-        </Box>
+        </Flex>
       </RadixToast.ToastProvider>
     );
   },
