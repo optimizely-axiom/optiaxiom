@@ -260,6 +260,12 @@ importers:
       inter-ui:
         specifier: ^4.0.2
         version: 4.0.2
+      jotai:
+        specifier: ^2.9.1
+        version: 2.9.1(@types/react@18.3.3)(react@18.3.1)
+      jotai-immer:
+        specifier: ^0.4.1
+        version: 0.4.1(immer@10.1.1)(jotai@2.9.1(@types/react@18.3.3)(react@18.3.1))
       react:
         specifier: ^16.14.0 || ^17.0.0 || ^18.0.0
         version: 18.3.1
@@ -5172,6 +5178,9 @@ packages:
   immediate@3.0.6:
     resolution: {integrity: sha512-XXOFtyqDjNDAQxVfYxuF7g9Il/IbWmmlQg2MYKOH8ExIT1qg6xc4zyS3HaEEATgs1btfzxq15ciUiY7gjSXRGQ==}
 
+  immer@10.1.1:
+    resolution: {integrity: sha512-s2MPrmjovJcoMaHtx6K11Ra7oD05NT97w1IC5zpMkT6Atjr7H8LjaDd81iIxUYpMKSRRNMJE703M1Fhr/TctHw==}
+
   import-fresh@3.3.0:
     resolution: {integrity: sha512-veYYhQa+D1QBKznvhUHxb8faxlrwUnxseDAbAp457E0wLNio2bOSKnjYDhMj+YiAq61xrMGhQk9iXVk5FzgQMw==}
     engines: {node: '>=6'}
@@ -5480,6 +5489,24 @@ packages:
 
   joi@17.13.3:
     resolution: {integrity: sha512-otDA4ldcIx+ZXsKHWmp0YizCweVRZG96J10b0FevjfuncLO1oX59THoAmHkNubYJ+9gWsYsp5k8v4ib6oDv1fA==}
+
+  jotai-immer@0.4.1:
+    resolution: {integrity: sha512-nQTt1HBKie/5OJDck1qLpV1PeBA6bjJLAczEYAx70PD8R4Mbu7gtexfBUCzJh6W6ecsOfwHksAYAesVth6SN9A==}
+    peerDependencies:
+      immer: '>=9.0.0'
+      jotai: '>=2.0.0'
+
+  jotai@2.9.1:
+    resolution: {integrity: sha512-t4Q7FIqQB3N/1art4OcqdlEtPmQ2h4DNIzTFhvt06WE0kCpQ1QoG+1A1IGTaQBi2KdDRsnywj+ojmHHKgw6PDA==}
+    engines: {node: '>=12.20.0'}
+    peerDependencies:
+      '@types/react': '>=17.0.0'
+      react: '>=17.0.0'
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      react:
+        optional: true
 
   js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
@@ -14026,6 +14053,8 @@ snapshots:
 
   immediate@3.0.6: {}
 
+  immer@10.1.1: {}
+
   import-fresh@3.3.0:
     dependencies:
       parent-module: 1.0.1
@@ -14290,6 +14319,16 @@ snapshots:
       '@sideway/address': 4.1.5
       '@sideway/formula': 3.0.1
       '@sideway/pinpoint': 2.0.0
+
+  jotai-immer@0.4.1(immer@10.1.1)(jotai@2.9.1(@types/react@18.3.3)(react@18.3.1)):
+    dependencies:
+      immer: 10.1.1
+      jotai: 2.9.1(@types/react@18.3.3)(react@18.3.1)
+
+  jotai@2.9.1(@types/react@18.3.3)(react@18.3.1):
+    optionalDependencies:
+      '@types/react': 18.3.3
+      react: 18.3.1
 
   js-tokens@4.0.0: {}
 
