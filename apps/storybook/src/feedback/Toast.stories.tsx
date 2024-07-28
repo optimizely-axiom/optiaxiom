@@ -8,6 +8,7 @@ import {
   ToastAction,
   ToastTitle,
   Toaster,
+  useToaster,
 } from "@optiaxiom/react";
 import { action } from "@storybook/addon-actions";
 import { expect, screen, userEvent, waitFor, within } from "@storybook/test";
@@ -35,23 +36,17 @@ export default {
   },
   component: Toast,
   render: function Render({ position, ...args }) {
-    const [open, setOpen] = useState(false);
+    const toaster = useToaster();
 
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+    const handleOpen = () => {
+      toaster.create(<Toast {...args} forceMount />);
+    };
+
     return (
       <Flex flexDirection="column" gap="4">
         <Button onClick={handleOpen}>Show Toast</Button>
 
-        <Toaster position={position}>
-          {open && (
-            <Toast
-              {...args}
-              forceMount
-              onOpenChange={() => setTimeout(handleClose, 200)}
-            />
-          )}
-        </Toaster>
+        <Toaster position={position} />
       </Flex>
     );
   },
