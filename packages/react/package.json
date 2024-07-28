@@ -51,7 +51,6 @@
     "clsx": "^2.1.1",
     "inter-ui": "^4.0.2",
     "jotai": "^2.9.1",
-    "jotai-immer": "^0.4.1",
     "react-textarea-autosize": "^8.5.3"
   },
   "devDependencies": {

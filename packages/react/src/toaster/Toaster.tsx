@@ -1,18 +1,21 @@
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import { Portal } from "@radix-ui/react-portal";
 import * as RadixToast from "@radix-ui/react-toast";
+import { useAtom } from "jotai";
 import {
   type ComponentPropsWithoutRef,
   type ReactNode,
+  cloneElement,
   forwardRef,
   useRef,
 } from "react";
 
-import { type BoxProps } from "../box";
+import { Box, type BoxProps } from "../box";
 import { Flex } from "../flex";
 import { extractSprinkles } from "../sprinkles";
 import * as styles from "./Toaster.css";
 import { useOverflowAnchor } from "./useOverflowAnchor";
+import { toastAtom } from "./useToaster";
 
 type ToastProps = BoxProps<
   typeof RadixToast.Viewport,
@@ -47,6 +50,7 @@ export const Toaster = forwardRef<HTMLOListElement, ToastProps>(
     outerRef,
   ) => {
     const { restProps, sprinkleProps } = extractSprinkles(props);
+    const [{ toasts }, setStore] = useAtom(toastAtom);
 
     const innerRef = useRef<HTMLOListElement>(null);
     const ref = useComposedRefs(innerRef, outerRef);
@@ -62,8 +66,19 @@ export const Toaster = forwardRef<HTMLOListElement, ToastProps>(
         swipeDirection={swipeDirection ?? mapPositionToSwipeDirection[position]}
         swipeThreshold={swipeThreshold}
       >
-        {children}
-
+        {toasts.map((toast) => (
+          <Box key={toast.id}>
+            {cloneElement(toast.component, {
+              onOpenChange: (open: boolean) => {
+                if (!open) {
+                  setStore((prev) => ({
+                    toasts: prev.toasts.filter((t) => t.id !== toast.id),
+                  }));
+                }
+              },
+            })}
+          </Box>
+        ))}
         <Portal container={container}>
           <Flex
             asChild
