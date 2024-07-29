@@ -7,10 +7,10 @@ import { Flex } from "../flex";
 type PopoverProps = BoxProps<typeof RadixPopover.Root>;
 
 export const Popover = forwardRef<HTMLDivElement, PopoverProps>(
-  ({ children, onOpenChange, open, ...props }, ref) => {
+  ({ children, ...props }, ref) => {
     return (
       <Flex asChild ref={ref} {...props}>
-        <RadixPopover.Root onOpenChange={onOpenChange} open={open}>
+        <RadixPopover.Root>
           <RadixPopover.Anchor />
           <RadixPopover.Portal>{children}</RadixPopover.Portal>
         </RadixPopover.Root>
