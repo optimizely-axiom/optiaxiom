@@ -12,7 +12,7 @@ export const viewport = recipe({
       maxH: "full",
       overflow: "auto",
       p: "24",
-      z: "popover",
+      z: "toast",
     },
     style({
       outline: "none",
