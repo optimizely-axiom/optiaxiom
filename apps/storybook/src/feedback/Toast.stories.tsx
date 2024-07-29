@@ -9,7 +9,7 @@ import {
   Toaster,
 } from "@optiaxiom/react";
 import { action } from "@storybook/addon-actions";
-import { expect, userEvent, within } from "@storybook/test";
+import { expect, screen, userEvent, waitFor, within } from "@storybook/test";
 import { type ComponentPropsWithoutRef, useState } from "react";
 
 type StoryProps = ComponentPropsWithoutRef<typeof Toast> &
@@ -109,14 +109,14 @@ export const LongContent: Story = {
 
 export const Interactive: Story = {
   play: async ({ canvas }) => {
-    const showToastButton = canvas.getByText("Show Toast");
-    await userEvent.click(showToastButton);
+    await userEvent.click(canvas.getByText("Show Toast"));
 
-    const toast = await canvas.findByRole("status");
-    await expect(toast).toBeInTheDocument();
+    const toast = await screen.findByRole("status");
     await expect(toast).toHaveTextContent("This is an example toast message.");
 
     await userEvent.click(within(toast).getByRole("button", { name: "close" }));
-    await expect(toast).not.toBeInTheDocument();
+    await waitFor(() =>
+      expect(screen.queryByRole("status")).not.toBeInTheDocument(),
+    );
   },
 };
