@@ -13,8 +13,11 @@ type State = {
 };
 const DEFAULT_TOAST_DURATION = 5000;
 export const toastAtom = atom<State>({ toasts: [] });
+let id = 0;
 
-const generateId = () => Date.now().toString(36) + Math.random().toString(36);
+const generateId = () => {
+  return "t" + id++;
+};
 
 const useToaster = () => {
   const [, setStore] = useAtom(toastAtom);
