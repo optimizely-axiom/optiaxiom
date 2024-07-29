@@ -1,20 +1,21 @@
 import * as RadixTabs from "@radix-ui/react-tabs";
-import { type ComponentPropsWithRef, forwardRef } from "react";
+import { forwardRef } from "react";
 
-import type { BoxProps } from "../box";
+import { Box, type BoxProps } from "../box";
+import { extractSprinkles } from "../sprinkles";
 
-import { Flex } from "../flex";
-
-type TabsProps = BoxProps<"div", ComponentPropsWithRef<typeof RadixTabs.Root>>;
+type TabsProps = BoxProps<typeof RadixTabs.Root>;
 
 export const Tabs = forwardRef<HTMLDivElement, TabsProps>(
   ({ children, ...props }, ref) => {
+    const { restProps, sprinkleProps } = extractSprinkles(props);
+
     return (
-      <Flex alignItems="center" asChild>
-        <RadixTabs.Root ref={ref} {...props}>
+      <Box asChild {...sprinkleProps}>
+        <RadixTabs.Root ref={ref} {...restProps}>
           {children}
         </RadixTabs.Root>
-      </Flex>
+      </Box>
     );
   },
 );
