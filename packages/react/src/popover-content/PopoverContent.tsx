@@ -18,19 +18,21 @@ type PopoverContentProps = BoxProps<
 export const PopoverContent = forwardRef<HTMLDivElement, PopoverContentProps>(
   ({ children, className, withArrow, withCloseButton, ...props }, ref) => {
     return (
-      <Flex asChild ref={ref} {...styles.content({}, className)} {...props}>
-        <RadixPopover.Content>
-          {children}
-          {withArrow && <RadixPopover.Arrow height={4} width={8} />}
-          {withCloseButton && (
-            <Box asChild {...styles.close()}>
-              <RadixPopover.Close aria-label="Close" asChild>
-                <Button appearance="secondary" icon={<IconX />} size="sm" />
-              </RadixPopover.Close>
-            </Box>
-          )}
-        </RadixPopover.Content>
-      </Flex>
+      <RadixPopover.Portal>
+        <Flex asChild ref={ref} {...styles.content({}, className)} {...props}>
+          <RadixPopover.Content>
+            {children}
+            {withArrow && <RadixPopover.Arrow height={4} width={8} />}
+            {withCloseButton && (
+              <Box asChild {...styles.close()}>
+                <RadixPopover.Close aria-label="Close" asChild>
+                  <Button appearance="secondary" icon={<IconX />} size="sm" />
+                </RadixPopover.Close>
+              </Box>
+            )}
+          </RadixPopover.Content>
+        </Flex>
+      </RadixPopover.Portal>
     );
   },
 );

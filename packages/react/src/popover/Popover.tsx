@@ -10,10 +10,7 @@ export const Popover = forwardRef<HTMLDivElement, PopoverProps>(
   ({ children, ...props }, ref) => {
     return (
       <Flex asChild ref={ref} {...props}>
-        <RadixPopover.Root>
-          <RadixPopover.Anchor />
-          <RadixPopover.Portal>{children}</RadixPopover.Portal>
-        </RadixPopover.Root>
+        <RadixPopover.Root>{children}</RadixPopover.Root>
       </Flex>
     );
   },
