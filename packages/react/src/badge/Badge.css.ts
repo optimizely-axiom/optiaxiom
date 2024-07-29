@@ -53,14 +53,6 @@ export const badge = recipe({
           [subtleColorVar]: theme.colors["fg.secondary"],
         },
       }),
-      plain: style({
-        vars: {
-          [solidBackgroundColorVar]: theme.colors["surface"],
-          [solidColorVar]: theme.colors["fg.default"],
-          [subtleBackgroundColorVar]: theme.colors["surface"],
-          [subtleColorVar]: theme.colors["fg.tertiary"],
-        },
-      }),
       primary: style({
         vars: {
           [solidBackgroundColorVar]: theme.colors["bg.brand.solid"],
@@ -85,12 +77,16 @@ export const badge = recipe({
       }),
     },
     variant: {
+      light: style({
+        backgroundColor: subtleBackgroundColorVar,
+        color: subtleColorVar,
+      }),
       solid: style({
         backgroundColor: solidBackgroundColorVar,
         color: solidColorVar,
       }),
-      subtle: style({
-        backgroundColor: subtleBackgroundColorVar,
+      white: style({
+        backgroundColor: theme.colors["surface"],
         color: subtleColorVar,
       }),
     },

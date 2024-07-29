@@ -20,7 +20,6 @@ const colorSchemes = [
   "danger",
   "neutral",
   "information",
-  "plain",
 ] as const;
 
 const positions = ["top-right", "bottom-right"] as const;
@@ -51,10 +50,10 @@ export const Solid: Story = {
   },
 };
 
-export const Subtle: Story = {
+export const Light: Story = {
   ...Variants,
   args: {
-    variant: "subtle",
+    variant: "light",
   },
 };
 
