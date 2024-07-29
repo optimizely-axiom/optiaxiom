@@ -29,6 +29,7 @@ export * from "./menu-trigger";
 export * from "./paper";
 export * from "./popover";
 export * from "./popover-content";
+export * from "./popover-trigger";
 export * from "./progress";
 export * from "./radio-group";
 export * from "./radio-group-item";

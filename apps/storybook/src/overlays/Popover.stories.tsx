@@ -8,6 +8,7 @@ import {
   Link,
   Popover,
   PopoverContent,
+  PopoverTrigger,
   Search,
   Separator,
   Switch,
@@ -17,22 +18,15 @@ import { type ComponentPropsWithoutRef, useState } from "react";
 
 type Story = StoryObj<typeof Popover>;
 
-const withTemplate = ({
-  defaultOpen = false,
-  triggerText = "Toggle Popover",
-} = {}) =>
-  function Template(
-    props: Partial<ComponentPropsWithoutRef<typeof PopoverContent>>,
-  ) {
-    const [open, setOpen] = useState(defaultOpen);
-
-    const onToggle = () => setOpen(!open);
-
+const withTemplate = ({ triggerText = "Toggle Popover" } = {}) =>
+  function Template(props: Partial<ComponentPropsWithoutRef<typeof Popover>>) {
     return (
-      <Flex gap="0">
-        <Button onClick={onToggle}>{triggerText}</Button>
+      <Flex>
+        <Popover {...props}>
+          <PopoverTrigger>
+            <Button>{triggerText}</Button>
+          </PopoverTrigger>
 
-        <Popover onOpenChange={setOpen} open={open} {...props}>
           {props.children}
         </Popover>
       </Flex>
@@ -95,8 +89,6 @@ export const RichContent: Story = {
 };
 
 const DropdownExample = () => {
-  const [open, setOpen] = useState(false);
-
   const [searchValue, setSearchValue] = useState("");
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
 
@@ -122,10 +114,12 @@ const DropdownExample = () => {
   };
 
   return (
-    <Flex gap="0">
-      <Button onClick={() => setOpen(!open)}>Dropdown heading</Button>
+    <Flex>
+      <Popover>
+        <PopoverTrigger>
+          <Button>Dropdown heading</Button>
+        </PopoverTrigger>
 
-      <Popover onOpenChange={setOpen} open={open}>
         <PopoverContent align="start">
           <Flex flexDirection="column" gap="8">
             <Search
@@ -165,7 +159,6 @@ export const DropDown: Story = {
 };
 
 const PeopleExample = () => {
-  const [open, setOpen] = useState(false);
   const [searchValue, setSearchValue] = useState("");
 
   const users = [
@@ -206,10 +199,12 @@ const PeopleExample = () => {
   );
 
   return (
-    <Flex gap="0">
-      <Button onClick={() => setOpen(!open)}>Assign People</Button>
+    <Flex>
+      <Popover>
+        <PopoverTrigger>
+          <Button>Dropdown heading</Button>
+        </PopoverTrigger>
 
-      <Popover onOpenChange={setOpen} open={open}>
         <PopoverContent>
           <Flex
             flexDirection="column"
@@ -254,24 +249,20 @@ export const People: Story = {
 };
 
 const ToggleExample = () => {
-  const [open, setOpen] = useState(false);
-
   return (
-    <Flex gap="0">
-      <Button onClick={() => setOpen(!open)}>Dropdown heading</Button>
+    <Flex>
+      <Popover>
+        <PopoverTrigger>
+          <Button>Dropdown heading</Button>
+        </PopoverTrigger>
 
-      <Popover onOpenChange={setOpen} open={open}>
         <PopoverContent align="start">
           <Flex flexDirection="column" gap="12">
             <Switch defaultChecked>Dropdown Menu Item</Switch>
             <Switch>Dropdown Menu Item</Switch>
             <Switch defaultChecked>Dropdown Menu Item</Switch>
             <Switch disabled>Dropdown Menu Item</Switch>
-            <Button
-              appearance="primary"
-              onClick={() => setOpen(false)}
-              style={{ marginTop: "8px" }}
-            >
+            <Button appearance="primary" style={{ marginTop: "8px" }}>
               Done
             </Button>
           </Flex>
