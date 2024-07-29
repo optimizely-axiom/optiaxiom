@@ -1,12 +1,13 @@
 import { theme } from "../styles";
 import { recipe, style } from "../vanilla-extract";
 
+const marker = style({});
+
 export const trigger = recipe({
   base: [
+    marker,
     {
-      flexDirection: "row",
-      gap: "xs",
-      py: "10",
+      py: "4",
     },
     style({
       borderColor: `transparent`,
@@ -37,6 +38,24 @@ export const trigger = recipe({
         '&[data-state="active"]': {
           borderColor: theme.colors["border.brand"],
           color: theme.colors["fg.default"],
+        },
+      },
+    }),
+  ],
+});
+
+export const content = recipe({
+  base: [
+    {
+      flexDirection: "row",
+      gap: "xs",
+      py: "6",
+      rounded: "sm",
+    },
+    style({
+      selectors: {
+        [`${marker}:active &`]: {
+          backgroundColor: theme.colors["bg.input.disabled"],
         },
       },
     }),

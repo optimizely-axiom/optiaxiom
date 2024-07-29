@@ -1,7 +1,7 @@
 import * as RadixTabs from "@radix-ui/react-tabs";
 import { forwardRef } from "react";
 
-import { type BoxProps } from "../box";
+import { Box, type BoxProps } from "../box";
 import { Flex } from "../flex";
 import { extractSprinkles } from "../sprinkles";
 import * as styles from "./TabsTrigger.css";
@@ -13,9 +13,11 @@ export const TabsTrigger = forwardRef<HTMLDivElement, TabsTriggerProps>(
     const { restProps, sprinkleProps } = extractSprinkles(props);
 
     return (
-      <Flex asChild ref={ref} {...styles.trigger()} {...sprinkleProps}>
-        <RadixTabs.Trigger {...restProps}>{children}</RadixTabs.Trigger>
-      </Flex>
+      <Box asChild ref={ref} {...styles.trigger()} {...sprinkleProps}>
+        <RadixTabs.Trigger {...restProps}>
+          <Flex {...styles.content()}>{children}</Flex>
+        </RadixTabs.Trigger>
+      </Box>
     );
   },
 );
