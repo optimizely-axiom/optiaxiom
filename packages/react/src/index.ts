@@ -1,3 +1,7 @@
+export * from "./accordion";
+export * from "./accordion-content";
+export * from "./accordion-item";
+export * from "./accordion-trigger";
 export * from "./alert-dialog";
 export * from "./animate-presence";
 export * from "./avatar";
