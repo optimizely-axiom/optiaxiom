@@ -17,7 +17,6 @@ const Variants: Story = {
       <Badge colorScheme="danger" {...args} />
       <Badge colorScheme="neutral" {...args} />
       <Badge colorScheme="information" {...args} />
-      <Badge colorScheme="plain" {...args} />
     </Flex>
   ),
 };
@@ -36,11 +35,19 @@ export const Solid: Story = {
   },
 };
 
-export const Subtle: Story = {
+export const Light: Story = {
   ...Variants,
   args: {
     children: "Badge",
-    variant: "subtle",
+    variant: "light",
+  },
+};
+
+export const White: Story = {
+  ...Variants,
+  args: {
+    children: "Badge",
+    variant: "white",
   },
 };
 
@@ -50,7 +57,7 @@ export const Count: Story = {
       <Flex flexDirection="row">
         <Button>
           Notifications
-          <Badge colorScheme="information" variant="subtle">
+          <Badge colorScheme="information" variant="light">
             8
           </Badge>
         </Button>
@@ -70,7 +77,7 @@ export const Inline: Story = {
       <Flex asChild flexDirection="row">
         <Text>
           Status
-          <Badge colorScheme="success" variant="subtle">
+          <Badge colorScheme="success" variant="light">
             Published
           </Badge>
         </Text>

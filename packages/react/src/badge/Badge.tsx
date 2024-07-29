@@ -12,7 +12,7 @@ export const Badge = forwardRef<HTMLDivElement, BadgeProps>(
       children,
       className,
       colorScheme = "neutral",
-      variant = "subtle",
+      variant = "light",
       ...props
     },
     ref,
