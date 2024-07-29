@@ -23,15 +23,15 @@ type Story = StoryObj<typeof Link>;
 
 export const Basic: Story = {};
 
-export const Subtle: Story = {
+export const Neutral: Story = {
   args: {
-    variant: "subtle",
+    colorScheme: "neutral",
   },
 };
 
-export const Muted: Story = {
+export const Secondary: Story = {
   args: {
-    variant: "muted",
+    colorScheme: "secondary",
   },
 };
 
