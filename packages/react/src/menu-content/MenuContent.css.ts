@@ -1,12 +1,19 @@
-import { recipe } from "../vanilla-extract";
+import { recipe, style } from "../vanilla-extract";
 
 export const content = recipe({
   base: [
     {
       border: "1",
-      py: "xs",
-      rounded: "sm",
+      borderColor: "border.secondary",
+      display: "flex",
+      flexDirection: "column",
+      gap: "2",
+      p: "4",
+      rounded: "lg",
       shadow: "md",
     },
+    style({
+      minWidth: "var(--radix-dropdown-menu-trigger-width)",
+    }),
   ],
 });
