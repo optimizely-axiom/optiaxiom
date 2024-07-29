@@ -17,8 +17,6 @@ export type ToastProps = BoxProps<
   NonNullable<styles.RootVariants>
 >;
 
-export type ToastActionElement = React.ReactElement<typeof RadixToast.Action>;
-
 const iconMap = new Map([
   ["danger", IconDanger],
   ["neutral", IconInfoCircle],

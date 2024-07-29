@@ -12,7 +12,6 @@ import {
 } from "@optiaxiom/react";
 import { action } from "@storybook/addon-actions";
 import { expect, screen, userEvent, waitFor, within } from "@storybook/test";
-import { type ComponentPropsWithoutRef, useState } from "react";
 
 type StoryProps = ComponentPropsWithoutRef<typeof Toast> &
   Pick<ComponentPropsWithoutRef<typeof Toaster>, "position">;

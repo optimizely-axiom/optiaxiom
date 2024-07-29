@@ -67,7 +67,7 @@ export const Toaster = forwardRef<HTMLOListElement, ToastProps>(
         swipeThreshold={swipeThreshold}
       >
         {toasts.map((toast) => (
-          <Box key={toast.id}>
+          <Box asChild key={toast.id}>
             {cloneElement(toast.component, {
               onOpenChange: (open: boolean) => {
                 if (!open) {
