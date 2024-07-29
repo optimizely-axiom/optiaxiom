@@ -10,6 +10,9 @@ export const tabs = recipe({
         '&[data-orientation="horizontal"]': {
           flexDirection: "column",
         },
+        '&[data-orientation="vertical"]': {
+          flexDirection: "row",
+        },
       },
     }),
   ],

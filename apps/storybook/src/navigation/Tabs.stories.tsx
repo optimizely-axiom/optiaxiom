@@ -7,7 +7,12 @@ import {
   TabsList,
   TabsTrigger,
 } from "@optiaxiom/react";
-import { IconMessageCircle } from "@tabler/icons-react";
+import {
+  IconListCheck,
+  IconMessageCircle,
+  IconTrash,
+  IconUser,
+} from "@tabler/icons-react";
 
 const meta: Meta<typeof Tabs> = {
   args: {
@@ -52,5 +57,44 @@ export const Basic: Story = {
         </TabsContent>
       </>
     ),
+  },
+};
+
+export const Vertical: Story = {
+  args: {
+    children: (
+      <>
+        <TabsList>
+          <TabsTrigger value="first">
+            <IconUser size="20" />
+            First
+          </TabsTrigger>
+          <TabsTrigger value="second">
+            <IconListCheck size="20" />
+            Second
+          </TabsTrigger>
+          <TabsTrigger value="third">
+            <IconTrash size="20" />
+            Third
+            <Badge colorScheme="primary" variant="solid">
+              8
+            </Badge>
+          </TabsTrigger>
+        </TabsList>
+
+        <TabsContent px="md" value="first">
+          This is first content
+        </TabsContent>
+
+        <TabsContent px="md" value="second">
+          This is second content
+        </TabsContent>
+
+        <TabsContent px="md" value="third">
+          This is third content
+        </TabsContent>
+      </>
+    ),
+    orientation: "vertical",
   },
 };

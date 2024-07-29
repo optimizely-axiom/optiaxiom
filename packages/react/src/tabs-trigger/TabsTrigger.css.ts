@@ -11,7 +11,6 @@ export const trigger = recipe({
     style({
       borderColor: `transparent`,
       color: theme.colors["fg.tertiary"],
-      marginBottom: "-1px",
       userSelect: "none",
 
       selectors: {
@@ -28,6 +27,12 @@ export const trigger = recipe({
         },
         '&[data-orientation="horizontal"]': {
           borderBottomWidth: "2px",
+          marginBottom: "-1px",
+        },
+        '&[data-orientation="vertical"]': {
+          borderRightWidth: "2px",
+          marginRight: "-1px",
+          paddingInline: "10px",
         },
         '&[data-state="active"]': {
           borderColor: theme.colors["border.brand"],
