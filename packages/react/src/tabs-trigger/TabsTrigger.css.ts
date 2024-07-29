@@ -1,33 +1,36 @@
 import { theme } from "../styles";
 import { recipe, style } from "../vanilla-extract";
 
-export const triggerWrap = recipe({
-  base: [
-    style({
-      selectors: {
-        "&:focus-visible": {
-          outline: "0",
-        },
-      },
-    }),
-  ],
-});
-
 export const trigger = recipe({
   base: [
     {
-      mr: "24",
-      py: "6",
+      flexDirection: "row",
+      gap: "xs",
+      py: "10",
     },
     style({
-      borderBottom: `2px solid ${theme.colors["transparent"]}`,
+      borderColor: `transparent`,
       color: theme.colors["fg.tertiary"],
+      marginBottom: "-1px",
+      userSelect: "none",
+
       selectors: {
-        [`${triggerWrap().className}[data-disabled] &`]: {
-          color: theme.colors["border.disabled"],
+        "&:focus-visible": {
+          outline: `2px solid ${theme.colors["outline.brand"]}`,
+          outlineOffset: "1px",
         },
-        [`${triggerWrap().className}[data-state="active"] &`]: {
-          borderColor: `${theme.colors["border.brand"]}`,
+        '&:hover:not([data-state="active"])': {
+          borderColor: theme.colors["border.default"],
+          color: theme.colors["fg.secondary"],
+        },
+        "&[data-disabled]": {
+          color: theme.colors["fg.disabled"],
+        },
+        '&[data-orientation="horizontal"]': {
+          borderBottomWidth: "2px",
+        },
+        '&[data-state="active"]': {
+          borderColor: theme.colors["border.brand"],
           color: theme.colors["fg.default"],
         },
       },

@@ -1,24 +1,20 @@
 import * as RadixTabs from "@radix-ui/react-tabs";
-import { Children, type ComponentPropsWithRef, forwardRef } from "react";
+import { forwardRef } from "react";
 
-import { Box, type BoxProps } from "../box";
+import { type BoxProps } from "../box";
 import { Flex } from "../flex";
+import { extractSprinkles } from "../sprinkles";
 import * as styles from "./TabsTrigger.css";
 
-type TabsTriggerProps = BoxProps<
-  "div",
-  ComponentPropsWithRef<typeof RadixTabs.Trigger>
->;
+type TabsTriggerProps = BoxProps<typeof RadixTabs.Trigger>;
 
 export const TabsTrigger = forwardRef<HTMLDivElement, TabsTriggerProps>(
   ({ children, ...props }, ref) => {
+    const { restProps, sprinkleProps } = extractSprinkles(props);
+
     return (
-      <Flex asChild ref={ref}>
-        <RadixTabs.Trigger {...styles.triggerWrap()} {...props}>
-          {Children.map(children, (child) => (
-            <Box {...styles.trigger()}>{child}</Box>
-          ))}
-        </RadixTabs.Trigger>
+      <Flex asChild ref={ref} {...styles.trigger()} {...sprinkleProps}>
+        <RadixTabs.Trigger {...restProps}>{children}</RadixTabs.Trigger>
       </Flex>
     );
   },

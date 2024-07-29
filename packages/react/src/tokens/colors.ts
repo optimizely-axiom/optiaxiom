@@ -67,7 +67,7 @@ const colorPalette = {
   "neutral.300": "#b8becb" as const,
   "neutral.500": "#868FA4" as const,
   "neutral.600": "#626A81" as const,
-  "neutral.700": "#464D61" as const,
+  "neutral.700": "#4F576E" as const,
   "neutral.800": "#303645" as const,
   "neutral.900": "#262B37" as const,
   "neutral.1000": "#1C2029" as const,
