@@ -16,18 +16,6 @@ import {
 
 const meta: Meta<typeof Tabs> = {
   args: {
-    defaultValue: "first",
-    w: "384",
-  },
-  component: Tabs,
-};
-
-export default meta;
-
-type Story = StoryObj<typeof Tabs>;
-
-export const Basic: Story = {
-  args: {
     children: (
       <>
         <TabsList>
@@ -57,6 +45,21 @@ export const Basic: Story = {
         </TabsContent>
       </>
     ),
+    defaultValue: "first",
+    w: "384",
+  },
+  component: Tabs,
+};
+
+export default meta;
+
+type Story = StoryObj<typeof Tabs>;
+
+export const Basic: Story = {};
+
+export const Manual: Story = {
+  args: {
+    activationMode: "manual",
   },
 };
 
