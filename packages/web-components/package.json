@@ -14,6 +14,10 @@
   "license": "Apache-2.0",
   "exports": {
     ".": "./dist/index.js",
+    "./Accordion": "./dist/components/Accordion.js",
+    "./AccordionContent": "./dist/components/AccordionContent.js",
+    "./AccordionItem": "./dist/components/AccordionItem.js",
+    "./AccordionTrigger": "./dist/components/AccordionTrigger.js",
     "./AlertDialog": "./dist/components/AlertDialog.js",
     "./AnimatePresence": "./dist/components/AnimatePresence.js",
     "./Avatar": "./dist/components/Avatar.js",
