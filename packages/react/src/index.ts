@@ -27,6 +27,8 @@ export * from "./menu-label";
 export * from "./menu-separator";
 export * from "./menu-trigger";
 export * from "./paper";
+export * from "./popover";
+export * from "./popover-content";
 export * from "./progress";
 export * from "./radio-group";
 export * from "./radio-group-item";
