@@ -18,10 +18,10 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
     {
       children,
       className,
+      colorScheme = "primary",
       disabled,
       external,
       href,
-      variant = "default",
       ...props
     },
     ref,
@@ -29,7 +29,11 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
     const { restProps, sprinkleProps } = extractSprinkles(props);
 
     return (
-      <Box asChild {...styles.link({ variant }, className)} {...sprinkleProps}>
+      <Box
+        asChild
+        {...styles.link({ colorScheme }, className)}
+        {...sprinkleProps}
+      >
         <a
           aria-disabled={disabled}
           data-disabled={disabled ? "" : undefined}
