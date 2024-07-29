@@ -8,10 +8,10 @@ import { Flex } from "../flex";
 type MenuProps = BoxProps<typeof RadixMenu.Root>;
 
 export const Menu = forwardRef<HTMLDivElement, MenuProps>(
-  ({ children, className, ...props }, ref) => {
+  ({ children, ...props }, ref) => {
     return (
-      <Flex alignItems="center" asChild ref={ref}>
-        <RadixMenu.Root {...props}>{children}</RadixMenu.Root>
+      <Flex alignItems="center" asChild ref={ref} {...props}>
+        <RadixMenu.Root>{children}</RadixMenu.Root>
       </Flex>
     );
   },

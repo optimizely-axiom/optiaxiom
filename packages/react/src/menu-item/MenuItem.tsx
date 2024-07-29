@@ -3,7 +3,7 @@ import { type ReactNode, forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
 import { Flex } from "../flex";
-import { Text } from "../text";
+import { extractSprinkles } from "../sprinkles";
 import * as styles from "./MenuItem.css";
 
 type MenuItemProps = BoxProps<
@@ -15,13 +15,12 @@ type MenuItemProps = BoxProps<
 >;
 
 export const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>(
-  (
-    { children, className, disabled, endDecorator, startDecorator, ...props },
-    ref,
-  ) => {
+  ({ children, endDecorator, startDecorator, ...props }, ref) => {
+    const { restProps, sprinkleProps } = extractSprinkles(props);
+
     return (
-      <Flex {...styles.itemRoot()}>
-        <RadixMenu.Item disabled={disabled} ref={ref} {...props}>
+      <Box asChild ref={ref} {...sprinkleProps}>
+        <RadixMenu.Item {...restProps}>
           <Flex {...styles.item()}>
             {startDecorator && (
               <Box
@@ -33,9 +32,9 @@ export const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>(
                 {startDecorator}
               </Box>
             )}
-            <Text flex="1" fontSize="md">
+            <Box flex="1" fontSize="md">
               {children}
-            </Text>
+            </Box>
             {endDecorator && (
               <Box
                 asChild
@@ -48,7 +47,7 @@ export const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>(
             )}
           </Flex>
         </RadixMenu.Item>
-      </Flex>
+      </Box>
     );
   },
 );

@@ -2,9 +2,9 @@ import { Menu as MenuComponent } from "@optiaxiom/react";
 
 import type { ComponentAttributes } from "./ComponentAttributes";
 
-import { register } from "./register";
+import { register } from "../register";
 
-export const Menu = "ax-dropdown";
+export const Menu = "ax-menu";
 register(Menu, MenuComponent);
 
 declare global {

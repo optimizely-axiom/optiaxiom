@@ -11,7 +11,7 @@ type MenuTriggerProps = BoxProps<
 >;
 
 export const MenuTrigger = forwardRef<HTMLButtonElement, MenuTriggerProps>(
-  ({ children, className, ...props }, ref) => {
+  ({ children, ...props }, ref) => {
     return (
       <Flex asChild>
         <RadixMenu.Trigger ref={ref} {...props}>
