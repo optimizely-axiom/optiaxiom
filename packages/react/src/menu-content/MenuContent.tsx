@@ -1,18 +1,21 @@
 import * as RadixMenu from "@radix-ui/react-dropdown-menu";
 import { forwardRef } from "react";
 
-import { Box, type BoxProps } from "../box";
+import { type BoxProps } from "../box";
+import { Paper } from "../paper";
 import * as styles from "./MenuContent.css";
 
 type MenuContentProps = BoxProps<typeof RadixMenu.Content>;
 
 export const MenuContent = forwardRef<HTMLDivElement, MenuContentProps>(
-  ({ children, ...props }, ref) => {
+  ({ align = "start", children, sideOffset = 2, ...props }, ref) => {
     return (
       <RadixMenu.Portal>
-        <Box asChild {...styles.content()} {...props}>
-          <RadixMenu.Content ref={ref}>{children}</RadixMenu.Content>
-        </Box>
+        <Paper asChild {...styles.content()} {...props}>
+          <RadixMenu.Content align={align} ref={ref} sideOffset={sideOffset}>
+            {children}
+          </RadixMenu.Content>
+        </Paper>
       </RadixMenu.Portal>
     );
   },
