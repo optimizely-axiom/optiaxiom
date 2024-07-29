@@ -1,20 +1,10 @@
 import * as RadixMenu from "@radix-ui/react-dropdown-menu";
-import { forwardRef } from "react";
+import { type ComponentPropsWithoutRef } from "react";
 
-import type { BoxProps } from "../box";
+type MenuProps = ComponentPropsWithoutRef<typeof RadixMenu.Root>;
 
-import { Flex } from "../flex";
-
-type MenuProps = BoxProps<typeof RadixMenu.Root>;
-
-export const Menu = forwardRef<HTMLDivElement, MenuProps>(
-  ({ children, ...props }, ref) => {
-    return (
-      <Flex alignItems="center" asChild ref={ref} {...props}>
-        <RadixMenu.Root>{children}</RadixMenu.Root>
-      </Flex>
-    );
-  },
-);
+export const Menu = (props: MenuProps) => {
+  return <RadixMenu.Root {...props} />;
+};
 
 Menu.displayName = "@optiaxiom/react/Menu";
