@@ -1,4 +1,5 @@
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
+import { Portal } from "@radix-ui/react-portal";
 import * as RadixToast from "@radix-ui/react-toast";
 import {
   type ComponentPropsWithoutRef,
@@ -17,6 +18,7 @@ type ToastProps = BoxProps<
   typeof RadixToast.Viewport,
   {
     children?: ReactNode;
+    container?: ComponentPropsWithoutRef<typeof Portal>["container"];
   } & ComponentPropsWithoutRef<typeof RadixToast.ToastProvider> &
     styles.ViewportVariants
 >;
@@ -34,6 +36,7 @@ export const Toaster = forwardRef<HTMLOListElement, ToastProps>(
   (
     {
       children,
+      container,
       duration,
       label,
       position = "bottom-right",
@@ -61,17 +64,19 @@ export const Toaster = forwardRef<HTMLOListElement, ToastProps>(
       >
         {children}
 
-        <Flex
-          asChild
-          data-position={position}
-          flexDirection={
-            position.startsWith("bottom") ? "column" : "column-reverse"
-          }
-          {...styles.viewport({ position })}
-          {...sprinkleProps}
-        >
-          <RadixToast.Viewport ref={ref} {...restProps} />
-        </Flex>
+        <Portal container={container}>
+          <Flex
+            asChild
+            data-position={position}
+            flexDirection={
+              position.startsWith("bottom") ? "column" : "column-reverse"
+            }
+            {...styles.viewport({ position })}
+            {...sprinkleProps}
+          >
+            <RadixToast.Viewport ref={ref} {...restProps} />
+          </Flex>
+        </Portal>
       </RadixToast.ToastProvider>
     );
   },
