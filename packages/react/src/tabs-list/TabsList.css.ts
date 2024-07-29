@@ -14,6 +14,11 @@ export const list = recipe({
           flexDirection: "row",
           gap: theme.spacing.lg,
         },
+        '&[data-orientation="vertical"]': {
+          borderRightWidth: "1px",
+          flexDirection: "column",
+          gap: theme.spacing.xs,
+        },
       },
     }),
   ],
