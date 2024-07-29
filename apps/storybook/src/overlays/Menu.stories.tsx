@@ -15,7 +15,7 @@ const meta: Meta<typeof Menu> = {
 
 export default meta;
 
-type Story = StoryObj<typeof MenuContent>;
+type Story = StoryObj<typeof Menu>;
 
 export const Basic: Story = {
   render: () => (

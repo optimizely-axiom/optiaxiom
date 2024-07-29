@@ -1,14 +1,6 @@
 import { theme } from "../styles";
 import { recipe, style } from "../vanilla-extract";
 
-export const itemRoot = recipe({
-  base: [
-    style({
-      selectors: {},
-    }),
-  ],
-});
-
 export const item = recipe({
   base: [
     {
@@ -24,13 +16,13 @@ export const item = recipe({
     style({
       selectors: {
         "&:active:not([data-disabled])": {
-          background: theme.colors["neutral.200"],
+          backgroundColor: theme.colors["neutral.200"],
         },
         "&:focus-visible": {
           outline: `1px solid ${theme.colors["outline.brand"]}`,
         },
         "&:hover:not([data-disabled])": {
-          background: theme.colors["bg.default.hover"],
+          backgroundColor: theme.colors["bg.neutral.solid.hover"],
         },
         "[data-disabled] &": {
           backgroundColor: theme.colors["white"],
@@ -47,7 +39,7 @@ export const decorator = recipe({
     {
       alignItems: "center",
       justifyContent: "center",
-      size: "20",
+      size: "xs",
     },
     style({
       selectors: {

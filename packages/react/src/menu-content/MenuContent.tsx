@@ -7,13 +7,11 @@ import * as styles from "./MenuContent.css";
 type MenuContentProps = BoxProps<typeof RadixMenu.Content>;
 
 export const MenuContent = forwardRef<HTMLDivElement, MenuContentProps>(
-  ({ children, className, ...props }, ref) => {
+  ({ children, ...props }, ref) => {
     return (
       <RadixMenu.Portal>
-        <Box asChild {...styles.content()}>
-          <RadixMenu.Content ref={ref} {...props}>
-            {children}
-          </RadixMenu.Content>
+        <Box asChild {...styles.content()} {...props}>
+          <RadixMenu.Content ref={ref}>{children}</RadixMenu.Content>
         </Box>
       </RadixMenu.Portal>
     );
