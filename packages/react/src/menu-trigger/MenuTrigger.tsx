@@ -1,23 +1,23 @@
 import * as RadixMenu from "@radix-ui/react-dropdown-menu";
-import { type ComponentPropsWithRef, forwardRef } from "react";
+import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
-import type { BoxProps } from "../box";
+import { Button } from "../button";
+import { IconAngleDown } from "../icons/IconAngleDown";
 
-import { Flex } from "../flex";
-
-type MenuTriggerProps = BoxProps<
-  "button",
-  ComponentPropsWithRef<typeof RadixMenu.Trigger>
->;
+type MenuTriggerProps = ComponentPropsWithoutRef<typeof Button>;
 
 export const MenuTrigger = forwardRef<HTMLButtonElement, MenuTriggerProps>(
-  ({ children, ...props }, ref) => {
+  ({ asChild, children, ...props }, ref) => {
     return (
-      <Flex asChild>
-        <RadixMenu.Trigger ref={ref} {...props}>
-          {children}
-        </RadixMenu.Trigger>
-      </Flex>
+      <RadixMenu.Trigger asChild ref={ref} {...props}>
+        {asChild ? (
+          children
+        ) : (
+          <Button icon={<IconAngleDown />} iconPosition="end">
+            {children}
+          </Button>
+        )}
+      </RadixMenu.Trigger>
     );
   },
 );
