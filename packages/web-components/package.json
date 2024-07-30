@@ -29,6 +29,7 @@
     "./DialogFooter": "./dist/components/DialogFooter.js",
     "./DialogTitle": "./dist/components/DialogTitle.js",
     "./Field": "./dist/components/Field.js",
+    "./FileUpload": "./dist/components/FileUpload.js",
     "./Flex": "./dist/components/Flex.js",
     "./Grid": "./dist/components/Grid.js",
     "./Heading": "./dist/components/Heading.js",
