@@ -9,7 +9,7 @@ type TransitionProps = {
 } & NonNullable<styles.TransitionVariants>;
 
 export const Transition = forwardRef<HTMLDivElement, TransitionProps>(
-  ({ children, duration = "sm", type = "fade", ...props }, ref) => {
+  ({ children, duration = "md", type = "fade", ...props }, ref) => {
     const [isPresent, safeToRemove] = usePresence();
 
     const [enter, setEnter] = useState(false);
