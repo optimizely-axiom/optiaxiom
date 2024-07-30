@@ -1,8 +1,15 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { Menu, MenuContent, MenuItem, MenuTrigger } from "@optiaxiom/react";
+import { action } from "@storybook/addon-actions";
 import { expect, screen, userEvent } from "@storybook/test";
-import { IconStar } from "@tabler/icons-react";
+import {
+  IconFileExcel,
+  IconFileTypePdf,
+  IconFileTypePpt,
+  IconFileWord,
+  IconVideo,
+} from "@tabler/icons-react";
 
 const meta: Meta<typeof Menu> = {
   component: Menu,
@@ -24,7 +31,7 @@ export const Basic: Story = {
     await expect(menu).toBeInTheDocument();
 
     const menuItems = screen.getAllByRole("menuitem");
-    await expect(menuItems).toHaveLength(2);
+    await expect(menuItems).toHaveLength(5);
 
     await expect(menuItems[0]).not.toBeDisabled();
     await expect(menuItems[1]).toHaveAttribute("aria-disabled", "true");
@@ -37,15 +44,24 @@ export const Basic: Story = {
       <MenuTrigger>Download</MenuTrigger>
 
       <MenuContent>
-        <MenuItem endDecorator={<IconStar />} startDecorator={<IconStar />}>
-          Label
+        <MenuItem onSelect={action("excel")} startDecorator={<IconFileExcel />}>
+          Excel
         </MenuItem>
         <MenuItem
           disabled
-          endDecorator={<IconStar />}
-          startDecorator={<IconStar />}
+          onSelect={action("pdf")}
+          startDecorator={<IconFileTypePdf />}
         >
-          Disabled
+          PDF
+        </MenuItem>
+        <MenuItem onSelect={action("ppt")} startDecorator={<IconFileTypePpt />}>
+          Powerpoint
+        </MenuItem>
+        <MenuItem onSelect={action("video")} startDecorator={<IconVideo />}>
+          Video
+        </MenuItem>
+        <MenuItem onSelect={action("word")} startDecorator={<IconFileWord />}>
+          Word
         </MenuItem>
       </MenuContent>
     </Menu>
