@@ -5,13 +5,11 @@ import {
   Button,
   Checkbox,
   Flex,
-  Link,
   Popover,
   PopoverContent,
   PopoverTrigger,
   Search,
   Separator,
-  Switch,
   Text,
 } from "@optiaxiom/react";
 import { type ComponentPropsWithoutRef, useState } from "react";
@@ -23,9 +21,7 @@ const withTemplate = ({ triggerText = "Toggle Popover" } = {}) =>
     return (
       <Flex>
         <Popover {...props}>
-          <PopoverTrigger>
-            <Button>{triggerText}</Button>
-          </PopoverTrigger>
+          <PopoverTrigger>{triggerText}</PopoverTrigger>
 
           {props.children}
         </Popover>
@@ -52,37 +48,11 @@ export const WithArrow: Story = {
   },
 };
 
-export const WithCloseButton: Story = {
-  args: {
-    children: (
-      <PopoverContent withCloseButton>
-        This popover has an arrow.
-      </PopoverContent>
-    ),
-  },
-};
-
 export const CustomPositioning: Story = {
   args: {
     children: (
       <PopoverContent align="end">
         This popover is on custom position.
-      </PopoverContent>
-    ),
-  },
-};
-
-export const RichContent: Story = {
-  args: {
-    children: (
-      <PopoverContent>
-        <Flex alignItems="center" flexDirection="column" gap="2">
-          <Text fontWeight="500">Rich Popover Content</Text>
-          <Text>This popover contains multiple elements.</Text>
-          <Button appearance="primary" size="sm">
-            Done
-          </Button>
-        </Flex>
       </PopoverContent>
     ),
   },
@@ -116,9 +86,7 @@ const DropdownExample = () => {
   return (
     <Flex>
       <Popover>
-        <PopoverTrigger>
-          <Button>Dropdown heading</Button>
-        </PopoverTrigger>
+        <PopoverTrigger>Dropdown heading</PopoverTrigger>
 
         <PopoverContent align="start">
           <Flex flexDirection="column" gap="8">
@@ -127,7 +95,9 @@ const DropdownExample = () => {
               placeholder="Search"
               value={searchValue}
             />
-            <Link onClick={handleSelectAll}>Select all</Link>
+            <Button appearance="secondary" onClick={handleSelectAll} size="sm">
+              Select all
+            </Button>
             {filteredItems.map((item, index) => (
               <Checkbox
                 checked={selectedItems.includes(item)}
@@ -144,7 +114,7 @@ const DropdownExample = () => {
               flexDirection="row"
               justifyContent="space-between"
             >
-              <Link>Create label</Link>
+              <Button>Create label</Button>
               <Button appearance="primary">Add</Button>
             </Flex>
           </Flex>
@@ -201,9 +171,7 @@ const PeopleExample = () => {
   return (
     <Flex>
       <Popover>
-        <PopoverTrigger>
-          <Button>Dropdown heading</Button>
-        </PopoverTrigger>
+        <PopoverTrigger>Dropdown heading</PopoverTrigger>
 
         <PopoverContent>
           <Flex
@@ -246,32 +214,4 @@ const PeopleExample = () => {
 
 export const People: Story = {
   render: PeopleExample,
-};
-
-const ToggleExample = () => {
-  return (
-    <Flex>
-      <Popover>
-        <PopoverTrigger>
-          <Button>Dropdown heading</Button>
-        </PopoverTrigger>
-
-        <PopoverContent align="start">
-          <Flex flexDirection="column" gap="12">
-            <Switch defaultChecked>Dropdown Menu Item</Switch>
-            <Switch>Dropdown Menu Item</Switch>
-            <Switch defaultChecked>Dropdown Menu Item</Switch>
-            <Switch disabled>Dropdown Menu Item</Switch>
-            <Button appearance="primary" style={{ marginTop: "8px" }}>
-              Done
-            </Button>
-          </Flex>
-        </PopoverContent>
-      </Popover>
-    </Flex>
-  );
-};
-
-export const ToggleDropDown: Story = {
-  render: ToggleExample,
 };
