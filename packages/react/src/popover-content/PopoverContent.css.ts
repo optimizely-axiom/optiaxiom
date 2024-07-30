@@ -56,16 +56,3 @@ export const content = recipe({
     }),
   ],
 });
-
-export const close = recipe({
-  base: [
-    {
-      rounded: "full",
-    },
-    style({
-      position: "absolute",
-      right: 2,
-      top: 2,
-    }),
-  ],
-});
