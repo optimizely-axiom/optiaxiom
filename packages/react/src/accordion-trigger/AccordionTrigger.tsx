@@ -1,9 +1,9 @@
 import * as RadixAccordion from "@radix-ui/react-accordion";
 import { forwardRef } from "react";
 
-import type { BoxProps } from "../box";
-
+import { type BoxProps } from "../box";
 import { Flex } from "../flex";
+import { IconAngleDown } from "../icons/IconAngleDown";
 import { extractSprinkles } from "../sprinkles";
 import * as styles from "./AccordionTrigger.css";
 
@@ -16,7 +16,14 @@ export const AccordionTrigger = forwardRef<
   return (
     <Flex asChild {...styles.wrapper({}, className)} {...sprinkleProps}>
       <RadixAccordion.Trigger {...restProps} ref={ref}>
-        {children}
+        <Flex flexDirection="row">
+          <Flex alignItems="start" flex="1">
+            {children}
+          </Flex>
+          <Flex asChild {...styles.icon()}>
+            <IconAngleDown />
+          </Flex>
+        </Flex>
       </RadixAccordion.Trigger>
     </Flex>
   );
