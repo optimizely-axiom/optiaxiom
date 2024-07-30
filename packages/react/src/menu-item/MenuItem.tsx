@@ -11,43 +11,37 @@ type MenuItemProps = BoxProps<
   {
     endDecorator?: ReactNode;
     startDecorator?: ReactNode;
-  }
+  } & styles.ItemVariants
 >;
 
 export const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>(
-  ({ children, endDecorator, startDecorator, ...props }, ref) => {
+  (
+    {
+      children,
+      colorScheme = "neutral",
+      endDecorator,
+      startDecorator,
+      ...props
+    },
+    ref,
+  ) => {
     const { restProps, sprinkleProps } = extractSprinkles(props);
 
     return (
-      <Box asChild ref={ref} {...sprinkleProps}>
+      <Flex
+        asChild
+        ref={ref}
+        {...styles.item({ colorScheme })}
+        {...sprinkleProps}
+      >
         <RadixMenu.Item {...restProps}>
-          <Flex {...styles.item()}>
-            {startDecorator && (
-              <Box
-                asChild
-                {...styles.decorator({
-                  position: "start",
-                })}
-              >
-                {startDecorator}
-              </Box>
-            )}
-            <Box flex="1" fontSize="md">
-              {children}
-            </Box>
-            {endDecorator && (
-              <Box
-                asChild
-                {...styles.decorator({
-                  position: "end",
-                })}
-              >
-                {endDecorator}
-              </Box>
-            )}
-          </Flex>
+          {startDecorator}
+
+          <Box flex="1">{children}</Box>
+
+          {endDecorator}
         </RadixMenu.Item>
-      </Box>
+      </Flex>
     );
   },
 );
