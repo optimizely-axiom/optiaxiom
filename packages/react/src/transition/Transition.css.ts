@@ -48,9 +48,9 @@ const generate = ({
   });
 
 export const transitionDuration = {
-  sm: 250,
-  md: 400,
-  lg: 550,
+  sm: 150,
+  md: 250,
+  lg: 400,
 } as const;
 
 export const transition = recipe({
