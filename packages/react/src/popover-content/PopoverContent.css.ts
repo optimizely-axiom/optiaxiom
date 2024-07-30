@@ -23,18 +23,17 @@ const slideLeftAndFade = keyframes({
 export const content = recipe({
   base: [
     {
-      alignItems: "center",
-      bg: "white",
-      color: "black",
+      border: "1",
+      borderColor: "border.secondary",
+      display: "flex",
       flexDirection: "column",
-      gap: "4",
-      px: "16",
-      py: "16",
-      shadow: "xl",
+      gap: "2",
+      p: "sm",
+      rounded: "lg",
+      shadow: "md",
     },
     style({
-      border: "1px solid #EBEBEF",
-      borderRadius: "3px",
+      minWidth: "var(--radix-popover-trigger-width)",
 
       animationDuration: "400ms",
       animationTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",

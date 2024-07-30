@@ -2,22 +2,26 @@ import * as RadixPopover from "@radix-ui/react-popover";
 import { forwardRef } from "react";
 
 import { type BoxProps } from "../box";
-import { Flex } from "../flex";
-import { extractSprinkles } from "../sprinkles";
+import { Button } from "../button";
+import { IconAngleDown } from "../icons/IconAngleDown";
 
 type PopoverTriggerProps = BoxProps<typeof RadixPopover.Trigger>;
 
-export const PopoverTrigger = forwardRef<HTMLDivElement, PopoverTriggerProps>(
-  ({ children, ...props }, ref) => {
-    const { restProps, sprinkleProps } = extractSprinkles(props);
-    return (
-      <Flex alignItems="center" asChild ref={ref} {...sprinkleProps}>
-        <RadixPopover.Trigger asChild {...restProps}>
+export const PopoverTrigger = forwardRef<
+  HTMLButtonElement,
+  PopoverTriggerProps
+>(({ asChild, children, ...props }, ref) => {
+  return (
+    <RadixPopover.Trigger asChild ref={ref} {...props}>
+      {asChild ? (
+        children
+      ) : (
+        <Button icon={<IconAngleDown />} iconPosition="end">
           {children}
-        </RadixPopover.Trigger>
-      </Flex>
-    );
-  },
-);
+        </Button>
+      )}
+    </RadixPopover.Trigger>
+  );
+});
 
 PopoverTrigger.displayName = "@optiaxiom/react/PopoverTrigger";

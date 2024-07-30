@@ -1,19 +1,30 @@
 import * as RadixPopover from "@radix-ui/react-popover";
-import { forwardRef } from "react";
+import { useControllableState } from "@radix-ui/react-use-controllable-state";
 
 import { type BoxProps } from "../box";
-import { Flex } from "../flex";
+import { PopoverContext } from "../popover-context";
 
 type PopoverProps = BoxProps<typeof RadixPopover.Root>;
 
-export const Popover = forwardRef<HTMLDivElement, PopoverProps>(
-  ({ children, ...props }, ref) => {
-    return (
-      <Flex asChild ref={ref} {...props}>
-        <RadixPopover.Root>{children}</RadixPopover.Root>
-      </Flex>
-    );
-  },
-);
+export const Popover = ({
+  children,
+  defaultOpen,
+  onOpenChange,
+  open: openProp,
+  ...props
+}: PopoverProps) => {
+  const [open, setOpen] = useControllableState({
+    defaultProp: defaultOpen,
+    onChange: onOpenChange,
+    prop: openProp,
+  });
+  return (
+    <RadixPopover.Root onOpenChange={setOpen} open={open} {...props}>
+      <PopoverContext.Provider value={{ open }}>
+        {children}
+      </PopoverContext.Provider>
+    </RadixPopover.Root>
+  );
+};
 
 Popover.displayName = "@optiaxiom/react/Popover";
