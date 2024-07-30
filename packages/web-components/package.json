@@ -45,6 +45,7 @@
     "./Paper": "./dist/components/Paper.js",
     "./Popover": "./dist/components/Popover.js",
     "./PopoverContent": "./dist/components/PopoverContent.js",
+    "./PopoverTrigger": "./dist/components/PopoverTrigger.js",
     "./Progress": "./dist/components/Progress.js",
     "./RadioGroup": "./dist/components/RadioGroup.js",
     "./RadioGroupItem": "./dist/components/RadioGroupItem.js",

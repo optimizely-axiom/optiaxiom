@@ -1,11 +1,10 @@
 import * as RadixPopover from "@radix-ui/react-popover";
-import { forwardRef } from "react";
+import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
-import { type BoxProps } from "../box";
 import { Button } from "../button";
 import { IconAngleDown } from "../icons/IconAngleDown";
 
-type PopoverTriggerProps = BoxProps<typeof RadixPopover.Trigger>;
+type PopoverTriggerProps = ComponentPropsWithoutRef<typeof Button>;
 
 export const PopoverTrigger = forwardRef<
   HTMLButtonElement,
