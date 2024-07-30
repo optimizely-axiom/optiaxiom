@@ -1,62 +1,65 @@
 import { theme } from "../styles";
-import { recipe, style } from "../vanilla-extract";
+import {
+  type RecipeVariants,
+  createVar,
+  recipe,
+  style,
+} from "../vanilla-extract";
+
+const bgColorVar = createVar();
+const accentColorVar = createVar();
 
 export const item = recipe({
   base: [
     {
-      alignItems: "center",
-      display: "flex",
       flexDirection: "row",
       fontSize: "md",
-      h: "40",
-      justifyContent: "start",
-      px: "xs",
+      gap: "xs",
+      p: "xs",
       rounded: "sm",
+      transition: "colors",
     },
     style({
+      userSelect: "none",
+
       selectors: {
-        "&:active:not([data-disabled])": {
-          backgroundColor: theme.colors["neutral.200"],
-        },
         "&:focus-visible": {
-          outline: `1px solid ${theme.colors["outline.brand"]}`,
+          outline: "2px solid transparent",
         },
-        "&:hover:not([data-disabled])": {
-          backgroundColor: theme.colors["bg.neutral.solid.hover"],
+        "&:not([data-disabled])": {
+          color: accentColorVar,
+          cursor: "pointer",
         },
-        "[data-disabled] &": {
-          backgroundColor: theme.colors["white"],
-          border: `1px solid ${theme.colors["border.disabled"]}`,
+        "&:not([data-disabled])[data-highlighted]": {
+          backgroundColor: bgColorVar,
+        },
+        "&:not([data-disabled])[data-highlighted]:active": {
+          backgroundColor: theme.colors["neutral.1200/12"],
+        },
+        '&:not([data-highlighted])[data-state="open"]': {},
+        "&[data-disabled]": {
           color: theme.colors["fg.disabled"],
         },
       },
     }),
   ],
-});
 
-export const decorator = recipe({
-  base: [
-    {
-      alignItems: "center",
-      justifyContent: "center",
-      size: "xs",
-    },
-    style({
-      selectors: {
-        "&[data-disabled]": {
-          color: theme.colors["red.300"],
-        },
-      },
-    }),
-  ],
   variants: {
-    position: {
-      end: {
-        mr: "0",
-      },
-      start: {
-        ml: "0",
-      },
+    colorScheme: {
+      danger: style({
+        vars: {
+          [accentColorVar]: theme.colors["fg.error"],
+          [bgColorVar]: theme.colors["bg.error"],
+        },
+      }),
+      neutral: style({
+        vars: {
+          [accentColorVar]: theme.colors["fg.default"],
+          [bgColorVar]: theme.colors["bg.input.disabled"],
+        },
+      }),
     },
   },
 });
+
+export type ItemVariants = RecipeVariants<typeof item>;
