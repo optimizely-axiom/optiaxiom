@@ -1,12 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import {
-  Button,
-  Menu,
-  MenuContent,
-  MenuItem,
-  MenuTrigger,
-} from "@optiaxiom/react";
+import { Menu, MenuContent, MenuItem, MenuTrigger } from "@optiaxiom/react";
 import { expect, screen, userEvent } from "@storybook/test";
 import { IconStar } from "@tabler/icons-react";
 
@@ -21,7 +15,7 @@ type Story = StoryObj<typeof Menu>;
 export const Basic: Story = {
   play: async ({ canvas }) => {
     const button = canvas.getByRole("button", {
-      name: "Trigger Menu",
+      name: "Download",
     });
 
     await userEvent.click(button);
@@ -40,9 +34,7 @@ export const Basic: Story = {
   },
   render: () => (
     <Menu>
-      <MenuTrigger asChild>
-        <Button>Trigger Menu</Button>
-      </MenuTrigger>
+      <MenuTrigger>Download</MenuTrigger>
 
       <MenuContent>
         <MenuItem endDecorator={<IconStar />} startDecorator={<IconStar />}>
