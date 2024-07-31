@@ -14,6 +14,13 @@ export const Basic: Story = {
   },
 };
 
+export const PageSize: Story = {
+  args: {
+    dataCount: 50,
+    showPageSize: true,
+  },
+};
+
 export const MassiveData: Story = {
   args: {
     dataCount: 300,
