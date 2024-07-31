@@ -6,15 +6,15 @@ import {
   Flex,
   Toast,
   ToastAction,
+  ToastProvider,
   ToastTitle,
-  Toaster,
   createToaster,
 } from "@optiaxiom/react";
 import { action } from "@storybook/addon-actions";
 import { expect, screen, userEvent, waitFor, within } from "@storybook/test";
 
 type StoryProps = ComponentPropsWithoutRef<typeof Toast> &
-  Pick<ComponentPropsWithoutRef<typeof Toaster>, "position">;
+  Pick<ComponentPropsWithoutRef<typeof ToastProvider>, "position">;
 
 const toaster = createToaster();
 
@@ -43,7 +43,7 @@ export default {
           Show Toast
         </Button>
 
-        <Toaster position={position} toaster={toaster} />
+        <ToastProvider position={position} toaster={toaster} />
       </Flex>
     );
   },
