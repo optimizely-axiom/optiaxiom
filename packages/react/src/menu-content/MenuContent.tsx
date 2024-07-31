@@ -18,7 +18,7 @@ export const MenuContent = forwardRef<HTMLDivElement, MenuContentProps>(
       <AnimatePresence>
         {open && (
           <RadixMenu.Portal forceMount>
-            <Transition duration="sm">
+            <Transition duration="sm" type="pop">
               <Paper asChild {...styles.content()} {...props}>
                 <RadixMenu.Content
                   align={align}
