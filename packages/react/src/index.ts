@@ -12,6 +12,7 @@ export * from "./button-group";
 export * from "./checkbox";
 export * from "./chip";
 export * from "./code";
+export * from "./combobox";
 export * from "./dialog";
 export * from "./dialog-body";
 export * from "./dialog-footer";
