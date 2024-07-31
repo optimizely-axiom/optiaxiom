@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 0.1.0-next.10
+
+### Minor Changes
+
+- 045f84b: release latest components
+
 ## 0.1.0-next.9
 
 ### Patch Changes
