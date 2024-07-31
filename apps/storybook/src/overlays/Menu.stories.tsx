@@ -1,6 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Menu, MenuContent, MenuItem, MenuTrigger } from "@optiaxiom/react";
+import {
+  Menu,
+  MenuContent,
+  MenuItem,
+  MenuSeparator,
+  MenuTrigger,
+} from "@optiaxiom/react";
 import { action } from "@storybook/addon-actions";
 import { expect, screen, userEvent } from "@storybook/test";
 import {
@@ -87,6 +93,8 @@ export const LongContent: Story = {
           <MenuItem>
             This is a really long content to show case how text will wrap.
           </MenuItem>
+          <MenuSeparator />
+          <MenuItem>Logout</MenuItem>
         </MenuContent>
       </>
     ),
