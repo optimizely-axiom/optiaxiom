@@ -20,6 +20,41 @@ export default meta;
 type Story = StoryObj<typeof Menu>;
 
 export const Basic: Story = {
+  args: {
+    children: (
+      <>
+        <MenuTrigger>Download</MenuTrigger>
+
+        <MenuContent>
+          <MenuItem
+            onSelect={action("excel")}
+            startDecorator={<IconFileExcel />}
+          >
+            Excel
+          </MenuItem>
+          <MenuItem
+            disabled
+            onSelect={action("pdf")}
+            startDecorator={<IconFileTypePdf />}
+          >
+            PDF
+          </MenuItem>
+          <MenuItem
+            onSelect={action("ppt")}
+            startDecorator={<IconFileTypePpt />}
+          >
+            Powerpoint
+          </MenuItem>
+          <MenuItem onSelect={action("video")} startDecorator={<IconVideo />}>
+            Video
+          </MenuItem>
+          <MenuItem onSelect={action("word")} startDecorator={<IconFileWord />}>
+            Word
+          </MenuItem>
+        </MenuContent>
+      </>
+    ),
+  },
   play: async ({ canvas }) => {
     const button = canvas.getByRole("button", {
       name: "Download",
@@ -39,31 +74,22 @@ export const Basic: Story = {
     await userEvent.keyboard("{Escape}");
     await expect(menu).not.toBeVisible();
   },
-  render: () => (
-    <Menu>
-      <MenuTrigger>Download</MenuTrigger>
+};
 
-      <MenuContent>
-        <MenuItem onSelect={action("excel")} startDecorator={<IconFileExcel />}>
-          Excel
-        </MenuItem>
-        <MenuItem
-          disabled
-          onSelect={action("pdf")}
-          startDecorator={<IconFileTypePdf />}
-        >
-          PDF
-        </MenuItem>
-        <MenuItem onSelect={action("ppt")} startDecorator={<IconFileTypePpt />}>
-          Powerpoint
-        </MenuItem>
-        <MenuItem onSelect={action("video")} startDecorator={<IconVideo />}>
-          Video
-        </MenuItem>
-        <MenuItem onSelect={action("word")} startDecorator={<IconFileWord />}>
-          Word
-        </MenuItem>
-      </MenuContent>
-    </Menu>
-  ),
+export const LongContent: Story = {
+  args: {
+    children: (
+      <>
+        <MenuTrigger>Profile</MenuTrigger>
+
+        <MenuContent>
+          <MenuItem>My Profile</MenuItem>
+          <MenuItem>
+            This is a really long content to show case how text will wrap.
+          </MenuItem>
+        </MenuContent>
+      </>
+    ),
+    defaultOpen: true,
+  },
 };
