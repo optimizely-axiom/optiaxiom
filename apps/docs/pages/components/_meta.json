@@ -32,6 +32,7 @@
   },
   "alert-dialog": "Alert Dialog",
   "dialog": "Dialog",
+  "menu": "Menu",
   "tooltip": "Tooltip",
   "-- Data Display": {
     "type": "separator",
