@@ -1,7 +1,7 @@
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import { Portal } from "@radix-ui/react-portal";
 import * as RadixToast from "@radix-ui/react-toast";
-import { useAtom } from "jotai";
+import { useAtomValue } from "jotai";
 import {
   type ComponentPropsWithoutRef,
   type ReactNode,
@@ -10,18 +10,20 @@ import {
   useRef,
 } from "react";
 
-import { Box, type BoxProps } from "../box";
+import type { createToaster } from "./createToaster";
+
+import { type BoxProps } from "../box";
 import { Flex } from "../flex";
 import { extractSprinkles } from "../sprinkles";
 import * as styles from "./Toaster.css";
 import { useOverflowAnchor } from "./useOverflowAnchor";
-import { toastAtom } from "./useToaster";
 
 type ToastProps = BoxProps<
   typeof RadixToast.Viewport,
   {
     children?: ReactNode;
     container?: ComponentPropsWithoutRef<typeof Portal>["container"];
+    toaster: ReturnType<typeof createToaster>;
   } & ComponentPropsWithoutRef<typeof RadixToast.ToastProvider> &
     styles.ViewportVariants
 >;
@@ -45,12 +47,13 @@ export const Toaster = forwardRef<HTMLOListElement, ToastProps>(
       position = "bottom-right",
       swipeDirection,
       swipeThreshold,
+      toaster,
       ...props
     },
     outerRef,
   ) => {
     const { restProps, sprinkleProps } = extractSprinkles(props);
-    const [{ toasts }, setStore] = useAtom(toastAtom);
+    const toasts = useAtomValue(toaster.atom);
 
     const innerRef = useRef<HTMLOListElement>(null);
     const ref = useComposedRefs(innerRef, outerRef);
@@ -66,19 +69,14 @@ export const Toaster = forwardRef<HTMLOListElement, ToastProps>(
         swipeDirection={swipeDirection ?? mapPositionToSwipeDirection[position]}
         swipeThreshold={swipeThreshold}
       >
-        {toasts.map((toast) => (
-          <Box asChild key={toast.id}>
-            {cloneElement(toast.component, {
-              onOpenChange: (open: boolean) => {
-                if (!open) {
-                  setStore((prev) => ({
-                    toasts: prev.toasts.filter((t) => t.id !== toast.id),
-                  }));
-                }
-              },
-            })}
-          </Box>
-        ))}
+        {toasts.map(({ id, toast }) =>
+          cloneElement(toast, {
+            forceMount: true,
+            key: id,
+            onOpenChange: () => setTimeout(() => toaster.remove(id), 200),
+          }),
+        )}
+
         <Portal container={container}>
           <Flex
             asChild

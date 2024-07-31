@@ -12,7 +12,7 @@ import { Paper } from "../paper";
 import { extractSprinkles } from "../sprinkles";
 import * as styles from "./Toast.css";
 
-export type ToastProps = BoxProps<
+type ToastProps = BoxProps<
   typeof RadixToast.Root,
   NonNullable<styles.RootVariants>
 >;

@@ -1,2 +1,2 @@
 export * from "./Toaster";
-export * from "./useToaster";
+export * from "./createToaster";
