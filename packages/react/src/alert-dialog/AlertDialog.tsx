@@ -50,7 +50,7 @@ export const AlertDialog = forwardRef<HTMLDivElement, AlertDialogProps>(
                 </Box>
               </Transition>
 
-              <Transition type="fade-down">
+              <Transition data-side="bottom" type="fade">
                 <Paper asChild {...styles.content({ size })}>
                   <RadixAlertDialog.Content ref={ref} {...props}>
                     <Box asChild {...styles.title()}>
