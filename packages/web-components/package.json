@@ -46,6 +46,7 @@
     "./MenuLabel": "./dist/components/MenuLabel.js",
     "./MenuSeparator": "./dist/components/MenuSeparator.js",
     "./MenuTrigger": "./dist/components/MenuTrigger.js",
+    "./Pagination": "./dist/components/Pagination.js",
     "./Paper": "./dist/components/Paper.js",
     "./Popover": "./dist/components/Popover.js",
     "./PopoverContent": "./dist/components/PopoverContent.js",
