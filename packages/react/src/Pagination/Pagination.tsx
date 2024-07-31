@@ -3,9 +3,15 @@ import { type ComponentPropsWithRef, forwardRef } from "react";
 import { Box, type BoxProps } from "../box";
 import { Button } from "../button";
 import { ButtonGroup } from "../button-group";
+import { Flex } from "../flex";
 import { IconAngleLeft } from "../icons/IconAngleLeft";
 import { IconAngleRight } from "../icons/IconAngleRight";
+import { Menu } from "../menu";
+import { MenuContent } from "../menu-content";
+import { MenuItem } from "../menu-item";
+import { MenuTrigger } from "../menu-trigger";
 import { extractSprinkles } from "../sprinkles";
+import { Text } from "../text";
 import * as styles from "./Pagination.css";
 
 const PAGE_SIZES = [20, 30, 50, 100] as const;
@@ -17,6 +23,7 @@ type PaginationProps = BoxProps<
     offset?: number;
     onPageSelect: (offset: number, pageSize: number) => void;
     pageSize?: number;
+    showPageSize?: boolean;
   }
 >;
 
@@ -29,6 +36,7 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
       offset = 0,
       onPageSelect,
       pageSize = PAGE_SIZES[0],
+      showPageSize = false,
       ...props
     },
     ref,
@@ -52,7 +60,32 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
         {...styles.wrapper({}, className)}
         {...sprinkleProps}
       >
-        <Box {...restProps}>
+        <Flex flexDirection="row" {...restProps}>
+          {showPageSize && (
+            <Box>
+              <Menu>
+                <MenuTrigger>
+                  <Text>Page Size</Text>
+                </MenuTrigger>
+                <MenuContent>
+                  {PAGE_SIZES.map((size) => (
+                    <MenuItem key={size}>
+                      {/* <Option key={size} name={String(size)}> */}
+                      {size}
+                      {/* </Option> */}
+                    </MenuItem>
+                  ))}
+                </MenuContent>
+              </Menu>
+              {/* <Menu onSelect={handlePageSizeSelect} position="topLeft">
+              {PAGE_SIZES.map((size) => (
+                <Option key={size} name={String(size)}>
+                  {size}
+                </Option>
+              ))}
+            </Menu> */}
+            </Box>
+          )}
           {totalPage > 1 && (
             <ButtonGroup gap="2">
               {buttonConfigs.map(({ value, ...props }) => (
@@ -66,7 +99,7 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
               ))}
             </ButtonGroup>
           )}
-        </Box>
+        </Flex>
       </Box>
     );
   },
