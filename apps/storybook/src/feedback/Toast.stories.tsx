@@ -8,13 +8,15 @@ import {
   ToastAction,
   ToastTitle,
   Toaster,
-  useToaster,
+  createToaster,
 } from "@optiaxiom/react";
 import { action } from "@storybook/addon-actions";
 import { expect, screen, userEvent, waitFor, within } from "@storybook/test";
 
 type StoryProps = ComponentPropsWithoutRef<typeof Toast> &
   Pick<ComponentPropsWithoutRef<typeof Toaster>, "position">;
+
+const toaster = createToaster();
 
 export default {
   argTypes: {
@@ -35,17 +37,13 @@ export default {
   },
   component: Toast,
   render: function Render({ position, ...args }) {
-    const toaster = useToaster();
-
-    const handleOpen = () => {
-      toaster.create(<Toast {...args} forceMount />);
-    };
-
     return (
       <Flex flexDirection="column" gap="4">
-        <Button onClick={handleOpen}>Show Toast</Button>
+        <Button onClick={() => toaster.create(<Toast {...args} />)}>
+          Show Toast
+        </Button>
 
-        <Toaster position={position} />
+        <Toaster position={position} toaster={toaster} />
       </Flex>
     );
   },
