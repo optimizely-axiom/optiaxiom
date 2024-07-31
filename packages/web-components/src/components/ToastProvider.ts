@@ -1,17 +1,17 @@
-import { Toaster as ToasterComponent } from "@optiaxiom/react";
+import { ToastProvider as ToastProviderComponent } from "@optiaxiom/react";
 
 import type { ComponentAttributes } from "./ComponentAttributes";
 
 import { register } from "../register";
 
-export const Toaster = "ax-toaster";
-register(Toaster, ToasterComponent);
+export const ToastProvider = "ax-toast-provider";
+register(ToastProvider, ToastProviderComponent);
 
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace JSX {
     interface IntrinsicElements {
-      [Toaster]: ComponentAttributes<typeof ToasterComponent>;
+      [ToastProvider]: ComponentAttributes<typeof ToastProviderComponent>;
     }
   }
 }

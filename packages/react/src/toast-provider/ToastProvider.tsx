@@ -15,7 +15,7 @@ import type { createToaster } from "./createToaster";
 import { type BoxProps } from "../box";
 import { Flex } from "../flex";
 import { extractSprinkles } from "../sprinkles";
-import * as styles from "./Toaster.css";
+import * as styles from "./ToastProvider.css";
 import { useOverflowAnchor } from "./useOverflowAnchor";
 
 type ToastProps = BoxProps<
@@ -37,7 +37,7 @@ const mapPositionToSwipeDirection = {
   "top-right": "right",
 } as const;
 
-export const Toaster = forwardRef<HTMLOListElement, ToastProps>(
+export const ToastProvider = forwardRef<HTMLOListElement, ToastProps>(
   (
     {
       children,
@@ -95,4 +95,4 @@ export const Toaster = forwardRef<HTMLOListElement, ToastProps>(
   },
 );
 
-Toaster.displayName = "@optiaxiom/react/Toaster";
+ToastProvider.displayName = "@optiaxiom/react/ToastProvider";
