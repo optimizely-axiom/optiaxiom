@@ -1,9 +1,12 @@
-import { type RefObject, useLayoutEffect, useRef } from "react";
+import { type RefObject, useLayoutEffect, useRef, useState } from "react";
 
 export const useOverflowAnchor = (
   scrollingElementRef: RefObject<HTMLElement>,
   scrollAnchor: "bottom" | "top",
 ) => {
+  const [mounted, setMounted] = useState(false);
+  useLayoutEffect(() => setMounted(true), []);
+
   const previousScrollAnchor = useRef<"bottom" | "top" | null>(scrollAnchor);
   useLayoutEffect(() => {
     previousScrollAnchor.current = scrollAnchor;
@@ -24,7 +27,7 @@ export const useOverflowAnchor = (
 
     element.addEventListener("scroll", listener);
     return () => element.removeEventListener("scroll", listener);
-  }, [scrollAnchor, scrollingElementRef]);
+  }, [mounted, scrollAnchor, scrollingElementRef]);
 
   useLayoutEffect(() => {
     if (!scrollingElementRef.current) {
@@ -42,5 +45,5 @@ export const useOverflowAnchor = (
 
     mutation.observe(element, { childList: true });
     return () => mutation.disconnect();
-  }, [scrollAnchor, scrollingElementRef]);
+  }, [mounted, scrollAnchor, scrollingElementRef]);
 };
