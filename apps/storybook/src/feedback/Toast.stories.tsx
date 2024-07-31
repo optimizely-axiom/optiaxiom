@@ -3,7 +3,6 @@ import type { ComponentPropsWithoutRef } from "react";
 
 import {
   Button,
-  Flex,
   Toast,
   ToastAction,
   ToastProvider,
@@ -38,13 +37,13 @@ export default {
   component: Toast,
   render: function Render({ position, ...args }) {
     return (
-      <Flex flexDirection="column" gap="4">
+      <>
         <Button onClick={() => toaster.create(<Toast {...args} />)}>
           Show Toast
         </Button>
 
         <ToastProvider position={position} toaster={toaster} />
-      </Flex>
+      </>
     );
   },
 } as Meta<StoryProps>;
