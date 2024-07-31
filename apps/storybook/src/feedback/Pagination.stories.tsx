@@ -9,5 +9,14 @@ export default {
 type Story = StoryObj<typeof Pagination>;
 
 export const Basic: Story = {
-  args: {},
+  args: {
+    dataCount: 50,
+  },
+};
+
+export const MassiveData: Story = {
+  args: {
+    dataCount: 300,
+    offset: 120,
+  },
 };
