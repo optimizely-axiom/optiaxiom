@@ -16,8 +16,8 @@ const presets = {
   }),
   pop: (dir?: "down" | "left" | "right" | "up") => ({
     opacity: 0,
-    scale: 0.9,
-    ...(dir && translate(dir, 10)),
+    scale: 0.95,
+    ...(dir && translate(dir, 8)),
   }),
 };
 
