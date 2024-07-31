@@ -69,7 +69,7 @@ export function transformPropsTable(tree) {
             `import { Table, Td, Th, Tr } from "@/components/table";`,
           needsImport && `import { PropType } from "@/components/prop-type";`,
           "",
-          `### \`${component}\` component props`,
+          `### \`${component}\``,
           "",
           `Supports all [\`${extendsComponent}\`](/components/${kebabCase(extendsComponent)}/props) props` +
             (props.length > 0 ? " in addition to its own" : "") +
