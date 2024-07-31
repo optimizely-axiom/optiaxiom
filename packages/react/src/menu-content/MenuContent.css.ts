@@ -9,11 +9,13 @@ export const content = recipe({
       flexDirection: "column",
       gap: "2",
       maxW: "xs",
+      overflow: "auto",
       p: "4",
       rounded: "lg",
       shadow: "md",
     },
     style({
+      maxHeight: "var(--radix-dropdown-menu-content-available-height)",
       minWidth: "var(--radix-dropdown-menu-trigger-width)",
     }),
   ],
