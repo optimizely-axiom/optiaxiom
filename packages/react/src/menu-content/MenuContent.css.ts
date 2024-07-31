@@ -8,6 +8,7 @@ export const content = recipe({
       display: "flex",
       flexDirection: "column",
       gap: "2",
+      maxW: "xs",
       p: "4",
       rounded: "lg",
       shadow: "md",
