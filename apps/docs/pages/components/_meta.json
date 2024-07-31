@@ -60,5 +60,6 @@
     "title": "Feedback"
   },
   "progress": "Progress",
-  "skeleton": "Skeleton"
+  "skeleton": "Skeleton",
+  "toast": "Toast"
 }
