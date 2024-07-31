@@ -10,13 +10,11 @@ import { Transition } from "../transition";
 import * as styles from "./Dialog.css";
 
 type DialogProps = BoxProps<
-  typeof RadixDialog.Root,
+  typeof RadixDialog.Content,
   {
     children: ReactNode;
-    defaultOpen?: never;
     modal?: boolean;
     onClose: () => void;
-    onOpenChange?: never;
     open?: boolean;
     withCloseButton?: boolean;
   } & styles.DialogVariants

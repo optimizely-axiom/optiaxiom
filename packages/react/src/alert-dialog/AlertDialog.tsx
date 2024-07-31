@@ -10,15 +10,15 @@ import { Transition } from "../transition";
 import * as styles from "./AlertDialog.css";
 
 type AlertDialogProps = BoxProps<
-  typeof RadixAlertDialog.Root,
+  typeof RadixAlertDialog.Content,
   {
     action: string;
     appearance?: "danger" | "primary";
     cancel?: string;
     children: ReactNode;
-    defaultOpen?: never;
     onAction: () => void;
     onCancel: () => void;
+    open?: boolean;
     title: ReactNode;
   } & styles.DialogVariants
 >;
@@ -32,7 +32,6 @@ export const AlertDialog = forwardRef<HTMLDivElement, AlertDialogProps>(
       children,
       onAction,
       onCancel,
-      onOpenChange,
       open,
       size = "sm",
       title,
@@ -41,7 +40,7 @@ export const AlertDialog = forwardRef<HTMLDivElement, AlertDialogProps>(
     ref,
   ) => {
     return (
-      <RadixAlertDialog.Root onOpenChange={onOpenChange} open={open}>
+      <RadixAlertDialog.Root open={open}>
         <AnimatePresence>
           {open && (
             <RadixAlertDialog.Portal forceMount>
