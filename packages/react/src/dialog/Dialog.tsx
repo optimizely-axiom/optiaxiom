@@ -44,7 +44,7 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(
                 </Box>
               </Transition>
 
-              <Transition type="fade-down">
+              <Transition data-side="bottom" type="fade">
                 <Paper asChild {...styles.content({ size })}>
                   <RadixDialog.Content ref={ref} {...props}>
                     {children}
