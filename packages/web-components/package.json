@@ -39,6 +39,7 @@
     "./Menu": "./dist/components/Menu.js",
     "./MenuContent": "./dist/components/MenuContent.js",
     "./MenuItem": "./dist/components/MenuItem.js",
+    "./MenuLabel": "./dist/components/MenuLabel.js",
     "./MenuSeparator": "./dist/components/MenuSeparator.js",
     "./MenuTrigger": "./dist/components/MenuTrigger.js",
     "./Paper": "./dist/components/Paper.js",

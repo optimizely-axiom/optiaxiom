@@ -4,6 +4,7 @@ import {
   Menu,
   MenuContent,
   MenuItem,
+  MenuLabel,
   MenuSeparator,
   MenuTrigger,
 } from "@optiaxiom/react";
@@ -89,7 +90,7 @@ export const LongContent: Story = {
         <MenuTrigger>Profile</MenuTrigger>
 
         <MenuContent>
-          <MenuItem>My Profile</MenuItem>
+          <MenuLabel>My Profile</MenuLabel>
           <MenuItem>
             This is a really long content to show case how text will wrap.
           </MenuItem>
