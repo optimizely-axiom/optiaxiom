@@ -88,10 +88,10 @@ export const root = recipe({
           },
         },
         '[data-position^="bottom"] &:first-child': {
-          marginTop: "auto",
+          marginBottom: "auto",
         },
         '[data-position^="top"] &:last-child': {
-          marginBottom: "auto",
+          marginTop: "auto",
         },
       },
     }),
