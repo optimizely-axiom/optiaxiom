@@ -4,7 +4,7 @@ import type { ComponentAttributes } from "./ComponentAttributes";
 
 import { register } from "../register";
 
-export const Command = "ax-Command";
+export const Command = "ax-command";
 register(Command, CommandComponent);
 
 declare global {

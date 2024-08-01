@@ -4,7 +4,7 @@ import type { ComponentAttributes } from "./ComponentAttributes";
 
 import { register } from "../register";
 
-export const CommandSeparator = "ax-CommandSeparator";
+export const CommandSeparator = "ax-command-separator";
 register(CommandSeparator, CommandSeparatorComponent);
 
 declare global {
