@@ -25,7 +25,6 @@
   },
   "dependencies": {
     "@fontsource-variable/fira-code": "^5.0.18",
-    "@radix-ui/react-accessible-icon": "^1.1.0",
     "@radix-ui/react-alert-dialog": "^1.1.1",
     "@radix-ui/react-arrow": "^1.1.0",
     "@radix-ui/react-avatar": "^1.1.0",
