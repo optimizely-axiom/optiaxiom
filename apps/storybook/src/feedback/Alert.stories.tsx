@@ -8,6 +8,7 @@ import {
   Field,
   Flex,
   Input,
+  Link,
 } from "@optiaxiom/react";
 import { type ComponentPropsWithoutRef, useState } from "react";
 
@@ -86,12 +87,22 @@ const AlertTemplate = (args: AlertProps) => {
 };
 
 const DefaultTemplate = (args: ComponentPropsWithoutRef<typeof Alert>) => {
-  const [showAlert, setShowAlert] = useState(true);
+  const [showDefaultAlert, setShowDefaultAlert] = useState(true);
+  const [showSolidAlert, setShowSolidAlert] = useState(true);
 
   return (
     <Flex flexDirection="column">
-      {showAlert && (
-        <Alert onClose={() => setShowAlert(false)} {...args}>
+      {showDefaultAlert && (
+        <Alert onClose={() => setShowDefaultAlert(false)} {...args}>
+          {args.children}
+        </Alert>
+      )}
+      {showSolidAlert && (
+        <Alert
+          onClose={() => setShowSolidAlert(false)}
+          variant="solid"
+          {...args}
+        >
           {args.children}
         </Alert>
       )}
@@ -153,6 +164,19 @@ export const Warning: Story = {
       <AlertDescription>Please give a correct email address</AlertDescription>
     ),
     type: "warning",
+  },
+  render: DefaultTemplate,
+};
+
+export const DefaultWithLink: Story = {
+  args: {
+    children: (
+      <>
+        <AlertTitle>With link</AlertTitle>
+        <AlertDescription>Please give a correct email address</AlertDescription>
+        <Link href="">Do an action</Link>
+      </>
+    ),
   },
   render: DefaultTemplate,
 };
