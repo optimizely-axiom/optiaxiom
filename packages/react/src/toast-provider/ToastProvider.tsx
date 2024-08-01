@@ -59,7 +59,7 @@ export const ToastProvider = forwardRef<HTMLOListElement, ToastProps>(
     const ref = useComposedRefs(innerRef, outerRef);
     useOverflowAnchor(
       innerRef,
-      position.startsWith("bottom") ? "bottom" : "top",
+      position.startsWith("bottom") ? "top" : "bottom",
     );
 
     return (
@@ -82,7 +82,7 @@ export const ToastProvider = forwardRef<HTMLOListElement, ToastProps>(
             asChild
             data-position={position}
             flexDirection={
-              position.startsWith("bottom") ? "column" : "column-reverse"
+              position.startsWith("bottom") ? "column-reverse" : "column"
             }
             {...styles.viewport({ position })}
             {...sprinkleProps}
