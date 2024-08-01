@@ -4,7 +4,7 @@ import type { ComponentAttributes } from "./ComponentAttributes";
 
 import { register } from "../register";
 
-export const CommandInput = "ax-CommandInput";
+export const CommandInput = "ax-command-input";
 register(CommandInput, CommandInputComponent);
 
 declare global {

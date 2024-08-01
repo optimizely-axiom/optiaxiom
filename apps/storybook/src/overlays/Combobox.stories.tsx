@@ -24,7 +24,7 @@ const withTemplate = (args: ComponentPropsWithoutRef<typeof Combobox>) => {
   return (
     <Combobox {...args}>
       <ComboboxTrigger />
-      <ComboboxContent side="top" w="240" />
+      <ComboboxContent w="240" />
     </Combobox>
   );
 };

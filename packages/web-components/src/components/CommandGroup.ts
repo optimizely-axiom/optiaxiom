@@ -4,7 +4,7 @@ import type { ComponentAttributes } from "./ComponentAttributes";
 
 import { register } from "../register";
 
-export const CommandGroup = "ax-CommandGroup";
+export const CommandGroup = "ax-command-group";
 register(CommandGroup, CommandGroupComponent);
 
 declare global {
