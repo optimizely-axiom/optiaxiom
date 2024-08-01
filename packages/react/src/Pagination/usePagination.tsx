@@ -58,9 +58,10 @@ export const usePagination = (
       value?: number | string;
     } & Pick<
       ComponentPropsWithRef<typeof Button>,
-      "className" | "disabled" | "iconPosition"
+      "active" | "className" | "disabled" | "iconPosition"
     >
   > = pageRange.map((pageNumber) => ({
+    active: pageNumber === currentPage,
     children: pageNumber === DOTS ? DOTS : String(pageNumber),
     disabled: pageNumber === DOTS,
     value: pageNumber === DOTS ? undefined : pageNumber,
