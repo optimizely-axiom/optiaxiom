@@ -104,6 +104,7 @@ export function transformPropsTable(tree) {
                     prop.description
                       .replaceAll(/{@link ([^\s}]+)(?:\s([^}]+))}/g, "[$2]($1)")
                       .replaceAll(/{@link ([^}]+)}/g, "[$1]($1)")
+                      .replaceAll(/@example .+/g, "\n\n")
                       .replaceAll("@see", "\n\n"),
                   ]
                     .filter(Boolean)
