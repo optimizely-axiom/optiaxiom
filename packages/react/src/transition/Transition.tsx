@@ -26,10 +26,13 @@ export const Transition = forwardRef<HTMLDivElement, TransitionProps>(
     return (
       <Slot
         ref={ref}
-        {...styles.transition({
-          duration,
-          type: enter !== isPresent ? type : undefined,
-        })}
+        {...styles.transition(
+          {
+            duration,
+            type: enter !== isPresent ? type : undefined,
+          },
+          undefined,
+        )}
         {...props}
       >
         {children}

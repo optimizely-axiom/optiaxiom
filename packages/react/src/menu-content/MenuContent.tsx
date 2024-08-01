@@ -11,7 +11,7 @@ import * as styles from "./MenuContent.css";
 type MenuContentProps = BoxProps<typeof RadixMenu.Content>;
 
 export const MenuContent = forwardRef<HTMLDivElement, MenuContentProps>(
-  ({ align = "start", children, sideOffset = 2, ...props }, ref) => {
+  ({ align = "start", children, className, sideOffset = 2, ...props }, ref) => {
     const { open } = useContext(MenuContext);
 
     return (
@@ -19,7 +19,7 @@ export const MenuContent = forwardRef<HTMLDivElement, MenuContentProps>(
         {open && (
           <RadixMenu.Portal forceMount>
             <Transition duration="sm" type="pop">
-              <Paper asChild {...styles.content()} {...props}>
+              <Paper asChild {...styles.content({}, className)} {...props}>
                 <RadixMenu.Content
                   align={align}
                   ref={ref}
