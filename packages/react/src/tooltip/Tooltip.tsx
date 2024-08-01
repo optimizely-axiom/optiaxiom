@@ -85,7 +85,10 @@ export const Tooltip = forwardRef<HTMLButtonElement, TooltipProps>(
             asChild
             onClick={
               keepOpenOnActivation
-                ? (event) => event.preventDefault()
+                ? (event) => {
+                    event.preventDefault();
+                    setOpen(true);
+                  }
                 : undefined
             }
             ref={ref}
