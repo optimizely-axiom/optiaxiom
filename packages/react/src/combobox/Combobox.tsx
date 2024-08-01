@@ -1,25 +1,8 @@
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
-import { type ReactNode, createContext, useState } from "react";
+import { type ReactNode, useState } from "react";
 
+import { ComboboxContext, type Item } from "../combobox-context";
 import { Popover } from "../popover";
-
-type Item = {
-  label: string;
-  value: string;
-};
-
-type ComboboxContextType = {
-  items?: Item[];
-  onSelect?: (value: string) => void;
-  open?: boolean;
-  setOpen: (open: boolean) => void;
-  setValue: (value: string) => void;
-  value: string;
-};
-
-export const ComboboxContext = createContext<ComboboxContextType | undefined>(
-  undefined,
-);
 
 export const Combobox = ({
   children,

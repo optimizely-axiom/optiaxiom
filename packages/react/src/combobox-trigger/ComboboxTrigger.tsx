@@ -1,7 +1,7 @@
 import { forwardRef, useContext } from "react";
 
 import { Button, type ButtonProps } from "../button";
-import { ComboboxContext } from "../combobox";
+import { ComboboxContext } from "../combobox-context";
 import { IconAngleDown } from "../icons/IconAngleDown";
 import { PopoverTrigger } from "../popover-trigger";
 
