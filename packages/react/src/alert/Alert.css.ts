@@ -1,5 +1,13 @@
 import { theme } from "../styles";
-import { type RecipeVariants, recipe, style } from "../vanilla-extract";
+import {
+  type RecipeVariants,
+  createVar,
+  recipe,
+  style,
+} from "../vanilla-extract";
+
+const solidColorVar = createVar();
+const lightColorVar = createVar();
 
 export const alert = recipe({
   base: [
@@ -26,20 +34,36 @@ export const alert = recipe({
     },
     type: {
       danger: style({
-        backgroundColor: theme.colors["bg.error.solid"],
-        color: "white",
+        vars: {
+          [lightColorVar]: theme.colors["red.100"],
+          [solidColorVar]: theme.colors["red.200"],
+        },
       }),
       info: style({
-        backgroundColor: theme.colors["fg.tertiary"],
-        color: "white",
+        vars: {
+          [lightColorVar]: theme.colors["bg.neutral"],
+          [solidColorVar]: theme.colors["bg.neutral.solid"],
+        },
       }),
       success: style({
-        backgroundColor: theme.colors["bg.success.solid.hover"],
-        color: "white",
+        vars: {
+          [lightColorVar]: theme.colors["green.100"],
+          [solidColorVar]: theme.colors["green.200"],
+        },
       }),
       warning: style({
-        backgroundColor: theme.colors["yellow.400"],
-        color: "black",
+        vars: {
+          [lightColorVar]: theme.colors["yellow.100"],
+          [solidColorVar]: theme.colors["yellow.200"],
+        },
+      }),
+    },
+    variant: {
+      light: style({
+        backgroundColor: lightColorVar,
+      }),
+      solid: style({
+        backgroundColor: solidColorVar,
       }),
     },
   },
