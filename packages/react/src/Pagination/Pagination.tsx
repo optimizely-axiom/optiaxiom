@@ -6,24 +6,16 @@ import { ButtonGroup } from "../button-group";
 import { Flex } from "../flex";
 import { IconAngleLeft } from "../icons/IconAngleLeft";
 import { IconAngleRight } from "../icons/IconAngleRight";
-import { Menu } from "../menu";
-import { MenuContent } from "../menu-content";
-import { MenuItem } from "../menu-item";
-import { MenuTrigger } from "../menu-trigger";
 import { extractSprinkles } from "../sprinkles";
-import { Text } from "../text";
 import * as styles from "./Pagination.css";
-
-const PAGE_SIZES = [20, 30, 50, 100] as const;
 
 type PaginationProps = BoxProps<
   "div",
   {
-    dataCount: number;
     offset?: number;
     onPageSelect: (offset: number, pageSize: number) => void;
     pageSize?: number;
-    showPageSize?: boolean;
+    total: number;
   }
 >;
 
@@ -32,11 +24,10 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
     {
       children,
       className,
-      dataCount,
       offset = 0,
       onPageSelect,
-      pageSize = PAGE_SIZES[0],
-      showPageSize = false,
+      pageSize = 20,
+      total,
       ...props
     },
     ref,
@@ -48,7 +39,7 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
 
     const currentPage = Math.floor(offset / pageSize) + 1;
 
-    const totalPage = Math.ceil(dataCount / pageSize);
+    const totalPage = Math.ceil(total / pageSize);
     const buttonConfigs = getButtonConfigs(currentPage, totalPage);
 
     const { restProps, sprinkleProps } = extractSprinkles(props);
@@ -61,31 +52,6 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
         {...sprinkleProps}
       >
         <Flex flexDirection="row" {...restProps}>
-          {showPageSize && (
-            <Box>
-              <Menu>
-                <MenuTrigger>
-                  <Text>Page Size</Text>
-                </MenuTrigger>
-                <MenuContent>
-                  {PAGE_SIZES.map((size) => (
-                    <MenuItem key={size}>
-                      {/* <Option key={size} name={String(size)}> */}
-                      {size}
-                      {/* </Option> */}
-                    </MenuItem>
-                  ))}
-                </MenuContent>
-              </Menu>
-              {/* <Menu onSelect={handlePageSizeSelect} position="topLeft">
-              {PAGE_SIZES.map((size) => (
-                <Option key={size} name={String(size)}>
-                  {size}
-                </Option>
-              ))}
-            </Menu> */}
-            </Box>
-          )}
           {totalPage > 1 && (
             <ButtonGroup gap="2">
               {buttonConfigs.map(({ value, ...props }) => (

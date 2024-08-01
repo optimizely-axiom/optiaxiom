@@ -10,20 +10,13 @@ type Story = StoryObj<typeof Pagination>;
 
 export const Basic: Story = {
   args: {
-    dataCount: 50,
-  },
-};
-
-export const PageSize: Story = {
-  args: {
-    dataCount: 50,
-    showPageSize: true,
+    total: 50,
   },
 };
 
 export const MassiveData: Story = {
   args: {
-    dataCount: 300,
     offset: 120,
+    total: 300,
   },
 };
