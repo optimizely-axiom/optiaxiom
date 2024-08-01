@@ -1,4 +1,3 @@
-import { AccessibleIcon } from "@radix-ui/react-accessible-icon";
 import * as RadixLabel from "@radix-ui/react-label";
 import { useId } from "@reach/auto-id";
 import { type ReactNode, forwardRef } from "react";
@@ -69,19 +68,16 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(
             </Text>
 
             {info && (
-              <>
-                <AccessibleIcon label={info}>
-                  <Tooltip content={info} keepOpenOnActivation>
-                    <Button
-                      border="0"
-                      h="12"
-                      icon={<IconCircleQuestion />}
-                      p="0"
-                      w="12"
-                    ></Button>
-                  </Tooltip>
-                </AccessibleIcon>
-              </>
+              <Tooltip content={info} keepOpenOnActivation>
+                <Button
+                  aria-label="Information tooltip"
+                  border="0"
+                  h="12"
+                  icon={<IconCircleQuestion />}
+                  p="0"
+                  w="12"
+                />
+              </Tooltip>
             )}
           </Flex>
         )}
