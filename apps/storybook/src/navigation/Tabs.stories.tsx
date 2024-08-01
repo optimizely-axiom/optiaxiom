@@ -14,7 +14,7 @@ import {
   IconUser,
 } from "@tabler/icons-react";
 
-const meta: Meta<typeof Tabs> = {
+export default {
   args: {
     children: (
       <>
@@ -49,9 +49,7 @@ const meta: Meta<typeof Tabs> = {
     w: "384",
   },
   component: Tabs,
-};
-
-export default meta;
+} as Meta<typeof Tabs>;
 
 type Story = StoryObj<typeof Tabs>;
 
