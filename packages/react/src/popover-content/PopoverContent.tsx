@@ -34,7 +34,7 @@ export const PopoverContent = forwardRef<HTMLDivElement, PopoverContentProps>(
       <AnimatePresence>
         {open && (
           <RadixPopover.Portal>
-            <Transition duration="sm">
+            <Transition duration="sm" type="pop">
               <Paper asChild {...styles.content({}, className)} {...props}>
                 <RadixPopover.Content
                   align={align}
