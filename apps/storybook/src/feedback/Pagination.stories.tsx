@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { Pagination } from "@optiaxiom/react";
+import { useState } from "react";
 
 export default {
   component: Pagination,
@@ -15,8 +16,26 @@ export const Basic: Story = {
 };
 
 export const MassiveData: Story = {
-  args: {
-    offset: 120,
-    total: 300,
+  render: (args) => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const [offset, setOffset] = useState(0);
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const [pageSize, setPageSize] = useState(20);
+    // const pageSize = 20;
+
+    const onPageSelect = (newOffset: number, newPageSize: number) => {
+      setOffset(newOffset);
+      setPageSize(newPageSize);
+    };
+
+    return (
+      <Pagination
+        {...args}
+        offset={args.offset ?? offset}
+        onChange={args.onChange || onPageSelect}
+        pageSize={args.pageSize ?? pageSize}
+        total={args.total ?? 300}
+      />
+    );
   },
 };

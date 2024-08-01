@@ -4,6 +4,8 @@ import { Box, type BoxProps } from "../box";
 import { Button } from "../button";
 import { ButtonGroup } from "../button-group";
 import { Flex } from "../flex";
+import { IconAngleLeft } from "../icons/IconAngleLeft";
+import { IconAngleRight } from "../icons/IconAngleRight";
 import { extractSprinkles } from "../sprinkles";
 import * as styles from "./Pagination.css";
 import { usePagination } from "./usePagination";
@@ -12,7 +14,7 @@ type PaginationProps = BoxProps<
   "div",
   {
     offset?: number;
-    onPageSelect: (offset: number, pageSize: number) => void;
+    onChange: (offset: number, pageSize: number) => void;
     pageSize?: number;
     total: number;
   }
@@ -24,7 +26,7 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
       children,
       className,
       offset = 0,
-      onPageSelect,
+      onChange,
       pageSize = 20,
       total,
       ...props
@@ -33,11 +35,16 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
   ) => {
     const handlePageSelect = (page: number) => {
       const offset = (page - 1) * pageSize;
-      onPageSelect(offset, pageSize);
+      onChange(offset, pageSize);
     };
 
-    const { buttons, totalPage } = usePagination(offset, total, pageSize);
+    const { active, buttons, next, previous, totalPage } = usePagination(
+      offset,
+      total,
+      pageSize,
+    );
     const { restProps, sprinkleProps } = extractSprinkles(props);
+
     return (
       <Box
         asChild
@@ -48,6 +55,14 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
         <Flex flexDirection="row" {...restProps}>
           {totalPage > 1 && (
             <ButtonGroup gap="2">
+              <Button
+                appearance="secondary"
+                disabled={active === 1}
+                icon={<IconAngleLeft />}
+                onClick={() => handlePageSelect(previous())}
+              >
+                Previous
+              </Button>
               {buttons.map(({ value, ...props }) => (
                 <Button
                   appearance="secondary"
@@ -57,6 +72,15 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
                   {...props}
                 />
               ))}
+              <Button
+                appearance="secondary"
+                disabled={active === totalPage}
+                icon={<IconAngleRight />}
+                iconPosition="end"
+                onClick={() => handlePageSelect(next())}
+              >
+                Next
+              </Button>
             </ButtonGroup>
           )}
         </Flex>
