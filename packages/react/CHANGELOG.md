@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 0.1.0-next.11
+
+### Patch Changes
+
+- eac1b2f: fixed menu z-index
+
 ## 0.1.0-next.10
 
 ### Minor Changes
