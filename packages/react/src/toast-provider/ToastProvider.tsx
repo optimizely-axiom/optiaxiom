@@ -4,7 +4,6 @@ import * as RadixToast from "@radix-ui/react-toast";
 import { useAtomValue } from "jotai";
 import {
   type ComponentPropsWithoutRef,
-  type ReactNode,
   cloneElement,
   forwardRef,
   useRef,
@@ -21,7 +20,7 @@ import { useOverflowAnchor } from "./useOverflowAnchor";
 type ToastProps = BoxProps<
   typeof RadixToast.Viewport,
   {
-    children?: ReactNode;
+    children?: never;
     container?: ComponentPropsWithoutRef<typeof Portal>["container"];
     toaster: ReturnType<typeof createToaster>;
   } & ComponentPropsWithoutRef<typeof RadixToast.ToastProvider> &
@@ -40,7 +39,6 @@ const mapPositionToSwipeDirection = {
 export const ToastProvider = forwardRef<HTMLOListElement, ToastProps>(
   (
     {
-      children,
       container,
       duration,
       label,
