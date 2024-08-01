@@ -3,17 +3,20 @@ import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import { Button } from "../button";
 import { IconAngleDown } from "../icons/IconAngleDown";
+import { extractSprinkles } from "../sprinkles";
 
 type MenuTriggerProps = ComponentPropsWithoutRef<typeof Button>;
 
 export const MenuTrigger = forwardRef<HTMLButtonElement, MenuTriggerProps>(
   ({ asChild, children, ...props }, ref) => {
+    const { restProps, sprinkleProps } = extractSprinkles(props);
+
     return (
-      <RadixMenu.Trigger asChild ref={ref} {...props}>
+      <RadixMenu.Trigger asChild ref={ref} {...sprinkleProps}>
         {asChild ? (
           children
         ) : (
-          <Button icon={<IconAngleDown />} iconPosition="end">
+          <Button icon={<IconAngleDown />} iconPosition="end" {...restProps}>
             {children}
           </Button>
         )}
