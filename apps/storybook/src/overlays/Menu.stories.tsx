@@ -18,11 +18,9 @@ import {
   IconVideo,
 } from "@tabler/icons-react";
 
-const meta: Meta<typeof Menu> = {
+export default {
   component: Menu,
-};
-
-export default meta;
+} as Meta<typeof Menu>;
 
 type Story = StoryObj<typeof Menu>;
 
