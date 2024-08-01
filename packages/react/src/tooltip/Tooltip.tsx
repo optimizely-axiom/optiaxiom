@@ -10,6 +10,7 @@ import {
 
 import { AnimatePresence } from "../animate-presence";
 import { Box, type BoxProps } from "../box";
+import { theme } from "../styles";
 import { Text } from "../text";
 import { Transition } from "../transition";
 
@@ -122,7 +123,13 @@ export const Tooltip = forwardRef<HTMLButtonElement, TooltipProps>(
                       sideOffset={5}
                     >
                       <Text fontSize="sm">{content}</Text>
-                      {withArrow && <RadixTooltip.Arrow height={4} width={8} />}
+                      {withArrow && (
+                        <RadixTooltip.Arrow
+                          fill={theme.colors["neutral.900"]}
+                          height={4}
+                          width={8}
+                        />
+                      )}
                     </RadixTooltip.Content>
                   </Box>
                 </Transition>

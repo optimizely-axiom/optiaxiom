@@ -5,6 +5,7 @@ import { AnimatePresence } from "../animate-presence";
 import { type BoxProps } from "../box";
 import { Paper } from "../paper";
 import { PopoverContext } from "../popover-context";
+import { theme } from "../styles";
 import { Transition } from "../transition";
 import * as styles from "./PopoverContent.css";
 
@@ -41,7 +42,27 @@ export const PopoverContent = forwardRef<HTMLDivElement, PopoverContentProps>(
                   sideOffset={sideOffset}
                 >
                   {children}
-                  {withArrow && <RadixPopover.Arrow height={4} width={8} />}
+
+                  {withArrow && (
+                    <RadixPopover.Arrow asChild>
+                      <svg
+                        fill={theme.colors["surface"]}
+                        height={4}
+                        preserveAspectRatio="none"
+                        stroke={theme.colors["border.secondary"]}
+                        viewBox="0 0 30 10"
+                        width={8}
+                      >
+                        <polygon points="0,0 30,0 15,10" />
+                        <polyline
+                          points="0,0 15,10 30,0"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2.5"
+                        />
+                      </svg>
+                    </RadixPopover.Arrow>
+                  )}
                 </RadixPopover.Content>
               </Paper>
             </Transition>
