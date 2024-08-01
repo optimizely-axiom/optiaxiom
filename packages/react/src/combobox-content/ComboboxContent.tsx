@@ -6,7 +6,7 @@ import {
 } from "react";
 
 import { Box, type BoxProps } from "../box";
-import { ComboboxContext } from "../combobox";
+import { ComboboxContext } from "../combobox-context";
 import { Command } from "../command";
 import { CommandEmpty } from "../command-empty";
 import { CommandInput } from "../command-input";
