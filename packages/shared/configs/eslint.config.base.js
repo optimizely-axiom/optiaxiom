@@ -110,7 +110,6 @@ export default tsEslint.config(
         "error",
         {
           argsIgnorePattern: "^_",
-          ignoreRestSiblings: true,
           varsIgnorePattern: "^_",
         },
       ],
@@ -144,6 +143,7 @@ export default tsEslint.config(
         },
       ],
       "@typescript-eslint/no-floating-promises": "error",
+      "local/missing-recipe-classname": "error",
       "local/no-useless-clsx": "error",
       "local/prefer-styles-import": "error",
       "local/recipe-call-is-valid": "error",

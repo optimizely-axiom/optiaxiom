@@ -6,9 +6,9 @@ import * as styles from "./DialogFooter.css";
 type FooterProps = ComponentPropsWithRef<typeof Flex>;
 
 export const DialogFooter = forwardRef<HTMLDivElement, FooterProps>(
-  ({ children, ...props }, ref) => {
+  ({ children, className, ...props }, ref) => {
     return (
-      <Flex ref={ref} {...styles.footer()} {...props}>
+      <Flex ref={ref} {...styles.footer({}, className)} {...props}>
         {children}
       </Flex>
     );

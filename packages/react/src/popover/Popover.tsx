@@ -18,6 +18,7 @@ export const Popover = ({
     onChange: onOpenChange,
     prop: openProp,
   });
+
   return (
     <RadixPopover.Root onOpenChange={setOpen} open={open} {...props}>
       <PopoverContext.Provider value={{ open }}>
