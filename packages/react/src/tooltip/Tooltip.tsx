@@ -110,7 +110,11 @@ export const Tooltip = forwardRef<HTMLButtonElement, TooltipProps>(
                       onPointerDownOutside={
                         keepOpenOnActivation
                           ? (event: CustomEvent) => {
-                              if (event.target === innerRef.current)
+                              if (
+                                innerRef.current?.contains(
+                                  event.target as Node | null,
+                                )
+                              )
                                 event.preventDefault();
                             }
                           : undefined
