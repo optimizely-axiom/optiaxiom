@@ -15,6 +15,7 @@ export const content = recipe({
     },
     style({
       minWidth: "var(--radix-popover-trigger-width)",
+      position: "relative",
     }),
   ],
 });
