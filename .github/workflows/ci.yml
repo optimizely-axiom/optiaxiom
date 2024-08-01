@@ -78,7 +78,14 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-nextjs-${{ hashFiles('pnpm-lock.yaml') }}-
 
-      - run: |
+      - if: ${{ github.event_name == 'push' }}
+        run: |
+          pnpm -F web-components... build
+
+      - if: ${{ github.event_name != 'push' }}
+        run: |
           pnpm -F docs... -F web-components... build
+
+      - run: |
           pnpm lint --no-fix
           pnpm exec vitest run
