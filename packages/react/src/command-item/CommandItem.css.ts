@@ -23,6 +23,7 @@ export const item = recipe({
     },
     style({
       cursor: "default",
+      outline: "none",
       position: "relative",
       selectors: {
         "&[data-disabled='true']": {
