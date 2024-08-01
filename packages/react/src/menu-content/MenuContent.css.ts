@@ -13,6 +13,7 @@ export const content = recipe({
       p: "4",
       rounded: "lg",
       shadow: "md",
+      z: "popover",
     },
     style({
       maxHeight: "var(--radix-dropdown-menu-content-available-height)",
