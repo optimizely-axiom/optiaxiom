@@ -10,7 +10,11 @@ import {
   Input,
   Link,
 } from "@optiaxiom/react";
-import { type ComponentPropsWithoutRef, useState } from "react";
+import {
+  type ChangeEvent,
+  type ComponentPropsWithoutRef,
+  useState,
+} from "react";
 
 export default {
   component: Alert,
@@ -22,13 +26,14 @@ type AlertProps = {
   colorScheme: ComponentPropsWithoutRef<typeof Alert>["colorScheme"];
   description: string;
   title: string;
+  variant: ComponentPropsWithoutRef<typeof Alert>["variant"];
 };
 
-const AlertTemplate = (args: AlertProps) => {
+const AlertTemplate = (args: Partial<AlertProps>) => {
   const [showAlert, setShowAlert] = useState(true);
   const [currentAlert, setCurrentAlert] = useState(args);
   const [email, setEmail] = useState("");
-  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
   };
 
@@ -36,8 +41,9 @@ const AlertTemplate = (args: AlertProps) => {
     type: AlertProps["colorScheme"],
     title: string,
     description: string,
+    variant?: AlertProps["variant"],
   ) => {
-    setCurrentAlert({ colorScheme: type, description, title });
+    setCurrentAlert({ colorScheme: type, description, title, variant });
     setShowAlert(true);
   };
 
@@ -65,6 +71,7 @@ const AlertTemplate = (args: AlertProps) => {
         <Alert
           colorScheme={currentAlert.colorScheme}
           onClose={() => setShowAlert(false)}
+          variant={currentAlert.variant}
         >
           <AlertTitle>{currentAlert.title}</AlertTitle>
           <AlertDescription>{currentAlert.description}</AlertDescription>
@@ -89,7 +96,7 @@ const AlertTemplate = (args: AlertProps) => {
   );
 };
 
-const DefaultTemplate = (args: ComponentPropsWithoutRef<typeof Alert>) => {
+const WithClose = (args: ComponentPropsWithoutRef<typeof Alert>) => {
   const [showDefaultAlert, setShowDefaultAlert] = useState(true);
   const [showSolidAlert, setShowSolidAlert] = useState(true);
 
@@ -119,10 +126,9 @@ export const Basic: Story = {
       <AlertDescription>You can update your email only once</AlertDescription>
     ),
   },
-  render: DefaultTemplate,
 };
 
-export const Large: Story = {
+export const WithCloseButton: Story = {
   args: {
     children: (
       <>
@@ -136,7 +142,7 @@ export const Large: Story = {
       </>
     ),
   },
-  render: DefaultTemplate,
+  render: WithClose,
 };
 
 export const Danger: Story = {
@@ -145,8 +151,8 @@ export const Danger: Story = {
       <AlertDescription>You can only change email only once</AlertDescription>
     ),
     colorScheme: "danger",
+    variant: "solid",
   },
-  render: DefaultTemplate,
 };
 
 export const Success: Story = {
@@ -156,8 +162,8 @@ export const Success: Story = {
     ),
     colorScheme: "success",
     title: "Success",
+    variant: "solid",
   },
-  render: DefaultTemplate,
 };
 
 export const Warning: Story = {
@@ -166,8 +172,8 @@ export const Warning: Story = {
       <AlertDescription>Please give a correct email address</AlertDescription>
     ),
     colorScheme: "warning",
+    variant: "solid",
   },
-  render: DefaultTemplate,
 };
 
 export const DefaultWithLink: Story = {
@@ -179,8 +185,8 @@ export const DefaultWithLink: Story = {
         <Link href="">Do an action</Link>
       </>
     ),
+    variant: "solid",
   },
-  render: DefaultTemplate,
 };
 
 export const UserInteractive: Story = {
@@ -189,5 +195,6 @@ export const UserInteractive: Story = {
       colorScheme: "information",
       description: "You can update your email only once",
       title: "Info",
+      variant: "solid",
     }),
 };
