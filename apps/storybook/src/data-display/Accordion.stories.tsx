@@ -5,10 +5,33 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-  Text,
 } from "@optiaxiom/react";
+import { IconArrowDown, IconCaretDownFilled } from "@tabler/icons-react";
 
 export default {
+  args: {
+    children: (
+      <>
+        <AccordionItem value="item-1">
+          <AccordionTrigger>First Item</AccordionTrigger>
+          <AccordionContent>Content for the first item.</AccordionContent>
+        </AccordionItem>
+
+        <AccordionItem value="item-2">
+          <AccordionTrigger>Second Item</AccordionTrigger>
+          <AccordionContent>
+            Content for the second item. Contains multiple lines of lorem ipsum.
+          </AccordionContent>
+        </AccordionItem>
+
+        <AccordionItem value="item-3">
+          <AccordionTrigger>Third Item</AccordionTrigger>
+          <AccordionContent>Content for the third item.</AccordionContent>
+        </AccordionItem>
+      </>
+    ),
+    w: "320",
+  },
   component: Accordion,
   title: "Data Display/Accordion",
 } as Meta<typeof Accordion>;
@@ -16,69 +39,47 @@ export default {
 type Story = StoryObj<typeof Accordion>;
 
 export const Basic: Story = {
-  render: () => (
-    <Accordion type="single">
-      <AccordionItem value="item-1">
-        <AccordionTrigger>Is it accessible?</AccordionTrigger>
-        <AccordionContent>
-          Yes. It adheres to the WAI-ARIA design pattern.
-        </AccordionContent>
-      </AccordionItem>
-    </Accordion>
-  ),
+  args: {
+    type: "single",
+  },
 };
 
-export const MultipleItems: Story = {
-  render: () => (
-    <Accordion collapsible type="single">
-      <AccordionItem value="item-1">
-        <AccordionTrigger>First Item</AccordionTrigger>
-        <AccordionContent>Content for the first item.</AccordionContent>
-      </AccordionItem>
-      <AccordionItem value="item-2">
-        <AccordionTrigger>Second Item</AccordionTrigger>
-        <AccordionContent>
-          Content for the second item. Contains multiple lines of lorem ipsum.
-        </AccordionContent>
-      </AccordionItem>
-      <AccordionItem value="item-3">
-        <AccordionTrigger>Third Item</AccordionTrigger>
-        <AccordionContent>Content for the third item.</AccordionContent>
-      </AccordionItem>
-    </Accordion>
-  ),
+export const Multiple: Story = {
+  args: {
+    type: "multiple",
+  },
 };
 
-export const MultipleExpanded: Story = {
-  render: () => (
-    <Accordion type="multiple">
-      <AccordionItem value="item-1">
-        <AccordionTrigger>First Item</AccordionTrigger>
-        <AccordionContent>
-          This item can be open at the same time as others.
-        </AccordionContent>
-      </AccordionItem>
-      <AccordionItem value="item-2">
-        <AccordionTrigger>Second Item</AccordionTrigger>
-        <AccordionContent>
-          This one too can be open simultaneously.
-        </AccordionContent>
-      </AccordionItem>
-    </Accordion>
-  ),
-};
+export const Decorators: Story = {
+  args: {
+    children: (
+      <>
+        <AccordionItem value="item-1">
+          <AccordionTrigger>Regular Chevron</AccordionTrigger>
+          <AccordionContent>
+            This item uses the built-in chevron icon.
+          </AccordionContent>
+        </AccordionItem>
 
-export const WithCustomContent: Story = {
-  render: () => (
-    <Accordion type="single">
-      <AccordionItem value="item-1">
-        <AccordionTrigger>
-          <Text size="lg">Custom Trigger Content</Text>
-        </AccordionTrigger>
-        <AccordionContent>
-          <Text>This content uses the Text component from your library.</Text>
-        </AccordionContent>
-      </AccordionItem>
-    </Accordion>
-  ),
+        <AccordionItem value="item-2">
+          <AccordionTrigger endDecorator={<IconCaretDownFilled />}>
+            Custom Caret
+          </AccordionTrigger>
+          <AccordionContent>
+            This item uses a custom caret icon.
+          </AccordionContent>
+        </AccordionItem>
+
+        <AccordionItem value="item-3">
+          <AccordionTrigger endDecorator={<IconArrowDown />}>
+            Custom Arrow
+          </AccordionTrigger>
+          <AccordionContent>
+            This item uses a custom arrow icon.
+          </AccordionContent>
+        </AccordionItem>
+      </>
+    ),
+    type: "single",
+  },
 };

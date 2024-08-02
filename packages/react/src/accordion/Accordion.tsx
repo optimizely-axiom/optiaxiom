@@ -1,39 +1,29 @@
 import * as RadixAccordion from "@radix-ui/react-accordion";
 import { forwardRef } from "react";
 
-import type { BoxProps } from "../box";
-
-import { Flex } from "../flex";
-import { extractSprinkles } from "../sprinkles";
-import * as styles from "./Accordion.css";
+import { Box, type BoxProps } from "../box";
+import { type Sprinkles, extractSprinkles } from "../sprinkles";
 
 type AccordionProps = BoxProps<
-  typeof RadixAccordion.Root,
-  {
-    collapsible?: boolean;
-  }
+  "div",
+  | Omit<RadixAccordion.AccordionMultipleProps, keyof Sprinkles>
+  | Omit<RadixAccordion.AccordionSingleProps, keyof Sprinkles>
 >;
+
 export const Accordion = forwardRef<HTMLDivElement, AccordionProps>(
-  ({ children, className, collapsible = true, type, ...props }, ref) => {
+  ({ type, ...props }, ref) => {
     const { restProps, sprinkleProps } = extractSprinkles(props);
+
     return (
-      <Flex
-        asChild
-        ref={ref}
-        {...styles.wrapper({}, className)}
-        {...sprinkleProps}
-      >
+      <Box asChild borderB="1" ref={ref} {...sprinkleProps}>
         {type === "single" ? (
           <RadixAccordion.Root
-            collapsible={collapsible}
             type="single"
             {...(restProps as Omit<
               RadixAccordion.AccordionSingleProps,
               "type"
             >)}
-          >
-            {children}
-          </RadixAccordion.Root>
+          />
         ) : (
           <RadixAccordion.Root
             type="multiple"
@@ -41,11 +31,9 @@ export const Accordion = forwardRef<HTMLDivElement, AccordionProps>(
               RadixAccordion.AccordionMultipleProps,
               "type"
             >)}
-          >
-            {children}
-          </RadixAccordion.Root>
+          />
         )}
-      </Flex>
+      </Box>
     );
   },
 );

@@ -8,6 +8,7 @@ const slideDown = keyframes({
     height: "var(--radix-accordion-content-height)",
   },
 });
+
 const slideUp = keyframes({
   from: {
     height: "var(--radix-accordion-content-height)",
@@ -16,14 +17,13 @@ const slideUp = keyframes({
     height: 0,
   },
 });
-export const wrapper = recipe({
+
+export const content = recipe({
   base: [
     {
-      overflow: "visible",
-      w: "320",
+      overflow: "hidden",
     },
     style({
-      minWidth: "var(--radix-accordion-content-width)",
       selectors: {
         '&[data-state="closed"]': {
           animation: `${slideUp} 300ms ease-out`,
