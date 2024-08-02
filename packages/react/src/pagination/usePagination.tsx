@@ -5,11 +5,11 @@ import type { PaginationButton } from "../pagination-button/PaginationButton";
 const DOTS = "...";
 
 export const usePagination = (
+  boundaries: number,
   offset: number,
-  total: number,
   pageSize: number,
-  siblingCount: number = 1,
-  boundaries: number = 1,
+  siblings: number,
+  total: number,
 ) => {
   const activePage = Math.floor(offset / pageSize) + 1;
   const _total = Math.ceil(total / pageSize);
@@ -20,14 +20,14 @@ export const usePagination = (
   };
 
   const paginationRange = (): (number | typeof DOTS)[] => {
-    const totalPageNumbers = siblingCount * 2 + 3 + boundaries * 2;
+    const totalPageNumbers = siblings * 2 + 3 + boundaries * 2;
     if (totalPageNumbers >= _total) {
       return range(1, _total);
     }
 
-    const leftSiblingIndex = Math.max(activePage - siblingCount, boundaries);
+    const leftSiblingIndex = Math.max(activePage - siblings, boundaries);
     const rightSiblingIndex = Math.min(
-      activePage + siblingCount,
+      activePage + siblings,
       _total - boundaries,
     );
 
@@ -35,7 +35,7 @@ export const usePagination = (
     const shouldShowRightDots = rightSiblingIndex < _total - (boundaries + 1);
 
     if (!shouldShowLeftDots && shouldShowRightDots) {
-      const leftItemCount = siblingCount * 2 + boundaries + 2;
+      const leftItemCount = siblings * 2 + boundaries + 2;
       return [
         ...range(1, leftItemCount),
         DOTS,
@@ -44,7 +44,7 @@ export const usePagination = (
     }
 
     if (shouldShowLeftDots && !shouldShowRightDots) {
-      const rightItemCount = boundaries + 1 + 2 * siblingCount;
+      const rightItemCount = boundaries + 1 + 2 * siblings;
       return [
         ...range(1, boundaries),
         DOTS,

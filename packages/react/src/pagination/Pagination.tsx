@@ -14,9 +14,11 @@ import { usePagination } from "./usePagination";
 type PaginationProps = BoxProps<
   "div",
   {
+    boundaries?: number;
     offset?: number;
     onChange: (offset: number, pageSize: number) => void;
     pageSize?: number;
+    siblings?: number;
     total: number;
   }
 >;
@@ -24,11 +26,13 @@ type PaginationProps = BoxProps<
 export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
   (
     {
+      boundaries = 1,
       children,
       className,
       offset = 0,
       onChange,
       pageSize = 20,
+      siblings = 1,
       total,
       ...props
     },
@@ -40,9 +44,11 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
     };
 
     const { active, buttons, next, previous, totalPage } = usePagination(
+      boundaries,
       offset,
-      total,
       pageSize,
+      siblings,
+      total,
     );
     const { restProps, sprinkleProps } = extractSprinkles(props);
 
