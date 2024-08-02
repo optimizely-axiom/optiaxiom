@@ -19,9 +19,9 @@ export default {
 type Story = StoryObj<typeof Alert>;
 
 type AlertProps = {
+  colorScheme: ComponentPropsWithoutRef<typeof Alert>["colorScheme"];
   description: string;
   title: string;
-  type: ComponentPropsWithoutRef<typeof Alert>["type"];
 };
 
 const AlertTemplate = (args: AlertProps) => {
@@ -33,11 +33,11 @@ const AlertTemplate = (args: AlertProps) => {
   };
 
   const addAlert = (
-    type: AlertProps["type"],
+    type: AlertProps["colorScheme"],
     title: string,
     description: string,
   ) => {
-    setCurrentAlert({ description, title, type });
+    setCurrentAlert({ colorScheme: type, description, title });
     setShowAlert(true);
   };
 
@@ -62,7 +62,10 @@ const AlertTemplate = (args: AlertProps) => {
   return (
     <Flex flexDirection="column" w="384">
       {showAlert && (
-        <Alert onClose={() => setShowAlert(false)} type={currentAlert.type}>
+        <Alert
+          colorScheme={currentAlert.colorScheme}
+          onClose={() => setShowAlert(false)}
+        >
           <AlertTitle>{currentAlert.title}</AlertTitle>
           <AlertDescription>{currentAlert.description}</AlertDescription>
         </Alert>
@@ -110,7 +113,7 @@ const DefaultTemplate = (args: ComponentPropsWithoutRef<typeof Alert>) => {
   );
 };
 
-export const Default: Story = {
+export const Basic: Story = {
   args: {
     children: (
       <AlertDescription>You can update your email only once</AlertDescription>
@@ -132,7 +135,6 @@ export const Large: Story = {
         </AlertDescription>
       </>
     ),
-    size: "lg",
   },
   render: DefaultTemplate,
 };
@@ -142,7 +144,7 @@ export const Danger: Story = {
     children: (
       <AlertDescription>You can only change email only once</AlertDescription>
     ),
-    type: "danger",
+    colorScheme: "danger",
   },
   render: DefaultTemplate,
 };
@@ -152,8 +154,8 @@ export const Success: Story = {
     children: (
       <AlertDescription>Email has been updated successfully</AlertDescription>
     ),
+    colorScheme: "success",
     title: "Success",
-    type: "success",
   },
   render: DefaultTemplate,
 };
@@ -163,7 +165,7 @@ export const Warning: Story = {
     children: (
       <AlertDescription>Please give a correct email address</AlertDescription>
     ),
-    type: "warning",
+    colorScheme: "warning",
   },
   render: DefaultTemplate,
 };
@@ -184,8 +186,8 @@ export const DefaultWithLink: Story = {
 export const UserInteractive: Story = {
   render: () =>
     AlertTemplate({
+      colorScheme: "information",
       description: "You can update your email only once",
       title: "Info",
-      type: "info",
     }),
 };

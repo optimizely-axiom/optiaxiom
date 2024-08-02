@@ -1,17 +1,17 @@
 import { type ComponentPropsWithRef, forwardRef } from "react";
 
-import { Flex } from "../flex";
+import { Box } from "../box";
 
-type AlertDescriptionProps = ComponentPropsWithRef<typeof Flex>;
+type AlertDescriptionProps = ComponentPropsWithRef<typeof Box>;
 
 export const AlertDescription = forwardRef<
   HTMLDivElement,
   AlertDescriptionProps
 >(({ children, ...props }, ref) => {
   return (
-    <Flex fontSize="md" fontWeight="400" ref={ref} {...props}>
+    <Box fontSize="md" fontWeight="400" ref={ref} {...props}>
       {children}
-    </Flex>
+    </Box>
   );
 });
 
