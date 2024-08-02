@@ -94,7 +94,9 @@ export const CloseButton: Story = {
     ).toBeInTheDocument();
 
     await waitFor(() =>
-      expect(screen.getByRole("button", { name: "Close" })).toBeEnabled(),
+      expect(screen.getByRole("button", { name: "Close" })).toHaveStyle(
+        "pointer-events: auto",
+      ),
     );
 
     await userEvent.click(screen.getByRole("button", { name: "Close" }));
