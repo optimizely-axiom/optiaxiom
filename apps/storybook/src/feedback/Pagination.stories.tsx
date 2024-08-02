@@ -18,7 +18,7 @@ export const Basic: Story = {
 export const MassiveData: Story = {
   render: (args) => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const [offset, setOffset] = useState(0);
+    const [offset, setOffset] = useState(100);
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const [pageSize, setPageSize] = useState(20);
     // const pageSize = 20;
