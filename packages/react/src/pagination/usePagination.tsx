@@ -1,6 +1,6 @@
 import { type ComponentPropsWithRef } from "react";
 
-import type { Button } from "../button";
+import type { PaginationButton } from "../pagination-button/PaginationButton";
 
 const DOTS = "...";
 
@@ -68,11 +68,11 @@ export const usePagination = (
       children: string;
       value?: number | string;
     } & Pick<
-      ComponentPropsWithRef<typeof Button>,
+      ComponentPropsWithRef<typeof PaginationButton>,
       "active" | "className" | "disabled" | "iconPosition"
     >
   > = pageRange.map((pageNumber) => ({
-    active: pageNumber === activePage,
+    active: pageNumber === activePage ? true : false,
     children: pageNumber === DOTS ? DOTS : String(pageNumber),
     disabled: pageNumber === DOTS,
     value: pageNumber === DOTS ? undefined : pageNumber,
