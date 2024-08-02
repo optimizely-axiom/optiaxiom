@@ -6,6 +6,7 @@ import { ButtonGroup } from "../button-group";
 import { Flex } from "../flex";
 import { IconAngleLeft } from "../icons/IconAngleLeft";
 import { IconAngleRight } from "../icons/IconAngleRight";
+import { PaginationButton } from "../pagination-button/PaginationButton";
 import { extractSprinkles } from "../sprinkles";
 import * as styles from "./Pagination.css";
 import { usePagination } from "./usePagination";
@@ -64,7 +65,7 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
                 Previous
               </Button>
               {buttons.map(({ children, value, ...props }, index) => (
-                <Button
+                <PaginationButton
                   appearance="secondary"
                   gap="2"
                   key={`${value || children}-${index}`}
@@ -72,7 +73,7 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
                   {...props}
                 >
                   {children}
-                </Button>
+                </PaginationButton>
               ))}
               <Button
                 appearance="secondary"
