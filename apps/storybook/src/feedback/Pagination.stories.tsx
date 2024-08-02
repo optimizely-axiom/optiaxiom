@@ -30,6 +30,34 @@ export const MassiveData: Story = {
 
     return (
       <Pagination
+        offset={args.offset ?? offset}
+        onChange={args.onChange || onPageSelect}
+        pageSize={args.pageSize ?? pageSize}
+        total={args.total ?? 300}
+      />
+    );
+  },
+};
+
+export const Variation: Story = {
+  args: {
+    boundaries: 2,
+    siblings: 3,
+  },
+  render: (args) => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const [offset, setOffset] = useState(150);
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const [pageSize, setPageSize] = useState(20);
+    // const pageSize = 20;
+
+    const onPageSelect = (newOffset: number, newPageSize: number) => {
+      setOffset(newOffset);
+      setPageSize(newPageSize);
+    };
+
+    return (
+      <Pagination
         {...args}
         offset={args.offset ?? offset}
         onChange={args.onChange || onPageSelect}
