@@ -11,7 +11,7 @@ import { extractSprinkles } from "../sprinkles";
 import * as styles from "./Pagination.css";
 import { usePagination } from "./usePagination";
 
-type PaginationProps = BoxProps<
+export type PaginationProps = BoxProps<
   "div",
   {
     boundaries?: number;
