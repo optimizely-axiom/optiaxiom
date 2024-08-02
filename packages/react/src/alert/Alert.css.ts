@@ -14,32 +14,20 @@ export const alert = recipe({
     {
       alignItems: "start",
       flexDirection: "row",
-      gap: "xs",
-      pl: "md",
-      py: "md",
+      justifyContent: "space-between",
+      p: "md",
       rounded: "md",
     },
-    style({
-      maxWidth: "90dvw",
-    }),
   ],
   variants: {
-    size: {
-      md: style({
-        width: "380px",
-      }),
-      lg: style({
-        width: "640px",
-      }),
-    },
-    type: {
+    colorScheme: {
       danger: style({
         vars: {
           [lightColorVar]: theme.colors["red.100"],
           [solidColorVar]: theme.colors["red.200"],
         },
       }),
-      info: style({
+      information: style({
         vars: {
           [lightColorVar]: theme.colors["bg.neutral"],
           [solidColorVar]: theme.colors["bg.neutral.solid"],
@@ -67,50 +55,6 @@ export const alert = recipe({
       }),
     },
   },
-});
-
-export const close = recipe({
-  base: [
-    {
-      px: "2",
-      py: "4",
-      rounded: "sm",
-      size: "sm",
-    },
-    style({
-      cursor: "pointer",
-      gridArea: "close",
-      marginRight: "14px",
-    }),
-  ],
-});
-
-export const content = recipe({
-  base: [
-    {
-      flex: "1",
-      flexDirection: "column",
-      gap: "xs",
-      mt: "2",
-      overflow: "hidden",
-    },
-  ],
-  variants: {
-    size: {
-      md: style({ minWidth: "288px" }),
-      lg: style({ minWidth: "540px" }),
-    },
-  },
-});
-
-export const startDecorator = recipe({
-  base: [
-    {
-      flex: "none",
-      mt: "2",
-      size: "xs",
-    },
-  ],
 });
 
 export type AlertVariants = NonNullable<RecipeVariants<typeof alert>>;
