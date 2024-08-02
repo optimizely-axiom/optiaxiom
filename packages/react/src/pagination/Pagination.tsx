@@ -63,14 +63,16 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
               >
                 Previous
               </Button>
-              {buttons.map(({ value, ...props }) => (
+              {buttons.map(({ children, value, ...props }, index) => (
                 <Button
                   appearance="secondary"
                   gap="2"
-                  key={`${value}-${props.children}`}
+                  key={`${value || children}-${index}`}
                   onClick={() => handlePageSelect(Number(value))}
                   {...props}
-                />
+                >
+                  {children}
+                </Button>
               ))}
               <Button
                 appearance="secondary"
