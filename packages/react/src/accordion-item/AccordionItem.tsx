@@ -1,18 +1,16 @@
 import * as RadixAccordion from "@radix-ui/react-accordion";
 import { forwardRef } from "react";
 
-import type { BoxProps } from "../box";
-
-import { Flex } from "../flex";
-import * as styles from "./AccordionItem.css";
+import { Box, type BoxProps } from "../box";
 
 type AccordionItemProps = BoxProps<typeof RadixAccordion.Item>;
+
 export const AccordionItem = forwardRef<HTMLDivElement, AccordionItemProps>(
-  ({ children, className, value, ...props }, ref) => {
+  ({ children, value, ...props }, ref) => {
     return (
-      <Flex asChild ref={ref} {...styles.wrapper({}, className)} {...props}>
+      <Box asChild borderT="1" ref={ref} {...props}>
         <RadixAccordion.Item value={value}>{children}</RadixAccordion.Item>
-      </Flex>
+      </Box>
     );
   },
 );
