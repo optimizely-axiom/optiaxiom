@@ -1,6 +1,6 @@
 import { forwardRef } from "react";
 
-import { Box, type BoxProps } from "../box";
+import { type BoxProps } from "../box";
 import { Button } from "../button";
 import { ButtonGroup } from "../button-group";
 import { Flex } from "../flex";
@@ -27,7 +27,6 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
   (
     {
       boundaries = 1,
-      children,
       className,
       offset = 0,
       onChange,
@@ -52,48 +51,45 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
     );
     const { restProps, sprinkleProps } = extractSprinkles(props);
 
+    if (totalPage <= 1) return null;
     return (
-      <Box
+      <Flex
         asChild
         ref={ref}
         {...styles.wrapper({}, className)}
         {...sprinkleProps}
       >
-        <Flex flexDirection="row" {...restProps}>
-          {totalPage > 1 && (
-            <ButtonGroup gap="2">
-              <Button
-                appearance="secondary"
-                disabled={active === 1}
-                icon={<IconAngleLeft />}
-                onClick={() => handlePageSelect(previous())}
+        <Flex {...restProps}>
+          <ButtonGroup gap="2">
+            <Button
+              appearance="secondary"
+              disabled={active === 1}
+              icon={<IconAngleLeft />}
+              onClick={() => handlePageSelect(previous())}
+            >
+              Previous
+            </Button>
+            {buttons.map(({ children, value, ...props }, index) => (
+              <PaginationButton
+                key={`${value || children}-${index}`}
+                onClick={() => handlePageSelect(Number(value))}
+                {...props}
               >
-                Previous
-              </Button>
-              {buttons.map(({ children, value, ...props }, index) => (
-                <PaginationButton
-                  appearance="secondary"
-                  gap="2"
-                  key={`${value || children}-${index}`}
-                  onClick={() => handlePageSelect(Number(value))}
-                  {...props}
-                >
-                  {children}
-                </PaginationButton>
-              ))}
-              <Button
-                appearance="secondary"
-                disabled={active === totalPage}
-                icon={<IconAngleRight />}
-                iconPosition="end"
-                onClick={() => handlePageSelect(next())}
-              >
-                Next
-              </Button>
-            </ButtonGroup>
-          )}
+                {children}
+              </PaginationButton>
+            ))}
+            <Button
+              appearance="secondary"
+              disabled={active === totalPage}
+              icon={<IconAngleRight />}
+              iconPosition="end"
+              onClick={() => handlePageSelect(next())}
+            >
+              Next
+            </Button>
+          </ButtonGroup>
         </Flex>
-      </Box>
+      </Flex>
     );
   },
 );

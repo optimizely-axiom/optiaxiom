@@ -2,11 +2,8 @@ import { forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
 import { Button } from "../button";
+import { extractSprinkles } from "../sprinkles";
 import * as styles from "./PaginationButton.css";
-
-// interface PaginationButtonProps extends Omit<ButtonProps, "active"> {
-//   active?: boolean;
-// }
 
 type PaginationButtonProps = BoxProps<
   typeof Button,
@@ -18,10 +15,21 @@ type PaginationButtonProps = BoxProps<
 export const PaginationButton = forwardRef<
   HTMLButtonElement,
   PaginationButtonProps
->(({ active = false, className, size, ...props }, ref) => {
+>(({ active = false, className, ...props }, ref) => {
+  const { restProps, sprinkleProps } = extractSprinkles(props);
   return (
-    <Box asChild {...styles.paginationButton({ active }, className)}>
-      <Button appearance="secondary" ref={ref} {...props} />
+    <Box
+      asChild
+      {...styles.paginationButton({ active }, className)}
+      {...sprinkleProps}
+    >
+      <Button
+        appearance="secondary"
+        gap="2"
+        ref={ref}
+        rounded="md"
+        {...restProps}
+      />
     </Box>
   );
 });
