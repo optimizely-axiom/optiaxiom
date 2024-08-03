@@ -8,7 +8,7 @@ import * as styles from "./PaginationButton.css";
 type PaginationButtonProps = BoxProps<
   typeof Button,
   {
-    active: boolean;
+    active?: boolean;
   }
 >;
 
