@@ -10,7 +10,6 @@ export default {
     },
   },
   component: Breadcrumbs,
-  title: "Components/Breadcrumbs",
 } as Meta<typeof Breadcrumbs>;
 
 type Story = StoryObj<typeof Breadcrumbs>;
@@ -47,40 +46,32 @@ export const LongBreadcrumb: Story = {
     ],
   },
 };
-
-export const CustomSeparator: Story = {
+export const LongBreadcrumbWithMaxItems: Story = {
   ...Template,
   args: {
     colorScheme: "primary",
     items: [
       { href: "/", label: "Home" },
-      { href: "/products", label: "Products" },
-      { href: "/products/electronics", label: "Electronics" },
+      { href: "/category", label: "Category" },
+      { href: "/category/subcategory", label: "Subcategory" },
+      { href: "/category/subcategory/product-type", label: "Product Type" },
+      {
+        href: "/category/subcategory/product-type/specific-product",
+        label: "Specific Product",
+      },
     ],
-    separator: ">",
+    maxItems: 2,
   },
 };
 
-export const NeutralColorScheme: Story = {
+export const CustomSeparator: Story = {
   ...Template,
   args: {
-    colorScheme: "neutral",
     items: [
       { href: "/", label: "Home" },
       { href: "/products", label: "Products" },
       { href: "/products/electronics", label: "Electronics" },
     ],
-  },
-};
-
-export const SecondaryColorScheme: Story = {
-  ...Template,
-  args: {
-    colorScheme: "secondary",
-    items: [
-      { href: "/", label: "Home" },
-      { href: "/products", label: "Products" },
-      { href: "/products/electronics", label: "Electronics" },
-    ],
+    separator: "/",
   },
 };
