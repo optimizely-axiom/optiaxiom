@@ -46,7 +46,7 @@ export const breadcrumbsList = recipe({
 export const breadcrumbItem = recipe({
   base: style({
     alignItems: "center",
-    display: "inline-flex",
+    display: "flex",
   }),
 });
 
@@ -69,21 +69,14 @@ export const link = recipe({
 
 export const separator = recipe({
   base: style({
-    color: theme.colors["dark.600"],
+    color: theme.colors["dark.500"],
     margin: "0 8px",
-  }),
-});
-
-export const currentPage = recipe({
-  base: style({
-    color: theme.colors["fg.default"],
-    fontWeight: "bold",
   }),
 });
 
 export const ellipsis = recipe({
   base: style({
-    color: theme.colors["dark.600"],
+    color: theme.colors["dark.500"],
     margin: "0 8px",
   }),
 });
