@@ -1,6 +1,6 @@
 import { forwardRef } from "react";
 
-import { type BoxProps } from "../box";
+import { Box, type BoxProps } from "../box";
 import { Flex } from "../flex";
 import { IconAngleLeft } from "../icons/IconAngleLeft";
 import { IconAngleRight } from "../icons/IconAngleRight";
@@ -13,6 +13,7 @@ export type PaginationProps = BoxProps<
   "nav",
   {
     boundaries?: number;
+    disabled?: boolean;
     offset?: number;
     onChange: (offset: number, pageSize: number) => void;
     pageSize?: number;
@@ -26,6 +27,7 @@ export const Pagination = forwardRef<HTMLElement, PaginationProps>(
     {
       boundaries = 1,
       className,
+      disabled = false,
       offset = 0,
       onChange,
       pageSize = 20,
@@ -52,52 +54,52 @@ export const Pagination = forwardRef<HTMLElement, PaginationProps>(
     if (totalPage <= 1) return null;
 
     return (
-      <nav
-        aria-label="Pagination"
-        ref={ref}
+      <Box
+        data-disabled={disabled}
         {...styles.wrapper({}, className)}
         {...sprinkleProps}
-        {...restProps}
       >
-        <Flex asChild {...styles.paginationList()}>
-          <ul>
-            <li>
-              <PaginationButton
-                appearance="secondary"
-                aria-label="Go to previous page"
-                disabled={active === 1}
-                icon={<IconAngleLeft />}
-                onClick={() => handlePageSelect(previous())}
-              >
-                Previous
-              </PaginationButton>
-            </li>
-            {buttons.map(({ children, value, ...props }, index) => (
-              <li key={`${value || children}-${index}`}>
+        <nav aria-label="Pagination" ref={ref} {...restProps}>
+          <Flex asChild {...styles.paginationList()}>
+            <ul>
+              <li>
                 <PaginationButton
-                  aria-current={active === Number(value) ? "page" : undefined}
-                  onClick={() => handlePageSelect(Number(value))}
-                  {...props}
+                  appearance="secondary"
+                  aria-label="Go to previous page"
+                  disabled={active === 1}
+                  icon={<IconAngleLeft />}
+                  onClick={() => handlePageSelect(previous())}
                 >
-                  {children}
+                  Previous
                 </PaginationButton>
               </li>
-            ))}
-            <li>
-              <PaginationButton
-                appearance="secondary"
-                aria-label="Go to next page"
-                disabled={active === totalPage}
-                icon={<IconAngleRight />}
-                iconPosition="end"
-                onClick={() => handlePageSelect(next())}
-              >
-                Next
-              </PaginationButton>
-            </li>
-          </ul>
-        </Flex>
-      </nav>
+              {buttons.map(({ children, value, ...props }, index) => (
+                <li key={`${value || children}-${index}`}>
+                  <PaginationButton
+                    aria-current={active === Number(value) ? "page" : undefined}
+                    onClick={() => handlePageSelect(Number(value))}
+                    {...props}
+                  >
+                    {children}
+                  </PaginationButton>
+                </li>
+              ))}
+              <li>
+                <PaginationButton
+                  appearance="secondary"
+                  aria-label="Go to next page"
+                  disabled={active === totalPage}
+                  icon={<IconAngleRight />}
+                  iconPosition="end"
+                  onClick={() => handlePageSelect(next())}
+                >
+                  Next
+                </PaginationButton>
+              </li>
+            </ul>
+          </Flex>
+        </nav>
+      </Box>
     );
   },
 );
