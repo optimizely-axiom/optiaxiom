@@ -98,11 +98,6 @@ export const root = recipe({
   ],
   variants: {
     colorScheme: {
-      brand: style({
-        vars: {
-          [accentColorVar]: theme.colors["border.brand"],
-        },
-      }),
       danger: style({
         vars: {
           [accentColorVar]: theme.colors["border.error"],
@@ -111,6 +106,11 @@ export const root = recipe({
       neutral: style({
         vars: {
           [accentColorVar]: theme.colors["border.active"],
+        },
+      }),
+      primary: style({
+        vars: {
+          [accentColorVar]: theme.colors["border.brand"],
         },
       }),
       success: style({
