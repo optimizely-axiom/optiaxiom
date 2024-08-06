@@ -49,6 +49,10 @@ export const root = recipe({
     },
     style({
       selectors: {
+        "&:focus-visible": {
+          outline: `2px solid ${theme.colors["outline.brand"]}`,
+          outlineOffset: "1px",
+        },
         '&[data-state="closed"]': {
           animation: `${fadeOut} 100ms ease-in`,
           opacity: "0",
