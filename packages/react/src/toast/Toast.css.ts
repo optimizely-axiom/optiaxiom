@@ -40,9 +40,11 @@ export const root = recipe({
       borderL: "4",
       display: "flex",
       gap: "10",
+      maxW: "full",
       p: "16",
       pr: "10",
       rounded: "sm",
+      w: ["full", "max"],
     },
     style({
       borderColor: accentColorVar,

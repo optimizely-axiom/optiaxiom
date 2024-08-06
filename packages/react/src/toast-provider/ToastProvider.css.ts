@@ -1,9 +1,4 @@
-import {
-  type RecipeVariants,
-  recipe,
-  responsiveStyle,
-  style,
-} from "../vanilla-extract";
+import { type RecipeVariants, recipe, style } from "../vanilla-extract";
 
 export const viewport = recipe({
   base: [
@@ -12,17 +7,12 @@ export const viewport = recipe({
       maxH: "full",
       overflow: "auto",
       p: "24",
+      w: ["full", "384"],
       z: "toast",
     },
     style({
       outline: "none",
       position: "fixed",
-      width: "100%",
-    }),
-    responsiveStyle({
-      sm: {
-        width: "384px",
-      },
     }),
   ],
   variants: {
