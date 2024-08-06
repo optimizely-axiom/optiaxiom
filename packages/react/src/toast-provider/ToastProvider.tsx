@@ -67,11 +67,12 @@ export const ToastProvider = forwardRef<HTMLOListElement, ToastProps>(
         swipeDirection={swipeDirection ?? mapPositionToSwipeDirection[position]}
         swipeThreshold={swipeThreshold}
       >
-        {toasts.map(({ id, toast }) =>
+        {toasts.map(({ id, open, toast }) =>
           cloneElement(toast, {
             forceMount: true,
             key: id,
-            onOpenChange: () => setTimeout(() => toaster.remove(id), 200),
+            onOpenChange: () => toaster.remove(id),
+            open,
           }),
         )}
 
