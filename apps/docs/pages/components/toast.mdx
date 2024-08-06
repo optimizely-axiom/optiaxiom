@@ -1,3 +1,5 @@
+import { Callout } from "nextra/components";
+
 <ax-layout />
 
 Display a brief notification.
@@ -6,4 +8,26 @@ Display a brief notification.
 
 ### Usage
 
+The `<ToastProvider />` element displays toasts and must be included in a single place in your react application tree.
+
+Toasts are then managed using a `toaster` instance returned from the `createToaster()` method. Use `toaster.create()` along with `<Toast />` to add a toast.
+
 <ax-demo name="toast/usage" />
+
+### Appearance
+
+Use the `colorScheme` prop to select between the different toast types.
+
+<ax-demo name="toast/appearance-usage" />
+
+### Position
+
+Use the `position` prop on `ToastProvider` to control where in the screen toasts are placed.
+
+<ax-demo name="toast/position-usage" />
+
+### Action
+
+Use the `ToastAction` component to include a short action button associated with the toast.
+
+<ax-demo name="toast/action-usage" />

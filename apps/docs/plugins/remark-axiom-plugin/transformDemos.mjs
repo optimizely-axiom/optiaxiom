@@ -32,7 +32,9 @@ export function transformDemos(tree) {
       for (const file of fs.readdirSync(filesDir)) {
         if (
           !files.includes(file) &&
-          (file.endsWith(".css") || file.endsWith(".tsx"))
+          (file.endsWith(".css") ||
+            file.endsWith(".ts") ||
+            file.endsWith(".tsx"))
         ) {
           files.push(file);
         }

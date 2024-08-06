@@ -1,16 +1,11 @@
-import {
-  Button,
-  Toast,
-  ToastProvider,
-  ToastTitle,
-  createToaster,
-} from "@optiaxiom/react";
+import { Button, Toast, ToastTitle } from "@optiaxiom/react";
 
-const toaster = createToaster();
+import { Shell } from "./Shell";
+import { toaster } from "./toaster";
 
 export function App() {
   return (
-    <>
+    <Shell>
       <Button
         onClick={() =>
           toaster.create(
@@ -22,8 +17,6 @@ export function App() {
       >
         Create Toast
       </Button>
-
-      <ToastProvider toaster={toaster} />
-    </>
+    </Shell>
   );
 }
