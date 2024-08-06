@@ -232,6 +232,12 @@ const responsiveProps = defineProperties({
      */
     alignItems: ["center", "end", "normal", "start", "stretch"] as const,
     /**
+     * Set the element's `align-self` CSS property
+     *
+     * {@link https://developer.mozilla.org/en-US/docs/Web/CSS/align-self Documentation}
+     */
+    alignSelf: ["center", "end", "normal", "start", "stretch"] as const,
+    /**
      * Set the element's `display` CSS property
      *
      * {@link https://developer.mozilla.org/en-US/docs/Web/CSS/display Documentation}

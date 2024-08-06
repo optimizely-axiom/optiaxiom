@@ -136,11 +136,11 @@ export const root = recipe({
 export const icon = recipe({
   base: [
     {
+      alignSelf: "start",
       mt: "4",
       size: "16",
     },
     style({
-      alignSelf: "start",
       color: accentColorVar,
     }),
   ],
