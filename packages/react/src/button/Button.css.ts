@@ -108,7 +108,9 @@ export const button = recipe({
       }),
     },
     iconOnly: {
-      false: {},
+      false: style({
+        minWidth: "fit-content",
+      }),
       true: {},
     },
     size: {
