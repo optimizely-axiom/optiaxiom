@@ -10,7 +10,12 @@ export const ToastAction = forwardRef<HTMLButtonElement, ToastProps>(
   ({ altText, children, ...props }, ref) => {
     return (
       <>
-        <Separator orientation="vertical" />
+        <Separator
+          alignSelf="center"
+          bg="border.active.hover"
+          h="sm"
+          orientation="vertical"
+        />
 
         <Button asChild size="sm" variant="solid" {...props}>
           <RadixToast.Action altText={altText} ref={ref}>

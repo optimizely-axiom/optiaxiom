@@ -1,5 +1,6 @@
 import { createSprinkles, defineProperties } from "@vanilla-extract/sprinkles";
 
+import { layers } from "../styles";
 import { conditions } from "../utils";
 import { recipe } from "../vanilla-extract";
 
@@ -10,6 +11,7 @@ export const base = recipe({
 });
 
 const props = defineProperties({
+  "@layer": layers.components,
   ...conditions,
   properties: {
     orientation: {
