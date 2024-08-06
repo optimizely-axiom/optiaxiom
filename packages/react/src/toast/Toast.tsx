@@ -1,12 +1,12 @@
 import * as RadixToast from "@radix-ui/react-toast";
-import { forwardRef } from "react";
+import { createElement, forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
 import { Button } from "../button";
-import { IconDanger } from "../icons/IconDanger";
-import { IconInfoCircle } from "../icons/IconInfoCircle";
-import { IconSuccess } from "../icons/IconSuccess";
-import { IconWarning } from "../icons/IconWarning";
+import { IconCircleCheckFilled } from "../icons/IconCircleCheckFilled";
+import { IconCircleExclamationFilled } from "../icons/IconCircleExclamationFilled";
+import { IconCircleInfoFilled } from "../icons/IconCircleInfoFilled";
+import { IconTriangleExclamationFilled } from "../icons/IconTriangleExclamationFilled";
 import { IconX } from "../icons/IconX";
 import { Paper } from "../paper";
 import { extractSprinkles } from "../sprinkles";
@@ -17,16 +17,11 @@ type ToastProps = BoxProps<
   NonNullable<styles.RootVariants>
 >;
 
-const iconMap = new Map([
-  ["danger", IconDanger],
-  ["neutral", IconInfoCircle],
-  ["success", IconSuccess],
-  ["warning", IconWarning],
-]);
-
-const getIcon = (type: string) => {
-  const IconComponent = iconMap.get(type);
-  return IconComponent ? <IconComponent /> : null;
+const iconMap = {
+  danger: IconCircleExclamationFilled,
+  neutral: IconCircleInfoFilled,
+  success: IconCircleCheckFilled,
+  warning: IconTriangleExclamationFilled,
 };
 
 export const Toast = forwardRef<HTMLLIElement, ToastProps>(
@@ -50,7 +45,7 @@ export const Toast = forwardRef<HTMLLIElement, ToastProps>(
           {...restProps}
         >
           <Box asChild {...styles.icon()}>
-            {getIcon(colorScheme)}
+            {createElement(iconMap[colorScheme])}
           </Box>
 
           {children}

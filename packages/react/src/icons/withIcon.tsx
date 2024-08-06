@@ -9,11 +9,13 @@ export const withIcon = (
     fill,
     height = 16,
     name,
+    viewBox,
     width = 20,
   }: {
     fill?: "none";
     height?: number;
     name: string;
+    viewBox?: string;
     width?: number;
   },
   children: ReactNode,
@@ -25,7 +27,7 @@ export const withIcon = (
         height={height}
         ref={ref}
         role="img"
-        viewBox={`0 0 ${width} ${height}`}
+        viewBox={viewBox ?? `0 0 ${width} ${height}`}
         width={width}
         xmlns="http://www.w3.org/2000/svg"
         {...props}
