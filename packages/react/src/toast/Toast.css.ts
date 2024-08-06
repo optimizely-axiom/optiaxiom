@@ -137,8 +137,9 @@ export const icon = recipe({
   base: [
     {
       alignSelf: "start",
+      h: "16",
       mt: "4",
-      size: "16",
+      w: "auto",
     },
     style({
       color: accentColorVar,

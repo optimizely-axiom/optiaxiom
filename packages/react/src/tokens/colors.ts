@@ -96,7 +96,7 @@ const colorPalette = {
   "red.50": "#FFF7F7" as const,
   "red.100": "#FCD6D6" as const,
   "red.200": "#F9ACAC" as const,
-  "red.300": "#F45959" as const,
+  "red.300": "#FC8B8B" as const,
   "red.400": "#E31818" as const,
   "red.500": "#CC1616" as const,
   "red.600": "#B21313" as const,
