@@ -102,7 +102,7 @@ export const Tooltip = forwardRef<HTMLButtonElement, TooltipProps>(
                 <Transition type="pop">
                   <Box
                     asChild
-                    bg="neutral.900"
+                    bg="bg.neutral.inverse"
                     color="white"
                     px="12"
                     py="8"

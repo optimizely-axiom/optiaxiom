@@ -8,7 +8,7 @@ type ToastProps = TextProps<typeof RadixToast.Title>;
 export const ToastTitle = forwardRef<HTMLDivElement, ToastProps>(
   ({ children, ...props }, ref) => {
     return (
-      <Text asChild color="fg.default" flex="1" {...props}>
+      <Text asChild flex="1" {...props}>
         <RadixToast.Title ref={ref}>{children}</RadixToast.Title>
       </Text>
     );

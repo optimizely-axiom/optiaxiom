@@ -92,9 +92,9 @@ export const button = recipe({
       }),
       neutral: style({
         vars: {
-          [accentColorVar]: theme.colors["bg.neutral.solid"],
-          [solidAccentColorVar]: theme.colors["bg.neutral.solid.hover"],
-          [solidTextColorVar]: theme.colors["fg.default"],
+          [accentColorVar]: theme.colors["bg.neutral.inverse"],
+          [solidAccentColorVar]: theme.colors["bg.neutral.inverse.hover"],
+          [solidTextColorVar]: theme.colors["fg.default.inverse"],
           [subtleAccentColorVar]: theme.colors["bg.input.disabled"],
           [subtleTextColorVar]: theme.colors["fg.default"],
         },

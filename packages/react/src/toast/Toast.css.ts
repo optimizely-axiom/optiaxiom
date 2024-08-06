@@ -37,7 +37,8 @@ export const root = recipe({
   base: [
     {
       alignItems: "center",
-      borderL: "4",
+      bg: "bg.neutral.inverse",
+      color: "fg.default.inverse",
       display: "flex",
       gap: "10",
       maxW: "full",
@@ -47,8 +48,6 @@ export const root = recipe({
       w: ["full", "max"],
     },
     style({
-      borderColor: accentColorVar,
-
       selectors: {
         '&[data-state="closed"]': {
           animation: `${fadeOut} 100ms ease-in`,
@@ -102,27 +101,22 @@ export const root = recipe({
     colorScheme: {
       danger: style({
         vars: {
-          [accentColorVar]: theme.colors["border.error"],
+          [accentColorVar]: theme.colors["red.300"],
         },
       }),
       neutral: style({
         vars: {
-          [accentColorVar]: theme.colors["border.active"],
-        },
-      }),
-      primary: style({
-        vars: {
-          [accentColorVar]: theme.colors["border.brand"],
+          [accentColorVar]: theme.colors["fg.default.inverse"],
         },
       }),
       success: style({
         vars: {
-          [accentColorVar]: theme.colors["border.success"],
+          [accentColorVar]: theme.colors["green.400"],
         },
       }),
       warning: style({
         vars: {
-          [accentColorVar]: theme.colors["border.warning"],
+          [accentColorVar]: theme.colors["yellow.300"],
         },
       }),
     },
