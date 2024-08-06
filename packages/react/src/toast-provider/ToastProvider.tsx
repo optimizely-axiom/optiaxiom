@@ -71,7 +71,10 @@ export const ToastProvider = forwardRef<HTMLOListElement, ToastProps>(
           cloneElement(toast, {
             forceMount: true,
             key: id,
-            onOpenChange: () => toaster.remove(id),
+            onOpenChange: (open: boolean) => {
+              toast.props.onOpenChange?.(open);
+              toaster.remove(id);
+            },
             open,
           }),
         )}
