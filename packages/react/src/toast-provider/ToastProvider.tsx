@@ -77,6 +77,13 @@ export const ToastProvider = forwardRef<HTMLOListElement, ToastProps>(
 
         <Portal container={container}>
           <Flex
+            alignItems={
+              position.endsWith("left")
+                ? "start"
+                : position.endsWith("right")
+                  ? "end"
+                  : "center"
+            }
             asChild
             data-position={position}
             flexDirection={
