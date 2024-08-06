@@ -15,6 +15,7 @@ export const createToaster = (store = getDefaultStore()) => {
   const toastsAtom = atom<
     Array<{
       id: string;
+      open: boolean;
       toast: ToastElement;
     }>
   >([]);
@@ -24,14 +25,28 @@ export const createToaster = (store = getDefaultStore()) => {
 
     create: (toast: ToastElement) => {
       const id = genId();
-      store.set(toastsAtom, [...store.get(toastsAtom), { id, toast }]);
+      store.set(toastsAtom, [
+        ...store.get(toastsAtom),
+        { id, open: true, toast },
+      ]);
+
       return id;
     },
 
     remove: (id: string) => {
       store.set(
         toastsAtom,
-        store.get(toastsAtom).filter((item) => item.id !== id),
+        store
+          .get(toastsAtom)
+          .map((item) => (item.id === id ? { ...item, open: false } : item)),
+      );
+      setTimeout(
+        () =>
+          store.set(
+            toastsAtom,
+            store.get(toastsAtom).filter((item) => item.id !== id),
+          ),
+        200,
       );
     },
   };

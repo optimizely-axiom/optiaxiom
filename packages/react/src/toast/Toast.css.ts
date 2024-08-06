@@ -53,6 +53,10 @@ export const root = recipe({
           animation: `${fadeOut} 100ms ease-in`,
           opacity: "0",
         },
+        '&[data-state="closed"] ~ &': {
+          transition: "translate 100ms ease-in 100ms",
+          translate: "0 -100%",
+        },
         '&[data-state="open"]': {
           animation: `${slideIn} 150ms cubic-bezier(0.16, 1, 0.3, 1)`,
         },
@@ -91,8 +95,14 @@ export const root = recipe({
         '[data-position^="bottom"] &:first-child': {
           marginBottom: "auto",
         },
+        '[data-position^="bottom"] &[data-state="closed"] ~ &': {
+          translate: "0 100%",
+        },
         '[data-position^="top"] &:last-child': {
           marginTop: "auto",
+        },
+        '[data-position^="top"] &[data-state="closed"] ~ &': {
+          translate: "0 -100%",
         },
       },
     }),
