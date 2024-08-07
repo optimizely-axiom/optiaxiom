@@ -11,6 +11,7 @@ export * from "./avatar";
 export * from "./badge";
 export * from "./box";
 export * from "./breadcrumbs";
+export * from "./breadcrumbs-item";
 export * from "./button";
 export * from "./button-group";
 export * from "./checkbox";

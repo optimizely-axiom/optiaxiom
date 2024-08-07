@@ -1,19 +1,18 @@
 import React, { forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
+import {
+  BreadcrumbItem,
+  type BreadcrumbItemProps,
+} from "../breadcrumbs-item/BreadcrumbsItem";
 import { extractSprinkles } from "../sprinkles";
-import { Text } from "../text";
 import * as styles from "./Breadcrumbs.css";
 
-type BreadcrumbItem = {
-  href: string;
-  label: string;
-};
-
-type BreadcrumbsProps = BoxProps<
+export type BreadcrumbsProps = BoxProps<
   "nav",
   {
-    items: BreadcrumbItem[];
+    children?: React.ReactNode;
+    items?: Omit<BreadcrumbItemProps, "isLast" | "separator">[];
     maxItems?: number;
     separator?: React.ReactNode;
   } & styles.BreadcrumbsVariants
@@ -22,6 +21,7 @@ type BreadcrumbsProps = BoxProps<
 export const Breadcrumbs = forwardRef<HTMLElement, BreadcrumbsProps>(
   (
     {
+      children,
       className,
       colorScheme = "primary",
       items,
@@ -34,50 +34,59 @@ export const Breadcrumbs = forwardRef<HTMLElement, BreadcrumbsProps>(
   ) => {
     const { restProps, sprinkleProps } = extractSprinkles(props);
 
-    const itemsCount = items.length;
-    const shouldTruncate = maxItems < itemsCount && maxItems > 1;
+    const displayedItems = React.useMemo(() => {
+      if (children) {
+        return React.Children.toArray(children).map((child, index, array) => {
+          if (
+            React.isValidElement<BreadcrumbItemProps>(child) &&
+            child.type === BreadcrumbItem
+          ) {
+            return React.cloneElement(child, {
+              ...child.props,
+              isLast: index === array.length - 1,
+              separator,
+            });
+          }
+          return child;
+        });
+      }
 
-    let displayedItems: React.ReactNode[];
-    if (shouldTruncate) {
-      const firstItem = items[0];
-      const lastItem = items[itemsCount - 1];
-      displayedItems = [
-        <React.Fragment key={firstItem.href}>
-          <Text as="span" {...styles.link()}>
-            <a href={firstItem.href}>{firstItem.label}</a>
-          </Text>
-        </React.Fragment>,
-        <React.Fragment key="ellipsis">
-          <Text as="span" {...styles.separator()}>
-            <span aria-hidden="true">{separator}</span>
-          </Text>
-          <Text as="span" {...styles.ellipsis()}>
-            ...
-          </Text>
-        </React.Fragment>,
-        <React.Fragment key={lastItem.href}>
-          <Text as="span" {...styles.separator()}>
-            <span aria-hidden="true">{separator}</span>
-          </Text>
-          <Text as="span" {...styles.link()}>
-            <a href={lastItem.href}>{lastItem.label}</a>
-          </Text>
-        </React.Fragment>,
+      if (!items) return null;
+
+      if (items.length <= maxItems || maxItems <= 1) {
+        return items.map((item, index) => (
+          <BreadcrumbItem
+            {...item}
+            isLast={index === items.length - 1}
+            key={item.href}
+            separator={separator}
+          />
+        ));
+      }
+
+      return [
+        <BreadcrumbItem
+          {...items[0]}
+          isLast={false}
+          key={items[0].href}
+          separator={separator}
+        />,
+        <BreadcrumbItem
+          href="#"
+          isEllipsis
+          isLast={false}
+          key="ellipsis"
+          label="..."
+          separator={separator}
+        />,
+        <BreadcrumbItem
+          {...items[items.length - 1]}
+          isLast
+          key={items[items.length - 1].href}
+          separator={separator}
+        />,
       ];
-    } else {
-      displayedItems = items.map((item, index) => (
-        <React.Fragment key={item.href}>
-          {index > 0 && (
-            <Text as="span" {...styles.separator()}>
-              <span aria-hidden="true">{separator}</span>
-            </Text>
-          )}
-          <Text as="span" {...styles.link()}>
-            <a href={item.href}>{item.label}</a>
-          </Text>
-        </React.Fragment>
-      ));
-    }
+    }, [items, maxItems, separator, children]);
 
     return (
       <Box
@@ -86,13 +95,7 @@ export const Breadcrumbs = forwardRef<HTMLElement, BreadcrumbsProps>(
         {...sprinkleProps}
       >
         <nav aria-label="Breadcrumb" ref={ref} {...restProps}>
-          <ol {...styles.breadcrumbsList()}>
-            {displayedItems.map((item, index) => (
-              <li {...styles.breadcrumbItem()} key={index}>
-                {item}
-              </li>
-            ))}
-          </ol>
+          <ol {...styles.breadcrumbsList()}>{displayedItems}</ol>
         </nav>
       </Box>
     );
