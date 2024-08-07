@@ -1,8 +1,8 @@
-import { Flex, Grid, Paper, Skeleton } from "@optiaxiom/react";
+import { Box, Flex, Grid, Skeleton } from "@optiaxiom/react";
 
 export function App() {
   return (
-    <Paper maxW="sm" p="md" w="full">
+    <Box bg="surface" maxW="sm" p="md" rounded="sm" shadow="sm" w="full">
       <Flex flexDirection="row">
         <Skeleton circle h="80" />
         <Flex flex="1">
@@ -13,6 +13,6 @@ export function App() {
           <Skeleton />
         </Flex>
       </Flex>
-    </Paper>
+    </Box>
   );
 }

@@ -5,7 +5,6 @@ import { AnimatePresence } from "../animate-presence";
 import { Box, type BoxProps } from "../box";
 import { Button } from "../button";
 import { Flex } from "../flex";
-import { Paper } from "../paper";
 import { Transition } from "../transition";
 import * as styles from "./AlertDialog.css";
 
@@ -51,7 +50,7 @@ export const AlertDialog = forwardRef<HTMLDivElement, AlertDialogProps>(
               </Transition>
 
               <Transition data-side="bottom" type="fade">
-                <Paper asChild {...styles.content({ size })}>
+                <Box asChild {...styles.content({ size })}>
                   <RadixAlertDialog.Content ref={ref} {...props}>
                     <Box asChild {...styles.title()}>
                       <RadixAlertDialog.Title>{title}</RadixAlertDialog.Title>
@@ -76,7 +75,7 @@ export const AlertDialog = forwardRef<HTMLDivElement, AlertDialogProps>(
                       </RadixAlertDialog.Action>
                     </Flex>
                   </RadixAlertDialog.Content>
-                </Paper>
+                </Box>
               </Transition>
             </RadixAlertDialog.Portal>
           )}

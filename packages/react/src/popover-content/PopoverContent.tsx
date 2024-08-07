@@ -2,8 +2,7 @@ import * as RadixPopover from "@radix-ui/react-popover";
 import { forwardRef, useContext } from "react";
 
 import { AnimatePresence } from "../animate-presence";
-import { type BoxProps } from "../box";
-import { Paper } from "../paper";
+import { Box, type BoxProps } from "../box";
 import { PopoverContext } from "../popover-context";
 import { theme } from "../styles";
 import { Transition } from "../transition";
@@ -35,7 +34,7 @@ export const PopoverContent = forwardRef<HTMLDivElement, PopoverContentProps>(
         {open && (
           <RadixPopover.Portal>
             <Transition duration="sm" type="pop">
-              <Paper asChild {...styles.content({}, className)} {...props}>
+              <Box asChild {...styles.content({}, className)} {...props}>
                 <RadixPopover.Content
                   align={align}
                   ref={ref}
@@ -64,7 +63,7 @@ export const PopoverContent = forwardRef<HTMLDivElement, PopoverContentProps>(
                     </RadixPopover.Arrow>
                   )}
                 </RadixPopover.Content>
-              </Paper>
+              </Box>
             </Transition>
           </RadixPopover.Portal>
         )}

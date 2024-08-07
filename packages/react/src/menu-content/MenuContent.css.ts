@@ -3,6 +3,7 @@ import { recipe, style } from "../vanilla-extract";
 export const content = recipe({
   base: [
     {
+      bg: "surface",
       border: "1",
       borderColor: "border.secondary",
       display: "flex",

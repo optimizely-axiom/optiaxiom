@@ -45,6 +45,7 @@ export const root = recipe({
       p: "sm",
       pl: "md",
       rounded: "md",
+      shadow: "md",
       w: ["full", "max"],
     },
     style({
