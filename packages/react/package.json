@@ -56,7 +56,6 @@
     "@vanilla-extract/sprinkles": "^1.6.2",
     "clsx": "^2.1.1",
     "cmdk": "^1.0.0",
-    "downshift": "^9.0.7",
     "inter-ui": "^4.0.2",
     "jotai": "^2.9.1",
     "react-textarea-autosize": "^8.5.3"
