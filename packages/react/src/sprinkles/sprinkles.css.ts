@@ -102,11 +102,17 @@ const unresponsiveProps = defineProperties({
      */
     objectFit: ["contain", "cover", "fill", "none", "scale-down"] as const,
     /**
-     * Set the element's `overflow` CSS property
+     * Set the element's `overflow-x` CSS property
      *
-     * {@link https://developer.mozilla.org/en-US/docs/Web/CSS/overflow Documentation}
+     * {@link https://developer.mozilla.org/en-US/docs/Web/CSS/overflow-x Documentation}
      */
-    overflow: ["auto", "hidden", "visible"] as const,
+    overflowX: ["auto", "hidden", "visible"] as const,
+    /**
+     * Set the element's `overflow-y` CSS property
+     *
+     * {@link https://developer.mozilla.org/en-US/docs/Web/CSS/overflow-y Documentation}
+     */
+    overflowY: ["auto", "hidden", "visible"] as const,
     /**
      * Set the element's `text-align` CSS property
      *
@@ -194,6 +200,12 @@ const unresponsiveProps = defineProperties({
      * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/border-width/ Documentation}
      */
     borderT: ["borderTopWidth"],
+    /**
+     * Set the element's `overflow` CSS property
+     *
+     * {@link https://developer.mozilla.org/en-US/docs/Web/CSS/overflow Documentation}
+     */
+    overflow: ["overflowX", "overflowY"],
     /**
      * Set the element's border radius on all corners
      *

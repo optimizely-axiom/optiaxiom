@@ -5,7 +5,8 @@ export const viewport = recipe({
     {
       justifyContent: "normal",
       maxH: "full",
-      overflow: "auto",
+      overflowX: "hidden",
+      overflowY: "auto",
       p: "24",
       w: ["full", "384"],
       z: "toast",
