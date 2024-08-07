@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Flex, Grid, Paper, Skeleton } from "@optiaxiom/react";
+import { Box, Flex, Grid, Skeleton } from "@optiaxiom/react";
 import { IconUserFilled } from "@tabler/icons-react";
 
 export default {
@@ -17,7 +17,7 @@ export const Basic: Story = {
 
 export const Card: Story = {
   render: () => (
-    <Paper p="md" w="384">
+    <Box bg="surface" p="md" rounded="sm" shadow="sm" w="384">
       <Flex alignItems="start" flexDirection="row">
         <Skeleton rounded="full" size="48" />
 
@@ -34,7 +34,7 @@ export const Card: Story = {
           </Flex>
         </Flex>
       </Flex>
-    </Paper>
+    </Box>
   ),
 };
 

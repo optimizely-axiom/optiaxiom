@@ -3,6 +3,7 @@ import { type RecipeVariants, recipe, style } from "../vanilla-extract";
 export const content = recipe({
   base: [
     {
+      bg: "surface",
       rounded: "lg",
       shadow: "md",
       z: "popover",

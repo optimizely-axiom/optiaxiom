@@ -5,7 +5,6 @@ import { AnimatePresence } from "../animate-presence";
 import { Box, type BoxProps } from "../box";
 import { Button } from "../button";
 import { IconX } from "../icons/IconX";
-import { Paper } from "../paper";
 import { Transition } from "../transition";
 import * as styles from "./Dialog.css";
 
@@ -45,7 +44,7 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(
               </Transition>
 
               <Transition data-side="bottom" type="fade">
-                <Paper asChild {...styles.content({ size })}>
+                <Box asChild {...styles.content({ size })}>
                   <RadixDialog.Content ref={ref} {...props}>
                     {children}
 
@@ -61,7 +60,7 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(
                       </Box>
                     )}
                   </RadixDialog.Content>
-                </Paper>
+                </Box>
               </Transition>
             </RadixDialog.Portal>
           )}

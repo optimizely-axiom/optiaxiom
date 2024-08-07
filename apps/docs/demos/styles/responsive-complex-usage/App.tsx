@@ -1,11 +1,17 @@
-import { Box, Flex, Paper, Text } from "@optiaxiom/react";
+import { Box, Flex, Text } from "@optiaxiom/react";
 import Image from "next/image";
 
 import beach from "./beach.jpg";
 
 export function App() {
   return (
-    <Paper maxW={["sm", "2xl"]} overflow="hidden">
+    <Box
+      bg="surface"
+      maxW={["sm", "2xl"]}
+      overflow="hidden"
+      rounded="sm"
+      shadow="sm"
+    >
       <Flex flexDirection={["column", "row"]} gap="0">
         <Image
           alt="brown glass bottle beside white book on blue and white textile"
@@ -32,6 +38,6 @@ export function App() {
           </Text>
         </Box>
       </Flex>
-    </Paper>
+    </Box>
   );
 }

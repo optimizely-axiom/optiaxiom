@@ -8,7 +8,6 @@ import { IconCircleExclamationFilled } from "../icons/IconCircleExclamationFille
 import { IconCircleInfoFilled } from "../icons/IconCircleInfoFilled";
 import { IconTriangleExclamationFilled } from "../icons/IconTriangleExclamationFilled";
 import { IconX } from "../icons/IconX";
-import { Paper } from "../paper";
 import { extractSprinkles } from "../sprinkles";
 import * as styles from "./Toast.css";
 
@@ -32,12 +31,7 @@ export const Toast = forwardRef<HTMLLIElement, ToastProps>(
     const { restProps, sprinkleProps } = extractSprinkles(props);
 
     return (
-      <Paper
-        asChild
-        elevation="md"
-        {...styles.root({ colorScheme })}
-        {...sprinkleProps}
-      >
+      <Box asChild {...styles.root({ colorScheme })} {...sprinkleProps}>
         <RadixToast.Root
           onOpenChange={onOpenChange}
           open={open}
@@ -59,7 +53,7 @@ export const Toast = forwardRef<HTMLLIElement, ToastProps>(
             />
           </RadixToast.Close>
         </RadixToast.Root>
-      </Paper>
+      </Box>
     );
   },
 );

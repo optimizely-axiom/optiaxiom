@@ -2,9 +2,8 @@ import * as RadixMenu from "@radix-ui/react-dropdown-menu";
 import { forwardRef, useContext } from "react";
 
 import { AnimatePresence } from "../animate-presence";
-import { type BoxProps } from "../box";
+import { Box, type BoxProps } from "../box";
 import { MenuContext } from "../menu-context";
-import { Paper } from "../paper";
 import { Transition } from "../transition";
 import * as styles from "./MenuContent.css";
 
@@ -19,7 +18,7 @@ export const MenuContent = forwardRef<HTMLDivElement, MenuContentProps>(
         {open && (
           <RadixMenu.Portal forceMount>
             <Transition duration="sm" type="pop">
-              <Paper asChild {...styles.content({}, className)} {...props}>
+              <Box asChild {...styles.content({}, className)} {...props}>
                 <RadixMenu.Content
                   align={align}
                   ref={ref}
@@ -27,7 +26,7 @@ export const MenuContent = forwardRef<HTMLDivElement, MenuContentProps>(
                 >
                   {children}
                 </RadixMenu.Content>
-              </Paper>
+              </Box>
             </Transition>
           </RadixMenu.Portal>
         )}
