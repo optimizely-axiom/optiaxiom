@@ -4,7 +4,7 @@ import type { ComponentAttributes } from "./ComponentAttributes";
 
 import { register } from "../register";
 
-export const Breadcrumbs = "ax-button";
+export const Breadcrumbs = "ax-breadcrumbs";
 register(Breadcrumbs, BreadcrumbsComponent);
 
 declare global {
