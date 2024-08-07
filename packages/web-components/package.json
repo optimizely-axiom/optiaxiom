@@ -26,7 +26,7 @@
     "./Avatar": "./dist/components/Avatar.js",
     "./Badge": "./dist/components/Badge.js",
     "./Box": "./dist/components/Box.js",
-    "./Breadcrumbs": "./dist/components/Breadcrumbs.js",
+    "./Breadcrumb": "./dist/components/Breadcrumb.js",
     "./BreadcrumbItem": "./dist/components/BreadcrumbItem.js",
     "./Button": "./dist/components/Button.js",
     "./ButtonGroup": "./dist/components/ButtonGroup.js",

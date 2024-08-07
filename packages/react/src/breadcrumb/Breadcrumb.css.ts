@@ -2,7 +2,7 @@ import { theme } from "../styles";
 import { type RecipeVariants, style } from "../vanilla-extract";
 import { recipe } from "../vanilla-extract";
 
-export const breadcrumbs = recipe({
+export const breadcrumb = recipe({
   base: [
     style({
       alignItems: "center",
@@ -33,7 +33,7 @@ export const breadcrumbs = recipe({
   },
 });
 
-export const breadcrumbsList = recipe({
+export const breadcrumbList = recipe({
   base: style({
     alignItems: "center",
     display: "flex",
@@ -43,4 +43,4 @@ export const breadcrumbsList = recipe({
   }),
 });
 
-export type BreadcrumbsVariants = RecipeVariants<typeof breadcrumbs>;
+export type BreadcrumbsVariants = RecipeVariants<typeof breadcrumb>;
