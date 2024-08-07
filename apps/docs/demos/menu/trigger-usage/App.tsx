@@ -6,12 +6,16 @@ import {
   MenuSeparator,
   MenuTrigger,
 } from "@optiaxiom/react";
-import { IconLogout, IconUser } from "@tabler/icons-react";
+import { IconDots, IconLogout, IconUser } from "@tabler/icons-react";
 
 export function App() {
   return (
     <Menu>
-      <MenuTrigger>Open</MenuTrigger>
+      <MenuTrigger
+        appearance="secondary"
+        aria-label="My Account"
+        icon={<IconDots />}
+      />
 
       <MenuContent>
         <MenuLabel>My Account</MenuLabel>

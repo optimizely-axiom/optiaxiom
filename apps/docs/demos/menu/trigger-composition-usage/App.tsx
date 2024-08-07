@@ -1,4 +1,5 @@
 import {
+  Avatar,
   Menu,
   MenuContent,
   MenuItem,
@@ -11,7 +12,11 @@ import { IconLogout, IconUser } from "@tabler/icons-react";
 export function App() {
   return (
     <Menu>
-      <MenuTrigger>Open</MenuTrigger>
+      <MenuTrigger asChild>
+        <Avatar asChild colorScheme="brand">
+          <button>JD</button>
+        </Avatar>
+      </MenuTrigger>
 
       <MenuContent>
         <MenuLabel>My Account</MenuLabel>

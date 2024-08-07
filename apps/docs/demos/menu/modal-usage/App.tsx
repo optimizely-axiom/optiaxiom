@@ -10,7 +10,7 @@ import { IconLogout, IconUser } from "@tabler/icons-react";
 
 export function App() {
   return (
-    <Menu>
+    <Menu modal={false}>
       <MenuTrigger>Open</MenuTrigger>
 
       <MenuContent>

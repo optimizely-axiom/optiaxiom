@@ -6,7 +6,7 @@ import {
   MenuSeparator,
   MenuTrigger,
 } from "@optiaxiom/react";
-import { IconLogout, IconUser } from "@tabler/icons-react";
+import { IconLogout, IconUser, IconUsers } from "@tabler/icons-react";
 
 export function App() {
   return (
@@ -16,6 +16,9 @@ export function App() {
       <MenuContent>
         <MenuLabel>My Account</MenuLabel>
         <MenuItem startDecorator={<IconUser />}>View Profile</MenuItem>
+        <MenuItem disabled startDecorator={<IconUsers />}>
+          Team Management
+        </MenuItem>
         <MenuSeparator />
         <MenuItem startDecorator={<IconLogout />}>Logout</MenuItem>
       </MenuContent>
