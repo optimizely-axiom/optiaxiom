@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Breadcrumbs } from "@optiaxiom/react";
+import { BreadcrumbItem, Breadcrumbs } from "@optiaxiom/react";
 
 export default {
   argTypes: {
@@ -74,4 +74,17 @@ export const CustomSeparator: Story = {
     ],
     separator: "/",
   },
+};
+
+export const UsingChildren: Story = {
+  args: {
+    colorScheme: "primary",
+  },
+  render: (args) => (
+    <Breadcrumbs {...args}>
+      <BreadcrumbItem href="/" label="Home" />
+      <BreadcrumbItem href="/products" label="Products" />
+      <BreadcrumbItem href="/products/electronics" label="Electronics" />
+    </Breadcrumbs>
+  ),
 };
