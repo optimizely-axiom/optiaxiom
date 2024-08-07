@@ -4,6 +4,7 @@ import { type ReactNode, forwardRef } from "react";
 import { Box, type BoxProps } from "../box";
 import { Flex } from "../flex";
 import { extractSprinkles } from "../sprinkles";
+import { fallbackSpan } from "../utils";
 import * as styles from "./MenuItem.css";
 
 type MenuItemProps = BoxProps<
@@ -35,7 +36,11 @@ export const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>(
         {...sprinkleProps}
       >
         <RadixMenu.Item {...restProps}>
-          {startDecorator}
+          {startDecorator && (
+            <Box asChild h="16" w="auto">
+              {fallbackSpan(startDecorator)}
+            </Box>
+          )}
 
           <Box flex="1">{children}</Box>
 
