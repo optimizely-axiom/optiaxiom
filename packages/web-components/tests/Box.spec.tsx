@@ -4,7 +4,7 @@ import { tokens } from "@optiaxiom/react";
 import { Button } from "@optiaxiom/web-components/Button";
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import { Paper } from "@optiaxiom/web-components/Paper";
+import { Box } from "@optiaxiom/web-components/Box";
 import { useState } from "react";
 import { describe, expect, it } from "vitest";
 
@@ -15,7 +15,7 @@ import {
   withinShadowRoot,
 } from "../vitest.rtl";
 
-describe("Paper component", () => {
+describe("Box component", () => {
   function setup() {
     return render(<TestComponent />);
   }
@@ -24,8 +24,8 @@ describe("Paper component", () => {
     const [preset, setPreset] = useState<"default" | "primary">("default");
 
     return (
-      <Paper p="md">
-        This is a paper
+      <Box p="md">
+        This is a box
         <Button
           appearance={preset}
           // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -36,15 +36,15 @@ describe("Paper component", () => {
         >
           Click
         </Button>
-      </Paper>
+      </Box>
     );
   }
 
   it("should render properly", async () => {
     setup();
     expect(
-      withinShadowRoot(screen.getByText("This is a paper")).getByText(
-        "This is a paper",
+      withinShadowRoot(screen.getByText("This is a box")).getByText(
+        "This is a box",
       ),
     ).toBeInTheDocument();
     expect(
