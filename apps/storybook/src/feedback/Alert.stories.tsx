@@ -192,7 +192,6 @@ export const DefaultWithLink: Story = {
 export const UserInteractive: Story = {
   render: () =>
     AlertTemplate({
-      colorScheme: "information",
       description: "You can update your email only once",
       title: "Info",
       variant: "solid",
