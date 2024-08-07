@@ -1,42 +1,22 @@
-import { theme } from "../styles";
-import { style } from "../vanilla-extract";
-import { recipe } from "../vanilla-extract";
+// import { theme } from "../styles";
+import { recipe, style } from "../vanilla-extract";
 
 export const breadcrumbItem = recipe({
-  base: style({
-    alignItems: "center",
-    display: "flex",
-  }),
-});
-
-export const link = recipe({
   base: [
+    {
+      alignItems: "center",
+    },
     style({
-      selectors: {
-        "&:focus-visible": {
-          outline: `2px auto ${theme.colors["outline.brand"]}`,
-          outlineOffset: "1px",
-        },
-        "&:hover": {
-          textDecoration: "underline",
-        },
-      },
-      textDecoration: "none",
+      display: "flex",
     }),
   ],
-  variants: {
-    isEllipsis: {
-      false: {},
-      true: style({
-        color: theme.colors["dark.500"],
-      }),
-    },
-  },
 });
 
 export const separator = recipe({
-  base: style({
-    color: theme.colors["dark.500"],
-    margin: "0 8px",
-  }),
+  base: [
+    {
+      color: "dark.500",
+      px: "xs",
+    },
+  ],
 });

@@ -3,25 +3,13 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Breadcrumb, BreadcrumbItem } from "@optiaxiom/react";
 
 export default {
-  argTypes: {
-    colorScheme: {
-      control: "select",
-      options: ["neutral", "primary", "secondary"],
-    },
-  },
   component: Breadcrumb,
 } as Meta<typeof Breadcrumb>;
 
 type Story = StoryObj<typeof Breadcrumb>;
 
-const Template: Story = {
-  render: (args) => <Breadcrumb {...args} />,
-};
-
 export const Default: Story = {
-  ...Template,
   args: {
-    colorScheme: "primary",
     items: [
       { href: "/", label: "Home" },
       { href: "/products", label: "Products" },
@@ -31,9 +19,7 @@ export const Default: Story = {
 };
 
 export const LongBreadcrumb: Story = {
-  ...Template,
   args: {
-    colorScheme: "primary",
     items: [
       { href: "/", label: "Home" },
       { href: "/category", label: "Category" },
@@ -47,9 +33,7 @@ export const LongBreadcrumb: Story = {
   },
 };
 export const LongBreadcrumbWithMaxItems: Story = {
-  ...Template,
   args: {
-    colorScheme: "primary",
     items: [
       { href: "/", label: "Home" },
       { href: "/category", label: "Category" },
@@ -65,7 +49,6 @@ export const LongBreadcrumbWithMaxItems: Story = {
 };
 
 export const CustomSeparator: Story = {
-  ...Template,
   args: {
     items: [
       { href: "/", label: "Home" },
@@ -77,9 +60,6 @@ export const CustomSeparator: Story = {
 };
 
 export const UsingChildren: Story = {
-  args: {
-    colorScheme: "primary",
-  },
   render: (args) => (
     <Breadcrumb {...args}>
       <BreadcrumbItem href="/" label="Home" />

@@ -15,7 +15,7 @@ export type BreadcrumbProps = BoxProps<
     items?: Omit<BreadcrumbItemProps, "isLast" | "separator">[];
     maxItems?: number;
     separator?: React.ReactNode;
-  } & styles.BreadcrumbsVariants
+  }
 >;
 
 export const Breadcrumb = forwardRef<HTMLElement, BreadcrumbProps>(
@@ -23,11 +23,9 @@ export const Breadcrumb = forwardRef<HTMLElement, BreadcrumbProps>(
     {
       children,
       className,
-      colorScheme = "primary",
       items,
       maxItems = Infinity,
       separator = ">",
-      size = "medium",
       ...props
     },
     ref,
@@ -73,7 +71,6 @@ export const Breadcrumb = forwardRef<HTMLElement, BreadcrumbProps>(
         />,
         <BreadcrumbItem
           href="#"
-          isEllipsis
           isLast={false}
           key="ellipsis"
           label="..."
@@ -89,11 +86,7 @@ export const Breadcrumb = forwardRef<HTMLElement, BreadcrumbProps>(
     }, [items, maxItems, separator, children]);
 
     return (
-      <Box
-        asChild
-        {...styles.breadcrumb({ colorScheme, size }, className)}
-        {...sprinkleProps}
-      >
+      <Box asChild {...styles.breadcrumb({}, className)} {...sprinkleProps}>
         <nav aria-label="Breadcrumb" ref={ref} {...restProps}>
           <ol {...styles.breadcrumbList()}>{displayedItems}</ol>
         </nav>

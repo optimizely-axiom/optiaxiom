@@ -1,5 +1,6 @@
 import React from "react";
 
+import { Link } from "../link";
 import { Text } from "../text";
 import * as styles from "./BreadcrumbItem.css";
 
@@ -13,18 +14,18 @@ export type BreadcrumbItemProps = {
 
 export const BreadcrumbItem: React.FC<BreadcrumbItemProps> = ({
   href,
-  isEllipsis = false,
+
   isLast = false,
   label,
   separator = ">",
 }) => (
   <li {...styles.breadcrumbItem()}>
-    <Text as="span" {...styles.link({ isEllipsis })}>
-      <a href={href}>{label}</a>
+    <Text as="span">
+      <Link href={href}>{label}</Link>
     </Text>
     {!isLast && (
       <Text as="span" {...styles.separator()}>
-        <span aria-hidden="true">{separator}</span>
+        {separator}
       </Text>
     )}
   </li>
