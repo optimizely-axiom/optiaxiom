@@ -1,46 +1,27 @@
-import { theme } from "../styles";
 import { type RecipeVariants, style } from "../vanilla-extract";
 import { recipe } from "../vanilla-extract";
 
 export const breadcrumb = recipe({
   base: [
-    style({
+    {
       alignItems: "center",
       display: "flex",
-      padding: "8px 0",
-    }),
+      pt: "xs",
+    },
   ],
-  variants: {
-    colorScheme: {
-      neutral: style({
-        color: theme.colors["fg.default"],
-      }),
-      primary: style({
-        color: theme.colors["fg.link"],
-      }),
-      secondary: style({
-        color: theme.colors["fg.tertiary"],
-      }),
-    },
-    size: {
-      medium: {
-        fontSize: "md",
-      },
-      small: {
-        fontSize: "sm",
-      },
-    },
-  },
 });
 
 export const breadcrumbList = recipe({
-  base: style({
-    alignItems: "center",
-    display: "flex",
-    listStyle: "none",
-    margin: 0,
-    padding: 0,
-  }),
+  base: [
+    {
+      alignItems: "center",
+      // display: "flex",
+      // flexDirection: "row",
+    },
+    style({
+      display: "flex",
+    }),
+  ],
 });
 
 export type BreadcrumbsVariants = RecipeVariants<typeof breadcrumb>;
