@@ -6,7 +6,7 @@ export default {
     },
     boxShadow: {
       path: "/box-shadow/",
-      props: ["shadow", "Paper[elevation]"],
+      props: ["shadow"],
     },
     colors: [
       {
