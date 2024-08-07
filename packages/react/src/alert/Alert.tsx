@@ -1,12 +1,12 @@
-import { forwardRef } from "react";
+import { createElement, forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
 import { Button } from "../button";
 import { Flex } from "../flex";
-import { IconDanger } from "../icons/IconDanger";
-import { IconInfoCircle } from "../icons/IconInfoCircle";
-import { IconSuccess } from "../icons/IconSuccess";
-import { IconWarning } from "../icons/IconWarning";
+import { IconCircleCheckFilled } from "../icons/IconCircleCheckFilled";
+import { IconCircleExclamationFilled } from "../icons/IconCircleExclamationFilled";
+import { IconCircleInfoFilled } from "../icons/IconCircleInfoFilled";
+import { IconTriangleExclamationFilled } from "../icons/IconTriangleExclamationFilled";
 import { IconX } from "../icons/IconX";
 import * as styles from "./Alert.css";
 
@@ -17,16 +17,11 @@ type AlertProps = BoxProps<
   } & styles.AlertVariants
 >;
 
-const iconMap = new Map([
-  ["danger", IconDanger],
-  ["information", IconInfoCircle],
-  ["success", IconSuccess],
-  ["warning", IconWarning],
-]);
-
-const getIcon = (colorScheme: string) => {
-  const IconComponent = iconMap.get(colorScheme);
-  return IconComponent ? <IconComponent /> : null;
+const iconMap = {
+  danger: IconCircleExclamationFilled,
+  neutral: IconCircleInfoFilled,
+  success: IconCircleCheckFilled,
+  warning: IconTriangleExclamationFilled,
 };
 
 export const Alert = forwardRef<HTMLDivElement, AlertProps>(
@@ -34,7 +29,7 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>(
     {
       children,
       className,
-      colorScheme = "information",
+      colorScheme = "neutral",
       onClose,
       variant = "light",
       ...props
@@ -49,7 +44,7 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>(
       >
         <Flex alignItems="start" flexDirection="row" gap="xs" mt="2">
           <Box asChild flex="none" size="xs">
-            {getIcon(colorScheme)}
+            {createElement(iconMap[colorScheme])}
           </Box>
           <Flex flex="1" flexDirection="column" gap="xs" overflow="hidden">
             {children}

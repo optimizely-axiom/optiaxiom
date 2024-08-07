@@ -27,7 +27,7 @@ export const alert = recipe({
           [solidColorVar]: theme.colors["red.200"],
         },
       }),
-      information: style({
+      neutral: style({
         vars: {
           [lightColorVar]: theme.colors["bg.neutral"],
           [solidColorVar]: theme.colors["bg.neutral.solid"],
