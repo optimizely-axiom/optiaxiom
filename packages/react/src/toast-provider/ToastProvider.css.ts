@@ -14,6 +14,7 @@ export const viewport = recipe({
     style({
       outline: "none",
       position: "fixed",
+      scrollbarGutter: "stable",
     }),
   ],
   variants: {
