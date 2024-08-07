@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { BreadcrumbItem, Breadcrumbs } from "@optiaxiom/react";
+import { Breadcrumb, BreadcrumbItem } from "@optiaxiom/react";
 
 export default {
   argTypes: {
@@ -9,13 +9,13 @@ export default {
       options: ["neutral", "primary", "secondary"],
     },
   },
-  component: Breadcrumbs,
-} as Meta<typeof Breadcrumbs>;
+  component: Breadcrumb,
+} as Meta<typeof Breadcrumb>;
 
-type Story = StoryObj<typeof Breadcrumbs>;
+type Story = StoryObj<typeof Breadcrumb>;
 
 const Template: Story = {
-  render: (args) => <Breadcrumbs {...args} />,
+  render: (args) => <Breadcrumb {...args} />,
 };
 
 export const Default: Story = {
@@ -81,10 +81,10 @@ export const UsingChildren: Story = {
     colorScheme: "primary",
   },
   render: (args) => (
-    <Breadcrumbs {...args}>
+    <Breadcrumb {...args}>
       <BreadcrumbItem href="/" label="Home" />
       <BreadcrumbItem href="/products" label="Products" />
       <BreadcrumbItem href="/products/electronics" label="Electronics" />
-    </Breadcrumbs>
+    </Breadcrumb>
   ),
 };

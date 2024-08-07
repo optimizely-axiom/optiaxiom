@@ -1,17 +1,17 @@
-import { Breadcrumbs as BreadcrumbsComponent } from "@optiaxiom/react";
+import { Breadcrumb as BreadcrumbComponent } from "@optiaxiom/react";
 
 import type { ComponentAttributes } from "./ComponentAttributes";
 
 import { register } from "../register";
 
-export const Breadcrumbs = "ax-breadcrumbs";
-register(Breadcrumbs, BreadcrumbsComponent);
+export const Breadcrumb = "ax-breadcrumb";
+register(Breadcrumb, BreadcrumbComponent);
 
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace JSX {
     interface IntrinsicElements {
-      [Breadcrumbs]: ComponentAttributes<typeof BreadcrumbsComponent>;
+      [Breadcrumb]: ComponentAttributes<typeof BreadcrumbComponent>;
     }
   }
 }
