@@ -1,13 +1,14 @@
+import { usePagination } from "@mantine/hooks";
 import { forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
 import { Flex } from "../flex";
 import { IconAngleLeft } from "../icons/IconAngleLeft";
 import { IconAngleRight } from "../icons/IconAngleRight";
+import { IconEllipsis } from "../icons/IconEllipsis";
 import { PaginationButton } from "../pagination-button/PaginationButton";
 import { extractSprinkles } from "../sprinkles";
 import * as styles from "./Pagination.css";
-import { usePagination } from "./usePagination";
 
 export type PaginationProps = BoxProps<
   "nav",
@@ -15,8 +16,7 @@ export type PaginationProps = BoxProps<
     boundaries?: number;
     disabled?: boolean;
     offset?: number;
-    onChange: (offset: number, pageSize: number) => void;
-    pageSize?: number;
+    onChange: (offset: number) => void;
     siblings?: number;
     total: number;
   }
@@ -28,39 +28,32 @@ export const Pagination = forwardRef<HTMLElement, PaginationProps>(
       boundaries = 1,
       className,
       disabled = false,
-      offset = 0,
+      offset: page = 1,
       onChange,
-      pageSize = 20,
       siblings = 1,
       total,
       ...props
     },
     ref,
   ) => {
-    const handlePageSelect = (page: number) => {
-      const offset = (page - 1) * pageSize;
-      onChange(offset, pageSize);
-    };
-
-    const { active, buttons, next, previous, totalPage } = usePagination(
+    const { active, next, previous, range, setPage } = usePagination({
       boundaries,
-      offset,
-      pageSize,
+      onChange,
+      page,
       siblings,
       total,
-    );
+    });
     const { restProps, sprinkleProps } = extractSprinkles(props);
-
-    if (totalPage <= 1) return null;
 
     return (
       <Box
+        asChild
         data-disabled={disabled}
-        {...styles.wrapper({}, className)}
+        {...styles.pagination({}, className)}
         {...sprinkleProps}
       >
         <nav aria-label="Pagination" ref={ref} {...restProps}>
-          <Flex asChild {...styles.paginationList()}>
+          <Flex asChild {...styles.list()}>
             <ul>
               <li>
                 <PaginationButton
@@ -68,30 +61,38 @@ export const Pagination = forwardRef<HTMLElement, PaginationProps>(
                   aria-label="Go to previous page"
                   disabled={active === 1}
                   icon={<IconAngleLeft />}
-                  onClick={() => handlePageSelect(previous())}
+                  onClick={previous}
                 >
                   Previous
                 </PaginationButton>
               </li>
-              {buttons.map(({ children, value, ...props }, index) => (
-                <li key={`${value || children}-${index}`}>
-                  <PaginationButton
-                    aria-current={active === Number(value) ? "page" : undefined}
-                    onClick={() => handlePageSelect(Number(value))}
-                    {...props}
-                  >
-                    {children}
-                  </PaginationButton>
+
+              {range.map((page, index) => (
+                <li key={`${index}`}>
+                  {page === "dots" ? (
+                    <Box asChild>
+                      <IconEllipsis />
+                    </Box>
+                  ) : (
+                    <PaginationButton
+                      active={active === page}
+                      aria-current={active === page ? "page" : undefined}
+                      onClick={() => setPage(page)}
+                    >
+                      {page}
+                    </PaginationButton>
+                  )}
                 </li>
               ))}
+
               <li>
                 <PaginationButton
                   appearance="secondary"
                   aria-label="Go to next page"
-                  disabled={active === totalPage}
+                  disabled={active === total}
                   icon={<IconAngleRight />}
                   iconPosition="end"
-                  onClick={() => handlePageSelect(next())}
+                  onClick={next}
                 >
                   Next
                 </PaginationButton>
