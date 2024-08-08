@@ -10,25 +10,21 @@ export default {
 type Story = StoryObj<typeof Pagination>;
 
 const PaginationTemplate = (args: PaginationProps) => {
-  const [offset, setOffset] = useState(args.offset ?? 0);
-  const [pageSize, setPageSize] = useState(args.pageSize ?? 20);
+  const [offset, setOffset] = useState(args.offset ?? 1);
 
-  const onPageSelect = (newOffset: number, newPageSize: number) => {
+  const onPageSelect = (newOffset: number) => {
     setOffset(newOffset);
-    setPageSize(newPageSize);
   };
 
   return (
     <Box>
       <Text fontSize="md">Data Size: {args.total}</Text>
-      <Text fontSize="md">Page Size: {pageSize}</Text>
       <Text fontSize="md">Offset: {offset}</Text>
       <Pagination
         mt="md"
         {...args}
         offset={offset}
         onChange={args.onChange || onPageSelect}
-        pageSize={pageSize}
       />
     </Box>
   );
@@ -68,7 +64,6 @@ export const LargeDataset: Story = {
 
 export const CustomPageSize: Story = {
   args: {
-    pageSize: 5,
     total: 50,
   },
   render: PaginationTemplate,

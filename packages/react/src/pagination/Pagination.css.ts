@@ -1,13 +1,7 @@
 import { recipe, style } from "../vanilla-extract";
 
-export const wrapper = recipe({
+export const pagination = recipe({
   base: [
-    {
-      alignItems: "center",
-      display: "flex",
-      flexDirection: "row",
-      justifyContent: "center",
-    },
     style({
       selectors: {
         '&[data-disabled="true"]': {
@@ -19,13 +13,11 @@ export const wrapper = recipe({
   ],
 });
 
-export const paginationList = recipe({
+export const list = recipe({
   base: [
     {
-      alignItems: "center",
-      display: "flex",
       flexDirection: "row",
-      gap: "xs",
+      gap: "2",
     },
   ],
 });
