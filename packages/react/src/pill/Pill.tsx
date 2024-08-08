@@ -1,6 +1,7 @@
 import { type ReactNode, forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
+import { Button } from "../button";
 import { IconX } from "../icons/IconX";
 import { extractSprinkles } from "../sprinkles";
 import * as styles from "./Pill.css";
@@ -23,7 +24,7 @@ export const Pill = forwardRef<HTMLDivElement, PillProps>(
       endDecorator,
       onClose,
       readonly,
-      size = "md",
+      size = "lg",
       startDecorator,
       ...props
     },
@@ -32,8 +33,13 @@ export const Pill = forwardRef<HTMLDivElement, PillProps>(
     const { restProps, sprinkleProps } = extractSprinkles(props);
 
     return (
-      <Box asChild {...styles.pill({ size }, className)} {...sprinkleProps}>
-        <Box data-readonly={readonly} ref={ref} {...restProps}>
+      <Box
+        asChild
+        data-readonly={readonly}
+        {...styles.pill({ size }, className)}
+        {...sprinkleProps}
+      >
+        <Box ref={ref} {...restProps}>
           {startDecorator && (
             <Box asChild ml="4">
               {startDecorator}
@@ -43,7 +49,14 @@ export const Pill = forwardRef<HTMLDivElement, PillProps>(
           {endDecorator ? (
             <Box asChild>{endDecorator}</Box>
           ) : (
-            !!onClose && <IconX />
+            !!onClose && (
+              <Button
+                appearance="secondary"
+                icon={<IconX height="12" {...styles.icon()} />}
+                size="sm"
+                {...styles.button()}
+              />
+            )
           )}
         </Box>
       </Box>
