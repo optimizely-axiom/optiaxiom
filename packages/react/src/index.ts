@@ -57,7 +57,6 @@ export * from "./sprinkles";
 export * from "./styles";
 export * from "./switch";
 export * from "./table";
-export * from "./table";
 export * from "./table-body";
 export * from "./table-cell";
 export * from "./table-head";
