@@ -10,16 +10,38 @@ export const list = recipe({
     style({
       selectors: {
         '&[data-orientation="horizontal"]': {
-          borderBottomWidth: "1px",
           flexDirection: "row",
-          gap: theme.spacing.lg,
         },
         '&[data-orientation="vertical"]': {
-          borderRightWidth: "1px",
           flexDirection: "column",
-          gap: theme.spacing.xs,
         },
       },
     }),
   ],
+  variants: {
+    appearance: {
+      primary: style({
+        selectors: {
+          '&[data-orientation="horizontal"]': {
+            borderBottomWidth: "1px",
+            gap: theme.spacing.lg,
+          },
+          '&[data-orientation="vertical"]': {
+            borderRightWidth: "1px",
+            gap: theme.spacing.xs,
+          },
+        },
+      }),
+      secondary: style({
+        selectors: {
+          '&[data-orientation="horizontal"]': {
+            gap: theme.spacing.md,
+          },
+          '&[data-orientation="vertical"]': {
+            gap: theme.spacing.xs,
+          },
+        },
+      }),
+    },
+  },
 });

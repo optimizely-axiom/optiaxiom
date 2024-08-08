@@ -60,6 +60,11 @@ export const Manual: Story = {
     activationMode: "manual",
   },
 };
+export const secondary: Story = {
+  args: {
+    appearance: "secondary",
+  },
+};
 
 export const Vertical: Story = {
   args: {
