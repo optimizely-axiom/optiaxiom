@@ -28,12 +28,10 @@ export const DifferentSizes: Story = {
   render: (args) => (
     <Flex>
       <Flex flexDirection="row">
-        <Pill {...args} size="sm" />
         <Pill {...args} size="md" />
         <Pill {...args} size="lg" />
       </Flex>
       <Flex flexDirection="row">
-        <Pill {...args} size="sm" />
         <Pill {...args} size="md" />
         <Pill {...args} size="lg" />
       </Flex>
@@ -45,8 +43,35 @@ export const WithAvatar: Story = {
   args: {
     children: "Hello",
     onClose: () => {},
-    startDecorator: <Avatar name="Jamie" size="sm" />,
   },
+  render: (args) => (
+    <Flex>
+      <Flex flexDirection="row">
+        <Pill
+          {...args}
+          size="md"
+          startDecorator={<Avatar name="Jamie" size="xs" />}
+        />
+        <Pill
+          {...args}
+          size="lg"
+          startDecorator={<Avatar name="Jamie" size="xs" />}
+        />
+      </Flex>
+      <Flex flexDirection="row">
+        <Pill
+          {...args}
+          size="md"
+          startDecorator={<Avatar name="Jamie" size="xs" />}
+        />
+        <Pill
+          {...args}
+          size="lg"
+          startDecorator={<Avatar name="Jamie" size="xs" />}
+        />
+      </Flex>
+    </Flex>
+  ),
 };
 
 export const WithCloseButton: Story = {
