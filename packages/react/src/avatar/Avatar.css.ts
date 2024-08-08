@@ -1,6 +1,10 @@
+import { theme } from "../styles";
 import { mapValues } from "../utils";
 import { style } from "../vanilla-extract";
 import { type RecipeVariants, recipe } from "../vanilla-extract";
+import * as styles from "./../avatar-group/AvatarGroup.css";
+
+const group = styles.avatarGroup().className;
 
 export const avatar = recipe({
   base: [
@@ -13,6 +17,18 @@ export const avatar = recipe({
     },
     style({
       userSelect: "none",
+
+      selectors: {
+        [`${group} &`]: {
+          border: `1px solid ${theme.colors["white"]}`,
+        },
+        [`${group}[data-orientation="horizontal"] &:not(:first-child)`]: {
+          marginLeft: "-5px",
+        },
+        [`${group}[data-orientation="vertical"] &:not(:first-child)`]: {
+          marginTop: "-5px",
+        },
+      },
     }),
   ],
 

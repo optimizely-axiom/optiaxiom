@@ -24,6 +24,7 @@
     "./AlertDialog": "./dist/components/AlertDialog.js",
     "./AnimatePresence": "./dist/components/AnimatePresence.js",
     "./Avatar": "./dist/components/Avatar.js",
+    "./AvatarGroup": "./dist/components/AvatarGroup.js",
     "./Badge": "./dist/components/Badge.js",
     "./Box": "./dist/components/Box.js",
     "./Breadcrumbs": "./dist/components/Breadcrumbs.js",
