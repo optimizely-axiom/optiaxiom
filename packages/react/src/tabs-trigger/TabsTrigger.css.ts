@@ -6,11 +6,7 @@ const marker = style({});
 export const trigger = recipe({
   base: [
     marker,
-    {
-      py: "4",
-    },
     style({
-      borderColor: `transparent`,
       color: theme.colors["fg.tertiary"],
       userSelect: "none",
 
@@ -19,37 +15,64 @@ export const trigger = recipe({
           outline: `2px solid ${theme.colors["outline.brand"]}`,
           outlineOffset: "1px",
         },
-        '&:hover:not([data-state="active"])': {
-          borderColor: theme.colors["border.default"],
-          color: theme.colors["fg.secondary"],
-        },
         "&[data-disabled]": {
           color: theme.colors["fg.disabled"],
-        },
-        '&[data-orientation="horizontal"]': {
-          borderBottomWidth: "2px",
-          marginBottom: "-1px",
-        },
-        '&[data-orientation="vertical"]': {
-          borderRightWidth: "2px",
-          marginRight: "-1px",
-          paddingInline: "10px",
-        },
-        '&[data-state="active"]': {
-          borderColor: theme.colors["border.brand"],
-          color: theme.colors["fg.default"],
         },
       },
     }),
   ],
+  variants: {
+    appearance: {
+      primary: style({
+        borderColor: `transparent`,
+        padding: "4px 0px",
+
+        selectors: {
+          '&:hover:not([data-state="active"])': {
+            borderColor: theme.colors["border.default"],
+            color: theme.colors["fg.secondary"],
+          },
+          '&[data-orientation="horizontal"]': {
+            borderBottomWidth: "2px",
+            marginBottom: "-1px",
+          },
+          '&[data-orientation="vertical"]': {
+            borderRightWidth: "2px",
+            marginRight: "-1px",
+            paddingInline: "10px",
+          },
+          '&[data-state="active"]': {
+            borderColor: theme.colors["border.brand"],
+            color: theme.colors["fg.default"],
+          },
+        },
+      }),
+      secondary: style({
+        borderRadius: theme.borderRadius.md,
+        padding: "10px 12px",
+
+        selectors: {
+          '&:hover:not([data-state="active"])': {
+            backgroundColor: theme.colors["white"],
+            color: theme.colors["fg.secondary"],
+          },
+          '&[data-orientation="vertical"]': {
+            paddingInline: "10px",
+          },
+          '&[data-state="active"]': {
+            backgroundColor: theme.colors["bg.neutral"],
+            color: theme.colors["bg.neutral.inverse"],
+          },
+        },
+      }),
+    },
+  },
 });
 
 export const content = recipe({
   base: [
     {
       flexDirection: "row",
-      gap: "xs",
-      py: "6",
       rounded: "sm",
     },
     style({
@@ -60,4 +83,16 @@ export const content = recipe({
       },
     }),
   ],
+  variants: {
+    appearance: {
+      primary: {
+        borderColor: `transparent`,
+        gap: "xs",
+        py: "6",
+      },
+      secondary: {
+        gap: "4",
+      },
+    },
+  },
 });
