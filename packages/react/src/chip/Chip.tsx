@@ -3,6 +3,7 @@ import { type ReactNode, forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
 import { IconX } from "../icons/IconX";
+import { Pill } from "../pill";
 import { extractSprinkles } from "../sprinkles";
 import * as styles from "./Chip.css";
 
@@ -32,18 +33,20 @@ export const Chip = forwardRef<HTMLButtonElement, ChipProps>(
 
     return (
       <Box asChild {...styles.chip({ size }, className)} {...sprinkleProps}>
-        <RadixToggle.Root disabled={disabled} ref={ref} {...restProps}>
-          {startDecorator && (
-            <Box asChild ml="4">
-              {startDecorator}
-            </Box>
-          )}
-          {children}
-          {endDecorator ? (
-            <Box asChild>{endDecorator}</Box>
-          ) : (
-            !!onPressedChange && <IconX />
-          )}
+        <RadixToggle.Root asChild disabled={disabled} ref={ref} {...restProps}>
+          <Pill>
+            {startDecorator && (
+              <Box asChild ml="4">
+                {startDecorator}
+              </Box>
+            )}
+            {children}
+            {endDecorator ? (
+              <Box asChild>{endDecorator}</Box>
+            ) : (
+              !!onPressedChange && <IconX />
+            )}
+          </Pill>
         </RadixToggle.Root>
       </Box>
     );
