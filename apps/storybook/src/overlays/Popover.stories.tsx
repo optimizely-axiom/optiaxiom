@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import {
-  Avatar,
   Button,
   Checkbox,
   Flex,
@@ -10,7 +9,6 @@ import {
   PopoverTrigger,
   Search,
   Separator,
-  Text,
 } from "@optiaxiom/react";
 import { type ComponentPropsWithoutRef, useState } from "react";
 
@@ -126,92 +124,4 @@ const DropdownExample = () => {
 
 export const DropDown: Story = {
   render: DropdownExample,
-};
-
-const PeopleExample = () => {
-  const [searchValue, setSearchValue] = useState("");
-
-  const users = [
-    {
-      email: "",
-      id: "AM",
-      name: "Assign to me",
-      src: "https://images.unsplash.com/photo-1715029005043-e88d219a3c48?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    },
-    {
-      email: "emily.chen@example.com",
-      id: "EC",
-      name: "Emily Chen",
-      src: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=3276&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    },
-    {
-      email: "michael.rodriguez@example.com",
-      id: "MR",
-      name: "Michael Rodriguez",
-    },
-    {
-      email: "sarah.patel@example.com",
-      id: "SP",
-      name: "Sarah Patel",
-    },
-    {
-      email: "david.nguyen@example.com",
-      id: "DN",
-      name: "David Nguyen",
-      src: "https://plus.unsplash.com/premium_photo-1671656349322-41de944d259b?q=80&w=3387&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    },
-  ];
-
-  const filteredUsers = users.filter(
-    (user) =>
-      user.name.toLowerCase().includes(searchValue.toLowerCase()) ||
-      user.email.toLowerCase().includes(searchValue.toLowerCase()),
-  );
-
-  return (
-    <Flex>
-      <Popover>
-        <PopoverTrigger>Dropdown heading</PopoverTrigger>
-
-        <PopoverContent>
-          <Flex
-            flexDirection="column"
-            gap="16"
-            style={{ maxWidth: "280px", width: "280px" }}
-          >
-            <Search
-              onChange={(e) => setSearchValue(e.target.value)}
-              placeholder="Search by Name or Email"
-              value={searchValue}
-            />
-            <Separator orientation="horizontal" />
-            {filteredUsers.map((user) => (
-              <Flex
-                alignItems="center"
-                flexDirection="row"
-                gap="8"
-                key={user.id}
-                p="2"
-              >
-                <Avatar
-                  colorScheme="blue"
-                  name={user.name}
-                  size="md"
-                  src={user.src}
-                />
-                <Flex flexDirection="column" gap="4" style={{ flexGrow: 1 }}>
-                  <Text>{user.name}</Text>
-                  {user.email && <Text color="dark.200">{user.email}</Text>}
-                </Flex>
-              </Flex>
-            ))}
-          </Flex>
-        </PopoverContent>
-      </Popover>
-    </Flex>
-  );
-};
-
-export const People: Story = {
-  render: PeopleExample,
 };
