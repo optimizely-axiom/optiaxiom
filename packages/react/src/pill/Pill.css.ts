@@ -7,12 +7,15 @@ export const pill = recipe({
       alignItems: "center",
       display: "inline-flex",
       flexDirection: "row",
-      gap: "xs",
+      fontSize: "sm",
+      gap: "4",
       justifyContent: "center",
-      rounded: "full",
+      px: "6",
+      py: "2",
+      rounded: "md",
     },
     style({
-      backgroundColor: theme.colors["gray.300"],
+      backgroundColor: theme.colors["neutral.100"],
       color: theme.colors["fg.default"],
       position: "relative",
       userSelect: "none",
@@ -22,41 +25,38 @@ export const pill = recipe({
           outline: `2px solid ${theme.colors["gray.300"]}`,
           outlineOffset: "1px",
         },
-        "&:hover:not([data-disabled])": {
-          backgroundColor: theme.colors["gray.600"],
-          color: theme.colors["white"],
-        },
-        "&[data-disabled]": {
-          backgroundColor: theme.colors["bg.disabled"],
+        "&[data-readonly]": {
           border: `1px solid ${theme.colors["border.disabled"]}`,
-          color: theme.colors["fg.disabled"],
-        },
-        '&[data-state="on"]': {
-          backgroundColor: theme.colors["gray.600"],
-          color: theme.colors["white"],
+          color: theme.colors["fg.secondary"],
         },
       },
     }),
   ],
   variants: {
     size: {
-      sm: {
-        fontSize: "sm",
-        px: "sm",
-        py: "2",
-      },
       md: {
-        fontSize: "md",
-        px: "sm",
-        py: "4",
+        h: "xs",
       },
       lg: {
-        fontSize: "lg",
-        px: "md",
-        py: "6",
+        h: "sm",
       },
     },
   },
 });
 
+export const button = recipe({
+  base: [
+    {
+      h: "16",
+      w: "16",
+    },
+  ],
+});
+export const icon = recipe({
+  base: [
+    style({
+      flexShrink: "0",
+    }),
+  ],
+});
 export type PillVariants = NonNullable<RecipeVariants<typeof pill>>;
