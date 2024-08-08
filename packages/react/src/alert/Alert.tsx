@@ -43,7 +43,7 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>(
         {...props}
       >
         <Flex alignItems="start" flexDirection="row" gap="xs" mt="2">
-          <Box asChild flex="none" size="xs">
+          <Box asChild {...styles.icon()}>
             {createElement(iconMap[colorScheme])}
           </Box>
           <Flex flex="1" flexDirection="column" gap="xs" overflow="hidden">

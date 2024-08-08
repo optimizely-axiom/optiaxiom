@@ -57,4 +57,19 @@ export const alert = recipe({
   },
 });
 
+export const icon = recipe({
+  base: [
+    {
+      alignSelf: "start",
+      flex: "none",
+      h: "16",
+      mt: "2",
+      w: "auto",
+    },
+    style({
+      color: theme.colors["bg.neutral.inverse"],
+    }),
+  ],
+});
+
 export type AlertVariants = NonNullable<RecipeVariants<typeof alert>>;
