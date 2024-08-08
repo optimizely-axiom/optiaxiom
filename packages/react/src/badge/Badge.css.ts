@@ -85,10 +85,6 @@ export const badge = recipe({
         backgroundColor: solidBackgroundColorVar,
         color: solidColorVar,
       }),
-      white: style({
-        backgroundColor: theme.colors["surface"],
-        color: subtleColorVar,
-      }),
     },
   },
 });

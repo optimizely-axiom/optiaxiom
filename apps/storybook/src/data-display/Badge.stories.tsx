@@ -43,14 +43,6 @@ export const Light: Story = {
   },
 };
 
-export const White: Story = {
-  ...Variants,
-  args: {
-    children: "Badge",
-    variant: "white",
-  },
-};
-
 export const Count: Story = {
   render: () => (
     <>
