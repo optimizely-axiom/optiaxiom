@@ -59,6 +59,7 @@
     "./MenuSeparator": "./dist/components/MenuSeparator.js",
     "./MenuTrigger": "./dist/components/MenuTrigger.js",
     "./Pagination": "./dist/components/Pagination.js",
+    "./Pill": "./dist/components/Pill.js",
     "./Popover": "./dist/components/Popover.js",
     "./PopoverContent": "./dist/components/PopoverContent.js",
     "./PopoverTrigger": "./dist/components/PopoverTrigger.js",

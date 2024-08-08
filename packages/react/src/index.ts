@@ -43,6 +43,7 @@ export * from "./menu-label";
 export * from "./menu-separator";
 export * from "./menu-trigger";
 export * from "./pagination";
+export * from "./pill";
 export * from "./popover";
 export * from "./popover-content";
 export * from "./popover-trigger";
