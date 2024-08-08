@@ -44,7 +44,11 @@ export const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>(
 
           <Box flex="1">{children}</Box>
 
-          {endDecorator}
+          {endDecorator && (
+            <Box asChild ml="xs">
+              {fallbackSpan(endDecorator)}
+            </Box>
+          )}
         </RadixMenu.Item>
       </Flex>
     );

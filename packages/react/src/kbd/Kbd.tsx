@@ -1,11 +1,16 @@
-import { type ComponentPropsWithRef, forwardRef } from "react";
+import { forwardRef } from "react";
+
+import type { BoxProps } from "../box";
 
 import { Code } from "../code";
 import * as styles from "./Kbd.css";
 
-type KbdProps = {
-  keys?: Array<keyof typeof mapKeyToCode> | keyof typeof mapKeyToCode;
-} & ComponentPropsWithRef<typeof Code>;
+type KbdProps = BoxProps<
+  "kbd",
+  {
+    keys?: Array<keyof typeof mapKeyToCode> | keyof typeof mapKeyToCode;
+  } & styles.KdbVariants
+>;
 
 const mapKeyToCode = {
   command: "⌘",
@@ -24,24 +29,13 @@ const mapKeyToCode = {
 };
 
 export const Kbd = forwardRef<HTMLElement, KbdProps>(
-  ({ children, keys, ...props }, ref) => {
+  ({ children, className, keys, variant = "outline", ...props }, ref) => {
     return (
-      <Code
-        alignItems="center"
-        asChild
-        border="1"
-        borderB="2"
-        display="inline-flex"
-        flexDirection="row"
-        fontWeight="600"
-        gap="4"
-        whiteSpace="nowrap"
-        {...props}
-      >
+      <Code asChild {...styles.kbd({ variant }, className)} {...props}>
         <kbd ref={ref}>
           {keys &&
             (Array.isArray(keys) ? keys : [keys]).map((key) => (
-              <abbr key={key} title={key} {...styles.keys()}>
+              <abbr key={key} title={key} {...styles.keys({ variant })}>
                 {mapKeyToCode[key]}
               </abbr>
             ))}
