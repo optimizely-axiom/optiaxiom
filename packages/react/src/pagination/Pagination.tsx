@@ -1,4 +1,5 @@
 import { usePagination } from "@mantine/hooks";
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
@@ -7,16 +8,14 @@ import { IconAngleLeft } from "../icons/IconAngleLeft";
 import { IconAngleRight } from "../icons/IconAngleRight";
 import { IconEllipsis } from "../icons/IconEllipsis";
 import { PaginationButton } from "../pagination-button/PaginationButton";
-import { extractSprinkles } from "../sprinkles";
-import * as styles from "./Pagination.css";
 
 export type PaginationProps = BoxProps<
   "nav",
   {
     boundaries?: number;
     disabled?: boolean;
-    offset?: number;
     onChange: (offset: number) => void;
+    page?: number;
     siblings?: number;
     total: number;
   }
@@ -26,10 +25,9 @@ export const Pagination = forwardRef<HTMLElement, PaginationProps>(
   (
     {
       boundaries = 1,
-      className,
-      disabled = false,
-      offset: page = 1,
+      disabled,
       onChange,
+      page = 1,
       siblings = 1,
       total,
       ...props
@@ -43,43 +41,51 @@ export const Pagination = forwardRef<HTMLElement, PaginationProps>(
       siblings,
       total,
     });
-    const { restProps, sprinkleProps } = extractSprinkles(props);
 
     return (
-      <Box
-        asChild
-        data-disabled={disabled}
-        {...styles.pagination({}, className)}
-        {...sprinkleProps}
-      >
-        <nav aria-label="Pagination" ref={ref} {...restProps}>
-          <Flex asChild {...styles.list()}>
+      <Box asChild {...props}>
+        <nav aria-label="pagination" ref={ref}>
+          <Flex asChild flexDirection="row" gap="2">
             <ul>
               <li>
                 <PaginationButton
-                  appearance="secondary"
-                  aria-label="Go to previous page"
-                  disabled={active === 1}
-                  icon={<IconAngleLeft />}
+                  disabled={disabled || active === 1}
                   onClick={previous}
+                  startDecorator={<IconAngleLeft />}
                 >
-                  Previous
+                  Previous <VisuallyHidden>page</VisuallyHidden>
                 </PaginationButton>
               </li>
 
               {range.map((page, index) => (
                 <li key={`${index}`}>
                   {page === "dots" ? (
-                    <Box asChild>
-                      <IconEllipsis />
+                    <Box
+                      alignItems="stretch"
+                      display="flex"
+                      justifyContent="center"
+                      py="10"
+                      size="md"
+                    >
+                      <Box alignItems="end" display="flex">
+                        <Box asChild>
+                          <IconEllipsis />
+                        </Box>
+                      </Box>
                     </Box>
                   ) : (
                     <PaginationButton
                       active={active === page}
                       aria-current={active === page ? "page" : undefined}
+                      disabled={disabled}
                       onClick={() => setPage(page)}
                     >
-                      {page}
+                      <VisuallyHidden>page</VisuallyHidden> {page}
+                      {page === 1 ? (
+                        <VisuallyHidden>(first page)</VisuallyHidden>
+                      ) : page === total ? (
+                        <VisuallyHidden>(last page)</VisuallyHidden>
+                      ) : null}
                     </PaginationButton>
                   )}
                 </li>
@@ -87,14 +93,11 @@ export const Pagination = forwardRef<HTMLElement, PaginationProps>(
 
               <li>
                 <PaginationButton
-                  appearance="secondary"
-                  aria-label="Go to next page"
-                  disabled={active === total}
-                  icon={<IconAngleRight />}
-                  iconPosition="end"
+                  disabled={disabled || active === total}
+                  endDecorator={<IconAngleRight />}
                   onClick={next}
                 >
-                  Next
+                  Next <VisuallyHidden>page</VisuallyHidden>
                 </PaginationButton>
               </li>
             </ul>

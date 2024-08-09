@@ -1,37 +1,52 @@
-import { forwardRef } from "react";
+import { type ReactNode, forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
-import { Button } from "../button";
 import { extractSprinkles } from "../sprinkles";
 import * as styles from "./PaginationButton.css";
 
 type PaginationButtonProps = BoxProps<
-  typeof Button,
+  "button",
   {
     active?: boolean;
+    endDecorator?: ReactNode;
+    startDecorator?: ReactNode;
   }
 >;
 
 export const PaginationButton = forwardRef<
   HTMLButtonElement,
   PaginationButtonProps
->(({ active = false, className, ...props }, ref) => {
-  const { restProps, sprinkleProps } = extractSprinkles(props);
-  return (
-    <Box
-      asChild
-      {...styles.paginationButton({ active }, className)}
-      {...sprinkleProps}
-    >
-      <Button
-        appearance="secondary"
-        gap="2"
-        ref={ref}
-        rounded="md"
-        {...restProps}
-      />
-    </Box>
-  );
-});
+>(
+  (
+    {
+      active = false,
+      children,
+      className,
+      disabled,
+      endDecorator,
+      startDecorator,
+      ...props
+    },
+    ref,
+  ) => {
+    const { restProps, sprinkleProps } = extractSprinkles(props);
+
+    return (
+      <Box
+        asChild
+        data-disabled={disabled ? "" : undefined}
+        data-state={active ? "on" : "off"}
+        {...styles.paginationButton({}, className)}
+        {...sprinkleProps}
+      >
+        <button disabled={disabled} ref={ref} {...restProps}>
+          {startDecorator}
+          <Box mx={startDecorator || endDecorator ? "4" : "0"}>{children}</Box>
+          {endDecorator}
+        </button>
+      </Box>
+    );
+  },
+);
 
 PaginationButton.displayName = "@optiaxiom/react/PaginationButton";
