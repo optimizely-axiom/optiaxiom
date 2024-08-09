@@ -1,9 +1,16 @@
 import { Slot, Slottable } from "@radix-ui/react-slot";
-import { type ElementType, type ReactNode, forwardRef } from "react";
+import {
+  type ElementType,
+  type ReactNode,
+  cloneElement,
+  forwardRef,
+  isValidElement,
+} from "react";
 
 import type { ExtendProps } from "../utils";
 
 import { Box, type BoxProps } from "../box";
+import { Flex } from "../flex";
 import { extractSprinkles } from "../sprinkles";
 import * as styles from "./Button.css";
 
@@ -25,9 +32,11 @@ export type ButtonProps<
       appearance?: keyof typeof appearances;
       children?: ReactNode;
       disabled?: boolean;
+      endDecorator?: ReactNode;
       icon?: ReactNode;
       iconPosition?: "end" | "start";
       isLoading?: boolean;
+      startDecorator?: ReactNode;
     } & Omit<styles.ButtonVariants, "iconOnly">,
     P
   >
@@ -40,13 +49,15 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       asChild,
       children,
       className,
-      colorScheme,
+      colorScheme: colorSchemeProp,
       disabled,
+      endDecorator,
       icon,
       iconPosition = "start",
       isLoading,
       size = "md",
-      variant,
+      startDecorator,
+      variant: variantProp,
       ...props
     },
     ref,
@@ -55,10 +66,51 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const { restProps, sprinkleProps } = extractSprinkles(props);
 
     const presetProps = appearances[appearance];
-    const finalColorScheme = colorScheme ?? presetProps.colorScheme;
-    const finalVariant = variant ?? presetProps.variant;
+    const colorScheme = colorSchemeProp ?? presetProps.colorScheme;
+    const variant = variantProp ?? presetProps.variant;
     const isDisabled = Boolean(disabled || isLoading);
-    const isIconOnly = Boolean(!children && icon);
+    let isIconOnly = Boolean(!children && icon);
+
+    if (asChild) {
+      const newElement = isValidElement(children) ? children : null;
+      isIconOnly = Boolean(!newElement?.props.children && icon);
+      children = newElement
+        ? cloneElement(
+            newElement,
+            undefined,
+            isIconOnly ? (
+              <Box asChild {...styles.icon()}>
+                {icon}
+              </Box>
+            ) : (
+              <Flex {...styles.label()}>{newElement.props.children}</Flex>
+            ),
+          )
+        : children;
+    } else {
+      children = isIconOnly ? (
+        <Box asChild {...styles.icon()}>
+          {icon}
+        </Box>
+      ) : (
+        <Flex {...styles.label()}>{children}</Flex>
+      );
+    }
+    if (icon && !isIconOnly) {
+      if (iconPosition === "start") {
+        startDecorator = (
+          <Box asChild {...styles.icon()}>
+            {icon}
+          </Box>
+        );
+      } else if (iconPosition === "end") {
+        endDecorator = (
+          <Box asChild {...styles.icon()}>
+            {icon}
+          </Box>
+        );
+      }
+    }
 
     return (
       <Box
@@ -66,49 +118,21 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         data-disabled={isDisabled ? "" : undefined}
         {...styles.button(
           {
-            colorScheme: finalColorScheme,
+            colorScheme,
             iconOnly: isIconOnly,
             size,
-            variant: finalVariant,
+            variant,
           },
           className,
         )}
         {...sprinkleProps}
       >
         <Comp disabled={isDisabled} ref={ref} {...restProps}>
-          {!isIconOnly && (
-            <Box
-              asChild
-              {...styles.icon({
-                position: "start",
-                size: icon && iconPosition === "start" ? size : undefined,
-              })}
-            >
-              {icon && iconPosition === "start" ? icon : <div />}
-            </Box>
-          )}
+          {startDecorator}
 
-          <Slottable>
-            {isIconOnly ? (
-              <Box asChild {...styles.icon({ size })}>
-                {icon}
-              </Box>
-            ) : (
-              children
-            )}
-          </Slottable>
+          <Slottable>{children}</Slottable>
 
-          {!isIconOnly && (
-            <Box
-              asChild
-              {...styles.icon({
-                position: "end",
-                size: icon && iconPosition === "end" ? size : undefined,
-              })}
-            >
-              {icon && iconPosition === "end" ? icon : <div />}
-            </Box>
-          )}
+          {endDecorator}
         </Comp>
       </Box>
     );
