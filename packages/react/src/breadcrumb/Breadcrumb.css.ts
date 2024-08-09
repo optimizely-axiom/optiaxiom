@@ -15,11 +15,17 @@ export const breadcrumbList = recipe({
   base: [
     {
       alignItems: "center",
-      // display: "flex",
-      // flexDirection: "row",
     },
     style({
       display: "flex",
+    }),
+  ],
+});
+
+export const ellipsis = recipe({
+  base: [
+    style({
+      cursor: "pointer",
     }),
   ],
 });
