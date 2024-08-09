@@ -260,65 +260,18 @@ export const button = recipe({
 });
 
 export const icon = recipe({
-  variants: {
-    position: {
-      end: {},
-      start: {},
-    },
-    size: {
-      sm: {
-        h: "auto",
-        w: "20",
-      },
-      md: {
-        h: "auto",
-        w: "20",
-      },
-      lg: {
-        h: "auto",
-        w: "20",
-      },
-    },
+  base: {
+    h: "auto",
+    w: "20",
   },
+});
 
-  variantsCompounded: [
-    {
-      style: {
-        ml: "2",
-      },
-      variants: {
-        position: "end",
-        size: "md",
-      },
-    },
-    {
-      style: {
-        mr: "2",
-      },
-      variants: {
-        position: "start",
-        size: "md",
-      },
-    },
-    {
-      style: {
-        ml: "4",
-      },
-      variants: {
-        position: "end",
-        size: "lg",
-      },
-    },
-    {
-      style: {
-        mr: "4",
-      },
-      variants: {
-        position: "start",
-        size: "lg",
-      },
-    },
-  ],
+export const label = recipe({
+  base: {
+    flexDirection: "row",
+    gap: "4",
+    mx: "4",
+  },
 });
 
 export type ButtonVariants = NonNullable<RecipeVariants<typeof button>>;

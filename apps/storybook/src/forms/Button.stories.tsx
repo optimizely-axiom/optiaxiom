@@ -106,8 +106,21 @@ export const appearance: Story = {
 export const Link: Story = {
   args: {
     asChild: true,
-    children: <a href="/">Sample Link</a>,
   },
+  render: (args) => (
+    <Flex flexDirection="row">
+      <Button {...args}>
+        <a href="/">Sample Link</a>
+      </Button>
+      <Button {...args} icon={<IconChevronDown />}>
+        <a href="/">Sample Link</a>
+      </Button>
+      <Button {...args} icon={<IconChevronDown />}>
+        {/* eslint-disable-next-line jsx-a11y/anchor-has-content */}
+        <a href="/" />
+      </Button>
+    </Flex>
+  ),
 };
 
 export const StandaloneIcon: Story = {
