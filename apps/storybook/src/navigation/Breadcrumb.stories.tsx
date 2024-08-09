@@ -9,57 +9,65 @@ export default {
 type Story = StoryObj<typeof Breadcrumb>;
 
 export const Default: Story = {
-  args: {
-    items: [
-      { href: "/", label: "Home" },
-      { href: "/products", label: "Products" },
-      { href: "/products/electronics", label: "Electronics" },
-    ],
-  },
+  render: (args) => (
+    <Breadcrumb {...args}>
+      <BreadcrumbItem href="/" label="Home" />
+      <BreadcrumbItem href="/products" label="Products" />
+      <BreadcrumbItem href="/products/electronics" label="Electronics" />
+    </Breadcrumb>
+  ),
 };
 
 export const LongBreadcrumb: Story = {
-  args: {
-    items: [
-      { href: "/", label: "Home" },
-      { href: "/category", label: "Category" },
-      { href: "/category/subcategory", label: "Subcategory" },
-      { href: "/category/subcategory/product-type", label: "Product Type" },
-      {
-        href: "/category/subcategory/product-type/specific-product",
-        label: "Specific Product",
-      },
-    ],
-  },
+  render: (args) => (
+    <Breadcrumb {...args}>
+      <BreadcrumbItem href="/" label="Home" />
+      <BreadcrumbItem href="/category" label="Category" />
+      <BreadcrumbItem href="/category/subcategory" label="Subcategory" />
+      <BreadcrumbItem
+        href="/category/subcategory/product-type"
+        label="Product Type"
+      />
+      <BreadcrumbItem
+        href="/category/subcategory/product-type/specific-product"
+        label="Specific Product"
+      />
+    </Breadcrumb>
+  ),
 };
 export const LongBreadcrumbWithMaxItems: Story = {
   args: {
-    items: [
-      { href: "/", label: "Home" },
-      { href: "/category", label: "Category" },
-      { href: "/category/subcategory", label: "Subcategory" },
-      { href: "/category/subcategory/product-type", label: "Product Type" },
-      {
-        href: "/category/subcategory/product-type/specific-product",
-        label: "Specific Product",
-      },
-    ],
     maxItems: 2,
   },
+  render: (args) => (
+    <Breadcrumb {...args}>
+      <BreadcrumbItem href="/" label="Home" />
+      <BreadcrumbItem href="/category" label="Category" />
+      <BreadcrumbItem href="/category/subcategory" label="Subcategory" />
+      <BreadcrumbItem
+        href="/category/subcategory/product-type"
+        label="Product Type"
+      />
+      <BreadcrumbItem
+        href="/category/subcategory/product-type/specific-product"
+        label="Specific Product"
+      />
+      <BreadcrumbItem
+        href="/category/subcategory/product-type"
+        label="Product Type"
+      />
+      <BreadcrumbItem
+        href="/category/subcategory/product-type/specific-product"
+        label="Specific Product"
+      />
+    </Breadcrumb>
+  ),
 };
 
 export const CustomSeparator: Story = {
   args: {
-    items: [
-      { href: "/", label: "Home" },
-      { href: "/products", label: "Products" },
-      { href: "/products/electronics", label: "Electronics" },
-    ],
     separator: "/",
   },
-};
-
-export const UsingChildren: Story = {
   render: (args) => (
     <Breadcrumb {...args}>
       <BreadcrumbItem href="/" label="Home" />
