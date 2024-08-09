@@ -1,4 +1,5 @@
 import { usePagination } from "@mantine/hooks";
+import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { forwardRef } from "react";
 
@@ -13,8 +14,9 @@ export type PaginationProps = BoxProps<
   "nav",
   {
     boundaries?: number;
+    defaultPage?: number;
     disabled?: boolean;
-    onChange: (offset: number) => void;
+    onPageChange?: (offset: number) => void;
     page?: number;
     siblings?: number;
     total: number;
@@ -25,19 +27,25 @@ export const Pagination = forwardRef<HTMLElement, PaginationProps>(
   (
     {
       boundaries = 1,
+      defaultPage,
       disabled,
-      onChange,
-      page = 1,
+      onPageChange,
+      page: pageProp,
       siblings = 1,
       total,
       ...props
     },
     ref,
   ) => {
+    const [value, setValue] = useControllableState({
+      defaultProp: defaultPage,
+      onChange: onPageChange,
+      prop: pageProp,
+    });
     const { active, next, previous, range, setPage } = usePagination({
       boundaries,
-      onChange,
-      page,
+      onChange: setValue,
+      page: value,
       siblings,
       total,
     });
