@@ -17,5 +17,11 @@
     "strings": "on"
   },
   "eslint.useFlatConfig": true,
+  "files.watcherExclude": {
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/apps/docs/.next/**": true,
+    "**/node_modules/*/**": true
+  },
   "typescript.tsdk": "node_modules/typescript/lib"
 }
