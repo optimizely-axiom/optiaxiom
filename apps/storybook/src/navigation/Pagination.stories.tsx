@@ -1,35 +1,55 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { Pagination, type PaginationProps } from "@optiaxiom/react";
+import { expect, userEvent } from "@storybook/test";
 import { useState } from "react";
 
 export default {
+  argTypes: {
+    onPageChange: { action: "pageChange" },
+  },
   args: {
-    page: 1,
     total: 50,
   },
   component: Pagination,
-  render: function Template(args: PaginationProps) {
-    const [offset, setOffset] = useState(args.page);
-
-    return <Pagination {...args} onChange={setOffset} page={offset} />;
-  },
 } as Meta<typeof Pagination>;
 
 type Story = StoryObj<typeof Pagination>;
 
 export const Basic: Story = {};
 
+export const Controlled: Story = {
+  play: async ({ canvas }) => {
+    await expect(
+      await canvas.findByRole("button", { name: "page 1 (first page)" }),
+    ).toHaveAttribute("aria-current", "page");
+    await userEvent.click(
+      await canvas.findByRole("button", { name: "Next page" }),
+    );
+    await expect(
+      await canvas.findByRole("button", { name: "page 1 (first page)" }),
+    ).not.toHaveAttribute("aria-current", "page");
+    await expect(
+      await canvas.findByRole("button", { name: "page 2" }),
+    ).toHaveAttribute("aria-current", "page");
+  },
+  render: function Template(args: PaginationProps) {
+    const [offset, setOffset] = useState(args.page);
+
+    return <Pagination {...args} onPageChange={setOffset} page={offset} />;
+  },
+};
+
 export const Boundaries: Story = {
   args: {
     boundaries: 2,
-    page: 10,
+    defaultPage: 10,
   },
 };
 
 export const Siblings: Story = {
   args: {
-    page: 10,
+    defaultPage: 10,
     siblings: 3,
   },
 };

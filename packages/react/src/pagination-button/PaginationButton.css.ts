@@ -17,6 +17,7 @@ export const paginationButton = recipe({
     style({
       color: theme.colors["fg.default"],
       minWidth: theme.size.md,
+      userSelect: "none",
 
       selectors: {
         "&:not([data-disabled]):hover": {
