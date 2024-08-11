@@ -1,14 +1,11 @@
-// import { theme } from "../styles";
-import { recipe, style } from "../vanilla-extract";
+import { recipe } from "../vanilla-extract";
 
 export const breadcrumbItem = recipe({
   base: [
     {
       alignItems: "center",
-    },
-    style({
       display: "flex",
-    }),
+    },
   ],
 });
 

@@ -1,5 +1,6 @@
 import React from "react";
 
+import { Box } from "../box";
 import { Link } from "../link";
 import { Text } from "../text";
 import * as styles from "./BreadcrumbItem.css";
@@ -14,7 +15,7 @@ export type BreadcrumbItemProps = {
   separator?: React.ReactNode;
 };
 
-export const BreadcrumbItem: React.FC<BreadcrumbItemProps> = ({
+export const BreadcrumbItem = ({
   followingSeparator = false,
   href,
   isEllipsis = false,
@@ -22,26 +23,28 @@ export const BreadcrumbItem: React.FC<BreadcrumbItemProps> = ({
   onClick,
   precedingSeparator = true,
   separator = ">",
-}) => (
-  <li {...styles.breadcrumbItem()}>
-    {precedingSeparator && (
-      <Text as="span" {...styles.separator()}>
-        {separator}
-      </Text>
-    )}
-    {href === "#" && isEllipsis ? (
-      <Text as="span" onClick={onClick}>
-        {label}
-      </Text>
-    ) : (
-      <Text as="span">
-        <Link href={href}>{label}</Link>
-      </Text>
-    )}
-    {followingSeparator && (
-      <Text as="span" {...styles.separator()}>
-        {separator}
-      </Text>
-    )}
-  </li>
+}: BreadcrumbItemProps) => (
+  <Box asChild {...styles.breadcrumbItem()}>
+    <li>
+      {precedingSeparator && (
+        <Text as="span" {...styles.separator()}>
+          {separator}
+        </Text>
+      )}
+      {href === "#" && isEllipsis ? (
+        <Text as="span" onClick={onClick}>
+          {label}
+        </Text>
+      ) : (
+        <Text as="span">
+          <Link href={href}>{label}</Link>
+        </Text>
+      )}
+      {followingSeparator && (
+        <Text as="span" {...styles.separator()}>
+          {separator}
+        </Text>
+      )}
+    </li>
+  </Box>
 );

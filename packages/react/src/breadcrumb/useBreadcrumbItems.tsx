@@ -1,6 +1,7 @@
-import React, {
+import {
   Children,
   type ReactElement,
+  type ReactNode,
   cloneElement,
   isValidElement,
   useMemo,
@@ -18,9 +19,9 @@ import { Text } from "../text";
 import * as styles from "./Breadcrumb.css";
 
 type UseBreadcrumbItemsProps = {
-  children: React.ReactNode;
+  children: ReactNode;
   maxItems: number;
-  separator: React.ReactNode;
+  separator: ReactNode;
 };
 
 export const useBreadcrumbItems = ({
