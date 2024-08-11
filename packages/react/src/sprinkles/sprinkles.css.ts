@@ -119,7 +119,6 @@ const unresponsiveProps = defineProperties({
      * {@link https://developer.mozilla.org/en-US/docs/Web/CSS/overflow-y Documentation}
      */
     overflowY: ["auto", "hidden", "visible"] as const,
-    position: ["fixed", "relative", "sticky"] as const,
     /**
      * Set the element's `text-align` CSS property
      *
