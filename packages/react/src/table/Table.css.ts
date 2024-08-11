@@ -13,3 +13,18 @@ export const table = recipe({
     }),
   ],
 });
+
+export const wrapper = recipe({
+  base: [
+    {
+      border: "1",
+      borderColor: "gray.200",
+      overflow: "auto",
+      rounded: "sm",
+      w: "full",
+    },
+    style({
+      position: "relative",
+    }),
+  ],
+});
