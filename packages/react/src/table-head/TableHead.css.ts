@@ -16,6 +16,12 @@ export const head = recipe({
       borderRight: `1px solid ${theme.colors["gray.200"]}`,
       textAlign: "left",
       verticalAlign: "middle",
+
+      selectors: {
+        "table:not(:has(tbody tr)) &": {
+          borderBottom: "none",
+        },
+      },
     }),
   ],
 });
