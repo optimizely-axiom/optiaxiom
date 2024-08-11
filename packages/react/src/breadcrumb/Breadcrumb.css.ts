@@ -15,10 +15,8 @@ export const breadcrumbList = recipe({
   base: [
     {
       alignItems: "center",
-    },
-    style({
       display: "flex",
-    }),
+    },
   ],
 });
 
