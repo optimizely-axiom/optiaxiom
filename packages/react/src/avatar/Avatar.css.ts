@@ -20,13 +20,13 @@ export const avatar = recipe({
 
       selectors: {
         [`${group} &`]: {
-          border: `1px solid ${theme.colors["white"]}`,
+          border: `2px solid ${theme.colors["white"]}`,
         },
         [`${group}[data-orientation="horizontal"] &:not(:first-child)`]: {
-          marginLeft: "-5px",
+          marginLeft: "-12px",
         },
         [`${group}[data-orientation="vertical"] &:not(:first-child)`]: {
-          marginTop: "-5px",
+          marginTop: "-12px",
         },
       },
     }),
