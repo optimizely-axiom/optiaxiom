@@ -26,6 +26,8 @@ export const Breadcrumb = forwardRef<HTMLElement, BreadcrumbProps>(
       separator,
     });
 
+    visibleItems.join(String(separator));
+
     return (
       <Box asChild {...styles.breadcrumb({}, className)} {...sprinkleProps}>
         <nav aria-label="Breadcrumb" ref={ref} {...restProps}>

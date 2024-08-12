@@ -7,16 +7,13 @@ import {
   useMemo,
 } from "react";
 
-import {
-  BreadcrumbItem,
-  type BreadcrumbItemProps,
-} from "../breadcrumb-item/BreadcrumbItem";
+import * as styles from "../breadcrumb/Breadcrumb.css";
+import { BreadcrumbItem } from "../breadcrumb-item/BreadcrumbItem";
 import { Menu } from "../menu";
 import { MenuContent } from "../menu-content";
 import { MenuItem } from "../menu-item";
 import { MenuTrigger } from "../menu-trigger";
 import { Text } from "../text";
-import * as styles from "./Breadcrumb.css";
 
 type UseBreadcrumbItemsProps = {
   children: ReactNode;
@@ -30,41 +27,24 @@ export const useBreadcrumbItems = ({
   separator,
 }: UseBreadcrumbItemsProps) => {
   const childrenArray = Children.toArray(children).filter(
-    (child): child is ReactElement<BreadcrumbItemProps> =>
+    (child): child is ReactElement =>
       isValidElement(child) && child.type === BreadcrumbItem,
   );
 
   const visibleItems = useMemo(() => {
     if (!maxItems || childrenArray.length <= maxItems) {
-      return childrenArray.map((item, index) =>
-        cloneElement(item, {
-          followingSeparator: index !== childrenArray.length - 1,
-          precedingSeparator: false,
-          separator,
-        }),
-      );
+      return childrenArray.map((item) => cloneElement(item));
     }
 
     const leftItems = Math.floor(maxItems / 2);
     const rightItems = Math.ceil(maxItems / 2);
 
-    const leftChildren = childrenArray.slice(0, leftItems).map((item) =>
-      cloneElement(item, {
-        followingSeparator: true,
-        precedingSeparator: false,
-        separator,
-      }),
-    );
-
+    const leftChildren = childrenArray
+      .slice(0, leftItems)
+      .map((item) => cloneElement(item));
     const rightChildren = childrenArray
       .slice(childrenArray.length - rightItems)
-      .map((item) =>
-        cloneElement(item, {
-          followingSeparator: false,
-          precedingSeparator: true,
-          separator,
-        }),
-      );
+      .map((item) => cloneElement(item));
 
     return [
       ...leftChildren,
@@ -77,18 +57,20 @@ export const useBreadcrumbItems = ({
         <MenuContent side="bottom">
           {childrenArray.slice(leftItems, -rightItems).map((item, index) => (
             <MenuItem key={item.props.href || index}>
-              {cloneElement(item, {
-                followingSeparator: false,
-                precedingSeparator: false,
-                separator,
-              })}
+              {cloneElement(item)}
             </MenuItem>
           ))}
         </MenuContent>
       </Menu>,
       ...rightChildren,
     ];
-  }, [childrenArray, maxItems, separator]);
+  }, [childrenArray, maxItems]);
 
-  return visibleItems;
+  return visibleItems.reduce((acc: ReactNode[], item, index) => {
+    if (index !== 0) {
+      acc.push(separator);
+    }
+    acc.push(item);
+    return acc;
+  }, []);
 };
