@@ -1,16 +1,11 @@
 import {
   type ColumnDef,
-  type ColumnFiltersState,
-  type SortingState,
-  type VisibilityState,
   flexRender,
   getCoreRowModel,
-  getFilteredRowModel,
   getPaginationRowModel,
-  getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import { useState } from "react";
+import React from "react";
 
 import { Box } from "../box";
 import { Pagination } from "../pagination";
@@ -20,10 +15,12 @@ import { TableCell } from "../table-cell";
 import { TableHead } from "../table-head";
 import { TableHeader } from "../table-header";
 import { TableRow } from "../table-row";
+import * as styles from "./DataTable.css";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
+  pinnedColumns?: string[];
 }
 
 export type { ColumnDef };
@@ -31,62 +28,103 @@ export type { ColumnDef };
 export const DataTable = <TData, TValue>({
   columns,
   data,
+  pinnedColumns = [],
 }: DataTableProps<TData, TValue>) => {
-  const [sorting, setSorting] = useState<SortingState>([]);
-  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
-  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
+  const [{ pageIndex, pageSize }, setPagination] = React.useState({
+    pageIndex: 0,
+    pageSize: 10,
+  });
+
+  const pagination = {
+    pageIndex,
+    pageSize,
+  };
 
   const table = useReactTable({
     columns,
     data,
     getCoreRowModel: getCoreRowModel(),
-    getFilteredRowModel: getFilteredRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
-    getSortedRowModel: getSortedRowModel(),
-    onColumnFiltersChange: setColumnFilters,
-    onColumnVisibilityChange: setColumnVisibility,
-    onSortingChange: setSorting,
+    onPaginationChange: setPagination,
     state: {
-      columnFilters,
-      columnVisibility,
-      sorting,
+      columnPinning: { left: pinnedColumns },
+      pagination,
     },
   });
 
+  const totalPages = table.getPageCount();
+
   return (
-    <Box alignItems="center" display="flex" flexDirection="column" gap="4">
-      <Table>
-        <TableHeader>
-          {table.getHeaderGroups().map((headerGroup) => (
-            <TableRow key={headerGroup.id}>
-              {headerGroup.headers.map((header) => (
-                <TableHead
-                  colSpan={header.colSpan}
-                  key={header.id}
-                  style={{ width: `${header.getSize()}px` }}
-                >
-                  {flexRender(
-                    header.column.columnDef.header,
-                    header.getContext(),
-                  )}
-                </TableHead>
-              ))}
-            </TableRow>
-          ))}
-        </TableHeader>
-        <TableBody>
-          {table.getRowModel().rows.map((row) => (
-            <TableRow key={row.id}>
-              {row.getVisibleCells().map((cell) => (
-                <TableCell key={cell.id}>
-                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                </TableCell>
-              ))}
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-      <Pagination total={1}></Pagination>
+    <Box alignItems="center" display="flex" flexDirection="column">
+      <Box style={{ overflowX: "auto", position: "relative", width: "100%" }}>
+        <Table>
+          <TableHeader>
+            {table.getHeaderGroups().map((headerGroup) => (
+              <TableRow key={headerGroup.id}>
+                {headerGroup.headers.map((header) => {
+                  const isPinned = pinnedColumns.includes(header.column.id);
+                  return (
+                    <TableHead
+                      {...styles.tableHead({
+                        pinned: isPinned ? "left" : undefined,
+                      })}
+                      colSpan={header.colSpan}
+                      key={header.id}
+                      style={{
+                        left: isPinned
+                          ? `${header.getStart("left")}px`
+                          : undefined,
+                        width: `${header.getSize()}px`,
+                      }}
+                    >
+                      {flexRender(
+                        header.column.columnDef.header,
+                        header.getContext(),
+                      )}
+                    </TableHead>
+                  );
+                })}
+              </TableRow>
+            ))}
+          </TableHeader>
+          <TableBody>
+            {table.getRowModel().rows.map((row) => (
+              <TableRow key={row.id}>
+                {row.getVisibleCells().map((cell) => {
+                  const isPinned = pinnedColumns.includes(cell.column.id);
+                  return (
+                    <TableCell
+                      {...styles.tableCell({
+                        pinned: isPinned ? "left" : undefined,
+                      })}
+                      key={cell.id}
+                      style={{
+                        left: isPinned
+                          ? `${cell.column.getStart("left")}px`
+                          : undefined,
+                        width: `${cell.column.getSize()}px`,
+                      }}
+                    >
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext(),
+                      )}
+                    </TableCell>
+                  );
+                })}
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </Box>
+
+      <Box mt="8">
+        <Pagination
+          onPageChange={(newPage) => table.setPageIndex(newPage - 1)}
+          page={pageIndex + 1}
+          total={totalPages}
+        />
+      </Box>
     </Box>
   );
 };

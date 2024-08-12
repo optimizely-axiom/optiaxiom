@@ -75,6 +75,41 @@ const columns: ColumnDef<Payment, string>[] = [
     header: "Order Status",
   },
   {
+    accessorKey: "status0",
+    cell: ({ row }) => (
+      <Box textTransform="capitalize">{row.getValue("status")}</Box>
+    ),
+    header: "Order Status",
+  },
+  {
+    accessorKey: "status1",
+    cell: ({ row }) => (
+      <Box textTransform="capitalize">{row.getValue("status")}</Box>
+    ),
+    header: "Order Status",
+  },
+  {
+    accessorKey: "status2",
+    cell: ({ row }) => (
+      <Box textTransform="capitalize">{row.getValue("status")}</Box>
+    ),
+    header: "Order Status",
+  },
+  {
+    accessorKey: "status3",
+    cell: ({ row }) => (
+      <Box textTransform="capitalize">{row.getValue("status")}</Box>
+    ),
+    header: "Order Status",
+  },
+  {
+    accessorKey: "status4",
+    cell: ({ row }) => (
+      <Box textTransform="capitalize">{row.getValue("status")}</Box>
+    ),
+    header: "Order Status",
+  },
+  {
     accessorKey: "email",
     cell: ({ row }) => <Box>{row.getValue("email")}</Box>,
     header: ({ column }) => {
@@ -109,6 +144,7 @@ export const Basic: Story = {
   args: {
     columns: columns,
     data: data,
+    pinnedColumns: ["id"],
   },
 };
 
@@ -185,7 +221,7 @@ export const WithActions: Story = {
 export const LargeDataset: Story = {
   args: {
     columns: columns,
-    data: Array.from({ length: 100 }, (_, i) => ({
+    data: Array.from({ length: 1000 }, (_, i) => ({
       amount: Math.floor(Math.random() * 1000),
       email: `person${i + 1}@example.com`,
       id: (i + 1).toString(),
