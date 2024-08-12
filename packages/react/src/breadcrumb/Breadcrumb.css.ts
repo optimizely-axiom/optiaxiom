@@ -16,6 +16,7 @@ export const breadcrumbList = recipe({
     {
       alignItems: "center",
       display: "flex",
+      gap: "xs",
     },
   ],
 });
