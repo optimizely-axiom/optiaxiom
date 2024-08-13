@@ -8,14 +8,14 @@ import { Heading } from "../heading";
 import { extractSprinkles } from "../sprinkles";
 import { Text } from "../text";
 
-type FooterProps = BoxProps<
+type DialogTitleProps = BoxProps<
   typeof RadixDialog.Title,
   {
     description?: string;
   }
 >;
 
-export const DialogTitle = forwardRef<HTMLDivElement, FooterProps>(
+export const DialogTitle = forwardRef<HTMLDivElement, DialogTitleProps>(
   ({ children, description, ...props }, ref) => {
     const { restProps, sprinkleProps } = extractSprinkles(props);
 
