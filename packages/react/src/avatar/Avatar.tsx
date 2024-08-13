@@ -41,8 +41,8 @@ export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
     },
     ref,
   ) => {
-    const contextSize = useContext(AvatarContext)?.size;
-    const size = _sizeProp || contextSize || "md";
+    const avatarSize = useContext(AvatarContext)?.size;
+    const size = _sizeProp || avatarSize || "md";
 
     return (
       <Box

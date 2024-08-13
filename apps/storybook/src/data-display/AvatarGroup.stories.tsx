@@ -10,26 +10,40 @@ type Story = StoryObj<typeof AvatarGroup>;
 
 const users = [
   {
-    email: "",
-    id: "AM",
+    id: "HK",
     name: "Henry Kissinger",
     src: "https://images.unsplash.com/photo-1715029005043-e88d219a3c48?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
-    email: "emily.chen@example.com",
     id: "EC",
     name: "Emily Chen",
     src: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=3276&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
-    email: "michael.rodriguez@example.com",
     id: "MR",
     name: "Michael Rodriguez",
   },
   {
-    email: "sarah.patel@example.com",
     id: "SP",
     name: "Sarah Patel",
+  },
+  {
+    id: "JD",
+    name: "John Doe",
+    src: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  },
+  {
+    id: "AS",
+    name: "Alice Smith",
+  },
+  {
+    id: "RJ",
+    name: "Robert Johnson",
+    src: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  },
+  {
+    id: "LW",
+    name: "Linda Williams",
   },
 ];
 
