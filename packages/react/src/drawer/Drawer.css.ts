@@ -1,3 +1,4 @@
+import { theme } from "../styles";
 import { type RecipeVariants, recipe, style } from "../vanilla-extract";
 
 export const content = recipe({
@@ -16,11 +17,13 @@ export const content = recipe({
   variants: {
     position: {
       bottom: style({
+        borderTop: `1px solid ${theme.colors["border.secondary"]}`,
         bottom: 0,
         left: 0,
         right: 0,
       }),
       left: style({
+        borderRight: `1px solid ${theme.colors["border.secondary"]}`,
         bottom: 0,
         height: "100%",
         left: 0,
@@ -28,6 +31,7 @@ export const content = recipe({
         width: "25%",
       }),
       right: style({
+        borderLeft: `1px solid ${theme.colors["border.secondary"]}`,
         bottom: 0,
         height: "100%",
         right: 0,
