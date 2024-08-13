@@ -14,13 +14,6 @@ export const Basic: Story = {
   },
 };
 
-export const Readonly: Story = {
-  args: {
-    children: "Hello",
-    readonly: true,
-  },
-};
-
 export const DifferentSizes: Story = {
   args: {
     children: "Pill",
