@@ -14,7 +14,6 @@ type AvatarProps = BoxProps<
     className?: string;
     icon?: React.ReactNode;
     name?: string;
-    onClick?: () => void;
     src?: string;
   } & styles.AvatarVariants
 >;
@@ -36,7 +35,6 @@ export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
       colorScheme = "neutral",
       icon,
       name,
-      onClick,
       size: _sizeProp,
       src,
       ...props
@@ -52,11 +50,7 @@ export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
         {...styles.avatar({ colorScheme, size }, className)}
         {...props}
       >
-        <RadixAvatar.Root
-          onClick={onClick}
-          ref={ref}
-          {...(!!onClick && styles.pointer())}
-        >
+        <RadixAvatar.Root ref={ref}>
           <Box asChild objectFit="cover" rounded="inherit" size="full">
             <RadixAvatar.Image alt={name} src={src} />
           </Box>

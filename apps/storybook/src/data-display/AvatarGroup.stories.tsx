@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Avatar, AvatarGroup, Box, Text, Tooltip } from "@optiaxiom/react";
-import { useState } from "react";
+import { Avatar, AvatarGroup, Tooltip } from "@optiaxiom/react";
 
 export default {
   component: AvatarGroup,
@@ -70,33 +69,6 @@ export const WithTooltipHorizontal: Story = {
           </Tooltip>
         ))}
       </AvatarGroup>
-    );
-  },
-};
-
-export const WithClickBehavior: Story = {
-  render: function Click() {
-    const [selectedUser, setSelectedUser] = useState<null | string>(null);
-
-    return (
-      <Box alignItems="center" display="flex" flexDirection="column">
-        <AvatarGroup maxItems={3} size="lg">
-          {users.map((user) => (
-            <Avatar
-              colorScheme="blue"
-              key={user.id}
-              name={user.name}
-              onClick={() => setSelectedUser(user.name)}
-              src={user.src}
-            >
-              {user.id}
-            </Avatar>
-          ))}
-        </AvatarGroup>
-        <Text mt="8">
-          {selectedUser ? `Selected user: ${selectedUser}` : "No user selected"}
-        </Text>
-      </Box>
     );
   },
 };
