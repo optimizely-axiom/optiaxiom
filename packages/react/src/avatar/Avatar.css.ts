@@ -19,14 +19,11 @@ export const avatar = recipe({
       userSelect: "none",
 
       selectors: {
-        [`${group} &`]: {
-          border: `2px solid ${theme.colors["white"]}`,
-        },
-        [`${group}[data-orientation="horizontal"] &:not(:first-child)`]: {
+        [`${group} &:not(:first-child)`]: {
           marginLeft: "-12px",
         },
-        [`${group}[data-orientation="vertical"] &:not(:first-child)`]: {
-          marginTop: "-12px",
+        [`${group} &`]: {
+          border: `2px solid ${theme.colors["white"]}`,
         },
       },
     }),
@@ -84,4 +81,12 @@ export const fallback = recipe({
       xl: { px: "20" },
     },
   },
+});
+
+export const pointer = recipe({
+  base: [
+    style({
+      cursor: "pointer",
+    }),
+  ],
 });

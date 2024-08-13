@@ -74,41 +74,19 @@ export const WithTooltipHorizontal: Story = {
   },
 };
 
-export const Vertical: Story = {
-  render: () => {
-    return (
-      <AvatarGroup orientation="vertical" size="lg">
-        {users.map((user) => (
-          <Avatar
-            colorScheme="blue"
-            key={user.id}
-            name={user.name}
-            src={user.src}
-          >
-            {user.id}
-          </Avatar>
-        ))}
-      </AvatarGroup>
-    );
-  },
-};
-
 export const WithClickBehavior: Story = {
   render: function Click() {
     const [selectedUser, setSelectedUser] = useState<null | string>(null);
 
     return (
       <Box alignItems="center" display="flex" flexDirection="column">
-        <AvatarGroup
-          maxItems={3}
-          onAvatarClick={(name: string) => setSelectedUser(name)}
-          size="lg"
-        >
+        <AvatarGroup maxItems={3} size="lg">
           {users.map((user) => (
             <Avatar
               colorScheme="blue"
               key={user.id}
               name={user.name}
+              onClick={() => setSelectedUser(user.name)}
               src={user.src}
             >
               {user.id}
