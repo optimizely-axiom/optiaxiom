@@ -25,10 +25,6 @@ export const pill = recipe({
           outline: `2px solid ${theme.colors["gray.300"]}`,
           outlineOffset: "1px",
         },
-        "&[data-readonly]": {
-          border: `1px solid ${theme.colors["border.disabled"]}`,
-          color: theme.colors["fg.secondary"],
-        },
       },
     }),
   ],

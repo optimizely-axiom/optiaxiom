@@ -7,11 +7,10 @@ import { extractSprinkles } from "../sprinkles";
 import * as styles from "./Pill.css";
 
 type PillProps = BoxProps<
-  typeof Box,
+  "div",
   {
     endDecorator?: ReactNode;
     onClose?: () => void;
-    readonly?: boolean;
     startDecorator?: ReactNode;
   } & styles.PillVariants
 >;
@@ -23,7 +22,6 @@ export const Pill = forwardRef<HTMLDivElement, PillProps>(
       className,
       endDecorator,
       onClose,
-      readonly,
       size = "lg",
       startDecorator,
       ...props
@@ -33,12 +31,7 @@ export const Pill = forwardRef<HTMLDivElement, PillProps>(
     const { restProps, sprinkleProps } = extractSprinkles(props);
 
     return (
-      <Box
-        asChild
-        data-readonly={readonly}
-        {...styles.pill({ size }, className)}
-        {...sprinkleProps}
-      >
+      <Box asChild {...styles.pill({ size }, className)} {...sprinkleProps}>
         <Box ref={ref} {...restProps}>
           {startDecorator && (
             <Box asChild ml="4">
