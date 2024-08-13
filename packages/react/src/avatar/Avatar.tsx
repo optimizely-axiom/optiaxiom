@@ -1,6 +1,7 @@
 import * as RadixAvatar from "@radix-ui/react-avatar";
-import { forwardRef } from "react";
+import { forwardRef, useContext } from "react";
 
+import { AvatarContext } from "../avatar-context";
 import { Box, type BoxProps } from "../box";
 import * as styles from "./Avatar.css";
 
@@ -13,6 +14,7 @@ type AvatarProps = BoxProps<
     className?: string;
     icon?: React.ReactNode;
     name?: string;
+    onClick?: () => void;
     src?: string;
   } & styles.AvatarVariants
 >;
@@ -34,19 +36,27 @@ export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
       colorScheme = "neutral",
       icon,
       name,
-      size = "md",
+      onClick,
+      size: _sizeProp,
       src,
       ...props
     },
     ref,
   ) => {
+    const contextSize = useContext(AvatarContext)?.size;
+    const size = _sizeProp || contextSize || "md";
+
     return (
       <Box
         asChild
         {...styles.avatar({ colorScheme, size }, className)}
         {...props}
       >
-        <RadixAvatar.Root ref={ref}>
+        <RadixAvatar.Root
+          onClick={onClick}
+          ref={ref}
+          {...(!!onClick && styles.pointer())}
+        >
           <Box asChild objectFit="cover" rounded="inherit" size="full">
             <RadixAvatar.Image alt={name} src={src} />
           </Box>
