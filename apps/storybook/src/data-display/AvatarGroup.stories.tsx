@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Avatar, AvatarGroup, Tooltip } from "@optiaxiom/react";
+import { Avatar, AvatarGroup, Flex, Tooltip } from "@optiaxiom/react";
 
 export default {
   component: AvatarGroup,
@@ -33,7 +33,7 @@ const users = [
   },
 ];
 
-export const Horizontal: Story = {
+export const Basic: Story = {
   render: () => {
     return (
       <AvatarGroup maxItems={2} size="lg">
@@ -52,23 +52,44 @@ export const Horizontal: Story = {
   },
 };
 
-export const WithTooltipHorizontal: Story = {
+export const WithTooltip: Story = {
   render: () => {
     return (
-      <AvatarGroup maxItems={2} size="lg">
+      <AvatarGroup maxItems={3} size="lg">
         {users.map((user) => (
           <Tooltip content={user.name} key={user.id}>
-            <Avatar
-              colorScheme="blue"
-              name={user.name}
-              size="lg"
-              src={user.src}
-            >
+            <Avatar colorScheme="blue" name={user.name} src={user.src}>
               {user.id}
             </Avatar>
           </Tooltip>
         ))}
       </AvatarGroup>
+    );
+  },
+};
+
+const sizes = ["xs", "sm", "md", "lg", "xl"] as const;
+const colorSchemes = ["green", "blue", "purple", "orange", "red"] as const;
+
+export const DifferentSizes: Story = {
+  render: () => {
+    return (
+      <Flex gap="md">
+        {sizes.map((size, index) => (
+          <AvatarGroup key={size} maxItems={3} size={size}>
+            {users.map((user) => (
+              <Avatar
+                colorScheme={colorSchemes[index]}
+                key={user.id}
+                name={user.name}
+                src={user.src}
+              >
+                {user.id}
+              </Avatar>
+            ))}
+          </AvatarGroup>
+        ))}
+      </Flex>
     );
   },
 };
