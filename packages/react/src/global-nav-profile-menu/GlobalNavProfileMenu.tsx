@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 
 import { Box, type BoxProps } from "../box";
 import { Flex } from "../flex";
+import { IconEllipsis } from "../icons/IconEllipsis";
 import { Text } from "../text";
 import * as styles from "./GlobalNavProfileMenu.css";
 
@@ -9,24 +10,29 @@ export type GlobalNavProfileMenuProps = BoxProps<
   "div",
   {
     avatar: ReactNode;
-    organization: string;
-    username: string;
+    name?: string;
+    organization?: string;
   }
 >;
 
 export const GlobalNavProfileMenu = ({
   avatar,
+  name,
   organization,
-  username,
 }: GlobalNavProfileMenuProps) => {
   return (
-    <Box {...styles.profileMenu()}>
-      {avatar}
+    <Flex {...styles.wrapper()}>
+      <Box asChild {...styles.picture()}>
+        {avatar}
+      </Box>
       <Flex {...styles.userInfo()}>
-        <Text>{username}</Text>
-        <Text>{organization}</Text>
+        <Text fontWeight="500">{name}</Text>
+        <Text fontSize="sm">{organization}</Text>
       </Flex>
-    </Box>
+      <Box alignItems="center" justifyContent="center">
+        <IconEllipsis />
+      </Box>
+    </Flex>
   );
 };
 

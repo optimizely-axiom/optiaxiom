@@ -1,20 +1,14 @@
-import { Box, type BoxProps } from "../box";
-import { Button } from "../button";
+import { type BoxProps } from "../box";
 import { Flex } from "../flex";
 
-export type GlobalNavBottomProps = BoxProps<
-  "div",
-  {
-    collapse?: boolean;
-  }
->;
+export type GlobalNavBottomProps = BoxProps<"div">;
 
-export const GlobalNavBottom = ({ children }: GlobalNavBottomProps) => {
+export const GlobalNavBottom = ({
+  children,
+  ...props
+}: GlobalNavBottomProps) => {
   return (
-    <Flex>
-      <Box>
-        <Button>Collapse</Button>
-      </Box>
+    <Flex mt="auto" {...props}>
       {children}
     </Flex>
   );

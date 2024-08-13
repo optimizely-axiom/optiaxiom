@@ -3,11 +3,21 @@ import type { Meta, StoryObj } from "@storybook/react";
 import {
   Avatar,
   GlobalNav,
-  GlobalNavBottom,
   GlobalNavItem,
   GlobalNavList,
   GlobalNavProfileMenu,
 } from "@optiaxiom/react";
+import {
+  IconBinaryTree,
+  IconChartInfographic,
+  IconChartLine,
+  IconExternalLink,
+  IconFlag2,
+  IconHistory,
+  IconSettings,
+  IconUsers,
+  IconVocabulary,
+} from "@tabler/icons-react";
 
 export default {
   component: GlobalNav,
@@ -15,26 +25,64 @@ export default {
 } as Meta<typeof GlobalNav>;
 
 type Story = StoryObj<typeof GlobalNav>;
-export const Basic: Story = {
+export const Collapsed: Story = {
   render: () => (
-    <GlobalNav>
+    <GlobalNav
+      endDecorator={
+        <GlobalNavProfileMenu avatar={<Avatar name="Rhaenyra" />} />
+      }
+      style={{
+        height: "80vh",
+      }}
+    >
       <GlobalNavList>
-        <GlobalNavItem label="Projects" />
-        <GlobalNavItem label="Flags" />
-        <GlobalNavItem label="Reports" />
-        <GlobalNavItem label="Audiences" />
-        <GlobalNavItem label="History" />
-        <GlobalNavItem label="Events" />
-        <GlobalNavItem label="Settings" />
-        <GlobalNavItem label="Tutorial" />
+        <GlobalNavItem startDecorator={<IconBinaryTree />} />
+        <GlobalNavItem startDecorator={<IconFlag2 />} />
+        <GlobalNavItem startDecorator={<IconChartInfographic />} />
+        <GlobalNavItem startDecorator={<IconUsers />} />
+        <GlobalNavItem startDecorator={<IconHistory />} />
+        <GlobalNavItem startDecorator={<IconChartLine />} />
+        <GlobalNavItem startDecorator={<IconSettings />} />
+        <GlobalNavItem startDecorator={<IconVocabulary />} />
       </GlobalNavList>
-      <GlobalNavBottom>
+    </GlobalNav>
+  ),
+};
+export const Expanded: Story = {
+  render: () => (
+    <GlobalNav
+      endDecorator={
         <GlobalNavProfileMenu
-          avatar={<Avatar name="Rhaenyra" size="sm" />}
+          avatar={<Avatar name="Rhaenyra" />}
+          name="Rhaenyra Targaryen"
           organization="Optimizely"
-          username="Rhaenyra Targaryen"
         />
-      </GlobalNavBottom>
+      }
+      style={{
+        height: "80vh",
+      }}
+    >
+      <GlobalNavList>
+        <GlobalNavItem startDecorator={<IconBinaryTree />}>
+          Projects
+        </GlobalNavItem>
+        <GlobalNavItem startDecorator={<IconFlag2 />}>Flags</GlobalNavItem>
+        <GlobalNavItem startDecorator={<IconChartInfographic />}>
+          Reports
+        </GlobalNavItem>
+        <GlobalNavItem startDecorator={<IconUsers />}>Audiences</GlobalNavItem>
+        <GlobalNavItem startDecorator={<IconHistory />}>History</GlobalNavItem>
+        <GlobalNavItem startDecorator={<IconChartLine />}>Events</GlobalNavItem>
+        <GlobalNavItem startDecorator={<IconSettings />}>
+          Settings
+        </GlobalNavItem>
+        <GlobalNavItem
+          endDecorator={<IconExternalLink />}
+          startDecorator={<IconVocabulary />}
+        >
+          Tutorial
+        </GlobalNavItem>
+      </GlobalNavList>
     </GlobalNav>
   ),
 };
