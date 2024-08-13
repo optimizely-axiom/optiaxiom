@@ -82,11 +82,3 @@ export const fallback = recipe({
     },
   },
 });
-
-export const pointer = recipe({
-  base: [
-    style({
-      cursor: "pointer",
-    }),
-  ],
-});
