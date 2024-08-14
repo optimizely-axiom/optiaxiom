@@ -4,11 +4,13 @@ import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
+import { Button } from "../button";
 import { Flex } from "../flex";
 import { IconAngleLeft } from "../icons/IconAngleLeft";
 import { IconAngleRight } from "../icons/IconAngleRight";
 import { IconEllipsis } from "../icons/IconEllipsis";
-import { PaginationButton } from "../pagination-button/PaginationButton";
+import { Tooltip } from "../tooltip";
+import * as styles from "./Pagination.css";
 
 export type PaginationProps = BoxProps<
   "nav",
@@ -56,13 +58,15 @@ export const Pagination = forwardRef<HTMLElement, PaginationProps>(
           <Flex asChild flexDirection="row" gap="2">
             <ul>
               <li>
-                <PaginationButton
-                  disabled={disabled || active === 1}
-                  onClick={previous}
-                  startDecorator={<IconAngleLeft />}
-                >
-                  Previous <VisuallyHidden>page</VisuallyHidden>
-                </PaginationButton>
+                <Tooltip content="Prev">
+                  <Button
+                    appearance="secondary"
+                    aria-label="Previous page"
+                    disabled={disabled || active === 1}
+                    icon={<IconAngleLeft />}
+                    onClick={previous}
+                  />
+                </Tooltip>
               </li>
 
               {range.map((page, index) => (
@@ -82,11 +86,13 @@ export const Pagination = forwardRef<HTMLElement, PaginationProps>(
                       </Box>
                     </Box>
                   ) : (
-                    <PaginationButton
-                      active={active === page}
+                    <Button
+                      appearance="secondary"
                       aria-current={active === page ? "page" : undefined}
+                      data-state={active === page ? "active" : undefined}
                       disabled={disabled}
                       onClick={() => setPage(page)}
+                      {...styles.button()}
                     >
                       <VisuallyHidden>page</VisuallyHidden> {page}
                       {page === 1 ? (
@@ -94,19 +100,21 @@ export const Pagination = forwardRef<HTMLElement, PaginationProps>(
                       ) : page === total ? (
                         <VisuallyHidden>(last page)</VisuallyHidden>
                       ) : null}
-                    </PaginationButton>
+                    </Button>
                   )}
                 </li>
               ))}
 
               <li>
-                <PaginationButton
-                  disabled={disabled || active === total}
-                  endDecorator={<IconAngleRight />}
-                  onClick={next}
-                >
-                  Next <VisuallyHidden>page</VisuallyHidden>
-                </PaginationButton>
+                <Tooltip content="Next">
+                  <Button
+                    appearance="secondary"
+                    aria-label="Next page"
+                    disabled={disabled || active === total}
+                    icon={<IconAngleRight />}
+                    onClick={next}
+                  />
+                </Tooltip>
               </li>
             </ul>
           </Flex>
