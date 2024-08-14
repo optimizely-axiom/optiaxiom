@@ -4,7 +4,6 @@ import { forwardRef } from "react";
 import { type BoxProps } from "../box";
 import { Flex } from "../flex";
 import { Heading } from "../heading";
-import { extractSprinkles } from "../sprinkles";
 import { Text } from "../text";
 
 type DrawerTitleProps = BoxProps<
@@ -16,14 +15,10 @@ type DrawerTitleProps = BoxProps<
 
 export const DrawerTitle = forwardRef<HTMLDivElement, DrawerTitleProps>(
   ({ children, description, ...props }, ref) => {
-    const { restProps, sprinkleProps } = extractSprinkles(props);
-
     return (
-      <Flex gap="xs" pb="md" pt="lg" px="lg" {...sprinkleProps}>
+      <Flex gap="xs" pb="md" pt="lg" px="lg" ref={ref} {...props}>
         <Heading asChild level="4">
-          <RadixDrawer.Title ref={ref} {...restProps}>
-            {children}
-          </RadixDrawer.Title>
+          <RadixDrawer.Title>{children}</RadixDrawer.Title>
         </Heading>
 
         <Text asChild empty="hidden" fontWeight="400">
