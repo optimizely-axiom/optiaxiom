@@ -30,9 +30,23 @@ export const TabsTrigger = forwardRef<HTMLButtonElement, TabsTriggerProps>(
       <Box asChild {...styles.trigger()} {...sprinkleProps}>
         <RadixTabs.Trigger ref={ref} {...restProps}>
           <Flex {...styles.content()}>
-            {icon && iconPosition === "start" ? icon : startDecorator}
+            {icon && iconPosition === "start" ? (
+              <Box asChild h="auto" w="20">
+                {icon}
+              </Box>
+            ) : (
+              startDecorator
+            )}
+
             {children}
-            {icon && iconPosition === "end" ? icon : endDecorator}
+
+            {icon && iconPosition === "end" ? (
+              <Box asChild h="auto" w="20">
+                {icon}
+              </Box>
+            ) : (
+              endDecorator
+            )}
           </Flex>
         </RadixTabs.Trigger>
       </Box>
