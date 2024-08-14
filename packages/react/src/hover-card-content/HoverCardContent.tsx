@@ -21,7 +21,7 @@ export const HoverCardContent = forwardRef<
 >(
   (
     {
-      align = "start",
+      align = "center",
       children,
       className,
       sideOffset = 2,

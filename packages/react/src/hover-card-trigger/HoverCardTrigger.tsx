@@ -16,7 +16,13 @@ export const HoverCardTrigger = forwardRef<
 
   return (
     <RadixHoverCard.Trigger asChild ref={ref} {...sprinkleProps}>
-      {asChild ? children : <Link {...restProps}>{children}</Link>}
+      {asChild ? (
+        children
+      ) : (
+        <Link cursor="pointer" {...restProps}>
+          {children}
+        </Link>
+      )}
     </RadixHoverCard.Trigger>
   );
 });

@@ -7,9 +7,11 @@ import type { BoxProps } from "../box";
 import { Button } from "../button";
 import { FieldContext } from "../field-context";
 import { Flex } from "../flex";
+import { HoverCard } from "../hover-card";
+import { HoverCardContent } from "../hover-card-content";
+import { HoverCardTrigger } from "../hover-card-trigger";
 import { IconCircleQuestion } from "../icons/IconCircleQuestion";
 import { Text } from "../text";
-import { Tooltip } from "../tooltip";
 
 type FieldProps = BoxProps<
   "div",
@@ -68,16 +70,19 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(
             </Text>
 
             {info && (
-              <Tooltip content={info} keepOpenOnActivation>
-                <Button
-                  aria-label="Information tooltip"
-                  border="0"
-                  h="12"
-                  icon={<IconCircleQuestion />}
-                  p="0"
-                  w="12"
-                />
-              </Tooltip>
+              <HoverCard>
+                <HoverCardTrigger asChild>
+                  <Button
+                    aria-label="Information hover"
+                    border="0"
+                    h="12"
+                    icon={<IconCircleQuestion />}
+                    p="0"
+                    w="12"
+                  />
+                </HoverCardTrigger>
+                <HoverCardContent side="top">{info}</HoverCardContent>
+              </HoverCard>
             )}
           </Flex>
         )}
