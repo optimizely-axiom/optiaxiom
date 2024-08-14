@@ -12,9 +12,9 @@ import { type ComponentPropsWithoutRef, useState } from "react";
 
 const withTemplate = ({
   content = "This is the Drawer content.",
-  defaultOpen = false,
+  defaultOpen = true,
   description = "",
-  withFooter = true,
+  withFooter = false,
 } = {}) =>
   function Template(props: Partial<ComponentPropsWithoutRef<typeof Drawer>>) {
     const [open, setOpen] = useState(defaultOpen);
@@ -45,12 +45,6 @@ const withTemplate = ({
   };
 
 export default {
-  argTypes: {
-    position: {
-      control: "radio",
-      options: ["right", "left", "bottom"],
-    },
-  },
   component: Drawer,
   render: withTemplate(),
 } as Meta<typeof Drawer>;
@@ -58,29 +52,28 @@ export default {
 type Story = StoryObj<typeof Drawer>;
 
 export const Basic: Story = {
-  args: {},
+  render: withTemplate({ defaultOpen: false }),
 };
 
-export const WithCloseButton: Story = {
+export const CloseButton: Story = {
   args: {
     withCloseButton: true,
   },
 };
 
-export const PositionLeft: Story = {
+export const Position: Story = {
   args: {
     position: "left",
   },
 };
 
-export const WithDescription: Story = {
+export const Description: Story = {
   render: withTemplate({
     description: "This is a description for the drawer.",
   }),
 };
 
 export const LongContent: Story = {
-  args: {},
   render: withTemplate({
     content: `
       This is a drawer with long content.
@@ -90,10 +83,6 @@ export const LongContent: Story = {
   }),
 };
 
-export const InitiallyOpen: Story = {
-  render: withTemplate({ defaultOpen: true }),
-};
-
-export const WithoutFooter: Story = {
-  render: withTemplate({ withFooter: false }),
+export const Footer: Story = {
+  render: withTemplate({ withFooter: true }),
 };

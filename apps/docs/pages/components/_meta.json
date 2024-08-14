@@ -33,6 +33,7 @@
   },
   "alert-dialog": "Alert Dialog",
   "dialog": "Dialog",
+  "drawer": "Drawer",
   "menu": "Menu",
   "tooltip": "Tooltip",
   "-- Data Display": {

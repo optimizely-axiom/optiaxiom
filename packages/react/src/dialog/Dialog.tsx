@@ -49,15 +49,16 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(
                     {children}
 
                     {withCloseButton && (
-                      <Box asChild {...styles.close()}>
-                        <RadixDialog.Close aria-label="Close" asChild>
-                          <Button
-                            appearance="secondary"
-                            icon={<IconX />}
-                            size="sm"
-                          />
-                        </RadixDialog.Close>
-                      </Box>
+                      <Button
+                        appearance="secondary"
+                        aria-label="Close"
+                        asChild
+                        icon={<IconX />}
+                        size="sm"
+                        {...styles.close()}
+                      >
+                        <RadixDialog.Close />
+                      </Button>
                     )}
                   </RadixDialog.Content>
                 </Box>
