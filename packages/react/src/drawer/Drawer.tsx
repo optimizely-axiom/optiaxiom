@@ -58,15 +58,16 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(
                     {children}
 
                     {withCloseButton && (
-                      <Box asChild {...styles.close()}>
-                        <RadixDrawer.Close aria-label="Close" asChild>
-                          <Button
-                            appearance="secondary"
-                            icon={<IconX />}
-                            size="sm"
-                          />
-                        </RadixDrawer.Close>
-                      </Box>
+                      <Button
+                        appearance="secondary"
+                        aria-label="Close"
+                        asChild
+                        icon={<IconX />}
+                        size="sm"
+                        {...styles.close()}
+                      >
+                        <RadixDrawer.Close />
+                      </Button>
                     )}
                   </RadixDrawer.Content>
                 </Box>
