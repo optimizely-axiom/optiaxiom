@@ -7,13 +7,13 @@ import {
   useMemo,
 } from "react";
 
-import * as styles from "../breadcrumb/Breadcrumb.css";
 import { BreadcrumbItem } from "../breadcrumb-item/BreadcrumbItem";
 import { Menu } from "../menu";
 import { MenuContent } from "../menu-content";
 import { MenuItem } from "../menu-item";
 import { MenuTrigger } from "../menu-trigger";
 import { Text } from "../text";
+import * as styles from "./Breadcrumbs.css";
 
 type UseBreadcrumbItemsProps = {
   children: ReactNode;
