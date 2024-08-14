@@ -172,7 +172,6 @@ export const button = recipe({
             backgroundColor: subtleAccentColorVar,
           },
           "&[data-disabled]": {
-            backgroundColor: theme.colors["bg.input.disabled"],
             color: theme.colors["fg.disabled"],
           },
           '&[data-state="active"]': {
