@@ -168,12 +168,16 @@ export const button = recipe({
         color: fallbackVar(subtleTextColorVar, accentColorVar),
 
         selectors: {
-          "&:hover:not([data-disabled])": {
+          '&:hover:not(:is([data-disabled], [data-state="active"]))': {
             backgroundColor: subtleAccentColorVar,
           },
           "&[data-disabled]": {
             backgroundColor: theme.colors["bg.input.disabled"],
             color: theme.colors["fg.disabled"],
+          },
+          '&[data-state="active"]': {
+            backgroundColor: theme.colors["bg.brand"],
+            color: theme.colors["fg.link"],
           },
         },
       }),
