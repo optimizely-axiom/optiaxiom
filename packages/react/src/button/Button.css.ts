@@ -19,7 +19,6 @@ export const button = recipe({
       alignItems: "center",
       display: "inline-flex",
       flexDirection: "row",
-      gap: "4",
       justifyContent: "center",
       transition: "colors",
     },
@@ -119,10 +118,12 @@ export const button = recipe({
       },
       md: {
         fontSize: "md",
+        gap: "2",
         h: "md",
       },
       lg: {
         fontSize: "lg",
+        gap: "4",
         h: "lg",
       },
     },
