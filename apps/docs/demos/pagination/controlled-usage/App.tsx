@@ -5,7 +5,7 @@ export function App() {
   const [page, setPage] = useState(5);
 
   return (
-    <Flex flexDirection="row">
+    <Flex flexDirection={["column", "row"]}>
       <Button disabled={page === 5} onClick={() => setPage(5)}>
         Reset
       </Button>
