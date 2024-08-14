@@ -94,12 +94,14 @@ export const Pagination = forwardRef<HTMLElement, PaginationProps>(
                       onClick={() => setPage(page)}
                       {...styles.button()}
                     >
-                      <VisuallyHidden>page</VisuallyHidden> {page}
-                      {page === 1 ? (
-                        <VisuallyHidden>(first page)</VisuallyHidden>
-                      ) : page === total ? (
-                        <VisuallyHidden>(last page)</VisuallyHidden>
-                      ) : null}
+                      <Box mx="0">
+                        <VisuallyHidden>page</VisuallyHidden> {page}
+                        {page === 1 ? (
+                          <VisuallyHidden>(first page)</VisuallyHidden>
+                        ) : page === total ? (
+                          <VisuallyHidden>(last page)</VisuallyHidden>
+                        ) : null}
+                      </Box>
                     </Button>
                   )}
                 </li>

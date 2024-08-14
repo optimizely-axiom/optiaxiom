@@ -7,11 +7,10 @@ import {
   isValidElement,
 } from "react";
 
-import type { ExtendProps } from "../utils";
-
 import { Box, type BoxProps } from "../box";
 import { Flex } from "../flex";
 import { extractSprinkles } from "../sprinkles";
+import { type ExtendProps, fallbackSpan } from "../utils";
 import * as styles from "./Button.css";
 
 const appearances = {
@@ -83,7 +82,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
                 {icon}
               </Box>
             ) : (
-              <Flex {...styles.label()}>{newElement.props.children}</Flex>
+              <Flex asChild {...styles.label()}>
+                {fallbackSpan(newElement.props.children)}
+              </Flex>
             ),
           )
         : children;
@@ -93,7 +94,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           {icon}
         </Box>
       ) : (
-        <Flex {...styles.label()}>{children}</Flex>
+        <Flex asChild {...styles.label()}>
+          {fallbackSpan(children)}
+        </Flex>
       );
     }
     if (icon && !isIconOnly) {
