@@ -6,6 +6,7 @@ import {
   type ComponentPropsWithoutRef,
   type ElementType,
   forwardRef,
+  isValidElement,
 } from "react";
 
 import type { ExtendProps } from "../utils";
@@ -28,6 +29,23 @@ export const Box = forwardRef<HTMLDivElement, BoxProps>(
   ({ asChild, className, ...props }, ref) => {
     const Comp = asChild ? Slot : "div";
     const { restProps, sprinkleProps } = extractSprinkles(props);
+
+    /**
+     * Handle merging of sprinkle props when composing by removing sprinkle
+     * props that are overridden/duplicated in child.
+     *
+     * Otherwise className will get generated based on sprinkle props and will
+     * not be overridden correctly by child's className.
+     */
+    if (asChild && isValidElement(props.children)) {
+      const { sprinkleProps: childrenSprinkleProps } = extractSprinkles(
+        props.children.props,
+      );
+      for (const key in childrenSprinkleProps) {
+        // @ts-expect-error -- too complex
+        delete sprinkleProps[key];
+      }
+    }
 
     return (
       <Comp
