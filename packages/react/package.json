@@ -12,7 +12,16 @@
     "LICENSE"
   ],
   "license": "Apache-2.0",
-  "exports": "./dist/index.js",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./unstable": {
+      "import": "./dist/unstable.js",
+      "types": "./dist/unstable.d.ts"
+    }
+  },
   "sideEffects": [
     "*.css"
   ],

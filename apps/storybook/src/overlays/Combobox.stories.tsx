@@ -1,8 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
+import { Avatar, Button, Flex, Search, Text } from "@optiaxiom/react";
 import {
-  Avatar,
-  Button,
   Combobox,
   ComboboxContent,
   ComboboxTrigger,
@@ -12,10 +11,7 @@ import {
   CommandItem,
   CommandList,
   CommandSeparator,
-  Flex,
-  Search,
-  Text,
-} from "@optiaxiom/react";
+} from "@optiaxiom/react/unstable";
 import { type ComponentPropsWithoutRef, useState } from "react";
 
 type Story = StoryObj<typeof Combobox>;

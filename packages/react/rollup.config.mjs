@@ -19,7 +19,10 @@ export default defineConfig([
         }).join("|") +
         ")(?:/.+)?$",
     ),
-    input: "src/index.ts",
+    input: {
+      index: "src/index.ts",
+      unstable: "src/unstable.ts",
+    },
     output: {
       banner: async (chunk) => {
         if (bannerFilter(chunk.facadeModuleId)) {
@@ -46,9 +49,12 @@ export default defineConfig([
     ],
   },
   {
-    input: "src/index.ts",
+    input: {
+      index: "src/index.ts",
+      unstable: "src/unstable.ts",
+    },
     output: {
-      file: pkg.types,
+      dir: "dist",
       format: "es",
     },
     plugins: [dts()],

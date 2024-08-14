@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Avatar, Chip, Flex } from "@optiaxiom/react";
+import { Avatar, Flex } from "@optiaxiom/react";
+import { Chip } from "@optiaxiom/react/unstable";
 
 export default {
   component: Chip,
