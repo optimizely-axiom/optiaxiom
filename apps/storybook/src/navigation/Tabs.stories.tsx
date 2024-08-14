@@ -20,15 +20,18 @@ export default {
       <>
         <TabsList>
           <TabsTrigger value="first">First</TabsTrigger>
-          <TabsTrigger value="second">
-            <IconMessageCircle size="20" />
+          <TabsTrigger icon={<IconMessageCircle />} value="second">
             Second
           </TabsTrigger>
-          <TabsTrigger value="third">
+          <TabsTrigger
+            endDecorator={
+              <Badge colorScheme="primary" variant="solid">
+                8
+              </Badge>
+            }
+            value="third"
+          >
             Third
-            <Badge colorScheme="primary" variant="solid">
-              8
-            </Badge>
           </TabsTrigger>
         </TabsList>
 
@@ -60,7 +63,8 @@ export const Manual: Story = {
     activationMode: "manual",
   },
 };
-export const secondary: Story = {
+
+export const Secondary: Story = {
   args: {
     appearance: "secondary",
   },
@@ -71,20 +75,22 @@ export const Vertical: Story = {
     children: (
       <>
         <TabsList>
-          <TabsTrigger value="first">
-            <IconUser size="20" />
+          <TabsTrigger icon={<IconUser />} value="first">
             First
           </TabsTrigger>
-          <TabsTrigger value="second">
-            <IconListCheck size="20" />
+          <TabsTrigger icon={<IconListCheck />} value="second">
             Second
           </TabsTrigger>
-          <TabsTrigger value="third">
-            <IconTrash size="20" />
+          <TabsTrigger
+            endDecorator={
+              <Badge colorScheme="primary" variant="solid">
+                8
+              </Badge>
+            }
+            icon={<IconTrash />}
+            value="third"
+          >
             Third
-            <Badge colorScheme="primary" variant="solid">
-              8
-            </Badge>
           </TabsTrigger>
         </TabsList>
 
@@ -102,5 +108,12 @@ export const Vertical: Story = {
       </>
     ),
     orientation: "vertical",
+  },
+};
+
+export const SecondaryVertical: Story = {
+  args: {
+    ...Vertical.args,
+    appearance: "secondary",
   },
 };
