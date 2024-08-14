@@ -21,7 +21,6 @@ export const button = recipe({
       flexDirection: "row",
       gap: "4",
       justifyContent: "center",
-      overflow: "hidden",
       transition: "colors",
     },
     style({
