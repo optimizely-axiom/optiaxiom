@@ -2,10 +2,10 @@ import { type ReactNode, forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
 import { extractSprinkles } from "../sprinkles";
-import * as styles from "./Breadcrumb.css";
+import * as styles from "./Breadcrumbs.css";
 import { useBreadcrumbItems } from "./useBreadcrumbItems";
 
-export type BreadcrumbProps = BoxProps<
+export type BreadcrumbsProps = BoxProps<
   "nav",
   {
     maxItems?: number;
@@ -13,7 +13,7 @@ export type BreadcrumbProps = BoxProps<
   }
 >;
 
-export const Breadcrumb = forwardRef<HTMLElement, BreadcrumbProps>(
+export const Breadcrumbs = forwardRef<HTMLElement, BreadcrumbsProps>(
   (
     { children, className, maxItems = Infinity, separator = ">", ...props },
     ref,
@@ -26,12 +26,10 @@ export const Breadcrumb = forwardRef<HTMLElement, BreadcrumbProps>(
       separator,
     });
 
-    visibleItems.join(String(separator));
-
     return (
-      <Box asChild {...styles.breadcrumb({}, className)} {...sprinkleProps}>
+      <Box asChild {...styles.breadcrumbs({}, className)} {...sprinkleProps}>
         <nav aria-label="Breadcrumb" ref={ref} {...restProps}>
-          <Box asChild {...styles.breadcrumbList()}>
+          <Box asChild {...styles.list()}>
             <ol>{visibleItems}</ol>
           </Box>
         </nav>
@@ -40,4 +38,4 @@ export const Breadcrumb = forwardRef<HTMLElement, BreadcrumbProps>(
   },
 );
 
-Breadcrumb.displayName = "@optiaxiom/react/Breadcrumb";
+Breadcrumbs.displayName = "@optiaxiom/react/Breadcrumbs";
