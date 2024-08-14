@@ -1,72 +1,48 @@
-import {
-  Children,
-  type ReactElement,
-  type ReactNode,
-  cloneElement,
-  isValidElement,
-  useMemo,
-} from "react";
+import { Children, type ReactNode, isValidElement, useMemo } from "react";
 
 import { BreadcrumbItem } from "../breadcrumb-item/BreadcrumbItem";
 import { Menu } from "../menu";
 import { MenuContent } from "../menu-content";
 import { MenuItem } from "../menu-item";
 import { MenuTrigger } from "../menu-trigger";
-import { Text } from "../text";
-import * as styles from "./Breadcrumbs.css";
 
-type UseBreadcrumbItemsProps = {
-  children: ReactNode;
-  maxItems: number;
-  separator: ReactNode;
-};
-
-export const useBreadcrumbItems = ({
-  children,
-  maxItems,
-  separator,
-}: UseBreadcrumbItemsProps) => {
-  const childrenArray = Children.toArray(children).filter(
-    (child): child is ReactElement =>
-      isValidElement(child) && child.type === BreadcrumbItem,
-  );
-
+export const useBreadcrumbItems = (
+  children: ReactNode,
+  maxItems: number | undefined,
+  separator: ReactNode,
+) => {
   const visibleItems = useMemo(() => {
+    const childrenArray = Children.toArray(children)
+      .filter((child) => isValidElement(child))
+      .filter((child) => child.type === BreadcrumbItem);
+
     if (!maxItems || childrenArray.length <= maxItems) {
-      return childrenArray.map((item) => cloneElement(item));
+      return childrenArray;
     }
 
     const leftItems = Math.floor(maxItems / 2);
     const rightItems = Math.ceil(maxItems / 2);
 
-    const leftChildren = childrenArray
-      .slice(0, leftItems)
-      .map((item) => cloneElement(item));
-    const rightChildren = childrenArray
-      .slice(childrenArray.length - rightItems)
-      .map((item) => cloneElement(item));
-
     return [
-      ...leftChildren,
+      ...childrenArray.slice(0, leftItems),
+
       <Menu key="ellipsis">
-        <MenuTrigger asChild>
-          <Text as="span" {...styles.ellipsis()}>
-            ...
-          </Text>
+        <MenuTrigger appearance="secondary" icon={undefined} size="sm">
+          ...
         </MenuTrigger>
+
         <MenuContent side="bottom">
           {childrenArray.slice(leftItems, -rightItems).map((item, index) => (
-            <MenuItem key={item.props.href || index}>
-              {cloneElement(item)}
-            </MenuItem>
+            <MenuItem key={item.props.href || index}>{item}</MenuItem>
           ))}
         </MenuContent>
       </Menu>,
-      ...rightChildren,
-    ];
-  }, [childrenArray, maxItems]);
 
-  return visibleItems.reduce((acc: ReactNode[], item, index) => {
+      ...childrenArray.slice(childrenArray.length - rightItems),
+    ];
+  }, [children, maxItems]);
+
+  return visibleItems.reduce<ReactNode[]>((acc, item, index) => {
     if (index !== 0) {
       acc.push(separator);
     }

@@ -3,51 +3,46 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { BreadcrumbItem, Breadcrumbs } from "@optiaxiom/react";
 
 export default {
+  args: {
+    children: [
+      <BreadcrumbItem href="/" key="/">
+        Home
+      </BreadcrumbItem>,
+      <BreadcrumbItem href="/category" key="/category">
+        Category
+      </BreadcrumbItem>,
+      <BreadcrumbItem href="/category/subcategory" key="/category/subcategory">
+        Subcategory
+      </BreadcrumbItem>,
+      <BreadcrumbItem
+        href="/category/subcategory/product-type"
+        key="/category/subcategory/product-type"
+      >
+        Product Type
+      </BreadcrumbItem>,
+      <BreadcrumbItem
+        href="/category/subcategory/product-type/specific-product"
+        key="/category/subcategory/product-type/specific-product"
+      >
+        Specific Product
+      </BreadcrumbItem>,
+    ],
+  },
   component: Breadcrumbs,
 } as Meta<typeof Breadcrumbs>;
 
 type Story = StoryObj<typeof Breadcrumbs>;
 
-export const Basic: Story = {
-  render: (args) => (
-    <Breadcrumbs {...args}>
-      <BreadcrumbItem href="/" label="Home" />
-      <BreadcrumbItem href="/products" label="Products" />
-      <BreadcrumbItem href="/products/electronics" label="Electronics" />
-    </Breadcrumbs>
-  ),
-};
+export const Basic: Story = {};
 
 export const Collapse: Story = {
   args: {
     maxItems: 2,
   },
-  render: (args) => (
-    <Breadcrumbs {...args}>
-      <BreadcrumbItem href="/" label="Home" />
-      <BreadcrumbItem href="/category" label="Category" />
-      <BreadcrumbItem href="/category/subcategory" label="Subcategory" />
-      <BreadcrumbItem
-        href="/category/subcategory/product-type"
-        label="Product Type"
-      />
-      <BreadcrumbItem
-        href="/category/subcategory/product-type/specific-product"
-        label="Specific Product"
-      />
-    </Breadcrumbs>
-  ),
 };
 
 export const Separator: Story = {
   args: {
     separator: "/",
   },
-  render: (args) => (
-    <Breadcrumbs {...args}>
-      <BreadcrumbItem href="/" label="Home" />
-      <BreadcrumbItem href="/products" label="Products" />
-      <BreadcrumbItem href="/products/electronics" label="Electronics" />
-    </Breadcrumbs>
-  ),
 };

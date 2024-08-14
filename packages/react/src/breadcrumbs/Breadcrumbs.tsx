@@ -1,8 +1,8 @@
 import { type ReactNode, forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
+import { IconAngleRight } from "../icons/IconAngleRight";
 import { extractSprinkles } from "../sprinkles";
-import * as styles from "./Breadcrumbs.css";
 import { useBreadcrumbItems } from "./useBreadcrumbItems";
 
 export type BreadcrumbsProps = BoxProps<
@@ -14,22 +14,14 @@ export type BreadcrumbsProps = BoxProps<
 >;
 
 export const Breadcrumbs = forwardRef<HTMLElement, BreadcrumbsProps>(
-  (
-    { children, className, maxItems = Infinity, separator = ">", ...props },
-    ref,
-  ) => {
+  ({ children, maxItems, separator = <IconAngleRight />, ...props }, ref) => {
     const { restProps, sprinkleProps } = extractSprinkles(props);
-
-    const visibleItems = useBreadcrumbItems({
-      children,
-      maxItems,
-      separator,
-    });
+    const visibleItems = useBreadcrumbItems(children, maxItems, separator);
 
     return (
-      <Box asChild {...styles.breadcrumbs({}, className)} {...sprinkleProps}>
+      <Box asChild {...sprinkleProps}>
         <nav aria-label="Breadcrumb" ref={ref} {...restProps}>
-          <Box asChild {...styles.list()}>
+          <Box alignItems="center" asChild display="flex" gap="xs">
             <ol>{visibleItems}</ol>
           </Box>
         </nav>

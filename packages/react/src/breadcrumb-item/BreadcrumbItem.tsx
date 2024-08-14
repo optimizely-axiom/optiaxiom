@@ -1,29 +1,13 @@
-import type { ReactNode } from "react";
-
-import { Slot } from "@radix-ui/react-slot";
+import type { ComponentPropsWithoutRef } from "react";
 
 import { Link } from "../link";
-import * as styles from "./BreadcrumbItem.css";
 
-export type BreadcrumbItemProps = {
-  asChild?: boolean;
-  children?: ReactNode;
-  className?: string;
-  href?: string;
-  isEllipsis?: boolean;
-  label: string;
-};
+export type BreadcrumbItemProps = ComponentPropsWithoutRef<typeof Link>;
 
-export const BreadcrumbItem = ({
-  asChild,
-  className,
-  label,
-  ...props
-}: BreadcrumbItemProps) => {
-  const Comp = asChild ? Slot : Link;
+export const BreadcrumbItem = ({ children, ...props }: BreadcrumbItemProps) => {
   return (
-    <Comp {...styles.breadcrumbItem({}, className)} {...props}>
-      {label}
-    </Comp>
+    <Link alignItems="center" display="flex" {...props}>
+      {children}
+    </Link>
   );
 };
