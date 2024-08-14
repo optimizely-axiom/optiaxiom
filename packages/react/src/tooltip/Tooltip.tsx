@@ -99,7 +99,7 @@ export const Tooltip = forwardRef<HTMLButtonElement, TooltipProps>(
           <AnimatePresence>
             {open && (
               <RadixTooltip.Portal forceMount>
-                <Transition type="pop">
+                <Transition duration="sm" type="pop">
                   <Box
                     asChild
                     bg="bg.neutral.inverse"
