@@ -1,14 +1,21 @@
 import { type ComponentPropsWithRef, forwardRef } from "react";
 
 import { Flex } from "../flex";
-import * as styles from "./DrawerFooter.css";
 
 type DrawerFooterProps = ComponentPropsWithRef<typeof Flex>;
 
 export const DrawerFooter = forwardRef<HTMLDivElement, DrawerFooterProps>(
-  ({ children, className, ...props }, ref) => {
+  ({ children, ...props }, ref) => {
     return (
-      <Flex ref={ref} {...styles.footer({}, className)} {...props}>
+      <Flex
+        borderT="1"
+        flexDirection="row"
+        gap="md"
+        justifyContent="end"
+        p="md"
+        ref={ref}
+        {...props}
+      >
         {children}
       </Flex>
     );

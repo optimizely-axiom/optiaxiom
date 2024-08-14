@@ -1,14 +1,21 @@
 import { type ComponentPropsWithRef, forwardRef } from "react";
 
 import { Box } from "../box";
-import * as styles from "./DrawerBody.css";
 
 type DrawerBodyProps = ComponentPropsWithRef<typeof Box>;
 
 export const DrawerBody = forwardRef<HTMLDivElement, DrawerBodyProps>(
-  ({ children, className, ...props }, ref) => {
+  ({ children, ...props }, ref) => {
     return (
-      <Box ref={ref} {...styles.body({}, className)} {...props}>
+      <Box
+        flex="1"
+        fontSize="md"
+        overflow="auto"
+        px="lg"
+        py="md"
+        ref={ref}
+        {...props}
+      >
         {children}
       </Box>
     );
