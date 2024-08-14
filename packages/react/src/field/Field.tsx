@@ -81,7 +81,9 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(
                     w="12"
                   />
                 </HoverCardTrigger>
-                <HoverCardContent side="top">{info}</HoverCardContent>
+                <HoverCardContent side="top" sideOffset={5}>
+                  {info}
+                </HoverCardContent>
               </HoverCard>
             )}
           </Flex>
