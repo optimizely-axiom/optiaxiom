@@ -23,6 +23,7 @@
     "type": "separator",
     "title": "Navigation"
   },
+  "breadcrumbs": "Breadcrumbs",
   "link": "Link",
   "pagination": "Pagination",
   "tabs": "Tabs",
