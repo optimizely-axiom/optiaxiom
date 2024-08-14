@@ -61,24 +61,34 @@ async function measure() {
       write: false,
     });
 
-    const imports =
-      pkg.exports && typeof pkg.exports === "object"
-        ? Object.keys(pkg.exports)
-            .map((name) => (name === "." ? "*" : name.slice(2)))
-            .map((name) => [name, `export/${name}.js`])
-        : [
-            "*",
-            ...Object.values(
-              (
-                await esbuild.build({
-                  ...config,
-                  entryPoints: [pkg.name],
-                  format: "esm",
-                  metafile: true,
-                })
-              ).metafile.outputs,
-            )[0].exports.sort(),
-          ].map((name) => [name, `fixture/${name}.js`]);
+    const imports = (
+      await Promise.all(
+        Object.keys(pkg.exports).map(async (exportPath) => {
+          const exportedItems = Object.values(
+            (
+              await esbuild.build({
+                ...config,
+                entryPoints: [exportPath.replace(".", pkg.name)],
+                format: "esm",
+                metafile: true,
+              })
+            ).metafile.outputs,
+          )[0]
+            .exports.sort()
+            .filter((name) => name !== "default")
+            .map((name) => [name, `fixture/${exportPath}/${name}.js`]);
+          return exportedItems.length === 1
+            ? exportedItems
+            : [
+                [
+                  exportPath === "." ? "*" : exportPath,
+                  `fixture/${exportPath}/*.js`,
+                ],
+                ...exportedItems,
+              ];
+        }),
+      )
+    ).flat();
 
     const result = await esbuild.build({
       ...config,
@@ -88,19 +98,16 @@ async function measure() {
         {
           name: "fixture",
           setup(build) {
-            build.onResolve(
-              { filter: /^(export|fixture)\/(\w+|\*)\.js$/ },
-              (args) => {
-                return { namespace: "fixture", path: args.path };
-              },
-            );
+            build.onResolve({ filter: /^fixture\/(.+)\.js$/ }, (args) => {
+              return { namespace: "fixture", path: args.path };
+            });
             build.onLoad({ filter: /.*/, namespace: "fixture" }, (args) => {
-              const { dir, name } = parse(args.path);
+              const { dir, name } = parse(args.path.slice("fixture/".length));
               return {
                 contents:
                   name === "*"
-                    ? `import * as pkg from "${pkg.name}"; console.log(pkg)`
-                    : `import { ${name} } from "${pkg.name}${dir === "export" ? `/${name}` : ""}"; console.log(${name});`,
+                    ? `import * as pkg from "${dir.replace(".", pkg.name)}"; console.log(pkg)`
+                    : `import { ${name} } from "${dir.replace(".", pkg.name)}"; console.log(${name});`,
                 resolveDir: resolve(packagePath),
               };
             });
