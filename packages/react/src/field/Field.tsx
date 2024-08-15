@@ -70,7 +70,7 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(
             </Text>
 
             {info && (
-              <HoverCard>
+              <HoverCard keepOpenOnActivation>
                 <HoverCardTrigger asChild>
                   <Button
                     aria-label="Information hover"
