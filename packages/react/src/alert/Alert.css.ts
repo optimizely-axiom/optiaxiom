@@ -14,6 +14,7 @@ export const alert = recipe({
     {
       alignItems: "start",
       flexDirection: "row",
+      fontSize: "md",
       justifyContent: "space-between",
       p: "md",
       rounded: "md",
