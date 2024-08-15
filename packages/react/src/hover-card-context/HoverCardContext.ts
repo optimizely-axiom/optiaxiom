@@ -1,5 +1,5 @@
-import { createContext } from "react";
+import { createContext } from "@radix-ui/react-context";
 
-export const HoverCardContext = createContext<{ open: boolean | undefined }>({
-  open: undefined,
-});
+export const [HoverCardContextProvider, useHoverCardContext] = createContext<{
+  open?: boolean;
+}>("HoverCard");

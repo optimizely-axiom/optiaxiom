@@ -2,7 +2,7 @@ import * as RadixHoverCard from "@radix-ui/react-hover-card";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
 
 import { type BoxProps } from "../box";
-import { HoverCardContext } from "../hover-card-context";
+import { HoverCardContextProvider } from "../hover-card-context";
 
 type HoverCardProps = BoxProps<typeof RadixHoverCard.Root>;
 
@@ -27,9 +27,9 @@ export const HoverCard = ({
       openDelay={openDelay}
       {...props}
     >
-      <HoverCardContext.Provider value={{ open }}>
+      <HoverCardContextProvider open={open}>
         {children}
-      </HoverCardContext.Provider>
+      </HoverCardContextProvider>
     </RadixHoverCard.Root>
   );
 };

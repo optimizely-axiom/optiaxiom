@@ -1,9 +1,9 @@
 import * as RadixHoverCard from "@radix-ui/react-hover-card";
-import { forwardRef, useContext } from "react";
+import { forwardRef } from "react";
 
 import { AnimatePresence } from "../animate-presence";
 import { Box, type BoxProps } from "../box";
-import { HoverCardContext } from "../hover-card-context";
+import { useHoverCardContext } from "../hover-card-context";
 import { theme } from "../styles";
 import { Transition } from "../transition";
 import * as styles from "./HoverCardContent.css";
@@ -30,7 +30,7 @@ export const HoverCardContent = forwardRef<
     },
     ref,
   ) => {
-    const { open } = useContext(HoverCardContext);
+    const { open } = useHoverCardContext("HoverCardContent");
 
     return (
       <AnimatePresence>
