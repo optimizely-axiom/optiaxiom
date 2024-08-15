@@ -1,6 +1,7 @@
-import { Box, type BoxProps } from "../box";
+import * as RadixCollapsible from "@radix-ui/react-collapsible";
+
+import { type BoxProps } from "../box";
 import { Flex } from "../flex";
-import { useGlobalNav } from "../global-nav-context";
 import { GlobalNavItem } from "../global-nav-item";
 import { IconAngleLeft } from "../icons/IconAngleLeft";
 import * as styles from "./GlobalNavList.css";
@@ -11,17 +12,17 @@ export const GlobalNavList = ({
   className,
   ...props
 }: GlobalNavListProps) => {
-  const { toggleCollapsed } = useGlobalNav();
   return (
     <Flex {...styles.list({}, className)} {...props}>
-      <Box flex="1">{children}</Box>
-      <GlobalNavItem
-        mt="auto"
-        onClick={toggleCollapsed}
-        startDecorator={<IconAngleLeft />}
-      >
-        Collapse
-      </GlobalNavItem>
+      <Flex flex="1" gap="4" justifyContent="start" w="full">
+        {children}
+      </Flex>
+
+      <RadixCollapsible.Trigger asChild>
+        <GlobalNavItem startDecorator={<IconAngleLeft />}>
+          Collapse
+        </GlobalNavItem>
+      </RadixCollapsible.Trigger>
     </Flex>
   );
 };

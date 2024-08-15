@@ -44,7 +44,6 @@ export * from "./dropdown-menu-trigger";
 export * from "./field";
 export * from "./flex";
 export * from "./global-nav";
-export * from "./global-nav-bottom";
 export * from "./global-nav-item";
 export * from "./global-nav-list";
 export * from "./global-nav-profile-menu";

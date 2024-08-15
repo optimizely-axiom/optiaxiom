@@ -1,10 +1,5 @@
 import { createContext } from "react";
 
-type GlobalNavContextType = {
-  isCollapsed: boolean;
-  toggleCollapsed: () => void;
-};
-
-export const GlobalNavContext = createContext<GlobalNavContextType | undefined>(
-  undefined,
-);
+export const GlobalNavContext = createContext<{ open: boolean | undefined }>({
+  open: undefined,
+});

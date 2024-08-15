@@ -13,9 +13,7 @@ export const nav = recipe({
   base: [
     {
       display: "flex",
-      justifyContent: "space-between",
+      w: "full",
     },
   ],
 });
-
-export type GlobalNavVariants = Parameters<typeof nav>[0];

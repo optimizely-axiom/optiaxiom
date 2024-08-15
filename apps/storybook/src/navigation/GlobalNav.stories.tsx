@@ -1,17 +1,16 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import {
-  Avatar,
   GlobalNav,
   GlobalNavItem,
   GlobalNavList,
   GlobalNavProfileMenu,
+  Link,
 } from "@optiaxiom/react";
 import {
   IconBinaryTree,
   IconChartInfographic,
   IconChartLine,
-  IconExternalLink,
   IconFlag2,
   IconHistory,
   IconSettings,
@@ -25,35 +24,18 @@ export default {
 } as Meta<typeof GlobalNav>;
 
 type Story = StoryObj<typeof GlobalNav>;
-export const Collapsed: Story = {
-  render: () => (
-    <GlobalNav
-      endDecorator={
-        <GlobalNavProfileMenu avatar={<Avatar name="Rhaenyra" />} />
-      }
-      style={{
-        height: "80vh",
-      }}
-    >
-      <GlobalNavList>
-        <GlobalNavItem startDecorator={<IconBinaryTree />} />
-        <GlobalNavItem startDecorator={<IconFlag2 />} />
-        <GlobalNavItem startDecorator={<IconChartInfographic />} />
-        <GlobalNavItem startDecorator={<IconUsers />} />
-        <GlobalNavItem startDecorator={<IconHistory />} />
-        <GlobalNavItem startDecorator={<IconChartLine />} />
-        <GlobalNavItem startDecorator={<IconSettings />} />
-        <GlobalNavItem startDecorator={<IconVocabulary />} />
-      </GlobalNavList>
-    </GlobalNav>
-  ),
-};
-export const Expanded: Story = {
+
+export const Basic: Story = {
   render: () => (
     <GlobalNav
       endDecorator={
         <GlobalNavProfileMenu
-          avatar={<Avatar name="Rhaenyra" />}
+          avatar={
+            <img
+              alt="Sample"
+              src="https://images.unsplash.com/photo-1511485977113-f34c92461ad9?ixlib=rb-1.2.1&w=128&h=128&dpr=2&q=80"
+            />
+          }
           name="Rhaenyra Targaryen"
           organization="Optimizely"
         />
@@ -66,7 +48,9 @@ export const Expanded: Story = {
         <GlobalNavItem startDecorator={<IconBinaryTree />}>
           Projects
         </GlobalNavItem>
-        <GlobalNavItem startDecorator={<IconFlag2 />}>Flags</GlobalNavItem>
+        <GlobalNavItem active startDecorator={<IconFlag2 />}>
+          Flags
+        </GlobalNavItem>
         <GlobalNavItem startDecorator={<IconChartInfographic />}>
           Reports
         </GlobalNavItem>
@@ -77,7 +61,7 @@ export const Expanded: Story = {
           Settings
         </GlobalNavItem>
         <GlobalNavItem
-          endDecorator={<IconExternalLink />}
+          endDecorator={<Link external href="https://www.google.com/" />}
           startDecorator={<IconVocabulary />}
         >
           Tutorial

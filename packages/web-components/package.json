@@ -61,7 +61,6 @@
     "./Field": "./dist/components/Field.js",
     "./Flex": "./dist/components/Flex.js",
     "./GlobalNav": "./dist/components/GlobalNav.js",
-    "./GlobalNavBottom": "./dist/components/GlobalNavBottom.js",
     "./GlobalNavItem": "./dist/components/GlobalNavItem.js",
     "./GlobalNavList": "./dist/components/GlobalNavList.js",
     "./GlobalNavProfileMenu": "./dist/components/GlobalNavProfileMenu.js",

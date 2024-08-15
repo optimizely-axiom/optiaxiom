@@ -1,31 +1,56 @@
-import { type ReactNode, forwardRef } from "react";
+import * as RadixCollapsible from "@radix-ui/react-collapsible";
+import { type ReactNode, forwardRef, useContext } from "react";
 
 import { Box, type BoxProps } from "../box";
+import { Button } from "../button";
 import { Flex } from "../flex";
+import { GlobalNavContext } from "../global-nav-context";
 import { extractSprinkles } from "../sprinkles";
 import * as styles from "./GlobalNavItem.css";
 
 export type GlobalNavItemProps = BoxProps<
-  "div",
+  typeof Button,
   {
+    active?: boolean;
     endDecorator?: ReactNode;
     startDecorator?: ReactNode;
   }
 >;
 
-export const GlobalNavItem = forwardRef<HTMLDivElement, GlobalNavItemProps>(
-  ({ children, endDecorator, startDecorator, ...props }, ref) => {
+export const GlobalNavItem = forwardRef<HTMLButtonElement, GlobalNavItemProps>(
+  ({ active, children, endDecorator, startDecorator, ...props }, ref) => {
     const { restProps, sprinkleProps } = extractSprinkles(props);
 
+    const { open } = useContext(GlobalNavContext);
+
     return (
-      <Flex asChild ref={ref} {...styles.item()} {...sprinkleProps}>
-        <Box {...restProps}>
-          {startDecorator}
-
-          <Box flex="1">{children}</Box>
-
-          {endDecorator}
-        </Box>
+      <Flex
+        asChild
+        {...styles.item({
+          active,
+        })}
+        {...sprinkleProps}
+      >
+        <Button
+          appearance="secondary"
+          icon={startDecorator}
+          ref={ref}
+          {...restProps}
+        >
+          {open && (
+            <Flex
+              asChild
+              flexDirection="row"
+              justifyContent="space-between"
+              w="full"
+            >
+              <RadixCollapsible.Content>
+                {children}
+                <Box asChild>{endDecorator}</Box>
+              </RadixCollapsible.Content>
+            </Flex>
+          )}
+        </Button>
       </Flex>
     );
   },

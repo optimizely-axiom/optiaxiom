@@ -1,3 +1,4 @@
+import * as RadixCollapsible from "@radix-ui/react-collapsible";
 import { forwardRef, useState } from "react";
 import { type ReactNode } from "react";
 
@@ -16,25 +17,26 @@ type GlobalNavProps = BoxProps<
 export const GlobalNav = forwardRef<HTMLElement, GlobalNavProps>(
   ({ children, className, endDecorator, ...props }, ref) => {
     const { restProps, sprinkleProps } = extractSprinkles(props);
-
-    const [isCollapsed, setIsCollapsed] = useState(false);
-    const toggleCollapsed = () => setIsCollapsed((prev) => !prev);
+    const [open, setOpen] = useState(false);
+    // const toggleCollapsed = () => setIsCollapsed((prev) => !prev);
 
     return (
-      <GlobalNavContext.Provider value={{ isCollapsed, toggleCollapsed }}>
-        <Flex {...styles.wrapper()}>
-          <Box asChild {...styles.nav({}, className)} {...sprinkleProps}>
-            <nav
-              aria-label="Global Navigation"
-              ref={ref}
-              role="navigation"
-              {...restProps}
-            >
-              {children}
-            </nav>
-          </Box>
-          {endDecorator}
-        </Flex>
+      <GlobalNavContext.Provider value={{ open }}>
+        <RadixCollapsible.Root onOpenChange={() => setOpen(!open)} open={open}>
+          <Flex {...styles.wrapper()}>
+            <Box asChild {...styles.nav({}, className)} {...sprinkleProps}>
+              <nav
+                aria-label="Global Navigation"
+                ref={ref}
+                role="navigation"
+                {...restProps}
+              >
+                {children}
+              </nav>
+            </Box>
+            {endDecorator}
+          </Flex>
+        </RadixCollapsible.Root>
       </GlobalNavContext.Provider>
     );
   },
