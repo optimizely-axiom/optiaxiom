@@ -7,7 +7,7 @@ import { CommandItem } from "../command-item";
 type CommandCheckboxItemProps = BoxProps<
   typeof CommandItem,
   {
-    checked?: "indeterminate" | boolean;
+    checked?: boolean;
     disabled?: boolean;
     onCheckedChange?: (checked: boolean) => void;
   }
@@ -28,9 +28,7 @@ export const CommandCheckboxItem = forwardRef<
       data-disabled={disabled ? "" : undefined}
       data-selected={checked ? "" : undefined}
       disabled={disabled}
-      onSelect={() =>
-        handleChange(checked === "indeterminate" ? true : !checked)
-      }
+      onSelect={() => handleChange(!checked)}
       ref={ref}
       {...props}
     >

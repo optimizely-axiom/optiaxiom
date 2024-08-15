@@ -6,6 +6,7 @@ import {
   ComboboxContent,
   ComboboxTrigger,
   Command,
+  CommandCheckboxItem,
   CommandEmpty,
   CommandInput,
   CommandItem,
@@ -259,4 +260,94 @@ const PeopleSelector = () => {
 
 export const People: Story = {
   render: PeopleSelector,
+};
+
+const items = [
+  { label: "English", value: "en" },
+  { label: "French", value: "fr" },
+  { label: "German", value: "de" },
+  { label: "Spanish", value: "es" },
+  { label: "Portuguese", value: "pt" },
+  { label: "Russian", value: "ru" },
+  { label: "Japanese", value: "ja" },
+  { label: "Korean", value: "ko" },
+  { label: "Chinese", value: "zh" },
+];
+
+const SingleSelectExample = () => {
+  const [selectedValue, setSelectedValue] = useState<string>("");
+  const [open, setOpen] = useState(false);
+
+  const handleSelect = (value: string) => {
+    setSelectedValue(value);
+  };
+
+  return (
+    <Flex alignItems="center" flexDirection="column" gap="8">
+      <Combobox onOpenChange={setOpen} onSelect={handleSelect} open={open}>
+        <ComboboxTrigger title="Select Item" />
+        <ComboboxContent w="240">
+          <CommandEmpty />
+          <CommandList>
+            {items.map((item) => (
+              <CommandItem
+                key={item.value}
+                onSelect={() => {
+                  handleSelect(item.value);
+                  setOpen(false);
+                }}
+                value={item.value}
+              >
+                {item.label}
+              </CommandItem>
+            ))}
+          </CommandList>
+          <Flex>Clear All</Flex>
+        </ComboboxContent>
+      </Combobox>
+      <Text>Selected value: {selectedValue || "None"}</Text>
+    </Flex>
+  );
+};
+
+const MultipleSelectExample = () => {
+  const [selectedValues, setSelectedValues] = useState<string[]>([]);
+
+  const handleSelect = (value: string) => {
+    setSelectedValues((prev) =>
+      prev.includes(value) ? prev.filter((v) => v !== value) : [...prev, value],
+    );
+  };
+
+  return (
+    <Flex alignItems="center" flexDirection="column" gap="8">
+      <Combobox onSelect={handleSelect}>
+        <ComboboxTrigger title="Select Items" />
+        <ComboboxContent w="240">
+          {items.map((item) => (
+            <CommandCheckboxItem
+              checked={selectedValues.includes(item.value)}
+              key={item.value}
+              onCheckedChange={() => handleSelect(item.value)}
+              value={item.value}
+            >
+              {item.label}
+            </CommandCheckboxItem>
+          ))}
+        </ComboboxContent>
+      </Combobox>
+      <Text>
+        Selected values:{" "}
+        {selectedValues.length > 0 ? selectedValues.join(", ") : "None"}
+      </Text>
+    </Flex>
+  );
+};
+
+export const SingleSelect: Story = {
+  render: SingleSelectExample,
+};
+
+export const MultipleSelect: Story = {
+  render: MultipleSelectExample,
 };
