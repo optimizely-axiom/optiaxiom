@@ -1,9 +1,4 @@
-import {
-  Children,
-  type ComponentPropsWithoutRef,
-  type ReactNode,
-  forwardRef,
-} from "react";
+import { Children, type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import { Avatar } from "../avatar";
 import { AvatarContext } from "../avatar-context/AvatarContext";
@@ -16,11 +11,7 @@ import * as styles from "./AvatarGroup.css";
 type AvatarGroupProps = BoxProps<
   "div",
   {
-    children: ReactNode;
     maxItems?: number;
-    onAvatarClick?: (name: string) => void;
-    orientation?: "horizontal" | "vertical";
-    withTooltip?: boolean;
   } & Pick<ComponentPropsWithoutRef<typeof Avatar>, "size">
 >;
 
