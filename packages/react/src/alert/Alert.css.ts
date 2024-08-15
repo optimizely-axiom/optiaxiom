@@ -18,7 +18,6 @@ export const alert = recipe({
       gap: "xs",
       justifyContent: "space-between",
       p: "md",
-      rounded: "md",
     },
   ],
   variants: {
@@ -49,9 +48,14 @@ export const alert = recipe({
       }),
     },
     variant: {
-      light: style({
-        backgroundColor: lightColorVar,
-      }),
+      light: [
+        {
+          rounded: "md",
+        },
+        style({
+          backgroundColor: lightColorVar,
+        }),
+      ],
       solid: style({
         backgroundColor: solidColorVar,
       }),
