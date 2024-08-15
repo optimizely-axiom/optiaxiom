@@ -3,7 +3,7 @@ import { theme } from "../styles";
 import { createVar, fallbackVar, style } from "../vanilla-extract";
 import { type RecipeVariants, recipe } from "../vanilla-extract";
 
-const group = styles.buttonGroup().className;
+const group = styles.className;
 
 const accentColorVar = createVar();
 const solidAccentColorVar = createVar();
