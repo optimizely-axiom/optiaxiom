@@ -43,13 +43,15 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>(
         {...props}
       >
         <Flex alignItems="start" flexDirection="row" gap="xs" mt="2">
-          <Box asChild {...styles.icon()}>
+          <Box asChild color="bg.neutral.inverse" h="16" mt="2" w="auto">
             {createElement(iconMap[colorScheme])}
           </Box>
+
           <Flex flex="1" flexDirection="column" gap="xs" overflow="hidden">
             {children}
           </Flex>
         </Flex>
+
         {!!onClose && (
           <Button
             appearance="secondary"
