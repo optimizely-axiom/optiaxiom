@@ -1,5 +1,6 @@
+import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import * as RadixHoverCard from "@radix-ui/react-hover-card";
-import { forwardRef } from "react";
+import { forwardRef, useRef } from "react";
 
 import { AnimatePresence } from "../animate-presence";
 import { Box, type BoxProps } from "../box";
@@ -28,9 +29,13 @@ export const HoverCardContent = forwardRef<
       withArrow,
       ...props
     },
-    ref,
+    outerRef,
   ) => {
-    const { open } = useHoverCardContext("HoverCardContent");
+    const innerRef = useRef<HTMLDivElement>(null);
+    const ref = useComposedRefs(innerRef, outerRef);
+
+    const { keepOpenOnActivation, open } =
+      useHoverCardContext("HoverCardContent");
 
     return (
       <AnimatePresence>
@@ -40,6 +45,18 @@ export const HoverCardContent = forwardRef<
               <Box asChild {...styles.content({}, className)} {...props}>
                 <RadixHoverCard.Content
                   align={align}
+                  onPointerDownOutside={
+                    keepOpenOnActivation
+                      ? (event: CustomEvent) => {
+                          if (
+                            innerRef.current?.contains(
+                              event.target as Node | null,
+                            )
+                          )
+                            event.preventDefault();
+                        }
+                      : undefined
+                  }
                   ref={ref}
                   sideOffset={sideOffset}
                 >
