@@ -3,10 +3,11 @@ import { recipe } from "../vanilla-extract";
 export const list = recipe({
   base: [
     {
-      alignItems: "start",
+      alignItems: "center",
       gap: "4",
-      justifyContent: "start",
+      // justifyContent: "start",
       px: "xs",
+      w: "full",
     },
   ],
 });

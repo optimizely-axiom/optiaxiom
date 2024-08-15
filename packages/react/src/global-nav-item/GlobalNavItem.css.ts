@@ -1,4 +1,4 @@
-import { recipe, style } from "../vanilla-extract";
+import { recipe } from "../vanilla-extract";
 
 export const item = recipe({
   base: [
@@ -6,13 +6,18 @@ export const item = recipe({
       alignItems: "center",
       flexDirection: "row",
       gap: "sm",
-      justifyContent: "center",
+      h: "lg",
       px: "sm",
       py: "xs",
-      w: "256",
+      w: "full",
     },
-    style({
-      selectors: {},
-    }),
   ],
+  variants: {
+    active: {
+      true: {
+        bg: "brand.50",
+        color: "brand.500",
+      },
+    },
+  },
 });
