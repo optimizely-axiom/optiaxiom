@@ -3,6 +3,7 @@ export * from "./combobox";
 export * from "./combobox-content";
 export * from "./combobox-trigger";
 export * from "./command";
+export * from "./command-checkbox-item";
 export * from "./command-empty";
 export * from "./command-group";
 export * from "./command-input";

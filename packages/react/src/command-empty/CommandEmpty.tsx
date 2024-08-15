@@ -12,7 +12,7 @@ export const CommandEmpty = forwardRef<HTMLDivElement, CommandProps>(
     return (
       <Box asChild {...sprinkleProps}>
         <CmdkCommandEmpty ref={ref} {...restProps}>
-          {children}
+          {children || "No results found"}
         </CmdkCommandEmpty>
       </Box>
     );
