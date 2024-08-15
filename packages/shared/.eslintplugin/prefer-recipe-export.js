@@ -20,6 +20,14 @@ export default ESLintUtils.RuleCreator.withoutDocs({
        */
       'ExportNamedDeclaration > VariableDeclaration > VariableDeclarator > CallExpression:matches([callee.name="style"], [callee.name="styleVariants"])':
         (node) => {
+          if (
+            node.parent.type === "VariableDeclarator" &&
+            node.parent.id.type === "Identifier" &&
+            node.parent.id.name === "className"
+          ) {
+            return;
+          }
+
           context.report({
             data: { method: "name" in node.callee && node.callee.name },
             fix: (fixer) => [

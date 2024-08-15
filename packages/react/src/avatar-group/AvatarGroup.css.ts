@@ -1,6 +1,6 @@
-import { recipe } from "../vanilla-extract";
+import { recipe, style } from "../vanilla-extract";
 
-export const className = "ax-AvatarGroup";
+export const className = style({});
 
 export const avatarGroup = recipe({
   base: [
