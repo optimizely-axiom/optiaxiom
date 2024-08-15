@@ -5,7 +5,7 @@
   "version": "0.0.0",
   "scripts": {
     "build": "storybook build --docs",
-    "dev": "wait-on ../../packages/react/dist/index.d.ts && wait-on ../../packages/react/dist/unstable.d.ts && storybook dev -p 6006",
+    "dev": "wait-on ../../packages/react/dist/index.d.ts ../../packages/react/dist/unstable.d.ts && storybook dev -p 6006",
     "lint": "oas-lint"
   },
   "devDependencies": {
