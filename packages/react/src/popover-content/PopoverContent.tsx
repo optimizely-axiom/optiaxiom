@@ -1,9 +1,9 @@
 import * as RadixPopover from "@radix-ui/react-popover";
-import { forwardRef, useContext } from "react";
+import { forwardRef } from "react";
 
 import { AnimatePresence } from "../animate-presence";
 import { Box, type BoxProps } from "../box";
-import { PopoverContext } from "../popover-context";
+import { usePopoverContext } from "../popover-context";
 import { theme } from "../styles";
 import { Transition } from "../transition";
 import * as styles from "./PopoverContent.css";
@@ -27,7 +27,7 @@ export const PopoverContent = forwardRef<HTMLDivElement, PopoverContentProps>(
     },
     ref,
   ) => {
-    const { open } = useContext(PopoverContext);
+    const { open } = usePopoverContext("PopoverContent");
 
     return (
       <AnimatePresence>

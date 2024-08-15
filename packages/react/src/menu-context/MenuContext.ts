@@ -1,5 +1,5 @@
-import { createContext } from "react";
+import { createContext } from "@radix-ui/react-context";
 
-export const MenuContext = createContext<{ open: boolean | undefined }>({
-  open: undefined,
-});
+export const [MenuContextProvider, useMenuContext] = createContext<{
+  open: boolean | undefined;
+}>("Menu");

@@ -3,7 +3,7 @@ import { forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
 import { extractSprinkles } from "../sprinkles";
-import { TabsContext } from "../tabs-context";
+import { TabsContextProvider } from "../tabs-context";
 import * as styles from "./Tabs.css";
 
 type TabsProps = BoxProps<
@@ -18,9 +18,9 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>(
     return (
       <Box asChild {...styles.tabs()} {...sprinkleProps}>
         <RadixTabs.Root ref={ref} {...restProps}>
-          <TabsContext.Provider value={{ appearance }}>
+          <TabsContextProvider appearance={appearance}>
             {children}
-          </TabsContext.Provider>
+          </TabsContextProvider>
         </RadixTabs.Root>
       </Box>
     );

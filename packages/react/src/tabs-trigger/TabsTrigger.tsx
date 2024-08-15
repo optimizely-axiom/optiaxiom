@@ -1,11 +1,11 @@
 import * as RadixTabs from "@radix-ui/react-tabs";
-import { forwardRef, useContext } from "react";
+import { forwardRef } from "react";
 
 import { Box } from "../box";
 import { Button, type ButtonProps } from "../button";
 import { Flex } from "../flex";
 import { extractSprinkles } from "../sprinkles";
-import { TabsContext } from "../tabs-context";
+import { useTabsContext } from "../tabs-context";
 import * as styles from "./TabsTrigger.css";
 
 type TabsTriggerProps = ButtonProps<typeof RadixTabs.Trigger>;
@@ -22,7 +22,7 @@ export const TabsTrigger = forwardRef<HTMLButtonElement, TabsTriggerProps>(
     },
     ref,
   ) => {
-    const { appearance } = useContext(TabsContext);
+    const { appearance } = useTabsContext("TabsTrigger");
 
     const { restProps, sprinkleProps } = extractSprinkles(props);
 

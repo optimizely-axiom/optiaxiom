@@ -2,7 +2,7 @@ import * as RadixMenu from "@radix-ui/react-dropdown-menu";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import { type ComponentPropsWithoutRef } from "react";
 
-import { MenuContext } from "../menu-context";
+import { MenuContextProvider } from "../menu-context";
 
 type MenuProps = ComponentPropsWithoutRef<typeof RadixMenu.Root>;
 
@@ -21,7 +21,7 @@ export const Menu = ({
 
   return (
     <RadixMenu.Root onOpenChange={setOpen} open={open} {...props}>
-      <MenuContext.Provider value={{ open }}>{children}</MenuContext.Provider>
+      <MenuContextProvider open={open}>{children}</MenuContextProvider>
     </RadixMenu.Root>
   );
 };
