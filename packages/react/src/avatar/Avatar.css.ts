@@ -4,8 +4,6 @@ import { style } from "../vanilla-extract";
 import { type RecipeVariants, recipe } from "../vanilla-extract";
 import * as styles from "./../avatar-group/AvatarGroup.css";
 
-const group = styles.avatarGroup().className;
-
 export const avatar = recipe({
   base: [
     {
@@ -19,10 +17,10 @@ export const avatar = recipe({
       userSelect: "none",
 
       selectors: {
-        [`${group} &:not(:first-child)`]: {
+        [`${styles.className} &:not(:first-child)`]: {
           marginLeft: "-12px",
         },
-        [`${group} &`]: {
+        [`${styles.className} &`]: {
           border: `2px solid ${theme.colors["white"]}`,
         },
       },
