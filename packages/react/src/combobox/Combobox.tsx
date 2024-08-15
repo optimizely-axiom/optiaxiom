@@ -1,26 +1,35 @@
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import { type ReactNode, useState } from "react";
 
+import type { BoxProps } from "../box";
+
 import { ComboboxContext, type Item } from "../combobox-context";
 import { Popover } from "../popover";
+
+type ComboBoxProps = BoxProps<
+  typeof Popover,
+  {
+    children: ReactNode;
+    defaultOpen?: boolean;
+    defaultValue?: string;
+    items?: Item[];
+    mode?: "multiple" | "single";
+    onOpenChange?: (open: boolean) => void;
+    onSelect?: (value: string) => void;
+    open?: boolean;
+  }
+>;
 
 export const Combobox = ({
   children,
   defaultOpen,
   defaultValue = "",
   items = [],
+  mode = "single",
   onOpenChange,
   onSelect,
   open: openProp,
-}: {
-  children: ReactNode;
-  defaultOpen?: boolean;
-  defaultValue?: string;
-  items?: Item[];
-  onOpenChange?: (open: boolean) => void;
-  onSelect?: (value: string) => void;
-  open?: boolean;
-}) => {
+}: Partial<ComboBoxProps>) => {
   const [open, setOpen] = useControllableState({
     defaultProp: defaultOpen,
     onChange: onOpenChange,
@@ -30,7 +39,7 @@ export const Combobox = ({
 
   return (
     <ComboboxContext.Provider
-      value={{ items, onSelect, open, setOpen, setValue, value }}
+      value={{ items, mode, onSelect, open, setOpen, setValue, value }}
     >
       <Popover onOpenChange={setOpen} open={open}>
         {children}

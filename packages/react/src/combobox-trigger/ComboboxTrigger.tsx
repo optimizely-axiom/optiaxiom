@@ -15,12 +15,20 @@ type ComboboxTriggerProps = ButtonProps<
 export const ComboboxTrigger = forwardRef<
   HTMLButtonElement,
   ComboboxTriggerProps
->(({ asChild, children, title, ...props }, ref) => {
+>(({ asChild, children, title = "Select item", ...props }, ref) => {
   const context = useContext(ComboboxContext);
   if (!context)
     throw new Error("ComboboxTrigger must be used within a Combobox");
 
-  const { items, value } = context;
+  const { items, mode, value } = context;
+
+  const getTriggerTitle = () => {
+    if (mode === "multiple" || !value) {
+      return title;
+    }
+
+    return items?.find((item) => item.value === value)?.label || title;
+  };
 
   return (
     <PopoverTrigger asChild ref={ref}>
@@ -28,9 +36,7 @@ export const ComboboxTrigger = forwardRef<
         children
       ) : (
         <Button icon={<IconAngleDown />} iconPosition="end" {...props}>
-          {value
-            ? items?.find((item) => item.value === value)?.label
-            : (title ?? "Select item")}
+          {getTriggerTitle()}
         </Button>
       )}
     </PopoverTrigger>

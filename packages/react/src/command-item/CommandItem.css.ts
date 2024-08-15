@@ -25,6 +25,8 @@ export const item = recipe({
       cursor: "default",
       outline: "none",
       position: "relative",
+      userSelect: "none",
+
       selectors: {
         "&[data-disabled='true']": {
           color: theme.colors["fg.disabled"],
@@ -35,7 +37,6 @@ export const item = recipe({
           cursor: "pointer",
         },
       },
-      userSelect: "none",
     }),
   ],
   variants: {

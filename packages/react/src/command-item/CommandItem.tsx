@@ -5,9 +5,9 @@ import { Box, type BoxProps } from "../box";
 import { extractSprinkles } from "../sprinkles";
 import * as styles from "./CommandItem.css";
 
-type CommandProps = BoxProps<typeof CmdkCommandItem> & styles.ItemVariants;
+type CommandItemProps = BoxProps<typeof CmdkCommandItem> & styles.ItemVariants;
 
-export const CommandItem = forwardRef<HTMLDivElement, CommandProps>(
+export const CommandItem = forwardRef<HTMLDivElement, CommandItemProps>(
   ({ children, ...props }, ref) => {
     const { restProps, sprinkleProps } = extractSprinkles(props);
     return (

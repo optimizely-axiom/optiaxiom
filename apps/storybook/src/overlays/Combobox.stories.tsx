@@ -134,6 +134,45 @@ export const WithOnSelectCallback: Story = {
   render: CallBack,
 };
 
+const MultipleCallBack = (args: ComponentPropsWithoutRef<typeof Combobox>) => {
+  const [selectedValues, setSelectedValues] = useState<string[]>([]);
+
+  const handleSelect = (value: string) => {
+    setSelectedValues((prevValues) => {
+      if (prevValues.includes(value)) {
+        return prevValues.filter((v) => v !== value);
+      } else {
+        return [...prevValues, value];
+      }
+    });
+  };
+
+  return (
+    <Flex alignItems="center" flexDirection="column" gap="8">
+      <Combobox {...args} onSelect={handleSelect}>
+        <ComboboxTrigger title="Select Items" />
+        <ComboboxContent side="top" w="240" />
+      </Combobox>
+      <Text>
+        Selected values:{" "}
+        {selectedValues.length > 0 ? selectedValues.join(", ") : "None"}
+      </Text>
+    </Flex>
+  );
+};
+
+export const Multiple: Story = {
+  args: {
+    items: [
+      { label: "Option A", value: "a" },
+      { label: "Option B", value: "b" },
+      { label: "Option C", value: "c" },
+    ],
+    mode: "multiple",
+  },
+  render: MultipleCallBack,
+};
+
 const users = [
   {
     email: "",
