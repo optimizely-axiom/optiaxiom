@@ -1,7 +1,5 @@
-import { createContext } from "react";
+import { createContext } from "@radix-ui/react-context";
 
-export const TabsContext = createContext<{
+export const [TabsContextProvider, useTabsContext] = createContext<{
   appearance: "primary" | "secondary" | undefined;
-}>({
-  appearance: undefined,
-});
+}>("Tabs");

@@ -1,9 +1,9 @@
 import * as RadixMenu from "@radix-ui/react-dropdown-menu";
-import { forwardRef, useContext } from "react";
+import { forwardRef } from "react";
 
 import { AnimatePresence } from "../animate-presence";
 import { Box, type BoxProps } from "../box";
-import { MenuContext } from "../menu-context";
+import { useMenuContext } from "../menu-context";
 import { Transition } from "../transition";
 import * as styles from "./MenuContent.css";
 
@@ -11,7 +11,7 @@ type MenuContentProps = BoxProps<typeof RadixMenu.Content>;
 
 export const MenuContent = forwardRef<HTMLDivElement, MenuContentProps>(
   ({ align = "start", children, className, sideOffset = 2, ...props }, ref) => {
-    const { open } = useContext(MenuContext);
+    const { open } = useMenuContext("MenuContent");
 
     return (
       <AnimatePresence>

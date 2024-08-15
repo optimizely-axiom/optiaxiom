@@ -2,7 +2,7 @@ import * as RadixPopover from "@radix-ui/react-popover";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
 
 import { type BoxProps } from "../box";
-import { PopoverContext } from "../popover-context";
+import { PopoverContextProvider } from "../popover-context";
 
 type PopoverProps = BoxProps<typeof RadixPopover.Root>;
 
@@ -21,9 +21,7 @@ export const Popover = ({
 
   return (
     <RadixPopover.Root onOpenChange={setOpen} open={open} {...props}>
-      <PopoverContext.Provider value={{ open }}>
-        {children}
-      </PopoverContext.Provider>
+      <PopoverContextProvider open={open}>{children}</PopoverContextProvider>
     </RadixPopover.Root>
   );
 };

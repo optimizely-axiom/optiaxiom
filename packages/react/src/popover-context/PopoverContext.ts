@@ -1,5 +1,5 @@
-import { createContext } from "react";
+import { createContext } from "@radix-ui/react-context";
 
-export const PopoverContext = createContext<{ open: boolean | undefined }>({
-  open: undefined,
-});
+export const [PopoverContextProvider, usePopoverContext] = createContext<{
+  open: boolean | undefined;
+}>("Popover");
