@@ -1,6 +1,7 @@
 import { type ComponentPropsWithRef, forwardRef } from "react";
 
 import { Box } from "../box";
+import { Flex } from "../flex";
 
 type AlertDescriptionProps = ComponentPropsWithRef<typeof Box>;
 
@@ -9,9 +10,9 @@ export const AlertDescription = forwardRef<
   AlertDescriptionProps
 >(({ children, ...props }, ref) => {
   return (
-    <Box fontSize="md" fontWeight="400" ref={ref} {...props}>
+    <Flex gap="xs" ref={ref} {...props}>
       {children}
-    </Box>
+    </Flex>
   );
 });
 
