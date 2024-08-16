@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
+import { Link } from "@optiaxiom/react";
 import {
   GlobalNav,
   GlobalNavItem,
   GlobalNavList,
   GlobalNavProfileMenu,
-  Link,
-} from "@optiaxiom/react";
+} from "@optiaxiom/react/unstable";
 import {
   IconBinaryTree,
   IconChartInfographic,
