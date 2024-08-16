@@ -19,7 +19,7 @@ describe("Self-loading components", () => {
     setup();
     await customElements.whenDefined(Button);
     expect(
-      withinShadowRoot(screen.getByText("Primary")).getByText("Primary"),
+      withinShadowRoot(screen.getByText("Primary")).getByRole("button"),
     ).toBeInTheDocument();
   });
 });

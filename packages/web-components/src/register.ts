@@ -16,6 +16,14 @@ import { type Root, createRoot } from "react-dom/client";
 
 import { sheets } from "./styles";
 
+const CustomContextEvent = "__ax_context";
+
+declare global {
+  interface ElementEventMap {
+    [CustomContextEvent]: CustomEvent<{ context: unknown }>;
+  }
+}
+
 type ComponentEventNames<T> = T extends `on${string}`
   ? Exclude<T, keyof HTMLAttributes<EventTarget>>
   : never;
@@ -88,9 +96,23 @@ export function register<
     }
 
     connectedCallback() {
+      /**
+       * Dispatch a custom event to grab the parent preact context.
+       */
+      const contextEvent = new CustomEvent<{ context: unknown }>(
+        CustomContextEvent,
+        {
+          bubbles: true,
+          cancelable: true,
+          detail: { context: undefined },
+        },
+      );
+      this.dispatchEvent(contextEvent);
+      const context = contextEvent.detail.context;
+
       this.#observer.observe(this, { attributes: true });
       this.#vdom = cloneElement(
-        toVdom(this, this.#vdomComponent)!,
+        toVdom(this, withContextProvider(this.#vdomComponent, context))!,
         this.#props,
       );
       this.#root.render(this.#vdom);
@@ -108,6 +130,42 @@ export function register<
   }
 }
 
+const withContextConsumer = (element: Element) => {
+  /**
+   * Provide the current preact context to a custom event.
+   */
+  let _context: unknown = undefined;
+  element.addEventListener(CustomContextEvent, (event) => {
+    event.stopPropagation();
+    event.detail.context = _context;
+  });
+
+  return (_props: unknown, context: unknown) => {
+    _context = context;
+
+    return null;
+  };
+};
+
+/**
+ * Wrap an existing component with custom preact context.
+ */
+const withContextProvider = <P extends { context?: unknown }>(
+  Component: ComponentType<P>,
+  context: unknown,
+) => {
+  return function ContextProvider(
+    this: { getChildContext: () => unknown },
+    rawProps: P,
+  ) {
+    this.getChildContext = () => context;
+
+    const props = Object.assign({}, rawProps);
+    delete props.context;
+    return createElement<P>(Component, props);
+  };
+};
+
 /**
  * Forward correct ref when wrapping children in slot in root node.
  *
@@ -115,7 +173,7 @@ export function register<
  * we instead assign it to the source HTML element from which we created the
  * slot.
  */
-const withSlot = (element: Node) =>
+const withSlot = (element: Element) =>
   forwardRef((props, ref) => {
     useLayoutEffect(() => {
       if (typeof ref === "function") {
@@ -132,19 +190,24 @@ const withSlot = (element: Node) =>
         }
       };
     }, [ref]);
-    return createElement("slot", { ...props, ref: ref });
+
+    return createElement(
+      "slot",
+      { ...props, ref },
+      createElement(withContextConsumer(element)),
+    );
   });
 
 function toVdom<P>(
   element: unknown,
-  nodeName?: ComponentType<P>,
+  Component?: ComponentType<P>,
   shouldProcessSlot = false,
 ): ReactElement | null {
   if (!(element instanceof Element)) {
     return null;
   }
 
-  const isRootNode = !!nodeName;
+  const isRootNode = !!Component;
 
   const props: Record<string, ReactElement | null | string> = {};
   for (const { name, value } of element.attributes) {
@@ -157,7 +220,6 @@ function toVdom<P>(
     props[toCamelCase(name)] = value;
   }
 
-  let firstChildElement: Node | null = null;
   const children = [];
   for (const child of element.childNodes) {
     if (isRootNode && child instanceof Element && child.slot) {
@@ -168,19 +230,14 @@ function toVdom<P>(
       );
     } else {
       children.push(child instanceof Text ? child.data : toVdom(child));
-      firstChildElement = child;
     }
   }
 
   return createElement(
     // @ts-expect-error -- too complex
-    nodeName || element.nodeName.toLowerCase(),
+    Component || element.nodeName.toLowerCase(),
     props,
-    isRootNode
-      ? firstChildElement
-        ? createElement(withSlot(firstChildElement), null, children)
-        : []
-      : children,
+    isRootNode ? createElement(withSlot(element)) : children,
   );
 }
 
