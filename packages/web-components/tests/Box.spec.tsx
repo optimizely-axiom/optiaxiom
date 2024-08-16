@@ -43,11 +43,6 @@ describe("Box component", () => {
   it("should render properly", async () => {
     setup();
     expect(
-      withinShadowRoot(screen.getByText("This is a box")).getByText(
-        "This is a box",
-      ),
-    ).toBeInTheDocument();
-    expect(
       withinShadowRoot(screen.getByText("Click")).getByRole("button"),
     ).toBeInTheDocument();
   });

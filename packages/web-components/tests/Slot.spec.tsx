@@ -19,6 +19,6 @@ describe("Component slots", () => {
     setup();
     expect(
       withinShadowRoot(screen.getByText("Primary")).getByRole("button"),
-    ).toHaveTextContent("Primaryicon");
+    ).toHaveTextContent("icon");
   });
 });

@@ -17,7 +17,7 @@ describe("Button component", () => {
   it("should render properly", async () => {
     setup();
     expect(
-      withinShadowRoot(screen.getByText("Primary")).getByText("Primary"),
+      withinShadowRoot(screen.getByText("Primary")).getByRole("button"),
     ).toBeInTheDocument();
   });
 
