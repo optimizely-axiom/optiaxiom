@@ -23,7 +23,6 @@ export * from "./dropdown-menu-sub-content";
 export * from "./dropdown-menu-sub-trigger";
 export * from "./global-nav";
 export * from "./global-nav-item";
-export * from "./global-nav-list";
 export * from "./global-nav-profile-menu";
 export * from "./pill";
 export * from "./table";
