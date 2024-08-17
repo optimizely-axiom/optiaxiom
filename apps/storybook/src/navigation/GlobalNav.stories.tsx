@@ -4,7 +4,6 @@ import { Link } from "@optiaxiom/react";
 import {
   GlobalNav,
   GlobalNavItem,
-  GlobalNavList,
   GlobalNavProfileMenu,
 } from "@optiaxiom/react/unstable";
 import {
@@ -44,29 +43,25 @@ export const Basic: Story = {
         height: "80vh",
       }}
     >
-      <GlobalNavList>
-        <GlobalNavItem startDecorator={<IconBinaryTree />}>
-          Projects
-        </GlobalNavItem>
-        <GlobalNavItem active startDecorator={<IconFlag2 />}>
-          Flags
-        </GlobalNavItem>
-        <GlobalNavItem startDecorator={<IconChartInfographic />}>
-          Reports
-        </GlobalNavItem>
-        <GlobalNavItem startDecorator={<IconUsers />}>Audiences</GlobalNavItem>
-        <GlobalNavItem startDecorator={<IconHistory />}>History</GlobalNavItem>
-        <GlobalNavItem startDecorator={<IconChartLine />}>Events</GlobalNavItem>
-        <GlobalNavItem startDecorator={<IconSettings />}>
-          Settings
-        </GlobalNavItem>
-        <GlobalNavItem
-          endDecorator={<Link external href="https://www.google.com/" />}
-          startDecorator={<IconVocabulary />}
-        >
-          Tutorial
-        </GlobalNavItem>
-      </GlobalNavList>
+      <GlobalNavItem startDecorator={<IconBinaryTree />}>
+        Projects
+      </GlobalNavItem>
+      <GlobalNavItem active startDecorator={<IconFlag2 />}>
+        Flags
+      </GlobalNavItem>
+      <GlobalNavItem startDecorator={<IconChartInfographic />}>
+        Reports
+      </GlobalNavItem>
+      <GlobalNavItem startDecorator={<IconUsers />}>Audiences</GlobalNavItem>
+      <GlobalNavItem startDecorator={<IconHistory />}>History</GlobalNavItem>
+      <GlobalNavItem startDecorator={<IconChartLine />}>Events</GlobalNavItem>
+      <GlobalNavItem startDecorator={<IconSettings />}>Settings</GlobalNavItem>
+      <GlobalNavItem
+        endDecorator={<Link external href="https://www.google.com/" />}
+        startDecorator={<IconVocabulary />}
+      >
+        Tutorial
+      </GlobalNavItem>
     </GlobalNav>
   ),
 };

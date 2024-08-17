@@ -5,6 +5,8 @@ import { type ReactNode } from "react";
 import { Box, type BoxProps } from "../box";
 import { Flex } from "../flex";
 import { GlobalNavContext } from "../global-nav-context";
+import { GlobalNavItem } from "../global-nav-item";
+import { IconAngleLeft } from "../icons/IconAngleLeft";
 import { extractSprinkles } from "../sprinkles";
 import * as styles from "./GlobalNav.css";
 type GlobalNavProps = BoxProps<
@@ -18,7 +20,6 @@ export const GlobalNav = forwardRef<HTMLElement, GlobalNavProps>(
   ({ children, className, endDecorator, ...props }, ref) => {
     const { restProps, sprinkleProps } = extractSprinkles(props);
     const [open, setOpen] = useState(false);
-    // const toggleCollapsed = () => setIsCollapsed((prev) => !prev);
 
     return (
       <GlobalNavContext.Provider value={{ open }}>
@@ -31,7 +32,17 @@ export const GlobalNav = forwardRef<HTMLElement, GlobalNavProps>(
                 role="navigation"
                 {...restProps}
               >
-                {children}
+                <Flex alignItems="center" gap="4" px="xs" w="full">
+                  <Flex flex="1" gap="4" justifyContent="start" w="full">
+                    {children}
+                  </Flex>
+
+                  <RadixCollapsible.Trigger asChild>
+                    <GlobalNavItem startDecorator={<IconAngleLeft />}>
+                      Collapse
+                    </GlobalNavItem>
+                  </RadixCollapsible.Trigger>
+                </Flex>
               </nav>
             </Box>
             {endDecorator}
