@@ -8,6 +8,7 @@ import {
 
 const solidColorVar = createVar();
 const lightColorVar = createVar();
+const iconColorVar = createVar();
 
 export const alert = recipe({
   base: [
@@ -58,6 +59,48 @@ export const alert = recipe({
       ],
       solid: style({
         backgroundColor: solidColorVar,
+      }),
+    },
+  },
+});
+
+export const icon = recipe({
+  base: [
+    {
+      h: "16",
+      mt: "4",
+      w: "auto",
+    },
+  ],
+  variants: {
+    colorScheme: {
+      danger: style({
+        vars: {
+          [iconColorVar]: theme.colors["bg.error.solid.hover"],
+        },
+      }),
+      neutral: style({
+        vars: {
+          [iconColorVar]: theme.colors["fg.tertiary"],
+        },
+      }),
+      success: style({
+        vars: {
+          [iconColorVar]: theme.colors["bg.success.solid.hover"],
+        },
+      }),
+      warning: style({
+        vars: {
+          [iconColorVar]: theme.colors["bg.warning.solid.hover"],
+        },
+      }),
+    },
+    variant: {
+      light: style({
+        color: iconColorVar,
+      }),
+      solid: style({
+        color: theme.colors["bg.neutral.inverse"],
       }),
     },
   },

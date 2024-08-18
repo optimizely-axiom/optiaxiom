@@ -42,7 +42,7 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>(
         {...styles.alert({ colorScheme, variant }, className)}
         {...props}
       >
-        <Box asChild color="bg.neutral.inverse" h="16" mt="4" w="auto">
+        <Box asChild {...styles.icon({ colorScheme, variant })}>
           {createElement(iconMap[colorScheme])}
         </Box>
 
