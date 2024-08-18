@@ -5,6 +5,7 @@ export * from "./combobox-trigger";
 export * from "./command";
 export * from "./command-checkbox-item";
 export * from "./command-empty";
+export * from "./command-footer";
 export * from "./command-group";
 export * from "./command-input";
 export * from "./command-item";
