@@ -3,7 +3,7 @@ import { type ReactNode, useState } from "react";
 
 import type { BoxProps } from "../box";
 
-import { ComboboxContext, type Item } from "../combobox-context";
+import { ComboboxContext } from "../combobox-context";
 import { Popover } from "../popover";
 
 type ComboBoxProps = BoxProps<
@@ -12,7 +12,6 @@ type ComboBoxProps = BoxProps<
     children: ReactNode;
     defaultOpen?: boolean;
     defaultValue?: string;
-    items?: Item[];
     mode?: "multiple" | "single";
     onOpenChange?: (open: boolean) => void;
     onSelect?: (value: string) => void;
@@ -24,7 +23,6 @@ export const Combobox = ({
   children,
   defaultOpen,
   defaultValue = "",
-  items = [],
   mode = "single",
   onOpenChange,
   onSelect,
@@ -39,7 +37,7 @@ export const Combobox = ({
 
   return (
     <ComboboxContext.Provider
-      value={{ items, mode, onSelect, open, setOpen, setValue, value }}
+      value={{ mode, onSelect, open, setOpen, setValue, value }}
     >
       <Popover onOpenChange={setOpen} open={open}>
         {children}

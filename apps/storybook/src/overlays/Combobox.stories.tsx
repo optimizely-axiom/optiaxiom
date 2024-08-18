@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Avatar, Button, Flex, Search, Text } from "@optiaxiom/react";
+import { Avatar, Flex, Search, Text } from "@optiaxiom/react";
 import {
   Combobox,
   ComboboxContent,
@@ -13,167 +13,22 @@ import {
   CommandList,
   CommandSeparator,
 } from "@optiaxiom/react/unstable";
-import { type ComponentPropsWithoutRef, useState } from "react";
+import { useState } from "react";
 
 type Story = StoryObj<typeof Combobox>;
 
-const withTemplate = (args: ComponentPropsWithoutRef<typeof Combobox>) => {
-  return (
-    <Combobox {...args}>
-      <ComboboxTrigger />
-      <ComboboxContent w="240" />
-    </Combobox>
-  );
-};
+// const withTemplate = (args: ComponentPropsWithoutRef<typeof Combobox>) => {
+//   return (
+//     <Combobox {...args}>
+//       <ComboboxTrigger />
+//       <ComboboxContent w="240" />
+//     </Combobox>
+//   );
+// };
 
 export default {
   component: Combobox,
 } as Meta<typeof Combobox>;
-
-export const Basic: Story = {
-  args: {
-    defaultValue: "en",
-    items: [
-      { label: "English", value: "en" },
-      { label: "French", value: "fr" },
-      { label: "German", value: "de" },
-      { label: "Spanish", value: "es" },
-      { label: "Portuguese", value: "pt" },
-      { label: "Russian", value: "ru" },
-      { label: "Japanese", value: "ja" },
-      { label: "Korean", value: "ko" },
-      { label: "Chinese", value: "zh" },
-    ],
-  },
-  render: withTemplate,
-};
-
-export const NoDefaultValue: Story = {
-  args: {
-    items: [
-      { label: "Apple", value: "apple" },
-      { label: "Banana", value: "banana" },
-      { label: "Cherry", value: "cherry" },
-      { label: "Date", value: "date" },
-      { label: "Elderberry", value: "elderberry" },
-    ],
-  },
-  render: withTemplate,
-};
-
-export const CustomEmptyResult: Story = {
-  args: {
-    items: [
-      { label: "Red", value: "red" },
-      { label: "Blue", value: "blue" },
-      { label: "Green", value: "green" },
-    ],
-  },
-  render: (args) => (
-    <Combobox {...args}>
-      <ComboboxTrigger />
-      <ComboboxContent emptyResult="No colors found" side="top" w="240" />
-    </Combobox>
-  ),
-};
-
-export const LongList: Story = {
-  args: {
-    items: Array.from({ length: 50 }, (_, i) => ({
-      label: `Item ${i + 1}`,
-      value: `item-${i + 1}`,
-    })),
-  },
-  render: withTemplate,
-};
-
-export const CustomTrigger: Story = {
-  args: {
-    items: [
-      { label: "Small", value: "sm" },
-      { label: "Medium", value: "md" },
-      { label: "Large", value: "lg" },
-    ],
-  },
-  render: (args) => (
-    <Combobox {...args}>
-      <ComboboxTrigger asChild>
-        <Button appearance="primary">Select Size</Button>
-      </ComboboxTrigger>
-      <ComboboxContent side="top" w="240" />
-    </Combobox>
-  ),
-};
-
-const CallBack = (args: ComponentPropsWithoutRef<typeof Combobox>) => {
-  const [selectedValue, setSelectedValue] = useState<string>("");
-
-  return (
-    <Flex alignItems="center">
-      <Combobox
-        {...args}
-        onSelect={(value) => {
-          setSelectedValue(value);
-        }}
-      >
-        <ComboboxTrigger />
-        <ComboboxContent side="top" w="240" />
-      </Combobox>
-      <Text>Selected value: {selectedValue || "None"}</Text>
-    </Flex>
-  );
-};
-
-export const WithOnSelectCallback: Story = {
-  args: {
-    items: [
-      { label: "Option A", value: "a" },
-      { label: "Option B", value: "b" },
-      { label: "Option C", value: "c" },
-    ],
-  },
-  render: CallBack,
-};
-
-const MultipleCallBack = (args: ComponentPropsWithoutRef<typeof Combobox>) => {
-  const [selectedValues, setSelectedValues] = useState<string[]>([]);
-
-  const handleSelect = (value: string) => {
-    setSelectedValues((prevValues) => {
-      if (prevValues.includes(value)) {
-        return prevValues.filter((v) => v !== value);
-      } else {
-        return [...prevValues, value];
-      }
-    });
-  };
-
-  return (
-    <Flex alignItems="center" flexDirection="column" gap="8">
-      <Combobox {...args} onSelect={handleSelect}>
-        <ComboboxTrigger title="Select Items" />
-        <ComboboxContent side="top" w="240" />
-      </Combobox>
-      <Text>
-        Selected values:{" "}
-        {selectedValues.length > 0 ? selectedValues.join(", ") : "None"}
-      </Text>
-    </Flex>
-  );
-};
-
-export const Multiple: Story = {
-  args: {
-    items: [
-      { label: "Option A", value: "a" },
-      { label: "Option B", value: "b" },
-      { label: "Option C", value: "c" },
-    ],
-    mode: "multiple",
-  },
-  render: MultipleCallBack,
-};
-
 const users = [
   {
     email: "",
