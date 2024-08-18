@@ -14,7 +14,6 @@ type ComboBoxProps = BoxProps<
     defaultValue?: string;
     mode?: "multiple" | "single";
     onOpenChange?: (open: boolean) => void;
-    onSelect?: (value: string) => void;
     open?: boolean;
   }
 >;
@@ -25,7 +24,6 @@ export const Combobox = ({
   defaultValue = "",
   mode = "single",
   onOpenChange,
-  onSelect,
   open: openProp,
 }: Partial<ComboBoxProps>) => {
   const [open, setOpen] = useControllableState({
@@ -36,9 +34,7 @@ export const Combobox = ({
   const [value, setValue] = useState(defaultValue);
 
   return (
-    <ComboboxContext.Provider
-      value={{ mode, onSelect, open, setOpen, setValue, value }}
-    >
+    <ComboboxContext.Provider value={{ mode, open, setOpen, setValue, value }}>
       <Popover onOpenChange={setOpen} open={open}>
         {children}
       </Popover>
