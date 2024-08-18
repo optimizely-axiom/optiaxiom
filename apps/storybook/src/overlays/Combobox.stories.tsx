@@ -139,8 +139,8 @@ const SingleSelectExample = () => {
 
   return (
     <Flex alignItems="center" flexDirection="column" gap="8">
-      <Combobox onOpenChange={setOpen} onSelect={handleSelect} open={open}>
-        <ComboboxTrigger title="Select Item" />
+      <Combobox onOpenChange={setOpen} open={open}>
+        <ComboboxTrigger> Select Item</ComboboxTrigger>
         <ComboboxContent w="240">
           <CommandEmpty />
           <CommandList>
@@ -176,19 +176,21 @@ const MultipleSelectExample = () => {
 
   return (
     <Flex alignItems="center" flexDirection="column" gap="8">
-      <Combobox onSelect={handleSelect}>
-        <ComboboxTrigger title="Select Items" />
+      <Combobox>
+        <ComboboxTrigger> Select Items</ComboboxTrigger>
         <ComboboxContent w="240">
-          {items.map((item) => (
-            <CommandCheckboxItem
-              checked={selectedValues.includes(item.value)}
-              key={item.value}
-              onCheckedChange={() => handleSelect(item.value)}
-              value={item.value}
-            >
-              {item.label}
-            </CommandCheckboxItem>
-          ))}
+          <CommandList>
+            {items.map((item) => (
+              <CommandCheckboxItem
+                checked={selectedValues.includes(item.value)}
+                key={item.value}
+                onCheckedChange={() => handleSelect(item.value)}
+                value={item.value}
+              >
+                {item.label}
+              </CommandCheckboxItem>
+            ))}
+          </CommandList>
         </ComboboxContent>
       </Combobox>
       <Text>
