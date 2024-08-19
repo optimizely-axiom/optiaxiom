@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Flex, Text, Textarea } from "@optiaxiom/react";
+import { Field, Flex, Text, Textarea } from "@optiaxiom/react";
 
 export default {
   component: Textarea,
@@ -79,5 +79,16 @@ export const Decorators: Story = {
       <Textarea {...args} startDecorator={<Text>Top Section</Text>} />
       <Textarea {...args} endDecorator={<Text>Bottom Section</Text>} />
     </Flex>
+  ),
+};
+
+export const WrappingWithField: Story = {
+  args: {
+    defaultValue: "Some user input value",
+  },
+  render: (args) => (
+    <Field info="This is an important textarea" label="Form Label" required>
+      <Textarea {...args} />
+    </Field>
   ),
 };
