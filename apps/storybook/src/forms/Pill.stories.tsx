@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Avatar, Box, Button, Flex, Pill, Text } from "@optiaxiom/react";
+import { Avatar, Box, Button, Flex, Text } from "@optiaxiom/react";
+import { Pill } from "@optiaxiom/react/unstable";
 import { useState } from "react";
 
 export default {
