@@ -1,58 +1,51 @@
-import { type ReactNode, forwardRef } from "react";
+import { type KeyboardEvent, type ReactNode, forwardRef } from "react";
 
-import { Box, type BoxProps } from "../box";
+import { type BoxProps } from "../box";
 import { Button } from "../button";
-import { IconX } from "../icons/IconX";
-import { extractSprinkles } from "../sprinkles";
+import { Text } from "../text";
 import * as styles from "./Pill.css";
 
 type PillProps = BoxProps<
-  "div",
+  "button",
   {
     endDecorator?: ReactNode;
-    onClose?: () => void;
+    onRemove?: () => void;
     startDecorator?: ReactNode;
   } & styles.PillVariants
 >;
 
-export const Pill = forwardRef<HTMLDivElement, PillProps>(
+export const Pill = forwardRef<HTMLButtonElement, PillProps>(
   (
     {
       children,
       className,
       endDecorator,
-      onClose,
-      size = "lg",
+      onRemove,
+      size = "md",
       startDecorator,
       ...props
     },
     ref,
   ) => {
-    const { restProps, sprinkleProps } = extractSprinkles(props);
+    const handleKeyDown = (e: KeyboardEvent<HTMLButtonElement>) => {
+      if (e.key === "Backspace" && onRemove) {
+        onRemove();
+      }
+    };
 
     return (
-      <Box asChild {...styles.pill({ size }, className)} {...sprinkleProps}>
-        <Box ref={ref} {...restProps}>
-          {startDecorator && (
-            <Box asChild ml="4">
-              {startDecorator}
-            </Box>
-          )}
+      <Button
+        endDecorator={endDecorator}
+        onKeyDown={handleKeyDown}
+        ref={ref}
+        startDecorator={startDecorator}
+        {...styles.pill({ size }, className)}
+        {...props}
+      >
+        <Text display="block" fontSize="sm" truncate>
           {children}
-          {endDecorator ? (
-            <Box asChild>{endDecorator}</Box>
-          ) : (
-            !!onClose && (
-              <Button
-                appearance="secondary"
-                icon={<IconX height="12" {...styles.icon()} />}
-                size="sm"
-                {...styles.button()}
-              />
-            )
-          )}
-        </Box>
-      </Box>
+        </Text>
+      </Button>
     );
   },
 );

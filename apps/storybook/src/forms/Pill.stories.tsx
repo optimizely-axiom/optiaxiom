@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Avatar, Flex, Pill } from "@optiaxiom/react";
+import { Avatar, Box, Button, Flex, Pill, Text } from "@optiaxiom/react";
+import { useState } from "react";
 
 export default {
   component: Pill,
@@ -19,15 +20,9 @@ export const DifferentSizes: Story = {
     children: "Pill",
   },
   render: (args) => (
-    <Flex>
-      <Flex flexDirection="row">
-        <Pill {...args} size="md" />
-        <Pill {...args} size="lg" />
-      </Flex>
-      <Flex flexDirection="row">
-        <Pill {...args} size="md" />
-        <Pill {...args} size="lg" />
-      </Flex>
+    <Flex gap="xs">
+      <Pill {...args} size="md" />
+      <Pill {...args} size="lg" />
     </Flex>
   ),
 };
@@ -35,41 +30,61 @@ export const DifferentSizes: Story = {
 export const WithAvatar: Story = {
   args: {
     children: "Hello",
-    onClose: () => {},
   },
   render: (args) => (
-    <Flex>
-      <Flex flexDirection="row">
-        <Pill
-          {...args}
-          size="md"
-          startDecorator={<Avatar name="Jamie" size="xs" />}
-        />
-        <Pill
-          {...args}
-          size="lg"
-          startDecorator={<Avatar name="Jamie" size="xs" />}
-        />
-      </Flex>
-      <Flex flexDirection="row">
-        <Pill
-          {...args}
-          size="md"
-          startDecorator={<Avatar name="Jamie" size="xs" />}
-        />
-        <Pill
-          {...args}
-          size="lg"
-          startDecorator={<Avatar name="Jamie" size="xs" />}
-        />
-      </Flex>
+    <Flex gap="xs">
+      <Pill
+        {...args}
+        size="md"
+        startDecorator={<Avatar name="Jamie" size="xs" />}
+      />
+      <Pill
+        {...args}
+        size="lg"
+        startDecorator={<Avatar name="Jamie" size="xs" />}
+      />
     </Flex>
   ),
 };
 
-export const WithCloseButton: Story = {
+export const LongText: Story = {
   args: {
-    children: "Hello",
-    onClose: () => {},
+    children: (
+      <Text fontSize="sm" truncate w="xl">
+        This is a very long text
+      </Text>
+    ),
+  },
+};
+
+export const RemovablePill: Story = {
+  args: {
+    children: "Removable Pill",
+  },
+  render: function RemovablePill() {
+    const [pills, setPills] = useState(["Pill 1", "Pill 2", "Pill 3"]);
+
+    const handleRemove = (index: number) => {
+      setPills(pills.filter((_, i) => i !== index));
+    };
+
+    const handleReset = () => {
+      setPills(["Pill 1", "Pill 2", "Pill 3"]);
+    };
+
+    return (
+      <Flex alignItems="center" flexDirection="column" gap="lg">
+        <Flex gap="xs">
+          {pills.map((pill, index) => (
+            <Pill key={pill} onRemove={() => handleRemove(index)}>
+              {pill}
+            </Pill>
+          ))}
+        </Flex>
+        <Box>
+          <Button onClick={handleReset}>Reset</Button>
+        </Box>
+      </Flex>
+    );
   },
 };
