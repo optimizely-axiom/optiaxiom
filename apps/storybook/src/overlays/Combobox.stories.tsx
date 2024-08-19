@@ -1,30 +1,20 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Avatar, Flex, Search, Text } from "@optiaxiom/react";
+import { Avatar, Button, Flex, Text } from "@optiaxiom/react";
 import {
   Combobox,
   ComboboxContent,
-  ComboboxTrigger,
-  Command,
+  ComboboxMultiTrigger,
+  ComboboxSingleTrigger,
   CommandCheckboxItem,
   CommandEmpty,
-  CommandInput,
+  CommandFooter,
   CommandItem,
   CommandList,
-  CommandSeparator,
 } from "@optiaxiom/react/unstable";
 import { useState } from "react";
 
 type Story = StoryObj<typeof Combobox>;
-
-// const withTemplate = (args: ComponentPropsWithoutRef<typeof Combobox>) => {
-//   return (
-//     <Combobox {...args}>
-//       <ComboboxTrigger />
-//       <ComboboxContent w="240" />
-//     </Combobox>
-//   );
-// };
 
 export default {
   component: Combobox,
@@ -65,68 +55,92 @@ const PeopleSelector = () => {
 
   return (
     <Combobox onOpenChange={setOpen} open={open}>
-      <ComboboxTrigger
-        title={
-          selectedUser
-            ? users.find((u) => u.id === selectedUser)?.name
-            : "Assign to"
-        }
-      ></ComboboxTrigger>
-      <ComboboxContent asChild>
-        <Command style={{ maxWidth: "280px", width: "280px" }}>
-          <CommandInput asChild>
-            <Search />
-          </CommandInput>
-          <CommandSeparator />
-          <CommandList>
-            <CommandEmpty>No results found.</CommandEmpty>
-            {users.map((user) => (
-              <CommandItem
-                key={user.id}
-                keywords={[user.name, user.email]}
-                onSelect={(currentValue) => {
-                  setSelectedUser(
-                    currentValue === selectedUser ? "" : currentValue,
-                  );
-                  setOpen(false);
-                }}
-                value={user.id}
-              >
-                <Flex alignItems="center" flexDirection="row" gap="8" p="2">
-                  <Avatar
-                    colorScheme="blue"
-                    name={user.name}
-                    size="md"
-                    src={user.src}
-                  />
-                  <Flex flexDirection="column" gap="4">
-                    <Text>{user.name}</Text>
-                    {user.email && <Text color="dark.200">{user.email}</Text>}
-                  </Flex>
+      <ComboboxSingleTrigger title="Assign people" />
+
+      <ComboboxContent>
+        <CommandEmpty
+          alignItems="center"
+          display="flex"
+          justifyContent="center"
+        >
+          <Button m="4" w="full">
+            +Add people
+          </Button>
+        </CommandEmpty>
+        <CommandList>
+          {users.map((user) => (
+            <CommandItem
+              key={user.id}
+              keywords={[user.name, user.email]}
+              onSelect={(currentValue) => {
+                setSelectedUser(
+                  currentValue === selectedUser ? "" : currentValue,
+                );
+                setOpen(false);
+              }}
+              value={user.name}
+            >
+              <Flex alignItems="center" flexDirection="row" gap="8" p="2">
+                <Avatar
+                  colorScheme="blue"
+                  name={user.name}
+                  size="md"
+                  src={user.src}
+                />
+                <Flex flexDirection="column" gap="4">
+                  <Text>{user.name}</Text>
+                  {user.email && <Text color="dark.200">{user.email}</Text>}
                 </Flex>
-              </CommandItem>
-            ))}
-          </CommandList>
-        </Command>
+              </Flex>
+            </CommandItem>
+          ))}
+        </CommandList>
       </ComboboxContent>
     </Combobox>
   );
 };
 
-export const People: Story = {
-  render: PeopleSelector,
-};
-
 const items = [
-  { label: "English", value: "en" },
-  { label: "French", value: "fr" },
-  { label: "German", value: "de" },
-  { label: "Spanish", value: "es" },
-  { label: "Portuguese", value: "pt" },
-  { label: "Russian", value: "ru" },
-  { label: "Japanese", value: "ja" },
-  { label: "Korean", value: "ko" },
-  { label: "Chinese", value: "zh" },
+  "English",
+  "French",
+  "German",
+  "Spanish",
+  "Portuguese",
+  "Russian",
+  "Japanese",
+  "Korean",
+  "Chinese (Simplified)",
+  "Italian",
+  "Dutch",
+  "Polish",
+  "Swedish",
+  "Danish",
+  "Finnish",
+  "Norwegian",
+  "Turkish",
+  "Arabic",
+  "Hindi",
+  "Bengali",
+  "Vietnamese",
+  "Thai",
+  "Indonesian",
+  "Greek",
+  "Czech",
+  "Romanian",
+  "Hungarian",
+  "Hebrew",
+  "Ukrainian",
+  "Swahili",
+  "Malay",
+  "Tagalog",
+  "Persian",
+  "Tamil",
+  "Urdu",
+  "Afrikaans",
+  "Bulgarian",
+  "Catalan",
+  "Croatian",
+  "Lithuanian",
 ];
 
 const SingleSelectExample = () => {
@@ -139,25 +153,32 @@ const SingleSelectExample = () => {
 
   return (
     <Flex alignItems="center" flexDirection="column" gap="8">
-      <Combobox onOpenChange={setOpen} open={open}>
-        <ComboboxTrigger> Select Item</ComboboxTrigger>
+      <Combobox defaultValue={selectedValue} onOpenChange={setOpen} open={open}>
+        <ComboboxSingleTrigger title="Select Item" />
         <ComboboxContent w="240">
-          <CommandEmpty />
-          <CommandList>
+          <CommandEmpty
+            alignItems="center"
+            display="flex"
+            justifyContent="center"
+          >
+            <Button m="4" w="full">
+              +Add tag
+            </Button>
+          </CommandEmpty>
+          <CommandList style={{ maxHeight: "30dvh" }}>
             {items.map((item) => (
               <CommandItem
-                key={item.value}
+                key={item}
                 onSelect={() => {
-                  handleSelect(item.value);
+                  handleSelect(item);
                   setOpen(false);
                 }}
-                value={item.value}
+                value={item}
               >
-                {item.label}
+                {item}
               </CommandItem>
             ))}
           </CommandList>
-          <Flex>Clear All</Flex>
         </ComboboxContent>
       </Combobox>
       <Text>Selected value: {selectedValue || "None"}</Text>
@@ -167,6 +188,7 @@ const SingleSelectExample = () => {
 
 const MultipleSelectExample = () => {
   const [selectedValues, setSelectedValues] = useState<string[]>([]);
+  const [open, setOpen] = useState(false);
 
   const handleSelect = (value: string) => {
     setSelectedValues((prev) =>
@@ -176,21 +198,31 @@ const MultipleSelectExample = () => {
 
   return (
     <Flex alignItems="center" flexDirection="column" gap="8">
-      <Combobox>
-        <ComboboxTrigger> Select Items</ComboboxTrigger>
+      <Combobox
+        mode="multiple"
+        onOpenChange={setOpen}
+        open={open}
+        value={selectedValues}
+      >
+        <ComboboxMultiTrigger maxW="full" title="Select Items" w="240" />
         <ComboboxContent w="240">
-          <CommandList>
+          <CommandList style={{ maxHeight: "30dvh" }}>
             {items.map((item) => (
               <CommandCheckboxItem
-                checked={selectedValues.includes(item.value)}
-                key={item.value}
-                onCheckedChange={() => handleSelect(item.value)}
-                value={item.value}
+                key={item}
+                onCheckedChange={() => handleSelect(item)}
+                value={item}
               >
-                {item.label}
+                {item}
               </CommandCheckboxItem>
             ))}
           </CommandList>
+          <CommandFooter>
+            <Button onClick={() => setSelectedValues([])}>Clear All</Button>
+            <Button appearance="primary" onClick={() => setOpen(false)}>
+              Done
+            </Button>
+          </CommandFooter>
         </ComboboxContent>
       </Combobox>
       <Text>
@@ -201,10 +233,119 @@ const MultipleSelectExample = () => {
   );
 };
 
-export const SingleSelect: Story = {
+export const Basic: Story = {
   render: SingleSelectExample,
 };
 
-export const MultipleSelect: Story = {
+export const MultiSelect: Story = {
   render: MultipleSelectExample,
+};
+
+export const People: Story = {
+  render: PeopleSelector,
+};
+
+const itemsWithDisabled = [
+  { disabled: false, value: "English" },
+  { disabled: false, value: "French" },
+  { disabled: true, value: "German" },
+  { disabled: false, value: "Spanish" },
+  { disabled: false, value: "Portuguese" },
+  { disabled: true, value: "Russian" },
+  { disabled: false, value: "Japanese" },
+  { disabled: false, value: "Korean" },
+  { disabled: false, value: "Chinese (Simplified)" },
+  { disabled: true, value: "Italian" },
+];
+
+const DisabledItemsExample = () => {
+  const [singleSelectedValue, setSingleSelectedValue] = useState<string>("");
+  const [multiSelectedValues, setMultiSelectedValues] = useState<string[]>([]);
+  const [singleOpen, setSingleOpen] = useState(false);
+  const [multiOpen, setMultiOpen] = useState(false);
+
+  const handleSingleSelect = (value: string) => {
+    setSingleSelectedValue(value);
+    setSingleOpen(false);
+  };
+
+  const handleMultiSelect = (value: string) => {
+    setMultiSelectedValues((prev) =>
+      prev.includes(value) ? prev.filter((v) => v !== value) : [...prev, value],
+    );
+  };
+
+  return (
+    <Flex alignItems="center" flexDirection="column" gap="16">
+      <Flex alignItems="center" flexDirection="column" gap="8">
+        <Text fontWeight="500">Single Select with Disabled Items</Text>
+        <Combobox
+          defaultValue={singleSelectedValue}
+          onOpenChange={setSingleOpen}
+          open={singleOpen}
+        >
+          <ComboboxSingleTrigger title="Select Language" />
+          <ComboboxContent w="240">
+            <CommandList style={{ maxHeight: "30dvh" }}>
+              {itemsWithDisabled.map((item) => (
+                <CommandItem
+                  disabled={item.disabled}
+                  key={item.value}
+                  onSelect={() => handleSingleSelect(item.value)}
+                  value={item.value}
+                >
+                  {item.value} {item.disabled && "(Disabled)"}
+                </CommandItem>
+              ))}
+            </CommandList>
+          </ComboboxContent>
+        </Combobox>
+        <Text>Selected value: {singleSelectedValue || "None"}</Text>
+      </Flex>
+
+      <Flex alignItems="center" flexDirection="column" gap="8">
+        <Text fontWeight="500">Multiple Select with Disabled Items</Text>
+        <Combobox
+          mode="multiple"
+          onOpenChange={setMultiOpen}
+          open={multiOpen}
+          value={multiSelectedValues}
+        >
+          <ComboboxMultiTrigger maxW="full" title="Select Languages" w="240" />
+          <ComboboxContent w="240">
+            <CommandList style={{ maxHeight: "30dvh" }}>
+              {itemsWithDisabled.map((item) => (
+                <CommandCheckboxItem
+                  disabled={item.disabled}
+                  key={item.value}
+                  onCheckedChange={() => handleMultiSelect(item.value)}
+                  value={item.value}
+                >
+                  {item.value} {item.disabled && "(Disabled)"}
+                </CommandCheckboxItem>
+              ))}
+            </CommandList>
+            <CommandFooter>
+              <Button onClick={() => setMultiSelectedValues([])}>
+                Clear All
+              </Button>
+              <Button appearance="primary" onClick={() => setMultiOpen(false)}>
+                Done
+              </Button>
+            </CommandFooter>
+          </ComboboxContent>
+        </Combobox>
+        <Text>
+          Selected values:{" "}
+          {multiSelectedValues.length > 0
+            ? multiSelectedValues.join(", ")
+            : "None"}
+        </Text>
+      </Flex>
+    </Flex>
+  );
+};
+
+export const DisabledItems: Story = {
+  render: DisabledItemsExample,
 };

@@ -1,13 +1,5 @@
 import { theme } from "../styles";
-import {
-  type RecipeVariants,
-  createVar,
-  recipe,
-  style,
-} from "../vanilla-extract";
-
-const bgColorVar = createVar();
-const accentColorVar = createVar();
+import { recipe, style } from "../vanilla-extract";
 
 export const item = recipe({
   base: [
@@ -32,29 +24,11 @@ export const item = recipe({
           color: theme.colors["fg.disabled"],
         },
         "&[data-selected='true']": {
-          backgroundColor: bgColorVar,
-          color: accentColorVar,
+          backgroundColor: theme.colors["bg.input.disabled"],
+          color: theme.colors["fg.default"],
           cursor: "pointer",
         },
       },
     }),
   ],
-  variants: {
-    colorScheme: {
-      danger: style({
-        vars: {
-          [accentColorVar]: theme.colors["fg.error"],
-          [bgColorVar]: theme.colors["bg.error"],
-        },
-      }),
-      neutral: style({
-        vars: {
-          [accentColorVar]: theme.colors["fg.default"],
-          [bgColorVar]: theme.colors["bg.input.disabled"],
-        },
-      }),
-    },
-  },
 });
-
-export type ItemVariants = RecipeVariants<typeof item>;

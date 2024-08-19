@@ -1,13 +1,9 @@
-import { createContext } from "react";
+import { createContext } from "@radix-ui/react-context";
 
-export type ComboboxContextType = {
-  mode?: "multiple" | "single";
-  open?: boolean;
+export const [ComboboxContextProvider, useComboboxContext] = createContext<{
+  mode?: "multiple" | "single" | undefined;
+  open?: boolean | undefined;
   setOpen: (open: boolean) => void;
-  setValue: (value: string) => void;
-  value: string;
-};
-
-export const ComboboxContext = createContext<ComboboxContextType | undefined>(
-  undefined,
-);
+  setValue: (value: string | string[]) => void;
+  value?: string | string[] | undefined;
+}>("Combobox");

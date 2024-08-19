@@ -1,12 +1,7 @@
-import {
-  type ComponentPropsWithRef,
-  type ReactNode,
-  forwardRef,
-  useContext,
-} from "react";
+import { type ComponentPropsWithRef, type ReactNode, forwardRef } from "react";
 
 import { type BoxProps } from "../box";
-import { ComboboxContext } from "../combobox-context";
+import { useComboboxContext } from "../combobox-context";
 import { Command } from "../command";
 import { CommandInput } from "../command-input";
 import { CommandSeparator } from "../command-separator";
@@ -22,7 +17,7 @@ type ComboboxContentProps = BoxProps<
 
 export const ComboboxContent = forwardRef<HTMLDivElement, ComboboxContentProps>(
   ({ asChild, children, ...props }, ref) => {
-    const context = useContext(ComboboxContext);
+    const context = useComboboxContext("Combobox");
     if (!context)
       throw new Error("ComboboxContent must be used within a Combobox");
 
@@ -31,11 +26,11 @@ export const ComboboxContent = forwardRef<HTMLDivElement, ComboboxContentProps>(
         {asChild ? (
           children
         ) : (
-          <Command alignItems="center">
+          <Command>
             <CommandInput asChild>
               <Search m="2" />
             </CommandInput>
-            <CommandSeparator />
+            <CommandSeparator alwaysRender />
             {children}
           </Command>
         )}
