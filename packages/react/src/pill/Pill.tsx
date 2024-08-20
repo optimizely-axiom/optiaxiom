@@ -1,4 +1,4 @@
-import { type KeyboardEvent, type ReactNode, forwardRef } from "react";
+import { type KeyboardEvent, forwardRef } from "react";
 
 import { type BoxProps } from "../box";
 import { Button } from "../button";
@@ -6,11 +6,9 @@ import { Text } from "../text";
 import * as styles from "./Pill.css";
 
 type PillProps = BoxProps<
-  "button",
+  typeof Button,
   {
-    endDecorator?: ReactNode;
     onRemove?: () => void;
-    startDecorator?: ReactNode;
   } & styles.PillVariants
 >;
 
