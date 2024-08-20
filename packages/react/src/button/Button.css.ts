@@ -23,7 +23,7 @@ export const button = recipe({
       transition: "colors",
     },
     style({
-      borderRadius: theme.borderRadius.sm,
+      borderRadius: theme.borderRadius.md,
       cursor: "pointer",
       paddingInline: paddingInlineVar,
       position: "relative",
@@ -122,7 +122,7 @@ export const button = recipe({
         h: "md",
       },
       lg: {
-        fontSize: "lg",
+        fontSize: "md",
         gap: "4",
         h: "lg",
       },

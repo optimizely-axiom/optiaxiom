@@ -13,54 +13,126 @@ export default {
 
 type Story = StoryObj<typeof Button>;
 
-const Variants: Story = {
+const sizes = ["sm", "md", "lg"] as const;
+const appearances = [
+  "default",
+  "primary",
+  "secondary",
+  "danger",
+  "danger-outline",
+] as const;
+
+export const Appearance: Story = {
+  args: {
+    children: "Button",
+  },
   render: (args) => (
-    <Flex flexDirection="column" gap="sm">
-      {variants.map(([variant, label]) => (
-        <Flex flexDirection="row" gap="sm" key={variant}>
+    <Flex>
+      {appearances.map((appearance) => (
+        <Flex alignItems="center" flexDirection="row" gap="sm" key={appearance}>
           {sizes.map((size) => (
-            <Button {...args} key={size} size={size} variant={variant}>
-              {label} - {size}
-            </Button>
+            <Button {...args} appearance={appearance} key={size} size={size} />
           ))}
-          <Button disabled {...args} variant={variant}>
-            Disabled
-          </Button>
         </Flex>
       ))}
     </Flex>
   ),
 };
 
-const sizes = ["sm", "md", "lg"] as const;
-const appearances = [
-  ["default", "Default"],
-  ["primary", "Primary"],
-  ["danger", "Danger"],
-  ["secondary", "Secondary"],
-] as const;
-const variants = [
-  ["solid", "Solid"],
-  ["outline", "Outline"],
-  ["subtle", "Subtle"],
-] as const;
-
-export const Basic: Story = {
-  ...Variants,
+export const Sizes: Story = {
+  args: {
+    children: "Button",
+  },
+  render: (args) => (
+    <Flex flexDirection="row">
+      {sizes.map((size) => (
+        <Button {...args} key={size} size={size}>
+          {size}
+        </Button>
+      ))}
+    </Flex>
+  ),
 };
 
-export const Primary: Story = {
-  ...Variants,
+export const Disabled: Story = {
   args: {
-    colorScheme: "primary",
+    children: "Button",
+    disabled: true,
   },
+  render: (args) => (
+    <Flex flexDirection="row">
+      {sizes.map((size) => (
+        <Button {...args} key={size} size={size}>
+          Button
+        </Button>
+      ))}
+    </Flex>
+  ),
 };
 
-export const Danger: Story = {
-  ...Variants,
+export const StandaloneIcon: Story = {
   args: {
-    colorScheme: "danger",
+    icon: <IconChevronDown />,
   },
+  render: (args) => (
+    <Flex flexDirection="row">
+      {sizes.map((size) => (
+        <Button {...args} key={size} size={size} />
+      ))}
+    </Flex>
+  ),
+};
+
+export const Icons: Story = {
+  args: {
+    children: "Button",
+  },
+  render: (args) => (
+    <Flex>
+      <Flex flexDirection="row">
+        {sizes.map((size) => (
+          <Button
+            {...args}
+            icon={<IconChevronDown />}
+            iconPosition="start"
+            key={size}
+            size={size}
+          />
+        ))}
+      </Flex>
+      <Flex flexDirection="row">
+        {sizes.map((size) => (
+          <Button
+            {...args}
+            icon={<IconChevronDown />}
+            iconPosition="end"
+            key={size}
+            size={size}
+          />
+        ))}
+      </Flex>
+    </Flex>
+  ),
+};
+
+export const Link: Story = {
+  args: {
+    asChild: true,
+  },
+  render: (args) => (
+    <Flex flexDirection="row">
+      <Button {...args}>
+        <a href="/">Sample Link</a>
+      </Button>
+      <Button {...args} icon={<IconChevronDown />}>
+        <a href="/">Sample Link</a>
+      </Button>
+      <Button {...args} icon={<IconChevronDown />}>
+        {/* eslint-disable-next-line jsx-a11y/anchor-has-content */}
+        <a href="/" />
+      </Button>
+    </Flex>
+  ),
 };
 
 export const Upload: Story = {
@@ -87,97 +159,6 @@ export const Upload: Story = {
           </VisuallyHidden>
         </label>
       </Button>
-    </Flex>
-  ),
-};
-
-export const appearance: Story = {
-  render: (args) => (
-    <Flex>
-      {appearances.map(([appearance, label]) => (
-        <Button {...args} appearance={appearance} key={appearance}>
-          {label}
-        </Button>
-      ))}
-    </Flex>
-  ),
-};
-
-export const Link: Story = {
-  args: {
-    asChild: true,
-  },
-  render: (args) => (
-    <Flex flexDirection="row">
-      <Button {...args}>
-        <a href="/">Sample Link</a>
-      </Button>
-      <Button {...args} icon={<IconChevronDown />}>
-        <a href="/">Sample Link</a>
-      </Button>
-      <Button {...args} icon={<IconChevronDown />}>
-        {/* eslint-disable-next-line jsx-a11y/anchor-has-content */}
-        <a href="/" />
-      </Button>
-    </Flex>
-  ),
-};
-
-export const StandaloneIcon: Story = {
-  render: (args) => (
-    <Flex flexDirection="row">
-      <Button {...args} icon={<IconChevronDown />} size="sm" />
-      <Button {...args} icon={<IconChevronDown />} size="md" />
-      <Button {...args} icon={<IconChevronDown />} size="lg" />
-    </Flex>
-  ),
-};
-export const Icons: Story = {
-  args: {
-    children: "Button",
-  },
-  render: (args) => (
-    <Flex>
-      <Flex flexDirection="row">
-        <Button
-          {...args}
-          icon={<IconChevronDown />}
-          iconPosition="start"
-          size="sm"
-        />
-        <Button
-          {...args}
-          icon={<IconChevronDown />}
-          iconPosition="start"
-          size="md"
-        />
-        <Button
-          {...args}
-          icon={<IconChevronDown />}
-          iconPosition="start"
-          size="lg"
-        />
-      </Flex>
-      <Flex flexDirection="row">
-        <Button
-          {...args}
-          icon={<IconChevronDown />}
-          iconPosition="end"
-          size="sm"
-        />
-        <Button
-          {...args}
-          icon={<IconChevronDown />}
-          iconPosition="end"
-          size="md"
-        />
-        <Button
-          {...args}
-          icon={<IconChevronDown />}
-          iconPosition="end"
-          size="lg"
-        />
-      </Flex>
     </Flex>
   ),
 };
