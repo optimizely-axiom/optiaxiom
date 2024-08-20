@@ -3,6 +3,7 @@ import { type KeyboardEvent, forwardRef } from "react";
 import { type BoxProps } from "../box";
 import { Button } from "../button";
 import { Text } from "../text";
+import { Tooltip } from "../tooltip";
 import * as styles from "./Pill.css";
 
 type PillProps = BoxProps<
@@ -40,9 +41,11 @@ export const Pill = forwardRef<HTMLButtonElement, PillProps>(
         {...styles.pill({ size }, className)}
         {...props}
       >
-        <Text display="block" fontSize="sm" truncate>
-          {children}
-        </Text>
+        <Tooltip auto content={children}>
+          <Text display="block" fontSize="sm" truncate>
+            {children}
+          </Text>
+        </Tooltip>
       </Button>
     );
   },
