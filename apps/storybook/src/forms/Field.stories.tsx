@@ -6,7 +6,7 @@ import { IconCalendar } from "@tabler/icons-react";
 export default {
   args: {
     children: <Input placeholder="Enter text..." />,
-    label: "Form label",
+    label: "Label",
   },
   component: Field,
 } as Meta<typeof Field>;

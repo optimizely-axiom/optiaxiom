@@ -1,10 +1,5 @@
 import { theme } from "../styles";
-import {
-  type RecipeVariants,
-  recipe,
-  responsiveStyle,
-  style,
-} from "../vanilla-extract";
+import { type RecipeVariants, recipe, style } from "../vanilla-extract";
 
 const marker = style({});
 
@@ -31,7 +26,7 @@ export const wrapper = recipe({
           borderColor: theme.colors["border.brand"],
         },
         [`&:has(${marker}:focus):not([data-invalid])`]: {
-          outlineColor: theme.colors["brand.200"],
+          outlineColor: theme.colors["brand.300"],
           outlineOffset: "1px",
           outlineStyle: "solid",
           outlineWidth: "2px",
@@ -63,10 +58,11 @@ export const input = recipe({
     {
       bg: "transparent",
       flex: "auto",
+      fontWeight: "400",
     },
     style({
-      fontSize: "16px",
-      lineHeight: "22px",
+      fontSize: "14px",
+      lineHeight: "24px",
       minWidth: "0",
       outline: "2px solid transparent",
 
@@ -80,11 +76,6 @@ export const input = recipe({
         "&[data-readonly]": {
           cursor: "default",
         },
-      },
-    }),
-    responsiveStyle({
-      sm: {
-        fontSize: "14px",
       },
     }),
   ],
