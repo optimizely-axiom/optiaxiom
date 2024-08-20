@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Avatar, Box, Button, Flex, Text } from "@optiaxiom/react";
+import { Avatar, Box, Button, Flex } from "@optiaxiom/react";
 import { Pill } from "@optiaxiom/react/unstable";
 import { useState } from "react";
 
@@ -50,11 +50,8 @@ export const WithAvatar: Story = {
 
 export const LongText: Story = {
   args: {
-    children: (
-      <Text fontSize="sm" truncate w="xl">
-        This is a very long text
-      </Text>
-    ),
+    children: "This is a very long text",
+    w: "xl",
   },
 };
 
