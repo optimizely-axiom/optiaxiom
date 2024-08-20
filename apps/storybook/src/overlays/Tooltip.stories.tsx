@@ -138,7 +138,7 @@ export const AllPositions: Story = {
 export const Truncate: Story = {
   args: {
     auto: true,
-    content: "Sample Tooltip",
+    content: "The quick brown fox jumps over the lazy dog.",
   },
   render: (args) => (
     <Flex>
