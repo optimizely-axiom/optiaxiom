@@ -12,6 +12,7 @@ export * from "./command-input";
 export * from "./command-item";
 export * from "./command-list";
 export * from "./command-separator";
+export * from "./data-table";
 export * from "./pill";
 export * from "./table";
 export * from "./table-body";

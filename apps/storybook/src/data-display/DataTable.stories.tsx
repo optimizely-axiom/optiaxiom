@@ -3,14 +3,13 @@ import type { Meta, StoryObj } from "@storybook/react";
 import {
   Box,
   Button,
-  type ColumnDef,
-  DataTable,
   Menu,
   MenuContent,
   MenuItem,
   MenuTrigger,
   Text,
 } from "@optiaxiom/react";
+import { type ColumnDef, DataTable } from "@optiaxiom/react/unstable";
 import { IconArrowDown } from "@tabler/icons-react";
 
 type Payment = {
