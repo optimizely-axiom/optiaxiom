@@ -9,6 +9,7 @@ export const avatar = recipe({
     {
       alignItems: "center",
       display: "inline-flex",
+      flex: "none",
       justifyContent: "center",
       overflow: "hidden",
       rounded: "full",
@@ -18,10 +19,10 @@ export const avatar = recipe({
 
       selectors: {
         [`${styles.className} &:not(:first-child)`]: {
-          marginLeft: "-12px",
+          marginLeft: "-3px",
         },
         [`${styles.className} &`]: {
-          border: `2px solid ${theme.colors["white"]}`,
+          outline: `1px solid ${theme.colors["white"]}`,
         },
       },
     }),
@@ -44,16 +45,16 @@ export const avatar = recipe({
         yellow: "yellow",
       } as const,
       (color) => ({
-        bg: `${color}.50`,
-        color: `${color}.500`,
+        bg: `${color}.500`,
+        color: "white",
       }),
     ),
     size: {
       xs: { fontSize: "xs", size: "xs" },
-      sm: { fontSize: "sm", size: "sm" },
+      sm: { fontSize: "xs", size: "sm" },
       md: { fontSize: "md", size: "md" },
-      lg: { fontSize: "lg", size: "lg" },
-      xl: { fontSize: "xl", size: "xl" },
+      lg: { fontSize: "2xl", size: "48" },
+      xl: { fontSize: "4xl", size: "80" },
     },
   },
 });
@@ -72,11 +73,11 @@ export const fallback = recipe({
 
   variants: {
     size: {
-      xs: { px: "4" },
-      sm: { px: "6" },
-      md: { px: "8" },
-      lg: { px: "10" },
-      xl: { px: "20" },
+      xs: style({ padding: "3px 0.5px" }),
+      sm: style({ padding: "5px 2.5px" }),
+      md: style({ padding: "6px 3px" }),
+      lg: style({ padding: "10px 5px" }),
+      xl: style({ padding: "18px 10px" }),
     },
   },
 });

@@ -9,27 +9,23 @@ export const wrapper = recipe({
       border: "1",
       flexDirection: "row",
       gap: "0",
-      rounded: "sm",
+      rounded: "md",
     },
     style({
       borderColor: theme.colors["border.default"],
-      color: theme.colors["fg.default"],
+      color: theme.colors["bg.neutral.inverse"],
 
       selectors: {
         [`&:has(${marker}:focus):is([data-invalid])`]: {
-          outlineColor: theme.colors["red.200"],
+          outline: `2px solid ${theme.colors["red.200"]}`,
           outlineOffset: "1px",
-          outlineStyle: "solid",
-          outlineWidth: "2px",
         },
         [`&:has(${marker}:focus):not([data-invalid]):not([data-readonly])`]: {
           borderColor: theme.colors["border.brand"],
         },
         [`&:has(${marker}:focus):not([data-invalid])`]: {
-          outlineColor: theme.colors["brand.300"],
+          outline: `2px solid ${theme.colors["brand.300"]}`,
           outlineOffset: "1px",
-          outlineStyle: "solid",
-          outlineWidth: "2px",
         },
 
         "&:hover": {
@@ -58,11 +54,10 @@ export const input = recipe({
     {
       bg: "transparent",
       flex: "auto",
+      fontSize: "md",
       fontWeight: "400",
     },
     style({
-      fontSize: "14px",
-      lineHeight: "24px",
       minWidth: "0",
       outline: "2px solid transparent",
 
@@ -88,11 +83,11 @@ export const input = recipe({
       },
       md: {
         px: "8",
-        py: "4",
+        py: "6",
       },
       lg: {
         px: "8",
-        py: "8",
+        py: "10",
       },
     },
   },

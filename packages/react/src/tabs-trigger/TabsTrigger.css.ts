@@ -7,6 +7,8 @@ export const trigger = recipe({
   base: [
     marker,
     {
+      fontSize: "md",
+      fontWeight: "500",
       py: "4",
     },
     style({

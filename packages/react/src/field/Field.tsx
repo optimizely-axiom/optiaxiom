@@ -61,7 +61,6 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(
                     aria-hidden="true"
                     as="span"
                     color="fg.accent.red"
-                    fontSize="sm"
                     fontWeight="400"
                   >
                     *
@@ -108,7 +107,7 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(
         )}
 
         {description && (
-          <Text color="bg.neutral.inverse" fontSize="sm">
+          <Text color="fg.tertiary" fontSize="sm">
             {description}
           </Text>
         )}
