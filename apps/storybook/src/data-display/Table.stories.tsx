@@ -7,7 +7,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@optiaxiom/react";
+} from "@optiaxiom/react/unstable";
 
 export default {
   component: Table,
