@@ -14,11 +14,13 @@ export default {
       <>
         <AccordionItem value="item-1">
           <AccordionTrigger>First Item</AccordionTrigger>
-          <AccordionContent>Content for the first item.</AccordionContent>
+          <AccordionContent>
+            Content for the first item. Contains multiple lines of lorem ipsum.
+          </AccordionContent>
         </AccordionItem>
 
         <AccordionItem value="item-2">
-          <AccordionTrigger>Second Item</AccordionTrigger>
+          <AccordionTrigger chevron="end">Second Item</AccordionTrigger>
           <AccordionContent>
             Content for the second item. Contains multiple lines of lorem ipsum.
           </AccordionContent>
@@ -26,11 +28,12 @@ export default {
 
         <AccordionItem value="item-3">
           <AccordionTrigger>Third Item</AccordionTrigger>
-          <AccordionContent>Content for the third item.</AccordionContent>
+          <AccordionContent>
+            Content for the third item. Contains multiple lines of lorem ipsum.
+          </AccordionContent>
         </AccordionItem>
       </>
     ),
-    w: "320",
   },
   component: Accordion,
   title: "Data Display/Accordion",

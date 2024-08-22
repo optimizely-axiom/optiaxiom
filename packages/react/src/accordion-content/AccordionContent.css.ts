@@ -22,6 +22,8 @@ export const content = recipe({
   base: [
     {
       overflow: "hidden",
+      p: "xs",
+      pt: "0",
     },
     style({
       selectors: {
