@@ -6,7 +6,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@optiaxiom/react";
-import { IconArrowDown, IconCaretDownFilled } from "@tabler/icons-react";
+import { IconArrowRight, IconCaretDownFilled } from "@tabler/icons-react";
 
 export default {
   args: {
@@ -20,7 +20,7 @@ export default {
         </AccordionItem>
 
         <AccordionItem value="item-2">
-          <AccordionTrigger chevron="end">Second Item</AccordionTrigger>
+          <AccordionTrigger position="end">Second Item</AccordionTrigger>
           <AccordionContent>
             Content for the second item. Contains multiple lines of lorem ipsum.
           </AccordionContent>
@@ -74,7 +74,7 @@ export const Decorators: Story = {
         </AccordionItem>
 
         <AccordionItem value="item-3">
-          <AccordionTrigger endDecorator={<IconArrowDown />}>
+          <AccordionTrigger startDecorator={<IconArrowRight />}>
             Custom Arrow
           </AccordionTrigger>
           <AccordionContent>

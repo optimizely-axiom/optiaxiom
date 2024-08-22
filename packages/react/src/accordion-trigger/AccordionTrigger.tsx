@@ -11,34 +11,44 @@ import * as styles from "./AccordionTrigger.css";
 type AccordionTriggerProps = BoxProps<
   typeof RadixAccordion.Trigger,
   {
-    chevron?: "end" | "start";
     endDecorator?: ReactNode;
+    position?: "end" | "start";
+    startDecorator?: ReactNode;
   }
 >;
 
 export const AccordionTrigger = forwardRef<
   HTMLButtonElement,
   AccordionTriggerProps
->(({ chevron = "start", children, endDecorator, ...props }, ref) => {
-  const { restProps, sprinkleProps } = extractSprinkles(props);
+>(
+  (
+    { children, endDecorator, position = "start", startDecorator, ...props },
+    ref,
+  ) => {
+    const { restProps, sprinkleProps } = extractSprinkles(props);
+    const startIcon =
+      startDecorator ||
+      (position === "start" && !endDecorator && <IconAngleRight />);
+    const endIcon = endDecorator || (position === "end" && <IconAngleDown />);
 
-  return (
-    <Flex asChild {...styles.trigger()} {...sprinkleProps}>
-      <RadixAccordion.Trigger ref={ref} {...restProps}>
-        {chevron === "start" && (
-          <Box asChild {...styles.icon({ chevron })}>
-            {endDecorator ?? <IconAngleRight />}
-          </Box>
-        )}
-        <Box flex="1">{children}</Box>
-        {chevron === "end" && (
-          <Box asChild {...styles.icon({ chevron })}>
-            {endDecorator ?? <IconAngleDown />}
-          </Box>
-        )}
-      </RadixAccordion.Trigger>
-    </Flex>
-  );
-});
+    return (
+      <Flex asChild {...styles.trigger()} {...sprinkleProps}>
+        <RadixAccordion.Trigger ref={ref} {...restProps}>
+          {startIcon && (
+            <Box asChild {...styles.icon({ position: "start" })}>
+              {startIcon}
+            </Box>
+          )}
+          <Box flex="1">{children}</Box>
+          {endIcon && (
+            <Box asChild {...styles.icon({ position: "end" })}>
+              {endIcon}
+            </Box>
+          )}
+        </RadixAccordion.Trigger>
+      </Flex>
+    );
+  },
+);
 
 AccordionTrigger.displayName = "@optiaxiom/react/AccordionTrigger";
