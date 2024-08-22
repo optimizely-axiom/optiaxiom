@@ -34,7 +34,7 @@ export const icon = recipe({
     },
   ],
   variants: {
-    chevron: {
+    position: {
       end: style({
         selectors: {
           "[data-state=open] > &": {
