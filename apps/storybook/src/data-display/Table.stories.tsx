@@ -85,6 +85,22 @@ export const Basic: Story = {
   ),
 };
 
+export const NoRow: Story = {
+  render: () => (
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHead>Invoice</TableHead>
+          <TableHead>Status</TableHead>
+          <TableHead>Method</TableHead>
+          <TableHead>Amount</TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody></TableBody>
+    </Table>
+  ),
+};
+
 export const WithColspan: Story = {
   render: () => (
     <Table>

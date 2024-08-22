@@ -8,16 +8,14 @@ const row = styles.row().className;
 export const cell = recipe({
   base: [
     {
-      p: "12",
+      borderColor: "border.tertiary",
+      color: "fg.secondary",
+      fontSize: "md",
+      fontWeight: "500",
+      p: "16",
     },
     style({
-      ":last-of-type": {
-        borderRight: "0",
-      },
-      backgroundColor: "white",
-      borderBottom: `1px solid ${theme.colors["gray.200"]}`,
-      borderRight: `1px solid ${theme.colors["gray.200"]}`,
-      color: theme.colors["gray.600"],
+      borderBottomWidth: "1px",
       verticalAlign: "middle",
       wordBreak: "break-word",
 
