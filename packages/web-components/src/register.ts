@@ -14,13 +14,20 @@ import {
 } from "react";
 import { type Root, createRoot } from "react-dom/client";
 
+import { mapping } from "./mapping";
 import { sheets } from "./styles";
 
 const CustomContextEvent = "__ax_context";
+const CustomRenderEvent = "__ax_render";
 
 declare global {
   interface ElementEventMap {
     [CustomContextEvent]: CustomEvent<{ context: unknown }>;
+    [CustomRenderEvent]: CustomEvent<{ rendered: boolean }>;
+  }
+
+  interface Element {
+    queue: Element[];
   }
 }
 
@@ -97,6 +104,29 @@ export function register<
 
     connectedCallback() {
       /**
+       * Dispatch a custom event to wait for parents to finish rendering.
+       */
+      let parent = this.parentElement;
+      while (parent) {
+        if (parent.nodeName.toLowerCase() in mapping) {
+          const renderEvent = new CustomEvent<{ rendered: boolean }>(
+            CustomRenderEvent,
+            {
+              cancelable: true,
+              detail: { rendered: false },
+            },
+          );
+          parent.dispatchEvent(renderEvent);
+          if (!renderEvent.detail.rendered) {
+            parent.queue = parent.queue ?? [];
+            parent.queue.push(this);
+            return;
+          }
+        }
+        parent = parent.parentElement;
+      }
+
+      /**
        * Dispatch a custom event to grab the parent preact context.
        */
       const contextEvent = new CustomEvent<{ context: unknown }>(
@@ -140,8 +170,28 @@ const withContextConsumer = (element: Element) => {
     event.detail.context = _context;
   });
 
+  let rendered = false;
+  element.addEventListener(CustomRenderEvent, (event) => {
+    event.detail.rendered = rendered;
+  });
+
   return (_props: unknown, context: unknown) => {
     _context = context;
+    rendered = true;
+
+    useLayoutEffect(() => {
+      if (element.queue) {
+        let node;
+        while ((node = element.queue.shift())) {
+          if (
+            "connectedCallback" in node &&
+            typeof node.connectedCallback === "function"
+          ) {
+            node.connectedCallback();
+          }
+        }
+      }
+    }, []);
 
     return null;
   };
