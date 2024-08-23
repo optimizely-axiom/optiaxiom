@@ -3,7 +3,12 @@
 import { Tooltip } from "@optiaxiom/web-components/Tooltip";
 import { describe, expect, it } from "vitest";
 
-import { render, screen, waitForElementToBeRemoved } from "../vitest.rtl";
+import {
+  render,
+  screen,
+  waitForElementToBeRemoved,
+  withinShadowRoot,
+} from "../vitest.rtl";
 
 describe("Tooltip component", () => {
   function setup(overrides = {}) {
@@ -44,10 +49,16 @@ describe("Tooltip component", () => {
   });
 
   it("should render tooltip styles", async () => {
-    const { user } = setup();
+    const { user } = setup({ "data-testid": "tooltip" });
 
     await user.hover(screen.getByText("Tooltip Target"));
-    expect((await screen.findAllByText("Tooltip Content"))[0]).toHaveStyle({
+    expect(
+      (
+        await withinShadowRoot(screen.getByTestId("tooltip")).findAllByText(
+          "Tooltip Content",
+        )
+      )[0],
+    ).toHaveStyle({
       color: "#fff",
     });
   });
