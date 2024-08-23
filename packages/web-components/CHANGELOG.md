@@ -1,5 +1,12 @@
 # @optiaxiom/web-components
 
+## 0.1.0-next.4
+
+### Patch Changes
+
+- 218d9cd: add support for rendering portals
+- 218d9cd: render web component tree in order
+
 ## 0.1.0-next.3
 
 ### Patch Changes
