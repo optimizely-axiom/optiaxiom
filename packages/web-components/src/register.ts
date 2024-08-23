@@ -4,12 +4,15 @@
 
 import type { HTMLAttributes, ReactElement } from "react";
 
+import { options } from "preact";
 import {
   type ComponentType,
   type FunctionComponent,
   cloneElement,
+  createContext,
   createElement,
   forwardRef,
+  useContext,
   useLayoutEffect,
 } from "react";
 import { type Root, createRoot } from "react-dom/client";
@@ -19,6 +22,7 @@ import { sheets } from "./styles";
 
 const CustomContextEvent = "__ax_context";
 const CustomRenderEvent = "__ax_render";
+const CustomElementContext = createContext<HTMLElement | null>(null);
 
 declare global {
   interface ElementEventMap {
@@ -142,7 +146,7 @@ export function register<
 
       this.#observer.observe(this, { attributes: true });
       this.#vdom = cloneElement(
-        toVdom(this, withContextProvider(this.#vdomComponent, context))!,
+        toVdom(this, withContextProvider(this, this.#vdomComponent, context))!,
         this.#props,
       );
       this.#root.render(this.#vdom);
@@ -159,6 +163,24 @@ export function register<
     customElements.define(name, PreactElement);
   }
 }
+
+const original = options.vnode;
+options.vnode = (vnode) => {
+  original?.(vnode);
+
+  if (
+    typeof vnode.type !== "string" &&
+    vnode.type &&
+    "displayName" in vnode.type &&
+    vnode.type.displayName === "Portal"
+  ) {
+    if ("container" in vnode.props && vnode.props.container === undefined) {
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      const { shadowRoot } = useContext(CustomElementContext) ?? {};
+      vnode.props.container = shadowRoot;
+    }
+  }
+};
 
 const withContextConsumer = (element: Element) => {
   /**
@@ -201,6 +223,7 @@ const withContextConsumer = (element: Element) => {
  * Wrap an existing component with custom preact context.
  */
 const withContextProvider = <P extends { context?: unknown }>(
+  element: HTMLElement,
   Component: ComponentType<P>,
   context: unknown,
 ) => {
@@ -212,7 +235,11 @@ const withContextProvider = <P extends { context?: unknown }>(
 
     const props = Object.assign({}, rawProps);
     delete props.context;
-    return createElement<P>(Component, props);
+    return createElement(
+      CustomElementContext.Provider,
+      { value: element },
+      createElement<P>(Component, props),
+    );
   };
 };
 
