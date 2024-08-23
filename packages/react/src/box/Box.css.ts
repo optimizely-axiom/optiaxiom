@@ -8,6 +8,7 @@ export const box = recipe({
   base: style({
     "@layer": {
       [layers.reset]: {
+        WebkitFontSmoothing: "antialiased",
         border: `0 solid ${theme.colors["border.default"]}`,
         boxSizing: "border-box",
         fontFamily: theme.fontFamily.sans,
