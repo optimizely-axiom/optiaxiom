@@ -1,20 +1,36 @@
 import { createVar, recipe, style } from "../vanilla-extract";
 
 export const columnWidth = createVar();
-export const pinnedLeft = createVar();
+export const cellOffset = createVar();
+
+export const tableHeader = recipe({
+  base: [
+    {
+      bg: "white",
+    },
+    style({
+      position: "sticky",
+      top: 0,
+      zIndex: 2,
+    }),
+  ],
+});
 
 export const tableHead = recipe({
   base: [
+    {
+      bg: "white",
+    },
     style({
-      width: columnWidth,
+      minWidth: columnWidth,
     }),
   ],
   variants: {
     pinned: {
-      left: style({
-        left: pinnedLeft,
+      true: style({
+        left: cellOffset,
         position: "sticky",
-        zIndex: 100000,
+        zIndex: 2,
       }),
     },
   },
@@ -22,17 +38,19 @@ export const tableHead = recipe({
 
 export const tableCell = recipe({
   base: [
+    {
+      bg: "white",
+    },
     style({
-      width: columnWidth,
+      minWidth: columnWidth,
     }),
   ],
   variants: {
     pinned: {
-      left: style({
-        left: pinnedLeft,
-        opacity: "1",
+      true: style({
+        left: cellOffset,
         position: "sticky",
-        zIndex: 10000,
+        zIndex: 1,
       }),
     },
   },

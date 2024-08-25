@@ -14,7 +14,8 @@
     "cmdk",
     "combobox",
     "optiaxiom",
-    "optimizely"
+    "optimizely",
+    "tanstack"
   ],
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
