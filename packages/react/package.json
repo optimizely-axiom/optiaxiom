@@ -66,6 +66,7 @@
     "@reach/auto-id": "^0.18.0",
     "@tanstack/react-table": "^8.20.1",
     "@tanstack/table-core": "^8.20.1",
+    "@vanilla-extract/dynamic": "^2.1.2",
     "@vanilla-extract/sprinkles": "^1.6.2",
     "clsx": "^2.1.1",
     "cmdk": "^1.0.0",
