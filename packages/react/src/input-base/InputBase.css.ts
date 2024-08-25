@@ -1,5 +1,10 @@
 import { theme } from "../styles";
-import { type RecipeVariants, recipe, style } from "../vanilla-extract";
+import {
+  type RecipeVariants,
+  recipe,
+  responsiveStyle,
+  style,
+} from "../vanilla-extract";
 
 const marker = style({});
 
@@ -54,10 +59,14 @@ export const input = recipe({
     {
       bg: "transparent",
       flex: "auto",
-      fontSize: "md",
       fontWeight: "400",
     },
     style({
+      /*
+        line-height was set to 22px to adjust for the 1px border on top and bottom
+      */
+      fontSize: "16px",
+      lineHeight: "22px",
       minWidth: "0",
       outline: "2px solid transparent",
 
@@ -73,6 +82,14 @@ export const input = recipe({
         },
       },
     }),
+    responsiveStyle({
+      /*
+        Explicitly use 16px on mobile because otherwise iOS will zoom in on the page anytime the input is focused
+      */
+      sm: {
+        fontSize: "14px",
+      },
+    }),
   ],
 
   variants: {
@@ -83,11 +100,10 @@ export const input = recipe({
       },
       md: {
         px: "8",
-        py: "6",
+        py: "4",
       },
       lg: {
-        px: "8",
-        py: "10",
+        p: "8",
       },
     },
   },
