@@ -53,7 +53,7 @@ const columns: ColumnDef<Payment, string>[] = [
       }).format(typeof amount === "number" ? amount : 0);
       return <Box textAlign="end">{formatted}</Box>;
     },
-    header: "Amount",
+    header: () => <Box ml="auto">Amount</Box>,
   },
   {
     accessorKey: "createdAt",
@@ -70,7 +70,7 @@ const columns: ColumnDef<Payment, string>[] = [
   {
     accessorKey: "quantity",
     cell: ({ row }) => <Box textAlign="end">{row.getValue("quantity")}</Box>,
-    header: "Quantity",
+    header: () => <Box textAlign="end">Quantity</Box>,
   },
   {
     accessorKey: "totalPrice",
@@ -82,7 +82,7 @@ const columns: ColumnDef<Payment, string>[] = [
       }).format(typeof total === "number" ? total : 0);
       return <Box textAlign="end">{formatted}</Box>;
     },
-    header: "Total Price",
+    header: () => <Box textAlign="end">Total Price</Box>,
   },
   {
     accessorKey: "paymentMethod",

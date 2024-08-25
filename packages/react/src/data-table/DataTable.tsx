@@ -12,6 +12,7 @@ import React from "react";
 
 import { Box } from "../box";
 import { Button } from "../button";
+import { Flex } from "../flex";
 import { IconSort } from "../icons/IconSort";
 import { Pagination } from "../pagination";
 import { Table } from "../table";
@@ -77,7 +78,7 @@ export const DataTable = <TData, TValue>({
   return (
     <Box alignItems="center" display="flex" flexDirection="column">
       <Table>
-        <TableHeader>
+        <TableHeader {...styles.tableHeader()}>
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>
               {headerGroup.headers.map((header) => {
@@ -96,38 +97,40 @@ export const DataTable = <TData, TValue>({
                       }),
                     }}
                   >
-                    {flexRender(
-                      header.column.columnDef.header,
-                      header.getContext(),
-                    )}
-                    {header.column.columnDef.enableSorting && (
-                      <Tooltip
-                        content={
-                          header.column.getCanSort()
-                            ? header.column.getNextSortingOrder() === "asc"
-                              ? "Sort ascending"
-                              : header.column.getNextSortingOrder() === "desc"
-                                ? "Sort descending"
-                                : "Clear sort"
-                            : undefined
-                        }
-                      >
-                        <Button
-                          border="0"
-                          icon={
-                            <IconSort
-                              sortDirection={
-                                header.column.getIsSorted() as
-                                  | "asc"
-                                  | "desc"
-                                  | false
-                              }
-                            />
+                    <Flex flexDirection="row">
+                      {flexRender(
+                        header.column.columnDef.header,
+                        header.getContext(),
+                      )}
+                      {header.column.columnDef.enableSorting && (
+                        <Tooltip
+                          content={
+                            header.column.getCanSort()
+                              ? header.column.getNextSortingOrder() === "asc"
+                                ? "Sort ascending"
+                                : header.column.getNextSortingOrder() === "desc"
+                                  ? "Sort descending"
+                                  : "Clear sort"
+                              : undefined
                           }
-                          onClick={() => header.column.toggleSorting()}
-                        />
-                      </Tooltip>
-                    )}
+                        >
+                          <Button
+                            border="0"
+                            icon={
+                              <IconSort
+                                sortDirection={
+                                  header.column.getIsSorted() as
+                                    | "asc"
+                                    | "desc"
+                                    | false
+                                }
+                              />
+                            }
+                            onClick={() => header.column.toggleSorting()}
+                          />
+                        </Tooltip>
+                      )}
+                    </Flex>
                   </TableHead>
                 );
               })}
