@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Field, Input } from "@optiaxiom/react";
+import { Field, Input, Textarea } from "@optiaxiom/react";
 import { IconCalendar } from "@tabler/icons-react";
 
 export default {
@@ -62,5 +62,14 @@ export const RequiredAndInfo: Story = {
   args: {
     ...Info.args,
     ...Required.args,
+  },
+};
+
+export const WithTextarea: Story = {
+  args: {
+    children: <Textarea placeholder="Enter text..." />,
+    info: "This is an important textarea",
+    label: "Form Label",
+    required: true,
   },
 };
