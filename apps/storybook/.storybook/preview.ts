@@ -13,6 +13,7 @@ export const loaders = isChromatic()
   : [];
 
 export const parameters = {
+  controls: { sort: "requiredFirst" },
   layout: "centered",
   options: {
     storySort: {
