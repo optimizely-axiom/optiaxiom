@@ -38,6 +38,8 @@ const config: StorybookConfig = {
     config.plugins?.push(
       new ReactDocgenTypeScriptPlugin({
         include: ["**/**.tsx", "**/packages/react/**/*.d.ts"],
+        propFilter: (prop) =>
+          prop.parent ? !prop.parent.fileName.includes("@types/react") : true,
         savePropValueAsString: true,
         tsconfigPath: "../tsconfig.json",
       }),
