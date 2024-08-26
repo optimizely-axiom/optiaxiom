@@ -31,6 +31,7 @@ export type InputBaseProps<
        * decorator will focus the input box.
        */
       decoratorPointerEvents?: "auto" | "none";
+      disabled?: boolean;
       endDecorator?: ReactNode;
       error?: boolean;
       startDecorator?: ReactNode;
