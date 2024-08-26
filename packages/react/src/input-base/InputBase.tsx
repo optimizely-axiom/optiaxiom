@@ -1,9 +1,12 @@
+import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import {
   type ElementType,
+  type MouseEvent,
   type ReactElement,
   type ReactNode,
   cloneElement,
   forwardRef,
+  useRef,
 } from "react";
 
 import { Box, type BoxProps } from "../box";
@@ -23,6 +26,11 @@ export type InputBaseProps<
     {
       asChild?: never;
       children: ReactElement;
+      /**
+       * When this prop is set to `none` clicking empty space inside the
+       * decorator will focus the input box.
+       */
+      decoratorPointerEvents?: "auto" | "none";
       endDecorator?: ReactNode;
       error?: boolean;
       startDecorator?: ReactNode;
@@ -39,6 +47,7 @@ export const InputBase = forwardRef<
     {
       children,
       className,
+      decoratorPointerEvents = "auto",
       disabled,
       endDecorator,
       error: errorProp,
@@ -47,10 +56,28 @@ export const InputBase = forwardRef<
       startDecorator,
       ...props
     },
-    ref,
+    outerRef,
   ) => {
     const { error, id, required } = useFieldContext({ error: errorProp });
     const { restProps, sprinkleProps } = extractSprinkles(props);
+
+    const innerRef = useRef<HTMLInputElement & HTMLTextAreaElement>(null);
+    const ref = useComposedRefs(innerRef, outerRef);
+
+    const decoratorProps =
+      decoratorPointerEvents === "none" &&
+      ({
+        cursor: "text",
+        onMouseDown: (event: MouseEvent) => {
+          if (event.target !== event.currentTarget) {
+            return;
+          }
+
+          event.preventDefault();
+          event.stopPropagation();
+          innerRef.current?.focus();
+        },
+      } as const);
 
     return (
       <Flex
@@ -60,7 +87,11 @@ export const InputBase = forwardRef<
         {...styles.wrapper({}, className)}
         {...sprinkleProps}
       >
-        {startDecorator && <Text asChild>{fallbackSpan(startDecorator)}</Text>}
+        {startDecorator && (
+          <Text asChild {...decoratorProps}>
+            {fallbackSpan(startDecorator)}
+          </Text>
+        )}
 
         <Box
           aria-disabled={disabled}
@@ -81,7 +112,11 @@ export const InputBase = forwardRef<
           })}
         </Box>
 
-        {endDecorator && <Text asChild>{fallbackSpan(endDecorator)}</Text>}
+        {endDecorator && (
+          <Text asChild {...decoratorProps}>
+            {fallbackSpan(endDecorator)}
+          </Text>
+        )}
       </Flex>
     );
   },

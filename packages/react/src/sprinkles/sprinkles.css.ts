@@ -60,7 +60,12 @@ const unresponsiveProps = defineProperties({
      * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/colors/ Documentation}
      */
     color: theme.colors,
-    cursor: ["pointer", "default"] as const,
+    /**
+     * Set the element's `cursor` CSS property
+     *
+     * {@link https://developer.mozilla.org/en-US/docs/Web/CSS/cursor Documentation}
+     */
+    cursor: ["pointer", "default", "text"] as const,
     /**
      * Toggle element visibility based on :empty pseudo-class
      */
