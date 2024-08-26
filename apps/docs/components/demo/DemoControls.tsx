@@ -1,7 +1,7 @@
 import type { ComponentPropsWithRef, Dispatch, SetStateAction } from "react";
 import type { PropItem, Props } from "react-docgen-typescript";
 
-import { Flex, Text, Tooltip } from "@optiaxiom/react";
+import { Field, Flex, Input, Switch, Tooltip } from "@optiaxiom/react";
 
 type DemoControlProps = {
   onChange: Dispatch<
@@ -24,65 +24,90 @@ export function DemoControls({
         .filter((a) => !!a)
         .sort((a, b) => a.prop.localeCompare(b.prop))
         .map((item) =>
-          item?.type === "dropdown" ? (
-            <Flex gap="xs" key={String(item.prop)}>
-              <Text fontWeight="600">{propToLabel(item.prop)}</Text>
-              <select
-                onChange={(event) =>
-                  onChange((props) => ({
-                    ...props,
-                    [item.prop]:
-                      event?.target.value === ""
-                        ? undefined
-                        : event?.target.value === "false"
-                          ? false
-                          : event?.target.value === "true"
-                            ? true
-                            : event?.target.value,
-                  }))
-                }
-                value={String(propValues[item.prop])}
-              >
-                {item.options.map((option) => (
-                  <option key={option} value={option}>
-                    {option === "" ? "<Empty>" : String(option)}
-                  </option>
-                ))}
-              </select>
-            </Flex>
-          ) : item?.type === "range" ? (
-            <Flex gap="xs" key={String(item.prop)}>
-              <Text fontWeight="600">{propToLabel(item.prop)}</Text>
-              <Tooltip
-                content={propValues[item.prop]}
-                delayDuration={0}
-                onPointerDownOutside={(event) => {
-                  event.preventDefault();
-                }}
-              >
-                <input
-                  max={item.options.length - 1}
-                  min={0}
+          item?.type === "boolean" ? (
+            <Switch
+              checked={String(propValues[item.prop]) === "true"}
+              key={String(item.prop)}
+              onCheckedChange={(flag) =>
+                onChange((props) => ({
+                  ...props,
+                  [item.prop]: flag,
+                }))
+              }
+            >
+              {propToLabel(item.prop)}
+            </Switch>
+          ) : (
+            <Field key={String(item.prop)} label={propToLabel(item.prop)}>
+              {item?.type === "dropdown" ? (
+                <select
                   onChange={(event) =>
                     onChange((props) => ({
                       ...props,
-                      [item.prop]: item.options[parseInt(event?.target.value)],
+                      [item.prop]:
+                        event?.target.value === ""
+                          ? undefined
+                          : event?.target.value === "false"
+                            ? false
+                            : event?.target.value === "true"
+                              ? true
+                              : event?.target.value,
                     }))
                   }
-                  step={1}
-                  type="range"
-                  value={String(
-                    item.options.indexOf(String(propValues[item.prop])),
-                  )}
+                  value={String(propValues[item.prop])}
+                >
+                  {item.options.map((option) => (
+                    <option key={option} value={option}>
+                      {option === "" ? "<Empty>" : String(option)}
+                    </option>
+                  ))}
+                </select>
+              ) : item?.type === "range" ? (
+                <Tooltip
+                  content={propValues[item.prop]}
+                  delayDuration={0}
+                  onPointerDownOutside={(event) => {
+                    event.preventDefault();
+                  }}
+                >
+                  <input
+                    max={item.options.length - 1}
+                    min={0}
+                    onChange={(event) =>
+                      onChange((props) => ({
+                        ...props,
+                        [item.prop]:
+                          item.options[parseInt(event?.target.value)],
+                      }))
+                    }
+                    step={1}
+                    type="range"
+                    value={String(
+                      item.options.indexOf(String(propValues[item.prop])),
+                    )}
+                  />
+                </Tooltip>
+              ) : item?.type === "text" ? (
+                <Input
+                  onChange={(event) =>
+                    onChange((props) => ({
+                      ...props,
+                      [item.prop]: event.target.value,
+                    }))
+                  }
+                  value={
+                    propValues[item.prop] ? String(propValues[item.prop]) : ""
+                  }
                 />
-              </Tooltip>
-            </Flex>
-          ) : null,
+              ) : null}
+            </Field>
+          ),
         )}
     </Flex>
   );
 }
 
+const boolean = ["false", "true"];
 const tshirt = [
   "xs",
   "sm",
@@ -103,13 +128,22 @@ function itemToControl(item: PropItem) {
   }
   const dropdown = isDropdownType(item);
   if (dropdown) {
-    if (dropdown.options.every((option) => tshirt.includes(option))) {
+    if (dropdown.options.every((option) => boolean.includes(String(option)))) {
+      return {
+        ...dropdown,
+        type: "boolean" as const,
+      };
+    } else if (dropdown.options.every((option) => tshirt.includes(option))) {
       return {
         ...dropdown,
         type: "range" as const,
       };
     }
     return dropdown;
+  }
+  const text = isTextType(item);
+  if (text) {
+    return text;
   }
   return;
 }
@@ -188,6 +222,18 @@ function isNumberType(item: PropItem) {
     options: Object.keys(map),
     prop: item.name,
     type: "range" as const,
+  };
+}
+
+function isTextType(item: PropItem) {
+  if (item.type.name !== "string") {
+    return false;
+  }
+
+  return {
+    defaultValue: item.defaultValue?.value ?? "",
+    prop: item.name,
+    type: "text" as const,
   };
 }
 
