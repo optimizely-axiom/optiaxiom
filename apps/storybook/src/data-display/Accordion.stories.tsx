@@ -20,9 +20,7 @@ export default {
         </AccordionItem>
 
         <AccordionItem value="item-2">
-          <AccordionTrigger appearance="secondary">
-            Second Item
-          </AccordionTrigger>
+          <AccordionTrigger>Second Item</AccordionTrigger>
           <AccordionContent>
             Content for the second item. Contains multiple lines of lorem ipsum.
           </AccordionContent>
@@ -43,8 +41,15 @@ export default {
 
 type Story = StoryObj<typeof Accordion>;
 
-export const Basic: Story = {
+export const Primary: Story = {
   args: {
+    type: "single",
+  },
+};
+
+export const Secondary: Story = {
+  args: {
+    appearance: "secondary",
     type: "single",
   },
 };
