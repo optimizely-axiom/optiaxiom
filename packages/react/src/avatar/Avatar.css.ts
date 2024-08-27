@@ -8,7 +8,7 @@ export const avatar = recipe({
   base: [
     {
       alignItems: "center",
-      display: "flex",
+      display: "inline-flex",
       justifyContent: "center",
       overflow: "hidden",
       rounded: "full",
@@ -21,7 +21,7 @@ export const avatar = recipe({
           marginLeft: "-3px",
         },
         [`${styles.className} &`]: {
-          outline: `1px solid ${theme.colors["white"]}`,
+          border: `1px solid ${theme.colors["white"]}`,
         },
       },
     }),
@@ -44,21 +44,19 @@ export const avatar = recipe({
         yellow: "yellow",
       } as const,
       (color) => ({
-        bg: `${color}.500`,
-        color: "white",
+        bg: color === "neutral" ? "neutral.150" : `${color}.500`,
+        color: color === "neutral" ? "bg.neutral.inverse" : "white",
       }),
     ),
     size: {
       xs: { fontSize: "xs", size: "xs" },
       sm: { fontSize: "xs", size: "sm" },
       md: { fontSize: "md", size: "md" },
-      lg: { fontSize: "2xl", size: "xl" },
-      xl: { fontSize: "4xl", size: "5xl" },
+      xl: { fontSize: "2xl", size: "lg" },
+      "5xl": { fontSize: "4xl", size: "5xl" },
     },
   },
 });
-
-export type AvatarVariants = RecipeVariants<typeof avatar>;
 
 export const fallback = recipe({
   base: {
@@ -69,14 +67,23 @@ export const fallback = recipe({
     size: "full",
     textTransform: "uppercase",
   },
+});
 
+export const icon = recipe({
+  base: [
+    {
+      h: "auto",
+    },
+  ],
   variants: {
     size: {
-      xs: style({ padding: "3px 0.5px" }),
-      sm: style({ padding: "5px 2.5px" }),
-      md: style({ padding: "6px 3px" }),
-      lg: style({ padding: "10px 5px" }),
-      xl: style({ padding: "18px 10px" }),
+      xs: style({ width: "12px" }),
+      sm: style({ width: "14px" }),
+      md: style({ width: "16px" }),
+      xl: style({ width: "20px" }),
+      "5xl": style({ width: "30px" }),
     },
   },
 });
+
+export type AvatarVariants = RecipeVariants<typeof avatar>;

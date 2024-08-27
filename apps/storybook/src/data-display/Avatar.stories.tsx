@@ -15,7 +15,7 @@ export const Basic: Story = {
   },
 };
 
-const sizes = ["xl", "lg", "md", "sm", "xs"] as const;
+const sizes = ["5xl", "xl", "md", "sm", "xs"] as const;
 
 export const Sizes: Story = {
   args: {
@@ -68,6 +68,7 @@ export const Icon: Story = {
 export const Colors: Story = {
   render: () => (
     <Flex flexDirection="row">
+      <Avatar colorScheme="neutral">KP</Avatar>
       <Avatar colorScheme="red">KP</Avatar>
       <Avatar colorScheme="blue">KP</Avatar>
       <Avatar colorScheme="green">KP</Avatar>

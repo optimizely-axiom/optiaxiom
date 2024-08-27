@@ -52,10 +52,18 @@ export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
           <Box asChild objectFit="cover" rounded="inherit" size="full">
             <RadixAvatar.Image alt={name} src={src} />
           </Box>
-          <Box asChild {...styles.fallback({ size })}>
+          <Box asChild {...styles.fallback({})}>
             <RadixAvatar.Fallback delayMs={FALLBACK_DELAY_IN_MS}>
               {/* TODO: Add a generic user icon, if `children` is `undefined` */}
-              {icon ? icon : name ? getInitialsFromName(name) : children}
+              {icon ? (
+                <Box asChild {...styles.icon({ size })}>
+                  {icon}
+                </Box>
+              ) : name ? (
+                getInitialsFromName(name)
+              ) : (
+                children
+              )}
             </RadixAvatar.Fallback>
           </Box>
         </RadixAvatar.Root>

@@ -50,7 +50,7 @@ const users = [
 export const Basic: Story = {
   render: () => {
     return (
-      <AvatarGroup maxItems={2} size="lg">
+      <AvatarGroup maxItems={2} size="xl">
         {users.map((user) => (
           <Avatar
             colorScheme="blue"
@@ -69,7 +69,7 @@ export const Basic: Story = {
 export const WithTooltip: Story = {
   render: () => {
     return (
-      <AvatarGroup maxItems={3} size="lg">
+      <AvatarGroup maxItems={3} size="xl">
         {users.map((user) => (
           <Tooltip content={user.name} key={user.id}>
             <Avatar colorScheme="blue" name={user.name} src={user.src}>
@@ -82,7 +82,7 @@ export const WithTooltip: Story = {
   },
 };
 
-const sizes = ["xs", "sm", "md", "lg", "xl"] as const;
+const sizes = ["xs", "sm", "md", "xl", "5xl"] as const;
 const colorSchemes = ["green", "blue", "purple", "orange", "red"] as const;
 
 export const DifferentSizes: Story = {
