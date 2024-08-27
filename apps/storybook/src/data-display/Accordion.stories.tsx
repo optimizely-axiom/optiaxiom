@@ -20,7 +20,9 @@ export default {
         </AccordionItem>
 
         <AccordionItem value="item-2">
-          <AccordionTrigger position="end">Second Item</AccordionTrigger>
+          <AccordionTrigger appearance="secondary">
+            Second Item
+          </AccordionTrigger>
           <AccordionContent>
             Content for the second item. Contains multiple lines of lorem ipsum.
           </AccordionContent>
