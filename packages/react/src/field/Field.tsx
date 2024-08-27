@@ -48,9 +48,9 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(
             <Text
               alignItems="center"
               asChild
-              color="fg.tertiary"
+              color="fg.secondary"
               display="flex"
-              fontWeight="500"
+              fontWeight="400"
               gap="2"
             >
               <RadixLabel.Root htmlFor={id}>
@@ -75,6 +75,7 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(
                   <Button
                     aria-label="Information hover"
                     border="0"
+                    color="dark.600"
                     h="12"
                     icon={<IconCircleQuestion />}
                     p="0"
