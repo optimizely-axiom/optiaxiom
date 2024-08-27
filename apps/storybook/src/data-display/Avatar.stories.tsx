@@ -19,8 +19,7 @@ const sizes = ["xl", "lg", "md", "sm", "xs"] as const;
 
 export const Sizes: Story = {
   args: {
-    colorScheme: "purple",
-    name: "Jamie Lannister",
+    name: "William Michael",
   },
   render: (args) => (
     <Flex flexDirection="row">
@@ -69,7 +68,6 @@ export const Icon: Story = {
 export const Colors: Story = {
   render: () => (
     <Flex flexDirection="row">
-      <Avatar>KP</Avatar>
       <Avatar colorScheme="red">KP</Avatar>
       <Avatar colorScheme="blue">KP</Avatar>
       <Avatar colorScheme="green">KP</Avatar>

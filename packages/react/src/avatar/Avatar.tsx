@@ -10,8 +10,6 @@ const FALLBACK_DELAY_IN_MS = 600;
 type AvatarProps = BoxProps<
   "span",
   {
-    children?: React.ReactNode;
-    className?: string;
     icon?: React.ReactNode;
     name?: string;
     src?: string;
@@ -32,7 +30,7 @@ export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
     {
       children,
       className,
-      colorScheme = "neutral",
+      colorScheme = "brand",
       icon,
       name,
       size: sizeProp,
