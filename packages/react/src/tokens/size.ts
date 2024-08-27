@@ -5,7 +5,8 @@ export const size = {
   sm: rem("24px"),
   md: rem("32px"),
   lg: rem("40px"),
-  xl: rem("64px"),
+  xl: rem("48px"),
+  "5xl": rem("80px"),
 
   "0": "0",
   "1": rem("1px"),
