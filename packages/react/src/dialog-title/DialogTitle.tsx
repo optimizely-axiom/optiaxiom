@@ -21,7 +21,7 @@ export const DialogTitle = forwardRef<HTMLDivElement, DialogTitleProps>(
 
     return (
       <Flex gap="xs" pb="md" pt="lg" px="lg" {...sprinkleProps}>
-        <Heading asChild fontSize="3xl" fontWeight="500" level="4">
+        <Heading asChild fontWeight="500" level="3">
           <RadixDialog.Title ref={ref} {...restProps}>
             {children}
           </RadixDialog.Title>

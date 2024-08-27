@@ -60,18 +60,6 @@ export const footer = recipe({
   ],
 });
 
-export const title = recipe({
-  base: [
-    {
-      fontSize: "3xl",
-      fontWeight: "500",
-      pb: "16",
-      pt: "24",
-      px: "24",
-    },
-  ],
-});
-
 export const description = recipe({
   base: [
     {
