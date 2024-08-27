@@ -176,7 +176,7 @@ export const colors = {
   /**
    * Primary text color for page headings
    */
-  "fg.default": colorPalette["neutral.900"],
+  "fg.default": colorPalette["neutral.800"],
   /**
    * Primary text color when used on solid color bg
    */
