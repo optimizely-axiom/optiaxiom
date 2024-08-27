@@ -11,8 +11,8 @@ import * as styles from "./AccordionTrigger.css";
 type AccordionTriggerProps = BoxProps<
   typeof RadixAccordion.Trigger,
   {
+    appearance?: "primary" | "secondary";
     endDecorator?: ReactNode;
-    position?: "end" | "start";
     startDecorator?: ReactNode;
   }
 >;
@@ -22,26 +22,33 @@ export const AccordionTrigger = forwardRef<
   AccordionTriggerProps
 >(
   (
-    { children, endDecorator, position = "start", startDecorator, ...props },
+    {
+      appearance = "primary",
+      children,
+      endDecorator,
+      startDecorator,
+      ...props
+    },
     ref,
   ) => {
     const { restProps, sprinkleProps } = extractSprinkles(props);
     const startIcon =
       startDecorator ||
-      (position === "start" && !endDecorator && <IconAngleRight />);
-    const endIcon = endDecorator || (position === "end" && <IconAngleDown />);
+      (appearance === "primary" && !endDecorator && <IconAngleRight />);
+    const endIcon =
+      endDecorator || (appearance === "secondary" && <IconAngleDown />);
 
     return (
       <Flex asChild {...styles.trigger()} {...sprinkleProps}>
         <RadixAccordion.Trigger ref={ref} {...restProps}>
           {startIcon && (
-            <Box asChild {...styles.icon({ position: "start" })}>
+            <Box asChild {...styles.icon({ appearance: "primary" })}>
               {startIcon}
             </Box>
           )}
           <Box flex="1">{children}</Box>
           {endIcon && (
-            <Box asChild {...styles.icon({ position: "end" })}>
+            <Box asChild {...styles.icon({ appearance: "secondary" })}>
               {endIcon}
             </Box>
           )}

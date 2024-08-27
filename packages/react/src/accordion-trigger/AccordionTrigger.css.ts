@@ -34,18 +34,18 @@ export const icon = recipe({
     },
   ],
   variants: {
-    position: {
-      end: style({
-        selectors: {
-          "[data-state=open] > &": {
-            transform: "rotate(180deg)",
-          },
-        },
-      }),
-      start: style({
+    appearance: {
+      primary: style({
         selectors: {
           "[data-state=open] > &": {
             transform: "rotate(90deg)",
+          },
+        },
+      }),
+      secondary: style({
+        selectors: {
+          "[data-state=open] > &": {
+            transform: "rotate(180deg)",
           },
         },
       }),
