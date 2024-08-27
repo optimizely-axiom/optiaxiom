@@ -36,9 +36,9 @@ export default {
         </AccordionItem>
       </>
     ),
+    w: "320",
   },
   component: Accordion,
-  title: "Data Display/Accordion",
 } as Meta<typeof Accordion>;
 
 type Story = StoryObj<typeof Accordion>;
