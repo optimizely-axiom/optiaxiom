@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 0.1.0-next.12
+
+### Patch Changes
+
+- a91dcdf: safely handle undefined variant selection in recipes
+
 ## 0.1.0-next.11
 
 ### Patch Changes
