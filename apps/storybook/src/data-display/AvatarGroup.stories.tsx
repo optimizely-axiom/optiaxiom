@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Avatar, AvatarGroup, Flex, Tooltip } from "@optiaxiom/react";
+import { Avatar, AvatarGroup, Tooltip } from "@optiaxiom/react";
 
 export default {
   component: AvatarGroup,
@@ -50,7 +50,7 @@ const users = [
 export const Basic: Story = {
   render: () => {
     return (
-      <AvatarGroup maxItems={2} size="xl">
+      <AvatarGroup maxItems={2} size="xs">
         {users.map((user) => (
           <Avatar
             colorScheme="blue"
@@ -69,7 +69,7 @@ export const Basic: Story = {
 export const WithTooltip: Story = {
   render: () => {
     return (
-      <AvatarGroup maxItems={3} size="xl">
+      <AvatarGroup maxItems={3} size="xs">
         {users.map((user) => (
           <Tooltip content={user.name} key={user.id}>
             <Avatar colorScheme="blue" name={user.name} src={user.src}>
