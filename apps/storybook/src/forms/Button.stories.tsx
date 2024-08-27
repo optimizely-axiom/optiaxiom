@@ -13,7 +13,11 @@ export default {
 
 type Story = StoryObj<typeof Button>;
 
-const sizes = ["sm", "md", "lg"] as const;
+const sizes = [
+  ["sm", "Small"],
+  ["md", "Medium"],
+  ["lg", "Large"],
+] as const;
 const appearances = [
   "default",
   "primary",
@@ -30,25 +34,12 @@ export const Appearance: Story = {
     <Flex>
       {appearances.map((appearance) => (
         <Flex alignItems="center" flexDirection="row" gap="sm" key={appearance}>
-          {sizes.map((size) => (
-            <Button {...args} appearance={appearance} key={size} size={size} />
+          {sizes.map(([size, label]) => (
+            <Button {...args} appearance={appearance} key={size} size={size}>
+              {label}
+            </Button>
           ))}
         </Flex>
-      ))}
-    </Flex>
-  ),
-};
-
-export const Sizes: Story = {
-  args: {
-    children: "Button",
-  },
-  render: (args) => (
-    <Flex flexDirection="row">
-      {sizes.map((size) => (
-        <Button {...args} key={size} size={size}>
-          {size}
-        </Button>
       ))}
     </Flex>
   ),
@@ -60,37 +51,45 @@ export const Disabled: Story = {
     disabled: true,
   },
   render: (args) => (
-    <Flex flexDirection="row">
-      {sizes.map((size) => (
-        <Button {...args} key={size} size={size}>
-          Button
-        </Button>
+    <Flex>
+      {appearances.map((appearance) => (
+        <Flex alignItems="center" flexDirection="row" gap="sm" key={appearance}>
+          {sizes.map(([size, label]) => (
+            <Button {...args} appearance={appearance} key={size} size={size}>
+              {label}
+            </Button>
+          ))}
+        </Flex>
       ))}
     </Flex>
   ),
 };
 
-export const StandaloneIcon: Story = {
+export const IconOnly: Story = {
   args: {
     icon: <IconChevronDown />,
   },
   render: (args) => (
-    <Flex flexDirection="row">
-      {sizes.map((size) => (
-        <Button {...args} key={size} size={size} />
+    <Flex>
+      {appearances.map((appearance) => (
+        <Flex alignItems="center" flexDirection="row" key={appearance}>
+          {sizes.map(([size]) => (
+            <Button {...args} appearance={appearance} key={size} size={size} />
+          ))}
+        </Flex>
       ))}
     </Flex>
   ),
 };
 
-export const Icons: Story = {
+export const IconsWithText: Story = {
   args: {
     children: "Button",
   },
   render: (args) => (
     <Flex>
       <Flex flexDirection="row">
-        {sizes.map((size) => (
+        {sizes.map(([size]) => (
           <Button
             {...args}
             icon={<IconChevronDown />}
@@ -101,7 +100,7 @@ export const Icons: Story = {
         ))}
       </Flex>
       <Flex flexDirection="row">
-        {sizes.map((size) => (
+        {sizes.map(([size]) => (
           <Button
             {...args}
             icon={<IconChevronDown />}
