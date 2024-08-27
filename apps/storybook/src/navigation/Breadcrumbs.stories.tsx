@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { BreadcrumbItem, Breadcrumbs } from "@optiaxiom/react";
+import { IconChevronRight } from "@tabler/icons-react";
 
 export default {
   args: {
@@ -43,6 +44,6 @@ export const Collapse: Story = {
 
 export const Separator: Story = {
   args: {
-    separator: "/",
+    separator: <IconChevronRight />,
   },
 };

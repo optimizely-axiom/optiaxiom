@@ -1,7 +1,6 @@
 import { type ReactNode, forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
-import { IconAngleRight } from "../icons/IconAngleRight";
 import { extractSprinkles } from "../sprinkles";
 import { useBreadcrumbItems } from "./useBreadcrumbItems";
 
@@ -14,7 +13,7 @@ export type BreadcrumbsProps = BoxProps<
 >;
 
 export const Breadcrumbs = forwardRef<HTMLElement, BreadcrumbsProps>(
-  ({ children, maxItems, separator = <IconAngleRight />, ...props }, ref) => {
+  ({ children, maxItems, separator = "/", ...props }, ref) => {
     const { restProps, sprinkleProps } = extractSprinkles(props);
     const visibleItems = useBreadcrumbItems(children, maxItems, separator);
 
