@@ -10,6 +10,7 @@ type TextareaProps =
       typeof TextareaAutosize,
       {
         children?: never;
+        rows?: never;
         size?: never;
       }
     >)
