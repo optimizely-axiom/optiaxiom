@@ -80,7 +80,9 @@ export const recipeRuntime = <
             ? "true"
             : "false"
           : selections[variantName];
-      process(variant[selection as keyof typeof variant]);
+      if (String(selection) in variant) {
+        process(variant[selection]);
+      }
     }
     for (const { style, variants } of variantsCompounded) {
       if (!shouldApplyCompound(variants, selections)) {
