@@ -29,7 +29,12 @@ export const AvatarGroup = forwardRef<HTMLDivElement, AvatarGroupProps>(
         {overflowChildren.length > 0 && (
           <HoverCard>
             <HoverCardTrigger asChild>
-              <Avatar colorScheme="gray" size={size}>
+              <Avatar
+                bg="neutral.150"
+                color="bg.neutral.inverse"
+                fontWeight="500"
+                size={size}
+              >
                 +{overflowChildren.length}
               </Avatar>
             </HoverCardTrigger>
