@@ -15,7 +15,7 @@ export const Accordion = forwardRef<HTMLDivElement, AccordionProps>(
     const { restProps, sprinkleProps } = extractSprinkles(props);
 
     return (
-      <Box asChild ref={ref} w="320" {...sprinkleProps}>
+      <Box asChild ref={ref} {...sprinkleProps}>
         {type === "single" ? (
           <RadixAccordion.Root
             type="single"
