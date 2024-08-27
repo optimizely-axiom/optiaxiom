@@ -13,7 +13,7 @@ export const AccordionContent = forwardRef<
   return (
     <Box asChild ref={ref} {...styles.content({}, className)} {...props}>
       <RadixAccordion.Content>
-        <Box color="fg.default" fontSize="md">
+        <Box color="fg.default" fontSize="md" p="xs" pt="0">
           {children}
         </Box>
       </RadixAccordion.Content>

@@ -1,8 +1,7 @@
 import * as RadixAccordion from "@radix-ui/react-accordion";
 import { forwardRef } from "react";
 
-import { type BoxProps } from "../box";
-import { Flex } from "../flex";
+import { Box, type BoxProps } from "../box";
 import { extractSprinkles } from "../sprinkles";
 
 type AccordionItemProps = BoxProps<typeof RadixAccordion.Item>;
@@ -12,11 +11,11 @@ export const AccordionItem = forwardRef<HTMLDivElement, AccordionItemProps>(
     const { restProps, sprinkleProps } = extractSprinkles(props);
 
     return (
-      <Flex asChild gap="4" ref={ref} {...sprinkleProps}>
+      <Box asChild gap="4" ref={ref} {...sprinkleProps}>
         <RadixAccordion.Item value={value} {...restProps}>
           {children}
         </RadixAccordion.Item>
-      </Flex>
+      </Box>
     );
   },
 );
