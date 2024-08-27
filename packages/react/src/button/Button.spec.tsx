@@ -50,9 +50,9 @@ describe("Button component", () => {
     ).toBeInTheDocument();
   });
 
-  it("should be disabled if isLoading=true", async () => {
+  it("should be disabled if loading=true", async () => {
     const handleClick = vi.fn();
-    const { user } = setup({ isLoading: true });
+    const { user } = setup({ loading: true });
 
     await user.click(screen.getByRole("button"));
 
