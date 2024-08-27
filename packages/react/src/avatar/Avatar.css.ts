@@ -52,8 +52,8 @@ export const avatar = recipe({
       xs: { fontSize: "xs", size: "xs" },
       sm: { fontSize: "xs", size: "sm" },
       md: { fontSize: "md", size: "md" },
-      lg: { fontSize: "2xl", size: "48" },
-      xl: { fontSize: "4xl", size: "80" },
+      lg: { fontSize: "2xl", size: "xl" },
+      xl: { fontSize: "4xl", size: "5xl" },
     },
   },
 });
