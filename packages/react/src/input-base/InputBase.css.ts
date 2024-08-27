@@ -18,7 +18,7 @@ export const wrapper = recipe({
     },
     style({
       borderColor: theme.colors["border.default"],
-      color: theme.colors["bg.neutral.inverse"],
+      color: theme.colors["fg.default"],
 
       selectors: {
         [`&:has(${marker}:focus):is([data-invalid])`]: {
@@ -59,7 +59,6 @@ export const input = recipe({
     {
       bg: "transparent",
       flex: "auto",
-      fontWeight: "400",
     },
     style({
       /*
