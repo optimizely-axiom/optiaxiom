@@ -1,5 +1,5 @@
 import * as RadixCollapsible from "@radix-ui/react-collapsible";
-import { type ReactNode, forwardRef, useContext } from "react";
+import { forwardRef, useContext } from "react";
 
 import { Box, type BoxProps } from "../box";
 import { Button } from "../button";
@@ -12,8 +12,6 @@ export type GlobalNavItemProps = BoxProps<
   typeof Button,
   {
     active?: boolean;
-    endDecorator?: ReactNode;
-    startDecorator?: ReactNode;
   }
 >;
 
