@@ -17,9 +17,6 @@ export const avatar = recipe({
       userSelect: "none",
 
       selectors: {
-        [`${styles.className} &:not(:first-child)`]: {
-          marginLeft: "-3px",
-        },
         [`${styles.className} &`]: {
           border: `1px solid ${theme.colors["white"]}`,
         },
@@ -49,11 +46,71 @@ export const avatar = recipe({
       }),
     ),
     size: {
-      xs: { fontSize: "xs", size: "xs" },
-      sm: { fontSize: "xs", size: "sm" },
-      md: { fontSize: "md", size: "md" },
-      xl: { fontSize: "2xl", size: "lg" },
-      "5xl": { fontSize: "4xl", size: "5xl" },
+      xs: [
+        {
+          fontSize: "xs",
+          size: "xs",
+        },
+        style({
+          selectors: {
+            [`${styles.className} &:not(:first-child)`]: {
+              marginLeft: "-3px",
+            },
+          },
+        }),
+      ],
+      sm: [
+        {
+          fontSize: "xs",
+          size: "sm",
+        },
+        style({
+          selectors: {
+            [`${styles.className} &:not(:first-child)`]: {
+              marginLeft: "-5px",
+            },
+          },
+        }),
+      ],
+      md: [
+        {
+          fontSize: "md",
+          size: "md",
+        },
+        style({
+          selectors: {
+            [`${styles.className} &:not(:first-child)`]: {
+              marginLeft: "-7px",
+            },
+          },
+        }),
+      ],
+      xl: [
+        {
+          fontSize: "2xl",
+          size: "lg",
+        },
+        style({
+          selectors: {
+            [`${styles.className} &:not(:first-child)`]: {
+              marginLeft: "-9px",
+            },
+          },
+        }),
+      ],
+      "5xl": [
+        {
+          fontSize: "4xl",
+          size: "5xl",
+        },
+        style({
+          selectors: {
+            [`${styles.className} &:not(:first-child)`]: {
+              marginLeft: "-13px",
+            },
+          },
+        }),
+      ],
     },
   },
 });

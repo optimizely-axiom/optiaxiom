@@ -1,11 +1,20 @@
-import { Children, type ComponentPropsWithoutRef, forwardRef } from "react";
+import {
+  Children,
+  type ComponentPropsWithRef,
+  type ComponentPropsWithoutRef,
+  forwardRef,
+  isValidElement,
+} from "react";
 
 import { Avatar } from "../avatar";
 import { AvatarGroupContext } from "../avatar-context/AvatarContext";
 import { Box, type BoxProps } from "../box";
+import { Flex } from "../flex";
 import { HoverCard } from "../hover-card";
 import { HoverCardContent } from "../hover-card-content";
 import { HoverCardTrigger } from "../hover-card-trigger";
+import { Text } from "../text";
+import { Tooltip } from "../tooltip";
 import * as styles from "./AvatarGroup.css";
 
 type AvatarGroupProps = BoxProps<
@@ -29,21 +38,31 @@ export const AvatarGroup = forwardRef<HTMLDivElement, AvatarGroupProps>(
         {overflowChildren.length > 0 && (
           <HoverCard>
             <HoverCardTrigger asChild>
-              <Avatar
-                bg="neutral.150"
-                color="bg.neutral.inverse"
-                fontWeight="500"
-                size={size}
-              >
+              <Avatar colorScheme="neutral" size={size}>
                 +{overflowChildren.length}
               </Avatar>
             </HoverCardTrigger>
-            <HoverCardContent flexDirection="row">
-              {overflowChildren.map((child, index) => (
-                <Box asChild key={index}>
-                  {child}
-                </Box>
-              ))}
+            <HoverCardContent flexDirection="column" gap="xs">
+              {overflowChildren.map((child, index) =>
+                isValidElement<
+                  ComponentPropsWithRef<typeof Avatar> &
+                    ComponentPropsWithRef<typeof Tooltip>
+                >(child) ? (
+                  <Flex flexDirection="row" gap="4" key={index}>
+                    <AvatarGroupContext.Provider value={{ size }}>
+                      {child}
+                    </AvatarGroupContext.Provider>
+
+                    {child.type === Avatar ? (
+                      <Text>{child.props.name}</Text>
+                    ) : child.type === Tooltip ? (
+                      <Text>{child.props.content}</Text>
+                    ) : null}
+                  </Flex>
+                ) : (
+                  child
+                ),
+              )}
             </HoverCardContent>
           </HoverCard>
         )}
