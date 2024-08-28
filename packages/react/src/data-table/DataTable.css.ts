@@ -27,11 +27,13 @@ export const tableHead = recipe({
   ],
   variants: {
     pinned: {
-      true: style({
+      false: style({}),
+      left: style({
         left: cellOffset,
         position: "sticky",
         zIndex: 2,
       }),
+      right: style({}),
     },
   },
 });
@@ -47,11 +49,13 @@ export const tableCell = recipe({
   ],
   variants: {
     pinned: {
-      true: style({
+      false: style({}),
+      left: style({
         left: cellOffset,
         position: "sticky",
         zIndex: 1,
       }),
+      right: style({}),
     },
   },
 });

@@ -70,7 +70,7 @@ const columns: ColumnDef<Payment, string>[] = [
   {
     accessorKey: "quantity",
     cell: ({ row }) => <Box textAlign="end">{row.getValue("quantity")}</Box>,
-    header: () => <Box textAlign="end">Quantity</Box>,
+    header: () => <Box ml="auto">Quantity</Box>,
   },
   {
     accessorKey: "totalPrice",
@@ -82,7 +82,7 @@ const columns: ColumnDef<Payment, string>[] = [
       }).format(typeof total === "number" ? total : 0);
       return <Box textAlign="end">{formatted}</Box>;
     },
-    header: () => <Box textAlign="end">Total Price</Box>,
+    header: () => <Box ml="auto">Total Price</Box>,
   },
   {
     accessorKey: "paymentMethod",
@@ -152,6 +152,14 @@ const sampleData: Payment[] = [
 
 export const Basic: Story = {
   args: {
+    columns: columns.slice(0, 5),
+    data: sampleData,
+    pinnedColumns: ["id"],
+  },
+};
+
+export const VerticalScroll: Story = {
+  args: {
     columns: columns,
     data: sampleData,
   },
@@ -167,12 +175,12 @@ export const Pinned: Story = {
 
 export const EmptyRows: Story = {
   args: {
-    columns: columns,
+    columns: columns.slice(0, 5),
     data: [],
   },
 };
 
-export const LargeDataset: Story = {
+export const Pagination: Story = {
   args: {
     columns: columns,
     data: Array.from({ length: 300 }, (_, i) => ({
@@ -203,14 +211,6 @@ export const LargeDataset: Story = {
       totalPrice: Math.floor(Math.random() * 1000) + 50,
       trackingNumber: `TN${Math.random().toString(36).substr(2, 9)}`,
     })),
-    pinnedColumns: ["id"],
-  },
-};
-
-export const FewColumns: Story = {
-  args: {
-    columns: columns.slice(0, 5),
-    data: sampleData,
     pinnedColumns: ["id"],
   },
 };

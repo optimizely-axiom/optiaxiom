@@ -8,7 +8,7 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
-import React from "react";
+import { useState } from "react";
 
 import { Box } from "../box";
 import { Button } from "../button";
@@ -37,17 +37,11 @@ export const DataTable = <TData, TValue>({
   data,
   pinnedColumns = [],
 }: DataTableProps<TData, TValue>) => {
-  const [sorting, setSorting] = React.useState<SortingState>([]);
-
-  const [{ pageIndex, pageSize }, setPagination] = React.useState({
+  const [sorting, setSorting] = useState<SortingState>([]);
+  const [{ pageIndex, pageSize }, setPagination] = useState({
     pageIndex: 0,
     pageSize: 10,
   });
-
-  const pagination = {
-    pageIndex,
-    pageSize,
-  };
 
   const table = useReactTable({
     columns,
@@ -59,12 +53,13 @@ export const DataTable = <TData, TValue>({
     onSortingChange: setSorting,
     state: {
       columnPinning: { left: pinnedColumns },
-      pagination,
+      pagination: {
+        pageIndex,
+        pageSize,
+      },
       sorting,
     },
   });
-
-  const totalPages = table.getPageCount();
 
   let offset = 0;
   const offsets = Object.fromEntries(
@@ -85,9 +80,6 @@ export const DataTable = <TData, TValue>({
                 return (
                   <TableHead
                     key={header.id}
-                    {...styles.tableHead({
-                      pinned: header.column.getIsPinned() ? true : undefined,
-                    })}
                     style={{
                       ...assignInlineVars({
                         [styles.cellOffset]: header.column.getIsPinned()
@@ -96,8 +88,11 @@ export const DataTable = <TData, TValue>({
                         [styles.columnWidth]: `${header.getSize()}px`,
                       }),
                     }}
+                    {...styles.tableHead({
+                      pinned: header.column.getIsPinned() ?? undefined,
+                    })}
                   >
-                    <Flex flexDirection="row">
+                    <Flex flexDirection="row" gap="4">
                       {flexRender(
                         header.column.columnDef.header,
                         header.getContext(),
@@ -143,9 +138,6 @@ export const DataTable = <TData, TValue>({
               {row.getVisibleCells().map((cell) => {
                 return (
                   <TableCell
-                    {...styles.tableCell({
-                      pinned: cell.column.getIsPinned() ? true : undefined,
-                    })}
                     key={cell.id}
                     style={{
                       ...assignInlineVars({
@@ -155,6 +147,9 @@ export const DataTable = <TData, TValue>({
                         [styles.columnWidth]: `${cell.column.getSize()}px`,
                       }),
                     }}
+                    {...styles.tableCell({
+                      pinned: cell.column.getIsPinned() ?? undefined,
+                    })}
                   >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </TableCell>
@@ -165,13 +160,15 @@ export const DataTable = <TData, TValue>({
         </TableBody>
       </Table>
 
-      <Box mt="8">
-        <Pagination
-          onPageChange={(newPage) => table.setPageIndex(newPage - 1)}
-          page={pageIndex + 1}
-          total={totalPages}
-        />
-      </Box>
+      {data.length > pageSize && (
+        <Box mt="8">
+          <Pagination
+            onPageChange={(newPage) => table.setPageIndex(newPage - 1)}
+            page={pageIndex + 1}
+            total={table.getPageCount()}
+          />
+        </Box>
+      )}
     </Box>
   );
 };
