@@ -4,8 +4,7 @@ import { Avatar, Button, Flex, Text } from "@optiaxiom/react";
 import {
   Combobox,
   ComboboxContent,
-  ComboboxMultiTrigger,
-  ComboboxSingleTrigger,
+  ComboboxTrigger,
   CommandCheckboxItem,
   CommandEmpty,
   CommandFooter,
@@ -55,7 +54,7 @@ const PeopleSelector = () => {
 
   return (
     <Combobox onOpenChange={setOpen} open={open}>
-      <ComboboxSingleTrigger title="Assign people" />
+      <ComboboxTrigger title="Assign people" />
 
       <ComboboxContent>
         <CommandEmpty
@@ -154,7 +153,7 @@ const SingleSelectExample = () => {
   return (
     <Flex alignItems="center" flexDirection="column" gap="8">
       <Combobox defaultValue={selectedValue} onOpenChange={setOpen} open={open}>
-        <ComboboxSingleTrigger title="Select Item" />
+        <ComboboxTrigger title="Select Item" />
         <ComboboxContent w="240">
           <CommandEmpty
             alignItems="center"
@@ -204,7 +203,7 @@ const MultipleSelectExample = () => {
         open={open}
         value={selectedValues}
       >
-        <ComboboxMultiTrigger maxW="full" title="Select Items" w="240" />
+        <ComboboxTrigger maxW="full" title="Select Items" w="240" />
         <ComboboxContent w="240">
           <CommandList style={{ maxHeight: "30dvh" }}>
             {items.map((item) => (
@@ -284,7 +283,7 @@ const DisabledItemsExample = () => {
           onOpenChange={setSingleOpen}
           open={singleOpen}
         >
-          <ComboboxSingleTrigger title="Select Language" />
+          <ComboboxTrigger title="Select Language" />
           <ComboboxContent w="240">
             <CommandList style={{ maxHeight: "30dvh" }}>
               {itemsWithDisabled.map((item) => (
@@ -311,7 +310,12 @@ const DisabledItemsExample = () => {
           open={multiOpen}
           value={multiSelectedValues}
         >
-          <ComboboxMultiTrigger maxW="full" title="Select Languages" w="240" />
+          <ComboboxTrigger
+            maxDisplayedItems={3}
+            maxW="full"
+            title="Select Languages"
+            w="240"
+          />
           <ComboboxContent w="240">
             <CommandList style={{ maxHeight: "30dvh" }}>
               {itemsWithDisabled.map((item) => (
