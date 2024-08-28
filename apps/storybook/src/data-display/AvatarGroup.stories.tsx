@@ -85,7 +85,7 @@ export const WithTooltip: Story = {
 const sizes = ["xs", "sm", "md", "xl", "5xl"] as const;
 const colorSchemes = ["green", "blue", "purple", "orange", "red"] as const;
 
-export const DifferentSizes: Story = {
+export const Sizes: Story = {
   render: () => {
     return (
       <Flex gap="md">
