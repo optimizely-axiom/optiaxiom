@@ -47,7 +47,7 @@ export const AvatarGroup = forwardRef<HTMLDivElement, AvatarGroupProps>(
                     ComponentPropsWithRef<typeof Tooltip>
                 >(child) ? (
                   <Flex flexDirection="row" gap="4" key={index}>
-                    <AvatarGroupContext.Provider value={{ size }}>
+                    <AvatarGroupContext.Provider value={{ size: "md" }}>
                       {child}
                     </AvatarGroupContext.Provider>
 
