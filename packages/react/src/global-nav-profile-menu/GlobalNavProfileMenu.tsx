@@ -7,7 +7,6 @@ import { Button } from "../button";
 import { Flex } from "../flex";
 import { IconEllipsis } from "../icons/IconEllipsis";
 import { Text } from "../text";
-import * as styles from "./GlobalNavProfileMenu.css";
 
 export type GlobalNavProfileMenuProps = BoxProps<
   "div",
@@ -24,20 +23,20 @@ export const GlobalNavProfileMenu = ({
   organization,
 }: GlobalNavProfileMenuProps) => {
   return (
-    <Flex {...styles.wrapper({})}>
-      <Box asChild {...styles.picture()}>
+    <Flex alignItems="center" flexDirection="row" gap="xs" px="md" py="xs">
+      <Box asChild rounded="sm" size="md">
         {avatar}
       </Box>
 
-      <RadixCollapsible.Content asChild>
-        <Flex flexDirection="row">
-          <Flex {...styles.userInfo()}>
+      <Flex asChild flexDirection="row">
+        <RadixCollapsible.Content>
+          <Flex flex="1" gap="0">
             <Text fontWeight="500">{name}</Text>
             <Text fontSize="sm">{organization}</Text>
           </Flex>
           <Button appearance="secondary" icon={<IconEllipsis />} />
-        </Flex>
-      </RadixCollapsible.Content>
+        </RadixCollapsible.Content>
+      </Flex>
     </Flex>
   );
 };
