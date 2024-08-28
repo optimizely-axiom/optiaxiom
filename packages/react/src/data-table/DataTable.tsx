@@ -92,11 +92,8 @@ export const DataTable = <TData, TValue>({
                       pinned: header.column.getIsPinned() ?? undefined,
                     })}
                   >
-                    <Flex flexDirection="row" gap="4">
-                      {flexRender(
-                        header.column.columnDef.header,
-                        header.getContext(),
-                      )}
+                    {/* <Flex flexDirection="row" gap="4">
+
                       {header.column.columnDef.enableSorting && (
                         <Tooltip
                           content={
@@ -125,7 +122,12 @@ export const DataTable = <TData, TValue>({
                           />
                         </Tooltip>
                       )}
-                    </Flex>
+                    </Flex> */}
+
+                    {/* {flexRender(
+                     typeof header.column.columnDef.header === "string" ? <DataTableHeader>{ header.column.columnDef.header}</DataTableHeader> :  header.column.columnDef.header ,
+                      header.getContext(),
+                    )} */}
                   </TableHead>
                 );
               })}
