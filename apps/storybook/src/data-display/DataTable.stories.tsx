@@ -53,7 +53,7 @@ const columns: ColumnDef<Payment, string>[] = [
       }).format(typeof amount === "number" ? amount : 0);
       return <Box textAlign="end">{formatted}</Box>;
     },
-    header: () => <Box ml="auto">Amount</Box>,
+    header: <DataTableHeader variant="number">Amount </DataTableHeader>,
   },
   {
     accessorKey: "createdAt",
