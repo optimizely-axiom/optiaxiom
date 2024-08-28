@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Avatar, AvatarGroup, Tooltip } from "@optiaxiom/react";
+import { Avatar, AvatarGroup, Flex, Tooltip } from "@optiaxiom/react";
 
 export default {
   component: AvatarGroup,
