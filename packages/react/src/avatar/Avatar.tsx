@@ -30,7 +30,7 @@ export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
     {
       children,
       className,
-      colorScheme = "brand",
+      colorScheme = "neutral",
       icon,
       name,
       size: sizeProp,

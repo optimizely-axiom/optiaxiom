@@ -77,11 +77,11 @@ export const icon = recipe({
   ],
   variants: {
     size: {
-      xs: style({ width: "12px" }),
-      sm: style({ width: "14px" }),
-      md: style({ width: "16px" }),
-      xl: style({ width: "20px" }),
-      "5xl": style({ width: "30px" }),
+      xs: { w: "12" },
+      sm: { w: "12" },
+      md: { w: "16" },
+      xl: { w: "20" },
+      "5xl": { w: "32" },
     },
   },
 });
