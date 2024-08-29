@@ -33,20 +33,20 @@ export const Pill = forwardRef<HTMLButtonElement, PillProps>(
     };
 
     return (
-      <Button
-        endDecorator={endDecorator}
-        onKeyDown={handleKeyDown}
-        ref={ref}
-        startDecorator={startDecorator}
-        {...styles.pill({ size }, className)}
-        {...props}
-      >
-        <Tooltip auto content={children}>
+      <Tooltip auto content={children}>
+        <Button
+          endDecorator={endDecorator}
+          onKeyDown={handleKeyDown}
+          ref={ref}
+          startDecorator={startDecorator}
+          {...styles.pill({ size }, className)}
+          {...props}
+        >
           <Text display="block" fontSize="sm" truncate>
             {children}
           </Text>
-        </Tooltip>
-      </Button>
+        </Button>
+      </Tooltip>
     );
   },
 );
