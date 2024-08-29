@@ -67,9 +67,25 @@ export const Tooltip = forwardRef<HTMLButtonElement, TooltipProps>(
             openProp === undefined
               ? (flag) => {
                   if (auto && flag && innerRef.current) {
-                    const { offsetWidth, scrollWidth } = innerRef.current;
+                    let truncated = false;
 
-                    if (offsetWidth >= scrollWidth) {
+                    const elements: Element[] = [innerRef.current];
+                    while (!truncated && elements.length) {
+                      const element = elements.shift();
+                      if (!(element instanceof HTMLElement)) {
+                        continue;
+                      }
+                      const { offsetWidth, scrollWidth } = element;
+
+                      if (offsetWidth < scrollWidth) {
+                        truncated = true;
+                        break;
+                      }
+
+                      elements.push(...element.children);
+                    }
+
+                    if (!truncated) {
                       return;
                     }
                   }
