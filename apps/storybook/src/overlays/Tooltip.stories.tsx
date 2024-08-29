@@ -1,6 +1,14 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Button, Flex, Grid, Switch, Text, Tooltip } from "@optiaxiom/react";
+import {
+  Box,
+  Button,
+  Flex,
+  Grid,
+  Switch,
+  Text,
+  Tooltip,
+} from "@optiaxiom/react";
 import {
   expect,
   screen,
@@ -138,18 +146,49 @@ export const AllPositions: Story = {
 export const Truncate: Story = {
   args: {
     auto: true,
-    content: "The quick brown fox jumps over the lazy dog.",
+  },
+  play: async ({ canvas }) => {
+    await userEvent.hover(canvas.getByTestId("not-truncated"));
+    await expect(
+      screen.queryByText("Not truncated text"),
+    ).not.toBeInTheDocument();
+
+    await userEvent.hover(canvas.getByTestId("target-truncated"));
+    await expect(
+      await screen.findByRole("tooltip", {
+        name: "Truncated text in target element",
+      }),
+    ).toBeInTheDocument();
+
+    await userEvent.hover(canvas.getByTestId("nested-truncated"));
+    await expect(
+      await screen.findByRole("tooltip", {
+        name: "Truncated text deep inside target element",
+      }),
+    ).toBeInTheDocument();
   },
   render: (args) => (
     <Flex>
-      <Tooltip {...args}>
-        <Text>The quick brown fox jumps over the lazy dog.</Text>
-      </Tooltip>
-
-      <Tooltip {...args}>
-        <Text truncate w="192">
+      <Tooltip {...args} content="Not truncated text">
+        <Text data-testid="not-truncated">
           The quick brown fox jumps over the lazy dog.
         </Text>
+      </Tooltip>
+
+      <Tooltip {...args} content="Truncated text in target element">
+        <Text data-testid="target-truncated" truncate w="192">
+          The quick brown fox jumps over the lazy dog.
+        </Text>
+      </Tooltip>
+
+      <Tooltip {...args} content="Truncated text deep inside target element">
+        <Box asChild w="192">
+          <button>
+            <Text data-testid="nested-truncated" truncate>
+              The quick brown fox jumps over the lazy dog.
+            </Text>
+          </button>
+        </Box>
       </Tooltip>
     </Flex>
   ),
