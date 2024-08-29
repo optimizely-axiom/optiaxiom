@@ -12,6 +12,7 @@ export * from "./breadcrumb-link";
 export * from "./breadcrumb-page";
 export * from "./breadcrumb-separator";
 export * from "./data-table";
+export * from "./data-table-header";
 export * from "./pill";
 export * from "./select";
 export * from "./select-content";
