@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-import { type Header } from "@tanstack/react-table";
+import { type Column } from "@tanstack/react-table";
 
 import { Button } from "../button";
 import { Flex } from "../flex";
@@ -10,23 +10,24 @@ import * as styles from "./DataTableHeader.css";
 
 export const DataTableHeader = <TData,>({
   children,
-  header,
+  column,
   variant = "text",
 }: {
   children?: ReactNode;
-  header?: Header<TData, unknown>;
+  column?: Column<TData, unknown>;
   variant?: "number" | "text";
 }) => {
+  if (!column) return null;
   return (
     <Flex {...styles.header({ variant })}>
       {children}
-      {header?.column.columnDef.enableSorting && (
+      {column.columnDef.enableSorting && (
         <Tooltip
           content={
-            header.column.getCanSort()
-              ? header.column.getNextSortingOrder() === "asc"
+            column.getCanSort()
+              ? column.getNextSortingOrder() === "asc"
                 ? "Sort ascending"
-                : header.column.getNextSortingOrder() === "desc"
+                : column.getNextSortingOrder() === "desc"
                   ? "Sort descending"
                   : "Clear sort"
               : undefined
@@ -36,12 +37,10 @@ export const DataTableHeader = <TData,>({
             border="0"
             icon={
               <IconSort
-                sortDirection={
-                  header.column.getIsSorted() as "asc" | "desc" | false
-                }
+                sortDirection={column.getIsSorted() as "asc" | "desc" | false}
               />
             }
-            onClick={() => header.column.toggleSorting()}
+            onClick={() => column.toggleSorting()}
           />
         </Tooltip>
       )}
