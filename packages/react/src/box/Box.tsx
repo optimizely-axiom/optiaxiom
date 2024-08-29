@@ -5,14 +5,17 @@ import "inter-ui/inter-variable.css";
 import {
   type ComponentPropsWithoutRef,
   type ElementType,
+  createContext,
   forwardRef,
-  isValidElement,
+  useContext,
 } from "react";
 
 import type { ExtendProps } from "../utils";
 
 import { type Sprinkles, extractSprinkles, sprinkles } from "../sprinkles";
 import * as styles from "./Box.css";
+
+const SprinklesContext = createContext<Sprinkles | undefined>(undefined);
 
 export type BoxProps<T extends ElementType = "div", P = unknown> = ExtendProps<
   ComponentPropsWithoutRef<T>,
@@ -37,22 +40,25 @@ export const Box = forwardRef<HTMLDivElement, BoxProps>(
      * Otherwise className will get generated based on sprinkle props and will
      * not be overridden correctly by child's className.
      */
-    if (asChild && isValidElement(props.children)) {
-      const { sprinkleProps: childrenSprinkleProps } = extractSprinkles(
-        props.children.props,
-      );
-      for (const key in childrenSprinkleProps) {
-        // @ts-expect-error -- too complex
-        delete sprinkleProps[key];
+    const outerSprinkleProps = useContext(SprinklesContext);
+    if (className && outerSprinkleProps) {
+      for (const [key, value] of Object.entries(outerSprinkleProps)) {
+        if (key in sprinkleProps) {
+          className = (" " + className + " ")
+            .replace(" " + sprinkles({ [key]: value }) + " ", " ")
+            .trim();
+        }
       }
     }
 
     return (
-      <Comp
-        ref={ref}
-        {...styles.box({}, clsx(className, sprinkles(sprinkleProps)))}
-        {...restProps}
-      />
+      <SprinklesContext.Provider value={asChild ? sprinkleProps : undefined}>
+        <Comp
+          ref={ref}
+          {...styles.box({}, clsx(className, sprinkles(sprinkleProps)))}
+          {...restProps}
+        />
+      </SprinklesContext.Provider>
     );
   },
 );
