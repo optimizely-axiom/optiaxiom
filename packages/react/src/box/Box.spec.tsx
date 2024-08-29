@@ -1,6 +1,8 @@
 import { describe, expect, it } from "vitest";
 
 import { render, screen } from "../../vitest.rtl";
+import { Button } from "../button";
+import { Text } from "../text";
 import { Box } from "./Box";
 
 describe("Box component", () => {
@@ -9,7 +11,7 @@ describe("Box component", () => {
     expect(screen.getByText(/This is a box/i)).toBeInTheDocument();
   });
 
-  it("should merge sprinkle props properly", () => {
+  it("should merge sprinkle props properly for direct props", () => {
     render(
       <Box asChild mx="4">
         <Box asChild mx="2">
@@ -24,5 +26,15 @@ describe("Box component", () => {
       "marginLeft_2",
     );
     expect(screen.getByText(/This is a box/i)).toContainHTML("marginLeft_0");
+  });
+
+  it("should merge sprinkle props properly for indirect props", () => {
+    render(
+      <Text asChild fontSize="sm">
+        <Button>This is a button</Button>
+      </Text>,
+    );
+    expect(screen.getByRole("button")).not.toContainHTML("fontSize_sm");
+    expect(screen.getByRole("button")).toContainHTML("fontSize_md");
   });
 });
