@@ -42,7 +42,7 @@ export const Pill = forwardRef<HTMLButtonElement, PillProps>(
           {...styles.pill({ size }, className)}
           {...props}
         >
-          <Text display="block" fontSize="sm" truncate>
+          <Text display="block" fontSize="inherit" truncate>
             {children}
           </Text>
         </Button>
