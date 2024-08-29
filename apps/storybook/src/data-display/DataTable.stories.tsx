@@ -1,7 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { Box } from "@optiaxiom/react";
-import { type ColumnDef, DataTable } from "@optiaxiom/react/unstable";
+import {
+  type ColumnDef,
+  DataTable,
+  DataTableHeader,
+} from "@optiaxiom/react/unstable";
 
 type Payment = {
   amount: number;
@@ -53,7 +57,8 @@ const columns: ColumnDef<Payment, string>[] = [
       }).format(typeof amount === "number" ? amount : 0);
       return <Box textAlign="end">{formatted}</Box>;
     },
-    header: <DataTableHeader variant="number">Amount </DataTableHeader>,
+    enableSorting: true,
+    header: () => <DataTableHeader variant="number">Amount</DataTableHeader>,
   },
   {
     accessorKey: "createdAt",
@@ -70,7 +75,7 @@ const columns: ColumnDef<Payment, string>[] = [
   {
     accessorKey: "quantity",
     cell: ({ row }) => <Box textAlign="end">{row.getValue("quantity")}</Box>,
-    header: () => <Box ml="auto">Quantity</Box>,
+    header: () => <DataTableHeader variant="number">Quantity</DataTableHeader>,
   },
   {
     accessorKey: "totalPrice",
@@ -80,9 +85,11 @@ const columns: ColumnDef<Payment, string>[] = [
         currency: "USD",
         style: "currency",
       }).format(typeof total === "number" ? total : 0);
-      return <Box textAlign="end">{formatted}</Box>;
+      return <DataTableHeader variant="number">{formatted}</DataTableHeader>;
     },
-    header: () => <Box ml="auto">Total Price</Box>,
+    header: () => (
+      <DataTableHeader variant="number">Total Price</DataTableHeader>
+    ),
   },
   {
     accessorKey: "paymentMethod",
@@ -154,7 +161,6 @@ export const Basic: Story = {
   args: {
     columns: columns.slice(0, 5),
     data: sampleData,
-    pinnedColumns: ["id"],
   },
 };
 

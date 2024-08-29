@@ -8,12 +8,10 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
-import { useState } from "react";
+import { type ComponentPropsWithRef, isValidElement, useState } from "react";
 
 import { Box } from "../box";
-import { Button } from "../button";
-import { Flex } from "../flex";
-import { IconSort } from "../icons/IconSort";
+import { DataTableHeader } from "../data-table-header";
 import { Pagination } from "../pagination";
 import { Table } from "../table";
 import { TableBody } from "../table-body";
@@ -21,7 +19,6 @@ import { TableCell } from "../table-cell";
 import { TableHead } from "../table-head";
 import { TableHeader } from "../table-header";
 import { TableRow } from "../table-row";
-import { Tooltip } from "../tooltip";
 import * as styles from "./DataTable.css";
 
 interface DataTableProps<TData, TValue> {
@@ -92,42 +89,34 @@ export const DataTable = <TData, TValue>({
                       pinned: header.column.getIsPinned() ?? undefined,
                     })}
                   >
-                    {/* <Flex flexDirection="row" gap="4">
-
-                      {header.column.columnDef.enableSorting && (
-                        <Tooltip
-                          content={
-                            header.column.getCanSort()
-                              ? header.column.getNextSortingOrder() === "asc"
-                                ? "Sort ascending"
-                                : header.column.getNextSortingOrder() === "desc"
-                                  ? "Sort descending"
-                                  : "Clear sort"
-                              : undefined
-                          }
-                        >
-                          <Button
-                            border="0"
-                            icon={
-                              <IconSort
-                                sortDirection={
-                                  header.column.getIsSorted() as
-                                    | "asc"
-                                    | "desc"
-                                    | false
-                                }
-                              />
-                            }
-                            onClick={() => header.column.toggleSorting()}
-                          />
-                        </Tooltip>
-                      )}
-                    </Flex> */}
-
-                    {/* {flexRender(
-                     typeof header.column.columnDef.header === "string" ? <DataTableHeader>{ header.column.columnDef.header}</DataTableHeader> :  header.column.columnDef.header ,
-                      header.getContext(),
-                    )} */}
+                    {flexRender((props) => {
+                      const customHeader = header.column.columnDef.header;
+                      if (typeof customHeader === "function") {
+                        const result = customHeader(props);
+                        if (
+                          isValidElement<
+                            ComponentPropsWithRef<typeof DataTableHeader>
+                          >(result)
+                        ) {
+                          return (
+                            <DataTableHeader
+                              header={header}
+                              variant={result.props.variant || "text"}
+                            >
+                              {result.props.children}
+                            </DataTableHeader>
+                          );
+                        } else {
+                          return result;
+                        }
+                      } else {
+                        return (
+                          <DataTableHeader header={header}>
+                            {customHeader}
+                          </DataTableHeader>
+                        );
+                      }
+                    }, header.getContext())}
                   </TableHead>
                 );
               })}
