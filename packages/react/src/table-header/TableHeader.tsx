@@ -9,7 +9,7 @@ export const TableHeader = forwardRef<
   TableHeaderProps
 >(({ children, ...props }, ref) => (
   <Box asChild {...props}>
-    <thead ref={ref}> {children} </thead>
+    <thead ref={ref}>{children}</thead>
   </Box>
 ));
 TableHeader.displayName = "@optiaxiom/react/TableHeader";

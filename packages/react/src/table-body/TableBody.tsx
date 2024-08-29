@@ -7,7 +7,7 @@ type TableBodyProps = BoxProps<"tbody">;
 export const TableBody = forwardRef<HTMLTableSectionElement, TableBodyProps>(
   ({ children, className, ...props }, ref) => (
     <Box asChild {...styles.body({}, className)} {...props}>
-      <tbody ref={ref}>{children} </tbody>
+      <tbody ref={ref}>{children}</tbody>
     </Box>
   ),
 );
