@@ -58,7 +58,11 @@ const columns: ColumnDef<Payment, string>[] = [
       return <Box textAlign="end">{formatted}</Box>;
     },
     enableSorting: true,
-    header: () => <DataTableHeader variant="number">Amount</DataTableHeader>,
+    header: (props) => (
+      <DataTableHeader variant="number" {...props}>
+        Amount
+      </DataTableHeader>
+    ),
   },
   {
     accessorKey: "createdAt",
@@ -75,7 +79,11 @@ const columns: ColumnDef<Payment, string>[] = [
   {
     accessorKey: "quantity",
     cell: ({ row }) => <Box textAlign="end">{row.getValue("quantity")}</Box>,
-    header: () => <DataTableHeader variant="number">Quantity</DataTableHeader>,
+    header: (props) => (
+      <DataTableHeader variant="number" {...props}>
+        Quantity
+      </DataTableHeader>
+    ),
   },
   {
     accessorKey: "totalPrice",
@@ -85,10 +93,12 @@ const columns: ColumnDef<Payment, string>[] = [
         currency: "USD",
         style: "currency",
       }).format(typeof total === "number" ? total : 0);
-      return <DataTableHeader variant="number">{formatted}</DataTableHeader>;
+      return <Box textAlign="end">{formatted}</Box>;
     },
-    header: () => (
-      <DataTableHeader variant="number">Total Price</DataTableHeader>
+    header: (props) => (
+      <DataTableHeader variant="number" {...props}>
+        TotalPrice
+      </DataTableHeader>
     ),
   },
   {

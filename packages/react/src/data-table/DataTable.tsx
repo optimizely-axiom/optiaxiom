@@ -8,7 +8,7 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
-import { type ComponentPropsWithRef, isValidElement, useState } from "react";
+import { createElement, useState } from "react";
 
 import { Box } from "../box";
 import { DataTableHeader } from "../data-table-header";
@@ -89,34 +89,17 @@ export const DataTable = <TData, TValue>({
                       pinned: header.column.getIsPinned() ?? undefined,
                     })}
                   >
-                    {flexRender((props) => {
-                      const customHeader = header.column.columnDef.header;
-                      if (typeof customHeader === "function") {
-                        const result = customHeader(props);
-                        if (
-                          isValidElement<
-                            ComponentPropsWithRef<typeof DataTableHeader>
-                          >(result)
-                        ) {
-                          return (
-                            <DataTableHeader
-                              header={header}
-                              variant={result.props.variant || "text"}
-                            >
-                              {result.props.children}
-                            </DataTableHeader>
-                          );
-                        } else {
-                          return result;
-                        }
-                      } else {
-                        return (
-                          <DataTableHeader header={header}>
-                            {customHeader}
-                          </DataTableHeader>
-                        );
-                      }
-                    }, header.getContext())}
+                    {header.column.columnDef.header &&
+                    typeof header.column.columnDef.header !== "string" ? (
+                      createElement(
+                        header.column.columnDef.header,
+                        header.getContext(),
+                      )
+                    ) : (
+                      <DataTableHeader {...header.getContext()}>
+                        {header.column.columnDef.header}
+                      </DataTableHeader>
+                    )}
                   </TableHead>
                 );
               })}
