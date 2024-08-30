@@ -5,7 +5,7 @@ import type { ComponentAttributes } from "./ComponentAttributes";
 import { register } from "../register";
 
 export const Tabs = "ax-tabs";
-register(Tabs, TabsComponent);
+export default register(Tabs, TabsComponent);
 
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace

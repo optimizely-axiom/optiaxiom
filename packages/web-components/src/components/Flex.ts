@@ -5,7 +5,7 @@ import type { ComponentAttributes } from "./ComponentAttributes";
 import { register } from "../register";
 
 export const Flex = "ax-flex";
-register(Flex, FlexComponent);
+export default register(Flex, FlexComponent);
 
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace

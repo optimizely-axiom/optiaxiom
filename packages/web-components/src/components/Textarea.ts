@@ -5,7 +5,7 @@ import type { ComponentAttributes } from "./ComponentAttributes";
 import { register } from "../register";
 
 export const Textarea = "ax-textarea";
-register(Textarea, TextareaComponent);
+export default register(Textarea, TextareaComponent);
 
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace

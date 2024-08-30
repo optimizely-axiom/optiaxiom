@@ -5,7 +5,7 @@ import type { ComponentAttributes } from "./ComponentAttributes";
 import { register } from "../register";
 
 export const Accordion = "ax-accordion";
-register(Accordion, AccordionComponent);
+export default register(Accordion, AccordionComponent);
 
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace

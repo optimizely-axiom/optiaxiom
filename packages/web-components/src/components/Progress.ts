@@ -5,7 +5,7 @@ import type { ComponentAttributes } from "./ComponentAttributes";
 import { register } from "../register";
 
 export const Progress = "ax-progress";
-register(Progress, ProgressComponent);
+export default register(Progress, ProgressComponent);
 
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace

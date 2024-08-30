@@ -5,7 +5,7 @@ import type { ComponentAttributes } from "./ComponentAttributes";
 import { register } from "../register";
 
 export const MenuLabel = "ax-menu-label";
-register(MenuLabel, MenuLabelComponent);
+export default register(MenuLabel, MenuLabelComponent);
 
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace

@@ -5,7 +5,7 @@ import type { ComponentAttributes } from "./ComponentAttributes";
 import { register } from "../register";
 
 export const AvatarGroup = "ax-avatar-group";
-register(AvatarGroup, AvatarGroupComponent);
+export default register(AvatarGroup, AvatarGroupComponent);
 
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace

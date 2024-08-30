@@ -5,7 +5,7 @@ import type { ComponentAttributes } from "./ComponentAttributes";
 import { register } from "../register";
 
 export const Grid = "ax-grid";
-register(Grid, GridComponent);
+export default register(Grid, GridComponent);
 
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace

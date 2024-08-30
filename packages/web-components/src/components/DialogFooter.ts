@@ -5,7 +5,7 @@ import type { ComponentAttributes } from "./ComponentAttributes";
 import { register } from "../register";
 
 export const DialogFooter = "ax-dialog-footer";
-register(DialogFooter, DialogFooterComponent);
+export default register(DialogFooter, DialogFooterComponent);
 
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace

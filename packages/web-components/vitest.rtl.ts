@@ -1,9 +1,20 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import { AxiomProvider } from "@optiaxiom/web-components/AxiomProvider";
 import { render, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { createElement } from "react";
 import { vi } from "vitest";
 
+const GlobalTestWrapper = ({ children }: { children?: React.ReactNode }) => {
+  return createElement(AxiomProvider, undefined, children);
+};
+
 const customRender = (...args: Parameters<typeof render>) => ({
-  ...render(...args),
+  ...render(args[0], {
+    wrapper: GlobalTestWrapper,
+    ...args[1],
+  }),
   user: userEvent.setup({
     advanceTimers: vi.advanceTimersByTime.bind(vi),
   }),

@@ -5,7 +5,7 @@ import type { ComponentAttributes } from "./ComponentAttributes";
 import { register } from "../register";
 
 export const Input = "ax-input";
-register(Input, InputComponent);
+export default register(Input, InputComponent);
 
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace

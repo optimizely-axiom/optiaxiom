@@ -5,7 +5,7 @@ import type { ComponentAttributes } from "./ComponentAttributes";
 import { register } from "../register";
 
 export const HoverCardTrigger = "ax-hover-card-trigger";
-register(HoverCardTrigger, HoverCardTriggerComponent);
+export default register(HoverCardTrigger, HoverCardTriggerComponent);
 
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace

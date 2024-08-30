@@ -5,7 +5,7 @@ import type { ComponentAttributes } from "./ComponentAttributes";
 import { register } from "../register";
 
 export const Text = "ax-text";
-register(Text, TextComponent);
+export default register(Text, TextComponent);
 
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace

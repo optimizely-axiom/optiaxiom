@@ -5,7 +5,7 @@ import type { ComponentAttributes } from "./ComponentAttributes";
 import { register } from "../register";
 
 export const Heading = "ax-heading";
-register(Heading, HeadingComponent);
+export default register(Heading, HeadingComponent);
 
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace

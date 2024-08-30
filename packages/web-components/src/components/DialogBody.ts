@@ -5,7 +5,7 @@ import type { ComponentAttributes } from "./ComponentAttributes";
 import { register } from "../register";
 
 export const DialogBody = "ax-dialog-body";
-register(DialogBody, DialogBodyComponent);
+export default register(DialogBody, DialogBodyComponent);
 
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace

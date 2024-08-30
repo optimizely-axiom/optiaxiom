@@ -5,7 +5,7 @@ import type { ComponentAttributes } from "./ComponentAttributes";
 import { register } from "../register";
 
 export const DrawerBody = "ax-drawer-body";
-register(DrawerBody, DrawerBodyComponent);
+export default register(DrawerBody, DrawerBodyComponent);
 
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace
