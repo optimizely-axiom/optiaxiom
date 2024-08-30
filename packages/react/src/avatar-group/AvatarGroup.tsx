@@ -35,11 +35,13 @@ export const AvatarGroup = forwardRef<HTMLDivElement, AvatarGroupProps>(
         <AvatarGroupContext.Provider value={{ size }}>
           {visibleChildren}
         </AvatarGroupContext.Provider>
+
         {overflowChildren.length > 0 && (
           <HoverCard>
             <HoverCardTrigger asChild>
               <Avatar size={size}>+{overflowChildren.length}</Avatar>
             </HoverCardTrigger>
+
             <HoverCardContent flexDirection="column" gap="xs">
               {overflowChildren.map((child, index) =>
                 isValidElement<

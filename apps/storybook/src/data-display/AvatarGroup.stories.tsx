@@ -48,62 +48,49 @@ const users = [
 ];
 
 export const Basic: Story = {
-  render: () => {
+  args: {
+    children: users.map((user) => (
+      <Avatar colorScheme="blue" key={user.id} name={user.name} src={user.src}>
+        {user.id}
+      </Avatar>
+    )),
+    maxItems: 2,
+    size: "xs",
+  },
+};
+
+const sizes = ["xs", "sm", "md", "xl", "5xl"] as const;
+
+export const Sizes: Story = {
+  args: {
+    children: users.map((user) => (
+      <Avatar colorScheme="blue" key={user.id} name={user.name} src={user.src}>
+        {user.id}
+      </Avatar>
+    )),
+    maxItems: 3,
+  },
+  render: (args) => {
     return (
-      <AvatarGroup maxItems={2} size="xs">
-        {users.map((user) => (
-          <Avatar
-            colorScheme="blue"
-            key={user.id}
-            name={user.name}
-            src={user.src}
-          >
-            {user.id}
-          </Avatar>
+      <Flex gap="md">
+        {sizes.map((size) => (
+          <AvatarGroup key={size} {...args} size={size} />
         ))}
-      </AvatarGroup>
+      </Flex>
     );
   },
 };
 
 export const WithTooltip: Story = {
-  render: () => {
-    return (
-      <AvatarGroup maxItems={3} size="xs">
-        {users.map((user) => (
-          <Tooltip content={user.name} key={user.id}>
-            <Avatar colorScheme="blue" name={user.name} src={user.src}>
-              {user.id}
-            </Avatar>
-          </Tooltip>
-        ))}
-      </AvatarGroup>
-    );
-  },
-};
-
-const sizes = ["xs", "sm", "md", "xl", "5xl"] as const;
-const colorSchemes = ["green", "blue", "purple", "orange", "red"] as const;
-
-export const Sizes: Story = {
-  render: () => {
-    return (
-      <Flex gap="md">
-        {sizes.map((size, index) => (
-          <AvatarGroup key={size} maxItems={3} size={size}>
-            {users.map((user) => (
-              <Avatar
-                colorScheme={colorSchemes[index]}
-                key={user.id}
-                name={user.name}
-                src={user.src}
-              >
-                {user.id}
-              </Avatar>
-            ))}
-          </AvatarGroup>
-        ))}
-      </Flex>
-    );
+  args: {
+    children: users.map((user) => (
+      <Tooltip content={user.name} key={user.id}>
+        <Avatar colorScheme="blue" name={user.name} src={user.src}>
+          {user.id}
+        </Avatar>
+      </Tooltip>
+    )),
+    maxItems: 3,
+    size: "xs",
   },
 };
