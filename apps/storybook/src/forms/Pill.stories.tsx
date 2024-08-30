@@ -48,10 +48,10 @@ export const WithAvatar: Story = {
   ),
 };
 
-export const LongText: Story = {
+export const LongContent: Story = {
   args: {
     children: "This is a very long text",
-    w: "xl",
+    w: "80",
   },
 };
 
