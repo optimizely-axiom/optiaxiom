@@ -7,7 +7,9 @@ import * as styles from "./AvatarGroup.css";
 
 type AvatarGroupProps = BoxProps<
   "div",
-  Pick<ComponentPropsWithoutRef<typeof Avatar>, "size">
+  {
+    size?: ComponentPropsWithoutRef<typeof Avatar>["size"];
+  }
 >;
 
 export const AvatarGroup = forwardRef<HTMLDivElement, AvatarGroupProps>(
