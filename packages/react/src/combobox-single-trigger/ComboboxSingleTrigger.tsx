@@ -1,11 +1,12 @@
 import { forwardRef } from "react";
 
+import type { PopoverTrigger } from "../popover-trigger";
+
 import { Button, type ButtonProps } from "../button";
 import { useComboboxContext } from "../combobox-context";
-import { ComboboxTrigger } from "../combobox-trigger";
 import { IconAngleDown } from "../icons/IconAngleDown";
 
-type ComboboxSingleTriggerProps = ButtonProps<typeof ComboboxTrigger>;
+type ComboboxSingleTriggerProps = ButtonProps<typeof PopoverTrigger>;
 
 export const ComboboxSingleTrigger = forwardRef<
   HTMLButtonElement,
@@ -13,12 +14,9 @@ export const ComboboxSingleTrigger = forwardRef<
 >(({ title, ...props }, ref) => {
   const { value } = useComboboxContext("Combobox");
   return (
-    <ComboboxTrigger asChild ref={ref} {...props}>
-      <Button>
-        {value || title}
-        <IconAngleDown />
-      </Button>
-    </ComboboxTrigger>
+    <Button endDecorator={<IconAngleDown />} ref={ref} {...props}>
+      {value || title}
+    </Button>
   );
 });
 
