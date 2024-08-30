@@ -1,3 +1,5 @@
+import type { Preview } from "@storybook/react";
+
 import * as components from "@optiaxiom/react";
 Object.assign(window, components);
 require("raw-loader!../../../packages/react/dist/index.d.ts");
@@ -21,3 +23,13 @@ export const parameters = {
     },
   },
 };
+
+export default {
+  decorators: [
+    (Story) => (
+      <components.AxiomProvider>
+        <Story />
+      </components.AxiomProvider>
+    ),
+  ],
+} satisfies Preview;
