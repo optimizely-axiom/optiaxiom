@@ -61,102 +61,101 @@ export const Tooltip = forwardRef<HTMLButtonElement, TooltipProps>(
     });
 
     return (
-      <RadixTooltip.Provider delayDuration={delayDuration}>
-        <RadixTooltip.Root
-          onOpenChange={
-            openProp === undefined
-              ? (flag) => {
-                  if (auto && flag && innerRef.current) {
-                    let truncated = false;
+      <RadixTooltip.Root
+        delayDuration={delayDuration}
+        onOpenChange={
+          openProp === undefined
+            ? (flag) => {
+                if (auto && flag && innerRef.current) {
+                  let truncated = false;
 
-                    const elements: Element[] = [innerRef.current];
-                    while (!truncated && elements.length) {
-                      const element = elements.shift();
-                      if (!(element instanceof HTMLElement)) {
-                        continue;
-                      }
-                      const { offsetWidth, scrollWidth } = element;
+                  const elements: Element[] = [innerRef.current];
+                  while (!truncated && elements.length) {
+                    const element = elements.shift();
+                    if (!(element instanceof HTMLElement)) {
+                      continue;
+                    }
+                    const { offsetWidth, scrollWidth } = element;
 
-                      if (offsetWidth < scrollWidth) {
-                        truncated = true;
-                        break;
-                      }
-
-                      elements.push(...element.children);
+                    if (offsetWidth < scrollWidth) {
+                      truncated = true;
+                      break;
                     }
 
-                    if (!truncated) {
-                      return;
-                    }
+                    elements.push(...element.children);
                   }
 
-                  setOpen(flag);
-                  onOpenChange?.(flag);
+                  if (!truncated) {
+                    return;
+                  }
                 }
-              : setOpen
-          }
-          open={open}
-        >
-          <RadixTooltip.Trigger
-            asChild
-            onClick={
-              keepOpenOnActivation
-                ? (event) => {
-                    event.preventDefault();
-                    setOpen(true);
-                  }
-                : undefined
-            }
-            ref={ref}
-          >
-            {children}
-          </RadixTooltip.Trigger>
 
-          <AnimatePresence>
-            {open && (
-              <RadixTooltip.Portal forceMount>
-                <Transition duration="sm" type="pop">
-                  <Box
-                    asChild
-                    bg="bg.neutral.inverse"
-                    color="white"
-                    px="12"
-                    py="8"
-                    rounded="md"
-                    z={z}
-                    {...props}
-                  >
-                    <RadixTooltip.Content
-                      onPointerDownOutside={
-                        keepOpenOnActivation
-                          ? (event: CustomEvent) => {
-                              if (
-                                innerRef.current?.contains(
-                                  event.target as Node | null,
-                                )
+                setOpen(flag);
+                onOpenChange?.(flag);
+              }
+            : setOpen
+        }
+        open={open}
+      >
+        <RadixTooltip.Trigger
+          asChild
+          onClick={
+            keepOpenOnActivation
+              ? (event) => {
+                  event.preventDefault();
+                  setOpen(true);
+                }
+              : undefined
+          }
+          ref={ref}
+        >
+          {children}
+        </RadixTooltip.Trigger>
+
+        <AnimatePresence>
+          {open && (
+            <RadixTooltip.Portal forceMount>
+              <Transition duration="sm" type="pop">
+                <Box
+                  asChild
+                  bg="bg.neutral.inverse"
+                  color="white"
+                  px="12"
+                  py="8"
+                  rounded="md"
+                  z={z}
+                  {...props}
+                >
+                  <RadixTooltip.Content
+                    onPointerDownOutside={
+                      keepOpenOnActivation
+                        ? (event: CustomEvent) => {
+                            if (
+                              innerRef.current?.contains(
+                                event.target as Node | null,
                               )
-                                event.preventDefault();
-                            }
-                          : undefined
-                      }
-                      sideOffset={5}
-                    >
-                      <Text fontSize="sm">{content}</Text>
-                      {withArrow && (
-                        <RadixTooltip.Arrow
-                          fill={theme.colors["neutral.900"]}
-                          height={4}
-                          width={8}
-                        />
-                      )}
-                    </RadixTooltip.Content>
-                  </Box>
-                </Transition>
-              </RadixTooltip.Portal>
-            )}
-          </AnimatePresence>
-        </RadixTooltip.Root>
-      </RadixTooltip.Provider>
+                            )
+                              event.preventDefault();
+                          }
+                        : undefined
+                    }
+                    sideOffset={5}
+                  >
+                    <Text fontSize="sm">{content}</Text>
+                    {withArrow && (
+                      <RadixTooltip.Arrow
+                        fill={theme.colors["neutral.900"]}
+                        height={4}
+                        width={8}
+                      />
+                    )}
+                  </RadixTooltip.Content>
+                </Box>
+              </Transition>
+            </RadixTooltip.Portal>
+          )}
+        </AnimatePresence>
+      </RadixTooltip.Root>
     );
   },
 );

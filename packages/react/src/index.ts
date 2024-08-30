@@ -9,6 +9,7 @@ export * from "./alert-title";
 export * from "./animate-presence";
 export * from "./avatar";
 export * from "./avatar-group";
+export * from "./axiom-provider";
 export * from "./badge";
 export * from "./box";
 export * from "./breadcrumb-item";

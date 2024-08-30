@@ -25,6 +25,7 @@
     "./AnimatePresence": "./dist/components/AnimatePresence.js",
     "./Avatar": "./dist/components/Avatar.js",
     "./AvatarGroup": "./dist/components/AvatarGroup.js",
+    "./AxiomProvider": "./dist/components/AxiomProvider.js",
     "./Badge": "./dist/components/Badge.js",
     "./Box": "./dist/components/Box.js",
     "./Breadcrumbs": "./dist/components/Breadcrumbs.js",
