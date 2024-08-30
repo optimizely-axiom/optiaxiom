@@ -1,7 +1,7 @@
 import * as RadixAvatar from "@radix-ui/react-avatar";
 import { forwardRef, useContext } from "react";
 
-import { AvatarGroupContext } from "../avatar-context";
+import { AvatarContext } from "../avatar-context";
 import { Box, type BoxProps } from "../box";
 import * as styles from "./Avatar.css";
 
@@ -39,8 +39,8 @@ export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
     },
     ref,
   ) => {
-    const groupContext = useContext(AvatarGroupContext);
-    const size = sizeProp || groupContext?.size || "md";
+    const context = useContext(AvatarContext);
+    const size = sizeProp || context?.size || "md";
 
     return (
       <Box

@@ -1,7 +1,7 @@
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import { Avatar } from "../avatar";
-import { AvatarGroupContext } from "../avatar-context/AvatarContext";
+import { AvatarContext } from "../avatar-context/AvatarContext";
 import { Box, type BoxProps } from "../box";
 import * as styles from "./AvatarGroup.css";
 
@@ -16,9 +16,9 @@ export const AvatarGroup = forwardRef<HTMLDivElement, AvatarGroupProps>(
   ({ children, className, size = "md", ...props }, ref) => {
     return (
       <Box ref={ref} {...styles.avatarGroup({}, className)} {...props}>
-        <AvatarGroupContext.Provider value={{ size }}>
+        <AvatarContext.Provider value={{ size }}>
           {children}
-        </AvatarGroupContext.Provider>
+        </AvatarContext.Provider>
       </Box>
     );
   },
