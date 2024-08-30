@@ -1,12 +1,15 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Avatar, AvatarGroup, Flex, Tooltip } from "@optiaxiom/react";
-
-export default {
-  component: AvatarGroup,
-} as Meta<typeof AvatarGroup>;
-
-type Story = StoryObj<typeof AvatarGroup>;
+import {
+  Avatar,
+  AvatarGroup,
+  Flex,
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+  Text,
+  Tooltip,
+} from "@optiaxiom/react";
 
 const users = [
   {
@@ -47,29 +50,35 @@ const users = [
   },
 ];
 
-export const Basic: Story = {
+export default {
   args: {
-    children: users.map((user) => (
-      <Avatar colorScheme="blue" key={user.id} name={user.name} src={user.src}>
-        {user.id}
-      </Avatar>
-    )),
-    maxItems: 2,
-    size: "xs",
+    children: (
+      <>
+        {users.slice(0, 3).map((user) => (
+          <Avatar
+            colorScheme="blue"
+            key={user.id}
+            name={user.name}
+            src={user.src}
+          >
+            {user.id}
+          </Avatar>
+        ))}
+
+        <Avatar>+3</Avatar>
+      </>
+    ),
   },
-};
+  component: AvatarGroup,
+} as Meta<typeof AvatarGroup>;
+
+type Story = StoryObj<typeof AvatarGroup>;
+
+export const Basic: Story = {};
 
 const sizes = ["xs", "sm", "md", "xl", "5xl"] as const;
 
 export const Sizes: Story = {
-  args: {
-    children: users.map((user) => (
-      <Avatar colorScheme="blue" key={user.id} name={user.name} src={user.src}>
-        {user.id}
-      </Avatar>
-    )),
-    maxItems: 3,
-  },
   render: (args) => {
     return (
       <Flex gap="md">
@@ -83,14 +92,63 @@ export const Sizes: Story = {
 
 export const WithTooltip: Story = {
   args: {
-    children: users.map((user) => (
-      <Tooltip content={user.name} key={user.id}>
-        <Avatar colorScheme="blue" name={user.name} src={user.src}>
-          {user.id}
-        </Avatar>
-      </Tooltip>
-    )),
-    maxItems: 3,
-    size: "xs",
+    children: (
+      <>
+        {users.slice(0, 3).map((user) => (
+          <Tooltip content={user.name} key={user.id}>
+            <Avatar colorScheme="blue" name={user.name} src={user.src}>
+              {user.id}
+            </Avatar>
+          </Tooltip>
+        ))}
+
+        <Tooltip
+          content={new Intl.ListFormat("en").format(
+            users.slice(3).map((user) => user.name),
+          )}
+        >
+          <Avatar>+3</Avatar>
+        </Tooltip>
+      </>
+    ),
+  },
+};
+
+export const WithHoverCard: Story = {
+  args: {
+    children: (
+      <>
+        {users.slice(0, 3).map((user) => (
+          <Avatar
+            colorScheme="blue"
+            key={user.id}
+            name={user.name}
+            src={user.src}
+          >
+            {user.id}
+          </Avatar>
+        ))}
+
+        <HoverCard>
+          <HoverCardTrigger asChild>
+            <Avatar>+3</Avatar>
+          </HoverCardTrigger>
+
+          <HoverCardContent>
+            <Flex flexDirection="column" gap="xs">
+              {users.slice(3).map((user, index) => (
+                <Flex flexDirection="row" gap="4" key={index}>
+                  <Avatar colorScheme="blue" name={user.name} src={user.src}>
+                    {user.id}
+                  </Avatar>
+
+                  <Text>{user.name}</Text>
+                </Flex>
+              ))}
+            </Flex>
+          </HoverCardContent>
+        </HoverCard>
+      </>
+    ),
   },
 };
