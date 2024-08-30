@@ -3,8 +3,19 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Avatar, Flex, Tooltip } from "@optiaxiom/react";
 import { IconUser } from "@tabler/icons-react";
 
+const sizes = ["xs", "sm", "md", "xl", "5xl"] as const;
+
 export default {
   component: Avatar,
+  render: (args) => (
+    <Flex flexDirection="row">
+      {sizes.map((size) => (
+        <Avatar key={size} size={size} {...args}>
+          {size}
+        </Avatar>
+      ))}
+    </Flex>
+  ),
 } as Meta<typeof Avatar>;
 
 type Story = StoryObj<typeof Avatar>;
@@ -15,21 +26,10 @@ export const Basic: Story = {
   },
 };
 
-const sizes = ["5xl", "xl", "md", "sm", "xs"] as const;
-
 export const Sizes: Story = {
   args: {
     name: "William Michael",
   },
-  render: (args) => (
-    <Flex flexDirection="row">
-      {sizes.map((size) => (
-        <Avatar key={size} size={size} {...args}>
-          {size}
-        </Avatar>
-      ))}
-    </Flex>
-  ),
 };
 
 export const Image: Story = {
@@ -37,15 +37,6 @@ export const Image: Story = {
     name: "John Snow",
     src: "https://images.unsplash.com/photo-1511485977113-f34c92461ad9?ixlib=rb-1.2.1&w=128&h=128&dpr=2&q=80",
   },
-  render: (args) => (
-    <Flex flexDirection="row">
-      {sizes.map((size) => (
-        <Avatar key={size} size={size} {...args}>
-          {size}
-        </Avatar>
-      ))}
-    </Flex>
-  ),
 };
 
 export const Icon: Story = {
@@ -54,15 +45,6 @@ export const Icon: Story = {
     icon: <IconUser />,
     name: "Quiock Hoyon",
   },
-  render: (args) => (
-    <Flex flexDirection="row">
-      {sizes.map((size) => (
-        <Avatar key={size} size={size} {...args}>
-          {size}
-        </Avatar>
-      ))}
-    </Flex>
-  ),
 };
 
 export const Colors: Story = {
