@@ -5,7 +5,7 @@ import type { ComponentAttributes } from "./ComponentAttributes";
 import { register } from "../register";
 
 export const ToastAction = "ax-toast-action";
-register(ToastAction, ToastActionComponent);
+export default register(ToastAction, ToastActionComponent);
 
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace

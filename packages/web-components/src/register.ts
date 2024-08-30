@@ -177,6 +177,8 @@ export function register<
       },
     );
   }
+
+  return withPreactElement;
 }
 
 const original = options.vnode;

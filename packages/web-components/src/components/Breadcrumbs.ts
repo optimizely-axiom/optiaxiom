@@ -5,7 +5,7 @@ import type { ComponentAttributes } from "./ComponentAttributes";
 import { register } from "../register";
 
 export const Breadcrumbs = "ax-breadcrumbs";
-register(Breadcrumbs, BreadcrumbsComponent);
+export default register(Breadcrumbs, BreadcrumbsComponent);
 
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace

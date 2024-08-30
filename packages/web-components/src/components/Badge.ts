@@ -5,7 +5,7 @@ import type { ComponentAttributes } from "./ComponentAttributes";
 import { register } from "../register";
 
 export const Badge = "ax-badge";
-register(Badge, BadgeComponent);
+export default register(Badge, BadgeComponent);
 
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace

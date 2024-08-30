@@ -5,7 +5,7 @@ import type { ComponentAttributes } from "./ComponentAttributes";
 import { register } from "../register";
 
 export const PopoverContent = "ax-popover-content";
-register(PopoverContent, PopoverContentComponent);
+export default register(PopoverContent, PopoverContentComponent);
 
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace

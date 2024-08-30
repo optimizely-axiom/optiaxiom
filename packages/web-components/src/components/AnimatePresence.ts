@@ -5,7 +5,7 @@ import type { ComponentAttributes } from "./ComponentAttributes";
 import { register } from "../register";
 
 export const AnimatePresence = "ax-animate-presence";
-register(AnimatePresence, AnimatePresenceComponent);
+export default register(AnimatePresence, AnimatePresenceComponent);
 
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace

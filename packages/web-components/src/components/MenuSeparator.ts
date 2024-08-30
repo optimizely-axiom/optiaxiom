@@ -5,7 +5,7 @@ import type { ComponentAttributes } from "./ComponentAttributes";
 import { register } from "../register";
 
 export const MenuSeparator = "ax-menu-separator";
-register(MenuSeparator, MenuSeparatorComponent);
+export default register(MenuSeparator, MenuSeparatorComponent);
 
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace

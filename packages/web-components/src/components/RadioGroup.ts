@@ -5,7 +5,7 @@ import type { ComponentAttributes } from "./ComponentAttributes";
 import { register } from "../register";
 
 export const RadioGroup = "ax-radio-group";
-register(RadioGroup, RadioGroupComponent);
+export default register(RadioGroup, RadioGroupComponent);
 
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace

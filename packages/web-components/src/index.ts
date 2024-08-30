@@ -1,17 +1,52 @@
 import { mapping } from "./mapping";
 
-function processNode(node: Node) {
-  const nodeName = node.nodeName.toLowerCase();
-  if (!(nodeName in mapping)) {
-    return;
+for (const [name, component] of Object.entries(mapping)) {
+  if (!customElements.get(name)) {
+    customElements.define(
+      name,
+      class extends HTMLElement {
+        #connected = false;
+        #disconnected = false;
+
+        #internal?: {
+          connectedCallback: () => void;
+          disconnectedCallback: () => void;
+        };
+        #loader: Promise<void>;
+
+        constructor() {
+          super();
+          this.#loader = import(`./components/${component}.js`).then((mod) => {
+            this.#internal = mod.default(this);
+          });
+        }
+
+        connectedCallback() {
+          if (this.#disconnected) {
+            return;
+          }
+
+          void this.#loader.then(() => {
+            if (this.#disconnected) {
+              return;
+            }
+
+            this.#internal?.connectedCallback();
+            this.#connected = true;
+          });
+        }
+
+        disconnectedCallback() {
+          if (!this.#connected) {
+            this.#disconnected = true;
+            return;
+          }
+
+          void this.#loader.then(() => {
+            this.#internal?.disconnectedCallback();
+          });
+        }
+      },
+    );
   }
-  void import(`./components/${mapping[nodeName as keyof typeof mapping]}.js`);
 }
-
-document.querySelectorAll("*").forEach(processNode);
-
-new MutationObserver((records) => {
-  records.forEach(({ addedNodes }) => {
-    addedNodes.forEach(processNode);
-  });
-}).observe(document.body, { childList: true, subtree: true });

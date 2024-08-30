@@ -5,7 +5,7 @@ import type { ComponentAttributes } from "./ComponentAttributes";
 import { register } from "../register";
 
 export const Search = "ax-search";
-register(Search, SearchComponent);
+export default register(Search, SearchComponent);
 
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace
