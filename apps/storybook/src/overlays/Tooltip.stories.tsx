@@ -13,6 +13,7 @@ import {
   expect,
   screen,
   userEvent,
+  waitFor,
   waitForElementToBeRemoved,
 } from "@storybook/test";
 import { useState } from "react";
@@ -154,18 +155,29 @@ export const Truncate: Story = {
     ).not.toBeInTheDocument();
 
     await userEvent.hover(canvas.getByTestId("target-truncated"));
-    await expect(
-      await screen.findByRole("tooltip", {
-        name: "Truncated text in target element",
-      }),
-    ).toBeInTheDocument();
+    await waitFor(async () =>
+      expect(
+        await screen.findByRole("tooltip", {
+          name: "Truncated text in target element",
+        }),
+      ).toBeVisible(),
+    );
 
     await userEvent.hover(canvas.getByTestId("nested-truncated"));
-    await expect(
-      await screen.findByRole("tooltip", {
+    await waitFor(async () =>
+      expect(
+        await screen.findByRole("tooltip", {
+          name: "Truncated text deep inside target element",
+        }),
+      ).toBeVisible(),
+    );
+
+    await userEvent.click(document.body);
+    await waitForElementToBeRemoved(
+      screen.queryByRole("tooltip", {
         name: "Truncated text deep inside target element",
       }),
-    ).toBeInTheDocument();
+    );
   },
   render: (args) => (
     <Flex>
