@@ -44,6 +44,7 @@ export default defineConfig([
         define: {
           "process.env.NODE_ENV": JSON.stringify(env),
         },
+        target: "esnext",
       }),
       vanillaExtractPlugin(),
     ],
