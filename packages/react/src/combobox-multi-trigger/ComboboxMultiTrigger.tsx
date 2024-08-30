@@ -2,11 +2,11 @@ import { forwardRef } from "react";
 
 import type { PopoverTrigger } from "../popover-trigger";
 
+import { Badge } from "../badge";
 import { Box } from "../box";
 import { Button, type ButtonProps } from "../button";
 import { useComboboxContext } from "../combobox-context";
 import { Flex } from "../flex";
-import { Pill } from "../pill";
 import { Text } from "../text";
 
 type ComboboxMultiTriggerProps = ButtonProps<
@@ -36,7 +36,7 @@ export const ComboboxMultiTrigger = forwardRef<
           >
             {value.slice(0, maxDisplayedItems).map((item) => (
               <Box flex="none" key={item}>
-                <Pill asChild>{item}</Pill>
+                <Badge>{item}</Badge>
               </Box>
             ))}
             {value.length > maxDisplayedItems && (
