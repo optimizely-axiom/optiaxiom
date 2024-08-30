@@ -15,7 +15,7 @@ import {
   useContext,
   useLayoutEffect,
 } from "react";
-import { type Root, createRoot } from "react-dom/client";
+import { createRoot } from "react-dom/client";
 
 import { mapping } from "./mapping";
 import { sheets } from "./styles";
@@ -49,68 +49,60 @@ export function register<
     customEvents?: readonly EventName[];
   } = {},
 ) {
-  class PreactElement extends HTMLElement {
-    #observer: MutationObserver;
-    #props: Record<string, unknown>;
-    #root: Root;
-    #vdom?: ReactElement<object> | null;
-    #vdomComponent: typeof Component;
+  const withPreactElement = (element: HTMLElement) => {
+    let vdom: ReactElement<object> | null = null;
 
-    constructor() {
-      super();
-
-      this.#root = createRoot(this.attachShadow({ mode: "open" }));
-      if (this.shadowRoot) {
-        this.shadowRoot.adoptedStyleSheets = sheets;
-      }
-
-      this.#observer = new MutationObserver((mutationRecords) => {
-        mutationRecords.forEach(({ attributeName }) => {
-          if (!attributeName) {
-            return;
-          }
-
-          this.#attributeChangedCallback(
-            attributeName,
-            this.getAttribute(attributeName),
-          );
-        });
-      });
-
-      this.#props = (options.customEvents ?? []).reduce<
-        Record<string, (detail: unknown) => void>
-      >((result, eventName) => {
-        result[eventName] = (detail) => {
-          this.dispatchEvent(
-            new CustomEvent(toNormalizedEvent(eventName), {
-              bubbles: true,
-              cancelable: true,
-              detail,
-            }),
-          );
-        };
-        return result;
-      }, {});
-
-      this.#vdomComponent = Component;
+    const root = createRoot(element.attachShadow({ mode: "open" }));
+    if (element.shadowRoot) {
+      element.shadowRoot.adoptedStyleSheets = sheets;
     }
 
-    #attributeChangedCallback(name: string, value: null | string) {
-      if (!this.#vdom) {
+    const observer = new MutationObserver((mutationRecords) => {
+      mutationRecords.forEach(({ attributeName }) => {
+        if (!attributeName) {
+          return;
+        }
+
+        attributeChangedCallback(
+          attributeName,
+          element.getAttribute(attributeName),
+        );
+      });
+    });
+
+    const props = (options.customEvents ?? []).reduce<
+      Record<string, (detail: unknown) => void>
+    >((result, eventName) => {
+      result[eventName] = (detail) => {
+        element.dispatchEvent(
+          new CustomEvent(toNormalizedEvent(eventName), {
+            bubbles: true,
+            cancelable: true,
+            detail,
+          }),
+        );
+      };
+      return result;
+    }, {});
+
+    const vdomComponent = Component;
+
+    const attributeChangedCallback = (name: string, value: null | string) => {
+      if (!vdom) {
         return;
       }
 
-      this.#vdom = cloneElement(this.#vdom, {
+      vdom = cloneElement(vdom, {
         [toCamelCase(name)]: value === null ? undefined : value,
       });
-      this.#root.render(this.#vdom);
-    }
+      root.render(vdom);
+    };
 
-    connectedCallback() {
+    const connectedCallback = () => {
       /**
        * Dispatch a custom event to wait for parents to finish rendering.
        */
-      let parent = this.parentElement;
+      let parent = element.parentElement;
       while (parent) {
         if (parent.nodeName.toLowerCase() in mapping) {
           const renderEvent = new CustomEvent<{ rendered: boolean }>(
@@ -123,7 +115,7 @@ export function register<
           parent.dispatchEvent(renderEvent);
           if (!renderEvent.detail.rendered) {
             parent.queue = parent.queue ?? [];
-            parent.queue.push(this);
+            parent.queue.push(element);
             return;
           }
         }
@@ -141,26 +133,49 @@ export function register<
           detail: { context: undefined },
         },
       );
-      this.dispatchEvent(contextEvent);
+      element.dispatchEvent(contextEvent);
       const context = contextEvent.detail.context;
 
-      this.#observer.observe(this, { attributes: true });
-      this.#vdom = cloneElement(
-        toVdom(this, withContextProvider(this, this.#vdomComponent, context))!,
-        this.#props,
+      observer.observe(element, { attributes: true });
+      vdom = cloneElement(
+        toVdom(element, withContextProvider(element, vdomComponent, context))!,
+        props,
       );
-      this.#root.render(this.#vdom);
-    }
+      root.render(vdom);
+    };
 
-    disconnectedCallback() {
-      this.#observer.disconnect();
-      this.#vdom = null;
-      this.#root.unmount();
-    }
-  }
+    const disconnectedCallback = () => {
+      observer.disconnect();
+      vdom = null;
+      root.unmount();
+    };
+
+    return { connectedCallback, disconnectedCallback };
+  };
 
   if (!customElements.get(name)) {
-    customElements.define(name, PreactElement);
+    customElements.define(
+      name,
+      class extends HTMLElement {
+        #internal: {
+          connectedCallback: () => void;
+          disconnectedCallback: () => void;
+        };
+
+        constructor() {
+          super();
+          this.#internal = withPreactElement(this);
+        }
+
+        connectedCallback() {
+          this.#internal.connectedCallback();
+        }
+
+        disconnectedCallback() {
+          this.#internal.disconnectedCallback();
+        }
+      },
+    );
   }
 }
 
