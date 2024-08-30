@@ -24,6 +24,7 @@ export const Basic: Story = {
   args: {
     children: "JD",
   },
+  render: (args) => <Avatar {...args} />,
 };
 
 export const Sizes: Story = {
