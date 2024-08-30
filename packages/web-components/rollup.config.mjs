@@ -53,6 +53,7 @@ export default defineConfig([
         },
         exclude: [],
         minify: env === "production",
+        target: "es2022",
       }),
       json(),
       nodeResolve({
