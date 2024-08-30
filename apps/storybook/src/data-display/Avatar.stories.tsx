@@ -48,33 +48,58 @@ export const Icon: Story = {
 };
 
 export const Colors: Story = {
-  render: () => (
+  render: (args) => (
     <Flex flexDirection="row">
-      <Avatar colorScheme="neutral">KP</Avatar>
-      <Avatar colorScheme="red">KP</Avatar>
-      <Avatar colorScheme="blue">KP</Avatar>
-      <Avatar colorScheme="green">KP</Avatar>
-      <Avatar colorScheme="orange">KP</Avatar>
-      <Avatar colorScheme="magenta">KP</Avatar>
-      <Avatar colorScheme="gray">KP</Avatar>
-      <Avatar colorScheme="slate">KP</Avatar>
-      <Avatar colorScheme="brand">KP</Avatar>
-      <Avatar colorScheme="purple">KP</Avatar>
-      <Avatar colorScheme="yellow">KP</Avatar>
-      <Avatar colorScheme="dark">KP</Avatar>
+      <Avatar {...args} colorScheme="neutral">
+        KP
+      </Avatar>
+      <Avatar {...args} colorScheme="red">
+        KP
+      </Avatar>
+      <Avatar {...args} colorScheme="blue">
+        KP
+      </Avatar>
+      <Avatar {...args} colorScheme="green">
+        KP
+      </Avatar>
+      <Avatar {...args} colorScheme="orange">
+        KP
+      </Avatar>
+      <Avatar {...args} colorScheme="magenta">
+        KP
+      </Avatar>
+      <Avatar {...args} colorScheme="gray">
+        KP
+      </Avatar>
+      <Avatar {...args} colorScheme="slate">
+        KP
+      </Avatar>
+      <Avatar {...args} colorScheme="brand">
+        KP
+      </Avatar>
+      <Avatar {...args} colorScheme="purple">
+        KP
+      </Avatar>
+      <Avatar {...args} colorScheme="yellow">
+        KP
+      </Avatar>
+      <Avatar {...args} colorScheme="dark">
+        KP
+      </Avatar>
     </Flex>
   ),
 };
 
-export const TooltipStory: Story = {
+export const WithTooltip: Story = {
   args: {
+    children: "JL",
     colorScheme: "purple",
     name: "Jamie Lannister",
   },
   name: "Tooltip",
   render: (args) => (
     <Tooltip content="Jamie Lannister">
-      <Avatar {...args}>JL</Avatar>
+      <Avatar {...args} />
     </Tooltip>
   ),
 };
