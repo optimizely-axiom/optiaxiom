@@ -1,30 +1,48 @@
 import { Cards } from "@/components/getting-started";
-import { Callout } from "nextra/components";
+import { Callout, Steps } from "nextra/components";
 
 # Getting Started
 
 ## Installation
 
+<Steps>
 ### Install
+
+Install the `@optiaxiom/react` package using your package manager of choice:
 
 ```sh npm2yarn
 npm install @optiaxiom/react
 ```
 
-<Callout type="info">
-  Make sure to setup transpiling to handle [CSS
-  Imports](/getting-started/css-imports).
-</Callout>
+### CSS imports
+
+Make sure to setup transpiling to handle [CSS Imports](/getting-started/css-imports).
+
+### Global provider
+
+Wrap your application with [AxiomProvider](/components/axiom-provider):
+
+```jsx
+import { AxiomProvider } from "@optiaxiom/react";
+
+export function App() {
+  return <AxiomProvider>{/* Your app code here */}</AxiomProvider>;
+}
+```
 
 ### Usage
+
+Import components from `@optiaxiom/react` and use them:
 
 ```jsx
 import { Text } from "@optiaxiom/react";
 
-export function App() {
+export function MyComponent() {
   return <Text>Hello World!</Text>;
 }
 ```
+
+</Steps>
 
 ### What to read next
 

@@ -8,6 +8,7 @@
     "type": "separator",
     "title": "Primitives"
   },
+  "axiom-provider": "AxiomProvider",
   "box": "Box",
   "flex": "Flex",
   "grid": "Grid",

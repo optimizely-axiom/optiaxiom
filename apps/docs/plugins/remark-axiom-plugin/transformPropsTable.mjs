@@ -70,10 +70,14 @@ export function transformPropsTable(tree) {
           needsImport && `import { PropType } from "@/components/prop-type";`,
           "",
           `### \`${component}\``,
-          "",
-          `Supports all [\`${extendsComponent}\`](/components/${kebabCase(extendsComponent)}/props) props` +
-            (props.length > 0 ? " in addition to its own" : "") +
-            ".",
+          ...(typeof extendsComponent === "string"
+            ? [
+                "",
+                `Supports all [\`${extendsComponent}\`](/components/${kebabCase(extendsComponent)}/props) props` +
+                  (props.length > 0 ? " in addition to its own" : "") +
+                  ".",
+              ]
+            : []),
           ...(props.length > 0
             ? [
                 "",
