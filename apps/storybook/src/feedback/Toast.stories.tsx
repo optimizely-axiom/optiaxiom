@@ -3,6 +3,7 @@ import type { ComponentPropsWithoutRef } from "react";
 
 import {
   Button,
+  Flex,
   Toast,
   ToastAction,
   ToastProvider,
@@ -52,27 +53,67 @@ type Story = StoryObj<StoryProps>;
 
 export const Basic: Story = {};
 
-export const Success: Story = {
-  args: {
-    colorScheme: "success",
-  },
-};
+export const Appearance: Story = {
+  play: async ({ canvas }) => {
+    await userEvent.click(canvas.getByText("Neutral"));
+    await userEvent.click(canvas.getByText("Success"));
+    await userEvent.click(canvas.getByText("Warning"));
+    await userEvent.click(canvas.getByText("Danger"));
 
-export const Warning: Story = {
-  args: {
-    colorScheme: "warning",
+    await waitFor(async () =>
+      expect(await screen.findAllByRole("status")).toHaveLength(4),
+    );
   },
-};
+  render: function Render({ position, ...args }) {
+    return (
+      <>
+        <Flex flexDirection="row">
+          <Button
+            onClick={() =>
+              toaster.create(<Toast {...args} colorScheme="neutral" />)
+            }
+          >
+            Neutral
+          </Button>
+          <Button
+            onClick={() =>
+              toaster.create(<Toast {...args} colorScheme="success" />)
+            }
+          >
+            Success
+          </Button>
+          <Button
+            onClick={() =>
+              toaster.create(<Toast {...args} colorScheme="warning" />)
+            }
+          >
+            Warning
+          </Button>
+          <Button
+            onClick={() =>
+              toaster.create(<Toast {...args} colorScheme="danger" />)
+            }
+          >
+            Danger
+          </Button>
+        </Flex>
 
-export const Danger: Story = {
-  args: {
-    colorScheme: "danger",
+        <ToastProvider position={position} toaster={toaster} />
+      </>
+    );
   },
 };
 
 export const Position: Story = {
   args: {
     position: "top-left",
+  },
+  play: async ({ canvas }) => {
+    await userEvent.click(canvas.getByText("Show Toast"));
+
+    await expect(await screen.findByRole("status")).toHaveTextContent(
+      "This is an example toast message.",
+    );
   },
 };
 
@@ -87,6 +128,16 @@ export const Action: Story = {
       </>
     ),
   },
+  play: async ({ canvas }) => {
+    await userEvent.click(canvas.getByText("Show Toast"));
+
+    await expect(await screen.findByRole("status")).toHaveTextContent(
+      "This is an example toast message.",
+    );
+    await expect(
+      await screen.findByRole("button", { name: "Undo" }),
+    ).toBeInTheDocument();
+  },
 };
 
 export const LongContent: Story = {
@@ -96,6 +147,13 @@ export const LongContent: Story = {
         This is an example toast message that should span two lines.
       </ToastTitle>
     ),
+  },
+  play: async ({ canvas }) => {
+    await userEvent.click(canvas.getByText("Show Toast"));
+
+    await expect(await screen.findByRole("status")).toHaveTextContent(
+      "This is an example toast message that should span two lines.",
+    );
   },
 };
 
