@@ -50,6 +50,17 @@ body:before {
   }
 }
 
+.nextra-steps {
+  margin-left: 10px;
+  padding-left: 20px;
+
+  & h3:before {
+    line-height: 25px;
+    margin-top: -2.5px;
+    margin-left: -37px;
+  }
+}
+
 .logo {
   align-items: center;
   display: flex;
