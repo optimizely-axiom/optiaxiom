@@ -9,6 +9,7 @@ export const avatar = recipe({
     {
       alignItems: "center",
       display: "inline-flex",
+      fontWeight: "500",
       justifyContent: "center",
       overflow: "hidden",
       rounded: "full",
@@ -49,6 +50,7 @@ export const avatar = recipe({
       xs: [
         {
           fontSize: "xs",
+          fontWeight: "400",
           size: "xs",
         },
         style({
@@ -88,7 +90,7 @@ export const avatar = recipe({
       xl: [
         {
           fontSize: "2xl",
-          size: "lg",
+          size: "xl",
         },
         style({
           selectors: {
