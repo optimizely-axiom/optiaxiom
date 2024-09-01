@@ -11,7 +11,7 @@ export const AccordionItem = forwardRef<HTMLDivElement, AccordionItemProps>(
     const { restProps, sprinkleProps } = extractSprinkles(props);
 
     return (
-      <Box asChild gap="4" ref={ref} {...sprinkleProps}>
+      <Box asChild ref={ref} {...sprinkleProps}>
         <RadixAccordion.Item value={value} {...restProps}>
           {children}
         </RadixAccordion.Item>
