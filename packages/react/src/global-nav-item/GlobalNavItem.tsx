@@ -18,7 +18,7 @@ export const GlobalNavItem = forwardRef<HTMLButtonElement, GlobalNavItemProps>(
   ({ active, children, endDecorator, startDecorator, ...props }, ref) => {
     const { restProps, sprinkleProps } = extractSprinkles(props);
 
-    const { open } = useContext(GlobalNavContext);
+    const { expanded } = useContext(GlobalNavContext);
 
     return (
       <Flex
@@ -39,7 +39,7 @@ export const GlobalNavItem = forwardRef<HTMLButtonElement, GlobalNavItemProps>(
           ref={ref}
           {...restProps}
         >
-          {open && (
+          {expanded && (
             <Flex
               asChild
               flexDirection="row"
