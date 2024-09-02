@@ -6,7 +6,6 @@ import { Button } from "../button";
 import { Flex } from "../flex";
 import { GlobalNavContext } from "../global-nav-context";
 import { extractSprinkles } from "../sprinkles";
-import * as styles from "./GlobalNavItem.css";
 
 export type GlobalNavItemProps = BoxProps<
   typeof Button,
@@ -23,14 +22,19 @@ export const GlobalNavItem = forwardRef<HTMLButtonElement, GlobalNavItemProps>(
 
     return (
       <Flex
+        alignItems="center"
         asChild
-        {...styles.item({
-          active,
-        })}
+        flexDirection="row"
+        gap="sm"
+        h="lg"
+        px="sm"
+        py="xs"
+        w="full"
         {...sprinkleProps}
       >
         <Button
           appearance="secondary"
+          data-state={active ? "active" : undefined}
           icon={startDecorator}
           ref={ref}
           {...restProps}
