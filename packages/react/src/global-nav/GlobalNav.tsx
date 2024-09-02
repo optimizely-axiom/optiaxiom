@@ -6,7 +6,7 @@ import { Box, type BoxProps } from "../box";
 import { Flex } from "../flex";
 import { GlobalNavContext } from "../global-nav-context";
 import { GlobalNavItem } from "../global-nav-item";
-import { IconAngleLeft } from "../icons/IconAngleLeft";
+import { IconCollapse } from "../icons/IconCollapse";
 import { extractSprinkles } from "../sprinkles";
 
 type GlobalNavProps = BoxProps<
@@ -38,7 +38,7 @@ export const GlobalNav = forwardRef<HTMLElement, GlobalNavProps>(
                   </Flex>
 
                   <RadixCollapsible.Trigger asChild>
-                    <GlobalNavItem startDecorator={<IconAngleLeft />}>
+                    <GlobalNavItem startDecorator={<IconCollapse />}>
                       Collapse
                     </GlobalNavItem>
                   </RadixCollapsible.Trigger>
