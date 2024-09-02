@@ -8,7 +8,6 @@ import { GlobalNavContext } from "../global-nav-context";
 import { GlobalNavItem } from "../global-nav-item";
 import { IconAngleLeft } from "../icons/IconAngleLeft";
 import { extractSprinkles } from "../sprinkles";
-import * as styles from "./GlobalNav.css";
 
 type GlobalNavProps = BoxProps<
   "nav",
@@ -18,7 +17,7 @@ type GlobalNavProps = BoxProps<
 >;
 
 export const GlobalNav = forwardRef<HTMLElement, GlobalNavProps>(
-  ({ children, className, endDecorator, ...props }, ref) => {
+  ({ children, endDecorator, ...props }, ref) => {
     const { restProps, sprinkleProps } = extractSprinkles(props);
     const [open, setOpen] = useState(false);
 
@@ -26,7 +25,7 @@ export const GlobalNav = forwardRef<HTMLElement, GlobalNavProps>(
       <GlobalNavContext.Provider value={{ open }}>
         <RadixCollapsible.Root onOpenChange={() => setOpen(!open)} open={open}>
           <Flex border="1" pb="md" pt="lg">
-            <Box asChild {...styles.nav({}, className)} {...sprinkleProps}>
+            <Box asChild display="flex" {...sprinkleProps}>
               <nav
                 aria-label="Global Navigation"
                 ref={ref}
