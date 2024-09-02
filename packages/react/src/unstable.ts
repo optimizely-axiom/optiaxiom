@@ -1,3 +1,4 @@
+export * from "./autocomplete";
 export * from "./combobox";
 export * from "./combobox-content";
 export * from "./combobox-multi-trigger";
