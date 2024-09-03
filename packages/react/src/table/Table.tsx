@@ -7,11 +7,12 @@ type TableProps = BoxProps<"table">;
 
 export const Table = forwardRef<HTMLTableElement, TableProps>(
   ({ children, className, ...props }, ref) => (
-    <Box {...styles.wrapper()}>
-      <Box asChild {...styles.table({}, className)} {...props}>
+    <Box {...styles.wrapper({}, className)} {...props}>
+      <Box asChild {...styles.table()}>
         <table ref={ref}>{children}</table>
       </Box>
     </Box>
   ),
 );
+
 Table.displayName = "@optiaxiom/react/Table";
