@@ -8,9 +8,9 @@ Display a brief notification.
 
 ### Usage
 
-The `<ToastProvider />` element displays toasts and must be included in a single place in your react application tree.
+`ToastProvider` component provides the context manager for toasts and is also responsible for displays them. It must be rendered at the root of your application and should be used only once.
 
-Toasts are then managed using a `toaster` instance returned from the `createToaster()` method. Use `toaster.create()` along with `<Toast />` to add a toast.
+Toasts are managed using a `toaster` instance returned from the `createToaster()` method. Use `toaster.create()` along with the `Toast` component to add toasts.
 
 <ax-demo name="toast/usage" />
 
