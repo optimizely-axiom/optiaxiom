@@ -8,7 +8,7 @@ import styles from "./Cards.module.css";
 
 export function Cards(props: ComponentPropsWithRef<typeof Grid>) {
   return (
-    <Grid gap="xl" gridTemplateColumns="2" mx="-md" {...props}>
+    <Grid gap="xl" gridTemplateColumns={["1", "2"]} mx="-md" {...props}>
       <Flex
         alignItems="start"
         asChild
