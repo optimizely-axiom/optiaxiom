@@ -21,4 +21,5 @@ export const TableCell = forwardRef<HTMLTableCellElement, TableCellProps>(
     );
   },
 );
+
 TableCell.displayName = "@optiaxiom/react/TableCell";

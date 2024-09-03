@@ -9,22 +9,19 @@ export const cell = recipe({
   base: [
     {
       borderColor: "border.tertiary",
+      borderT: "1",
       color: "fg.secondary",
       fontSize: "md",
       fontWeight: "500",
       p: "16",
     },
     style({
-      borderBottomWidth: "1px",
       verticalAlign: "middle",
       wordBreak: "break-word",
 
       selectors: {
         [`${row}:hover &`]: {
           backgroundColor: theme.colors["gray.100"],
-        },
-        [`${row}:last-child &`]: {
-          borderBottom: "0",
         },
       },
     }),

@@ -2,6 +2,7 @@ import { forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
 import * as styles from "./TableBody.css";
+
 type TableBodyProps = BoxProps<"tbody">;
 
 export const TableBody = forwardRef<HTMLTableSectionElement, TableBodyProps>(
@@ -11,4 +12,5 @@ export const TableBody = forwardRef<HTMLTableSectionElement, TableBodyProps>(
     </Box>
   ),
 );
+
 TableBody.displayName = "@optiaxiom/react/TableBody";
