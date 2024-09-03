@@ -60,6 +60,17 @@ export const box = recipe({
           },
 
           /**
+           * 1. Remove text indentation from table contents in Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=999088, https://bugs.webkit.org/show_bug.cgi?id=201297)
+           * 2. Correct table border color inheritance in all Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=935729, https://bugs.webkit.org/show_bug.cgi?id=195016)
+           * 3. Remove gaps between table borders by default.
+           */
+          "&:is(table)": {
+            borderCollapse: "collapse" /* 3 */,
+            borderColor: "inherit" /* 2 */,
+            textIndent: 0 /* 1 */,
+          },
+
+          /**
            * 1. Change the font styles in all browsers.
            */
           "&:is(button, input, optgroup, select, textarea)": {

@@ -7,7 +7,6 @@ export const table = recipe({
       w: "full",
     },
     style({
-      borderSpacing: "0px",
       captionSide: "bottom",
     }),
   ],
