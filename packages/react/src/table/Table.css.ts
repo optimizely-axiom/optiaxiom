@@ -3,7 +3,6 @@ import { recipe, style } from "../vanilla-extract";
 export const table = recipe({
   base: [
     {
-      rounded: "lg",
       w: "full",
     },
     style({
@@ -20,7 +19,6 @@ export const wrapper = recipe({
       borderColor: "border.tertiary",
       overflow: "auto",
       rounded: "lg",
-      w: "full",
     },
     style({
       position: "relative",
