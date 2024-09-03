@@ -267,8 +267,10 @@ const withContextProvider = <P extends { context?: unknown }>(
  * we instead assign it to the source HTML element from which we created the
  * slot.
  */
-const withSlot = (element: Element) =>
-  forwardRef((props, ref) => {
+const withSlot = (element: Element) => {
+  const Consumer = withContextConsumer(element);
+
+  return forwardRef((props, ref) => {
     useLayoutEffect(() => {
       if (typeof ref === "function") {
         ref(element);
@@ -285,12 +287,9 @@ const withSlot = (element: Element) =>
       };
     }, [ref]);
 
-    return createElement(
-      "slot",
-      { ...props, ref },
-      createElement(withContextConsumer(element)),
-    );
+    return createElement("slot", { ...props, ref }, createElement(Consumer));
   });
+};
 
 function toVdom<P>(
   element: unknown,
