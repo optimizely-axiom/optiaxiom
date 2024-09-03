@@ -3,12 +3,7 @@ import { forwardRef } from "react";
 import { Box, type BoxProps } from "../box";
 import * as styles from "./TableCell.css";
 
-type TableCellProps = BoxProps<
-  "td",
-  {
-    colSpan?: number;
-  }
->;
+type TableCellProps = BoxProps<"td">;
 
 export const TableCell = forwardRef<HTMLTableCellElement, TableCellProps>(
   ({ children, className, colSpan, ...props }, ref) => {
