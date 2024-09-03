@@ -71,7 +71,7 @@ const appearances = [
   ["secondary", "Secondary"],
 ] as const;
 
-export const Appearances: Story = {
+export const Appearance: Story = {
   render: (args) => (
     <Flex alignItems="center">
       {appearances.map(([appearance, label]) => (
@@ -88,7 +88,7 @@ export const Appearances: Story = {
   ),
 };
 
-export const AppearancesSpacing: Story = {
+export const AppearanceSpacing: Story = {
   args: {
     gap: "8",
   },
