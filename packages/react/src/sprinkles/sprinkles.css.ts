@@ -312,6 +312,11 @@ const responsiveProps = defineProperties({
      * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/gap/ Documentation}
      */
     gap: theme.spacing,
+    /**
+     * Set the element's size across grid columns
+     *
+     * {@link https://optimizely-axiom.github.io/optiaxiom/components/grid/ Documentation}
+     */
     gridColumn: mapValues(
       {
         "1": "1",
@@ -382,12 +387,6 @@ const responsiveProps = defineProperties({
     width: theme.size,
   },
   shorthands: {
-    /**
-     * Set the element's size across grid columns
-     *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/components/grid/ Documentation}
-     */
-    colSpan: ["gridColumn"],
     /**
      * Set the element's height
      *
@@ -528,7 +527,6 @@ type LonghandProps = keyof Pick<
   | "borderRightWidth"
   | "borderTopWidth"
   | "boxShadow"
-  | "gridColumn"
   | "height"
   | "letterSpacing"
   | "lineHeight"

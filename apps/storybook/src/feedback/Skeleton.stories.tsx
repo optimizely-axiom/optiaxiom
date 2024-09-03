@@ -26,8 +26,8 @@ export const Card: Story = {
 
           <Flex mt="md">
             <Grid gridTemplateColumns="3">
-              <Skeleton colSpan="2" h="12" />
-              <Skeleton colSpan="1" h="12" />
+              <Skeleton gridColumn="2" h="12" />
+              <Skeleton gridColumn="1" h="12" />
             </Grid>
 
             <Skeleton h="12" />

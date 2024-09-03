@@ -9,7 +9,7 @@ export const Item = ({
   return (
     <Box
       bg={
-        children.props.colSpan || children.type === "div"
+        children.props.gridColumn || children.type === "div"
           ? "purple.500"
           : "purple.200"
       }
