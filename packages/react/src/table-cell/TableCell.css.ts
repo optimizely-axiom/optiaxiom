@@ -14,6 +14,7 @@ export const cell = recipe({
       fontSize: "md",
       fontWeight: "400",
       p: "md",
+      transition: "colors",
     },
     style({
       verticalAlign: "middle",
@@ -21,7 +22,7 @@ export const cell = recipe({
 
       selectors: {
         [`${row}:hover &`]: {
-          backgroundColor: theme.colors["gray.100"],
+          backgroundColor: theme.colors["neutral.1200/5"],
         },
       },
     }),
