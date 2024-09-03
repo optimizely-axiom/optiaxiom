@@ -39,53 +39,40 @@ export const Appearance: Story = {
   render: (args) => (
     <Flex>
       {appearances.map((appearance) => (
-        <Flex alignItems="center" flexDirection="row" gap="sm" key={appearance}>
-          {sizes.map(([size, label]) => (
-            <Button {...args} appearance={appearance} key={size} size={size}>
-              {label}
-            </Button>
-          ))}
-        </Flex>
+        <Button {...args} appearance={appearance} key={appearance} />
+      ))}
+    </Flex>
+  ),
+};
+
+export const Sizes: Story = {
+  args: {
+    children: "Button",
+  },
+  render: (args) => (
+    <Flex flexDirection="row">
+      {sizes.map(([size, label]) => (
+        <Button {...args} key={size} size={size}>
+          {args.children ? label : null}
+        </Button>
       ))}
     </Flex>
   ),
 };
 
 export const Disabled: Story = {
+  ...Appearance,
   args: {
     children: "Button",
     disabled: true,
   },
-  render: (args) => (
-    <Flex>
-      {appearances.map((appearance) => (
-        <Flex alignItems="center" flexDirection="row" gap="sm" key={appearance}>
-          {sizes.map(([size, label]) => (
-            <Button {...args} appearance={appearance} key={size} size={size}>
-              {label}
-            </Button>
-          ))}
-        </Flex>
-      ))}
-    </Flex>
-  ),
 };
 
 export const IconOnly: Story = {
+  ...Appearance,
   args: {
     icon: <IconChevronDown />,
   },
-  render: (args) => (
-    <Flex>
-      {appearances.map((appearance) => (
-        <Flex alignItems="center" flexDirection="row" key={appearance}>
-          {sizes.map(([size]) => (
-            <Button {...args} appearance={appearance} key={size} size={size} />
-          ))}
-        </Flex>
-      ))}
-    </Flex>
-  ),
 };
 
 export const IconsWithText: Story = {
