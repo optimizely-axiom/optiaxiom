@@ -1,16 +1,13 @@
 import { forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
-import * as styles from "./TableHead.css";
 
-type TableHeadProps = BoxProps<"th">;
+type TableHeaderProps = BoxProps<"thead">;
 
-export const TableHead = forwardRef<HTMLTableCellElement, TableHeadProps>(
-  ({ children, className, colSpan, ...props }, ref) => (
-    <Box asChild {...styles.head({}, className)} {...props}>
-      <th colSpan={colSpan} ref={ref}>
-        {children}
-      </th>
+export const TableHead = forwardRef<HTMLTableSectionElement, TableHeaderProps>(
+  ({ children, ...props }, ref) => (
+    <Box asChild {...props}>
+      <thead ref={ref}>{children}</thead>
     </Box>
   ),
 );
