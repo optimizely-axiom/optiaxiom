@@ -25,7 +25,11 @@ type TextareaProps =
 export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
   ({ className, resize = "none", ...props }, ref) => {
     return (
-      <InputBase {...styles.wrapper({ resize }, className)} {...props}>
+      <InputBase
+        size="lg"
+        {...styles.wrapper({ resize }, className)}
+        {...props}
+      >
         <Box asChild {...styles.textarea()}>
           {resize === "auto" ? (
             <TextareaAutosize
