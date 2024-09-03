@@ -5,7 +5,7 @@ import {
   TableBody,
   TableCell,
   TableHead,
-  TableHeader,
+  TableHeaderCell,
   TableRow,
 } from "@optiaxiom/react/unstable";
 
@@ -63,14 +63,14 @@ const invoices = [
 export const Basic: Story = {
   render: () => (
     <Table>
-      <TableHeader>
+      <TableHead>
         <TableRow>
-          <TableHead>Invoice</TableHead>
-          <TableHead>Status</TableHead>
-          <TableHead>Method</TableHead>
-          <TableHead>Amount</TableHead>
+          <TableHeaderCell>Invoice</TableHeaderCell>
+          <TableHeaderCell>Status</TableHeaderCell>
+          <TableHeaderCell>Method</TableHeaderCell>
+          <TableHeaderCell>Amount</TableHeaderCell>
         </TableRow>
-      </TableHeader>
+      </TableHead>
       <TableBody>
         {invoices.map((invoice) => (
           <TableRow key={invoice.invoice}>
@@ -88,14 +88,14 @@ export const Basic: Story = {
 export const NoRow: Story = {
   render: () => (
     <Table>
-      <TableHeader>
+      <TableHead>
         <TableRow>
-          <TableHead>Invoice</TableHead>
-          <TableHead>Status</TableHead>
-          <TableHead>Method</TableHead>
-          <TableHead>Amount</TableHead>
+          <TableHeaderCell>Invoice</TableHeaderCell>
+          <TableHeaderCell>Status</TableHeaderCell>
+          <TableHeaderCell>Method</TableHeaderCell>
+          <TableHeaderCell>Amount</TableHeaderCell>
         </TableRow>
-      </TableHeader>
+      </TableHead>
       <TableBody></TableBody>
     </Table>
   ),
@@ -104,13 +104,13 @@ export const NoRow: Story = {
 export const WithColspan: Story = {
   render: () => (
     <Table>
-      <TableHeader>
+      <TableHead>
         <TableRow>
-          <TableHead>Invoice</TableHead>
-          <TableHead colSpan={2}>Payment Details</TableHead>
-          <TableHead>Amount</TableHead>
+          <TableHeaderCell>Invoice</TableHeaderCell>
+          <TableHeaderCell colSpan={2}>Payment Details</TableHeaderCell>
+          <TableHeaderCell>Amount</TableHeaderCell>
         </TableRow>
-      </TableHeader>
+      </TableHead>
       <TableBody>
         {invoices.map((invoice) => (
           <TableRow key={invoice.invoice}>
@@ -128,16 +128,16 @@ export const WithColspan: Story = {
 export const CustomWidth: Story = {
   render: () => (
     <Table style={{ width: "800px" }}>
-      <TableHeader>
+      <TableHead>
         <TableRow>
-          <TableHead style={{ width: "20%" }}>Invoice</TableHead>
-          <TableHead style={{ width: "20%" }}>Status</TableHead>
-          <TableHead style={{ width: "40%" }}>Method</TableHead>
-          <TableHead style={{ width: "20%" }} textAlign="end">
+          <TableHeaderCell style={{ width: "20%" }}>Invoice</TableHeaderCell>
+          <TableHeaderCell style={{ width: "20%" }}>Status</TableHeaderCell>
+          <TableHeaderCell style={{ width: "40%" }}>Method</TableHeaderCell>
+          <TableHeaderCell style={{ width: "20%" }} textAlign="end">
             Amount
-          </TableHead>
+          </TableHeaderCell>
         </TableRow>
-      </TableHeader>
+      </TableHead>
       <TableBody>
         {invoices.map((invoice) => (
           <TableRow key={invoice.invoice}>
