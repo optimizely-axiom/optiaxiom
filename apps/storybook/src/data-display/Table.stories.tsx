@@ -115,9 +115,8 @@ export const WithColspan: Story = {
         {invoices.map((invoice) => (
           <TableRow key={invoice.invoice}>
             <TableCell>{invoice.invoice}</TableCell>
-            <TableCell colSpan={2}>
-              {invoice.paymentStatus} - {invoice.paymentMethod}
-            </TableCell>
+            <TableCell>{invoice.paymentStatus}</TableCell>
+            <TableCell>{invoice.paymentMethod}</TableCell>
             <TableCell>{invoice.totalAmount}</TableCell>
           </TableRow>
         ))}
