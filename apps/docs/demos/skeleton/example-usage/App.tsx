@@ -6,7 +6,7 @@ export function App() {
       <Flex flexDirection="row">
         <Skeleton circle h="80" />
         <Flex flex="1">
-          <Grid cols="3">
+          <Grid gridTemplateColumns="3">
             <Skeleton colSpan="2" />
             <Skeleton colSpan="1" />
           </Grid>

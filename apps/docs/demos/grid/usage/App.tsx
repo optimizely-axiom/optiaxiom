@@ -5,7 +5,7 @@ import { Canvas } from "../Canvas";
 export function App() {
   return (
     <Canvas>
-      <Grid cols="3">
+      <Grid gridTemplateColumns="3">
         <div>01</div>
         <div>02</div>
         <div>03</div>
