@@ -1,9 +1,12 @@
 import { recipe, style } from "../vanilla-extract";
 
+export const className = style({});
+
 export const row = recipe({
   base: [
-    style({
-      width: "100%",
-    }),
+    className,
+    {
+      w: "full",
+    },
   ],
 });
