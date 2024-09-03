@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 0.1.0-next.13
+
+### Patch Changes
+
+- 6e2bf14: add root AxiomProvider component
+
 ## 0.1.0-next.12
 
 ### Patch Changes
