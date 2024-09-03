@@ -13,7 +13,7 @@ export const cell = recipe({
       color: "fg.secondary",
       fontSize: "md",
       fontWeight: "400",
-      p: "16",
+      p: "md",
     },
     style({
       verticalAlign: "middle",
