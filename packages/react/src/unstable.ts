@@ -1,4 +1,3 @@
-export * from "./chip";
 export * from "./combobox";
 export * from "./combobox-content";
 export * from "./combobox-multi-trigger";
