@@ -53,12 +53,7 @@ export const GlobalNav = forwardRef<HTMLElement, GlobalNavProps>(
         <RadixCollapsible.Root onOpenChange={setExpanded} open={expanded}>
           <Flex border="1" pb="md" pt="lg">
             <Box asChild display="flex" {...sprinkleProps}>
-              <nav
-                aria-label="Global Navigation"
-                ref={ref}
-                role="navigation"
-                {...restProps}
-              >
+              <nav aria-label="Global Navigation" ref={ref} {...restProps}>
                 <Flex alignItems="center" gap="4" px="xs" w="full">
                   <Flex flex="1" gap="4" justifyContent="start" w="full">
                     {children}
