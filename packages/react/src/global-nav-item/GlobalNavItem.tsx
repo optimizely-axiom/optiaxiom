@@ -21,22 +21,14 @@ export const GlobalNavItem = forwardRef<HTMLButtonElement, GlobalNavItemProps>(
     const { expanded } = useContext(GlobalNavContext);
 
     return (
-      <Flex
-        alignItems="center"
-        asChild
-        flexDirection="row"
-        gap="sm"
-        h="lg"
-        px="sm"
-        py="xs"
-        w="full"
-        {...sprinkleProps}
-      >
+      <Flex asChild {...sprinkleProps}>
         <Button
           appearance="secondary"
           data-state={active ? "active" : undefined}
+          gap="sm"
           icon={startDecorator}
           ref={ref}
+          w="full"
           {...restProps}
         >
           {expanded && (
