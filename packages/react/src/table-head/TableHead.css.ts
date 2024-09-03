@@ -11,7 +11,6 @@ export const head = recipe({
       textAlign: "start",
     },
     style({
-      minHeight: "44px",
       verticalAlign: "middle",
     }),
   ],
