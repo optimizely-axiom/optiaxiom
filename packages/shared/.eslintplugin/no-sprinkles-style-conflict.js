@@ -3,6 +3,10 @@ import { ESLintUtils } from "@typescript-eslint/utils";
 const mapSprinkleToStyle = {
   bg: ["backgroundColor"],
   border: ["borderWidth"],
+  borderB: ["borderBottomWidth"],
+  borderL: ["borderLeftWidth"],
+  borderR: ["borderRightWidth"],
+  borderT: ["borderTopWidth"],
   fontSize: ["fontSize", "lineHeight"],
   h: ["height"],
   leading: ["lineHeight"],
