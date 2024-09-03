@@ -12,7 +12,7 @@ export const cell = recipe({
       borderT: "1",
       color: "fg.secondary",
       fontSize: "md",
-      fontWeight: "500",
+      fontWeight: "400",
       p: "16",
     },
     style({
