@@ -2,6 +2,7 @@ import { forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
 import * as styles from "./TableRow.css";
+
 type TableRowProps = BoxProps<"tr">;
 
 export const TableRow = forwardRef<HTMLTableRowElement, TableRowProps>(
@@ -11,4 +12,5 @@ export const TableRow = forwardRef<HTMLTableRowElement, TableRowProps>(
     </Box>
   ),
 );
+
 TableRow.displayName = "@optiaxiom/react/TableRow";

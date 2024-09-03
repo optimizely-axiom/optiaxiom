@@ -3,7 +3,7 @@ import * as styles from "../table-row/TableRow.css";
 import { style } from "../vanilla-extract";
 import { recipe } from "../vanilla-extract";
 
-const row = styles.row().className;
+const row = styles.className;
 
 export const cell = recipe({
   base: [
