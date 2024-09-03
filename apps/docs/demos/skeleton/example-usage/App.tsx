@@ -7,8 +7,8 @@ export function App() {
         <Skeleton circle h="80" />
         <Flex flex="1">
           <Grid gridTemplateColumns="3">
-            <Skeleton colSpan="2" />
-            <Skeleton colSpan="1" />
+            <Skeleton gridColumn="2" />
+            <Skeleton gridColumn="1" />
           </Grid>
           <Skeleton />
         </Flex>

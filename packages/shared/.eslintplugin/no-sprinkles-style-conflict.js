@@ -3,7 +3,6 @@ import { ESLintUtils } from "@typescript-eslint/utils";
 const mapSprinkleToStyle = {
   bg: ["backgroundColor"],
   border: ["borderWidth"],
-  colSpan: ["gridColumn"],
   fontSize: ["fontSize", "lineHeight"],
   h: ["height"],
   leading: ["lineHeight"],
