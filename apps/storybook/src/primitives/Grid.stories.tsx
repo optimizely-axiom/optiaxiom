@@ -29,6 +29,6 @@ export const Basic: Story = {
         </Text>
       </>
     ),
-    cols: "3",
+    gridTemplateColumns: "3",
   },
 };

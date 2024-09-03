@@ -2,7 +2,7 @@ import { Box, Flex, Grid, Text, tokens } from "@optiaxiom/react";
 
 export function ColorPalette() {
   return (
-    <Grid alignItems="start" cols={["2", "1"]} gap="lg" mt="xl">
+    <Grid alignItems="start" gap="lg" gridTemplateColumns={["2", "1"]} mt="xl">
       {Object.entries(
         Object.entries(tokens.colors).reduce<
           Record<string, Array<[string, keyof typeof tokens.colors, string]>>

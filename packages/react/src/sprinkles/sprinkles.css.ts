@@ -321,6 +321,11 @@ const responsiveProps = defineProperties({
       },
       (span) => `span ${span} / span ${span}`,
     ),
+    /**
+     * Control number of columns in a grid layout
+     *
+     * {@link https://optimizely-axiom.github.io/optiaxiom/components/grid/ Documentation}
+     */
     gridTemplateColumns: mapValues(
       {
         "1": "1",
@@ -383,12 +388,6 @@ const responsiveProps = defineProperties({
      * {@link https://optimizely-axiom.github.io/optiaxiom/components/grid/ Documentation}
      */
     colSpan: ["gridColumn"],
-    /**
-     * Control number of columns in a grid layout
-     *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/components/grid/ Documentation}
-     */
-    cols: ["gridTemplateColumns"],
     /**
      * Set the element's height
      *
@@ -530,7 +529,6 @@ type LonghandProps = keyof Pick<
   | "borderTopWidth"
   | "boxShadow"
   | "gridColumn"
-  | "gridTemplateColumns"
   | "height"
   | "letterSpacing"
   | "lineHeight"

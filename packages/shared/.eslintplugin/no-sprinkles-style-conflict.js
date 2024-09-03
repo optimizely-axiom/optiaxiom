@@ -4,7 +4,6 @@ const mapSprinkleToStyle = {
   bg: ["backgroundColor"],
   border: ["borderWidth"],
   colSpan: ["gridColumn"],
-  cols: ["gridTemplateColumns"],
   fontSize: ["fontSize", "lineHeight"],
   h: ["height"],
   leading: ["lineHeight"],
