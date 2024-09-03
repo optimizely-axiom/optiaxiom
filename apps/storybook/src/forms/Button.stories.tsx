@@ -26,6 +26,12 @@ const appearances = [
   "danger-outline",
 ] as const;
 
+export const Basic: Story = {
+  args: {
+    children: "Button",
+  },
+};
+
 export const Appearance: Story = {
   args: {
     children: "Button",
