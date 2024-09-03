@@ -1,10 +1,12 @@
 import { type RecipeVariants, recipe, style } from "../vanilla-extract";
 
+export const gap = "md";
 export const padding = "24";
 
 export const viewport = recipe({
   base: [
     {
+      gap,
       justifyContent: "normal",
       maxH: "full",
       overflowX: "hidden",

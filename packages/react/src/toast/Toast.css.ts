@@ -61,7 +61,6 @@ export const root = recipe({
         },
         '&[data-state="closed"] ~ &': {
           transition: "translate 100ms ease-in 100ms",
-          translate: "0 -100%",
         },
         '&[data-state="open"]': {
           animation: `${slideIn} 150ms cubic-bezier(0.16, 1, 0.3, 1)`,
@@ -102,13 +101,13 @@ export const root = recipe({
           marginBottom: "auto",
         },
         '[data-position^="bottom"] &[data-state="closed"] ~ &': {
-          translate: "0 100%",
+          translate: `0 calc(100% + ${theme.spacing[styles.gap]})`,
         },
         '[data-position^="top"] &:last-child': {
           marginTop: "auto",
         },
         '[data-position^="top"] &[data-state="closed"] ~ &': {
-          translate: "0 -100%",
+          translate: `0 calc(-100% - ${theme.spacing[styles.gap]})`,
         },
       },
     }),
