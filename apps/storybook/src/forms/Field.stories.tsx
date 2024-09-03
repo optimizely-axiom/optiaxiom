@@ -4,8 +4,18 @@ import { Field, Input, Textarea } from "@optiaxiom/react";
 import { IconCalendar } from "@tabler/icons-react";
 
 export default {
+  argTypes: {
+    children: {
+      control: { type: "select" },
+      mapping: {
+        input: <Input placeholder="Enter text..." />,
+        textarea: <Textarea placeholder="Enter text..." />,
+      },
+      options: ["input", "textarea"],
+    },
+  },
   args: {
-    children: <Input placeholder="Enter text..." />,
+    children: "input",
     label: "Label",
   },
   component: Field,
@@ -67,7 +77,7 @@ export const RequiredAndInfo: Story = {
 
 export const WithTextarea: Story = {
   args: {
-    children: <Textarea placeholder="Enter text..." />,
+    children: "textarea",
     info: "This is an important textarea",
     label: "Form Label",
     required: true,
