@@ -1,5 +1,7 @@
 import { type RecipeVariants, recipe, style } from "../vanilla-extract";
 
+export const padding = "24";
+
 export const viewport = recipe({
   base: [
     {
@@ -7,7 +9,7 @@ export const viewport = recipe({
       maxH: "full",
       overflowX: "hidden",
       overflowY: "auto",
-      p: "24",
+      p: padding,
       w: ["full", "384"],
       z: "toast",
     },

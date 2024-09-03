@@ -1,4 +1,5 @@
 import { theme } from "../styles";
+import * as styles from "../toast-provider/ToastProvider.css";
 import {
   type RecipeVariants,
   createVar,
@@ -79,22 +80,22 @@ export const root = recipe({
         },
         '&[data-swipe-direction="down"]': {
           vars: {
-            [swipeEndVar]: "0 calc(100% + 24px)",
+            [swipeEndVar]: `0 calc(100% + ${theme.spacing[styles.padding]})`,
           },
         },
         '&[data-swipe-direction="left"]': {
           vars: {
-            [swipeEndVar]: "calc(-100% - 24px) 0",
+            [swipeEndVar]: `calc(-100% - ${theme.spacing[styles.padding]}) 0`,
           },
         },
         '&[data-swipe-direction="right"]': {
           vars: {
-            [swipeEndVar]: "calc(100% + 24px) 0",
+            [swipeEndVar]: `calc(100% + ${theme.spacing[styles.padding]}) 0`,
           },
         },
         '&[data-swipe-direction="up"]': {
           vars: {
-            [swipeEndVar]: "0 calc(-100% - 24px)",
+            [swipeEndVar]: `0 calc(-100% - ${theme.spacing[styles.padding]})`,
           },
         },
         '[data-position^="bottom"] &:first-child': {
