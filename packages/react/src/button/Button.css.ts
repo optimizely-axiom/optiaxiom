@@ -13,8 +13,11 @@ const subtleTextColorVar = createVar();
 
 const paddingInlineVar = createVar();
 
+const marker = style({});
+
 export const button = recipe({
   base: [
+    marker,
     {
       alignItems: "center",
       display: "inline-flex",
@@ -264,19 +267,44 @@ export const button = recipe({
   ],
 });
 
-export const icon = recipe({
-  base: {
-    h: "auto",
-    w: "20",
+const loadingBase = [
+  {
+    transition: "opacity" as const,
   },
+  style({
+    opacity: "1",
+
+    selectors: {
+      [`${marker}[data-loading] &`]: {
+        opacity: "0",
+      },
+    },
+  }),
+];
+
+export const decorator = recipe({
+  base: loadingBase,
+});
+
+export const icon = recipe({
+  base: [
+    {
+      h: "auto",
+      w: "20",
+    },
+    ...loadingBase,
+  ],
 });
 
 export const label = recipe({
-  base: {
-    flexDirection: "row",
-    gap: "4",
-    mx: "4",
-  },
+  base: [
+    {
+      flexDirection: "row",
+      gap: "4",
+      mx: "4",
+    },
+    ...loadingBase,
+  ],
 });
 
 export const spinner = recipe({

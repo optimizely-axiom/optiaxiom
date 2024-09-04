@@ -146,11 +146,19 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             )}
           </AnimatePresence>
 
-          {startDecorator}
+          {startDecorator && (
+            <Box asChild {...styles.decorator()}>
+              {fallbackSpan(startDecorator)}
+            </Box>
+          )}
 
           <Slottable>{children}</Slottable>
 
-          {endDecorator}
+          {endDecorator && (
+            <Box asChild {...styles.decorator()}>
+              {fallbackSpan(endDecorator)}
+            </Box>
+          )}
         </Comp>
       </Box>
     );

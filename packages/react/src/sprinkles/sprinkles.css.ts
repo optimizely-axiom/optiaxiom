@@ -151,6 +151,10 @@ const unresponsiveProps = defineProperties({
         transitionProperty:
           "background-color, border-color, color, fill, stroke, text-decoration-color",
       },
+      opacity: {
+        ...transitions,
+        transitionProperty: "opacity",
+      },
       transform: {
         ...transitions,
         transitionProperty: "transform",
