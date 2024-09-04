@@ -39,7 +39,13 @@ const config: StorybookConfig = {
       new ReactDocgenTypeScriptPlugin({
         include: ["**/**.tsx", "**/packages/react/**/*.d.ts"],
         propFilter: (prop) =>
-          prop.parent ? !prop.parent.fileName.includes("@types/react") : true,
+          prop.parent
+            ? !prop.parent.fileName.includes("@types/react")
+            : !!prop.declarations?.find(
+                (declaration) =>
+                  declaration.fileName ===
+                  "optiaxiom/packages/react/dist/index.d.ts",
+              ) && !["asChild"].includes(prop.name),
         savePropValueAsString: true,
         tsconfigPath: "../tsconfig.json",
       }),
