@@ -7,9 +7,12 @@ import {
   isValidElement,
 } from "react";
 
+import { AnimatePresence } from "../animate-presence";
 import { Box, type BoxProps } from "../box";
 import { Flex } from "../flex";
+import { Spinner } from "../spinner";
 import { extractSprinkles } from "../sprinkles";
+import { Transition } from "../transition";
 import { type ExtendProps, fallbackSpan } from "../utils";
 import * as styles from "./Button.css";
 
@@ -67,7 +70,6 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const presetProps = appearances[appearance];
     const colorScheme = colorSchemeProp ?? presetProps.colorScheme;
     const variant = variantProp ?? presetProps.variant;
-    const isDisabled = Boolean(disabled || loading);
     let isIconOnly = Boolean(!children && icon);
 
     if (asChild) {
@@ -118,7 +120,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <Box
         asChild
-        data-disabled={isDisabled ? "" : undefined}
+        data-disabled={disabled ? "" : undefined}
+        data-loading={loading ? "" : undefined}
         {...styles.button(
           {
             colorScheme,
@@ -130,7 +133,19 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         )}
         {...sprinkleProps}
       >
-        <Comp disabled={isDisabled} ref={ref} {...restProps}>
+        <Comp disabled={disabled || loading} ref={ref} {...restProps}>
+          <AnimatePresence>
+            {loading && (
+              <Transition duration="sm">
+                <Box aria-hidden="true" {...styles.spinner()}>
+                  <Spinner
+                    colorScheme={variant === "solid" ? "inverse" : "default"}
+                  />
+                </Box>
+              </Transition>
+            )}
+          </AnimatePresence>
+
           {startDecorator}
 
           <Slottable>{children}</Slottable>

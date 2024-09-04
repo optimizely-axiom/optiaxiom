@@ -31,14 +31,15 @@ export const button = recipe({
       userSelect: "none",
 
       selectors: {
-        "&:active:not([data-disabled])": {
+        "&:active:not([data-disabled], [data-loading])": {
           boxShadow: theme.boxShadow.inner,
         },
-        "&:is(:focus-visible, :has(:focus-visible)):not([data-disabled])": {
-          outline: `2px solid ${theme.colors["outline.brand"]}`,
-          outlineOffset: "1px",
-        },
-        "&[data-disabled]": {
+        "&:is(:focus-visible, :has(:focus-visible)):not([data-disabled], [data-loading])":
+          {
+            outline: `2px solid ${theme.colors["outline.brand"]}`,
+            outlineOffset: "1px",
+          },
+        "&:is([data-disabled], [data-loading])": {
           cursor: "not-allowed",
         },
         [`${group}[data-orientation="horizontal"] &:not(:first-child):not(:last-child)`]:
@@ -135,7 +136,7 @@ export const button = recipe({
         paddingInline: `calc(${paddingInlineVar} - 1px)`,
 
         selectors: {
-          "&:hover:not([data-disabled])": {
+          "&:hover:not([data-disabled], [data-loading])": {
             backgroundColor: subtleAccentColorVar,
           },
           "&[data-disabled]": {
@@ -152,7 +153,7 @@ export const button = recipe({
         ),
 
         selectors: {
-          "&:hover:not([data-disabled])": {
+          "&:hover:not([data-disabled], [data-loading])": {
             backgroundColor: solidAccentColorVar,
           },
           "&[data-disabled]": {
@@ -169,9 +170,10 @@ export const button = recipe({
         color: fallbackVar(subtleTextColorVar, accentColorVar),
 
         selectors: {
-          '&:hover:not(:is([data-disabled], [data-state="active"]))': {
-            backgroundColor: subtleAccentColorVar,
-          },
+          '&:hover:not([data-disabled], [data-loading], [data-state="active"])':
+            {
+              backgroundColor: subtleAccentColorVar,
+            },
           "&[data-disabled]": {
             color: theme.colors["fg.disabled"],
           },
@@ -275,6 +277,12 @@ export const label = recipe({
     gap: "4",
     mx: "4",
   },
+});
+
+export const spinner = recipe({
+  base: style({
+    position: "absolute",
+  }),
 });
 
 export type ButtonVariants = NonNullable<RecipeVariants<typeof button>>;

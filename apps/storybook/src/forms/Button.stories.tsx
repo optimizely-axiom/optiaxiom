@@ -6,6 +6,14 @@ import { IconChevronDown, IconCloudUpload } from "@tabler/icons-react";
 
 export default {
   argTypes: {
+    icon: {
+      control: { type: "select" },
+      mapping: {
+        "chevron-down": <IconChevronDown />,
+        "cloud-upload": <IconCloudUpload />,
+      },
+      options: ["chevron-down", "cloud-upload"],
+    },
     onClick: { action: "click" },
   },
   component: Button,
@@ -66,6 +74,28 @@ export const Disabled: Story = {
     children: "Button",
     disabled: true,
   },
+};
+
+export const Loading: Story = {
+  ...Appearance,
+  args: {
+    children: "Button",
+    icon: "chevron-down",
+    loading: true,
+  },
+  render: (args) => (
+    <Flex>
+      {appearances.map((appearance) => (
+        <Flex flexDirection="row" key={appearance}>
+          <Button {...args} appearance={appearance} icon={null} />
+          <Button {...args} appearance={appearance} />
+          <Button {...args} appearance={appearance}>
+            {null}
+          </Button>
+        </Flex>
+      ))}
+    </Flex>
+  ),
 };
 
 export const IconOnly: Story = {
