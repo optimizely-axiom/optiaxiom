@@ -16,6 +16,8 @@ type AlertDialogProps = BoxProps<
     appearance?: "danger" | "primary";
     cancel?: string;
     children: ReactNode;
+    disabled?: boolean;
+    loading?: boolean;
     onAction: () => void;
     onCancel: () => void;
     open?: boolean;
@@ -30,6 +32,8 @@ export const AlertDialog = forwardRef<HTMLDivElement, AlertDialogProps>(
       appearance = "primary",
       cancel = "Cancel",
       children,
+      disabled,
+      loading,
       onAction,
       onCancel,
       open,
@@ -77,7 +81,12 @@ export const AlertDialog = forwardRef<HTMLDivElement, AlertDialogProps>(
                         </Button>
                       </RadixAlertDialog.Cancel>
                       <RadixAlertDialog.Action asChild>
-                        <Button appearance={appearance} onClick={onAction}>
+                        <Button
+                          appearance={appearance}
+                          disabled={disabled}
+                          loading={loading}
+                          onClick={onAction}
+                        >
                           {action}
                         </Button>
                       </RadixAlertDialog.Action>
