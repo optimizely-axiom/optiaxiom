@@ -53,6 +53,7 @@ export * from "./radio-group-item";
 export * from "./search";
 export * from "./separator";
 export * from "./skeleton";
+export * from "./spinner";
 export * from "./sprinkles";
 export * from "./styles";
 export * from "./switch";

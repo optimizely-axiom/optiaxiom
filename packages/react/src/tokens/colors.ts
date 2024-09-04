@@ -74,6 +74,7 @@ const colorPalette = {
   "neutral.1100": "#171A23" as const,
   "neutral.1200": "#091E42" as const,
 
+  "neutral.50/6": "#F9FAFC0F" as const,
   "neutral.50/32": "#F9FAFC52" as const,
 
   "neutral.1200/4": "#091E420A" as const,
