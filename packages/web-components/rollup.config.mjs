@@ -2,10 +2,13 @@ import commonjs from "@rollup/plugin-commonjs";
 import json from "@rollup/plugin-json";
 import { nodeResolve } from "@rollup/plugin-node-resolve";
 import { createFilter } from "@rollup/pluginutils";
+import fg from "fast-glob";
 import { readFileSync } from "node:fs";
 import { createRequire } from "node:module";
+import path from "node:path";
 import postcss from "postcss";
 import postcssrc from "postcss-load-config";
+import docgen from "react-docgen-typescript";
 import { defineConfig } from "rollup";
 import dts from "rollup-plugin-dts";
 import esbuild from "rollup-plugin-esbuild";
@@ -59,6 +62,7 @@ export default defineConfig([
       nodeResolve({
         preferBuiltins: false,
       }),
+      propsPlugin({ include: ["src/components/**/*.ts"] }),
       stylePlugin({ include: ["**/*.css"] }),
     ],
   },
@@ -79,6 +83,37 @@ function aliasPlugin(aliases = {}) {
     resolveId(source) {
       const alias = aliases[source];
       return alias ? this.resolve(alias) : null;
+    },
+  };
+}
+
+function propsPlugin({ include = [] }) {
+  const filter = createFilter(include ?? []);
+  const docs = docgen
+    .withCompilerOptions(
+      { esModuleInterop: true },
+      {
+        propFilter: (prop) =>
+          prop.parent ? !prop.parent.fileName.includes("@types/react") : true,
+        savePropValueAsString: true,
+        shouldExtractValuesFromUnion: true,
+      },
+    )
+    .parse(fg.globSync("../react/dist/**/*.d.ts"));
+
+  return {
+    name: "rollup-plugin-props",
+    async transform(code, id) {
+      if (!filter(id)) {
+        return null;
+      }
+
+      const component = path.parse(id).name;
+      const doc = docs.find((doc) => doc.displayName === component);
+      const actions = Object.keys(doc?.props ?? {}).filter((name) =>
+        name.startsWith("on"),
+      );
+      return code.replace(")", `,{customEvents:${JSON.stringify(actions)}})`);
     },
   };
 }

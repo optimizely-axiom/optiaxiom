@@ -394,6 +394,9 @@ importers:
       cssnano:
         specifier: ^7.0.4
         version: 7.0.4(postcss@8.4.40)
+      fast-glob:
+        specifier: ^3.3.2
+        version: 3.3.2
       postcss:
         specifier: ^8.4.40
         version: 8.4.40
@@ -406,6 +409,9 @@ importers:
       preact:
         specifier: ^10.23.1
         version: 10.23.1
+      react-docgen-typescript:
+        specifier: ^2.2.2
+        version: 2.2.2(typescript@5.5.4)
       webdriverio:
         specifier: ^8.39.1
         version: 8.39.1(typescript@5.5.4)
