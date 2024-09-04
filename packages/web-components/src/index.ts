@@ -26,13 +26,18 @@ for (const [name, component] of Object.entries(mapping)) {
             return;
           }
 
+          this.style.visibility = "hidden";
           void this.#loader.then(() => {
             if (this.#disconnected) {
               return;
             }
 
+            this.style.visibility = "";
+
             this.#internal?.connectedCallback();
             this.#connected = true;
+
+            this.classList.add("hydrated");
           });
         }
 
