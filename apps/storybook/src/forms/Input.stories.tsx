@@ -96,10 +96,10 @@ export const Decorators: Story = {
 export const NumberInput: Story = {
   render: () => (
     <Flex>
-      <Input defaultValue="20.00" placeholder="00.00" variant="number" />
-      <Input placeholder="00.00" variant="number" />
-      <Input disabled placeholder="00.00" variant="number" />
-      <Input defaultValue="20.00" error variant="number" />
+      <Input appearance="number" defaultValue="20.00" placeholder="00.00" />
+      <Input appearance="number" placeholder="00.00" />
+      <Input appearance="number" disabled placeholder="00.00" />
+      <Input appearance="number" defaultValue="20.00" error />
     </Flex>
   ),
 };

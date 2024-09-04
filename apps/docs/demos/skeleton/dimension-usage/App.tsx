@@ -4,7 +4,7 @@ function Demo({ loading }: { loading?: boolean }) {
   return (
     <Flex>
       <Heading>{loading ? <Skeleton /> : "h1"}</Heading>
-      <Heading variant="h3">{loading ? <Skeleton /> : "h3"}</Heading>
+      <Heading appearance="h3">{loading ? <Skeleton /> : "h3"}</Heading>
       <Text>{loading ? <Skeleton /> : "body"}</Text>
     </Flex>
   );

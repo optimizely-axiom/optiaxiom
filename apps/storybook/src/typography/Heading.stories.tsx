@@ -30,12 +30,12 @@ export const Levels: Story = {
 export const Sizes: Story = {
   render: () => (
     <>
-      <Heading variant="h1">This is an h1 heading in h1 size</Heading>
-      <Heading variant="h2">This is an h1 heading in h2 size</Heading>
-      <Heading variant="h3">This is an h1 heading in h3 size</Heading>
-      <Heading variant="h4">This is an h1 heading in h4 size</Heading>
-      <Heading variant="h5">This is an h1 heading in h5 size</Heading>
-      <Heading variant="h6">This is an h1 heading in h6 size</Heading>
+      <Heading appearance="h1">This is an h1 heading in h1 size</Heading>
+      <Heading appearance="h2">This is an h1 heading in h2 size</Heading>
+      <Heading appearance="h3">This is an h1 heading in h3 size</Heading>
+      <Heading appearance="h4">This is an h1 heading in h4 size</Heading>
+      <Heading appearance="h5">This is an h1 heading in h5 size</Heading>
+      <Heading appearance="h6">This is an h1 heading in h6 size</Heading>
     </>
   ),
 };

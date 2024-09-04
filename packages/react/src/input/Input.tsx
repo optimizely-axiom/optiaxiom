@@ -15,10 +15,10 @@ type InputProps = InputBaseProps<
 export const Input = forwardRef<HTMLInputElement, InputProps>(
   (
     {
+      appearance = "default",
       endDecorator,
       size = "md",
       startDecorator,
-      variant = "default",
       ...props
     },
     ref,
@@ -42,7 +42,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         }
         {...props}
       >
-        <Box asChild {...styles.input({ variant })}>
+        <Box asChild {...styles.input({ appearance })}>
           <input ref={ref} />
         </Box>
       </InputBase>
