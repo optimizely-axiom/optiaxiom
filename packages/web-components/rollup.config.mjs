@@ -68,7 +68,7 @@ export default defineConfig([
       dir: "dist",
       format: "es",
     },
-    plugins: [dts({ compilerOptions: { types: ["node"] } })],
+    plugins: [dts()],
   },
 ]);
 
