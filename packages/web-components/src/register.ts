@@ -85,8 +85,6 @@ export function register<
       return result;
     }, {});
 
-    const vdomComponent = Component;
-
     const attributeChangedCallback = (name: string, value: null | string) => {
       if (!vdom) {
         return;
@@ -136,12 +134,13 @@ export function register<
       element.dispatchEvent(contextEvent);
       const context = contextEvent.detail.context;
 
-      observer.observe(element, { attributes: true });
       vdom = cloneElement(
-        toVdom(element, withContextProvider(element, vdomComponent, context))!,
+        toVdom(element, withContextProvider(element, Component, context))!,
         props,
       );
       root.render(vdom);
+
+      observer.observe(element, { attributes: true });
     };
 
     const disconnectedCallback = () => {
@@ -181,6 +180,10 @@ export function register<
   return withPreactElement;
 }
 
+/**
+ * Patch portal components to use the shadow root as the container for mounting
+ * elements.
+ */
 const original = options.vnode;
 options.vnode = (vnode) => {
   original?.(vnode);
@@ -203,19 +206,22 @@ const withContextConsumer = (element: Element) => {
   /**
    * Provide the current preact context to a custom event.
    */
-  let _context: unknown = undefined;
+  let context: unknown = undefined;
   element.addEventListener(CustomContextEvent, (event) => {
     event.stopPropagation();
-    event.detail.context = _context;
+    event.detail.context = context;
   });
 
+  /**
+   * Provide the current rendering status to a custom event.
+   */
   let rendered = false;
   element.addEventListener(CustomRenderEvent, (event) => {
     event.detail.rendered = rendered;
   });
 
-  return (_props: unknown, context: unknown) => {
-    _context = context;
+  return (_props: unknown, _context: unknown) => {
+    context = _context;
     rendered = true;
 
     useLayoutEffect(() => {
@@ -294,7 +300,7 @@ const withSlot = (element: Element) => {
 function toVdom<P>(
   element: unknown,
   Component?: ComponentType<P>,
-  shouldProcessSlot = false,
+  isProcessingSlot = false,
 ): ReactElement | null {
   if (!(element instanceof Element)) {
     return null;
@@ -304,7 +310,7 @@ function toVdom<P>(
 
   const props: Record<string, ReactElement | null | string> = {};
   for (const { name, value } of element.attributes) {
-    if (shouldProcessSlot && name === "slot") {
+    if (isProcessingSlot && name === "slot") {
       continue;
     }
     if (name.startsWith("on")) {
