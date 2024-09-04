@@ -17,7 +17,7 @@ import { Table } from "../table";
 import { TableBody } from "../table-body";
 import { TableCell } from "../table-cell";
 import { TableHead } from "../table-head";
-import { TableHeader } from "../table-header";
+import { TableHeaderCell } from "../table-header-cell";
 import { TableRow } from "../table-row";
 import * as styles from "./DataTable.css";
 
@@ -70,12 +70,12 @@ export const DataTable = <TData, TValue>({
   return (
     <Box alignItems="center" display="flex" flexDirection="column">
       <Table>
-        <TableHeader {...styles.tableHeader()}>
+        <TableHead {...styles.tableHeader()}>
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>
               {headerGroup.headers.map((header) => {
                 return (
-                  <TableHead
+                  <TableHeaderCell
                     key={header.id}
                     style={{
                       ...assignInlineVars({
@@ -100,12 +100,12 @@ export const DataTable = <TData, TValue>({
                         {header.column.columnDef.header}
                       </DataTableHeader>
                     )}
-                  </TableHead>
+                  </TableHeaderCell>
                 );
               })}
             </TableRow>
           ))}
-        </TableHeader>
+        </TableHead>
         <TableBody>
           {table.getRowModel().rows.map((row) => (
             <TableRow key={row.id}>
