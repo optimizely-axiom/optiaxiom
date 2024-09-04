@@ -18,7 +18,7 @@ export const ToastAction = forwardRef<HTMLButtonElement, ToastProps>(
           orientation="vertical"
         />
 
-        <Button asChild size="sm" variant="solid" {...props}>
+        <Button appearance="secondary" asChild size="sm" {...props}>
           <RadixToast.Action altText={altText} ref={ref}>
             {children}
           </RadixToast.Action>
