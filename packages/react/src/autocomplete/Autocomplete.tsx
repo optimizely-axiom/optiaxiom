@@ -1,7 +1,5 @@
-import { CommandLoading } from "cmdk";
-import { useCallback, useRef, useState } from "react";
+import { useMemo, useState } from "react";
 
-import { Box } from "../box";
 import { Combobox } from "../combobox";
 import { Command } from "../command";
 import { CommandEmpty } from "../command-empty";
@@ -9,145 +7,121 @@ import { CommandGroup } from "../command-group";
 import { CommandInput } from "../command-input";
 import { CommandItem } from "../command-item";
 import { CommandList } from "../command-list";
-import * as styles from "./Autocomplete.css";
-
-// import { PopoverContent } from "../popover-content";
-// import { PopoverTrigger } from "../popover-trigger";
+import { PopoverContent } from "../popover-content";
+import { PopoverTrigger } from "../popover-trigger";
 import { Search } from "../search";
-// import { Search } from "../search";
-import { Skeleton } from "../skeleton";
-import { Transition } from "../transition";
 
 export type Option = Record<"label" | "value", string> & Record<string, string>;
 
 type AutoCompleteProps = {
-  disabled?: boolean;
-  emptyMessage: string;
+  emptyMessage?: string;
   isLoading?: boolean;
-  onValueChange?: (value: Option) => void;
-  options: Option[];
+  items: { label: string; value: string }[];
+  onSearchValueChange: (value: string) => void;
+  onSelectedValueChange: (value: string) => void;
   placeholder?: string;
-  value?: Option;
+  searchValue: string;
+  selectedValue: string;
 };
 
 export const Autocomplete = ({
-  disabled,
-  emptyMessage,
-  isLoading = false,
-  onValueChange,
-  options,
-  placeholder,
-  value,
+  emptyMessage = "No items.",
+  isLoading,
+  items,
+  onSearchValueChange,
+  onSelectedValueChange,
+  placeholder = "Search...",
+  searchValue,
+  selectedValue,
 }: AutoCompleteProps) => {
-  const inputRef = useRef<HTMLInputElement>(null);
+  const [open, setOpen] = useState(false);
 
-  const [isOpen, setOpen] = useState(false);
-  const [selected, setSelected] = useState<Option>(value as Option);
-  const [inputValue, setInputValue] = useState<string>(value?.label || "");
-
-  const handleKeyDown = useCallback(
-    (event: React.KeyboardEvent<HTMLDivElement>) => {
-      const input = inputRef.current;
-      if (!input) {
-        return;
-      }
-
-      // Keep the options displayed when the user is typing
-      if (!isOpen) {
-        setOpen(true);
-      }
-
-      // This is not a default behaviour of the <input /> field
-      if (event.key === "Enter" && input.value !== "") {
-        const optionToSelect = options.find(
-          (option) => option.label === input.value,
-        );
-        if (optionToSelect) {
-          setSelected(optionToSelect);
-          onValueChange?.(optionToSelect);
-        }
-      }
-
-      if (event.key === "Escape") {
-        input.blur();
-      }
-    },
-    [isOpen, options, onValueChange],
+  const labels = useMemo(
+    () =>
+      items.reduce(
+        (acc, item) => {
+          acc[item.value] = item.label;
+          return acc;
+        },
+        {} as Record<string, string>,
+      ),
+    [items],
   );
 
-  const handleBlur = useCallback(() => {
-    setOpen(false);
-    setInputValue(selected?.label);
-  }, [selected]);
+  const reset = () => {
+    onSelectedValueChange("");
+    onSearchValueChange("");
+  };
 
-  const handleSelectOption = useCallback(
-    (selectedOption: Option) => {
-      setInputValue(selectedOption.label);
+  const onInputBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    if (
+      !e.relatedTarget?.hasAttribute("cmdk-list") &&
+      labels[selectedValue] !== searchValue
+    ) {
+      reset();
+    }
+  };
 
-      setSelected(selectedOption);
-      onValueChange?.(selectedOption);
-
-      // This is a hack to prevent the input from being focused after the user selects an option
-      // We can call this hack: "The next tick"
-      setTimeout(() => {
-        inputRef?.current?.blur();
-      }, 0);
-    },
-    [onValueChange],
-  );
+  const onSelectItem = (inputValue: string) => {
+    if (inputValue === selectedValue) {
+      reset();
+      setOpen(false);
+    } else {
+      onSelectedValueChange(inputValue);
+      onSearchValueChange(labels[inputValue] ?? "");
+      setOpen(false);
+    }
+  };
 
   return (
-    <Combobox>
-      <Command onKeyDown={handleKeyDown}>
-        <CommandInput
+    <Combobox onOpenChange={setOpen} open={open}>
+      <Command>
+        <PopoverTrigger asChild>
+          <CommandInput
+            asChild
+            onBlur={onInputBlur}
+            // onFocus={() => setOpen(true)}
+            onKeyDown={(e) => setOpen(e.key !== "Escape")}
+            onMouseDown={() => setOpen((open) => !!searchValue || !open)}
+            onValueChange={onSearchValueChange}
+            value={searchValue}
+          >
+            <Search placeholder={placeholder} />
+          </CommandInput>
+        </PopoverTrigger>
+        {!open && <CommandList aria-hidden="true" display="none" />}
+        <PopoverContent
           asChild
-          disabled={disabled}
-          onBlur={handleBlur}
-          onFocus={() => setOpen(true)}
-          onValueChange={isLoading ? undefined : setInputValue}
-          placeholder={placeholder}
-          ref={inputRef}
-          value={inputValue}
+          onInteractOutside={(e: PointerEvent) => {
+            if (
+              e.target instanceof Element &&
+              e.target.hasAttribute("cmdk-input")
+            ) {
+              e.preventDefault();
+            }
+          }}
+          onOpenAutoFocus={(e: PointerEvent) => e.preventDefault()}
         >
-          <Search />
-        </CommandInput>
-        <Transition duration="lg" type="fade">
-          <Box {...styles.listBox()}>
-            <Box {...styles.animatedElement({ open: isOpen })}>
-              <CommandList {...styles.list()}>
-                {isLoading ? (
-                  <CommandLoading>
-                    <Skeleton />
-                  </CommandLoading>
-                ) : null}
-                {options.length > 0 && !isLoading ? (
-                  <CommandGroup>
-                    {options.map((option) => {
-                      return (
-                        <CommandItem
-                          key={option.value}
-                          onMouseDown={(event) => {
-                            event.preventDefault();
-                            event.stopPropagation();
-                          }}
-                          onSelect={() => handleSelectOption(option)}
-                          value={option.label}
-                        >
-                          {option.label}
-                        </CommandItem>
-                      );
-                    })}
-                  </CommandGroup>
-                ) : null}
-                {!isLoading ? (
-                  <CommandEmpty {...styles.empty()}>
-                    {emptyMessage}
-                  </CommandEmpty>
-                ) : null}
-              </CommandList>
-            </Box>
-          </Box>
-        </Transition>
+          <CommandList>
+            {items.length > 0 && !isLoading ? (
+              <CommandGroup>
+                {items.map((option) => (
+                  <CommandItem
+                    key={option.value}
+                    onMouseDown={(e) => e.preventDefault()}
+                    onSelect={onSelectItem}
+                    value={option.value}
+                  >
+                    {option.label}
+                  </CommandItem>
+                ))}
+              </CommandGroup>
+            ) : null}
+            {!isLoading ? (
+              <CommandEmpty>{emptyMessage ?? "No items."}</CommandEmpty>
+            ) : null}
+          </CommandList>
+        </PopoverContent>
       </Command>
     </Combobox>
   );

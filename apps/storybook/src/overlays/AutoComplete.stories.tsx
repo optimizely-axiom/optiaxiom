@@ -1,5 +1,5 @@
-import { Button, Flex, Text } from "@optiaxiom/react";
-import { Autocomplete, type Option } from "@optiaxiom/react/unstable";
+import { Flex } from "@optiaxiom/react";
+import { Autocomplete } from "@optiaxiom/react/unstable";
 import { type Meta, type StoryObj } from "@storybook/react";
 import { useState } from "react";
 
@@ -25,29 +25,26 @@ export const Basic: Story = {
   //   items: fruitOptions,
   // },
   render: function Basic() {
-    const [isLoading, setLoading] = useState(false);
-    const [isDisabled, setDisabled] = useState(false);
-    const [value, setValue] = useState<Option>();
+    // const [isLoading, setLoading] = useState(false);
+    // const [isDisabled, setDisabled] = useState(false);
+    // const [value, setValue] = useState<Option>();
+
+    const [searchValue, setSearchValue] = useState<string>("");
+    const [selectedValue, setSelectedValue] = useState<string>("");
     return (
       <Flex>
-        <Button onClick={() => setLoading((prev) => !prev)}>
-          Toggle loading
-        </Button>
-        <Button onClick={() => setDisabled((prev) => !prev)}>
-          Toggle disabled
-        </Button>
         <Autocomplete
-          disabled={isDisabled}
-          emptyMessage="No resulsts."
-          isLoading={isLoading}
-          onValueChange={setValue}
-          options={fruitOptions}
-          placeholder="Find something"
-          value={value}
+          emptyMessage="No pokemon found."
+          isLoading={false}
+          items={fruitOptions ?? []}
+          onSearchValueChange={setSearchValue}
+          onSelectedValueChange={setSelectedValue}
+          searchValue={searchValue}
+          selectedValue={selectedValue}
         />
-        <Text>Current value: {value ? value?.label : "No value selected"}</Text>
+        {/* <Text>Current value: {value ? value?.label : "No value selected"}</Text>
         <Text>Loading state: {isLoading ? "true" : "false"}</Text>
-        <Text>Disabled: {isDisabled ? "true" : "false"}</Text>
+        <Text>Disabled: {isDisabled ? "true" : "false"}</Text> */}
       </Flex>
     );
   },
