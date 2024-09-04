@@ -33,10 +33,7 @@ const Content = ({
 const BasicContent = ({
   children,
   ...props
-}: Pick<
-  ComponentPropsWithRef<typeof Button>,
-  "appearance" | "children" | "colorScheme" | "variant"
->) => (
+}: Pick<ComponentPropsWithRef<typeof Button>, "appearance" | "children">) => (
   <>
     <Button {...props}>{children} One</Button>
     <Button {...props}>{children} Two</Button>
@@ -79,11 +76,6 @@ export const Appearance: Story = {
           <BasicContent appearance={appearance}>{label}</BasicContent>
         </ButtonGroup>
       ))}
-      <ButtonGroup {...args}>
-        <BasicContent colorScheme="danger" variant="subtle">
-          Danger Subtle
-        </BasicContent>
-      </ButtonGroup>
     </Flex>
   ),
 };
@@ -99,11 +91,6 @@ export const AppearanceSpacing: Story = {
           <BasicContent appearance={appearance}>{label}</BasicContent>
         </ButtonGroup>
       ))}
-      <ButtonGroup {...args}>
-        <BasicContent colorScheme="danger" variant="subtle">
-          Danger Subtle
-        </BasicContent>
-      </ButtonGroup>
     </Flex>
   ),
 };
