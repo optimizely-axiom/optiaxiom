@@ -7,13 +7,13 @@ type HeadingProps = TextProps<
   "h1",
   {
     /**
+     * Control the visual size without changing the semantic tag.
+     */
+    appearance?: keyof typeof mapTagToFontSize;
+    /**
      * Presets for each level of heading h1-h6.
      */
     level?: keyof typeof mapLevelToTag;
-    /**
-     * Control the visual size without changing the semantic tag.
-     */
-    variant?: keyof typeof mapTagToFontSize;
   }
 >;
 
@@ -35,9 +35,9 @@ const mapTagToFontSize = {
 } as const;
 
 export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
-  ({ asChild, children, level = "1", variant, ...props }, ref) => {
+  ({ appearance, asChild, children, level = "1", ...props }, ref) => {
     const Comp = asChild ? Slot : mapLevelToTag[level];
-    const fontSize = mapTagToFontSize[variant ?? mapLevelToTag[level]];
+    const fontSize = mapTagToFontSize[appearance ?? mapLevelToTag[level]];
 
     return (
       <Text asChild fontSize={fontSize} fontWeight="700" ref={ref} {...props}>

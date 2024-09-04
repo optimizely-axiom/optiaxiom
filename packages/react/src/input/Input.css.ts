@@ -2,7 +2,7 @@ import { type RecipeVariants, recipe } from "../vanilla-extract";
 
 export const input = recipe({
   variants: {
-    variant: {
+    appearance: {
       default: {
         textAlign: "start",
       },
