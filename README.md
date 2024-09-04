@@ -25,6 +25,8 @@ Please read the full [documentation](https://optimizely-axiom.github.io/optiaxio
 
 ## Contributing
 
+Please read the [philosophy](./PHILOSOPHY.md) page for an overview and list of tools used in the project.
+
 Clone the project and run:
 
 ```sh
