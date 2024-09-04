@@ -31,7 +31,7 @@ const meta: Meta<typeof DataTable> = {
 
 export default meta;
 
-type Story = StoryObj<typeof DataTable<Payment, string>>;
+type Story = StoryObj<typeof DataTable<Payment>>;
 
 const columns: ColumnDef<Payment, string>[] = [
   {
@@ -185,7 +185,7 @@ export const Pinned: Story = {
   args: {
     columns: columns,
     data: sampleData,
-    pinnedColumns: ["id", "status"],
+    state: { columnPinning: { left: ["id", "status"] } },
   },
 };
 
@@ -227,6 +227,6 @@ export const Pagination: Story = {
       totalPrice: Math.floor(Math.random() * 1000) + 50,
       trackingNumber: `TN${Math.random().toString(36).substr(2, 9)}`,
     })),
-    pinnedColumns: ["id"],
+    state: { columnPinning: { left: ["id"] } },
   },
 };

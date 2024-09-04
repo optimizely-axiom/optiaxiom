@@ -1,10 +1,10 @@
 import {
   type ColumnDef,
-  type SortingState,
   flexRender,
   getCoreRowModel,
   getPaginationRowModel,
   getSortedRowModel,
+  type SortingState,
   useReactTable,
 } from "@tanstack/react-table";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
@@ -17,23 +17,20 @@ import { Table } from "../table";
 import { TableBody } from "../table-body";
 import { TableCell } from "../table-cell";
 import { TableHead } from "../table-head";
-import { TableHeader } from "../table-header";
+import { TableHeaderCell } from "../table-header-cell";
 import { TableRow } from "../table-row";
 import * as styles from "./DataTable.css";
 
-interface DataTableProps<TData, TValue> {
-  columns: ColumnDef<TData, TValue>[];
-  data: TData[];
-  pinnedColumns?: string[];
-}
-
 export type { ColumnDef };
 
-export const DataTable = <TData, TValue>({
+import type { TableOptions } from "@tanstack/react-table";
+type DataTableProps<TData> = TableOptions<TData>;
+
+export const DataTable = <TData,>({
   columns,
   data,
-  pinnedColumns = [],
-}: DataTableProps<TData, TValue>) => {
+  ...props
+}: DataTableProps<TData>) => {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [{ pageIndex, pageSize }, setPagination] = useState({
     pageIndex: 0,
@@ -41,6 +38,7 @@ export const DataTable = <TData, TValue>({
   });
 
   const table = useReactTable({
+    ...props,
     columns,
     data,
     getCoreRowModel: getCoreRowModel(),
@@ -49,7 +47,7 @@ export const DataTable = <TData, TValue>({
     onPaginationChange: setPagination,
     onSortingChange: setSorting,
     state: {
-      columnPinning: { left: pinnedColumns },
+      ...props.state,
       pagination: {
         pageIndex,
         pageSize,
@@ -70,19 +68,19 @@ export const DataTable = <TData, TValue>({
   return (
     <Box alignItems="center" display="flex" flexDirection="column">
       <Table>
-        <TableHeader {...styles.tableHeader()}>
+        <TableHead {...styles.tableHeader()}>
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>
               {headerGroup.headers.map((header) => {
                 return (
-                  <TableHead
+                  <TableHeaderCell
                     key={header.id}
                     style={{
                       ...assignInlineVars({
-                        [styles.cellOffset]: header.column.getIsPinned()
+                        [styles.cellOffsetVar]: header.column.getIsPinned()
                           ? `${offsets[header.column.id]}px`
                           : undefined,
-                        [styles.columnWidth]: `${header.getSize()}px`,
+                        [styles.columnWidthVar]: `${header.getSize()}px`,
                       }),
                     }}
                     {...styles.tableHead({
@@ -100,12 +98,12 @@ export const DataTable = <TData, TValue>({
                         {header.column.columnDef.header}
                       </DataTableHeader>
                     )}
-                  </TableHead>
+                  </TableHeaderCell>
                 );
               })}
             </TableRow>
           ))}
-        </TableHeader>
+        </TableHead>
         <TableBody>
           {table.getRowModel().rows.map((row) => (
             <TableRow key={row.id}>
@@ -115,10 +113,10 @@ export const DataTable = <TData, TValue>({
                     key={cell.id}
                     style={{
                       ...assignInlineVars({
-                        [styles.cellOffset]: cell.column.getIsPinned()
+                        [styles.cellOffsetVar]: cell.column.getIsPinned()
                           ? `${offsets[cell.column.id]}px`
                           : undefined,
-                        [styles.columnWidth]: `${cell.column.getSize()}px`,
+                        [styles.columnWidthVar]: `${cell.column.getSize()}px`,
                       }),
                     }}
                     {...styles.tableCell({
@@ -134,11 +132,11 @@ export const DataTable = <TData, TValue>({
         </TableBody>
       </Table>
 
-      {data.length > pageSize && (
+      {data.length > table.getState().pagination.pageSize && (
         <Box mt="8">
           <Pagination
             onPageChange={(newPage) => table.setPageIndex(newPage - 1)}
-            page={pageIndex + 1}
+            page={table.getState().pagination.pageIndex + 1}
             total={table.getPageCount()}
           />
         </Box>

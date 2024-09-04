@@ -1,17 +1,19 @@
+import { theme } from "@optiaxiom/globals";
+
 import { createVar, recipe, style } from "../vanilla-extract";
 
-export const columnWidth = createVar();
-export const cellOffset = createVar();
+export const columnWidthVar = createVar();
+export const cellOffsetVar = createVar();
 
 export const tableHeader = recipe({
   base: [
     {
-      bg: "white",
+      bg: "bg.default",
     },
     style({
       position: "sticky",
       top: 0,
-      zIndex: 2,
+      zIndex: theme.zIndex["20"],
     }),
   ],
 });
@@ -19,21 +21,21 @@ export const tableHeader = recipe({
 export const tableHead = recipe({
   base: [
     {
-      bg: "white",
+      bg: "bg.default",
     },
     style({
-      minWidth: columnWidth,
+      minWidth: columnWidthVar,
     }),
   ],
   variants: {
     pinned: {
-      false: style({}),
+      false: {},
       left: style({
-        left: cellOffset,
+        left: cellOffsetVar,
         position: "sticky",
-        zIndex: 2,
+        zIndex: theme.zIndex["20"],
       }),
-      right: style({}),
+      right: {},
     },
   },
 });
@@ -41,21 +43,21 @@ export const tableHead = recipe({
 export const tableCell = recipe({
   base: [
     {
-      bg: "white",
+      bg: "bg.default",
     },
     style({
-      minWidth: columnWidth,
+      minWidth: columnWidthVar,
     }),
   ],
   variants: {
     pinned: {
-      false: style({}),
+      false: {},
       left: style({
-        left: cellOffset,
+        left: cellOffsetVar,
         position: "sticky",
-        zIndex: 1,
+        zIndex: theme.zIndex["10"],
       }),
-      right: style({}),
+      right: {},
     },
   },
 });
