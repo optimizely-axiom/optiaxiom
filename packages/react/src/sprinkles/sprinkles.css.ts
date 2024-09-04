@@ -18,6 +18,10 @@ const animations = {
     "0%, 100%": { opacity: 1 },
     "50%": { opacity: 0.5 },
   }),
+  spin: keyframes({
+    from: { transform: "rotate(0deg)" },
+    to: { transform: "rotate(360deg)" },
+  }),
 };
 
 const margins = merge(theme.margins, { auto: "auto" });
@@ -40,6 +44,7 @@ const unresponsiveProps = defineProperties({
     animation: {
       ping: `${animations.ping} 1s cubic-bezier(0, 0, 0.2, 1) infinite`,
       pulse: `${animations.pulse} 2s ease-in-out infinite`,
+      spin: `${animations.spin} 1s linear infinite`,
     },
     backgroundColor: theme.colors,
     borderBottomWidth: theme.borderWidth,
