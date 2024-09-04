@@ -22,7 +22,7 @@ export const cell = recipe({
 
       selectors: {
         [`${row}:hover &`]: {
-          backgroundColor: theme.colors["neutral.1200/5"],
+          backgroundColor: theme.colors["bg.input.disabled"],
         },
       },
     }),

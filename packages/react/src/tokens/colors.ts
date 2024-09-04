@@ -76,7 +76,7 @@ const colorPalette = {
 
   "neutral.50/32": "#F9FAFC52" as const,
 
-  "neutral.1200/5": "#091E420D" as const,
+  "neutral.1200/4": "#091E420A" as const,
   "neutral.1200/12": "#091E421F" as const,
   "neutral.1200/18": "#091E422E" as const,
   "neutral.1200/22": "#091E4238" as const,
@@ -141,7 +141,7 @@ export const colors = {
   "bg.error.solid.hover": colorPalette["red.600"],
   "bg.information": colorPalette["blue.50"],
   "bg.information.solid": colorPalette["blue.600"],
-  "bg.input.disabled": colorPalette["neutral.1200/5"],
+  "bg.input.disabled": colorPalette["neutral.1200/4"],
   "bg.neutral": colorPalette["neutral.75"],
   "bg.neutral.inverse": colorPalette["neutral.800"],
   "bg.neutral.inverse.hover": colorPalette["neutral.900"],
@@ -230,7 +230,7 @@ export const colorsDark = {
   "bg.error.solid.hover": colorPalette["red.600"],
   "bg.information": colorPalette["blue.900"],
   "bg.information.solid": colorPalette["blue.600"],
-  "bg.input.disabled": colorPalette["neutral.1200/5"],
+  "bg.input.disabled": colorPalette["neutral.1200/4"],
   "bg.neutral": colorPalette["slate.800"],
   "bg.neutral.inverse": colorPalette["neutral.100"],
   "bg.neutral.inverse.hover": colorPalette["neutral.200"],
