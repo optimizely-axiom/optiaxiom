@@ -39,7 +39,7 @@ export type ButtonProps<
       iconPosition?: "end" | "start";
       loading?: boolean;
       startDecorator?: ReactNode;
-    } & Omit<styles.ButtonVariants, "iconOnly">,
+    } & Omit<styles.ButtonVariants, "colorScheme" | "iconOnly" | "variant">,
     P
   >
 >;
@@ -51,7 +51,6 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       asChild,
       children,
       className,
-      colorScheme: colorSchemeProp,
       disabled,
       endDecorator,
       icon,
@@ -59,7 +58,6 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       loading,
       size = "md",
       startDecorator,
-      variant: variantProp,
       ...props
     },
     ref,
@@ -68,8 +66,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const { restProps, sprinkleProps } = extractSprinkles(props);
 
     const presetProps = appearances[appearance];
-    const colorScheme = colorSchemeProp ?? presetProps.colorScheme;
-    const variant = variantProp ?? presetProps.variant;
+    const colorScheme = presetProps.colorScheme;
+    const variant = presetProps.variant;
     let isIconOnly = Boolean(!children && icon);
 
     if (asChild) {
