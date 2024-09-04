@@ -46,10 +46,10 @@ export const Toast = forwardRef<HTMLLIElement, ToastProps>(
 
           <RadixToast.Close asChild>
             <Button
+              appearance="secondary"
               aria-label="close"
               icon={<IconX />}
               size="sm"
-              variant="solid"
             />
           </RadixToast.Close>
         </RadixToast.Root>
