@@ -73,7 +73,7 @@ export function transformPropsTable(tree) {
           ...(typeof extendsComponent === "string"
             ? [
                 "",
-                `Supports all [\`${extendsComponent}\`](/components/${kebabCase(extendsComponent)}/props) props` +
+                `Supports all [\`${extendsComponent}\`](/components/${kebabCase(extendsComponent)}#props) props` +
                   (props.length > 0 ? " in addition to its own" : "") +
                   ".",
               ]
