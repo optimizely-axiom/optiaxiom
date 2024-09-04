@@ -101,36 +101,25 @@ export const Loading: Story = {
 export const IconOnly: Story = {
   ...Appearance,
   args: {
-    icon: <IconChevronDown />,
+    icon: "chevron-down",
   },
 };
 
 export const IconsWithText: Story = {
   args: {
     children: "Button",
+    icon: "chevron-down",
   },
   render: (args) => (
     <Flex>
       <Flex flexDirection="row">
         {sizes.map(([size]) => (
-          <Button
-            {...args}
-            icon={<IconChevronDown />}
-            iconPosition="start"
-            key={size}
-            size={size}
-          />
+          <Button {...args} iconPosition="start" key={size} size={size} />
         ))}
       </Flex>
       <Flex flexDirection="row">
         {sizes.map(([size]) => (
-          <Button
-            {...args}
-            icon={<IconChevronDown />}
-            iconPosition="end"
-            key={size}
-            size={size}
-          />
+          <Button {...args} iconPosition="end" key={size} size={size} />
         ))}
       </Flex>
     </Flex>
@@ -140,16 +129,17 @@ export const IconsWithText: Story = {
 export const Link: Story = {
   args: {
     asChild: true,
+    icon: "chevron-down",
   },
   render: (args) => (
     <Flex flexDirection="row">
+      <Button {...args} icon={null}>
+        <a href="/">Sample Link</a>
+      </Button>
       <Button {...args}>
         <a href="/">Sample Link</a>
       </Button>
-      <Button {...args} icon={<IconChevronDown />}>
-        <a href="/">Sample Link</a>
-      </Button>
-      <Button {...args} icon={<IconChevronDown />}>
+      <Button {...args}>
         {/* eslint-disable-next-line jsx-a11y/anchor-has-content */}
         <a href="/" />
       </Button>
@@ -168,7 +158,7 @@ export const Upload: Story = {
         </VisuallyHidden>
       </label>
     ),
-    icon: <IconCloudUpload />,
+    icon: "cloud-upload",
   },
   render: (args) => (
     <Flex>
