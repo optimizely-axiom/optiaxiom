@@ -2,7 +2,7 @@
  * Forked from https://github.com/preactjs/preact-custom-element
  */
 
-import type { HTMLAttributes, ReactElement } from "react";
+import type { ReactElement } from "react";
 
 import { options } from "preact";
 import {
@@ -35,18 +35,11 @@ declare global {
   }
 }
 
-type ComponentEventNames<T> = T extends `on${string}`
-  ? Exclude<T, keyof HTMLAttributes<EventTarget>>
-  : never;
-
-export function register<
-  P extends object,
-  EventName extends ComponentEventNames<keyof P & string>,
->(
+export function register<P extends object>(
   name: `${string}-${string}`,
   Component: FunctionComponent<P>,
   options: {
-    customEvents?: readonly EventName[];
+    customEvents?: readonly never[];
   } = {},
 ) {
   const withPreactElement = (element: HTMLElement) => {
