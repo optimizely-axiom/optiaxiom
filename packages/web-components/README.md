@@ -4,21 +4,31 @@ A framework agnostic variant of the Optimizely Design System.
 
 ## Getting Started
 
+Please read the full [documentation](https://optimizely-axiom.github.io/optiaxiom/) for guides, examples, and API.
+
+### Bundler usage
+
+Use your favorite package manager to install the package:
+
 ```sh
 npm install @optiaxiom/web-components
 ```
 
+Wrap your application with `AxiomProvider` and simply import and use the components:
+
 ```tsx
-import { Button } from "@optiaxiom/web-components";
+import { AxiomProvider, Button } from "@optiaxiom/web-components";
 
 function App() {
-  return <Button>Hello World!</Button>;
+  return (
+    <AxiomProvider>
+      <Button>Hello World!</Button>
+    </AxiomProvider>
+  );
 }
 ```
 
-Please read the full [documentation](https://optimizely-axiom.github.io/optiaxiom/) for guides, examples, and API.
-
-## CDN usage
+### CDN usage
 
 Use your favorite CDN to import the package:
 
@@ -28,11 +38,15 @@ Use your favorite CDN to import the package:
   src="https://cdn.jsdelivr.net/npm/@optiaxiom/web-components@latest/dist/index.js"
   type="module"
 ></script>
-
-<ax-button>Hello World!</ax-button>
 ```
 
-All components are available under the `ax-*` prefix and in kebab-case naming.
+Wrap your application with `ax-axiom-provider` element and then use all components available under the `ax-*` prefix:
+
+```html
+<ax-axiom-provider>
+  <ax-button>Hello World!</ax-button>
+</ax-axiom-provider>
+```
 
 ## Lazy loading
 
@@ -45,13 +59,13 @@ By default the index entry of the library lazy loads components to avoid loading
 ></script>
 
 <!--
-  The script for `ax-button` is not loaded and the component is not defined
-  until an element is inserted into the DOM.
+  The script for `ax-button` is not loaded until an element is inserted into
+  the DOM.
 -->
 <ax-button>Hello World!</ax-button>
 ```
 
-We use `MutationObserver` to detect when an `ax-*` element is present in the DOM and only load the code for the corresponding component.
+We use proxy components to detect when an `ax-*` element is connected in the DOM and only then load the actual code for the corresponding component.
 
 ### Explicit loading
 
@@ -71,7 +85,7 @@ function App() {
 
 ```html
 <script
-  src="https://cdn.jsdelivr.net/npm/@optiaxiom/web-components@latest/dist/Button.js" <!-- `Button.js` entry -->
+  src="https://cdn.jsdelivr.net/npm/@optiaxiom/web-components@latest/dist/components/Button.js" <!-- `Button.js` entry -->
   type="module"
 ></script>
 
@@ -83,7 +97,7 @@ function App() {
 
 ## Slots
 
-We use `shadow DOM` for our web components and support slot usages for components.
+We use `Shadow DOM` for our web components and support slot usages for components.
 
 Simply set the `slot` attribute to the corresponding prop name in your HTML.
 
