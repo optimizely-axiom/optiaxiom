@@ -6,6 +6,8 @@ require("raw-loader!../../../packages/react/dist/index.d.ts");
 
 import isChromatic from "chromatic/isChromatic";
 
+import "./preview.css";
+
 export const loaders = isChromatic()
   ? [
       async () => ({
