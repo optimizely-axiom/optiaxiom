@@ -46,7 +46,7 @@ export const Toast = forwardRef<HTMLLIElement, ToastProps>(
 
           <RadixToast.Close asChild>
             <Button
-              appearance="secondary"
+              appearance="inverse"
               aria-label="close"
               icon={<IconX />}
               size="sm"

@@ -20,6 +20,7 @@ const appearances = {
   danger: { colorScheme: "danger", variant: "solid" },
   "danger-outline": { colorScheme: "danger", variant: "outline" },
   default: { colorScheme: "neutral", variant: "outline" },
+  inverse: { colorScheme: "neutral", variant: "solid" },
   primary: { colorScheme: "primary", variant: "solid" },
   secondary: { colorScheme: "neutral", variant: "subtle" },
 } satisfies Record<string, styles.ButtonVariants>;
