@@ -21,26 +21,26 @@ export const Switch = forwardRef<HTMLDivElement, SwitchProps>(
 
     return (
       <ControlBase
+        control={
+          <Box asChild {...styles.root()}>
+            <RadixSwitch.Root {...restProps}>
+              <Box asChild {...styles.thumb({ size })}>
+                <RadixSwitch.Thumb />
+              </Box>
+            </RadixSwitch.Root>
+          </Box>
+        }
         endDecorator={endDecorator}
         id={id}
-        label={
-          <Tooltip auto content={children}>
-            <Text as="span" truncate>
-              {children}
-            </Text>
-          </Tooltip>
-        }
         ref={ref}
         {...styles.container({}, className)}
         {...sprinkleProps}
       >
-        <Box asChild {...styles.root()}>
-          <RadixSwitch.Root {...restProps}>
-            <Box asChild {...styles.thumb({ size })}>
-              <RadixSwitch.Thumb />
-            </Box>
-          </RadixSwitch.Root>
-        </Box>
+        <Tooltip auto content={children}>
+          <Text as="span" truncate>
+            {children}
+          </Text>
+        </Tooltip>
       </ControlBase>
     );
   },

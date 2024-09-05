@@ -16,28 +16,31 @@ import * as styles from "./ControlBase.css";
 type ControlBaseProps = BoxProps<
   "button",
   {
-    children: ReactElement;
+    children?: ReactNode;
+    control: ReactElement;
     endDecorator?: ReactNode;
-    label?: ReactNode;
   }
 >;
 
 export const ControlBase = forwardRef<HTMLDivElement, ControlBaseProps>(
-  ({ children, className, endDecorator, id: idProp, label, ...props }, ref) => {
+  (
+    { children, className, control, endDecorator, id: idProp, ...props },
+    ref,
+  ) => {
     const { restProps, sprinkleProps } = extractSprinkles(props);
     const id = useId(idProp);
 
     return (
       <Box ref={ref} {...styles.controlBase({}, className)} {...sprinkleProps}>
         <Box asChild {...styles.indicator()}>
-          {cloneElement(children, {
+          {cloneElement(control, {
             id,
             ...restProps,
           })}
         </Box>
 
         <Text asChild {...styles.label()}>
-          <RadixLabel.Root htmlFor={id}>{label}</RadixLabel.Root>
+          <RadixLabel.Root htmlFor={id}>{children}</RadixLabel.Root>
         </Text>
 
         {endDecorator && (

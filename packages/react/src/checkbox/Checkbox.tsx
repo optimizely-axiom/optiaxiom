@@ -21,26 +21,28 @@ export const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>(
 
     return (
       <ControlBase
+        control={
+          <Box asChild {...styles.checkbox()}>
+            <RadixCheckbox.Root {...restProps}>
+              <Box asChild {...styles.indicator()}>
+                <RadixCheckbox.Indicator>
+                  <Box asChild {...styles.iconChecked()}>
+                    <IconCheck />
+                  </Box>
+                  <Box asChild {...styles.iconIndeterminate()}>
+                    <IconMinus />
+                  </Box>
+                </RadixCheckbox.Indicator>
+              </Box>
+            </RadixCheckbox.Root>
+          </Box>
+        }
         endDecorator={endDecorator}
         id={id}
-        label={children}
         ref={ref}
         {...sprinkleProps}
       >
-        <Box asChild {...styles.checkbox()}>
-          <RadixCheckbox.Root {...restProps}>
-            <Box asChild {...styles.indicator()}>
-              <RadixCheckbox.Indicator>
-                <Box asChild {...styles.iconChecked()}>
-                  <IconCheck />
-                </Box>
-                <Box asChild {...styles.iconIndeterminate()}>
-                  <IconMinus />
-                </Box>
-              </RadixCheckbox.Indicator>
-            </Box>
-          </RadixCheckbox.Root>
-        </Box>
+        {children}
       </ControlBase>
     );
   },
