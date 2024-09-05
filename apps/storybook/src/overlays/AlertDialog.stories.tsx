@@ -1,10 +1,23 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { AlertDialog, Button, Flex } from "@optiaxiom/react";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogTitle,
+  Button,
+} from "@optiaxiom/react";
 import { expect, screen, userEvent, waitFor } from "@storybook/test";
 import { type ComponentPropsWithoutRef, useState } from "react";
 
-const withTemplate = ({ defaultOpen = true } = {}) =>
+const withTemplate = ({
+  action = "Confirm",
+  cancel = "Cancel",
+  defaultOpen = true,
+  description = "Are you sure you want to delete this image?",
+} = {}) =>
   function Template(args: ComponentPropsWithoutRef<typeof AlertDialog>) {
     const [open, setOpen] = useState(defaultOpen);
 
@@ -12,30 +25,26 @@ const withTemplate = ({ defaultOpen = true } = {}) =>
     const handleClose = () => setOpen(false);
 
     return (
-      <Flex>
+      <>
         <Button onClick={handleOpen}>Open Dialog</Button>
-        <AlertDialog
-          {...args}
-          onAction={() => {
-            handleClose();
-          }}
-          onCancel={() => {
-            handleClose();
-          }}
-          open={open}
-        >
-          {args.children}
+
+        <AlertDialog {...args} open={open}>
+          <AlertDialogTitle>Delete Image</AlertDialogTitle>
+          <AlertDialogDescription>{description}</AlertDialogDescription>
+          <AlertDialogFooter>
+            <AlertDialogCancel onClick={handleClose}>
+              {cancel}
+            </AlertDialogCancel>
+            <AlertDialogAction onClick={handleClose}>
+              {action}
+            </AlertDialogAction>
+          </AlertDialogFooter>
         </AlertDialog>
-      </Flex>
+      </>
     );
   };
 
 export default {
-  args: {
-    action: "Confirm",
-    children: "Are you sure you want to delete this image?",
-    title: "Delete Image",
-  },
   component: AlertDialog,
   render: withTemplate(),
 } as Meta<typeof AlertDialog>;
@@ -65,10 +74,6 @@ export const Basic: Story = {
 };
 
 export const CustomButtons: Story = {
-  args: {
-    action: "Yes, Delete",
-    cancel: "No, Keep",
-  },
   play: async () => {
     await expect(
       await screen.findByRole("alertdialog", { name: "Delete Image" }),
@@ -80,6 +85,7 @@ export const CustomButtons: Story = {
       screen.getByRole("button", { name: "No, Keep" }),
     ).toBeInTheDocument();
   },
+  render: withTemplate({ action: "Yes, Delete", cancel: "No, Keep" }),
 };
 
 export const Medium: Story = {
@@ -98,18 +104,19 @@ export const LongContent: Story = {
   args: {
     children: largeText,
   },
+  render: withTemplate({ description: largeText }),
 };
 
 export const LongContentMedium: Story = {
+  ...LongContent,
   args: {
-    children: largeText,
     size: "md",
   },
 };
 
 export const LongContentLarge: Story = {
+  ...LongContent,
   args: {
-    children: largeText,
     size: "lg",
   },
 };

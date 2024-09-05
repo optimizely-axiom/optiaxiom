@@ -1,4 +1,12 @@
-import { AlertDialog, Button } from "@optiaxiom/react";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogTitle,
+  Button,
+} from "@optiaxiom/react";
 import { type ComponentPropsWithRef, useState } from "react";
 
 export function App({
@@ -10,18 +18,20 @@ export function App({
     <>
       <Button onClick={() => setOpen(true)}>Open Alert Dialog</Button>
 
-      <AlertDialog
-        action="Yes, Publish"
-        appearance={appearance}
-        onAction={() => {
-          // perform some action
-          setOpen(false);
-        }}
-        onCancel={() => setOpen(false)}
-        open={open}
-        title="Publish Article"
-      >
-        Are you sure you want to publish this article?
+      <AlertDialog appearance={appearance} open={open}>
+        <AlertDialogTitle>Publish Article</AlertDialogTitle>
+
+        <AlertDialogDescription>
+          Are you sure you want to publish this article?
+        </AlertDialogDescription>
+
+        <AlertDialogFooter>
+          <AlertDialogCancel onClick={() => setOpen(false)} />
+
+          <AlertDialogAction onClick={() => setOpen(false)}>
+            Yes, Publish
+          </AlertDialogAction>
+        </AlertDialogFooter>
       </AlertDialog>
     </>
   );
