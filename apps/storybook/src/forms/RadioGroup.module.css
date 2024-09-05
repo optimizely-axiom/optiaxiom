@@ -1,0 +1,4 @@
+.item:has([data-state="checked"]) {
+  background-color: #0000ff0a;
+  border-color: blue;
+}
