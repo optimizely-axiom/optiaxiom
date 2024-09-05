@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import { Command } from "../command";
 import { CommandEmpty } from "../command-empty";
+import { CommandGroup } from "../command-group";
 import { CommandInput } from "../command-input";
 import { CommandItem } from "../command-item";
 import { CommandList } from "../command-list";
@@ -13,6 +14,7 @@ import { Search } from "../search";
 type AutocompleteProps = {
   defaultValue?: string;
   emptyMessage?: string;
+  isLoading?: boolean;
   items: string[];
   onChange?: (value: string) => void;
   placeholder?: string;
@@ -20,7 +22,7 @@ type AutocompleteProps = {
 
 export const Autocomplete: React.FC<AutocompleteProps> = ({
   defaultValue = "",
-  emptyMessage = "No items found.",
+  isLoading,
   items = [],
   onChange,
   placeholder = "Search...",
@@ -32,10 +34,6 @@ export const Autocomplete: React.FC<AutocompleteProps> = ({
     setValue(newValue);
     onChange?.(newValue);
   };
-
-  const filteredItems = items.filter((item) =>
-    item.toLowerCase().includes((value || "").toLowerCase()),
-  );
 
   const onSelectItem = (selectedItem: string) => {
     if (selectedItem === value) {
@@ -52,9 +50,11 @@ export const Autocomplete: React.FC<AutocompleteProps> = ({
         <PopoverTrigger asChild>
           <CommandInput
             asChild
+            // onClick={() => setOpen(true)}
             onFocus={() => setOpen(true)}
+            onKeyDown={(e) => setOpen(e.key !== "Escape")}
             onValueChange={handleChange}
-            value={value || ""}
+            value={value}
           >
             <Search placeholder={placeholder} />
           </CommandInput>
@@ -63,25 +63,31 @@ export const Autocomplete: React.FC<AutocompleteProps> = ({
         <PopoverContent
           asChild
           onInteractOutside={(e: Event) => {
-            e.preventDefault();
+            if (
+              e.target instanceof Element &&
+              e.target.hasAttribute("cmdk-input")
+            ) {
+              e.preventDefault();
+            }
           }}
-          // onOpenAutoFocus={(e: Event) => e.preventDefault()}
+          onOpenAutoFocus={(e: Event) => e.preventDefault()}
         >
           <CommandList>
-            {filteredItems.length > 0 ? (
-              filteredItems.map((item) => (
-                <CommandItem
-                  key={item}
-                  onMouseDown={(e) => e.preventDefault()}
-                  onSelect={() => onSelectItem(item)}
-                  value={item}
-                >
-                  {item}
-                </CommandItem>
-              ))
-            ) : (
-              <CommandEmpty>{emptyMessage}</CommandEmpty>
-            )}
+            {items.length > 0 ? (
+              <CommandGroup>
+                {items.map((option) => (
+                  <CommandItem
+                    key={option}
+                    onMouseDown={(e) => e.preventDefault()}
+                    onSelect={onSelectItem}
+                    value={option}
+                  >
+                    {option}
+                  </CommandItem>
+                ))}
+              </CommandGroup>
+            ) : null}
+            {!isLoading ? <CommandEmpty /> : null}
           </CommandList>
         </PopoverContent>
       </Command>
