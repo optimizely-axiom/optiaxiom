@@ -1,6 +1,15 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { RadioGroup, RadioGroupItem, Text } from "@optiaxiom/react";
+import {
+  Box,
+  Flex,
+  Grid,
+  RadioGroup,
+  RadioGroupItem,
+  Text,
+} from "@optiaxiom/react";
+
+import styles from "./RadioGroup.module.css";
 
 export default {
   component: RadioGroup,
@@ -98,6 +107,102 @@ export const DisabledItems: Story = {
       <RadioGroupItem disabled value="sample-4">
         Sample 4
       </RadioGroupItem>
+    </RadioGroup>
+  ),
+};
+
+const props = {
+  border: "1",
+  justifyContent: "start",
+  p: "md",
+  rounded: "sm",
+} as const;
+
+export const ComplexExample1: Story = {
+  render: (args) => (
+    <RadioGroup asChild {...args} defaultValue="sample-1" m="auto" w="3/4">
+      <Grid gridTemplateColumns="2">
+        <Flex className={styles.item} {...props} gap="xs">
+          <RadioGroupItem
+            endDecorator={
+              <Text color="fg.secondary" fontSize="sm">
+                Displays a message as a bar at top of page
+              </Text>
+            }
+            value="sample-1"
+          >
+            Banner (copy)
+          </RadioGroupItem>
+        </Flex>
+        <Flex className={styles.item} {...props} gap="xs">
+          <RadioGroupItem
+            endDecorator={
+              <Text color="fg.secondary" fontSize="sm">
+                Places an icon of your choice on any element of the web page
+              </Text>
+            }
+            value="sample-2"
+          >
+            Celebrate
+          </RadioGroupItem>
+        </Flex>
+        <Flex className={styles.item} {...props} gap="xs">
+          <RadioGroupItem
+            endDecorator={
+              <Text color="fg.secondary" fontSize="sm">
+                Displays a number of views or purchases for a defined duration
+              </Text>
+            }
+            value="sample-3"
+          >
+            Social Proof
+          </RadioGroupItem>
+        </Flex>
+      </Grid>
+    </RadioGroup>
+  ),
+};
+
+const props2 = {
+  alignItems: "start",
+  borderT: "1",
+  flexDirection: "row",
+  p: "sm",
+} as const;
+
+export const ComplexExample2: Story = {
+  render: (args) => (
+    <RadioGroup borderB="1" {...args} defaultValue="sample-1">
+      <Flex {...props2} gap="xs">
+        <RadioGroupItem value="sample-1" w="128">
+          Admin
+        </RadioGroupItem>
+        <Box asChild pl="lg" style={{ listStyle: "disc" }}>
+          <ul>
+            <li>
+              <Text>Can add or remove members.</Text>
+            </li>
+            <li>
+              <Text>Plus Editor permissions.</Text>
+            </li>
+          </ul>
+        </Box>
+      </Flex>
+      <Flex {...props2} gap="xs">
+        <RadioGroupItem value="sample-2" w="128">
+          Editor
+        </RadioGroupItem>
+        <Box asChild pl="lg" style={{ listStyle: "disc" }}>
+          <ul>
+            <li>
+              <Text>Can adjust flag settings.</Text>
+            </li>
+            <li>
+              <Text>Can edit non-published variables, variations, etc.</Text>
+            </li>
+          </ul>
+        </Box>
+      </Flex>
     </RadioGroup>
   ),
 };
