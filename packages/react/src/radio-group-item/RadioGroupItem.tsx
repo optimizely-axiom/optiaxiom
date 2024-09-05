@@ -19,19 +19,21 @@ export const RadioGroupItem = forwardRef<HTMLDivElement, RadioGroupItemProps>(
 
     return (
       <ControlBase
+        control={
+          <Box asChild {...styles.item()}>
+            <RadixRadio.Item {...restProps}>
+              <Box asChild {...styles.indicator()}>
+                <RadixRadio.Indicator />
+              </Box>
+            </RadixRadio.Item>
+          </Box>
+        }
         endDecorator={endDecorator}
         id={id}
-        label={children}
         ref={ref}
         {...sprinkleProps}
       >
-        <Box asChild {...styles.item()}>
-          <RadixRadio.Item {...restProps}>
-            <Box asChild {...styles.indicator()}>
-              <RadixRadio.Indicator />
-            </Box>
-          </RadixRadio.Item>
-        </Box>
+        {children}
       </ControlBase>
     );
   },
