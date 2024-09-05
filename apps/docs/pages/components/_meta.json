@@ -45,7 +45,6 @@
   },
   "accordion": "Accordion",
   "avatar": "Avatar",
-  "badge": "Badge",
   "indicator": "Indicator",
   "separator": "Separator",
   "-- Forms": {
@@ -66,6 +65,7 @@
     "title": "Feedback"
   },
   "alert": "Alert",
+  "badge": "Badge",
   "progress": "Progress",
   "skeleton": "Skeleton",
   "toast": "Toast"
