@@ -1,7 +1,5 @@
-import { Flex } from "@optiaxiom/react";
 import { Autocomplete } from "@optiaxiom/react/unstable";
 import { type Meta, type StoryObj } from "@storybook/react";
-import { useState } from "react";
 
 export default {
   argTypes: {
@@ -12,112 +10,50 @@ export default {
 
 type Story = StoryObj<typeof Autocomplete>;
 
-const fruitOptions = [
-  { label: "Apple", value: "apple" },
-  { label: "Banana", value: "banana" },
-  { label: "Cherry", value: "cherry" },
-  { label: "Date", value: "date" },
-  { label: "Elderberry", value: "elderberry" },
+const items = [
+  "English",
+  "French",
+  "German",
+  "Spanish",
+  "Portuguese",
+  "Russian",
+  "Japanese",
+  "Korean",
+  "Chinese (Simplified)",
+  "Italian",
+  "Dutch",
+  "Polish",
+  "Swedish",
+  "Danish",
+  "Finnish",
+  "Norwegian",
+  "Turkish",
+  "Arabic",
+  "Hindi",
+  "Bengali",
+  "Vietnamese",
+  "Thai",
+  "Indonesian",
+  "Greek",
+  "Czech",
+  "Romanian",
+  "Hungarian",
+  "Hebrew",
+  "Ukrainian",
+  "Swahili",
+  "Malay",
+  "Tagalog",
+  "Persian",
+  "Tamil",
+  "Urdu",
+  "Afrikaans",
+  "Bulgarian",
+  "Catalan",
+  "Croatian",
+  "Lithuanian",
 ];
-
 export const Basic: Story = {
-  // args: {
-  //   items: fruitOptions,
-  // },
-  render: function Basic() {
-    // const [isLoading, setLoading] = useState(false);
-    // const [isDisabled, setDisabled] = useState(false);
-    // const [value, setValue] = useState<Option>();
-
-    const [searchValue, setSearchValue] = useState<string>("");
-    const [selectedValue, setSelectedValue] = useState<string>("");
-    return (
-      <Flex>
-        <Autocomplete
-          emptyMessage="No pokemon found."
-          isLoading={false}
-          items={fruitOptions ?? []}
-          onSearchValueChange={setSearchValue}
-          onSelectedValueChange={setSelectedValue}
-          searchValue={searchValue}
-          selectedValue={selectedValue}
-        />
-        {/* <Text>Current value: {value ? value?.label : "No value selected"}</Text>
-        <Text>Loading state: {isLoading ? "true" : "false"}</Text>
-        <Text>Disabled: {isDisabled ? "true" : "false"}</Text> */}
-      </Flex>
-    );
+  args: {
+    items: items,
   },
 };
-
-// export const WithManyOptions: Story = {
-//   args: {
-//     onSelect: (option) => console.log("Selected:", option),
-//     options: [
-//       ...fruitOptions,
-//       { label: "Fig", value: "fig" },
-//       { label: "Grape", value: "grape" },
-//       { label: "Honeydew", value: "honeydew" },
-//       { label: "Kiwi", value: "kiwi" },
-//       { label: "Lemon", value: "lemon" },
-//       { label: "Mango", value: "mango" },
-//       { label: "Nectarine", value: "nectarine" },
-//       { label: "Orange", value: "orange" },
-//     ],
-//     placeholder: "Select a fruit",
-//   },
-// };
-
-// export const CustomPlaceholder: Story = {
-//   args: {
-//     onSelect: (option) => console.log("Selected:", option),
-//     options: fruitOptions,
-//     placeholder: "Type to search fruits...",
-//   },
-// };
-
-// export const NoOptions: Story = {
-//   args: {
-//     options: [],
-//     placeholder: "No fruits available",
-//   },
-// };
-
-// export const WithInitialInputValue: Story = {
-//   render: function WithInitialInputValue(args) {
-//     return (
-//       <Autocomplete
-//         {...args}
-//         items={fruitOptions}
-//         placeholder="Select a fruit"
-//       />
-//     );
-//   },
-// };
-
-// export const AsyncOptions: Story = {
-//   render: function AsyncOptions(args) {
-//     const [options, setOptions] = useState<{ label: string; value: string }[]>(
-//       [],
-//     );
-//     const [loading, setLoading] = useState(false);
-
-//     useEffect(() => {
-//       setLoading(true);
-//       // Simulate an API call
-//       setTimeout(() => {
-//         setOptions(fruitOptions);
-//         setLoading(false);
-//       }, 1500);
-//     }, []);
-
-//     return (
-//       <Autocomplete
-//         {...args}
-//         onSelect={(option) => console.log("Selected:", option)}
-//         options={options}
-//         placeholder={loading ? "Loading fruits..." : "Select a fruit"}
-//       />
-//     );
-//   },
-// };

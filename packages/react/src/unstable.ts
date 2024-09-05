@@ -1,6 +1,7 @@
 export * from "./autocomplete";
 export * from "./combobox";
 export * from "./combobox-content";
+export * from "./combobox-item";
 export * from "./combobox-multi-trigger";
 export * from "./combobox-single-trigger";
 export * from "./combobox-trigger";
