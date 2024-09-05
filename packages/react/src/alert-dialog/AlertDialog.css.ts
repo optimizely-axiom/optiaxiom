@@ -1,4 +1,3 @@
-import { theme } from "../styles";
 import { type RecipeVariants, recipe, style } from "../vanilla-extract";
 
 export const content = recipe({
@@ -41,35 +40,6 @@ export const overlay = recipe({
     style({
       inset: "0",
       position: "fixed",
-    }),
-  ],
-});
-
-export const footer = recipe({
-  base: [
-    {
-      flexDirection: "row",
-      gap: "md",
-      justifyContent: "end",
-      px: "24",
-      py: "20",
-    },
-    style({
-      borderTop: `1px solid ${theme.colors["border.secondary"]}`,
-    }),
-  ],
-});
-
-export const description = recipe({
-  base: [
-    {
-      fontSize: "md",
-      overflow: "auto",
-      px: "24",
-      py: "16",
-    },
-    style({
-      maxHeight: "50dvh",
     }),
   ],
 });

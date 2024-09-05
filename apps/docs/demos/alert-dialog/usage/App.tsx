@@ -1,24 +1,58 @@
-import { AlertDialog, Button } from "@optiaxiom/react";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogTitle,
+  Button,
+  Flex,
+  Text,
+} from "@optiaxiom/react";
 import { useState } from "react";
 
 export function App() {
   const [open, setOpen] = useState(false);
+  const [state, setState] = useState("");
 
   return (
     <>
-      <Button onClick={() => setOpen(true)}>Open Alert Dialog</Button>
+      <Flex flexDirection="row">
+        <Button onClick={() => setOpen(true)}>Publish Article</Button>
 
-      <AlertDialog
-        action="Yes, Publish"
-        onAction={() => {
-          // perform some action
-          setOpen(false);
-        }}
-        onCancel={() => setOpen(false)}
-        open={open}
-        title="Publish Article"
-      >
-        Are you sure you want to publish this article?
+        <Text>
+          {state && (
+            <>
+              Clicked <strong>{state}</strong>
+            </>
+          )}
+        </Text>
+      </Flex>
+
+      <AlertDialog open={open}>
+        <AlertDialogTitle>Publish Article</AlertDialogTitle>
+
+        <AlertDialogDescription>
+          Are you sure you want to publish this article?
+        </AlertDialogDescription>
+
+        <AlertDialogFooter>
+          <AlertDialogCancel
+            onClick={() => {
+              setState("cancel");
+              setOpen(false);
+            }}
+          />
+
+          <AlertDialogAction
+            onClick={() => {
+              setState("confirm");
+              setOpen(false);
+            }}
+          >
+            Yes, Publish
+          </AlertDialogAction>
+        </AlertDialogFooter>
       </AlertDialog>
     </>
   );
