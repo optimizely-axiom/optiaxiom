@@ -78,6 +78,10 @@ body:before {
   }
 }
 
+.tabler-icon {
+  stroke-width: 1;
+}
+
 .hover\:nx-underline:hover {
   text-decoration: underline;
 }
