@@ -5,7 +5,6 @@ import { Box, type BoxProps } from "../box";
 import { ControlBase } from "../control-base";
 import { IconCheck } from "../icons/IconCheck";
 import { IconMinus } from "../icons/IconMinus";
-import { extractSprinkles } from "../sprinkles";
 import * as styles from "./Checkbox.css";
 
 type CheckboxProps = BoxProps<
@@ -16,14 +15,12 @@ type CheckboxProps = BoxProps<
 >;
 
 export const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>(
-  ({ children, endDecorator, id, ...props }, ref) => {
-    const { restProps, sprinkleProps } = extractSprinkles(props);
-
+  ({ children, defaultChecked, endDecorator, id, ...props }, ref) => {
     return (
       <ControlBase
         control={
           <Box asChild {...styles.checkbox()}>
-            <RadixCheckbox.Root {...restProps}>
+            <RadixCheckbox.Root defaultChecked={defaultChecked}>
               <Box asChild {...styles.indicator()}>
                 <RadixCheckbox.Indicator>
                   <Box asChild {...styles.iconChecked()}>
@@ -40,7 +37,7 @@ export const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>(
         endDecorator={endDecorator}
         id={id}
         ref={ref}
-        {...sprinkleProps}
+        {...props}
       >
         {children}
       </ControlBase>

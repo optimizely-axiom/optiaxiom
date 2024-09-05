@@ -3,7 +3,6 @@ import { type ReactNode, forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
 import { ControlBase } from "../control-base";
-import { extractSprinkles } from "../sprinkles";
 import * as styles from "./RadioGroupItem.css";
 
 type RadioGroupItemProps = BoxProps<
@@ -14,14 +13,12 @@ type RadioGroupItemProps = BoxProps<
 >;
 
 export const RadioGroupItem = forwardRef<HTMLDivElement, RadioGroupItemProps>(
-  ({ children, endDecorator, id, ...props }, ref) => {
-    const { restProps, sprinkleProps } = extractSprinkles(props);
-
+  ({ children, endDecorator, id, value, ...props }, ref) => {
     return (
       <ControlBase
         control={
           <Box asChild {...styles.item()}>
-            <RadixRadio.Item {...restProps}>
+            <RadixRadio.Item value={value}>
               <Box asChild {...styles.indicator()}>
                 <RadixRadio.Indicator />
               </Box>
@@ -31,7 +28,7 @@ export const RadioGroupItem = forwardRef<HTMLDivElement, RadioGroupItemProps>(
         endDecorator={endDecorator}
         id={id}
         ref={ref}
-        {...sprinkleProps}
+        {...props}
       >
         {children}
       </ControlBase>
