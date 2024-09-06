@@ -12,14 +12,25 @@ type AlertDialogProps = BoxProps<
   {
     appearance?: "danger" | "primary";
     children: ReactNode;
+    onOpenChange: (open: boolean) => void;
     open?: boolean;
   } & styles.DialogVariants
 >;
 
 export const AlertDialog = forwardRef<HTMLDivElement, AlertDialogProps>(
-  ({ appearance = "primary", children, open, size = "sm", ...props }, ref) => {
+  (
+    {
+      appearance = "primary",
+      children,
+      onOpenChange,
+      open,
+      size = "sm",
+      ...props
+    },
+    ref,
+  ) => {
     return (
-      <RadixAlertDialog.Root open={open}>
+      <RadixAlertDialog.Root onOpenChange={onOpenChange} open={open}>
         <AlertDialogContextProvider appearance={appearance}>
           <AnimatePresence>
             {open && (
