@@ -27,7 +27,7 @@ export function App() {
       <AlertDialog onOpenChange={setOpen} open={open}>
         <AlertDialogTrigger>Delete comment</AlertDialogTrigger>
 
-        <AlertDialogContent appearance="danger">
+        <AlertDialogContent>
           <AlertDialogTitle>Are you sure?</AlertDialogTitle>
 
           <AlertDialogDescription>
