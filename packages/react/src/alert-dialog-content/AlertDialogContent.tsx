@@ -20,7 +20,7 @@ type AlertDialogContentProps = BoxProps<
 export const AlertDialogContent = forwardRef<
   HTMLDivElement,
   AlertDialogContentProps
->(({ appearance = "primary", children, size = "sm", ...props }, ref) => {
+>(({ appearance = "danger", children, size = "sm", ...props }, ref) => {
   const { open } = useAlertDialogContext("AlertDialogContent");
 
   return (
