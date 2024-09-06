@@ -17,7 +17,7 @@ export function App({
     <>
       <Button onClick={() => setOpen(true)}>Open Dialog</Button>
 
-      <Dialog onClose={() => setOpen(false)} open={open} size={size}>
+      <Dialog onOpenChange={() => setOpen(false)} open={open} size={size}>
         <DialogTitle>Modal Title</DialogTitle>
 
         <DialogBody>

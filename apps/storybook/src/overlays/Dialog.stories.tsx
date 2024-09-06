@@ -26,7 +26,7 @@ const withTemplate = ({
       <Flex>
         <Button onClick={onOpen}>Open Dialog</Button>
 
-        <Dialog onClose={onClose} open={open} {...props}>
+        <Dialog onOpenChange={onClose} open={open} {...props}>
           <DialogTitle description={description}>Dialog</DialogTitle>
           <DialogBody>{content}</DialogBody>
           <DialogFooter>
