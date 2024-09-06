@@ -18,7 +18,11 @@ export function App({
     <>
       <Button onClick={() => setOpen(true)}>Open Alert Dialog</Button>
 
-      <AlertDialog appearance={appearance} open={open}>
+      <AlertDialog
+        appearance={appearance}
+        onOpenChange={() => setOpen(false)}
+        open={open}
+      >
         <AlertDialogTitle>Publish Article</AlertDialogTitle>
 
         <AlertDialogDescription>

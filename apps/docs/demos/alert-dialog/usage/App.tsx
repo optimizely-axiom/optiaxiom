@@ -29,7 +29,7 @@ export function App() {
         </Text>
       </Flex>
 
-      <AlertDialog open={open}>
+      <AlertDialog onOpenChange={() => setOpen(false)} open={open}>
         <AlertDialogTitle>Publish Article</AlertDialogTitle>
 
         <AlertDialogDescription>

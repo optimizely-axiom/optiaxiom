@@ -28,7 +28,7 @@ const withTemplate = ({
       <>
         <Button onClick={handleOpen}>Open Dialog</Button>
 
-        <AlertDialog {...args} open={open}>
+        <AlertDialog {...args} onOpenChange={handleClose} open={open}>
           <AlertDialogTitle>Delete Image</AlertDialogTitle>
           <AlertDialogDescription>{description}</AlertDialogDescription>
           <AlertDialogFooter>
