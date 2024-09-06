@@ -2,41 +2,31 @@ import {
   AlertDialog,
   AlertDialogAction,
   AlertDialogCancel,
+  AlertDialogContent,
   AlertDialogDescription,
   AlertDialogFooter,
   AlertDialogTitle,
-  Button,
+  AlertDialogTrigger,
 } from "@optiaxiom/react";
-import { type ComponentPropsWithRef, useState } from "react";
+import { type ComponentPropsWithRef } from "react";
 
 export function App({
   appearance,
-}: Pick<ComponentPropsWithRef<typeof AlertDialog>, "appearance">) {
-  const [open, setOpen] = useState(false);
-
+}: Pick<ComponentPropsWithRef<typeof AlertDialogContent>, "appearance">) {
   return (
-    <>
-      <Button onClick={() => setOpen(true)}>Open Alert Dialog</Button>
+    <AlertDialog>
+      <AlertDialogTrigger>Delete comment</AlertDialogTrigger>
 
-      <AlertDialog
-        appearance={appearance}
-        onOpenChange={() => setOpen(false)}
-        open={open}
-      >
-        <AlertDialogTitle>Publish Article</AlertDialogTitle>
-
+      <AlertDialogContent appearance={appearance}>
+        <AlertDialogTitle>Are you sure?</AlertDialogTitle>
         <AlertDialogDescription>
-          Are you sure you want to publish this article?
+          The comment and all replies will be deleted.
         </AlertDialogDescription>
-
         <AlertDialogFooter>
-          <AlertDialogCancel onClick={() => setOpen(false)} />
-
-          <AlertDialogAction onClick={() => setOpen(false)}>
-            Yes, Publish
-          </AlertDialogAction>
+          <AlertDialogCancel />
+          <AlertDialogAction>Yes, delete</AlertDialogAction>
         </AlertDialogFooter>
-      </AlertDialog>
-    </>
+      </AlertDialogContent>
+    </AlertDialog>
   );
 }

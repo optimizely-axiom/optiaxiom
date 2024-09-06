@@ -2,58 +2,53 @@ import {
   AlertDialog,
   AlertDialogAction,
   AlertDialogCancel,
+  AlertDialogContent,
   AlertDialogDescription,
   AlertDialogFooter,
   AlertDialogTitle,
-  Button,
+  AlertDialogTrigger,
   Flex,
   Text,
 } from "@optiaxiom/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export function App() {
   const [open, setOpen] = useState(false);
   const [state, setState] = useState("");
 
+  useEffect(() => {
+    if (open) {
+      setState("");
+    }
+  }, [open]);
+
   return (
-    <>
-      <Flex flexDirection="row">
-        <Button onClick={() => setOpen(true)}>Publish Article</Button>
+    <Flex flexDirection="row">
+      <AlertDialog onOpenChange={setOpen} open={open}>
+        <AlertDialogTrigger>Delete comment</AlertDialogTrigger>
 
-        <Text>
-          {state && (
-            <>
-              Clicked <strong>{state}</strong>
-            </>
-          )}
-        </Text>
-      </Flex>
+        <AlertDialogContent appearance="danger">
+          <AlertDialogTitle>Are you sure?</AlertDialogTitle>
 
-      <AlertDialog onOpenChange={() => setOpen(false)} open={open}>
-        <AlertDialogTitle>Publish Article</AlertDialogTitle>
+          <AlertDialogDescription>
+            The comment and all replies will be deleted.
+          </AlertDialogDescription>
 
-        <AlertDialogDescription>
-          Are you sure you want to publish this article?
-        </AlertDialogDescription>
+          <AlertDialogFooter>
+            <AlertDialogCancel />
 
-        <AlertDialogFooter>
-          <AlertDialogCancel
-            onClick={() => {
-              setState("cancel");
-              setOpen(false);
-            }}
-          />
-
-          <AlertDialogAction
-            onClick={() => {
-              setState("confirm");
-              setOpen(false);
-            }}
-          >
-            Yes, Publish
-          </AlertDialogAction>
-        </AlertDialogFooter>
+            <AlertDialogAction onClick={() => setState("confirm")}>
+              Yes, delete
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
       </AlertDialog>
-    </>
+
+      {state && (
+        <Text>
+          Clicked <strong>{state}</strong>
+        </Text>
+      )}
+    </Flex>
   );
 }
