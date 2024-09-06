@@ -5,6 +5,23 @@ import { mdxjs } from "micromark-extension-mdxjs";
 import docgen from "react-docgen-typescript";
 import { visit } from "unist-util-visit";
 
+const docs = docgen
+  .withCompilerOptions(
+    { esModuleInterop: true },
+    {
+      savePropValueAsString: true,
+      shouldExtractValuesFromUnion: true,
+    },
+  )
+  .parse(
+    fg.globSync(
+      "../../packages/react/src/**/{*.css.ts,sprinkles.css.ts,*.tsx}",
+      {
+        ignore: ["**/*.spec.*"],
+      },
+    ),
+  );
+
 export function transformPropsTable(tree) {
   let needsImport = true;
 
@@ -12,23 +29,6 @@ export function transformPropsTable(tree) {
     tree,
     { name: "ax-props-table", type: "mdxJsxFlowElement" },
     (node, index, parent) => {
-      const docs = docgen
-        .withCompilerOptions(
-          { esModuleInterop: true },
-          {
-            savePropValueAsString: true,
-            shouldExtractValuesFromUnion: true,
-          },
-        )
-        .parse(
-          fg.globSync(
-            "../../packages/react/src/**/{*.css.ts,sprinkles.css.ts,*.tsx}",
-            {
-              ignore: ["**/*.spec.*"],
-            },
-          ),
-        );
-
       const componentRaw = node.attributes.find(
         (attr) => attr.name === "component",
       ).value;
