@@ -72,6 +72,7 @@ export * from "./toast";
 export * from "./toast-action";
 export * from "./toast-provider";
 export * from "./toast-title";
+export * from "./toggle";
 export * from "./tokens";
 export * from "./tooltip";
 export * from "./transition";
