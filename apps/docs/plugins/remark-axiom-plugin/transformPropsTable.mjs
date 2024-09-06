@@ -52,7 +52,8 @@ export function transformPropsTable(tree) {
         .filter(([, prop]) =>
           prop.parent
             ? !prop.parent.fileName.includes("@types/react")
-            : prop.declarations.find(
+            : prop.name === "asChild" ||
+              prop.declarations.find(
                 (decl) => decl.fileName === doc.filePath,
               ) ||
               styles.find((style) => Object.hasOwn(style.props, prop.name)) ||
