@@ -1,0 +1,7 @@
+th:first-child .cell {
+  border-top-left-radius: var(--ax-borderRadius-lg);
+}
+
+th:last-child .cell {
+  border-top-right-radius: var(--ax-borderRadius-lg);
+}
