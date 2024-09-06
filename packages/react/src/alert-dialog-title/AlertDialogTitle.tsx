@@ -16,9 +16,8 @@ export const AlertDialogTitle = forwardRef<
       asChild
       fontWeight="500"
       level="3"
-      pb="16"
-      pt="24"
-      px="24"
+      p="lg"
+      pb="md"
       ref={ref}
       {...props}
     >
