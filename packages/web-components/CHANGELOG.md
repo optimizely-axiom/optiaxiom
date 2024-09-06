@@ -1,5 +1,11 @@
 # @optiaxiom/web-components
 
+## 0.1.0-next.5
+
+### Patch Changes
+
+- 44d461e: allow custom events on web-components
+
 ## 0.1.0-next.4
 
 ### Patch Changes

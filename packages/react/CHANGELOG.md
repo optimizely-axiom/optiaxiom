@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 0.1.0-next.14
+
+### Patch Changes
+
+- 08b8821: add loading spinner to buttons
+
 ## 0.1.0-next.13
 
 ### Patch Changes
