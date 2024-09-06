@@ -1,0 +1,35 @@
+# Toggle
+
+`Toggle` component represents a button that can be toggled on or off.
+
+## Documentation
+
+### Usage
+
+`Toggle` extends the [Button](./button/) component.
+
+<ax-demo name="toggle/usage" />
+
+### Controlled
+
+Use the `pressed` and `defaultPressed` props to toggle between controlled and uncontrolled usage. And combine it with `onPressedChange` to listen for changes to the state.
+
+<ax-demo name="toggle/controlled-usage" />
+
+### Disabled state
+
+Set the `disabled` prop to `true` to disable buttons and prevent any interactions.
+
+For accessibility please make sure to include text that explains why the button is disabled or use a tooltip.
+
+<ax-demo name="toggle/disabled-usage" />
+
+## Props
+
+<ax-props-table component="Toggle" extends="Button" />
+
+## Changelog
+
+### 0.1.0
+
+- Added component
