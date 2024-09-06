@@ -13,7 +13,7 @@ export const Th = ({
     <th>
       <Text
         asChild={asChild}
-        bg="bg.input.disabled"
+        bg="bg.neutral"
         className={styles.cell}
         fontWeight="600"
         p="12"
