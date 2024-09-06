@@ -1,41 +1,30 @@
 import {
-  Button,
   Dialog,
   DialogBody,
+  DialogClose,
+  DialogContent,
   DialogFooter,
   DialogTitle,
-  Text,
+  DialogTrigger,
 } from "@optiaxiom/react";
-import { type ComponentPropsWithRef, useState } from "react";
+import { type ComponentPropsWithRef } from "react";
 
 export function App({
   modal = false,
   size,
-}: Pick<ComponentPropsWithRef<typeof Dialog>, "modal" | "size">) {
-  const [open, setOpen] = useState(false);
-
+}: Pick<ComponentPropsWithRef<typeof Dialog>, "modal"> &
+  Pick<ComponentPropsWithRef<typeof DialogContent>, "size">) {
   return (
-    <>
-      <Button onClick={() => setOpen(true)}>Open Dialog</Button>
+    <Dialog modal={modal}>
+      <DialogTrigger>Open Dialog</DialogTrigger>
 
-      <Dialog
-        modal={modal}
-        onOpenChange={() => setOpen(false)}
-        open={open}
-        size={size}
-      >
+      <DialogContent size={size}>
         <DialogTitle>Modal Title</DialogTitle>
-
-        <DialogBody>
-          <Text>This is the modal body</Text>
-        </DialogBody>
-
+        <DialogBody>This is the modal body</DialogBody>
         <DialogFooter>
-          <Button appearance="primary" onClick={() => setOpen(false)}>
-            Close
-          </Button>
+          <DialogClose appearance="primary">Close</DialogClose>
         </DialogFooter>
-      </Dialog>
-    </>
+      </DialogContent>
+    </Dialog>
   );
 }

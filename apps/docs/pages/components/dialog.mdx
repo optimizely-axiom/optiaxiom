@@ -6,11 +6,7 @@ Display a modal or non-modal dialog box.
 
 ### Usage
 
-The dialog state must be controlled from the outside using the `open` prop. Setting it to `true` will open the dialog and setting it back to `false` will close it.
-
-The following props are also required:
-
-- `onOpenChange`: Called when user hits escape key or clicks the overlay to dismiss the dialog.
+Use the `open` and `defaultOpen` props to toggle between controlled and uncontrolled usage. And combine it with `onOpenChange` to listen for changes to the state.
 
 <ax-demo name="dialog/usage" />
 
@@ -18,35 +14,43 @@ The following props are also required:
 
 Use the `size` prop to change the size of the dialog box.
 
-<ax-demo name="dialog/size-usage" />
+<ax-demo meta="/size={size}/" name="dialog/size-usage" />
 
 ### Close button
 
 Use the `withCloseButton` prop to show a close button to the top right of the modal.
 
-<ax-demo name="dialog/close-usage" />
+<ax-demo meta="/withCloseButton/" name="dialog/close-usage" />
 
 ### Description
 
-You can add accessible description to the modal using the `description` prop on the `DialogTitle` component.
+You can add accessible description to the modal using the `DialogDescription` component.
 
-<ax-demo name="dialog/description-usage" />
+<ax-demo meta="/DialogDescription/" name="dialog/description-usage" />
 
 ### Non modal usage
 
 Set `modal` prop to `false` in order to render a non-modal dialog box. This will remove the backdrop overlay and only render the dialog box.
 
-<ax-demo name="dialog/modal-usage" />
+<ax-demo meta="/modal={modal}/" name="dialog/modal-usage" />
 
 ## Props
 
-<ax-props-table component="Dialog" />
+<ax-props-table component="Dialog" extends={false} />
+
+<ax-props-table component="DialogTrigger" extends="Button" />
+
+<ax-props-table component="DialogContent" />
 
 <ax-props-table component="DialogTitle" />
+
+<ax-props-table component="DialogDescription" />
 
 <ax-props-table component="DialogBody" />
 
 <ax-props-table component="DialogFooter" />
+
+<ax-props-table component="DialogClose" extends="Button" />
 
 ## Changelog
 

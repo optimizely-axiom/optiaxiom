@@ -3,34 +3,24 @@ import { forwardRef } from "react";
 
 import type { BoxProps } from "../box";
 
-import { Flex } from "../flex";
 import { Heading } from "../heading";
-import { extractSprinkles } from "../sprinkles";
-import { Text } from "../text";
 
-type DialogTitleProps = BoxProps<
-  typeof RadixDialog.Title,
-  {
-    description?: string;
-  }
->;
+type DialogTitleProps = BoxProps<typeof RadixDialog.Title>;
 
-export const DialogTitle = forwardRef<HTMLDivElement, DialogTitleProps>(
-  ({ children, description, ...props }, ref) => {
-    const { restProps, sprinkleProps } = extractSprinkles(props);
-
+export const DialogTitle = forwardRef<HTMLHeadingElement, DialogTitleProps>(
+  ({ children, ...props }, ref) => {
     return (
-      <Flex gap="xs" pb="md" pt="lg" px="lg" {...sprinkleProps}>
-        <Heading asChild fontWeight="500" level="3">
-          <RadixDialog.Title ref={ref} {...restProps}>
-            {children}
-          </RadixDialog.Title>
-        </Heading>
-
-        <Text asChild color="fg.secondary" empty="hidden" fontWeight="400">
-          <RadixDialog.Description>{description}</RadixDialog.Description>
-        </Text>
-      </Flex>
+      <Heading
+        asChild
+        fontWeight="500"
+        level="3"
+        p="lg"
+        pb="xs"
+        ref={ref}
+        {...props}
+      >
+        <RadixDialog.Title>{children}</RadixDialog.Title>
+      </Heading>
     );
   },
 );
