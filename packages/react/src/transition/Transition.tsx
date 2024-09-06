@@ -6,6 +6,7 @@ import * as styles from "./Transition.css";
 
 type TransitionProps = {
   children: ReactElement;
+  "data-side"?: "bottom" | "left" | "right" | "top";
 } & NonNullable<styles.TransitionVariants>;
 
 export const Transition = forwardRef<HTMLDivElement, TransitionProps>(
