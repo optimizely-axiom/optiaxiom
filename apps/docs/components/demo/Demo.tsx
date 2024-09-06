@@ -38,14 +38,13 @@ export function Demo({
   );
 
   return (
-    <Flex mt="xl">
+    <Box border="1" mt="xl" rounded="lg">
       <Box
         alignItems="stretch"
-        border="1"
+        borderB="1"
         className={iframe && styles.resize}
         display="flex"
         flexDirection={["column", "row"]}
-        rounded="xl"
       >
         <Flex
           flex="1"
@@ -73,6 +72,6 @@ export function Demo({
         )}
       </Box>
       <Box className={styles.editor}>{children}</Box>
-    </Flex>
+    </Box>
   );
 }

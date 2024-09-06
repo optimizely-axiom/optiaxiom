@@ -7,7 +7,7 @@ export const Table = ({
   className = "",
   ...props
 }: ComponentPropsWithRef<typeof Box>) => (
-  <Box maxW="full" mt="24" {...props}>
+  <Box border="1" maxW="full" mt="24" rounded="lg" {...props}>
     <table className={`nx-w-full nx-text-sm nx-text-left ${className}`}>
       {children}
     </table>
