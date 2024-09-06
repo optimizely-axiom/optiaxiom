@@ -1,58 +1,60 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import {
-  Button,
   Dialog,
   DialogBody,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
   DialogFooter,
   DialogTitle,
-  Flex,
+  DialogTrigger,
 } from "@optiaxiom/react";
 import { expect, screen, userEvent, waitFor } from "@storybook/test";
-import { type ComponentPropsWithoutRef, useState } from "react";
+import { type ComponentPropsWithoutRef } from "react";
 
-const withTemplate = ({
-  content = "This is the dialog content.",
-  defaultOpen = true,
-  description = "",
-} = {}) =>
-  function Template(props: Partial<ComponentPropsWithoutRef<typeof Dialog>>) {
-    const [open, setOpen] = useState(defaultOpen);
-
-    const onOpen = () => setOpen(true);
-    const onClose = () => setOpen(false);
-
-    return (
-      <Flex>
-        <Button onClick={onOpen}>Open Dialog</Button>
-
-        <Dialog onOpenChange={onClose} open={open} {...props}>
-          <DialogTitle description={description}>Dialog</DialogTitle>
-          <DialogBody>{content}</DialogBody>
-          <DialogFooter>
-            <Button appearance="secondary" onClick={onClose}>
-              Cancel
-            </Button>
-            <Button appearance="primary" onClick={onClose}>
-              Confirm
-            </Button>
-          </DialogFooter>
-        </Dialog>
-      </Flex>
-    );
-  };
+type DialogStoryProps = {
+  content?: string;
+  description?: string;
+} & ComponentPropsWithoutRef<typeof Dialog> &
+  Pick<
+    ComponentPropsWithoutRef<typeof DialogContent>,
+    "size" | "withCloseButton"
+  >;
 
 export default {
+  args: {
+    content: "This is the dialog content.",
+    defaultOpen: true,
+  },
   component: Dialog,
-  render: withTemplate(),
-} as Meta<typeof Dialog>;
+  render: ({ content, description, size, withCloseButton, ...args }) => {
+    return (
+      <Dialog {...args}>
+        <DialogTrigger>Open Dialog</DialogTrigger>
 
-type Story = StoryObj<typeof Dialog>;
+        <DialogContent size={size} withCloseButton={withCloseButton}>
+          <DialogTitle>Dialog</DialogTitle>
+          {description && <DialogDescription>{description}</DialogDescription>}
+          <DialogBody>{content}</DialogBody>
+          <DialogFooter>
+            <DialogClose appearance="primary">Confirm</DialogClose>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    );
+  },
+} as Meta<DialogStoryProps>;
+
+type Story = StoryObj<DialogStoryProps>;
 
 const largeText =
   "This is a longer piece of content that demonstrates how the AlertDialog handles more text. It might wrap to multiple lines depending on the width of the dialog.This is a longer piece of content that demonstrates how the AlertDialog handles more text. It might wrap to multiple lines depending on the width of the dialog.This is a longer piece of content that demonstrates how the AlertDialog handles more text. It might wrap to multiple lines depending on the width of the dialog.This is a longer piece of content that demonstrates how the AlertDialog handles more text. It might wrap to multiple lines depending on the width of the dialog.This is a longer piece of content that demonstrates how the AlertDialog handles more text. It might wrap to multiple lines depending on the width of the dialog.This is a longer piece of content that demonstrates how the AlertDialog handles more text. It might wrap to multiple lines depending on the width of the dialog.This is a longer piece of content that demonstrates how the AlertDialog handles more text. It might wrap to multiple lines depending on the width of the dialog.This is a longer piece of content that demonstrates how the AlertDialog handles more text. It might wrap to multiple lines depending on the width of the dialog.This is a longer piece of content that demonstrates how the AlertDialog handles more text. It might wrap to multiple lines depending on the width of the dialog.This is a longer piece of content that demonstrates how the AlertDialog handles more text. It might wrap to multiple lines depending on the width of the dialog.This is a longer piece of content that demonstrates how the AlertDialog handles more text. It might wrap to multiple lines depending on the width of the dialog.This is a longer piece of content that demonstrates how the AlertDialog handles more text. It might wrap to multiple lines depending on the width of the dialog.This is a longer piece of content that demonstrates how the AlertDialog handles more text. It might wrap to multiple lines depending on the width of the dialog.This is a longer piece of content that demonstrates how the AlertDialog handles more text. It might wrap to multiple lines depending on the width of the dialog.This is a longer piece of content that demonstrates how the AlertDialog handles more text. It might wrap to multiple lines depending on the width of the dialog.This is a longer piece of content that demonstrates how the AlertDialog handles more text. It might wrap to multiple lines depending on the width of the dialog.This is a longer piece of content that demonstrates how the AlertDialog handles more text. It might wrap to multiple lines depending on the width of the dialog.This is a longer piece of content that demonstrates how the AlertDialog handles more text. It might wrap to multiple lines depending on the width of the dialog.This is a longer piece of content that demonstrates how the AlertDialog handles more text. It might wrap to multiple lines depending on the width of the dialog.This is a longer piece of content that demonstrates how the AlertDialog handles more text. It might wrap to multiple lines depending on the width of the dialog.This is a longer piece of content that demonstrates how the AlertDialog handles more text. It might wrap to multiple lines depending on the width of the dialog.This is a longer piece of content that demonstrates how the AlertDialog handles more text. It might wrap to multiple lines depending on the width of the dialog.This is a longer piece of content that demonstrates how the AlertDialog handles more text. It might wrap to multiple lines depending on the width of the dialog.This is a longer piece of content that demonstrates how the AlertDialog handles more text. It might wrap to multiple lines depending on the width of the dialog.This is a longer piece of content that demonstrates how the AlertDialog handles more text. It might wrap to multiple lines depending on the width of the dialog.This is a longer piece of content that demonstrates how the AlertDialog handles more text. It might wrap to multiple lines depending on the width of the dialog.This is a longer piece of content that demonstrates how the AlertDialog handles more text. It might wrap to multiple lines depending on the width of the dialog.This is a longer piece of content that demonstrates how the AlertDialog handles more text. It might wrap to multiple lines depending on the width of the dialog.This is a longer piece of content that demonstrates how the AlertDialog handles more text. It might wrap to multiple lines depending on the width of the dialog.This is a longer piece of content that demonstrates how the AlertDialog handles more text. It might wrap to multiple lines depending on the width of the dialog.This is a longer piece of content that demonstrates how the AlertDialog handles more text. It might wrap to multiple lines depending on the width of the dialog.This is a longer piece of content that demonstrates how the AlertDialog handles more text. It might wrap to multiple lines depending on the width of the dialog.This is a longer piece of content that demonstrates how the AlertDialog handles more text. It might wrap to multiple lines depending on the width of the dialog.This is a longer piece of content that demonstrates how the AlertDialog handles more text. It might wrap to multiple lines depending on the width of the dialog.This is a longer piece of content that demonstrates how the AlertDialog handles more text. It might wrap to multiple lines depending on the width of the dialog.This is a longer piece of content that demonstrates how the AlertDialog handles more text. It might wrap to multiple lines depending on the width of the dialog.This is a longer piece of content that demonstrates how the AlertDialog handles more text. It might wrap to multiple lines depending on the width of the dialog.This is a longer piece of content that demonstrates how the AlertDialog handles more text. It might wrap to multiple lines depending on the width of the dialog.This is a longer piece of content that demonstrates how the AlertDialog handles more text. It might wrap to multiple lines depending on the width of the dialog.This is a longer piece of content that demonstrates how the AlertDialog handles more text. It might wrap to multiple lines depending on the width of the dialog.This is a longer piece of content that demonstrates how the AlertDialog handles more text. It might wrap to multiple lines depending on the width of the dialog.This is a longer piece of content that demonstrates how the AlertDialog handles more text. It might wrap to multiple lines depending on the width of the dialog.This is a longer piece of content that demonstrates how the AlertDialog handles more text. It might wrap to multiple lines depending on the width of the dialog.This is a longer piece of content that demonstrates how the AlertDialog handles more text. It might wrap to multiple lines depending on the width of the dialog.This is a longer piece of content that demonstrates how the AlertDialog handles more text. It might wrap to multiple lines depending on the width of the dialog.This is a longer piece of content that demonstrates how the AlertDialog handles more text. It might wrap to multiple lines depending on the width of the dialog.This is a longer piece of content that demonstrates how the AlertDialog handles more text. It might wrap to multiple lines depending on the width of the dialog.This is a longer piece of content that demonstrates how the AlertDialog handles more text. It might wrap to multiple lines depending on the width of the dialog.This is a longer piece of content that demonstrates how the AlertDialog handles more text. It might wrap to multiple lines depending on the width of the dialog.This is a longer piece of content that demonstrates how the AlertDialog handles more text. It might wrap to multiple lines depending on the width of the dialog.This is a longer piece of content that demonstrates how the AlertDialog handles more text. It might wrap to multiple lines depending on the width of the dialog.This is a longer piece of content that demonstrates how the AlertDialog handles more text. It might wrap to multiple lines depending on the width of the dialog.This is a longer piece of content that demonstrates how the AlertDialog handles more text. It might wrap to multiple lines depending on the width of the dialog.This is a longer piece of content that demonstrates how the AlertDialog handles more text. It might wrap to multiple lines depending on the width of the dialog.";
 
 export const Basic: Story = {
+  args: {
+    defaultOpen: false,
+  },
   play: async ({ canvas }) => {
     await userEvent.click(canvas.getByRole("button"));
 
@@ -61,9 +63,6 @@ export const Basic: Story = {
 
     await expect(
       screen.getByRole("button", { name: "Confirm" }),
-    ).toBeInTheDocument();
-    await expect(
-      screen.getByRole("button", { name: "Cancel" }),
     ).toBeInTheDocument();
 
     const ariaLabelledBy = dialog.getAttribute("aria-labelledby");
@@ -81,7 +80,6 @@ export const Basic: Story = {
       ).not.toBeInTheDocument(),
     );
   },
-  render: withTemplate({ defaultOpen: false }),
 };
 
 export const CloseButton: Story = {
@@ -109,6 +107,9 @@ export const CloseButton: Story = {
 };
 
 export const Description: Story = {
+  args: {
+    description: "This is a description",
+  },
   play: async () => {
     const dialog = await screen.findByRole("dialog", { name: "Dialog" });
     await expect(dialog).toBeInTheDocument();
@@ -129,9 +130,6 @@ export const Description: Story = {
     }
     await expect(descriptionElement).toHaveTextContent("This is a description");
   },
-  render: withTemplate({
-    description: "This is a description",
-  }),
 };
 
 export const Small: Story = {
@@ -147,19 +145,21 @@ export const Large: Story = {
 };
 
 export const LongContent: Story = {
-  render: withTemplate({ content: largeText }),
+  args: {
+    content: largeText,
+  },
 };
 
 export const LongContentSmall: Story = {
-  ...LongContent,
   args: {
+    ...LongContent.args,
     size: "sm",
   },
 };
 
 export const LongContentLarge: Story = {
-  ...LongContent,
   args: {
+    ...LongContent.args,
     size: "lg",
   },
 };
