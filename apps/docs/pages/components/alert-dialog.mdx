@@ -25,6 +25,26 @@ Use the `size` prop to change the size of the dialog box.
 
 <ax-demo meta="/size={size}/" name="alert-dialog/size-usage" />
 
+## Loading
+
+### Handling async events
+
+We can prevent closing the dialog in the action button's `onClick` handler to perform async operations.
+
+Make sure to use the controlled props and call `event.preventDefault()` in your action to stop the modal from being dismissed.
+
+<ax-demo name="alert-dialog/async-usage" />
+
+## Trigger
+
+### Customize trigger
+
+By default we use the `Button` component for the dialog trigger which accepts all of the existing button props.
+
+We can also completely change the trigger by using `asChild` and passing our own component.
+
+<ax-demo name="alert-dialog/trigger-usage" />
+
 ## Props
 
 <ax-props-table component="AlertDialog" />
