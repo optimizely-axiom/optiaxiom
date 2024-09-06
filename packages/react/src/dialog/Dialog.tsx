@@ -13,7 +13,7 @@ type DialogProps = BoxProps<
   {
     children: ReactNode;
     modal?: boolean;
-    onClose: () => void;
+    onOpenChange: (open: boolean) => void;
     open?: boolean;
     withCloseButton?: boolean;
   } & styles.DialogVariants
@@ -24,7 +24,7 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(
     {
       children,
       modal,
-      onClose,
+      onOpenChange,
       open,
       size = "md",
       withCloseButton = false,
@@ -33,7 +33,7 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(
     ref,
   ) => {
     return (
-      <RadixDialog.Root modal={modal} onOpenChange={onClose} open={open}>
+      <RadixDialog.Root modal={modal} onOpenChange={onOpenChange} open={open}>
         <AnimatePresence>
           {open && (
             <RadixDialog.Portal forceMount>

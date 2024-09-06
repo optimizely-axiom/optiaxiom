@@ -20,7 +20,7 @@ export function App({
 
       <Dialog
         modal={modal}
-        onClose={() => setOpen(false)}
+        onOpenChange={() => setOpen(false)}
         open={open}
         size={size}
       >
