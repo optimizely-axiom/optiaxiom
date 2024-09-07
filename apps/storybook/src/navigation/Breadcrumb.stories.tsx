@@ -1,49 +1,127 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Breadcrumb, BreadcrumbItem } from "@optiaxiom/react/unstable";
-// import { IconChevronRight } from "@tabler/icons-react";
+import {
+  Link,
+  Menu,
+  MenuContent,
+  MenuItem,
+  MenuTrigger,
+} from "@optiaxiom/react";
+import {
+  Breadcrumb,
+  BreadcrumbEllipsis,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@optiaxiom/react/unstable";
+import { IconChevronRight } from "@tabler/icons-react";
 
-export default {
+const meta: Meta<typeof Breadcrumb> = {
   args: {
     children: [
-      <BreadcrumbItem href="/" key="/">
-        Home
+      <BreadcrumbItem key="home">
+        <BreadcrumbLink href="/">Home</BreadcrumbLink>
       </BreadcrumbItem>,
-      <BreadcrumbItem href="/category" key="/category">
-        Category
+      <BreadcrumbSeparator key="sep1" />,
+      <BreadcrumbItem key="components">
+        <BreadcrumbLink href="/documents">Documents</BreadcrumbLink>
       </BreadcrumbItem>,
-      <BreadcrumbItem href="/category/subcategory" key="/category/subcategory">
-        Subcategory
+      <BreadcrumbSeparator key="sep2" />,
+      <BreadcrumbItem key="theme">
+        <BreadcrumbLink href="/theme">Theme</BreadcrumbLink>
       </BreadcrumbItem>,
-      <BreadcrumbItem
-        href="/category/subcategory/product-type"
-        key="/category/subcategory/product-type"
-      >
-        Product Type
+      <BreadcrumbSeparator key="sep3" />,
+      <BreadcrumbItem key="components">
+        <BreadcrumbLink href="/components">Components</BreadcrumbLink>
       </BreadcrumbItem>,
-      <BreadcrumbItem
-        href="/category/subcategory/product-type/specific-product"
-        key="/category/subcategory/product-type/specific-product"
-      >
-        Specific Product
+      <BreadcrumbSeparator key="sep4" />,
+      <BreadcrumbItem key="breadcrumb">
+        <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
       </BreadcrumbItem>,
     ],
   },
   component: Breadcrumb,
-} as Meta<typeof Breadcrumb>;
+};
+
+export default meta;
 
 type Story = StoryObj<typeof Breadcrumb>;
 
 export const Basic: Story = {};
 
-export const Collapse: Story = {
+export const WithEllipsis: Story = {
   args: {
-    // maxItems: 2,
+    children: [
+      <BreadcrumbItem key="home">
+        <BreadcrumbLink href="/">Home</BreadcrumbLink>
+      </BreadcrumbItem>,
+      <BreadcrumbSeparator key="sep1" />,
+      <BreadcrumbItem key="ellipsis">
+        <BreadcrumbEllipsis />
+      </BreadcrumbItem>,
+      <BreadcrumbSeparator key="sep2" />,
+      <BreadcrumbItem key="components">
+        <BreadcrumbLink href="/components">Components</BreadcrumbLink>
+      </BreadcrumbItem>,
+      <BreadcrumbSeparator key="sep3" />,
+      <BreadcrumbItem key="breadcrumb">
+        <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
+      </BreadcrumbItem>,
+    ],
   },
 };
 
-export const Separator: Story = {
+export const WithDropdown: Story = {
   args: {
-    // separator: <IconChevronRight />,
+    children: [
+      <BreadcrumbItem key="home">
+        <BreadcrumbLink href="/">Home</BreadcrumbLink>
+      </BreadcrumbItem>,
+      <BreadcrumbSeparator key="sep1" />,
+      <BreadcrumbItem key="components">
+        <Menu>
+          <MenuTrigger appearance="secondary" icon={undefined} size="sm">
+            <BreadcrumbEllipsis />
+          </MenuTrigger>
+          <MenuContent align="start">
+            <MenuItem>
+              <Link href="/docs">Documentation</Link>
+            </MenuItem>
+            <MenuItem>
+              <Link href="/themes">Themes</Link>
+            </MenuItem>
+            <MenuItem>
+              <Link href="https://github.com/optiaxiom/ui">GitHub</Link>
+            </MenuItem>
+          </MenuContent>
+        </Menu>
+      </BreadcrumbItem>,
+      <BreadcrumbSeparator key="sep2" />,
+      <BreadcrumbItem key="breadcrumb">
+        <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
+      </BreadcrumbItem>,
+    ],
+  },
+};
+export const CustomSeparator: Story = {
+  args: {
+    children: [
+      <BreadcrumbItem key="home">
+        <BreadcrumbLink href="/">Home</BreadcrumbLink>
+      </BreadcrumbItem>,
+      <BreadcrumbSeparator key="sep1">
+        <IconChevronRight />
+      </BreadcrumbSeparator>,
+      <BreadcrumbItem key="components">
+        <BreadcrumbLink href="/components">Components</BreadcrumbLink>
+      </BreadcrumbItem>,
+      <BreadcrumbSeparator key="sep2">
+        <IconChevronRight />
+      </BreadcrumbSeparator>,
+      <BreadcrumbItem key="breadcrumb">
+        <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
+      </BreadcrumbItem>,
+    ],
   },
 };

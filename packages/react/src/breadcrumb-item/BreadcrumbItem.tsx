@@ -1,15 +1,22 @@
-import type { ComponentPropsWithoutRef } from "react";
+import { forwardRef } from "react";
 
-import { Link } from "../link";
+import { Box, type BoxProps } from "../box";
+import { extractSprinkles } from "../sprinkles";
 
-export type BreadcrumbItemProps = ComponentPropsWithoutRef<typeof Link>;
+export type BreadcrumbItemProps = BoxProps<"li">;
 
-export const BreadcrumbItem = ({ children, ...props }: BreadcrumbItemProps) => {
-  return (
-    <li>
-      <Link alignItems="center" display="flex" {...props}>
-        {children}
-      </Link>
-    </li>
-  );
-};
+export const BreadcrumbItem = forwardRef<HTMLLIElement, BreadcrumbItemProps>(
+  ({ children, ...props }, ref) => {
+    const { restProps, sprinkleProps } = extractSprinkles(props);
+
+    return (
+      <Box asChild {...sprinkleProps}>
+        <li ref={ref} {...restProps}>
+          {children}
+        </li>
+      </Box>
+    );
+  },
+);
+
+BreadcrumbItem.displayName = "@optiaxiom/react/BreadcrumbItem";
