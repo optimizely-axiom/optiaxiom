@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { BreadcrumbItem, Breadcrumbs } from "@optiaxiom/react";
-import { IconChevronRight } from "@tabler/icons-react";
+import { Breadcrumb, BreadcrumbItem } from "@optiaxiom/react/unstable";
+// import { IconChevronRight } from "@tabler/icons-react";
 
 export default {
   args: {
@@ -29,21 +29,21 @@ export default {
       </BreadcrumbItem>,
     ],
   },
-  component: Breadcrumbs,
-} as Meta<typeof Breadcrumbs>;
+  component: Breadcrumb,
+} as Meta<typeof Breadcrumb>;
 
-type Story = StoryObj<typeof Breadcrumbs>;
+type Story = StoryObj<typeof Breadcrumb>;
 
 export const Basic: Story = {};
 
 export const Collapse: Story = {
   args: {
-    maxItems: 2,
+    // maxItems: 2,
   },
 };
 
 export const Separator: Story = {
   args: {
-    separator: <IconChevronRight />,
+    // separator: <IconChevronRight />,
   },
 };

@@ -3,7 +3,7 @@ import { forwardRef } from "react";
 import { Box, type BoxProps } from "../box";
 import { extractSprinkles } from "../sprinkles";
 
-export type BreadcrumbsProps = BoxProps<"nav">;
+export type BreadcrumbProps = BoxProps<"nav">;
 /* 
   Breadcrumb,
   BreadcrumbEllipsis,
@@ -13,7 +13,7 @@ export type BreadcrumbsProps = BoxProps<"nav">;
   BreadcrumbSeparator,
 */
 
-export const Breadcrumbs = forwardRef<HTMLElement, BreadcrumbsProps>(
+export const Breadcrumb = forwardRef<HTMLElement, BreadcrumbProps>(
   ({ children, ...props }, ref) => {
     const { restProps, sprinkleProps } = extractSprinkles(props);
     // const visibleItems = useBreadcrumbItems(children, maxItems, separator);
@@ -30,4 +30,4 @@ export const Breadcrumbs = forwardRef<HTMLElement, BreadcrumbsProps>(
   },
 );
 
-Breadcrumbs.displayName = "@optiaxiom/react/Breadcrumbs";
+Breadcrumb.displayName = "@optiaxiom/react/Breadcrumb";
