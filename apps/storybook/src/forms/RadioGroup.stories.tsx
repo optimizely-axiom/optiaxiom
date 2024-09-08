@@ -19,36 +19,36 @@ type Story = StoryObj<typeof RadioGroup>;
 
 export const Basic: Story = {
   render: (args) => (
-    <RadioGroup {...args} defaultValue="sample-1">
-      <RadioGroupItem value="sample-1">Sample 1</RadioGroupItem>
-      <RadioGroupItem value="sample-2">Sample 2</RadioGroupItem>
-      <RadioGroupItem value="sample-3">Sample 3</RadioGroupItem>
+    <RadioGroup {...args} defaultValue="label-1">
+      <RadioGroupItem value="label-1">Label 1</RadioGroupItem>
+      <RadioGroupItem value="label-2">Label 2</RadioGroupItem>
+      <RadioGroupItem value="label-3">Label 3</RadioGroupItem>
     </RadioGroup>
   ),
 };
 
 export const Horizontal: Story = {
   render: (args) => (
-    <RadioGroup {...args} defaultValue="sample-1" flexDirection="row">
-      <RadioGroupItem value="sample-1">Sample 1</RadioGroupItem>
-      <RadioGroupItem value="sample-2">Sample 2</RadioGroupItem>
-      <RadioGroupItem value="sample-3">Sample 3</RadioGroupItem>
+    <RadioGroup {...args} defaultValue="label-1" flexDirection="row">
+      <RadioGroupItem value="label-1">Label 1</RadioGroupItem>
+      <RadioGroupItem value="label-2">Label 2</RadioGroupItem>
+      <RadioGroupItem value="label-3">Label 3</RadioGroupItem>
     </RadioGroup>
   ),
 };
 
 export const HelperText: Story = {
   render: () => (
-    <RadioGroup defaultValue="sample-1">
+    <RadioGroup defaultValue="label-1">
       <RadioGroupItem
         endDecorator={
           <Text color="fg.secondary" fontSize="sm">
             Helper First
           </Text>
         }
-        value="sample-1"
+        value="label-1"
       >
-        Sample 1
+        Label 1
       </RadioGroupItem>
       <RadioGroupItem
         disabled
@@ -57,9 +57,9 @@ export const HelperText: Story = {
             Helper Second
           </Text>
         }
-        value="sample-2"
+        value="label-2"
       >
-        Sample 2
+        Label 2
       </RadioGroupItem>
       <RadioGroupItem
         endDecorator={
@@ -67,9 +67,9 @@ export const HelperText: Story = {
             Helper Third
           </Text>
         }
-        value="sample-3"
+        value="label-3"
       >
-        Sample 3
+        Label 3
       </RadioGroupItem>
     </RadioGroup>
   ),
@@ -78,8 +78,8 @@ export const HelperText: Story = {
 export const MultiLineLabel: Story = {
   render: (args) => (
     <RadioGroup {...args} w="208">
-      <RadioGroupItem value="sample-1">Label</RadioGroupItem>
-      <RadioGroupItem value="sample-2">
+      <RadioGroupItem value="label-1">Label</RadioGroupItem>
+      <RadioGroupItem value="label-2">
         This is an example of a multi line label
       </RadioGroupItem>
     </RadioGroup>
@@ -88,24 +88,24 @@ export const MultiLineLabel: Story = {
 
 export const DisabledGroup: Story = {
   render: () => (
-    <RadioGroup defaultValue="sample-1" disabled>
-      <RadioGroupItem value="sample-1">Sample 1</RadioGroupItem>
-      <RadioGroupItem value="sample-2">Sample 2</RadioGroupItem>
-      <RadioGroupItem value="sample-3">Sample 3</RadioGroupItem>
+    <RadioGroup defaultValue="label-1" disabled>
+      <RadioGroupItem value="label-1">Label 1</RadioGroupItem>
+      <RadioGroupItem value="label-2">Label 2</RadioGroupItem>
+      <RadioGroupItem value="label-3">Label 3</RadioGroupItem>
     </RadioGroup>
   ),
 };
 
 export const DisabledItems: Story = {
   render: () => (
-    <RadioGroup defaultValue="sample-1">
-      <RadioGroupItem value="sample-1">Sample 1</RadioGroupItem>
-      <RadioGroupItem disabled value="sample-2">
-        Sample 2
+    <RadioGroup defaultValue="label-1">
+      <RadioGroupItem value="label-1">Label 1</RadioGroupItem>
+      <RadioGroupItem disabled value="label-2">
+        Label 2
       </RadioGroupItem>
-      <RadioGroupItem value="sample-3">Sample 3</RadioGroupItem>
-      <RadioGroupItem disabled value="sample-4">
-        Sample 4
+      <RadioGroupItem value="label-3">Label 3</RadioGroupItem>
+      <RadioGroupItem disabled value="label-4">
+        Label 4
       </RadioGroupItem>
     </RadioGroup>
   ),
@@ -120,7 +120,7 @@ const props = {
 
 export const ComplexExample1: Story = {
   render: (args) => (
-    <RadioGroup asChild {...args} defaultValue="sample-1" m="auto" w="3/4">
+    <RadioGroup asChild {...args} defaultValue="label-1" m="auto" w="3/4">
       <Grid gridTemplateColumns="2">
         <Flex className={styles.item} {...props} gap="xs">
           <RadioGroupItem
@@ -129,7 +129,7 @@ export const ComplexExample1: Story = {
                 Displays a message as a bar at top of page
               </Text>
             }
-            value="sample-1"
+            value="label-1"
           >
             Banner (copy)
           </RadioGroupItem>
@@ -141,7 +141,7 @@ export const ComplexExample1: Story = {
                 Places an icon of your choice on any element of the web page
               </Text>
             }
-            value="sample-2"
+            value="label-2"
           >
             Celebrate
           </RadioGroupItem>
@@ -153,7 +153,7 @@ export const ComplexExample1: Story = {
                 Displays a number of views or purchases for a defined duration
               </Text>
             }
-            value="sample-3"
+            value="label-3"
           >
             Social Proof
           </RadioGroupItem>
@@ -172,9 +172,9 @@ const props2 = {
 
 export const ComplexExample2: Story = {
   render: (args) => (
-    <RadioGroup borderB="1" {...args} defaultValue="sample-1">
+    <RadioGroup borderB="1" {...args} defaultValue="label-1">
       <Flex {...props2} gap="xs">
-        <RadioGroupItem value="sample-1" w="128">
+        <RadioGroupItem value="label-1" w="128">
           Admin
         </RadioGroupItem>
         <Box asChild pl="lg" style={{ listStyle: "disc" }}>
@@ -189,7 +189,7 @@ export const ComplexExample2: Story = {
         </Box>
       </Flex>
       <Flex {...props2} gap="xs">
-        <RadioGroupItem value="sample-2" w="128">
+        <RadioGroupItem value="label-2" w="128">
           Editor
         </RadioGroupItem>
         <Box asChild pl="lg" style={{ listStyle: "disc" }}>
