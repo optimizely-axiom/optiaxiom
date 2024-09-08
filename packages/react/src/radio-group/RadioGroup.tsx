@@ -13,12 +13,26 @@ const mapDirectionToOrientation = {
   row: "horizontal",
 } as const;
 
+const mapGapToOrientation = {
+  column: "sm",
+  row: "md",
+} as const;
+
 export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>(
   ({ children, flexDirection = "column", ...props }, ref) => {
     const { restProps, sprinkleProps } = extractSprinkles(props);
 
     return (
-      <Flex asChild flexDirection={flexDirection} gap="sm" {...sprinkleProps}>
+      <Flex
+        asChild
+        flexDirection={flexDirection}
+        gap={
+          flexDirection === "row" || flexDirection === "column"
+            ? mapGapToOrientation[flexDirection]
+            : undefined
+        }
+        {...sprinkleProps}
+      >
         <RadixRadio.RadioGroup
           orientation={
             flexDirection === "row" || flexDirection === "column"
