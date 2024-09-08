@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Field, Input, Textarea } from "@optiaxiom/react";
+import { Field, Flex, Input, Textarea } from "@optiaxiom/react";
 import { IconCalendar } from "@tabler/icons-react";
 
 export default {
@@ -8,8 +8,8 @@ export default {
     children: {
       control: { type: "select" },
       mapping: {
-        input: <Input placeholder="Enter text..." />,
-        textarea: <Textarea placeholder="Enter text..." />,
+        input: <Input placeholder="Enter text..." w="256" />,
+        textarea: <Textarea placeholder="Enter text..." w="256" />,
       },
       options: ["input", "textarea"],
     },
@@ -25,12 +25,26 @@ type Story = StoryObj<typeof Field>;
 
 export const Basic: Story = {};
 
+export const sizes: Story = {
+  render: () => (
+    <Flex>
+      <Field label="Label">
+        <Input placeholder="Enter text..." w="256" />
+      </Field>
+      <Field label="Label">
+        <Input placeholder="Enter text..." size="lg" w="256" />
+      </Field>
+    </Flex>
+  ),
+};
+
 export const Required: Story = {
   args: {
     children: (
       <Input
         placeholder="Enter date..."
         startDecorator={<IconCalendar size="20" />}
+        w="256"
       />
     ),
     required: true,
@@ -39,13 +53,13 @@ export const Required: Story = {
 
 export const Disabled: Story = {
   args: {
-    children: <Input disabled placeholder="Enter text..." />,
+    children: <Input disabled placeholder="Enter text..." w="256" />,
   },
 };
 
 export const Description: Story = {
   args: {
-    description: "This is a help text",
+    description: "Form note",
   },
 };
 
@@ -79,7 +93,7 @@ export const WithTextarea: Story = {
   args: {
     children: "textarea",
     info: "This is an important textarea",
-    label: "Form Label",
+    label: "Label",
     required: true,
   },
 };
