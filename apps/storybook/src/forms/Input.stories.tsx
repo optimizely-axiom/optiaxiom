@@ -27,7 +27,6 @@ export const Sizes: Story = {
   },
   render: (args) => (
     <Flex>
-      <Input {...args} size="sm" />
       <Input {...args} size="md" />
       <Input {...args} size="lg" />
     </Flex>
