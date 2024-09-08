@@ -15,11 +15,7 @@ export const Basic: Story = {};
 
 export const HelperText: Story = {
   args: {
-    endDecorator: (
-      <Text color="fg.secondary" fontSize="sm">
-        Helper Text
-      </Text>
-    ),
+    endDecorator: <Text fontSize="sm">Helper Text</Text>,
   },
 };
 

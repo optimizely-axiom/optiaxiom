@@ -41,6 +41,8 @@ export const HelperText: Story = {
   render: () => (
     <RadioGroup defaultValue="label-1">
       <RadioGroupItem
+        endDecorator={<Text fontSize="sm">Helper First</Text>}
+        value="sample-1"
         endDecorator={
           <Text color="fg.secondary" fontSize="sm">
             Helper First
@@ -52,21 +54,13 @@ export const HelperText: Story = {
       </RadioGroupItem>
       <RadioGroupItem
         disabled
-        endDecorator={
-          <Text color="fg.secondary" fontSize="sm">
-            Helper Second
-          </Text>
-        }
+        endDecorator={<Text fontSize="sm">Helper Second</Text>}
         value="label-2"
       >
         Label 2
       </RadioGroupItem>
       <RadioGroupItem
-        endDecorator={
-          <Text color="fg.secondary" fontSize="sm">
-            Helper Third
-          </Text>
-        }
+        endDecorator={<Text fontSize="sm">Helper Third</Text>}
         value="label-3"
       >
         Label 3
