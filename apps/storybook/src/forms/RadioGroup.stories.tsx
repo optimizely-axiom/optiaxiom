@@ -39,15 +39,15 @@ export const Horizontal: Story = {
 
 export const HelperText: Story = {
   render: () => (
-    <RadioGroup defaultValue="sample-1">
-      <RadioGroupItem endDecorator="Helper First" value="sample-1">
-        Sample 1
+    <RadioGroup defaultValue="label-1">
+      <RadioGroupItem endDecorator="Helper First" value="label-1">
+        Label 1
       </RadioGroupItem>
-      <RadioGroupItem disabled endDecorator="Helper Second" value="sample-2">
-        Sample 2
+      <RadioGroupItem disabled endDecorator="Helper Second" value="label-2">
+        Label 2
       </RadioGroupItem>
-      <RadioGroupItem endDecorator="Helper Third" value="sample-3">
-        Sample 3
+      <RadioGroupItem endDecorator="Helper Third" value="label-3">
+        Label 3
       </RadioGroupItem>
     </RadioGroup>
   ),
@@ -103,7 +103,7 @@ export const ComplexExample1: Story = {
         <Flex className={styles.item} {...props} gap="xs">
           <RadioGroupItem
             endDecorator="Displays a message as a bar at top of page"
-            value="sample-1"
+            value="label-1"
           >
             Banner (copy)
           </RadioGroupItem>
@@ -111,7 +111,7 @@ export const ComplexExample1: Story = {
         <Flex className={styles.item} {...props} gap="xs">
           <RadioGroupItem
             endDecorator="Places an icon of your choice on any element of the web page"
-            value="sample-2"
+            value="label-2"
           >
             Celebrate
           </RadioGroupItem>
@@ -119,7 +119,7 @@ export const ComplexExample1: Story = {
         <Flex className={styles.item} {...props} gap="xs">
           <RadioGroupItem
             endDecorator="Displays a number of views or purchases for a defined duration"
-            value="sample-3"
+            value="label-3"
           >
             Social Proof
           </RadioGroupItem>

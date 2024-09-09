@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Checkbox, Flex, Text } from "@optiaxiom/react";
+import { Checkbox, Flex } from "@optiaxiom/react";
 
 export default {
   args: {
@@ -15,7 +15,7 @@ export const Basic: Story = {};
 
 export const HelperText: Story = {
   args: {
-    endDecorator: <Text>Helper Text</Text>,
+    endDecorator: "Helper Text",
   },
 };
 
