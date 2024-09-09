@@ -61,7 +61,7 @@ export * from "./popover-trigger";
 export * from "./progress";
 export * from "./radio-group";
 export * from "./radio-group-item";
-export * from "./search";
+export * from "./search-input";
 export * from "./separator";
 export * from "./skeleton";
 export * from "./spinner";

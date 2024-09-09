@@ -7,7 +7,7 @@ import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-  Search,
+  SearchInput,
   Separator,
 } from "@optiaxiom/react";
 import { type ComponentPropsWithoutRef, useState } from "react";
@@ -88,7 +88,7 @@ const DropdownExample = () => {
 
         <PopoverContent align="start">
           <Flex flexDirection="column" gap="8">
-            <Search
+            <SearchInput
               onChange={(e) => setSearchValue(e.target.value)}
               placeholder="Search"
               value={searchValue}

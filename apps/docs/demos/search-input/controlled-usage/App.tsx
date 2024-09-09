@@ -1,4 +1,4 @@
-import { Button, Flex, Search } from "@optiaxiom/react";
+import { Button, Flex, SearchInput } from "@optiaxiom/react";
 import { useRef, useState } from "react";
 
 export function App() {
@@ -7,7 +7,7 @@ export function App() {
 
   return (
     <Flex>
-      <Search
+      <SearchInput
         onChange={(event) => setValue(event.target.value)}
         ref={ref}
         value={value}

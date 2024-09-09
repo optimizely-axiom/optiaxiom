@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Button, Flex, Search, Text } from "@optiaxiom/react";
+import { Button, Flex, SearchInput, Text } from "@optiaxiom/react";
 import { expect, userEvent, waitFor } from "@storybook/test";
 import { type ChangeEvent, useState } from "react";
 
@@ -9,10 +9,10 @@ export default {
     placeholder: "Search...",
     w: "240",
   },
-  component: Search,
-} as Meta<typeof Search>;
+  component: SearchInput,
+} as Meta<typeof SearchInput>;
 
-type Story = StoryObj<typeof Search>;
+type Story = StoryObj<typeof SearchInput>;
 
 export const Basic: Story = {};
 
@@ -38,7 +38,7 @@ export const Controlled: Story = {
 
     return (
       <Flex flexDirection="column" gap="sm" w="240">
-        <Search {...args} onChange={handleChange} value={value} />
+        <SearchInput {...args} onChange={handleChange} value={value} />
         <Text>Current value: {value}</Text>
         <Button disabled={!value} onClick={() => setValue("")}>
           Clear
