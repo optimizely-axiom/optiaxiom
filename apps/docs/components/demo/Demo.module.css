@@ -4,18 +4,3 @@
   max-width: 100%;
   min-width: 320px;
 }
-
-.editor pre {
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  margin-bottom: 0;
-}
-
-.editor [role="tablist"] {
-  font-size: 14px;
-  margin-top: 0;
-}
-
-.editor [role="tabpanel"] {
-  padding-top: 0;
-}
