@@ -39,31 +39,15 @@ export const Horizontal: Story = {
 
 export const HelperText: Story = {
   render: () => (
-    <RadioGroup defaultValue="label-1">
-      <RadioGroupItem
-        endDecorator={<Text fontSize="sm">Helper First</Text>}
-        endDecorator={
-          <Text color="fg.secondary" fontSize="sm">
-            Helper First
-          </Text>
-        }
-        value="sample-1"
-        value="label-1"
-      >
-        Label 1
+    <RadioGroup defaultValue="sample-1">
+      <RadioGroupItem endDecorator="Helper First" value="sample-1">
+        Sample 1
       </RadioGroupItem>
-      <RadioGroupItem
-        disabled
-        endDecorator={<Text fontSize="sm">Helper Second</Text>}
-        value="label-2"
-      >
-        Label 2
+      <RadioGroupItem disabled endDecorator="Helper Second" value="sample-2">
+        Sample 2
       </RadioGroupItem>
-      <RadioGroupItem
-        endDecorator={<Text fontSize="sm">Helper Third</Text>}
-        value="label-3"
-      >
-        Label 3
+      <RadioGroupItem endDecorator="Helper Third" value="sample-3">
+        Sample 3
       </RadioGroupItem>
     </RadioGroup>
   ),
@@ -118,36 +102,24 @@ export const ComplexExample1: Story = {
       <Grid gridTemplateColumns="2">
         <Flex className={styles.item} {...props} gap="xs">
           <RadioGroupItem
-            endDecorator={
-              <Text color="fg.secondary">
-                Displays a message as a bar at top of page
-              </Text>
-            }
-            value="label-1"
+            endDecorator="Displays a message as a bar at top of page"
+            value="sample-1"
           >
             Banner (copy)
           </RadioGroupItem>
         </Flex>
         <Flex className={styles.item} {...props} gap="xs">
           <RadioGroupItem
-            endDecorator={
-              <Text color="fg.secondary">
-                Places an icon of your choice on any element of the web page
-              </Text>
-            }
-            value="label-2"
+            endDecorator="Places an icon of your choice on any element of the web page"
+            value="sample-2"
           >
             Celebrate
           </RadioGroupItem>
         </Flex>
         <Flex className={styles.item} {...props} gap="xs">
           <RadioGroupItem
-            endDecorator={
-              <Text color="fg.secondary">
-                Displays a number of views or purchases for a defined duration
-              </Text>
-            }
-            value="label-3"
+            endDecorator="Displays a number of views or purchases for a defined duration"
+            value="sample-3"
           >
             Social Proof
           </RadioGroupItem>
