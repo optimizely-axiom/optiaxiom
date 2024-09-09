@@ -29,6 +29,7 @@ export const ControlBase = forwardRef<HTMLDivElement, ControlBaseProps>(
   ) => {
     const { restProps, sprinkleProps } = extractSprinkles(props);
     const id = useId(idProp);
+
     return (
       <Box ref={ref} {...styles.controlBase({}, className)} {...sprinkleProps}>
         <Box asChild {...styles.indicator()}>
