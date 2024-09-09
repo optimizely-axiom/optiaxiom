@@ -87,6 +87,7 @@ export const label = recipe({
 export const decorator = recipe({
   base: [
     {
+      fontSize: "sm",
       pl: "xs",
     },
     style({

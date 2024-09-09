@@ -42,12 +42,12 @@ export const HelperText: Story = {
     <RadioGroup defaultValue="label-1">
       <RadioGroupItem
         endDecorator={<Text fontSize="sm">Helper First</Text>}
-        value="sample-1"
         endDecorator={
           <Text color="fg.secondary" fontSize="sm">
             Helper First
           </Text>
         }
+        value="sample-1"
         value="label-1"
       >
         Label 1
@@ -119,7 +119,7 @@ export const ComplexExample1: Story = {
         <Flex className={styles.item} {...props} gap="xs">
           <RadioGroupItem
             endDecorator={
-              <Text color="fg.secondary" fontSize="sm">
+              <Text color="fg.secondary">
                 Displays a message as a bar at top of page
               </Text>
             }
@@ -131,7 +131,7 @@ export const ComplexExample1: Story = {
         <Flex className={styles.item} {...props} gap="xs">
           <RadioGroupItem
             endDecorator={
-              <Text color="fg.secondary" fontSize="sm">
+              <Text color="fg.secondary">
                 Places an icon of your choice on any element of the web page
               </Text>
             }
@@ -143,7 +143,7 @@ export const ComplexExample1: Story = {
         <Flex className={styles.item} {...props} gap="xs">
           <RadioGroupItem
             endDecorator={
-              <Text color="fg.secondary" fontSize="sm">
+              <Text color="fg.secondary">
                 Displays a number of views or purchases for a defined duration
               </Text>
             }
