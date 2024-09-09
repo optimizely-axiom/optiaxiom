@@ -17,7 +17,7 @@ export const wrapper = recipe({
       rounded: "md",
     },
     style({
-      backgroundColor: theme.colors["white"],
+      backgroundColor: theme.colors["surface"],
       borderColor: theme.colors["border.default"],
       color: theme.colors["fg.default"],
 
