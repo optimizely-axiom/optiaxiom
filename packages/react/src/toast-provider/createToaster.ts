@@ -11,7 +11,9 @@ const genId = () => {
   return "t" + id++;
 };
 
-export const createToaster = (store = getDefaultStore()) => {
+type Store = ReturnType<typeof getDefaultStore>;
+
+export const createToaster = (store: Store = getDefaultStore()) => {
   const toastsAtom = atom<
     Array<{
       id: string;
