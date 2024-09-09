@@ -60,6 +60,7 @@ export const input = recipe({
     {
       bg: "transparent",
       flex: "auto",
+      w: "full",
     },
     style({
       /*
