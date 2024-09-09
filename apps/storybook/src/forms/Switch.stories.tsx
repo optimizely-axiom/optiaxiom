@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Flex, Switch, Text } from "@optiaxiom/react";
+import { Flex, Switch } from "@optiaxiom/react";
 
 export default {
   args: {
@@ -16,16 +16,6 @@ export const Basic: Story = {};
 export const Large: Story = {
   args: {
     size: "lg",
-  },
-};
-
-export const HelperText: Story = {
-  args: {
-    endDecorator: (
-      <Text color="fg.secondary" fontSize="sm">
-        Helper Text
-      </Text>
-    ),
   },
 };
 
