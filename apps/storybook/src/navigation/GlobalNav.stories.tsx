@@ -65,6 +65,12 @@ const Template: Story["render"] = (args) => (
 export const Basic: Story = {
   render: Template,
 };
+export const NotCollapsible: Story = {
+  args: {
+    collapsible: false,
+  },
+  render: Template,
+};
 export const Expanded: Story = {
   args: {
     expanded: true,
