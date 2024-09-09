@@ -6,7 +6,7 @@ import { Command } from "../command";
 import { CommandInput } from "../command-input";
 import { CommandSeparator } from "../command-separator";
 import { PopoverContent } from "../popover-content";
-import { Search } from "../search";
+import { SearchInput } from "../search-input";
 
 type ComboboxContentProps = BoxProps<
   typeof Command,
@@ -28,7 +28,7 @@ export const ComboboxContent = forwardRef<HTMLDivElement, ComboboxContentProps>(
         ) : (
           <Command>
             <CommandInput asChild>
-              <Search m="2" />
+              <SearchInput m="2" />
             </CommandInput>
             <CommandSeparator alwaysRender />
             {children}

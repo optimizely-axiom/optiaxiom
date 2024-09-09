@@ -77,7 +77,7 @@
     "./Progress": "./dist/components/Progress.js",
     "./RadioGroup": "./dist/components/RadioGroup.js",
     "./RadioGroupItem": "./dist/components/RadioGroupItem.js",
-    "./Search": "./dist/components/Search.js",
+    "./SearchInput": "./dist/components/SearchInput.js",
     "./Separator": "./dist/components/Separator.js",
     "./Skeleton": "./dist/components/Skeleton.js",
     "./Spinner": "./dist/components/Spinner.js",

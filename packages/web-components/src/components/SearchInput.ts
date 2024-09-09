@@ -1,17 +1,17 @@
-import { Search as SearchComponent } from "@optiaxiom/react";
+import { SearchInput as SearchInputComponent } from "@optiaxiom/react";
 
 import type { ComponentAttributes } from "./ComponentAttributes";
 
 import { register } from "../register";
 
-export const Search = "ax-search";
-export default register(Search, SearchComponent);
+export const SearchInput = "ax-search-input";
+export default register(SearchInput, SearchInputComponent);
 
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace JSX {
     interface IntrinsicElements {
-      [Search]: ComponentAttributes<typeof SearchComponent>;
+      [SearchInput]: ComponentAttributes<typeof SearchInputComponent>;
     }
   }
 }

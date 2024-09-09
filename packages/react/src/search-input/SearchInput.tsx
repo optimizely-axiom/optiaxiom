@@ -10,11 +10,11 @@ import { Button } from "../button";
 import { IconMagnifyingGlass } from "../icons/IconMagnifyingGlass";
 import { IconX } from "../icons/IconX";
 import { Input } from "../input";
-import * as styles from "./Search.css";
+import * as styles from "./SearchInput.css";
 
 type SearchProps = ComponentPropsWithRef<typeof Input>;
 
-export const Search = forwardRef<HTMLInputElement, SearchProps>(
+export const SearchInput = forwardRef<HTMLInputElement, SearchProps>(
   (
     { className, defaultValue = "", onChange, value: valueProp, ...props },
     outerRef,
@@ -59,7 +59,7 @@ export const Search = forwardRef<HTMLInputElement, SearchProps>(
   },
 );
 
-Search.displayName = "@optiaxiom/react/Search";
+SearchInput.displayName = "@optiaxiom/react/SearchInput";
 
 function forceValueChange(input: HTMLInputElement, value: string) {
   Object.getOwnPropertyDescriptor(

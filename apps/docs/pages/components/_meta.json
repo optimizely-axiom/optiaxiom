@@ -57,7 +57,7 @@
   "field": "Field",
   "input": "Input",
   "radio-group": "RadioGroup",
-  "search": "Search",
+  "search-input": "SearchInput",
   "switch": "Switch",
   "textarea": "Textarea",
   "toggle": "Toggle",
