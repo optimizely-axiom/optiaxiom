@@ -35,8 +35,8 @@
   "alert-dialog": "AlertDialog",
   "dialog": "Dialog",
   "drawer": "Drawer",
+  "dropdown-menu": "DropdownMenu",
   "hover-card": "HoverCard",
-  "menu": "Menu",
   "popover": "Popover",
   "tooltip": "Tooltip",
   "-- Data Display": {

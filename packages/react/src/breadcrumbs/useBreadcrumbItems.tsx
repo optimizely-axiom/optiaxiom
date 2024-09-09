@@ -1,10 +1,10 @@
 import { Children, type ReactNode, isValidElement, useMemo } from "react";
 
 import { BreadcrumbItem } from "../breadcrumb-item/BreadcrumbItem";
-import { Menu } from "../menu";
-import { MenuContent } from "../menu-content";
-import { MenuItem } from "../menu-item";
-import { MenuTrigger } from "../menu-trigger";
+import { DropdownMenu } from "../dropdown-menu";
+import { DropdownMenuContent } from "../dropdown-menu-content";
+import { DropdownMenuItem } from "../dropdown-menu-item";
+import { DropdownMenuTrigger } from "../dropdown-menu-trigger";
 
 export const useBreadcrumbItems = (
   children: ReactNode,
@@ -26,17 +26,19 @@ export const useBreadcrumbItems = (
     return [
       ...childrenArray.slice(0, leftItems),
 
-      <Menu key="ellipsis">
-        <MenuTrigger appearance="secondary" icon={undefined} size="sm">
+      <DropdownMenu key="ellipsis">
+        <DropdownMenuTrigger appearance="secondary" icon={undefined} size="sm">
           ...
-        </MenuTrigger>
+        </DropdownMenuTrigger>
 
-        <MenuContent side="bottom">
+        <DropdownMenuContent side="bottom">
           {childrenArray.slice(leftItems, -rightItems).map((item, index) => (
-            <MenuItem key={item.props.href || index}>{item}</MenuItem>
+            <DropdownMenuItem key={item.props.href || index}>
+              {item}
+            </DropdownMenuItem>
           ))}
-        </MenuContent>
-      </Menu>,
+        </DropdownMenuContent>
+      </DropdownMenu>,
 
       ...childrenArray.slice(childrenArray.length - rightItems),
     ];
