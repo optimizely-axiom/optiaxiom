@@ -4,6 +4,7 @@ import { Box, Flex, Separator } from "@optiaxiom/react";
 import { type ComponentType, type ReactNode, useState } from "react";
 
 import styles from "./Demo.module.css";
+import { DemoCode } from "./DemoCode";
 import { DemoControls } from "./DemoControls";
 import { DemoIframe } from "./DemoIframe";
 
@@ -71,7 +72,7 @@ export function Demo({
           </>
         )}
       </Box>
-      <Box className={styles.editor}>{children}</Box>
+      <DemoCode>{children}</DemoCode>
     </Box>
   );
 }
