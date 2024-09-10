@@ -4,19 +4,10 @@ import { Box, type BoxProps } from "../box";
 import { extractSprinkles } from "../sprinkles";
 
 export type BreadcrumbProps = BoxProps<"nav">;
-/* 
-  Breadcrumb,
-  BreadcrumbEllipsis,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-*/
 
 export const Breadcrumb = forwardRef<HTMLElement, BreadcrumbProps>(
   ({ children, ...props }, ref) => {
     const { restProps, sprinkleProps } = extractSprinkles(props);
-    // const visibleItems = useBreadcrumbItems(children, maxItems, separator);
 
     return (
       <Box asChild {...sprinkleProps}>

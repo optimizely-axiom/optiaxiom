@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
   Link,
-  Menu,
-  MenuContent,
-  MenuItem,
-  MenuTrigger,
 } from "@optiaxiom/react";
 import {
   Breadcrumb,
@@ -80,22 +80,26 @@ export const WithDropdown: Story = {
       </BreadcrumbItem>,
       <BreadcrumbSeparator key="sep1" />,
       <BreadcrumbItem key="components">
-        <Menu>
-          <MenuTrigger appearance="secondary" icon={undefined} size="sm">
+        <DropdownMenu>
+          <DropdownMenuTrigger
+            appearance="secondary"
+            icon={undefined}
+            size="sm"
+          >
             <BreadcrumbEllipsis />
-          </MenuTrigger>
-          <MenuContent align="start">
-            <MenuItem>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="start">
+            <DropdownMenuItem>
               <Link href="/docs">Documentation</Link>
-            </MenuItem>
-            <MenuItem>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
               <Link href="/themes">Themes</Link>
-            </MenuItem>
-            <MenuItem>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
               <Link href="https://github.com/optiaxiom/ui">GitHub</Link>
-            </MenuItem>
-          </MenuContent>
-        </Menu>
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </BreadcrumbItem>,
       <BreadcrumbSeparator key="sep2" />,
       <BreadcrumbItem key="breadcrumb">
