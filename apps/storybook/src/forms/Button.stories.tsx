@@ -98,11 +98,26 @@ export const Loading: Story = {
   ),
 };
 
-export const IconOnly: Story = {
+export const IconButton: Story = {
   ...Appearance,
   args: {
     icon: "chevron-down",
   },
+};
+export const IconSizes: Story = {
+  ...Appearance,
+  args: {
+    icon: "chevron-down",
+  },
+  render: (args) => (
+    <Flex flexDirection="row">
+      {sizes.map(([size, label]) => (
+        <Button {...args} key={size} size={size}>
+          {args.children ? label : null}
+        </Button>
+      ))}
+    </Flex>
+  ),
 };
 
 export const IconsWithText: Story = {
