@@ -146,8 +146,10 @@ function stylePlugin({ exclude = [], include = [] } = {}) {
         to: "dist/index.css",
       });
       return [
-        `import { injectStyle } from '${require.resolve("./src/styles.ts")}';`,
-        `injectStyle(${JSON.stringify(css)})`,
+        `import { injectGlobalStyle, injectLocalStyle } from '${require.resolve("./src/styles.ts")}';`,
+        id.includes("node_modules")
+          ? `injectGlobalStyle(${JSON.stringify(css)})`
+          : `injectLocalStyle(${JSON.stringify(css)})`,
       ].join("\n");
     },
   };
