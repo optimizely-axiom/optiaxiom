@@ -7,13 +7,13 @@ import { AlertDialogContextProvider } from "../alert-dialog-context";
 
 type AlertDialogProps = ComponentPropsWithoutRef<typeof RadixAlertDialog.Root>;
 
-export const AlertDialog = ({
+export function AlertDialog({
   children,
   defaultOpen,
   onOpenChange,
   open: openProp,
   ...props
-}: AlertDialogProps) => {
+}: AlertDialogProps) {
   const [open, setOpen] = useControllableState({
     defaultProp: defaultOpen,
     onChange: onOpenChange,
@@ -27,6 +27,6 @@ export const AlertDialog = ({
       </AlertDialogContextProvider>
     </RadixAlertDialog.Root>
   );
-};
+}
 
 AlertDialog.displayName = "@optiaxiom/react/AlertDialog";

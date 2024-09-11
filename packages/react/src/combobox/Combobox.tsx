@@ -20,7 +20,7 @@ type ComboBoxProps = BoxProps<
   }
 >;
 
-export const Combobox = ({
+export function Combobox({
   children,
   defaultOpen,
   defaultValue = "",
@@ -29,7 +29,7 @@ export const Combobox = ({
   onValueChange,
   open: openProp,
   value: valueProp,
-}: Partial<ComboBoxProps>) => {
+}: Partial<ComboBoxProps>) {
   const [open, setOpen] = useControllableState({
     defaultProp: defaultOpen,
     onChange: onOpenChange,
@@ -54,6 +54,6 @@ export const Combobox = ({
       </Popover>
     </ComboboxContextProvider>
   );
-};
+}
 
 Combobox.displayName = "@optiaxiom/react/Combobox";

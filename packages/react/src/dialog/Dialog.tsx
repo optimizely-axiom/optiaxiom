@@ -7,14 +7,14 @@ import { DialogContextProvider } from "../dialog-context";
 
 type DialogProps = ComponentPropsWithoutRef<typeof RadixDialog.Root>;
 
-export const Dialog = ({
+export function Dialog({
   children,
   defaultOpen,
   modal,
   onOpenChange,
   open: openProp,
   ...props
-}: DialogProps) => {
+}: DialogProps) {
   const [open, setOpen] = useControllableState({
     defaultProp: defaultOpen,
     onChange: onOpenChange,
@@ -31,6 +31,6 @@ export const Dialog = ({
       <DialogContextProvider open={open}>{children}</DialogContextProvider>
     </RadixDialog.Root>
   );
-};
+}
 
 Dialog.displayName = "@optiaxiom/react/Dialog";

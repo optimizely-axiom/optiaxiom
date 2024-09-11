@@ -6,13 +6,13 @@ import { DropdownMenuContextProvider } from "../dropdown-menu-context";
 
 type MenuProps = ComponentPropsWithoutRef<typeof RadixMenu.Root>;
 
-export const DropdownMenu = ({
+export function DropdownMenu({
   children,
   defaultOpen,
   onOpenChange,
   open: openProp,
   ...props
-}: MenuProps) => {
+}: MenuProps) {
   const [open, setOpen] = useControllableState({
     defaultProp: defaultOpen,
     onChange: onOpenChange,
@@ -26,6 +26,6 @@ export const DropdownMenu = ({
       </DropdownMenuContextProvider>
     </RadixMenu.Root>
   );
-};
+}
 
 DropdownMenu.displayName = "@optiaxiom/react/DropdownMenu";

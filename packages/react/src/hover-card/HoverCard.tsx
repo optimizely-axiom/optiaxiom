@@ -11,7 +11,7 @@ type HoverCardProps = BoxProps<
   }
 >;
 
-export const HoverCard = ({
+export function HoverCard({
   children,
   defaultOpen,
   keepOpenOnActivation,
@@ -19,7 +19,7 @@ export const HoverCard = ({
   open: openProp,
   openDelay = 500,
   ...props
-}: HoverCardProps) => {
+}: HoverCardProps) {
   const [open, setOpen] = useControllableState({
     defaultProp: defaultOpen,
     onChange: onOpenChange,
@@ -42,6 +42,6 @@ export const HoverCard = ({
       </HoverCardContextProvider>
     </RadixHoverCard.Root>
   );
-};
+}
 
 HoverCard.displayName = "@optiaxiom/react/HoverCard";

@@ -6,13 +6,13 @@ import { PopoverContextProvider } from "../popover-context";
 
 type PopoverProps = BoxProps<typeof RadixPopover.Root>;
 
-export const Popover = ({
+export function Popover({
   children,
   defaultOpen,
   onOpenChange,
   open: openProp,
   ...props
-}: PopoverProps) => {
+}: PopoverProps) {
   const [open, setOpen] = useControllableState({
     defaultProp: defaultOpen,
     onChange: onOpenChange,
@@ -24,6 +24,6 @@ export const Popover = ({
       <PopoverContextProvider open={open}>{children}</PopoverContextProvider>
     </RadixPopover.Root>
   );
-};
+}
 
 Popover.displayName = "@optiaxiom/react/Popover";
