@@ -116,13 +116,15 @@ async function measure() {
       ],
     });
 
-    const typesSize = await readFile(resolve(packagePath, pkg.types));
-    data.push({
-      gzippedSize: await gzipSize(typesSize),
-      minifiedSize: typesSize.length,
-      name: basename(pkg.types),
-      packageName: basename(pkg.name),
-    });
+    if (pkg.types) {
+      const typesSize = await readFile(resolve(packagePath, pkg.types));
+      data.push({
+        gzippedSize: await gzipSize(typesSize),
+        minifiedSize: typesSize.length,
+        name: basename(pkg.types),
+        packageName: basename(pkg.name),
+      });
+    }
 
     for (const outputFile of result.outputFiles) {
       data.push({
