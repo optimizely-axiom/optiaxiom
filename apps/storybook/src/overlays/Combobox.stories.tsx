@@ -3,12 +3,12 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Avatar, Button, Flex, Text } from "@optiaxiom/react";
 import {
   Combobox,
+  ComboboxCheckboxItem,
   ComboboxContent,
+  ComboboxItem,
   ComboboxTrigger,
-  CommandCheckboxItem,
   CommandEmpty,
   CommandFooter,
-  CommandItem,
   CommandList,
 } from "@optiaxiom/react/unstable";
 import { useState } from "react";
@@ -68,7 +68,7 @@ const PeopleSelector = () => {
         </CommandEmpty>
         <CommandList>
           {users.map((user) => (
-            <CommandItem
+            <ComboboxItem
               key={user.id}
               keywords={[user.name, user.email]}
               onSelect={(currentValue) => {
@@ -91,7 +91,7 @@ const PeopleSelector = () => {
                   {user.email && <Text color="dark.200">{user.email}</Text>}
                 </Flex>
               </Flex>
-            </CommandItem>
+            </ComboboxItem>
           ))}
         </CommandList>
       </ComboboxContent>
@@ -166,7 +166,7 @@ const SingleSelectExample = () => {
           </CommandEmpty>
           <CommandList style={{ maxHeight: "30dvh" }}>
             {items.map((item) => (
-              <CommandItem
+              <ComboboxItem
                 key={item}
                 onSelect={() => {
                   handleSelect(item);
@@ -175,7 +175,7 @@ const SingleSelectExample = () => {
                 value={item}
               >
                 {item}
-              </CommandItem>
+              </ComboboxItem>
             ))}
           </CommandList>
         </ComboboxContent>
@@ -207,13 +207,13 @@ const MultipleSelectExample = () => {
         <ComboboxContent w="240">
           <CommandList style={{ maxHeight: "30dvh" }}>
             {items.map((item) => (
-              <CommandCheckboxItem
+              <ComboboxCheckboxItem
                 key={item}
                 onCheckedChange={() => handleSelect(item)}
                 value={item}
               >
                 {item}
-              </CommandCheckboxItem>
+              </ComboboxCheckboxItem>
             ))}
           </CommandList>
           <CommandFooter>
@@ -287,14 +287,14 @@ const DisabledItemsExample = () => {
           <ComboboxContent w="240">
             <CommandList style={{ maxHeight: "30dvh" }}>
               {itemsWithDisabled.map((item) => (
-                <CommandItem
+                <ComboboxItem
                   disabled={item.disabled}
                   key={item.value}
                   onSelect={() => handleSingleSelect(item.value)}
                   value={item.value}
                 >
                   {item.value} {item.disabled && "(Disabled)"}
-                </CommandItem>
+                </ComboboxItem>
               ))}
             </CommandList>
           </ComboboxContent>
@@ -319,14 +319,14 @@ const DisabledItemsExample = () => {
           <ComboboxContent w="240">
             <CommandList style={{ maxHeight: "30dvh" }}>
               {itemsWithDisabled.map((item) => (
-                <CommandCheckboxItem
+                <ComboboxCheckboxItem
                   disabled={item.disabled}
                   key={item.value}
                   onCheckedChange={() => handleMultiSelect(item.value)}
                   value={item.value}
                 >
                   {item.value} {item.disabled && "(Disabled)"}
-                </CommandCheckboxItem>
+                </ComboboxCheckboxItem>
               ))}
             </CommandList>
             <CommandFooter>

@@ -3,15 +3,15 @@ import { forwardRef } from "react";
 import { Box, type BoxProps } from "../box";
 import { Checkbox } from "../checkbox";
 import { useComboboxContext } from "../combobox-context";
-import { CommandItem } from "../command-item";
+import { ComboboxItem } from "../combobox-item";
 
-type CommandCheckboxItemProps = {
+type ComboboxCheckboxItemProps = {
   onCheckedChange?: (checked: boolean) => void;
-} & Omit<BoxProps<typeof CommandItem>, "onSelect">;
+} & Omit<BoxProps<typeof ComboboxItem>, "onSelect">;
 
-export const CommandCheckboxItem = forwardRef<
+export const ComboboxCheckboxItem = forwardRef<
   HTMLDivElement,
-  CommandCheckboxItemProps
+  ComboboxCheckboxItemProps
 >(({ children, disabled, onCheckedChange, value, ...props }, ref) => {
   const {
     mode,
@@ -45,7 +45,7 @@ export const CommandCheckboxItem = forwardRef<
   };
 
   return (
-    <CommandItem
+    <ComboboxItem
       data-disabled={disabled ? "" : undefined}
       data-selected={isChecked ? "" : undefined}
       disabled={disabled}
@@ -62,8 +62,8 @@ export const CommandCheckboxItem = forwardRef<
         />
         <Box mt="2">{children}</Box>
       </Box>
-    </CommandItem>
+    </ComboboxItem>
   );
 });
 
-CommandCheckboxItem.displayName = "@optiaxiom/react/CommandCheckboxItem";
+ComboboxCheckboxItem.displayName = "@optiaxiom/react/ComboboxCheckboxItem";
