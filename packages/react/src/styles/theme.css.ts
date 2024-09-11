@@ -32,6 +32,6 @@ export const theme = createGlobalThemeContractOptimized(
   (value) => `ax-${value}`,
 );
 // @ts-expect-error -- preserve original token types
-createGlobalTheme(":root", theme, tokens);
+createGlobalTheme(":root, :host", theme, tokens);
 // @ts-expect-error -- preserve original token types
-createGlobalTheme(":root.dark", theme, tokensDark);
+createGlobalTheme(":root.dark, :host.dark", theme, tokensDark);
