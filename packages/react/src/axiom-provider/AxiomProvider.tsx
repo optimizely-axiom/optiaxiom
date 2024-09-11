@@ -15,8 +15,12 @@ type AxiomProviderProps = {
   >;
 };
 
-export const AxiomProvider = ({ children, tooltip }: AxiomProviderProps) => (
-  <TooltipPrimitive.Provider {...tooltip}>{children}</TooltipPrimitive.Provider>
-);
+export function AxiomProvider({ children, tooltip }: AxiomProviderProps) {
+  return (
+    <TooltipPrimitive.Provider {...tooltip}>
+      {children}
+    </TooltipPrimitive.Provider>
+  );
+}
 
 AxiomProvider.displayName = "@optiaxiom/react/AxiomProvider";

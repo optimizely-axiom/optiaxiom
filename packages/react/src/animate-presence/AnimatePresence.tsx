@@ -9,11 +9,11 @@ import {
 
 import { PresenceContext } from "./PresenceContext";
 
-export const AnimatePresence = ({
+export function AnimatePresence({
   children,
 }: {
   children?: ReactElement | false;
-}) => {
+}) {
   const [exiting, setExiting] = useState<Map<RefObject<undefined>, boolean>>(
     new Map(),
   );
@@ -48,4 +48,6 @@ export const AnimatePresence = ({
         ([...exiting.values()].some(Boolean) ? lastChildren.current : null)}
     </PresenceContext.Provider>
   );
-};
+}
+
+AnimatePresence.displayName = "@optiaxiom/react/AnimatePresence";
