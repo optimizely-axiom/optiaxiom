@@ -1,7 +1,5 @@
 import * as Components from "@optiaxiom/react";
 
-import type { KebabCase } from "./components/ComponentAttributes";
-
 import { exports } from "../package.json";
 
 type ComponentNames = Exclude<
@@ -14,6 +12,13 @@ type ComponentNames = Exclude<
   },
   "FieldContext"
 >;
+
+type KebabCase<
+  T extends string,
+  A extends string = "",
+> = T extends `${infer F}${infer R}`
+  ? KebabCase<R, `${A}${F extends Lowercase<F> ? "" : "-"}${Lowercase<F>}`>
+  : A;
 
 type AllComponents = {
   [Key in ComponentNames as `ax${KebabCase<Key>}`]: Key;
