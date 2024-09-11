@@ -68,7 +68,7 @@ export function register<P extends object>(
     >((result, eventName) => {
       result[eventName] = (detail) => {
         element.dispatchEvent(
-          new CustomEvent(toNormalizedEvent(eventName), {
+          new CustomEvent("ax-" + toNormalizedEvent(eventName), {
             bubbles: true,
             cancelable: true,
             detail,
