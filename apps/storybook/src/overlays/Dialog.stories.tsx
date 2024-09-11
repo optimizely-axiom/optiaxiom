@@ -33,7 +33,11 @@ export default {
       <Dialog {...args}>
         <DialogTrigger>Open Dialog</DialogTrigger>
 
-        <DialogContent size={size} withCloseButton={withCloseButton}>
+        <DialogContent
+          {...(!description && { ["aria-describedby"]: undefined })}
+          size={size}
+          withCloseButton={withCloseButton}
+        >
           <DialogTitle>Dialog</DialogTitle>
           {description && <DialogDescription>{description}</DialogDescription>}
           <DialogBody>{content}</DialogBody>
