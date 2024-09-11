@@ -13,7 +13,7 @@ export function App() {
     <Dialog>
       <DialogTrigger>Open Dialog</DialogTrigger>
 
-      <DialogContent withCloseButton>
+      <DialogContent aria-describedby={undefined} withCloseButton>
         <DialogTitle>Modal Title</DialogTitle>
         <DialogBody>This is the modal body</DialogBody>
         <DialogFooter>

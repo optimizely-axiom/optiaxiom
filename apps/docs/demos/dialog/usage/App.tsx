@@ -16,7 +16,7 @@ export function App() {
     <Dialog onOpenChange={setOpen} open={open}>
       <DialogTrigger>Open Dialog</DialogTrigger>
 
-      <DialogContent>
+      <DialogContent aria-describedby={undefined}>
         <DialogTitle>Modal Title</DialogTitle>
 
         <DialogBody>This is the modal body</DialogBody>

@@ -18,7 +18,7 @@ export function App() {
         icon={<IconRefresh />}
       />
 
-      <DialogContent>
+      <DialogContent aria-describedby={undefined}>
         <DialogTitle>Modal Title</DialogTitle>
         <DialogBody>This is the modal body</DialogBody>
         <DialogFooter>
