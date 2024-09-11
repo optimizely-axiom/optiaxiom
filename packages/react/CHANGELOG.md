@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 0.1.0-next.15
+
+### Patch Changes
+
+- 18338c9: restrict AlertDialog to only danger appearance
+
 ## 0.1.0-next.14
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @optiaxiom/web-components
 
+## 0.1.0-next.6
+
+### Patch Changes
+
+- eaea0f9: only inject font-face styles in global
+
 ## 0.1.0-next.5
 
 ### Patch Changes
