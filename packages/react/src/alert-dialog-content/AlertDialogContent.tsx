@@ -12,15 +12,13 @@ import * as styles from "./AlertDialogContent.css";
 
 type AlertDialogContentProps = BoxProps<
   typeof RadixAlertDialog.Content,
-  {
-    appearance?: "danger" | "primary";
-  } & styles.DialogVariants
+  NonNullable<styles.DialogVariants>
 >;
 
 export const AlertDialogContent = forwardRef<
   HTMLDivElement,
   AlertDialogContentProps
->(({ appearance = "danger", children, size = "sm", ...props }, ref) => {
+>(({ children, size = "sm", ...props }, ref) => {
   const { open } = useAlertDialogContext("AlertDialogContent");
 
   return (
@@ -36,7 +34,7 @@ export const AlertDialogContent = forwardRef<
           <Transition data-side="bottom" type="fade">
             <Box asChild {...styles.content({ size })}>
               <RadixAlertDialog.Content ref={ref} {...props}>
-                <AlertDialogContextProvider appearance={appearance} open={open}>
+                <AlertDialogContextProvider open={open}>
                   {children}
                 </AlertDialogContextProvider>
               </RadixAlertDialog.Content>
