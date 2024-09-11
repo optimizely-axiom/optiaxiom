@@ -10,7 +10,6 @@ import postcss from "postcss";
 import postcssrc from "postcss-load-config";
 import docgen from "react-docgen-typescript";
 import { defineConfig } from "rollup";
-import dts from "rollup-plugin-dts";
 import esbuild from "rollup-plugin-esbuild";
 
 const require = createRequire(import.meta.url);
@@ -65,14 +64,6 @@ export default defineConfig([
       stylePlugin({ include: ["**/*.css"] }),
       webComponentPlugin({ include: ["src/components/**/*.ts"] }),
     ],
-  },
-  {
-    input,
-    output: {
-      dir: "dist",
-      format: "es",
-    },
-    plugins: [dts()],
   },
 ]);
 
