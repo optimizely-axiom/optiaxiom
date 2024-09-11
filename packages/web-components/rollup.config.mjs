@@ -62,8 +62,8 @@ export default defineConfig([
       nodeResolve({
         preferBuiltins: false,
       }),
-      propsPlugin({ include: ["src/components/**/*.ts"] }),
       stylePlugin({ include: ["**/*.css"] }),
+      webComponentPlugin({ include: ["src/components/**/*.ts"] }),
     ],
   },
   {
@@ -87,7 +87,9 @@ function aliasPlugin(aliases = {}) {
   };
 }
 
-function propsPlugin({ include = [] }) {
+/** @returns {import('rollup').Plugin} */
+function webComponentPlugin({ include = [] }) {
+  const prefix = `\0virtual:`;
   const filter = createFilter(include ?? []);
   const docs = docgen
     .withCompilerOptions(
@@ -102,9 +104,8 @@ function propsPlugin({ include = [] }) {
     .parse(fg.globSync("../react/dist/**/*.d.ts"));
 
   return {
-    name: "rollup-plugin-props",
-    async transform(code, id) {
-      if (!filter(id)) {
+    load(id) {
+      if (!id.startsWith(prefix)) {
         return null;
       }
 
@@ -113,7 +114,28 @@ function propsPlugin({ include = [] }) {
       const actions = Object.keys(doc?.props ?? {}).filter((name) =>
         name.startsWith("on"),
       );
-      return code.replace(")", `,{customEvents:${JSON.stringify(actions)}})`);
+      return `import { ${component} as ${component}Component } from "@optiaxiom/react";
+
+import { register } from "../register";
+
+export const ${component} = "ax${component.replace(/[A-Z]/g, (m) => "-" + m.toLowerCase())}";
+export default register(
+  ${component},
+  ${component}Component,
+  { customEvents: ${JSON.stringify(actions)} },
+);`;
+    },
+    name: "rollup-plugin-web-component",
+    async resolveId(id, importer, options) {
+      if (filter(path.resolve(id))) {
+        return prefix + path.resolve(id);
+      }
+
+      if (importer?.startsWith(prefix)) {
+        return await this.resolve(id, importer.slice(prefix.length), options);
+      }
+
+      return null;
     },
   };
 }
