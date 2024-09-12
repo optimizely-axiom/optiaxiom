@@ -1,71 +1,20 @@
 import * as RadixMenu from "@radix-ui/react-dropdown-menu";
-import { type ReactNode, forwardRef } from "react";
+import { forwardRef } from "react";
 
-import { Box, type BoxProps } from "../box";
-import { Flex } from "../flex";
 import { IconAngleRight } from "../icons/IconAngleRight";
-import { extractSprinkles } from "../sprinkles";
-import { fallbackSpan } from "../utils";
-import * as styles from "./DropdownMenuSubTrigger.css";
+import { MenuItemBase, type MenuItemBaseProps } from "../menu-item-base";
 
-type MenuSubTriggerProps = BoxProps<
-  typeof RadixMenu.SubTrigger,
-  {
-    endDecorator?: ReactNode;
-    startDecorator?: ReactNode;
-  } & styles.SubTriggerVariants
->;
+type MenuSubTriggerProps = MenuItemBaseProps<typeof RadixMenu.SubTrigger>;
 
 export const DropdownMenuSubTrigger = forwardRef<
   HTMLDivElement,
   MenuSubTriggerProps
->(
-  (
-    {
-      asChild,
-      children,
-      colorScheme = "neutral",
-      endDecorator,
-      startDecorator,
-      ...props
-    },
-    ref,
-  ) => {
-    const { restProps, sprinkleProps } = extractSprinkles(props);
-
-    return (
-      <Flex
-        asChild
-        ref={ref}
-        {...styles.subTrigger({ colorScheme })}
-        {...sprinkleProps}
-      >
-        <RadixMenu.SubTrigger {...restProps}>
-          {asChild ? (
-            children
-          ) : (
-            <>
-              {startDecorator && (
-                <Box asChild h="16" w="auto">
-                  {fallbackSpan(startDecorator)}
-                </Box>
-              )}
-
-              <Box flex="1">{children}</Box>
-
-              {endDecorator && (
-                <Box asChild ml="xs">
-                  {fallbackSpan(endDecorator)}
-                </Box>
-              )}
-
-              {!endDecorator && <IconAngleRight />}
-            </>
-          )}
-        </RadixMenu.SubTrigger>
-      </Flex>
-    );
-  },
-);
+>(({ children, ...props }, ref) => {
+  return (
+    <MenuItemBase endDecorator={<IconAngleRight />} ref={ref} {...props}>
+      <RadixMenu.SubTrigger>{children}</RadixMenu.SubTrigger>
+    </MenuItemBase>
+  );
+});
 
 DropdownMenuSubTrigger.displayName = "@optiaxiom/react/DropdownMenuSubTrigger";
