@@ -13,7 +13,7 @@ export const DropdownMenuSubContent = forwardRef<
   HTMLDivElement,
   MenuSubContentProps
 >(({ children, className, sideOffset = 2, ...props }, ref) => {
-  const { open } = useDropdownMenuSubContext("MenuSub");
+  const { open } = useDropdownMenuSubContext("DropdownMenuSubContent");
 
   return (
     <AnimatePresence>

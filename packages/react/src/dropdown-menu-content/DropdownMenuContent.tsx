@@ -11,7 +11,7 @@ type MenuContentProps = BoxProps<typeof RadixMenu.Content>;
 
 export const DropdownMenuContent = forwardRef<HTMLDivElement, MenuContentProps>(
   ({ align = "start", children, className, sideOffset = 2, ...props }, ref) => {
-    const { open } = useDropdownMenuContext("MenuContent");
+    const { open } = useDropdownMenuContext("DropdownMenuContent");
 
     return (
       <AnimatePresence>
