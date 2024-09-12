@@ -14,7 +14,7 @@ import {
   DropdownMenuSubTrigger,
 } from "@optiaxiom/react/unstable";
 import { action } from "@storybook/addon-actions";
-import { expect, screen, userEvent } from "@storybook/test";
+import { expect, screen, userEvent, waitFor } from "@storybook/test";
 import {
   IconFileExcel,
   IconFileTypePdf,
@@ -112,7 +112,7 @@ export const LongContent: Story = {
   },
 };
 
-export const WithSub: Story = {
+export const Nested: Story = {
   args: {
     children: (
       <>
@@ -120,9 +120,6 @@ export const WithSub: Story = {
 
         <DropdownMenuContent>
           <DropdownMenuLabel>My Profile</DropdownMenuLabel>
-          <DropdownMenuItem>
-            This is a really long content to show case how text will wrap.
-          </DropdownMenuItem>
           <DropdownMenuSub>
             <DropdownMenuSubTrigger>Settings</DropdownMenuSubTrigger>
             <DropdownMenuSubContent>
@@ -136,5 +133,30 @@ export const WithSub: Story = {
         </DropdownMenuContent>
       </>
     ),
+    defaultOpen: true,
+  },
+  play: async () => {
+    await waitFor(
+      async () =>
+        await expect(
+          screen.getByRole("menuitem", { name: "Settings" }),
+        ).toBeVisible(),
+    );
+
+    await userEvent.hover(screen.getByRole("menuitem", { name: "Settings" }));
+    await waitFor(
+      async () =>
+        await expect(
+          screen.getByRole("menuitem", { name: "Privacy" }),
+        ).toBeVisible(),
+    );
+
+    await userEvent.keyboard("{Escape}");
+    await waitFor(
+      async () =>
+        await expect(
+          screen.queryByRole("menu", { name: "My Profile" }),
+        ).not.toBeInTheDocument(),
+    );
   },
 };
