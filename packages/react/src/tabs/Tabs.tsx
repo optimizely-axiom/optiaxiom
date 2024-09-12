@@ -8,7 +8,7 @@ import * as styles from "./Tabs.css";
 
 type TabsProps = BoxProps<
   typeof RadixTabs.Root,
-  { appearance: "primary" | "secondary" }
+  { appearance?: "primary" | "secondary" }
 >;
 
 export const Tabs = forwardRef<HTMLDivElement, TabsProps>(
