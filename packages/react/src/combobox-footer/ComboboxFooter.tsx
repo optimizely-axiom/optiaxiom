@@ -1,11 +1,11 @@
 import { type ComponentPropsWithRef, forwardRef } from "react";
 
 import { Flex } from "../flex";
-import * as styles from "./CommandFooter.css";
+import * as styles from "./ComboboxFooter.css";
 
 type DialogFooterProps = ComponentPropsWithRef<typeof Flex>;
 
-export const CommandFooter = forwardRef<HTMLDivElement, DialogFooterProps>(
+export const ComboboxFooter = forwardRef<HTMLDivElement, DialogFooterProps>(
   ({ children, className, ...props }, ref) => {
     return (
       <Flex ref={ref} {...styles.footer({}, className)} {...props}>
@@ -15,4 +15,4 @@ export const CommandFooter = forwardRef<HTMLDivElement, DialogFooterProps>(
   },
 );
 
-CommandFooter.displayName = "@optiaxiom/react/CommandFooter";
+ComboboxFooter.displayName = "@optiaxiom/react/ComboboxFooter";

@@ -13,12 +13,10 @@ export const ComboboxSingleTrigger = forwardRef<
 >(({ title, ...props }, ref) => {
   const { value } = useComboboxContext("Combobox");
   return (
-    <ComboboxTrigger asChild ref={ref} {...props}>
-      <Button>
-        {value || title}
-        <IconAngleDown />
-      </Button>
-    </ComboboxTrigger>
+    <Button ref={ref} {...props}>
+      {value || title}
+      <IconAngleDown />
+    </Button>
   );
 });
 

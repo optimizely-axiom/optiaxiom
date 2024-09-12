@@ -20,34 +20,32 @@ export const ComboboxMultiTrigger = forwardRef<
   const { mode, value } = useComboboxContext("Combobox");
 
   return (
-    <ComboboxTrigger asChild>
-      <Button alignItems="center" ref={ref} w="full" {...props}>
-        <Box overflow="hidden">
-          {mode === "multiple" && Array.isArray(value) && value.length > 0 ? (
-            <Flex
-              alignItems="center"
-              flexDirection="row"
-              flexWrap="wrap"
-              gap="2"
-              overflow="hidden"
-            >
-              {value.slice(0, maxDisplayedItems).map((item) => (
-                <Box flex="none" key={item}>
-                  <Badge>{item}</Badge>
-                </Box>
-              ))}
-              {value.length > maxDisplayedItems && (
-                <Box flex="none">
-                  <Text>+{value.length - maxDisplayedItems} more</Text>
-                </Box>
-              )}
-            </Flex>
-          ) : (
-            <Text>{title}</Text>
-          )}
-        </Box>
-      </Button>
-    </ComboboxTrigger>
+    <Button alignItems="center" ref={ref} w="full" {...props}>
+      <Box overflow="hidden">
+        {mode === "multiple" && Array.isArray(value) && value.length > 0 ? (
+          <Flex
+            alignItems="center"
+            flexDirection="row"
+            flexWrap="wrap"
+            gap="2"
+            overflow="hidden"
+          >
+            {value.slice(0, maxDisplayedItems).map((item) => (
+              <Box flex="none" key={item}>
+                <Badge>{item}</Badge>
+              </Box>
+            ))}
+            {value.length > maxDisplayedItems && (
+              <Box flex="none">
+                <Text>+{value.length - maxDisplayedItems} more</Text>
+              </Box>
+            )}
+          </Flex>
+        ) : (
+          <Text>{title}</Text>
+        )}
+      </Box>
+    </Button>
   );
 });
 
