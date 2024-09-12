@@ -8,6 +8,11 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@optiaxiom/react";
+import {
+  DropdownSub,
+  DropdownSubContent,
+  DropdownSubTrigger,
+} from "@optiaxiom/react/unstable";
 import { action } from "@storybook/addon-actions";
 import { expect, screen, userEvent } from "@storybook/test";
 import {
@@ -104,5 +109,32 @@ export const LongContent: Story = {
       </>
     ),
     defaultOpen: true,
+  },
+};
+
+export const WithSub: Story = {
+  args: {
+    children: (
+      <>
+        <DropdownMenuTrigger>Profile</DropdownMenuTrigger>
+
+        <DropdownMenuContent>
+          <DropdownMenuLabel>My Profile</DropdownMenuLabel>
+          <DropdownMenuItem>
+            This is a really long content to show case how text will wrap.
+          </DropdownMenuItem>
+          <DropdownSub>
+            <DropdownSubTrigger>Settings</DropdownSubTrigger>
+            <DropdownSubContent>
+              <DropdownMenuItem>Privacy</DropdownMenuItem>
+              <DropdownMenuItem>Security</DropdownMenuItem>
+              <DropdownMenuItem>Policy</DropdownMenuItem>
+            </DropdownSubContent>
+          </DropdownSub>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem>Logout</DropdownMenuItem>
+        </DropdownMenuContent>
+      </>
+    ),
   },
 };
