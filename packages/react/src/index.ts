@@ -54,6 +54,7 @@ export * from "./kbd";
 export * from "./link";
 export * from "./pagination";
 export * from "./popover";
+export * from "./popover-anchor";
 export * from "./popover-content";
 export * from "./popover-trigger";
 export * from "./progress";

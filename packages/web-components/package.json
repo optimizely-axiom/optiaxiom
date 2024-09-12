@@ -70,6 +70,7 @@
     "./Link": "./dist/components/Link.js",
     "./Pagination": "./dist/components/Pagination.js",
     "./Popover": "./dist/components/Popover.js",
+    "./PopoverAnchor": "./dist/components/PopoverAnchor.js",
     "./PopoverContent": "./dist/components/PopoverContent.js",
     "./PopoverTrigger": "./dist/components/PopoverTrigger.js",
     "./Progress": "./dist/components/Progress.js",
