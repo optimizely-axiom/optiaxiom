@@ -3,9 +3,9 @@ import { type ComponentPropsWithRef, forwardRef } from "react";
 import { Flex } from "../flex";
 import * as styles from "./ComboboxFooter.css";
 
-type DialogFooterProps = ComponentPropsWithRef<typeof Flex>;
+type ComboboxFooterProps = ComponentPropsWithRef<typeof Flex>;
 
-export const ComboboxFooter = forwardRef<HTMLDivElement, DialogFooterProps>(
+export const ComboboxFooter = forwardRef<HTMLDivElement, ComboboxFooterProps>(
   ({ children, className, ...props }, ref) => {
     return (
       <Flex ref={ref} {...styles.footer({}, className)} {...props}>
