@@ -6,9 +6,9 @@ import { Flex } from "../flex";
 import { IconAngleRight } from "../icons/IconAngleRight";
 import { extractSprinkles } from "../sprinkles";
 import { fallbackSpan } from "../utils";
-import * as styles from "./DropdownSubTrigger.css";
+import * as styles from "./DropdownMenuSubTrigger.css";
 
-type SubTriggerProps = BoxProps<
+type MenuSubTriggerProps = BoxProps<
   typeof RadixMenu.SubTrigger,
   {
     endDecorator?: ReactNode;
@@ -16,7 +16,10 @@ type SubTriggerProps = BoxProps<
   } & styles.SubTriggerVariants
 >;
 
-export const DropdownSubTrigger = forwardRef<HTMLDivElement, SubTriggerProps>(
+export const DropdownMenuSubTrigger = forwardRef<
+  HTMLDivElement,
+  MenuSubTriggerProps
+>(
   (
     {
       asChild,
@@ -65,4 +68,4 @@ export const DropdownSubTrigger = forwardRef<HTMLDivElement, SubTriggerProps>(
   },
 );
 
-DropdownSubTrigger.displayName = "@optiaxiom/react/DropdownSubTrigger";
+DropdownMenuSubTrigger.displayName = "@optiaxiom/react/DropdownMenuSubTrigger";
