@@ -9,9 +9,9 @@ import {
   DropdownMenuTrigger,
 } from "@optiaxiom/react";
 import {
-  DropdownSub,
-  DropdownSubContent,
-  DropdownSubTrigger,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
 } from "@optiaxiom/react/unstable";
 import { action } from "@storybook/addon-actions";
 import { expect, screen, userEvent } from "@storybook/test";
@@ -123,14 +123,14 @@ export const WithSub: Story = {
           <DropdownMenuItem>
             This is a really long content to show case how text will wrap.
           </DropdownMenuItem>
-          <DropdownSub>
-            <DropdownSubTrigger>Settings</DropdownSubTrigger>
-            <DropdownSubContent>
+          <DropdownMenuSub>
+            <DropdownMenuSubTrigger>Settings</DropdownMenuSubTrigger>
+            <DropdownMenuSubContent>
               <DropdownMenuItem>Privacy</DropdownMenuItem>
               <DropdownMenuItem>Security</DropdownMenuItem>
               <DropdownMenuItem>Policy</DropdownMenuItem>
-            </DropdownSubContent>
-          </DropdownSub>
+            </DropdownMenuSubContent>
+          </DropdownMenuSub>
           <DropdownMenuSeparator />
           <DropdownMenuItem>Logout</DropdownMenuItem>
         </DropdownMenuContent>

@@ -1,6 +1,6 @@
 import { createContext } from "@radix-ui/react-context";
 
-export const [DropdownSubContextProvider, useDropdownSubContext] =
+export const [DropdownMenuSubContextProvider, useDropdownMenuSubContext] =
   createContext<{
     open: boolean | undefined;
-  }>("SubMenu");
+  }>("MenuSub");
