@@ -15,6 +15,7 @@ export const content = recipe({
       z: "popover",
     },
     style({
+      maxHeight: "var(--radix-popover-content-available-height)",
       minWidth: "var(--radix-popover-trigger-width)",
       position: "relative",
     }),
