@@ -11,12 +11,16 @@ type MenuSubContentProps = BoxProps<typeof RadixMenu.SubContent>;
 export const DropdownMenuSubContent = forwardRef<
   HTMLDivElement,
   MenuSubContentProps
->(({ children, sideOffset = 2, ...props }, ref) => {
+>(({ alignOffset = -4, children, sideOffset = 2, ...props }, ref) => {
   const { open } = useDropdownMenuSubContext("DropdownMenuSubContent");
 
   return (
     <MenuContentBase open={open} {...props}>
-      <RadixMenu.SubContent ref={ref} sideOffset={sideOffset}>
+      <RadixMenu.SubContent
+        alignOffset={alignOffset}
+        ref={ref}
+        sideOffset={sideOffset}
+      >
         {children}
       </RadixMenu.SubContent>
     </MenuContentBase>
