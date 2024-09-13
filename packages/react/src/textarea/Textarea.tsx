@@ -1,3 +1,4 @@
+import { Slot } from "@radix-ui/react-slot";
 import { forwardRef } from "react";
 import TextareaAutosize from "react-textarea-autosize";
 
@@ -23,7 +24,10 @@ type TextareaProps =
     >);
 
 export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
-  ({ className, resize = "none", ...props }, ref) => {
+  ({ asChild, children, className, resize = "none", ...props }, ref) => {
+    const CompAuto = asChild ? Slot : TextareaAutosize;
+    const CompManual = asChild ? Slot : "textarea";
+
     return (
       <InputBase
         size="lg"
@@ -32,12 +36,16 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
       >
         <Box asChild {...styles.textarea()}>
           {resize === "auto" ? (
-            <TextareaAutosize
+            <CompAuto
               minRows={"minRows" in props ? props.minRows : 3}
               ref={ref}
-            />
+            >
+              {children}
+            </CompAuto>
           ) : (
-            <textarea ref={ref} rows={"rows" in props ? props.rows : 3} />
+            <CompManual ref={ref} rows={"rows" in props ? props.rows : 3}>
+              {children}
+            </CompManual>
           )}
         </Box>
       </InputBase>

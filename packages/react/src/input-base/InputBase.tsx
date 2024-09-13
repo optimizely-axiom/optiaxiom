@@ -1,10 +1,9 @@
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
+import { Slot } from "@radix-ui/react-slot";
 import {
   type ElementType,
   type MouseEvent,
-  type ReactElement,
   type ReactNode,
-  cloneElement,
   forwardRef,
   useRef,
 } from "react";
@@ -24,8 +23,6 @@ export type InputBaseProps<
   T,
   ExtendProps<
     {
-      asChild?: never;
-      children: ReactElement;
       /**
        * When this prop is set to `none` clicking empty space inside the
        * decorator will focus the input box.
@@ -49,16 +46,17 @@ export const InputBase = forwardRef<
       children,
       className,
       decoratorPointerEvents = "auto",
-      disabled,
       endDecorator,
       error: errorProp,
-      readOnly,
       size = "md",
       startDecorator,
       ...props
     },
     outerRef,
   ) => {
+    const disabled = props.disabled;
+    const readOnly = props.readOnly;
+
     const { error, id, required } = useFieldContext({ error: errorProp });
     const { restProps, sprinkleProps } = extractSprinkles(props);
 
@@ -103,14 +101,9 @@ export const InputBase = forwardRef<
           data-readonly={readOnly ? "" : undefined}
           {...styles.input({ size })}
         >
-          {cloneElement(children, {
-            disabled,
-            id,
-            readOnly,
-            ref,
-            required,
-            ...restProps,
-          })}
+          <Slot id={id} ref={ref} required={required} {...restProps}>
+            {children}
+          </Slot>
         </Box>
 
         {endDecorator && (
