@@ -1,3 +1,4 @@
+import { Slot } from "@radix-ui/react-slot";
 import { forwardRef } from "react";
 
 import { Box } from "../box";
@@ -5,17 +6,14 @@ import { InputBase, type InputBaseProps } from "../input-base";
 import { fallbackSpan } from "../utils";
 import * as styles from "./Input.css";
 
-type InputProps = InputBaseProps<
-  "input",
-  {
-    children?: never;
-  } & styles.InputVariants
->;
+type InputProps = InputBaseProps<"input", NonNullable<styles.InputVariants>>;
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
   (
     {
       appearance = "default",
+      asChild,
+      children,
       endDecorator,
       size = "md",
       startDecorator,
@@ -23,6 +21,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     },
     ref,
   ) => {
+    const Comp = asChild ? Slot : "input";
+
     return (
       <InputBase
         endDecorator={
@@ -43,7 +43,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         {...props}
       >
         <Box asChild {...styles.input({ appearance })}>
-          <input ref={ref} />
+          <Comp ref={ref}>{children}</Comp>
         </Box>
       </InputBase>
     );
