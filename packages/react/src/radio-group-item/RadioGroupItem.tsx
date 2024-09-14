@@ -8,12 +8,12 @@ import * as styles from "./RadioGroupItem.css";
 type RadioGroupItemProps = BoxProps<
   typeof RadixRadio.Item,
   {
-    endDecorator?: ReactNode;
+    description?: ReactNode;
   }
 >;
 
 export const RadioGroupItem = forwardRef<HTMLDivElement, RadioGroupItemProps>(
-  ({ children, endDecorator, id, value, ...props }, ref) => {
+  ({ children, description, id, value, ...props }, ref) => {
     return (
       <ControlBase
         control={
@@ -25,7 +25,7 @@ export const RadioGroupItem = forwardRef<HTMLDivElement, RadioGroupItemProps>(
             </RadixRadio.Item>
           </Box>
         }
-        endDecorator={endDecorator}
+        description={description}
         id={id}
         ref={ref}
         {...props}

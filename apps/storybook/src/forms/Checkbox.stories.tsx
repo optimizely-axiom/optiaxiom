@@ -15,7 +15,7 @@ export const Basic: Story = {};
 
 export const HelperText: Story = {
   args: {
-    endDecorator: "Helper Text",
+    description: "Helper Text",
   },
 };
 

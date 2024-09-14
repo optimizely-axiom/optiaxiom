@@ -10,12 +10,12 @@ import * as styles from "./Switch.css";
 type SwitchProps = BoxProps<
   typeof RadixSwitch.Root,
   {
-    endDecorator?: ReactNode;
+    description?: ReactNode;
   } & styles.SwitchVariants
 >;
 
 export const Switch = forwardRef<HTMLDivElement, SwitchProps>(
-  ({ children, className, endDecorator, id, size = "md", ...props }, ref) => {
+  ({ children, className, description, id, size = "md", ...props }, ref) => {
     return (
       <ControlBase
         control={
@@ -27,7 +27,7 @@ export const Switch = forwardRef<HTMLDivElement, SwitchProps>(
             </RadixSwitch.Root>
           </Box>
         }
-        endDecorator={endDecorator}
+        description={description}
         id={id}
         ref={ref}
         {...styles.container({}, className)}
