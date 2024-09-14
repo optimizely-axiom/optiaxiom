@@ -92,6 +92,28 @@ export const Basic: Story = {
   },
 };
 
+export const Description: Story = {
+  args: {
+    children: (
+      <>
+        <DropdownMenuTrigger>Content</DropdownMenuTrigger>
+
+        <DropdownMenuContent>
+          <DropdownMenuItem description="Create a new task">
+            New task
+          </DropdownMenuItem>
+          <DropdownMenuItem description="Copy this task">
+            Copy task
+          </DropdownMenuItem>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem colorScheme="danger">Delete task</DropdownMenuItem>
+        </DropdownMenuContent>
+      </>
+    ),
+    defaultOpen: true,
+  },
+};
+
 export const LongContent: Story = {
   args: {
     children: (
