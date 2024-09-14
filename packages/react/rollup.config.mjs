@@ -1,3 +1,4 @@
+import hash from "@emotion/hash";
 import { createFilter } from "@rollup/pluginutils";
 import { vanillaExtractPlugin } from "@vanilla-extract/rollup-plugin";
 import { readFileSync } from "node:fs";
@@ -46,7 +47,10 @@ export default defineConfig([
         },
         target: "esnext",
       }),
-      vanillaExtractPlugin(),
+      vanillaExtractPlugin({
+        identifiers: (options) =>
+          normalizeIdentifier(hash(`${pkg.version}_${options.hash}`)),
+      }),
     ],
   },
   {
@@ -61,3 +65,7 @@ export default defineConfig([
     plugins: [dts()],
   },
 ]);
+
+function normalizeIdentifier(identifier) {
+  return identifier.match(/^[0-9]/) ? "_".concat(identifier) : identifier;
+}
