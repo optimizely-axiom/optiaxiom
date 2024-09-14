@@ -9,6 +9,7 @@ import {
 
 import { Box, type BoxProps } from "../box";
 import { Flex } from "../flex";
+import { Text } from "../text";
 import { type ExtendProps, fallbackSpan } from "../utils";
 import * as styles from "./MenuItemBase.css";
 
@@ -19,6 +20,7 @@ export type MenuItemBaseProps<
   T,
   ExtendProps<
     {
+      description?: ReactNode;
       endDecorator?: ReactNode;
       startDecorator?: ReactNode;
     } & styles.ItemVariants,
@@ -32,6 +34,7 @@ export const MenuItemBase = forwardRef<HTMLDivElement, MenuItemBaseProps>(
       children,
       className,
       colorScheme = "neutral",
+      description,
       endDecorator,
       startDecorator,
       ...props
@@ -43,8 +46,14 @@ export const MenuItemBase = forwardRef<HTMLDivElement, MenuItemBaseProps>(
       ? cloneElement(
           newElement,
           undefined,
-          <Box asChild flex="1">
-            {fallbackSpan(newElement.props.children)}
+          <Box flex="1">
+            <Box asChild>{fallbackSpan(newElement.props.children)}</Box>
+
+            {description && (
+              <Text color="fg.tertiary" fontSize="sm">
+                {description}
+              </Text>
+            )}
           </Box>,
         )
       : children;
