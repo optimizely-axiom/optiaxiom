@@ -18,13 +18,13 @@ type ControlBaseProps = BoxProps<
   {
     children?: ReactNode;
     control: ReactElement;
-    endDecorator?: ReactNode;
+    description?: ReactNode;
   }
 >;
 
 export const ControlBase = forwardRef<HTMLDivElement, ControlBaseProps>(
   (
-    { children, className, control, endDecorator, id: idProp, ...props },
+    { children, className, control, description, id: idProp, ...props },
     ref,
   ) => {
     const { restProps, sprinkleProps } = extractSprinkles(props);
@@ -43,13 +43,13 @@ export const ControlBase = forwardRef<HTMLDivElement, ControlBaseProps>(
           <RadixLabel.Root htmlFor={id}>{children}</RadixLabel.Root>
         </Text>
 
-        {endDecorator && (
+        {description && (
           <Box
             asChild
             color={props.disabled ? "fg.disabled" : "fg.secondary"}
-            {...styles.decorator()}
+            {...styles.description()}
           >
-            {fallbackSpan(endDecorator)}
+            {fallbackSpan(description)}
           </Box>
         )}
       </Box>

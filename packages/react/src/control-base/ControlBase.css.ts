@@ -16,8 +16,8 @@ export const controlBase = recipe({
 
       color: theme.colors["fg.default"],
       gridTemplate: `
-            "indicator label"     auto
-            ".         decorator" auto / min-content auto`,
+            "indicator label"       auto
+            ".         description" auto / min-content auto`,
 
       selectors: {
         [`&:has(${marker}:not([data-disabled]):not([data-state="unchecked"])):hover`]:
@@ -84,14 +84,14 @@ export const label = recipe({
   ],
 });
 
-export const decorator = recipe({
+export const description = recipe({
   base: [
     {
       fontSize: "sm",
       pl: "xs",
     },
     style({
-      gridArea: "decorator",
+      gridArea: "description",
     }),
   ],
 });

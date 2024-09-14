@@ -10,12 +10,12 @@ import * as styles from "./Checkbox.css";
 type CheckboxProps = BoxProps<
   typeof RadixCheckbox.Root,
   {
-    endDecorator?: ReactNode;
+    description?: ReactNode;
   }
 >;
 
 export const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>(
-  ({ children, defaultChecked, endDecorator, id, ...props }, ref) => {
+  ({ children, defaultChecked, description, id, ...props }, ref) => {
     return (
       <ControlBase
         control={
@@ -34,7 +34,7 @@ export const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>(
             </RadixCheckbox.Root>
           </Box>
         }
-        endDecorator={endDecorator}
+        description={description}
         id={id}
         ref={ref}
         {...props}
