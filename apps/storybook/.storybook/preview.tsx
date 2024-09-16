@@ -24,6 +24,7 @@ export const parameters = {
       method: "alphabetical",
     },
   },
+  useAxiomProvider: true,
 };
 
 export default {
@@ -37,7 +38,4 @@ export default {
         <Story />
       ),
   ],
-  parameters: {
-    useAxiomProvider: true,
-  },
 } satisfies Preview;
