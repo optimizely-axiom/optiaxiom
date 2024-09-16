@@ -1,6 +1,5 @@
 import type { AppProps } from "next/app";
 
-import { toaster } from "@/components/toaster";
 import { AxiomProvider } from "@optiaxiom/react";
 import { useEffect } from "react";
 
@@ -39,7 +38,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   }, []);
 
   return (
-    <AxiomProvider toast={{ toaster }}>
+    <AxiomProvider>
       <Component {...pageProps} />
     </AxiomProvider>
   );

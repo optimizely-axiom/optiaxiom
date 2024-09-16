@@ -32,7 +32,7 @@ export function AxiomProvider({
     <TooltipPrimitive.Provider {...tooltip}>
       {children}
 
-      {toast && <ToastProvider {...toast} />}
+      <ToastProvider {...toast} />
     </TooltipPrimitive.Provider>
   );
 }

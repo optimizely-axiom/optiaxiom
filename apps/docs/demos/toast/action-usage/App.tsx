@@ -1,4 +1,3 @@
-import { toaster } from "@/components/toaster";
 import {
   Button,
   Flex,
@@ -6,6 +5,7 @@ import {
   Toast,
   ToastAction,
   ToastTitle,
+  toaster,
 } from "@optiaxiom/react";
 import { IconTrash } from "@tabler/icons-react";
 import { useState } from "react";
