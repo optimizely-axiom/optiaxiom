@@ -1,17 +1,14 @@
+import { toaster } from "@/components/toaster";
 import {
   Button,
   Flex,
   Text,
   Toast,
   ToastAction,
-  ToastProvider,
   ToastTitle,
-  createToaster,
 } from "@optiaxiom/react";
 import { IconTrash } from "@tabler/icons-react";
 import { useState } from "react";
-
-const toaster = createToaster();
 
 export function App() {
   const [status, setStatus] = useState("in-progress");
@@ -48,8 +45,6 @@ export function App() {
       >
         Restore
       </Button>
-
-      <ToastProvider toaster={toaster} />
     </Flex>
   );
 }

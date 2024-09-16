@@ -28,10 +28,13 @@ export const parameters = {
 
 export default {
   decorators: [
-    (Story) => (
-      <components.AxiomProvider>
+    (Story, context) =>
+      context.parameters.useAxiomProvider ? (
+        <components.AxiomProvider>
+          <Story />
+        </components.AxiomProvider>
+      ) : (
         <Story />
-      </components.AxiomProvider>
-    ),
+      ),
   ],
 } satisfies Preview;

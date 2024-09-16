@@ -1,16 +1,66 @@
-import { Callout } from "nextra/components";
+import { Steps } from "nextra/components";
 
 # Toast
 
 Display a brief notification.
 
+## Setup
+
+<Steps>
+### Create toaster
+
+Create a `toaster` instance with the `createToaster()` method.
+
+```jsx
+// toaster.ts
+import { createToaster } from "@optiaxiom/react";
+
+export const toaster = createToaster();
+```
+
+### Provide toaster
+
+Provide this `toaster` to your `AxiomProvider` component at the root of your application.
+
+```jsx
+import { AxiomProvider } from "@optiaxiom/react";
+
+import { toaster } from "./toaster";
+
+export function App() {
+  return (
+    <AxiomProvider toast={{ toaster }}>
+      {/* Your app code here */}
+    </AxiomProvider>
+  );
+}
+```
+
+### Use toaster
+
+Use `toaster.create()` along with the `Toast` component to add toasts.
+
+```jsx
+import { Button, Toast, ToastTitle } from "@optiaxiom/react";
+
+import { toaster } from "./toaster";
+
+export function MyComponent() {
+  function onClick() {
+    toaster.toast(
+      <Toast>
+        <ToastTitle>Hello world!</ToastTitle>
+      </Toast>,
+    );
+  }
+}
+```
+
+</Steps>
+
 ## Documentation
 
 ### Usage
-
-`ToastProvider` component provides the context manager for toasts and is also responsible for displays them. It must be rendered at the root of your application and should be used only once.
-
-Toasts are managed using a `toaster` instance returned from the `createToaster()` method. Use `toaster.create()` along with the `Toast` component to add toasts.
 
 <ax-demo name="toast/usage" />
 
