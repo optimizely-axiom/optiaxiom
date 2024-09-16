@@ -183,6 +183,15 @@ importers:
         specifier: ^8.2.9
         version: 8.3.0
 
+  packages/globals:
+    dependencies:
+      react:
+        specifier: ^16.14.0 || ^17.0.0 || ^18.0.0
+        version: 18.3.1
+      react-dom:
+        specifier: ^16.14.0 || ^17.0.0 || ^18.0.0
+        version: 18.3.1(react@18.3.1)
+
   packages/react:
     dependencies:
       '@fontsource-variable/fira-code':
@@ -191,6 +200,9 @@ importers:
       '@mantine/hooks':
         specifier: ^7.12.2
         version: 7.12.2(react@18.3.1)
+      '@optiaxiom/globals':
+        specifier: workspace:^
+        version: link:../globals
       '@radix-ui/react-accordion':
         specifier: ^1.2.0
         version: 1.2.0(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
