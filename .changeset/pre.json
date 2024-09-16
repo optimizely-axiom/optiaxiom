@@ -6,11 +6,13 @@
     "@optiaxiom/storybook": "0.0.0",
     "@optiaxiom/react": "0.1.0-alpha.1",
     "@optiaxiom/shared": "0.0.0",
-    "@optiaxiom/web-components": "0.1.0-next.0"
+    "@optiaxiom/web-components": "0.1.0-next.0",
+    "@optiaxiom/globals": "0.1.0"
   },
   "changesets": [
     "brave-pigs-clap",
     "cyan-dogs-repair",
+    "eight-trees-watch",
     "giant-bags-hammer",
     "heavy-coins-sniff",
     "hip-snails-film",
