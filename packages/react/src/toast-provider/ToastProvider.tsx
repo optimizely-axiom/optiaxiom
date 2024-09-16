@@ -9,12 +9,11 @@ import {
   useSyncExternalStore,
 } from "react";
 
-import type { createToaster } from "./createToaster";
-
 import { type BoxProps } from "../box";
 import { Flex } from "../flex";
 import { extractSprinkles } from "../sprinkles";
 import * as styles from "./ToastProvider.css";
+import { type createToaster, toaster } from "./createToaster";
 import { useOverflowAnchor } from "./useOverflowAnchor";
 
 type ToastProps = BoxProps<
@@ -22,7 +21,10 @@ type ToastProps = BoxProps<
   {
     children?: never;
     container?: ComponentPropsWithoutRef<typeof Portal>["container"];
-    toaster: ReturnType<typeof createToaster>;
+    /**
+     * An instance of toaster returned from the `createToaster` method.
+     */
+    toaster?: ReturnType<typeof createToaster>;
   } & ComponentPropsWithoutRef<typeof RadixToast.ToastProvider> &
     styles.ViewportVariants
 >;
@@ -45,16 +47,16 @@ export const ToastProvider = forwardRef<HTMLOListElement, ToastProps>(
       position = "bottom-right",
       swipeDirection,
       swipeThreshold,
-      toaster,
+      toaster: toasterProp = toaster,
       ...props
     },
     outerRef,
   ) => {
     const { restProps, sprinkleProps } = extractSprinkles(props);
     const toasts = useSyncExternalStore(
-      toaster.store.subscribe,
-      toaster.store.getSnapshot,
-      toaster.store.getServerSnapshot,
+      toasterProp.store.subscribe,
+      toasterProp.store.getSnapshot,
+      toasterProp.store.getServerSnapshot,
     );
 
     const innerRef = useRef<HTMLOListElement>(null);
@@ -77,7 +79,7 @@ export const ToastProvider = forwardRef<HTMLOListElement, ToastProps>(
             key: id,
             onOpenChange: (open: boolean) => {
               toast.props.onOpenChange?.(open);
-              toaster.remove(id);
+              toasterProp.remove(id);
             },
             open,
           }),

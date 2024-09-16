@@ -58,3 +58,5 @@ export const createToaster = () => {
     },
   };
 };
+
+export const toaster = createToaster();

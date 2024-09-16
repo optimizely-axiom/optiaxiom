@@ -5,10 +5,8 @@ import {
   Toast,
   ToastProvider,
   ToastTitle,
-  createToaster,
+  toaster,
 } from "@optiaxiom/react";
-
-const toaster = createToaster();
 
 const messages = [
   "Short message",
@@ -17,7 +15,7 @@ const messages = [
 ];
 
 export function App({
-  position,
+  position = "top",
 }: Pick<ComponentPropsWithRef<typeof ToastProvider>, "position">) {
   return (
     <>
@@ -33,7 +31,7 @@ export function App({
         Create Toast
       </Button>
 
-      <ToastProvider position={position} toaster={toaster} />
+      <ToastProvider position={position} />
     </>
   );
 }
