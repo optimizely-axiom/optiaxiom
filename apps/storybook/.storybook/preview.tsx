@@ -37,4 +37,7 @@ export default {
         <Story />
       ),
   ],
+  parameters: {
+    useAxiomProvider: true,
+  },
 } satisfies Preview;
