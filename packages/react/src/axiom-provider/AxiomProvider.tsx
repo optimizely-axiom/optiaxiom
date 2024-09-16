@@ -1,8 +1,8 @@
+import { AxiomVersionContext } from "@optiaxiom/globals";
 import * as TooltipPrimitive from "@radix-ui/react-tooltip";
 import {
   type ComponentPropsWithoutRef,
   type ReactNode,
-  createContext,
   useContext,
 } from "react";
 
@@ -27,8 +27,6 @@ type AxiomProviderProps = {
     "children"
   >;
 };
-
-const AxiomVersionContext = createContext<string | undefined>(undefined);
 
 export function AxiomProvider({
   children,
