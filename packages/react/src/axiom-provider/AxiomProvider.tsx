@@ -1,7 +1,12 @@
-import type { ComponentPropsWithoutRef, ReactNode } from "react";
-
 import * as TooltipPrimitive from "@radix-ui/react-tooltip";
+import {
+  type ComponentPropsWithoutRef,
+  type ReactNode,
+  createContext,
+  useContext,
+} from "react";
 
+import pkg from "../../package.json";
 import { ToastProvider } from "../toast-provider";
 
 type AxiomProviderProps = {
@@ -23,17 +28,26 @@ type AxiomProviderProps = {
   >;
 };
 
+const AxiomVersionContext = createContext<string | undefined>(undefined);
+
 export function AxiomProvider({
   children,
   toast,
   tooltip,
 }: AxiomProviderProps) {
-  return (
-    <TooltipPrimitive.Provider {...tooltip}>
-      {children}
+  const axiom = useContext(AxiomVersionContext);
+  if (axiom) {
+    return children;
+  }
 
-      <ToastProvider {...toast} />
-    </TooltipPrimitive.Provider>
+  return (
+    <AxiomVersionContext.Provider value={pkg.version}>
+      <TooltipPrimitive.Provider {...tooltip}>
+        {children}
+
+        <ToastProvider {...toast} />
+      </TooltipPrimitive.Provider>
+    </AxiomVersionContext.Provider>
   );
 }
 
