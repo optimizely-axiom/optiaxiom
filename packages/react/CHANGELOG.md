@@ -1,5 +1,16 @@
 # @optiaxiom/react
 
+## 0.1.0-next.16
+
+### Minor Changes
+
+- b9a9ea2: allow module federation in axiom
+
+### Patch Changes
+
+- Updated dependencies [b9a9ea2]
+  - @optiaxiom/globals@0.2.0-next.0
+
 ## 0.1.0-next.15
 
 ### Patch Changes
