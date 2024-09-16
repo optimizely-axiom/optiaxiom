@@ -1,9 +1,12 @@
 import type { AppProps } from "next/app";
 
-import { AxiomProvider } from "@optiaxiom/react";
-import { useEffect } from "react";
+import { Suspense, lazy, useEffect } from "react";
 
 import "./globals.css";
+
+const AxiomProvider = lazy(async () => ({
+  default: (await import("@optiaxiom/react")).AxiomProvider,
+}));
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   /**
@@ -38,8 +41,10 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   }, []);
 
   return (
-    <AxiomProvider>
-      <Component {...pageProps} />
-    </AxiomProvider>
+    <Suspense>
+      <AxiomProvider>
+        <Component {...pageProps} />
+      </AxiomProvider>
+    </Suspense>
   );
 }
