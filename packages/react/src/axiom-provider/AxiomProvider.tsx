@@ -35,7 +35,7 @@ export function AxiomProvider({
 }: AxiomProviderProps) {
   const axiom = useContext(AxiomVersionContext);
   if (axiom) {
-    return children;
+    return <>{children}</>;
   }
 
   return (
