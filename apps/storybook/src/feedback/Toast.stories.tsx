@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import type { ComponentPropsWithoutRef } from "react";
 
 import {
+  AxiomProvider,
   Button,
   Flex,
   Toast,
@@ -13,10 +14,10 @@ import {
 import { action } from "@storybook/addon-actions";
 import { expect, screen, userEvent, waitFor, within } from "@storybook/test";
 
+const toaster = createToaster();
+
 type StoryProps = ComponentPropsWithoutRef<typeof Toast> &
   Pick<ComponentPropsWithoutRef<typeof ToastProvider>, "position">;
-
-const toaster = createToaster();
 
 export default {
   argTypes: {
@@ -36,17 +37,21 @@ export default {
     children: <ToastTitle>This is an example toast message.</ToastTitle>,
   },
   component: Toast,
-  render: function Render({ position, ...args }) {
-    return (
-      <>
-        <Button onClick={() => toaster.create(<Toast {...args} />)}>
-          Show Toast
-        </Button>
-
-        <ToastProvider position={position} toaster={toaster} />
-      </>
-    );
+  decorators: [
+    (Story, context) => (
+      <AxiomProvider toast={{ position: context.args.position, toaster }}>
+        <Story />
+      </AxiomProvider>
+    ),
+  ],
+  parameters: {
+    useAxiomProvider: false,
   },
+  render: (args) => (
+    <Button onClick={() => toaster.create(<Toast {...args} />)}>
+      Show Toast
+    </Button>
+  ),
 } as Meta<StoryProps>;
 
 type Story = StoryObj<StoryProps>;
@@ -64,42 +69,38 @@ export const Appearance: Story = {
       expect(await screen.findAllByRole("status")).toHaveLength(4),
     );
   },
-  render: function Render({ position, ...args }) {
+  render: (args) => {
     return (
-      <>
-        <Flex flexDirection="row">
-          <Button
-            onClick={() =>
-              toaster.create(<Toast {...args} colorScheme="neutral" />)
-            }
-          >
-            Neutral
-          </Button>
-          <Button
-            onClick={() =>
-              toaster.create(<Toast {...args} colorScheme="success" />)
-            }
-          >
-            Success
-          </Button>
-          <Button
-            onClick={() =>
-              toaster.create(<Toast {...args} colorScheme="warning" />)
-            }
-          >
-            Warning
-          </Button>
-          <Button
-            onClick={() =>
-              toaster.create(<Toast {...args} colorScheme="danger" />)
-            }
-          >
-            Danger
-          </Button>
-        </Flex>
-
-        <ToastProvider position={position} toaster={toaster} />
-      </>
+      <Flex flexDirection="row">
+        <Button
+          onClick={() =>
+            toaster.create(<Toast {...args} colorScheme="neutral" />)
+          }
+        >
+          Neutral
+        </Button>
+        <Button
+          onClick={() =>
+            toaster.create(<Toast {...args} colorScheme="success" />)
+          }
+        >
+          Success
+        </Button>
+        <Button
+          onClick={() =>
+            toaster.create(<Toast {...args} colorScheme="warning" />)
+          }
+        >
+          Warning
+        </Button>
+        <Button
+          onClick={() =>
+            toaster.create(<Toast {...args} colorScheme="danger" />)
+          }
+        >
+          Danger
+        </Button>
+      </Flex>
     );
   },
 };

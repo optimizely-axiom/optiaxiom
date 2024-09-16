@@ -2,8 +2,16 @@ import type { ComponentPropsWithoutRef, ReactNode } from "react";
 
 import * as TooltipPrimitive from "@radix-ui/react-tooltip";
 
+import { ToastProvider } from "../toast-provider";
+
 type AxiomProviderProps = {
   children?: ReactNode;
+  /**
+   * Props for the `ToastProvider` component
+   *
+   * {@link https://optimizely-axiom.github.io/optiaxiom/components/toast/ Documentation}
+   */
+  toast?: Omit<ComponentPropsWithoutRef<typeof ToastProvider>, "children">;
   /**
    * Props for the `TooltipProvider` component
    *
@@ -15,10 +23,16 @@ type AxiomProviderProps = {
   >;
 };
 
-export function AxiomProvider({ children, tooltip }: AxiomProviderProps) {
+export function AxiomProvider({
+  children,
+  toast,
+  tooltip,
+}: AxiomProviderProps) {
   return (
     <TooltipPrimitive.Provider {...tooltip}>
       {children}
+
+      {toast && <ToastProvider {...toast} />}
     </TooltipPrimitive.Provider>
   );
 }
