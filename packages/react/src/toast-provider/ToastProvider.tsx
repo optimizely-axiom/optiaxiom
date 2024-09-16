@@ -1,12 +1,12 @@
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import { Portal } from "@radix-ui/react-portal";
 import * as RadixToast from "@radix-ui/react-toast";
-import { useAtomValue } from "jotai";
 import {
   type ComponentPropsWithoutRef,
   cloneElement,
   forwardRef,
   useRef,
+  useSyncExternalStore,
 } from "react";
 
 import type { createToaster } from "./createToaster";
@@ -51,7 +51,11 @@ export const ToastProvider = forwardRef<HTMLOListElement, ToastProps>(
     outerRef,
   ) => {
     const { restProps, sprinkleProps } = extractSprinkles(props);
-    const toasts = useAtomValue(toaster.atom);
+    const toasts = useSyncExternalStore(
+      toaster.store.subscribe,
+      toaster.store.getSnapshot,
+      toaster.store.getServerSnapshot,
+    );
 
     const innerRef = useRef<HTMLOListElement>(null);
     const ref = useComposedRefs(innerRef, outerRef);
