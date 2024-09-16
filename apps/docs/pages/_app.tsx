@@ -18,7 +18,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       for (const layerRule of sheet.cssRules) {
         if (
           layerRule instanceof CSSLayerBlockRule &&
-          layerRule.name === "theme"
+          layerRule.name === "optiaxiom.base"
         ) {
           for (const supportsRule of layerRule.cssRules) {
             if (supportsRule instanceof CSSSupportsRule) {
