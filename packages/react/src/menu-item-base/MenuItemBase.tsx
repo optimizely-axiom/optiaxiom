@@ -1,4 +1,5 @@
 import { Slot, Slottable } from "@radix-ui/react-slot";
+import { useId } from "@reach/auto-id";
 import {
   type ElementType,
   type ReactNode,
@@ -41,16 +42,21 @@ export const MenuItemBase = forwardRef<HTMLDivElement, MenuItemBaseProps>(
     },
     ref,
   ) => {
+    const labelId = useId();
+    const descriptionId = useId();
+
     const newElement = isValidElement(children) ? children : null;
     children = newElement
       ? cloneElement(
           newElement,
           undefined,
           <Box flex="1">
-            <Box asChild>{fallbackSpan(newElement.props.children)}</Box>
+            <Box asChild id={labelId}>
+              {fallbackSpan(newElement.props.children)}
+            </Box>
 
             {description && (
-              <Text color="fg.tertiary" fontSize="sm">
+              <Text color="fg.tertiary" fontSize="sm" id={descriptionId}>
                 {description}
               </Text>
             )}
@@ -60,6 +66,8 @@ export const MenuItemBase = forwardRef<HTMLDivElement, MenuItemBaseProps>(
 
     return (
       <Flex
+        aria-describedby={description ? descriptionId : undefined}
+        aria-labelledby={labelId}
         asChild
         ref={ref}
         {...styles.item({ colorScheme }, className)}

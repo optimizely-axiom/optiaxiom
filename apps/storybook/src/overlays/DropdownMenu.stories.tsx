@@ -112,6 +112,20 @@ export const Description: Story = {
     ),
     defaultOpen: true,
   },
+  play: async () => {
+    await waitFor(
+      async () =>
+        await expect(
+          screen.getByRole("menuitem", { name: "New task" }),
+        ).toBeVisible(),
+    );
+    await waitFor(
+      async () =>
+        await expect(
+          screen.getByRole("menuitem", { description: "Copy this task" }),
+        ).toBeVisible(),
+    );
+  },
 };
 
 export const LongContent: Story = {
