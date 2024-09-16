@@ -1,4 +1,5 @@
 import hash from "@emotion/hash";
+import json from "@rollup/plugin-json";
 import { createFilter } from "@rollup/pluginutils";
 import { vanillaExtractPlugin } from "@vanilla-extract/rollup-plugin";
 import { readFileSync } from "node:fs";
@@ -47,6 +48,7 @@ export default defineConfig([
         },
         target: "esnext",
       }),
+      json(),
       vanillaExtractPlugin({
         identifiers: (options) =>
           normalizeIdentifier(hash(`${pkg.version}_${options.hash}`)),
