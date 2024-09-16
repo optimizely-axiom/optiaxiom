@@ -1,8 +1,6 @@
-import type { ComponentPropsWithoutRef, ReactElement } from "react";
+import type { ReactElement } from "react";
 
-import type { Toast } from "../toast/Toast";
-
-type ToastElement = ReactElement<ComponentPropsWithoutRef<typeof Toast>>;
+type ToastElement = ReactElement;
 type ToastItem = {
   id: string;
   open: boolean;

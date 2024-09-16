@@ -13,7 +13,7 @@ import { type BoxProps } from "../box";
 import { Flex } from "../flex";
 import { extractSprinkles } from "../sprinkles";
 import * as styles from "./ToastProvider.css";
-import { type createToaster, toaster } from "./createToaster";
+import { type createToaster, toaster } from "./toaster";
 import { useOverflowAnchor } from "./useOverflowAnchor";
 
 type ToastProps = BoxProps<
