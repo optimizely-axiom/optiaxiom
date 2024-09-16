@@ -1,0 +1,31 @@
+{
+  "name": "@optiaxiom/globals",
+  "repository": {
+    "directory": "packages/globals",
+    "type": "git",
+    "url": "https://github.com/optimizely-axiom/optiaxiom.git"
+  },
+  "type": "module",
+  "version": "0.1.0",
+  "files": [
+    "dist/**",
+    "LICENSE"
+  ],
+  "license": "Apache-2.0",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "rm -rf dist && NODE_ENV=production rollup -c",
+    "dev": "rm -rf dist && rollup -cw",
+    "lint": "oas-lint"
+  },
+  "peerDependencies": {
+    "react": "^16.14.0 || ^17.0.0 || ^18.0.0",
+    "react-dom": "^16.14.0 || ^17.0.0 || ^18.0.0"
+  }
+}

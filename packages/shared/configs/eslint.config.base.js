@@ -124,6 +124,7 @@ export default tsEslint.config(
         project: [
           "./apps/docs/tsconfig.json",
           "./apps/storybook/tsconfig.json",
+          "./packages/globals/tsconfig.json",
           "./packages/react/tsconfig.json",
           "./packages/shared/tsconfig.json",
           "./packages/web-components/tsconfig.json",
