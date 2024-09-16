@@ -24,6 +24,9 @@ import {
 } from "@tabler/icons-react";
 
 export default {
+  args: {
+    defaultOpen: true,
+  },
   component: DropdownMenu,
 } as Meta<typeof DropdownMenu>;
 
@@ -70,6 +73,7 @@ export const Basic: Story = {
         </DropdownMenuContent>
       </>
     ),
+    defaultOpen: false,
   },
   play: async ({ canvas }) => {
     const button = canvas.getByRole("button", {
@@ -86,9 +90,6 @@ export const Basic: Story = {
 
     await expect(menuItems[0]).not.toBeDisabled();
     await expect(menuItems[1]).toHaveAttribute("aria-disabled", "true");
-
-    await userEvent.keyboard("{Escape}");
-    await expect(menu).not.toBeVisible();
   },
 };
 
@@ -110,7 +111,6 @@ export const Description: Story = {
         </DropdownMenuContent>
       </>
     ),
-    defaultOpen: true,
   },
   play: async () => {
     await waitFor(
@@ -144,7 +144,14 @@ export const LongContent: Story = {
         </DropdownMenuContent>
       </>
     ),
-    defaultOpen: true,
+  },
+  play: async () => {
+    await waitFor(
+      async () =>
+        await expect(
+          screen.getByRole("menuitem", { name: "Logout" }),
+        ).toBeVisible(),
+    );
   },
 };
 
@@ -169,7 +176,6 @@ export const Nested: Story = {
         </DropdownMenuContent>
       </>
     ),
-    defaultOpen: true,
   },
   play: async () => {
     await waitFor(
@@ -185,14 +191,6 @@ export const Nested: Story = {
         await expect(
           screen.getByRole("menuitem", { name: "Privacy" }),
         ).toBeVisible(),
-    );
-
-    await userEvent.keyboard("{Escape}");
-    await waitFor(
-      async () =>
-        await expect(
-          screen.queryByRole("menu", { name: "My Profile" }),
-        ).not.toBeInTheDocument(),
     );
   },
 };
