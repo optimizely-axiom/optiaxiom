@@ -8,16 +8,15 @@ Axiom is the technical implementation of the Optimizely Design System.
 npm install @optiaxiom/react
 ```
 
-Please read the full [documentation](https://optimizely-axiom.github.io/optiaxiom/) for guides, examples, and API.
+- [Documentation](https://optimizely-axiom.github.io/optiaxiom/)
+- [Philosophy](./PHILOSOPHY.md)
 
-| Package name                                                                                                   | Description      |
-| -------------------------------------------------------------------------------------------------------------- | ---------------- |
-| [`@optiaxiom/react`](https://github.com/optimizely-axiom/optiaxiom/tree/main/packages/react)                   | React components |
-| [`@optiaxiom/web-components`](https://github.com/optimizely-axiom/optiaxiom/tree/main/packages/web-components) | Web components   |
+## Packages
+
+- [`@optiaxiom/react`](https://github.com/optimizely-axiom/optiaxiom/tree/main/packages/react): React component library
+- [`@optiaxiom/web-components`](https://github.com/optimizely-axiom/optiaxiom/tree/main/packages/web-components): Web component library
 
 ## Contributing
-
-Please read the [philosophy](./PHILOSOPHY.md) page for an overview and list of tools used in the project.
 
 Clone the project and run:
 
