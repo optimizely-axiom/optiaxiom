@@ -5,6 +5,9 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "noEmit": true,
+    "paths": {
+      "@optiaxiom/globals": ["../../packages/globals/src"]
+    },
     "types": ["@testing-library/jest-dom"]
   },
   "include": ["."],
