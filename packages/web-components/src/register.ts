@@ -4,6 +4,7 @@
 
 import type { ReactElement } from "react";
 
+import { ThemeProvider } from "@optiaxiom/react";
 import { options } from "preact";
 import {
   type ComponentType,
@@ -254,7 +255,11 @@ const withContextProvider = <P extends { context?: unknown }>(
     return createElement(
       CustomElementContext.Provider,
       { value: element },
-      createElement<P>(Component, props),
+      createElement(
+        ThemeProvider,
+        { selector: ":host" },
+        createElement<P>(Component, props),
+      ),
     );
   };
 };

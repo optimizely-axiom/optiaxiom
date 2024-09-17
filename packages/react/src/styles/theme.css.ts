@@ -1,10 +1,7 @@
-import {
-  createGlobalTheme,
-  createGlobalThemeContract,
-  // eslint-disable-next-line local/no-global-styles
-} from "@vanilla-extract/css";
+// eslint-disable-next-line local/no-global-styles
+import { createGlobalThemeContract } from "@vanilla-extract/css";
 
-import { tokens, tokensDark } from "../tokens";
+import { tokens } from "../tokens";
 import { mapValues } from "../utils";
 
 const createThemeContractFromTokens = <
@@ -21,17 +18,7 @@ const createThemeContractFromTokens = <
   }) as T;
 };
 
-const createGlobalThemeContractOptimized = <T extends object>(
-  tokens: T,
-  mapFn: (value: null | string) => string,
-  // @ts-expect-error -- preserve original token types
-) => createGlobalThemeContract(tokens, mapFn) as unknown as T;
-
-export const theme = createGlobalThemeContractOptimized(
+export const theme = createGlobalThemeContract(
   createThemeContractFromTokens(tokens, ""),
   (value) => `ax-${value}`,
 );
-// @ts-expect-error -- preserve original token types
-createGlobalTheme(":root, :host", theme, tokens);
-// @ts-expect-error -- preserve original token types
-createGlobalTheme(":root.dark, :host.dark", theme, tokensDark);

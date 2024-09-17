@@ -73,6 +73,7 @@ export * from "./tabs-list";
 export * from "./tabs-trigger";
 export * from "./text";
 export * from "./textarea";
+export * from "./theme-provider";
 export * from "./toast";
 export * from "./toast-action";
 export * from "./toast-provider";
