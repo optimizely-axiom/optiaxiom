@@ -191,6 +191,10 @@ importers:
       react-dom:
         specifier: ^16.14.0 || ^17.0.0 || ^18.0.0
         version: 18.3.1(react@18.3.1)
+    devDependencies:
+      '@optiaxiom/shared':
+        specifier: workspace:^
+        version: link:../shared
 
   packages/react:
     dependencies:
