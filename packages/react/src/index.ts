@@ -42,6 +42,7 @@ export * from "./dropdown-menu-label";
 export * from "./dropdown-menu-separator";
 export * from "./dropdown-menu-trigger";
 export * from "./field";
+export * from "./file-upload";
 export * from "./flex";
 export * from "./grid";
 export * from "./heading";
