@@ -6,7 +6,7 @@ import {
   useContext,
 } from "react";
 
-import pkg from "../../package.json";
+import { version } from "../../package.json";
 import { ToastProvider } from "../toast-provider";
 
 type AxiomProviderProps = {
@@ -39,7 +39,7 @@ export function AxiomProvider({
   }
 
   return (
-    <AxiomVersionContext.Provider value={pkg.version}>
+    <AxiomVersionContext.Provider value={version}>
       <TooltipPrimitive.Provider {...tooltip}>
         {children}
 
