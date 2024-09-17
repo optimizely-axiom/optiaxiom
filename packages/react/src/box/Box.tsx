@@ -1,7 +1,6 @@
-import "@fontsource-variable/fira-code";
+import "@optiaxiom/globals/fonts";
 import { Slot } from "@radix-ui/react-slot";
 import clsx from "clsx";
-import "inter-ui/inter-variable.css";
 import {
   type ComponentPropsWithoutRef,
   type ElementType,
