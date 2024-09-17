@@ -294,6 +294,9 @@ importers:
       '@reach/auto-id':
         specifier: ^0.18.0
         version: 0.18.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@vanilla-extract/dynamic':
+        specifier: ^2.1.2
+        version: 2.1.2
       '@vanilla-extract/sprinkles':
         specifier: ^1.6.3
         version: 1.6.3(@vanilla-extract/css@1.15.5)
@@ -2742,6 +2745,9 @@ packages:
 
   '@vanilla-extract/css@1.15.5':
     resolution: {integrity: sha512-N1nQebRWnXvlcmu9fXKVUs145EVwmWtMD95bpiEKtvehHDpUhmO1l2bauS7FGYKbi3dU1IurJbGpQhBclTr1ng==}
+
+  '@vanilla-extract/dynamic@2.1.2':
+    resolution: {integrity: sha512-9BGMciD8rO1hdSPIAh1ntsG4LPD3IYKhywR7VOmmz9OO4Lx1hlwkSg3E6X07ujFx7YuBfx0GDQnApG9ESHvB2A==}
 
   '@vanilla-extract/integration@7.1.9':
     resolution: {integrity: sha512-bkikYnUdEiUoUZGX3tErmkpU43M4Q0McZcSUHutP/pQCeuDB29t8brLOLzdkahwD+RteX2/R3ukmIm3lAYzUnA==}
@@ -10101,6 +10107,10 @@ snapshots:
       picocolors: 1.0.1
     transitivePeerDependencies:
       - babel-plugin-macros
+
+  '@vanilla-extract/dynamic@2.1.2':
+    dependencies:
+      '@vanilla-extract/private': 1.0.6
 
   '@vanilla-extract/integration@7.1.9(@types/node@22.5.4)(terser@5.31.3)':
     dependencies:

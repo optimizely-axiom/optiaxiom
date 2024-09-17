@@ -7,6 +7,7 @@ import {
 } from "react";
 
 import { version } from "../../package.json";
+import { ThemeProvider } from "../theme-provider";
 import { ToastProvider } from "../toast-provider";
 
 type AxiomProviderProps = {
@@ -41,9 +42,11 @@ export function AxiomProvider({
   return (
     <AxiomVersionContext.Provider value={version}>
       <TooltipPrimitive.Provider {...tooltip}>
-        {children}
+        <ThemeProvider>
+          {children}
 
-        <ToastProvider {...toast} />
+          <ToastProvider {...toast} />
+        </ThemeProvider>
       </TooltipPrimitive.Provider>
     </AxiomVersionContext.Provider>
   );
