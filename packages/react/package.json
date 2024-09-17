@@ -70,6 +70,7 @@
     "@vanilla-extract/sprinkles": "^1.6.3",
     "clsx": "^2.1.1",
     "cmdk": "^1.0.0",
+    "downshift": "^9.0.8",
     "use-sync-external-store": "^1.2.2"
   },
   "devDependencies": {
