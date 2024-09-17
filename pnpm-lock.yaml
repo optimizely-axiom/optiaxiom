@@ -185,6 +185,12 @@ importers:
 
   packages/globals:
     dependencies:
+      '@fontsource-variable/fira-code':
+        specifier: ^5.0.20
+        version: 5.0.20
+      inter-ui:
+        specifier: ^4.0.2
+        version: 4.0.2
       react:
         specifier: ^16.14.0 || ^17.0.0 || ^18.0.0
         version: 18.3.1
@@ -198,9 +204,6 @@ importers:
 
   packages/react:
     dependencies:
-      '@fontsource-variable/fira-code':
-        specifier: ^5.0.20
-        version: 5.0.20
       '@mantine/hooks':
         specifier: ^7.12.2
         version: 7.12.2(react@18.3.1)
@@ -306,9 +309,6 @@ importers:
       cmdk:
         specifier: ^1.0.0
         version: 1.0.0(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      inter-ui:
-        specifier: ^4.0.2
-        version: 4.0.2
       react:
         specifier: ^16.14.0 || ^17.0.0 || ^18.0.0
         version: 18.3.1

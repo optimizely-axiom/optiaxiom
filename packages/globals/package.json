@@ -16,6 +16,9 @@
     ".": {
       "import": "./dist/index.js",
       "types": "./dist/index.d.ts"
+    },
+    "./fonts": {
+      "import": "./dist/fonts.js"
     }
   },
   "types": "dist/index.d.ts",
@@ -24,11 +27,15 @@
     "dev": "rm -rf dist && rollup -cw",
     "lint": "oas-lint"
   },
-  "peerDependencies": {
-    "react": "^16.14.0 || ^17.0.0 || ^18.0.0",
-    "react-dom": "^16.14.0 || ^17.0.0 || ^18.0.0"
+  "dependencies": {
+    "@fontsource-variable/fira-code": "^5.0.20",
+    "inter-ui": "^4.0.2"
   },
   "devDependencies": {
     "@optiaxiom/shared": "workspace:^"
+  },
+  "peerDependencies": {
+    "react": "^16.14.0 || ^17.0.0 || ^18.0.0",
+    "react-dom": "^16.14.0 || ^17.0.0 || ^18.0.0"
   }
 }

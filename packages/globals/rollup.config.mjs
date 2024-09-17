@@ -16,6 +16,7 @@ export default defineConfig([
         ")(?:/.+)?$",
     ),
     input: {
+      fonts: "src/fonts.ts",
       index: "src/index.ts",
     },
     output: {

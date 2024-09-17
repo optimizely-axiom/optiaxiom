@@ -33,7 +33,6 @@
     "test": "vitest"
   },
   "dependencies": {
-    "@fontsource-variable/fira-code": "^5.0.20",
     "@mantine/hooks": "^7.12.2",
     "@optiaxiom/globals": "workspace:^",
     "@radix-ui/react-accordion": "^1.2.0",
@@ -69,7 +68,6 @@
     "@vanilla-extract/sprinkles": "^1.6.3",
     "clsx": "^2.1.1",
     "cmdk": "^1.0.0",
-    "inter-ui": "^4.0.2",
     "react-textarea-autosize": "^8.5.3"
   },
   "devDependencies": {
