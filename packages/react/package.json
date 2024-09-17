@@ -34,6 +34,7 @@
   },
   "dependencies": {
     "@fontsource-variable/fira-code": "^5.0.20",
+    "@headlessui/react": "^2.1.8",
     "@mantine/hooks": "^7.12.2",
     "@optiaxiom/globals": "workspace:^",
     "@radix-ui/react-accordion": "^1.2.0",
