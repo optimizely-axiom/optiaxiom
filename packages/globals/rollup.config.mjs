@@ -1,3 +1,4 @@
+import { vanillaExtractPlugin } from "@vanilla-extract/rollup-plugin";
 import { readFileSync } from "node:fs";
 import { defineConfig } from "rollup";
 import dts from "rollup-plugin-dts";
@@ -21,6 +22,11 @@ export default defineConfig([
     },
     output: {
       dir: "dist",
+      entryFileNames: (info) => {
+        return info.name.endsWith(".css")
+          ? `${info.name.replace(/\.css$/, "-css")}.js`
+          : "[name].js";
+      },
       format: "es",
       preserveModules: true,
     },
@@ -31,6 +37,7 @@ export default defineConfig([
         },
         target: "esnext",
       }),
+      vanillaExtractPlugin(),
     ],
   },
   {

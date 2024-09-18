@@ -32,7 +32,8 @@
     "inter-ui": "^4.0.2"
   },
   "devDependencies": {
-    "@optiaxiom/shared": "workspace:^"
+    "@optiaxiom/shared": "workspace:^",
+    "@vanilla-extract/css": "^1.15.5"
   },
   "peerDependencies": {
     "react": "^16.14.0 || ^17.0.0 || ^18.0.0",

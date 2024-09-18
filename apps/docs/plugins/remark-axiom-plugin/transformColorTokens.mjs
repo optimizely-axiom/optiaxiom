@@ -20,7 +20,7 @@ export function transformColorTokens(tree) {
           },
         )
         .parse(
-          fg.globSync("../../packages/react/src/tokens/colors{,.doc}.ts", {
+          fg.globSync("../../packages/globals/src/tokens/colors{,.doc}.ts", {
             ignore: ["**/*.spec.*"],
           }),
         );

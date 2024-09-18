@@ -201,6 +201,9 @@ importers:
       '@optiaxiom/shared':
         specifier: workspace:^
         version: link:../shared
+      '@vanilla-extract/css':
+        specifier: ^1.15.5
+        version: 1.15.5
 
   packages/react:
     dependencies:
