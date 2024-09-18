@@ -1,5 +1,6 @@
 {
   "name": "@optiaxiom/react",
+  "homepage": "https://github.com/optimizely-axiom/optiaxiom/tree/master/packages/react#readme",
   "repository": {
     "directory": "packages/react",
     "type": "git",

@@ -1,5 +1,6 @@
 {
   "name": "@optiaxiom/globals",
+  "homepage": "https://github.com/optimizely-axiom/optiaxiom/tree/master/packages/globals#readme",
   "repository": {
     "directory": "packages/globals",
     "type": "git",
