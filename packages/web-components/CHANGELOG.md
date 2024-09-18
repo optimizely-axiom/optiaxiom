@@ -1,5 +1,11 @@
 # @optiaxiom/web-components
 
+## 0.1.0-next.8
+
+### Patch Changes
+
+- fe9557e: rename decorators to addons
+
 ## 0.1.0-next.7
 
 ### Patch Changes
