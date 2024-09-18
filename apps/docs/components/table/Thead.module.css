@@ -1,0 +1,14 @@
+.thead {
+  position: relative;
+}
+
+.thead:after {
+  background-color: var(--ax-colors-bg-neutral);
+  content: "";
+  height: 100%;
+  left: 10px;
+  position: absolute;
+  right: 10px;
+  top: 0;
+  z-index: -1;
+}

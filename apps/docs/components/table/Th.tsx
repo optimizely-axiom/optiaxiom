@@ -9,15 +9,9 @@ export const Th = ({
   children,
   ...props
 }: ComponentPropsWithRef<typeof Box>) => (
-  <Box asChild {...props}>
+  <Box asChild bg="bg.neutral" className={styles.th} {...props}>
     <th>
-      <Text
-        asChild={asChild}
-        bg="bg.neutral"
-        className={styles.cell}
-        fontWeight="600"
-        p="12"
-      >
+      <Text asChild={asChild} fontWeight="600" p="12">
         {children ?? <>&nbsp;</>}
       </Text>
     </th>
