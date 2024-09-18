@@ -1,6 +1,6 @@
 import { style as veStyle } from "@vanilla-extract/css";
 
-import { layers } from "../styles";
+import { layers } from "../layers";
 
 export const style = (...args: Parameters<typeof veStyle>) =>
   veStyle(

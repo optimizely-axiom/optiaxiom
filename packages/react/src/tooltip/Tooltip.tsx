@@ -10,8 +10,8 @@ import {
 
 import { AnimatePresence } from "../animate-presence";
 import { Box, type BoxProps } from "../box";
-import { theme } from "../styles";
 import { Text } from "../text";
+import { theme } from "../theme";
 import { Transition } from "../transition";
 
 type TooltipProps = BoxProps<

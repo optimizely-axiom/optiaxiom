@@ -5,7 +5,7 @@ import { forwardRef, useRef } from "react";
 import { AnimatePresence } from "../animate-presence";
 import { Box, type BoxProps } from "../box";
 import { useHoverCardContext } from "../hover-card-context";
-import { theme } from "../styles";
+import { theme } from "../theme";
 import { Transition } from "../transition";
 import * as styles from "./HoverCardContent.css";
 

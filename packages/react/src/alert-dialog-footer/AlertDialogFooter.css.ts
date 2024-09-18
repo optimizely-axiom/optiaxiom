@@ -1,4 +1,4 @@
-import { theme } from "../styles";
+import { theme } from "../theme";
 import { style } from "../vanilla-extract";
 import { recipe } from "../vanilla-extract";
 

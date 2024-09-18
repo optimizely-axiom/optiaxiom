@@ -1,4 +1,4 @@
-import { theme } from "../styles";
+import { theme } from "../theme";
 import { mapValues } from "../utils";
 import { style } from "../vanilla-extract";
 import { type RecipeVariants, recipe } from "../vanilla-extract";

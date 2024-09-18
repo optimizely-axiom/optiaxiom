@@ -4,7 +4,7 @@ import { forwardRef } from "react";
 import { AnimatePresence } from "../animate-presence";
 import { Box, type BoxProps } from "../box";
 import { usePopoverContext } from "../popover-context";
-import { theme } from "../styles";
+import { theme } from "../theme";
 import { Transition } from "../transition";
 import * as styles from "./PopoverContent.css";
 
