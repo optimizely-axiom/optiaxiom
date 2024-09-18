@@ -47,6 +47,7 @@ export default defineConfig([
         include: [
           "**/node_modules/attr-accept/**",
           "**/node_modules/prop-types/**",
+          "**/node_modules/use-sync-external-store/**",
         ],
       }),
       esbuild({
