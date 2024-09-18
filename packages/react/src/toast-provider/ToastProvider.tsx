@@ -6,8 +6,8 @@ import {
   cloneElement,
   forwardRef,
   useRef,
-  useSyncExternalStore,
 } from "react";
+import { useSyncExternalStore } from "use-sync-external-store/shim";
 
 import { type BoxProps } from "../box";
 import { Flex } from "../flex";
