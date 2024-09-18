@@ -12,23 +12,23 @@ import * as styles from "./AccordionTrigger.css";
 type AccordionTriggerProps = BoxProps<
   typeof RadixAccordion.Trigger,
   {
-    endDecorator?: ReactNode;
-    startDecorator?: ReactNode;
+    addonAfter?: ReactNode;
+    addonBefore?: ReactNode;
   }
 >;
 
 export const AccordionTrigger = forwardRef<
   HTMLButtonElement,
   AccordionTriggerProps
->(({ children, endDecorator, startDecorator, ...props }, ref) => {
+>(({ addonAfter, addonBefore, children, ...props }, ref) => {
   const { appearance } = useAccordionContext("AccordionTrigger");
 
   const { restProps, sprinkleProps } = extractSprinkles(props);
   const startIcon =
-    startDecorator ||
-    (appearance === "primary" && !endDecorator && <IconAngleRight />);
+    addonBefore ||
+    (appearance === "primary" && !addonAfter && <IconAngleRight />);
   const endIcon =
-    endDecorator || (appearance === "secondary" && <IconAngleDown />);
+    addonAfter || (appearance === "secondary" && <IconAngleDown />);
 
   return (
     <Flex asChild {...styles.trigger()} {...sprinkleProps}>

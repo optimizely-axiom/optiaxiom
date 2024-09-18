@@ -21,9 +21,9 @@ export type MenuItemBaseProps<
   T,
   ExtendProps<
     {
+      addonAfter?: ReactNode;
+      addonBefore?: ReactNode;
       description?: ReactNode;
-      endDecorator?: ReactNode;
-      startDecorator?: ReactNode;
     } & styles.ItemVariants,
     P
   >
@@ -32,12 +32,12 @@ export type MenuItemBaseProps<
 export const MenuItemBase = forwardRef<HTMLDivElement, MenuItemBaseProps>(
   (
     {
+      addonAfter,
+      addonBefore,
       children,
       className,
       colorScheme = "neutral",
       description,
-      endDecorator,
-      startDecorator,
       ...props
     },
     ref,
@@ -74,17 +74,17 @@ export const MenuItemBase = forwardRef<HTMLDivElement, MenuItemBaseProps>(
         {...props}
       >
         <Slot>
-          {startDecorator && (
+          {addonBefore && (
             <Box asChild h="16" w="auto">
-              {fallbackSpan(startDecorator)}
+              {fallbackSpan(addonBefore)}
             </Box>
           )}
 
           <Slottable>{children}</Slottable>
 
-          {endDecorator && (
+          {addonAfter && (
             <Box asChild ml="xs">
-              {fallbackSpan(endDecorator)}
+              {fallbackSpan(addonAfter)}
             </Box>
           )}
         </Slot>

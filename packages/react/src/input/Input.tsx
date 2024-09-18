@@ -11,12 +11,12 @@ type InputProps = InputBaseProps<"input", NonNullable<styles.InputVariants>>;
 export const Input = forwardRef<HTMLInputElement, InputProps>(
   (
     {
+      addonAfter,
+      addonBefore,
       appearance = "default",
       asChild,
       children,
-      endDecorator,
       size = "md",
-      startDecorator,
       ...props
     },
     ref,
@@ -25,21 +25,21 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
 
     return (
       <InputBase
-        endDecorator={
-          endDecorator && (
-            <Box asChild {...styles.decorator({ position: "end", size })}>
-              {fallbackSpan(endDecorator)}
+        addonAfter={
+          addonAfter && (
+            <Box asChild {...styles.addon({ position: "end", size })}>
+              {fallbackSpan(addonAfter)}
+            </Box>
+          )
+        }
+        addonBefore={
+          addonBefore && (
+            <Box asChild {...styles.addon({ position: "start", size })}>
+              {fallbackSpan(addonBefore)}
             </Box>
           )
         }
         size={size}
-        startDecorator={
-          startDecorator && (
-            <Box asChild {...styles.decorator({ position: "start", size })}>
-              {fallbackSpan(startDecorator)}
-            </Box>
-          )
-        }
         {...props}
       >
         <Box asChild {...styles.input({ appearance })}>

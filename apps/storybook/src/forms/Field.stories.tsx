@@ -42,8 +42,8 @@ export const Required: Story = {
   args: {
     children: (
       <Input
+        addonBefore={<IconCalendar size="20" />}
         placeholder="Enter date..."
-        startDecorator={<IconCalendar size="20" />}
         w="256"
       />
     ),

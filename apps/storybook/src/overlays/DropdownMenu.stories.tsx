@@ -40,33 +40,33 @@ export const Basic: Story = {
 
         <DropdownMenuContent>
           <DropdownMenuItem
+            addonBefore={<IconFileExcel />}
             onSelect={action("excel")}
-            startDecorator={<IconFileExcel />}
           >
             Excel
           </DropdownMenuItem>
           <DropdownMenuItem
+            addonBefore={<IconFileTypePdf />}
             disabled
             onSelect={action("pdf")}
-            startDecorator={<IconFileTypePdf />}
           >
             PDF
           </DropdownMenuItem>
           <DropdownMenuItem
+            addonBefore={<IconFileTypePpt />}
             onSelect={action("ppt")}
-            startDecorator={<IconFileTypePpt />}
           >
             Powerpoint
           </DropdownMenuItem>
           <DropdownMenuItem
+            addonBefore={<IconVideo />}
             onSelect={action("video")}
-            startDecorator={<IconVideo />}
           >
             Video
           </DropdownMenuItem>
           <DropdownMenuItem
+            addonBefore={<IconFileWord />}
             onSelect={action("word")}
-            startDecorator={<IconFileWord />}
           >
             Word
           </DropdownMenuItem>

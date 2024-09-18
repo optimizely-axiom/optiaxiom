@@ -60,7 +60,7 @@ export const Multiple: Story = {
   },
 };
 
-export const Decorators: Story = {
+export const CustomChevrons: Story = {
   args: {
     children: (
       <>
@@ -72,7 +72,7 @@ export const Decorators: Story = {
         </AccordionItem>
 
         <AccordionItem value="item-2">
-          <AccordionTrigger endDecorator={<IconCaretDownFilled />}>
+          <AccordionTrigger addonAfter={<IconCaretDownFilled />}>
             Custom Caret
           </AccordionTrigger>
           <AccordionContent>
@@ -81,7 +81,7 @@ export const Decorators: Story = {
         </AccordionItem>
 
         <AccordionItem value="item-3">
-          <AccordionTrigger startDecorator={<IconArrowRight />}>
+          <AccordionTrigger addonBefore={<IconArrowRight />}>
             Custom Arrow
           </AccordionTrigger>
           <AccordionContent>

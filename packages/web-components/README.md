@@ -103,7 +103,7 @@ Simply set the `slot` attribute to the corresponding prop name in your HTML.
 
 ```html
 <ax-input>
-  <svg slot="startDecorator">
+  <svg slot="addonBefore">
     <!-- ... -->
   </svg>
 </ax-input>

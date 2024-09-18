@@ -23,15 +23,15 @@ export type InputBaseProps<
   T,
   ExtendProps<
     {
+      addonAfter?: ReactNode;
+      addonBefore?: ReactNode;
       /**
        * When this prop is set to `none` clicking empty space inside the
-       * decorator will focus the input box.
+       * addon will focus the input box.
        */
-      decoratorPointerEvents?: "auto" | "none";
+      addonPointerEvents?: "auto" | "none";
       disabled?: boolean;
-      endDecorator?: ReactNode;
       error?: boolean;
-      startDecorator?: ReactNode;
     } & styles.InputVariants,
     P
   >
@@ -43,13 +43,13 @@ export const InputBase = forwardRef<
 >(
   (
     {
+      addonAfter,
+      addonBefore,
+      addonPointerEvents = "auto",
       children,
       className,
-      decoratorPointerEvents = "auto",
-      endDecorator,
       error: errorProp,
       size = "md",
-      startDecorator,
       ...props
     },
     outerRef,
@@ -63,8 +63,8 @@ export const InputBase = forwardRef<
     const innerRef = useRef<HTMLInputElement & HTMLTextAreaElement>(null);
     const ref = useComposedRefs(innerRef, outerRef);
 
-    const decoratorProps =
-      decoratorPointerEvents === "none" &&
+    const addonProps =
+      addonPointerEvents === "none" &&
       ({
         cursor: "text",
         onMouseDown: (event: MouseEvent) => {
@@ -86,9 +86,9 @@ export const InputBase = forwardRef<
         {...styles.wrapper({}, className)}
         {...sprinkleProps}
       >
-        {startDecorator && (
-          <Text asChild {...decoratorProps}>
-            {fallbackSpan(startDecorator)}
+        {addonBefore && (
+          <Text asChild {...addonProps}>
+            {fallbackSpan(addonBefore)}
           </Text>
         )}
 
@@ -106,9 +106,9 @@ export const InputBase = forwardRef<
           </Slot>
         </Box>
 
-        {endDecorator && (
-          <Text asChild {...decoratorProps}>
-            {fallbackSpan(endDecorator)}
+        {addonAfter && (
+          <Text asChild {...addonProps}>
+            {fallbackSpan(addonAfter)}
           </Text>
         )}
       </Flex>

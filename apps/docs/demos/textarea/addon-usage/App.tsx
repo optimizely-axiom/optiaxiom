@@ -9,7 +9,7 @@ import {
 export function App() {
   return (
     <Textarea
-      endDecorator={
+      addonAfter={
         <Flex borderT="1" flexDirection="row" gap="4" p="4">
           <Tooltip content="Add emoji">
             <Button appearance="secondary" icon={<IconMoodSmile />} size="sm" />

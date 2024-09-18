@@ -15,13 +15,11 @@ export function App() {
 
       <DropdownMenuContent>
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
-        <DropdownMenuItem startDecorator={<IconUser />}>
+        <DropdownMenuItem addonBefore={<IconUser />}>
           View Profile
         </DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem startDecorator={<IconLogout />}>
-          Logout
-        </DropdownMenuItem>
+        <DropdownMenuItem addonBefore={<IconLogout />}>Logout</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );

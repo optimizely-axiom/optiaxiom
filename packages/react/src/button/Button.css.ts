@@ -282,7 +282,7 @@ const loadingBase = [
   }),
 ];
 
-export const decorator = recipe({
+export const addon = recipe({
   base: loadingBase,
 });
 

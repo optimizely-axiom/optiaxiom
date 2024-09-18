@@ -13,11 +13,11 @@ type TabsTriggerProps = ButtonProps<typeof RadixTabs.Trigger>;
 export const TabsTrigger = forwardRef<HTMLButtonElement, TabsTriggerProps>(
   (
     {
+      addonAfter,
+      addonBefore,
       children,
-      endDecorator,
       icon,
       iconPosition = "start",
-      startDecorator,
       ...props
     },
     ref,
@@ -35,7 +35,7 @@ export const TabsTrigger = forwardRef<HTMLButtonElement, TabsTriggerProps>(
                 {icon}
               </Box>
             ) : (
-              startDecorator
+              addonBefore
             )}
 
             {children}
@@ -45,21 +45,21 @@ export const TabsTrigger = forwardRef<HTMLButtonElement, TabsTriggerProps>(
                 {icon}
               </Box>
             ) : (
-              endDecorator
+              addonAfter
             )}
           </Flex>
         </RadixTabs.Trigger>
       </Box>
     ) : (
       <Button
+        addonAfter={addonAfter}
+        addonBefore={addonBefore}
         appearance="secondary"
         asChild
-        endDecorator={endDecorator}
         icon={icon}
         iconPosition={iconPosition}
         justifyContent="start"
         ref={ref}
-        startDecorator={startDecorator}
         {...sprinkleProps}
       >
         <RadixTabs.Trigger ref={ref} {...restProps}>
