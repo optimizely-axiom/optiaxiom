@@ -1,5 +1,11 @@
 # @optiaxiom/globals
 
+## 0.2.0-next.2
+
+### Patch Changes
+
+- fe9557e: move theme/tokens to globals
+
 ## 0.2.0-next.1
 
 ### Patch Changes

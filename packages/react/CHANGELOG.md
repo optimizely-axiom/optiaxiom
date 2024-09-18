@@ -1,5 +1,14 @@
 # @optiaxiom/react
 
+## 0.1.0-next.18
+
+### Patch Changes
+
+- fe9557e: rename decorators to addons
+- fe9557e: move theme/tokens to globals
+- Updated dependencies [fe9557e]
+  - @optiaxiom/globals@0.2.0-next.2
+
 ## 0.1.0-next.17
 
 ### Patch Changes
