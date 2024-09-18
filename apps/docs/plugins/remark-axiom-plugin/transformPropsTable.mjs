@@ -67,7 +67,7 @@ export function transformPropsTable(tree) {
         [
           needsImport && `import { Box } from "@optiaxiom/react";`,
           needsImport &&
-            `import { Table, Td, Th, Tr } from "@/components/table";`,
+            `import { Table, Td, Th, Thead, Tr } from "@/components/table";`,
           needsImport && `import { PropType } from "@/components/prop-type";`,
           "",
           `### \`${component}\``,
@@ -83,7 +83,7 @@ export function transformPropsTable(tree) {
             ? [
                 "",
                 "<Table>",
-                "  <thead>",
+                "  <Thead>",
                 "    <tr>",
                 '      <Th asChild style={{ width: "25%" }}>',
                 "        Name",
@@ -92,7 +92,7 @@ export function transformPropsTable(tree) {
                 "        Type",
                 "      </Th>",
                 "    </tr>",
-                "  </thead>",
+                "  </Thead>",
                 "  <tbody>",
                 ...props.flatMap((prop) => [
                   "<Tr>",

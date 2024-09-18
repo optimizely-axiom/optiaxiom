@@ -2,7 +2,7 @@ import type { Props } from "react-docgen-typescript";
 
 import { Box, Code, Flex, Text } from "@optiaxiom/react";
 
-import { Table, Td, Th, Tr } from "../table";
+import { Table, Td, Th, Thead, Tr } from "../table";
 import { ColorTokenItem } from "./ColorTokenItem";
 
 export function ColorTokens({
@@ -25,7 +25,7 @@ export function ColorTokens({
 
   return (
     <Table>
-      <thead>
+      <Thead>
         <Box asChild display={["flex", "table-row"]}>
           <tr>
             <Th flex="1">Token and description</Th>
@@ -33,7 +33,7 @@ export function ColorTokens({
             <Th display={["none", "table-cell"]}>Dark value</Th>
           </tr>
         </Box>
-      </thead>
+      </Thead>
       <tbody>
         {Object.values(light)
           .filter((token) => token.name.startsWith(`${namespace}.`))
