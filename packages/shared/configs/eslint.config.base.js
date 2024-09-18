@@ -89,7 +89,7 @@ export default tsEslint.config(
     },
   },
   {
-    files: ["**/*.css.ts"],
+    files: ["**/packages/react/**/*.css.ts"],
     rules: {
       "local/no-aria-selectors": "error",
       "local/no-global-styles": "error",
