@@ -1,5 +1,6 @@
 {
   "name": "@optiaxiom/web-components",
+  "homepage": "https://github.com/optimizely-axiom/optiaxiom/tree/master/packages/web-components#readme",
   "repository": {
     "directory": "packages/web-components",
     "type": "git",
