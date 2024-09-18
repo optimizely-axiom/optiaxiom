@@ -10,6 +10,9 @@ import { version } from "../../package.json";
 import { ThemeProvider } from "../theme-provider";
 import { ToastProvider } from "../toast-provider";
 
+interface ToastProviderProps
+  extends ComponentPropsWithoutRef<typeof ToastProvider> {}
+
 type AxiomProviderProps = {
   children?: ReactNode;
   /**
@@ -17,7 +20,7 @@ type AxiomProviderProps = {
    *
    * {@link https://optimizely-axiom.github.io/optiaxiom/components/toast/ Documentation}
    */
-  toast?: Omit<ComponentPropsWithoutRef<typeof ToastProvider>, "children">;
+  toast?: Omit<ToastProviderProps, "children">;
   /**
    * Props for the `TooltipProvider` component
    *
