@@ -32,9 +32,10 @@ export function transformPropsTable(tree) {
       const componentRaw = node.attributes.find(
         (attr) => attr.name === "component",
       ).value;
-      const extendsComponent =
-        node.attributes.find((attr) => attr.name === "extends")?.value ?? "Box";
       const component = componentRaw.value ?? componentRaw;
+      const extendsComponent =
+        node.attributes.find((attr) => attr.name === "extends")?.value ??
+        (component !== "Box" ? "Box" : null);
       const doc = docs.find(
         (doc) => doc.displayName === `@optiaxiom/react/${component}`,
       );
