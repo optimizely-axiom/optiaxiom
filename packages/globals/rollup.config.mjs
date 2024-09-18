@@ -12,6 +12,7 @@ export default defineConfig([
     external: new RegExp(
       "^(?:" +
         Object.keys({
+          ...pkg.dependencies,
           ...pkg.peerDependencies,
         }).join("|") +
         ")(?:/.+)?$",
