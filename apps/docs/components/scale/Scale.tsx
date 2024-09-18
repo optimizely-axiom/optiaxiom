@@ -1,15 +1,11 @@
 import { Box, Flex, Text } from "@optiaxiom/react";
 
-import { Table, Td, Th, Tr } from "../table";
+import { Table, Td, Th, Thead, Tr } from "../table";
 
 const px = (rem: string) =>
   rem.endsWith("rem")
     ? `${parseFloat((parseFloat(rem.slice(0, -3)) * 16).toFixed(0))}px`
     : rem;
-
-const headerBg = {
-  background: "light-dark(rgb(255 255 255 / 80%), rgb(17 17 17 / 80%))",
-};
 
 export const Scale = ({
   hidePixels,
@@ -25,29 +21,20 @@ export const Scale = ({
   values: Record<string, string> | string[];
 }) => (
   <Table maxH="sm" overflow="auto">
-    <thead>
+    <Thead>
       <tr>
-        <Th className="nx-sticky nx-top-0" style={headerBg}>
-          {keyLabel}
-        </Th>
-        <Th className="nx-sticky nx-top-0" style={headerBg}>
-          {valueLabel}
-        </Th>
-        {!hidePixels && (
-          <Th className="nx-sticky nx-top-0" style={headerBg}>
-            Pixels
-          </Th>
-        )}
+        <Th className="nx-sticky nx-top-0">{keyLabel}</Th>
+        <Th className="nx-sticky nx-top-0">{valueLabel}</Th>
+        {!hidePixels && <Th className="nx-sticky nx-top-0">Pixels</Th>}
         {!hidePreview && (
           <Th
             className="nx-sticky nx-top-0"
             display={["none", "table-cell"]}
-            style={headerBg}
             w="full"
           />
         )}
       </tr>
-    </thead>
+    </Thead>
     <tbody>
       {(Array.isArray(values)
         ? values.map((value) => [value, value])
