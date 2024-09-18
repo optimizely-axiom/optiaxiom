@@ -1,5 +1,13 @@
 # @optiaxiom/react
 
+## 0.1.0-next.17
+
+### Patch Changes
+
+- 1055c78: load tokens and fonts once
+- Updated dependencies [1055c78]
+  - @optiaxiom/globals@0.2.0-next.1
+
 ## 0.1.0-next.16
 
 ### Minor Changes

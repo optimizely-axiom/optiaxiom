@@ -1,5 +1,11 @@
 # @optiaxiom/web-components
 
+## 0.1.0-next.7
+
+### Patch Changes
+
+- 1055c78: load tokens and fonts once
+
 ## 0.1.0-next.6
 
 ### Patch Changes
