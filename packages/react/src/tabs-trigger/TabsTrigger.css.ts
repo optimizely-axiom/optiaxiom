@@ -1,4 +1,4 @@
-import { theme } from "../styles";
+import { theme } from "../theme";
 import { recipe, style } from "../vanilla-extract";
 
 const marker = style({});

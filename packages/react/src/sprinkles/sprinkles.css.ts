@@ -4,7 +4,8 @@ import {
   defineProperties,
 } from "@vanilla-extract/sprinkles";
 
-import { layers, theme } from "../styles";
+import { layers } from "../layers";
+import { theme } from "../theme";
 import { conditions, mapValues } from "../utils";
 import { keyframes } from "../vanilla-extract";
 

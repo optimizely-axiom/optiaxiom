@@ -1,7 +1,8 @@
 // eslint-disable-next-line local/no-global-styles
 import { style } from "@vanilla-extract/css";
 
-import { layers, theme } from "../styles";
+import { layers } from "../layers";
+import { theme } from "../theme";
 import { recipe } from "../vanilla-extract";
 
 export const box = recipe({

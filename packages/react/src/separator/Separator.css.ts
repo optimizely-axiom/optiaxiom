@@ -1,6 +1,6 @@
 import { createSprinkles, defineProperties } from "@vanilla-extract/sprinkles";
 
-import { layers } from "../styles";
+import { layers } from "../layers";
 import { conditions } from "../utils";
 import { recipe } from "../vanilla-extract";
 

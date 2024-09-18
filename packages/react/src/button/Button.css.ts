@@ -1,5 +1,5 @@
 import * as styles from "../button-group/ButtonGroup.css";
-import { theme } from "../styles";
+import { theme } from "../theme";
 import { createVar, fallbackVar, style } from "../vanilla-extract";
 import { type RecipeVariants, recipe } from "../vanilla-extract";
 

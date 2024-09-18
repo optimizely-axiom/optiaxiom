@@ -1,4 +1,4 @@
-import { theme } from "../styles";
+import { theme } from "../theme";
 import * as styles from "../toast-provider/ToastProvider.css";
 import {
   type RecipeVariants,
