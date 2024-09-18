@@ -17,26 +17,26 @@ export function App() {
       <DropdownMenuContent>
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuItem
-          endDecorator={
+          addonAfter={
             <Kbd keys={["option", "shift"]} variant="subtle">
               P
             </Kbd>
           }
-          startDecorator={<IconSettings />}
+          addonBefore={<IconSettings />}
         >
           Preferences
         </DropdownMenuItem>
-        <DropdownMenuItem startDecorator={<IconUser />}>
+        <DropdownMenuItem addonBefore={<IconUser />}>
           View Profile
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem
-          endDecorator={
+          addonAfter={
             <Kbd keys={["option", "shift"]} variant="subtle">
               Q
             </Kbd>
           }
-          startDecorator={<IconLogout />}
+          addonBefore={<IconLogout />}
         >
           Logout
         </DropdownMenuItem>

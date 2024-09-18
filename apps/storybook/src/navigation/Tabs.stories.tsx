@@ -24,7 +24,7 @@ export default {
             Second
           </TabsTrigger>
           <TabsTrigger
-            endDecorator={
+            addonAfter={
               <Badge colorScheme="primary" variant="solid">
                 8
               </Badge>
@@ -82,7 +82,7 @@ export const Vertical: Story = {
             Second
           </TabsTrigger>
           <TabsTrigger
-            endDecorator={
+            addonAfter={
               <Badge colorScheme="primary" variant="solid">
                 8
               </Badge>

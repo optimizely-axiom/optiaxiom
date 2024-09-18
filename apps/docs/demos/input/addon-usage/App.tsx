@@ -7,10 +7,10 @@ export function App() {
 
   return (
     <Flex flexDirection={["column", "row"]}>
-      <Input placeholder="Email" startDecorator="@" />
-      <Input endDecorator="kg" placeholder="Weight" />
+      <Input addonBefore="@" placeholder="Email" />
+      <Input addonAfter="kg" placeholder="Weight" />
       <Input
-        endDecorator={
+        addonAfter={
           <Button
             appearance="secondary"
             icon={hidden ? <IconEye /> : <IconEyeOff />}

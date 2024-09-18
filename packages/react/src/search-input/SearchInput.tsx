@@ -26,8 +26,7 @@ export const SearchInput = forwardRef<HTMLInputElement, SearchProps>(
 
     return (
       <Input
-        autoComplete="off"
-        endDecorator={
+        addonAfter={
           value && (
             <Button
               appearance="secondary"
@@ -44,12 +43,13 @@ export const SearchInput = forwardRef<HTMLInputElement, SearchProps>(
             />
           )
         }
+        addonBefore={<IconMagnifyingGlass />}
+        autoComplete="off"
         onChange={(event) => {
           onChange?.(event);
           setValue(event.target.value);
         }}
         ref={ref}
-        startDecorator={<IconMagnifyingGlass />}
         type="search"
         value={value}
         {...styles.search({}, className)}

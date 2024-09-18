@@ -70,14 +70,14 @@ export const Error: Story = {
   ),
 };
 
-export const Decorators: Story = {
+export const Addons: Story = {
   args: {
     placeholder: "Enter text....",
   },
   render: (args) => (
     <Flex>
-      <Textarea {...args} startDecorator={<Text>Top Section</Text>} />
-      <Textarea {...args} endDecorator={<Text>Bottom Section</Text>} />
+      <Textarea {...args} addonBefore={<Text>Top Section</Text>} />
+      <Textarea {...args} addonAfter={<Text>Bottom Section</Text>} />
     </Flex>
   ),
 };

@@ -32,14 +32,14 @@ export type ButtonProps<
   T,
   ExtendProps<
     {
+      addonAfter?: ReactNode;
+      addonBefore?: ReactNode;
       appearance?: keyof typeof appearances;
       children?: ReactNode;
       disabled?: boolean;
-      endDecorator?: ReactNode;
       icon?: ReactNode;
       iconPosition?: "end" | "start";
       loading?: boolean;
-      startDecorator?: ReactNode;
     } & Omit<styles.ButtonVariants, "colorScheme" | "iconOnly" | "variant">,
     P
   >
@@ -48,17 +48,17 @@ export type ButtonProps<
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
+      addonAfter,
+      addonBefore,
       appearance = "default",
       asChild,
       children,
       className,
       disabled,
-      endDecorator,
       icon,
       iconPosition = "start",
       loading,
       size = "md",
-      startDecorator,
       ...props
     },
     ref,
@@ -102,13 +102,13 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     }
     if (icon && !isIconOnly) {
       if (iconPosition === "start") {
-        startDecorator = (
+        addonBefore = (
           <Box asChild {...styles.icon()}>
             {icon}
           </Box>
         );
       } else if (iconPosition === "end") {
-        endDecorator = (
+        addonAfter = (
           <Box asChild {...styles.icon()}>
             {icon}
           </Box>
@@ -145,17 +145,17 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             )}
           </AnimatePresence>
 
-          {startDecorator && (
-            <Box asChild {...styles.decorator()}>
-              {fallbackSpan(startDecorator)}
+          {addonBefore && (
+            <Box asChild {...styles.addon()}>
+              {fallbackSpan(addonBefore)}
             </Box>
           )}
 
           <Slottable>{children}</Slottable>
 
-          {endDecorator && (
-            <Box asChild {...styles.decorator()}>
-              {fallbackSpan(endDecorator)}
+          {addonAfter && (
+            <Box asChild {...styles.addon()}>
+              {fallbackSpan(addonAfter)}
             </Box>
           )}
         </Comp>

@@ -13,7 +13,7 @@ export const input = recipe({
   },
 });
 
-export const decorator = recipe({
+export const addon = recipe({
   base: {
     flex: "none",
   },

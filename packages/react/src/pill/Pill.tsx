@@ -16,12 +16,12 @@ type PillProps = BoxProps<
 export const Pill = forwardRef<HTMLButtonElement, PillProps>(
   (
     {
+      addonAfter,
+      addonBefore,
       children,
       className,
-      endDecorator,
       onRemove,
       size = "md",
-      startDecorator,
       ...props
     },
     ref,
@@ -35,10 +35,10 @@ export const Pill = forwardRef<HTMLButtonElement, PillProps>(
     return (
       <Tooltip auto content={children}>
         <Button
-          endDecorator={endDecorator}
+          addonAfter={addonAfter}
+          addonBefore={addonBefore}
           onKeyDown={handleKeyDown}
           ref={ref}
-          startDecorator={startDecorator}
           {...styles.pill({ size }, className)}
           {...props}
         >

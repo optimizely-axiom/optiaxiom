@@ -36,13 +36,13 @@ export const WithAvatar: Story = {
     <Flex gap="xs">
       <Pill
         {...args}
+        addonBefore={<Avatar name="Jamie" size="xs" />}
         size="md"
-        startDecorator={<Avatar name="Jamie" size="xs" />}
       />
       <Pill
         {...args}
+        addonBefore={<Avatar name="Jamie" size="xs" />}
         size="lg"
-        startDecorator={<Avatar name="Jamie" size="xs" />}
       />
     </Flex>
   ),

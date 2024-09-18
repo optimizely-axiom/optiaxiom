@@ -11,7 +11,7 @@ export const DropdownMenuSubTrigger = forwardRef<
   MenuSubTriggerProps
 >(({ children, ...props }, ref) => {
   return (
-    <MenuItemBase endDecorator={<IconAngleRight />} ref={ref} {...props}>
+    <MenuItemBase addonAfter={<IconAngleRight />} ref={ref} {...props}>
       <RadixMenu.SubTrigger>{children}</RadixMenu.SubTrigger>
     </MenuItemBase>
   );

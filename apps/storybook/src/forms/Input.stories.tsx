@@ -69,24 +69,24 @@ export const Error: Story = {
   ),
 };
 
-export const Decorators: Story = {
+export const Addons: Story = {
   render: (args) => (
     <Flex>
       <Input
         {...args}
+        addonBefore={<IconCalendar size="20" />}
         placeholder="With left Icon"
-        startDecorator={<IconCalendar size="20" />}
       />
       <Input
         {...args}
-        endDecorator={<IconCalendar size="20" />}
+        addonAfter={<IconCalendar size="20" />}
         placeholder="With right Icon"
       />
       <Input
         {...args}
-        endDecorator={<IconCalendar size="20" />}
+        addonAfter={<IconCalendar size="20" />}
+        addonBefore={<IconCalendar size="20" />}
         placeholder="With both Icon"
-        startDecorator={<IconCalendar size="20" />}
       />
     </Flex>
   ),

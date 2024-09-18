@@ -9,12 +9,11 @@ import {
 } from "@tabler/icons-react";
 
 export function App({
-  decoratorPointerEvents = "none",
-}: Pick<ComponentPropsWithoutRef<typeof Textarea>, "decoratorPointerEvents">) {
+  addonPointerEvents = "none",
+}: Pick<ComponentPropsWithoutRef<typeof Textarea>, "addonPointerEvents">) {
   return (
     <Textarea
-      decoratorPointerEvents={decoratorPointerEvents}
-      endDecorator={
+      addonAfter={
         <Flex flexDirection="row" gap="4" p="4">
           <Tooltip content="Add emoji">
             <Button appearance="secondary" icon={<IconMoodSmile />} size="sm" />
@@ -36,6 +35,7 @@ export function App({
           </Tooltip>
         </Flex>
       }
+      addonPointerEvents={addonPointerEvents}
       placeholder="Add a comment"
       w="256"
     />
