@@ -9,6 +9,11 @@ import {
   Text,
   Tooltip,
 } from "@optiaxiom/react";
+import {
+  TooltipContent,
+  TooltipRoot,
+  TooltipTrigger,
+} from "@optiaxiom/react/unstable";
 import { expect, screen, userEvent, waitFor } from "@storybook/test";
 import { useState } from "react";
 
@@ -69,7 +74,7 @@ export const Controlled: Story = {
           onOpenChange={(flag) => enabled && setOpen(flag)}
           open={open}
         >
-          <button>Hover</button>
+          <Button>Hover</Button>
         </Tooltip>
       </Flex>
     );
@@ -185,5 +190,25 @@ export const Truncate: Story = {
         </Box>
       </Tooltip>
     </Flex>
+  ),
+};
+
+export const Modular: Story = {
+  render: (args) => (
+    <TooltipRoot {...args}>
+      <TooltipTrigger>Hover</TooltipTrigger>
+      <TooltipContent>Add to library</TooltipContent>
+    </TooltipRoot>
+  ),
+};
+
+// side in content
+// example with auto
+export const Light: Story = {
+  render: (args) => (
+    <TooltipRoot theme="light" {...args}>
+      <TooltipTrigger>Hover</TooltipTrigger>
+      <TooltipContent>Add to library</TooltipContent>
+    </TooltipRoot>
   ),
 };
