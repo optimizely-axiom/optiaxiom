@@ -1,8 +1,6 @@
-import type { ReactNode } from "react";
-
 import * as RadixCollapsible from "@radix-ui/react-collapsible";
+import { type ReactElement, type ReactNode, cloneElement } from "react";
 
-import { Avatar } from "../avatar";
 import { type BoxProps } from "../box";
 import { Button } from "../button";
 import { Flex } from "../flex";
@@ -25,9 +23,7 @@ export const GlobalNavProfileMenu = ({
 }: GlobalNavProfileMenuProps) => {
   return (
     <Flex alignItems="center" flexDirection="row" gap="0" px="md" py="xs">
-      <Avatar rounded="sm" size="md">
-        {avatar}
-      </Avatar>
+      {cloneElement(avatar as ReactElement, { rounded: "sm" })}
 
       <Flex asChild flexDirection="row">
         <RadixCollapsible.Content>
