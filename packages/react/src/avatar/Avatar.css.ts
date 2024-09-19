@@ -87,6 +87,19 @@ export const avatar = recipe({
           },
         }),
       ],
+      lg: [
+        {
+          fontSize: "lg",
+          size: "lg",
+        },
+        style({
+          selectors: {
+            [`${styles.className} &:not(:first-child)`]: {
+              marginLeft: "-9px",
+            },
+          },
+        }),
+      ],
       xl: [
         {
           fontSize: "2xl",
@@ -95,7 +108,7 @@ export const avatar = recipe({
         style({
           selectors: {
             [`${styles.className} &:not(:first-child)`]: {
-              marginLeft: "-9px",
+              marginLeft: "-11px",
             },
           },
         }),
@@ -139,6 +152,7 @@ export const icon = recipe({
       xs: { w: "12" },
       sm: { w: "12" },
       md: { w: "16" },
+      lg: { w: "20" },
       xl: { w: "20" },
       "5xl": { w: "32" },
     },

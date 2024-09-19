@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Avatar, Flex, Tooltip } from "@optiaxiom/react";
 import { IconUser } from "@tabler/icons-react";
 
-const sizes = ["xs", "sm", "md", "xl", "5xl"] as const;
+const sizes = ["xs", "sm", "md", "lg", "xl", "5xl"] as const;
 
 export default {
   component: Avatar,
