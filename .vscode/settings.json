@@ -8,7 +8,14 @@
     "editor.wordWrapColumn": 80
   },
   "cSpell.enableFiletypes": ["markdown", "mdx"],
-  "cSpell.words": ["clsx", "cmdk", "combobox", "optiaxiom", "optimizely"],
+  "cSpell.words": [
+    "autosize",
+    "clsx",
+    "cmdk",
+    "combobox",
+    "optiaxiom",
+    "optimizely"
+  ],
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
   },

@@ -69,7 +69,6 @@
     "@vanilla-extract/sprinkles": "^1.6.3",
     "clsx": "^2.1.1",
     "cmdk": "^1.0.0",
-    "react-textarea-autosize": "^8.5.3",
     "use-sync-external-store": "^1.2.2"
   },
   "devDependencies": {
