@@ -25,7 +25,7 @@ type Story = StoryObj<typeof GlobalNav>;
 
 const Template: Story["render"] = (args) => (
   <GlobalNav
-    endDecorator={
+    addonAfter={
       <GlobalNavProfileMenu
         avatar={
           <img
@@ -42,20 +42,20 @@ const Template: Story["render"] = (args) => (
     }}
     {...args}
   >
-    <GlobalNavItem startDecorator={<IconBinaryTree />}>Projects</GlobalNavItem>
-    <GlobalNavItem active startDecorator={<IconFlag2 />}>
+    <GlobalNavItem addonBefore={<IconBinaryTree />}>Projects</GlobalNavItem>
+    <GlobalNavItem active addonBefore={<IconFlag2 />}>
       Flags
     </GlobalNavItem>
-    <GlobalNavItem startDecorator={<IconChartInfographic />}>
+    <GlobalNavItem addonBefore={<IconChartInfographic />}>
       Reports
     </GlobalNavItem>
-    <GlobalNavItem startDecorator={<IconUsers />}>Audiences</GlobalNavItem>
-    <GlobalNavItem startDecorator={<IconHistory />}>History</GlobalNavItem>
-    <GlobalNavItem startDecorator={<IconChartLine />}>Events</GlobalNavItem>
-    <GlobalNavItem startDecorator={<IconSettings />}>Settings</GlobalNavItem>
+    <GlobalNavItem addonBefore={<IconUsers />}>Audiences</GlobalNavItem>
+    <GlobalNavItem addonBefore={<IconHistory />}>History</GlobalNavItem>
+    <GlobalNavItem addonBefore={<IconChartLine />}>Events</GlobalNavItem>
+    <GlobalNavItem addonBefore={<IconSettings />}>Settings</GlobalNavItem>
     <GlobalNavItem
-      endDecorator={<Link external href="https://www.google.com/" />}
-      startDecorator={<IconVocabulary />}
+      addonAfter={<Link external href="https://www.google.com/" />}
+      addonBefore={<IconVocabulary />}
     >
       Tutorial
     </GlobalNavItem>

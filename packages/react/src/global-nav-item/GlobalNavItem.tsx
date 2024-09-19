@@ -15,7 +15,7 @@ export type GlobalNavItemProps = BoxProps<
 >;
 
 export const GlobalNavItem = forwardRef<HTMLButtonElement, GlobalNavItemProps>(
-  ({ active, children, endDecorator, startDecorator, ...props }, ref) => {
+  ({ active, addonAfter, addonBefore, children, ...props }, ref) => {
     const { restProps, sprinkleProps } = extractSprinkles(props);
 
     const { expanded } = useContext(GlobalNavContext);
@@ -26,7 +26,7 @@ export const GlobalNavItem = forwardRef<HTMLButtonElement, GlobalNavItemProps>(
           appearance="secondary"
           data-state={active ? "active" : undefined}
           gap="sm"
-          icon={startDecorator}
+          icon={addonBefore}
           ref={ref}
           w="full"
           {...restProps}
@@ -40,7 +40,7 @@ export const GlobalNavItem = forwardRef<HTMLButtonElement, GlobalNavItemProps>(
             >
               <RadixCollapsible.Content>
                 {children}
-                <Box asChild>{endDecorator}</Box>
+                <Box asChild>{addonAfter}</Box>
               </RadixCollapsible.Content>
             </Flex>
           )}
