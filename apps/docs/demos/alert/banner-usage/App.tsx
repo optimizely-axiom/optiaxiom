@@ -7,12 +7,7 @@ export function App() {
   return (
     <>
       {open && (
-        <Alert
-          colorScheme="danger"
-          onClose={() => setOpen(false)}
-          variant="solid"
-          w="full"
-        >
+        <Alert colorScheme="danger" onClose={() => setOpen(false)} w="full">
           <AlertDescription flexDirection="row">
             <Text flex="1">
               One or more of your social channel access tokens have expired.
