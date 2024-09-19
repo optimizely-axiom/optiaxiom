@@ -67,7 +67,7 @@ export const Appearance: Story = {
     await userEvent.click(canvas.getByText("Success"));
 
     await waitFor(async () =>
-      expect(await screen.findAllByRole("status")).toHaveLength(4),
+      expect(await screen.findAllByRole("status")).toHaveLength(5),
     );
   },
   render: (args) => {
