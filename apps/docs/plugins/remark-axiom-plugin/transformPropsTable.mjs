@@ -33,6 +33,10 @@ export function transformPropsTable(tree) {
         (attr) => attr.name === "component",
       ).value;
       const component = componentRaw.value ?? componentRaw;
+      const exclude = JSON.parse(
+        node.attributes.find((attr) => attr.name === "exclude")?.value?.value ??
+          "[]",
+      );
       const extendsComponent =
         node.attributes.find((attr) => attr.name === "extends")?.value ??
         (component !== "Box" ? "Box" : null);
@@ -61,7 +65,10 @@ export function transformPropsTable(tree) {
               (component === "Box" &&
                 Object.hasOwn(sprinkles?.props ?? {}, prop.name)),
         )
-        .filter(([, prop]) => prop.type.name !== "never")
+        .filter(
+          ([, prop]) =>
+            !(prop.type.name === "never" || exclude.includes(prop.name)),
+        )
         .map(([, prop]) => prop);
 
       const tree = fromMarkdown(
