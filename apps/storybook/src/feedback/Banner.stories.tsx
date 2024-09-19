@@ -9,7 +9,7 @@ import {
 import { action } from "@storybook/addon-actions";
 
 export default {
-  component: BannerDescription,
+  component: Banner,
 } as Meta<typeof Banner>;
 
 type Story = StoryObj<typeof Banner>;
@@ -37,8 +37,8 @@ export const WithCloseButton: Story = {
   },
   render: (args) => (
     <Flex>
-      <Banner variant="light" {...args} />
-      <Banner variant="solid" {...args} />
+      <Banner {...args} />
+      <Banner {...args} />
     </Flex>
   ),
 };
@@ -48,7 +48,7 @@ export const Solid: Story = {
     children: (
       <BannerDescription>This is a site wide banner message</BannerDescription>
     ),
-    variant: "solid",
+    // variant: "solid",
   },
   render: (args) => (
     <Flex>
@@ -66,7 +66,6 @@ export const Light: Story = {
     children: (
       <BannerDescription>This is an inline section message</BannerDescription>
     ),
-    variant: "light",
   },
   render: (args) => (
     <Flex>
@@ -98,7 +97,6 @@ export const BannerExample: Story = {
     ),
     colorScheme: "danger",
     onClose: () => {},
-    variant: "solid",
   },
   parameters: {
     layout: "padded",

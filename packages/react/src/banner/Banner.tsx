@@ -26,24 +26,10 @@ const iconMap = {
 };
 
 export const Banner = forwardRef<HTMLDivElement, BannerProps>(
-  (
-    {
-      children,
-      className,
-      colorScheme = "note",
-      onClose,
-      variant = "light",
-      ...props
-    },
-    ref,
-  ) => {
+  ({ children, className, colorScheme = "note", onClose, ...props }, ref) => {
     return (
-      <Flex
-        ref={ref}
-        {...styles.banner({ colorScheme, variant }, className)}
-        {...props}
-      >
-        <Box asChild {...styles.icon({ colorScheme, variant })}>
+      <Flex ref={ref} {...styles.banner({ colorScheme }, className)} {...props}>
+        <Box asChild {...styles.icon({})}>
           {createElement(iconMap[colorScheme])}
         </Box>
 
