@@ -29,6 +29,12 @@ export const alert = recipe({
           [solidColorVar]: theme.colors["red.200"],
         },
       }),
+      info: style({
+        vars: {
+          [lightColorVar]: theme.colors["brand.50"],
+          [solidColorVar]: theme.colors["brand.200"],
+        },
+      }),
       neutral: style({
         vars: {
           [lightColorVar]: theme.colors["bg.neutral"],
@@ -77,6 +83,11 @@ export const icon = recipe({
       danger: style({
         vars: {
           [iconColorVar]: theme.colors["bg.error.solid.hover"],
+        },
+      }),
+      info: style({
+        vars: {
+          [iconColorVar]: theme.colors["brand.600"],
         },
       }),
       neutral: style({

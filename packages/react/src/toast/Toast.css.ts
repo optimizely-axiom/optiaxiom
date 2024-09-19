@@ -119,6 +119,11 @@ export const root = recipe({
           [accentColorVar]: theme.colors["red.300"],
         },
       }),
+      info: style({
+        vars: {
+          [accentColorVar]: theme.colors["brand.200"],
+        },
+      }),
       neutral: style({
         vars: {
           [accentColorVar]: theme.colors["fg.default.inverse"],
