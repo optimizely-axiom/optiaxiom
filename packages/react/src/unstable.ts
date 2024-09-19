@@ -1,3 +1,6 @@
+export * from "./banner";
+export * from "./banner-description";
+export * from "./banner-title";
 export * from "./breadcrumb";
 export * from "./breadcrumb-ellipsis";
 export * from "./breadcrumb-item";
