@@ -61,9 +61,10 @@ export const Basic: Story = {};
 export const Appearance: Story = {
   play: async ({ canvas }) => {
     await userEvent.click(canvas.getByText("Neutral"));
-    await userEvent.click(canvas.getByText("Success"));
+    await userEvent.click(canvas.getByText("Info"));
     await userEvent.click(canvas.getByText("Warning"));
     await userEvent.click(canvas.getByText("Danger"));
+    await userEvent.click(canvas.getByText("Success"));
 
     await waitFor(async () =>
       expect(await screen.findAllByRole("status")).toHaveLength(4),
@@ -80,11 +81,9 @@ export const Appearance: Story = {
           Neutral
         </Button>
         <Button
-          onClick={() =>
-            toaster.create(<Toast {...args} colorScheme="success" />)
-          }
+          onClick={() => toaster.create(<Toast {...args} colorScheme="info" />)}
         >
-          Success
+          Info
         </Button>
         <Button
           onClick={() =>
@@ -99,6 +98,13 @@ export const Appearance: Story = {
           }
         >
           Danger
+        </Button>
+        <Button
+          onClick={() =>
+            toaster.create(<Toast {...args} colorScheme="success" />)
+          }
+        >
+          Success
         </Button>
       </Flex>
     );
