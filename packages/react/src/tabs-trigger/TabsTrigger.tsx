@@ -62,9 +62,7 @@ export const TabsTrigger = forwardRef<HTMLButtonElement, TabsTriggerProps>(
         ref={ref}
         {...sprinkleProps}
       >
-        <RadixTabs.Trigger ref={ref} {...restProps}>
-          {children}
-        </RadixTabs.Trigger>
+        <RadixTabs.Trigger {...restProps}>{children}</RadixTabs.Trigger>
       </Button>
     );
   },
