@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 0.1.0-next.19
+
+### Patch Changes
+
+- 9b4f9d4: use custom solution for autosizing textarea
+
 ## 0.1.0-next.18
 
 ### Patch Changes
