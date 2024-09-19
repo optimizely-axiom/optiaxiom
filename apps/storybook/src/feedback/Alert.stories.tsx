@@ -55,7 +55,7 @@ export const Solid: Story = {
   render: (args) => (
     <Flex>
       <Alert colorScheme="neutral" {...args} />
-      <Alert colorScheme="info" {...args} />
+      <Alert colorScheme="informational" {...args} />
       <Alert colorScheme="warning" {...args} />
       <Alert colorScheme="danger" {...args} />
       <Alert colorScheme="success" {...args} />
@@ -73,7 +73,7 @@ export const Light: Story = {
   render: (args) => (
     <Flex>
       <Alert colorScheme="neutral" {...args} />
-      <Alert colorScheme="info" {...args} />
+      <Alert colorScheme="informational" {...args} />
       <Alert colorScheme="warning" {...args} />
       <Alert colorScheme="danger" {...args} />
       <Alert colorScheme="success" {...args} />

@@ -119,7 +119,7 @@ export const root = recipe({
           [accentColorVar]: theme.colors["red.300"],
         },
       }),
-      info: style({
+      informational: style({
         vars: {
           [accentColorVar]: theme.colors["brand.200"],
         },

@@ -18,7 +18,7 @@ type ToastProps = BoxProps<
 
 const iconMap = {
   danger: IconCircleExclamationFilled,
-  info: IconCircleInfoFilled,
+  informational: IconCircleInfoFilled,
   neutral: IconCircleInfoFilled,
   success: IconCircleCheckFilled,
   warning: IconTriangleExclamationFilled,
