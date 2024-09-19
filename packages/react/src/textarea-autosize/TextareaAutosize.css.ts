@@ -13,6 +13,7 @@ const maxRowsStyle = style({
 
 export const wrapper = recipe({
   base: {
+    display: "grid",
     flex: "auto",
     overflow: "auto",
   },
@@ -36,9 +37,7 @@ export const wrapper = recipe({
       ],
     ),
     resize: {
-      auto: {
-        display: "grid",
-      },
+      auto: {},
       none: {},
       vertical: style({
         resize: "vertical",
