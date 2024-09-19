@@ -1,5 +1,5 @@
 import { Slot } from "@radix-ui/react-slot";
-import { forwardRef } from "react";
+import { type ComponentPropsWithRef, forwardRef } from "react";
 
 import { InputBase, type InputBaseProps } from "../input-base";
 import { TextareaAutosize } from "../textarea-autosize";
@@ -8,6 +8,11 @@ type TextareaProps = InputBaseProps<
   typeof TextareaAutosize,
   {
     children?: never;
+    /**
+     * Limits the height of the textarea when `resize=auto` is used.
+     */
+    maxRows?: ComponentPropsWithRef<typeof TextareaAutosize>["maxRows"];
+    resize?: ComponentPropsWithRef<typeof TextareaAutosize>["resize"];
     size?: never;
   }
 >;
