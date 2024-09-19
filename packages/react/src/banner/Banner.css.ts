@@ -1,14 +1,5 @@
 import { theme } from "../theme";
-import {
-  type RecipeVariants,
-  createVar,
-  recipe,
-  style,
-} from "../vanilla-extract";
-
-const solidColorVar = createVar();
-const lightColorVar = createVar();
-const iconColorVar = createVar();
+import { type RecipeVariants, recipe, style } from "../vanilla-extract";
 
 export const banner = recipe({
   base: [
@@ -24,47 +15,19 @@ export const banner = recipe({
   variants: {
     colorScheme: {
       danger: style({
-        vars: {
-          [lightColorVar]: theme.colors["red.100"],
-          [solidColorVar]: theme.colors["red.200"],
-        },
+        backgroundColor: theme.colors["red.200"],
       }),
       info: style({
-        vars: {
-          [lightColorVar]: theme.colors["brand.50"],
-          [solidColorVar]: theme.colors["brand.200"],
-        },
+        backgroundColor: theme.colors["brand.200"],
       }),
       note: style({
-        vars: {
-          [lightColorVar]: theme.colors["bg.neutral"],
-          [solidColorVar]: theme.colors["bg.neutral.solid"],
-        },
+        backgroundColor: theme.colors["bg.neutral.solid"],
       }),
       success: style({
-        vars: {
-          [lightColorVar]: theme.colors["green.100"],
-          [solidColorVar]: theme.colors["green.200"],
-        },
+        backgroundColor: theme.colors["green.200"],
       }),
       warning: style({
-        vars: {
-          [lightColorVar]: theme.colors["yellow.100"],
-          [solidColorVar]: theme.colors["yellow.200"],
-        },
-      }),
-    },
-    variant: {
-      light: [
-        {
-          rounded: "md",
-        },
-        style({
-          backgroundColor: lightColorVar,
-        }),
-      ],
-      solid: style({
-        backgroundColor: solidColorVar,
+        backgroundColor: theme.colors["yellow.200"],
       }),
     },
   },
@@ -73,48 +36,12 @@ export const banner = recipe({
 export const icon = recipe({
   base: [
     {
+      color: "bg.neutral.inverse",
       h: "16",
       mt: "4",
       w: "auto",
     },
   ],
-  variants: {
-    colorScheme: {
-      danger: style({
-        vars: {
-          [iconColorVar]: theme.colors["bg.error.solid.hover"],
-        },
-      }),
-      info: style({
-        vars: {
-          [iconColorVar]: theme.colors["brand.600"],
-        },
-      }),
-      note: style({
-        vars: {
-          [iconColorVar]: theme.colors["fg.tertiary"],
-        },
-      }),
-      success: style({
-        vars: {
-          [iconColorVar]: theme.colors["bg.success.solid.hover"],
-        },
-      }),
-      warning: style({
-        vars: {
-          [iconColorVar]: theme.colors["bg.warning.solid.hover"],
-        },
-      }),
-    },
-    variant: {
-      light: style({
-        color: iconColorVar,
-      }),
-      solid: style({
-        color: theme.colors["bg.neutral.inverse"],
-      }),
-    },
-  },
 });
 
 export type BannerVariants = NonNullable<RecipeVariants<typeof banner>>;
