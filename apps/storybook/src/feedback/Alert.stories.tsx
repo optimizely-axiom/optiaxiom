@@ -45,25 +45,7 @@ export const WithCloseButton: Story = {
   ),
 };
 
-export const Solid: Story = {
-  args: {
-    children: (
-      <AlertDescription>This is a site wide banner message</AlertDescription>
-    ),
-    variant: "solid",
-  },
-  render: (args) => (
-    <Flex>
-      <Alert colorScheme="neutral" {...args} />
-      <Alert colorScheme="informational" {...args} />
-      <Alert colorScheme="warning" {...args} />
-      <Alert colorScheme="danger" {...args} />
-      <Alert colorScheme="success" {...args} />
-    </Flex>
-  ),
-};
-
-export const Light: Story = {
+export const Appearance: Story = {
   args: {
     children: (
       <AlertDescription>This is an inline section message</AlertDescription>
@@ -79,32 +61,6 @@ export const Light: Story = {
       <Alert colorScheme="success" {...args} />
     </Flex>
   ),
-};
-
-export const Banner: Story = {
-  args: {
-    children: (
-      <>
-        <AlertDescription flexDirection="row">
-          <Text flex="1">
-            One or more of your social channel access tokens have expired.
-          </Text>
-
-          <Text>
-            <Link colorScheme="neutral" href="data:,">
-              Sync now
-            </Link>
-          </Text>
-        </AlertDescription>
-      </>
-    ),
-    colorScheme: "danger",
-    onClose: () => {},
-    variant: "solid",
-  },
-  parameters: {
-    layout: "padded",
-  },
 };
 
 export const Links: Story = {
