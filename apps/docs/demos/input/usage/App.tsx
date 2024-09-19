@@ -1,5 +1,24 @@
-import { Input } from "@optiaxiom/react";
+import type { ComponentPropsWithoutRef } from "react";
 
-export function App() {
-  return <Input placeholder="Enter text..." />;
+import { Field, Input } from "@optiaxiom/react";
+
+export function App({
+  description,
+  error,
+  label = "Input label",
+  required = false,
+}: Pick<
+  ComponentPropsWithoutRef<typeof Field>,
+  "description" | "error" | "label" | "required"
+>) {
+  return (
+    <Field
+      description={description}
+      error={error}
+      label={label}
+      required={required}
+    >
+      <Input placeholder="Enter text..." />
+    </Field>
+  );
 }
