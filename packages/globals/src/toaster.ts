@@ -1,10 +1,19 @@
-import type { ReactElement } from "react";
+import type { ReactElement, useSyncExternalStore } from "react";
 
-type ToastElement = ReactElement;
 type ToastItem = {
   id: string;
   open: boolean;
-  toast: ToastElement;
+  toast:
+    | {
+        action?: {
+          altText: string;
+          label: string;
+          onClick: () => void;
+        };
+        title: string;
+        type?: "danger" | "neutral" | "success" | "warning";
+      }
+    | ReactElement;
 };
 
 const EMPTY: ToastItem[] = [];
@@ -14,7 +23,13 @@ const genId = () => {
   return "t" + id++;
 };
 
-export const createToaster = () => {
+type Toaster = {
+  create: (toast: ToastItem["toast"]) => string;
+  remove: (id: string) => void;
+  store: Parameters<typeof useSyncExternalStore<ToastItem[]>>;
+};
+
+export const createToaster = (): Toaster => {
   let snapshot: ToastItem[] = [];
 
   const listeners = new Set<() => void>();
@@ -25,16 +40,16 @@ export const createToaster = () => {
   };
 
   return {
-    store: {
-      getServerSnapshot: () => EMPTY,
-      getSnapshot: () => snapshot,
-      subscribe: (callback: () => void) => {
+    store: [
+      (callback: () => void) => {
         listeners.add(callback);
         return () => listeners.delete(callback);
       },
-    },
+      () => snapshot,
+      () => EMPTY,
+    ],
 
-    create: (toast: ToastElement) => {
+    create: (toast) => {
       const id = genId();
       snapshot = [...snapshot, { id, open: true, toast }];
 
@@ -43,7 +58,7 @@ export const createToaster = () => {
       return id;
     },
 
-    remove: (id: string) => {
+    remove: (id) => {
       snapshot = snapshot.map((item) =>
         item.id === id ? { ...item, open: false } : item,
       );
