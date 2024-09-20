@@ -39,8 +39,7 @@ export const WithCloseButton: Story = {
   },
   render: (args) => (
     <Flex>
-      <Alert variant="light" {...args} />
-      <Alert variant="solid" {...args} />
+      <Alert {...args} />
     </Flex>
   ),
 };
@@ -50,7 +49,6 @@ export const Appearance: Story = {
     children: (
       <AlertDescription>This is an inline section message</AlertDescription>
     ),
-    variant: "light",
   },
   render: (args) => (
     <Flex>

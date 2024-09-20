@@ -27,23 +27,12 @@ const iconMap = {
 
 export const Alert = forwardRef<HTMLDivElement, AlertProps>(
   (
-    {
-      children,
-      className,
-      colorScheme = "neutral",
-      onClose,
-      variant = "light",
-      ...props
-    },
+    { children, className, colorScheme = "neutral", onClose, ...props },
     ref,
   ) => {
     return (
-      <Flex
-        ref={ref}
-        {...styles.alert({ colorScheme, variant }, className)}
-        {...props}
-      >
-        <Box asChild {...styles.icon({ colorScheme, variant })}>
+      <Flex ref={ref} {...styles.alert({ colorScheme }, className)} {...props}>
+        <Box asChild {...styles.icon({ colorScheme })}>
           {createElement(iconMap[colorScheme])}
         </Box>
 
