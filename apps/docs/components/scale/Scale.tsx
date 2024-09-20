@@ -20,7 +20,7 @@ export const Scale = ({
   valueLabel?: string;
   values: Record<string, string> | string[];
 }) => (
-  <Table maxH="sm" overflow="auto">
+  <Table maxH="sm">
     <Thead>
       <tr>
         <Th className="nx-sticky nx-top-0">{keyLabel}</Th>
