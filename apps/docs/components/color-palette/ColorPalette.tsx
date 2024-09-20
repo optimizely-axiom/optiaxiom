@@ -1,4 +1,6 @@
-import { Box, Flex, Grid, Text, tokens } from "@optiaxiom/react";
+import { Flex, Grid, Text, tokens } from "@optiaxiom/react";
+
+import { ColorTokenItem } from "../color-tokens";
 
 export function ColorPalette() {
   return (
@@ -34,30 +36,12 @@ export function ColorPalette() {
           </Text>
           <Flex flex="1" flexDirection={["column", "row"]} flexWrap="wrap">
             {tones.map(([tone, name, color]) => (
-              <Flex
-                alignItems="start"
+              <ColorTokenItem
                 flexDirection={["row", "column"]}
                 gap={["sm", "8"]}
+                item={{ bg: name, name: tone, value: color }}
                 key={`tone-${tone}`}
-              >
-                <Box
-                  bg={name}
-                  rounded="sm"
-                  style={{
-                    aspectRatio: 100 / 70,
-                    border: `1px solid oklch(from ${color} calc(l - 0.1) c h)`,
-                  }}
-                  w="48"
-                />
-                <Box flex="1">
-                  <Text fontSize="sm" fontWeight="600">
-                    {tone}
-                  </Text>
-                  <Text color="dark.500" fontSize="sm" mt="2">
-                    {color}
-                  </Text>
-                </Box>
-              </Flex>
+              />
             ))}
           </Flex>
         </Flex>
