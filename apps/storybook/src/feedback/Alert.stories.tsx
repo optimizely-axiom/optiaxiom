@@ -53,7 +53,7 @@ export const Appearance: Story = {
   render: (args) => (
     <Flex>
       <Alert colorScheme="neutral" {...args} />
-      <Alert colorScheme="informational" {...args} />
+      <Alert colorScheme="information" {...args} />
       <Alert colorScheme="warning" {...args} />
       <Alert colorScheme="danger" {...args} />
       <Alert colorScheme="success" {...args} />
