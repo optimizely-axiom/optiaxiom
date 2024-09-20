@@ -6,8 +6,6 @@ import {
   style,
 } from "../vanilla-extract";
 
-const solidColorVar = createVar();
-const lightColorVar = createVar();
 const iconColorVar = createVar();
 
 export const alert = recipe({
@@ -24,47 +22,19 @@ export const alert = recipe({
   variants: {
     colorScheme: {
       danger: style({
-        vars: {
-          [lightColorVar]: theme.colors["red.100"],
-          [solidColorVar]: theme.colors["red.200"],
-        },
+        backgroundColor: theme.colors["red.100"],
       }),
       informational: style({
-        vars: {
-          [lightColorVar]: theme.colors["brand.50"],
-          [solidColorVar]: theme.colors["brand.200"],
-        },
+        backgroundColor: theme.colors["brand.50"],
       }),
       neutral: style({
-        vars: {
-          [lightColorVar]: theme.colors["bg.neutral"],
-          [solidColorVar]: theme.colors["bg.neutral.solid"],
-        },
+        backgroundColor: theme.colors["bg.neutral"],
       }),
       success: style({
-        vars: {
-          [lightColorVar]: theme.colors["green.100"],
-          [solidColorVar]: theme.colors["green.200"],
-        },
+        backgroundColor: theme.colors["green.100"],
       }),
       warning: style({
-        vars: {
-          [lightColorVar]: theme.colors["yellow.100"],
-          [solidColorVar]: theme.colors["yellow.200"],
-        },
-      }),
-    },
-    variant: {
-      light: [
-        {
-          rounded: "md",
-        },
-        style({
-          backgroundColor: lightColorVar,
-        }),
-      ],
-      solid: style({
-        backgroundColor: solidColorVar,
+        backgroundColor: theme.colors["yellow.100"],
       }),
     },
   },
@@ -77,7 +47,11 @@ export const icon = recipe({
       mt: "4",
       w: "auto",
     },
+    style({
+      color: iconColorVar,
+    }),
   ],
+
   variants: {
     colorScheme: {
       danger: style({
@@ -104,14 +78,6 @@ export const icon = recipe({
         vars: {
           [iconColorVar]: theme.colors["bg.warning.solid.hover"],
         },
-      }),
-    },
-    variant: {
-      light: style({
-        color: iconColorVar,
-      }),
-      solid: style({
-        color: theme.colors["bg.neutral.inverse"],
       }),
     },
   },
