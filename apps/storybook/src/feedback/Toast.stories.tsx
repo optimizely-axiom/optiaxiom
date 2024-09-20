@@ -61,7 +61,7 @@ export const Basic: Story = {};
 export const Appearance: Story = {
   play: async ({ canvas }) => {
     await userEvent.click(canvas.getByText("Neutral"));
-    await userEvent.click(canvas.getByText("Info"));
+    await userEvent.click(canvas.getByText("Information"));
     await userEvent.click(canvas.getByText("Warning"));
     await userEvent.click(canvas.getByText("Danger"));
     await userEvent.click(canvas.getByText("Success"));
@@ -82,7 +82,7 @@ export const Appearance: Story = {
         </Button>
         <Button
           onClick={() =>
-            toaster.create(<Toast {...args} colorScheme="informational" />)
+            toaster.create(<Toast {...args} colorScheme="information" />)
           }
         >
           Info

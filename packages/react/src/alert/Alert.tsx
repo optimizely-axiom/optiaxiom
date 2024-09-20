@@ -19,7 +19,7 @@ type AlertProps = BoxProps<
 
 const iconMap = {
   danger: IconCircleExclamationFilled,
-  informational: IconCircleInfoFilled,
+  information: IconCircleInfoFilled,
   neutral: IconCircleInfoFilled,
   success: IconCircleCheckFilled,
   warning: IconTriangleExclamationFilled,
