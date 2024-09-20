@@ -19,14 +19,17 @@ type BannerProps = BoxProps<
 
 const iconMap = {
   danger: IconCircleExclamationFilled,
-  info: IconCircleInfoFilled,
-  note: IconCircleInfoFilled,
+  information: IconCircleInfoFilled,
+  neutral: IconCircleInfoFilled,
   success: IconCircleCheckFilled,
   warning: IconTriangleExclamationFilled,
 };
 
 export const Banner = forwardRef<HTMLDivElement, BannerProps>(
-  ({ children, className, colorScheme = "note", onClose, ...props }, ref) => {
+  (
+    { children, className, colorScheme = "neutral", onClose, ...props },
+    ref,
+  ) => {
     return (
       <Flex ref={ref} {...styles.banner({ colorScheme }, className)} {...props}>
         <Box asChild {...styles.icon({})}>
