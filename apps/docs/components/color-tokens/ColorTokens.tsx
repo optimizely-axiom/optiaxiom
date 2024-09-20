@@ -1,6 +1,6 @@
 import type { Props } from "react-docgen-typescript";
 
-import { Box, Code, Flex, Text } from "@optiaxiom/react";
+import { Box, Code, Flex, type Sprinkles, Text } from "@optiaxiom/react";
 
 import { Table, Td, Th, Thead, Tr } from "../table";
 import { ColorTokenItem } from "./ColorTokenItem";
@@ -29,8 +29,7 @@ export function ColorTokens({
         <Box asChild display={["flex", "table-row"]}>
           <tr>
             <Th flex="1">Token and description</Th>
-            <Th display={["none", "table-cell"]}>Light value</Th>
-            <Th display={["none", "table-cell"]}>Dark value</Th>
+            <Th display={["none", "table-cell"]}>Value</Th>
           </tr>
         </Box>
       </Thead>
@@ -51,18 +50,18 @@ export function ColorTokens({
                   {token.description && <Text>{token.description}</Text>}
                 </Flex>
               </Td>
-              <Td py="16" w="160">
+              <Td pb="16" pt={["0", "16"]} w="160">
                 <ColorTokenItem
-                  mode="light"
-                  token={token}
-                  value={palette[token.type.name]}
-                />
-              </Td>
-              <Td py="16" w="160">
-                <ColorTokenItem
-                  mode="dark"
-                  token={dark[token.name]}
-                  value={palette[dark[token.name].type.name]}
+                  flexDirection={["row", "row-reverse"]}
+                  item={{
+                    bg: token.name as Sprinkles["bg"],
+                    name: `ld(${palette[token.type.name].name}, ${palette[dark[token.name].type.name].name})`,
+                    value: `ld(${JSON.parse(
+                      palette[token.type.name].type.name,
+                    )}, ${JSON.parse(
+                      palette[dark[token.name].type.name].type.name,
+                    )})`,
+                  }}
                 />
               </Td>
             </Tr>

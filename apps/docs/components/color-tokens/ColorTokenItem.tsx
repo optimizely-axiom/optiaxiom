@@ -1,67 +1,52 @@
-import type { PropItem } from "react-docgen-typescript";
+"use client";
 
-import { Box, Flex, Text } from "@optiaxiom/react";
+import type { ComponentPropsWithRef } from "react";
+
+import { Box, Flex, type Sprinkles, Text } from "@optiaxiom/react";
+import { useTheme } from "nextra-theme-docs";
+
+const pattern = /\((?<light>.+),\s?(?<dark>.+)\)/;
 
 export function ColorTokenItem({
-  mode,
-  token,
-  value,
+  item,
+  ...props
 }: {
-  mode: "dark" | "light";
-  token: PropItem;
-  value: PropItem;
-}) {
-  const luminance = getColorLuminance(JSON.parse(token.type.name));
+  item: {
+    bg: Sprinkles["bg"];
+    name: string;
+    value: string;
+  };
+} & ComponentPropsWithRef<typeof Box>) {
+  const { resolvedTheme: theme = "light" } = useTheme();
+  const name = (
+    item.name.startsWith("ld(") ? item.name : `ld(${item.name}, ${item.name})`
+  ).match(pattern)?.groups?.[theme];
+  const value = (
+    item.value.startsWith("ld(")
+      ? item.value
+      : `ld(${item.value}, ${item.value})`
+  ).match(pattern)?.groups?.[theme];
 
   return (
-    <Flex
-      bg={mode === "light" ? "white" : "neutral.900"}
-      border="1"
-      gap="8"
-      p="6"
-      rounded="sm"
-    >
+    <Flex alignItems="start" flexDirection="row" {...props}>
       <Box
-        p="12"
+        bg={item.bg}
         rounded="sm"
         style={{
-          backgroundColor: JSON.parse(token.type.name),
-          outlineColor: `oklch(from ${JSON.parse(token.type.name)} calc(l ${mode === "light" ? "-" : "+"} 0.1) c h)`,
-          outlineStyle: "solid",
-          outlineWidth:
-            (mode === "light" ? luminance : 255 - luminance) > 200
-              ? "1px"
-              : "0",
+          aspectRatio: 100 / 70,
+          border: `1px solid oklch(from ${value} calc(l - 0.1) c h)`,
         }}
+        suppressHydrationWarning
+        w="48"
       />
-      <Text
-        color={mode === "light" ? "neutral.800" : "neutral.100"}
-        fontFamily="mono"
-        fontSize="sm"
-        px="2"
-      >
-        {value.name}
-      </Text>
+      <Box flex="1">
+        <Text fontSize="sm" fontWeight="600" suppressHydrationWarning>
+          {name}
+        </Text>
+        <Text color="dark.500" fontSize="sm" mt="2" suppressHydrationWarning>
+          {value}
+        </Text>
+      </Box>
     </Flex>
-  );
-}
-
-function getColorLuminance(hex: string) {
-  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})?$/i.exec(
-    hex,
-  );
-  if (!result) {
-    throw new Error("Could not parse hex color: " + hex);
-  }
-  const rgb = {
-    a: result[4] ? parseInt(result[4], 16) / 255 : 1,
-    b: parseInt(result[3], 16),
-    g: parseInt(result[2], 16),
-    r: parseInt(result[1], 16),
-  };
-  return (
-    0.2126 * (255 - rgb.a * (255 - rgb.r)) +
-    0.7152 * (255 - rgb.a * (255 - rgb.g)) +
-    0.0722 * (255 - rgb.a * (255 - rgb.b))
   );
 }
