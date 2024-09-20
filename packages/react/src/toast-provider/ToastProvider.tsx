@@ -5,6 +5,7 @@ import {
   type ComponentPropsWithoutRef,
   cloneElement,
   forwardRef,
+  isValidElement,
   useRef,
 } from "react";
 import { useSyncExternalStore } from "use-sync-external-store/shim/index.js";
@@ -12,6 +13,9 @@ import { useSyncExternalStore } from "use-sync-external-store/shim/index.js";
 import { type BoxProps } from "../box";
 import { Flex } from "../flex";
 import { extractSprinkles } from "../sprinkles";
+import { Toast } from "../toast/Toast";
+import { ToastAction } from "../toast-action";
+import { ToastTitle } from "../toast-title";
 import * as styles from "./ToastProvider.css";
 import { type createToaster, toaster } from "./toaster";
 import { useOverflowAnchor } from "./useOverflowAnchor";
@@ -53,11 +57,7 @@ export const ToastProvider = forwardRef<HTMLOListElement, ToastProps>(
     outerRef,
   ) => {
     const { restProps, sprinkleProps } = extractSprinkles(props);
-    const toasts = useSyncExternalStore(
-      toasterProp.store.subscribe,
-      toasterProp.store.getSnapshot,
-      toasterProp.store.getServerSnapshot,
-    );
+    const toasts = useSyncExternalStore(...toasterProp.store);
 
     const innerRef = useRef<HTMLOListElement>(null);
     const ref = useComposedRefs(innerRef, outerRef);
@@ -74,15 +74,37 @@ export const ToastProvider = forwardRef<HTMLOListElement, ToastProps>(
         swipeThreshold={swipeThreshold}
       >
         {toasts.map(({ id, open, toast }) =>
-          cloneElement(toast, {
-            forceMount: true,
-            key: id,
-            onOpenChange: (open: boolean) => {
-              toast.props.onOpenChange?.(open);
-              toasterProp.remove(id);
+          cloneElement(
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any -- https://github.com/microsoft/TypeScript/issues/53178
+            isValidElement<any>(toast) ? (
+              toast
+            ) : (
+              <Toast colorScheme={toast.type} key={id}>
+                <ToastTitle>{toast.title}</ToastTitle>
+                {toast.action && (
+                  <ToastAction
+                    altText={toast.action.altText}
+                    onClick={toast.action.onClick}
+                  >
+                    {toast.action.label}
+                  </ToastAction>
+                )}
+              </Toast>
+            ),
+            {
+              forceMount: true,
+              key: id,
+              onOpenChange: (open: boolean) => {
+                if (
+                  isValidElement<ComponentPropsWithoutRef<typeof Toast>>(toast)
+                ) {
+                  toast.props.onOpenChange?.(open);
+                }
+                toasterProp.remove(id);
+              },
+              open,
             },
-            open,
-          }),
+          ),
         )}
 
         <Portal container={container}>
