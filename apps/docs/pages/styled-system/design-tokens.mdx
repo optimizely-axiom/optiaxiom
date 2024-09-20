@@ -66,7 +66,7 @@ You can use this `theme` object when implementing any CSS-in-JS solutions.
 
 {Object.entries(theme).map(([name, values]) => (
 
-<Fragment key="name">
+<Fragment key={name}>
   <h3 id={name}>
     <code>{name}</code>
   </h3>
