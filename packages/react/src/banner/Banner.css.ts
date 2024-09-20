@@ -17,10 +17,10 @@ export const banner = recipe({
       danger: style({
         backgroundColor: theme.colors["red.200"],
       }),
-      info: style({
+      information: style({
         backgroundColor: theme.colors["brand.200"],
       }),
-      note: style({
+      neutral: style({
         backgroundColor: theme.colors["bg.neutral.solid"],
       }),
       success: style({
