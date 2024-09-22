@@ -31,7 +31,6 @@ export const Basic: Story = {
     children: <Button>Hover</Button>,
     content: "Add to library",
     side: "top",
-    withArrow: false,
   },
   play: async ({ canvas }) => {
     await userEvent.hover(canvas.getByRole("button"));
@@ -90,9 +89,6 @@ export const DefaultOpen: Story = {
 };
 
 export const AllPositions: Story = {
-  args: {
-    withArrow: true,
-  },
   render: (args) => (
     <Grid gap="16">
       <Tooltip align="start" content="Top Start" side="top" {...args}>
@@ -197,18 +193,36 @@ export const Modular: Story = {
   render: (args) => (
     <TooltipRoot {...args}>
       <TooltipTrigger>Hover</TooltipTrigger>
-      <TooltipContent>Add to library</TooltipContent>
+      <TooltipContent side="top">Add to library</TooltipContent>
     </TooltipRoot>
   ),
 };
 
 // side in content
 // example with auto
-export const Light: Story = {
+export const ModularTruncate: Story = {
+  args: {
+    auto: true,
+  },
   render: (args) => (
-    <TooltipRoot theme="light" {...args}>
-      <TooltipTrigger>Hover</TooltipTrigger>
-      <TooltipContent>Add to library</TooltipContent>
-    </TooltipRoot>
+    <Flex>
+      <TooltipRoot {...args}>
+        <TooltipTrigger asChild>
+          <Text data-testid="not-truncated">
+            The quick brown fox jumps over the lazy dog.
+          </Text>
+        </TooltipTrigger>
+        <TooltipContent>Not truncated text</TooltipContent>
+      </TooltipRoot>
+
+      <TooltipRoot {...args}>
+        <TooltipTrigger asChild>
+          <Text data-testid="target-truncated" truncate w="192">
+            The quick brown fox jumps over the lazy dog.
+          </Text>
+        </TooltipTrigger>
+        <TooltipContent>Truncated text in target element</TooltipContent>
+      </TooltipRoot>
+    </Flex>
   ),
 };

@@ -5,6 +5,7 @@ import { forwardRef, useRef } from "react";
 import { AnimatePresence } from "../animate-presence";
 import { Box, type BoxProps } from "../box";
 import { Text } from "../text";
+import { theme } from "../theme";
 import { useTooltipContext } from "../tooltip-context";
 import { Transition } from "../transition";
 import * as styles from "./TooltipContent.css";
@@ -19,15 +20,14 @@ export const TooltipContent = forwardRef<HTMLDivElement, TooltipContentProps>(
     const innerRef = useRef<HTMLDivElement>(null);
     const ref = useComposedRefs(innerRef, outerRef);
 
-    const { keepOpenOnActivation, open, side, theme } =
-      useTooltipContext("Tooltip");
+    const { keepOpenOnActivation, open } = useTooltipContext("Tooltip");
 
     return (
       <AnimatePresence>
         {open && (
           <RadixTooltip.Portal forceMount>
             <Transition duration="sm" type="pop">
-              <Box asChild {...styles.content({ theme }, className)} {...props}>
+              <Box asChild {...styles.content({}, className)} {...props}>
                 <RadixTooltip.Content
                   align={align}
                   onPointerDownOutside={
@@ -43,27 +43,15 @@ export const TooltipContent = forwardRef<HTMLDivElement, TooltipContentProps>(
                       : undefined
                   }
                   ref={ref}
-                  side={side}
                   sideOffset={sideOffset}
                 >
                   <Text fontSize="sm">{children}</Text>
-                  <RadixTooltip.Arrow asChild>
-                    <svg
-                      height={4}
-                      preserveAspectRatio="none"
-                      viewBox="0 0 30 10"
-                      width={8}
-                      {...styles.arrow({ theme })}
-                    >
-                      <polygon points="0,0 30,0 15,10" />
-                      <polyline
-                        points="0,0 15,10 30,0"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2.5"
-                      />
-                    </svg>
-                  </RadixTooltip.Arrow>
+
+                  <RadixTooltip.Arrow
+                    fill={theme.colors["neutral.900"]}
+                    height={4}
+                    width={8}
+                  />
                 </RadixTooltip.Content>
               </Box>
             </Transition>

@@ -30,7 +30,6 @@ type TooltipProps = BoxProps<
     keepOpenOnActivation?: boolean;
     onOpenChange?: (open: boolean) => void;
     open?: boolean;
-    withArrow?: boolean;
   }
 >;
 
@@ -45,7 +44,6 @@ export const Tooltip = forwardRef<HTMLButtonElement, TooltipProps>(
       keepOpenOnActivation,
       onOpenChange,
       open: openProp,
-      withArrow,
       z = "popover",
       ...props
     },
@@ -142,13 +140,12 @@ export const Tooltip = forwardRef<HTMLButtonElement, TooltipProps>(
                     sideOffset={5}
                   >
                     <Text fontSize="sm">{content}</Text>
-                    {withArrow && (
-                      <RadixTooltip.Arrow
-                        fill={theme.colors["neutral.900"]}
-                        height={4}
-                        width={8}
-                      />
-                    )}
+
+                    <RadixTooltip.Arrow
+                      fill={theme.colors["neutral.900"]}
+                      height={4}
+                      width={8}
+                    />
                   </RadixTooltip.Content>
                 </Box>
               </Transition>
