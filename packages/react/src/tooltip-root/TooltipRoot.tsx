@@ -13,8 +13,6 @@ type TooltipRootProps = BoxProps<
       typeof RadixTooltip.Provider
     >["delayDuration"];
     keepOpenOnActivation?: boolean;
-    side?: ComponentPropsWithRef<typeof RadixTooltip.Content>["side"];
-    theme?: "dark" | "light";
   }
 >;
 
@@ -26,8 +24,6 @@ export function TooltipRoot({
   keepOpenOnActivation,
   onOpenChange,
   open: openProp,
-  side,
-  theme = "dark",
   ...props
 }: TooltipRootProps) {
   const triggerRef = useRef<HTMLButtonElement>(null);
@@ -80,8 +76,6 @@ export function TooltipRoot({
         keepOpenOnActivation={keepOpenOnActivation}
         open={open}
         setOpen={setOpen}
-        side={side}
-        theme={theme}
         triggerRef={triggerRef}
       >
         {children}

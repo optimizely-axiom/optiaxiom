@@ -5,6 +5,8 @@ import { recipe, style } from "../vanilla-extract";
 export const content = recipe({
   base: [
     {
+      bg: "bg.neutral.inverse",
+      color: "white",
       px: "12",
       py: "8",
       rounded: "lg",
@@ -15,32 +17,12 @@ export const content = recipe({
       position: "relative",
     }),
   ],
-  variants: {
-    theme: {
-      dark: {
-        bg: "bg.neutral.inverse",
-        color: "white",
-      },
-      light: {
-        bg: "surface",
-        border: "1",
-        borderColor: "border.secondary",
-        shadow: "md",
-      },
-    },
-  },
 });
 
 export const arrow = recipe({
-  variants: {
-    theme: {
-      dark: style({
-        fill: theme.colors["neutral.900"],
-      }),
-      light: style({
-        fill: theme.colors["surface"],
-        stroke: theme.colors["border.secondary"],
-      }),
-    },
-  },
+  base: [
+    style({
+      fill: theme.colors["neutral.900"],
+    }),
+  ],
 });
