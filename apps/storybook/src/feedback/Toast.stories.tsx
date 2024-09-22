@@ -85,7 +85,7 @@ export const Appearance: Story = {
             toaster.create(<Toast {...args} colorScheme="information" />)
           }
         >
-          Info
+          Information
         </Button>
         <Button
           onClick={() =>
