@@ -193,13 +193,11 @@ export const Modular: Story = {
   render: (args) => (
     <TooltipRoot {...args}>
       <TooltipTrigger>Hover</TooltipTrigger>
-      <TooltipContent side="top">Add to library</TooltipContent>
+      <TooltipContent>Add to library</TooltipContent>
     </TooltipRoot>
   ),
 };
 
-// side in content
-// example with auto
 export const ModularTruncate: Story = {
   args: {
     auto: true,
