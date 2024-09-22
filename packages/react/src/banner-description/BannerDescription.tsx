@@ -3,11 +3,11 @@ import { type ComponentPropsWithRef, forwardRef } from "react";
 import { Box } from "../box";
 import { Flex } from "../flex";
 
-type AlertDescriptionProps = ComponentPropsWithRef<typeof Box>;
+type BannerDescriptionProps = ComponentPropsWithRef<typeof Box>;
 
 export const BannerDescription = forwardRef<
   HTMLDivElement,
-  AlertDescriptionProps
+  BannerDescriptionProps
 >(({ children, ...props }, ref) => {
   return (
     <Flex gap="xs" ref={ref} {...props}>

@@ -31,7 +31,6 @@ export const Basic: Story = {
         </BannerDescription>
       </>
     ),
-    colorScheme: "danger",
     onClose: () => {},
   },
   parameters: {
@@ -54,7 +53,6 @@ export const WithCloseButton: Story = {
   },
   render: (args) => (
     <Flex>
-      <Banner {...args} />
       <Banner {...args} />
     </Flex>
   ),
