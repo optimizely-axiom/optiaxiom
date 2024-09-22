@@ -17,6 +17,9 @@ export function App() {
       >
         DT
       </Avatar>
+      <Avatar name="Khal Drogo" size="lg">
+        KD
+      </Avatar>
       <Avatar name="Jamie Lannister" size="md">
         JL
       </Avatar>
