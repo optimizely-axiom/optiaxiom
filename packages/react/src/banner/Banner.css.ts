@@ -1,5 +1,4 @@
-import { theme } from "../theme";
-import { type RecipeVariants, recipe, style } from "../vanilla-extract";
+import { type RecipeVariants, recipe } from "../vanilla-extract";
 
 export const banner = recipe({
   base: [
@@ -14,21 +13,21 @@ export const banner = recipe({
   ],
   variants: {
     colorScheme: {
-      danger: style({
-        backgroundColor: theme.colors["red.200"],
-      }),
-      information: style({
-        backgroundColor: theme.colors["brand.200"],
-      }),
-      neutral: style({
-        backgroundColor: theme.colors["bg.neutral.solid"],
-      }),
-      success: style({
-        backgroundColor: theme.colors["green.200"],
-      }),
-      warning: style({
-        backgroundColor: theme.colors["yellow.200"],
-      }),
+      danger: {
+        bg: "red.200",
+      },
+      information: {
+        bg: "brand.200",
+      },
+      neutral: {
+        bg: "bg.neutral.solid",
+      },
+      success: {
+        bg: "green.200",
+      },
+      warning: {
+        bg: "yellow.200",
+      },
     },
   },
 });
