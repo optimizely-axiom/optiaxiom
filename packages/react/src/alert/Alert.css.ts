@@ -1,12 +1,4 @@
-import { theme } from "../theme";
-import {
-  type RecipeVariants,
-  createVar,
-  recipe,
-  style,
-} from "../vanilla-extract";
-
-const iconColorVar = createVar();
+import { type RecipeVariants, recipe } from "../vanilla-extract";
 
 export const alert = recipe({
   base: [
@@ -21,21 +13,21 @@ export const alert = recipe({
   ],
   variants: {
     colorScheme: {
-      danger: style({
-        backgroundColor: theme.colors["red.100"],
-      }),
-      information: style({
-        backgroundColor: theme.colors["brand.50"],
-      }),
-      neutral: style({
-        backgroundColor: theme.colors["bg.neutral"],
-      }),
-      success: style({
-        backgroundColor: theme.colors["green.100"],
-      }),
-      warning: style({
-        backgroundColor: theme.colors["yellow.100"],
-      }),
+      danger: {
+        bg: "red.100",
+      },
+      information: {
+        bg: "brand.50",
+      },
+      neutral: {
+        bg: "bg.neutral",
+      },
+      success: {
+        bg: "green.100",
+      },
+      warning: {
+        bg: "yellow.100",
+      },
     },
   },
 });
@@ -47,38 +39,25 @@ export const icon = recipe({
       mt: "4",
       w: "auto",
     },
-    style({
-      color: iconColorVar,
-    }),
   ],
 
   variants: {
     colorScheme: {
-      danger: style({
-        vars: {
-          [iconColorVar]: theme.colors["bg.error.solid.hover"],
-        },
-      }),
-      information: style({
-        vars: {
-          [iconColorVar]: theme.colors["brand.600"],
-        },
-      }),
-      neutral: style({
-        vars: {
-          [iconColorVar]: theme.colors["fg.tertiary"],
-        },
-      }),
-      success: style({
-        vars: {
-          [iconColorVar]: theme.colors["bg.success.solid.hover"],
-        },
-      }),
-      warning: style({
-        vars: {
-          [iconColorVar]: theme.colors["bg.warning.solid.hover"],
-        },
-      }),
+      danger: {
+        color: "bg.error.solid.hover",
+      },
+      information: {
+        color: "brand.600",
+      },
+      neutral: {
+        color: "fg.tertiary",
+      },
+      success: {
+        color: "bg.success.solid.hover",
+      },
+      warning: {
+        color: "bg.warning.solid.hover",
+      },
     },
   },
 });
