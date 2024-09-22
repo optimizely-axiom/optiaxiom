@@ -10,6 +10,9 @@ import { action } from "@storybook/addon-actions";
 
 export default {
   component: Banner,
+  parameters: {
+    layout: "padded",
+  },
 } as Meta<typeof Banner>;
 
 type Story = StoryObj<typeof Banner>;
@@ -32,9 +35,6 @@ export const Basic: Story = {
       </>
     ),
     onClose: () => {},
-  },
-  parameters: {
-    layout: "padded",
   },
 };
 
