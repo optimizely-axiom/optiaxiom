@@ -1,0 +1,11 @@
+{
+  "extends": "@optiaxiom/shared/configs/tsconfig.base.json",
+  "compilerOptions": {
+    "paths": {
+      "@optiaxiom/react": ["../../packages/react/src"],
+      "@optiaxiom/react/unstable": ["../../packages/react/src/unstable.ts"]
+    }
+  },
+  "include": ["."],
+  "exclude": ["node_modules"]
+}
