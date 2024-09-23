@@ -9,11 +9,6 @@ import {
   Text,
   Tooltip,
 } from "@optiaxiom/react";
-import {
-  TooltipContent,
-  TooltipRoot,
-  TooltipTrigger,
-} from "@optiaxiom/react/unstable";
 import { expect, screen, userEvent, waitFor } from "@storybook/test";
 import { useState } from "react";
 
@@ -185,42 +180,6 @@ export const Truncate: Story = {
           </button>
         </Box>
       </Tooltip>
-    </Flex>
-  ),
-};
-
-export const Modular: Story = {
-  render: (args) => (
-    <TooltipRoot {...args}>
-      <TooltipTrigger>Hover</TooltipTrigger>
-      <TooltipContent>Add to library</TooltipContent>
-    </TooltipRoot>
-  ),
-};
-
-export const ModularTruncate: Story = {
-  args: {
-    auto: true,
-  },
-  render: (args) => (
-    <Flex>
-      <TooltipRoot {...args}>
-        <TooltipTrigger asChild>
-          <Text data-testid="not-truncated">
-            The quick brown fox jumps over the lazy dog.
-          </Text>
-        </TooltipTrigger>
-        <TooltipContent>Not truncated text</TooltipContent>
-      </TooltipRoot>
-
-      <TooltipRoot {...args}>
-        <TooltipTrigger asChild>
-          <Text data-testid="target-truncated" truncate w="192">
-            The quick brown fox jumps over the lazy dog.
-          </Text>
-        </TooltipTrigger>
-        <TooltipContent>Truncated text in target element</TooltipContent>
-      </TooltipRoot>
     </Flex>
   ),
 };
