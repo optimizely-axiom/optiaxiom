@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
     paths:
-      - apps/figma/src/**/*.figma.tsx
+      - apps/figma/**
 
 jobs:
   publish:
