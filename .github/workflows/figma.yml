@@ -1,0 +1,28 @@
+name: Figma
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - apps/figma/src/**/*.figma.tsx
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v3
+
+      - uses: actions/setup-node@v4
+        with:
+          cache: pnpm
+          node-version-file: .node-version
+
+      - run: pnpm install
+
+      - run: pnpm -F react... build
+
+      - run: pnpm -F figma publish
+        env:
+          FIGMA_ACCESS_TOKEN: ${{ secrets.FIGMA_ACCESS_TOKEN }}
