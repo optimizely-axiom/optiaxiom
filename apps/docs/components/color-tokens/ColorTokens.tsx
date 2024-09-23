@@ -50,7 +50,7 @@ export function ColorTokens({
                   {token.description && <Text>{token.description}</Text>}
                 </Flex>
               </Td>
-              <Td pb="16" pt={["0", "16"]} w="160">
+              <Td pb="16" pt={["0", "16"]} w={["full", "160"]}>
                 <ColorTokenItem
                   flexDirection={["row", "row-reverse"]}
                   item={{
