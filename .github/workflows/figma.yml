@@ -21,8 +21,6 @@ jobs:
 
       - run: pnpm install
 
-      - run: pnpm -F react... build
-
-      - run: pnpm -F figma publish
+      - run: pnpm -F figma... build
         env:
           FIGMA_ACCESS_TOKEN: ${{ secrets.FIGMA_ACCESS_TOKEN }}
