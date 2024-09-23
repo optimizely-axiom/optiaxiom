@@ -123,6 +123,7 @@ export default tsEslint.config(
       parserOptions: {
         project: [
           "./apps/docs/tsconfig.json",
+          "./apps/figma/tsconfig.json",
           "./apps/storybook/tsconfig.json",
           "./packages/globals/tsconfig.json",
           "./packages/react/tsconfig.json",

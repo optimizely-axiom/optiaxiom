@@ -1,0 +1,10 @@
+{
+  "codeConnect": {
+    "include": ["src/**", "../../packages/react/src/**"],
+    "paths": {
+      "@optiaxiom/react": ["../../packages/react/src/index.ts"],
+      "@optiaxiom/react/unstable": ["../../packages/react/src/unstable.ts"]
+    },
+    "parser": "react"
+  }
+}
