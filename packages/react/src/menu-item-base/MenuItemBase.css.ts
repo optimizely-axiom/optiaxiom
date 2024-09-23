@@ -36,9 +36,6 @@ export const item = recipe({
         "&:not([data-disabled])[data-highlighted]:active": {
           backgroundColor: theme.colors["neutral.1200/12"],
         },
-        '&:not([data-highlighted])[data-state="open"]': {
-          backgroundColor: bgColorVar,
-        },
         "&[data-disabled]": {
           color: theme.colors["fg.disabled"],
         },
