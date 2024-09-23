@@ -13,7 +13,6 @@ export const content = recipe({
       z: "popover",
     },
     style({
-      minWidth: "var(--radix-tooltip-trigger-width)",
       position: "relative",
     }),
   ],
