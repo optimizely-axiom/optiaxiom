@@ -3,13 +3,13 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Avatar, Button, Flex, Text } from "@optiaxiom/react";
 import {
   Combobox,
+  ComboboxCheckboxItem,
   ComboboxContent,
+  ComboboxEmpty,
+  ComboboxFooter,
+  ComboboxItem,
+  ComboboxList,
   ComboboxTrigger,
-  CommandCheckboxItem,
-  CommandEmpty,
-  CommandFooter,
-  CommandItem,
-  CommandList,
 } from "@optiaxiom/react/unstable";
 import { useState } from "react";
 
@@ -57,18 +57,18 @@ const PeopleSelector = () => {
       <ComboboxTrigger title="Assign people" />
 
       <ComboboxContent>
-        <CommandEmpty
-          alignItems="center"
-          display="flex"
-          justifyContent="center"
-        >
-          <Button m="4" w="full">
-            +Add people
-          </Button>
-        </CommandEmpty>
-        <CommandList>
+        <ComboboxList>
+          <ComboboxEmpty
+            alignItems="center"
+            display="flex"
+            justifyContent="center"
+          >
+            <Button m="4" w="full">
+              +Add people
+            </Button>
+          </ComboboxEmpty>
           {users.map((user) => (
-            <CommandItem
+            <ComboboxItem
               key={user.id}
               keywords={[user.name, user.email]}
               onSelect={(currentValue) => {
@@ -91,9 +91,9 @@ const PeopleSelector = () => {
                   {user.email && <Text color="dark.200">{user.email}</Text>}
                 </Flex>
               </Flex>
-            </CommandItem>
+            </ComboboxItem>
           ))}
-        </CommandList>
+        </ComboboxList>
       </ComboboxContent>
     </Combobox>
   );
@@ -155,18 +155,18 @@ const SingleSelectExample = () => {
       <Combobox defaultValue={selectedValue} onOpenChange={setOpen} open={open}>
         <ComboboxTrigger title="Select Item" />
         <ComboboxContent w="240">
-          <CommandEmpty
-            alignItems="center"
-            display="flex"
-            justifyContent="center"
-          >
-            <Button m="4" w="full">
-              +Add tag
-            </Button>
-          </CommandEmpty>
-          <CommandList style={{ maxHeight: "30dvh" }}>
+          <ComboboxList style={{ maxHeight: "30dvh" }}>
+            <ComboboxEmpty
+              alignItems="center"
+              display="flex"
+              justifyContent="center"
+            >
+              <Button m="4" w="full">
+                +Add tag
+              </Button>
+            </ComboboxEmpty>
             {items.map((item) => (
-              <CommandItem
+              <ComboboxItem
                 key={item}
                 onSelect={() => {
                   handleSelect(item);
@@ -175,9 +175,9 @@ const SingleSelectExample = () => {
                 value={item}
               >
                 {item}
-              </CommandItem>
+              </ComboboxItem>
             ))}
-          </CommandList>
+          </ComboboxList>
         </ComboboxContent>
       </Combobox>
       <Text>Selected value: {selectedValue || "None"}</Text>
@@ -205,23 +205,23 @@ const MultipleSelectExample = () => {
       >
         <ComboboxTrigger maxW="full" title="Select Items" w="240" />
         <ComboboxContent w="240">
-          <CommandList style={{ maxHeight: "30dvh" }}>
+          <ComboboxList style={{ maxHeight: "30dvh" }}>
             {items.map((item) => (
-              <CommandCheckboxItem
+              <ComboboxCheckboxItem
                 key={item}
                 onCheckedChange={() => handleSelect(item)}
                 value={item}
               >
                 {item}
-              </CommandCheckboxItem>
+              </ComboboxCheckboxItem>
             ))}
-          </CommandList>
-          <CommandFooter>
+          </ComboboxList>
+          <ComboboxFooter>
             <Button onClick={() => setSelectedValues([])}>Clear All</Button>
             <Button appearance="primary" onClick={() => setOpen(false)}>
               Done
             </Button>
-          </CommandFooter>
+          </ComboboxFooter>
         </ComboboxContent>
       </Combobox>
       <Text>
@@ -285,18 +285,18 @@ const DisabledItemsExample = () => {
         >
           <ComboboxTrigger title="Select Language" />
           <ComboboxContent w="240">
-            <CommandList style={{ maxHeight: "30dvh" }}>
+            <ComboboxList style={{ maxHeight: "30dvh" }}>
               {itemsWithDisabled.map((item) => (
-                <CommandItem
+                <ComboboxItem
                   disabled={item.disabled}
                   key={item.value}
                   onSelect={() => handleSingleSelect(item.value)}
                   value={item.value}
                 >
                   {item.value} {item.disabled && "(Disabled)"}
-                </CommandItem>
+                </ComboboxItem>
               ))}
-            </CommandList>
+            </ComboboxList>
           </ComboboxContent>
         </Combobox>
         <Text>Selected value: {singleSelectedValue || "None"}</Text>
@@ -317,26 +317,26 @@ const DisabledItemsExample = () => {
             w="240"
           />
           <ComboboxContent w="240">
-            <CommandList style={{ maxHeight: "30dvh" }}>
+            <ComboboxList style={{ maxHeight: "30dvh" }}>
               {itemsWithDisabled.map((item) => (
-                <CommandCheckboxItem
+                <ComboboxCheckboxItem
                   disabled={item.disabled}
                   key={item.value}
                   onCheckedChange={() => handleMultiSelect(item.value)}
                   value={item.value}
                 >
                   {item.value} {item.disabled && "(Disabled)"}
-                </CommandCheckboxItem>
+                </ComboboxCheckboxItem>
               ))}
-            </CommandList>
-            <CommandFooter>
+            </ComboboxList>
+            <ComboboxFooter>
               <Button onClick={() => setMultiSelectedValues([])}>
                 Clear All
               </Button>
               <Button appearance="primary" onClick={() => setMultiOpen(false)}>
                 Done
               </Button>
-            </CommandFooter>
+            </ComboboxFooter>
           </ComboboxContent>
         </Combobox>
         <Text>
