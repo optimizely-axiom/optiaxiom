@@ -3,6 +3,7 @@ import { type ReactElement, forwardRef, useEffect, useState } from "react";
 
 import { usePresence } from "../animate-presence";
 import * as styles from "./Transition.css";
+import { TransitionGlobalConfig } from "./TransitionGlobalConfig";
 
 type TransitionProps = {
   children: ReactElement;
@@ -24,7 +25,9 @@ export const Transition = forwardRef<HTMLDivElement, TransitionProps>(
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isPresent]);
 
-    return (
+    return TransitionGlobalConfig.skipAnimations ? (
+      <Slot ref={ref}>{children}</Slot>
+    ) : (
       <Slot
         ref={ref}
         {...styles.transition(
