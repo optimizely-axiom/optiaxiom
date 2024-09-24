@@ -39,5 +39,18 @@ export default {
       ) : (
         <Story />
       ),
+    (Story, context) =>
+      context.parameters.useOverlayDecorator ? (
+        <div
+          style={{
+            height: "max(512px, calc(100dvh - 2rem))",
+            width: "max(512px, calc(100dvw - 2rem))",
+          }}
+        >
+          <Story />
+        </div>
+      ) : (
+        <Story />
+      ),
   ],
 } satisfies Preview;

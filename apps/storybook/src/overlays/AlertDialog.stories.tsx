@@ -29,6 +29,9 @@ export default {
     title: "Delete Image",
   },
   component: AlertDialog,
+  parameters: {
+    useOverlayDecorator: true,
+  },
   render: ({ action, cancel, description, size, title, ...args }) => {
     return (
       <AlertDialog {...args}>

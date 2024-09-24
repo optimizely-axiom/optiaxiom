@@ -28,6 +28,9 @@ export default {
     defaultOpen: true,
   },
   component: Dialog,
+  parameters: {
+    useOverlayDecorator: true,
+  },
   render: ({ content, description, size, withCloseButton, ...args }) => {
     return (
       <Dialog {...args}>
