@@ -15,7 +15,7 @@ export const TooltipTrigger = forwardRef<
   TooltipTriggerProps
 >(({ asChild, children, ...props }, outerRef) => {
   const { keepOpenOnActivation, setOpen, triggerRef } =
-    useTooltipContext("Tooltip");
+    useTooltipContext("TooltipTrigger");
 
   const ref = useComposedRefs(triggerRef, outerRef);
   const { restProps, sprinkleProps } = extractSprinkles(props);

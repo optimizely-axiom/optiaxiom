@@ -7,4 +7,4 @@ export const [TooltipContextProvider, useTooltipContext] = createContext<{
   open?: boolean;
   setOpen: (open: boolean) => void;
   triggerRef: RefObject<HTMLButtonElement>;
-}>("Tooltip");
+}>("TooltipRoot");

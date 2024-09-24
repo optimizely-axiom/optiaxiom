@@ -1,5 +1,3 @@
-import { theme } from "@optiaxiom/globals";
-
 import { recipe, style } from "../vanilla-extract";
 
 export const content = recipe({
@@ -14,14 +12,6 @@ export const content = recipe({
     },
     style({
       position: "relative",
-    }),
-  ],
-});
-
-export const arrow = recipe({
-  base: [
-    style({
-      fill: theme.colors["neutral.900"],
     }),
   ],
 });
