@@ -34,8 +34,8 @@ export const Switch = forwardRef<HTMLDivElement, SwitchProps>(
         {...props}
       >
         <Tooltip auto content={children}>
-          <Text as="span" truncate>
-            {children}
+          <Text asChild truncate>
+            <span>{children}</span>
           </Text>
         </Tooltip>
       </ControlBase>

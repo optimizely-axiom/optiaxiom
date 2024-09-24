@@ -59,11 +59,11 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(
                 {required && (
                   <Text
                     aria-hidden="true"
-                    as="span"
+                    asChild
                     color="fg.accent.red"
                     fontWeight="400"
                   >
-                    *
+                    <span>*</span>
                   </Text>
                 )}
               </RadixLabel.Root>
