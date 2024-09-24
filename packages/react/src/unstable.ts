@@ -31,6 +31,3 @@ export * from "./table-cell";
 export * from "./table-head";
 export * from "./table-header-cell";
 export * from "./table-row";
-export * from "./tooltip-content";
-export * from "./tooltip-root";
-export * from "./tooltip-trigger";

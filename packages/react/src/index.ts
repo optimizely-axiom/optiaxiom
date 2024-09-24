@@ -85,4 +85,7 @@ export * from "./toast-title";
 export * from "./toggle";
 export * from "./tokens";
 export * from "./tooltip";
+export * from "./tooltip-content";
+export * from "./tooltip-root";
+export * from "./tooltip-trigger";
 export * from "./transition";
