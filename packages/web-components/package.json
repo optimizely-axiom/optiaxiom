@@ -98,6 +98,9 @@
     "./ToastTitle": "./dist/components/ToastTitle.js",
     "./Toggle": "./dist/components/Toggle.js",
     "./Tooltip": "./dist/components/Tooltip.js",
+    "./TooltipContent": "./dist/components/TooltipContent.js",
+    "./TooltipRoot": "./dist/components/TooltipRoot.js",
+    "./TooltipTrigger": "./dist/components/TooltipTrigger.js",
     "./Transition": "./dist/components/Transition.js"
   },
   "scripts": {
