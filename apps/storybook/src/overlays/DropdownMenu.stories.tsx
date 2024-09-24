@@ -6,13 +6,11 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@optiaxiom/react";
-import {
   DropdownMenuSub,
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
-} from "@optiaxiom/react/unstable";
+  DropdownMenuTrigger,
+} from "@optiaxiom/react";
 import { action } from "@storybook/addon-actions";
 import { expect, screen, userEvent, waitFor } from "@storybook/test";
 import {
