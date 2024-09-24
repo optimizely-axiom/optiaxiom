@@ -73,6 +73,11 @@ export const Basic: Story = {
         screen.queryByRole("alertdialog", { name: "Delete Image" }),
       ).not.toBeInTheDocument(),
     );
+
+    await userEvent.click(canvas.getByRole("button"));
+    await expect(
+      await screen.findByRole("alertdialog", { name: "Delete Image" }),
+    ).toBeInTheDocument();
   },
 };
 
