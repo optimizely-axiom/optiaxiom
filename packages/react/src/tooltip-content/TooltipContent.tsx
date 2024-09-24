@@ -20,7 +20,7 @@ export const TooltipContent = forwardRef<HTMLDivElement, TooltipContentProps>(
     const innerRef = useRef<HTMLDivElement>(null);
     const ref = useComposedRefs(innerRef, outerRef);
 
-    const { keepOpenOnActivation, open } = useTooltipContext("Tooltip");
+    const { keepOpenOnActivation, open } = useTooltipContext("TooltipContent");
 
     return (
       <AnimatePresence>
