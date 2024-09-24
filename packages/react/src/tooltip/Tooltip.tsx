@@ -33,7 +33,6 @@ export const Tooltip = forwardRef<HTMLButtonElement, TooltipProps>(
       keepOpenOnActivation,
       onOpenChange,
       open,
-      z = "popover",
       ...props
     },
     ref,
@@ -51,7 +50,7 @@ export const Tooltip = forwardRef<HTMLButtonElement, TooltipProps>(
           {children}
         </TooltipTrigger>
 
-        <TooltipContent sideOffset={5} z={z} {...props}>
+        <TooltipContent sideOffset={5} {...props}>
           {content}
         </TooltipContent>
       </TooltipRoot>
