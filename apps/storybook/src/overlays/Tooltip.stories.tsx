@@ -84,6 +84,9 @@ export const DefaultOpen: Story = {
 };
 
 export const AllPositions: Story = {
+  args: {
+    defaultOpen: true,
+  },
   render: (args) => (
     <Grid gap="16">
       <Tooltip align="start" content="Top Start" side="top" {...args}>

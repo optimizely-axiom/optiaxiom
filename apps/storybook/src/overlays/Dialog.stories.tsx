@@ -86,6 +86,11 @@ export const Basic: Story = {
         screen.queryByRole("dialog", { name: "Dialog" }),
       ).not.toBeInTheDocument(),
     );
+
+    await userEvent.click(canvas.getByRole("button"));
+    await expect(
+      await screen.findByRole("dialog", { name: "Dialog" }),
+    ).toBeInTheDocument();
   },
 };
 
@@ -93,7 +98,7 @@ export const CloseButton: Story = {
   args: {
     withCloseButton: true,
   },
-  play: async () => {
+  play: async ({ canvas }) => {
     await expect(
       await screen.findByRole("dialog", { name: "Dialog" }),
     ).toBeInTheDocument();
@@ -110,6 +115,11 @@ export const CloseButton: Story = {
         screen.queryByRole("dialog", { name: "Dialog" }),
       ).not.toBeInTheDocument(),
     );
+
+    await userEvent.click(canvas.getByRole("button"));
+    await expect(
+      await screen.findByRole("dialog", { name: "Dialog" }),
+    ).toBeInTheDocument();
   },
 };
 

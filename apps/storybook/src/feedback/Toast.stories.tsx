@@ -61,7 +61,22 @@ export default {
 
 type Story = StoryObj<StoryProps>;
 
-export const Basic: Story = {};
+export const Basic: Story = {
+  play: async ({ canvas }) => {
+    await userEvent.click(canvas.getByText("Show Toast"));
+
+    const toast = await screen.findByRole("status");
+    await expect(toast).toHaveTextContent("This is an example toast message.");
+
+    await userEvent.click(within(toast).getByRole("button", { name: "close" }));
+    await waitFor(() =>
+      expect(screen.queryByRole("status")).not.toBeInTheDocument(),
+    );
+
+    await userEvent.click(canvas.getByText("Show Toast"));
+    await expect(await screen.findByRole("status")).toBeVisible();
+  },
+};
 
 export const Appearance: Story = {
   play: async ({ canvas }) => {
@@ -167,20 +182,6 @@ export const LongContent: Story = {
 
     await expect(await screen.findByRole("status")).toHaveTextContent(
       "This is an example toast message that should span two lines.",
-    );
-  },
-};
-
-export const Interactive: Story = {
-  play: async ({ canvas }) => {
-    await userEvent.click(canvas.getByText("Show Toast"));
-
-    const toast = await screen.findByRole("status");
-    await expect(toast).toHaveTextContent("This is an example toast message.");
-
-    await userEvent.click(within(toast).getByRole("button", { name: "close" }));
-    await waitFor(() =>
-      expect(screen.queryByRole("status")).not.toBeInTheDocument(),
     );
   },
 };
