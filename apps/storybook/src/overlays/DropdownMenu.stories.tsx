@@ -26,6 +26,9 @@ export default {
     defaultOpen: true,
   },
   component: DropdownMenu,
+  parameters: {
+    useOverlayDecorator: true,
+  },
 } as Meta<typeof DropdownMenu>;
 
 type Story = StoryObj<typeof DropdownMenu>;
