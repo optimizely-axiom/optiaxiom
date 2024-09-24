@@ -8,20 +8,12 @@ import * as styles from "./Text.css";
 
 export type TextProps<T extends ElementType = "p", P = unknown> = BoxProps<
   T,
-  ExtendProps<
-    {
-      as?: "p" | "span";
-    } & styles.TextVariants,
-    P
-  >
+  ExtendProps<NonNullable<styles.TextVariants>, P>
 >;
 
 export const Text = forwardRef<HTMLParagraphElement, TextProps>(
-  (
-    { as = "p", asChild, children, className, lineClamp, truncate, ...props },
-    ref,
-  ) => {
-    const Comp = asChild ? Slot : as;
+  ({ asChild, children, className, lineClamp, truncate, ...props }, ref) => {
+    const Comp = asChild ? Slot : "p";
 
     return (
       <Box
