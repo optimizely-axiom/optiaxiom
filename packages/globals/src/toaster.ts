@@ -24,6 +24,7 @@ const genId = () => {
 };
 
 type Toaster = {
+  clear: () => void;
   create: (toast: ToastItem["toast"]) => string;
   remove: (id: string) => void;
   store: Parameters<typeof useSyncExternalStore<ToastItem[]>>;
@@ -48,6 +49,11 @@ export const createToaster = (): Toaster => {
       () => snapshot,
       () => EMPTY,
     ],
+
+    clear: () => {
+      snapshot = [];
+      emit();
+    },
 
     create: (toast) => {
       const id = genId();

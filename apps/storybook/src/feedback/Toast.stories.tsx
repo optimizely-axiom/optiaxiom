@@ -43,6 +43,10 @@ export default {
         <Story />
       </AxiomProvider>
     ),
+    (Story) => {
+      toaster.clear();
+      return <Story />;
+    },
   ],
   parameters: {
     useAxiomProvider: false,
