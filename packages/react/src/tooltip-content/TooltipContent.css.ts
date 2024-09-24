@@ -1,4 +1,4 @@
-import { recipe, style } from "../vanilla-extract";
+import { recipe } from "../vanilla-extract";
 
 export const content = recipe({
   base: [
@@ -10,8 +10,5 @@ export const content = recipe({
       rounded: "lg",
       z: "popover",
     },
-    style({
-      position: "relative",
-    }),
   ],
 });
