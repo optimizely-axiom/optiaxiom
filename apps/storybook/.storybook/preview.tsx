@@ -43,7 +43,9 @@ export default {
       context.parameters.useOverlayDecorator ? (
         <div
           style={{
+            display: "grid",
             height: "max(512px, calc(100dvh - 2rem))",
+            placeItems: "center",
             width: "max(512px, calc(100dvw - 2rem))",
           }}
         >
