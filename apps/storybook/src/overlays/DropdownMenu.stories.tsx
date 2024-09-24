@@ -180,7 +180,7 @@ export const Nested: Story = {
       async () =>
         await expect(
           screen.getByRole("menuitem", { name: "Settings" }),
-        ).toBeVisible(),
+        ).not.toHaveStyle("pointer-events: none"),
     );
 
     await userEvent.hover(screen.getByRole("menuitem", { name: "Settings" }));
