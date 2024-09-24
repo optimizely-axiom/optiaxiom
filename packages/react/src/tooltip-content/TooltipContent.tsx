@@ -14,7 +14,7 @@ type TooltipContentProps = BoxProps<typeof RadixTooltip.Content>;
 
 export const TooltipContent = forwardRef<HTMLDivElement, TooltipContentProps>(
   (
-    { align = "center", children, className, sideOffset = 2, ...props },
+    { align = "center", children, className, sideOffset = 5, ...props },
     outerRef,
   ) => {
     const innerRef = useRef<HTMLDivElement>(null);

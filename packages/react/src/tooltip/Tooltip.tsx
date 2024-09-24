@@ -50,9 +50,7 @@ export const Tooltip = forwardRef<HTMLButtonElement, TooltipProps>(
           {children}
         </TooltipTrigger>
 
-        <TooltipContent sideOffset={5} {...props}>
-          {content}
-        </TooltipContent>
+        <TooltipContent {...props}>{content}</TooltipContent>
       </TooltipRoot>
     );
   },
