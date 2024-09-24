@@ -9,13 +9,7 @@ import {
   Text,
   Tooltip,
 } from "@optiaxiom/react";
-import {
-  expect,
-  screen,
-  userEvent,
-  waitFor,
-  waitForElementToBeRemoved,
-} from "@storybook/test";
+import { expect, screen, userEvent, waitFor } from "@storybook/test";
 import { useState } from "react";
 
 export default {
@@ -36,10 +30,6 @@ export const Basic: Story = {
     await expect(
       await screen.findByRole("tooltip", { name: "Add to library" }),
     ).toBeInTheDocument();
-    await userEvent.click(document.body);
-    await waitForElementToBeRemoved(
-      screen.queryByRole("tooltip", { name: "Add to library" }),
-    );
   },
 };
 
@@ -54,10 +44,6 @@ export const Controlled: Story = {
     await expect(
       await screen.findByRole("tooltip", { name: "Add to library" }),
     ).toBeInTheDocument();
-    await userEvent.click(document.body);
-    await waitForElementToBeRemoved(
-      screen.queryByRole("tooltip", { name: "Add to library" }),
-    );
 
     await userEvent.click(canvas.getByRole("switch"));
     await userEvent.hover(canvas.getByRole("button"));
@@ -170,13 +156,6 @@ export const Truncate: Story = {
           name: "Truncated text deep inside target element",
         }),
       ).toBeVisible(),
-    );
-
-    await userEvent.click(document.body);
-    await waitForElementToBeRemoved(
-      screen.queryByRole("tooltip", {
-        name: "Truncated text deep inside target element",
-      }),
     );
   },
   render: (args) => (
