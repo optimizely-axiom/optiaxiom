@@ -8,6 +8,8 @@ import isChromatic from "chromatic/isChromatic";
 
 import "./preview.css";
 
+components.TransitionGlobalConfig.skipAnimations = isChromatic();
+
 export const loaders = isChromatic()
   ? [
       async () => ({

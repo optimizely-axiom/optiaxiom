@@ -7,6 +7,7 @@ import {
   useState,
 } from "react";
 
+import { TransitionGlobalConfig } from "../transition";
 import { PresenceContext } from "./PresenceContext";
 
 export function AnimatePresence({
@@ -41,6 +42,10 @@ export function AnimatePresence({
       lastChildren.current = false;
     }
   }, [exiting, isPresent]);
+
+  if (TransitionGlobalConfig.skipAnimations) {
+    return children;
+  }
 
   return (
     <PresenceContext.Provider value={{ isPresent, onExitComplete, register }}>
