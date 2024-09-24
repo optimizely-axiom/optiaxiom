@@ -8,7 +8,7 @@ export const content = recipe({
       px: "12",
       py: "8",
       rounded: "lg",
-      z: "popover",
+      z: "tooltip",
     },
   ],
 });
