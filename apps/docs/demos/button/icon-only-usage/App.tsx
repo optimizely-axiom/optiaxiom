@@ -11,7 +11,11 @@ export function App() {
       />
 
       <Tooltip content="Remove item">
-        <Button appearance="secondary" icon={<IconTrash />} />
+        <Button
+          appearance="secondary"
+          aria-label="Remove item"
+          icon={<IconTrash />}
+        />
       </Tooltip>
     </Flex>
   );

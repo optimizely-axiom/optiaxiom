@@ -5,6 +5,7 @@ import {
   cloneElement,
   forwardRef,
   isValidElement,
+  useEffect,
 } from "react";
 
 import { AnimatePresence } from "../animate-presence";
@@ -115,6 +116,15 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         );
       }
     }
+
+    const isIconMissingAriaLabel = isIconOnly && !props["aria-label"];
+    useEffect(() => {
+      if (isIconMissingAriaLabel) {
+        console.error(
+          `Icon only \`Button\` requires an \`aria-label\` for the component to be accessible for screen reader users.`,
+        );
+      }
+    }, [isIconMissingAriaLabel]);
 
     return (
       <Box
