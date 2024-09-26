@@ -5,8 +5,6 @@ import { AvatarContext } from "../avatar-context";
 import { Box, type BoxProps } from "../box";
 import * as styles from "./Avatar.css";
 
-const FALLBACK_DELAY_IN_MS = 600;
-
 type AvatarProps = BoxProps<
   "span",
   {
@@ -49,11 +47,13 @@ export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
         {...props}
       >
         <RadixAvatar.Root ref={ref}>
-          <Box asChild objectFit="cover" rounded="inherit" size="full">
-            <RadixAvatar.Image alt={name} src={src} />
-          </Box>
+          {src && (
+            <Box asChild objectFit="cover" rounded="inherit" size="full">
+              <RadixAvatar.Image alt={name} src={src} />
+            </Box>
+          )}
           <Box asChild {...styles.fallback({})}>
-            <RadixAvatar.Fallback delayMs={FALLBACK_DELAY_IN_MS}>
+            <RadixAvatar.Fallback delayMs={src ? 600 : undefined}>
               {/* TODO: Add a generic user icon, if `children` is `undefined` */}
               {icon ? (
                 <Box asChild {...styles.icon({ size })}>
