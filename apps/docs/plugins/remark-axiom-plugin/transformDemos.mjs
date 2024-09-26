@@ -6,17 +6,41 @@ import path from "node:path";
 import docgen from "react-docgen-typescript";
 import { visit } from "unist-util-visit";
 
+const parser = docgen.withCompilerOptions(
+  { esModuleInterop: true },
+  {
+    savePropValueAsString: true,
+    shouldExtractValuesFromUnion: true,
+  },
+);
+
 export function transformDemos(tree) {
-  let id = 0;
   let needsImport = true;
+
+  const imports = {};
+  visit(tree, { type: "mdxjsEsm" }, (node) => {
+    for (const item of node.data.estree.body) {
+      if (item.type !== "ImportDeclaration") {
+        continue;
+      }
+
+      for (const spec of item.specifiers) {
+        imports[spec.local.name] = item.source.value;
+      }
+    }
+  });
 
   visit(
     tree,
-    { name: "ax-demo", type: "mdxJsxFlowElement" },
+    { name: "Demo", type: "mdxJsxFlowElement" },
     (node, index, parent) => {
-      const demoName = node.attributes.find(
-        (attr) => attr.name === "name",
-      ).value;
+      const component = node.attributes.find(
+        (attr) => attr.name === "component",
+      ).value.value;
+      if (!(component in imports)) {
+        return;
+      }
+
       const metaAttr = node.attributes.find(
         (attr) => attr.name === "meta",
       )?.value;
@@ -28,7 +52,12 @@ export function transformDemos(tree) {
       )?.value;
 
       const files = ["App.tsx"];
-      const filesDir = path.resolve(process.cwd(), "demos", demoName);
+      const filesDir = path.resolve(
+        imports[component].replace("@", process.cwd()),
+        component
+          .replace(/^[A-Z]/, (m) => m.toLowerCase())
+          .replace(/[A-Z]/g, (m) => "-" + m.toLowerCase()),
+      );
       for (const file of fs.readdirSync(filesDir)) {
         if (
           !files.includes(file) &&
@@ -40,25 +69,14 @@ export function transformDemos(tree) {
         }
       }
 
-      const docs = docgen
-        .withCompilerOptions(
-          { esModuleInterop: true },
-          {
-            savePropValueAsString: true,
-            shouldExtractValuesFromUnion: true,
-          },
-        )
-        .parse(`${filesDir}/App.tsx`);
+      const docs = parser.parse(`${filesDir}/App.tsx`);
 
       const demo = fromMarkdown(
         [
           needsImport &&
             `import { Tabs as TabsRemark } from 'nextra/components';`,
-          needsImport &&
-            `import { Demo as DemoRemark } from "@/components/demo";`,
-          `import { App as App${id} } from "@/demos/${demoName}/App";`,
-          `<DemoRemark
-            component={App${id}}
+          `<Demo
+            component={${component}}
             propTypes={${JSON.stringify(docs.find((doc) => doc.displayName === "App")?.props)}}
             ${iframe ? `iframe=${JSON.stringify(iframe)}` : ""}
             ${height ? `height=${JSON.stringify(height)}` : ""}
@@ -106,7 +124,6 @@ export function transformDemos(tree) {
       );
       parent.children.splice(index, 1, ...demo.children);
 
-      id++;
       needsImport = false;
 
       return index + demo.children.length;
