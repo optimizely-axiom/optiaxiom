@@ -1,6 +1,9 @@
 import { tokens } from "@optiaxiom/react";
 import { Scale } from "@/components/scale";
 
+import { Demo } from "@/components/demo";
+import { InnerUsage, NoneUsage, Usage } from "@/demos/box-shadow";
+
 # Box Shadow
 
 Use `shadow` prop to control the box shadow of an element.
@@ -11,12 +14,12 @@ Use `shadow` prop to control the box shadow of an element.
 
 ### Usage
 
-<ax-demo name="box-shadow/usage" />
+<Demo component={Usage} />
 
 ### Inner shadow
 
-<ax-demo name="box-shadow/inner-usage" />
+<Demo component={InnerUsage} />
 
 ### Removing the shadow
 
-<ax-demo name="box-shadow/none-usage" />
+<Demo component={NoneUsage} />

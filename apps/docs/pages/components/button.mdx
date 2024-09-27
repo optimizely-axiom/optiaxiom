@@ -1,3 +1,18 @@
+import { Demo } from "@/components/demo";
+import {
+  AppearanceUsage,
+  DisabledUsage,
+  FileUploadUsage,
+  GroupUsage,
+  IconOnlyUsage,
+  IconUsage,
+  LinkDisabledUsage,
+  LinkUsage,
+  LoadingUsage,
+  SizeUsage,
+  Usage,
+} from "@/demos/button";
+
 # Button
 
 `Button` component is used to trigger actions.
@@ -6,19 +21,19 @@
 
 ### Usage
 
-<ax-demo name="button/usage" />
+<Demo component={Usage} />
 
 ### Appearance
 
 Use the `appearance` prop to select between the different button appearances.
 
-<ax-demo name="button/appearance-usage" />
+<Demo component={AppearanceUsage} />
 
 ### Different sizes
 
 Use the `size` prop to modify the size of the button.
 
-<ax-demo name="button/size-usage" />
+<Demo component={SizeUsage} />
 
 ### Disabled state
 
@@ -26,7 +41,7 @@ Set the `disabled` prop to `true` to disable buttons and prevent any interaction
 
 For accessibility please make sure to include text that explains why the button is disabled or use a tooltip.
 
-<ax-demo name="button/disabled-usage" />
+<Demo component={DisabledUsage} />
 
 ## Icons
 
@@ -34,7 +49,7 @@ For accessibility please make sure to include text that explains why the button 
 
 Use the `icon` prop to add icons to a button. Icons are placed to the left by default but that can be configured using the `iconPosition` prop.
 
-<ax-demo name="button/icon-usage" />
+<Demo component={IconUsage} />
 
 ### Icon button
 
@@ -42,7 +57,7 @@ Use the `icon` prop and omit the `children` to display an icon only button.
 
 For accessibility please make sure to always include an `aria-label` prop for screen readers and optionally use tooltips to visually denote the button's intent.
 
-<ax-demo name="button/icon-only-usage" />
+<Demo component={IconOnlyUsage} />
 
 ## Groups
 
@@ -50,7 +65,7 @@ For accessibility please make sure to always include an `aria-label` prop for sc
 
 Use the `<ButtonGroup />` component to group related buttons together.
 
-<ax-demo name="button/group-usage" />
+<Demo component={GroupUsage} />
 
 ## Links
 
@@ -58,7 +73,7 @@ Use the `<ButtonGroup />` component to group related buttons together.
 
 Set `asChild` to `true` and pass an `<a>` element as the child to render buttons as links.
 
-<ax-demo name="button/link-usage" />
+<Demo component={LinkUsage} />
 
 ### Disabled button links
 
@@ -66,7 +81,7 @@ Make sure to prevent interactions manually using `event.preventDefault()` since 
 
 Alternatively you can use our `Link` component which supports the `disabled` prop.
 
-<ax-demo name="button/link-disabled-usage" />
+<Demo component={LinkDisabledUsage} />
 
 ## Loading
 
@@ -76,7 +91,7 @@ Set the `loading` prop to `true` to show a loading spinner and prevent any inter
 
 For accessibility please make sure to include text that explains why the button is disabled or use a tooltip.
 
-<ax-demo name="button/loading-usage" />
+<Demo component={LoadingUsage} />
 
 ## Examples
 
@@ -84,7 +99,7 @@ For accessibility please make sure to include text that explains why the button 
 
 We can create a simple file upload button by rendering the button as a `label` and including a visually hidden file input.
 
-<ax-demo name="button/file-upload-usage" />
+<Demo component={FileUploadUsage} />
 
 ## Props
 

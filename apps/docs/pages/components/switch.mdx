@@ -1,3 +1,12 @@
+import { Demo } from "@/components/demo";
+import {
+  ControlledUsage,
+  DisabledUsage,
+  LabelUsage,
+  SizeUsage,
+  Usage,
+} from "@/demos/switch";
+
 # Switch
 
 Control to allow toggling between checked and not checked state.
@@ -6,31 +15,31 @@ Control to allow toggling between checked and not checked state.
 
 ### Usage
 
-<ax-demo name="switch/usage" />
+<Demo component={Usage} />
 
 ### Label
 
 The `children` prop is used as the label of the switch control.
 
-<ax-demo name="switch/label-usage" />
+<Demo component={LabelUsage} />
 
 ### Sizes
 
 Use the `size` prop to control the size of the switch control.
 
-<ax-demo name="switch/size-usage" />
+<Demo component={SizeUsage} />
 
 ### Disabled state
 
 Enable the `disabled` prop to toggle the disabled state of the input field.
 
-<ax-demo name="switch/disabled-usage" />
+<Demo component={DisabledUsage} />
 
 ### Controlled
 
 Use the `checked` and `defaultChecked` props to toggle between controlled and uncontrolled usage. And combine it with `onCheckedChange` to listen for changes to the state.
 
-<ax-demo name="switch/controlled-usage" />
+<Demo component={ControlledUsage} />
 
 ## Props
 

@@ -1,3 +1,6 @@
+import { Demo } from "@/components/demo";
+import { ControlledUsage, DisabledUsage, Usage } from "@/demos/search-input";
+
 # SearchInput
 
 Basic search input field with clear button.
@@ -8,19 +11,19 @@ Basic search input field with clear button.
 
 The `SearchInput` component extends the `Input` component with some additional addons.
 
-<ax-demo name="search-input/usage" />
+<Demo component={Usage} />
 
 ### Disabled state
 
 Enable the `disabled` prop to toggle the disabled state of the input field.
 
-<ax-demo name="search-input/disabled-usage" />
+<Demo component={DisabledUsage} />
 
 ### Controlled
 
 Use the `value` and `defaultValue` props to toggle between controlled and uncontrolled usage. And combine it with `onChange` to listen for changes to the input field.
 
-<ax-demo name="search-input/controlled-usage" />
+<Demo component={ControlledUsage} />
 
 ## Props
 

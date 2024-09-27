@@ -1,5 +1,8 @@
 import { Callout } from "nextra/components";
 
+import { Demo } from "@/components/demo";
+import { PropUsage, ResponsiveUsage } from "@/demos/styles";
+
 # Style Props
 
 The `Box` component provides a minimal zero-runtime styling solution similar to **Tailwind CSS** built with [Vanilla Extract](https://vanilla-extract.style/).
@@ -12,7 +15,7 @@ We provide out of the box support for consuming our design tokens and commonly u
 
 You can use props on the `<Box />` component to control styles:
 
-<ax-demo name="styles/prop-usage" />
+<Demo component={PropUsage} />
 
 Learn more about consuming [Design Tokens](/styled-system/design-tokens/).
 
@@ -24,10 +27,10 @@ You can also use object or array prop notation to apply styles at various respon
 
 <Callout>Resize the canvas to see the font size change:</Callout>
 
-<ax-demo
+<Demo
   iframe="/styled-system/index-demo/"
   height="150"
-  name="styles/responsive-usage"
+  component={ResponsiveUsage}
 />
 
 Check out the documentation on [Responsive Styles](/styled-system/responsive-styles/).

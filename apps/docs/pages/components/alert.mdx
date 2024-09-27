@@ -1,3 +1,6 @@
+import { Demo } from "@/components/demo";
+import { AppearanceUsage, CloseUsage, Usage } from "@/demos/alert";
+
 # Alert
 
 Keeps users informed of important and sometimes time-sensitive changes.
@@ -6,19 +9,19 @@ Keeps users informed of important and sometimes time-sensitive changes.
 
 ### Usage
 
-<ax-demo name="alert/usage" />
+<Demo component={Usage} />
 
 ### Appearance
 
 Use the `colorScheme` prop to select between the different alert types.
 
-<ax-demo name="alert/appearance-usage" />
+<Demo component={AppearanceUsage} />
 
 ### Close button
 
 Use the `onClose` prop to show a close button to the top right of the alert.
 
-<ax-demo name="alert/close-usage" />
+<Demo component={CloseUsage} />
 
 ## Props
 

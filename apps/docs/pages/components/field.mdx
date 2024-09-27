@@ -1,3 +1,12 @@
+import { Demo } from "@/components/demo";
+import {
+  DescriptionUsage,
+  ErrorUsage,
+  InfoUsage,
+  RequiredUsage,
+  Usage,
+} from "@/demos/field";
+
 # Field
 
 Wrapper for inputs to provide context such as label/help/required etc.
@@ -8,13 +17,13 @@ Wrapper for inputs to provide context such as label/help/required etc.
 
 Wrap your actual input controls with `Field` to show additional context for the input.
 
-<ax-demo name="field/usage" />
+<Demo component={Usage} />
 
 ### Required
 
 Enable the `required` prop to display an asterisk for required inputs.
 
-<ax-demo name="field/required-usage" />
+<Demo component={RequiredUsage} />
 
 The `required` prop will be available to the input element via a `FieldContext`.
 
@@ -22,13 +31,13 @@ The `required` prop will be available to the input element via a `FieldContext`.
 
 Use the `description` prop to provide help text for the input.
 
-<ax-demo name="field/description-usage" />
+<Demo component={DescriptionUsage} />
 
 ### Error
 
 Use the `error` prop to display validation or other errors for the input.
 
-<ax-demo name="field/error-usage" />
+<Demo component={ErrorUsage} />
 
 The `error` prop will be available as a boolean to the input element via a `FieldContext`.
 
@@ -36,7 +45,7 @@ The `error` prop will be available as a boolean to the input element via a `Fiel
 
 Use the `info` prop to display a help icon with additional context for the input.
 
-<ax-demo name="field/info-usage" />
+<Demo component={InfoUsage} />
 
 ## Props
 

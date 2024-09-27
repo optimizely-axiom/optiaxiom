@@ -1,6 +1,9 @@
 import { tokens } from "@optiaxiom/react";
 import { Scale } from "@/components/scale";
 
+import { Demo } from "@/components/demo";
+import { MultipleUsage, SingleUsage, Usage } from "@/demos/padding";
+
 # Padding
 
 `Box` component supports multiple props for controlling an element's padding.
@@ -13,12 +16,12 @@ import { Scale } from "@/components/scale";
 
 Use the space scale to set the padding of elements.
 
-<ax-demo name="padding/usage" />
+<Demo component={Usage} />
 
 ### Multiple sides
 
-<ax-demo name="padding/multiple-usage" />
+<Demo component={MultipleUsage} />
 
 ### Single side
 
-<ax-demo name="padding/single-usage" />
+<Demo component={SingleUsage} />

@@ -1,6 +1,14 @@
 import { tokens } from "@optiaxiom/react";
 import { Scale } from "@/components/scale";
 
+import { Demo } from "@/components/demo";
+import {
+  NegativeUsage,
+  MultipleUsage,
+  SingleUsage,
+  Usage,
+} from "@/demos/margin";
+
 # Margin
 
 `Box` component supports multiple props for controlling an element's margin.
@@ -13,16 +21,16 @@ import { Scale } from "@/components/scale";
 
 Use the space scale to set the margin of elements.
 
-<ax-demo name="margin/usage" />
+<Demo component={Usage} />
 
 ### Multiple sides
 
-<ax-demo name="margin/multiple-usage" />
+<Demo component={MultipleUsage} />
 
 ### Single side
 
-<ax-demo name="margin/single-usage" />
+<Demo component={SingleUsage} />
 
 ### Negative
 
-<ax-demo name="margin/negative-usage" />
+<Demo component={NegativeUsage} />

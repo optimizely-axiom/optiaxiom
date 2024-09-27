@@ -1,3 +1,14 @@
+import { Demo } from "@/components/demo";
+import {
+  AddonPointerUsage,
+  AddonUsage,
+  DisabledUsage,
+  ErrorUsage,
+  ReadonlyUsage,
+  SizeUsage,
+  Usage,
+} from "@/demos/input";
+
 # Input
 
 Basic text field for capturing user input.
@@ -6,31 +17,31 @@ Basic text field for capturing user input.
 
 ### Usage
 
-<ax-demo name="input/usage" />
+<Demo component={Usage} />
 
 ### Sizes
 
 Use the `size` prop to control the size of the input field.
 
-<ax-demo name="input/size-usage" />
+<Demo component={SizeUsage} />
 
 ### Error state
 
 Enable the `error` prop to display the error state of the input field.
 
-<ax-demo name="input/error-usage" />
+<Demo component={ErrorUsage} />
 
 ### Disabled state
 
 Enable the `disabled` prop to toggle the disabled state of the input field.
 
-<ax-demo name="input/disabled-usage" />
+<Demo component={DisabledUsage} />
 
 ### Read-only state
 
 Enable the `readOnly` prop to display the read-only state of the input field.
 
-<ax-demo name="input/readonly-usage" />
+<Demo component={ReadonlyUsage} />
 
 ## Addons
 
@@ -38,13 +49,13 @@ Enable the `readOnly` prop to display the read-only state of the input field.
 
 Use the `addonBefore` and `addonAfter` prop to add icons, text, or any other element to the start or end of the input.
 
-<ax-demo name="input/addon-usage" />
+<Demo component={AddonUsage} />
 
 ### Handling addon clicks
 
 Use the `addonPointerEvents` prop to control whether clicking the addons focuses the input or not.
 
-<ax-demo name="input/addon-pointer-usage" />
+<Demo component={AddonPointerUsage} />
 
 ## Props
 

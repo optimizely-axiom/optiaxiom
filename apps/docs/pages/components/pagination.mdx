@@ -1,3 +1,6 @@
+import { Demo } from "@/components/demo";
+import { ControlledUsage, Usage } from "@/demos/pagination";
+
 # Pagination
 
 Display active page and navigate between multiple pages.
@@ -6,13 +9,13 @@ Display active page and navigate between multiple pages.
 
 ### Usage
 
-<ax-demo name="pagination/usage" />
+<Demo component={Usage} />
 
 ### Controlled
 
 Use the `page` and `defaultPage` props to toggle between controlled and uncontrolled usage. And combine it with `onPageChange` to listen for changes to the state.
 
-<ax-demo name="pagination/controlled-usage" />
+<Demo component={ControlledUsage} />
 
 ## Props
 

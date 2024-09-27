@@ -1,5 +1,8 @@
 import { Callout } from "nextra/components";
 
+import { Demo } from "@/components/demo";
+import { ResponsiveUsage, VerticalUsage, Usage } from "@/demos/separator";
+
 # Separator
 
 `Separator` component is used to visually separate items in a list or group. By default the orientation is set to `horizontal`.
@@ -8,13 +11,13 @@ import { Callout } from "nextra/components";
 
 ### Usage
 
-<ax-demo name="separator/usage" />
+<Demo component={Usage} />
 
 ### Orientation
 
 Use `orientation="vertical"` to display a vertical separator.
 
-<ax-demo name="separator/vertical-usage" />
+<Demo component={VerticalUsage} />
 
 ### Responsive
 
@@ -22,10 +25,10 @@ You can also use object or array prop notation to change orientation at various 
 
 <Callout>Resize the canvas to see the orientation change:</Callout>
 
-<ax-demo
+<Demo
   iframe="/components/separator/demo/"
   height="150"
-  name="separator/responsive-usage"
+  component={ResponsiveUsage}
 />
 
 ## Props

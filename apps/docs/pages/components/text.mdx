@@ -1,3 +1,12 @@
+import { Demo } from "@/components/demo";
+import {
+  CompositionUsage,
+  FormattingUsage,
+  LineClampUsage,
+  TruncateUsage,
+  Usage,
+} from "@/demos/text";
+
 # Text
 
 `Text` component is used to display body or any other form of text. The default root element is `p` which can be configured using the `asChild` prop.
@@ -6,23 +15,23 @@
 
 ### Usage
 
-<ax-demo name="text/usage" />
+<Demo component={Usage} />
 
 ### Formatting
 
-<ax-demo name="text/formatting-usage" />
+<Demo component={FormattingUsage} />
 
 ### Truncate
 
 Use the `truncate` prop to truncate the text and add an ellipsis at the end.
 
-<ax-demo name="text/truncate-usage" />
+<Demo component={TruncateUsage} />
 
 ### Line clamp
 
 Use the `lineClamp` prop to truncate the text at specific number of lines.
 
-<ax-demo name="text/line-clamp-usage" />
+<Demo component={LineClampUsage} />
 
 ## Composition
 
@@ -30,7 +39,7 @@ Use the `lineClamp` prop to truncate the text at specific number of lines.
 
 `Text` component uses the [`@radix-ui` Composition](https://www.radix-ui.com/primitives/docs/guides/composition) approach and accepts an `asChild` prop. By default it renders a `p` element but when `asChild` is set to `true` it will instead pass all props to its child element.
 
-<ax-demo name="text/composition-usage" />
+<Demo component={CompositionUsage} />
 
 ## Props
 

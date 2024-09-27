@@ -1,3 +1,13 @@
+import { Demo } from "@/components/demo";
+import {
+  CloseUsage,
+  DescriptionUsage,
+  ModalUsage,
+  SizeUsage,
+  TriggerUsage,
+  Usage,
+} from "@/demos/dialog";
+
 # Dialog
 
 Display a modal or non-modal dialog box.
@@ -8,19 +18,19 @@ Display a modal or non-modal dialog box.
 
 Use the `open` and `defaultOpen` props to toggle between controlled and uncontrolled usage. And combine it with `onOpenChange` to listen for changes to the state.
 
-<ax-demo name="dialog/usage" />
+<Demo component={Usage} />
 
 ### Sizes
 
 Use the `size` prop to change the size of the dialog box.
 
-<ax-demo meta="/size={size}/" name="dialog/size-usage" />
+<Demo meta="/size={size}/" component={SizeUsage} />
 
 ### Close button
 
 Use the `withCloseButton` prop to show a close button to the top right of the modal.
 
-<ax-demo meta="/withCloseButton/" name="dialog/close-usage" />
+<Demo meta="/withCloseButton/" component={CloseUsage} />
 
 ### Description
 
@@ -28,13 +38,13 @@ You can add accessible description to the modal using the `DialogDescription` co
 
 Make sure to pass `aria-describedby={undefined}` to `DialogContent` if you do not want to include a description.
 
-<ax-demo meta="/DialogDescription/" name="dialog/description-usage" />
+<Demo meta="/DialogDescription/" component={DescriptionUsage} />
 
 ### Non modal usage
 
 Set `modal` prop to `false` in order to render a non-modal dialog box. This will remove the backdrop overlay and only render the dialog box.
 
-<ax-demo meta="/modal={modal}/" name="dialog/modal-usage" />
+<Demo meta="/modal={modal}/" component={ModalUsage} />
 
 ## Trigger
 
@@ -44,7 +54,7 @@ By default we use the `Button` component for the dialog trigger which accepts al
 
 We can also completely change the trigger by using `asChild` and passing our own component.
 
-<ax-demo name="dialog/trigger-usage" />
+<Demo component={TriggerUsage} />
 
 ## Props
 
