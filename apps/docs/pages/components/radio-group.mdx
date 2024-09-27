@@ -1,3 +1,13 @@
+import { Demo } from "@/components/demo";
+import {
+  ControlledUsage,
+  DescriptionUsage,
+  DisabledGroupUsage,
+  DisabledUsage,
+  LabelUsage,
+  Usage,
+} from "@/demos/radio-group";
+
 # RadioGroup
 
 Basic control to allow selecting only one item from a set.
@@ -8,35 +18,35 @@ Basic control to allow selecting only one item from a set.
 
 Use `RadioGroup` and `RadioGroupItem` components together to create sets of radio buttons.
 
-<ax-demo name="radio-group/usage" />
+<Demo component={Usage} />
 
 ### Label
 
 The `children` prop on `RadioGroupItem` is used as the label of the radio control.
 
-<ax-demo name="radio-group/label-usage" />
+<Demo component={LabelUsage} />
 
 ### Disabled state
 
 Enable the `disabled` prop on the `RadioGroup` to toggle the disabled state of all the radio controls.
 
-<ax-demo name="radio-group/disabled-group-usage" />
+<Demo component={DisabledGroupUsage} />
 
 You can also enable the `disabled` prop on each `RadioGroupItem` to toggle the disabled state of each radio control.
 
-<ax-demo name="radio-group/disabled-usage" />
+<Demo component={DisabledUsage} />
 
 ### Controlled
 
 Use the `value` and `defaultValue` props on `RadioGroup` to toggle between controlled and uncontrolled usage. And combine it with `onValueChange` to listen for changes to the value.
 
-<ax-demo name="radio-group/controlled-usage" />
+<Demo component={ControlledUsage} />
 
 ### Description
 
 Use the `description` prop to add helper text after the label.
 
-<ax-demo name="radio-group/description-usage" />
+<Demo component={DescriptionUsage} />
 
 ## Props
 

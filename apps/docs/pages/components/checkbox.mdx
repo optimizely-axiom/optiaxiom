@@ -1,3 +1,13 @@
+import { Demo } from "@/components/demo";
+import {
+  ControlledUsage,
+  DescriptionUsage,
+  DisabledUsage,
+  IndeterminateUsage,
+  LabelUsage,
+  Usage,
+} from "@/demos/checkbox";
+
 # Checkbox
 
 Basic control to allow selecting one or more items from a set.
@@ -6,37 +16,37 @@ Basic control to allow selecting one or more items from a set.
 
 ### Usage
 
-<ax-demo name="checkbox/usage" />
+<Demo component={Usage} />
 
 ### Label
 
 The `children` prop is used as the label of the checkbox control.
 
-<ax-demo name="checkbox/label-usage" />
+<Demo component={LabelUsage} />
 
 ### Disabled state
 
 Enable the `disabled` prop to toggle the disabled state of the checkbox control.
 
-<ax-demo name="checkbox/disabled-usage" />
+<Demo component={DisabledUsage} />
 
 ### Controlled
 
 Use the `checked` and `defaultChecked` props to toggle between controlled and uncontrolled usage. And combine it with `onCheckedChange` to listen for changes to the state.
 
-<ax-demo name="checkbox/controlled-usage" />
+<Demo component={ControlledUsage} />
 
 ### Indeterminate
 
 Set the `checked` prop to `indeterminate` to toggle the indeterminate state of the checkbox control.
 
-<ax-demo name="checkbox/indeterminate-usage" />
+<Demo component={IndeterminateUsage} />
 
 ### Description
 
 Use the `description` prop to add helper text after the label.
 
-<ax-demo name="checkbox/description-usage" />
+<Demo component={DescriptionUsage} />
 
 ## Props
 

@@ -1,3 +1,6 @@
+import { Demo } from "@/components/demo";
+import { HorizontalUsage, Usage, VerticalUsage } from "@/demos/flex";
+
 # Flex
 
 Use `Flex` component to stack items vertically or horizontally. By default direction is set to `column`.
@@ -6,17 +9,17 @@ Use `Flex` component to stack items vertically or horizontally. By default direc
 
 ### Usage
 
-<ax-demo name="flex/usage" />
+<Demo component={Usage} />
 
 ### Direction
 
 Use `flexDirection="row"` or `flexDirection="row-reverse"` to stack items horizontally:
 
-<ax-demo name="flex/horizontal-usage" />
+<Demo component={HorizontalUsage} />
 
 Use `flexDirection="column"` or `flexDirection="column-reverse"` to stack items vertically:
 
-<ax-demo name="flex/vertical-usage" />
+<Demo component={VerticalUsage} />
 
 ## Props
 

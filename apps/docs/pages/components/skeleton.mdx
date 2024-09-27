@@ -1,3 +1,11 @@
+import { Demo } from "@/components/demo";
+import {
+  ChildrenUsage,
+  DimensionUsage,
+  ExampleUsage,
+  Usage,
+} from "@/demos/skeleton";
+
 # Skeleton
 
 Display placeholder content while data is loading.
@@ -6,23 +14,23 @@ Display placeholder content while data is loading.
 
 ### Usage
 
-<ax-demo name="skeleton/usage" />
+<Demo component={Usage} />
 
 ### Children
 
 Use `children` to insert things such as icons or graphics.
 
-<ax-demo name="skeleton/children-usage" />
+<Demo component={ChildrenUsage} />
 
 ### Dimensions
 
 Skeleton is automatically sized according to it's children so we can combine it with `Text` or `Heading` component to achieve correctly sized textual placeholders.
 
-<ax-demo name="skeleton/dimension-usage" />
+<Demo component={DimensionUsage} />
 
 ### Example
 
-<ax-demo name="skeleton/example-usage" />
+<Demo component={ExampleUsage} />
 
 ## Props
 

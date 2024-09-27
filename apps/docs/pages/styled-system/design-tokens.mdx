@@ -2,6 +2,9 @@ import { Scale } from "@/components/scale";
 import { theme } from "@optiaxiom/react";
 import { Fragment } from "react";
 
+import { Demo } from "@/components/demo";
+import { CssUsage, JsUsage, PropUsage } from "@/demos/styles";
+
 # Design Tokens
 
 Axiom uses **CSS variables** to declare design tokens.
@@ -46,13 +49,13 @@ The following css custom properties will be available:
 
 For all react components you can use the various style props to set the styles using tokens.
 
-<ax-demo name="styles/prop-usage" />
+<Demo component={PropUsage} />
 
 ### Consuming variables from CSS
 
 You can also directly use the CSS variable name in your `.css` files.
 
-<ax-demo name="styles/css-usage" />
+<Demo component={CssUsage} />
 
 ### Consuming variables from JS
 
@@ -60,7 +63,7 @@ Axiom exports a `theme` contract that contains a map of all tokens to the corres
 
 You can use this `theme` object when implementing any CSS-in-JS solutions.
 
-<ax-demo name="styles/js-usage" />
+<Demo component={JsUsage} />
 
 ## Reference
 

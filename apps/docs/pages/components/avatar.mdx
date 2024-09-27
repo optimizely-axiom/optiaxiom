@@ -1,5 +1,12 @@
 import { Demo } from "@/components/demo";
-import { Usage } from "@/demos/avatar";
+import {
+  ColorUsage,
+  FallbackChildrenUsage,
+  FallbackIconUsage,
+  FallbackNameUsage,
+  GroupUsage,
+  Usage,
+} from "@/demos/avatar";
 
 # Avatar
 
@@ -25,19 +32,19 @@ If none of these are provided a generic user icon will be shown instead.
 
 Render the `icon` prop if `src` is not given or fails to load.
 
-<ax-demo name="avatar/fallback-icon-usage" />
+<Demo component={FallbackIconUsage} />
 
 ### Name
 
 Generate initials from the `name` prop if `src` and `icon` are not provided.
 
-<ax-demo name="avatar/fallback-name-usage" />
+<Demo component={FallbackNameUsage} />
 
 ### Children
 
 Render `children` as-is if neither `src`, `icon`, and `name` are provided.
 
-<ax-demo name="avatar/fallback-children-usage" />
+<Demo component={FallbackChildrenUsage} />
 
 ## Colors
 
@@ -45,7 +52,7 @@ Render `children` as-is if neither `src`, `icon`, and `name` are provided.
 
 Use the `colorScheme` prop to control the avatar fallback background and text colors.
 
-<ax-demo name="avatar/color-usage" />
+<Demo component={ColorUsage} />
 
 ## Groups
 
@@ -53,7 +60,7 @@ Use the `colorScheme` prop to control the avatar fallback background and text co
 
 Use the `<AvatarGroup />` component to stack avatars together.
 
-<ax-demo name="avatar/group-usage" />
+<Demo component={GroupUsage} />
 
 ## Props
 

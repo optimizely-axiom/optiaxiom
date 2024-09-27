@@ -1,3 +1,6 @@
+import { Demo } from "@/components/demo";
+import { SpanUsage, Usage } from "@/demos/grid";
+
 # Grid
 
 Use `Grid` component to place items in a grid using equal width columns.
@@ -8,13 +11,13 @@ Use `Grid` component to place items in a grid using equal width columns.
 
 Use `gridTemplateColumns` prop to create equally sized columns in a grid layout.
 
-<ax-demo name="grid/usage" />
+<Demo component={Usage} />
 
 ### Spanning columns
 
 Use the `gridColumn` prop on children to make them span across multiple columns.
 
-<ax-demo meta="/gridColumn/" name="grid/span-usage" />
+<Demo meta="/gridColumn/" component={SpanUsage} />
 
 ## Props
 

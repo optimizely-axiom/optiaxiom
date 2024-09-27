@@ -1,3 +1,18 @@
+import { Demo } from "@/components/demo";
+import {
+  AddonUsage,
+  AppearanceUsage,
+  ControlledUsage,
+  DescriptionUsage,
+  DisabledUsage,
+  ModalUsage,
+  PositionUsage,
+  SelectUsage,
+  TriggerCompositionUsage,
+  TriggerUsage,
+  Usage,
+} from "@/demos/dropdown-menu";
+
 # DropdownMenu
 
 Display a dropdown menu.
@@ -8,19 +23,19 @@ Display a dropdown menu.
 
 Use the `DropdownMenu`, `DropdownMenuTrigger`, and `DropdownMenuContent` components to build out menus.
 
-<ax-demo name="dropdown-menu/usage" />
+<Demo component={Usage} />
 
 ### Controlled
 
 Use the `open` and `defaultOpen` props to toggle between controlled and uncontrolled usage. And combine it with `onOpenChange` to listen for changes to the state.
 
-<ax-demo name="dropdown-menu/controlled-usage" />
+<Demo component={ControlledUsage} />
 
 ### Non modal usage
 
 By default scrolling and interactions with outside elements is disabled when menu is open. Set `modal` prop to `false` in order to render a non-modal dropdown.
 
-<ax-demo name="dropdown-menu/modal-usage" />
+<Demo component={ModalUsage} />
 
 ## Trigger
 
@@ -28,13 +43,13 @@ By default scrolling and interactions with outside elements is disabled when men
 
 By default we use the `Button` component for the menu trigger which accepts all of the existing button props.
 
-<ax-demo name="dropdown-menu/trigger-usage" />
+<Demo component={TriggerUsage} />
 
 ### Composition
 
 We can also completely change the trigger by using `asChild` and passing our own component.
 
-<ax-demo name="dropdown-menu/trigger-composition-usage" />
+<Demo component={TriggerCompositionUsage} />
 
 ## Content
 
@@ -42,7 +57,7 @@ We can also completely change the trigger by using `asChild` and passing our own
 
 Use the `align` and `side` props on `DropdownMenuContent` to change the default position of the dropdown.
 
-<ax-demo name="dropdown-menu/position-usage" />
+<Demo component={PositionUsage} />
 
 ## Item
 
@@ -50,40 +65,37 @@ Use the `align` and `side` props on `DropdownMenuContent` to change the default 
 
 Use the `colorScheme` prop to control the appearance of items.
 
-<ax-demo meta='/colorScheme="danger"/' name="dropdown-menu/appearance-usage" />
+<Demo meta='/colorScheme="danger"/' component={AppearanceUsage} />
 
 ### Description
 
 Use the `description` prop to add secondary text to items.
 
-<ax-demo meta="/description/" name="dropdown-menu/description-usage" />
+<Demo meta="/description/" component={DescriptionUsage} />
 
 ### Disabled items
 
 Use the `disabled` prop on menu items to disable them.
 
-<ax-demo meta="/disabled/" name="dropdown-menu/disabled-usage" />
+<Demo meta="/disabled/" component={DisabledUsage} />
 
 ### Label
 
 Use the `DropdownMenuLabel` component to render a read-only label.
 
-<ax-demo meta="/DropdownMenuLabel/" name="dropdown-menu/usage" />
+<Demo meta="/DropdownMenuLabel/" component={Usage} />
 
 ### Selection
 
 Use the `onSelect` prop to handle selection of items.
 
-<ax-demo name="dropdown-menu/select-usage" />
+<Demo component={SelectUsage} />
 
 ### Left and right addons
 
 Use the `addonBefore` and `addonAfter` prop to add icons, text, or any other element to the start or end of the menu items.
 
-<ax-demo
-  meta="/addonBefore/ /addonAfter/"
-  name="dropdown-menu/addon-usage"
-/>
+<Demo meta="/addonBefore/ /addonAfter/" component={AddonUsage} />
 
 ## Props
 

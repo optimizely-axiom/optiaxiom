@@ -1,6 +1,9 @@
 import { tokens } from "@optiaxiom/react";
 import { Scale } from "@/components/scale";
 
+import { Demo } from "@/components/demo";
+import { PercentageUsage, ResetUsage, Usage } from "@/demos/size";
+
 # Size
 
 Use `size` prop to control both the width and height of an element.
@@ -11,12 +14,12 @@ Use `size` prop to control both the width and height of an element.
 
 ### Usage
 
-<ax-demo name="size/usage" />
+<Demo component={Usage} />
 
 ### Percentage
 
-<ax-demo name="size/percentage-usage" />
+<Demo component={PercentageUsage} />
 
 ### Reset
 
-<ax-demo name="size/reset-usage" />
+<Demo component={ResetUsage} />

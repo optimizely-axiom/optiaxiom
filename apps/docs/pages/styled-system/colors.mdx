@@ -1,5 +1,8 @@
 import { ColorPalette } from "@/components/color-palette";
 
+import { Demo } from "@/components/demo";
+import { CssUsage, PropUsage } from "@/demos/styles";
+
 # Colors
 
 `Box` component supports multiple props for controlling an element's background, border, and text colors.
@@ -10,11 +13,11 @@ You can also use the `--ax-colors-*` CSS variables directly in any CSS property.
 
 ### Using style props
 
-<ax-demo name="styles/prop-usage" />
+<Demo component={PropUsage} />
 
 ### Using CSS variables
 
-<ax-demo name="styles/css-usage" />
+<Demo component={CssUsage} />
 
 ### Dark mode
 

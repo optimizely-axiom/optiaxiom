@@ -1,3 +1,11 @@
+import { Demo } from "@/components/demo";
+import {
+  AsyncUsage,
+  SizeUsage,
+  TriggerUsage,
+  Usage,
+} from "@/demos/alert-dialog";
+
 # AlertDialog
 
 Display a modal with important content that expects confirmation from the user.
@@ -8,13 +16,13 @@ Display a modal with important content that expects confirmation from the user.
 
 Use the `open` and `defaultOpen` props to toggle between controlled and uncontrolled usage. And combine it with `onOpenChange` to listen for changes to the state.
 
-<ax-demo name="alert-dialog/usage" />
+<Demo component={Usage} />
 
 ### Sizes
 
 Use the `size` prop to change the size of the dialog box.
 
-<ax-demo meta="/size={size}/" name="alert-dialog/size-usage" />
+<Demo component={SizeUsage} meta="/size={size}/" />
 
 ## Loading
 
@@ -24,7 +32,7 @@ We can prevent closing the dialog in the action button's `onClick` handler to pe
 
 Make sure to use the controlled props and call `event.preventDefault()` in your action to stop the modal from being dismissed.
 
-<ax-demo name="alert-dialog/async-usage" />
+<Demo component={AsyncUsage} />
 
 ## Trigger
 
@@ -34,7 +42,7 @@ By default we use the `Button` component for the dialog trigger which accepts al
 
 We can also completely change the trigger by using `asChild` and passing our own component.
 
-<ax-demo name="alert-dialog/trigger-usage" />
+<Demo component={TriggerUsage} />
 
 ## Props
 
