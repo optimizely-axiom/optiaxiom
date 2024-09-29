@@ -31,3 +31,5 @@ export * from "./table-cell";
 export * from "./table-head";
 export * from "./table-header-cell";
 export * from "./table-row";
+export * from "./toggle-group";
+export * from "./toggle-group-item";
