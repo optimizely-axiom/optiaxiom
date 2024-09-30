@@ -56,6 +56,7 @@ export * from "./input";
 export * from "./kbd";
 export * from "./layers";
 export * from "./link";
+export * from "./menu-button";
 export * from "./pagination";
 export * from "./popover";
 export * from "./popover-anchor";
