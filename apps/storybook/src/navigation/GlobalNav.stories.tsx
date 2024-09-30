@@ -1,6 +1,13 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Avatar, Box } from "@optiaxiom/react";
+import {
+  Avatar,
+  Box,
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@optiaxiom/react";
 import {
   GlobalNav,
   GlobalNavAccountItem,
@@ -21,13 +28,23 @@ import {
 export default {
   args: {
     addonAfter: (
-      <GlobalNavAccountItem
-        avatar={
-          <Avatar src="https://images.unsplash.com/photo-1511485977113-f34c92461ad9?ixlib=rb-1.2.1&w=128&h=128&dpr=2&q=80" />
-        }
-        name="Rhaenyra Targaryen"
-        organization="Optimizely"
-      />
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <GlobalNavAccountItem
+            avatar={
+              <Avatar src="https://images.unsplash.com/photo-1511485977113-f34c92461ad9?ixlib=rb-1.2.1&w=128&h=128&dpr=2&q=80" />
+            }
+            name="Rhaenyra Targaryen"
+            organization="Optimizely"
+          />
+        </DropdownMenuTrigger>
+
+        <DropdownMenuContent align="end" side="right">
+          <DropdownMenuItem>View Profile</DropdownMenuItem>
+          <DropdownMenuItem>Settings</DropdownMenuItem>
+          <DropdownMenuItem>Logout</DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
     ),
     children: (
       <>
