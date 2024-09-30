@@ -24,6 +24,7 @@ export * from "./command-separator";
 export * from "./global-nav";
 export * from "./global-nav-account-item";
 export * from "./global-nav-item";
+export * from "./global-nav-toggle";
 export * from "./pill";
 export * from "./segmented-control";
 export * from "./segmented-control-item";
