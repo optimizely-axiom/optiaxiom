@@ -3,12 +3,11 @@ import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import { forwardRef } from "react";
 import { type ReactNode } from "react";
 
-import { Box, type BoxProps } from "../box";
+import { type BoxProps } from "../box";
 import { Flex } from "../flex";
 import { GlobalNavContextProvider } from "../global-nav-context";
 import { GlobalNavItem } from "../global-nav-item";
 import { IconCollapse } from "../icons/IconCollapse";
-import { extractSprinkles } from "../sprinkles";
 
 type GlobalNavProps = BoxProps<
   "nav",
@@ -34,8 +33,6 @@ export const GlobalNav = forwardRef<HTMLElement, GlobalNavProps>(
     },
     ref,
   ) => {
-    const { restProps, sprinkleProps } = extractSprinkles(props);
-
     const [expanded, setExpanded] = useControllableState({
       defaultProp: defaultExpanded,
       onChange: onExpandedChange,
@@ -44,28 +41,48 @@ export const GlobalNav = forwardRef<HTMLElement, GlobalNavProps>(
 
     return (
       <GlobalNavContextProvider expanded={expanded}>
-        <RadixCollapsible.Root onOpenChange={setExpanded} open={expanded}>
-          <Flex border="1" pb="md" pt="lg">
-            <Box asChild display="flex" {...sprinkleProps}>
-              <nav aria-label="Global Navigation" ref={ref} {...restProps}>
-                <Flex alignItems="center" gap="4" px="xs" w="full">
-                  <Flex flex="1" gap="4" justifyContent="start" w="full">
-                    {children}
-                  </Flex>
+        <Flex
+          asChild
+          bg="surface"
+          borderR="1"
+          justifyContent="space-between"
+          pb="md"
+          pt="lg"
+          {...props}
+        >
+          <RadixCollapsible.Root
+            asChild
+            onOpenChange={setExpanded}
+            open={expanded}
+          >
+            <nav aria-label="Global Navigation" ref={ref}>
+              <Flex
+                asChild
+                flex="1"
+                gap="4"
+                justifyContent="start"
+                px="xs"
+                w="full"
+              >
+                <ul>{children}</ul>
+              </Flex>
 
+              <Flex asChild gap="xs" px="xs">
+                <ul>
                   {collapsible && (
                     <RadixCollapsible.Trigger asChild>
-                      <GlobalNavItem addonBefore={<IconCollapse />}>
+                      <GlobalNavItem icon={<IconCollapse />}>
                         Collapse
                       </GlobalNavItem>
                     </RadixCollapsible.Trigger>
                   )}
-                </Flex>
-              </nav>
-            </Box>
-            <Box asChild>{addonAfter}</Box>
-          </Flex>
-        </RadixCollapsible.Root>
+
+                  {addonAfter}
+                </ul>
+              </Flex>
+            </nav>
+          </RadixCollapsible.Root>
+        </Flex>
       </GlobalNavContextProvider>
     );
   },
