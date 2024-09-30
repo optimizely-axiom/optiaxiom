@@ -14,7 +14,7 @@ export type GlobalNavItemProps = ButtonProps<
 >;
 
 export const GlobalNavItem = forwardRef<HTMLButtonElement, GlobalNavItemProps>(
-  ({ active, addonAfter, addonBefore, asChild, children, ...props }, ref) => {
+  ({ active, addonAfter, asChild, children, ...props }, ref) => {
     const { expanded } = useGlobalNavContext("GlobalNavItem");
     let tooltip = children;
     if (asChild) {
@@ -53,7 +53,6 @@ export const GlobalNavItem = forwardRef<HTMLButtonElement, GlobalNavItemProps>(
               appearance="secondary"
               asChild={asChild}
               data-state={active ? "active" : undefined}
-              icon={addonBefore}
               ref={ref}
               size="lg"
               {...props}

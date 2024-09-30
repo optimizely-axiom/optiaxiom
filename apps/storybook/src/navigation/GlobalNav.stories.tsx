@@ -48,21 +48,19 @@ export default {
     ),
     children: (
       <>
-        <GlobalNavItem addonBefore={<IconBinaryTree />}>Projects</GlobalNavItem>
-        <GlobalNavItem active addonBefore={<IconFlag2 />}>
+        <GlobalNavItem icon={<IconBinaryTree />}>Projects</GlobalNavItem>
+        <GlobalNavItem active icon={<IconFlag2 />}>
           Flags
         </GlobalNavItem>
-        <GlobalNavItem addonBefore={<IconChartInfographic />}>
-          Reports
-        </GlobalNavItem>
-        <GlobalNavItem addonBefore={<IconUsers />}>Audiences</GlobalNavItem>
-        <GlobalNavItem addonBefore={<IconHistory />}>History</GlobalNavItem>
-        <GlobalNavItem addonBefore={<IconChartLine />}>Events</GlobalNavItem>
-        <GlobalNavItem addonBefore={<IconSettings />}>Settings</GlobalNavItem>
+        <GlobalNavItem icon={<IconChartInfographic />}>Reports</GlobalNavItem>
+        <GlobalNavItem icon={<IconUsers />}>Audiences</GlobalNavItem>
+        <GlobalNavItem icon={<IconHistory />}>History</GlobalNavItem>
+        <GlobalNavItem icon={<IconChartLine />}>Events</GlobalNavItem>
+        <GlobalNavItem icon={<IconSettings />}>Settings</GlobalNavItem>
         <GlobalNavItem
           addonAfter={<IconExternalLink size="16" />}
-          addonBefore={<IconVocabulary />}
           asChild
+          icon={<IconVocabulary />}
         >
           <a href="/">Tutorial</a>
         </GlobalNavItem>
