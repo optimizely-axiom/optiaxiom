@@ -6,14 +6,11 @@ import { type ReactNode } from "react";
 import { type BoxProps } from "../box";
 import { Flex } from "../flex";
 import { GlobalNavContextProvider } from "../global-nav-context";
-import { GlobalNavItem } from "../global-nav-item";
-import { IconCollapse } from "../icons/IconCollapse";
 
 type GlobalNavProps = BoxProps<
   "nav",
   {
     addonAfter?: ReactNode;
-    collapsible?: boolean;
     defaultExpanded?: boolean;
     expanded?: boolean;
     onExpandedChange?: (expanded: boolean) => void;
@@ -25,7 +22,6 @@ export const GlobalNav = forwardRef<HTMLElement, GlobalNavProps>(
     {
       addonAfter,
       children,
-      collapsible = true,
       defaultExpanded,
       expanded: expandedProp,
       onExpandedChange,
@@ -68,19 +64,11 @@ export const GlobalNav = forwardRef<HTMLElement, GlobalNavProps>(
                 <ul>{children}</ul>
               </Flex>
 
-              <Flex asChild gap="xs" px="xs">
-                <ul>
-                  {collapsible && (
-                    <RadixCollapsible.Trigger asChild>
-                      <GlobalNavItem icon={<IconCollapse />}>
-                        {expanded ? "Collapse" : "Expand"}
-                      </GlobalNavItem>
-                    </RadixCollapsible.Trigger>
-                  )}
-
-                  {addonAfter}
-                </ul>
-              </Flex>
+              {addonAfter && (
+                <Flex asChild gap="xs" px="xs">
+                  <ul>{addonAfter}</ul>
+                </Flex>
+              )}
             </nav>
           </RadixCollapsible.Root>
         </Flex>

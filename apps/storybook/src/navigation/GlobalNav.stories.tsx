@@ -12,6 +12,7 @@ import {
   GlobalNav,
   GlobalNavAccountItem,
   GlobalNavItem,
+  GlobalNavToggle,
 } from "@optiaxiom/react/unstable";
 import {
   IconBinaryTree,
@@ -20,6 +21,7 @@ import {
   IconExternalLink,
   IconFlag2,
   IconHistory,
+  IconLayoutSidebar,
   IconSettings,
   IconUsers,
   IconVocabulary,
@@ -28,23 +30,26 @@ import {
 export default {
   args: {
     addonAfter: (
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <GlobalNavAccountItem
-            avatar={
-              <Avatar src="https://images.unsplash.com/photo-1511485977113-f34c92461ad9?ixlib=rb-1.2.1&w=128&h=128&dpr=2&q=80" />
-            }
-            name="Rhaenyra Targaryen"
-            organization="Optimizely"
-          />
-        </DropdownMenuTrigger>
+      <>
+        <GlobalNavToggle icon={<IconLayoutSidebar />} />
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <GlobalNavAccountItem
+              avatar={
+                <Avatar src="https://images.unsplash.com/photo-1511485977113-f34c92461ad9?ixlib=rb-1.2.1&w=128&h=128&dpr=2&q=80" />
+              }
+              name="Rhaenyra Targaryen"
+              organization="Optimizely"
+            />
+          </DropdownMenuTrigger>
 
-        <DropdownMenuContent align="end" side="right">
-          <DropdownMenuItem>View Profile</DropdownMenuItem>
-          <DropdownMenuItem>Settings</DropdownMenuItem>
-          <DropdownMenuItem>Logout</DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
+          <DropdownMenuContent align="end" side="right">
+            <DropdownMenuItem>View Profile</DropdownMenuItem>
+            <DropdownMenuItem>Settings</DropdownMenuItem>
+            <DropdownMenuItem>Logout</DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </>
     ),
     children: (
       <>
@@ -84,7 +89,27 @@ export const Basic: Story = {};
 
 export const NotCollapsible: Story = {
   args: {
-    collapsible: false,
+    addonAfter: (
+      <>
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <GlobalNavAccountItem
+              avatar={
+                <Avatar src="https://images.unsplash.com/photo-1511485977113-f34c92461ad9?ixlib=rb-1.2.1&w=128&h=128&dpr=2&q=80" />
+              }
+              name="Rhaenyra Targaryen"
+              organization="Optimizely"
+            />
+          </DropdownMenuTrigger>
+
+          <DropdownMenuContent align="end" side="right">
+            <DropdownMenuItem>View Profile</DropdownMenuItem>
+            <DropdownMenuItem>Settings</DropdownMenuItem>
+            <DropdownMenuItem>Logout</DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </>
+    ),
   },
 };
 
