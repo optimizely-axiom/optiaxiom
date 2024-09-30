@@ -1,9 +1,7 @@
 import * as RadixCollapsible from "@radix-ui/react-collapsible";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
-import { type ComponentPropsWithRef, forwardRef } from "react";
+import { forwardRef } from "react";
 import { type ReactNode } from "react";
-
-import type { ExtendProps } from "../utils";
 
 import { Box, type BoxProps } from "../box";
 import { Flex } from "../flex";
@@ -12,21 +10,15 @@ import { GlobalNavItem } from "../global-nav-item";
 import { IconCollapse } from "../icons/IconCollapse";
 import { extractSprinkles } from "../sprinkles";
 
-type GlobalNavProps = ExtendProps<
-  Omit<
-    ComponentPropsWithRef<typeof RadixCollapsible.Root>,
-    "defaultOpen" | "onOpenChange" | "open"
-  >,
-  BoxProps<
-    "nav",
-    {
-      addonAfter?: ReactNode;
-      collapsible?: boolean;
-      defaultExpanded?: boolean;
-      expanded?: boolean;
-      onExpandedChange?: (expanded: boolean) => void;
-    }
-  >
+type GlobalNavProps = BoxProps<
+  "nav",
+  {
+    addonAfter?: ReactNode;
+    collapsible?: boolean;
+    defaultExpanded?: boolean;
+    expanded?: boolean;
+    onExpandedChange?: (expanded: boolean) => void;
+  }
 >;
 
 export const GlobalNav = forwardRef<HTMLElement, GlobalNavProps>(
