@@ -1,13 +1,11 @@
 import * as RadixCollapsible from "@radix-ui/react-collapsible";
 import { forwardRef } from "react";
 
-import { Box, type BoxProps } from "../box";
-import { Button } from "../button";
+import { Button, type ButtonProps } from "../button";
 import { Flex } from "../flex";
 import { useGlobalNavContext } from "../global-nav-context";
-import { extractSprinkles } from "../sprinkles";
 
-export type GlobalNavItemProps = BoxProps<
+export type GlobalNavItemProps = ButtonProps<
   typeof Button,
   {
     active?: boolean;
@@ -16,35 +14,29 @@ export type GlobalNavItemProps = BoxProps<
 
 export const GlobalNavItem = forwardRef<HTMLButtonElement, GlobalNavItemProps>(
   ({ active, addonAfter, addonBefore, children, ...props }, ref) => {
-    const { restProps, sprinkleProps } = extractSprinkles(props);
-
     const { expanded } = useGlobalNavContext("GlobalNavItem");
 
     return (
-      <Flex asChild {...sprinkleProps}>
-        <Button
-          appearance="secondary"
-          data-state={active ? "active" : undefined}
-          gap="sm"
-          icon={addonBefore}
-          ref={ref}
-          w="full"
-          {...restProps}
-        >
-          {expanded && (
-            <Flex
-              asChild
-              flexDirection="row"
-              justifyContent="space-between"
-              w="full"
-            >
-              <RadixCollapsible.Content>
-                {children}
-                <Box asChild>{addonAfter}</Box>
+      <Flex asChild>
+        <li>
+          <Button
+            addonAfter={expanded && addonAfter}
+            appearance="secondary"
+            data-state={active ? "active" : undefined}
+            icon={addonBefore}
+            ref={ref}
+            size="lg"
+            {...props}
+          >
+            {expanded && (
+              <RadixCollapsible.Content asChild>
+                <Flex flex="1" textAlign="start">
+                  {children}
+                </Flex>
               </RadixCollapsible.Content>
-            </Flex>
-          )}
-        </Button>
+            )}
+          </Button>
+        </li>
       </Flex>
     );
   },

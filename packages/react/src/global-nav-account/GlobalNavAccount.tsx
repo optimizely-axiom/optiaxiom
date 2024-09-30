@@ -1,8 +1,12 @@
 import * as RadixCollapsible from "@radix-ui/react-collapsible";
-import { type ReactElement, type ReactNode, cloneElement } from "react";
+import {
+  type ReactNode,
+  cloneElement,
+  forwardRef,
+  isValidElement,
+} from "react";
 
-import { type BoxProps } from "../box";
-import { Button } from "../button";
+import { Box, type BoxProps } from "../box";
 import { Flex } from "../flex";
 import { IconEllipsis } from "../icons/IconEllipsis";
 import { Text } from "../text";
@@ -16,26 +20,48 @@ export type GlobalNavProfileMenuProps = BoxProps<
   }
 >;
 
-export const GlobalNavProfileMenu = ({
-  avatar,
-  name,
-  organization,
-}: GlobalNavProfileMenuProps) => {
+export const GlobalNavAccount = forwardRef<
+  HTMLButtonElement,
+  GlobalNavProfileMenuProps
+>(({ avatar, name, organization, ...props }, ref) => {
   return (
-    <Flex alignItems="center" flexDirection="row" gap="0" px="md" py="xs">
-      {cloneElement(avatar as ReactElement, { rounded: "sm" })}
+    <Flex asChild my="xs">
+      <li>
+        <Flex
+          asChild
+          flexDirection="row"
+          gap="xs"
+          p="4"
+          textAlign="start"
+          {...props}
+        >
+          <button ref={ref}>
+            <Box asChild flex="none" my="2">
+              {isValidElement<BoxProps>(avatar) &&
+                cloneElement(avatar, { rounded: "sm" })}
+            </Box>
 
-      <Flex asChild flexDirection="row">
-        <RadixCollapsible.Content>
-          <Flex flex="1" gap="0" ml="xs">
-            <Text fontWeight="500">{name}</Text>
-            <Text fontSize="sm">{organization}</Text>
-          </Flex>
-          <Button appearance="secondary" icon={<IconEllipsis />} />
-        </RadixCollapsible.Content>
-      </Flex>
+            <RadixCollapsible.Content asChild>
+              <Flex flex="1" flexDirection="row" gap="xs">
+                <Flex flex="1" gap="0">
+                  <Text color="fg.default" fontWeight="500">
+                    {name}
+                  </Text>
+                  <Text color="fg.tertiary" fontSize="sm">
+                    {organization}
+                  </Text>
+                </Flex>
+
+                <Box asChild>
+                  <IconEllipsis />
+                </Box>
+              </Flex>
+            </RadixCollapsible.Content>
+          </button>
+        </Flex>
+      </li>
     </Flex>
   );
-};
+});
 
-export default GlobalNavProfileMenu;
+GlobalNavAccount.displayName = "@optiaxiom/react/GlobalNavAccount";
