@@ -72,7 +72,7 @@ export const GlobalNav = forwardRef<HTMLElement, GlobalNavProps>(
                   {collapsible && (
                     <RadixCollapsible.Trigger asChild>
                       <GlobalNavItem icon={<IconCollapse />}>
-                        Collapse
+                        {expanded ? "Collapse" : "Expand"}
                       </GlobalNavItem>
                     </RadixCollapsible.Trigger>
                   )}
