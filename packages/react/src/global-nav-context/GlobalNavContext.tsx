@@ -1,7 +1,5 @@
-import { createContext } from "react";
+import { createContext } from "@radix-ui/react-context";
 
-export const GlobalNavContext = createContext<{
+export const [GlobalNavContextProvider, useGlobalNavContext] = createContext<{
   expanded: boolean | undefined;
-}>({
-  expanded: undefined,
-});
+}>("GlobalNav");
