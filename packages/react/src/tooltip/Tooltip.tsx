@@ -37,11 +37,15 @@ export const Tooltip = forwardRef<HTMLButtonElement, TooltipProps>(
     },
     ref,
   ) => {
+    const empty =
+      !content && typeof content !== "number" && typeof content !== "string";
+
     return (
       <TooltipRoot
         auto={auto}
         defaultOpen={defaultOpen}
         delayDuration={delayDuration}
+        disableHoverableContent={empty}
         keepOpenOnActivation={keepOpenOnActivation}
         onOpenChange={onOpenChange}
         open={open}
@@ -50,7 +54,7 @@ export const Tooltip = forwardRef<HTMLButtonElement, TooltipProps>(
           {children}
         </TooltipTrigger>
 
-        <TooltipContent {...props}>{content}</TooltipContent>
+        {!empty && <TooltipContent {...props}>{content}</TooltipContent>}
       </TooltipRoot>
     );
   },
