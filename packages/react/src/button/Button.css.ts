@@ -34,15 +34,15 @@ export const button = recipe({
       userSelect: "none",
 
       selectors: {
-        "&:active:not([data-disabled], [data-loading])": {
+        "&:active:not([disabled], [data-disabled], [data-loading])": {
           boxShadow: theme.boxShadow.inner,
         },
-        "&:is(:focus-visible, :has(:focus-visible)):not([data-disabled], [data-loading])":
+        "&:is(:focus-visible, :has(:focus-visible)):not([disabled], [data-disabled], [data-loading])":
           {
             outline: `2px solid ${theme.colors["outline.brand"]}`,
             outlineOffset: "1px",
           },
-        "&:is([data-disabled], [data-loading])": {
+        "&:is([disabled],[data-disabled], [data-loading])": {
           cursor: "not-allowed",
         },
         [`${group}[data-orientation="horizontal"] &:not(:first-child):not(:last-child)`]:
@@ -139,10 +139,10 @@ export const button = recipe({
         paddingInline: `calc(${paddingInlineVar} - 1px)`,
 
         selectors: {
-          "&:hover:not([data-disabled], [data-loading])": {
+          "&:hover:not([disabled], [data-disabled], [data-loading])": {
             backgroundColor: subtleAccentColorVar,
           },
-          "&[data-disabled]": {
+          "&:is([disabled], [data-disabled])": {
             borderColor: theme.colors["border.disabled"],
             color: theme.colors["fg.disabled"],
           },
@@ -156,10 +156,10 @@ export const button = recipe({
         ),
 
         selectors: {
-          "&:hover:not([data-disabled], [data-loading])": {
+          "&:hover:not([disabled], [data-disabled], [data-loading])": {
             backgroundColor: solidAccentColorVar,
           },
-          "&[data-disabled]": {
+          "&:is([disabled], [data-disabled])": {
             backgroundColor: theme.colors["bg.input.disabled"],
             border: `1px solid ${theme.colors["border.disabled"]}`,
             color: theme.colors["fg.disabled"],
@@ -173,7 +173,7 @@ export const button = recipe({
         color: fallbackVar(subtleTextColorVar, accentColorVar),
 
         selectors: {
-          '&:hover:not([data-disabled], [data-loading], [data-state="active"], [data-state="on"])':
+          '&:hover:not([disabled], [data-disabled], [data-loading], [data-state="active"], [data-state="on"])':
             {
               backgroundColor: subtleAccentColorVar,
             },
@@ -181,7 +181,7 @@ export const button = recipe({
             backgroundColor: theme.colors["bg.brand"],
             color: theme.colors["fg.link"],
           },
-          "&[data-disabled]": {
+          "&:is([disabled], [data-disabled])": {
             color: theme.colors["fg.disabled"],
           },
         },
