@@ -22,7 +22,7 @@ export * from "./command-item";
 export * from "./command-list";
 export * from "./command-separator";
 export * from "./global-nav";
-export * from "./global-nav-account";
+export * from "./global-nav-account-item";
 export * from "./global-nav-item";
 export * from "./pill";
 export * from "./segmented-control";

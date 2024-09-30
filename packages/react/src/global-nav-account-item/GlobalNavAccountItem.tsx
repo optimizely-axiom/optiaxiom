@@ -20,7 +20,7 @@ export type GlobalNavProfileMenuProps = BoxProps<
   }
 >;
 
-export const GlobalNavAccount = forwardRef<
+export const GlobalNavAccountItem = forwardRef<
   HTMLButtonElement,
   GlobalNavProfileMenuProps
 >(({ avatar, name, organization, ...props }, ref) => {
@@ -64,4 +64,4 @@ export const GlobalNavAccount = forwardRef<
   );
 });
 
-GlobalNavAccount.displayName = "@optiaxiom/react/GlobalNavAccount";
+GlobalNavAccountItem.displayName = "@optiaxiom/react/GlobalNavAccountItem";
