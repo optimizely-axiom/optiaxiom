@@ -2,7 +2,7 @@ import * as RadixMenu from "@radix-ui/react-dropdown-menu";
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import { Button } from "../button";
-import { IconAngleDown } from "../icons/IconAngleDown";
+import { MenuButton } from "../menu-button";
 import { extractSprinkles } from "../sprinkles";
 
 type MenuTriggerProps = ComponentPropsWithoutRef<typeof Button>;
@@ -15,13 +15,7 @@ export const DropdownMenuTrigger = forwardRef<
 
   return (
     <RadixMenu.Trigger asChild ref={ref} {...sprinkleProps}>
-      {asChild ? (
-        children
-      ) : (
-        <Button icon={<IconAngleDown />} iconPosition="end" {...restProps}>
-          {children}
-        </Button>
-      )}
+      {asChild ? children : <MenuButton {...restProps}>{children}</MenuButton>}
     </RadixMenu.Trigger>
   );
 });

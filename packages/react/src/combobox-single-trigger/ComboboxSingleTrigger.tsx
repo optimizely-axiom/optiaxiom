@@ -1,9 +1,9 @@
 import { forwardRef } from "react";
 
-import { Button, type ButtonProps } from "../button";
+import { type ButtonProps } from "../button";
 import { useComboboxContext } from "../combobox-context";
 import { ComboboxTrigger } from "../combobox-trigger";
-import { IconAngleDown } from "../icons/IconAngleDown";
+import { MenuButton } from "../menu-button";
 
 type ComboboxSingleTriggerProps = ButtonProps<typeof ComboboxTrigger>;
 
@@ -14,10 +14,7 @@ export const ComboboxSingleTrigger = forwardRef<
   const { value } = useComboboxContext("Combobox");
   return (
     <ComboboxTrigger asChild ref={ref} {...props}>
-      <Button>
-        {value || title}
-        <IconAngleDown />
-      </Button>
+      <MenuButton>{value || title}</MenuButton>
     </ComboboxTrigger>
   );
 });
