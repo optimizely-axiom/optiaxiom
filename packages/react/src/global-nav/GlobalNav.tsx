@@ -48,6 +48,7 @@ export const GlobalNav = forwardRef<HTMLElement, GlobalNavProps>(
           justifyContent="space-between"
           pb="md"
           pt="lg"
+          w={expanded ? "224" : "auto"}
           {...props}
         >
           <RadixCollapsible.Root
