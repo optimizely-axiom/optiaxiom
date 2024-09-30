@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Avatar, Box, Link } from "@optiaxiom/react";
+import { Avatar, Box } from "@optiaxiom/react";
 import {
   GlobalNav,
   GlobalNavAccountItem,
@@ -10,6 +10,7 @@ import {
   IconBinaryTree,
   IconChartInfographic,
   IconChartLine,
+  IconExternalLink,
   IconFlag2,
   IconHistory,
   IconSettings,
@@ -42,10 +43,11 @@ export default {
         <GlobalNavItem addonBefore={<IconChartLine />}>Events</GlobalNavItem>
         <GlobalNavItem addonBefore={<IconSettings />}>Settings</GlobalNavItem>
         <GlobalNavItem
-          addonAfter={<Link external href="https://www.google.com/" />}
+          addonAfter={<IconExternalLink size="16" />}
           addonBefore={<IconVocabulary />}
+          asChild
         >
-          Tutorial
+          <a href="/">Tutorial</a>
         </GlobalNavItem>
       </>
     ),
