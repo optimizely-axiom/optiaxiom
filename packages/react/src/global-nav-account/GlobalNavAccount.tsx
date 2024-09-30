@@ -42,12 +42,12 @@ export const GlobalNavAccount = forwardRef<
             </Box>
 
             <RadixCollapsible.Content asChild>
-              <Flex flex="1" flexDirection="row" gap="xs">
-                <Flex flex="1" gap="0">
-                  <Text color="fg.default" fontWeight="500">
+              <Flex flex="1" flexDirection="row" gap="xs" overflowX="hidden">
+                <Flex flex="1" gap="0" overflowX="hidden">
+                  <Text color="fg.default" fontWeight="500" truncate>
                     {name}
                   </Text>
-                  <Text color="fg.tertiary" fontSize="sm">
+                  <Text color="fg.tertiary" fontSize="sm" truncate>
                     {organization}
                   </Text>
                 </Flex>
