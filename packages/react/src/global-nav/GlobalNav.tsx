@@ -5,7 +5,7 @@ import { type ReactNode } from "react";
 
 import { Box, type BoxProps } from "../box";
 import { Flex } from "../flex";
-import { GlobalNavContext } from "../global-nav-context";
+import { GlobalNavContextProvider } from "../global-nav-context";
 import { GlobalNavItem } from "../global-nav-item";
 import { IconCollapse } from "../icons/IconCollapse";
 import { extractSprinkles } from "../sprinkles";
@@ -43,7 +43,7 @@ export const GlobalNav = forwardRef<HTMLElement, GlobalNavProps>(
     });
 
     return (
-      <GlobalNavContext.Provider value={{ expanded }}>
+      <GlobalNavContextProvider expanded={expanded}>
         <RadixCollapsible.Root onOpenChange={setExpanded} open={expanded}>
           <Flex border="1" pb="md" pt="lg">
             <Box asChild display="flex" {...sprinkleProps}>
@@ -66,7 +66,7 @@ export const GlobalNav = forwardRef<HTMLElement, GlobalNavProps>(
             <Box asChild>{addonAfter}</Box>
           </Flex>
         </RadixCollapsible.Root>
-      </GlobalNavContext.Provider>
+      </GlobalNavContextProvider>
     );
   },
 );

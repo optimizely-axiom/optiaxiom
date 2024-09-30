@@ -1,10 +1,10 @@
 import * as RadixCollapsible from "@radix-ui/react-collapsible";
-import { forwardRef, useContext } from "react";
+import { forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
 import { Button } from "../button";
 import { Flex } from "../flex";
-import { GlobalNavContext } from "../global-nav-context";
+import { useGlobalNavContext } from "../global-nav-context";
 import { extractSprinkles } from "../sprinkles";
 
 export type GlobalNavItemProps = BoxProps<
@@ -18,7 +18,7 @@ export const GlobalNavItem = forwardRef<HTMLButtonElement, GlobalNavItemProps>(
   ({ active, addonAfter, addonBefore, children, ...props }, ref) => {
     const { restProps, sprinkleProps } = extractSprinkles(props);
 
-    const { expanded } = useContext(GlobalNavContext);
+    const { expanded } = useGlobalNavContext("GlobalNavItem");
 
     return (
       <Flex asChild {...sprinkleProps}>
