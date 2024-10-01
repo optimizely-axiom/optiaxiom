@@ -10,6 +10,7 @@ type SideNavProps = BoxProps<
   "nav",
   {
     addonAfter?: ReactNode;
+    addonBefore?: ReactNode;
     defaultExpanded?: boolean;
     expanded?: boolean;
     onExpandedChange?: (expanded: boolean) => void;
@@ -20,6 +21,7 @@ export const SideNav = forwardRef<HTMLElement, SideNavProps>(
   (
     {
       addonAfter,
+      addonBefore,
       children,
       defaultExpanded,
       expanded: expandedProp,
@@ -56,27 +58,28 @@ export const SideNav = forwardRef<HTMLElement, SideNavProps>(
             asChild
             bg="surface"
             flex="1"
-            justifyContent="space-between"
             pb="md"
             pt="lg"
+            px="xs"
             transition={animations ? "all" : undefined}
             w={expanded ? "224" : "56"}
           >
             <nav aria-label="Global Navigation" ref={ref}>
+              {addonBefore}
+
               <Flex
                 asChild
                 flex="1"
                 gap="4"
                 justifyContent="start"
                 overflowY="auto"
-                px="xs"
                 w="full"
               >
                 <ul>{children}</ul>
               </Flex>
 
               {addonAfter && (
-                <Flex asChild gap="xs" overflowX="hidden" px="xs">
+                <Flex asChild gap="xs" mt="auto" overflowX="hidden">
                   <ul>{addonAfter}</ul>
                 </Flex>
               )}
