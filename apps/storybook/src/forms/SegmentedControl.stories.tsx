@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Flex } from "@optiaxiom/react";
 import {
   SegmentedControl,
   SegmentedControlItem,
@@ -11,16 +10,27 @@ import {
   IconDeviceTablet,
 } from "@tabler/icons-react";
 
-const deviceItems = [
-  { icon: <IconDeviceImac />, value: "desktop" },
-  { icon: <IconDeviceTablet />, value: "tablet" },
-  { icon: <IconDeviceMobile />, value: "mobile" },
-] as const;
-
-const sizes = ["sm", "md", "lg"] as const;
 const meta: Meta<typeof SegmentedControl> = {
-  argTypes: {
-    onClick: { action: "click" },
+  args: {
+    children: (
+      <>
+        <SegmentedControlItem
+          icon={<IconDeviceImac />}
+          key="desktop"
+          value="desktop"
+        />
+        <SegmentedControlItem
+          icon={<IconDeviceTablet />}
+          key="tablet"
+          value="tablet"
+        />
+        <SegmentedControlItem
+          icon={<IconDeviceMobile />}
+          key="mobile"
+          value="mobile"
+        />
+      </>
+    ),
   },
   component: SegmentedControl,
 };
@@ -29,56 +39,46 @@ export default meta;
 
 type Story = StoryObj<typeof SegmentedControl>;
 
-const createSegmentedControlStory = (
-  storyArgs: Partial<React.ComponentProps<typeof SegmentedControl>> = {},
-): Story => ({
+export const Basic: Story = {
   args: {
-    children: deviceItems.map(({ icon, value }) => (
-      <SegmentedControlItem icon={icon} key={value} value={value} />
-    )),
-    ...storyArgs,
+    defaultValue: "desktop",
   },
-});
-
-export const Basic: Story = createSegmentedControlStory({
-  defaultValue: "desktop",
-});
-
-export const Sizes: Story = {
-  render: () => (
-    <Flex>
-      {sizes.map((size) => (
-        <SegmentedControl defaultValue="desktop" key={size} type="single">
-          {deviceItems.map(({ icon, value }) => (
-            <SegmentedControlItem
-              icon={icon}
-              key={value}
-              size={size}
-              value={value}
-            />
-          ))}
-        </SegmentedControl>
-      ))}
-    </Flex>
-  ),
 };
 
-export const Multiple: Story = createSegmentedControlStory({
-  defaultValue: ["desktop", "mobile"],
-  type: "multiple",
-});
+export const Multiple: Story = {
+  args: {
+    defaultValue: ["desktop", "mobile"],
+    type: "multiple",
+  },
+};
 
-export const DisabledGroup: Story = createSegmentedControlStory({
-  disabled: true,
-});
+export const DisabledGroup: Story = {
+  args: {
+    disabled: true,
+  },
+};
 
-export const DisabledItem: Story = createSegmentedControlStory({
-  children: deviceItems.map(({ icon, value }, index) => (
-    <SegmentedControlItem
-      disabled={index === 0}
-      icon={icon}
-      key={value}
-      value={value}
-    />
-  )),
-});
+export const DisabledItem: Story = {
+  args: {
+    children: (
+      <>
+        <SegmentedControlItem
+          disabled
+          icon={<IconDeviceImac />}
+          key="desktop"
+          value="desktop"
+        />
+        <SegmentedControlItem
+          icon={<IconDeviceTablet />}
+          key="tablet"
+          value="tablet"
+        />
+        <SegmentedControlItem
+          icon={<IconDeviceMobile />}
+          key="mobile"
+          value="mobile"
+        />
+      </>
+    ),
+  },
+};
