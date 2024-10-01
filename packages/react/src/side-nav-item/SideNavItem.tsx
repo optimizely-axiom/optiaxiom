@@ -3,20 +3,20 @@ import { cloneElement, forwardRef, isValidElement } from "react";
 import { Box } from "../box";
 import { Button, type ButtonProps } from "../button";
 import { Flex } from "../flex";
-import { useGlobalNavContext } from "../global-nav-context";
+import { useSideNavContext } from "../side-nav-context";
 import { Tooltip } from "../tooltip";
 import { Transition } from "../transition";
 
-export type GlobalNavItemProps = ButtonProps<
+export type SideNavItemProps = ButtonProps<
   typeof Button,
   {
     active?: boolean;
   }
 >;
 
-export const GlobalNavItem = forwardRef<HTMLButtonElement, GlobalNavItemProps>(
+export const SideNavItem = forwardRef<HTMLButtonElement, SideNavItemProps>(
   ({ active, addonAfter, asChild, children, ...props }, ref) => {
-    const { animations, expanded } = useGlobalNavContext("GlobalNavItem");
+    const { animations, expanded } = useSideNavContext("SideNavItem");
 
     let tooltip = children;
     if (asChild) {
@@ -73,4 +73,4 @@ export const GlobalNavItem = forwardRef<HTMLButtonElement, GlobalNavItemProps>(
   },
 );
 
-GlobalNavItem.displayName = "@optiaxiom/react/GlobalNavItem";
+SideNavItem.displayName = "@optiaxiom/react/SideNavItem";

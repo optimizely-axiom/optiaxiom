@@ -7,12 +7,12 @@ import {
 
 import { Box, type BoxProps } from "../box";
 import { Flex } from "../flex";
-import { useGlobalNavContext } from "../global-nav-context";
 import { IconEllipsis } from "../icons/IconEllipsis";
+import { useSideNavContext } from "../side-nav-context";
 import { Text } from "../text";
 import { Transition } from "../transition";
 
-export type GlobalNavProfileMenuProps = BoxProps<
+export type SideNavProfileMenuProps = BoxProps<
   "div",
   {
     avatar: ReactNode;
@@ -21,11 +21,11 @@ export type GlobalNavProfileMenuProps = BoxProps<
   }
 >;
 
-export const GlobalNavAccountItem = forwardRef<
+export const SideNavAccountItem = forwardRef<
   HTMLButtonElement,
-  GlobalNavProfileMenuProps
+  SideNavProfileMenuProps
 >(({ avatar, name, organization, ...props }, ref) => {
-  const { animations, expanded } = useGlobalNavContext("GlobalNavAccountItem");
+  const { animations, expanded } = useSideNavContext("SideNavAccountItem");
 
   return (
     <Flex asChild my="xs">
@@ -69,4 +69,4 @@ export const GlobalNavAccountItem = forwardRef<
   );
 });
 
-GlobalNavAccountItem.displayName = "@optiaxiom/react/GlobalNavAccountItem";
+SideNavAccountItem.displayName = "@optiaxiom/react/SideNavAccountItem";
