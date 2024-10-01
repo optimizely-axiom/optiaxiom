@@ -1,5 +1,5 @@
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
-import { forwardRef } from "react";
+import { forwardRef, useEffect, useRef, useState } from "react";
 import { type ReactNode } from "react";
 
 import { type BoxProps } from "../box";
@@ -34,40 +34,54 @@ export const GlobalNav = forwardRef<HTMLElement, GlobalNavProps>(
       prop: expandedProp,
     });
 
+    const [animations, setAnimations] = useState(false);
+    const timerRef = useRef<number | undefined>();
+    useEffect(() => {
+      timerRef.current = window.setTimeout(() => setAnimations(false), 300);
+    }, [animations]);
+
     return (
       <GlobalNavContextProvider
+        animations={animations}
         expanded={expanded}
-        onExpandedChange={setExpanded}
-      >
-        <Flex
-          asChild
-          bg="surface"
-          borderR="1"
-          justifyContent="space-between"
-          pb="md"
-          pt="lg"
-          w={expanded ? "224" : "auto"}
-          {...props}
-        >
-          <nav aria-label="Global Navigation" ref={ref}>
-            <Flex
-              asChild
-              flex="1"
-              gap="4"
-              justifyContent="start"
-              overflowY="auto"
-              px="xs"
-              w="full"
-            >
-              <ul>{children}</ul>
-            </Flex>
+        onExpandedChange={(flag) => {
+          window.clearTimeout(timerRef.current);
+          setAnimations(true);
 
-            {addonAfter && (
-              <Flex asChild gap="xs" px="xs">
-                <ul>{addonAfter}</ul>
+          setExpanded(flag);
+        }}
+      >
+        <Flex borderR="1" {...props}>
+          <Flex
+            asChild
+            bg="surface"
+            flex="1"
+            justifyContent="space-between"
+            pb="md"
+            pt="lg"
+            transition={animations ? "all" : undefined}
+            w={expanded ? "224" : "56"}
+          >
+            <nav aria-label="Global Navigation" ref={ref}>
+              <Flex
+                asChild
+                flex="1"
+                gap="4"
+                justifyContent="start"
+                overflowY="auto"
+                px="xs"
+                w="full"
+              >
+                <ul>{children}</ul>
               </Flex>
-            )}
-          </nav>
+
+              {addonAfter && (
+                <Flex asChild gap="xs" overflowX="hidden" px="xs">
+                  <ul>{addonAfter}</ul>
+                </Flex>
+              )}
+            </nav>
+          </Flex>
         </Flex>
       </GlobalNavContextProvider>
     );

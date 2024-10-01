@@ -10,6 +10,7 @@ import { Flex } from "../flex";
 import { useGlobalNavContext } from "../global-nav-context";
 import { IconEllipsis } from "../icons/IconEllipsis";
 import { Text } from "../text";
+import { Transition } from "../transition";
 
 export type GlobalNavProfileMenuProps = BoxProps<
   "div",
@@ -24,7 +25,7 @@ export const GlobalNavAccountItem = forwardRef<
   HTMLButtonElement,
   GlobalNavProfileMenuProps
 >(({ avatar, name, organization, ...props }, ref) => {
-  const { expanded } = useGlobalNavContext("GlobalNavAccountItem");
+  const { animations, expanded } = useGlobalNavContext("GlobalNavAccountItem");
 
   return (
     <Flex asChild my="xs">
@@ -44,20 +45,22 @@ export const GlobalNavAccountItem = forwardRef<
             </Box>
 
             {expanded && (
-              <Flex flex="1" flexDirection="row" gap="xs" overflowX="hidden">
-                <Flex flex="1" gap="0" overflowX="hidden">
-                  <Text color="fg.default" fontWeight="500" truncate>
-                    {name}
-                  </Text>
-                  <Text color="fg.tertiary" fontSize="sm" truncate>
-                    {organization}
-                  </Text>
-                </Flex>
+              <Transition skipAnimations={!animations}>
+                <Flex flex="1" flexDirection="row" gap="xs" overflowX="hidden">
+                  <Flex flex="1" gap="0" overflowX="hidden">
+                    <Text color="fg.default" fontWeight="500" truncate>
+                      {name}
+                    </Text>
+                    <Text color="fg.tertiary" fontSize="sm" truncate>
+                      {organization}
+                    </Text>
+                  </Flex>
 
-                <Box asChild>
-                  <IconEllipsis />
-                </Box>
-              </Flex>
+                  <Box asChild>
+                    <IconEllipsis />
+                  </Box>
+                </Flex>
+              </Transition>
             )}
           </button>
         </Flex>

@@ -8,10 +8,14 @@ import { TransitionGlobalConfig } from "./TransitionGlobalConfig";
 type TransitionProps = {
   children: ReactElement;
   "data-side"?: "bottom" | "left" | "right" | "top";
+  skipAnimations?: boolean;
 } & NonNullable<styles.TransitionVariants>;
 
 export const Transition = forwardRef<HTMLDivElement, TransitionProps>(
-  ({ children, duration = "md", type = "fade", ...props }, ref) => {
+  (
+    { children, duration = "md", skipAnimations, type = "fade", ...props },
+    ref,
+  ) => {
     const [isPresent, safeToRemove] = usePresence();
 
     const [enter, setEnter] = useState(false);
@@ -25,7 +29,7 @@ export const Transition = forwardRef<HTMLDivElement, TransitionProps>(
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isPresent]);
 
-    return TransitionGlobalConfig.skipAnimations ? (
+    return skipAnimations || TransitionGlobalConfig.skipAnimations ? (
       <Slot ref={ref}>{children}</Slot>
     ) : (
       <Slot

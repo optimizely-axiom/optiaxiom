@@ -115,6 +115,6 @@ export const NotCollapsible: Story = {
 
 export const Expanded: Story = {
   args: {
-    expanded: true,
+    defaultExpanded: true,
   },
 };
