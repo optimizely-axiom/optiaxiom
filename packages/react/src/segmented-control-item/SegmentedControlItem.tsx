@@ -8,12 +8,15 @@ type SegmentedControlItemProps = ButtonProps<typeof RadixSegmentedControl.Item>;
 export const SegmentedControlItem = forwardRef<
   HTMLButtonElement,
   SegmentedControlItemProps
->(({ children, value, ...props }, ref) => {
+>(({ children, ...props }, ref) => {
   return (
-    <RadixSegmentedControl.Item asChild ref={ref} value={value}>
-      <Button appearance="secondary" {...props}>
-        {children}
-      </Button>
+    <RadixSegmentedControl.Item
+      appearance="secondary"
+      asChild
+      ref={ref}
+      {...props}
+    >
+      <Button>{children}</Button>
     </RadixSegmentedControl.Item>
   );
 });
