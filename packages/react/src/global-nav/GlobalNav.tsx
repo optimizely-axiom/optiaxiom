@@ -58,6 +58,7 @@ export const GlobalNav = forwardRef<HTMLElement, GlobalNavProps>(
                 flex="1"
                 gap="4"
                 justifyContent="start"
+                overflowY="auto"
                 px="xs"
                 w="full"
               >
