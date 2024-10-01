@@ -9,7 +9,7 @@ const accentColorVar = createVar();
 const solidAccentColorVar = createVar();
 const solidTextColorVar = createVar();
 const subtleAccentColorVar = createVar();
-const subtleTextColorVar = createVar();
+export const subtleTextColorVar = createVar();
 
 const paddingInlineVar = createVar();
 

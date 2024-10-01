@@ -6,6 +6,7 @@ import { Flex } from "../flex";
 import { useSideNavContext } from "../side-nav-context";
 import { Tooltip } from "../tooltip";
 import { Transition } from "../transition";
+import * as styles from "./SideNavItem.css";
 
 export type SideNavItemProps = ButtonProps<
   typeof Button,
@@ -15,7 +16,7 @@ export type SideNavItemProps = ButtonProps<
 >;
 
 export const SideNavItem = forwardRef<HTMLButtonElement, SideNavItemProps>(
-  ({ active, addonAfter, asChild, children, ...props }, ref) => {
+  ({ active, addonAfter, asChild, children, className, ...props }, ref) => {
     const { animations, expanded } = useSideNavContext("SideNavItem");
 
     let tooltip = children;
@@ -57,11 +58,10 @@ export const SideNavItem = forwardRef<HTMLButtonElement, SideNavItemProps>(
               appearance="secondary"
               asChild={asChild}
               data-state={active ? "active" : undefined}
-              justifyContent="start"
               ref={ref}
               size="lg"
-              textAlign="start"
               transition={animations ? "all" : undefined}
+              {...styles.item({}, className)}
               {...props}
             >
               {children}

@@ -10,6 +10,7 @@ export const SideNavToggle = forwardRef<HTMLButtonElement, SideNavToggleProps>(
     const { expanded, onExpandedChange } = useSideNavContext("SideNavToggle");
     return (
       <SideNavItem
+        fontWeight="400"
         onClick={() => onExpandedChange(!expanded)}
         ref={ref}
         {...props}
