@@ -10,11 +10,11 @@ export const SegmentedControlItem = forwardRef<
   SegmentedControlItemProps
 >(({ children, value, ...props }, ref) => {
   return (
-    <Button appearance="secondary" asChild {...props}>
-      <RadixSegmentedControl.Item ref={ref} value={value}>
+    <RadixSegmentedControl.Item asChild ref={ref} value={value}>
+      <Button appearance="secondary" {...props}>
         {children}
-      </RadixSegmentedControl.Item>
-    </Button>
+      </Button>
+    </RadixSegmentedControl.Item>
   );
 });
 
