@@ -1,4 +1,3 @@
-import * as RadixCollapsible from "@radix-ui/react-collapsible";
 import { cloneElement, forwardRef, isValidElement } from "react";
 
 import { Button, type ButtonProps } from "../button";
@@ -24,20 +23,18 @@ export const GlobalNavItem = forwardRef<HTMLButtonElement, GlobalNavItemProps>(
         ? cloneElement(
             newElement,
             undefined,
-            <RadixCollapsible.Content asChild>
+            expanded && (
               <Flex flex="1" textAlign="start">
                 {newElement.props.children}
               </Flex>
-            </RadixCollapsible.Content>,
+            ),
           )
         : children;
     } else {
-      children = (
-        <RadixCollapsible.Content asChild>
-          <Flex flex="1" textAlign="start">
-            {children}
-          </Flex>
-        </RadixCollapsible.Content>
+      children = expanded && (
+        <Flex flex="1" textAlign="start">
+          {children}
+        </Flex>
       );
     }
 

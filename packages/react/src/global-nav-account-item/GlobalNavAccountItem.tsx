@@ -1,4 +1,3 @@
-import * as RadixCollapsible from "@radix-ui/react-collapsible";
 import {
   type ReactNode,
   cloneElement,
@@ -8,6 +7,7 @@ import {
 
 import { Box, type BoxProps } from "../box";
 import { Flex } from "../flex";
+import { useGlobalNavContext } from "../global-nav-context";
 import { IconEllipsis } from "../icons/IconEllipsis";
 import { Text } from "../text";
 
@@ -24,6 +24,8 @@ export const GlobalNavAccountItem = forwardRef<
   HTMLButtonElement,
   GlobalNavProfileMenuProps
 >(({ avatar, name, organization, ...props }, ref) => {
+  const { expanded } = useGlobalNavContext("GlobalNavAccountItem");
+
   return (
     <Flex asChild my="xs">
       <li>
@@ -41,7 +43,7 @@ export const GlobalNavAccountItem = forwardRef<
                 cloneElement(avatar, { rounded: "sm" })}
             </Box>
 
-            <RadixCollapsible.Content asChild>
+            {expanded && (
               <Flex flex="1" flexDirection="row" gap="xs" overflowX="hidden">
                 <Flex flex="1" gap="0" overflowX="hidden">
                   <Text color="fg.default" fontWeight="500" truncate>
@@ -56,7 +58,7 @@ export const GlobalNavAccountItem = forwardRef<
                   <IconEllipsis />
                 </Box>
               </Flex>
-            </RadixCollapsible.Content>
+            )}
           </button>
         </Flex>
       </li>

@@ -1,4 +1,3 @@
-import * as RadixCollapsible from "@radix-ui/react-collapsible";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import { forwardRef } from "react";
 import { type ReactNode } from "react";
@@ -36,7 +35,10 @@ export const GlobalNav = forwardRef<HTMLElement, GlobalNavProps>(
     });
 
     return (
-      <GlobalNavContextProvider expanded={expanded}>
+      <GlobalNavContextProvider
+        expanded={expanded}
+        onExpandedChange={setExpanded}
+      >
         <Flex
           asChild
           bg="surface"
@@ -47,31 +49,25 @@ export const GlobalNav = forwardRef<HTMLElement, GlobalNavProps>(
           w={expanded ? "224" : "auto"}
           {...props}
         >
-          <RadixCollapsible.Root
-            asChild
-            onOpenChange={setExpanded}
-            open={expanded}
-          >
-            <nav aria-label="Global Navigation" ref={ref}>
-              <Flex
-                asChild
-                flex="1"
-                gap="4"
-                justifyContent="start"
-                overflowY="auto"
-                px="xs"
-                w="full"
-              >
-                <ul>{children}</ul>
-              </Flex>
+          <nav aria-label="Global Navigation" ref={ref}>
+            <Flex
+              asChild
+              flex="1"
+              gap="4"
+              justifyContent="start"
+              overflowY="auto"
+              px="xs"
+              w="full"
+            >
+              <ul>{children}</ul>
+            </Flex>
 
-              {addonAfter && (
-                <Flex asChild gap="xs" px="xs">
-                  <ul>{addonAfter}</ul>
-                </Flex>
-              )}
-            </nav>
-          </RadixCollapsible.Root>
+            {addonAfter && (
+              <Flex asChild gap="xs" px="xs">
+                <ul>{addonAfter}</ul>
+              </Flex>
+            )}
+          </nav>
         </Flex>
       </GlobalNavContextProvider>
     );
