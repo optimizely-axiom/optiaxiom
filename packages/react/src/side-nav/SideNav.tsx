@@ -4,9 +4,9 @@ import { type ReactNode } from "react";
 
 import { type BoxProps } from "../box";
 import { Flex } from "../flex";
-import { GlobalNavContextProvider } from "../global-nav-context";
+import { SideNavContextProvider } from "../side-nav-context";
 
-type GlobalNavProps = BoxProps<
+type SideNavProps = BoxProps<
   "nav",
   {
     addonAfter?: ReactNode;
@@ -16,7 +16,7 @@ type GlobalNavProps = BoxProps<
   }
 >;
 
-export const GlobalNav = forwardRef<HTMLElement, GlobalNavProps>(
+export const SideNav = forwardRef<HTMLElement, SideNavProps>(
   (
     {
       addonAfter,
@@ -41,7 +41,7 @@ export const GlobalNav = forwardRef<HTMLElement, GlobalNavProps>(
     }, [animations]);
 
     return (
-      <GlobalNavContextProvider
+      <SideNavContextProvider
         animations={animations}
         expanded={expanded}
         onExpandedChange={(flag) => {
@@ -83,9 +83,9 @@ export const GlobalNav = forwardRef<HTMLElement, GlobalNavProps>(
             </nav>
           </Flex>
         </Flex>
-      </GlobalNavContextProvider>
+      </SideNavContextProvider>
     );
   },
 );
 
-GlobalNav.displayName = "@optiaxiom/react/GlobalNav";
+SideNav.displayName = "@optiaxiom/react/SideNav";
