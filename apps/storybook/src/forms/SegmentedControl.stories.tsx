@@ -1,7 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { Flex } from "@optiaxiom/react";
-import { ToggleGroup, ToggleGroupItem } from "@optiaxiom/react/unstable";
+import {
+  SegmentedControl,
+  SegmentedControlItem,
+} from "@optiaxiom/react/unstable";
 import {
   IconDeviceImac,
   IconDeviceMobile,
@@ -15,29 +18,29 @@ const deviceItems = [
 ] as const;
 
 const sizes = ["sm", "md", "lg"] as const;
-const meta: Meta<typeof ToggleGroup> = {
+const meta: Meta<typeof SegmentedControl> = {
   argTypes: {
     onClick: { action: "click" },
   },
-  component: ToggleGroup,
+  component: SegmentedControl,
 };
 
 export default meta;
 
-type Story = StoryObj<typeof ToggleGroup>;
+type Story = StoryObj<typeof SegmentedControl>;
 
-const createToggleGroupStory = (
-  storyArgs: Partial<React.ComponentProps<typeof ToggleGroup>> = {},
+const createSegmentedControlStory = (
+  storyArgs: Partial<React.ComponentProps<typeof SegmentedControl>> = {},
 ): Story => ({
   args: {
     children: deviceItems.map(({ icon, value }) => (
-      <ToggleGroupItem icon={icon} key={value} value={value} />
+      <SegmentedControlItem icon={icon} key={value} value={value} />
     )),
     ...storyArgs,
   },
 });
 
-export const Basic: Story = createToggleGroupStory({
+export const Basic: Story = createSegmentedControlStory({
   defaultValue: "desktop",
 });
 
@@ -45,33 +48,33 @@ export const Sizes: Story = {
   render: () => (
     <Flex>
       {sizes.map((size) => (
-        <ToggleGroup defaultValue="desktop" key={size} type="single">
+        <SegmentedControl defaultValue="desktop" key={size} type="single">
           {deviceItems.map(({ icon, value }) => (
-            <ToggleGroupItem
+            <SegmentedControlItem
               icon={icon}
               key={value}
               size={size}
               value={value}
             />
           ))}
-        </ToggleGroup>
+        </SegmentedControl>
       ))}
     </Flex>
   ),
 };
 
-export const Multiple: Story = createToggleGroupStory({
+export const Multiple: Story = createSegmentedControlStory({
   defaultValue: ["desktop", "mobile"],
   type: "multiple",
 });
 
-export const DisabledGroup: Story = createToggleGroupStory({
+export const DisabledGroup: Story = createSegmentedControlStory({
   disabled: true,
 });
 
-export const DisabledItem: Story = createToggleGroupStory({
+export const DisabledItem: Story = createSegmentedControlStory({
   children: deviceItems.map(({ icon, value }, index) => (
-    <ToggleGroupItem
+    <SegmentedControlItem
       disabled={index === 0}
       icon={icon}
       key={value}
