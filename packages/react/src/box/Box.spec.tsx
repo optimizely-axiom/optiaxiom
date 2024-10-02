@@ -28,6 +28,20 @@ describe("Box component", () => {
     expect(screen.getByText(/This is a box/i)).toContainHTML("marginLeft_0");
   });
 
+  it("should merge sprinkle props properly for direct undefined props", () => {
+    render(
+      <Box asChild mx="4">
+        <Box asChild mx="2">
+          <Box mx={undefined}>This is a box</Box>
+        </Box>
+      </Box>,
+    );
+    expect(screen.getByText(/This is a box/i)).not.toContainHTML(
+      "marginLeft_4",
+    );
+    expect(screen.getByText(/This is a box/i)).toContainHTML("marginLeft_2");
+  });
+
   it("should merge sprinkle props properly for indirect props", () => {
     render(
       <Text asChild fontSize="sm">
