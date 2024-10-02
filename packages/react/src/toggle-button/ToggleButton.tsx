@@ -3,9 +3,9 @@ import { forwardRef } from "react";
 
 import { Button, type ButtonProps } from "../button";
 
-type ToggleProps = ButtonProps<typeof RadixToggle.Root>;
+type ToggleButtonProps = ButtonProps<typeof RadixToggle.Root>;
 
-export const Toggle = forwardRef<HTMLButtonElement, ToggleProps>(
+export const ToggleButton = forwardRef<HTMLButtonElement, ToggleButtonProps>(
   ({ children, ...props }, ref) => {
     return (
       <Button appearance="secondary" asChild {...props}>
@@ -15,4 +15,4 @@ export const Toggle = forwardRef<HTMLButtonElement, ToggleProps>(
   },
 );
 
-Toggle.displayName = "@optiaxiom/react/Toggle";
+ToggleButton.displayName = "@optiaxiom/react/ToggleButton";

@@ -59,7 +59,7 @@
   "search-input": "SearchInput",
   "switch": "Switch",
   "textarea": "Textarea",
-  "toggle": "Toggle",
+  "toggle-button": "ToggleButton",
   "-- Feedback": {
     "type": "separator",
     "title": "Feedback"

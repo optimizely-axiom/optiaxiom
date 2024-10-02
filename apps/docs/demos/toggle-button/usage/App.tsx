@@ -1,13 +1,13 @@
 import type { ComponentPropsWithRef } from "react";
 
-import { Toggle } from "@optiaxiom/react";
+import { ToggleButton } from "@optiaxiom/react";
 import { IconLayoutSidebar } from "@tabler/icons-react";
 
 export function App({
   size = "md",
-}: Pick<ComponentPropsWithRef<typeof Toggle>, "size">) {
+}: Pick<ComponentPropsWithRef<typeof ToggleButton>, "size">) {
   return (
-    <Toggle
+    <ToggleButton
       aria-label="Toggle sidebar"
       icon={<IconLayoutSidebar />}
       size={size}

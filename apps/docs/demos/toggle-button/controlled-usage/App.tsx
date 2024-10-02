@@ -1,4 +1,4 @@
-import { Button, Flex, Toggle } from "@optiaxiom/react";
+import { Button, Flex, ToggleButton } from "@optiaxiom/react";
 import { IconLayoutSidebar } from "@tabler/icons-react";
 import { useState } from "react";
 
@@ -7,7 +7,7 @@ export function App() {
 
   return (
     <Flex flexDirection="row">
-      <Toggle
+      <ToggleButton
         aria-label="Toggle sidebar"
         icon={<IconLayoutSidebar />}
         onPressedChange={setValue}
