@@ -20,6 +20,13 @@
   "heading": "Heading",
   "kbd": "Kbd",
   "text": "Text",
+  "-- Buttons": {
+    "type": "separator",
+    "title": "Buttons"
+  },
+  "button": "Button",
+  "segmented-control": "SegmentedControl",
+  "toggle-button": "ToggleButton",
   "-- Navigation": {
     "type": "separator",
     "title": "Navigation"
@@ -51,7 +58,6 @@
     "type": "separator",
     "title": "Forms"
   },
-  "button": "Button",
   "checkbox": "Checkbox",
   "field": "Field",
   "input": "Input",
@@ -59,7 +65,6 @@
   "search-input": "SearchInput",
   "switch": "Switch",
   "textarea": "Textarea",
-  "toggle-button": "ToggleButton",
   "-- Feedback": {
     "type": "separator",
     "title": "Feedback"
