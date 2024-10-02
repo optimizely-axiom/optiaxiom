@@ -16,13 +16,13 @@ export type MenuContentBaseProps<
   ExtendProps<
     {
       open: boolean | undefined;
-    },
+    } & styles.ContentVariants,
     P
   >
 >;
 
 export const MenuContentBase = forwardRef<HTMLDivElement, MenuContentBaseProps>(
-  ({ children, className, open, ...props }, ref) => {
+  ({ children, className, minW, open, ...props }, ref) => {
     return (
       <AnimatePresence>
         {open && (
@@ -31,7 +31,7 @@ export const MenuContentBase = forwardRef<HTMLDivElement, MenuContentBaseProps>(
               <Box
                 asChild
                 ref={ref}
-                {...styles.content({}, className)}
+                {...styles.content({ minW }, className)}
                 {...props}
               >
                 {children}

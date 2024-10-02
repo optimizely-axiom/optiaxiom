@@ -1,4 +1,4 @@
-import { recipe, style } from "../vanilla-extract";
+import { type RecipeVariants, recipe, style } from "../vanilla-extract";
 
 export const content = recipe({
   base: [
@@ -18,7 +18,17 @@ export const content = recipe({
     },
     style({
       maxHeight: "var(--radix-dropdown-menu-content-available-height)",
-      minWidth: "var(--radix-dropdown-menu-trigger-width)",
     }),
   ],
+
+  variants: {
+    minW: {
+      "0": {},
+      trigger: style({
+        minWidth: "var(--radix-dropdown-menu-trigger-width)",
+      }),
+    },
+  },
 });
+
+export type ContentVariants = RecipeVariants<typeof content>;
