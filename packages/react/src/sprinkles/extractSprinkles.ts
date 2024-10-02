@@ -6,8 +6,10 @@ export function extractSprinkles<S extends Record<string, unknown>>(props: S) {
 
   for (const [name, value] of Object.entries(props)) {
     if (styles.sprinkles.properties.has(name as never)) {
-      // @ts-expect-error -- too complex
-      sprinkleProps[name] = value;
+      if (value !== null && value !== undefined) {
+        // @ts-expect-error -- too complex
+        sprinkleProps[name] = value;
+      }
     } else {
       // @ts-expect-error -- too complex
       restProps[name] = value;
