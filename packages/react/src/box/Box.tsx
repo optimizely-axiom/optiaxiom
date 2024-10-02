@@ -11,6 +11,7 @@ import {
 
 import type { ExtendProps } from "../utils";
 
+import { version } from "../../package.json";
 import { type Sprinkles, extractSprinkles, sprinkles } from "../sprinkles";
 import * as styles from "./Box.css";
 
@@ -53,6 +54,7 @@ export const Box = forwardRef<HTMLDivElement, BoxProps>(
     return (
       <SprinklesContext.Provider value={asChild ? sprinkleProps : undefined}>
         <Comp
+          data-axiom={version}
           ref={ref}
           {...styles.box({}, clsx(className, sprinkles(sprinkleProps)))}
           {...restProps}
