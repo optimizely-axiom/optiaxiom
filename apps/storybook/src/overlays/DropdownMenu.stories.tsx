@@ -10,6 +10,7 @@ import {
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
+  Flex,
 } from "@optiaxiom/react";
 import { action } from "@storybook/addon-actions";
 import { expect, screen, userEvent, waitFor } from "@storybook/test";
@@ -194,4 +195,28 @@ export const Nested: Story = {
         ).toBeVisible(),
     );
   },
+};
+
+export const TriggerWidth: Story = {
+  render: (args) => (
+    <Flex flexDirection="row">
+      <DropdownMenu {...args}>
+        <DropdownMenuTrigger>Really long trigger</DropdownMenuTrigger>
+
+        <DropdownMenuContent minW="trigger">
+          <DropdownMenuItem>PDF</DropdownMenuItem>
+          <DropdownMenuItem>Word</DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
+
+      <DropdownMenu {...args}>
+        <DropdownMenuTrigger>Small</DropdownMenuTrigger>
+
+        <DropdownMenuContent minW="0">
+          <DropdownMenuItem>Really long menu item</DropdownMenuItem>
+          <DropdownMenuItem>Another really long menu item</DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
+    </Flex>
+  ),
 };
