@@ -49,10 +49,14 @@ export default defineConfig([
         target: "esnext",
       }),
       json(),
-      vanillaExtractPlugin({
-        identifiers: (options) =>
-          normalizeIdentifier(hash(`${pkg.version}_${options.hash}`)),
-      }),
+      vanillaExtractPlugin(
+        env === "production"
+          ? {
+              identifiers: (options) =>
+                normalizeIdentifier(hash(`${pkg.version}_${options.hash}`)),
+            }
+          : {},
+      ),
     ],
   },
   {
