@@ -29,11 +29,8 @@ export const content = recipe({
 export const wrapperList = recipe({
   base: [
     style({
-      listStyle: "none",
       overflow: "auto",
       overscrollBehavior: "contain",
-      transition: "100ms ease",
-      transitionProperty: "height",
     }),
   ],
 });

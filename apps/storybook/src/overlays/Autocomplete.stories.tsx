@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
+import { Field, Flex, Text } from "@optiaxiom/react";
 import {
   Autocomplete,
   AutocompleteContent,
   AutocompleteEmpty,
   AutocompleteInput,
   AutocompleteItem,
-  AutocompleteLabel,
   AutocompleteTrigger,
 } from "@optiaxiom/react/unstable";
 import { useState } from "react";
@@ -125,35 +125,36 @@ const languages = [
   "Lithuanian",
 ];
 
-const itemToString = (book: unknown) => {
-  return book ? (book as Book).title : "";
+const itemToString = (book: Book | null) => {
+  return book ? book.title : "";
 };
 
-const itemToKey = (book: unknown) => {
-  return (book as Book).id;
+const itemToKey = (book: Book | null) => {
+  return book?.id;
 };
 
-const isItemDisabled = (book: unknown) => {
-  return (book as Book).disabled;
+const isItemDisabled = (book: Book) => {
+  return book.disabled;
 };
 
 export const Basic: Story = {
   render: function Basic() {
     const [items, setItems] = useState(languages);
 
-    const onInputValueChange = (inputValue: string) => {
-      setItems(
-        languages.filter(
-          (language: string) =>
-            !inputValue ||
-            language.toLowerCase().includes(inputValue.toLowerCase()) ||
-            language.toLowerCase().includes(inputValue.toLowerCase()),
-        ),
-      );
-    };
-
     return (
-      <Autocomplete items={items} onInputValueChange={onInputValueChange}>
+      <Autocomplete
+        items={items}
+        onInputValueChange={({ inputValue }) => {
+          setItems(
+            languages.filter(
+              (language: string) =>
+                !inputValue ||
+                language.toLowerCase().includes(inputValue.toLowerCase()) ||
+                language.toLowerCase().includes(inputValue.toLowerCase()),
+            ),
+          );
+        }}
+      >
         <AutocompleteTrigger>
           <AutocompleteInput placeholder="Search a Language" w="208" />
         </AutocompleteTrigger>
@@ -178,39 +179,37 @@ export const WithLabel: Story = {
   render: function WithLabel() {
     const [items, setItems] = useState(books);
 
-    const onInputValueChange = (inputValue: string) => {
-      setItems(
-        books.filter(
-          (book: Book) =>
-            !inputValue ||
-            book.title.includes(inputValue) ||
-            book.author.includes(inputValue),
-        ),
-      );
-    };
-
     return (
-      <Autocomplete
-        isItemDisabled={isItemDisabled}
-        itemToKey={itemToKey}
-        itemToString={itemToString}
-        items={items}
-        onInputValueChange={onInputValueChange}
-      >
-        <AutocompleteTrigger>
-          <AutocompleteLabel label="Label">
+      <Field label="Label">
+        <Autocomplete
+          isItemDisabled={isItemDisabled}
+          itemToKey={itemToKey}
+          itemToString={itemToString}
+          items={items}
+          onInputValueChange={({ inputValue }) => {
+            setItems(
+              books.filter(
+                (book: Book) =>
+                  !inputValue ||
+                  book.title.includes(inputValue) ||
+                  book.author.includes(inputValue),
+              ),
+            );
+          }}
+        >
+          <AutocompleteTrigger>
             <AutocompleteInput placeholder="Search a book" />
-          </AutocompleteLabel>
-        </AutocompleteTrigger>
+          </AutocompleteTrigger>
 
-        <AutocompleteContent>
-          {items.map((item, index) => (
-            <AutocompleteItem item={item} key={index}>
-              {item.title}
-            </AutocompleteItem>
-          ))}
-        </AutocompleteContent>
-      </Autocomplete>
+          <AutocompleteContent>
+            {items.map((item, index) => (
+              <AutocompleteItem item={item} key={index}>
+                {item.title}
+              </AutocompleteItem>
+            ))}
+          </AutocompleteContent>
+        </Autocomplete>
+      </Field>
     );
   },
 };
@@ -219,22 +218,20 @@ export const Disabled: Story = {
   render: function Disabled() {
     const [items, setItems] = useState(languages);
 
-    const onInputValueChange = (inputValue: string) => {
-      setItems(
-        languages.filter(
-          (language: string) =>
-            !inputValue ||
-            language.toLowerCase().includes(inputValue.toLowerCase()) ||
-            language.toLowerCase().includes(inputValue.toLowerCase()),
-        ),
-      );
-    };
-
     return (
       <Autocomplete
         disabled
         items={items}
-        onInputValueChange={onInputValueChange}
+        onInputValueChange={({ inputValue }) => {
+          setItems(
+            languages.filter(
+              (language: string) =>
+                !inputValue ||
+                language.toLowerCase().includes(inputValue.toLowerCase()) ||
+                language.toLowerCase().includes(inputValue.toLowerCase()),
+            ),
+          );
+        }}
         value="English"
       >
         <AutocompleteTrigger>
@@ -252,46 +249,49 @@ export const Disabled: Story = {
   },
 };
 
-export const DisabledItems: Story = {
+export const Controlled: Story = {
   render: function DefaultSelected() {
     const [items, setItems] = useState(books);
-    const [value, setValue] = useState("Crime and Punishment");
+    const [value, setValue] = useState(books[9]);
 
-    function onValueChange(value: string) {
+    function onValueChange(value: Book) {
       setValue(value);
     }
-    const onInputValueChange = (inputValue: string) => {
-      setItems(
-        books.filter(
-          (book: Book) =>
-            !inputValue ||
-            book.title.includes(inputValue) ||
-            book.author.includes(inputValue),
-        ),
-      );
-    };
 
     return (
-      <Autocomplete
-        isItemDisabled={isItemDisabled}
-        itemToKey={itemToKey}
-        itemToString={itemToString}
-        items={items}
-        onInputValueChange={onInputValueChange}
-        onValueChange={onValueChange}
-        value={value}
-      >
-        <AutocompleteTrigger>
-          <AutocompleteInput placeholder="Search a book" />
-        </AutocompleteTrigger>
-        <AutocompleteContent>
-          {items.map((item, index) => (
-            <AutocompleteItem item={item} key={index}>
-              {item.title}
-            </AutocompleteItem>
-          ))}
-        </AutocompleteContent>
-      </Autocomplete>
+      <Flex alignItems="center">
+        <Autocomplete
+          isItemDisabled={isItemDisabled}
+          itemToKey={itemToKey}
+          itemToString={itemToString}
+          items={items}
+          onInputValueChange={({ inputValue }) => {
+            setItems(
+              books.filter(
+                (book: Book) =>
+                  !inputValue ||
+                  book.title.includes(inputValue) ||
+                  book.author.includes(inputValue),
+              ),
+            );
+          }}
+          onValueChange={onValueChange}
+          value={value}
+        >
+          <AutocompleteTrigger>
+            <AutocompleteInput placeholder="Search a book" />
+          </AutocompleteTrigger>
+          <AutocompleteContent>
+            {items.map((item, index) => (
+              <AutocompleteItem item={item} key={index}>
+                {item.title}
+              </AutocompleteItem>
+            ))}
+          </AutocompleteContent>
+        </Autocomplete>
+
+        <Text>Selected Value: {value ? value.title : "None"}</Text>
+      </Flex>
     );
   },
 };

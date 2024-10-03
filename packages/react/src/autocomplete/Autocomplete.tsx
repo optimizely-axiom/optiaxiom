@@ -1,83 +1,98 @@
 import { Popover } from "@radix-ui/react-popover";
-import { useCombobox } from "downshift";
+import { type UseComboboxProps, useCombobox } from "downshift";
 
 import { AutocompleteContextProvider } from "../autocomplete-context";
 import { type BoxProps } from "../box";
+import { useFieldContext } from "../field-context";
 
-type AutocompleteProps = BoxProps<
+type AutocompleteProps<Item> = BoxProps<
   typeof Popover,
   {
+    defaultOpen?: never;
     disabled?: boolean;
-    initialHighlightedIndex?: number;
-    isItemDisabled?: (item: unknown) => boolean;
-    itemToKey?: (item: unknown) => string;
-    itemToString?: (item: unknown) => string;
-    items: unknown[];
-    onInputValueChange: (inputValue: string) => void;
-    onValueChange?: (value: string) => void;
-    value?: string;
-  }
+    onValueChange?: (value: Item) => void;
+    value?: Item;
+  } & Pick<
+    UseComboboxProps<Item>,
+    | "initialHighlightedIndex"
+    | "isItemDisabled"
+    | "itemToKey"
+    | "itemToString"
+    | "items"
+    | "onInputValueChange"
+  >
 >;
 
-export function Autocomplete({
+const properties = [
+  "initialHighlightedIndex",
+  "isItemDisabled",
+  "itemToKey",
+  "itemToString",
+  "items",
+  "onInputValueChange",
+] as const;
+
+export function extractDownshift<Item>(props: Item) {
+  const downshiftProps = {} as Pick<
+    Item,
+    (typeof properties)[number] & keyof Item
+  >;
+  const restProps = {} as Omit<Item, (typeof properties)[number]>;
+
+  // @ts-expect-error -- too complex
+  for (const [name, value] of Object.entries(props)) {
+    if (properties.includes(name as never)) {
+      // @ts-expect-error -- too complex
+      downshiftProps[name] = value;
+    } else {
+      // @ts-expect-error -- too complex
+      restProps[name] = value;
+    }
+  }
+
+  return { downshiftProps, restProps };
+}
+export function Autocomplete<Item>({
   children,
-  defaultOpen,
   disabled,
-  initialHighlightedIndex,
-  isItemDisabled,
-  itemToKey,
-  itemToString,
   items,
   onInputValueChange,
   onValueChange,
-  value = "",
+  value,
   ...props
-}: AutocompleteProps) {
+}: AutocompleteProps<Item>) {
+  const { downshiftProps, restProps } = extractDownshift(props);
+  const { id: inputId } = useFieldContext({});
   const downshift = useCombobox({
-    initialHighlightedIndex: initialHighlightedIndex,
-    initialIsOpen: defaultOpen,
-    initialSelectedItem: itemToString
-      ? items.find((item) => itemToString(item) === value)
-      : value,
-    isItemDisabled(item) {
-      return isItemDisabled ? isItemDisabled(item) : false;
-    },
-    itemToKey(item) {
-      return itemToKey ? itemToKey(item) : item;
-    },
-    itemToString(item) {
-      return itemToString ? itemToString(item) : String(item);
-    },
+    ...downshiftProps,
+    initialSelectedItem: value,
+    inputId,
     items,
-    onInputValueChange({ inputValue, isOpen }) {
-      onInputValueChange(isOpen ? inputValue : "");
+    onInputValueChange(changes) {
+      onInputValueChange?.({
+        ...changes,
+        inputValue: changes.isOpen ? changes.inputValue : "",
+      });
     },
-
+    onSelectedItemChange({ selectedItem }) {
+      onValueChange?.(selectedItem);
+    },
     onStateChange({ type }) {
       switch (type) {
         case useCombobox.stateChangeTypes.InputBlur:
-          downshift.selectItem(downshift.selectedItem ?? "");
+          downshift.selectItem(downshift.selectedItem);
           break;
       }
     },
-
-    onSelectedItemChange({ selectedItem }) {
-      onValueChange?.(
-        itemToString ? itemToString(selectedItem) : (selectedItem as string),
-      );
-    },
   });
   const highlightedItem = items[downshift.highlightedIndex];
-
   return (
-    <Popover {...props}>
+    <Popover {...restProps}>
       <AutocompleteContextProvider
         disabled={disabled}
         downshift={downshift}
         highlightedItem={highlightedItem}
-        itemToString={itemToString}
         items={items}
-        onValueChange={onValueChange}
       >
         {children}
       </AutocompleteContextProvider>

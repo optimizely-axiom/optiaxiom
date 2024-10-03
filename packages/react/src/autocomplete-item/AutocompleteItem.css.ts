@@ -13,7 +13,6 @@ export const item = recipe({
       justifyContent: "space-between",
       p: "xs",
       rounded: "sm",
-      transition: "colors",
     },
     style({
       cursor: "default",
