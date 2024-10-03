@@ -9,7 +9,7 @@ on:
 
 jobs:
   chromatic:
-    if: ${{ github.event_name == 'push' || github.event.label.name == 'visual' }}
+    if: ${{ (github.event_name == 'push' && github.repository_owner == 'optimizely-axiom') || github.event.label.name == 'visual' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
