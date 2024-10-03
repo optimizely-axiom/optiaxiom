@@ -5,14 +5,14 @@ export function App() {
   return (
     <Flex flexDirection="row">
       <Button
-        appearance="secondary"
+        appearance="subtle"
         aria-label="Edit item"
         icon={<IconPencil />}
       />
 
       <Tooltip content="Remove item">
         <Button
-          appearance="secondary"
+          appearance="subtle"
           aria-label="Remove item"
           icon={<IconTrash />}
         />

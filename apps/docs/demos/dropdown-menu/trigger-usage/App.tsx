@@ -12,7 +12,7 @@ export function App() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger
-        appearance="secondary"
+        appearance="subtle"
         aria-label="My Account"
         icon={<IconDots />}
       />

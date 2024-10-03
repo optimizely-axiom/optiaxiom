@@ -12,7 +12,7 @@ export function App() {
       <Input
         addonAfter={
           <Button
-            appearance="secondary"
+            appearance="subtle"
             icon={hidden ? <IconEye /> : <IconEyeOff />}
             onClick={() => setHidden((flag) => !flag)}
             rounded="full"

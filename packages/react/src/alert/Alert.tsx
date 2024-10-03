@@ -42,7 +42,7 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>(
 
         {!!onClose && (
           <Button
-            appearance="secondary"
+            appearance="subtle"
             aria-label="close"
             color="fg.default"
             flex="none"

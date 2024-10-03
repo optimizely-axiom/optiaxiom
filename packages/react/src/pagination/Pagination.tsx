@@ -60,7 +60,7 @@ export const Pagination = forwardRef<HTMLElement, PaginationProps>(
               <li>
                 <Tooltip content="Prev">
                   <Button
-                    appearance="secondary"
+                    appearance="subtle"
                     aria-label="Previous page"
                     disabled={disabled || active === 1}
                     icon={<IconAngleLeft />}
@@ -87,7 +87,7 @@ export const Pagination = forwardRef<HTMLElement, PaginationProps>(
                     </Box>
                   ) : (
                     <Button
-                      appearance="secondary"
+                      appearance="subtle"
                       aria-current={active === page ? "page" : undefined}
                       data-state={active === page ? "active" : undefined}
                       disabled={disabled}
@@ -110,7 +110,7 @@ export const Pagination = forwardRef<HTMLElement, PaginationProps>(
               <li>
                 <Tooltip content="Next">
                   <Button
-                    appearance="secondary"
+                    appearance="subtle"
                     aria-label="Next page"
                     disabled={disabled || active === total}
                     icon={<IconAngleRight />}

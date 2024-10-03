@@ -8,7 +8,7 @@ type ToggleButtonProps = ButtonProps<typeof RadixToggle.Root>;
 export const ToggleButton = forwardRef<HTMLButtonElement, ToggleButtonProps>(
   ({ children, ...props }, ref) => {
     return (
-      <Button appearance="secondary" asChild {...props}>
+      <Button appearance="subtle" asChild {...props}>
         <RadixToggle.Root ref={ref}>{children}</RadixToggle.Root>
       </Button>
     );

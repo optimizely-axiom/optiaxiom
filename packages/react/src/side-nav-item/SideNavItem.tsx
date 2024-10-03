@@ -55,7 +55,7 @@ export const SideNavItem = forwardRef<HTMLButtonElement, SideNavItemProps>(
           >
             <Button
               addonAfter={expanded && addonAfter}
-              appearance="secondary"
+              appearance="subtle"
               asChild={asChild}
               data-state={active ? "active" : undefined}
               ref={ref}

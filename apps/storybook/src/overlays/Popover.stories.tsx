@@ -93,7 +93,7 @@ const DropdownExample = () => {
               placeholder="Search"
               value={searchValue}
             />
-            <Button appearance="secondary" onClick={handleSelectAll} size="sm">
+            <Button appearance="subtle" onClick={handleSelectAll} size="sm">
               Select all
             </Button>
             {filteredItems.map((item, index) => (

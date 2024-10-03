@@ -11,7 +11,7 @@ export const SegmentedControlItem = forwardRef<
 >(({ children, ...props }, ref) => {
   return (
     <RadixSegmentedControl.Item
-      appearance="secondary"
+      appearance="subtle"
       asChild
       ref={ref}
       {...props}

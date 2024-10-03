@@ -42,7 +42,7 @@ export const Banner = forwardRef<HTMLDivElement, BannerProps>(
 
         {!!onClose && (
           <Button
-            appearance="secondary"
+            appearance="subtle"
             aria-label="close"
             color="fg.default"
             flex="none"

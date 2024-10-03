@@ -31,7 +31,7 @@ const withTemplate = ({
           <DrawerBody>{content}</DrawerBody>
           {withFooter && (
             <DrawerFooter>
-              <Button appearance="secondary" onClick={onClose}>
+              <Button appearance="subtle" onClick={onClose}>
                 Cancel
               </Button>
               <Button appearance="primary" onClick={onClose}>

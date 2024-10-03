@@ -23,7 +23,7 @@ const appearances = {
   default: { colorScheme: "neutral", variant: "outline" },
   inverse: { colorScheme: "neutral", variant: "solid" },
   primary: { colorScheme: "primary", variant: "solid" },
-  secondary: { colorScheme: "neutral", variant: "subtle" },
+  subtle: { colorScheme: "neutral", variant: "subtle" },
 } satisfies Record<string, styles.ButtonVariants>;
 
 export type ButtonProps<

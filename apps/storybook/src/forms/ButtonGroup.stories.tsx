@@ -65,7 +65,7 @@ const appearances = [
   ["primary", "Primary"],
   ["danger", "Danger"],
   ["danger-outline", "Outline"],
-  ["secondary", "Secondary"],
+  ["subtle", "Subtle"],
 ] as const;
 
 export const Appearance: Story = {
