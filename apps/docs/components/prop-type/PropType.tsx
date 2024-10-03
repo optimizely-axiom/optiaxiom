@@ -2,20 +2,17 @@ import type { PropItem, PropItemType } from "react-docgen-typescript";
 
 import { Code, Text } from "@optiaxiom/react";
 import Link from "next/link";
-import { Fragment, type ReactNode } from "react";
+import { type ComponentType, Fragment, type ReactNode } from "react";
 
 import propsConfig from "../../props.config.mjs";
 
 type PropTypeProps = {
-  component: string;
+  component: ComponentType;
   prop: PropItem;
-  sprinkle: PropItem | undefined;
 };
 
-export const PropType = ({ component, prop, sprinkle }: PropTypeProps) => {
-  const defn = (
-    <PropDefinition component={component} prop={prop} sprinkle={sprinkle} />
-  );
+export const PropType = ({ component, prop }: PropTypeProps) => {
+  const defn = <PropDefinition component={component} prop={prop} />;
   return (
     <Text>
       <Code leading="loose" px="8">
@@ -47,7 +44,7 @@ export const PropType = ({ component, prop, sprinkle }: PropTypeProps) => {
   );
 };
 
-const PropDefinition = ({ component, prop, sprinkle }: PropTypeProps) => {
+const PropDefinition = ({ component, prop }: PropTypeProps) => {
   let defn: ReactNode = "";
 
   if (prop.type.name === "enum") {
@@ -55,8 +52,9 @@ const PropDefinition = ({ component, prop, sprinkle }: PropTypeProps) => {
       for (const config of Array.isArray(configs) ? configs : [configs]) {
         if (
           (config.props.includes(prop.name) ||
-            config.props.includes(`${component}[${prop.name}]`)) &&
-          (!sprinkle || prop.type.raw === sprinkle.type.raw)
+            config.props.includes(`${component.displayName}[${prop.name}]`)) &&
+          "sprinkle" in prop &&
+          prop.sprinkle
         ) {
           defn = <ThemeLink name={key} {...config} type={prop.type} />;
           break;
@@ -67,14 +65,6 @@ const PropDefinition = ({ component, prop, sprinkle }: PropTypeProps) => {
 
   if (!defn) {
     defn = <PropTypeValue type={prop.type} />;
-  }
-
-  if (`${component}[${prop.name}]` === "Box[sx]") {
-    defn = (
-      <Link href="/styled-system/#sx-prop">
-        <abbr title={propTypeRaw(prop.type)}>{defn}</abbr>
-      </Link>
-    );
   }
 
   return defn;

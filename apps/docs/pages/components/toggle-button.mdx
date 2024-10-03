@@ -1,5 +1,7 @@
 import { Demo } from "@/components/demo";
+import { PropsTable } from "@/components/props-table";
 import { ControlledUsage, DisabledUsage, Usage } from "@/demos/toggle-button";
+import { Button, ToggleButton } from "@optiaxiom/react";
 
 # ToggleButton
 
@@ -29,7 +31,7 @@ For accessibility please make sure to include text that explains why the button 
 
 ## Props
 
-<ax-props-table component="ToggleButton" extends="Button" />
+<PropsTable base={Button} component={ToggleButton} />
 
 ## Changelog
 

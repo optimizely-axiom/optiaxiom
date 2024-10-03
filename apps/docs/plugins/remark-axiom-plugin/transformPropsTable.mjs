@@ -2,18 +2,17 @@ import fg from "fast-glob";
 import { fromMarkdown } from "mdast-util-from-markdown";
 import { mdxFromMarkdown } from "mdast-util-mdx";
 import { mdxjs } from "micromark-extension-mdxjs";
-import docgen from "react-docgen-typescript";
+import { withCompilerOptions } from "react-docgen-typescript";
 import { visit } from "unist-util-visit";
 
-const docs = docgen
-  .withCompilerOptions(
+function getDocs() {
+  const docs = withCompilerOptions(
     { esModuleInterop: true },
     {
       savePropValueAsString: true,
       shouldExtractValuesFromUnion: true,
     },
-  )
-  .parse(
+  ).parse(
     fg.globSync(
       "../../packages/react/src/**/{*.css.ts,sprinkles.css.ts,*.tsx}",
       {
@@ -21,25 +20,79 @@ const docs = docgen
       },
     ),
   );
+  const sprinkles = docs.find((doc) => doc.displayName === "sprinkles");
+  return docs
+    .map(
+      ({
+        description,
+        filePath,
+        methods: _methods,
+        props,
+        tags: _tags,
+        ...doc
+      }) => {
+        const isBox = doc.displayName === "@optiaxiom/react/Box";
+        const styles = docs.filter(
+          (d) => d.filePath === filePath.replace(".tsx", ".css.ts"),
+        );
+        const filterProps = Object.fromEntries(
+          Object.entries(props)
+            .filter(([, prop]) =>
+              prop.parent
+                ? !prop.parent.fileName.includes("@types/react")
+                : prop.name === "asChild" ||
+                  prop.declarations?.find(
+                    (decl) => decl.fileName === filePath,
+                  ) ||
+                  styles.find((style) =>
+                    Object.hasOwn(style.props, prop.name),
+                  ) ||
+                  (isBox && Object.hasOwn(sprinkles?.props ?? {}, prop.name)),
+            )
+            .filter(([, prop]) => !(prop.type.name === "never"))
+            .map(([name, { defaultValue, description, required, ...prop }]) => {
+              delete prop.declarations;
+              delete prop.parent;
+
+              return [
+                name,
+                {
+                  ...prop,
+                  ...(defaultValue && { defaultValue }),
+                  ...(description && { description }),
+                  ...(required && { required }),
+                  ...(sprinkles.props[prop.name] &&
+                    sprinkles.props[prop.name].type?.raw === prop.type.raw && {
+                      sprinkle: true,
+                    }),
+                },
+              ];
+            }),
+        );
+        return {
+          ...doc,
+          props: Object.values(filterProps).sort((a, b) =>
+            a.name.localeCompare(b.name),
+          ),
+          ...(description && { description }),
+        };
+      },
+    )
+    .filter((doc) => doc.displayName.startsWith("@optiaxiom/react/"));
+}
+
+const docs = getDocs();
 
 export function transformPropsTable(tree) {
   let needsImport = true;
 
   visit(
     tree,
-    { name: "ax-props-table", type: "mdxJsxFlowElement" },
+    { name: "PropsTable", type: "mdxJsxFlowElement" },
     (node, index, parent) => {
-      const componentRaw = node.attributes.find(
+      const component = node.attributes.find(
         (attr) => attr.name === "component",
-      ).value;
-      const component = componentRaw.value ?? componentRaw;
-      const exclude = JSON.parse(
-        node.attributes.find((attr) => attr.name === "exclude")?.value?.value ??
-          "[]",
-      );
-      const extendsComponent =
-        node.attributes.find((attr) => attr.name === "extends")?.value ??
-        (component !== "Box" ? "Box" : null);
+      ).value.value;
       const doc = docs.find(
         (doc) => doc.displayName === `@optiaxiom/react/${component}`,
       );
@@ -47,92 +100,34 @@ export function transformPropsTable(tree) {
         throw new Error(`Could not find component doc: ${component}`);
       }
 
-      const sprinkles = docs.find((doc) => doc.displayName === "sprinkles");
-      const styles = docs.filter(
-        (d) => d.filePath === doc.filePath.replace(".tsx", ".css.ts"),
-      );
-
-      const props = Object.entries(doc.props)
-        .sort(([a], [b]) => a.localeCompare(b))
-        .filter(([, prop]) =>
-          prop.parent
-            ? !prop.parent.fileName.includes("@types/react")
-            : prop.name === "asChild" ||
-              prop.declarations.find(
-                (decl) => decl.fileName === doc.filePath,
-              ) ||
-              styles.find((style) => Object.hasOwn(style.props, prop.name)) ||
-              (component === "Box" &&
-                Object.hasOwn(sprinkles?.props ?? {}, prop.name)),
-        )
-        .filter(
-          ([, prop]) =>
-            !(prop.type.name === "never" || exclude.includes(prop.name)),
-        )
-        .map(([, prop]) => prop);
-
       const tree = fromMarkdown(
         [
-          needsImport && `import { Box } from "@optiaxiom/react";`,
           needsImport &&
-            `import { Table, Td, Th, Thead, Tr } from "@/components/table";`,
-          needsImport && `import { PropType } from "@/components/prop-type";`,
+            `import { PropsTableDescription } from "@/components/props-table";`,
           "",
           `### \`${component}\``,
-          ...(typeof extendsComponent === "string"
-            ? [
-                "",
-                `Supports all [\`${extendsComponent}\`](/components/${kebabCase(extendsComponent)}#props) props` +
-                  (props.length > 0 ? " in addition to its own" : "") +
-                  ".",
-              ]
-            : []),
-          ...(props.length > 0
-            ? [
-                "",
-                "<Table>",
-                "  <Thead>",
-                "    <tr>",
-                '      <Th asChild display={["none", "table-cell"]} style={{ width: "25%" }}>',
-                "        Name",
-                "      </Th>",
-                '      <Th asChild style={{ width: "75%" }}>',
-                "        Type",
-                "      </Th>",
-                "    </tr>",
-                "  </Thead>",
-                "  <tbody>",
-                ...props.flatMap((prop) => [
-                  '<Tr display={["flex", "table-row"]} flexWrap="wrap">',
-                  '  <Td whiteSpace="nowrap" w={["full", "auto"]}>',
-                  `    {<Box color="fg.accent.magenta" fontFamily="mono">${prop.name}${prop.required ? "*" : ""}</Box>}`,
-                  "  </Td>",
-                  "  <Td>",
-                  [
-                    `<PropType
-                    component="${component}"
-                    prop={${JSON.stringify(prop)}}
-                    sprinkle={${JSON.stringify(sprinkles?.props[prop.name])}}
-                  />`,
-                    prop.description
-                      .replaceAll(/{@link ([^\s}]+)(?:\s([^}]+))}/g, "[$2]($1)")
-                      .replaceAll(/{@link ([^}]+)}/g, "[$1]($1)")
-                      .replaceAll(
-                        "https://optimizely-axiom.github.io/optiaxiom",
-                        "",
-                      )
-                      .replaceAll(/@example .+/g, "\n\n")
-                      .replaceAll("@see", "\n\n"),
-                  ]
-                    .filter(Boolean)
-                    .join("\n\n"),
-                  "  </Td>",
-                  "</Tr>",
-                ]),
-                "  </tbody>",
-                "</Table>",
-              ]
-            : []),
+          "",
+          `<PropsTable
+            propItems={${JSON.stringify(doc.props)}}
+          >`,
+          ...Object.values(doc.props).flatMap((prop) =>
+            prop.description
+              ? [
+                  `<PropsTableDescription name="${prop.name}">`,
+                  prop.description
+                    .replaceAll(/{@link ([^\s}]+)(?:\s([^}]+))}/g, "[$2]($1)")
+                    .replaceAll(/{@link ([^}]+)}/g, "[$1]($1)")
+                    .replaceAll(
+                      "https://optimizely-axiom.github.io/optiaxiom",
+                      "",
+                    )
+                    .replaceAll(/@example .+/g, "\n\n")
+                    .replaceAll("@see", "\n\n"),
+                  "</PropsTableDescription>",
+                ]
+              : [],
+          ),
+          "</PropsTable>",
         ]
           .filter((line) => line !== false)
           .join("\n"),
@@ -144,6 +139,13 @@ export function transformPropsTable(tree) {
       visit(tree, { type: "mdxJsxFlowElement" }, (node) => {
         node.data = { _mdxExplicitJsx: true };
       });
+      visit(
+        tree,
+        { name: "PropsTable", type: "mdxJsxFlowElement" },
+        (clone) => {
+          clone.attributes.push(...node.attributes);
+        },
+      );
       parent.children.splice(index, 1, ...tree.children);
 
       needsImport = false;
@@ -151,8 +153,4 @@ export function transformPropsTable(tree) {
       return index + tree.children.length;
     },
   );
-}
-
-function kebabCase(str) {
-  return str.replaceAll(/([a-z])([A-Z])/g, "$1-$2").toLowerCase();
 }
