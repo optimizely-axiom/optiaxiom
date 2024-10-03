@@ -23,6 +23,12 @@ html {
       --docs-bg-shadow-size: 25%;
     }
   }
+
+  --shiki-color-text: light-dark(#24292eff, #d6deeb);
+  --shiki-token-constant: light-dark(#1976d2, #f78c6c);
+  --shiki-token-keyword: light-dark(#d32f2f, #c792ea);
+  --shiki-token-function: light-dark(#6f42c1, #82aaff);
+  --shiki-token-string-expression: light-dark(#22863a, #ecc48d);
 }
 
 body {
