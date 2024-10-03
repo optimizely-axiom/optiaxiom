@@ -39,7 +39,7 @@ export function Demo({
   );
 
   return (
-    <Box border="1" mt="xl" rounded="lg">
+    <Box bg="surface" border="1" mt="xl" rounded="lg">
       <Box
         alignItems="stretch"
         borderB="1"

@@ -7,6 +7,7 @@ html {
 
 :root {
   --docs-bg-shadow-size: 85%;
+  --docs-code-bg: light-dark(var(--ax-colors-bg-neutral), rgb(1, 22, 39));
 
   &[class~="dark"] {
     --docs-bg-pillar-opacity: 20%;
@@ -22,6 +23,13 @@ html {
       --docs-bg-shadow-size: 25%;
     }
   }
+}
+
+body {
+  background-color: light-dark(
+    var(--ax-colors-neutral-50),
+    rgb(var(--nextra-bg))
+  );
 }
 
 body:before {
@@ -59,6 +67,13 @@ body:before {
     margin-top: -2.5px;
     margin-left: -37px;
   }
+}
+
+.nextra-code .nextra-focus {
+  --tw-ring-color: rgb(
+    from var(--ax-colors-border-default) r g b / var(--tw-ring-opacity)
+  );
+  background-color: var(--docs-code-bg);
 }
 
 .logo {
