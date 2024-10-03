@@ -1,4 +1,5 @@
 import { Demo } from "@/components/demo";
+import { PropsTable } from "@/components/props-table";
 import {
   AddonPointerUsage,
   AddonUsage,
@@ -8,6 +9,7 @@ import {
   SizeUsage,
   Usage,
 } from "@/demos/input";
+import { Input, InputBase } from "@optiaxiom/react";
 
 # Input
 
@@ -59,9 +61,9 @@ Use the `addonPointerEvents` prop to control whether clicking the addons focuses
 
 ## Props
 
-<ax-props-table component="Input" extends="InputBase" />
+<PropsTable component={Input} base={InputBase} />
 
-<ax-props-table component="InputBase" />
+<PropsTable component={InputBase} />
 
 ## Changelog
 

@@ -1,3 +1,6 @@
+import { PropsTable } from "@/components/props-table";
+import { AxiomProvider } from "@optiaxiom/react";
+
 # AxiomProvider
 
 `AxiomProvider` provides all the context managers required for our components to work. It must be rendered at the root of your application and should be used only once.
@@ -16,7 +19,7 @@ export function App() {
 
 ## Props
 
-<ax-props-table component="AxiomProvider" extends={false} />
+<PropsTable component={AxiomProvider} base={false} />
 
 ## Changelog
 

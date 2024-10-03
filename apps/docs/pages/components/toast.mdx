@@ -1,5 +1,12 @@
 import { Demo } from "@/components/demo";
+import { PropsTable } from "@/components/props-table";
 import { ActionUsage, AppearanceUsage, Usage } from "@/demos/toast";
+import {
+  Toast,
+  ToastTitle,
+  ToastAction,
+  ToastProvider,
+} from "@optiaxiom/react";
 
 # Toast
 
@@ -27,13 +34,13 @@ Use the `ToastAction` component to include a short action button associated with
 
 ## Props
 
-<ax-props-table component="Toast" />
+<PropsTable component={Toast} />
 
-<ax-props-table component="ToastTitle" />
+<PropsTable component={ToastTitle} />
 
-<ax-props-table component="ToastAction" />
+<PropsTable component={ToastAction} />
 
-<ax-props-table component="ToastProvider" />
+<PropsTable base={false} component={ToastProvider} />
 
 ## Changelog
 

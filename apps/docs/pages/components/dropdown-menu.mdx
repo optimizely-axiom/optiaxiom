@@ -1,4 +1,5 @@
 import { Demo } from "@/components/demo";
+import { PropsTable } from "@/components/props-table";
 import {
   AddonUsage,
   AppearanceUsage,
@@ -12,6 +13,14 @@ import {
   TriggerUsage,
   Usage,
 } from "@/demos/dropdown-menu";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@optiaxiom/react";
 
 # DropdownMenu
 
@@ -99,17 +108,17 @@ Use the `addonBefore` and `addonAfter` prop to add icons, text, or any other ele
 
 ## Props
 
-<ax-props-table component="DropdownMenu" extends={false} />
+<PropsTable component={DropdownMenu} base={false} />
 
-<ax-props-table component="DropdownMenuContent" />
+<PropsTable component={DropdownMenuContent} />
 
-<ax-props-table component="DropdownMenuItem" />
+<PropsTable component={DropdownMenuItem} />
 
-<ax-props-table component="DropdownMenuLabel" />
+<PropsTable component={DropdownMenuLabel} />
 
-<ax-props-table component="DropdownMenuSeparator" />
+<PropsTable component={DropdownMenuSeparator} />
 
-<ax-props-table component="DropdownMenuTrigger" />
+<PropsTable component={DropdownMenuTrigger} />
 
 ## Changelog
 

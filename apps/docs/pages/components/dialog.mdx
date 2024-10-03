@@ -1,4 +1,5 @@
 import { Demo } from "@/components/demo";
+import { PropsTable } from "@/components/props-table";
 import {
   CloseUsage,
   DescriptionUsage,
@@ -7,6 +8,17 @@ import {
   TriggerUsage,
   Usage,
 } from "@/demos/dialog";
+import {
+  Button,
+  Dialog,
+  DialogBody,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogTitle,
+  DialogTrigger,
+} from "@optiaxiom/react";
 
 # Dialog
 
@@ -58,21 +70,21 @@ We can also completely change the trigger by using `asChild` and passing our own
 
 ## Props
 
-<ax-props-table component="Dialog" extends={false} />
+<PropsTable component={Dialog} base={false} />
 
-<ax-props-table component="DialogTrigger" extends="Button" />
+<PropsTable component={DialogTrigger} base={Button} />
 
-<ax-props-table component="DialogContent" />
+<PropsTable component={DialogContent} />
 
-<ax-props-table component="DialogTitle" />
+<PropsTable component={DialogTitle} />
 
-<ax-props-table component="DialogDescription" />
+<PropsTable component={DialogDescription} />
 
-<ax-props-table component="DialogBody" />
+<PropsTable component={DialogBody} />
 
-<ax-props-table component="DialogFooter" />
+<PropsTable component={DialogFooter} />
 
-<ax-props-table component="DialogClose" extends="Button" />
+<PropsTable component={DialogClose} base={Button} />
 
 ## Changelog
 
