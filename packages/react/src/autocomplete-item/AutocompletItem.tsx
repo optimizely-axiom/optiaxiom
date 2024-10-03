@@ -21,6 +21,7 @@ export const AutocompleteItem = forwardRef<HTMLDivElement, AccordionItemProps>(
     const { restProps, sprinkleProps } = extractSprinkles(props);
     const { downshift, highlightedItem } =
       useAutocompleteContext("AutocompleteItem");
+
     return (
       <Flex asChild ref={ref} {...styles.item()} {...sprinkleProps}>
         <li
