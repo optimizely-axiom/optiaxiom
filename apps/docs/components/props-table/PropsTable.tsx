@@ -74,7 +74,10 @@ export function PropsTable({
                 key={prop.name}
               >
                 <Td w={["full", "auto"]} whiteSpace="nowrap">
-                  <Box color="fg.accent.magenta" fontFamily="mono">
+                  <Box
+                    fontFamily="mono"
+                    style={{ color: "var(--shiki-token-function)" }}
+                  >
                     {prop.name}
                     {prop.required ? "*" : ""}
                   </Box>
