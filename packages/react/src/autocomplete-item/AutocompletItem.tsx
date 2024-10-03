@@ -16,20 +16,21 @@ type AccordionItemProps = BoxProps<
   }
 >;
 
-export const AutocompleteItem = forwardRef<HTMLDivElement, AccordionItemProps>(
+export const AutocompleteItem = forwardRef<HTMLLIElement, AccordionItemProps>(
   ({ addonBefore, children, item, ...props }, ref) => {
     const { restProps, sprinkleProps } = extractSprinkles(props);
     const { downshift, highlightedItem } =
       useAutocompleteContext("AutocompleteItem");
 
     return (
-      <Flex asChild ref={ref} {...styles.item()} {...sprinkleProps}>
+      <Flex asChild {...styles.item()} {...sprinkleProps}>
         <li
           data-disabled={
             downshift.getItemProps({ item })["aria-disabled"] ? "" : undefined
           }
           data-highlighted={highlightedItem === item ? "" : undefined}
           data-selected={downshift.selectedItem === item ? "" : undefined}
+          ref={ref}
           {...restProps}
           {...downshift.getItemProps({
             item,
