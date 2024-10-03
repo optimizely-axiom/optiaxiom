@@ -17,7 +17,6 @@ export function DemoCode({ children }: { children: ReactNode }) {
   return (
     <Box
       className={[
-        "nx-bg-primary-700/5 dark:nx-bg-primary-300/10",
         styles.editor,
         collapsed !== null && styles.expandable,
         collapsed && styles.collapsed,

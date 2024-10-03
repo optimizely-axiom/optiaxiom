@@ -7,9 +7,18 @@ export const Table = ({
   className = "",
   ...props
 }: ComponentPropsWithRef<typeof Box>) => (
-  <Box border="1" maxW="full" mt="24" overflow="auto" rounded="lg" {...props}>
-    <table className={`nx-w-full nx-text-sm nx-text-left ${className}`}>
-      {children}
-    </table>
+  <Box
+    bg="surface"
+    border="1"
+    fontSize="md"
+    maxW="full"
+    mt="24"
+    overflow="auto"
+    rounded="lg"
+    {...props}
+  >
+    <Box asChild w="full">
+      <table className={className}>{children}</table>
+    </Box>
   </Box>
 );

@@ -4,6 +4,12 @@ import { remarkPlugin } from "./plugins/remark-axiom-plugin/remarkPlugin.mjs";
 
 const withNextra = createNextra({
   mdxOptions: {
+    rehypePrettyCodeOptions: {
+      theme: {
+        dark: "night-owl",
+        light: "min-light",
+      },
+    },
     remarkPlugins: [remarkPlugin],
   },
   theme: "./theme.tsx",
