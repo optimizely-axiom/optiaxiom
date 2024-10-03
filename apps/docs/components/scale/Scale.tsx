@@ -23,12 +23,12 @@ export const Scale = ({
   <Table maxH="sm">
     <Thead>
       <tr>
-        <Th className="nx-sticky nx-top-0">{keyLabel}</Th>
-        <Th className="nx-sticky nx-top-0">{valueLabel}</Th>
-        {!hidePixels && <Th className="nx-sticky nx-top-0">Pixels</Th>}
+        <Th className="_sticky _top-0">{keyLabel}</Th>
+        <Th className="_sticky _top-0">{valueLabel}</Th>
+        {!hidePixels && <Th className="_sticky _top-0">Pixels</Th>}
         {!hidePreview && (
           <Th
-            className="nx-sticky nx-top-0"
+            className="_sticky _top-0"
             display={["none", "table-cell"]}
             w="full"
           />

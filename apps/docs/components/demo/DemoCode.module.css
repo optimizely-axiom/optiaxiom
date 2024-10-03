@@ -5,9 +5,7 @@
   overflow: hidden;
 }
 
-.expandable [class~="nextra-code-block"] {
-  border-bottom-left-radius: var(--ax-borderRadius-lg);
-  border-bottom-right-radius: var(--ax-borderRadius-lg);
+.expandable [class~="nextra-code"] {
   flex: 1;
   overflow: auto;
 }
@@ -20,15 +18,18 @@
   height: 300px;
 }
 
-.collapsed [class~="nextra-code-block"] {
+.collapsed [class~="nextra-code"] {
   overflow: hidden;
 }
 
 .editor {
+  border-bottom-left-radius: inherit;
+  border-bottom-right-radius: inherit;
   position: relative;
 }
 
 .editor pre {
+  --tw-ring-opacity: 0;
   background: none;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
@@ -41,5 +42,5 @@
 }
 
 .editor [role="tabpanel"] {
-  padding-top: 0;
+  margin-top: 0;
 }

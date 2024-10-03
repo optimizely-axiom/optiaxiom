@@ -1,4 +1,4 @@
-@import "nextra-theme-docs/style.css" layer(optiaxiom.base);
+@import "nextra-theme-docs/dist/style.css" layer(optiaxiom.base);
 
 html {
   font-family: InterVariable, sans-serif;
@@ -82,6 +82,6 @@ body:before {
   stroke-width: 1;
 }
 
-.hover\:nx-underline:hover {
+.hover\:_underline:hover {
   text-decoration: underline;
 }

@@ -1,7 +1,7 @@
 import type { ComponentPropsWithRef, ReactNode } from "react";
 
 import { Box, Heading, Text } from "@optiaxiom/react";
-import { useMDXComponents } from "nextra-theme-docs";
+import { useMDXComponents } from "nextra/mdx";
 
 import styles from "./HeadingLink.module.css";
 

@@ -1,7 +1,6 @@
-import type { DocsThemeConfig } from "nextra-theme-docs";
-
 import { HeadingLink } from "@/components/mdx";
 import { Heading } from "@optiaxiom/react";
+import { type DocsThemeConfig, useConfig } from "nextra-theme-docs";
 
 export default {
   components: {
@@ -31,24 +30,38 @@ export default {
     p: ({ ...props }) => (
       <p
         {...props}
-        className={`${("className" in props && props.className) || ""} nx-mt-4 nx-leading-7 first:nx-mt-0`}
+        className={`${("className" in props && props.className) || ""} [&:not(:first-child)]:_mt-4 _leading-7`}
       />
     ),
   },
   docsRepositoryBase:
     "https://github.com/optimizely-axiom/optiaxiom/tree/main/apps/docs",
   footer: {
-    text: <span>Copyright {new Date().getFullYear()} © Optimizely.</span>,
+    content: <span>Copyright {new Date().getFullYear()} © Optimizely.</span>,
   },
-  head: (
-    <>
-      <link
-        href={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/favicon.ico`}
-        rel="shortcut icon"
-        type="image/x-icon"
-      />
-    </>
-  ),
+  head: function useHead() {
+    const { frontMatter, title: pageTitle } = useConfig();
+    return (
+      <>
+        <link
+          href={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/favicon.ico`}
+          rel="shortcut icon"
+          type="image/x-icon"
+        />
+        <meta
+          content={frontMatter.title || `${pageTitle} \u2013 Axiom`}
+          property="og:title"
+        />
+        <meta
+          content={
+            frontMatter.description ||
+            "Implementation of the Optimizely Design System"
+          }
+          property="og:description"
+        />
+      </>
+    );
+  },
   logo: (
     <strong className="logo">
       <span>
@@ -70,11 +83,5 @@ export default {
   },
   sidebar: {
     defaultMenuCollapseLevel: 1,
-  },
-  useNextSeoProps() {
-    return {
-      description: "Implementation of the Optimizely Design System",
-      titleTemplate: "%s – Axiom",
-    };
   },
 } satisfies DocsThemeConfig;
