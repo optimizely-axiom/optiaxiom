@@ -49,7 +49,6 @@ export function extractDownshift<Item>(props: Item) {
       restProps[name] = value;
     }
   }
-
   return { downshiftProps, restProps };
 }
 export function Autocomplete<Item>({
@@ -63,6 +62,7 @@ export function Autocomplete<Item>({
 }: AutocompleteProps<Item>) {
   const { downshiftProps, restProps } = extractDownshift(props);
   const { id: inputId } = useFieldContext({});
+
   const downshift = useCombobox({
     ...downshiftProps,
     initialSelectedItem: value,
@@ -85,7 +85,9 @@ export function Autocomplete<Item>({
       }
     },
   });
+
   const highlightedItem = items[downshift.highlightedIndex];
+
   return (
     <Popover {...restProps}>
       <AutocompleteContextProvider

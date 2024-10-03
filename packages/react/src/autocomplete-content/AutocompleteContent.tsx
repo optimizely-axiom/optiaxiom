@@ -12,6 +12,7 @@ export const AutocompleteContent = forwardRef<
   AutocompleteContentProps
 >(({ children, className, ...props }, ref) => {
   const { downshift } = useAutocompleteContext("AutocompleteContent");
+
   return (
     <PopoverPortal forceMount>
       <Box

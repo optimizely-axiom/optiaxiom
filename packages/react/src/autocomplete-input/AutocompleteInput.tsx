@@ -12,6 +12,7 @@ export const AutocompleteInput = forwardRef<
   AutocompleteInputProps
 >(({ children, ...props }, ref) => {
   const { disabled, downshift } = useAutocompleteContext("AutocompleteInput");
+
   return (
     <Input
       ref={ref}
