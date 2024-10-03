@@ -9,13 +9,15 @@ figma.connect(
       addonBefore,
       appearance,
       description,
+      error,
       label,
       placeholder,
       size = "md",
       value,
     }) => (
       <Field
-        description={description}
+        description={description.text}
+        error={error.text}
         info={label.info}
         label={label.label}
         required={label.required}
@@ -35,15 +37,27 @@ figma.connect(
         false: undefined,
         true: figma.children("IconCalendar"),
       }),
-      appearance: figma.enum("Type", {
+      appearance: figma.enum("Variant", {
         Number: "number",
         "Number Placeholder": "number",
         Text: undefined,
         "Text Placeholder": undefined,
       }),
       description: figma.boolean("Show Note", {
-        false: undefined,
-        true: figma.string("Note"),
+        false: { text: undefined },
+        true: figma.nestedProps("Form note", {
+          text: figma.enum("State", {
+            Default: "Form note",
+          }),
+        }),
+      }),
+      error: figma.boolean("Show Note", {
+        false: { text: undefined },
+        true: figma.nestedProps("Form note", {
+          text: figma.enum("State", {
+            Error: figma.string("Form note"),
+          }),
+        }),
       }),
       label: figma.boolean("Show Label", {
         false: {
@@ -51,7 +65,7 @@ figma.connect(
           label: undefined,
           required: undefined,
         },
-        true: figma.nestedProps(".Label", {
+        true: figma.nestedProps("Label", {
           info: figma.boolean("Contextual help", {
             false: undefined,
             true: "More contextual information",
@@ -60,7 +74,7 @@ figma.connect(
           required: figma.boolean("IsRequired"),
         }),
       }),
-      placeholder: figma.enum("Type", {
+      placeholder: figma.enum("Variant", {
         Number: undefined,
         "Number Placeholder": figma.string("Placeholder"),
         Text: undefined,
@@ -70,7 +84,7 @@ figma.connect(
         "Large - 40": "lg",
         "Medium - 32": "md",
       }),
-      value: figma.enum("Type", {
+      value: figma.enum("Variant", {
         Number: figma.string("Number"),
         "Number Placeholder": undefined,
         Text: figma.string("Text"),

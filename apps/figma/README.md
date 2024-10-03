@@ -9,7 +9,7 @@ Configuration for Figma code-connect.
 Run the following to do a dry-run of the publish command:
 
 ```sh
-pnpm -F figma build --dry-run
+FIGMA_ACCESS_TOKEN=... pnpm -F figma build --dry-run
 ```
 
 ### Building
