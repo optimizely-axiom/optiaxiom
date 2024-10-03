@@ -50,7 +50,11 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(
               </Transition>
 
               <Transition
-                data-side={mapPositionToTransitionSide[position]}
+                data-side={
+                  mapPositionToTransitionSide[
+                    position as keyof typeof mapPositionToTransitionSide
+                  ]
+                }
                 type="fade"
               >
                 <Box asChild {...styles.content({ position })}>
