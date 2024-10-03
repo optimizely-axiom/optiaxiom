@@ -32,12 +32,12 @@
     "lint": "oas-lint"
   },
   "dependencies": {
-    "@fontsource-variable/fira-code": "^5.0.20",
+    "@fontsource-variable/fira-code": "^5.1.0",
     "inter-ui": "^4.0.2"
   },
   "devDependencies": {
     "@optiaxiom/shared": "workspace:^",
-    "@vanilla-extract/css": "^1.15.5"
+    "@vanilla-extract/css": "^1.16.0"
   },
   "peerDependencies": {
     "react": "^16.14.0 || ^17.0.0 || ^18.0.0",

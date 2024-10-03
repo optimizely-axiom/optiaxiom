@@ -8,7 +8,7 @@
     "lint": "oas-lint"
   },
   "devDependencies": {
-    "@figma/code-connect": "^1.1.3",
+    "@figma/code-connect": "^1.1.4",
     "@optiaxiom/react": "workspace:^",
     "@optiaxiom/shared": "workspace:^"
   }
