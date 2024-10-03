@@ -23,7 +23,7 @@ export const AutocompleteInput = forwardRef<
         downshift.inputValue &&
         !disabled && (
           <Button
-            appearance="secondary"
+            appearance="subtle"
             aria-label="clear"
             icon={downshift.inputValue && <IconX />}
             onClick={() => {
