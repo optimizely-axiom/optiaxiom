@@ -7,7 +7,7 @@ figma.connect(
   {
     example: ({ children, ...props }) => <Button {...props}>{children}</Button>,
     props: {
-      appearance: figma.enum("Type", {
+      appearance: figma.enum("Variant", {
         Basic: "default",
         Danger: "danger",
         "Danger Outline": "danger-outline",
