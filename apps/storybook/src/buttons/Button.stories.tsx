@@ -29,7 +29,7 @@ const sizes = [
 const appearances = [
   "default",
   "primary",
-  "secondary",
+  "subtle",
   "danger",
   "danger-outline",
 ] as const;

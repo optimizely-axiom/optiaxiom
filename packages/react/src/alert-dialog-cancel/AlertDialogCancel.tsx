@@ -17,7 +17,7 @@ export const AlertDialogCancel = forwardRef<
       {asChild ? (
         children
       ) : (
-        <Button appearance="secondary" {...restProps}>
+        <Button appearance="subtle" {...restProps}>
           {children}
         </Button>
       )}

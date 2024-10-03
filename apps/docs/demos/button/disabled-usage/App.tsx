@@ -14,7 +14,7 @@ export function App() {
       </Tooltip>
 
       <Tooltip content="Disabled button demo">
-        <Button appearance="secondary" disabled>
+        <Button appearance="subtle" disabled>
           Disabled
         </Button>
       </Tooltip>

@@ -16,13 +16,13 @@ export function App({
       addonAfter={
         <Flex flexDirection="row" gap="4" p="4">
           <Tooltip content="Add emoji">
-            <Button appearance="secondary" icon={<IconMoodSmile />} size="sm" />
+            <Button appearance="subtle" icon={<IconMoodSmile />} size="sm" />
           </Tooltip>
           <Tooltip content="Add mention">
-            <Button appearance="secondary" icon={<IconAt />} size="sm" />
+            <Button appearance="subtle" icon={<IconAt />} size="sm" />
           </Tooltip>
           <Tooltip content="Upload images">
-            <Button appearance="secondary" icon={<IconPhoto />} size="sm" />
+            <Button appearance="subtle" icon={<IconPhoto />} size="sm" />
           </Tooltip>
 
           <Tooltip content="Submit">

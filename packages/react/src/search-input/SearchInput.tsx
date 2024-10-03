@@ -29,7 +29,7 @@ export const SearchInput = forwardRef<HTMLInputElement, SearchProps>(
         addonAfter={
           value && (
             <Button
-              appearance="secondary"
+              appearance="subtle"
               icon={value && <IconX />}
               onClick={() => {
                 if (!innerRef.current) {

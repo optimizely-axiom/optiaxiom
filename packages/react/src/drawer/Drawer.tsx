@@ -59,7 +59,7 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(
 
                     {withCloseButton && (
                       <Button
-                        appearance="secondary"
+                        appearance="subtle"
                         aria-label="Close"
                         asChild
                         icon={<IconX />}

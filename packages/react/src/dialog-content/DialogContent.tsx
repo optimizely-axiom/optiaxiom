@@ -37,7 +37,7 @@ export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
 
                   {withCloseButton && (
                     <Button
-                      appearance="secondary"
+                      appearance="subtle"
                       aria-label="Close"
                       asChild
                       icon={<IconX />}

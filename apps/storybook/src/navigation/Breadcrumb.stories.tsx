@@ -81,11 +81,7 @@ export const WithDropdown: Story = {
       <BreadcrumbSeparator key="sep1" />,
       <BreadcrumbItem key="components">
         <DropdownMenu>
-          <DropdownMenuTrigger
-            appearance="secondary"
-            icon={undefined}
-            size="sm"
-          >
+          <DropdownMenuTrigger appearance="subtle" icon={undefined} size="sm">
             <BreadcrumbEllipsis />
           </DropdownMenuTrigger>
           <DropdownMenuContent align="start">

@@ -18,8 +18,8 @@ export function App() {
         </Tooltip>
 
         <Tooltip content="Loading button demo">
-          <Button appearance="secondary" loading={loading}>
-            Secondary
+          <Button appearance="subtle" loading={loading}>
+            Subtle
           </Button>
         </Tooltip>
       </Flex>

@@ -54,7 +54,7 @@ export const TabsTrigger = forwardRef<HTMLButtonElement, TabsTriggerProps>(
       <Button
         addonAfter={addonAfter}
         addonBefore={addonBefore}
-        appearance="secondary"
+        appearance="subtle"
         asChild
         icon={icon}
         iconPosition={iconPosition}
