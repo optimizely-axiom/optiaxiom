@@ -53,6 +53,7 @@ export * from "./hover-card-content";
 export * from "./hover-card-trigger";
 export * from "./indicator";
 export * from "./input";
+export * from "./input-base";
 export * from "./kbd";
 export * from "./layers";
 export * from "./link";
