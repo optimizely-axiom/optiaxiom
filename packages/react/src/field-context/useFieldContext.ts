@@ -2,7 +2,7 @@ import { useContext } from "react";
 
 import { FieldContext } from "./FieldContext";
 
-export const useFieldContext = (overrides: { error?: boolean }) => {
+export const useFieldContext = (overrides: { error?: boolean } = {}) => {
   return {
     ...(useContext(FieldContext) ?? {}),
     ...("error" in overrides &&
