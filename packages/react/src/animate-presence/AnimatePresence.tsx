@@ -8,7 +8,7 @@ import {
 } from "react";
 
 import { TransitionGlobalConfig } from "../transition";
-import { PresenceContext } from "./PresenceContext";
+import { PresenceContext } from "../use-presence";
 
 export function AnimatePresence({
   children,
