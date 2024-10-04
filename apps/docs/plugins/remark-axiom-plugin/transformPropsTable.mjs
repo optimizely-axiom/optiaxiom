@@ -13,12 +13,9 @@ function getDocs() {
       shouldExtractValuesFromUnion: true,
     },
   ).parse(
-    fg.globSync(
-      "../../packages/react/src/**/{*.css.ts,sprinkles.css.ts,*.tsx}",
-      {
-        ignore: ["**/*.spec.*"],
-      },
-    ),
+    fg.globSync("../../packages/react/src/**/{*.css.ts,sprinkles.ts,*.tsx}", {
+      ignore: ["**/*.spec.*"],
+    }),
   );
   const sprinkles = docs.find((doc) => doc.displayName === "sprinkles");
   return docs

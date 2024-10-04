@@ -37,7 +37,7 @@ export default ESLintUtils.RuleCreator.withoutDocs({
             .getProperty(attribute.name.name)
             ?.getDeclarations()?.[0]
             .getSourceFile().fileName;
-          if (source?.endsWith("sprinkles.css.ts")) {
+          if (source?.endsWith("sprinkles/properties.css.ts")) {
             context.report({
               messageId: "expected",
               node: attribute.name,
