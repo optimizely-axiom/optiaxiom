@@ -1,26 +1,24 @@
+import type { ReactNode } from "react";
+
 import { Popover } from "@radix-ui/react-popover";
 import { type UseComboboxProps, useCombobox } from "downshift";
 
 import { AutocompleteContextProvider } from "../autocomplete-context";
-import { type BoxProps } from "../box";
 import { useFieldContext } from "../field-context";
 
-type AutocompleteProps<Item> = BoxProps<
-  typeof Popover,
-  {
-    defaultOpen?: never;
-    disabled?: boolean;
-    onValueChange?: (value: Item) => void;
-    value?: Item;
-  } & Pick<
-    UseComboboxProps<Item>,
-    | "initialHighlightedIndex"
-    | "isItemDisabled"
-    | "itemToKey"
-    | "itemToString"
-    | "items"
-    | "onInputValueChange"
-  >
+type AutocompleteProps<Item> = {
+  children?: ReactNode;
+  disabled?: boolean;
+  onValueChange?: (value: Item) => void;
+  value?: Item;
+} & Pick<
+  UseComboboxProps<Item>,
+  | "initialHighlightedIndex"
+  | "isItemDisabled"
+  | "itemToKey"
+  | "itemToString"
+  | "items"
+  | "onInputValueChange"
 >;
 
 export function Autocomplete<Item>({
