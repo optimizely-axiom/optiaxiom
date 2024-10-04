@@ -10,6 +10,12 @@ export default ESLintUtils.RuleCreator.withoutDocs({
         if (node.arguments.length > 1) {
           return;
         }
+        if (
+          node.arguments.length === 1 &&
+          node.arguments[0].type === "SpreadElement"
+        ) {
+          return;
+        }
 
         context.report({
           fix: (fixer) =>
