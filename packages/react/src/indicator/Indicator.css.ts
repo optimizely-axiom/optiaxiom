@@ -25,7 +25,7 @@ export const floating = recipe({
       },
 
       position: "absolute",
-      right: 0,
+      right: "4px",
     }),
   ],
 
@@ -33,18 +33,18 @@ export const floating = recipe({
     offset: {
       false: style({
         vars: {
-          [offsetVar]: "2px",
+          [offsetVar]: "4px",
         },
       }),
       true: {},
     },
     position: {
       "bottom-right": style({
-        bottom: 0,
+        bottom: "4px",
         transform: `translate(${offsetVar}, ${offsetVar})`,
       }),
       "top-right": style({
-        top: 0,
+        top: "4px",
         transform: `translate(${offsetVar}, calc(-1 * ${offsetVar}))`,
       }),
     },
