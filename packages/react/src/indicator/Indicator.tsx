@@ -43,7 +43,7 @@ export const Indicator = forwardRef<HTMLDivElement, IndicatorProps>(
                 asChild={asChild}
                 colorScheme={colorScheme}
                 variant={variant}
-                {...styles.badge({ ping: true })}
+                {...styles.badge({ offset, ping: true })}
               >
                 {content}
               </Badge>
@@ -53,7 +53,7 @@ export const Indicator = forwardRef<HTMLDivElement, IndicatorProps>(
               asChild={asChild}
               colorScheme={colorScheme}
               variant={variant}
-              {...styles.badge()}
+              {...styles.badge({ offset })}
             >
               {content}
             </Badge>
