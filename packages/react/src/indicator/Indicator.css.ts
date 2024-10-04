@@ -52,15 +52,20 @@ export const floating = recipe({
 });
 
 export const badge = recipe({
-  base: style({
-    position: "relative",
-
-    selectors: {
-      "&:empty": {
-        padding: "6px",
-      },
+  base: [
+    {
+      px: "6",
     },
-  }),
+    style({
+      position: "relative",
+
+      selectors: {
+        "&:empty": {
+          aspectRatio: "1",
+        },
+      },
+    }),
+  ],
 
   variants: {
     ping: {
