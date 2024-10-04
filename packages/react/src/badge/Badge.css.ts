@@ -18,15 +18,14 @@ export const badge = recipe({
       fontSize: "sm",
       fontWeight: "500",
       justifyContent: "center",
-      leading: "none",
+      px: "xs",
+      py: "2",
       rounded: "full",
     },
     style({
       vars: {
         [solidColorVar]: theme.colors["fg.default.inverse"],
       },
-
-      padding: "4px 8px",
     }),
   ],
   variants: {
