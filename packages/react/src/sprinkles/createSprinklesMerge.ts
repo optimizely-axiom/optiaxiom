@@ -4,8 +4,7 @@ import clsx from "clsx";
  * Handle merging of classNames generated from sprinkle props by removing
  * classNames corresponding to overridden/duplicated css properties.
  */
-export function createSprinklesMerge<P extends object>(
-  sprinkles: (props: P) => string,
+export function createSprinklesMerge(
   ...properties: Array<{
     styles: Record<
       string,
@@ -40,36 +39,27 @@ export function createSprinklesMerge<P extends object>(
     }
   }
 
-  return function sprinklesMerge(
-    className: string | undefined,
-    sprinkleProps: P,
-  ) {
-    const parsedClassName = (className ?? "")
-      .split(" ")
-      .reduce<Record<string, string[]>>(
-        (result, className) => {
-          className = className.trim();
-          if (!className) {
-            return result;
-          }
-
-          if (className in classNameToPropertyMapping) {
-            result[classNameToPropertyMapping[className]] =
-              result[classNameToPropertyMapping[className]] || [];
-            result[classNameToPropertyMapping[className]].push(className);
-          } else {
-            result._.push(className);
-          }
-
-          return result;
-        },
-        { _: [] },
-      );
-    for (const [key, value] of Object.entries(sprinkleProps)) {
-      for (const name of sprinklesToPropertyMapping[key]) {
-        // @ts-expect-error -- too complex
-        parsedClassName[name] = [sprinkles({ [key]: value })];
+  return function sprinklesMerge(...classNames: Array<string | undefined>) {
+    let parsedClassName: Record<string, string[]> = { _: [] };
+    while (classNames.length) {
+      const className = classNames.shift();
+      if (!className) {
+        continue;
       }
+      parsedClassName = className.split(" ").reduce((result, className) => {
+        className = className.trim();
+        if (!className) {
+          return result;
+        }
+
+        if (className in classNameToPropertyMapping) {
+          result[classNameToPropertyMapping[className]] = [className];
+        } else {
+          result._.push(className);
+        }
+
+        return result;
+      }, parsedClassName);
     }
     return clsx(...new Set(Object.values(parsedClassName).flat()));
   };

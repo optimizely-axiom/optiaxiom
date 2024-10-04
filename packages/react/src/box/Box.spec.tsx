@@ -54,6 +54,18 @@ describe("Box component", () => {
     expect(screen.getByText(/This is a box/i)).toContainHTML("marginLeft_2");
   });
 
+  it("should merge sprinkle props properly for shorthand and longhand props", () => {
+    render(
+      <Box m="4" ml="2">
+        This is a box
+      </Box>,
+    );
+    expect(screen.getByText(/This is a box/i)).not.toContainHTML(
+      "marginLeft_4",
+    );
+    expect(screen.getByText(/This is a box/i)).toContainHTML("marginLeft_2");
+  });
+
   it("should merge sprinkle props properly for indirect props", () => {
     render(
       <Text asChild fontSize="sm">
