@@ -33,9 +33,7 @@ const Variants: Story = {
           colorScheme={colorScheme}
           content="4"
           key={colorScheme}
-        >
-          <Button icon={<IconBell />} />
-        </Indicator>
+        />
       ))}
     </Flex>
   ),
