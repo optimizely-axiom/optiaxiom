@@ -159,6 +159,7 @@ export const Basic: Story = {
         <AutocompleteTrigger>
           <AutocompleteInput placeholder="Search a Language" w="208" />
         </AutocompleteTrigger>
+
         <AutocompleteContent>
           {items.map((item, index) => (
             <AutocompleteItem item={item} key={index}>
@@ -166,10 +167,8 @@ export const Basic: Story = {
               <AutocompleteItemIndicator />
             </AutocompleteItem>
           ))}
-          {items.length === 0 ? (
+          {items.length === 0 && (
             <AutocompleteEmptyItem>No result Found</AutocompleteEmptyItem>
-          ) : (
-            <></>
           )}
         </AutocompleteContent>
       </Autocomplete>
