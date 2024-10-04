@@ -1,14 +1,9 @@
-import {
-  createMapValueFn,
-  createSprinkles,
-  defineProperties,
-} from "@vanilla-extract/sprinkles";
+import { defineProperties } from "@vanilla-extract/sprinkles";
 
 import { layers } from "../layers";
 import { theme } from "../theme";
 import { conditions, mapValues } from "../utils";
 import { keyframes } from "../vanilla-extract";
-
 const merge = <A, B>(objA: A, objB: B): A & B => ({ ...objA, ...objB });
 
 const animations = {
@@ -34,7 +29,7 @@ const transitions = {
   transitionTimingFunction: "ease",
 } as const;
 
-const unresponsiveProps = defineProperties({
+export const unresponsiveProps = defineProperties({
   "@layer": layers.axiom,
   properties: {
     /**
@@ -249,7 +244,7 @@ const unresponsiveProps = defineProperties({
   },
 });
 
-const responsiveProps = defineProperties({
+export const responsiveProps = defineProperties({
   "@layer": layers.axiom,
   ...conditions,
   properties: {
@@ -528,38 +523,3 @@ const responsiveProps = defineProperties({
     w: ["width"],
   },
 });
-
-export const sprinkles = createSprinkles(unresponsiveProps, responsiveProps);
-export const mapResponsiveValue = createMapValueFn(
-  defineProperties({
-    ...conditions,
-    properties: {},
-  }),
-);
-
-type LonghandProps = keyof Pick<
-  Parameters<typeof sprinkles>[0],
-  | "backgroundColor"
-  | "borderBottomWidth"
-  | "borderLeftWidth"
-  | "borderRadius"
-  | "borderRightWidth"
-  | "borderTopWidth"
-  | "boxShadow"
-  | "height"
-  | "letterSpacing"
-  | "lineHeight"
-  | "marginBottom"
-  | "marginLeft"
-  | "marginRight"
-  | "marginTop"
-  | "maxHeight"
-  | "maxWidth"
-  | "paddingBottom"
-  | "paddingLeft"
-  | "paddingRight"
-  | "paddingTop"
-  | "width"
-  | "zIndex"
->;
-export type Sprinkles = Omit<Parameters<typeof sprinkles>[0], LonghandProps>;

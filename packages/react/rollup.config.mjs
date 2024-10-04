@@ -42,6 +42,24 @@ export default defineConfig([
       preserveModules: true,
     },
     plugins: [
+      {
+        name: "sprinkles-merge",
+        transform(code, id) {
+          if (!id.endsWith("src/sprinkles/sprinkles.ts")) {
+            return null;
+          }
+
+          const search = `import { createMapValueFn, createSprinkles } from "@vanilla-extract/sprinkles";`;
+          const replace = [
+            `import { createMapValueFn } from "@vanilla-extract/sprinkles/createUtils";`,
+            `import { createSprinkles } from "@vanilla-extract/sprinkles/createRuntimeSprinkles";`,
+          ].join("\n");
+          if (!code.includes(search)) {
+            throw new Error("Could not find sprinkles imports to rewrite");
+          }
+          return code.replace(search, replace);
+        },
+      },
       esbuild({
         define: {
           "process.env.NODE_ENV": JSON.stringify(env),
