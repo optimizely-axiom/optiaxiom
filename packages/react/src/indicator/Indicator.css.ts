@@ -63,6 +63,9 @@ export const badge = recipe({
         "&:empty": {
           aspectRatio: "1",
         },
+        "&:not(:empty)": {
+          minWidth: "20px",
+        },
       },
     }),
   ],
