@@ -52,25 +52,35 @@ export const floating = recipe({
 });
 
 export const badge = recipe({
-  base: [
-    {
-      px: "6",
-    },
-    style({
-      position: "relative",
+  base: style({
+    position: "relative",
 
-      selectors: {
-        "&:empty": {
-          aspectRatio: "1",
-        },
-        "&:not(:empty)": {
-          minWidth: "20px",
-        },
+    selectors: {
+      "&:empty": {
+        aspectRatio: "1",
       },
-    }),
-  ],
+    },
+  }),
 
   variants: {
+    offset: {
+      false: {
+        px: "0",
+        py: "0",
+      },
+      true: [
+        {
+          px: "6",
+        },
+        style({
+          selectors: {
+            "&:not(:empty)": {
+              minWidth: "20px",
+            },
+          },
+        }),
+      ],
+    },
     ping: {
       false: {},
       true: [

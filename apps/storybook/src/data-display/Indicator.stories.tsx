@@ -98,13 +98,7 @@ export const Presence: Story = {
       />
     ),
     content: (
-      <Box
-        asChild
-        bg="white"
-        color="bg.warning.solid"
-        p="0"
-        style={{ transform: "none" }}
-      >
+      <Box asChild bg="white" color="bg.warning.solid">
         <IconClockFilled size="14" />
       </Box>
     ),
