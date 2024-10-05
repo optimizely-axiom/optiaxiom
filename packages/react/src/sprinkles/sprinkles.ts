@@ -3,12 +3,10 @@ import { createMapValueFn, createSprinkles } from "@vanilla-extract/sprinkles";
 import * as styles from "./properties.css";
 
 export const sprinkles = createSprinkles(
-  styles.unresponsiveProps ?? { conditions: {} },
-  styles.responsiveProps ?? { conditions: {} },
+  styles.unresponsiveProps,
+  styles.responsiveProps,
 );
-export const mapResponsiveValue = createMapValueFn(
-  styles.responsiveProps ?? { conditions: {} },
-);
+export const mapResponsiveValue = createMapValueFn(styles.responsiveProps);
 
 type LonghandProps = keyof Pick<
   Parameters<typeof sprinkles>[0],
