@@ -20,6 +20,7 @@
     "next": "^14.2.14",
     "nextra": "^3.0.3",
     "nextra-theme-docs": "^3.0.3",
+    "postcss-assign-layer": "^0.4.0",
     "postcss-import": "^16.1.0",
     "react-docgen-typescript": "^2.2.2",
     "sharp": "^0.33.5",
