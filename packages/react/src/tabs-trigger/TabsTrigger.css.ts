@@ -7,6 +7,7 @@ export const trigger = recipe({
   base: [
     marker,
     {
+      flex: ["1", "initial"],
       fontSize: "md",
       fontWeight: "500",
       py: "4",
@@ -51,6 +52,7 @@ export const content = recipe({
     {
       flexDirection: "row",
       gap: "xs",
+      justifyContent: ["center", "start"],
       py: "6",
       rounded: "sm",
     },
