@@ -66,6 +66,12 @@ describe("Box component", () => {
     expect(screen.getByText(/This is a box/i)).toContainHTML("marginLeft_2");
   });
 
+  it("should merge sprinkle props properly for responsive props", () => {
+    render(<Text fontSize={["sm", "xl"]}>This is a button</Text>);
+    expect(screen.getByText("This is a button")).toContainHTML("fontSize_sm");
+    expect(screen.getByText("This is a button")).toContainHTML("fontSize_xl");
+  });
+
   it("should merge sprinkle props properly for indirect props", () => {
     render(
       <Text asChild fontSize="sm">
