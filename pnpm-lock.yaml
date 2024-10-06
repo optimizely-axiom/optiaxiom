@@ -116,6 +116,9 @@ importers:
       nextra-theme-docs:
         specifier: ^3.0.3
         version: 3.0.3(next@14.2.14(@babel/core@7.24.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(nextra@3.0.3(@types/react@18.3.11)(next@14.2.14(@babel/core@7.24.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.6.2))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      postcss-assign-layer:
+        specifier: ^0.4.0
+        version: 0.4.0(postcss@8.4.47)
       postcss-import:
         specifier: ^16.1.0
         version: 16.1.0(postcss@8.4.47)
@@ -2123,6 +2126,10 @@ packages:
     peerDependenciesMeta:
       rollup:
         optional: true
+
+  '@rollup/pluginutils@4.2.1':
+    resolution: {integrity: sha512-iKnFXr7NkdZAIHiIWE+BX5ULi/ucVFYWD6TbAV+rZctiRTY2PL6tsIKhoIOaoskiWAkgu+VsbXgUVDNLHf+InQ==}
+    engines: {node: '>= 8.0.0'}
 
   '@rollup/pluginutils@5.1.2':
     resolution: {integrity: sha512-/FIdS3PyZ39bjZlwqFnWqCOVnW7o963LtKMwQOD0NhQqw22gSr2YY1afu3FxRip4ZCZNsD5jq6Aaz6QV3D/Njw==}
@@ -6194,6 +6201,12 @@ packages:
     resolution: {integrity: sha512-d7Uw+eZoloe0EHDIYoe+bQ5WXnGMOpmiZFTuMWCwpjzzkL2nTjcKiAk4hh8TjnGye2TwWOk3UXucZ+3rbmBa8Q==}
     engines: {node: '>= 0.4'}
 
+  postcss-assign-layer@0.4.0:
+    resolution: {integrity: sha512-ART9ENWnvEyW3yyfJe83nz5j/IsbQHBgSMsUNFmC/+6zy0uC9YTriHKV6TEjOOHXRzXS2yNPj0ksvYkEwwkv5w==}
+    engines: {node: '>=12.0.0'}
+    peerDependencies:
+      postcss: ^8.3.0
+
   postcss-calc@10.0.2:
     resolution: {integrity: sha512-DT/Wwm6fCKgpYVI7ZEWuPJ4az8hiEHtCUeYjZXqU7Ou4QqYh1Df2yCQ7Ca6N7xqKPFkxN3fhf+u9KSoOCJNAjg==}
     engines: {node: ^18.12 || ^20.9 || >=22.0}
@@ -9617,6 +9630,11 @@ snapshots:
       resolve: 1.22.8
     optionalDependencies:
       rollup: 4.24.0
+
+  '@rollup/pluginutils@4.2.1':
+    dependencies:
+      estree-walker: 2.0.2
+      picomatch: 2.3.1
 
   '@rollup/pluginutils@5.1.2(rollup@4.24.0)':
     dependencies:
@@ -14814,6 +14832,11 @@ snapshots:
       '@babel/runtime': 7.25.7
 
   possible-typed-array-names@1.0.0: {}
+
+  postcss-assign-layer@0.4.0(postcss@8.4.47):
+    dependencies:
+      '@rollup/pluginutils': 4.2.1
+      postcss: 8.4.47
 
   postcss-calc@10.0.2(postcss@8.4.47):
     dependencies:
