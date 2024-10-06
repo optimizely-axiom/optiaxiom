@@ -1,24 +1,34 @@
 import * as RadixAlertDialog from "@radix-ui/react-alert-dialog";
-import { forwardRef } from "react";
+import { forwardRef, type ReactNode } from "react";
 
 import { Box, type BoxProps } from "../box";
 import { Flex } from "../flex";
 import { Heading } from "../heading";
+import { Icon } from "../icon";
 import { IconTriangleExclamation } from "../icons/IconTriangleExclamation";
 import { extractSprinkles } from "../sprinkles";
+import { fallbackSpan } from "../utils";
 
-type AlertDialogTitleProps = BoxProps<typeof RadixAlertDialog.Title>;
+type AlertDialogTitleProps = BoxProps<
+  typeof RadixAlertDialog.Title,
+  {
+    addonBefore?: ReactNode;
+  }
+>;
 
 export const AlertDialogTitle = forwardRef<
   HTMLHeadingElement,
   AlertDialogTitleProps
->(({ children, ...props }, ref) => {
+>(({ addonBefore, children, ...props }, ref) => {
   const { restProps, sprinkleProps } = extractSprinkles(props);
   return (
     <Flex flexDirection="row" gap="md" p="lg" pb="md" {...sprinkleProps}>
-      <Box asChild color="fg.accent.red" h="16" w="auto">
-        <IconTriangleExclamation />
-      </Box>
+      {addonBefore && <Icon>{fallbackSpan(addonBefore)}</Icon>}
+      {!addonBefore && (
+        <Box asChild color="fg.error" h="16" w="auto">
+          <IconTriangleExclamation />
+        </Box>
+      )}
 
       <Heading
         asChild
