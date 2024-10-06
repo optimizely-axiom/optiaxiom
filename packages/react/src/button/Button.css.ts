@@ -41,6 +41,7 @@ export const button = recipe({
           {
             outline: `2px solid ${theme.colors["outline.brand"]}`,
             outlineOffset: "1px",
+            zIndex: theme.zIndex["10"],
           },
         "&:is([data-disabled], [data-loading])": {
           cursor: "not-allowed",
