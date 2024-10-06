@@ -19,15 +19,11 @@ export function createSprinklesMerge(
   }>
 ) {
   const classNameToPropertyMapping: Record<string, string> = {};
-  const sprinklesToPropertyMapping: Record<string, string[]> = {};
   for (const [name, definition] of Object.entries({
     ...properties[0]?.styles,
     ...properties[1]?.styles,
   })) {
-    if ("mappings" in definition) {
-      sprinklesToPropertyMapping[name] = definition.mappings;
-    } else {
-      sprinklesToPropertyMapping[name] = [name];
+    if ("values" in definition) {
       for (const value of Object.values(definition.values)) {
         classNameToPropertyMapping[value.defaultClass] = name;
         if ("conditions" in value && value.conditions) {
