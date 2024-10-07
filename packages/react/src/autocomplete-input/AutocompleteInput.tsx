@@ -13,7 +13,8 @@ export const AutocompleteInput = forwardRef<
   AutocompleteInputProps
 >(({ children, ...props }, ref) => {
   const { restProps, sprinkleProps } = extractSprinkles(props);
-  const { disabled, downshift } = useAutocompleteContext("AutocompleteInput");
+  const { disabled, downshift, setInputValue } =
+    useAutocompleteContext("AutocompleteInput");
 
   return (
     <Input
@@ -37,6 +38,8 @@ export const AutocompleteInput = forwardRef<
       {...downshift.getInputProps({
         ...restProps,
         disabled,
+        onChange: (event) =>
+          setInputValue("value" in event.target ? event.target.value : ""),
       })}
     >
       {children}
