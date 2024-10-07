@@ -18,71 +18,6 @@ export default {
   component: Autocomplete,
 } as Meta<typeof Autocomplete>;
 
-type Book = {
-  author: string;
-  disabled: boolean;
-  id: string;
-  title: string;
-};
-
-const books: Book[] = [
-  {
-    author: "Harper Lee",
-    disabled: false,
-    id: "book-1",
-    title: "To Kill a Mockingbird",
-  },
-  {
-    author: "Lev Tolstoy",
-    disabled: false,
-    id: "book-2",
-    title: "War and Peace",
-  },
-  {
-    author: "Fyodor Dostoyevsky",
-    disabled: false,
-    id: "book-3",
-    title: "The Idiot",
-  },
-  {
-    author: "Oscar Wilde",
-    disabled: true,
-    id: "book-4",
-    title: "A Picture of Dorian Gray",
-  },
-  { author: "George Orwell", disabled: false, id: "book-5", title: "1984" },
-  {
-    author: "Jane Austen",
-    disabled: true,
-    id: "book-6",
-    title: "Pride and Prejudice",
-  },
-  {
-    author: "Marcus Aurelius",
-    disabled: false,
-    id: "book-7",
-    title: "Meditations",
-  },
-  {
-    author: "Fyodor Dostoevsky",
-    disabled: true,
-    id: "book-8",
-    title: "The Brothers Karamazov",
-  },
-  {
-    author: "Lev Tolstoy",
-    disabled: false,
-    id: "book-9",
-    title: "Anna Karenina",
-  },
-  {
-    author: "Fyodor Dostoevsky",
-    disabled: false,
-    id: "book-10",
-    title: "Crime and Punishment",
-  },
-];
-
 const languages = [
   "English",
   "French",
@@ -182,6 +117,64 @@ export const Disabled: Story = {
   },
 };
 
+const books = [
+  {
+    author: "Harper Lee",
+    disabled: false,
+    id: "book-1",
+    title: "To Kill a Mockingbird",
+  },
+  {
+    author: "Lev Tolstoy",
+    disabled: false,
+    id: "book-2",
+    title: "War and Peace",
+  },
+  {
+    author: "Fyodor Dostoyevsky",
+    disabled: false,
+    id: "book-3",
+    title: "The Idiot",
+  },
+  {
+    author: "Oscar Wilde",
+    disabled: true,
+    id: "book-4",
+    title: "A Picture of Dorian Gray",
+  },
+  { author: "George Orwell", disabled: false, id: "book-5", title: "1984" },
+  {
+    author: "Jane Austen",
+    disabled: true,
+    id: "book-6",
+    title: "Pride and Prejudice",
+  },
+  {
+    author: "Marcus Aurelius",
+    disabled: false,
+    id: "book-7",
+    title: "Meditations",
+  },
+  {
+    author: "Fyodor Dostoevsky",
+    disabled: true,
+    id: "book-8",
+    title: "The Brothers Karamazov",
+  },
+  {
+    author: "Lev Tolstoy",
+    disabled: false,
+    id: "book-9",
+    title: "Anna Karenina",
+  },
+  {
+    author: "Fyodor Dostoevsky",
+    disabled: false,
+    id: "book-10",
+    title: "Crime and Punishment",
+  },
+];
+
 export const Controlled: Story = {
   render: function DefaultSelected() {
     const [items, setItems] = useState(books);
@@ -197,7 +190,7 @@ export const Controlled: Story = {
           onInputValueChange={(inputValue) => {
             setItems(
               books.filter(
-                (book: Book) =>
+                (book) =>
                   !inputValue ||
                   book.title.includes(inputValue) ||
                   book.author.includes(inputValue),
