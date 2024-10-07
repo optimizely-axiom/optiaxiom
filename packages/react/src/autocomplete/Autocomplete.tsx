@@ -9,6 +9,7 @@ import { useFieldContext } from "../field-context";
 type AutocompleteProps<Item> = {
   children?: ReactNode;
   disabled?: boolean;
+  onInputValueChange?: (inputValue: string) => void;
   onValueChange?: (value: Item) => void;
   value?: Item;
 } & Pick<
@@ -18,7 +19,6 @@ type AutocompleteProps<Item> = {
   | "itemToKey"
   | "itemToString"
   | "items"
-  | "onInputValueChange"
 >;
 
 export function Autocomplete<Item>({
@@ -38,10 +38,7 @@ export function Autocomplete<Item>({
     inputId,
     items,
     onInputValueChange(changes) {
-      onInputValueChange?.({
-        ...changes,
-        inputValue: changes.isOpen ? changes.inputValue : "",
-      });
+      onInputValueChange?.(changes.isOpen ? changes.inputValue : "");
     },
     onSelectedItemChange({ selectedItem }) {
       onValueChange?.(selectedItem);
