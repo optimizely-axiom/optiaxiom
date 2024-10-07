@@ -1,22 +1,20 @@
 import { type ComponentPropsWithRef, forwardRef } from "react";
 
 import { useAutocompleteListContext } from "../autocomplete-list-context";
-import { Box } from "../box";
 import { IconCheck } from "../icons/IconCheck";
 
-type AutocompleteItemIndicatorProps = ComponentPropsWithRef<typeof Box>;
+type AutocompleteItemIndicatorProps = ComponentPropsWithRef<typeof IconCheck>;
 
 export const AutocompleteItemIndicator = forwardRef<
-  HTMLDivElement,
+  SVGSVGElement,
   AutocompleteItemIndicatorProps
 >(({ ...props }, ref) => {
   const { active } = useAutocompleteListContext("AutocompleteItemIndicator");
+  if (!active) {
+    return null;
+  }
 
-  return (
-    <Box asChild ref={ref} {...props}>
-      {active && <IconCheck />}
-    </Box>
-  );
+  return <IconCheck ref={ref} {...props} />;
 });
 
 AutocompleteItemIndicator.displayName =
