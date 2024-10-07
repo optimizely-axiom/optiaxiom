@@ -126,18 +126,6 @@ const languages = [
   "Lithuanian",
 ];
 
-const itemToString = (book: Book | null) => {
-  return book ? book.title : "";
-};
-
-const itemToKey = (book: Book | null) => {
-  return book?.id;
-};
-
-const isItemDisabled = (book: Book) => {
-  return book.disabled;
-};
-
 export const Basic: Story = {
   render: function Basic(args) {
     const [items, setItems] = useState(languages);
@@ -199,16 +187,12 @@ export const Controlled: Story = {
     const [items, setItems] = useState(books);
     const [value, setValue] = useState(books[9]);
 
-    function onValueChange(value: Book) {
-      setValue(value);
-    }
-
     return (
       <Flex alignItems="center">
         <Autocomplete
-          isItemDisabled={isItemDisabled}
-          itemToKey={itemToKey}
-          itemToString={itemToString}
+          isItemDisabled={(book) => book.disabled}
+          itemToKey={(book) => book?.id}
+          itemToString={(book) => book?.title ?? ""}
           items={items}
           onInputValueChange={({ inputValue }) => {
             setItems(
@@ -220,7 +204,7 @@ export const Controlled: Story = {
               ),
             );
           }}
-          onValueChange={onValueChange}
+          onValueChange={setValue}
           value={value}
         >
           <AutocompleteTrigger>
