@@ -38,7 +38,7 @@ export function AnimatePresence({
   }, []);
 
   useEffect(() => {
-    if (!isPresent && [...exiting.values()].some(Boolean)) {
+    if (!isPresent && exiting.size === 0) {
       lastChildren.current = false;
     }
   }, [exiting, isPresent]);
