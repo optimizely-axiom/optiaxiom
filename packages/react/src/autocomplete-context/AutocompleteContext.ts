@@ -9,4 +9,5 @@ export const [AutocompleteContextProvider, useAutocompleteContext] =
     downshift: UseComboboxReturnValue<any>;
     highlightedItem: any;
     items: any[];
+    setInputValue: (value: string) => void;
   }>("Autocomplete");
