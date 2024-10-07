@@ -40,6 +40,7 @@ export const SearchInput = forwardRef<HTMLInputElement, SearchProps>(
                 forceValueChange(innerRef.current, "");
                 innerRef.current.focus();
               }}
+              tabIndex={-1}
               {...styles.clear()}
             />
           )
