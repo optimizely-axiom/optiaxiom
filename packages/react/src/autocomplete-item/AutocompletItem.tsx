@@ -25,20 +25,18 @@ export const AutocompleteItem = forwardRef<
   const { downshift, highlightedItem } =
     useAutocompleteContext("AutocompleteItem");
 
+  const itemProps = downshift.getItemProps({ item });
+
   return (
     <AutocompleteItemContextProvider active={downshift.selectedItem === item}>
       <Flex asChild {...styles.item()} {...sprinkleProps}>
         <li
-          data-disabled={
-            downshift.getItemProps({ item })["aria-disabled"] ? "" : undefined
-          }
+          data-disabled={itemProps["aria-disabled"] ? "" : undefined}
           data-highlighted={highlightedItem === item ? "" : undefined}
           data-selected={downshift.selectedItem === item ? "" : undefined}
           ref={ref}
           {...restProps}
-          {...downshift.getItemProps({
-            item,
-          })}
+          {...itemProps}
         >
           {addonBefore && (
             <Box asChild h="16" w="auto">
