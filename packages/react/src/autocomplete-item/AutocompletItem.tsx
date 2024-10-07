@@ -2,8 +2,9 @@ import { type ReactNode, forwardRef } from "react";
 
 import { useAutocompleteContext } from "../autocomplete-context";
 import { AutocompleteItemContextProvider } from "../autocomplete-item-context";
-import { Box, type BoxProps } from "../box";
+import { type BoxProps } from "../box";
 import { Flex } from "../flex";
+import { Icon } from "../icon";
 import { extractSprinkles } from "../sprinkles";
 import { fallbackSpan } from "../utils";
 import * as styles from "./AutocompleteItem.css";
@@ -24,7 +25,6 @@ export const AutocompleteItem = forwardRef<
   const { restProps, sprinkleProps } = extractSprinkles(props);
   const { downshift, highlightedItem } =
     useAutocompleteContext("AutocompleteItem");
-
   const itemProps = downshift.getItemProps({ item });
 
   return (
@@ -38,19 +38,11 @@ export const AutocompleteItem = forwardRef<
           {...restProps}
           {...itemProps}
         >
-          {addonBefore && (
-            <Box asChild h="16" w="auto">
-              {fallbackSpan(addonBefore)}
-            </Box>
-          )}
+          {addonBefore && <Icon>{fallbackSpan(addonBefore)}</Icon>}
 
           {children}
 
-          {addonBefore && (
-            <Box asChild h="16" w="auto">
-              {fallbackSpan(addonAfter)}
-            </Box>
-          )}
+          {addonAfter && <Icon>{fallbackSpan(addonAfter)}</Icon>}
         </li>
       </Flex>
     </AutocompleteItemContextProvider>
