@@ -27,6 +27,7 @@ export function Autocomplete<Item>({
   children,
   defaultValue,
   disabled,
+  itemToKey = (value) => value,
   itemToString = (value) => (value ? String(value) : ""),
   items,
   onInputValueChange,
@@ -57,6 +58,7 @@ export function Autocomplete<Item>({
     inputId,
     inputValue,
     isOpen,
+    itemToKey,
     itemToString,
     items,
     onInputValueChange({ inputValue, isOpen }) {
@@ -82,6 +84,7 @@ export function Autocomplete<Item>({
         disabled={disabled}
         downshift={downshift}
         highlightedItem={items[downshift.highlightedIndex]}
+        itemToKey={itemToKey}
         items={items}
         setInputValue={setInputValue}
       >
