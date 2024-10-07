@@ -1,8 +1,8 @@
-import { PopoverContent, PopoverPortal } from "@radix-ui/react-popover";
 import { forwardRef } from "react";
 
 import { useAutocompleteContext } from "../autocomplete-context";
 import { Box, type BoxProps } from "../box";
+import { PopoverContent } from "../popover-content";
 import * as styles from "./AutocompleteContent.css";
 
 type AutocompleteContentProps = BoxProps<typeof PopoverContent>;
@@ -14,21 +14,20 @@ export const AutocompleteContent = forwardRef<
   const { downshift } = useAutocompleteContext("AutocompleteContent");
 
   return (
-    <PopoverPortal forceMount>
-      <Box
-        asChild
-        {...styles.content({ open: downshift.isOpen }, className)}
-        {...props}
-      >
-        <PopoverContent align="center" ref={ref} sideOffset={5}>
-          <Box asChild {...styles.wrapperList()}>
-            <ul {...downshift.getMenuProps()}>
-              {downshift.isOpen && children}
-            </ul>
-          </Box>
-        </PopoverContent>
+    <PopoverContent
+      align="center"
+      onOpenAutoFocus={(event: Event) => event.preventDefault()}
+      ref={ref}
+      sideOffset={5}
+      {...styles.content({}, className)}
+      {...props}
+    >
+      <Box asChild {...styles.list()}>
+        <ul {...downshift.getMenuProps({}, { suppressRefError: true })}>
+          {children}
+        </ul>
       </Box>
-    </PopoverPortal>
+    </PopoverContent>
   );
 });
 
