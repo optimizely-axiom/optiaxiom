@@ -64,7 +64,7 @@ export const SideNav = forwardRef<HTMLElement, SideNavProps>(
             transition={animations ? "all" : undefined}
             w={expanded ? "224" : "56"}
           >
-            <nav aria-label="side" ref={ref}>
+            <nav aria-label="Main" ref={ref}>
               {addonBefore}
 
               <Flex
