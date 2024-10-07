@@ -1,10 +1,9 @@
-import type { ReactNode } from "react";
-
-import { Popover } from "@radix-ui/react-popover";
 import { type UseComboboxProps, useCombobox } from "downshift";
+import { type ReactNode } from "react";
 
 import { AutocompleteContextProvider } from "../autocomplete-context";
 import { useFieldContext } from "../field-context";
+import { Popover } from "../popover";
 
 type AutocompleteProps<Item> = {
   children?: ReactNode;
