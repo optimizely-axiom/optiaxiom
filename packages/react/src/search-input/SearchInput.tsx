@@ -30,7 +30,7 @@ export const SearchInput = forwardRef<HTMLInputElement, SearchProps>(
           value && (
             <Button
               appearance="subtle"
-              aria-label="clear"
+              aria-label="Clear"
               icon={value && <IconX />}
               onClick={() => {
                 if (!innerRef.current) {
