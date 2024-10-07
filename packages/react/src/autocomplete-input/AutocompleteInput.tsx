@@ -4,6 +4,7 @@ import { useAutocompleteContext } from "../autocomplete-context";
 import { Button } from "../button";
 import { IconX } from "../icons/IconX";
 import { Input } from "../input";
+import { extractSprinkles } from "../sprinkles";
 
 type AutocompleteInputProps = ComponentPropsWithRef<typeof Input>;
 
@@ -11,15 +12,11 @@ export const AutocompleteInput = forwardRef<
   HTMLInputElement,
   AutocompleteInputProps
 >(({ children, ...props }, ref) => {
+  const { restProps, sprinkleProps } = extractSprinkles(props);
   const { disabled, downshift } = useAutocompleteContext("AutocompleteInput");
 
   return (
     <Input
-      ref={ref}
-      {...props}
-      {...downshift.getInputProps({
-        disabled,
-      })}
       addonAfter={
         downshift.inputValue &&
         !disabled && (
@@ -35,6 +32,12 @@ export const AutocompleteInput = forwardRef<
           />
         )
       }
+      ref={ref}
+      {...sprinkleProps}
+      {...downshift.getInputProps({
+        ...restProps,
+        disabled,
+      })}
     >
       {children}
     </Input>
