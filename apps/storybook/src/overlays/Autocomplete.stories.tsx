@@ -139,11 +139,12 @@ const isItemDisabled = (book: Book) => {
 };
 
 export const Basic: Story = {
-  render: function Basic() {
+  render: function Basic(args) {
     const [items, setItems] = useState(languages);
 
     return (
       <Autocomplete
+        {...args}
         items={items}
         onInputValueChange={({ inputValue }) => {
           setItems(
@@ -177,76 +178,19 @@ export const Basic: Story = {
 };
 
 export const WithLabel: Story = {
-  render: function WithLabel() {
-    const [items, setItems] = useState(books);
-
-    return (
-      <Field label="Label">
-        <Autocomplete
-          isItemDisabled={isItemDisabled}
-          itemToKey={itemToKey}
-          itemToString={itemToString}
-          items={items}
-          onInputValueChange={({ inputValue }) => {
-            setItems(
-              books.filter(
-                (book: Book) =>
-                  !inputValue ||
-                  book.title.includes(inputValue) ||
-                  book.author.includes(inputValue),
-              ),
-            );
-          }}
-        >
-          <AutocompleteTrigger>
-            <AutocompleteInput placeholder="Search a book" />
-          </AutocompleteTrigger>
-
-          <AutocompleteContent>
-            {items.map((item, index) => (
-              <AutocompleteItem item={item} key={index}>
-                {item.title}
-              </AutocompleteItem>
-            ))}
-          </AutocompleteContent>
-        </Autocomplete>
-      </Field>
-    );
-  },
+  ...Basic,
+  decorators: (Story) => (
+    <Field label="Label">
+      <Story />
+    </Field>
+  ),
 };
 
 export const Disabled: Story = {
-  render: function Disabled() {
-    const [items, setItems] = useState(languages);
-
-    return (
-      <Autocomplete
-        disabled
-        items={items}
-        onInputValueChange={({ inputValue }) => {
-          setItems(
-            languages.filter(
-              (language: string) =>
-                !inputValue ||
-                language.toLowerCase().includes(inputValue.toLowerCase()) ||
-                language.toLowerCase().includes(inputValue.toLowerCase()),
-            ),
-          );
-        }}
-        value="English"
-      >
-        <AutocompleteTrigger>
-          <AutocompleteInput placeholder="Search a Language" w="208" />
-        </AutocompleteTrigger>
-        <AutocompleteContent>
-          {items.map((item, index) => (
-            <AutocompleteItem item={item} key={index}>
-              {item}
-            </AutocompleteItem>
-          ))}
-        </AutocompleteContent>
-      </Autocomplete>
-    );
+  ...Basic,
+  args: {
+    disabled: true,
+    value: "English",
   },
 };
 
