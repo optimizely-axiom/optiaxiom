@@ -91,9 +91,7 @@ export const Basic: Story = {
               <AutocompleteItemIndicator />
             </AutocompleteItem>
           ))}
-          {items.length === 0 && (
-            <AutocompleteEmptyItem>No result Found</AutocompleteEmptyItem>
-          )}
+          <AutocompleteEmptyItem>No result Found</AutocompleteEmptyItem>
         </AutocompleteContent>
       </Autocomplete>
     );
