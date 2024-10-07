@@ -8,7 +8,7 @@ import { extractSprinkles } from "../sprinkles";
 import { fallbackSpan } from "../utils";
 import * as styles from "./AutocompleteItem.css";
 
-type AccordionItemProps = BoxProps<
+type AutocompleteItemProps = BoxProps<
   "li",
   {
     addonBefore?: ReactNode;
@@ -16,39 +16,40 @@ type AccordionItemProps = BoxProps<
   }
 >;
 
-export const AutocompleteItem = forwardRef<HTMLLIElement, AccordionItemProps>(
-  ({ addonBefore, children, item, ...props }, ref) => {
-    const { restProps, sprinkleProps } = extractSprinkles(props);
-    const { downshift, highlightedItem } =
-      useAutocompleteContext("AutocompleteItem");
+export const AutocompleteItem = forwardRef<
+  HTMLLIElement,
+  AutocompleteItemProps
+>(({ addonBefore, children, item, ...props }, ref) => {
+  const { restProps, sprinkleProps } = extractSprinkles(props);
+  const { downshift, highlightedItem } =
+    useAutocompleteContext("AutocompleteItem");
 
-    return (
-      <Flex asChild {...styles.item()} {...sprinkleProps}>
-        <li
-          data-disabled={
-            downshift.getItemProps({ item })["aria-disabled"] ? "" : undefined
-          }
-          data-highlighted={highlightedItem === item ? "" : undefined}
-          data-selected={downshift.selectedItem === item ? "" : undefined}
-          ref={ref}
-          {...restProps}
-          {...downshift.getItemProps({
-            item,
-          })}
-        >
-          {addonBefore && (
-            <Box asChild h="16" w="auto">
-              {fallbackSpan(addonBefore)}
-            </Box>
-          )}
+  return (
+    <Flex asChild {...styles.item()} {...sprinkleProps}>
+      <li
+        data-disabled={
+          downshift.getItemProps({ item })["aria-disabled"] ? "" : undefined
+        }
+        data-highlighted={highlightedItem === item ? "" : undefined}
+        data-selected={downshift.selectedItem === item ? "" : undefined}
+        ref={ref}
+        {...restProps}
+        {...downshift.getItemProps({
+          item,
+        })}
+      >
+        {addonBefore && (
+          <Box asChild h="16" w="auto">
+            {fallbackSpan(addonBefore)}
+          </Box>
+        )}
 
-          {children}
+        {children}
 
-          {downshift.selectedItem === item && <IconCheck />}
-        </li>
-      </Flex>
-    );
-  },
-);
+        {downshift.selectedItem === item && <IconCheck />}
+      </li>
+    </Flex>
+  );
+});
 
 AutocompleteItem.displayName = "@optiaxiom/react/AutocompleteItem";
