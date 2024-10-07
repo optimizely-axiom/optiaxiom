@@ -32,7 +32,7 @@ export const PopoverContent = forwardRef<HTMLDivElement, PopoverContentProps>(
     return (
       <AnimatePresence>
         {open && (
-          <RadixPopover.Portal>
+          <RadixPopover.Portal forceMount>
             <Transition duration="sm" type="pop">
               <Box asChild {...styles.content({}, className)} {...props}>
                 <RadixPopover.Content
