@@ -134,7 +134,7 @@ export const Basic: Story = {
       <Autocomplete
         {...args}
         items={items}
-        onInputValueChange={({ inputValue }) => {
+        onInputValueChange={(inputValue) => {
           setItems(
             languages.filter(
               (language: string) =>
@@ -194,7 +194,7 @@ export const Controlled: Story = {
           itemToKey={(book) => book?.id}
           itemToString={(book) => book?.title ?? ""}
           items={items}
-          onInputValueChange={({ inputValue }) => {
+          onInputValueChange={(inputValue) => {
             setItems(
               books.filter(
                 (book: Book) =>
