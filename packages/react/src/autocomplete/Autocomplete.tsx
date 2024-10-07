@@ -6,6 +6,7 @@ import { AutocompleteContextProvider } from "../autocomplete-context";
 import { useFieldContext } from "../field-context";
 import { Popover } from "../popover";
 import { useEffectEvent } from "../use-event";
+import { useDelayedState } from "./useDelayedState";
 
 type AutocompleteProps<Item> = {
   children?: ReactNode;
@@ -53,14 +54,28 @@ export function Autocomplete<Item>({
     }
   }, [isOpen, itemToStringStable, selectedItem]);
 
+  /**
+   * Downshift attempts to scroll to the currently selected item when the menu
+   * opens. But since we don't render the menu until it is open the `ref` will
+   * not be available yet.
+   *
+   * So we hold the active highlightedIndex in a ref/queue on first open and
+   * wait for next effect/tick to set the highlightedIndex state.
+   */
+  const [highlightedIndex, setHighlightedIndex] = useDelayedState(-1, isOpen);
+
   const downshift = useCombobox({
     ...props,
+    highlightedIndex,
     inputId,
     inputValue,
     isOpen,
     itemToKey,
     itemToString,
     items,
+    onHighlightedIndexChange({ highlightedIndex }) {
+      setHighlightedIndex(highlightedIndex);
+    },
     onInputValueChange({ inputValue, isOpen }) {
       if (isOpen) {
         onInputValueChange?.(inputValue);
