@@ -1,6 +1,6 @@
 import { type ComponentPropsWithRef, forwardRef } from "react";
 
-import { useAutocompleteItemContext } from "../autocomplete-item-context";
+import { useAutocompleteListContext } from "../autocomplete-list-context";
 import { Box } from "../box";
 import { IconCheck } from "../icons/IconCheck";
 
@@ -10,7 +10,7 @@ export const AutocompleteItemIndicator = forwardRef<
   HTMLDivElement,
   AutocompleteItemIndicatorProps
 >(({ ...props }, ref) => {
-  const { active } = useAutocompleteItemContext("AutocompleteItemIndicator");
+  const { active } = useAutocompleteListContext("AutocompleteItemIndicator");
 
   return (
     <Box asChild ref={ref} {...props}>

@@ -8,6 +8,7 @@ import {
   AutocompleteInput,
   AutocompleteItem,
   AutocompleteItemIndicator,
+  AutocompleteList,
   AutocompleteTrigger,
 } from "@optiaxiom/react/unstable";
 import { useState } from "react";
@@ -85,12 +86,14 @@ export const Basic: Story = {
         </AutocompleteTrigger>
 
         <AutocompleteContent>
-          {items.map((item, index) => (
-            <AutocompleteItem item={item} key={index}>
-              {item}
-              <AutocompleteItemIndicator />
-            </AutocompleteItem>
-          ))}
+          <AutocompleteList>
+            {(item: string) => (
+              <AutocompleteItem>
+                {item}
+                <AutocompleteItemIndicator />
+              </AutocompleteItem>
+            )}
+          </AutocompleteList>
           <AutocompleteEmptyItem>No result Found</AutocompleteEmptyItem>
         </AutocompleteContent>
       </Autocomplete>
@@ -199,15 +202,17 @@ export const Controlled: Story = {
           value={value}
         >
           <AutocompleteTrigger>
-            <AutocompleteInput placeholder="Search a book" />
+            <AutocompleteInput placeholder="Search a book" w="208" />
           </AutocompleteTrigger>
           <AutocompleteContent>
-            {items.map((item, index) => (
-              <AutocompleteItem item={item} key={index}>
-                {item.title}
-                <AutocompleteItemIndicator />
-              </AutocompleteItem>
-            ))}
+            <AutocompleteList>
+              {(item: (typeof books)[number]) => (
+                <AutocompleteItem>
+                  {item.title}
+                  <AutocompleteItemIndicator />
+                </AutocompleteItem>
+              )}
+            </AutocompleteList>
           </AutocompleteContent>
         </Autocomplete>
 
