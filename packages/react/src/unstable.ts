@@ -1,6 +1,6 @@
 export * from "./autocomplete";
 export * from "./autocomplete-content";
-export * from "./autocomplete-empty";
+export * from "./autocomplete-empty-item";
 export * from "./autocomplete-input";
 export * from "./autocomplete-item";
 export * from "./autocomplete-trigger";

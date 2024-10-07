@@ -4,7 +4,7 @@ import { Field, Flex, Text } from "@optiaxiom/react";
 import {
   Autocomplete,
   AutocompleteContent,
-  AutocompleteEmpty,
+  AutocompleteEmptyItem,
   AutocompleteInput,
   AutocompleteItem,
   AutocompleteTrigger,
@@ -165,7 +165,7 @@ export const Basic: Story = {
             </AutocompleteItem>
           ))}
           {items.length === 0 ? (
-            <AutocompleteEmpty>No result Found</AutocompleteEmpty>
+            <AutocompleteEmptyItem>No result Found</AutocompleteEmptyItem>
           ) : (
             <></>
           )}
