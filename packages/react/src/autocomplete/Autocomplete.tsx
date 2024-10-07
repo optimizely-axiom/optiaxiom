@@ -23,34 +23,6 @@ type AutocompleteProps<Item> = BoxProps<
   >
 >;
 
-const properties = [
-  "initialHighlightedIndex",
-  "isItemDisabled",
-  "itemToKey",
-  "itemToString",
-  "items",
-  "onInputValueChange",
-] as const;
-
-export function extractDownshift<Item>(props: Item) {
-  const downshiftProps = {} as Pick<
-    Item,
-    (typeof properties)[number] & keyof Item
-  >;
-  const restProps = {} as Omit<Item, (typeof properties)[number]>;
-
-  // @ts-expect-error -- too complex
-  for (const [name, value] of Object.entries(props)) {
-    if (properties.includes(name as never)) {
-      // @ts-expect-error -- too complex
-      downshiftProps[name] = value;
-    } else {
-      // @ts-expect-error -- too complex
-      restProps[name] = value;
-    }
-  }
-  return { downshiftProps, restProps };
-}
 export function Autocomplete<Item>({
   children,
   disabled,
@@ -60,11 +32,10 @@ export function Autocomplete<Item>({
   value,
   ...props
 }: AutocompleteProps<Item>) {
-  const { downshiftProps, restProps } = extractDownshift(props);
   const { id: inputId } = useFieldContext({});
 
   const downshift = useCombobox({
-    ...downshiftProps,
+    ...props,
     initialSelectedItem: value,
     inputId,
     items,
@@ -89,7 +60,7 @@ export function Autocomplete<Item>({
   const highlightedItem = items[downshift.highlightedIndex];
 
   return (
-    <Popover {...restProps}>
+    <Popover open={downshift.isOpen}>
       <AutocompleteContextProvider
         disabled={disabled}
         downshift={downshift}

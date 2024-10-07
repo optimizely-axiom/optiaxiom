@@ -3,6 +3,7 @@ export * from "./autocomplete-content";
 export * from "./autocomplete-empty-item";
 export * from "./autocomplete-input";
 export * from "./autocomplete-item";
+export * from "./autocomplete-item-indicator";
 export * from "./autocomplete-trigger";
 export * from "./banner";
 export * from "./banner-description";

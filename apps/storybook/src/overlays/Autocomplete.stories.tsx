@@ -7,6 +7,7 @@ import {
   AutocompleteEmptyItem,
   AutocompleteInput,
   AutocompleteItem,
+  AutocompleteItemIndicator,
   AutocompleteTrigger,
 } from "@optiaxiom/react/unstable";
 import { useState } from "react";
@@ -162,6 +163,7 @@ export const Basic: Story = {
           {items.map((item, index) => (
             <AutocompleteItem item={item} key={index}>
               {item}
+              <AutocompleteItemIndicator />
             </AutocompleteItem>
           ))}
           {items.length === 0 ? (
@@ -285,6 +287,7 @@ export const Controlled: Story = {
             {items.map((item, index) => (
               <AutocompleteItem item={item} key={index}>
                 {item.title}
+                <AutocompleteItemIndicator />
               </AutocompleteItem>
             ))}
           </AutocompleteContent>
