@@ -1,14 +1,12 @@
-import type { StorybookConfig } from "@storybook/react-webpack5";
-import type { Options } from "@swc/core";
+import type { StorybookConfig } from "@storybook/react-vite";
 
-import { ReactDocgenTypeScriptPlugin } from "@storybook/react-docgen-typescript-plugin";
+import { reactDocgenPlugin } from "./react-docgen-plugin";
 
 const config: StorybookConfig = {
   addons: [
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
     "@storybook/addon-links",
-    "@storybook/addon-webpack5-compiler-swc",
   ],
   core: {
     disableTelemetry: true,
@@ -17,42 +15,15 @@ const config: StorybookConfig = {
     docsMode: false,
   },
   framework: {
-    name: "@storybook/react-webpack5",
+    name: "@storybook/react-vite",
     options: {},
   },
   stories: ["../src/**/*.stories.tsx"],
-  swc: (config: Options): Options => {
-    return {
-      ...config,
-      jsc: {
-        transform: {
-          react: { runtime: "automatic" },
-        },
-      },
-    };
-  },
   typescript: {
     reactDocgen: false,
-  } as unknown as undefined,
-  webpackFinal: async (config) => {
-    config.plugins?.push(
-      new ReactDocgenTypeScriptPlugin({
-        include: ["**/**.tsx", "**/packages/react/**/*.d.ts"],
-        propFilter: (prop) =>
-          prop.parent
-            ? !prop.parent.fileName.includes("@types/react")
-            : !!prop.declarations?.find(
-                (declaration) =>
-                  declaration.fileName ===
-                  "optiaxiom/packages/react/dist/index.d.ts",
-              ) && !["asChild"].includes(prop.name),
-        savePropValueAsString: true,
-        tsconfigPath: "../tsconfig.json",
-      }),
-    );
-    config.plugins = config.plugins?.filter(
-      (plugin) => !plugin?.constructor.name.includes("ProgressPlugin"),
-    );
+  },
+  viteFinal: async (config) => {
+    config.plugins?.push(reactDocgenPlugin());
     return config;
   },
 };
