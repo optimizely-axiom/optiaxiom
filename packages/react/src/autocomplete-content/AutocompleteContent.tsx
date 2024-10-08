@@ -4,14 +4,20 @@ import { useAutocompleteContext } from "../autocomplete-context";
 import { Box, type BoxProps } from "../box";
 import { PopoverContent } from "../popover-content";
 import { usePopoverContext } from "../popover-context";
+import { Spinner } from "../spinner";
 import * as styles from "./AutocompleteContent.css";
 
-type AutocompleteContentProps = BoxProps<typeof PopoverContent>;
+type AutocompleteContentProps = BoxProps<
+  typeof PopoverContent,
+  {
+    loading?: boolean;
+  }
+>;
 
 export const AutocompleteContent = forwardRef<
   HTMLDivElement,
   AutocompleteContentProps
->(({ children, className, ...props }, ref) => {
+>(({ children, className, loading, ...props }, ref) => {
   const { downshift } = useAutocompleteContext("AutocompleteContent");
 
   const { open } = usePopoverContext("AutocompleteContent");
@@ -44,7 +50,15 @@ export const AutocompleteContent = forwardRef<
     >
       <Box asChild {...styles.list()}>
         <ul {...downshift.getMenuProps({}, { suppressRefError: true })}>
-          {children}
+          {loading ? (
+            <Box asChild display="flex" justifyContent="center" p="md">
+              <li>
+                <Spinner />
+              </li>
+            </Box>
+          ) : (
+            children
+          )}
         </ul>
       </Box>
     </PopoverContent>
