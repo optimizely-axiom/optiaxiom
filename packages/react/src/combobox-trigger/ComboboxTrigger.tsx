@@ -41,5 +41,3 @@ export const ComboboxTrigger = forwardRef<
 });
 
 ComboboxTrigger.displayName = "@optiaxiom/react/ComboboxTrigger";
-
-export default ComboboxTrigger;
