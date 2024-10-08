@@ -14,7 +14,6 @@ import * as styles from "./SearchInput.css";
 
 type SearchProps = {
   onValueClear?: () => void;
-  withSearchIcon?: boolean;
 } & ComponentPropsWithRef<typeof Input>;
 
 export const SearchInput = forwardRef<HTMLInputElement, SearchProps>(
@@ -25,7 +24,6 @@ export const SearchInput = forwardRef<HTMLInputElement, SearchProps>(
       onChange,
       onValueClear,
       value: valueProp,
-      withSearchIcon = true,
       ...props
     },
     outerRef,
@@ -57,7 +55,7 @@ export const SearchInput = forwardRef<HTMLInputElement, SearchProps>(
             />
           )
         }
-        addonBefore={withSearchIcon && <IconMagnifyingGlass />}
+        addonBefore={<IconMagnifyingGlass />}
         autoComplete="off"
         onChange={(event) => {
           onChange?.(event);

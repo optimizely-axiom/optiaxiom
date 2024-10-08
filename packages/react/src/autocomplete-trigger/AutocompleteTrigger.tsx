@@ -20,9 +20,9 @@ export const AutocompleteTrigger = forwardRef<
     <PopoverAnchor>
       <PopoverTrigger asChild type={undefined} {...sprinkleProps}>
         <SearchInput
+          addonBefore={null}
           onValueClear={() => downshift.reset()}
           ref={ref}
-          withSearchIcon={false}
           {...downshift.getInputProps({
             ...restProps,
             disabled,
