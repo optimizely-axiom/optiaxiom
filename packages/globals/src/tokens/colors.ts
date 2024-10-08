@@ -129,153 +129,145 @@ const colorPalette = {
   "yellow.900": "#4E1D09" as const,
 } as const;
 
+const ld = <A extends string, B extends string>(a: A, b: B) =>
+  `light-dark(${a}, ${b})` as const;
+
 export const colors = {
   ...colorPalette,
 
-  "bg.brand": colorPalette["brand.50"],
-  "bg.brand.solid": colorPalette["brand.500"],
-  "bg.brand.solid.hover": colorPalette["brand.600"],
-  "bg.disabled": colorPalette["neutral.1200/18"],
-  "bg.discovery": colorPalette["purple.50"],
-  "bg.error": colorPalette["red.50"],
-  "bg.error.solid": colorPalette["red.500"],
-  "bg.error.solid.hover": colorPalette["red.600"],
-  "bg.information": colorPalette["blue.50"],
-  "bg.information.solid": colorPalette["blue.600"],
-  "bg.input.disabled": colorPalette["neutral.1200/4"],
-  "bg.neutral": colorPalette["neutral.75"],
-  "bg.neutral.inverse": colorPalette["neutral.800"],
-  "bg.neutral.inverse.hover": colorPalette["neutral.900"],
-  "bg.neutral.solid": colorPalette["neutral.200"],
-  "bg.neutral.solid.hover": colorPalette["neutral.300"],
-  "bg.success": colorPalette["green.50"],
-  "bg.success.solid": colorPalette["green.500"],
-  "bg.success.solid.hover": colorPalette["green.600"],
-  "bg.warning": colorPalette["yellow.50"],
-  "bg.warning.solid": colorPalette["yellow.500"],
-  "bg.warning.solid.hover": colorPalette["yellow.600"],
+  "bg.brand": ld(colorPalette["brand.50"], colorPalette["brand.50"]),
+  "bg.brand.solid": ld(colorPalette["brand.500"], colorPalette["brand.500"]),
+  "bg.brand.solid.hover": ld(
+    colorPalette["brand.600"],
+    colorPalette["brand.600"],
+  ),
+  "bg.disabled": ld(
+    colorPalette["neutral.1200/18"],
+    colorPalette["neutral.1000"],
+  ),
+  "bg.discovery": ld(colorPalette["purple.50"], colorPalette["purple.900"]),
+  "bg.error": ld(colorPalette["red.50"], colorPalette["red.50"]),
+  "bg.error.solid": ld(colorPalette["red.500"], colorPalette["red.500"]),
+  "bg.error.solid.hover": ld(colorPalette["red.600"], colorPalette["red.600"]),
+  "bg.information": ld(colorPalette["blue.50"], colorPalette["blue.900"]),
+  "bg.information.solid": ld(
+    colorPalette["blue.600"],
+    colorPalette["blue.600"],
+  ),
+  "bg.input.disabled": ld(
+    colorPalette["neutral.1200/4"],
+    colorPalette["neutral.1200/4"],
+  ),
+  "bg.neutral": ld(colorPalette["neutral.75"], colorPalette["slate.800"]),
+  "bg.neutral.inverse": ld(
+    colorPalette["neutral.800"],
+    colorPalette["neutral.100"],
+  ),
+  "bg.neutral.inverse.hover": ld(
+    colorPalette["neutral.900"],
+    colorPalette["neutral.200"],
+  ),
+  "bg.neutral.solid": ld(
+    colorPalette["neutral.200"],
+    colorPalette["neutral.100"],
+  ),
+  "bg.neutral.solid.hover": ld(
+    colorPalette["neutral.300"],
+    colorPalette["neutral.800"],
+  ),
+  "bg.success": ld(colorPalette["green.50"], colorPalette["green.900"]),
+  "bg.success.solid": ld(colorPalette["green.500"], colorPalette["green.500"]),
+  "bg.success.solid.hover": ld(
+    colorPalette["green.600"],
+    colorPalette["green.600"],
+  ),
+  "bg.warning": ld(colorPalette["yellow.50"], colorPalette["yellow.50"]),
+  "bg.warning.solid": ld(
+    colorPalette["yellow.500"],
+    colorPalette["yellow.500"],
+  ),
+  "bg.warning.solid.hover": ld(
+    colorPalette["yellow.600"],
+    colorPalette["yellow.600"],
+  ),
 
-  "border.active": colorPalette["neutral.500"],
-  "border.active.hover": colorPalette["neutral.600"],
-  "border.brand": colorPalette["brand.500"],
-  "border.default": colorPalette["neutral.200"],
-  "border.disabled": colorPalette["neutral.75"],
-  "border.error": colorPalette["red.500"],
-  "border.secondary": colorPalette["neutral.150"],
-  "border.success": colorPalette["green.500"],
-  "border.tertiary": colorPalette["neutral.100"],
-  "border.warning": colorPalette["yellow.500"],
+  "border.active": ld(colorPalette["neutral.500"], colorPalette["neutral.500"]),
+  "border.active.hover": ld(
+    colorPalette["neutral.600"],
+    colorPalette["neutral.600"],
+  ),
+  "border.brand": ld(colorPalette["brand.500"], colorPalette["brand.500"]),
+  "border.default": ld(colorPalette["neutral.200"], colorPalette["gray.800"]),
+  "border.disabled": ld(colorPalette["neutral.75"], colorPalette["neutral.75"]),
+  "border.error": ld(colorPalette["red.500"], colorPalette["red.500"]),
+  "border.secondary": ld(
+    colorPalette["neutral.150"],
+    colorPalette["neutral.150"],
+  ),
+  "border.success": ld(colorPalette["green.500"], colorPalette["green.500"]),
+  "border.tertiary": ld(
+    colorPalette["neutral.100"],
+    colorPalette["neutral.900"],
+  ),
+  "border.warning": ld(colorPalette["yellow.500"], colorPalette["yellow.500"]),
 
-  "fg.accent.blue": colorPalette["blue.500"],
-  "fg.accent.magenta": colorPalette["magenta.600"],
-  "fg.accent.purple": colorPalette["purple.600"],
-  "fg.accent.red": colorPalette["red.500"],
+  "fg.accent.blue": ld(colorPalette["blue.500"], colorPalette["blue.200"]),
+  "fg.accent.magenta": ld(
+    colorPalette["magenta.600"],
+    colorPalette["magenta.200"],
+  ),
+  "fg.accent.purple": ld(
+    colorPalette["purple.600"],
+    colorPalette["purple.200"],
+  ),
+  "fg.accent.red": ld(colorPalette["red.500"], colorPalette["red.200"]),
   /**
    * Primary brand color useful for accented text, highlights, and subheadings
    */
-  "fg.brand": colorPalette["brand.700"],
+  "fg.brand": ld(colorPalette["brand.700"], colorPalette["brand.500"]),
   /**
    * Primary text color for page headings
    */
-  "fg.default": colorPalette["neutral.800"],
+  "fg.default": ld(colorPalette["neutral.800"], colorPalette["gray.100"]),
   /**
    * Primary text color when used on solid color bg
    */
-  "fg.default.inverse": colorPalette["white"],
+  "fg.default.inverse": ld(colorPalette["white"], colorPalette["neutral.900"]),
   /**
    * Disabled text color for more subtle, lower-contrast, and non-interactive text
    */
-  "fg.disabled": colorPalette["neutral.1200/32"],
+  "fg.disabled": ld(
+    colorPalette["neutral.1200/32"],
+    colorPalette["neutral.500"],
+  ),
   /**
    * Error text color for danger and error states
    */
-  "fg.error": colorPalette["red.700"],
-  "fg.information": colorPalette["blue.600"],
-  "fg.link": colorPalette["brand.500"],
-  "fg.link.hover": colorPalette["brand.600"],
-  "fg.link.visited": colorPalette["purple.500"],
+  "fg.error": ld(colorPalette["red.700"], colorPalette["red.500"]),
+  "fg.information": ld(colorPalette["blue.600"], colorPalette["blue.600"]),
+  "fg.link": ld(colorPalette["brand.500"], colorPalette["white"]),
+  "fg.link.hover": ld(colorPalette["brand.600"], colorPalette["white"]),
+  "fg.link.visited": ld(colorPalette["purple.500"], colorPalette["purple.200"]),
   /**
    * Secondary text color for labels and section headings
    */
-  "fg.secondary": colorPalette["neutral.700"],
+  "fg.secondary": ld(colorPalette["neutral.700"], colorPalette["slate.400"]),
   /**
    * Success text color
    */
-  "fg.success": colorPalette["green.700"],
+  "fg.success": ld(colorPalette["green.700"], colorPalette["green.200"]),
   /**
    * Tertiary text color for supporting, paragraph, and placeholder text
    */
-  "fg.tertiary": colorPalette["neutral.600"],
+  "fg.tertiary": ld(colorPalette["neutral.600"], colorPalette["neutral.600"]),
   /**
    * Warning text color
    */
-  "fg.warning": colorPalette["yellow.700"],
+  "fg.warning": ld(colorPalette["yellow.700"], colorPalette["yellow.500"]),
 
-  "outline.brand": colorPalette["brand.300"],
+  "outline.brand": ld(colorPalette["brand.300"], colorPalette["brand.300"]),
 
-  overlay: colorPalette["neutral.1200/32"],
+  overlay: ld(colorPalette["neutral.1200/32"], colorPalette["neutral.50/32"]),
 
-  surface: colorPalette["white"],
-} as const;
-
-export const colorsDark = {
-  ...colorPalette,
-
-  "bg.brand": colorPalette["brand.50"],
-  "bg.brand.solid": colorPalette["brand.500"],
-  "bg.brand.solid.hover": colorPalette["brand.600"],
-  "bg.disabled": colorPalette["neutral.1000"],
-  "bg.discovery": colorPalette["purple.900"],
-  "bg.error": colorPalette["red.50"],
-  "bg.error.solid": colorPalette["red.500"],
-  "bg.error.solid.hover": colorPalette["red.600"],
-  "bg.information": colorPalette["blue.900"],
-  "bg.information.solid": colorPalette["blue.600"],
-  "bg.input.disabled": colorPalette["neutral.1200/4"],
-  "bg.neutral": colorPalette["slate.800"],
-  "bg.neutral.inverse": colorPalette["neutral.100"],
-  "bg.neutral.inverse.hover": colorPalette["neutral.200"],
-  "bg.neutral.solid": colorPalette["neutral.100"],
-  "bg.neutral.solid.hover": colorPalette["neutral.800"],
-  "bg.success": colorPalette["green.900"],
-  "bg.success.solid": colorPalette["green.500"],
-  "bg.success.solid.hover": colorPalette["green.600"],
-  "bg.warning": colorPalette["yellow.50"],
-  "bg.warning.solid": colorPalette["yellow.500"],
-  "bg.warning.solid.hover": colorPalette["yellow.600"],
-
-  "border.active": colorPalette["neutral.500"],
-  "border.active.hover": colorPalette["neutral.600"],
-  "border.brand": colorPalette["brand.500"],
-  "border.default": colorPalette["gray.800"],
-  "border.disabled": colorPalette["neutral.75"],
-  "border.error": colorPalette["red.500"],
-  "border.secondary": colorPalette["neutral.150"],
-  "border.success": colorPalette["green.500"],
-  "border.tertiary": colorPalette["neutral.900"],
-  "border.warning": colorPalette["yellow.500"],
-
-  "fg.accent.blue": colorPalette["blue.200"],
-  "fg.accent.magenta": colorPalette["magenta.200"],
-  "fg.accent.purple": colorPalette["purple.200"],
-  "fg.accent.red": colorPalette["red.200"],
-  "fg.brand": colorPalette["brand.500"],
-  "fg.default": colorPalette["gray.100"],
-  "fg.default.inverse": colorPalette["neutral.900"],
-  "fg.disabled": colorPalette["neutral.500"],
-  "fg.error": colorPalette["red.500"],
-  "fg.information": colorPalette["blue.600"],
-  "fg.link": colorPalette["white"],
-  "fg.link.hover": colorPalette["white"],
-  "fg.link.visited": colorPalette["purple.200"],
-  "fg.secondary": colorPalette["slate.400"],
-  "fg.success": colorPalette["green.200"],
-  "fg.tertiary": colorPalette["neutral.600"],
-  "fg.warning": colorPalette["yellow.500"],
-
-  "outline.brand": colorPalette["brand.300"],
-
-  overlay: colorPalette["neutral.50/32"],
-
-  surface: colorPalette["gray.900"],
+  surface: ld(colorPalette["white"], colorPalette["gray.900"]),
 } as const;

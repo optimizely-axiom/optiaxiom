@@ -25,8 +25,7 @@ export function transformColorTokens(tree) {
           }),
         );
 
-      const light = docs.find((doc) => doc.displayName === "ColorsDoc");
-      const dark = docs.find((doc) => doc.displayName === "ColorsDarkDoc");
+      const doc = docs.find((doc) => doc.displayName === "ColorsDoc");
 
       const tree = fromMarkdown(
         [
@@ -36,17 +35,15 @@ export function transformColorTokens(tree) {
           `### Text`,
           "",
           `<ColorTokens
-            dark={${JSON.stringify(dark.props)}}
-            light={${JSON.stringify(light.props)}}
             namespace="fg"
+            props={${JSON.stringify(doc.props)}}
           />`,
           "",
           `### Background`,
           "",
           `<ColorTokens
-            dark={${JSON.stringify(dark.props)}}
-            light={${JSON.stringify(light.props)}}
             namespace="bg"
+            props={${JSON.stringify(doc.props)}}
           />`,
         ].join("\n"),
         {
