@@ -23,6 +23,7 @@ const config: StorybookConfig = {
     reactDocgen: false,
   },
   viteFinal: async (config) => {
+    config.logLevel = "error";
     config.plugins?.push(reactDocgenPlugin());
     return config;
   },
