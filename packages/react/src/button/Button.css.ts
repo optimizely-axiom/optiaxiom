@@ -7,7 +7,6 @@ const group = styles.className;
 
 const accentColorVar = createVar();
 const hoverAccentColorVar = createVar();
-const solidTextColorVar = createVar();
 const subtleHoverAccentColorVar = createVar();
 export const subtleTextColorVar = createVar();
 
@@ -97,7 +96,6 @@ export const button = recipe({
         vars: {
           [accentColorVar]: theme.colors["bg.neutral.inverse"],
           [hoverAccentColorVar]: theme.colors["bg.neutral.inverse.hovered"],
-          [solidTextColorVar]: theme.colors["fg.default.inverse"],
           [subtleHoverAccentColorVar]: theme.colors["bg.neutral"],
           [subtleTextColorVar]: theme.colors["fg.default"],
         },
@@ -151,10 +149,7 @@ export const button = recipe({
       }),
       solid: style({
         backgroundColor: accentColorVar,
-        color: fallbackVar(
-          solidTextColorVar,
-          theme.colors["fg.default.inverse"],
-        ),
+        color: theme.colors["fg.default.inverse"],
 
         selectors: {
           "&:hover:not([data-disabled], [data-loading])": {
