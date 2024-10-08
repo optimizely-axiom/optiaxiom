@@ -37,6 +37,11 @@ async function importTokens(file) {
 
   /** @type {Record<string, Token & { type: 'color' | 'number' }>} */
   const tokens = {
+    "Colors/Neutral/300": {
+      name: "Colors/Neutral/300",
+      type: "color",
+      value: "#B8BECB",
+    },
     "Colors/Neutral/1200": {
       name: "Colors/Neutral/1200",
       type: "color",
