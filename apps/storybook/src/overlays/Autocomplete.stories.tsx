@@ -5,13 +5,13 @@ import {
   Autocomplete,
   AutocompleteContent,
   AutocompleteEmptyItem,
-  AutocompleteInput,
   AutocompleteItem,
   AutocompleteItemIndicator,
   AutocompleteList,
   AutocompleteTrigger,
 } from "@optiaxiom/react/unstable";
-import { useState } from "react";
+import { expect, screen, userEvent } from "@storybook/test";
+import { useEffect, useState } from "react";
 
 type Story = StoryObj<typeof Autocomplete>;
 
@@ -81,9 +81,7 @@ export const Basic: Story = {
           );
         }}
       >
-        <AutocompleteTrigger>
-          <AutocompleteInput placeholder="Search a Language" w="208" />
-        </AutocompleteTrigger>
+        <AutocompleteTrigger placeholder="Search a Language" w="208" />
 
         <AutocompleteContent>
           <AutocompleteList>
@@ -108,6 +106,29 @@ export const WithLabel: Story = {
       <Story />
     </Field>
   ),
+  play: async ({ canvas }) => {
+    await userEvent.tab();
+    const input = canvas.getByRole("combobox");
+    await userEvent.click(input);
+    await userEvent.click(
+      await screen.findByRole("option", { name: "French" }),
+    );
+    await userEvent.type(
+      canvas.getByPlaceholderText("Search a Language"),
+      "Ger",
+    );
+    await userEvent.tab();
+    await expect(screen.getByPlaceholderText("Search a Language")).toHaveValue(
+      "French",
+    );
+
+    await userEvent.click(input);
+    await userEvent.click(await screen.findByText("Urdu"));
+    await userEvent.click(input);
+    const selectedItem = await screen.findByText("Urdu");
+    await expect(selectedItem).toHaveAttribute("aria-selected", "true");
+    await userEvent.tab();
+  },
 };
 
 export const Disabled: Story = {
@@ -201,9 +222,8 @@ export const Controlled: Story = {
           onValueChange={setValue}
           value={value}
         >
-          <AutocompleteTrigger>
-            <AutocompleteInput placeholder="Search a book" w="208" />
-          </AutocompleteTrigger>
+          <AutocompleteTrigger placeholder="Search a book" />
+
           <AutocompleteContent>
             <AutocompleteList>
               {(item: (typeof books)[number]) => (
@@ -218,6 +238,47 @@ export const Controlled: Story = {
 
         <Text>Selected Value: {value ? value.title : "None"}</Text>
       </Flex>
+    );
+  },
+};
+
+export const AsyncLoading: Story = {
+  render: function AsyncLoading(args) {
+    const [items, setItems] = useState<string[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+      setTimeout(() => {
+        setItems(languages);
+        setIsLoading(false);
+      }, 3000);
+    }, []);
+
+    const fetchData = (query: string) => {
+      setIsLoading(true);
+      setTimeout(() => {
+        const filteredLanguages = languages.filter((lang) =>
+          lang.toLowerCase().includes(query.toLowerCase()),
+        );
+        setItems(filteredLanguages);
+        setIsLoading(false);
+      }, 500);
+    };
+
+    return (
+      <Autocomplete
+        {...args}
+        items={items}
+        onInputValueChange={(value) => fetchData(value)}
+      >
+        <AutocompleteTrigger placeholder="Search a language" w="208" />
+        <AutocompleteContent loading={isLoading}>
+          <AutocompleteList>
+            {(item) => <AutocompleteItem>{item}</AutocompleteItem>}
+          </AutocompleteList>
+          <AutocompleteEmptyItem>No results found</AutocompleteEmptyItem>
+        </AutocompleteContent>
+      </Autocomplete>
     );
   },
 };

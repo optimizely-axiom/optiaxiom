@@ -22,7 +22,7 @@ export const AutocompleteTrigger = forwardRef<
         <SearchInput
           onValueClear={() => downshift.reset()}
           ref={ref}
-          withIcon={false}
+          withSearchIcon={false}
           {...downshift.getInputProps({
             ...restProps,
             disabled,
