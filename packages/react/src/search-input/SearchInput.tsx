@@ -12,11 +12,22 @@ import { IconX } from "../icons/IconX";
 import { Input } from "../input";
 import * as styles from "./SearchInput.css";
 
-type SearchProps = ComponentPropsWithRef<typeof Input>;
+type SearchProps = {
+  onValueClear?: () => void;
+  withSearchIcon?: boolean;
+} & ComponentPropsWithRef<typeof Input>;
 
 export const SearchInput = forwardRef<HTMLInputElement, SearchProps>(
   (
-    { className, defaultValue = "", onChange, value: valueProp, ...props },
+    {
+      className,
+      defaultValue = "",
+      onChange,
+      onValueClear,
+      value: valueProp,
+      withSearchIcon = true,
+      ...props
+    },
     outerRef,
   ) => {
     const innerRef = useRef<HTMLInputElement>(null);
@@ -39,13 +50,14 @@ export const SearchInput = forwardRef<HTMLInputElement, SearchProps>(
 
                 forceValueChange(innerRef.current, "");
                 innerRef.current.focus();
+                onValueClear?.();
               }}
               tabIndex={-1}
               {...styles.clear()}
             />
           )
         }
-        addonBefore={<IconMagnifyingGlass />}
+        addonBefore={withSearchIcon && <IconMagnifyingGlass />}
         autoComplete="off"
         onChange={(event) => {
           onChange?.(event);
