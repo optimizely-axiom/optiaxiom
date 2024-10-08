@@ -1,14 +1,11 @@
 import type { Preview } from "@storybook/react";
 
-import * as components from "@optiaxiom/react";
-Object.assign(window, components);
-require("raw-loader!../../../packages/react/dist/index.d.ts");
-
+import { AxiomProvider, TransitionGlobalConfig } from "@optiaxiom/react";
 import isChromatic from "chromatic/isChromatic";
 
 import "./preview.css";
 
-components.TransitionGlobalConfig.skipAnimations = isChromatic();
+TransitionGlobalConfig.skipAnimations = isChromatic();
 
 export const loaders = isChromatic()
   ? [
@@ -33,9 +30,9 @@ export default {
   decorators: [
     (Story, context) =>
       context.parameters.useAxiomProvider ? (
-        <components.AxiomProvider>
+        <AxiomProvider>
           <Story />
-        </components.AxiomProvider>
+        </AxiomProvider>
       ) : (
         <Story />
       ),
