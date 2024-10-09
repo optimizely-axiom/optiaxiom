@@ -6,9 +6,10 @@ import { recipe, type RecipeVariants } from "../vanilla-extract";
 const group = styles.className;
 
 const accentColorVar = createVar();
-const solidAccentColorVar = createVar();
-const solidTextColorVar = createVar();
-const subtleAccentColorVar = createVar();
+const hoverAccentColorVar = createVar();
+const pressedAccentColorVar = createVar();
+const subtleHoverOutlineColorVar = createVar();
+const subtleOutlineColorVar = createVar();
 export const subtleTextColorVar = createVar();
 
 const paddingInlineVar = createVar();
@@ -34,9 +35,6 @@ export const button = recipe({
       userSelect: "none",
 
       selectors: {
-        "&:active:not([data-disabled], [data-loading])": {
-          boxShadow: theme.boxShadow.inner,
-        },
         "&:is(:focus-visible, :has(:focus-visible)):not([data-disabled], [data-loading])":
           {
             outline: `2px solid ${theme.colors["outline.brand"]}`,
@@ -89,24 +87,25 @@ export const button = recipe({
       danger: style({
         vars: {
           [accentColorVar]: theme.colors["bg.error.solid"],
-          [solidAccentColorVar]: theme.colors["bg.error.solid.hover"],
-          [subtleAccentColorVar]: theme.colors["bg.error"],
+          [hoverAccentColorVar]: theme.colors["bg.error.solid.hover"],
+          [pressedAccentColorVar]: theme.colors["bg.error.solid.pressed"],
         },
       }),
       neutral: style({
         vars: {
           [accentColorVar]: theme.colors["bg.neutral.inverse"],
-          [solidAccentColorVar]: theme.colors["bg.neutral.inverse.hover"],
-          [solidTextColorVar]: theme.colors["fg.default.inverse"],
-          [subtleAccentColorVar]: theme.colors["bg.input.disabled"],
+          [hoverAccentColorVar]: theme.colors["bg.neutral.inverse.hover"],
+          [pressedAccentColorVar]: theme.colors["bg.neutral.inverse.pressed"],
+          [subtleHoverOutlineColorVar]: theme.colors["border.default"],
+          [subtleOutlineColorVar]: theme.colors["border.default"],
           [subtleTextColorVar]: theme.colors["fg.default"],
         },
       }),
       primary: style({
         vars: {
           [accentColorVar]: theme.colors["bg.brand.solid"],
-          [solidAccentColorVar]: theme.colors["bg.brand.solid.hover"],
-          [subtleAccentColorVar]: theme.colors["bg.brand"],
+          [hoverAccentColorVar]: theme.colors["bg.brand.solid.hover"],
+          [pressedAccentColorVar]: theme.colors["bg.brand.solid.pressed"],
         },
       }),
     },
@@ -135,13 +134,24 @@ export const button = recipe({
     variant: {
       outline: style({
         backgroundColor: "transparent",
-        border: `1px solid ${accentColorVar}`,
+        border: `1px solid ${fallbackVar(subtleOutlineColorVar, accentColorVar)}`,
         color: fallbackVar(subtleTextColorVar, accentColorVar),
         paddingInline: `calc(${paddingInlineVar} - 1px)`,
 
         selectors: {
-          "&:hover:not([data-disabled], [data-loading])": {
-            backgroundColor: subtleAccentColorVar,
+          "&:active:not([data-disabled], [data-loading])": {
+            backgroundColor: theme.colors["bg.neutral.hover"],
+            borderColor: fallbackVar(
+              subtleHoverOutlineColorVar,
+              hoverAccentColorVar,
+            ),
+          },
+          "&:hover:not(:active, [data-disabled], [data-loading])": {
+            backgroundColor: theme.colors["bg.input.disabled"],
+            borderColor: fallbackVar(
+              subtleHoverOutlineColorVar,
+              hoverAccentColorVar,
+            ),
           },
           "&[data-disabled]": {
             borderColor: theme.colors["border.disabled"],
@@ -151,14 +161,14 @@ export const button = recipe({
       }),
       solid: style({
         backgroundColor: accentColorVar,
-        color: fallbackVar(
-          solidTextColorVar,
-          theme.colors["fg.default.inverse"],
-        ),
+        color: theme.colors["fg.default.inverse"],
 
         selectors: {
-          "&:hover:not([data-disabled], [data-loading])": {
-            backgroundColor: solidAccentColorVar,
+          "&:active:not([data-disabled], [data-loading])": {
+            backgroundColor: pressedAccentColorVar,
+          },
+          "&:hover:not(:active, [data-disabled], [data-loading])": {
+            backgroundColor: hoverAccentColorVar,
           },
           "&[data-disabled]": {
             backgroundColor: theme.colors["bg.input.disabled"],
@@ -174,9 +184,13 @@ export const button = recipe({
         color: fallbackVar(subtleTextColorVar, accentColorVar),
 
         selectors: {
-          '&:hover:not([data-disabled], [data-loading], [data-state="active"], [data-state="on"])':
+          '&:active:not([data-disabled], [data-loading], [data-state="active"], [data-state="on"])':
             {
-              backgroundColor: subtleAccentColorVar,
+              backgroundColor: theme.colors["bg.neutral.hover"],
+            },
+          '&:hover:not(:active, [data-disabled], [data-loading], [data-state="active"], [data-state="on"])':
+            {
+              backgroundColor: theme.colors["bg.input.disabled"],
             },
           '&:is([data-state="active"], [data-state="on"])': {
             backgroundColor: theme.colors["bg.brand"],
@@ -190,15 +204,6 @@ export const button = recipe({
     },
   },
   variantsCompounded: [
-    {
-      style: style({
-        borderColor: theme.colors["border.default"],
-      }),
-      variants: {
-        colorScheme: "neutral",
-        variant: "outline",
-      },
-    },
     {
       style: style({
         vars: {
