@@ -20,7 +20,7 @@
     "yargs": "^17.7.2"
   },
   "devDependencies": {
-    "@types/node": "^20.16.10",
+    "@types/node": "^20.16.11",
     "@types/yargs": "^17.0.33",
     "@typescript-eslint/eslint-plugin": "^7.18.0",
     "@typescript-eslint/parser": "^7.18.0",
@@ -31,7 +31,7 @@
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-testing-library": "^6.3.0",
     "fast-glob": "^3.3.2",
-    "globals": "^15.10.0",
+    "globals": "^15.11.0",
     "react-docgen-typescript": "^2.2.2",
     "typescript-eslint": "^7.18.0"
   }
