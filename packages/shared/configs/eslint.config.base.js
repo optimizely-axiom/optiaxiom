@@ -1,9 +1,9 @@
+import { fixupPluginRules } from "@eslint/compat";
 // @ts-expect-error -- no types
 import eslint from "@eslint/js";
 // @ts-expect-error -- no types
 import jsxA11y from "eslint-plugin-jsx-a11y";
-// @ts-expect-error -- no types
-import perfectionistNatural from "eslint-plugin-perfectionist/configs/recommended-natural";
+import perfectionistNatural from "eslint-plugin-perfectionist";
 // @ts-expect-error -- no types
 import reactRecommended from "eslint-plugin-react/configs/recommended.js";
 // @ts-expect-error -- no types
@@ -24,13 +24,13 @@ export default tsEslint.config(
     },
   },
   {
-    ...perfectionistNatural,
+    ...perfectionistNatural.configs["recommended-natural"],
     rules: {
-      ...perfectionistNatural.rules,
+      ...perfectionistNatural.configs["recommended-natural"].rules,
       "perfectionist/sort-objects": [
         "error",
         {
-          "custom-groups": {
+          customGroups: {
             xs: ["xs", "-xs", "tighter"],
             sm: ["sm", "-sm", "tight"],
             md: ["md", "-md", "normal"],
@@ -39,7 +39,7 @@ export default tsEslint.config(
             Nxl: ["*xl", "widest"],
           },
           groups: ["xs", "sm", "md", "lg", "xl", "Nxl", "unknown"],
-          "partition-by-new-line": true,
+          partitionByNewLine: true,
           type: "natural",
         },
       ],
@@ -135,7 +135,8 @@ export default tsEslint.config(
     },
     rules: {
       "@typescript-eslint/await-thenable": "error",
-      "@typescript-eslint/ban-types": [
+      "@typescript-eslint/no-floating-promises": "error",
+      "@typescript-eslint/no-restricted-types": [
         "error",
         {
           types: {
@@ -144,7 +145,6 @@ export default tsEslint.config(
           },
         },
       ],
-      "@typescript-eslint/no-floating-promises": "error",
       "local/missing-recipe-classname": "error",
       "local/no-useless-clsx": "error",
       "local/prefer-styles-import": "error",
@@ -154,7 +154,7 @@ export default tsEslint.config(
   {
     files: ["**/*.spec.{ts,tsx}"],
     plugins: {
-      "testing-library": testingLibrary,
+      "testing-library": fixupPluginRules(testingLibrary),
     },
     rules: {
       ...testingLibrary.configs.react.rules,

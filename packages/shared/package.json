@@ -20,19 +20,20 @@
     "yargs": "^17.7.2"
   },
   "devDependencies": {
+    "@eslint/compat": "^1.2.0",
     "@types/node": "^20.16.11",
     "@types/yargs": "^17.0.33",
-    "@typescript-eslint/eslint-plugin": "^7.18.0",
-    "@typescript-eslint/parser": "^7.18.0",
-    "eslint": "^8.57.1",
+    "@typescript-eslint/eslint-plugin": "^8.8.1",
+    "@typescript-eslint/parser": "^8.8.1",
+    "eslint": "^9.12.0",
     "eslint-plugin-jsx-a11y": "^6.10.0",
-    "eslint-plugin-perfectionist": "^2.11.0",
+    "eslint-plugin-perfectionist": "^3.8.0",
     "eslint-plugin-react": "^7.37.1",
-    "eslint-plugin-react-hooks": "^4.6.2",
+    "eslint-plugin-react-hooks": "5.1.0-rc-ed966dac-20241007",
     "eslint-plugin-testing-library": "^6.3.0",
     "fast-glob": "^3.3.2",
     "globals": "^15.11.0",
     "react-docgen-typescript": "^2.2.2",
-    "typescript-eslint": "^7.18.0"
+    "typescript-eslint": "^8.8.1"
   }
 }
