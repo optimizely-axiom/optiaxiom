@@ -16,6 +16,7 @@ export const box = recipe({
         fontFeatureSettings: '"cv02", "cv03", "cv04"',
         margin: 0,
         padding: 0,
+
         selectors: {
           "&:focus-visible": {
             vars: {
