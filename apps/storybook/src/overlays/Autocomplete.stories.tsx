@@ -206,9 +206,9 @@ export const Controlled: Story = {
       <Flex alignItems="center">
         <Autocomplete
           isItemDisabled={(book) => book.disabled}
+          items={items}
           itemToKey={(book) => book?.id}
           itemToString={(book) => book?.title ?? ""}
-          items={items}
           onInputValueChange={(inputValue) => {
             setItems(
               books.filter(

@@ -1,6 +1,6 @@
 import * as styles from "../control-base/ControlBase.css";
 import { theme } from "../theme";
-import { type RecipeVariants, recipe, style } from "../vanilla-extract";
+import { recipe, type RecipeVariants, style } from "../vanilla-extract";
 
 const marker = style({});
 

@@ -13,7 +13,7 @@ import { PresenceContext } from "../use-presence";
 export function AnimatePresence({
   children,
 }: {
-  children?: ReactElement | false;
+  children?: false | ReactElement;
 }) {
   const [exiting, setExiting] = useState<Map<RefObject<undefined>, boolean>>(
     new Map(),

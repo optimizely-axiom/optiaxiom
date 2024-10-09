@@ -1,4 +1,4 @@
-import { type KeyboardEvent, forwardRef } from "react";
+import { forwardRef, type KeyboardEvent } from "react";
 
 import { type BoxProps } from "../box";
 import { Button } from "../button";

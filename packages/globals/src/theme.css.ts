@@ -48,5 +48,5 @@ export type MapLeafNodes<Obj, LeafType> = {
       : never;
 };
 type NullableTokens = {
-  [key: string]: NullableTokens | null | string;
+  [key: string]: null | NullableTokens | string;
 };

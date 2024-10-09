@@ -1,7 +1,7 @@
 import { theme } from "../theme";
 import {
-  type RecipeVariants,
   recipe,
+  type RecipeVariants,
   responsiveStyle,
   style,
 } from "../vanilla-extract";

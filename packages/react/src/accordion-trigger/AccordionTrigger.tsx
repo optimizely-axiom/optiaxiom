@@ -1,5 +1,5 @@
 import * as RadixAccordion from "@radix-ui/react-accordion";
-import { type ReactNode, forwardRef } from "react";
+import { forwardRef, type ReactNode } from "react";
 
 import { useAccordionContext } from "../accordion-context";
 import { Box, type BoxProps } from "../box";

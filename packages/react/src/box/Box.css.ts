@@ -9,13 +9,13 @@ export const box = recipe({
   base: style({
     "@layer": {
       [layers.reset]: {
-        WebkitFontSmoothing: "antialiased",
         border: `0 solid ${theme.colors["border.default"]}`,
         boxSizing: "border-box",
         fontFamily: theme.fontFamily.sans,
         fontFeatureSettings: '"cv02", "cv03", "cv04"',
         margin: 0,
         padding: 0,
+        WebkitFontSmoothing: "antialiased",
 
         selectors: {
           "&:focus-visible": {
@@ -87,9 +87,9 @@ export const box = recipe({
            */
           "&:is(button, input:where([type=button], [type=reset], [type=submit]))":
             {
-              WebkitAppearance: "button",
               backgroundColor: "transparent" /* 2 */,
               backgroundImage: "none" /* 2 */,
+              WebkitAppearance: "button",
             },
 
           /**
@@ -97,8 +97,8 @@ export const box = recipe({
            * 2. Correct the outline style in Safari.
            */
           "&:is([type=search])": {
-            WebkitAppearance: "textfield" /* 1 */,
             outlineOffset: "-2px" /* 2 */,
+            WebkitAppearance: "textfield" /* 1 */,
           },
 
           /**
@@ -106,8 +106,8 @@ export const box = recipe({
            * 2. Change font properties to `inherit` in Safari.
            */
           "&::-webkit-file-upload-button": {
-            WebkitAppearance: "button" /* 1 */,
             font: "inherit" /* 2 */,
+            WebkitAppearance: "button" /* 1 */,
           },
 
           "&:is(ol, ul, menu)": {

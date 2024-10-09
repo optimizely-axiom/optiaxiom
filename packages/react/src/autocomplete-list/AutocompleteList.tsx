@@ -9,7 +9,7 @@ type AutocompleteListProps = {
 };
 
 export function AutocompleteList({ children }: AutocompleteListProps) {
-  const { downshift, itemToKey, items } =
+  const { downshift, items, itemToKey } =
     useAutocompleteContext("AutocompleteList");
 
   return (

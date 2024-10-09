@@ -1,10 +1,10 @@
 import { Slot, Slottable } from "@radix-ui/react-slot";
 import {
-  type ElementType,
-  type ReactNode,
   cloneElement,
+  type ElementType,
   forwardRef,
   isValidElement,
+  type ReactNode,
   useEffect,
 } from "react";
 

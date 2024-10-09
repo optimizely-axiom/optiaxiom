@@ -2,8 +2,8 @@ import { Box, Flex } from "@optiaxiom/react";
 import {
   Children,
   type ComponentPropsWithRef,
-  type ReactNode,
   isValidElement,
+  type ReactNode,
 } from "react";
 
 import { Item } from "./Item";

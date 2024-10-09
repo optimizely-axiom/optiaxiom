@@ -1,7 +1,7 @@
 import * as styles from "../button-group/ButtonGroup.css";
 import { theme } from "../theme";
 import { createVar, fallbackVar, style } from "../vanilla-extract";
-import { type RecipeVariants, recipe } from "../vanilla-extract";
+import { recipe, type RecipeVariants } from "../vanilla-extract";
 
 const group = styles.className;
 

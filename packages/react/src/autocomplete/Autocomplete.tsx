@@ -1,5 +1,5 @@
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
-import { type UseComboboxProps, useCombobox } from "downshift";
+import { useCombobox, type UseComboboxProps } from "downshift";
 import { type ReactNode, useEffect, useState } from "react";
 
 import { AutocompleteContextProvider } from "../autocomplete-context";
@@ -19,18 +19,18 @@ type AutocompleteProps<Item> = {
   UseComboboxProps<Item>,
   | "initialHighlightedIndex"
   | "isItemDisabled"
+  | "items"
   | "itemToKey"
   | "itemToString"
-  | "items"
 >;
 
 export function Autocomplete<Item>({
   children,
   defaultValue,
   disabled,
+  items,
   itemToKey = (value) => value,
   itemToString = (value) => (value ? String(value) : ""),
-  items,
   onInputValueChange,
   onValueChange,
   value,
@@ -70,9 +70,9 @@ export function Autocomplete<Item>({
     inputId,
     inputValue,
     isOpen,
+    items,
     itemToKey,
     itemToString,
-    items,
     onHighlightedIndexChange({ highlightedIndex }) {
       setHighlightedIndex(highlightedIndex);
     },
@@ -99,8 +99,8 @@ export function Autocomplete<Item>({
         disabled={disabled}
         downshift={downshift}
         highlightedItem={items[downshift.highlightedIndex]}
-        itemToKey={itemToKey}
         items={items}
+        itemToKey={itemToKey}
         setInputValue={setInputValue}
       >
         {children}

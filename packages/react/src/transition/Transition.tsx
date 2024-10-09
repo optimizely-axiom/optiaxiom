@@ -1,5 +1,5 @@
 import { Slot } from "@radix-ui/react-slot";
-import { type ReactElement, forwardRef, useEffect, useState } from "react";
+import { forwardRef, type ReactElement, useEffect, useState } from "react";
 
 import { usePresence } from "../use-presence";
 import * as styles from "./Transition.css";

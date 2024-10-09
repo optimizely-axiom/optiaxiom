@@ -8,13 +8,13 @@ export function createSprinklesMerge(
   ...properties: Array<{
     styles: Record<
       string,
+      | { mappings: string[] }
       | {
           values: Record<
             string,
             { conditions?: Record<string, string>; defaultClass: string }
           >;
         }
-      | { mappings: string[] }
     >;
   }>
 ) {

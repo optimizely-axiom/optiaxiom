@@ -1,11 +1,11 @@
 import { Slot, Slottable } from "@radix-ui/react-slot";
 import { useId } from "@reach/auto-id";
 import {
-  type ElementType,
-  type ReactNode,
   cloneElement,
+  type ElementType,
   forwardRef,
   isValidElement,
+  type ReactNode,
 } from "react";
 
 import { Box, type BoxProps } from "../box";

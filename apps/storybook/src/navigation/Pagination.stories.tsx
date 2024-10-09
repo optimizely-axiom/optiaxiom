@@ -5,11 +5,11 @@ import { expect, userEvent } from "@storybook/test";
 import { useState } from "react";
 
 export default {
-  argTypes: {
-    onPageChange: { action: "pageChange" },
-  },
   args: {
     total: 50,
+  },
+  argTypes: {
+    onPageChange: { action: "pageChange" },
   },
   component: Pagination,
 } as Meta<typeof Pagination>;

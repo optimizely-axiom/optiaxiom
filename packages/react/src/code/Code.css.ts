@@ -9,8 +9,8 @@ export const code = recipe({
       rounded: "sm",
     },
     style({
-      WebkitFontSmoothing: "auto",
       fontSize: "0.875em",
+      WebkitFontSmoothing: "auto",
     }),
   ],
 });

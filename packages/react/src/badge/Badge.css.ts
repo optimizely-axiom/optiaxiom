@@ -1,8 +1,8 @@
 import { theme } from "../theme";
 import {
-  type RecipeVariants,
   createVar,
   recipe,
+  type RecipeVariants,
   style,
 } from "../vanilla-extract";
 

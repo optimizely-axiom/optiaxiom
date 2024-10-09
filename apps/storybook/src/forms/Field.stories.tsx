@@ -4,6 +4,10 @@ import { Field, Flex, Input, Textarea } from "@optiaxiom/react";
 import { IconCalendar } from "@tabler/icons-react";
 
 export default {
+  args: {
+    children: "input",
+    label: "Label",
+  },
   argTypes: {
     children: {
       control: { type: "select" },
@@ -13,10 +17,6 @@ export default {
       },
       options: ["input", "textarea"],
     },
-  },
-  args: {
-    children: "input",
-    label: "Label",
   },
   component: Field,
 } as Meta<typeof Field>;
