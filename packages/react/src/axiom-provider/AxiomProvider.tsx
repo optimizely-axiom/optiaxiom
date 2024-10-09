@@ -10,6 +10,7 @@ import { version } from "../../package.json";
 import { ThemeProvider } from "../theme-provider";
 import { ToastProvider } from "../toast-provider";
 
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 interface ToastProviderProps
   extends ComponentPropsWithoutRef<typeof ToastProvider> {}
 
