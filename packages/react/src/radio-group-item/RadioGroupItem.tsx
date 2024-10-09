@@ -1,5 +1,5 @@
 import * as RadixRadio from "@radix-ui/react-radio-group";
-import { type ReactNode, forwardRef } from "react";
+import { forwardRef, type ReactNode } from "react";
 
 import { Box, type BoxProps } from "../box";
 import { ControlBase } from "../control-base";

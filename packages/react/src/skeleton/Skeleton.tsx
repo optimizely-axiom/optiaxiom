@@ -1,4 +1,4 @@
-import { type ReactElement, cloneElement, forwardRef } from "react";
+import { cloneElement, forwardRef, type ReactElement } from "react";
 
 import type { Sprinkles } from "../sprinkles";
 

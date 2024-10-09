@@ -1,4 +1,4 @@
-import { type ComponentPropsWithRef, type ReactNode, forwardRef } from "react";
+import { type ComponentPropsWithRef, forwardRef, type ReactNode } from "react";
 
 import { type BoxProps } from "../box";
 import { useComboboxContext } from "../combobox-context";

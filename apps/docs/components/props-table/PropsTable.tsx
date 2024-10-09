@@ -5,8 +5,8 @@ import { Link } from "nextra-theme-docs";
 import {
   Children,
   type ComponentType,
-  type ReactNode,
   isValidElement,
+  type ReactNode,
 } from "react";
 
 import { PropType } from "../prop-type";

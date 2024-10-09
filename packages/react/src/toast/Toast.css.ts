@@ -1,10 +1,10 @@
 import { theme } from "../theme";
 import * as styles from "../toast-provider/ToastProvider.css";
 import {
-  type RecipeVariants,
   createVar,
   keyframes,
   recipe,
+  type RecipeVariants,
   style,
 } from "../vanilla-extract";
 

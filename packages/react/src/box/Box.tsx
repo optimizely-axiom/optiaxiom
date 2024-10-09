@@ -10,8 +10,8 @@ import type { ExtendProps } from "../utils";
 
 import { version } from "../../package.json";
 import {
-  type Sprinkles,
   extractSprinkles,
+  type Sprinkles,
   sprinkles,
   sprinklesMerge,
 } from "../sprinkles";

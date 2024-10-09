@@ -1,5 +1,5 @@
 import { mapValues } from "../utils";
-import { type RecipeVariants, recipe, style } from "../vanilla-extract";
+import { recipe, type RecipeVariants, style } from "../vanilla-extract";
 
 const translate = (dir: "down" | "left" | "right" | "up", value: number) => {
   if (dir === "down" || dir === "up") {

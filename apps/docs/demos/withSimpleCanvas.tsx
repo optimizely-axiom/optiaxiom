@@ -1,11 +1,11 @@
 import { Box, Flex, type Sprinkles } from "@optiaxiom/react";
 import {
   Children,
+  cloneElement,
   type ComponentPropsWithRef,
   type ComponentType,
-  type ReactElement,
-  cloneElement,
   isValidElement,
+  type ReactElement,
 } from "react";
 
 export const withSimpleCanvas = (

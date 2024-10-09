@@ -2,10 +2,10 @@ import { yellowStripes } from "@/demos/stripes";
 import { Box } from "@optiaxiom/react";
 import {
   Children,
-  type ComponentPropsWithRef,
-  type ReactElement,
   cloneElement,
+  type ComponentPropsWithRef,
   isValidElement,
+  type ReactElement,
 } from "react";
 
 import { Item } from "./Item";

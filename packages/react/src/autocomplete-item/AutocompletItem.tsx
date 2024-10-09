@@ -1,4 +1,4 @@
-import { type ReactNode, forwardRef } from "react";
+import { forwardRef, type ReactNode } from "react";
 
 import { useAutocompleteContext } from "../autocomplete-context";
 import { useAutocompleteListContext } from "../autocomplete-list-context";

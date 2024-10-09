@@ -4,8 +4,8 @@ import {
   Text,
   Toast,
   ToastAction,
-  ToastTitle,
   toaster,
+  ToastTitle,
 } from "@optiaxiom/react";
 import { IconTrash } from "@tabler/icons-react";
 import { useState } from "react";

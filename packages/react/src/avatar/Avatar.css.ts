@@ -1,7 +1,7 @@
 import { theme } from "../theme";
 import { mapValues } from "../utils";
 import { style } from "../vanilla-extract";
-import { type RecipeVariants, recipe } from "../vanilla-extract";
+import { recipe, type RecipeVariants } from "../vanilla-extract";
 import * as styles from "./../avatar-group/AvatarGroup.css";
 
 export const avatar = recipe({

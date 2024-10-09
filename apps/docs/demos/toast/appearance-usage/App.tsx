@@ -1,6 +1,6 @@
 import type { ComponentPropsWithRef } from "react";
 
-import { Button, Toast, ToastTitle, toaster } from "@optiaxiom/react";
+import { Button, Toast, toaster, ToastTitle } from "@optiaxiom/react";
 
 export function App({
   colorScheme,

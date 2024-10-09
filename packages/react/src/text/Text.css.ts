@@ -1,5 +1,5 @@
 import { mapValues } from "../utils";
-import { type RecipeVariants, recipe, style } from "../vanilla-extract";
+import { recipe, type RecipeVariants, style } from "../vanilla-extract";
 
 const truncateBase = [
   { overflow: "hidden" } as const,
@@ -8,8 +8,8 @@ const truncateBase = [
 const lineClampBase = [
   ...truncateBase,
   style({
-    WebkitBoxOrient: "vertical",
     display: "-webkit-box",
+    WebkitBoxOrient: "vertical",
   }),
 ];
 

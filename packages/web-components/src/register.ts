@@ -7,12 +7,12 @@ import type { ReactElement } from "react";
 import { ThemeProvider } from "@optiaxiom/react";
 import { options } from "preact";
 import {
-  type ComponentType,
-  type FunctionComponent,
   cloneElement,
+  type ComponentType,
   createContext,
   createElement,
   forwardRef,
+  type FunctionComponent,
   useContext,
   useLayoutEffect,
 } from "react";
@@ -44,7 +44,7 @@ export function register<P extends object>(
   } = {},
 ) {
   const withPreactElement = (element: HTMLElement) => {
-    let vdom: ReactElement<object> | null = null;
+    let vdom: null | ReactElement<object> = null;
 
     const root = createRoot(element.attachShadow({ mode: "open" }));
     if (element.shadowRoot) {
@@ -299,14 +299,14 @@ function toVdom<P>(
   element: unknown,
   Component?: ComponentType<P>,
   isProcessingSlot = false,
-): ReactElement | null {
+): null | ReactElement {
   if (!(element instanceof Element)) {
     return null;
   }
 
   const isRootNode = !!Component;
 
-  const props: Record<string, ReactElement | null | string> = {};
+  const props: Record<string, null | ReactElement | string> = {};
   for (const { name, value } of element.attributes) {
     if (isProcessingSlot && name === "slot") {
       continue;

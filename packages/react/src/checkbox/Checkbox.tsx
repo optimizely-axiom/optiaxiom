@@ -1,5 +1,5 @@
 import * as RadixCheckbox from "@radix-ui/react-checkbox";
-import { type ReactNode, forwardRef } from "react";
+import { forwardRef, type ReactNode } from "react";
 
 import { Box, type BoxProps } from "../box";
 import { ControlBase } from "../control-base";

@@ -1,8 +1,8 @@
 import {
-  type ReactNode,
   cloneElement,
   forwardRef,
   isValidElement,
+  type ReactNode,
 } from "react";
 
 import { Box, type BoxProps } from "../box";

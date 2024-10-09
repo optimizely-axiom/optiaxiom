@@ -2,9 +2,9 @@ import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import { Slot } from "@radix-ui/react-slot";
 import {
   type ElementType,
+  forwardRef,
   type MouseEvent,
   type ReactNode,
-  forwardRef,
   useRef,
 } from "react";
 

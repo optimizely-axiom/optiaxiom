@@ -1,4 +1,4 @@
-import { type RecipeVariants, recipe, style } from "../vanilla-extract";
+import { recipe, type RecipeVariants, style } from "../vanilla-extract";
 
 export const content = recipe({
   base: [

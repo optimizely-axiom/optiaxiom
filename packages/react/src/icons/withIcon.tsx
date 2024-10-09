@@ -1,7 +1,7 @@
 import {
   type ComponentPropsWithoutRef,
-  type ReactNode,
   forwardRef,
+  type ReactNode,
 } from "react";
 
 export const withIcon = (

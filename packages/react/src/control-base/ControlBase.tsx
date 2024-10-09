@@ -1,10 +1,10 @@
 import * as RadixLabel from "@radix-ui/react-label";
 import { useId } from "@reach/auto-id";
 import {
-  type ReactElement,
-  type ReactNode,
   cloneElement,
   forwardRef,
+  type ReactElement,
+  type ReactNode,
 } from "react";
 
 import { Box, type BoxProps } from "../box";

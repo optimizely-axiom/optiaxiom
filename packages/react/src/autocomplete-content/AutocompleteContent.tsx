@@ -1,4 +1,4 @@
-import { type MouseEvent, forwardRef, useEffect, useRef } from "react";
+import { forwardRef, type MouseEvent, useEffect, useRef } from "react";
 
 import { useAutocompleteContext } from "../autocomplete-context";
 import { Box, type BoxProps } from "../box";

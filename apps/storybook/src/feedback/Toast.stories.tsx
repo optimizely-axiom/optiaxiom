@@ -4,12 +4,12 @@ import type { ComponentPropsWithoutRef } from "react";
 import {
   AxiomProvider,
   Button,
+  createToaster,
   Flex,
   Toast,
   ToastAction,
   ToastProvider,
   ToastTitle,
-  createToaster,
 } from "@optiaxiom/react";
 import { action } from "@storybook/addon-actions";
 import { expect, screen, userEvent, waitFor, within } from "@storybook/test";
@@ -20,6 +20,9 @@ type StoryProps = ComponentPropsWithoutRef<typeof Toast> &
   Pick<ComponentPropsWithoutRef<typeof ToastProvider>, "position">;
 
 export default {
+  args: {
+    children: <ToastTitle>This is an example toast message.</ToastTitle>,
+  },
   argTypes: {
     position: {
       control: "radio",
@@ -32,9 +35,6 @@ export default {
         "top-right",
       ],
     },
-  },
-  args: {
-    children: <ToastTitle>This is an example toast message.</ToastTitle>,
   },
   component: Toast,
   decorators: [

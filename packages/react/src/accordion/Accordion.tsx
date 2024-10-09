@@ -5,7 +5,7 @@ import type { ExtendProps } from "../utils";
 
 import { AccordionContextProvider } from "../accordion-context";
 import { Box, type BoxProps } from "../box";
-import { type Sprinkles, extractSprinkles } from "../sprinkles";
+import { extractSprinkles, type Sprinkles } from "../sprinkles";
 
 type AccordionProps = BoxProps<
   "div",
