@@ -20,12 +20,15 @@ export const Transition = forwardRef<HTMLDivElement, TransitionProps>(
 
     const [enter, setEnter] = useState(false);
     useEffect(() => {
-      isPresent && setEnter(true);
+      if (isPresent) {
+        setEnter(true);
+      }
     }, [isPresent]);
 
     useEffect(() => {
-      !isPresent &&
+      if (!isPresent) {
         setTimeout(safeToRemove, styles.transitionDuration[duration]);
+      }
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isPresent]);
 
