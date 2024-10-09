@@ -95,7 +95,7 @@
     "use-local-storage-state": "~17.0.0",
     "util": "^0.12.5",
     "validator": "13.7.0",
-    "yup": "^0.28.2"
+    "yup": "^0.28.3"
   },
   "devDependencies": {
     "@openapitools/openapi-generator-cli": "^1.0.8-4.2.2",
