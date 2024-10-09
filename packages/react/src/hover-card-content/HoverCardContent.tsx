@@ -65,7 +65,7 @@ export const HoverCardContent = forwardRef<
                   {withArrow && (
                     <RadixHoverCard.Arrow asChild>
                       <svg
-                        fill={theme.colors["surface"]}
+                        fill={theme.colors["bg.default"]}
                         height={4}
                         preserveAspectRatio="none"
                         stroke={theme.colors["border.secondary"]}

@@ -6,7 +6,7 @@ import beach from "./beach.jpg";
 export function App() {
   return (
     <Box
-      bg="surface"
+      bg="bg.default"
       maxW={["sm", "2xl"]}
       overflow="hidden"
       rounded="sm"

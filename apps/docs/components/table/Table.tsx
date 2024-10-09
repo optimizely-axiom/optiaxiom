@@ -8,7 +8,7 @@ export const Table = ({
   ...props
 }: ComponentPropsWithRef<typeof Box>) => (
   <Box
-    bg="surface"
+    bg="bg.default"
     border="1"
     fontSize="md"
     maxW="full"
