@@ -1,0 +1,197 @@
+{
+  "name": "flags",
+  "version": "0.1.0",
+  "private": true,
+  "// COMMENTS": {
+    "// START": "----- USE THIS BLOCK TO COMMENT THIS PACKAGE.JSON -----",
+    "dependencies": {
+      "react": "Should always match version of react-dom",
+      "react-dom": "Should always match version of react"
+    },
+    "scripts": {
+      "lint:fix": "Runs lint (with --fix) on all files in the /frontend/src directory (--max-warnings 0)",
+      "lint:nofix": "Runs lint (without --fix) on all files in the /frontend/src directory (--max-warnings 0)",
+      "test": "Runs all tests",
+      "test:watch": "Runs tests in jest watch mode",
+      "test:debug": "Runs tests in jest debug mode",
+      "swagger-codegen-backend": "Generates the Typescript type definitions for the backend application. Writes to types/backend"
+    },
+    "jest": {
+      "// COMMENTS": "Jest configuration for Create React App may only be done in package.json (not in jest.config.js)",
+      "coverageReporters": "Simplifies the default text reporter, enables lcov HTML reporter.",
+      "coverageThreshold": "Sets thresholds for coverage"
+    },
+    "// END": "---------------------------------------------------------"
+  },
+  "dependencies": {
+    "@datadog/browser-rum": "^4.19.1",
+    "@optimizely/axiom": "61.2.2",
+    "@optimizely/design-tokens": "^0.1.0",
+    "@optimizely/react-sdk": "^2.5.0",
+    "@optimizely/segment-sdk-wrapper": "^0.1.1",
+    "@optimizely/sentry-sdk-wrapper": "3.2.0",
+    "@testing-library/user-event": "^14.4.3",
+    "@types/classnames": "^2.2.10",
+    "@types/jest": "24.0.23",
+    "@types/lodash.isequal": "^4.5.0",
+    "@types/lodash.omit": "^4.5.6",
+    "@types/lodash.uniqueid": "^4.0.6",
+    "@types/luxon": "^1.25.0",
+    "@types/node": "12.12.9",
+    "@types/react": "^16.9.35",
+    "@types/react-codemirror": "^1.0.3",
+    "@types/react-dom": "^16.9.8",
+    "@types/react-helmet": "^6.1.0",
+    "@types/react-modal": "^3.10.5",
+    "@types/react-router-dom": "^5.1.5",
+    "@types/react-table": "^7.0.16",
+    "@types/single-spa-react": "^2.8.3",
+    "@types/yup": "^0.28.0",
+    "babel-jest": "^29.3.1",
+    "chance": "^1.1.9",
+    "classnames": "^2.2.6",
+    "codemirror": "^5.59.2",
+    "eslint-webpack-plugin": "^3.2.0",
+    "fast-deep-equal": "^3.1.3",
+    "fast-json-patch": "^3.0.0-1",
+    "formik": "^2.1.4",
+    "history": "^5.0.0",
+    "html-webpack-plugin": "^5.5.0",
+    "immer": "^9.0.18",
+    "jest": "^29.3.1",
+    "jshint": "^2.13.6",
+    "lodash.isequal": "^4.5.0",
+    "lodash.omit": "^4.5.0",
+    "lodash.uniqueid": "^4.0.1",
+    "luxon": "^1.25.0",
+    "minimatch": "3.0.5",
+    "mocha": "^8.2.1",
+    "mochawesome": "^6.2.1",
+    "moment": "^2.29.4",
+    "nanoid": "3.1.31",
+    "node-fetch": "2.6.8",
+    "node-polyfill-webpack-plugin": "^2.0.1",
+    "nth-check": "2.0.1",
+    "oui-icons": "^3.10.0",
+    "query-string": "^6.12.1",
+    "react": "16.14.0",
+    "react-app-rewired": "^2.1.5",
+    "react-codemirror2": "^7.2.1",
+    "react-dom": "16.14.0",
+    "react-helmet": "^6.1.0",
+    "react-modal": "^3.11.2",
+    "react-oui-icons": "^3.1.0",
+    "react-query": "^2.5.6",
+    "react-router": "6.4.4",
+    "react-router-dom": "6.4.4",
+    "react-table": "^7.1.0",
+    "sass": "^1.32.10",
+    "single-spa": "^4.4.1",
+    "single-spa-react": "^2.10.4",
+    "systemjs": "^6.1.5",
+    "systemjs-webpack-interop": "^1.1.2",
+    "typescript": "3.7.2",
+    "use-debounce": "^5.0.1",
+    "use-local-storage-state": "~17.0.0",
+    "util": "^0.12.5",
+    "validator": "13.7.0",
+    "yup": "^0.28.1"
+  },
+  "devDependencies": {
+    "@openapitools/openapi-generator-cli": "^1.0.8-4.2.2",
+    "@sentry/webpack-plugin": "^1.18.3",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "12.1.5",
+    "@testing-library/react-hooks": "^7.0.2",
+    "@typescript-eslint/eslint-plugin": "^5.43.0",
+    "@typescript-eslint/parser": "^5.43.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^8.27.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-config-react-app": "^6.0.0",
+    "eslint-plugin-cypress": "^2.12.1",
+    "eslint-plugin-flowtype": "^8.0.3",
+    "eslint-plugin-import": "^2.24.1",
+    "eslint-plugin-jest": "^27.1.5",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-react": "^7.31.10",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "eslint-plugin-sort-keys-fix": "^1.1.2",
+    "eslint-plugin-typescript-sort-keys": "^2.1.0",
+    "istanbul-reports": "^2.2.7",
+    "jest-fetch-mock": "^3.0.3",
+    "prettier": "^1.19.1",
+    "react-scripts": "5.0.0",
+    "ts-jest": "^29.0.0"
+  },
+  "resolutions": {
+    "minimatch": "3.0.5",
+    "nanoid": "3.1.31",
+    "node-fetch": "2.6.8",
+    "nth-check": "2.0.1",
+    "validator": "13.7.0",
+    "postcss": "8.4.32"
+  },
+  "scripts": {
+    "build": "BUILD_PATH=./dist react-app-rewired build",
+    "start": "react-app-rewired start",
+    "deploy": "./scripts/deploy.sh",
+    "test": "TZ=UTC react-app-rewired test --resetMocks=false --watchAll=false --coverage",
+    "test:watch": "TZ=UTC react-app-rewired test --resetMocks=false --watchAll=true",
+    "test:debug": "TZ=UTC react-app-rewired --inspect-brk test --resetMocks=false --runInBand --no-cache",
+    "test:nocache": "TZ=UTC react-app-rewired test --resetMocks=false --watchAll=false --coverage --no-cache",
+    "generate-openapi": "openapi-generator generate -g typescript-fetch -i ../backend/openapi.yaml -o $API_DIR --generate-alias-as-model --additional-properties=\"modelPropertyNaming='snake_case'\"",
+    "generate-private-api": "openapi-generator generate -g typescript-fetch -i ../backend/private_api.yaml -o $API_DIR/tmp --generate-alias-as-model --additional-properties=\"modelPropertyNaming='snake_case'\"",
+    "generate-scheduling-api": "openapi-generator generate -g typescript-fetch -i ../backend/scheduling-api.yaml -o $API_DIR/tmp2 --generate-alias-as-model --additional-properties=\"modelPropertyNaming='snake_case'\"",
+    "cat-index": "cat $API_DIR/tmp/models/index.ts >> $API_DIR/models/index.ts && cat $API_DIR/tmp/apis/index.ts >> $API_DIR/apis/index.ts && cat $API_DIR/tmp2/models/index.ts >> $API_DIR/models/index.ts && cat $API_DIR/tmp2/apis/index.ts >> $API_DIR/apis/index.ts",
+    "rm-index": "rm $API_DIR/tmp/models/index.ts && rm $API_DIR/tmp/apis/index.ts && rm $API_DIR/tmp2/models/index.ts && rm $API_DIR/tmp2/apis/index.ts",
+    "mv-types": "mv $API_DIR/tmp/models/* $API_DIR/models && mv $API_DIR/tmp/apis/* $API_DIR/apis && rm -r $API_DIR/tmp && mv $API_DIR/tmp2/models/* $API_DIR/models && mv $API_DIR/tmp2/apis/* $API_DIR/apis && rm -r $API_DIR/tmp2",
+    "swagger-codegen-backend": "export API_DIR=./src/types/backend && npm run -s generate-openapi && npm run -s generate-private-api && npm run -s generate-scheduling-api && npm run -s cat-index && npm run -s rm-index && npm run -s mv-types",
+    "clean": "rm -rf ./node_modules ./dist",
+    "eject": "react-scripts eject",
+    "lint:fix": "eslint --fix --max-warnings 0 './src/**/*{.js,.ts,.tsx}' './flags_cypress/cypress/**/*{.js,.ts,.tsx}'",
+    "lint:nofix": "eslint --max-warnings 0 './src/**/*{.js,.ts,.tsx}' './flags_cypress/cypress/**/*{.js,.ts,.tsx}'"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx,ts,tsx}",
+      "!src/types/**/*",
+      "!src/mocks/**/*"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "statements": 5,
+        "branches": 3,
+        "functions": 5,
+        "lines": 5
+      }
+    },
+    "coverageReporters": [
+      "text-summary",
+      "lcov"
+    ],
+    "moduleNameMapper": {
+      "NAVBAR": "<rootDir>/src/mocks/navbar.tsx",
+      "OPTLY_X": "<rootDir>/src/mocks/optly_x.tsx"
+    },
+    "preset": "ts-jest"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app"
+    ]
+  }
+}
