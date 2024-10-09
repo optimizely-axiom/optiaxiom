@@ -17,7 +17,7 @@
 }
 
 .pound {
-  background-color: var(--ax-colors-surface);
+  background-color: var(--ax-colors-bg-default);
   outline: 1px solid var(--ax-colors-border-tertiary);
 
   &:hover {

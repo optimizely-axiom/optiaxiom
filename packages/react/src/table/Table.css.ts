@@ -14,7 +14,7 @@ export const table = recipe({
 export const wrapper = recipe({
   base: [
     {
-      bg: "surface",
+      bg: "bg.default",
       border: "1",
       borderColor: "border.tertiary",
       overflow: "auto",

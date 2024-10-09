@@ -8,7 +8,7 @@ export const Item = ({
 }) => (
   <Flex alignItems="center" gap="8">
     <Box
-      bg="surface"
+      bg="bg.default"
       borderColor="purple.500"
       display="grid"
       placeItems="center"

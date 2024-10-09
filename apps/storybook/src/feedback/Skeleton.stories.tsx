@@ -17,7 +17,7 @@ export const Basic: Story = {
 
 export const Card: Story = {
   render: () => (
-    <Box bg="surface" p="md" rounded="sm" shadow="sm" w="384">
+    <Box bg="bg.default" p="md" rounded="sm" shadow="sm" w="384">
       <Flex alignItems="start" flexDirection="row">
         <Skeleton rounded="full" size="48" />
 

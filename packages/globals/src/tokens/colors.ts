@@ -135,6 +135,7 @@ export const colors = {
   "bg.brand": colorPalette["brand.50"],
   "bg.brand.solid": colorPalette["brand.500"],
   "bg.brand.solid.hover": colorPalette["brand.600"],
+  "bg.default": colorPalette["white"],
   "bg.disabled": colorPalette["neutral.1200/18"],
   "bg.discovery": colorPalette["purple.50"],
   "bg.error": colorPalette["red.50"],
@@ -214,8 +215,6 @@ export const colors = {
   "outline.brand": colorPalette["brand.300"],
 
   overlay: colorPalette["neutral.1200/32"],
-
-  surface: colorPalette["white"],
 } as const;
 
 export const colorsDark = {
@@ -224,6 +223,7 @@ export const colorsDark = {
   "bg.brand": colorPalette["brand.50"],
   "bg.brand.solid": colorPalette["brand.500"],
   "bg.brand.solid.hover": colorPalette["brand.600"],
+  "bg.default": colorPalette["neutral.1000"],
   "bg.disabled": colorPalette["neutral.1000"],
   "bg.discovery": colorPalette["purple.900"],
   "bg.error": colorPalette["red.50"],
@@ -276,6 +276,4 @@ export const colorsDark = {
   "outline.brand": colorPalette["brand.300"],
 
   overlay: colorPalette["neutral.50/32"],
-
-  surface: colorPalette["gray.900"],
 } as const;
