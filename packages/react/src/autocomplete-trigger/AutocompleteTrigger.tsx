@@ -21,6 +21,7 @@ export const AutocompleteTrigger = forwardRef<
       <PopoverTrigger asChild type={undefined} {...sprinkleProps}>
         <SearchInput
           addonBefore={null}
+          {...(!downshift.selectedItem && { addonAfter: null })}
           onValueClear={() => downshift.reset()}
           ref={ref}
           {...downshift.getInputProps({
