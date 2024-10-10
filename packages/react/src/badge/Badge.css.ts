@@ -34,14 +34,14 @@ export const badge = recipe({
         vars: {
           [solidBackgroundColorVar]: theme.colors["bg.error.solid"],
           [subtleBackgroundColorVar]: theme.colors["bg.error"],
-          [subtleColorVar]: theme.colors["fg.error"],
+          [subtleColorVar]: theme.colors["fg.error.strong"],
         },
       }),
       information: style({
         vars: {
           [solidBackgroundColorVar]: theme.colors["bg.information.solid"],
           [subtleBackgroundColorVar]: theme.colors["bg.information"],
-          [subtleColorVar]: theme.colors["fg.information"],
+          [subtleColorVar]: theme.colors["fg.information.strong"],
         },
       }),
       neutral: style({
@@ -56,14 +56,14 @@ export const badge = recipe({
         vars: {
           [solidBackgroundColorVar]: theme.colors["bg.brand.solid"],
           [subtleBackgroundColorVar]: theme.colors["bg.brand"],
-          [subtleColorVar]: theme.colors["fg.brand"],
+          [subtleColorVar]: theme.colors["fg.brand.strong"],
         },
       }),
       success: style({
         vars: {
           [solidBackgroundColorVar]: theme.colors["bg.success.solid"],
           [subtleBackgroundColorVar]: theme.colors["bg.success"],
-          [subtleColorVar]: theme.colors["fg.success"],
+          [subtleColorVar]: theme.colors["fg.success.strong"],
         },
       }),
       warning: style({
@@ -71,7 +71,7 @@ export const badge = recipe({
           [solidBackgroundColorVar]: theme.colors["bg.warning.solid"],
           [solidColorVar]: theme.colors["fg.default"],
           [subtleBackgroundColorVar]: theme.colors["bg.warning"],
-          [subtleColorVar]: theme.colors["fg.warning"],
+          [subtleColorVar]: theme.colors["fg.warning.strong"],
         },
       }),
     },
