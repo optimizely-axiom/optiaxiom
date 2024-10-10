@@ -15,7 +15,7 @@ export default {
     ),
     h2: ({ ...props }) => (
       <HeadingLink
-        color="fg.accent.blue"
+        color="fg.information"
         fontSize="md"
         level="2"
         mb="-24"

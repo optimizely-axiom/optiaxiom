@@ -54,10 +54,10 @@ export const Scale = ({
           <Tr key={name}>
             <Td whiteSpace="nowrap">
               <Text
-                color="fg.accent.blue"
                 fontFamily="mono"
                 fontSize="sm"
                 fontWeight="500"
+                style={{ color: "var(--shiki-token-constant)" }}
               >
                 {name}
               </Text>
