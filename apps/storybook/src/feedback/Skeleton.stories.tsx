@@ -41,7 +41,7 @@ export const Card: Story = {
 export const Children: Story = {
   args: {
     children: <IconUserFilled />,
-    color: "white",
+    color: "neutral.00",
     p: "xs",
     rounded: "full",
     size: "48",

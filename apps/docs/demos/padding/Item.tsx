@@ -16,7 +16,7 @@ export const Item = ({
     >
       <Text
         bg="purple.500"
-        color="white"
+        color="neutral.00"
         fontFamily="mono"
         fontWeight="600"
         p="md"

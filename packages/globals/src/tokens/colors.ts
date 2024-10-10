@@ -2,9 +2,6 @@ const colorPalette = {
   current: "currentColor" as const,
   transparent: "transparent" as const,
 
-  black: "#000000" as const,
-  white: "#FFFFFF" as const,
-
   "aqua.50": "#E5F7FB" as const,
   "aqua.200": "#9AE5EF" as const,
   "aqua.500": "#00BDD6" as const,
@@ -60,6 +57,7 @@ const colorPalette = {
   "magenta.500": "#B80597" as const,
   "magenta.600": "#81046A" as const,
 
+  "neutral.00": "#FFFFFF" as const,
   "neutral.50": "#F9FAFC" as const,
   "neutral.75": "#F5F6FA" as const,
   "neutral.100": "#E9EDF5" as const,
@@ -136,7 +134,7 @@ export const colors = {
   "bg.accent": colorPalette["brand.50"],
   "bg.accent.strong": colorPalette["brand.500"],
   "bg.accent.strong.hover": colorPalette["brand.600"],
-  "bg.default": colorPalette["white"],
+  "bg.default": colorPalette["neutral.00"],
   "bg.disabled": colorPalette["neutral.1200/18"],
   "bg.error": colorPalette["red.50"],
   "bg.error.strong": colorPalette["red.500"],
@@ -182,7 +180,7 @@ export const colors = {
   /**
    * Primary text color when used on solid color bg
    */
-  "fg.default.inverse": colorPalette["white"],
+  "fg.default.inverse": colorPalette["neutral.00"],
   /**
    * Disabled text color for more subtle, lower-contrast, and non-interactive text
    */
@@ -254,8 +252,8 @@ export const colorsDark = {
   "border.tertiary": colorPalette["neutral.900"],
   "border.warning": colorPalette["yellow.500"],
 
-  "fg.accent": colorPalette["white"],
-  "fg.accent.hover": colorPalette["white"],
+  "fg.accent": colorPalette["neutral.00"],
+  "fg.accent.hover": colorPalette["neutral.00"],
   "fg.accent.strong": colorPalette["brand.500"],
   "fg.default": colorPalette["gray.100"],
   "fg.default.inverse": colorPalette["neutral.900"],

@@ -44,7 +44,7 @@ export const thumb = recipe({
       transition: "transform",
     },
     style({
-      backgroundColor: theme.colors["white"],
+      backgroundColor: theme.colors["neutral.00"],
       transform: "translateX(-10px)",
 
       selectors: {
