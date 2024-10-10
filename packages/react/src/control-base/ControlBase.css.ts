@@ -23,18 +23,18 @@ export const controlBase = recipe({
         [`&:has(${marker}:not([data-disabled]):not([data-state="unchecked"])):hover`]:
           {
             vars: {
-              [controlColorVar]: theme.colors["bg.brand.solid.hover"],
+              [controlColorVar]: theme.colors["bg.accent.strong.hovered"],
             },
           },
         [`&:has(${marker}:not([data-disabled])[data-state="unchecked"]):hover`]:
           {
             vars: {
-              [controlColorVar]: theme.colors["border.active.hover"],
+              [controlColorVar]: theme.colors["border.active.hovered"],
             },
           },
         [`&:has(${marker}:not([data-state="unchecked"]))`]: {
           vars: {
-            [controlColorVar]: theme.colors["bg.brand.solid"],
+            [controlColorVar]: theme.colors["bg.accent.strong"],
           },
         },
         [`&:has(${marker}[data-disabled])`]: {
@@ -53,7 +53,7 @@ export const indicator = recipe({
 
       selectors: {
         "&:focus-visible": {
-          outline: `2px solid ${theme.colors["outline.brand"]}`,
+          outline: `2px solid ${theme.colors["border.outline"]}`,
           outlineOffset: "1px",
         },
         "&[data-disabled]": {

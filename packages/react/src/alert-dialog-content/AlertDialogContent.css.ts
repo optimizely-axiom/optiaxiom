@@ -3,7 +3,7 @@ import { recipe, type RecipeVariants, style } from "../vanilla-extract";
 export const content = recipe({
   base: [
     {
-      bg: "surface",
+      bg: "bg.default",
       rounded: "lg",
       shadow: "md",
       z: "popover",
@@ -34,7 +34,7 @@ export const content = recipe({
 export const overlay = recipe({
   base: [
     {
-      bg: "overlay",
+      bg: "bg.overlay",
       z: "popover",
     },
     style({

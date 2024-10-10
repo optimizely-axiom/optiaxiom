@@ -4,7 +4,7 @@ export const content = recipe({
   base: [
     {
       bg: "bg.neutral.inverse",
-      color: "white",
+      color: "neutral.00",
       px: "12",
       py: "8",
       rounded: "lg",

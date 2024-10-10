@@ -56,7 +56,7 @@ export const SideNav = forwardRef<HTMLElement, SideNavProps>(
         <Flex borderR="1" {...props}>
           <Flex
             asChild
-            bg="surface"
+            bg="bg.default"
             flex="1"
             pb="md"
             pt="lg"

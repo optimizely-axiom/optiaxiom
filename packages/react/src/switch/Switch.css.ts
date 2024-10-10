@@ -7,13 +7,13 @@ const marker = style({});
 export const container = recipe({
   base: style({
     vars: {
-      [styles.controlColorVar]: theme.colors["bg.neutral.solid"],
+      [styles.controlColorVar]: theme.colors["bg.neutral.strong"],
     },
 
     selectors: {
       [`&:has(${marker}:not([data-disabled])[data-state="unchecked"]):hover`]: {
         vars: {
-          [styles.controlColorVar]: theme.colors["bg.neutral.solid.hover"],
+          [styles.controlColorVar]: theme.colors["bg.neutral.strong.hovered"],
         },
       },
     },
@@ -44,7 +44,7 @@ export const thumb = recipe({
       transition: "transform",
     },
     style({
-      backgroundColor: theme.colors["white"],
+      backgroundColor: theme.colors["neutral.00"],
       transform: "translateX(-10px)",
 
       selectors: {

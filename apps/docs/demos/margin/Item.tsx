@@ -12,7 +12,7 @@ export const Item = ({
   return (
     <Box p={p} rounded="sm" style={yellowStripes}>
       <Box bg="purple.500" p="md" rounded="inherit" {...children.props}>
-        <Text color="white" fontFamily="mono" fontWeight="600">
+        <Text color="neutral.00" fontFamily="mono" fontWeight="600">
           {children.props.children}
         </Text>
       </Box>

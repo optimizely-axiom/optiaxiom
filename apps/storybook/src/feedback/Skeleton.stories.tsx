@@ -17,7 +17,7 @@ export const Basic: Story = {
 
 export const Card: Story = {
   render: () => (
-    <Box bg="surface" p="md" rounded="sm" shadow="sm" w="384">
+    <Box bg="bg.default" p="md" rounded="sm" shadow="sm" w="384">
       <Flex alignItems="start" flexDirection="row">
         <Skeleton rounded="full" size="48" />
 
@@ -41,7 +41,7 @@ export const Card: Story = {
 export const Children: Story = {
   args: {
     children: <IconUserFilled />,
-    color: "white",
+    color: "neutral.00",
     p: "xs",
     rounded: "full",
     size: "48",

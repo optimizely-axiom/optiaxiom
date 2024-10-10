@@ -54,10 +54,10 @@ export const Scale = ({
           <Tr key={name}>
             <Td whiteSpace="nowrap">
               <Text
-                color="fg.accent.blue"
                 fontFamily="mono"
                 fontSize="sm"
                 fontWeight="500"
+                style={{ color: "var(--shiki-token-constant)" }}
               >
                 {name}
               </Text>
@@ -71,11 +71,11 @@ export const Scale = ({
                   : [size]
                 ).map((value) => (
                   <Text
-                    color="fg.accent.purple"
                     fontFamily="mono"
                     fontSize="sm"
                     fontWeight="500"
                     key={value}
+                    style={{ color: "var(--shiki-token-function)" }}
                   >
                     {value}
                   </Text>
@@ -92,11 +92,11 @@ export const Scale = ({
                     : [px(size)]
                   ).map((value) => (
                     <Text
-                      color="fg.accent.purple"
                       fontFamily="mono"
                       fontSize="sm"
                       fontWeight="500"
                       key={value}
+                      style={{ color: "var(--shiki-token-function)" }}
                     >
                       {value}
                     </Text>

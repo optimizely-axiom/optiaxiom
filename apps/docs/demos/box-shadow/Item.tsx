@@ -19,7 +19,7 @@ export const Item = ({
       </Text>
 
       <Box
-        bg="surface"
+        bg="bg.default"
         display="grid"
         placeItems="center"
         rounded="sm"

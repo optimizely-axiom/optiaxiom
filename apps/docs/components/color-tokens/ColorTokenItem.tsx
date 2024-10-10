@@ -43,7 +43,12 @@ export function ColorTokenItem({
         <Text fontSize="sm" fontWeight="600" suppressHydrationWarning>
           {name}
         </Text>
-        <Text color="dark.500" fontSize="sm" mt="2" suppressHydrationWarning>
+        <Text
+          color="fg.secondary"
+          fontSize="sm"
+          mt="2"
+          suppressHydrationWarning
+        >
           {value}
         </Text>
       </Box>

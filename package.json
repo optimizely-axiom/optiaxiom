@@ -8,6 +8,7 @@
   "scripts": {
     "build": "pnpm -F globals... -F react... -F web-components... build",
     "bundle-size": "oas-bundle-size",
+    "design-tokens": "oas-design-tokens",
     "dev": "pnpm run --parallel -F !web-components dev",
     "lint": "_m(){ concurrently --raw \"oas-lint $@\" \"pnpm run -r --no-bail --parallel --reporter-hide-prefix lint $@\"; } && _m",
     "release": "pnpm build && changeset publish",

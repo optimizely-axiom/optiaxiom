@@ -47,14 +47,14 @@ export const item = recipe({
     colorScheme: {
       danger: style({
         vars: {
-          [accentColorVar]: theme.colors["fg.error"],
+          [accentColorVar]: theme.colors["fg.error.strong"],
           [bgColorVar]: theme.colors["bg.error"],
         },
       }),
       neutral: style({
         vars: {
           [accentColorVar]: theme.colors["fg.default"],
-          [bgColorVar]: theme.colors["bg.input.disabled"],
+          [bgColorVar]: theme.colors["bg.neutral"],
         },
       }),
     },

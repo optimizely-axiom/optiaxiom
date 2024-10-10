@@ -19,7 +19,7 @@ export const avatar = recipe({
 
       selectors: {
         [`${styles.className} &`]: {
-          border: `1px solid ${theme.colors["white"]}`,
+          border: `1px solid ${theme.colors["neutral.00"]}`,
         },
       },
     }),
@@ -30,20 +30,16 @@ export const avatar = recipe({
       {
         blue: "blue",
         brand: "brand",
-        dark: "dark",
-        gray: "gray",
         green: "green",
         magenta: "magenta",
         neutral: "neutral",
-        orange: "orange",
         purple: "purple",
         red: "red",
-        slate: "slate",
         yellow: "yellow",
       } as const,
       (color) => ({
         bg: color === "neutral" ? "neutral.150" : `${color}.500`,
-        color: color === "neutral" ? "bg.neutral.inverse" : "white",
+        color: color === "neutral" ? "bg.neutral.inverse" : "neutral.00",
       }),
     ),
     size: {

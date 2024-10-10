@@ -19,7 +19,7 @@ export const trigger = recipe({
 
       selectors: {
         "&:focus-visible": {
-          outline: `2px solid ${theme.colors["outline.brand"]}`,
+          outline: `2px solid ${theme.colors["border.outline"]}`,
           outlineOffset: "1px",
         },
         '&:hover:not([data-state="active"])': {
@@ -39,7 +39,7 @@ export const trigger = recipe({
           paddingInline: "10px",
         },
         '&[data-state="active"]': {
-          borderColor: theme.colors["border.brand"],
+          borderColor: theme.colors["border.accent"],
           color: theme.colors["fg.default"],
         },
       },
@@ -59,7 +59,7 @@ export const content = recipe({
     style({
       selectors: {
         [`${marker}:active &`]: {
-          backgroundColor: theme.colors["bg.input.disabled"],
+          backgroundColor: theme.colors["bg.neutral"],
         },
       },
     }),

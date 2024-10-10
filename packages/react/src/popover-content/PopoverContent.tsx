@@ -45,7 +45,7 @@ export const PopoverContent = forwardRef<HTMLDivElement, PopoverContentProps>(
                   {withArrow && (
                     <RadixPopover.Arrow asChild>
                       <svg
-                        fill={theme.colors["surface"]}
+                        fill={theme.colors["bg.default"]}
                         height={4}
                         preserveAspectRatio="none"
                         stroke={theme.colors["border.secondary"]}

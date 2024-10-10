@@ -20,7 +20,7 @@ export const banner = recipe({
         bg: "brand.200",
       },
       neutral: {
-        bg: "bg.neutral.solid",
+        bg: "bg.neutral.strong",
       },
       success: {
         bg: "green.200",

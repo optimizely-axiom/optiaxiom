@@ -22,11 +22,11 @@ export function Cards(props: ComponentPropsWithRef<typeof Grid>) {
         <Link href="/styled-system">
           <Box
             asChild
-            bg="bg.discovery"
+            bg="bg.information"
             border="4"
-            borderColor="surface"
+            borderColor="bg.default"
             className={styles.icon}
-            color="fg.accent.purple"
+            color="fg.information.strong"
             p="sm"
             rounded="full"
             size="56"
@@ -60,9 +60,9 @@ export function Cards(props: ComponentPropsWithRef<typeof Grid>) {
             asChild
             bg="bg.success"
             border="4"
-            borderColor="surface"
+            borderColor="bg.default"
             className={styles.icon}
-            color="fg.success"
+            color="fg.success.strong"
             p="sm"
             rounded="full"
             size="56"

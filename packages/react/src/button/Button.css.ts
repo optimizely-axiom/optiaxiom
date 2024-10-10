@@ -39,7 +39,7 @@ export const button = recipe({
         },
         "&:is(:focus-visible, :has(:focus-visible)):not([data-disabled], [data-loading])":
           {
-            outline: `2px solid ${theme.colors["outline.brand"]}`,
+            outline: `2px solid ${theme.colors["border.outline"]}`,
             outlineOffset: "1px",
             zIndex: theme.zIndex["10"],
           },
@@ -88,25 +88,25 @@ export const button = recipe({
     colorScheme: {
       danger: style({
         vars: {
-          [accentColorVar]: theme.colors["bg.error.solid"],
-          [solidAccentColorVar]: theme.colors["bg.error.solid.hover"],
+          [accentColorVar]: theme.colors["bg.error.strong"],
+          [solidAccentColorVar]: theme.colors["bg.error.strong.hovered"],
           [subtleAccentColorVar]: theme.colors["bg.error"],
         },
       }),
       neutral: style({
         vars: {
           [accentColorVar]: theme.colors["bg.neutral.inverse"],
-          [solidAccentColorVar]: theme.colors["bg.neutral.inverse.hover"],
+          [solidAccentColorVar]: theme.colors["bg.neutral.inverse.hovered"],
           [solidTextColorVar]: theme.colors["fg.default.inverse"],
-          [subtleAccentColorVar]: theme.colors["bg.input.disabled"],
+          [subtleAccentColorVar]: theme.colors["bg.neutral"],
           [subtleTextColorVar]: theme.colors["fg.default"],
         },
       }),
       primary: style({
         vars: {
-          [accentColorVar]: theme.colors["bg.brand.solid"],
-          [solidAccentColorVar]: theme.colors["bg.brand.solid.hover"],
-          [subtleAccentColorVar]: theme.colors["bg.brand"],
+          [accentColorVar]: theme.colors["bg.accent.strong"],
+          [solidAccentColorVar]: theme.colors["bg.accent.strong.hovered"],
+          [subtleAccentColorVar]: theme.colors["bg.accent"],
         },
       }),
     },
@@ -161,7 +161,7 @@ export const button = recipe({
             backgroundColor: solidAccentColorVar,
           },
           "&[data-disabled]": {
-            backgroundColor: theme.colors["bg.input.disabled"],
+            backgroundColor: theme.colors["bg.neutral"],
             border: `1px solid ${theme.colors["border.disabled"]}`,
             color: theme.colors["fg.disabled"],
             paddingInline: `calc(${paddingInlineVar} - 1px)`,
@@ -179,8 +179,8 @@ export const button = recipe({
               backgroundColor: subtleAccentColorVar,
             },
           '&:is([data-state="active"], [data-state="on"])': {
-            backgroundColor: theme.colors["bg.brand"],
-            color: theme.colors["fg.link"],
+            backgroundColor: theme.colors["bg.accent"],
+            color: theme.colors["fg.accent"],
           },
           "&[data-disabled]": {
             color: theme.colors["fg.disabled"],

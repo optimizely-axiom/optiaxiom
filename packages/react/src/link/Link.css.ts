@@ -9,14 +9,14 @@ export const link = recipe({
 
       selectors: {
         "&:focus-visible": {
-          outline: `2px auto ${theme.colors["outline.brand"]}`,
+          outline: `2px auto ${theme.colors["border.outline"]}`,
           outlineOffset: "1px",
         },
         "&:hover:not([data-disabled])": {
           textDecoration: "underline",
         },
         "&:visited": {
-          color: theme.colors["fg.link.visited"],
+          color: theme.colors["fg.discovery"],
         },
         "&[data-disabled]": {
           color: theme.colors["fg.disabled"],
@@ -30,11 +30,11 @@ export const link = recipe({
         color: theme.colors["fg.default"],
       }),
       primary: style({
-        color: theme.colors["fg.link"],
+        color: theme.colors["fg.accent"],
 
         selectors: {
           "&:hover:not([data-disabled])": {
-            color: theme.colors["fg.link.hover"],
+            color: theme.colors["fg.accent.hovered"],
           },
         },
       }),

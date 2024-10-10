@@ -7,7 +7,7 @@ export const Item = ({
   children: ReactElement<ComponentPropsWithRef<typeof Box>>;
 }) => (
   <Flex alignItems="center" gap="8">
-    <Box bg="surface" border="4" px="8" py="16" {...children.props}>
+    <Box bg="bg.default" border="4" px="8" py="16" {...children.props}>
       <Text fontFamily="mono" fontWeight="600" textAlign="center">
         {children.props.children}
       </Text>
