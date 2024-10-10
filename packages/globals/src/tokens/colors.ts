@@ -14,6 +14,7 @@ const colorPalette = {
   "blue.200": "#A8D5FA" as const,
   "blue.500": "#2094F3" as const,
   "blue.600": "#1668AC" as const,
+  "blue.700": "#095ea4" as const,
   "blue.900": "#1C2B41" as const,
 
   "brand.50": "#F0F3FF" as const,
@@ -174,7 +175,7 @@ export const colors = {
   /**
    * Primary brand color useful for accented text, highlights, and subheadings
    */
-  "fg.brand": colorPalette["brand.700"],
+  "fg.brand.strong": colorPalette["brand.700"],
   /**
    * Primary text color for page headings
    */
@@ -190,8 +191,8 @@ export const colors = {
   /**
    * Error text color for danger and error states
    */
-  "fg.error": colorPalette["red.700"],
-  "fg.information": colorPalette["blue.600"],
+  "fg.error.strong": colorPalette["red.700"],
+  "fg.information.strong": colorPalette["blue.700"],
   "fg.link": colorPalette["brand.500"],
   "fg.link.hover": colorPalette["brand.600"],
   "fg.link.visited": colorPalette["purple.500"],
@@ -202,7 +203,7 @@ export const colors = {
   /**
    * Success text color
    */
-  "fg.success": colorPalette["green.700"],
+  "fg.success.strong": colorPalette["green.700"],
   /**
    * Tertiary text color for supporting, paragraph, and placeholder text
    */
@@ -210,7 +211,7 @@ export const colors = {
   /**
    * Warning text color
    */
-  "fg.warning": colorPalette["yellow.700"],
+  "fg.warning.strong": colorPalette["yellow.700"],
 
   overlay: colorPalette["neutral.1200/32"],
 } as const;
@@ -257,19 +258,19 @@ export const colorsDark = {
   "fg.accent.blue": colorPalette["blue.200"],
   "fg.accent.magenta": colorPalette["magenta.200"],
   "fg.accent.red": colorPalette["red.200"],
-  "fg.brand": colorPalette["brand.500"],
+  "fg.brand.strong": colorPalette["brand.500"],
   "fg.default": colorPalette["gray.100"],
   "fg.default.inverse": colorPalette["neutral.900"],
   "fg.disabled": colorPalette["neutral.500"],
-  "fg.error": colorPalette["red.500"],
-  "fg.information": colorPalette["blue.600"],
+  "fg.error.strong": colorPalette["red.500"],
+  "fg.information.strong": colorPalette["blue.700"],
   "fg.link": colorPalette["white"],
   "fg.link.hover": colorPalette["white"],
   "fg.link.visited": colorPalette["purple.200"],
   "fg.secondary": colorPalette["slate.400"],
-  "fg.success": colorPalette["green.200"],
+  "fg.success.strong": colorPalette["green.200"],
   "fg.tertiary": colorPalette["neutral.600"],
-  "fg.warning": colorPalette["yellow.500"],
+  "fg.warning.strong": colorPalette["yellow.500"],
 
   overlay: colorPalette["neutral.50/32"],
 } as const;
