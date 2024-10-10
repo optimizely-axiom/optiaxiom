@@ -147,6 +147,7 @@ export const colors = {
   "bg.neutral.inverse.hover": colorPalette["neutral.900"],
   "bg.neutral.strong": colorPalette["neutral.200"],
   "bg.neutral.strong.hover": colorPalette["neutral.300"],
+  "bg.overlay": colorPalette["neutral.1200/32"],
   "bg.page": colorPalette["neutral.50"],
   "bg.success": colorPalette["green.50"],
   "bg.success.strong": colorPalette["green.500"],
@@ -209,8 +210,6 @@ export const colors = {
    * Warning text color
    */
   "fg.warning.strong": colorPalette["yellow.700"],
-
-  overlay: colorPalette["neutral.1200/32"],
 } as const;
 
 export const colorsDark = {
@@ -232,6 +231,7 @@ export const colorsDark = {
   "bg.neutral.inverse.hover": colorPalette["neutral.200"],
   "bg.neutral.strong": colorPalette["neutral.100"],
   "bg.neutral.strong.hover": colorPalette["neutral.800"],
+  "bg.overlay": colorPalette["neutral.50/32"],
   "bg.page": colorPalette["neutral.1100"],
   "bg.success": colorPalette["green.900"],
   "bg.success.strong": colorPalette["green.500"],
@@ -267,6 +267,4 @@ export const colorsDark = {
   "fg.success.strong": colorPalette["green.200"],
   "fg.tertiary": colorPalette["neutral.600"],
   "fg.warning.strong": colorPalette["yellow.500"],
-
-  overlay: colorPalette["neutral.50/32"],
 } as const;
