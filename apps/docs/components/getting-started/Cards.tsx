@@ -26,7 +26,7 @@ export function Cards(props: ComponentPropsWithRef<typeof Grid>) {
             border="4"
             borderColor="bg.default"
             className={styles.icon}
-            color="fg.information"
+            color="fg.information.strong"
             p="sm"
             rounded="full"
             size="56"
@@ -62,7 +62,7 @@ export function Cards(props: ComponentPropsWithRef<typeof Grid>) {
             border="4"
             borderColor="bg.default"
             className={styles.icon}
-            color="fg.success"
+            color="fg.success.strong"
             p="sm"
             rounded="full"
             size="56"
