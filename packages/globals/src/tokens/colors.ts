@@ -169,7 +169,6 @@ export const colors = {
   "border.tertiary": colorPalette["neutral.100"],
   "border.warning": colorPalette["yellow.500"],
 
-  "fg.accent.blue": colorPalette["blue.500"],
   "fg.accent.magenta": colorPalette["magenta.600"],
   /**
    * Primary brand color useful for accented text, highlights, and subheadings
@@ -192,6 +191,7 @@ export const colors = {
    * Error text color for danger and error states
    */
   "fg.error.strong": colorPalette["red.700"],
+  "fg.information": colorPalette["blue.500"],
   "fg.information.strong": colorPalette["blue.700"],
   "fg.link": colorPalette["brand.500"],
   "fg.link.hover": colorPalette["brand.600"],
@@ -255,7 +255,6 @@ export const colorsDark = {
   "border.tertiary": colorPalette["neutral.900"],
   "border.warning": colorPalette["yellow.500"],
 
-  "fg.accent.blue": colorPalette["blue.200"],
   "fg.accent.magenta": colorPalette["magenta.200"],
   "fg.brand.strong": colorPalette["brand.500"],
   "fg.default": colorPalette["gray.100"],
@@ -263,6 +262,7 @@ export const colorsDark = {
   "fg.disabled": colorPalette["neutral.500"],
   "fg.error": colorPalette["red.200"],
   "fg.error.strong": colorPalette["red.500"],
+  "fg.information": colorPalette["blue.200"],
   "fg.information.strong": colorPalette["blue.700"],
   "fg.link": colorPalette["white"],
   "fg.link.hover": colorPalette["white"],
