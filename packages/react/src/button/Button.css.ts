@@ -39,7 +39,7 @@ export const button = recipe({
         },
         "&:is(:focus-visible, :has(:focus-visible)):not([data-disabled], [data-loading])":
           {
-            outline: `2px solid ${theme.colors["outline.brand"]}`,
+            outline: `2px solid ${theme.colors["border.outline"]}`,
             outlineOffset: "1px",
             zIndex: theme.zIndex["10"],
           },

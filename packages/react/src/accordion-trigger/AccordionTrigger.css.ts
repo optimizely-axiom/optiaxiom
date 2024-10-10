@@ -17,7 +17,7 @@ export const trigger = recipe({
     style({
       selectors: {
         "&:focus-visible": {
-          outline: `2px solid ${theme.colors["outline.brand"]}`,
+          outline: `2px solid ${theme.colors["border.outline"]}`,
           outlineOffset: "1px",
         },
         "&:hover": {
