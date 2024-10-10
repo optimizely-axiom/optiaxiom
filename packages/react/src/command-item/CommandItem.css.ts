@@ -24,7 +24,7 @@ export const item = recipe({
           color: theme.colors["fg.disabled"],
         },
         "&[data-selected='true']": {
-          backgroundColor: theme.colors["bg.input.disabled"],
+          backgroundColor: theme.colors["bg.neutral"],
           color: theme.colors["fg.default"],
           cursor: "pointer",
         },

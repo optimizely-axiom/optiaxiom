@@ -26,13 +26,13 @@ export const item = recipe({
           cursor: "pointer",
         },
         "&:not([data-disabled])[data-highlighted]": {
-          backgroundColor: theme.colors["bg.input.disabled"],
+          backgroundColor: theme.colors["bg.neutral"],
         },
         "&:not([data-disabled])[data-highlighted]:active": {
           backgroundColor: theme.colors["bg.neutral.hovered"],
         },
         '&:not([data-highlighted])[data-state="open"]': {
-          backgroundColor: theme.colors["bg.input.disabled"],
+          backgroundColor: theme.colors["bg.neutral"],
         },
         "&[data-disabled]": {
           color: theme.colors["fg.disabled"],
