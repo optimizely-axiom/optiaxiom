@@ -34,7 +34,7 @@ export const item = recipe({
           backgroundColor: bgColorVar,
         },
         "&:not([data-disabled])[data-highlighted]:active": {
-          backgroundColor: theme.colors["neutral.1200/12"],
+          backgroundColor: theme.colors["bg.neutral.hovered"],
         },
         "&[data-disabled]": {
           color: theme.colors["fg.disabled"],

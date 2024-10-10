@@ -12,7 +12,7 @@ export const ToastAction = forwardRef<HTMLButtonElement, ToastProps>(
       <>
         <Separator
           alignSelf="center"
-          bg="border.active.hover"
+          bg="border.active.hovered"
           h="sm"
           ml="sm"
           orientation="vertical"

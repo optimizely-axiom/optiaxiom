@@ -34,7 +34,7 @@ export const link = recipe({
 
         selectors: {
           "&:hover:not([data-disabled])": {
-            color: theme.colors["fg.accent.hover"],
+            color: theme.colors["fg.accent.hovered"],
           },
         },
       }),

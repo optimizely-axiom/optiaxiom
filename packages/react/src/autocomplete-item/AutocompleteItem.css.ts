@@ -29,7 +29,7 @@ export const item = recipe({
           backgroundColor: theme.colors["bg.input.disabled"],
         },
         "&:not([data-disabled])[data-highlighted]:active": {
-          backgroundColor: theme.colors["neutral.1200/12"],
+          backgroundColor: theme.colors["bg.neutral.hovered"],
         },
         '&:not([data-highlighted])[data-state="open"]': {
           backgroundColor: theme.colors["bg.input.disabled"],
