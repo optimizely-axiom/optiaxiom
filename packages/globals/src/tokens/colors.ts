@@ -137,7 +137,6 @@ export const colors = {
   "bg.brand.solid.hover": colorPalette["brand.600"],
   "bg.default": colorPalette["white"],
   "bg.disabled": colorPalette["neutral.1200/18"],
-  "bg.discovery": colorPalette["purple.50"],
   "bg.error": colorPalette["red.50"],
   "bg.error.solid": colorPalette["red.500"],
   "bg.error.solid.hover": colorPalette["red.600"],
@@ -171,7 +170,6 @@ export const colors = {
 
   "fg.accent.blue": colorPalette["blue.500"],
   "fg.accent.magenta": colorPalette["magenta.600"],
-  "fg.accent.purple": colorPalette["purple.600"],
   "fg.accent.red": colorPalette["red.500"],
   /**
    * Primary brand color useful for accented text, highlights, and subheadings
@@ -225,7 +223,6 @@ export const colorsDark = {
   "bg.brand.solid.hover": colorPalette["brand.600"],
   "bg.default": colorPalette["neutral.1000"],
   "bg.disabled": colorPalette["neutral.1000"],
-  "bg.discovery": colorPalette["purple.900"],
   "bg.error": colorPalette["red.50"],
   "bg.error.solid": colorPalette["red.500"],
   "bg.error.solid.hover": colorPalette["red.600"],
@@ -259,7 +256,6 @@ export const colorsDark = {
 
   "fg.accent.blue": colorPalette["blue.200"],
   "fg.accent.magenta": colorPalette["magenta.200"],
-  "fg.accent.purple": colorPalette["purple.200"],
   "fg.accent.red": colorPalette["red.200"],
   "fg.brand": colorPalette["brand.500"],
   "fg.default": colorPalette["gray.100"],
