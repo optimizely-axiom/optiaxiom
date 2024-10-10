@@ -88,8 +88,8 @@ export const button = recipe({
     colorScheme: {
       danger: style({
         vars: {
-          [accentColorVar]: theme.colors["bg.error.solid"],
-          [solidAccentColorVar]: theme.colors["bg.error.solid.hover"],
+          [accentColorVar]: theme.colors["bg.error.strong"],
+          [solidAccentColorVar]: theme.colors["bg.error.strong.hover"],
           [subtleAccentColorVar]: theme.colors["bg.error"],
         },
       }),
@@ -104,8 +104,8 @@ export const button = recipe({
       }),
       primary: style({
         vars: {
-          [accentColorVar]: theme.colors["bg.accent.solid"],
-          [solidAccentColorVar]: theme.colors["bg.accent.solid.hover"],
+          [accentColorVar]: theme.colors["bg.accent.strong"],
+          [solidAccentColorVar]: theme.colors["bg.accent.strong.hover"],
           [subtleAccentColorVar]: theme.colors["bg.accent"],
         },
       }),
