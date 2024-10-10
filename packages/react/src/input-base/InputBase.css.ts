@@ -45,7 +45,7 @@ export const wrapper = recipe({
         },
 
         "&[data-disabled]": {
-          backgroundColor: theme.colors["bg.input.disabled"],
+          backgroundColor: theme.colors["bg.neutral"],
           borderColor: theme.colors["border.secondary"],
           color: theme.colors["fg.disabled"],
         },

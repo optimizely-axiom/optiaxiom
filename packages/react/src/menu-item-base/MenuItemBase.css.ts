@@ -54,7 +54,7 @@ export const item = recipe({
       neutral: style({
         vars: {
           [accentColorVar]: theme.colors["fg.default"],
-          [bgColorVar]: theme.colors["bg.input.disabled"],
+          [bgColorVar]: theme.colors["bg.neutral"],
         },
       }),
     },
