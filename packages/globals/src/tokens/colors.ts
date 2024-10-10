@@ -171,7 +171,6 @@ export const colors = {
 
   "fg.accent.blue": colorPalette["blue.500"],
   "fg.accent.magenta": colorPalette["magenta.600"],
-  "fg.accent.red": colorPalette["red.500"],
   /**
    * Primary brand color useful for accented text, highlights, and subheadings
    */
@@ -188,6 +187,7 @@ export const colors = {
    * Disabled text color for more subtle, lower-contrast, and non-interactive text
    */
   "fg.disabled": colorPalette["neutral.1200/32"],
+  "fg.error": colorPalette["red.500"],
   /**
    * Error text color for danger and error states
    */
@@ -257,11 +257,11 @@ export const colorsDark = {
 
   "fg.accent.blue": colorPalette["blue.200"],
   "fg.accent.magenta": colorPalette["magenta.200"],
-  "fg.accent.red": colorPalette["red.200"],
   "fg.brand.strong": colorPalette["brand.500"],
   "fg.default": colorPalette["gray.100"],
   "fg.default.inverse": colorPalette["neutral.900"],
   "fg.disabled": colorPalette["neutral.500"],
+  "fg.error": colorPalette["red.200"],
   "fg.error.strong": colorPalette["red.500"],
   "fg.information.strong": colorPalette["blue.700"],
   "fg.link": colorPalette["white"],
