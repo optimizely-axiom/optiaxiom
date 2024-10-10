@@ -21,7 +21,7 @@ export const Basic: Story = {
 export const Composition: Story = {
   args: {
     asChild: true,
-    bg: "orange.50",
+    bg: "yellow.50",
     children: <Text>Hello World!</Text>,
     p: "lg",
   },
