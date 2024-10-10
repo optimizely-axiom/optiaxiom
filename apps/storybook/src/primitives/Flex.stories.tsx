@@ -10,13 +10,13 @@ type Story = StoryObj<typeof Flex>;
 
 const Items = ({ label }: { label?: string }) => (
   <>
-    <Text bg="aqua.50" p="md">
+    <Text bg="blue.50" p="md">
       {label ?? "Text box 1"}
     </Text>
-    <Text bg="aqua.50" p="md">
+    <Text bg="blue.50" p="md">
       {label ?? "Text box 2"}
     </Text>
-    <Text bg="aqua.50" p="md">
+    <Text bg="blue.50" p="md">
       {label ?? "Text box 3"}
     </Text>
   </>
@@ -61,13 +61,13 @@ export const Grow: Story = {
   args: {
     children: (
       <>
-        <Text bg="aqua.50" flex="auto" p="md" textAlign="center">
+        <Text bg="blue.50" flex="auto" p="md" textAlign="center">
           Item 1
         </Text>
-        <Text bg="aqua.50" flex="auto" p="md" textAlign="center">
+        <Text bg="blue.50" flex="auto" p="md" textAlign="center">
           Item 2
         </Text>
-        <Text bg="aqua.50" flex="auto" p="md" textAlign="center">
+        <Text bg="blue.50" flex="auto" p="md" textAlign="center">
           Long Content
         </Text>
       </>
