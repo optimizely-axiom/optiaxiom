@@ -10,7 +10,7 @@ export const Item = ({
     <Box
       bg="purple.500"
       border="2"
-      borderColor="white"
+      borderColor="neutral.00"
       display="grid"
       ml="-12"
       placeItems="center"
@@ -18,7 +18,7 @@ export const Item = ({
       size="64"
       {...children.props}
     >
-      <Text color="white" fontFamily="mono" fontWeight="600">
+      <Text color="neutral.00" fontFamily="mono" fontWeight="600">
         {children.props.children}
       </Text>
     </Box>

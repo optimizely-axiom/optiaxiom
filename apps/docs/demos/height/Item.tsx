@@ -17,7 +17,12 @@ export const Item = ({
       rounded="sm"
       {...children.props}
     >
-      <Text color="white" fontFamily="mono" fontWeight="600" textAlign="center">
+      <Text
+        color="neutral.00"
+        fontFamily="mono"
+        fontWeight="600"
+        textAlign="center"
+      >
         {label}
       </Text>
     </Box>
