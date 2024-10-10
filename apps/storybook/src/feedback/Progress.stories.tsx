@@ -12,7 +12,7 @@ type Story = StoryObj<typeof Progress>;
 
 export const Basic: Story = {
   args: {
-    bg: "bg.brand",
+    bg: "bg.accent",
     max: 60,
     value: 30,
     w: "384",
@@ -42,7 +42,7 @@ export const CompletionStages: Story = {
 
         {values.map(({ max, value }, index) => (
           <Progress
-            bg="bg.brand"
+            bg="bg.accent"
             key={index}
             max={max}
             value={typeof value !== "undefined" ? value * scale : undefined}

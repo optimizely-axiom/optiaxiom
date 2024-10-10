@@ -5,7 +5,7 @@ import { Canvas } from "../Canvas";
 export function App() {
   return (
     <Canvas>
-      <Box bg="bg.brand.solid">bg=bg.brand.solid</Box>
+      <Box bg="bg.accent.solid">bg=bg.accent.solid</Box>
       <Box bg="bg.error.solid">bg=bg.error.solid</Box>
     </Canvas>
   );

@@ -21,7 +21,7 @@ export const Progress = forwardRef<HTMLDivElement, ProgressProps>(
           {isValidValue && (
             <Box
               asChild
-              bg="bg.brand.solid"
+              bg="bg.accent.solid"
               h="full"
               rounded="lg"
               style={{ width: `${widthPercentage}%` }}

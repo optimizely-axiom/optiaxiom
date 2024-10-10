@@ -133,9 +133,9 @@ const colorPalette = {
 export const colors = {
   ...colorPalette,
 
-  "bg.brand": colorPalette["brand.50"],
-  "bg.brand.solid": colorPalette["brand.500"],
-  "bg.brand.solid.hover": colorPalette["brand.600"],
+  "bg.accent": colorPalette["brand.50"],
+  "bg.accent.solid": colorPalette["brand.500"],
+  "bg.accent.solid.hover": colorPalette["brand.600"],
   "bg.default": colorPalette["white"],
   "bg.disabled": colorPalette["neutral.1200/18"],
   "bg.error": colorPalette["red.50"],
@@ -157,9 +157,9 @@ export const colors = {
   "bg.warning.solid": colorPalette["yellow.500"],
   "bg.warning.solid.hover": colorPalette["yellow.600"],
 
+  "border.accent": colorPalette["brand.500"],
   "border.active": colorPalette["neutral.500"],
   "border.active.hover": colorPalette["neutral.600"],
-  "border.brand": colorPalette["brand.500"],
   "border.default": colorPalette["neutral.200"],
   "border.disabled": colorPalette["neutral.75"],
   "border.error": colorPalette["red.500"],
@@ -172,7 +172,7 @@ export const colors = {
   /**
    * Primary brand color useful for accented text, highlights, and subheadings
    */
-  "fg.brand.strong": colorPalette["brand.700"],
+  "fg.accent.strong": colorPalette["brand.700"],
   /**
    * Primary text color for page headings
    */
@@ -218,9 +218,9 @@ export const colors = {
 export const colorsDark = {
   ...colorPalette,
 
-  "bg.brand": colorPalette["brand.50"],
-  "bg.brand.solid": colorPalette["brand.500"],
-  "bg.brand.solid.hover": colorPalette["brand.600"],
+  "bg.accent": colorPalette["brand.50"],
+  "bg.accent.solid": colorPalette["brand.500"],
+  "bg.accent.solid.hover": colorPalette["brand.600"],
   "bg.default": colorPalette["neutral.1000"],
   "bg.disabled": colorPalette["neutral.1000"],
   "bg.error": colorPalette["red.50"],
@@ -242,9 +242,9 @@ export const colorsDark = {
   "bg.warning.solid": colorPalette["yellow.500"],
   "bg.warning.solid.hover": colorPalette["yellow.600"],
 
+  "border.accent": colorPalette["brand.500"],
   "border.active": colorPalette["neutral.500"],
   "border.active.hover": colorPalette["neutral.600"],
-  "border.brand": colorPalette["brand.500"],
   "border.default": colorPalette["gray.800"],
   "border.disabled": colorPalette["neutral.75"],
   "border.error": colorPalette["red.500"],
@@ -254,7 +254,7 @@ export const colorsDark = {
   "border.tertiary": colorPalette["neutral.900"],
   "border.warning": colorPalette["yellow.500"],
 
-  "fg.brand.strong": colorPalette["brand.500"],
+  "fg.accent.strong": colorPalette["brand.500"],
   "fg.default": colorPalette["gray.100"],
   "fg.default.inverse": colorPalette["neutral.900"],
   "fg.disabled": colorPalette["neutral.500"],
