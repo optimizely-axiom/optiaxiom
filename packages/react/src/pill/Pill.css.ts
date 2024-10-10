@@ -16,7 +16,7 @@ export const pill = recipe({
 
       selectors: {
         "&:focus-visible": {
-          outline: `2px solid ${theme.colors["gray.300"]}`,
+          outline: `2px solid ${theme.colors["border.outline"]}`,
           outlineOffset: "1px",
         },
       },

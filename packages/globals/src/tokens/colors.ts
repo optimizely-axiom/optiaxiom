@@ -163,6 +163,7 @@ export const colors = {
   "border.default": colorPalette["neutral.200"],
   "border.disabled": colorPalette["neutral.75"],
   "border.error": colorPalette["red.500"],
+  "border.outline": colorPalette["brand.300"],
   "border.secondary": colorPalette["neutral.150"],
   "border.success": colorPalette["green.500"],
   "border.tertiary": colorPalette["neutral.100"],
@@ -213,8 +214,6 @@ export const colors = {
    */
   "fg.warning": colorPalette["yellow.700"],
 
-  "outline.brand": colorPalette["brand.300"],
-
   overlay: colorPalette["neutral.1200/32"],
 } as const;
 
@@ -252,6 +251,7 @@ export const colorsDark = {
   "border.default": colorPalette["gray.800"],
   "border.disabled": colorPalette["neutral.75"],
   "border.error": colorPalette["red.500"],
+  "border.outline": colorPalette["brand.300"],
   "border.secondary": colorPalette["neutral.150"],
   "border.success": colorPalette["green.500"],
   "border.tertiary": colorPalette["neutral.900"],
@@ -274,8 +274,6 @@ export const colorsDark = {
   "fg.success": colorPalette["green.200"],
   "fg.tertiary": colorPalette["neutral.600"],
   "fg.warning": colorPalette["yellow.500"],
-
-  "outline.brand": colorPalette["brand.300"],
 
   overlay: colorPalette["neutral.50/32"],
 } as const;

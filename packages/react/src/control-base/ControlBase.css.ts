@@ -53,7 +53,7 @@ export const indicator = recipe({
 
       selectors: {
         "&:focus-visible": {
-          outline: `2px solid ${theme.colors["outline.brand"]}`,
+          outline: `2px solid ${theme.colors["border.outline"]}`,
           outlineOffset: "1px",
         },
         "&[data-disabled]": {
