@@ -15,7 +15,7 @@ export const Item = ({
       rounded="md"
       {...children.props}
     >
-      <Text color="white" fontFamily="mono" fontWeight="600">
+      <Text color="neutral.00" fontFamily="mono" fontWeight="600">
         {children.props.children}
       </Text>
     </Box>

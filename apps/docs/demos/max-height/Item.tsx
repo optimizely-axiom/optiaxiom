@@ -28,7 +28,7 @@ export const Item = ({
         {...children.props}
       >
         <Text
-          color="white"
+          color="neutral.00"
           fontFamily="mono"
           fontWeight="600"
           textAlign="center"
