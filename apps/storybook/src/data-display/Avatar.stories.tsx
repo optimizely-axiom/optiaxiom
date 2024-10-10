@@ -63,16 +63,7 @@ export const Colors: Story = {
       <Avatar {...args} colorScheme="green">
         KP
       </Avatar>
-      <Avatar {...args} colorScheme="orange">
-        KP
-      </Avatar>
       <Avatar {...args} colorScheme="magenta">
-        KP
-      </Avatar>
-      <Avatar {...args} colorScheme="gray">
-        KP
-      </Avatar>
-      <Avatar {...args} colorScheme="slate">
         KP
       </Avatar>
       <Avatar {...args} colorScheme="brand">
@@ -82,9 +73,6 @@ export const Colors: Story = {
         KP
       </Avatar>
       <Avatar {...args} colorScheme="yellow">
-        KP
-      </Avatar>
-      <Avatar {...args} colorScheme="dark">
         KP
       </Avatar>
     </Flex>

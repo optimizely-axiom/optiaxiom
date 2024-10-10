@@ -30,15 +30,11 @@ export const avatar = recipe({
       {
         blue: "blue",
         brand: "brand",
-        dark: "dark",
-        gray: "gray",
         green: "green",
         magenta: "magenta",
         neutral: "neutral",
-        orange: "orange",
         purple: "purple",
         red: "red",
-        slate: "slate",
         yellow: "yellow",
       } as const,
       (color) => ({
