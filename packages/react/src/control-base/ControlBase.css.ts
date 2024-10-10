@@ -23,13 +23,13 @@ export const controlBase = recipe({
         [`&:has(${marker}:not([data-disabled]):not([data-state="unchecked"])):hover`]:
           {
             vars: {
-              [controlColorVar]: theme.colors["bg.accent.strong.hover"],
+              [controlColorVar]: theme.colors["bg.accent.strong.hovered"],
             },
           },
         [`&:has(${marker}:not([data-disabled])[data-state="unchecked"]):hover`]:
           {
             vars: {
-              [controlColorVar]: theme.colors["border.active.hover"],
+              [controlColorVar]: theme.colors["border.active.hovered"],
             },
           },
         [`&:has(${marker}:not([data-state="unchecked"]))`]: {

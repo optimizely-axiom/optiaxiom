@@ -13,7 +13,7 @@ export const container = recipe({
     selectors: {
       [`&:has(${marker}:not([data-disabled])[data-state="unchecked"]):hover`]: {
         vars: {
-          [styles.controlColorVar]: theme.colors["bg.neutral.strong.hover"],
+          [styles.controlColorVar]: theme.colors["bg.neutral.strong.hovered"],
         },
       },
     },

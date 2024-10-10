@@ -44,7 +44,7 @@ export const icon = recipe({
   variants: {
     colorScheme: {
       danger: {
-        color: "bg.error.strong.hover",
+        color: "bg.error.strong.hovered",
       },
       information: {
         color: "brand.600",
@@ -53,10 +53,10 @@ export const icon = recipe({
         color: "fg.tertiary",
       },
       success: {
-        color: "bg.success.strong.hover",
+        color: "bg.success.strong.hovered",
       },
       warning: {
-        color: "bg.warning.strong.hover",
+        color: "bg.warning.strong.hovered",
       },
     },
   },
