@@ -169,7 +169,6 @@ export const colors = {
   "border.tertiary": colorPalette["neutral.100"],
   "border.warning": colorPalette["yellow.500"],
 
-  "fg.accent.magenta": colorPalette["magenta.600"],
   /**
    * Primary brand color useful for accented text, highlights, and subheadings
    */
@@ -255,7 +254,6 @@ export const colorsDark = {
   "border.tertiary": colorPalette["neutral.900"],
   "border.warning": colorPalette["yellow.500"],
 
-  "fg.accent.magenta": colorPalette["magenta.200"],
   "fg.brand.strong": colorPalette["brand.500"],
   "fg.default": colorPalette["gray.100"],
   "fg.default.inverse": colorPalette["neutral.900"],

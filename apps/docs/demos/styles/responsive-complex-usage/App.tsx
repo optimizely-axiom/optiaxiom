@@ -12,7 +12,7 @@ export function App() {
       rounded="sm"
       shadow="sm"
     >
-      <Flex flexDirection={["column", "row"]} gap="0">
+      <Flex alignItems="start" flexDirection={["column", "row"]} gap="0">
         <Image
           alt="brown glass bottle beside white book on blue and white textile"
           src={beach}
@@ -20,11 +20,7 @@ export function App() {
         />
 
         <Box p="md">
-          <Text
-            color="fg.accent.magenta"
-            fontWeight="600"
-            textTransform="uppercase"
-          >
+          <Text color="fg.error" fontWeight="600" textTransform="uppercase">
             Phasellus auctor
           </Text>
 
