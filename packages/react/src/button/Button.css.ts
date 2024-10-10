@@ -104,9 +104,9 @@ export const button = recipe({
       }),
       primary: style({
         vars: {
-          [accentColorVar]: theme.colors["bg.brand.solid"],
-          [solidAccentColorVar]: theme.colors["bg.brand.solid.hover"],
-          [subtleAccentColorVar]: theme.colors["bg.brand"],
+          [accentColorVar]: theme.colors["bg.accent.solid"],
+          [solidAccentColorVar]: theme.colors["bg.accent.solid.hover"],
+          [subtleAccentColorVar]: theme.colors["bg.accent"],
         },
       }),
     },
@@ -179,7 +179,7 @@ export const button = recipe({
               backgroundColor: subtleAccentColorVar,
             },
           '&:is([data-state="active"], [data-state="on"])': {
-            backgroundColor: theme.colors["bg.brand"],
+            backgroundColor: theme.colors["bg.accent"],
             color: theme.colors["fg.link"],
           },
           "&[data-disabled]": {
