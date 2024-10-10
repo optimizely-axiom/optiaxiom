@@ -34,7 +34,7 @@ export const content = recipe({
 export const overlay = recipe({
   base: [
     {
-      bg: "overlay",
+      bg: "bg.overlay",
       z: "popover",
     },
     style({
