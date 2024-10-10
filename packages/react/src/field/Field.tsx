@@ -60,7 +60,7 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(
                   <Text
                     aria-hidden="true"
                     asChild
-                    color="fg.accent.red"
+                    color="fg.error"
                     fontWeight="400"
                   >
                     <span>*</span>
@@ -101,7 +101,7 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(
         </FieldContext.Provider>
 
         {error && (
-          <Text color="fg.accent.red" fontSize="sm">
+          <Text color="fg.error" fontSize="sm">
             {error}
           </Text>
         )}
