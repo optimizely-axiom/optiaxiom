@@ -81,6 +81,7 @@ async function importTokens(file) {
     },
     "bg.overlay": { dark: "neutral.50/32", light: "neutral.1200/32" },
     "border.outline": { dark: "brand.300", light: "brand.300" },
+    "fg.discovery": { dark: "purple.500", light: "purple.500" },
     "fg.information": { dark: "blue.500", light: "blue.500" },
     "fg.information.strong": { dark: "blue.700", light: "blue.700" },
   };

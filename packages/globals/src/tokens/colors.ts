@@ -169,6 +169,8 @@ export const colors = {
   "border.tertiary": colorPalette["neutral.100"],
   "border.warning": colorPalette["yellow.500"],
 
+  "fg.accent": colorPalette["brand.500"],
+  "fg.accent.hover": colorPalette["brand.600"],
   /**
    * Primary brand color useful for accented text, highlights, and subheadings
    */
@@ -185,6 +187,7 @@ export const colors = {
    * Disabled text color for more subtle, lower-contrast, and non-interactive text
    */
   "fg.disabled": colorPalette["neutral.1200/32"],
+  "fg.discovery": colorPalette["purple.500"],
   "fg.error": colorPalette["red.500"],
   /**
    * Error text color for danger and error states
@@ -192,9 +195,6 @@ export const colors = {
   "fg.error.strong": colorPalette["red.700"],
   "fg.information": colorPalette["blue.500"],
   "fg.information.strong": colorPalette["blue.700"],
-  "fg.link": colorPalette["brand.500"],
-  "fg.link.hover": colorPalette["brand.600"],
-  "fg.link.visited": colorPalette["purple.500"],
   /**
    * Secondary text color for labels and section headings
    */
@@ -254,17 +254,17 @@ export const colorsDark = {
   "border.tertiary": colorPalette["neutral.900"],
   "border.warning": colorPalette["yellow.500"],
 
+  "fg.accent": colorPalette["white"],
+  "fg.accent.hover": colorPalette["white"],
   "fg.accent.strong": colorPalette["brand.500"],
   "fg.default": colorPalette["gray.100"],
   "fg.default.inverse": colorPalette["neutral.900"],
   "fg.disabled": colorPalette["neutral.500"],
+  "fg.discovery": colorPalette["purple.200"],
   "fg.error": colorPalette["red.200"],
   "fg.error.strong": colorPalette["red.500"],
   "fg.information": colorPalette["blue.200"],
   "fg.information.strong": colorPalette["blue.700"],
-  "fg.link": colorPalette["white"],
-  "fg.link.hover": colorPalette["white"],
-  "fg.link.visited": colorPalette["purple.200"],
   "fg.secondary": colorPalette["slate.400"],
   "fg.success.strong": colorPalette["green.200"],
   "fg.tertiary": colorPalette["neutral.600"],
