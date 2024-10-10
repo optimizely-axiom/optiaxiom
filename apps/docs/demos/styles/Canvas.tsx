@@ -9,7 +9,7 @@ export const Canvas = ({
 }) => {
   return (
     <Box asChild display="inline-flex" p="sm" rounded="sm" {...children.props}>
-      <Text color="dark.600" fontWeight="600" textAlign="center">
+      <Text color="fg.default" fontWeight="600" textAlign="center">
         {children.props.children}
       </Text>
     </Box>

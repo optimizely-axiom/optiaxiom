@@ -88,7 +88,7 @@ const PeopleSelector = () => {
                 />
                 <Flex flexDirection="column" gap="4">
                   <Text>{user.name}</Text>
-                  {user.email && <Text color="dark.200">{user.email}</Text>}
+                  {user.email && <Text color="fg.secondary">{user.email}</Text>}
                 </Flex>
               </Flex>
             </CommandItem>
