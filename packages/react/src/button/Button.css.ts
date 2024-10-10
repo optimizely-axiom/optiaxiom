@@ -89,14 +89,14 @@ export const button = recipe({
       danger: style({
         vars: {
           [accentColorVar]: theme.colors["bg.error.strong"],
-          [solidAccentColorVar]: theme.colors["bg.error.strong.hover"],
+          [solidAccentColorVar]: theme.colors["bg.error.strong.hovered"],
           [subtleAccentColorVar]: theme.colors["bg.error"],
         },
       }),
       neutral: style({
         vars: {
           [accentColorVar]: theme.colors["bg.neutral.inverse"],
-          [solidAccentColorVar]: theme.colors["bg.neutral.inverse.hover"],
+          [solidAccentColorVar]: theme.colors["bg.neutral.inverse.hovered"],
           [solidTextColorVar]: theme.colors["fg.default.inverse"],
           [subtleAccentColorVar]: theme.colors["bg.input.disabled"],
           [subtleTextColorVar]: theme.colors["fg.default"],
@@ -105,7 +105,7 @@ export const button = recipe({
       primary: style({
         vars: {
           [accentColorVar]: theme.colors["bg.accent.strong"],
-          [solidAccentColorVar]: theme.colors["bg.accent.strong.hover"],
+          [solidAccentColorVar]: theme.colors["bg.accent.strong.hovered"],
           [subtleAccentColorVar]: theme.colors["bg.accent"],
         },
       }),
