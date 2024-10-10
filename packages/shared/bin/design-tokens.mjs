@@ -71,7 +71,7 @@ async function importTokens(file) {
 
   const warnings = [];
 
-  /** @type {Record<string, { light: string, dark: string }>} */
+  /** @type {Record<string, { light: string, dark: string; variable?: string }>} */
   const colors = {
     "bg.information": { dark: "blue.50", light: "blue.50" },
     "bg.information.strong": { dark: "blue.600", light: "blue.600" },
@@ -103,6 +103,7 @@ async function importTokens(file) {
         colors[normalizeColorName(token.name)] = {
           dark: index[tokensDark[token.name].value],
           light: index[token.value],
+          variable: token.name,
         };
       }
     } catch {
@@ -291,13 +292,14 @@ function toVariable(name, object, { pre, transform = (value) => value }) {
 void yargs(hideBin(process.argv))
   .command({
     builder: {
+      debug: { type: "boolean" },
       output: {
         choices: ["cli", "csv", "code"],
         default: "cli",
       },
     },
     command: ["import <file>", "$0 <file>"],
-    handler: async ({ file, output }) => {
+    handler: async ({ debug, file, output }) => {
       const [report, warnings] = await importTokens(file);
 
       if (warnings.length) {
@@ -319,11 +321,54 @@ void yargs(hideBin(process.argv))
         }
         console.log(renderer(tablePalette));
 
-        const table = [["Name", "Light", "Dark"]];
-        for (const [name, light, dark] of report
+        const table = [
+          debug
+            ? [
+                "Name",
+                "Property",
+                "Semantic",
+                "Modifier",
+                "State",
+                "Contrast",
+                "Light",
+                "Dark",
+                "Figma",
+              ]
+            : ["Name", "Light", "Dark"],
+        ];
+        for (const [name, light, dark, variable] of report
           .filter(([, value]) => !value.light.startsWith("#"))
-          .map(([name, value]) => [name, value.light, value.dark])) {
-          table.push([name, light, dark]);
+          .map(
+            ([name, value]) =>
+              /** @type {const} */ ([
+                name,
+                value.light,
+                value.dark,
+                value.variable,
+              ]),
+          )) {
+          const parts = name.split(".");
+          table.push(
+            debug
+              ? [
+                  name,
+                  parts[0],
+                  parts[1],
+                  name.includes("strong")
+                    ? "strong"
+                    : name.includes("subtle")
+                      ? "subtle"
+                      : "",
+                  ["hovered", "pressed"].includes(parts.at(-1) ?? "")
+                    ? (parts.at(-1) ?? "")
+                    : "",
+                  name.includes("inverse") ? "inverse" : "",
+                  light,
+                  dark,
+                  variable ?? "",
+                ]
+              : [name, light, dark],
+          );
         }
         console.log(renderer(table));
       } else {
