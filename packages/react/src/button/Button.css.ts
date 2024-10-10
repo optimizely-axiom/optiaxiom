@@ -180,7 +180,7 @@ export const button = recipe({
             },
           '&:is([data-state="active"], [data-state="on"])': {
             backgroundColor: theme.colors["bg.accent"],
-            color: theme.colors["fg.link"],
+            color: theme.colors["fg.accent"],
           },
           "&[data-disabled]": {
             color: theme.colors["fg.disabled"],
