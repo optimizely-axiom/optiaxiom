@@ -6,7 +6,7 @@ export function App() {
   return (
     <Canvas>
       <Box borderColor="border.default">border.default</Box>
-      <Box borderColor="border.brand">border.brand</Box>
+      <Box borderColor="border.accent">border.accent</Box>
       <Box borderColor="border.warning">border.warning</Box>
     </Canvas>
   );

@@ -54,9 +54,9 @@ export const badge = recipe({
       }),
       primary: style({
         vars: {
-          [solidBackgroundColorVar]: theme.colors["bg.brand.solid"],
-          [subtleBackgroundColorVar]: theme.colors["bg.brand"],
-          [subtleColorVar]: theme.colors["fg.brand.strong"],
+          [solidBackgroundColorVar]: theme.colors["bg.accent.solid"],
+          [subtleBackgroundColorVar]: theme.colors["bg.accent"],
+          [subtleColorVar]: theme.colors["fg.accent.strong"],
         },
       }),
       success: style({

@@ -27,7 +27,7 @@ export const wrapper = recipe({
           outlineOffset: "1px",
         },
         [`&:has(${marker}:focus):not([data-invalid]):not([data-readonly])`]: {
-          borderColor: theme.colors["border.brand"],
+          borderColor: theme.colors["border.accent"],
         },
         [`&:has(${marker}:focus):not([data-invalid])`]: {
           outline: `2px solid ${theme.colors["brand.300"]}`,
