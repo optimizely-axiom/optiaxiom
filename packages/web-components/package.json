@@ -117,7 +117,6 @@
     "@rollup/plugin-commonjs": "^26.0.3",
     "@rollup/plugin-node-resolve": "^15.3.0",
     "@types/node": "^20.16.11",
-    "@vitest/browser": "^2.1.2",
     "cssnano": "^7.0.6",
     "fast-glob": "^3.3.2",
     "postcss": "^8.4.47",
