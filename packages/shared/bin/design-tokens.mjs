@@ -248,19 +248,21 @@ function toVariable(name, object, { pre, transform = (value) => value }) {
     `export const ${name} = {`,
     ...(pre ? [`  ${pre}\n`] : []),
     Object.values(
-      Object.entries(object).reduce(
-        (/** @type {Record<string, string[]>} */ result, [name, value]) => {
-          const prefix = name.slice(
-            0,
-            name.indexOf(name.includes("/") ? "/" : "."),
-          );
-          (result[prefix] = result[prefix] || []).push(
-            `  "${name}": ${transform(value)},`,
-          );
-          return result;
-        },
-        {},
-      ),
+      Object.entries(object)
+        .filter(([name]) => !name.startsWith("_"))
+        .reduce(
+          (/** @type {Record<string, string[]>} */ result, [name, value]) => {
+            const prefix = name.slice(
+              0,
+              name.indexOf(name.includes("/") ? "/" : "."),
+            );
+            (result[prefix] = result[prefix] || []).push(
+              `  "${name}": ${transform(value)},`,
+            );
+            return result;
+          },
+          {},
+        ),
     )
       .map((lines) => lines.join("\n"))
       .join("\n\n"),
