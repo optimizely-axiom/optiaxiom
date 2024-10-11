@@ -9,7 +9,7 @@ export const link = recipe({
 
       selectors: {
         "&:focus-visible": {
-          outline: `2px auto ${theme.colors["border.outline"]}`,
+          outline: `2px auto ${theme.colors["border.focus"]}`,
           outlineOffset: "1px",
         },
         "&:hover:not([data-disabled])": {

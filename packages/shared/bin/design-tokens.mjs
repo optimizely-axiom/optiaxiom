@@ -77,7 +77,7 @@ async function importTokens(file) {
       dark: "neutral.200",
       light: "neutral.900",
     },
-    "border.outline": { dark: "brand.300", light: "brand.300" },
+    "border.focus": { dark: "brand.300", light: "brand.300" },
     "fg.discovery": { dark: "purple.500", light: "purple.500" },
   };
   /** @type {Record<string, string>} */
