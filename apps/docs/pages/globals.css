@@ -5,7 +5,7 @@ html {
 
 :root {
   --docs-bg-shadow-size: 85%;
-  --docs-code-bg: light-dark(var(--ax-colors-bg-neutral), rgb(1, 22, 39));
+  --docs-code-bg: light-dark(var(--ax-colors-bg-secondary), rgb(1, 22, 39));
 
   &[class~="dark"] {
     --docs-bg-pillar-opacity: 20%;

@@ -59,7 +59,7 @@ export const content = recipe({
     style({
       selectors: {
         [`${marker}:active &`]: {
-          backgroundColor: theme.colors["bg.neutral"],
+          backgroundColor: theme.colors["bg.secondary"],
         },
       },
     }),

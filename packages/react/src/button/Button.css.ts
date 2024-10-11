@@ -98,7 +98,7 @@ export const button = recipe({
           [accentColorVar]: theme.colors["bg.default.inverse"],
           [solidAccentColorVar]: theme.colors["bg.default.inverse.hovered"],
           [solidTextColorVar]: theme.colors["fg.default.inverse"],
-          [subtleAccentColorVar]: theme.colors["bg.neutral"],
+          [subtleAccentColorVar]: theme.colors["bg.secondary"],
           [subtleTextColorVar]: theme.colors["fg.default"],
         },
       }),
@@ -161,7 +161,7 @@ export const button = recipe({
             backgroundColor: solidAccentColorVar,
           },
           "&[data-disabled]": {
-            backgroundColor: theme.colors["bg.neutral"],
+            backgroundColor: theme.colors["bg.secondary"],
             border: `1px solid ${theme.colors["border.disabled"]}`,
             color: theme.colors["fg.disabled"],
             paddingInline: `calc(${paddingInlineVar} - 1px)`,

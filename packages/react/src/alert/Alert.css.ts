@@ -20,7 +20,7 @@ export const alert = recipe({
         bg: "brand.50",
       },
       neutral: {
-        bg: "bg.neutral",
+        bg: "bg.secondary",
       },
       success: {
         bg: "green.100",

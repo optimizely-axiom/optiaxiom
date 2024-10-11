@@ -34,7 +34,7 @@ export const item = recipe({
           backgroundColor: bgColorVar,
         },
         "&:not([data-disabled])[data-highlighted]:active": {
-          backgroundColor: theme.colors["bg.neutral.hovered"],
+          backgroundColor: theme.colors["bg.secondary.hovered"],
         },
         "&[data-disabled]": {
           color: theme.colors["fg.disabled"],
@@ -54,7 +54,7 @@ export const item = recipe({
       neutral: style({
         vars: {
           [accentColorVar]: theme.colors["fg.default"],
-          [bgColorVar]: theme.colors["bg.neutral"],
+          [bgColorVar]: theme.colors["bg.secondary"],
         },
       }),
     },

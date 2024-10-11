@@ -7,7 +7,7 @@ export const Th = ({
   children,
   ...props
 }: ComponentPropsWithRef<typeof Box>) => (
-  <Box asChild bg="bg.neutral" textAlign="start" {...props}>
+  <Box asChild bg="bg.secondary" textAlign="start" {...props}>
     <th>
       <Text asChild={asChild} fontWeight="600" p="12">
         {children ?? <>&nbsp;</>}
