@@ -87,6 +87,8 @@ async function importTokens(file) {
       light: "neutral.1000",
     },
     "bg.error.subtlest": { dark: "red.900", light: "red.50" },
+    "bg.spinner": { dark: "neutral.50/6", light: "neutral.1200/4" },
+    "bg.spinner.inverse": { dark: "neutral.50/6", light: "neutral.50/6" },
     "fg.avatar.cyan": { dark: "cyan.200", light: "cyan.700" },
     "fg.avatar.magenta": { dark: "magenta.200", light: "magenta.700" },
     "fg.avatar.purple": { dark: "purple.200", light: "purple.700" },
