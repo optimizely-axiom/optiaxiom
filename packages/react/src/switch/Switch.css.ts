@@ -7,13 +7,13 @@ const marker = style({});
 export const container = recipe({
   base: style({
     vars: {
-      [styles.controlColorVar]: theme.colors["bg.neutral.strong"],
+      [styles.controlColorVar]: theme.colors["bg.tertiary"],
     },
 
     selectors: {
       [`&:has(${marker}:not([data-disabled])[data-state="unchecked"]):hover`]: {
         vars: {
-          [styles.controlColorVar]: theme.colors["bg.neutral.strong.hovered"],
+          [styles.controlColorVar]: theme.colors["bg.tertiary.hovered"],
         },
       },
     },
