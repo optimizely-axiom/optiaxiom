@@ -39,7 +39,7 @@ export const avatar = recipe({
       } as const,
       (color) => ({
         bg: color === "neutral" ? "neutral.150" : `${color}.500`,
-        color: color === "neutral" ? "bg.neutral.inverse" : "neutral.00",
+        color: color === "neutral" ? "bg.default.inverse" : "neutral.00",
       }),
     ),
     size: {

@@ -73,12 +73,12 @@ async function importTokens(file) {
 
   /** @type {Record<string, { light: string, dark: string; variable?: string }>} */
   const colors = {
-    "bg.information": { dark: "blue.50", light: "blue.50" },
-    "bg.information.strong": { dark: "blue.600", light: "blue.600" },
-    "bg.neutral.inverse.hovered": {
+    "bg.default.inverse.hovered": {
       dark: "neutral.200",
       light: "neutral.900",
     },
+    "bg.information": { dark: "blue.50", light: "blue.50" },
+    "bg.information.strong": { dark: "blue.600", light: "blue.600" },
     "bg.overlay": { dark: "neutral.50/32", light: "neutral.1200/32" },
     "border.outline": { dark: "brand.300", light: "brand.300" },
     "fg.discovery": { dark: "purple.500", light: "purple.500" },
@@ -143,7 +143,7 @@ const mapFigmaToNormalizedName = {
   "bg/accent/states/base_hover": "bg.accent.strong.hovered",
   "bg/accent/states/base_pressed": "bg.accent.strong.pressed",
   "bg/accent/subtle": "bg.accent",
-  "bg/contrast": "bg.neutral.inverse",
+  "bg/contrast": "bg.default.inverse",
   "bg/default": "bg.default",
   "bg/disabled": "_bg.neutral.strong",
   "bg/disabled-muted": "_bg.neutral",

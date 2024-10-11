@@ -95,8 +95,8 @@ export const button = recipe({
       }),
       neutral: style({
         vars: {
-          [accentColorVar]: theme.colors["bg.neutral.inverse"],
-          [solidAccentColorVar]: theme.colors["bg.neutral.inverse.hovered"],
+          [accentColorVar]: theme.colors["bg.default.inverse"],
+          [solidAccentColorVar]: theme.colors["bg.default.inverse.hovered"],
           [solidTextColorVar]: theme.colors["fg.default.inverse"],
           [subtleAccentColorVar]: theme.colors["bg.neutral"],
           [subtleTextColorVar]: theme.colors["fg.default"],

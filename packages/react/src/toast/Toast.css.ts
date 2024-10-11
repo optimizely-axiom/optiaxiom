@@ -38,7 +38,7 @@ export const root = recipe({
   base: [
     {
       alignItems: "center",
-      bg: "bg.neutral.inverse",
+      bg: "bg.default.inverse",
       color: "fg.default.inverse",
       display: "flex",
       gap: "xs",
