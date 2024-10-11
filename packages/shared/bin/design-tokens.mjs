@@ -77,8 +77,8 @@ async function importTokens(file) {
       dark: "neutral.200",
       light: "neutral.900",
     },
-    "bg.information": { dark: "blue.50", light: "blue.50" },
-    "bg.information.strong": { dark: "blue.600", light: "blue.600" },
+    "bg.information": { dark: "blue.600", light: "blue.600" },
+    "bg.information.subtle": { dark: "blue.50", light: "blue.50" },
     "bg.overlay": { dark: "neutral.50/32", light: "neutral.1200/32" },
     "border.outline": { dark: "brand.300", light: "brand.300" },
     "fg.discovery": { dark: "purple.500", light: "purple.500" },
@@ -119,47 +119,31 @@ async function importTokens(file) {
 }
 
 /**
- * light background/dark text
- * bg.{semantic} - bg.default, bg.page, bg.error
- *
- * dark background/light text
- * bg.{semantic}.strong - bg.error.strong, bg.warning.strong
- * bg.{semantic}.strong.{state} - bg.error.strong.hovered
- *
- * border.{semantic} - border.active, border.default, border.error
- * border.{semantic}.{state} - border.active.hovered
- *
- * fg.{semantic} - fg.default, fg.warning
- * fg.{state} - fg.disabled
- * fg.accent.{color} - fg.accent.red, fg.accent.primary
- * fg.accent.{color}.strong - fg.accent.red.strong, fg.accent.primary.strong
- * fg.inverse
- *
  * @type {Record<string, string>}
  */
 const mapFigmaToNormalizedName = {
-  "bg/accent/base": "bg.accent.strong",
-  "bg/accent/light": "bg.accent.hovered",
-  "bg/accent/states/base_hover": "bg.accent.strong.hovered",
-  "bg/accent/states/base_pressed": "bg.accent.strong.pressed",
-  "bg/accent/subtle": "bg.accent",
+  "bg/accent/base": "bg.accent",
+  "bg/accent/light": "bg.accent.light",
+  "bg/accent/states/base_hover": "bg.accent.hovered",
+  "bg/accent/states/base_pressed": "bg.accent.pressed",
+  "bg/accent/subtle": "bg.accent.subtle",
   "bg/contrast": "bg.default.inverse",
   "bg/default": "bg.default",
   "bg/disabled": "_bg.tertiary",
   "bg/disabled-muted": "_bg.secondary",
-  "bg/feedback/error-base": "bg.error.strong",
-  "bg/feedback/error-light": "bg.error.hovered",
-  "bg/feedback/error-subtle": "bg.error",
-  "bg/feedback/states/error-base-hover": "bg.error.strong.hovered",
-  "bg/feedback/states/error-base-pressed": "bg.error.strong.pressed",
-  "bg/feedback/states/success-base-hover": "bg.success.strong.hovered",
-  "bg/feedback/states/warning-base-hover": "bg.warning.strong.hovered",
-  "bg/feedback/success-base": "bg.success.strong",
-  "bg/feedback/success-light": "bg.success.hovered",
-  "bg/feedback/success-subtle": "bg.success",
-  "bg/feedback/warning-base": "bg.warning.strong",
-  "bg/feedback/warning-light": "bg.warning.hovered",
-  "bg/feedback/warning-subtle": "bg.warning",
+  "bg/feedback/error-base": "bg.error",
+  "bg/feedback/error-light": "bg.error.light",
+  "bg/feedback/error-subtle": "bg.error.subtle",
+  "bg/feedback/states/error-base-hover": "bg.error.hovered",
+  "bg/feedback/states/error-base-pressed": "bg.error.pressed",
+  "bg/feedback/states/success-base-hover": "bg.success.hovered",
+  "bg/feedback/states/warning-base-hover": "bg.warning.hovered",
+  "bg/feedback/success-base": "bg.success",
+  "bg/feedback/success-light": "bg.success.light",
+  "bg/feedback/success-subtle": "bg.success.subtle",
+  "bg/feedback/warning-base": "bg.warning",
+  "bg/feedback/warning-light": "bg.warning.light",
+  "bg/feedback/warning-subtle": "bg.warning.subtle",
   "bg/page bg": "bg.page",
   "bg/secondary": "bg.secondary",
   "bg/states/default-hover": "_bg.secondary",

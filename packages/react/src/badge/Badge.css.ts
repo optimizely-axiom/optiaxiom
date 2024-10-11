@@ -32,15 +32,15 @@ export const badge = recipe({
     colorScheme: {
       danger: style({
         vars: {
-          [solidBackgroundColorVar]: theme.colors["bg.error.strong"],
-          [subtleBackgroundColorVar]: theme.colors["bg.error"],
+          [solidBackgroundColorVar]: theme.colors["bg.error"],
+          [subtleBackgroundColorVar]: theme.colors["bg.error.subtle"],
           [subtleColorVar]: theme.colors["fg.error.strong"],
         },
       }),
       information: style({
         vars: {
-          [solidBackgroundColorVar]: theme.colors["bg.information.strong"],
-          [subtleBackgroundColorVar]: theme.colors["bg.information"],
+          [solidBackgroundColorVar]: theme.colors["bg.information"],
+          [subtleBackgroundColorVar]: theme.colors["bg.information.subtle"],
           [subtleColorVar]: theme.colors["fg.information.strong"],
         },
       }),
@@ -54,23 +54,23 @@ export const badge = recipe({
       }),
       primary: style({
         vars: {
-          [solidBackgroundColorVar]: theme.colors["bg.accent.strong"],
-          [subtleBackgroundColorVar]: theme.colors["bg.accent"],
+          [solidBackgroundColorVar]: theme.colors["bg.accent"],
+          [subtleBackgroundColorVar]: theme.colors["bg.accent.subtle"],
           [subtleColorVar]: theme.colors["fg.accent.strong"],
         },
       }),
       success: style({
         vars: {
-          [solidBackgroundColorVar]: theme.colors["bg.success.strong"],
-          [subtleBackgroundColorVar]: theme.colors["bg.success"],
+          [solidBackgroundColorVar]: theme.colors["bg.success"],
+          [subtleBackgroundColorVar]: theme.colors["bg.success.subtle"],
           [subtleColorVar]: theme.colors["fg.success.strong"],
         },
       }),
       warning: style({
         vars: {
-          [solidBackgroundColorVar]: theme.colors["bg.warning.strong"],
+          [solidBackgroundColorVar]: theme.colors["bg.warning"],
           [solidColorVar]: theme.colors["fg.default"],
-          [subtleBackgroundColorVar]: theme.colors["bg.warning"],
+          [subtleBackgroundColorVar]: theme.colors["bg.warning.subtle"],
           [subtleColorVar]: theme.colors["fg.warning.strong"],
         },
       }),

@@ -7,7 +7,7 @@ export function App() {
   return (
     <Box
       asChild
-      bg="bg.information"
+      bg="bg.information.subtle"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       p="xs"
