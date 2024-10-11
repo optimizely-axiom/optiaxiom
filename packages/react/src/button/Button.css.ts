@@ -88,9 +88,9 @@ export const button = recipe({
     colorScheme: {
       danger: style({
         vars: {
-          [accentColorVar]: theme.colors["bg.error.strong"],
-          [solidAccentColorVar]: theme.colors["bg.error.strong.hovered"],
-          [subtleAccentColorVar]: theme.colors["bg.error"],
+          [accentColorVar]: theme.colors["bg.error"],
+          [solidAccentColorVar]: theme.colors["bg.error.hovered"],
+          [subtleAccentColorVar]: theme.colors["bg.error.subtle"],
         },
       }),
       neutral: style({
@@ -104,9 +104,9 @@ export const button = recipe({
       }),
       primary: style({
         vars: {
-          [accentColorVar]: theme.colors["bg.accent.strong"],
-          [solidAccentColorVar]: theme.colors["bg.accent.strong.hovered"],
-          [subtleAccentColorVar]: theme.colors["bg.accent"],
+          [accentColorVar]: theme.colors["bg.accent"],
+          [solidAccentColorVar]: theme.colors["bg.accent.hovered"],
+          [subtleAccentColorVar]: theme.colors["bg.accent.subtle"],
         },
       }),
     },
@@ -179,7 +179,7 @@ export const button = recipe({
               backgroundColor: subtleAccentColorVar,
             },
           '&:is([data-state="active"], [data-state="on"])': {
-            backgroundColor: theme.colors["bg.accent"],
+            backgroundColor: theme.colors["bg.accent.subtle"],
             color: theme.colors["fg.accent"],
           },
           "&[data-disabled]": {

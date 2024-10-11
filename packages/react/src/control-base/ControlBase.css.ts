@@ -23,7 +23,7 @@ export const controlBase = recipe({
         [`&:has(${marker}:not([data-disabled]):not([data-state="unchecked"])):hover`]:
           {
             vars: {
-              [controlColorVar]: theme.colors["bg.accent.strong.hovered"],
+              [controlColorVar]: theme.colors["bg.accent.hovered"],
             },
           },
         [`&:has(${marker}:not([data-disabled])[data-state="unchecked"]):hover`]:
@@ -34,7 +34,7 @@ export const controlBase = recipe({
           },
         [`&:has(${marker}:not([data-state="unchecked"]))`]: {
           vars: {
-            [controlColorVar]: theme.colors["bg.accent.strong"],
+            [controlColorVar]: theme.colors["bg.accent"],
           },
         },
         [`&:has(${marker}[data-disabled])`]: {

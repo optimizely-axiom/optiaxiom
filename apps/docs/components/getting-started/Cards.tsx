@@ -22,7 +22,7 @@ export function Cards(props: ComponentPropsWithRef<typeof Grid>) {
         <Link href="/styled-system">
           <Box
             asChild
-            bg="bg.information"
+            bg="bg.information.subtle"
             border="4"
             borderColor="bg.default"
             className={styles.icon}
@@ -58,7 +58,7 @@ export function Cards(props: ComponentPropsWithRef<typeof Grid>) {
         <Link href="/components">
           <Box
             asChild
-            bg="bg.success"
+            bg="bg.success.subtle"
             border="4"
             borderColor="bg.default"
             className={styles.icon}

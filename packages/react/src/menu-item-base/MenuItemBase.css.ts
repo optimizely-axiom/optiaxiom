@@ -48,7 +48,7 @@ export const item = recipe({
       danger: style({
         vars: {
           [accentColorVar]: theme.colors["fg.error.strong"],
-          [bgColorVar]: theme.colors["bg.error"],
+          [bgColorVar]: theme.colors["bg.error.subtle"],
         },
       }),
       neutral: style({
