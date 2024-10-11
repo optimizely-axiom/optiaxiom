@@ -35,7 +35,7 @@ export const banner = recipe({
 export const icon = recipe({
   base: [
     {
-      color: "bg.neutral.inverse",
+      color: "bg.default.inverse",
       h: "16",
       mt: "4",
       w: "auto",
