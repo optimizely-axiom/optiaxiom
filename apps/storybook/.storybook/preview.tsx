@@ -26,30 +26,28 @@ export const parameters = {
   useAxiomProvider: true,
 };
 
-export default {
-  decorators: [
-    (Story, context) =>
-      context.parameters.useAxiomProvider ? (
-        <AxiomProvider>
-          <Story />
-        </AxiomProvider>
-      ) : (
+export const decorators = [
+  (Story, context) =>
+    context.parameters.useAxiomProvider ? (
+      <AxiomProvider>
         <Story />
-      ),
-    (Story, context) =>
-      context.parameters.useOverlayDecorator ? (
-        <div
-          style={{
-            display: "grid",
-            height: "max(512px, calc(100dvh - 2rem))",
-            placeItems: "center",
-            width: "max(512px, calc(100dvw - 2rem))",
-          }}
-        >
-          <Story />
-        </div>
-      ) : (
+      </AxiomProvider>
+    ) : (
+      <Story />
+    ),
+  (Story, context) =>
+    context.parameters.useOverlayDecorator ? (
+      <div
+        style={{
+          display: "grid",
+          height: "max(512px, calc(100dvh - 2rem))",
+          placeItems: "center",
+          width: "max(512px, calc(100dvw - 2rem))",
+        }}
+      >
         <Story />
-      ),
-  ],
-} satisfies Preview;
+      </div>
+    ) : (
+      <Story />
+    ),
+] satisfies Preview["decorators"];
