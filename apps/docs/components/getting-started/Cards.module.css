@@ -1,6 +1,6 @@
 .card {
   &:hover {
-    background-color: var(--ax-colors-bg-neutral);
+    background-color: var(--ax-colors-bg-secondary);
   }
 }
 

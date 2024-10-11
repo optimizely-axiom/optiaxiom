@@ -11,7 +11,7 @@ type SpinnerProps = BoxProps<
 >;
 
 const mapColorSchemeToBg = {
-  default: "bg.neutral",
+  default: "bg.secondary",
   inverse: "neutral.50/6",
 } as const;
 const mapColorSchemeToFg = {
