@@ -78,7 +78,6 @@ async function importTokens(file) {
       light: "neutral.900",
     },
     "border.focus": { dark: "brand.300", light: "brand.300" },
-    "fg.discovery": { dark: "purple.500", light: "purple.500" },
   };
   /** @type {Record<string, string>} */
   const index = {};
