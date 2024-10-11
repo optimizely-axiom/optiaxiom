@@ -166,7 +166,7 @@ const mapFigmaToNormalizedName = {
   "fg/accent/states/base-hover": "fg.accent.hovered",
   "fg/accent/strong": "fg.accent.strong",
   "fg/default": "fg.default",
-  "fg/default_on-base": "fg.default.inverse",
+  "fg/default_on-base": "fg.white",
   "fg/default_on-contrast": "fg.default.inverse",
   "fg/disabled": "fg.disabled",
   "fg/feedback/error-base": "fg.error",
@@ -181,7 +181,7 @@ const mapFigmaToNormalizedName = {
   "fg/placeholder": "fg.tertiary",
   "fg/secondary": "fg.secondary",
   "fg/tertiary": "fg.tertiary",
-  "fg/white": "fg.default.inverse",
+  "fg/white": "_fg.white",
 };
 
 /**
