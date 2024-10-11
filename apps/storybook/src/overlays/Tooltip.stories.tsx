@@ -49,9 +49,12 @@ export const Controlled: Story = {
 
     await userEvent.click(canvas.getByRole("switch"));
     await userEvent.hover(canvas.getByRole("button"));
-    await expect(
-      screen.queryByRole("tooltip", { name: "Add to library" }),
-    ).not.toBeInTheDocument();
+    await waitFor(
+      async () =>
+        await expect(
+          screen.queryByRole("tooltip", { name: "Add to library" }),
+        ).not.toBeInTheDocument(),
+    );
   },
   render: function SampleStory() {
     const [enabled, setEnabled] = useState(true);
