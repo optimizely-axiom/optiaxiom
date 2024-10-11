@@ -6,7 +6,8 @@
   "scripts": {
     "build": "storybook build --docs",
     "dev": "wait-on ../../packages/react/dist/index.d.ts ../../packages/react/dist/unstable.d.ts && storybook dev -p 6006",
-    "lint": "oas-lint"
+    "lint": "oas-lint",
+    "test": "vitest"
   },
   "devDependencies": {
     "@optiaxiom/react": "workspace:^",
@@ -16,6 +17,7 @@
     "@storybook/addon-essentials": "^8.3.5",
     "@storybook/addon-interactions": "^8.3.5",
     "@storybook/addon-links": "^8.3.5",
+    "@storybook/experimental-addon-test": "^8.3.5",
     "@storybook/react": "^8.3.5",
     "@storybook/react-vite": "^8.3.5",
     "@storybook/test": "^8.3.5",
@@ -23,6 +25,7 @@
     "chromatic": "^11.12.0",
     "raw-loader": "^4.0.2",
     "react-docgen": "^7.0.3",
-    "storybook": "^8.3.5"
+    "storybook": "^8.3.5",
+    "webdriverio": "^8.40.6"
   }
 }
