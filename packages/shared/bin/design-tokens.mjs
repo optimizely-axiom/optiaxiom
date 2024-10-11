@@ -205,14 +205,7 @@ function normalizeColorName(name, value, palette) {
       const alpha = Math.round((100 * parseInt(value.slice(-2), 16)) / 256);
       return `${colorToken}/${alpha}`;
     } else {
-      if (name.includes("Aqua blue")) {
-        throw new Error("Invalid color");
-      }
-      return name
-        .toLowerCase()
-        .replace("light blue", "blue")
-        .replace("primary", "brand")
-        .replace("/", ".");
+      return name.toLowerCase().replace("primary", "brand").replace("/", ".");
     }
   } else if (name in mapFigmaToNormalizedName) {
     return mapFigmaToNormalizedName[name];
