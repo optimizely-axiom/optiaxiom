@@ -335,11 +335,13 @@ void yargs(hideBin(process.argv))
                   name,
                   parts[0],
                   parts[1],
-                  name.includes("strong")
-                    ? "strong"
-                    : name.includes("subtle")
-                      ? "subtle"
-                      : "",
+                  name.includes("light")
+                    ? "light"
+                    : name.includes("strong")
+                      ? "strong"
+                      : name.includes("subtle")
+                        ? "subtle"
+                        : "",
                   ["hovered", "pressed"].includes(parts.at(-1) ?? "")
                     ? (parts.at(-1) ?? "")
                     : "",
