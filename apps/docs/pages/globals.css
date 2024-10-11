@@ -29,11 +29,20 @@ html {
   --shiki-token-string-expression: light-dark(#22863a, #ecc48d);
 }
 
-body {
-  background-color: light-dark(
-    var(--ax-colors-neutral-50),
-    rgb(var(--nextra-bg))
-  );
+body,
+.nextra-nav-container-blur,
+.nextra-toc-footer,
+.nextra-sidebar-footer {
+  background-color: var(--ax-colors-bg-page);
+}
+
+.nextra-toc-footer,
+.nextra-sidebar-footer {
+  --tw-shadow: 0 -12px 16px var(--ax-colors-bg-page);
+}
+
+.nextra-nav-container ~ footer {
+  background-color: var(--ax-colors-bg-default);
 }
 
 body:before {
