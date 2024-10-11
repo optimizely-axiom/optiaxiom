@@ -48,6 +48,14 @@ export function transformColorTokens(tree) {
             light={${JSON.stringify(light.props)}}
             namespace="bg"
           />`,
+          "",
+          `### Border`,
+          "",
+          `<ColorTokens
+            dark={${JSON.stringify(dark.props)}}
+            light={${JSON.stringify(light.props)}}
+            namespace="border"
+          />`,
         ].join("\n"),
         {
           extensions: [mdxjs()],
