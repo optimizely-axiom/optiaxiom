@@ -90,6 +90,7 @@ export const badge = recipe({
           color: "transparent",
         },
         style({
+          pointerEvents: "none",
           position: "absolute",
         }),
       ],
