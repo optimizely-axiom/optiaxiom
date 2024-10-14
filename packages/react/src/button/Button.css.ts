@@ -27,7 +27,6 @@ export const button = recipe({
     },
     style({
       borderRadius: theme.borderRadius.md,
-      cursor: "pointer",
       paddingInline: paddingInlineVar,
       position: "relative",
       textDecoration: "none",
@@ -43,9 +42,6 @@ export const button = recipe({
             outlineOffset: "1px",
             zIndex: theme.zIndex["10"],
           },
-        "&:is([data-disabled], [data-loading])": {
-          cursor: "not-allowed",
-        },
         [`${group}[data-orientation="horizontal"] &:not(:first-child):not(:last-child)`]:
           {
             borderInlineWidth: "0.5px",
