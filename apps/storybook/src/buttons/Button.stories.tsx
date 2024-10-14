@@ -79,6 +79,7 @@ export const Disabled: Story = {
 export const Loading: Story = {
   ...Appearance,
   args: {
+    "aria-label": "Loading",
     children: "Button",
     icon: "chevron-down",
     loading: true,
@@ -101,20 +102,21 @@ export const Loading: Story = {
 export const IconButton: Story = {
   ...Appearance,
   args: {
+    "aria-label": "Button",
     icon: "chevron-down",
   },
 };
+
 export const IconSizes: Story = {
   ...Appearance,
   args: {
+    "aria-label": "Button",
     icon: "chevron-down",
   },
   render: (args) => (
     <Flex flexDirection="row">
-      {sizes.map(([size, label]) => (
-        <Button {...args} key={size} size={size}>
-          {args.children ? label : null}
-        </Button>
+      {sizes.map(([size]) => (
+        <Button {...args} key={size} size={size} />
       ))}
     </Flex>
   ),
@@ -154,7 +156,7 @@ export const Link: Story = {
       <Button {...args}>
         <a href="/">Sample Link</a>
       </Button>
-      <Button {...args}>
+      <Button {...args} aria-label="Sample Link">
         {/* eslint-disable-next-line jsx-a11y/anchor-has-content */}
         <a href="/" />
       </Button>

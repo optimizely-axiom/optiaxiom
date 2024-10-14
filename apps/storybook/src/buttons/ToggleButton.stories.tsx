@@ -5,6 +5,7 @@ import { IconLayoutSidebar } from "@tabler/icons-react";
 
 export default {
   args: {
+    "aria-label": "Toggle sidebar",
     icon: "layout-sidebar",
   },
   argTypes: {

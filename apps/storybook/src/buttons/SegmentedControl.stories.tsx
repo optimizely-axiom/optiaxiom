@@ -10,21 +10,24 @@ import {
   IconDeviceTablet,
 } from "@tabler/icons-react";
 
-const meta: Meta<typeof SegmentedControl> = {
+export default {
   args: {
     children: (
       <>
         <SegmentedControlItem
+          aria-label="Desktop"
           icon={<IconDeviceImac />}
           key="desktop"
           value="desktop"
         />
         <SegmentedControlItem
+          aria-label="Tablet"
           icon={<IconDeviceTablet />}
           key="tablet"
           value="tablet"
         />
         <SegmentedControlItem
+          aria-label="Mobile"
           icon={<IconDeviceMobile />}
           key="mobile"
           value="mobile"
@@ -33,9 +36,7 @@ const meta: Meta<typeof SegmentedControl> = {
     ),
   },
   component: SegmentedControl,
-};
-
-export default meta;
+} as Meta<typeof SegmentedControl>;
 
 type Story = StoryObj<typeof SegmentedControl>;
 
@@ -63,17 +64,20 @@ export const DisabledItem: Story = {
     children: (
       <>
         <SegmentedControlItem
+          aria-label="Desktop"
           disabled
           icon={<IconDeviceImac />}
           key="desktop"
           value="desktop"
         />
         <SegmentedControlItem
+          aria-label="Tablet"
           icon={<IconDeviceTablet />}
           key="tablet"
           value="tablet"
         />
         <SegmentedControlItem
+          aria-label="Mobile"
           icon={<IconDeviceMobile />}
           key="mobile"
           value="mobile"

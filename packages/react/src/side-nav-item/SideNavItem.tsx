@@ -12,6 +12,7 @@ export type SideNavItemProps = ButtonProps<
   typeof Button,
   {
     active?: boolean;
+    "aria-label": string;
   }
 >;
 
