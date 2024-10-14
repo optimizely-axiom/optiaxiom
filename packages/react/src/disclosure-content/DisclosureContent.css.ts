@@ -5,13 +5,13 @@ const slideDown = keyframes({
     height: 0,
   },
   to: {
-    height: "var(--radix-accordion-content-height)",
+    height: "var(--radix-collapsible-content-height)",
   },
 });
 
 const slideUp = keyframes({
   from: {
-    height: "var(--radix-accordion-content-height)",
+    height: "var(--radix-collapsible-content-height)",
   },
   to: {
     height: 0,

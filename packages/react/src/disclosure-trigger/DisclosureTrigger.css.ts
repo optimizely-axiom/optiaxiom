@@ -7,9 +7,9 @@ export const trigger = recipe({
       flexDirection: "row",
       fontSize: "md",
       fontWeight: "500",
-      gap: "xs",
+      gap: "4",
       p: "xs",
-      pl: "4",
+      px: "4",
       rounded: "md",
       textAlign: "start",
       w: "full",
@@ -34,18 +34,18 @@ export const icon = recipe({
     },
   ],
   variants: {
-    appearance: {
-      primary: style({
-        selectors: {
-          "[data-state=open] > &": {
-            transform: "rotate(90deg)",
-          },
-        },
-      }),
-      secondary: style({
+    chevronPosition: {
+      end: style({
         selectors: {
           "[data-state=open] > &": {
             transform: "rotate(180deg)",
+          },
+        },
+      }),
+      start: style({
+        selectors: {
+          "[data-state=open] > &": {
+            transform: "rotate(90deg)",
           },
         },
       }),
