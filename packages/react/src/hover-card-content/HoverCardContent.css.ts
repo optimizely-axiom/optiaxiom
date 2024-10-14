@@ -8,6 +8,7 @@ export const content = recipe({
       borderColor: "border.secondary",
       display: "flex",
       flexDirection: "column",
+      fontSize: "md",
       gap: "2",
       p: "sm",
       rounded: "lg",
