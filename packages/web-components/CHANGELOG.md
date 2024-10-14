@@ -1,5 +1,19 @@
 # @optiaxiom/web-components
 
+## 0.1.0
+
+### Patch Changes
+
+- fe9557e: rename decorators to addons
+- 1055c78: load tokens and fonts once
+- 44d461e: allow custom events on web-components
+- d9032a3: add web-components package
+- eaea0f9: only inject font-face styles in global
+- 218d9cd: add support for rendering portals
+- de49878: release all components in react
+- 50a4805: rename input decorator prop
+- 218d9cd: render web component tree in order
+
 ## 0.1.0-next.8
 
 ### Patch Changes
