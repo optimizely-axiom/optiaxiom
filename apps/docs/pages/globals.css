@@ -41,6 +41,12 @@ body,
   --tw-shadow: 0 -12px 16px var(--ax-colors-bg-page);
 }
 
+@media not all and (min-width: 768px) {
+  .nextra-sidebar-container {
+    background-color: var(--ax-colors-bg-page);
+  }
+}
+
 .nextra-nav-container ~ footer {
   background-color: var(--ax-colors-bg-default);
 }
