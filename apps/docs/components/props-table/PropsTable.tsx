@@ -32,6 +32,13 @@ export function PropsTable({
   );
   const isBox = component.displayName?.endsWith("/Box");
 
+  if (
+    !propItems.find((prop) => prop.name === "asChild") &&
+    base === undefined
+  ) {
+    base = false;
+  }
+
   const baseName =
     base && "displayName" in base && base?.displayName
       ? base.displayName.replace("@optiaxiom/react/", "")
