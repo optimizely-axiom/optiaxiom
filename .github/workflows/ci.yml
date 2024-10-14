@@ -80,13 +80,15 @@ jobs:
             ${{ runner.os }}-nextjs-${{ hashFiles('pnpm-lock.yaml') }}-
 
       - if: ${{ github.event_name == 'push' }}
-        run: |
-          pnpm -F web-components... build
+        run: pnpm -F web-components... build
 
       - if: ${{ github.event_name != 'push' }}
-        run: |
-          pnpm -F docs... -F web-components... build
+        run: pnpm -F docs... -F web-components... build
 
-      - run: |
-          pnpm lint --no-fix
-          pnpm exec vitest run
+      - run: pnpm lint --no-fix
+
+      - if: ${{ github.event_name == 'push' }}
+        run: pnpm exec vitest run --project=@optiaxiom/react --project=@optiaxiom/web-components
+
+      - if: ${{ github.event_name != 'push' }}
+        run: pnpm exec vitest run
