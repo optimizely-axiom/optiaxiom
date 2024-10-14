@@ -66,7 +66,7 @@ export const unresponsiveProps = defineProperties({
      *
      * {@link https://developer.mozilla.org/en-US/docs/Web/CSS/cursor Documentation}
      */
-    cursor: ["pointer", "default", "text"] as const,
+    cursor: ["pointer", "default", "not-allowed", "text"] as const,
     /**
      * Toggle element visibility based on :empty pseudo-class
      */

@@ -129,6 +129,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <Box
         asChild
+        cursor={disabled || loading ? "not-allowed" : "pointer"}
         data-disabled={disabled ? "" : undefined}
         data-loading={loading ? "" : undefined}
         {...styles.button(
