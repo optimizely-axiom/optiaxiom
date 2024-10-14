@@ -24,19 +24,19 @@ export default {
         <BreadcrumbItem>
           <BreadcrumbLink href="/">Home</BreadcrumbLink>
         </BreadcrumbItem>
-        <BreadcrumbSeparator />,
+        <BreadcrumbSeparator />
         <BreadcrumbItem>
           <BreadcrumbLink href="/documents">Documents</BreadcrumbLink>
         </BreadcrumbItem>
-        <BreadcrumbSeparator />,
+        <BreadcrumbSeparator />
         <BreadcrumbItem>
           <BreadcrumbLink href="/theme">Theme</BreadcrumbLink>
         </BreadcrumbItem>
-        <BreadcrumbSeparator />,
+        <BreadcrumbSeparator />
         <BreadcrumbItem>
           <BreadcrumbLink href="/components">Components</BreadcrumbLink>
         </BreadcrumbItem>
-        <BreadcrumbSeparator />,
+        <BreadcrumbSeparator />
         <BreadcrumbItem>
           <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
         </BreadcrumbItem>
@@ -58,15 +58,15 @@ export const WithEllipsis: Story = {
         <BreadcrumbItem>
           <BreadcrumbLink href="/">Home</BreadcrumbLink>
         </BreadcrumbItem>
-        <BreadcrumbSeparator />,
+        <BreadcrumbSeparator />
         <BreadcrumbItem>
           <BreadcrumbEllipsis />
         </BreadcrumbItem>
-        <BreadcrumbSeparator />,
+        <BreadcrumbSeparator />
         <BreadcrumbItem>
           <BreadcrumbLink href="/components">Components</BreadcrumbLink>
         </BreadcrumbItem>
-        <BreadcrumbSeparator />,
+        <BreadcrumbSeparator />
         <BreadcrumbItem>
           <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
         </BreadcrumbItem>
@@ -83,7 +83,7 @@ export const WithDropdown: Story = {
         <BreadcrumbItem>
           <BreadcrumbLink href="/">Home</BreadcrumbLink>
         </BreadcrumbItem>
-        <BreadcrumbSeparator />,
+        <BreadcrumbSeparator />
         <BreadcrumbItem>
           <DropdownMenu>
             <DropdownMenuTrigger appearance="subtle" icon={undefined} size="sm">
@@ -102,7 +102,7 @@ export const WithDropdown: Story = {
             </DropdownMenuContent>
           </DropdownMenu>
         </BreadcrumbItem>
-        <BreadcrumbSeparator />,
+        <BreadcrumbSeparator />
         <BreadcrumbItem>
           <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
         </BreadcrumbItem>
