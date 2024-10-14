@@ -5,7 +5,7 @@ import { IconBell, IconClockFilled } from "@tabler/icons-react";
 
 export default {
   args: {
-    children: <Button icon={<IconBell />} />,
+    children: <Button aria-label="Notifications" icon={<IconBell />} />,
     content: "4",
   },
   component: Indicator,

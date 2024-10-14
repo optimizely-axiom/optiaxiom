@@ -53,17 +53,30 @@ export default {
     ),
     children: (
       <>
-        <SideNavItem icon={<IconBinaryTree />}>Projects</SideNavItem>
-        <SideNavItem active icon={<IconFlag2 />}>
+        <SideNavItem aria-label="Projects" icon={<IconBinaryTree />}>
+          Projects
+        </SideNavItem>
+        <SideNavItem active aria-label="Flags" icon={<IconFlag2 />}>
           Flags
         </SideNavItem>
-        <SideNavItem icon={<IconChartInfographic />}>Reports</SideNavItem>
-        <SideNavItem icon={<IconUsers />}>Audiences</SideNavItem>
-        <SideNavItem icon={<IconHistory />}>History</SideNavItem>
-        <SideNavItem icon={<IconChartLine />}>Events</SideNavItem>
-        <SideNavItem icon={<IconSettings />}>Settings</SideNavItem>
+        <SideNavItem aria-label="Reports" icon={<IconChartInfographic />}>
+          Reports
+        </SideNavItem>
+        <SideNavItem aria-label="Audiences" icon={<IconUsers />}>
+          Audiences
+        </SideNavItem>
+        <SideNavItem aria-label="History" icon={<IconHistory />}>
+          History
+        </SideNavItem>
+        <SideNavItem aria-label="Events" icon={<IconChartLine />}>
+          Events
+        </SideNavItem>
+        <SideNavItem aria-label="Settings" icon={<IconSettings />}>
+          Settings
+        </SideNavItem>
         <SideNavItem
           addonAfter={<IconExternalLink size="16" />}
+          aria-label="Tutorial"
           asChild
           icon={<IconVocabulary />}
         >
