@@ -40,7 +40,6 @@ export default {
         <BreadcrumbItem>
           <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
         </BreadcrumbItem>
-        ,
       </>
     ),
   },
@@ -70,7 +69,6 @@ export const WithEllipsis: Story = {
         <BreadcrumbItem>
           <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
         </BreadcrumbItem>
-        ,
       </>
     ),
   },
@@ -129,7 +127,6 @@ export const CustomSeparator: Story = {
         <BreadcrumbItem>
           <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
         </BreadcrumbItem>
-        ,
       </>
     ),
   },
