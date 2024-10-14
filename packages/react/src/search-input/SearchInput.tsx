@@ -56,6 +56,7 @@ export const SearchInput = forwardRef<HTMLInputElement, SearchProps>(
           )
         }
         addonBefore={<IconMagnifyingGlass />}
+        addonPointerEvents="none"
         autoComplete="off"
         onChange={(event) => {
           onChange?.(event);
