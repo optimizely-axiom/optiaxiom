@@ -1,7 +1,3 @@
-export * from "./accordion";
-export * from "./accordion-content";
-export * from "./accordion-item";
-export * from "./accordion-trigger";
 export * from "./alert";
 export * from "./alert-description";
 export * from "./alert-dialog";
@@ -31,6 +27,9 @@ export * from "./dialog-description";
 export * from "./dialog-footer";
 export * from "./dialog-title";
 export * from "./dialog-trigger";
+export * from "./disclosure";
+export * from "./disclosure-content";
+export * from "./disclosure-trigger";
 export * from "./drawer";
 export * from "./drawer-body";
 export * from "./drawer-footer";

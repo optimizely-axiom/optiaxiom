@@ -56,8 +56,8 @@ export default {
     title: "Data Display",
     type: "separator",
   },
-  accordion: "Accordion",
   avatar: "Avatar",
+  disclosure: "Disclosure",
   indicator: "Indicator",
   separator: "Separator",
 
