@@ -10,7 +10,7 @@ export function App() {
       <Avatar colorScheme="yellow">KP</Avatar>
       <Avatar colorScheme="magenta">KP</Avatar>
       <Avatar colorScheme="purple">KP</Avatar>
-      <Avatar colorScheme="brand">KP</Avatar>
+      <Avatar colorScheme="cyan">KP</Avatar>
     </Flex>
   );
 }
