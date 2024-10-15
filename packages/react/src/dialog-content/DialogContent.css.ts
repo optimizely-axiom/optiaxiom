@@ -4,12 +4,15 @@ export const content = recipe({
   base: [
     {
       bg: "bg.default",
+      display: "flex",
+      flexDirection: "column",
       rounded: "lg",
       shadow: "md",
       z: "popover",
     },
     style({
       left: "50%",
+      maxHeight: "75dvh",
       maxWidth: "calc(100dvw - 2 * 24px)",
       position: "fixed",
       top: "50%",
