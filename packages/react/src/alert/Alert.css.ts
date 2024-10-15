@@ -4,11 +4,15 @@ export const alert = recipe({
   base: [
     {
       alignItems: "start",
+      color: "fg.default",
       flexDirection: "row",
       fontSize: "md",
+      fontWeight: "500",
       gap: "xs",
       justifyContent: "space-between",
-      p: "md",
+      p: "sm",
+      pr: "md",
+      rounded: "md",
     },
   ],
   variants: {
@@ -44,7 +48,7 @@ export const icon = recipe({
   variants: {
     colorScheme: {
       danger: {
-        color: "bg.error.hovered",
+        color: "fg.error.strong",
       },
       information: {
         color: "brand.600",
@@ -53,10 +57,10 @@ export const icon = recipe({
         color: "fg.tertiary",
       },
       success: {
-        color: "bg.success.hovered",
+        color: "fg.success.strong",
       },
       warning: {
-        color: "bg.warning.hovered",
+        color: "fg.warning.strong",
       },
     },
   },

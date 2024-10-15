@@ -36,7 +36,7 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>(
           {createElement(iconMap[colorScheme])}
         </Box>
 
-        <Flex flex="1" gap="xs" mt="2">
+        <Flex flex="1" gap="xs" my="2">
           {children}
         </Flex>
 
