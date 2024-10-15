@@ -1,7 +1,4 @@
 export const colorPalette = {
-  current: "currentColor" as const,
-  transparent: "transparent" as const,
-
   "blue.50": "#EDF6FF" as const,
   "blue.100": "#D7ECFC" as const,
   "blue.200": "#AEDBFF" as const,
@@ -120,7 +117,8 @@ export const colorPalette = {
 } as const;
 
 export const colors = {
-  ...colorPalette,
+  current: "currentColor" as const,
+  transparent: "transparent" as const,
 
   "bg.accent": colorPalette["brand.500"],
   "bg.accent.hovered": colorPalette["brand.600"],
@@ -193,7 +191,8 @@ export const colors = {
 } as const;
 
 export const colorsDark = {
-  ...colorPalette,
+  current: "currentColor" as const,
+  transparent: "transparent" as const,
 
   "bg.accent": colorPalette["brand.400"],
   "bg.accent.hovered": colorPalette["brand.400"],
