@@ -87,7 +87,7 @@ export const button = recipe({
           [accentColorVar]: theme.colors["bg.error"],
           [hoverAccentColorVar]: theme.colors["bg.error.hovered"],
           [pressedAccentColorVar]: theme.colors["bg.error.pressed"],
-          [subtleHoverAccentColorVar]: theme.colors["red.50"],
+          [subtleHoverAccentColorVar]: theme.colors["bg.error.subtlest"],
           [subtlePressedAccentColorVar]: theme.colors["bg.error.subtle"],
         },
       }),

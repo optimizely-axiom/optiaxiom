@@ -116,12 +116,12 @@ export const root = recipe({
     colorScheme: {
       danger: style({
         vars: {
-          [accentColorVar]: theme.colors["red.300"],
+          [accentColorVar]: theme.colors["fg.error.light"],
         },
       }),
       information: style({
         vars: {
-          [accentColorVar]: theme.colors["brand.200"],
+          [accentColorVar]: theme.colors["fg.information.light"],
         },
       }),
       neutral: style({
@@ -131,12 +131,12 @@ export const root = recipe({
       }),
       success: style({
         vars: {
-          [accentColorVar]: theme.colors["green.400"],
+          [accentColorVar]: theme.colors["fg.success.light"],
         },
       }),
       warning: style({
         vars: {
-          [accentColorVar]: theme.colors["yellow.300"],
+          [accentColorVar]: theme.colors["fg.warning.light"],
         },
       }),
     },

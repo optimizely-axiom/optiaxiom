@@ -19,7 +19,7 @@ export const Item = ({
       </Text>
 
       <Box
-        bg="purple.500"
+        bg="fg.link.visited"
         display="grid"
         placeItems="center"
         size="64"

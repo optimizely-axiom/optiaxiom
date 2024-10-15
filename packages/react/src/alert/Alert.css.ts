@@ -18,19 +18,19 @@ export const alert = recipe({
   variants: {
     colorScheme: {
       danger: {
-        bg: "red.100",
+        bg: "bg.error.subtle",
       },
       information: {
-        bg: "brand.50",
+        bg: "bg.information.subtle",
       },
       neutral: {
         bg: "bg.secondary",
       },
       success: {
-        bg: "green.100",
+        bg: "bg.success.subtle",
       },
       warning: {
-        bg: "yellow.100",
+        bg: "bg.warning.subtle",
       },
     },
   },
@@ -51,7 +51,7 @@ export const icon = recipe({
         color: "fg.error.strong",
       },
       information: {
-        color: "brand.600",
+        color: "fg.information.strong",
       },
       neutral: {
         color: "fg.tertiary",

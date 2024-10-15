@@ -5,7 +5,7 @@ import { Canvas } from "../Canvas";
 export function App() {
   return (
     <Canvas>
-      <Box bg="blue.200" fontSize={["sm", "xl"]}>
+      <Box bg="bg.information.light" fontSize={["sm", "xl"]}>
         Contact
       </Box>
     </Canvas>

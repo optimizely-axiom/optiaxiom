@@ -4,7 +4,7 @@ import { recipe, type RecipeVariants, style } from "../vanilla-extract";
 export const pill = recipe({
   base: [
     {
-      bg: "neutral.100",
+      bg: "bg.secondary",
       border: "0",
       fontSize: "sm",
       rounded: "md",

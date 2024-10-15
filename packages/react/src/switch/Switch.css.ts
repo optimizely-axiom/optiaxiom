@@ -44,7 +44,7 @@ export const thumb = recipe({
       transition: "transform",
     },
     style({
-      backgroundColor: theme.colors["neutral.00"],
+      backgroundColor: theme.colors["bg.default"],
       transform: "translateX(-10px)",
 
       selectors: {
@@ -52,7 +52,7 @@ export const thumb = recipe({
           boxShadow: theme.boxShadow["sm"],
         },
         "&[data-disabled]": {
-          backgroundColor: theme.colors["neutral.50"],
+          backgroundColor: theme.colors["bg.page"],
         },
         '&[data-state="checked"]': {
           transform: "translateX(10px)",
