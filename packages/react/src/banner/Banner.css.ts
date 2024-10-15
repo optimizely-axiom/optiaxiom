@@ -4,11 +4,14 @@ export const banner = recipe({
   base: [
     {
       alignItems: "start",
+      color: "fg.default",
       flexDirection: "row",
       fontSize: "md",
-      gap: "xs",
+      fontWeight: "500",
+      gap: "sm",
       justifyContent: "space-between",
-      p: "md",
+      px: "lg",
+      py: "sm",
     },
   ],
   variants: {
@@ -35,12 +38,30 @@ export const banner = recipe({
 export const icon = recipe({
   base: [
     {
-      color: "bg.default.inverse",
       h: "16",
       mt: "4",
       w: "auto",
     },
   ],
+  variants: {
+    colorScheme: {
+      danger: {
+        color: "fg.error.strong",
+      },
+      information: {
+        color: "fg.information.strong",
+      },
+      neutral: {
+        color: "fg.tertiary",
+      },
+      success: {
+        color: "fg.success.strong",
+      },
+      warning: {
+        color: "fg.warning.strong",
+      },
+    },
+  },
 });
 
 export type BannerVariants = NonNullable<RecipeVariants<typeof banner>>;
