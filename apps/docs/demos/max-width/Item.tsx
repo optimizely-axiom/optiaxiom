@@ -12,7 +12,7 @@ export const Item = ({
   return (
     <Box rounded="md" style={yellowStripes}>
       <Box
-        bg="purple.500"
+        bg="fg.link.visited"
         display="grid"
         p="xs"
         placeItems="center"
@@ -20,7 +20,7 @@ export const Item = ({
         {...children.props}
       >
         <Text
-          color="neutral.00"
+          color="fg.default.inverse"
           fontFamily="mono"
           fontWeight="600"
           textAlign="center"

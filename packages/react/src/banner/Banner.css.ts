@@ -14,19 +14,19 @@ export const banner = recipe({
   variants: {
     colorScheme: {
       danger: {
-        bg: "red.200",
+        bg: "bg.error.light",
       },
       information: {
-        bg: "brand.200",
+        bg: "bg.information.light",
       },
       neutral: {
         bg: "bg.tertiary",
       },
       success: {
-        bg: "green.200",
+        bg: "bg.success.light",
       },
       warning: {
-        bg: "yellow.200",
+        bg: "bg.warning.light",
       },
     },
   },

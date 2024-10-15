@@ -106,7 +106,7 @@ export const Scale = ({
             )}
             {!hidePreview && (
               <Td display={["none", "table-cell"]}>
-                <Box bg="purple.500" h="16" style={{ width: size }} />
+                <Box bg="fg.link.visited" h="16" style={{ width: size }} />
               </Td>
             )}
           </Tr>

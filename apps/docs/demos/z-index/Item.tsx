@@ -8,9 +8,9 @@ export const Item = ({
 }) => {
   return (
     <Box
-      bg="purple.500"
+      bg="fg.link.visited"
       border="2"
-      borderColor="neutral.00"
+      borderColor="fg.default.inverse"
       display="grid"
       ml="-12"
       placeItems="center"
@@ -18,7 +18,7 @@ export const Item = ({
       size="64"
       {...children.props}
     >
-      <Text color="neutral.00" fontFamily="mono" fontWeight="600">
+      <Text color="fg.default.inverse" fontFamily="mono" fontWeight="600">
         {children.props.children}
       </Text>
     </Box>

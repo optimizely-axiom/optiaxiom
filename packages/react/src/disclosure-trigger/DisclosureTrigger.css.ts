@@ -15,13 +15,15 @@ export const trigger = recipe({
       w: "full",
     },
     style({
+      color: theme.colors["fg.default"],
+
       selectors: {
         "&:focus-visible": {
           outline: `2px solid ${theme.colors["border.focus"]}`,
           outlineOffset: "1px",
         },
         "&:hover": {
-          color: theme.colors["neutral.1000"],
+          color: theme.colors["fg.secondary"],
         },
       },
     }),

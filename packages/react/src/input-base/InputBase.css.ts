@@ -23,14 +23,14 @@ export const wrapper = recipe({
 
       selectors: {
         [`&:has(${marker}:focus):is([data-invalid])`]: {
-          outline: `2px solid ${theme.colors["red.200"]}`,
+          outline: `2px solid ${theme.colors["bg.error.light"]}`,
           outlineOffset: "1px",
         },
         [`&:has(${marker}:focus):not([data-invalid]):not([data-readonly])`]: {
           borderColor: theme.colors["border.accent"],
         },
         [`&:has(${marker}:focus):not([data-invalid])`]: {
-          outline: `2px solid ${theme.colors["brand.300"]}`,
+          outline: `2px solid ${theme.colors["border.focus"]}`,
           outlineOffset: "1px",
         },
 

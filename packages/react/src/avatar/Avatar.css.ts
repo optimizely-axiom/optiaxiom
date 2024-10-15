@@ -18,7 +18,7 @@ export const avatar = recipe({
 
       selectors: {
         [`${styles.className} &`]: {
-          border: `1px solid ${theme.colors["neutral.00"]}`,
+          border: `1px solid ${theme.colors["bg.default"]}`,
         },
       },
     }),

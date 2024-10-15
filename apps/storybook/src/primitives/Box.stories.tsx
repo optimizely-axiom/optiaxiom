@@ -10,7 +10,7 @@ type Story = StoryObj<typeof Box>;
 
 export const Basic: Story = {
   args: {
-    bg: "brand.50",
+    bg: "bg.accent.subtle",
     children: <Text>Hello World!</Text>,
     m: "lg",
     p: "lg",
@@ -21,7 +21,7 @@ export const Basic: Story = {
 export const Composition: Story = {
   args: {
     asChild: true,
-    bg: "yellow.50",
+    bg: "bg.warning.subtle",
     children: <Text>Hello World!</Text>,
     p: "lg",
   },

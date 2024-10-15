@@ -123,7 +123,7 @@ export const box = recipe({
            * 2. Set the default placeholder color to the user's configured gray 400 color.
            */
           "&:is(input, textarea)::placeholder": {
-            color: theme.colors["neutral.600"] /* 2 */,
+            color: theme.colors["fg.tertiary"] /* 2 */,
             opacity: 1 /* 1 */,
           },
 

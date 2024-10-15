@@ -15,8 +15,8 @@ export const Item = ({
       {...children.props}
     >
       <Text
-        bg="purple.500"
-        color="neutral.00"
+        bg="fg.link.visited"
+        color="fg.default.inverse"
         fontFamily="mono"
         fontWeight="600"
         p="md"

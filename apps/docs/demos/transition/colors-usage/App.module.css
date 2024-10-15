@@ -1,10 +1,10 @@
 .base {
-  background-color: var(--ax-colors-blue-50);
-  border: 1px solid var(--ax-colors-blue-200);
+  background-color: var(--ax-colors-bg-secondary);
+  border: 1px solid var(--ax-colors-bg-tertiary);
   cursor: pointer;
 
   &:hover {
-    background-color: var(--ax-colors-purple-50);
-    border-color: var(--ax-colors-purple-200);
+    background-color: var(--ax-colors-bg-information-subtle);
+    border-color: var(--ax-colors-bg-information-light);
   }
 }
