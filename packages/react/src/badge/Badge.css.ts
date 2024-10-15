@@ -24,7 +24,7 @@ export const badge = recipe({
     },
     style({
       vars: {
-        [solidColorVar]: theme.colors["fg.default.inverse"],
+        [solidColorVar]: theme.colors["fg.white"],
       },
     }),
   ],
@@ -69,7 +69,7 @@ export const badge = recipe({
       warning: style({
         vars: {
           [solidBackgroundColorVar]: theme.colors["bg.warning"],
-          [solidColorVar]: theme.colors["fg.default"],
+          [solidColorVar]: theme.colors["fg.warning.inverse"],
           [subtleBackgroundColorVar]: theme.colors["bg.warning.subtle"],
           [subtleColorVar]: theme.colors["fg.warning.strong"],
         },
