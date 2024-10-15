@@ -1,5 +1,4 @@
 import { theme } from "../theme";
-import { mapValues } from "../utils";
 import { style } from "../vanilla-extract";
 import { recipe, type RecipeVariants } from "../vanilla-extract";
 import * as styles from "./../avatar-group/AvatarGroup.css";
@@ -26,22 +25,40 @@ export const avatar = recipe({
   ],
 
   variants: {
-    colorScheme: mapValues(
-      {
-        blue: "blue",
-        brand: "brand",
-        green: "green",
-        magenta: "magenta",
-        neutral: "neutral",
-        purple: "purple",
-        red: "red",
-        yellow: "yellow",
-      } as const,
-      (color) => ({
-        bg: color === "neutral" ? "neutral.150" : `${color}.500`,
-        color: color === "neutral" ? "bg.default.inverse" : "neutral.00",
-      }),
-    ),
+    colorScheme: {
+      blue: {
+        bg: "bg.information.subtle",
+        color: "fg.information.strong",
+      },
+      cyan: {
+        bg: "bg.avatar.cyan",
+        color: "fg.avatar.cyan",
+      },
+      green: {
+        bg: "bg.success.subtle",
+        color: "fg.success.strong",
+      },
+      magenta: {
+        bg: "bg.avatar.magenta",
+        color: "fg.avatar.magenta",
+      },
+      neutral: {
+        bg: "bg.secondary",
+        color: "fg.default",
+      },
+      purple: {
+        bg: "bg.avatar.purple",
+        color: "fg.avatar.purple",
+      },
+      red: {
+        bg: "bg.error.subtle",
+        color: "fg.error.strong",
+      },
+      yellow: {
+        bg: "bg.warning.subtle",
+        color: "fg.warning.strong",
+      },
+    },
     size: {
       xs: [
         {

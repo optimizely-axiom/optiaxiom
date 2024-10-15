@@ -13,7 +13,7 @@ export function App() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Avatar asChild colorScheme="brand">
+        <Avatar asChild colorScheme="magenta">
           <button>JD</button>
         </Avatar>
       </DropdownMenuTrigger>
