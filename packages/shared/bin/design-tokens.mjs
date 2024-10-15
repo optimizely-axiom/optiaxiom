@@ -78,17 +78,26 @@ async function importTokens(file) {
 
   /** @type {Record<string, { light: string, dark: string; variable?: string }>} */
   const colors = {
-    "bg.default.inverse.hovered": {
-      dark: "neutral.200",
-      light: "neutral.900",
-    },
+    "bg.avatar.cyan": { dark: "cyan.900", light: "cyan.100" },
+    "bg.avatar.magenta": { dark: "magenta.900", light: "magenta.100" },
+    "bg.avatar.purple": { dark: "purple.900", light: "purple.100" },
+    "bg.default.inverse.hovered": { dark: "neutral.200", light: "neutral.900" },
     "bg.default.inverse.pressed": {
       dark: "neutral.300",
       light: "neutral.1000",
     },
+    "bg.error.subtlest": { dark: "red.900", light: "red.50" },
+    "fg.avatar.cyan": { dark: "cyan.200", light: "cyan.700" },
+    "fg.avatar.magenta": { dark: "magenta.200", light: "magenta.700" },
+    "fg.avatar.purple": { dark: "purple.200", light: "purple.700" },
+    "fg.error.light": { dark: "red.500", light: "red.300" },
+    "fg.information.light": { dark: "blue.500", light: "blue.300" },
     "fg.link": { dark: "brand.300", light: "brand.500" },
     "fg.link.hovered": { dark: "brand.500", light: "brand.600" },
     "fg.link.visited": { dark: "brand.300", light: "purple.500" },
+    "fg.success.light": { dark: "green.500", light: "green.300" },
+    "fg.warning.inverse": { dark: "neutral.800", light: "neutral.800" },
+    "fg.warning.light": { dark: "yellow.500", light: "yellow.300" },
   };
   /** @type {Record<string, string>} */
   const index = {};
