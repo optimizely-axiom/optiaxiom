@@ -5,15 +5,19 @@ import {
   Select,
   SelectContent,
   SelectItem,
+  SelectItemIndicator,
+  SelectLabel,
+  SelectSeparator,
   SelectTrigger,
+  SelectValue,
 } from "@optiaxiom/react/unstable";
 import { useState } from "react";
 
-type Story = StoryObj<typeof Select>;
+type Story = StoryObj<typeof Select<string>>;
 
 export default {
   component: Select,
-} as Meta<typeof Select>;
+} as Meta<typeof Select<string>>;
 
 type Book = {
   author: string;
@@ -123,31 +127,33 @@ const languages = [
   "Lithuanian",
 ];
 
-const itemToString = (book: Book | null) => {
-  return book ? book.title : "";
-};
-
-const itemToKey = (book: Book | null) => {
-  return book?.id;
-};
-
-const isItemDisabled = (book: Book) => {
-  return book.disabled;
-};
-
 export const Basic: Story = {
-  render: function Basic() {
-    const [value, setValue] = useState<string>();
+  args: {
+    items: languages,
+  },
+  render: function Basic(args) {
+    const [value, setValue] = useState("Bengali");
 
     return (
-      <Select items={languages} onValueChange={setValue} value={value}>
-        <SelectTrigger>{value || "Select a language"}</SelectTrigger>
+      <Select
+        {...args}
+        items={languages}
+        onValueChange={setValue}
+        value={value}
+      >
+        <SelectTrigger>
+          <SelectValue placeholder="Select a language" />
+        </SelectTrigger>
+
         <SelectContent>
-          {languages.map((item, index) => (
-            <SelectItem item={item} key={index}>
-              {item}
-            </SelectItem>
-          ))}
+          {languages.map((item, index) => {
+            return (
+              <SelectItem item={item} key={index}>
+                {item}
+                <SelectItemIndicator />
+              </SelectItem>
+            );
+          })}
         </SelectContent>
       </Select>
     );
@@ -155,46 +161,93 @@ export const Basic: Story = {
 };
 
 export const WithLabel: Story = {
-  render: function WithLabel() {
-    const [value, setValue] = useState(books[0]);
-
-    return (
-      <Field label="Label">
-        <Select
-          isItemDisabled={isItemDisabled}
-          itemToKey={itemToKey}
-          itemToString={itemToString}
-          items={books}
-          onValueChange={setValue}
-          value={value}
-        >
-          <SelectTrigger>{value.title} </SelectTrigger>
-          <SelectContent>
-            {books.map((item, index) => (
-              <SelectItem item={item} key={index}>
-                {item.title}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-      </Field>
-    );
-  },
+  ...Basic,
+  decorators: (Story) => (
+    <Field label="Label">
+      <Story />
+    </Field>
+  ),
 };
 
 export const Disabled: Story = {
-  render: function Disabled() {
-    const [value, setValue] = useState("English");
+  ...Basic,
+  args: {
+    disabled: true,
+  },
+};
+
+const fruits = ["Apple", "Banana", "Blueberry", "Grapes", "Pineapple"];
+
+const vegetables = ["Aubergine", "Broccoli", "Carrot", "Courgette", "Leek"];
+
+const meats = ["Beef", "Chicken", "Lamb", "Pork"];
+
+const combinedFoodList = [
+  "Apple",
+  "Banana",
+  "Blueberry",
+  "Grapes",
+  "Pineapple",
+  "Aubergine",
+  "Broccoli",
+  "Carrot",
+  "Courgette",
+  "Leek",
+  "Beef",
+  "Chicken",
+  "Lamb",
+  "Pork",
+];
+export const Grouped: Story = {
+  args: {
+    items: languages,
+  },
+  render: function Basic(args) {
+    const [value, setValue] = useState<string>();
 
     return (
-      <Select disabled items={languages} onValueChange={setValue} value={value}>
-        <SelectTrigger>{value} </SelectTrigger>
+      <Select
+        {...args}
+        items={combinedFoodList}
+        onValueChange={setValue}
+        value={value}
+      >
+        <SelectTrigger>
+          <SelectValue placeholder="Select an item" />
+        </SelectTrigger>
+
         <SelectContent>
-          {languages.map((item, index) => (
-            <SelectItem item={item} key={index}>
-              {item}
-            </SelectItem>
-          ))}
+          <SelectLabel>Fruits</SelectLabel>
+          {fruits.map((item, index) => {
+            return (
+              <SelectItem item={item} key={index}>
+                {item}
+                <SelectItemIndicator />
+              </SelectItem>
+            );
+          })}
+          <SelectSeparator />
+
+          <SelectLabel>Vegetables</SelectLabel>
+          {vegetables.map((item, index) => {
+            return (
+              <SelectItem item={item} key={index}>
+                {item}
+                <SelectItemIndicator />
+              </SelectItem>
+            );
+          })}
+          <SelectSeparator />
+
+          <SelectLabel>Meats</SelectLabel>
+          {meats.map((item, index) => {
+            return (
+              <SelectItem item={item} key={index}>
+                {item}
+                <SelectItemIndicator />
+              </SelectItem>
+            );
+          })}
         </SelectContent>
       </Select>
     );
@@ -208,21 +261,26 @@ export const Controlled: Story = {
     return (
       <Flex alignItems="center">
         <Select
-          isItemDisabled={isItemDisabled}
-          itemToKey={itemToKey}
-          itemToString={itemToString}
+          isItemDisabled={(book) => book.disabled}
           items={books}
+          itemToKey={(book) => book?.id}
+          itemToString={(book) => book?.title ?? ""}
           onValueChange={setValue}
           value={value}
         >
-          <SelectTrigger>{value.title} </SelectTrigger>
+          <SelectTrigger>
+            <SelectValue placeholder="Select a book" />
+          </SelectTrigger>
 
           <SelectContent>
-            {books.map((item, index) => (
-              <SelectItem item={item} key={index}>
-                {item.title}
-              </SelectItem>
-            ))}
+            {books.map((item, index) => {
+              return (
+                <SelectItem item={item} key={index}>
+                  {item.title}
+                  <SelectItemIndicator />
+                </SelectItem>
+              );
+            })}
           </SelectContent>
         </Select>
 

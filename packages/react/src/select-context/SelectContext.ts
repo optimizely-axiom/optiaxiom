@@ -8,4 +8,7 @@ export const [SelectContextProvider, useSelectContext] = createContext<{
   downshift: UseSelectReturnValue<any>;
   highlightedItem: any;
   items: any[];
+  itemToKey: (item: any) => string;
+  itemToString: (item: any) => string;
+  selectedItem: any;
 }>("Select");

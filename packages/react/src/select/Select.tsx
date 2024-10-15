@@ -1,58 +1,80 @@
-import { Popover } from "@radix-ui/react-popover";
-import { type UseSelectProps, useSelect } from "downshift";
+import { useControllableState } from "@radix-ui/react-use-controllable-state";
+import { useSelect, type UseSelectProps } from "downshift";
+import { type ReactNode, useState } from "react";
 
-import { extractDownshift } from "../autocomplete";
-import { type BoxProps } from "../box";
+import { useDelayedState } from "../autocomplete/useDelayedState";
 import { useFieldContext } from "../field-context";
+import { Popover } from "../popover";
 import { SelectContextProvider } from "../select-context";
 
-type SelectProps<Item> = BoxProps<
-  typeof Popover,
-  {
-    defaultOpen?: never;
-    disabled?: boolean;
-    onValueChange?: (value: Item) => void;
-    value?: Item;
-  } & Pick<
-    UseSelectProps<Item>,
-    | "initialHighlightedIndex"
-    | "isItemDisabled"
-    | "itemToKey"
-    | "itemToString"
-    | "items"
-  >
+type SelectProps<Item> = {
+  children?: ReactNode;
+  defaultValue?: Item;
+  disabled?: boolean;
+  onValueChange?: (value: Item) => void;
+  value?: Item;
+} & Pick<
+  UseSelectProps<Item>,
+  | "initialHighlightedIndex"
+  | "isItemDisabled"
+  | "items"
+  | "itemToKey"
+  | "itemToString"
 >;
 
 export function Select<Item>({
   children,
+  defaultValue,
   disabled,
   items,
+  itemToKey = (value) => value,
+  itemToString = (value) => (value ? String(value) : ""),
   onValueChange,
   value,
   ...props
 }: SelectProps<Item>) {
-  const { downshiftProps, restProps } = extractDownshift(props);
   const { id: toggleButtonId } = useFieldContext();
 
+  const [selectedItem, setSelectedItem] = useControllableState({
+    defaultProp: defaultValue,
+    onChange: onValueChange,
+    prop: value,
+  });
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const [highlightedIndex, setHighlightedIndex] = useDelayedState(-1, isOpen);
+
   const downshift = useSelect({
-    ...downshiftProps,
+    ...props,
+    highlightedIndex,
     initialSelectedItem: value,
     items,
-    onSelectedItemChange({ selectedItem }) {
-      onValueChange?.(selectedItem);
+    itemToKey,
+    itemToString,
+    onHighlightedIndexChange({ highlightedIndex }) {
+      setHighlightedIndex(highlightedIndex);
     },
+    onIsOpenChange({ isOpen }) {
+      setIsOpen(isOpen);
+    },
+    onSelectedItemChange({ selectedItem }) {
+      setSelectedItem(selectedItem);
+    },
+    selectedItem: selectedItem ?? null,
     toggleButtonId,
   });
 
-  const highlightedItem = items[downshift.highlightedIndex];
-
   return (
-    <Popover {...restProps}>
+    <Popover open={downshift.isOpen}>
       <SelectContextProvider
         disabled={disabled}
         downshift={downshift}
-        highlightedItem={highlightedItem}
+        highlightedItem={items[downshift.highlightedIndex]}
         items={items}
+        itemToKey={itemToKey}
+        itemToString={itemToString}
+        selectedItem={selectedItem}
       >
         {children}
       </SelectContextProvider>
