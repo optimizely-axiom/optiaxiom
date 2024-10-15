@@ -250,13 +250,18 @@ function toTable(rows) {
  * @param {string} name
  * @param {Record<string, string>} object
  * @param {{
+ *   exported?: boolean;
  *   pre?: string;
  *   transform?: (value: string) => string;
  * }} options
  */
-function toVariable(name, object, { pre, transform = (value) => value }) {
+function toVariable(
+  name,
+  object,
+  { exported = true, pre, transform = (value) => value },
+) {
   return [
-    `export const ${name} = {`,
+    `${exported ? "export " : ""}const ${name} = {`,
     ...(pre ? [`  ${pre}\n`] : []),
     Object.values(
       Object.entries(object)
@@ -375,10 +380,7 @@ void yargs(hideBin(process.argv))
                 .map(([name, value]) => [name, value.light]),
             ),
             {
-              pre: [
-                'current: "currentColor" as const,',
-                '  transparent: "transparent" as const,',
-              ].join("\n"),
+              exported: false,
               transform: (value) => `"${value.toUpperCase()}" as const`,
             },
           ),
@@ -393,7 +395,10 @@ void yargs(hideBin(process.argv))
                 .map(([name, value]) => [name, value.light]),
             ),
             {
-              pre: "...colorPalette,",
+              pre: [
+                'current: "currentColor" as const,',
+                '  transparent: "transparent" as const,',
+              ].join("\n"),
               transform: (value) => `colorPalette["${value}"]`,
             },
           ),
@@ -408,7 +413,10 @@ void yargs(hideBin(process.argv))
                 .map(([name, value]) => [name, value.dark]),
             ),
             {
-              pre: "...colorPalette,",
+              pre: [
+                'current: "currentColor" as const,',
+                '  transparent: "transparent" as const,',
+              ].join("\n"),
               transform: (value) => `colorPalette["${value}"]`,
             },
           ),
