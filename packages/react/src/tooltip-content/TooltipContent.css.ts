@@ -7,7 +7,7 @@ export const content = recipe({
       color: "fg.default.inverse",
       px: "12",
       py: "8",
-      rounded: "lg",
+      rounded: "md",
       z: "tooltip",
     },
   ],
