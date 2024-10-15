@@ -11,12 +11,12 @@ type SpinnerProps = BoxProps<
 >;
 
 const mapColorSchemeToBg = {
-  default: "bg.secondary",
-  inverse: "fg.secondary",
+  default: "bg.spinner",
+  inverse: "bg.spinner.inverse",
 } as const;
 const mapColorSchemeToFg = {
   default: "fg.default",
-  inverse: "border.secondary",
+  inverse: "fg.white",
 } as const;
 
 export const Spinner = forwardRef<SVGSVGElement, SpinnerProps>(
