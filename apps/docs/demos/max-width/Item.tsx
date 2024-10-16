@@ -12,7 +12,7 @@ export const Item = ({
   return (
     <Box rounded="md" style={yellowStripes}>
       <Box
-        bg="fg.link.visited"
+        bg="link.fg.visited"
         display="grid"
         p="xs"
         placeItems="center"

@@ -10,8 +10,8 @@ export const Item = ({
     <Box
       bg={
         children.props.gridColumn || children.type === "div"
-          ? "fg.link.visited"
-          : "bg.avatar.purple"
+          ? "link.fg.visited"
+          : "avatar.bg.purple"
       }
       display="grid"
       p="16"

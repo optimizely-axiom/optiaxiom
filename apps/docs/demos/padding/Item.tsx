@@ -15,7 +15,7 @@ export const Item = ({
       {...children.props}
     >
       <Text
-        bg="fg.link.visited"
+        bg="link.fg.visited"
         color="fg.default.inverse"
         fontFamily="mono"
         fontWeight="600"

@@ -8,7 +8,7 @@ export const Item = ({
 }) => {
   return (
     <Box
-      bg="fg.link.visited"
+      bg="link.fg.visited"
       border="2"
       borderColor="fg.default.inverse"
       display="grid"
