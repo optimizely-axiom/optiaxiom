@@ -2,10 +2,10 @@ import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import { useSelect, type UseSelectProps } from "downshift";
 import { type ReactNode, useState } from "react";
 
-import { useDelayedState } from "../autocomplete/useDelayedState";
 import { useFieldContext } from "../field-context";
 import { Popover } from "../popover";
 import { SelectContextProvider } from "../select-context";
+import { useDelayedState } from "../use-delayed-state";
 
 type SelectProps<Item> = {
   children?: ReactNode;
