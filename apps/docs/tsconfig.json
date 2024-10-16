@@ -9,7 +9,6 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "lib": ["dom", "dom.iterable", "esnext"],
-    "moduleResolution": "node",
     "noEmit": true,
     "paths": {
       "@/components/*": ["components/*"],
