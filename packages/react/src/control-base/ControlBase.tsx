@@ -31,7 +31,11 @@ export const ControlBase = forwardRef<HTMLDivElement, ControlBaseProps>(
     const id = useId(idProp);
 
     return (
-      <Box ref={ref} {...styles.controlBase({}, className)} {...sprinkleProps}>
+      <Box
+        ref={ref}
+        {...styles.controlBase({ description: !!description }, className)}
+        {...sprinkleProps}
+      >
         <Box asChild {...styles.indicator()}>
           {cloneElement(control, {
             id,
