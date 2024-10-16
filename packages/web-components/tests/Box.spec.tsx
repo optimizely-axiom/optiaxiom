@@ -54,7 +54,7 @@ describe("Box component", () => {
     expect(
       withinShadowRoot(screen.getByText("Click")).getByRole("button"),
     ).toHaveStyle({
-      "background-color": "rgba(0, 0, 0, 0)",
+      "background-color": "rgb(255, 255, 255)",
       color: tokens.colors["fg.default"],
     });
     await waitForTransitionEnd(
