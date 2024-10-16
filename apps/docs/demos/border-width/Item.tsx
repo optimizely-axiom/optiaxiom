@@ -9,7 +9,7 @@ export const Item = ({
   <Flex alignItems="center" gap="8">
     <Box
       bg="bg.default"
-      borderColor="fg.link.visited"
+      borderColor="link.fg.visited"
       display="grid"
       placeItems="center"
       px="8"

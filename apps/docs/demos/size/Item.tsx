@@ -14,7 +14,7 @@ export const Item = ({
     <Box p={p} rounded="sm" style={yellowStripes}>
       <Box
         asChild
-        bg="fg.link.visited"
+        bg="link.fg.visited"
         display="grid"
         placeItems="center"
         py="md"

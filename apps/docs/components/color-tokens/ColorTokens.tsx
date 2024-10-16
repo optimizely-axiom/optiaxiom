@@ -16,9 +16,10 @@ export function ColorTokens({
 }) {
   const palette = Object.fromEntries(
     Object.values(light)
-      .filter(
-        (token) =>
-          !token.name.startsWith("bg.") && !token.name.startsWith("fg."),
+      .filter((token) =>
+        ["avatar", "bg", "border", "fg", "link", "spinner"].every(
+          (prefix) => !token.name.startsWith(`${prefix}.`),
+        ),
       )
       .map((token) => [token.type.name, token]),
   );

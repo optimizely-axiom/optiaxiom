@@ -16,7 +16,7 @@ export const link = recipe({
           textDecoration: "underline",
         },
         "&:visited": {
-          color: theme.colors["fg.link.visited"],
+          color: theme.colors["link.fg.visited"],
         },
         "&[data-disabled]": {
           color: theme.colors["fg.disabled"],
@@ -27,14 +27,14 @@ export const link = recipe({
   variants: {
     colorScheme: {
       neutral: style({
-        color: theme.colors["fg.default"],
+        color: theme.colors["link.fg.subtle"],
       }),
       primary: style({
-        color: theme.colors["fg.link"],
+        color: theme.colors["link.fg.default"],
 
         selectors: {
           "&:hover:not([data-disabled])": {
-            color: theme.colors["fg.link.hovered"],
+            color: theme.colors["link.fg.default.hovered"],
           },
         },
       }),

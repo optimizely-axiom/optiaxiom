@@ -20,7 +20,7 @@ export const Item = ({
       maxH="full"
     >
       <Box
-        bg="fg.link.visited"
+        bg="link.fg.visited"
         display="grid"
         p="xs"
         placeItems="center"
