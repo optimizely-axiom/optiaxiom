@@ -1,3 +1,4 @@
+import { style } from "../vanilla-extract";
 import { recipe } from "../vanilla-extract";
 
 export const body = recipe({
@@ -8,5 +9,8 @@ export const body = recipe({
       px: "24",
       py: "16",
     },
+    style({
+      maxHeight: "50dvh",
+    }),
   ],
 });

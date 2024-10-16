@@ -10,7 +10,6 @@ export const content = recipe({
     },
     style({
       left: "50%",
-      maxHeight: "50dvh",
       maxWidth: "calc(100dvw - 2 * 24px)",
       position: "fixed",
       top: "50%",
