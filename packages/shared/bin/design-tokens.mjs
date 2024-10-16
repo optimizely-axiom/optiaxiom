@@ -1,4 +1,5 @@
 import Table from "cli-table3";
+import { writeFileSync } from "fs";
 import { readFile } from "fs/promises";
 import { resolve } from "path";
 import yargs from "yargs";
@@ -463,7 +464,7 @@ void yargs(hideBin(process.argv))
         }
         console.log(renderer(table));
       } else {
-        console.log(
+        const blocks = [
           toVariable(
             "colorPalette",
             Object.fromEntries(
@@ -475,9 +476,7 @@ void yargs(hideBin(process.argv))
               transform: (value) => `"${value.toUpperCase()}" as const`,
             },
           ),
-        );
-        console.log("");
-        console.log(
+
           toVariable(
             "colors",
             Object.fromEntries(
@@ -493,9 +492,6 @@ void yargs(hideBin(process.argv))
               transform: (value) => `colorPalette["${value}"]`,
             },
           ),
-        );
-        console.log("");
-        console.log(
           toVariable(
             "colorsDark",
             Object.fromEntries(
@@ -511,7 +507,14 @@ void yargs(hideBin(process.argv))
               transform: (value) => `colorPalette["${value}"]`,
             },
           ),
+        ];
+
+        const file = "packages/globals/src/tokens/colors.ts";
+        console.warn(
+          "\x1b[34mWriting output to file:\x1b[0m",
+          `\x1b[32m${file}\x1b[0m`,
         );
+        writeFileSync(file, blocks.join("\n\n") + "\n");
       }
     },
   })
