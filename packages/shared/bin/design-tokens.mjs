@@ -261,18 +261,13 @@ function toTable(rows) {
  * @param {string} name
  * @param {Record<string, string>} object
  * @param {{
- *   exported?: boolean;
  *   pre?: string;
  *   transform?: (value: string) => string;
  * }} options
  */
-function toVariable(
-  name,
-  object,
-  { exported = true, pre, transform = (value) => value },
-) {
+function toVariable(name, object, { pre, transform = (value) => value }) {
   return [
-    `${exported ? "export " : ""}const ${name} = {`,
+    `export const ${name} = {`,
     ...(pre ? [`  ${pre}\n`] : []),
     Object.values(
       Object.entries(object)
@@ -391,7 +386,6 @@ void yargs(hideBin(process.argv))
                 .map(([name, value]) => [name, value.light]),
             ),
             {
-              exported: false,
               transform: (value) => `"${value.toUpperCase()}" as const`,
             },
           ),
