@@ -16,9 +16,9 @@ type LinkProps = BoxProps<
 export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
   (
     {
+      appearance = "default",
       children,
       className,
-      colorScheme = "primary",
       disabled,
       external,
       href,
@@ -31,7 +31,7 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
     return (
       <Box
         asChild
-        {...styles.link({ colorScheme }, className)}
+        {...styles.link({ appearance }, className)}
         {...sprinkleProps}
       >
         <a

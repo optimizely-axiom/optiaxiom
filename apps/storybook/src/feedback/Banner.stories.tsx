@@ -27,7 +27,7 @@ export const Basic: Story = {
           </Text>
 
           <Text>
-            <Link colorScheme="neutral" href="data:,">
+            <Link appearance="subtle" href="data:,">
               Sync now
             </Link>
           </Text>
