@@ -37,6 +37,36 @@ async function importTokens(file) {
 
   /** @type {Record<string, Token & { type: 'color' | 'number' }>} */
   const tokens = {
+    "Colors/Cyan/100": {
+      name: "Colors/Cyan/100",
+      type: "color",
+      value: "#CFFAFE",
+    },
+    "Colors/Cyan/200": {
+      name: "Colors/Cyan/200",
+      type: "color",
+      value: "#99F0F9",
+    },
+    "Colors/Cyan/700": {
+      name: "Colors/Cyan/700",
+      type: "color",
+      value: "#0E7490",
+    },
+    "Colors/Cyan/900": {
+      name: "Colors/Cyan/900",
+      type: "color",
+      value: "#083344",
+    },
+    "Colors/Magenta/200": {
+      name: "Colors/Magenta/200",
+      type: "color",
+      value: "#F5D0FE",
+    },
+    "Colors/Magenta/900": {
+      name: "Colors/Magenta/900",
+      type: "color",
+      value: "#4A044E",
+    },
     "Colors/Neutral/300": {
       name: "Colors/Neutral/300",
       type: "color",
@@ -46,6 +76,16 @@ async function importTokens(file) {
       name: "Colors/Neutral/1200",
       type: "color",
       value: "#091e42",
+    },
+    "Colors/Purple/200": {
+      name: "Colors/Purple/200",
+      type: "color",
+      value: "#C4B1E2",
+    },
+    "Colors/Purple/900": {
+      name: "Colors/Purple/900",
+      type: "color",
+      value: "#261542",
     },
   };
   /** @type {Record<string, Token & { type: 'color' | 'number' }>} */
@@ -117,6 +157,33 @@ async function importTokens(file) {
   }
 
   warnings.push(...Object.values(mapCodeToFigmaName));
+
+  colors["avatar.bg.blue"].dark = "blue.500";
+  colors["avatar.fg.blue"].light = "neutral.00";
+
+  colors["avatar.bg.cyan"].light = "cyan.100";
+  colors["avatar.bg.cyan"].dark = "cyan.900";
+  colors["avatar.fg.cyan"].light = "cyan.700";
+  colors["avatar.fg.cyan"].dark = "cyan.200";
+
+  colors["avatar.bg.green"].dark = "green.900";
+  colors["avatar.fg.green"].dark = "green.200";
+
+  colors["avatar.bg.magenta"].dark = "magenta.900";
+  colors["avatar.fg.magenta"].dark = "magenta.200";
+
+  colors["avatar.bg.purple"].dark = "purple.900";
+  colors["avatar.fg.purple"].dark = "purple.200";
+
+  colors["avatar.bg.yellow"].dark = "yellow.900";
+  colors["avatar.fg.yellow"].dark = "yellow.200";
+
+  colors["bg.default.inverse.hovered"].dark = "neutral.200";
+  colors["bg.default.inverse.pressed"].dark = "neutral.300";
+  colors["bg.secondary.hovered"].light = "neutral.1200/8";
+
+  colors["border.disabled"].light = "neutral.75";
+  colors["border.disabled"].dark = "neutral.800";
 
   return /** @type {const} */ ([
     Object.entries(colors).sort(([a], [b]) => naturalSortComparator(a, b)),
