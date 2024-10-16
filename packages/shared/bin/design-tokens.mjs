@@ -78,34 +78,15 @@ async function importTokens(file) {
 
   /** @type {Record<string, { light: string, dark: string; variable?: string }>} */
   const colors = {
-    "bg.avatar.cyan": { dark: "cyan.900", light: "cyan.100" },
-    "bg.avatar.magenta": { dark: "magenta.900", light: "magenta.100" },
-    "bg.avatar.purple": { dark: "purple.900", light: "purple.100" },
-    "bg.default.inverse.hovered": { dark: "neutral.200", light: "neutral.900" },
-    "bg.default.inverse.pressed": {
-      dark: "neutral.300",
-      light: "neutral.1000",
-    },
-    "bg.error.subtlest": { dark: "red.900", light: "red.50" },
-    "bg.spinner": { dark: "neutral.50/6", light: "neutral.1200/4" },
-    "bg.spinner.inverse": { dark: "neutral.50/6", light: "neutral.50/6" },
-    "fg.avatar.cyan": { dark: "cyan.200", light: "cyan.700" },
-    "fg.avatar.magenta": { dark: "magenta.200", light: "magenta.700" },
-    "fg.avatar.purple": { dark: "purple.200", light: "purple.700" },
-    "fg.error.light": { dark: "red.500", light: "red.300" },
-    "fg.information.light": { dark: "blue.500", light: "blue.300" },
-    "fg.link": { dark: "brand.300", light: "brand.500" },
-    "fg.link.hovered": { dark: "brand.500", light: "brand.600" },
-    "fg.link.visited": { dark: "brand.300", light: "purple.500" },
-    "fg.success.light": { dark: "green.500", light: "green.300" },
     "fg.warning.inverse": { dark: "neutral.800", light: "neutral.800" },
-    "fg.warning.light": { dark: "yellow.500", light: "yellow.300" },
+    "spinner.bg.default": { dark: "neutral.50", light: "neutral.1200" },
+    "spinner.bg.inverse": { dark: "neutral.50", light: "neutral.50" },
   };
   /** @type {Record<string, string>} */
   const index = {};
   for (const token of Object.values(tokens)) {
     try {
-      if (token.name.startsWith("Colors/")) {
+      if (token.type === "color" && token.name.startsWith("Colors/")) {
         const name = normalizeColorName(token.name, token.value, index);
         colors[name] = { dark: token.value, light: token.value };
         index[token.value] = name;
@@ -116,8 +97,9 @@ async function importTokens(file) {
   }
   for (const token of Object.values(tokens)) {
     try {
-      if (token.name.startsWith("colors/")) {
-        colors[normalizeColorName(token.name)] = {
+      if (token.type === "color" && !token.name.startsWith("Colors/")) {
+        const name = normalizeColorName(token.name);
+        colors[name] = {
           dark: index[tokensDark[token.name].value],
           light: index[token.value],
           variable: token.name,
@@ -137,19 +119,34 @@ async function importTokens(file) {
 /**
  * @type {Record<string, string>}
  */
-const mapFigmaToNormalizedName = {
+const mapFigmaNameToCode = {
+  "avatar/bg/blue": "avatar.bg.blue",
+  "avatar/bg/cyan": "avatar.bg.cyan",
+  "avatar/bg/green": "avatar.bg.green",
+  "avatar/bg/magenta": "avatar.bg.magenta",
+  "avatar/bg/purple": "avatar.bg.purple",
+  "avatar/bg/yellow": "avatar.bg.yellow",
+  "avatar/fg/blue": "avatar.fg.blue",
+  "avatar/fg/cyan": "avatar.fg.cyan",
+  "avatar/fg/green": "avatar.fg.green",
+  "avatar/fg/magenta": "avatar.fg.magenta",
+  "avatar/fg/purple": "avatar.fg.purple",
+  "avatar/fg/yellow": "avatar.fg.yellow",
   "bg/accent/base": "bg.accent",
   "bg/accent/light": "bg.accent.light",
   "bg/accent/states/base_hover": "bg.accent.hovered",
   "bg/accent/states/base_pressed": "bg.accent.pressed",
   "bg/accent/subtle": "bg.accent.subtle",
-  "bg/contrast": "bg.default.inverse",
   "bg/default": "bg.default",
+  "bg/default/inverse": "bg.default.inverse",
+  "bg/default/inverse-hover": "bg.default.inverse.hovered",
+  "bg/default/inverse-pressed": "bg.default.inverse.pressed",
   "bg/disabled": "_bg.tertiary",
   "bg/disabled-muted": "_bg.secondary",
   "bg/feedback/error-base": "bg.error",
   "bg/feedback/error-light": "bg.error.light",
   "bg/feedback/error-subtle": "bg.error.subtle",
+  "bg/feedback/error-subtlest": "bg.error.subtlest",
   "bg/feedback/information-base": "bg.information",
   "bg/feedback/information-light": "bg.information.light",
   "bg/feedback/information-subtle": "bg.information.subtle",
@@ -167,7 +164,7 @@ const mapFigmaToNormalizedName = {
   "bg/page bg": "bg.page",
   "bg/secondary": "bg.secondary",
   "bg/states/default-hover": "_bg.secondary",
-  "bg/states/default-pressed": "bg.secondary.hovered",
+  "bg/states/default-pressed": "_bg.secondary.hovered",
   "bg/states/secondary-hover": "bg.secondary.hovered",
   "bg/states/tertiary-hover": "bg.tertiary.hovered",
   "bg/tertiary": "bg.tertiary",
@@ -184,27 +181,39 @@ const mapFigmaToNormalizedName = {
   "border/tertiary": "border.tertiary",
   "border/warning": "border.warning",
   "fg/accent/base": "fg.accent",
-  "fg/accent/states/base-hover": "fg.accent.hovered",
+  "fg/accent/base-hover": "fg.accent.hovered",
   "fg/accent/strong": "fg.accent.strong",
   "fg/default": "fg.default",
-  "fg/default_on-base": "fg.white",
-  "fg/default_on-contrast": "fg.default.inverse",
+  "fg/default-inverse": "fg.default.inverse",
   "fg/disabled": "fg.disabled",
   "fg/feedback/error-base": "fg.error",
+  "fg/feedback/error-light": "fg.error.light",
   "fg/feedback/error-strong": "fg.error.strong",
   "fg/feedback/information-base": "fg.information",
+  "fg/feedback/information-light": "fg.information.light",
   "fg/feedback/information-strong": "fg.information.strong",
   "fg/feedback/states/error-base-hover": "fg.error.hovered",
   "fg/feedback/states/success-base_hover": "fg.success.hovered",
   "fg/feedback/states/warning-base_hover": "fg.warning.hovered",
   "fg/feedback/success-base": "fg.success",
+  "fg/feedback/success-light": "fg.success.light",
   "fg/feedback/success-strong": "fg.success.strong",
   "fg/feedback/warning-base": "fg.warning",
+  "fg/feedback/warning-light": "fg.warning.light",
   "fg/feedback/warning-strong": "fg.warning.strong",
   "fg/placeholder": "fg.tertiary",
   "fg/secondary": "fg.secondary",
   "fg/tertiary": "fg.tertiary",
-  "fg/white": "_fg.white",
+  "fg/white": "fg.white",
+  "link/fg-default": "link.fg.default",
+  "link/fg-default-hover": "link.fg.default.hovered",
+  "link/fg-inverse": "link.fg.inverse",
+  "link/fg-subtle": "link.fg.subtle",
+  "link/fg-visited": "link.fg.visited",
+  "spinner/default-bg": "_spinner.bg.default",
+  "spinner/default-indicator": "spinner.fg.default",
+  "spinner/inverse-bg": "_spinner.bg.inverse",
+  "spinner/inverse-indicator": "spinner.fg.inverse",
 };
 
 /**
@@ -214,7 +223,9 @@ const mapFigmaToNormalizedName = {
  */
 function normalizeColorName(name, value, palette) {
   const isPalette = name.startsWith("Colors/");
-  name = name.slice("Colors/".length);
+  if (name.startsWith("Colors/") || name.startsWith("colors/")) {
+    name = name.slice("Colors/".length);
+  }
 
   const isAlpha = name.startsWith("Neutral/Alpha/");
   if (isAlpha) {
@@ -230,8 +241,8 @@ function normalizeColorName(name, value, palette) {
     } else {
       return name.toLowerCase().replace("primary", "brand").replace("/", ".");
     }
-  } else if (name in mapFigmaToNormalizedName) {
-    return mapFigmaToNormalizedName[name];
+  } else if (name in mapFigmaNameToCode) {
+    return mapFigmaNameToCode[name];
   } else {
     throw new Error("Invalid color");
   }
