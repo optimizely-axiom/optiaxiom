@@ -19,12 +19,14 @@ export function ColorTokenItem({
 } & ComponentPropsWithRef<typeof Box>) {
   const { resolvedTheme: theme = "light" } = useTheme();
   const name = (
-    item.name.startsWith("ld(") ? item.name : `ld(${item.name}, ${item.name})`
+    item.name.startsWith("light-dark(")
+      ? item.name
+      : `light-dark(${item.name}, ${item.name})`
   ).match(pattern)?.groups?.[theme];
   const value = (
-    item.value.startsWith("ld(")
+    item.value.startsWith("light-dark(")
       ? item.value
-      : `ld(${item.value}, ${item.value})`
+      : `light-dark(${item.value}, ${item.value})`
   ).match(pattern)?.groups?.[theme];
 
   return (
