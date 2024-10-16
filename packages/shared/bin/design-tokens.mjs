@@ -74,6 +74,9 @@ async function importTokens(file) {
     }
   }
 
+  const mapCodeToFigmaName = Object.fromEntries(
+    Object.entries(mapFigmaNameToCode).map(([k, v]) => [v, k]),
+  );
   const warnings = [];
 
   /** @type {Record<string, { light: string, dark: string; variable?: string }>} */
@@ -90,6 +93,8 @@ async function importTokens(file) {
         const name = normalizeColorName(token.name, token.value, index);
         colors[name] = { dark: token.value, light: token.value };
         index[token.value] = name;
+
+        delete mapCodeToFigmaName[name];
       }
     } catch {
       warnings.push(token.name);
@@ -104,11 +109,14 @@ async function importTokens(file) {
           light: index[token.value],
           variable: token.name,
         };
+        delete mapCodeToFigmaName[name];
       }
     } catch {
       warnings.push(token.name);
     }
   }
+
+  warnings.push(...Object.values(mapCodeToFigmaName));
 
   return /** @type {const} */ ([
     Object.entries(colors).sort(([a], [b]) => naturalSortComparator(a, b)),
