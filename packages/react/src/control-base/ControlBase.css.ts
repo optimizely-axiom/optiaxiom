@@ -15,9 +15,6 @@ export const controlBase = recipe({
       },
 
       color: theme.colors["fg.default"],
-      gridTemplate: `
-            "indicator label"       auto
-            ".         description" auto / min-content auto`,
 
       selectors: {
         [`&:has(${marker}:not([data-disabled]):not([data-state="unchecked"])):hover`]:
@@ -43,6 +40,19 @@ export const controlBase = recipe({
       },
     }),
   ],
+
+  variants: {
+    description: {
+      false: style({
+        gridTemplate: `"indicator label" auto / min-content auto`,
+      }),
+      true: style({
+        gridTemplate: `
+            "indicator label"       auto
+            ".         description" auto / min-content auto`,
+      }),
+    },
+  },
 });
 
 export const indicator = recipe({

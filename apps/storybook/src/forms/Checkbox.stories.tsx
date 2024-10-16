@@ -63,3 +63,11 @@ export const Intermediate: Story = {
     </Flex>
   ),
 };
+
+export const VerticalAlignment: Story = {
+  render: (args) => (
+    <Flex border="1">
+      <Checkbox alignItems="center" h="48" {...args} />
+    </Flex>
+  ),
+};
