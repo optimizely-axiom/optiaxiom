@@ -5,6 +5,7 @@ import { recipe } from "../vanilla-extract";
 export const item = recipe({
   base: [
     {
+      bg: "bg.default",
       border: "1",
       mt: "2",
       p: "2",

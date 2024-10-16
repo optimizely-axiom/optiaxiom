@@ -1,3 +1,5 @@
+import { theme } from "@optiaxiom/globals";
+
 import * as styles from "../control-base/ControlBase.css";
 import { recipe, style } from "../vanilla-extract";
 
@@ -39,6 +41,7 @@ export const checkbox = recipe({
       size: "16",
     },
     style({
+      backgroundColor: theme.colors["bg.default"],
       borderColor: styles.controlColorVar,
       borderWidth: "1px",
 
