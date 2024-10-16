@@ -39,9 +39,11 @@ export const ControlBase = forwardRef<HTMLDivElement, ControlBaseProps>(
           })}
         </Box>
 
-        <Text asChild {...styles.label()}>
-          <RadixLabel.Root htmlFor={id}>{children}</RadixLabel.Root>
-        </Text>
+        {children && (
+          <Text asChild {...styles.label()}>
+            <RadixLabel.Root htmlFor={id}>{children}</RadixLabel.Root>
+          </Text>
+        )}
 
         {description && (
           <Box
