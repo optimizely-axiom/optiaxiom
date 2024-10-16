@@ -4,6 +4,8 @@ export const content = recipe({
   base: [
     {
       bg: "bg.default",
+      display: "flex",
+      flexDirection: "column",
       rounded: "lg",
       shadow: "md",
       z: "popover",
