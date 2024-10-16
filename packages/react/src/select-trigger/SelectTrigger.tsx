@@ -1,8 +1,8 @@
 import { PopoverAnchor, PopoverTrigger } from "@radix-ui/react-popover";
 import { forwardRef } from "react";
 
-import { Button, type ButtonProps } from "../button";
-import { IconAngleDown } from "../icons/IconAngleDown";
+import { type ButtonProps } from "../button";
+import { MenuButton } from "../menu-button";
 import { useSelectContext } from "../select-context";
 
 type SelectTriggerProps = ButtonProps<typeof PopoverTrigger>;
@@ -19,13 +19,7 @@ export const SelectTrigger = forwardRef<HTMLButtonElement, SelectTriggerProps>(
           {...props}
           {...downshift.getToggleButtonProps({ disabled })}
         >
-          {asChild ? (
-            children
-          ) : (
-            <Button icon={<IconAngleDown />} iconPosition="end">
-              {children}
-            </Button>
-          )}
+          {asChild ? children : <MenuButton>{children}</MenuButton>}
         </PopoverTrigger>
       </PopoverAnchor>
     );
