@@ -25,11 +25,8 @@ export const link = recipe({
     }),
   ],
   variants: {
-    colorScheme: {
-      neutral: style({
-        color: theme.colors["link.fg.subtle"],
-      }),
-      primary: style({
+    appearance: {
+      default: style({
         color: theme.colors["link.fg.default"],
 
         selectors: {
@@ -38,8 +35,11 @@ export const link = recipe({
           },
         },
       }),
-      secondary: style({
-        color: theme.colors["fg.tertiary"],
+      inverse: style({
+        color: theme.colors["link.fg.inverse"],
+      }),
+      subtle: style({
+        color: theme.colors["link.fg.subtle"],
       }),
     },
   },
