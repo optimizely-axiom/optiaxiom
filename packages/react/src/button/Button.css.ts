@@ -137,7 +137,7 @@ export const button = recipe({
     },
     variant: {
       outline: style({
-        backgroundColor: "transparent",
+        backgroundColor: theme.colors["bg.default"],
         border: `1px solid ${fallbackVar(subtleOutlineColorVar, accentColorVar)}`,
         color: fallbackVar(subtleTextColorVar, accentColorVar),
         paddingInline: `calc(${paddingInlineVar} - 1px)`,
