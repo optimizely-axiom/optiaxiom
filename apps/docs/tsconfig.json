@@ -14,7 +14,8 @@
     "paths": {
       "@/components/*": ["components/*"],
       "@/demos/*": ["demos/*"],
-      "@optiaxiom/react": ["../../packages/react/src"]
+      "@optiaxiom/react": ["../../packages/react/src"],
+      "@optiaxiom/react/unstable": ["../../packages/react/src/unstable"]
     },
     "plugins": [{ "name": "next" }],
     "strictNullChecks": true

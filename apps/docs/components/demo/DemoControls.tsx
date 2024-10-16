@@ -1,7 +1,15 @@
 import type { ComponentPropsWithRef, Dispatch, SetStateAction } from "react";
 import type { PropItem, Props } from "react-docgen-typescript";
 
-import { Field, Flex, Input, Switch, Tooltip } from "@optiaxiom/react";
+import { Field, Flex, Input, Switch, Text, Tooltip } from "@optiaxiom/react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectItemIndicator,
+  SelectTrigger,
+  SelectValue,
+} from "@optiaxiom/react/unstable";
 
 type DemoControlProps = {
   onChange: Dispatch<
@@ -40,28 +48,43 @@ export function DemoControls({
           ) : (
             <Field key={String(item.prop)} label={propToLabel(item.prop)}>
               {item?.type === "dropdown" ? (
-                <select
-                  onChange={(event) =>
+                <Select
+                  items={item.options}
+                  onValueChange={(value) =>
                     onChange((props) => ({
                       ...props,
                       [item.prop]:
-                        event?.target.value === ""
+                        value === ""
                           ? undefined
-                          : event?.target.value === "false"
+                          : value === "false"
                             ? false
-                            : event?.target.value === "true"
+                            : value === "true"
                               ? true
-                              : event?.target.value,
+                              : value,
                     }))
                   }
-                  value={String(propValues[item.prop])}
+                  value={
+                    propValues[item.prop] ? String(propValues[item.prop]) : ""
+                  }
                 >
-                  {item.options.map((option) => (
-                    <option key={option} value={option}>
-                      {option === "" ? "<Empty>" : String(option)}
-                    </option>
-                  ))}
-                </select>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select an option..." />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {item.options.map((item) => {
+                      return (
+                        <SelectItem item={item} key={item}>
+                          {item === "" ? (
+                            <Text color="fg.secondary">{"<no value>"}</Text>
+                          ) : (
+                            item
+                          )}
+                          <SelectItemIndicator />
+                        </SelectItem>
+                      );
+                    })}
+                  </SelectContent>
+                </Select>
               ) : item?.type === "range" ? (
                 <Tooltip
                   content={propValues[item.prop]}
