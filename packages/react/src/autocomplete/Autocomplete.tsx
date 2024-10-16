@@ -5,8 +5,8 @@ import { type ReactNode, useEffect, useState } from "react";
 import { AutocompleteContextProvider } from "../autocomplete-context";
 import { useFieldContext } from "../field-context";
 import { Popover } from "../popover";
+import { useDelayedState } from "../use-delayed-state";
 import { useEffectEvent } from "../use-event";
-import { useDelayedState } from "./useDelayedState";
 
 type AutocompleteProps<Item> = {
   children?: ReactNode;
