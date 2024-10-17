@@ -54,7 +54,7 @@ export function DemoControls({
                     onChange((props) => ({
                       ...props,
                       [item.prop]:
-                        value === ""
+                        value === null || value === ""
                           ? undefined
                           : value === "false"
                             ? false
