@@ -11,6 +11,7 @@ import {
 import { AnimatePresence } from "../animate-presence";
 import { Box, type BoxProps } from "../box";
 import { Flex } from "../flex";
+import { Icon } from "../icon";
 import { Spinner } from "../spinner";
 import { extractSprinkles } from "../sprinkles";
 import { Transition } from "../transition";
@@ -80,9 +81,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             newElement,
             undefined,
             isIconOnly ? (
-              <Box asChild {...styles.icon()}>
+              <Icon asChild {...styles.icon()}>
                 {icon}
-              </Box>
+              </Icon>
             ) : (
               <Flex asChild {...styles.label()}>
                 {fallbackSpan(newElement.props.children)}
@@ -92,9 +93,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         : children;
     } else {
       children = isIconOnly ? (
-        <Box asChild {...styles.icon()}>
+        <Icon asChild {...styles.icon()}>
           {icon}
-        </Box>
+        </Icon>
       ) : (
         <Flex asChild {...styles.label()}>
           {fallbackSpan(children)}
@@ -103,17 +104,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     }
     if (icon && !isIconOnly) {
       if (iconPosition === "start") {
-        addonBefore = (
-          <Box asChild {...styles.icon()}>
-            {icon}
-          </Box>
-        );
+        addonBefore = <Icon asChild>{icon}</Icon>;
       } else if (iconPosition === "end") {
-        addonAfter = (
-          <Box asChild {...styles.icon()}>
-            {icon}
-          </Box>
-        );
+        addonAfter = <Icon asChild>{icon}</Icon>;
       }
     }
 

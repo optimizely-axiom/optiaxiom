@@ -297,13 +297,7 @@ export const addon = recipe({
 });
 
 export const icon = recipe({
-  base: [
-    {
-      h: "auto",
-      w: "20",
-    },
-    ...loadingBase,
-  ],
+  base: loadingBase,
 });
 
 export const label = recipe({

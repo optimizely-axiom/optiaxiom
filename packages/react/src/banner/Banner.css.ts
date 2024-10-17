@@ -38,9 +38,7 @@ export const banner = recipe({
 export const icon = recipe({
   base: [
     {
-      h: "16",
       mt: "4",
-      w: "auto",
     },
   ],
   variants: {
