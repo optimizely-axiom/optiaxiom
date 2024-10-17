@@ -73,9 +73,8 @@ export const Basic: Story = {
         onInputValueChange={(inputValue) => {
           setItems(
             languages.filter(
-              (language: string) =>
+              (language) =>
                 !inputValue ||
-                language.toLowerCase().includes(inputValue.toLowerCase()) ||
                 language.toLowerCase().includes(inputValue.toLowerCase()),
             ),
           );
@@ -92,7 +91,7 @@ export const Basic: Story = {
               </AutocompleteItem>
             )}
           </AutocompleteList>
-          <AutocompleteEmptyItem>No result Found</AutocompleteEmptyItem>
+          <AutocompleteEmptyItem>No result found</AutocompleteEmptyItem>
         </AutocompleteContent>
       </Autocomplete>
     );
