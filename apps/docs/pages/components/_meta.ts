@@ -19,15 +19,6 @@ export default {
   flex: "Flex",
   grid: "Grid",
 
-  "-- Typography": {
-    title: "Typography",
-    type: "separator",
-  },
-  code: "Code",
-  heading: "Heading",
-  kbd: "Kbd",
-  text: "Text",
-
   "-- Buttons": {
     title: "Buttons",
     type: "separator",
@@ -35,6 +26,46 @@ export default {
   button: "Button",
   "segmented-control": "SegmentedControl",
   "toggle-button": "ToggleButton",
+
+  "-- Combobox": {
+    title: "Combobox",
+    type: "separator",
+  },
+  autocomplete: "Autocomplete",
+  select: "Select",
+
+  "-- Data Display": {
+    title: "Data Display",
+    type: "separator",
+  },
+  avatar: "Avatar",
+  disclosure: "Disclosure",
+  indicator: "Indicator",
+  separator: "Separator",
+
+  "-- Feedback": {
+    title: "Feedback",
+    type: "separator",
+  },
+  alert: "Alert",
+  badge: "Badge",
+  banner: "Banner",
+  progress: "Progress",
+  skeleton: "Skeleton",
+  spinner: "Spinner",
+  toast: "Toast",
+
+  "-- Forms": {
+    title: "Forms",
+    type: "separator",
+  },
+  checkbox: "Checkbox",
+  field: "Field",
+  input: "Input",
+  "radio-group": "RadioGroup",
+  "search-input": "SearchInput",
+  switch: "Switch",
+  textarea: "Textarea",
 
   "-- Navigation": {
     title: "Navigation",
@@ -58,43 +89,12 @@ export default {
   popover: "Popover",
   tooltip: "Tooltip",
 
-  "-- Data Display": {
-    title: "Data Display",
+  "-- Typography": {
+    title: "Typography",
     type: "separator",
   },
-  avatar: "Avatar",
-  disclosure: "Disclosure",
-  indicator: "Indicator",
-  separator: "Separator",
-
-  "-- Forms": {
-    title: "Forms",
-    type: "separator",
-  },
-  checkbox: "Checkbox",
-  field: "Field",
-  input: "Input",
-  "radio-group": "RadioGroup",
-  "search-input": "SearchInput",
-  switch: "Switch",
-  textarea: "Textarea",
-
-  "-- Combobox": {
-    title: "Combobox",
-    type: "separator",
-  },
-  autocomplete: "Autocomplete",
-  select: "Select",
-
-  "-- Feedback": {
-    title: "Feedback",
-    type: "separator",
-  },
-  alert: "Alert",
-  badge: "Badge",
-  banner: "Banner",
-  progress: "Progress",
-  skeleton: "Skeleton",
-  spinner: "Spinner",
-  toast: "Toast",
+  code: "Code",
+  heading: "Heading",
+  kbd: "Kbd",
+  text: "Text",
 };
