@@ -9,10 +9,10 @@ import { useDelayedState } from "../use-delayed-state";
 
 type SelectProps<Item> = {
   children?: ReactNode;
-  defaultValue?: Item;
+  defaultValue?: Item | null;
   disabled?: boolean;
-  onValueChange?: (value: Item) => void;
-  value?: Item;
+  onValueChange?: (value: Item | null) => void;
+  value?: Item | null;
 } & Pick<
   UseSelectProps<Item>,
   | "initialHighlightedIndex"

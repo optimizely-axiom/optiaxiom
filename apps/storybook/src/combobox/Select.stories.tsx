@@ -132,7 +132,7 @@ export const Basic: Story = {
     items: languages,
   },
   render: function Basic(args) {
-    const [value, setValue] = useState("Bengali");
+    const [value, setValue] = useState<null | string>("Bengali");
 
     return (
       <Select
@@ -203,7 +203,7 @@ export const Grouped: Story = {
     items: languages,
   },
   render: function Basic(args) {
-    const [value, setValue] = useState<string>();
+    const [value, setValue] = useState<null | string>(null);
 
     return (
       <Select
@@ -256,7 +256,7 @@ export const Grouped: Story = {
 
 export const Controlled: Story = {
   render: function DefaultSelected() {
-    const [value, setValue] = useState(books[9]);
+    const [value, setValue] = useState<(typeof books)[number] | null>(books[9]);
 
     return (
       <Flex alignItems="center">

@@ -10,11 +10,11 @@ import { useEffectEvent } from "../use-event";
 
 type AutocompleteProps<Item> = {
   children?: ReactNode;
-  defaultValue?: Item;
+  defaultValue?: Item | null;
   disabled?: boolean;
   onInputValueChange?: (inputValue: string) => void;
-  onValueChange?: (value: Item) => void;
-  value?: Item;
+  onValueChange?: (value: Item | null) => void;
+  value?: Item | null;
 } & Pick<
   UseComboboxProps<Item>,
   | "initialHighlightedIndex"

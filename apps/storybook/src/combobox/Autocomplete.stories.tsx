@@ -199,7 +199,7 @@ const books = [
 export const Controlled: Story = {
   render: function DefaultSelected() {
     const [items, setItems] = useState(books);
-    const [value, setValue] = useState(books[9]);
+    const [value, setValue] = useState<(typeof books)[number] | null>(books[9]);
 
     return (
       <Flex alignItems="center">
