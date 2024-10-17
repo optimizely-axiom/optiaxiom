@@ -4,7 +4,9 @@ import { mdxFromMarkdown } from "mdast-util-mdx";
 import { mdxjs } from "micromark-extension-mdxjs";
 import { visit } from "unist-util-visit";
 
-const docs = getDocs();
+const docs = getDocs({
+  shouldExtractValuesFromUnion: true,
+});
 
 export function transformPropsTable(tree) {
   let needsImport = true;

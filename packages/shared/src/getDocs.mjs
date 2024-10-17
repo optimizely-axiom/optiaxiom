@@ -1,12 +1,12 @@
 import fg from "fast-glob";
 import { withCompilerOptions } from "react-docgen-typescript";
 
-export function getDocs() {
+export function getDocs({ shouldExtractValuesFromUnion = false } = {}) {
   const docs = withCompilerOptions(
     { esModuleInterop: true },
     {
       savePropValueAsString: true,
-      shouldExtractValuesFromUnion: true,
+      shouldExtractValuesFromUnion,
     },
   ).parse(
     fg.globSync("../../packages/react/src/**/{*.css.ts,sprinkles.ts,*.tsx}", {
