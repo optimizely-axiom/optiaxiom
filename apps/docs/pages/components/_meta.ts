@@ -73,6 +73,13 @@ export default {
   switch: "Switch",
   textarea: "Textarea",
 
+  "-- Combobox": {
+    title: "Combobox",
+    type: "separator",
+  },
+  autocomplete: "Autocomplete",
+  select: "Select",
+
   "-- Feedback": {
     title: "Feedback",
     type: "separator",
