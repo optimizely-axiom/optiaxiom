@@ -24,7 +24,6 @@ export default {
     type: "separator",
   },
   button: "Button",
-  "segmented-control": "SegmentedControl",
   "toggle-button": "ToggleButton",
 
   "-- Combobox": {
@@ -64,6 +63,7 @@ export default {
   input: "Input",
   "radio-group": "RadioGroup",
   "search-input": "SearchInput",
+  "segmented-control": "SegmentedControl",
   switch: "Switch",
   textarea: "Textarea",
 
