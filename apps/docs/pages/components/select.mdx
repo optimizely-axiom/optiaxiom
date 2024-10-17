@@ -1,0 +1,51 @@
+import { Demo } from "@/components/demo";
+import { PropsTable } from "@/components/props-table";
+import { Usage } from "@/demos/select";
+import { Select } from "@optiaxiom/react/unstable";
+
+# Select
+
+Single select combobox widget to allow selection from a fixed set of options.
+
+## Documentation
+
+### Anatomy
+
+```tsx
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectItemIndicator,
+  SelectList,
+  SelectTrigger,
+} from "@optiaxiom/react";
+
+export default () => (
+  <Select>
+    <SelectTrigger>
+      <SelectValue />
+    </SelectTrigger>
+
+    <SelectContent>
+      <SelectItem>
+        <SelectItemIndicator />
+      </SelectItem>
+    </SelectContent>
+  </Select>
+);
+```
+
+### Usage
+
+<Demo component={Usage} />
+
+## Props
+
+<PropsTable component={Select} />
+
+## Changelog
+
+### 0.2.0
+
+- Added component
