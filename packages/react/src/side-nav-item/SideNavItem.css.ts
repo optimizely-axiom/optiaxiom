@@ -7,7 +7,6 @@ export const item = recipe({
   base: [
     {
       fontWeight: "500",
-      justifyContent: "start",
       textAlign: "start",
     },
     style({
