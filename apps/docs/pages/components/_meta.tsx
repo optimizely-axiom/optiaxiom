@@ -1,3 +1,13 @@
+import type { ReactNode } from "react";
+
+import { Badge, Flex } from "@optiaxiom/react";
+
+const AlphaItem = ({ children }: { children?: ReactNode }) => (
+  <Flex flex="1" flexDirection="row" justifyContent="space-between">
+    {children} <Badge colorScheme="primary">ALPHA</Badge>
+  </Flex>
+);
+
 export default {
   "--": {
     title: "Components",
@@ -30,8 +40,12 @@ export default {
     title: "Combobox",
     type: "separator",
   },
-  autocomplete: "Autocomplete",
-  select: "Select",
+  autocomplete: {
+    title: <AlphaItem>Autocomplete</AlphaItem>,
+  },
+  select: {
+    title: <AlphaItem>Select</AlphaItem>,
+  },
 
   "-- Data Display": {
     title: "Data Display",
@@ -48,7 +62,9 @@ export default {
   },
   alert: "Alert",
   badge: "Badge",
-  banner: "Banner",
+  banner: {
+    title: <AlphaItem>Banner</AlphaItem>,
+  },
   progress: "Progress",
   skeleton: "Skeleton",
   spinner: "Spinner",
@@ -63,7 +79,9 @@ export default {
   input: "Input",
   "radio-group": "RadioGroup",
   "search-input": "SearchInput",
-  "segmented-control": "SegmentedControl",
+  "segmented-control": {
+    title: <AlphaItem>SegmentedControl</AlphaItem>,
+  },
   switch: "Switch",
   textarea: "Textarea",
 
@@ -71,10 +89,14 @@ export default {
     title: "Navigation",
     type: "separator",
   },
-  breadcrumbs: "Breadcrumbs",
+  breadcrumb: {
+    title: <AlphaItem>Breadcrumb</AlphaItem>,
+  },
   link: "Link",
   pagination: "Pagination",
-  "side-nav": "SideNav",
+  "side-nav": {
+    title: <AlphaItem>SideNav</AlphaItem>,
+  },
   tabs: "Tabs",
 
   "-- Overlays": {
