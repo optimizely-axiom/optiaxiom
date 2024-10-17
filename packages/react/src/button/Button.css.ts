@@ -209,11 +209,9 @@ export const button = recipe({
   },
   variantsCompounded: [
     {
-      style: style({
-        vars: {
-          [paddingInlineVar]: "2px",
-        },
-      }),
+      style: {
+        w: "sm",
+      },
       variants: {
         iconOnly: true,
         size: "sm",
@@ -231,11 +229,9 @@ export const button = recipe({
       },
     },
     {
-      style: style({
-        vars: {
-          [paddingInlineVar]: "6px",
-        },
-      }),
+      style: {
+        w: "md",
+      },
       variants: {
         iconOnly: true,
         size: "md",
@@ -253,11 +249,9 @@ export const button = recipe({
       },
     },
     {
-      style: style({
-        vars: {
-          [paddingInlineVar]: "10px",
-        },
-      }),
+      style: {
+        w: "lg",
+      },
       variants: {
         iconOnly: true,
         size: "lg",
