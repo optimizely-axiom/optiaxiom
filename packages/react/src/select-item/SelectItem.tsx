@@ -36,7 +36,7 @@ export const SelectItem = forwardRef<HTMLLIElement, SelectItemProps>(
             {...restProps}
             {...itemProps}
           >
-            {addonBefore && <Icon>{fallbackSpan(addonBefore)}</Icon>}
+            {addonBefore && <Icon asChild>{fallbackSpan(addonBefore)}</Icon>}
 
             {children}
           </li>

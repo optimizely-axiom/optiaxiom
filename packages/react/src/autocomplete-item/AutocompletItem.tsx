@@ -36,7 +36,7 @@ export const AutocompleteItem = forwardRef<
         {...restProps}
         {...itemProps}
       >
-        {addonBefore && <Icon>{fallbackSpan(addonBefore)}</Icon>}
+        {addonBefore && <Icon asChild>{fallbackSpan(addonBefore)}</Icon>}
 
         {children}
       </li>
