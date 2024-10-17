@@ -5,11 +5,16 @@ export default {
   },
   index: "Overview",
 
+  "-- Providers": {
+    title: "Providers",
+    type: "separator",
+  },
+  "axiom-provider": "AxiomProvider",
+
   "-- Primitives": {
     title: "Primitives",
     type: "separator",
   },
-  "axiom-provider": "AxiomProvider",
   box: "Box",
   flex: "Flex",
   grid: "Grid",
