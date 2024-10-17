@@ -13,6 +13,16 @@ export function DemoCode({ children }: { children: ReactNode }) {
       setCollapsed(true);
     }
   }, []);
+  useEffect(() => {
+    if (collapsed === true && ref.current) {
+      const element = ref.current.querySelector(
+        ':is(:scope > [class~="nextra-code"], :has(> [role="tabpanel"]))',
+      );
+      if (element) {
+        element.scrollTop = 0;
+      }
+    }
+  }, [collapsed]);
 
   return (
     <Box
@@ -23,7 +33,6 @@ export function DemoCode({ children }: { children: ReactNode }) {
       ]
         .filter(Boolean)
         .join(" ")}
-      key={String(collapsed)}
       ref={ref}
     >
       {children}
