@@ -12,7 +12,7 @@ type PopoverContentProps = BoxProps<
   typeof RadixPopover.Content,
   {
     withArrow?: boolean;
-  }
+  } & styles.ContentVariants
 >;
 
 export const PopoverContent = forwardRef<HTMLDivElement, PopoverContentProps>(
@@ -21,6 +21,7 @@ export const PopoverContent = forwardRef<HTMLDivElement, PopoverContentProps>(
       align = "start",
       children,
       className,
+      minW,
       sideOffset = 2,
       withArrow,
       ...props
@@ -34,7 +35,7 @@ export const PopoverContent = forwardRef<HTMLDivElement, PopoverContentProps>(
         {open && (
           <RadixPopover.Portal forceMount>
             <Transition duration="sm" type="pop">
-              <Box asChild {...styles.content({}, className)} {...props}>
+              <Box asChild {...styles.content({ minW }, className)} {...props}>
                 <RadixPopover.Content
                   align={align}
                   ref={ref}

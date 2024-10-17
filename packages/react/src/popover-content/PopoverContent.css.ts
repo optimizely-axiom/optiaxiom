@@ -1,4 +1,4 @@
-import { recipe, style } from "../vanilla-extract";
+import { recipe, type RecipeVariants, style } from "../vanilla-extract";
 
 export const content = recipe({
   base: [
@@ -16,8 +16,17 @@ export const content = recipe({
     },
     style({
       maxHeight: "var(--radix-popover-content-available-height)",
-      minWidth: "var(--radix-popover-trigger-width)",
       position: "relative",
     }),
   ],
+  variants: {
+    minW: {
+      "0": {},
+      trigger: style({
+        minWidth: "var(--radix-popover-trigger-width)",
+      }),
+    },
+  },
 });
+
+export type ContentVariants = RecipeVariants<typeof content>;
