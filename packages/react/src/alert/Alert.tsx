@@ -1,8 +1,9 @@
 import { createElement, forwardRef } from "react";
 
-import { Box, type BoxProps } from "../box";
+import { type BoxProps } from "../box";
 import { Button } from "../button";
 import { Flex } from "../flex";
+import { Icon } from "../icon";
 import { IconCircleCheckFilled } from "../icons/IconCircleCheckFilled";
 import { IconCircleExclamationFilled } from "../icons/IconCircleExclamationFilled";
 import { IconCircleInfoFilled } from "../icons/IconCircleInfoFilled";
@@ -32,9 +33,9 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>(
   ) => {
     return (
       <Flex ref={ref} {...styles.alert({ colorScheme }, className)} {...props}>
-        <Box asChild {...styles.icon({ colorScheme })}>
+        <Icon asChild {...styles.icon({ colorScheme })}>
           {createElement(iconMap[colorScheme])}
-        </Box>
+        </Icon>
 
         <Flex flex="1" gap="xs" my="2">
           {children}

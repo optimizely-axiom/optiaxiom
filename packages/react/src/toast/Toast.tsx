@@ -3,6 +3,7 @@ import { createElement, forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
 import { Button } from "../button";
+import { Icon } from "../icon";
 import { IconCircleCheckFilled } from "../icons/IconCircleCheckFilled";
 import { IconCircleExclamationFilled } from "../icons/IconCircleExclamationFilled";
 import { IconCircleInfoFilled } from "../icons/IconCircleInfoFilled";
@@ -39,9 +40,9 @@ export const Toast = forwardRef<HTMLLIElement, ToastProps>(
           ref={ref}
           {...restProps}
         >
-          <Box asChild {...styles.icon()}>
+          <Icon asChild {...styles.icon()}>
             {createElement(iconMap[colorScheme])}
-          </Box>
+          </Icon>
 
           {children}
 
