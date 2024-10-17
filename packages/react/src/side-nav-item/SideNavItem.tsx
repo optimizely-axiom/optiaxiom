@@ -59,6 +59,7 @@ export const SideNavItem = forwardRef<HTMLButtonElement, SideNavItemProps>(
               appearance="subtle"
               asChild={asChild}
               data-state={active ? "active" : undefined}
+              justifyContent={expanded ? "start" : "center"}
               ref={ref}
               size="lg"
               transition={animations ? "all" : undefined}
