@@ -1,0 +1,54 @@
+import { Demo } from "@/components/demo";
+import { PropsTable } from "@/components/props-table";
+import { Usage } from "@/demos/autocomplete";
+import { Autocomplete } from "@optiaxiom/react/unstable";
+
+# Autocomplete
+
+Text field with inline autocomplete to show suggestions while allowing freeform user input.
+
+## Documentation
+
+### Anatomy
+
+```tsx
+import {
+  Autocomplete,
+  AutocompleteContent,
+  AutocompleteEmptyItem,
+  AutocompleteItem,
+  AutocompleteItemIndicator,
+  AutocompleteList,
+  AutocompleteTrigger,
+} from "@optiaxiom/react";
+
+export default () => (
+  <Autocomplete>
+    <AutocompleteTrigger />
+
+    <AutocompleteContent>
+      <AutocompleteList>
+        <AutocompleteItem>
+          <AutocompleteItemIndicator />
+        </AutocompleteItem>
+      </AutocompleteList>
+
+      <AutocompleteEmptyItem />
+    </AutocompleteContent>
+  </Autocomplete>
+);
+```
+
+### Usage
+
+<Demo component={Usage} />
+
+## Props
+
+<PropsTable component={Autocomplete} />
+
+## Changelog
+
+### 0.2.0
+
+- Added component

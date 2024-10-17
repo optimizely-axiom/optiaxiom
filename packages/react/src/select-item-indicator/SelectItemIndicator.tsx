@@ -1,5 +1,6 @@
 import { type ComponentPropsWithRef, forwardRef } from "react";
 
+import { Box } from "../box";
 import { IconCheck } from "../icons/IconCheck";
 import { useSelectItemContext } from "../select-item-context";
 
@@ -11,7 +12,7 @@ export const SelectItemIndicator = forwardRef<
 >(({ ...props }, ref) => {
   const { active } = useSelectItemContext("SelectItemIndicator");
   if (!active) {
-    return null;
+    return <Box w="12" />;
   }
 
   return <IconCheck ref={ref} {...props} />;

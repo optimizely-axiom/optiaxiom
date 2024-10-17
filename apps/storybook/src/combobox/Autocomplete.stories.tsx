@@ -73,9 +73,8 @@ export const Basic: Story = {
         onInputValueChange={(inputValue) => {
           setItems(
             languages.filter(
-              (language: string) =>
+              (language) =>
                 !inputValue ||
-                language.toLowerCase().includes(inputValue.toLowerCase()) ||
                 language.toLowerCase().includes(inputValue.toLowerCase()),
             ),
           );
@@ -92,7 +91,7 @@ export const Basic: Story = {
               </AutocompleteItem>
             )}
           </AutocompleteList>
-          <AutocompleteEmptyItem>No result Found</AutocompleteEmptyItem>
+          <AutocompleteEmptyItem>No result found</AutocompleteEmptyItem>
         </AutocompleteContent>
       </Autocomplete>
     );
@@ -200,7 +199,7 @@ const books = [
 export const Controlled: Story = {
   render: function DefaultSelected() {
     const [items, setItems] = useState(books);
-    const [value, setValue] = useState(books[9]);
+    const [value, setValue] = useState<(typeof books)[number] | null>(books[9]);
 
     return (
       <Flex alignItems="center">
