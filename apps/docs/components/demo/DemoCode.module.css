@@ -5,9 +5,8 @@
   overflow: hidden;
 }
 
-.expandable [class~="nextra-code"] {
-  flex: 1;
-  overflow: auto;
+.expandable {
+  --overflow: auto;
 }
 
 .expandable pre {
@@ -18,8 +17,8 @@
   height: 300px;
 }
 
-.collapsed [class~="nextra-code"] {
-  overflow: hidden;
+.collapsed {
+  --overflow: hidden;
 }
 
 .editor {
@@ -37,9 +36,27 @@
   margin-bottom: 0;
 }
 
+.editor > [class~="nextra-code"] {
+  flex: 1;
+  overflow: var(--overflow);
+}
+
+.editor :has(> [role="tablist"]) {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  overflow: hidden;
+}
+
 .editor [role="tablist"] {
+  flex-shrink: 0;
   font-size: 14px;
   margin-top: 0;
+}
+
+.editor :has(> [role="tabpanel"]) {
+  flex: 1;
+  overflow: var(--overflow);
 }
 
 .editor [role="tabpanel"] {
