@@ -1,7 +1,7 @@
 import * as RadixAlertDialog from "@radix-ui/react-alert-dialog";
 import { forwardRef, type ReactNode } from "react";
 
-import { Box, type BoxProps } from "../box";
+import { type BoxProps } from "../box";
 import { Flex } from "../flex";
 import { Heading } from "../heading";
 import { Icon } from "../icon";
@@ -23,12 +23,9 @@ export const AlertDialogTitle = forwardRef<
   const { restProps, sprinkleProps } = extractSprinkles(props);
   return (
     <Flex flexDirection="row" gap="md" p="lg" pb="md" {...sprinkleProps}>
-      {addonBefore && <Icon>{fallbackSpan(addonBefore)}</Icon>}
-      {!addonBefore && (
-        <Box asChild color="fg.error" h="16" w="auto">
-          <IconTriangleExclamation />
-        </Box>
-      )}
+      <Icon asChild color="fg.error">
+        {addonBefore ? fallbackSpan(addonBefore) : <IconTriangleExclamation />}
+      </Icon>
 
       <Heading
         asChild
