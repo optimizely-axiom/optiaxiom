@@ -38,6 +38,7 @@ export default {
   breadcrumbs: "Breadcrumbs",
   link: "Link",
   pagination: "Pagination",
+  "side-nav": "SideNav",
   tabs: "Tabs",
 
   "-- Overlays": {
@@ -86,7 +87,9 @@ export default {
   },
   alert: "Alert",
   badge: "Badge",
+  banner: "Banner",
   progress: "Progress",
   skeleton: "Skeleton",
+  spinner: "Spinner",
   toast: "Toast",
 };
