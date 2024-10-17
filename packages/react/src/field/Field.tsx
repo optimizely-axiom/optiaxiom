@@ -2,8 +2,7 @@ import * as RadixLabel from "@radix-ui/react-label";
 import { useId } from "@reach/auto-id";
 import { forwardRef, type ReactNode } from "react";
 
-import type { BoxProps } from "../box";
-
+import { Box, type BoxProps } from "../box";
 import { Button } from "../button";
 import { FieldContext } from "../field-context";
 import { Flex } from "../flex";
@@ -12,16 +11,17 @@ import { HoverCardContent } from "../hover-card-content";
 import { HoverCardTrigger } from "../hover-card-trigger";
 import { IconCircleQuestion } from "../icons/IconCircleQuestion";
 import { Text } from "../text";
+import { fallbackSpan } from "../utils";
 
 type FieldProps = BoxProps<
   "div",
   {
     children: ReactNode;
-    description?: string;
-    error?: string;
+    description?: ReactNode;
+    error?: ReactNode;
     id?: string;
-    info?: string;
-    label?: string;
+    info?: ReactNode;
+    label?: ReactNode;
     required?: boolean;
   }
 >;
@@ -100,15 +100,15 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(
         </FieldContext.Provider>
 
         {error && (
-          <Text color="fg.error" fontSize="sm">
-            {error}
-          </Text>
+          <Box asChild color="fg.error" fontSize="sm">
+            {fallbackSpan(error)}
+          </Box>
         )}
 
         {description && (
-          <Text color="fg.tertiary" fontSize="sm">
-            {description}
-          </Text>
+          <Box asChild color="fg.tertiary" fontSize="sm">
+            {fallbackSpan(description)}
+          </Box>
         )}
       </Flex>
     );
