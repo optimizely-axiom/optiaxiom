@@ -2,7 +2,6 @@ import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import { useSelect, type UseSelectProps } from "downshift";
 import { type ReactNode } from "react";
 
-import { useFieldContext } from "../field-context";
 import { Popover } from "../popover";
 import { SelectContextProvider } from "../select-context";
 import { useDelayedState } from "../use-delayed-state";
@@ -39,8 +38,6 @@ export function Select<Item>({
   value,
   ...props
 }: SelectProps<Item>) {
-  const { id: toggleButtonId } = useFieldContext();
-
   const [selectedItem, setSelectedItem] = useControllableState({
     defaultProp: defaultValue,
     onChange: onValueChange,
@@ -73,7 +70,6 @@ export function Select<Item>({
       setSelectedItem(selectedItem);
     },
     selectedItem: selectedItem ?? null,
-    toggleButtonId,
   });
 
   return (

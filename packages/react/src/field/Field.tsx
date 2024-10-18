@@ -41,6 +41,8 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(
     ref,
   ) => {
     const id = useId(idProp);
+    const labelId = useId();
+
     return (
       <Flex flexDirection="column" gap="4" ref={ref} {...props}>
         {label && (
@@ -53,7 +55,7 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(
               fontWeight="400"
               gap="2"
             >
-              <RadixLabel.Root htmlFor={id}>
+              <RadixLabel.Root htmlFor={id} id={labelId}>
                 {label}
 
                 {required && (
@@ -93,6 +95,7 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(
           value={{
             error: !!error,
             id,
+            labelId,
             required,
           }}
         >

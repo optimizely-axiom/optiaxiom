@@ -35,6 +35,7 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
         onOpenAutoFocus={(event: Event) => event.preventDefault()}
         p="4"
         ref={ref}
+        side="bottom"
         sideOffset={5}
         {...props}
       >
