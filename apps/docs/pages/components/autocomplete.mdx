@@ -1,7 +1,16 @@
 import { Demo } from "@/components/demo";
 import { PropsTable } from "@/components/props-table";
 import { Usage } from "@/demos/autocomplete";
-import { Autocomplete } from "@optiaxiom/react/unstable";
+import { SearchInput } from "@optiaxiom/react";
+import {
+  Autocomplete,
+  AutocompleteContent,
+  AutocompleteEmptyItem,
+  AutocompleteItem,
+  AutocompleteItemIndicator,
+  AutocompleteList,
+  AutocompleteTrigger,
+} from "@optiaxiom/react/unstable";
 
 # Autocomplete
 
@@ -46,6 +55,12 @@ export default () => (
 ## Props
 
 <PropsTable component={Autocomplete} />
+<PropsTable component={AutocompleteTrigger} base={SearchInput} />
+<PropsTable component={AutocompleteContent} />
+<PropsTable component={AutocompleteList} />
+<PropsTable component={AutocompleteItem} />
+<PropsTable component={AutocompleteItemIndicator} />
+<PropsTable component={AutocompleteEmptyItem} />
 
 ## Changelog
 

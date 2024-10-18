@@ -1,7 +1,15 @@
 import { Demo } from "@/components/demo";
 import { PropsTable } from "@/components/props-table";
 import { Usage } from "@/demos/select";
-import { Select } from "@optiaxiom/react/unstable";
+import { Button } from "@optiaxiom/react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectItemIndicator,
+  SelectTrigger,
+  SelectValue,
+} from "@optiaxiom/react/unstable";
 
 # Select
 
@@ -21,8 +29,8 @@ import {
   SelectContent,
   SelectItem,
   SelectItemIndicator,
-  SelectList,
   SelectTrigger,
+  SelectValue,
 } from "@optiaxiom/react";
 
 export default () => (
@@ -43,6 +51,11 @@ export default () => (
 ## Props
 
 <PropsTable component={Select} />
+<PropsTable component={SelectTrigger} base={Button} />
+<PropsTable component={SelectValue} />
+<PropsTable component={SelectContent} />
+<PropsTable component={SelectItem} />
+<PropsTable component={SelectItemIndicator} />
 
 ## Changelog
 
