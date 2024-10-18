@@ -37,7 +37,7 @@ export const item = recipe({
           backgroundColor: theme.colors["bg.secondary.hovered"],
         },
         "&[data-disabled]": {
-          color: theme.colors["fg.disabled"],
+          opacity: 0.3,
         },
       },
     }),
