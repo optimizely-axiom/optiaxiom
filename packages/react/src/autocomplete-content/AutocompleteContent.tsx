@@ -29,6 +29,7 @@ export const AutocompleteContent = forwardRef<
   return (
     <PopoverContent
       align="center"
+      minW="trigger"
       /**
        * We use animations to show/hide the popup and so there is a small
        * duration when the menu is open but should not be interactive.
