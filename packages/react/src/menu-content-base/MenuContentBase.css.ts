@@ -1,4 +1,12 @@
-import { recipe, type RecipeVariants, style } from "../vanilla-extract";
+import {
+  createVar,
+  recipe,
+  type RecipeVariants,
+  style,
+} from "../vanilla-extract";
+
+export const contentAvailableHeightVar = createVar();
+export const triggerWidth = createVar();
 
 export const content = recipe({
   base: [
@@ -17,7 +25,7 @@ export const content = recipe({
       z: "popover",
     },
     style({
-      maxHeight: "var(--radix-dropdown-menu-content-available-height)",
+      maxHeight: contentAvailableHeightVar,
     }),
   ],
 
@@ -25,7 +33,16 @@ export const content = recipe({
     minW: {
       "0": {},
       trigger: style({
-        minWidth: "var(--radix-dropdown-menu-trigger-width)",
+        minWidth: triggerWidth,
+      }),
+    },
+    provider: {
+      "dropdown-menu": style({
+        vars: {
+          [contentAvailableHeightVar]:
+            "var(--radix-dropdown-menu-content-available-height)",
+          [triggerWidth]: "var(--radix-dropdown-menu-trigger-width)",
+        },
       }),
     },
   },
