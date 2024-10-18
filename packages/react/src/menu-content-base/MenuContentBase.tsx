@@ -1,5 +1,5 @@
-import * as RadixMenu from "@radix-ui/react-dropdown-menu";
-import { type ElementType, forwardRef } from "react";
+import * as RadixDropdownMenu from "@radix-ui/react-dropdown-menu";
+import { type ElementType, forwardRef, Fragment } from "react";
 
 import type { ExtendProps } from "../utils";
 
@@ -21,25 +21,33 @@ export const MenuContentBase = forwardRef<
       open: boolean | undefined;
     }
   >
->(({ children, className, minW, open, ...props }, ref) => {
-  return (
-    <AnimatePresence>
-      {open && (
-        <RadixMenu.Portal forceMount>
-          <Transition duration="sm" type="pop">
-            <Box
-              asChild
-              ref={ref}
-              {...styles.content({ minW }, className)}
-              {...props}
-            >
-              {children}
-            </Box>
-          </Transition>
-        </RadixMenu.Portal>
-      )}
-    </AnimatePresence>
-  );
-});
+>(
+  (
+    { children, className, minW, open, provider = "dropdown-menu", ...props },
+    ref,
+  ) => {
+    const Portal =
+      provider === "dropdown-menu" ? RadixDropdownMenu.Portal : Fragment;
+
+    return (
+      <AnimatePresence>
+        {open && (
+          <Portal forceMount>
+            <Transition duration="sm" type="pop">
+              <Box
+                asChild
+                ref={ref}
+                {...styles.content({ minW, provider }, className)}
+                {...props}
+              >
+                {children}
+              </Box>
+            </Transition>
+          </Portal>
+        )}
+      </AnimatePresence>
+    );
+  },
+);
 
 MenuContentBase.displayName = "@optiaxiom/react/MenuContentBase";
