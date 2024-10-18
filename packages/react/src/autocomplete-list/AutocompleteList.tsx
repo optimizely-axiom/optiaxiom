@@ -4,6 +4,9 @@ import { useAutocompleteContext } from "../autocomplete-context";
 import { AutocompleteListContextProvider } from "../autocomplete-list-context";
 
 type AutocompleteListProps = {
+  /**
+   * Render each item using a children render prop.
+   */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   children: (item: any) => ReactNode;
 };
