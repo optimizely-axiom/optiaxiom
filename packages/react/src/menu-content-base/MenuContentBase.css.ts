@@ -44,6 +44,13 @@ export const content = recipe({
           [triggerWidth]: "var(--radix-dropdown-menu-trigger-width)",
         },
       }),
+      popover: style({
+        vars: {
+          [contentAvailableHeightVar]:
+            "var(--radix-popover-content-available-height)",
+          [triggerWidth]: "var(--radix-popover-trigger-width)",
+        },
+      }),
     },
   },
 });

@@ -1,5 +1,6 @@
 import * as RadixDropdownMenu from "@radix-ui/react-dropdown-menu";
-import { type ElementType, forwardRef, Fragment } from "react";
+import * as RadixPopover from "@radix-ui/react-popover";
+import { type ElementType, forwardRef } from "react";
 
 import type { ExtendProps } from "../utils";
 
@@ -23,11 +24,13 @@ export const MenuContentBase = forwardRef<
   >
 >(
   (
-    { children, className, minW, open, provider = "dropdown-menu", ...props },
+    { children, className, minW, open, provider = "popover", ...props },
     ref,
   ) => {
     const Portal =
-      provider === "dropdown-menu" ? RadixDropdownMenu.Portal : Fragment;
+      provider === "dropdown-menu"
+        ? RadixDropdownMenu.Portal
+        : RadixPopover.Portal;
 
     return (
       <AnimatePresence>
