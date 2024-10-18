@@ -7,12 +7,7 @@ import {
   type MenuContentBaseProps,
 } from "../menu-content-base";
 
-type MenuSubContentProps = MenuContentBaseProps<
-  typeof RadixMenu.SubContent,
-  {
-    open?: never;
-  }
->;
+type MenuSubContentProps = MenuContentBaseProps<typeof RadixMenu.SubContent>;
 
 export const DropdownMenuSubContent = forwardRef<
   HTMLDivElement,

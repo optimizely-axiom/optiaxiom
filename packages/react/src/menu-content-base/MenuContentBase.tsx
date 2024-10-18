@@ -11,37 +11,35 @@ import * as styles from "./MenuContentBase.css";
 export type MenuContentBaseProps<
   T extends ElementType = "div",
   P = unknown,
-> = BoxProps<
-  T,
-  ExtendProps<
+> = BoxProps<T, ExtendProps<NonNullable<styles.ContentVariants>, P>>;
+
+export const MenuContentBase = forwardRef<
+  HTMLDivElement,
+  MenuContentBaseProps<
+    "div",
     {
       open: boolean | undefined;
-    } & styles.ContentVariants,
-    P
+    }
   >
->;
-
-export const MenuContentBase = forwardRef<HTMLDivElement, MenuContentBaseProps>(
-  ({ children, className, minW, open, ...props }, ref) => {
-    return (
-      <AnimatePresence>
-        {open && (
-          <RadixMenu.Portal forceMount>
-            <Transition duration="sm" type="pop">
-              <Box
-                asChild
-                ref={ref}
-                {...styles.content({ minW }, className)}
-                {...props}
-              >
-                {children}
-              </Box>
-            </Transition>
-          </RadixMenu.Portal>
-        )}
-      </AnimatePresence>
-    );
-  },
-);
+>(({ children, className, minW, open, ...props }, ref) => {
+  return (
+    <AnimatePresence>
+      {open && (
+        <RadixMenu.Portal forceMount>
+          <Transition duration="sm" type="pop">
+            <Box
+              asChild
+              ref={ref}
+              {...styles.content({ minW }, className)}
+              {...props}
+            >
+              {children}
+            </Box>
+          </Transition>
+        </RadixMenu.Portal>
+      )}
+    </AnimatePresence>
+  );
+});
 
 MenuContentBase.displayName = "@optiaxiom/react/MenuContentBase";
