@@ -1,21 +1,28 @@
-import { type ComponentPropsWithRef, forwardRef } from "react";
+import { forwardRef } from "react";
 
-import { Box } from "../box";
+import { Box, type BoxProps } from "../box";
 import { IconCheck } from "../icons/IconCheck";
 import { useSelectItemContext } from "../select-item-context";
+import { extractSprinkles } from "../sprinkles";
 
-type SelectItemIndicatorProps = ComponentPropsWithRef<typeof IconCheck>;
+type SelectItemIndicatorProps = BoxProps<typeof IconCheck>;
 
 export const SelectItemIndicator = forwardRef<
   SVGSVGElement,
   SelectItemIndicatorProps
->(({ ...props }, ref) => {
+>(({ children, ...props }, ref) => {
+  const { restProps, sprinkleProps } = extractSprinkles(props);
+
   const { active } = useSelectItemContext("SelectItemIndicator");
   if (!active) {
     return <Box w="12" />;
   }
 
-  return <IconCheck ref={ref} {...props} />;
+  return (
+    <Box asChild {...sprinkleProps}>
+      {children ?? <IconCheck ref={ref} {...restProps} />}
+    </Box>
+  );
 });
 
 SelectItemIndicator.displayName = "@optiaxiom/react/SelectItemIndicator";
