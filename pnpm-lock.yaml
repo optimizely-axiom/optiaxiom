@@ -4,6 +4,11 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+patchedDependencies:
+  react-docgen-typescript:
+    hash: 2ld3tc3apzxpaqkeup6dsrfezi
+    path: patches/react-docgen-typescript.patch
+
 importers:
 
   .:
@@ -127,7 +132,7 @@ importers:
         version: 16.1.0(postcss@8.4.47)
       react-docgen-typescript:
         specifier: ^2.2.2
-        version: 2.2.2(typescript@5.6.3)
+        version: 2.2.2(patch_hash=2ld3tc3apzxpaqkeup6dsrfezi)(typescript@5.6.3)
       sharp:
         specifier: ^0.33.5
         version: 0.33.5
@@ -421,7 +426,7 @@ importers:
         version: 15.11.0
       react-docgen-typescript:
         specifier: ^2.2.2
-        version: 2.2.2(typescript@5.6.3)
+        version: 2.2.2(patch_hash=2ld3tc3apzxpaqkeup6dsrfezi)(typescript@5.6.3)
       typescript-eslint:
         specifier: ^8.8.1
         version: 8.8.1(eslint@9.12.0)(typescript@5.6.3)
@@ -463,7 +468,7 @@ importers:
         version: 10.24.2
       react-docgen-typescript:
         specifier: ^2.2.2
-        version: 2.2.2(typescript@5.6.3)
+        version: 2.2.2(patch_hash=2ld3tc3apzxpaqkeup6dsrfezi)(typescript@5.6.3)
       webdriverio:
         specifier: ^8.40.6
         version: 8.40.6
@@ -8528,7 +8533,7 @@ snapshots:
       glob: 7.2.3
       glob-promise: 4.2.2(glob@7.2.3)
       magic-string: 0.27.0
-      react-docgen-typescript: 2.2.2(typescript@5.6.3)
+      react-docgen-typescript: 2.2.2(patch_hash=2ld3tc3apzxpaqkeup6dsrfezi)(typescript@5.6.3)
       vite: 5.4.8(@types/node@22.7.5)(terser@5.34.1)
     optionalDependencies:
       typescript: 5.6.3
@@ -14642,7 +14647,7 @@ snapshots:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  react-docgen-typescript@2.2.2(typescript@5.6.3):
+  react-docgen-typescript@2.2.2(patch_hash=2ld3tc3apzxpaqkeup6dsrfezi)(typescript@5.6.3):
     dependencies:
       typescript: 5.6.3
 

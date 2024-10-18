@@ -1,0 +1,13 @@
+diff --git a/lib/parser.js b/lib/parser.js
+index e98cd6494df9f6f8ad2d09d6641ae2898ca8dd8a..c6952b3bd32a1be19230d833ba69bb9b2a3b63a2 100644
+--- a/lib/parser.js
++++ b/lib/parser.js
+@@ -850,7 +850,7 @@ function getDefaultExportForFile(source) {
+ }
+ exports.getDefaultExportForFile = getDefaultExportForFile;
+ function isTypeLiteral(node) {
+-    return node.kind === ts.SyntaxKind.TypeLiteral;
++    return node.kind === ts.SyntaxKind.TypeLiteral || node.kind === ts.SyntaxKind.ObjectLiteralExpression;
+ }
+ function getDeclarations(prop) {
+     var declarations = prop.getDeclarations();

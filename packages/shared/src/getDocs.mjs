@@ -28,9 +28,6 @@ export function getDocs({ shouldExtractValuesFromUnion = false } = {}) {
         ...doc
       }) => {
         const isBox = doc.displayName === "@optiaxiom/react/Box";
-        const styles = docs.filter(
-          (d) => d.filePath === filePath.replace(".tsx", ".css.ts"),
-        );
         const filterProps = Object.fromEntries(
           Object.entries(props)
             .filter(([, prop]) =>
@@ -42,11 +39,11 @@ export function getDocs({ shouldExtractValuesFromUnion = false } = {}) {
                       (decl) =>
                         !decl.fileName.endsWith("/Box.tsx") &&
                         (decl.fileName === filePath ||
-                          decl.fileName.endsWith("Base.tsx")),
+                          decl.fileName ===
+                            filePath.replace(".tsx", ".css.ts") ||
+                          decl.fileName.endsWith("Base.tsx") ||
+                          decl.fileName.endsWith("Base.css.ts")),
                     )) ||
-                  styles.find((style) =>
-                    Object.hasOwn(style.props, prop.name),
-                  ) ||
                   (isBox && Object.hasOwn(sprinkles?.props ?? {}, prop.name)),
             )
             .filter(([, prop]) => !(prop.type.name === "never"))
