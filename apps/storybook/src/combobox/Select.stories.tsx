@@ -13,11 +13,14 @@ import {
 } from "@optiaxiom/react/unstable";
 import { useState } from "react";
 
-type Story = StoryObj<typeof Select<string>>;
+type Story<T = string> = StoryObj<typeof Select<T>>;
 
 export default {
+  args: {
+    defaultOpen: true,
+  },
   component: Select,
-} as Meta<typeof Select<string>>;
+} as Meta<typeof Select>;
 
 type Book = {
   author: string;
@@ -175,6 +178,7 @@ export const WithLabel: Story = {
 export const Disabled: Story = {
   ...Basic,
   args: {
+    defaultOpen: false,
     disabled: true,
   },
 };
@@ -266,13 +270,17 @@ export const Grouped: Story = {
   },
 };
 
-export const Controlled: Story = {
-  render: function DefaultSelected() {
+export const Controlled: Story<Book> = {
+  args: {
+    items: books,
+  },
+  render: function DefaultSelected(args) {
     const [value, setValue] = useState<(typeof books)[number] | null>(books[9]);
 
     return (
       <Flex alignItems="center">
         <Select
+          {...args}
           isItemDisabled={(book) => book.disabled}
           items={books}
           itemToKey={(book) => book?.id}
