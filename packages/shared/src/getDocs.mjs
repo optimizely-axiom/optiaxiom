@@ -37,9 +37,13 @@ export function getDocs({ shouldExtractValuesFromUnion = false } = {}) {
               prop.parent
                 ? !prop.parent.fileName.includes("@types/react")
                 : prop.name === "asChild" ||
-                  prop.declarations?.find(
-                    (decl) => decl.fileName === filePath,
-                  ) ||
+                  (prop.declarations?.length &&
+                    prop.declarations.find(
+                      (decl) =>
+                        !decl.fileName.endsWith("/Box.tsx") &&
+                        (decl.fileName === filePath ||
+                          decl.fileName.endsWith("Base.tsx")),
+                    )) ||
                   styles.find((style) =>
                     Object.hasOwn(style.props, prop.name),
                   ) ||

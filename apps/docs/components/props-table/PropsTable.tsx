@@ -51,13 +51,9 @@ export function PropsTable({
       {baseName && (
         <Text fontSize="lg" mt="md">
           Supports all{" "}
-          {["InputBase"].includes(baseName) ? (
-            baseName
-          ) : (
-            <Link href={`/components/${kebabCase(baseName)}#props`}>
-              {baseName}
-            </Link>
-          )}{" "}
+          <Link href={`/components/${kebabCase(baseName)}#props`}>
+            {baseName}
+          </Link>{" "}
           props
           {propItems && propItems?.length > 0 ? " in addition to its own" : ""}.
         </Text>

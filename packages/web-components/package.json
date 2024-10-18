@@ -69,7 +69,6 @@
     "./HoverCardTrigger": "./dist/components/HoverCardTrigger.js",
     "./Indicator": "./dist/components/Indicator.js",
     "./Input": "./dist/components/Input.js",
-    "./InputBase": "./dist/components/InputBase.js",
     "./Kbd": "./dist/components/Kbd.js",
     "./Link": "./dist/components/Link.js",
     "./MenuButton": "./dist/components/MenuButton.js",
