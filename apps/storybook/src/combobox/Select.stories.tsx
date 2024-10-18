@@ -11,6 +11,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@optiaxiom/react/unstable";
+import { expect, screen, userEvent } from "@storybook/test";
 import { useState } from "react";
 
 type Story<T = string> = StoryObj<typeof Select<T>>;
@@ -91,11 +92,20 @@ export default {
 export const Basic: Story = {};
 
 export const WithLabel: Story = {
+  args: {
+    defaultOpen: false,
+  },
   decorators: (Story) => (
     <Field label="Label">
       <Story />
     </Field>
   ),
+  play: async ({ canvas }) => {
+    await userEvent.click(canvas.getByText("Label"));
+    await expect(canvas.getByLabelText("Label")).toHaveFocus();
+    await userEvent.keyboard("{Enter}");
+    await expect(await screen.findByRole("listbox")).toBeInTheDocument();
+  },
 };
 
 export const Disabled: Story = {
