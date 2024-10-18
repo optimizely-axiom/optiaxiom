@@ -35,9 +35,8 @@ export function App() {
       <AutocompleteContent>
         <AutocompleteList>
           {(item: (typeof items)[number]) => (
-            <AutocompleteItem>
+            <AutocompleteItem addonAfter={<AutocompleteItemIndicator />}>
               {item.label}
-              <AutocompleteItemIndicator />
             </AutocompleteItem>
           )}
         </AutocompleteList>

@@ -85,9 +85,8 @@ export const Basic: Story = {
         <AutocompleteContent>
           <AutocompleteList>
             {(item: string) => (
-              <AutocompleteItem>
+              <AutocompleteItem addonAfter={<AutocompleteItemIndicator />}>
                 {item}
-                <AutocompleteItemIndicator />
               </AutocompleteItem>
             )}
           </AutocompleteList>
@@ -226,9 +225,8 @@ export const Controlled: Story = {
           <AutocompleteContent>
             <AutocompleteList>
               {(item: (typeof books)[number]) => (
-                <AutocompleteItem>
+                <AutocompleteItem addonAfter={<AutocompleteItemIndicator />}>
                   {item.title}
-                  <AutocompleteItemIndicator />
                 </AutocompleteItem>
               )}
             </AutocompleteList>
