@@ -1,5 +1,11 @@
 # @optiaxiom/globals
 
+## 0.2.1
+
+### Patch Changes
+
+- 45392b5: add Support for 2xs size
+
 ## 0.2.0
 
 ### Minor Changes
