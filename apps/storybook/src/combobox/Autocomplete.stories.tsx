@@ -13,9 +13,12 @@ import {
 import { expect, screen, userEvent } from "@storybook/test";
 import { useEffect, useState } from "react";
 
-type Story = StoryObj<typeof Autocomplete>;
+type Story<T = string> = StoryObj<typeof Autocomplete<T>>;
 
 export default {
+  args: {
+    defaultOpen: true,
+  },
   component: Autocomplete,
 } as Meta<typeof Autocomplete>;
 
@@ -126,13 +129,13 @@ export const WithLabel: Story = {
     await expect(
       await screen.findByRole("option", { name: "Urdu" }),
     ).toHaveAttribute("data-selected");
-    await userEvent.tab();
   },
 };
 
 export const Disabled: Story = {
   ...Basic,
   args: {
+    defaultOpen: false,
     disabled: true,
     value: "English",
   },
@@ -196,14 +199,15 @@ const books = [
   },
 ];
 
-export const Controlled: Story = {
-  render: function DefaultSelected() {
+export const Controlled: Story<(typeof books)[number]> = {
+  render: function DefaultSelected(args) {
     const [items, setItems] = useState(books);
     const [value, setValue] = useState<(typeof books)[number] | null>(books[9]);
 
     return (
       <Flex alignItems="center">
         <Autocomplete
+          {...args}
           isItemDisabled={(book) => book.disabled}
           items={items}
           itemToKey={(book) => book?.id}
