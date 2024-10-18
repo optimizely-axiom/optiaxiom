@@ -15,12 +15,157 @@ import { useState } from "react";
 
 type Story<T = string> = StoryObj<typeof Select<T>>;
 
+const languages = [
+  "Afrikaans",
+  "Arabic",
+  "Bangla",
+  "Bulgarian",
+  "Catalan",
+  "Chinese (Simplified)",
+  "Croatian",
+  "Czech",
+  "Danish",
+  "Dutch",
+  "English",
+  "Finnish",
+  "French",
+  "German",
+  "Greek",
+  "Hebrew",
+  "Hindi",
+  "Hungarian",
+  "Indonesian",
+  "Italian",
+  "Japanese",
+  "Korean",
+  "Lithuanian",
+  "Malay",
+  "Norwegian",
+  "Persian",
+  "Polish",
+  "Portuguese",
+  "Romanian",
+  "Russian",
+  "Spanish",
+  "Swahili",
+  "Swedish",
+  "Tagalog",
+  "Tamil",
+  "Thai",
+  "Turkish",
+  "Ukrainian",
+  "Urdu",
+  "Vietnamese",
+];
+
 export default {
   args: {
+    children: (
+      <>
+        <SelectTrigger>
+          <SelectValue placeholder="Select a language" />
+        </SelectTrigger>
+
+        <SelectContent>
+          {languages.map((item, index) => {
+            return (
+              <SelectItem
+                addonAfter={<SelectItemIndicator />}
+                item={item}
+                key={index}
+              >
+                {item}
+              </SelectItem>
+            );
+          })}
+        </SelectContent>
+      </>
+    ),
     defaultOpen: true,
+    defaultValue: "Bangla",
+    items: languages,
   },
   component: Select,
 } as Meta<typeof Select>;
+
+export const Basic: Story = {};
+
+export const WithLabel: Story = {
+  decorators: (Story) => (
+    <Field label="Label">
+      <Story />
+    </Field>
+  ),
+};
+
+export const Disabled: Story = {
+  args: {
+    defaultOpen: false,
+    disabled: true,
+  },
+};
+
+const fruits = ["Apple", "Banana", "Blueberry", "Grapes", "Pineapple"];
+const vegetables = ["Aubergine", "Broccoli", "Carrot", "Courgette", "Leek"];
+const meats = ["Beef", "Chicken", "Lamb", "Pork"];
+const combinedFoodList = [...fruits, ...vegetables, ...meats];
+
+export const Grouped: Story = {
+  args: {
+    children: (
+      <>
+        <SelectTrigger>
+          <SelectValue placeholder="Select an item" />
+        </SelectTrigger>
+
+        <SelectContent>
+          <SelectLabel>Fruits</SelectLabel>
+          {fruits.map((item, index) => {
+            return (
+              <SelectItem
+                addonAfter={<SelectItemIndicator />}
+                item={item}
+                key={index}
+              >
+                {item}
+              </SelectItem>
+            );
+          })}
+          <SelectSeparator />
+
+          <SelectLabel>Vegetables</SelectLabel>
+          {vegetables.map((item, index) => {
+            return (
+              <SelectItem
+                addonAfter={<SelectItemIndicator />}
+                item={item}
+                key={index}
+              >
+                {item}
+              </SelectItem>
+            );
+          })}
+          <SelectSeparator />
+
+          <SelectLabel>Meats</SelectLabel>
+          {meats.map((item, index) => {
+            return (
+              <SelectItem
+                addonAfter={<SelectItemIndicator />}
+                item={item}
+                key={index}
+              >
+                {item}
+              </SelectItem>
+            );
+          })}
+        </SelectContent>
+      </>
+    ),
+    defaultValue: null,
+    items: combinedFoodList,
+  },
+};
 
 type Book = {
   author: string;
@@ -87,225 +232,40 @@ const books: Book[] = [
   },
 ];
 
-const languages = [
-  "English",
-  "French",
-  "German",
-  "Spanish",
-  "Portuguese",
-  "Russian",
-  "Japanese",
-  "Korean",
-  "Chinese (Simplified)",
-  "Italian",
-  "Dutch",
-  "Polish",
-  "Swedish",
-  "Danish",
-  "Finnish",
-  "Norwegian",
-  "Turkish",
-  "Arabic",
-  "Hindi",
-  "Bengali",
-  "Vietnamese",
-  "Thai",
-  "Indonesian",
-  "Greek",
-  "Czech",
-  "Romanian",
-  "Hungarian",
-  "Hebrew",
-  "Ukrainian",
-  "Swahili",
-  "Malay",
-  "Tagalog",
-  "Persian",
-  "Tamil",
-  "Urdu",
-  "Afrikaans",
-  "Bulgarian",
-  "Catalan",
-  "Croatian",
-  "Lithuanian",
-];
-
-export const Basic: Story = {
-  args: {
-    items: languages,
-  },
-  render: function Basic(args) {
-    const [value, setValue] = useState<null | string>("Bengali");
-
-    return (
-      <Select
-        {...args}
-        items={languages}
-        onValueChange={setValue}
-        value={value}
-      >
-        <SelectTrigger>
-          <SelectValue placeholder="Select a language" />
-        </SelectTrigger>
-
-        <SelectContent>
-          {languages.map((item, index) => {
-            return (
-              <SelectItem
-                addonAfter={<SelectItemIndicator />}
-                item={item}
-                key={index}
-              >
-                {item}
-              </SelectItem>
-            );
-          })}
-        </SelectContent>
-      </Select>
-    );
-  },
-};
-
-export const WithLabel: Story = {
-  ...Basic,
-  decorators: (Story) => (
-    <Field label="Label">
-      <Story />
-    </Field>
-  ),
-};
-
-export const Disabled: Story = {
-  ...Basic,
-  args: {
-    defaultOpen: false,
-    disabled: true,
-  },
-};
-
-const fruits = ["Apple", "Banana", "Blueberry", "Grapes", "Pineapple"];
-
-const vegetables = ["Aubergine", "Broccoli", "Carrot", "Courgette", "Leek"];
-
-const meats = ["Beef", "Chicken", "Lamb", "Pork"];
-
-const combinedFoodList = [
-  "Apple",
-  "Banana",
-  "Blueberry",
-  "Grapes",
-  "Pineapple",
-  "Aubergine",
-  "Broccoli",
-  "Carrot",
-  "Courgette",
-  "Leek",
-  "Beef",
-  "Chicken",
-  "Lamb",
-  "Pork",
-];
-export const Grouped: Story = {
-  args: {
-    items: languages,
-  },
-  render: function Basic(args) {
-    const [value, setValue] = useState<null | string>(null);
-
-    return (
-      <Select
-        {...args}
-        items={combinedFoodList}
-        onValueChange={setValue}
-        value={value}
-      >
-        <SelectTrigger>
-          <SelectValue placeholder="Select an item" />
-        </SelectTrigger>
-
-        <SelectContent>
-          <SelectLabel>Fruits</SelectLabel>
-          {fruits.map((item, index) => {
-            return (
-              <SelectItem
-                addonAfter={<SelectItemIndicator />}
-                item={item}
-                key={index}
-              >
-                {item}
-              </SelectItem>
-            );
-          })}
-          <SelectSeparator />
-
-          <SelectLabel>Vegetables</SelectLabel>
-          {vegetables.map((item, index) => {
-            return (
-              <SelectItem
-                addonAfter={<SelectItemIndicator />}
-                item={item}
-                key={index}
-              >
-                {item}
-              </SelectItem>
-            );
-          })}
-          <SelectSeparator />
-
-          <SelectLabel>Meats</SelectLabel>
-          {meats.map((item, index) => {
-            return (
-              <SelectItem
-                addonAfter={<SelectItemIndicator />}
-                item={item}
-                key={index}
-              >
-                {item}
-              </SelectItem>
-            );
-          })}
-        </SelectContent>
-      </Select>
-    );
-  },
-};
-
 export const Controlled: Story<Book> = {
   args: {
+    children: (
+      <>
+        <SelectTrigger>
+          <SelectValue placeholder="Select a book" />
+        </SelectTrigger>
+
+        <SelectContent>
+          {books.map((item, index) => {
+            return (
+              <SelectItem
+                addonAfter={<SelectItemIndicator />}
+                item={item}
+                key={index}
+              >
+                {item.title}
+              </SelectItem>
+            );
+          })}
+        </SelectContent>
+      </>
+    ),
+    isItemDisabled: (book) => book.disabled,
     items: books,
+    itemToKey: (book) => book?.id,
+    itemToString: (book) => book?.title ?? "",
   },
-  render: function DefaultSelected(args) {
-    const [value, setValue] = useState<(typeof books)[number] | null>(books[9]);
+  render: function Controlled(args) {
+    const [value, setValue] = useState<Book | null>(books[9]);
 
     return (
       <Flex alignItems="center">
-        <Select
-          {...args}
-          isItemDisabled={(book) => book.disabled}
-          items={books}
-          itemToKey={(book) => book?.id}
-          itemToString={(book) => book?.title ?? ""}
-          onValueChange={setValue}
-          value={value}
-        >
-          <SelectTrigger>
-            <SelectValue placeholder="Select a book" />
-          </SelectTrigger>
-
-          <SelectContent>
-            {books.map((item, index) => {
-              return (
-                <SelectItem
-                  addonAfter={<SelectItemIndicator />}
-                  item={item}
-                  key={index}
-                >
-                  {item.title}
-                </SelectItem>
-              );
-            })}
-          </SelectContent>
-        </Select>
+        <Select {...args} onValueChange={setValue} value={value} />
 
         <Text>Selected Value: {value ? value.title : "None"}</Text>
       </Flex>
