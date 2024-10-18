@@ -123,8 +123,9 @@ export const WithLabel: Story = {
     await userEvent.click(input);
     await userEvent.click(await screen.findByText("Urdu"));
     await userEvent.click(input);
-    const selectedItem = await screen.findByText("Urdu");
-    await expect(selectedItem).toHaveAttribute("aria-selected", "true");
+    await expect(
+      await screen.findByRole("option", { name: "Urdu" }),
+    ).toHaveAttribute("data-selected");
     await userEvent.tab();
   },
 };
