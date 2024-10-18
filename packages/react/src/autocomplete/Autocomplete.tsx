@@ -10,10 +10,13 @@ import { useEffectEvent } from "../use-event";
 
 type AutocompleteProps<Item> = {
   children?: ReactNode;
+  defaultOpen?: boolean;
   defaultValue?: Item | null;
   disabled?: boolean;
   onInputValueChange?: (inputValue: string) => void;
+  onOpenChange?: (open: boolean) => void;
   onValueChange?: (value: Item | null) => void;
+  open?: boolean;
   value?: Item | null;
 } & Pick<
   UseComboboxProps<Item>,
@@ -26,13 +29,16 @@ type AutocompleteProps<Item> = {
 
 export function Autocomplete<Item>({
   children,
+  defaultOpen,
   defaultValue,
   disabled,
   items,
   itemToKey = (value) => value,
   itemToString = (value) => (value ? String(value) : ""),
   onInputValueChange,
+  onOpenChange,
   onValueChange,
+  open,
   value,
   ...props
 }: AutocompleteProps<Item>) {
@@ -43,7 +49,11 @@ export function Autocomplete<Item>({
     onChange: onValueChange,
     prop: value,
   });
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useControllableState({
+    defaultProp: defaultOpen,
+    onChange: onOpenChange,
+    prop: open,
+  });
   const [inputValue, setInputValue] = useState(
     itemToString(selectedItem ?? null),
   );
