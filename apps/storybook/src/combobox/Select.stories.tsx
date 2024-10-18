@@ -148,9 +148,12 @@ export const Basic: Story = {
         <SelectContent>
           {languages.map((item, index) => {
             return (
-              <SelectItem item={item} key={index}>
+              <SelectItem
+                addonAfter={<SelectItemIndicator />}
+                item={item}
+                key={index}
+              >
                 {item}
-                <SelectItemIndicator />
               </SelectItem>
             );
           })}
@@ -220,9 +223,12 @@ export const Grouped: Story = {
           <SelectLabel>Fruits</SelectLabel>
           {fruits.map((item, index) => {
             return (
-              <SelectItem item={item} key={index}>
+              <SelectItem
+                addonAfter={<SelectItemIndicator />}
+                item={item}
+                key={index}
+              >
                 {item}
-                <SelectItemIndicator />
               </SelectItem>
             );
           })}
@@ -231,9 +237,12 @@ export const Grouped: Story = {
           <SelectLabel>Vegetables</SelectLabel>
           {vegetables.map((item, index) => {
             return (
-              <SelectItem item={item} key={index}>
+              <SelectItem
+                addonAfter={<SelectItemIndicator />}
+                item={item}
+                key={index}
+              >
                 {item}
-                <SelectItemIndicator />
               </SelectItem>
             );
           })}
@@ -242,9 +251,12 @@ export const Grouped: Story = {
           <SelectLabel>Meats</SelectLabel>
           {meats.map((item, index) => {
             return (
-              <SelectItem item={item} key={index}>
+              <SelectItem
+                addonAfter={<SelectItemIndicator />}
+                item={item}
+                key={index}
+              >
                 {item}
-                <SelectItemIndicator />
               </SelectItem>
             );
           })}
@@ -275,9 +287,12 @@ export const Controlled: Story = {
           <SelectContent>
             {books.map((item, index) => {
               return (
-                <SelectItem item={item} key={index}>
+                <SelectItem
+                  addonAfter={<SelectItemIndicator />}
+                  item={item}
+                  key={index}
+                >
                   {item.title}
-                  <SelectItemIndicator />
                 </SelectItem>
               );
             })}

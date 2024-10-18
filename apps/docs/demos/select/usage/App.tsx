@@ -23,9 +23,12 @@ export function App() {
 
       <SelectContent>
         {colors.map((color) => (
-          <SelectItem item={color} key={color.value}>
+          <SelectItem
+            addonAfter={<SelectItemIndicator />}
+            item={color}
+            key={color.value}
+          >
             {color.label}
-            <SelectItemIndicator />
           </SelectItem>
         ))}
       </SelectContent>
