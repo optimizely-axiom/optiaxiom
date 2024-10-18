@@ -1,6 +1,6 @@
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import { useSelect, type UseSelectProps } from "downshift";
-import { type ReactNode, useState } from "react";
+import { type ReactNode } from "react";
 
 import { useFieldContext } from "../field-context";
 import { Popover } from "../popover";
@@ -9,9 +9,12 @@ import { useDelayedState } from "../use-delayed-state";
 
 type SelectProps<Item> = {
   children?: ReactNode;
+  defaultOpen?: boolean;
   defaultValue?: Item | null;
   disabled?: boolean;
+  onOpenChange?: (open: boolean) => void;
   onValueChange?: (value: Item | null) => void;
+  open?: boolean;
   value?: Item | null;
 } & Pick<
   UseSelectProps<Item>,
@@ -24,12 +27,15 @@ type SelectProps<Item> = {
 
 export function Select<Item>({
   children,
+  defaultOpen,
   defaultValue,
   disabled,
   items,
   itemToKey = (value) => value,
   itemToString = (value) => (value ? String(value) : ""),
+  onOpenChange,
   onValueChange,
+  open,
   value,
   ...props
 }: SelectProps<Item>) {
@@ -41,7 +47,11 @@ export function Select<Item>({
     prop: value,
   });
 
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useControllableState({
+    defaultProp: defaultOpen,
+    onChange: onOpenChange,
+    prop: open,
+  });
 
   const [highlightedIndex, setHighlightedIndex] = useDelayedState(-1, isOpen);
 
@@ -49,6 +59,7 @@ export function Select<Item>({
     ...props,
     highlightedIndex,
     initialSelectedItem: value,
+    isOpen,
     items,
     itemToKey,
     itemToString,
