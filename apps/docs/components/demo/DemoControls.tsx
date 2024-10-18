@@ -73,13 +73,16 @@ export function DemoControls({
                   <SelectContent>
                     {item.options.map((item) => {
                       return (
-                        <SelectItem item={item} key={item}>
+                        <SelectItem
+                          addonAfter={<SelectItemIndicator />}
+                          item={item}
+                          key={item}
+                        >
                           {item === "" ? (
                             <Text color="fg.secondary">{"<no value>"}</Text>
                           ) : (
                             item
                           )}
-                          <SelectItemIndicator />
                         </SelectItem>
                       );
                     })}

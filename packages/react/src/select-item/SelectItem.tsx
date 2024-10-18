@@ -1,24 +1,19 @@
-import { forwardRef, type ReactNode } from "react";
+import { forwardRef } from "react";
 
-import { type BoxProps } from "../box";
-import { Flex } from "../flex";
-import { Icon } from "../icon";
+import { MenuItemBase, type MenuItemBaseProps } from "../menu-item-base";
 import { useSelectContext } from "../select-context";
 import { SelectItemContextProvider } from "../select-item-context";
 import { extractSprinkles } from "../sprinkles";
-import { fallbackSpan } from "../utils";
-import * as styles from "./SelectItem.css";
 
-type SelectItemProps = BoxProps<
+type SelectItemProps = MenuItemBaseProps<
   "li",
   {
-    addonBefore?: ReactNode;
     item: unknown;
   }
 >;
 
 export const SelectItem = forwardRef<HTMLLIElement, SelectItemProps>(
-  ({ addonBefore, children, item, ...props }, ref) => {
+  ({ addonAfter, addonBefore, children, description, item, ...props }, ref) => {
     const { restProps, sprinkleProps } = extractSprinkles(props);
     const { downshift, highlightedItem, selectedItem } =
       useSelectContext("SelectItem");
@@ -27,7 +22,12 @@ export const SelectItem = forwardRef<HTMLLIElement, SelectItemProps>(
 
     return (
       <SelectItemContextProvider active={selectedItem === item}>
-        <Flex asChild {...styles.item()} {...sprinkleProps}>
+        <MenuItemBase
+          addonAfter={addonAfter}
+          addonBefore={addonBefore}
+          description={description}
+          {...sprinkleProps}
+        >
           <li
             data-disabled={itemProps["aria-disabled"] ? "" : undefined}
             data-highlighted={highlightedItem === item ? "" : undefined}
@@ -36,11 +36,9 @@ export const SelectItem = forwardRef<HTMLLIElement, SelectItemProps>(
             {...restProps}
             {...itemProps}
           >
-            {addonBefore && <Icon asChild>{fallbackSpan(addonBefore)}</Icon>}
-
             {children}
           </li>
-        </Flex>
+        </MenuItemBase>
       </SelectItemContextProvider>
     );
   },
