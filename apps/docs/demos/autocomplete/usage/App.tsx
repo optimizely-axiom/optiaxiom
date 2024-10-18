@@ -1,3 +1,4 @@
+import { Box } from "@optiaxiom/react";
 import {
   Autocomplete,
   AutocompleteContent,
@@ -35,7 +36,15 @@ export function App() {
       <AutocompleteContent>
         <AutocompleteList>
           {(item: (typeof items)[number]) => (
-            <AutocompleteItem addonAfter={<AutocompleteItemIndicator />}>
+            <AutocompleteItem
+              addonAfter={<AutocompleteItemIndicator />}
+              addonBefore={
+                <Box
+                  rounded="sm"
+                  style={{ aspectRatio: 1, backgroundColor: item.color }}
+                />
+              }
+            >
               {item.label}
             </AutocompleteItem>
           )}

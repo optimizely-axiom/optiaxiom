@@ -1,3 +1,4 @@
+import { Box } from "@optiaxiom/react";
 import {
   Select,
   SelectContent,
@@ -25,6 +26,12 @@ export function App() {
         {colors.map((color) => (
           <SelectItem
             addonAfter={<SelectItemIndicator />}
+            addonBefore={
+              <Box
+                rounded="sm"
+                style={{ aspectRatio: 1, backgroundColor: color.color }}
+              />
+            }
             item={color}
             key={color.value}
           >
