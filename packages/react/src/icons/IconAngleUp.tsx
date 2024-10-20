@@ -1,12 +1,12 @@
 import { withIcon } from "./withIcon";
 
-export const IconAngleDown = withIcon(
+export const IconAngleUp = withIcon(
   {
     fill: "none",
-    name: "IconAngleDown",
+    name: "IconAngleUp",
   },
   <path
-    d="M5 5.5L10 10.5L15 5.5"
+    d="M15 10.5L10 5.5L5 10.5"
     stroke="currentColor"
     strokeLinecap="round"
     strokeLinejoin="round"
