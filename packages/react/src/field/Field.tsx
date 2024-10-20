@@ -9,7 +9,9 @@ import { Flex } from "../flex";
 import { HoverCard } from "../hover-card";
 import { HoverCardContent } from "../hover-card-content";
 import { HoverCardTrigger } from "../hover-card-trigger";
+import { Icon } from "../icon";
 import { IconCircleQuestion } from "../icons/IconCircleQuestion";
+import { IconTriangleExclamation } from "../icons/IconTriangleExclamation";
 import { Text } from "../text";
 import { fallbackSpan } from "../utils";
 
@@ -79,10 +81,11 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(
                   <Button
                     aria-label="Information hover"
                     border="0"
-                    h="12"
+                    color="fg.secondary"
+                    h="16"
                     icon={<IconCircleQuestion />}
                     p="0"
-                    w="12"
+                    w="16"
                   />
                 </HoverCardTrigger>
                 <HoverCardContent side="top" sideOffset={5}>
@@ -107,9 +110,18 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(
         </FieldContext.Provider>
 
         {error && (
-          <Box asChild color="fg.error" fontSize="sm" id={errorId}>
-            {fallbackSpan(error)}
-          </Box>
+          <Flex
+            color="fg.error"
+            flexDirection="row"
+            fontSize="sm"
+            gap="4"
+            id={errorId}
+          >
+            <Icon asChild h="12">
+              <IconTriangleExclamation />
+            </Icon>
+            {error}
+          </Flex>
         )}
 
         {description && (
