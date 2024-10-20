@@ -2,10 +2,26 @@ import { withIcon } from "./withIcon";
 
 export const IconMagnifyingGlass = withIcon(
   {
+    fill: "none",
+    height: 16,
     name: "IconMagnifyingGlass",
+    viewBox: "0 0 20 16",
+    width: 20,
   },
-  <path
-    d="M17.8428 15.1562L13.4053 10.75C14.4053 9.59375 14.9678 8.125 14.9678 6.5C14.9678 2.9375 12.0303 0 8.46777 0C4.87402 0 1.99902 2.9375 1.99902 6.5C1.99902 10.0938 4.90527 13 8.46777 13C10.0615 13 11.5303 12.4375 12.6865 11.4375L17.0928 15.875C17.2178 15.9688 17.3428 16 17.499 16C17.624 16 17.749 15.9688 17.8428 15.875C18.0303 15.6875 18.0303 15.3438 17.8428 15.1562ZM8.49902 12C5.43652 12 2.99902 9.53125 2.99902 6.5C2.99902 3.46875 5.43652 1 8.49902 1C11.5303 1 13.999 3.46875 13.999 6.5C13.999 9.5625 11.5303 12 8.49902 12Z"
-    fill="currentColor"
-  />,
+  <>
+    <path
+      d="M8 13C11.3137 13 14 10.3137 14 7C14 3.68629 11.3137 1 8 1C4.68629 1 2 3.68629 2 7C2 10.3137 4.68629 13 8 13Z"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={0.833333}
+    />
+    <path
+      d="M16.5 15.5L12.5 11.5"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={0.833333}
+    />
+  </>,
 );
