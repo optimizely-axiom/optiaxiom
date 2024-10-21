@@ -3,10 +3,7 @@ import { withIcon } from "./withIcon";
 export const IconMagnifyingGlass = withIcon(
   {
     fill: "none",
-    height: 16,
     name: "IconMagnifyingGlass",
-    viewBox: "0 0 20 16",
-    width: 20,
   },
   <>
     <path
@@ -14,14 +11,12 @@ export const IconMagnifyingGlass = withIcon(
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={0.833333}
     />
     <path
       d="M16.5 15.5L12.5 11.5"
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={0.833333}
     />
   </>,
 );
