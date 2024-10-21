@@ -20,11 +20,7 @@ type AutocompleteProps<Item> = {
   value?: Item | null;
 } & Pick<
   UseComboboxProps<Item>,
-  | "initialHighlightedIndex"
-  | "isItemDisabled"
-  | "items"
-  | "itemToKey"
-  | "itemToString"
+  "isItemDisabled" | "items" | "itemToKey" | "itemToString"
 >;
 
 export function Autocomplete<Item>({
