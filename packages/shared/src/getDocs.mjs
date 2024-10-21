@@ -37,7 +37,7 @@ export function getDocs({ shouldExtractValuesFromUnion = false } = {}) {
                   (prop.declarations?.length &&
                     prop.declarations.find(
                       (decl) =>
-                        !decl.fileName.endsWith("/Box.tsx") &&
+                        (isBox || !decl.fileName.endsWith("/Box.tsx")) &&
                         (decl.fileName === filePath ||
                           decl.fileName ===
                             filePath.replace(".tsx", ".css.ts") ||
