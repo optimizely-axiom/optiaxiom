@@ -12,7 +12,15 @@ import * as styles from "./MenuContentBase.css";
 export type MenuContentBaseProps<
   T extends ElementType = "div",
   P = unknown,
-> = BoxProps<T, ExtendProps<NonNullable<styles.ContentVariants>, P>>;
+> = BoxProps<
+  T,
+  ExtendProps<
+    {
+      enableExitAnimation?: boolean;
+    } & styles.ContentVariants,
+    P
+  >
+>;
 
 export const MenuContentBase = forwardRef<
   HTMLDivElement,
@@ -24,29 +32,38 @@ export const MenuContentBase = forwardRef<
   >
 >(
   (
-    { children, className, minW, open, provider = "popover", ...props },
+    {
+      children,
+      className,
+      enableExitAnimation,
+      minW,
+      open,
+      provider = "popover",
+      ...props
+    },
     ref,
   ) => {
     const Portal =
       provider === "dropdown-menu" ? DropdownMenuPortal : PopoverPortal;
 
-    return (
-      <AnimatePresence>
-        {open && (
-          <Portal forceMount>
-            <Transition duration="sm" type="pop">
-              <Box
-                asChild
-                ref={ref}
-                {...styles.content({ minW, provider }, className)}
-                {...props}
-              >
-                {children}
-              </Box>
-            </Transition>
-          </Portal>
-        )}
-      </AnimatePresence>
+    const element = (
+      <Portal forceMount>
+        <Transition duration="sm" type="pop">
+          <Box
+            asChild
+            ref={ref}
+            {...styles.content({ minW, provider }, className)}
+            {...props}
+          >
+            {children}
+          </Box>
+        </Transition>
+      </Portal>
+    );
+    return enableExitAnimation ? (
+      <AnimatePresence>{open && element}</AnimatePresence>
+    ) : (
+      open && element
     );
   },
 );
