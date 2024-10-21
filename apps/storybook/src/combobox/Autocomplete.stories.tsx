@@ -20,6 +20,9 @@ export default {
     defaultOpen: true,
   },
   component: Autocomplete,
+  parameters: {
+    useOverlayDecorator: true,
+  },
 } as Meta<typeof Autocomplete>;
 
 const languages = [
