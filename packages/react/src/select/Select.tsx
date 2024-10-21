@@ -17,11 +17,7 @@ type SelectProps<Item> = {
   value?: Item | null;
 } & Pick<
   UseSelectProps<Item>,
-  | "initialHighlightedIndex"
-  | "isItemDisabled"
-  | "items"
-  | "itemToKey"
-  | "itemToString"
+  "isItemDisabled" | "items" | "itemToKey" | "itemToString"
 >;
 
 export function Select<Item>({
