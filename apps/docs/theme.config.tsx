@@ -41,17 +41,17 @@ export default {
   },
   head: function useHead() {
     const { frontMatter, title: pageTitle } = useConfig();
+    const title = frontMatter.title || `${pageTitle} \u2013 Axiom`;
+
     return (
       <>
+        <title>{title}</title>
         <link
           href={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/favicon.ico`}
           rel="shortcut icon"
           type="image/x-icon"
         />
-        <meta
-          content={frontMatter.title || `${pageTitle} \u2013 Axiom`}
-          property="og:title"
-        />
+        <meta content={title} property="og:title" />
         <meta
           content={
             frontMatter.description ||
