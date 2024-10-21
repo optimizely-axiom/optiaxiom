@@ -16,7 +16,12 @@ export const DropdownMenuSubContent = forwardRef<
   const { open } = useDropdownMenuSubContext("DropdownMenuSubContent");
 
   return (
-    <MenuContentBase open={open} provider="dropdown-menu" {...props}>
+    <MenuContentBase
+      enableExitAnimation
+      open={open}
+      provider="dropdown-menu"
+      {...props}
+    >
       <RadixMenu.SubContent
         alignOffset={alignOffset}
         ref={ref}

@@ -1,8 +1,7 @@
-import { forwardRef, type MouseEvent, useEffect, useRef } from "react";
+import { forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
 import { PopoverContent } from "../popover-content";
-import { usePopoverContext } from "../popover-context";
 import { useSelectContext } from "../select-context";
 import { Spinner } from "../spinner";
 import * as styles from "./SelectContent.css";
@@ -18,20 +17,9 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
   ({ children, loading, ...props }, ref) => {
     const { downshift } = useSelectContext("SelectContent");
 
-    const { open } = usePopoverContext("AutocompleteContent");
-    const isOpenRef = useRef(open);
-    useEffect(() => {
-      isOpenRef.current = open;
-    });
-
     return (
       <PopoverContent
         align="center"
-        onMouseMoveCapture={(event: MouseEvent) => {
-          if (!isOpenRef.current) {
-            event.stopPropagation();
-          }
-        }}
         onOpenAutoFocus={(event: Event) => event.preventDefault()}
         p="4"
         ref={ref}
