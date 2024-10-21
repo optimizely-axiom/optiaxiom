@@ -9,7 +9,6 @@ import { Flex } from "../flex";
 import { HoverCard } from "../hover-card";
 import { HoverCardContent } from "../hover-card-content";
 import { HoverCardTrigger } from "../hover-card-trigger";
-import { Icon } from "../icon";
 import { IconCircleQuestion } from "../icons/IconCircleQuestion";
 import { IconTriangleExclamation } from "../icons/IconTriangleExclamation";
 import { Text } from "../text";
@@ -111,15 +110,16 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(
 
         {error && (
           <Flex
+            alignItems="start"
             color="fg.error"
             flexDirection="row"
             fontSize="sm"
             gap="4"
             id={errorId}
           >
-            <Icon asChild h="12">
-              <IconTriangleExclamation />
-            </Icon>
+            <Box asChild flex="none" mt="2">
+              <IconTriangleExclamation height={12} width={14} />
+            </Box>
             {error}
           </Flex>
         )}
