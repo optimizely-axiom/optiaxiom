@@ -25,7 +25,7 @@ type AutocompleteProps<Item> = {
 
 export function Autocomplete<Item>({
   children,
-  defaultOpen,
+  defaultOpen = false,
   defaultValue,
   disabled,
   items,
