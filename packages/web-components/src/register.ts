@@ -311,7 +311,7 @@ function toVdom<P>(
     if (isProcessingSlot && name === "slot") {
       continue;
     }
-    if (name.startsWith("on")) {
+    if (name.startsWith("on") || name === "style") {
       continue;
     }
     props[toCamelCase(name)] = value;
