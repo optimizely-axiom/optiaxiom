@@ -22,7 +22,7 @@ type SelectProps<Item> = {
 
 export function Select<Item>({
   children,
-  defaultOpen,
+  defaultOpen = false,
   defaultValue,
   disabled,
   items,
