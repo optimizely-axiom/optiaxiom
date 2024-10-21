@@ -66,6 +66,10 @@ export const ToastProvider = forwardRef<HTMLOListElement, ToastProps>(
       position.startsWith("bottom") ? "top" : "bottom",
     );
 
+    if (!toasts.length) {
+      return null;
+    }
+
     return (
       <RadixToast.ToastProvider
         duration={duration}
