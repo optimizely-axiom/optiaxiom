@@ -90,7 +90,7 @@ export default {
   },
   component: SideNav,
   decorators: (Story) => (
-    <Box bg="bg.page" p="lg">
+    <Box bg="bg.page" p="lg" w="288">
       <Story />
     </Box>
   ),
