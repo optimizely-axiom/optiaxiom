@@ -144,19 +144,26 @@ export const button = recipe({
         paddingInline: `calc(${paddingInlineVar} - 1px)`,
 
         selectors: {
-          "&:active:not([data-disabled], [data-loading])": {
-            backgroundColor: subtlePressedAccentColorVar,
-            borderColor: fallbackVar(
-              subtleHoverOutlineColorVar,
-              hoverAccentColorVar,
-            ),
-          },
-          "&:hover:not(:active, [data-disabled], [data-loading])": {
-            backgroundColor: subtleHoverAccentColorVar,
-            borderColor: fallbackVar(
-              subtleHoverOutlineColorVar,
-              hoverAccentColorVar,
-            ),
+          '&:active:not([data-disabled], [data-loading], [data-state="active"], [data-state="on"])':
+            {
+              backgroundColor: subtlePressedAccentColorVar,
+              borderColor: fallbackVar(
+                subtleHoverOutlineColorVar,
+                hoverAccentColorVar,
+              ),
+            },
+          '&:hover:not(:active, [data-disabled], [data-loading], [data-state="active"], [data-state="on"])':
+            {
+              backgroundColor: subtleHoverAccentColorVar,
+              borderColor: fallbackVar(
+                subtleHoverOutlineColorVar,
+                hoverAccentColorVar,
+              ),
+            },
+          '&:is([data-state="active"], [data-state="on"])': {
+            backgroundColor: theme.colors["bg.accent.subtle"],
+            borderColor: theme.colors["fg.accent"],
+            color: theme.colors["fg.accent"],
           },
           "&[data-disabled]": {
             borderColor: theme.colors["border.disabled"],
