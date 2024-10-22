@@ -135,6 +135,7 @@ export function DemoControls({
 
 const boolean = ["false", "true"];
 const tshirt = [
+  "2xs",
   "xs",
   "sm",
   "md",
@@ -162,6 +163,9 @@ function itemToControl(item: PropItem) {
     } else if (dropdown.options.every((option) => tshirt.includes(option))) {
       return {
         ...dropdown,
+        options: dropdown.options.sort(
+          (a, b) => tshirt.indexOf(a) - tshirt.indexOf(b),
+        ),
         type: "range" as const,
       };
     }
