@@ -1,3 +1,4 @@
+import { theme } from "@optiaxiom/globals";
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import * as RadixHoverCard from "@radix-ui/react-hover-card";
 import { forwardRef, useRef } from "react";
@@ -5,7 +6,6 @@ import { forwardRef, useRef } from "react";
 import { AnimatePresence } from "../animate-presence";
 import { Box, type BoxProps } from "../box";
 import { useHoverCardContext } from "../hover-card-context";
-import { theme } from "../theme";
 import { Transition } from "../transition";
 import * as styles from "./HoverCardContent.css";
 

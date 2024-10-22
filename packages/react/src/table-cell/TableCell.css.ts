@@ -1,5 +1,6 @@
+import { theme } from "@optiaxiom/globals";
+
 import * as styles from "../table-row/TableRow.css";
-import { theme } from "../theme";
 import { style } from "../vanilla-extract";
 import { recipe } from "../vanilla-extract";
 

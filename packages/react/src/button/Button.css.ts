@@ -1,5 +1,6 @@
+import { theme } from "@optiaxiom/globals";
+
 import * as styles from "../button-group/ButtonGroup.css";
-import { theme } from "../theme";
 import { createVar, fallbackVar, style } from "../vanilla-extract";
 import { recipe, type RecipeVariants } from "../vanilla-extract";
 

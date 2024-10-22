@@ -1,3 +1,4 @@
+import { theme } from "@optiaxiom/globals";
 import * as RadixPopover from "@radix-ui/react-popover";
 import { forwardRef } from "react";
 
@@ -6,7 +7,6 @@ import {
   type MenuContentBaseProps,
 } from "../menu-content-base";
 import { usePopoverContext } from "../popover-context";
-import { theme } from "../theme";
 
 type PopoverContentProps = MenuContentBaseProps<
   typeof RadixPopover.Content,

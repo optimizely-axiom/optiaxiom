@@ -1,4 +1,5 @@
-import { theme } from "../theme";
+import { theme } from "@optiaxiom/globals";
+
 import { style } from "../vanilla-extract";
 import { recipe, type RecipeVariants } from "../vanilla-extract";
 import * as styles from "./../avatar-group/AvatarGroup.css";

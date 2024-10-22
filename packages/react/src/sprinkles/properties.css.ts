@@ -1,7 +1,7 @@
+import { theme } from "@optiaxiom/globals";
 import { defineProperties } from "@vanilla-extract/sprinkles";
 
 import { layers } from "../layers";
-import { theme } from "../theme";
 import { conditions, mapValues } from "../utils";
 import { keyframes } from "../vanilla-extract";
 const merge = <A, B>(objA: A, objB: B): A & B => ({ ...objA, ...objB });

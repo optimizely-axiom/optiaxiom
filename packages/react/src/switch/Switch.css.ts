@@ -1,5 +1,6 @@
+import { theme } from "@optiaxiom/globals";
+
 import * as styles from "../control-base/ControlBase.css";
-import { theme } from "../theme";
 import { recipe, type RecipeVariants, style } from "../vanilla-extract";
 
 const marker = style({});

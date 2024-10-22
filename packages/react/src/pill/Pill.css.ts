@@ -1,4 +1,5 @@
-import { theme } from "../theme";
+import { theme } from "@optiaxiom/globals";
+
 import { recipe, type RecipeVariants, style } from "../vanilla-extract";
 
 export const pill = recipe({
