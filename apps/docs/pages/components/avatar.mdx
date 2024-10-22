@@ -6,6 +6,7 @@ import {
   FallbackIconUsage,
   FallbackNameUsage,
   GroupUsage,
+  SizeUsage,
   Usage,
 } from "@/demos/avatar";
 import { Avatar, AvatarGroup } from "@optiaxiom/react";
@@ -19,6 +20,18 @@ import { Avatar, AvatarGroup } from "@optiaxiom/react";
 ### Usage
 
 <Demo component={Usage} />
+
+### Color scheme
+
+Use the `colorScheme` prop to control the avatar fallback background and text colors.
+
+<Demo component={ColorUsage} />
+
+### Different sizes
+
+Use the `size` prop to modify the size of the avatar.
+
+<Demo component={SizeUsage} />
 
 ## Fallback
 
@@ -47,14 +60,6 @@ Generate initials from the `name` prop if `src` and `icon` are not provided.
 Render `children` as-is if neither `src`, `icon`, and `name` are provided.
 
 <Demo component={FallbackChildrenUsage} />
-
-## Colors
-
-### Color scheme
-
-Use the `colorScheme` prop to control the avatar fallback background and text colors.
-
-<Demo component={ColorUsage} />
 
 ## Groups
 
