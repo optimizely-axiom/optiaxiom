@@ -1,4 +1,5 @@
-import { theme } from "../theme";
+import { theme } from "@optiaxiom/globals";
+
 import * as styles from "../toast-provider/ToastProvider.css";
 import {
   createVar,
