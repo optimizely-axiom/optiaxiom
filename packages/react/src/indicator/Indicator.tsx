@@ -8,7 +8,7 @@ import * as styles from "./Indicator.css";
 type IndicatorProps = BoxProps<
   typeof Badge,
   {
-    content: ReactNode;
+    content?: ReactNode;
     disabled?: boolean;
     offset?: boolean;
     ping?: boolean;
