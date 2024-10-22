@@ -9,7 +9,6 @@ export const search = recipe({
 export const clear = recipe({
   base: [
     {
-      rounded: "md",
       size: "sm",
     },
     style({
