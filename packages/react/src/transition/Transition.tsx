@@ -21,7 +21,7 @@ export const Transition = forwardRef<HTMLDivElement, TransitionProps>(
     const [enter, setEnter] = useState(false);
     useEffect(() => {
       if (isPresent) {
-        setEnter(true);
+        requestAnimationFrame(() => setEnter(true));
       }
     }, [isPresent]);
 
