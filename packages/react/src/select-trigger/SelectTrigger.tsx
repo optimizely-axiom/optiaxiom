@@ -1,4 +1,5 @@
-import { PopoverTrigger } from "@radix-ui/react-popover";
+import { PopperAnchor } from "@radix-ui/react-popper";
+import { Slot } from "@radix-ui/react-slot";
 import { forwardRef, useEffect, useRef } from "react";
 
 import { type ButtonProps } from "../button";
@@ -6,7 +7,7 @@ import { useFieldContext } from "../field-context";
 import { MenuButton } from "../menu-button";
 import { useSelectContext } from "../select-context";
 
-type SelectTriggerProps = ButtonProps<typeof PopoverTrigger>;
+type SelectTriggerProps = ButtonProps<typeof PopperAnchor>;
 
 export const SelectTrigger = forwardRef<HTMLButtonElement, SelectTriggerProps>(
   ({ asChild, children, ...props }, ref) => {
@@ -31,20 +32,21 @@ export const SelectTrigger = forwardRef<HTMLButtonElement, SelectTriggerProps>(
     }, [labelId]);
 
     return (
-      <PopoverTrigger
+      <PopperAnchor
         asChild
-        ref={ref}
         {...props}
         {...downshift.getToggleButtonProps({ disabled })}
       >
-        {asChild ? (
-          children
-        ) : (
-          <MenuButton aria-labelledby={labelId} ref={buttonRef}>
-            {children}
-          </MenuButton>
-        )}
-      </PopoverTrigger>
+        <Slot ref={ref}>
+          {asChild ? (
+            children
+          ) : (
+            <MenuButton aria-labelledby={labelId} ref={buttonRef}>
+              {children}
+            </MenuButton>
+          )}
+        </Slot>
+      </PopperAnchor>
     );
   },
 );

@@ -8,6 +8,7 @@ export const [AutocompleteContextProvider, useAutocompleteContext] =
     disabled?: boolean;
     downshift: UseComboboxReturnValue<any>;
     highlightedItem: any;
+    isOpen: boolean | undefined;
     items: any[];
     itemToKey: (item: any) => string;
     setInputValue: (value: string) => void;

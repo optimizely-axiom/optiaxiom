@@ -51,6 +51,12 @@ export const content = recipe({
           [triggerWidth]: "var(--radix-popover-trigger-width)",
         },
       }),
+      popper: style({
+        vars: {
+          [contentAvailableHeightVar]: "var(--radix-popper-available-height)",
+          [triggerWidth]: "var(--radix-popper-anchor-width)",
+        },
+      }),
     },
   },
 });
