@@ -436,6 +436,9 @@ importers:
 
   packages/web-components:
     devDependencies:
+      '@optiaxiom/globals':
+        specifier: workspace:^
+        version: link:../globals
       '@optiaxiom/react':
         specifier: workspace:^
         version: link:../react

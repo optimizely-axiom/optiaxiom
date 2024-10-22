@@ -1,8 +1,6 @@
-import { theme } from "@optiaxiom/globals";
+import { theme, tokens, tokensDark } from "@optiaxiom/globals";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
 import { type ReactNode } from "react";
-
-import { tokens, tokensDark } from "../tokens";
 
 type ThemeProviderProps = {
   children?: ReactNode;

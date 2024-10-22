@@ -1,4 +1,4 @@
-import { tokens } from "@optiaxiom/react";
+import { tokens } from "@optiaxiom/globals";
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import { Button } from "@optiaxiom/web-components/Button";
