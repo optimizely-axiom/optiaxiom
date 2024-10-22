@@ -88,6 +88,9 @@ importers:
 
   apps/docs:
     devDependencies:
+      '@optiaxiom/globals':
+        specifier: workspace:^
+        version: link:../../packages/globals
       '@optiaxiom/react':
         specifier: workspace:^
         version: link:../../packages/react
