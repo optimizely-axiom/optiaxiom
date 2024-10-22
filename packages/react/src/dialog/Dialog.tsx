@@ -5,12 +5,14 @@ import { useControllableState } from "@radix-ui/react-use-controllable-state";
 
 import { DialogContextProvider } from "../dialog-context";
 
-type DialogProps = ComponentPropsWithoutRef<typeof RadixDialog.Root>;
+type DialogProps = Omit<
+  ComponentPropsWithoutRef<typeof RadixDialog.Root>,
+  "modal"
+>;
 
 export function Dialog({
   children,
   defaultOpen,
-  modal,
   onOpenChange,
   open: openProp,
   ...props
@@ -22,12 +24,7 @@ export function Dialog({
   });
 
   return (
-    <RadixDialog.Root
-      modal={modal}
-      onOpenChange={setOpen}
-      open={open}
-      {...props}
-    >
+    <RadixDialog.Root onOpenChange={setOpen} open={open} {...props}>
       <DialogContextProvider open={open}>{children}</DialogContextProvider>
     </RadixDialog.Root>
   );

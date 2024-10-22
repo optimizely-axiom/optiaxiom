@@ -3,7 +3,6 @@ import { PropsTable } from "@/components/props-table";
 import {
   CloseUsage,
   DescriptionUsage,
-  ModalUsage,
   SizeUsage,
   TriggerUsage,
   Usage,
@@ -22,7 +21,7 @@ import {
 
 # Dialog
 
-Display a modal or non-modal dialog box.
+Display a modal dialog box.
 
 ## Documentation
 
@@ -51,12 +50,6 @@ You can add accessible description to the modal using the `DialogDescription` co
 Make sure to pass `aria-describedby={undefined}` to `DialogContent` if you do not want to include a description.
 
 <Demo meta="/DialogDescription/" component={DescriptionUsage} />
-
-### Non modal usage
-
-Set `modal` prop to `false` in order to render a non-modal dialog box. This will remove the backdrop overlay and only render the dialog box.
-
-<Demo meta="/modal={modal}/" component={ModalUsage} />
 
 ## Trigger
 
