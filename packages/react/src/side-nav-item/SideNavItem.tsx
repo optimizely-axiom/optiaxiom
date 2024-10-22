@@ -62,7 +62,7 @@ export const SideNavItem = forwardRef<HTMLButtonElement, SideNavItemProps>(
               justifyContent={expanded ? "start" : "center"}
               ref={ref}
               size="lg"
-              transition={animations ? "all" : undefined}
+              transition={animations ? "colors" : undefined}
               {...styles.item({}, className)}
               {...props}
             >
