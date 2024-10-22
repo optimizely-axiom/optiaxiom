@@ -110,6 +110,7 @@
     "test": "vitest"
   },
   "devDependencies": {
+    "@optiaxiom/globals": "workspace:^",
     "@optiaxiom/react": "workspace:^",
     "@optiaxiom/shared": "workspace:^",
     "@rollup/plugin-commonjs": "^26.0.3",

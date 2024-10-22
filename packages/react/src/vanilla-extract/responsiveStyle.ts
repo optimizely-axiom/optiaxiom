@@ -1,6 +1,5 @@
+import type { tokens } from "@optiaxiom/globals";
 import type { StyleRule } from "@vanilla-extract/css";
-
-import type { tokens } from "../tokens";
 
 import { conditions } from "../utils";
 import { style } from "./style";

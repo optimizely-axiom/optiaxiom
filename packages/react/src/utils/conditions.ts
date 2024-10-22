@@ -1,4 +1,5 @@
-import { tokens } from "../tokens";
+import { tokens } from "@optiaxiom/globals";
+
 import { mapValues } from "./mapValues";
 
 export const conditions = {
