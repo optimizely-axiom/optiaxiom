@@ -53,7 +53,7 @@ export const SideNav = forwardRef<HTMLElement, SideNavProps>(
           setExpanded(flag);
         }}
       >
-        <Flex borderR="1" {...props}>
+        <Flex borderR="1" w="fit" {...props}>
           <Flex
             asChild
             bg="bg.default"
