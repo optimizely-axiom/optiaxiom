@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { ToggleButton } from "@optiaxiom/react";
+import { Flex, ToggleButton } from "@optiaxiom/react";
 import { IconLayoutSidebar } from "@tabler/icons-react";
 
 export default {
@@ -19,6 +19,12 @@ export default {
     onClick: { action: "click" },
   },
   component: ToggleButton,
+  render: (args) => (
+    <Flex flexDirection="row">
+      <ToggleButton {...args} appearance="subtle" />
+      <ToggleButton {...args} appearance="default" />
+    </Flex>
+  ),
 } as Meta<typeof ToggleButton>;
 
 type Story = StoryObj<typeof ToggleButton>;
