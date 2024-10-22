@@ -1,0 +1,43 @@
+import { Demo } from "@/components/demo";
+import { PropsTable } from "@/components/props-table";
+import { ChevronPositionUsage, Usage } from "@/demos/disclosure";
+import {
+  Disclosure,
+  DisclosureContent,
+  DisclosureTrigger,
+} from "@optiaxiom/react";
+
+# Disclosure
+
+An interactive component which expands/collapses a panel.
+
+## Documentation
+
+### Usage
+
+Use the `open` and `defaultOpen` props to toggle between controlled and uncontrolled usage. And combine it with `onOpenChange` to listen for changes to the state.
+
+<Demo component={Usage} />
+
+### Description
+
+Use the `chevronPosition` prop on `DisclosureTrigger` to control which side the chevron is placed.
+
+<Demo
+  meta="/chevronPosition={chevronPosition}/"
+  component={ChevronPositionUsage}
+/>
+
+## Props
+
+<PropsTable component={Disclosure} />
+
+<PropsTable component={DisclosureTrigger} />
+
+<PropsTable component={DisclosureContent} />
+
+## Changelog
+
+### 0.1.0
+
+- Added component
