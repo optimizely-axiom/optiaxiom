@@ -80,6 +80,7 @@ export const Position: Story = {
 export const Ping: Story = {
   args: {
     colorScheme: "information",
+    content: "",
     ping: true,
     variant: "solid",
   },
