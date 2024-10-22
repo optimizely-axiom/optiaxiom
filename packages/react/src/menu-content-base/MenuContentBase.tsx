@@ -1,5 +1,6 @@
 import { DropdownMenuPortal } from "@radix-ui/react-dropdown-menu";
 import { PopoverPortal } from "@radix-ui/react-popover";
+import { Portal } from "@radix-ui/react-portal";
 import { type ElementType, forwardRef } from "react";
 
 import type { ExtendProps } from "../utils";
@@ -22,6 +23,12 @@ export type MenuContentBaseProps<
   >
 >;
 
+const mapProviderToPortal = {
+  "dropdown-menu": DropdownMenuPortal,
+  popover: PopoverPortal,
+  popper: Portal,
+};
+
 export const MenuContentBase = forwardRef<
   HTMLDivElement,
   MenuContentBaseProps<
@@ -43,11 +50,10 @@ export const MenuContentBase = forwardRef<
     },
     ref,
   ) => {
-    const Portal =
-      provider === "dropdown-menu" ? DropdownMenuPortal : PopoverPortal;
+    const Portal = mapProviderToPortal[provider];
 
     const element = (
-      <Portal forceMount>
+      <Portal {...(provider !== "popper" && { forceMount: true })}>
         <Transition duration="sm" type="pop">
           <Box
             asChild

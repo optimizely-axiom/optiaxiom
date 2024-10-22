@@ -111,9 +111,9 @@ export const WithLabel: Story = {
     </Field>
   ),
   play: async ({ canvas }) => {
-    await userEvent.tab();
     const input = canvas.getByRole("combobox");
     await userEvent.click(input);
+    await userEvent.keyboard("{ArrowDown}");
     await userEvent.click(
       await screen.findByRole("option", { name: "French" }),
     );

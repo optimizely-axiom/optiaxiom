@@ -1,10 +1,10 @@
+import { Popper } from "@radix-ui/react-popper";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import { type ReactNode, useEffect, useState } from "react";
 
 import { AutocompleteContextProvider } from "../autocomplete-context";
 import { useCombobox, type UseComboboxProps } from "../downshift";
 import { useFieldContext } from "../field-context";
-import { Popover } from "../popover";
 import { useEffectEvent } from "../use-event";
 
 type AutocompleteProps<Item> = {
@@ -85,18 +85,19 @@ export function Autocomplete<Item>({
   });
 
   return (
-    <Popover open={isOpen}>
+    <Popper>
       <AutocompleteContextProvider
         disabled={disabled}
         downshift={downshift}
         highlightedItem={items[downshift.highlightedIndex]}
+        isOpen={isOpen}
         items={items}
         itemToKey={itemToKey}
         setInputValue={setInputValue}
       >
         {children}
       </AutocompleteContextProvider>
-    </Popover>
+    </Popper>
   );
 }
 

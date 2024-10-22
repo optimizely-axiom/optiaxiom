@@ -1,4 +1,4 @@
-import { PopoverAnchor, PopoverTrigger } from "@radix-ui/react-popover";
+import { PopperAnchor } from "@radix-ui/react-popper";
 import { type ComponentPropsWithRef, forwardRef } from "react";
 
 import { useAutocompleteContext } from "../autocomplete-context";
@@ -16,23 +16,21 @@ export const AutocompleteTrigger = forwardRef<
     useAutocompleteContext("AutocompleteInput");
 
   return (
-    // https://github.com/radix-ui/primitives/issues/1461
-    <PopoverAnchor>
-      <PopoverTrigger asChild type={undefined} {...sprinkleProps}>
-        <SearchInput
-          addonBefore={null}
-          {...(!downshift.selectedItem && { addonAfter: null })}
-          onValueClear={() => downshift.reset()}
-          ref={ref}
-          {...downshift.getInputProps({
-            ...restProps,
-            disabled,
-            onChange: (event) =>
-              setInputValue("value" in event.target ? event.target.value : ""),
-          })}
-        />
-      </PopoverTrigger>
-    </PopoverAnchor>
+    <PopperAnchor>
+      <SearchInput
+        addonBefore={null}
+        {...(!downshift.selectedItem && { addonAfter: null })}
+        onValueClear={() => downshift.reset()}
+        ref={ref}
+        {...sprinkleProps}
+        {...downshift.getInputProps({
+          ...restProps,
+          disabled,
+          onChange: (event) =>
+            setInputValue("value" in event.target ? event.target.value : ""),
+        })}
+      />
+    </PopperAnchor>
   );
 });
 

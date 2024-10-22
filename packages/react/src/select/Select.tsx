@@ -1,8 +1,8 @@
+import { Popper } from "@radix-ui/react-popper";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import { type ReactNode } from "react";
 
 import { useSelect, type UseSelectProps } from "../downshift";
-import { Popover } from "../popover";
 import { SelectContextProvider } from "../select-context";
 
 type SelectProps<Item> = {
@@ -61,11 +61,12 @@ export function Select<Item>({
   });
 
   return (
-    <Popover open={downshift.isOpen}>
+    <Popper>
       <SelectContextProvider
         disabled={disabled}
         downshift={downshift}
         highlightedItem={items[downshift.highlightedIndex]}
+        isOpen={downshift.isOpen}
         items={items}
         itemToKey={itemToKey}
         itemToString={itemToString}
@@ -73,7 +74,7 @@ export function Select<Item>({
       >
         {children}
       </SelectContextProvider>
-    </Popover>
+    </Popper>
   );
 }
 

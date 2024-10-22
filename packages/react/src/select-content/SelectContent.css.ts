@@ -1,6 +1,6 @@
 import { recipe, style } from "../vanilla-extract";
 
-export const list = recipe({
+export const content = recipe({
   base: [
     style({
       overflow: "auto",

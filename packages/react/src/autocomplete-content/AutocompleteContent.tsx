@@ -1,13 +1,14 @@
+import { PopperContent } from "@radix-ui/react-popper";
 import { forwardRef } from "react";
 
 import { useAutocompleteContext } from "../autocomplete-context";
 import { Box, type BoxProps } from "../box";
-import { PopoverContent } from "../popover-content";
+import { MenuContentBase } from "../menu-content-base";
 import { Spinner } from "../spinner";
 import * as styles from "./AutocompleteContent.css";
 
 type AutocompleteContentProps = BoxProps<
-  typeof PopoverContent,
+  typeof PopperContent,
   {
     loading?: boolean;
   }
@@ -16,34 +17,40 @@ type AutocompleteContentProps = BoxProps<
 export const AutocompleteContent = forwardRef<
   HTMLDivElement,
   AutocompleteContentProps
->(({ children, className, loading, ...props }, ref) => {
-  const { downshift } = useAutocompleteContext("AutocompleteContent");
+>(
+  (
+    {
+      align = "center",
+      children,
+      className,
+      loading,
+      sideOffset = 5,
+      ...props
+    },
+    ref,
+  ) => {
+    const { downshift, isOpen } = useAutocompleteContext("AutocompleteContent");
 
-  return (
-    <PopoverContent
-      align="center"
-      minW="trigger"
-      onOpenAutoFocus={(event: Event) => event.preventDefault()}
-      ref={ref}
-      sideOffset={5}
-      {...styles.content({}, className)}
-      {...props}
-    >
-      <Box asChild {...styles.list()}>
-        <ul {...downshift.getMenuProps({}, { suppressRefError: true })}>
-          {loading ? (
-            <Box asChild display="flex" justifyContent="center" p="md">
-              <li>
-                <Spinner />
-              </li>
-            </Box>
-          ) : (
-            children
-          )}
-        </ul>
-      </Box>
-    </PopoverContent>
-  );
-});
+    return (
+      <MenuContentBase minW="trigger" open={isOpen} provider="popper">
+        <Box asChild ref={ref} {...styles.content({}, className)} {...props}>
+          <PopperContent align={align} asChild sideOffset={sideOffset}>
+            <ul {...downshift.getMenuProps({}, { suppressRefError: true })}>
+              {loading ? (
+                <Box asChild display="flex" justifyContent="center" p="md">
+                  <li>
+                    <Spinner />
+                  </li>
+                </Box>
+              ) : (
+                children
+              )}
+            </ul>
+          </PopperContent>
+        </Box>
+      </MenuContentBase>
+    );
+  },
+);
 
 AutocompleteContent.displayName = "@optiaxiom/react/AutocompleteContent";

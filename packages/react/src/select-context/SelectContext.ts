@@ -7,6 +7,7 @@ export const [SelectContextProvider, useSelectContext] = createContext<{
   disabled?: boolean;
   downshift: UseSelectReturnValue<any>;
   highlightedItem: any;
+  isOpen: boolean | undefined;
   items: any[];
   itemToKey: (item: any) => string;
   itemToString: (item: any) => string;
