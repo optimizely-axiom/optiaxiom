@@ -37,7 +37,7 @@ export function Autocomplete<Item>({
   value,
   ...props
 }: AutocompleteProps<Item>) {
-  const { id: inputId } = useFieldContext({});
+  const { inputId } = useFieldContext({});
 
   const [selectedItem, setSelectedItem] = useControllableState({
     defaultProp: defaultValue,
