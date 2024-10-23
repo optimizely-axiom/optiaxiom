@@ -59,8 +59,8 @@ export default {
         <SideNavItem active aria-label="Flags" icon={<IconFlag2 />}>
           Flags
         </SideNavItem>
-        <SideNavItem aria-label="Reports" icon={<IconChartInfographic />}>
-          Reports
+        <SideNavItem aria-label="Idea Lab" icon={<IconChartInfographic />}>
+          Idea Lab
         </SideNavItem>
         <SideNavItem aria-label="Audiences" icon={<IconUsers />}>
           Audiences
