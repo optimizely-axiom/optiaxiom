@@ -99,7 +99,7 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(
             error: !!error,
             errorId: error ? errorId : undefined,
             id,
-            labelId,
+            labelId: label ? labelId : undefined,
             required,
           }}
         >
