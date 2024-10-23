@@ -100,7 +100,8 @@ export const InputBase = forwardRef<
             errorId || descriptionId ? clsx(errorId, descriptionId) : undefined
           }
           aria-disabled={disabled}
-          aria-invalid={error}
+          aria-invalid={error ? true : undefined}
+          aria-required={required ? true : undefined}
           asChild
           data-disabled={disabled ? "" : undefined}
           data-invalid={error ? "" : undefined}
