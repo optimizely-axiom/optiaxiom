@@ -256,7 +256,7 @@ function isNumberType(item: PropItem) {
 }
 
 function isTextType(item: PropItem) {
-  if (item.type.name !== "string") {
+  if (!(item.type.name === "any" || item.type.name === "string")) {
     return false;
   }
 
