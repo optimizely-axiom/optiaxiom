@@ -41,6 +41,8 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(
     ref,
   ) => {
     const id = useId(idProp);
+    const descriptionId = useId();
+    const errorId = useId();
     const labelId = useId();
 
     return (
@@ -93,7 +95,9 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(
 
         <FieldContext.Provider
           value={{
+            descriptionId: description ? descriptionId : undefined,
             error: !!error,
+            errorId: error ? errorId : undefined,
             id,
             labelId,
             required,
@@ -103,13 +107,13 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(
         </FieldContext.Provider>
 
         {error && (
-          <Box asChild color="fg.error" fontSize="sm">
+          <Box asChild color="fg.error" fontSize="sm" id={errorId}>
             {fallbackSpan(error)}
           </Box>
         )}
 
         {description && (
-          <Box asChild color="fg.tertiary" fontSize="sm">
+          <Box asChild color="fg.tertiary" fontSize="sm" id={descriptionId}>
             {fallbackSpan(description)}
           </Box>
         )}

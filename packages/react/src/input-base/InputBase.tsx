@@ -1,5 +1,6 @@
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import { Slot } from "@radix-ui/react-slot";
+import clsx from "clsx";
 import {
   type ElementType,
   forwardRef,
@@ -57,7 +58,9 @@ export const InputBase = forwardRef<
     const disabled = props.disabled;
     const readOnly = props.readOnly;
 
-    const { error, id, required } = useFieldContext({ error: errorProp });
+    const { descriptionId, error, errorId, id, required } = useFieldContext({
+      error: errorProp,
+    });
     const { restProps, sprinkleProps } = extractSprinkles(props);
 
     const innerRef = useRef<HTMLInputElement & HTMLTextAreaElement>(null);
@@ -93,6 +96,9 @@ export const InputBase = forwardRef<
         )}
 
         <Box
+          aria-describedby={
+            errorId || descriptionId ? clsx(errorId, descriptionId) : undefined
+          }
           aria-disabled={disabled}
           aria-invalid={error}
           asChild
