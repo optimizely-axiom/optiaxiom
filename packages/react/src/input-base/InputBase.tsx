@@ -58,9 +58,10 @@ export const InputBase = forwardRef<
     const disabled = props.disabled;
     const readOnly = props.readOnly;
 
-    const { descriptionId, error, errorId, id, required } = useFieldContext({
-      error: errorProp,
-    });
+    const { descriptionId, error, errorId, inputId, required } =
+      useFieldContext({
+        error: errorProp,
+      });
     const { restProps, sprinkleProps } = extractSprinkles(props);
 
     const innerRef = useRef<HTMLInputElement & HTMLTextAreaElement>(null);
@@ -108,7 +109,7 @@ export const InputBase = forwardRef<
           data-readonly={readOnly ? "" : undefined}
           {...styles.input({ size })}
         >
-          <Slot id={id} ref={ref} required={required} {...restProps}>
+          <Slot id={inputId} ref={ref} required={required} {...restProps}>
             {children}
           </Slot>
         </Box>

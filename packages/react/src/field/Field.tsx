@@ -19,8 +19,8 @@ type FieldProps = BoxProps<
     children: ReactNode;
     description?: ReactNode;
     error?: ReactNode;
-    id?: string;
     info?: ReactNode;
+    inputId?: string;
     label?: ReactNode;
     required?: boolean;
   }
@@ -32,15 +32,15 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(
       children,
       description,
       error,
-      id: idProp,
       info,
+      inputId: inputIdProp,
       label,
       required,
       ...props
     },
     ref,
   ) => {
-    const id = useId(idProp);
+    const inputId = useId(inputIdProp);
     const descriptionId = useId();
     const errorId = useId();
     const labelId = useId();
@@ -57,7 +57,7 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(
               fontWeight="400"
               gap="2"
             >
-              <RadixLabel.Root htmlFor={id} id={labelId}>
+              <RadixLabel.Root htmlFor={inputId} id={labelId}>
                 {label}
 
                 {required && (
@@ -98,7 +98,7 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(
             descriptionId: description ? descriptionId : undefined,
             error: !!error,
             errorId: error ? errorId : undefined,
-            id,
+            inputId,
             labelId: label ? labelId : undefined,
             required,
           }}

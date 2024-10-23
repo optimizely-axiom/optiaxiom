@@ -5,7 +5,7 @@ export const FieldContext = createContext<
       descriptionId: string | undefined;
       error: boolean;
       errorId: string | undefined;
-      id: string | undefined;
+      inputId: string | undefined;
       labelId: string | undefined;
       required: boolean | undefined;
     }
