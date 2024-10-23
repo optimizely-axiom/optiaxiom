@@ -31,7 +31,7 @@ export const SideNavItem = forwardRef<HTMLButtonElement, SideNavItemProps>(
             expanded && (
               <Flex flex="1">
                 <Transition skipAnimations={!animations}>
-                  <Box>{newElement.props.children}</Box>
+                  <Box whiteSpace="nowrap">{newElement.props.children}</Box>
                 </Transition>
               </Flex>
             ),
@@ -41,7 +41,7 @@ export const SideNavItem = forwardRef<HTMLButtonElement, SideNavItemProps>(
       children = expanded && (
         <Flex flex="1">
           <Transition skipAnimations={!animations}>
-            <Box>{children}</Box>
+            <Box whiteSpace="nowrap">{children}</Box>
           </Transition>
         </Flex>
       );
