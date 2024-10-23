@@ -1,7 +1,14 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import type { ComponentPropsWithRef } from "react";
 
-import { Button, ButtonGroup, Flex } from "@optiaxiom/react";
+import {
+  Button,
+  ButtonGroup,
+  DropdownMenu,
+  DropdownMenuTrigger,
+  Flex,
+  SearchInput,
+} from "@optiaxiom/react";
 import { IconArrowRight, IconDownload, IconPhoto } from "@tabler/icons-react";
 
 export default {
@@ -98,5 +105,18 @@ export const AppearanceSpacing: Story = {
 export const OnlyChild: Story = {
   args: {
     children: <Button>Single Button</Button>,
+  },
+};
+
+export const WithInput: Story = {
+  args: {
+    children: (
+      <>
+        <DropdownMenu>
+          <DropdownMenuTrigger>Category</DropdownMenuTrigger>
+        </DropdownMenu>
+        <SearchInput />
+      </>
+    ),
   },
 };
