@@ -1,5 +1,22 @@
 # @optiaxiom/react
 
+## 0.2.0
+
+### Minor Changes
+
+- 5fa1f68: replace brand avatar color with cyan
+
+### Patch Changes
+
+- f641f6e: improve a11y of field component
+- dccb30a: added customizable icon to alert dialog title via `addonBefore` prop
+- bf04a2c: fix button icon size for square icons
+- 4f306d5: Allow consumers to control height of dialog content box
+- 71d18d4: add default appearance support for toggle button
+- 0a378a0: support ReactNode in `label`, `description`, `error`, `info` props for `Field` component
+- Updated dependencies [45392b5]
+  - @optiaxiom/globals@0.2.1
+
 ## 0.1.0
 
 ### Minor Changes
