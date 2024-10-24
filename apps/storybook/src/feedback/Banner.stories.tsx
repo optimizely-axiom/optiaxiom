@@ -1,11 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { Flex, Link, Text } from "@optiaxiom/react";
-import {
-  Banner,
-  BannerDescription,
-  BannerTitle,
-} from "@optiaxiom/react/unstable";
+import { Banner, BannerDescription, BannerTitle } from "@optiaxiom/react";
 import { action } from "@storybook/addon-actions";
 
 export default {
