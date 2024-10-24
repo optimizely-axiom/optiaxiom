@@ -1,4 +1,5 @@
 import * as RadixLabel from "@radix-ui/react-label";
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { useId } from "@reach/auto-id";
 import { forwardRef, type ReactNode } from "react";
 
@@ -62,14 +63,17 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(
                 {label}
 
                 {required && (
-                  <Text
-                    aria-hidden="true"
-                    asChild
-                    color="fg.error"
-                    fontWeight="400"
-                  >
-                    <span>*</span>
-                  </Text>
+                  <>
+                    <Text
+                      aria-hidden="true"
+                      asChild
+                      color="fg.error"
+                      fontWeight="400"
+                    >
+                      <span>*</span>
+                    </Text>
+                    <VisuallyHidden>Required</VisuallyHidden>
+                  </>
                 )}
               </RadixLabel.Root>
             </Text>
