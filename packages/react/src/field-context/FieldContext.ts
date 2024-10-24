@@ -7,7 +7,6 @@ export const FieldContext = createContext<
       errorId: string | undefined;
       inputId: string | undefined;
       labelId: string | undefined;
-      required: boolean | undefined;
     }
   | undefined
 >(undefined);
