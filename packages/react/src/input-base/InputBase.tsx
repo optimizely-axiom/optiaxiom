@@ -58,10 +58,9 @@ export const InputBase = forwardRef<
     const disabled = props.disabled;
     const readOnly = props.readOnly;
 
-    const { descriptionId, error, errorId, inputId, required } =
-      useFieldContext({
-        error: errorProp,
-      });
+    const { descriptionId, error, errorId, inputId } = useFieldContext({
+      error: errorProp,
+    });
     const { restProps, sprinkleProps } = extractSprinkles(props);
 
     const innerRef = useRef<HTMLInputElement & HTMLTextAreaElement>(null);
@@ -102,14 +101,13 @@ export const InputBase = forwardRef<
           }
           aria-disabled={disabled}
           aria-invalid={error ? true : undefined}
-          aria-required={required ? true : undefined}
           asChild
           data-disabled={disabled ? "" : undefined}
           data-invalid={error ? "" : undefined}
           data-readonly={readOnly ? "" : undefined}
           {...styles.input({ size })}
         >
-          <Slot id={inputId} ref={ref} required={required} {...restProps}>
+          <Slot id={inputId} ref={ref} {...restProps}>
             {children}
           </Slot>
         </Box>
