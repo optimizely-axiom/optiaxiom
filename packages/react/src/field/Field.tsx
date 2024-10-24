@@ -121,7 +121,11 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(
             id={errorId}
           >
             <Box asChild flex="none" mt="2">
-              <IconTriangleExclamation height={12} width={14} />
+              <IconTriangleExclamation
+                aria-label="Error"
+                height={12}
+                width={14}
+              />
             </Box>
             {error}
           </Flex>
