@@ -23,10 +23,10 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>(
       <Flex
         asChild
         flexDirection={
-          flexDirection ?? (orientation === "vertical" ? "column" : "row")
+          flexDirection ?? (orientation === "horizontal" ? "row" : "column")
         }
         gap={mapResponsiveValue(
-          flexDirection ?? (orientation === "vertical" ? "column" : "row"),
+          flexDirection ?? (orientation === "horizontal" ? "row" : "column"),
           (value) => mapGapToOrientation[value],
         )}
         {...sprinkleProps}
