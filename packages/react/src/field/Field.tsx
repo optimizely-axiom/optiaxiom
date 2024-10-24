@@ -119,6 +119,7 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(
             fontSize="sm"
             gap="4"
             id={errorId}
+            role="alert"
           >
             <Box asChild flex="none" mt="2">
               <IconTriangleExclamation
