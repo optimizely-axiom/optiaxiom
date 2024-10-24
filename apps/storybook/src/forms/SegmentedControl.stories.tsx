@@ -1,9 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import {
-  SegmentedControl,
-  SegmentedControlItem,
-} from "@optiaxiom/react/unstable";
+import { SegmentedControl, SegmentedControlItem } from "@optiaxiom/react";
 import {
   IconDeviceImac,
   IconDeviceMobile,

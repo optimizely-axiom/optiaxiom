@@ -7,13 +7,11 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@optiaxiom/react";
-import {
   SideNav,
   SideNavAccountItem,
   SideNavItem,
   SideNavToggle,
-} from "@optiaxiom/react/unstable";
+} from "@optiaxiom/react";
 import {
   IconBinaryTree,
   IconChartInfographic,
