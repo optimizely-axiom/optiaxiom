@@ -29,7 +29,7 @@ export const Basic: Story = {
 
 export const Horizontal: Story = {
   render: (args) => (
-    <RadioGroup {...args} defaultValue="label-1" flexDirection="row">
+    <RadioGroup {...args} defaultValue="label-1" orientation="horizontal">
       <RadioGroupItem value="label-1">Label 1</RadioGroupItem>
       <RadioGroupItem value="label-2">Label 2</RadioGroupItem>
       <RadioGroupItem value="label-3">Label 3</RadioGroupItem>
