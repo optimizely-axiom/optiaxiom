@@ -8,11 +8,6 @@ import { extractSprinkles, mapResponsiveValue } from "../sprinkles";
 
 type RadioGroupProps = BoxProps<typeof RadixRadio.RadioGroup>;
 
-const mapDirectionToOrientation = {
-  column: "vertical",
-  row: "horizontal",
-} as const;
-
 const mapGapToOrientation = {
   column: "sm",
   "column-reverse": "sm",
@@ -21,25 +16,23 @@ const mapGapToOrientation = {
 } as const;
 
 export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>(
-  ({ children, flexDirection = "column", ...props }, ref) => {
+  ({ children, flexDirection, orientation, ...props }, ref) => {
     const { restProps, sprinkleProps } = extractSprinkles(props);
 
     return (
       <Flex
         asChild
-        flexDirection={flexDirection}
+        flexDirection={
+          flexDirection ?? (orientation === "vertical" ? "column" : "row")
+        }
         gap={mapResponsiveValue(
-          flexDirection,
+          flexDirection ?? (orientation === "vertical" ? "column" : "row"),
           (value) => mapGapToOrientation[value],
         )}
         {...sprinkleProps}
       >
         <RadixRadio.RadioGroup
-          orientation={
-            flexDirection === "row" || flexDirection === "column"
-              ? mapDirectionToOrientation[flexDirection]
-              : undefined
-          }
+          orientation={orientation}
           ref={ref}
           {...restProps}
         >
