@@ -4,6 +4,7 @@ import { type ComponentPropsWithRef, forwardRef } from "react";
 import { useAutocompleteContext } from "../autocomplete-context";
 import { Button } from "../button";
 import { Flex } from "../flex";
+import { Icon } from "../icon";
 import { IconAngleDown } from "../icons/IconAngleDown";
 import { IconX } from "../icons/IconX";
 import { Input } from "../input";
@@ -34,14 +35,9 @@ export const AutocompleteTrigger = forwardRef<
                 tabIndex={-1}
               />
             )}
-            <Button
-              appearance="subtle"
-              aria-label="Toggle"
-              icon={<IconAngleDown />}
-              size="sm"
-              tabIndex={-1}
-              {...downshift.getToggleButtonProps()}
-            />
+            <Icon asChild onClick={downshift.getToggleButtonProps().onClick}>
+              <IconAngleDown aria-hidden focusable={false} />
+            </Icon>
           </Flex>
         }
         {...sprinkleProps}
