@@ -1,6 +1,6 @@
 import type { PropItem } from "react-docgen-typescript";
 
-import { Box, Text } from "@optiaxiom/react";
+import { Box, Code, Text } from "@optiaxiom/react";
 import { Link } from "nextra-theme-docs";
 import {
   Children,
@@ -49,14 +49,21 @@ export function PropsTable({
   return (
     <>
       {baseName && (
-        <Text fontSize="lg" mt="md">
-          Supports all{" "}
-          <Link href={`/components/${kebabCase(baseName)}#props`}>
-            {baseName}
-          </Link>{" "}
-          props
-          {propItems && propItems?.length > 0 ? " in addition to its own" : ""}.
-        </Text>
+        <PropsTableDescription
+          name={component.displayName?.replace("@optiaxiom/react/", "")}
+        >
+          <Text fontSize="lg" mt="md">
+            Supports all{" "}
+            <Link href={`/components/${kebabCase(baseName)}#props`}>
+              {baseName}
+            </Link>{" "}
+            props
+            {propItems && propItems?.length > 0
+              ? " in addition to its own"
+              : ""}
+            .
+          </Text>
+        </PropsTableDescription>
       )}
       <Table>
         <Thead>
@@ -99,4 +106,24 @@ export function PropsTable({
 
 function kebabCase(str: string) {
   return str.replaceAll(/([a-z])([A-Z])/g, "$1-$2").toLowerCase();
+}
+
+function PropsTableDescription({
+  children,
+  name,
+}: {
+  children?: ReactNode;
+  name?: string;
+}) {
+  return (
+    <>
+      {children}
+      {(name === "Checkbox" || name === "Radio" || name === "Switch") && (
+        <Text fontSize="lg" mt="md">
+          <Code>{name}</Code> is extended from <Code>input</Code> and supports
+          all props that <Code>input</Code> supports.
+        </Text>
+      )}
+    </>
+  );
 }

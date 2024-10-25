@@ -28,8 +28,11 @@ export const Basic: Story = {
 };
 
 export const Horizontal: Story = {
+  args: {
+    flexDirection: "row",
+  },
   render: (args) => (
-    <RadioGroup {...args} defaultValue="label-1" orientation="horizontal">
+    <RadioGroup {...args} defaultValue="label-1">
       <RadioGroupItem value="label-1">Label 1</RadioGroupItem>
       <RadioGroupItem value="label-2">Label 2</RadioGroupItem>
       <RadioGroupItem value="label-3">Label 3</RadioGroupItem>
@@ -91,6 +94,7 @@ export const DisabledItems: Story = {
 
 const props = {
   border: "1",
+  gap: "xs",
   justifyContent: "start",
   p: "md",
   rounded: "sm",
@@ -100,30 +104,30 @@ export const ComplexExample1: Story = {
   render: (args) => (
     <RadioGroup asChild {...args} defaultValue="label-1" m="auto" w="3/4">
       <Grid gridTemplateColumns="2">
-        <Flex className={styles.item} {...props} gap="xs">
-          <RadioGroupItem
-            description="Displays a message as a bar at top of page"
-            value="label-1"
-          >
-            Banner (copy)
-          </RadioGroupItem>
-        </Flex>
-        <Flex className={styles.item} {...props} gap="xs">
-          <RadioGroupItem
-            description="Places an icon of your choice on any element of the web page"
-            value="label-2"
-          >
-            Celebrate
-          </RadioGroupItem>
-        </Flex>
-        <Flex className={styles.item} {...props} gap="xs">
-          <RadioGroupItem
-            description="Displays a number of views or purchases for a defined duration"
-            value="label-3"
-          >
-            Social Proof
-          </RadioGroupItem>
-        </Flex>
+        <RadioGroupItem
+          className={styles.item}
+          {...props}
+          description="Displays a message as a bar at top of page"
+          value="label-1"
+        >
+          Banner (copy)
+        </RadioGroupItem>
+        <RadioGroupItem
+          className={styles.item}
+          {...props}
+          description="Places an icon of your choice on any element of the web page"
+          value="label-2"
+        >
+          Celebrate
+        </RadioGroupItem>
+        <RadioGroupItem
+          className={styles.item}
+          {...props}
+          description="Displays a number of views or purchases for a defined duration"
+          value="label-3"
+        >
+          Social Proof
+        </RadioGroupItem>
       </Grid>
     </RadioGroup>
   ),

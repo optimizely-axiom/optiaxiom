@@ -54,7 +54,8 @@ export const Disabled: Story = {
 
 export const Intermediate: Story = {
   args: {
-    checked: "indeterminate",
+    checked: true,
+    indeterminate: true,
   },
   render: (args) => (
     <Flex>

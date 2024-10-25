@@ -2,7 +2,7 @@ import { Button, Checkbox, Flex } from "@optiaxiom/react";
 import { useState } from "react";
 
 export function App() {
-  const [value, setValue] = useState<"indeterminate" | boolean>(false);
+  const [value, setValue] = useState(false);
 
   return (
     <Flex flexDirection="row">
