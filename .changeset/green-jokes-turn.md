@@ -1,5 +1,4 @@
 ---
-"@optiaxiom/storybook": patch
 "@optiaxiom/react": patch
 ---
 
