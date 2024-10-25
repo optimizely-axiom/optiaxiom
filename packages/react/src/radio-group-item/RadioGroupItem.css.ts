@@ -1,8 +1,19 @@
-import * as styles from "../control-base/ControlBase.css";
+import * as styles from "../toggle-input/ToggleInput.css";
 import { style } from "../vanilla-extract";
 import { recipe } from "../vanilla-extract";
 
-export const item = recipe({
+const marker = style({});
+const inputMarker = style({});
+
+export const radio = recipe({
+  base: marker,
+});
+
+export const input = recipe({
+  base: inputMarker,
+});
+
+export const control = recipe({
   base: [
     {
       bg: "bg.default",
@@ -21,12 +32,18 @@ export const item = recipe({
 export const indicator = recipe({
   base: [
     {
-      display: "block",
       rounded: "inherit",
       size: "full",
     },
     style({
       backgroundColor: styles.controlColorVar,
+      display: "none",
+
+      selectors: {
+        [`${marker}:has(${inputMarker}:checked) &`]: {
+          display: "block",
+        },
+      },
     }),
   ],
 });

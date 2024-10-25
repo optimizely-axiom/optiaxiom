@@ -1,44 +1,55 @@
-import * as RadixSwitch from "@radix-ui/react-switch";
 import { forwardRef, type ReactNode } from "react";
 
 import { Box, type BoxProps } from "../box";
-import { ControlBase } from "../control-base";
+import { extractSprinkles } from "../sprinkles";
 import { Text } from "../text";
+import { ToggleInput } from "../toggle-input";
+import { ToggleInputContent } from "../toggle-input-content";
+import { ToggleInputControl } from "../toggle-input-control";
+import { ToggleInputDescription } from "../toggle-input-description";
+import { ToggleInputHiddenInput } from "../toggle-input-hidden-input";
+import { ToggleInputLabel } from "../toggle-input-label";
 import { Tooltip } from "../tooltip";
 import * as styles from "./Switch.css";
 
 type SwitchProps = BoxProps<
-  typeof RadixSwitch.Root,
+  typeof ToggleInputHiddenInput,
   {
     description?: ReactNode;
   } & styles.SwitchVariants
 >;
 
-export const Switch = forwardRef<HTMLDivElement, SwitchProps>(
-  ({ children, className, description, id, size = "md", ...props }, ref) => {
+export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
+  ({ children, className, description, size = "md", ...props }, ref) => {
+    const { restProps, sprinkleProps } = extractSprinkles(props);
+
     return (
-      <ControlBase
-        control={
-          <Box asChild {...styles.root()}>
-            <RadixSwitch.Root>
-              <Box asChild {...styles.thumb({ size })}>
-                <RadixSwitch.Thumb />
-              </Box>
-            </RadixSwitch.Root>
-          </Box>
-        }
-        description={description}
-        id={id}
-        ref={ref}
-        {...styles.container({}, className)}
-        {...props}
-      >
-        <Tooltip auto content={children}>
-          <Text asChild truncate>
-            <span>{children}</span>
-          </Text>
-        </Tooltip>
-      </ControlBase>
+      <ToggleInput {...styles.container({}, className)} {...sprinkleProps}>
+        <ToggleInputHiddenInput
+          ref={ref}
+          role="switch"
+          {...styles.input()}
+          {...restProps}
+        />
+
+        <ToggleInputControl {...styles.control()}>
+          <Box {...styles.thumb({ size })}></Box>
+        </ToggleInputControl>
+
+        <ToggleInputContent pt={size === "lg" ? "2" : "0"}>
+          <ToggleInputLabel>
+            <Tooltip auto content={children}>
+              <Text asChild truncate>
+                <span>{children}</span>
+              </Text>
+            </Tooltip>
+          </ToggleInputLabel>
+
+          {description && (
+            <ToggleInputDescription>{description}</ToggleInputDescription>
+          )}
+        </ToggleInputContent>
+      </ToggleInput>
     );
   },
 );

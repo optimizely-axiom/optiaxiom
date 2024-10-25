@@ -1,12 +1,24 @@
-import * as RadixRadio from "@radix-ui/react-radio-group";
-import { forwardRef } from "react";
+import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import type { BoxProps } from "../box";
 
 import { Flex } from "../flex";
-import { extractSprinkles, mapResponsiveValue } from "../sprinkles";
+import { RadioGroupContextProvider } from "../radio-group-context";
+import { mapResponsiveValue } from "../sprinkles";
 
-type RadioGroupProps = BoxProps<typeof RadixRadio.RadioGroup>;
+type InputProps = ComponentPropsWithoutRef<"input">;
+type RadioGroupProps = BoxProps<
+  "div",
+  {
+    defaultValue?: string;
+    disabled?: InputProps["disabled"];
+    name?: InputProps["name"];
+    onBlur?: InputProps["onBlur"];
+    onChange?: InputProps["onChange"];
+    onValueChange?: (value: string) => void;
+    value?: string;
+  }
+>;
 
 const mapGapToOrientation = {
   column: "sm",
@@ -16,29 +28,45 @@ const mapGapToOrientation = {
 } as const;
 
 export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>(
-  ({ children, flexDirection, orientation, ...props }, ref) => {
-    const { restProps, sprinkleProps } = extractSprinkles(props);
-
+  (
+    {
+      children,
+      defaultValue,
+      disabled,
+      flexDirection = "column",
+      name,
+      onBlur,
+      onChange,
+      onValueChange,
+      value,
+      ...props
+    },
+    ref,
+  ) => {
     return (
-      <Flex
-        asChild
-        flexDirection={
-          flexDirection ?? (orientation === "horizontal" ? "row" : "column")
-        }
-        gap={mapResponsiveValue(
-          flexDirection ?? (orientation === "horizontal" ? "row" : "column"),
-          (value) => mapGapToOrientation[value],
-        )}
-        {...sprinkleProps}
+      <RadioGroupContextProvider
+        defaultValue={defaultValue}
+        disabled={disabled}
+        name={name}
+        onBlur={onBlur}
+        onChange={(event) => {
+          onChange?.(event);
+          onValueChange?.(event.target.value);
+        }}
+        value={value}
       >
-        <RadixRadio.RadioGroup
-          orientation={orientation}
+        <Flex
+          flexDirection={flexDirection}
+          gap={mapResponsiveValue(
+            flexDirection,
+            (value) => mapGapToOrientation[value],
+          )}
           ref={ref}
-          {...restProps}
+          {...props}
         >
           {children}
-        </RadixRadio.RadioGroup>
-      </Flex>
+        </Flex>
+      </RadioGroupContextProvider>
     );
   },
 );

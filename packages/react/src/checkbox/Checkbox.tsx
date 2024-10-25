@@ -1,46 +1,49 @@
-import * as RadixCheckbox from "@radix-ui/react-checkbox";
 import { forwardRef, type ReactNode } from "react";
 
 import { Box, type BoxProps } from "../box";
-import { ControlBase } from "../control-base";
 import { IconCheck } from "../icons/IconCheck";
 import { IconMinus } from "../icons/IconMinus";
+import { extractSprinkles } from "../sprinkles";
+import { ToggleInput } from "../toggle-input";
+import { ToggleInputContent } from "../toggle-input-content";
+import { ToggleInputControl } from "../toggle-input-control";
+import { ToggleInputDescription } from "../toggle-input-description";
+import { ToggleInputHiddenInput } from "../toggle-input-hidden-input";
+import { ToggleInputLabel } from "../toggle-input-label";
 import * as styles from "./Checkbox.css";
 
 type CheckboxProps = BoxProps<
-  typeof RadixCheckbox.Root,
+  typeof ToggleInputHiddenInput,
   {
     description?: ReactNode;
+    indeterminate?: boolean;
   }
 >;
 
-export const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>(
-  ({ children, defaultChecked, description, id, ...props }, ref) => {
+export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
+  ({ children, className, description, indeterminate, ...props }, ref) => {
+    const { restProps, sprinkleProps } = extractSprinkles(props);
+
     return (
-      <ControlBase
-        control={
-          <Box asChild {...styles.checkbox()}>
-            <RadixCheckbox.Root defaultChecked={defaultChecked}>
-              <Box asChild {...styles.indicator()}>
-                <RadixCheckbox.Indicator>
-                  <Box asChild {...styles.iconChecked()}>
-                    <IconCheck />
-                  </Box>
-                  <Box asChild {...styles.iconIndeterminate()}>
-                    <IconMinus />
-                  </Box>
-                </RadixCheckbox.Indicator>
-              </Box>
-            </RadixCheckbox.Root>
+      <ToggleInput {...styles.checkbox({}, className)} {...sprinkleProps}>
+        <ToggleInputHiddenInput ref={ref} {...styles.input()} {...restProps} />
+
+        <ToggleInputControl {...styles.control()}>
+          <Box {...styles.indicator()}>
+            <Box asChild {...styles.icon()}>
+              {indeterminate ? <IconMinus /> : <IconCheck />}
+            </Box>
           </Box>
-        }
-        description={description}
-        id={id}
-        ref={ref}
-        {...props}
-      >
-        {children}
-      </ControlBase>
+        </ToggleInputControl>
+
+        <ToggleInputContent>
+          <ToggleInputLabel>{children}</ToggleInputLabel>
+
+          {description && (
+            <ToggleInputDescription>{description}</ToggleInputDescription>
+          )}
+        </ToggleInputContent>
+      </ToggleInput>
     );
   },
 );

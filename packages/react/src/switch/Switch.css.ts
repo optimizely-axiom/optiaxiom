@@ -1,29 +1,36 @@
 import { theme } from "@optiaxiom/globals";
 
-import * as styles from "../control-base/ControlBase.css";
+import * as styles from "../toggle-input/ToggleInput.css";
 import { recipe, type RecipeVariants, style } from "../vanilla-extract";
 
 const marker = style({});
+const inputMarker = style({});
 
 export const container = recipe({
-  base: style({
-    vars: {
-      [styles.controlColorVar]: theme.colors["bg.tertiary"],
-    },
-
-    selectors: {
-      [`&:has(${marker}:not([data-disabled])[data-state="unchecked"]):hover`]: {
-        vars: {
-          [styles.controlColorVar]: theme.colors["bg.tertiary.hovered"],
-        },
-      },
-    },
-  }),
-});
-
-export const root = recipe({
   base: [
     marker,
+    style({
+      vars: {
+        [styles.controlColorVar]: theme.colors["bg.tertiary"],
+      },
+
+      selectors: {
+        [`&:has(${inputMarker}:not(:disabled):not(:checked)):hover`]: {
+          vars: {
+            [styles.controlColorVar]: theme.colors["bg.tertiary.hovered"],
+          },
+        },
+      },
+    }),
+  ],
+});
+
+export const input = recipe({
+  base: inputMarker,
+});
+
+export const control = recipe({
+  base: [
     {
       px: "12",
       py: "2",
@@ -49,14 +56,14 @@ export const thumb = recipe({
       transform: "translateX(-10px)",
 
       selectors: {
-        "&:not([data-disabled])": {
-          boxShadow: theme.boxShadow["sm"],
+        [`${marker}:has(${inputMarker}:checked) &`]: {
+          transform: "translateX(10px)",
         },
-        "&[data-disabled]": {
+        [`${marker}:has(${inputMarker}:disabled) &`]: {
           backgroundColor: theme.colors["bg.page"],
         },
-        '&[data-state="checked"]': {
-          transform: "translateX(10px)",
+        [`${marker}:has(${inputMarker}:not(:disabled)) &`]: {
+          boxShadow: theme.boxShadow["sm"],
         },
       },
     }),
