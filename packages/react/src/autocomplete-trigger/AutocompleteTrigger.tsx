@@ -7,6 +7,7 @@ import { Icon } from "../icon";
 import { IconAngleDown } from "../icons/IconAngleDown";
 import { IconX } from "../icons/IconX";
 import { Input } from "../input";
+import { Separator } from "../separator";
 import { extractSprinkles } from "../sprinkles";
 
 type AutocompleteTriggerProps = ComponentPropsWithRef<typeof Input>;
@@ -37,6 +38,8 @@ export const AutocompleteTrigger = forwardRef<
                 </Icon>
               </Flex>
             )}
+
+            <Separator my="xs" orientation="vertical" />
 
             <Flex onClick={downshift.getToggleButtonProps().onClick} w="32">
               <Icon asChild>
