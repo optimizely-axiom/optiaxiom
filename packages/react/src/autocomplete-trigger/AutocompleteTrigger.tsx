@@ -2,7 +2,6 @@ import { PopperAnchor } from "@radix-ui/react-popper";
 import { type ComponentPropsWithRef, forwardRef } from "react";
 
 import { useAutocompleteContext } from "../autocomplete-context";
-import { Button } from "../button";
 import { Flex } from "../flex";
 import { Icon } from "../icon";
 import { IconAngleDown } from "../icons/IconAngleDown";
@@ -24,20 +23,26 @@ export const AutocompleteTrigger = forwardRef<
     <PopperAnchor>
       <Input
         addonAfter={
-          <Flex flexDirection="row" gap="0">
+          <Flex
+            alignItems="stretch"
+            alignSelf="stretch"
+            flexDirection="row"
+            gap="0"
+            mr="0"
+          >
             {downshift.selectedItem && (
-              <Button
-                appearance="subtle"
-                aria-label="Clear"
-                icon={<IconX />}
-                onClick={() => downshift.reset()}
-                size="sm"
-                tabIndex={-1}
-              />
+              <Flex onClick={() => downshift.reset()} w="32">
+                <Icon asChild>
+                  <IconX aria-hidden focusable={false} />
+                </Icon>
+              </Flex>
             )}
-            <Icon asChild onClick={downshift.getToggleButtonProps().onClick}>
-              <IconAngleDown aria-hidden focusable={false} />
-            </Icon>
+
+            <Flex onClick={downshift.getToggleButtonProps().onClick} w="32">
+              <Icon asChild>
+                <IconAngleDown aria-hidden focusable={false} />
+              </Icon>
+            </Flex>
           </Flex>
         }
         {...sprinkleProps}
