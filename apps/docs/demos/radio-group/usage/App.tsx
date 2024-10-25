@@ -18,7 +18,7 @@ export function App({
       label={label}
       required={required}
     >
-      <RadioGroup>
+      <RadioGroup name="usage">
         <RadioGroupItem value="one">Option One</RadioGroupItem>
         <RadioGroupItem value="two">Option Two</RadioGroupItem>
         <RadioGroupItem value="three">Option Three</RadioGroupItem>

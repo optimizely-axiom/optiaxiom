@@ -12,6 +12,9 @@ import {
 import styles from "./RadioGroup.module.css";
 
 export default {
+  args: {
+    name: "story",
+  },
   component: RadioGroup,
 } as Meta<typeof RadioGroup>;
 
@@ -41,8 +44,8 @@ export const Horizontal: Story = {
 };
 
 export const HelperText: Story = {
-  render: () => (
-    <RadioGroup defaultValue="label-1">
+  render: (args) => (
+    <RadioGroup {...args} defaultValue="label-1">
       <RadioGroupItem description="Helper First" value="label-1">
         Label 1
       </RadioGroupItem>
@@ -68,8 +71,8 @@ export const MultiLineLabel: Story = {
 };
 
 export const DisabledGroup: Story = {
-  render: () => (
-    <RadioGroup defaultValue="label-1" disabled>
+  render: (args) => (
+    <RadioGroup {...args} defaultValue="label-1" disabled>
       <RadioGroupItem value="label-1">Label 1</RadioGroupItem>
       <RadioGroupItem value="label-2">Label 2</RadioGroupItem>
       <RadioGroupItem value="label-3">Label 3</RadioGroupItem>
@@ -78,8 +81,8 @@ export const DisabledGroup: Story = {
 };
 
 export const DisabledItems: Story = {
-  render: () => (
-    <RadioGroup defaultValue="label-1">
+  render: (args) => (
+    <RadioGroup {...args} defaultValue="label-1">
       <RadioGroupItem value="label-1">Label 1</RadioGroupItem>
       <RadioGroupItem disabled value="label-2">
         Label 2

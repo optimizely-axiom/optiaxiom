@@ -6,7 +6,11 @@ export function App() {
 
   return (
     <Flex>
-      <RadioGroup onValueChange={setValue} value={value}>
+      <RadioGroup
+        name="controlled-usage"
+        onValueChange={setValue}
+        value={value}
+      >
         <RadioGroupItem value="one">Option One</RadioGroupItem>
         <RadioGroupItem value="two">Option Two</RadioGroupItem>
         <RadioGroupItem value="three">Option Three</RadioGroupItem>
