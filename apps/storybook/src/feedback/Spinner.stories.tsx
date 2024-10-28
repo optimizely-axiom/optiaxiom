@@ -20,6 +20,7 @@ export const Colors: Story = {
     </Flex>
   ),
 };
+
 export const Sizes: Story = {
   render: (args) => (
     <Flex flexDirection="row">
@@ -28,4 +29,10 @@ export const Sizes: Story = {
       ))}
     </Flex>
   ),
+};
+
+export const Label: Story = {
+  args: {
+    children: "Loading...",
+  },
 };
