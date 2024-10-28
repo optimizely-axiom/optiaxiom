@@ -1,0 +1,47 @@
+import { Demo } from "@/components/demo";
+import { PropsTable } from "@/components/props-table";
+import {
+  ControlledUsage,
+  DelayUsage,
+  PlacementUsage,
+  Usage,
+} from "@/demos/tooltip";
+import { Tooltip } from "@optiaxiom/react";
+
+# Tooltip
+
+Popup with brief information shown when user interacts with an element using keyboard focus or mouse hover.
+
+## Documentation
+
+### Usage
+
+<Demo component={Usage} />
+
+### Controlled
+
+Use the `open` and `defaultOpen` props to toggle between controlled and uncontrolled usage. And combine it with `onOpenChange` to listen for changes to the state.
+
+<Demo component={ControlledUsage} />
+
+### Delay
+
+Use the `delayDuration` prop to control how long to wait to open the tooltip after mouse hover.
+
+<Demo component={DelayUsage} />
+
+### Placement
+
+Use the `side` and `align` props to control where the tooltip is placed by default.
+
+<Demo component={PlacementUsage} />
+
+## Props
+
+<PropsTable component={Tooltip} />
+
+## Changelog
+
+### 0.1.0
+
+- Added component
