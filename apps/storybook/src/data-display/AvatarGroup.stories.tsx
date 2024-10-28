@@ -56,7 +56,7 @@ export default {
       <>
         {users.slice(0, 3).map((user) => (
           <Avatar
-            colorScheme="blue"
+            colorScheme="purple"
             key={user.id}
             name={user.name}
             src={user.src}
@@ -96,7 +96,7 @@ export const WithTooltip: Story = {
       <>
         {users.slice(0, 3).map((user) => (
           <Tooltip content={user.name} key={user.id}>
-            <Avatar colorScheme="blue" name={user.name} src={user.src}>
+            <Avatar colorScheme="purple" name={user.name} src={user.src}>
               {user.id}
             </Avatar>
           </Tooltip>
@@ -120,7 +120,7 @@ export const WithHoverCard: Story = {
       <>
         {users.slice(0, 3).map((user) => (
           <Avatar
-            colorScheme="blue"
+            colorScheme="purple"
             key={user.id}
             name={user.name}
             src={user.src}
@@ -138,7 +138,7 @@ export const WithHoverCard: Story = {
             <Flex flexDirection="column" gap="xs">
               {users.slice(3).map((user, index) => (
                 <Flex flexDirection="row" gap="4" key={index}>
-                  <Avatar colorScheme="blue" name={user.name} src={user.src}>
+                  <Avatar colorScheme="purple" name={user.name} src={user.src}>
                     {user.id}
                   </Avatar>
 

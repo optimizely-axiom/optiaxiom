@@ -27,37 +27,13 @@ export const avatar = recipe({
 
   variants: {
     colorScheme: {
-      blue: {
-        bg: "avatar.bg.blue",
-        color: "avatar.fg.blue",
-      },
-      cyan: {
-        bg: "avatar.bg.cyan",
-        color: "avatar.fg.cyan",
-      },
-      green: {
-        bg: "avatar.bg.green",
-        color: "avatar.fg.green",
-      },
-      magenta: {
-        bg: "avatar.bg.magenta",
-        color: "avatar.fg.magenta",
-      },
       neutral: {
-        bg: "bg.secondary",
-        color: "fg.default",
+        bg: "avatar.bg.neutral",
+        color: "avatar.fg.neutral",
       },
       purple: {
         bg: "avatar.bg.purple",
         color: "avatar.fg.purple",
-      },
-      red: {
-        bg: "bg.error.subtle",
-        color: "fg.error.strong",
-      },
-      yellow: {
-        bg: "avatar.bg.yellow",
-        color: "avatar.fg.yellow",
       },
     },
     size: {
