@@ -1,0 +1,42 @@
+import { Demo } from "@/components/demo";
+import { PropsTable } from "@/components/props-table";
+import { ColorUsage, LabelUsage, SizeUsage, Usage } from "@/demos/spinner";
+import { Spinner } from "@optiaxiom/react";
+
+# Spinner
+
+Used for indicating an unspecified wait time.
+
+## Documentation
+
+### Usage
+
+<Demo component={Usage} />
+
+### Size
+
+Use the `size` prop to select between the different sizes.
+
+<Demo component={SizeUsage} />
+
+### Label
+
+Use `children` to show an optional label for the spinner.
+
+<Demo component={LabelUsage} />
+
+### Color scheme
+
+Set the `colorScheme` prop to `inverse` when displaying spinner on dark background.
+
+<Demo component={ColorUsage} />
+
+## Props
+
+<PropsTable component={Spinner} />
+
+## Changelog
+
+### 0.1.0
+
+- Added component

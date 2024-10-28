@@ -21,9 +21,15 @@ const mapColorSchemeToFg = {
 } as const;
 
 export const Spinner = forwardRef<HTMLDivElement, SpinnerProps>(
-  ({ colorScheme = "default", size = "md", ...props }, ref) => {
+  ({ children, colorScheme = "default", size = "md", ...props }, ref) => {
     return (
-      <Flex alignItems="center" display="inline-flex" ref={ref} {...props}>
+      <Flex
+        alignItems="center"
+        aria-label="Loading"
+        display="inline-flex"
+        ref={ref}
+        {...props}
+      >
         <Box animation="spin" asChild size={size}>
           <svg
             fill="none"
@@ -53,6 +59,8 @@ export const Spinner = forwardRef<HTMLDivElement, SpinnerProps>(
             </Box>
           </svg>
         </Box>
+
+        {children}
       </Flex>
     );
   },
