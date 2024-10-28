@@ -38,36 +38,6 @@ async function importTokens(file) {
 
   /** @type {Record<string, Token & { type: 'color' | 'number' }>} */
   const tokens = {
-    "Colors/Cyan/100": {
-      name: "Colors/Cyan/100",
-      type: "color",
-      value: "#CFFAFE",
-    },
-    "Colors/Cyan/200": {
-      name: "Colors/Cyan/200",
-      type: "color",
-      value: "#99F0F9",
-    },
-    "Colors/Cyan/700": {
-      name: "Colors/Cyan/700",
-      type: "color",
-      value: "#0E7490",
-    },
-    "Colors/Cyan/900": {
-      name: "Colors/Cyan/900",
-      type: "color",
-      value: "#083344",
-    },
-    "Colors/Magenta/200": {
-      name: "Colors/Magenta/200",
-      type: "color",
-      value: "#F5D0FE",
-    },
-    "Colors/Magenta/900": {
-      name: "Colors/Magenta/900",
-      type: "color",
-      value: "#4A044E",
-    },
     "Colors/Neutral/300": {
       name: "Colors/Neutral/300",
       type: "color",
@@ -77,16 +47,6 @@ async function importTokens(file) {
       name: "Colors/Neutral/1200",
       type: "color",
       value: "#091e42",
-    },
-    "Colors/Purple/200": {
-      name: "Colors/Purple/200",
-      type: "color",
-      value: "#C4B1E2",
-    },
-    "Colors/Purple/900": {
-      name: "Colors/Purple/900",
-      type: "color",
-      value: "#261542",
     },
   };
   /** @type {Record<string, Token & { type: 'color' | 'number' }>} */
@@ -159,10 +119,10 @@ async function importTokens(file) {
 
   warnings.push(...Object.values(mapCodeToFigmaName));
 
-  colors["avatar.bg.neutral"].dark = "neutral.900";
-  colors["avatar.fg.neutral"].dark = "neutral.200";
-  colors["avatar.bg.purple"].dark = "purple.900";
-  colors["avatar.fg.purple"].dark = "purple.200";
+  colors["avatar.bg.neutral"].dark = "neutral.800";
+  colors["avatar.fg.neutral"].dark = "neutral.100";
+  colors["avatar.bg.purple"].dark = "purple.800";
+  colors["avatar.fg.purple"].dark = "purple.100";
 
   colors["bg.default.inverse.hovered"].dark = "neutral.200";
   colors["bg.default.inverse.pressed"].dark = "neutral.300";
@@ -181,14 +141,10 @@ async function importTokens(file) {
  * @type {Record<string, string>}
  */
 const mapFigmaNameToCode = {
-  "avatar/bg-neutral": "avatar.bg.neutral",
-  "avatar/bg-purple": "avatar.bg.purple",
-  "avatar/fg-neutral": "avatar.fg.neutral",
-  "avatar/fg-purple": "avatar.fg.purple",
   "bg/accent/base": "bg.accent",
+  "bg/accent/base_hover": "bg.accent.hovered",
+  "bg/accent/base_pressed": "bg.accent.pressed",
   "bg/accent/light": "bg.accent.light",
-  "bg/accent/states/base_hover": "bg.accent.hovered",
-  "bg/accent/states/base_pressed": "bg.accent.pressed",
   "bg/accent/subtle": "bg.accent.subtle",
   "bg/default": "bg.default",
   "bg/default/inverse": "bg.default.inverse",
@@ -197,20 +153,20 @@ const mapFigmaNameToCode = {
   "bg/disabled": "_bg.tertiary",
   "bg/disabled-muted": "_bg.secondary",
   "bg/feedback/error-base": "bg.error",
+  "bg/feedback/error-base-hover": "bg.error.hovered",
+  "bg/feedback/error-base-pressed": "bg.error.pressed",
   "bg/feedback/error-light": "bg.error.light",
   "bg/feedback/error-subtle": "bg.error.subtle",
   "bg/feedback/error-subtlest": "bg.error.subtlest",
   "bg/feedback/information-base": "bg.information",
   "bg/feedback/information-light": "bg.information.light",
   "bg/feedback/information-subtle": "bg.information.subtle",
-  "bg/feedback/states/error-base-hover": "bg.error.hovered",
-  "bg/feedback/states/error-base-pressed": "bg.error.pressed",
-  "bg/feedback/states/success-base-hover": "bg.success.hovered",
-  "bg/feedback/states/warning-base-hover": "bg.warning.hovered",
   "bg/feedback/success-base": "bg.success",
+  "bg/feedback/success-base-hover": "bg.success.hovered",
   "bg/feedback/success-light": "bg.success.light",
   "bg/feedback/success-subtle": "bg.success.subtle",
   "bg/feedback/warning-base": "bg.warning",
+  "bg/feedback/warning-base-hover": "bg.warning.hovered",
   "bg/feedback/warning-light": "bg.warning.light",
   "bg/feedback/warning-subtle": "bg.warning.subtle",
   "bg/overlay": "bg.overlay",
@@ -234,6 +190,19 @@ const mapFigmaNameToCode = {
   "border/success": "border.success",
   "border/tertiary": "border.tertiary",
   "border/warning": "border.warning",
+  "component/Avatar/bg-neutral": "avatar.bg.neutral",
+  "component/Avatar/bg-purple": "avatar.bg.purple",
+  "component/Avatar/fg-neutral": "avatar.fg.neutral",
+  "component/Avatar/fg-purple": "avatar.fg.purple",
+  "component/Link/fg-default": "link.fg.default",
+  "component/Link/fg-default-hover": "link.fg.default.hovered",
+  "component/Link/inverse": "link.fg.inverse",
+  "component/Link/subtle": "link.fg.subtle",
+  "component/Link/visited": "link.fg.visited",
+  "component/Spinner/bg-default": "_spinner.bg.default",
+  "component/Spinner/bg-inverse": "_spinner.bg.inverse",
+  "component/Spinner/indicator-default": "spinner.fg.default",
+  "component/Spinner/indicator-inverse": "spinner.fg.inverse",
   "fg/accent/base": "fg.accent",
   "fg/accent/base-hover": "fg.accent.hovered",
   "fg/accent/strong": "fg.accent.strong",
@@ -259,15 +228,6 @@ const mapFigmaNameToCode = {
   "fg/secondary": "fg.secondary",
   "fg/tertiary": "fg.tertiary",
   "fg/white": "fg.white",
-  "link/fg-default": "link.fg.default",
-  "link/fg-default-hover": "link.fg.default.hovered",
-  "link/fg-inverse": "link.fg.inverse",
-  "link/fg-subtle": "link.fg.subtle",
-  "link/fg-visited": "link.fg.visited",
-  "spinner/default-bg": "_spinner.bg.default",
-  "spinner/default-indicator": "spinner.fg.default",
-  "spinner/inverse-bg": "_spinner.bg.inverse",
-  "spinner/inverse-indicator": "spinner.fg.inverse",
 };
 
 /**
