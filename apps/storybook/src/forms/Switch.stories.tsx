@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Flex, Switch } from "@optiaxiom/react";
+import { Flex, Switch, Text, Tooltip } from "@optiaxiom/react";
 
 export default {
   args: {
@@ -26,6 +26,24 @@ export const MultiLineLabel: Story = {
       <Switch {...args}>This is a medium example of a multi line label</Switch>
       <Switch {...args} size="lg">
         This is a large example of a multi line label
+      </Switch>
+    </Flex>
+  ),
+};
+
+export const WithTooltip: Story = {
+  render: (args) => (
+    <Flex w="208">
+      <Switch {...args} />
+      <Switch {...args}>
+        <Tooltip auto content="This is a medium example of a multi line label">
+          <Text truncate>This is a medium example of a multi line label</Text>
+        </Tooltip>
+      </Switch>
+      <Switch {...args} size="lg">
+        <Tooltip auto content="This is a large example of a multi line label">
+          <Text truncate>This is a large example of a multi line label</Text>
+        </Tooltip>
       </Switch>
     </Flex>
   ),
