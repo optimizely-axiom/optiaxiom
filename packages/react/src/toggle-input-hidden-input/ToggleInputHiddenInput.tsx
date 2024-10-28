@@ -4,6 +4,7 @@ import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import type { ExtendProps } from "../utils";
 
+import { useToggleInputContext } from "../toggle-input-context";
 import * as styles from "./ToggleInputHiddenInput.css";
 
 type ToggleInputHiddenInputProps = ExtendProps<
@@ -18,9 +19,15 @@ export const ToggleInputHiddenInput = forwardRef<
   HTMLInputElement,
   ToggleInputHiddenInputProps
 >(({ className, onChange, onCheckedChange, ...props }, ref) => {
+  const { descriptionId, labelId } = useToggleInputContext(
+    "ToggleInputHiddenInput",
+  );
+
   return (
     <VisuallyHidden>
       <input
+        aria-describedby={descriptionId}
+        aria-labelledby={labelId}
         className={clsx(className, styles.className)}
         onChange={(event) => {
           onChange?.(event);

@@ -49,7 +49,11 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
     }
 
     return (
-      <ToggleInput {...styles.radio({}, className)} {...sprinkleProps}>
+      <ToggleInput
+        description={!!description}
+        {...styles.radio({}, className)}
+        {...sprinkleProps}
+      >
         <ToggleInputHiddenInput
           checked={
             groupContext?.value !== undefined

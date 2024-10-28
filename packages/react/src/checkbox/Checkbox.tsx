@@ -25,7 +25,11 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
     const { restProps, sprinkleProps } = extractSprinkles(props);
 
     return (
-      <ToggleInput {...styles.checkbox({}, className)} {...sprinkleProps}>
+      <ToggleInput
+        description={!!description}
+        {...styles.checkbox({}, className)}
+        {...sprinkleProps}
+      >
         <ToggleInputHiddenInput ref={ref} {...styles.input()} {...restProps} />
 
         <ToggleInputControl {...styles.control()}>
