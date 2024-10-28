@@ -54,25 +54,7 @@ export const Colors: Story = {
       <Avatar {...args} colorScheme="neutral">
         KP
       </Avatar>
-      <Avatar {...args} colorScheme="red">
-        KP
-      </Avatar>
-      <Avatar {...args} colorScheme="blue">
-        KP
-      </Avatar>
-      <Avatar {...args} colorScheme="green">
-        KP
-      </Avatar>
-      <Avatar {...args} colorScheme="magenta">
-        KP
-      </Avatar>
-      <Avatar {...args} colorScheme="cyan">
-        KP
-      </Avatar>
       <Avatar {...args} colorScheme="purple">
-        KP
-      </Avatar>
-      <Avatar {...args} colorScheme="yellow">
         KP
       </Avatar>
     </Flex>
