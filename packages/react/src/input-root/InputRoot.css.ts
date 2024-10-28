@@ -25,7 +25,7 @@ export const root = recipe({
           zIndex: theme.zIndex["10"],
         },
         [`&:has(${marker}:focus:is([data-invalid]))`]: {
-          outline: `2px solid ${theme.colors["bg.error.light"]}`,
+          outline: `2px solid ${theme.colors["border.focus.error"]}`,
           outlineOffset: "1px",
         },
         [`&:has(${marker}:focus:not([data-invalid]))`]: {
