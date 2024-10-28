@@ -28,7 +28,7 @@ export function transformPropsTable(tree) {
       const tree = fromMarkdown(
         [
           needsImport &&
-            `import { PropsTableDescription } from "@/components/props-table";`,
+            `import { PropTypeDescription } from "@/components/prop-type";`,
           "",
           `### \`${component}\``,
           "",
@@ -38,7 +38,7 @@ export function transformPropsTable(tree) {
           ...Object.values(doc.props).flatMap((prop) =>
             prop.description
               ? [
-                  `<PropsTableDescription name="${prop.name}">`,
+                  `<PropTypeDescription name="${prop.name}">`,
                   prop.description
                     .replaceAll(/{@link ([^\s}]+)(?:\s([^}]+))}/g, "[$2]($1)")
                     .replaceAll(/{@link ([^}]+)}/g, "[$1]($1)")
@@ -48,7 +48,7 @@ export function transformPropsTable(tree) {
                     )
                     .replaceAll(/@example .+/g, "\n\n")
                     .replaceAll("@see", "\n\n"),
-                  "</PropsTableDescription>",
+                  "</PropTypeDescription>",
                 ]
               : [],
           ),
