@@ -14,26 +14,13 @@ export const TooltipTrigger = forwardRef<
   HTMLButtonElement,
   TooltipTriggerProps
 >(({ asChild, children, ...props }, outerRef) => {
-  const { keepOpenOnActivation, setOpen, triggerRef } =
-    useTooltipContext("TooltipTrigger");
+  const { triggerRef } = useTooltipContext("TooltipTrigger");
 
   const ref = useComposedRefs(triggerRef, outerRef);
   const { restProps, sprinkleProps } = extractSprinkles(props);
 
   return (
-    <RadixTooltip.Trigger
-      asChild
-      onClick={
-        keepOpenOnActivation
-          ? (event) => {
-              event.preventDefault();
-              setOpen(true);
-            }
-          : undefined
-      }
-      ref={ref}
-      {...sprinkleProps}
-    >
+    <RadixTooltip.Trigger asChild ref={ref} {...sprinkleProps}>
       {asChild ? children : <Button {...restProps}>{children}</Button>}
     </RadixTooltip.Trigger>
   );

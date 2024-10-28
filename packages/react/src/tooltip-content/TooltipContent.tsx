@@ -1,7 +1,6 @@
 import { theme } from "@optiaxiom/globals";
-import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import * as RadixTooltip from "@radix-ui/react-tooltip";
-import { forwardRef, useRef } from "react";
+import { forwardRef } from "react";
 
 import { AnimatePresence } from "../animate-presence";
 import { Box, type BoxProps } from "../box";
@@ -15,12 +14,9 @@ type TooltipContentProps = BoxProps<typeof RadixTooltip.Content>;
 export const TooltipContent = forwardRef<HTMLDivElement, TooltipContentProps>(
   (
     { align = "center", children, className, sideOffset = 5, ...props },
-    outerRef,
+    ref,
   ) => {
-    const innerRef = useRef<HTMLDivElement>(null);
-    const ref = useComposedRefs(innerRef, outerRef);
-
-    const { keepOpenOnActivation, open } = useTooltipContext("TooltipContent");
+    const { open } = useTooltipContext("TooltipContent");
 
     return (
       <AnimatePresence>
@@ -30,18 +26,6 @@ export const TooltipContent = forwardRef<HTMLDivElement, TooltipContentProps>(
               <Box asChild {...styles.content({}, className)} {...props}>
                 <RadixTooltip.Content
                   align={align}
-                  onPointerDownOutside={
-                    keepOpenOnActivation
-                      ? (event: CustomEvent) => {
-                          if (
-                            innerRef.current?.contains(
-                              event.target as Node | null,
-                            )
-                          )
-                            event.preventDefault();
-                        }
-                      : undefined
-                  }
                   ref={ref}
                   sideOffset={sideOffset}
                 >

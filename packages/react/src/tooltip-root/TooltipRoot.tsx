@@ -12,7 +12,6 @@ type TooltipRootProps = BoxProps<
     delayDuration?: ComponentPropsWithRef<
       typeof RadixTooltip.Provider
     >["delayDuration"];
-    keepOpenOnActivation?: boolean;
   }
 >;
 
@@ -21,7 +20,6 @@ export function TooltipRoot({
   children,
   defaultOpen,
   delayDuration,
-  keepOpenOnActivation,
   onOpenChange,
   open: openProp,
   ...props
@@ -73,7 +71,6 @@ export function TooltipRoot({
       {...props}
     >
       <TooltipContextProvider
-        keepOpenOnActivation={keepOpenOnActivation}
         open={open}
         setOpen={setOpen}
         triggerRef={triggerRef}
