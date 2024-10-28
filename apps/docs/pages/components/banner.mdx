@@ -1,0 +1,40 @@
+import { Demo } from "@/components/demo";
+import { PropsTable } from "@/components/props-table";
+import { AppearanceUsage, CloseUsage, Usage } from "@/demos/banner";
+import { Banner, BannerDescription, BannerTitle } from "@optiaxiom/react";
+
+# Banner
+
+Display a prominent message at the top of the screen.
+
+## Documentation
+
+### Usage
+
+<Demo component={Usage} />
+
+### Appearance
+
+Use the `colorScheme` prop to select between the different banner types.
+
+<Demo component={AppearanceUsage} />
+
+### Close button
+
+Use the `onClose` prop to show a close button to the top right of the banner.
+
+<Demo component={CloseUsage} />
+
+## Props
+
+<PropsTable component={Banner} />
+
+<PropsTable component={BannerTitle} />
+
+<PropsTable component={BannerDescription} />
+
+## Changelog
+
+### 0.1.0
+
+- Added component
