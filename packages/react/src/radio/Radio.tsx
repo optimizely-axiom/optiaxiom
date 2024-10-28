@@ -9,16 +9,16 @@ import { ToggleInputControl } from "../toggle-input-control";
 import { ToggleInputDescription } from "../toggle-input-description";
 import { ToggleInputHiddenInput } from "../toggle-input-hidden-input";
 import { ToggleInputLabel } from "../toggle-input-label";
-import * as styles from "./RadioGroupItem.css";
+import * as styles from "./Radio.css";
 
-type RadioGroupItemProps = BoxProps<
+type RadioProps = BoxProps<
   typeof ToggleInputHiddenInput,
   {
     description?: ReactNode;
   }
 >;
 
-export const RadioGroupItem = forwardRef<HTMLInputElement, RadioGroupItemProps>(
+export const Radio = forwardRef<HTMLInputElement, RadioProps>(
   (
     {
       children,
@@ -33,17 +33,17 @@ export const RadioGroupItem = forwardRef<HTMLInputElement, RadioGroupItemProps>(
     ref,
   ) => {
     const { restProps, sprinkleProps } = extractSprinkles(props);
-    const groupContext = useRadioGroupContext("RadioGroupItem");
+    const groupContext = useRadioGroupContext("Radio");
 
     if (groupContext) {
       if ("checked" in props) {
         throw new Error(
-          `Cannot use \`checked\` prop when \`RadioGroupItem\` is used within \`RadioGroup\``,
+          `Cannot use \`checked\` prop when \`Radio\` is used within \`RadioGroup\``,
         );
       }
       if (props.value === undefined) {
         throw new Error(
-          `Must use \`value\` prop when \`RadioGroupItem\` is used within \`RadioGroup\``,
+          `Must use \`value\` prop when \`Radio\` is used within \`RadioGroup\``,
         );
       }
     }
@@ -87,4 +87,4 @@ export const RadioGroupItem = forwardRef<HTMLInputElement, RadioGroupItemProps>(
   },
 );
 
-RadioGroupItem.displayName = "@optiaxiom/react/RadioGroupItem";
+Radio.displayName = "@optiaxiom/react/Radio";

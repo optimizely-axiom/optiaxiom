@@ -1,10 +1,10 @@
-import { RadioGroup, RadioGroupItem } from "@optiaxiom/react";
+import { Radio, RadioGroup } from "@optiaxiom/react";
 
 export function App() {
   return (
     <RadioGroup disabled name="disabled-group-usage" value="one">
-      <RadioGroupItem value="one">Option One</RadioGroupItem>
-      <RadioGroupItem value="two">Option Two</RadioGroupItem>
+      <Radio value="one">Option One</Radio>
+      <Radio value="two">Option Two</Radio>
     </RadioGroup>
   );
 }

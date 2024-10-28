@@ -8,7 +8,7 @@ import {
   LabelUsage,
   Usage,
 } from "@/demos/radio-group";
-import { RadioGroup, RadioGroupItem } from "@optiaxiom/react";
+import { RadioGroup, Radio } from "@optiaxiom/react";
 
 # RadioGroup
 
@@ -18,13 +18,13 @@ Basic control to allow selecting only one item from a set.
 
 ### Usage
 
-Use `RadioGroup` and `RadioGroupItem` components together to create sets of radio buttons.
+Use `RadioGroup` and `Radio` components together to create sets of radio buttons.
 
 <Demo component={Usage} />
 
 ### Label
 
-The `children` prop on `RadioGroupItem` is used as the label of the radio control.
+The `children` prop on `Radio` is used as the label of the radio control.
 
 <Demo component={LabelUsage} />
 
@@ -34,7 +34,7 @@ Enable the `disabled` prop on the `RadioGroup` to toggle the disabled state of a
 
 <Demo component={DisabledGroupUsage} />
 
-You can also enable the `disabled` prop on each `RadioGroupItem` to toggle the disabled state of each radio control.
+You can also enable the `disabled` prop on each `Radio` to toggle the disabled state of each radio control.
 
 <Demo component={DisabledUsage} />
 
@@ -54,9 +54,13 @@ Use the `description` prop to add helper text after the label.
 
 <PropsTable component={RadioGroup} />
 
-<PropsTable component={RadioGroupItem} />
+<PropsTable component={Radio} />
 
 ## Changelog
+
+### 0.2.0
+
+- Renamed `RadioGroupItem` to `Radio`
 
 ### 0.1.0
 
