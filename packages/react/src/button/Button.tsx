@@ -140,11 +140,12 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           <AnimatePresence>
             {loading && (
               <Transition duration="sm">
-                <Box aria-hidden="true" {...styles.spinner()}>
-                  <Spinner
-                    colorScheme={variant === "solid" ? "inverse" : "default"}
-                  />
-                </Box>
+                <Spinner
+                  aria-hidden="true"
+                  colorScheme={variant === "solid" ? "inverse" : "default"}
+                  size="2xs"
+                  {...styles.spinner()}
+                />
               </Transition>
             )}
           </AnimatePresence>
