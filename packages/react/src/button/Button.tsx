@@ -14,7 +14,6 @@ import { Flex } from "../flex";
 import { Icon } from "../icon";
 import { Spinner } from "../spinner";
 import { extractSprinkles } from "../sprinkles";
-import { Transition } from "../transition";
 import { type ExtendProps, fallbackSpan } from "../utils";
 import * as styles from "./Button.css";
 
@@ -139,14 +138,12 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         <Comp disabled={disabled || loading} ref={ref} {...restProps}>
           <AnimatePresence>
             {loading && (
-              <Transition duration="sm">
-                <Spinner
-                  aria-hidden="true"
-                  colorScheme={variant === "solid" ? "inverse" : "default"}
-                  size="2xs"
-                  {...styles.spinner()}
-                />
-              </Transition>
+              <Spinner
+                aria-hidden="true"
+                colorScheme={variant === "solid" ? "inverse" : "default"}
+                size="2xs"
+                {...styles.spinner()}
+              />
             )}
           </AnimatePresence>
 
