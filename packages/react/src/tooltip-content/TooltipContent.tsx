@@ -13,7 +13,14 @@ type TooltipContentProps = BoxProps<typeof RadixTooltip.Content>;
 
 export const TooltipContent = forwardRef<HTMLDivElement, TooltipContentProps>(
   (
-    { align = "center", children, className, sideOffset = 5, ...props },
+    {
+      align = "center",
+      arrowPadding = 6,
+      children,
+      className,
+      sideOffset = 5,
+      ...props
+    },
     ref,
   ) => {
     const { open } = useTooltipContext("TooltipContent");
@@ -26,6 +33,7 @@ export const TooltipContent = forwardRef<HTMLDivElement, TooltipContentProps>(
               <Box asChild {...styles.content({}, className)} {...props}>
                 <RadixTooltip.Content
                   align={align}
+                  arrowPadding={arrowPadding}
                   ref={ref}
                   sideOffset={sideOffset}
                 >
