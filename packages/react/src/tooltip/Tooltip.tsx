@@ -30,7 +30,6 @@ export const Tooltip = forwardRef<HTMLButtonElement, TooltipProps>(
       content,
       defaultOpen,
       delayDuration,
-      keepOpenOnActivation,
       onOpenChange,
       open,
       ...props
@@ -46,7 +45,6 @@ export const Tooltip = forwardRef<HTMLButtonElement, TooltipProps>(
         defaultOpen={defaultOpen}
         delayDuration={delayDuration}
         disableHoverableContent={empty}
-        keepOpenOnActivation={keepOpenOnActivation}
         onOpenChange={onOpenChange}
         open={open}
       >
