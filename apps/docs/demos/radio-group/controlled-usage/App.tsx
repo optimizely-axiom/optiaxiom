@@ -1,4 +1,4 @@
-import { Button, Flex, RadioGroup, RadioGroupItem } from "@optiaxiom/react";
+import { Button, Flex, Radio, RadioGroup } from "@optiaxiom/react";
 import { useState } from "react";
 
 export function App() {
@@ -11,9 +11,9 @@ export function App() {
         onValueChange={setValue}
         value={value}
       >
-        <RadioGroupItem value="one">Option One</RadioGroupItem>
-        <RadioGroupItem value="two">Option Two</RadioGroupItem>
-        <RadioGroupItem value="three">Option Three</RadioGroupItem>
+        <Radio value="one">Option One</Radio>
+        <Radio value="two">Option Two</Radio>
+        <Radio value="three">Option Three</Radio>
       </RadioGroup>
 
       <Button disabled={!value} onClick={() => setValue("")}>

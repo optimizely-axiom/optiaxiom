@@ -1,6 +1,6 @@
 import type { ComponentPropsWithoutRef } from "react";
 
-import { Field, RadioGroup, RadioGroupItem } from "@optiaxiom/react";
+import { Field, Radio, RadioGroup } from "@optiaxiom/react";
 
 export function App({
   description,
@@ -19,9 +19,9 @@ export function App({
       required={required}
     >
       <RadioGroup name="usage">
-        <RadioGroupItem value="one">Option One</RadioGroupItem>
-        <RadioGroupItem value="two">Option Two</RadioGroupItem>
-        <RadioGroupItem value="three">Option Three</RadioGroupItem>
+        <Radio value="one">Option One</Radio>
+        <Radio value="two">Option Two</Radio>
+        <Radio value="three">Option Three</Radio>
       </RadioGroup>
     </Field>
   );

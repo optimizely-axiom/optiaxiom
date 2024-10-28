@@ -1,12 +1,12 @@
-import { RadioGroup, RadioGroupItem } from "@optiaxiom/react";
+import { Radio, RadioGroup } from "@optiaxiom/react";
 
 export function App() {
   return (
     <RadioGroup name="description-usage">
-      <RadioGroupItem description="Helper Text" value="one">
+      <Radio description="Helper Text" value="one">
         Option One
-      </RadioGroupItem>
-      <RadioGroupItem value="two">Option Two</RadioGroupItem>
+      </Radio>
+      <Radio value="two">Option Two</Radio>
     </RadioGroup>
   );
 }
