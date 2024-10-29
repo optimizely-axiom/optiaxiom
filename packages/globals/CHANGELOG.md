@@ -1,5 +1,11 @@
 # @optiaxiom/globals
 
+## 0.2.2
+
+### Patch Changes
+
+- 912af85: revert removing color palette from tokens
+
 ## 0.2.1
 
 ### Patch Changes

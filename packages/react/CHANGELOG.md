@@ -1,5 +1,12 @@
 # @optiaxiom/react
 
+## 0.2.1
+
+### Patch Changes
+
+- Updated dependencies [912af85]
+  - @optiaxiom/globals@0.2.2
+
 ## 0.2.0
 
 ### Minor Changes
