@@ -84,7 +84,12 @@ export const WithDropdown: Story = {
         <BreadcrumbSeparator />
         <BreadcrumbItem>
           <DropdownMenu>
-            <DropdownMenuTrigger appearance="subtle" icon={undefined} size="sm">
+            <DropdownMenuTrigger
+              appearance="subtle"
+              aria-label="Ellipsis"
+              icon={undefined}
+              size="sm"
+            >
               <BreadcrumbEllipsis />
             </DropdownMenuTrigger>
             <DropdownMenuContent align="start">
