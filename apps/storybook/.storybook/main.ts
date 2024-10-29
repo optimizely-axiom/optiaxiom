@@ -8,6 +8,7 @@ const config: StorybookConfig = {
     "@storybook/addon-interactions",
     "@storybook/addon-links",
     "@storybook/experimental-addon-test",
+    "@storybook/addon-a11y",
   ],
   core: {
     disableTelemetry: true,
