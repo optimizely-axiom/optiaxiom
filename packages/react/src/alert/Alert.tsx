@@ -1,5 +1,7 @@
+import { useId } from "@reach/auto-id";
 import { createElement, forwardRef } from "react";
 
+import { AlertContextProvider } from "../alert-context";
 import { type BoxProps } from "../box";
 import { Button } from "../button";
 import { Flex } from "../flex";
@@ -31,28 +33,40 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>(
     { children, className, colorScheme = "neutral", onClose, ...props },
     ref,
   ) => {
+    const descriptionId = useId();
+    const labelId = useId();
+
     return (
-      <Flex ref={ref} {...styles.alert({ colorScheme }, className)} {...props}>
-        <Icon asChild {...styles.icon({ colorScheme })}>
-          {createElement(iconMap[colorScheme])}
-        </Icon>
+      <AlertContextProvider descriptionId={descriptionId} labelId={labelId}>
+        <Flex
+          aria-describedby={descriptionId}
+          aria-labelledby={labelId}
+          ref={ref}
+          role="alert"
+          {...styles.alert({ colorScheme }, className)}
+          {...props}
+        >
+          <Icon asChild {...styles.icon({ colorScheme })}>
+            {createElement(iconMap[colorScheme])}
+          </Icon>
 
-        <Flex flex="1" gap="xs" my="2">
-          {children}
+          <Flex flex="1" gap="xs" my="2">
+            {children}
+          </Flex>
+
+          {!!onClose && (
+            <Button
+              appearance="subtle"
+              aria-label="close"
+              color="fg.default"
+              flex="none"
+              icon={<IconX />}
+              onClick={onClose}
+              size="sm"
+            />
+          )}
         </Flex>
-
-        {!!onClose && (
-          <Button
-            appearance="subtle"
-            aria-label="close"
-            color="fg.default"
-            flex="none"
-            icon={<IconX />}
-            onClick={onClose}
-            size="sm"
-          />
-        )}
-      </Flex>
+      </AlertContextProvider>
     );
   },
 );
