@@ -1,5 +1,6 @@
 import { type ComponentPropsWithRef, forwardRef } from "react";
 
+import { useBannerContext } from "../banner-context";
 import { Box } from "../box";
 import { Flex } from "../flex";
 
@@ -9,8 +10,10 @@ export const BannerDescription = forwardRef<
   HTMLDivElement,
   BannerDescriptionProps
 >(({ children, ...props }, ref) => {
+  const { descriptionId } = useBannerContext("BannerDescription");
+
   return (
-    <Flex gap="xs" ref={ref} {...props}>
+    <Flex gap="xs" id={descriptionId} ref={ref} {...props}>
       {children}
     </Flex>
   );
