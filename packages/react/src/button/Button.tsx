@@ -134,6 +134,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           className,
         )}
         {...sprinkleProps}
+        {...(isIconOnly && { justifyContent: "center" })}
       >
         <Comp disabled={disabled || loading} ref={ref} {...restProps}>
           <AnimatePresence>
