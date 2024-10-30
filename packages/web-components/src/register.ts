@@ -298,7 +298,6 @@ const withSlot = (element: Element) => {
 function toVdom<P>(
   element: unknown,
   Component?: ComponentType<P>,
-  isProcessingSlot = false,
 ): null | ReactElement {
   if (!(element instanceof Element)) {
     return null;
@@ -308,10 +307,7 @@ function toVdom<P>(
 
   const props: Record<string, null | ReactElement | string> = {};
   for (const { name, value } of element.attributes) {
-    if (isProcessingSlot && name === "slot") {
-      continue;
-    }
-    if (name.startsWith("on") || name === "style") {
+    if (name.startsWith("on") || name === "slot" || name === "style") {
       continue;
     }
     props[toCamelCase(name)] = value;
@@ -319,11 +315,11 @@ function toVdom<P>(
 
   const children = [];
   for (const child of element.childNodes) {
-    if (isRootNode && child instanceof Element && child.slot) {
+    if (child instanceof Element && child.slot) {
       props[child.slot] = createElement(
         "slot",
         { name: child.slot },
-        toVdom(child, undefined, true),
+        toVdom(child),
       );
     } else {
       children.push(child instanceof Text ? child.data : toVdom(child));
