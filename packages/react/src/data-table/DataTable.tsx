@@ -5,11 +5,10 @@ import {
   getCoreRowModel,
   getPaginationRowModel,
   getSortedRowModel,
-  type SortingState,
   useReactTable,
 } from "@tanstack/react-table";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
-import { createElement, useState } from "react";
+import { createElement } from "react";
 
 import { Box } from "../box";
 import { DataTableHeader } from "../data-table-header";
@@ -29,12 +28,6 @@ export const DataTable = <TData,>({
   data,
   ...props
 }: DataTableProps<TData>) => {
-  const [sorting, setSorting] = useState<SortingState>([]);
-  const [{ pageIndex, pageSize }, setPagination] = useState({
-    pageIndex: 0,
-    pageSize: 10,
-  });
-
   const table = useReactTable({
     ...props,
     columns,
@@ -42,16 +35,6 @@ export const DataTable = <TData,>({
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     getSortedRowModel: getSortedRowModel(),
-    onPaginationChange: setPagination,
-    onSortingChange: setSorting,
-    state: {
-      ...props.state,
-      pagination: {
-        pageIndex,
-        pageSize,
-      },
-      sorting,
-    },
   });
 
   let offset = 0;
