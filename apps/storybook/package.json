@@ -22,6 +22,7 @@
     "@storybook/react-vite": "^8.4.7",
     "@storybook/test": "^8.4.7",
     "@tabler/icons-react": "^3.24.0",
+    "@tanstack/react-table": "^8.20.5",
     "chromatic": "^11.20.0",
     "raw-loader": "^4.0.2",
     "react-docgen": "^7.1.0",

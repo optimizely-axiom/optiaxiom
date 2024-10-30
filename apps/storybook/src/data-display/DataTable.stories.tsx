@@ -1,11 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { Box } from "@optiaxiom/react";
-import {
-  type ColumnDef,
-  DataTable,
-  DataTableHeader,
-} from "@optiaxiom/react/unstable";
+import { DataTable, DataTableHeader } from "@optiaxiom/react/unstable";
+import { type ColumnDef } from "@tanstack/react-table";
 
 type Payment = {
   amount: number;
