@@ -19,7 +19,7 @@ import {
 import { createRoot } from "react-dom/client";
 
 import { mapping } from "./mapping";
-import { sheets } from "./styles";
+import { registerShadowRoot, unregisterShadowRoot } from "./styles";
 
 const CustomContextEvent = "__ax_context";
 const CustomRenderEvent = "__ax_render";
@@ -48,7 +48,7 @@ export function register<P extends object>(
 
     const root = createRoot(element.attachShadow({ mode: "open" }));
     if (element.shadowRoot) {
-      element.shadowRoot.adoptedStyleSheets = sheets;
+      registerShadowRoot(element.shadowRoot);
     }
 
     const observer = new MutationObserver((mutationRecords) => {
@@ -141,6 +141,9 @@ export function register<P extends object>(
       observer.disconnect();
       vdom = null;
       root.unmount();
+      if (element.shadowRoot) {
+        unregisterShadowRoot(element.shadowRoot);
+      }
     };
 
     return { connectedCallback, disconnectedCallback };
