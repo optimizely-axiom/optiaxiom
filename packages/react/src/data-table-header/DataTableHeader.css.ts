@@ -1,12 +1,23 @@
-import { type RecipeVariants, recipe } from "../vanilla-extract";
+import { recipe, type RecipeVariants, style } from "../vanilla-extract";
+
+const marker = style({});
 
 export const header = recipe({
   base: [
     {
       gap: "4",
     },
+    marker,
   ],
   variants: {
+    sortable: {
+      false: style({
+        cursor: "default",
+      }),
+      true: style({
+        cursor: "pointer",
+      }),
+    },
     variant: {
       number: {
         flexDirection: "row-reverse",
@@ -15,6 +26,27 @@ export const header = recipe({
       text: {
         flexDirection: "row",
       },
+    },
+  },
+});
+
+export const icon = recipe({
+  base: [
+    {
+      border: "0",
+      color: "fg.tertiary",
+    },
+  ],
+  variants: {
+    sorted: {
+      false: style({
+        selectors: {
+          [`${marker}:is(:not(:focus-within):not(:hover)) &`]: {
+            visibility: "hidden",
+          },
+        },
+      }),
+      true: {},
     },
   },
 });
