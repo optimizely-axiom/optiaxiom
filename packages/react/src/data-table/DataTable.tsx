@@ -1,5 +1,6 @@
+import type { TableOptions } from "@tanstack/react-table";
+
 import {
-  type ColumnDef,
   flexRender,
   getCoreRowModel,
   getPaginationRowModel,
@@ -21,9 +22,6 @@ import { TableHeaderCell } from "../table-header-cell";
 import { TableRow } from "../table-row";
 import * as styles from "./DataTable.css";
 
-export type { ColumnDef };
-
-import type { TableOptions } from "@tanstack/react-table";
 type DataTableProps<TData> = TableOptions<TData>;
 
 export const DataTable = <TData,>({
