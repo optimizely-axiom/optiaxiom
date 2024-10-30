@@ -43,6 +43,9 @@ export default defineConfig([
         "react-dom": "preact/compat",
         "react-dom/client": "preact/compat/client",
       }),
+      nodeResolve({
+        preferBuiltins: false,
+      }),
       commonjs({
         include: [
           "**/node_modules/attr-accept/**",
@@ -59,9 +62,6 @@ export default defineConfig([
         target: "es2022",
       }),
       json(),
-      nodeResolve({
-        preferBuiltins: false,
-      }),
       stylePlugin({ include: ["**/*.css"] }),
       webComponentPlugin({ include: ["src/components/**/*.ts"] }),
     ],
