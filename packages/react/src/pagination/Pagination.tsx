@@ -6,6 +6,7 @@ import { forwardRef } from "react";
 import { Box, type BoxProps } from "../box";
 import { Button } from "../button";
 import { Flex } from "../flex";
+import { Icon } from "../icon";
 import { IconAngleLeft } from "../icons/IconAngleLeft";
 import { IconAngleRight } from "../icons/IconAngleRight";
 import { IconEllipsis } from "../icons/IconEllipsis";
@@ -15,28 +16,17 @@ import * as styles from "./Pagination.css";
 export type PaginationProps = BoxProps<
   "nav",
   {
-    boundaries?: number;
     defaultPage?: number;
     disabled?: boolean;
     onPageChange?: (offset: number) => void;
     page?: number;
-    siblings?: number;
     total: number;
   }
 >;
 
 export const Pagination = forwardRef<HTMLElement, PaginationProps>(
   (
-    {
-      boundaries = 1,
-      defaultPage,
-      disabled,
-      onPageChange,
-      page: pageProp,
-      siblings = 1,
-      total,
-      ...props
-    },
+    { defaultPage, disabled, onPageChange, page: pageProp, total, ...props },
     ref,
   ) => {
     const [value, setValue] = useControllableState({
@@ -45,10 +35,9 @@ export const Pagination = forwardRef<HTMLElement, PaginationProps>(
       prop: pageProp,
     });
     const { active, next, previous, range, setPage } = usePagination({
-      boundaries,
       onChange: setValue,
       page: value,
-      siblings,
+      siblings: 2,
       total,
     });
 
@@ -76,14 +65,13 @@ export const Pagination = forwardRef<HTMLElement, PaginationProps>(
                       alignItems="stretch"
                       display="flex"
                       justifyContent="center"
-                      py="10"
+                      px="6"
+                      py="8"
                       size="md"
                     >
-                      <Box alignItems="end" display="flex">
-                        <Box asChild>
-                          <IconEllipsis />
-                        </Box>
-                      </Box>
+                      <Icon asChild>
+                        <IconEllipsis />
+                      </Icon>
                     </Box>
                   ) : (
                     <Button
