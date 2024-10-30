@@ -40,20 +40,6 @@ export const Controlled: Story = {
   },
 };
 
-export const Boundaries: Story = {
-  args: {
-    boundaries: 2,
-    defaultPage: 10,
-  },
-};
-
-export const Siblings: Story = {
-  args: {
-    defaultPage: 10,
-    siblings: 3,
-  },
-};
-
 export const LargeDataset: Story = {
   args: {
     total: 1000,
