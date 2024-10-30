@@ -2,12 +2,12 @@ import type { ReactNode } from "react";
 
 import { type Column } from "@tanstack/react-table";
 
-import { Flex } from "../flex";
+import { Box } from "../box";
+import { Button } from "../button";
 import { Icon } from "../icon";
 import { IconSort } from "../icons/IconSort";
 import { IconSortDown } from "../icons/IconSortDown";
 import { IconSortUp } from "../icons/IconSortUp";
-import { Tooltip } from "../tooltip";
 import * as styles from "./DataTableHeader.css";
 
 export const DataTableHeader = <TData,>({
@@ -21,44 +21,42 @@ export const DataTableHeader = <TData,>({
 }) => {
   if (!column) return null;
 
+  const renderSortIcon = () => {
+    return (
+      <Icon
+        asChild
+        {...styles.icon({
+          sorted: column.getIsSorted() === false ? false : true,
+        })}
+      >
+        {column.getIsSorted() === false ? (
+          <IconSort />
+        ) : column.getIsSorted() === "asc" ? (
+          <IconSortUp />
+        ) : (
+          <IconSortDown />
+        )}
+      </Icon>
+    );
+  };
+
   return (
-    <Flex
-      {...styles.header({
-        sortable: column.columnDef.enableSorting,
-        variant,
-      })}
-      onClick={() => column.columnDef.enableSorting && column.toggleSorting()}
-    >
-      {children}
-      {column.columnDef.enableSorting && (
-        <Tooltip
-          content={
-            column.getCanSort()
-              ? column.getNextSortingOrder() === "asc"
-                ? "Sort ascending"
-                : column.getNextSortingOrder() === "desc"
-                  ? "Sort descending"
-                  : "Clear sort"
-              : undefined
-          }
+    <Box display="flex" justifyContent={variant === "number" ? "end" : "start"}>
+      {column.columnDef.enableSorting ? (
+        <Button
+          addonAfter={variant === "number" ? null : renderSortIcon()}
+          addonBefore={variant === "number" ? renderSortIcon() : null}
+          appearance="subtle"
+          justifyContent={variant === "number" ? "end" : "start"}
+          onClick={() => column.toggleSorting()}
+          {...styles.button()}
         >
-          <Icon
-            asChild
-            {...styles.icon({
-              sorted: column.getIsSorted() === false ? false : true,
-            })}
-          >
-            {column.getIsSorted() === false ? (
-              <IconSort />
-            ) : column.getIsSorted() === "asc" ? (
-              <IconSortUp />
-            ) : (
-              <IconSortDown />
-            )}
-          </Icon>
-        </Tooltip>
+          {children}
+        </Button>
+      ) : (
+        children
       )}
-    </Flex>
+    </Box>
   );
 };
 

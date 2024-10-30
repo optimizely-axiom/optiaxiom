@@ -1,40 +1,32 @@
-import { recipe, type RecipeVariants, style } from "../vanilla-extract";
+import { theme } from "@optiaxiom/globals";
+
+import { recipe, style } from "../vanilla-extract";
 
 const marker = style({});
 
-export const header = recipe({
+export const button = recipe({
   base: [
     {
       gap: "4",
     },
     marker,
+    style({
+      color: theme.colors["fg.tertiary"],
+
+      selectors: {
+        "&:hover": {
+          color: theme.colors["fg.secondary"],
+        },
+      },
+    }),
   ],
-  variants: {
-    sortable: {
-      false: style({
-        cursor: "default",
-      }),
-      true: style({
-        cursor: "pointer",
-      }),
-    },
-    variant: {
-      number: {
-        flexDirection: "row-reverse",
-        justifyContent: "end",
-      },
-      text: {
-        flexDirection: "row",
-      },
-    },
-  },
 });
 
 export const icon = recipe({
   base: [
     {
-      border: "0",
-      color: "fg.tertiary",
+      h: "16",
+      w: "20",
     },
   ],
   variants: {
@@ -50,5 +42,3 @@ export const icon = recipe({
     },
   },
 });
-
-export type DataTableHeaderVariants = RecipeVariants<typeof header>;
