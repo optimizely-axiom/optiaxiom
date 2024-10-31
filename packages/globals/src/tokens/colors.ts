@@ -93,8 +93,6 @@ export const colorPalette = {
 } as const;
 
 export const colors = {
-  ...colorPalette,
-
   current: "currentColor" as const,
   transparent: "transparent" as const,
 
@@ -196,8 +194,6 @@ export const colors = {
 } as const;
 
 export const colorsDark = {
-  ...colorPalette,
-
   current: "currentColor" as const,
   transparent: "transparent" as const,
 
