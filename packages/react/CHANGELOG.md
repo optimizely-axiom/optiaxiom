@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 0.3.1
+
+### Patch Changes
+
+- 13e0fe0: bump down react-table version constraint
+
 ## 0.3.0
 
 ### Minor Changes
