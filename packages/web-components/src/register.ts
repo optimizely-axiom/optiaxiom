@@ -5,15 +5,12 @@
 import type { ReactElement } from "react";
 
 import { ThemeProvider } from "@optiaxiom/react";
-import { options } from "preact";
 import {
   cloneElement,
   type ComponentType,
-  createContext,
   createElement,
   forwardRef,
   type FunctionComponent,
-  useContext,
   useLayoutEffect,
 } from "react";
 import { createRoot } from "react-dom/client";
@@ -23,7 +20,6 @@ import { registerShadowRoot, unregisterShadowRoot } from "./styles";
 
 const CustomContextEvent = "__ax_context";
 const CustomRenderEvent = "__ax_render";
-const CustomElementContext = createContext<HTMLElement | null>(null);
 
 declare global {
   interface ElementEventMap {
@@ -129,7 +125,7 @@ export function register<P extends object>(
       const context = contextEvent.detail.context;
 
       vdom = cloneElement(
-        toVdom(element, withContextProvider(element, Component, context))!,
+        toVdom(element, withContextProvider(Component, context))!,
         props,
       );
       root.render(vdom);
@@ -177,28 +173,6 @@ export function register<P extends object>(
   return withPreactElement;
 }
 
-/**
- * Patch portal components to use the shadow root as the container for mounting
- * elements.
- */
-const original = options.vnode;
-options.vnode = (vnode) => {
-  original?.(vnode);
-
-  if (
-    typeof vnode.type !== "string" &&
-    vnode.type &&
-    "displayName" in vnode.type &&
-    vnode.type.displayName === "Portal"
-  ) {
-    if ("container" in vnode.props && vnode.props.container === undefined) {
-      // eslint-disable-next-line react-hooks/rules-of-hooks
-      const { shadowRoot } = useContext(CustomElementContext) ?? {};
-      vnode.props.container = shadowRoot;
-    }
-  }
-};
-
 const withContextConsumer = (element: Element) => {
   /**
    * Provide the current preact context to a custom event.
@@ -243,7 +217,6 @@ const withContextConsumer = (element: Element) => {
  * Wrap an existing component with custom preact context.
  */
 const withContextProvider = <P extends { context?: unknown }>(
-  element: HTMLElement,
   Component: ComponentType<P>,
   context: unknown,
 ) => {
@@ -256,13 +229,9 @@ const withContextProvider = <P extends { context?: unknown }>(
     const props = Object.assign({}, rawProps);
     delete props.context;
     return createElement(
-      CustomElementContext.Provider,
-      { value: element },
-      createElement(
-        ThemeProvider,
-        { selector: ":host" },
-        createElement<P>(Component, props),
-      ),
+      ThemeProvider,
+      { selector: ":host" },
+      createElement<P>(Component, props),
     );
   };
 };
