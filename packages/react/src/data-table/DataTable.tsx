@@ -8,7 +8,7 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
-import { createElement } from "react";
+import { createElement, useRef } from "react";
 
 import { Box } from "../box";
 import { DataTableHeader } from "../data-table-header";
@@ -46,15 +46,25 @@ export const DataTable = <TData,>({
       ]),
   );
 
+  const scrollElementRef = useRef(null);
+
   return (
     <Box alignItems="center" display="flex" flexDirection="column">
-      <Table>
+      <Table containerRef={scrollElementRef}>
         <TableHead {...styles.tableHeader()}>
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>
               {headerGroup.headers.map((header) => {
                 return (
                   <TableHeaderCell
+                    aria-sort={
+                      header.column.columnDef.enableSorting &&
+                      header.column.getIsSorted() !== false
+                        ? header.column.getIsSorted() === "desc"
+                          ? "descending"
+                          : "ascending"
+                        : "none"
+                    }
                     key={header.id}
                     style={{
                       ...assignInlineVars({
