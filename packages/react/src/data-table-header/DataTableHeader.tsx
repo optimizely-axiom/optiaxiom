@@ -3,7 +3,6 @@ import type { ReactNode } from "react";
 import { type Column } from "@tanstack/react-table";
 
 import { Box } from "../box";
-import { Button } from "../button";
 import { Icon } from "../icon";
 import { IconSort } from "../icons/IconSort";
 import { IconSortDown } from "../icons/IconSortDown";
@@ -23,12 +22,7 @@ export const DataTableHeader = <TData,>({
 
   const renderSortIcon = () => {
     return (
-      <Icon
-        asChild
-        {...styles.icon({
-          sorted: column.getIsSorted() === false ? false : true,
-        })}
-      >
+      <Icon asChild flex="none" h="16" w="auto">
         {column.getIsSorted() === false ? (
           <IconSort />
         ) : column.getIsSorted() === "asc" ? (
@@ -43,16 +37,13 @@ export const DataTableHeader = <TData,>({
   return (
     <Box display="flex" justifyContent={variant === "number" ? "end" : "start"}>
       {column.columnDef.enableSorting ? (
-        <Button
-          addonAfter={variant === "number" ? null : renderSortIcon()}
-          addonBefore={variant === "number" ? renderSortIcon() : null}
-          appearance="subtle"
-          justifyContent={variant === "number" ? "end" : "start"}
-          onClick={() => column.toggleSorting()}
-          {...styles.button()}
-        >
-          {children}
-        </Button>
+        <Box asChild {...styles.button()}>
+          <button onClick={() => column.toggleSorting()}>
+            {variant === "number" && renderSortIcon()}
+            {children}
+            {variant === "text" && renderSortIcon()}
+          </button>
+        </Box>
       ) : (
         children
       )}
