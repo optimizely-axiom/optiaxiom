@@ -1,5 +1,22 @@
 # @optiaxiom/react
 
+## 0.3.0
+
+### Minor Changes
+
+- a711427: remove primitive color tokens from theme
+
+### Patch Changes
+
+- f2b2930: add pointerEvents sprinkle props
+- 18a2dae: fix indicator z-index on focus
+- 282bddb: improve alert component a11y
+- 09f4057: remove `boundaries` and `siblings` props from `Pagination`
+- 08138a5: added `disabled` prop for `Tooltip`
+- b307bf9: fix focus ring, remove horizontal scrollbar for sidenav
+- Updated dependencies [a711427]
+  - @optiaxiom/globals@0.3.0
+
 ## 0.2.1
 
 ### Patch Changes
