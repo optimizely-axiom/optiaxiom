@@ -16,6 +16,7 @@ type TooltipProps = BoxProps<
     content?: ReactNode;
     defaultOpen?: boolean;
     delayDuration?: ComponentPropsWithRef<typeof TooltipRoot>["delayDuration"];
+    disabled?: boolean;
     keepOpenOnActivation?: boolean;
     onOpenChange?: (open: boolean) => void;
     open?: boolean;
@@ -30,21 +31,21 @@ export const Tooltip = forwardRef<HTMLButtonElement, TooltipProps>(
       content,
       defaultOpen,
       delayDuration,
+      disabled,
       onOpenChange,
       open,
       ...props
     },
     ref,
   ) => {
-    const empty =
-      !content && typeof content !== "number" && typeof content !== "string";
+    const empty = !content && typeof content !== "number";
 
     return (
       <TooltipRoot
         auto={auto}
         defaultOpen={defaultOpen}
         delayDuration={delayDuration}
-        disableHoverableContent={empty}
+        disableHoverableContent={disabled || empty}
         onOpenChange={onOpenChange}
         open={open}
       >
@@ -52,7 +53,9 @@ export const Tooltip = forwardRef<HTMLButtonElement, TooltipProps>(
           {children}
         </TooltipTrigger>
 
-        {!empty && <TooltipContent {...props}>{content}</TooltipContent>}
+        {!disabled && !empty && (
+          <TooltipContent {...props}>{content}</TooltipContent>
+        )}
       </TooltipRoot>
     );
   },
