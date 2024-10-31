@@ -73,6 +73,33 @@ return active;
         },
       },
       {
+        name: "query-selector",
+        transform(code, id) {
+          if (
+            !(
+              code.includes(".querySelectorAll(") &&
+              id.includes("react-collection")
+            )
+          ) {
+            return null;
+          }
+
+          return code.replace(
+            /(\w+)\.querySelectorAll\(/,
+            `((element, selector) => {
+  const slots = element.querySelectorAll("slot");
+  const result = [...element.querySelectorAll(selector)];
+  for (const slot of slots) {
+    for (const elem of slot.assignedElements()) {
+      result.push(...elem.shadowRoot.querySelectorAll(selector));
+    }
+  }
+  return result;
+})($1,`,
+          );
+        },
+      },
+      {
         name: "radix-collection",
         transform(code, id) {
           if (
