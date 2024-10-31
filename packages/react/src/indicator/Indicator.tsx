@@ -35,6 +35,8 @@ export const Indicator = forwardRef<HTMLDivElement, IndicatorProps>(
   ) => {
     return (
       <Flex ref={ref} {...styles.indicator({}, className)} {...props}>
+        {children}
+
         {!disabled && (
           <Box {...styles.floating({ offset, position })}>
             {ping && (
@@ -59,8 +61,6 @@ export const Indicator = forwardRef<HTMLDivElement, IndicatorProps>(
             </Badge>
           </Box>
         )}
-
-        {children}
       </Flex>
     );
   },
