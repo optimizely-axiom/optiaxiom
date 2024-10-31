@@ -21,9 +21,15 @@ import { registerShadowRoot, unregisterShadowRoot } from "./styles";
 const CustomContextEvent = "__ax_context";
 const CustomRenderEvent = "__ax_render";
 
+type CustomContextEventDetail = {
+  context: unknown;
+  mount: (context: unknown) => void;
+  unmount: () => void;
+};
+
 declare global {
   interface ElementEventMap {
-    [CustomContextEvent]: CustomEvent<{ context: unknown }>;
+    [CustomContextEvent]: CustomEvent<CustomContextEventDetail>;
     [CustomRenderEvent]: CustomEvent<{ rendered: boolean }>;
   }
 
@@ -110,25 +116,33 @@ export function register<P extends object>(
         parent = parent.parentElement;
       }
 
+      const mount = (context: unknown) => {
+        vdom = cloneElement(
+          toVdom(element, withContextProvider(Component, context))!,
+          props,
+        );
+        root.render(vdom);
+      };
+
       /**
        * Dispatch a custom event to grab the parent preact context.
        */
-      const contextEvent = new CustomEvent<{ context: unknown }>(
+      const contextEvent = new CustomEvent<CustomContextEventDetail>(
         CustomContextEvent,
         {
           bubbles: true,
           cancelable: true,
-          detail: { context: undefined },
+          detail: {
+            context: undefined,
+            mount,
+            unmount: () => root.unmount(),
+          },
         },
       );
       element.dispatchEvent(contextEvent);
       const context = contextEvent.detail.context;
 
-      vdom = cloneElement(
-        toVdom(element, withContextProvider(Component, context))!,
-        props,
-      );
-      root.render(vdom);
+      mount(context);
 
       observer.observe(element, { attributes: true });
     };
@@ -174,6 +188,8 @@ export function register<P extends object>(
 }
 
 const withContextConsumer = (element: Element) => {
+  const subscribers = new Set<CustomContextEventDetail>();
+
   /**
    * Provide the current preact context to a custom event.
    */
@@ -181,6 +197,8 @@ const withContextConsumer = (element: Element) => {
   element.addEventListener(CustomContextEvent, (event) => {
     event.stopPropagation();
     event.detail.context = context;
+
+    subscribers.add(event.detail);
   });
 
   /**
@@ -207,6 +225,15 @@ const withContextConsumer = (element: Element) => {
           }
         }
       }
+      for (const subscriber of subscribers) {
+        subscriber.mount(context);
+      }
+
+      return () => {
+        for (const subscriber of subscribers) {
+          subscriber.unmount();
+        }
+      };
     }, []);
 
     return null;
