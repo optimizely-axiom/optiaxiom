@@ -88,9 +88,9 @@ export const badge = recipe({
         {
           animation: "ping",
           color: "transparent",
+          pointerEvents: "none",
         },
         style({
-          pointerEvents: "none",
           position: "absolute",
         }),
       ],
