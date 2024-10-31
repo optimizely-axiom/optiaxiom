@@ -72,6 +72,7 @@ export const SideNav = forwardRef<HTMLElement, SideNavProps>(
                 flex="1"
                 gap="4"
                 justifyContent="start"
+                overflowX="hidden"
                 overflowY="auto"
                 w="full"
               >
