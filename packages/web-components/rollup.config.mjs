@@ -53,6 +53,25 @@ export default defineConfig([
           "**/node_modules/use-sync-external-store/**",
         ],
       }),
+      {
+        name: "active-element",
+        transform(code) {
+          if (!code.includes("document.activeElement")) {
+            return null;
+          }
+
+          return code.replaceAll(
+            "document.activeElement",
+            `(() => {
+let active = document.activeElement;
+while (active?.shadowRoot) {
+  active = active.shadowRoot.activeElement;
+}
+return active;
+})()`,
+          );
+        },
+      },
       esbuild({
         define: {
           "process.env.NODE_ENV": JSON.stringify(env),
