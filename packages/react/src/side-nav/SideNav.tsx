@@ -58,9 +58,9 @@ export const SideNav = forwardRef<HTMLElement, SideNavProps>(
             asChild
             bg="bg.default"
             flex="1"
-            pb="md"
-            pt="lg"
-            px="xs"
+            gap="0"
+            pb="xs"
+            pt="md"
             transition={animations ? "all" : undefined}
             w={expanded ? "224" : "56"}
           >
@@ -74,13 +74,14 @@ export const SideNav = forwardRef<HTMLElement, SideNavProps>(
                 justifyContent="start"
                 overflowX="hidden"
                 overflowY="auto"
+                py="xs"
                 w="full"
               >
                 <ul>{children}</ul>
               </Flex>
 
               {addonAfter && (
-                <Flex asChild gap="xs" mt="auto" overflowX="hidden">
+                <Flex asChild gap="xs" mt="auto" overflowX="hidden" py="xs">
                   <ul>{addonAfter}</ul>
                 </Flex>
               )}
