@@ -1,5 +1,11 @@
 # @optiaxiom/web-components
 
+## 0.1.1
+
+### Patch Changes
+
+- ad507ac: fix dropdown menu keyboard interactions
+
 ## 0.1.0
 
 ### Patch Changes
