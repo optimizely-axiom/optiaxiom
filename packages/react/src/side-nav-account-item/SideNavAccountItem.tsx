@@ -34,6 +34,7 @@ export const SideNavAccountItem = forwardRef<
           asChild
           flexDirection="row"
           gap="xs"
+          mx="xs"
           p="4"
           textAlign="start"
           {...props}
