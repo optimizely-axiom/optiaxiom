@@ -47,7 +47,7 @@ export const Pagination = forwardRef<HTMLElement, PaginationProps>(
           <Flex asChild flexDirection="row" gap="2">
             <ul>
               <li>
-                <Tooltip content="Prev">
+                <Tooltip content="Prev" disabled={disabled || active === 1}>
                   <Button
                     appearance="subtle"
                     aria-label="Previous page"
@@ -96,7 +96,7 @@ export const Pagination = forwardRef<HTMLElement, PaginationProps>(
               ))}
 
               <li>
-                <Tooltip content="Next">
+                <Tooltip content="Next" disabled={disabled || active === total}>
                   <Button
                     appearance="subtle"
                     aria-label="Next page"

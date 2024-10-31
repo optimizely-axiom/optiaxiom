@@ -86,6 +86,14 @@ export const DefaultOpen: Story = {
   },
 };
 
+export const Disabled: Story = {
+  args: {
+    children: <Button>Hover</Button>,
+    content: "Add to library",
+    disabled: true,
+  },
+};
+
 export const AllPositions: Story = {
   args: {
     defaultOpen: true,
