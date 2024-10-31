@@ -5,7 +5,6 @@ import { reactDocgenPlugin } from "./react-docgen-plugin";
 const config: StorybookConfig = {
   addons: [
     "@storybook/addon-essentials",
-    "@storybook/addon-interactions",
     "@storybook/addon-links",
     "@storybook/experimental-addon-test",
     "@storybook/addon-a11y",
