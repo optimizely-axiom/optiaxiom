@@ -121,6 +121,12 @@ export const unresponsiveProps = defineProperties({
      */
     overflowY: ["auto", "hidden", "visible"] as const,
     /**
+     * Set the element's `pointer-events` CSS property
+     *
+     * {@link https://developer.mozilla.org/en-US/docs/Web/CSS/pointer-events Documentation}
+     */
+    pointerEvents: ["auto", "none"] as const,
+    /**
      * Set the element's `text-align` CSS property
      *
      * {@link https://developer.mozilla.org/en-US/docs/Web/CSS/text-align Documentation}
