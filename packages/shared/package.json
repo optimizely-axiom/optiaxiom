@@ -16,25 +16,25 @@
     "ci-info": "^4.0.0",
     "cli-table3": "^0.6.5",
     "gzip-size": "^7.0.0",
-    "monosize": "^0.5.1",
+    "monosize": "^0.6.3",
     "pretty-bytes": "^6.1.1",
     "yargs": "^17.7.2"
   },
   "devDependencies": {
-    "@eslint/compat": "^1.2.0",
-    "@types/node": "^20.16.11",
+    "@eslint/compat": "^1.2.2",
+    "@types/node": "^20.17.5",
     "@types/yargs": "^17.0.33",
-    "@typescript-eslint/eslint-plugin": "^8.8.1",
-    "@typescript-eslint/parser": "^8.8.1",
-    "eslint": "^9.12.0",
-    "eslint-plugin-jsx-a11y": "^6.10.0",
-    "eslint-plugin-perfectionist": "^3.8.0",
-    "eslint-plugin-react": "^7.37.1",
+    "@typescript-eslint/eslint-plugin": "^8.12.2",
+    "@typescript-eslint/parser": "^8.12.2",
+    "eslint": "^9.13.0",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-perfectionist": "^3.9.1",
+    "eslint-plugin-react": "^7.37.2",
     "eslint-plugin-react-hooks": "5.1.0-rc-ed966dac-20241007",
-    "eslint-plugin-testing-library": "^6.3.0",
+    "eslint-plugin-testing-library": "^6.4.0",
     "fast-glob": "^3.3.2",
     "globals": "^15.11.0",
     "react-docgen-typescript": "^2.2.2",
-    "typescript-eslint": "^8.8.1"
+    "typescript-eslint": "^8.12.2"
   }
 }
