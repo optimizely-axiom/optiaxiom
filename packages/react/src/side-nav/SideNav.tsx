@@ -59,6 +59,7 @@ export const SideNav = forwardRef<HTMLElement, SideNavProps>(
             bg="bg.default"
             flex="1"
             gap="0"
+            overflow="hidden"
             pb="xs"
             pt="md"
             transition={animations ? "all" : undefined}
