@@ -2,16 +2,12 @@ import { withIcon } from "./withIcon";
 
 export const IconCheck = withIcon(
   {
-    fill: "none",
-    height: 8,
     name: "IconCheck",
-    width: 12,
   },
   <path
-    d="M1.5 3.47059L4.83333 7L10.5 1"
-    stroke="currentColor"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    strokeWidth="1.5"
+    clipRule="evenodd"
+    d="M16.8719 3.16579C17.0565 3.37118 17.0396 3.68731 16.8342 3.87189L8.37588 12.3719C8.183 12.5452 7.8896 12.5423 7.70018 12.3652L3.32518 8.2743C3.12348 8.0857 3.11286 7.7693 3.30146 7.56759C3.49007 7.36589 3.80647 7.35528 4.00817 7.54388L8.04838 11.3217L16.1658 3.12811C16.3712 2.94353 16.6873 2.9604 16.8719 3.16579Z"
+    fill="currentColor"
+    fillRule="evenodd"
   />,
 );

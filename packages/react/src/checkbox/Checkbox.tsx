@@ -1,7 +1,7 @@
 import { forwardRef, type ReactNode } from "react";
 
 import { Box, type BoxProps } from "../box";
-import { IconCheck } from "../icons/IconCheck";
+import { CheckboxCheck } from "../icons/CheckboxCheck";
 import { IconMinus } from "../icons/IconMinus";
 import { extractSprinkles } from "../sprinkles";
 import { ToggleInput } from "../toggle-input";
@@ -35,7 +35,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
         <ToggleInputControl {...styles.control()}>
           <Box {...styles.indicator()}>
             <Box asChild {...styles.icon()}>
-              {indeterminate ? <IconMinus /> : <IconCheck />}
+              {indeterminate ? <IconMinus /> : <CheckboxCheck />}
             </Box>
           </Box>
         </ToggleInputControl>
