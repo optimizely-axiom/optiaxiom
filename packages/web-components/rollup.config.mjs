@@ -84,6 +84,24 @@ return active;
           return code.replace("useEffect", "useLayoutEffect");
         },
       },
+      {
+        name: "radix-portal",
+        transform(_code, id) {
+          if (!id.includes("react-portal")) {
+            return null;
+          }
+
+          return `"use client";
+
+import { cloneElement, forwardRef } from "react";
+const PORTAL_NAME = "Portal";
+const Portal = forwardRef((props, ref) => {
+  return cloneElement(props.children, { ref });
+});
+Portal.displayName = PORTAL_NAME;
+export { Portal, Portal as Root };`;
+        },
+      },
       esbuild({
         define: {
           "process.env.NODE_ENV": JSON.stringify(env),
