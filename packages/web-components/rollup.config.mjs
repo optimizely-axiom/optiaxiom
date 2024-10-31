@@ -72,6 +72,18 @@ return active;
           );
         },
       },
+      {
+        name: "radix-collection",
+        transform(code, id) {
+          if (
+            !(code.includes("useEffect") && id.includes("react-collection"))
+          ) {
+            return null;
+          }
+
+          return code.replace("useEffect", "useLayoutEffect");
+        },
+      },
       esbuild({
         define: {
           "process.env.NODE_ENV": JSON.stringify(env),
