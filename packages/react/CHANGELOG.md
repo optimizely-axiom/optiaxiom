@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 0.3.3
+
+### Patch Changes
+
+- cb71846: do not use flex for alert/banner descriptions
+
 ## 0.3.2
 
 ### Patch Changes
