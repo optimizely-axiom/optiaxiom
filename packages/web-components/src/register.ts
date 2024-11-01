@@ -19,18 +19,18 @@ import { mapping } from "./mapping";
 import { registerShadowRoot, unregisterShadowRoot } from "./styles";
 
 const CustomContextEvent = "__ax_context";
-const CustomRenderEvent = "__ax_render";
+const CustomMountEvent = "__ax_mount";
+const CustomUnmountEvent = "__ax_unmount";
 
 type CustomContextEventDetail = {
   context: unknown;
-  mount: (context: unknown) => void;
-  unmount: () => void;
+  rendered: boolean;
 };
 
 declare global {
   interface ElementEventMap {
     [CustomContextEvent]: CustomEvent<CustomContextEventDetail>;
-    [CustomRenderEvent]: CustomEvent<{ rendered: boolean }>;
+    [CustomMountEvent]: CustomEvent<{ context: unknown }>;
   }
 
   interface Element {
@@ -93,58 +93,59 @@ export function register<P extends object>(
     };
 
     const connectedCallback = () => {
-      /**
-       * Dispatch a custom event to wait for parents to finish rendering.
-       */
-      let parent = element.parentElement;
-      while (parent) {
-        if (parent.nodeName.toLowerCase() in mapping) {
-          const renderEvent = new CustomEvent<{ rendered: boolean }>(
-            CustomRenderEvent,
-            {
-              cancelable: true,
-              detail: { rendered: false },
-            },
-          );
-          parent.dispatchEvent(renderEvent);
-          if (!renderEvent.detail.rendered) {
-            parent.queue = parent.queue ?? [];
-            parent.queue.push(element);
-            return;
-          }
-        }
-        parent = parent.parentElement;
-      }
-
       const mount = (context: unknown) => {
         vdom = cloneElement(
           toVdom(element, withContextProvider(Component, context))!,
           props,
         );
         root.render(vdom);
+        observer.observe(element, { attributes: true });
       };
 
+      let parent = element.parentElement;
+      while (parent) {
+        /**
+         * Hook into the context bridge if this element is a child of another
+         * of our web component.
+         */
+        if (parent.nodeName.toLowerCase() in mapping) {
+          /**
+           * Attach events to the ancestor to mount/unmount in sync with them.
+           */
+          parent.addEventListener(CustomMountEvent, (event) => {
+            mount(event.detail.context);
+          });
+          parent.addEventListener(CustomUnmountEvent, () => {
+            observer.disconnect();
+            root.unmount();
+          });
+
+          /**
+           * Check if the component has already rendered in which case we can
+           * also mount right away.
+           */
+          const renderEvent = new CustomEvent<CustomContextEventDetail>(
+            CustomContextEvent,
+            {
+              cancelable: true,
+              detail: { context: undefined, rendered: false },
+            },
+          );
+          parent.dispatchEvent(renderEvent);
+          if (renderEvent.detail.rendered) {
+            mount(renderEvent.detail.context);
+          }
+
+          return;
+        }
+        parent = parent.parentElement;
+      }
+
       /**
-       * Dispatch a custom event to grab the parent preact context.
+       * Mount root level nodes that do not have another of our web component as
+       * an ancestor.
        */
-      const contextEvent = new CustomEvent<CustomContextEventDetail>(
-        CustomContextEvent,
-        {
-          bubbles: true,
-          cancelable: true,
-          detail: {
-            context: undefined,
-            mount,
-            unmount: () => root.unmount(),
-          },
-        },
-      );
-      element.dispatchEvent(contextEvent);
-      const context = contextEvent.detail.context;
-
-      mount(context);
-
-      observer.observe(element, { attributes: true });
+      mount(undefined);
     };
 
     const disconnectedCallback = () => {
@@ -187,25 +188,14 @@ export function register<P extends object>(
   return withPreactElement;
 }
 
-const withContextConsumer = (element: Element) => {
-  const subscribers = new Set<CustomContextEventDetail>();
-
+const withContextBridge = (element: Element) => {
   /**
-   * Provide the current preact context to a custom event.
+   * Provide the current rendering status and preact context via a custom event.
    */
   let context: unknown = undefined;
-  element.addEventListener(CustomContextEvent, (event) => {
-    event.stopPropagation();
-    event.detail.context = context;
-
-    subscribers.add(event.detail);
-  });
-
-  /**
-   * Provide the current rendering status to a custom event.
-   */
   let rendered = false;
-  element.addEventListener(CustomRenderEvent, (event) => {
+  element.addEventListener(CustomContextEvent, (event) => {
+    event.detail.context = context;
     event.detail.rendered = rendered;
   });
 
@@ -214,25 +204,15 @@ const withContextConsumer = (element: Element) => {
     rendered = true;
 
     useLayoutEffect(() => {
-      if (element.queue) {
-        let node;
-        while ((node = element.queue.shift())) {
-          if (
-            "connectedCallback" in node &&
-            typeof node.connectedCallback === "function"
-          ) {
-            node.connectedCallback();
-          }
-        }
-      }
-      for (const subscriber of subscribers) {
-        subscriber.mount(context);
-      }
+      element.dispatchEvent(
+        new CustomEvent(CustomMountEvent, {
+          cancelable: true,
+          detail: { context },
+        }),
+      );
 
       return () => {
-        for (const subscriber of subscribers) {
-          subscriber.unmount();
-        }
+        element.dispatchEvent(new CustomEvent(CustomUnmountEvent));
       };
     }, []);
 
@@ -271,7 +251,7 @@ const withContextProvider = <P extends { context?: unknown }>(
  * slot.
  */
 const withSlot = (element: Element) => {
-  const Consumer = withContextConsumer(element);
+  const Consumer = withContextBridge(element);
 
   return forwardRef((props, ref) => {
     useLayoutEffect(() => {
