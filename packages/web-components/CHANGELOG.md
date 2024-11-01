@@ -1,5 +1,13 @@
 # @optiaxiom/web-components
 
+## 0.1.2
+
+### Patch Changes
+
+- 19c9c25: fix dropdown menu focus trap
+- e78e16f: fix styling for named slots
+- 7a968d2: use events to correctly bridge web-component islands
+
 ## 0.1.1
 
 ### Patch Changes
