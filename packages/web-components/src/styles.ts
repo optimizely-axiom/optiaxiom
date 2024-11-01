@@ -1,6 +1,14 @@
 const shadowRoots = new Set<ShadowRoot>();
 const sheets: CSSStyleSheet[] = [];
 
+const sheet = new CSSStyleSheet();
+sheet.insertRule(`slot[name]::slotted(*) {
+  display: inline-flex;
+  height: 100%;
+  width: 100%;
+}`);
+sheets.push(sheet);
+
 const uuid = "ax" + crypto.getRandomValues(new Uint32Array(1))[0].toString(36);
 
 export function injectGlobalStyle(text: string) {
