@@ -54,7 +54,7 @@ export default defineConfig([
         ],
       }),
       {
-        name: "query-selector",
+        name: "radix-collection:document-querySelectorAll",
         transform(code, id) {
           if (
             !(
@@ -81,7 +81,7 @@ export default defineConfig([
         },
       },
       {
-        name: "radix-collection",
+        name: "radix-collection:react-useEffect",
         transform(code, id) {
           if (
             !(code.includes("useEffect") && id.includes("react-collection"))
@@ -117,7 +117,7 @@ export default defineConfig([
         },
       },
       {
-        name: "radix-portal",
+        name: "radix-portal:react-Portal",
         transform(_code, id) {
           if (!id.includes("react-portal")) {
             return null;
