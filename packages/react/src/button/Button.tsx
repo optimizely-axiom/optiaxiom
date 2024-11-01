@@ -39,6 +39,7 @@ export type ButtonProps<
       children?: ReactNode;
       disabled?: boolean;
       icon?: ReactNode;
+      iconAutosize?: boolean;
       iconPosition?: "end" | "start";
       loading?: boolean;
     } & Omit<styles.ButtonVariants, "colorScheme" | "iconOnly" | "variant">,
@@ -57,6 +58,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       className,
       disabled,
       icon,
+      iconAutosize,
       iconPosition = "start",
       loading,
       size = "md",
@@ -71,6 +73,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const colorScheme = presetProps.colorScheme;
     const variant = presetProps.variant;
     let isIconOnly = Boolean(!children && icon);
+    const IconOnlyComp = iconAutosize ? Box : Icon;
 
     if (asChild) {
       const newElement = isValidElement(children) ? children : null;
@@ -80,9 +83,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             newElement,
             undefined,
             isIconOnly ? (
-              <Icon asChild {...styles.icon()}>
+              <IconOnlyComp asChild {...styles.icon()}>
                 {icon}
-              </Icon>
+              </IconOnlyComp>
             ) : (
               <Flex asChild {...styles.label()}>
                 {fallbackSpan(newElement.props.children)}
@@ -92,9 +95,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         : children;
     } else {
       children = isIconOnly ? (
-        <Icon asChild {...styles.icon()}>
+        <IconOnlyComp asChild {...styles.icon()}>
           {icon}
-        </Icon>
+        </IconOnlyComp>
       ) : (
         <Flex asChild {...styles.label()}>
           {fallbackSpan(children)}
