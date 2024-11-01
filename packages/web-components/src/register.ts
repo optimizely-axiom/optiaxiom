@@ -103,12 +103,19 @@ export function register<P extends object>(
       };
 
       let parent = element.parentElement;
+      let skipFirst = !!element.slot;
       while (parent) {
         /**
          * Hook into the context bridge if this element is a child of another
          * of our web component.
          */
         if (parent.nodeName.toLowerCase() in mapping) {
+          if (skipFirst) {
+            skipFirst = false;
+            parent = parent.parentElement;
+            continue;
+          }
+
           /**
            * Attach events to the ancestor to mount/unmount in sync with them.
            */
@@ -251,7 +258,7 @@ const withContextProvider = <P extends { context?: unknown }>(
  * slot.
  */
 const withSlot = (element: Element) => {
-  const Consumer = withContextBridge(element);
+  const Bridge = withContextBridge(element);
 
   return forwardRef((props, ref) => {
     useLayoutEffect(() => {
@@ -270,7 +277,7 @@ const withSlot = (element: Element) => {
       };
     }, [ref]);
 
-    return createElement("slot", { ...props, ref }, createElement(Consumer));
+    return createElement("slot", { ...props, ref }, createElement(Bridge));
   });
 };
 
@@ -294,6 +301,9 @@ function toVdom<P>(
 
   const children = [];
   for (const child of element.childNodes) {
+    if (child instanceof Text && child.data.match(/^\s+$/)) {
+      continue;
+    }
     if (child instanceof Element && child.slot) {
       props[child.slot] = createElement("slot", {
         name: child.slot,
@@ -308,7 +318,11 @@ function toVdom<P>(
     // @ts-expect-error -- too complex
     Component || element.nodeName.toLowerCase(),
     props,
-    isRootNode ? createElement(withSlot(element)) : children,
+    isRootNode
+      ? children.length
+        ? createElement(withSlot(element))
+        : null
+      : children,
   );
 }
 
