@@ -18,7 +18,10 @@ describe("Component slots", () => {
   it("should render properly", async () => {
     setup();
     expect(
-      withinShadowRoot(screen.getByText("Primary")).getByRole("button"),
-    ).toHaveTextContent("icon");
+      withinShadowRoot(screen.getByText("Primary"))
+        .getByRole("button")
+        // eslint-disable-next-line testing-library/no-node-access
+        .querySelector("slot[name=icon]"),
+    ).toBeInTheDocument();
   });
 });
