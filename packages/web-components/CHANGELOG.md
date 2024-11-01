@@ -1,5 +1,13 @@
 # @optiaxiom/web-components
 
+## 0.1.3
+
+### Patch Changes
+
+- 0947781: skip rendering empty children in web components
+- de8b190: handle case where assigned element is not a shadow host
+- ce357c4: add module field to package.json for backwards compatibility
+
 ## 0.1.2
 
 ### Patch Changes
