@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 0.3.4
+
+### Patch Changes
+
+- a0d811a: add `iconAutosize` prop to buttons for removing icon size in icon only buttons
+
 ## 0.3.3
 
 ### Patch Changes
