@@ -112,6 +112,7 @@
     "./TooltipTrigger": "./dist/components/TooltipTrigger.js",
     "./Transition": "./dist/components/Transition.js"
   },
+  "module": "./dist/index.js",
   "scripts": {
     "build": "rm -rf dist && NODE_ENV=production rollup -c",
     "dev": "rm -rf dist && wait-on ../../packages/react/dist/index.d.ts && rollup -cw",
