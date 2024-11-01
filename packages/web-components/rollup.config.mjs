@@ -72,7 +72,7 @@ export default defineConfig([
   const result = [...element.querySelectorAll(selector)];
   for (const slot of slots) {
     for (const elem of slot.assignedElements()) {
-      result.push(...elem.shadowRoot.querySelectorAll(selector));
+      result.push(...(elem.shadowRoot ?? elem).querySelectorAll(selector));
     }
   }
   return result;
