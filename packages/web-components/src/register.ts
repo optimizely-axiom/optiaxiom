@@ -295,11 +295,10 @@ function toVdom<P>(
   const children = [];
   for (const child of element.childNodes) {
     if (child instanceof Element && child.slot) {
-      props[child.slot] = createElement(
-        "span",
-        { style: { display: "inline-flex" } },
-        createElement("slot", { name: child.slot }),
-      );
+      props[child.slot] = createElement("slot", {
+        name: child.slot,
+        style: { display: "inline-flex" },
+      });
     } else {
       children.push(child instanceof Text ? child.data : toVdom(child));
     }
