@@ -54,25 +54,6 @@ export default defineConfig([
         ],
       }),
       {
-        name: "active-element",
-        transform(code) {
-          if (!code.includes("document.activeElement")) {
-            return null;
-          }
-
-          return code.replaceAll(
-            "document.activeElement",
-            `(() => {
-let active = document.activeElement;
-while (active?.shadowRoot) {
-  active = active.shadowRoot.activeElement;
-}
-return active;
-})()`,
-          );
-        },
-      },
-      {
         name: "query-selector",
         transform(code, id) {
           if (
@@ -109,6 +90,30 @@ return active;
           }
 
           return code.replace("useEffect", "useLayoutEffect");
+        },
+      },
+      {
+        name: "radix-focus-scope",
+        transform(code, id) {
+          if (!id.includes("react-focus-scope")) {
+            return null;
+          }
+
+          return code
+            .replace(
+              "lastFocusedElementRef.current = target",
+              "lastFocusedElementRef.current = event.target.shadowRoot ? event.composedPath()[0] : event.target",
+            )
+            .replaceAll(
+              /(\w+)\.contains\(/g,
+              `((container, target) => {
+  if (container.getRootNode() instanceof ShadowRoot) {
+    return container.getRootNode().host.contains(target);
+  } else {
+    return container.contains(target);
+  }
+})($1,`,
+            );
         },
       },
       {
