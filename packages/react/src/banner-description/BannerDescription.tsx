@@ -2,7 +2,6 @@ import { type ComponentPropsWithRef, forwardRef } from "react";
 
 import { useBannerContext } from "../banner-context";
 import { Box } from "../box";
-import { Flex } from "../flex";
 
 type BannerDescriptionProps = ComponentPropsWithRef<typeof Box>;
 
@@ -13,9 +12,9 @@ export const BannerDescription = forwardRef<
   const { descriptionId } = useBannerContext("BannerDescription");
 
   return (
-    <Flex gap="xs" id={descriptionId} ref={ref} {...props}>
+    <Box id={descriptionId} ref={ref} {...props}>
       {children}
-    </Flex>
+    </Box>
   );
 });
 

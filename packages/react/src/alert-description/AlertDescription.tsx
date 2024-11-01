@@ -2,7 +2,6 @@ import { type ComponentPropsWithRef, forwardRef } from "react";
 
 import { useAlertContext } from "../alert-context";
 import { Box } from "../box";
-import { Flex } from "../flex";
 
 type AlertDescriptionProps = ComponentPropsWithRef<typeof Box>;
 
@@ -13,9 +12,9 @@ export const AlertDescription = forwardRef<
   const { descriptionId } = useAlertContext("AlertDescription");
 
   return (
-    <Flex gap="xs" id={descriptionId} ref={ref} {...props}>
+    <Box id={descriptionId} ref={ref} {...props}>
       {children}
-    </Flex>
+    </Box>
   );
 });
 
