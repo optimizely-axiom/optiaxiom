@@ -36,6 +36,7 @@ export default ESLintUtils.RuleCreator.withoutDocs({
               ...(styleImportNode.specifiers.some(
                 (specifier) =>
                   specifier.type === "ImportSpecifier" &&
+                  specifier.imported.type === "Identifier" &&
                   specifier.imported.name === "recipe",
               )
                 ? []
