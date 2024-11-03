@@ -1,3 +1,5 @@
+import { theme } from "@optiaxiom/globals";
+
 import { recipe, type RecipeVariants, style } from "../vanilla-extract";
 
 export const content = recipe({
@@ -6,11 +8,11 @@ export const content = recipe({
       bg: "bg.default",
       display: "flex",
       flexDirection: "column",
-      rounded: "lg",
       shadow: "md",
       z: "popover",
     },
     style({
+      borderRadius: theme.borderRadius.lg,
       left: "50%",
       maxHeight: "75dvh",
       maxWidth: "calc(100dvw - 2 * 24px)",
@@ -29,6 +31,13 @@ export const content = recipe({
       }),
       lg: style({
         width: "800px",
+      }),
+      fullscreen: style({
+        borderRadius: theme.borderRadius.none,
+        height: "100dvh",
+        maxHeight: "none",
+        maxWidth: "none",
+        width: "100dvw",
       }),
     },
   },

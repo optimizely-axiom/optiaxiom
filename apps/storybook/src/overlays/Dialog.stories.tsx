@@ -161,6 +161,12 @@ export const Large: Story = {
   },
 };
 
+export const Fullscreen: Story = {
+  args: {
+    size: "fullscreen",
+  },
+};
+
 export const LongContent: Story = {
   args: {
     content: largeText,
