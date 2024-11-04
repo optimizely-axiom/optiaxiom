@@ -9,6 +9,7 @@ Contains the public documentation site built using Next.js and Nextra.
 Place demos in the `demos/` folder and use with the `Demo` component to showcase component usages.
 
 ```mdx
+{/* pages/components/switch.mdx */}
 import { Demo } from "@/components/demo";
 import { SizeUsage, Usage } from "@/demos/switch";
 
@@ -20,6 +21,7 @@ import { SizeUsage, Usage } from "@/demos/switch";
 Export an `App` component from your demo usage:
 
 ```tsx
+// demons/switch/usage/App.tsx
 import { Switch } from "@optiaxiom/react";
 
 export function App() {
@@ -30,6 +32,7 @@ export function App() {
 Optionally specify props on the `App` component to expose dynamic demo controls:
 
 ```tsx
+// demons/switch/size-usage/App.tsx
 import type { ComponentPropsWithRef } from "react";
 
 import { Switch } from "@optiaxiom/react";
