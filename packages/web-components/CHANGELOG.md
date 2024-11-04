@@ -1,5 +1,11 @@
 # @optiaxiom/web-components
 
+## 0.1.4
+
+### Patch Changes
+
+- 5e965c5: fix focus trapping in web-components
+
 ## 0.1.3
 
 ### Patch Changes
