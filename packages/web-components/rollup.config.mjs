@@ -93,6 +93,25 @@ export default defineConfig([
         },
       },
       {
+        name: "active-element",
+        transform(code) {
+          if (!code.includes("document.activeElement")) {
+            return null;
+          }
+
+          return code.replaceAll(
+            "document.activeElement",
+            `(() => {
+  let active = document.activeElement;
+  while (active?.shadowRoot) {
+    active = active.shadowRoot.activeElement;
+  }
+  return active;
+})()`,
+          );
+        },
+      },
+      {
         name: "radix-focus-scope",
         transform(code, id) {
           if (!id.includes("react-focus-scope")) {
