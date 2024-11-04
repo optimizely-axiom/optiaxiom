@@ -153,6 +153,15 @@ keep(el.parentNode instanceof ShadowRoot ? el.parentNode.host : el.parentNode)`,
               "lastFocusedElementRef.current = target",
               "lastFocusedElementRef.current = event.target.shadowRoot ? event.composedPath()[0] : event.target",
             )
+            .replace(
+              "document.addEventListener",
+              "const root = container?.getRootNode() ?? document; document.addEventListener",
+            )
+            .replaceAll("document.addEventListener", "root.addEventListener")
+            .replaceAll(
+              "document.removeEventListener",
+              "root.removeEventListener",
+            )
             .replaceAll(
               /(\w+)\.contains\(/g,
               `((container, target) => {
