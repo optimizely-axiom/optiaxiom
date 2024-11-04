@@ -327,7 +327,9 @@ function toVdom<P>(
 }
 
 const toCamelCase = (str: string) =>
-  str.replace(/-(\w)/g, (_, c) => c.toUpperCase());
+  str.startsWith("aria-") || str.startsWith("data-")
+    ? str
+    : str.replace(/-(\w)/g, (_, c) => c.toUpperCase());
 
 const toNormalizedEvent = (name: string) =>
   name.slice("on".length).toLowerCase();
