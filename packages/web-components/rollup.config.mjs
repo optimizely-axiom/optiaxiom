@@ -112,6 +112,36 @@ export default defineConfig([
         },
       },
       {
+        name: "aria-hidden",
+        transform(code, id) {
+          if (!id.includes("aria-hidden")) {
+            return null;
+          }
+
+          return code
+            .replace(
+              "keep(el.parentNode)",
+              `if (el.parentNode instanceof ShadowRoot) {
+  for (const slot of el.parentNode.querySelectorAll('slot')) {
+    for (const node of slot.assignedElements()) {
+      elementsToKeep.add(node);
+    }
+  }
+}
+keep(el.parentNode instanceof ShadowRoot ? el.parentNode.host : el.parentNode)`,
+            )
+            .replaceAll(
+              /(\w+)\.contains\(/g,
+              `((container, target) => {
+  while (target.getRootNode() instanceof ShadowRoot) {
+    target = target.getRootNode().host;
+  }
+  return container.contains(target);
+})($1,`,
+            );
+        },
+      },
+      {
         name: "radix-focus-scope",
         transform(code, id) {
           if (!id.includes("react-focus-scope")) {
