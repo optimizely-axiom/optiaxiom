@@ -2,7 +2,6 @@ import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import { Portal } from "@radix-ui/react-portal";
 import * as RadixToast from "@radix-ui/react-toast";
 import {
-  cloneElement,
   type ComponentPropsWithoutRef,
   forwardRef,
   isValidElement,
@@ -15,6 +14,7 @@ import { Flex } from "../flex";
 import { extractSprinkles } from "../sprinkles";
 import { Toast } from "../toast/Toast";
 import { ToastAction } from "../toast-action";
+import { ToastContextProvider } from "../toast-context";
 import { ToastTitle } from "../toast-title";
 import { type createToaster, toaster } from "./toaster";
 import * as styles from "./ToastProvider.css";
@@ -77,39 +77,32 @@ export const ToastProvider = forwardRef<HTMLOListElement, ToastProps>(
         swipeDirection={swipeDirection ?? mapPositionToSwipeDirection[position]}
         swipeThreshold={swipeThreshold}
       >
-        {toasts.map(({ id, open, toast }) =>
-          cloneElement(
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any -- https://github.com/microsoft/TypeScript/issues/53178
-            isValidElement<any>(toast) ? (
-              toast
-            ) : (
-              <Toast colorScheme={toast.type} key={id}>
-                <ToastTitle>{toast.title}</ToastTitle>
-                {toast.action && (
-                  <ToastAction
-                    altText={toast.action.altText}
-                    onClick={toast.action.onClick}
-                  >
-                    {toast.action.label}
-                  </ToastAction>
-                )}
-              </Toast>
-            ),
+        {toasts.map(({ id, open, toast }) => (
+          <ToastContextProvider
+            key={id}
+            onOpenChange={() => toasterProp.remove(id)}
+            open={open}
+          >
             {
-              forceMount: true,
-              key: id,
-              onOpenChange: (open: boolean) => {
-                if (
-                  isValidElement<ComponentPropsWithoutRef<typeof Toast>>(toast)
-                ) {
-                  toast.props.onOpenChange?.(open);
-                }
-                toasterProp.remove(id);
-              },
-              open,
-            },
-          ),
-        )}
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any -- https://github.com/microsoft/TypeScript/issues/53178
+              isValidElement<any>(toast) ? (
+                toast
+              ) : (
+                <Toast colorScheme={toast.type} key={id}>
+                  <ToastTitle>{toast.title}</ToastTitle>
+                  {toast.action && (
+                    <ToastAction
+                      altText={toast.action.altText}
+                      onClick={toast.action.onClick}
+                    >
+                      {toast.action.label}
+                    </ToastAction>
+                  )}
+                </Toast>
+              )
+            }
+          </ToastContextProvider>
+        ))}
 
         <Portal container={container}>
           <Flex

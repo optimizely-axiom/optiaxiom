@@ -10,6 +10,7 @@ import { IconCircleInfoFilled } from "../icons/IconCircleInfoFilled";
 import { IconTriangleExclamationFilled } from "../icons/IconTriangleExclamationFilled";
 import { IconX } from "../icons/IconX";
 import { extractSprinkles } from "../sprinkles";
+import { useToastContext } from "../toast-context";
 import * as styles from "./Toast.css";
 
 type ToastProps = BoxProps<
@@ -31,12 +32,17 @@ export const Toast = forwardRef<HTMLLIElement, ToastProps>(
     ref,
   ) => {
     const { restProps, sprinkleProps } = extractSprinkles(props);
+    const context = useToastContext("Toast");
 
     return (
       <Box asChild {...styles.root({ colorScheme })} {...sprinkleProps}>
         <RadixToast.Root
-          onOpenChange={onOpenChange}
-          open={open}
+          forceMount={!!context}
+          onOpenChange={(open) => {
+            onOpenChange?.(open);
+            context.onOpenChange(open);
+          }}
+          open={context.open || open}
           ref={ref}
           {...restProps}
         >
