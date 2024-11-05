@@ -56,6 +56,7 @@
     "./DrawerTitle": "./dist/components/DrawerTitle.js",
     "./DropdownMenu": "./dist/components/DropdownMenu.js",
     "./DropdownMenuContent": "./dist/components/DropdownMenuContent.js",
+    "./DropdownMenuGroup": "./dist/components/DropdownMenuGroup.js",
     "./DropdownMenuItem": "./dist/components/DropdownMenuItem.js",
     "./DropdownMenuLabel": "./dist/components/DropdownMenuLabel.js",
     "./DropdownMenuSeparator": "./dist/components/DropdownMenuSeparator.js",
