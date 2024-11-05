@@ -36,8 +36,8 @@ export default {
   button: "Button",
   "toggle-button": "ToggleButton",
 
-  "-- Combobox": {
-    title: "Combobox",
+  "-- Comboboxes": {
+    title: "Comboboxes",
     type: "separator",
   },
   autocomplete: {
