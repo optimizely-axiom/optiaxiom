@@ -5,42 +5,45 @@ import { type ReactNode, useEffect } from "react";
 import { ComboboxContextProvider } from "../combobox-context";
 import { Popover } from "../popover";
 
-type ComboBoxProps<Item> = {
+type ComboBoxProps<Item, Mode extends "multiple" | "single" = "single"> = {
   children: ReactNode;
   defaultOpen?: boolean;
-  defaultValue?: Item;
+  defaultValue?: Mode extends "multiple" ? Item[] : Item;
+  mode: Mode;
   onInputValueChange?: (inputValue: string) => void;
   onOpenChange?: (open: boolean) => void;
-  onValueChange?: (value: Item) => void;
+  onValueChange?: (value: Mode extends "multiple" ? Item[] : Item) => void;
   open?: boolean;
-  value?: Item;
+  value?: Mode extends "multiple" ? Item[] : Item;
 } & Pick<
   UseComboboxProps<Item>,
   "isItemDisabled" | "items" | "itemToKey" | "itemToString"
 >;
 
-export function Combobox<Item>({
+export function Combobox<Item, Mode extends "multiple" | "single" = "single">({
   children,
   defaultOpen = false,
   defaultValue,
   items,
   itemToKey = (value) => value,
   itemToString = (value) => (value ? String(value) : ""),
+  mode: modeProp,
   onInputValueChange,
   onOpenChange,
   onValueChange,
   open: openProp,
   value: valueProp,
   ...props
-}: ComboBoxProps<Item>) {
+}: ComboBoxProps<Item, Mode>) {
+  const mode = modeProp ?? "single";
   const [open, setOpen] = useControllableState({
     defaultProp: defaultOpen,
     onChange: onOpenChange,
     prop: openProp,
   });
-  const [value, setValue] = useControllableState({
-    defaultProp: defaultValue,
-    onChange: onValueChange,
+  const [value, setValue] = useControllableState<Item | Item[]>({
+    defaultProp: defaultValue ?? (mode === "multiple" ? [] : undefined),
+    onChange: onValueChange as (value: Item | Item[]) => void,
     prop: valueProp,
   });
 
@@ -63,11 +66,24 @@ export function Combobox<Item>({
     itemToString,
     onSelectedItemChange({ selectedItem, type }) {
       if (type !== useCombobox.stateChangeTypes.InputBlur) {
-        setValue(selectedItem);
+        if (mode === "single" || !Array.isArray(value)) {
+          setValue(selectedItem);
+        } else {
+          setValue(
+            value.includes(selectedItem)
+              ? value.filter((v) => v !== selectedItem)
+              : [...value, selectedItem],
+          );
+        }
+      }
+      if (
+        mode === "single" ||
+        type === useCombobox.stateChangeTypes.InputKeyDownEnter
+      ) {
         setOpen(false);
       }
     },
-    selectedItem: value ?? null,
+    selectedItem: mode === "multiple" ? null : ((value as Item) ?? null),
   });
 
   /**
@@ -84,6 +100,7 @@ export function Combobox<Item>({
         items={items}
         itemToKey={itemToKey}
         itemToString={itemToString}
+        mode={mode}
         open={open}
         setInputValue={setInputValue}
         setOpen={setOpen}
