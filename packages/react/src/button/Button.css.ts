@@ -1,10 +1,8 @@
 import { theme } from "@optiaxiom/globals";
 
-import * as styles from "../button-group/ButtonGroup.css";
+import { groupStyle } from "../button-group/groupStyle";
 import { createVar, fallbackVar, style } from "../vanilla-extract";
 import { recipe, type RecipeVariants } from "../vanilla-extract";
-
-const group = styles.className;
 
 const accentColorVar = createVar();
 const hoverAccentColorVar = createVar();
@@ -43,41 +41,7 @@ export const button = recipe({
             outlineOffset: "1px",
             zIndex: theme.zIndex["10"],
           },
-        [`${group}[data-orientation="horizontal"] &:not(:first-child):not(:last-child)`]:
-          {
-            borderInlineWidth: "0.5px",
-          },
-        [`${group}[data-orientation="horizontal"] &:not(:only-child):first-child`]:
-          {
-            borderBottomRightRadius: 0,
-            borderRightWidth: "0.5px",
-            borderTopRightRadius: 0,
-          },
-        [`${group}[data-orientation="horizontal"] &:not(:only-child):last-child`]:
-          {
-            borderBottomLeftRadius: 0,
-            borderLeftWidth: "0.5px",
-            borderTopLeftRadius: 0,
-          },
-        [`${group}[data-orientation="vertical"] &:not(:first-child):not(:last-child)`]:
-          {
-            borderBlockWidth: "0.5px",
-          },
-        [`${group}[data-orientation="vertical"] &:not(:only-child):first-child`]:
-          {
-            borderBottomLeftRadius: 0,
-            borderBottomRightRadius: 0,
-            borderBottomWidth: "0.5px",
-          },
-        [`${group}[data-orientation="vertical"] &:not(:only-child):last-child`]:
-          {
-            borderTopLeftRadius: 0,
-            borderTopRightRadius: 0,
-            borderTopWidth: "0.5px",
-          },
-        [`${group}[data-orientation] &:not(:first-child):not(:last-child)`]: {
-          borderRadius: 0,
-        },
+        ...groupStyle(),
       },
     }),
   ],
