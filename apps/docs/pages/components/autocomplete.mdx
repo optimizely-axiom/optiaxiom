@@ -5,7 +5,7 @@ import { SearchInput } from "@optiaxiom/react";
 import {
   Autocomplete,
   AutocompleteContent,
-  AutocompleteEmptyItem,
+  AutocompleteEmpty,
   AutocompleteItem,
   AutocompleteItemIndicator,
   AutocompleteList,
@@ -28,7 +28,7 @@ Text field with inline autocomplete to show suggestions while allowing freeform 
 import {
   Autocomplete,
   AutocompleteContent,
-  AutocompleteEmptyItem,
+  AutocompleteEmpty,
   AutocompleteItem,
   AutocompleteItemIndicator,
   AutocompleteList,
@@ -46,7 +46,7 @@ export default () => (
         </AutocompleteItem>
       </AutocompleteList>
 
-      <AutocompleteEmptyItem />
+      <AutocompleteEmpty />
     </AutocompleteContent>
   </Autocomplete>
 );
@@ -60,7 +60,7 @@ export default () => (
 <PropsTable component={AutocompleteList} />
 <PropsTable component={AutocompleteItem} />
 <PropsTable component={AutocompleteItemIndicator} />
-<PropsTable component={AutocompleteEmptyItem} />
+<PropsTable component={AutocompleteEmpty} />
 
 ## Changelog
 

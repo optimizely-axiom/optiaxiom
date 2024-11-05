@@ -2,7 +2,7 @@ import { Box } from "@optiaxiom/react";
 import {
   Autocomplete,
   AutocompleteContent,
-  AutocompleteEmptyItem,
+  AutocompleteEmpty,
   AutocompleteItem,
   AutocompleteItemIndicator,
   AutocompleteList,
@@ -49,7 +49,7 @@ export function App() {
             </AutocompleteItem>
           )}
         </AutocompleteList>
-        <AutocompleteEmptyItem>No result found</AutocompleteEmptyItem>
+        <AutocompleteEmpty>No result found</AutocompleteEmpty>
       </AutocompleteContent>
     </Autocomplete>
   );

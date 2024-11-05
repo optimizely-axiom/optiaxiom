@@ -4,7 +4,7 @@ import { Field, Flex, Text } from "@optiaxiom/react";
 import {
   Autocomplete,
   AutocompleteContent,
-  AutocompleteEmptyItem,
+  AutocompleteEmpty,
   AutocompleteItem,
   AutocompleteItemIndicator,
   AutocompleteList,
@@ -96,7 +96,7 @@ export const Basic: Story = {
               </AutocompleteItem>
             )}
           </AutocompleteList>
-          <AutocompleteEmptyItem>No result found</AutocompleteEmptyItem>
+          <AutocompleteEmpty>No result found</AutocompleteEmpty>
         </AutocompleteContent>
       </Autocomplete>
     );
@@ -281,7 +281,7 @@ export const AsyncLoading: Story = {
           <AutocompleteList>
             {(item) => <AutocompleteItem>{item}</AutocompleteItem>}
           </AutocompleteList>
-          <AutocompleteEmptyItem>No results found</AutocompleteEmptyItem>
+          <AutocompleteEmpty>No results found</AutocompleteEmpty>
         </AutocompleteContent>
       </Autocomplete>
     );
