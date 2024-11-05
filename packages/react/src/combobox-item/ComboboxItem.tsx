@@ -1,5 +1,6 @@
 import { forwardRef } from "react";
 
+import { Checkbox } from "../checkbox";
 import { useComboboxContext } from "../combobox-context";
 import { useComboboxListContext } from "../combobox-list-context";
 import {
@@ -14,14 +15,26 @@ export const ComboboxItem = forwardRef<HTMLLIElement, ComboboxItemProps>(
   ({ addonAfter, addonBefore, children, description, icon, ...props }, ref) => {
     const { restProps, sprinkleProps } = extractSprinkles(props);
 
-    const { downshift, highlightedItem } = useComboboxContext("ComboboxItem");
+    const { downshift, highlightedItem, mode, value } =
+      useComboboxContext("ComboboxItem");
     const { item } = useComboboxListContext("ComboboxItem");
     const itemProps = downshift.getItemProps({ item });
 
     return (
       <ListboxItemBase
         addonAfter={addonAfter}
-        addonBefore={addonBefore}
+        addonBefore={
+          addonBefore ??
+          (mode === "multiple" && (
+            <Checkbox
+              checked={
+                Array.isArray(value) ? value.includes(item) : value === item
+              }
+              disabled={itemProps["aria-disabled"]}
+              tabIndex={-1}
+            />
+          ))
+        }
         description={description}
         icon={icon}
         {...sprinkleProps}

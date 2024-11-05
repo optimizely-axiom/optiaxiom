@@ -9,7 +9,8 @@ type ComboboxInputProps = ComponentPropsWithoutRef<typeof Input>;
 export const ComboboxInput = forwardRef<HTMLInputElement, ComboboxInputProps>(
   (props, ref) => {
     const { restProps, sprinkleProps } = extractSprinkles(props);
-    const { downshift, setInputValue } = useComboboxContext("ComboboxInput");
+    const { downshift, highlightedItem, setInputValue } =
+      useComboboxContext("ComboboxInput");
 
     return (
       <Input
@@ -19,6 +20,12 @@ export const ComboboxInput = forwardRef<HTMLInputElement, ComboboxInputProps>(
           ...restProps,
           onChange: (event) => {
             setInputValue("value" in event.target ? event.target.value : "");
+          },
+          onKeyDown: (event) => {
+            if (event.key === " " && highlightedItem) {
+              event.preventDefault();
+              downshift.selectItem(highlightedItem);
+            }
           },
           ref,
         })}
