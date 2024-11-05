@@ -4,6 +4,7 @@ import {
   Avatar,
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
@@ -16,10 +17,17 @@ import {
 import { action } from "@storybook/addon-actions";
 import { expect, screen, userEvent, waitFor } from "@storybook/test";
 import {
+  IconBell,
+  IconBook,
   IconFileExcel,
   IconFileTypePdf,
   IconFileTypePpt,
   IconFileWord,
+  IconHelp,
+  IconLock,
+  IconLogout,
+  IconSettings,
+  IconUser,
   IconVideo,
 } from "@tabler/icons-react";
 
@@ -222,6 +230,54 @@ export const AvatarTrigger: Story = {
           <DropdownMenuLabel>My Profile</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuItem>Logout</DropdownMenuItem>
+        </DropdownMenuContent>
+      </>
+    ),
+  },
+};
+
+export const Group: Story = {
+  args: {
+    children: (
+      <>
+        <DropdownMenuTrigger appearance="subtle" icon={null} iconOnly size="lg">
+          <Avatar
+            name="Arya Stark"
+            size="sm"
+            src="https://images.unsplash.com/photo-1511485977113-f34c92461ad9?ixlib=rb-1.2.1&w=128&h=128&dpr=2&q=80"
+          />
+        </DropdownMenuTrigger>
+
+        <DropdownMenuContent>
+          <DropdownMenuGroup>
+            <DropdownMenuItem addonBefore={<IconUser />}>
+              Account
+            </DropdownMenuItem>
+            <DropdownMenuItem addonBefore={<IconSettings />}>
+              Settings
+            </DropdownMenuItem>
+            <DropdownMenuItem addonBefore={<IconLock />}>
+              Privacy
+            </DropdownMenuItem>
+            <DropdownMenuItem addonBefore={<IconBell />}>
+              Notifications
+            </DropdownMenuItem>
+          </DropdownMenuGroup>
+          <DropdownMenuSeparator />
+
+          <DropdownMenuGroup>
+            <DropdownMenuItem addonBefore={<IconBook />}>
+              Help Guide
+            </DropdownMenuItem>
+            <DropdownMenuItem addonBefore={<IconHelp />}>
+              Help Center
+            </DropdownMenuItem>
+          </DropdownMenuGroup>
+          <DropdownMenuSeparator />
+
+          <DropdownMenuItem addonBefore={<IconLogout />}>
+            Log out
+          </DropdownMenuItem>
         </DropdownMenuContent>
       </>
     ),
