@@ -6,10 +6,16 @@ import {
   ButtonGroup,
   DropdownMenu,
   DropdownMenuTrigger,
+  Field,
   Flex,
   SearchInput,
 } from "@optiaxiom/react";
-import { IconArrowRight, IconDownload, IconPhoto } from "@tabler/icons-react";
+import {
+  IconArrowRight,
+  IconDownload,
+  IconPhoto,
+  IconX,
+} from "@tabler/icons-react";
 
 export default {
   component: ButtonGroup,
@@ -115,7 +121,10 @@ export const WithInput: Story = {
         <DropdownMenu>
           <DropdownMenuTrigger>Category</DropdownMenuTrigger>
         </DropdownMenu>
-        <SearchInput />
+        <Field>
+          <SearchInput />
+        </Field>
+        <Button icon={<IconX />} />
       </>
     ),
   },
