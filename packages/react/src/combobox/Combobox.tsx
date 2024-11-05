@@ -1,35 +1,38 @@
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
-import { type ReactNode } from "react";
-
-import type { BoxProps } from "../box";
+import { useCombobox, type UseComboboxProps } from "downshift";
+import { type ReactNode, useEffect } from "react";
 
 import { ComboboxContextProvider } from "../combobox-context";
 import { Popover } from "../popover";
 
-type ComboBoxProps = BoxProps<
-  typeof Popover,
-  {
-    children: ReactNode;
-    defaultOpen?: boolean;
-    defaultValue?: string | string[];
-    mode?: "multiple" | "single";
-    onOpenChange?: (open: boolean) => void;
-    onValueChange?: (value: string | string[]) => void;
-    open?: boolean;
-    value?: string | string[];
-  }
+type ComboBoxProps<Item> = {
+  children: ReactNode;
+  defaultOpen?: boolean;
+  defaultValue?: Item;
+  onInputValueChange?: (inputValue: string) => void;
+  onOpenChange?: (open: boolean) => void;
+  onValueChange?: (value: Item) => void;
+  open?: boolean;
+  value?: Item;
+} & Pick<
+  UseComboboxProps<Item>,
+  "isItemDisabled" | "items" | "itemToKey" | "itemToString"
 >;
 
-export function Combobox({
+export function Combobox<Item>({
   children,
-  defaultOpen,
-  defaultValue = "",
-  mode = "single",
+  defaultOpen = false,
+  defaultValue,
+  items,
+  itemToKey = (value) => value,
+  itemToString = (value) => (value ? String(value) : ""),
+  onInputValueChange,
   onOpenChange,
   onValueChange,
   open: openProp,
   value: valueProp,
-}: Partial<ComboBoxProps>) {
+  ...props
+}: ComboBoxProps<Item>) {
   const [open, setOpen] = useControllableState({
     defaultProp: defaultOpen,
     onChange: onOpenChange,
@@ -41,18 +44,55 @@ export function Combobox({
     prop: valueProp,
   });
 
+  const [inputValue, setInputValue] = useControllableState({
+    defaultProp: "",
+    onChange: onInputValueChange,
+  });
+  useEffect(() => {
+    if (!open) {
+      setInputValue("");
+    }
+  }, [open, setInputValue]);
+
+  const downshift = useCombobox({
+    ...props,
+    inputValue,
+    isOpen: open,
+    items,
+    itemToKey,
+    itemToString,
+    onSelectedItemChange({ selectedItem, type }) {
+      if (type !== useCombobox.stateChangeTypes.InputBlur) {
+        setValue(selectedItem);
+        setOpen(false);
+      }
+    },
+    selectedItem: value ?? null,
+  });
+
+  /**
+   * Dummy calls to suppress warning from downshift
+   */
+  downshift.getInputProps({}, { suppressRefError: true });
+  downshift.getMenuProps({}, { suppressRefError: true });
+
   return (
-    <ComboboxContextProvider
-      mode={mode}
-      open={open}
-      setOpen={setOpen}
-      setValue={setValue}
-      value={value}
-    >
-      <Popover onOpenChange={setOpen} open={open}>
+    <Popover onOpenChange={setOpen} open={open}>
+      <ComboboxContextProvider
+        downshift={downshift}
+        highlightedItem={items[downshift.highlightedIndex]}
+        items={items}
+        itemToKey={itemToKey}
+        itemToString={itemToString}
+        open={open}
+        setInputValue={setInputValue}
+        setOpen={setOpen}
+        setValue={setValue}
+        value={value}
+      >
         {children}
-      </Popover>
-    </ComboboxContextProvider>
+      </ComboboxContextProvider>
+    </Popover>
   );
 }
 

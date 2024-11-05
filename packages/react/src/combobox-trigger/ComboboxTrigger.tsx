@@ -1,41 +1,17 @@
-import { forwardRef } from "react";
+import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
-import type { ButtonProps } from "../button";
-
-import { useComboboxContext } from "../combobox-context";
-import { ComboboxMultiTrigger } from "../combobox-multi-trigger";
-import { ComboboxSingleTrigger } from "../combobox-single-trigger";
+import { MenuButton } from "../menu-button";
 import { PopoverTrigger } from "../popover-trigger";
 
-type ComboboxTriggerProps = ButtonProps<
-  typeof PopoverTrigger,
-  {
-    maxDisplayedItems?: number;
-    title?: string;
-  }
->;
+type ComboboxTriggerProps = ComponentPropsWithoutRef<typeof PopoverTrigger>;
 
 export const ComboboxTrigger = forwardRef<
   HTMLButtonElement,
   ComboboxTriggerProps
->(({ asChild, children, maxDisplayedItems = 2, title, ...props }, ref) => {
-  const { mode } = useComboboxContext("Combobox");
-
+>(({ asChild, children, ...props }, ref) => {
   return (
-    <PopoverTrigger asChild ref={ref}>
-      {asChild ? (
-        children
-      ) : mode === "single" ? (
-        <ComboboxSingleTrigger title={title} {...props} />
-      ) : mode === "multiple" ? (
-        <ComboboxMultiTrigger
-          maxDisplayedItems={maxDisplayedItems}
-          title={title}
-          {...props}
-        />
-      ) : (
-        children
-      )}
+    <PopoverTrigger asChild ref={ref} {...props}>
+      {asChild ? children : <MenuButton>{children}</MenuButton>}
     </PopoverTrigger>
   );
 });
