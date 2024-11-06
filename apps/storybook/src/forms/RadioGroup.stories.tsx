@@ -96,8 +96,8 @@ const props = {
 
 export const ComplexExample1: Story = {
   render: (args) => (
-    <RadioGroup asChild {...args} defaultValue="label-1" m="auto" w="3/4">
-      <Grid gridTemplateColumns="2">
+    <Grid asChild gridTemplateColumns="2">
+      <RadioGroup {...args} defaultValue="label-1" m="auto" w="3/4">
         <Radio
           className={styles.item}
           {...props}
@@ -122,8 +122,8 @@ export const ComplexExample1: Story = {
         >
           Social Proof
         </Radio>
-      </Grid>
-    </RadioGroup>
+      </RadioGroup>
+    </Grid>
   ),
 };
 

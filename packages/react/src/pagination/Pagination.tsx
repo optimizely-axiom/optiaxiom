@@ -5,6 +5,7 @@ import { forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
 import { Button } from "../button";
+import { ButtonBase } from "../button-base";
 import { Flex } from "../flex";
 import { Icon } from "../icon";
 import { IconAngleLeft } from "../icons/IconAngleLeft";
@@ -74,7 +75,7 @@ export const Pagination = forwardRef<HTMLElement, PaginationProps>(
                       </Icon>
                     </Box>
                   ) : (
-                    <Button
+                    <ButtonBase
                       appearance="subtle"
                       aria-current={active === page ? "page" : undefined}
                       data-state={active === page ? "active" : undefined}
@@ -82,15 +83,13 @@ export const Pagination = forwardRef<HTMLElement, PaginationProps>(
                       onClick={() => setPage(page)}
                       {...styles.button()}
                     >
-                      <Box mx="0">
-                        <VisuallyHidden>page</VisuallyHidden> {page}
-                        {page === 1 ? (
-                          <VisuallyHidden>(first page)</VisuallyHidden>
-                        ) : page === total ? (
-                          <VisuallyHidden>(last page)</VisuallyHidden>
-                        ) : null}
-                      </Box>
-                    </Button>
+                      <VisuallyHidden>page</VisuallyHidden> {page}
+                      {page === 1 ? (
+                        <VisuallyHidden>(first page)</VisuallyHidden>
+                      ) : page === total ? (
+                        <VisuallyHidden>(last page)</VisuallyHidden>
+                      ) : null}
+                    </ButtonBase>
                   )}
                 </li>
               ))}
