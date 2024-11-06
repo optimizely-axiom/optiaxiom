@@ -1,11 +1,14 @@
 import { forwardRef } from "react";
 
-import { MenuItemBase, type MenuItemBaseProps } from "../menu-item-base";
+import {
+  ListboxItemBase,
+  type ListboxItemBaseProps,
+} from "../listbox-item-base";
 import { useSelectContext } from "../select-context";
 import { SelectItemContextProvider } from "../select-item-context";
 import { extractSprinkles } from "../sprinkles";
 
-type SelectItemProps = MenuItemBaseProps<
+type SelectItemProps = ListboxItemBaseProps<
   "li",
   {
     item: unknown;
@@ -25,7 +28,7 @@ export const SelectItem = forwardRef<HTMLLIElement, SelectItemProps>(
 
     return (
       <SelectItemContextProvider active={selectedItem === item}>
-        <MenuItemBase
+        <ListboxItemBase
           addonAfter={addonAfter}
           addonBefore={addonBefore}
           description={description}
@@ -42,7 +45,7 @@ export const SelectItem = forwardRef<HTMLLIElement, SelectItemProps>(
           >
             {children}
           </li>
-        </MenuItemBase>
+        </ListboxItemBase>
       </SelectItemContextProvider>
     );
   },

@@ -3,7 +3,7 @@ import { forwardRef } from "react";
 
 import { useAutocompleteContext } from "../autocomplete-context";
 import { Box, type BoxProps } from "../box";
-import { MenuContentBase } from "../menu-content-base";
+import { ListboxBase } from "../listbox-base";
 import { Spinner } from "../spinner";
 import * as styles from "./AutocompleteContent.css";
 
@@ -32,7 +32,7 @@ export const AutocompleteContent = forwardRef<
     const { downshift, isOpen } = useAutocompleteContext("AutocompleteContent");
 
     return (
-      <MenuContentBase minW="trigger" open={isOpen} provider="popper">
+      <ListboxBase minW="trigger" open={isOpen} provider="popper">
         <Box asChild ref={ref} {...styles.content({}, className)} {...props}>
           <PopperContent align={align} asChild sideOffset={sideOffset}>
             <ul {...downshift.getMenuProps({}, { suppressRefError: true })}>
@@ -48,7 +48,7 @@ export const AutocompleteContent = forwardRef<
             </ul>
           </PopperContent>
         </Box>
-      </MenuContentBase>
+      </ListboxBase>
     );
   },
 );

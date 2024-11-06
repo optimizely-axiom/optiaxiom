@@ -2,7 +2,7 @@ import { PopperContent } from "@radix-ui/react-popper";
 import { forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
-import { MenuContentBase } from "../menu-content-base";
+import { ListboxBase } from "../listbox-base";
 import { useSelectContext } from "../select-context";
 import { Spinner } from "../spinner";
 import * as styles from "./SelectContent.css";
@@ -30,7 +30,7 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
     const { downshift, isOpen } = useSelectContext("SelectContent");
 
     return (
-      <MenuContentBase open={isOpen} provider="popper">
+      <ListboxBase open={isOpen} provider="popper">
         <Box asChild ref={ref} {...styles.content({}, className)} {...props}>
           <PopperContent
             align={align}
@@ -51,7 +51,7 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
             </ul>
           </PopperContent>
         </Box>
-      </MenuContentBase>
+      </ListboxBase>
     );
   },
 );

@@ -8,9 +8,9 @@ import type { ExtendProps } from "../utils";
 import { AnimatePresence } from "../animate-presence";
 import { Box, type BoxProps } from "../box";
 import { Transition } from "../transition";
-import * as styles from "./MenuContentBase.css";
+import * as styles from "./ListboxBase.css";
 
-export type MenuContentBaseProps<
+export type ListboxBaseProps<
   T extends ElementType = "div",
   P = unknown,
 > = BoxProps<
@@ -29,9 +29,9 @@ const mapProviderToPortal = {
   popper: Portal,
 };
 
-export const MenuContentBase = forwardRef<
+export const ListboxBase = forwardRef<
   HTMLDivElement,
-  MenuContentBaseProps<
+  ListboxBaseProps<
     "div",
     {
       open: boolean | undefined;
@@ -74,4 +74,4 @@ export const MenuContentBase = forwardRef<
   },
 );
 
-MenuContentBase.displayName = "@optiaxiom/react/MenuContentBase";
+ListboxBase.displayName = "@optiaxiom/react/ListboxBase";
