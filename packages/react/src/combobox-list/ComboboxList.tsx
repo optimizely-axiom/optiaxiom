@@ -1,23 +1,13 @@
-import { forwardRef, type ReactNode } from "react";
+import { forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
 import { useComboboxContext } from "../combobox-context";
-import { ComboboxListContextProvider } from "../combobox-list-context";
 
-type ComboboxListProps = BoxProps<
-  "ul",
-  {
-    /**
-     * Render each item using a children render prop.
-     */
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    children: (item: any) => ReactNode;
-  }
->;
+type ComboboxListProps = BoxProps<"ul">;
 
 export const ComboboxList = forwardRef<HTMLUListElement, ComboboxListProps>(
   ({ children }, ref) => {
-    const { downshift, items, itemToKey } = useComboboxContext("ComboboxList");
+    const { downshift, items } = useComboboxContext("ComboboxList");
     if (!items.length) {
       return null;
     }
@@ -31,17 +21,7 @@ export const ComboboxList = forwardRef<HTMLUListElement, ComboboxListProps>(
         gap="2"
         overflow="auto"
       >
-        <ul {...downshift.getMenuProps({ ref })}>
-          {items.map((item) => (
-            <ComboboxListContextProvider
-              active={downshift.selectedItem === item}
-              item={item}
-              key={itemToKey(item)}
-            >
-              {children(item)}
-            </ComboboxListContextProvider>
-          ))}
-        </ul>
+        <ul {...downshift.getMenuProps({ ref })}>{children}</ul>
       </Box>
     );
   },

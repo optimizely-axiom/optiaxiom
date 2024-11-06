@@ -98,11 +98,15 @@ export const Basic: Story = {
         <ComboboxContent>
           <ComboboxInput placeholder="Languages..." />
           <ComboboxList>
-            {(item) => (
-              <ComboboxItem addonAfter={<ComboboxItemIndicator />}>
+            {items.map((item) => (
+              <ComboboxItem
+                addonAfter={<ComboboxItemIndicator />}
+                item={item}
+                key={item}
+              >
                 {item}
               </ComboboxItem>
-            )}
+            ))}
           </ComboboxList>
           <ComboboxEmpty>No result found</ComboboxEmpty>
         </ComboboxContent>
@@ -173,21 +177,18 @@ export const People: Story<(typeof users)[number]> = {
         <ComboboxContent>
           <ComboboxInput placeholder="People..." />
           <ComboboxList>
-            {(user) => (
+            {items.map((user) => (
               <ComboboxItem
                 addonBefore={
-                  <Avatar
-                    colorScheme="blue"
-                    name={user.name}
-                    size="sm"
-                    src={user.src}
-                  />
+                  <Avatar name={user.name} size="sm" src={user.src} />
                 }
                 description={user.email}
+                item={user}
+                key={user.id}
               >
                 {user.name}
               </ComboboxItem>
-            )}
+            ))}
           </ComboboxList>
         </ComboboxContent>
       </Combobox>
@@ -287,7 +288,11 @@ export const Controlled: Story<(typeof books)[number], "multiple"> = {
         <ComboboxContent>
           <ComboboxInput placeholder="Books..." />
           <ComboboxList>
-            {(book) => <ComboboxItem>{book.title}</ComboboxItem>}
+            {items.map((book) => (
+              <ComboboxItem item={book} key={book.id}>
+                {book.title}
+              </ComboboxItem>
+            ))}
           </ComboboxList>
           <ComboboxFooter>
             <Button onClick={() => setValue([])}>Clear All</Button>

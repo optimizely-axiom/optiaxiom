@@ -1,7 +1,7 @@
 import { forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
-import { useComboboxListContext } from "../combobox-list-context";
+import { useComboboxItemContext } from "../combobox-item-context";
 import { IconCheck } from "../icons/IconCheck";
 import { extractSprinkles } from "../sprinkles";
 
@@ -13,7 +13,7 @@ export const ComboboxItemIndicator = forwardRef<
 >(({ children, ...props }, ref) => {
   const { restProps, sprinkleProps } = extractSprinkles(props);
 
-  const { active } = useComboboxListContext("ComboboxItemIndicator");
+  const { active } = useComboboxItemContext("ComboboxItemIndicator");
   if (!active) {
     return <Box w="12" />;
   }
