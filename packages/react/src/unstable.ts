@@ -19,6 +19,7 @@ export * from "./combobox-input";
 export * from "./combobox-item";
 export * from "./combobox-item-indicator";
 export * from "./combobox-list";
+export * from "./combobox-separator";
 export * from "./combobox-trigger";
 export * from "./combobox-value";
 export * from "./data-table";
