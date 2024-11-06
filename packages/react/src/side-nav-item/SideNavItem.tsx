@@ -6,6 +6,7 @@ import { Flex } from "../flex";
 import { useSideNavContext } from "../side-nav-context";
 import { Tooltip } from "../tooltip";
 import { Transition } from "../transition";
+import { fallbackSpan } from "../utils";
 import * as styles from "./SideNavItem.css";
 
 export type SideNavItemProps = ButtonProps<
@@ -29,21 +30,17 @@ export const SideNavItem = forwardRef<HTMLButtonElement, SideNavItemProps>(
             newElement,
             undefined,
             expanded && (
-              <Flex flex="1">
-                <Transition skipAnimations={!animations}>
-                  <Box whiteSpace="nowrap">{newElement.props.children}</Box>
-                </Transition>
-              </Flex>
+              <Transition skipAnimations={!animations}>
+                <Box whiteSpace="nowrap">{newElement.props.children}</Box>
+              </Transition>
             ),
           )
         : children;
     } else {
       children = expanded && (
-        <Flex flex="1">
-          <Transition skipAnimations={!animations}>
-            <Box whiteSpace="nowrap">{children}</Box>
-          </Transition>
-        </Flex>
+        <Transition skipAnimations={!animations}>
+          <Box whiteSpace="nowrap">{children}</Box>
+        </Transition>
       );
     }
 
@@ -55,7 +52,13 @@ export const SideNavItem = forwardRef<HTMLButtonElement, SideNavItemProps>(
             side="right"
           >
             <Button
-              addonAfter={expanded && addonAfter}
+              addonAfter={
+                expanded && (
+                  <Box asChild ml="auto">
+                    {fallbackSpan(addonAfter)}
+                  </Box>
+                )
+              }
               appearance="subtle"
               asChild={asChild}
               data-state={active ? "active" : undefined}
