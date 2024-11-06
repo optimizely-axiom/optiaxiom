@@ -15,14 +15,12 @@ export function App() {
 
       <DropdownMenuContent>
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
-        <DropdownMenuItem addonBefore={<IconUser />}>
-          View Profile
-        </DropdownMenuItem>
-        <DropdownMenuItem addonBefore={<IconUsers />} disabled>
+        <DropdownMenuItem icon={<IconUser />}>View Profile</DropdownMenuItem>
+        <DropdownMenuItem disabled icon={<IconUsers />}>
           Team Management
         </DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem addonBefore={<IconLogout />}>Logout</DropdownMenuItem>
+        <DropdownMenuItem icon={<IconLogout />}>Logout</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );

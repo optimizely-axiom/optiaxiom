@@ -42,35 +42,23 @@ export const Basic: Story = {
         <DropdownMenuTrigger>Download</DropdownMenuTrigger>
 
         <DropdownMenuContent>
-          <DropdownMenuItem
-            addonBefore={<IconFileExcel />}
-            onSelect={action("excel")}
-          >
+          <DropdownMenuItem icon={<IconFileExcel />} onSelect={action("excel")}>
             Excel
           </DropdownMenuItem>
           <DropdownMenuItem
-            addonBefore={<IconFileTypePdf />}
             disabled
+            icon={<IconFileTypePdf />}
             onSelect={action("pdf")}
           >
             PDF
           </DropdownMenuItem>
-          <DropdownMenuItem
-            addonBefore={<IconFileTypePpt />}
-            onSelect={action("ppt")}
-          >
+          <DropdownMenuItem icon={<IconFileTypePpt />} onSelect={action("ppt")}>
             Powerpoint
           </DropdownMenuItem>
-          <DropdownMenuItem
-            addonBefore={<IconVideo />}
-            onSelect={action("video")}
-          >
+          <DropdownMenuItem icon={<IconVideo />} onSelect={action("video")}>
             Video
           </DropdownMenuItem>
-          <DropdownMenuItem
-            addonBefore={<IconFileWord />}
-            onSelect={action("word")}
-          >
+          <DropdownMenuItem icon={<IconFileWord />} onSelect={action("word")}>
             Word
           </DropdownMenuItem>
         </DropdownMenuContent>

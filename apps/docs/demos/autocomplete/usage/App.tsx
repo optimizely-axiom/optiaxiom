@@ -38,7 +38,7 @@ export function App() {
           {(item: (typeof items)[number]) => (
             <AutocompleteItem
               addonAfter={<AutocompleteItemIndicator />}
-              addonBefore={
+              icon={
                 <Box
                   rounded="sm"
                   style={{ aspectRatio: 1, backgroundColor: item.color }}

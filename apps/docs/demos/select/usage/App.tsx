@@ -26,7 +26,7 @@ export function App() {
         {colors.map((color) => (
           <SelectItem
             addonAfter={<SelectItemIndicator />}
-            addonBefore={
+            icon={
               <Box
                 rounded="sm"
                 style={{ aspectRatio: 1, backgroundColor: color.color }}

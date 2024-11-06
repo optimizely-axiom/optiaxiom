@@ -12,8 +12,8 @@ export function App() {
       <DropdownMenuTrigger>Open</DropdownMenuTrigger>
 
       <DropdownMenuContent>
-        <DropdownMenuItem addonBefore={<IconPencil />}>Edit</DropdownMenuItem>
-        <DropdownMenuItem addonBefore={<IconTrash />} colorScheme="danger">
+        <DropdownMenuItem icon={<IconPencil />}>Edit</DropdownMenuItem>
+        <DropdownMenuItem colorScheme="danger" icon={<IconTrash />}>
           Delete
         </DropdownMenuItem>
       </DropdownMenuContent>
