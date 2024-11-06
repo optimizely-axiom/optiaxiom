@@ -1,10 +1,10 @@
 import * as RadixPopover from "@radix-ui/react-popover";
-import { type ComponentPropsWithoutRef, forwardRef } from "react";
+import { forwardRef } from "react";
 
-import { Button } from "../button";
+import { type ButtonProps } from "../button";
 import { MenuButton } from "../menu-button";
 
-type PopoverTriggerProps = ComponentPropsWithoutRef<typeof Button>;
+type PopoverTriggerProps = ButtonProps<typeof RadixPopover.Trigger>;
 
 export const PopoverTrigger = forwardRef<
   HTMLButtonElement,
