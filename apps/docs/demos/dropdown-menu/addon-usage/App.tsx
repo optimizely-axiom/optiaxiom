@@ -22,13 +22,11 @@ export function App() {
               P
             </Kbd>
           }
-          addonBefore={<IconSettings />}
+          icon={<IconSettings />}
         >
           Preferences
         </DropdownMenuItem>
-        <DropdownMenuItem addonBefore={<IconUser />}>
-          View Profile
-        </DropdownMenuItem>
+        <DropdownMenuItem icon={<IconUser />}>View Profile</DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem
           addonAfter={
@@ -36,7 +34,7 @@ export function App() {
               Q
             </Kbd>
           }
-          addonBefore={<IconLogout />}
+          icon={<IconLogout />}
         >
           Logout
         </DropdownMenuItem>

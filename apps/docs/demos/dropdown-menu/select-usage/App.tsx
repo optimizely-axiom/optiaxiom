@@ -22,14 +22,14 @@ export function App() {
         <DropdownMenuContent>
           <DropdownMenuLabel>My Account</DropdownMenuLabel>
           <DropdownMenuItem
-            addonBefore={<IconUser />}
+            icon={<IconUser />}
             onSelect={() => setSelected("view")}
           >
             View Profile
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem
-            addonBefore={<IconLogout />}
+            icon={<IconLogout />}
             onSelect={() => setSelected("logout")}
           >
             Logout

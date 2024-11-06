@@ -10,7 +10,7 @@ type AutocompleteItemProps = MenuItemBaseProps<"li">;
 export const AutocompleteItem = forwardRef<
   HTMLLIElement,
   AutocompleteItemProps
->(({ addonAfter, addonBefore, children, description, ...props }, ref) => {
+>(({ addonAfter, addonBefore, children, description, icon, ...props }, ref) => {
   const { restProps, sprinkleProps } = extractSprinkles(props);
   const { downshift, highlightedItem } =
     useAutocompleteContext("AutocompleteItem");
@@ -22,6 +22,7 @@ export const AutocompleteItem = forwardRef<
       addonAfter={addonAfter}
       addonBefore={addonBefore}
       description={description}
+      icon={icon}
       {...sprinkleProps}
     >
       <li

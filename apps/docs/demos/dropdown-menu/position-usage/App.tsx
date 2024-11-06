@@ -20,11 +20,9 @@ export function App({
 
       <DropdownMenuContent align={align} side={side}>
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
-        <DropdownMenuItem addonBefore={<IconUser />}>
-          View Profile
-        </DropdownMenuItem>
+        <DropdownMenuItem icon={<IconUser />}>View Profile</DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem addonBefore={<IconLogout />}>Logout</DropdownMenuItem>
+        <DropdownMenuItem icon={<IconLogout />}>Logout</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );

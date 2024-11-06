@@ -10,6 +10,7 @@ import {
 
 import { Box, type BoxProps } from "../box";
 import { Flex } from "../flex";
+import { Icon } from "../icon";
 import { Text } from "../text";
 import { type ExtendProps, fallbackSpan } from "../utils";
 import * as styles from "./MenuItemBase.css";
@@ -24,6 +25,7 @@ export type MenuItemBaseProps<
       addonAfter?: ReactNode;
       addonBefore?: ReactNode;
       description?: ReactNode;
+      icon?: ReactNode;
     } & styles.ItemVariants,
     P
   >
@@ -38,6 +40,7 @@ export const MenuItemBase = forwardRef<HTMLDivElement, MenuItemBaseProps>(
       className,
       colorScheme = "neutral",
       description,
+      icon,
       ...props
     },
     ref,
@@ -74,11 +77,11 @@ export const MenuItemBase = forwardRef<HTMLDivElement, MenuItemBaseProps>(
         {...props}
       >
         <Slot>
-          {addonBefore && (
-            <Box asChild h="16" w="auto">
-              {fallbackSpan(addonBefore)}
-            </Box>
-          )}
+          {addonBefore ? (
+            addonBefore
+          ) : icon ? (
+            <Icon asChild>{icon}</Icon>
+          ) : null}
 
           <Slottable>{children}</Slottable>
 

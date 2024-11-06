@@ -13,7 +13,10 @@ type SelectItemProps = MenuItemBaseProps<
 >;
 
 export const SelectItem = forwardRef<HTMLLIElement, SelectItemProps>(
-  ({ addonAfter, addonBefore, children, description, item, ...props }, ref) => {
+  (
+    { addonAfter, addonBefore, children, description, icon, item, ...props },
+    ref,
+  ) => {
     const { restProps, sprinkleProps } = extractSprinkles(props);
     const { downshift, highlightedItem, selectedItem } =
       useSelectContext("SelectItem");
@@ -26,6 +29,7 @@ export const SelectItem = forwardRef<HTMLLIElement, SelectItemProps>(
           addonAfter={addonAfter}
           addonBefore={addonBefore}
           description={description}
+          icon={icon}
           {...sprinkleProps}
         >
           <li
