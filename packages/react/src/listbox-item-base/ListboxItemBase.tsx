@@ -13,9 +13,9 @@ import { Flex } from "../flex";
 import { Icon } from "../icon";
 import { Text } from "../text";
 import { type ExtendProps, fallbackSpan } from "../utils";
-import * as styles from "./MenuItemBase.css";
+import * as styles from "./ListboxItemBase.css";
 
-export type MenuItemBaseProps<
+export type ListboxItemBaseProps<
   T extends ElementType = "div",
   P = unknown,
 > = BoxProps<
@@ -31,7 +31,7 @@ export type MenuItemBaseProps<
   >
 >;
 
-export const MenuItemBase = forwardRef<HTMLDivElement, MenuItemBaseProps>(
+export const ListboxItemBase = forwardRef<HTMLDivElement, ListboxItemBaseProps>(
   (
     {
       addonAfter,
@@ -96,4 +96,4 @@ export const MenuItemBase = forwardRef<HTMLDivElement, MenuItemBaseProps>(
   },
 );
 
-MenuItemBase.displayName = "@optiaxiom/react/MenuItemBase";
+ListboxItemBase.displayName = "@optiaxiom/react/ListboxItemBase";

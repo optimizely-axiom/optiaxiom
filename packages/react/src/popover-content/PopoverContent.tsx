@@ -2,13 +2,10 @@ import { theme } from "@optiaxiom/globals";
 import * as RadixPopover from "@radix-ui/react-popover";
 import { forwardRef } from "react";
 
-import {
-  MenuContentBase,
-  type MenuContentBaseProps,
-} from "../menu-content-base";
+import { ListboxBase, type ListboxBaseProps } from "../listbox-base";
 import { usePopoverContext } from "../popover-context";
 
-type PopoverContentProps = MenuContentBaseProps<
+type PopoverContentProps = ListboxBaseProps<
   typeof RadixPopover.Content,
   {
     withArrow?: boolean;
@@ -20,7 +17,7 @@ export const PopoverContent = forwardRef<HTMLDivElement, PopoverContentProps>(
     const { open } = usePopoverContext("PopoverContent");
 
     return (
-      <MenuContentBase open={open} p="sm" provider="popover" {...props}>
+      <ListboxBase open={open} p="sm" provider="popover" {...props}>
         <RadixPopover.Content align={align} ref={ref} sideOffset={sideOffset}>
           {children}
 
@@ -45,7 +42,7 @@ export const PopoverContent = forwardRef<HTMLDivElement, PopoverContentProps>(
             </RadixPopover.Arrow>
           )}
         </RadixPopover.Content>
-      </MenuContentBase>
+      </ListboxBase>
     );
   },
 );

@@ -2,10 +2,13 @@ import { forwardRef } from "react";
 
 import { useAutocompleteContext } from "../autocomplete-context";
 import { useAutocompleteListContext } from "../autocomplete-list-context";
-import { MenuItemBase, type MenuItemBaseProps } from "../menu-item-base";
+import {
+  ListboxItemBase,
+  type ListboxItemBaseProps,
+} from "../listbox-item-base";
 import { extractSprinkles } from "../sprinkles";
 
-type AutocompleteItemProps = MenuItemBaseProps<"li">;
+type AutocompleteItemProps = ListboxItemBaseProps<"li">;
 
 export const AutocompleteItem = forwardRef<
   HTMLLIElement,
@@ -18,7 +21,7 @@ export const AutocompleteItem = forwardRef<
   const itemProps = downshift.getItemProps({ item });
 
   return (
-    <MenuItemBase
+    <ListboxItemBase
       addonAfter={addonAfter}
       addonBefore={addonBefore}
       description={description}
@@ -35,7 +38,7 @@ export const AutocompleteItem = forwardRef<
       >
         {children}
       </li>
-    </MenuItemBase>
+    </ListboxItemBase>
   );
 });
 

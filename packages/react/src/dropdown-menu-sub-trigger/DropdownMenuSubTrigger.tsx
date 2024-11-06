@@ -2,18 +2,21 @@ import * as RadixMenu from "@radix-ui/react-dropdown-menu";
 import { forwardRef } from "react";
 
 import { IconAngleRight } from "../icons/IconAngleRight";
-import { MenuItemBase, type MenuItemBaseProps } from "../menu-item-base";
+import {
+  ListboxItemBase,
+  type ListboxItemBaseProps,
+} from "../listbox-item-base";
 
-type MenuSubTriggerProps = MenuItemBaseProps<typeof RadixMenu.SubTrigger>;
+type MenuSubTriggerProps = ListboxItemBaseProps<typeof RadixMenu.SubTrigger>;
 
 export const DropdownMenuSubTrigger = forwardRef<
   HTMLDivElement,
   MenuSubTriggerProps
 >(({ children, ...props }, ref) => {
   return (
-    <MenuItemBase addonAfter={<IconAngleRight />} ref={ref} {...props}>
+    <ListboxItemBase addonAfter={<IconAngleRight />} ref={ref} {...props}>
       <RadixMenu.SubTrigger>{children}</RadixMenu.SubTrigger>
-    </MenuItemBase>
+    </ListboxItemBase>
   );
 });
 

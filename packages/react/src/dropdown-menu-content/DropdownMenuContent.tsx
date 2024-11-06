@@ -2,12 +2,9 @@ import * as RadixMenu from "@radix-ui/react-dropdown-menu";
 import { forwardRef } from "react";
 
 import { useDropdownMenuContext } from "../dropdown-menu-context";
-import {
-  MenuContentBase,
-  type MenuContentBaseProps,
-} from "../menu-content-base";
+import { ListboxBase, type ListboxBaseProps } from "../listbox-base";
 
-type DropdownMenuContentProps = MenuContentBaseProps<typeof RadixMenu.Content>;
+type DropdownMenuContentProps = ListboxBaseProps<typeof RadixMenu.Content>;
 
 export const DropdownMenuContent = forwardRef<
   HTMLDivElement,
@@ -16,7 +13,7 @@ export const DropdownMenuContent = forwardRef<
   const { open } = useDropdownMenuContext("DropdownMenuContent");
 
   return (
-    <MenuContentBase
+    <ListboxBase
       enableExitAnimation
       open={open}
       provider="dropdown-menu"
@@ -25,7 +22,7 @@ export const DropdownMenuContent = forwardRef<
       <RadixMenu.Content align={align} ref={ref} sideOffset={sideOffset}>
         {children}
       </RadixMenu.Content>
-    </MenuContentBase>
+    </ListboxBase>
   );
 });
 
