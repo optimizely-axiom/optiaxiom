@@ -1,9 +1,4 @@
-import {
-  cloneElement,
-  forwardRef,
-  isValidElement,
-  type ReactNode,
-} from "react";
+import { forwardRef, type ReactNode } from "react";
 
 import { Box, type BoxProps } from "../box";
 import { Flex } from "../flex";
@@ -40,9 +35,8 @@ export const SideNavAccountItem = forwardRef<
           {...props}
         >
           <button ref={ref}>
-            <Box asChild flex="none" my="2">
-              {isValidElement<BoxProps>(avatar) &&
-                cloneElement(avatar, { rounded: "sm" })}
+            <Box asChild flex="none" my="2" rounded="sm">
+              {avatar}
             </Box>
 
             {expanded && (

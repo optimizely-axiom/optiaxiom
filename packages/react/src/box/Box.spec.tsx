@@ -19,13 +19,13 @@ describe("Box component", () => {
         </Box>
       </Box>,
     );
-    expect(screen.getByText(/This is a box/i)).not.toContainHTML(
-      "marginLeft_4",
-    );
+    expect(screen.getByText(/This is a box/i)).toContainHTML("marginLeft_4");
     expect(screen.getByText(/This is a box/i)).not.toContainHTML(
       "marginLeft_2",
     );
-    expect(screen.getByText(/This is a box/i)).toContainHTML("marginLeft_0");
+    expect(screen.getByText(/This is a box/i)).not.toContainHTML(
+      "marginLeft_0",
+    );
   });
 
   it("should merge sprinkle props properly for direct undefined props", () => {
@@ -36,10 +36,10 @@ describe("Box component", () => {
         </Box>
       </Box>,
     );
+    expect(screen.getByText(/This is a box/i)).toContainHTML("marginLeft_4");
     expect(screen.getByText(/This is a box/i)).not.toContainHTML(
-      "marginLeft_4",
+      "marginLeft_2",
     );
-    expect(screen.getByText(/This is a box/i)).toContainHTML("marginLeft_2");
   });
 
   it("should merge sprinkle props properly for direct shorthand props", () => {
@@ -48,10 +48,11 @@ describe("Box component", () => {
         <Box m="2">This is a box</Box>
       </Box>,
     );
+    expect(screen.getByText(/This is a box/i)).toContainHTML("marginLeft_4");
+    expect(screen.getByText(/This is a box/i)).toContainHTML("marginTop_2");
     expect(screen.getByText(/This is a box/i)).not.toContainHTML(
-      "marginLeft_4",
+      "marginLeft_2",
     );
-    expect(screen.getByText(/This is a box/i)).toContainHTML("marginLeft_2");
   });
 
   it("should merge sprinkle props properly for shorthand and longhand props", () => {
@@ -78,7 +79,7 @@ describe("Box component", () => {
         <Button>This is a button</Button>
       </Text>,
     );
-    expect(screen.getByRole("button")).not.toContainHTML("fontSize_sm");
-    expect(screen.getByRole("button")).toContainHTML("fontSize_md");
+    expect(screen.getByRole("button")).toContainHTML("fontSize_sm");
+    expect(screen.getByRole("button")).not.toContainHTML("fontSize_md");
   });
 });
