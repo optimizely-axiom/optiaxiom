@@ -84,6 +84,11 @@ export function Autocomplete<Item>({
     selectedItem: selectedItem ?? null,
   });
 
+  /**
+   * Dummy calls to suppress warning from downshift
+   */
+  downshift.getMenuProps({}, { suppressRefError: true });
+
   return (
     <Popper>
       <AutocompleteContextProvider

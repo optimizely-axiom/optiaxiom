@@ -1,6 +1,6 @@
 import { forwardRef } from "react";
 
-import { useAutocompleteListContext } from "../autocomplete-list-context";
+import { useAutocompleteItemContext } from "../autocomplete-item-context";
 import { Box, type BoxProps } from "../box";
 import { IconCheck } from "../icons/IconCheck";
 import { extractSprinkles } from "../sprinkles";
@@ -13,7 +13,7 @@ export const AutocompleteItemIndicator = forwardRef<
 >(({ children, ...props }, ref) => {
   const { restProps, sprinkleProps } = extractSprinkles(props);
 
-  const { active } = useAutocompleteListContext("AutocompleteItemIndicator");
+  const { active } = useAutocompleteItemContext("AutocompleteItemIndicator");
   if (!active) {
     return <Box w="12" />;
   }
