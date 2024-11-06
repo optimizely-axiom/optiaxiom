@@ -112,17 +112,4 @@ export const input = recipe({
   },
 });
 
-export const decorator = recipe({
-  variants: {
-    position: {
-      end: {
-        mr: "8",
-      },
-      start: {
-        ml: "8",
-      },
-    },
-  },
-});
-
 export type InputVariants = RecipeVariants<typeof input>;
