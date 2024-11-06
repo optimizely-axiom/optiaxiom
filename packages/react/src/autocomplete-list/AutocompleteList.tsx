@@ -1,33 +1,35 @@
-import type { ReactNode } from "react";
+import { forwardRef } from "react";
 
 import { useAutocompleteContext } from "../autocomplete-context";
-import { AutocompleteListContextProvider } from "../autocomplete-list-context";
+import { Box, type BoxProps } from "../box";
+import { extractSprinkles } from "../sprinkles";
 
-type AutocompleteListProps = {
-  /**
-   * Render each item using a children render prop.
-   */
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  children: (item: any) => ReactNode;
-};
+type AutocompleteListProps = BoxProps<"ul">;
 
-export function AutocompleteList({ children }: AutocompleteListProps) {
-  const { downshift, items, itemToKey } =
-    useAutocompleteContext("AutocompleteList");
+export const AutocompleteList = forwardRef<
+  HTMLUListElement,
+  AutocompleteListProps
+>(({ children, ...props }, ref) => {
+  const { restProps, sprinkleProps } = extractSprinkles(props);
+
+  const { downshift, items } = useAutocompleteContext("AutocompleteList");
+  if (!items.length) {
+    return null;
+  }
 
   return (
-    <>
-      {items.map((item) => (
-        <AutocompleteListContextProvider
-          active={downshift.selectedItem === item}
-          item={item}
-          key={itemToKey(item)}
-        >
-          {children(item)}
-        </AutocompleteListContextProvider>
-      ))}
-    </>
+    <Box
+      asChild
+      display="flex"
+      flex="1"
+      flexDirection="column"
+      gap="2"
+      overflow="auto"
+      {...sprinkleProps}
+    >
+      <ul {...downshift.getMenuProps({ ref, ...restProps })}>{children}</ul>
+    </Box>
   );
-}
+});
 
 AutocompleteList.displayName = "@optiaxiom/react/AutocompleteList";

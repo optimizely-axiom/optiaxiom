@@ -90,11 +90,15 @@ export const Basic: Story = {
 
         <AutocompleteContent>
           <AutocompleteList>
-            {(item: string) => (
-              <AutocompleteItem addonAfter={<AutocompleteItemIndicator />}>
+            {items.map((item) => (
+              <AutocompleteItem
+                addonAfter={<AutocompleteItemIndicator />}
+                item={item}
+                key={item}
+              >
                 {item}
               </AutocompleteItem>
-            )}
+            ))}
           </AutocompleteList>
           <AutocompleteEmpty>No result found</AutocompleteEmpty>
         </AutocompleteContent>
@@ -232,11 +236,15 @@ export const Controlled: Story<(typeof books)[number]> = {
 
           <AutocompleteContent>
             <AutocompleteList>
-              {(item: (typeof books)[number]) => (
-                <AutocompleteItem addonAfter={<AutocompleteItemIndicator />}>
+              {items.map((item) => (
+                <AutocompleteItem
+                  addonAfter={<AutocompleteItemIndicator />}
+                  item={item}
+                  key={item.id}
+                >
                   {item.title}
                 </AutocompleteItem>
-              )}
+              ))}
             </AutocompleteList>
           </AutocompleteContent>
         </Autocomplete>
@@ -279,7 +287,11 @@ export const AsyncLoading: Story = {
         <AutocompleteTrigger placeholder="Search a language" w="208" />
         <AutocompleteContent loading={isLoading}>
           <AutocompleteList>
-            {(item) => <AutocompleteItem>{item}</AutocompleteItem>}
+            {items.map((item) => (
+              <AutocompleteItem item={item} key={item}>
+                {item}
+              </AutocompleteItem>
+            ))}
           </AutocompleteList>
           <AutocompleteEmpty>No results found</AutocompleteEmpty>
         </AutocompleteContent>

@@ -35,7 +35,7 @@ export function App() {
 
       <AutocompleteContent>
         <AutocompleteList>
-          {(item: (typeof items)[number]) => (
+          {items.map((item) => (
             <AutocompleteItem
               addonAfter={<AutocompleteItemIndicator />}
               icon={
@@ -44,10 +44,12 @@ export function App() {
                   style={{ aspectRatio: 1, backgroundColor: item.color }}
                 />
               }
+              item={item}
+              key={item.value}
             >
               {item.label}
             </AutocompleteItem>
-          )}
+          ))}
         </AutocompleteList>
         <AutocompleteEmpty>No result found</AutocompleteEmpty>
       </AutocompleteContent>

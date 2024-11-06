@@ -29,23 +29,19 @@ export const AutocompleteContent = forwardRef<
     },
     ref,
   ) => {
-    const { downshift, isOpen } = useAutocompleteContext("AutocompleteContent");
+    const { isOpen } = useAutocompleteContext("AutocompleteContent");
 
     return (
       <ListboxBase minW="trigger" open={isOpen} provider="popper">
         <Box asChild ref={ref} {...styles.content({}, className)} {...props}>
-          <PopperContent align={align} asChild sideOffset={sideOffset}>
-            <ul {...downshift.getMenuProps({}, { suppressRefError: true })}>
-              {loading ? (
-                <Box asChild display="flex" justifyContent="center" p="md">
-                  <li>
-                    <Spinner />
-                  </li>
-                </Box>
-              ) : (
-                children
-              )}
-            </ul>
+          <PopperContent align={align} sideOffset={sideOffset}>
+            {loading ? (
+              <Box display="flex" justifyContent="center" p="md">
+                <Spinner />
+              </Box>
+            ) : (
+              children
+            )}
           </PopperContent>
         </Box>
       </ListboxBase>
