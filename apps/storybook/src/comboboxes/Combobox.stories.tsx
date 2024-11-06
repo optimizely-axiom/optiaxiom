@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Avatar, Box, Button } from "@optiaxiom/react";
+import { Avatar, Box, Button, Field } from "@optiaxiom/react";
 import {
   Combobox,
   ComboboxContent,
@@ -113,6 +113,15 @@ export const Basic: Story = {
       </Combobox>
     );
   },
+};
+
+export const WithLabel: Story = {
+  ...Basic,
+  decorators: (Story) => (
+    <Field label="Label">
+      <Story />
+    </Field>
+  ),
 };
 
 export const Multiple: Story<string, "multiple"> = {
