@@ -9,27 +9,12 @@ type PopoverTriggerProps = ComponentPropsWithoutRef<typeof Button>;
 export const PopoverTrigger = forwardRef<
   HTMLButtonElement,
   PopoverTriggerProps
->(
-  (
-    { asChild, children, icon, iconPosition, justifyContent, ...props },
-    ref,
-  ) => {
-    return (
-      <RadixPopover.Trigger asChild ref={ref} {...props}>
-        {asChild ? (
-          children
-        ) : (
-          <MenuButton
-            icon={icon}
-            iconPosition={iconPosition}
-            justifyContent={justifyContent}
-          >
-            {children}
-          </MenuButton>
-        )}
-      </RadixPopover.Trigger>
-    );
-  },
-);
+>(({ asChild, children, ...props }, ref) => {
+  return (
+    <RadixPopover.Trigger asChild ref={ref} {...props}>
+      {asChild ? children : <MenuButton>{children}</MenuButton>}
+    </RadixPopover.Trigger>
+  );
+});
 
 PopoverTrigger.displayName = "@optiaxiom/react/PopoverTrigger";
