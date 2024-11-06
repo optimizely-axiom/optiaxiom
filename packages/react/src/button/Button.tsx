@@ -8,41 +8,25 @@ import {
   useEffect,
 } from "react";
 
-import { AnimatePresence } from "../animate-presence";
-import { Box, type BoxProps } from "../box";
-import { Flex } from "../flex";
+import { ButtonBase, type ButtonBaseProps } from "../button-base";
+import { ButtonLabel } from "../button-label";
+import { ButtonLoadable } from "../button-loadable";
 import { Icon } from "../icon";
-import { Spinner } from "../spinner";
-import { extractSprinkles } from "../sprinkles";
-import { type ExtendProps, fallbackSpan } from "../utils";
-import * as styles from "./Button.css";
-
-const appearances = {
-  danger: { colorScheme: "danger", variant: "solid" },
-  "danger-outline": { colorScheme: "danger", variant: "outline" },
-  default: { colorScheme: "neutral", variant: "outline" },
-  inverse: { colorScheme: "neutral", variant: "solid" },
-  primary: { colorScheme: "primary", variant: "solid" },
-  subtle: { colorScheme: "neutral", variant: "subtle" },
-} satisfies Record<string, styles.ButtonVariants>;
+import { type ExtendProps } from "../utils";
 
 export type ButtonProps<
   T extends ElementType = "button",
   P = unknown,
-> = BoxProps<
+> = ButtonBaseProps<
   T,
   ExtendProps<
     {
       addonAfter?: ReactNode;
       addonBefore?: ReactNode;
-      appearance?: keyof typeof appearances;
       children?: ReactNode;
-      disabled?: boolean;
       icon?: ReactNode;
-      iconAutosize?: boolean;
       iconPosition?: "end" | "start";
-      loading?: boolean;
-    } & Omit<styles.ButtonVariants, "colorScheme" | "iconOnly" | "variant">,
+    },
     P
   >
 >;
@@ -52,29 +36,18 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     {
       addonAfter,
       addonBefore,
-      appearance = "default",
       asChild,
       children,
-      className,
-      disabled,
       icon,
-      iconAutosize,
+      iconOnly,
       iconPosition = "start",
-      loading,
-      size = "md",
       ...props
     },
     ref,
   ) => {
     const Comp = asChild ? Slot : "button";
-    const { restProps, sprinkleProps } = extractSprinkles(props);
 
-    const presetProps = appearances[appearance];
-    const colorScheme = presetProps.colorScheme;
-    const variant = presetProps.variant;
     let isIconOnly = Boolean(!children && icon);
-    const IconOnlyComp = iconAutosize ? Box : Icon;
-
     if (asChild) {
       const newElement = isValidElement(children) ? children : null;
       isIconOnly = Boolean(!newElement?.props.children && icon);
@@ -83,25 +56,21 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             newElement,
             undefined,
             isIconOnly ? (
-              <IconOnlyComp asChild {...styles.icon()}>
-                {icon}
-              </IconOnlyComp>
+              <ButtonLoadable asChild>
+                <Icon asChild>{icon}</Icon>
+              </ButtonLoadable>
             ) : (
-              <Flex asChild {...styles.label()}>
-                {fallbackSpan(newElement.props.children)}
-              </Flex>
+              <ButtonLabel>{newElement.props.children}</ButtonLabel>
             ),
           )
         : children;
     } else {
       children = isIconOnly ? (
-        <IconOnlyComp asChild {...styles.icon()}>
-          {icon}
-        </IconOnlyComp>
+        <ButtonLoadable asChild>
+          <Icon asChild>{icon}</Icon>
+        </ButtonLoadable>
       ) : (
-        <Flex asChild {...styles.label()}>
-          {fallbackSpan(children)}
-        </Flex>
+        <ButtonLabel>{children}</ButtonLabel>
       );
     }
     if (icon && !isIconOnly) {
@@ -122,50 +91,23 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     }, [isIconMissingAriaLabel]);
 
     return (
-      <Box
+      <ButtonBase
         asChild
-        cursor={disabled || loading ? "not-allowed" : "pointer"}
-        data-disabled={disabled ? "" : undefined}
-        data-loading={loading ? "" : undefined}
-        {...styles.button(
-          {
-            colorScheme,
-            iconOnly: isIconOnly,
-            size,
-            variant,
-          },
-          className,
-        )}
-        {...sprinkleProps}
-        {...(isIconOnly && { justifyContent: "center" })}
+        iconOnly={isIconOnly || iconOnly}
+        ref={ref}
+        {...props}
+        {...((isIconOnly || iconOnly) && { justifyContent: "center" })}
       >
-        <Comp disabled={disabled || loading} ref={ref} {...restProps}>
-          <AnimatePresence>
-            {loading && (
-              <Spinner
-                aria-hidden="true"
-                colorScheme={variant === "solid" ? "inverse" : "default"}
-                size="2xs"
-                {...styles.spinner()}
-              />
-            )}
-          </AnimatePresence>
-
+        <Comp>
           {addonBefore && (
-            <Box asChild {...styles.addon()}>
-              {fallbackSpan(addonBefore)}
-            </Box>
+            <ButtonLoadable asChild>{addonBefore}</ButtonLoadable>
           )}
 
           <Slottable>{children}</Slottable>
 
-          {addonAfter && (
-            <Box asChild {...styles.addon()}>
-              {fallbackSpan(addonAfter)}
-            </Box>
-          )}
+          {addonAfter && <ButtonLoadable asChild>{addonAfter}</ButtonLoadable>}
         </Comp>
-      </Box>
+      </ButtonBase>
     );
   },
 );

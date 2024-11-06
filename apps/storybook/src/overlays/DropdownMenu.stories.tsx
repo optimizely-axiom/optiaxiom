@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import {
+  Avatar,
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
@@ -219,4 +220,22 @@ export const TriggerWidth: Story = {
       </DropdownMenu>
     </Flex>
   ),
+};
+
+export const AvatarTrigger: Story = {
+  args: {
+    children: (
+      <>
+        <DropdownMenuTrigger appearance="subtle" icon={null} iconOnly size="lg">
+          <Avatar name="Arthur Morgan" size="sm" />
+        </DropdownMenuTrigger>
+
+        <DropdownMenuContent>
+          <DropdownMenuLabel>My Profile</DropdownMenuLabel>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem>Logout</DropdownMenuItem>
+        </DropdownMenuContent>
+      </>
+    ),
+  },
 };
