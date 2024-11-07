@@ -1,5 +1,7 @@
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
+import { useComboboxContext } from "../combobox-context";
+import { Command } from "../command";
 import { useFieldContext } from "../field-context";
 import { PopoverContent } from "../popover-content";
 
@@ -8,6 +10,14 @@ type ComboboxContentProps = ComponentPropsWithoutRef<typeof PopoverContent>;
 export const ComboboxContent = forwardRef<HTMLDivElement, ComboboxContentProps>(
   ({ children, ...props }, ref) => {
     const { labelId } = useFieldContext();
+    const {
+      isItemDisabled,
+      items,
+      itemToKey,
+      itemToString,
+      onInputValueChange,
+      onSelect,
+    } = useComboboxContext("ComboboxContent");
 
     return (
       <PopoverContent
@@ -17,7 +27,16 @@ export const ComboboxContent = forwardRef<HTMLDivElement, ComboboxContentProps>(
         ref={ref}
         {...props}
       >
-        {children}
+        <Command
+          isItemDisabled={isItemDisabled}
+          items={items}
+          itemToKey={itemToKey}
+          itemToString={itemToString}
+          onInputValueChange={onInputValueChange}
+          onSelect={onSelect}
+        >
+          {children}
+        </Command>
       </PopoverContent>
     );
   },
