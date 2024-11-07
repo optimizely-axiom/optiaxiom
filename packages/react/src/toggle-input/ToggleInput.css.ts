@@ -22,6 +22,7 @@ export const toggleInput = recipe({
       },
 
       color: theme.colors["fg.default"],
+      position: "relative",
 
       selectors: {
         [`&:has(${input}:not(:disabled):checked):hover`]: {
