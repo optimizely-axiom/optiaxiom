@@ -75,17 +75,19 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
           {...restProps}
         />
 
-        <ToggleInputControl {...styles.control()}>
+        <ToggleInputControl {...styles.control({ shift: Boolean(children) })}>
           <Box {...styles.indicator()}></Box>
         </ToggleInputControl>
 
-        <ToggleInputContent>
-          <ToggleInputLabel>{children}</ToggleInputLabel>
+        {(children || description) && (
+          <ToggleInputContent>
+            {children && <ToggleInputLabel>{children}</ToggleInputLabel>}
 
-          {description && (
-            <ToggleInputDescription>{description}</ToggleInputDescription>
-          )}
-        </ToggleInputContent>
+            {description && (
+              <ToggleInputDescription>{description}</ToggleInputDescription>
+            )}
+          </ToggleInputContent>
+        )}
       </ToggleInput>
     );
   },

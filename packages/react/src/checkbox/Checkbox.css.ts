@@ -31,7 +31,6 @@ export const control = recipe({
   base: [
     {
       color: "fg.default.inverse",
-      mt: "2",
       rounded: "xs",
       size: "16",
     },
@@ -48,6 +47,15 @@ export const control = recipe({
       },
     }),
   ],
+
+  variants: {
+    shift: {
+      false: {},
+      true: {
+        mt: "2",
+      },
+    },
+  },
 });
 
 export const indicator = recipe({
