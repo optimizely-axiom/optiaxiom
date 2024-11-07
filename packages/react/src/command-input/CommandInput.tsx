@@ -1,6 +1,7 @@
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import { useCommandContext } from "../command-context";
+import { IconMagnifyingGlass } from "../icons/IconMagnifyingGlass";
 import { Input } from "../input";
 import { extractSprinkles } from "../sprinkles";
 
@@ -13,6 +14,8 @@ export const CommandInput = forwardRef<HTMLInputElement, CommandInputProps>(
 
     return (
       <Input
+        addonBefore={<IconMagnifyingGlass />}
+        m="4"
         {...sprinkleProps}
         {...downshift.getInputProps({
           ...restProps,
