@@ -5,7 +5,7 @@ import { type BoxProps } from "../box";
 import { Flex } from "../flex";
 import { Heading } from "../heading";
 import { Icon } from "../icon";
-import { IconTriangleExclamation } from "../icons/IconTriangleExclamation";
+import { IconTriangleExclamationFilled } from "../icons/IconTriangleExclamationFilled";
 import { extractSprinkles } from "../sprinkles";
 import { fallbackSpan } from "../utils";
 
@@ -22,9 +22,13 @@ export const AlertDialogTitle = forwardRef<
 >(({ addonBefore, children, ...props }, ref) => {
   const { restProps, sprinkleProps } = extractSprinkles(props);
   return (
-    <Flex flexDirection="row" gap="md" p="lg" pb="md" {...sprinkleProps}>
+    <Flex flexDirection="row" gap="xs" p="lg" pb="md" {...sprinkleProps}>
       <Icon asChild color="fg.error">
-        {addonBefore ? fallbackSpan(addonBefore) : <IconTriangleExclamation />}
+        {addonBefore ? (
+          fallbackSpan(addonBefore)
+        ) : (
+          <IconTriangleExclamationFilled />
+        )}
       </Icon>
 
       <Heading
