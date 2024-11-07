@@ -32,7 +32,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
       >
         <ToggleInputHiddenInput ref={ref} {...styles.input()} {...restProps} />
 
-        <ToggleInputControl {...styles.control()}>
+        <ToggleInputControl {...styles.control({ shift: Boolean(children) })}>
           <Box {...styles.indicator()}>
             <Box asChild {...styles.icon()}>
               {indeterminate ? <IconMinus /> : <CheckboxCheck />}
@@ -40,13 +40,15 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
           </Box>
         </ToggleInputControl>
 
-        <ToggleInputContent>
-          <ToggleInputLabel>{children}</ToggleInputLabel>
+        {(children || description) && (
+          <ToggleInputContent>
+            {children && <ToggleInputLabel>{children}</ToggleInputLabel>}
 
-          {description && (
-            <ToggleInputDescription>{description}</ToggleInputDescription>
-          )}
-        </ToggleInputContent>
+            {description && (
+              <ToggleInputDescription>{description}</ToggleInputDescription>
+            )}
+          </ToggleInputContent>
+        )}
       </ToggleInput>
     );
   },

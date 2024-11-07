@@ -18,7 +18,6 @@ export const control = recipe({
     {
       bg: "bg.default",
       border: "1",
-      mt: "2",
       p: "2",
       rounded: "full",
       size: "16",
@@ -27,6 +26,15 @@ export const control = recipe({
       borderColor: styles.controlColorVar,
     }),
   ],
+
+  variants: {
+    shift: {
+      false: {},
+      true: {
+        mt: "2",
+      },
+    },
+  },
 });
 
 export const indicator = recipe({
