@@ -1,5 +1,18 @@
 # @optiaxiom/react
 
+## 0.3.5
+
+### Patch Changes
+
+- 1f6e128: replace cmdk with downshift in Combobox component
+- 165f4ec: fix button group styles to handle nested elements
+- 97ca195: fix disabled state for `DropdownMenuTrigger` and `PopoverTrigger`
+- 2b9ce89: add support for fullscreen `dialog`
+- 3dffd88: fix sprinkles merge order
+- 2ec17b8: change default icon for `AlertDialogTitle` component
+- 424600b: added `DropdownMenuGroup` component
+- b519f32: use context to pass handlers to toasts
+
 ## 0.3.4
 
 ### Patch Changes
