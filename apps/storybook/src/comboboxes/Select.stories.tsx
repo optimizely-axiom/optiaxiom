@@ -4,6 +4,7 @@ import { Field, Flex, Text } from "@optiaxiom/react";
 import {
   Select,
   SelectContent,
+  SelectGroup,
   SelectItem,
   SelectItemIndicator,
   SelectLabel,
@@ -132,46 +133,53 @@ export const Grouped: Story = {
         </SelectTrigger>
 
         <SelectContent>
-          <SelectLabel>Fruits</SelectLabel>
-          {fruits.map((item, index) => {
-            return (
-              <SelectItem
-                addonAfter={<SelectItemIndicator />}
-                item={item}
-                key={index}
-              >
-                {item}
-              </SelectItem>
-            );
-          })}
+          <SelectGroup>
+            <SelectLabel>Fruits</SelectLabel>
+            {fruits.map((item, index) => {
+              return (
+                <SelectItem
+                  addonAfter={<SelectItemIndicator />}
+                  item={item}
+                  key={index}
+                >
+                  {item}
+                </SelectItem>
+              );
+            })}
+          </SelectGroup>
+
+          <SelectSeparator />
+          <SelectGroup>
+            <SelectLabel>Vegetables</SelectLabel>
+            {vegetables.map((item, index) => {
+              return (
+                <SelectItem
+                  addonAfter={<SelectItemIndicator />}
+                  item={item}
+                  key={index}
+                >
+                  {item}
+                </SelectItem>
+              );
+            })}
+          </SelectGroup>
+
           <SelectSeparator />
 
-          <SelectLabel>Vegetables</SelectLabel>
-          {vegetables.map((item, index) => {
-            return (
-              <SelectItem
-                addonAfter={<SelectItemIndicator />}
-                item={item}
-                key={index}
-              >
-                {item}
-              </SelectItem>
-            );
-          })}
-          <SelectSeparator />
-
-          <SelectLabel>Meats</SelectLabel>
-          {meats.map((item, index) => {
-            return (
-              <SelectItem
-                addonAfter={<SelectItemIndicator />}
-                item={item}
-                key={index}
-              >
-                {item}
-              </SelectItem>
-            );
-          })}
+          <SelectGroup>
+            <SelectLabel>Meats</SelectLabel>
+            {meats.map((item, index) => {
+              return (
+                <SelectItem
+                  addonAfter={<SelectItemIndicator />}
+                  item={item}
+                  key={index}
+                >
+                  {item}
+                </SelectItem>
+              );
+            })}
+          </SelectGroup>
         </SelectContent>
       </>
     ),

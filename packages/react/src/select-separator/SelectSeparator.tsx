@@ -11,7 +11,15 @@ export const SelectSeparator = forwardRef<HTMLDivElement, SelectSeparatorProps>(
     const { restProps, sprinkleProps } = extractSprinkles(props);
     return (
       <Box asChild ref={ref} {...sprinkleProps}>
-        <Separator {...restProps}>{children}</Separator>
+        <Separator
+          bg="border.secondary"
+          flex="none"
+          mx="8"
+          my="4"
+          {...restProps}
+        >
+          {children}
+        </Separator>
       </Box>
     );
   },

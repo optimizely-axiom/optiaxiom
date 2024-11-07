@@ -38,6 +38,7 @@ export * from "./highlight";
 export * from "./pill";
 export * from "./select";
 export * from "./select-content";
+export * from "./select-group";
 export * from "./select-item";
 export * from "./select-item-indicator";
 export * from "./select-label";
