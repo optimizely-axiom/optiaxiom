@@ -240,11 +240,11 @@ export const People: Story<(typeof users)[number]> = {
     const [open, setOpen] = useState(args.defaultOpen);
     const [list, setList] = useState([actions.me, ...users]);
     const [items, setItems] = useState(list);
-    const [values, setValues] = useState<typeof users>([]);
+    const [values, setValues] = useState(new Set<(typeof users)[number]>());
 
     useEffect(() => {
       if (!open) {
-        const list = values.length
+        const list = values.size
           ? [actions.me, ...values, actions.all]
           : [actions.me, ...users];
         setList(list);
@@ -280,15 +280,15 @@ export const People: Story<(typeof users)[number]> = {
         onOpenChange={setOpen}
         onSelect={(value) => {
           if (value === actions.me) {
-            setValues([users[0]]);
+            setValues(new Set([users[0]]));
             setOpen(false);
           } else if (value === actions.all) {
             setList([actions.me, ...users]);
           } else {
             setValues((values) =>
-              values.includes(value)
-                ? values.filter((v) => v !== value)
-                : [...values, value],
+              values.has(value)
+                ? new Set([...values].filter((v) => v !== value))
+                : new Set([value, ...values]),
             );
           }
         }}
@@ -301,7 +301,7 @@ export const People: Story<(typeof users)[number]> = {
             value={values}
           >
             <AvatarGroup>
-              {values.slice(0, 3).map((user) => (
+              {[...values].slice(0, 3).map((user) => (
                 <Avatar
                   colorScheme="purple"
                   key={user.id}
@@ -311,10 +311,10 @@ export const People: Story<(typeof users)[number]> = {
                 />
               ))}
             </AvatarGroup>
-            {!values.length ? null : values.length > 1 ? (
-              <>{values.length} assignees</>
+            {!values.size ? null : values.size > 1 ? (
+              <>{values.size} assignees</>
             ) : (
-              values[0].name
+              [...values][0].name
             )}
           </ComboboxValue>
         </ComboboxTrigger>
@@ -346,7 +346,7 @@ export const People: Story<(typeof users)[number]> = {
                   </ComboboxItem>
                 ) : (
                   <ComboboxCheckboxItem
-                    active={values.includes(user)}
+                    active={values.has(user)}
                     addonBefore={
                       <Avatar
                         colorScheme="purple"
