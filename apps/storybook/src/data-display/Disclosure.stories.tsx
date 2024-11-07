@@ -6,6 +6,7 @@ import {
   DisclosureTrigger,
   Flex,
 } from "@optiaxiom/react";
+import { useState } from "react";
 
 export default {
   args: {
@@ -47,4 +48,18 @@ export const ChevronPosition: Story = {
       </Disclosure>
     </Flex>
   ),
+};
+
+export const Controlled: Story = {
+  render: function Controlled(args) {
+    const [open, setOpen] = useState(true);
+    return (
+      <Disclosure {...args} onOpenChange={setOpen} open={open}>
+        <DisclosureTrigger>Controlled Disclosure</DisclosureTrigger>
+        <DisclosureContent>
+          This disclosure is controlled by the parent component.
+        </DisclosureContent>
+      </Disclosure>
+    );
+  },
 };
