@@ -1,5 +1,15 @@
 # @optiaxiom/react
 
+## 0.4.0
+
+### Minor Changes
+
+- 21e0e25: rename SideNav to Sidenav
+
+### Patch Changes
+
+- dced7e7: extract command component from combobox
+
 ## 0.3.5
 
 ### Patch Changes
