@@ -4,9 +4,9 @@ import { type ReactNode } from "react";
 
 import { type BoxProps } from "../box";
 import { Flex } from "../flex";
-import { SideNavContextProvider } from "../side-nav-context";
+import { SidenavContextProvider } from "../sidenav-context";
 
-type SideNavProps = BoxProps<
+type SidenavProps = BoxProps<
   "nav",
   {
     addonAfter?: ReactNode;
@@ -17,7 +17,7 @@ type SideNavProps = BoxProps<
   }
 >;
 
-export const SideNav = forwardRef<HTMLElement, SideNavProps>(
+export const Sidenav = forwardRef<HTMLElement, SidenavProps>(
   (
     {
       addonAfter,
@@ -43,7 +43,7 @@ export const SideNav = forwardRef<HTMLElement, SideNavProps>(
     }, [animations]);
 
     return (
-      <SideNavContextProvider
+      <SidenavContextProvider
         animations={animations}
         expanded={expanded}
         onExpandedChange={(flag) => {
@@ -89,9 +89,9 @@ export const SideNav = forwardRef<HTMLElement, SideNavProps>(
             </nav>
           </Flex>
         </Flex>
-      </SideNavContextProvider>
+      </SidenavContextProvider>
     );
   },
 );
 
-SideNav.displayName = "@optiaxiom/react/SideNav";
+Sidenav.displayName = "@optiaxiom/react/Sidenav";

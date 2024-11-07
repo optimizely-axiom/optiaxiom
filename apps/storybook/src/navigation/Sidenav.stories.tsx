@@ -7,10 +7,10 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-  SideNav,
-  SideNavAccountItem,
-  SideNavItem,
-  SideNavToggle,
+  Sidenav,
+  SidenavAccountItem,
+  SidenavItem,
+  SidenavToggle,
 } from "@optiaxiom/react";
 import {
   IconBinaryTree,
@@ -29,10 +29,10 @@ export default {
   args: {
     addonAfter: (
       <>
-        <SideNavToggle icon={<IconLayoutSidebar />} />
+        <SidenavToggle icon={<IconLayoutSidebar />} />
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <SideNavAccountItem
+            <SidenavAccountItem
               avatar={
                 <Avatar src="https://images.unsplash.com/photo-1511485977113-f34c92461ad9?ixlib=rb-1.2.1&w=128&h=128&dpr=2&q=80" />
               }
@@ -51,50 +51,50 @@ export default {
     ),
     children: (
       <>
-        <SideNavItem aria-label="Projects" icon={<IconBinaryTree />}>
+        <SidenavItem aria-label="Projects" icon={<IconBinaryTree />}>
           Projects
-        </SideNavItem>
-        <SideNavItem active aria-label="Flags" icon={<IconFlag2 />}>
+        </SidenavItem>
+        <SidenavItem active aria-label="Flags" icon={<IconFlag2 />}>
           Flags
-        </SideNavItem>
-        <SideNavItem aria-label="Idea Lab" icon={<IconChartInfographic />}>
+        </SidenavItem>
+        <SidenavItem aria-label="Idea Lab" icon={<IconChartInfographic />}>
           Idea Lab
-        </SideNavItem>
-        <SideNavItem aria-label="Audiences" icon={<IconUsers />}>
+        </SidenavItem>
+        <SidenavItem aria-label="Audiences" icon={<IconUsers />}>
           Audiences
-        </SideNavItem>
-        <SideNavItem aria-label="History" icon={<IconHistory />}>
+        </SidenavItem>
+        <SidenavItem aria-label="History" icon={<IconHistory />}>
           History
-        </SideNavItem>
-        <SideNavItem aria-label="Events" icon={<IconChartLine />}>
+        </SidenavItem>
+        <SidenavItem aria-label="Events" icon={<IconChartLine />}>
           Events
-        </SideNavItem>
-        <SideNavItem aria-label="Settings" icon={<IconSettings />}>
+        </SidenavItem>
+        <SidenavItem aria-label="Settings" icon={<IconSettings />}>
           Settings
-        </SideNavItem>
-        <SideNavItem
+        </SidenavItem>
+        <SidenavItem
           addonAfter={<IconExternalLink size="16" />}
           aria-label="Tutorial"
           asChild
           icon={<IconVocabulary />}
         >
           <a href="/">Tutorial</a>
-        </SideNavItem>
+        </SidenavItem>
       </>
     ),
     style: {
       height: "80vh",
     },
   },
-  component: SideNav,
+  component: Sidenav,
   decorators: (Story) => (
     <Box bg="bg.page" p="lg" w="288">
       <Story />
     </Box>
   ),
-} as Meta<typeof SideNav>;
+} as Meta<typeof Sidenav>;
 
-type Story = StoryObj<typeof SideNav>;
+type Story = StoryObj<typeof Sidenav>;
 
 export const Basic: Story = {};
 
@@ -104,7 +104,7 @@ export const NotCollapsible: Story = {
       <>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <SideNavAccountItem
+            <SidenavAccountItem
               avatar={
                 <Avatar src="https://images.unsplash.com/photo-1511485977113-f34c92461ad9?ixlib=rb-1.2.1&w=128&h=128&dpr=2&q=80" />
               }
