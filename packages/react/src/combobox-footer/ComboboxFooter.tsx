@@ -1,18 +1,5 @@
-import { type ComponentPropsWithRef, forwardRef } from "react";
+import { CommandFooter } from "../command-footer";
 
-import { Flex } from "../flex";
-import * as styles from "./ComboboxFooter.css";
-
-type ComboboxFooterProps = ComponentPropsWithRef<typeof Flex>;
-
-export const ComboboxFooter = forwardRef<HTMLDivElement, ComboboxFooterProps>(
-  ({ children, className, ...props }, ref) => {
-    return (
-      <Flex asChild ref={ref} {...styles.footer({}, className)} {...props}>
-        <li>{children}</li>
-      </Flex>
-    );
-  },
-);
+export const ComboboxFooter = CommandFooter;
 
 ComboboxFooter.displayName = "@optiaxiom/react/ComboboxFooter";

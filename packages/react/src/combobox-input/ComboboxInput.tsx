@@ -1,37 +1,5 @@
-import { type ComponentPropsWithoutRef, forwardRef } from "react";
+import { CommandInput } from "../command-input";
 
-import { useComboboxContext } from "../combobox-context";
-import { Input } from "../input";
-import { extractSprinkles } from "../sprinkles";
-
-type ComboboxInputProps = ComponentPropsWithoutRef<typeof Input>;
-
-export const ComboboxInput = forwardRef<HTMLInputElement, ComboboxInputProps>(
-  (props, ref) => {
-    const { restProps, sprinkleProps } = extractSprinkles(props);
-    const { downshift, highlightedItem, setInputValue } =
-      useComboboxContext("ComboboxInput");
-
-    return (
-      <Input
-        m="4"
-        {...sprinkleProps}
-        {...downshift.getInputProps({
-          ...restProps,
-          onChange: (event) => {
-            setInputValue("value" in event.target ? event.target.value : "");
-          },
-          onKeyDown: (event) => {
-            if (event.key === " " && highlightedItem) {
-              event.preventDefault();
-              downshift.selectItem(highlightedItem);
-            }
-          },
-          ref,
-        })}
-      />
-    );
-  },
-);
+export const ComboboxInput = CommandInput;
 
 ComboboxInput.displayName = "@optiaxiom/react/ComboboxInput";
