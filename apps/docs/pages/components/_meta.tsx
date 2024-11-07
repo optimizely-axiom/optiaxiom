@@ -94,8 +94,8 @@ export default {
   },
   link: "Link",
   pagination: "Pagination",
-  "side-nav": {
-    title: <AlphaItem>SideNav</AlphaItem>,
+  sidenav: {
+    title: <AlphaItem>Sidenav</AlphaItem>,
   },
   tabs: "Tabs",
 

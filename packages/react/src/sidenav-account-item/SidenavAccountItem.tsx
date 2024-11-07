@@ -3,11 +3,11 @@ import { forwardRef, type ReactNode } from "react";
 import { Box, type BoxProps } from "../box";
 import { Flex } from "../flex";
 import { IconEllipsis } from "../icons/IconEllipsis";
-import { useSideNavContext } from "../side-nav-context";
+import { useSidenavContext } from "../sidenav-context";
 import { Text } from "../text";
 import { Transition } from "../transition";
 
-export type SideNavProfileMenuProps = BoxProps<
+export type SidenavProfileMenuProps = BoxProps<
   "div",
   {
     avatar: ReactNode;
@@ -16,11 +16,11 @@ export type SideNavProfileMenuProps = BoxProps<
   }
 >;
 
-export const SideNavAccountItem = forwardRef<
+export const SidenavAccountItem = forwardRef<
   HTMLButtonElement,
-  SideNavProfileMenuProps
+  SidenavProfileMenuProps
 >(({ avatar, name, organization, ...props }, ref) => {
-  const { animations, expanded } = useSideNavContext("SideNavAccountItem");
+  const { animations, expanded } = useSidenavContext("SidenavAccountItem");
 
   return (
     <Flex asChild my="xs">
@@ -64,4 +64,4 @@ export const SideNavAccountItem = forwardRef<
   );
 });
 
-SideNavAccountItem.displayName = "@optiaxiom/react/SideNavAccountItem";
+SidenavAccountItem.displayName = "@optiaxiom/react/SidenavAccountItem";
