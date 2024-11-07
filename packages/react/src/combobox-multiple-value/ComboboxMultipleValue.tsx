@@ -11,7 +11,7 @@ type ComboboxMultipleValueProps = BoxProps<
   "div",
   {
     placeholder?: string;
-    value: unknown[];
+    value: Set<unknown> | unknown[];
   } & Pick<UseComboboxProps<unknown>, "itemToKey" | "itemToString">
 >;
 
@@ -24,6 +24,9 @@ export const ComboboxMultipleValue = forwardRef<
   const { itemToKey, itemToString } = useComboboxContext(
     "ComboboxMultipleValue",
   );
+  if (value instanceof Set) {
+    value = [...value];
+  }
 
   return (
     <Flex flexDirection="row" flexWrap="wrap" gap="2" ref={ref} {...props}>
