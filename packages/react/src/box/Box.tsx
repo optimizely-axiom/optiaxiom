@@ -37,7 +37,7 @@ export const Box = forwardRef<HTMLDivElement, BoxProps>(
       <Comp
         data-axiom={version}
         ref={ref}
-        {...styles.box({}, sprinklesMerge(sprinkles(sprinkleProps), className))}
+        {...styles.box({}, sprinklesMerge(className, sprinkles(sprinkleProps)))}
         {...restProps}
       />
     );

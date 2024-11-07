@@ -7,7 +7,7 @@ import { useSidenavContext } from "../sidenav-context";
 import { Text } from "../text";
 import { Transition } from "../transition";
 
-export type SidenavProfileMenuProps = BoxProps<
+export type SidenavAccountItemProps = BoxProps<
   "div",
   {
     avatar: ReactNode;
@@ -18,7 +18,7 @@ export type SidenavProfileMenuProps = BoxProps<
 
 export const SidenavAccountItem = forwardRef<
   HTMLButtonElement,
-  SidenavProfileMenuProps
+  SidenavAccountItemProps
 >(({ avatar, name, organization, ...props }, ref) => {
   const { animations, expanded } = useSidenavContext("SidenavAccountItem");
 
