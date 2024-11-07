@@ -1,5 +1,11 @@
 # @optiaxiom/web-components
 
+## 0.2.0
+
+### Minor Changes
+
+- 21e0e25: rename SideNav to Sidenav
+
 ## 0.1.5
 
 ### Patch Changes
