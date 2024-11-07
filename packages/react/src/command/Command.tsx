@@ -47,6 +47,23 @@ export function Command<Item>({
       }
     },
     selectedItem: null,
+    stateReducer(state, actionAndChanges) {
+      const { changes, type } = actionAndChanges;
+
+      switch (type) {
+        case useCombobox.stateChangeTypes.InputKeyDownEnter:
+        case useCombobox.stateChangeTypes.ItemClick:
+          return {
+            ...changes,
+            /**
+             * Keep the selected option highlighted rather than resetting to -1
+             */
+            highlightedIndex: state.highlightedIndex,
+          };
+        default:
+          return changes;
+      }
+    },
   });
 
   return (
