@@ -9,7 +9,7 @@ type MenuSubContentProps = ListboxBaseProps<typeof RadixMenu.SubContent>;
 export const DropdownMenuSubContent = forwardRef<
   HTMLDivElement,
   MenuSubContentProps
->(({ alignOffset = -4, children, sideOffset = 2, ...props }, ref) => {
+>(({ alignOffset = -4, children, sideOffset = 0, ...props }, ref) => {
   const { open } = useDropdownMenuSubContext("DropdownMenuSubContent");
 
   return (

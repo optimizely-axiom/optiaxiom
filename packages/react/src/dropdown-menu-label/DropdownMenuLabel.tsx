@@ -10,9 +10,8 @@ export const DropdownMenuLabel = forwardRef<HTMLDivElement, MenuLabelProps>(
     return (
       <Box
         asChild
-        color="fg.default"
-        fontSize="md"
-        fontWeight="600"
+        color="fg.tertiary"
+        fontSize="sm"
         p="xs"
         ref={ref}
         {...props}

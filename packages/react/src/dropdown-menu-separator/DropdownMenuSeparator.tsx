@@ -11,7 +11,7 @@ export const DropdownMenuSeparator = forwardRef<
   HTMLDivElement,
   MenuSeparatorProps
 >((props, ref) => (
-  <Separator asChild bg="border.secondary" mx="-4" my="2" {...props}>
+  <Separator asChild bg="border.secondary" flex="none" mx="8" my="4" {...props}>
     <RadixMenu.Separator ref={ref} />
   </Separator>
 ));
