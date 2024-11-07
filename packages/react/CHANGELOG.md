@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 0.4.2
+
+### Patch Changes
+
+- febca30: revert sprinkles merge order fix
+
 ## 0.4.1
 
 ### Patch Changes
