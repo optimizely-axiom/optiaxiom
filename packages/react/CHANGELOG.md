@@ -1,5 +1,12 @@
 # @optiaxiom/react
 
+## 0.4.1
+
+### Patch Changes
+
+- 485608a: fix checkbox/radio/switch gap and vertical alignment when no labels
+- b0b00f2: contain visually hidden inputs within label using relative position
+
 ## 0.4.0
 
 ### Minor Changes
