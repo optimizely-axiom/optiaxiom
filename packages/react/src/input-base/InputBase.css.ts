@@ -69,10 +69,14 @@ export const input = recipe({
       w: "full",
     },
     style({
-      /*
-        line-height was set to 22px to adjust for the 1px border on top and bottom
-      */
+      /**
+       * Explicitly use 16px on mobile because otherwise iOS will zoom in on
+       * the page anytime the input is focused
+       */
       fontSize: "16px",
+      /**
+       * Line-height was set to 22px to adjust for the 1px border on top and bottom
+       */
       lineHeight: "22px",
       minWidth: "0",
       outline: "2px solid transparent",
@@ -90,9 +94,6 @@ export const input = recipe({
       },
     }),
     responsiveStyle({
-      /*
-        Explicitly use 16px on mobile because otherwise iOS will zoom in on the page anytime the input is focused
-      */
       sm: {
         fontSize: "14px",
       },
@@ -108,6 +109,16 @@ export const input = recipe({
       lg: {
         p: "8",
       },
+      xl: [
+        {
+          p: "md",
+        },
+        responsiveStyle({
+          sm: {
+            fontSize: "16px",
+          },
+        }),
+      ],
     },
   },
 });
