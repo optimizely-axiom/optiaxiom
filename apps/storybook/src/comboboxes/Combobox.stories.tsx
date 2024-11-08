@@ -103,9 +103,10 @@ export const Basic: Story = {
         }}
         onOpenChange={setOpen}
         open={open}
+        value={value ? [value] : []}
       >
         <ComboboxTrigger>
-          <ComboboxValue placeholder="Select a language" value={value} />
+          <ComboboxValue placeholder="Select a language" />
         </ComboboxTrigger>
         <ComboboxContent>
           <ComboboxInput placeholder="Languages..." />
@@ -140,7 +141,7 @@ export const Multiple: Story = {
   render: function Multiple(args) {
     const [open, setOpen] = useState(args.defaultOpen);
     const [items, setItems] = useState(languages);
-    const [values, setValues] = useState<string[]>([]);
+    const [value, setValue] = useState<string[]>([]);
 
     return (
       <Combobox
@@ -156,7 +157,7 @@ export const Multiple: Story = {
           );
         }}
         onItemSelect={(value) => {
-          setValues((values) =>
+          setValue((values) =>
             values.includes(value)
               ? values.filter((v) => v !== value)
               : [...values, value],
@@ -164,23 +165,16 @@ export const Multiple: Story = {
         }}
         onOpenChange={setOpen}
         open={open}
+        value={value}
       >
         <ComboboxTrigger>
-          <ComboboxValue
-            placeholder="Select a language"
-            type="multiple"
-            value={values}
-          />
+          <ComboboxValue placeholder="Select a language" />
         </ComboboxTrigger>
         <ComboboxContent>
           <ComboboxInput placeholder="Languages..." />
           <ComboboxList>
             {items.map((item) => (
-              <ComboboxCheckboxItem
-                active={values.includes(item)}
-                item={item}
-                key={item}
-              >
+              <ComboboxCheckboxItem item={item} key={item}>
                 {item}
               </ComboboxCheckboxItem>
             ))}
@@ -240,16 +234,16 @@ export const People: Story<(typeof users)[number]> = {
     const [open, setOpen] = useState(args.defaultOpen);
     const [list, setList] = useState([actions.me, ...users]);
     const [items, setItems] = useState(list);
-    const [values, setValues] = useState(new Set<(typeof users)[number]>());
+    const [value, setValue] = useState(new Set<(typeof users)[number]>());
 
     useEffect(() => {
       if (!open) {
-        const list = values.size
-          ? [actions.me, ...values, actions.all]
+        const list = value.size
+          ? [actions.me, ...value, actions.all]
           : [actions.me, ...users];
         setList(list);
       }
-    }, [open, values]);
+    }, [open, value]);
     useEffect(() => {
       setItems(list);
     }, [list]);
@@ -279,12 +273,12 @@ export const People: Story<(typeof users)[number]> = {
         }}
         onItemSelect={(value) => {
           if (value === actions.me) {
-            setValues(new Set([users[0]]));
+            setValue(new Set([users[0]]));
             setOpen(false);
           } else if (value === actions.all) {
             setList([actions.me, ...users]);
           } else {
-            setValues((values) =>
+            setValue((values) =>
               values.has(value)
                 ? new Set([...values].filter((v) => v !== value))
                 : new Set([value, ...values]),
@@ -293,15 +287,12 @@ export const People: Story<(typeof users)[number]> = {
         }}
         onOpenChange={setOpen}
         open={open}
+        value={value}
       >
         <ComboboxTrigger>
-          <ComboboxValue
-            placeholder="Select assignees"
-            type="multiple"
-            value={values}
-          >
+          <ComboboxValue placeholder="Select assignees">
             <AvatarGroup>
-              {[...values].slice(0, 3).map((user) => (
+              {[...value].slice(0, 3).map((user) => (
                 <Avatar
                   colorScheme="purple"
                   key={user.id}
@@ -311,10 +302,10 @@ export const People: Story<(typeof users)[number]> = {
                 />
               ))}
             </AvatarGroup>
-            {!values.size ? null : values.size > 1 ? (
-              <>{values.size} assignees</>
+            {!value.size ? null : value.size > 1 ? (
+              <>{value.size} assignees</>
             ) : (
-              [...values][0].name
+              [...value][0].name
             )}
           </ComboboxValue>
         </ComboboxTrigger>
@@ -346,7 +337,6 @@ export const People: Story<(typeof users)[number]> = {
                   </ComboboxItem>
                 ) : (
                   <ComboboxCheckboxItem
-                    active={values.has(user)}
                     addonBefore={
                       <Avatar
                         colorScheme="purple"
@@ -433,7 +423,7 @@ export const Controlled: Story<(typeof books)[number]> = {
   render: function DefaultSelected(args) {
     const [items, setItems] = useState(books);
     const [open, setOpen] = useState(args.defaultOpen);
-    const [values, setValues] = useState([books[9]]);
+    const [value, setValue] = useState([books[9]]);
 
     return (
       <Combobox
@@ -452,7 +442,7 @@ export const Controlled: Story<(typeof books)[number]> = {
           );
         }}
         onItemSelect={(value) => {
-          setValues((values) =>
+          setValue((values) =>
             values.includes(value)
               ? values.filter((v) => v !== value)
               : [...values, value],
@@ -460,29 +450,22 @@ export const Controlled: Story<(typeof books)[number]> = {
         }}
         onOpenChange={setOpen}
         open={open}
+        value={value}
       >
         <ComboboxTrigger>
-          <ComboboxValue
-            placeholder="Select books"
-            type="multiple"
-            value={values}
-          />
+          <ComboboxValue placeholder="Select books" />
         </ComboboxTrigger>
         <ComboboxContent>
           <ComboboxInput placeholder="Books..." />
           <ComboboxList>
             {items.map((book) => (
-              <ComboboxCheckboxItem
-                active={values.includes(book)}
-                item={book}
-                key={book.id}
-              >
+              <ComboboxCheckboxItem item={book} key={book.id}>
                 {book.title}
               </ComboboxCheckboxItem>
             ))}
           </ComboboxList>
           <ComboboxFooter>
-            <Button onClick={() => setValues([])}>Clear All</Button>
+            <Button onClick={() => setValue([])}>Clear All</Button>
             <Button appearance="primary" onClick={() => setOpen(false)}>
               Done
             </Button>

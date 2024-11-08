@@ -1,5 +1,5 @@
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
-import { type ComponentPropsWithoutRef, type ReactNode } from "react";
+import { type ComponentPropsWithoutRef, type ReactNode, useMemo } from "react";
 
 import type { Command } from "../command";
 
@@ -25,7 +25,13 @@ export function Combobox<Item>({
   onItemSelect,
   onOpenChange,
   open: openProp,
+  value: valueProp,
 }: ComboBoxProps<Item>) {
+  const value = useMemo(
+    () => (Array.isArray(valueProp) ? new Set(valueProp) : valueProp),
+    [valueProp],
+  );
+
   const [open, setOpen] = useControllableState({
     defaultProp: defaultOpen,
     onChange: onOpenChange,
@@ -43,6 +49,7 @@ export function Combobox<Item>({
         onItemSelect={onItemSelect}
         open={open}
         setOpen={setOpen}
+        value={value}
       >
         {children}
       </ComboboxContextProvider>

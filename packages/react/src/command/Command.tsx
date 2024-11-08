@@ -1,6 +1,6 @@
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import { useCombobox, type UseComboboxProps } from "downshift";
-import { type ReactNode, useEffect } from "react";
+import { type ReactNode, useEffect, useMemo } from "react";
 
 import { CommandContextProvider } from "../command-context";
 
@@ -8,7 +8,7 @@ type CommandProps<Item> = {
   children: ReactNode;
   onInputValueChange?: (inputValue: string) => void;
   onItemSelect?: (value: Item) => void;
-  onOpenChange?: (open: boolean) => void;
+  value?: Item[] | Set<Item>;
 } & Pick<
   UseComboboxProps<Item>,
   "isItemDisabled" | "items" | "itemToKey" | "itemToString"
@@ -22,8 +22,13 @@ export function Command<Item>({
   itemToString = (value) => (value ? String(value) : ""),
   onInputValueChange,
   onItemSelect,
-  onOpenChange,
+  value: valueProp,
 }: CommandProps<Item>) {
+  const value = useMemo(
+    () => (Array.isArray(valueProp) ? new Set(valueProp) : valueProp),
+    [valueProp],
+  );
+
   const [inputValue, setInputValue] = useControllableState({
     defaultProp: "",
     onChange: onInputValueChange,
@@ -72,11 +77,8 @@ export function Command<Item>({
       highlightedItem={items[downshift.highlightedIndex]}
       isItemDisabled={isItemDisabled}
       items={items}
-      itemToKey={itemToKey}
-      itemToString={itemToString}
       setInputValue={setInputValue}
-      setOpen={onOpenChange}
-      setValue={onItemSelect}
+      value={value}
     >
       {children}
     </CommandContextProvider>
