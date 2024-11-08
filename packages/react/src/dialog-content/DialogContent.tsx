@@ -17,7 +17,10 @@ type DialogContentProps = BoxProps<
 >;
 
 export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
-  ({ children, size = "md", withCloseButton = false, ...props }, ref) => {
+  (
+    { children, className, size = "md", withCloseButton = false, ...props },
+    ref,
+  ) => {
     const { open } = useDialogContext("DialogContent");
 
     return (
@@ -31,8 +34,8 @@ export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
             </Transition>
 
             <Transition data-side="bottom" type="fade">
-              <Box asChild {...styles.content({ size })}>
-                <RadixDialog.Content ref={ref} {...props}>
+              <Box asChild {...styles.content({ size }, className)} {...props}>
+                <RadixDialog.Content ref={ref}>
                   {children}
 
                   {withCloseButton && (

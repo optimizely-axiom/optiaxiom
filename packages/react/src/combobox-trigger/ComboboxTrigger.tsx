@@ -17,7 +17,7 @@ export const ComboboxTrigger = forwardRef<
   HTMLButtonElement,
   ComboboxTriggerProps
 >(({ asChild, children, ...props }, outerRef) => {
-  const { setOpen } = useComboboxContext("ComboboxTrigger");
+  const { components, setOpen } = useComboboxContext("ComboboxTrigger");
 
   const buttonRef = useRef<HTMLButtonElement>(null);
   const ref = useComposedRefs(outerRef, buttonRef);
@@ -40,7 +40,7 @@ export const ComboboxTrigger = forwardRef<
   }, [labelId]);
 
   return (
-    <PopoverTrigger
+    <components.Trigger
       aria-labelledby={labelId}
       asChild
       onKeyDown={(event) => {
@@ -55,7 +55,7 @@ export const ComboboxTrigger = forwardRef<
       {...props}
     >
       {asChild ? children : <MenuButton>{children}</MenuButton>}
-    </PopoverTrigger>
+    </components.Trigger>
   );
 });
 

@@ -1,10 +1,22 @@
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
-import { type ComponentPropsWithoutRef, type ReactNode, useMemo } from "react";
+import {
+  type ComponentPropsWithoutRef,
+  Fragment,
+  type ReactNode,
+  useMemo,
+} from "react";
 
 import type { Command } from "../command";
 
 import { ComboboxContextProvider } from "../combobox-context";
+import { Dialog } from "../dialog";
+import { DialogContent } from "../dialog-content";
+import { DialogTitle } from "../dialog-title";
+import { DialogTrigger } from "../dialog-trigger";
 import { Popover } from "../popover";
+import { PopoverContent } from "../popover-content";
+import { PopoverTrigger } from "../popover-trigger";
+import { useResponsiveMatches } from "../use-responsive-matches";
 
 type ComboBoxProps<Item> = {
   children: ReactNode;
@@ -27,6 +39,21 @@ export function Combobox<Item>({
   open: openProp,
   value: valueProp,
 }: ComboBoxProps<Item>) {
+  const components = useResponsiveMatches({
+    base: {
+      Content: DialogContent,
+      Root: Dialog,
+      Title: DialogTitle,
+      Trigger: DialogTrigger,
+    },
+    sm: {
+      Content: PopoverContent,
+      Root: Popover,
+      Title: Fragment,
+      Trigger: PopoverTrigger,
+    },
+  });
+
   const value = useMemo(
     () => (Array.isArray(valueProp) ? new Set(valueProp) : valueProp),
     [valueProp],
@@ -39,8 +66,9 @@ export function Combobox<Item>({
   });
 
   return (
-    <Popover onOpenChange={setOpen} open={open}>
+    <components.Root onOpenChange={setOpen} open={open}>
       <ComboboxContextProvider
+        components={components}
         isItemDisabled={isItemDisabled}
         items={items}
         itemToKey={itemToKey}
@@ -53,7 +81,7 @@ export function Combobox<Item>({
       >
         {children}
       </ComboboxContextProvider>
-    </Popover>
+    </components.Root>
   );
 }
 
