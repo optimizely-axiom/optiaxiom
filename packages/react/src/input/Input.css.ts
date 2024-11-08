@@ -1,4 +1,4 @@
-import { recipe, type RecipeVariants, style } from "../vanilla-extract";
+import { recipe, type RecipeVariants } from "../vanilla-extract";
 
 export const input = recipe({
   variants: {
@@ -20,37 +20,56 @@ export const addon = recipe({
 
   variants: {
     position: {
-      end: style({
-        marginRight: "8px",
-      }),
-      start: style({
-        marginLeft: "8px",
-      }),
+      end: {
+        mr: "8",
+      },
+      start: {
+        ml: "8",
+      },
     },
     size: {
       sm: {},
       md: {},
       lg: {},
+      xl: {},
     },
   },
 
   variantsCompounded: [
     {
-      style: style({
-        marginRight: "4",
-      }),
+      style: {
+        mr: "4",
+      },
       variants: {
         position: "end",
         size: "sm",
       },
     },
     {
-      style: style({
-        marginLeft: "4",
-      }),
+      style: {
+        ml: "4",
+      },
       variants: {
         position: "start",
         size: "sm",
+      },
+    },
+    {
+      style: {
+        mr: "md",
+      },
+      variants: {
+        position: "end",
+        size: "xl",
+      },
+    },
+    {
+      style: {
+        ml: "md",
+      },
+      variants: {
+        position: "start",
+        size: "xl",
       },
     },
   ],
