@@ -3,6 +3,7 @@ import {
   type ComponentPropsWithoutRef,
   Fragment,
   type ReactNode,
+  useEffect,
   useMemo,
 } from "react";
 
@@ -16,6 +17,7 @@ import { DialogTrigger } from "../dialog-trigger";
 import { Popover } from "../popover";
 import { PopoverContent } from "../popover-content";
 import { PopoverTrigger } from "../popover-trigger";
+import { useEffectEvent } from "../use-event";
 import { useResponsiveMatches } from "../use-responsive-matches";
 
 type ComboBoxProps<Item> = {
@@ -64,6 +66,14 @@ export function Combobox<Item>({
     onChange: onOpenChange,
     prop: openProp,
   });
+  const onInputValueChangeStable = useEffectEvent(
+    onInputValueChange ?? (() => {}),
+  );
+  useEffect(() => {
+    if (!open) {
+      onInputValueChangeStable("");
+    }
+  }, [open, onInputValueChangeStable]);
 
   return (
     <components.Root onOpenChange={setOpen} open={open}>
