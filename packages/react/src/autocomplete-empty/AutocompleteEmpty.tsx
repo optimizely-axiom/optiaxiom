@@ -16,10 +16,11 @@ export const AutocompleteEmpty = forwardRef<
 
   return (
     <Box
+      alignItems="center"
       color="fg.disabled"
       display="flex"
+      flexDirection="column"
       fontSize="md"
-      justifyContent="center"
       p="md"
       ref={ref}
       {...props}
