@@ -2,15 +2,13 @@ import { forwardRef } from "react";
 
 import { useAutocompleteContext } from "../autocomplete-context";
 import { Box, type BoxProps } from "../box";
-import { extractSprinkles } from "../sprinkles";
 
-type AutocompleteEmptyProps = BoxProps<"li">;
+type AutocompleteEmptyProps = BoxProps<"div">;
 
 export const AutocompleteEmpty = forwardRef<
-  HTMLLIElement,
+  HTMLDivElement,
   AutocompleteEmptyProps
 >(({ children, ...props }, ref) => {
-  const { restProps, sprinkleProps } = extractSprinkles(props);
   const { items } = useAutocompleteContext("AutocompleteEmpty");
   if (items.length > 0) {
     return null;
@@ -18,17 +16,15 @@ export const AutocompleteEmpty = forwardRef<
 
   return (
     <Box
-      asChild
       color="fg.disabled"
       display="flex"
       fontSize="md"
       justifyContent="center"
       p="md"
-      {...sprinkleProps}
+      ref={ref}
+      {...props}
     >
-      <li ref={ref} {...restProps}>
-        {children || "No options"}
-      </li>
+      {children || "No options"}
     </Box>
   );
 });
