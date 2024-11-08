@@ -59,8 +59,8 @@ export const ListboxItemBase = forwardRef<HTMLDivElement, ListboxItemBaseProps>(
             </Box>
 
             {description && (
-              <Text color="fg.tertiary" fontSize="sm" id={descriptionId}>
-                {description}
+              <Text asChild {...styles.description()} id={descriptionId}>
+                {fallbackSpan(description)}
               </Text>
             )}
           </Box>,
