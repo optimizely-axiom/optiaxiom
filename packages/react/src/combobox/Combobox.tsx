@@ -18,11 +18,13 @@ export function Combobox<Item>({
   children,
   defaultOpen = false,
   isItemDisabled = () => false,
+  items,
   itemToKey = (value) => value,
   itemToString = (value) => (value ? String(value) : ""),
+  onInputValueChange,
+  onItemSelect,
   onOpenChange,
   open: openProp,
-  ...props
 }: ComboBoxProps<Item>) {
   const [open, setOpen] = useControllableState({
     defaultProp: defaultOpen,
@@ -34,11 +36,13 @@ export function Combobox<Item>({
     <Popover onOpenChange={setOpen} open={open}>
       <ComboboxContextProvider
         isItemDisabled={isItemDisabled}
+        items={items}
         itemToKey={itemToKey}
         itemToString={itemToString}
+        onInputValueChange={onInputValueChange}
+        onItemSelect={onItemSelect}
         open={open}
         setOpen={setOpen}
-        {...props}
       >
         {children}
       </ComboboxContextProvider>
