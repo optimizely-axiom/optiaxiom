@@ -62,4 +62,15 @@ export const item = recipe({
   },
 });
 
+export const description = recipe({
+  base: [
+    {
+      fontSize: "sm",
+    },
+    style({
+      color: theme.colors["fg.tertiary"],
+    }),
+  ],
+});
+
 export type ItemVariants = RecipeVariants<typeof item>;
