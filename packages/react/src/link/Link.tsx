@@ -1,3 +1,4 @@
+import { Slot, Slottable } from "@radix-ui/react-slot";
 import { forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
@@ -17,6 +18,7 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
   (
     {
       appearance = "default",
+      asChild,
       children,
       className,
       disabled,
@@ -26,6 +28,7 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
     },
     ref,
   ) => {
+    const Comp = asChild ? Slot : "a";
     const { restProps, sprinkleProps } = extractSprinkles(props);
 
     return (
@@ -34,7 +37,7 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
         {...styles.link({ appearance }, className)}
         {...sprinkleProps}
       >
-        <a
+        <Comp
           aria-disabled={disabled}
           data-disabled={disabled ? "" : undefined}
           href={href}
@@ -46,13 +49,14 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
             role: "link",
           })}
         >
-          {children}
+          <Slottable>{children}</Slottable>
+
           {external && (
             <Box asChild {...styles.icon()}>
               <IconUpRightFromSquare />
             </Box>
           )}
-        </a>
+        </Comp>
       </Box>
     );
   },
