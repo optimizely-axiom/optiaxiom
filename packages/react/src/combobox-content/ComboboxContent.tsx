@@ -1,16 +1,27 @@
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import { useComboboxContext } from "../combobox-context";
 import { Command } from "../command";
+import { DialogContent } from "../dialog-content";
 import { useFieldContext } from "../field-context";
 import { PopoverContent } from "../popover-content";
+import { useResponsiveMatches } from "../use-responsive-matches";
 
-type ComboboxContentProps = ComponentPropsWithoutRef<typeof PopoverContent>;
+type ComboboxContentProps = ComponentPropsWithoutRef<
+  typeof DialogContent | typeof PopoverContent
+>;
 
 export const ComboboxContent = forwardRef<HTMLDivElement, ComboboxContentProps>(
-  ({ children, ...props }, ref) => {
+  ({ children, size: _size, ...props }, ref) => {
+    const p = useResponsiveMatches({
+      base: "8",
+      sm: "4",
+    });
+
     const { labelId } = useFieldContext();
     const {
+      components,
       isItemDisabled,
       items,
       itemToKey,
@@ -21,13 +32,18 @@ export const ComboboxContent = forwardRef<HTMLDivElement, ComboboxContentProps>(
     } = useComboboxContext("ComboboxContent");
 
     return (
-      <PopoverContent
+      <components.Content
+        aria-describedby={undefined}
         aria-labelledby={labelId}
         overflow="hidden"
-        p="4"
+        p={p}
         ref={ref}
         {...props}
       >
+        <VisuallyHidden>
+          <components.Title />
+        </VisuallyHidden>
+
         <Command
           isItemDisabled={isItemDisabled}
           items={items}
@@ -39,7 +55,7 @@ export const ComboboxContent = forwardRef<HTMLDivElement, ComboboxContentProps>(
         >
           {children}
         </Command>
-      </PopoverContent>
+      </components.Content>
     );
   },
 );

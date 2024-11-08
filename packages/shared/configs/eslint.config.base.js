@@ -31,6 +31,7 @@ export default tsEslint.config(
         "error",
         {
           customGroups: {
+            base: ["base"],
             Nxs: ["*xs", "tightest"],
             xs: ["xs", "-xs", "tighter"],
             sm: ["sm", "-sm", "tight"],
@@ -39,7 +40,17 @@ export default tsEslint.config(
             xl: ["xl", "-xl", "wider", "loose"],
             Nxl: ["*xl", "widest"],
           },
-          groups: ["Nxs", "xs", "sm", "md", "lg", "xl", "Nxl", "unknown"],
+          groups: [
+            "base",
+            "Nxs",
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+            "Nxl",
+            "unknown",
+          ],
           partitionByNewLine: true,
           type: "natural",
         },

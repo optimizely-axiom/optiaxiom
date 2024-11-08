@@ -11,7 +11,7 @@ export const CommandSeparator = forwardRef<
 >((props, ref) => (
   <Box asChild>
     <li ref={ref}>
-      <Separator asChild bg="border.secondary" mx="-4" my="2" {...props} />
+      <Separator asChild bg="border.secondary" mx="8" my="4" {...props} />
     </li>
   </Box>
 ));
