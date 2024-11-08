@@ -60,7 +60,15 @@ export const Pagination = forwardRef<HTMLElement, PaginationProps>(
               </li>
 
               {range.map((page, index) => (
-                <li key={`${index}`}>
+                <li
+                  key={
+                    page === "dots"
+                      ? `${page}-${
+                          index < range.indexOf(active) ? "before" : "after"
+                        }`
+                      : page
+                  }
+                >
                   {page === "dots" ? (
                     <Box
                       alignItems="stretch"
