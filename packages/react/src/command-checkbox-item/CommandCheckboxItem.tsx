@@ -11,14 +11,16 @@ export const CommandCheckboxItem = forwardRef<
   HTMLLIElement,
   CommandCheckboxItemProps
 >(({ addonBefore, ...props }, ref) => {
-  const { isItemDisabled, items } = useCommandContext("CommandCheckboxItem");
+  const { isItemDisabled, items, value } = useCommandContext(
+    "CommandCheckboxItem",
+  );
 
   return (
     <CommandItem
       addonBefore={
         <Flex flexDirection="row" gap="xs">
           <Checkbox
-            checked={props.active}
+            checked={props.active ?? value?.has(props.item)}
             disabled={isItemDisabled(props.item, items.indexOf(props.item))}
             tabIndex={-1}
           />

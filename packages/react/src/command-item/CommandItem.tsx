@@ -32,11 +32,15 @@ export const CommandItem = forwardRef<HTMLLIElement, CommandItemProps>(
   ) => {
     const { restProps, sprinkleProps } = extractSprinkles(props);
 
-    const { downshift, highlightedItem } = useCommandContext("CommandItem");
+    const { downshift, highlightedItem, value } =
+      useCommandContext("CommandItem");
     const itemProps = downshift.getItemProps({ item });
 
     return (
-      <CommandItemContextProvider active={active} item={item}>
+      <CommandItemContextProvider
+        active={active ?? value?.has(item)}
+        item={item}
+      >
         <ListboxItemBase
           addonAfter={addonAfter}
           addonBefore={addonBefore}
@@ -47,7 +51,6 @@ export const CommandItem = forwardRef<HTMLLIElement, CommandItemProps>(
           <li
             data-disabled={itemProps["aria-disabled"] ? "" : undefined}
             data-highlighted={highlightedItem === item ? "" : undefined}
-            data-selected={downshift.selectedItem === item ? "" : undefined}
             ref={ref}
             {...restProps}
             {...itemProps}

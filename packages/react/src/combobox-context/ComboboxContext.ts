@@ -11,4 +11,5 @@ export const [ComboboxContextProvider, useComboboxContext] = createContext<{
   onItemSelect?: (value: any) => void;
   open?: boolean | undefined;
   setOpen: (open: boolean) => void;
+  value?: Set<any>;
 }>("Combobox");

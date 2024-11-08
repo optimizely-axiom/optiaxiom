@@ -1,22 +1,54 @@
-import { type ComponentPropsWithoutRef, forwardRef } from "react";
+import { forwardRef, useMemo } from "react";
 
-import { ComboboxMultipleValue } from "../combobox-multiple-value";
-import { ComboboxSingleValue } from "../combobox-single-value";
+import { Badge } from "../badge";
+import { type BoxProps } from "../box";
+import { useComboboxContext } from "../combobox-context";
+import { Flex } from "../flex";
 
-type ComboboxValueProps =
-  | ({
-      type: "multiple";
-    } & ComponentPropsWithoutRef<typeof ComboboxMultipleValue>)
-  | ({
-      type?: "single";
-    } & ComponentPropsWithoutRef<typeof ComboboxSingleValue>);
+type ComboboxValueProps = BoxProps<
+  "div",
+  {
+    placeholder?: string;
+  }
+>;
+
+const maxDisplayedItems = 2;
 
 export const ComboboxValue = forwardRef<HTMLDivElement, ComboboxValueProps>(
-  (props, ref) => {
-    return props.type === "multiple" ? (
-      <ComboboxMultipleValue ref={ref} {...props} />
-    ) : (
-      <ComboboxSingleValue ref={ref} {...props} />
+  ({ children, placeholder, ...props }, ref) => {
+    const {
+      itemToKey,
+      itemToString,
+      value: valueContext,
+    } = useComboboxContext("ComboboxValue");
+    const value = useMemo(
+      () => (valueContext instanceof Set ? [...valueContext] : valueContext),
+      [valueContext],
+    );
+
+    return (
+      <Flex flexDirection="row" flexWrap="wrap" gap="2" ref={ref} {...props}>
+        {Array.isArray(value) && value.length > 0
+          ? (children ?? (
+              <>
+                {value.length > maxDisplayedItems ? (
+                  <Badge>{value.length} selected</Badge>
+                ) : (
+                  value.slice(0, maxDisplayedItems).map((item) => (
+                    <Badge
+                      display="inline-block"
+                      flex="1"
+                      key={itemToKey(item)}
+                      truncate
+                    >
+                      {itemToString(item)}
+                    </Badge>
+                  ))
+                )}
+              </>
+            ))
+          : placeholder}
+      </Flex>
     );
   },
 );
