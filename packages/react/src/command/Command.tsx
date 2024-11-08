@@ -7,8 +7,8 @@ import { CommandContextProvider } from "../command-context";
 type CommandProps<Item> = {
   children: ReactNode;
   onInputValueChange?: (inputValue: string) => void;
+  onItemSelect?: (value: Item) => void;
   onOpenChange?: (open: boolean) => void;
-  onSelect?: (value: Item) => void;
 } & Pick<
   UseComboboxProps<Item>,
   "isItemDisabled" | "items" | "itemToKey" | "itemToString"
@@ -21,8 +21,8 @@ export function Command<Item>({
   itemToKey = (value) => value,
   itemToString = (value) => (value ? String(value) : ""),
   onInputValueChange,
+  onItemSelect,
   onOpenChange,
-  onSelect,
 }: CommandProps<Item>) {
   const [inputValue, setInputValue] = useControllableState({
     defaultProp: "",
@@ -43,7 +43,7 @@ export function Command<Item>({
     itemToString,
     onSelectedItemChange({ selectedItem, type }) {
       if (type !== useCombobox.stateChangeTypes.InputBlur) {
-        onSelect?.(selectedItem);
+        onItemSelect?.(selectedItem);
       }
     },
     selectedItem: null,
@@ -76,7 +76,7 @@ export function Command<Item>({
       itemToString={itemToString}
       setInputValue={setInputValue}
       setOpen={onOpenChange}
-      setValue={onSelect}
+      setValue={onItemSelect}
     >
       {children}
     </CommandContextProvider>

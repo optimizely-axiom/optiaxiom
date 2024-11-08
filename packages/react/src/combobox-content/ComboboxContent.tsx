@@ -16,7 +16,7 @@ export const ComboboxContent = forwardRef<HTMLDivElement, ComboboxContentProps>(
       itemToKey,
       itemToString,
       onInputValueChange,
-      onSelect,
+      onItemSelect,
     } = useComboboxContext("ComboboxContent");
 
     return (
@@ -33,7 +33,7 @@ export const ComboboxContent = forwardRef<HTMLDivElement, ComboboxContentProps>(
           itemToKey={itemToKey}
           itemToString={itemToString}
           onInputValueChange={onInputValueChange}
-          onSelect={onSelect}
+          onItemSelect={onItemSelect}
         >
           {children}
         </Command>

@@ -8,7 +8,7 @@ export const [ComboboxContextProvider, useComboboxContext] = createContext<{
   itemToKey: (item: any) => string;
   itemToString: (item: any) => string;
   onInputValueChange?: (value: string) => void;
-  onSelect?: (value: any) => void;
+  onItemSelect?: (value: any) => void;
   open?: boolean | undefined;
   setOpen: (open: boolean) => void;
 }>("Combobox");

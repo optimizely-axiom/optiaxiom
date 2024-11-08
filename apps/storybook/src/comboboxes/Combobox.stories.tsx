@@ -97,11 +97,11 @@ export const Basic: Story = {
             ),
           );
         }}
-        onOpenChange={setOpen}
-        onSelect={(value) => {
+        onItemSelect={(value) => {
           setValue(value);
           setOpen(false);
         }}
+        onOpenChange={setOpen}
         open={open}
       >
         <ComboboxTrigger>
@@ -155,14 +155,14 @@ export const Multiple: Story = {
             ),
           );
         }}
-        onOpenChange={setOpen}
-        onSelect={(value) => {
+        onItemSelect={(value) => {
           setValues((values) =>
             values.includes(value)
               ? values.filter((v) => v !== value)
               : [...values, value],
           );
         }}
+        onOpenChange={setOpen}
         open={open}
       >
         <ComboboxTrigger>
@@ -277,8 +277,7 @@ export const People: Story<(typeof users)[number]> = {
               : list,
           );
         }}
-        onOpenChange={setOpen}
-        onSelect={(value) => {
+        onItemSelect={(value) => {
           if (value === actions.me) {
             setValues(new Set([users[0]]));
             setOpen(false);
@@ -292,6 +291,7 @@ export const People: Story<(typeof users)[number]> = {
             );
           }
         }}
+        onOpenChange={setOpen}
         open={open}
       >
         <ComboboxTrigger>
@@ -451,14 +451,14 @@ export const Controlled: Story<(typeof books)[number]> = {
             ),
           );
         }}
-        onOpenChange={setOpen}
-        onSelect={(value) => {
+        onItemSelect={(value) => {
           setValues((values) =>
             values.includes(value)
               ? values.filter((v) => v !== value)
               : [...values, value],
           );
         }}
+        onOpenChange={setOpen}
         open={open}
       >
         <ComboboxTrigger>
