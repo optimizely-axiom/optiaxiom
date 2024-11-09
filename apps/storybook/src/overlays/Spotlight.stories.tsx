@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 import { Box, Kbd, Link, Toast, toaster, ToastTitle } from "@optiaxiom/react";
 import {
+  Highlight,
   Spotlight,
   SpotlightContent,
   SpotlightEmpty,
@@ -76,8 +77,12 @@ export const Basic: Story<(typeof pages)[number]> = {
         pages.filter(
           (page) =>
             !inputValue ||
-            page.description.toLowerCase().includes(inputValue.toLowerCase()) ||
-            page.title.toLowerCase().includes(inputValue.toLowerCase()),
+            getAllPhrasesMatchingRegex(
+              inputValue
+                .split(" ")
+                .map((q) => q.trim())
+                .filter(Boolean),
+            ).test(page.description + "\n" + page.title),
         ),
       );
     };
@@ -128,8 +133,25 @@ export const Basic: Story<(typeof pages)[number]> = {
                   <SpotlightLabel>{item.category}</SpotlightLabel>
                 )}
 
-                <SpotlightItem description={item.description} item={item}>
-                  {item.title}
+                <SpotlightItem
+                  description={
+                    <Highlight
+                      borderB="2"
+                      borderColor="fg.information"
+                      content={item.description}
+                      fontWeight="600"
+                      query={inputValue}
+                    />
+                  }
+                  item={item}
+                >
+                  <Highlight
+                    borderB="2"
+                    borderColor="fg.information"
+                    content={item.title}
+                    fontWeight="600"
+                    query={inputValue}
+                  />
                 </SpotlightItem>
               </Fragment>
             ))}
@@ -155,3 +177,16 @@ export const Basic: Story<(typeof pages)[number]> = {
     );
   },
 };
+
+function escapeRegExp(string: string) {
+  return string.replace(/[/\-\\^$*+?.()|[\]{}]/g, "\\$&");
+}
+
+function getAllPhrasesMatchingRegex(phrases: string[]) {
+  const escapedPhrases = phrases.map((p) => escapeRegExp(p));
+
+  return new RegExp(
+    "(?![^<>]*>)(^|\\b)(?=[^/.])(" + escapedPhrases.join("|") + ")",
+    "gi",
+  );
+}

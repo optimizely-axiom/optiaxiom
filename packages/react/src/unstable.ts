@@ -34,6 +34,7 @@ export * from "./command-list";
 export * from "./command-separator";
 export * from "./data-table";
 export * from "./data-table-header";
+export * from "./highlight";
 export * from "./pill";
 export * from "./select";
 export * from "./select-content";
