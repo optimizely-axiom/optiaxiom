@@ -1,4 +1,3 @@
-import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import { useComboboxContext } from "../combobox-context";
@@ -33,17 +32,12 @@ export const ComboboxContent = forwardRef<HTMLDivElement, ComboboxContentProps>(
 
     return (
       <components.Content
-        aria-describedby={undefined}
         aria-labelledby={labelId}
         overflow="hidden"
         p={p}
         ref={ref}
         {...props}
       >
-        <VisuallyHidden>
-          <components.Title />
-        </VisuallyHidden>
-
         <Command
           isItemDisabled={isItemDisabled}
           items={items}

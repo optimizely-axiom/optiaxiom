@@ -1,7 +1,6 @@
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import {
   type ComponentPropsWithoutRef,
-  Fragment,
   type ReactNode,
   useEffect,
   useMemo,
@@ -12,7 +11,6 @@ import type { Command } from "../command";
 import { ComboboxContextProvider } from "../combobox-context";
 import { Dialog } from "../dialog";
 import { DialogContent } from "../dialog-content";
-import { DialogTitle } from "../dialog-title";
 import { DialogTrigger } from "../dialog-trigger";
 import { Popover } from "../popover";
 import { PopoverContent } from "../popover-content";
@@ -45,13 +43,11 @@ export function Combobox<Item>({
     base: {
       Content: DialogContent,
       Root: Dialog,
-      Title: DialogTitle,
       Trigger: DialogTrigger,
     },
     sm: {
       Content: PopoverContent,
       Root: Popover,
-      Title: Fragment,
       Trigger: PopoverTrigger,
     },
   });
