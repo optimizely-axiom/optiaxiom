@@ -17,8 +17,8 @@ export const content = recipe({
       maxHeight: "75dvh",
       maxWidth: "calc(100dvw - 2 * 24px)",
       position: "fixed",
-      top: "50%",
-      translate: "-50% -50%",
+      top: "12dvh",
+      translate: "-50% 0",
     }),
   ],
   variants: {
@@ -37,6 +37,7 @@ export const content = recipe({
         height: "100dvh",
         maxHeight: "none",
         maxWidth: "none",
+        top: "0",
         width: "100dvw",
       }),
     },
