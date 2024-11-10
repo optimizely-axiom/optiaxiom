@@ -44,6 +44,7 @@ export * from "./date-range-picker-content";
 export * from "./date-range-picker-trigger";
 export * from "./highlight";
 export * from "./inline-input";
+export * from "./label-menu-button";
 export * from "./layout";
 export * from "./pill";
 export * from "./pill-group";

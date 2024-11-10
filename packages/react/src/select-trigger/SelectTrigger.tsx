@@ -13,6 +13,7 @@ import { extractBoxProps } from "../box";
 import { type ButtonProps } from "../button";
 import { useSelectContext } from "../select-context";
 import { useFieldLabelTrigger } from "../use-field-label-trigger";
+import { decorateChildren } from "../utils";
 
 type SelectTriggerProps = ButtonProps<
   typeof PopperAnchor,
@@ -51,6 +52,8 @@ export const SelectTrigger = forwardRef<HTMLButtonElement, SelectTriggerProps>(
       [focusOnOpen],
     );
 
+    const value = selectedItem ? itemToString(selectedItem) : placeholder;
+
     return (
       <PopperAnchor
         asChild
@@ -67,11 +70,13 @@ export const SelectTrigger = forwardRef<HTMLButtonElement, SelectTriggerProps>(
       >
         <Slot ref={ref}>
           {asChild ? (
-            children
+            decorateChildren(
+              { asChild, children },
+              (children) => children ?? value,
+            )
           ) : (
             <AngleMenuButton ref={buttonRef}>
-              {children ??
-                (selectedItem ? itemToString(selectedItem) : placeholder)}
+              {children ?? value}
             </AngleMenuButton>
           )}
         </Slot>
