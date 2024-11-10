@@ -78,7 +78,11 @@ export const Pagination = forwardRef<HTMLElement, PaginationProps>(
                       py="8"
                       size="md"
                     >
-                      <Icon asChild>
+                      <Icon
+                        asChild
+                        color={disabled ? "fg.disabled" : "fg.default"}
+                        cursor={disabled ? "not-allowed" : "default"}
+                      >
                         <IconEllipsis />
                       </Icon>
                     </Box>
