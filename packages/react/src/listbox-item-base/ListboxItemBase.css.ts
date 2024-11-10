@@ -8,6 +8,7 @@ import {
 } from "../vanilla-extract";
 
 const bgColorVar = createVar();
+const bgColorPressedVar = createVar();
 const accentColorVar = createVar();
 
 export const item = recipe({
@@ -36,7 +37,7 @@ export const item = recipe({
           backgroundColor: bgColorVar,
         },
         "&:not([data-disabled])[data-highlighted]:active": {
-          backgroundColor: theme.colors["bg.secondary.hovered"],
+          backgroundColor: bgColorPressedVar,
         },
         "&[data-disabled]": {
           opacity: 0.3,
@@ -50,12 +51,14 @@ export const item = recipe({
       danger: style({
         vars: {
           [accentColorVar]: theme.colors["fg.error"],
-          [bgColorVar]: theme.colors["bg.error.subtle"],
+          [bgColorPressedVar]: theme.colors["bg.error.subtle"],
+          [bgColorVar]: theme.colors["bg.error.subtlest"],
         },
       }),
       neutral: style({
         vars: {
           [accentColorVar]: theme.colors["fg.default"],
+          [bgColorPressedVar]: theme.colors["bg.secondary.hovered"],
           [bgColorVar]: theme.colors["bg.secondary"],
         },
       }),

@@ -15,7 +15,6 @@ export const CommandInput = forwardRef<HTMLInputElement, CommandInputProps>(
     return (
       <Input
         addonBefore={<IconMagnifyingGlass />}
-        m="4"
         {...sprinkleProps}
         {...downshift.getInputProps({
           ...restProps,
