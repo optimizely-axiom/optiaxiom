@@ -16,7 +16,7 @@ export const textColorVar = createVar();
 const transparentHoverAccentColorVar = createVar();
 const transparentPressedAccentColorVar = createVar();
 
-const paddingInlineVar = createVar();
+export const paddingInlineVar = createVar();
 
 export const className = style({});
 
