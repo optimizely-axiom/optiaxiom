@@ -102,17 +102,9 @@ export const input = recipe({
 
   variants: {
     size: {
-      md: {
-        px: "8",
-        py: "4",
-      },
-      lg: {
-        p: "8",
-      },
-      xl: [
-        {
-          p: "md",
-        },
+      md: {},
+      lg: {},
+      "2xl": [
         responsiveStyle({
           sm: {
             fontSize: "16px",

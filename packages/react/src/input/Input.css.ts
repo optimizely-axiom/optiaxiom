@@ -1,5 +1,25 @@
 import { recipe, type RecipeVariants } from "../vanilla-extract";
 
+export const root = recipe({
+  variants: {
+    size: {
+      md: {
+        gap: "xs",
+        px: "xs",
+        py: "4",
+      },
+      lg: {
+        gap: "xs",
+        p: "xs",
+      },
+      "2xl": {
+        gap: "md",
+        p: "md",
+      },
+    },
+  },
+});
+
 export const input = recipe({
   variants: {
     appearance: {
@@ -17,62 +37,6 @@ export const addon = recipe({
   base: {
     flex: "none",
   },
-
-  variants: {
-    position: {
-      end: {
-        mr: "8",
-      },
-      start: {
-        ml: "8",
-      },
-    },
-    size: {
-      sm: {},
-      md: {},
-      lg: {},
-      xl: {},
-    },
-  },
-
-  variantsCompounded: [
-    {
-      style: {
-        mr: "4",
-      },
-      variants: {
-        position: "end",
-        size: "sm",
-      },
-    },
-    {
-      style: {
-        ml: "4",
-      },
-      variants: {
-        position: "start",
-        size: "sm",
-      },
-    },
-    {
-      style: {
-        mr: "md",
-      },
-      variants: {
-        position: "end",
-        size: "xl",
-      },
-    },
-    {
-      style: {
-        ml: "md",
-      },
-      variants: {
-        position: "start",
-        size: "xl",
-      },
-    },
-  ],
 });
 
 export type InputVariants = RecipeVariants<typeof input>;

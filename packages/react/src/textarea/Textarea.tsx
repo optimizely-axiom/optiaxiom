@@ -1,6 +1,7 @@
 import { Slot } from "@radix-ui/react-slot";
 import { type ComponentPropsWithRef, forwardRef } from "react";
 
+import { Box } from "../box";
 import { InputBase, type InputBaseProps } from "../input-base";
 import { TextareaAutosize } from "../textarea-autosize";
 
@@ -23,9 +24,11 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
 
     return (
       <InputBase flexDirection="column" size="lg" {...props}>
-        <Comp ref={ref} rows={props.rows ?? 3}>
-          {children}
-        </Comp>
+        <Box asChild p="xs">
+          <Comp ref={ref} rows={props.rows ?? 3}>
+            {children}
+          </Comp>
+        </Box>
       </InputBase>
     );
   },
