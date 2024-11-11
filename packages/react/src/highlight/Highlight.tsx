@@ -1,15 +1,15 @@
-import { Fragment, type ReactNode, useMemo } from "react";
+import { Fragment, type ReactNode } from "react";
 
 import { Box, type BoxProps } from "../box";
-import { getHighlightedChunks } from "./getHighlightedChunks";
 import * as styles from "./Highlight.css";
+import { useHighlightedChunks } from "./useHighlightedChunks";
 
 type HighlightProps = BoxProps<
   "div",
   {
     children?: (chunk: string) => ReactNode;
     content?: string;
-    query?: string | string[];
+    query?: RegExp | RegExp[] | string | string[];
   }
 >;
 
@@ -19,14 +19,7 @@ export function Highlight({
   query,
   ...props
 }: HighlightProps) {
-  const terms = useMemo(
-    () =>
-      (Array.isArray(query) ? query : query ? [query] : [])
-        .map((q) => q.trim())
-        .filter(Boolean),
-    [query],
-  );
-  const chunks = getHighlightedChunks(content || "", terms);
+  const chunks = useHighlightedChunks(content || "", query);
 
   return (
     <>
