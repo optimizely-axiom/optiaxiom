@@ -12,7 +12,7 @@ import { Box, type BoxProps } from "../box";
 import { Flex } from "../flex";
 import { Icon } from "../icon";
 import { Text } from "../text";
-import { type ExtendProps } from "../utils";
+import { type ExtendProps, fallbackSpan } from "../utils";
 import * as styles from "./ListboxItemBase.css";
 
 export type ListboxItemBaseProps<
@@ -54,13 +54,13 @@ export const ListboxItemBase = forwardRef<HTMLDivElement, ListboxItemBaseProps>(
           newElement,
           undefined,
           <Flex flex="1" gap="0">
-            <Box {...styles.title()} id={labelId}>
-              {newElement.props.children}
+            <Box asChild {...styles.title()} id={labelId}>
+              {fallbackSpan(newElement.props.children)}
             </Box>
 
             {description && (
-              <Text {...styles.description()} id={descriptionId}>
-                {description}
+              <Text asChild {...styles.description()} id={descriptionId}>
+                {fallbackSpan(description)}
               </Text>
             )}
           </Flex>,
@@ -85,7 +85,11 @@ export const ListboxItemBase = forwardRef<HTMLDivElement, ListboxItemBaseProps>(
 
           <Slottable>{children}</Slottable>
 
-          {addonAfter && <Box ml="xs">{addonAfter}</Box>}
+          {addonAfter && (
+            <Box asChild ml="xs">
+              {fallbackSpan(addonAfter)}
+            </Box>
+          )}
         </Slot>
       </Flex>
     );

@@ -3,6 +3,7 @@ import { forwardRef } from "react";
 
 import { Box } from "../box";
 import { InputBase, type InputBaseProps } from "../input-base";
+import { fallbackSpan } from "../utils";
 import * as styles from "./Input.css";
 
 type InputProps = InputBaseProps<"input", NonNullable<styles.InputVariants>>;
@@ -25,9 +26,19 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
 
     return (
       <InputBase
-        addonAfter={addonAfter && <Box {...styles.addon()}>{addonAfter}</Box>}
+        addonAfter={
+          addonAfter && (
+            <Box asChild {...styles.addon()}>
+              {fallbackSpan(addonAfter)}
+            </Box>
+          )
+        }
         addonBefore={
-          addonBefore && <Box {...styles.addon()}>{addonBefore}</Box>
+          addonBefore && (
+            <Box asChild {...styles.addon()}>
+              {fallbackSpan(addonBefore)}
+            </Box>
+          )
         }
         size={size}
         {...styles.root({ size }, className)}

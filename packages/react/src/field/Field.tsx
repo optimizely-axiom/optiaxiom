@@ -13,6 +13,7 @@ import { HoverCardTrigger } from "../hover-card-trigger";
 import { IconCircleQuestion } from "../icons/IconCircleQuestion";
 import { IconTriangleExclamation } from "../icons/IconTriangleExclamation";
 import { Text } from "../text";
+import { fallbackSpan } from "../utils";
 
 type FieldProps = BoxProps<
   "div",
@@ -132,8 +133,8 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(
         )}
 
         {description && (
-          <Box color="fg.tertiary" fontSize="sm" id={descriptionId}>
-            {description}
+          <Box asChild color="fg.tertiary" fontSize="sm" id={descriptionId}>
+            {fallbackSpan(description)}
           </Box>
         )}
       </Flex>
