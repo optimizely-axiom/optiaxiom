@@ -408,23 +408,11 @@ export const responsiveProps = defineProperties({
   },
   shorthands: {
     /**
-     * Set the element's height
-     *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/height/ Documentation}
-     */
-    h: ["height"],
-    /**
      * Set the element's line height
      *
      * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/line-height/ Documentation}
      */
     leading: ["lineHeight"],
-    /**
-     * Set the element's margin on all sides
-     *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/margin/ Documentation}
-     */
-    m: ["marginBottom", "marginLeft", "marginRight", "marginTop"],
     /**
      * Set the element's max-height
      *
@@ -437,6 +425,26 @@ export const responsiveProps = defineProperties({
      * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/max-width/ Documentation}
      */
     maxW: ["maxWidth"],
+
+    /**
+     * Set the element's margin on all sides
+     *
+     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/margin/ Documentation}
+     */
+    m: ["marginBottom", "marginLeft", "marginRight", "marginTop"],
+    /**
+     * Set the element's left and right margin
+     *
+     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/margin/ Documentation}
+     */
+    mx: ["marginLeft", "marginRight"],
+    /**
+     * Set the element's top and bottom margin
+     *
+     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/margin/ Documentation}
+     */
+    my: ["marginBottom", "marginTop"],
+
     /**
      * Set the element's bottom margin
      *
@@ -461,24 +469,26 @@ export const responsiveProps = defineProperties({
      * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/margin/ Documentation}
      */
     mt: ["marginTop"],
-    /**
-     * Set the element's left and right margin
-     *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/margin/ Documentation}
-     */
-    mx: ["marginLeft", "marginRight"],
-    /**
-     * Set the element's top and bottom margin
-     *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/margin/ Documentation}
-     */
-    my: ["marginBottom", "marginTop"],
+
     /**
      * Set the element's padding on all sides
      *
      * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/padding/ Documentation}
      */
     p: ["paddingBottom", "paddingLeft", "paddingRight", "paddingTop"],
+    /**
+     * Set the element's left and right padding
+     *
+     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/padding/ Documentation}
+     */
+    px: ["paddingLeft", "paddingRight"],
+    /**
+     * Set the element's top and bottom padding
+     *
+     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/padding/ Documentation}
+     */
+    py: ["paddingBottom", "paddingTop"],
+
     /**
      * Set the element's bottom padding
      *
@@ -503,24 +513,20 @@ export const responsiveProps = defineProperties({
      * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/padding/ Documentation}
      */
     pt: ["paddingTop"],
-    /**
-     * Set the element's left and right padding
-     *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/padding/ Documentation}
-     */
-    px: ["paddingLeft", "paddingRight"],
-    /**
-     * Set the element's top and bottom padding
-     *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/padding/ Documentation}
-     */
-    py: ["paddingBottom", "paddingTop"],
+
     /**
      * Set the element's width and height
      *
      * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/size/ Documentation}
      */
     size: ["height", "width"],
+    /**
+     * Set the element's height
+     *
+     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/height/ Documentation}
+     */
+
+    h: ["height"],
     /**
      * Set the element's width
      *
