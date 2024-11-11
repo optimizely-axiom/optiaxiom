@@ -7,6 +7,7 @@ import {
 } from "../alert-dialog-context";
 import { AnimatePresence } from "../animate-presence";
 import { Box, type BoxProps } from "../box";
+import { Flex } from "../flex";
 import { Transition } from "../transition";
 import * as styles from "./AlertDialogContent.css";
 
@@ -31,15 +32,22 @@ export const AlertDialogContent = forwardRef<
             </Box>
           </Transition>
 
-          <Transition data-side="bottom" type="fade">
-            <Box asChild {...styles.content({ size })}>
-              <RadixAlertDialog.Content ref={ref} {...props}>
-                <AlertDialogContextProvider open={open}>
-                  {children}
-                </AlertDialogContextProvider>
-              </RadixAlertDialog.Content>
-            </Box>
-          </Transition>
+          <Flex {...styles.container()}>
+            <Box flex="1" pointerEvents="none" />
+
+            <Transition data-side="bottom" type="fade">
+              <Box asChild {...styles.content({ size })}>
+                <RadixAlertDialog.Content ref={ref} {...props}>
+                  <AlertDialogContextProvider open={open}>
+                    {children}
+                  </AlertDialogContextProvider>
+                </RadixAlertDialog.Content>
+              </Box>
+            </Transition>
+
+            <Box flex="1" pointerEvents="none" />
+            <Box flex="1" pointerEvents="none" />
+          </Flex>
         </RadixAlertDialog.Portal>
       )}
     </AnimatePresence>
