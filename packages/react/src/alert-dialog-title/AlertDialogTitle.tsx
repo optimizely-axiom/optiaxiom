@@ -7,6 +7,7 @@ import { Heading } from "../heading";
 import { Icon } from "../icon";
 import { IconTriangleExclamationFilled } from "../icons/IconTriangleExclamationFilled";
 import { extractSprinkles } from "../sprinkles";
+import { fallbackSpan } from "../utils";
 
 type AlertDialogTitleProps = BoxProps<
   typeof RadixAlertDialog.Title,
@@ -23,7 +24,11 @@ export const AlertDialogTitle = forwardRef<
   return (
     <Flex flexDirection="row" gap="xs" p="lg" pb="md" {...sprinkleProps}>
       <Icon asChild color="fg.error">
-        {addonBefore ?? <IconTriangleExclamationFilled />}
+        {addonBefore ? (
+          fallbackSpan(addonBefore)
+        ) : (
+          <IconTriangleExclamationFilled />
+        )}
       </Icon>
 
       <Heading
