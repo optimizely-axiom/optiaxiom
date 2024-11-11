@@ -15,6 +15,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       appearance = "default",
       asChild,
       children,
+      className,
       size = "md",
       ...props
     },
@@ -24,19 +25,12 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
 
     return (
       <InputBase
-        addonAfter={
-          addonAfter && (
-            <Box {...styles.addon({ position: "end", size })}>{addonAfter}</Box>
-          )
-        }
+        addonAfter={addonAfter && <Box {...styles.addon()}>{addonAfter}</Box>}
         addonBefore={
-          addonBefore && (
-            <Box {...styles.addon({ position: "start", size })}>
-              {addonBefore}
-            </Box>
-          )
+          addonBefore && <Box {...styles.addon()}>{addonBefore}</Box>
         }
         size={size}
+        {...styles.root({ size }, className)}
         {...props}
       >
         <Box asChild {...styles.input({ appearance })}>

@@ -29,7 +29,6 @@ export const AutocompleteTrigger = forwardRef<
             alignSelf="stretch"
             flexDirection="row"
             gap="0"
-            mr="0"
           >
             {downshift.selectedItem && (
               <Flex onClick={() => downshift.reset()} w="32">
@@ -39,7 +38,7 @@ export const AutocompleteTrigger = forwardRef<
               </Flex>
             )}
 
-            <Separator my="xs" orientation="vertical" />
+            <Separator my="4" orientation="vertical" />
 
             <Flex onClick={downshift.getToggleButtonProps().onClick} w="32">
               <Icon asChild>
@@ -48,6 +47,7 @@ export const AutocompleteTrigger = forwardRef<
             </Flex>
           </Flex>
         }
+        pr="0"
         {...sprinkleProps}
         {...downshift.getInputProps({
           ...restProps,
