@@ -35,6 +35,7 @@ export const input = recipe({
 
 export const addon = recipe({
   base: {
+    display: "flex",
     flex: "none",
   },
 });
