@@ -29,13 +29,14 @@ export const item = recipe({
 export const description = recipe({
   base: [
     {
-      fontSize: "inherit",
+      fontSize: "md",
       mt: "2",
+      transition: "colors",
     },
     style({
       selectors: {
         "[data-highlighted] &": {
-          color: "inherit",
+          color: theme.colors["fg.default.inverse"],
         },
       },
     }),
