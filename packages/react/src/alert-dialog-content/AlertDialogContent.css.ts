@@ -1,5 +1,19 @@
 import { recipe, type RecipeVariants, style } from "../vanilla-extract";
 
+export const container = recipe({
+  base: [
+    {
+      alignItems: "center",
+      gap: "0",
+      z: "popover",
+    },
+    style({
+      inset: "0",
+      position: "fixed",
+    }),
+  ],
+});
+
 export const content = recipe({
   base: [
     {
@@ -8,15 +22,10 @@ export const content = recipe({
       flexDirection: "column",
       rounded: "lg",
       shadow: "md",
-      z: "popover",
     },
     style({
-      left: "50%",
       maxHeight: "50dvh",
       maxWidth: "calc(100dvw - 2 * 24px)",
-      position: "fixed",
-      top: "50%",
-      translate: "-50% -50%",
     }),
   ],
   variants: {
