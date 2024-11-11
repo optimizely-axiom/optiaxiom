@@ -53,7 +53,7 @@ export const ListboxItemBase = forwardRef<HTMLDivElement, ListboxItemBaseProps>(
       ? cloneElement(
           newElement,
           undefined,
-          <Box flex="1">
+          <Flex flex="1" gap="0">
             <Box asChild id={labelId}>
               {fallbackSpan(newElement.props.children)}
             </Box>
@@ -63,7 +63,7 @@ export const ListboxItemBase = forwardRef<HTMLDivElement, ListboxItemBaseProps>(
                 {fallbackSpan(description)}
               </Text>
             )}
-          </Box>,
+          </Flex>,
         )
       : children;
 
