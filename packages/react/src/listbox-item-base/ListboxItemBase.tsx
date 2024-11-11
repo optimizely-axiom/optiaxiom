@@ -54,7 +54,7 @@ export const ListboxItemBase = forwardRef<HTMLDivElement, ListboxItemBaseProps>(
           newElement,
           undefined,
           <Flex flex="1" gap="0">
-            <Box asChild id={labelId}>
+            <Box asChild {...styles.title()} id={labelId}>
               {fallbackSpan(newElement.props.children)}
             </Box>
 

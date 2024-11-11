@@ -62,6 +62,14 @@ export const item = recipe({
   },
 });
 
+export const title = recipe({
+  base: [
+    style({
+      lineHeight: "24px",
+    }),
+  ],
+});
+
 export const description = recipe({
   base: [
     {
