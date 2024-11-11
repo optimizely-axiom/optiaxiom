@@ -13,7 +13,6 @@ import { Box, type BoxProps } from "../box";
 import { useFieldContext } from "../field-context";
 import { Flex } from "../flex";
 import { extractSprinkles } from "../sprinkles";
-import { Text } from "../text";
 import { type ExtendProps } from "../utils";
 import * as styles from "./InputBase.css";
 
@@ -67,19 +66,23 @@ export const InputBase = forwardRef<
     const ref = useComposedRefs(innerRef, outerRef);
 
     const addonProps =
-      addonPointerEvents === "none" &&
-      ({
-        cursor: "text",
-        onMouseDown: (event: MouseEvent) => {
-          if (event.target !== event.currentTarget) {
-            return;
-          }
+      addonPointerEvents === "none"
+        ? ({
+            cursor: "text",
+            fontSize: "md",
+            onMouseDown: (event: MouseEvent) => {
+              if (event.target !== event.currentTarget) {
+                return;
+              }
 
-          event.preventDefault();
-          event.stopPropagation();
-          innerRef.current?.focus();
-        },
-      } as const);
+              event.preventDefault();
+              event.stopPropagation();
+              innerRef.current?.focus();
+            },
+          } as const)
+        : ({
+            fontSize: "md",
+          } as const);
 
     return (
       <Flex
@@ -89,7 +92,7 @@ export const InputBase = forwardRef<
         {...styles.wrapper({}, className)}
         {...sprinkleProps}
       >
-        {addonBefore && <Text {...addonProps}>{addonBefore}</Text>}
+        {addonBefore && <Box {...addonProps}>{addonBefore}</Box>}
 
         <Box
           aria-describedby={
@@ -108,7 +111,7 @@ export const InputBase = forwardRef<
           </Slot>
         </Box>
 
-        {addonAfter && <Text {...addonProps}>{addonAfter}</Text>}
+        {addonAfter && <Box {...addonProps}>{addonAfter}</Box>}
       </Flex>
     );
   },
