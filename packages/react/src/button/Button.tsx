@@ -8,11 +8,12 @@ import {
   useEffect,
 } from "react";
 
+import { ButtonAddon } from "../button-addon";
 import { ButtonBase, type ButtonBaseProps } from "../button-base";
 import { ButtonLabel } from "../button-label";
 import { ButtonLoadable } from "../button-loadable";
 import { Icon } from "../icon";
-import { type ExtendProps } from "../utils";
+import { type ExtendProps, fallbackSpan } from "../utils";
 
 export type ButtonProps<
   T extends ElementType = "button",
@@ -100,12 +101,14 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       >
         <Comp>
           {addonBefore && (
-            <ButtonLoadable asChild>{addonBefore}</ButtonLoadable>
+            <ButtonAddon asChild>{fallbackSpan(addonBefore)}</ButtonAddon>
           )}
 
           <Slottable>{children}</Slottable>
 
-          {addonAfter && <ButtonLoadable asChild>{addonAfter}</ButtonLoadable>}
+          {addonAfter && (
+            <ButtonAddon asChild>{fallbackSpan(addonAfter)}</ButtonAddon>
+          )}
         </Comp>
       </ButtonBase>
     );
