@@ -6,7 +6,6 @@ import { Box } from "../box";
 import { DialogTrigger } from "../dialog-trigger";
 import { IconMagnifyingGlass } from "../icons/IconMagnifyingGlass";
 import { useSpotlightContext } from "../spotlight-context";
-import { fallbackSpan } from "../utils";
 
 type SpotlightTriggerProps = ButtonProps<
   typeof DialogTrigger,
@@ -40,11 +39,7 @@ export const SpotlightTrigger = forwardRef<
 
   return (
     <DialogTrigger
-      addonAfter={
-        <Box asChild ml="auto">
-          {fallbackSpan(addonAfter)}
-        </Box>
-      }
+      addonAfter={<Box ml="auto">{addonAfter}</Box>}
       icon={<IconMagnifyingGlass />}
       justifyContent="start"
       ref={ref}

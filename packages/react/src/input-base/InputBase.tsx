@@ -14,7 +14,7 @@ import { useFieldContext } from "../field-context";
 import { Flex } from "../flex";
 import { extractSprinkles } from "../sprinkles";
 import { Text } from "../text";
-import { type ExtendProps, fallbackSpan } from "../utils";
+import { type ExtendProps } from "../utils";
 import * as styles from "./InputBase.css";
 
 export type InputBaseProps<
@@ -89,11 +89,7 @@ export const InputBase = forwardRef<
         {...styles.wrapper({}, className)}
         {...sprinkleProps}
       >
-        {addonBefore && (
-          <Text asChild {...addonProps}>
-            {fallbackSpan(addonBefore)}
-          </Text>
-        )}
+        {addonBefore && <Text {...addonProps}>{addonBefore}</Text>}
 
         <Box
           aria-describedby={
@@ -112,11 +108,7 @@ export const InputBase = forwardRef<
           </Slot>
         </Box>
 
-        {addonAfter && (
-          <Text asChild {...addonProps}>
-            {fallbackSpan(addonAfter)}
-          </Text>
-        )}
+        {addonAfter && <Text {...addonProps}>{addonAfter}</Text>}
       </Flex>
     );
   },
