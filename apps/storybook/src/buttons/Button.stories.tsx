@@ -81,6 +81,7 @@ export const Loading: Story = {
   args: {
     "aria-label": "Loading",
     children: "Button",
+    disabled: true,
     icon: "chevron-down",
     loading: true,
   },

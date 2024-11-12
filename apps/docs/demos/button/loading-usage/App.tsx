@@ -8,17 +8,19 @@ export function App() {
     <Flex>
       <Flex flexDirection="row">
         <Tooltip content="Loading button demo">
-          <Button appearance="primary" loading={loading}>
+          <Button appearance="primary" disabled loading={loading}>
             Primary
           </Button>
         </Tooltip>
 
         <Tooltip content="Loading button demo">
-          <Button loading={loading}>Default</Button>
+          <Button disabled loading={loading}>
+            Default
+          </Button>
         </Tooltip>
 
         <Tooltip content="Loading button demo">
-          <Button appearance="subtle" loading={loading}>
+          <Button appearance="subtle" disabled loading={loading}>
             Subtle
           </Button>
         </Tooltip>
