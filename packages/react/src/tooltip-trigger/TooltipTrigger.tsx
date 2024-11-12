@@ -3,6 +3,7 @@ import * as RadixTooltip from "@radix-ui/react-tooltip";
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import { Button } from "../button";
+import { FilteredSlot } from "../filtered-slot";
 import { useTooltipContext } from "../tooltip-context";
 
 type TooltipTriggerProps = ComponentPropsWithoutRef<
@@ -18,7 +19,9 @@ export const TooltipTrigger = forwardRef<
 
   return (
     <RadixTooltip.Trigger asChild ref={ref} {...props}>
-      {asChild ? children : <Button>{children}</Button>}
+      <FilteredSlot exclude="data-state">
+        {asChild ? children : <Button>{children}</Button>}
+      </FilteredSlot>
     </RadixTooltip.Trigger>
   );
 });

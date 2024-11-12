@@ -1,6 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { SegmentedControl, SegmentedControlItem } from "@optiaxiom/react";
+import {
+  SegmentedControl,
+  SegmentedControlItem,
+  Tooltip,
+} from "@optiaxiom/react";
 import {
   IconDeviceImac,
   IconDeviceMobile,
@@ -11,24 +15,30 @@ export default {
   args: {
     children: (
       <>
-        <SegmentedControlItem
-          aria-label="Desktop"
-          icon={<IconDeviceImac />}
-          key="desktop"
-          value="desktop"
-        />
-        <SegmentedControlItem
-          aria-label="Tablet"
-          icon={<IconDeviceTablet />}
-          key="tablet"
-          value="tablet"
-        />
-        <SegmentedControlItem
-          aria-label="Mobile"
-          icon={<IconDeviceMobile />}
-          key="mobile"
-          value="mobile"
-        />
+        <Tooltip content="Desktop">
+          <SegmentedControlItem
+            aria-label="Desktop"
+            icon={<IconDeviceImac />}
+            key="desktop"
+            value="desktop"
+          />
+        </Tooltip>
+        <Tooltip content="Tablet">
+          <SegmentedControlItem
+            aria-label="Tablet"
+            icon={<IconDeviceTablet />}
+            key="tablet"
+            value="tablet"
+          />
+        </Tooltip>
+        <Tooltip content="Mobile">
+          <SegmentedControlItem
+            aria-label="Mobile"
+            icon={<IconDeviceMobile />}
+            key="mobile"
+            value="mobile"
+          />
+        </Tooltip>
       </>
     ),
   },
