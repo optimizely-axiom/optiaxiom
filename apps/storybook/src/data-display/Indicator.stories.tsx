@@ -13,7 +13,7 @@ export default {
 
 type Story = StoryObj<typeof Indicator>;
 
-const colorSchemes = [
+const intents = [
   "primary",
   "success",
   "warning",
@@ -27,13 +27,8 @@ const positions = ["top-right", "bottom-right"] as const;
 const Variants: Story = {
   render: (args) => (
     <Flex flexDirection="column" gap="sm">
-      {colorSchemes.map((colorScheme) => (
-        <Indicator
-          {...args}
-          colorScheme={colorScheme}
-          content="4"
-          key={colorScheme}
-        />
+      {intents.map((intent) => (
+        <Indicator {...args} content="4" intent={intent} key={intent} />
       ))}
     </Flex>
   ),
@@ -63,7 +58,7 @@ export const Disabled: Story = {
 
 export const Position: Story = {
   args: {
-    colorScheme: "danger",
+    intent: "danger",
     variant: "solid",
   },
   render: (args) => (
@@ -79,8 +74,8 @@ export const Position: Story = {
 
 export const Ping: Story = {
   args: {
-    colorScheme: "information",
     content: "",
+    intent: "information",
     ping: true,
     variant: "solid",
   },

@@ -46,7 +46,13 @@ export const buttonBase = recipe({
     }),
   ],
   variants: {
-    colorScheme: {
+    iconOnly: {
+      false: style({
+        minWidth: "fit-content",
+      }),
+      true: {},
+    },
+    intent: {
       danger: style({
         vars: {
           [accentColorVar]: theme.colors["bg.error"],
@@ -77,12 +83,6 @@ export const buttonBase = recipe({
           [subtlePressedAccentColorVar]: theme.colors["bg.accent.light"],
         },
       }),
-    },
-    iconOnly: {
-      false: style({
-        minWidth: "fit-content",
-      }),
-      true: {},
     },
     size: {
       sm: {

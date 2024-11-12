@@ -9,12 +9,12 @@ import { type ExtendProps } from "../utils";
 import * as styles from "./ButtonBase.css";
 
 const appearances = {
-  danger: { colorScheme: "danger", variant: "solid" },
-  "danger-outline": { colorScheme: "danger", variant: "outline" },
-  default: { colorScheme: "neutral", variant: "outline" },
-  inverse: { colorScheme: "neutral", variant: "solid" },
-  primary: { colorScheme: "primary", variant: "solid" },
-  subtle: { colorScheme: "neutral", variant: "subtle" },
+  danger: { intent: "danger", variant: "solid" },
+  "danger-outline": { intent: "danger", variant: "outline" },
+  default: { intent: "neutral", variant: "outline" },
+  inverse: { intent: "neutral", variant: "solid" },
+  primary: { intent: "primary", variant: "solid" },
+  subtle: { intent: "neutral", variant: "subtle" },
 } satisfies Record<string, styles.ButtonVariants>;
 
 export type ButtonBaseProps<
@@ -28,7 +28,7 @@ export type ButtonBaseProps<
       children?: ReactNode;
       disabled?: boolean;
       loading?: boolean;
-    } & Omit<styles.ButtonVariants, "colorScheme" | "variant">,
+    } & Omit<styles.ButtonVariants, "intent" | "variant">,
     P
   >
 >;
@@ -51,9 +51,7 @@ export const ButtonBase = forwardRef<HTMLButtonElement, ButtonBaseProps>(
     const Comp = asChild ? Slot : "button";
     const { restProps, sprinkleProps } = extractSprinkles(props);
 
-    const presetProps = appearances[appearance];
-    const colorScheme = presetProps.colorScheme;
-    const variant = presetProps.variant;
+    const { intent, variant } = appearances[appearance];
 
     return (
       <Box
@@ -63,8 +61,8 @@ export const ButtonBase = forwardRef<HTMLButtonElement, ButtonBaseProps>(
         data-loading={loading ? "" : undefined}
         {...styles.buttonBase(
           {
-            colorScheme,
             iconOnly: Boolean(iconOnly),
+            intent,
             size,
             variant,
           },

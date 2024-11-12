@@ -38,9 +38,9 @@ export const ListboxItemBase = forwardRef<HTMLDivElement, ListboxItemBaseProps>(
       addonBefore,
       children,
       className,
-      colorScheme = "neutral",
       description,
       icon,
+      intent = "neutral",
       ...props
     },
     ref,
@@ -73,7 +73,7 @@ export const ListboxItemBase = forwardRef<HTMLDivElement, ListboxItemBaseProps>(
         aria-labelledby={labelId}
         asChild
         ref={ref}
-        {...styles.item({ colorScheme }, className)}
+        {...styles.item({ intent }, className)}
         {...props}
       >
         <Slot>

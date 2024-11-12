@@ -13,7 +13,7 @@ export function App() {
 
       <DropdownMenuContent>
         <DropdownMenuItem icon={<IconPencil />}>Edit</DropdownMenuItem>
-        <DropdownMenuItem colorScheme="danger" icon={<IconTrash />}>
+        <DropdownMenuItem icon={<IconTrash />} intent="danger">
           Delete
         </DropdownMenuItem>
       </DropdownMenuContent>

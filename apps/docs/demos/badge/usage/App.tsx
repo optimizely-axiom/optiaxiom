@@ -5,7 +5,7 @@ export function App() {
     <Flex flexDirection="row">
       <Badge>Status</Badge>
 
-      <Badge colorScheme="danger">99+</Badge>
+      <Badge intent="danger">99+</Badge>
     </Flex>
   );
 }

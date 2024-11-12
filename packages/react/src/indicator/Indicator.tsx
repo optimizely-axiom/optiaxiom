@@ -22,9 +22,9 @@ export const Indicator = forwardRef<HTMLDivElement, IndicatorProps>(
       asChild,
       children,
       className,
-      colorScheme,
       content,
       disabled,
+      intent,
       offset = true,
       ping,
       position = "top-right",
@@ -43,7 +43,7 @@ export const Indicator = forwardRef<HTMLDivElement, IndicatorProps>(
               <Badge
                 aria-hidden="true"
                 asChild={asChild}
-                colorScheme={colorScheme}
+                intent={intent}
                 variant={variant}
                 {...styles.badge({ offset, ping: true })}
               >
@@ -53,7 +53,7 @@ export const Indicator = forwardRef<HTMLDivElement, IndicatorProps>(
 
             <Badge
               asChild={asChild}
-              colorScheme={colorScheme}
+              intent={intent}
               variant={variant}
               {...styles.badge({ offset })}
             >

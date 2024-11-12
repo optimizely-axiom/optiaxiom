@@ -30,7 +30,7 @@ export const badge = recipe({
     }),
   ],
   variants: {
-    colorScheme: {
+    intent: {
       danger: style({
         vars: {
           [solidBackgroundColorVar]: theme.colors["bg.error"],

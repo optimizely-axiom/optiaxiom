@@ -102,7 +102,7 @@ export const Basic: Story<(typeof pages)[number]> = {
         onInputValueChange={setInputValue}
         onItemSelect={(value) => {
           toaster.create(
-            <Toast colorScheme="success">
+            <Toast intent="success">
               <ToastTitle>
                 Selected <strong>{value.title}</strong>
               </ToastTitle>

@@ -15,7 +15,7 @@ export const banner = recipe({
     },
   ],
   variants: {
-    colorScheme: {
+    intent: {
       danger: {
         bg: "bg.error.light",
       },
@@ -42,7 +42,7 @@ export const icon = recipe({
     },
   ],
   variants: {
-    colorScheme: {
+    intent: {
       danger: {
         color: "fg.error.strong",
       },

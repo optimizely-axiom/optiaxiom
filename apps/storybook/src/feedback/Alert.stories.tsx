@@ -52,11 +52,11 @@ export const Appearance: Story = {
   },
   render: (args) => (
     <Flex>
-      <Alert colorScheme="neutral" {...args} />
-      <Alert colorScheme="information" {...args} />
-      <Alert colorScheme="warning" {...args} />
-      <Alert colorScheme="danger" {...args} />
-      <Alert colorScheme="success" {...args} />
+      <Alert intent="neutral" {...args} />
+      <Alert intent="information" {...args} />
+      <Alert intent="warning" {...args} />
+      <Alert intent="danger" {...args} />
+      <Alert intent="success" {...args} />
     </Flex>
   ),
 };

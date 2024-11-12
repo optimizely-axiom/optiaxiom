@@ -18,7 +18,7 @@ type ToastProps = BoxProps<
   NonNullable<styles.RootVariants>
 >;
 
-const iconMap = {
+const mapIntentToIcon = {
   danger: IconCircleExclamationFilled,
   information: IconCircleInfoFilled,
   neutral: IconCircleInfoFilled,
@@ -27,15 +27,12 @@ const iconMap = {
 };
 
 export const Toast = forwardRef<HTMLLIElement, ToastProps>(
-  (
-    { children, colorScheme = "neutral", onOpenChange, open, ...props },
-    ref,
-  ) => {
+  ({ children, intent = "neutral", onOpenChange, open, ...props }, ref) => {
     const { restProps, sprinkleProps } = extractSprinkles(props);
     const context = useToastContext("Toast");
 
     return (
-      <Box asChild {...styles.root({ colorScheme })} {...sprinkleProps}>
+      <Box asChild {...styles.root({ intent })} {...sprinkleProps}>
         <RadixToast.Root
           forceMount={!!context}
           onOpenChange={(open) => {
@@ -47,7 +44,7 @@ export const Toast = forwardRef<HTMLLIElement, ToastProps>(
           {...restProps}
         >
           <Icon asChild {...styles.icon()}>
-            {createElement(iconMap[colorScheme])}
+            {createElement(mapIntentToIcon[intent])}
           </Icon>
 
           {children}

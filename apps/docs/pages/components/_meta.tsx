@@ -4,7 +4,7 @@ import { Badge, Flex } from "@optiaxiom/react";
 
 const AlphaItem = ({ children }: { children?: ReactNode }) => (
   <Flex flex="1" flexDirection="row" justifyContent="space-between">
-    {children} <Badge colorScheme="primary">ALPHA</Badge>
+    {children} <Badge intent="primary">ALPHA</Badge>
   </Flex>
 );
 

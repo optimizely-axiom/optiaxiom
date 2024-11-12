@@ -16,7 +16,7 @@ export const alert = recipe({
     },
   ],
   variants: {
-    colorScheme: {
+    intent: {
       danger: {
         bg: "bg.error.subtle",
       },
@@ -44,7 +44,7 @@ export const icon = recipe({
   ],
 
   variants: {
-    colorScheme: {
+    intent: {
       danger: {
         color: "fg.error.strong",
       },
