@@ -15,7 +15,6 @@ type HighlightProps = BoxProps<
 
 export function Highlight({
   children = (chunk) => chunk,
-  className,
   content,
   query,
   ...props
@@ -28,7 +27,7 @@ export function Highlight({
         <Fragment key={index}>
           {highlighted
             ? children(
-                <Box asChild {...styles.mark({}, className)} {...props}>
+                <Box asChild {...styles.mark()}>
                   <mark>{chunk}</mark>
                 </Box>,
               )
