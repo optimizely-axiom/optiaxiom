@@ -6,15 +6,14 @@ export const root = recipe({
       md: {
         gap: "xs",
         px: "xs",
-        py: "4",
       },
       lg: {
         gap: "xs",
-        p: "xs",
+        px: "xs",
       },
       "2xl": {
         gap: "md",
-        p: "md",
+        px: "md",
       },
     },
   },
@@ -28,6 +27,17 @@ export const input = recipe({
       },
       number: {
         textAlign: "end",
+      },
+    },
+    size: {
+      md: {
+        py: "4",
+      },
+      lg: {
+        py: "xs",
+      },
+      "2xl": {
+        py: "md",
       },
     },
   },
