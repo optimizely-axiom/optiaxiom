@@ -58,7 +58,7 @@ export const ButtonBase = forwardRef<HTMLButtonElement, ButtonBaseProps>(
     return (
       <Box
         asChild
-        cursor={disabled || loading ? "not-allowed" : "pointer"}
+        cursor={disabled ? "not-allowed" : "pointer"}
         data-disabled={disabled ? "" : undefined}
         data-loading={loading ? "" : undefined}
         {...styles.buttonBase(
@@ -72,7 +72,7 @@ export const ButtonBase = forwardRef<HTMLButtonElement, ButtonBaseProps>(
         )}
         {...sprinkleProps}
       >
-        <Comp disabled={disabled || loading} ref={ref} {...restProps}>
+        <Comp disabled={disabled} ref={ref} {...restProps}>
           <AnimatePresence>
             {loading && (
               <Spinner

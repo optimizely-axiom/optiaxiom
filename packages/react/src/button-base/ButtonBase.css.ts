@@ -129,7 +129,7 @@ export const buttonBase = recipe({
             borderColor: theme.colors["fg.accent"],
             color: theme.colors["fg.accent"],
           },
-          "&[data-disabled]": {
+          "&[data-disabled]:not([data-loading])": {
             borderColor: theme.colors["border.disabled"],
             color: theme.colors["fg.disabled"],
           },
@@ -146,7 +146,7 @@ export const buttonBase = recipe({
           "&:hover:not(:active, [data-disabled], [data-loading])": {
             backgroundColor: hoverAccentColorVar,
           },
-          "&[data-disabled]": {
+          "&[data-disabled]:not([data-loading])": {
             backgroundColor: theme.colors["bg.secondary"],
             border: `1px solid ${theme.colors["border.disabled"]}`,
             color: theme.colors["fg.disabled"],
@@ -172,7 +172,7 @@ export const buttonBase = recipe({
             backgroundColor: theme.colors["bg.accent.subtle"],
             color: theme.colors["fg.accent"],
           },
-          "&[data-disabled]": {
+          "&[data-disabled]:not([data-loading])": {
             color: theme.colors["fg.disabled"],
           },
         },
