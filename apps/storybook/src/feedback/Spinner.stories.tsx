@@ -15,8 +15,8 @@ export const Basic: Story = {};
 export const Colors: Story = {
   render: (args) => (
     <Flex flexDirection="row">
-      <Spinner {...args} colorScheme="default" />
-      <Spinner {...args} colorScheme="inverse" />
+      <Spinner {...args} appearance="default" />
+      <Spinner {...args} appearance="inverse" />
     </Flex>
   ),
 };

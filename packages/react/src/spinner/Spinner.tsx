@@ -7,22 +7,22 @@ import { Transition } from "../transition";
 type SpinnerProps = BoxProps<
   "div",
   {
-    colorScheme?: "default" | "inverse";
+    appearance?: "default" | "inverse";
     size?: "2xs" | "5xl" | "lg" | "md" | "sm" | "xl" | "xs";
   }
 >;
 
-const mapColorSchemeToBg = {
+const mapAppearanceToBg = {
   default: "spinner.bg.default",
   inverse: "spinner.bg.inverse",
 } as const;
-const mapColorSchemeToFg = {
+const mapAppearanceToFg = {
   default: "spinner.fg.default",
   inverse: "spinner.fg.inverse",
 } as const;
 
 export const Spinner = forwardRef<HTMLDivElement, SpinnerProps>(
-  ({ children, colorScheme = "default", size = "md", ...props }, ref) => {
+  ({ appearance = "default", children, size = "md", ...props }, ref) => {
     return (
       <Transition duration="sm">
         <Flex
@@ -41,7 +41,7 @@ export const Spinner = forwardRef<HTMLDivElement, SpinnerProps>(
               width={16}
               xmlns="http://www.w3.org/2000/svg"
             >
-              <Box asChild color={mapColorSchemeToBg[colorScheme]}>
+              <Box asChild color={mapAppearanceToBg[appearance]}>
                 <circle
                   cx="8"
                   cy="8"
@@ -51,7 +51,7 @@ export const Spinner = forwardRef<HTMLDivElement, SpinnerProps>(
                   strokeWidth="1.5"
                 />
               </Box>
-              <Box asChild color={mapColorSchemeToFg[colorScheme]}>
+              <Box asChild color={mapAppearanceToFg[appearance]}>
                 <path
                   d="M4.5 1.93782C5.45668 1.38549 6.53049 1.06741 7.63365 1.00959C8.73681 0.951779 9.83799 1.15587 10.8472 1.60518C11.8563 2.05449 12.7448 2.73627 13.44 3.59476C14.1352 4.45325 14.6174 5.46408 14.847 6.54462"
                   stroke="currentColor"
