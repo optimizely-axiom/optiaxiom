@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 0.5.1
+
+### Patch Changes
+
+- ac6d0c0: fix textarea autosize in controlled usage
+
 ## 0.5.0
 
 ### Minor Changes
