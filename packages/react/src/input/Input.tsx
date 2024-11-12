@@ -44,7 +44,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         {...styles.root({ size }, className)}
         {...props}
       >
-        <Box asChild {...styles.input({ appearance })}>
+        <Box asChild {...styles.input({ appearance, size })}>
           <Comp ref={ref}>{children}</Comp>
         </Box>
       </InputBase>

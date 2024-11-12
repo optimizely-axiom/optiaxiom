@@ -38,7 +38,7 @@ export const AutocompleteTrigger = forwardRef<
               </Flex>
             )}
 
-            <Separator my="4" orientation="vertical" />
+            <Separator my="xs" orientation="vertical" />
 
             <Flex onClick={downshift.getToggleButtonProps().onClick} w="32">
               <Icon asChild>
