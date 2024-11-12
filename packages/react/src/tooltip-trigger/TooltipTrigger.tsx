@@ -3,7 +3,6 @@ import * as RadixTooltip from "@radix-ui/react-tooltip";
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import { Button } from "../button";
-import { extractSprinkles } from "../sprinkles";
 import { useTooltipContext } from "../tooltip-context";
 
 type TooltipTriggerProps = ComponentPropsWithoutRef<
@@ -15,13 +14,11 @@ export const TooltipTrigger = forwardRef<
   TooltipTriggerProps
 >(({ asChild, children, ...props }, outerRef) => {
   const { triggerRef } = useTooltipContext("TooltipTrigger");
-
   const ref = useComposedRefs(triggerRef, outerRef);
-  const { restProps, sprinkleProps } = extractSprinkles(props);
 
   return (
-    <RadixTooltip.Trigger asChild ref={ref} {...sprinkleProps}>
-      {asChild ? children : <Button {...restProps}>{children}</Button>}
+    <RadixTooltip.Trigger asChild ref={ref} {...props}>
+      {asChild ? children : <Button>{children}</Button>}
     </RadixTooltip.Trigger>
   );
 });
