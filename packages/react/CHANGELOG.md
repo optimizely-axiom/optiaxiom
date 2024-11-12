@@ -1,5 +1,23 @@
 # @optiaxiom/react
 
+## 0.5.0
+
+### Minor Changes
+
+- 6422ae2: rename colorScheme to intent across components
+- fcc3470: rename colorScheme to appearance in spinner
+
+### Patch Changes
+
+- 0d9918e: allow composition of link component
+- f5214c0: set value on top level combobox/command component
+- 37de96e: use correct key for pagination items
+- 16ecdb9: changed ellipsis color for disabled state in `Pagination`
+- 2fcd385: add spotlight component
+- f79bf56: do not show disabled styles when in loading state
+- 7ac4390: replace sidebar addons with modular components
+- fd9a018: add `SelectGroup` component
+
 ## 0.4.2
 
 ### Patch Changes
