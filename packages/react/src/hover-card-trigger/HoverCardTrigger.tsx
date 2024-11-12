@@ -1,21 +1,19 @@
 import * as RadixHoverCard from "@radix-ui/react-hover-card";
-import { type ComponentPropsWithoutRef, forwardRef } from "react";
+import { forwardRef } from "react";
+
+import type { BoxProps } from "../box";
 
 import { useHoverCardContext } from "../hover-card-context";
 import { Link } from "../link";
-import { extractSprinkles } from "../sprinkles";
 
-type HoverCardTriggerProps = ComponentPropsWithoutRef<
-  typeof RadixHoverCard.Trigger
->;
+type HoverCardTriggerProps = BoxProps<typeof RadixHoverCard.Trigger>;
 
 export const HoverCardTrigger = forwardRef<
   HTMLAnchorElement,
   HoverCardTriggerProps
->(({ asChild, children, ...props }, ref) => {
+>(({ asChild, children, cursor = "pointer", ...props }, ref) => {
   const { keepOpenOnActivation, setOpen } =
     useHoverCardContext("HoverCardTrigger");
-  const { restProps, sprinkleProps } = extractSprinkles(props);
 
   return (
     <RadixHoverCard.Trigger
@@ -29,15 +27,9 @@ export const HoverCardTrigger = forwardRef<
           : undefined
       }
       ref={ref}
-      {...sprinkleProps}
+      {...props}
     >
-      {asChild ? (
-        children
-      ) : (
-        <Link cursor="pointer" {...restProps}>
-          {children}
-        </Link>
-      )}
+      {asChild ? children : <Link cursor={cursor}>{children}</Link>}
     </RadixHoverCard.Trigger>
   );
 });
