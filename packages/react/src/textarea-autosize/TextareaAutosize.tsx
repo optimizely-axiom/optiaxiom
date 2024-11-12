@@ -1,5 +1,6 @@
 import { Slot } from "@radix-ui/react-slot";
-import { forwardRef, useState } from "react";
+import { useControllableState } from "@radix-ui/react-use-controllable-state";
+import { forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
 import { extractSprinkles } from "../sprinkles";
@@ -29,9 +30,10 @@ export const TextareaAutosize = forwardRef<
     const Comp = asChild ? Slot : "textarea";
     const { restProps, sprinkleProps } = extractSprinkles(props);
 
-    const [value, setValue] = useState(
-      props.value === undefined ? props.defaultValue : props.value,
-    );
+    const [value, setValue] = useControllableState({
+      defaultProp: props.defaultValue,
+      prop: props.value,
+    });
 
     return (
       <Box {...styles.wrapper({ maxRows, resize })}>
