@@ -3,12 +3,12 @@ import type { ComponentPropsWithRef } from "react";
 import { Spinner } from "@optiaxiom/react";
 
 export function App({
-  colorScheme = "inverse",
-}: Pick<ComponentPropsWithRef<typeof Spinner>, "colorScheme">) {
+  appearance = "inverse",
+}: Pick<ComponentPropsWithRef<typeof Spinner>, "appearance">) {
   return (
     <Spinner
-      bg={colorScheme === "default" ? "bg.default" : "bg.default.inverse"}
-      colorScheme={colorScheme}
+      appearance={appearance}
+      bg={appearance === "default" ? "bg.default" : "bg.default.inverse"}
       p="xs"
       rounded="sm"
       size="sm"

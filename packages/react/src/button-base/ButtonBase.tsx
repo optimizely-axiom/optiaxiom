@@ -76,8 +76,8 @@ export const ButtonBase = forwardRef<HTMLButtonElement, ButtonBaseProps>(
           <AnimatePresence>
             {loading && (
               <Spinner
+                appearance={variant === "solid" ? "inverse" : "default"}
                 aria-hidden="true"
-                colorScheme={variant === "solid" ? "inverse" : "default"}
                 size="2xs"
                 {...styles.spinner()}
               />
