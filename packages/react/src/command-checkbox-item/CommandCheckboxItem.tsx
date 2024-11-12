@@ -22,6 +22,7 @@ export const CommandCheckboxItem = forwardRef<
           <Checkbox
             checked={props.active ?? value?.has(props.item)}
             disabled={isItemDisabled(props.item, items.indexOf(props.item))}
+            pointerEvents="none"
             tabIndex={-1}
           />
           {addonBefore}
