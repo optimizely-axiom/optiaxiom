@@ -42,7 +42,7 @@ export const Toast = forwardRef<HTMLLIElement, ToastProps>(
             onOpenChange?.(open);
             context.onOpenChange(open);
           }}
-          open={context.open || open}
+          open={context.open ?? open}
           ref={ref}
           {...restProps}
         >
