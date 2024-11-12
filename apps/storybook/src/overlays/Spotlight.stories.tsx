@@ -135,23 +135,33 @@ export const Basic: Story<(typeof pages)[number]> = {
 
                 <SpotlightItem
                   description={
-                    <Highlight
-                      borderB="2"
-                      borderColor="fg.information"
-                      content={item.description}
-                      fontWeight="600"
-                      query={inputValue}
-                    />
+                    <Highlight content={item.description} query={inputValue}>
+                      {(chunk) => (
+                        <Box
+                          asChild
+                          borderB="2"
+                          borderColor="fg.information"
+                          fontWeight="600"
+                        >
+                          {chunk}
+                        </Box>
+                      )}
+                    </Highlight>
                   }
                   item={item}
                 >
-                  <Highlight
-                    borderB="2"
-                    borderColor="fg.information"
-                    content={item.title}
-                    fontWeight="600"
-                    query={inputValue}
-                  />
+                  <Highlight content={item.title} query={inputValue}>
+                    {(chunk) => (
+                      <Box
+                        asChild
+                        borderB="2"
+                        borderColor="fg.information"
+                        fontWeight="600"
+                      >
+                        {chunk}
+                      </Box>
+                    )}
+                  </Highlight>
                 </SpotlightItem>
               </Fragment>
             ))}
