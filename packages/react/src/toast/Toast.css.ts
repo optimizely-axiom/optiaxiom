@@ -114,7 +114,7 @@ export const root = recipe({
     }),
   ],
   variants: {
-    colorScheme: {
+    intent: {
       danger: style({
         vars: {
           [accentColorVar]: theme.colors["fg.error.light"],

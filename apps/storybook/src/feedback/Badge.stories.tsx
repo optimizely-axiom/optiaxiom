@@ -11,12 +11,12 @@ type Story = StoryObj<typeof Badge>;
 const Variants: Story = {
   render: (args) => (
     <Flex>
-      <Badge colorScheme="primary" {...args} />
-      <Badge colorScheme="success" {...args} />
-      <Badge colorScheme="warning" {...args} />
-      <Badge colorScheme="danger" {...args} />
-      <Badge colorScheme="neutral" {...args} />
-      <Badge colorScheme="information" {...args} />
+      <Badge intent="primary" {...args} />
+      <Badge intent="success" {...args} />
+      <Badge intent="warning" {...args} />
+      <Badge intent="danger" {...args} />
+      <Badge intent="neutral" {...args} />
+      <Badge intent="information" {...args} />
     </Flex>
   ),
 };
@@ -49,14 +49,14 @@ export const Count: Story = {
       <Flex flexDirection="row">
         <Button>
           Notifications
-          <Badge colorScheme="information" variant="light">
+          <Badge intent="information" variant="light">
             8
           </Badge>
         </Button>
 
         <Button>
           Errors
-          <Badge colorScheme="danger">15</Badge>
+          <Badge intent="danger">15</Badge>
         </Button>
       </Flex>
     </>
@@ -69,7 +69,7 @@ export const Inline: Story = {
       <Flex asChild flexDirection="row">
         <Text>
           Status
-          <Badge colorScheme="success" variant="light">
+          <Badge intent="success" variant="light">
             Published
           </Badge>
         </Text>
@@ -78,7 +78,7 @@ export const Inline: Story = {
       <Flex asChild flexDirection="row">
         <Heading level="4">
           Sample Heading
-          <Badge colorScheme="success">New</Badge>
+          <Badge intent="success">New</Badge>
         </Heading>
       </Flex>
     </Flex>

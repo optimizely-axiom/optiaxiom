@@ -20,7 +20,7 @@ type BannerProps = BoxProps<
   } & styles.BannerVariants
 >;
 
-const iconMap = {
+const mapIntentToIcon = {
   danger: IconCircleExclamationFilled,
   information: IconCircleInfoFilled,
   neutral: IconCircleInfoFilled,
@@ -29,10 +29,7 @@ const iconMap = {
 };
 
 export const Banner = forwardRef<HTMLDivElement, BannerProps>(
-  (
-    { children, className, colorScheme = "neutral", onClose, ...props },
-    ref,
-  ) => {
+  ({ children, className, intent = "neutral", onClose, ...props }, ref) => {
     const descriptionId = useId();
     const labelId = useId();
 
@@ -43,11 +40,11 @@ export const Banner = forwardRef<HTMLDivElement, BannerProps>(
           aria-labelledby={labelId}
           ref={ref}
           role="alert"
-          {...styles.banner({ colorScheme }, className)}
+          {...styles.banner({ intent }, className)}
           {...props}
         >
-          <Icon asChild {...styles.icon({ colorScheme })}>
-            {createElement(iconMap[colorScheme])}
+          <Icon asChild {...styles.icon({ intent })}>
+            {createElement(mapIntentToIcon[intent])}
           </Icon>
 
           <Flex flex="1" gap="xs" my="2">

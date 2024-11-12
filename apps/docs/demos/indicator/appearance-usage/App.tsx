@@ -4,11 +4,11 @@ import { Button, Indicator } from "@optiaxiom/react";
 import { IconBell } from "@tabler/icons-react";
 
 export function App({
-  colorScheme = "success",
+  intent = "success",
   variant = "light",
-}: Pick<ComponentPropsWithRef<typeof Indicator>, "colorScheme" | "variant">) {
+}: Pick<ComponentPropsWithRef<typeof Indicator>, "intent" | "variant">) {
   return (
-    <Indicator colorScheme={colorScheme} content="4" variant={variant}>
+    <Indicator content="4" intent={intent} variant={variant}>
       <Button aria-label="Notifications" icon={<IconBell />} />
     </Indicator>
   );

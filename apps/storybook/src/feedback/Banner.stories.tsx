@@ -62,11 +62,11 @@ export const Appearance: Story = {
   },
   render: (args) => (
     <Flex>
-      <Banner colorScheme="neutral" {...args} />
-      <Banner colorScheme="information" {...args} />
-      <Banner colorScheme="warning" {...args} />
-      <Banner colorScheme="danger" {...args} />
-      <Banner colorScheme="success" {...args} />
+      <Banner intent="neutral" {...args} />
+      <Banner intent="information" {...args} />
+      <Banner intent="warning" {...args} />
+      <Banner intent="danger" {...args} />
+      <Banner intent="success" {...args} />
     </Flex>
   ),
 };

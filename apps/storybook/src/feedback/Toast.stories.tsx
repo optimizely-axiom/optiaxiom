@@ -94,37 +94,29 @@ export const Appearance: Story = {
     return (
       <Flex flexDirection="row">
         <Button
-          onClick={() =>
-            toaster.create(<Toast {...args} colorScheme="neutral" />)
-          }
+          onClick={() => toaster.create(<Toast {...args} intent="neutral" />)}
         >
           Neutral
         </Button>
         <Button
           onClick={() =>
-            toaster.create(<Toast {...args} colorScheme="information" />)
+            toaster.create(<Toast {...args} intent="information" />)
           }
         >
           Information
         </Button>
         <Button
-          onClick={() =>
-            toaster.create(<Toast {...args} colorScheme="warning" />)
-          }
+          onClick={() => toaster.create(<Toast {...args} intent="warning" />)}
         >
           Warning
         </Button>
         <Button
-          onClick={() =>
-            toaster.create(<Toast {...args} colorScheme="danger" />)
-          }
+          onClick={() => toaster.create(<Toast {...args} intent="danger" />)}
         >
           Danger
         </Button>
         <Button
-          onClick={() =>
-            toaster.create(<Toast {...args} colorScheme="success" />)
-          }
+          onClick={() => toaster.create(<Toast {...args} intent="success" />)}
         >
           Success
         </Button>

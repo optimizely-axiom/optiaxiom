@@ -106,7 +106,7 @@ export const Description: Story = {
             Copy task
           </DropdownMenuItem>
           <DropdownMenuSeparator />
-          <DropdownMenuItem colorScheme="danger">Delete task</DropdownMenuItem>
+          <DropdownMenuItem intent="danger">Delete task</DropdownMenuItem>
         </DropdownMenuContent>
       </>
     ),

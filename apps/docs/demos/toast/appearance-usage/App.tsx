@@ -3,13 +3,13 @@ import type { ComponentPropsWithRef } from "react";
 import { Button, Toast, toaster, ToastTitle } from "@optiaxiom/react";
 
 export function App({
-  colorScheme,
-}: Pick<ComponentPropsWithRef<typeof Toast>, "colorScheme">) {
+  intent,
+}: Pick<ComponentPropsWithRef<typeof Toast>, "intent">) {
   return (
     <Button
       onClick={() =>
         toaster.create(
-          <Toast colorScheme={colorScheme}>
+          <Toast intent={intent}>
             <ToastTitle>This is an example toast message.</ToastTitle>
           </Toast>,
         )

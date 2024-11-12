@@ -12,7 +12,7 @@ export const Badge = forwardRef<HTMLSpanElement, BadgeProps>(
       asChild,
       children,
       className,
-      colorScheme = "neutral",
+      intent = "neutral",
       variant = "light",
       ...props
     },
@@ -23,7 +23,7 @@ export const Badge = forwardRef<HTMLSpanElement, BadgeProps>(
       <Text
         asChild
         role="presentation"
-        {...styles.badge({ colorScheme, variant }, className)}
+        {...styles.badge({ intent, variant }, className)}
         {...props}
       >
         <Comp ref={ref}>{children}</Comp>

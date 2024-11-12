@@ -88,7 +88,7 @@ export const ToastProvider = forwardRef<HTMLOListElement, ToastProps>(
               isValidElement<any>(toast) ? (
                 toast
               ) : (
-                <Toast colorScheme={toast.type} key={id}>
+                <Toast intent={toast.type} key={id}>
                   <ToastTitle>{toast.title}</ToastTitle>
                   {toast.action && (
                     <ToastAction

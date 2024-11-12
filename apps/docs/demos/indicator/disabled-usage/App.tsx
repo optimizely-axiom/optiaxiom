@@ -7,7 +7,7 @@ export function App({
   disabled = false,
 }: Pick<ComponentPropsWithRef<typeof Indicator>, "disabled">) {
   return (
-    <Indicator colorScheme="danger" content="4" disabled={disabled}>
+    <Indicator content="4" disabled={disabled} intent="danger">
       <Button aria-label="Notifications" icon={<IconBell />} />
     </Indicator>
   );
