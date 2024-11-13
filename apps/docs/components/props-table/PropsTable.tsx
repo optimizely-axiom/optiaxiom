@@ -105,7 +105,9 @@ export function PropsTable({
 }
 
 function kebabCase(str: string) {
-  return str.replaceAll(/([a-z])([A-Z])/g, "$1-$2").toLowerCase();
+  return str === "Box"
+    ? ""
+    : str.replaceAll(/([a-z])([A-Z])/g, "$1-$2").toLowerCase();
 }
 
 function PropsTableDescription({
