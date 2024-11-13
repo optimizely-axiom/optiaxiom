@@ -22,6 +22,7 @@ export const wrapper = recipe({
       borderRadius: theme.borderRadius.md,
       borderWidth: "1px",
       color: theme.colors["fg.default"],
+      position: "relative",
 
       selectors: {
         [`&:has(${marker}:focus):is([data-invalid])`]: {
