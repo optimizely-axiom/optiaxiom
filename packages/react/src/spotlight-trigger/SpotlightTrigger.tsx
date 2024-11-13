@@ -1,4 +1,5 @@
-import { forwardRef, useEffect } from "react";
+import { useHotkeys } from "@mantine/hooks";
+import { forwardRef } from "react";
 
 import type { ButtonProps } from "../button";
 
@@ -11,11 +12,11 @@ import { fallbackSpan } from "../utils";
 type SpotlightTriggerProps = ButtonProps<
   typeof DialogTrigger,
   {
-    hotkey?: string[];
+    hotkey?: string;
   }
 >;
 
-const DEFAULT_HOTKEY = ["metaKey", "KeyK"];
+const DEFAULT_HOTKEY = "mod+K";
 
 export const SpotlightTrigger = forwardRef<
   HTMLButtonElement,
@@ -23,20 +24,7 @@ export const SpotlightTrigger = forwardRef<
 >(({ addonAfter, children, hotkey = DEFAULT_HOTKEY, ...props }, ref) => {
   const { open, setOpen } = useSpotlightContext("SpotlightTrigger");
 
-  useEffect(() => {
-    const listener = (event: KeyboardEvent) => {
-      const isHotkeyPressed =
-        hotkey.length !== 0 &&
-        hotkey.every(
-          (key) => event[key as keyof typeof event] || event.code === key,
-        );
-      if (isHotkeyPressed) {
-        setOpen(!open);
-      }
-    };
-    document.addEventListener("keydown", listener);
-    return () => document.removeEventListener("keydown", listener);
-  }, [hotkey, open, setOpen]);
+  useHotkeys([[hotkey, () => setOpen(!open)]]);
 
   return (
     <DialogTrigger
