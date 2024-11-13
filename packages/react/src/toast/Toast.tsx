@@ -1,3 +1,4 @@
+import { useToastContext } from "@optiaxiom/globals";
 import * as RadixToast from "@radix-ui/react-toast";
 import { createElement, forwardRef } from "react";
 
@@ -10,7 +11,6 @@ import { IconCircleInfoFilled } from "../icons/IconCircleInfoFilled";
 import { IconTriangleExclamationFilled } from "../icons/IconTriangleExclamationFilled";
 import { IconX } from "../icons/IconX";
 import { extractSprinkles } from "../sprinkles";
-import { useToastContext } from "../toast-context";
 import * as styles from "./Toast.css";
 
 type ToastProps = BoxProps<

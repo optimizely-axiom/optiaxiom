@@ -214,6 +214,9 @@ importers:
       '@fontsource-variable/fira-code':
         specifier: ^5.1.0
         version: 5.1.0
+      '@radix-ui/react-context':
+        specifier: ^1.1.1
+        version: 1.1.1(@types/react@18.3.12)(react@18.3.1)
       inter-ui:
         specifier: ^4.0.2
         version: 4.0.2

@@ -1,3 +1,4 @@
+import { ToastContextProvider } from "@optiaxiom/globals";
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import { Portal } from "@radix-ui/react-portal";
 import * as RadixToast from "@radix-ui/react-toast";
@@ -14,7 +15,6 @@ import { Flex } from "../flex";
 import { extractSprinkles } from "../sprinkles";
 import { Toast } from "../toast/Toast";
 import { ToastAction } from "../toast-action";
-import { ToastContextProvider } from "../toast-context";
 import { ToastTitle } from "../toast-title";
 import { type createToaster, toaster } from "./toaster";
 import * as styles from "./ToastProvider.css";
