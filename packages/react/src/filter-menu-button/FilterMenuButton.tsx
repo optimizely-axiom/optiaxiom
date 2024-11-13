@@ -6,30 +6,23 @@ import { ButtonBase } from "../button-base";
 import { Flex } from "../flex";
 import { IconAngleDown } from "../icons/IconAngleDown";
 import { Text } from "../text";
+import * as styles from "./FilterMenuButton.css";
 
 type FilterMenuButtonProps = {
   appearance?: never;
-  caption: string;
+  label: string;
   size?: never;
 } & ComponentPropsWithoutRef<typeof ButtonBase>;
 
 export const FilterMenuButton = forwardRef<
   HTMLButtonElement,
   FilterMenuButtonProps
->(({ caption, children, ...props }, ref) => {
+>(({ children, className, label, ...props }, ref) => {
   return (
-    <ButtonBase
-      gap="12"
-      justifyContent="space-between"
-      px="8"
-      py="10"
-      ref={ref}
-      size="lg"
-      {...props}
-    >
+    <ButtonBase ref={ref} {...styles.button({}, className)} {...props}>
       <Flex gap="2">
         <Text color="fg.secondary" fontSize="xs">
-          {caption}
+          {label}
         </Text>
         <Box fontSize="sm">{children}</Box>
       </Flex>
