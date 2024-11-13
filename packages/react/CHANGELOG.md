@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 0.5.3
+
+### Patch Changes
+
+- 179132c: keep cloneElement in toast provider for backwards compatibility
+
 ## 0.5.2
 
 ### Patch Changes
