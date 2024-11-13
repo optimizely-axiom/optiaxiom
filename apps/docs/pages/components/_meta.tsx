@@ -13,21 +13,16 @@ export default {
     title: "Components",
     type: "separator",
   },
-  index: "Overview",
+  index: "Box",
+
+  flex: "Flex",
+  grid: "Grid",
 
   "-- Providers": {
     title: "Providers",
     type: "separator",
   },
   "axiom-provider": "AxiomProvider",
-
-  "-- Primitives": {
-    title: "Primitives",
-    type: "separator",
-  },
-  box: "Box",
-  flex: "Flex",
-  grid: "Grid",
 
   "-- Buttons": {
     title: "Buttons",
