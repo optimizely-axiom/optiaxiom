@@ -12,11 +12,24 @@ type Story = StoryObj<typeof Progress>;
 
 export const Basic: Story = {
   args: {
-    bg: "bg.accent.subtle",
-    max: 60,
     value: 30,
     w: "384",
   },
+};
+
+export const Intent: Story = {
+  args: {
+    value: 50,
+    w: "384",
+  },
+
+  render: (args) => (
+    <Flex>
+      <Progress {...args} />
+      <Progress intent="success" {...args} />
+      <Progress intent="danger" {...args} />
+    </Flex>
+  ),
 };
 
 const values = [
@@ -26,6 +39,7 @@ const values = [
   { value: 25 },
   { max: 200, value: 75 },
   { max: 100, value: 100 },
+  { max: 100, value: 50 },
 ];
 export const CompletionStages: Story = {
   play: async ({ canvas }) => {
@@ -42,7 +56,6 @@ export const CompletionStages: Story = {
 
         {values.map(({ max, value }, index) => (
           <Progress
-            bg="bg.accent.subtle"
             key={index}
             max={max}
             value={typeof value !== "undefined" ? value * scale : undefined}
