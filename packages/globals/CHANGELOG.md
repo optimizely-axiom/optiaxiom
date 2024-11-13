@@ -1,5 +1,11 @@
 # @optiaxiom/globals
 
+## 0.4.0
+
+### Minor Changes
+
+- c38fa7e: share toast-context from globals package
+
 ## 0.3.0
 
 ### Minor Changes
