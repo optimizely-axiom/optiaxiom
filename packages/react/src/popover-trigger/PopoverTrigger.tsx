@@ -1,8 +1,7 @@
 import * as RadixPopover from "@radix-ui/react-popover";
 import { forwardRef } from "react";
 
-import { type ButtonProps } from "../button";
-import { MenuButton } from "../menu-button";
+import { Button, type ButtonProps } from "../button";
 
 type PopoverTriggerProps = ButtonProps<typeof RadixPopover.Trigger>;
 
@@ -12,7 +11,7 @@ export const PopoverTrigger = forwardRef<
 >(({ asChild, children, ...props }, ref) => {
   return (
     <RadixPopover.Trigger asChild ref={ref} {...props}>
-      {asChild ? children : <MenuButton>{children}</MenuButton>}
+      {asChild ? children : <Button>{children}</Button>}
     </RadixPopover.Trigger>
   );
 });
