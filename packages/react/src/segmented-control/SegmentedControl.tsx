@@ -4,7 +4,12 @@ import { forwardRef } from "react";
 import { type BoxProps } from "../box";
 import { Flex } from "../flex";
 
-type SegmentedControlProps = BoxProps<typeof RadixSegmentedControl.Root>;
+type SegmentedControlProps = BoxProps<
+  typeof RadixSegmentedControl.Root,
+  {
+    type?: "multiple" | "single";
+  }
+>;
 
 export const SegmentedControl = forwardRef<
   HTMLDivElement,
