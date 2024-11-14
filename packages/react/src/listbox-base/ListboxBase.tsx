@@ -53,7 +53,9 @@ export const ListboxBase = forwardRef<
     const Portal = mapProviderToPortal[provider];
 
     const element = (
-      <Portal {...(provider !== "popper" && { forceMount: true })}>
+      <Portal
+        {...(provider === "popper" ? { asChild: true } : { forceMount: true })}
+      >
         <Transition duration="sm" type="pop">
           <Box
             asChild
