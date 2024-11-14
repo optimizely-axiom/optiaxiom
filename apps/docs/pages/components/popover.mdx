@@ -6,7 +6,12 @@ import {
   TriggerUsage,
   Usage,
 } from "@/demos/popover";
-import { Popover, PopoverContent, PopoverTrigger } from "@optiaxiom/react";
+import {
+  Button,
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@optiaxiom/react";
 
 # Popover
 
@@ -42,7 +47,7 @@ We can also completely change the trigger by using `asChild` and passing our own
 
 <PropsTable component={Popover} />
 
-<PropsTable component={PopoverTrigger} />
+<PropsTable base={Button} component={PopoverTrigger} />
 
 <PropsTable component={PopoverContent} />
 
