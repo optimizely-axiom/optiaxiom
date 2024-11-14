@@ -57,9 +57,7 @@ export default {
   },
   alert: "Alert",
   badge: "Badge",
-  banner: {
-    title: <AlphaItem>Banner</AlphaItem>,
-  },
+  banner: "Banner",
   progress: "Progress",
   skeleton: "Skeleton",
   spinner: "Spinner",
@@ -74,9 +72,7 @@ export default {
   input: "Input",
   "radio-group": "RadioGroup",
   "search-input": "SearchInput",
-  "segmented-control": {
-    title: <AlphaItem>SegmentedControl</AlphaItem>,
-  },
+  "segmented-control": "SegmentedControl",
   switch: "Switch",
   textarea: "Textarea",
 

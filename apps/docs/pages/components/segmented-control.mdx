@@ -1,7 +1,40 @@
-import { Callout } from "nextra/components";
+import { Demo } from "@/components/demo";
+import { PropsTable } from "@/components/props-table";
+import { ControlledUsage, Usage } from "@/demos/segmented-control";
+import {
+  Button,
+  SegmentedControl,
+  SegmentedControlItem,
+} from "@optiaxiom/react";
 
 # SegmentedControl
 
-<Callout emoji="🚨">
-  This page is a stub. Help us expand it by contributing!
-</Callout>
+Toggle buttons for switching between different values or views.
+
+## Documentation
+
+### Usage
+
+Use `SegmentedControl` and `SegmentedControlItem` components together to create sets of toggle buttons.
+
+`SegmentedControlItem` extends the [Button](./button/) component.
+
+<Demo component={Usage} />
+
+### Controlled
+
+Use the `value` and `defaultValue` props to toggle between controlled and uncontrolled usage. And combine it with `onValueChange` to listen for changes to the state.
+
+<Demo component={ControlledUsage} />
+
+## Props
+
+<PropsTable component={SegmentedControl} />
+
+<PropsTable base={Button} component={SegmentedControlItem} />
+
+## Changelog
+
+### 0.2.0
+
+- Added component
