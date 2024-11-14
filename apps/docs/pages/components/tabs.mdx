@@ -1,7 +1,38 @@
-import { Callout } from "nextra/components";
+import { Demo } from "@/components/demo";
+import { PropsTable } from "@/components/props-table";
+import { AppearanceUsage, Usage } from "@/demos/tabs";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@optiaxiom/react";
 
 # Tabs
 
-<Callout emoji="🚨">
-  This page is a stub. Help us expand it by contributing!
-</Callout>
+Set of content sections to be displayed one at a time.
+
+## Documentation
+
+### Usage
+
+Use the `value` and `defaultValue` props to toggle between controlled and uncontrolled usage. And combine it with `onValueChange` to listen for changes to the state.
+
+<Demo component={Usage} />
+
+### Appearance
+
+Use the `appearance` prop to select between the different tab types.
+
+<Demo component={AppearanceUsage} />
+
+## Props
+
+<PropsTable component={Tabs} />
+
+<PropsTable component={TabsList} />
+
+<PropsTable component={TabsTrigger} />
+
+<PropsTable component={TabsContent} />
+
+## Changelog
+
+### 0.1.0
+
+- Added component
