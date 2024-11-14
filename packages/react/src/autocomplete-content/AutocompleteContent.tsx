@@ -1,14 +1,13 @@
-import { PopperContent } from "@radix-ui/react-popper";
 import { forwardRef } from "react";
 
 import { useAutocompleteContext } from "../autocomplete-context";
 import { Box, type BoxProps } from "../box";
 import { ListboxBase } from "../listbox-base";
 import { Spinner } from "../spinner";
-import * as styles from "./AutocompleteContent.css";
+import { AutocompleteContentImpl } from "./AutocompleteContentImpl";
 
 type AutocompleteContentProps = BoxProps<
-  typeof PopperContent,
+  typeof AutocompleteContentImpl,
   {
     loading?: boolean;
   }
@@ -17,36 +16,22 @@ type AutocompleteContentProps = BoxProps<
 export const AutocompleteContent = forwardRef<
   HTMLDivElement,
   AutocompleteContentProps
->(
-  (
-    {
-      align = "center",
-      children,
-      className,
-      loading,
-      sideOffset = 5,
-      ...props
-    },
-    ref,
-  ) => {
-    const { isOpen } = useAutocompleteContext("AutocompleteContent");
+>(({ children, loading, ...props }, ref) => {
+  const { isOpen } = useAutocompleteContext("AutocompleteContent");
 
-    return (
-      <ListboxBase minW="trigger" open={isOpen} provider="popper">
-        <Box asChild ref={ref} {...styles.content({}, className)} {...props}>
-          <PopperContent align={align} sideOffset={sideOffset}>
-            {loading ? (
-              <Box display="flex" justifyContent="center" p="md">
-                <Spinner />
-              </Box>
-            ) : (
-              children
-            )}
-          </PopperContent>
-        </Box>
-      </ListboxBase>
-    );
-  },
-);
+  return (
+    <ListboxBase minW="trigger" open={isOpen} provider="popper">
+      <AutocompleteContentImpl ref={ref} {...props}>
+        {loading ? (
+          <Box display="flex" justifyContent="center" p="md">
+            <Spinner />
+          </Box>
+        ) : (
+          children
+        )}
+      </AutocompleteContentImpl>
+    </ListboxBase>
+  );
+});
 
 AutocompleteContent.displayName = "@optiaxiom/react/AutocompleteContent";
