@@ -17,25 +17,22 @@ export const list = recipe({
 export const cursor = recipe({
   base: [
     {
-      transition: "transform",
       z: "10",
     },
     style({
       minWidth: theme.size.md,
       pointerEvents: "none",
       position: "absolute",
+      visibility: "hidden",
     }),
   ],
 
   variants: {
     animation: {
-      false: style({
-        visibility: "hidden",
-      }),
-
-      true: style({
-        visibility: "visible",
-      }),
+      false: {},
+      true: {
+        transition: "transform",
+      },
     },
   },
 });

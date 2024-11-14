@@ -51,7 +51,8 @@ export const Pagination = forwardRef<HTMLElement, PaginationProps>(
       }
 
       cursorRef.current.style.transform = `translateX(${activeRef.current.offsetLeft}px)`;
-      setAnimation(true);
+      cursorRef.current.style.visibility = "visible";
+      setTimeout(() => setAnimation(true), 150);
     }, [active]);
 
     return (
