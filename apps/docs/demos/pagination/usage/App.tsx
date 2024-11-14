@@ -1,5 +1,5 @@
 import { Pagination } from "@optiaxiom/react";
 
 export function App() {
-  return <Pagination total={10} />;
+  return <Pagination total={50} />;
 }

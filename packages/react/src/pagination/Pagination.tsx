@@ -1,7 +1,7 @@
 import { usePagination } from "@mantine/hooks";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
-import { forwardRef } from "react";
+import { forwardRef, useEffect, useRef, useState } from "react";
 
 import { Box, type BoxProps } from "../box";
 import { Button } from "../button";
@@ -42,11 +42,35 @@ export const Pagination = forwardRef<HTMLElement, PaginationProps>(
       total,
     });
 
+    const [animation, setAnimation] = useState(false);
+    const activeRef = useRef<HTMLButtonElement>(null);
+    const cursorRef = useRef<HTMLButtonElement>(null);
+    useEffect(() => {
+      if (!activeRef.current || !cursorRef.current) {
+        return;
+      }
+
+      cursorRef.current.style.transform = `translateX(${activeRef.current.offsetLeft}px)`;
+      setAnimation(true);
+    }, [active]);
+
     return (
       <Box asChild {...props}>
         <nav aria-label="pagination" ref={ref}>
-          <Flex asChild flexDirection="row" gap="2">
+          <Flex asChild {...styles.list()}>
             <ul>
+              <ButtonBase
+                appearance="subtle"
+                aria-hidden
+                asChild
+                data-state="active"
+                disabled={disabled}
+                ref={cursorRef}
+                {...styles.cursor({ animation })}
+              >
+                <span>{active}</span>
+              </ButtonBase>
+
               <li>
                 <Tooltip content="Prev" disabled={disabled || active === 1}>
                   <Button
@@ -90,9 +114,9 @@ export const Pagination = forwardRef<HTMLElement, PaginationProps>(
                     <ButtonBase
                       appearance="subtle"
                       aria-current={active === page ? "page" : undefined}
-                      data-state={active === page ? "active" : undefined}
                       disabled={disabled}
                       onClick={() => setPage(page)}
+                      ref={active === page ? activeRef : undefined}
                       {...styles.button()}
                     >
                       <VisuallyHidden>page</VisuallyHidden> {page}
