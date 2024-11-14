@@ -1,7 +1,24 @@
-import { Callout } from "nextra/components";
+import { Demo } from "@/components/demo";
+import { PropsTable } from "@/components/props-table";
+import { Usage } from "@/demos/code";
+import { Code } from "@optiaxiom/react";
 
 # Code
 
-<Callout emoji="🚨">
-  This page is a stub. Help us expand it by contributing!
-</Callout>
+Display inline code.
+
+## Documentation
+
+### Usage
+
+<Demo component={Usage} />
+
+## Props
+
+<PropsTable component={Code} />
+
+## Changelog
+
+### 0.1.0
+
+- Added component

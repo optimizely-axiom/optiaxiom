@@ -1,7 +1,36 @@
-import { Callout } from "nextra/components";
+import { Demo } from "@/components/demo";
+import { PropsTable } from "@/components/props-table";
+import { AppearanceUsage, KeysUsage, Usage } from "@/demos/kbd";
+import { Code, Kbd } from "@optiaxiom/react";
 
 # Kbd
 
-<Callout emoji="🚨">
-  This page is a stub. Help us expand it by contributing!
-</Callout>
+Inline text representing keyboard input.
+
+## Documentation
+
+### Usage
+
+<Demo component={Usage} />
+
+### Key codes
+
+Use the `keys` prop to display commonly used key codes.
+
+<Demo component={KeysUsage} />
+
+### Appearance
+
+Use the `variant` prop to select between the different appearances.
+
+<Demo component={AppearanceUsage} />
+
+## Props
+
+<PropsTable component={Kbd} base={Code} />
+
+## Changelog
+
+### 0.1.0
+
+- Added component
