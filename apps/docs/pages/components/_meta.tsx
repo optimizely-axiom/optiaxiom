@@ -38,6 +38,9 @@ export default {
   autocomplete: {
     title: <AlphaItem>Autocomplete</AlphaItem>,
   },
+  combobox: {
+    title: <AlphaItem>Combobox</AlphaItem>,
+  },
   select: {
     title: <AlphaItem>Select</AlphaItem>,
   },
@@ -50,6 +53,9 @@ export default {
   disclosure: "Disclosure",
   indicator: "Indicator",
   separator: "Separator",
+  table: {
+    title: <AlphaItem>Table</AlphaItem>,
+  },
 
   "-- Feedback": {
     title: "Feedback",
