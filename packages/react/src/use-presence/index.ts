@@ -1,2 +1,1 @@
-export * from "./PresenceContext";
-export * from "./usePresence";
+export { usePresence } from "framer-motion";
