@@ -1,7 +1,53 @@
-import { Callout } from "nextra/components";
+import { Demo } from "@/components/demo";
+import { PropsTable } from "@/components/props-table";
+import {
+  ControlledUsage,
+  ExampleUsage,
+  TriggerUsage,
+  Usage,
+} from "@/demos/popover";
+import { Popover, PopoverContent, PopoverTrigger } from "@optiaxiom/react";
 
 # Popover
 
-<Callout emoji="🚨">
-  This page is a stub. Help us expand it by contributing!
-</Callout>
+Display arbitrary rich content inside a non-modal dialog triggered by a button.
+
+## Documentation
+
+### Usage
+
+<Demo component={Usage} />
+
+### Controlled
+
+Use the `open` and `defaultOpen` props to toggle between controlled and uncontrolled usage. And combine it with `onOpenChange` to listen for changes to the state.
+
+<Demo component={ControlledUsage} />
+
+### Example
+
+<Demo component={ExampleUsage} />
+
+## Trigger
+
+### Customize trigger
+
+By default we use the `Button` component for the dialog trigger which accepts all of the existing button props.
+
+We can also completely change the trigger by using `asChild` and passing our own component.
+
+<Demo component={TriggerUsage} />
+
+## Props
+
+<PropsTable component={Popover} />
+
+<PropsTable component={PopoverTrigger} />
+
+<PropsTable component={PopoverContent} />
+
+## Changelog
+
+### 0.1.0
+
+- Added component
