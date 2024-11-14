@@ -1,7 +1,54 @@
-import { Callout } from "nextra/components";
+import { Demo } from "@/components/demo";
+import { PropsTable } from "@/components/props-table";
+import {
+  AppearanceUsage,
+  ButtonUsage,
+  DisabledUsage,
+  ExternalUsage,
+  Usage,
+} from "@/demos/link";
+import { Link } from "@optiaxiom/react";
 
 # Link
 
-<Callout emoji="🚨">
-  This page is a stub. Help us expand it by contributing!
-</Callout>
+Anchor element for creating hyperlinks.
+
+## Documentation
+
+### Usage
+
+<Demo component={Usage} />
+
+### Appearance
+
+Use the `appearance` prop to select between the different link appearances.
+
+<Demo component={AppearanceUsage} />
+
+### Disabled links
+
+Set the `disabled` prop to `true` to style links to appear disabled and also prevent any interactions.
+
+<Demo component={DisabledUsage} />
+
+### External links
+
+Set the `external` prop to `true` to add an icon and set the correct rel and target attributes.
+
+<Demo component={ExternalUsage} />
+
+### Links as buttons
+
+Set `asChild` to `true` and pass a `<button>` element as the child to render links as buttons.
+
+<Demo component={ButtonUsage} />
+
+## Props
+
+<PropsTable component={Link} />
+
+## Changelog
+
+### 0.1.0
+
+- Added component
