@@ -9,7 +9,7 @@ export function App() {
       <Button disabled={page === 5} onClick={() => setPage(5)}>
         Reset
       </Button>
-      <Pagination onPageChange={setPage} page={page} total={10} />
+      <Pagination onPageChange={setPage} page={page} total={5} />
     </Flex>
   );
 }
