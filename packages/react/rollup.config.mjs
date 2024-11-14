@@ -1,5 +1,6 @@
 import hash from "@emotion/hash";
 import json from "@rollup/plugin-json";
+import { nodeResolve } from "@rollup/plugin-node-resolve";
 import { createFilter } from "@rollup/pluginutils";
 import { vanillaExtractPlugin } from "@vanilla-extract/rollup-plugin";
 import { readFileSync } from "node:fs";
@@ -24,6 +25,12 @@ export default defineConfig([
     input: {
       index: "src/index.ts",
       unstable: "src/unstable.ts",
+    },
+    onwarn(warning, warn) {
+      if (warning.code === "MODULE_LEVEL_DIRECTIVE") {
+        return;
+      }
+      warn(warning);
     },
     output: {
       banner: async (chunk) => {
@@ -58,6 +65,22 @@ export default defineConfig([
             throw new Error("Could not find sprinkles imports to rewrite");
           }
           return code.replace(search, replace);
+        },
+      },
+      nodeResolve({
+        preferBuiltins: false,
+      }),
+      {
+        name: "framer-motion:useId",
+        transform(code, id) {
+          if (!id.includes("framer-motion")) {
+            return null;
+          }
+
+          return code.replace(
+            /^(import.*)\suseId,/m,
+            `import { useId } from "@reach/auto-id"; $1`,
+          );
         },
       },
       esbuild({
