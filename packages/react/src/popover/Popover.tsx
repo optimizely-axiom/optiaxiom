@@ -1,10 +1,11 @@
+import type { ComponentPropsWithoutRef } from "react";
+
 import * as RadixPopover from "@radix-ui/react-popover";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
 
-import { type BoxProps } from "../box";
 import { PopoverContextProvider } from "../popover-context";
 
-type PopoverProps = BoxProps<typeof RadixPopover.Root>;
+type PopoverProps = ComponentPropsWithoutRef<typeof RadixPopover.Root>;
 
 export function Popover({
   children,
