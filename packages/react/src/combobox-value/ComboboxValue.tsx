@@ -33,6 +33,8 @@ export const ComboboxValue = forwardRef<HTMLDivElement, ComboboxValueProps>(
               <>
                 {value.length > maxDisplayedItems ? (
                   <Badge>{value.length} selected</Badge>
+                ) : value.length === 1 ? (
+                  itemToString(value[0])
                 ) : (
                   value.slice(0, maxDisplayedItems).map((item) => (
                     <Badge
