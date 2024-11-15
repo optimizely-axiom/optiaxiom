@@ -126,6 +126,13 @@ function PropsTableDescription({
           all props that <Code>input</Code> supports.
         </Text>
       )}
+      {(name === "Input" || name === "Textarea") && (
+        <Text fontSize="lg" mt="md">
+          <Code>{name}</Code> is extended from the{" "}
+          <Code>{name.toLowerCase()}</Code> HTML element and supports all props
+          that <Code>{name.toLowerCase()}</Code> supports.
+        </Text>
+      )}
     </>
   );
 }
