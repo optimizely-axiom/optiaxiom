@@ -2,19 +2,24 @@ import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import { CommandInput } from "../command-input";
 import { DialogClose } from "../dialog-close";
+import { Flex } from "../flex";
 import { IconMagnifyingGlass } from "../icons/IconMagnifyingGlass";
 import * as styles from "./SpotlightInput.css";
 
 type SpotlightInputProps = ComponentPropsWithoutRef<typeof CommandInput>;
 
 export const SpotlightInput = forwardRef<HTMLInputElement, SpotlightInputProps>(
-  ({ className, ...props }, ref) => {
+  ({ addonAfter, className, ...props }, ref) => {
     return (
       <CommandInput
         addonAfter={
-          <DialogClose fontSize="xs" fontWeight="500" h="xs" size="sm">
-            ESC
-          </DialogClose>
+          <Flex flexDirection="row">
+            {addonAfter}
+
+            <DialogClose fontSize="xs" fontWeight="500" h="xs" size="sm">
+              ESC
+            </DialogClose>
+          </Flex>
         }
         addonBefore={<IconMagnifyingGlass />}
         // autoCapitalize="off"
