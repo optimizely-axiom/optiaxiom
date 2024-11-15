@@ -1,12 +1,13 @@
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import { useCombobox, type UseComboboxProps } from "downshift";
-import { type ReactNode, useMemo } from "react";
+import { type ReactNode, useMemo, useState } from "react";
 
 import { CommandContextProvider } from "../command-context";
 
 type CommandProps<Item> = {
   children: ReactNode;
   inputValue?: string;
+  itemToSubItems?: (value: Item) => Item[] | null;
   onInputValueChange?: (inputValue: string) => void;
   onItemSelect?: (value: Item) => void;
   value?: Item[] | Set<Item>;
@@ -22,6 +23,7 @@ export function Command<Item>({
   items,
   itemToKey = (value) => value,
   itemToString = (value) => (value ? String(value) : ""),
+  itemToSubItems,
   onInputValueChange,
   onItemSelect,
   value: valueProp,
@@ -36,6 +38,7 @@ export function Command<Item>({
     onChange: onInputValueChange,
     prop: inputValueProp,
   });
+  const [highlightedSubIndex, setHighlightedSubIndex] = useState(-1);
 
   const downshift = useCombobox({
     inputValue,
@@ -44,6 +47,16 @@ export function Command<Item>({
     items,
     itemToKey,
     itemToString,
+    onHighlightedIndexChange({ highlightedIndex }) {
+      if (
+        highlightedIndex !== -1 &&
+        itemToSubItems?.(items[highlightedIndex])?.length
+      ) {
+        setHighlightedSubIndex(0);
+      } else {
+        setHighlightedSubIndex(-1);
+      }
+    },
     onSelectedItemChange({ selectedItem, type }) {
       if (type !== useCombobox.stateChangeTypes.InputBlur) {
         onItemSelect?.(selectedItem);
@@ -73,8 +86,11 @@ export function Command<Item>({
     <CommandContextProvider
       downshift={downshift}
       highlightedItem={items[downshift.highlightedIndex]}
+      highlightedSubIndex={highlightedSubIndex}
       isItemDisabled={isItemDisabled}
       items={items}
+      itemToSubItems={itemToSubItems}
+      setHighlightedSubIndex={setHighlightedSubIndex}
       setInputValue={setInputValue}
       value={value}
     >
