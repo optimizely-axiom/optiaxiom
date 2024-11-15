@@ -42,7 +42,10 @@ export function getDocs({ shouldExtractValuesFromUnion = false } = {}) {
                           decl.fileName ===
                             filePath.replace(".tsx", ".css.ts") ||
                           decl.fileName.endsWith("Base.tsx") ||
-                          decl.fileName.endsWith("Base.css.ts")),
+                          decl.fileName.endsWith("Base.css.ts") ||
+                          decl.fileName.endsWith("Context.ts") ||
+                          decl.fileName.endsWith("Root.tsx") ||
+                          decl.fileName.endsWith("Root.css.ts")),
                     )) ||
                   (isBox && Object.hasOwn(sprinkles?.props ?? {}, prop.name)),
             )
