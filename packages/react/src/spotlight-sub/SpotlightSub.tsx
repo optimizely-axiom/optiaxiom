@@ -5,7 +5,7 @@ import { Flex } from "../flex";
 
 type SpotlightSubProps = ComponentPropsWithoutRef<typeof CommandSub>;
 
-export const SpotlightSub = forwardRef<HTMLLIElement, SpotlightSubProps>(
+export const SpotlightSub = forwardRef<HTMLDivElement, SpotlightSubProps>(
   ({ children, ...props }, ref) => {
     return (
       <CommandSub asChild ref={ref} {...props}>

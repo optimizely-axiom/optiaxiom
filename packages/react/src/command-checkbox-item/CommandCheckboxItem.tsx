@@ -8,7 +8,7 @@ import { Flex } from "../flex";
 type CommandCheckboxItemProps = ComponentPropsWithoutRef<typeof CommandItem>;
 
 export const CommandCheckboxItem = forwardRef<
-  HTMLLIElement,
+  HTMLDivElement,
   CommandCheckboxItemProps
 >(({ addonBefore, ...props }, ref) => {
   const { isItemDisabled, items, value } = useCommandContext(

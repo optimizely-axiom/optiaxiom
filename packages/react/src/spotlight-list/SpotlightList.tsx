@@ -4,7 +4,7 @@ import { CommandList } from "../command-list";
 
 type SpotlightListProps = ComponentPropsWithoutRef<typeof CommandList>;
 
-export const SpotlightList = forwardRef<HTMLUListElement, SpotlightListProps>(
+export const SpotlightList = forwardRef<HTMLDivElement, SpotlightListProps>(
   (props, ref) => {
     return <CommandList gap="xs" pb="lg" ref={ref} {...props} />;
   },
