@@ -21,6 +21,7 @@ export const SpotlightContent = forwardRef<
     items,
     itemToKey,
     itemToString,
+    itemToSubItems,
     onInputValueChange,
     onItemSelect,
   } = useSpotlightContext("SpotlightContent");
@@ -43,6 +44,7 @@ export const SpotlightContent = forwardRef<
         items={items}
         itemToKey={itemToKey}
         itemToString={itemToString}
+        itemToSubItems={itemToSubItems}
         onInputValueChange={onInputValueChange}
         onItemSelect={onItemSelect}
       >

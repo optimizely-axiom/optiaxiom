@@ -8,6 +8,7 @@ export const [SpotlightContextProvider, useSpotlightContext] = createContext<{
   items: any[];
   itemToKey: (item: any) => string;
   itemToString: (item: any) => string;
+  itemToSubItems?: (item: any) => any[] | null;
   onInputValueChange?: (value: string) => void;
   onItemSelect?: (value: any) => void;
   open?: boolean | undefined;

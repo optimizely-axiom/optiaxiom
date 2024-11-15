@@ -10,6 +10,8 @@ import {
   SpotlightItem,
   SpotlightLabel,
   SpotlightList,
+  SpotlightSub,
+  SpotlightSubItem,
   SpotlightTrigger,
 } from "@optiaxiom/react/unstable";
 import { Fragment, useState } from "react";
@@ -25,6 +27,18 @@ export default {
 } as Meta<typeof Spotlight>;
 
 type Story<T> = StoryObj<typeof Spotlight<T>>;
+
+const types = {
+  items: [
+    {
+      title: "Tasks",
+    },
+    {
+      title: "Work requests",
+    },
+  ],
+  title: "Types",
+};
 
 const pages = [
   {
@@ -65,11 +79,18 @@ const pages = [
   },
 ];
 
-export const Basic: Story<(typeof pages)[number]> = {
+type Item = {
+  category?: string;
+  description?: string;
+  title: string;
+};
+
+export const Basic: Story<{ items?: Item[] } & Item> = {
   render: function Basic(args) {
     const [open, setOpen] = useState(args.defaultOpen);
     const [inputValue, setInputValueState] = useState("");
     const [items, setItems] = useState(pages);
+    const [filter, setFilter] = useState<Item | null>(null);
 
     const setInputValue = (inputValue: string) => {
       setInputValueState(inputValue);
@@ -98,9 +119,13 @@ export const Basic: Story<(typeof pages)[number]> = {
       <Spotlight
         {...args}
         inputValue={inputValue}
-        items={items}
+        items={[types, ...items]}
+        itemToSubItems={(item) => ("items" in item ? (item.items ?? []) : [])}
         onInputValueChange={setInputValue}
         onItemSelect={(value) => {
+          if (types.items.includes(value)) {
+            setFilter((filter) => (filter === value ? null : value));
+          }
           toaster.create(
             <Toast intent="success">
               <ToastTitle>
@@ -127,6 +152,18 @@ export const Basic: Story<(typeof pages)[number]> = {
           <SpotlightInput placeholder="Search..." />
 
           <SpotlightList>
+            <SpotlightSub item={types}>
+              {types.items.map((item) => (
+                <SpotlightSubItem
+                  active={filter === item}
+                  item={item}
+                  key={item.title}
+                >
+                  {item.title}
+                </SpotlightSubItem>
+              ))}
+            </SpotlightSub>
+
             {items.map((item) => (
               <Fragment key={item.title}>
                 {shouldShowCategory(item.category) && (

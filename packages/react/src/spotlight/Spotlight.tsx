@@ -27,6 +27,7 @@ export function Spotlight<Item>({
   items,
   itemToKey = (value) => value,
   itemToString = (value) => (value ? String(value) : ""),
+  itemToSubItems,
   onInputValueChange,
   onItemSelect,
   onOpenChange,
@@ -54,6 +55,7 @@ export function Spotlight<Item>({
         items={items}
         itemToKey={itemToKey}
         itemToString={itemToString}
+        itemToSubItems={itemToSubItems}
         onInputValueChange={onInputValueChange}
         onItemSelect={onItemSelect}
         open={open}

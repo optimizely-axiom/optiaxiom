@@ -7,9 +7,9 @@ import {
   style,
 } from "../vanilla-extract";
 
-const subtleBackgroundColorVar = createVar();
+export const subtleBackgroundColorVar = createVar();
 const subtleColorVar = createVar();
-const solidBackgroundColorVar = createVar();
+export const solidBackgroundColorVar = createVar();
 const solidColorVar = createVar();
 
 export const badge = recipe({
