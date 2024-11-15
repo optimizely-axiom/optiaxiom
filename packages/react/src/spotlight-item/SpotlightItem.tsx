@@ -7,7 +7,7 @@ import * as styles from "./SpotlightItem.css";
 
 type SpotlightItemProps = ComponentPropsWithoutRef<typeof CommandItem>;
 
-export const SpotlightItem = forwardRef<HTMLLIElement, SpotlightItemProps>(
+export const SpotlightItem = forwardRef<HTMLDivElement, SpotlightItemProps>(
   ({ addonAfter, className, description, ...props }, ref) => {
     return (
       <CommandItem

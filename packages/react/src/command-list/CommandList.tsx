@@ -4,9 +4,9 @@ import { Box, type BoxProps } from "../box";
 import { useCommandContext } from "../command-context";
 import { extractSprinkles } from "../sprinkles";
 
-type CommandListProps = BoxProps<"ul">;
+type CommandListProps = BoxProps;
 
-export const CommandList = forwardRef<HTMLUListElement, CommandListProps>(
+export const CommandList = forwardRef<HTMLDivElement, CommandListProps>(
   ({ children, ...props }, ref) => {
     const { restProps, sprinkleProps } = extractSprinkles(props);
 
@@ -17,15 +17,15 @@ export const CommandList = forwardRef<HTMLUListElement, CommandListProps>(
 
     return (
       <Box
-        asChild
         display="flex"
         flex="1"
         flexDirection="column"
         gap="2"
         overflow="auto"
         {...sprinkleProps}
+        {...downshift.getMenuProps({ ref, ...restProps })}
       >
-        <ul {...downshift.getMenuProps({ ref, ...restProps })}>{children}</ul>
+        {children}
       </Box>
     );
   },

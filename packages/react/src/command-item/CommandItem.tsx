@@ -1,5 +1,6 @@
 import { forwardRef } from "react";
 
+import { Box } from "../box";
 import { useCommandContext } from "../command-context";
 import { CommandItemContextProvider } from "../command-item-context";
 import {
@@ -9,14 +10,14 @@ import {
 import { extractSprinkles } from "../sprinkles";
 
 type CommandItemProps = ListboxItemBaseProps<
-  "li",
+  "div",
   {
     active?: boolean;
     item: unknown;
   }
 >;
 
-export const CommandItem = forwardRef<HTMLLIElement, CommandItemProps>(
+export const CommandItem = forwardRef<HTMLDivElement, CommandItemProps>(
   (
     {
       active,
@@ -48,7 +49,7 @@ export const CommandItem = forwardRef<HTMLLIElement, CommandItemProps>(
           icon={icon}
           {...sprinkleProps}
         >
-          <li
+          <Box
             data-disabled={itemProps["aria-disabled"] ? "" : undefined}
             data-highlighted={highlightedItem === item ? "" : undefined}
             ref={ref}
@@ -56,7 +57,7 @@ export const CommandItem = forwardRef<HTMLLIElement, CommandItemProps>(
             {...itemProps}
           >
             {children}
-          </li>
+          </Box>
         </ListboxItemBase>
       </CommandItemContextProvider>
     );

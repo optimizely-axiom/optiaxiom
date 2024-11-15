@@ -1,19 +1,15 @@
 import { forwardRef } from "react";
 
-import { Box, type BoxProps } from "../box";
+import { type BoxProps } from "../box";
 import { Separator } from "../separator";
 
 type CommandSeparatorProps = BoxProps<typeof Separator>;
 
 export const CommandSeparator = forwardRef<
-  HTMLLIElement,
+  HTMLHRElement,
   CommandSeparatorProps
 >((props, ref) => (
-  <Box asChild>
-    <li ref={ref}>
-      <Separator asChild bg="border.secondary" mx="8" my="4" {...props} />
-    </li>
-  </Box>
+  <Separator bg="border.secondary" mx="8" my="4" ref={ref} {...props} />
 ));
 
 CommandSeparator.displayName = "@optiaxiom/react/CommandSeparator";
