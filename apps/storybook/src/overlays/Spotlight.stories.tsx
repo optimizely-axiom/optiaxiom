@@ -32,10 +32,13 @@ type Story<T> = StoryObj<typeof Spotlight<T>>;
 const types = {
   items: [
     {
-      title: "Tasks",
+      title: "Colors",
     },
     {
-      title: "Work requests",
+      title: "Names",
+    },
+    {
+      title: "Numbers",
     },
   ],
   title: "Types",
@@ -45,37 +48,44 @@ const pages = [
   {
     category: "Layout",
     description: "Set the element's `gap` CSS property",
+    tag: "Numbers",
     title: "Gap",
   },
   {
     category: "Layout",
     description: "Set the element's margin on all sides",
+    tag: "Numbers",
     title: "Margin",
   },
   {
     category: "Typography",
     description: "Set the element's font family",
+    tag: "Names",
     title: "Font Family",
   },
   {
     category: "Typography",
     description:
       "Set the element's `font-size` and `line-height` CSS properties",
+    tag: "Numbers",
     title: "Font Size",
   },
   {
     category: "Typography",
     description: "Set the element's text color",
+    tag: "Colors",
     title: "Text Color",
   },
   {
     category: "Sizing",
     description: "Set the element's height",
+    tag: "Numbers",
     title: "Height",
   },
   {
     category: "Sizing",
     description: "Set the element's width",
+    tag: "Numbers",
     title: "Width",
   },
 ];
@@ -116,11 +126,15 @@ export const Basic: Story<{ items?: Item[] } & Item> = {
       return !flag;
     };
 
+    const filteredItems = items.filter(
+      (item) => !filter || item.tag === filter.title,
+    );
+
     return (
       <Spotlight
         {...args}
         inputValue={inputValue}
-        items={[types, ...items]}
+        items={[types, ...filteredItems]}
         itemToSubItems={(item) => ("items" in item ? (item.items ?? []) : [])}
         onInputValueChange={setInputValue}
         onItemSelect={(value) => {
@@ -171,7 +185,7 @@ export const Basic: Story<{ items?: Item[] } & Item> = {
             </SpotlightSub>
 
             <SpotlightScrollArea>
-              {items.map((item) => (
+              {filteredItems.map((item) => (
                 <Fragment key={item.title}>
                   {shouldShowCategory(item.category) && (
                     <SpotlightLabel>{item.category}</SpotlightLabel>
