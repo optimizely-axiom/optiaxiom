@@ -52,6 +52,7 @@ export * from "./spotlight-input";
 export * from "./spotlight-item";
 export * from "./spotlight-label";
 export * from "./spotlight-list";
+export * from "./spotlight-scroll-area";
 export * from "./spotlight-sub";
 export * from "./spotlight-sub-item";
 export * from "./spotlight-trigger";

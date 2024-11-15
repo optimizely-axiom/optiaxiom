@@ -10,6 +10,7 @@ import {
   SpotlightItem,
   SpotlightLabel,
   SpotlightList,
+  SpotlightScrollArea,
   SpotlightSub,
   SpotlightSubItem,
   SpotlightTrigger,
@@ -152,7 +153,12 @@ export const Basic: Story<{ items?: Item[] } & Item> = {
           <SpotlightInput placeholder="Search..." />
 
           <SpotlightList>
-            <SpotlightSub item={types}>
+            <SpotlightSub
+              borderB="1"
+              borderColor="border.tertiary"
+              item={types}
+              pb="sm"
+            >
               {types.items.map((item) => (
                 <SpotlightSubItem
                   active={filter === item}
@@ -164,15 +170,31 @@ export const Basic: Story<{ items?: Item[] } & Item> = {
               ))}
             </SpotlightSub>
 
-            {items.map((item) => (
-              <Fragment key={item.title}>
-                {shouldShowCategory(item.category) && (
-                  <SpotlightLabel>{item.category}</SpotlightLabel>
-                )}
+            <SpotlightScrollArea>
+              {items.map((item) => (
+                <Fragment key={item.title}>
+                  {shouldShowCategory(item.category) && (
+                    <SpotlightLabel>{item.category}</SpotlightLabel>
+                  )}
 
-                <SpotlightItem
-                  description={
-                    <Highlight content={item.description} query={inputValue}>
+                  <SpotlightItem
+                    description={
+                      <Highlight content={item.description} query={inputValue}>
+                        {(chunk) => (
+                          <Box
+                            asChild
+                            borderB="2"
+                            borderColor="fg.information"
+                            fontWeight="600"
+                          >
+                            {chunk}
+                          </Box>
+                        )}
+                      </Highlight>
+                    }
+                    item={item}
+                  >
+                    <Highlight content={item.title} query={inputValue}>
                       {(chunk) => (
                         <Box
                           asChild
@@ -184,24 +206,10 @@ export const Basic: Story<{ items?: Item[] } & Item> = {
                         </Box>
                       )}
                     </Highlight>
-                  }
-                  item={item}
-                >
-                  <Highlight content={item.title} query={inputValue}>
-                    {(chunk) => (
-                      <Box
-                        asChild
-                        borderB="2"
-                        borderColor="fg.information"
-                        fontWeight="600"
-                      >
-                        {chunk}
-                      </Box>
-                    )}
-                  </Highlight>
-                </SpotlightItem>
-              </Fragment>
-            ))}
+                  </SpotlightItem>
+                </Fragment>
+              ))}
+            </SpotlightScrollArea>
           </SpotlightList>
 
           <SpotlightEmpty>
