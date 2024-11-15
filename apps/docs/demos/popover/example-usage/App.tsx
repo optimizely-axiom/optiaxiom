@@ -55,12 +55,12 @@ export function App() {
           label="Columns"
           px="md"
         >
-          <Select items={["Status", "Due Dates"]} value="Status">
+          <Select defaultValue="Status" items={["Status", "Due Dates"]}>
             <SelectTrigger ml="sm" size="sm">
               <SelectValue />
             </SelectTrigger>
 
-            <SelectContent>
+            <SelectContent align="end">
               {["Status", "Due Dates"].map((item) => (
                 <SelectItem item={item} key={item}>
                   {item}
@@ -76,12 +76,15 @@ export function App() {
           label="Grouping"
           px="md"
         >
-          <Select items={["No grouping", "Campaign"]} value="No grouping">
+          <Select
+            defaultValue="No grouping"
+            items={["No grouping", "Campaign"]}
+          >
             <SelectTrigger ml="sm" size="sm">
               <SelectValue />
             </SelectTrigger>
 
-            <SelectContent>
+            <SelectContent align="end">
               {["No grouping", "Campaign"].map((item) => (
                 <SelectItem item={item} key={item}>
                   {item}
@@ -99,12 +102,12 @@ export function App() {
           label="View"
           px="md"
         >
-          <Select items={["Tasks", "Steps"]} value="Tasks">
+          <Select defaultValue="Tasks" items={["Tasks", "Steps"]}>
             <SelectTrigger ml="sm" size="sm">
               <SelectValue />
             </SelectTrigger>
 
-            <SelectContent>
+            <SelectContent align="end">
               {["Tasks", "Steps"].map((item) => (
                 <SelectItem item={item} key={item}>
                   {item}

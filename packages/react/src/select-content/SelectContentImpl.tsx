@@ -14,7 +14,7 @@ export const SelectContentImpl = forwardRef<
 >(
   (
     {
-      align = "center",
+      align = "start",
       children,
       className,
       side = "bottom",
