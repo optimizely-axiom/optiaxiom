@@ -12,6 +12,7 @@ export const indicator = recipe({
 });
 
 const offsetVar = createVar();
+const translateVar = createVar();
 
 export const floating = recipe({
   base: [
@@ -21,11 +22,12 @@ export const floating = recipe({
     },
     style({
       vars: {
-        [offsetVar]: "50%",
+        [offsetVar]: "10%",
+        [translateVar]: "50%",
       },
 
       position: "absolute",
-      right: "4px",
+      right: offsetVar,
     }),
   ],
 
@@ -33,19 +35,20 @@ export const floating = recipe({
     offset: {
       false: style({
         vars: {
-          [offsetVar]: "4px",
+          [offsetVar]: "0",
+          [translateVar]: "0",
         },
       }),
       true: {},
     },
     position: {
       "bottom-right": style({
-        bottom: "4px",
-        transform: `translate(${offsetVar}, ${offsetVar})`,
+        bottom: offsetVar,
+        transform: `translate(${translateVar}, ${translateVar})`,
       }),
       "top-right": style({
-        top: "4px",
-        transform: `translate(${offsetVar}, calc(-1 * ${offsetVar}))`,
+        top: offsetVar,
+        transform: `translate(${translateVar}, calc(-1 * ${translateVar}))`,
       }),
     },
   },
