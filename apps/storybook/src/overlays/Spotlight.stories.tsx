@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Box, Kbd, Link, Toast, toaster, ToastTitle } from "@optiaxiom/react";
+import { Box, Kbd, Toast, toaster, ToastTitle } from "@optiaxiom/react";
 import {
   Highlight,
   Spotlight,
@@ -28,6 +28,10 @@ export default {
 } as Meta<typeof Spotlight>;
 
 type Story<T> = StoryObj<typeof Spotlight<T>>;
+
+const empty: Item = {
+  title: "Empty",
+};
 
 const types = {
   items: [
@@ -120,15 +124,18 @@ export const Basic: Story<{ items?: Item[] } & Item> = {
     };
 
     const categories = new Set();
-    const shouldShowCategory = (category: string) => {
+    const shouldShowCategory = (category: string | undefined) => {
       const flag = categories.has(category);
       categories.add(category);
       return !flag;
     };
 
-    const filteredItems = items.filter(
-      (item) => !filter || item.tag === filter.title,
-    );
+    const filteredItems = (() => {
+      const filteredItems = items.filter(
+        (item) => !filter || item.tag === filter.title,
+      );
+      return filteredItems.length ? filteredItems : [empty];
+    })();
 
     return (
       <Spotlight
@@ -140,6 +147,9 @@ export const Basic: Story<{ items?: Item[] } & Item> = {
         onItemSelect={(value) => {
           if (types.items.includes(value)) {
             setFilter((filter) => (filter === value ? null : value));
+          } else if (value === empty) {
+            setFilter(null);
+            setInputValue("gap");
           }
           toaster.create(
             <Toast intent="success">
@@ -191,9 +201,44 @@ export const Basic: Story<{ items?: Item[] } & Item> = {
                     <SpotlightLabel>{item.category}</SpotlightLabel>
                   )}
 
-                  <SpotlightItem
-                    description={
-                      <Highlight content={item.description} query={inputValue}>
+                  {item === empty ? (
+                    <>
+                      <SpotlightEmpty>
+                        <Box>
+                          No results for &quot;
+                          <Box asChild color="fg.default">
+                            <span>{inputValue}</span>
+                          </Box>
+                          &quot;
+                        </Box>
+                      </SpotlightEmpty>
+
+                      <SpotlightItem item={item}>
+                        Try searching for: <strong>Gap</strong>
+                      </SpotlightItem>
+                    </>
+                  ) : (
+                    <SpotlightItem
+                      description={
+                        <Highlight
+                          content={item.description}
+                          query={inputValue}
+                        >
+                          {(chunk) => (
+                            <Box
+                              asChild
+                              borderB="2"
+                              borderColor="fg.information"
+                              fontWeight="600"
+                            >
+                              {chunk}
+                            </Box>
+                          )}
+                        </Highlight>
+                      }
+                      item={item}
+                    >
+                      <Highlight content={item.title} query={inputValue}>
                         {(chunk) => (
                           <Box
                             asChild
@@ -205,42 +250,12 @@ export const Basic: Story<{ items?: Item[] } & Item> = {
                           </Box>
                         )}
                       </Highlight>
-                    }
-                    item={item}
-                  >
-                    <Highlight content={item.title} query={inputValue}>
-                      {(chunk) => (
-                        <Box
-                          asChild
-                          borderB="2"
-                          borderColor="fg.information"
-                          fontWeight="600"
-                        >
-                          {chunk}
-                        </Box>
-                      )}
-                    </Highlight>
-                  </SpotlightItem>
+                    </SpotlightItem>
+                  )}
                 </Fragment>
               ))}
             </SpotlightScrollArea>
           </SpotlightList>
-
-          <SpotlightEmpty>
-            <Box>
-              No results for &quot;
-              <Box asChild color="fg.default">
-                <span>{inputValue}</span>
-              </Box>
-              &quot;
-            </Box>
-            <Box color="fg.default">
-              Try searching for:{" "}
-              <Link asChild>
-                <button onClick={() => setInputValue("gap")}>Gap</button>
-              </Link>
-            </Box>
-          </SpotlightEmpty>
         </SpotlightContent>
       </Spotlight>
     );
