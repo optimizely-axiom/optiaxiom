@@ -121,7 +121,7 @@ export const Basic: Story = {
               </ComboboxItem>
             ))}
           </ComboboxList>
-          <ComboboxEmpty>No result found</ComboboxEmpty>
+          {items.length === 0 && <ComboboxEmpty>No result found</ComboboxEmpty>}
         </ComboboxContent>
       </Combobox>
     );
@@ -179,7 +179,7 @@ export const Multiple: Story = {
               </ComboboxCheckboxItem>
             ))}
           </ComboboxList>
-          <ComboboxEmpty>No result found</ComboboxEmpty>
+          {items.length === 0 && <ComboboxEmpty>No result found</ComboboxEmpty>}
         </ComboboxContent>
       </Combobox>
     );

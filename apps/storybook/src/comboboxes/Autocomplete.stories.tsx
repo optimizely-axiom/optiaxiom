@@ -100,7 +100,9 @@ export const Basic: Story = {
               </AutocompleteItem>
             ))}
           </AutocompleteList>
-          <AutocompleteEmpty>No result found</AutocompleteEmpty>
+          {items.length === 0 && (
+            <AutocompleteEmpty>No result found</AutocompleteEmpty>
+          )}
         </AutocompleteContent>
       </Autocomplete>
     );
@@ -293,7 +295,9 @@ export const AsyncLoading: Story = {
               </AutocompleteItem>
             ))}
           </AutocompleteList>
-          <AutocompleteEmpty>No results found</AutocompleteEmpty>
+          {items.length === 0 && (
+            <AutocompleteEmpty>No results found</AutocompleteEmpty>
+          )}
         </AutocompleteContent>
       </Autocomplete>
     );
