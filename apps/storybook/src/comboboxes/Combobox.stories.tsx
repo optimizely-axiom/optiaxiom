@@ -7,9 +7,11 @@ import {
   ComboboxContent,
   ComboboxEmpty,
   ComboboxFooter,
+  ComboboxGroup,
   ComboboxInput,
   ComboboxItem,
   ComboboxItemIndicator,
+  ComboboxLabel,
   ComboboxList,
   ComboboxSeparator,
   ComboboxTrigger,
@@ -470,6 +472,110 @@ export const Controlled: Story<(typeof books)[number]> = {
               Done
             </Button>
           </ComboboxFooter>
+        </ComboboxContent>
+      </Combobox>
+    );
+  },
+};
+
+const fruits = ["Apple", "Banana", "Blueberry", "Grapes", "Pineapple"];
+const vegetables = ["Aubergine", "Broccoli", "Carrot", "Courgette", "Leek"];
+const meats = ["Beef", "Chicken", "Lamb", "Pork"];
+const combinedFoodList = [...fruits, ...vegetables, ...meats];
+
+export const Group: Story = {
+  render: function Group(args) {
+    const [open, setOpen] = useState(args.defaultOpen);
+    const [items, setItems] = useState(combinedFoodList);
+    const [searchInput, setSearchInput] = useState("");
+    const [value, setValue] = useState("");
+
+    const getFilteredItems = (items: string[]) => {
+      return items.filter(
+        (food) =>
+          !searchInput ||
+          food.toLowerCase().includes(searchInput.toLowerCase()),
+      );
+    };
+
+    const filteredFruits = getFilteredItems(fruits);
+    const filteredVegetables = getFilteredItems(vegetables);
+    const filteredMeats = getFilteredItems(meats);
+
+    return (
+      <Combobox
+        {...args}
+        items={items}
+        onInputValueChange={(inputValue) => {
+          setItems(
+            combinedFoodList.filter(
+              (food) =>
+                !inputValue ||
+                food.toLowerCase().includes(inputValue.toLowerCase()),
+            ),
+          );
+          setSearchInput(inputValue);
+        }}
+        onItemSelect={(value) => {
+          setValue(value);
+          setOpen(false);
+        }}
+        onOpenChange={setOpen}
+        open={open}
+        value={value ? [value] : []}
+      >
+        <ComboboxTrigger>
+          <ComboboxValue placeholder="Select an item" />
+        </ComboboxTrigger>
+
+        <ComboboxContent>
+          <ComboboxInput placeholder="Search foods..." />
+          <ComboboxList>
+            {filteredFruits.length > 0 && (
+              <ComboboxGroup>
+                <ComboboxLabel>Fruits</ComboboxLabel>
+                {filteredFruits.map((item, index) => (
+                  <ComboboxItem
+                    addonAfter={<ComboboxItemIndicator />}
+                    item={item}
+                    key={`fruit-${index}`}
+                  >
+                    {item}
+                  </ComboboxItem>
+                ))}
+              </ComboboxGroup>
+            )}
+
+            {filteredVegetables.length > 0 && (
+              <ComboboxGroup>
+                <ComboboxLabel>Vegetables</ComboboxLabel>
+                {filteredVegetables.map((item, index) => (
+                  <ComboboxItem
+                    addonAfter={<ComboboxItemIndicator />}
+                    item={item}
+                    key={`vegetable-${index}`}
+                  >
+                    {item}
+                  </ComboboxItem>
+                ))}
+              </ComboboxGroup>
+            )}
+
+            {filteredMeats.length > 0 && (
+              <ComboboxGroup>
+                <ComboboxLabel>Meats</ComboboxLabel>
+                {filteredMeats.map((item, index) => (
+                  <ComboboxItem
+                    addonAfter={<ComboboxItemIndicator />}
+                    item={item}
+                    key={`meat-${index}`}
+                  >
+                    {item}
+                  </ComboboxItem>
+                ))}
+              </ComboboxGroup>
+            )}
+          </ComboboxList>
         </ComboboxContent>
       </Combobox>
     );
