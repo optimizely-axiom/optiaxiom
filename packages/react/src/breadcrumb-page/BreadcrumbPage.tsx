@@ -6,7 +6,7 @@ export type BreadcrumbPageProps = BoxProps<"span">;
 export const BreadcrumbPage = forwardRef<HTMLSpanElement, BreadcrumbPageProps>(
   ({ ...props }, ref) => {
     return (
-      <Box asChild>
+      <Box aria-current="page" asChild color="fg.default" fontSize="md">
         <span ref={ref} {...props} />
       </Box>
     );
