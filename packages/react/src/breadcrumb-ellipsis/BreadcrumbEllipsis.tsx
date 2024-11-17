@@ -5,7 +5,13 @@ export type BreadcrumbEllipsisProps = BoxProps<"span">;
 
 export function BreadcrumbEllipsis({ ...props }: BreadcrumbEllipsisProps) {
   return (
-    <Box display="grid" placeItems="center" {...props}>
+    <Box
+      aria-hidden
+      color="fg.tertiary"
+      display="grid"
+      placeItems="center"
+      {...props}
+    >
       <IconEllipsis />
     </Box>
   );

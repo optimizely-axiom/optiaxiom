@@ -10,7 +10,7 @@ export const BreadcrumbItem = forwardRef<HTMLLIElement, BreadcrumbItemProps>(
     const { restProps, sprinkleProps } = extractSprinkles(props);
 
     return (
-      <Box asChild {...sprinkleProps}>
+      <Box alignItems="center" asChild display="inline-flex" {...sprinkleProps}>
         <li ref={ref} {...restProps}>
           {children}
         </li>
