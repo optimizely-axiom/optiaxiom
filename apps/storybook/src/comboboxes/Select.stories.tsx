@@ -124,7 +124,7 @@ const vegetables = ["Aubergine", "Broccoli", "Carrot", "Courgette", "Leek"];
 const meats = ["Beef", "Chicken", "Lamb", "Pork"];
 const combinedFoodList = [...fruits, ...vegetables, ...meats];
 
-export const Grouped: Story = {
+export const Group: Story = {
   args: {
     children: (
       <>
