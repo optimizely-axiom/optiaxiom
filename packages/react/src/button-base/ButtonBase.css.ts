@@ -245,7 +245,9 @@ export const buttonBase = recipe({
 
 export const spinner = recipe({
   base: style({
+    left: "0",
     position: "absolute",
+    right: "0",
   }),
 });
 
