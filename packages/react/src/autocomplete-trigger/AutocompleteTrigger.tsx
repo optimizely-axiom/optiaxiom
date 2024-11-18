@@ -53,6 +53,7 @@ export const AutocompleteTrigger = forwardRef<
             </Flex>
           </Flex>
         }
+        addonBefore={null}
         disabled={disabled}
         pr="0"
         ref={ref}
