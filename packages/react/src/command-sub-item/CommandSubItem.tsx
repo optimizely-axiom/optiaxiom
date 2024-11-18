@@ -26,6 +26,7 @@ export const CommandSubItem = forwardRef<HTMLDivElement, CommandSubItemProps>(
       isItemDisabled,
       items,
       itemToSubItems,
+      setHighlightedIndex,
       setHighlightedSubIndex,
       value,
     } = useCommandContext("CommandSubItem");
@@ -76,7 +77,7 @@ export const CommandSubItem = forwardRef<HTMLDivElement, CommandSubItemProps>(
               return;
             }
 
-            downshift.setHighlightedIndex(items.indexOf(parentItem));
+            setHighlightedIndex(items.indexOf(parentItem));
             setHighlightedSubIndex(subIndex);
           }}
           ref={ref}

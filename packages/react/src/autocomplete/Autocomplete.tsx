@@ -1,9 +1,11 @@
+import type { UseComboboxProps } from "downshift";
+
 import { Popper } from "@radix-ui/react-popper";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import { type ReactNode, useEffect, useState } from "react";
 
 import { AutocompleteContextProvider } from "../autocomplete-context";
-import { useCombobox, type UseComboboxProps } from "../downshift";
+import { Command } from "../command";
 import { useFieldContext } from "../field-context";
 import { useEffectEvent } from "../use-event";
 
@@ -27,15 +29,15 @@ export function Autocomplete<Item>({
   defaultOpen = false,
   defaultValue,
   disabled,
+  isItemDisabled,
   items,
-  itemToKey = (value) => value,
+  itemToKey,
   itemToString = (value) => (value ? String(value) : ""),
   onInputValueChange,
   onOpenChange,
   onValueChange,
   open,
   value,
-  ...props
 }: AutocompleteProps<Item>) {
   const { inputId } = useFieldContext({});
 
@@ -44,11 +46,13 @@ export function Autocomplete<Item>({
     onChange: onValueChange,
     prop: value,
   });
+
   const [isOpen, setIsOpen] = useControllableState({
     defaultProp: defaultOpen,
     onChange: onOpenChange,
     prop: open,
   });
+
   const [inputValue, setInputValue] = useState(
     itemToString(selectedItem ?? null),
   );
@@ -59,49 +63,39 @@ export function Autocomplete<Item>({
     }
   }, [isOpen, itemToStringStable, selectedItem]);
 
-  const downshift = useCombobox({
-    ...props,
-    inputId,
-    inputValue,
-    isOpen,
-    items,
-    itemToKey,
-    itemToString,
-    onInputValueChange({ inputValue, isOpen }) {
-      if (isOpen) {
-        onInputValueChange?.(inputValue);
-      }
-    },
-    onIsOpenChange({ isOpen }) {
-      setIsOpen(isOpen);
-      if (!isOpen) {
-        onInputValueChange?.("");
-      }
-    },
-    onSelectedItemChange({ selectedItem }) {
-      setSelectedItem(selectedItem);
-    },
-    selectedItem: selectedItem ?? null,
-  });
-
-  /**
-   * Dummy calls to suppress warning from downshift
-   */
-  downshift.getMenuProps({}, { suppressRefError: true });
-
   return (
     <Popper>
-      <AutocompleteContextProvider
-        disabled={disabled}
-        downshift={downshift}
-        highlightedItem={items[downshift.highlightedIndex]}
-        isOpen={isOpen}
+      <Command
+        inputId={inputId}
+        inputValue={inputValue}
+        isItemDisabled={isItemDisabled}
         items={items}
         itemToKey={itemToKey}
-        setInputValue={setInputValue}
+        itemToString={itemToString}
+        onInputValueChange={(value) => {
+          setInputValue(value);
+          onInputValueChange?.(value);
+        }}
+        onItemSelect={setSelectedItem}
+        onOpenChange={(open) => {
+          setIsOpen(open);
+          if (!open) {
+            onInputValueChange?.("");
+          }
+        }}
+        open={isOpen}
+        selectedItem={selectedItem ?? null}
       >
-        {children}
-      </AutocompleteContextProvider>
+        <AutocompleteContextProvider
+          disabled={disabled}
+          isOpen={isOpen}
+          items={items}
+          selectedItem={selectedItem}
+          setSelectedItem={setSelectedItem}
+        >
+          {children}
+        </AutocompleteContextProvider>
+      </Command>
     </Popper>
   );
 }

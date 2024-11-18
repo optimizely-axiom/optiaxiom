@@ -11,6 +11,7 @@ export const [CommandContextProvider, useCommandContext] = createContext<{
   isItemDisabled: (item: any, index: number) => boolean;
   items: any[];
   itemToSubItems?: (item: any) => any[] | null;
+  setHighlightedIndex: (index: number) => void;
   setHighlightedSubIndex: (index: number) => void;
   setInputValue: (value: string) => void;
   value?: Set<any>;
