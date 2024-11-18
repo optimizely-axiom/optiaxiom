@@ -1,7 +1,3 @@
-import { Scale } from "@/components/scale";
-import { theme } from "@optiaxiom/globals";
-import { Fragment } from "react";
-
 import { Demo } from "@/components/demo";
 import { CssUsage, JsUsage, PropUsage } from "@/demos/styles";
 
@@ -67,12 +63,4 @@ You can use this `theme` object when implementing any CSS-in-JS solutions.
 
 ## Reference
 
-{Object.entries(theme).map(([name, values]) => (
-
-<Fragment key={name}>
-  <h3 id={name}>
-    <code>{name}</code>
-  </h3>
-  <Scale hidePixels hidePreview values={values} />
-</Fragment>
-))}
+<ax-design-tokens />
