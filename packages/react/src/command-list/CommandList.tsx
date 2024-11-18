@@ -22,6 +22,7 @@ export const CommandList = forwardRef<HTMLDivElement, CommandListProps>(
         flexDirection="column"
         gap="2"
         overflow="auto"
+        py="4"
         {...sprinkleProps}
         {...downshift.getMenuProps({ ref, ...restProps })}
       >

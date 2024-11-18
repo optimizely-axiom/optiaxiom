@@ -1,11 +1,11 @@
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import { forwardRef, useEffect, useRef } from "react";
 
-import { Box, type BoxProps } from "../box";
+import { type BoxProps } from "../box";
 import { useCommandContext } from "../command-context";
+import { CommandFocusableItem } from "../command-focusable-item";
 import { CommandItemContextProvider } from "../command-item-context";
 import { useCommandSubContext } from "../command-sub-context";
-import * as styles from "./CommandSubItem.css";
 
 type CommandSubItemProps = BoxProps<
   "div",
@@ -17,16 +17,7 @@ type CommandSubItemProps = BoxProps<
 
 export const CommandSubItem = forwardRef<HTMLDivElement, CommandSubItemProps>(
   (
-    {
-      active,
-      children,
-      className,
-      item,
-      onClick,
-      onMouseDown,
-      onMouseMove,
-      ...props
-    },
+    { active, children, item, onClick, onMouseDown, onMouseMove, ...props },
     outerRef,
   ) => {
     const {
@@ -36,7 +27,6 @@ export const CommandSubItem = forwardRef<HTMLDivElement, CommandSubItemProps>(
       isItemDisabled,
       items,
       itemToSubItems,
-      lastInteractionSource,
       setHighlightedIndex,
       setHighlightedSubIndex,
       value,
@@ -64,12 +54,11 @@ export const CommandSubItem = forwardRef<HTMLDivElement, CommandSubItemProps>(
         active={active ?? value?.has(item)}
         item={item}
       >
-        <Box
+        <CommandFocusableItem
           aria-disabled={disabled}
           aria-selected={selected}
           data-disabled={disabled ? "" : undefined}
           data-highlighted={selected ? "" : undefined}
-          data-interaction={lastInteractionSource}
           onClick={(event) => {
             onClick?.(event);
             if (event.defaultPrevented) {
@@ -94,11 +83,10 @@ export const CommandSubItem = forwardRef<HTMLDivElement, CommandSubItemProps>(
           }}
           ref={ref}
           role="option"
-          {...styles.item({}, className)}
           {...props}
         >
           {children}
-        </Box>
+        </CommandFocusableItem>
       </CommandItemContextProvider>
     );
   },

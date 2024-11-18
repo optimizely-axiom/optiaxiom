@@ -13,8 +13,10 @@ import {
   ComboboxItemIndicator,
   ComboboxLabel,
   ComboboxList,
+  ComboboxScrollArea,
   ComboboxSeparator,
   ComboboxTrigger,
+  ComboboxUnstyledItem,
   ComboboxValue,
 } from "@optiaxiom/react/unstable";
 import { IconUsers } from "@tabler/icons-react";
@@ -363,6 +365,13 @@ export const People: Story<(typeof users)[number]> = {
   },
 };
 
+type Book = {
+  author?: string;
+  disabled?: boolean;
+  id: string;
+  title?: string;
+};
+
 const books = [
   { author: "George Orwell", disabled: false, id: "book-5", title: "1984" },
   {
@@ -421,18 +430,30 @@ const books = [
   },
 ];
 
-export const Controlled: Story<(typeof books)[number]> = {
+const controlledActions: { clear: Book; done: Book } = {
+  clear: {
+    id: "clear",
+  },
+  done: {
+    id: "done",
+  },
+};
+
+export const Controlled: Story<Book> = {
   render: function DefaultSelected(args) {
     const [items, setItems] = useState(books);
     const [open, setOpen] = useState(args.defaultOpen);
-    const [value, setValue] = useState([books[9]]);
+    const [value, setValue] = useState<Book[]>([books[9]]);
 
     return (
       <Combobox
         {...args}
-        items={items}
+        isItemDisabled={(item) =>
+          item === controlledActions.clear && value.length === 0
+        }
+        items={[...items, controlledActions.clear, controlledActions.done]}
         itemToKey={(book) => book?.id}
-        itemToString={(book) => (book ? book.title : "")}
+        itemToString={(book) => (book ? String(book.title) : "")}
         onInputValueChange={(inputValue) => {
           setItems(
             books.filter(
@@ -444,11 +465,17 @@ export const Controlled: Story<(typeof books)[number]> = {
           );
         }}
         onItemSelect={(value) => {
-          setValue((values) =>
-            values.includes(value)
-              ? values.filter((v) => v !== value)
-              : [...values, value],
-          );
+          if (value === controlledActions.clear) {
+            setValue([]);
+          } else if (value === controlledActions.done) {
+            setOpen(false);
+          } else {
+            setValue((values) =>
+              values.includes(value)
+                ? values.filter((v) => v !== value)
+                : [...values, value],
+            );
+          }
         }}
         onOpenChange={setOpen}
         open={open}
@@ -457,21 +484,29 @@ export const Controlled: Story<(typeof books)[number]> = {
         <ComboboxTrigger>
           <ComboboxValue placeholder="Select books" />
         </ComboboxTrigger>
+
         <ComboboxContent>
           <ComboboxInput placeholder="Books..." />
+
           <ComboboxList>
-            {items.map((book) => (
-              <ComboboxCheckboxItem item={book} key={book.id}>
-                {book.title}
-              </ComboboxCheckboxItem>
-            ))}
+            <ComboboxScrollArea>
+              {items.map((book) => (
+                <ComboboxCheckboxItem item={book} key={book.id}>
+                  {book.title}
+                </ComboboxCheckboxItem>
+              ))}
+            </ComboboxScrollArea>
+
+            <ComboboxFooter>
+              <ComboboxUnstyledItem asChild item={controlledActions.clear}>
+                <Button disabled={value.length === 0}>Clear All</Button>
+              </ComboboxUnstyledItem>
+
+              <ComboboxUnstyledItem asChild item={controlledActions.done}>
+                <Button appearance="primary">Done</Button>
+              </ComboboxUnstyledItem>
+            </ComboboxFooter>
           </ComboboxList>
-          <ComboboxFooter>
-            <Button onClick={() => setValue([])}>Clear All</Button>
-            <Button appearance="primary" onClick={() => setOpen(false)}>
-              Done
-            </Button>
-          </ComboboxFooter>
         </ComboboxContent>
       </Combobox>
     );

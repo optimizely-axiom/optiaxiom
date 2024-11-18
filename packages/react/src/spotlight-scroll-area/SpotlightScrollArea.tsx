@@ -1,24 +1,14 @@
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
-import { Box } from "../box";
+import { CommandScrollArea } from "../command-scroll-area";
 
-type SpotlightScrollAreaProps = ComponentPropsWithoutRef<typeof Box>;
+type SpotlightScrollAreaProps = ComponentPropsWithoutRef<
+  typeof CommandScrollArea
+>;
 
 export const SpotlightScrollArea = forwardRef<
   HTMLDivElement,
   SpotlightScrollAreaProps
->((props, ref) => {
-  return (
-    <Box
-      display="flex"
-      flex="1"
-      flexDirection="column"
-      gap="xs"
-      overflow="auto"
-      ref={ref}
-      {...props}
-    />
-  );
-});
+>((props, ref) => <CommandScrollArea gap="xs" ref={ref} {...props} />);
 
 SpotlightScrollArea.displayName = "@optiaxiom/react/SpotlightScrollArea";

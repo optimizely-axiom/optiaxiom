@@ -1,13 +1,12 @@
 import { forwardRef } from "react";
 
-import { Box } from "../box";
 import { useCommandContext } from "../command-context";
 import { CommandItemContextProvider } from "../command-item-context";
+import { CommandUnstyledItem } from "../command-unstyled-item";
 import {
   ListboxItemBase,
   type ListboxItemBaseProps,
 } from "../listbox-item-base";
-import { extractSprinkles } from "../sprinkles";
 
 type CommandItemProps = ListboxItemBaseProps<
   "div",
@@ -31,11 +30,7 @@ export const CommandItem = forwardRef<HTMLDivElement, CommandItemProps>(
     },
     ref,
   ) => {
-    const { restProps, sprinkleProps } = extractSprinkles(props);
-
-    const { downshift, highlightedItem, value } =
-      useCommandContext("CommandItem");
-    const itemProps = downshift.getItemProps({ item });
+    const { value } = useCommandContext("CommandItem");
 
     return (
       <CommandItemContextProvider
@@ -47,17 +42,12 @@ export const CommandItem = forwardRef<HTMLDivElement, CommandItemProps>(
           addonBefore={addonBefore}
           description={description}
           icon={icon}
-          {...sprinkleProps}
+          mx="4"
+          {...props}
         >
-          <Box
-            data-disabled={itemProps["aria-disabled"] ? "" : undefined}
-            data-highlighted={highlightedItem === item ? "" : undefined}
-            ref={ref}
-            {...restProps}
-            {...itemProps}
-          >
+          <CommandUnstyledItem item={item} ref={ref} tabIndex={undefined}>
             {children}
-          </Box>
+          </CommandUnstyledItem>
         </ListboxItemBase>
       </CommandItemContextProvider>
     );
