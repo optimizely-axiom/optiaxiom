@@ -41,11 +41,15 @@ export const CommandInput = forwardRef<HTMLInputElement, CommandInputProps>(
                 event.key === "ArrowRight" ||
                 event.key === "Enter")
             ) {
+              const subItems = itemToSubItems?.(highlightedItem) ?? [];
+              if (subItems.length === 0) {
+                return;
+              }
+
               event.preventDefault();
               Object.assign(event.nativeEvent, {
                 preventDownshiftDefault: true,
               });
-              const subItems = itemToSubItems?.(highlightedItem) ?? [];
               if (event.key === "ArrowRight") {
                 setHighlightedSubIndex(
                   highlightedSubIndex === subItems.length - 1
