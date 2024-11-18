@@ -9,7 +9,14 @@ export const CommandSeparator = forwardRef<
   HTMLHRElement,
   CommandSeparatorProps
 >((props, ref) => (
-  <Separator bg="border.secondary" mx="8" my="4" ref={ref} {...props} />
+  <Separator
+    bg="border.secondary"
+    flex="none"
+    mx="8"
+    my="4"
+    ref={ref}
+    {...props}
+  />
 ));
 
 CommandSeparator.displayName = "@optiaxiom/react/CommandSeparator";
