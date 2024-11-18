@@ -55,12 +55,14 @@ export const CommandInput = forwardRef<HTMLInputElement, CommandInputProps>(
                   highlightedSubIndex === subItems.length - 1
                     ? 0
                     : highlightedSubIndex + 1,
+                  "keyboard",
                 );
               } else if (event.key === "ArrowLeft") {
                 setHighlightedSubIndex(
                   highlightedSubIndex === 0
                     ? subItems.length - 1
                     : highlightedSubIndex - 1,
+                  "keyboard",
                 );
               } else if (event.key === "Enter") {
                 downshift.selectItem(subItems[highlightedSubIndex]);
