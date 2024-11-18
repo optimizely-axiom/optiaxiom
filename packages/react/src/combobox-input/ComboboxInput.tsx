@@ -12,7 +12,7 @@ export const ComboboxInput = forwardRef<HTMLInputElement, ComboboxInputProps>(
     return (
       <CommandInput
         m="xs"
-        mb="4"
+        mb="0"
         onKeyDown={(event) => {
           if (event.key === " " && highlightedItem) {
             event.preventDefault();
