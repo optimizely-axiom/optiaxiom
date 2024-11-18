@@ -1,15 +1,16 @@
 import { useCombobox } from "downshift";
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
+import type { ComboboxPopoverContent } from "../combobox-popover-content";
+
 import { useComboboxContext } from "../combobox-context";
 import { Command } from "../command";
 import { DialogContent } from "../dialog-content";
 import { useFieldContext } from "../field-context";
-import { PopoverContent } from "../popover-content";
 import { useResponsiveMatches } from "../use-responsive-matches";
 
 type ComboboxContentProps = ComponentPropsWithoutRef<
-  typeof DialogContent | typeof PopoverContent
+  typeof ComboboxPopoverContent | typeof DialogContent
 >;
 
 export const ComboboxContent = forwardRef<HTMLDivElement, ComboboxContentProps>(

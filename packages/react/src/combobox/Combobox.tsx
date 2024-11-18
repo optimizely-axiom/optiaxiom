@@ -9,11 +9,11 @@ import {
 import type { Command } from "../command";
 
 import { ComboboxContextProvider } from "../combobox-context";
+import { ComboboxPopoverContent } from "../combobox-popover-content";
 import { Dialog } from "../dialog";
 import { DialogContent } from "../dialog-content";
 import { DialogTrigger } from "../dialog-trigger";
 import { Popover } from "../popover";
-import { PopoverContent } from "../popover-content";
 import { PopoverTrigger } from "../popover-trigger";
 import { useEffectEvent } from "../use-event";
 import { useResponsiveMatches } from "../use-responsive-matches";
@@ -46,7 +46,7 @@ export function Combobox<Item>({
       Trigger: DialogTrigger,
     },
     sm: {
-      Content: PopoverContent,
+      Content: ComboboxPopoverContent,
       Root: Popover,
       Trigger: PopoverTrigger,
     },
