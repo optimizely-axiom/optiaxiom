@@ -1,4 +1,5 @@
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
+import { useCombobox } from "downshift";
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import { Command } from "../command";
@@ -47,6 +48,25 @@ export const SpotlightContent = forwardRef<
         itemToSubItems={itemToSubItems}
         onInputValueChange={onInputValueChange}
         onItemSelect={onItemSelect}
+        open
+        selectedItem={null}
+        stateReducer={(state, actionAndChanges) => {
+          const { changes, type } = actionAndChanges;
+
+          switch (type) {
+            case useCombobox.stateChangeTypes.InputKeyDownEnter:
+            case useCombobox.stateChangeTypes.ItemClick:
+              return {
+                ...changes,
+                /**
+                 * Keep the selected option highlighted rather than resetting to -1
+                 */
+                highlightedIndex: state.highlightedIndex,
+              };
+            default:
+              return changes;
+          }
+        }}
       >
         {children}
       </Command>

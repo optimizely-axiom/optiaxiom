@@ -1,11 +1,7 @@
-import type { UseComboboxProps, UseSelectProps } from "downshift";
-
 import { useDelayedState } from "./useDelayedState";
 import { useForceRerender } from "./useForceRerender";
 
-export function usePortalPatch<T>(
-  props: UseComboboxProps<T> | UseSelectProps<T>,
-): Omit<UseComboboxProps<T> & UseSelectProps<T>, "items"> {
+export function usePortalPatch(open: boolean | undefined) {
   /**
    * Downshift attempts to scroll to the currently selected item when the menu
    * opens. But since we don't render the menu until it is open the `ref` will
@@ -14,10 +10,7 @@ export function usePortalPatch<T>(
    * So we hold the active highlightedIndex in a ref/queue on first open and
    * wait for next effect/tick to set the highlightedIndex state.
    */
-  const [highlightedIndex, setHighlightedIndex] = useDelayedState(
-    -1,
-    props.isOpen,
-  );
+  const [highlightedIndex, setHighlightedIndex] = useDelayedState(-1, open);
 
   /**
    * Downshift stores a ref to the menu to check if interactions are happening
@@ -26,12 +19,7 @@ export function usePortalPatch<T>(
    *
    * So we re-render the component once it opens to force update the menu ref.
    */
-  useForceRerender(props.isOpen);
+  useForceRerender(open);
 
-  return {
-    highlightedIndex,
-    onHighlightedIndexChange({ highlightedIndex }) {
-      setHighlightedIndex(highlightedIndex);
-    },
-  };
+  return [highlightedIndex, setHighlightedIndex] as const;
 }

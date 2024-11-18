@@ -1,8 +1,9 @@
 import { Popper } from "@radix-ui/react-popper";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
+import { useSelect, type UseSelectProps } from "downshift";
 import { type ReactNode } from "react";
 
-import { useSelect, type UseSelectProps } from "../downshift";
+import { usePortalPatch } from "../downshift";
 import { SelectContextProvider } from "../select-context";
 
 type SelectProps<Item> = {
@@ -45,12 +46,18 @@ export function Select<Item>({
     prop: open,
   });
 
+  const [highlightedIndex, setHighlightedIndex] = usePortalPatch(isOpen);
+
   const downshift = useSelect({
     ...props,
+    highlightedIndex,
     isOpen,
     items,
     itemToKey,
     itemToString,
+    onHighlightedIndexChange(changes) {
+      setHighlightedIndex(changes.highlightedIndex);
+    },
     onIsOpenChange({ isOpen }) {
       setIsOpen(isOpen);
     },

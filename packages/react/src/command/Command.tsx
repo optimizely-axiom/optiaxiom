@@ -3,6 +3,7 @@ import { useCombobox, type UseComboboxProps } from "downshift";
 import { type ReactNode, useMemo, useState } from "react";
 
 import { CommandContextProvider } from "../command-context";
+import { usePortalPatch } from "../downshift";
 
 type CommandProps<Item> = {
   children: ReactNode;
@@ -10,10 +11,18 @@ type CommandProps<Item> = {
   itemToSubItems?: (value: Item) => Item[] | null;
   onInputValueChange?: (inputValue: string) => void;
   onItemSelect?: (value: Item) => void;
+  onOpenChange?: (open: boolean) => void;
+  open?: boolean;
   value?: Item[] | Set<Item>;
 } & Pick<
   UseComboboxProps<Item>,
-  "isItemDisabled" | "items" | "itemToKey" | "itemToString"
+  | "inputId"
+  | "isItemDisabled"
+  | "items"
+  | "itemToKey"
+  | "itemToString"
+  | "selectedItem"
+  | "stateReducer"
 >;
 
 export function Command<Item>({
@@ -26,7 +35,10 @@ export function Command<Item>({
   itemToSubItems,
   onInputValueChange,
   onItemSelect,
+  onOpenChange,
+  open,
   value: valueProp,
+  ...props
 }: CommandProps<Item>) {
   const value = useMemo(
     () => (Array.isArray(valueProp) ? new Set(valueProp) : valueProp),
@@ -38,16 +50,21 @@ export function Command<Item>({
     onChange: onInputValueChange,
     prop: inputValueProp,
   });
+
+  const [highlightedIndex, setHighlightedIndex] = usePortalPatch(open);
   const [highlightedSubIndex, setHighlightedSubIndex] = useState(-1);
 
   const downshift = useCombobox({
+    ...props,
+    highlightedIndex,
     inputValue,
     isItemDisabled,
-    isOpen: true,
+    isOpen: open,
     items,
     itemToKey,
     itemToString,
     onHighlightedIndexChange({ highlightedIndex }) {
+      setHighlightedIndex(highlightedIndex);
       if (
         highlightedIndex !== -1 &&
         itemToSubItems?.(items[highlightedIndex])?.length
@@ -57,30 +74,20 @@ export function Command<Item>({
         setHighlightedSubIndex(-1);
       }
     },
+    onIsOpenChange({ isOpen }) {
+      onOpenChange?.(isOpen);
+    },
     onSelectedItemChange({ selectedItem, type }) {
       if (type !== useCombobox.stateChangeTypes.InputBlur) {
         onItemSelect?.(selectedItem);
       }
     },
-    selectedItem: null,
-    stateReducer(state, actionAndChanges) {
-      const { changes, type } = actionAndChanges;
-
-      switch (type) {
-        case useCombobox.stateChangeTypes.InputKeyDownEnter:
-        case useCombobox.stateChangeTypes.ItemClick:
-          return {
-            ...changes,
-            /**
-             * Keep the selected option highlighted rather than resetting to -1
-             */
-            highlightedIndex: state.highlightedIndex,
-          };
-        default:
-          return changes;
-      }
-    },
   });
+
+  /**
+   * Dummy calls to suppress warning from downshift
+   */
+  downshift.getMenuProps({}, { suppressRefError: true });
 
   return (
     <CommandContextProvider
@@ -90,6 +97,7 @@ export function Command<Item>({
       isItemDisabled={isItemDisabled}
       items={items}
       itemToSubItems={itemToSubItems}
+      setHighlightedIndex={setHighlightedIndex}
       setHighlightedSubIndex={setHighlightedSubIndex}
       setInputValue={setInputValue}
       value={value}

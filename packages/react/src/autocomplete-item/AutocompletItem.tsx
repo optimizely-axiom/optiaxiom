@@ -1,59 +1,18 @@
-import { forwardRef } from "react";
+import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import { useAutocompleteContext } from "../autocomplete-context";
-import { AutocompleteItemContextProvider } from "../autocomplete-item-context";
-import {
-  ListboxItemBase,
-  type ListboxItemBaseProps,
-} from "../listbox-item-base";
-import { extractSprinkles } from "../sprinkles";
+import { CommandItem } from "../command-item";
 
-type AutocompleteItemProps = ListboxItemBaseProps<
-  "li",
-  {
-    item: unknown;
-  }
->;
+type AutocompleteItemProps = ComponentPropsWithoutRef<typeof CommandItem>;
 
 export const AutocompleteItem = forwardRef<
-  HTMLLIElement,
+  HTMLDivElement,
   AutocompleteItemProps
->(
-  (
-    { addonAfter, addonBefore, children, description, icon, item, ...props },
-    ref,
-  ) => {
-    const { restProps, sprinkleProps } = extractSprinkles(props);
-    const { downshift, highlightedItem } =
-      useAutocompleteContext("AutocompleteItem");
-    const itemProps = downshift.getItemProps({ item });
-
-    return (
-      <AutocompleteItemContextProvider
-        active={downshift.selectedItem === item}
-        item={item}
-      >
-        <ListboxItemBase
-          addonAfter={addonAfter}
-          addonBefore={addonBefore}
-          description={description}
-          icon={icon}
-          {...sprinkleProps}
-        >
-          <li
-            data-disabled={itemProps["aria-disabled"] ? "" : undefined}
-            data-highlighted={highlightedItem === item ? "" : undefined}
-            data-selected={downshift.selectedItem === item ? "" : undefined}
-            ref={ref}
-            {...restProps}
-            {...itemProps}
-          >
-            {children}
-          </li>
-        </ListboxItemBase>
-      </AutocompleteItemContextProvider>
-    );
-  },
-);
+>((props, ref) => {
+  const { selectedItem } = useAutocompleteContext("AutocompleteItem");
+  return (
+    <CommandItem active={props.item === selectedItem} ref={ref} {...props} />
+  );
+});
 
 AutocompleteItem.displayName = "@optiaxiom/react/AutocompleteItem";

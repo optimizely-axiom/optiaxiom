@@ -137,7 +137,7 @@ export const WithLabel: Story = {
     await userEvent.click(input);
     await expect(
       await screen.findByRole("option", { name: "Urdu" }),
-    ).toHaveAttribute("data-selected");
+    ).toHaveAttribute("data-highlighted");
   },
 };
 
