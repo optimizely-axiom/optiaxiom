@@ -97,9 +97,6 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         iconOnly={isIconOnly || iconOnly}
         ref={ref}
         {...props}
-        {...((isIconOnly || iconOnly || props.loading) && {
-          justifyContent: "center",
-        })}
       >
         <Comp>
           {addonBefore && (
