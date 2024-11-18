@@ -11,8 +11,12 @@ export const [CommandContextProvider, useCommandContext] = createContext<{
   isItemDisabled: (item: any, index: number) => boolean;
   items: any[];
   itemToSubItems?: (item: any) => any[] | null;
-  setHighlightedIndex: (index: number) => void;
-  setHighlightedSubIndex: (index: number) => void;
+  lastInteractionSource: "keyboard" | "pointer";
+  setHighlightedIndex: (index: number, source: "keyboard" | "pointer") => void;
+  setHighlightedSubIndex: (
+    index: number,
+    source: "keyboard" | "pointer",
+  ) => void;
   setInputValue: (value: string) => void;
   value?: Set<any>;
 }>("Command");

@@ -5,6 +5,7 @@ import { Box, type BoxProps } from "../box";
 import { useCommandContext } from "../command-context";
 import { CommandItemContextProvider } from "../command-item-context";
 import { useCommandSubContext } from "../command-sub-context";
+import * as styles from "./CommandSubItem.css";
 
 type CommandSubItemProps = BoxProps<
   "div",
@@ -16,7 +17,16 @@ type CommandSubItemProps = BoxProps<
 
 export const CommandSubItem = forwardRef<HTMLDivElement, CommandSubItemProps>(
   (
-    { active, children, item, onClick, onMouseDown, onMouseMove, ...props },
+    {
+      active,
+      children,
+      className,
+      item,
+      onClick,
+      onMouseDown,
+      onMouseMove,
+      ...props
+    },
     outerRef,
   ) => {
     const {
@@ -26,6 +36,7 @@ export const CommandSubItem = forwardRef<HTMLDivElement, CommandSubItemProps>(
       isItemDisabled,
       items,
       itemToSubItems,
+      lastInteractionSource,
       setHighlightedIndex,
       setHighlightedSubIndex,
       value,
@@ -58,6 +69,7 @@ export const CommandSubItem = forwardRef<HTMLDivElement, CommandSubItemProps>(
           aria-selected={selected}
           data-disabled={disabled ? "" : undefined}
           data-highlighted={selected ? "" : undefined}
+          data-interaction={lastInteractionSource}
           onClick={(event) => {
             onClick?.(event);
             if (event.defaultPrevented) {
@@ -77,11 +89,12 @@ export const CommandSubItem = forwardRef<HTMLDivElement, CommandSubItemProps>(
               return;
             }
 
-            setHighlightedIndex(items.indexOf(parentItem));
-            setHighlightedSubIndex(subIndex);
+            setHighlightedIndex(items.indexOf(parentItem), "pointer");
+            setHighlightedSubIndex(subIndex, "pointer");
           }}
           ref={ref}
           role="option"
+          {...styles.item({}, className)}
           {...props}
         >
           {children}

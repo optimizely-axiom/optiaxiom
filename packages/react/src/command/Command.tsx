@@ -51,6 +51,10 @@ export function Command<Item>({
     prop: inputValueProp,
   });
 
+  const [lastInteractionSource, setLastInteractionSource] = useState<
+    "keyboard" | "pointer"
+  >("keyboard");
+
   const [highlightedIndex, setHighlightedIndex] = usePortalPatch(open);
   const [highlightedSubIndex, setHighlightedSubIndex] = useState(-1);
 
@@ -63,8 +67,18 @@ export function Command<Item>({
     items,
     itemToKey,
     itemToString,
-    onHighlightedIndexChange({ highlightedIndex }) {
+    onHighlightedIndexChange({ highlightedIndex, type }) {
       setHighlightedIndex(highlightedIndex);
+
+      if (
+        type === useCombobox.stateChangeTypes.InputKeyDownArrowDown ||
+        type === useCombobox.stateChangeTypes.InputKeyDownArrowUp
+      ) {
+        setLastInteractionSource("keyboard");
+      } else {
+        setLastInteractionSource("pointer");
+      }
+
       if (
         highlightedIndex !== -1 &&
         itemToSubItems?.(items[highlightedIndex])?.length
@@ -97,8 +111,15 @@ export function Command<Item>({
       isItemDisabled={isItemDisabled}
       items={items}
       itemToSubItems={itemToSubItems}
-      setHighlightedIndex={setHighlightedIndex}
-      setHighlightedSubIndex={setHighlightedSubIndex}
+      lastInteractionSource={lastInteractionSource}
+      setHighlightedIndex={(index, source) => {
+        setHighlightedIndex(index);
+        setLastInteractionSource(source);
+      }}
+      setHighlightedSubIndex={(index, source) => {
+        setHighlightedSubIndex(index);
+        setLastInteractionSource(source);
+      }}
       setInputValue={setInputValue}
       value={value}
     >

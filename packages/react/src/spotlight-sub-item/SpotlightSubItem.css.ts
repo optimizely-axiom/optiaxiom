@@ -8,14 +8,6 @@ export const item = recipe({
     {
       cursor: "pointer",
     },
-    style({
-      selectors: {
-        "&[data-highlighted]": {
-          outline: `2px solid ${theme.colors["border.active"]}`,
-          outlineOffset: "1px",
-        },
-      },
-    }),
   ],
 
   variants: {
