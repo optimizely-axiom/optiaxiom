@@ -14,7 +14,6 @@ export const CommandFooter = forwardRef<HTMLDivElement, CommandFooterProps>(
         gap="md"
         justifyContent="space-between"
         p="sm"
-        pb="xs"
         ref={ref}
         {...props}
       >

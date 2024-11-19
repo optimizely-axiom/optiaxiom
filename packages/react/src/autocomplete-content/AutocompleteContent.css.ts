@@ -3,7 +3,7 @@ import { recipe, style } from "../vanilla-extract";
 export const content = recipe({
   base: [
     {
-      p: "0",
+      p: "4",
     },
     style({
       overflow: "auto",
