@@ -41,6 +41,9 @@ export const item = recipe({
         "&[data-disabled]": {
           opacity: 0.3,
         },
+        "&[data-highlighted][data-interaction=keyboard]": {
+          outlineOffset: "-2px",
+        },
       },
     }),
   ],

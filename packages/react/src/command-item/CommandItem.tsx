@@ -7,6 +7,7 @@ import {
   ListboxItemBase,
   type ListboxItemBaseProps,
 } from "../listbox-item-base";
+import * as styles from "./CommandItem.css";
 
 type CommandItemProps = ListboxItemBaseProps<
   "div",
@@ -23,6 +24,7 @@ export const CommandItem = forwardRef<HTMLDivElement, CommandItemProps>(
       addonAfter,
       addonBefore,
       children,
+      className,
       description,
       icon,
       item,
@@ -42,7 +44,7 @@ export const CommandItem = forwardRef<HTMLDivElement, CommandItemProps>(
           addonBefore={addonBefore}
           description={description}
           icon={icon}
-          mx="4"
+          {...styles.item({}, className)}
           {...props}
         >
           <CommandUnstyledItem item={item} ref={ref} tabIndex={undefined}>

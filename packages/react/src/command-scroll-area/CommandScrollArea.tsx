@@ -15,7 +15,6 @@ export const CommandScrollArea = forwardRef<
       flexDirection="column"
       gap="2"
       overflow="auto"
-      pb="4"
       ref={ref}
       {...props}
     />
