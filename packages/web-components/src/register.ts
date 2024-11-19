@@ -47,7 +47,11 @@ export function register<P extends object>(
   const withPreactElement = (element: HTMLElement) => {
     let vdom: null | ReactElement<object> = null;
 
-    const root = createRoot(element.attachShadow({ mode: "open" }));
+    const root = createRoot(
+      element.shadowRoot
+        ? createEmptyDiv(element.shadowRoot)
+        : element.attachShadow({ mode: "open" }),
+    );
     if (element.shadowRoot) {
       registerShadowRoot(element.shadowRoot);
     }
@@ -320,6 +324,13 @@ function toVdom<P>(
       : children,
   );
 }
+
+const createEmptyDiv = (parent: DocumentFragment) => {
+  const div = document.createElement("div");
+  div.style.display = "contents";
+  parent.insertBefore(div, parent.firstChild);
+  return div;
+};
 
 const toCamelCase = (str: string) =>
   str.startsWith("aria-") || str.startsWith("data-")
