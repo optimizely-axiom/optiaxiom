@@ -3,7 +3,7 @@ import { forwardRef } from "react";
 
 import type { BoxProps } from "../box";
 
-import { Separator } from "../separator";
+import { ListboxSeparator } from "../listbox-separator";
 
 type MenuSeparatorProps = BoxProps<typeof RadixMenu.Separator>;
 
@@ -11,9 +11,9 @@ export const DropdownMenuSeparator = forwardRef<
   HTMLDivElement,
   MenuSeparatorProps
 >((props, ref) => (
-  <Separator asChild bg="border.secondary" flex="none" mx="8" my="4" {...props}>
+  <ListboxSeparator asChild {...props}>
     <RadixMenu.Separator ref={ref} />
-  </Separator>
+  </ListboxSeparator>
 ));
 
 DropdownMenuSeparator.displayName = "@optiaxiom/react/DropdownMenuSeparator";

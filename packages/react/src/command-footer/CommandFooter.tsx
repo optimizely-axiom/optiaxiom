@@ -1,26 +1,11 @@
-import { type ComponentPropsWithRef, forwardRef } from "react";
+import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
-import { Flex } from "../flex";
+import { ListboxFooter } from "../listbox-footer";
 
-type CommandFooterProps = ComponentPropsWithRef<typeof Flex>;
+type CommandFooterProps = ComponentPropsWithoutRef<typeof ListboxFooter>;
 
 export const CommandFooter = forwardRef<HTMLDivElement, CommandFooterProps>(
-  ({ children, ...props }, ref) => {
-    return (
-      <Flex
-        borderColor="border.secondary"
-        borderT="1"
-        flexDirection="row"
-        gap="md"
-        justifyContent="space-between"
-        p="sm"
-        ref={ref}
-        {...props}
-      >
-        {children}
-      </Flex>
-    );
-  },
+  (props, ref) => <ListboxFooter ref={ref} {...props} />,
 );
 
 CommandFooter.displayName = "@optiaxiom/react/CommandFooter";

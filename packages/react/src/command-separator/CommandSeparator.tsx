@@ -1,22 +1,12 @@
-import { forwardRef } from "react";
+import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
-import { type BoxProps } from "../box";
-import { Separator } from "../separator";
+import { ListboxSeparator } from "../listbox-separator";
 
-type CommandSeparatorProps = BoxProps<typeof Separator>;
+type CommandSeparatorProps = ComponentPropsWithoutRef<typeof ListboxSeparator>;
 
 export const CommandSeparator = forwardRef<
-  HTMLHRElement,
+  HTMLDivElement,
   CommandSeparatorProps
->((props, ref) => (
-  <Separator
-    bg="border.secondary"
-    flex="none"
-    mx="8"
-    my="4"
-    ref={ref}
-    {...props}
-  />
-));
+>((props, ref) => <ListboxSeparator ref={ref} {...props} />);
 
 CommandSeparator.displayName = "@optiaxiom/react/CommandSeparator";

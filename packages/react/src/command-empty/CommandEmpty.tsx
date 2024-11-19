@@ -1,26 +1,11 @@
-import { forwardRef } from "react";
+import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
-import { Box, type BoxProps } from "../box";
+import { ListboxEmpty } from "../listbox-empty";
 
-type CommandEmptyProps = BoxProps;
+type CommandEmptyProps = ComponentPropsWithoutRef<typeof ListboxEmpty>;
 
 export const CommandEmpty = forwardRef<HTMLDivElement, CommandEmptyProps>(
-  ({ children, ...props }, ref) => {
-    return (
-      <Box
-        alignItems="center"
-        color="fg.disabled"
-        display="flex"
-        flexDirection="column"
-        fontSize="md"
-        p="md"
-        ref={ref}
-        {...props}
-      >
-        {children || "No options"}
-      </Box>
-    );
-  },
+  (props, ref) => <ListboxEmpty ref={ref} {...props} />,
 );
 
 CommandEmpty.displayName = "@optiaxiom/react/CommandEmpty";

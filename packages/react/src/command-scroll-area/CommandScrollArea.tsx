@@ -1,24 +1,14 @@
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
-import { Box } from "../box";
+import { ListboxScrollArea } from "../listbox-scroll-area";
 
-type CommandScrollAreaProps = ComponentPropsWithoutRef<typeof Box>;
+type CommandScrollAreaProps = ComponentPropsWithoutRef<
+  typeof ListboxScrollArea
+>;
 
 export const CommandScrollArea = forwardRef<
   HTMLDivElement,
   CommandScrollAreaProps
->((props, ref) => {
-  return (
-    <Box
-      display="flex"
-      flex="1"
-      flexDirection="column"
-      gap="2"
-      overflow="auto"
-      ref={ref}
-      {...props}
-    />
-  );
-});
+>((props, ref) => <ListboxScrollArea ref={ref} {...props} />);
 
 CommandScrollArea.displayName = "@optiaxiom/react/CommandScrollArea";

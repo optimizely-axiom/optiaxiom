@@ -10,7 +10,7 @@ type SeparatorProps = BoxProps<
   styles.SeparatorVariants
 >;
 
-export const Separator = forwardRef<HTMLHRElement, SeparatorProps>(
+export const Separator = forwardRef<HTMLDivElement, SeparatorProps>(
   ({ className, orientation = "horizontal", ...props }, ref) => {
     return (
       <Box
