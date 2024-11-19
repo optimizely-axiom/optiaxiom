@@ -13,9 +13,9 @@ import { Flex } from "../flex";
 import { Icon } from "../icon";
 import { Text } from "../text";
 import { type ExtendProps, fallbackSpan } from "../utils";
-import * as styles from "./ListboxItemBase.css";
+import * as styles from "./ListboxItem.css";
 
-export type ListboxItemBaseProps<
+export type ListboxItemProps<
   T extends ElementType = "div",
   P = unknown,
 > = BoxProps<
@@ -31,11 +31,12 @@ export type ListboxItemBaseProps<
   >
 >;
 
-export const ListboxItemBase = forwardRef<HTMLDivElement, ListboxItemBaseProps>(
+export const ListboxItem = forwardRef<HTMLDivElement, ListboxItemProps>(
   (
     {
       addonAfter,
       addonBefore,
+      asChild,
       children,
       className,
       description,
@@ -45,27 +46,45 @@ export const ListboxItemBase = forwardRef<HTMLDivElement, ListboxItemBaseProps>(
     },
     ref,
   ) => {
+    const Comp = asChild ? Slot : "div";
+
     const labelId = useId();
     const descriptionId = useId();
 
-    const newElement = isValidElement(children) ? children : null;
-    children = newElement
-      ? cloneElement(
-          newElement,
-          undefined,
-          <Flex flex="1" gap="0">
-            <Box asChild {...styles.title()} id={labelId}>
-              {fallbackSpan(newElement.props.children)}
-            </Box>
+    if (asChild) {
+      const newElement = isValidElement(children) ? children : null;
+      children = newElement
+        ? cloneElement(
+            newElement,
+            undefined,
+            <Flex flex="1" gap="0">
+              <Box asChild {...styles.title()} id={labelId}>
+                {fallbackSpan(newElement.props.children)}
+              </Box>
 
-            {description && (
-              <Text asChild {...styles.description()} id={descriptionId}>
-                {fallbackSpan(description)}
-              </Text>
-            )}
-          </Flex>,
-        )
-      : children;
+              {description && (
+                <Text asChild {...styles.description()} id={descriptionId}>
+                  {fallbackSpan(description)}
+                </Text>
+              )}
+            </Flex>,
+          )
+        : children;
+    } else {
+      children = (
+        <Flex flex="1" gap="0">
+          <Box asChild {...styles.title()} id={labelId}>
+            {fallbackSpan(children)}
+          </Box>
+
+          {description && (
+            <Text asChild {...styles.description()} id={descriptionId}>
+              {fallbackSpan(description)}
+            </Text>
+          )}
+        </Flex>
+      );
+    }
 
     return (
       <Flex
@@ -76,7 +95,7 @@ export const ListboxItemBase = forwardRef<HTMLDivElement, ListboxItemBaseProps>(
         {...styles.item({ intent }, className)}
         {...props}
       >
-        <Slot>
+        <Comp>
           {addonBefore ? (
             addonBefore
           ) : icon ? (
@@ -90,10 +109,10 @@ export const ListboxItemBase = forwardRef<HTMLDivElement, ListboxItemBaseProps>(
               {fallbackSpan(addonAfter)}
             </Box>
           )}
-        </Slot>
+        </Comp>
       </Flex>
     );
   },
 );
 
-ListboxItemBase.displayName = "@optiaxiom/react/ListboxItemBase";
+ListboxItem.displayName = "@optiaxiom/react/ListboxItem";

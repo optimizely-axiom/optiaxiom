@@ -3,13 +3,10 @@ import { forwardRef } from "react";
 import { useCommandContext } from "../command-context";
 import { CommandItemContextProvider } from "../command-item-context";
 import { CommandUnstyledItem } from "../command-unstyled-item";
-import {
-  ListboxItemBase,
-  type ListboxItemBaseProps,
-} from "../listbox-item-base";
+import { ListboxItem, type ListboxItemProps } from "../listbox-item";
 import * as styles from "./CommandItem.css";
 
-type CommandItemProps = ListboxItemBaseProps<
+type CommandItemProps = ListboxItemProps<
   "div",
   {
     active?: boolean;
@@ -39,9 +36,10 @@ export const CommandItem = forwardRef<HTMLDivElement, CommandItemProps>(
         active={active ?? value?.has(item)}
         item={item}
       >
-        <ListboxItemBase
+        <ListboxItem
           addonAfter={addonAfter}
           addonBefore={addonBefore}
+          asChild
           description={description}
           icon={icon}
           {...styles.item({}, className)}
@@ -50,7 +48,7 @@ export const CommandItem = forwardRef<HTMLDivElement, CommandItemProps>(
           <CommandUnstyledItem item={item} ref={ref} tabIndex={undefined}>
             {children}
           </CommandUnstyledItem>
-        </ListboxItemBase>
+        </ListboxItem>
       </CommandItemContextProvider>
     );
   },
