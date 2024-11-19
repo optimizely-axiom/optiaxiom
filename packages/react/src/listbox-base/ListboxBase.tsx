@@ -6,7 +6,8 @@ import { type ElementType, forwardRef } from "react";
 import type { ExtendProps } from "../utils";
 
 import { AnimatePresence } from "../animate-presence";
-import { Box, type BoxProps } from "../box";
+import { type BoxProps } from "../box";
+import { Paper } from "../paper";
 import { Transition } from "../transition";
 import * as styles from "./ListboxBase.css";
 
@@ -57,14 +58,14 @@ export const ListboxBase = forwardRef<
         {...(provider === "popper" ? { asChild: true } : { forceMount: true })}
       >
         <Transition duration="sm" type="pop">
-          <Box
+          <Paper
             asChild
             ref={ref}
             {...styles.content({ minW, provider }, className)}
             {...props}
           >
             {children}
-          </Box>
+          </Paper>
         </Transition>
       </Portal>
     );

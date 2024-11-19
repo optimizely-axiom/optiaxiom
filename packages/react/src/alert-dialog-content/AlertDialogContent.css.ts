@@ -17,11 +17,8 @@ export const container = recipe({
 export const content = recipe({
   base: [
     {
-      bg: "bg.default",
       display: "flex",
       flexDirection: "column",
-      rounded: "lg",
-      shadow: "md",
     },
     style({
       maxHeight: "50dvh",

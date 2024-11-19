@@ -80,6 +80,7 @@
     "./Link": "./dist/components/Link.js",
     "./MenuButton": "./dist/components/MenuButton.js",
     "./Pagination": "./dist/components/Pagination.js",
+    "./Paper": "./dist/components/Paper.js",
     "./Popover": "./dist/components/Popover.js",
     "./PopoverAnchor": "./dist/components/PopoverAnchor.js",
     "./PopoverContent": "./dist/components/PopoverContent.js",
