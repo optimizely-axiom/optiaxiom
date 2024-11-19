@@ -4,7 +4,6 @@
 
 import type { ReactElement } from "react";
 
-import { ThemeProvider } from "@optiaxiom/react";
 import {
   cloneElement,
   type ComponentType,
@@ -242,11 +241,7 @@ const withContextProvider = <P extends { context?: unknown }>(
 
     const props = Object.assign({}, rawProps);
     delete props.context;
-    return createElement(
-      ThemeProvider,
-      { selector: ":host" },
-      createElement<P>(Component, props),
-    );
+    return createElement<P>(Component, props);
   };
 };
 

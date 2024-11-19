@@ -54,6 +54,21 @@ export default defineConfig([
         ],
       }),
       {
+        name: "axiom:theme-provider",
+        transform(code, id) {
+          if (
+            !(
+              code.includes(":root") &&
+              id.includes("packages/react/src/theme-provider")
+            )
+          ) {
+            return null;
+          }
+
+          return code.replace(":root", ":host");
+        },
+      },
+      {
         name: "radix-collection:document-querySelectorAll",
         transform(code, id) {
           if (
