@@ -1,10 +1,18 @@
 import * as RadixMenu from "@radix-ui/react-dropdown-menu";
-import { forwardRef } from "react";
+import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
+import type { BoxProps } from "../box";
+
+import { AnimatePresence } from "../animate-presence";
 import { useDropdownMenuSubContext } from "../dropdown-menu-sub-context";
-import { ListboxBase, type ListboxBaseProps } from "../listbox-base";
+import { MenuListbox } from "../menu-listbox";
 
-type MenuSubContentProps = ListboxBaseProps<typeof RadixMenu.SubContent>;
+type MenuSubContentProps = BoxProps<
+  typeof RadixMenu.SubContent,
+  {
+    minW?: ComponentPropsWithoutRef<typeof MenuListbox>["minW"];
+  }
+>;
 
 export const DropdownMenuSubContent = forwardRef<
   HTMLDivElement,
@@ -13,20 +21,21 @@ export const DropdownMenuSubContent = forwardRef<
   const { open } = useDropdownMenuSubContext("DropdownMenuSubContent");
 
   return (
-    <ListboxBase
-      enableExitAnimation
-      open={open}
-      provider="dropdown-menu"
-      {...props}
-    >
-      <RadixMenu.SubContent
-        alignOffset={alignOffset}
-        ref={ref}
-        sideOffset={sideOffset}
-      >
-        {children}
-      </RadixMenu.SubContent>
-    </ListboxBase>
+    <AnimatePresence>
+      {open && (
+        <RadixMenu.Portal forceMount>
+          <MenuListbox asChild provider="dropdown-menu" {...props}>
+            <RadixMenu.SubContent
+              alignOffset={alignOffset}
+              ref={ref}
+              sideOffset={sideOffset}
+            >
+              {children}
+            </RadixMenu.SubContent>
+          </MenuListbox>
+        </RadixMenu.Portal>
+      )}
+    </AnimatePresence>
   );
 });
 

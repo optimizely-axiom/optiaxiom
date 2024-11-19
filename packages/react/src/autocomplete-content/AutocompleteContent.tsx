@@ -1,8 +1,9 @@
+import { Portal } from "@radix-ui/react-portal";
 import { forwardRef } from "react";
 
 import { useAutocompleteContext } from "../autocomplete-context";
 import { Box, type BoxProps } from "../box";
-import { ListboxBase } from "../listbox-base";
+import { MenuListbox } from "../menu-listbox";
 import { Spinner } from "../spinner";
 import { AutocompleteContentImpl } from "./AutocompleteContentImpl";
 
@@ -20,17 +21,21 @@ export const AutocompleteContent = forwardRef<
   const { isOpen } = useAutocompleteContext("AutocompleteContent");
 
   return (
-    <ListboxBase minW="trigger" open={isOpen} provider="popper">
-      <AutocompleteContentImpl ref={ref} {...props}>
-        {loading ? (
-          <Box display="flex" justifyContent="center" p="md">
-            <Spinner />
-          </Box>
-        ) : (
-          children
-        )}
-      </AutocompleteContentImpl>
-    </ListboxBase>
+    isOpen && (
+      <Portal asChild>
+        <MenuListbox asChild minW="trigger" provider="popper" {...props}>
+          <AutocompleteContentImpl ref={ref}>
+            {loading ? (
+              <Box display="flex" justifyContent="center" p="md">
+                <Spinner />
+              </Box>
+            ) : (
+              children
+            )}
+          </AutocompleteContentImpl>
+        </MenuListbox>
+      </Portal>
+    )
   );
 });
 
