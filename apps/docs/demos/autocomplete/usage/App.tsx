@@ -51,7 +51,10 @@ export function App() {
             </AutocompleteItem>
           ))}
         </AutocompleteList>
-        <AutocompleteEmpty>No result found</AutocompleteEmpty>
+
+        {items.length === 0 && (
+          <AutocompleteEmpty>No result found</AutocompleteEmpty>
+        )}
       </AutocompleteContent>
     </Autocomplete>
   );
