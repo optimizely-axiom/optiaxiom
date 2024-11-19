@@ -8,14 +8,10 @@ import {
 export const contentAvailableHeightVar = createVar();
 export const triggerWidth = createVar();
 
-export const content = recipe({
+export const listbox = recipe({
   base: [
     {
-      display: "flex",
-      flexDirection: "column",
-      gap: "2",
       maxW: "xs",
-      overflow: "auto",
       p: "4",
     },
     style({
@@ -55,4 +51,4 @@ export const content = recipe({
   },
 });
 
-export type ContentVariants = RecipeVariants<typeof content>;
+export type ListboxVariants = RecipeVariants<typeof listbox>;
