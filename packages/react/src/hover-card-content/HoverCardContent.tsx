@@ -4,8 +4,9 @@ import * as RadixHoverCard from "@radix-ui/react-hover-card";
 import { forwardRef, useRef } from "react";
 
 import { AnimatePresence } from "../animate-presence";
-import { Box, type BoxProps } from "../box";
+import { type BoxProps } from "../box";
 import { useHoverCardContext } from "../hover-card-context";
+import { Paper } from "../paper";
 import { Transition } from "../transition";
 import * as styles from "./HoverCardContent.css";
 
@@ -42,7 +43,7 @@ export const HoverCardContent = forwardRef<
         {open && (
           <RadixHoverCard.Portal>
             <Transition duration="sm" type="pop">
-              <Box asChild {...styles.content({}, className)} {...props}>
+              <Paper asChild {...styles.content({}, className)} {...props}>
                 <RadixHoverCard.Content
                   align={align}
                   onPointerDownOutside={
@@ -83,7 +84,7 @@ export const HoverCardContent = forwardRef<
                     </RadixHoverCard.Arrow>
                   )}
                 </RadixHoverCard.Content>
-              </Box>
+              </Paper>
             </Transition>
           </RadixHoverCard.Portal>
         )}

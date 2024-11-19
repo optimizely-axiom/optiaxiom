@@ -6,6 +6,7 @@ import { Box, type BoxProps } from "../box";
 import { Button } from "../button";
 import { useDialogContext } from "../dialog-context";
 import { IconX } from "../icons/IconX";
+import { Paper } from "../paper";
 import { Transition } from "../transition";
 import * as styles from "./DialogContent.css";
 
@@ -42,7 +43,12 @@ export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
             </Transition>
 
             <Transition data-side="bottom" type={transitionType}>
-              <Box asChild {...styles.content({ size }, className)} {...props}>
+              <Paper
+                asChild
+                elevation={size === "fullscreen" ? "drawer" : "dialog"}
+                {...styles.content({ size }, className)}
+                {...props}
+              >
                 <RadixDialog.Content ref={ref}>
                   {children}
 
@@ -59,7 +65,7 @@ export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
                     </Button>
                   )}
                 </RadixDialog.Content>
-              </Box>
+              </Paper>
             </Transition>
           </RadixDialog.Portal>
         )}

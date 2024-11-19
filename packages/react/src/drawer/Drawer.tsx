@@ -5,6 +5,7 @@ import { AnimatePresence } from "../animate-presence";
 import { Box, type BoxProps } from "../box";
 import { Button } from "../button";
 import { IconX } from "../icons/IconX";
+import { Paper } from "../paper";
 import { Transition } from "../transition";
 import * as styles from "./Drawer.css";
 
@@ -57,7 +58,11 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(
                 }
                 type="fade"
               >
-                <Box asChild {...styles.content({ position })}>
+                <Paper
+                  asChild
+                  elevation="drawer"
+                  {...styles.content({ position })}
+                >
                   <RadixDrawer.Content ref={ref} {...props}>
                     {children}
 
@@ -74,7 +79,7 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(
                       </Button>
                     )}
                   </RadixDrawer.Content>
-                </Box>
+                </Paper>
               </Transition>
             </RadixDrawer.Portal>
           )}
