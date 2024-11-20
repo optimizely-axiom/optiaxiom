@@ -4,6 +4,8 @@ import { PopperContent } from "@radix-ui/react-popper";
 import { forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
+import { useSelectContext } from "../select-context";
+import { extractSprinkles } from "../sprinkles";
 import * as styles from "./SelectContent.css";
 
 type SelectContentImplProps = BoxProps<typeof PopperContent>;
@@ -23,17 +25,19 @@ export const SelectContentImpl = forwardRef<
     },
     ref,
   ) => {
+    const { restProps, sprinkleProps } = extractSprinkles(props);
+    const { downshift } = useSelectContext("SelectContentImpl");
     useFocusGuards();
 
     return (
       <DismissableLayer asChild>
-        <Box asChild ref={ref} {...styles.content({}, className)} {...props}>
-          <PopperContent
-            align={align}
-            asChild
-            side={side}
-            sideOffset={sideOffset}
-          >
+        <Box
+          asChild
+          {...styles.content({}, className)}
+          {...sprinkleProps}
+          {...downshift.getMenuProps({ ref, ...restProps })}
+        >
+          <PopperContent align={align} side={side} sideOffset={sideOffset}>
             {children}
           </PopperContent>
         </Box>
