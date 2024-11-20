@@ -1,5 +1,20 @@
 # @optiaxiom/react
 
+## 0.5.4
+
+### Patch Changes
+
+- 6feacb1: fix focus guard for AutocompleteContent
+- 56be68c: add `ComboboxGroup`, `ComboboxLabel` component
+- 1931c26: re-use framer-motion for animating presence
+- 4bf0d74: make SegmentedControl type prop optional
+- 3653876: support `intent` in `Progress` component
+- fb445c3: remove appearance prop from Heading
+- ad90a2e: use cursor pattern in pagination to highlight active item
+- c85dfda: fix focus guard for SelectContent
+- 74dc8ca: split input component into modular components
+- 84e97da: by default pass thru all indicator props to anchor
+
 ## 0.5.3
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @optiaxiom/web-components
 
+## 0.2.1
+
+### Patch Changes
+
+- efbe5c7: support declarative shadow dom
+
 ## 0.2.0
 
 ### Minor Changes
