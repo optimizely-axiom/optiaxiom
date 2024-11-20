@@ -1,12 +1,12 @@
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
-import { CommandList } from "../command-list";
+import { CommandListbox } from "../command-listbox";
 
-type SpotlightListProps = ComponentPropsWithoutRef<typeof CommandList>;
+type SpotlightListProps = ComponentPropsWithoutRef<typeof CommandListbox>;
 
 export const SpotlightList = forwardRef<HTMLDivElement, SpotlightListProps>(
   (props, ref) => {
-    return <CommandList gap="xs" pb="lg" ref={ref} {...props} />;
+    return <CommandListbox gap="xs" pb="lg" ref={ref} {...props} />;
   },
 );
 

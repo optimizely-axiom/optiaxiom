@@ -1,26 +1,12 @@
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
-import { Box } from "../box";
-import { useSelectGroupContext } from "../select-group-context";
+import { ListboxLabel } from "../listbox-label";
 
-type SelectLabelProps = ComponentPropsWithoutRef<typeof Box>;
+type SelectLabelProps = ComponentPropsWithoutRef<typeof ListboxLabel>;
 
 export const SelectLabel = forwardRef<HTMLDivElement, SelectLabelProps>(
-  ({ children, ...props }, ref) => {
-    const { id } = useSelectGroupContext("SelectLabel");
-
-    return (
-      <Box
-        color="fg.tertiary"
-        fontSize="sm"
-        id={id}
-        p="xs"
-        ref={ref}
-        {...props}
-      >
-        {children}
-      </Box>
-    );
+  (props, ref) => {
+    return <ListboxLabel ref={ref} {...props} />;
   },
 );
 

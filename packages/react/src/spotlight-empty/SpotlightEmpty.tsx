@@ -1,12 +1,12 @@
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
-import { CommandEmpty } from "../command-empty";
+import { ListboxEmpty } from "../listbox-empty";
 
-type SpotlightEmptyProps = ComponentPropsWithoutRef<typeof CommandEmpty>;
+type SpotlightEmptyProps = ComponentPropsWithoutRef<typeof ListboxEmpty>;
 
 export const SpotlightEmpty = forwardRef<HTMLDivElement, SpotlightEmptyProps>(
   (props, ref) => {
-    return <CommandEmpty fontSize="lg" gap="sm" p="xl" ref={ref} {...props} />;
+    return <ListboxEmpty fontSize="lg" gap="sm" p="xl" ref={ref} {...props} />;
   },
 );
 

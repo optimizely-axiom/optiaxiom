@@ -1,14 +1,14 @@
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
-import { CommandScrollArea } from "../command-scroll-area";
+import { ListboxScrollArea } from "../listbox-scroll-area";
 
 type SpotlightScrollAreaProps = ComponentPropsWithoutRef<
-  typeof CommandScrollArea
+  typeof ListboxScrollArea
 >;
 
 export const SpotlightScrollArea = forwardRef<
   HTMLDivElement,
   SpotlightScrollAreaProps
->((props, ref) => <CommandScrollArea gap="xs" ref={ref} {...props} />);
+>((props, ref) => <ListboxScrollArea gap="xs" ref={ref} {...props} />);
 
 SpotlightScrollArea.displayName = "@optiaxiom/react/SpotlightScrollArea";

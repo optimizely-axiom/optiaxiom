@@ -5,9 +5,7 @@ import {
   Autocomplete,
   AutocompleteContent,
   AutocompleteEmpty,
-  AutocompleteItem,
-  AutocompleteItemIndicator,
-  AutocompleteList,
+  AutocompleteRadioItem,
   AutocompleteTrigger,
 } from "@optiaxiom/react/unstable";
 import { expect, screen, userEvent } from "@storybook/test";
@@ -89,17 +87,11 @@ export const Basic: Story = {
         <AutocompleteTrigger placeholder="Search a Language" w="208" />
 
         <AutocompleteContent>
-          <AutocompleteList>
-            {items.map((item) => (
-              <AutocompleteItem
-                addonAfter={<AutocompleteItemIndicator />}
-                item={item}
-                key={item}
-              >
-                {item}
-              </AutocompleteItem>
-            ))}
-          </AutocompleteList>
+          {items.map((item) => (
+            <AutocompleteRadioItem item={item} key={item}>
+              {item}
+            </AutocompleteRadioItem>
+          ))}
           {items.length === 0 && (
             <AutocompleteEmpty>No result found</AutocompleteEmpty>
           )}
@@ -237,17 +229,11 @@ export const Controlled: Story<(typeof books)[number]> = {
           <AutocompleteTrigger placeholder="Search a book" />
 
           <AutocompleteContent>
-            <AutocompleteList>
-              {items.map((item) => (
-                <AutocompleteItem
-                  addonAfter={<AutocompleteItemIndicator />}
-                  item={item}
-                  key={item.id}
-                >
-                  {item.title}
-                </AutocompleteItem>
-              ))}
-            </AutocompleteList>
+            {items.map((item) => (
+              <AutocompleteRadioItem item={item} key={item.id}>
+                {item.title}
+              </AutocompleteRadioItem>
+            ))}
           </AutocompleteContent>
         </Autocomplete>
 
@@ -288,13 +274,11 @@ export const AsyncLoading: Story = {
       >
         <AutocompleteTrigger placeholder="Search a language" w="208" />
         <AutocompleteContent loading={isLoading}>
-          <AutocompleteList>
-            {items.map((item) => (
-              <AutocompleteItem item={item} key={item}>
-                {item}
-              </AutocompleteItem>
-            ))}
-          </AutocompleteList>
+          {items.map((item) => (
+            <AutocompleteRadioItem item={item} key={item}>
+              {item}
+            </AutocompleteRadioItem>
+          ))}
           {items.length === 0 && (
             <AutocompleteEmpty>No results found</AutocompleteEmpty>
           )}

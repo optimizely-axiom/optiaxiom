@@ -5,9 +5,8 @@ import {
   Select,
   SelectContent,
   SelectGroup,
-  SelectItem,
-  SelectItemIndicator,
   SelectLabel,
+  SelectRadioItem,
   SelectSeparator,
   SelectTrigger,
   SelectValue,
@@ -71,13 +70,9 @@ export default {
         <SelectContent>
           {languages.map((item, index) => {
             return (
-              <SelectItem
-                addonAfter={<SelectItemIndicator />}
-                item={item}
-                key={index}
-              >
+              <SelectRadioItem item={item} key={index}>
                 {item}
-              </SelectItem>
+              </SelectRadioItem>
             );
           })}
         </SelectContent>
@@ -137,13 +132,9 @@ export const Group: Story = {
             <SelectLabel>Fruits</SelectLabel>
             {fruits.map((item, index) => {
               return (
-                <SelectItem
-                  addonAfter={<SelectItemIndicator />}
-                  item={item}
-                  key={index}
-                >
+                <SelectRadioItem item={item} key={index}>
                   {item}
-                </SelectItem>
+                </SelectRadioItem>
               );
             })}
           </SelectGroup>
@@ -153,13 +144,9 @@ export const Group: Story = {
             <SelectLabel>Vegetables</SelectLabel>
             {vegetables.map((item, index) => {
               return (
-                <SelectItem
-                  addonAfter={<SelectItemIndicator />}
-                  item={item}
-                  key={index}
-                >
+                <SelectRadioItem item={item} key={index}>
                   {item}
-                </SelectItem>
+                </SelectRadioItem>
               );
             })}
           </SelectGroup>
@@ -170,13 +157,9 @@ export const Group: Story = {
             <SelectLabel>Meats</SelectLabel>
             {meats.map((item, index) => {
               return (
-                <SelectItem
-                  addonAfter={<SelectItemIndicator />}
-                  item={item}
-                  key={index}
-                >
+                <SelectRadioItem item={item} key={index}>
                   {item}
-                </SelectItem>
+                </SelectRadioItem>
               );
             })}
           </SelectGroup>
@@ -264,13 +247,9 @@ export const Controlled: Story<Book> = {
         <SelectContent>
           {books.map((item, index) => {
             return (
-              <SelectItem
-                addonAfter={<SelectItemIndicator />}
-                item={item}
-                key={index}
-              >
+              <SelectRadioItem item={item} key={index}>
                 {item.title}
-              </SelectItem>
+              </SelectRadioItem>
             );
           })}
         </SelectContent>

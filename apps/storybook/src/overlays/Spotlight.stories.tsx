@@ -10,6 +10,7 @@ import {
   SpotlightItem,
   SpotlightLabel,
   SpotlightList,
+  SpotlightRadioItem,
   SpotlightScrollArea,
   SpotlightSub,
   SpotlightSubItem,
@@ -218,7 +219,7 @@ export const Basic: Story<{ items?: Item[] } & Item> = {
                       </SpotlightItem>
                     </>
                   ) : (
-                    <SpotlightItem
+                    <SpotlightRadioItem
                       description={
                         <Highlight
                           content={item.description}
@@ -250,7 +251,7 @@ export const Basic: Story<{ items?: Item[] } & Item> = {
                           </Box>
                         )}
                       </Highlight>
-                    </SpotlightItem>
+                    </SpotlightRadioItem>
                   )}
                 </Fragment>
               ))}

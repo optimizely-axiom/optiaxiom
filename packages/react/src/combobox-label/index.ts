@@ -1,1 +1,1 @@
-export * from "./ComboboxGroup";
+export * from "./ComboboxLabel";
