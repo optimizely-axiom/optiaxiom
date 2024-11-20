@@ -9,9 +9,9 @@ import {
 import type { Command } from "../command";
 
 import { ComboboxContextProvider } from "../combobox-context";
+import { ComboboxDialogContent } from "../combobox-dialog-content";
 import { ComboboxPopoverContent } from "../combobox-popover-content";
 import { Dialog } from "../dialog";
-import { DialogContent } from "../dialog-content";
 import { DialogTrigger } from "../dialog-trigger";
 import { Popover } from "../popover";
 import { PopoverTrigger } from "../popover-trigger";
@@ -41,7 +41,7 @@ export function Combobox<Item>({
 }: ComboBoxProps<Item>) {
   const components = useResponsiveMatches({
     base: {
-      Content: DialogContent,
+      Content: ComboboxDialogContent,
       Root: Dialog,
       Trigger: DialogTrigger,
     },
