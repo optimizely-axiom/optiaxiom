@@ -23,27 +23,31 @@ export const AutocompleteContent = forwardRef<
 
   return (
     isOpen && (
-      <Portal asChild>
-        <MenuListbox asChild minW="trigger" provider="popper" {...props}>
-          <AutocompleteContentImpl ref={ref}>
-            <VisuallyHidden>
-              <Box role="status">
-                {loading
-                  ? "Loading"
-                  : `${items.length} option${items.length === 1 ? "" : "s"} available`}
-              </Box>
-            </VisuallyHidden>
+      <>
+        <Portal>
+          <VisuallyHidden>
+            <Box role="status">
+              {loading
+                ? "Loading"
+                : `${items.length} option${items.length === 1 ? "" : "s"} available`}
+            </Box>
+          </VisuallyHidden>
+        </Portal>
 
-            {loading ? (
-              <Box display="flex" justifyContent="center" p="md">
-                <Spinner />
-              </Box>
-            ) : (
-              children
-            )}
-          </AutocompleteContentImpl>
-        </MenuListbox>
-      </Portal>
+        <Portal asChild>
+          <MenuListbox asChild minW="trigger" provider="popper" {...props}>
+            <AutocompleteContentImpl ref={ref}>
+              {loading ? (
+                <Box display="flex" justifyContent="center" p="md">
+                  <Spinner />
+                </Box>
+              ) : (
+                children
+              )}
+            </AutocompleteContentImpl>
+          </MenuListbox>
+        </Portal>
+      </>
     )
   );
 });
