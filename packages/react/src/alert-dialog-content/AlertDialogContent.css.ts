@@ -40,17 +40,4 @@ export const content = recipe({
   },
 });
 
-export const overlay = recipe({
-  base: [
-    {
-      bg: "bg.overlay",
-      z: "popover",
-    },
-    style({
-      inset: "0",
-      position: "fixed",
-    }),
-  ],
-});
-
 export type DialogVariants = RecipeVariants<typeof content>;

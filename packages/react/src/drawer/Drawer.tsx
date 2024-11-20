@@ -2,7 +2,8 @@ import * as RadixDrawer from "@radix-ui/react-dialog";
 import { forwardRef, type ReactNode } from "react";
 
 import { AnimatePresence } from "../animate-presence";
-import { Box, type BoxProps } from "../box";
+import { Backdrop } from "../backdrop";
+import { type BoxProps } from "../box";
 import { Button } from "../button";
 import { IconX } from "../icons/IconX";
 import { Paper } from "../paper";
@@ -45,9 +46,9 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(
           {open && (
             <RadixDrawer.Portal forceMount>
               <Transition>
-                <Box asChild {...styles.overlay()}>
+                <Backdrop asChild>
                   <RadixDrawer.Overlay />
-                </Box>
+                </Backdrop>
               </Transition>
 
               <Transition
