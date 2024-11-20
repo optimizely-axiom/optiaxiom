@@ -6,6 +6,7 @@ import {
   useAlertDialogContext,
 } from "../alert-dialog-context";
 import { AnimatePresence } from "../animate-presence";
+import { Backdrop } from "../backdrop";
 import { Box, type BoxProps } from "../box";
 import { Flex } from "../flex";
 import { Paper } from "../paper";
@@ -28,9 +29,9 @@ export const AlertDialogContent = forwardRef<
       {open && (
         <RadixAlertDialog.Portal forceMount>
           <Transition>
-            <Box asChild {...styles.overlay()}>
+            <Backdrop asChild>
               <RadixAlertDialog.Overlay />
-            </Box>
+            </Backdrop>
           </Transition>
 
           <Flex {...styles.container()}>

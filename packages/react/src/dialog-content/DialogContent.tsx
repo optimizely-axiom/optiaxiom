@@ -2,7 +2,8 @@ import * as RadixDialog from "@radix-ui/react-dialog";
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import { AnimatePresence } from "../animate-presence";
-import { Box, type BoxProps } from "../box";
+import { Backdrop } from "../backdrop";
+import { type BoxProps } from "../box";
 import { Button } from "../button";
 import { useDialogContext } from "../dialog-context";
 import { IconX } from "../icons/IconX";
@@ -37,9 +38,9 @@ export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
         {open && (
           <RadixDialog.Portal forceMount>
             <Transition>
-              <Box asChild {...styles.overlay()}>
+              <Backdrop asChild>
                 <RadixDialog.Overlay />
-              </Box>
+              </Backdrop>
             </Transition>
 
             <Transition data-side="bottom" type={transitionType}>
