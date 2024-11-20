@@ -24,7 +24,7 @@ export const DropdownMenuContent = forwardRef<
     <AnimatePresence>
       {open && (
         <RadixMenu.Portal forceMount>
-          <MenuListbox asChild {...props}>
+          <MenuListbox asChild provider="dropdown-menu" {...props}>
             <RadixMenu.Content align={align} ref={ref} sideOffset={sideOffset}>
               {children}
             </RadixMenu.Content>
