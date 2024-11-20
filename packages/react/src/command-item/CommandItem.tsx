@@ -1,12 +1,12 @@
 import { forwardRef } from "react";
 
-import { useCommandContext } from "../command-context";
-import { CommandItemContextProvider } from "../command-item-context";
-import { CommandUnstyledItem } from "../command-unstyled-item";
-import { ListboxItem, type ListboxItemProps } from "../listbox-item";
-import * as styles from "./CommandItem.css";
+import type { BoxProps } from "../box";
 
-type CommandItemProps = ListboxItemProps<
+import { useCommandContext } from "../command-context";
+import { CommandFocusableItem } from "../command-focusable-item";
+import { extractSprinkles } from "../sprinkles";
+
+type CommandItemProps = BoxProps<
   "div",
   {
     active?: boolean;
@@ -15,41 +15,28 @@ type CommandItemProps = ListboxItemProps<
 >;
 
 export const CommandItem = forwardRef<HTMLDivElement, CommandItemProps>(
-  (
-    {
-      active,
-      addonAfter,
-      addonBefore,
-      children,
-      className,
-      description,
-      icon,
+  ({ active, children, item, ...props }, ref) => {
+    const { restProps, sprinkleProps } = extractSprinkles(props);
+
+    const { downshift, highlightedItem, value } =
+      useCommandContext("CommandItem");
+    const itemProps = downshift.getItemProps({
+      "aria-selected": active ?? value?.has(item),
       item,
-      ...props
-    },
-    ref,
-  ) => {
-    const { value } = useCommandContext("CommandItem");
+      ...restProps,
+    });
 
     return (
-      <CommandItemContextProvider
-        active={active ?? value?.has(item)}
-        item={item}
+      <CommandFocusableItem
+        data-disabled={itemProps["aria-disabled"] ? "" : undefined}
+        data-highlighted={highlightedItem === item ? "" : undefined}
+        ref={ref}
+        tabIndex={-1}
+        {...sprinkleProps}
+        {...itemProps}
       >
-        <ListboxItem
-          addonAfter={addonAfter}
-          addonBefore={addonBefore}
-          asChild
-          description={description}
-          icon={icon}
-          {...styles.item({}, className)}
-          {...props}
-        >
-          <CommandUnstyledItem item={item} ref={ref} tabIndex={undefined}>
-            {children}
-          </CommandUnstyledItem>
-        </ListboxItem>
-      </CommandItemContextProvider>
+        {children}
+      </CommandFocusableItem>
     );
   },
 );

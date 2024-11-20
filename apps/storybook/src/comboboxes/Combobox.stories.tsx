@@ -10,13 +10,12 @@ import {
   ComboboxGroup,
   ComboboxInput,
   ComboboxItem,
-  ComboboxItemIndicator,
   ComboboxLabel,
-  ComboboxList,
+  ComboboxListbox,
+  ComboboxRadioItem,
   ComboboxScrollArea,
   ComboboxSeparator,
   ComboboxTrigger,
-  ComboboxUnstyledItem,
   ComboboxValue,
 } from "@optiaxiom/react/unstable";
 import { IconUsers } from "@tabler/icons-react";
@@ -114,17 +113,13 @@ export const Basic: Story = {
         </ComboboxTrigger>
         <ComboboxContent>
           <ComboboxInput placeholder="Languages..." />
-          <ComboboxList>
+          <ComboboxListbox>
             {items.map((item) => (
-              <ComboboxItem
-                addonAfter={<ComboboxItemIndicator />}
-                item={item}
-                key={item}
-              >
+              <ComboboxRadioItem item={item} key={item}>
                 {item}
-              </ComboboxItem>
+              </ComboboxRadioItem>
             ))}
-          </ComboboxList>
+          </ComboboxListbox>
           {items.length === 0 && <ComboboxEmpty>No result found</ComboboxEmpty>}
         </ComboboxContent>
       </Combobox>
@@ -176,13 +171,13 @@ export const Multiple: Story = {
         </ComboboxTrigger>
         <ComboboxContent>
           <ComboboxInput placeholder="Languages..." />
-          <ComboboxList>
+          <ComboboxListbox>
             {items.map((item) => (
               <ComboboxCheckboxItem item={item} key={item}>
                 {item}
               </ComboboxCheckboxItem>
             ))}
-          </ComboboxList>
+          </ComboboxListbox>
           {items.length === 0 && <ComboboxEmpty>No result found</ComboboxEmpty>}
         </ComboboxContent>
       </Combobox>
@@ -316,13 +311,13 @@ export const People: Story<(typeof users)[number]> = {
 
         <ComboboxContent>
           <ComboboxInput placeholder="People..." />
-          <ComboboxList>
+          <ComboboxListbox>
             {items.map((user) => (
               <Fragment key={user.id}>
                 {user === actions.all && <ComboboxSeparator />}
 
                 {user === actions.me ? (
-                  <ComboboxItem
+                  <ComboboxRadioItem
                     addonBefore={
                       <Avatar
                         colorScheme="purple"
@@ -334,11 +329,11 @@ export const People: Story<(typeof users)[number]> = {
                     item={user}
                   >
                     Assign to me
-                  </ComboboxItem>
+                  </ComboboxRadioItem>
                 ) : user === actions.all ? (
-                  <ComboboxItem icon={<IconUsers />} item={user}>
+                  <ComboboxRadioItem icon={<IconUsers />} item={user}>
                     Show all users
-                  </ComboboxItem>
+                  </ComboboxRadioItem>
                 ) : (
                   <ComboboxCheckboxItem
                     addonBefore={
@@ -358,7 +353,7 @@ export const People: Story<(typeof users)[number]> = {
                 {user === actions.me && <ComboboxSeparator />}
               </Fragment>
             ))}
-          </ComboboxList>
+          </ComboboxListbox>
         </ComboboxContent>
       </Combobox>
     );
@@ -488,7 +483,7 @@ export const Controlled: Story<Book> = {
         <ComboboxContent>
           <ComboboxInput placeholder="Books..." />
 
-          <ComboboxList>
+          <ComboboxListbox>
             <ComboboxScrollArea>
               {items.map((book) => (
                 <ComboboxCheckboxItem item={book} key={book.id}>
@@ -498,15 +493,15 @@ export const Controlled: Story<Book> = {
             </ComboboxScrollArea>
 
             <ComboboxFooter>
-              <ComboboxUnstyledItem asChild item={controlledActions.clear}>
+              <ComboboxItem asChild item={controlledActions.clear}>
                 <Button disabled={value.length === 0}>Clear All</Button>
-              </ComboboxUnstyledItem>
+              </ComboboxItem>
 
-              <ComboboxUnstyledItem asChild item={controlledActions.done}>
+              <ComboboxItem asChild item={controlledActions.done}>
                 <Button appearance="primary">Done</Button>
-              </ComboboxUnstyledItem>
+              </ComboboxItem>
             </ComboboxFooter>
-          </ComboboxList>
+          </ComboboxListbox>
         </ComboboxContent>
       </Combobox>
     );
@@ -565,18 +560,14 @@ export const Group: Story = {
 
         <ComboboxContent>
           <ComboboxInput placeholder="Search foods..." />
-          <ComboboxList>
+          <ComboboxListbox>
             {filteredFruits.length > 0 && (
               <ComboboxGroup>
                 <ComboboxLabel>Fruits</ComboboxLabel>
                 {filteredFruits.map((item, index) => (
-                  <ComboboxItem
-                    addonAfter={<ComboboxItemIndicator />}
-                    item={item}
-                    key={`fruit-${index}`}
-                  >
+                  <ComboboxRadioItem item={item} key={`fruit-${index}`}>
                     {item}
-                  </ComboboxItem>
+                  </ComboboxRadioItem>
                 ))}
               </ComboboxGroup>
             )}
@@ -585,13 +576,9 @@ export const Group: Story = {
               <ComboboxGroup>
                 <ComboboxLabel>Vegetables</ComboboxLabel>
                 {filteredVegetables.map((item, index) => (
-                  <ComboboxItem
-                    addonAfter={<ComboboxItemIndicator />}
-                    item={item}
-                    key={`vegetable-${index}`}
-                  >
+                  <ComboboxRadioItem item={item} key={`vegetable-${index}`}>
                     {item}
-                  </ComboboxItem>
+                  </ComboboxRadioItem>
                 ))}
               </ComboboxGroup>
             )}
@@ -600,17 +587,13 @@ export const Group: Story = {
               <ComboboxGroup>
                 <ComboboxLabel>Meats</ComboboxLabel>
                 {filteredMeats.map((item, index) => (
-                  <ComboboxItem
-                    addonAfter={<ComboboxItemIndicator />}
-                    item={item}
-                    key={`meat-${index}`}
-                  >
+                  <ComboboxRadioItem item={item} key={`meat-${index}`}>
                     {item}
-                  </ComboboxItem>
+                  </ComboboxRadioItem>
                 ))}
               </ComboboxGroup>
             )}
-          </ComboboxList>
+          </ComboboxListbox>
         </ComboboxContent>
       </Combobox>
     );

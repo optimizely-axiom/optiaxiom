@@ -38,11 +38,11 @@ export const item = recipe({
         "&:not([data-disabled])[data-highlighted]:active": {
           backgroundColor: bgColorPressedVar,
         },
+        "&:not([data-disabled])[data-highlighted][data-interaction=keyboard]": {
+          outlineOffset: "-2px",
+        },
         "&[data-disabled]": {
           opacity: 0.3,
-        },
-        "&[data-highlighted][data-interaction=keyboard]": {
-          outlineOffset: "-2px",
         },
       },
     }),

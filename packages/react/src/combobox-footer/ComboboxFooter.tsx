@@ -1,5 +1,13 @@
-import { CommandFooter } from "../command-footer";
+import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
-export const ComboboxFooter = CommandFooter;
+import { ListboxEmpty } from "../listbox-empty";
 
-ComboboxFooter.displayName = "@optiaxiom/react/ComboboxFooter";
+type ComboboxEmptyProps = ComponentPropsWithoutRef<typeof ListboxEmpty>;
+
+export const ComboboxEmpty = forwardRef<HTMLDivElement, ComboboxEmptyProps>(
+  (props, ref) => {
+    return <ListboxEmpty ref={ref} {...props} />;
+  },
+);
+
+ComboboxEmpty.displayName = "@optiaxiom/react/ComboboxEmpty";

@@ -2,8 +2,7 @@ import { Box } from "@optiaxiom/react";
 import {
   Select,
   SelectContent,
-  SelectItem,
-  SelectItemIndicator,
+  SelectRadioItem,
   SelectTrigger,
   SelectValue,
 } from "@optiaxiom/react/unstable";
@@ -24,8 +23,7 @@ export function App() {
 
       <SelectContent>
         {colors.map((color) => (
-          <SelectItem
-            addonAfter={<SelectItemIndicator />}
+          <SelectRadioItem
             icon={
               <Box
                 rounded="sm"
@@ -36,7 +34,7 @@ export function App() {
             key={color.value}
           >
             {color.label}
-          </SelectItem>
+          </SelectRadioItem>
         ))}
       </SelectContent>
     </Select>

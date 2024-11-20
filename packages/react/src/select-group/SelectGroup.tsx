@@ -1,22 +1,12 @@
-import { useId } from "@reach/auto-id";
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
-import { Box } from "../box";
-import { SelectGroupContextProvider } from "../select-group-context";
+import { ListboxGroup } from "../listbox-group";
 
-type SelectGroupProps = ComponentPropsWithoutRef<typeof Box>;
+type SelectGroupProps = ComponentPropsWithoutRef<typeof ListboxGroup>;
 
 export const SelectGroup = forwardRef<HTMLDivElement, SelectGroupProps>(
-  ({ children, ...props }, ref) => {
-    const groupId = useId();
-
-    return (
-      <SelectGroupContextProvider id={groupId}>
-        <Box aria-labelledby={groupId} ref={ref} role="group" {...props}>
-          {children}
-        </Box>
-      </SelectGroupContextProvider>
-    );
+  (props, ref) => {
+    return <ListboxGroup ref={ref} {...props} />;
   },
 );
 

@@ -1,5 +1,13 @@
-import { CommandGroup } from "../command-group";
+import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
-export const ComboboxGroup = CommandGroup;
+import { ListboxGroup } from "../listbox-group";
+
+type ComboboxGroupProps = ComponentPropsWithoutRef<typeof ListboxGroup>;
+
+export const ComboboxGroup = forwardRef<HTMLDivElement, ComboboxGroupProps>(
+  (props, ref) => {
+    return <ListboxGroup ref={ref} {...props} />;
+  },
+);
 
 ComboboxGroup.displayName = "@optiaxiom/react/ComboboxGroup";

@@ -7,8 +7,7 @@ import {
   AutocompleteContent,
   AutocompleteEmpty,
   AutocompleteItem,
-  AutocompleteItemIndicator,
-  AutocompleteList,
+  AutocompleteRadioItem,
   AutocompleteTrigger,
 } from "@optiaxiom/react/unstable";
 
@@ -30,8 +29,7 @@ import {
   AutocompleteContent,
   AutocompleteEmpty,
   AutocompleteItem,
-  AutocompleteItemIndicator,
-  AutocompleteList,
+  AutocompleteRadioItem,
   AutocompleteTrigger,
 } from "@optiaxiom/react";
 
@@ -40,12 +38,8 @@ export default () => (
     <AutocompleteTrigger />
 
     <AutocompleteContent>
-      <AutocompleteList>
-        <AutocompleteItem>
-          <AutocompleteItemIndicator />
-        </AutocompleteItem>
-      </AutocompleteList>
-
+      <AutocompleteItem />
+      <AutocompleteRadioItem />
       <AutocompleteEmpty />
     </AutocompleteContent>
   </Autocomplete>
@@ -57,9 +51,8 @@ export default () => (
 <PropsTable component={Autocomplete} />
 <PropsTable component={AutocompleteTrigger} base={SearchInput} />
 <PropsTable component={AutocompleteContent} />
-<PropsTable component={AutocompleteList} />
 <PropsTable component={AutocompleteItem} />
-<PropsTable component={AutocompleteItemIndicator} />
+<PropsTable component={AutocompleteRadioItem} />
 <PropsTable component={AutocompleteEmpty} />
 
 ## Changelog

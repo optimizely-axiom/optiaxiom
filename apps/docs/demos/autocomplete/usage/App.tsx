@@ -3,9 +3,7 @@ import {
   Autocomplete,
   AutocompleteContent,
   AutocompleteEmpty,
-  AutocompleteItem,
-  AutocompleteItemIndicator,
-  AutocompleteList,
+  AutocompleteRadioItem,
   AutocompleteTrigger,
 } from "@optiaxiom/react/unstable";
 import { useState } from "react";
@@ -34,23 +32,20 @@ export function App() {
       <AutocompleteTrigger placeholder="Search a color..." w="240" />
 
       <AutocompleteContent>
-        <AutocompleteList>
-          {items.map((item) => (
-            <AutocompleteItem
-              addonAfter={<AutocompleteItemIndicator />}
-              icon={
-                <Box
-                  rounded="sm"
-                  style={{ aspectRatio: 1, backgroundColor: item.color }}
-                />
-              }
-              item={item}
-              key={item.value}
-            >
-              {item.label}
-            </AutocompleteItem>
-          ))}
-        </AutocompleteList>
+        {items.map((item) => (
+          <AutocompleteRadioItem
+            icon={
+              <Box
+                rounded="sm"
+                style={{ aspectRatio: 1, backgroundColor: item.color }}
+              />
+            }
+            item={item}
+            key={item.value}
+          >
+            {item.label}
+          </AutocompleteRadioItem>
+        ))}
 
         {items.length === 0 && (
           <AutocompleteEmpty>No result found</AutocompleteEmpty>

@@ -5,8 +5,7 @@ import { Field, Flex, Input, Switch, Text, Tooltip } from "@optiaxiom/react";
 import {
   Select,
   SelectContent,
-  SelectItem,
-  SelectItemIndicator,
+  SelectRadioItem,
   SelectTrigger,
   SelectValue,
 } from "@optiaxiom/react/unstable";
@@ -73,17 +72,13 @@ export function DemoControls({
                   <SelectContent>
                     {item.options.map((item) => {
                       return (
-                        <SelectItem
-                          addonAfter={<SelectItemIndicator />}
-                          item={item}
-                          key={item}
-                        >
+                        <SelectRadioItem item={item} key={item}>
                           {item === "" ? (
                             <Text color="fg.secondary">{"<no value>"}</Text>
                           ) : (
                             item
                           )}
-                        </SelectItem>
+                        </SelectRadioItem>
                       );
                     })}
                   </SelectContent>

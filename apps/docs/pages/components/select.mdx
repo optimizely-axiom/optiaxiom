@@ -5,8 +5,11 @@ import { Button } from "@optiaxiom/react";
 import {
   Select,
   SelectContent,
+  SelectGroup,
   SelectItem,
-  SelectItemIndicator,
+  SelectLabel,
+  SelectRadioItem,
+  SelectSeparator,
   SelectTrigger,
   SelectValue,
 } from "@optiaxiom/react/unstable";
@@ -27,8 +30,11 @@ Single select combobox widget to allow selection from a fixed set of options.
 import {
   Select,
   SelectContent,
+  SelectGroup,
   SelectItem,
-  SelectItemIndicator,
+  SelectLabel,
+  SelectRadioItem,
+  SelectSeparator,
   SelectTrigger,
   SelectValue,
 } from "@optiaxiom/react";
@@ -40,9 +46,16 @@ export default () => (
     </SelectTrigger>
 
     <SelectContent>
-      <SelectItem>
-        <SelectItemIndicator />
-      </SelectItem>
+      <SelectItem />
+      <SelectRadioItem />
+
+      <SelectGroup>
+        <SelectLabel />
+        <SelectItem />
+        <SelectRadioItem />
+      </SelectGroup>
+
+      <SelectSeparator />
     </SelectContent>
   </Select>
 );
@@ -55,7 +68,10 @@ export default () => (
 <PropsTable component={SelectValue} />
 <PropsTable component={SelectContent} />
 <PropsTable component={SelectItem} />
-<PropsTable component={SelectItemIndicator} />
+<PropsTable component={SelectRadioItem} />
+<PropsTable component={SelectGroup} />
+<PropsTable component={SelectLabel} />
+<PropsTable component={SelectSeparator} />
 
 ## Changelog
 
