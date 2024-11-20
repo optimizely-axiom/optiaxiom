@@ -10,7 +10,7 @@ export const content = recipe({
       overscrollBehavior: "contain",
 
       selectors: {
-        [`&:empty`]: {
+        "&:empty": {
           visibility: "hidden",
         },
       },

@@ -10,11 +10,7 @@ type CommandListProps = BoxProps;
 export const CommandListbox = forwardRef<HTMLDivElement, CommandListProps>(
   ({ children, ...props }, ref) => {
     const { restProps, sprinkleProps } = extractSprinkles(props);
-
-    const { downshift, items } = useCommandContext("CommandList");
-    if (!items.length) {
-      return null;
-    }
+    const { downshift } = useCommandContext("CommandList");
 
     return (
       <Listbox
