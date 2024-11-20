@@ -38,7 +38,7 @@ export const item = recipe({
         "&:not([data-disabled])[data-highlighted]:active": {
           backgroundColor: bgColorPressedVar,
         },
-        "&:not([data-disabled])[data-highlighted][data-interaction=keyboard]": {
+        "&:not([data-disabled])[data-highlighted][data-focus-visible]": {
           outlineOffset: "-2px",
         },
         "&[data-disabled]": {
