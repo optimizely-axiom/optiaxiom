@@ -7,6 +7,7 @@ export const backdrop = recipe({
       z: "popover",
     },
     style({
+      backdropFilter: "blur(4px)",
       inset: "0",
       position: "fixed",
     }),
