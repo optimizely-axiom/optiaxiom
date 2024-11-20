@@ -14,7 +14,7 @@ export const CommandFocusableItem = forwardRef<
 
   return (
     <Box
-      data-interaction={lastInteractionSource}
+      data-focus-visible={lastInteractionSource === "keyboard" ? "" : undefined}
       ref={ref}
       {...styles.item({}, className)}
       {...props}
