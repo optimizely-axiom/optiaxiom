@@ -8,7 +8,12 @@ import docgen from "react-docgen-typescript";
 import { visit } from "unist-util-visit";
 
 const parser = docgen.withCompilerOptions(
-  { esModuleInterop: true },
+  {
+    esModuleInterop: true,
+    paths: {
+      "@optiaxiom/react/unstable": ["../../packages/react/dist/unstable.d.ts"],
+    },
+  },
   {
     savePropValueAsString: true,
     shouldExtractValuesFromUnion: true,
