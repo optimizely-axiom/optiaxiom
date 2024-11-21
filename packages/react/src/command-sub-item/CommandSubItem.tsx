@@ -9,14 +9,14 @@ import { useCommandSubContext } from "../command-sub-context";
 type CommandSubItemProps = BoxProps<
   "div",
   {
-    active?: boolean;
     item: unknown;
+    selected?: boolean;
   }
 >;
 
 export const CommandSubItem = forwardRef<HTMLDivElement, CommandSubItemProps>(
   (
-    { active, children, item, onClick, onMouseDown, onMouseMove, ...props },
+    { children, item, onClick, onMouseDown, onMouseMove, selected, ...props },
     outerRef,
   ) => {
     const {
@@ -39,20 +39,20 @@ export const CommandSubItem = forwardRef<HTMLDivElement, CommandSubItemProps>(
     const subIndex = subItems.indexOf(item);
     const disabled = isItemDisabled(item, subIndex);
     const highlighted = highlightedSubItem === item;
-    const selected = active ?? value?.has(item);
+    const isSelected = selected ?? value?.has(item);
 
     const innerRef = useRef<HTMLDivElement>(null);
     const ref = useComposedRefs(innerRef, outerRef);
     useEffect(() => {
-      if (innerRef.current && selected) {
+      if (innerRef.current && isSelected) {
         innerRef.current.scrollIntoView({ block: "nearest" });
       }
-    }, [selected]);
+    }, [isSelected]);
 
     return (
       <CommandFocusableItem
         aria-disabled={disabled}
-        aria-selected={selected}
+        aria-selected={isSelected}
         data-disabled={disabled ? "" : undefined}
         data-highlighted={highlighted ? "" : undefined}
         onClick={(event) => {

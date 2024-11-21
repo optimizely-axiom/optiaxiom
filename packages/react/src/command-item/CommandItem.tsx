@@ -9,19 +9,19 @@ import { extractSprinkles } from "../sprinkles";
 type CommandItemProps = BoxProps<
   "div",
   {
-    active?: boolean;
     item: unknown;
+    selected?: boolean;
   }
 >;
 
 export const CommandItem = forwardRef<HTMLDivElement, CommandItemProps>(
-  ({ active, children, item, ...props }, ref) => {
+  ({ children, item, selected, ...props }, ref) => {
     const { restProps, sprinkleProps } = extractSprinkles(props);
 
     const { downshift, highlightedItem, value } =
       useCommandContext("CommandItem");
     const itemProps = downshift.getItemProps({
-      "aria-selected": active ?? value?.has(item),
+      "aria-selected": selected ?? value?.has(item),
       item,
       ...restProps,
     });
