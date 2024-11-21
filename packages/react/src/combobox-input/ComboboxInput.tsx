@@ -11,6 +11,7 @@ export const ComboboxInput = forwardRef<HTMLInputElement, ComboboxInputProps>(
 
     return (
       <CommandInput
+        htmlSize={1}
         m="4"
         onKeyDown={(event) => {
           if (event.key === " " && highlightedItem) {
