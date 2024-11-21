@@ -26,6 +26,10 @@ const config: StorybookConfig = {
   viteFinal: async (config) => {
     config.logLevel = "error";
     config.plugins?.push(reactDocgenPlugin());
+    config.optimizeDeps?.include?.push(
+      "chromatic/isChromatic",
+      "react/jsx-dev-runtime",
+    );
     return config;
   },
 };
