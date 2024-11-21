@@ -1,7 +1,114 @@
-import { Callout } from "nextra/components";
+import { Demo } from "@/components/demo";
+import { PropsTable } from "@/components/props-table";
+import { Usage } from "@/demos/combobox";
+import { Button, Input, Separator } from "@optiaxiom/react";
+import {
+  Combobox,
+  ComboboxCheckboxItem,
+  ComboboxContent,
+  ComboboxEmpty,
+  ComboboxFooter,
+  ComboboxGroup,
+  ComboboxInput,
+  ComboboxItem,
+  ComboboxLabel,
+  ComboboxListbox,
+  ComboboxRadioItem,
+  ComboboxScrollArea,
+  ComboboxSeparator,
+  ComboboxTrigger,
+  ComboboxValue,
+} from "@optiaxiom/react/unstable";
 
 # Combobox
 
-<Callout emoji="🚨">
-  This page is a stub. Help us expand it by contributing!
-</Callout>
+Multi-purpose combobox widget to allow selection from a dynamic set of options.
+
+## Documentation
+
+### Usage
+
+<Demo component={Usage} />
+
+### Anatomy
+
+```tsx
+import {
+  Combobox,
+  ComboboxCheckboxItem,
+  ComboboxContent,
+  ComboboxEmpty,
+  ComboboxFooter,
+  ComboboxGroup,
+  ComboboxInput,
+  ComboboxItem,
+  ComboboxLabel,
+  ComboboxListbox,
+  ComboboxRadioItem,
+  ComboboxScrollArea,
+  ComboboxSeparator,
+  ComboboxTrigger,
+  ComboboxValue,
+} from "@optiaxiom/react";
+
+export default () => (
+  <Combobox>
+    <ComboboxTrigger>
+      <ComboboxValue />
+    </ComboboxTrigger>
+
+    <ComboboxContent>
+      <ComboboxInput />
+
+      <ComboboxListbox>
+        <ComboboxScrollArea>
+          {/**
+           * Everything inside <ComboboxListbox /> except for:
+           *  - <ComboboxFooter />
+           *  - <ComboboxScrollArea />
+           */}
+        </ComboboxScrollArea>
+
+        <ComboboxItem />
+        <ComboboxCheckboxItem />
+        <ComboboxRadioItem />
+
+        <ComboboxGroup>
+          <ComboboxLabel />
+          <ComboboxItem />
+          <ComboboxCheckboxItem />
+          <ComboboxRadioItem />
+        </ComboboxGroup>
+
+        <ComboboxEmpty />
+        <ComboboxFooter />
+        <ComboboxSeparator />
+      </ComboboxListbox>
+    </ComboboxContent>
+  </Combobox>
+);
+```
+
+## Props
+
+<PropsTable component={Combobox} />
+<PropsTable component={ComboboxTrigger} base={Button} />
+<PropsTable component={ComboboxValue} />
+<PropsTable component={ComboboxContent} />
+<PropsTable component={ComboboxInput} base={Input} />
+<PropsTable component={ComboboxListbox} />
+<PropsTable component={ComboboxScrollArea} />
+<PropsTable component={ComboboxItem} />
+<PropsTable component={ComboboxCheckboxItem} />
+<PropsTable component={ComboboxRadioItem} />
+<PropsTable component={ComboboxGroup} />
+<PropsTable component={ComboboxLabel} />
+<PropsTable component={ComboboxSeparator} base={Separator} />
+<PropsTable component={ComboboxEmpty} />
+<PropsTable component={ComboboxFooter} />
+
+## Changelog
+
+### 0.4.0
+
+- Added component
