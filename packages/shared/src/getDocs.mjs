@@ -1,4 +1,5 @@
 import fg from "fast-glob";
+import path from "node:path";
 import { withCompilerOptions } from "react-docgen-typescript";
 
 export function getDocs({ shouldExtractValuesFromUnion = false } = {}) {
@@ -27,7 +28,8 @@ export function getDocs({ shouldExtractValuesFromUnion = false } = {}) {
         tags: _tags,
         ...doc
       }) => {
-        const isBox = doc.displayName === "@optiaxiom/react/Box";
+        const component = path.basename(doc.displayName);
+        const isBox = component === "Box";
         const filterProps = Object.fromEntries(
           Object.entries(props)
             .filter(([, prop]) =>
@@ -41,11 +43,11 @@ export function getDocs({ shouldExtractValuesFromUnion = false } = {}) {
                         (decl.fileName === filePath ||
                           decl.fileName ===
                             filePath.replace(".tsx", ".css.ts") ||
-                          decl.fileName.endsWith("Base.tsx") ||
-                          decl.fileName.endsWith("Base.css.ts") ||
-                          decl.fileName.endsWith("Context.ts") ||
-                          decl.fileName.endsWith("Root.tsx") ||
-                          decl.fileName.endsWith("Root.css.ts")),
+                          decl.fileName.endsWith(`/${component}Base.tsx`) ||
+                          decl.fileName.endsWith(`/${component}Base.css.ts`) ||
+                          decl.fileName.endsWith(`/${component}Context.ts`) ||
+                          decl.fileName.endsWith(`/${component}Root.tsx`) ||
+                          decl.fileName.endsWith(`/${component}Root.css.ts`)),
                     )) ||
                   (isBox && Object.hasOwn(sprinkles?.props ?? {}, prop.name)),
             )
