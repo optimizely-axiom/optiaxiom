@@ -4,7 +4,7 @@ import Paragraph from "@tiptap/extension-paragraph";
 import Placeholder from "@tiptap/extension-placeholder";
 import Text from "@tiptap/extension-text";
 import { Editor, EditorContent, useEditor } from "@tiptap/react";
-import { forwardRef, type MutableRefObject } from "react";
+import { forwardRef, type MutableRefObject, useEffect } from "react";
 
 import { Box, type BoxProps } from "../box";
 import * as styles from "./InlineInput.css";
@@ -14,6 +14,7 @@ type InlineInputProps = BoxProps<
   {
     defaultValue?: string;
     disabled?: boolean;
+    editorRef?: MutableRefObject<Editor | null>;
     label: string;
     multiline?: boolean;
     onValueChange?: (value: string) => void;
@@ -27,6 +28,7 @@ export const InlineInput = forwardRef<HTMLDivElement, InlineInputProps>(
       className,
       defaultValue = "",
       disabled,
+      editorRef,
       label,
       multiline,
       onValueChange,
@@ -62,6 +64,17 @@ export const InlineInput = forwardRef<HTMLDivElement, InlineInputProps>(
       onUpdate: ({ editor }) => {
         onValueChange?.(editor?.getText());
       },
+    });
+
+    useEffect(() => {
+      if (!editorRef) {
+        return;
+      }
+
+      editorRef.current = editor;
+      return () => {
+        editorRef.current = null;
+      };
     });
 
     if (!editor) {
