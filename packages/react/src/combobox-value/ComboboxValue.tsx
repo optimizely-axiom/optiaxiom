@@ -1,6 +1,5 @@
 import { forwardRef, useMemo } from "react";
 
-import { Badge } from "../badge";
 import { type BoxProps } from "../box";
 import { useComboboxContext } from "../combobox-context";
 import { Flex } from "../flex";
@@ -12,15 +11,10 @@ type ComboboxValueProps = BoxProps<
   }
 >;
 
-const maxDisplayedItems = 2;
-
 export const ComboboxValue = forwardRef<HTMLDivElement, ComboboxValueProps>(
   ({ children, placeholder, ...props }, ref) => {
-    const {
-      itemToKey,
-      itemToString,
-      value: valueContext,
-    } = useComboboxContext("ComboboxValue");
+    const { itemToString, value: valueContext } =
+      useComboboxContext("ComboboxValue");
     const value = useMemo(
       () => (valueContext instanceof Set ? [...valueContext] : valueContext),
       [valueContext],
@@ -31,21 +25,10 @@ export const ComboboxValue = forwardRef<HTMLDivElement, ComboboxValueProps>(
         {Array.isArray(value) && value.length > 0
           ? (children ?? (
               <>
-                {value.length > maxDisplayedItems ? (
-                  <Badge>{value.length} selected</Badge>
-                ) : value.length === 1 ? (
+                {value.length === 1 ? (
                   itemToString(value[0])
                 ) : (
-                  value.slice(0, maxDisplayedItems).map((item) => (
-                    <Badge
-                      display="inline-block"
-                      flex="1"
-                      key={itemToKey(item)}
-                      truncate
-                    >
-                      {itemToString(item)}
-                    </Badge>
-                  ))
+                  <>{value.length} selected</>
                 )}
               </>
             ))
