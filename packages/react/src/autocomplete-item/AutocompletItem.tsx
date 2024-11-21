@@ -11,7 +11,7 @@ export const AutocompleteItem = forwardRef<
 >((props, ref) => {
   const { selectedItem } = useAutocompleteContext("AutocompleteItem");
   return (
-    <CommandItem active={props.item === selectedItem} ref={ref} {...props} />
+    <CommandItem ref={ref} selected={props.item === selectedItem} {...props} />
   );
 });
 

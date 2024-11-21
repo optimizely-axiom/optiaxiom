@@ -9,18 +9,18 @@ type SpotlightSubItemProps = ComponentPropsWithoutRef<typeof CommandSubItem>;
 export const SpotlightSubItem = forwardRef<
   HTMLDivElement,
   SpotlightSubItemProps
->(({ active, children, className, ...props }, ref) => {
+>(({ children, className, selected, ...props }, ref) => {
   return (
     <CommandSubItem
-      active={active}
       asChild
       ref={ref}
-      {...styles.item({ active: active || false }, className)}
+      selected={selected}
+      {...styles.item({ active: selected || false }, className)}
       {...props}
     >
       <Badge
-        intent={active ? "information" : "neutral"}
-        variant={active ? "solid" : "light"}
+        intent={selected ? "information" : "neutral"}
+        variant={selected ? "solid" : "light"}
       >
         {children}
       </Badge>

@@ -2,7 +2,6 @@ import { forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
 import { useSelectContext } from "../select-context";
-import { SelectItemContextProvider } from "../select-item-context";
 import { extractSprinkles } from "../sprinkles";
 
 type SelectItemProps = BoxProps<
@@ -21,18 +20,16 @@ export const SelectItem = forwardRef<HTMLDivElement, SelectItemProps>(
     const itemProps = downshift.getItemProps({ item, ...restProps });
 
     return (
-      <SelectItemContextProvider active={selectedItem === item}>
-        <Box
-          data-disabled={itemProps["aria-disabled"] ? "" : undefined}
-          data-highlighted={highlightedItem === item ? "" : undefined}
-          data-selected={selectedItem === item ? "" : undefined}
-          ref={ref}
-          {...sprinkleProps}
-          {...itemProps}
-        >
-          {children}
-        </Box>
-      </SelectItemContextProvider>
+      <Box
+        data-disabled={itemProps["aria-disabled"] ? "" : undefined}
+        data-highlighted={highlightedItem === item ? "" : undefined}
+        data-selected={selectedItem === item ? "" : undefined}
+        ref={ref}
+        {...sprinkleProps}
+        {...itemProps}
+      >
+        {children}
+      </Box>
     );
   },
 );

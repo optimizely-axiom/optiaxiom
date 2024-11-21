@@ -186,9 +186,9 @@ export const Basic: Story<{ items?: Item[] } & Item> = {
             >
               {types.items.map((item) => (
                 <SpotlightSubItem
-                  active={filter === item}
                   item={item}
                   key={item.title}
+                  selected={filter === item}
                 >
                   {item.title}
                 </SpotlightSubItem>
