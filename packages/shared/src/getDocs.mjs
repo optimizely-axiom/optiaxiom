@@ -45,7 +45,9 @@ export function getDocs({ shouldExtractValuesFromUnion = false } = {}) {
                             filePath.replace(".tsx", ".css.ts") ||
                           decl.fileName.endsWith(`/${component}Base.tsx`) ||
                           decl.fileName.endsWith(`/${component}Base.css.ts`) ||
+                          decl.fileName.includes("/Command") ||
                           decl.fileName.endsWith(`/${component}Context.ts`) ||
+                          decl.fileName.includes("/Listbox") ||
                           decl.fileName.endsWith(`/${component}Root.tsx`) ||
                           decl.fileName.endsWith(`/${component}Root.css.ts`)),
                     )) ||
