@@ -17,6 +17,7 @@ type InputProps = InputControlProps<
   {
     addonAfter?: ReactNode;
     addonBefore?: ReactNode;
+    htmlSize?: number;
   } & Pick<ComponentPropsWithoutRef<typeof InputRoot>, "addonPointerEvents"> &
     styles.InputVariants
 >;
@@ -31,6 +32,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       asChild,
       children,
       className,
+      htmlSize,
       size = "md",
       style,
       ...props
@@ -59,7 +61,9 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           {...styles.input({ appearance, size })}
           {...restProps}
         >
-          <Comp ref={ref}>{children}</Comp>
+          <Comp ref={ref} size={htmlSize}>
+            {children}
+          </Comp>
         </InputControl>
 
         {addonAfter && (
