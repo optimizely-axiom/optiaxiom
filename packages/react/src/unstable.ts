@@ -32,6 +32,7 @@ export * from "./command-listbox";
 export * from "./data-table";
 export * from "./data-table-header";
 export * from "./highlight";
+export * from "./inline-input";
 export * from "./pill";
 export * from "./select";
 export * from "./select-content";
