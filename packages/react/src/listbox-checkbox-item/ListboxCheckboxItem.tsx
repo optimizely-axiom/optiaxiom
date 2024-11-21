@@ -2,6 +2,7 @@ import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import { Checkbox } from "../checkbox";
 import { Flex } from "../flex";
+import { Icon } from "../icon";
 import { ListboxItem } from "../listbox-item";
 
 type ListboxCheckboxItemProps = ComponentPropsWithoutRef<typeof ListboxItem>;
@@ -9,7 +10,7 @@ type ListboxCheckboxItemProps = ComponentPropsWithoutRef<typeof ListboxItem>;
 export const ListboxCheckboxItem = forwardRef<
   HTMLDivElement,
   ListboxCheckboxItemProps
->(({ addonBefore, ...props }, ref) => {
+>(({ addonBefore, icon, ...props }, ref) => {
   return (
     <ListboxItem
       addonBefore={
@@ -20,7 +21,12 @@ export const ListboxCheckboxItem = forwardRef<
             pointerEvents="none"
             tabIndex={-1}
           />
-          {addonBefore}
+
+          {addonBefore ? (
+            addonBefore
+          ) : icon ? (
+            <Icon asChild>{icon}</Icon>
+          ) : null}
         </Flex>
       }
       ref={ref}
