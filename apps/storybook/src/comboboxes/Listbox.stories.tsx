@@ -5,16 +5,19 @@ import {
   type BoxProps,
   Button,
   Listbox,
+  ListboxCheckboxItem,
   ListboxEmpty,
   ListboxFooter,
   ListboxGroup,
   ListboxItem,
   ListboxItemIndicator,
   ListboxLabel,
+  ListboxRadioItem,
   ListboxScrollArea,
   ListboxSeparator,
   Paper,
 } from "@optiaxiom/react";
+import { IconStar } from "@tabler/icons-react";
 
 type Story = StoryObj<typeof Listbox>;
 
@@ -111,6 +114,70 @@ export const Indicator: Story = {
           >
             <PointerItem>{item}</PointerItem>
           </ListboxItem>
+        ))}
+      </>
+    ),
+  },
+};
+
+export const SingleSelect: Story = {
+  args: {
+    children: (
+      <>
+        {languages.map((item) => (
+          <ListboxRadioItem
+            aria-selected={item === "Bangla"}
+            asChild
+            key={item}
+          >
+            <PointerItem>{item}</PointerItem>
+          </ListboxRadioItem>
+        ))}
+      </>
+    ),
+  },
+};
+
+export const MultiSelect: Story = {
+  args: {
+    children: (
+      <>
+        {languages.map((item) => (
+          <ListboxCheckboxItem
+            aria-selected={item === "Bangla" || item === "Catalan"}
+            asChild
+            key={item}
+          >
+            <PointerItem>{item}</PointerItem>
+          </ListboxCheckboxItem>
+        ))}
+      </>
+    ),
+  },
+};
+
+export const IconSingleSelect: Story = {
+  args: {
+    children: (
+      <>
+        {languages.map((item) => (
+          <ListboxRadioItem asChild icon={<IconStar />} key={item}>
+            <PointerItem>{item}</PointerItem>
+          </ListboxRadioItem>
+        ))}
+      </>
+    ),
+  },
+};
+
+export const IconMultiSelect: Story = {
+  args: {
+    children: (
+      <>
+        {languages.map((item) => (
+          <ListboxCheckboxItem asChild icon={<IconStar />} key={item}>
+            <PointerItem>{item}</PointerItem>
+          </ListboxCheckboxItem>
         ))}
       </>
     ),
