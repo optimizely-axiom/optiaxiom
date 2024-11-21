@@ -1,3 +1,4 @@
+import fg from "fast-glob";
 import { fromMarkdown } from "mdast-util-from-markdown";
 import { mdxFromMarkdown } from "mdast-util-mdx";
 import { mdxjs } from "micromark-extension-mdxjs";
@@ -13,6 +14,7 @@ const parser = docgen.withCompilerOptions(
     shouldExtractValuesFromUnion: true,
   },
 );
+const docs = parser.parse(fg.globSync("./demos/**/App.tsx"));
 
 export function transformDemos(tree) {
   let needsImport = true;
@@ -69,7 +71,11 @@ export function transformDemos(tree) {
         }
       }
 
-      const docs = parser.parse(`${filesDir}/App.tsx`);
+      const doc = docs.find(
+        (doc) =>
+          doc.filePath ===
+          `${filesDir.replace(process.cwd() + "/", "")}/App.tsx`,
+      );
 
       const demo = fromMarkdown(
         [
@@ -77,7 +83,7 @@ export function transformDemos(tree) {
             `import { Tabs as TabsRemark } from 'nextra/components';`,
           `<Demo
             component={${component}}
-            propTypes={${JSON.stringify(docs.find((doc) => doc.displayName === "App")?.props)}}
+            propTypes={${JSON.stringify(doc?.props)}}
             ${iframe ? `iframe=${JSON.stringify(iframe)}` : ""}
             ${height ? `height=${JSON.stringify(height)}` : ""}
           />`,
