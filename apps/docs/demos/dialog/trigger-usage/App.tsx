@@ -4,6 +4,7 @@ import {
   DialogClose,
   DialogContent,
   DialogFooter,
+  DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@optiaxiom/react";
@@ -19,7 +20,9 @@ export function App() {
       />
 
       <DialogContent aria-describedby={undefined}>
-        <DialogTitle>Modal Title</DialogTitle>
+        <DialogHeader>
+          <DialogTitle>Modal Title</DialogTitle>
+        </DialogHeader>
         <DialogBody>This is the modal body</DialogBody>
         <DialogFooter>
           <DialogClose appearance="primary">Close</DialogClose>
