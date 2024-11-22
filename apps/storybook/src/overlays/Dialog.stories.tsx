@@ -7,6 +7,7 @@ import {
   DialogContent,
   DialogDescription,
   DialogFooter,
+  DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@optiaxiom/react";
@@ -41,8 +42,12 @@ export default {
           size={size}
           withCloseButton={withCloseButton}
         >
-          <DialogTitle>Dialog</DialogTitle>
-          {description && <DialogDescription>{description}</DialogDescription>}
+          <DialogHeader>
+            <DialogTitle>Dialog</DialogTitle>
+            {description && (
+              <DialogDescription>{description}</DialogDescription>
+            )}
+          </DialogHeader>
           <DialogBody>{content}</DialogBody>
           <DialogFooter>
             <DialogClose appearance="primary">Confirm</DialogClose>

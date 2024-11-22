@@ -21,8 +21,7 @@ export const DialogDescription = forwardRef<
       asChild
       color="fg.secondary"
       fontWeight="400"
-      pb="xs"
-      px="lg"
+      mt="xs"
       ref={ref}
       {...props}
     >
