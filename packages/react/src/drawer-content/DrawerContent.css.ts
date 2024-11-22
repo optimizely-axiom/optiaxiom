@@ -3,6 +3,7 @@ import { recipe, type RecipeVariants, style } from "../vanilla-extract";
 export const content = recipe({
   base: [
     {
+      color: "fg.default",
       display: "flex",
       flexDirection: "column",
     },
@@ -50,19 +51,6 @@ export const content = recipe({
       ],
     },
   },
-});
-
-export const close = recipe({
-  base: [
-    {
-      rounded: "full",
-    },
-    style({
-      position: "absolute",
-      right: 10,
-      top: 24,
-    }),
-  ],
 });
 
 export type DrawerVariants = RecipeVariants<typeof content>;

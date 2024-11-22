@@ -1,12 +1,10 @@
 import * as RadixDialog from "@radix-ui/react-dialog";
 import { forwardRef } from "react";
 
-import type { BoxProps } from "../box";
-
-import { Heading } from "../heading";
+import { Heading, type HeadingProps } from "../heading";
 import * as styles from "./DialogTitle.css";
 
-type DialogTitleProps = BoxProps<typeof RadixDialog.Title>;
+type DialogTitleProps = HeadingProps<typeof RadixDialog.Title>;
 
 export const DialogTitle = forwardRef<HTMLHeadingElement, DialogTitleProps>(
   ({ asChild, children, className, ...props }, ref) => {
