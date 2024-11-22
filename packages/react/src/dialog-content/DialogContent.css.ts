@@ -21,10 +21,10 @@ export const content = recipe({
         width: "400px",
       }),
       md: style({
-        width: "600px",
+        width: "clamp(600px, 50%, 800px)",
       }),
       lg: style({
-        width: "800px",
+        width: "clamp(900px, 75%, 1400px)",
       }),
       fullscreen: style({
         height: "100dvh",
