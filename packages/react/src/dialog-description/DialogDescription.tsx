@@ -4,6 +4,7 @@ import { forwardRef } from "react";
 import type { BoxProps } from "../box";
 
 import { Text } from "../text";
+import * as styles from "./DialogDescription.css";
 
 type DialogDescriptionProps = BoxProps<
   typeof RadixDialog.Description,
@@ -15,16 +16,9 @@ type DialogDescriptionProps = BoxProps<
 export const DialogDescription = forwardRef<
   HTMLParagraphElement,
   DialogDescriptionProps
->(({ children, ...props }, ref) => {
+>(({ children, className, ...props }, ref) => {
   return (
-    <Text
-      asChild
-      color="fg.secondary"
-      fontWeight="400"
-      ref={ref}
-      w="full"
-      {...props}
-    >
+    <Text asChild ref={ref} {...styles.description({}, className)} {...props}>
       <RadixDialog.Description>{children}</RadixDialog.Description>
     </Text>
   );

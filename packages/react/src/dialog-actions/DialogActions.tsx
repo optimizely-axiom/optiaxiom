@@ -5,13 +5,14 @@ import { type BoxProps } from "../box";
 import { Button } from "../button";
 import { Flex } from "../flex";
 import { IconX } from "../icons/IconX";
+import * as styles from "./DialogActions.css";
 
 type DialogActionsProps = BoxProps;
 
 export const DialogActions = forwardRef<HTMLHeadingElement, DialogActionsProps>(
-  ({ children, ...props }, ref) => {
+  ({ children, className, ...props }, ref) => {
     return (
-      <Flex flexDirection="row-reverse" gap="xs" ref={ref} {...props}>
+      <Flex ref={ref} {...styles.actions({}, className)} {...props}>
         <Button appearance="subtle" aria-label="Close" asChild icon={<IconX />}>
           <RadixDialog.Close />
         </Button>
