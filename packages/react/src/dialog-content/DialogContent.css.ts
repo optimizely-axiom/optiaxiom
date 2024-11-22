@@ -37,17 +37,4 @@ export const content = recipe({
   },
 });
 
-export const close = recipe({
-  base: [
-    {
-      rounded: "full",
-    },
-    style({
-      position: "absolute",
-      right: 24,
-      top: 24,
-    }),
-  ],
-});
-
 export type DialogVariants = RecipeVariants<typeof content>;

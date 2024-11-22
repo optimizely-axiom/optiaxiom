@@ -21,8 +21,8 @@ export const DialogDescription = forwardRef<
       asChild
       color="fg.secondary"
       fontWeight="400"
-      mt="xs"
       ref={ref}
+      w="full"
       {...props}
     >
       <RadixDialog.Description>{children}</RadixDialog.Description>

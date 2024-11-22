@@ -7,7 +7,15 @@ type DialogHeaderProps = BoxProps;
 export const DialogHeader = forwardRef<HTMLHeadingElement, DialogHeaderProps>(
   ({ children, ...props }, ref) => {
     return (
-      <Box p="lg" pb="md" ref={ref} {...props}>
+      <Box
+        display="flex"
+        flexWrap="wrap"
+        gap="xs"
+        p="lg"
+        pb="md"
+        ref={ref}
+        {...props}
+      >
         {children}
       </Box>
     );

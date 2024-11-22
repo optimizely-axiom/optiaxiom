@@ -40,6 +40,7 @@
     "./Checkbox": "./dist/components/Checkbox.js",
     "./Code": "./dist/components/Code.js",
     "./Dialog": "./dist/components/Dialog.js",
+    "./DialogActions": "./dist/components/DialogActions.js",
     "./DialogBody": "./dist/components/DialogBody.js",
     "./DialogClose": "./dist/components/DialogClose.js",
     "./DialogContent": "./dist/components/DialogContent.js",

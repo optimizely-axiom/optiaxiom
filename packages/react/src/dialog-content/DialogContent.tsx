@@ -4,9 +4,7 @@ import { type ComponentPropsWithoutRef, forwardRef } from "react";
 import { AnimatePresence } from "../animate-presence";
 import { Backdrop } from "../backdrop";
 import { type BoxProps } from "../box";
-import { Button } from "../button";
 import { useDialogContext } from "../dialog-context";
-import { IconX } from "../icons/IconX";
 import { Paper } from "../paper";
 import { Transition } from "../transition";
 import * as styles from "./DialogContent.css";
@@ -15,20 +13,12 @@ type DialogContentProps = BoxProps<
   typeof RadixDialog.Content,
   {
     transitionType?: ComponentPropsWithoutRef<typeof Transition>["type"];
-    withCloseButton?: boolean;
   } & styles.DialogVariants
 >;
 
 export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
   (
-    {
-      children,
-      className,
-      size = "md",
-      transitionType = "fade",
-      withCloseButton = false,
-      ...props
-    },
+    { children, className, size = "md", transitionType = "fade", ...props },
     ref,
   ) => {
     const { open } = useDialogContext("DialogContent");
@@ -50,22 +40,7 @@ export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
                 {...styles.content({ size }, className)}
                 {...props}
               >
-                <RadixDialog.Content ref={ref}>
-                  {children}
-
-                  {withCloseButton && (
-                    <Button
-                      appearance="subtle"
-                      aria-label="Close"
-                      asChild
-                      icon={<IconX />}
-                      size="sm"
-                      {...styles.close()}
-                    >
-                      <RadixDialog.Close />
-                    </Button>
-                  )}
-                </RadixDialog.Content>
+                <RadixDialog.Content ref={ref}>{children}</RadixDialog.Content>
               </Paper>
             </Transition>
           </RadixDialog.Portal>
