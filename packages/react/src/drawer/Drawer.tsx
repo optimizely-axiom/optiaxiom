@@ -1,93 +1,29 @@
 import * as RadixDrawer from "@radix-ui/react-dialog";
-import { forwardRef, type ReactNode } from "react";
+import { useControllableState } from "@radix-ui/react-use-controllable-state";
+import { type ComponentPropsWithoutRef } from "react";
 
-import { AnimatePresence } from "../animate-presence";
-import { Backdrop } from "../backdrop";
-import { type BoxProps } from "../box";
-import { Button } from "../button";
-import { IconX } from "../icons/IconX";
-import { Paper } from "../paper";
-import { Transition } from "../transition";
-import * as styles from "./Drawer.css";
+import { DrawerContextProvider } from "../drawer-context";
 
-type DrawerProps = BoxProps<
-  typeof RadixDrawer.Content,
-  {
-    children: ReactNode;
-    modal?: boolean;
-    onClose: () => void;
-    open?: boolean;
-    withCloseButton?: boolean;
-  } & styles.DrawerVariants
->;
+type DrawerProps = ComponentPropsWithoutRef<typeof RadixDrawer.Root>;
 
-const mapPositionToTransitionSide = {
-  bottom: "top",
-  left: "right",
-  right: "left",
-} as const;
+export function Drawer({
+  children,
+  defaultOpen,
+  modal,
+  onOpenChange,
+  open: openProp,
+}: DrawerProps) {
+  const [open, setOpen] = useControllableState({
+    defaultProp: defaultOpen,
+    onChange: onOpenChange,
+    prop: openProp,
+  });
 
-export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(
-  (
-    {
-      children,
-      modal,
-      onClose,
-      open,
-      position = "right",
-      withCloseButton = false,
-      ...props
-    },
-    ref,
-  ) => {
-    return (
-      <RadixDrawer.Root modal={modal} onOpenChange={onClose} open={open}>
-        <AnimatePresence>
-          {open && (
-            <RadixDrawer.Portal forceMount>
-              <Transition>
-                <Backdrop asChild>
-                  <RadixDrawer.Overlay />
-                </Backdrop>
-              </Transition>
-
-              <Transition
-                data-side={
-                  mapPositionToTransitionSide[
-                    position as keyof typeof mapPositionToTransitionSide
-                  ]
-                }
-                type="fade"
-              >
-                <Paper
-                  asChild
-                  elevation="drawer"
-                  {...styles.content({ position })}
-                >
-                  <RadixDrawer.Content ref={ref} {...props}>
-                    {children}
-
-                    {withCloseButton && (
-                      <Button
-                        appearance="subtle"
-                        aria-label="Close"
-                        asChild
-                        icon={<IconX />}
-                        size="sm"
-                        {...styles.close()}
-                      >
-                        <RadixDrawer.Close />
-                      </Button>
-                    )}
-                  </RadixDrawer.Content>
-                </Paper>
-              </Transition>
-            </RadixDrawer.Portal>
-          )}
-        </AnimatePresence>
-      </RadixDrawer.Root>
-    );
-  },
-);
+  return (
+    <RadixDrawer.Root modal={modal} onOpenChange={setOpen} open={open}>
+      <DrawerContextProvider open={open}>{children}</DrawerContextProvider>
+    </RadixDrawer.Root>
+  );
+}
 
 Drawer.displayName = "@optiaxiom/react/Drawer";

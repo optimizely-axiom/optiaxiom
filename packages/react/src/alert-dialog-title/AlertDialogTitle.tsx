@@ -1,15 +1,14 @@
 import * as RadixAlertDialog from "@radix-ui/react-alert-dialog";
 import { forwardRef, type ReactNode } from "react";
 
-import { type BoxProps } from "../box";
 import { Flex } from "../flex";
-import { Heading } from "../heading";
+import { Heading, type HeadingProps } from "../heading";
 import { Icon } from "../icon";
 import { IconTriangleExclamationFilled } from "../icons/IconTriangleExclamationFilled";
 import { extractSprinkles } from "../sprinkles";
 import { fallbackSpan } from "../utils";
 
-type AlertDialogTitleProps = BoxProps<
+type AlertDialogTitleProps = HeadingProps<
   typeof RadixAlertDialog.Title,
   {
     addonBefore?: ReactNode;

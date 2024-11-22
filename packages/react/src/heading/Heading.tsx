@@ -1,16 +1,21 @@
 import { Slot } from "@radix-ui/react-slot";
-import { forwardRef } from "react";
+import { type ElementType, forwardRef } from "react";
+
+import type { ExtendProps } from "../utils";
 
 import { Text, type TextProps } from "../text";
 
-type HeadingProps = TextProps<
-  "h1",
-  {
-    /**
-     * Presets for each level of heading h1-h6.
-     */
-    level?: keyof typeof mapLevelToTag;
-  }
+export type HeadingProps<T extends ElementType = "h1", P = unknown> = TextProps<
+  T,
+  ExtendProps<
+    {
+      /**
+       * Presets for each level of heading h1-h6.
+       */
+      level?: keyof typeof mapLevelToTag;
+    },
+    P
+  >
 >;
 
 const mapLevelToTag = {
