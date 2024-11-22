@@ -23,6 +23,7 @@ export * from "./button-group";
 export * from "./checkbox";
 export * from "./code";
 export * from "./dialog";
+export * from "./dialog-actions";
 export * from "./dialog-body";
 export * from "./dialog-close";
 export * from "./dialog-content";

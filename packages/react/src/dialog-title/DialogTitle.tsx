@@ -10,7 +10,7 @@ type DialogTitleProps = BoxProps<typeof RadixDialog.Title>;
 export const DialogTitle = forwardRef<HTMLHeadingElement, DialogTitleProps>(
   ({ asChild, children, ...props }, ref) => {
     return (
-      <Heading asChild fontWeight="500" level="3" ref={ref} {...props}>
+      <Heading asChild flex="1" fontWeight="500" level="3" ref={ref} {...props}>
         <RadixDialog.Title asChild={asChild}>{children}</RadixDialog.Title>
       </Heading>
     );

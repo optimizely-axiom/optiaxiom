@@ -10,6 +10,7 @@ import {
 import {
   Button,
   Dialog,
+  DialogActions,
   DialogBody,
   DialogClose,
   DialogContent,
@@ -40,9 +41,9 @@ Use the `size` prop to change the size of the dialog box.
 
 ### Close button
 
-Use the `withCloseButton` prop to show a close button to the top right of the modal.
+Include the `DialogActions` component inside the `DialogHeader` to show a close button to the top right of the modal.
 
-<Demo meta="/withCloseButton/" component={CloseUsage} />
+<Demo meta="/DialogActions/" component={CloseUsage} />
 
 ### Description
 
@@ -73,6 +74,8 @@ We can also completely change the trigger by using `asChild` and passing our own
 <PropsTable component={DialogHeader} />
 
 <PropsTable component={DialogTitle} />
+
+<PropsTable component={DialogActions} />
 
 <PropsTable component={DialogDescription} />
 

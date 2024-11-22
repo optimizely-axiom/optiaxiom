@@ -1,7 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import {
+  Button,
   Dialog,
+  DialogActions,
   DialogBody,
   DialogClose,
   DialogContent,
@@ -12,16 +14,15 @@ import {
   DialogTrigger,
 } from "@optiaxiom/react";
 import { expect, screen, userEvent, waitFor } from "@storybook/test";
-import { type ComponentPropsWithoutRef } from "react";
+import { IconArrowsDiagonal } from "@tabler/icons-react";
+import { type ComponentPropsWithoutRef, type ReactNode } from "react";
 
 type DialogStoryProps = {
+  actions?: ReactNode;
   content?: string;
   description?: string;
 } & ComponentPropsWithoutRef<typeof Dialog> &
-  Pick<
-    ComponentPropsWithoutRef<typeof DialogContent>,
-    "size" | "withCloseButton"
-  >;
+  Pick<ComponentPropsWithoutRef<typeof DialogContent>, "size">;
 
 export default {
   args: {
@@ -32,7 +33,7 @@ export default {
   parameters: {
     useOverlayDecorator: true,
   },
-  render: ({ content, description, size, withCloseButton, ...args }) => {
+  render: ({ actions, content, description, size, ...args }) => {
     return (
       <Dialog {...args}>
         <DialogTrigger>Open Dialog</DialogTrigger>
@@ -40,10 +41,10 @@ export default {
         <DialogContent
           {...(!description && { ["aria-describedby"]: undefined })}
           size={size}
-          withCloseButton={withCloseButton}
         >
           <DialogHeader>
             <DialogTitle>Dialog</DialogTitle>
+            {actions && <DialogActions>{actions}</DialogActions>}
             {description && (
               <DialogDescription>{description}</DialogDescription>
             )}
@@ -101,7 +102,7 @@ export const Basic: Story = {
 
 export const CloseButton: Story = {
   args: {
-    withCloseButton: true,
+    actions: true,
   },
   play: async ({ canvas }) => {
     await expect(
@@ -125,6 +126,12 @@ export const CloseButton: Story = {
     await expect(
       await screen.findByRole("dialog", { name: "Dialog" }),
     ).toBeInTheDocument();
+  },
+};
+
+export const Actions: Story = {
+  args: {
+    actions: <Button appearance="subtle" icon={<IconArrowsDiagonal />} />,
   },
 };
 
