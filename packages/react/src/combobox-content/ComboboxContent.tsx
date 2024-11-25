@@ -6,6 +6,7 @@ import type { ComboboxPopoverContent } from "../combobox-popover-content";
 
 import { useComboboxContext } from "../combobox-context";
 import { Command } from "../command";
+import { CommandListbox } from "../command-listbox";
 import { useFieldContext } from "../field-context";
 import { useResponsiveMatches } from "../use-responsive-matches";
 
@@ -68,7 +69,7 @@ export const ComboboxContent = forwardRef<HTMLDivElement, ComboboxContentProps>(
           }}
           value={value}
         >
-          {children}
+          <CommandListbox>{children}</CommandListbox>
         </Command>
       </components.Content>
     );

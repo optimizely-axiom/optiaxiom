@@ -8,7 +8,6 @@ import {
   SpotlightEmpty,
   SpotlightInput,
   SpotlightLabel,
-  SpotlightList,
   SpotlightRadioItem,
   SpotlightScrollArea,
   SpotlightSub,
@@ -176,69 +175,50 @@ export const Basic: Story<{ items?: Item[] } & Item> = {
         <SpotlightContent>
           <SpotlightInput placeholder="Search..." />
 
-          <SpotlightList>
-            <SpotlightSub
-              borderB="1"
-              borderColor="border.tertiary"
-              item={types}
-              pb="sm"
-            >
-              {types.items.map((item) => (
-                <SpotlightSubItem
-                  item={item}
-                  key={item.title}
-                  selected={filter === item}
-                >
-                  {item.title}
-                </SpotlightSubItem>
-              ))}
-            </SpotlightSub>
+          <SpotlightSub
+            borderB="1"
+            borderColor="border.tertiary"
+            item={types}
+            pb="sm"
+          >
+            {types.items.map((item) => (
+              <SpotlightSubItem
+                item={item}
+                key={item.title}
+                selected={filter === item}
+              >
+                {item.title}
+              </SpotlightSubItem>
+            ))}
+          </SpotlightSub>
 
-            <SpotlightScrollArea>
-              {filteredItems.map((item) => (
-                <Fragment key={item.title}>
-                  {shouldShowCategory(item.category) && (
-                    <SpotlightLabel>{item.category}</SpotlightLabel>
-                  )}
+          <SpotlightScrollArea>
+            {filteredItems.map((item) => (
+              <Fragment key={item.title}>
+                {shouldShowCategory(item.category) && (
+                  <SpotlightLabel>{item.category}</SpotlightLabel>
+                )}
 
-                  {item === empty ? (
-                    <>
-                      <SpotlightEmpty>
-                        <Box>
-                          No results for &quot;
-                          <Box asChild color="fg.default">
-                            <span>{inputValue}</span>
-                          </Box>
-                          &quot;
+                {item === empty ? (
+                  <>
+                    <SpotlightEmpty>
+                      <Box>
+                        No results for &quot;
+                        <Box asChild color="fg.default">
+                          <span>{inputValue}</span>
                         </Box>
-                      </SpotlightEmpty>
+                        &quot;
+                      </Box>
+                    </SpotlightEmpty>
 
-                      <SpotlightRadioItem item={item}>
-                        Try searching for: <strong>Gap</strong>
-                      </SpotlightRadioItem>
-                    </>
-                  ) : (
-                    <SpotlightRadioItem
-                      description={
-                        <Highlight
-                          content={item.description}
-                          query={inputValue}
-                        >
-                          {(chunk) => (
-                            <Box
-                              asChild
-                              borderB="2"
-                              borderColor="fg.information"
-                              fontWeight="600"
-                            >
-                              {chunk}
-                            </Box>
-                          )}
-                        </Highlight>
-                      }
-                      item={item}
-                    >
-                      <Highlight content={item.title} query={inputValue}>
+                    <SpotlightRadioItem item={item}>
+                      Try searching for: <strong>Gap</strong>
+                    </SpotlightRadioItem>
+                  </>
+                ) : (
+                  <SpotlightRadioItem
+                    description={
+                      <Highlight content={item.description} query={inputValue}>
                         {(chunk) => (
                           <Box
                             asChild
@@ -250,12 +230,26 @@ export const Basic: Story<{ items?: Item[] } & Item> = {
                           </Box>
                         )}
                       </Highlight>
-                    </SpotlightRadioItem>
-                  )}
-                </Fragment>
-              ))}
-            </SpotlightScrollArea>
-          </SpotlightList>
+                    }
+                    item={item}
+                  >
+                    <Highlight content={item.title} query={inputValue}>
+                      {(chunk) => (
+                        <Box
+                          asChild
+                          borderB="2"
+                          borderColor="fg.information"
+                          fontWeight="600"
+                        >
+                          {chunk}
+                        </Box>
+                      )}
+                    </Highlight>
+                  </SpotlightRadioItem>
+                )}
+              </Fragment>
+            ))}
+          </SpotlightScrollArea>
         </SpotlightContent>
       </Spotlight>
     );

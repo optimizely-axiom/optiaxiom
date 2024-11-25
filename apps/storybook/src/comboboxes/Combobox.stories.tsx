@@ -11,7 +11,6 @@ import {
   ComboboxInput,
   ComboboxItem,
   ComboboxLabel,
-  ComboboxListbox,
   ComboboxRadioItem,
   ComboboxScrollArea,
   ComboboxSeparator,
@@ -113,13 +112,13 @@ export const Basic: Story = {
         </ComboboxTrigger>
         <ComboboxContent>
           <ComboboxInput placeholder="Languages..." />
-          <ComboboxListbox>
+          <ComboboxScrollArea>
             {items.map((item) => (
               <ComboboxRadioItem item={item} key={item}>
                 {item}
               </ComboboxRadioItem>
             ))}
-          </ComboboxListbox>
+          </ComboboxScrollArea>
           {items.length === 0 && <ComboboxEmpty>No result found</ComboboxEmpty>}
         </ComboboxContent>
       </Combobox>
@@ -171,13 +170,13 @@ export const Multiple: Story = {
         </ComboboxTrigger>
         <ComboboxContent>
           <ComboboxInput placeholder="Languages..." />
-          <ComboboxListbox>
+          <ComboboxScrollArea>
             {items.map((item) => (
               <ComboboxCheckboxItem item={item} key={item}>
                 {item}
               </ComboboxCheckboxItem>
             ))}
-          </ComboboxListbox>
+          </ComboboxScrollArea>
           {items.length === 0 && <ComboboxEmpty>No result found</ComboboxEmpty>}
         </ComboboxContent>
       </Combobox>
@@ -311,7 +310,7 @@ export const People: Story<(typeof users)[number]> = {
 
         <ComboboxContent>
           <ComboboxInput placeholder="People..." />
-          <ComboboxListbox>
+          <ComboboxScrollArea>
             {items.map((user) => (
               <Fragment key={user.id}>
                 {user === actions.all && <ComboboxSeparator />}
@@ -353,7 +352,7 @@ export const People: Story<(typeof users)[number]> = {
                 {user === actions.me && <ComboboxSeparator />}
               </Fragment>
             ))}
-          </ComboboxListbox>
+          </ComboboxScrollArea>
         </ComboboxContent>
       </Combobox>
     );
@@ -483,25 +482,23 @@ export const Controlled: Story<Book> = {
         <ComboboxContent>
           <ComboboxInput placeholder="Books..." />
 
-          <ComboboxListbox>
-            <ComboboxScrollArea>
-              {items.map((book) => (
-                <ComboboxCheckboxItem item={book} key={book.id}>
-                  {book.title}
-                </ComboboxCheckboxItem>
-              ))}
-            </ComboboxScrollArea>
+          <ComboboxScrollArea>
+            {items.map((book) => (
+              <ComboboxCheckboxItem item={book} key={book.id}>
+                {book.title}
+              </ComboboxCheckboxItem>
+            ))}
+          </ComboboxScrollArea>
 
-            <ComboboxFooter>
-              <ComboboxItem asChild item={controlledActions.clear}>
-                <Button disabled={value.length === 0}>Clear All</Button>
-              </ComboboxItem>
+          <ComboboxFooter>
+            <ComboboxItem asChild item={controlledActions.clear}>
+              <Button disabled={value.length === 0}>Clear All</Button>
+            </ComboboxItem>
 
-              <ComboboxItem asChild item={controlledActions.done}>
-                <Button appearance="primary">Done</Button>
-              </ComboboxItem>
-            </ComboboxFooter>
-          </ComboboxListbox>
+            <ComboboxItem asChild item={controlledActions.done}>
+              <Button appearance="primary">Done</Button>
+            </ComboboxItem>
+          </ComboboxFooter>
         </ComboboxContent>
       </Combobox>
     );
@@ -560,7 +557,7 @@ export const Group: Story = {
 
         <ComboboxContent>
           <ComboboxInput placeholder="Search foods..." />
-          <ComboboxListbox>
+          <ComboboxScrollArea>
             {filteredFruits.length > 0 && (
               <ComboboxGroup>
                 <ComboboxLabel>Fruits</ComboboxLabel>
@@ -593,7 +590,7 @@ export const Group: Story = {
                 ))}
               </ComboboxGroup>
             )}
-          </ComboboxListbox>
+          </ComboboxScrollArea>
         </ComboboxContent>
       </Combobox>
     );
