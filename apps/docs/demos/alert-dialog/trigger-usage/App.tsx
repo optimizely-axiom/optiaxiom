@@ -1,9 +1,9 @@
 import {
   AlertDialog,
   AlertDialogAction,
+  AlertDialogBody,
   AlertDialogCancel,
   AlertDialogContent,
-  AlertDialogDescription,
   AlertDialogFooter,
   AlertDialogTitle,
   AlertDialogTrigger,
@@ -21,9 +21,9 @@ export function App() {
 
       <AlertDialogContent>
         <AlertDialogTitle>Are you sure?</AlertDialogTitle>
-        <AlertDialogDescription>
+        <AlertDialogBody>
           Are you sure you want to delete this task?
-        </AlertDialogDescription>
+        </AlertDialogBody>
         <AlertDialogFooter>
           <AlertDialogCancel />
           <AlertDialogAction>Yes, Delete</AlertDialogAction>

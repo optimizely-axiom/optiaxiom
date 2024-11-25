@@ -1,9 +1,9 @@
 import {
   AlertDialog,
   AlertDialogAction,
+  AlertDialogBody,
   AlertDialogCancel,
   AlertDialogContent,
-  AlertDialogDescription,
   AlertDialogFooter,
   AlertDialogTitle,
   AlertDialogTrigger,
@@ -28,10 +28,10 @@ export function App() {
 
       <AlertDialogContent>
         <AlertDialogTitle>Are you sure?</AlertDialogTitle>
-        <AlertDialogDescription>
+        <AlertDialogBody>
           The task and all contents will be deleted. This action cannot be
           undone.
-        </AlertDialogDescription>
+        </AlertDialogBody>
         <AlertDialogFooter>
           <AlertDialogCancel disabled={loading} />
           <AlertDialogAction

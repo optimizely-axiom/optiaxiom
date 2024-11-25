@@ -9,7 +9,7 @@ import {
   DropdownMenuTrigger,
   Sidenav,
   SidenavAccountItem,
-  SidenavContent,
+  SidenavBody,
   SidenavFooter,
   SidenavItem,
   SidenavToggle,
@@ -27,8 +27,8 @@ import {
   IconVocabulary,
 } from "@tabler/icons-react";
 
-const content = (
-  <SidenavContent>
+const body = (
+  <SidenavBody>
     <SidenavItem aria-label="Projects" icon={<IconBinaryTree />}>
       Projects
     </SidenavItem>
@@ -58,14 +58,14 @@ const content = (
     >
       <a href="/">Tutorial</a>
     </SidenavItem>
-  </SidenavContent>
+  </SidenavBody>
 );
 
 export default {
   args: {
     children: (
       <>
-        {content}
+        {body}
 
         <SidenavFooter>
           <SidenavToggle icon={<IconLayoutSidebar />} />
@@ -109,7 +109,7 @@ export const NotCollapsible: Story = {
   args: {
     children: (
       <>
-        {content}
+        {body}
 
         <SidenavFooter>
           <DropdownMenu>

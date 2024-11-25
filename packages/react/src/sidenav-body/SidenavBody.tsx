@@ -4,9 +4,9 @@ import { type BoxProps } from "../box";
 import { Flex } from "../flex";
 import { extractSprinkles } from "../sprinkles";
 
-type SidenavContentProps = BoxProps<"ul">;
+type SidenavBodyProps = BoxProps<"ul">;
 
-export const SidenavContent = forwardRef<HTMLUListElement, SidenavContentProps>(
+export const SidenavBody = forwardRef<HTMLUListElement, SidenavBodyProps>(
   ({ children, ...props }, ref) => {
     const { restProps, sprinkleProps } = extractSprinkles(props);
 
@@ -30,4 +30,4 @@ export const SidenavContent = forwardRef<HTMLUListElement, SidenavContentProps>(
   },
 );
 
-SidenavContent.displayName = "@optiaxiom/react/SidenavContent";
+SidenavBody.displayName = "@optiaxiom/react/SidenavBody";
