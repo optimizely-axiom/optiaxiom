@@ -3,6 +3,7 @@ import { theme } from "@optiaxiom/globals";
 import * as styles from "../toast-provider/ToastProvider.css";
 import {
   createVar,
+  globalStyle,
   keyframes,
   recipe,
   type RecipeVariants,
@@ -35,8 +36,11 @@ const swipeOut = keyframes({
   },
 });
 
+const marker = style({});
+
 export const root = recipe({
   base: [
+    marker,
     {
       alignItems: "center",
       bg: "bg.default.inverse",
@@ -154,6 +158,11 @@ export const icon = recipe({
       color: accentColorVar,
     }),
   ],
+});
+
+globalStyle(`${marker} a`, {
+  color: theme.colors["link.fg.inverse"],
+  textDecoration: "underline",
 });
 
 export type RootVariants = RecipeVariants<typeof root>;

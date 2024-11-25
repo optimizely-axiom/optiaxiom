@@ -1,3 +1,4 @@
+export { globalStyle } from "./globalStyle";
 export * from "./recipe";
 export { responsiveStyle } from "./responsiveStyle";
 export { style } from "./style";
