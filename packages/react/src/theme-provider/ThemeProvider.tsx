@@ -14,13 +14,17 @@ export function ThemeProvider({
   return (
     <>
       <style>{`
-        ${selector} {
-          ${assignInlineVars(theme, tokens)}
+        @layer optiaxiom.theme {
+          ${selector} {
+            ${assignInlineVars(theme, tokens)}
+          }
         }
       `}</style>
       <style>{`
-        ${selector === ":host" ? ":host-context(:root.dark)" : `${selector}.dark`} {
-          ${assignInlineVars(theme, tokensDark)}
+        @layer optiaxiom.theme {
+          ${selector === ":host" ? ":host-context(:root.dark)" : `${selector}.dark`} {
+            ${assignInlineVars(theme, tokensDark)}
+          }
         }
       `}</style>
       {children}
