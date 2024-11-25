@@ -7,7 +7,6 @@ import {
   SpotlightContent,
   SpotlightEmpty,
   SpotlightInput,
-  SpotlightItem,
   SpotlightLabel,
   SpotlightList,
   SpotlightRadioItem,
@@ -214,9 +213,9 @@ export const Basic: Story<{ items?: Item[] } & Item> = {
                         </Box>
                       </SpotlightEmpty>
 
-                      <SpotlightItem item={item}>
+                      <SpotlightRadioItem item={item}>
                         Try searching for: <strong>Gap</strong>
-                      </SpotlightItem>
+                      </SpotlightRadioItem>
                     </>
                   ) : (
                     <SpotlightRadioItem
