@@ -3,6 +3,7 @@ import { useCombobox } from "downshift";
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import { Command } from "../command";
+import { CommandListbox } from "../command-listbox";
 import { DialogContent } from "../dialog-content";
 import { DialogTitle } from "../dialog-title";
 import { PopoverContent } from "../popover-content";
@@ -30,7 +31,9 @@ export const SpotlightContent = forwardRef<
   return (
     <DialogContent
       aria-describedby={undefined}
+      gap="0"
       overflow="hidden"
+      pb="lg"
       ref={ref}
       transitionType="pop"
       {...props}
@@ -68,7 +71,7 @@ export const SpotlightContent = forwardRef<
           }
         }}
       >
-        {children}
+        <CommandListbox>{children}</CommandListbox>
       </Command>
     </DialogContent>
   );

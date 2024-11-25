@@ -12,7 +12,6 @@ import {
   ComboboxInput,
   ComboboxItem,
   ComboboxLabel,
-  ComboboxListbox,
   ComboboxRadioItem,
   ComboboxScrollArea,
   ComboboxSeparator,
@@ -43,7 +42,6 @@ import {
   ComboboxInput,
   ComboboxItem,
   ComboboxLabel,
-  ComboboxListbox,
   ComboboxRadioItem,
   ComboboxScrollArea,
   ComboboxSeparator,
@@ -60,15 +58,7 @@ export default () => (
     <ComboboxContent>
       <ComboboxInput />
 
-      <ComboboxListbox>
-        <ComboboxScrollArea>
-          {/**
-           * Everything inside <ComboboxListbox /> except for:
-           *  - <ComboboxFooter />
-           *  - <ComboboxScrollArea />
-           */}
-        </ComboboxScrollArea>
-
+      <ComboboxScrollArea>
         <ComboboxItem />
         <ComboboxCheckboxItem />
         <ComboboxRadioItem />
@@ -81,9 +71,10 @@ export default () => (
         </ComboboxGroup>
 
         <ComboboxEmpty />
-        <ComboboxFooter />
         <ComboboxSeparator />
-      </ComboboxListbox>
+      </ComboboxScrollArea>
+
+      <ComboboxFooter />
     </ComboboxContent>
   </Combobox>
 );
@@ -96,7 +87,6 @@ export default () => (
 <PropsTable component={ComboboxValue} />
 <PropsTable component={ComboboxContent} />
 <PropsTable component={ComboboxInput} base={Input} />
-<PropsTable component={ComboboxListbox} />
 <PropsTable component={ComboboxScrollArea} />
 <PropsTable component={ComboboxItem} />
 <PropsTable component={ComboboxCheckboxItem} />
