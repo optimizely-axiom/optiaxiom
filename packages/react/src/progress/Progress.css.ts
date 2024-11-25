@@ -22,4 +22,4 @@ export const indicator = recipe({
   },
 });
 
-export type ProgressVariants = NonNullable<RecipeVariants<typeof indicator>>;
+export type ProgressVariants = RecipeVariants<typeof indicator>;

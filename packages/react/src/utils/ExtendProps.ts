@@ -1,1 +1,2 @@
-export type ExtendProps<T1, T2> = Omit<T1, keyof T1 & keyof T2> & T2;
+export type ExtendProps<T1, T2> = NonNullable<T2> &
+  Omit<NonNullable<T1>, keyof NonNullable<T1> & keyof NonNullable<T2>>;

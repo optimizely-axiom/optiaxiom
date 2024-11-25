@@ -15,7 +15,7 @@ import * as styles from "./AlertDialogContent.css";
 
 type AlertDialogContentProps = BoxProps<
   typeof RadixAlertDialog.Content,
-  NonNullable<styles.DialogVariants>
+  styles.DialogVariants
 >;
 
 export const AlertDialogContent = forwardRef<

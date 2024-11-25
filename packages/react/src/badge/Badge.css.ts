@@ -89,4 +89,4 @@ export const badge = recipe({
   },
 });
 
-export type BadgeVariants = NonNullable<RecipeVariants<typeof badge>>;
+export type BadgeVariants = RecipeVariants<typeof badge>;

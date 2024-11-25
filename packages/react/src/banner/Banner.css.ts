@@ -62,4 +62,4 @@ export const icon = recipe({
   },
 });
 
-export type BannerVariants = NonNullable<RecipeVariants<typeof banner>>;
+export type BannerVariants = RecipeVariants<typeof banner>;

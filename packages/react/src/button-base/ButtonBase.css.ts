@@ -251,4 +251,4 @@ export const spinner = recipe({
   }),
 });
 
-export type ButtonVariants = NonNullable<RecipeVariants<typeof buttonBase>>;
+export type ButtonVariants = RecipeVariants<typeof buttonBase>;

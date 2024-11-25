@@ -13,10 +13,7 @@ import { IconX } from "../icons/IconX";
 import { extractSprinkles } from "../sprinkles";
 import * as styles from "./Toast.css";
 
-type ToastProps = BoxProps<
-  typeof RadixToast.Root,
-  NonNullable<styles.RootVariants>
->;
+type ToastProps = BoxProps<typeof RadixToast.Root, styles.RootVariants>;
 
 const mapIntentToIcon = {
   danger: IconCircleExclamationFilled,
