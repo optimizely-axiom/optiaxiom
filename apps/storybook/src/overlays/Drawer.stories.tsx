@@ -28,6 +28,9 @@ export default {
     defaultOpen: true,
   },
   component: Drawer,
+  parameters: {
+    useOverlayDecorator: true,
+  },
   render: function Template({
     actions,
     content,
