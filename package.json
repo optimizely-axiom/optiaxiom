@@ -44,6 +44,7 @@
   },
   "pnpm": {
     "patchedDependencies": {
+      "framer-motion": "patches/framer-motion.patch",
       "react-docgen-typescript": "patches/react-docgen-typescript.patch"
     }
   }
