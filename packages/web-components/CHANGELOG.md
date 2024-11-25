@@ -1,5 +1,11 @@
 # @optiaxiom/web-components
 
+## 0.3.0
+
+### Minor Changes
+
+- d1aa0a5: consistent Header/Body/Footer component part names
+
 ## 0.2.1
 
 ### Patch Changes

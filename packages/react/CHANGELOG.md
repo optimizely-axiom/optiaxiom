@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 0.7.0
+
+### Minor Changes
+
+- d1aa0a5: consistent Header/Body/Footer component part names
+
 ## 0.6.0
 
 ### Minor Changes
