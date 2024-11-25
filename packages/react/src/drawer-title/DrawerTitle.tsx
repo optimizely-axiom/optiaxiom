@@ -1,10 +1,10 @@
-import * as RadixDrawer from "@radix-ui/react-dialog";
+import * as RadixDialog from "@radix-ui/react-dialog";
 import { forwardRef } from "react";
 
 import { Heading, type HeadingProps } from "../heading";
 import * as styles from "./DrawerTitle.css";
 
-type DrawerTitleProps = HeadingProps<typeof RadixDrawer.Title>;
+type DrawerTitleProps = HeadingProps<typeof RadixDialog.Title>;
 
 export const DrawerTitle = forwardRef<HTMLDivElement, DrawerTitleProps>(
   ({ asChild, children, className, ...props }, ref) => {
@@ -16,7 +16,7 @@ export const DrawerTitle = forwardRef<HTMLDivElement, DrawerTitleProps>(
         {...styles.title({}, className)}
         {...props}
       >
-        <RadixDrawer.Title asChild={asChild}>{children}</RadixDrawer.Title>
+        <RadixDialog.Title asChild={asChild}>{children}</RadixDialog.Title>
       </Heading>
     );
   },
