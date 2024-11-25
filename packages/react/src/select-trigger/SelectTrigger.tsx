@@ -1,6 +1,6 @@
 import { PopperAnchor } from "@radix-ui/react-popper";
 import { Slot } from "@radix-ui/react-slot";
-import { forwardRef, useEffect, useRef } from "react";
+import { forwardRef, type KeyboardEvent, useEffect, useRef } from "react";
 
 import { type ButtonProps } from "../button";
 import { useFieldContext } from "../field-context";
@@ -10,7 +10,7 @@ import { useSelectContext } from "../select-context";
 type SelectTriggerProps = ButtonProps<typeof PopperAnchor>;
 
 export const SelectTrigger = forwardRef<HTMLButtonElement, SelectTriggerProps>(
-  ({ asChild, children, ...props }, ref) => {
+  ({ asChild, children, onKeyDown, ...props }, ref) => {
     const { disabled, downshift } = useSelectContext("SelectTrigger");
 
     const { labelId } = useFieldContext();
@@ -35,7 +35,13 @@ export const SelectTrigger = forwardRef<HTMLButtonElement, SelectTriggerProps>(
       <PopperAnchor
         asChild
         {...props}
-        {...downshift.getToggleButtonProps({ disabled })}
+        {...downshift.getToggleButtonProps({
+          disabled,
+          onKeyDown: (event) => {
+            onKeyDown?.(event as KeyboardEvent<HTMLDivElement>);
+            document.dispatchEvent(new Event("tooltip.open"));
+          },
+        })}
       >
         <Slot ref={ref}>
           {asChild ? (
