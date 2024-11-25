@@ -1,4 +1,4 @@
-import * as RadixDrawer from "@radix-ui/react-dialog";
+import * as RadixDialog from "@radix-ui/react-dialog";
 import { forwardRef } from "react";
 
 import { AnimatePresence } from "../animate-presence";
@@ -10,7 +10,7 @@ import { Transition } from "../transition";
 import * as styles from "./DrawerContent.css";
 
 type DrawerContentProps = BoxProps<
-  typeof RadixDrawer.Content,
+  typeof RadixDialog.Content,
   styles.DrawerVariants
 >;
 
@@ -27,10 +27,10 @@ export const DrawerContent = forwardRef<HTMLDivElement, DrawerContentProps>(
     return (
       <AnimatePresence>
         {open && (
-          <RadixDrawer.Portal forceMount>
+          <RadixDialog.Portal forceMount>
             <Transition>
               <Backdrop asChild>
-                <RadixDrawer.Overlay />
+                <RadixDialog.Overlay />
               </Backdrop>
             </Transition>
 
@@ -47,12 +47,12 @@ export const DrawerContent = forwardRef<HTMLDivElement, DrawerContentProps>(
                 elevation="drawer"
                 {...styles.content({ position })}
               >
-                <RadixDrawer.Content ref={ref} {...props}>
+                <RadixDialog.Content ref={ref} {...props}>
                   {children}
-                </RadixDrawer.Content>
+                </RadixDialog.Content>
               </Paper>
             </Transition>
-          </RadixDrawer.Portal>
+          </RadixDialog.Portal>
         )}
       </AnimatePresence>
     );

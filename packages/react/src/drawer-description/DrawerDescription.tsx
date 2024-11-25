@@ -1,10 +1,10 @@
-import * as RadixDrawer from "@radix-ui/react-dialog";
+import * as RadixDialog from "@radix-ui/react-dialog";
 import { forwardRef } from "react";
 
 import { Text, type TextProps } from "../text";
 import * as styles from "./DrawerDescription.css";
 
-type DrawerDescriptionProps = TextProps<typeof RadixDrawer.Description>;
+type DrawerDescriptionProps = TextProps<typeof RadixDialog.Description>;
 
 export const DrawerDescription = forwardRef<
   HTMLParagraphElement,
@@ -12,7 +12,7 @@ export const DrawerDescription = forwardRef<
 >(({ children, className, ...props }, ref) => {
   return (
     <Text asChild ref={ref} {...styles.description({}, className)} {...props}>
-      <RadixDrawer.Description>{children}</RadixDrawer.Description>
+      <RadixDialog.Description>{children}</RadixDialog.Description>
     </Text>
   );
 });

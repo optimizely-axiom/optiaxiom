@@ -1,10 +1,10 @@
-import * as RadixDrawer from "@radix-ui/react-dialog";
+import * as RadixDialog from "@radix-ui/react-dialog";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import { type ComponentPropsWithoutRef } from "react";
 
 import { DrawerContextProvider } from "../drawer-context";
 
-type DrawerProps = ComponentPropsWithoutRef<typeof RadixDrawer.Root>;
+type DrawerProps = ComponentPropsWithoutRef<typeof RadixDialog.Root>;
 
 export function Drawer({
   children,
@@ -20,9 +20,9 @@ export function Drawer({
   });
 
   return (
-    <RadixDrawer.Root modal={modal} onOpenChange={setOpen} open={open}>
+    <RadixDialog.Root modal={modal} onOpenChange={setOpen} open={open}>
       <DrawerContextProvider open={open}>{children}</DrawerContextProvider>
-    </RadixDrawer.Root>
+    </RadixDialog.Root>
   );
 }
 
