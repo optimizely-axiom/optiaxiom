@@ -3,9 +3,9 @@ import type { Meta, StoryObj } from "@storybook/react";
 import {
   AlertDialog,
   AlertDialogAction,
+  AlertDialogBody,
   AlertDialogCancel,
   AlertDialogContent,
-  AlertDialogDescription,
   AlertDialogFooter,
   AlertDialogTitle,
   AlertDialogTrigger,
@@ -39,7 +39,7 @@ export default {
 
         <AlertDialogContent size={size}>
           <AlertDialogTitle>{title}</AlertDialogTitle>
-          <AlertDialogDescription>{description}</AlertDialogDescription>
+          <AlertDialogBody>{description}</AlertDialogBody>
           <AlertDialogFooter>
             <AlertDialogCancel>{cancel}</AlertDialogCancel>
             <AlertDialogAction>{action}</AlertDialogAction>

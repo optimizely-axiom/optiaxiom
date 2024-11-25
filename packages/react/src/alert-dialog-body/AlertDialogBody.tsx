@@ -2,15 +2,13 @@ import * as RadixAlertDialog from "@radix-ui/react-alert-dialog";
 import { forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
-import * as styles from "./AlertDialogDescription.css";
+import * as styles from "./AlertDialogBody.css";
 
-type AlertDialogDescriptionProps = BoxProps<
-  typeof RadixAlertDialog.Description
->;
+type AlertDialogBodyProps = BoxProps<typeof RadixAlertDialog.Description>;
 
-export const AlertDialogDescription = forwardRef<
+export const AlertDialogBody = forwardRef<
   HTMLParagraphElement,
-  AlertDialogDescriptionProps
+  AlertDialogBodyProps
 >(({ children, className, ...props }, ref) => {
   return (
     <Box asChild {...styles.body({}, className)} ref={ref} {...props}>
@@ -19,4 +17,4 @@ export const AlertDialogDescription = forwardRef<
   );
 });
 
-AlertDialogDescription.displayName = "@optiaxiom/react/AlertDialogDescription";
+AlertDialogBody.displayName = "@optiaxiom/react/AlertDialogBody";

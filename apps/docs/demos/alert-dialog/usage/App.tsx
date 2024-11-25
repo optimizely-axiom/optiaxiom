@@ -1,9 +1,9 @@
 import {
   AlertDialog,
   AlertDialogAction,
+  AlertDialogBody,
   AlertDialogCancel,
   AlertDialogContent,
-  AlertDialogDescription,
   AlertDialogFooter,
   AlertDialogTitle,
   AlertDialogTrigger,
@@ -30,9 +30,9 @@ export function App() {
         <AlertDialogContent>
           <AlertDialogTitle>Are you sure?</AlertDialogTitle>
 
-          <AlertDialogDescription>
+          <AlertDialogBody>
             The comment and all replies will be deleted.
-          </AlertDialogDescription>
+          </AlertDialogBody>
 
           <AlertDialogFooter>
             <AlertDialogCancel />
