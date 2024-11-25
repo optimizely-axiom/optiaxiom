@@ -1,5 +1,19 @@
 # @optiaxiom/react
 
+## 0.6.0
+
+### Minor Changes
+
+- 62c2cd7: introduce DialogActions component
+- 1ba61e8: introduce DialogHeader component
+- 98a24a1: add inline input component
+
+### Patch Changes
+
+- 174d990: fix framer-motion to work with react 17
+- 3e97741: refactor drawer components to match dialog anatomy
+- 7f0bec1: set default minW to trigger for `Combobox`
+
 ## 0.5.4
 
 ### Patch Changes
