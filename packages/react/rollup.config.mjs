@@ -70,19 +70,6 @@ export default defineConfig([
       nodeResolve({
         preferBuiltins: false,
       }),
-      {
-        name: "framer-motion:useId",
-        transform(code, id) {
-          if (!id.includes("framer-motion")) {
-            return null;
-          }
-
-          return code.replace(
-            /^(import.*)\suseId,/m,
-            `import { useId } from "@reach/auto-id"; $1`,
-          );
-        },
-      },
       esbuild({
         define: {
           "process.env.NODE_ENV": JSON.stringify(env),

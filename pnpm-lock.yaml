@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 patchedDependencies:
+  framer-motion:
+    hash: fcf7jjqh4eojsxb6ugcpywnnuy
+    path: patches/framer-motion.patch
   react-docgen-typescript:
     hash: 2ld3tc3apzxpaqkeup6dsrfezi
     path: patches/react-docgen-typescript.patch
@@ -395,7 +398,7 @@ importers:
         version: 1.16.0
       framer-motion:
         specifier: ^11.11.17
-        version: 11.11.17(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 11.11.17(patch_hash=fcf7jjqh4eojsxb6ugcpywnnuy)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
 
   packages/shared:
     dependencies:
@@ -11973,7 +11976,7 @@ snapshots:
     dependencies:
       fetch-blob: 3.2.0
 
-  framer-motion@11.11.17(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  framer-motion@11.11.17(patch_hash=fcf7jjqh4eojsxb6ugcpywnnuy)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
       tslib: 2.8.1
     optionalDependencies:
