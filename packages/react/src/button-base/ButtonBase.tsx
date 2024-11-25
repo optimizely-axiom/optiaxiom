@@ -28,7 +28,7 @@ export type ButtonBaseProps<
       children?: ReactNode;
       disabled?: boolean;
       loading?: boolean;
-    } & Omit<styles.ButtonVariants, "intent" | "variant">,
+    } & Omit<NonNullable<styles.ButtonVariants>, "intent" | "variant">,
     P
   >
 >;

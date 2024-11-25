@@ -6,10 +6,7 @@ import { Box, type BoxProps } from "../box";
 import { extractSprinkles } from "../sprinkles";
 import * as styles from "./TextareaAutosize.css";
 
-type TextareaAutosizeProps = BoxProps<
-  "textarea",
-  NonNullable<styles.WrapperVariants>
->;
+type TextareaAutosizeProps = BoxProps<"textarea", styles.WrapperVariants>;
 
 export const TextareaAutosize = forwardRef<
   HTMLTextAreaElement,

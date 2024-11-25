@@ -8,7 +8,7 @@ import * as styles from "./Text.css";
 
 export type TextProps<T extends ElementType = "p", P = unknown> = BoxProps<
   T,
-  ExtendProps<NonNullable<styles.TextVariants>, P>
+  ExtendProps<styles.TextVariants, P>
 >;
 
 export const Text = forwardRef<HTMLParagraphElement, TextProps>(

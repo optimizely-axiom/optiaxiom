@@ -35,4 +35,4 @@ export const pill = recipe({
   },
 });
 
-export type PillVariants = NonNullable<RecipeVariants<typeof pill>>;
+export type PillVariants = RecipeVariants<typeof pill>;

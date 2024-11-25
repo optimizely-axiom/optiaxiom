@@ -64,4 +64,4 @@ export const icon = recipe({
   },
 });
 
-export type AlertVariants = NonNullable<RecipeVariants<typeof alert>>;
+export type AlertVariants = RecipeVariants<typeof alert>;

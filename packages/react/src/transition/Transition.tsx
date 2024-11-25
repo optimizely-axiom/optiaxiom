@@ -9,7 +9,7 @@ type TransitionProps = {
   children: ReactElement;
   "data-side"?: "bottom" | "left" | "right" | "top";
   skipAnimations?: boolean;
-} & NonNullable<styles.TransitionVariants>;
+} & styles.TransitionVariants;
 
 export const Transition = forwardRef<HTMLDivElement, TransitionProps>(
   (
