@@ -1,5 +1,13 @@
 # @optiaxiom/react
 
+## 0.7.1
+
+### Patch Changes
+
+- 30e738c: sync color tokens with figma
+- Updated dependencies [30e738c]
+  - @optiaxiom/globals@0.4.1
+
 ## 0.7.0
 
 ### Minor Changes

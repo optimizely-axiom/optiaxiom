@@ -1,5 +1,11 @@
 # @optiaxiom/globals
 
+## 0.4.1
+
+### Patch Changes
+
+- 30e738c: sync color tokens with figma
+
 ## 0.4.0
 
 ### Minor Changes
