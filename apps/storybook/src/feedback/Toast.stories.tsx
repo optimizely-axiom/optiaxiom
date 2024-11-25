@@ -161,6 +161,24 @@ export const Action: Story = {
   },
 };
 
+export const Link: Story = {
+  args: {
+    children: (
+      <>
+        <ToastTitle>
+          This is an <a href="data:,">example toast</a> message.
+        </ToastTitle>
+      </>
+    ),
+  },
+  play: async ({ canvas }) => {
+    await userEvent.click(canvas.getByText("Show Toast"));
+
+    const toast = await screen.findByRole("status");
+    await expect(toast).toHaveTextContent("This is an example toast message.");
+  },
+};
+
 export const LongContent: Story = {
   args: {
     children: (
