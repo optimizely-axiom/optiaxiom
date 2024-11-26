@@ -1,5 +1,12 @@
 # @optiaxiom/react
 
+## 0.7.2
+
+### Patch Changes
+
+- 8189ca0: add missing tiptap pm dependency
+- 6549588: close tooltips when opening select menu with keyboard
+
 ## 0.7.1
 
 ### Patch Changes
