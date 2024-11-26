@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 0.7.3
+
+### Patch Changes
+
+- 06435c9: patch vanilla-extract sprinkles package
+
 ## 0.7.2
 
 ### Patch Changes
