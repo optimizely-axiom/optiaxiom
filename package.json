@@ -44,6 +44,7 @@
   },
   "pnpm": {
     "patchedDependencies": {
+      "@vanilla-extract/sprinkles": "patches/@vanilla-extract__sprinkles.patch",
       "framer-motion": "patches/framer-motion.patch",
       "react-docgen-typescript": "patches/react-docgen-typescript.patch"
     }

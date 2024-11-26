@@ -1,0 +1,56 @@
+diff --git a/createUtils/dist/vanilla-extract-sprinkles-createUtils.esm.js b/createUtils/dist/vanilla-extract-sprinkles-createUtils.esm.js
+index 3e88aab74b1565c63517ac7ec7669258451d4f43..034a81c54ad7974b50b09bd99447cdc0b7ebdb75 100644
+--- a/createUtils/dist/vanilla-extract-sprinkles-createUtils.esm.js
++++ b/createUtils/dist/vanilla-extract-sprinkles-createUtils.esm.js
+@@ -1,5 +1,3 @@
+-import { addRecipe } from '@vanilla-extract/css/recipe';
+-
+ function createNormalizeValueFn(properties) {
+   var {
+     conditions
+@@ -7,7 +5,7 @@ function createNormalizeValueFn(properties) {
+   if (!conditions) {
+     throw new Error('Styles have no conditions');
+   }
+-  function normalizeValue(value) {
++  return function normalizeValue(value) {
+     if (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') {
+       if (!conditions.defaultCondition) {
+         throw new Error('No default condition');
+@@ -30,13 +28,6 @@ function createNormalizeValueFn(properties) {
+     }
+     return value;
+   }
+-  return addRecipe(normalizeValue, {
+-    importPath: '@vanilla-extract/sprinkles/createUtils',
+-    importName: 'createNormalizeValueFn',
+-    args: [{
+-      conditions: properties.conditions
+-    }]
+-  });
+ }
+ function createMapValueFn(properties) {
+   var {
+@@ -46,7 +37,7 @@ function createMapValueFn(properties) {
+     throw new Error('Styles have no conditions');
+   }
+   var normalizeValue = createNormalizeValueFn(properties);
+-  function mapValue(value, mapFn) {
++  return function mapValue(value, mapFn) {
+     if (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') {
+       if (!conditions.defaultCondition) {
+         throw new Error('No default condition');
+@@ -62,13 +53,6 @@ function createMapValueFn(properties) {
+     }
+     return mappedObject;
+   }
+-  return addRecipe(mapValue, {
+-    importPath: '@vanilla-extract/sprinkles/createUtils',
+-    importName: 'createMapValueFn',
+-    args: [{
+-      conditions: properties.conditions
+-    }]
+-  });
+ }
+ 
+ export { createMapValueFn, createNormalizeValueFn };
