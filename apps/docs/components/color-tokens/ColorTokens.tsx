@@ -6,23 +6,25 @@ import { Table, Td, Th, Thead, Tr } from "../table";
 import { ColorTokenItem } from "./ColorTokenItem";
 
 export function ColorTokens({
-  dark,
-  light,
   namespace,
+  props,
 }: {
-  dark: Props;
-  light: Props;
   namespace: string;
+  props: Props;
 }) {
   const palette = Object.fromEntries(
-    Object.values(light)
+    Object.values(props)
       .filter((token) =>
         ["avatar", "bg", "border", "fg", "link", "spinner"].every(
           (prefix) => !token.name.startsWith(`${prefix}.`),
         ),
       )
-      .map((token) => [token.type.name, token]),
+      .map((token) => [JSON.parse(token.type.name), token.name]),
   );
+
+  const getNames = (value: string) => {
+    return value.replaceAll(/#[0-9a-f]+/gi, (color) => palette[color]);
+  };
 
   return (
     <Table>
@@ -35,7 +37,7 @@ export function ColorTokens({
         </Box>
       </Thead>
       <tbody>
-        {Object.values(light)
+        {Object.values(props)
           .filter((token) => token.name.startsWith(`${namespace}.`))
           .map((token) => (
             <Tr
@@ -56,12 +58,8 @@ export function ColorTokens({
                   flexDirection={["row", "row-reverse"]}
                   item={{
                     bg: token.name as Sprinkles["bg"],
-                    name: `ld(${palette[token.type.name].name}, ${palette[dark[token.name].type.name].name})`,
-                    value: `ld(${JSON.parse(
-                      palette[token.type.name].type.name,
-                    )}, ${JSON.parse(
-                      palette[dark[token.name].type.name].type.name,
-                    )})`,
+                    name: getNames(JSON.parse(token.type.name)),
+                    value: JSON.parse(token.type.name),
                   }}
                 />
               </Td>

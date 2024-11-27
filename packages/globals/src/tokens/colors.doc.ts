@@ -1,9 +1,5 @@
-import { colorPalette, colors, colorsDark } from "./colors";
+import { colors, palette } from "./colors";
 
-export function ColorsDoc(_props: typeof colorPalette & typeof colors) {
-  return null;
-}
-
-export function ColorsDarkDoc(_props: typeof colorPalette & typeof colorsDark) {
+export function ColorsDoc(_props: typeof colors & typeof palette) {
   return null;
 }
