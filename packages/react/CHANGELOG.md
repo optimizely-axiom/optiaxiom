@@ -1,5 +1,13 @@
 # @optiaxiom/react
 
+## 0.7.4
+
+### Patch Changes
+
+- 4964984: remove disclosure show/hide animation
+- 543e52e: fix rendering dropdown menu items as links
+- da92cac: replace Slottable with decorateChildren util
+
 ## 0.7.3
 
 ### Patch Changes
