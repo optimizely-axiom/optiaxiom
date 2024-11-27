@@ -1,18 +1,12 @@
-import { Slot, Slottable } from "@radix-ui/react-slot";
+import { Slot } from "@radix-ui/react-slot";
 import { useId } from "@reach/auto-id";
-import {
-  cloneElement,
-  type ElementType,
-  forwardRef,
-  isValidElement,
-  type ReactNode,
-} from "react";
+import { type ElementType, forwardRef, type ReactNode } from "react";
 
 import { Box, type BoxProps } from "../box";
 import { Flex } from "../flex";
 import { Icon } from "../icon";
 import { Text } from "../text";
-import { type ExtendProps, fallbackSpan } from "../utils";
+import { decorateChildren, type ExtendProps, fallbackSpan } from "../utils";
 import * as styles from "./ListboxItem.css";
 
 export type ListboxItemProps<
@@ -51,41 +45,6 @@ export const ListboxItem = forwardRef<HTMLDivElement, ListboxItemProps>(
     const labelId = useId();
     const descriptionId = useId();
 
-    if (asChild) {
-      const newElement = isValidElement(children) ? children : null;
-      children = newElement
-        ? cloneElement(
-            newElement,
-            undefined,
-            <Flex flex="1" gap="0">
-              <Box asChild {...styles.title()} id={labelId}>
-                {fallbackSpan(newElement.props.children)}
-              </Box>
-
-              {description && (
-                <Text asChild {...styles.description()} id={descriptionId}>
-                  {fallbackSpan(description)}
-                </Text>
-              )}
-            </Flex>,
-          )
-        : children;
-    } else {
-      children = (
-        <Flex flex="1" gap="0">
-          <Box asChild {...styles.title()} id={labelId}>
-            {fallbackSpan(children)}
-          </Box>
-
-          {description && (
-            <Text asChild {...styles.description()} id={descriptionId}>
-              {fallbackSpan(description)}
-            </Text>
-          )}
-        </Flex>
-      );
-    }
-
     return (
       <Flex
         aria-describedby={description ? descriptionId : undefined}
@@ -96,19 +55,33 @@ export const ListboxItem = forwardRef<HTMLDivElement, ListboxItemProps>(
         {...props}
       >
         <Comp>
-          {addonBefore ? (
-            addonBefore
-          ) : icon ? (
-            <Icon asChild>{icon}</Icon>
-          ) : null}
+          {decorateChildren({ asChild, children }, (children) => (
+            <>
+              {addonBefore ? (
+                addonBefore
+              ) : icon ? (
+                <Icon asChild>{icon}</Icon>
+              ) : null}
 
-          <Slottable>{children}</Slottable>
+              <Flex flex="1" gap="0">
+                <Box asChild {...styles.title()} id={labelId}>
+                  {fallbackSpan(children)}
+                </Box>
 
-          {addonAfter && (
-            <Box asChild ml="xs">
-              {fallbackSpan(addonAfter)}
-            </Box>
-          )}
+                {description && (
+                  <Text asChild {...styles.description()} id={descriptionId}>
+                    {fallbackSpan(description)}
+                  </Text>
+                )}
+              </Flex>
+
+              {addonAfter && (
+                <Box asChild ml="xs">
+                  {fallbackSpan(addonAfter)}
+                </Box>
+              )}
+            </>
+          ))}
         </Comp>
       </Flex>
     );

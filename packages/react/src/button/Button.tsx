@@ -1,19 +1,12 @@
-import { Slot, Slottable } from "@radix-ui/react-slot";
-import {
-  cloneElement,
-  type ElementType,
-  forwardRef,
-  isValidElement,
-  type ReactNode,
-  useEffect,
-} from "react";
+import { Slot } from "@radix-ui/react-slot";
+import { type ElementType, forwardRef, type ReactNode, useEffect } from "react";
 
 import { ButtonAddon } from "../button-addon";
 import { ButtonBase, type ButtonBaseProps } from "../button-base";
 import { ButtonLabel } from "../button-label";
 import { ButtonLoadable } from "../button-loadable";
 import { Icon } from "../icon";
-import { type ExtendProps, fallbackSpan } from "../utils";
+import { decorateChildren, type ExtendProps, fallbackSpan } from "../utils";
 
 export type ButtonProps<
   T extends ElementType = "button",
@@ -48,39 +41,36 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ) => {
     const Comp = asChild ? Slot : "button";
 
-    let isIconOnly = Boolean(!children && icon);
-    if (asChild) {
-      const newElement = isValidElement(children) ? children : null;
-      isIconOnly = Boolean(!newElement?.props.children && icon);
-      children = newElement
-        ? cloneElement(
-            newElement,
-            undefined,
-            isIconOnly ? (
-              <ButtonLoadable asChild>
-                <Icon asChild>{icon}</Icon>
-              </ButtonLoadable>
-            ) : (
-              <ButtonLabel>{newElement.props.children}</ButtonLabel>
-            ),
-          )
-        : children;
-    } else {
-      children = isIconOnly ? (
-        <ButtonLoadable asChild>
-          <Icon asChild>{icon}</Icon>
-        </ButtonLoadable>
-      ) : (
-        <ButtonLabel>{children}</ButtonLabel>
-      );
-    }
-    if (icon && !isIconOnly) {
-      if (iconPosition === "start") {
-        addonBefore = <Icon asChild>{icon}</Icon>;
-      } else if (iconPosition === "end") {
-        addonAfter = <Icon asChild>{icon}</Icon>;
+    let isIconOnly = false;
+    children = decorateChildren({ asChild, children }, (children) => {
+      isIconOnly = Boolean(!children && icon);
+      if (icon && !isIconOnly) {
+        if (iconPosition === "start") {
+          addonBefore = <Icon asChild>{icon}</Icon>;
+        } else if (iconPosition === "end") {
+          addonAfter = <Icon asChild>{icon}</Icon>;
+        }
       }
-    }
+      return (
+        <>
+          {addonBefore && (
+            <ButtonAddon asChild>{fallbackSpan(addonBefore)}</ButtonAddon>
+          )}
+
+          {isIconOnly ? (
+            <ButtonLoadable asChild>
+              <Icon asChild>{icon}</Icon>
+            </ButtonLoadable>
+          ) : (
+            <ButtonLabel>{children}</ButtonLabel>
+          )}
+
+          {addonAfter && (
+            <ButtonAddon asChild>{fallbackSpan(addonAfter)}</ButtonAddon>
+          )}
+        </>
+      );
+    });
 
     const isIconMissingAriaLabel = isIconOnly && !props["aria-label"];
     useEffect(() => {
@@ -101,17 +91,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           justifyContent: "center",
         })}
       >
-        <Comp>
-          {addonBefore && (
-            <ButtonAddon asChild>{fallbackSpan(addonBefore)}</ButtonAddon>
-          )}
-
-          <Slottable>{children}</Slottable>
-
-          {addonAfter && (
-            <ButtonAddon asChild>{fallbackSpan(addonAfter)}</ButtonAddon>
-          )}
-        </Comp>
+        <Comp>{children}</Comp>
       </ButtonBase>
     );
   },

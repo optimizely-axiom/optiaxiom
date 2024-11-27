@@ -1,9 +1,10 @@
-import { Slot, Slottable } from "@radix-ui/react-slot";
+import { Slot } from "@radix-ui/react-slot";
 import { forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
 import { IconUpRightFromSquare } from "../icons/IconUpRightFromSquare";
 import { extractSprinkles } from "../sprinkles";
+import { decorateChildren } from "../utils";
 import * as styles from "./Link.css";
 
 type LinkProps = BoxProps<
@@ -49,13 +50,17 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
             role: "link",
           })}
         >
-          <Slottable>{children}</Slottable>
+          {decorateChildren({ asChild, children }, (children) => (
+            <>
+              {children}
 
-          {external && (
-            <Box asChild {...styles.icon()}>
-              <IconUpRightFromSquare />
-            </Box>
-          )}
+              {external && (
+                <Box asChild {...styles.icon()}>
+                  <IconUpRightFromSquare />
+                </Box>
+              )}
+            </>
+          ))}
         </Comp>
       </Box>
     );
