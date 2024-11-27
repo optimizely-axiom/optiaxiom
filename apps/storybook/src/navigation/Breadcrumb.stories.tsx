@@ -5,7 +5,6 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-  Link,
 } from "@optiaxiom/react";
 import {
   Breadcrumb,
@@ -91,14 +90,14 @@ export const WithDropdown: Story = {
               size="sm"
             />
             <DropdownMenuContent align="start">
-              <DropdownMenuItem>
-                <Link href="/docs">Documentation</Link>
+              <DropdownMenuItem asChild>
+                <a href="/docs">Documentation</a>
               </DropdownMenuItem>
-              <DropdownMenuItem>
-                <Link href="/themes">Themes</Link>
+              <DropdownMenuItem asChild>
+                <a href="/themes">Themes</a>
               </DropdownMenuItem>
-              <DropdownMenuItem>
-                <Link href="https://github.com/optiaxiom/ui">GitHub</Link>
+              <DropdownMenuItem asChild>
+                <a href="https://github.com/optiaxiom/ui">GitHub</a>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
