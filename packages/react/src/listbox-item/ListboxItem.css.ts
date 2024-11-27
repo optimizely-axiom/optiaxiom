@@ -25,6 +25,9 @@ export const item = recipe({
       userSelect: "none",
 
       selectors: {
+        "&:any-link": {
+          textDecoration: "none",
+        },
         "&:focus-visible": {
           outline: "2px solid transparent",
         },

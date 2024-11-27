@@ -8,10 +8,12 @@ type DropdownMenuItemProps = ListboxItemProps<typeof RadixMenu.Item>;
 export const DropdownMenuItem = forwardRef<
   HTMLDivElement,
   DropdownMenuItemProps
->(({ children, onSelect, ...props }, ref) => {
+>(({ asChild, children, onSelect, ...props }, ref) => {
   return (
     <ListboxItem asChild ref={ref} {...props}>
-      <RadixMenu.Item onSelect={onSelect}>{children}</RadixMenu.Item>
+      <RadixMenu.Item asChild={asChild} onSelect={onSelect}>
+        {children}
+      </RadixMenu.Item>
     </ListboxItem>
   );
 });
