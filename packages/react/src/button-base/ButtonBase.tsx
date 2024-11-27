@@ -1,11 +1,11 @@
-import { Slot, Slottable } from "@radix-ui/react-slot";
+import { Slot } from "@radix-ui/react-slot";
 import { type ElementType, forwardRef, type ReactNode } from "react";
 
 import { AnimatePresence } from "../animate-presence";
 import { Box, type BoxProps } from "../box";
 import { Spinner } from "../spinner";
 import { extractSprinkles } from "../sprinkles";
-import { type ExtendProps } from "../utils";
+import { decorateChildren, type ExtendProps } from "../utils";
 import * as styles from "./ButtonBase.css";
 
 const appearances = {
@@ -71,18 +71,22 @@ export const ButtonBase = forwardRef<HTMLButtonElement, ButtonBaseProps>(
         {...sprinkleProps}
       >
         <Comp disabled={disabled} ref={ref} {...restProps}>
-          <AnimatePresence>
-            {loading && (
-              <Spinner
-                appearance={variant === "solid" ? "inverse" : "default"}
-                aria-hidden="true"
-                size="2xs"
-                {...styles.spinner()}
-              />
-            )}
-          </AnimatePresence>
+          {decorateChildren({ asChild, children }, (children) => (
+            <>
+              <AnimatePresence>
+                {loading && (
+                  <Spinner
+                    appearance={variant === "solid" ? "inverse" : "default"}
+                    aria-hidden="true"
+                    size="2xs"
+                    {...styles.spinner()}
+                  />
+                )}
+              </AnimatePresence>
 
-          <Slottable>{children}</Slottable>
+              {children}
+            </>
+          ))}
         </Comp>
       </Box>
     );
