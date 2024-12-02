@@ -30,6 +30,7 @@ export * from "./command-item";
 export * from "./command-listbox";
 export * from "./data-table";
 export * from "./data-table-header";
+export * from "./filter-menu-button";
 export * from "./highlight";
 export * from "./inline-input";
 export * from "./pill";
