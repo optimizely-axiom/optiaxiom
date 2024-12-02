@@ -1,14 +1,14 @@
+import type { TableOptions } from "@tanstack/react-table";
+
 import {
-  type ColumnDef,
   flexRender,
   getCoreRowModel,
   getPaginationRowModel,
   getSortedRowModel,
-  type SortingState,
   useReactTable,
 } from "@tanstack/react-table";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
-import { createElement, useState } from "react";
+import { createElement, useRef } from "react";
 
 import { Box } from "../box";
 import { DataTableHeader } from "../data-table-header";
@@ -21,9 +21,6 @@ import { TableHeaderCell } from "../table-header-cell";
 import { TableRow } from "../table-row";
 import * as styles from "./DataTable.css";
 
-export type { ColumnDef };
-
-import type { TableOptions } from "@tanstack/react-table";
 type DataTableProps<TData> = TableOptions<TData>;
 
 export const DataTable = <TData,>({
@@ -31,12 +28,6 @@ export const DataTable = <TData,>({
   data,
   ...props
 }: DataTableProps<TData>) => {
-  const [sorting, setSorting] = useState<SortingState>([]);
-  const [{ pageIndex, pageSize }, setPagination] = useState({
-    pageIndex: 0,
-    pageSize: 10,
-  });
-
   const table = useReactTable({
     ...props,
     columns,
@@ -44,16 +35,6 @@ export const DataTable = <TData,>({
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     getSortedRowModel: getSortedRowModel(),
-    onPaginationChange: setPagination,
-    onSortingChange: setSorting,
-    state: {
-      ...props.state,
-      pagination: {
-        pageIndex,
-        pageSize,
-      },
-      sorting,
-    },
   });
 
   let offset = 0;
@@ -65,15 +46,25 @@ export const DataTable = <TData,>({
       ]),
   );
 
+  const scrollElementRef = useRef(null);
+
   return (
     <Box alignItems="center" display="flex" flexDirection="column">
-      <Table>
+      <Table containerRef={scrollElementRef}>
         <TableHead {...styles.tableHeader()}>
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>
               {headerGroup.headers.map((header) => {
                 return (
                   <TableHeaderCell
+                    aria-sort={
+                      header.column.columnDef.enableSorting &&
+                      header.column.getIsSorted() !== false
+                        ? header.column.getIsSorted() === "desc"
+                          ? "descending"
+                          : "ascending"
+                        : "none"
+                    }
                     key={header.id}
                     style={{
                       ...assignInlineVars({

@@ -1,54 +1,43 @@
-import { recipe, type RecipeVariants, style } from "../vanilla-extract";
+import { theme } from "@optiaxiom/globals";
+
+import { recipe, style } from "../vanilla-extract";
 
 const marker = style({});
 
-export const header = recipe({
+export const button = recipe({
   base: [
     {
+      alignItems: "center",
+      bg: "transparent",
+      borderColor: "bg.default.inverse",
+      display: "flex",
+      flexDirection: "row",
+      fontSize: "md",
       gap: "4",
+      h: "md",
+      justifyContent: "center",
+      my: "4",
+      px: "8",
+      rounded: "md",
+      transition: "colors",
+      whiteSpace: "nowrap",
     },
     marker,
-  ],
-  variants: {
-    sortable: {
-      false: style({
-        cursor: "default",
-      }),
-      true: style({
-        cursor: "pointer",
-      }),
-    },
-    variant: {
-      number: {
-        flexDirection: "row-reverse",
-        justifyContent: "end",
-      },
-      text: {
-        flexDirection: "row",
-      },
-    },
-  },
-});
+    style({
+      color: theme.colors["fg.tertiary"],
+      textDecoration: "none",
+      userSelect: "none",
 
-export const icon = recipe({
-  base: [
-    {
-      border: "0",
-      color: "fg.tertiary",
-    },
-  ],
-  variants: {
-    sorted: {
-      false: style({
-        selectors: {
-          [`${marker}:is(:not(:focus-within):not(:hover)) &`]: {
-            visibility: "hidden",
-          },
+      selectors: {
+        "&:hover": {
+          color: theme.colors["fg.secondary"],
         },
-      }),
-      true: {},
-    },
-  },
+        "&:is(:focus-visible, :has(:focus-visible))": {
+          outline: `2px solid ${theme.colors["border.focus"]}`,
+          outlineOffset: "1px",
+          zIndex: theme.zIndex["10"],
+        },
+      },
+    }),
+  ],
 });
-
-export type DataTableHeaderVariants = RecipeVariants<typeof header>;

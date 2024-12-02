@@ -22,6 +22,7 @@ export const tableHead = recipe({
   base: [
     {
       bg: "bg.default",
+      py: "0",
     },
     style({
       minWidth: columnWidthVar,
