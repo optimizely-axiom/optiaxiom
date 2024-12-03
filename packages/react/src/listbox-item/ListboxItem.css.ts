@@ -73,6 +73,11 @@ export const item = recipe({
 
 export const title = recipe({
   base: [
+    {
+      alignItems: "center",
+      flexDirection: "row",
+      gap: "xs",
+    },
     style({
       lineHeight: "24px",
     }),
