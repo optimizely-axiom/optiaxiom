@@ -17,7 +17,7 @@ import {
   ListboxSeparator,
   Paper,
 } from "@optiaxiom/react";
-import { IconStar } from "@tabler/icons-react";
+import { IconLanguage, IconStar } from "@tabler/icons-react";
 
 type Story = StoryObj<typeof Listbox>;
 
@@ -178,6 +178,21 @@ export const IconMultiSelect: Story = {
           <ListboxCheckboxItem asChild icon={<IconStar />} key={item}>
             <PointerItem>{item}</PointerItem>
           </ListboxCheckboxItem>
+        ))}
+      </>
+    ),
+  },
+};
+
+export const ComplexContent: Story = {
+  args: {
+    children: (
+      <>
+        {languages.map((item) => (
+          <ListboxRadioItem aria-selected={item === "Bangla"} key={item}>
+            <IconLanguage />
+            {item}
+          </ListboxRadioItem>
         ))}
       </>
     ),

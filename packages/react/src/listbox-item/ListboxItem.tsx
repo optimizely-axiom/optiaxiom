@@ -64,9 +64,9 @@ export const ListboxItem = forwardRef<HTMLDivElement, ListboxItemProps>(
               ) : null}
 
               <Flex flex="1" gap="0">
-                <Box asChild {...styles.title()} id={labelId}>
+                <Flex asChild {...styles.title()} id={labelId}>
                   {fallbackSpan(children)}
-                </Box>
+                </Flex>
 
                 {description && (
                   <Text asChild {...styles.description()} id={descriptionId}>
