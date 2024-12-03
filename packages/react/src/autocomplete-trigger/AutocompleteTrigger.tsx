@@ -32,7 +32,7 @@ export const AutocompleteTrigger = forwardRef<
           >
             {selectedItem && (
               <Flex
-                cursor="pointer"
+                cursor={disabled ? "default" : "pointer"}
                 onClick={() => setSelectedItem(null)}
                 w="32"
               >
@@ -45,7 +45,7 @@ export const AutocompleteTrigger = forwardRef<
             <Separator my="xs" orientation="vertical" />
 
             <Flex asChild w="32">
-              <CommandToggleButton aria-label="Toggle">
+              <CommandToggleButton aria-label="Toggle" disabled={disabled}>
                 <Icon asChild>
                   <IconAngleDown aria-hidden focusable={false} />
                 </Icon>
