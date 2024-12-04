@@ -11,8 +11,8 @@ export const DialogBody = forwardRef<HTMLDivElement, DialogBodyProps>(
         flex="1"
         fontSize="md"
         overflow="auto"
-        pb="md"
         px="lg"
+        py="md"
         ref={ref}
         {...props}
       >
