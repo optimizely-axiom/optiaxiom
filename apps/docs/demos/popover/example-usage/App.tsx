@@ -11,7 +11,7 @@ import {
 import {
   Select,
   SelectContent,
-  SelectItem,
+  SelectRadioItem,
   SelectTrigger,
   SelectValue,
 } from "@optiaxiom/react/unstable";
@@ -62,9 +62,9 @@ export function App() {
 
             <SelectContent align="end">
               {["Status", "Due Dates"].map((item) => (
-                <SelectItem item={item} key={item}>
+                <SelectRadioItem item={item} key={item}>
                   {item}
-                </SelectItem>
+                </SelectRadioItem>
               ))}
             </SelectContent>
           </Select>
@@ -86,9 +86,9 @@ export function App() {
 
             <SelectContent align="end">
               {["No grouping", "Campaign"].map((item) => (
-                <SelectItem item={item} key={item}>
+                <SelectRadioItem item={item} key={item}>
                   {item}
-                </SelectItem>
+                </SelectRadioItem>
               ))}
             </SelectContent>
           </Select>
@@ -109,9 +109,9 @@ export function App() {
 
             <SelectContent align="end">
               {["Tasks", "Steps"].map((item) => (
-                <SelectItem item={item} key={item}>
+                <SelectRadioItem item={item} key={item}>
                   {item}
-                </SelectItem>
+                </SelectRadioItem>
               ))}
             </SelectContent>
           </Select>
