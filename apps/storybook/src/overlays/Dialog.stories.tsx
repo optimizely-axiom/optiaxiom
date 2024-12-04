@@ -12,15 +12,26 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
+  Flex,
+  Input,
+  Textarea,
 } from "@optiaxiom/react";
+import {
+  Select,
+  SelectContent,
+  SelectRadioItem,
+  SelectTrigger,
+  SelectValue,
+} from "@optiaxiom/react/unstable";
 import { expect, screen, userEvent, waitFor } from "@storybook/test";
 import { IconArrowsDiagonal } from "@tabler/icons-react";
 import { type ComponentPropsWithoutRef, type ReactNode } from "react";
 
 type DialogStoryProps = {
   actions?: ReactNode;
-  content?: string;
+  content?: ReactNode;
   description?: string;
+  title?: string;
 } & ComponentPropsWithoutRef<typeof Dialog> &
   Pick<ComponentPropsWithoutRef<typeof DialogContent>, "size">;
 
@@ -33,7 +44,14 @@ export default {
   parameters: {
     useOverlayDecorator: true,
   },
-  render: ({ actions, content, description, size, ...args }) => {
+  render: ({
+    actions,
+    content,
+    description,
+    size,
+    title = "Dialog",
+    ...args
+  }) => {
     return (
       <Dialog {...args}>
         <DialogTrigger>Open Dialog</DialogTrigger>
@@ -43,7 +61,7 @@ export default {
           size={size}
         >
           <DialogHeader>
-            <DialogTitle>Dialog</DialogTitle>
+            <DialogTitle>{title}</DialogTitle>
             {actions && <DialogActions>{actions}</DialogActions>}
             {description && (
               <DialogDescription>{description}</DialogDescription>
@@ -196,5 +214,48 @@ export const LongContentLarge: Story = {
   args: {
     ...LongContent.args,
     size: "lg",
+  },
+};
+
+const languages = [
+  "Afrikaans",
+  "Arabic",
+  "Bangla",
+  "Bulgarian",
+  "Catalan",
+  "Chinese (Simplified)",
+  "Croatian",
+  "Finnish",
+  "French",
+  "German",
+  "Greek",
+  "Hebrew",
+];
+
+export const WithForm: Story = {
+  args: {
+    content: (
+      <Flex>
+        <Input placeholder="Enter Name" />
+        <Textarea placeholder="Enter Address" />
+        <Select items={languages}>
+          <SelectTrigger>
+            <SelectValue placeholder="Select language" />
+          </SelectTrigger>
+
+          <SelectContent>
+            {languages.map((item, index) => {
+              return (
+                <SelectRadioItem item={item} key={index}>
+                  {item}
+                </SelectRadioItem>
+              );
+            })}
+          </SelectContent>
+        </Select>
+      </Flex>
+    ),
+    size: "sm",
+    title: "Personal Details",
   },
 };
