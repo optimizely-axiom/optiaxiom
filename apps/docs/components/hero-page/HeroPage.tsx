@@ -12,7 +12,7 @@ export function HeroPage() {
         level="1"
         tracking="tight"
       >
-        <Box asChild color="fg.information.light">
+        <Box asChild className={styles.brand}>
           <span>Axiom</span>
         </Box>{" "}
         Design System
@@ -25,8 +25,7 @@ export function HeroPage() {
       <Link href="/getting-started">
         <Box
           asChild
-          bg="bg.information.light"
-          color="fg.default"
+          color="fg.accent.strong"
           fontSize="2xl"
           fontWeight="600"
           px="24"

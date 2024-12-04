@@ -1,7 +1,102 @@
+:global(#__next):has(.brand)::after {
+  --bg: color-mix(in srgb, var(--ax-colors-fg-accent) 15%, transparent);
+  --mask: 0%;
+
+  animation: pulse 10s infinite;
+  background-image: linear-gradient(var(--bg) 1px, transparent 1px),
+    linear-gradient(to right, var(--bg) 1px, transparent 1px);
+  background-size: 40px 40px;
+  content: "";
+  inset: 0;
+  mask-image: linear-gradient(
+    120deg,
+    rgb(0 0 0 / 20%) calc(var(--mask) - 30%),
+    rgb(0 0 0 / 80%),
+    rgb(0 0 0 / 20%) calc(var(--mask) + 30%)
+  );
+  pointer-events: none;
+  position: absolute;
+}
+
+.brand {
+  color: color-mix(in srgb, var(--ax-colors-fg-accent), transparent);
+}
+
 .button {
-  transition: all 0.3s;
+  --bg: color-mix(
+    in srgb,
+    var(--ax-colors-bg-accent-light) 60%,
+    var(--ax-colors-bg-default)
+  );
+  --spread: 2px;
+
+  animation:
+    spin 5s linear infinite,
+    shine 5s infinite;
+  border: 1px solid transparent;
+  background-image: linear-gradient(var(--bg), var(--bg)),
+    conic-gradient(
+      from var(--angle),
+      color-mix(in srgb, var(--ax-colors-border-accent) 10%, var(--bg)) 15%,
+      var(--ax-colors-border-accent),
+      color-mix(in srgb, var(--ax-colors-border-accent) 10%, var(--bg)) 85%
+    );
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  box-shadow: 0 0 30px var(--spread)
+    color-mix(in srgb, var(--ax-colors-border-accent) 10%, transparent);
+  position: relative;
+  transition:
+    all 0.3s,
+    --bg 0.3s;
 }
 
 .button:hover {
-  filter: brightness(0.95);
+  --bg: color-mix(
+    in srgb,
+    var(--ax-colors-bg-accent-light) 80%,
+    var(--ax-colors-bg-default)
+  );
+}
+
+@keyframes pulse {
+  100% {
+    --mask: 100%;
+  }
+}
+
+@keyframes shine {
+  50% {
+    --spread: 10px;
+  }
+}
+
+@keyframes spin {
+  to {
+    --angle: 1turn;
+  }
+}
+
+@property --angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0turn;
+}
+
+@property --bg {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: transparent;
+}
+
+@property --mask {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 0%;
+}
+
+@property --spread {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0;
 }
