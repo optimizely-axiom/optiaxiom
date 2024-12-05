@@ -1,6 +1,5 @@
 :global(#__next):has(.brand)::after {
-  --bg: color-mix(in srgb, var(--ax-colors-fg-accent) 15%, transparent);
-  --mask: 0%;
+  --bg: color-mix(in srgb, var(--ax-colors-fg-accent) 20%, transparent);
 
   animation: pulse 10s infinite;
   background-image: linear-gradient(var(--bg) 1px, transparent 1px),
@@ -10,10 +9,12 @@
   inset: 0;
   mask-image: linear-gradient(
     120deg,
-    rgb(0 0 0 / 20%) calc(var(--mask) - 30%),
-    rgb(0 0 0 / 80%),
-    rgb(0 0 0 / 20%) calc(var(--mask) + 30%)
+    rgb(0 0 0 / 30%) calc(40%),
+    rgb(0 0 0 / 100%),
+    rgb(0 0 0 / 30%) calc(60%)
   );
+  mask-position: 200% 0%;
+  mask-size: 150% 100%;
   pointer-events: none;
   position: absolute;
 }
@@ -61,7 +62,7 @@
 
 @keyframes pulse {
   100% {
-    --mask: 100%;
+    mask-position: -100% 0%;
   }
 }
 
@@ -87,12 +88,6 @@
   syntax: "<color>";
   inherits: false;
   initial-value: transparent;
-}
-
-@property --mask {
-  syntax: "<percentage>";
-  inherits: false;
-  initial-value: 0%;
 }
 
 @property --spread {
