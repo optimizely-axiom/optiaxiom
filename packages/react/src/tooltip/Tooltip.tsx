@@ -54,7 +54,9 @@ export const Tooltip = forwardRef<HTMLButtonElement, TooltipProps>(
         </TooltipTrigger>
 
         {!disabled && !empty && (
-          <TooltipContent {...props}>{content}</TooltipContent>
+          <TooltipContent maxW="xs" {...props}>
+            {content}
+          </TooltipContent>
         )}
       </TooltipRoot>
     );
