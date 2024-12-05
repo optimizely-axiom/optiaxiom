@@ -197,3 +197,12 @@ export const Truncate: Story = {
     </Flex>
   ),
 };
+
+export const LongContent: Story = {
+  args: {
+    children: <Button>Hover</Button>,
+    content:
+      "This is a really long piece of tooltip content to check how the text is wrapped.",
+    defaultOpen: true,
+  },
+};
