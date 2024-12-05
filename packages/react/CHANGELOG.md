@@ -1,5 +1,17 @@
 # @optiaxiom/react
 
+## 0.7.5
+
+### Patch Changes
+
+- d3e5ffc: Fix input focus ring issue in `DialogBody`
+- 14e4b82: Fix children styling for `ListboxItem` component
+- 9aadb2c: fix accessibility issue for `Breadcrumb` component
+- b021488: Prevent user from toggling in `AutocompleteTrigger` disabled state
+- 6f29cdd: Remove `BreadcrumbSeparator` component
+- 41024af: fix scroll lock issue for custom downshift based popovers
+- 8682bea: Add maxW for `TooltipContent`
+
 ## 0.7.4
 
 ### Patch Changes
