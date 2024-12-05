@@ -29,11 +29,8 @@
     var(--ax-colors-bg-accent-light) 60%,
     var(--ax-colors-bg-default)
   );
-  --spread: 2px;
 
-  animation:
-    spin 5s linear infinite,
-    shine 5s infinite;
+  animation: spin 5s linear infinite;
   border: 1px solid transparent;
   background-image: linear-gradient(var(--bg), var(--bg)),
     conic-gradient(
@@ -44,7 +41,7 @@
     );
   background-origin: border-box;
   background-clip: padding-box, border-box;
-  box-shadow: 0 0 30px var(--spread)
+  box-shadow: 0 0 30px 5px
     color-mix(in srgb, var(--ax-colors-border-accent) 10%, transparent);
   position: relative;
   transition:
@@ -63,12 +60,6 @@
 @keyframes pulse {
   100% {
     mask-position: -100% 0%;
-  }
-}
-
-@keyframes shine {
-  50% {
-    --spread: 10px;
   }
 }
 
