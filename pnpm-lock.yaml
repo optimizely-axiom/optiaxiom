@@ -380,6 +380,9 @@ importers:
       react-dom:
         specifier: ^16.14.0 || ^17.0.0 || ^18.0.0
         version: 18.3.1(react@18.3.1)
+      react-remove-scroll:
+        specifier: ^2.6.0
+        version: 2.6.0(@types/react@18.3.12)(react@18.3.1)
       use-sync-external-store:
         specifier: ^1.2.2
         version: 1.2.2(react@18.3.1)
