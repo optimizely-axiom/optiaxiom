@@ -11,17 +11,18 @@ import esbuild from "rollup-plugin-esbuild";
 const env = process.env.NODE_ENV ?? "development";
 const pkg = JSON.parse(readFileSync("./package.json"));
 const bannerFilter = createFilter(["**/*.tsx"]);
+const external = new RegExp(
+  "^(?:" +
+    Object.keys({
+      ...pkg.dependencies,
+      ...pkg.peerDependencies,
+    }).join("|") +
+    ")(?:/.+)?$",
+);
 
 export default defineConfig([
   {
-    external: new RegExp(
-      "^(?:" +
-        Object.keys({
-          ...pkg.dependencies,
-          ...pkg.peerDependencies,
-        }).join("|") +
-        ")(?:/.+)?$",
-    ),
+    external,
     input: {
       index: "src/index.ts",
       unstable: "src/unstable.ts",
@@ -88,6 +89,7 @@ export default defineConfig([
     ],
   },
   {
+    external,
     input: {
       index: "src/index.ts",
       unstable: "src/unstable.ts",
@@ -96,7 +98,11 @@ export default defineConfig([
       dir: "dist",
       format: "es",
     },
-    plugins: [dts()],
+    plugins: [
+      dts({
+        respectExternal: true,
+      }),
+    ],
   },
 ]);
 
