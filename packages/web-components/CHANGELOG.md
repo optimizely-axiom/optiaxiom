@@ -1,5 +1,11 @@
 # @optiaxiom/web-components
 
+## 0.3.1
+
+### Patch Changes
+
+- 6ad0db8: update dependencies
+
 ## 0.3.0
 
 ### Minor Changes
