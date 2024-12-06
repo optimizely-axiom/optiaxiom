@@ -1,5 +1,3 @@
-import { fixupPluginRules } from "@eslint/compat";
-// @ts-expect-error -- no types
 import eslint from "@eslint/js";
 // @ts-expect-error -- no types
 import jsxA11y from "eslint-plugin-jsx-a11y";
@@ -8,7 +6,6 @@ import perfectionistNatural from "eslint-plugin-perfectionist";
 import reactRecommended from "eslint-plugin-react/configs/recommended.js";
 // @ts-expect-error -- no types
 import reactHooks from "eslint-plugin-react-hooks";
-// @ts-expect-error -- no types
 import testingLibrary from "eslint-plugin-testing-library";
 import globals from "globals";
 import tsEslint from "typescript-eslint";
@@ -166,7 +163,7 @@ export default tsEslint.config(
   {
     files: ["**/*.spec.{ts,tsx}"],
     plugins: {
-      "testing-library": fixupPluginRules(testingLibrary),
+      "testing-library": testingLibrary,
     },
     rules: {
       ...testingLibrary.configs.react.rules,
