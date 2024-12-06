@@ -44,7 +44,11 @@ export const InlineInput = forwardRef<HTMLDivElement, InlineInputProps>(
         return;
       }
 
-      if (editorRef.current.textContent !== value) {
+      const clippedValue =
+        multiline || !value?.includes("\n")
+          ? value
+          : value?.slice(0, value.indexOf("\n"));
+      if (editorRef.current.textContent !== clippedValue) {
         if (document.activeElement === editorRef.current) {
           const selection = window.getSelection();
           if (!selection) {
@@ -52,12 +56,12 @@ export const InlineInput = forwardRef<HTMLDivElement, InlineInputProps>(
           }
 
           selection.getRangeAt(0).selectNodeContents(editorRef.current);
-          document.execCommand("insertHTML", false, value);
+          document.execCommand("insertHTML", false, clippedValue);
         } else {
-          editorRef.current.textContent = value ?? null;
+          editorRef.current.textContent = clippedValue ?? null;
         }
       }
-    }, [value]);
+    }, [multiline, value]);
 
     return (
       <Box ref={ref} {...styles.input({}, className)} {...props}>
