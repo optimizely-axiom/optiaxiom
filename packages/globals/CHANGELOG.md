@@ -1,5 +1,11 @@
 # @optiaxiom/globals
 
+## 0.4.2
+
+### Patch Changes
+
+- c5c7c2f: add react 19 to peer deps
+
 ## 0.4.1
 
 ### Patch Changes

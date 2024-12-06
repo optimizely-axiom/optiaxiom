@@ -1,5 +1,14 @@
 # @optiaxiom/react
 
+## 0.7.6
+
+### Patch Changes
+
+- c5c7c2f: add react 19 to peer deps
+- f7229d8: fix react server component rendering
+- Updated dependencies [c5c7c2f]
+  - @optiaxiom/globals@0.4.2
+
 ## 0.7.5
 
 ### Patch Changes
