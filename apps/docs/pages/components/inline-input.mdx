@@ -30,7 +30,9 @@ Use the `onValueChange` prop to listen for changes to the value.
 
 <Demo component={ChangeUsage} />
 
-The `InlineInput` component is fully uncontrolled and you can only specify the `defaultValue`. In order to reset it use the `key` prop to re-create the component from scratch.
+### Controlled
+
+Use the `value` and `defaultValue` props to toggle between controlled and uncontrolled usage. And combine it with `onValueChange` to listen for changes to the state.
 
 <Callout>Remove the text from the following input and press `Enter`:</Callout>
 
