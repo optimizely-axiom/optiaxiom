@@ -1,5 +1,16 @@
 # @optiaxiom/react
 
+## 0.7.7
+
+### Patch Changes
+
+- 905dd68: fix scroll lock issue for combobox popover
+- 5710f2b: replace tiptap with native contentEditable implementation
+- 103a826: respect externals when bundling types
+- 6ad0db8: update dependencies
+- Updated dependencies [6ad0db8]
+  - @optiaxiom/globals@0.4.3
+
 ## 0.7.6
 
 ### Patch Changes

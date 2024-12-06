@@ -1,5 +1,11 @@
 # @optiaxiom/globals
 
+## 0.4.3
+
+### Patch Changes
+
+- 6ad0db8: update dependencies
+
 ## 0.4.2
 
 ### Patch Changes
