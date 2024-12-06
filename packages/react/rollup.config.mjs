@@ -10,7 +10,7 @@ import esbuild from "rollup-plugin-esbuild";
 
 const env = process.env.NODE_ENV ?? "development";
 const pkg = JSON.parse(readFileSync("./package.json"));
-const bannerFilter = createFilter(["**/*.js"]);
+const bannerFilter = createFilter(["**/*.tsx"]);
 
 export default defineConfig([
   {
