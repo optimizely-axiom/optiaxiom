@@ -81,7 +81,7 @@ export const InlineInput = forwardRef<HTMLDivElement, InlineInputProps>(
 
               const clippedValue = value.slice(0, value.indexOf("\n"));
               document.execCommand("insertHTML", false, clippedValue);
-              setValue(clippedValue);
+              setValue(event.currentTarget.textContent ?? "");
             }
           }}
           ref={editorRef}
