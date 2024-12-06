@@ -45,8 +45,6 @@ export const InlineInput = forwardRef<HTMLDivElement, InlineInputProps>(
       }
 
       if (editorRef.current.textContent !== value) {
-        editorRef.current.textContent = value ?? null;
-
         if (document.activeElement === editorRef.current) {
           const selection = window.getSelection();
           if (!selection) {
@@ -54,7 +52,9 @@ export const InlineInput = forwardRef<HTMLDivElement, InlineInputProps>(
           }
 
           selection.getRangeAt(0).selectNodeContents(editorRef.current);
-          selection.collapseToEnd();
+          document.execCommand("insertHTML", false, value);
+        } else {
+          editorRef.current.textContent = value ?? null;
         }
       }
     }, [value]);
@@ -80,17 +80,7 @@ export const InlineInput = forwardRef<HTMLDivElement, InlineInputProps>(
               event.preventDefault();
 
               const clippedValue = value.slice(0, value.indexOf("\n"));
-
-              const selection = window.getSelection();
-              if (!selection?.rangeCount) {
-                return;
-              }
-              selection.deleteFromDocument();
-              selection
-                .getRangeAt(0)
-                .insertNode(document.createTextNode(clippedValue));
-              selection.collapseToEnd();
-
+              document.execCommand("insertHTML", false, clippedValue);
               setValue(clippedValue);
             }
           }}
