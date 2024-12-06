@@ -1,12 +1,11 @@
 import { Portal } from "@radix-ui/react-portal";
-import { Slot } from "@radix-ui/react-slot";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { forwardRef } from "react";
-import { RemoveScroll } from "react-remove-scroll";
 
 import { useAutocompleteContext } from "../autocomplete-context";
 import { Box, type BoxProps } from "../box";
 import { MenuListbox } from "../menu-listbox";
+import { RemoveScroll } from "../remove-scroll";
 import { Spinner } from "../spinner";
 import { AutocompleteContentImpl } from "./AutocompleteContentImpl";
 
@@ -37,7 +36,7 @@ export const AutocompleteContent = forwardRef<
         </Portal>
 
         <Portal asChild>
-          <RemoveScroll allowPinchZoom as={Slot}>
+          <RemoveScroll>
             <MenuListbox asChild minW="trigger" provider="popper" {...props}>
               <AutocompleteContentImpl ref={ref}>
                 {loading ? (

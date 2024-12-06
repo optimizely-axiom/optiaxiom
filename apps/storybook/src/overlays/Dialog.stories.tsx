@@ -17,6 +17,13 @@ import {
   Textarea,
 } from "@optiaxiom/react";
 import {
+  Combobox,
+  ComboboxContent,
+  ComboboxInput,
+  ComboboxRadioItem,
+  ComboboxScrollArea,
+  ComboboxTrigger,
+  ComboboxValue,
   Select,
   SelectContent,
   SelectRadioItem,
@@ -25,7 +32,7 @@ import {
 } from "@optiaxiom/react/unstable";
 import { expect, screen, userEvent, waitFor } from "@storybook/test";
 import { IconArrowsDiagonal } from "@tabler/icons-react";
-import { type ComponentPropsWithoutRef, type ReactNode } from "react";
+import { type ComponentPropsWithoutRef, type ReactNode, useState } from "react";
 
 type DialogStoryProps = {
   actions?: ReactNode;
@@ -232,25 +239,60 @@ const languages = [
   "Hebrew",
 ];
 
+function SampleCombobox() {
+  const [items, setItems] = useState(languages);
+  const [open, setOpen] = useState(false);
+
+  return (
+    <Combobox
+      items={items}
+      onInputValueChange={(value) =>
+        setItems(
+          value ? languages.filter((item) => item.includes(value)) : languages,
+        )
+      }
+      onItemSelect={() => setOpen(false)}
+      onOpenChange={setOpen}
+      open={open}
+    >
+      <ComboboxTrigger>
+        <ComboboxValue placeholder="Select a language" />
+      </ComboboxTrigger>
+
+      <ComboboxContent>
+        <ComboboxInput placeholder="Languages..." />
+        <ComboboxScrollArea>
+          {items.map((item) => (
+            <ComboboxRadioItem item={item} key={item}>
+              {item}
+            </ComboboxRadioItem>
+          ))}
+        </ComboboxScrollArea>
+      </ComboboxContent>
+    </Combobox>
+  );
+}
+
 export const WithForm: Story = {
   args: {
     content: (
       <Flex>
         <Input placeholder="Enter Name" />
         <Textarea placeholder="Enter Address" />
+
+        <SampleCombobox />
+
         <Select items={languages}>
           <SelectTrigger>
             <SelectValue placeholder="Select language" />
           </SelectTrigger>
 
           <SelectContent>
-            {languages.map((item, index) => {
-              return (
-                <SelectRadioItem item={item} key={index}>
-                  {item}
-                </SelectRadioItem>
-              );
-            })}
+            {languages.map((item) => (
+              <SelectRadioItem item={item} key={item}>
+                {item}
+              </SelectRadioItem>
+            ))}
           </SelectContent>
         </Select>
       </Flex>
