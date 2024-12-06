@@ -1,10 +1,5 @@
-import Document from "@tiptap/extension-document";
-import History from "@tiptap/extension-history";
-import Paragraph from "@tiptap/extension-paragraph";
-import Placeholder from "@tiptap/extension-placeholder";
-import Text from "@tiptap/extension-text";
-import { EditorContent, useEditor } from "@tiptap/react";
-import { forwardRef } from "react";
+import { useControllableState } from "@radix-ui/react-use-controllable-state";
+import { forwardRef, useEffect, useRef } from "react";
 
 import { Box, type BoxProps } from "../box";
 import * as styles from "./InlineInput.css";
@@ -18,6 +13,7 @@ type InlineInputProps = BoxProps<
     multiline?: boolean;
     onValueChange?: (value: string) => void;
     placeholder?: string;
+    value?: string;
   }
 >;
 
@@ -31,46 +27,79 @@ export const InlineInput = forwardRef<HTMLDivElement, InlineInputProps>(
       multiline,
       onValueChange,
       placeholder,
+      value: valueProp,
       ...props
     },
     ref,
   ) => {
-    const editor = useEditor({
-      content: `<p>${
-        multiline ? defaultValue.replace("\n", "</p><p>") : defaultValue
-      }</p>`,
-      editable: !disabled,
-      editorProps: {
-        attributes: {
-          ...(label && { "aria-label": label }),
-          "aria-multiline": String(multiline),
-          "aria-readonly": String(Boolean(disabled)),
-          role: "textbox",
-          spellcheck: "true",
-        },
-      },
-      extensions: [
-        Document.extend({
-          content: multiline ? "block+" : "block",
-        }),
-        History,
-        Paragraph,
-        Placeholder.configure({ placeholder: placeholder ?? label }),
-        Text,
-      ],
-      immediatelyRender: false,
-      onUpdate: ({ editor }) => {
-        onValueChange?.(editor?.getText());
-      },
+    const [value, setValue] = useControllableState({
+      defaultProp: defaultValue,
+      onChange: onValueChange,
+      prop: valueProp,
     });
 
-    if (!editor) {
-      return null;
-    }
+    const editorRef = useRef<HTMLDivElement>(null);
+    useEffect(() => {
+      if (!editorRef.current) {
+        return;
+      }
+
+      if (editorRef.current.textContent !== value) {
+        editorRef.current.textContent = value ?? null;
+
+        if (document.activeElement === editorRef.current) {
+          const selection = window.getSelection();
+          if (!selection) {
+            return;
+          }
+
+          selection.getRangeAt(0).selectNodeContents(editorRef.current);
+          selection.collapseToEnd();
+        }
+      }
+    }, [value]);
 
     return (
-      <Box asChild ref={ref} {...styles.input({}, className)} {...props}>
-        <EditorContent editor={editor} />
+      <Box ref={ref} {...styles.input({}, className)} {...props}>
+        <Box
+          aria-multiline={multiline}
+          aria-readonly={disabled}
+          contentEditable={!disabled && "plaintext-only"}
+          data-placeholder={placeholder ?? label}
+          onInput={(event) => {
+            setValue(event.currentTarget.textContent ?? "");
+          }}
+          onKeyDown={(event) => {
+            if (!multiline && event.key === "Enter") {
+              event.preventDefault();
+            }
+          }}
+          onPaste={(event) => {
+            const value = event.clipboardData.getData("text");
+            if (!multiline && value.includes("\n")) {
+              event.preventDefault();
+
+              const clippedValue = value.slice(0, value.indexOf("\n"));
+
+              const selection = window.getSelection();
+              if (!selection?.rangeCount) {
+                return;
+              }
+              selection.deleteFromDocument();
+              selection
+                .getRangeAt(0)
+                .insertNode(document.createTextNode(clippedValue));
+              selection.collapseToEnd();
+
+              setValue(clippedValue);
+            }
+          }}
+          ref={editorRef}
+          role="textbox"
+          spellCheck="true"
+          {...(label && { "aria-label": label })}
+          {...styles.editor({ empty: !value?.length })}
+        />
       </Box>
     );
   },
