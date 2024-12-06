@@ -1,10 +1,9 @@
 import { Portal } from "@radix-ui/react-portal";
-import { Slot } from "@radix-ui/react-slot";
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
-import { RemoveScroll } from "react-remove-scroll";
 
 import { Box, type BoxProps } from "../box";
 import { MenuListbox } from "../menu-listbox";
+import { RemoveScroll } from "../remove-scroll";
 import { useSelectContext } from "../select-context";
 import { Spinner } from "../spinner";
 import { SelectContentImpl } from "./SelectContentImpl";
@@ -24,7 +23,7 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
     return (
       isOpen && (
         <Portal asChild>
-          <RemoveScroll allowPinchZoom as={Slot}>
+          <RemoveScroll>
             <MenuListbox asChild provider="popper">
               <SelectContentImpl ref={ref} {...props}>
                 {loading ? (
