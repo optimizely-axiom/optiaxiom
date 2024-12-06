@@ -11,7 +11,6 @@ export function App({
       <InlineInput
         defaultValue="Sample task title"
         disabled={disabled}
-        key={`${disabled}`}
         label="Task title"
       />
     </Text>
