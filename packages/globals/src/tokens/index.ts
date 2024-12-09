@@ -1,7 +1,7 @@
 import { borderRadius } from "./borderRadius";
 import { borderWidth } from "./borderWidth";
 import { boxShadow } from "./boxShadow";
-import { colors, colorsDark } from "./colors";
+import { colors } from "./colors";
 import { fontFamily } from "./fontFamily";
 import { fontSize } from "./fontSize";
 import { letterSpacing } from "./letterSpacing";
@@ -28,9 +28,4 @@ export const tokens = {
   size,
   spacing,
   zIndex,
-} as const;
-
-export const tokensDark = {
-  ...tokens,
-  colors: colorsDark,
 } as const;
