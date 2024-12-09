@@ -126,7 +126,9 @@ async function importTokens(file) {
 
   colors["bg.default.inverse.hovered"].dark = "neutral.200";
   colors["bg.default.inverse.pressed"].dark = "neutral.300";
-  colors["bg.secondary.hovered"].light = "neutral.1200/8";
+  colors["bg.default.hovered"].light = "neutral.1200/4";
+  colors["bg.default.pressed"].dark = "neutral.50/12";
+  colors["bg.default.pressed"].light = "neutral.1200/8";
 
   colors["border.disabled"].light = "neutral.75";
   colors["border.disabled"].dark = "neutral.800";
@@ -173,7 +175,8 @@ const mapFigmaNameToCode = {
   "bg/page bg": "bg.page",
   "bg/secondary": "bg.secondary",
   "bg/states/default-hover": "_bg.secondary",
-  "bg/states/default-pressed": "_bg.secondary.hovered",
+  "bg/states/default-hover opacity": "bg.default.hovered",
+  "bg/states/default-pressed": "bg.default.pressed",
   "bg/states/secondary-hover": "bg.secondary.hovered",
   "bg/states/tertiary-hover": "bg.tertiary.hovered",
   "bg/tertiary": "bg.tertiary",

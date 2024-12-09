@@ -12,6 +12,8 @@ const subtleHoverOutlineColorVar = createVar();
 const subtlePressedAccentColorVar = createVar();
 const subtleOutlineColorVar = createVar();
 export const textColorVar = createVar();
+const transparentHoverAccentColorVar = createVar();
+const transparentPressedAccentColorVar = createVar();
 
 const paddingInlineVar = createVar();
 
@@ -67,11 +69,14 @@ export const buttonBase = recipe({
           [accentColorVar]: theme.colors["bg.default.inverse"],
           [hoverAccentColorVar]: theme.colors["bg.default.inverse.hovered"],
           [pressedAccentColorVar]: theme.colors["bg.default.inverse.pressed"],
-          [subtleHoverAccentColorVar]: theme.colors["bg.secondary"],
+          [subtleHoverAccentColorVar]: theme.colors["bg.page"],
           [subtleHoverOutlineColorVar]: theme.colors["border.default"],
           [subtleOutlineColorVar]: theme.colors["border.default"],
-          [subtlePressedAccentColorVar]: theme.colors["bg.secondary.hovered"],
+          [subtlePressedAccentColorVar]: theme.colors["bg.secondary"],
           [textColorVar]: theme.colors["fg.default"],
+          [transparentHoverAccentColorVar]: theme.colors["bg.default.hovered"],
+          [transparentPressedAccentColorVar]:
+            theme.colors["bg.default.pressed"],
         },
       }),
       primary: style({
@@ -162,11 +167,17 @@ export const buttonBase = recipe({
         selectors: {
           '&:active:not([data-disabled], [data-loading], [data-state="active"], [data-state="on"])':
             {
-              backgroundColor: subtlePressedAccentColorVar,
+              backgroundColor: fallbackVar(
+                transparentPressedAccentColorVar,
+                subtlePressedAccentColorVar,
+              ),
             },
           '&:hover:not(:active, [data-disabled], [data-loading], [data-state="active"], [data-state="on"])':
             {
-              backgroundColor: subtleHoverAccentColorVar,
+              backgroundColor: fallbackVar(
+                transparentHoverAccentColorVar,
+                subtleHoverAccentColorVar,
+              ),
             },
           '&:is([data-state="active"], [data-state="on"])': {
             backgroundColor: theme.colors["bg.accent.subtle"],
