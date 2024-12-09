@@ -102,6 +102,24 @@ export const Basic: Story = {
   },
 };
 
+export const Appearance: Story = {
+  args: {
+    children: (
+      <>
+        {languages.map((item) => (
+          <ListboxItem
+            asChild
+            intent={item === "Bangla" ? "danger" : undefined}
+            key={item}
+          >
+            <PointerItem>{item}</PointerItem>
+          </ListboxItem>
+        ))}
+      </>
+    ),
+  },
+};
+
 export const Indicator: Story = {
   args: {
     children: (
