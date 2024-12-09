@@ -1,5 +1,3 @@
-import { DismissableLayer } from "@radix-ui/react-dismissable-layer";
-import { useFocusGuards } from "@radix-ui/react-focus-guards";
 import { PopperContent } from "@radix-ui/react-popper";
 import { forwardRef } from "react";
 
@@ -17,21 +15,17 @@ export const AutocompleteContentImpl = forwardRef<
     { align = "center", children, className, sideOffset = 5, ...props },
     ref,
   ) => {
-    useFocusGuards();
-
     return (
-      <DismissableLayer asChild>
-        <CommandListbox
-          asChild
-          ref={ref}
-          {...styles.content({}, className)}
-          {...props}
-        >
-          <PopperContent align={align} sideOffset={sideOffset}>
-            {children}
-          </PopperContent>
-        </CommandListbox>
-      </DismissableLayer>
+      <CommandListbox
+        asChild
+        ref={ref}
+        {...styles.content({}, className)}
+        {...props}
+      >
+        <PopperContent align={align} sideOffset={sideOffset}>
+          {children}
+        </PopperContent>
+      </CommandListbox>
     );
   },
 );

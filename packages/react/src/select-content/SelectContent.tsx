@@ -3,7 +3,7 @@ import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
 import { MenuListbox } from "../menu-listbox";
-import { RemoveScroll } from "../remove-scroll";
+import { Modal } from "../modal";
 import { useSelectContext } from "../select-context";
 import { Spinner } from "../spinner";
 import { SelectContentImpl } from "./SelectContentImpl";
@@ -23,7 +23,7 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
     return (
       isOpen && (
         <Portal asChild>
-          <RemoveScroll>
+          <Modal>
             <MenuListbox asChild provider="popper">
               <SelectContentImpl ref={ref} {...props}>
                 {loading ? (
@@ -35,7 +35,7 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
                 )}
               </SelectContentImpl>
             </MenuListbox>
-          </RemoveScroll>
+          </Modal>
         </Portal>
       )
     );

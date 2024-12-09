@@ -5,7 +5,7 @@ import { forwardRef } from "react";
 import { useAutocompleteContext } from "../autocomplete-context";
 import { Box, type BoxProps } from "../box";
 import { MenuListbox } from "../menu-listbox";
-import { RemoveScroll } from "../remove-scroll";
+import { Modal } from "../modal";
 import { Spinner } from "../spinner";
 import { AutocompleteContentImpl } from "./AutocompleteContentImpl";
 
@@ -36,7 +36,7 @@ export const AutocompleteContent = forwardRef<
         </Portal>
 
         <Portal asChild>
-          <RemoveScroll>
+          <Modal>
             <MenuListbox asChild minW="trigger" provider="popper" {...props}>
               <AutocompleteContentImpl ref={ref}>
                 {loading ? (
@@ -48,7 +48,7 @@ export const AutocompleteContent = forwardRef<
                 )}
               </AutocompleteContentImpl>
             </MenuListbox>
-          </RemoveScroll>
+          </Modal>
         </Portal>
       </>
     )
