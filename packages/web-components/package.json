@@ -97,6 +97,7 @@
     "./ListboxRadioItem": "./dist/components/ListboxRadioItem.js",
     "./ListboxScrollArea": "./dist/components/ListboxScrollArea.js",
     "./ListboxSeparator": "./dist/components/ListboxSeparator.js",
+    "./ModalLayer": "./dist/components/ModalLayer.js",
     "./MenuButton": "./dist/components/MenuButton.js",
     "./Pagination": "./dist/components/Pagination.js",
     "./Paper": "./dist/components/Paper.js",
