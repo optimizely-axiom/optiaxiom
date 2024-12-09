@@ -48,7 +48,7 @@ export const InlineInput = forwardRef<HTMLDivElement, InlineInputProps>(
         multiline || !value?.includes("\n")
           ? value
           : value?.slice(0, value.indexOf("\n"));
-      if (editorRef.current.textContent !== clippedValue) {
+      if (getText(editorRef.current) !== clippedValue) {
         if (document.activeElement === editorRef.current) {
           const selection = window.getSelection();
           if (!selection) {
@@ -58,7 +58,7 @@ export const InlineInput = forwardRef<HTMLDivElement, InlineInputProps>(
           selection.getRangeAt(0).selectNodeContents(editorRef.current);
           document.execCommand("insertHTML", false, clippedValue);
         } else {
-          editorRef.current.textContent = clippedValue ?? null;
+          editorRef.current.innerText = clippedValue ?? "null";
         }
       }
     }, [multiline, value]);
@@ -71,7 +71,7 @@ export const InlineInput = forwardRef<HTMLDivElement, InlineInputProps>(
           contentEditable={!disabled && "plaintext-only"}
           data-placeholder={placeholder ?? label}
           onInput={(event) => {
-            setValue(event.currentTarget.textContent ?? "");
+            setValue(getText(event.currentTarget));
           }}
           onKeyDown={(event) => {
             if (!multiline && event.key === "Enter") {
@@ -85,7 +85,7 @@ export const InlineInput = forwardRef<HTMLDivElement, InlineInputProps>(
 
               const clippedValue = value.slice(0, value.indexOf("\n"));
               document.execCommand("insertHTML", false, clippedValue);
-              setValue(event.currentTarget.textContent ?? "");
+              setValue(getText(event.currentTarget));
             }
           }}
           ref={editorRef}
@@ -100,3 +100,11 @@ export const InlineInput = forwardRef<HTMLDivElement, InlineInputProps>(
 );
 
 InlineInput.displayName = "@optiaxiom/react/InlineInput";
+
+function getText(element: HTMLElement) {
+  const text = element.innerText;
+  if (text.endsWith("\n")) {
+    return text.slice(0, -1);
+  }
+  return text;
+}
