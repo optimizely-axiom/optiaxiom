@@ -142,7 +142,7 @@ export const buttonBase = recipe({
       }),
       solid: style({
         backgroundColor: accentColorVar,
-        color: theme.colors["fg.default.inverse"],
+        color: theme.colors["fg.white"],
 
         selectors: {
           "&:active:not([data-disabled], [data-loading])": {
