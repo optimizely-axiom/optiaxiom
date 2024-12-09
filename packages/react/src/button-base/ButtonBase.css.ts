@@ -11,7 +11,7 @@ const subtleHoverAccentColorVar = createVar();
 const subtleHoverOutlineColorVar = createVar();
 const subtlePressedAccentColorVar = createVar();
 const subtleOutlineColorVar = createVar();
-export const subtleTextColorVar = createVar();
+export const textColorVar = createVar();
 
 const paddingInlineVar = createVar();
 
@@ -71,7 +71,7 @@ export const buttonBase = recipe({
           [subtleHoverOutlineColorVar]: theme.colors["border.default"],
           [subtleOutlineColorVar]: theme.colors["border.default"],
           [subtlePressedAccentColorVar]: theme.colors["bg.secondary.hovered"],
-          [subtleTextColorVar]: theme.colors["fg.default"],
+          [textColorVar]: theme.colors["fg.default"],
         },
       }),
       primary: style({
@@ -104,7 +104,7 @@ export const buttonBase = recipe({
       outline: style({
         backgroundColor: theme.colors["bg.default"],
         border: `1px solid ${fallbackVar(subtleOutlineColorVar, accentColorVar)}`,
-        color: fallbackVar(subtleTextColorVar, accentColorVar),
+        color: fallbackVar(textColorVar, accentColorVar),
         paddingInline: `calc(${paddingInlineVar} - 1px)`,
 
         selectors: {
@@ -157,7 +157,7 @@ export const buttonBase = recipe({
       subtle: style({
         backgroundColor: "transparent",
         borderColor: accentColorVar,
-        color: fallbackVar(subtleTextColorVar, accentColorVar),
+        color: fallbackVar(textColorVar, accentColorVar),
 
         selectors: {
           '&:active:not([data-disabled], [data-loading], [data-state="active"], [data-state="on"])':
