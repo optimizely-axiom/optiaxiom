@@ -1,20 +1,16 @@
 import { Slot } from "@radix-ui/react-slot";
-import {
-  type ComponentPropsWithoutRef,
-  forwardRef,
-  Fragment,
-  useState,
-} from "react";
+import { type ComponentPropsWithoutRef, Fragment, useState } from "react";
 import { RemoveScroll as ReactRemoveScroll } from "react-remove-scroll";
 
-export const RemoveScroll = forwardRef<
-  HTMLElement,
-  ComponentPropsWithoutRef<typeof ReactRemoveScroll>
->((props, ref) => {
-  const [Comp] = useState(() =>
-    document.body.dataset.scrollLocked ? ReactRemoveScroll : Fragment,
+export function RemoveScroll(
+  props: ComponentPropsWithoutRef<typeof ReactRemoveScroll>,
+) {
+  const [locked] = useState(() => document.body.dataset.scrollLocked);
+  return locked ? (
+    <ReactRemoveScroll allowPinchZoom as={Slot} {...props} />
+  ) : (
+    <Fragment {...props} />
   );
-  return <Comp allowPinchZoom as={Slot} ref={ref} {...props} />;
-});
+}
 
 RemoveScroll.displayName = "@optiaxiom/react/RemoveScroll";
