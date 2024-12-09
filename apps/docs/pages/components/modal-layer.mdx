@@ -1,0 +1,28 @@
+import { Demo } from "@/components/demo";
+import { PropsTable } from "@/components/props-table";
+import { Usage } from "@/demos/modal-layer";
+import { ModalLayer } from "@optiaxiom/react";
+
+# ModalLayer
+
+`ModalLayer` is a helper component intended to wrap components that are rendered inside portals inside other dialogs or popovers.
+
+## Documentation
+
+### Usage
+
+Dialog and popover components internally use focus managers to ensure focus trapping works consistently across browsers. This works for all elements inside the DOM tree of the dialog/popover, but elements rendered via portals are not automatically tracked.
+
+All of our components automatically handle this focus management when being rendered inside dialogs/popovers - but third party portalled components need to be manually wrapped in the `ModalLayer` component.
+
+<Demo component={Usage} />
+
+## Props
+
+<PropsTable component={ModalLayer} />
+
+## Changelog
+
+### 0.7.8
+
+- Added component
