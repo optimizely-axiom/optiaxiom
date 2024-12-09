@@ -10,10 +10,10 @@ import type { Command } from "../command";
 
 import { ComboboxContextProvider } from "../combobox-context";
 import { ComboboxDialogContent } from "../combobox-dialog-content";
+import { ComboboxPopover } from "../combobox-popover";
 import { ComboboxPopoverContent } from "../combobox-popover-content";
 import { Dialog } from "../dialog";
 import { DialogTrigger } from "../dialog-trigger";
-import { Popover } from "../popover";
 import { PopoverTrigger } from "../popover-trigger";
 import { useEffectEvent } from "../use-event";
 import { useResponsiveMatches } from "../use-responsive-matches";
@@ -47,7 +47,7 @@ export function Combobox<Item>({
     },
     sm: {
       Content: ComboboxPopoverContent,
-      Root: Popover,
+      Root: ComboboxPopover,
       Trigger: PopoverTrigger,
     },
   });
