@@ -1,5 +1,14 @@
 # @optiaxiom/react
 
+## 0.7.8
+
+### Patch Changes
+
+- 87999df: use semi-transparent colors for subtle button hovered/pressed states
+- f7e7c62: fix inline input by using innerText
+- Updated dependencies [87999df]
+  - @optiaxiom/globals@0.4.4
+
 ## 0.7.7
 
 ### Patch Changes
