@@ -12,7 +12,7 @@ export const item = recipe({
     },
     style({
       vars: {
-        [styles.subtleTextColorVar]: theme.colors["fg.secondary"],
+        [styles.textColorVar]: theme.colors["fg.secondary"],
       },
     }),
   ],
