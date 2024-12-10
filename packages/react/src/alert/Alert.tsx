@@ -6,10 +6,10 @@ import { type BoxProps } from "../box";
 import { Button } from "../button";
 import { Flex } from "../flex";
 import { Icon } from "../icon";
-import { IconCircleCheckFilled } from "../icons/IconCircleCheckFilled";
-import { IconCircleExclamationFilled } from "../icons/IconCircleExclamationFilled";
-import { IconCircleInfoFilled } from "../icons/IconCircleInfoFilled";
-import { IconTriangleExclamationFilled } from "../icons/IconTriangleExclamationFilled";
+import { IconCircleCheckSolid } from "../icons/IconCircleCheckSolid";
+import { IconCircleExclamationSolid } from "../icons/IconCircleExclamationSolid";
+import { IconCircleInfoSolid } from "../icons/IconCircleInfoSolid";
+import { IconTriangleExclamationSolid } from "../icons/IconTriangleExclamationSolid";
 import { IconX } from "../icons/IconX";
 import * as styles from "./Alert.css";
 
@@ -21,11 +21,11 @@ type AlertProps = BoxProps<
 >;
 
 const mapIntentToIcon = {
-  danger: IconCircleExclamationFilled,
-  information: IconCircleInfoFilled,
-  neutral: IconCircleInfoFilled,
-  success: IconCircleCheckFilled,
-  warning: IconTriangleExclamationFilled,
+  danger: IconCircleExclamationSolid,
+  information: IconCircleInfoSolid,
+  neutral: IconCircleInfoSolid,
+  success: IconCircleCheckSolid,
+  warning: IconTriangleExclamationSolid,
 };
 
 export const Alert = forwardRef<HTMLDivElement, AlertProps>(
