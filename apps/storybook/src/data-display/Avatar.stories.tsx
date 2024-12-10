@@ -69,7 +69,7 @@ export const WithTooltip: Story = {
   },
   name: "Tooltip",
   render: (args) => (
-    <Tooltip content="Jamie Lannister">
+    <Tooltip content="Jamie Lannister" defaultOpen>
       <Avatar {...args} />
     </Tooltip>
   ),
