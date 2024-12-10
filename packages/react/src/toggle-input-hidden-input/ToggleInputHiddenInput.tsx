@@ -11,7 +11,6 @@ type ToggleInputHiddenInputProps = ExtendProps<
   ComponentPropsWithoutRef<"input">,
   {
     onCheckedChange?: (checked: boolean) => void;
-    value?: string;
   }
 >;
 
