@@ -3,11 +3,14 @@ import { forwardRef, useContext } from "react";
 
 import { AvatarContext } from "../avatar-context";
 import { Box, type BoxProps } from "../box";
+import { IconUserSolid } from "../icons/IconUserSolid";
+import { IconUsersSolid } from "../icons/IconUsersSolid";
 import * as styles from "./Avatar.css";
 
 type AvatarProps = BoxProps<
   "span",
   {
+    fallback?: keyof typeof mapFallbackToIcon;
     icon?: React.ReactNode;
     name?: string;
     src?: string;
@@ -23,12 +26,18 @@ function getInitialsFromName(name: string) {
     : firstName.charAt(0);
 }
 
+const mapFallbackToIcon = {
+  team: <IconUsersSolid />,
+  user: <IconUserSolid />,
+};
+
 export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
   (
     {
       children,
       className,
       colorScheme = "neutral",
+      fallback = "user",
       icon,
       name,
       size: sizeProp,
@@ -62,7 +71,11 @@ export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
               ) : name ? (
                 getInitialsFromName(name)
               ) : (
-                children
+                children || (
+                  <Box asChild {...styles.icon({ size })}>
+                    {mapFallbackToIcon[fallback]}
+                  </Box>
+                )
               )}
             </RadixAvatar.Fallback>
           </Box>

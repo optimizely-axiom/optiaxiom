@@ -134,17 +134,18 @@ export const fallback = recipe({
 export const icon = recipe({
   base: [
     {
-      h: "auto",
+      w: "auto",
     },
   ],
   variants: {
     size: {
-      xs: { w: "12" },
-      sm: { w: "12" },
-      md: { w: "16" },
-      lg: { w: "20" },
-      xl: { w: "20" },
-      "5xl": { w: "32" },
+      "2xs": { h: "10" },
+      xs: { h: "10" },
+      sm: { h: "12" },
+      md: { h: "12" },
+      lg: { h: "16" },
+      xl: { h: "16" },
+      "5xl": { h: "24" },
     },
   },
 });
