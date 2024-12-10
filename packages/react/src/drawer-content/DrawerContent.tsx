@@ -7,6 +7,7 @@ import { type BoxProps } from "../box";
 import { useDrawerContext } from "../drawer-context";
 import { Paper } from "../paper";
 import { Transition } from "../transition";
+import { onReactSelectInputBlur } from "../utils";
 import * as styles from "./DrawerContent.css";
 
 type DrawerContentProps = BoxProps<
@@ -45,6 +46,7 @@ export const DrawerContent = forwardRef<HTMLDivElement, DrawerContentProps>(
               <Paper
                 asChild
                 elevation="drawer"
+                onBlur={onReactSelectInputBlur}
                 {...styles.content({ position })}
               >
                 <RadixDialog.Content ref={ref} {...props}>

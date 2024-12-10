@@ -7,6 +7,7 @@ import type { BoxProps } from "../box";
 import { AnimatePresence } from "../animate-presence";
 import { MenuListbox } from "../menu-listbox";
 import { usePopoverContext } from "../popover-context";
+import { onReactSelectInputBlur } from "../utils";
 
 type PopoverContentProps = BoxProps<
   typeof RadixPopover.Content,
@@ -24,7 +25,13 @@ export const PopoverContent = forwardRef<HTMLDivElement, PopoverContentProps>(
       <AnimatePresence>
         {open && (
           <RadixPopover.Portal forceMount>
-            <MenuListbox asChild p="sm" provider="popover" {...props}>
+            <MenuListbox
+              asChild
+              onBlur={onReactSelectInputBlur}
+              p="sm"
+              provider="popover"
+              {...props}
+            >
               <RadixPopover.Content
                 align={align}
                 ref={ref}

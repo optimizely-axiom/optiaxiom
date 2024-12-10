@@ -7,6 +7,7 @@ import { type BoxProps } from "../box";
 import { useDialogContext } from "../dialog-context";
 import { Paper } from "../paper";
 import { Transition } from "../transition";
+import { onReactSelectInputBlur } from "../utils";
 import * as styles from "./DialogContent.css";
 
 type DialogContentProps = BoxProps<
@@ -37,6 +38,7 @@ export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
               <Paper
                 asChild
                 elevation={size === "fullscreen" ? "drawer" : "dialog"}
+                onBlur={onReactSelectInputBlur}
                 {...styles.content({ size }, className)}
                 {...props}
               >
