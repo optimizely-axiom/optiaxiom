@@ -1,6 +1,9 @@
-import { Avatar } from "@optiaxiom/react";
-import { IconUser } from "@tabler/icons-react";
+import type { ComponentPropsWithoutRef } from "react";
 
-export function App() {
-  return <Avatar icon={<IconUser />} name="Arthur Morgan" />;
+import { Avatar } from "@optiaxiom/react";
+
+export function App({
+  fallback = "user",
+}: Pick<ComponentPropsWithoutRef<typeof Avatar>, "fallback">) {
+  return <Avatar fallback={fallback} />;
 }

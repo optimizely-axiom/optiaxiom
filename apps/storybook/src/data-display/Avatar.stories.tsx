@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { Avatar, Flex, Tooltip } from "@optiaxiom/react";
-import { IconUser } from "@tabler/icons-react";
 
+const fallbacks = ["user", "team"] as const;
 const sizes = ["xs", "sm", "md", "lg", "xl", "5xl"] as const;
 
 export default {
@@ -40,12 +40,21 @@ export const Image: Story = {
   },
 };
 
-export const Icon: Story = {
+export const Fallback: Story = {
   args: {
     colorScheme: "purple",
-    icon: <IconUser />,
-    name: "Quiock Hoyon",
   },
+  render: (args) => (
+    <Flex>
+      {fallbacks.map((fallback) => (
+        <Flex flexDirection="row" key={fallback}>
+          {sizes.map((size) => (
+            <Avatar fallback={fallback} key={size} size={size} {...args} />
+          ))}
+        </Flex>
+      ))}
+    </Flex>
+  ),
 };
 
 export const Colors: Story = {
