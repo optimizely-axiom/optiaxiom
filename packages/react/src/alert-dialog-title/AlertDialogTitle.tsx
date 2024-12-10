@@ -4,7 +4,7 @@ import { forwardRef, type ReactNode } from "react";
 import { Flex } from "../flex";
 import { Heading, type HeadingProps } from "../heading";
 import { Icon } from "../icon";
-import { IconTriangleExclamationFilled } from "../icons/IconTriangleExclamationFilled";
+import { IconTriangleExclamationSolid } from "../icons/IconTriangleExclamationSolid";
 import { extractSprinkles } from "../sprinkles";
 import { fallbackSpan } from "../utils";
 
@@ -26,7 +26,7 @@ export const AlertDialogTitle = forwardRef<
         {addonBefore ? (
           fallbackSpan(addonBefore)
         ) : (
-          <IconTriangleExclamationFilled />
+          <IconTriangleExclamationSolid />
         )}
       </Icon>
 

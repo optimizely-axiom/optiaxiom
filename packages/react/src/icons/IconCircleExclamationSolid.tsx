@@ -1,8 +1,8 @@
 import { withIcon } from "./withIcon";
 
-export const IconCircleExclamationFilled = withIcon(
+export const IconCircleExclamationSolid = withIcon(
   {
-    name: "IconCircleExclamationFilled",
+    name: "IconCircleExclamationSolid",
     viewBox: "0 0 512 512",
   },
   // <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
