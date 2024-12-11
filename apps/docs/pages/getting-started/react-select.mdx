@@ -14,7 +14,7 @@ When using `react-select` inside a `Dialog` we need to use portals to ensure the
    <Select menuPortalTarget={document.body} />
    ```
 
-2. Next we need to ensure focus trapping is handled correctly inside the portal. Wrap the `MenuPortal` children in our `ModalLayer` component.
+2. Next we need to ensure focus trapping is handled correctly inside the portal. Wrap the `MenuPortal` children in our [ModalLayer](/components/modal-layer/) component.
 
    ```jsx
    import { ModalLayer } from "@optiaxiom/react";
