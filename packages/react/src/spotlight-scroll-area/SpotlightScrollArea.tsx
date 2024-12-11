@@ -9,6 +9,6 @@ type SpotlightScrollAreaProps = ComponentPropsWithoutRef<
 export const SpotlightScrollArea = forwardRef<
   HTMLDivElement,
   SpotlightScrollAreaProps
->((props, ref) => <ListboxScrollArea gap="xs" ref={ref} {...props} />);
+>((props, ref) => <ListboxScrollArea gap="8" ref={ref} {...props} />);
 
 SpotlightScrollArea.displayName = "@optiaxiom/react/SpotlightScrollArea";

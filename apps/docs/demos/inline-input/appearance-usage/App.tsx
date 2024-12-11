@@ -8,8 +8,8 @@ export function App() {
       bg="bg.secondary"
       color="fg.default"
       level="5"
-      px="sm"
-      py="xs"
+      px="12"
+      py="8"
       rounded="md"
       w="240"
     >

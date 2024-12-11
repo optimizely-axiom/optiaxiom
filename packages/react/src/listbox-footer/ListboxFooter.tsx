@@ -11,9 +11,9 @@ export const ListboxFooter = forwardRef<HTMLDivElement, ListboxFooterProps>(
         borderColor="border.secondary"
         borderT="1"
         flexDirection="row"
-        gap="md"
+        gap="16"
         justifyContent="space-between"
-        p="sm"
+        p="12"
         ref={ref}
         {...props}
       >

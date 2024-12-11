@@ -39,7 +39,7 @@ export function Demo({
   );
 
   return (
-    <Box bg="bg.default" border="1" mt="xl" rounded="lg">
+    <Box bg="bg.default" border="1" mt="32" rounded="lg">
       <Box
         alignItems="stretch"
         borderB="1"
@@ -52,7 +52,7 @@ export function Demo({
           flexDirection="row"
           gap="0"
           justifyContent="center"
-          p="xl"
+          p="32"
         >
           {iframe ? (
             <DemoIframe height={height} src={iframe} />

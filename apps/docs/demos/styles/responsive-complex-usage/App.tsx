@@ -19,12 +19,12 @@ export function App() {
           style={{ minWidth: "0" }}
         />
 
-        <Box p="md">
+        <Box p="16">
           <Text color="fg.error" fontWeight="600" textTransform="uppercase">
             Phasellus auctor
           </Text>
 
-          <Text fontSize="lg" fontWeight="700" my="xs">
+          <Text fontSize="lg" fontWeight="700" my="8">
             Nullam rhoncus gravida urna
           </Text>
 

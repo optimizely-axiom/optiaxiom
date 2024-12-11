@@ -2,7 +2,7 @@ import { Button, Grid, Tooltip } from "@optiaxiom/react";
 
 export function App() {
   return (
-    <Grid gap="xs" gridTemplateColumns="3">
+    <Grid gap="8" gridTemplateColumns="3">
       <Tooltip align="start" content="Top Start" side="top">
         <Button py="20">Top Start</Button>
       </Tooltip>

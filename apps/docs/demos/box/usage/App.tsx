@@ -2,7 +2,7 @@ import { Box } from "@optiaxiom/react";
 
 export function App() {
   return (
-    <Box bg="bg.information.subtle" m="lg" p="lg" rounded="sm">
+    <Box bg="bg.information.subtle" m="24" p="24" rounded="sm">
       This is a Box
     </Box>
   );

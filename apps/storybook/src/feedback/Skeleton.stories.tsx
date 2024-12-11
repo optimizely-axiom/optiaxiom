@@ -17,14 +17,14 @@ export const Basic: Story = {
 
 export const Card: Story = {
   render: () => (
-    <Box bg="bg.default" p="md" rounded="sm" shadow="sm" w="384">
+    <Box bg="bg.default" p="16" rounded="sm" shadow="sm" w="384">
       <Flex alignItems="start" flexDirection="row">
         <Skeleton rounded="full" size="48" />
 
         <Flex flex="1" py="4">
           <Skeleton h="12" />
 
-          <Flex mt="md">
+          <Flex mt="16">
             <Grid gridTemplateColumns="3">
               <Skeleton gridColumn="2" h="12" />
               <Skeleton gridColumn="1" h="12" />
@@ -42,7 +42,7 @@ export const Children: Story = {
   args: {
     children: <IconUserFilled />,
     color: "fg.default.inverse",
-    p: "xs",
+    p: "8",
     rounded: "full",
     size: "48",
   },

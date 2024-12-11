@@ -9,7 +9,7 @@ export function App({
     <Spinner
       appearance={appearance}
       bg={appearance === "default" ? "bg.default" : "bg.default.inverse"}
-      p="xs"
+      p="8"
       rounded="sm"
       size="sm"
     />

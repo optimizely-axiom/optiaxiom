@@ -26,7 +26,7 @@ const positions = ["top-right", "bottom-right"] as const;
 
 const Variants: Story = {
   render: (args) => (
-    <Flex flexDirection="column" gap="sm">
+    <Flex flexDirection="column" gap="12">
       {intents.map((intent) => (
         <Indicator {...args} content="4" intent={intent} key={intent} />
       ))}
@@ -62,7 +62,7 @@ export const Position: Story = {
     variant: "solid",
   },
   render: (args) => (
-    <Flex gap="lg">
+    <Flex gap="24">
       {positions.map((position) => (
         <Box key={position}>
           <Indicator {...args} position={position} />

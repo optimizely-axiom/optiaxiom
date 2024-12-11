@@ -5,10 +5,10 @@ import { Canvas } from "../Canvas";
 export function App() {
   return (
     <Canvas>
-      <Box mt="sm">mt=sm</Box>
-      <Box mr="md">mr=md</Box>
-      <Box mb="lg">mb=lg</Box>
-      <Box ml="xl">ml=xl</Box>
+      <Box mt="12">mt=12</Box>
+      <Box mr="16">mr=16</Box>
+      <Box mb="24">mb=24</Box>
+      <Box ml="32">ml=32</Box>
     </Canvas>
   );
 }

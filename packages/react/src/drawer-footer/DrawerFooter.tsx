@@ -10,9 +10,9 @@ export const DrawerFooter = forwardRef<HTMLDivElement, DrawerFooterProps>(
       <Flex
         borderT="1"
         flexDirection="row"
-        gap="md"
+        gap="16"
         justifyContent="end"
-        p="md"
+        p="16"
         ref={ref}
         {...props}
       >

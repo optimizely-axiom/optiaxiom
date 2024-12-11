@@ -19,7 +19,7 @@ export const Item = ({
         color="fg.default.inverse"
         fontFamily="mono"
         fontWeight="600"
-        p="md"
+        p="16"
         rounded="inherit"
       >
         {children.props.children}

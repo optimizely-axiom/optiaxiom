@@ -14,7 +14,7 @@ export const ToastAction = forwardRef<HTMLButtonElement, ToastProps>(
           alignSelf="center"
           bg="border.active.hovered"
           h="sm"
-          ml="sm"
+          ml="12"
           orientation="vertical"
         />
 

@@ -6,9 +6,9 @@ export function App() {
   return (
     <Canvas>
       <Flex flexDirection="row">
-        <Box p="sm">01</Box>
-        <Box p="md">02</Box>
-        <Box p="sm">03</Box>
+        <Box p="12">01</Box>
+        <Box p="16">02</Box>
+        <Box p="12">03</Box>
       </Flex>
     </Canvas>
   );

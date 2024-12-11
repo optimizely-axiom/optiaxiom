@@ -12,7 +12,7 @@ export const Breadcrumb = forwardRef<HTMLElement, BreadcrumbProps>(
     return (
       <Box asChild {...sprinkleProps}>
         <nav aria-label="Breadcrumb" ref={ref} {...restProps}>
-          <Box alignItems="center" asChild display="flex" gap="xs">
+          <Box alignItems="center" asChild display="flex" gap="8">
             <ol>{children}</ol>
           </Box>
         </nav>

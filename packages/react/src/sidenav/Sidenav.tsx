@@ -55,8 +55,8 @@ export const Sidenav = forwardRef<HTMLElement, SidenavProps>(
             flex="1"
             gap="0"
             overflow="hidden"
-            pb="xs"
-            pt="md"
+            pb="8"
+            pt="16"
             transition={animations ? "all" : undefined}
             w={expanded ? "224" : "56"}
           >

@@ -10,8 +10,8 @@ export const Canvas = ({
 }) => (
   <Text
     bg={appearance === "inverse" ? "bg.default.inverse" : "bg.default"}
-    px="sm"
-    py="xs"
+    px="12"
+    py="8"
     rounded="sm"
   >
     {children}

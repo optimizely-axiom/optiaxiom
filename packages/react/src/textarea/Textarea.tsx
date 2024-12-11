@@ -57,7 +57,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           <InputAddon asChild>{fallbackSpan(addonBefore)}</InputAddon>
         )}
 
-        <InputControl asChild p="xs" size="lg" {...restProps}>
+        <InputControl asChild p="8" size="lg" {...restProps}>
           <Comp ref={ref} rows={props.rows ?? 3}>
             {children}
           </Comp>

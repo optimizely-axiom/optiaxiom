@@ -6,9 +6,9 @@ export const item = recipe({
   base: [
     {
       fontWeight: "500",
-      mx: "lg",
-      px: "md",
-      py: "sm",
+      mx: "24",
+      px: "16",
+      py: "12",
     },
     style({
       backgroundColor: theme.colors["bg.secondary"],

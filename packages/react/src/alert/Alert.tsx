@@ -47,7 +47,7 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>(
             {createElement(mapIntentToIcon[intent])}
           </Icon>
 
-          <Flex flex="1" gap="xs" my="2">
+          <Flex flex="1" gap="8" my="2">
             {children}
           </Flex>
 

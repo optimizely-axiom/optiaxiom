@@ -179,7 +179,7 @@ export const Basic: Story<{ items?: Item[] } & Item> = {
             borderB="1"
             borderColor="border.tertiary"
             item={types}
-            pb="sm"
+            pb="12"
           >
             {types.items.map((item) => (
               <SpotlightSubItem

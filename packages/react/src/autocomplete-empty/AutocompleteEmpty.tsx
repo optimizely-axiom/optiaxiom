@@ -15,7 +15,7 @@ export const AutocompleteEmpty = forwardRef<
       display="flex"
       flexDirection="column"
       fontSize="md"
-      p="md"
+      p="16"
       ref={ref}
       {...props}
     >

@@ -1,22 +1,20 @@
-import type { ComponentPropsWithRef } from "react";
-
 import { Box, Flex, Grid, Heading, Text } from "@optiaxiom/react";
 import { IconBox, IconPalette } from "@tabler/icons-react";
 import Link from "next/link";
 
 import styles from "./Cards.module.css";
 
-export function Cards(props: ComponentPropsWithRef<typeof Grid>) {
+export function Cards() {
   return (
-    <Grid gap="xl" gridTemplateColumns={["1", "2"]} mx="-md" {...props}>
+    <Grid gap="32" gridTemplateColumns={["1", "2"]} mt="16" mx="-16">
       <Flex
         alignItems="start"
         asChild
         className={styles.card}
         flexDirection="row"
-        gap="lg"
-        p="md"
-        pb="lg"
+        gap="24"
+        p="16"
+        pb="24"
         rounded="md"
       >
         <Link href="/styled-system">
@@ -27,7 +25,7 @@ export function Cards(props: ComponentPropsWithRef<typeof Grid>) {
             borderColor="bg.default"
             className={styles.icon}
             color="fg.information.strong"
-            p="sm"
+            p="12"
             rounded="full"
             size="56"
           >
@@ -50,9 +48,9 @@ export function Cards(props: ComponentPropsWithRef<typeof Grid>) {
         asChild
         className={styles.card}
         flexDirection="row"
-        gap="lg"
-        p="md"
-        pb="lg"
+        gap="24"
+        p="16"
+        pb="24"
         rounded="md"
       >
         <Link href="/components">
@@ -63,7 +61,7 @@ export function Cards(props: ComponentPropsWithRef<typeof Grid>) {
             borderColor="bg.default"
             className={styles.icon}
             color="fg.success.strong"
-            p="sm"
+            p="12"
             rounded="full"
             size="56"
           >

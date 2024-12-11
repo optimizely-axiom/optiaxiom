@@ -10,14 +10,7 @@ export const ListboxLabel = forwardRef<HTMLDivElement, ListboxLabelProps>(
     const { id } = useListboxGroupContext("ListboxLabel");
 
     return (
-      <Box
-        color="fg.tertiary"
-        fontSize="sm"
-        id={id}
-        p="xs"
-        ref={ref}
-        {...props}
-      >
+      <Box color="fg.tertiary" fontSize="sm" id={id} p="8" ref={ref} {...props}>
         {children}
       </Box>
     );

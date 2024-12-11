@@ -14,7 +14,7 @@ export const Item = ({
       <Box
         bg="link.fg.visited"
         display="grid"
-        p="xs"
+        p="8"
         placeItems="center"
         rounded="inherit"
         {...children.props}

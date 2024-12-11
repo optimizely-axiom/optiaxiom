@@ -12,19 +12,19 @@ export const Basic: Story = {
   args: {
     children: (
       <>
-        <Text bg="bg.information.subtle" p="md">
+        <Text bg="bg.information.subtle" p="16">
           Text box 1
         </Text>
-        <Text bg="bg.information.subtle" p="md">
+        <Text bg="bg.information.subtle" p="16">
           Text box 2
         </Text>
-        <Text bg="bg.information.subtle" p="md">
+        <Text bg="bg.information.subtle" p="16">
           Text box 3
         </Text>
-        <Text bg="bg.information.subtle" p="md">
+        <Text bg="bg.information.subtle" p="16">
           Text box 4
         </Text>
-        <Text bg="bg.information.subtle" p="md">
+        <Text bg="bg.information.subtle" p="16">
           Text box 5
         </Text>
       </>

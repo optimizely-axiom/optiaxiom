@@ -9,7 +9,7 @@ export const trigger = recipe({
       fontSize: "md",
       fontWeight: "500",
       gap: "4",
-      p: "xs",
+      p: "8",
       px: "4",
       rounded: "md",
       textAlign: "start",

@@ -18,7 +18,7 @@ export const SidenavBody = forwardRef<HTMLUListElement, SidenavBodyProps>(
         justifyContent="start"
         overflowX="hidden"
         overflowY="auto"
-        py="xs"
+        py="8"
         w="full"
         {...sprinkleProps}
       >

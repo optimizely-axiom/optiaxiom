@@ -37,7 +37,7 @@ export const Controlled: Story = {
     };
 
     return (
-      <Flex flexDirection="column" gap="sm" w="240">
+      <Flex flexDirection="column" gap="12" w="240">
         <SearchInput {...args} onChange={handleChange} value={value} />
         <Text>Current value: {value}</Text>
         <Button disabled={!value} onClick={() => setValue("")}>

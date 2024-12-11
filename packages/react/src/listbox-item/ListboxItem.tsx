@@ -76,7 +76,7 @@ export const ListboxItem = forwardRef<HTMLDivElement, ListboxItemProps>(
               </Flex>
 
               {addonAfter && (
-                <Box asChild ml="xs">
+                <Box asChild ml="8">
                   {fallbackSpan(addonAfter)}
                 </Box>
               )}

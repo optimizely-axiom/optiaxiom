@@ -9,7 +9,7 @@ export const SpotlightSub = forwardRef<HTMLDivElement, SpotlightSubProps>(
   ({ children, ...props }, ref) => {
     return (
       <CommandSub asChild ref={ref} {...props}>
-        <Flex flexDirection="row" gap="xs" pt="sm" px="lg">
+        <Flex flexDirection="row" gap="8" pt="12" px="24">
           {children}
         </Flex>
       </CommandSub>

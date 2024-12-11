@@ -20,15 +20,15 @@ export function App({
           <TabsTrigger value="third">Third</TabsTrigger>
         </TabsList>
 
-        <TabsContent py="md" value="first">
+        <TabsContent py="16" value="first">
           This is first content
         </TabsContent>
 
-        <TabsContent py="md" value="second">
+        <TabsContent py="16" value="second">
           This is second content
         </TabsContent>
 
-        <TabsContent py="md" value="third">
+        <TabsContent py="16" value="third">
           This is third content
         </TabsContent>
       </Tabs>

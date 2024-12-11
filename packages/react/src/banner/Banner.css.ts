@@ -8,10 +8,10 @@ export const banner = recipe({
       flexDirection: "row",
       fontSize: "md",
       fontWeight: "500",
-      gap: "sm",
+      gap: "12",
       justifyContent: "space-between",
-      px: "lg",
-      py: "sm",
+      px: "24",
+      py: "12",
     },
   ],
   variants: {

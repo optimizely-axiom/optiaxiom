@@ -4,7 +4,7 @@ export const actions = recipe({
   base: [
     {
       flexDirection: "row-reverse",
-      gap: "xs",
+      gap: "8",
     },
     style({
       order: "2",

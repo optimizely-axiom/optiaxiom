@@ -14,8 +14,8 @@ export function DemoSizeToggle({
       className={styles.container}
       display="flex"
       justifyContent="center"
-      pb="md"
-      pt="xl"
+      pb="16"
+      pt="32"
     >
       <Box
         asChild

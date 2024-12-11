@@ -13,7 +13,7 @@ export const ListboxRadioItem = forwardRef<
   return (
     <ListboxItem
       addonAfter={
-        <Flex flexDirection="row" gap="xs">
+        <Flex flexDirection="row" gap="8">
           {addonAfter}
           <ListboxItemIndicator active={Boolean(props["aria-selected"])} />
         </Flex>

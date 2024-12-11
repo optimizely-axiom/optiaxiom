@@ -14,7 +14,7 @@ export const cell = recipe({
       color: "fg.secondary",
       fontSize: "md",
       fontWeight: "400",
-      p: "md",
+      p: "16",
       transition: "colors",
     },
     style({

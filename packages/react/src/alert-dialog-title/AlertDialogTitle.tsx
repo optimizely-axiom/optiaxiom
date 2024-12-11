@@ -21,7 +21,7 @@ export const AlertDialogTitle = forwardRef<
 >(({ addonBefore, children, ...props }, ref) => {
   const { restProps, sprinkleProps } = extractSprinkles(props);
   return (
-    <Flex flexDirection="row" gap="xs" p="lg" pb="md" {...sprinkleProps}>
+    <Flex flexDirection="row" gap="8" p="24" pb="16" {...sprinkleProps}>
       <Icon asChild color="fg.error">
         {addonBefore ? (
           fallbackSpan(addonBefore)

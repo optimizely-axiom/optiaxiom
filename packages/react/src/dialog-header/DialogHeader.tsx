@@ -10,9 +10,9 @@ export const DialogHeader = forwardRef<HTMLHeadingElement, DialogHeaderProps>(
       <Box
         display="flex"
         flexWrap="wrap"
-        gap="xs"
-        p="lg"
-        pb="md"
+        gap="8"
+        p="24"
+        pb="16"
         ref={ref}
         {...props}
       >

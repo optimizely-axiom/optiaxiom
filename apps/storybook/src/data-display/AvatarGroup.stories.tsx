@@ -81,7 +81,7 @@ const sizes = ["xs", "sm", "md", "xl", "5xl"] as const;
 export const Sizes: Story = {
   render: (args) => {
     return (
-      <Flex gap="md">
+      <Flex gap="16">
         {sizes.map((size) => (
           <AvatarGroup key={size} {...args} size={size} />
         ))}
@@ -135,7 +135,7 @@ export const WithHoverCard: Story = {
           </HoverCardTrigger>
 
           <HoverCardContent>
-            <Flex flexDirection="column" gap="xs">
+            <Flex flexDirection="column" gap="8">
               {users.slice(3).map((user, index) => (
                 <Flex flexDirection="row" gap="4" key={index}>
                   <Avatar colorScheme="purple" name={user.name} src={user.src}>

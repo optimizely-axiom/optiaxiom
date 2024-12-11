@@ -11,8 +11,8 @@ export const Canvas = ({
     <Box
       asChild
       display="inline-flex"
-      px="md"
-      py="sm"
+      px="16"
+      py="12"
       rounded="sm"
       {...children.props}
     >

@@ -95,7 +95,7 @@ export default {
   },
   component: Sidenav,
   decorators: (Story) => (
-    <Box bg="bg.page" p="lg" w="288">
+    <Box bg="bg.page" p="24" w="288">
       <Story />
     </Box>
   ),
