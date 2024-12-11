@@ -3,6 +3,7 @@ import { forwardRef } from "react";
 
 import { type BoxProps } from "../box";
 import { Flex } from "../flex";
+import { SegmentedControlContextProvider } from "../segmented-control-context";
 
 type SegmentedControlProps = BoxProps<
   typeof RadixSegmentedControl.Root,
@@ -18,7 +19,9 @@ export const SegmentedControl = forwardRef<
   return (
     <Flex asChild flexDirection="row" gap="0" {...props}>
       <RadixSegmentedControl.Root ref={ref} type={type}>
-        {children}
+        <SegmentedControlContextProvider>
+          {children}
+        </SegmentedControlContextProvider>
       </RadixSegmentedControl.Root>
     </Flex>
   );
