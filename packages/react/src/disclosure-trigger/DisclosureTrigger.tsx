@@ -2,6 +2,7 @@ import * as RadixCollapsible from "@radix-ui/react-collapsible";
 import { forwardRef, type ReactNode } from "react";
 
 import { Box, type BoxProps } from "../box";
+import { useDisclosureContext } from "../disclosure-context";
 import { Flex } from "../flex";
 import { IconAngleDown } from "../icons/IconAngleDown";
 import { IconAngleRight } from "../icons/IconAngleRight";
@@ -25,6 +26,8 @@ export const DisclosureTrigger = forwardRef<
     { addonAfter, addonBefore, chevronPosition = "start", children, ...props },
     ref,
   ) => {
+    useDisclosureContext("DisclosureTrigger");
+
     const { restProps, sprinkleProps } = extractSprinkles(props);
     const startIcon =
       addonBefore ||
