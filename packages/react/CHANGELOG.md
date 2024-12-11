@@ -1,5 +1,21 @@
 # @optiaxiom/react
 
+## 0.7.8
+
+### Patch Changes
+
+- 87999df: use semi-transparent colors for subtle button hovered/pressed states
+- c085827: remove value prop type restriction
+- b5be74b: inline packages with peer dependency mismatch
+- eed6891: allow showing error outline on input without message
+- f7e7c62: fix inline input by using innerText
+- a376686: fix indicator prop/ref forwarding
+- ab999a5: add avatar fallback icons
+- 1278fb2: export re-usable modal component
+- Updated dependencies [87999df]
+- Updated dependencies [ab999a5]
+  - @optiaxiom/globals@0.4.4
+
 ## 0.7.7
 
 ### Patch Changes
