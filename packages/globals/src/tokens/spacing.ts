@@ -1,12 +1,6 @@
 import { rem } from "./rem";
 
 export const spacing = {
-  xs: rem("8px"),
-  sm: rem("12px"),
-  md: rem("16px"),
-  lg: rem("24px"),
-  xl: rem("32px"),
-
   "0": "0",
   "2": rem("2px"),
   "4": rem("4px"),

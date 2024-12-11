@@ -30,11 +30,11 @@ export default tsEslint.config(
           customGroups: {
             base: ["base"],
             Nxs: ["*xs", "tightest"],
-            xs: ["xs", "-xs", "tighter"],
-            sm: ["sm", "-sm", "tight"],
-            md: ["md", "-md", "normal"],
-            lg: ["lg", "-lg", "wide"],
-            xl: ["xl", "-xl", "wider", "loose"],
+            xs: ["xs", "tighter"],
+            sm: ["sm", "tight"],
+            md: ["md", "normal"],
+            lg: ["lg", "wide"],
+            xl: ["xl", "wider", "loose"],
             Nxl: ["*xl", "widest"],
           },
           groups: [
