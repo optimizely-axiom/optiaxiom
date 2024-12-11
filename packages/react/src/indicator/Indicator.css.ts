@@ -18,6 +18,7 @@ export const floating = recipe({
   base: [
     {
       display: "inline-flex",
+      pointerEvents: "none",
       z: "10",
     },
     style({
