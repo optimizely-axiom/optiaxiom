@@ -22,7 +22,6 @@ export const Badge = forwardRef<HTMLSpanElement, BadgeProps>(
     return (
       <Text
         asChild
-        role="presentation"
         {...styles.badge({ intent, variant }, className)}
         {...props}
       >
