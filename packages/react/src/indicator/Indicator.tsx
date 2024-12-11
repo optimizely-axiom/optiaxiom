@@ -1,4 +1,3 @@
-import { Slot } from "@radix-ui/react-slot";
 import { forwardRef, type ReactNode } from "react";
 
 import { Badge } from "../badge";
@@ -22,6 +21,7 @@ export const Indicator = forwardRef<HTMLDivElement, IndicatorProps>(
     {
       asChild,
       children,
+      className,
       content,
       disabled,
       intent,
@@ -34,10 +34,8 @@ export const Indicator = forwardRef<HTMLDivElement, IndicatorProps>(
     ref,
   ) => {
     return (
-      <Flex {...styles.indicator()}>
-        <Slot ref={ref} {...props}>
-          {children}
-        </Slot>
+      <Flex ref={ref} {...styles.indicator({}, className)} {...props}>
+        {children}
 
         {!disabled && (
           <Box {...styles.floating({ offset, position })}>
