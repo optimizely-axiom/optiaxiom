@@ -1,13 +1,13 @@
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
-import { ListboxFooter } from "../listbox-footer";
+import { ListboxEmpty } from "../listbox-empty";
 
-type ComboboxFooterProps = ComponentPropsWithoutRef<typeof ListboxFooter>;
+type ComboboxEmptyProps = ComponentPropsWithoutRef<typeof ListboxEmpty>;
 
-export const ComboboxFooter = forwardRef<HTMLDivElement, ComboboxFooterProps>(
+export const ComboboxEmpty = forwardRef<HTMLDivElement, ComboboxEmptyProps>(
   (props, ref) => {
-    return <ListboxFooter ref={ref} {...props} />;
+    return <ListboxEmpty ref={ref} {...props} />;
   },
 );
 
-ComboboxFooter.displayName = "@optiaxiom/react/ComboboxFooter";
+ComboboxEmpty.displayName = "@optiaxiom/react/ComboboxEmpty";
