@@ -74,12 +74,13 @@ export const badge = recipe({
       },
       true: [
         {
-          px: "6",
+          px: "4",
+          py: "0",
         },
         style({
           selectors: {
             "&:not(:empty)": {
-              minWidth: "20px",
+              minWidth: "16px",
             },
           },
         }),
