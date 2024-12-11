@@ -1,6 +1,6 @@
 import { recipe, type RecipeVariants, style } from "../vanilla-extract";
 
-export const gap = "md";
+export const gap = "16";
 export const padding = "24";
 
 export const viewport = recipe({

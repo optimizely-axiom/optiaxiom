@@ -25,21 +25,21 @@ export const list = recipe({
         selectors: {
           '&[data-orientation="horizontal"]': {
             borderBottomWidth: "1px",
-            gap: theme.spacing.lg,
+            gap: theme.spacing["24"],
           },
           '&[data-orientation="vertical"]': {
             borderRightWidth: "1px",
-            gap: theme.spacing.xs,
+            gap: theme.spacing["8"],
           },
         },
       }),
       secondary: style({
         selectors: {
           '&[data-orientation="horizontal"]': {
-            gap: theme.spacing.md,
+            gap: theme.spacing["24"],
           },
           '&[data-orientation="vertical"]': {
-            gap: theme.spacing.xs,
+            gap: theme.spacing["8"],
           },
         },
       }),

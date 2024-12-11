@@ -5,7 +5,7 @@ import { Canvas } from "../Canvas";
 export function App() {
   return (
     <Canvas>
-      <Grid gap="md" gridTemplateColumns="2">
+      <Grid gap="16" gridTemplateColumns="2">
         <Box>01</Box>
         <Box>02</Box>
         <Box>03</Box>

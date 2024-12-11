@@ -52,7 +52,7 @@ export function PropsTable({
         <PropsTableDescription
           name={component.displayName?.replace("@optiaxiom/react/", "")}
         >
-          <Text fontSize="lg" mt="md">
+          <Text fontSize="lg" mt="16">
             Supports all{" "}
             <Link href={`/components/${kebabCase(baseName)}#props`}>
               {baseName}
@@ -121,13 +121,13 @@ function PropsTableDescription({
     <>
       {children}
       {(name === "Checkbox" || name === "Radio" || name === "Switch") && (
-        <Text fontSize="lg" mt="md">
+        <Text fontSize="lg" mt="16">
           <Code>{name}</Code> is extended from <Code>input</Code> and supports
           all props that <Code>input</Code> supports.
         </Text>
       )}
       {(name === "Input" || name === "Textarea") && (
-        <Text fontSize="lg" mt="md">
+        <Text fontSize="lg" mt="16">
           <Code>{name}</Code> is extended from the{" "}
           <Code>{name.toLowerCase()}</Code> HTML element and supports all props
           that <Code>{name.toLowerCase()}</Code> supports.

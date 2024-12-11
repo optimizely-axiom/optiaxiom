@@ -24,7 +24,7 @@ export const Flex = forwardRef<HTMLDivElement, FlexProps>(
     {
       alignItems,
       flexDirection = "column",
-      gap = "md",
+      gap = "16",
       justifyContent,
       ...props
     },

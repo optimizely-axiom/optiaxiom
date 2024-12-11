@@ -17,7 +17,7 @@ export const Item = ({
         bg="link.fg.visited"
         display="grid"
         placeItems="center"
-        py="md"
+        py="16"
         rounded="sm"
         {...children.props}
       >

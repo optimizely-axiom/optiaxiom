@@ -24,7 +24,7 @@ describe("Box component", () => {
     const [preset, setPreset] = useState<"default" | "primary">("default");
 
     return (
-      <Box p="md">
+      <Box p="16">
         This is a box
         <Button
           appearance={preset}

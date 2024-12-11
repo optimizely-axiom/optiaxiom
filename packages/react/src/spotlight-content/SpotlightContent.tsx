@@ -33,7 +33,7 @@ export const SpotlightContent = forwardRef<
       aria-describedby={undefined}
       gap="0"
       overflow="hidden"
-      pb="lg"
+      pb="24"
       ref={ref}
       transitionType="pop"
       {...props}

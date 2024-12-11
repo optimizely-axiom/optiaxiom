@@ -10,9 +10,9 @@ export const DrawerHeader = forwardRef<HTMLDivElement, DrawerHeaderProps>(
       <Box
         display="flex"
         flexWrap="wrap"
-        gap="xs"
-        p="lg"
-        pb="md"
+        gap="8"
+        p="24"
+        pb="16"
         ref={ref}
         {...props}
       >

@@ -88,9 +88,9 @@ export const DisabledItems: Story = {
 
 const props = {
   border: "1",
-  gap: "xs",
+  gap: "8",
   justifyContent: "start",
-  p: "md",
+  p: "16",
   rounded: "sm",
 } as const;
 
@@ -131,17 +131,17 @@ const props2 = {
   alignItems: "start",
   borderT: "1",
   flexDirection: "row",
-  p: "sm",
+  p: "12",
 } as const;
 
 export const ComplexExample2: Story = {
   render: (args) => (
     <RadioGroup borderB="1" {...args} defaultValue="label-1">
-      <Flex {...props2} gap="xs">
+      <Flex {...props2} gap="8">
         <Radio value="label-1" w="128">
           Admin
         </Radio>
-        <Box asChild pl="lg" style={{ listStyle: "disc" }}>
+        <Box asChild pl="24" style={{ listStyle: "disc" }}>
           <ul>
             <li>
               <Text>Can add or remove members.</Text>
@@ -152,11 +152,11 @@ export const ComplexExample2: Story = {
           </ul>
         </Box>
       </Flex>
-      <Flex {...props2} gap="xs">
+      <Flex {...props2} gap="8">
         <Radio value="label-2" w="128">
           Editor
         </Radio>
-        <Box asChild pl="lg" style={{ listStyle: "disc" }}>
+        <Box asChild pl="24" style={{ listStyle: "disc" }}>
           <ul>
             <li>
               <Text>Can adjust flag settings.</Text>

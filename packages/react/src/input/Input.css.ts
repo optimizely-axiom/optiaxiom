@@ -4,16 +4,16 @@ export const root = recipe({
   variants: {
     size: {
       md: {
-        gap: "xs",
-        px: "xs",
+        gap: "8",
+        px: "8",
       },
       lg: {
-        gap: "xs",
-        px: "xs",
+        gap: "8",
+        px: "8",
       },
       "2xl": {
-        gap: "md",
-        px: "md",
+        gap: "16",
+        px: "16",
       },
     },
   },
@@ -34,10 +34,10 @@ export const input = recipe({
         py: "4",
       },
       lg: {
-        py: "xs",
+        py: "8",
       },
       "2xl": {
-        py: "md",
+        py: "16",
       },
     },
   },

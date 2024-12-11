@@ -11,9 +11,9 @@ export const SpotlightLabel = forwardRef<HTMLDivElement, SpotlightLabelProps>(
         color="fg.default"
         fontSize="lg"
         fontWeight="600"
-        pb="sm"
-        pt="md"
-        px="lg"
+        pb="12"
+        pt="16"
+        px="24"
         ref={ref}
         {...props}
       >

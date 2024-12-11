@@ -5,8 +5,8 @@ export function App() {
     <Box>
       <Text fontWeight="600">Axiom</Text>
       <Text>Optimizely Design System</Text>
-      <Separator my="sm" />
-      <Flex flexDirection="row" gap="sm">
+      <Separator my="12" />
+      <Flex flexDirection="row" gap="12">
         <Text>Installation</Text>
         <Separator orientation="vertical" />
         <Text>Design</Text>

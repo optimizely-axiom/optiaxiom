@@ -10,7 +10,7 @@ type Story = StoryObj<typeof Separator>;
 
 export const Basic: Story = {
   args: {
-    my: "sm",
+    my: "12",
     orientation: "horizontal",
   },
 
@@ -27,7 +27,7 @@ export const Basic: Story = {
 
 export const Vertical: Story = {
   args: {
-    mx: "sm",
+    mx: "12",
     orientation: "vertical",
   },
 

@@ -13,9 +13,9 @@ export const Container = ({
   h?: Sprinkles["h"];
 }) => {
   return (
-    <Box h={h} p="xs" rounded="sm" style={yellowStripes}>
+    <Box h={h} p="8" rounded="sm" style={yellowStripes}>
       <Item>
-        <Box p="xs" {...children.props} />
+        <Box p="8" {...children.props} />
       </Item>
     </Box>
   );

@@ -5,7 +5,7 @@ export function App() {
   const [open, setOpen] = useState(false);
 
   return (
-    <Flex gap="sm">
+    <Flex gap="12">
       <Tooltip
         content="This is a controlled tooltip"
         onOpenChange={setOpen}

@@ -28,7 +28,7 @@ export const PopoverContent = forwardRef<HTMLDivElement, PopoverContentProps>(
             <MenuListbox
               asChild
               onBlur={onReactSelectInputBlur}
-              p="sm"
+              p="12"
               provider="popover"
               {...props}
             >

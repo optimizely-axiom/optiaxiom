@@ -7,7 +7,7 @@ export const content = recipe({
       flexDirection: "column",
       fontSize: "md",
       gap: "2",
-      p: "sm",
+      p: "12",
     },
     style({
       minWidth: "var(--radix-hover-card-trigger-width)",

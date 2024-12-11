@@ -28,8 +28,8 @@ export function App() {
         Display
       </PopoverTrigger>
 
-      <PopoverContent gap="sm" px="0">
-        <SegmentedControl defaultValue="list" gap="sm" px="md">
+      <PopoverContent gap="12" px="0">
+        <SegmentedControl defaultValue="list" gap="12" px="16">
           <Tooltip content="List">
             <SegmentedControlItem
               aria-label="List"
@@ -53,10 +53,10 @@ export function App() {
           flexDirection="row"
           justifyContent="space-between"
           label="Columns"
-          px="md"
+          px="16"
         >
           <Select defaultValue="Status" items={["Status", "Due Dates"]}>
-            <SelectTrigger ml="sm" size="sm">
+            <SelectTrigger ml="12" size="sm">
               <SelectValue />
             </SelectTrigger>
 
@@ -74,13 +74,13 @@ export function App() {
           flexDirection="row"
           justifyContent="space-between"
           label="Grouping"
-          px="md"
+          px="16"
         >
           <Select
             defaultValue="No grouping"
             items={["No grouping", "Campaign"]}
           >
-            <SelectTrigger ml="sm" size="sm">
+            <SelectTrigger ml="12" size="sm">
               <SelectValue />
             </SelectTrigger>
 
@@ -100,10 +100,10 @@ export function App() {
           flexDirection="row"
           justifyContent="space-between"
           label="View"
-          px="md"
+          px="16"
         >
           <Select defaultValue="Tasks" items={["Tasks", "Steps"]}>
-            <SelectTrigger ml="sm" size="sm">
+            <SelectTrigger ml="12" size="sm">
               <SelectValue />
             </SelectTrigger>
 

@@ -4,7 +4,7 @@ import { Canvas } from "../Canvas";
 
 export function App() {
   return (
-    <Canvas p="xs">
+    <Canvas p="8">
       <Flex>
         <Box size="1/2">size=1/2</Box>
         <Box size="2/3">size=2/3</Box>

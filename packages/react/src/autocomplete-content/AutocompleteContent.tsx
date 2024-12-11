@@ -40,7 +40,7 @@ export const AutocompleteContent = forwardRef<
             <MenuListbox asChild minW="trigger" provider="popper" {...props}>
               <AutocompleteContentImpl ref={ref}>
                 {loading ? (
-                  <Box display="flex" justifyContent="center" p="md">
+                  <Box display="flex" justifyContent="center" p="16">
                     <Spinner />
                   </Box>
                 ) : (

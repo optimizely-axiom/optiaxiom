@@ -42,7 +42,7 @@ export const AutocompleteTrigger = forwardRef<
               </Flex>
             )}
 
-            <Separator my="xs" orientation="vertical" />
+            <Separator my="8" orientation="vertical" />
 
             <Flex asChild w="32">
               <CommandToggleButton aria-label="Toggle" disabled={disabled}>

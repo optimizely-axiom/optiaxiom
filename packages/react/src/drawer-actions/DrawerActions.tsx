@@ -17,7 +17,7 @@ export const DrawerActions = forwardRef<HTMLHeadingElement, DrawerActionsProps>(
           <RadixDialog.Close />
         </Button>
 
-        <Flex flexDirection="row" gap="xs">
+        <Flex flexDirection="row" gap="8">
           {children}
         </Flex>
       </Flex>

@@ -14,7 +14,7 @@ export const ListboxCheckboxItem = forwardRef<
   return (
     <ListboxItem
       addonBefore={
-        <Flex flexDirection="row" gap="xs">
+        <Flex flexDirection="row" gap="8">
           <Checkbox
             checked={Boolean(props["aria-selected"])}
             disabled={Boolean(props["aria-disabled"])}

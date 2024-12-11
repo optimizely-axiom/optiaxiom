@@ -63,7 +63,7 @@ export const Scale = ({
               </Text>
             </Td>
             <Td whiteSpace="nowrap">
-              <Flex gap="xs">
+              <Flex gap="8">
                 {(typeof size === "object"
                   ? Object.entries(size).map(
                       ([key, value]) => `${key}: ${value}`,
@@ -84,7 +84,7 @@ export const Scale = ({
             </Td>
             {!hidePixels && (
               <Td whiteSpace="nowrap">
-                <Flex gap="xs">
+                <Flex gap="8">
                   {(typeof size === "object"
                     ? Object.entries<string>(size).map(
                         ([key, value]) => `${key}: ${px(value)}`,

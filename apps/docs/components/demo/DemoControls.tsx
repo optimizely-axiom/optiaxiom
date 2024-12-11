@@ -25,7 +25,7 @@ export function DemoControls({
   ...props
 }: DemoControlProps) {
   return (
-    <Flex justifyContent="start" p="md" pb="xl" pt="lg" {...props}>
+    <Flex justifyContent="start" p="16" pb="32" pt="24" {...props}>
       {Object.values(propTypes)
         .map(itemToControl)
         .filter((a) => !!a)

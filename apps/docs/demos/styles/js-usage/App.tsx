@@ -6,7 +6,7 @@ export function App() {
       style={{
         background: theme.colors["bg.success.subtle"],
         color: theme.colors["fg.success.strong"],
-        padding: theme.spacing.md,
+        padding: theme.spacing["16"],
       }}
     >
       Using inline styles

@@ -27,7 +27,7 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
             <MenuListbox asChild provider="popper">
               <SelectContentImpl ref={ref} {...props}>
                 {loading ? (
-                  <Box display="flex" justifyContent="center" p="md">
+                  <Box display="flex" justifyContent="center" p="16">
                     <Spinner />
                   </Box>
                 ) : (

@@ -52,7 +52,7 @@ export const content = recipe({
   base: [
     {
       flexDirection: "row",
-      gap: "xs",
+      gap: "8",
       justifyContent: ["center", "start"],
       py: "6",
       rounded: "sm",

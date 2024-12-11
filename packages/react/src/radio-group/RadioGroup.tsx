@@ -21,10 +21,10 @@ type RadioGroupProps = BoxProps<
 >;
 
 const mapGapToOrientation = {
-  column: "sm",
-  "column-reverse": "sm",
-  row: "md",
-  "row-reverse": "md",
+  column: "12",
+  "column-reverse": "12",
+  row: "16",
+  "row-reverse": "16",
 } as const;
 
 export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>(

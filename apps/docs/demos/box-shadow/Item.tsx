@@ -8,7 +8,7 @@ export const Item = ({
 }) => {
   const { children: label, ...props } = children.props;
   return (
-    <Flex alignItems="center" gap="xs">
+    <Flex alignItems="center" gap="8">
       <Text
         color="fg.tertiary"
         fontFamily="mono"

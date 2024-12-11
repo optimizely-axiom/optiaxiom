@@ -13,10 +13,10 @@ export const SidenavFooter = forwardRef<HTMLUListElement, SidenavFooterProps>(
     return (
       <Flex
         asChild
-        gap="xs"
+        gap="8"
         mt="auto"
         overflowX="hidden"
-        py="xs"
+        py="8"
         {...sprinkleProps}
       >
         <ul ref={ref} {...restProps}>

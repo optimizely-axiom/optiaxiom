@@ -21,7 +21,7 @@ export const DifferentSizes: Story = {
     children: "Pill",
   },
   render: (args) => (
-    <Flex gap="xs">
+    <Flex gap="8">
       <Pill {...args} size="md" />
       <Pill {...args} size="lg" />
     </Flex>
@@ -33,7 +33,7 @@ export const WithAvatar: Story = {
     children: "Hello",
   },
   render: (args) => (
-    <Flex gap="xs">
+    <Flex gap="8">
       <Pill
         {...args}
         addonBefore={<Avatar name="Jamie" size="xs" />}
@@ -71,8 +71,8 @@ export const RemovablePill: Story = {
     };
 
     return (
-      <Flex alignItems="center" flexDirection="column" gap="lg">
-        <Flex gap="xs">
+      <Flex alignItems="center" flexDirection="column" gap="24">
+        <Flex gap="8">
           {pills.map((pill, index) => (
             <Pill key={pill} onRemove={() => handleRemove(index)}>
               {pill}

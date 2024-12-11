@@ -19,8 +19,8 @@ export const item = recipe({
     {
       flexDirection: "row",
       fontSize: "md",
-      gap: "xs",
-      p: "xs",
+      gap: "8",
+      p: "8",
       rounded: "sm",
       transition: "colors",
     },
@@ -83,7 +83,7 @@ export const title = recipe({
     {
       alignItems: "center",
       flexDirection: "row",
-      gap: "xs",
+      gap: "8",
     },
     style({
       lineHeight: "24px",

@@ -12,8 +12,8 @@ export const Basic: Story = {
   args: {
     bg: "bg.accent.subtle",
     children: <Text>Hello World!</Text>,
-    m: "lg",
-    p: "lg",
+    m: "24",
+    p: "24",
     rounded: "sm",
   },
 };
@@ -23,6 +23,6 @@ export const Composition: Story = {
     asChild: true,
     bg: "bg.warning.subtle",
     children: <Text>Hello World!</Text>,
-    p: "lg",
+    p: "24",
   },
 };

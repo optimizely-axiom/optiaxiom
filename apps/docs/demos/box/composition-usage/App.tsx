@@ -10,7 +10,7 @@ export function App() {
       bg="bg.information.subtle"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      p="xs"
+      p="8"
       rounded="md"
     >
       <span>I am a span {isHovered && "hovered"}</span>

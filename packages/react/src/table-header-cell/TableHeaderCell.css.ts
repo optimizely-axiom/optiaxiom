@@ -6,8 +6,8 @@ export const head = recipe({
       color: "fg.tertiary",
       fontSize: "sm",
       fontWeight: "400",
-      px: "md",
-      py: "sm",
+      px: "16",
+      py: "12",
       textAlign: "start",
     },
     style({
