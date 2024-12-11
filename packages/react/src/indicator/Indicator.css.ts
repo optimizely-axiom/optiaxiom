@@ -22,7 +22,7 @@ export const floating = recipe({
     },
     style({
       vars: {
-        [offsetVar]: "10%",
+        [offsetVar]: "2px",
         [translateVar]: "50%",
       },
 
