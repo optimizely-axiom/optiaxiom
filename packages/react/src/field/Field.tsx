@@ -111,7 +111,7 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(
           {children}
         </FieldContext.Provider>
 
-        {error && (
+        {error && error !== true && (
           <Flex
             alignItems="start"
             color="fg.error"

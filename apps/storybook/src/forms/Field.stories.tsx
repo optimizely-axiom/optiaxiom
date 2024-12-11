@@ -69,6 +69,12 @@ export const Error: Story = {
   },
 };
 
+export const ErrorNoMessage: Story = {
+  args: {
+    error: true,
+  },
+};
+
 export const DescriptionAndError: Story = {
   args: {
     ...Description.args,
