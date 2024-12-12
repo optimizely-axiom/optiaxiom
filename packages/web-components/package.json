@@ -73,6 +73,7 @@
     "./DropdownMenuSubTrigger": "./dist/components/DropdownMenuTrigger.js",
     "./DropdownMenuTrigger": "./dist/components/DropdownMenuTrigger.js",
     "./Field": "./dist/components/Field.js",
+    "./FieldLabel": "./dist/components/FieldLabel.js",
     "./Flex": "./dist/components/Flex.js",
     "./Grid": "./dist/components/Grid.js",
     "./Heading": "./dist/components/Heading.js",
