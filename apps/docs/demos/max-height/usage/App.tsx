@@ -5,9 +5,6 @@ import { Canvas } from "../Canvas";
 export function App() {
   return (
     <Canvas>
-      <Box display={["none", "grid"]} h="full" maxH="xl">
-        maxH=xl
-      </Box>
       <Box display={["none", "grid"]} h="full" maxH="lg">
         maxH=lg
       </Box>

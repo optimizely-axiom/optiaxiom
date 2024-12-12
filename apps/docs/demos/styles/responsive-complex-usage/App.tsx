@@ -7,7 +7,7 @@ export function App() {
   return (
     <Box
       bg="bg.default"
-      maxW={["sm", "2xl"]}
+      maxW={["sm", "lg"]}
       overflow="hidden"
       rounded="sm"
       shadow="sm"
@@ -29,8 +29,8 @@ export function App() {
           </Text>
 
           <Text>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
-            efficitur feugiat enim, id pretium nisl luctus et.
+            Lorem ipsum dolor sit amet conse ctetur adipiscing elit. Phasellus
+            efficitur feugiat luctus et.
           </Text>
         </Box>
       </Flex>

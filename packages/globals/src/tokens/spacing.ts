@@ -12,7 +12,4 @@ export const spacing = {
   "20": rem("20px"),
   "24": rem("24px"),
   "32": rem("32px"),
-  "48": rem("48px"),
-  "64": rem("64px"),
-  "80": rem("80px"),
 } as const;

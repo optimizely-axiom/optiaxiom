@@ -59,8 +59,6 @@ export default {
   },
   "font-family": "Font Family",
   "font-size": "Font Size",
-  "letter-spacing": "Letter Spacing",
-  "line-height": "Line Height",
   "text-color": "Text Color",
 
   "-- Backgrounds": {

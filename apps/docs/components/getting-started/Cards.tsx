@@ -21,7 +21,7 @@ export function Cards() {
           <Box
             asChild
             bg="bg.information.subtle"
-            border="4"
+            border="2"
             borderColor="bg.default"
             className={styles.icon}
             color="fg.information.strong"
@@ -57,7 +57,7 @@ export function Cards() {
           <Box
             asChild
             bg="bg.success.subtle"
-            border="4"
+            border="2"
             borderColor="bg.default"
             className={styles.icon}
             color="fg.success.strong"

@@ -20,6 +20,9 @@
 }
 
 .heading {
+  font-weight: 800;
+  letter-spacing: -0.025em;
+
   @media screen and (min-width: 37.5rem) {
     font-size: var(--ax-fontSize-6xl-fontSize);
     line-height: var(--ax-fontSize-6xl-lineHeight);

@@ -6,12 +6,7 @@ import styles from "./HeroPage.module.css";
 export function HeroPage() {
   return (
     <Flex alignItems={["start", "center"]} h="full" justifyContent="center">
-      <Heading
-        className={styles.heading}
-        fontWeight="800"
-        level="1"
-        tracking="tight"
-      >
+      <Heading className={styles.heading} level="1">
         <Box asChild className={styles.brand}>
           <span>Axiom</span>
         </Box>{" "}
