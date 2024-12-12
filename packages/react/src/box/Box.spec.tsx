@@ -67,9 +67,13 @@ describe("Box component", () => {
   });
 
   it("should merge sprinkle props properly for responsive props", () => {
-    render(<Text fontSize={["sm", "xl"]}>This is a button</Text>);
-    expect(screen.getByText("This is a button")).toContainHTML("fontSize_sm");
-    expect(screen.getByText("This is a button")).toContainHTML("fontSize_xl");
+    render(<Box flexDirection={["column", "row"]}>This is a button</Box>);
+    expect(screen.getByText("This is a button")).toContainHTML(
+      "flexDirection_column",
+    );
+    expect(screen.getByText("This is a button")).toContainHTML(
+      "flexDirection_row",
+    );
   });
 
   it("should merge sprinkle props properly for indirect props", () => {
