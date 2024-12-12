@@ -7,7 +7,7 @@ export function App({
   disabled = true,
 }: Pick<ComponentPropsWithoutRef<typeof InlineInput>, "disabled">) {
   return (
-    <Text asChild color="fg.default" w="240">
+    <Text asChild color="fg.default" w="224">
       <InlineInput
         defaultValue="Sample task title"
         disabled={disabled}

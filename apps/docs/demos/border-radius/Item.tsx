@@ -22,7 +22,7 @@ export const Item = ({
         bg="link.fg.visited"
         display="grid"
         placeItems="center"
-        size="64"
+        size="56"
         {...props}
       />
     </Flex>

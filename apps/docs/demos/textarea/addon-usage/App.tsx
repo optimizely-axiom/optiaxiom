@@ -32,7 +32,7 @@ export function App() {
         </Flex>
       }
       placeholder="Add a comment"
-      w="256"
+      w="224"
     />
   );
 }

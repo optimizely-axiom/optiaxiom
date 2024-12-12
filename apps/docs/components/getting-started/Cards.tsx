@@ -27,7 +27,7 @@ export function Cards() {
             color="fg.information.strong"
             p="12"
             rounded="full"
-            size="2xl"
+            size="56"
           >
             <IconPalette />
           </Box>
@@ -63,7 +63,7 @@ export function Cards() {
             color="fg.success.strong"
             p="12"
             rounded="full"
-            size="2xl"
+            size="56"
           >
             <IconBox />
           </Box>

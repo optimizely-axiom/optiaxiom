@@ -167,7 +167,7 @@ export const Basic: Story<{ items?: Item[] } & Item> = {
               K
             </Kbd>
           }
-          w="240"
+          w="224"
         >
           Quick search...
         </SpotlightTrigger>

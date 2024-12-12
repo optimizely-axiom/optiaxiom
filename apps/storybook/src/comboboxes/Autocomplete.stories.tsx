@@ -84,7 +84,7 @@ export const Basic: Story = {
           );
         }}
       >
-        <AutocompleteTrigger placeholder="Search a Language" w="208" />
+        <AutocompleteTrigger placeholder="Search a Language" w="224" />
 
         <AutocompleteContent>
           {items.map((item) => (
@@ -272,7 +272,7 @@ export const AsyncLoading: Story = {
         items={items}
         onInputValueChange={(value) => fetchData(value)}
       >
-        <AutocompleteTrigger placeholder="Search a language" w="208" />
+        <AutocompleteTrigger placeholder="Search a language" w="224" />
         <AutocompleteContent loading={isLoading}>
           {items.map((item) => (
             <AutocompleteRadioItem item={item} key={item}>

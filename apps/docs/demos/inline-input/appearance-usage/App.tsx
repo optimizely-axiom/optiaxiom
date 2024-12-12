@@ -11,7 +11,7 @@ export function App() {
       px="12"
       py="8"
       rounded="md"
-      w="240"
+      w="224"
     >
       <InlineInput label="Task title" />
     </Heading>

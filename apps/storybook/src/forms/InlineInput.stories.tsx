@@ -12,7 +12,7 @@ export default {
   },
   component: InlineInput,
   decorators: (Story) => (
-    <Box color="fg.default" w="320">
+    <Box color="fg.default" w="224">
       <Story />
     </Box>
   ),

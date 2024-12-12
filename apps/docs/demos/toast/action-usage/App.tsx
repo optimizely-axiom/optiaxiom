@@ -15,7 +15,7 @@ export function App() {
 
   return (
     <Flex flexDirection="row">
-      <Text w="144">Task is {status}</Text>
+      <Text w="224">Task is {status}</Text>
 
       <Button
         appearance="danger-outline"

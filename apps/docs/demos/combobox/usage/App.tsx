@@ -41,7 +41,7 @@ export function App() {
       }
       value={value}
     >
-      <ComboboxTrigger w="160">
+      <ComboboxTrigger w="224">
         <ComboboxValue placeholder="Select colors..." />
       </ComboboxTrigger>
 

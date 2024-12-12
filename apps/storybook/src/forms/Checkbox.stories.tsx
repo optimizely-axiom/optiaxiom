@@ -21,7 +21,7 @@ export const HelperText: Story = {
 
 export const MultiLineLabel: Story = {
   render: (args) => (
-    <Flex w="208">
+    <Flex w="224">
       <Checkbox {...args} />
       <Checkbox {...args}>This is an example of a multi line label</Checkbox>
     </Flex>

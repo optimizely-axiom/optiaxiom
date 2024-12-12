@@ -54,7 +54,7 @@ export const HelperText: Story = {
 
 export const MultiLineLabel: Story = {
   render: (args) => (
-    <RadioGroup {...args} w="208">
+    <RadioGroup {...args} w="224">
       <Radio value="label-1">Label</Radio>
       <Radio value="label-2">This is an example of a multi line label</Radio>
     </RadioGroup>
@@ -138,7 +138,7 @@ export const ComplexExample2: Story = {
   render: (args) => (
     <RadioGroup borderB="1" {...args} defaultValue="label-1">
       <Flex {...props2} gap="8">
-        <Radio value="label-1" w="128">
+        <Radio value="label-1" w="5xl">
           Admin
         </Radio>
         <Box asChild pl="24" style={{ listStyle: "disc" }}>
@@ -153,7 +153,7 @@ export const ComplexExample2: Story = {
         </Box>
       </Flex>
       <Flex {...props2} gap="8">
-        <Radio value="label-2" w="128">
+        <Radio value="label-2" w="5xl">
           Editor
         </Radio>
         <Box asChild pl="24" style={{ listStyle: "disc" }}>

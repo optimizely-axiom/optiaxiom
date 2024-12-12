@@ -7,7 +7,7 @@ import { type ChangeEvent, useState } from "react";
 export default {
   args: {
     placeholder: "Search...",
-    w: "240",
+    w: "224",
   },
   component: SearchInput,
 } as Meta<typeof SearchInput>;
@@ -37,7 +37,7 @@ export const Controlled: Story = {
     };
 
     return (
-      <Flex flexDirection="column" gap="12" w="240">
+      <Flex flexDirection="column" gap="12" w="224">
         <SearchInput {...args} onChange={handleChange} value={value} />
         <Text>Current value: {value}</Text>
         <Button disabled={!value} onClick={() => setValue("")}>
