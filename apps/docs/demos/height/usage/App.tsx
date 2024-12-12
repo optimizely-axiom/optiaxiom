@@ -11,7 +11,7 @@ export function App() {
       <Box display={["none", "grid"]} h="224">
         h=224
       </Box>
-      <Box h="5xl">h=5xl</Box>
+      <Box h="2xl">h=2xl</Box>
       <Box h="xl">h=xl</Box>
       <Box h="lg">h=lg</Box>
     </Canvas>

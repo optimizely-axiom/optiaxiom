@@ -23,7 +23,7 @@ export const Item = ({
         display="grid"
         placeItems="center"
         rounded="sm"
-        size="5xl"
+        size="2xl"
         {...props}
       />
     </Flex>

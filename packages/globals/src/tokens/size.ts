@@ -7,7 +7,7 @@ export const size = {
   md: rem("32px"),
   lg: rem("40px"),
   xl: rem("48px"),
-  "5xl": rem("80px"),
+  "2xl": rem("80px"),
 
   "0": "0",
   "10": rem("10px"),

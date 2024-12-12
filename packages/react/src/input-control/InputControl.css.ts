@@ -53,7 +53,7 @@ export const control = recipe({
     size: {
       md: {},
       lg: {},
-      "2xl": [
+      xl: [
         responsiveStyle({
           sm: {
             fontSize: "16px",
