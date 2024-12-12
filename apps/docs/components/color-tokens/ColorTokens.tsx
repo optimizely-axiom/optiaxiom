@@ -39,12 +39,8 @@ export function ColorTokens({
         {Object.values(light)
           .filter((token) => token.name.startsWith(`${namespace}.`))
           .map((token) => (
-            <Tr
-              display={["flex", "table-row"]}
-              flexWrap="wrap"
-              key={token.name}
-            >
-              <Td py="16" w={["full", "auto"]}>
+            <Tr display={["flex", "table-row"]} key={token.name}>
+              <Td flex="1" py="16" w="auto">
                 <Flex alignItems="start">
                   <Code px="8" py="4" rounded="sm">
                     {token.name}
@@ -52,9 +48,8 @@ export function ColorTokens({
                   {token.description && <Text>{token.description}</Text>}
                 </Flex>
               </Td>
-              <Td pb="16" pt={["0", "16"]} w={["full", "2xl"]}>
+              <Td py="16" w={["auto", "2xl"]}>
                 <ColorTokenItem
-                  flexDirection={["row", "row-reverse"]}
                   item={{
                     bg: token.name as keyof typeof theme.colors,
                     name: `ld(${palette[token.type.name].name}, ${palette[dark[token.name].type.name].name})`,
