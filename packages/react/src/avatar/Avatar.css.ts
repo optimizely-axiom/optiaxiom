@@ -143,9 +143,9 @@ export const icon = recipe({
       xs: { h: "10" },
       sm: { h: "12" },
       md: { h: "12" },
-      lg: { h: "16" },
-      xl: { h: "16" },
-      "5xl": { h: "24" },
+      lg: { h: "2xs" },
+      xl: { h: "2xs" },
+      "5xl": { h: "sm" },
     },
   },
 });

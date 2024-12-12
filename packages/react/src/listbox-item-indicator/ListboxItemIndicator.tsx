@@ -19,7 +19,7 @@ export const ListboxItemIndicator = forwardRef<
 
   if (!active) {
     return (
-      <Box asChild h="0" w="20" {...sprinkleProps}>
+      <Box asChild h="0" w="xs" {...sprinkleProps}>
         <svg ref={ref} {...restProps} />
       </Box>
     );

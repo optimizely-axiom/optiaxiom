@@ -51,7 +51,7 @@ export const WithAvatar: Story = {
 export const LongContent: Story = {
   args: {
     children: "This is a very long text",
-    w: "80",
+    w: "5xl",
   },
 };
 

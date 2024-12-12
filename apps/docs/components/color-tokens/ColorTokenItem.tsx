@@ -37,7 +37,7 @@ export function ColorTokenItem({
           border: `1px solid oklch(from ${value} calc(l - 0.1) c h)`,
         }}
         suppressHydrationWarning
-        w="48"
+        w="xl"
       />
       <Box flex="1">
         <Text fontSize="sm" fontWeight="600" suppressHydrationWarning>

@@ -4,8 +4,8 @@ export function App() {
   return (
     <Flex w="full">
       <Skeleton />
-      <Skeleton h="80" />
-      <Skeleton circle h="64" />
+      <Skeleton h="5xl" />
+      <Skeleton circle h="2xl" />
     </Flex>
   );
 }

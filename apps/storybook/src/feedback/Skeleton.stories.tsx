@@ -19,7 +19,7 @@ export const Card: Story = {
   render: () => (
     <Box bg="bg.default" p="16" rounded="sm" shadow="sm" w="384">
       <Flex alignItems="start" flexDirection="row">
-        <Skeleton rounded="full" size="48" />
+        <Skeleton rounded="full" size="xl" />
 
         <Flex flex="1" py="4">
           <Skeleton h="12" />
@@ -44,6 +44,6 @@ export const Children: Story = {
     color: "fg.default.inverse",
     p: "8",
     rounded: "full",
-    size: "48",
+    size: "xl",
   },
 };

@@ -31,7 +31,7 @@ export const TabsTrigger = forwardRef<HTMLButtonElement, TabsTriggerProps>(
         <RadixTabs.Trigger ref={ref} {...restProps}>
           <Flex {...styles.content()}>
             {icon && iconPosition === "start" ? (
-              <Box asChild h="auto" w="20">
+              <Box asChild h="auto" w="xs">
                 {icon}
               </Box>
             ) : (
@@ -41,7 +41,7 @@ export const TabsTrigger = forwardRef<HTMLButtonElement, TabsTriggerProps>(
             {children}
 
             {icon && iconPosition === "end" ? (
-              <Box asChild h="auto" w="20">
+              <Box asChild h="auto" w="xs">
                 {icon}
               </Box>
             ) : (
