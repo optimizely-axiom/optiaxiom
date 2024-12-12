@@ -8,7 +8,6 @@ type SpinnerProps = BoxProps<
   "div",
   {
     appearance?: "default" | "inverse";
-    size?: "2xs" | "5xl" | "lg" | "md" | "sm" | "xl" | "xs";
   }
 >;
 

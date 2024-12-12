@@ -255,11 +255,16 @@ export const buttonBase = recipe({
 });
 
 export const spinner = recipe({
-  base: style({
-    left: "0",
-    position: "absolute",
-    right: "0",
-  }),
+  base: [
+    {
+      size: "2xs",
+    },
+    style({
+      left: "0",
+      position: "absolute",
+      right: "0",
+    }),
+  ],
 });
 
 export type ButtonVariants = RecipeVariants<typeof buttonBase>;

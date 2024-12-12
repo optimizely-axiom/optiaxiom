@@ -1,4 +1,17 @@
-import { recipe, type RecipeVariants } from "../vanilla-extract";
+import { recipe, type RecipeVariants, style } from "../vanilla-extract";
+
+export const progress = recipe({
+  base: [
+    {
+      bg: "bg.tertiary",
+      overflow: "hidden",
+      rounded: "full",
+    },
+    style({
+      height: "8px",
+    }),
+  ],
+});
 
 export const indicator = recipe({
   base: [
