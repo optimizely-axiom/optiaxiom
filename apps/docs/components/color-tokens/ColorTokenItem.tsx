@@ -2,7 +2,8 @@
 
 import type { ComponentPropsWithRef } from "react";
 
-import { Box, Flex, type Sprinkles, Text } from "@optiaxiom/react";
+import { theme } from "@optiaxiom/globals";
+import { Box, Flex, Text } from "@optiaxiom/react";
 import { useTheme } from "nextra-theme-docs";
 
 const pattern = /\((?<light>.+),\s?(?<dark>.+)\)/;
@@ -12,28 +13,28 @@ export function ColorTokenItem({
   ...props
 }: {
   item: {
-    bg: Sprinkles["bg"];
+    bg: keyof typeof theme.colors;
     name: string;
     value: string;
   };
 } & ComponentPropsWithRef<typeof Box>) {
-  const { resolvedTheme: theme = "light" } = useTheme();
+  const { resolvedTheme = "light" } = useTheme();
   const name = (
     item.name.startsWith("ld(") ? item.name : `ld(${item.name}, ${item.name})`
-  ).match(pattern)?.groups?.[theme];
+  ).match(pattern)?.groups?.[resolvedTheme];
   const value = (
     item.value.startsWith("ld(")
       ? item.value
       : `ld(${item.value}, ${item.value})`
-  ).match(pattern)?.groups?.[theme];
+  ).match(pattern)?.groups?.[resolvedTheme];
 
   return (
     <Flex alignItems="start" flexDirection="row" {...props}>
       <Box
-        bg={item.bg}
         rounded="sm"
         style={{
           aspectRatio: 100 / 70,
+          backgroundColor: theme.colors[item.bg],
           border: `1px solid oklch(from ${value} calc(l - 0.1) c h)`,
         }}
         suppressHydrationWarning

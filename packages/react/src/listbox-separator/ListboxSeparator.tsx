@@ -10,14 +10,7 @@ export const ListboxSeparator = forwardRef<
   HTMLDivElement,
   ListboxSeparatorProps
 >((props, ref) => (
-  <Separator
-    bg="border.secondary"
-    flex="none"
-    mx="8"
-    my="4"
-    ref={ref}
-    {...props}
-  />
+  <Separator bg="bg.tertiary" flex="none" mx="8" my="4" ref={ref} {...props} />
 ));
 
 ListboxSeparator.displayName = "@optiaxiom/react/ListboxSeparator";

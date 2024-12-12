@@ -91,7 +91,7 @@ export const Presence: Story = {
       />
     ),
     content: (
-      <Box asChild bg="fg.default.inverse" color="bg.warning">
+      <Box asChild bg="bg.default" color="fg.warning.light">
         <IconClockFilled size="14" />
       </Box>
     ),

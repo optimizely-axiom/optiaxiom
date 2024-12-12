@@ -8,9 +8,9 @@ export const Item = ({
 }) => {
   return (
     <Box
-      bg="link.fg.visited"
+      bg="bg.success.hovered"
       border="2"
-      borderColor="fg.default.inverse"
+      borderColor="border.disabled"
       display="grid"
       ml="-12"
       placeItems="center"

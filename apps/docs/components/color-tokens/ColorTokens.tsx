@@ -1,6 +1,7 @@
+import type { theme } from "@optiaxiom/globals";
 import type { Props } from "react-docgen-typescript";
 
-import { Box, Code, Flex, type Sprinkles, Text } from "@optiaxiom/react";
+import { Box, Code, Flex, Text } from "@optiaxiom/react";
 
 import { Table, Td, Th, Thead, Tr } from "../table";
 import { ColorTokenItem } from "./ColorTokenItem";
@@ -55,7 +56,7 @@ export function ColorTokens({
                 <ColorTokenItem
                   flexDirection={["row", "row-reverse"]}
                   item={{
-                    bg: token.name as Sprinkles["bg"],
+                    bg: token.name as keyof typeof theme.colors,
                     name: `ld(${palette[token.type.name].name}, ${palette[dark[token.name].type.name].name})`,
                     value: `ld(${JSON.parse(
                       palette[token.type.name].type.name,

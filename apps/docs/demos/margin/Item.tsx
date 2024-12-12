@@ -11,7 +11,7 @@ export const Item = ({
 }) => {
   return (
     <Box p={p} rounded="sm" style={yellowStripes}>
-      <Box bg="link.fg.visited" p="16" rounded="inherit" {...children.props}>
+      <Box bg="bg.success.hovered" p="16" rounded="inherit" {...children.props}>
         <Text color="fg.default.inverse" fontFamily="mono" fontWeight="600">
           {children.props.children}
         </Text>
