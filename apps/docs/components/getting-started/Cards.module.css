@@ -1,3 +1,7 @@
+.container {
+  margin-inline: -16px;
+}
+
 .card {
   &:hover {
     background-color: var(--ax-colors-bg-secondary);

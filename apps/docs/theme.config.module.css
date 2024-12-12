@@ -2,3 +2,8 @@
   font-weight: 800;
   letter-spacing: -0.025em;
 }
+
+.secondaryHeading {
+  line-height: 24px;
+  margin-bottom: -24px;
+}
