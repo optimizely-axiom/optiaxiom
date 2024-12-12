@@ -1,8 +1,7 @@
-import { addFunctionSerializer } from "@vanilla-extract/css/functionSerializer";
-
 /**
  * Forked from https://vanilla-extract.style/documentation/packages/recipes/
  */
+import { addFunctionSerializer } from "@vanilla-extract/css/functionSerializer";
 
 import { recipeRuntime } from "./recipeRuntime";
 

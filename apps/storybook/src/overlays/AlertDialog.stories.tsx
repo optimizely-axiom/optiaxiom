@@ -13,13 +13,13 @@ import {
 import { expect, screen, userEvent, waitFor } from "@storybook/test";
 import { type ComponentPropsWithoutRef } from "react";
 
-type AlertDialogStoryProps = {
-  action?: string;
-  cancel?: string;
-  description?: string;
-  title?: string;
-} & ComponentPropsWithoutRef<typeof AlertDialog> &
-  Pick<ComponentPropsWithoutRef<typeof AlertDialogContent>, "size">;
+type AlertDialogStoryProps = ComponentPropsWithoutRef<typeof AlertDialog> &
+  Pick<ComponentPropsWithoutRef<typeof AlertDialogContent>, "size"> & {
+    action?: string;
+    cancel?: string;
+    description?: string;
+    title?: string;
+  };
 
 export default {
   args: {

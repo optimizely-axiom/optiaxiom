@@ -15,7 +15,7 @@ import { fallbackSpan } from "../utils";
 
 type TextareaProps = InputControlProps<
   typeof TextareaAutosize,
-  {
+  Pick<ComponentPropsWithoutRef<typeof InputRoot>, "addonPointerEvents"> & {
     addonAfter?: ReactNode;
     addonBefore?: ReactNode;
     children?: never;
@@ -25,7 +25,7 @@ type TextareaProps = InputControlProps<
     maxRows?: ComponentPropsWithRef<typeof TextareaAutosize>["maxRows"];
     resize?: ComponentPropsWithRef<typeof TextareaAutosize>["resize"];
     size?: never;
-  } & Pick<ComponentPropsWithoutRef<typeof InputRoot>, "addonPointerEvents">
+  }
 >;
 
 export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(

@@ -1,10 +1,10 @@
 import { tokens } from "@optiaxiom/globals";
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import { Button } from "@optiaxiom/web-components/Button";
+import { Box } from "@optiaxiom/web-components/Box";
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import { Box } from "@optiaxiom/web-components/Box";
+import { Button } from "@optiaxiom/web-components/Button";
 import { useState } from "react";
 import { describe, expect, it } from "vitest";
 

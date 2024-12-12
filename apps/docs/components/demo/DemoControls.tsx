@@ -10,13 +10,13 @@ import {
   SelectValue,
 } from "@optiaxiom/react/unstable";
 
-type DemoControlProps = {
+type DemoControlProps = ComponentPropsWithRef<typeof Flex> & {
   onChange: Dispatch<
     SetStateAction<Record<keyof Props, boolean | number | string | undefined>>
   >;
   propTypes: Props;
   propValues: Record<keyof Props, boolean | number | string>;
-} & ComponentPropsWithRef<typeof Flex>;
+};
 
 export function DemoControls({
   onChange,
@@ -142,36 +142,6 @@ const tshirt = [
   "5xl",
 ];
 
-function itemToControl(item: PropItem) {
-  const number = isNumberType(item);
-  if (number) {
-    return number;
-  }
-  const dropdown = isDropdownType(item);
-  if (dropdown) {
-    if (dropdown.options.every((option) => boolean.includes(String(option)))) {
-      return {
-        ...dropdown,
-        type: "boolean" as const,
-      };
-    } else if (dropdown.options.every((option) => tshirt.includes(option))) {
-      return {
-        ...dropdown,
-        options: dropdown.options.sort(
-          (a, b) => tshirt.indexOf(a) - tshirt.indexOf(b),
-        ),
-        type: "range" as const,
-      };
-    }
-    return dropdown;
-  }
-  const text = isTextType(item);
-  if (text) {
-    return text;
-  }
-  return;
-}
-
 function isDropdownType(item: PropItem) {
   const type = item.type;
   if (type.name !== "enum" || !Array.isArray(type.value)) {
@@ -259,6 +229,36 @@ function isTextType(item: PropItem) {
     prop: item.name,
     type: "text" as const,
   };
+}
+
+function itemToControl(item: PropItem) {
+  const number = isNumberType(item);
+  if (number) {
+    return number;
+  }
+  const dropdown = isDropdownType(item);
+  if (dropdown) {
+    if (dropdown.options.every((option) => boolean.includes(String(option)))) {
+      return {
+        ...dropdown,
+        type: "boolean" as const,
+      };
+    } else if (dropdown.options.every((option) => tshirt.includes(option))) {
+      return {
+        ...dropdown,
+        options: dropdown.options.sort(
+          (a, b) => tshirt.indexOf(a) - tshirt.indexOf(b),
+        ),
+        type: "range" as const,
+      };
+    }
+    return dropdown;
+  }
+  const text = isTextType(item);
+  if (text) {
+    return text;
+  }
+  return;
 }
 
 function propToLabel(str: unknown) {

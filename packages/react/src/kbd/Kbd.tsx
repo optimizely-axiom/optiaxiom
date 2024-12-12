@@ -7,9 +7,9 @@ import * as styles from "./Kbd.css";
 
 type KbdProps = BoxProps<
   "kbd",
-  {
+  styles.KdbVariants & {
     keys?: Array<keyof typeof mapKeyToCode> | keyof typeof mapKeyToCode;
-  } & styles.KdbVariants
+  }
 >;
 
 const mapKeyToCode = {

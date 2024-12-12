@@ -5,16 +5,7 @@ import { type ReactNode, useMemo, useState } from "react";
 import { CommandContextProvider } from "../command-context";
 import { usePortalPatch } from "../downshift";
 
-type CommandProps<Item> = {
-  children: ReactNode;
-  inputValue?: string;
-  itemToSubItems?: (value: Item) => Item[] | null;
-  onInputValueChange?: (inputValue: string) => void;
-  onItemSelect?: (value: Item) => void;
-  onOpenChange?: (open: boolean) => void;
-  open?: boolean;
-  value?: Item[] | Set<Item>;
-} & Pick<
+type CommandProps<Item> = Pick<
   UseComboboxProps<Item>,
   | "inputId"
   | "isItemDisabled"
@@ -23,7 +14,16 @@ type CommandProps<Item> = {
   | "itemToString"
   | "selectedItem"
   | "stateReducer"
->;
+> & {
+  children: ReactNode;
+  inputValue?: string;
+  itemToSubItems?: (value: Item) => Item[] | null;
+  onInputValueChange?: (inputValue: string) => void;
+  onItemSelect?: (value: Item) => void;
+  onOpenChange?: (open: boolean) => void;
+  open?: boolean;
+  value?: Item[] | Set<Item>;
+};
 
 export function Command<Item>({
   children,

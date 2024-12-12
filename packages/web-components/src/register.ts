@@ -27,13 +27,13 @@ type CustomContextEventDetail = {
 };
 
 declare global {
+  interface Element {
+    queue: Element[];
+  }
+
   interface ElementEventMap {
     [CustomContextEvent]: CustomEvent<CustomContextEventDetail>;
     [CustomMountEvent]: CustomEvent<{ context: unknown }>;
-  }
-
-  interface Element {
-    queue: Element[];
   }
 }
 

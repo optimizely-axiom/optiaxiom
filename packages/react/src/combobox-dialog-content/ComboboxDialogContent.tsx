@@ -6,9 +6,11 @@ import type { MenuListbox } from "../menu-listbox";
 import { DialogContent } from "../dialog-content";
 import { DialogTitle } from "../dialog-title";
 
-type ComboboxDialogContentProps = {
+type ComboboxDialogContentProps = ComponentPropsWithoutRef<
+  typeof DialogContent
+> & {
   minW?: ComponentPropsWithoutRef<typeof MenuListbox>["minW"];
-} & ComponentPropsWithoutRef<typeof DialogContent>;
+};
 
 export const ComboboxDialogContent = forwardRef<
   HTMLDivElement,

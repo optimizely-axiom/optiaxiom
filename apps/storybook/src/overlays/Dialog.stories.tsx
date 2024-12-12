@@ -34,13 +34,13 @@ import { expect, screen, userEvent, waitFor } from "@storybook/test";
 import { IconArrowsDiagonal } from "@tabler/icons-react";
 import { type ComponentPropsWithoutRef, type ReactNode, useState } from "react";
 
-type DialogStoryProps = {
-  actions?: ReactNode;
-  content?: ReactNode;
-  description?: string;
-  title?: string;
-} & ComponentPropsWithoutRef<typeof Dialog> &
-  Pick<ComponentPropsWithoutRef<typeof DialogContent>, "size">;
+type DialogStoryProps = ComponentPropsWithoutRef<typeof Dialog> &
+  Pick<ComponentPropsWithoutRef<typeof DialogContent>, "size"> & {
+    actions?: ReactNode;
+    content?: ReactNode;
+    description?: string;
+    title?: string;
+  };
 
 export default {
   args: {

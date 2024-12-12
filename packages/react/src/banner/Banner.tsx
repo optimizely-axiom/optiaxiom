@@ -15,9 +15,9 @@ import * as styles from "./Banner.css";
 
 type BannerProps = BoxProps<
   "div",
-  {
+  styles.BannerVariants & {
     onClose?: () => void;
-  } & styles.BannerVariants
+  }
 >;
 
 const mapIntentToIcon = {

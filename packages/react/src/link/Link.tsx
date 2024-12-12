@@ -9,10 +9,10 @@ import * as styles from "./Link.css";
 
 type LinkProps = BoxProps<
   "a",
-  {
+  styles.LinkVariants & {
     disabled?: boolean;
     external?: boolean;
-  } & styles.LinkVariants
+  }
 >;
 
 export const Link = forwardRef<HTMLAnchorElement, LinkProps>(

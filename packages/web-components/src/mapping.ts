@@ -2,6 +2,10 @@ import * as Components from "@optiaxiom/react";
 
 import { exports } from "../package.json";
 
+type AllComponents = {
+  [Key in ComponentNames as `ax${KebabCase<Key>}`]: Key;
+};
+
 type ComponentNames = Exclude<
   keyof {
     [Key in keyof typeof Components as Key extends `${infer C}${string}`
@@ -19,10 +23,6 @@ type KebabCase<
 > = T extends `${infer F}${infer R}`
   ? KebabCase<R, `${A}${F extends Lowercase<F> ? "" : "-"}${Lowercase<F>}`>
   : A;
-
-type AllComponents = {
-  [Key in ComponentNames as `ax${KebabCase<Key>}`]: Key;
-};
 
 const exported = (
   Object.keys(exports).filter((n) => n !== ".") as Array<

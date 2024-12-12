@@ -17,10 +17,10 @@ export type InputControlProps<
 > = BoxProps<
   T,
   ExtendProps<
-    {
+    styles.ControlVariants & {
       disabled?: boolean;
       error?: boolean;
-    } & styles.ControlVariants,
+    },
     P
   >
 >;

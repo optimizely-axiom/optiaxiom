@@ -15,12 +15,12 @@ export type ListboxItemProps<
 > = BoxProps<
   T,
   ExtendProps<
-    {
+    styles.ItemVariants & {
       addonAfter?: ReactNode;
       addonBefore?: ReactNode;
       description?: ReactNode;
       icon?: ReactNode;
-    } & styles.ItemVariants,
+    },
     P
   >
 >;

@@ -9,7 +9,10 @@ import { Command } from "../command";
 import { useFieldContext } from "../field-context";
 import { useEffectEvent } from "../use-event";
 
-type AutocompleteProps<Item> = {
+type AutocompleteProps<Item> = Pick<
+  UseComboboxProps<Item>,
+  "isItemDisabled" | "items" | "itemToKey" | "itemToString"
+> & {
   children?: ReactNode;
   defaultOpen?: boolean;
   defaultValue?: Item | null;
@@ -19,10 +22,7 @@ type AutocompleteProps<Item> = {
   onValueChange?: (value: Item | null) => void;
   open?: boolean;
   value?: Item | null;
-} & Pick<
-  UseComboboxProps<Item>,
-  "isItemDisabled" | "items" | "itemToKey" | "itemToString"
->;
+};
 
 export function Autocomplete<Item>({
   children,

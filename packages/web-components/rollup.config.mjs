@@ -39,9 +39,9 @@ export default defineConfig([
     plugins: [
       aliasPlugin({
         react: "preact/compat",
-        "react/jsx-runtime": "preact/jsx-runtime",
         "react-dom": "preact/compat",
         "react-dom/client": "preact/compat/client",
+        "react/jsx-runtime": "preact/jsx-runtime",
       }),
       nodeResolve({
         preferBuiltins: false,
@@ -234,6 +234,43 @@ function aliasPlugin(aliases = {}) {
 }
 
 /** @returns {import('rollup').Plugin} */
+function stylePlugin({ exclude = [], include = [] } = {}) {
+  const filter = createFilter(include ?? [], exclude ?? []);
+
+  /** @returns {Promise<postcssrc.Result>} */
+  const getPostcssConfig = async () => {
+    if (getPostcssConfig.cache) {
+      return getPostcssConfig.cache;
+    }
+
+    getPostcssConfig.cache = await postcssrc({}, process.cwd());
+    return getPostcssConfig.cache;
+  };
+
+  return {
+    name: "rollup-plugin-style",
+    async transform(code, id) {
+      if (!filter(id)) {
+        return null;
+      }
+
+      const { options, plugins } = await getPostcssConfig();
+      const { css } = await postcss(plugins).process(code, {
+        ...options,
+        from: id,
+        to: "dist/index.css",
+      });
+      return [
+        `import { injectGlobalStyle, injectLocalStyle } from '${require.resolve("./src/styles.ts")}';`,
+        id.includes("node_modules")
+          ? `injectGlobalStyle(${JSON.stringify(css)})`
+          : `injectLocalStyle(${JSON.stringify(css)})`,
+      ].join("\n");
+    },
+  };
+}
+
+/** @returns {import('rollup').Plugin} */
 function webComponentPlugin({ include = [] }) {
   const prefix = `\0virtual:`;
   const filter = createFilter(include ?? []);
@@ -282,43 +319,6 @@ export default register(
       }
 
       return null;
-    },
-  };
-}
-
-/** @returns {import('rollup').Plugin} */
-function stylePlugin({ exclude = [], include = [] } = {}) {
-  const filter = createFilter(include ?? [], exclude ?? []);
-
-  /** @returns {Promise<postcssrc.Result>} */
-  const getPostcssConfig = async () => {
-    if (getPostcssConfig.cache) {
-      return getPostcssConfig.cache;
-    }
-
-    getPostcssConfig.cache = await postcssrc({}, process.cwd());
-    return getPostcssConfig.cache;
-  };
-
-  return {
-    name: "rollup-plugin-style",
-    async transform(code, id) {
-      if (!filter(id)) {
-        return null;
-      }
-
-      const { options, plugins } = await getPostcssConfig();
-      const { css } = await postcss(plugins).process(code, {
-        ...options,
-        from: id,
-        to: "dist/index.css",
-      });
-      return [
-        `import { injectGlobalStyle, injectLocalStyle } from '${require.resolve("./src/styles.ts")}';`,
-        id.includes("node_modules")
-          ? `injectGlobalStyle(${JSON.stringify(css)})`
-          : `injectLocalStyle(${JSON.stringify(css)})`,
-      ].join("\n");
     },
   };
 }

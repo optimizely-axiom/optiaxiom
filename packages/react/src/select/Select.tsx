@@ -6,7 +6,10 @@ import { type ReactNode } from "react";
 import { usePortalPatch } from "../downshift";
 import { SelectContextProvider } from "../select-context";
 
-type SelectProps<Item> = {
+type SelectProps<Item> = Pick<
+  UseSelectProps<Item>,
+  "isItemDisabled" | "items" | "itemToKey" | "itemToString"
+> & {
   children?: ReactNode;
   defaultOpen?: boolean;
   defaultValue?: Item | null;
@@ -15,10 +18,7 @@ type SelectProps<Item> = {
   onValueChange?: (value: Item | null) => void;
   open?: boolean;
   value?: Item | null;
-} & Pick<
-  UseSelectProps<Item>,
-  "isItemDisabled" | "items" | "itemToKey" | "itemToString"
->;
+};
 
 export function Select<Item>({
   children,

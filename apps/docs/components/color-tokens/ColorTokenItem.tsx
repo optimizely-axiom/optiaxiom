@@ -11,13 +11,13 @@ const pattern = /\((?<light>.+),\s?(?<dark>.+)\)/;
 export function ColorTokenItem({
   item,
   ...props
-}: {
+}: ComponentPropsWithRef<typeof Box> & {
   item: {
     bg: keyof typeof theme.colors;
     name: string;
     value: string;
   };
-} & ComponentPropsWithRef<typeof Box>) {
+}) {
   const { resolvedTheme = "light" } = useTheme();
   const name = (
     item.name.startsWith("ld(") ? item.name : `ld(${item.name}, ${item.name})`

@@ -3,9 +3,12 @@ import { type ComponentPropsWithRef, forwardRef } from "react";
 import { useSidenavContext } from "../sidenav-context";
 import { SidenavItem } from "../sidenav-item";
 
-export type SidenavToggleProps = {
+export type SidenavToggleProps = Omit<
+  ComponentPropsWithRef<typeof SidenavItem>,
+  "aria-label"
+> & {
   "aria-label"?: string;
-} & Omit<ComponentPropsWithRef<typeof SidenavItem>, "aria-label">;
+};
 
 export const SidenavToggle = forwardRef<HTMLButtonElement, SidenavToggleProps>(
   ({ "aria-label": ariaLabel, children, ...props }, ref) => {

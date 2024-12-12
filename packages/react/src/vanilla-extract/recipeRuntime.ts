@@ -4,15 +4,27 @@ import type { ExtendProps } from "../utils";
 
 import { type Sprinkles } from "../sprinkles";
 
+type CompoundVariant<Variants extends VariantGroups> = {
+  style: RecipeStyleRule;
+  variants: VariantSelection<Variants>;
+};
+type RecipeStyleRule = Array<SprinklesRule | string> | SprinklesRule | string;
+
+type Resolve<T> = [T[keyof T]] extends [never]
+  ? Record<string, never>
+  : NonNullable<unknown> & { [Key in keyof T]: T[Key] };
+
 type SprinklesRule = ExtendProps<
   Partial<Record<"selectors" | "vars" | keyof CSSProperties, never>>,
   Sprinkles
 >;
-type RecipeStyleRule = Array<SprinklesRule | string> | SprinklesRule | string;
+type StringToBoolean<T> = T extends "false" | "true" ? boolean : T;
 
+type VariantDefinition<Variants extends VariantGroups> = {
+  [K in keyof Variants]: { [T in keyof Variants[K]]: RecipeStyleRule };
+};
 type VariantGroups = Record<string, Record<string, unknown>>;
 
-type StringToBoolean<T> = T extends "false" | "true" ? boolean : T;
 type VariantSelection<Variants extends VariantGroups> = [
   Variants[keyof Variants],
 ] extends [never]
@@ -22,18 +34,6 @@ type VariantSelection<Variants extends VariantGroups> = [
         keyof Variants[VariantGroup]
       >;
     };
-
-type CompoundVariant<Variants extends VariantGroups> = {
-  style: RecipeStyleRule;
-  variants: VariantSelection<Variants>;
-};
-type VariantDefinition<Variants extends VariantGroups> = {
-  [K in keyof Variants]: { [T in keyof Variants[K]]: RecipeStyleRule };
-};
-
-type Resolve<T> = [T[keyof T]] extends [never]
-  ? Record<string, never>
-  : { [Key in keyof T]: T[Key] } & NonNullable<unknown>;
 
 export const recipeRuntime = <
   Variants extends VariantGroups = Record<string, never>,

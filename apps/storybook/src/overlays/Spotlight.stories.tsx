@@ -99,7 +99,7 @@ type Item = {
   title: string;
 };
 
-export const Basic: Story<{ items?: Item[] } & Item> = {
+export const Basic: Story<Item & { items?: Item[] }> = {
   render: function Basic(args) {
     const [open, setOpen] = useState(args.defaultOpen);
     const [inputValue, setInputValueState] = useState("");

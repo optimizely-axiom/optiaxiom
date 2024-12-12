@@ -17,9 +17,9 @@ export const withSimpleCanvas = (
   return function Canvas({
     children,
     ...itemProps
-  }: {
+  }: Sprinkles & {
     children: ReactElement<ComponentPropsWithRef<typeof Flex>>;
-  } & Sprinkles) {
+  }) {
     return cloneElement(
       children,
       { w: "full", ...canvasProps },

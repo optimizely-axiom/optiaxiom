@@ -5,11 +5,11 @@ import { usePresence } from "../use-presence";
 import * as styles from "./Transition.css";
 import { TransitionGlobalConfig } from "./TransitionGlobalConfig";
 
-type TransitionProps = {
+type TransitionProps = styles.TransitionVariants & {
   children: ReactElement;
   "data-side"?: "bottom" | "left" | "right" | "top";
   skipAnimations?: boolean;
-} & styles.TransitionVariants;
+};
 
 export const Transition = forwardRef<HTMLDivElement, TransitionProps>(
   (

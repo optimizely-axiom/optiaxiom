@@ -17,7 +17,7 @@ export const withCanvas = (
   return function Canvas({
     children,
     ...itemProps
-  }: { children: ReactNode } & Sprinkles) {
+  }: Sprinkles & { children: ReactNode }) {
     return (
       <Flex
         flexDirection={["column", "row"]}

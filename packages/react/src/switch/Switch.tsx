@@ -12,9 +12,9 @@ import * as styles from "./Switch.css";
 
 type SwitchProps = BoxProps<
   typeof ToggleInputHiddenInput,
-  {
+  styles.SwitchVariants & {
     description?: ReactNode;
-  } & styles.SwitchVariants
+  }
 >;
 
 export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
