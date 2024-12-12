@@ -20,6 +20,21 @@ const animations = {
   }),
 };
 
+const colors = <P extends string>(prefix: P) =>
+  Object.fromEntries(
+    Object.entries(theme.colors).filter(
+      ([name]) =>
+        name.startsWith(prefix) || ["current", "transparent"].includes(name),
+    ),
+  ) as {
+    [Key in keyof typeof theme.colors as Key extends
+      | "current"
+      | "transparent"
+      | `${P}${string}`
+      ? Key
+      : never]: (typeof theme.colors)[Key];
+  };
+
 const margins = merge(theme.margins, { auto: "auto" });
 
 const radiuses = merge(theme.borderRadius, { inherit: "inherit" });
@@ -42,14 +57,14 @@ export const unresponsiveProps = defineProperties({
       pulse: `${animations.pulse} 2s ease-in-out infinite`,
       spin: `${animations.spin} 1s linear infinite`,
     },
-    backgroundColor: theme.colors,
+    backgroundColor: colors("bg."),
     borderBottomWidth: theme.borderWidth,
     /**
      * Set the element's `border-color` CSS property
      *
      * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/border-color/ Documentation}
      */
-    borderColor: theme.colors,
+    borderColor: colors("border."),
     borderLeftWidth: theme.borderWidth,
     borderRadius: radiuses,
     borderRightWidth: theme.borderWidth,
@@ -60,7 +75,7 @@ export const unresponsiveProps = defineProperties({
      *
      * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/colors/ Documentation}
      */
-    color: theme.colors,
+    color: colors("fg."),
     /**
      * Set the element's `cursor` CSS property
      *

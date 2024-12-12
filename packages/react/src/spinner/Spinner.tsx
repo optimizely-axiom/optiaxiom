@@ -3,6 +3,7 @@ import { forwardRef } from "react";
 import { Box, type BoxProps } from "../box";
 import { Flex } from "../flex";
 import { Transition } from "../transition";
+import * as styles from "./Spinner.css";
 
 type SpinnerProps = BoxProps<
   "div",
@@ -11,13 +12,9 @@ type SpinnerProps = BoxProps<
   }
 >;
 
-const mapAppearanceToBg = {
-  default: "spinner.bg.default",
-  inverse: "spinner.bg.inverse",
-} as const;
 const mapAppearanceToFg = {
-  default: "spinner.fg.default",
-  inverse: "spinner.fg.inverse",
+  default: "fg.spinner.default",
+  inverse: "fg.spinner.inverse",
 } as const;
 
 export const Spinner = forwardRef<HTMLDivElement, SpinnerProps>(
@@ -40,7 +37,7 @@ export const Spinner = forwardRef<HTMLDivElement, SpinnerProps>(
               width={16}
               xmlns="http://www.w3.org/2000/svg"
             >
-              <Box asChild color={mapAppearanceToBg[appearance]}>
+              <Box asChild {...styles.track({ appearance })}>
                 <circle
                   cx="8"
                   cy="8"

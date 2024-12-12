@@ -223,7 +223,7 @@ export const Basic: Story<{ items?: Item[] } & Item> = {
                           <Box
                             asChild
                             borderB="2"
-                            borderColor="fg.information"
+                            borderColor="border.focus"
                             fontWeight="600"
                           >
                             {chunk}
@@ -238,7 +238,7 @@ export const Basic: Story<{ items?: Item[] } & Item> = {
                         <Box
                           asChild
                           borderB="2"
-                          borderColor="fg.information"
+                          borderColor="border.focus"
                           fontWeight="600"
                         >
                           {chunk}

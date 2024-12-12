@@ -10,7 +10,7 @@ export const Item = ({
 
   return (
     <Box
-      bg="link.fg.visited"
+      bg="bg.success.hovered"
       display="grid"
       p="8"
       placeItems="center"

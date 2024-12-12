@@ -28,12 +28,12 @@ export const avatar = recipe({
   variants: {
     colorScheme: {
       neutral: {
-        bg: "avatar.bg.neutral",
-        color: "avatar.fg.neutral",
+        bg: "bg.avatar.neutral",
+        color: "fg.avatar.neutral",
       },
       purple: {
-        bg: "avatar.bg.purple",
-        color: "avatar.fg.purple",
+        bg: "bg.avatar.purple",
+        color: "fg.avatar.purple",
       },
     },
     size: {

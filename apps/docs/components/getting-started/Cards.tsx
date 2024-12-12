@@ -22,7 +22,6 @@ export function Cards() {
             asChild
             bg="bg.information.subtle"
             border="2"
-            borderColor="bg.default"
             className={styles.icon}
             color="fg.information.strong"
             p="12"
@@ -58,7 +57,6 @@ export function Cards() {
             asChild
             bg="bg.success.subtle"
             border="2"
-            borderColor="bg.default"
             className={styles.icon}
             color="fg.success.strong"
             p="12"

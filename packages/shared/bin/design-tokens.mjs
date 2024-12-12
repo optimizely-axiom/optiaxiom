@@ -82,9 +82,9 @@ async function importTokens(file) {
 
   /** @type {Record<string, { light: string, dark: string; variable?: string }>} */
   const colors = {
+    "bg.spinner.default": { dark: "neutral.50", light: "neutral.1200" },
+    "bg.spinner.inverse": { dark: "neutral.50", light: "neutral.50" },
     "fg.warning.inverse": { dark: "neutral.800", light: "neutral.800" },
-    "spinner.bg.default": { dark: "neutral.50", light: "neutral.1200" },
-    "spinner.bg.inverse": { dark: "neutral.50", light: "neutral.50" },
   };
   /** @type {Record<string, string>} */
   const index = {};
@@ -119,10 +119,10 @@ async function importTokens(file) {
 
   warnings.push(...Object.values(mapCodeToFigmaName));
 
-  colors["avatar.bg.neutral"].dark = "neutral.800";
-  colors["avatar.fg.neutral"].dark = "neutral.100";
-  colors["avatar.bg.purple"].dark = "purple.800";
-  colors["avatar.fg.purple"].dark = "purple.100";
+  colors["bg.avatar.neutral"].dark = "neutral.800";
+  colors["fg.avatar.neutral"].dark = "neutral.100";
+  colors["bg.avatar.purple"].dark = "purple.800";
+  colors["fg.avatar.purple"].dark = "purple.100";
 
   colors["bg.default.inverse.hovered"].dark = "neutral.200";
   colors["bg.default.inverse.pressed"].dark = "neutral.300";
@@ -193,19 +193,19 @@ const mapFigmaNameToCode = {
   "border/success": "border.success",
   "border/tertiary": "border.tertiary",
   "border/warning": "border.warning",
-  "component/Avatar/bg-neutral": "avatar.bg.neutral",
-  "component/Avatar/bg-purple": "avatar.bg.purple",
-  "component/Avatar/fg-neutral": "avatar.fg.neutral",
-  "component/Avatar/fg-purple": "avatar.fg.purple",
-  "component/Link/fg-default": "link.fg.default",
-  "component/Link/fg-default-hover": "link.fg.default.hovered",
-  "component/Link/inverse": "link.fg.inverse",
-  "component/Link/subtle": "link.fg.subtle",
-  "component/Link/visited": "link.fg.visited",
-  "component/Spinner/bg-default": "_spinner.bg.default",
-  "component/Spinner/bg-inverse": "_spinner.bg.inverse",
-  "component/Spinner/indicator-default": "spinner.fg.default",
-  "component/Spinner/indicator-inverse": "spinner.fg.inverse",
+  "component/Avatar/bg-neutral": "bg.avatar.neutral",
+  "component/Avatar/bg-purple": "bg.avatar.purple",
+  "component/Avatar/fg-neutral": "fg.avatar.neutral",
+  "component/Avatar/fg-purple": "fg.avatar.purple",
+  "component/Link/fg-default": "fg.link.default",
+  "component/Link/fg-default-hover": "fg.link.default.hovered",
+  "component/Link/inverse": "fg.link.inverse",
+  "component/Link/subtle": "fg.link.subtle",
+  "component/Link/visited": "fg.link.visited",
+  "component/Spinner/bg-default": "_bg.spinner.default",
+  "component/Spinner/bg-inverse": "_bg.spinner.inverse",
+  "component/Spinner/indicator-default": "fg.spinner.default",
+  "component/Spinner/indicator-inverse": "fg.spinner.inverse",
   "fg/accent/base": "fg.accent",
   "fg/accent/base-hover": "fg.accent.hovered",
   "fg/accent/strong": "fg.accent.strong",

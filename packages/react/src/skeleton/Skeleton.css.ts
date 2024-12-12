@@ -5,7 +5,7 @@ export const skeleton = recipe({
     {
       animation: "pulse",
       bg: "bg.secondary",
-      color: "bg.default",
+      color: "fg.default.inverse",
       display: "block",
     },
     style({

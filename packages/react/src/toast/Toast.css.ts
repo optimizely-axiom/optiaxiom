@@ -161,7 +161,7 @@ export const icon = recipe({
 });
 
 globalStyle(`${marker} a`, {
-  color: theme.colors["link.fg.inverse"],
+  color: theme.colors["fg.link.inverse"],
   textDecoration: "underline",
 });
 

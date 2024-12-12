@@ -6,7 +6,7 @@ import { recipe } from "../vanilla-extract";
 
 export const base = recipe({
   base: {
-    bg: "border.default",
+    bg: "bg.tertiary.hovered",
   },
 });
 
