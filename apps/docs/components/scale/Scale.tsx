@@ -116,4 +116,6 @@ export const Scale = ({
 );
 
 const isTShirtSizing = (str: string) =>
-  ["2xs", "lg", "md", "sm", "xl", "xs"].includes(str);
+  ["2xl", "2xs", "3xl", "4xl", "5xl", "lg", "md", "sm", "xl", "xs"].includes(
+    str,
+  );
