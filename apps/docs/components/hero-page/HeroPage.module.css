@@ -24,13 +24,13 @@
   letter-spacing: -0.025em;
 
   @media screen and (min-width: 37.5rem) {
-    font-size: var(--ax-fontSize-6xl-fontSize);
-    line-height: var(--ax-fontSize-6xl-lineHeight);
+    font-size: 48px;
+    line-height: 1;
   }
 
   @media screen and (min-width: 56.25rem) {
-    font-size: var(--ax-fontSize-7xl-fontSize);
-    line-height: var(--ax-fontSize-7xl-lineHeight);
+    font-size: 60px;
+    line-height: 1;
   }
 }
 

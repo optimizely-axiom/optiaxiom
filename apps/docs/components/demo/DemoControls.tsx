@@ -140,7 +140,6 @@ const tshirt = [
   "3xl",
   "4xl",
   "5xl",
-  "6xl",
 ];
 
 function itemToControl(item: PropItem) {

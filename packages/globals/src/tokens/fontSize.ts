@@ -37,12 +37,4 @@ export const fontSize = {
     fontSize: rem("36px"),
     lineHeight: rem("40px"),
   },
-  "6xl": {
-    fontSize: rem("48px"),
-    lineHeight: "1",
-  },
-  "7xl": {
-    fontSize: rem("60px"),
-    lineHeight: "1",
-  },
 } as const;
