@@ -35,7 +35,7 @@ const colors = <P extends string>(prefix: P) =>
       : never]: (typeof theme.colors)[Key];
   };
 
-const margins = merge(theme.margins, { auto: "auto" });
+const margins = merge(theme.spacing, { auto: "auto" });
 
 const radiuses = merge(theme.borderRadius, { inherit: "inherit" });
 

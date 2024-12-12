@@ -11,12 +11,11 @@ export default {
     ),
     h2: ({ ...props }) => (
       <HeadingLink
+        className={styles.secondaryHeading}
         color="fg.information"
         fontSize="md"
         level="2"
-        mb="-24"
         mt="32"
-        style={{ lineHeight: "24px" }}
         {...props}
       />
     ),

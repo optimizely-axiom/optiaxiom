@@ -4,7 +4,6 @@ import { boxShadow } from "./boxShadow";
 import { colors, colorsDark } from "./colors";
 import { fontFamily } from "./fontFamily";
 import { fontSize } from "./fontSize";
-import { margins } from "./margins";
 import { maxSize } from "./maxSize";
 import { screens } from "./screens";
 import { size } from "./size";
@@ -18,7 +17,6 @@ export const tokens = {
   colors,
   fontFamily,
   fontSize,
-  margins,
   maxSize,
   screens,
   size,

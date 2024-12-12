@@ -22,14 +22,13 @@ export function HeadingLink({
         <H6 id={id} tag="span" />
       </Box>
 
-      <Box asChild className={styles.group} ml="-8" pl="8">
+      <Box asChild className={styles.group} pl="8">
         <a aria-label="Permalink for this section" href={`#${id}`} id="id">
           <Box
             alignItems="center"
             className={styles.anchor}
             display={["none", "flex"]}
             flexDirection="row"
-            ml="-32"
           >
             <wbr />
             <Text

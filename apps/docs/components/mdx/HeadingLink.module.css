@@ -4,10 +4,12 @@
 }
 
 .group {
+  margin-left: -8px;
   position: relative;
 }
 
 .anchor {
+  margin-left: -32px;
   opacity: 0;
   position: absolute;
 

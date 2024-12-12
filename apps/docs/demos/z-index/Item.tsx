@@ -12,10 +12,10 @@ export const Item = ({
       border="2"
       borderColor="border.disabled"
       display="grid"
-      ml="-12"
       placeItems="center"
       rounded="full"
       size="56"
+      style={{ marginLeft: "-12px" }}
       {...children.props}
     >
       <Text color="fg.default.inverse" fontFamily="mono" fontWeight="600">

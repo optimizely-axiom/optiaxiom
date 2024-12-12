@@ -6,7 +6,7 @@ import styles from "./Cards.module.css";
 
 export function Cards() {
   return (
-    <Grid gap="32" gridTemplateColumns={["1", "2"]} mt="16" mx="-16">
+    <Grid gap="32" gridTemplateColumns={["1", "2"]} mt="16">
       <Flex
         alignItems="start"
         asChild
