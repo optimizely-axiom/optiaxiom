@@ -2,16 +2,12 @@ import { HeadingLink } from "@/components/mdx";
 import { Heading } from "@optiaxiom/react";
 import { type DocsThemeConfig, useConfig } from "nextra-theme-docs";
 
+import styles from "./theme.config.module.css";
+
 export default {
   components: {
     h1: ({ ...props }) => (
-      <Heading
-        {...props}
-        fontSize="4xl"
-        fontWeight="800"
-        mt="8"
-        tracking="tight"
-      />
+      <Heading {...props} className={styles.heading} fontSize="4xl" mt="8" />
     ),
     h2: ({ ...props }) => (
       <HeadingLink

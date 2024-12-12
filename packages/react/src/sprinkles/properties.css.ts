@@ -101,24 +101,13 @@ export const unresponsiveProps = defineProperties({
      *
      * {@link https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight Documentation}
      */
-    fontWeight: [
-      "100",
-      "200",
-      "300",
-      "400",
-      "500",
-      "600",
-      "700",
-      "800",
-      "900",
-    ] as const,
-    letterSpacing: theme.letterSpacing,
+    fontWeight: ["400", "500", "600", "700"] as const,
     /**
      * Set the element's `object-fit` CSS property
      *
      * {@link https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit Documentation}
      */
-    objectFit: ["contain", "cover", "fill", "none", "scale-down"] as const,
+    objectFit: ["contain", "cover", "fill", "none"] as const,
     /**
      * Set the element's `overflow-x` CSS property
      *
@@ -250,12 +239,6 @@ export const unresponsiveProps = defineProperties({
      */
     shadow: ["boxShadow"],
     /**
-     * Set the element's letter spacing
-     *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/letter-spacing/ Documentation}
-     */
-    tracking: ["letterSpacing"],
-    /**
      * Set the element's stack order
      *
      * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/z-index/ Documentation}
@@ -385,12 +368,6 @@ export const responsiveProps = defineProperties({
      * {@link https://developer.mozilla.org/en-US/docs/Web/CSS/justify-items Documentation}
      */
     justifyItems: ["center", "end", "normal", "start", "stretch"] as const,
-    /**
-     * Set the element's `line-height` CSS property
-     *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/line-height/ Documentation}
-     */
-    lineHeight: theme.lineHeight,
     marginBottom: margins,
     marginLeft: margins,
     marginRight: margins,
@@ -410,12 +387,6 @@ export const responsiveProps = defineProperties({
     width: theme.size,
   },
   shorthands: {
-    /**
-     * Set the element's line height
-     *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/line-height/ Documentation}
-     */
-    leading: ["lineHeight"],
     /**
      * Set the element's max-height
      *

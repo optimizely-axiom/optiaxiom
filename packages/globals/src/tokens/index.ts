@@ -4,8 +4,6 @@ import { boxShadow } from "./boxShadow";
 import { colors, colorsDark } from "./colors";
 import { fontFamily } from "./fontFamily";
 import { fontSize } from "./fontSize";
-import { letterSpacing } from "./letterSpacing";
-import { lineHeight } from "./lineHeight";
 import { margins } from "./margins";
 import { maxSize } from "./maxSize";
 import { screens } from "./screens";
@@ -20,8 +18,6 @@ export const tokens = {
   colors,
   fontFamily,
   fontSize,
-  letterSpacing,
-  lineHeight,
   margins,
   maxSize,
   screens,

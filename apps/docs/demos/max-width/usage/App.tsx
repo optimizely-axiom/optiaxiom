@@ -5,9 +5,6 @@ import { Canvas } from "../Canvas";
 export function App() {
   return (
     <Canvas>
-      <Box maxW="xl" w="full">
-        maxW=xl
-      </Box>
       <Box maxW="lg" w="full">
         maxW=lg
       </Box>

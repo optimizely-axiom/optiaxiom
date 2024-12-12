@@ -15,7 +15,7 @@ export const PropType = ({ component, prop }: PropTypeProps) => {
   const defn = <PropDefinition component={component} prop={prop} />;
   return (
     <Text>
-      <Code leading="loose" px="8">
+      <Code px="8">
         {prop.type.raw?.startsWith("ConditionalStyleWithResponsiveArray<") ? (
           <>
             <span style={{ color: "var(--shiki-token-function)" }}>
@@ -33,7 +33,7 @@ export const PropType = ({ component, prop }: PropTypeProps) => {
         <>
           {" "}
           ={" "}
-          <Code leading="loose" px="8">
+          <Code px="8">
             <span style={{ color: "var(--shiki-token-string-expression)" }}>
               {prop.defaultValue.value === "" ? '""' : prop.defaultValue.value}
             </span>
