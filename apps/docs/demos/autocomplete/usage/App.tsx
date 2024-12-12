@@ -29,7 +29,7 @@ export function App() {
         );
       }}
     >
-      <AutocompleteTrigger placeholder="Search a color..." w="240" />
+      <AutocompleteTrigger placeholder="Search a color..." w="224" />
 
       <AutocompleteContent>
         {items.map((item) => (

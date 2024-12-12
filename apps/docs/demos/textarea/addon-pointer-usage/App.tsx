@@ -37,7 +37,7 @@ export function App({
       }
       addonPointerEvents={addonPointerEvents}
       placeholder="Add a comment"
-      w="256"
+      w="224"
     />
   );
 }

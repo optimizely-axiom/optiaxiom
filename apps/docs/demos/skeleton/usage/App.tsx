@@ -5,7 +5,7 @@ export function App() {
     <Flex w="full">
       <Skeleton />
       <Skeleton h="5xl" />
-      <Skeleton circle h="2xl" />
+      <Skeleton circle h="56" />
     </Flex>
   );
 }

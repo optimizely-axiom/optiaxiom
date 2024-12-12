@@ -7,7 +7,7 @@ export function App({
   multiline = true,
 }: Pick<ComponentPropsWithoutRef<typeof InlineInput>, "multiline">) {
   return (
-    <Text asChild color="fg.default" w="240">
+    <Text asChild color="fg.default" w="224">
       <InlineInput label="Task description" multiline={multiline} />
     </Text>
   );

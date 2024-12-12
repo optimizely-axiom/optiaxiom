@@ -7,7 +7,7 @@ export function App() {
 
   return (
     <Flex color="fg.default">
-      <Text asChild w="240">
+      <Text asChild w="224">
         <InlineInput label="Task title" onValueChange={setValue} />
       </Text>
 

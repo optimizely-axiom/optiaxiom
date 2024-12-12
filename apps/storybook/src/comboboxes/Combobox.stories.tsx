@@ -28,7 +28,7 @@ export default {
   },
   component: Combobox,
   decorators: (Story) => (
-    <Box w="320">
+    <Box w="224">
       <Story />
     </Box>
   ),

@@ -11,7 +11,7 @@ export function App() {
         onChange={(event) => setValue(event.target.value)}
         ref={ref}
         value={value}
-        w="240"
+        w="224"
       />
 
       <Flex flexDirection="row">

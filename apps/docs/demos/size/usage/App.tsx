@@ -6,15 +6,11 @@ export function App() {
   return (
     <Canvas>
       <Flex alignItems="start" flexDirection="row" justifyContent="center">
-        <Box size="64">size=64</Box>
-        <Box size="80">size=80</Box>
-        <Box size="96">size=96</Box>
-        <Box display={["none", "grid"]} size="128">
-          size=128
-        </Box>
-        <Box display={["none", "grid"]} size="160">
-          size=160
-        </Box>
+        <Box size="xs">size=xs</Box>
+        <Box size="sm">size=sm</Box>
+        <Box size="md">size=md</Box>
+        <Box size="lg">size=lg</Box>
+        <Box size="xl">size=xl</Box>
       </Flex>
     </Canvas>
   );

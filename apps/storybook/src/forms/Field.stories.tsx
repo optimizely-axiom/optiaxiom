@@ -12,8 +12,8 @@ export default {
     children: {
       control: { type: "select" },
       mapping: {
-        input: <Input placeholder="Enter text..." w="256" />,
-        textarea: <Textarea placeholder="Enter text..." w="256" />,
+        input: <Input placeholder="Enter text..." w="224" />,
+        textarea: <Textarea placeholder="Enter text..." w="224" />,
       },
       options: ["input", "textarea"],
     },
@@ -29,10 +29,10 @@ export const sizes: Story = {
   render: () => (
     <Flex>
       <Field label="Label">
-        <Input placeholder="Enter text..." w="256" />
+        <Input placeholder="Enter text..." w="224" />
       </Field>
       <Field label="Label">
-        <Input placeholder="Enter text..." size="lg" w="256" />
+        <Input placeholder="Enter text..." size="lg" w="224" />
       </Field>
     </Flex>
   ),
@@ -44,7 +44,7 @@ export const Required: Story = {
       <Input
         addonBefore={<IconCalendar size="20" />}
         placeholder="Enter date..."
-        w="256"
+        w="224"
       />
     ),
     required: true,
@@ -53,7 +53,7 @@ export const Required: Story = {
 
 export const Disabled: Story = {
   args: {
-    children: <Input disabled placeholder="Enter text..." w="256" />,
+    children: <Input disabled placeholder="Enter text..." w="224" />,
   },
 };
 

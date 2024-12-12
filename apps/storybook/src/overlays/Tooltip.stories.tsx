@@ -180,13 +180,13 @@ export const Truncate: Story = {
       </Tooltip>
 
       <Tooltip {...args} content="Truncated text in target element">
-        <Text data-testid="target-truncated" truncate w="192">
+        <Text data-testid="target-truncated" truncate w="224">
           The quick brown fox jumps over the lazy dog.
         </Text>
       </Tooltip>
 
       <Tooltip {...args} content="Truncated text deep inside target element">
-        <Box asChild w="192">
+        <Box asChild w="224">
           <button>
             <Text data-testid="nested-truncated" truncate>
               The quick brown fox jumps over the lazy dog.

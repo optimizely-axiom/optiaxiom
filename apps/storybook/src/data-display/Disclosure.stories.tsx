@@ -18,7 +18,7 @@ export default {
         </DisclosureContent>
       </>
     ),
-    w: "320",
+    w: "224",
   },
   component: Disclosure,
 } as Meta<typeof Disclosure>;

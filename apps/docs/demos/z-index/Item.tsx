@@ -15,7 +15,7 @@ export const Item = ({
       ml="-12"
       placeItems="center"
       rounded="full"
-      size="64"
+      size="56"
       {...children.props}
     >
       <Text color="fg.default.inverse" fontFamily="mono" fontWeight="600">

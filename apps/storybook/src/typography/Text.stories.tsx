@@ -25,7 +25,7 @@ export const LineClamp: Story = {
       </>
     ),
     lineClamp: "2",
-    w: "256",
+    w: "224",
   },
 };
 
@@ -45,6 +45,6 @@ export const Truncate: Story = {
   args: {
     children: "The quick brown fox jumps over the lazy dog.",
     truncate: true,
-    w: "192",
+    w: "224",
   },
 };

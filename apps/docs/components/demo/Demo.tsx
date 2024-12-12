@@ -67,7 +67,7 @@ export function Demo({
               onChange={setProps}
               propTypes={propTypes}
               propValues={props}
-              w={["auto", "256"]}
+              w={["auto", "224"]}
             />
           </>
         )}

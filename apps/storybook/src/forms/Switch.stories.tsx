@@ -21,7 +21,7 @@ export const Large: Story = {
 
 export const MultiLineLabel: Story = {
   render: (args) => (
-    <Flex w="208">
+    <Flex w="224">
       <Switch {...args} />
       <Switch {...args}>This is a medium example of a multi line label</Switch>
       <Switch {...args} size="lg">
@@ -33,7 +33,7 @@ export const MultiLineLabel: Story = {
 
 export const WithTooltip: Story = {
   render: (args) => (
-    <Flex w="208">
+    <Flex w="224">
       <Switch {...args} />
       <Switch {...args}>
         <Tooltip auto content="This is a medium example of a multi line label">
