@@ -19,6 +19,18 @@
   position: absolute;
 }
 
+.heading {
+  @media screen and (min-width: 37.5rem) {
+    font-size: var(--ax-fontSize-6xl-fontSize);
+    line-height: var(--ax-fontSize-6xl-lineHeight);
+  }
+
+  @media screen and (min-width: 56.25rem) {
+    font-size: var(--ax-fontSize-7xl-fontSize);
+    line-height: var(--ax-fontSize-7xl-lineHeight);
+  }
+}
+
 .brand {
   color: color-mix(in srgb, var(--ax-colors-fg-accent), transparent);
 }

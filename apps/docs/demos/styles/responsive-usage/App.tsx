@@ -1,13 +1,14 @@
-import { Box } from "@optiaxiom/react";
-
-import { Canvas } from "../Canvas";
+import { Box, Flex } from "@optiaxiom/react";
 
 export function App() {
   return (
-    <Canvas>
-      <Box bg="bg.information.light" fontSize={["sm", "xl"]}>
-        Contact
+    <Flex flexDirection={["column", "row"]}>
+      <Box bg="bg.success.subtle" color="fg.success.strong" p="16">
+        Item 1
       </Box>
-    </Canvas>
+      <Box bg="bg.success.subtle" color="fg.success.strong" p="16">
+        Item 2
+      </Box>
+    </Flex>
   );
 }

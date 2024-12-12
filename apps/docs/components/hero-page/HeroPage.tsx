@@ -7,7 +7,7 @@ export function HeroPage() {
   return (
     <Flex alignItems={["start", "center"]} h="full" justifyContent="center">
       <Heading
-        fontSize={["5xl", "6xl", "7xl"]}
+        className={styles.heading}
         fontWeight="800"
         level="1"
         tracking="tight"

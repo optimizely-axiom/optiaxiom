@@ -86,6 +86,17 @@ export const unresponsiveProps = defineProperties({
      */
     fontFamily: theme.fontFamily,
     /**
+     * Set the element's `font-size` and `line-height` CSS properties
+     *
+     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/font-size/ Documentation}
+     */
+    fontSize: merge(theme.fontSize, {
+      inherit: {
+        fontSize: "inherit",
+        lineHeight: "inherit",
+      },
+    }),
+    /**
      * Set the element's `font-weight` CSS property
      *
      * {@link https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight Documentation}
@@ -318,17 +329,6 @@ export const responsiveProps = defineProperties({
      * {@link https://developer.mozilla.org/en-US/docs/Web/CSS/flex-wrap Documentation}
      */
     flexWrap: ["nowrap", "wrap"] as const,
-    /**
-     * Set the element's `font-size` and `line-height` CSS properties
-     *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/font-size/ Documentation}
-     */
-    fontSize: merge(theme.fontSize, {
-      inherit: {
-        fontSize: "inherit",
-        lineHeight: "inherit",
-      },
-    }),
     /**
      * Set the element's `gap` CSS property
      *
