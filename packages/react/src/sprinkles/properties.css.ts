@@ -117,6 +117,10 @@ export const unresponsiveProps = defineProperties({
      * {@link https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight Documentation}
      */
     fontWeight: ["400", "500", "600", "700"] as const,
+    marginBottom: margins,
+    marginLeft: margins,
+    marginRight: margins,
+    marginTop: margins,
     /**
      * Set the element's `object-fit` CSS property
      *
@@ -135,6 +139,10 @@ export const unresponsiveProps = defineProperties({
      * {@link https://developer.mozilla.org/en-US/docs/Web/CSS/overflow-y Documentation}
      */
     overflowY: ["auto", "hidden", "visible"] as const,
+    paddingBottom: theme.spacing,
+    paddingLeft: theme.spacing,
+    paddingRight: theme.spacing,
+    paddingTop: theme.spacing,
     /**
      * Set the element's `pointer-events` CSS property
      *
@@ -235,12 +243,102 @@ export const unresponsiveProps = defineProperties({
      * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/border-width/ Documentation}
      */
     borderT: ["borderTopWidth"],
+
+    /**
+     * Set the element's margin on all sides
+     *
+     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/margin/ Documentation}
+     */
+    m: ["marginBottom", "marginLeft", "marginRight", "marginTop"],
+    /**
+     * Set the element's left and right margin
+     *
+     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/margin/ Documentation}
+     */
+    mx: ["marginLeft", "marginRight"],
+    /**
+     * Set the element's top and bottom margin
+     *
+     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/margin/ Documentation}
+     */
+    my: ["marginBottom", "marginTop"],
+
+    /**
+     * Set the element's bottom margin
+     *
+     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/margin/ Documentation}
+     */
+    mb: ["marginBottom"],
+    /**
+     * Set the element's left margin
+     *
+     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/margin/ Documentation}
+     */
+    ml: ["marginLeft"],
+    /**
+     * Set the element's right margin
+     *
+     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/margin/ Documentation}
+     */
+    mr: ["marginRight"],
+    /**
+     * Set the element's top margin
+     *
+     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/margin/ Documentation}
+     */
+    mt: ["marginTop"],
+
     /**
      * Set the element's `overflow` CSS property
      *
      * {@link https://developer.mozilla.org/en-US/docs/Web/CSS/overflow Documentation}
      */
     overflow: ["overflowX", "overflowY"],
+
+    /**
+     * Set the element's padding on all sides
+     *
+     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/padding/ Documentation}
+     */
+    p: ["paddingBottom", "paddingLeft", "paddingRight", "paddingTop"],
+    /**
+     * Set the element's left and right padding
+     *
+     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/padding/ Documentation}
+     */
+    px: ["paddingLeft", "paddingRight"],
+    /**
+     * Set the element's top and bottom padding
+     *
+     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/padding/ Documentation}
+     */
+    py: ["paddingBottom", "paddingTop"],
+
+    /**
+     * Set the element's bottom padding
+     *
+     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/padding/ Documentation}
+     */
+    pb: ["paddingBottom"],
+    /**
+     * Set the element's left padding
+     *
+     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/padding/ Documentation}
+     */
+    pl: ["paddingLeft"],
+    /**
+     * Set the element's right padding
+     *
+     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/padding/ Documentation}
+     */
+    pr: ["paddingRight"],
+    /**
+     * Set the element's top padding
+     *
+     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/padding/ Documentation}
+     */
+    pt: ["paddingTop"],
+
     /**
      * Set the element's border radius on all corners
      *
@@ -383,16 +481,8 @@ export const responsiveProps = defineProperties({
      * {@link https://developer.mozilla.org/en-US/docs/Web/CSS/justify-items Documentation}
      */
     justifyItems: ["center", "end", "normal", "start", "stretch"] as const,
-    marginBottom: margins,
-    marginLeft: margins,
-    marginRight: margins,
-    marginTop: margins,
     maxHeight: theme.maxSize,
     maxWidth: theme.maxSize,
-    paddingBottom: theme.spacing,
-    paddingLeft: theme.spacing,
-    paddingRight: theme.spacing,
-    paddingTop: theme.spacing,
     /**
      * Set the element's `place-items` CSS property
      *
@@ -414,94 +504,6 @@ export const responsiveProps = defineProperties({
      * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/max-width/ Documentation}
      */
     maxW: ["maxWidth"],
-
-    /**
-     * Set the element's margin on all sides
-     *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/margin/ Documentation}
-     */
-    m: ["marginBottom", "marginLeft", "marginRight", "marginTop"],
-    /**
-     * Set the element's left and right margin
-     *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/margin/ Documentation}
-     */
-    mx: ["marginLeft", "marginRight"],
-    /**
-     * Set the element's top and bottom margin
-     *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/margin/ Documentation}
-     */
-    my: ["marginBottom", "marginTop"],
-
-    /**
-     * Set the element's bottom margin
-     *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/margin/ Documentation}
-     */
-    mb: ["marginBottom"],
-    /**
-     * Set the element's left margin
-     *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/margin/ Documentation}
-     */
-    ml: ["marginLeft"],
-    /**
-     * Set the element's right margin
-     *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/margin/ Documentation}
-     */
-    mr: ["marginRight"],
-    /**
-     * Set the element's top margin
-     *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/margin/ Documentation}
-     */
-    mt: ["marginTop"],
-
-    /**
-     * Set the element's padding on all sides
-     *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/padding/ Documentation}
-     */
-    p: ["paddingBottom", "paddingLeft", "paddingRight", "paddingTop"],
-    /**
-     * Set the element's left and right padding
-     *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/padding/ Documentation}
-     */
-    px: ["paddingLeft", "paddingRight"],
-    /**
-     * Set the element's top and bottom padding
-     *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/padding/ Documentation}
-     */
-    py: ["paddingBottom", "paddingTop"],
-
-    /**
-     * Set the element's bottom padding
-     *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/padding/ Documentation}
-     */
-    pb: ["paddingBottom"],
-    /**
-     * Set the element's left padding
-     *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/padding/ Documentation}
-     */
-    pl: ["paddingLeft"],
-    /**
-     * Set the element's right padding
-     *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/padding/ Documentation}
-     */
-    pr: ["paddingRight"],
-    /**
-     * Set the element's top padding
-     *
-     * {@link https://optimizely-axiom.github.io/optiaxiom/styled-system/padding/ Documentation}
-     */
-    pt: ["paddingTop"],
 
     /**
      * Set the element's width and height

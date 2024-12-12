@@ -30,17 +30,7 @@ export function ColorTokenItem({
 
   return (
     <Flex alignItems="start" flexDirection="row" {...props}>
-      <Box
-        rounded="sm"
-        style={{
-          aspectRatio: 100 / 70,
-          backgroundColor: theme.colors[item.bg],
-          border: `1px solid oklch(from ${value} calc(l - 0.1) c h)`,
-        }}
-        suppressHydrationWarning
-        w="xl"
-      />
-      <Box flex="1">
+      <Box display={["none", "block"]} flex="1">
         <Text fontSize="sm" fontWeight="600" suppressHydrationWarning>
           {name}
         </Text>
@@ -53,6 +43,16 @@ export function ColorTokenItem({
           {value}
         </Text>
       </Box>
+      <Box
+        rounded="sm"
+        style={{
+          aspectRatio: 100 / 70,
+          backgroundColor: theme.colors[item.bg],
+          border: `1px solid oklch(from ${value} calc(l - 0.1) c h)`,
+        }}
+        suppressHydrationWarning
+        w="xl"
+      />
     </Flex>
   );
 }
