@@ -32,7 +32,7 @@ export const control = recipe({
     {
       color: "fg.default.inverse",
       rounded: "xs",
-      size: "16",
+      size: "2xs",
     },
     style({
       backgroundColor: theme.colors["bg.default"],

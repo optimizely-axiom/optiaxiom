@@ -71,10 +71,10 @@ export const thumb = recipe({
   variants: {
     size: {
       md: {
-        size: "16",
+        size: "2xs",
       },
       lg: {
-        size: "20",
+        size: "xs",
       },
     },
   },

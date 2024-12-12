@@ -39,7 +39,7 @@ export function HeadingLink({
               placeItems="center"
               rounded="md"
               shadow="sm"
-              size="24"
+              size="sm"
               textAlign="center"
             >
               #

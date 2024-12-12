@@ -69,10 +69,10 @@ export const VerticalAlignment: Story = {
   render: (args) => (
     <Flex flexDirection="row">
       <Flex border="1">
-        <Checkbox alignItems="center" h="48" {...args} />
+        <Checkbox alignItems="center" h="xl" {...args} />
       </Flex>
       <Flex border="1">
-        <Checkbox alignItems="center" h="48" {...args}>
+        <Checkbox alignItems="center" h="xl" {...args}>
           {null}
         </Checkbox>
       </Flex>

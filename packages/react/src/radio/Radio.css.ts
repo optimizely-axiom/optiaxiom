@@ -20,7 +20,7 @@ export const control = recipe({
       border: "1",
       p: "2",
       rounded: "full",
-      size: "16",
+      size: "2xs",
     },
     style({
       borderColor: styles.controlColorVar,

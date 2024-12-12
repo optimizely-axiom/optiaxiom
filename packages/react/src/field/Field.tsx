@@ -85,10 +85,10 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(
                     aria-label="Information hover"
                     border="0"
                     color="fg.secondary"
-                    h="16"
+                    h="2xs"
                     icon={<IconCircleQuestion />}
                     p="0"
-                    w="16"
+                    w="2xs"
                   />
                 </HoverCardTrigger>
                 <HoverCardContent side="top" sideOffset={5}>
