@@ -4,7 +4,7 @@ export function App() {
   return (
     <Box bg="bg.default" maxW="sm" p="16" rounded="sm" shadow="sm" w="full">
       <Flex flexDirection="row">
-        <Skeleton circle h="5xl" />
+        <Skeleton circle h="56" />
         <Flex flex="1">
           <Grid gridTemplateColumns="3">
             <Skeleton gridColumn="2" />

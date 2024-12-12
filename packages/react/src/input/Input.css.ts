@@ -11,9 +11,9 @@ export const root = recipe({
         gap: "8",
         px: "8",
       },
-      "2xl": {
-        gap: "16",
-        px: "16",
+      xl: {
+        gap: "12",
+        px: "12",
       },
     },
   },
@@ -36,8 +36,8 @@ export const input = recipe({
       lg: {
         py: "8",
       },
-      "2xl": {
-        py: "16",
+      xl: {
+        py: "12",
       },
     },
   },

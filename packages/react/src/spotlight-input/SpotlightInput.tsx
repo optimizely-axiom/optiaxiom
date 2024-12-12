@@ -26,7 +26,7 @@ export const SpotlightInput = forwardRef<HTMLInputElement, SpotlightInputProps>(
         // autoCorrect="off"
         // enterKeyHint="go"
         ref={ref}
-        size="2xl"
+        size="xl"
         // spellCheck="false"
         {...styles.input({}, className)}
         {...props}
