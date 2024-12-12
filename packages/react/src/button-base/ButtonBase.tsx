@@ -78,7 +78,6 @@ export const ButtonBase = forwardRef<HTMLButtonElement, ButtonBaseProps>(
                   <Spinner
                     appearance={variant === "solid" ? "inverse" : "default"}
                     aria-hidden="true"
-                    size="2xs"
                     {...styles.spinner()}
                   />
                 )}

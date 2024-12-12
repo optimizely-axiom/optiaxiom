@@ -8,7 +8,7 @@ type ProgressProps = BoxProps<typeof ProgressPrimitive.Root> &
   styles.ProgressVariants;
 
 export const Progress = forwardRef<HTMLDivElement, ProgressProps>(
-  ({ intent = "primary", ...props }, ref) => {
+  ({ className, intent = "primary", ...props }, ref) => {
     const widthPercentage =
       ((props.value ?? 0) / (props.max ?? DEFAULT_MAX)) * 100;
     const isValidValue =
@@ -18,14 +18,7 @@ export const Progress = forwardRef<HTMLDivElement, ProgressProps>(
       props.value <= (props.max ?? DEFAULT_MAX);
 
     return (
-      <Box
-        asChild
-        bg="bg.tertiary"
-        h="8"
-        overflow="hidden"
-        rounded="full"
-        {...props}
-      >
+      <Box asChild {...styles.progress({}, className)} {...props}>
         <ProgressPrimitive.Root ref={ref}>
           {isValidValue && (
             <Box
