@@ -70,18 +70,6 @@ export const root = recipe({
         '&[data-state="open"]': {
           animation: `${slideIn} 150ms cubic-bezier(0.16, 1, 0.3, 1)`,
         },
-        '&[data-swipe="cancel"]': {
-          transition: "translate 150ms ease",
-          translate: "0",
-        },
-        '&[data-swipe="end"]': {
-          animation: `${swipeOut} 100ms ease-out`,
-          opacity: "0",
-        },
-        '&[data-swipe="move"]': {
-          translate:
-            "var(--radix-toast-swipe-move-x) var(--radix-toast-swipe-move-y)",
-        },
         '&[data-swipe-direction="down"]': {
           vars: {
             [swipeEndVar]: `0 calc(100% + ${theme.spacing[styles.padding]})`,
@@ -101,6 +89,18 @@ export const root = recipe({
           vars: {
             [swipeEndVar]: `0 calc(-100% - ${theme.spacing[styles.padding]})`,
           },
+        },
+        '&[data-swipe="cancel"]': {
+          transition: "translate 150ms ease",
+          translate: "0",
+        },
+        '&[data-swipe="end"]': {
+          animation: `${swipeOut} 100ms ease-out`,
+          opacity: "0",
+        },
+        '&[data-swipe="move"]': {
+          translate:
+            "var(--radix-toast-swipe-move-x) var(--radix-toast-swipe-move-y)",
         },
         '[data-position^="bottom"] &:first-child': {
           marginBottom: "auto",

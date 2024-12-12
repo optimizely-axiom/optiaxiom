@@ -14,24 +14,24 @@ import { useSyncExternalStore } from "use-sync-external-store/shim/index.js";
 import { type BoxProps } from "../box";
 import { Flex } from "../flex";
 import { extractSprinkles } from "../sprinkles";
-import { Toast } from "../toast/Toast";
 import { ToastAction } from "../toast-action";
 import { ToastTitle } from "../toast-title";
+import { Toast } from "../toast/Toast";
 import { type createToaster, toaster } from "./toaster";
 import * as styles from "./ToastProvider.css";
 import { useOverflowAnchor } from "./useOverflowAnchor";
 
 type ToastProps = BoxProps<
   typeof RadixToast.Viewport,
-  {
-    children?: never;
-    container?: ComponentPropsWithoutRef<typeof Portal>["container"];
-    /**
-     * An instance of toaster returned from the `createToaster` method.
-     */
-    toaster?: ReturnType<typeof createToaster>;
-  } & ComponentPropsWithoutRef<typeof RadixToast.ToastProvider> &
-    styles.ViewportVariants
+  ComponentPropsWithoutRef<typeof RadixToast.ToastProvider> &
+    styles.ViewportVariants & {
+      children?: never;
+      container?: ComponentPropsWithoutRef<typeof Portal>["container"];
+      /**
+       * An instance of toaster returned from the `createToaster` method.
+       */
+      toaster?: ReturnType<typeof createToaster>;
+    }
 >;
 
 const mapPositionToSwipeDirection = {

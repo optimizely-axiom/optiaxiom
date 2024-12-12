@@ -20,10 +20,10 @@ import * as styles from "./Box.css";
 export type BoxProps<T extends ElementType = "div", P = unknown> = ExtendProps<
   ComponentPropsWithoutRef<T>,
   ExtendProps<
-    {
+    Sprinkles & {
       asChild?: boolean;
       className?: string;
-    } & Sprinkles,
+    },
     P
   >
 >;

@@ -4,6 +4,7 @@ type ToastItem = {
   id: string;
   open: boolean;
   toast:
+    | ReactElement
     | {
         action?: {
           altText: string;
@@ -12,8 +13,7 @@ type ToastItem = {
         };
         title: string;
         type?: "danger" | "neutral" | "success" | "warning";
-      }
-    | ReactElement;
+      };
 };
 
 const EMPTY: ToastItem[] = [];

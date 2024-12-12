@@ -9,10 +9,10 @@ export function HeadingLink({
   children,
   id,
   ...props
-}: {
+}: ComponentPropsWithRef<typeof Heading> & {
   children?: ReactNode;
   id?: string;
-} & ComponentPropsWithRef<typeof Heading>) {
+}) {
   const { h6: H6 = "h6" } = useMDXComponents();
 
   return (

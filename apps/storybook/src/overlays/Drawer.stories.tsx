@@ -14,13 +14,13 @@ import {
 } from "@optiaxiom/react";
 import { type ComponentPropsWithoutRef, type ReactNode } from "react";
 
-type DrawerStoryProps = {
-  actions?: ReactNode;
-  content?: string;
-  description?: string;
-  withFooter?: boolean;
-} & ComponentPropsWithoutRef<typeof Drawer> &
-  Pick<ComponentPropsWithoutRef<typeof DrawerContent>, "position">;
+type DrawerStoryProps = ComponentPropsWithoutRef<typeof Drawer> &
+  Pick<ComponentPropsWithoutRef<typeof DrawerContent>, "position"> & {
+    actions?: ReactNode;
+    content?: string;
+    description?: string;
+    withFooter?: boolean;
+  };
 
 export default {
   args: {

@@ -14,12 +14,12 @@ import * as styles from "./Input.css";
 
 type InputProps = InputControlProps<
   "input",
-  {
-    addonAfter?: ReactNode;
-    addonBefore?: ReactNode;
-    htmlSize?: number;
-  } & Pick<ComponentPropsWithoutRef<typeof InputRoot>, "addonPointerEvents"> &
-    styles.InputVariants
+  Pick<ComponentPropsWithoutRef<typeof InputRoot>, "addonPointerEvents"> &
+    styles.InputVariants & {
+      addonAfter?: ReactNode;
+      addonBefore?: ReactNode;
+      htmlSize?: number;
+    }
 >;
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(

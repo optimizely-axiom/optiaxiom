@@ -3,9 +3,9 @@ import eslint from "@eslint/js";
 import jsxA11y from "eslint-plugin-jsx-a11y";
 import perfectionistNatural from "eslint-plugin-perfectionist";
 // @ts-expect-error -- no types
-import reactRecommended from "eslint-plugin-react/configs/recommended.js";
-// @ts-expect-error -- no types
 import reactHooks from "eslint-plugin-react-hooks";
+// @ts-expect-error -- no types
+import reactRecommended from "eslint-plugin-react/configs/recommended.js";
 import testingLibrary from "eslint-plugin-testing-library";
 import globals from "globals";
 import tsEslint from "typescript-eslint";

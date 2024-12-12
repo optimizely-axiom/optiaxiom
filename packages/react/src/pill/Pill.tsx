@@ -8,9 +8,9 @@ import * as styles from "./Pill.css";
 
 type PillProps = BoxProps<
   typeof Button,
-  {
+  styles.PillVariants & {
     onRemove?: () => void;
-  } & styles.PillVariants
+  }
 >;
 
 export const Pill = forwardRef<HTMLButtonElement, PillProps>(

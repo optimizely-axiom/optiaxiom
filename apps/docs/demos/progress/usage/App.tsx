@@ -1,9 +1,5 @@
 import { Progress } from "@optiaxiom/react";
 
-export function App({ value = "50" }: AppProps) {
-  return <Progress value={parseInt(value)} w="2/3" />;
-}
-
 type AppProps = {
   value:
     | "0"
@@ -18,3 +14,7 @@ type AppProps = {
     | "90"
     | "100";
 };
+
+export function App({ value = "50" }: AppProps) {
+  return <Progress value={parseInt(value)} w="2/3" />;
+}

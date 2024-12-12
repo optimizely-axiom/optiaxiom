@@ -23,12 +23,12 @@ export type ButtonBaseProps<
 > = BoxProps<
   T,
   ExtendProps<
-    {
+    Omit<NonNullable<styles.ButtonVariants>, "intent" | "variant"> & {
       appearance?: keyof typeof appearances;
       children?: ReactNode;
       disabled?: boolean;
       loading?: boolean;
-    } & Omit<NonNullable<styles.ButtonVariants>, "intent" | "variant">,
+    },
     P
   >
 >;

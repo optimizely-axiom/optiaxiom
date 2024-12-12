@@ -9,12 +9,12 @@ import * as styles from "./Avatar.css";
 
 type AvatarProps = BoxProps<
   "span",
-  {
+  styles.AvatarVariants & {
     fallback?: keyof typeof mapFallbackToIcon;
     icon?: React.ReactNode;
     name?: string;
     src?: string;
-  } & styles.AvatarVariants
+  }
 >;
 
 function getInitialsFromName(name: string) {

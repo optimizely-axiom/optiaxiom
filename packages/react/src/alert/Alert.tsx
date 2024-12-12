@@ -15,9 +15,9 @@ import * as styles from "./Alert.css";
 
 type AlertProps = BoxProps<
   "div",
-  {
+  styles.AlertVariants & {
     onClose?: () => void;
-  } & styles.AlertVariants
+  }
 >;
 
 const mapIntentToIcon = {

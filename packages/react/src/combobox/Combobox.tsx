@@ -18,13 +18,13 @@ import { PopoverTrigger } from "../popover-trigger";
 import { useEffectEvent } from "../use-event";
 import { useResponsiveMatches } from "../use-responsive-matches";
 
-type ComboBoxProps<Item> = {
+type ComboBoxProps<Item> = ComponentPropsWithoutRef<typeof Command<Item>> & {
   children: ReactNode;
   defaultOpen?: boolean;
   onInputValueChange?: (inputValue: string) => void;
   onOpenChange?: (open: boolean) => void;
   open?: boolean;
-} & ComponentPropsWithoutRef<typeof Command<Item>>;
+};
 
 export function Combobox<Item>({
   children,

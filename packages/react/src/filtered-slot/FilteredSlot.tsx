@@ -1,9 +1,9 @@
 import { Slot, type SlotProps } from "@radix-ui/react-slot";
 import { forwardRef } from "react";
 
-type FilteredSlotProps = {
+type FilteredSlotProps = SlotProps & {
   exclude: string;
-} & SlotProps;
+};
 
 export const FilteredSlot = forwardRef<HTMLElement, FilteredSlotProps>(
   ({ exclude, ...props }, ref) => {

@@ -5,7 +5,7 @@ import { conditions } from "../utils";
 const list = ["md", "sm"] as const;
 
 export const useResponsiveMatches = <const B, const T>(
-  config: { base: B } & Partial<Record<(typeof list)[number], T>>,
+  config: Partial<Record<(typeof list)[number], T>> & { base: B },
 ) => {
   const matches = {
     base: true,

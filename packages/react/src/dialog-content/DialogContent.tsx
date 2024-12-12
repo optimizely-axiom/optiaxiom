@@ -12,9 +12,9 @@ import * as styles from "./DialogContent.css";
 
 type DialogContentProps = BoxProps<
   typeof RadixDialog.Content,
-  {
+  styles.DialogVariants & {
     transitionType?: ComponentPropsWithoutRef<typeof Transition>["type"];
-  } & styles.DialogVariants
+  }
 >;
 
 export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(

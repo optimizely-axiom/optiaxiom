@@ -12,9 +12,9 @@ import { IconX } from "../icons/IconX";
 import { Input } from "../input";
 import * as styles from "./SearchInput.css";
 
-type SearchProps = {
+type SearchProps = ComponentPropsWithRef<typeof Input> & {
   onValueClear?: () => void;
-} & ComponentPropsWithRef<typeof Input>;
+};
 
 export const SearchInput = forwardRef<HTMLInputElement, SearchProps>(
   (

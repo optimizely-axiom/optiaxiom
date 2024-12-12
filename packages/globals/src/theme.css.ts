@@ -35,10 +35,6 @@ export const theme = createGlobalThemeContractInlineTypes(
   (value) => `ax-${value}`,
 );
 
-type CSSVarFunction =
-  | `var(--${string})`
-  | `var(--${string}, ${number | string})`;
-type Primitive = boolean | null | number | string | undefined;
 export type MapLeafNodes<Obj, LeafType> = {
   [Prop in keyof Obj]: Obj[Prop] extends Primitive
     ? LeafType
@@ -47,6 +43,10 @@ export type MapLeafNodes<Obj, LeafType> = {
       ? MapLeafNodes<Obj[Prop], LeafType>
       : never;
 };
+type CSSVarFunction =
+  | `var(--${string})`
+  | `var(--${string}, ${number | string})`;
 type NullableTokens = {
   [key: string]: null | NullableTokens | string;
 };
+type Primitive = boolean | null | number | string | undefined;

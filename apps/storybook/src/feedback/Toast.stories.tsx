@@ -16,8 +16,7 @@ import { expect, screen, userEvent, waitFor, within } from "@storybook/test";
 
 const toaster = createToaster();
 
-type StoryProps = ComponentPropsWithoutRef<typeof Toast> &
-  Pick<ComponentPropsWithoutRef<typeof ToastProvider>, "position">;
+type Story = StoryObj<StoryProps>;
 
 export default {
   args: {
@@ -59,7 +58,8 @@ export default {
   ),
 } as Meta<StoryProps>;
 
-type Story = StoryObj<StoryProps>;
+type StoryProps = ComponentPropsWithoutRef<typeof Toast> &
+  Pick<ComponentPropsWithoutRef<typeof ToastProvider>, "position">;
 
 export const Basic: Story = {
   play: async ({ canvas }) => {
