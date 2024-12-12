@@ -16,12 +16,11 @@ So given a tokens object like this:
 ```ts
 const tokens = {
   colors: {
-    "bg.information": "#115DD4",
-    "fg.success": "#03A65D",
+    "bg.information": "#115dd4",
+    "fg.success": "#03a65d",
   },
-  spacing: {
-    "2": "2px",
-    "8": "8px",
+  zIndex: {
+    popover: "3000",
   },
 };
 ```
@@ -30,10 +29,9 @@ The following css custom properties will be available:
 
 ```css
 :root {
-  --ax-colors-bg-information: "#115DD4";
-  --ax-colors-fg-success: "#03A65D";
-  --ax-spacing-2: "2px";
-  --ax-spacing-8: "8px";
+  --ax-colors-bg-information: #115dd4;
+  --ax-colors-fg-success: #03a65d;
+  --ax-zIndex-popover: 3000;
 }
 ```
 
