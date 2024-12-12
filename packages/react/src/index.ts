@@ -56,6 +56,7 @@ export * from "./dropdown-menu-sub-content";
 export * from "./dropdown-menu-sub-trigger";
 export * from "./dropdown-menu-trigger";
 export * from "./field";
+export * from "./field-label";
 export * from "./flex";
 export * from "./grid";
 export * from "./heading";
