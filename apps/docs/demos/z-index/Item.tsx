@@ -8,7 +8,7 @@ export const Item = ({
 }) => {
   return (
     <Box
-      bg="bg.success.hovered"
+      bg="bg.information"
       border="2"
       borderColor="border.disabled"
       display="grid"
@@ -18,7 +18,7 @@ export const Item = ({
       style={{ marginLeft: "-12px" }}
       {...children.props}
     >
-      <Text color="fg.default.inverse" fontFamily="mono" fontWeight="600">
+      <Text color="fg.white" fontFamily="mono" fontWeight="600">
         {children.props.children}
       </Text>
     </Box>

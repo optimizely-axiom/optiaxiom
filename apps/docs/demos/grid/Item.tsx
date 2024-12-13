@@ -10,8 +10,8 @@ export const Item = ({
     <Box
       bg={
         children.props.gridColumn || children.type === "div"
-          ? "bg.success.hovered"
-          : "bg.success.light"
+          ? "bg.information"
+          : "bg.information.subtle"
       }
       display="grid"
       p="16"
@@ -22,7 +22,7 @@ export const Item = ({
       <Text
         color={
           children.props.gridColumn || children.type === "div"
-            ? "fg.default.inverse"
+            ? "fg.white"
             : "fg.default"
         }
         fontFamily="mono"

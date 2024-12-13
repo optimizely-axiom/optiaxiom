@@ -8,14 +8,14 @@ export const Item = ({
 }) => {
   return (
     <Box
-      bg="bg.success.hovered"
+      bg="bg.information"
       display="grid"
       p="16"
       placeItems="center"
       rounded="md"
       {...children.props}
     >
-      <Text color="fg.default.inverse" fontFamily="mono" fontWeight="600">
+      <Text color="fg.white" fontFamily="mono" fontWeight="600">
         {children.props.children}
       </Text>
     </Box>

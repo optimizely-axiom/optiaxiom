@@ -72,7 +72,7 @@ export const ScaleValue = ({
         )}
         {!hidePreview && typeof size !== "object" && (
           <Td display={["none", "table-cell"]}>
-            <Box bg="bg.success.hovered" h="2xs" style={{ width: size }} />
+            <Box bg="bg.information" h="2xs" style={{ width: size }} />
           </Td>
         )}
       </>

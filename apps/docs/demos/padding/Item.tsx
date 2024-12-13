@@ -15,8 +15,8 @@ export const Item = ({
       {...children.props}
     >
       <Text
-        bg="bg.success.hovered"
-        color="fg.default.inverse"
+        bg="bg.information"
+        color="fg.white"
         fontFamily="mono"
         fontWeight="600"
         p="16"

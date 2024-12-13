@@ -27,7 +27,7 @@ export const Item = ({
         <Box p={p} rounded="sm" style={yellowStripes}>
           <Box
             asChild
-            bg="bg.success.hovered"
+            bg="bg.information"
             display="grid"
             placeItems="center"
             py="16"
@@ -35,7 +35,7 @@ export const Item = ({
             {...children.props}
           >
             <Text
-              color="fg.default.inverse"
+              color="fg.white"
               fontFamily="mono"
               fontWeight="600"
               textAlign="center"
@@ -46,7 +46,7 @@ export const Item = ({
         </Box>
       ) : (
         <Box
-          bg="bg.success.hovered"
+          bg="bg.information"
           display="grid"
           placeItems="center"
           rounded="sm"
