@@ -23,7 +23,7 @@ export const list = recipe({
         selectors: {
           '&[data-orientation="horizontal"]': {
             borderBottomWidth: "1px",
-            gap: "24",
+            gap: "24px",
           },
           '&[data-orientation="vertical"]': {
             borderRightWidth: "1px",
