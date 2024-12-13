@@ -1,5 +1,3 @@
-import { theme } from "@optiaxiom/globals";
-
 import { recipe, style } from "../vanilla-extract";
 
 export const list = recipe({
@@ -25,21 +23,21 @@ export const list = recipe({
         selectors: {
           '&[data-orientation="horizontal"]': {
             borderBottomWidth: "1px",
-            gap: theme.spacing["24"],
+            gap: "24",
           },
           '&[data-orientation="vertical"]': {
             borderRightWidth: "1px",
-            gap: theme.spacing["8"],
+            gap: "8px",
           },
         },
       }),
       secondary: style({
         selectors: {
           '&[data-orientation="horizontal"]': {
-            gap: theme.spacing["24"],
+            gap: "24px",
           },
           '&[data-orientation="vertical"]': {
-            gap: theme.spacing["8"],
+            gap: "8px",
           },
         },
       }),

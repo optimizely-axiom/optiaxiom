@@ -1,5 +1,3 @@
-import { theme } from "@optiaxiom/globals";
-
 import { createVar, recipe, style } from "../vanilla-extract";
 
 export const columnWidthVar = createVar();
@@ -13,7 +11,7 @@ export const tableHeader = recipe({
     style({
       position: "sticky",
       top: 0,
-      zIndex: theme.zIndex["20"],
+      zIndex: "20",
     }),
   ],
 });
@@ -33,7 +31,7 @@ export const tableHead = recipe({
       left: style({
         left: cellOffsetVar,
         position: "sticky",
-        zIndex: theme.zIndex["20"],
+        zIndex: "20",
       }),
       right: {},
     },
@@ -55,7 +53,7 @@ export const tableCell = recipe({
       left: style({
         left: cellOffsetVar,
         position: "sticky",
-        zIndex: theme.zIndex["10"],
+        zIndex: "10",
       }),
       right: {},
     },

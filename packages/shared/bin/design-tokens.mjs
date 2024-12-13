@@ -426,10 +426,6 @@ void yargs(hideBin(process.argv))
                 .map(([name, value]) => [name, value.light]),
             ),
             {
-              pre: [
-                'current: "currentColor" as const,',
-                '  transparent: "transparent" as const,',
-              ].join("\n"),
               transform: (value) => `colorPalette["${value}"]`,
             },
           ),
@@ -441,10 +437,6 @@ void yargs(hideBin(process.argv))
                 .map(([name, value]) => [name, value.dark]),
             ),
             {
-              pre: [
-                'current: "currentColor" as const,',
-                '  transparent: "transparent" as const,',
-              ].join("\n"),
               transform: (value) => `colorPalette["${value}"]`,
             },
           ),

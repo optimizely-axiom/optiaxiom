@@ -22,7 +22,7 @@ export const root = recipe({
 
       selectors: {
         [`&:has(${marker}:focus)`]: {
-          zIndex: theme.zIndex["10"],
+          zIndex: "10",
         },
         [`&:has(${marker}:focus:is([data-invalid]))`]: {
           outline: `2px solid ${theme.colors["border.focus.error"]}`,

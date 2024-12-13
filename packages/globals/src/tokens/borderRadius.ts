@@ -7,5 +7,4 @@ export const borderRadius = {
   lg: rem("8px"),
 
   full: "9999px",
-  none: "0",
 } as const;
