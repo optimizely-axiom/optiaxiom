@@ -5,6 +5,19 @@ import { sprinkles, Text } from "@optiaxiom/react";
 import { Table, Td, Th, Thead, Tr } from "../table";
 import { ScaleValue } from "./ScaleValue";
 
+const tshirts = [
+  "2xs",
+  "xs",
+  "sm",
+  "md",
+  "lg",
+  "xl",
+  "2xl",
+  "3xl",
+  "4xl",
+  "5xl",
+];
+
 export const Scale = ({
   hidePixels,
   hidePreview,
@@ -48,7 +61,13 @@ export const Scale = ({
           const aNum = aMatch === null ? NaN : parseFloat(aMatch[1]);
           const bMatch = b.match(/^([0-9.]+)$/);
           const bNum = bMatch === null ? NaN : parseFloat(bMatch[1]);
-          if (isNaN(aNum) && isNaN(bNum)) return 0;
+          if (isNaN(aNum) && isNaN(bNum)) {
+            if (isTShirtSizing(a) && isTShirtSizing(b))
+              return tshirts.indexOf(a) - tshirts.indexOf(b);
+            if (isTShirtSizing(a)) return -1;
+            if (isTShirtSizing(b)) return 1;
+            return a.localeCompare(b);
+          }
           if (isNaN(aNum)) return isTShirtSizing(a) ? -1 : 1;
           if (isNaN(bNum)) return isTShirtSizing(b) ? 1 : -1;
           return aNum - bNum;
@@ -84,7 +103,4 @@ const getPropValues = (prop: PropItem) =>
       : prop.type.value) as Array<{ value: string }>
   ).map((v) => JSON.parse(v.value) as string);
 
-const isTShirtSizing = (str: string) =>
-  ["2xl", "2xs", "3xl", "4xl", "5xl", "lg", "md", "sm", "xl", "xs"].includes(
-    str,
-  );
+const isTShirtSizing = (str: string) => tshirts.includes(str);
