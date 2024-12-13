@@ -3,6 +3,7 @@ import { recipe, type RecipeVariants } from "../vanilla-extract";
 export const paper = recipe({
   base: {
     bg: "bg.default",
+    color: "fg.default",
     shadow: "md",
     z: "popover",
   },
