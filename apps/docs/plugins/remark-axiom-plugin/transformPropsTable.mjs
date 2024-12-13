@@ -1,12 +1,9 @@
-import { getDocs } from "@optiaxiom/shared";
 import { fromMarkdown } from "mdast-util-from-markdown";
 import { mdxFromMarkdown } from "mdast-util-mdx";
 import { mdxjs } from "micromark-extension-mdxjs";
 import { visit } from "unist-util-visit";
 
-const docs = getDocs({
-  shouldExtractValuesFromUnion: true,
-});
+import { docs } from "./docs.mjs";
 
 export function transformPropsTable(tree) {
   let needsImport = true;

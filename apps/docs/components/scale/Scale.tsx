@@ -1,24 +1,24 @@
-import { Box, Flex, Text } from "@optiaxiom/react";
+import type { PropItem } from "react-docgen-typescript";
+
+import { sprinkles, Text } from "@optiaxiom/react";
 
 import { Table, Td, Th, Thead, Tr } from "../table";
-
-const px = (rem: string) =>
-  rem.endsWith("rem")
-    ? `${parseFloat((parseFloat(rem.slice(0, -3)) * 16).toFixed(0))}px`
-    : rem;
+import { ScaleValue } from "./ScaleValue";
 
 export const Scale = ({
   hidePixels,
   hidePreview,
   keyLabel = "Name",
+  prop,
   valueLabel = "Value",
   values,
 }: {
   hidePixels?: boolean;
   hidePreview?: boolean;
   keyLabel?: string;
+  prop?: PropItem;
   valueLabel?: string;
-  values: Record<string, string> | string[];
+  values: Record<string, string> | string;
 }) => (
   <Table maxH="sm">
     <Thead>
@@ -36,8 +36,11 @@ export const Scale = ({
       </tr>
     </Thead>
     <tbody>
-      {(Array.isArray(values)
-        ? values.map((value) => [value, value])
+      {(typeof values === "string" && prop
+        ? getPropValues(prop).map((value) => [
+            value,
+            sprinkles({ [values]: value }),
+          ])
         : Object.entries(values)
       )
         .sort(([a], [b]) => {
@@ -62,58 +65,24 @@ export const Scale = ({
                 {name}
               </Text>
             </Td>
-            <Td whiteSpace="nowrap">
-              <Flex gap="8">
-                {(typeof size === "object"
-                  ? Object.entries(size).map(
-                      ([key, value]) => `${key}: ${value}`,
-                    )
-                  : [size]
-                ).map((value) => (
-                  <Text
-                    fontFamily="mono"
-                    fontSize="sm"
-                    fontWeight="500"
-                    key={value}
-                    style={{ color: "var(--shiki-token-function)" }}
-                  >
-                    {value}
-                  </Text>
-                ))}
-              </Flex>
-            </Td>
-            {!hidePixels && (
-              <Td whiteSpace="nowrap">
-                <Flex gap="8">
-                  {(typeof size === "object"
-                    ? Object.entries<string>(size).map(
-                        ([key, value]) => `${key}: ${px(value)}`,
-                      )
-                    : [px(size)]
-                  ).map((value) => (
-                    <Text
-                      fontFamily="mono"
-                      fontSize="sm"
-                      fontWeight="500"
-                      key={value}
-                      style={{ color: "var(--shiki-token-function)" }}
-                    >
-                      {value}
-                    </Text>
-                  ))}
-                </Flex>
-              </Td>
-            )}
-            {!hidePreview && (
-              <Td display={["none", "table-cell"]}>
-                <Box bg="bg.success.hovered" h="2xs" style={{ width: size }} />
-              </Td>
-            )}
+            <ScaleValue
+              hidePixels={hidePixels}
+              hidePreview={hidePreview}
+              type={typeof values === "string" ? "selector" : "value"}
+              value={size}
+            />
           </Tr>
         ))}
     </tbody>
   </Table>
 );
+
+const getPropValues = (prop: PropItem) =>
+  (
+    (prop.type.raw?.startsWith("ConditionalStyleWithResponsiveArray<")
+      ? prop.type.value.slice(0, -2)
+      : prop.type.value) as Array<{ value: string }>
+  ).map((v) => JSON.parse(v.value) as string);
 
 const isTShirtSizing = (str: string) =>
   ["2xl", "2xs", "3xl", "4xl", "5xl", "lg", "md", "sm", "xl", "xs"].includes(
