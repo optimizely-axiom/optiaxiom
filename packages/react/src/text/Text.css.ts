@@ -15,6 +15,7 @@ const lineClampBase = [
 
 export const text = recipe({
   base: {
+    color: "fg.default",
     fontSize: "md",
   },
 
