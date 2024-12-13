@@ -3,6 +3,7 @@ import { recipe, type RecipeVariants, style } from "../vanilla-extract";
 export const content = recipe({
   base: [
     {
+      color: "fg.default",
       display: "flex",
       flexDirection: "column",
     },

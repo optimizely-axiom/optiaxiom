@@ -17,6 +17,7 @@ export const container = recipe({
 export const content = recipe({
   base: [
     {
+      color: "fg.default",
       display: "flex",
       flexDirection: "column",
     },
