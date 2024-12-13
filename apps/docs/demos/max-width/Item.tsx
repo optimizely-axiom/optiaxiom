@@ -12,7 +12,7 @@ export const Item = ({
   return (
     <Box rounded="md" style={yellowStripes}>
       <Box
-        bg="bg.success.hovered"
+        bg="bg.information"
         display="grid"
         p="8"
         placeItems="center"
@@ -20,7 +20,7 @@ export const Item = ({
         {...children.props}
       >
         <Text
-          color="fg.default.inverse"
+          color="fg.white"
           fontFamily="mono"
           fontWeight="600"
           textAlign="center"

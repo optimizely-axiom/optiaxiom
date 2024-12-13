@@ -7,9 +7,9 @@ export const Item = ({
   children: ReactElement<ComponentPropsWithRef<typeof Box>>;
 }) => {
   return (
-    <Box bg="bg.success.hovered" p="16" rounded="inherit" {...children.props}>
+    <Box bg="bg.information" p="16" rounded="inherit" {...children.props}>
       <Text
-        color="fg.default.inverse"
+        color="fg.white"
         fontFamily="mono"
         fontWeight="600"
         textAlign="center"
