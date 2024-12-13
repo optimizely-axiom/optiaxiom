@@ -115,9 +115,15 @@ importers:
       '@tabler/icons-react':
         specifier: ^3.24.0
         version: 3.24.0(react@18.3.1)
+      '@types/cssesc':
+        specifier: ^3.0.2
+        version: 3.0.2
       better-opn:
         specifier: ^3.0.2
         version: 3.0.2
+      cssesc:
+        specifier: ^3.0.0
+        version: 3.0.0
       fast-glob:
         specifier: ^3.3.2
         version: 3.3.2
@@ -2578,6 +2584,9 @@ packages:
 
   '@types/cookie@0.6.0':
     resolution: {integrity: sha512-4Kh9a6B2bQciAhf7FSuMRRkUWecJgJu9nPnx3yzpsfXX/c50REIqpHY4C82bXP90qrLtXtkDxTZosYO3UpOwlA==}
+
+  '@types/cssesc@3.0.2':
+    resolution: {integrity: sha512-Qii6nTRktvtI380EloxH/V7MwgrYxkPgBI+NklUjQuhzgAd1AqT3QDJd+eD+0doRADgfwvtagLRo7JFa7aMHXg==}
 
   '@types/d3-array@3.2.1':
     resolution: {integrity: sha512-Y2Jn2idRrLzUfAKV2LyRImR+y4oa2AntrgID95SHJxuMUrkNXmanDSed71sRNZysveJVt1hLLemQZIady0FpEg==}
@@ -9578,6 +9587,8 @@ snapshots:
       '@types/node': 20.17.9
 
   '@types/cookie@0.6.0': {}
+
+  '@types/cssesc@3.0.2': {}
 
   '@types/d3-array@3.2.1': {}
 
