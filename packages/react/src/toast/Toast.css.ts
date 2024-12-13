@@ -72,22 +72,22 @@ export const root = recipe({
         },
         '&[data-swipe-direction="down"]': {
           vars: {
-            [swipeEndVar]: `0 calc(100% + ${theme.spacing[styles.padding]})`,
+            [swipeEndVar]: `0 calc(100% + ${styles.padding}px)`,
           },
         },
         '&[data-swipe-direction="left"]': {
           vars: {
-            [swipeEndVar]: `calc(-100% - ${theme.spacing[styles.padding]}) 0`,
+            [swipeEndVar]: `calc(-100% - ${styles.padding}px) 0`,
           },
         },
         '&[data-swipe-direction="right"]': {
           vars: {
-            [swipeEndVar]: `calc(100% + ${theme.spacing[styles.padding]}) 0`,
+            [swipeEndVar]: `calc(100% + ${styles.padding}px) 0`,
           },
         },
         '&[data-swipe-direction="up"]': {
           vars: {
-            [swipeEndVar]: `0 calc(-100% - ${theme.spacing[styles.padding]})`,
+            [swipeEndVar]: `0 calc(-100% - ${styles.padding}px)`,
           },
         },
         '&[data-swipe="cancel"]': {
@@ -106,13 +106,13 @@ export const root = recipe({
           marginBottom: "auto",
         },
         '[data-position^="bottom"] &[data-state="closed"] ~ &': {
-          translate: `0 calc(100% + ${theme.spacing[styles.gap]})`,
+          translate: `0 calc(100% + ${styles.gap}px)`,
         },
         '[data-position^="top"] &:last-child': {
           marginTop: "auto",
         },
         '[data-position^="top"] &[data-state="closed"] ~ &': {
-          translate: `0 calc(-100% - ${theme.spacing[styles.gap]})`,
+          translate: `0 calc(-100% - ${styles.gap}px)`,
         },
       },
     }),

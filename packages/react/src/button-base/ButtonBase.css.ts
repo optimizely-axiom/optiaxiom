@@ -41,7 +41,7 @@ export const buttonBase = recipe({
           {
             outline: `2px solid ${theme.colors["border.focus"]}`,
             outlineOffset: "1px",
-            zIndex: theme.zIndex["10"],
+            zIndex: "10",
           },
         ...groupStyle(),
       },
