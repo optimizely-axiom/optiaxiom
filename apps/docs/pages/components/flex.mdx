@@ -1,3 +1,4 @@
+import { Cards } from "@/components/cards";
 import { Demo } from "@/components/demo";
 import { PropsTable } from "@/components/props-table";
 import { HorizontalUsage, Usage, VerticalUsage } from "@/demos/flex";
@@ -5,7 +6,7 @@ import { Flex } from "@optiaxiom/react";
 
 # Flex
 
-Use `Flex` component to stack items vertically or horizontally. By default direction is set to `column`.
+Use `Flex` component to stack items vertically or horizontally.
 
 ## Documentation
 
@@ -15,6 +16,8 @@ Use `Flex` component to stack items vertically or horizontally. By default direc
 
 ### Direction
 
+Use `flexDirection` prop to control whether children are stacked vertically or horizontally. By default `flexDirection` is set to `column`.
+
 Use `flexDirection="row"` or `flexDirection="row-reverse"` to stack items horizontally:
 
 <Demo component={HorizontalUsage} />
@@ -22,6 +25,10 @@ Use `flexDirection="row"` or `flexDirection="row-reverse"` to stack items horizo
 Use `flexDirection="column"` or `flexDirection="column-reverse"` to stack items vertically:
 
 <Demo component={VerticalUsage} />
+
+### Related
+
+<Cards items={["Box", "Grid"]} />
 
 ## Props
 

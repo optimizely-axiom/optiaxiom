@@ -1,0 +1,21 @@
+@value card from "../CardsItem.module.css";
+
+.layer {
+  grid-area: 1 / 1 / 2 / 2;
+}
+
+.layer:nth-child(1) {
+  transform: translateZ(10px);
+}
+
+.layer:nth-child(3) {
+  transform: translateZ(-10px);
+}
+
+:global(.card):hover .layer:nth-child(1) {
+  transform: translateZ(16px);
+}
+
+:global(.card):hover .layer:nth-child(3) {
+  transform: translateZ(-16px);
+}

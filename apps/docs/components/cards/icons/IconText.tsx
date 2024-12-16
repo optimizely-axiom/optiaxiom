@@ -8,14 +8,20 @@ export const IconText = ({
   style,
   ...props
 }: ComponentPropsWithoutRef<typeof Box> & {
-  intent?: "primary" | "secondary";
+  intent?: "danger" | "primary" | "secondary";
 }) => (
   <Box
     p="2"
     rounded="sm"
     style={{
       backgroundColor:
-        theme.colors[intent === "primary" ? "border.active" : "border.default"],
+        theme.colors[
+          intent === "primary"
+            ? "border.active"
+            : intent === "secondary"
+              ? "border.default"
+              : "bg.error.subtle"
+        ],
       ...style,
     }}
     {...props}
