@@ -1,30 +1,27 @@
-import type { ComponentPropsWithoutRef } from "react";
-
 import { theme } from "@optiaxiom/globals";
 import { Box, Flex } from "@optiaxiom/react";
 
 import { IconBox } from "./IconBox";
 import { IconText } from "./IconText";
 
-export const AlertIcon = (props: ComponentPropsWithoutRef<typeof Box>) => (
+export const BannerIcon = () => (
   <IconBox
     alignItems="start"
-    bg="bg.warning.subtle"
+    bg="bg.error.light"
     display="flex"
     flexDirection="row"
     gap="4"
     w="56"
-    {...props}
   >
     <Box
       p="2"
       rounded="sm"
-      style={{ backgroundColor: theme.colors["fg.warning.strong"] }}
+      style={{ backgroundColor: theme.colors["fg.error.strong"] }}
     />
     <Flex flex="1" gap="4">
       <IconText w="1/4" />
-      <IconText intent="secondary" w="2/3" />
-      <IconText intent="secondary" w="1/2" />
+      <IconText style={{ opacity: 0.5 }} w="2/3" />
     </Flex>
+    <IconText ml="auto" />
   </IconBox>
 );
