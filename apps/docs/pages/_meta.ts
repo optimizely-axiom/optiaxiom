@@ -11,13 +11,13 @@ export default {
     type: "page",
   },
 
-  "styled-system": {
-    title: "Styled System",
+  components: {
+    title: "Components",
     type: "page",
   },
 
-  components: {
-    title: "Components",
+  "styled-system": {
+    title: "Styled System",
     type: "page",
   },
 };
