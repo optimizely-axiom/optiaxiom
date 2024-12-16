@@ -7,6 +7,7 @@ export const content = recipe({
       flexDirection: "column",
       fontSize: "md",
       gap: "2",
+      maxW: "xs",
       p: "12",
     },
     style({
