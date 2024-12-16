@@ -1,4 +1,35 @@
 export default {
+  sprinkles: {
+    animation: [
+      {
+        path: "/animation/",
+        props: ["animation"],
+      },
+    ],
+    border: [
+      {
+        path: "/border/",
+        props: ["border", "borderB", "borderL", "borderR", "borderT"],
+      },
+    ],
+    spacing: [
+      { path: "/gap/", props: ["gap"] },
+      {
+        path: "/margin/",
+        props: ["m", "mb", "ml", "mr", "mt", "mx", "my"],
+      },
+      {
+        path: "/padding/",
+        props: ["p", "pb", "pl", "pr", "pt", "px", "py"],
+      },
+    ],
+    transition: [
+      {
+        path: "/transition-property/",
+        props: ["transition"],
+      },
+    ],
+  },
   theme: {
     borderRadius: {
       path: "/border-radius/",
@@ -30,29 +61,16 @@ export default {
       path: "/font-size/",
       props: ["fontSize"],
     },
-    letterSpacing: {
-      path: "/letter-spacing/",
-      props: ["tracking"],
-    },
-    lineHeight: {
-      path: "/line-height/",
-      props: ["leading"],
-    },
     size: [
       { path: "/height/", props: ["h"] },
+      { path: "/max-height/", props: ["maxH"] },
+      { path: "/max-width/", props: ["maxW"] },
       { path: "/size/", props: ["size"] },
       { path: "/width/", props: ["w"] },
     ],
-    spacing: [
-      { path: "/gap/", props: ["gap"] },
-      {
-        path: "/margin/",
-        props: ["m", "mb", "ml", "mr", "mt", "mx", "my"],
-      },
-      {
-        path: "/padding/",
-        props: ["p", "pb", "pl", "pr", "pt", "px", "py"],
-      },
-    ],
+    zIndex: {
+      path: "/z-index/",
+      props: ["z"],
+    },
   },
 };

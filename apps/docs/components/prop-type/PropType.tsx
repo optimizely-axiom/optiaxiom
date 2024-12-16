@@ -47,17 +47,28 @@ export const PropType = ({ component, prop }: PropTypeProps) => {
 const PropDefinition = ({ component, prop }: PropTypeProps) => {
   let defn: ReactNode = "";
 
-  if (prop.type.name === "enum") {
-    for (const [key, configs] of Object.entries(propsConfig.theme)) {
-      for (const config of Array.isArray(configs) ? configs : [configs]) {
-        if (
-          (config.props.includes(prop.name) ||
-            config.props.includes(`${component.displayName}[${prop.name}]`)) &&
-          "sprinkle" in prop &&
-          prop.sprinkle
-        ) {
-          defn = <ThemeLink name={key} {...config} type={prop.type} />;
-          break;
+  for (const scope of ["sprinkles", "theme"] as const) {
+    if (prop.type.name === "enum") {
+      for (const [key, configs] of Object.entries(propsConfig[scope])) {
+        for (const config of Array.isArray(configs) ? configs : [configs]) {
+          if (
+            (config.props.includes(prop.name) ||
+              config.props.includes(
+                `${component.displayName}[${prop.name}]`,
+              )) &&
+            "sprinkle" in prop &&
+            prop.sprinkle
+          ) {
+            defn = (
+              <ThemeLink
+                name={scope === "sprinkles" ? prop.name : key}
+                {...config}
+                scope={scope}
+                type={prop.type}
+              />
+            );
+            break;
+          }
         }
       }
     }
@@ -73,10 +84,12 @@ const PropDefinition = ({ component, prop }: PropTypeProps) => {
 const ThemeLink = ({
   name,
   path,
+  scope,
   type,
 }: {
   name: string;
   path: string;
+  scope: "sprinkles" | "theme";
   type: PropItemType;
 }) => {
   return (
@@ -84,7 +97,7 @@ const ThemeLink = ({
       <span style={{ color: "var(--shiki-token-keyword)" }}>typeof </span>
       <Link href={`/styled-system${path}`}>
         <abbr className="hover:_underline" title={propTypeRaw(type)}>
-          <span style={{ color: "var(--shiki-token-constant)" }}>theme</span>
+          <span style={{ color: "var(--shiki-token-constant)" }}>{scope}</span>
           <span style={{ color: "var(--shiki-color-text)" }}>.{name}</span>
         </abbr>
       </Link>
