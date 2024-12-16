@@ -51,7 +51,7 @@ export function ColorTokens({
                   {token.description && <Text>{token.description}</Text>}
                 </Flex>
               </Td>
-              <Td py="16" w={["auto", "2xl"]}>
+              <Td py="16" w={["auto", "3xl"]}>
                 <ColorTokenItem
                   item={{
                     bg: token.name as keyof typeof theme.colors,

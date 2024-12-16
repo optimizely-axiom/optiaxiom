@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Avatar, Flex, Tooltip } from "@optiaxiom/react";
 
 const fallbacks = ["user", "team"] as const;
-const sizes = ["xs", "sm", "md", "lg", "xl", "2xl"] as const;
+const sizes = ["xs", "sm", "md", "lg", "xl", "3xl"] as const;
 
 export default {
   component: Avatar,

@@ -138,7 +138,7 @@ export const ComplexExample2: Story = {
   render: (args) => (
     <RadioGroup borderB="1" {...args} defaultValue="label-1">
       <Flex {...props2} gap="8">
-        <Radio value="label-1" w="2xl">
+        <Radio value="label-1" w="3xl">
           Admin
         </Radio>
         <Box asChild pl="24" style={{ listStyle: "disc" }}>
@@ -153,7 +153,7 @@ export const ComplexExample2: Story = {
         </Box>
       </Flex>
       <Flex {...props2} gap="8">
-        <Radio value="label-2" w="2xl">
+        <Radio value="label-2" w="3xl">
           Editor
         </Radio>
         <Box asChild pl="24" style={{ listStyle: "disc" }}>
