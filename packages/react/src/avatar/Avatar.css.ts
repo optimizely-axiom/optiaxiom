@@ -103,10 +103,10 @@ export const avatar = recipe({
           },
         }),
       ],
-      "2xl": [
+      "3xl": [
         {
           fontSize: "4xl",
-          size: "2xl",
+          size: "3xl",
         },
         style({
           selectors: {
@@ -145,7 +145,7 @@ export const icon = recipe({
       md: { h: "12" },
       lg: { h: "2xs" },
       xl: { h: "2xs" },
-      "2xl": { h: "sm" },
+      "3xl": { h: "sm" },
     },
   },
 });

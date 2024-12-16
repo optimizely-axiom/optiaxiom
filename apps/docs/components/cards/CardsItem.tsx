@@ -33,7 +33,7 @@ export function CardsItem({
           display="grid"
           placeItems="center"
           rounded="md"
-          size="2xl"
+          size="3xl"
         >
           {icon}
         </Box>
