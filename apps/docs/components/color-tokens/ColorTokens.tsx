@@ -1,7 +1,7 @@
 import type { theme } from "@optiaxiom/globals";
 import type { Props } from "react-docgen-typescript";
 
-import { Box, Code, Flex, Text } from "@optiaxiom/react";
+import { Box, Flex, Text } from "@optiaxiom/react";
 
 import { Table, Td, Th, Thead, Tr } from "../table";
 import { ColorTokenItem } from "./ColorTokenItem";
@@ -42,9 +42,12 @@ export function ColorTokens({
             <Tr display={["flex", "table-row"]} key={token.name}>
               <Td flex="1" py="16" w="auto">
                 <Flex alignItems="start">
-                  <Code px="8" py="4" rounded="sm">
+                  <Box
+                    fontFamily="mono"
+                    style={{ color: "var(--shiki-token-function)" }}
+                  >
                     {token.name}
-                  </Code>
+                  </Box>
                   {token.description && <Text>{token.description}</Text>}
                 </Flex>
               </Td>
