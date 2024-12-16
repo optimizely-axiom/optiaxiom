@@ -1,7 +1,63 @@
-import { Callout } from "nextra/components";
+import { Demo } from "@/components/demo";
+import { PropsTable } from "@/components/props-table";
+import { Usage } from "@/demos/table";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeaderCell,
+  TableRow,
+} from "@optiaxiom/react/unstable";
 
 # Table
 
-<Callout emoji="🚨">
-  This page is a stub. Help us expand it by contributing!
-</Callout>
+Display tabular data using rows and columns.
+
+## Documentation
+
+### Usage
+
+<Demo component={Usage} />
+
+### Anatomy
+
+```tsx
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeaderCell,
+  TableRow,
+} from "@optiaxiom/react/unstable";
+
+export default () => (
+  <Table>
+    <TableHead>
+      <TableHeaderCell />
+    </TableHead>
+
+    <TableBody>
+      <TableRow>
+        <TableCell />
+      </TableRow>
+    </TableBody>
+  </Table>
+);
+```
+
+## Props
+
+<PropsTable component={Table} />
+<PropsTable component={TableHead} />
+<PropsTable component={TableHeaderCell} />
+<PropsTable component={TableBody} />
+<PropsTable component={TableRow} />
+<PropsTable component={TableCell} />
+
+## Changelog
+
+### 0.1.0
+
+- Added component
