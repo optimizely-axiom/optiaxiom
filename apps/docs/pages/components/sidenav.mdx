@@ -1,7 +1,70 @@
-import { Callout } from "nextra/components";
+import { Demo } from "@/components/demo";
+import { PropsTable } from "@/components/props-table";
+import { Usage } from "@/demos/sidenav";
+import {
+  Sidenav,
+  SidenavAccountItem,
+  SidenavBody,
+  SidenavFooter,
+  SidenavHeader,
+  SidenavItem,
+  SidenavToggle,
+} from "@optiaxiom/react";
 
 # Sidenav
 
-<Callout emoji="🚨">
-  This page is a stub. Help us expand it by contributing!
-</Callout>
+Primary navigation menu for left side of the page that includes support for branding, links, etc.
+
+## Documentation
+
+### Usage
+
+<Demo component={Usage} />
+
+### Anatomy
+
+```tsx
+import {
+  Sidenav,
+  SidenavAccountItem,
+  SidenavBody,
+  SidenavFooter,
+  SidenavHeader,
+  SidenavItem,
+  SidenavToggle,
+} from "@optiaxiom/react";
+
+export default () => (
+  <Sidenav>
+    <SidenavHeader>
+      <SidenavItem />
+    </SidenavHeader>
+
+    <SidenavBody>
+      <SidenavItem />
+    </SidenavBody>
+
+    <SidenavFooter>
+      <SidenavToggle />
+      <SidenavItem />
+      <SidenavAccountItem />
+    </SidenavBody>
+  </Sidenav>
+);
+```
+
+## Props
+
+<PropsTable component={Sidenav} />
+<PropsTable component={SidenavHeader} />
+<PropsTable component={SidenavBody} />
+<PropsTable component={SidenavItem} />
+<PropsTable component={SidenavAccountItem} />
+<PropsTable component={SidenavFooter} />
+<PropsTable component={SidenavToggle} />
+
+## Changelog
+
+### 0.4.0
+
+- Added component
