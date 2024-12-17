@@ -1,5 +1,6 @@
 .changeset/pre.json
 .next
 dist
+lib
 out
 pnpm-lock.yaml

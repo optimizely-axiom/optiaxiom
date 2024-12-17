@@ -1,12 +1,16 @@
 {
-  "extends": "@optiaxiom/shared/configs/tsconfig.base.json",
+  "extends": "../../tsconfig.pkg.json",
   "compilerOptions": {
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "noEmit": true,
+    "paths": {
+      "@optiaxiom/globals": ["../globals/src"],
+      "@optiaxiom/globals/fonts": ["../globals/src/fonts"]
+    },
     "types": ["@testing-library/jest-dom"]
   },
-  "include": ["."],
-  "exclude": ["dist", "node_modules"]
+  "include": [".", "package.json"],
+  "exclude": ["dist", "lib", "node_modules"],
+  "references": [{ "path": "../globals" }]
 }
