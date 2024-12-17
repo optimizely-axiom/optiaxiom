@@ -1,5 +1,26 @@
 # @optiaxiom/react
 
+## 0.8.0
+
+### Minor Changes
+
+- 9422670: remove unused design tokens
+- 83938c5: remove so many size tokens
+- 6ac4c72: remove named spacing scale
+- 219c092: move primitive values to sprinkles only
+- d06ae5b: rename 5xl size token to 3xl
+
+### Patch Changes
+
+- b282140: Add `FieldLabel` component
+- c273c0f: fix container text colors
+- Updated dependencies [9422670]
+- Updated dependencies [83938c5]
+- Updated dependencies [6ac4c72]
+- Updated dependencies [219c092]
+- Updated dependencies [d06ae5b]
+  - @optiaxiom/globals@0.5.0
+
 ## 0.7.8
 
 ### Patch Changes

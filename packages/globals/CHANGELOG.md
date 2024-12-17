@@ -1,5 +1,15 @@
 # @optiaxiom/globals
 
+## 0.5.0
+
+### Minor Changes
+
+- 9422670: remove unused design tokens
+- 83938c5: remove so many size tokens
+- 6ac4c72: remove named spacing scale
+- 219c092: move primitive values to sprinkles only
+- d06ae5b: rename 5xl size token to 3xl
+
 ## 0.4.4
 
 ### Patch Changes
