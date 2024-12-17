@@ -120,15 +120,7 @@ export default tsEslint.config(
     files: ["**/*.{ts,tsx}"],
     languageOptions: {
       parserOptions: {
-        project: [
-          "./apps/docs/tsconfig.json",
-          "./apps/figma/tsconfig.json",
-          "./apps/storybook/tsconfig.json",
-          "./packages/globals/tsconfig.json",
-          "./packages/react/tsconfig.json",
-          "./packages/shared/tsconfig.json",
-          "./packages/web-components/tsconfig.json",
-        ],
+        projectService: true,
         tsconfigRootDir: process.cwd(),
       },
     },
