@@ -1,3 +1,4 @@
+import * as _ from "@testing-library/dom";
 import { render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { createElement } from "react";
