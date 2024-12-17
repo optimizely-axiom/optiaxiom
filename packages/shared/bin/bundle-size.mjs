@@ -1,7 +1,7 @@
 import { isCI } from "ci-info";
 import Table from "cli-table3";
 import esbuild from "esbuild";
-import { readFile } from "fs/promises";
+import { access, readFile } from "fs/promises";
 import { basename, parse, resolve } from "path";
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
@@ -62,6 +62,11 @@ async function measure() {
       format: "esm",
       loader: { ".woff2": "empty" },
       outdir: "dist",
+      tsconfig: (await access(`${packagePath}/tsconfig.build.json`)
+        .then(() => true)
+        .catch(() => false))
+        ? "tsconfig.build.json"
+        : undefined,
       write: false,
     });
 

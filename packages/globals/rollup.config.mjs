@@ -49,6 +49,10 @@ export default defineConfig([
       dir: "dist",
       format: "es",
     },
-    plugins: [dts()],
+    plugins: [
+      dts({
+        tsconfig: "tsconfig.build.json",
+      }),
+    ],
   },
 ]);

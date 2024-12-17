@@ -101,6 +101,7 @@ export default defineConfig([
     plugins: [
       dts({
         respectExternal: true,
+        tsconfig: "tsconfig.build.json",
       }),
     ],
   },
