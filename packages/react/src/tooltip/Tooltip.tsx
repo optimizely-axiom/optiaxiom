@@ -17,7 +17,6 @@ type TooltipProps = BoxProps<
     defaultOpen?: boolean;
     delayDuration?: ComponentPropsWithRef<typeof TooltipRoot>["delayDuration"];
     disabled?: boolean;
-    keepOpenOnActivation?: boolean;
     onOpenChange?: (open: boolean) => void;
     open?: boolean;
   }
