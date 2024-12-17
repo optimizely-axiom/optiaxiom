@@ -1,5 +1,12 @@
 # @optiaxiom/react
 
+## 0.8.1
+
+### Patch Changes
+
+- c9b39b9: fix disabled state for disclosure trigger
+- 4ae62a7: use darker bg color for skeleton
+
 ## 0.8.0
 
 ### Minor Changes
