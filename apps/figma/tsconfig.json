@@ -1,5 +1,5 @@
 {
-  "extends": "@optiaxiom/shared/configs/tsconfig.base.json",
+  "extends": "../../tsconfig.app.json",
   "compilerOptions": {
     "paths": {
       "@optiaxiom/react": ["../../packages/react/src"],
@@ -7,5 +7,6 @@
     }
   },
   "include": ["."],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
+  "references": [{ "path": "../../packages/react" }]
 }

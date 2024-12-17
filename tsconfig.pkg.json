@@ -1,0 +1,7 @@
+{
+  "extends": "./tsconfig.project.json",
+  "compilerOptions": {
+    "emitDeclarationOnly": true,
+    "outDir": "${configDir}/lib"
+  }
+}

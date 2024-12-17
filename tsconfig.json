@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.base.json",
+  "files": [],
+  "references": [
+    { "path": "apps/docs" },
+    { "path": "apps/figma" },
+    { "path": "apps/storybook" },
+    { "path": "packages/globals" },
+    { "path": "packages/shared" },
+    { "path": "packages/react" },
+    { "path": "packages/web-components" }
+  ]
+}

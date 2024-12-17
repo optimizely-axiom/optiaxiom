@@ -168,6 +168,7 @@ export default tsEslint.config(
     ignores: [
       "**/.next/**",
       "**/dist/**",
+      "**/lib/**",
       "**/out/**",
       "**/storybook-static/**",
     ],

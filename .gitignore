@@ -16,6 +16,7 @@ node_modules
 # build
 build-storybook.log
 dist
+lib
 out
 storybook-static
 

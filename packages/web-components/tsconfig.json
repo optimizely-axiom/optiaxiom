@@ -1,9 +1,13 @@
 {
-  "extends": "@optiaxiom/shared/configs/tsconfig.base.json",
+  "extends": "../../tsconfig.pkg.json",
   "compilerOptions": {
-    "noEmit": true,
+    "paths": {
+      "@optiaxiom/globals": ["../globals/src"],
+      "@optiaxiom/react": ["../react/src"]
+    },
     "types": ["@testing-library/jest-dom"]
   },
-  "include": ["."],
-  "exclude": ["dist", "node_modules"]
+  "include": [".", "package.json"],
+  "exclude": ["dist", "lib", "node_modules"],
+  "references": [{ "path": "../globals" }, { "path": "../react" }]
 }

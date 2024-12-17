@@ -1,11 +1,10 @@
 {
-  "extends": "@optiaxiom/shared/configs/tsconfig.base.json",
+  "extends": "../../tsconfig.pkg.json",
   "compilerOptions": {
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "noEmit": true
+    "esModuleInterop": true
   },
   "include": ["."],
-  "exclude": ["dist", "node_modules"]
+  "exclude": ["dist", "lib", "node_modules"]
 }
