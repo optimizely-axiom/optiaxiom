@@ -34,6 +34,9 @@ importers:
       '@rollup/pluginutils':
         specifier: ^5.1.3
         version: 5.1.3(rollup@4.28.1)
+      '@testing-library/dom':
+        specifier: ^10.4.0
+        version: 10.4.0
       '@testing-library/jest-dom':
         specifier: ^6.6.3
         version: 6.6.3

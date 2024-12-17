@@ -1,6 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import { AxiomProvider } from "@optiaxiom/web-components/AxiomProvider";
+import * as _ from "@testing-library/dom";
 import { render, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { createElement } from "react";
