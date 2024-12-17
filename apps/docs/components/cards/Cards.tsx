@@ -16,6 +16,7 @@ import { DropdownMenuIcon } from "./icons/DropdownMenuIcon";
 import { FlexIcon } from "./icons/FlexIcon";
 import { GridIcon } from "./icons/GridIcon";
 import { HeadingIcon } from "./icons/HeadingIcon";
+import { IconsIcon } from "./icons/IconsIcon";
 import { IndicatorIcon } from "./icons/IndicatorIcon";
 import { InputIcon } from "./icons/InputIcon";
 import { PaginationIcon } from "./icons/PaginationIcon";
@@ -129,6 +130,13 @@ const COMPONENTS = {
     href: "/components/heading/",
     icon: <HeadingIcon />,
     title: "Heading",
+  },
+  Icons: {
+    description:
+      "FontAwesome icon kit for use with the Optimizely Design System",
+    href: "/getting-started/icons/",
+    icon: <IconsIcon />,
+    title: "Icons",
   },
   Indicator: {
     description: "Display a badge at the corner of another element.",
