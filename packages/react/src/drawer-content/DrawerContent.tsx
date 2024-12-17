@@ -36,11 +36,7 @@ export const DrawerContent = forwardRef<HTMLDivElement, DrawerContentProps>(
             </Transition>
 
             <Transition
-              data-side={
-                mapPositionToTransitionSide[
-                  position as keyof typeof mapPositionToTransitionSide
-                ]
-              }
+              data-side={mapPositionToTransitionSide[position]}
               type="fade"
             >
               <Paper
