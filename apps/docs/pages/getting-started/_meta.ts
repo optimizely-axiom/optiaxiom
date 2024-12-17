@@ -11,6 +11,7 @@ export default {
   },
   "css-imports": "CSS Imports",
   "css-layers": "CSS Layers",
+  icons: "Icons",
   nextjs: "Next.js",
   "react-select": "React Select",
 };

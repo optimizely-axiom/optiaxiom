@@ -1,0 +1,24 @@
+@value card from "../CardsItem.module.css";
+
+.layer {
+  --size: 20px;
+  --space: 2 / 3;
+
+  filter: brightness(1.5) saturate(0.5);
+  grid-area: 1 / 1 / 2 / 2;
+  height: var(--size);
+  opacity: 0.8;
+}
+
+.layer:nth-child(2) {
+  margin-left: calc(var(--size) * var(--space));
+}
+
+.layer:nth-child(3) {
+  margin-left: calc(var(--size) * 2 * var(--space));
+}
+
+:global(.card):hover .layer {
+  --space: 1.1;
+  filter: saturate(1);
+}
