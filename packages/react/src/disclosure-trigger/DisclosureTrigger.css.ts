@@ -23,7 +23,7 @@ export const trigger = recipe({
           outline: `2px solid ${theme.colors["border.focus"]}`,
           outlineOffset: "1px",
         },
-        "&:hover": {
+        "&:is([data-disabled], :hover)": {
           color: theme.colors["fg.secondary"],
         },
       },
