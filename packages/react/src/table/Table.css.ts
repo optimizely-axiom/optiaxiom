@@ -21,8 +21,6 @@ export const wrapper = recipe({
       rounded: "lg",
     },
     style({
-      maxHeight: "80dvh",
-      maxWidth: "80dvw",
       position: "relative",
     }),
   ],
