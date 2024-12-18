@@ -1,12 +1,4 @@
-import {
-  Button,
-  Flex,
-  Text,
-  Toast,
-  ToastAction,
-  toaster,
-  ToastTitle,
-} from "@optiaxiom/react";
+import { Button, Flex, Text, toaster } from "@optiaxiom/react";
 import { IconTrash } from "@tabler/icons-react";
 import { useState } from "react";
 
@@ -23,17 +15,10 @@ export function App() {
         icon={<IconTrash />}
         onClick={() => {
           setStatus("deleted");
-          toaster.create(
-            <Toast>
-              <ToastTitle>Task Deleted</ToastTitle>
-              <ToastAction
-                altText="Undo"
-                onClick={() => setStatus("in-progress")}
-              >
-                Undo
-              </ToastAction>
-            </Toast>,
-          );
+          toaster.create("Task Deleted", {
+            action: "Undo",
+            onAction: () => setStatus("in-progress"),
+          });
         }}
       >
         Delete
