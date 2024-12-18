@@ -47,7 +47,11 @@ export function ColorTokenItem({
         rounded="sm"
         style={{
           aspectRatio: 100 / 70,
-          backgroundColor: theme.colors[item.bg],
+          backgroundImage: [
+            `linear-gradient(${theme.colors[item.bg]}, ${theme.colors[item.bg]})`,
+            `repeating-conic-gradient(color-mix(in srgb, ${theme.colors["bg.default.inverse"]} 5%, transparent) 0% 25%, transparent 0% 50%)`,
+          ].join(", "),
+          backgroundSize: "16px 16px",
           boxShadow: `inset 0 0 0 1px color-mix(in srgb, ${theme.colors["bg.default.inverse"]} 20%, transparent)`,
         }}
         suppressHydrationWarning
