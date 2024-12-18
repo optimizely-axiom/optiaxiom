@@ -15,14 +15,14 @@ figma.connect(
         Primary: "primary",
       }),
       children: figma.string("Label"),
-      icon: figma.boolean("Leading Icon", {
+      icon: figma.boolean("Addon before", {
         false: figma.boolean("Trailing Icon", {
           false: undefined,
-          true: figma.instance("↳ Trailing Icon Type"),
+          true: figma.instance("↳ Icon after"),
         }),
-        true: figma.instance("↳ Leading Icon Type"),
+        true: figma.instance("↳ Icon before"),
       }),
-      iconPosition: figma.boolean("Trailing Icon", {
+      iconPosition: figma.boolean("Addon after", {
         false: undefined,
         true: "end",
       }),
