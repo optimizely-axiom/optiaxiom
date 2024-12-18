@@ -1,5 +1,7 @@
+import { theme } from "@optiaxiom/globals";
 import { Box, Flex, Text } from "@optiaxiom/react";
 import cssesc from "cssesc";
+import { useTheme } from "nextra-theme-docs";
 import { useEffect, useState } from "react";
 
 import { Td } from "../table";
@@ -20,17 +22,31 @@ export const ScaleValue = ({
   type: "selector" | "value";
   value: Record<string, string> | string;
 }) => {
+  const { resolvedTheme = "light" } = useTheme();
+  const [renderedTheme, setRenderedTheme] = useState("");
+  useEffect(() => setRenderedTheme(resolvedTheme), [resolvedTheme]);
+
   const [size, setSize] = useState(type === "value" ? value : undefined);
   useEffect(() => {
     if (type === "selector" && typeof value === "string") {
       setSize(getStyleValues(value));
     }
-  }, [value, type]);
+  }, [renderedTheme, type, value]);
 
   return (
     size !== undefined && (
       <>
-        <Td whiteSpace="nowrap">
+        <Td
+          display={
+            typeof size === "string" && isColorType(size)
+              ? ["none", "table-cell"]
+              : undefined
+          }
+          valign={
+            typeof size === "string" && isColorType(size) ? "middle" : undefined
+          }
+          whiteSpace="nowrap"
+        >
           <Flex gap="8">
             {(typeof size === "object"
               ? Object.entries(size).map(([key, value]) => `${key}: ${value}`)
@@ -71,8 +87,24 @@ export const ScaleValue = ({
           </Td>
         )}
         {!hidePreview && typeof size !== "object" && (
-          <Td display={["none", "table-cell"]}>
-            <Box bg="bg.information" h="2xs" style={{ width: size }} />
+          <Td display={isColorType(size) ? undefined : ["none", "table-cell"]}>
+            {isColorType(size) ? (
+              <Box
+                rounded="sm"
+                style={{
+                  aspectRatio: 100 / 60,
+                  backgroundImage: [
+                    `linear-gradient(${size}, ${size})`,
+                    `repeating-conic-gradient(color-mix(in srgb, ${theme.colors["bg.default.inverse"]} 5%, transparent) 0% 25%, transparent 0% 50%)`,
+                  ].join(", "),
+                  backgroundSize: "16px 16px",
+                  boxShadow: `inset 0 0 0 1px color-mix(in srgb, ${theme.colors["bg.default.inverse"]} 20%, transparent)`,
+                }}
+                w="56"
+              />
+            ) : (
+              <Box bg="bg.information" h="2xs" style={{ width: size }} />
+            )}
           </Td>
         )}
       </>
@@ -130,3 +162,5 @@ const getStyleValues = (selector: string) => {
     });
   return styles.length === 1 ? styles[0][1] : Object.fromEntries(styles);
 };
+
+const isColorType = (value: string) => value.startsWith("#");
