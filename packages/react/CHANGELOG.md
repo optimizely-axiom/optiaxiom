@@ -1,5 +1,14 @@
 # @optiaxiom/react
 
+## 0.8.2
+
+### Patch Changes
+
+- c37670a: use border in separator
+- bb62c91: simplify toaster alternative api signature
+- Updated dependencies [bb62c91]
+  - @optiaxiom/globals@0.5.1
+
 ## 0.8.1
 
 ### Patch Changes

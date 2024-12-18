@@ -1,5 +1,11 @@
 # @optiaxiom/globals
 
+## 0.5.1
+
+### Patch Changes
+
+- bb62c91: simplify toaster alternative api signature
+
 ## 0.5.0
 
 ### Minor Changes
