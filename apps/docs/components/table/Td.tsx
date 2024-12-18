@@ -1,12 +1,14 @@
-import type { ComponentPropsWithRef } from "react";
+import type { ComponentPropsWithoutRef, ComponentPropsWithRef } from "react";
 
 import { Box } from "@optiaxiom/react";
 
 export const Td = ({
   children,
+  valign = "top",
   ...props
-}: ComponentPropsWithRef<typeof Box>) => (
+}: ComponentPropsWithRef<typeof Box> &
+  Pick<ComponentPropsWithoutRef<"td">, "valign">) => (
   <Box asChild p="12" {...props}>
-    <td valign="top">{children}</td>
+    <td valign={valign}>{children}</td>
   </Box>
 );

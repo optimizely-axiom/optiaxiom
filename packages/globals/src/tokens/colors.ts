@@ -1,4 +1,4 @@
-export const colorPalette = {
+const colorPalette = {
   "blue.50": "#D9E7FC" as const,
   "blue.100": "#C6DBFA" as const,
   "blue.200": "#A1C2F7" as const,

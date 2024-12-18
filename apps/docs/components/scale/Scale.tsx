@@ -1,3 +1,4 @@
+import type { ComponentPropsWithoutRef } from "react";
 import type { PropItem } from "react-docgen-typescript";
 
 import { sprinkles, Text } from "@optiaxiom/react";
@@ -23,28 +24,33 @@ export const Scale = ({
   hidePixels,
   hidePreview,
   keyLabel = "Name",
+  maxH = "sm",
+  mode,
   prop,
   valueLabel = "Value",
   values,
-}: {
+}: ComponentPropsWithoutRef<typeof Table> & {
   hidePixels?: boolean;
   hidePreview?: boolean;
   keyLabel?: string;
+  mode?: "color";
   prop?: PropItem;
   valueLabel?: string;
   values: Record<string, string> | string;
 }) => (
-  <Table maxH="sm">
+  <Table maxH={maxH}>
     <Thead>
       <tr>
         <Th className="_sticky _top-0">{keyLabel}</Th>
-        <Th className="_sticky _top-0">{valueLabel}</Th>
+        <Th className="_sticky _top-0" w={mode === "color" ? "3xl" : undefined}>
+          {valueLabel}
+        </Th>
         {!hidePixels && <Th className="_sticky _top-0">Pixels</Th>}
         {!hidePreview && (
           <Th
             className="_sticky _top-0"
             display={["none", "table-cell"]}
-            w="full"
+            w={mode === "color" ? "3xl" : "full"}
           />
         )}
       </tr>
@@ -75,7 +81,10 @@ export const Scale = ({
         })
         .map(([name, size]) => (
           <Tr key={name}>
-            <Td whiteSpace="nowrap">
+            <Td
+              valign={mode === "color" ? "middle" : undefined}
+              whiteSpace="nowrap"
+            >
               <Text
                 fontFamily="mono"
                 fontSize="sm"
