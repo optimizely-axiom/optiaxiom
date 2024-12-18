@@ -93,10 +93,10 @@ export const ToastProvider = forwardRef<HTMLOListElement, ToastProps>(
                   <ToastTitle>{toast.title}</ToastTitle>
                   {toast.action && (
                     <ToastAction
-                      altText={toast.action.altText}
-                      onClick={toast.action.onClick}
+                      altText={toast.action}
+                      onClick={toast.onAction}
                     >
-                      {toast.action.label}
+                      {toast.action}
                     </ToastAction>
                   )}
                 </Toast>
