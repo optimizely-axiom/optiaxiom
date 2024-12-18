@@ -87,6 +87,10 @@ body:before {
     margin-top: -2.5px;
     margin-left: -37px;
   }
+
+  :is(h2, h3, h4):is(html[class~="dark"] *):before {
+    border-color: var(--ax-colors-bg-page);
+  }
 }
 
 .nextra-code .nextra-focus {
