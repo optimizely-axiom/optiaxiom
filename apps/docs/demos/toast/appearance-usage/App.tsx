@@ -1,21 +1,20 @@
-import type { ComponentPropsWithRef } from "react";
+import { Button, Flex, toaster } from "@optiaxiom/react";
 
-import { Button, Toast, toaster, ToastTitle } from "@optiaxiom/react";
-
-export function App({
-  intent,
-}: Pick<ComponentPropsWithRef<typeof Toast>, "intent">) {
+export function App() {
   return (
-    <Button
-      onClick={() =>
-        toaster.create(
-          <Toast intent={intent}>
-            <ToastTitle>This is an example toast message.</ToastTitle>
-          </Toast>,
-        )
-      }
-    >
-      Create Toast
-    </Button>
+    <Flex flexDirection="row" flexWrap="wrap">
+      {(
+        ["danger", "information", "neutral", "success", "warning"] as const
+      ).map((type) => (
+        <Button
+          key={type}
+          onClick={() =>
+            toaster.create("This is an example toast message.", { type })
+          }
+        >
+          {type} toast
+        </Button>
+      ))}
+    </Flex>
   );
 }
