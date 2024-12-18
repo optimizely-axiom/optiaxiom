@@ -36,6 +36,7 @@ body,
   background-color: var(--ax-colors-bg-page);
 }
 
+._shadow-\[0_12px_16px_rgb\(var\(--nextra-bg\)\)\],
 .nextra-toc-footer,
 .nextra-sidebar-footer {
   --tw-shadow: 0 -12px 16px var(--ax-colors-bg-page);
