@@ -6,7 +6,7 @@ import { recipe } from "../vanilla-extract";
 
 export const base = recipe({
   base: {
-    bg: "bg.tertiary.hovered",
+    borderColor: "border.secondary",
   },
 });
 
@@ -15,8 +15,17 @@ const props = defineProperties({
   ...conditions,
   properties: {
     orientation: {
-      horizontal: { height: "1px", width: "auto" },
-      vertical: { alignSelf: "stretch", height: "auto", width: "1px" },
+      horizontal: {
+        borderLeftWidth: "0",
+        borderTopWidth: "1px",
+        width: "auto",
+      },
+      vertical: {
+        alignSelf: "stretch",
+        borderLeftWidth: "1px",
+        borderTopWidth: "0",
+        height: "auto",
+      },
     },
   },
 });

@@ -9,8 +9,6 @@ type ListboxSeparatorProps = BoxProps<typeof Separator>;
 export const ListboxSeparator = forwardRef<
   HTMLDivElement,
   ListboxSeparatorProps
->((props, ref) => (
-  <Separator bg="bg.tertiary" flex="none" mx="8" my="4" ref={ref} {...props} />
-));
+>((props, ref) => <Separator flex="none" mx="8" my="4" ref={ref} {...props} />);
 
 ListboxSeparator.displayName = "@optiaxiom/react/ListboxSeparator";
