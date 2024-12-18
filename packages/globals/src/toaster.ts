@@ -9,7 +9,7 @@ type ToastItem = {
 type ToastOptions = {
   action?: string;
   onAction?: () => void;
-  type?: "danger" | "neutral" | "success" | "warning";
+  type?: "danger" | "information" | "neutral" | "success" | "warning";
 };
 
 const EMPTY: ToastItem[] = [];
