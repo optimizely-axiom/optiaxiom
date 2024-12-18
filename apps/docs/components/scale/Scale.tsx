@@ -97,7 +97,11 @@ export const Scale = ({
             <ScaleValue
               hidePixels={hidePixels}
               hidePreview={hidePreview}
-              type={typeof values === "string" ? "selector" : "value"}
+              type={
+                typeof values === "string" || mode === "color"
+                  ? "selector"
+                  : "value"
+              }
               value={size}
             />
           </Tr>
