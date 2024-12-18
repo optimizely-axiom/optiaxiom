@@ -95,7 +95,7 @@ body:before {
 
 .nextra-code .nextra-focus {
   --tw-ring-color: rgb(
-    from var(--ax-colors-border-default) r g b / var(--tw-ring-opacity)
+    from var(--ax-colors-border-tertiary) r g b / var(--tw-ring-opacity)
   );
   background-color: var(--docs-code-bg);
 }
