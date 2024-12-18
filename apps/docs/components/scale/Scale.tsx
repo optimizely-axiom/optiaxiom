@@ -6,6 +6,7 @@ import { Table, Td, Th, Thead, Tr } from "../table";
 import { ScaleValue } from "./ScaleValue";
 
 const tshirts = [
+  "base",
   "2xs",
   "xs",
   "sm",
