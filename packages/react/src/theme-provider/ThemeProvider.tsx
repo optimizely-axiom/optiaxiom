@@ -23,7 +23,7 @@ export function ThemeProvider({
       <style>{`
         @layer optiaxiom.theme {
           ${selector === ":host" ? ":host-context(:root.dark)" : `${selector}.dark`} {
-            ${assignInlineVars(theme, tokensDark)}
+            ${assignInlineVars(theme.colors, tokensDark.colors)}
           }
         }
       `}</style>

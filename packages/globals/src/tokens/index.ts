@@ -21,6 +21,5 @@ export const tokens = {
 } as const;
 
 export const tokensDark = {
-  ...tokens,
   colors: colorsDark,
 } as const;
