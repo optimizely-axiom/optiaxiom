@@ -6,7 +6,7 @@ export const Tr = ({
   children,
   ...props
 }: ComponentPropsWithRef<typeof Box>) => (
-  <Box asChild borderT="1" {...props}>
+  <Box asChild borderColor="border.tertiary" borderT="1" {...props}>
     <tr>{children}</tr>
   </Box>
 );
