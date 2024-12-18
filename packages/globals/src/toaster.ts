@@ -3,17 +3,13 @@ import type { ReactElement, useSyncExternalStore } from "react";
 type ToastItem = {
   id: string;
   open: boolean;
-  toast:
-    | ReactElement
-    | {
-        action?: {
-          altText: string;
-          label: string;
-          onClick: () => void;
-        };
-        title: string;
-        type?: "danger" | "neutral" | "success" | "warning";
-      };
+  toast: ReactElement | (ToastOptions & { title: string });
+};
+
+type ToastOptions = {
+  action?: string;
+  onAction?: () => void;
+  type?: "danger" | "neutral" | "success" | "warning";
 };
 
 const EMPTY: ToastItem[] = [];
@@ -25,7 +21,9 @@ const genId = () => {
 
 type Toaster = {
   clear: () => void;
-  create: (toast: ToastItem["toast"]) => string;
+  create: (
+    ...args: [message: string, options?: ToastOptions] | [toast: ReactElement]
+  ) => string;
   remove: (id: string) => void;
   store: Parameters<typeof useSyncExternalStore<ToastItem[]>>;
 };
@@ -55,7 +53,14 @@ export const createToaster = (): Toaster => {
       emit();
     },
 
-    create: (toast) => {
+    create: (...args) => {
+      const toast =
+        typeof args[0] === "string"
+          ? {
+              ...args[1],
+              title: args[0],
+            }
+          : args[0];
       const id = genId();
       snapshot = [...snapshot, { id, open: true, toast }];
 

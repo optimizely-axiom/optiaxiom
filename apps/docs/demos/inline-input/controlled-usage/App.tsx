@@ -10,16 +10,10 @@ export function App() {
     setTimeout(() => {
       if (!value.length) {
         setValue(serverValue);
-        toaster.create({
-          title: "Title is a required field",
-          type: "danger",
-        });
+        toaster.create("Title is a required field", { type: "danger" });
       } else if (value !== serverValue) {
         setServerValue(value);
-        toaster.create({
-          title: "Title updated",
-          type: "success",
-        });
+        toaster.create("Title updated", { type: "success" });
       }
     }, 300);
   }
