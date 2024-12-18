@@ -4,26 +4,7 @@ import styles from "./IconsIcon.module.css";
 
 export const IconsIcon = () => (
   <Box display="grid">
-    <Box
-      asChild
-      className={styles.layer}
-      color="fg.success.hovered"
-      transition="all"
-    >
-      <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-        {/* <!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--> */}
-        <path
-          d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"
-          fill="currentColor"
-        />
-      </svg>
-    </Box>
-    <Box
-      asChild
-      className={styles.layer}
-      color="fg.error.hovered"
-      transition="all"
-    >
+    <Box asChild className={styles.layer} color="fg.error" transition="all">
       <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
         {/* <!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--> */}
         <path
@@ -32,12 +13,16 @@ export const IconsIcon = () => (
         />
       </svg>
     </Box>
-    <Box
-      asChild
-      className={styles.layer}
-      color="fg.warning.hovered"
-      transition="all"
-    >
+    <Box asChild className={styles.layer} color="fg.success" transition="all">
+      <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+        {/* <!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--> */}
+        <path
+          d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"
+          fill="currentColor"
+        />
+      </svg>
+    </Box>
+    <Box asChild className={styles.layer} color="fg.warning" transition="all">
       <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
         {/* <!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--> */}
         <path
