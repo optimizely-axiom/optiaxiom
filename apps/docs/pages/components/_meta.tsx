@@ -17,6 +17,7 @@ export default {
 
   flex: "Flex",
   grid: "Grid",
+  separator: "Separator",
 
   "-- Providers": {
     title: "Providers",
@@ -52,7 +53,6 @@ export default {
   avatar: "Avatar",
   disclosure: "Disclosure",
   indicator: "Indicator",
-  separator: "Separator",
   table: {
     title: <AlphaItem>Table</AlphaItem>,
   },
