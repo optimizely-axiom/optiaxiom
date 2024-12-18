@@ -6,11 +6,13 @@ export function App() {
   return (
     <Canvas>
       <Flex>
-        <Box w="384">w=384</Box>
+        <Box display={["none", "block"]} w="384">
+          w=384
+        </Box>
         <Box w="224">w=224</Box>
-        <Box w="3xl">w=3xl</Box>
+        <Box w="80">w=80</Box>
+        <Box w="64">w=64</Box>
         <Box w="xl">w=xl</Box>
-        <Box w="lg">w=lg</Box>
       </Flex>
     </Canvas>
   );
