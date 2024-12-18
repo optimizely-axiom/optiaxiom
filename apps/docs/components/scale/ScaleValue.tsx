@@ -138,10 +138,9 @@ function getCssRuleText(
 }
 
 const getStyleValues = (selector: string) => {
-  const style = getCssRuleText(
-    document,
-    `.${cssesc(selector, { isIdentifier: true })}`,
-  );
+  const style = selector.startsWith("var(")
+    ? `property: ${selector}`
+    : getCssRuleText(document, `.${cssesc(selector, { isIdentifier: true })}`);
   if (!style) {
     throw new Error("Could not parse style for selector");
   }

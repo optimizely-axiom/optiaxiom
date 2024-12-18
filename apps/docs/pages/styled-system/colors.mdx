@@ -1,4 +1,4 @@
-import { tokens } from "@optiaxiom/globals";
+import { theme } from "@optiaxiom/globals";
 import { Demo } from "@/components/demo";
 import { Scale } from "@/components/scale";
 import { CssUsage, PropUsage } from "@/demos/styles";
@@ -40,7 +40,7 @@ Append the `dark` class name to the root `<html>` element to switch to dark mode
   maxH="full"
   mode="color"
   values={Object.fromEntries(
-    Object.entries(tokens.colors).filter(([name]) => name.startsWith("fg.")),
+    Object.entries(theme.colors).filter(([name]) => name.startsWith("fg.")),
   )}
 />
 
@@ -51,7 +51,7 @@ Append the `dark` class name to the root `<html>` element to switch to dark mode
   maxH="full"
   mode="color"
   values={Object.fromEntries(
-    Object.entries(tokens.colors).filter(([name]) => name.startsWith("bg.")),
+    Object.entries(theme.colors).filter(([name]) => name.startsWith("bg.")),
   )}
 />
 
@@ -62,8 +62,6 @@ Append the `dark` class name to the root `<html>` element to switch to dark mode
   maxH="full"
   mode="color"
   values={Object.fromEntries(
-    Object.entries(tokens.colors).filter(([name]) =>
-      name.startsWith("border."),
-    ),
+    Object.entries(theme.colors).filter(([name]) => name.startsWith("border.")),
   )}
 />
