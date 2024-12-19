@@ -22,7 +22,7 @@ export const DataTableHeaderCell = <TData,>({
 
   const renderSortIcon = () => {
     return (
-      <Icon asChild flex="none" h="12">
+      <Icon asChild h="12">
         {column.getIsSorted() === false ? (
           <IconSort />
         ) : column.getIsSorted() === "asc" ? (
