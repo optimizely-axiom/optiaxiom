@@ -9,39 +9,29 @@ import { IconSortDown } from "../icons/IconSortDown";
 import { IconSortUp } from "../icons/IconSortUp";
 import * as styles from "./DataTableHeaderCell.css";
 
-export const DataTableHeaderCell = <TData,>({
+export const DataTableHeaderCell = ({
   children,
   column,
-  variant = "text",
 }: {
   children?: ReactNode;
-  column?: Column<TData, unknown>;
-  variant?: "number" | "text";
+  column: Column<unknown>;
 }) => {
-  if (!column) return null;
-
-  const renderSortIcon = () => {
-    return (
-      <Icon asChild h="12">
-        {column.getIsSorted() === false ? (
-          <IconSort />
-        ) : column.getIsSorted() === "asc" ? (
-          <IconSortUp />
-        ) : (
-          <IconSortDown />
-        )}
-      </Icon>
-    );
-  };
-
   return (
-    <Box display="flex" justifyContent={variant === "number" ? "end" : "start"}>
+    <Box>
       {column.columnDef.enableSorting ? (
         <Box asChild {...styles.button()}>
           <button onClick={() => column.toggleSorting()}>
-            {variant === "number" && renderSortIcon()}
             {children}
-            {variant === "text" && renderSortIcon()}
+
+            <Icon asChild h="12">
+              {column.getIsSorted() === false ? (
+                <IconSort />
+              ) : column.getIsSorted() === "asc" ? (
+                <IconSortUp />
+              ) : (
+                <IconSortDown />
+              )}
+            </Icon>
           </button>
         </Box>
       ) : (

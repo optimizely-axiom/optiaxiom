@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { Box } from "@optiaxiom/react";
-import { DataTable, DataTableHeaderCell } from "@optiaxiom/react/unstable";
+import { DataTable } from "@optiaxiom/react/unstable";
 import {
   type ColumnDef,
   getCoreRowModel,
@@ -67,11 +67,7 @@ const columns: ColumnDef<Payment>[] = [
       return <Box textAlign="end">{formatted}</Box>;
     },
     enableSorting: true,
-    header: (props) => (
-      <DataTableHeaderCell variant="number" {...props}>
-        Amount
-      </DataTableHeaderCell>
-    ),
+    header: "Amount",
   },
   {
     accessorKey: "createdAt",
@@ -88,11 +84,7 @@ const columns: ColumnDef<Payment>[] = [
   {
     accessorKey: "quantity",
     cell: ({ row }) => <Box textAlign="end">{row.getValue("quantity")}</Box>,
-    header: (props) => (
-      <DataTableHeaderCell variant="number" {...props}>
-        Quantity
-      </DataTableHeaderCell>
-    ),
+    header: "Quantity",
   },
   {
     accessorKey: "totalPrice",
@@ -104,11 +96,7 @@ const columns: ColumnDef<Payment>[] = [
       }).format(typeof total === "number" ? total : 0);
       return <Box textAlign="end">{formatted}</Box>;
     },
-    header: (props) => (
-      <DataTableHeaderCell variant="number" {...props}>
-        TotalPrice
-      </DataTableHeaderCell>
-    ),
+    header: "Total Price",
   },
   {
     accessorKey: "paymentMethod",
