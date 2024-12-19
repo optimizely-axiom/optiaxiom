@@ -42,3 +42,39 @@ export const button = recipe({
     }),
   ],
 });
+
+export const icon = recipe({
+  base: [
+    {
+      h: "12",
+      mx: "2",
+      transition: "opacity",
+    },
+    style({
+      gridArea: "1 / 1 / 2 / 2",
+    }),
+  ],
+
+  variants: {
+    active: {
+      false: style({
+        opacity: "0",
+      }),
+      true: style({
+        opacity: "1",
+      }),
+    },
+    muted: {
+      false: {},
+      true: style({
+        opacity: "0",
+
+        selectors: {
+          [`${marker}:is(:focus-visible, :hover) &`]: {
+            opacity: "1",
+          },
+        },
+      }),
+    },
+  },
+});

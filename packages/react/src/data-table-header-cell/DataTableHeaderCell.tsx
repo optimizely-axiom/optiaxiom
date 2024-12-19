@@ -2,6 +2,7 @@ import { type Header } from "@tanstack/react-table";
 import { forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
+import { Grid } from "../grid";
 import { Icon } from "../icon";
 import { IconSort } from "../icons/IconSort";
 import { IconSortDown } from "../icons/IconSortDown";
@@ -20,15 +21,18 @@ export const DataTableHeaderCell = forwardRef<
   HTMLTableCellElement,
   DataTableHeaderCellProps
 >(({ children, header, ...props }) => {
+  const sortDir = header.column.getIsSorted();
+
   return (
     <TableHeaderCell
       aria-sort={
-        header.column.columnDef.enableSorting &&
-        header.column.getIsSorted() !== false
-          ? header.column.getIsSorted() === "desc"
-            ? "descending"
-            : "ascending"
-          : "none"
+        header.column.columnDef.enableSorting
+          ? sortDir === false
+            ? "none"
+            : sortDir === "asc"
+              ? "ascending"
+              : "descending"
+          : undefined
       }
       {...props}
     >
@@ -37,15 +41,23 @@ export const DataTableHeaderCell = forwardRef<
           <button onClick={() => header.column.toggleSorting()}>
             {children}
 
-            <Icon asChild h="12">
-              {header.column.getIsSorted() === false ? (
+            <Grid placeItems="center">
+              <Icon
+                asChild
+                {...styles.icon({
+                  active: sortDir === false,
+                  muted: !sortDir,
+                })}
+              >
                 <IconSort />
-              ) : header.column.getIsSorted() === "asc" ? (
+              </Icon>
+              <Icon asChild {...styles.icon({ active: sortDir === "asc" })}>
                 <IconSortUp />
-              ) : (
+              </Icon>
+              <Icon asChild {...styles.icon({ active: sortDir === "desc" })}>
                 <IconSortDown />
-              )}
-            </Icon>
+              </Icon>
+            </Grid>
           </button>
         </Box>
       ) : (
