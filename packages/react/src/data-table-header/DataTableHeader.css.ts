@@ -9,7 +9,6 @@ export const button = recipe({
     {
       alignItems: "center",
       bg: "transparent",
-      borderColor: "bg.default.inverse",
       display: "flex",
       flexDirection: "row",
       fontSize: "md",
@@ -35,7 +34,7 @@ export const button = recipe({
         "&:is(:focus-visible, :has(:focus-visible))": {
           outline: `2px solid ${theme.colors["border.focus"]}`,
           outlineOffset: "1px",
-          zIndex: theme.zIndex["10"],
+          zIndex: "10",
         },
       },
     }),
