@@ -1,32 +1,46 @@
-import type { ReactNode } from "react";
+import { type Header } from "@tanstack/react-table";
+import { forwardRef } from "react";
 
-import { type Column } from "@tanstack/react-table";
-
-import { Box } from "../box";
+import { Box, type BoxProps } from "../box";
 import { Icon } from "../icon";
 import { IconSort } from "../icons/IconSort";
 import { IconSortDown } from "../icons/IconSortDown";
 import { IconSortUp } from "../icons/IconSortUp";
+import { TableHeaderCell } from "../table-header-cell";
 import * as styles from "./DataTableHeaderCell.css";
 
-export const DataTableHeaderCell = ({
-  children,
-  column,
-}: {
-  children?: ReactNode;
-  column: Column<unknown>;
-}) => {
+type DataTableHeaderCellProps = BoxProps<
+  "th",
+  {
+    header: Header<unknown, unknown>;
+  }
+>;
+
+export const DataTableHeaderCell = forwardRef<
+  HTMLTableCellElement,
+  DataTableHeaderCellProps
+>(({ children, header, ...props }) => {
   return (
-    <Box>
-      {column.columnDef.enableSorting ? (
+    <TableHeaderCell
+      aria-sort={
+        header.column.columnDef.enableSorting &&
+        header.column.getIsSorted() !== false
+          ? header.column.getIsSorted() === "desc"
+            ? "descending"
+            : "ascending"
+          : "none"
+      }
+      {...props}
+    >
+      {header.column.columnDef.enableSorting ? (
         <Box asChild {...styles.button()}>
-          <button onClick={() => column.toggleSorting()}>
+          <button onClick={() => header.column.toggleSorting()}>
             {children}
 
             <Icon asChild h="12">
-              {column.getIsSorted() === false ? (
+              {header.column.getIsSorted() === false ? (
                 <IconSort />
-              ) : column.getIsSorted() === "asc" ? (
+              ) : header.column.getIsSorted() === "asc" ? (
                 <IconSortUp />
               ) : (
                 <IconSortDown />
@@ -37,8 +51,8 @@ export const DataTableHeaderCell = ({
       ) : (
         children
       )}
-    </Box>
+    </TableHeaderCell>
   );
-};
+});
 
 DataTableHeaderCell.displayName = "@optiaxiom/react/DataTableHeaderCell";
