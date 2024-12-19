@@ -1,3 +1,5 @@
+import { theme } from "@optiaxiom/globals";
+
 import { recipe, style } from "../vanilla-extract";
 
 export const cell = recipe({
@@ -19,5 +21,8 @@ export const content = recipe({
       px: "16",
       py: "12",
     },
+    style({
+      boxShadow: `0 1px 0 ${theme.colors["border.tertiary"]}`,
+    }),
   ],
 });
