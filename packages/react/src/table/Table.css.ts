@@ -17,6 +17,7 @@ export const wrapper = recipe({
       bg: "bg.default",
       border: "1",
       borderColor: "border.tertiary",
+      maxW: "full",
       overflow: "auto",
       rounded: "lg",
     },
