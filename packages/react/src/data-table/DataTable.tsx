@@ -1,6 +1,6 @@
 import { flexRender, type Table as ReactTable } from "@tanstack/react-table";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
-import { createElement, forwardRef } from "react";
+import { forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
 import { DataTableHeaderCell } from "../data-table-header-cell";
@@ -9,7 +9,6 @@ import { Table } from "../table";
 import { TableBody } from "../table-body";
 import { TableCell } from "../table-cell";
 import { TableHead } from "../table-head";
-import { TableHeaderCell } from "../table-header-cell";
 import { TableRow } from "../table-row";
 import * as styles from "./DataTable.css";
 
@@ -44,44 +43,28 @@ export const DataTable = forwardRef<HTMLDivElement, DataTableProps>(
           <TableHead {...styles.tableHeader()}>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
-                {headerGroup.headers.map((header) => {
-                  return (
-                    <TableHeaderCell
-                      aria-sort={
-                        header.column.columnDef.enableSorting &&
-                        header.column.getIsSorted() !== false
-                          ? header.column.getIsSorted() === "desc"
-                            ? "descending"
-                            : "ascending"
-                          : "none"
-                      }
-                      key={header.id}
-                      style={{
-                        ...assignInlineVars({
-                          [styles.cellOffsetVar]: header.column.getIsPinned()
-                            ? `${offsets[header.column.id]}px`
-                            : undefined,
-                          [styles.columnWidthVar]: `${header.getSize()}px`,
-                        }),
-                      }}
-                      {...styles.tableHead({
-                        pinned: header.column.getIsPinned() ?? undefined,
-                      })}
-                    >
-                      {header.column.columnDef.header &&
-                      typeof header.column.columnDef.header !== "string" ? (
-                        createElement(
-                          header.column.columnDef.header,
-                          header.getContext(),
-                        )
-                      ) : (
-                        <DataTableHeaderCell {...header.getContext()}>
-                          {header.column.columnDef.header}
-                        </DataTableHeaderCell>
-                      )}
-                    </TableHeaderCell>
-                  );
-                })}
+                {headerGroup.headers.map((header) => (
+                  <DataTableHeaderCell
+                    header={header}
+                    key={header.id}
+                    style={{
+                      ...assignInlineVars({
+                        [styles.cellOffsetVar]: header.column.getIsPinned()
+                          ? `${offsets[header.column.id]}px`
+                          : undefined,
+                        [styles.columnWidthVar]: `${header.getSize()}px`,
+                      }),
+                    }}
+                    {...styles.tableHead({
+                      pinned: header.column.getIsPinned() ?? undefined,
+                    })}
+                  >
+                    {flexRender(
+                      header.column.columnDef.header,
+                      header.getContext(),
+                    )}
+                  </DataTableHeaderCell>
+                ))}
               </TableRow>
             ))}
           </TableHead>
