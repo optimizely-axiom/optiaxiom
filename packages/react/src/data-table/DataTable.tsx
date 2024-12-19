@@ -3,7 +3,7 @@ import { assignInlineVars } from "@vanilla-extract/dynamic";
 import { createElement, forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
-import { DataTableHeader } from "../data-table-header";
+import { DataTableHeaderCell } from "../data-table-header-cell";
 import { Pagination } from "../pagination";
 import { Table } from "../table";
 import { TableBody } from "../table-body";
@@ -75,9 +75,9 @@ export const DataTable = forwardRef<HTMLDivElement, DataTableProps>(
                           header.getContext(),
                         )
                       ) : (
-                        <DataTableHeader {...header.getContext()}>
+                        <DataTableHeaderCell {...header.getContext()}>
                           {header.column.columnDef.header}
-                        </DataTableHeader>
+                        </DataTableHeaderCell>
                       )}
                     </TableHeaderCell>
                   );

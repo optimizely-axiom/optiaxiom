@@ -7,9 +7,9 @@ import { Icon } from "../icon";
 import { IconSort } from "../icons/IconSort";
 import { IconSortDown } from "../icons/IconSortDown";
 import { IconSortUp } from "../icons/IconSortUp";
-import * as styles from "./DataTableHeader.css";
+import * as styles from "./DataTableHeaderCell.css";
 
-export const DataTableHeader = <TData,>({
+export const DataTableHeaderCell = <TData,>({
   children,
   column,
   variant = "text",
@@ -22,7 +22,7 @@ export const DataTableHeader = <TData,>({
 
   const renderSortIcon = () => {
     return (
-      <Icon asChild flex="none" h="16" w="auto">
+      <Icon asChild flex="none" h="12">
         {column.getIsSorted() === false ? (
           <IconSort />
         ) : column.getIsSorted() === "asc" ? (
@@ -51,4 +51,4 @@ export const DataTableHeader = <TData,>({
   );
 };
 
-DataTableHeader.displayName = "@optiaxiom/react/DataTableHeader";
+DataTableHeaderCell.displayName = "@optiaxiom/react/DataTableHeaderCell";
