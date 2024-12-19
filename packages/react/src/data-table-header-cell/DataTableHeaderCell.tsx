@@ -1,3 +1,4 @@
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { type Header } from "@tanstack/react-table";
 import { forwardRef } from "react";
 
@@ -40,6 +41,12 @@ export const DataTableHeaderCell = forwardRef<
         <Box asChild {...styles.button()}>
           <button onClick={() => header.column.toggleSorting()}>
             {children}
+
+            {sortDir && (
+              <VisuallyHidden>
+                sorted {sortDir === "asc" ? "ascending" : "descending"}
+              </VisuallyHidden>
+            )}
 
             <Grid placeItems="center">
               <Icon
