@@ -1,18 +1,13 @@
-import { forwardRef, type RefObject } from "react";
+import { forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
 import * as styles from "./Table.css";
 
-type TableProps = BoxProps<
-  "table",
-  {
-    containerRef?: RefObject<HTMLDivElement>;
-  }
->;
+type TableProps = BoxProps<"table">;
 
 export const Table = forwardRef<HTMLTableElement, TableProps>(
-  ({ children, className, containerRef, ...props }, ref) => (
-    <Box {...styles.wrapper({}, className)} ref={containerRef} {...props}>
+  ({ children, className, ...props }, ref) => (
+    <Box {...styles.wrapper({}, className)} ref={ref} {...props}>
       <Box asChild {...styles.table()}>
         <table ref={ref}>{children}</table>
       </Box>

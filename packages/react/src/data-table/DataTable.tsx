@@ -1,6 +1,6 @@
 import { flexRender, type Table as ReactTable } from "@tanstack/react-table";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
-import { createElement, forwardRef, useRef } from "react";
+import { createElement, forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
 import { DataTableHeader } from "../data-table-header";
@@ -32,8 +32,6 @@ export const DataTable = forwardRef<HTMLDivElement, DataTableProps>(
         ]),
     );
 
-    const scrollElementRef = useRef(null);
-
     return (
       <Box
         alignItems="center"
@@ -42,7 +40,7 @@ export const DataTable = forwardRef<HTMLDivElement, DataTableProps>(
         {...props}
         ref={ref}
       >
-        <Table containerRef={scrollElementRef}>
+        <Table>
           <TableHead {...styles.tableHeader()}>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
