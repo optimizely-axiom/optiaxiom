@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Box } from "@optiaxiom/react";
 import { DataTable } from "@optiaxiom/react/unstable";
 import {
   type ColumnDef,
@@ -57,15 +56,15 @@ const columns: ColumnDef<Payment>[] = [
     header: "Email",
   },
   {
-    accessorKey: "amount",
-    cell: ({ row }) => {
-      const amount = row.getValue("amount");
+    accessorFn: (row) => {
+      const amount = row.amount;
       const formatted = new Intl.NumberFormat("en-US", {
         currency: "USD",
         style: "currency",
       }).format(typeof amount === "number" ? amount : 0);
-      return <Box textAlign="end">{formatted}</Box>;
+      return formatted;
     },
+    accessorKey: "amount",
     enableSorting: true,
     header: "Amount",
   },
@@ -83,19 +82,18 @@ const columns: ColumnDef<Payment>[] = [
   },
   {
     accessorKey: "quantity",
-    cell: ({ row }) => <Box textAlign="end">{row.getValue("quantity")}</Box>,
     header: "Quantity",
   },
   {
-    accessorKey: "totalPrice",
-    cell: ({ row }) => {
-      const total = row.getValue("totalPrice");
+    accessorFn: (row) => {
+      const total = row.totalPrice;
       const formatted = new Intl.NumberFormat("en-US", {
         currency: "USD",
         style: "currency",
       }).format(typeof total === "number" ? total : 0);
-      return <Box textAlign="end">{formatted}</Box>;
+      return formatted;
     },
+    accessorKey: "totalPrice",
     header: "Total Price",
   },
   {
@@ -115,10 +113,8 @@ const columns: ColumnDef<Payment>[] = [
     header: "Refund Status",
   },
   {
+    accessorFn: (row) => row.tags.join(", "),
     accessorKey: "tags",
-    cell: ({ row }) => (
-      <Box>{(row.getValue("tags") as string[])?.join(", ")}</Box>
-    ),
     header: "Tags",
   },
   {
