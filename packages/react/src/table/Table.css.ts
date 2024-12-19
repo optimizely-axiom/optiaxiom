@@ -7,6 +7,11 @@ export const table = recipe({
     },
     style({
       captionSide: "bottom",
+      /**
+       * Setting the table height to 1px allows cell content to stretch and fill
+       * up the whole cell height.
+       */
+      height: "1px",
     }),
   ],
 });
