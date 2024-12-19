@@ -1,9 +1,11 @@
+import { Scale } from "@/components/scale";
 import { Demo } from "@/components/demo";
 import { CssUsage, JsUsage, PropUsage } from "@/demos/styles";
+import { theme } from "@optiaxiom/globals";
 
 # Design Tokens
 
-Axiom uses **CSS variables** to declare design tokens.
+Axiom uses **CSS variables** to declare design tokens and also conveniently exports the variable names in the `theme` object.
 
 ## Declaring tokens
 
@@ -13,26 +15,36 @@ All tokens are available as CSS variables under the `--ax-*` prefix.
 
 So given a tokens object like this:
 
-```ts
-const tokens = {
-  colors: {
-    "bg.information": "#115dd4",
-    "fg.success": "#03a65d",
+```json
+{
+  "colors": {
+    "bg.accent": "#2e66f7",
+    "fg.success": "#03a65d"
   },
-  zIndex: {
-    popover: "3000",
-  },
-};
+  "zIndex": {
+    "popover": "3000"
+  }
+}
 ```
 
 The following css custom properties will be available:
 
 ```css
 :root {
-  --ax-colors-bg-information: #115dd4;
+  --ax-colors-bg-accent: #2e66f7;
   --ax-colors-fg-success: #03a65d;
   --ax-zIndex-popover: 3000;
 }
+```
+
+And they can be accessed via the `theme` object:
+
+```ts
+import { theme } from "@optiaxiom/globals";
+
+console.log(theme.colors["bg.accent"] === "var(--ax-colors-bg-accent)"); // true
+console.log(theme.colors["fg.success"] === "var(--ax-colors-fg-success)"); // true
+console.log(theme.zIndex.popover === "var(--ax-zIndex-popover)"); // true
 ```
 
 ## Consuming tokens
@@ -59,4 +71,78 @@ You can use this `theme` object when implementing any CSS-in-JS solutions.
 
 ## Reference
 
-<ax-design-tokens />
+### `borderRadius`
+
+<Scale
+  hidePreview
+  pixelLabel="Theme"
+  pixelTransform={(name) => `theme.borderRadius.${name}`}
+  values={theme.borderRadius}
+/>
+
+### `boxShadow`
+
+<Scale
+  hidePreview
+  pixelLabel="Theme"
+  pixelTransform={(name) => `theme.boxShadow.${name}`}
+  values={theme.boxShadow}
+/>
+
+### `colors`
+
+<Scale
+  hidePreview
+  pixelLabel="Theme"
+  pixelTransform={(name) => `theme.colors["${name}"]`}
+  values={theme.colors}
+/>
+
+### `fontFamily`
+
+<Scale
+  hidePreview
+  pixelLabel="Theme"
+  pixelTransform={(name) => `theme.fontFamily.${name}`}
+  values={theme.fontFamily}
+/>
+
+### `fontSize`
+
+<Scale
+  hidePreview
+  pixelLabel="Theme"
+  pixelTransform={(name, _value, key) =>
+    `theme.fontSize${name.match(/^\d/) ? `["${name}"]` : `.${name}`}.${key}`
+  }
+  values={theme.fontSize}
+/>
+
+### `maxSize`
+
+<Scale
+  hidePreview
+  pixelLabel="Theme"
+  pixelTransform={(name) => `theme.maxSize.${name}`}
+  values={theme.maxSize}
+/>
+
+### `size`
+
+<Scale
+  hidePreview
+  pixelLabel="Theme"
+  pixelTransform={(name) =>
+    `theme.fontSize${name.match(/^\d/) ? `["${name}"]` : `.${name}`}`
+  }
+  values={theme.size}
+/>
+
+### `zIndex`
+
+<Scale
+  hidePreview
+  pixelLabel="Theme"
+  pixelTransform={(name) => `theme.zIndex.${name}`}
+  values={theme.zIndex}
+/>
