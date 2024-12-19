@@ -102,6 +102,14 @@ After verification from the design team you should follow proper development gui
 
 [Radix Primitives](https://www.radix-ui.com/primitives) is used to build fully accessible components.
 
+### downshift
+
+[Downshift](https://www.downshift-js.com/) is used to build fully accessible comboboxes.
+
+### TanStack Table
+
+[TanStack Table](https://tanstack.com/table) is used to build accessible and flexible tables.
+
 ### Vanilla Extract
 
 [Vanilla Extract](https://vanilla-extract.style/) is used for our styling solution. This allows us to build a zero runtime CSS-in-JS styled system utilizing type safe style definitions and design tokens re-use.
