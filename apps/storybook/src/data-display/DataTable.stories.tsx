@@ -29,7 +29,13 @@ type Payment = {
 };
 
 const meta: Meta<typeof DataTable> = {
+  args: {
+    style: { maxHeight: "calc(100dvh - 2rem)" },
+  },
   component: DataTable,
+  parameters: {
+    layout: "padded",
+  },
 };
 
 export default meta;
