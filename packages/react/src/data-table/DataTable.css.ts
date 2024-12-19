@@ -1,3 +1,5 @@
+import { theme } from "@optiaxiom/globals";
+
 import { createVar, recipe, style } from "../vanilla-extract";
 
 export const columnWidthVar = createVar();
@@ -5,9 +7,6 @@ export const cellOffsetVar = createVar();
 
 export const tableHeader = recipe({
   base: [
-    {
-      bg: "bg.default",
-    },
     style({
       position: "sticky",
       top: 0,
@@ -18,10 +17,6 @@ export const tableHeader = recipe({
 
 export const tableHead = recipe({
   base: [
-    {
-      bg: "bg.default",
-      py: "0",
-    },
     style({
       minWidth: columnWidthVar,
     }),
@@ -41,9 +36,6 @@ export const tableHead = recipe({
 
 export const tableCell = recipe({
   base: [
-    {
-      bg: "bg.default",
-    },
     style({
       minWidth: columnWidthVar,
     }),
@@ -52,6 +44,7 @@ export const tableCell = recipe({
     pinned: {
       false: {},
       left: style({
+        backgroundColor: theme.colors["bg.default"],
         left: cellOffsetVar,
         position: "sticky",
         zIndex: "10",

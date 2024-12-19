@@ -8,18 +8,11 @@ export const button = recipe({
   base: [
     {
       alignItems: "center",
-      bg: "transparent",
       display: "flex",
-      flexDirection: "row",
-      fontSize: "md",
       gap: "4",
-      h: "md",
-      justifyContent: "center",
-      my: "4",
-      px: "8",
-      rounded: "md",
+      justifyContent: "start",
       transition: "colors",
-      whiteSpace: "nowrap",
+      w: "full",
     },
     marker,
     style({
@@ -28,13 +21,22 @@ export const button = recipe({
       userSelect: "none",
 
       selectors: {
+        "&::after": {
+          content: "",
+          inset: "0",
+          position: "absolute",
+        },
+        "&:focus-visible": {
+          outline: "none",
+          zIndex: "10",
+        },
+        "&:focus-visible::after": {
+          borderRadius: theme.borderRadius.md,
+          outline: `2px solid ${theme.colors["border.focus"]}`,
+          outlineOffset: "-2px",
+        },
         "&:hover": {
           color: theme.colors["fg.secondary"],
-        },
-        "&:is(:focus-visible, :has(:focus-visible))": {
-          outline: `2px solid ${theme.colors["border.focus"]}`,
-          outlineOffset: "1px",
-          zIndex: "10",
         },
       },
     }),
