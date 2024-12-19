@@ -10,7 +10,6 @@ export const cell = recipe({
   base: [
     {
       borderColor: "border.tertiary",
-      borderT: "1",
       color: "fg.secondary",
       fontSize: "md",
       fontWeight: "400",
@@ -24,6 +23,9 @@ export const cell = recipe({
       selectors: {
         [`${row}:hover &`]: {
           backgroundColor: theme.colors["bg.secondary"],
+        },
+        [`${row}:not(:first-child) &`]: {
+          borderTopWidth: "1px",
         },
       },
     }),
