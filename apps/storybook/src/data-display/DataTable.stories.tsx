@@ -30,7 +30,7 @@ export default meta;
 
 type Story = StoryObj<typeof DataTable<Payment>>;
 
-const columns: ColumnDef<Payment, string>[] = [
+const columns: ColumnDef<Payment>[] = [
   {
     accessorKey: "id",
     header: "ID",
@@ -127,7 +127,7 @@ const columns: ColumnDef<Payment, string>[] = [
   },
 ];
 
-const sampleData: Payment[] = [
+const data = [
   {
     amount: 316,
     createdAt: "2023-06-01T10:00:00Z",
@@ -164,24 +164,61 @@ const sampleData: Payment[] = [
   },
 ];
 
+const largeData = Array.from({ length: 100 }, (_, i) => {
+  const orderNum = (i + 1).toString().padStart(3, "0");
+
+  const paymentMethods = ["Credit Card", "PayPal", "Bank Transfer"];
+  const shippingMethods = ["Standard", "Express", "Next Day"];
+  const statuses = ["success", "processing", "failed", "refunded"];
+  const refundStatuses = ["N/A", "Partial", "Full"];
+
+  const paymentMethod = paymentMethods[i % 3];
+  const shippingMethod = shippingMethods[i % 3];
+  const status = statuses[i % 4];
+  const refundStatus = refundStatuses[i % 3];
+  const date = new Date(2024, 1, 1 + Math.floor(i / 4));
+
+  const basePrice = 100;
+  const price = basePrice + i * 10;
+
+  return {
+    amount: price,
+    createdAt: date.toISOString(),
+    customerName: `Customer ${orderNum}`,
+    email: `customer${orderNum}@example.com`,
+    id: `order-${orderNum}`,
+    lastModifiedBy: `Agent ${1 + (i % 5)}`,
+    paymentMethod,
+    productName: `Product ${orderNum}`,
+    quantity: 1 + (i % 3),
+    refundStatus,
+    shippingMethod,
+    status,
+    tags: i % 2 === 0 ? ["electronics"] : ["electronics", "premium"],
+    totalPrice: price * (1 + (i % 3)),
+    trackingNumber: `TN${orderNum}${(i % 100).toString().padStart(3, "0")}`,
+  };
+});
+
 export const Basic: Story = {
   args: {
     columns: columns.slice(0, 5),
-    data: sampleData,
+    data: data,
   },
 };
 
 export const VerticalScroll: Story = {
   args: {
-    columns: columns,
-    data: sampleData,
+    columns: columns.slice(0, 5),
+    data: largeData,
+    state: { pagination: { pageIndex: 0, pageSize: 100 } },
   },
 };
 
 export const Pinned: Story = {
   args: {
     columns: columns,
-    data: sampleData,
+    data: largeData,
     state: { columnPinning: { left: ["id", "status"] } },
   },
 };
@@ -196,41 +233,6 @@ export const EmptyRows: Story = {
 export const Pagination: Story = {
   args: {
     columns: columns,
-    data: Array.from({ length: 100 }, (_, i) => {
-      const orderNum = (i + 1).toString().padStart(3, "0");
-
-      const paymentMethods = ["Credit Card", "PayPal", "Bank Transfer"];
-      const shippingMethods = ["Standard", "Express", "Next Day"];
-      const statuses = ["success", "processing", "failed", "refunded"];
-      const refundStatuses = ["N/A", "Partial", "Full"];
-
-      const paymentMethod = paymentMethods[i % 3];
-      const shippingMethod = shippingMethods[i % 3];
-      const status = statuses[i % 4];
-      const refundStatus = refundStatuses[i % 3];
-      const date = new Date(2024, 1, 1 + Math.floor(i / 4));
-
-      const basePrice = 100;
-      const price = basePrice + i * 10;
-
-      return {
-        amount: price,
-        createdAt: date.toISOString(),
-        customerName: `Customer ${orderNum}`,
-        email: `customer${orderNum}@example.com`,
-        id: `order-${orderNum}`,
-        lastModifiedBy: `Agent ${1 + (i % 5)}`,
-        paymentMethod,
-        productName: `Product ${orderNum}`,
-        quantity: 1 + (i % 3),
-        refundStatus,
-        shippingMethod,
-        status,
-        tags: i % 2 === 0 ? ["electronics"] : ["electronics", "premium"],
-        totalPrice: price * (1 + (i % 3)),
-        trackingNumber: `TN${orderNum}${(i % 100).toString().padStart(3, "0")}`,
-      };
-    }),
-    state: { columnPinning: { left: ["id"] } },
+    data: largeData,
   },
 };
