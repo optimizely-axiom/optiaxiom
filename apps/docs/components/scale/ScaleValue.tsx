@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 
 import { Td } from "../table";
 
-const px = (rem: string) =>
+const px = (_name: string, rem: string) =>
   rem.endsWith("rem")
     ? `${parseFloat((parseFloat(rem.slice(0, -3)) * 16).toFixed(0))}px`
     : rem;
@@ -14,11 +14,15 @@ const px = (rem: string) =>
 export const ScaleValue = ({
   hidePixels,
   hidePreview,
+  name,
+  pixelTransform = px,
   type,
   value,
 }: {
   hidePixels?: boolean;
   hidePreview?: boolean;
+  name: string;
+  pixelTransform?: (name: string, value: string, key?: string) => string;
   type: "selector" | "value";
   value: Record<string, string> | string;
 }) => {
@@ -69,9 +73,10 @@ export const ScaleValue = ({
             <Flex gap="8">
               {(typeof size === "object"
                 ? Object.entries<string>(size).map(
-                    ([key, value]) => `${key}: ${px(value)}`,
+                    ([key, value]) =>
+                      `${key}: ${pixelTransform(name, value, key)}`,
                   )
-                : [px(size)]
+                : [pixelTransform(name, size)]
               ).map((value) => (
                 <Text
                   fontFamily="mono"

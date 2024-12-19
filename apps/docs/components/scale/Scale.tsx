@@ -26,6 +26,8 @@ export const Scale = ({
   keyLabel = "Name",
   maxH = "sm",
   mode,
+  pixelLabel = "Pixels",
+  pixelTransform,
   prop,
   valueLabel = "Value",
   values,
@@ -34,6 +36,10 @@ export const Scale = ({
   hidePreview?: boolean;
   keyLabel?: string;
   mode?: "color";
+  pixelLabel?: string;
+  pixelTransform?: ComponentPropsWithoutRef<
+    typeof ScaleValue
+  >["pixelTransform"];
   prop?: PropItem;
   valueLabel?: string;
   values: Record<string, string> | string;
@@ -45,7 +51,7 @@ export const Scale = ({
         <Th className="_sticky _top-0" w={mode === "color" ? "3xl" : undefined}>
           {valueLabel}
         </Th>
-        {!hidePixels && <Th className="_sticky _top-0">Pixels</Th>}
+        {!hidePixels && <Th className="_sticky _top-0">{pixelLabel}</Th>}
         {!hidePreview && (
           <Th
             className="_sticky _top-0"
@@ -97,6 +103,8 @@ export const Scale = ({
             <ScaleValue
               hidePixels={hidePixels}
               hidePreview={hidePreview}
+              name={name}
+              pixelTransform={pixelTransform}
               type={
                 typeof values === "string" || mode === "color"
                   ? "selector"

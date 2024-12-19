@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "scripts": {
     "build": "next build",
-    "dev": "wait-on ../../packages/globals/dist/index.d.ts && concurrently --raw \"sleep 3 && node -e \\\"require('better-opn')('http://localhost:5055')\\\"\" \"next dev -p 5055\"",
+    "dev": "concurrently --raw \"sleep 3 && node -e \\\"require('better-opn')('http://localhost:5055')\\\"\" \"next dev -p 5055\"",
     "lint": "oas-lint"
   },
   "devDependencies": {
