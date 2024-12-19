@@ -2,7 +2,13 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 import { Box } from "@optiaxiom/react";
 import { DataTable, DataTableHeader } from "@optiaxiom/react/unstable";
-import { type ColumnDef } from "@tanstack/react-table";
+import {
+  type ColumnDef,
+  getCoreRowModel,
+  getPaginationRowModel,
+  getSortedRowModel,
+  useReactTable,
+} from "@tanstack/react-table";
 
 type Payment = {
   amount: number;
@@ -28,7 +34,7 @@ const meta: Meta<typeof DataTable> = {
 
 export default meta;
 
-type Story = StoryObj<typeof DataTable<Payment>>;
+type Story = StoryObj<typeof DataTable>;
 
 const columns: ColumnDef<Payment>[] = [
   {
@@ -201,38 +207,83 @@ const largeData = Array.from({ length: 100 }, (_, i) => {
 });
 
 export const Basic: Story = {
-  args: {
-    columns: columns.slice(0, 5),
-    data: data,
+  render: function Render(args) {
+    return (
+      <DataTable
+        {...args}
+        table={useReactTable({
+          columns: columns.slice(0, 5),
+          data,
+          getCoreRowModel: getCoreRowModel(),
+        })}
+      />
+    );
   },
 };
 
 export const VerticalScroll: Story = {
-  args: {
-    columns: columns.slice(0, 5),
-    data: largeData,
-    state: { pagination: { pageIndex: 0, pageSize: 100 } },
+  render: function Render(args) {
+    return (
+      <DataTable
+        {...args}
+        table={useReactTable({
+          columns: columns.slice(0, 5),
+          data: largeData,
+          getCoreRowModel: getCoreRowModel(),
+          state: { pagination: { pageIndex: 0, pageSize: 100 } },
+        })}
+      />
+    );
   },
 };
 
 export const Pinned: Story = {
-  args: {
-    columns: columns,
-    data: largeData,
-    state: { columnPinning: { left: ["id", "status"] } },
+  render: function Render(args) {
+    return (
+      <DataTable
+        {...args}
+        table={useReactTable({
+          columns: columns,
+          data: largeData,
+          getCoreRowModel: getCoreRowModel(),
+          state: {
+            columnPinning: { left: ["id", "status"] },
+            pagination: { pageIndex: 0, pageSize: 100 },
+          },
+        })}
+      />
+    );
   },
 };
 
 export const EmptyRows: Story = {
-  args: {
-    columns: columns.slice(0, 5),
-    data: [],
+  render: function Render(args) {
+    return (
+      <DataTable
+        {...args}
+        table={useReactTable({
+          columns: columns.slice(0, 5),
+          data: [],
+          getCoreRowModel: getCoreRowModel(),
+        })}
+      />
+    );
   },
 };
 
 export const Pagination: Story = {
-  args: {
-    columns: columns,
-    data: largeData,
+  render: function Render(args) {
+    return (
+      <DataTable
+        {...args}
+        table={useReactTable({
+          columns: columns,
+          data: largeData,
+          getCoreRowModel: getCoreRowModel(),
+          getPaginationRowModel: getPaginationRowModel(),
+          getSortedRowModel: getSortedRowModel(),
+        })}
+      />
+    );
   },
 };
