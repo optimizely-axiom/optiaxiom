@@ -8,9 +8,6 @@ export const cell = recipe({
   base: [
     {
       borderColor: "border.tertiary",
-      color: "fg.secondary",
-      fontSize: "md",
-      fontWeight: "400",
       p: "16",
       transition: "colors",
     },

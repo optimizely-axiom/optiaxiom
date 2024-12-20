@@ -3,6 +3,8 @@ import { recipe, type RecipeVariants, style } from "../vanilla-extract";
 export const table = recipe({
   base: [
     {
+      color: "fg.default",
+      fontSize: "md",
       w: "full",
     },
     style({
