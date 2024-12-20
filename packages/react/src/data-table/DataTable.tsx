@@ -50,7 +50,16 @@ export const DataTable = forwardRef<HTMLDivElement, DataTableProps>(
             [styles.leftTotalSizeVar]: `${table.getLeftTotalSize()}px`,
             [styles.rightTotalSizeVar]: `${table.getRightTotalSize()}px`,
           })}
-          {...styles.table()}
+          {...styles.table({
+            pinned:
+              table.getLeftTotalSize() > 0 && table.getRightTotalSize() > 0
+                ? "both"
+                : table.getLeftTotalSize() > 0
+                  ? "left"
+                  : table.getRightTotalSize() > 0
+                    ? "right"
+                    : "none",
+          })}
         >
           <TableHeader {...styles.header()}>
             {table.getHeaderGroups().map((headerGroup) => (

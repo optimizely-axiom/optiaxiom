@@ -11,81 +11,99 @@ export const leftTotalSizeVar = createVar();
 export const rightTotalSizeVar = createVar();
 
 const shadowSize = "1px";
-const backgrounds = [
-  /**
-   * Left vertical shadow overlay
-   *
-   * To hide the vertical shadow until scrolled.
-   */
-  {
-    attachment: "local",
-    image: `
-      linear-gradient(
-        to right,
-        ${theme.colors["bg.default"]} 30%,
-        transparent
-      )
-    `,
-    position: `${leftTotalSizeVar} 0`,
-    size: `calc(3 * ${shadowSize}) 100%`,
-  },
-  /**
-   * Left vertical shadow
-   */
-  {
-    attachment: "scroll",
-    image: `
-      linear-gradient(
-        to right,
-        ${theme.colors["border.tertiary"]} 1px,
-        transparent 1px
-      )
-    `,
-    position: `${leftTotalSizeVar} 0`,
-    size: `${shadowSize} 100%`,
-  },
+const shadows = {
+  left: [
+    /**
+     * Left vertical shadow overlay
+     *
+     * To hide the vertical shadow until scrolled.
+     */
+    {
+      attachment: "local",
+      image: `
+        linear-gradient(
+          to right,
+          ${theme.colors["bg.default"]} 30%,
+          transparent
+        )
+      `,
+      position: `${leftTotalSizeVar} 0`,
+      size: `calc(3 * ${shadowSize}) 100%`,
+    },
+    /**
+     * Left vertical shadow
+     */
+    {
+      attachment: "scroll",
+      image: `
+        linear-gradient(
+          to right,
+          ${theme.colors["border.tertiary"]} 1px,
+          transparent 1px
+        )
+      `,
+      position: `${leftTotalSizeVar} 0`,
+      size: `${shadowSize} 100%`,
+    },
+  ],
+  right: [
+    /**
+     * Right vertical shadow overlay
+     *
+     * To hide the vertical shadow until scrolled.
+     */
+    {
+      attachment: "local",
+      image: `
+        linear-gradient(
+          to right,
+          transparent,
+          ${theme.colors["bg.default"]} 70%
+        )
+      `,
+      position: `calc(100% - ${rightTotalSizeVar}) 0`,
+      size: `calc(3 * ${shadowSize}) 100%`,
+    },
+    /**
+     * Right vertical shadow
+     */
+    {
+      attachment: "scroll",
+      image: `
+        linear-gradient(
+          to left,
+          ${theme.colors["border.tertiary"]} 1px,
+          transparent 1px
+        )
+      `,
+      position: `calc(100% - ${rightTotalSizeVar}) 0`,
+      size: `${shadowSize} 100%`,
+    },
+  ],
+};
 
-  /**
-   * Right vertical shadow overlay
-   *
-   * To hide the vertical shadow until scrolled.
-   */
-  {
-    attachment: "local",
-    image: `
-      linear-gradient(
-        to right,
-        transparent,
-        ${theme.colors["bg.default"]} 70%
-      )
-    `,
-    position: `calc(100% - ${rightTotalSizeVar}) 0`,
-    size: `calc(3 * ${shadowSize}) 100%`,
-  },
-  /**
-   * Right vertical shadow
-   */
-  {
-    attachment: "scroll",
-    image: `
-      linear-gradient(
-        to left,
-        ${theme.colors["border.tertiary"]} 1px,
-        transparent 1px
-      )
-    `,
-    position: `calc(100% - ${rightTotalSizeVar}) 0`,
-    size: `${shadowSize} 100%`,
-  },
-];
+function shadowStyle(backgrounds: typeof shadows.left | typeof shadows.right) {
+  return style({
+    backgroundAttachment: backgrounds.map((bg) => bg.attachment).join(", "),
+    backgroundImage: backgrounds.map((bg) => bg.image).join(", "),
+    backgroundPosition: backgrounds.map((bg) => bg.position).join(", "),
+    backgroundSize: backgrounds.map((bg) => bg.size).join(", "),
+  });
+}
+
 export const table = recipe({
   base: style({
-    background: backgrounds.map((bg) => bg.image).join(", "),
-    backgroundAttachment: backgrounds.map((bg) => bg.attachment).join(", "),
-    backgroundPosition: backgrounds.map((bg) => bg.position).join(", "),
     backgroundRepeat: "no-repeat",
-    backgroundSize: backgrounds.map((bg) => bg.size).join(", "),
   }),
+
+  variants: {
+    pinned: {
+      both: shadowStyle([...shadows.left, ...shadows.right]),
+      left: shadowStyle(shadows.left),
+      none: {},
+      right: shadowStyle(shadows.right),
+    },
+  },
 });
 
 export const header = recipe({
