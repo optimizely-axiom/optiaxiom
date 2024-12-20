@@ -2,7 +2,7 @@ import {
   Table,
   TableBody,
   TableCell,
-  TableHead,
+  TableHeader,
   TableHeaderCell,
   TableRow,
 } from "@optiaxiom/react/unstable";
@@ -12,14 +12,14 @@ import { data } from "./data";
 export function App() {
   return (
     <Table>
-      <TableHead>
+      <TableHeader>
         <TableRow>
           <TableHeaderCell>First Name</TableHeaderCell>
           <TableHeaderCell>Last Name</TableHeaderCell>
           <TableHeaderCell>Company</TableHeaderCell>
           <TableHeaderCell>Address</TableHeaderCell>
         </TableRow>
-      </TableHead>
+      </TableHeader>
 
       <TableBody>
         {data.map((row) => (
