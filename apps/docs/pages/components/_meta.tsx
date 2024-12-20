@@ -75,9 +75,7 @@ export default {
   },
   checkbox: "Checkbox",
   field: "Field",
-  "inline-input": {
-    title: <AlphaItem>InlineInput</AlphaItem>,
-  },
+  "inline-input": false,
   input: "Input",
   "radio-group": "RadioGroup",
   "search-input": "SearchInput",
