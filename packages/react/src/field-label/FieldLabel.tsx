@@ -6,11 +6,9 @@ import { forwardRef, type ReactNode } from "react";
 import { Box, type BoxProps } from "../box";
 import { Button } from "../button";
 import { Flex } from "../flex";
-import { HoverCard } from "../hover-card";
-import { HoverCardContent } from "../hover-card-content";
-import { HoverCardTrigger } from "../hover-card-trigger";
 import { IconCircleQuestion } from "../icons/IconCircleQuestion";
 import { Text } from "../text";
+import { Tooltip } from "../tooltip";
 
 type FieldLabelProps = BoxProps<
   "div",
@@ -67,26 +65,21 @@ export const FieldLabel = forwardRef<HTMLDivElement, FieldLabelProps>(
         </Text>
 
         {info && (
-          <HoverCard keepOpenOnActivation>
-            <HoverCardTrigger asChild>
-              <Button
-                aria-label="Information hover"
-                border="0"
-                color="fg.secondary"
-                h="2xs"
-                icon={
-                  <Box asChild flex="initial">
-                    <IconCircleQuestion />
-                  </Box>
-                }
-                p="0"
-                w="2xs"
-              />
-            </HoverCardTrigger>
-            <HoverCardContent side="top" sideOffset={5}>
-              {info}
-            </HoverCardContent>
-          </HoverCard>
+          <Tooltip content={info}>
+            <Button
+              aria-label="Information hover"
+              border="0"
+              color="fg.secondary"
+              h="2xs"
+              icon={
+                <Box asChild flex="initial">
+                  <IconCircleQuestion />
+                </Box>
+              }
+              p="0"
+              w="2xs"
+            />
+          </Tooltip>
         )}
       </Flex>
     );
