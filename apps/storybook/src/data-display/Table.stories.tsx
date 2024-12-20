@@ -4,7 +4,7 @@ import {
   Table,
   TableBody,
   TableCell,
-  TableHead,
+  TableHeader,
   TableHeaderCell,
   TableRow,
 } from "@optiaxiom/react/unstable";
@@ -63,14 +63,14 @@ const invoices = [
 export const Basic: Story = {
   render: () => (
     <Table>
-      <TableHead>
+      <TableHeader>
         <TableRow>
           <TableHeaderCell>Invoice</TableHeaderCell>
           <TableHeaderCell>Status</TableHeaderCell>
           <TableHeaderCell>Method</TableHeaderCell>
           <TableHeaderCell>Amount</TableHeaderCell>
         </TableRow>
-      </TableHead>
+      </TableHeader>
       <TableBody>
         {invoices.map((invoice) => (
           <TableRow key={invoice.invoice}>
@@ -88,14 +88,14 @@ export const Basic: Story = {
 export const NoRow: Story = {
   render: () => (
     <Table>
-      <TableHead>
+      <TableHeader>
         <TableRow>
           <TableHeaderCell>Invoice</TableHeaderCell>
           <TableHeaderCell>Status</TableHeaderCell>
           <TableHeaderCell>Method</TableHeaderCell>
           <TableHeaderCell>Amount</TableHeaderCell>
         </TableRow>
-      </TableHead>
+      </TableHeader>
       <TableBody></TableBody>
     </Table>
   ),
@@ -104,13 +104,13 @@ export const NoRow: Story = {
 export const WithColspan: Story = {
   render: () => (
     <Table>
-      <TableHead>
+      <TableHeader>
         <TableRow>
           <TableHeaderCell>Invoice</TableHeaderCell>
           <TableHeaderCell colSpan={2}>Payment Details</TableHeaderCell>
           <TableHeaderCell>Amount</TableHeaderCell>
         </TableRow>
-      </TableHead>
+      </TableHeader>
       <TableBody>
         {invoices.map((invoice) => (
           <TableRow key={invoice.invoice}>
@@ -128,7 +128,7 @@ export const WithColspan: Story = {
 export const CustomWidth: Story = {
   render: () => (
     <Table style={{ width: "800px" }}>
-      <TableHead>
+      <TableHeader>
         <TableRow>
           <TableHeaderCell style={{ width: "20%" }}>Invoice</TableHeaderCell>
           <TableHeaderCell style={{ width: "20%" }}>Status</TableHeaderCell>
@@ -137,7 +137,7 @@ export const CustomWidth: Story = {
             Amount
           </TableHeaderCell>
         </TableRow>
-      </TableHead>
+      </TableHeader>
       <TableBody>
         {invoices.map((invoice) => (
           <TableRow key={invoice.invoice}>

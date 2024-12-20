@@ -8,7 +8,7 @@ import { Pagination } from "../pagination";
 import { Table } from "../table";
 import { TableBody } from "../table-body";
 import { TableCell } from "../table-cell";
-import { TableHead } from "../table-head";
+import { TableHeader } from "../table-header";
 import { TableRow } from "../table-row";
 import * as styles from "./DataTable.css";
 
@@ -51,7 +51,7 @@ export const DataTable = forwardRef<HTMLDivElement, DataTableProps>(
           })}
           {...styles.table()}
         >
-          <TableHead {...styles.header()}>
+          <TableHeader {...styles.header()}>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
@@ -79,7 +79,7 @@ export const DataTable = forwardRef<HTMLDivElement, DataTableProps>(
                 ))}
               </TableRow>
             ))}
-          </TableHead>
+          </TableHeader>
           <TableBody>
             {table.getRowModel().rows.map((row) => (
               <TableRow key={row.id}>

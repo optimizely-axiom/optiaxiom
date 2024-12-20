@@ -6,7 +6,7 @@ import {
   Table,
   TableBody,
   TableCell,
-  TableHead,
+  TableHeader,
   TableHeaderCell,
   TableRow,
 } from "@optiaxiom/react/unstable";
@@ -28,18 +28,18 @@ import {
   Table,
   TableBody,
   TableCell,
-  TableHead,
+  TableHeader,
   TableHeaderCell,
   TableRow,
 } from "@optiaxiom/react/unstable";
 
 export default () => (
   <Table>
-    <TableHead>
+    <TableHeader>
       <TableRow>
         <TableHeaderCell />
       </TableRow>
-    </TableHead>
+    </TableHeader>
 
     <TableBody>
       <TableRow>
@@ -57,7 +57,7 @@ export default () => (
 ## Props
 
 <PropsTable component={Table} />
-<PropsTable component={TableHead} />
+<PropsTable component={TableHeader} />
 <PropsTable component={TableHeaderCell} />
 <PropsTable component={TableBody} />
 <PropsTable component={TableRow} />
