@@ -1,5 +1,3 @@
-import { theme } from "@optiaxiom/globals";
-
 import * as styles from "../table-row/TableRow.css";
 import { style } from "../vanilla-extract";
 import { recipe } from "../vanilla-extract";
@@ -21,9 +19,6 @@ export const cell = recipe({
       wordBreak: "break-word",
 
       selectors: {
-        [`${row}:hover &`]: {
-          backgroundColor: theme.colors["bg.secondary"],
-        },
         [`${row}:not(:first-child) &`]: {
           borderTopWidth: "1px",
         },
