@@ -1,15 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import {
-  Avatar,
-  AvatarGroup,
-  Flex,
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-  Text,
-  Tooltip,
-} from "@optiaxiom/react";
+import { Avatar, AvatarGroup, Flex, Tooltip } from "@optiaxiom/react";
 
 const users = [
   {
@@ -109,45 +100,6 @@ export const WithTooltip: Story = {
         >
           <Avatar>+3</Avatar>
         </Tooltip>
-      </>
-    ),
-  },
-};
-
-export const WithHoverCard: Story = {
-  args: {
-    children: (
-      <>
-        {users.slice(0, 3).map((user) => (
-          <Avatar
-            colorScheme="purple"
-            key={user.id}
-            name={user.name}
-            src={user.src}
-          >
-            {user.id}
-          </Avatar>
-        ))}
-
-        <HoverCard>
-          <HoverCardTrigger asChild>
-            <Avatar>+3</Avatar>
-          </HoverCardTrigger>
-
-          <HoverCardContent>
-            <Flex flexDirection="column" gap="8">
-              {users.slice(3).map((user, index) => (
-                <Flex flexDirection="row" gap="4" key={index}>
-                  <Avatar colorScheme="purple" name={user.name} src={user.src}>
-                    {user.id}
-                  </Avatar>
-
-                  <Text>{user.name}</Text>
-                </Flex>
-              ))}
-            </Flex>
-          </HoverCardContent>
-        </HoverCard>
       </>
     ),
   },
