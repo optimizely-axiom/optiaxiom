@@ -100,9 +100,11 @@ export const ScaleValue = ({
                   aspectRatio: 100 / 60,
                   backgroundImage: [
                     `linear-gradient(${size}, ${size})`,
+                    `linear-gradient(${theme.colors["bg.default"]}, ${theme.colors["bg.default"]})`,
                     `repeating-conic-gradient(color-mix(in srgb, ${theme.colors["bg.default.inverse"]} 5%, transparent) 0% 25%, transparent 0% 50%)`,
                   ].join(", "),
-                  backgroundSize: "16px 16px",
+                  backgroundRepeat: "no-repeat, no-repeat, repeat",
+                  backgroundSize: "100% 100%, 50% 100%, 16px 16px",
                   boxShadow: `inset 0 0 0 1px color-mix(in srgb, ${theme.colors["bg.default.inverse"]} 20%, transparent)`,
                 }}
                 w="56"
