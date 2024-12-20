@@ -76,6 +76,14 @@ export const FieldLabel = forwardRef<HTMLDivElement, FieldLabelProps>(
                   <IconCircleQuestion />
                 </Box>
               }
+              onClick={(event) => {
+                event.currentTarget.focus();
+                event.preventDefault();
+              }}
+              onPointerDownCapture={(event) => {
+                event.preventDefault();
+                event.stopPropagation();
+              }}
               p="0"
               w="2xs"
             />
