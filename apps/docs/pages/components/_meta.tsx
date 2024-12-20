@@ -107,7 +107,6 @@ export default {
   dialog: "Dialog",
   drawer: "Drawer",
   "dropdown-menu": "DropdownMenu",
-  "hover-card": "HoverCard",
   "modal-layer": "ModalLayer",
   popover: "Popover",
   tooltip: "Tooltip",
