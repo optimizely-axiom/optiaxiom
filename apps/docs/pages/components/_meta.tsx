@@ -75,7 +75,9 @@ export default {
   },
   checkbox: "Checkbox",
   field: "Field",
-  "inline-input": false,
+  "inline-input": {
+    display: "hidden",
+  },
   input: "Input",
   "radio-group": "RadioGroup",
   "search-input": "SearchInput",
