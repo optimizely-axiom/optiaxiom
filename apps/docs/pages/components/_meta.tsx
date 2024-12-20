@@ -10,7 +10,7 @@ const AlphaItem = ({ children }: { children?: ReactNode }) => (
 
 export default {
   "--": {
-    title: "Components",
+    title: "Primitives",
     type: "separator",
   },
   index: "Box",
@@ -25,98 +25,68 @@ export default {
   },
   "axiom-provider": "AxiomProvider",
 
-  "-- Buttons": {
-    title: "Buttons",
-    type: "separator",
-  },
-  button: "Button",
-  "toggle-button": "ToggleButton",
-
-  "-- Comboboxes": {
-    title: "Comboboxes",
-    type: "separator",
-  },
-  autocomplete: {
-    title: <AlphaItem>Autocomplete</AlphaItem>,
-  },
-  combobox: {
-    title: <AlphaItem>Combobox</AlphaItem>,
-  },
-  select: {
-    title: <AlphaItem>Select</AlphaItem>,
-  },
-
-  "-- Data Display": {
-    title: "Data Display",
-    type: "separator",
-  },
-  avatar: "Avatar",
-  disclosure: "Disclosure",
-  indicator: "Indicator",
-  table: {
-    title: <AlphaItem>Table</AlphaItem>,
-  },
-
-  "-- Feedback": {
-    title: "Feedback",
+  "-- Components": {
+    title: "Components",
     type: "separator",
   },
   alert: "Alert",
+  "alert-dialog": "AlertDialog",
+  autocomplete: {
+    title: <AlphaItem>Autocomplete</AlphaItem>,
+  },
+  avatar: "Avatar",
   badge: "Badge",
   banner: "Banner",
-  progress: "Progress",
-  skeleton: "Skeleton",
-  spinner: "Spinner",
-  toast: "Toast",
-
-  "-- Forms": {
-    title: "Forms",
-    type: "separator",
+  breadcrumb: {
+    title: <AlphaItem>Breadcrumb</AlphaItem>,
   },
+  button: "Button",
   checkbox: "Checkbox",
+  code: "Code",
+  combobox: {
+    title: <AlphaItem>Combobox</AlphaItem>,
+  },
+  dialog: "Dialog",
+  disclosure: "Disclosure",
+  drawer: "Drawer",
+  "dropdown-menu": "DropdownMenu",
   field: "Field",
+  heading: "Heading",
+  indicator: "Indicator",
   "inline-input": {
     display: "hidden",
   },
   input: "Input",
+  kbd: "Kbd",
+  link: "Link",
+  pagination: "Pagination",
+  popover: "Popover",
+  progress: "Progress",
   "radio-group": "RadioGroup",
   "search-input": "SearchInput",
   "segmented-control": "SegmentedControl",
-  switch: "Switch",
-  textarea: "Textarea",
-
-  "-- Navigation": {
-    title: "Navigation",
-    type: "separator",
+  select: {
+    title: <AlphaItem>Select</AlphaItem>,
   },
-  breadcrumb: {
-    title: <AlphaItem>Breadcrumb</AlphaItem>,
-  },
-  link: "Link",
-  pagination: "Pagination",
   sidenav: {
     title: <AlphaItem>Sidenav</AlphaItem>,
   },
-  tabs: "Tabs",
-
-  "-- Overlays": {
-    title: "Overlays",
-    type: "separator",
+  skeleton: "Skeleton",
+  spinner: "Spinner",
+  switch: "Switch",
+  table: {
+    title: <AlphaItem>Table</AlphaItem>,
   },
-  "alert-dialog": "AlertDialog",
-  dialog: "Dialog",
-  drawer: "Drawer",
-  "dropdown-menu": "DropdownMenu",
-  "modal-layer": "ModalLayer",
-  popover: "Popover",
+  tabs: "Tabs",
+  text: "Text",
+  textarea: "Textarea",
+  toast: "Toast",
+  "toggle-button": "ToggleButton",
   tooltip: "Tooltip",
 
-  "-- Typography": {
-    title: "Typography",
+  "-- Utilities": {
+    title: "Utilities",
     type: "separator",
   },
-  code: "Code",
-  heading: "Heading",
-  kbd: "Kbd",
-  text: "Text",
+  "modal-layer": "ModalLayer",
 };
