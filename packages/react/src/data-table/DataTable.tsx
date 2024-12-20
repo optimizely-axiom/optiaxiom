@@ -22,13 +22,18 @@ type DataTableProps = BoxProps<
 
 export const DataTable = forwardRef<HTMLDivElement, DataTableProps>(
   ({ table, ...props }, ref) => {
-    let offset = 0;
+    let offsetLeft = 0;
+    let offsetRight = table.getTotalSize();
     const offsets = Object.fromEntries(
-      table
-        .getAllColumns()
-        .flatMap((column) => [
-          [column.id, (offset += column.getSize()) - column.getSize()],
-        ]),
+      table.getAllColumns().flatMap((column) => [
+        [
+          column.id,
+          {
+            left: (offsetLeft += column.getSize()) - column.getSize(),
+            right: (offsetRight -= column.getSize()),
+          },
+        ],
+      ]),
     );
 
     return (
@@ -36,11 +41,17 @@ export const DataTable = forwardRef<HTMLDivElement, DataTableProps>(
         alignItems="center"
         display="flex"
         flexDirection="column"
-        {...props}
         ref={ref}
+        {...props}
       >
-        <Table>
-          <TableHead {...styles.tableHeader()}>
+        <Table
+          style={assignInlineVars({
+            [styles.leftTotalSizeVar]: `${table.getLeftTotalSize()}px`,
+            [styles.rightTotalSizeVar]: `${table.getRightTotalSize()}px`,
+          })}
+          {...styles.table()}
+        >
+          <TableHead {...styles.header()}>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
@@ -49,14 +60,15 @@ export const DataTable = forwardRef<HTMLDivElement, DataTableProps>(
                     key={header.id}
                     style={{
                       ...assignInlineVars({
-                        [styles.cellOffsetVar]: header.column.getIsPinned()
-                          ? `${offsets[header.column.id]}px`
-                          : undefined,
-                        [styles.columnWidthVar]: `${header.getSize()}px`,
+                        [styles.cellOffsetVar]: `${offsets[header.column.id][header.column.getIsPinned() || "left"]}px`,
+                        [styles.cellSizeVar]: `${header.getSize()}px`,
                       }),
                     }}
-                    {...styles.tableHead({
-                      pinned: header.column.getIsPinned() ?? undefined,
+                    {...styles.cell({
+                      pinned: header.column.getIsPinned() || undefined,
+                      pinnedType: header.column.getIsPinned()
+                        ? "header"
+                        : undefined,
                     })}
                   >
                     {flexRender(
@@ -77,14 +89,15 @@ export const DataTable = forwardRef<HTMLDivElement, DataTableProps>(
                       key={cell.id}
                       style={{
                         ...assignInlineVars({
-                          [styles.cellOffsetVar]: cell.column.getIsPinned()
-                            ? `${offsets[cell.column.id]}px`
-                            : undefined,
-                          [styles.columnWidthVar]: `${cell.column.getSize()}px`,
+                          [styles.cellOffsetVar]: `${offsets[cell.column.id][cell.column.getIsPinned() || "left"]}px`,
+                          [styles.cellSizeVar]: `${cell.column.getSize()}px`,
                         }),
                       }}
-                      {...styles.tableCell({
-                        pinned: cell.column.getIsPinned() ?? undefined,
+                      {...styles.cell({
+                        pinned: cell.column.getIsPinned() || undefined,
+                        pinnedType: cell.column.getIsPinned()
+                          ? "body"
+                          : undefined,
                       })}
                     >
                       {flexRender(
