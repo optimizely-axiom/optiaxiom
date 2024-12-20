@@ -11,6 +11,7 @@ export const button = recipe({
       display: "flex",
       gap: "4",
       justifyContent: "start",
+      textAlign: "start",
       transition: "colors",
       w: "full",
     },
