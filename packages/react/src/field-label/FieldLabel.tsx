@@ -3,7 +3,7 @@ import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { useId } from "@reach/auto-id";
 import { forwardRef, type ReactNode } from "react";
 
-import { type BoxProps } from "../box";
+import { Box, type BoxProps } from "../box";
 import { Button } from "../button";
 import { Flex } from "../flex";
 import { HoverCard } from "../hover-card";
@@ -74,7 +74,11 @@ export const FieldLabel = forwardRef<HTMLDivElement, FieldLabelProps>(
                 border="0"
                 color="fg.secondary"
                 h="2xs"
-                icon={<IconCircleQuestion />}
+                icon={
+                  <Box asChild flex="initial">
+                    <IconCircleQuestion />
+                  </Box>
+                }
                 p="0"
                 w="2xs"
               />
