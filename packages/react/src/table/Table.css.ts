@@ -1,4 +1,4 @@
-import { recipe, style } from "../vanilla-extract";
+import { recipe, type RecipeVariants, style } from "../vanilla-extract";
 
 export const table = recipe({
   base: [
@@ -14,6 +14,17 @@ export const table = recipe({
       height: "1px",
     }),
   ],
+
+  variants: {
+    layout: {
+      auto: style({
+        tableLayout: "auto",
+      }),
+      fixed: style({
+        tableLayout: "fixed",
+      }),
+    },
+  },
 });
 
 export const wrapper = recipe({
@@ -31,3 +42,5 @@ export const wrapper = recipe({
     }),
   ],
 });
+
+export type TableVariants = RecipeVariants<typeof table>;

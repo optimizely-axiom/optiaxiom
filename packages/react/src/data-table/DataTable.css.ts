@@ -101,7 +101,7 @@ export const header = recipe({
 export const cell = recipe({
   base: [
     style({
-      minWidth: cellSizeVar,
+      width: cellSizeVar,
     }),
   ],
   variants: {

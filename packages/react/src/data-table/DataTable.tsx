@@ -45,6 +45,7 @@ export const DataTable = forwardRef<HTMLDivElement, DataTableProps>(
         {...props}
       >
         <Table
+          layout="fixed"
           style={assignInlineVars({
             [styles.leftTotalSizeVar]: `${table.getLeftTotalSize()}px`,
             [styles.rightTotalSizeVar]: `${table.getRightTotalSize()}px`,
