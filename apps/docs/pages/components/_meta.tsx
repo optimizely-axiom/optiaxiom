@@ -46,6 +46,9 @@ export default {
   combobox: {
     title: <AlphaItem>Combobox</AlphaItem>,
   },
+  "data-table": {
+    title: <AlphaItem>DataTable</AlphaItem>,
+  },
   dialog: "Dialog",
   disclosure: "Disclosure",
   drawer: "Drawer",
