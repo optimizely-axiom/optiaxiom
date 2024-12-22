@@ -169,4 +169,5 @@ const getStyleValues = (selector: string) => {
   return styles.length === 1 ? styles[0][1] : Object.fromEntries(styles);
 };
 
-const isColorType = (value: string) => value.startsWith("#");
+const isColorType = (value: string) =>
+  value.startsWith("#") || value.startsWith("light-dark(");
