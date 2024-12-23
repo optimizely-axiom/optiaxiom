@@ -9,9 +9,7 @@ import { MenuListbox } from "../menu-listbox";
 
 type MenuSubContentProps = BoxProps<
   typeof RadixMenu.SubContent,
-  {
-    minW?: ComponentPropsWithoutRef<typeof MenuListbox>["minW"];
-  }
+  Pick<ComponentPropsWithoutRef<typeof MenuListbox>, "minW">
 >;
 
 export const DropdownMenuSubContent = forwardRef<

@@ -8,9 +8,8 @@ import { DialogTitle } from "../dialog-title";
 
 type ComboboxDialogContentProps = ComponentPropsWithoutRef<
   typeof DialogContent
-> & {
-  minW?: ComponentPropsWithoutRef<typeof MenuListbox>["minW"];
-};
+> &
+  Pick<ComponentPropsWithoutRef<typeof MenuListbox>, "minW">;
 
 export const ComboboxDialogContent = forwardRef<
   HTMLDivElement,
