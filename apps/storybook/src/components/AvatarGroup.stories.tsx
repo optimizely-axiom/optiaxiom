@@ -11,7 +11,7 @@ const users = [
   {
     id: "EC",
     name: "Emily Chen",
-    src: "https://i.pravatar.cc/150?img=15",
+    src: "https://i.pravatar.cc/150?img=24",
   },
   {
     id: "MR",
