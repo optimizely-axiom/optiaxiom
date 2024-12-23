@@ -14,7 +14,6 @@ type AvatarProps = BoxProps<
      * The fallback icon to display when no name or image is given.
      */
     fallback?: keyof typeof mapFallbackToIcon;
-    icon?: React.ReactNode;
     /**
      * Use name to generate initials to show inside the avatar.
      */
@@ -47,7 +46,6 @@ export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
       className,
       colorScheme = "neutral",
       fallback = "user",
-      icon,
       name,
       size: sizeProp,
       src,
@@ -72,19 +70,10 @@ export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
           )}
           <Box asChild {...styles.fallback({})}>
             <RadixAvatar.Fallback delayMs={src ? 600 : undefined}>
-              {/* TODO: Add a generic user icon, if `children` is `undefined` */}
-              {icon ? (
+              {(name ? getInitialsFromName(name) : children) || (
                 <Box asChild {...styles.icon({ size })}>
-                  {icon}
+                  {mapFallbackToIcon[fallback]}
                 </Box>
-              ) : name ? (
-                getInitialsFromName(name)
-              ) : (
-                children || (
-                  <Box asChild {...styles.icon({ size })}>
-                    {mapFallbackToIcon[fallback]}
-                  </Box>
-                )
               )}
             </RadixAvatar.Fallback>
           </Box>
