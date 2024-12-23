@@ -7,14 +7,27 @@ import type { BoxProps } from "../box";
 import { AnimatePresence } from "../animate-presence";
 import { MenuListbox } from "../menu-listbox";
 import { usePopoverContext } from "../popover-context";
-import { onReactSelectInputBlur } from "../utils";
+import { type ExcludeProps, onReactSelectInputBlur } from "../utils";
 
-type PopoverContentProps = BoxProps<
-  typeof RadixPopover.Content,
-  {
-    minW?: ComponentPropsWithoutRef<typeof MenuListbox>["minW"];
-    withArrow?: boolean;
-  }
+type PopoverContentProps = ExcludeProps<
+  BoxProps<
+    typeof RadixPopover.Content,
+    Pick<ComponentPropsWithoutRef<typeof MenuListbox>, "minW"> & {
+      /**
+       * Whether to show an arrow.
+       */
+      withArrow?: boolean;
+    }
+  >,
+  | "alignOffset"
+  | "arrowPadding"
+  | "avoidCollisions"
+  | "collisionBoundary"
+  | "collisionPadding"
+  | "forceMount"
+  | "hideWhenDetached"
+  | "sticky"
+  | "updatePositionStrategy"
 >;
 
 export const PopoverContent = forwardRef<HTMLDivElement, PopoverContentProps>(
