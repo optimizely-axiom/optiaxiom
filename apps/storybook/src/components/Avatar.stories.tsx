@@ -36,7 +36,7 @@ export const Sizes: Story = {
 export const Image: Story = {
   args: {
     name: "John Snow",
-    src: "https://i.pravatar.cc/150?img=11",
+    src: "https://i.pravatar.cc/150?img=24",
   },
 };
 
