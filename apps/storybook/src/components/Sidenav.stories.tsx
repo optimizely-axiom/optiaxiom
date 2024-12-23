@@ -72,9 +72,7 @@ export default {
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <SidenavAccountItem
-                avatar={
-                  <Avatar src="https://images.unsplash.com/photo-1511485977113-f34c92461ad9?ixlib=rb-1.2.1&w=128&h=128&dpr=2&q=80" />
-                }
+                avatar={<Avatar src="https://i.pravatar.cc/150?img=10" />}
                 name="Rhaenyra Targaryen"
                 organization="Optimizely"
               />
@@ -115,9 +113,7 @@ export const NotCollapsible: Story = {
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <SidenavAccountItem
-                avatar={
-                  <Avatar src="https://images.unsplash.com/photo-1511485977113-f34c92461ad9?ixlib=rb-1.2.1&w=128&h=128&dpr=2&q=80" />
-                }
+                avatar={<Avatar src="https://i.pravatar.cc/150?img=10" />}
                 name="Rhaenyra Targaryen"
                 organization="Optimizely"
               />
