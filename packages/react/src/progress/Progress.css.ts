@@ -21,6 +21,9 @@ export const indicator = recipe({
     },
   ],
   variants: {
+    /**
+     * Control the appearance by selecting between the different progress types.
+     */
     intent: {
       danger: {
         bg: "bg.error",

@@ -1,6 +1,6 @@
 import * as RadixTooltip from "@radix-ui/react-tooltip";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
-import { type ComponentPropsWithRef, useRef } from "react";
+import { useRef } from "react";
 
 import { type BoxProps } from "../box";
 import { TooltipContextProvider } from "../tooltip-context";
@@ -9,9 +9,6 @@ type TooltipRootProps = BoxProps<
   typeof RadixTooltip.Root,
   {
     auto?: boolean;
-    delayDuration?: ComponentPropsWithRef<
-      typeof RadixTooltip.Provider
-    >["delayDuration"];
   }
 >;
 

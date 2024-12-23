@@ -8,10 +8,25 @@ import * as styles from "./Indicator.css";
 type IndicatorProps = BoxProps<
   typeof Badge,
   {
+    /**
+     * Set the content of the badge.
+     */
     content?: ReactNode;
+    /**
+     * Whether to show or hide badge.
+     */
     disabled?: boolean;
+    /**
+     * Whether to offset the badge and display slightly outside the content box.
+     */
     offset?: boolean;
+    /**
+     * Whether to show a ping animation for the badge.
+     */
     ping?: boolean;
+    /**
+     * Set which corner the badge is displayed.
+     */
     position?: "bottom-right" | "top-right";
   }
 >;

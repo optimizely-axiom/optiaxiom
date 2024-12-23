@@ -1,11 +1,27 @@
-import type { ComponentPropsWithoutRef } from "react";
-
 import * as RadixPopover from "@radix-ui/react-popover";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
 
 import { PopoverContextProvider } from "../popover-context";
 
-type PopoverProps = ComponentPropsWithoutRef<typeof RadixPopover.Root>;
+type PopoverProps = {
+  children?: React.ReactNode;
+  /**
+   * The initial open state in uncontrolled mode.
+   */
+  defaultOpen?: boolean;
+  /**
+   * When enabled interaction with outside elements will be disabled and only popover content will be visible to screen readers.
+   */
+  modal?: boolean;
+  /**
+   * Handler that is called when the open state changes.
+   */
+  onOpenChange?: (open: boolean) => void;
+  /**
+   * The open state in controlled mode.
+   */
+  open?: boolean;
+};
 
 export function Popover({
   children,

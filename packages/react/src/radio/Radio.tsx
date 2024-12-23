@@ -14,6 +14,9 @@ import * as styles from "./Radio.css";
 type RadioProps = BoxProps<
   typeof ToggleInputHiddenInput,
   {
+    /**
+     * Add helper text after the label.
+     */
     description?: ReactNode;
   }
 >;

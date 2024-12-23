@@ -49,6 +49,9 @@ export const buttonBase = recipe({
     }),
   ],
   variants: {
+    /**
+     * Whether button should have square shape.
+     */
     iconOnly: {
       false: style({
         minWidth: "fit-content",
@@ -91,6 +94,9 @@ export const buttonBase = recipe({
         },
       }),
     },
+    /**
+     * Control the size of the button.
+     */
     size: {
       sm: {
         fontSize: "sm",

@@ -21,6 +21,11 @@ export type BoxProps<T extends ElementType = "div", P = unknown> = ExtendProps<
   ComponentPropsWithoutRef<T>,
   ExtendProps<
     Sprinkles & {
+      /**
+       * Change the default rendered element for the one passed as a child, merging their props and behavior.
+       *
+       * Read the {@link https://optimizely-axiom.github.io/optiaxiom/components/#composition Composition guide} for more details.
+       */
       asChild?: boolean;
       className?: string;
     },

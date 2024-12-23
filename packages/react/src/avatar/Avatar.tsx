@@ -10,9 +10,18 @@ import * as styles from "./Avatar.css";
 type AvatarProps = BoxProps<
   "span",
   styles.AvatarVariants & {
+    /**
+     * The fallback icon to display when no name or image is given.
+     */
     fallback?: keyof typeof mapFallbackToIcon;
     icon?: React.ReactNode;
+    /**
+     * Use name to generate initials to show inside the avatar.
+     */
     name?: string;
+    /**
+     * Render the image inside the avatar.
+     */
     src?: string;
   }
 >;

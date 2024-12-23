@@ -6,12 +6,7 @@ import type { BoxProps } from "../box";
 import { Text } from "../text";
 import * as styles from "./DialogDescription.css";
 
-type DialogDescriptionProps = BoxProps<
-  typeof RadixDialog.Description,
-  {
-    description?: string;
-  }
->;
+type DialogDescriptionProps = BoxProps<typeof RadixDialog.Description>;
 
 export const DialogDescription = forwardRef<
   HTMLParagraphElement,

@@ -27,6 +27,9 @@ export const content = recipe({
     }),
   ],
   variants: {
+    /**
+     * Control the size/width of the dialog box.
+     */
     size: {
       sm: style({
         width: "400px",

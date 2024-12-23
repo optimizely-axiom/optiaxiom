@@ -11,6 +11,9 @@ import { fallbackSpan } from "../utils";
 type AlertDialogTitleProps = HeadingProps<
   typeof RadixAlertDialog.Title,
   {
+    /**
+     * We show an alert icon before the title by default but this can be replaced with any other icon.
+     */
     addonBefore?: ReactNode;
   }
 >;

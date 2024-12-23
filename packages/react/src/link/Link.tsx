@@ -10,7 +10,13 @@ import * as styles from "./Link.css";
 type LinkProps = BoxProps<
   "a",
   styles.LinkVariants & {
+    /**
+     * Whether to show disabled state and disable interactions.
+     */
     disabled?: boolean;
+    /**
+     * Show an external link icon and sets the correct rel/target attributes.
+     */
     external?: boolean;
   }
 >;

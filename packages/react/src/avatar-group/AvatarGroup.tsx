@@ -8,6 +8,9 @@ import * as styles from "./AvatarGroup.css";
 type AvatarGroupProps = BoxProps<
   "div",
   {
+    /**
+     * Control the size of the avatars.
+     */
     size?: ComponentPropsWithoutRef<typeof Avatar>["size"];
   }
 >;

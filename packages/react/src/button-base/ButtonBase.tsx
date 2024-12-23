@@ -1,5 +1,5 @@
 import { Slot } from "@radix-ui/react-slot";
-import { type ElementType, forwardRef, type ReactNode } from "react";
+import { type ElementType, forwardRef } from "react";
 
 import { AnimatePresence } from "../animate-presence";
 import { Box, type BoxProps } from "../box";
@@ -24,9 +24,17 @@ export type ButtonBaseProps<
   T,
   ExtendProps<
     Omit<NonNullable<styles.ButtonVariants>, "intent" | "variant"> & {
+      /**
+       * Control the appearance by selecting between the different button types.
+       */
       appearance?: keyof typeof appearances;
-      children?: ReactNode;
+      /**
+       * Whether the button is disabled.
+       */
       disabled?: boolean;
+      /**
+       * Whether to show loading spinner inside the button.
+       */
       loading?: boolean;
     },
     P

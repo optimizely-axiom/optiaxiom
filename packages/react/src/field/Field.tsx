@@ -11,12 +11,29 @@ import { fallbackSpan } from "../utils";
 type FieldProps = BoxProps<
   "div",
   {
-    children: ReactNode;
+    /**
+     * Provide description and help text for the field.
+     */
     description?: ReactNode;
+    /**
+     * Display validation or other errors for the input.
+     */
     error?: ReactNode;
+    /**
+     * Display a help icon with additional context for the input.
+     */
     info?: ReactNode;
+    /**
+     * Override the default generated input ID used for associating the label to the input.
+     */
     inputId?: string;
+    /**
+     * The label of the field.
+     */
     label?: ReactNode;
+    /**
+     * Display an asterisk for required inputs.
+     */
     required?: boolean;
   }
 >;

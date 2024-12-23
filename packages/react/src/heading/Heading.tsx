@@ -10,7 +10,7 @@ export type HeadingProps<T extends ElementType = "h1", P = unknown> = TextProps<
   ExtendProps<
     {
       /**
-       * Presets for each level of heading h1-h6.
+       * Switch between the different h1-h6 levels.
        */
       level?: keyof typeof mapLevelToTag;
     },

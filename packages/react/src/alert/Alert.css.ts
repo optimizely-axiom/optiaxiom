@@ -16,6 +16,9 @@ export const alert = recipe({
     },
   ],
   variants: {
+    /**
+     * Control the appearance by selecting between the different alert types.
+     */
     intent: {
       danger: {
         bg: "bg.error.subtle",

@@ -16,9 +16,21 @@ export type ListboxItemProps<
   T,
   ExtendProps<
     styles.ItemVariants & {
+      /**
+       * Display content inside the item but after `children`.
+       */
       addonAfter?: ReactNode;
+      /**
+       * Display content inside the item but before `children`.
+       */
       addonBefore?: ReactNode;
+      /**
+       * Add secondary text after the primary label.
+       */
       description?: ReactNode;
+      /**
+       * Display an icon before the item content.
+       */
       icon?: ReactNode;
     },
     P

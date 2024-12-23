@@ -7,17 +7,31 @@ import { TooltipTrigger } from "../tooltip-trigger";
 
 type TooltipProps = BoxProps<
   typeof TooltipContent,
-  {
+  Pick<ComponentPropsWithRef<typeof TooltipRoot>, "delayDuration"> & {
     /**
      * Enable this option to only show the tooltip when children is partially hidden due to text overflow.
      */
     auto?: boolean;
     children: ReactNode;
+    /**
+     * The tooltip content.
+     */
     content?: ReactNode;
+    /**
+     * The initial open state in uncontrolled mode.
+     */
     defaultOpen?: boolean;
-    delayDuration?: ComponentPropsWithRef<typeof TooltipRoot>["delayDuration"];
+    /**
+     * Whether to show or hide tooltip even if there's content.
+     */
     disabled?: boolean;
+    /**
+     * Handler that is called when the open state changes.
+     */
     onOpenChange?: (open: boolean) => void;
+    /**
+     * The open state in controlled mode.
+     */
     open?: boolean;
   }
 >;
