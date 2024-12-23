@@ -6,8 +6,8 @@ export default {
     type: "page",
   },
 
-  "getting-started": {
-    title: "Getting Started",
+  guides: {
+    title: "Guides",
     type: "page",
   },
 
