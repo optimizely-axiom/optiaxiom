@@ -17,7 +17,7 @@ export function HeroPage() {
         Axiom is the technical implementation of the Optimizely Design System.
       </Text>
 
-      <Link href="/getting-started">
+      <Link href="/guides">
         <Box
           asChild
           color="fg.accent.strong"
