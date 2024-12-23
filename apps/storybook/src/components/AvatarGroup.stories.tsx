@@ -6,12 +6,12 @@ const users = [
   {
     id: "HK",
     name: "Henry Kissinger",
-    src: "https://images.unsplash.com/photo-1715029005043-e88d219a3c48?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    src: "https://i.pravatar.cc/150?img=14",
   },
   {
     id: "EC",
     name: "Emily Chen",
-    src: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=3276&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    src: "https://i.pravatar.cc/150?img=15",
   },
   {
     id: "MR",
@@ -24,7 +24,7 @@ const users = [
   {
     id: "JD",
     name: "John Doe",
-    src: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    src: "https://i.pravatar.cc/150?img=16",
   },
   {
     id: "AS",
@@ -33,7 +33,7 @@ const users = [
   {
     id: "RJ",
     name: "Robert Johnson",
-    src: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    src: "https://i.pravatar.cc/150?img=17",
   },
   {
     id: "LW",
