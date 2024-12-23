@@ -27,7 +27,7 @@ import { SegmentedControlIcon } from "./icons/SegmentedControlIcon";
 import { SelectIcon } from "./icons/SelectIcon";
 import { SkeletonIcon } from "./icons/SkeletonIcon";
 import { SpinnerIcon } from "./icons/SpinnerIcon";
-import { StyledSystemIcon } from "./icons/StyledSystemIcon";
+import { StylingIcon } from "./icons/StylingIcon";
 import { SwitchIcon } from "./icons/SwitchIcon";
 import { TableIcon } from "./icons/TableIcon";
 import { TextareaIcon } from "./icons/TextareaIcon";
@@ -200,12 +200,12 @@ const COMPONENTS = {
     icon: <SpinnerIcon />,
     title: "Spinner",
   },
-  StyledSystem: {
+  Styling: {
     description:
       "Learn about our styling solution and how to consume our design tokens.",
-    href: "/styled-system/",
-    icon: <StyledSystemIcon />,
-    title: "Styled System",
+    href: "/styling/",
+    icon: <StylingIcon />,
+    title: "Styling",
   },
   Switch: {
     description:

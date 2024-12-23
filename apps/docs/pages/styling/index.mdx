@@ -7,7 +7,7 @@ import { PropUsage, ResponsiveUsage } from "@/demos/styles";
 
 The `Box` component provides a minimal zero-runtime styling solution similar to **Tailwind CSS** built with [Vanilla Extract](https://vanilla-extract.style/).
 
-We provide out of the box support for consuming our design tokens and commonly used styles via props, but developers are free to choose any styling solution for components with the use of `className`.
+We provide out of the box support for consuming our design tokens and commonly used styles via props, but developers are free to choose any styling solution for components.
 
 ## Documentation
 
@@ -17,7 +17,7 @@ You can use props on the `<Box />` component to control styles:
 
 <Demo component={PropUsage} />
 
-Learn more about consuming [Design Tokens](/styled-system/design-tokens/).
+Learn more about consuming [Design Tokens](/styling/design-tokens/).
 
 ## Applying conditionally
 
@@ -27,10 +27,6 @@ You can also use object or array prop notation to apply styles at various respon
 
 <Callout>Resize the canvas to see the layout change:</Callout>
 
-<Demo
-  iframe="/styled-system/index-demo/"
-  height="150"
-  component={ResponsiveUsage}
-/>
+<Demo iframe="/styling/index-demo/" height="150" component={ResponsiveUsage} />
 
-Check out the documentation on [Responsive Styles](/styled-system/responsive-styles/).
+Check out the documentation on [Responsive Styles](/styling/responsive-styles/).

@@ -16,8 +16,8 @@ export default {
     type: "page",
   },
 
-  "styled-system": {
-    title: "Styled System",
+  styling: {
+    title: "Styling",
     type: "page",
   },
 };
