@@ -11,6 +11,7 @@ export const Table = ({
     bg="bg.default"
     border="1"
     borderColor="border.tertiary"
+    color="fg.default"
     fontSize="md"
     maxW="full"
     mt="24"
