@@ -1,6 +1,6 @@
 import type { PropItem, PropItemType } from "react-docgen-typescript";
 
-import { Code, Text } from "@optiaxiom/react";
+import { Box, Text } from "@optiaxiom/react";
 import Link from "next/link";
 import { type ComponentType, Fragment, type ReactNode } from "react";
 
@@ -14,33 +14,40 @@ type PropTypeProps = {
 export const PropType = ({ component, prop }: PropTypeProps) => {
   const defn = <PropDefinition component={component} prop={prop} />;
   return (
-    <Text>
-      <Code>
-        {prop.type.raw?.startsWith("ConditionalStyleWithResponsiveArray<") ? (
-          <>
-            <span style={{ color: "var(--shiki-token-function)" }}>
-              ResponsiveValue
-            </span>
-            <span style={{ color: "var(--shiki-color-text)" }}>&lt;</span>
-            {defn}
-            <span style={{ color: "var(--shiki-color-text)" }}>&gt;</span>
-          </>
-        ) : (
-          defn
-        )}
-      </Code>
+    <>
+      <Text>
+        <Box asChild fontFamily="mono">
+          <span>
+            {prop.type.raw?.startsWith(
+              "ConditionalStyleWithResponsiveArray<",
+            ) ? (
+              <>
+                <span style={{ color: "var(--shiki-token-function)" }}>
+                  ResponsiveValue
+                </span>
+                <span style={{ color: "var(--shiki-color-text)" }}>&lt;</span>
+                {defn}
+                <span style={{ color: "var(--shiki-color-text)" }}>&gt;</span>
+              </>
+            ) : (
+              defn
+            )}
+          </span>
+        </Box>
+      </Text>
       {prop.defaultValue && (
-        <>
-          {" "}
-          ={" "}
-          <Code>
+        <Text>
+          <Box asChild color="fg.secondary" fontWeight="600">
+            <strong>Default: </strong>
+          </Box>
+          <Box asChild fontFamily="mono">
             <span style={{ color: "var(--shiki-token-string-expression)" }}>
               {prop.defaultValue.value === "" ? '""' : prop.defaultValue.value}
             </span>
-          </Code>
-        </>
+          </Box>
+        </Text>
       )}
-    </Text>
+    </>
   );
 };
 
