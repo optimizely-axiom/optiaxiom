@@ -1,5 +1,11 @@
 # @optiaxiom/web-components
 
+## 0.4.1
+
+### Patch Changes
+
+- 4c41023: update dependencies
+
 ## 0.4.0
 
 ### Minor Changes
