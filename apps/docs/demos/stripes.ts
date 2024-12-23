@@ -1,4 +1,4 @@
-import { theme } from "@optiaxiom/globals";
+import { theme } from "@optiaxiom/react";
 
 export const greenStripes = {
   backgroundColor: `oklch(from ${theme.colors["fg.success"]} l c h / 80%)`,

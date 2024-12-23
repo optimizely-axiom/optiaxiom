@@ -122,3 +122,4 @@ export * from "./tooltip-content";
 export * from "./tooltip-root";
 export * from "./tooltip-trigger";
 export * from "./transition";
+export { createToaster, theme, toaster, tokens } from "@optiaxiom/globals";
