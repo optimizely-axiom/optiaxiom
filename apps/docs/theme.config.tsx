@@ -25,7 +25,7 @@ export default {
     p: ({ ...props }) => (
       <p
         {...props}
-        className={`${("className" in props && props.className) || ""} [&:not(:first-child)]:_mt-4 _leading-7`}
+        className={`${("className" in props && props.className) || ""} [&:not(:first-child)]:_mt-4`}
       />
     ),
   },
