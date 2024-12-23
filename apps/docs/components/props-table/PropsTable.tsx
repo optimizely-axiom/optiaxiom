@@ -1,6 +1,6 @@
 import type { PropItem } from "react-docgen-typescript";
 
-import { Box, Code, Text } from "@optiaxiom/react";
+import { Box, Code, Flex, Text } from "@optiaxiom/react";
 import { Link } from "nextra-theme-docs";
 import {
   Children,
@@ -68,33 +68,36 @@ export function PropsTable({
       <Table>
         <Thead>
           <tr>
-            <Th display={["none", "table-cell"]} style={{ width: "25%" }}>
-              Name
-            </Th>
-            <Th style={{ width: "75%" }}>Type</Th>
+            <Th>Prop</Th>
           </tr>
         </Thead>
         <tbody>
           {propItems
             ?.filter((prop) => !exclude.includes(prop.name))
             .map((prop) => (
-              <Tr
-                display={["flex", "table-row"]}
-                flexWrap="wrap"
-                key={prop.name}
-              >
-                <Td w={["full", "auto"]} whiteSpace="nowrap">
-                  <Box
-                    fontFamily="mono"
-                    style={{ color: "var(--shiki-token-function)" }}
-                  >
-                    {prop.name}
-                    {prop.required ? "*" : ""}
-                  </Box>
-                </Td>
+              <Tr key={prop.name}>
                 <Td>
-                  <PropType component={component} prop={prop} />
-                  {descriptions[prop.name]}
+                  <Flex alignItems="start" flexDirection={["column", "row"]}>
+                    <Box
+                      fontFamily="mono"
+                      style={{ color: "var(--shiki-token-function)" }}
+                      w="1/4"
+                      whiteSpace="nowrap"
+                    >
+                      {prop.name}
+                      {prop.required ? "*" : ""}
+                    </Box>
+                    <Flex flex="1">
+                      {Children.toArray(descriptions[prop.name]).map(
+                        (child, index) => (
+                          <Box asChild key={index}>
+                            {child}
+                          </Box>
+                        ),
+                      )}
+                      <PropType component={component} prop={prop} />
+                    </Flex>
+                  </Flex>
                 </Td>
               </Tr>
             ))}
