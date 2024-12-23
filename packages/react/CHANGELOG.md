@@ -1,5 +1,19 @@
 # @optiaxiom/react
 
+## 0.8.2
+
+### Patch Changes
+
+- c37670a: use border in separator
+- 31e70ed: add link overlay variant
+- bb62c91: simplify toaster alternative api signature
+- 3e21cd2: rename TableHead to TableHeader
+- 2fd175f: replace HoverCard with Tooltip in field info
+- 4c41023: update dependencies
+- Updated dependencies [bb62c91]
+- Updated dependencies [4c41023]
+  - @optiaxiom/globals@0.5.1
+
 ## 0.8.1
 
 ### Patch Changes
