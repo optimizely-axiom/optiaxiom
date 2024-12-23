@@ -7,6 +7,7 @@ import { recipe, type RecipeVariants } from "../vanilla-extract";
 const accentColorVar = createVar();
 const hoverAccentColorVar = createVar();
 const pressedAccentColorVar = createVar();
+const solidTextColorVar = createVar();
 const subtleHoverAccentColorVar = createVar();
 const subtleHoverOutlineColorVar = createVar();
 const subtlePressedAccentColorVar = createVar();
@@ -69,6 +70,7 @@ export const buttonBase = recipe({
           [accentColorVar]: theme.colors["bg.default.inverse"],
           [hoverAccentColorVar]: theme.colors["bg.default.inverse.hovered"],
           [pressedAccentColorVar]: theme.colors["bg.default.inverse.pressed"],
+          [solidTextColorVar]: theme.colors["fg.default.inverse"],
           [subtleHoverAccentColorVar]: theme.colors["bg.page"],
           [subtleHoverOutlineColorVar]: theme.colors["border.default"],
           [subtleOutlineColorVar]: theme.colors["border.default"],
@@ -142,7 +144,7 @@ export const buttonBase = recipe({
       }),
       solid: style({
         backgroundColor: accentColorVar,
-        color: theme.colors["fg.white"],
+        color: fallbackVar(solidTextColorVar, theme.colors["fg.white"]),
 
         selectors: {
           "&:active:not([data-disabled], [data-loading])": {
