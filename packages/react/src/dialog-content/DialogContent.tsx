@@ -7,14 +7,17 @@ import { type BoxProps } from "../box";
 import { useDialogContext } from "../dialog-context";
 import { Paper } from "../paper";
 import { Transition } from "../transition";
-import { onReactSelectInputBlur } from "../utils";
+import { type ExcludeProps, onReactSelectInputBlur } from "../utils";
 import * as styles from "./DialogContent.css";
 
-type DialogContentProps = BoxProps<
-  typeof RadixDialog.Content,
-  styles.DialogVariants & {
-    transitionType?: ComponentPropsWithoutRef<typeof Transition>["type"];
-  }
+type DialogContentProps = ExcludeProps<
+  BoxProps<
+    typeof RadixDialog.Content,
+    styles.DialogVariants & {
+      transitionType?: ComponentPropsWithoutRef<typeof Transition>["type"];
+    }
+  >,
+  "forceMount"
 >;
 
 export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(

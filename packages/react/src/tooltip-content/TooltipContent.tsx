@@ -2,6 +2,8 @@ import { theme } from "@optiaxiom/globals";
 import * as RadixTooltip from "@radix-ui/react-tooltip";
 import { forwardRef } from "react";
 
+import type { ExcludeProps } from "../utils";
+
 import { AnimatePresence } from "../animate-presence";
 import { Box, type BoxProps } from "../box";
 import { Text } from "../text";
@@ -9,18 +11,22 @@ import { useTooltipContext } from "../tooltip-context";
 import { Transition } from "../transition";
 import * as styles from "./TooltipContent.css";
 
-type TooltipContentProps = BoxProps<typeof RadixTooltip.Content>;
+type TooltipContentProps = ExcludeProps<
+  BoxProps<typeof RadixTooltip.Content>,
+  | "alignOffset"
+  | "arrowPadding"
+  | "avoidCollisions"
+  | "collisionBoundary"
+  | "collisionPadding"
+  | "forceMount"
+  | "hideWhenDetached"
+  | "sticky"
+  | "updatePositionStrategy"
+>;
 
 export const TooltipContent = forwardRef<HTMLDivElement, TooltipContentProps>(
   (
-    {
-      align = "center",
-      arrowPadding = 6,
-      children,
-      className,
-      sideOffset = 5,
-      ...props
-    },
+    { align = "center", children, className, sideOffset = 5, ...props },
     ref,
   ) => {
     const { open } = useTooltipContext("TooltipContent");
@@ -33,7 +39,7 @@ export const TooltipContent = forwardRef<HTMLDivElement, TooltipContentProps>(
               <Box asChild {...styles.content({}, className)} {...props}>
                 <RadixTooltip.Content
                   align={align}
-                  arrowPadding={arrowPadding}
+                  arrowPadding={6}
                   ref={ref}
                   sideOffset={sideOffset}
                 >

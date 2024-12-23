@@ -1,6 +1,8 @@
 import * as RadixAlertDialog from "@radix-ui/react-alert-dialog";
 import { forwardRef } from "react";
 
+import type { ExcludeProps } from "../utils";
+
 import {
   AlertDialogContextProvider,
   useAlertDialogContext,
@@ -13,9 +15,9 @@ import { Paper } from "../paper";
 import { Transition } from "../transition";
 import * as styles from "./AlertDialogContent.css";
 
-type AlertDialogContentProps = BoxProps<
-  typeof RadixAlertDialog.Content,
-  styles.DialogVariants
+type AlertDialogContentProps = ExcludeProps<
+  BoxProps<typeof RadixAlertDialog.Content, styles.DialogVariants>,
+  "forceMount"
 >;
 
 export const AlertDialogContent = forwardRef<

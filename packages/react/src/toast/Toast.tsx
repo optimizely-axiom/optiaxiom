@@ -2,6 +2,8 @@ import { useToastContext } from "@optiaxiom/globals";
 import * as RadixToast from "@radix-ui/react-toast";
 import { createElement, forwardRef } from "react";
 
+import type { ExcludeProps } from "../utils";
+
 import { Box, type BoxProps } from "../box";
 import { Button } from "../button";
 import { Icon } from "../icon";
@@ -13,7 +15,10 @@ import { IconX } from "../icons/IconX";
 import { extractSprinkles } from "../sprinkles";
 import * as styles from "./Toast.css";
 
-type ToastProps = BoxProps<typeof RadixToast.Root, styles.RootVariants>;
+type ToastProps = ExcludeProps<
+  BoxProps<typeof RadixToast.Root, styles.RootVariants>,
+  "forceMount" | "open"
+>;
 
 const mapIntentToIcon = {
   danger: IconCircleExclamationSolid,
@@ -24,7 +29,7 @@ const mapIntentToIcon = {
 };
 
 export const Toast = forwardRef<HTMLLIElement, ToastProps>(
-  ({ children, intent = "neutral", onOpenChange, open, ...props }, ref) => {
+  ({ children, intent = "neutral", onOpenChange, ...props }, ref) => {
     const { restProps, sprinkleProps } = extractSprinkles(props);
     const context = useToastContext("Toast");
 
@@ -36,7 +41,7 @@ export const Toast = forwardRef<HTMLLIElement, ToastProps>(
             onOpenChange?.(open);
             context.onOpenChange(open);
           }}
-          open={context.open ?? open}
+          open={context.open}
           ref={ref}
           {...restProps}
         >
