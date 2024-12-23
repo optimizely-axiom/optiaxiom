@@ -194,11 +194,11 @@ body:before {
       rgba(85, 85, 85, 0.04) 88%,
       rgba(85, 85, 85, 0.04) 100%
     ),
-    linear-gradient(90deg, rgb(177, 45, 148), rgb(0, 243, 220));
+    linear-gradient(90deg, rgb(177, 45, 148), rgb(0, 203, 243));
   content: "";
   display: block;
   height: 50vh;
-  mask: linear-gradient(to bottom, rgb(0 0 0 / 20%), rgb(0 0 0 / 0%));
+  mask: linear-gradient(to bottom, rgb(0 0 0 / 15%), rgb(0 0 0 / 0%));
   pointer-events: none;
   position: absolute;
   top: 0;
