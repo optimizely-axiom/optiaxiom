@@ -1,5 +1,4 @@
-import { theme } from "@optiaxiom/globals";
-import { Box, Flex, Text } from "@optiaxiom/react";
+import { Box, Flex, Text, theme } from "@optiaxiom/react";
 import { type ComponentPropsWithRef, type ReactElement } from "react";
 
 export const Item = ({

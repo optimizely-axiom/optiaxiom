@@ -1,7 +1,6 @@
 import type { ComponentPropsWithoutRef } from "react";
 
-import { theme } from "@optiaxiom/globals";
-import { Box } from "@optiaxiom/react";
+import { Box, theme } from "@optiaxiom/react";
 
 export const IconBox = ({
   shadow,

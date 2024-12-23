@@ -1,7 +1,7 @@
 import { Scale } from "@/components/scale";
 import { Demo } from "@/components/demo";
 import { CssUsage, JsUsage, PropUsage } from "@/demos/styles";
-import { theme } from "@optiaxiom/globals";
+import { theme } from "@optiaxiom/react";
 
 # Design Tokens
 
@@ -40,7 +40,7 @@ The following css custom properties will be available:
 And they can be accessed via the `theme` object:
 
 ```ts
-import { theme } from "@optiaxiom/globals";
+import { theme } from "@optiaxiom/react";
 
 console.log(theme.colors["bg.accent"] === "var(--ax-colors-bg-accent)"); // true
 console.log(theme.colors["fg.success"] === "var(--ax-colors-fg-success)"); // true

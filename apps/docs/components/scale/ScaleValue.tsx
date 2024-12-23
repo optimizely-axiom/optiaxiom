@@ -1,5 +1,4 @@
-import { theme } from "@optiaxiom/globals";
-import { Box, Flex, Text } from "@optiaxiom/react";
+import { Box, Flex, Text, theme } from "@optiaxiom/react";
 import cssesc from "cssesc";
 import { useTheme } from "nextra-theme-docs";
 import { useEffect, useState } from "react";

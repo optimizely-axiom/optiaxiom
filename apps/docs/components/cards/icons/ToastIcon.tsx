@@ -1,5 +1,4 @@
-import { theme } from "@optiaxiom/globals";
-import { Box, Flex } from "@optiaxiom/react";
+import { Box, Flex, theme } from "@optiaxiom/react";
 
 export const ToastIcon = () => (
   <Flex

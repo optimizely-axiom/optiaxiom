@@ -1,7 +1,6 @@
 import type { ComponentPropsWithoutRef } from "react";
 
-import { theme } from "@optiaxiom/globals";
-import { Box, Flex } from "@optiaxiom/react";
+import { Box, Flex, theme } from "@optiaxiom/react";
 
 import { IconBox } from "./IconBox";
 import { IconText } from "./IconText";

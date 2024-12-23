@@ -1,4 +1,3 @@
-import { theme } from "@optiaxiom/globals";
 import {
   Dialog,
   DialogBody,
@@ -8,6 +7,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
+  theme,
 } from "@optiaxiom/react";
 import ReactSelect from "react-select";
 
