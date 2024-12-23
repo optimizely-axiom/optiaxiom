@@ -25,6 +25,7 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
       disabled,
       external,
       href,
+      overlay,
       ...props
     },
     ref,
@@ -35,7 +36,7 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
     return (
       <Box
         asChild
-        {...styles.link({ appearance }, className)}
+        {...styles.link({ appearance, overlay }, className)}
         {...sprinkleProps}
       >
         <Comp

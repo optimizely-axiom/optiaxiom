@@ -43,6 +43,26 @@ export const link = recipe({
         color: theme.colors["fg.link.subtle"],
       }),
     },
+    overlay: {
+      false: {},
+      true: style({
+        selectors: {
+          "&::after": {
+            borderRadius: "inherit",
+            content: "",
+            inset: "0",
+            position: "absolute",
+          },
+          "&:focus-visible": {
+            outline: "none",
+          },
+          "&:focus-visible::after": {
+            outline: `2px auto ${theme.colors["border.focus"]}`,
+            outlineOffset: "1px",
+          },
+        },
+      }),
+    },
   },
 });
 
