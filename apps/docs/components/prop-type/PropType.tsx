@@ -102,7 +102,7 @@ const ThemeLink = ({
   return (
     <>
       <span style={{ color: "var(--shiki-token-keyword)" }}>typeof </span>
-      <Link href={`/styled-system${path}`}>
+      <Link href={`/styling${path}`}>
         <abbr className="hover:_underline" title={propTypeRaw(type)}>
           <span style={{ color: "var(--shiki-token-constant)" }}>{scope}</span>
           <span style={{ color: "var(--shiki-color-text)" }}>.{name}</span>

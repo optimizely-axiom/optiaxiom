@@ -1,6 +1,6 @@
 export default {
   "--": {
-    title: "Styled System",
+    title: "Styling",
     type: "separator",
   },
   index: "Style Props",
