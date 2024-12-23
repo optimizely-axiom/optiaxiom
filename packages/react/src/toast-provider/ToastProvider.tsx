@@ -4,7 +4,6 @@ import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import { Portal } from "@radix-ui/react-portal";
 import * as RadixToast from "@radix-ui/react-toast";
 import {
-  cloneElement,
   type ComponentPropsWithoutRef,
   forwardRef,
   isValidElement,
@@ -84,7 +83,7 @@ export const ToastProvider = forwardRef<HTMLOListElement, ToastProps>(
             onOpenChange={() => toasterProp.remove(id)}
             open={open}
           >
-            {cloneElement(
+            {
               // eslint-disable-next-line @typescript-eslint/no-explicit-any -- https://github.com/microsoft/TypeScript/issues/53178
               isValidElement<any>(toast) ? (
                 toast
@@ -100,14 +99,8 @@ export const ToastProvider = forwardRef<HTMLOListElement, ToastProps>(
                     </ToastAction>
                   )}
                 </Toast>
-              ),
-              {
-                forceMount: true,
-                key: id,
-                onOpenChange: () => toasterProp.remove(id),
-                open,
-              },
-            )}
+              )
+            }
           </ToastContextProvider>
         ))}
 
