@@ -10,9 +10,8 @@ import { SelectContentImpl } from "./SelectContentImpl";
 
 type SelectContentProps = BoxProps<
   typeof SelectContentImpl,
-  {
+  Pick<ComponentPropsWithoutRef<typeof MenuListbox>, "minW"> & {
     loading?: boolean;
-    minW?: ComponentPropsWithoutRef<typeof MenuListbox>["minW"];
   }
 >;
 

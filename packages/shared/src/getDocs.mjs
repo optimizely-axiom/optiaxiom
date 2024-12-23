@@ -22,7 +22,7 @@ export function getDocs({ shouldExtractValuesFromUnion = false } = {}) {
     .map(
       ({
         description,
-        filePath,
+        filePath: _filePath,
         methods: _methods,
         props,
         tags: _tags,
@@ -37,21 +37,9 @@ export function getDocs({ shouldExtractValuesFromUnion = false } = {}) {
                 ? !prop.parent.fileName.includes("@types/react")
                 : prop.name === "asChild" ||
                   (prop.declarations?.length &&
-                    prop.declarations.find(
-                      (decl) =>
-                        (isBox || !decl.fileName.endsWith("/Box.tsx")) &&
-                        (decl.fileName === filePath ||
-                          decl.fileName ===
-                            filePath.replace(".tsx", ".css.ts") ||
-                          decl.fileName.endsWith(`/${component}Base.tsx`) ||
-                          decl.fileName.endsWith(`/${component}Base.css.ts`) ||
-                          decl.fileName.includes("/Command") ||
-                          decl.fileName.endsWith(`/${component}Context.ts`) ||
-                          decl.fileName.includes("/Listbox") ||
-                          decl.fileName.endsWith(`/${component}Root.tsx`) ||
-                          decl.fileName.endsWith(`/${component}Root.css.ts`)),
-                    )) ||
-                  (isBox && Object.hasOwn(sprinkles?.props ?? {}, prop.name)),
+                    (isBox ||
+                      sprinkles.props[prop.name]?.declarations?.[0].fileName !==
+                        prop.declarations[0].fileName)),
             )
             .filter(([, prop]) => !(prop.type.name === "never"))
             .map(([name, { defaultValue, description, required, ...prop }]) => {

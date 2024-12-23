@@ -11,9 +11,7 @@ import { MenuListbox } from "../menu-listbox";
 type DropdownMenuContentProps = ExcludeProps<
   BoxProps<
     typeof RadixMenu.Content,
-    {
-      minW?: ComponentPropsWithoutRef<typeof MenuListbox>["minW"];
-    }
+    Pick<ComponentPropsWithoutRef<typeof MenuListbox>, "minW">
   >,
   | "alignOffset"
   | "arrowPadding"
