@@ -16,6 +16,9 @@ import * as styles from "./Alert.css";
 type AlertProps = BoxProps<
   "div",
   styles.AlertVariants & {
+    /**
+     * Show a close button inside the alert and invoke this callback when the close button is clicked.
+     */
     onClose?: () => void;
   }
 >;

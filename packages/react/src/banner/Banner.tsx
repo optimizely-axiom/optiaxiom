@@ -16,6 +16,9 @@ import * as styles from "./Banner.css";
 type BannerProps = BoxProps<
   "div",
   styles.BannerVariants & {
+    /**
+     * Show a close button inside the banner and invoke this callback when the close button is clicked.
+     */
     onClose?: () => void;
   }
 >;

@@ -1,14 +1,23 @@
-import type { ComponentPropsWithoutRef } from "react";
-
 import * as RadixDialog from "@radix-ui/react-dialog";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
 
 import { DialogContextProvider } from "../dialog-context";
 
-type DialogProps = Omit<
-  ComponentPropsWithoutRef<typeof RadixDialog.Root>,
-  "modal"
->;
+type DialogProps = {
+  children?: React.ReactNode;
+  /**
+   * The initial open state in uncontrolled mode.
+   */
+  defaultOpen?: boolean;
+  /**
+   * Handler that is called when the open state changes.
+   */
+  onOpenChange?: (open: boolean) => void;
+  /**
+   * The open state in controlled mode.
+   */
+  open?: boolean;
+};
 
 export function Dialog({
   children,

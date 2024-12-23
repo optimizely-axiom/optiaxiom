@@ -26,6 +26,9 @@ export const link = recipe({
     }),
   ],
   variants: {
+    /**
+     * Control the appearance by selecting between the different link types.
+     */
     appearance: {
       default: style({
         color: theme.colors["fg.link.default"],
@@ -43,6 +46,9 @@ export const link = recipe({
         color: theme.colors["fg.link.subtle"],
       }),
     },
+    /**
+     * Whether to expand and fill up the whole area of the parent which has `position: relative`.
+     */
     overlay: {
       false: {},
       true: style({

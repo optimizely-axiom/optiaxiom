@@ -17,10 +17,25 @@ import * as styles from "./Pagination.css";
 export type PaginationProps = BoxProps<
   "nav",
   {
+    /**
+     * The default active page in uncontrolled mode.
+     */
     defaultPage?: number;
+    /**
+     * Whether to disable all button.
+     */
     disabled?: boolean;
+    /**
+     * Handler that is called when the active page is changed.
+     */
     onPageChange?: (offset: number) => void;
+    /**
+     * The active page in controlled mode.
+     */
     page?: number;
+    /**
+     * The total number of pages to display.
+     */
     total: number;
   }
 >;

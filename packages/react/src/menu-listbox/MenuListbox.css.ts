@@ -20,6 +20,9 @@ export const listbox = recipe({
   ],
 
   variants: {
+    /**
+     * Whether to set the min-width to the width of the trigger.
+     */
     minW: {
       "0": {},
       trigger: style({

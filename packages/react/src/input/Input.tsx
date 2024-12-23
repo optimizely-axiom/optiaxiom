@@ -16,8 +16,17 @@ type InputProps = InputControlProps<
   "input",
   Pick<ComponentPropsWithoutRef<typeof InputRoot>, "addonPointerEvents"> &
     styles.InputVariants & {
+      /**
+       * Display content inside the input at the end.
+       */
       addonAfter?: ReactNode;
+      /**
+       * Display content inside the input at the start.
+       */
       addonBefore?: ReactNode;
+      /**
+       * Control the native input `size` attribute.
+       */
       htmlSize?: number;
     }
 >;

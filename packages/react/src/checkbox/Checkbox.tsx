@@ -15,7 +15,13 @@ import * as styles from "./Checkbox.css";
 type CheckboxProps = BoxProps<
   typeof ToggleInputHiddenInput,
   {
+    /**
+     * Add helper text after the label.
+     */
     description?: ReactNode;
+    /**
+     * Display a partially checked icon instead of the regular checkmark.
+     */
     indeterminate?: boolean;
   }
 >;

@@ -57,6 +57,9 @@ export const item = recipe({
   ],
 
   variants: {
+    /**
+     * Control the appearance by selecting between the different item types.
+     */
     intent: {
       danger: style({
         vars: {

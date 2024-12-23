@@ -15,10 +15,21 @@ export type ButtonProps<
   T,
   ExtendProps<
     {
+      /**
+       * Display content inside the button but after `children`.
+       */
       addonAfter?: ReactNode;
+      /**
+       * Display content inside the button but before `children`.
+       */
       addonBefore?: ReactNode;
-      children?: ReactNode;
+      /**
+       * Display an icon before or after the button content or omit `children` to only show the icon.
+       */
       icon?: ReactNode;
+      /**
+       * Control whether to show the icon before or after the button content.
+       */
       iconPosition?: "end" | "start";
     },
     P

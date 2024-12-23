@@ -15,6 +15,9 @@ export const banner = recipe({
     },
   ],
   variants: {
+    /**
+     * Control the appearance by selecting between the different banner types.
+     */
     intent: {
       danger: {
         bg: "bg.error.light",

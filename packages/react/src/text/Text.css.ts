@@ -19,6 +19,9 @@ export const text = recipe({
   },
 
   variants: {
+    /**
+     * Truncate the text at specific number of lines.
+     */
     lineClamp: mapValues(
       {
         "1": "1",
@@ -28,6 +31,9 @@ export const text = recipe({
       } as const,
       (WebkitLineClamp) => [...lineClampBase, style({ WebkitLineClamp })],
     ),
+    /**
+     * Whether to truncate the text and add an ellipsis at the end.
+     */
     truncate: {
       true: [
         ...truncateBase,

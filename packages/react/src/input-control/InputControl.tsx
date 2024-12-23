@@ -18,7 +18,13 @@ export type InputControlProps<
   T,
   ExtendProps<
     styles.ControlVariants & {
+      /**
+       * Whether the input is disabled.
+       */
       disabled?: boolean;
+      /**
+       * Whether to show the input error state.
+       */
       error?: boolean;
     },
     P

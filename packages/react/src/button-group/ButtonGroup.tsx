@@ -1,4 +1,4 @@
-import { forwardRef, type ReactNode } from "react";
+import { forwardRef } from "react";
 
 import type { BoxProps } from "../box";
 
@@ -8,7 +8,9 @@ import * as styles from "./ButtonGroup.css";
 type ButtonGroupProps = BoxProps<
   "div",
   {
-    children: ReactNode;
+    /**
+     * The orientation/layout of the buttons inside the group.
+     */
     orientation?: "horizontal" | "vertical";
   }
 >;

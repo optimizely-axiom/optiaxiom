@@ -26,6 +26,9 @@ export const avatar = recipe({
   ],
 
   variants: {
+    /**
+     * Control the avatar fallback background and text colors.
+     */
     colorScheme: {
       neutral: {
         bg: "bg.avatar.neutral",
@@ -36,6 +39,9 @@ export const avatar = recipe({
         color: "fg.avatar.purple",
       },
     },
+    /**
+     * Control the size of the avatar.
+     */
     size: {
       xs: [
         {

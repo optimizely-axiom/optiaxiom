@@ -69,6 +69,9 @@ export const thumb = recipe({
     }),
   ],
   variants: {
+    /**
+     * Control the size of the switch.
+     */
     size: {
       md: {
         size: "2xs",

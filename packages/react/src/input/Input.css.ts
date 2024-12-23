@@ -21,6 +21,9 @@ export const root = recipe({
 
 export const input = recipe({
   variants: {
+    /**
+     * Control the appearance of the input.
+     */
     appearance: {
       default: {
         textAlign: "start",
@@ -29,6 +32,9 @@ export const input = recipe({
         textAlign: "end",
       },
     },
+    /**
+     * Control the size of the input.
+     */
     size: {
       md: {
         py: "4",

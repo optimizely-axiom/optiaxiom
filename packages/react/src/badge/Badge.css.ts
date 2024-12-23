@@ -30,6 +30,9 @@ export const badge = recipe({
     }),
   ],
   variants: {
+    /**
+     * Control the appearance by selecting between the different badge types.
+     */
     intent: {
       danger: style({
         vars: {
@@ -76,6 +79,9 @@ export const badge = recipe({
         },
       }),
     },
+    /**
+     * Control the style of the badge.
+     */
     variant: {
       light: style({
         backgroundColor: subtleBackgroundColorVar,
