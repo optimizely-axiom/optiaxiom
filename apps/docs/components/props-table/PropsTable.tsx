@@ -48,10 +48,10 @@ export function PropsTable({
 
   return (
     <>
-      {baseName && (
-        <PropsTableDescription
-          name={component.displayName?.replace("@optiaxiom/react/", "")}
-        >
+      <PropsTableDescription
+        name={component.displayName?.replace("@optiaxiom/react/", "")}
+      >
+        {baseName && (
           <Text fontSize="lg" mt="16">
             Supports all{" "}
             <Link href={`/components/${kebabCase(baseName)}#props`}>
@@ -63,8 +63,8 @@ export function PropsTable({
               : ""}
             .
           </Text>
-        </PropsTableDescription>
-      )}
+        )}
+      </PropsTableDescription>
       <Table>
         <Thead>
           <tr>
@@ -134,6 +134,12 @@ function PropsTableDescription({
           <Code>{name}</Code> is extended from the{" "}
           <Code>{name.toLowerCase()}</Code> HTML element and supports all props
           that <Code>{name.toLowerCase()}</Code> supports.
+        </Text>
+      )}
+      {name === "Tooltip" && (
+        <Text fontSize="lg" mt="16">
+          <Code>{name}</Code> forwards all props to the <Code>content</Code>{" "}
+          component.
         </Text>
       )}
     </>
