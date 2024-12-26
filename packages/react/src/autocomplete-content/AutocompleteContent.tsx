@@ -38,7 +38,7 @@ export const AutocompleteContent = forwardRef<
     return (
       isOpen && (
         <>
-          <Portal>
+          <Portal asChild>
             <VisuallyHidden>
               <Box role="status">
                 {loading
