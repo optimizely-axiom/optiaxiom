@@ -17,11 +17,11 @@ export type ListboxItemProps<
   ExtendProps<
     styles.ItemVariants & {
       /**
-       * Display content inside the item but after `children`.
+       * Display content inside the item after `children`.
        */
       addonAfter?: ReactNode;
       /**
-       * Display content inside the item but before `children`.
+       * Display content inside the item before `children`.
        */
       addonBefore?: ReactNode;
       /**
