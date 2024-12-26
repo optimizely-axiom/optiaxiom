@@ -1,11 +1,19 @@
+import type { ReactNode } from "react";
+
 import { HeadingLink } from "@/components/mdx";
-import { Heading } from "@optiaxiom/react";
+import { Code, Heading } from "@optiaxiom/react";
 import { type DocsThemeConfig, useConfig } from "nextra-theme-docs";
 
 import styles from "./theme.config.module.css";
 
 export default {
   components: {
+    code: (props: { children?: ReactNode }) =>
+      typeof props.children === "string" ? (
+        <Code {...props} />
+      ) : (
+        <code className="nextra-code" {...props} />
+      ),
     h1: ({ ...props }) => (
       <Heading {...props} className={styles.heading} fontSize="4xl" mt="8" />
     ),
