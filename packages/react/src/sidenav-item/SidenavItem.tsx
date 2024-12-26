@@ -1,4 +1,4 @@
-import { cloneElement, forwardRef, isValidElement } from "react";
+import { forwardRef } from "react";
 
 import { Box } from "../box";
 import { Button, type ButtonProps } from "../button";
@@ -6,7 +6,7 @@ import { Flex } from "../flex";
 import { useSidenavContext } from "../sidenav-context";
 import { Tooltip } from "../tooltip";
 import { Transition } from "../transition";
-import { fallbackSpan } from "../utils";
+import { decorateChildren, fallbackSpan } from "../utils";
 import * as styles from "./SidenavItem.css";
 
 export type SidenavItemProps = ButtonProps<
@@ -21,28 +21,17 @@ export const SidenavItem = forwardRef<HTMLButtonElement, SidenavItemProps>(
   ({ active, addonAfter, asChild, children, className, ...props }, ref) => {
     const { animations, expanded } = useSidenavContext("SidenavItem");
 
-    let tooltip = children;
-    if (asChild) {
-      const newElement = isValidElement(children) ? children : null;
-      tooltip = newElement ? newElement.props.children : tooltip;
-      children = newElement
-        ? cloneElement(
-            newElement,
-            undefined,
-            expanded && (
-              <Transition skipAnimations={!animations}>
-                <Box whiteSpace="nowrap">{newElement.props.children}</Box>
-              </Transition>
-            ),
-          )
-        : children;
-    } else {
-      children = expanded && (
-        <Transition skipAnimations={!animations}>
-          <Box whiteSpace="nowrap">{children}</Box>
-        </Transition>
+    let tooltip = null;
+    children = decorateChildren({ asChild, children }, (children) => {
+      tooltip = children;
+      return (
+        expanded && (
+          <Transition skipAnimations={!animations}>
+            <Box whiteSpace="nowrap">{children}</Box>
+          </Transition>
+        )
       );
-    }
+    });
 
     return (
       <Flex asChild>
