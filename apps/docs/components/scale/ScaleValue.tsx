@@ -13,6 +13,7 @@ const px = (_name: string, rem: string) =>
 export const ScaleValue = ({
   hidePixels,
   hidePreview,
+  mode,
   name,
   pixelTransform = px,
   type,
@@ -20,6 +21,7 @@ export const ScaleValue = ({
 }: {
   hidePixels?: boolean;
   hidePreview?: boolean;
+  mode?: "color";
   name: string;
   pixelTransform?: (name: string, value: string, key?: string) => string;
   type: "selector" | "value";
@@ -41,13 +43,11 @@ export const ScaleValue = ({
       <>
         <Td
           display={
-            typeof size === "string" && isColorType(size)
+            mode === "color" && isColorType(size)
               ? ["none", "table-cell"]
               : undefined
           }
-          valign={
-            typeof size === "string" && isColorType(size) ? "middle" : undefined
-          }
+          valign={mode === "color" && isColorType(size) ? "middle" : undefined}
           whiteSpace="nowrap"
         >
           <Flex gap="8">
@@ -168,4 +168,5 @@ const getStyleValues = (selector: string) => {
   return styles.length === 1 ? styles[0][1] : Object.fromEntries(styles);
 };
 
-const isColorType = (value: string) => value.startsWith("#");
+const isColorType = (value: unknown) =>
+  typeof value === "string" && value.startsWith("#");
