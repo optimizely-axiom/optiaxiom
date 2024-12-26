@@ -12,7 +12,7 @@ import {
   SelectValue,
 } from "@optiaxiom/react/unstable";
 import { expect, screen, userEvent } from "@storybook/test";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type Story<T = string> = StoryObj<typeof Select<T>>;
 
@@ -269,6 +269,36 @@ export const Controlled: Story<Book> = {
 
         <Text>Selected Value: {value ? value.title : "None"}</Text>
       </Flex>
+    );
+  },
+};
+
+export const AsyncLoading: Story = {
+  render: function AsyncLoading(args) {
+    const [items, setItems] = useState<string[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+      setTimeout(() => {
+        setItems(languages);
+        setIsLoading(false);
+      }, 3000);
+    }, []);
+
+    return (
+      <Select {...args} items={items}>
+        <SelectTrigger>
+          <SelectValue placeholder="Select a language" />
+        </SelectTrigger>
+
+        <SelectContent loading={isLoading}>
+          {items.map((item) => (
+            <SelectRadioItem item={item} key={item}>
+              {item}
+            </SelectRadioItem>
+          ))}
+        </SelectContent>
+      </Select>
     );
   },
 };
