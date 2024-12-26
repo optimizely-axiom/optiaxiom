@@ -1,4 +1,5 @@
-import { cloneElement, forwardRef, type ReactElement } from "react";
+import { Slot } from "@radix-ui/react-slot";
+import { forwardRef, type ReactElement } from "react";
 
 import type { Sprinkles } from "../sprinkles";
 
@@ -31,7 +32,7 @@ export const Skeleton = forwardRef<HTMLSpanElement, SkeletonProps>(
         {...styles.skeleton({}, className)}
         {...props}
       >
-        {children ? cloneElement(children, { ref }) : <span ref={ref} />}
+        <Slot ref={ref}>{children ? children : <span />}</Slot>
       </Box>
     );
   },
