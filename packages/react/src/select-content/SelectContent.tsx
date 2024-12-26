@@ -39,6 +39,7 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
           <ModalLayer asChild>
             <MenuListbox
               asChild
+              minW={loading ? "trigger" : undefined}
               provider="popper"
               {...styles.content({}, className)}
               {...sprinkleProps}

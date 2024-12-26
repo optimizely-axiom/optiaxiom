@@ -30,6 +30,7 @@ import {
   IconUser,
   IconVideo,
 } from "@tabler/icons-react";
+import { useEffect, useState } from "react";
 
 export default {
   args: {
@@ -281,5 +282,34 @@ export const Group: Story = {
         </DropdownMenuContent>
       </>
     ),
+  },
+};
+
+export const AsyncLoading: Story = {
+  render: function AsyncLoading(args) {
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 3000);
+    }, []);
+
+    return (
+      <DropdownMenu {...args}>
+        <DropdownMenuTrigger>Content</DropdownMenuTrigger>
+
+        <DropdownMenuContent loading={isLoading}>
+          {!isLoading && (
+            <>
+              <DropdownMenuItem>New task</DropdownMenuItem>
+              <DropdownMenuItem>Copy task</DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem intent="danger">Delete task</DropdownMenuItem>
+            </>
+          )}
+        </DropdownMenuContent>
+      </DropdownMenu>
+    );
   },
 };
