@@ -22,10 +22,13 @@ type SkeletonProps = BoxProps<
 >;
 
 export const Skeleton = forwardRef<HTMLSpanElement, SkeletonProps>(
-  ({ children, circle, className, h, rounded, w, ...props }, ref) => {
+  (
+    { asChild = true, children, circle, className, h, rounded, w, ...props },
+    ref,
+  ) => {
     return (
       <Box
-        asChild
+        asChild={asChild}
         h={h}
         rounded={circle || rounded === "full" ? "full" : (rounded ?? "sm")}
         w={w ?? (circle || rounded === "full" ? h : undefined)}
