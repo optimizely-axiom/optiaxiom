@@ -1,16 +1,18 @@
+import { PopperContent } from "@radix-ui/react-popper";
 import { Portal } from "@radix-ui/react-portal";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { forwardRef } from "react";
 
 import { useAutocompleteContext } from "../autocomplete-context";
 import { Box, type BoxProps } from "../box";
+import { CommandListbox } from "../command-listbox";
 import { MenuListbox } from "../menu-listbox";
 import { ModalLayer } from "../modal-layer";
 import { Spinner } from "../spinner";
-import { AutocompleteContentImpl } from "./AutocompleteContentImpl";
+import * as styles from "./AutocompleteContent.css";
 
 type AutocompleteContentProps = BoxProps<
-  typeof AutocompleteContentImpl,
+  typeof PopperContent,
   {
     loading?: boolean;
   }
@@ -19,40 +21,59 @@ type AutocompleteContentProps = BoxProps<
 export const AutocompleteContent = forwardRef<
   HTMLDivElement,
   AutocompleteContentProps
->(({ children, loading, ...props }, ref) => {
-  const { isOpen, items } = useAutocompleteContext("AutocompleteContent");
+>(
+  (
+    {
+      align = "center",
+      children,
+      className,
+      loading,
+      sideOffset = 5,
+      ...props
+    },
+    ref,
+  ) => {
+    const { isOpen, items } = useAutocompleteContext("AutocompleteContent");
 
-  return (
-    isOpen && (
-      <>
-        <Portal>
-          <VisuallyHidden>
-            <Box role="status">
-              {loading
-                ? "Loading"
-                : `${items.length} option${items.length === 1 ? "" : "s"} available`}
-            </Box>
-          </VisuallyHidden>
-        </Portal>
+    return (
+      isOpen && (
+        <>
+          <Portal>
+            <VisuallyHidden>
+              <Box role="status">
+                {loading
+                  ? "Loading"
+                  : `${items.length} option${items.length === 1 ? "" : "s"} available`}
+              </Box>
+            </VisuallyHidden>
+          </Portal>
 
-        <Portal asChild>
-          <ModalLayer asChild>
-            <MenuListbox asChild minW="trigger" provider="popper" {...props}>
-              <AutocompleteContentImpl ref={ref}>
-                {loading ? (
-                  <Box display="flex" justifyContent="center" p="16">
-                    <Spinner />
-                  </Box>
-                ) : (
-                  children
-                )}
-              </AutocompleteContentImpl>
-            </MenuListbox>
-          </ModalLayer>
-        </Portal>
-      </>
-    )
-  );
-});
+          <Portal asChild>
+            <ModalLayer asChild>
+              <MenuListbox asChild minW="trigger" provider="popper" {...props}>
+                <CommandListbox
+                  asChild
+                  ref={ref}
+                  {...styles.content({}, className)}
+                  {...props}
+                >
+                  <PopperContent align={align} sideOffset={sideOffset}>
+                    {loading ? (
+                      <Box display="flex" justifyContent="center" p="16">
+                        <Spinner />
+                      </Box>
+                    ) : (
+                      children
+                    )}
+                  </PopperContent>
+                </CommandListbox>
+              </MenuListbox>
+            </ModalLayer>
+          </Portal>
+        </>
+      )
+    );
+  },
+);
 
 AutocompleteContent.displayName = "@optiaxiom/react/AutocompleteContent";
