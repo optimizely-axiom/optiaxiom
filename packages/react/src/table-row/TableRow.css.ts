@@ -8,6 +8,7 @@ export const row = recipe({
   base: [
     className,
     {
+      transition: "colors",
       w: "full",
     },
     style({
