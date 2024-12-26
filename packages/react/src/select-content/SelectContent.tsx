@@ -22,7 +22,7 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
     return (
       isOpen && (
         <Portal asChild>
-          <ModalLayer>
+          <ModalLayer asChild>
             <MenuListbox asChild provider="popper">
               <SelectContentImpl ref={ref} {...props}>
                 {loading ? (

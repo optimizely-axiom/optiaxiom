@@ -36,7 +36,7 @@ export const AutocompleteContent = forwardRef<
         </Portal>
 
         <Portal asChild>
-          <ModalLayer>
+          <ModalLayer asChild>
             <MenuListbox asChild minW="trigger" provider="popper" {...props}>
               <AutocompleteContentImpl ref={ref}>
                 {loading ? (
