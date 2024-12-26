@@ -1,39 +1,44 @@
 import { type ComponentPropsWithRef, type ReactNode } from "react";
 
+import type { ExcludeProps } from "../utils";
+
 import { type BoxProps } from "../box";
 import { TooltipContent } from "../tooltip-content";
 import { TooltipRoot } from "../tooltip-root";
 import { TooltipTrigger } from "../tooltip-trigger";
 
-type TooltipProps = BoxProps<
-  typeof TooltipContent,
-  Pick<ComponentPropsWithRef<typeof TooltipRoot>, "delayDuration"> & {
-    /**
-     * Enable this option to only show the tooltip when children is partially hidden due to text overflow.
-     */
-    auto?: boolean;
-    children: ReactNode;
-    /**
-     * The tooltip content.
-     */
-    content?: ReactNode;
-    /**
-     * The initial open state in uncontrolled mode.
-     */
-    defaultOpen?: boolean;
-    /**
-     * Whether to show or hide tooltip even if there's content.
-     */
-    disabled?: boolean;
-    /**
-     * Handler that is called when the open state changes.
-     */
-    onOpenChange?: (open: boolean) => void;
-    /**
-     * The open state in controlled mode.
-     */
-    open?: boolean;
-  }
+type TooltipProps = ExcludeProps<
+  BoxProps<
+    typeof TooltipContent,
+    Pick<ComponentPropsWithRef<typeof TooltipRoot>, "delayDuration"> & {
+      /**
+       * Enable this option to only show the tooltip when children is partially hidden due to text overflow.
+       */
+      auto?: boolean;
+      children: ReactNode;
+      /**
+       * The tooltip content.
+       */
+      content?: ReactNode;
+      /**
+       * The initial open state in uncontrolled mode.
+       */
+      defaultOpen?: boolean;
+      /**
+       * Whether to show or hide tooltip even if there's content.
+       */
+      disabled?: boolean;
+      /**
+       * Handler that is called when the open state changes.
+       */
+      onOpenChange?: (open: boolean) => void;
+      /**
+       * The open state in controlled mode.
+       */
+      open?: boolean;
+    }
+  >,
+  "asChild"
 >;
 
 export function Tooltip({
