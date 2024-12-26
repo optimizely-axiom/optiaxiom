@@ -103,6 +103,7 @@ export const Scale = ({
             <ScaleValue
               hidePixels={hidePixels}
               hidePreview={hidePreview}
+              mode={mode}
               name={name}
               pixelTransform={pixelTransform}
               type={
