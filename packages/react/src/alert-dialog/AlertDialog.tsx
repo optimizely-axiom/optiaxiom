@@ -1,11 +1,23 @@
-import type { ComponentPropsWithoutRef } from "react";
-
 import * as RadixAlertDialog from "@radix-ui/react-alert-dialog";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
 
 import { AlertDialogContextProvider } from "../alert-dialog-context";
 
-type AlertDialogProps = ComponentPropsWithoutRef<typeof RadixAlertDialog.Root>;
+type AlertDialogProps = {
+  children?: React.ReactNode;
+  /**
+   * The initial open state in uncontrolled mode.
+   */
+  defaultOpen?: boolean;
+  /**
+   * Handler that is called when the open state changes.
+   */
+  onOpenChange?: (open: boolean) => void;
+  /**
+   * The open state in controlled mode.
+   */
+  open?: boolean;
+};
 
 export function AlertDialog({
   children,

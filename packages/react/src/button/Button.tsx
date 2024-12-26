@@ -16,11 +16,11 @@ export type ButtonProps<
   ExtendProps<
     {
       /**
-       * Display content inside the button but after `children`.
+       * Display content inside the button after `children`.
        */
       addonAfter?: ReactNode;
       /**
-       * Display content inside the button but before `children`.
+       * Display content inside the button before `children`.
        */
       addonBefore?: ReactNode;
       /**
