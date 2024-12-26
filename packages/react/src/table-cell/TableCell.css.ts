@@ -9,7 +9,6 @@ export const cell = recipe({
     {
       borderColor: "border.tertiary",
       p: "16",
-      transition: "colors",
     },
     style({
       verticalAlign: "middle",
