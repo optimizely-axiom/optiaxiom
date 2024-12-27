@@ -1,7 +1,6 @@
-import type { UseComboboxProps } from "downshift";
-
 import { Popper } from "@radix-ui/react-popper";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
+import { useCombobox, type UseComboboxProps } from "downshift";
 import { type ReactNode, useEffect, useState } from "react";
 
 import { AutocompleteContextProvider } from "../autocomplete-context";
@@ -85,6 +84,22 @@ export function Autocomplete<Item>({
         }}
         open={isOpen}
         selectedItem={selectedItem ?? null}
+        stateReducer={(_state, actionAndChanges) => {
+          const { changes, type } = actionAndChanges;
+
+          switch (type) {
+            case useCombobox.stateChangeTypes.InputChange:
+              return {
+                ...changes,
+                /**
+                 * Select the first option rather than resetting to -1
+                 */
+                highlightedIndex: 0,
+              };
+            default:
+              return changes;
+          }
+        }}
       >
         <AutocompleteContextProvider
           disabled={disabled}
