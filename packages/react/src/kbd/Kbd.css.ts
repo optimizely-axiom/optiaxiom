@@ -5,6 +5,7 @@ export const kbd = recipe({
     alignItems: "center",
     display: "inline-flex",
     flexDirection: "row",
+    px: "4",
     whiteSpace: "nowrap",
   },
 
