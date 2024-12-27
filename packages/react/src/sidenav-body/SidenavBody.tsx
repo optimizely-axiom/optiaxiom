@@ -2,29 +2,25 @@ import { forwardRef } from "react";
 
 import { type BoxProps } from "../box";
 import { Flex } from "../flex";
-import { extractSprinkles } from "../sprinkles";
 
-type SidenavBodyProps = BoxProps<"ul">;
+type SidenavBodyProps = BoxProps<"div">;
 
-export const SidenavBody = forwardRef<HTMLUListElement, SidenavBodyProps>(
+export const SidenavBody = forwardRef<HTMLDivElement, SidenavBodyProps>(
   ({ children, ...props }, ref) => {
-    const { restProps, sprinkleProps } = extractSprinkles(props);
-
     return (
       <Flex
-        asChild
         flex="1"
         gap="4"
         justifyContent="start"
         overflowX="hidden"
         overflowY="auto"
         py="8"
+        ref={ref}
+        role="list"
         w="full"
-        {...sprinkleProps}
+        {...props}
       >
-        <ul ref={ref} {...restProps}>
-          {children}
-        </ul>
+        {children}
       </Flex>
     );
   },
