@@ -21,7 +21,7 @@ type DataTableHeaderCellProps = BoxProps<
 export const DataTableHeaderCell = forwardRef<
   HTMLTableCellElement,
   DataTableHeaderCellProps
->(({ children, header, ...props }) => {
+>(({ children, header, ...props }, ref) => {
   const sortDir = header.column.getIsSorted();
 
   return (
@@ -35,6 +35,7 @@ export const DataTableHeaderCell = forwardRef<
               : "descending"
           : undefined
       }
+      ref={ref}
       {...props}
     >
       {header.column.columnDef.enableSorting ? (
