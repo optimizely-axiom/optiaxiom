@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import {
-  Avatar,
   Box,
   DropdownMenu,
   DropdownMenuContent,
@@ -72,9 +71,9 @@ export default {
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <SidenavAccountItem
-                avatar={<Avatar src="https://i.pravatar.cc/150?img=10" />}
                 name="Rhaenyra Targaryen"
                 organization="Optimizely"
+                src="https://i.pravatar.cc/150?img=10"
               />
             </DropdownMenuTrigger>
 
@@ -113,9 +112,9 @@ export const NotCollapsible: Story = {
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <SidenavAccountItem
-                avatar={<Avatar src="https://i.pravatar.cc/150?img=10" />}
                 name="Rhaenyra Targaryen"
                 organization="Optimizely"
+                src="https://i.pravatar.cc/150?img=10"
               />
             </DropdownMenuTrigger>
 

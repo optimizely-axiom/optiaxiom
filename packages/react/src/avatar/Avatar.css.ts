@@ -12,9 +12,9 @@ export const avatar = recipe({
       fontWeight: "500",
       justifyContent: "center",
       overflow: "hidden",
+      rounded: "full",
     },
     style({
-      borderRadius: theme.borderRadius.full,
       userSelect: "none",
 
       selectors: {
