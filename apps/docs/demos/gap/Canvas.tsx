@@ -1,4 +1,3 @@
-import { yellowStripes } from "@/demos/stripes";
 import { Box } from "@optiaxiom/react";
 import {
   Children,
@@ -11,7 +10,7 @@ import {
 import { Item } from "./Item";
 
 export const Canvas = ({ children }: { children: ReactElement }) => (
-  <Box asChild rounded="sm" style={yellowStripes} w="full">
+  <Box asChild rounded="sm" w="full">
     {cloneElement(
       children,
       {},
