@@ -31,5 +31,9 @@
     "**/apps/docs/.next/**": true,
     "**/node_modules/*/**": true
   },
+  "search.exclude": {
+    "**/dist": true,
+    "**/lib": true
+  },
   "typescript.tsdk": "node_modules/typescript/lib"
 }
