@@ -30,6 +30,9 @@ export default {
     h3: ({ ...props }) => (
       <HeadingLink fontSize="xl" level="3" mt="32" {...props} />
     ),
+    h4: ({ ...props }) => (
+      <HeadingLink fontSize="lg" level="4" mt="24" {...props} />
+    ),
     p: ({ ...props }) => (
       <p
         {...props}

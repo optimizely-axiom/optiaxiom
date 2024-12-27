@@ -18,8 +18,8 @@ export function HeadingLink({
   return (
     <Heading {...props}>
       <Box className={styles.hidden} size="0">
-        {/* @ts-expect-error -- Dummy header to ensure active item in TOC gets updated */}
-        <H6 id={id} tag="span" />
+        {/* Dummy header to ensure active item in TOC gets updated */}
+        <H6 id={id} style={{ marginTop: 0 }} />
       </Box>
 
       <Box asChild className={styles.group} pl="8">
