@@ -9,7 +9,13 @@ import { extractSprinkles } from "../sprinkles";
 type CommandItemProps = BoxProps<
   "div",
   {
+    /**
+     * The exact item object from the collection.
+     */
     item: unknown;
+    /**
+     * Whether to override the default selected state.
+     */
     selected?: boolean;
   }
 >;

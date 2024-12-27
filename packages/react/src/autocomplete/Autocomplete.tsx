@@ -13,13 +13,37 @@ type AutocompleteProps<Item> = Pick<
   "isItemDisabled" | "items" | "itemToKey" | "itemToString"
 > & {
   children?: ReactNode;
+  /**
+   * The initial open state in uncontrolled mode.
+   */
   defaultOpen?: boolean;
+  /**
+   * The initial selected value in uncontrolled mode.
+   */
   defaultValue?: Item | null;
+  /**
+   * Whether the autocomplete input is disabled.
+   */
   disabled?: boolean;
+  /**
+   * Handler that is called when input value changes.
+   */
   onInputValueChange?: (inputValue: string) => void;
+  /**
+   * Handler that is called when the open state changes.
+   */
   onOpenChange?: (open: boolean) => void;
+  /**
+   * Handler that is called when the selected value changes.
+   */
   onValueChange?: (value: Item | null) => void;
+  /**
+   * The open state in controlled mode.
+   */
   open?: boolean;
+  /**
+   * The selected value in controlled mode.
+   */
   value?: Item | null;
 };
 

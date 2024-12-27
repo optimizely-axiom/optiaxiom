@@ -1,13 +1,18 @@
 import { Cards } from "@/components/cards";
 import { Demo } from "@/components/demo";
 import { PropsTable } from "@/components/props-table";
-import { Usage } from "@/demos/autocomplete";
+import {
+  ComplexUsage,
+  ControlledUsage,
+  CreatableUsage,
+  LoadingUsage,
+  Usage,
+} from "@/demos/autocomplete";
 import { SearchInput } from "@optiaxiom/react";
 import {
   Autocomplete,
   AutocompleteContent,
   AutocompleteEmpty,
-  AutocompleteItem,
   AutocompleteRadioItem,
   AutocompleteTrigger,
 } from "@optiaxiom/react/unstable";
@@ -29,7 +34,6 @@ import {
   Autocomplete,
   AutocompleteContent,
   AutocompleteEmpty,
-  AutocompleteItem,
   AutocompleteRadioItem,
   AutocompleteTrigger,
 } from "@optiaxiom/react";
@@ -39,13 +43,60 @@ export default () => (
     <AutocompleteTrigger />
 
     <AutocompleteContent>
-      <AutocompleteItem />
       <AutocompleteRadioItem />
       <AutocompleteEmpty />
     </AutocompleteContent>
   </Autocomplete>
 );
 ```
+
+### Data
+
+Use the `items` prop to pass the collection of data to `Autocomplete`. Items can be an array of primitive types such as strings or it can be an array of objects.
+
+In case item is an object you need to pass some additional props for `Autocomplete` to work.
+
+<Demo component={ComplexUsage} />
+
+### Filtering
+
+Use the `onInputValueChange` handler to handle filtering your list of items as the user is typing.
+
+<Demo component={ComplexUsage} />
+
+### Controlled
+
+Use the `value` and `defaultValue` props on `Autocomplete` to toggle between controlled and uncontrolled usage. And combine it with `onValueChange` to listen for changes to the value.
+
+<Demo component={ControlledUsage} />
+
+### Creatable
+
+We can combine filtering and controlled usage to build **creatable** autocompletes by allowing the user to add new entries on the fly.
+
+<Demo component={CreatableUsage} />
+
+### Trigger
+
+By default we use the `Input` component for the autocomplete trigger which accepts all of the existing input props.
+
+### Item
+
+The `AutocompleteRadioItem` component accepts `icon`, `addonBefore`, `addonAfter`, and `description` props for additional content inside the items.
+
+<Demo component={ComplexUsage} />
+
+### Empty
+
+Use the `AutocompleteEmpty` component when there are no available items or suggestions.
+
+<Demo component={ComplexUsage} />
+
+### Loading
+
+Use the `loading` prop on `AutocompleteContent` to show a loading spinner if the initial data for the autocomplete has not loaded yet.
+
+<Demo component={LoadingUsage} />
 
 ### Related
 
@@ -56,7 +107,6 @@ export default () => (
 <PropsTable component={Autocomplete} />
 <PropsTable component={AutocompleteTrigger} />
 <PropsTable component={AutocompleteContent} />
-<PropsTable component={AutocompleteItem} />
 <PropsTable component={AutocompleteRadioItem} />
 <PropsTable component={AutocompleteEmpty} />
 

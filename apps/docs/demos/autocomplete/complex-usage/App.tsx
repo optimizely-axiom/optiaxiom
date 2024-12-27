@@ -1,3 +1,4 @@
+import { Box } from "@optiaxiom/react";
 import {
   Autocomplete,
   AutocompleteContent,
@@ -14,11 +15,16 @@ export function App() {
 
   return (
     <Autocomplete
+      isItemDisabled={(item) => Boolean(item.isDisabled)}
       items={items}
+      itemToKey={(item) => item?.value}
+      itemToString={(item) => (item ? item.label : "")}
       onInputValueChange={(inputValue) => {
         setItems(
           inputValue
-            ? colors.filter((color) => new RegExp(inputValue, "i").test(color))
+            ? colors.filter((color) =>
+                new RegExp(inputValue, "i").test(color.label),
+              )
             : colors,
         );
       }}
@@ -27,8 +33,17 @@ export function App() {
 
       <AutocompleteContent>
         {items.map((item) => (
-          <AutocompleteRadioItem item={item} key={item}>
-            {item}
+          <AutocompleteRadioItem
+            icon={
+              <Box
+                rounded="sm"
+                style={{ aspectRatio: 1, backgroundColor: item.color }}
+              />
+            }
+            item={item}
+            key={item.value}
+          >
+            {item.label}
           </AutocompleteRadioItem>
         ))}
 

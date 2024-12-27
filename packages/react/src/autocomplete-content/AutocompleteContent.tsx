@@ -3,6 +3,8 @@ import { Portal } from "@radix-ui/react-portal";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { forwardRef } from "react";
 
+import type { ExcludeProps } from "../utils";
+
 import { useAutocompleteContext } from "../autocomplete-context";
 import { Box, type BoxProps } from "../box";
 import { CommandListbox } from "../command-listbox";
@@ -11,11 +13,22 @@ import { ModalLayer } from "../modal-layer";
 import { Spinner } from "../spinner";
 import * as styles from "./AutocompleteContent.css";
 
-type AutocompleteContentProps = BoxProps<
-  typeof PopperContent,
-  {
-    loading?: boolean;
-  }
+type AutocompleteContentProps = ExcludeProps<
+  BoxProps<
+    typeof PopperContent,
+    {
+      loading?: boolean;
+    }
+  >,
+  | "alignOffset"
+  | "arrowPadding"
+  | "avoidCollisions"
+  | "collisionBoundary"
+  | "collisionPadding"
+  | "hideWhenDetached"
+  | "onPlaced"
+  | "sticky"
+  | "updatePositionStrategy"
 >;
 
 export const AutocompleteContent = forwardRef<
