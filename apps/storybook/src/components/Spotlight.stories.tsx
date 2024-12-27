@@ -233,18 +233,20 @@ export const Basic: Story<Item & { items?: Item[] }> = {
                     }
                     item={item}
                   >
-                    <Highlight content={item.title} query={inputValue}>
-                      {(chunk) => (
-                        <Box
-                          asChild
-                          borderB="2"
-                          borderColor="border.focus"
-                          fontWeight="600"
-                        >
-                          {chunk}
-                        </Box>
-                      )}
-                    </Highlight>
+                    <Box>
+                      <Highlight content={item.title} query={inputValue}>
+                        {(chunk) => (
+                          <Box
+                            asChild
+                            borderB="2"
+                            borderColor="border.focus"
+                            fontWeight="600"
+                          >
+                            {chunk}
+                          </Box>
+                        )}
+                      </Highlight>
+                    </Box>
                   </SpotlightRadioItem>
                 )}
               </Fragment>
