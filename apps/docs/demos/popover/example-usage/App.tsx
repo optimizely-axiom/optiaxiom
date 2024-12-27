@@ -28,7 +28,7 @@ export function App() {
         Display
       </PopoverTrigger>
 
-      <PopoverContent gap="12" px="0">
+      <PopoverContent align="end" gap="12" px="0">
         <SegmentedControl defaultValue="list" gap="12" px="16">
           <Tooltip content="List">
             <SegmentedControlItem
