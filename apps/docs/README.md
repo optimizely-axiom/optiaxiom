@@ -55,22 +55,6 @@ import { Button } from "@optiaxiom/react";
 <PropsTable component={Button} />
 ```
 
-By default we link to the `Box` component for additional props from the table - but this can be controlled using the `base` prop:
-
-```mdx
-import { Heading, Text } from "@optiaxiom/react";
-
-<PropsTable base={Text} component={Heading} />
-```
-
-We can completely remove it by setting it to `false`:
-
-```mdx
-import { DropdownMenu } from "@optiaxiom/react";
-
-<PropsTable base={false} component={DropdownMenu} />
-```
-
 ## Contributing
 
 ### Development
