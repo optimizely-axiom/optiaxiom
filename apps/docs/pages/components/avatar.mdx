@@ -35,35 +35,31 @@ Use the `size` prop to modify the size of the avatar.
 
 <Demo component={SizeUsage} />
 
-## Fallback
-
-### How is fallback determined
+### Fallback
 
 In case `src` is not provided, or the browser fails to load the image, `Avatar` component will show a fallback instead.
 
 The fallback renders `name`, `children`, and `fallback` in that order.
 
-### Name
+#### Name
 
 Generate initials from the `name` prop if `src` is not provided or fails to load.
 
 <Demo component={FallbackNameUsage} />
 
-### Children
+#### Children
 
 Render `children` prop if `src` and `name` are not provided.
 
 <Demo component={FallbackChildrenUsage} />
 
-### Icon
+#### Icon
 
 Render an icon based on `fallback` prop if neither `src`, `name`, and `children` are given or fails to load.
 
 By default `fallback` is set to `user`.
 
 <Demo component={FallbackIconUsage} />
-
-## Groups
 
 ### Grouping avatars
 

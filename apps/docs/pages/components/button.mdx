@@ -46,15 +46,17 @@ For accessibility please make sure to include text that explains why the button 
 
 <Demo component={DisabledUsage} />
 
-## Icons
+### Icons
 
-### Left and right icons
+Use the `icon` prop to add icons to a button.
 
-Use the `icon` prop to add icons to a button. Icons are placed to the left by default but that can be configured using the `iconPosition` prop.
+#### Left and right icons
+
+Icons are placed to the left by default but can be placed to the right using the `iconPosition` prop.
 
 <Demo component={IconUsage} />
 
-### Icon button
+#### Icon only button
 
 Use the `icon` prop and omit the `children` to display an icon only button.
 
@@ -62,31 +64,27 @@ For accessibility please make sure to always include an `aria-label` prop for sc
 
 <Demo component={IconOnlyUsage} />
 
-## Groups
-
 ### Grouping buttons
 
 Use the `<ButtonGroup />` component to group related buttons together.
 
 <Demo component={GroupUsage} />
 
-## Links
+### Links
 
-### Button as links
+#### Button as links
 
-Set `asChild` to `true` and pass an `<a>` element as the child to render buttons as links.
+Set `asChild` to `true` and wrap children in an `<a>` element to render buttons as links.
 
 <Demo component={LinkUsage} />
 
-### Disabled button links
+#### Disabled button links
 
 Make sure to prevent interactions manually using `event.preventDefault()` since `<a>` elements do not support the `disabled` prop.
 
 Alternatively you can use our `Link` component which supports the `disabled` prop.
 
 <Demo component={LinkDisabledUsage} />
-
-## Loading
 
 ### Loading state
 
@@ -95,8 +93,6 @@ Set the `loading` prop to `true` to show a loading spinner and set `disabled` to
 For accessibility please make sure to include text that explains why the button is disabled or use a tooltip.
 
 <Demo component={LoadingUsage} />
-
-## Examples
 
 ### File upload
 
