@@ -5,11 +5,13 @@ export const code = recipe({
     {
       bg: "bg.secondary",
       display: "inline",
-      px: "4",
       rounded: "sm",
     },
     style({
       fontSize: "0.9em",
+      fontVariantLigatures: "none",
+      paddingBlock: "0.1em",
+      paddingInline: "0.25em",
       WebkitFontSmoothing: "auto",
     }),
   ],
