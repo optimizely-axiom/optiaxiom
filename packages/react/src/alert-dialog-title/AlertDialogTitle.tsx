@@ -1,15 +1,16 @@
 import * as RadixAlertDialog from "@radix-ui/react-alert-dialog";
 import { forwardRef, type ReactNode } from "react";
 
+import type { BoxProps } from "../box";
+
 import { Flex } from "../flex";
-import { Heading, type HeadingProps } from "../heading";
+import { Heading } from "../heading";
 import { Icon } from "../icon";
 import { IconTriangleExclamationSolid } from "../icons/IconTriangleExclamationSolid";
-import { extractSprinkles } from "../sprinkles";
 import { fallbackSpan } from "../utils";
 
-type AlertDialogTitleProps = HeadingProps<
-  typeof RadixAlertDialog.Title,
+type AlertDialogTitleProps = BoxProps<
+  "div",
   {
     /**
      * We show an alert icon before the title by default but this can be replaced with any other icon.
@@ -22,9 +23,8 @@ export const AlertDialogTitle = forwardRef<
   HTMLHeadingElement,
   AlertDialogTitleProps
 >(({ addonBefore, children, ...props }, ref) => {
-  const { restProps, sprinkleProps } = extractSprinkles(props);
   return (
-    <Flex flexDirection="row" gap="8" p="24" pb="16" {...sprinkleProps}>
+    <Flex flexDirection="row" gap="8" p="24" pb="16" ref={ref} {...props}>
       <Icon asChild color="fg.error">
         {addonBefore ? (
           fallbackSpan(addonBefore)
@@ -33,14 +33,7 @@ export const AlertDialogTitle = forwardRef<
         )}
       </Icon>
 
-      <Heading
-        asChild
-        color="fg.default"
-        fontWeight="500"
-        level="3"
-        ref={ref}
-        {...restProps}
-      >
+      <Heading asChild color="fg.default" fontWeight="500" level="3">
         <RadixAlertDialog.Title>{children}</RadixAlertDialog.Title>
       </Heading>
     </Flex>
