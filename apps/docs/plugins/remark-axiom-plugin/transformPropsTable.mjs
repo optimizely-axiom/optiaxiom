@@ -27,7 +27,7 @@ export function transformPropsTable(tree) {
           needsImport &&
             `import { PropTypeDescription } from "@/components/prop-type";`,
           "",
-          `### \`${component}\``,
+          `### ${component}`,
           "",
           `<PropsTable
             propItems={${JSON.stringify(doc.props)}}
