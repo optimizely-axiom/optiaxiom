@@ -26,8 +26,9 @@ export const ListboxItemIndicator = forwardRef<
   }
 
   return (
-    <Box asChild {...sprinkleProps}>
-      {children ?? <IconCheck ref={ref} {...restProps} />}
+    // @ts-expect-error -- too complex
+    <Box asChild ref={ref} {...props}>
+      {children ?? <IconCheck />}
     </Box>
   );
 });
