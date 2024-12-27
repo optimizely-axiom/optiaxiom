@@ -56,19 +56,19 @@ Use the `items` prop to pass the collection of data to `Autocomplete`. Items can
 
 In case item is an object you need to pass some additional props for `Autocomplete` to work.
 
-<Demo component={ComplexUsage} />
+<Demo component={ComplexUsage} meta={{ "App.tsx": "{18,20-21}" }} />
 
 ### Filtering
 
 Use the `onInputValueChange` handler to handle filtering your list of items as the user is typing.
 
-<Demo component={ComplexUsage} />
+<Demo component={ComplexUsage} meta={{ "App.tsx": "{22-30}" }} />
 
 ### Controlled
 
 Use the `value` and `defaultValue` props on `Autocomplete` to toggle between controlled and uncontrolled usage. And combine it with `onValueChange` to listen for changes to the value.
 
-<Demo component={ControlledUsage} />
+<Demo component={ControlledUsage} meta={{ "App.tsx": "{14,30-31}" }} />
 
 ### Creatable
 
@@ -84,19 +84,19 @@ By default we use the `Input` component for the autocomplete trigger which accep
 
 The `AutocompleteRadioItem` component accepts `icon`, `addonBefore`, `addonAfter`, and `description` props for additional content inside the items.
 
-<Demo component={ComplexUsage} />
+<Demo component={ComplexUsage} meta={{ "App.tsx": "{37-42}" }} />
 
 ### Empty
 
 Use the `AutocompleteEmpty` component when there are no available items or suggestions.
 
-<Demo component={ComplexUsage} />
+<Demo component={ComplexUsage} meta={{ "App.tsx": "{50-52}" }} />
 
 ### Loading
 
 Use the `loading` prop on `AutocompleteContent` to show a loading spinner if the initial data for the autocomplete has not loaded yet.
 
-<Demo component={LoadingUsage} />
+<Demo component={LoadingUsage} meta={{ "App.tsx": "{34}" }} />
 
 ### Related
 

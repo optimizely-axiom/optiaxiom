@@ -51,6 +51,7 @@ export function transformDemos(tree) {
       const metaAttr = node.attributes.find(
         (attr) => attr.name === "meta",
       )?.value;
+      const metaAttrParsed = JSON.parse(metaAttr?.value ?? "{}");
       const iframe = node.attributes.find(
         (attr) => attr.name === "iframe",
       )?.value;
@@ -114,6 +115,7 @@ export function transformDemos(tree) {
                 children: [
                   {
                     lang: path.extname(fileName).slice(1),
+                    meta: metaAttrParsed[fileName],
                     type: "code",
                     value: fs
                       .readFileSync(path.join(filesDir, fileName), "utf8")
