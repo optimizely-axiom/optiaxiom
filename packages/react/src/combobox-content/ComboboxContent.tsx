@@ -3,6 +3,7 @@ import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import type { ComboboxDialogContent } from "../combobox-dialog-content";
 import type { ComboboxPopoverContent } from "../combobox-popover-content";
+import type { ExcludeProps } from "../utils";
 
 import { useComboboxContext } from "../combobox-context";
 import { Command } from "../command";
@@ -10,12 +11,15 @@ import { CommandListbox } from "../command-listbox";
 import { useFieldContext } from "../field-context";
 import { useResponsiveMatches } from "../use-responsive-matches";
 
-type ComboboxContentProps = ComponentPropsWithoutRef<
-  typeof ComboboxDialogContent | typeof ComboboxPopoverContent
+type ComboboxContentProps = ExcludeProps<
+  ComponentPropsWithoutRef<
+    typeof ComboboxDialogContent | typeof ComboboxPopoverContent
+  >,
+  "size"
 >;
 
 export const ComboboxContent = forwardRef<HTMLDivElement, ComboboxContentProps>(
-  ({ children, size: _size, ...props }, ref) => {
+  ({ children, ...props }, ref) => {
     const p = useResponsiveMatches({
       base: "8",
       sm: "4",
