@@ -1,5 +1,4 @@
 import {
-  Avatar,
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
@@ -52,9 +51,9 @@ export function App() {
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <SidenavAccountItem
-              avatar={<Avatar src="https://i.pravatar.cc/150?img=10" />}
               name="Rhaenyra Targaryen"
               organization="Optimizely"
+              src="https://i.pravatar.cc/150?img=10"
             />
           </DropdownMenuTrigger>
 

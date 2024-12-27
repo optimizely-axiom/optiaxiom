@@ -1,5 +1,6 @@
-import { forwardRef, type ReactNode } from "react";
+import { forwardRef } from "react";
 
+import { Avatar } from "../avatar";
 import { Box, type BoxProps } from "../box";
 import { Flex } from "../flex";
 import { IconEllipsis } from "../icons/IconEllipsis";
@@ -10,16 +11,16 @@ import { Transition } from "../transition";
 export type SidenavAccountItemProps = BoxProps<
   "div",
   {
-    avatar: ReactNode;
     name?: string;
     organization?: string;
+    src?: string;
   }
 >;
 
 export const SidenavAccountItem = forwardRef<
   HTMLButtonElement,
   SidenavAccountItemProps
->(({ avatar, name, organization, ...props }, ref) => {
+>(({ name, organization, src, ...props }, ref) => {
   const { animations, expanded } = useSidenavContext("SidenavAccountItem");
 
   return (
@@ -34,9 +35,14 @@ export const SidenavAccountItem = forwardRef<
         {...props}
       >
         <button ref={ref}>
-          <Box asChild flex="none" my="2" rounded="sm">
-            {avatar}
-          </Box>
+          <Avatar
+            aria-hidden
+            flex="none"
+            my="2"
+            name={name}
+            rounded="sm"
+            src={src}
+          />
 
           {expanded && (
             <Transition skipAnimations={!animations}>
