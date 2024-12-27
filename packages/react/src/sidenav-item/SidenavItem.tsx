@@ -34,34 +34,32 @@ export const SidenavItem = forwardRef<HTMLButtonElement, SidenavItemProps>(
     });
 
     return (
-      <Flex asChild>
-        <li>
-          <Tooltip
-            content={!expanded && (props["aria-label"] || tooltip)}
-            side="right"
+      <Flex role="listitem">
+        <Tooltip
+          content={!expanded && (props["aria-label"] || tooltip)}
+          side="right"
+        >
+          <Button
+            addonAfter={
+              expanded && (
+                <Box asChild ml="auto">
+                  {fallbackSpan(addonAfter)}
+                </Box>
+              )
+            }
+            appearance="subtle"
+            asChild={asChild}
+            data-state={active ? "active" : undefined}
+            justifyContent={expanded ? "start" : "center"}
+            ref={ref}
+            size="lg"
+            transition={animations ? "colors" : undefined}
+            {...styles.item({}, className)}
+            {...props}
           >
-            <Button
-              addonAfter={
-                expanded && (
-                  <Box asChild ml="auto">
-                    {fallbackSpan(addonAfter)}
-                  </Box>
-                )
-              }
-              appearance="subtle"
-              asChild={asChild}
-              data-state={active ? "active" : undefined}
-              justifyContent={expanded ? "start" : "center"}
-              ref={ref}
-              size="lg"
-              transition={animations ? "colors" : undefined}
-              {...styles.item({}, className)}
-              {...props}
-            >
-              {children}
-            </Button>
-          </Tooltip>
-        </li>
+            {children}
+          </Button>
+        </Tooltip>
       </Flex>
     );
   },

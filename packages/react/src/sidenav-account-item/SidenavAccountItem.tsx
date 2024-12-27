@@ -23,43 +23,41 @@ export const SidenavAccountItem = forwardRef<
   const { animations, expanded } = useSidenavContext("SidenavAccountItem");
 
   return (
-    <Flex asChild my="8">
-      <li>
-        <Flex
-          asChild
-          flexDirection="row"
-          gap="8"
-          mx="8"
-          p="4"
-          textAlign="start"
-          {...props}
-        >
-          <button ref={ref}>
-            <Box asChild flex="none" my="2" rounded="sm">
-              {avatar}
-            </Box>
+    <Flex my="8" role="listitem">
+      <Flex
+        asChild
+        flexDirection="row"
+        gap="8"
+        mx="8"
+        p="4"
+        textAlign="start"
+        {...props}
+      >
+        <button ref={ref}>
+          <Box asChild flex="none" my="2" rounded="sm">
+            {avatar}
+          </Box>
 
-            {expanded && (
-              <Transition skipAnimations={!animations}>
-                <Flex flex="1" flexDirection="row" gap="8" overflowX="hidden">
-                  <Flex flex="1" gap="0" overflowX="hidden">
-                    <Text color="fg.default" fontWeight="500" truncate>
-                      {name}
-                    </Text>
-                    <Text color="fg.tertiary" fontSize="sm" truncate>
-                      {organization}
-                    </Text>
-                  </Flex>
-
-                  <Box asChild>
-                    <IconEllipsis />
-                  </Box>
+          {expanded && (
+            <Transition skipAnimations={!animations}>
+              <Flex flex="1" flexDirection="row" gap="8" overflowX="hidden">
+                <Flex flex="1" gap="0" overflowX="hidden">
+                  <Text color="fg.default" fontWeight="500" truncate>
+                    {name}
+                  </Text>
+                  <Text color="fg.tertiary" fontSize="sm" truncate>
+                    {organization}
+                  </Text>
                 </Flex>
-              </Transition>
-            )}
-          </button>
-        </Flex>
-      </li>
+
+                <Box asChild>
+                  <IconEllipsis />
+                </Box>
+              </Flex>
+            </Transition>
+          )}
+        </button>
+      </Flex>
     </Flex>
   );
 });
