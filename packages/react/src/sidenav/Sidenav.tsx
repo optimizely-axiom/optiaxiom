@@ -48,7 +48,7 @@ export const Sidenav = forwardRef<HTMLElement, SidenavProps>(
           setExpanded(flag);
         }}
       >
-        <Flex borderR="1" w="fit" {...props}>
+        <Flex borderR="1" h="full" w="fit" {...props}>
           <Flex
             asChild
             bg="bg.default"
