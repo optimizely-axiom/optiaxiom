@@ -12,14 +12,43 @@ import {
 import { PropType } from "../prop-type";
 import { Table, Td, Th, Thead, Tr } from "../table";
 
+const mapComponentToBase: Record<string, string> = {
+  AlertDialogAction: "Button",
+  AlertDialogCancel: "Button",
+  AlertDialogTrigger: "Button",
+  AutocompleteTrigger: "SearchInput",
+  ComboboxInput: "Input",
+  ComboboxSeparator: "Separator",
+  ComboboxTrigger: "Button",
+  DialogClose: "Button",
+  DialogDescription: "Text",
+  DialogTitle: "Heading",
+  DialogTrigger: "Button",
+  DisclosureTrigger: "Button",
+  DropdownMenuSeparator: "Separator",
+  DropdownMenuTrigger: "Button",
+  Heading: "Text",
+  KBd: "Code",
+  ModalLayer: "",
+  PopoverTrigger: "Button",
+  SearchInput: "Input",
+  SegmentedControlItem: "Button",
+  SelectSeparator: "Separator",
+  SelectTrigger: "Button",
+  SidenavItem: "Button",
+  SidenavToggle: "Button",
+  TabsTrigger: "Button",
+  ToastAction: "Button",
+  ToastTitle: "Text",
+  ToggleButton: "Button",
+};
+
 export function PropsTable({
-  base,
   children,
   component,
   exclude = [],
   propItems,
 }: {
-  base?: ComponentType | false;
   children: ReactNode;
   component: ComponentType;
   exclude?: string[];
@@ -30,29 +59,19 @@ export function PropsTable({
       .filter((child) => isValidElement(child))
       .map((child) => [child.props.name, child.props.children]),
   );
-  const isBox = component.displayName?.endsWith("/Box");
 
-  if (
-    !propItems.find((prop) => prop.name === "asChild") &&
-    base === undefined
-  ) {
-    base = false;
-  }
-
+  const componentName =
+    component?.displayName?.replace("@optiaxiom/react/", "") ?? "";
   const baseName =
-    base && "displayName" in base && base?.displayName
-      ? base.displayName.replace("@optiaxiom/react/", "")
-      : isBox || base === false
-        ? null
-        : "Box";
+    mapComponentToBase[componentName] ??
+    (propItems.find((prop) => prop.name === "asChild") ? "Box" : "");
+  const isBox = componentName === "Box";
 
   return (
     <>
-      <PropsTableDescription
-        name={component.displayName?.replace("@optiaxiom/react/", "")}
-      >
-        {baseName && (
-          <Text fontSize="lg" mt="16">
+      <PropsTableDescription baseName={baseName} name={componentName}>
+        {baseName && !isBox && (
+          <>
             Supports all{" "}
             <Link href={`/components/${kebabCase(baseName)}#props`}>
               {baseName}
@@ -61,8 +80,8 @@ export function PropsTable({
             {propItems && propItems?.length > 0
               ? " in addition to its own"
               : ""}
-            .
-          </Text>
+            .{" "}
+          </>
         )}
       </PropsTableDescription>
       <Table>
@@ -114,34 +133,108 @@ function kebabCase(str: string) {
 }
 
 function PropsTableDescription({
+  baseName,
   children,
   name,
 }: {
+  baseName: string;
   children?: ReactNode;
-  name?: string;
+  name: string;
 }) {
   return (
-    <>
+    <Text fontSize="lg" mt="16">
       {children}
-      {(name === "Checkbox" || name === "Radio" || name === "Switch") && (
-        <Text fontSize="lg" mt="16">
-          <Code>{name}</Code> is extended from <Code>input</Code> and supports
-          all props that <Code>input</Code> supports.
-        </Text>
+      {name === "Tooltip" ? (
+        <>
+          Doesn&apos;t render its own HTML element and forwards all props to the{" "}
+          <Code>content</Code> component instead.
+        </>
+      ) : ["ModalLayer", "ToastTitle"].includes(name) ? (
+        <>
+          Renders a <Code>&lt;div&gt;</Code> element.
+        </>
+      ) : name !== "Box" && !children ? (
+        "Doesn't render its own HTML element."
+      ) : ["DialogTitle"].includes(name) ? (
+        <>
+          Renders an <Code>&lt;h2&gt;</Code> element.
+        </>
+      ) : ["SidenavAccountItem"].includes(name) ? (
+        <>
+          Renders a <Code>&lt;button&gt;</Code> element.
+        </>
+      ) : ["Avatar", "Badge", "Skeleton"].includes(name) ? (
+        <>
+          Renders a <Code>&lt;span&gt;</Code> element.
+        </>
+      ) : matches(["Button"], baseName, name) ? (
+        <>
+          Renders a <Code>&lt;button&gt;</Code> element.
+        </>
+      ) : ["Code"].includes(name) ? (
+        <>
+          Renders a <Code>&lt;code&gt;</Code> element.
+        </>
+      ) : ["Checkbox", "Radio", "Switch"].includes(name) ? (
+        <>
+          Renders a <Code>&lt;div&gt;</Code> element but forwards all props to a
+          hidden <Code>&lt;input&gt;</Code> element.
+        </>
+      ) : ["Heading"].includes(name) ? (
+        <>
+          Renders an <Code>&lt;h1&gt;</Code> element.
+        </>
+      ) : matches(["Input", "Textarea"], baseName, name) ? (
+        <>
+          Renders a <Code>&lt;div&gt;</Code> element but forwards all props to
+          an inner{" "}
+          <Code>&lt;{name === "Textarea" ? "textarea" : "input"}&gt;</Code>{" "}
+          element.
+        </>
+      ) : ["Kbd"].includes(name) ? (
+        <>
+          Renders a <Code>&lt;kbd&gt;</Code> element.
+        </>
+      ) : ["Link"].includes(name) ? (
+        <>
+          Renders an <Code>&lt;a&gt;</Code> element.
+        </>
+      ) : ["Table"].includes(name) ? (
+        <>
+          Renders a <Code>&lt;table&gt;</Code> element.
+        </>
+      ) : ["TableBody"].includes(name) ? (
+        <>
+          Renders a <Code>&lt;tbody&gt;</Code> element.
+        </>
+      ) : ["TableCell"].includes(name) ? (
+        <>
+          Renders a <Code>&lt;td&gt;</Code> element.
+        </>
+      ) : ["TableHeader"].includes(name) ? (
+        <>
+          Renders a <Code>&lt;thead&gt;</Code> element.
+        </>
+      ) : ["TableHeaderCell"].includes(name) ? (
+        <>
+          Renders a <Code>&lt;th&gt;</Code> element.
+        </>
+      ) : ["TableRow"].includes(name) ? (
+        <>
+          Renders a <Code>&lt;tr&gt;</Code> element.
+        </>
+      ) : matches(["Text"], baseName, name) ? (
+        <>
+          Renders a <Code>&lt;p&gt;</Code> element.
+        </>
+      ) : (
+        <>
+          Renders a <Code>&lt;div&gt;</Code> element.
+        </>
       )}
-      {(name === "Input" || name === "Textarea") && (
-        <Text fontSize="lg" mt="16">
-          <Code>{name}</Code> is extended from the{" "}
-          <Code>{name.toLowerCase()}</Code> HTML element and supports all props
-          that <Code>{name.toLowerCase()}</Code> supports.
-        </Text>
-      )}
-      {name === "Tooltip" && (
-        <Text fontSize="lg" mt="16">
-          <Code>{name}</Code> forwards all props to the <Code>content</Code>{" "}
-          component.
-        </Text>
-      )}
-    </>
+    </Text>
   );
 }
+
+const matches = (items: string[], baseName: string, name: string) =>
+  items.includes(baseName) || items.includes(name);
