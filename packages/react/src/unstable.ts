@@ -1,3 +1,4 @@
+export * from "./app-shell";
 export * from "./autocomplete";
 export * from "./autocomplete-content";
 export * from "./autocomplete-empty";
