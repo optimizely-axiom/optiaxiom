@@ -250,7 +250,6 @@ export const People: Story<(typeof users)[number]> = {
       <Combobox
         {...args}
         items={items}
-        itemToKey={(user) => user?.id}
         itemToString={(user) => (user ? user.name : "")}
         onInputValueChange={(inputValue) => {
           setItems(
@@ -446,7 +445,6 @@ export const Controlled: Story<Book> = {
           item === controlledActions.clear && value.length === 0
         }
         items={[...items, controlledActions.clear, controlledActions.done]}
-        itemToKey={(book) => book?.id}
         itemToString={(book) => (book ? String(book.title) : "")}
         onInputValueChange={(inputValue) => {
           setItems(

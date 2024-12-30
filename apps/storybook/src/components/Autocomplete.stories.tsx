@@ -211,7 +211,6 @@ export const Controlled: Story<(typeof books)[number]> = {
           {...args}
           isItemDisabled={(book) => book.disabled}
           items={items}
-          itemToKey={(book) => book?.id}
           itemToString={(book) => book?.title ?? ""}
           onInputValueChange={(inputValue) => {
             setItems(

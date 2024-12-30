@@ -257,7 +257,6 @@ export const Controlled: Story<Book> = {
     ),
     isItemDisabled: (book) => book.disabled,
     items: books,
-    itemToKey: (book) => book?.id,
     itemToString: (book) => book?.title ?? "",
   },
   render: function Controlled(args) {
