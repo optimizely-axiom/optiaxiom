@@ -133,7 +133,7 @@ const COMPONENTS = {
   },
   Icons: {
     description:
-      "FontAwesome icon kit for use with the Optimizely Design System",
+      "Font Awesome icon kit for use with the Optimizely Design System",
     href: "/guides/icons/",
     icon: <IconsIcon />,
     title: "Icons",

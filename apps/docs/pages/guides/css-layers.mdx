@@ -1,6 +1,6 @@
 # CSS Layers
 
-All Axiom styles are declared inside an [`@layer`](https://developer.mozilla.org/en-US/docs/Web/CSS/@layer) rule called `optiaxiom` to allow controlling the order of precedence of styles.
+All Axiom styles are declared inside an [@layer](https://developer.mozilla.org/en-US/docs/Web/CSS/@layer) rule called `optiaxiom` to allow controlling the order of precedence of styles.
 
 ```css
 @layer optiaxiom {
@@ -40,7 +40,7 @@ If you are importing a third party library then you can include the layer in the
 @import "nextra-theme-docs/style.css" layer(reset);
 ```
 
-### `optiaxiom.base` layer
+### Base layer
 
 Because Axiom components import their own CSS files, depending on how your bundler is configured, in certain cases you might end up loading vendor styles before any of your application styles. This will force `optiaxiom` layer to always come first and prevent you from adding any other layer before it.
 
