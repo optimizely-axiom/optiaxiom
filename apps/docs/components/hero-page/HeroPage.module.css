@@ -42,6 +42,7 @@
 }
 
 .button {
+  --angle: 0turn;
   --bg: color-mix(
     in srgb,
     var(--ax-colors-bg-accent-light) 60%,
