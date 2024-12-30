@@ -1,4 +1,5 @@
 export { App as AddonUsage } from "./addon-usage/App";
+export { App as AlertDialogUsage } from "./alert-dialog-usage/App";
 export { App as AppearanceUsage } from "./appearance-usage/App";
 export { App as ControlledUsage } from "./controlled-usage/App";
 export { App as DescriptionUsage } from "./description-usage/App";
