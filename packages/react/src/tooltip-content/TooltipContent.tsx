@@ -26,10 +26,7 @@ type TooltipContentProps = ExcludeProps<
 >;
 
 export const TooltipContent = forwardRef<HTMLDivElement, TooltipContentProps>(
-  (
-    { align = "center", children, className, side = "bottom", ...props },
-    ref,
-  ) => {
+  ({ align = "center", children, className, side = "top", ...props }, ref) => {
     const { open } = useTooltipContext("TooltipContent");
 
     return (
