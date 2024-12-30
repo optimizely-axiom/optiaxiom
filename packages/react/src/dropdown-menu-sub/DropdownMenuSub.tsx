@@ -1,10 +1,23 @@
 import * as RadixMenu from "@radix-ui/react-dropdown-menu";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
-import { type ComponentPropsWithoutRef } from "react";
 
 import { DropdownMenuSubContextProvider } from "../dropdown-menu-sub-context";
 
-type MenuSubProps = ComponentPropsWithoutRef<typeof RadixMenu.Sub>;
+type MenuSubProps = {
+  children?: React.ReactNode;
+  /**
+   * The initial open state in uncontrolled mode.
+   */
+  defaultOpen?: boolean;
+  /**
+   * Handler that is called when the open state changes.
+   */
+  onOpenChange?: (open: boolean) => void;
+  /**
+   * The open state in controlled mode.
+   */
+  open?: boolean;
+};
 
 export function DropdownMenuSub({
   children,

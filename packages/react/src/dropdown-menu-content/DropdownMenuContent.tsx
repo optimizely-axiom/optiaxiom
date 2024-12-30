@@ -13,6 +13,9 @@ type DropdownMenuContentProps = ExcludeProps<
   BoxProps<
     typeof RadixMenu.Content,
     Pick<ComponentPropsWithoutRef<typeof MenuListbox>, "minW"> & {
+      /**
+       * Whether to show loading spinner inside the menu.
+       */
       loading?: boolean;
     }
   >,

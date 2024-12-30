@@ -7,14 +7,25 @@ import { usePortalPatch } from "../downshift";
 
 type CommandProps<Item> = Pick<
   UseComboboxProps<Item>,
-  | "inputId"
-  | "isItemDisabled"
-  | "items"
-  | "itemToKey"
-  | "itemToString"
-  | "selectedItem"
-  | "stateReducer"
+  "inputId" | "selectedItem" | "stateReducer"
 > & {
+  /**
+   * Return true if items need to be marked as disabled and skipped from keyboard navigation.
+   */
+  isItemDisabled?: UseComboboxProps<Item>["isItemDisabled"];
+  /**
+   * The items we want to render.
+   */
+  items: UseComboboxProps<Item>["items"];
+  /**
+   * Return a unique key for each item when the object reference will change during renders.
+   */
+  itemToKey?: UseComboboxProps<Item>["itemToKey"];
+  /**
+   * Return a string representation of items if they are objects. Needed to show selected values inside triggers.
+   */
+  itemToString?: UseComboboxProps<Item>["itemToString"];
+} & {
   children: ReactNode;
   inputValue?: string;
   itemToSubItems?: (value: Item) => Item[] | null;
