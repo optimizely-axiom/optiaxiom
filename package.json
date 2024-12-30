@@ -12,7 +12,7 @@
     "dev": "pnpm run --parallel -F !web-components dev",
     "lint": "oas-lint",
     "release": "pnpm build && changeset publish",
-    "test": "pnpm -F react test"
+    "test": "vitest run --project=@optiaxiom/globals --project=@optiaxiom/react"
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.11",

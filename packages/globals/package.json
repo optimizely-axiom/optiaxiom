@@ -29,7 +29,8 @@
   "scripts": {
     "build": "rm -rf dist && NODE_ENV=production rollup -c",
     "dev": "rm -rf dist && rollup -cw",
-    "lint": "oas-lint"
+    "lint": "oas-lint",
+    "test": "vitest"
   },
   "dependencies": {
     "@fontsource-variable/fira-code": "^5.1.0",
