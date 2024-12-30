@@ -3,6 +3,7 @@ import { Demo } from "@/components/demo";
 import { PropsTable } from "@/components/props-table";
 import {
   AddonUsage,
+  AlertDialogUsage,
   AppearanceUsage,
   ControlledUsage,
   DescriptionUsage,
@@ -42,13 +43,13 @@ Use the `DropdownMenu`, `DropdownMenuTrigger`, and `DropdownMenuContent` compone
 
 Use the `open` and `defaultOpen` props to toggle between controlled and uncontrolled usage. And combine it with `onOpenChange` to listen for changes to the state.
 
-<Demo component={ControlledUsage} />
+<Demo component={ControlledUsage} meta="{16,24-25}" />
 
 ### Non modal usage
 
 By default scrolling and interactions with outside elements is disabled when menu is open. Set `modal` prop to `false` in order to render a non-modal dropdown.
 
-<Demo component={ModalUsage} />
+<Demo component={ModalUsage} meta="/modal={false}/" />
 
 ### Trigger
 
@@ -56,7 +57,7 @@ By default scrolling and interactions with outside elements is disabled when men
 
 By default we use the `Button` component for the menu trigger which accepts all of the existing button props.
 
-<Demo component={TriggerUsage} />
+<Demo component={TriggerUsage} meta="{15-17}" />
 
 ### Content
 
@@ -64,7 +65,7 @@ By default we use the `Button` component for the menu trigger which accepts all 
 
 Use the `align` and `side` props on `DropdownMenuContent` to change the default position of the dropdown.
 
-<Demo component={PositionUsage} />
+<Demo component={PositionUsage} meta="/align={align}/ /side={side}/" />
 
 ### Item
 
@@ -90,19 +91,27 @@ Use the `disabled` prop on menu items to disable them.
 
 Use the `onSelect` prop to handle selection of items.
 
-<Demo component={SelectUsage} />
+<Demo component={SelectUsage} meta="{26,33}" />
 
 #### Left and right addons
 
-Use the `addonBefore` and `addonAfter` prop to add icons, text, or any other element to the start or end of the menu items.
+Use the `icon`, `addonBefore`, and `addonAfter` props to add icons, text, or any other element to the start or end of the menu items.
 
-<Demo meta="/addonBefore/ /addonAfter/" component={AddonUsage} />
+<Demo meta="{20-24,25,32-36,37}" component={AddonUsage} />
 
 ### Label
 
 Use the `DropdownMenuLabel` component to render a read-only label.
 
-<Demo meta="/DropdownMenuLabel/" component={Usage} />
+<Demo meta="{5,17}" component={Usage} />
+
+### Dialogs inside menus
+
+Combine dropdown menus with dialog to show alerts when selecting an item.
+
+Make sure to enable `asChild` prop on `AlertDialogTrigger` and call `event.preventDefault()` in the item `onSelect` handler.
+
+<Demo component={AlertDialogUsage} meta="{25,29}" />
 
 ### Related
 
