@@ -70,6 +70,12 @@ Use the `value` and `defaultValue` props on `Autocomplete` to toggle between con
 
 <Demo component={ControlledUsage} meta={{ "App.tsx": "{14,30-31}" }} />
 
+### Disabled
+
+Use the optional `isItemDisabled` prop to configure which items should be disabled. The callback is passed the item and the index number as arguments and expects a boolean result.
+
+<Demo component={ComplexUsage} meta={{ "App.tsx": "{18}", "data.ts": "{3}" }} />
+
 ### Creatable
 
 We can combine filtering and controlled usage to build **creatable** autocompletes by allowing the user to add new entries on the fly.
