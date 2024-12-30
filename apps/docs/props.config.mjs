@@ -8,7 +8,7 @@ export default {
     ],
     border: [
       {
-        path: "/border/",
+        path: "/border-width/",
         props: ["border", "borderB", "borderL", "borderR", "borderT"],
       },
     ],
