@@ -2,14 +2,28 @@ import * as RadixMenu from "@radix-ui/react-dropdown-menu";
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import type { BoxProps } from "../box";
+import type { ExcludeProps } from "../utils";
 
 import { AnimatePresence } from "../animate-presence";
 import { useDropdownMenuSubContext } from "../dropdown-menu-sub-context";
 import { MenuListbox } from "../menu-listbox";
 
-type MenuSubContentProps = BoxProps<
-  typeof RadixMenu.SubContent,
-  Pick<ComponentPropsWithoutRef<typeof MenuListbox>, "minW">
+type MenuSubContentProps = ExcludeProps<
+  BoxProps<
+    typeof RadixMenu.SubContent,
+    Pick<ComponentPropsWithoutRef<typeof MenuListbox>, "minW">
+  >,
+  | "alignOffset"
+  | "arrowPadding"
+  | "avoidCollisions"
+  | "collisionBoundary"
+  | "collisionPadding"
+  | "forceMount"
+  | "hideWhenDetached"
+  | "loop"
+  | "sideOffset"
+  | "sticky"
+  | "updatePositionStrategy"
 >;
 
 export const DropdownMenuSubContent = forwardRef<

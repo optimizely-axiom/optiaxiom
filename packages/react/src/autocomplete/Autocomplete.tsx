@@ -1,7 +1,12 @@
 import { Popper } from "@radix-ui/react-popper";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
-import { useCombobox, type UseComboboxProps } from "downshift";
-import { type ReactNode, useEffect, useState } from "react";
+import { useCombobox } from "downshift";
+import {
+  type ComponentPropsWithoutRef,
+  type ReactNode,
+  useEffect,
+  useState,
+} from "react";
 
 import { AutocompleteContextProvider } from "../autocomplete-context";
 import { Command } from "../command";
@@ -9,7 +14,7 @@ import { useFieldContext } from "../field-context";
 import { useEffectEvent } from "../use-event";
 
 type AutocompleteProps<Item> = Pick<
-  UseComboboxProps<Item>,
+  ComponentPropsWithoutRef<typeof Command<Item>>,
   "isItemDisabled" | "items" | "itemToKey" | "itemToString"
 > & {
   children?: ReactNode;

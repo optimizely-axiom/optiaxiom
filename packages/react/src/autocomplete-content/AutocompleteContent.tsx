@@ -17,6 +17,9 @@ type AutocompleteContentProps = ExcludeProps<
   BoxProps<
     typeof PopperContent,
     {
+      /**
+       * Whether to show loading spinner inside the menu.
+       */
       loading?: boolean;
     }
   >,

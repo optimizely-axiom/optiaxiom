@@ -2,6 +2,8 @@ import { PopperContent } from "@radix-ui/react-popper";
 import { Portal } from "@radix-ui/react-portal";
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
+import type { ExcludeProps } from "../utils";
+
 import { Box, type BoxProps } from "../box";
 import { MenuListbox } from "../menu-listbox";
 import { ModalLayer } from "../modal-layer";
@@ -10,11 +12,26 @@ import { Spinner } from "../spinner";
 import { extractSprinkles } from "../sprinkles";
 import * as styles from "./SelectContent.css";
 
-type SelectContentProps = BoxProps<
-  typeof PopperContent,
-  Pick<ComponentPropsWithoutRef<typeof MenuListbox>, "minW"> & {
-    loading?: boolean;
-  }
+type SelectContentProps = ExcludeProps<
+  BoxProps<
+    typeof PopperContent,
+    Pick<ComponentPropsWithoutRef<typeof MenuListbox>, "minW"> & {
+      /**
+       * Whether to show loading spinner inside the menu.
+       */
+      loading?: boolean;
+    }
+  >,
+  | "alignOffset"
+  | "arrowPadding"
+  | "avoidCollisions"
+  | "collisionBoundary"
+  | "collisionPadding"
+  | "hideWhenDetached"
+  | "onPlaced"
+  | "sideOffset"
+  | "sticky"
+  | "updatePositionStrategy"
 >;
 
 export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
