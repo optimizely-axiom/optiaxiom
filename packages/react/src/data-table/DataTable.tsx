@@ -84,10 +84,12 @@ export const DataTable = forwardRef<HTMLDivElement, DataTableProps>(
                         : undefined,
                     })}
                   >
-                    {flexRender(
-                      header.column.columnDef.header,
-                      header.getContext(),
-                    )}
+                    {header.isPlaceholder
+                      ? null
+                      : flexRender(
+                          header.column.columnDef.header,
+                          header.getContext(),
+                        )}
                   </DataTableHeaderCell>
                 ))}
               </TableRow>

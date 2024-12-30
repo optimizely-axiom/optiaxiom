@@ -35,6 +35,7 @@ export const DataTableHeaderCell = forwardRef<
               : "descending"
           : undefined
       }
+      colSpan={header.colSpan}
       ref={ref}
       {...props}
     >
