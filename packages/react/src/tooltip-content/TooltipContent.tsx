@@ -20,13 +20,14 @@ type TooltipContentProps = ExcludeProps<
   | "collisionPadding"
   | "forceMount"
   | "hideWhenDetached"
+  | "sideOffset"
   | "sticky"
   | "updatePositionStrategy"
 >;
 
 export const TooltipContent = forwardRef<HTMLDivElement, TooltipContentProps>(
   (
-    { align = "center", children, className, sideOffset = 5, ...props },
+    { align = "center", children, className, side = "bottom", ...props },
     ref,
   ) => {
     const { open } = useTooltipContext("TooltipContent");
@@ -41,7 +42,8 @@ export const TooltipContent = forwardRef<HTMLDivElement, TooltipContentProps>(
                   align={align}
                   arrowPadding={6}
                   ref={ref}
-                  sideOffset={sideOffset}
+                  side={side}
+                  sideOffset={5}
                 >
                   <Text fontSize="sm">{children}</Text>
 

@@ -24,6 +24,7 @@ type DropdownMenuContentProps = ExcludeProps<
   | "forceMount"
   | "hideWhenDetached"
   | "loop"
+  | "sideOffset"
   | "sticky"
   | "updatePositionStrategy"
 >;
@@ -31,7 +32,7 @@ type DropdownMenuContentProps = ExcludeProps<
 export const DropdownMenuContent = forwardRef<
   HTMLDivElement,
   DropdownMenuContentProps
->(({ align = "start", children, loading, sideOffset = 4, ...props }, ref) => {
+>(({ align = "start", children, loading, ...props }, ref) => {
   const { open } = useDropdownMenuContext("DropdownMenuContent");
 
   return (
@@ -44,7 +45,7 @@ export const DropdownMenuContent = forwardRef<
             provider="dropdown-menu"
             {...props}
           >
-            <RadixMenu.Content align={align} ref={ref} sideOffset={sideOffset}>
+            <RadixMenu.Content align={align} ref={ref} sideOffset={4}>
               {loading ? (
                 <Box display="flex" justifyContent="center" p="16">
                   <Spinner />

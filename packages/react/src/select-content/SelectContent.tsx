@@ -25,7 +25,6 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
       className,
       loading,
       side = "bottom",
-      sideOffset = 5,
       ...props
     },
     ref,
@@ -45,7 +44,7 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
               {...sprinkleProps}
               {...downshift.getMenuProps({ ref, ...restProps })}
             >
-              <PopperContent align={align} side={side} sideOffset={sideOffset}>
+              <PopperContent align={align} side={side} sideOffset={5}>
                 {loading ? (
                   <Box display="flex" justifyContent="center" p="16">
                     <Spinner />
