@@ -1,4 +1,4 @@
-import { Box, Text } from "@optiaxiom/react";
+import { Box, Text, theme } from "@optiaxiom/react";
 import { type ComponentPropsWithRef, type ReactElement } from "react";
 
 export const Item = ({
@@ -8,17 +8,19 @@ export const Item = ({
 }) => {
   return (
     <Box
-      bg="bg.information"
+      bg="bg.avatar.purple"
       border="2"
-      borderColor="border.disabled"
       display="grid"
       placeItems="center"
       rounded="full"
       size="56"
-      style={{ marginLeft: "-12px" }}
+      style={{
+        borderColor: theme.colors["bg.default"],
+        marginLeft: "-12px",
+      }}
       {...children.props}
     >
-      <Text color="fg.white" fontFamily="mono" fontWeight="600">
+      <Text fontFamily="mono" fontWeight="600">
         {children.props.children}
       </Text>
     </Box>

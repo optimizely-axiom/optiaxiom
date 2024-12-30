@@ -1,6 +1,6 @@
 import type { ComponentPropsWithRef, ReactElement } from "react";
 
-import { yellowStripes } from "@/demos/stripes";
+import { stripes } from "@/demos/stripes";
 import { Box, type Sprinkles } from "@optiaxiom/react";
 
 import { Item } from "./Item";
@@ -13,7 +13,7 @@ export const Container = ({
   h?: Sprinkles["h"];
 }) => {
   return (
-    <Box h={h} p="8" rounded="sm" style={yellowStripes}>
+    <Box h={h} p="8" rounded="sm" style={stripes}>
       <Item>
         <Box p="8" {...children.props} />
       </Item>

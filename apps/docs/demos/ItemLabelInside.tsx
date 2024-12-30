@@ -8,14 +8,14 @@ export const ItemLabelInside = ({
 }) => {
   return (
     <Box
-      bg="bg.information"
+      bg="bg.avatar.purple"
       display="grid"
       p="16"
       placeItems="center"
       rounded="sm"
       {...children.props}
     >
-      <Text color="fg.white" fontFamily="mono" fontWeight="600">
+      <Text fontFamily="mono" fontWeight="600">
         {children.props.children}
       </Text>
     </Box>
