@@ -1,8 +1,6 @@
 import { forwardRef } from "react";
 
-import type { BoxProps } from "../box";
-
-import { Code } from "../code";
+import { Box, type BoxProps } from "../box";
 import * as styles from "./Kbd.css";
 
 type KbdProps = BoxProps<
@@ -31,7 +29,7 @@ const mapKeyToCode = {
 export const Kbd = forwardRef<HTMLElement, KbdProps>(
   ({ children, className, keys, variant = "outline", ...props }, ref) => {
     return (
-      <Code asChild {...styles.kbd({ variant }, className)} {...props}>
+      <Box asChild {...styles.kbd({ variant }, className)} {...props}>
         <kbd ref={ref}>
           {keys &&
             (Array.isArray(keys) ? keys : [keys]).map((key) => (
@@ -41,7 +39,7 @@ export const Kbd = forwardRef<HTMLElement, KbdProps>(
             ))}
           {children}
         </kbd>
-      </Code>
+      </Box>
     );
   },
 );

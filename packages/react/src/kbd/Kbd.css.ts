@@ -1,13 +1,21 @@
 import { recipe, type RecipeVariants, style } from "../vanilla-extract";
 
 export const kbd = recipe({
-  base: {
-    alignItems: "center",
-    display: "inline-flex",
-    flexDirection: "row",
-    px: "4",
-    whiteSpace: "nowrap",
-  },
+  base: [
+    {
+      alignItems: "center",
+      bg: "bg.secondary",
+      display: "inline-flex",
+      flexDirection: "row",
+      px: "4",
+      rounded: "sm",
+      whiteSpace: "nowrap",
+    },
+    style({
+      fontSize: "0.9em",
+      WebkitFontSmoothing: "auto",
+    }),
+  ],
 
   variants: {
     variant: {
