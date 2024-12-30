@@ -7,16 +7,18 @@ import {
   type ReactElement,
 } from "react";
 
-import { Item } from "./Item";
+import { ItemLabelInside } from "../ItemLabelInside";
 
 export const Canvas = ({ children }: { children: ReactElement }) => (
-  <Box asChild rounded="sm" w="full">
+  <Box asChild w="full">
     {cloneElement(
       children,
       {},
       Children.toArray(children.props.children)
         .filter(isValidElement<ComponentPropsWithRef<typeof Box>>)
-        .map((item, index) => <Item key={index}>{item}</Item>),
+        .map((item, index) => (
+          <ItemLabelInside key={index}>{item}</ItemLabelInside>
+        )),
     )}
   </Box>
 );

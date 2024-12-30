@@ -10,9 +10,8 @@ export function App() {
           w=384
         </Box>
         <Box w="224">w=224</Box>
-        <Box w="80">w=80</Box>
+        <Box w="3xl">w=3xl</Box>
         <Box w="64">w=64</Box>
-        <Box w="xl">w=xl</Box>
       </Flex>
     </Canvas>
   );

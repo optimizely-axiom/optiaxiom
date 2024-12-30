@@ -1,7 +1,7 @@
 import { Box, Flex, Text } from "@optiaxiom/react";
 import { type ComponentPropsWithRef, type ReactElement } from "react";
 
-export const Item = ({
+export const ItemLabelOutside = ({
   children,
 }: {
   children: ReactElement<ComponentPropsWithRef<typeof Box>>;

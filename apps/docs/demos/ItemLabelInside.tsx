@@ -1,7 +1,7 @@
 import { Box, Text } from "@optiaxiom/react";
 import { type ComponentPropsWithRef, type ReactElement } from "react";
 
-export const Item = ({
+export const ItemLabelInside = ({
   children,
 }: {
   children: ReactElement<ComponentPropsWithRef<typeof Box>>;
@@ -12,7 +12,7 @@ export const Item = ({
       display="grid"
       p="16"
       placeItems="center"
-      rounded="md"
+      rounded="sm"
       {...children.props}
     >
       <Text color="fg.white" fontFamily="mono" fontWeight="600">

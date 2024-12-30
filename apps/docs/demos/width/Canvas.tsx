@@ -7,7 +7,7 @@ import {
   type ReactNode,
 } from "react";
 
-import { Item } from "./Item";
+import { ItemLabelInside } from "../ItemLabelInside";
 
 export const Canvas = ({
   children,
@@ -25,7 +25,9 @@ export const Canvas = ({
           { key: index },
           Children.toArray(child.props.children)
             .filter(isValidElement<ComponentPropsWithRef<typeof Box>>)
-            .map((item, index) => <Item key={index}>{item}</Item>),
+            .map((item, index) => (
+              <ItemLabelInside key={index}>{item}</ItemLabelInside>
+            )),
         ),
       )}
   </Flex>
