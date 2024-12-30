@@ -22,9 +22,13 @@ export const PropType = ({ component, prop }: PropTypeProps) => {
               "ConditionalStyleWithResponsiveArray<",
             ) ? (
               <>
-                <span style={{ color: "var(--shiki-token-function)" }}>
-                  ResponsiveValue
-                </span>
+                <Link href="/styling/responsive-styles/">
+                  <abbr className="hover:_underline" title="">
+                    <span style={{ color: "var(--shiki-token-function)" }}>
+                      ResponsiveValue
+                    </span>
+                  </abbr>
+                </Link>
                 <span style={{ color: "var(--shiki-color-text)" }}>&lt;</span>
                 {defn}
                 <span style={{ color: "var(--shiki-color-text)" }}>&gt;</span>
