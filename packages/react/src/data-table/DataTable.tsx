@@ -15,6 +15,9 @@ import * as styles from "./DataTable.css";
 type DataTableProps = BoxProps<
   "div",
   {
+    /**
+     * Pass the table instance returned from `useReactTable()` hook.
+     */
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     table: ReactTable<any>;
   }
