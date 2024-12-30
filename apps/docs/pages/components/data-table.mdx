@@ -1,7 +1,33 @@
-import { Callout } from "nextra/components";
+import { Cards } from "@/components/cards";
+import { Demo } from "@/components/demo";
+import { PropsTable } from "@/components/props-table";
+import { Usage } from "@/demos/data-table";
+import { DataTable } from "@optiaxiom/react/unstable";
 
 # DataTable
 
-<Callout emoji="🚨">
-  This page is a stub. Help us expand it by contributing!
-</Callout>
+Easy to use table and datagrids built using [TanStack Table](https://tanstack.com/table/latest).
+
+## Documentation
+
+### Install
+
+Install the required peer dependencies to start using this component:
+
+```sh npm2yarn
+npm install @tanstack/react-table
+```
+
+### Usage
+
+<Demo component={Usage} />
+
+## Props
+
+<PropsTable component={DataTable} />
+
+## Changelog
+
+### 0.3.0
+
+- Added component
