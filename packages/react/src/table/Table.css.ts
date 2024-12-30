@@ -5,7 +5,6 @@ export const table = recipe({
     {
       color: "fg.default",
       fontSize: "md",
-      w: "full",
     },
     style({
       captionSide: "bottom",
@@ -19,12 +18,22 @@ export const table = recipe({
 
   variants: {
     layout: {
-      auto: style({
-        tableLayout: "auto",
-      }),
-      fixed: style({
-        tableLayout: "fixed",
-      }),
+      auto: [
+        {
+          w: "full",
+        },
+        style({
+          tableLayout: "auto",
+        }),
+      ],
+      fixed: [
+        {
+          w: "fit",
+        },
+        style({
+          tableLayout: "fixed",
+        }),
+      ],
     },
   },
 });
