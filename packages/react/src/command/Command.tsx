@@ -71,7 +71,10 @@ export function Command<Item>({
 
   const downshift = useCombobox({
     ...props,
-    highlightedIndex,
+    highlightedIndex:
+      highlightedIndex === -1
+        ? items.findIndex((item, index) => !isItemDisabled(item, index))
+        : highlightedIndex,
     inputValue,
     isItemDisabled,
     isOpen: open,
