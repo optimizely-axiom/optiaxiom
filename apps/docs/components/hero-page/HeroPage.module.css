@@ -60,6 +60,7 @@
   background-clip: padding-box, border-box;
   box-shadow: 0 0 30px 5px
     color-mix(in srgb, var(--ax-colors-border-accent) 10%, transparent);
+  display: inline-block;
   position: relative;
   transition:
     all 0.3s,

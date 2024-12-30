@@ -17,19 +17,19 @@ export function HeroPage() {
         Axiom is the technical implementation of the Optimizely Design System.
       </Text>
 
-      <Link href="/guides">
-        <Box
-          asChild
-          color="fg.accent.strong"
-          fontSize="2xl"
-          fontWeight="600"
-          px="24"
-          py="12"
-          rounded="md"
-        >
-          <button className={styles.button}>Get started</button>
-        </Box>
-      </Link>
+      <Box
+        asChild
+        color="fg.accent.strong"
+        fontSize="2xl"
+        fontWeight="600"
+        px="24"
+        py="12"
+        rounded="md"
+      >
+        <Link className={styles.button} href="/guides">
+          Get started
+        </Link>
+      </Box>
     </Flex>
   );
 }
