@@ -15,7 +15,7 @@ type MenuSubContentProps = BoxProps<
 export const DropdownMenuSubContent = forwardRef<
   HTMLDivElement,
   MenuSubContentProps
->(({ alignOffset = -4, children, sideOffset = 0, ...props }, ref) => {
+>(({ children, ...props }, ref) => {
   const { open } = useDropdownMenuSubContext("DropdownMenuSubContent");
 
   return (
@@ -23,11 +23,7 @@ export const DropdownMenuSubContent = forwardRef<
       {open && (
         <RadixMenu.Portal forceMount>
           <MenuListbox asChild provider="dropdown-menu" {...props}>
-            <RadixMenu.SubContent
-              alignOffset={alignOffset}
-              ref={ref}
-              sideOffset={sideOffset}
-            >
+            <RadixMenu.SubContent alignOffset={-4} ref={ref} sideOffset={0}>
               {children}
             </RadixMenu.SubContent>
           </MenuListbox>

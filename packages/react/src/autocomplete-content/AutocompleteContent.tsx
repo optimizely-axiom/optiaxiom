@@ -27,6 +27,7 @@ type AutocompleteContentProps = ExcludeProps<
   | "collisionPadding"
   | "hideWhenDetached"
   | "onPlaced"
+  | "sideOffset"
   | "sticky"
   | "updatePositionStrategy"
 >;
@@ -41,7 +42,7 @@ export const AutocompleteContent = forwardRef<
       children,
       className,
       loading,
-      sideOffset = 5,
+      side = "bottom",
       ...props
     },
     ref,
@@ -70,7 +71,7 @@ export const AutocompleteContent = forwardRef<
                   {...styles.content({}, className)}
                   {...props}
                 >
-                  <PopperContent align={align} sideOffset={sideOffset}>
+                  <PopperContent align={align} side={side} sideOffset={5}>
                     {loading ? (
                       <Box display="flex" justifyContent="center" p="16">
                         <Spinner />
