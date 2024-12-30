@@ -1,4 +1,4 @@
-import { yellowStripes } from "@/demos/stripes";
+import { stripes } from "@/demos/stripes";
 import { Box, type Sprinkles } from "@optiaxiom/react";
 import { type ComponentPropsWithRef, type ReactElement } from "react";
 
@@ -12,7 +12,7 @@ export const Item = ({
   p?: Sprinkles["p"];
 }) => {
   return (
-    <Box p={p} rounded="sm" style={yellowStripes}>
+    <Box p={p} rounded="sm" style={stripes}>
       <ItemLabelInside>{children}</ItemLabelInside>
     </Box>
   );

@@ -10,8 +10,8 @@ export const Item = ({
     <Box
       bg={
         children.props.gridColumn || children.type === "div"
-          ? "bg.information"
-          : "bg.information.subtle"
+          ? "bg.avatar.purple"
+          : "bg.avatar.neutral"
       }
       display="grid"
       p="16"
@@ -19,15 +19,7 @@ export const Item = ({
       rounded="sm"
       {...children.props}
     >
-      <Text
-        color={
-          children.props.gridColumn || children.type === "div"
-            ? "fg.white"
-            : "fg.default"
-        }
-        fontFamily="mono"
-        fontWeight="600"
-      >
+      <Text fontFamily="mono" fontWeight="600">
         {children.props.children}
       </Text>
     </Box>

@@ -3,7 +3,7 @@ import { type ComponentPropsWithRef, type ReactElement } from "react";
 
 import { ItemLabelInside } from "../ItemLabelInside";
 import { ItemLabelOutside } from "../ItemLabelOutside";
-import { yellowStripes } from "../stripes";
+import { stripes } from "../stripes";
 
 export const Item = ({
   children,
@@ -15,7 +15,7 @@ export const Item = ({
   return (
     <Flex alignItems={!p ? "center" : undefined} gap="8">
       {p ? (
-        <Box p={p} rounded="sm" style={yellowStripes}>
+        <Box p={p} rounded="sm" style={stripes}>
           <ItemLabelInside>{children}</ItemLabelInside>
         </Box>
       ) : (

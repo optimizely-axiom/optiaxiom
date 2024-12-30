@@ -213,7 +213,7 @@ export const colorsDark = {
   "bg.accent.pressed": colorPalette["brand.600"],
   "bg.accent.subtle": colorPalette["brand.900"],
   "bg.avatar.neutral": colorPalette["neutral.800"],
-  "bg.avatar.purple": colorPalette["purple.800"],
+  "bg.avatar.purple": colorPalette["purple.700"],
   "bg.default": colorPalette["neutral.1000"],
   "bg.default.hovered": colorPalette["neutral.50/6"],
   "bg.default.inverse": colorPalette["neutral.100"],

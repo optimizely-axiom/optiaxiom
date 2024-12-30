@@ -19,7 +19,7 @@ export const ItemLabelOutside = ({
       </Text>
 
       <Box
-        bg="bg.information"
+        bg="bg.avatar.purple"
         display="grid"
         placeItems="center"
         size="56"

@@ -1,4 +1,4 @@
-import { yellowStripes } from "@/demos/stripes";
+import { stripes } from "@/demos/stripes";
 import { Box } from "@optiaxiom/react";
 import { type ComponentPropsWithRef, type ReactElement } from "react";
 
@@ -15,7 +15,7 @@ export const Item = ({
       display="flex"
       h="full"
       rounded="md"
-      style={yellowStripes}
+      style={stripes}
       {...children.props}
       maxH="full"
     >

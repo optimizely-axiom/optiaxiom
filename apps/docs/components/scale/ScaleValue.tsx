@@ -109,7 +109,7 @@ export const ScaleValue = ({
                 w="56"
               />
             ) : (
-              <Box bg="bg.information" h="2xs" style={{ width: size }} />
+              <Box bg="bg.avatar.purple" h="2xs" style={{ width: size }} />
             )}
           </Td>
         )}

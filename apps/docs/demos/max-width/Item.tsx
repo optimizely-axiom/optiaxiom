@@ -1,4 +1,4 @@
-import { yellowStripes } from "@/demos/stripes";
+import { stripes } from "@/demos/stripes";
 import { Box } from "@optiaxiom/react";
 import { type ComponentPropsWithRef, type ReactElement } from "react";
 
@@ -10,7 +10,7 @@ export const Item = ({
   children: ReactElement<ComponentPropsWithRef<typeof Box>>;
 }) => {
   return (
-    <Box rounded="md" style={yellowStripes}>
+    <Box rounded="md" style={stripes}>
       <ItemLabelInside>{children}</ItemLabelInside>
     </Box>
   );

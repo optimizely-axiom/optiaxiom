@@ -121,7 +121,7 @@ async function importTokens(file) {
 
   colors["bg.avatar.neutral"].dark = "neutral.800";
   colors["fg.avatar.neutral"].dark = "neutral.100";
-  colors["bg.avatar.purple"].dark = "purple.800";
+  colors["bg.avatar.purple"].dark = "purple.700";
   colors["fg.avatar.purple"].dark = "purple.100";
 
   colors["bg.default.inverse.hovered"].dark = "neutral.200";

@@ -1,15 +1,18 @@
 import { theme } from "@optiaxiom/react";
 
-export const greenStripes = {
-  backgroundColor: `oklch(from ${theme.colors["fg.success"]} l c h / 80%)`,
-  backgroundImage:
-    "linear-gradient(135deg, #fff6 10%, #0000 0, #0000 50%, #fff6 0, #fff6 60%, #0000 0, #0000)",
-  backgroundSize: "9px 9px",
-};
-
-const yellowStripeColor = `color-mix(in srgb, ${theme.colors["fg.warning.hovered"]} 50%, transparent)`;
-export const yellowStripes = {
-  backgroundColor: `oklch(from ${theme.colors["fg.warning"]} calc(l - 0.1) c h / 20%)`,
-  backgroundImage: `linear-gradient(135deg, ${yellowStripeColor} 10%, #0000 0, #0000 50%, ${yellowStripeColor} 0, ${yellowStripeColor} 60%, #0000 0, #0000)`,
+export const stripes = {
+  backgroundColor: theme.colors["bg.secondary"],
+  backgroundImage: `
+    linear-gradient(
+      135deg,
+      ${theme.colors["bg.avatar.neutral"]} 10%,
+      transparent 0,
+      transparent 50%,
+      ${theme.colors["bg.avatar.neutral"]} 0,
+      ${theme.colors["bg.avatar.neutral"]} 60%,
+      transparent 0,
+      transparent
+    )
+  `,
   backgroundSize: "7px 7px",
 };
