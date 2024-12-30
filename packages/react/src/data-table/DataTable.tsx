@@ -25,20 +25,6 @@ type DataTableProps = BoxProps<
 
 export const DataTable = forwardRef<HTMLDivElement, DataTableProps>(
   ({ table, ...props }, ref) => {
-    let offsetLeft = 0;
-    let offsetRight = table.getTotalSize();
-    const offsets = Object.fromEntries(
-      table.getAllColumns().flatMap((column) => [
-        [
-          column.id,
-          {
-            left: (offsetLeft += column.getSize()) - column.getSize(),
-            right: (offsetRight -= column.getSize()),
-          },
-        ],
-      ]),
-    );
-
     return (
       <Box
         alignItems="center"
@@ -73,7 +59,7 @@ export const DataTable = forwardRef<HTMLDivElement, DataTableProps>(
                     key={header.id}
                     style={{
                       ...assignInlineVars({
-                        [styles.cellOffsetVar]: `${offsets[header.column.id][header.column.getIsPinned() || "left"]}px`,
+                        [styles.cellOffsetVar]: `${header.column.getStart(header.column.getIsPinned() || "left")}px`,
                         [styles.cellSizeVar]: `${header.getSize()}px`,
                       }),
                     }}
@@ -104,7 +90,7 @@ export const DataTable = forwardRef<HTMLDivElement, DataTableProps>(
                       key={cell.id}
                       style={{
                         ...assignInlineVars({
-                          [styles.cellOffsetVar]: `${offsets[cell.column.id][cell.column.getIsPinned() || "left"]}px`,
+                          [styles.cellOffsetVar]: `${cell.column.getStart(cell.column.getIsPinned() || "left")}px`,
                           [styles.cellSizeVar]: `${cell.column.getSize()}px`,
                         }),
                       }}
