@@ -5,5 +5,5 @@
     "checkJs": true
   },
   "include": [".", ".eslintplugin/**/*"],
-  "exclude": ["node_modules"]
+  "exclude": ["lib", "node_modules"]
 }
