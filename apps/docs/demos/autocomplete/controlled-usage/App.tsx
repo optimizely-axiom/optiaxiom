@@ -16,7 +16,6 @@ export function App() {
   return (
     <Autocomplete
       items={items}
-      itemToKey={(item) => item?.label}
       itemToString={(item) => item?.label || ""}
       onInputValueChange={(inputValue) => {
         setItems(

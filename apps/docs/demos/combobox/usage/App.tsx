@@ -21,7 +21,6 @@ export function App() {
     <Combobox
       isItemDisabled={(item) => Boolean(item.isDisabled)}
       items={items}
-      itemToKey={(item) => item?.value}
       itemToString={(item) => (item ? item.label : "")}
       onInputValueChange={(inputValue) => {
         setItems(

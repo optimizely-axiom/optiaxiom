@@ -14,7 +14,6 @@ export function App() {
     <Select
       isItemDisabled={(item) => Boolean(item.isDisabled)}
       items={colors}
-      itemToKey={(item) => item?.value}
       itemToString={(item) => (item ? item.label : "")}
     >
       <SelectTrigger>

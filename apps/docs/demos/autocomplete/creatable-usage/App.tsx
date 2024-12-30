@@ -30,7 +30,6 @@ export function App() {
   return (
     <Autocomplete
       items={filteredItems}
-      itemToKey={(item) => item?.label}
       itemToString={(item) => item?.label || ""}
       onInputValueChange={setInputValue}
       onValueChange={(value) => {
