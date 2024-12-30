@@ -6,14 +6,14 @@ import {
   type ReactNode,
 } from "react";
 
-import { Item } from "./Item";
+import { ItemLabelInside } from "../ItemLabelInside";
 
 export const Canvas = ({ children }: { children: ReactNode }) => (
   <Flex alignItems="end" flexDirection="row" justifyContent="center">
     {Children.toArray(children)
       .filter(isValidElement<ComponentPropsWithRef<typeof Box>>)
       .map((item, index) => (
-        <Item key={index}>{item}</Item>
+        <ItemLabelInside key={index}>{item}</ItemLabelInside>
       ))}
   </Flex>
 );

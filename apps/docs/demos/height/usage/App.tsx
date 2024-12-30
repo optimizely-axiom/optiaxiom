@@ -12,8 +12,8 @@ export function App() {
         h=224
       </Box>
       <Box h="3xl">h=3xl</Box>
+      <Box h="64">h=64</Box>
       <Box h="xl">h=xl</Box>
-      <Box h="lg">h=lg</Box>
     </Canvas>
   );
 }

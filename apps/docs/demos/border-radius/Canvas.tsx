@@ -1,4 +1,4 @@
+import { ItemLabelOutside } from "../ItemLabelOutside";
 import { withCanvas } from "../withCanvas";
-import { Item } from "./Item";
 
-export const Canvas = withCanvas(Item);
+export const Canvas = withCanvas(ItemLabelOutside);
