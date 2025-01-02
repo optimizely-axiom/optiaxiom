@@ -2,6 +2,7 @@ import { Cards } from "@/components/cards";
 import { Demo } from "@/components/demo";
 import { PropsTable } from "@/components/props-table";
 import {
+  AlertDialogUsage,
   CloseUsage,
   DescriptionUsage,
   SizeUsage,
@@ -21,6 +22,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@optiaxiom/react";
+import { Callout } from "nextra/components";
 
 # Dialog
 
@@ -61,6 +63,18 @@ By default we use the `Button` component for the dialog trigger which accepts al
 We can also completely change the trigger by using `asChild` and passing our own component.
 
 <Demo component={TriggerUsage} meta="{16-20}" />
+
+### Nested dialogs
+
+Combine dialogs to show nested dialogs.
+
+Use the `onOpenChange` handler to trigger the nested callback instead of an explicit trigger.
+
+<Callout>
+  Type something into the text field and then attempt to close the dialog:
+</Callout>
+
+<Demo component={AlertDialogUsage} meta="{25,29}" />
 
 ### Related
 
