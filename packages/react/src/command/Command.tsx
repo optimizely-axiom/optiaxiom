@@ -64,7 +64,7 @@ export function Command<Item>({
 
   const [lastInteractionSource, setLastInteractionSource] = useState<
     "keyboard" | "pointer"
-  >("keyboard");
+  >("pointer");
 
   const [highlightedIndex, setHighlightedIndex] = usePortalPatch(open);
   const [highlightedSubIndex, setHighlightedSubIndex] = useState(-1);
@@ -102,8 +102,14 @@ export function Command<Item>({
         setHighlightedSubIndex(-1);
       }
     },
-    onIsOpenChange({ isOpen }) {
+    onIsOpenChange({ isOpen, type }) {
       onOpenChange?.(isOpen);
+
+      if (type === useCombobox.stateChangeTypes.InputClick) {
+        setLastInteractionSource("pointer");
+      } else {
+        setLastInteractionSource("keyboard");
+      }
     },
     onSelectedItemChange({ selectedItem, type }) {
       if (type !== useCombobox.stateChangeTypes.InputBlur) {
