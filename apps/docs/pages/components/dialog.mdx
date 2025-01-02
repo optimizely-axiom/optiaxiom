@@ -5,6 +5,7 @@ import {
   AlertDialogUsage,
   CloseUsage,
   DescriptionUsage,
+  NestedUsage,
   SizeUsage,
   TriggerUsage,
   Usage,
@@ -68,13 +69,19 @@ We can also completely change the trigger by using `asChild` and passing our own
 
 Combine dialogs to show nested dialogs.
 
+<Demo component={NestedUsage} />
+
+### Nested alert dialogs
+
+Combine `Dialog` with `AlertDialog` to show nested confirmation dialogs.
+
 Use the `onOpenChange` handler to trigger the nested callback instead of an explicit trigger.
 
 <Callout>
   Type something into the text field and then attempt to close the dialog:
 </Callout>
 
-<Demo component={AlertDialogUsage} meta="{25,29}" />
+<Demo component={AlertDialogUsage} />
 
 ### Related
 

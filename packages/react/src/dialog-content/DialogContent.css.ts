@@ -1,4 +1,11 @@
-import { recipe, type RecipeVariants, style } from "../vanilla-extract";
+import {
+  createVar,
+  recipe,
+  type RecipeVariants,
+  style,
+} from "../vanilla-extract";
+
+export const nestedDialogCountVar = createVar();
 
 export const content = recipe({
   base: [
@@ -13,6 +20,10 @@ export const content = recipe({
       maxWidth: "calc(100dvw - 2 * 24px)",
       position: "fixed",
       top: "12dvh",
+      transform: `
+        translateY(calc(1rem * ${nestedDialogCountVar}))
+        scale(calc(1 - 0.06 * ${nestedDialogCountVar}))
+      `,
       translate: "-50% 0",
     }),
   ],

@@ -1,4 +1,5 @@
 import * as RadixDialog from "@radix-ui/react-dialog";
+import { assignInlineVars } from "@vanilla-extract/dynamic";
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import { Backdrop } from "../backdrop";
@@ -22,29 +23,53 @@ type DialogContentProps = ExcludeProps<
 
 export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
   (
-    { children, className, size = "md", transitionType = "fade", ...props },
+    {
+      children,
+      className,
+      size = "md",
+      style,
+      transitionType = "fade",
+      ...props
+    },
     ref,
   ) => {
-    const { open } = useDialogContext("DialogContent");
+    const { isRootDialog, nestedDialogCount, open } =
+      useDialogContext("DialogContent");
 
     return (
       <TransitionGroup open={open}>
         <RadixDialog.Portal forceMount>
-          <Transition>
-            <Backdrop asChild>
-              <RadixDialog.Overlay />
-            </Backdrop>
-          </Transition>
+          {isRootDialog && (
+            <Transition>
+              <Backdrop asChild>
+                <RadixDialog.Overlay />
+              </Backdrop>
+            </Transition>
+          )}
 
           <Transition data-side="bottom" type={transitionType}>
             <Paper
               asChild
               elevation={size === "fullscreen" ? "drawer" : "dialog"}
               onBlur={onReactSelectInputBlur}
+              style={{
+                ...assignInlineVars({
+                  [styles.nestedDialogCountVar]: `${nestedDialogCount}`,
+                }),
+                ...style,
+              }}
               {...styles.content({ size }, className)}
               {...props}
             >
-              <RadixDialog.Content ref={ref}>{children}</RadixDialog.Content>
+              <RadixDialog.Content ref={ref}>
+                {children}
+
+                {nestedDialogCount > 0 && (
+                  <Transition>
+                    <Backdrop rounded="inherit" />
+                  </Transition>
+                )}
+              </RadixDialog.Content>
             </Paper>
           </Transition>
         </RadixDialog.Portal>
