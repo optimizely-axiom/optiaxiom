@@ -5,6 +5,7 @@ import { recipe, style } from "../vanilla-extract";
 export const cell = recipe({
   base: style({
     position: "relative",
+    textAlign: "start",
   }),
 });
 
