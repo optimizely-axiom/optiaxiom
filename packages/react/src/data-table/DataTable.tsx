@@ -30,6 +30,7 @@ export const DataTable = forwardRef<HTMLDivElement, DataTableProps>(
         alignItems="center"
         display="flex"
         flexDirection="column"
+        maxW="full"
         ref={ref}
         {...props}
       >
