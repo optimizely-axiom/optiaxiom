@@ -2,6 +2,10 @@ import * as RadixDialog from "@radix-ui/react-dialog";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
 
 import { DialogContextProvider } from "../dialog-context";
+import {
+  NestedDialogContextProvider,
+  useNestedDialogCount,
+} from "../nested-dialog-context";
 
 type DialogProps = {
   children?: React.ReactNode;
@@ -32,10 +36,21 @@ export function Dialog({
     prop: openProp,
   });
 
+  const [isRootDialog, nestedDialogCount, setNestedDialogCount] =
+    useNestedDialogCount("Dialog", open);
+
   return (
-    <RadixDialog.Root onOpenChange={setOpen} open={open} {...props}>
-      <DialogContextProvider open={open}>{children}</DialogContextProvider>
-    </RadixDialog.Root>
+    <NestedDialogContextProvider onCountChange={setNestedDialogCount}>
+      <RadixDialog.Root onOpenChange={setOpen} open={open} {...props}>
+        <DialogContextProvider
+          isRootDialog={isRootDialog}
+          nestedDialogCount={nestedDialogCount}
+          open={open}
+        >
+          {children}
+        </DialogContextProvider>
+      </RadixDialog.Root>
+    </NestedDialogContextProvider>
   );
 }
 
