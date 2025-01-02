@@ -8,9 +8,6 @@ patchedDependencies:
   '@vanilla-extract/sprinkles':
     hash: eh2tyazhmaumpwivglvpekok3e
     path: patches/@vanilla-extract__sprinkles.patch
-  framer-motion:
-    hash: fcf7jjqh4eojsxb6ugcpywnnuy
-    path: patches/framer-motion.patch
   react-docgen-typescript:
     hash: 2ld3tc3apzxpaqkeup6dsrfezi
     path: patches/react-docgen-typescript.patch
@@ -393,9 +390,6 @@ importers:
       '@vanilla-extract/sprinkles':
         specifier: ^1.6.3
         version: 1.6.3(patch_hash=eh2tyazhmaumpwivglvpekok3e)(@vanilla-extract/css@1.17.0(babel-plugin-macros@3.1.0))
-      framer-motion:
-        specifier: ^11.15.0
-        version: 11.15.0(patch_hash=fcf7jjqh4eojsxb6ugcpywnnuy)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
 
   packages/shared:
     dependencies:
@@ -4414,20 +4408,6 @@ packages:
     resolution: {integrity: sha512-buewHzMvYL29jdeQTVILecSaZKnt/RJWjoZCF5OW60Z67/GmSLBkOFM7qh1PI3zFNtJbaZL5eQu1vLfazOwj4g==}
     engines: {node: '>=12.20.0'}
 
-  framer-motion@11.15.0:
-    resolution: {integrity: sha512-MLk8IvZntxOMg7lDBLw2qgTHHv664bYoYmnFTmE0Gm/FW67aOJk0WM3ctMcG+Xhcv+vh5uyyXwxvxhSeJzSe+w==}
-    peerDependencies:
-      '@emotion/is-prop-valid': '*'
-      react: ^18.0.0 || ^19.0.0
-      react-dom: ^18.0.0 || ^19.0.0
-    peerDependenciesMeta:
-      '@emotion/is-prop-valid':
-        optional: true
-      react:
-        optional: true
-      react-dom:
-        optional: true
-
   fs-extra@11.1.1:
     resolution: {integrity: sha512-MGIE4HOvQCeUCzmlHs0vXpih4ysz4wg9qiSAu6cd42lVwPbTM1TjV7RusoyQqMmk/95gdQZX72u+YW+c3eEpFQ==}
     engines: {node: '>=14.14'}
@@ -5489,12 +5469,6 @@ packages:
   monosize@0.6.3:
     resolution: {integrity: sha512-DEwbx7YvwJaSTH3cyjmKSBFTfdVNi2SytnmDNIDSYSgwdpVcVRlyG3cxUDjmkUq+C2AjRn8V0dDWQ1gvBucfOQ==}
     hasBin: true
-
-  motion-dom@11.14.3:
-    resolution: {integrity: sha512-lW+D2wBy5vxLJi6aCP0xyxTxlTfiu+b+zcpVbGVFUxotwThqhdpPRSmX8xztAgtZMPMeU0WGVn/k1w4I+TbPqA==}
-
-  motion-utils@11.14.3:
-    resolution: {integrity: sha512-Xg+8xnqIJTpr0L/cidfTTBFkvRw26ZtGGuIhA94J9PQ2p4mEa06Xx7QVYZH0BP+EpMSaDlu+q0I0mmvwADPsaQ==}
 
   mri@1.2.0:
     resolution: {integrity: sha512-tzzskb3bG8LvYGFF/mDTpq3jpI6Q9wc3LEmBaghu+DdCssd1FakN7Bc0hVNmEyGq1bq3RgfkCb3cmQLpNPOroA==}
@@ -11922,15 +11896,6 @@ snapshots:
     dependencies:
       fetch-blob: 3.2.0
 
-  framer-motion@11.15.0(patch_hash=fcf7jjqh4eojsxb6ugcpywnnuy)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
-    dependencies:
-      motion-dom: 11.14.3
-      motion-utils: 11.14.3
-      tslib: 2.8.1
-    optionalDependencies:
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-
   fs-extra@11.1.1:
     dependencies:
       graceful-fs: 4.2.11
@@ -13399,10 +13364,6 @@ snapshots:
       pretty-bytes: 6.1.1
       tslib: 2.8.1
       yargs: 17.7.2
-
-  motion-dom@11.14.3: {}
-
-  motion-utils@11.14.3: {}
 
   mri@1.2.0: {}
 

@@ -4,11 +4,11 @@ import { forwardRef } from "react";
 
 import type { ExcludeProps } from "../utils";
 
-import { AnimatePresence } from "../animate-presence";
 import { Box, type BoxProps } from "../box";
 import { Text } from "../text";
 import { useTooltipContext } from "../tooltip-context";
 import { Transition } from "../transition";
+import { TransitionGroup } from "../transition-group";
 import * as styles from "./TooltipContent.css";
 
 type TooltipContentProps = ExcludeProps<
@@ -30,31 +30,29 @@ export const TooltipContent = forwardRef<HTMLDivElement, TooltipContentProps>(
     const { open } = useTooltipContext("TooltipContent");
 
     return (
-      <AnimatePresence>
-        {open && (
-          <RadixTooltip.Portal forceMount>
-            <Transition duration="sm" type="pop">
-              <Box asChild {...styles.content({}, className)} {...props}>
-                <RadixTooltip.Content
-                  align={align}
-                  arrowPadding={6}
-                  ref={ref}
-                  side={side}
-                  sideOffset={5}
-                >
-                  <Text fontSize="sm">{children}</Text>
+      <TransitionGroup open={open}>
+        <RadixTooltip.Portal forceMount>
+          <Transition duration="sm" type="pop">
+            <Box asChild {...styles.content({}, className)} {...props}>
+              <RadixTooltip.Content
+                align={align}
+                arrowPadding={6}
+                ref={ref}
+                side={side}
+                sideOffset={5}
+              >
+                <Text fontSize="sm">{children}</Text>
 
-                  <RadixTooltip.Arrow
-                    fill={theme.colors["bg.default.inverse"]}
-                    height={4}
-                    width={8}
-                  />
-                </RadixTooltip.Content>
-              </Box>
-            </Transition>
-          </RadixTooltip.Portal>
-        )}
-      </AnimatePresence>
+                <RadixTooltip.Arrow
+                  fill={theme.colors["bg.default.inverse"]}
+                  height={4}
+                  width={8}
+                />
+              </RadixTooltip.Content>
+            </Box>
+          </Transition>
+        </RadixTooltip.Portal>
+      </TransitionGroup>
     );
   },
 );

@@ -7,12 +7,12 @@ import {
   AlertDialogContextProvider,
   useAlertDialogContext,
 } from "../alert-dialog-context";
-import { AnimatePresence } from "../animate-presence";
 import { Backdrop } from "../backdrop";
 import { Box, type BoxProps } from "../box";
 import { Flex } from "../flex";
 import { Paper } from "../paper";
 import { Transition } from "../transition";
+import { TransitionGroup } from "../transition-group";
 import * as styles from "./AlertDialogContent.css";
 
 type AlertDialogContentProps = ExcludeProps<
@@ -27,34 +27,32 @@ export const AlertDialogContent = forwardRef<
   const { open } = useAlertDialogContext("AlertDialogContent");
 
   return (
-    <AnimatePresence>
-      {open && (
-        <RadixAlertDialog.Portal forceMount>
-          <Transition>
-            <Backdrop asChild>
-              <RadixAlertDialog.Overlay />
-            </Backdrop>
+    <TransitionGroup open={open}>
+      <RadixAlertDialog.Portal forceMount>
+        <Transition>
+          <Backdrop asChild>
+            <RadixAlertDialog.Overlay />
+          </Backdrop>
+        </Transition>
+
+        <Flex {...styles.container()}>
+          <Box flex="1" pointerEvents="none" />
+
+          <Transition data-side="bottom" type="fade">
+            <Paper asChild elevation="dialog" {...styles.content({ size })}>
+              <RadixAlertDialog.Content ref={ref} {...props}>
+                <AlertDialogContextProvider open={open}>
+                  {children}
+                </AlertDialogContextProvider>
+              </RadixAlertDialog.Content>
+            </Paper>
           </Transition>
 
-          <Flex {...styles.container()}>
-            <Box flex="1" pointerEvents="none" />
-
-            <Transition data-side="bottom" type="fade">
-              <Paper asChild elevation="dialog" {...styles.content({ size })}>
-                <RadixAlertDialog.Content ref={ref} {...props}>
-                  <AlertDialogContextProvider open={open}>
-                    {children}
-                  </AlertDialogContextProvider>
-                </RadixAlertDialog.Content>
-              </Paper>
-            </Transition>
-
-            <Box flex="1" pointerEvents="none" />
-            <Box flex="1" pointerEvents="none" />
-          </Flex>
-        </RadixAlertDialog.Portal>
-      )}
-    </AnimatePresence>
+          <Box flex="1" pointerEvents="none" />
+          <Box flex="1" pointerEvents="none" />
+        </Flex>
+      </RadixAlertDialog.Portal>
+    </TransitionGroup>
   );
 });
 
