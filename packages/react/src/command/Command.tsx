@@ -5,6 +5,9 @@ import { type ReactNode, useMemo, useState } from "react";
 import { CommandContextProvider } from "../command-context";
 import { usePortalPatch } from "../downshift";
 
+const isHoverSupported =
+  typeof window !== "undefined" && window.matchMedia("(hover: hover)").matches;
+
 type CommandProps<Item> = Pick<
   UseComboboxProps<Item>,
   "inputId" | "selectedItem" | "stateReducer"
@@ -72,7 +75,7 @@ export function Command<Item>({
   const downshift = useCombobox({
     ...props,
     highlightedIndex:
-      highlightedIndex === -1
+      highlightedIndex === -1 && isHoverSupported
         ? items.findIndex((item, index) => !isItemDisabled(item, index))
         : highlightedIndex,
     inputValue,
