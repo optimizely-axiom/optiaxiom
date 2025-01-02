@@ -1,10 +1,10 @@
 import { Slot } from "@radix-ui/react-slot";
 import { type ElementType, forwardRef } from "react";
 
-import { AnimatePresence } from "../animate-presence";
 import { Box, type BoxProps } from "../box";
 import { Spinner } from "../spinner";
 import { extractSprinkles } from "../sprinkles";
+import { TransitionGroup } from "../transition-group";
 import { decorateChildren, type ExtendProps } from "../utils";
 import * as styles from "./ButtonBase.css";
 
@@ -81,15 +81,13 @@ export const ButtonBase = forwardRef<HTMLButtonElement, ButtonBaseProps>(
         <Comp disabled={disabled} ref={ref} {...restProps}>
           {decorateChildren({ asChild, children }, (children) => (
             <>
-              <AnimatePresence>
-                {loading && (
-                  <Spinner
-                    appearance={variant === "solid" ? "inverse" : "default"}
-                    aria-hidden="true"
-                    {...styles.spinner()}
-                  />
-                )}
-              </AnimatePresence>
+              <TransitionGroup open={loading}>
+                <Spinner
+                  appearance={variant === "solid" ? "inverse" : "default"}
+                  aria-hidden="true"
+                  {...styles.spinner()}
+                />
+              </TransitionGroup>
 
               {children}
             </>

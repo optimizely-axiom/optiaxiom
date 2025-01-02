@@ -1,7 +1,8 @@
+import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import { Slot } from "@radix-ui/react-slot";
-import { forwardRef, type ReactElement, useEffect, useState } from "react";
+import { forwardRef, type ReactElement, useRef } from "react";
 
-import { usePresence } from "../use-presence";
+import { useTransitionStatus } from "../use-transition-status";
 import * as styles from "./Transition.css";
 import { TransitionGlobalConfig } from "./TransitionGlobalConfig";
 
@@ -14,23 +15,11 @@ type TransitionProps = styles.TransitionVariants & {
 export const Transition = forwardRef<HTMLDivElement, TransitionProps>(
   (
     { children, duration = "md", skipAnimations, type = "fade", ...props },
-    ref,
+    outerRef,
   ) => {
-    const [isPresent, safeToRemove] = usePresence();
-
-    const [enter, setEnter] = useState(false);
-    useEffect(() => {
-      if (isPresent) {
-        requestAnimationFrame(() => setEnter(true));
-      }
-    }, [isPresent]);
-
-    useEffect(() => {
-      if (!isPresent) {
-        setTimeout(safeToRemove, styles.transitionDuration[duration]);
-      }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [isPresent]);
+    const innerRef = useRef<HTMLElement>(null);
+    const transitionStatus = useTransitionStatus(innerRef);
+    const ref = useComposedRefs(outerRef, innerRef);
 
     return skipAnimations || TransitionGlobalConfig.skipAnimations ? (
       <Slot ref={ref}>{children}</Slot>
@@ -40,7 +29,7 @@ export const Transition = forwardRef<HTMLDivElement, TransitionProps>(
         {...styles.transition(
           {
             duration,
-            type: enter !== isPresent ? type : undefined,
+            type: transitionStatus ? type : undefined,
           },
           undefined,
         )}

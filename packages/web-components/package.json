@@ -26,7 +26,6 @@
     "./AlertDialogTitle": "./dist/components/AlertDialogTitle.js",
     "./AlertDialogTrigger": "./dist/components/AlertDialogTrigger.js",
     "./AlertTitle": "./dist/components/AlertTitle.js",
-    "./AnimatePresence": "./dist/components/AnimatePresence.js",
     "./Avatar": "./dist/components/Avatar.js",
     "./AvatarGroup": "./dist/components/AvatarGroup.js",
     "./AxiomProvider": "./dist/components/AxiomProvider.js",
@@ -136,7 +135,8 @@
     "./TooltipContent": "./dist/components/TooltipContent.js",
     "./TooltipRoot": "./dist/components/TooltipRoot.js",
     "./TooltipTrigger": "./dist/components/TooltipTrigger.js",
-    "./Transition": "./dist/components/Transition.js"
+    "./Transition": "./dist/components/Transition.js",
+    "./TransitionGroup": "./dist/components/TransitionGroup.js"
   },
   "module": "./dist/index.js",
   "scripts": {
