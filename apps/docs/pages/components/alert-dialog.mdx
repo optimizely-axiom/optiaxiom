@@ -3,6 +3,7 @@ import { Demo } from "@/components/demo";
 import { PropsTable } from "@/components/props-table";
 import {
   AsyncUsage,
+  ConfirmationUsage,
   SizeUsage,
   TriggerUsage,
   Usage,
@@ -36,6 +37,12 @@ Use the `open` and `defaultOpen` props to toggle between controlled and uncontro
 Use the `size` prop to change the size of the dialog box.
 
 <Demo component={SizeUsage} meta="/size={size}/" />
+
+### Handling confirmation
+
+Add an `onClick` handler to `AlertDialogAction` to perform an action on confirmation.
+
+<Demo component={ConfirmationUsage} meta="{42}" />
 
 ### Handling async events
 
