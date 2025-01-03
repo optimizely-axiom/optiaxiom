@@ -29,12 +29,15 @@ const mapIntentToIcon = {
 };
 
 export const Toast = forwardRef<HTMLLIElement, ToastProps>(
-  ({ children, intent = "neutral", onOpenChange, ...props }, ref) => {
+  (
+    { children, className, intent = "neutral", onOpenChange, ...props },
+    ref,
+  ) => {
     const { restProps, sprinkleProps } = extractSprinkles(props);
     const context = useToastContext("Toast");
 
     return (
-      <Box asChild {...styles.root({ intent })} {...sprinkleProps}>
+      <Box asChild {...styles.root({ intent }, className)} {...sprinkleProps}>
         <RadixToast.Root
           forceMount={!!context}
           onOpenChange={(open) => {

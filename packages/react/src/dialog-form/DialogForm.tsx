@@ -6,12 +6,13 @@ import { extractSprinkles } from "../sprinkles";
 type DialogFormProps = BoxProps<"form">;
 
 export const DialogForm = forwardRef<HTMLFormElement, DialogFormProps>(
-  ({ children, ...props }, ref) => {
+  ({ children, className, ...props }, ref) => {
     const { restProps, sprinkleProps } = extractSprinkles(props);
 
     return (
       <Box
         asChild
+        className={className}
         display="flex"
         flexDirection="column"
         overflow="auto"

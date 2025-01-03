@@ -7,11 +7,11 @@ import * as styles from "./BreadcrumbItem.css";
 export type BreadcrumbItemProps = BoxProps<"li">;
 
 export const BreadcrumbItem = forwardRef<HTMLLIElement, BreadcrumbItemProps>(
-  ({ children, ...props }, ref) => {
+  ({ children, className, ...props }, ref) => {
     const { restProps, sprinkleProps } = extractSprinkles(props);
 
     return (
-      <Box asChild {...styles.item()} {...sprinkleProps}>
+      <Box asChild {...styles.item({}, className)} {...sprinkleProps}>
         <li ref={ref} {...restProps}>
           {children}
         </li>

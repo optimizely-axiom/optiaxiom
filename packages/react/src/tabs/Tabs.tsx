@@ -12,11 +12,11 @@ type TabsProps = BoxProps<
 >;
 
 export const Tabs = forwardRef<HTMLDivElement, TabsProps>(
-  ({ appearance = "primary", children, ...props }, ref) => {
+  ({ appearance = "primary", children, className, ...props }, ref) => {
     const { restProps, sprinkleProps } = extractSprinkles(props);
 
     return (
-      <Box asChild {...styles.tabs()} {...sprinkleProps}>
+      <Box asChild {...styles.tabs({}, className)} {...sprinkleProps}>
         <RadixTabs.Root ref={ref} {...restProps}>
           <TabsContextProvider appearance={appearance}>
             {children}

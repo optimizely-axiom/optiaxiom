@@ -23,7 +23,14 @@ export const DisclosureTrigger = forwardRef<
   DisclosureTriggerProps
 >(
   (
-    { addonAfter, addonBefore, chevronPosition = "start", children, ...props },
+    {
+      addonAfter,
+      addonBefore,
+      chevronPosition = "start",
+      children,
+      className,
+      ...props
+    },
     ref,
   ) => {
     useDisclosureContext("DisclosureTrigger");
@@ -36,7 +43,7 @@ export const DisclosureTrigger = forwardRef<
       addonAfter || (chevronPosition === "end" && <IconAngleDown />);
 
     return (
-      <Flex asChild {...styles.trigger()} {...sprinkleProps}>
+      <Flex asChild {...styles.trigger({}, className)} {...sprinkleProps}>
         <RadixCollapsible.Trigger ref={ref} {...restProps}>
           {startIcon && (
             <Box asChild {...styles.icon({ chevronPosition })}>

@@ -16,6 +16,7 @@ export const TabsTrigger = forwardRef<HTMLButtonElement, TabsTriggerProps>(
       addonAfter,
       addonBefore,
       children,
+      className,
       icon,
       iconPosition = "start",
       value,
@@ -28,7 +29,7 @@ export const TabsTrigger = forwardRef<HTMLButtonElement, TabsTriggerProps>(
     const { restProps, sprinkleProps } = extractSprinkles(props);
 
     return appearance === "primary" ? (
-      <Box asChild {...styles.trigger()} {...sprinkleProps}>
+      <Box asChild {...styles.trigger({}, className)} {...sprinkleProps}>
         <RadixTabs.Trigger ref={ref} value={value} {...restProps}>
           <Flex {...styles.content()}>
             {icon && iconPosition === "start" ? (
@@ -57,6 +58,7 @@ export const TabsTrigger = forwardRef<HTMLButtonElement, TabsTriggerProps>(
         addonBefore={addonBefore}
         appearance="subtle"
         asChild
+        className={className}
         icon={icon}
         iconPosition={iconPosition}
         justifyContent="start"

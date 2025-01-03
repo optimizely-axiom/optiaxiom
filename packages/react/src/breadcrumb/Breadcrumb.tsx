@@ -6,11 +6,11 @@ import { extractSprinkles } from "../sprinkles";
 export type BreadcrumbProps = BoxProps<"nav">;
 
 export const Breadcrumb = forwardRef<HTMLElement, BreadcrumbProps>(
-  ({ children, ...props }, ref) => {
+  ({ children, className, ...props }, ref) => {
     const { restProps, sprinkleProps } = extractSprinkles(props);
 
     return (
-      <Box asChild {...sprinkleProps}>
+      <Box asChild className={className} {...sprinkleProps}>
         <nav aria-label="Breadcrumb" ref={ref} {...restProps}>
           <Box alignItems="center" asChild display="flex" gap="8">
             <ol>{children}</ol>

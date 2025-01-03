@@ -45,6 +45,7 @@ const mapPositionToSwipeDirection = {
 export const ToastProvider = forwardRef<HTMLOListElement, ToastProps>(
   (
     {
+      className,
       container,
       duration,
       label,
@@ -118,7 +119,7 @@ export const ToastProvider = forwardRef<HTMLOListElement, ToastProps>(
             flexDirection={
               position.startsWith("bottom") ? "column-reverse" : "column"
             }
-            {...styles.viewport({ position })}
+            {...styles.viewport({ position }, className)}
             {...sprinkleProps}
           >
             <RadixToast.Viewport ref={ref} {...restProps} />

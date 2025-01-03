@@ -4,6 +4,45 @@ export default ESLintUtils.RuleCreator.withoutDocs({
   create(context) {
     return {
       /**
+       * @type {import('@typescript-eslint/utils').TSESLint.RuleListener['JSXSpreadAttribute']}
+       */
+      'JSXSpreadAttribute[argument.name="sprinkleProps"]': (node) => {
+        if (node.parent.type !== "JSXOpeningElement") {
+          return;
+        }
+        const hasClassName = node.parent.attributes.find(
+          (attr) =>
+            attr.type === "JSXAttribute" &&
+            attr.name.type === "JSXIdentifier" &&
+            attr.name.name === "className",
+        );
+        const hasRecipe = node.parent.attributes.find(
+          (attr) =>
+            attr.type === "JSXSpreadAttribute" &&
+            attr.argument.type === "CallExpression" &&
+            attr.argument.callee.type === "MemberExpression" &&
+            attr.argument.callee.object.type === "Identifier" &&
+            attr.argument.callee.object.name === "styles",
+        );
+        if (!hasClassName && !hasRecipe) {
+          const children = context.sourceCode
+            .getScope(node)
+            .variables.find((variable) => variable.name === "children")
+            ?.defs[0].name;
+          context.report({
+            fix: (fixer) => [
+              fixer.insertTextAfter(node.parent.name, " className={className}"),
+              ...(children
+                ? [fixer.insertTextAfter(children, ", className")]
+                : []),
+            ],
+            messageId: "sprinkles",
+            node,
+          });
+        }
+      },
+
+      /**
        * @type {import('@typescript-eslint/utils').TSESLint.RuleListener['CallExpression']}
        */
       'JSXSpreadAttribute > CallExpression[callee.object.name="styles"]': (
@@ -20,18 +59,27 @@ export default ESLintUtils.RuleCreator.withoutDocs({
           (attr) =>
             attr.type === "JSXSpreadAttribute" &&
             attr.argument.type === "Identifier" &&
-            attr.argument.name === "props",
+            (attr.argument.name === "props" ||
+              attr.argument.name === "sprinkleProps"),
         );
         if (hasSpreadProps && !hasClassName) {
+          const children = context.sourceCode
+            .getScope(node)
+            .variables.find((variable) => variable.name === "children")
+            ?.defs[0].name;
           context.report({
-            fix: (fixer) =>
+            fix: (fixer) => [
               node.arguments.length === 1
                 ? fixer.insertTextAfter(node.arguments[0], ", className")
                 : fixer.insertTextAfterRange(
                     [node.range[0], node.range[1] - 1],
                     "{}, className",
                   ),
-            messageId: "expected",
+              ...(children
+                ? [fixer.insertTextAfter(children, ", className")]
+                : []),
+            ],
+            messageId: "recipe",
             node,
           });
         }
@@ -44,7 +92,8 @@ export default ESLintUtils.RuleCreator.withoutDocs({
   meta: {
     fixable: "code",
     messages: {
-      expected: "Did you forget to handle className in the recipe?",
+      recipe: "Did you forget to handle className in the recipe?",
+      sprinkles: "Please include className when spreading sprinkle props.",
     },
     schema: [],
     type: "suggestion",

@@ -14,12 +14,12 @@ type ListboxItemIndicatorProps = BoxProps<
 export const ListboxItemIndicator = forwardRef<
   SVGSVGElement,
   ListboxItemIndicatorProps
->(({ active, children, ...props }, ref) => {
+>(({ active, children, className, ...props }, ref) => {
   const { restProps, sprinkleProps } = extractSprinkles(props);
 
   if (!active) {
     return (
-      <Box asChild h="0" w="xs" {...sprinkleProps}>
+      <Box asChild className={className} h="0" w="xs" {...sprinkleProps}>
         <svg ref={ref} {...restProps} />
       </Box>
     );
@@ -27,7 +27,7 @@ export const ListboxItemIndicator = forwardRef<
 
   return (
     // @ts-expect-error -- too complex
-    <Box asChild ref={ref} {...props}>
+    <Box asChild className={className} ref={ref} {...props}>
       {children ?? <IconCheck />}
     </Box>
   );
