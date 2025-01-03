@@ -1,6 +1,10 @@
+import * as RadixDialog from "@radix-ui/react-dialog";
 import { forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
+import { Button } from "../button";
+import { IconX } from "../icons/IconX";
+import * as styles from "./DialogHeader.css";
 
 type DialogHeaderProps = BoxProps;
 
@@ -16,6 +20,16 @@ export const DialogHeader = forwardRef<HTMLHeadingElement, DialogHeaderProps>(
         ref={ref}
         {...props}
       >
+        <Button
+          appearance="subtle"
+          aria-label="Close"
+          asChild
+          icon={<IconX />}
+          {...styles.close()}
+        >
+          <RadixDialog.Close />
+        </Button>
+
         {children}
       </Box>
     );
