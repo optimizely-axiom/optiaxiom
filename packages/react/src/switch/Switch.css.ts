@@ -1,7 +1,12 @@
 import { theme } from "@optiaxiom/globals";
 
 import * as styles from "../toggle-input/ToggleInput.css";
-import { recipe, type RecipeVariants, style } from "../vanilla-extract";
+import {
+  createVar,
+  recipe,
+  type RecipeVariants,
+  style,
+} from "../vanilla-extract";
 
 const marker = style({});
 const inputMarker = style({});
@@ -44,18 +49,31 @@ export const control = recipe({
   ],
 });
 
+const sizeVar = createVar();
+
 export const thumb = recipe({
   base: [
     {
       display: "block",
       rounded: "full",
-      transition: "transform",
+      transition: "all",
     },
     style({
       backgroundColor: theme.colors["bg.default"],
+      height: sizeVar,
       transform: "translateX(-10px)",
+      width: sizeVar,
 
       selectors: {
+        [`${marker}:active &`]: {
+          width: `calc(${sizeVar} * 1.25)`,
+        },
+        [`${marker}:active:has(${inputMarker}:checked) &`]: {
+          marginLeft: `calc(${sizeVar} * -0.25)`,
+        },
+        [`${marker}:active:has(${inputMarker}:not(:checked)) &`]: {
+          marginRight: `calc(${sizeVar} * -0.25)`,
+        },
         [`${marker}:has(${inputMarker}:checked) &`]: {
           transform: "translateX(10px)",
         },
@@ -73,12 +91,16 @@ export const thumb = recipe({
      * Control the size of the switch.
      */
     size: {
-      md: {
-        size: "2xs",
-      },
-      lg: {
-        size: "xs",
-      },
+      md: style({
+        vars: {
+          [sizeVar]: theme.size["2xs"],
+        },
+      }),
+      lg: style({
+        vars: {
+          [sizeVar]: theme.size["xs"],
+        },
+      }),
     },
   },
 });

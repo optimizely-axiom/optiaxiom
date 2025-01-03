@@ -16,11 +16,16 @@ export const input = recipe({
 
 export const icon = recipe({
   base: [
+    {
+      transition: "all",
+    },
     style({
-      display: "none",
+      clipPath: "inset(100% 0 0 0)",
+      transitionDelay: "125ms",
+
       selectors: {
         [`${marker}:has(${inputMarker}:checked) &`]: {
-          display: "block",
+          clipPath: "inset(0 0 0 0)",
         },
       },
     }),
@@ -31,6 +36,7 @@ export const control = recipe({
   base: [
     {
       color: "fg.default.inverse",
+      display: "grid",
       rounded: "xs",
       size: "2xs",
     },
@@ -38,11 +44,14 @@ export const control = recipe({
       backgroundColor: theme.colors["bg.default"],
       borderColor: styles.controlColorVar,
       borderWidth: "1px",
+      placeContent: "center",
+      transitionDuration: "150ms",
+      transitionProperty: "border-width",
+      transitionTimingFunction: "ease",
 
       selectors: {
         [`${marker}:has(${inputMarker}:checked) &`]: {
-          backgroundColor: styles.controlColorVar,
-          borderWidth: "0",
+          borderWidth: "8px",
         },
       },
     }),
