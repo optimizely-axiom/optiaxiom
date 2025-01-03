@@ -1,5 +1,19 @@
 # @optiaxiom/react
 
+## 0.9.0
+
+### Minor Changes
+
+- e999878: rename AlertDialogTitle to AlertDialogHeader
+
+### Patch Changes
+
+- 96a11b5: pass src directly to SidenavAccountItem
+- 69eb0c5: add loading state to dropdown menu content
+- b56d9df: handle nested dialogs gracefully
+- cbe5c2e: always include close button in dialog
+- f14a014: replace framer-motion with native html getAnimations API
+
 ## 0.8.2
 
 ### Patch Changes

@@ -1,5 +1,15 @@
 # @optiaxiom/web-components
 
+## 0.5.0
+
+### Minor Changes
+
+- e999878: rename AlertDialogTitle to AlertDialogHeader
+
+### Patch Changes
+
+- f14a014: replace framer-motion with native html getAnimations API
+
 ## 0.4.1
 
 ### Patch Changes
