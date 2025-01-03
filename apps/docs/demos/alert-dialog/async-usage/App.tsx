@@ -5,7 +5,7 @@ import {
   AlertDialogCancel,
   AlertDialogContent,
   AlertDialogFooter,
-  AlertDialogTitle,
+  AlertDialogHeader,
   AlertDialogTrigger,
 } from "@optiaxiom/react";
 import { useState } from "react";
@@ -27,7 +27,7 @@ export function App() {
       <AlertDialogTrigger>Delete task</AlertDialogTrigger>
 
       <AlertDialogContent>
-        <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+        <AlertDialogHeader>Are you sure?</AlertDialogHeader>
         <AlertDialogBody>
           The task and all contents will be deleted. This action cannot be
           undone.

@@ -5,7 +5,7 @@ import {
   AlertDialogCancel,
   AlertDialogContent,
   AlertDialogFooter,
-  AlertDialogTitle,
+  AlertDialogHeader,
   AlertDialogTrigger,
   Flex,
   Text,
@@ -30,7 +30,7 @@ export function App() {
         <AlertDialogTrigger>Delete comment</AlertDialogTrigger>
 
         <AlertDialogContent>
-          <AlertDialogTitle>Delete comment and replies?</AlertDialogTitle>
+          <AlertDialogHeader>Delete comment and replies?</AlertDialogHeader>
 
           <AlertDialogBody>
             The comment and all replies will be deleted.

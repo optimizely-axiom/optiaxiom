@@ -5,7 +5,7 @@ import {
   AlertDialogCancel,
   AlertDialogContent,
   AlertDialogFooter,
-  AlertDialogTitle,
+  AlertDialogHeader,
   AlertDialogTrigger,
 } from "@optiaxiom/react";
 import { IconTrash } from "@tabler/icons-react";
@@ -20,7 +20,7 @@ export function App() {
       />
 
       <AlertDialogContent>
-        <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+        <AlertDialogHeader>Are you sure?</AlertDialogHeader>
         <AlertDialogBody>
           Are you sure you want to delete this task?
         </AlertDialogBody>

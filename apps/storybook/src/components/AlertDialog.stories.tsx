@@ -7,7 +7,7 @@ import {
   AlertDialogCancel,
   AlertDialogContent,
   AlertDialogFooter,
-  AlertDialogTitle,
+  AlertDialogHeader,
   AlertDialogTrigger,
 } from "@optiaxiom/react";
 import { expect, screen, userEvent, waitFor } from "@storybook/test";
@@ -38,7 +38,7 @@ export default {
         <AlertDialogTrigger>Open Dialog</AlertDialogTrigger>
 
         <AlertDialogContent size={size}>
-          <AlertDialogTitle>{title}</AlertDialogTitle>
+          <AlertDialogHeader>{title}</AlertDialogHeader>
           <AlertDialogBody>{description}</AlertDialogBody>
           <AlertDialogFooter>
             <AlertDialogCancel>{cancel}</AlertDialogCancel>

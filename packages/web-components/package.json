@@ -23,7 +23,7 @@
     "./AlertDialogCancel": "./dist/components/AlertDialogCancel.js",
     "./AlertDialogContent": "./dist/components/AlertDialogContent.js",
     "./AlertDialogFooter": "./dist/components/AlertDialogFooter.js",
-    "./AlertDialogTitle": "./dist/components/AlertDialogTitle.js",
+    "./AlertDialogHeader": "./dist/components/AlertDialogHeader.js",
     "./AlertDialogTrigger": "./dist/components/AlertDialogTrigger.js",
     "./AlertTitle": "./dist/components/AlertTitle.js",
     "./Avatar": "./dist/components/Avatar.js",
