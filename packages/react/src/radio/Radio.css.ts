@@ -42,14 +42,15 @@ export const indicator = recipe({
     {
       rounded: "inherit",
       size: "full",
+      transition: "transform",
     },
     style({
       backgroundColor: styles.controlColorVar,
-      display: "none",
+      transform: "scale(0)",
 
       selectors: {
         [`${marker}:has(${inputMarker}:checked) &`]: {
-          display: "block",
+          transform: "scale(1)",
         },
       },
     }),
