@@ -30,7 +30,6 @@ export const SpotlightContent = forwardRef<
 
   return (
     <DialogContent
-      aria-describedby={undefined}
       gap="0"
       overflow="hidden"
       pb="24"

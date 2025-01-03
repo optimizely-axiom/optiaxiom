@@ -17,7 +17,7 @@ export function App({
     <Dialog>
       <DialogTrigger>Open Dialog</DialogTrigger>
 
-      <DialogContent aria-describedby={undefined} size={size}>
+      <DialogContent size={size}>
         <DialogHeader>
           <DialogTitle>Modal Title</DialogTitle>
         </DialogHeader>

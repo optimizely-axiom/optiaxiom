@@ -24,7 +24,7 @@ export function App() {
     <Dialog>
       <DialogTrigger>Open Dialog</DialogTrigger>
 
-      <DialogContent aria-describedby={undefined}>
+      <DialogContent>
         <DialogHeader>
           <DialogTitle>ModalLayer Demonstration</DialogTitle>
         </DialogHeader>

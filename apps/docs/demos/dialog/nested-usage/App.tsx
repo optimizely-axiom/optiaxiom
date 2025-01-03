@@ -14,7 +14,7 @@ export function App() {
     <Dialog>
       <DialogTrigger>Open Dialog</DialogTrigger>
 
-      <DialogContent aria-describedby={undefined} size="sm">
+      <DialogContent size="sm">
         <DialogHeader>
           <DialogTitle>Modal Title</DialogTitle>
         </DialogHeader>
@@ -25,7 +25,7 @@ export function App() {
           <Dialog>
             <DialogTrigger mr="auto">Open nested dialog</DialogTrigger>
 
-            <DialogContent aria-describedby={undefined} size="sm">
+            <DialogContent size="sm">
               <DialogHeader>
                 <DialogTitle>Modal Title</DialogTitle>
               </DialogHeader>
@@ -36,7 +36,7 @@ export function App() {
                 <Dialog>
                   <DialogTrigger mr="auto">Open nested dialog</DialogTrigger>
 
-                  <DialogContent aria-describedby={undefined} size="sm">
+                  <DialogContent size="sm">
                     <DialogHeader>
                       <DialogTitle>Modal Title</DialogTitle>
                     </DialogHeader>

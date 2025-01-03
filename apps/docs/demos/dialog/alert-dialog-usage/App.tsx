@@ -38,7 +38,7 @@ export function App() {
     >
       <DialogTrigger>Create new issue</DialogTrigger>
 
-      <DialogContent aria-describedby={undefined} size="sm">
+      <DialogContent size="sm">
         <DialogForm
           onSubmit={(event) => {
             event.preventDefault();
