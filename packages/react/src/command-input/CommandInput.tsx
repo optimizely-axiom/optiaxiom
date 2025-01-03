@@ -3,13 +3,11 @@ import { type ComponentPropsWithoutRef, forwardRef } from "react";
 import { useCommandContext } from "../command-context";
 import { IconMagnifyingGlass } from "../icons/IconMagnifyingGlass";
 import { Input } from "../input";
-import { extractSprinkles } from "../sprinkles";
 
 type CommandInputProps = ComponentPropsWithoutRef<typeof Input>;
 
 export const CommandInput = forwardRef<HTMLInputElement, CommandInputProps>(
-  ({ onKeyDown, ...props }, ref) => {
-    const { restProps, sprinkleProps } = extractSprinkles(props);
+  ({ onKeyDown, size, ...props }, ref) => {
     const {
       downshift,
       highlightedItem,
@@ -22,9 +20,9 @@ export const CommandInput = forwardRef<HTMLInputElement, CommandInputProps>(
     return (
       <Input
         addonBefore={<IconMagnifyingGlass />}
-        {...sprinkleProps}
+        size={size}
         {...downshift.getInputProps({
-          ...restProps,
+          ...props,
           onChange: (event) => {
             setInputValue("value" in event.target ? event.target.value : "");
           },
