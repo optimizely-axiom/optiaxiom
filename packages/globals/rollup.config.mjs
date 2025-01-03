@@ -29,7 +29,7 @@ export default defineConfig([
           : "[name].js";
       },
       format: "es",
-      preserveModules: true,
+      preserveModules: env === "production",
     },
     plugins: [
       esbuild({
