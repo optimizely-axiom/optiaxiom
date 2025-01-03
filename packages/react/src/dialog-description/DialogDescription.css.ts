@@ -8,7 +8,7 @@ export const description = recipe({
       w: "full",
     },
     style({
-      order: "3",
+      order: "4",
     }),
   ],
 });

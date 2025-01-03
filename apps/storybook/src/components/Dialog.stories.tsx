@@ -126,9 +126,6 @@ export const Basic: Story = {
 };
 
 export const CloseButton: Story = {
-  args: {
-    actions: true,
-  },
   play: async ({ canvas }) => {
     await expect(
       await screen.findByRole("dialog", { name: "Dialog" }),
