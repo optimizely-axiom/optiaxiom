@@ -1,6 +1,6 @@
+import { useId } from "@radix-ui/react-id";
 import * as RadixLabel from "@radix-ui/react-label";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
-import { useId } from "@reach/auto-id";
 import { forwardRef, type ReactNode } from "react";
 
 import { Box, type BoxProps } from "../box";

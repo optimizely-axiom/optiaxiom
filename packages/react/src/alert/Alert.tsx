@@ -1,4 +1,4 @@
-import { useId } from "@reach/auto-id";
+import { useId } from "@radix-ui/react-id";
 import { createElement, forwardRef } from "react";
 
 import { AlertContextProvider } from "../alert-context";
