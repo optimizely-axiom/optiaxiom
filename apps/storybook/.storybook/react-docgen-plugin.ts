@@ -3,6 +3,7 @@ import { getDocs } from "@optiaxiom/shared";
 import { createFilter } from "@rollup/pluginutils";
 import { basename, relative } from "node:path";
 import { ERROR_CODES, parse } from "react-docgen";
+import { displayNameHandler } from "react-docgen/dist/handlers";
 
 export function reactDocgenPlugin() {
   const docs = getDocs();
@@ -20,7 +21,9 @@ export function reactDocgenPlugin() {
       }
 
       try {
-        const docgenResults = parse(code);
+        const docgenResults = parse(code, {
+          handlers: [displayNameHandler],
+        });
         if (!docgenResults.length) {
           return;
         }
