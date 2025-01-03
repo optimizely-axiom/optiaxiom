@@ -1,0 +1,15 @@
+diff --git a/dist/config.js b/dist/config.js
+index 030cba7351b1c2d0ac6d2d6d7f53309464b1afe0..a6fea93421aa566d40aa9ccf26f498c8a8fb7fba 100644
+--- a/dist/config.js
++++ b/dist/config.js
+@@ -2,9 +2,7 @@ import { childContextTypeHandler, codeTypeHandler, componentDocblockHandler, com
+ import { fsImporter } from './importer/index.js';
+ import { ChainResolver, FindAnnotatedDefinitionsResolver, FindExportedDefinitionsResolver, } from './resolver/index.js';
+ const defaultResolvers = [
+-    new FindExportedDefinitionsResolver({
+-        limit: 1,
+-    }),
++    new FindExportedDefinitionsResolver(),
+     new FindAnnotatedDefinitionsResolver(),
+ ];
+ const defaultResolver = new ChainResolver(defaultResolvers, {

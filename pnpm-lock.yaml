@@ -8,6 +8,9 @@ patchedDependencies:
   '@vanilla-extract/sprinkles':
     hash: eh2tyazhmaumpwivglvpekok3e
     path: patches/@vanilla-extract__sprinkles.patch
+  react-docgen:
+    hash: jrenouyb6tsithaog3fiiutev4
+    path: patches/react-docgen.patch
   react-docgen-typescript:
     hash: 2ld3tc3apzxpaqkeup6dsrfezi
     path: patches/react-docgen-typescript.patch
@@ -225,7 +228,7 @@ importers:
         version: 4.0.2(webpack@5.93.0(esbuild@0.24.2))
       react-docgen:
         specifier: ^7.1.0
-        version: 7.1.0
+        version: 7.1.0(patch_hash=jrenouyb6tsithaog3fiiutev4)
       storybook:
         specifier: ^8.4.7
         version: 8.4.7(prettier@3.4.2)
@@ -9365,7 +9368,7 @@ snapshots:
       find-up: 5.0.0
       magic-string: 0.30.17
       react: 18.3.1
-      react-docgen: 7.1.0
+      react-docgen: 7.1.0(patch_hash=jrenouyb6tsithaog3fiiutev4)
       react-dom: 18.3.1(react@18.3.1)
       resolve: 1.22.10
       storybook: 8.4.7(prettier@3.4.2)
@@ -14044,7 +14047,7 @@ snapshots:
     dependencies:
       typescript: 5.7.2
 
-  react-docgen@7.1.0:
+  react-docgen@7.1.0(patch_hash=jrenouyb6tsithaog3fiiutev4):
     dependencies:
       '@babel/core': 7.26.0
       '@babel/traverse': 7.26.4
