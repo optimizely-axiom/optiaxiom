@@ -1,5 +1,5 @@
+import { useId } from "@radix-ui/react-id";
 import { Slot } from "@radix-ui/react-slot";
-import { useId } from "@reach/auto-id";
 import { type ElementType, forwardRef, type ReactNode } from "react";
 
 import { Box, type BoxProps } from "../box";

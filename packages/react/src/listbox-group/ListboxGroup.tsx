@@ -1,4 +1,4 @@
-import { useId } from "@reach/auto-id";
+import { useId } from "@radix-ui/react-id";
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import { Box } from "../box";
