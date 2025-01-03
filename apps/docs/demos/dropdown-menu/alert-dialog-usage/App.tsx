@@ -5,7 +5,7 @@ import {
   AlertDialogCancel,
   AlertDialogContent,
   AlertDialogFooter,
-  AlertDialogTitle,
+  AlertDialogHeader,
   AlertDialogTrigger,
   DropdownMenu,
   DropdownMenuContent,
@@ -33,7 +33,7 @@ export function App() {
           </AlertDialogTrigger>
 
           <AlertDialogContent>
-            <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+            <AlertDialogHeader>Are you sure?</AlertDialogHeader>
             <AlertDialogBody>
               The task and all content will be deleted.
             </AlertDialogBody>

@@ -5,7 +5,7 @@ import {
   AlertDialogCancel,
   AlertDialogContent,
   AlertDialogFooter,
-  AlertDialogTitle,
+  AlertDialogHeader,
   Button,
   Dialog,
   DialogBody,
@@ -61,7 +61,7 @@ export function App() {
 
       <AlertDialog onOpenChange={setAlertOpen} open={alertOpen}>
         <AlertDialogContent onCloseAutoFocus={() => textRef.current?.focus()}>
-          <AlertDialogTitle>Discard issue?</AlertDialogTitle>
+          <AlertDialogHeader>Discard issue?</AlertDialogHeader>
           <AlertDialogBody>All unsaved changes will be lost.</AlertDialogBody>
           <AlertDialogFooter>
             <AlertDialogCancel />

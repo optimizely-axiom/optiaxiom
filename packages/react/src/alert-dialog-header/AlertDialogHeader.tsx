@@ -9,7 +9,7 @@ import { Icon } from "../icon";
 import { IconTriangleExclamationSolid } from "../icons/IconTriangleExclamationSolid";
 import { fallbackSpan } from "../utils";
 
-type AlertDialogTitleProps = BoxProps<
+type AlertDialogHeaderProps = BoxProps<
   "div",
   {
     /**
@@ -19,9 +19,9 @@ type AlertDialogTitleProps = BoxProps<
   }
 >;
 
-export const AlertDialogTitle = forwardRef<
+export const AlertDialogHeader = forwardRef<
   HTMLHeadingElement,
-  AlertDialogTitleProps
+  AlertDialogHeaderProps
 >(({ addonBefore, children, ...props }, ref) => {
   return (
     <Flex flexDirection="row" gap="8" p="24" pb="16" ref={ref} {...props}>
@@ -40,4 +40,4 @@ export const AlertDialogTitle = forwardRef<
   );
 });
 
-AlertDialogTitle.displayName = "@optiaxiom/react/AlertDialogTitle";
+AlertDialogHeader.displayName = "@optiaxiom/react/AlertDialogHeader";

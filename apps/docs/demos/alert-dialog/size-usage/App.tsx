@@ -5,7 +5,7 @@ import {
   AlertDialogCancel,
   AlertDialogContent,
   AlertDialogFooter,
-  AlertDialogTitle,
+  AlertDialogHeader,
   AlertDialogTrigger,
 } from "@optiaxiom/react";
 import { type ComponentPropsWithRef } from "react";
@@ -18,7 +18,7 @@ export function App({
       <AlertDialogTrigger>Delete comment</AlertDialogTrigger>
 
       <AlertDialogContent size={size}>
-        <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+        <AlertDialogHeader>Are you sure?</AlertDialogHeader>
         <AlertDialogBody>
           The comment and all replies will be deleted.
         </AlertDialogBody>

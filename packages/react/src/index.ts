@@ -6,7 +6,7 @@ export * from "./alert-dialog-body";
 export * from "./alert-dialog-cancel";
 export * from "./alert-dialog-content";
 export * from "./alert-dialog-footer";
-export * from "./alert-dialog-title";
+export * from "./alert-dialog-header";
 export * from "./alert-dialog-trigger";
 export * from "./alert-title";
 export * from "./avatar";
