@@ -12,6 +12,7 @@ import {
   DialogClose,
   DialogContent,
   DialogFooter,
+  DialogForm,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -38,16 +39,16 @@ export function App() {
       <DialogTrigger>Create new issue</DialogTrigger>
 
       <DialogContent aria-describedby={undefined} size="sm">
-        <DialogHeader>
-          <DialogTitle>Create new issue</DialogTitle>
-        </DialogHeader>
-
-        <form
+        <DialogForm
           onSubmit={(event) => {
             event.preventDefault();
             setOpen(false);
           }}
         >
+          <DialogHeader>
+            <DialogTitle>Create new issue</DialogTitle>
+          </DialogHeader>
+
           <DialogBody>
             <Textarea ref={textRef} required />
           </DialogBody>
@@ -56,7 +57,7 @@ export function App() {
             <DialogClose>Cancel</DialogClose>
             <Button appearance="primary">Save</Button>
           </DialogFooter>
-        </form>
+        </DialogForm>
       </DialogContent>
 
       <AlertDialog onOpenChange={setAlertOpen} open={alertOpen}>

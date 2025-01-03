@@ -5,6 +5,7 @@ import {
   AlertDialogUsage,
   CloseUsage,
   DescriptionUsage,
+  FormUsage,
   NestedUsage,
   SizeUsage,
   TriggerUsage,
@@ -64,6 +65,12 @@ By default we use the `Button` component for the dialog trigger which accepts al
 We can also completely change the trigger by using `asChild` and passing our own component.
 
 <Demo component={TriggerUsage} meta="{16-20}" />
+
+### Form dialogs
+
+Wrap dialog content with the `DialogForm` component to use forms in dialogs.
+
+<Demo component={FormUsage} />
 
 ### Nested dialogs
 

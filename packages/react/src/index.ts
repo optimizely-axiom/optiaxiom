@@ -28,6 +28,7 @@ export * from "./dialog-close";
 export * from "./dialog-content";
 export * from "./dialog-description";
 export * from "./dialog-footer";
+export * from "./dialog-form";
 export * from "./dialog-header";
 export * from "./dialog-title";
 export * from "./dialog-trigger";
