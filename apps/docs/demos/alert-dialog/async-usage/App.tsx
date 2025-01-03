@@ -35,6 +35,7 @@ export function App() {
         <AlertDialogFooter>
           <AlertDialogCancel disabled={loading} />
           <AlertDialogAction
+            disabled={loading}
             loading={loading}
             onClick={(event) => {
               /**
