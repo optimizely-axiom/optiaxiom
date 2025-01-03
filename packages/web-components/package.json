@@ -45,6 +45,7 @@
     "./DialogContent": "./dist/components/DialogContent.js",
     "./DialogDescription": "./dist/components/DialogDescription.js",
     "./DialogFooter": "./dist/components/DialogFooter.js",
+    "./DialogForm": "./dist/components/DialogForm.js",
     "./DialogHeader": "./dist/components/DialogHeader.js",
     "./DialogTitle": "./dist/components/DialogTitle.js",
     "./DialogTrigger": "./dist/components/DialogTrigger.js",
