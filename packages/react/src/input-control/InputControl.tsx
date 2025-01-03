@@ -36,7 +36,7 @@ export const InputControl = forwardRef<
   InputControlProps
 >(
   (
-    { asChild, children, error: errorProp, size = "md", ...props },
+    { asChild, children, className, error: errorProp, size = "md", ...props },
     outerRef,
   ) => {
     const Comp = (asChild ? Slot : "input") as typeof Slot;
@@ -63,7 +63,7 @@ export const InputControl = forwardRef<
         data-disabled={disabled ? "" : undefined}
         data-invalid={error ? "" : undefined}
         data-readonly={readOnly ? "" : undefined}
-        {...styles.control({ size })}
+        {...styles.control({ size }, className)}
         {...sprinkleProps}
       >
         <Comp id={inputId} ref={ref} {...restProps}>

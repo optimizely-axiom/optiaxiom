@@ -16,7 +16,7 @@ type ToggleInputProps = BoxProps<
 >;
 
 export const ToggleInput = forwardRef<HTMLLabelElement, ToggleInputProps>(
-  ({ asChild, children, description, ...props }, ref) => {
+  ({ asChild, children, className, description, ...props }, ref) => {
     const Comp = asChild ? Slot : "label";
     const { restProps, sprinkleProps } = extractSprinkles(props);
 
@@ -28,7 +28,7 @@ export const ToggleInput = forwardRef<HTMLLabelElement, ToggleInputProps>(
         descriptionId={description ? descriptionId : undefined}
         labelId={labelId}
       >
-        <Flex asChild {...styles.toggleInput()} {...sprinkleProps}>
+        <Flex asChild {...styles.toggleInput({}, className)} {...sprinkleProps}>
           <Comp ref={ref} {...restProps}>
             {children}
           </Comp>
