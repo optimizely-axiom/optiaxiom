@@ -1,4 +1,5 @@
 import * as RadixDialog from "@radix-ui/react-dialog";
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
@@ -63,6 +64,10 @@ export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
             >
               <RadixDialog.Content ref={ref}>
                 {children}
+
+                <VisuallyHidden>
+                  <RadixDialog.Description />
+                </VisuallyHidden>
 
                 {nestedDialogCount > 0 && (
                   <Transition>

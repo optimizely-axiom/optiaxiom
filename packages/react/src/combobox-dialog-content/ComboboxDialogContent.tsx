@@ -16,7 +16,7 @@ export const ComboboxDialogContent = forwardRef<
   ComboboxDialogContentProps
 >(({ "aria-label": ariaLabel, children, minW: _minW, ...props }, ref) => {
   return (
-    <DialogContent aria-describedby={undefined} ref={ref} {...props}>
+    <DialogContent ref={ref} {...props}>
       <VisuallyHidden>
         <DialogTitle>{ariaLabel}</DialogTitle>
       </VisuallyHidden>
