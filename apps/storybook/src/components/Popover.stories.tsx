@@ -3,7 +3,11 @@ import type { Meta, StoryObj } from "@storybook/react";
 import {
   Button,
   Checkbox,
+  Field,
   Flex,
+  Heading,
+  Input,
+  Link,
   Popover,
   PopoverContent,
   PopoverTrigger,
@@ -124,4 +128,46 @@ const DropdownExample = () => {
 
 export const DropDown: Story = {
   render: DropdownExample,
+};
+
+export const HoverPopover: Story = {
+  render: (args) => {
+    return (
+      <Popover trigger="hover" {...args}>
+        <PopoverTrigger>Hover me</PopoverTrigger>
+        <PopoverContent>
+          <Flex>
+            <Heading level="5">Forms</Heading>
+            <Field
+              flexDirection="row"
+              justifyContent="space-between"
+              label="Name"
+            >
+              <Input placeholder="Name" />
+            </Field>
+            <Field
+              flexDirection="row"
+              justifyContent="space-between"
+              label="City"
+            >
+              <Input placeholder="City" />
+            </Field>
+          </Flex>
+        </PopoverContent>
+      </Popover>
+    );
+  },
+};
+
+export const HoverPopoverWithLink: Story = {
+  render: (args) => {
+    return (
+      <Popover trigger="hover" {...args}>
+        <PopoverTrigger asChild>
+          <Link href="data:,">Hover me</Link>
+        </PopoverTrigger>
+        <PopoverContent>This is a link</PopoverContent>
+      </Popover>
+    );
+  },
 };

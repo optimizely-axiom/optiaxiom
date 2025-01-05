@@ -12,12 +12,12 @@ import { type ExcludeProps, onReactSelectInputBlur } from "../utils";
 type PopoverContentProps = ExcludeProps<
   BoxProps<
     typeof RadixPopover.Content,
-    Pick<ComponentPropsWithoutRef<typeof MenuListbox>, "minW"> & {
+    {
       /**
        * Whether to show an arrow.
        */
       withArrow?: boolean;
-    }
+    } & Pick<ComponentPropsWithoutRef<typeof MenuListbox>, "minW">
   >,
   | "alignOffset"
   | "arrowPadding"
@@ -32,7 +32,7 @@ type PopoverContentProps = ExcludeProps<
 
 export const PopoverContent = forwardRef<HTMLDivElement, PopoverContentProps>(
   ({ align = "start", children, sideOffset = 2, withArrow, ...props }, ref) => {
-    const { open } = usePopoverContext("PopoverContent");
+    const { open, setOpen, trigger } = usePopoverContext("PopoverContent");
 
     return (
       <TransitionGroup open={open}>
@@ -46,6 +46,12 @@ export const PopoverContent = forwardRef<HTMLDivElement, PopoverContentProps>(
           >
             <RadixPopover.Content
               align={align}
+              onPointerEnter={() =>
+                trigger === "hover" ? setOpen(true) : undefined
+              }
+              onPointerLeave={() =>
+                trigger === "hover" ? setOpen(false) : undefined
+              }
               ref={ref}
               sideOffset={sideOffset}
             >

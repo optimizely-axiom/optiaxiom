@@ -21,6 +21,10 @@ type PopoverProps = {
    * The open state in controlled mode.
    */
   open?: boolean;
+  /**
+   * Specifies which type of events will trigger a popover to show
+   */
+  trigger?: "click" | "hover";
 };
 
 export function Popover({
@@ -28,6 +32,7 @@ export function Popover({
   defaultOpen,
   onOpenChange,
   open: openProp,
+  trigger = "click",
   ...props
 }: PopoverProps) {
   const [open, setOpen] = useControllableState({
@@ -38,7 +43,9 @@ export function Popover({
 
   return (
     <RadixPopover.Root onOpenChange={setOpen} open={open} {...props}>
-      <PopoverContextProvider open={open}>{children}</PopoverContextProvider>
+      <PopoverContextProvider open={open} setOpen={setOpen} trigger={trigger}>
+        {children}
+      </PopoverContextProvider>
     </RadixPopover.Root>
   );
 }
