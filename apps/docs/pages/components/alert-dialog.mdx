@@ -4,6 +4,7 @@ import { PropsTable } from "@/components/props-table";
 import {
   AsyncUsage,
   ConfirmationUsage,
+  ControlledUsage,
   SizeUsage,
   TriggerUsage,
   Usage,
@@ -28,9 +29,13 @@ Display a modal with important content that expects confirmation from the user.
 
 ### Usage
 
+<Demo component={Usage} />
+
+### Controlled
+
 Use the `open` and `defaultOpen` props to toggle between controlled and uncontrolled usage. And combine it with `onOpenChange` to listen for changes to the state.
 
-<Demo component={Usage} />
+<Demo component={ControlledUsage} meta="{17}" />
 
 ### Sizes
 
