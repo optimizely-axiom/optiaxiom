@@ -14,7 +14,8 @@ export function HeroPage() {
       </Heading>
 
       <Text className={styles.fade} fontSize="2xl" mb="24">
-        Axiom is the technical implementation of the Optimizely Design System.
+        Axiom is a modular design system for efficiently designing and building
+        UI at Optimizely.
       </Text>
 
       <Box className={styles.fade}>

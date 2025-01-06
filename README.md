@@ -1,6 +1,6 @@
 # Axiom
 
-Axiom is the technical implementation of the Optimizely Design System.
+A React implementation of Optimizely's Axiom Design System.
 
 ## Installation
 
