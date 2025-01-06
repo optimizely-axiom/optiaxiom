@@ -1,7 +1,13 @@
 import { Cards } from "@/components/cards";
 import { Demo } from "@/components/demo";
 import { PropsTable } from "@/components/props-table";
-import { HorizontalUsage, Usage, VerticalUsage } from "@/demos/flex";
+import {
+  AlignmentUsage,
+  GapUsage,
+  HorizontalUsage,
+  Usage,
+  VerticalUsage,
+} from "@/demos/flex";
 import { Flex } from "@optiaxiom/react";
 
 # Flex
@@ -25,6 +31,18 @@ Use `flexDirection="row"` or `flexDirection="row-reverse"` to stack items horizo
 Use `flexDirection="column"` or `flexDirection="column-reverse"` to stack items vertically:
 
 <Demo component={VerticalUsage} />
+
+### Gap
+
+Use `gap` prop to control the gap between flex items.
+
+<Demo component={GapUsage} />
+
+### Alignment
+
+Use `alignItems` and `justifyContent` prop to control the layout and alignment of flex items.
+
+<Demo component={AlignmentUsage} />
 
 ### Related
 

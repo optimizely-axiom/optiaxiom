@@ -185,8 +185,13 @@ function isNumberType(item: PropItem) {
       return false;
     }
 
-    const maybeNumber = JSON.parse(value.value);
-    if (isNaN(maybeNumber) || isNaN(parseFloat(maybeNumber))) {
+    let maybeNumber;
+    try {
+      maybeNumber = JSON.parse(value.value);
+      if (isNaN(maybeNumber) || isNaN(parseFloat(maybeNumber))) {
+        return false;
+      }
+    } catch {
       return false;
     }
 
