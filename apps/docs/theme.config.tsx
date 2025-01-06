@@ -43,7 +43,7 @@ export default {
   docsRepositoryBase:
     "https://github.com/optimizely-axiom/optiaxiom/tree/main/apps/docs",
   footer: {
-    content: <span>Copyright {new Date().getFullYear()} © Optimizely.</span>,
+    content: <span>Copyright 2024-present © Optimizely.</span>,
   },
   head: function useHead() {
     const { frontMatter, title: pageTitle } = useConfig();
