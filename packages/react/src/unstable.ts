@@ -4,6 +4,7 @@ export * from "./autocomplete-empty";
 export * from "./autocomplete-item";
 export * from "./autocomplete-radio-item";
 export * from "./autocomplete-trigger";
+export * from "./autocomplete-virtualized";
 export * from "./breadcrumb";
 export * from "./breadcrumb-ellipsis";
 export * from "./breadcrumb-item";
