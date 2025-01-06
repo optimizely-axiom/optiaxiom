@@ -42,7 +42,9 @@ export default {
   },
   button: "Button",
   checkbox: "Checkbox",
-  code: "Code",
+  code: {
+    display: "hidden",
+  },
   combobox: {
     title: <AlphaItem>Combobox</AlphaItem>,
   },
@@ -60,7 +62,9 @@ export default {
     display: "hidden",
   },
   input: "Input",
-  kbd: "Kbd",
+  kbd: {
+    display: "hidden",
+  },
   link: "Link",
   pagination: "Pagination",
   popover: "Popover",
