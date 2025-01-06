@@ -85,7 +85,9 @@ export function Command<Item>({
     itemToKey,
     itemToString,
     onHighlightedIndexChange({ highlightedIndex, type }) {
-      setHighlightedIndex(highlightedIndex);
+      if (type !== useCombobox.stateChangeTypes.MenuMouseLeave) {
+        setHighlightedIndex(highlightedIndex);
+      }
 
       if (
         type === useCombobox.stateChangeTypes.InputKeyDownArrowDown ||
