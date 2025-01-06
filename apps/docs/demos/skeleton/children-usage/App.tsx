@@ -1,10 +1,9 @@
-import { Skeleton } from "@optiaxiom/react";
-import { IconUserFilled } from "@tabler/icons-react";
+import { Avatar, Skeleton } from "@optiaxiom/react";
 
 export function App() {
   return (
-    <Skeleton circle h="56" p="8">
-      <IconUserFilled />
+    <Skeleton>
+      <Avatar />
     </Skeleton>
   );
 }
