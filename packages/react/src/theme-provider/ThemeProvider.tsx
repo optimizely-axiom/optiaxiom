@@ -7,6 +7,16 @@ type ThemeProviderProps = {
   selector?: string;
 };
 
+/**
+ * TODO: remove color fallback once `light-dark()` is widely available.
+ */
+const lightColors = Object.fromEntries(
+  Object.entries(tokens.colors).map(([k, v]) => [
+    k,
+    v.slice(v.indexOf("(") + 1, v.indexOf(",")),
+  ]),
+) as typeof tokens.colors;
+
 export function ThemeProvider({
   children,
   selector = ":root",
@@ -16,7 +26,16 @@ export function ThemeProvider({
       <style>{`
         @layer optiaxiom.theme {
           ${selector} {
-            ${assignInlineVars(theme, tokens)}
+            ${assignInlineVars(theme, {
+              ...tokens,
+              colors: lightColors,
+            })}
+          }
+
+          @supports (color: light-dark(black, white)) {
+            ${selector} {
+              ${assignInlineVars(theme.colors, tokens.colors)}
+            }
           }
         }
       `}</style>
