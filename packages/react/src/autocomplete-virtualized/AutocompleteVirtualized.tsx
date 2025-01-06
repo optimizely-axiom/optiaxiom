@@ -6,6 +6,7 @@ import {
   type ReactNode,
   useEffect,
   useRef,
+  useState,
 } from "react";
 
 import { Box, type BoxProps } from "../box";
@@ -25,10 +26,17 @@ export const AutocompleteVirtualized = forwardRef<
   AutocompleteVirtualizedProps
 >(({ children, items, ...props }, outerRef) => {
   const innerRef = useRef<HTMLDivElement>(null);
-  const enabled = !!innerRef.current
-    ?.closest<HTMLDivElement>("[data-radix-popper-content-wrapper]")
-    ?.style.getPropertyValue("--radix-popper-available-height");
   const ref = useComposedRefs(outerRef, innerRef);
+
+  /**
+   * We wait for first paint before enabling virtualizer to ensure we render a
+   * smaller set of data in actually visible in the overflow element rather than
+   * trying to render the full list of items.
+   */
+  const [enabled, setEnabled] = useState(false);
+  useEffect(() => {
+    requestAnimationFrame(() => setEnabled(true));
+  }, []);
 
   const rowVirtualizer = useVirtualizer({
     count: items.length,
@@ -40,7 +48,7 @@ export const AutocompleteVirtualized = forwardRef<
   const { downshift } = useCommandContext("AutocompleteVirtualized");
   useEffect(() => {
     rowVirtualizer.scrollToIndex(downshift.highlightedIndex);
-  }, [downshift.highlightedIndex, rowVirtualizer]);
+  }, [downshift.highlightedIndex, enabled, rowVirtualizer]);
 
   return (
     <ListboxScrollArea ref={ref} {...props}>
