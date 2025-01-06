@@ -3,6 +3,7 @@ import { Demo } from "@/components/demo";
 import { PropsTable } from "@/components/props-table";
 import {
   AlertDialogUsage,
+  ControlledUsage,
   DescriptionUsage,
   FormUsage,
   NestedUsage,
@@ -33,9 +34,13 @@ Display a modal dialog box.
 
 ### Usage
 
+<Demo component={Usage} />
+
+### Controlled
+
 Use the `open` and `defaultOpen` props to toggle between controlled and uncontrolled usage. And combine it with `onOpenChange` to listen for changes to the state.
 
-<Demo component={Usage} />
+<Demo component={ControlledUsage} meta="{17}" />
 
 ### Sizes
 

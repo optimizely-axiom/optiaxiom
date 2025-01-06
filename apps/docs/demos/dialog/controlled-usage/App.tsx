@@ -8,10 +8,13 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@optiaxiom/react";
+import { useState } from "react";
 
 export function App() {
+  const [open, setOpen] = useState(false);
+
   return (
-    <Dialog>
+    <Dialog onOpenChange={setOpen} open={open}>
       <DialogTrigger>Open Dialog</DialogTrigger>
 
       <DialogContent>

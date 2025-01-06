@@ -8,10 +8,13 @@ import {
   AlertDialogHeader,
   AlertDialogTrigger,
 } from "@optiaxiom/react";
+import { useState } from "react";
 
 export function App() {
+  const [open, setOpen] = useState(false);
+
   return (
-    <AlertDialog>
+    <AlertDialog onOpenChange={setOpen} open={open}>
       <AlertDialogTrigger>Delete comment</AlertDialogTrigger>
 
       <AlertDialogContent>
