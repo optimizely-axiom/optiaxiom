@@ -257,6 +257,7 @@ body:before {
 
   /* nav links container */
   a {
+    border-color: var(--ax-colors-border-tertiary);
     border-radius: var(--ax-borderRadius-md);
     border-width: 1px;
     flex: 1;
