@@ -347,9 +347,15 @@ importers:
       '@tanstack/react-table':
         specifier: ^8.0.0
         version: 8.20.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@tanstack/react-virtual':
+        specifier: ^3.11.2
+        version: 3.11.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@tanstack/table-core':
         specifier: ^8.0.0
         version: 8.20.5
+      '@tanstack/virtual-core':
+        specifier: ^3.11.2
+        version: 3.11.2
       '@vanilla-extract/dynamic':
         specifier: ^2.1.2
         version: 2.1.2
