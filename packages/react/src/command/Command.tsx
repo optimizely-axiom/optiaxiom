@@ -91,7 +91,9 @@ export function Command<Item>({
 
       if (
         type === useCombobox.stateChangeTypes.InputKeyDownArrowDown ||
-        type === useCombobox.stateChangeTypes.InputKeyDownArrowUp
+        type === useCombobox.stateChangeTypes.InputKeyDownArrowUp ||
+        type === useCombobox.stateChangeTypes.InputKeyDownPageDown ||
+        type === useCombobox.stateChangeTypes.InputKeyDownPageUp
       ) {
         setLastInteractionSource("keyboard");
       } else {
