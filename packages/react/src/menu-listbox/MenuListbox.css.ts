@@ -1,3 +1,5 @@
+import { theme } from "@optiaxiom/globals";
+
 import {
   createVar,
   recipe,
@@ -46,7 +48,7 @@ export const listbox = recipe({
       }),
       popper: style({
         vars: {
-          [contentAvailableHeightVar]: "var(--radix-popper-available-height)",
+          [contentAvailableHeightVar]: `min(var(--radix-popper-available-height), ${theme.maxSize.sm})`,
           [triggerWidth]: "var(--radix-popper-anchor-width)",
         },
       }),
