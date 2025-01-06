@@ -1,13 +1,7 @@
 import { Box, Flex } from "@optiaxiom/react";
 
 export const CheckboxIcon = () => (
-  <Flex
-    bg="bg.accent"
-    border="1"
-    p="2"
-    rounded="sm"
-    style={{ aspectRatio: "1" }}
-  >
+  <Flex bg="bg.accent" p="2" rounded="sm" style={{ aspectRatio: "1" }}>
     <Box asChild color="fg.default.inverse">
       <svg
         fill="none"
