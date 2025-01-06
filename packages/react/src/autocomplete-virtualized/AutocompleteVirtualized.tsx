@@ -11,7 +11,6 @@ import {
 import { Box, type BoxProps } from "../box";
 import { useCommandContext } from "../command-context";
 import { ListboxScrollArea } from "../listbox-scroll-area";
-import { useWaitForHeight } from "./useWaitForHeight";
 
 type AutocompleteVirtualizedProps<T = unknown> = BoxProps<
   "div",
@@ -25,8 +24,10 @@ export const AutocompleteVirtualized = forwardRef<
   HTMLDivElement,
   AutocompleteVirtualizedProps
 >(({ children, items, ...props }, outerRef) => {
-  const enabled = useWaitForHeight();
   const innerRef = useRef<HTMLDivElement>(null);
+  const enabled = !!innerRef.current
+    ?.closest<HTMLDivElement>("[data-radix-popper-content-wrapper]")
+    ?.style.getPropertyValue("--radix-popper-available-height");
   const ref = useComposedRefs(outerRef, innerRef);
 
   const rowVirtualizer = useVirtualizer({
