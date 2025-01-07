@@ -264,7 +264,7 @@ body:before {
     border-color: var(--ax-colors-border-tertiary);
     border-radius: var(--ax-borderRadius-md);
     border-width: 1px;
-    flex: 1;
+    flex-basis: 50%;
     flex-wrap: wrap;
     gap: 0 0.5rem;
     margin: 0;
@@ -278,7 +278,7 @@ body:before {
       width: 100%;
     }
 
-    &:first-child {
+    &:not(.ltr\:_text-right) {
       div {
         justify-content: start;
       }
@@ -289,8 +289,9 @@ body:before {
       }
     }
 
-    &:last-child {
+    &.ltr\:_text-right {
       justify-content: end;
+      margin-left: auto;
 
       & div {
         flex-direction: row-reverse;
