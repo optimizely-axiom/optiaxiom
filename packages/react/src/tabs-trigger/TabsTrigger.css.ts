@@ -12,6 +12,7 @@ export const trigger = recipe({
       fontSize: "md",
       fontWeight: "500",
       py: "4",
+      transition: "colors",
     },
     style({
       borderColor: `transparent`,
