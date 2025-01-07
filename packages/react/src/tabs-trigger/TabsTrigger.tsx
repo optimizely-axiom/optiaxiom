@@ -1,14 +1,32 @@
 import * as RadixTabs from "@radix-ui/react-tabs";
-import { forwardRef } from "react";
+import { forwardRef, type ReactNode } from "react";
 
-import { Box } from "../box";
-import { Button, type ButtonProps } from "../button";
+import { Box, type BoxProps } from "../box";
 import { Flex } from "../flex";
 import { extractSprinkles } from "../sprinkles";
-import { useTabsContext } from "../tabs-context";
 import * as styles from "./TabsTrigger.css";
 
-type TabsTriggerProps = ButtonProps<typeof RadixTabs.Trigger>;
+type TabsTriggerProps = BoxProps<
+  typeof RadixTabs.Trigger,
+  {
+    /**
+     * Display content inside the button after `children`.
+     */
+    addonAfter?: ReactNode;
+    /**
+     * Display content inside the button before `children`.
+     */
+    addonBefore?: ReactNode;
+    /**
+     * Display an icon before or after the button content.
+     */
+    icon?: ReactNode;
+    /**
+     * Control whether to show the icon before or after the button content.
+     */
+    iconPosition?: "end" | "start";
+  }
+>;
 
 export const TabsTrigger = forwardRef<HTMLButtonElement, TabsTriggerProps>(
   (
@@ -24,11 +42,9 @@ export const TabsTrigger = forwardRef<HTMLButtonElement, TabsTriggerProps>(
     },
     ref,
   ) => {
-    const { appearance } = useTabsContext("TabsTrigger");
-
     const { restProps, sprinkleProps } = extractSprinkles(props);
 
-    return appearance === "primary" ? (
+    return (
       <Box asChild {...styles.trigger({}, className)} {...sprinkleProps}>
         <RadixTabs.Trigger ref={ref} value={value} {...restProps}>
           <Flex {...styles.content()}>
@@ -52,21 +68,6 @@ export const TabsTrigger = forwardRef<HTMLButtonElement, TabsTriggerProps>(
           </Flex>
         </RadixTabs.Trigger>
       </Box>
-    ) : (
-      <Button
-        addonAfter={addonAfter}
-        addonBefore={addonBefore}
-        appearance="subtle"
-        asChild
-        className={className}
-        icon={icon}
-        iconPosition={iconPosition}
-        justifyContent="start"
-        ref={ref}
-        {...props}
-      >
-        <RadixTabs.Trigger value={value}>{children}</RadixTabs.Trigger>
-      </Button>
     );
   },
 );

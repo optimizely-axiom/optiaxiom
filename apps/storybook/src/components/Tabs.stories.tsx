@@ -64,12 +64,6 @@ export const Manual: Story = {
   },
 };
 
-export const Secondary: Story = {
-  args: {
-    appearance: "secondary",
-  },
-};
-
 export const Vertical: Story = {
   args: {
     children: (
@@ -108,12 +102,5 @@ export const Vertical: Story = {
       </>
     ),
     orientation: "vertical",
-  },
-};
-
-export const SecondaryVertical: Story = {
-  args: {
-    ...Vertical.args,
-    appearance: "secondary",
   },
 };
