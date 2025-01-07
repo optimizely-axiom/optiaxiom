@@ -19,10 +19,14 @@ export const container = recipe({
         [styles.controlColorVar]: theme.colors["bg.tertiary"],
       },
 
-      selectors: {
-        [`&:has(${inputMarker}:not(:disabled):not(:checked)):hover`]: {
-          vars: {
-            [styles.controlColorVar]: theme.colors["bg.tertiary.hovered"],
+      "@media": {
+        "(hover: hover)": {
+          selectors: {
+            [`&:has(${inputMarker}:not(:disabled):not(:checked)):hover`]: {
+              vars: {
+                [styles.controlColorVar]: theme.colors["bg.tertiary.hovered"],
+              },
+            },
           },
         },
       },

@@ -12,9 +12,13 @@ export const row = recipe({
       w: "full",
     },
     style({
-      selectors: {
-        "&:hover": {
-          backgroundColor: theme.colors["bg.default.hovered"],
+      "@media": {
+        "(hover: hover)": {
+          selectors: {
+            "&:hover": {
+              backgroundColor: theme.colors["bg.default.hovered"],
+            },
+          },
         },
       },
     }),

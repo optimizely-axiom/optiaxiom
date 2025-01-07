@@ -139,14 +139,18 @@ export const cell = recipe({
       body: style({
         backgroundColor: theme.colors["bg.default"],
 
-        selectors: {
-          [`${row}:hover &`]: {
-            backgroundImage: `
-              linear-gradient(
-                ${theme.colors["bg.default.hovered"]},
-                ${theme.colors["bg.default.hovered"]}
-              )
-            `,
+        "@media": {
+          "(hover: hover)": {
+            selectors: {
+              [`${row}:hover &`]: {
+                backgroundImage: `
+                  linear-gradient(
+                    ${theme.colors["bg.default.hovered"]},
+                    ${theme.colors["bg.default.hovered"]}
+                  )
+                `,
+              },
+            },
           },
         },
       }),

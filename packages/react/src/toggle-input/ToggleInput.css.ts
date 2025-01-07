@@ -25,18 +25,24 @@ export const toggleInput = recipe({
       color: theme.colors["fg.default"],
       position: "relative",
 
-      selectors: {
-        [`&:has(${input}:not(:disabled):checked):hover`]: {
-          vars: {
-            [controlColorVar]: theme.colors["bg.accent.hovered"],
+      "@media": {
+        "(hover: hover)": {
+          selectors: {
+            [`&:has(${input}:not(:disabled):checked):hover`]: {
+              vars: {
+                [controlColorVar]: theme.colors["bg.accent.hovered"],
+              },
+            },
+            [`&:has(${input}:not(:disabled):not(:checked)):hover`]: {
+              vars: {
+                [controlColorVar]: theme.colors["border.active.hovered"],
+              },
+            },
           },
         },
-        [`&:has(${input}:not(:disabled):not(:checked)):hover`]: {
-          vars: {
-            [controlColorVar]: theme.colors["border.active.hovered"],
-          },
-        },
+      },
 
+      selectors: {
         [`&:has(${input}:checked)`]: {
           vars: {
             [controlColorVar]: theme.colors["bg.accent"],

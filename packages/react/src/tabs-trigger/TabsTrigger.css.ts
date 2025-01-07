@@ -18,14 +18,21 @@ export const trigger = recipe({
       color: theme.colors["fg.tertiary"],
       userSelect: "none",
 
+      "@media": {
+        "(hover: hover)": {
+          selectors: {
+            '&:hover:not([data-state="active"])': {
+              borderColor: theme.colors["border.default"],
+              color: theme.colors["fg.secondary"],
+            },
+          },
+        },
+      },
+
       selectors: {
         "&:focus-visible": {
           outline: `2px solid ${theme.colors["border.focus"]}`,
           outlineOffset: "1px",
-        },
-        '&:hover:not([data-state="active"])': {
-          borderColor: theme.colors["border.default"],
-          color: theme.colors["fg.secondary"],
         },
         "&[data-disabled]": {
           color: theme.colors["fg.disabled"],

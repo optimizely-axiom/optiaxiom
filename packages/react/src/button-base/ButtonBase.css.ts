@@ -120,6 +120,21 @@ export const buttonBase = recipe({
         color: fallbackVar(textColorVar, accentColorVar),
         paddingInline: `calc(${paddingInlineVar} - 1px)`,
 
+        "@media": {
+          "(hover: hover)": {
+            selectors: {
+              '&:hover:not(:active, [data-disabled], [data-loading], [data-state="active"], [data-state="on"])':
+                {
+                  backgroundColor: subtleHoverAccentColorVar,
+                  borderColor: fallbackVar(
+                    subtleHoverOutlineColorVar,
+                    hoverAccentColorVar,
+                  ),
+                },
+            },
+          },
+        },
+
         selectors: {
           '&:active:not([data-disabled], [data-loading], [data-state="active"], [data-state="on"])':
             {
@@ -129,14 +144,7 @@ export const buttonBase = recipe({
                 hoverAccentColorVar,
               ),
             },
-          '&:hover:not(:active, [data-disabled], [data-loading], [data-state="active"], [data-state="on"])':
-            {
-              backgroundColor: subtleHoverAccentColorVar,
-              borderColor: fallbackVar(
-                subtleHoverOutlineColorVar,
-                hoverAccentColorVar,
-              ),
-            },
+
           '&:is([data-state="active"], [data-state="on"])': {
             backgroundColor: theme.colors["bg.accent.subtle"],
             borderColor: theme.colors["fg.accent"],
@@ -152,13 +160,21 @@ export const buttonBase = recipe({
         backgroundColor: accentColorVar,
         color: fallbackVar(solidTextColorVar, theme.colors["fg.white"]),
 
+        "@media": {
+          "(hover: hover)": {
+            selectors: {
+              "&:hover:not(:active, [data-disabled], [data-loading])": {
+                backgroundColor: hoverAccentColorVar,
+              },
+            },
+          },
+        },
+
         selectors: {
           "&:active:not([data-disabled], [data-loading])": {
             backgroundColor: pressedAccentColorVar,
           },
-          "&:hover:not(:active, [data-disabled], [data-loading])": {
-            backgroundColor: hoverAccentColorVar,
-          },
+
           "&[data-disabled]:not([data-loading])": {
             backgroundColor: theme.colors["bg.secondary"],
             border: `1px solid ${theme.colors["border.disabled"]}`,
@@ -172,6 +188,20 @@ export const buttonBase = recipe({
         borderColor: accentColorVar,
         color: fallbackVar(textColorVar, accentColorVar),
 
+        "@media": {
+          "(hover: hover)": {
+            selectors: {
+              '&:hover:not(:active, [data-disabled], [data-loading], [data-state="active"], [data-state="on"])':
+                {
+                  backgroundColor: fallbackVar(
+                    transparentHoverAccentColorVar,
+                    subtleHoverAccentColorVar,
+                  ),
+                },
+            },
+          },
+        },
+
         selectors: {
           '&:active:not([data-disabled], [data-loading], [data-state="active"], [data-state="on"])':
             {
@@ -180,13 +210,7 @@ export const buttonBase = recipe({
                 subtlePressedAccentColorVar,
               ),
             },
-          '&:hover:not(:active, [data-disabled], [data-loading], [data-state="active"], [data-state="on"])':
-            {
-              backgroundColor: fallbackVar(
-                transparentHoverAccentColorVar,
-                subtleHoverAccentColorVar,
-              ),
-            },
+
           '&:is([data-state="active"], [data-state="on"])': {
             backgroundColor: theme.colors["bg.accent.subtle"],
             color: theme.colors["fg.accent"],

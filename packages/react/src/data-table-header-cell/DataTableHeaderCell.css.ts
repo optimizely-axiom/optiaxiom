@@ -21,6 +21,16 @@ export const button = recipe({
       textDecoration: "none",
       userSelect: "none",
 
+      "@media": {
+        "(hover: hover)": {
+          selectors: {
+            "&:hover": {
+              color: theme.colors["fg.secondary"],
+            },
+          },
+        },
+      },
+
       selectors: {
         "&::after": {
           content: "",
@@ -35,9 +45,6 @@ export const button = recipe({
           borderRadius: theme.borderRadius.md,
           outline: `2px solid ${theme.colors["border.focus"]}`,
           outlineOffset: "-2px",
-        },
-        "&:hover": {
-          color: theme.colors["fg.secondary"],
         },
       },
     }),
@@ -70,9 +77,13 @@ export const icon = recipe({
       true: style({
         opacity: "0",
 
-        selectors: {
-          [`${marker}:is(:focus-visible, :hover) &`]: {
-            opacity: "1",
+        "@media": {
+          "(hover: hover)": {
+            selectors: {
+              [`${marker}:is(:focus-visible, :hover) &`]: {
+                opacity: "1",
+              },
+            },
           },
         },
       }),

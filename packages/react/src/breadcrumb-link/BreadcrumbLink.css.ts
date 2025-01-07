@@ -14,10 +14,17 @@ export const link = recipe({
     style({
       color: theme.colors["fg.tertiary"],
 
-      selectors: {
-        "&:hover:not([data-disabled])": {
-          color: theme.colors["fg.secondary"],
+      "@media": {
+        "(hover: hover)": {
+          selectors: {
+            "&:hover:not([data-disabled])": {
+              color: theme.colors["fg.secondary"],
+            },
+          },
         },
+      },
+
+      selectors: {
         "&:visited": {
           color: theme.colors["fg.tertiary"],
         },
