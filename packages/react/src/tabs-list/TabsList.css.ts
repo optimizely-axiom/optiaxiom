@@ -9,38 +9,16 @@ export const list = recipe({
     style({
       selectors: {
         '&[data-orientation="horizontal"]': {
+          borderBottomWidth: "1px",
           flexDirection: "row",
+          gap: "24px",
         },
         '&[data-orientation="vertical"]': {
+          borderRightWidth: "1px",
           flexDirection: "column",
+          gap: "8px",
         },
       },
     }),
   ],
-  variants: {
-    appearance: {
-      primary: style({
-        selectors: {
-          '&[data-orientation="horizontal"]': {
-            borderBottomWidth: "1px",
-            gap: "24px",
-          },
-          '&[data-orientation="vertical"]': {
-            borderRightWidth: "1px",
-            gap: "8px",
-          },
-        },
-      }),
-      secondary: style({
-        selectors: {
-          '&[data-orientation="horizontal"]': {
-            gap: "24px",
-          },
-          '&[data-orientation="vertical"]': {
-            gap: "8px",
-          },
-        },
-      }),
-    },
-  },
 });
