@@ -93,6 +93,7 @@ export default tsEslint.config(
       "local/no-aria-selectors": "error",
       "local/no-global-styles": "error",
       "local/no-sprinkles-style-conflict": "error",
+      "local/prefer-hover-media": "error",
       "local/prefer-recipe-export": "error",
       "local/sprinkle-const-array": "error",
       "local/sprinkle-string-type": "error",
