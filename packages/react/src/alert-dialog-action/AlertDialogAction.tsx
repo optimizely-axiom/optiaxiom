@@ -8,12 +8,23 @@ type AlertDialogActionProps = ButtonProps<typeof RadixAlertDialog.Action>;
 export const AlertDialogAction = forwardRef<
   HTMLButtonElement,
   AlertDialogActionProps
->(({ appearance = "danger", asChild, children, ...props }, ref) => {
-  return (
-    <RadixAlertDialog.Action asChild ref={ref} {...props}>
-      {asChild ? children : <Button appearance={appearance}>{children}</Button>}
-    </RadixAlertDialog.Action>
-  );
-});
+>(
+  (
+    { appearance = "danger", asChild, children, size = "lg", ...props },
+    ref,
+  ) => {
+    return (
+      <RadixAlertDialog.Action asChild ref={ref} {...props}>
+        {asChild ? (
+          children
+        ) : (
+          <Button appearance={appearance} size={size}>
+            {children}
+          </Button>
+        )}
+      </RadixAlertDialog.Action>
+    );
+  },
+);
 
 AlertDialogAction.displayName = "@optiaxiom/react/AlertDialogAction";
