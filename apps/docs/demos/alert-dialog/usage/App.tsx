@@ -15,7 +15,7 @@ export function App() {
       <AlertDialogTrigger>Delete comment</AlertDialogTrigger>
 
       <AlertDialogContent>
-        <AlertDialogHeader>Delete comment and replies?</AlertDialogHeader>
+        <AlertDialogHeader>Delete comment?</AlertDialogHeader>
 
         <AlertDialogBody>
           The comment and all replies will be deleted.
