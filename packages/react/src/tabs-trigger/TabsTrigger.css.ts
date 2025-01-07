@@ -64,6 +64,7 @@ export const content = recipe({
       justifyContent: ["center", "start"],
       py: "6",
       rounded: "sm",
+      transition: "colors",
     },
     style({
       selectors: {
