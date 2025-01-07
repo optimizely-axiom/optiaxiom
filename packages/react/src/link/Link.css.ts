@@ -8,13 +8,20 @@ export const link = recipe({
     style({
       textDecoration: "none",
 
+      "@media": {
+        "(hover: hover)": {
+          selectors: {
+            "&:hover:not([data-disabled])": {
+              textDecoration: "underline",
+            },
+          },
+        },
+      },
+
       selectors: {
         "&:focus-visible": {
           outline: `2px auto ${theme.colors["border.focus"]}`,
           outlineOffset: "1px",
-        },
-        "&:hover:not([data-disabled])": {
-          textDecoration: "underline",
         },
         "&:visited": {
           color: theme.colors["fg.link.visited"],
@@ -33,9 +40,13 @@ export const link = recipe({
       default: style({
         color: theme.colors["fg.link.default"],
 
-        selectors: {
-          "&:hover:not([data-disabled])": {
-            color: theme.colors["fg.link.default.hovered"],
+        "@media": {
+          "(hover: hover)": {
+            selectors: {
+              "&:hover:not([data-disabled])": {
+                color: theme.colors["fg.link.default.hovered"],
+              },
+            },
           },
         },
       }),

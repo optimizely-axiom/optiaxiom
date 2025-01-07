@@ -20,6 +20,16 @@ export const root = recipe({
       color: theme.colors["fg.default"],
       position: "relative",
 
+      "@media": {
+        "(hover: hover)": {
+          selectors: {
+            "&:hover": {
+              borderColor: theme.colors["border.active"],
+            },
+          },
+        },
+      },
+
       selectors: {
         [`&:has(${marker}:focus)`]: {
           zIndex: "10",
@@ -36,9 +46,6 @@ export const root = recipe({
           borderColor: theme.colors["border.accent"],
         },
 
-        "&:hover": {
-          borderColor: theme.colors["border.active"],
-        },
         [`&:has(${marker}:is([data-invalid]))`]: {
           borderColor: theme.colors["border.error"],
         },
