@@ -63,3 +63,9 @@ export const Controlled: Story = {
     );
   },
 };
+
+export const Disabled: Story = {
+  args: {
+    disabled: true,
+  },
+};
