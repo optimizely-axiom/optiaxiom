@@ -39,6 +39,8 @@ export const createToaster = (): Toaster => {
     }
   };
 
+  let queue = Promise.resolve();
+
   return {
     store: [
       (callback: () => void) => {
@@ -63,33 +65,47 @@ export const createToaster = (): Toaster => {
             }
           : args[0];
       const id = genId();
-      snapshot = [
-        ...snapshot,
-        {
+
+      queue = queue.then(async () => {
+        const item = {
           id,
           open: true,
           ref: { current: null },
           toast,
-        },
-      ];
+        };
+        snapshot = [...snapshot, item];
+        emit();
 
-      emit();
+        await waitForAnimation(item.ref.current);
+      });
 
       return id;
     },
 
     remove: (id) => {
-      snapshot = snapshot.map((item) =>
-        item.id === id ? { ...item, open: false } : item,
-      );
-      emit();
+      queue = queue.then(async () => {
+        snapshot = snapshot.map((item) =>
+          item.id === id ? { ...item, open: false } : item,
+        );
+        emit();
 
-      setTimeout(() => {
+        const item = snapshot.find((item) => item.id === id);
+        await waitForAnimation(item?.ref.current);
+
         snapshot = snapshot.filter((item) => item.id !== id);
         emit();
-      }, 200);
+      });
     },
   };
+};
+
+const waitForAnimation = async (element?: HTMLElement | null) => {
+  await new Promise((resolve) => requestAnimationFrame(resolve));
+  await Promise.allSettled(
+    typeof element?.getAnimations === "function"
+      ? element?.getAnimations().map((animation) => animation.finished)
+      : [Promise.resolve()],
+  );
 };
 
 export const toaster = createToaster();
