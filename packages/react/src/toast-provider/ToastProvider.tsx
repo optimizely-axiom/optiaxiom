@@ -71,6 +71,8 @@ export const ToastProvider = forwardRef<HTMLOListElement, ToastProps>(
       return null;
     }
 
+    let exitingToastOffsets = 0;
+
     return (
       <RadixToast.ToastProvider
         duration={duration}
@@ -78,11 +80,18 @@ export const ToastProvider = forwardRef<HTMLOListElement, ToastProps>(
         swipeDirection={swipeDirection ?? mapPositionToSwipeDirection[position]}
         swipeThreshold={swipeThreshold}
       >
-        {toasts.map(({ id, open, toast }) => (
+        {toasts.map(({ id, open, ref, toast }) => (
           <ToastContextProvider
             key={id}
+            offset={
+              (exitingToastOffsets +=
+                !open && ref.current
+                  ? ref.current.offsetHeight + parseInt(styles.gap)
+                  : 0)
+            }
             onOpenChange={() => toasterProp.remove(id)}
             open={open}
+            toastRef={ref}
           >
             {
               // eslint-disable-next-line @typescript-eslint/no-explicit-any -- https://github.com/microsoft/TypeScript/issues/53178
