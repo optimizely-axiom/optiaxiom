@@ -3,6 +3,7 @@ import { theme } from "@optiaxiom/globals";
 import * as styles from "../toast-provider/ToastProvider.css";
 import {
   createVar,
+  fallbackVar,
   globalStyle,
   keyframes,
   recipe,
@@ -11,28 +12,20 @@ import {
 } from "../vanilla-extract";
 
 const accentColorVar = createVar();
-const swipeEndVar = createVar();
 
-const fadeOut = keyframes({
-  from: {
-    opacity: "1",
-  },
-});
+const swipeEndXVar = createVar();
+const swipeEndYVar = createVar();
+
+const translateXVar = createVar();
+const translateYVar = createVar();
+
 const slideIn = keyframes({
   from: {
-    translate: swipeEndVar,
-  },
-  to: {
-    translate: "0",
-  },
-});
-const swipeOut = keyframes({
-  from: {
-    opacity: "1",
-    translate: "var(--radix-toast-swipe-end-x) var(--radix-toast-swipe-end-y)",
-  },
-  to: {
-    translate: swipeEndVar,
+    opacity: "0",
+    translate: `
+      ${fallbackVar(swipeEndXVar, "0")}
+      ${fallbackVar(swipeEndYVar, "0")}
+    `,
   },
 });
 
@@ -55,64 +48,81 @@ export const root = recipe({
       w: ["full", "max"],
     },
     style({
+      vars: {
+        [translateXVar]: "0",
+        [translateYVar]: "0",
+      },
+
+      animationDuration: "300ms",
+      animationTimingFunction: "ease",
+      transitionDuration: "300ms",
+      transitionProperty: "opacity",
+      transitionTimingFunction: "ease",
+      translate: `${translateXVar} ${translateYVar}`,
+
       selectors: {
         "&:focus-visible": {
           outline: `2px solid ${theme.colors["border.focus"]}`,
           outlineOffset: "1px",
         },
         '&[data-state="closed"]': {
-          animation: `${fadeOut} 100ms ease-in`,
           opacity: "0",
         },
         '&[data-state="closed"] ~ &': {
-          transition: "translate 100ms ease-in 100ms",
+          transitionProperty: "opacity, translate",
         },
         '&[data-state="open"]': {
-          animation: `${slideIn} 150ms cubic-bezier(0.16, 1, 0.3, 1)`,
+          animationName: slideIn,
         },
         '&[data-swipe-direction="down"]': {
           vars: {
-            [swipeEndVar]: `0 calc(100% + ${styles.padding}px)`,
+            [swipeEndYVar]: `calc(100% + ${styles.padding}px)`,
           },
         },
         '&[data-swipe-direction="left"]': {
           vars: {
-            [swipeEndVar]: `calc(-100% - ${styles.padding}px) 0`,
+            [swipeEndXVar]: `calc(-100% - ${styles.padding}px)`,
           },
         },
         '&[data-swipe-direction="right"]': {
           vars: {
-            [swipeEndVar]: `calc(100% + ${styles.padding}px) 0`,
+            [swipeEndXVar]: `calc(100% + ${styles.padding}px)`,
           },
         },
         '&[data-swipe-direction="up"]': {
           vars: {
-            [swipeEndVar]: `0 calc(-100% - ${styles.padding}px)`,
+            [swipeEndYVar]: `calc(-100% - ${styles.padding}px)`,
           },
         },
-        '&[data-swipe="cancel"]': {
-          transition: "translate 150ms ease",
-          translate: "0",
-        },
         '&[data-swipe="end"]': {
-          animation: `${swipeOut} 100ms ease-out`,
-          opacity: "0",
+          vars: {
+            [translateXVar]: fallbackVar(swipeEndXVar, "0"),
+            [translateYVar]: fallbackVar(swipeEndYVar, "0"),
+          },
+
+          transitionProperty: "opacity, translate",
         },
         '&[data-swipe="move"]': {
-          translate:
-            "var(--radix-toast-swipe-move-x) var(--radix-toast-swipe-move-y)",
+          vars: {
+            [translateXVar]: "var(--radix-toast-swipe-move-x)",
+            [translateYVar]: "var(--radix-toast-swipe-move-y)",
+          },
         },
         '[data-position^="bottom"] &:first-child': {
           marginBottom: "auto",
         },
         '[data-position^="bottom"] &[data-state="closed"] ~ &': {
-          translate: `0 calc(100% + ${styles.gap}px)`,
+          vars: {
+            [translateYVar]: `calc(100% + ${styles.gap}px)`,
+          },
         },
         '[data-position^="top"] &:last-child': {
           marginTop: "auto",
         },
         '[data-position^="top"] &[data-state="closed"] ~ &': {
-          translate: `0 calc(-100% - ${styles.gap}px)`,
+          vars: {
+            [translateYVar]: `0 calc(-100% - ${styles.gap}px)`,
+          },
         },
       },
     }),
