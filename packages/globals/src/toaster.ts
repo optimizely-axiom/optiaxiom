@@ -1,8 +1,9 @@
-import type { ReactElement, useSyncExternalStore } from "react";
+import type { ReactElement, RefObject, useSyncExternalStore } from "react";
 
 type ToastItem = {
   id: string;
   open: boolean;
+  ref: RefObject<HTMLElement>;
   toast: ReactElement | (ToastOptions & { title: string });
 };
 
@@ -62,7 +63,15 @@ export const createToaster = (): Toaster => {
             }
           : args[0];
       const id = genId();
-      snapshot = [...snapshot, { id, open: true, toast }];
+      snapshot = [
+        ...snapshot,
+        {
+          id,
+          open: true,
+          ref: { current: null },
+          toast,
+        },
+      ];
 
       emit();
 

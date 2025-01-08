@@ -19,6 +19,8 @@ const swipeEndYVar = createVar();
 const translateXVar = createVar();
 const translateYVar = createVar();
 
+export const offsetVar = createVar();
+
 const slideIn = keyframes({
   from: {
     opacity: "0",
@@ -113,7 +115,7 @@ export const root = recipe({
         },
         '[data-position^="bottom"] &[data-state="closed"] ~ &': {
           vars: {
-            [translateYVar]: `calc(100% + ${styles.gap}px)`,
+            [translateYVar]: offsetVar,
           },
         },
         '[data-position^="top"] &:last-child': {
@@ -121,7 +123,7 @@ export const root = recipe({
         },
         '[data-position^="top"] &[data-state="closed"] ~ &': {
           vars: {
-            [translateYVar]: `0 calc(-100% - ${styles.gap}px)`,
+            [translateYVar]: `calc(-1 * ${offsetVar})`,
           },
         },
       },

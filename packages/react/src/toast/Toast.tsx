@@ -1,5 +1,7 @@
 import { useToastContext } from "@optiaxiom/globals";
+import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import * as RadixToast from "@radix-ui/react-toast";
+import { assignInlineVars } from "@vanilla-extract/dynamic";
 import { createElement, forwardRef } from "react";
 
 import type { ExcludeProps } from "../utils";
@@ -30,14 +32,26 @@ const mapIntentToIcon = {
 
 export const Toast = forwardRef<HTMLLIElement, ToastProps>(
   (
-    { children, className, intent = "neutral", onOpenChange, ...props },
-    ref,
+    { children, className, intent = "neutral", onOpenChange, style, ...props },
+    outerRef,
   ) => {
     const { restProps, sprinkleProps } = extractSprinkles(props);
     const context = useToastContext("Toast");
 
+    const ref = useComposedRefs(outerRef, context.toastRef);
+
     return (
-      <Box asChild {...styles.root({ intent }, className)} {...sprinkleProps}>
+      <Box
+        asChild
+        style={{
+          ...style,
+          ...assignInlineVars({
+            [styles.offsetVar]: `${context.offset}px`,
+          }),
+        }}
+        {...styles.root({ intent }, className)}
+        {...sprinkleProps}
+      >
         <RadixToast.Root
           forceMount={!!context}
           onOpenChange={(open) => {
