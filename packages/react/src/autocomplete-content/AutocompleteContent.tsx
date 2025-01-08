@@ -1,7 +1,7 @@
 import { PopperContent } from "@radix-ui/react-popper";
 import { Portal } from "@radix-ui/react-portal";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
-import { forwardRef } from "react";
+import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import type { ExcludeProps } from "../utils";
 
@@ -16,7 +16,7 @@ import * as styles from "./AutocompleteContent.css";
 type AutocompleteContentProps = ExcludeProps<
   BoxProps<
     typeof PopperContent,
-    {
+    Pick<ComponentPropsWithoutRef<typeof MenuListbox>, "maxH" | "minW"> & {
       /**
        * Whether to show loading spinner inside the menu.
        */
@@ -67,7 +67,13 @@ export const AutocompleteContent = forwardRef<
 
           <Portal asChild>
             <ModalLayer asChild>
-              <MenuListbox asChild minW="trigger" provider="popper" {...props}>
+              <MenuListbox
+                asChild
+                maxH="sm"
+                minW="trigger"
+                provider="popper"
+                {...props}
+              >
                 <CommandListbox
                   asChild
                   ref={ref}

@@ -12,7 +12,7 @@ import { type ExcludeProps, onReactSelectInputBlur } from "../utils";
 type PopoverContentProps = ExcludeProps<
   BoxProps<
     typeof RadixPopover.Content,
-    Pick<ComponentPropsWithoutRef<typeof MenuListbox>, "minW"> & {
+    Pick<ComponentPropsWithoutRef<typeof MenuListbox>, "maxH" | "minW"> & {
       /**
        * Whether to show an arrow.
        */

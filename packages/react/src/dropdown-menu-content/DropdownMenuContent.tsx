@@ -12,7 +12,7 @@ import { TransitionGroup } from "../transition-group";
 type DropdownMenuContentProps = ExcludeProps<
   BoxProps<
     typeof RadixMenu.Content,
-    Pick<ComponentPropsWithoutRef<typeof MenuListbox>, "minW"> & {
+    Pick<ComponentPropsWithoutRef<typeof MenuListbox>, "maxH" | "minW"> & {
       /**
        * Whether to show loading spinner inside the menu.
        */
