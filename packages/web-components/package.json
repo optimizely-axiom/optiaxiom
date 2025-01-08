@@ -129,7 +129,6 @@
     "./ThemeProvider": "./dist/components/ThemeProvider.js",
     "./Toast": "./dist/components/Toast.js",
     "./ToastAction": "./dist/components/ToastAction.js",
-    "./ToastProvider": "./dist/components/ToastProvider.js",
     "./ToastTitle": "./dist/components/ToastTitle.js",
     "./ToggleButton": "./dist/components/ToggleButton.js",
     "./Tooltip": "./dist/components/Tooltip.js",

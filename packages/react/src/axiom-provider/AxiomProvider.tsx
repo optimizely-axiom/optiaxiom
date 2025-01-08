@@ -1,5 +1,4 @@
 import { AxiomVersionContext } from "@optiaxiom/globals";
-import * as TooltipPrimitive from "@radix-ui/react-tooltip";
 import {
   type ComponentPropsWithoutRef,
   type ReactNode,
@@ -9,6 +8,7 @@ import {
 import { version } from "../../package.json";
 import { ThemeProvider } from "../theme-provider";
 import { ToastProvider } from "../toast-provider";
+import { TooltipProvider } from "../tooltip-provider";
 
 type AxiomProviderProps = {
   children?: ReactNode;
@@ -21,12 +21,9 @@ type AxiomProviderProps = {
   /**
    * Props for the `TooltipProvider` component
    *
-   * {@link https://www.radix-ui.com/primitives/docs/components/tooltip#provider Documentation}
+   * {@link https://optimizely-axiom.github.io/optiaxiom/components/tooltip/ Documentation}
    */
-  tooltip?: Omit<
-    ComponentPropsWithoutRef<typeof TooltipPrimitive.Provider>,
-    "children"
-  >;
+  tooltip?: Omit<ComponentPropsWithoutRef<typeof TooltipProvider>, "children">;
 };
 
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
@@ -45,13 +42,13 @@ export function AxiomProvider({
 
   return (
     <AxiomVersionContext.Provider value={version}>
-      <TooltipPrimitive.Provider {...tooltip}>
+      <TooltipProvider {...tooltip}>
         <ThemeProvider>
           {children}
 
           <ToastProvider {...toast} />
         </ThemeProvider>
-      </TooltipPrimitive.Provider>
+      </TooltipProvider>
     </AxiomVersionContext.Provider>
   );
 }

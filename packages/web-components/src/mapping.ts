@@ -14,7 +14,10 @@ type ComponentNames = Exclude<
         : never
       : never]: never;
   },
-  "FieldContext" | "TransitionGlobalConfig"
+  | "FieldContext"
+  | "ToastProvider"
+  | "TooltipProvider"
+  | "TransitionGlobalConfig"
 >;
 
 type KebabCase<

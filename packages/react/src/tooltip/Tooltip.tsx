@@ -59,7 +59,6 @@ export function Tooltip({
       auto={auto}
       defaultOpen={defaultOpen}
       delayDuration={delayDuration}
-      disableHoverableContent={disabled || empty}
       onOpenChange={onOpenChange}
       open={open}
     >
