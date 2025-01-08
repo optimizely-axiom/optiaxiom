@@ -112,10 +112,12 @@ export function Command<Item>({
     onIsOpenChange({ isOpen, type }) {
       onOpenChange?.(isOpen);
 
-      if (type === useCombobox.stateChangeTypes.InputClick) {
-        setLastInteractionSource("pointer");
-      } else {
-        setLastInteractionSource("keyboard");
+      if (isOpen) {
+        if (type === useCombobox.stateChangeTypes.InputClick) {
+          setLastInteractionSource("pointer");
+        } else {
+          setLastInteractionSource("keyboard");
+        }
       }
     },
     onSelectedItemChange({ selectedItem, type }) {
