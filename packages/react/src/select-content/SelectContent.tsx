@@ -15,7 +15,7 @@ import * as styles from "./SelectContent.css";
 type SelectContentProps = ExcludeProps<
   BoxProps<
     typeof PopperContent,
-    Pick<ComponentPropsWithoutRef<typeof MenuListbox>, "minW"> & {
+    Pick<ComponentPropsWithoutRef<typeof MenuListbox>, "maxH" | "minW"> & {
       /**
        * Whether to show loading spinner inside the menu.
        */
@@ -55,6 +55,7 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
           <ModalLayer asChild>
             <MenuListbox
               asChild
+              maxH="sm"
               minW={loading ? "trigger" : undefined}
               provider="popper"
               {...styles.content({}, className)}

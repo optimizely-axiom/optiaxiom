@@ -11,7 +11,7 @@ import { TransitionGroup } from "../transition-group";
 type MenuSubContentProps = ExcludeProps<
   BoxProps<
     typeof RadixMenu.SubContent,
-    Pick<ComponentPropsWithoutRef<typeof MenuListbox>, "minW">
+    Pick<ComponentPropsWithoutRef<typeof MenuListbox>, "maxH" | "minW">
   >,
   | "alignOffset"
   | "arrowPadding"

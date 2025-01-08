@@ -10,7 +10,7 @@ export const ComboboxPopoverContent = forwardRef<
   HTMLDivElement,
   ComboboxPopoverContentProps
 >((props, ref) => {
-  return <PopoverContent minW="trigger" ref={ref} {...props} />;
+  return <PopoverContent maxH="sm" minW="trigger" ref={ref} {...props} />;
 });
 
 ComboboxPopoverContent.displayName = "@optiaxiom/react/ComboboxPopoverContent";

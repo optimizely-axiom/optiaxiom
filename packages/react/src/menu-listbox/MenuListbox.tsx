@@ -7,15 +7,18 @@ import { Paper } from "../paper";
 import { Transition } from "../transition";
 import * as styles from "./MenuListbox.css";
 
-type MenuProps = BoxProps<typeof Listbox, styles.ListboxVariants>;
+type MenuProps = BoxProps<typeof Listbox, NonNullable<styles.ListboxVariants>>;
 
 export const MenuListbox = forwardRef<HTMLDivElement, MenuProps>(
-  ({ children, className, minW, provider = "popover", ...props }, ref) => (
+  (
+    { children, className, maxH, minW, provider = "popover", ...props },
+    ref,
+  ) => (
     <Transition duration="sm" type="pop">
       <Paper asChild>
         <Listbox
           ref={ref}
-          {...styles.listbox({ minW, provider }, className)}
+          {...styles.listbox({ maxH, minW, provider }, className)}
           {...props}
         >
           {children}
