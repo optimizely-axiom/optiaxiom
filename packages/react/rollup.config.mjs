@@ -2,6 +2,10 @@ import hash from "@emotion/hash";
 import json from "@rollup/plugin-json";
 import { nodeResolve } from "@rollup/plugin-node-resolve";
 import { createFilter } from "@rollup/pluginutils";
+import {
+  getSourceFromVirtualCssFile,
+  virtualCssFileFilter,
+} from "@vanilla-extract/integration";
 import { vanillaExtractPlugin } from "@vanilla-extract/rollup-plugin";
 import { readFileSync } from "node:fs";
 import { defineConfig } from "rollup";
@@ -78,6 +82,32 @@ export default defineConfig([
         target: "esnext",
       }),
       json(),
+      env !== "production" && {
+        async load(id) {
+          if (!virtualCssFileFilter.test(id)) {
+            return null;
+          }
+          const { fileName, source } = await getSourceFromVirtualCssFile(id);
+          return `
+            if (typeof document !== "undefined") {
+              const style = document.head.appendChild(
+                document.createElement("style"),
+              );
+              style.dataset.fileName = ${JSON.stringify(fileName)};
+              style.appendChild(
+                document.createTextNode(${JSON.stringify(source)}),
+              );
+            }
+          `;
+        },
+        name: "vanilla-extract-inject",
+        async resolveId(id) {
+          if (!virtualCssFileFilter.test(id)) {
+            return null;
+          }
+          return id;
+        },
+      },
       vanillaExtractPlugin(
         env === "production"
           ? {
