@@ -1,4 +1,4 @@
-import { Callout } from "nextra/components";
+import { Alert, AlertDescription, AlertTitle } from "@optiaxiom/react";
 
 # CSS Imports
 
@@ -6,10 +6,12 @@ All Axiom components import their own CSS files via `import` statements from wit
 
 Depending on your bundler you might require additional configuration to enable CSS imports.
 
-<Callout type="info">
-  Check out the guide on [CSS Layers](/guides/css-layers) if your existing
-  styles are conflicting with Axiom.
-</Callout>
+<Alert intent="information" mt="16">
+  <AlertDescription>
+    Check out the guide on [CSS Layers](/guides/css-layers) if your existing
+    styles are conflicting with Axiom.
+  </AlertDescription>
+</Alert>
 
 ## Next.js
 
