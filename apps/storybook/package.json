@@ -21,9 +21,9 @@
     "@storybook/react": "^8.4.7",
     "@storybook/react-vite": "^8.4.7",
     "@storybook/test": "^8.4.7",
-    "@tabler/icons-react": "^3.26.0",
+    "@tabler/icons-react": "^3.28.1",
     "@tanstack/react-table": "^8.20.6",
-    "chromatic": "^11.20.2",
+    "chromatic": "^11.22.1",
     "raw-loader": "^4.0.2",
     "react-docgen": "^7.1.0",
     "storybook": "^8.4.7"

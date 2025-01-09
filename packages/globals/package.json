@@ -33,7 +33,7 @@
     "test": "vitest"
   },
   "dependencies": {
-    "@fontsource-variable/fira-code": "^5.1.0",
+    "@fontsource-variable/fira-code": "^5.1.1",
     "@radix-ui/react-context": "^1.1.1",
     "inter-ui": "^4.1.0"
   },
