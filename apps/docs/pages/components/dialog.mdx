@@ -12,6 +12,8 @@ import {
   Usage,
 } from "@/demos/dialog";
 import {
+  Alert,
+  AlertDescription,
   Button,
   Dialog,
   DialogActions,
@@ -81,9 +83,11 @@ Combine `Dialog` with `AlertDialog` to show nested confirmation dialogs.
 
 Use the `onOpenChange` handler to trigger the nested callback instead of an explicit trigger.
 
-<Callout>
-  Type something into the text field and then attempt to close the dialog:
-</Callout>
+<Alert intent="warning" mt="16">
+  <AlertDescription>
+    Type something into the text field and then attempt to close the dialog:
+  </AlertDescription>
+</Alert>
 
 <Demo component={AlertDialogUsage} />
 

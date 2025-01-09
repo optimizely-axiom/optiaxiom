@@ -10,6 +10,7 @@ import {
   PlaceholderUsage,
   Usage,
 } from "@/demos/inline-input";
+import { Alert, AlertDescription } from "@optiaxiom/react";
 import { InlineInput } from "@optiaxiom/react/unstable";
 
 # InlineInput
@@ -34,7 +35,11 @@ Use the `onValueChange` prop to listen for changes to the value.
 
 Use the `value` and `defaultValue` props to toggle between controlled and uncontrolled usage. And combine it with `onValueChange` to listen for changes to the state.
 
-<Callout>Remove the text from the following input and press `Enter`:</Callout>
+<Alert intent="warning" mt="16">
+  <AlertDescription>
+    Remove the text from the following input and press `Enter`:
+  </AlertDescription>
+</Alert>
 
 <Demo component={ControlledUsage} />
 

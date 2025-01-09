@@ -3,7 +3,7 @@ import { Callout } from "nextra/components";
 import { Demo } from "@/components/demo";
 import { PropsTable } from "@/components/props-table";
 import { ResponsiveUsage, VerticalUsage, Usage } from "@/demos/separator";
-import { Separator } from "@optiaxiom/react";
+import { Alert, AlertDescription, Separator } from "@optiaxiom/react";
 
 # Separator
 
@@ -25,7 +25,11 @@ Use `orientation="vertical"` to display a vertical separator.
 
 You can also use object or array prop notation to change orientation at various responsive breakpoints.
 
-<Callout>Resize the canvas to see the orientation change:</Callout>
+<Alert intent="warning" mt="16">
+  <AlertDescription>
+    Resize the canvas to see the orientation change:
+  </AlertDescription>
+</Alert>
 
 <Demo
   iframe="/components/separator/demo/"
