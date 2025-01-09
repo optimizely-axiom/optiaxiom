@@ -11,6 +11,23 @@ Depending on your bundler you might require additional configuration to enable C
   styles are conflicting with Axiom.
 </Callout>
 
+## Next.js
+
+### App Router
+
+If you are using the [App Router](https://nextjs.org/docs/app) then you do not need any additional configuration.
+
+### Pages Router
+
+If you are using the [Pages Router](https://nextjs.org/docs/pages) then you need to add our packages to the [transpilePackages](https://nextjs.org/docs/app/api-reference/next-config-js/transpilePackages) option:
+
+```js filename="next.config.js"
+export default {
+  // ...
+  transpilePackages: ["@optiaxiom/globals", "@optiaxiom/react"],
+};
+```
+
 ## Webpack
 
 ### CSS loader

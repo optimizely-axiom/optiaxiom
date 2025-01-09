@@ -242,11 +242,18 @@ body:before {
   }
 }
 
-.nextra-code .nextra-focus {
-  --tw-ring-color: rgb(
-    from var(--ax-colors-border-tertiary) r g b / var(--tw-ring-opacity)
-  );
-  background-color: var(--docs-code-bg);
+.nextra-code {
+  div:has(~ .nextra-focus) {
+    background-color: transparent;
+    border-color: var(--ax-colors-border-tertiary);
+  }
+
+  .nextra-focus {
+    --tw-ring-color: rgb(
+      from var(--ax-colors-border-tertiary) r g b / var(--tw-ring-opacity)
+    );
+    background-color: var(--docs-code-bg);
+  }
 }
 
 :where(article > main > div:last-child) {
