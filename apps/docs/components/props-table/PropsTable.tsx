@@ -96,7 +96,11 @@ export function PropsTable({
             .map((prop) => (
               <Tr key={prop.name}>
                 <Td>
-                  <Flex alignItems="start" flexDirection={["column", "row"]}>
+                  <Flex
+                    alignItems="start"
+                    flexDirection={["column", "row"]}
+                    gap="12"
+                  >
                     <Box
                       fontFamily="mono"
                       style={{ color: "var(--shiki-token-function)" }}
@@ -106,7 +110,7 @@ export function PropsTable({
                       {prop.name}
                       {prop.required ? "*" : ""}
                     </Box>
-                    <Flex flex="1">
+                    <Flex flex="1" gap="12">
                       {Children.toArray(descriptions[prop.name]).map(
                         (child, index) => (
                           <Box asChild key={index}>
