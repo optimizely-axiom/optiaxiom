@@ -1,5 +1,28 @@
 # @optiaxiom/react
 
+## 0.9.0
+
+### Minor Changes
+
+- e999878: rename AlertDialogTitle to AlertDialogHeader
+- 1105257: use light-dark() instead of custom dark mode selector
+
+### Patch Changes
+
+- 52bae9a: disable hoverable content for all tooltips
+- 5948ae8: add virtualization support to autocomplete
+- 96a11b5: pass src directly to SidenavAccountItem
+- 69eb0c5: add loading state to dropdown menu content
+- 9754969: calculate actual offset based on exiting toasts
+- b56d9df: handle nested dialogs gracefully
+- 5ec189c: bring back disclosure show/hide animation
+- cbe5c2e: always include close button in dialog
+- 34f791d: remove secondary tabs
+- f14a014: replace framer-motion with native html getAnimations API
+- Updated dependencies [9754969]
+- Updated dependencies [1105257]
+  - @optiaxiom/globals@0.6.0
+
 ## 0.8.2
 
 ### Patch Changes

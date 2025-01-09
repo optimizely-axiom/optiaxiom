@@ -1,5 +1,15 @@
 # @optiaxiom/globals
 
+## 0.6.0
+
+### Minor Changes
+
+- 1105257: use light-dark() instead of custom dark mode selector
+
+### Patch Changes
+
+- 9754969: calculate actual offset based on exiting toasts
+
 ## 0.5.1
 
 ### Patch Changes
