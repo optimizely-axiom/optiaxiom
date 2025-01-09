@@ -150,7 +150,7 @@
     "@optiaxiom/react": "workspace:^",
     "@optiaxiom/shared": "workspace:^",
     "@rollup/plugin-commonjs": "^28.0.2",
-    "@types/node": "^20.17.12",
+    "@types/node": "^22.10.5",
     "cssnano": "^7.0.6",
     "fast-glob": "^3.3.3",
     "postcss": "^8.4.49",
