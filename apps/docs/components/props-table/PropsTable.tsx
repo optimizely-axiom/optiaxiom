@@ -184,6 +184,10 @@ function PropsTableDescription({
           Renders a <Code>&lt;div&gt;</Code> element but forwards all props to a
           hidden <Code>&lt;input&gt;</Code> element.
         </>
+      ) : ["DialogForm"].includes(name) ? (
+        <>
+          Renders a <Code>&lt;form&gt;</Code> element.
+        </>
       ) : ["Heading"].includes(name) ? (
         <>
           Renders an <Code>&lt;h1&gt;</Code> element.
