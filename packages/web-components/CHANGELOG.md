@@ -1,5 +1,17 @@
 # @optiaxiom/web-components
 
+## 0.5.0
+
+### Minor Changes
+
+- e999878: rename AlertDialogTitle to AlertDialogHeader
+- 1105257: use light-dark() instead of custom dark mode selector
+
+### Patch Changes
+
+- 52bae9a: disable hoverable content for all tooltips
+- f14a014: replace framer-motion with native html getAnimations API
+
 ## 0.4.1
 
 ### Patch Changes
