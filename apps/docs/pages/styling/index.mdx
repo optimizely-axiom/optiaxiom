@@ -2,7 +2,7 @@ import { Callout } from "nextra/components";
 
 import { Demo } from "@/components/demo";
 import { PropUsage, ResponsiveUsage } from "@/demos/styles";
-import { Alert, AlertDescription } from "@optiaxiom/react";
+import { Alert } from "@optiaxiom/react";
 
 # Style Props
 
@@ -25,9 +25,7 @@ Learn more about consuming [Design Tokens](/styling/design-tokens/).
 You can also use object or array prop notation to apply styles at various responsive breakpoints.
 
 <Alert intent="warning" mt="16">
-  <AlertDescription>
-    Resize the canvas to see the layout change:
-  </AlertDescription>
+  Resize the canvas to see the layout change:
 </Alert>
 
 <Demo iframe="/styling/index-demo/" height="150" component={ResponsiveUsage} />

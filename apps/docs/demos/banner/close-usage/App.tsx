@@ -1,9 +1,4 @@
-import {
-  Banner,
-  BannerDescription,
-  BannerTitle,
-  Button,
-} from "@optiaxiom/react";
+import { Banner, Button } from "@optiaxiom/react";
 import { useState } from "react";
 
 export function App() {
@@ -13,10 +8,7 @@ export function App() {
     <>
       {open && (
         <Banner onClose={() => setOpen(false)}>
-          <BannerTitle>Some action is not permitted</BannerTitle>
-          <BannerDescription>
-            You do not have the required permissions to perform this action.
-          </BannerDescription>
+          You do not have the required permissions to perform this action.
         </Banner>
       )}
 
