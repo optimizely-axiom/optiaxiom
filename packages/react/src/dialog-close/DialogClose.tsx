@@ -6,10 +6,19 @@ import { Button, type ButtonProps } from "../button";
 type DialogCloseProps = ButtonProps<typeof RadixDialog.Close>;
 
 export const DialogClose = forwardRef<HTMLButtonElement, DialogCloseProps>(
-  ({ asChild, children, size = "lg", ...props }, ref) => {
+  (
+    { appearance = "subtle", asChild, children, size = "lg", ...props },
+    ref,
+  ) => {
     return (
       <RadixDialog.Close asChild ref={ref} {...props}>
-        {asChild ? children : <Button size={size}>{children}</Button>}
+        {asChild ? (
+          children
+        ) : (
+          <Button appearance={appearance} size={size}>
+            {children}
+          </Button>
+        )}
       </RadixDialog.Close>
     );
   },
