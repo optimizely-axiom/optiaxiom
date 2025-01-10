@@ -16,7 +16,13 @@ export const SpotlightInput = forwardRef<HTMLInputElement, SpotlightInputProps>(
           <Flex flexDirection="row">
             {addonAfter}
 
-            <DialogClose fontSize="xs" fontWeight="500" h="xs" size="sm">
+            <DialogClose
+              appearance="default"
+              fontSize="xs"
+              fontWeight="500"
+              h="xs"
+              size="sm"
+            >
               ESC
             </DialogClose>
           </Flex>
