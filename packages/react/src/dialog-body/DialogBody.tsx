@@ -11,6 +11,7 @@ export const DialogBody = forwardRef<HTMLDivElement, DialogBodyProps>(
       <Flex
         flex="1"
         fontSize="md"
+        justifyContent="start"
         overflow="auto"
         px="24"
         py="16"
