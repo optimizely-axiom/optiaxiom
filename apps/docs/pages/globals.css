@@ -219,10 +219,6 @@ body:before {
   z-index: 20;
 }
 
-._text-primary-600 {
-  color: var(--ax-colors-fg-link-default);
-}
-
 .nextra-nav-container-blur {
   background-color: rgb(255 255 255 / 30%);
 
