@@ -1,4 +1,4 @@
-import { Alert, AlertDescription, AlertTitle, Button } from "@optiaxiom/react";
+import { Alert, Button } from "@optiaxiom/react";
 import { useState } from "react";
 
 export function App() {
@@ -8,10 +8,7 @@ export function App() {
     <>
       {open && (
         <Alert onClose={() => setOpen(false)}>
-          <AlertTitle>Some action is not permitted</AlertTitle>
-          <AlertDescription>
-            You do not have the required permissions to perform this action.
-          </AlertDescription>
+          You do not have the required permissions to perform this action.
         </Alert>
       )}
 

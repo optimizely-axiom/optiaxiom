@@ -1,7 +1,6 @@
 import { useId } from "@radix-ui/react-id";
 import { createElement, forwardRef } from "react";
 
-import { AlertContextProvider } from "../alert-context";
 import { type BoxProps } from "../box";
 import { Button } from "../button";
 import { Flex } from "../flex";
@@ -33,40 +32,36 @@ const mapIntentToIcon = {
 
 export const Alert = forwardRef<HTMLDivElement, AlertProps>(
   ({ children, className, intent = "neutral", onClose, ...props }, ref) => {
-    const descriptionId = useId();
     const labelId = useId();
 
     return (
-      <AlertContextProvider descriptionId={descriptionId} labelId={labelId}>
-        <Flex
-          aria-describedby={descriptionId}
-          aria-labelledby={labelId}
-          ref={ref}
-          role="alert"
-          {...styles.alert({ intent }, className)}
-          {...props}
-        >
-          <Icon asChild {...styles.icon({ intent })}>
-            {createElement(mapIntentToIcon[intent])}
-          </Icon>
+      <Flex
+        aria-labelledby={labelId}
+        ref={ref}
+        role="alert"
+        {...styles.alert({ intent }, className)}
+        {...props}
+      >
+        <Icon asChild {...styles.icon({ intent })}>
+          {createElement(mapIntentToIcon[intent])}
+        </Icon>
 
-          <Flex flex="1" gap="8" my="2">
-            {children}
-          </Flex>
-
-          {!!onClose && (
-            <Button
-              appearance="subtle"
-              aria-label="close"
-              color="fg.default"
-              flex="none"
-              icon={<IconX />}
-              onClick={onClose}
-              size="sm"
-            />
-          )}
+        <Flex flex="1" gap="8" id={labelId} my="2">
+          {children}
         </Flex>
-      </AlertContextProvider>
+
+        {!!onClose && (
+          <Button
+            appearance="subtle"
+            aria-label="close"
+            color="fg.default"
+            flex="none"
+            icon={<IconX />}
+            onClick={onClose}
+            size="sm"
+          />
+        )}
+      </Flex>
     );
   },
 );
