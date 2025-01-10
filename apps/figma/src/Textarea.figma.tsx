@@ -1,20 +1,11 @@
 import figma from "@figma/code-connect";
-import { Field, Input } from "@optiaxiom/react";
+import { Field, Textarea } from "@optiaxiom/react";
 
 figma.connect(
-  Input,
-  "https://www.figma.com/design/qs72V79n1s9wYOcZ1TzBwM/Components-V2?node-id=20%3A2741",
+  Textarea,
+  "https://www.figma.com/design/qs72V79n1s9wYOcZ1TzBwM/Components-V2?node-id=679:6927",
   {
-    example: ({
-      addonBefore,
-      appearance,
-      description,
-      error,
-      label,
-      placeholder,
-      size,
-      value,
-    }) => (
+    example: ({ description, error, label, placeholder, resize, value }) => (
       <Field
         description={description.text}
         error={error.text}
@@ -22,27 +13,10 @@ figma.connect(
         label={label.label}
         required={label.required}
       >
-        <Input
-          addonBefore={addonBefore}
-          appearance={appearance}
-          placeholder={placeholder}
-          size={size}
-          value={value}
-        />
+        <Textarea placeholder={placeholder} resize={resize} value={value} />
       </Field>
     ),
     props: {
-      addonAfter: figma.boolean("End icon"),
-      addonBefore: figma.boolean("Calendar Icon", {
-        false: undefined,
-        true: figma.children("IconCalendar"),
-      }),
-      appearance: figma.enum("Variant", {
-        Number: "number",
-        "Number Placeholder": "number",
-        Text: undefined,
-        "Text Placeholder": undefined,
-      }),
       description: figma.boolean("Show Note", {
         false: { text: undefined },
         true: figma.nestedProps("Form note", {
@@ -75,19 +49,15 @@ figma.connect(
         }),
       }),
       placeholder: figma.enum("Variant", {
-        Number: undefined,
-        "Number Placeholder": figma.string("Placeholder"),
         Text: undefined,
         "Text Placeholder": figma.string("Placeholder"),
       }),
-      size: figma.enum("Size", {
-        "Large - 40": "lg",
-        "Medium - 32": undefined,
+      resize: figma.boolean("Show knob", {
+        false: undefined,
+        true: "vertical",
       }),
       value: figma.enum("Variant", {
-        Number: 0,
-        "Number Placeholder": undefined,
-        Text: "Text",
+        Text: figma.string("Text"),
         "Text Placeholder": undefined,
       }),
     },
