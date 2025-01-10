@@ -6,7 +6,7 @@
       [
         {
           "include": "**/nextra-theme-docs/**",
-          "layerName": "optiaxiom.base.theme"
+          "layerName": "optiaxiom.base"
         }
       ]
     ]
