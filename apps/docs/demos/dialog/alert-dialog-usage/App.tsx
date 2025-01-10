@@ -50,7 +50,7 @@ export function App() {
           </DialogHeader>
 
           <DialogBody>
-            <Textarea ref={textRef} required />
+            <Textarea autoFocus ref={textRef} required />
           </DialogBody>
 
           <DialogFooter>
@@ -65,7 +65,7 @@ export function App() {
           <AlertDialogHeader>Discard issue?</AlertDialogHeader>
           <AlertDialogBody>All unsaved changes will be lost.</AlertDialogBody>
           <AlertDialogFooter>
-            <AlertDialogCancel />
+            <AlertDialogCancel>No, keep editing</AlertDialogCancel>
             <AlertDialogAction onClick={() => setOpen(false)}>
               Yes, discard
             </AlertDialogAction>

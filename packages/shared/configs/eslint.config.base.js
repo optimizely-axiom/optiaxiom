@@ -59,6 +59,7 @@ export default tsEslint.config(
     rules: {
       ...reactRecommended.rules,
       ...jsxA11y.configs.recommended.rules,
+      "jsx-a11y/no-autofocus": "off",
       "local/consistent-display-name": "error",
       "local/consistent-recipe-sprinkles": "error",
       "react/jsx-boolean-value": "error",

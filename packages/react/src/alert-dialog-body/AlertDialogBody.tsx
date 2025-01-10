@@ -1,13 +1,14 @@
 import * as RadixAlertDialog from "@radix-ui/react-alert-dialog";
 import { forwardRef } from "react";
 
-import { Box, type BoxProps } from "../box";
+import { type BoxProps } from "../box";
+import { Flex } from "../flex";
 
 type AlertDialogBodyProps = BoxProps<typeof RadixAlertDialog.Description>;
 
 export const AlertDialogBody = forwardRef<HTMLDivElement, AlertDialogBodyProps>(
   ({ children, ...props }, ref) => (
-    <Box
+    <Flex
       asChild
       flex="1"
       fontSize="md"
@@ -20,7 +21,7 @@ export const AlertDialogBody = forwardRef<HTMLDivElement, AlertDialogBodyProps>(
       <RadixAlertDialog.Description asChild>
         <div>{children}</div>
       </RadixAlertDialog.Description>
-    </Box>
+    </Flex>
   ),
 );
 

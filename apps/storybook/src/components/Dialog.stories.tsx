@@ -12,7 +12,6 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-  Flex,
   Input,
   Textarea,
 } from "@optiaxiom/react";
@@ -273,7 +272,7 @@ function SampleCombobox() {
 export const WithForm: Story = {
   args: {
     content: (
-      <Flex>
+      <>
         <Input placeholder="Enter Name" />
         <Textarea placeholder="Enter Address" />
 
@@ -292,7 +291,7 @@ export const WithForm: Story = {
             ))}
           </SelectContent>
         </Select>
-      </Flex>
+      </>
     ),
     size: "sm",
     title: "Personal Details",

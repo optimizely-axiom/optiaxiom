@@ -10,7 +10,6 @@ import {
   DialogTitle,
   DialogTrigger,
   Field,
-  Flex,
   Input,
   Textarea,
 } from "@optiaxiom/react";
@@ -41,14 +40,12 @@ export function App() {
           </DialogHeader>
 
           <DialogBody>
-            <Flex>
-              <Field label="Title">
-                <Input name="title" required />
-              </Field>
-              <Field label="Description">
-                <Textarea name="description" required />
-              </Field>
-            </Flex>
+            <Field label="Title">
+              <Input autoFocus name="title" required />
+            </Field>
+            <Field label="Description">
+              <Textarea name="description" required />
+            </Field>
           </DialogBody>
 
           <DialogFooter>
