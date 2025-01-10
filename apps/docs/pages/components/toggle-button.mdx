@@ -1,7 +1,12 @@
 import { Cards } from "@/components/cards";
 import { Demo } from "@/components/demo";
 import { PropsTable } from "@/components/props-table";
-import { ControlledUsage, DisabledUsage, Usage } from "@/demos/toggle-button";
+import {
+  AppearanceUsage,
+  ControlledUsage,
+  DisabledUsage,
+  Usage,
+} from "@/demos/toggle-button";
 import { Button, ToggleButton } from "@optiaxiom/react";
 
 # ToggleButton
@@ -21,6 +26,12 @@ import { Button, ToggleButton } from "@optiaxiom/react";
 Use the `pressed` and `defaultPressed` props to toggle between controlled and uncontrolled usage. And combine it with `onPressedChange` to listen for changes to the state.
 
 <Demo component={ControlledUsage} />
+
+### Appearance
+
+Use the `appearance` prop to select between the different button appearances.
+
+<Demo component={AppearanceUsage} />
 
 ### Disabled state
 
