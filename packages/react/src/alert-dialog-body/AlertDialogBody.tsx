@@ -5,11 +5,8 @@ import { Box, type BoxProps } from "../box";
 
 type AlertDialogBodyProps = BoxProps<typeof RadixAlertDialog.Description>;
 
-export const AlertDialogBody = forwardRef<
-  HTMLParagraphElement,
-  AlertDialogBodyProps
->(({ children, ...props }, ref) => {
-  return (
+export const AlertDialogBody = forwardRef<HTMLDivElement, AlertDialogBodyProps>(
+  ({ children, ...props }, ref) => (
     <Box
       asChild
       flex="1"
@@ -20,9 +17,11 @@ export const AlertDialogBody = forwardRef<
       ref={ref}
       {...props}
     >
-      <RadixAlertDialog.Description>{children}</RadixAlertDialog.Description>
+      <RadixAlertDialog.Description asChild>
+        <div>{children}</div>
+      </RadixAlertDialog.Description>
     </Box>
-  );
-});
+  ),
+);
 
 AlertDialogBody.displayName = "@optiaxiom/react/AlertDialogBody";
