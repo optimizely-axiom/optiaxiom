@@ -1,9 +1,13 @@
-import type { ComponentPropsWithRef } from "react";
+import { Button, Flex } from "@optiaxiom/react";
 
-import { Button } from "@optiaxiom/react";
-
-export function App({
-  appearance = "default",
-}: Pick<ComponentPropsWithRef<typeof Button>, "appearance">) {
-  return <Button appearance={appearance}>Delete</Button>;
+export function App() {
+  return (
+    <Flex flexDirection="row">
+      <Button appearance="primary">Delete</Button>
+      <Button appearance="danger">Delete</Button>
+      <Button appearance="danger-outline">Delete</Button>
+      <Button appearance="default">Delete</Button>
+      <Button appearance="subtle">Delete</Button>
+    </Flex>
+  );
 }
