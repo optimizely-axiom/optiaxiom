@@ -12,6 +12,7 @@ export const AlertDialogBody = forwardRef<HTMLDivElement, AlertDialogBodyProps>(
       asChild
       flex="1"
       fontSize="md"
+      justifyContent="start"
       overflow="auto"
       px="24"
       py="16"
