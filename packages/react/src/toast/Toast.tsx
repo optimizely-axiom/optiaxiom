@@ -6,7 +6,7 @@ import { createElement, forwardRef } from "react";
 
 import type { ExcludeProps } from "../utils";
 
-import { Box, type BoxProps } from "../box";
+import { Box, type BoxProps, extractBoxProps } from "../box";
 import { Button } from "../button";
 import { Icon } from "../icon";
 import { IconCircleCheckSolid } from "../icons/IconCircleCheckSolid";
@@ -14,7 +14,6 @@ import { IconCircleExclamationSolid } from "../icons/IconCircleExclamationSolid"
 import { IconCircleInfoSolid } from "../icons/IconCircleInfoSolid";
 import { IconTriangleExclamationSolid } from "../icons/IconTriangleExclamationSolid";
 import { IconX } from "../icons/IconX";
-import { extractSprinkles } from "../sprinkles";
 import * as styles from "./Toast.css";
 
 type ToastProps = ExcludeProps<
@@ -35,7 +34,7 @@ export const Toast = forwardRef<HTMLLIElement, ToastProps>(
     { children, className, intent = "neutral", onOpenChange, style, ...props },
     outerRef,
   ) => {
-    const { restProps, sprinkleProps } = extractSprinkles(props);
+    const { boxProps, restProps } = extractBoxProps(props);
     const context = useToastContext("Toast");
 
     const ref = useComposedRefs(outerRef, context.toastRef);
@@ -50,7 +49,7 @@ export const Toast = forwardRef<HTMLLIElement, ToastProps>(
           }),
         }}
         {...styles.root({ intent }, className)}
-        {...sprinkleProps}
+        {...boxProps}
       >
         <RadixToast.Root
           forceMount={!!context}

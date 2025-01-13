@@ -1,8 +1,7 @@
 import { forwardRef } from "react";
 
-import { Box, type BoxProps } from "../box";
+import { Box, type BoxProps, extractBoxProps } from "../box";
 import { IconCheck } from "../icons/IconCheck";
-import { extractSprinkles } from "../sprinkles";
 
 type ListboxItemIndicatorProps = BoxProps<
   typeof IconCheck,
@@ -15,11 +14,11 @@ export const ListboxItemIndicator = forwardRef<
   SVGSVGElement,
   ListboxItemIndicatorProps
 >(({ active, children, className, ...props }, ref) => {
-  const { restProps, sprinkleProps } = extractSprinkles(props);
+  const { boxProps, restProps } = extractBoxProps(props);
 
   if (!active) {
     return (
-      <Box asChild className={className} h="0" w="xs" {...sprinkleProps}>
+      <Box asChild className={className} h="0" w="xs" {...boxProps}>
         <svg ref={ref} {...restProps} />
       </Box>
     );

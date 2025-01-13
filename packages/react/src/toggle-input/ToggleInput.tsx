@@ -2,9 +2,8 @@ import { useId } from "@radix-ui/react-id";
 import { Slot } from "@radix-ui/react-slot";
 import { forwardRef } from "react";
 
-import { type BoxProps } from "../box";
+import { type BoxProps, extractBoxProps } from "../box";
 import { Flex } from "../flex";
-import { extractSprinkles } from "../sprinkles";
 import { ToggleInputContextProvider } from "../toggle-input-context";
 import * as styles from "./ToggleInput.css";
 
@@ -18,7 +17,7 @@ type ToggleInputProps = BoxProps<
 export const ToggleInput = forwardRef<HTMLLabelElement, ToggleInputProps>(
   ({ asChild, children, className, description, ...props }, ref) => {
     const Comp = asChild ? Slot : "label";
-    const { restProps, sprinkleProps } = extractSprinkles(props);
+    const { boxProps, restProps } = extractBoxProps(props);
 
     const descriptionId = useId();
     const labelId = useId();
@@ -28,7 +27,7 @@ export const ToggleInput = forwardRef<HTMLLabelElement, ToggleInputProps>(
         descriptionId={description ? descriptionId : undefined}
         labelId={labelId}
       >
-        <Flex asChild {...styles.toggleInput({}, className)} {...sprinkleProps}>
+        <Flex asChild {...styles.toggleInput({}, className)} {...boxProps}>
           <Comp ref={ref} {...restProps}>
             {children}
           </Comp>

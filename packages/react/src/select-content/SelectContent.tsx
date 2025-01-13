@@ -4,12 +4,11 @@ import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import type { ExcludeProps } from "../utils";
 
-import { Box, type BoxProps } from "../box";
+import { Box, type BoxProps, extractBoxProps } from "../box";
 import { MenuListbox } from "../menu-listbox";
 import { ModalLayer } from "../modal-layer";
 import { useSelectContext } from "../select-context";
 import { Spinner } from "../spinner";
-import { extractSprinkles } from "../sprinkles";
 import * as styles from "./SelectContent.css";
 
 type SelectContentProps = ExcludeProps<
@@ -46,7 +45,7 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
     },
     ref,
   ) => {
-    const { restProps, sprinkleProps } = extractSprinkles(props);
+    const { boxProps, restProps } = extractBoxProps(props);
     const { downshift, isOpen } = useSelectContext("SelectContent");
 
     return (
@@ -59,7 +58,7 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
               minW={loading ? "trigger" : undefined}
               provider="popper"
               {...styles.content({}, className)}
-              {...sprinkleProps}
+              {...boxProps}
               {...downshift.getMenuProps({ ref, ...restProps })}
             >
               <PopperContent align={align} side={side} sideOffset={5}>

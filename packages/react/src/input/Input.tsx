@@ -5,10 +5,10 @@ import {
   type ReactNode,
 } from "react";
 
+import { extractBoxProps } from "../box";
 import { InputAddon } from "../input-addon";
 import { InputControl, type InputControlProps } from "../input-control";
 import { InputRoot } from "../input-root";
-import { extractSprinkles } from "../sprinkles";
 import { fallbackSpan } from "../utils";
 import * as styles from "./Input.css";
 
@@ -49,14 +49,14 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     ref,
   ) => {
     const Comp = asChild ? Slot : "input";
-    const { restProps, sprinkleProps } = extractSprinkles(props);
+    const { boxProps, restProps } = extractBoxProps(props);
 
     return (
       <InputRoot
         addonPointerEvents={addonPointerEvents}
         style={style}
         {...styles.root({ size }, className)}
-        {...sprinkleProps}
+        {...boxProps}
       >
         {addonBefore && (
           <InputAddon asChild {...styles.addon()}>
