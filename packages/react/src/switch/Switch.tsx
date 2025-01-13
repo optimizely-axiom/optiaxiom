@@ -27,7 +27,7 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
     return (
       <ToggleInput
         description={!!description}
-        {...styles.container({}, className)}
+        {...styles.root({}, className)}
         {...sprinkleProps}
       >
         <ToggleInputHiddenInput

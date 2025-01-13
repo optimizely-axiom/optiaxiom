@@ -11,7 +11,7 @@ import {
 const marker = style({});
 const inputMarker = style({});
 
-export const container = recipe({
+export const root = recipe({
   base: [
     marker,
     style({
