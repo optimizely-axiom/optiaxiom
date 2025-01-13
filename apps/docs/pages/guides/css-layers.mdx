@@ -24,16 +24,11 @@ Global styles include reset/normalize rules and rules that target elements witho
 
 Place your global style rules inside the `optiaxiom.base` layer to ensure they are applied before any of Axiom's other styles.
 
-```css {1,10}
+```css {1,5}
 @layer optiaxiom.base {
-  * {
-    box-sizing: border-box;
-  }
   a {
-    color: #228be6;
+    /* your global styles */
   }
-
-  /* etc. */
 }
 ```
 
