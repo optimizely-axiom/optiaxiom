@@ -1,5 +1,11 @@
 # @optiaxiom/web-components
 
+## 0.6.0
+
+### Minor Changes
+
+- 38d6abe: simplify Alert component by replacing Title and Description components with children prop
+
 ## 0.5.0
 
 ### Minor Changes
