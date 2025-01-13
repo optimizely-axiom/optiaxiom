@@ -184,7 +184,6 @@ const mapFigmaNameToCode = {
   "border/active": "border.control",
   "border/active_hover": "border.control.hovered",
   "border/default": "border.default",
-  "border/default_hover": "border.default.hovered",
   "border/disabled": "border.disabled",
   "border/error": "border.error",
   "border/focus-default": "border.focus",
