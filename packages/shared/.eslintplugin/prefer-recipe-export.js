@@ -18,7 +18,7 @@ export default ESLintUtils.RuleCreator.withoutDocs({
       /**
        * @type {import('@typescript-eslint/utils').TSESLint.RuleListener['CallExpression']}
        */
-      'ExportNamedDeclaration > VariableDeclaration > VariableDeclarator > CallExpression:matches([callee.name="style"], [callee.name="styleVariants"])':
+      'ExportNamedDeclaration > VariableDeclaration > VariableDeclarator > CallExpression:matches([callee.name="style"])':
         (node) => {
           if (
             node.parent.type === "VariableDeclarator" &&
