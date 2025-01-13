@@ -2,7 +2,7 @@ import { Button, Flex } from "@optiaxiom/react";
 
 export function App() {
   return (
-    <Flex flexDirection="row">
+    <Flex flexDirection={["column", "row"]}>
       <Button appearance="primary">Delete</Button>
       <Button appearance="danger">Delete</Button>
       <Button appearance="danger-outline">Delete</Button>
