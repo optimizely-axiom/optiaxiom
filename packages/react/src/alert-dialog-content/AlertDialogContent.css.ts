@@ -5,7 +5,7 @@ import {
   style,
 } from "../vanilla-extract";
 
-export const container = recipe({
+export const root = recipe({
   base: [
     {
       alignItems: "center",

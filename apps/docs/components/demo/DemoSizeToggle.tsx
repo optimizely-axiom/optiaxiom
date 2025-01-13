@@ -11,7 +11,7 @@ export function DemoSizeToggle({
 }) {
   return (
     <Box
-      className={styles.container}
+      className={styles.root}
       display="flex"
       justifyContent="center"
       pb="16"

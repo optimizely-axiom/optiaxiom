@@ -1,4 +1,4 @@
-.container {
+.root {
   background-image: linear-gradient(0deg, var(--docs-code-bg), transparent);
   bottom: 0;
   border-bottom-left-radius: var(--ax-borderRadius-lg);

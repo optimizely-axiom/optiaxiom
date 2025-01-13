@@ -36,7 +36,7 @@ export const AlertDialogContent = forwardRef<
           </Transition>
         )}
 
-        <Flex {...styles.container()}>
+        <Flex {...styles.root()}>
           <Box flex="1" pointerEvents="none" />
 
           <Transition data-side="bottom" type="fade">
