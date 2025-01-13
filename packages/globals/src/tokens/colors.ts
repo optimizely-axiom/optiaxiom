@@ -176,7 +176,6 @@ export const colors = {
   "border.secondary": ld(palette["neutral.150"], palette["neutral.700"]),
   "border.success": ld(palette["green.500"], palette["green.500"]),
   "border.tertiary": ld(palette["neutral.200"], palette["neutral.600"]),
-  "border.tertiary.hovered": ld(palette["neutral.500"], palette["neutral.500"]),
   "border.warning": ld(palette["yellow.500"], palette["yellow.500"]),
 
   "fg.accent": ld(palette["brand.500"], palette["brand.300"]),
