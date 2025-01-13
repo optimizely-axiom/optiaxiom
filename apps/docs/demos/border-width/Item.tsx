@@ -14,7 +14,7 @@ export const Item = ({
       placeItems="center"
       px="8"
       py="16"
-      style={{ outline: `1px solid ${theme.colors["border.default"]}` }}
+      style={{ outline: `1px solid ${theme.colors["border.tertiary"]}` }}
       {...children.props}
     >
       <Text fontFamily="mono" fontWeight="600" textAlign="center">

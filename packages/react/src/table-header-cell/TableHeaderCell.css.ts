@@ -23,7 +23,7 @@ export const content = recipe({
       py: "12",
     },
     style({
-      boxShadow: `0 1px 0 ${theme.colors["border.tertiary"]}`,
+      boxShadow: `0 1px 0 ${theme.colors["border.default"]}`,
     }),
   ],
 });

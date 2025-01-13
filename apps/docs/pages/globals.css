@@ -245,12 +245,12 @@ body:before {
 .nextra-code {
   div:has(~ .nextra-focus) {
     background-color: transparent;
-    border-color: var(--ax-colors-border-tertiary);
+    border-color: var(--ax-colors-border-default);
   }
 
   .nextra-focus {
     --tw-ring-color: rgb(
-      from var(--ax-colors-border-tertiary) r g b / var(--tw-ring-opacity)
+      from var(--ax-colors-border-default) r g b / var(--tw-ring-opacity)
     );
     background-color: var(--docs-code-bg);
   }
@@ -272,7 +272,7 @@ body:before {
 
   /* nav links container */
   a {
-    border-color: var(--ax-colors-border-tertiary);
+    border-color: var(--ax-colors-border-default);
     border-radius: var(--ax-borderRadius-md);
     border-width: 1px;
     flex-wrap: wrap;

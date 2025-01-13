@@ -3,7 +3,7 @@ import { recipe, style } from "../vanilla-extract";
 export const list = recipe({
   base: [
     {
-      borderColor: "border.tertiary",
+      borderColor: "border.default",
       display: "flex",
     },
     style({
