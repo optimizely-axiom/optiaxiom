@@ -24,7 +24,7 @@ export const root = recipe({
         "(hover: hover)": {
           selectors: {
             "&:hover": {
-              borderColor: theme.colors["border.active"],
+              borderColor: theme.colors["border.control"],
             },
           },
         },

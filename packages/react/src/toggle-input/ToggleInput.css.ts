@@ -19,7 +19,7 @@ export const toggleInput = recipe({
     },
     style({
       vars: {
-        [controlColorVar]: theme.colors["border.active"],
+        [controlColorVar]: theme.colors["border.control"],
       },
 
       color: theme.colors["fg.default"],
@@ -35,7 +35,7 @@ export const toggleInput = recipe({
             },
             [`&:has(${input}:not(:disabled):not(:checked)):hover`]: {
               vars: {
-                [controlColorVar]: theme.colors["border.active.hovered"],
+                [controlColorVar]: theme.colors["border.control.hovered"],
               },
             },
           },
