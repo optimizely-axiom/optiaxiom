@@ -1,4 +1,3 @@
-// eslint-disable-next-line local/no-global-styles
 import { generateIdentifier, globalLayer } from "@vanilla-extract/css";
 
 export const axiom = "optiaxiom";
