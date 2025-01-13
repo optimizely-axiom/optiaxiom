@@ -5,10 +5,9 @@ import { type ElementType, forwardRef } from "react";
 
 import type { ExtendProps } from "../utils";
 
-import { Box, type BoxProps } from "../box";
+import { Box, type BoxProps, extractBoxProps } from "../box";
 import { useFieldContext } from "../field-context";
 import { useInputContext } from "../input-context";
-import { extractSprinkles } from "../sprinkles";
 import * as styles from "./InputControl.css";
 
 export type InputControlProps<
@@ -47,7 +46,7 @@ export const InputControl = forwardRef<
     const { descriptionId, error, errorId, inputId } = useFieldContext({
       error: errorProp,
     });
-    const { restProps, sprinkleProps } = extractSprinkles(props);
+    const { boxProps, restProps } = extractBoxProps(props);
 
     const { inputRef } = useInputContext("InputControl");
     const ref = useComposedRefs(inputRef, outerRef);
@@ -64,7 +63,7 @@ export const InputControl = forwardRef<
         data-invalid={error ? "" : undefined}
         data-readonly={readOnly ? "" : undefined}
         {...styles.control({ size }, className)}
-        {...sprinkleProps}
+        {...boxProps}
       >
         <Comp id={inputId} ref={ref} {...restProps}>
           {children}

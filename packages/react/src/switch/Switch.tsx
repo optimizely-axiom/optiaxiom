@@ -1,7 +1,6 @@
 import { forwardRef, type ReactNode } from "react";
 
-import { Box, type BoxProps } from "../box";
-import { extractSprinkles } from "../sprinkles";
+import { Box, type BoxProps, extractBoxProps } from "../box";
 import { ToggleInput } from "../toggle-input";
 import { ToggleInputContent } from "../toggle-input-content";
 import { ToggleInputControl } from "../toggle-input-control";
@@ -22,13 +21,13 @@ type SwitchProps = BoxProps<
 
 export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
   ({ children, className, description, size = "md", ...props }, ref) => {
-    const { restProps, sprinkleProps } = extractSprinkles(props);
+    const { boxProps, restProps } = extractBoxProps(props);
 
     return (
       <ToggleInput
         description={!!description}
         {...styles.root({}, className)}
-        {...sprinkleProps}
+        {...boxProps}
       >
         <ToggleInputHiddenInput
           ref={ref}

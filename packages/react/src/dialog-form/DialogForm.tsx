@@ -1,13 +1,12 @@
 import { forwardRef } from "react";
 
-import { Box, type BoxProps } from "../box";
-import { extractSprinkles } from "../sprinkles";
+import { Box, type BoxProps, extractBoxProps } from "../box";
 
 type DialogFormProps = BoxProps<"form">;
 
 export const DialogForm = forwardRef<HTMLFormElement, DialogFormProps>(
   ({ children, className, ...props }, ref) => {
-    const { restProps, sprinkleProps } = extractSprinkles(props);
+    const { boxProps, restProps } = extractBoxProps(props);
 
     return (
       <Box
@@ -16,7 +15,7 @@ export const DialogForm = forwardRef<HTMLFormElement, DialogFormProps>(
         display="flex"
         flexDirection="column"
         overflow="auto"
-        {...sprinkleProps}
+        {...boxProps}
       >
         <form ref={ref} {...restProps}>
           {children}

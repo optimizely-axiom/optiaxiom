@@ -1,8 +1,7 @@
 import { forwardRef, type ReactNode } from "react";
 
-import { Box, type BoxProps } from "../box";
+import { Box, type BoxProps, extractBoxProps } from "../box";
 import { useRadioGroupContext } from "../radio-group-context";
-import { extractSprinkles } from "../sprinkles";
 import { ToggleInput } from "../toggle-input";
 import { ToggleInputContent } from "../toggle-input-content";
 import { ToggleInputControl } from "../toggle-input-control";
@@ -35,7 +34,7 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
     },
     ref,
   ) => {
-    const { restProps, sprinkleProps } = extractSprinkles(props);
+    const { boxProps, restProps } = extractBoxProps(props);
     const groupContext = useRadioGroupContext("Radio");
 
     if (groupContext) {
@@ -55,7 +54,7 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
       <ToggleInput
         description={!!description}
         {...styles.radio({}, className)}
-        {...sprinkleProps}
+        {...boxProps}
       >
         <ToggleInputHiddenInput
           checked={

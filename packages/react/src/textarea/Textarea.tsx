@@ -6,10 +6,10 @@ import {
   type ReactNode,
 } from "react";
 
+import { extractBoxProps } from "../box";
 import { InputAddon } from "../input-addon";
 import { InputControl, type InputControlProps } from "../input-control";
 import { InputRoot } from "../input-root";
-import { extractSprinkles } from "../sprinkles";
 import { TextareaAutosize } from "../textarea-autosize";
 import { fallbackSpan } from "../utils";
 
@@ -43,7 +43,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
     ref,
   ) => {
     const Comp = asChild ? Slot : TextareaAutosize;
-    const { restProps, sprinkleProps } = extractSprinkles(props);
+    const { boxProps, restProps } = extractBoxProps(props);
 
     return (
       <InputRoot
@@ -51,7 +51,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
         className={className}
         flexDirection="column"
         style={style}
-        {...sprinkleProps}
+        {...boxProps}
       >
         {addonBefore && (
           <InputAddon asChild>{fallbackSpan(addonBefore)}</InputAddon>

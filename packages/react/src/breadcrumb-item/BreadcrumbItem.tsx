@@ -1,17 +1,16 @@
 import { forwardRef } from "react";
 
-import { Box, type BoxProps } from "../box";
-import { extractSprinkles } from "../sprinkles";
+import { Box, type BoxProps, extractBoxProps } from "../box";
 import * as styles from "./BreadcrumbItem.css";
 
 export type BreadcrumbItemProps = BoxProps<"li">;
 
 export const BreadcrumbItem = forwardRef<HTMLLIElement, BreadcrumbItemProps>(
   ({ children, className, ...props }, ref) => {
-    const { restProps, sprinkleProps } = extractSprinkles(props);
+    const { boxProps, restProps } = extractBoxProps(props);
 
     return (
-      <Box asChild {...styles.item({}, className)} {...sprinkleProps}>
+      <Box asChild {...styles.item({}, className)} {...boxProps}>
         <li ref={ref} {...restProps}>
           {children}
         </li>

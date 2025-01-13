@@ -9,13 +9,9 @@ import {
 import type { ExtendProps } from "../utils";
 
 import { version } from "../../package.json";
-import {
-  extractSprinkles,
-  type Sprinkles,
-  sprinkles,
-  sprinklesMerge,
-} from "../sprinkles";
+import { type Sprinkles, sprinkles, sprinklesMerge } from "../sprinkles";
 import * as styles from "./Box.css";
+import { extractBoxProps } from "./extractBoxProps";
 
 export type BoxProps<T extends ElementType = "div", P = unknown> = ExtendProps<
   ComponentPropsWithoutRef<T>,
@@ -36,13 +32,13 @@ export type BoxProps<T extends ElementType = "div", P = unknown> = ExtendProps<
 export const Box = forwardRef<HTMLDivElement, BoxProps>(
   ({ asChild, className, ...props }, ref) => {
     const Comp = asChild ? Slot : "div";
-    const { restProps, sprinkleProps } = extractSprinkles(props);
+    const { boxProps, restProps } = extractBoxProps(props);
 
     return (
       <Comp
         data-axiom={version}
         ref={ref}
-        {...styles.box({}, sprinklesMerge(className, sprinkles(sprinkleProps)))}
+        {...styles.box({}, sprinklesMerge(className, sprinkles(boxProps)))}
         {...restProps}
       />
     );

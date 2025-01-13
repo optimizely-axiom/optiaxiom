@@ -1,9 +1,8 @@
 import { Slot } from "@radix-ui/react-slot";
 import { forwardRef } from "react";
 
-import { Box, type BoxProps } from "../box";
+import { Box, type BoxProps, extractBoxProps } from "../box";
 import { IconUpRightFromSquare } from "../icons/IconUpRightFromSquare";
-import { extractSprinkles } from "../sprinkles";
 import { decorateChildren } from "../utils";
 import * as styles from "./Link.css";
 
@@ -37,13 +36,13 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
     ref,
   ) => {
     const Comp = asChild ? Slot : "a";
-    const { restProps, sprinkleProps } = extractSprinkles(props);
+    const { boxProps, restProps } = extractBoxProps(props);
 
     return (
       <Box
         asChild
         {...styles.link({ appearance, overlay }, className)}
-        {...sprinkleProps}
+        {...boxProps}
       >
         <Comp
           aria-disabled={disabled}

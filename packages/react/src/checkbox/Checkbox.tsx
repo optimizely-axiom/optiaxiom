@@ -1,9 +1,8 @@
 import { forwardRef, type ReactNode } from "react";
 
-import { Box, type BoxProps } from "../box";
+import { Box, type BoxProps, extractBoxProps } from "../box";
 import { CheckboxCheck } from "../icons/CheckboxCheck";
 import { IconMinus } from "../icons/IconMinus";
-import { extractSprinkles } from "../sprinkles";
 import { ToggleInput } from "../toggle-input";
 import { ToggleInputContent } from "../toggle-input-content";
 import { ToggleInputControl } from "../toggle-input-control";
@@ -28,13 +27,13 @@ type CheckboxProps = BoxProps<
 
 export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
   ({ children, className, description, indeterminate, ...props }, ref) => {
-    const { restProps, sprinkleProps } = extractSprinkles(props);
+    const { boxProps, restProps } = extractBoxProps(props);
 
     return (
       <ToggleInput
         description={!!description}
         {...styles.checkbox({}, className)}
-        {...sprinkleProps}
+        {...boxProps}
       >
         <ToggleInputHiddenInput ref={ref} {...styles.input()} {...restProps} />
 

@@ -1,9 +1,8 @@
 import { Slot } from "@radix-ui/react-slot";
 import { type ElementType, forwardRef } from "react";
 
-import { Box, type BoxProps } from "../box";
+import { Box, type BoxProps, extractBoxProps } from "../box";
 import { Spinner } from "../spinner";
-import { extractSprinkles } from "../sprinkles";
 import { TransitionGroup } from "../transition-group";
 import { decorateChildren, type ExtendProps } from "../utils";
 import * as styles from "./ButtonBase.css";
@@ -57,7 +56,7 @@ export const ButtonBase = forwardRef<HTMLButtonElement, ButtonBaseProps>(
     ref,
   ) => {
     const Comp = asChild ? Slot : "button";
-    const { restProps, sprinkleProps } = extractSprinkles(props);
+    const { boxProps, restProps } = extractBoxProps(props);
 
     const { intent, variant } = appearances[appearance];
 
@@ -76,7 +75,7 @@ export const ButtonBase = forwardRef<HTMLButtonElement, ButtonBaseProps>(
           },
           className,
         )}
-        {...sprinkleProps}
+        {...boxProps}
       >
         <Comp disabled={disabled} ref={ref} {...restProps}>
           {decorateChildren({ asChild, children }, (children) => (

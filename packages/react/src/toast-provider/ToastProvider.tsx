@@ -11,9 +11,8 @@ import {
 } from "react";
 import { useSyncExternalStore } from "use-sync-external-store/shim/index.js";
 
-import { type BoxProps } from "../box";
+import { type BoxProps, extractBoxProps } from "../box";
 import { Flex } from "../flex";
-import { extractSprinkles } from "../sprinkles";
 import { ToastAction } from "../toast-action";
 import { ToastTitle } from "../toast-title";
 import { Toast } from "../toast/Toast";
@@ -57,7 +56,7 @@ export const ToastProvider = forwardRef<HTMLOListElement, ToastProps>(
     },
     outerRef,
   ) => {
-    const { restProps, sprinkleProps } = extractSprinkles(props);
+    const { boxProps, restProps } = extractBoxProps(props);
     const toasts = useSyncExternalStore(...toasterProp.store);
 
     const innerRef = useRef<HTMLOListElement>(null);
@@ -129,7 +128,7 @@ export const ToastProvider = forwardRef<HTMLOListElement, ToastProps>(
               position.startsWith("bottom") ? "column-reverse" : "column"
             }
             {...styles.viewport({ position }, className)}
-            {...sprinkleProps}
+            {...boxProps}
           >
             <RadixToast.Viewport ref={ref} {...restProps} />
           </Flex>

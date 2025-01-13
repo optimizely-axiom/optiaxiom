@@ -2,8 +2,7 @@ import { Slot } from "@radix-ui/react-slot";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import { forwardRef } from "react";
 
-import { Box, type BoxProps } from "../box";
-import { extractSprinkles } from "../sprinkles";
+import { Box, type BoxProps, extractBoxProps } from "../box";
 import * as styles from "./TextareaAutosize.css";
 
 type TextareaAutosizeProps = BoxProps<"textarea", styles.WrapperVariants>;
@@ -25,7 +24,7 @@ export const TextareaAutosize = forwardRef<
     ref,
   ) => {
     const Comp = asChild ? Slot : "textarea";
-    const { restProps, sprinkleProps } = extractSprinkles(props);
+    const { boxProps, restProps } = extractBoxProps(props);
 
     const [value, setValue] = useControllableState({
       defaultProp: props.defaultValue,
@@ -34,7 +33,7 @@ export const TextareaAutosize = forwardRef<
 
     return (
       <Box {...styles.wrapper({ maxRows, resize })}>
-        <Box asChild {...styles.textarea({}, className)} {...sprinkleProps}>
+        <Box asChild {...styles.textarea({}, className)} {...boxProps}>
           <Comp
             onChange={(event) => {
               setValue(event.target.value);
@@ -48,7 +47,7 @@ export const TextareaAutosize = forwardRef<
         </Box>
 
         {resize === "auto" && (
-          <Box {...styles.shadow({}, className)} {...sprinkleProps}>
+          <Box {...styles.shadow({}, className)} {...boxProps}>
             {(value ?? "") + " "}
           </Box>
         )}
