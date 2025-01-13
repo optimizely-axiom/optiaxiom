@@ -34,12 +34,13 @@ Place your global style rules inside the `optiaxiom.base` layer to ensure they a
 
 ### Tailwind
 
-Place your Tailwind directives inside the `optiaxiom.base` layer to prevent conflicts with styles coming from Axiom.
+Place your Tailwind base directive inside the `optiaxiom.base` layer to prevent conflicts with styles coming from Axiom.
 
-```css {1,5}
+```css {1-3}
 @layer optiaxiom.base {
   @tailwind base;
-  @tailwind components;
-  @tailwind utilities;
 }
+
+@tailwind components;
+@tailwind utilities;
 ```
