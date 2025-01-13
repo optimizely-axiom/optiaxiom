@@ -16,7 +16,7 @@ export const IconText = ({
       backgroundColor:
         theme.colors[
           intent === "primary"
-            ? "border.active"
+            ? "border.control"
             : intent === "secondary"
               ? "border.tertiary"
               : "bg.error.subtle"

@@ -23,7 +23,7 @@ export const editor = recipe({
       true: style({
         selectors: {
           "&::before": {
-            color: theme.colors["border.active"],
+            color: theme.colors["border.control"],
             content: "attr(data-placeholder)",
             float: "left",
             height: "0",

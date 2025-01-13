@@ -166,8 +166,8 @@ export const colors = {
   "bg.warning.subtle": ld(palette["yellow.100"], palette["yellow.900"]),
 
   "border.accent": ld(palette["brand.500"], palette["brand.300"]),
-  "border.active": ld(palette["neutral.500"], palette["neutral.700"]),
-  "border.active.hovered": ld(palette["neutral.600"], palette["neutral.600"]),
+  "border.control": ld(palette["neutral.500"], palette["neutral.700"]),
+  "border.control.hovered": ld(palette["neutral.600"], palette["neutral.600"]),
   "border.default": ld(palette["neutral.100"], palette["neutral.800"]),
   "border.disabled": ld(palette["neutral.75"], palette["neutral.800"]),
   "border.error": ld(palette["red.500"], palette["red.200"]),
