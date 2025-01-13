@@ -38,7 +38,7 @@ const shadows = {
       image: `
         linear-gradient(
           to right,
-          ${theme.colors["border.tertiary"]} 1px,
+          ${theme.colors["border.default"]} 1px,
           transparent 1px
         )
       `,
@@ -72,7 +72,7 @@ const shadows = {
       image: `
         linear-gradient(
           to left,
-          ${theme.colors["border.tertiary"]} 1px,
+          ${theme.colors["border.default"]} 1px,
           transparent 1px
         )
       `,

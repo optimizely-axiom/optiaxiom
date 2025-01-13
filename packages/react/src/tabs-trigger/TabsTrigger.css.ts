@@ -23,7 +23,7 @@ export const trigger = recipe({
         "(hover: hover)": {
           selectors: {
             '&:hover:not([data-state="active"])': {
-              borderColor: theme.colors["border.default"],
+              borderColor: theme.colors["border.tertiary"],
               color: theme.colors["fg.secondary"],
             },
           },

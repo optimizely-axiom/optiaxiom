@@ -7,7 +7,7 @@ const row = styles.className;
 export const cell = recipe({
   base: [
     {
-      borderColor: "border.tertiary",
+      borderColor: "border.default",
       p: "16",
     },
     style({

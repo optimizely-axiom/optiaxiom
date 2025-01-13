@@ -19,7 +19,9 @@ export const IconButton = ({
       ...(intent === "primary"
         ? { backgroundColor: theme.colors["border.focus"] }
         : intent === "secondary"
-          ? { boxShadow: `inset 0 0 0 1px ${theme.colors["border.default"]}` }
+          ? {
+              boxShadow: `inset 0 0 0 1px ${theme.colors["border.tertiary"]}`,
+            }
           : {}),
       ...style,
     }}

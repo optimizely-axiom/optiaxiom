@@ -20,7 +20,7 @@
 
 .pound {
   background-color: var(--ax-colors-bg-default);
-  outline: 1px solid var(--ax-colors-border-tertiary);
+  outline: 1px solid var(--ax-colors-border-default);
 
   &:hover {
     color: var(--ax-colors-fg-secondary);

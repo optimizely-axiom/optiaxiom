@@ -175,12 +175,7 @@ export const Basic: Story<Item & { items?: Item[] }> = {
         <SpotlightContent>
           <SpotlightInput placeholder="Search..." />
 
-          <SpotlightSub
-            borderB="1"
-            borderColor="border.tertiary"
-            item={types}
-            pb="12"
-          >
+          <SpotlightSub borderB="1" item={types} pb="12">
             {types.items.map((item) => (
               <SpotlightSubItem
                 item={item}
