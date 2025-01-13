@@ -1,5 +1,15 @@
 # @optiaxiom/globals
 
+## 0.7.0
+
+### Minor Changes
+
+- e2534f9: rename border.active to border.control
+
+### Patch Changes
+
+- 8d1ef5a: swap border.default and border.tertiary
+
 ## 0.6.0
 
 ### Minor Changes

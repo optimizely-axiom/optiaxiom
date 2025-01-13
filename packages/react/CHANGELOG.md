@@ -1,5 +1,23 @@
 # @optiaxiom/react
 
+## 0.10.0
+
+### Minor Changes
+
+- e2534f9: rename border.active to border.control
+- 38d6abe: simplify Alert component by replacing Title and Description components with children prop
+
+### Patch Changes
+
+- 9cc5cf9: change dialog body to flex display
+- 86f3b97: rename extractSprinkles to extractBoxProps and include className
+- 8d1ef5a: swap border.default and border.tertiary
+- f50650c: fix dialog cancel button default appearance
+- a44c1c0: remove default subtle appearance on ToggleButton
+- Updated dependencies [e2534f9]
+- Updated dependencies [8d1ef5a]
+  - @optiaxiom/globals@0.7.0
+
 ## 0.9.0
 
 ### Minor Changes
