@@ -98,17 +98,13 @@ export const WithDescription: Story = {
         <CardOverflow>
           <CardImage alt="" src="https://placehold.co/600x400" />
         </CardOverflow>
-        <CardDescription
-          display="flex"
-          flexDirection="row"
-          justifyContent="space-between"
-        >
+        <CardDescription display="flex" flexDirection="row">
           <Link href="data:," overlay>
             The majestic world of turtles
           </Link>
           <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button border="0" icon={<IconEllipsis />} size="sm" />
+            <DropdownMenuTrigger asChild ml="auto">
+              <Button appearance="subtle" icon={<IconEllipsis />} size="sm" />
             </DropdownMenuTrigger>
 
             <DropdownMenuContent>

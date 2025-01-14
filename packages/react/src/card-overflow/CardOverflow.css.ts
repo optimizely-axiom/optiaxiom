@@ -9,8 +9,8 @@ export const cardOverflow = recipe({
       aspectRatio: "2",
       borderTopLeftRadius: "inherit",
       borderTopRightRadius: "inherit",
-      margin: "-16px 0px 0px -24px",
-      width: "calc(100% + 48px)",
+      margin: "-16px 0px 0px -16px",
+      width: "calc(100% + 32px)",
     }),
   ],
 });

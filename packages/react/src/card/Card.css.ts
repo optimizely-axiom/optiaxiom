@@ -12,8 +12,7 @@ export const card = recipe({
       borderColor: "border.tertiary",
       flexDirection: "column",
       gap: "0",
-      px: "24",
-      py: "16",
+      p: "16",
     },
     style({
       vars: {
