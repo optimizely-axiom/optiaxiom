@@ -1,5 +1,5 @@
 import fg from "fast-glob";
-import path from "node:path";
+import path from "path";
 import { withCompilerOptions } from "react-docgen-typescript";
 
 export function getDocs({ shouldExtractValuesFromUnion = false } = {}) {
