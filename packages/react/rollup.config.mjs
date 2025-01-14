@@ -39,7 +39,11 @@ export default defineConfig([
     },
     output: {
       banner: async (chunk) => {
-        if (bannerFilter(chunk.facadeModuleId)) {
+        if (
+          env === "production"
+            ? bannerFilter(chunk.facadeModuleId)
+            : chunk.name === "client"
+        ) {
           return '"use client";';
         }
         return "";
@@ -51,6 +55,15 @@ export default defineConfig([
           : "[name].js";
       },
       format: "es",
+      manualChunks:
+        env === "production"
+          ? undefined
+          : (id) => {
+              if (bannerFilter(id)) {
+                return "client";
+              }
+              return null;
+            },
       preserveModules: env === "production",
     },
     plugins: [

@@ -1,3 +1,4 @@
+import { createFilter } from "@rollup/pluginutils";
 import { vanillaExtractPlugin } from "@vanilla-extract/rollup-plugin";
 import { readFileSync } from "node:fs";
 import { defineConfig } from "rollup";
@@ -6,6 +7,7 @@ import esbuild from "rollup-plugin-esbuild";
 
 const env = process.env.NODE_ENV ?? "development";
 const pkg = JSON.parse(readFileSync("./package.json"));
+const bannerFilter = createFilter(["**/context.ts", "**/toast-context.ts"]);
 
 export default defineConfig([
   {
@@ -22,6 +24,15 @@ export default defineConfig([
       index: "src/index.ts",
     },
     output: {
+      banner:
+        env === "production"
+          ? undefined
+          : async (chunk) => {
+              if (chunk.name === "client") {
+                return '"use client";';
+              }
+              return "";
+            },
       dir: "dist",
       entryFileNames: (info) => {
         return info.name.endsWith(".css")
@@ -29,6 +40,15 @@ export default defineConfig([
           : "[name].js";
       },
       format: "es",
+      manualChunks:
+        env === "production"
+          ? undefined
+          : (id) => {
+              if (bannerFilter(id)) {
+                return "client";
+              }
+              return null;
+            },
       preserveModules: env === "production",
     },
     plugins: [
