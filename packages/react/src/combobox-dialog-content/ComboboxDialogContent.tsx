@@ -2,14 +2,16 @@ import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import type { MenuListbox } from "../menu-listbox";
+import type { ExcludeProps } from "../utils";
 
 import { DialogContent } from "../dialog-content";
 import { DialogTitle } from "../dialog-title";
 
-type ComboboxDialogContentProps = ComponentPropsWithoutRef<
-  typeof DialogContent
-> &
-  Pick<ComponentPropsWithoutRef<typeof MenuListbox>, "maxH" | "minW">;
+type ComboboxDialogContentProps = ExcludeProps<
+  ComponentPropsWithoutRef<typeof DialogContent> &
+    Pick<ComponentPropsWithoutRef<typeof MenuListbox>, "maxH" | "minW">,
+  "size"
+>;
 
 export const ComboboxDialogContent = forwardRef<
   HTMLDivElement,

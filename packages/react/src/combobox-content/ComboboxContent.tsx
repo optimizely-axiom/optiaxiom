@@ -3,7 +3,6 @@ import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import type { ComboboxDialogContent } from "../combobox-dialog-content";
 import type { ComboboxPopoverContent } from "../combobox-popover-content";
-import type { ExcludeProps } from "../utils";
 
 import { useComboboxContext } from "../combobox-context";
 import { Command } from "../command";
@@ -11,12 +10,9 @@ import { CommandListbox } from "../command-listbox";
 import { useFieldContext } from "../field-context";
 import { useResponsiveMatches } from "../use-responsive-matches";
 
-type ComboboxContentProps = ExcludeProps<
-  ComponentPropsWithoutRef<
-    typeof ComboboxDialogContent | typeof ComboboxPopoverContent
-  >,
-  "size"
->;
+type ComboboxContentProps =
+  | ComponentPropsWithoutRef<typeof ComboboxDialogContent>
+  | ComponentPropsWithoutRef<typeof ComboboxPopoverContent>;
 
 export const ComboboxContent = forwardRef<HTMLDivElement, ComboboxContentProps>(
   ({ children, ...props }, ref) => {
