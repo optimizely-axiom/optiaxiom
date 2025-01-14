@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 0.10.1
+
+### Patch Changes
+
+- c547001: fix excluding size prop from combobox content
+
 ## 0.10.0
 
 ### Minor Changes
