@@ -1,5 +1,4 @@
 import * as RadixDialog from "@radix-ui/react-dialog";
-import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
@@ -34,18 +33,19 @@ export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
     },
     ref,
   ) => {
-    const { isRootDialog, nestedDialogCount, open } =
-      useDialogContext("DialogContent");
-    const BackdropContainer = isRootDialog ? Transition : VisuallyHidden;
+    const { nestedDialogCount, open } = useDialogContext("DialogContent");
 
     return (
       <TransitionGroup open={open}>
         <RadixDialog.Portal forceMount>
-          <BackdropContainer>
-            <Backdrop asChild>
+          <Transition>
+            <Backdrop
+              asChild
+              {...styles.backdrop({ hidden: nestedDialogCount > 0 })}
+            >
               <RadixDialog.Overlay />
             </Backdrop>
-          </BackdropContainer>
+          </Transition>
 
           <Transition data-side="bottom" type={transitionType}>
             <Paper
@@ -61,15 +61,7 @@ export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
               {...styles.content({ size }, className)}
               {...props}
             >
-              <RadixDialog.Content ref={ref}>
-                {children}
-
-                {nestedDialogCount > 0 && (
-                  <Transition>
-                    <Backdrop rounded="inherit" />
-                  </Transition>
-                )}
-              </RadixDialog.Content>
+              <RadixDialog.Content ref={ref}>{children}</RadixDialog.Content>
             </Paper>
           </Transition>
         </RadixDialog.Portal>

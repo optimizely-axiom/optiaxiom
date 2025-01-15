@@ -5,6 +5,17 @@ import {
   style,
 } from "../vanilla-extract";
 
+export const backdrop = recipe({
+  variants: {
+    hidden: {
+      false: {},
+      true: style({
+        opacity: "0",
+      }),
+    },
+  },
+});
+
 export const root = recipe({
   base: [
     {

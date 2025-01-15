@@ -7,6 +7,17 @@ import {
 
 export const nestedDialogCountVar = createVar();
 
+export const backdrop = recipe({
+  variants: {
+    hidden: {
+      false: {},
+      true: style({
+        opacity: "0",
+      }),
+    },
+  },
+});
+
 export const content = recipe({
   base: [
     {

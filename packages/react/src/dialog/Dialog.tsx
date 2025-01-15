@@ -36,14 +36,15 @@ export function Dialog({
     prop: openProp,
   });
 
-  const [isRootDialog, nestedDialogCount, setNestedDialogCount] =
-    useNestedDialogCount("Dialog", open);
+  const [nestedDialogCount, setNestedDialogCount] = useNestedDialogCount(
+    "Dialog",
+    open,
+  );
 
   return (
     <NestedDialogContextProvider onCountChange={setNestedDialogCount}>
       <RadixDialog.Root onOpenChange={setOpen} open={open} {...props}>
         <DialogContextProvider
-          isRootDialog={isRootDialog}
           nestedDialogCount={nestedDialogCount}
           open={open}
         >
