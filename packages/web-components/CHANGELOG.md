@@ -1,5 +1,15 @@
 # @optiaxiom/web-components
 
+## 0.7.0
+
+### Minor Changes
+
+- a89a1d0: simplify DialogHeader component
+
+### Patch Changes
+
+- bc60ff6: fix nested dialog scrolling
+
 ## 0.6.0
 
 ### Minor Changes
