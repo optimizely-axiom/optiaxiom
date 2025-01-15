@@ -14,7 +14,6 @@ import {
   DialogFooter,
   DialogForm,
   DialogHeader,
-  DialogTitle,
   DialogTrigger,
   Textarea,
 } from "@optiaxiom/react";
@@ -45,9 +44,7 @@ export function App() {
             setOpen(false);
           }}
         >
-          <DialogHeader>
-            <DialogTitle>Create new issue</DialogTitle>
-          </DialogHeader>
+          <DialogHeader>Create new issue</DialogHeader>
 
           <DialogBody>
             <Textarea autoFocus ref={textRef} required />

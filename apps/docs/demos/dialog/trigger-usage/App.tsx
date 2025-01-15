@@ -5,7 +5,6 @@ import {
   DialogContent,
   DialogFooter,
   DialogHeader,
-  DialogTitle,
   DialogTrigger,
 } from "@optiaxiom/react";
 import { IconRefresh } from "@tabler/icons-react";
@@ -20,9 +19,7 @@ export function App() {
       />
 
       <DialogContent>
-        <DialogHeader>
-          <DialogTitle>Modal Title</DialogTitle>
-        </DialogHeader>
+        <DialogHeader>Modal Title</DialogHeader>
         <DialogBody>This is the modal body</DialogBody>
         <DialogFooter>
           <DialogClose appearance="primary">Close</DialogClose>

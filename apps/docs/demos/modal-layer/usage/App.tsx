@@ -5,7 +5,6 @@ import {
   DialogContent,
   DialogFooter,
   DialogHeader,
-  DialogTitle,
   DialogTrigger,
   theme,
 } from "@optiaxiom/react";
@@ -25,9 +24,7 @@ export function App() {
       <DialogTrigger>Open Dialog</DialogTrigger>
 
       <DialogContent>
-        <DialogHeader>
-          <DialogTitle>ModalLayer Demonstration</DialogTitle>
-        </DialogHeader>
+        <DialogHeader>ModalLayer Demonstration</DialogHeader>
         <DialogBody>
           <ReactSelect
             components={{ MenuPortal }}

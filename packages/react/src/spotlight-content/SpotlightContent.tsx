@@ -1,3 +1,4 @@
+import * as RadixDialog from "@radix-ui/react-dialog";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { useCombobox } from "downshift";
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
@@ -5,7 +6,6 @@ import { type ComponentPropsWithoutRef, forwardRef } from "react";
 import { Command } from "../command";
 import { CommandListbox } from "../command-listbox";
 import { DialogContent } from "../dialog-content";
-import { DialogTitle } from "../dialog-title";
 import { PopoverContent } from "../popover-content";
 import { useSpotlightContext } from "../spotlight-context";
 
@@ -38,7 +38,7 @@ export const SpotlightContent = forwardRef<
       {...props}
     >
       <VisuallyHidden>
-        <DialogTitle>{ariaLabel ?? "Quick search"}</DialogTitle>
+        <RadixDialog.Title>{ariaLabel ?? "Quick search"}</RadixDialog.Title>
       </VisuallyHidden>
 
       <Command

@@ -8,7 +8,6 @@ import {
   DialogFooter,
   DialogForm,
   DialogHeader,
-  DialogTitle,
   DialogTrigger,
 } from "@optiaxiom/react";
 
@@ -21,9 +20,7 @@ figma.connect(
         <DialogTrigger>Example</DialogTrigger>
 
         <DialogContent size={size}>
-          <DialogHeader>
-            <DialogTitle>{header.title}</DialogTitle>
-          </DialogHeader>
+          <DialogHeader>{header.title}</DialogHeader>
 
           {body}
         </DialogContent>

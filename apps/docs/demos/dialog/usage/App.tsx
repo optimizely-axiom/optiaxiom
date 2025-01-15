@@ -5,7 +5,6 @@ import {
   DialogContent,
   DialogFooter,
   DialogHeader,
-  DialogTitle,
   DialogTrigger,
 } from "@optiaxiom/react";
 
@@ -15,9 +14,7 @@ export function App() {
       <DialogTrigger>Open Dialog</DialogTrigger>
 
       <DialogContent>
-        <DialogHeader>
-          <DialogTitle>Modal Title</DialogTitle>
-        </DialogHeader>
+        <DialogHeader>Modal Title</DialogHeader>
 
         <DialogBody>This is the modal body</DialogBody>
 

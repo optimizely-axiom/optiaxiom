@@ -1,3 +1,4 @@
+import * as RadixDialog from "@radix-ui/react-dialog";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
@@ -5,7 +6,6 @@ import type { MenuListbox } from "../menu-listbox";
 import type { ExcludeProps } from "../utils";
 
 import { DialogContent } from "../dialog-content";
-import { DialogTitle } from "../dialog-title";
 
 type ComboboxDialogContentProps = ExcludeProps<
   ComponentPropsWithoutRef<typeof DialogContent> &
@@ -20,7 +20,7 @@ export const ComboboxDialogContent = forwardRef<
   return (
     <DialogContent ref={ref} {...props}>
       <VisuallyHidden>
-        <DialogTitle>{ariaLabel}</DialogTitle>
+        <RadixDialog.Title>{ariaLabel}</RadixDialog.Title>
       </VisuallyHidden>
 
       {children}

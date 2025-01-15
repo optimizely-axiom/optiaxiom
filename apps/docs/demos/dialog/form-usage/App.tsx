@@ -7,7 +7,6 @@ import {
   DialogFooter,
   DialogForm,
   DialogHeader,
-  DialogTitle,
   DialogTrigger,
   Field,
   Input,
@@ -24,9 +23,7 @@ export function App() {
       <DialogTrigger>Create new issue</DialogTrigger>
 
       <DialogContent size="sm">
-        <DialogHeader>
-          <DialogTitle>Create new issue</DialogTitle>
-        </DialogHeader>
+        <DialogHeader>Create new issue</DialogHeader>
 
         <DialogForm
           onSubmit={(event) => {
