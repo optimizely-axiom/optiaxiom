@@ -36,17 +36,16 @@ export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
   ) => {
     const { isRootDialog, nestedDialogCount, open } =
       useDialogContext("DialogContent");
+    const BackdropContainer = isRootDialog ? Transition : VisuallyHidden;
 
     return (
       <TransitionGroup open={open}>
         <RadixDialog.Portal forceMount>
-          {isRootDialog && (
-            <Transition>
-              <Backdrop asChild>
-                <RadixDialog.Overlay />
-              </Backdrop>
-            </Transition>
-          )}
+          <BackdropContainer>
+            <Backdrop asChild>
+              <RadixDialog.Overlay />
+            </Backdrop>
+          </BackdropContainer>
 
           <Transition data-side="bottom" type={transitionType}>
             <Paper
