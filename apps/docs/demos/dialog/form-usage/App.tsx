@@ -24,6 +24,10 @@ export function App() {
       <DialogTrigger>Create new issue</DialogTrigger>
 
       <DialogContent size="sm">
+        <DialogHeader>
+          <DialogTitle>Create new issue</DialogTitle>
+        </DialogHeader>
+
         <DialogForm
           onSubmit={(event) => {
             event.preventDefault();
@@ -35,10 +39,6 @@ export function App() {
             }, 3000);
           }}
         >
-          <DialogHeader>
-            <DialogTitle>Create new issue</DialogTitle>
-          </DialogHeader>
-
           <DialogBody>
             <Field label="Title">
               <Input autoFocus name="title" required />

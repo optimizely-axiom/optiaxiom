@@ -66,9 +66,9 @@ We can also completely change the trigger by using `asChild` and passing our own
 
 ### Form dialogs
 
-Wrap dialog content with the `DialogForm` component to use forms in dialogs.
+Wrap `DialogBody` and `DialogFooter` with the `DialogForm` component to use forms in dialogs.
 
-<Demo component={FormUsage} />
+<Demo component={FormUsage} meta="{31-41,62}" />
 
 ### Nested dialogs
 
@@ -97,11 +97,11 @@ Use the `onOpenChange` handler to trigger the nested callback instead of an expl
 <PropsTable component={Dialog} />
 <PropsTable component={DialogTrigger} />
 <PropsTable component={DialogContent} />
-<PropsTable component={DialogForm} />
 <PropsTable component={DialogHeader} />
 <PropsTable component={DialogTitle} />
 <PropsTable component={DialogActions} />
 <PropsTable component={DialogDescription} />
+<PropsTable component={DialogForm} />
 <PropsTable component={DialogBody} />
 <PropsTable component={DialogFooter} />
 <PropsTable component={DialogClose} />
