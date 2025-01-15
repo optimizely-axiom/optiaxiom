@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 0.11.1
+
+### Patch Changes
+
+- c465c02: fix nested dialog backdrop
+
 ## 0.11.0
 
 ### Minor Changes
