@@ -1,5 +1,4 @@
 import * as RadixAlertDialog from "@radix-ui/react-alert-dialog";
-import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
 import { forwardRef } from "react";
 
@@ -23,18 +22,20 @@ export const AlertDialogContent = forwardRef<
   HTMLDivElement,
   AlertDialogContentProps
 >(({ children, size = "sm", style, ...props }, ref) => {
-  const { isRootDialog, nestedDialogCount, open } =
+  const { nestedDialogCount, open } =
     useAlertDialogContext("AlertDialogContent");
-  const BackdropContainer = isRootDialog ? Transition : VisuallyHidden;
 
   return (
     <TransitionGroup open={open}>
       <RadixAlertDialog.Portal forceMount>
-        <BackdropContainer>
-          <Backdrop asChild>
+        <Transition>
+          <Backdrop
+            asChild
+            {...styles.backdrop({ hidden: nestedDialogCount > 0 })}
+          >
             <RadixAlertDialog.Overlay />
           </Backdrop>
-        </BackdropContainer>
+        </Transition>
 
         <Flex {...styles.root()}>
           <Box flex="1" pointerEvents="none" />
@@ -53,12 +54,6 @@ export const AlertDialogContent = forwardRef<
             >
               <RadixAlertDialog.Content ref={ref} {...props}>
                 {children}
-
-                {nestedDialogCount > 0 && (
-                  <Transition>
-                    <Backdrop rounded="inherit" />
-                  </Transition>
-                )}
               </RadixAlertDialog.Content>
             </Paper>
           </Transition>
