@@ -1,5 +1,11 @@
 # @optiaxiom/web-components
 
+## 0.7.1
+
+### Patch Changes
+
+- c465c02: fix nested dialog backdrop
+
 ## 0.7.0
 
 ### Minor Changes
