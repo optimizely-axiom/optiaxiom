@@ -15,15 +15,12 @@ import {
   Alert,
   Button,
   Dialog,
-  DialogActions,
   DialogBody,
   DialogClose,
   DialogContent,
-  DialogDescription,
   DialogFooter,
   DialogForm,
   DialogHeader,
-  DialogTitle,
   DialogTrigger,
 } from "@optiaxiom/react";
 import { Callout } from "nextra/components";
@@ -52,9 +49,9 @@ Use the `size` prop to change the size of the dialog box.
 
 ### Description
 
-You can add accessible description to the modal using the `DialogDescription` component.
+You can add accessible description to the modal using the `description` prop on `DialogHeader` component.
 
-<Demo meta="{5,20-22}" component={DescriptionUsage} />
+<Demo meta="{16}" component={DescriptionUsage} />
 
 ### Customize trigger
 
@@ -98,9 +95,6 @@ Use the `onOpenChange` handler to trigger the nested callback instead of an expl
 <PropsTable component={DialogTrigger} />
 <PropsTable component={DialogContent} />
 <PropsTable component={DialogHeader} />
-<PropsTable component={DialogTitle} />
-<PropsTable component={DialogActions} />
-<PropsTable component={DialogDescription} />
 <PropsTable component={DialogForm} />
 <PropsTable component={DialogBody} />
 <PropsTable component={DialogFooter} />

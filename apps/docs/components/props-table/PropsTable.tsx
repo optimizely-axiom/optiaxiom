@@ -21,8 +21,6 @@ const mapComponentToBase: Record<string, string> = {
   ComboboxSeparator: "Separator",
   ComboboxTrigger: "Button",
   DialogClose: "Button",
-  DialogDescription: "Text",
-  DialogTitle: "Heading",
   DialogTrigger: "Button",
   DisclosureTrigger: "Button",
   DropdownMenuSeparator: "Separator",
@@ -159,10 +157,6 @@ function PropsTableDescription({
         </>
       ) : name !== "Box" && !children ? (
         "Doesn't render its own HTML element."
-      ) : ["DialogTitle"].includes(name) ? (
-        <>
-          Renders an <Code>&lt;h2&gt;</Code> element.
-        </>
       ) : ["SidenavAccountItem"].includes(name) ? (
         <>
           Renders a <Code>&lt;button&gt;</Code> element.

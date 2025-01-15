@@ -3,14 +3,11 @@ import type { Meta, StoryObj } from "@storybook/react";
 import {
   Button,
   Dialog,
-  DialogActions,
   DialogBody,
   DialogClose,
   DialogContent,
-  DialogDescription,
   DialogFooter,
   DialogHeader,
-  DialogTitle,
   DialogTrigger,
   Input,
   Textarea,
@@ -66,12 +63,8 @@ export default {
           {...(!description && { ["aria-describedby"]: undefined })}
           size={size}
         >
-          <DialogHeader>
-            <DialogTitle>{title}</DialogTitle>
-            {actions && <DialogActions>{actions}</DialogActions>}
-            {description && (
-              <DialogDescription>{description}</DialogDescription>
-            )}
+          <DialogHeader addonAfter={actions} description={description}>
+            {title}
           </DialogHeader>
           <DialogBody>{content}</DialogBody>
           <DialogFooter>

@@ -64,10 +64,6 @@ export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
               <RadixDialog.Content ref={ref}>
                 {children}
 
-                <VisuallyHidden>
-                  <RadixDialog.Description />
-                </VisuallyHidden>
-
                 {nestedDialogCount > 0 && (
                   <Transition>
                     <Backdrop rounded="inherit" />
