@@ -13,11 +13,13 @@ export function App() {
       shadow="sm"
     >
       <Flex alignItems="start" flexDirection={["column", "row"]} gap="0">
-        <Image
-          alt="brown glass bottle beside white book on blue and white textile"
-          src={beach}
-          style={{ minWidth: "0" }}
-        />
+        <Box asChild h="auto" maxW="full">
+          <Image
+            alt="brown glass bottle beside white book on blue and white textile"
+            src={beach}
+            style={{ minWidth: "0" }}
+          />
+        </Box>
 
         <Box p="16">
           <Text color="fg.error" fontWeight="600" textTransform="uppercase">

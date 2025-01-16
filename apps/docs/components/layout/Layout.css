@@ -1,0 +1,333 @@
+@import "nextra-theme-docs/dist/style.css" layer(optiaxiom.base);
+
+html {
+  font-family: var(--ax-fontFamily-sans);
+  font-feature-settings: "cv02", "cv03", "cv04";
+}
+
+body {
+  width: auto;
+}
+
+code,
+kbd,
+samp,
+pre {
+  font-family: var(--ax-fontFamily-mono);
+  font-feature-settings: normal;
+  font-variant-ligatures: none;
+}
+
+:root {
+  --docs-bg-shadow-size: 85%;
+  --docs-code-bg: light-dark(var(--ax-colors-bg-secondary), rgb(1, 22, 39));
+
+  &[class~="dark"] {
+    --docs-bg-pillar-opacity: 20%;
+    --docs-bg-shadow-size: 65%;
+  }
+
+  @media screen and (min-width: 640px) {
+    & {
+      --docs-bg-shadow-size: 45%;
+    }
+
+    &[class~="dark"] {
+      --docs-bg-shadow-size: 25%;
+    }
+  }
+
+  --shiki-color-text: light-dark(#24292eff, #d6deeb);
+  --shiki-token-constant: light-dark(#1976d2, #f78c6c);
+  --shiki-token-keyword: light-dark(#d32f2f, #c792ea);
+  --shiki-token-function: light-dark(#6f42c1, #82aaff);
+  --shiki-token-string-expression: light-dark(#22863a, #ecc48d);
+}
+
+body > .x\:pb-\[env\(safe-area-inset-bottom\)\] {
+  background-color: var(--ax-colors-bg-default);
+}
+
+body:before {
+  background-image: linear-gradient(
+      135deg,
+      rgba(238, 238, 238, 0.08) 0%,
+      rgba(238, 238, 238, 0.08) 55%,
+      rgba(109, 109, 109, 0.08) 55%,
+      rgba(109, 109, 109, 0.08) 60%,
+      rgba(107, 107, 107, 0.08) 60%,
+      rgba(107, 107, 107, 0.08) 81%,
+      rgba(57, 57, 57, 0.08) 81%,
+      rgba(57, 57, 57, 0.08) 94%,
+      rgba(203, 203, 203, 0.08) 94%,
+      rgba(203, 203, 203, 0.08) 100%
+    ),
+    linear-gradient(
+      0deg,
+      rgba(53, 53, 53, 0.02) 0%,
+      rgba(53, 53, 53, 0.02) 24%,
+      rgba(89, 89, 89, 0.02) 24%,
+      rgba(89, 89, 89, 0.02) 27%,
+      rgba(190, 190, 190, 0.02) 27%,
+      rgba(190, 190, 190, 0.02) 34%,
+      rgba(51, 51, 51, 0.02) 34%,
+      rgba(51, 51, 51, 0.02) 63%,
+      rgba(217, 217, 217, 0.02) 63%,
+      rgba(217, 217, 217, 0.02) 74%,
+      rgba(226, 226, 226, 0.02) 74%,
+      rgba(226, 226, 226, 0.02) 77%,
+      rgba(60, 60, 60, 0.02) 77%,
+      rgba(60, 60, 60, 0.02) 100%
+    ),
+    linear-gradient(
+      45deg,
+      rgba(212, 212, 212, 0.03) 0%,
+      rgba(212, 212, 212, 0.03) 2%,
+      rgba(186, 186, 186, 0.03) 2%,
+      rgba(186, 186, 186, 0.03) 4%,
+      rgba(163, 163, 163, 0.03) 4%,
+      rgba(163, 163, 163, 0.03) 5%,
+      rgba(167, 167, 167, 0.03) 5%,
+      rgba(167, 167, 167, 0.03) 35%,
+      rgba(20, 20, 20, 0.03) 35%,
+      rgba(20, 20, 20, 0.03) 62%,
+      rgba(204, 204, 204, 0.03) 62%,
+      rgba(204, 204, 204, 0.03) 65%,
+      rgba(53, 53, 53, 0.03) 65%,
+      rgba(53, 53, 53, 0.03) 71%,
+      rgba(84, 84, 84, 0.03) 71%,
+      rgba(84, 84, 84, 0.03) 100%
+    ),
+    linear-gradient(
+      45deg,
+      rgba(184, 184, 184, 0.05) 0%,
+      rgba(184, 184, 184, 0.05) 10%,
+      rgba(75, 75, 75, 0.05) 10%,
+      rgba(75, 75, 75, 0.05) 32%,
+      rgba(53, 53, 53, 0.05) 32%,
+      rgba(53, 53, 53, 0.05) 38%,
+      rgba(103, 103, 103, 0.05) 38%,
+      rgba(103, 103, 103, 0.05) 72%,
+      rgba(114, 114, 114, 0.05) 72%,
+      rgba(114, 114, 114, 0.05) 76%,
+      rgba(62, 62, 62, 0.05) 76%,
+      rgba(62, 62, 62, 0.05) 100%
+    ),
+    linear-gradient(
+      90deg,
+      rgba(108, 108, 108, 0.03) 0%,
+      rgba(108, 108, 108, 0.03) 42%,
+      rgba(6, 6, 6, 0.03) 42%,
+      rgba(6, 6, 6, 0.03) 51%,
+      rgba(227, 227, 227, 0.03) 51%,
+      rgba(227, 227, 227, 0.03) 57%,
+      rgba(143, 143, 143, 0.03) 57%,
+      rgba(143, 143, 143, 0.03) 75%,
+      rgba(178, 178, 178, 0.03) 75%,
+      rgba(178, 178, 178, 0.03) 83%,
+      rgba(98, 98, 98, 0.03) 83%,
+      rgba(98, 98, 98, 0.03) 85%,
+      rgba(152, 152, 152, 0.03) 85%,
+      rgba(152, 152, 152, 0.03) 100%
+    ),
+    linear-gradient(
+      135deg,
+      rgba(106, 106, 106, 0.03) 0%,
+      rgba(106, 106, 106, 0.03) 43%,
+      rgba(67, 67, 67, 0.03) 43%,
+      rgba(67, 67, 67, 0.03) 59%,
+      rgba(142, 142, 142, 0.03) 59%,
+      rgba(142, 142, 142, 0.03) 66%,
+      rgba(160, 160, 160, 0.03) 66%,
+      rgba(160, 160, 160, 0.03) 96%,
+      rgba(242, 242, 242, 0.03) 96%,
+      rgba(242, 242, 242, 0.03) 100%
+    ),
+    linear-gradient(
+      45deg,
+      rgba(63, 63, 63, 0.07) 0%,
+      rgba(63, 63, 63, 0.07) 10%,
+      rgba(206, 206, 206, 0.07) 10%,
+      rgba(206, 206, 206, 0.07) 38%,
+      rgba(241, 241, 241, 0.07) 38%,
+      rgba(241, 241, 241, 0.07) 49%,
+      rgba(26, 26, 26, 0.07) 49%,
+      rgba(26, 26, 26, 0.07) 52%,
+      rgba(155, 155, 155, 0.07) 52%,
+      rgba(155, 155, 155, 0.07) 72%,
+      rgba(210, 210, 210, 0.07) 72%,
+      rgba(210, 210, 210, 0.07) 91%,
+      rgba(30, 30, 30, 0.07) 91%,
+      rgba(30, 30, 30, 0.07) 100%
+    ),
+    linear-gradient(
+      90deg,
+      rgba(196, 196, 196, 0.08) 0%,
+      rgba(196, 196, 196, 0.08) 5%,
+      rgba(182, 182, 182, 0.08) 5%,
+      rgba(182, 182, 182, 0.08) 17%,
+      rgba(196, 196, 196, 0.08) 17%,
+      rgba(196, 196, 196, 0.08) 23%,
+      rgba(62, 62, 62, 0.08) 23%,
+      rgba(62, 62, 62, 0.08) 33%,
+      rgba(127, 127, 127, 0.08) 33%,
+      rgba(127, 127, 127, 0.08) 70%,
+      rgba(112, 112, 112, 0.08) 70%,
+      rgba(112, 112, 112, 0.08) 100%
+    ),
+    linear-gradient(
+      45deg,
+      rgba(240, 240, 240, 0.04) 0%,
+      rgba(240, 240, 240, 0.04) 9%,
+      rgba(84, 84, 84, 0.04) 9%,
+      rgba(84, 84, 84, 0.04) 35%,
+      rgba(162, 162, 162, 0.04) 35%,
+      rgba(162, 162, 162, 0.04) 45%,
+      rgba(2, 2, 2, 0.04) 45%,
+      rgba(2, 2, 2, 0.04) 52%,
+      rgba(208, 208, 208, 0.04) 52%,
+      rgba(208, 208, 208, 0.04) 88%,
+      rgba(85, 85, 85, 0.04) 88%,
+      rgba(85, 85, 85, 0.04) 100%
+    ),
+    linear-gradient(90deg, rgb(177, 45, 148), rgb(0, 203, 243));
+  content: "";
+  display: block;
+  height: 50vh;
+  mask: linear-gradient(to bottom, rgb(0 0 0 / 15%), rgb(0 0 0 / 0%));
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 20;
+}
+
+.nextra-navbar-blur {
+  background-color: rgb(255 255 255 / 30%);
+
+  &:is(html[class~="dark"] *) {
+    background-color: rgb(17 17 17 / 30%) !important;
+  }
+}
+
+.nextra-steps {
+  margin-left: 10px;
+  padding-left: 20px;
+
+  & h3:before {
+    line-height: 25px;
+    margin-top: -2.5px;
+    margin-left: -37px;
+  }
+
+  :is(h2, h3, h4):is(html[class~="dark"] *):before {
+    border-color: var(--ax-colors-bg-page);
+  }
+}
+
+.nextra-code {
+  div:has(~ pre) {
+    background-color: transparent;
+    border-color: var(--ax-colors-border-default);
+  }
+
+  pre {
+    --tw-ring-color: var(--ax-colors-border-default);
+    background-color: var(--docs-code-bg);
+  }
+}
+
+:where(article > div.nextra-border:last-child) {
+  align-items: stretch;
+  flex-direction: column;
+  gap: 1rem;
+
+  @media screen and (min-width: 640px) {
+    align-items: center;
+    flex-direction: row;
+
+    a {
+      flex-basis: 50%;
+    }
+  }
+
+  /* nav links container */
+  a {
+    border-color: var(--ax-colors-border-default);
+    border-radius: var(--ax-borderRadius-md);
+    border-width: 1px;
+    flex-wrap: wrap;
+    gap: 0 0.5rem;
+    margin: 0;
+    max-width: none;
+    padding: 1rem;
+    width: 100%;
+
+    &::before {
+      color: var(--ax-colors-fg-tertiary);
+      font-size: var(--ax-fontSize-xs-fontSize);
+      line-height: var(--ax-fontSize-xs-lineHeight);
+      width: 100%;
+    }
+
+    &:not(.x\:text-end) {
+      div {
+        justify-content: start;
+      }
+
+      &::before {
+        content: "PREVIOUS";
+        margin-left: 24px;
+      }
+    }
+
+    &.x\:text-end {
+      justify-content: end;
+      margin-left: auto;
+
+      & div {
+        flex-direction: row-reverse;
+        justify-content: end;
+      }
+
+      &::before {
+        content: "NEXT";
+        margin-right: 24px;
+      }
+    }
+
+    &:hover {
+      background-color: var(--ax-colors-bg-default);
+    }
+  }
+
+  svg {
+    height: 1rem;
+    margin-top: calc(-1 * var(--ax-fontSize-sm-lineHeight));
+  }
+}
+
+.logo {
+  align-items: center;
+  display: flex;
+  gap: 8px;
+
+  & span {
+    border-radius: 100%;
+    height: 32px;
+    width: 32px;
+
+    & svg {
+      height: 100%;
+      width: 100%;
+    }
+  }
+}
+
+.tabler-icon {
+  stroke-width: 1.5;
+}
+
+.hover\:_underline:hover {
+  text-decoration: underline;
+}

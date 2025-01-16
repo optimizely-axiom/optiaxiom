@@ -1,3 +1,5 @@
+"use client";
+
 import { Box, Flex, Text, theme } from "@optiaxiom/react";
 import cssesc from "cssesc";
 import { useTheme } from "nextra-theme-docs";

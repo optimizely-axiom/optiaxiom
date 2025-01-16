@@ -1,0 +1,46 @@
+import { tokens } from "@optiaxiom/react";
+import { Scale } from "@/components/scale";
+
+import { Demo } from "@/components/demo";
+import { ResponsiveComplexUsage } from "@/demos/styles";
+
+# Responsive Styles
+
+`Box` component support responsive styles for all layout related props.
+
+<Scale
+  hidePreview
+  keyLabel="Breakpoint"
+  valueLabel="Minimum width"
+  values={{ base: "0px", ...tokens.screens }}
+/>
+
+## Documentation
+
+### Object notation
+
+Use the object prop notation where the key is the breakpoint name.
+
+```tsx
+import { Flex } from "@optiaxiom/react";
+
+export function App() {
+  return <Flex flexDirection={{ base: "column", sm: "row" }}>...</Flex>;
+}
+```
+
+### Array notation
+
+Use the array prop notation with the elements in order of condition `[base, sm, md]`.
+
+```tsx
+import { Flex } from "@optiaxiom/react";
+
+export function App() {
+  return <Flex flexDirection={["column", "row"]}>...</Flex>;
+}
+```
+
+### Example
+
+<Demo iframe="/iframe/responsive/" component={ResponsiveComplexUsage} />

@@ -29,7 +29,7 @@
 }
 
 .editor pre {
-  --tw-ring-opacity: 0;
+  --tw-ring-color: transparent;
   background: none;
   border-top-left-radius: 0;
   border-top-right-radius: 0;

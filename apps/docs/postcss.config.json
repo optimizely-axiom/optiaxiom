@@ -1,14 +1,3 @@
 {
-  "plugins": [
-    "postcss-import",
-    [
-      "postcss-assign-layer",
-      [
-        {
-          "include": "**/nextra-theme-docs/**",
-          "layerName": "optiaxiom.base"
-        }
-      ]
-    ]
-  ]
+  "plugins": ["postcss-import"]
 }
