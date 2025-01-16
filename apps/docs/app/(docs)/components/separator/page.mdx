@@ -1,0 +1,42 @@
+import { Callout } from "nextra/components";
+
+import { Demo } from "@/components/demo";
+import { PropsTable } from "@/components/props-table";
+import { ResponsiveUsage, VerticalUsage, Usage } from "@/demos/separator";
+import { Alert, Separator } from "@optiaxiom/react";
+
+# Separator
+
+`Separator` component is used to visually separate items in a list or group. By default the orientation is set to `horizontal`.
+
+## Documentation
+
+### Usage
+
+<Demo component={Usage} />
+
+### Orientation
+
+Use `orientation="vertical"` to display a vertical separator.
+
+<Demo component={VerticalUsage} />
+
+### Responsive
+
+You can also use object or array prop notation to change orientation at various responsive breakpoints.
+
+<Alert intent="warning" mt="16">
+  Resize the canvas to see the orientation change:
+</Alert>
+
+<Demo iframe="/iframe/separator/" height="150" component={ResponsiveUsage} />
+
+## Props
+
+<PropsTable component={Separator} />
+
+## Changelog
+
+### 0.1.0
+
+- Added component

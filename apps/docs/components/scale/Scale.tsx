@@ -47,14 +47,17 @@ export const Scale = ({
   <Table maxH={maxH}>
     <Thead>
       <tr>
-        <Th className="_sticky _top-0">{keyLabel}</Th>
-        <Th className="_sticky _top-0" w={mode === "color" ? "3xl" : undefined}>
+        <Th className="x:sticky x:top-0">{keyLabel}</Th>
+        <Th
+          className="x:sticky x:top-0"
+          w={mode === "color" ? "3xl" : undefined}
+        >
           {valueLabel}
         </Th>
-        {!hidePixels && <Th className="_sticky _top-0">{pixelLabel}</Th>}
+        {!hidePixels && <Th className="x:sticky x:top-0">{pixelLabel}</Th>}
         {!hidePreview && (
           <Th
-            className="_sticky _top-0"
+            className="x:sticky x:top-0"
             display={["none", "table-cell"]}
             w={mode === "color" ? "3xl" : "full"}
           />

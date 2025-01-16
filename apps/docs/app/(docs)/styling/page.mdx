@@ -1,0 +1,33 @@
+import { Callout } from "nextra/components";
+
+import { Demo } from "@/components/demo";
+import { PropUsage, ResponsiveUsage } from "@/demos/styles";
+import { Alert } from "@optiaxiom/react";
+
+# Style Props
+
+The [Box](/components/) component provides a minimal zero-runtime styling solution built with [Vanilla Extract](https://vanilla-extract.style/).
+
+We provide out of the box support for consuming our design tokens and commonly used styles via props, but developers are free to choose any styling solution for components.
+
+## Documentation
+
+### Utility based styling
+
+You can use props on the `<Box />` component to control styles:
+
+<Demo component={PropUsage} />
+
+Learn more about consuming [Design Tokens](/styling/design-tokens/).
+
+### Breakpoints and media queries
+
+You can also use object or array prop notation to apply styles at various responsive breakpoints.
+
+<Alert intent="warning" mt="16">
+  Resize the canvas to see the layout change:
+</Alert>
+
+<Demo iframe="/iframe/styling/" height="150" component={ResponsiveUsage} />
+
+Check out the documentation on [Responsive Styles](/styling/responsive-styles/).

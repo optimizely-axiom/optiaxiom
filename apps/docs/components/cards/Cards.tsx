@@ -1,3 +1,5 @@
+"use client";
+
 import { Grid } from "@optiaxiom/react";
 
 import styles from "./Cards.module.css";

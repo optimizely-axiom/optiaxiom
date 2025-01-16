@@ -1,4 +1,4 @@
-:global(#__next):has(.brand)::after {
+body > div:has(.brand)::before {
   --bg: color-mix(in srgb, var(--ax-colors-fg-accent) 20%, transparent);
 
   animation: pulse 10s infinite;
@@ -19,7 +19,6 @@
   mask-size: 150% 100%;
   pointer-events: none;
   position: absolute;
-  z-index: -10;
 }
 
 .heading {
@@ -35,6 +34,10 @@
     font-size: 60px;
     line-height: 1;
   }
+}
+
+article:has(.brand) main {
+  height: 100%;
 }
 
 .brand {
