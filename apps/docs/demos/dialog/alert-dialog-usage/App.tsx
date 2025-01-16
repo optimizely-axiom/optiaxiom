@@ -38,14 +38,14 @@ export function App() {
       <DialogTrigger>Create new issue</DialogTrigger>
 
       <DialogContent size="sm">
+        <DialogHeader>Create new issue</DialogHeader>
+
         <DialogForm
           onSubmit={(event) => {
             event.preventDefault();
             setOpen(false);
           }}
         >
-          <DialogHeader>Create new issue</DialogHeader>
-
           <DialogBody>
             <Textarea autoFocus ref={textRef} required />
           </DialogBody>
