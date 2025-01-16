@@ -5,6 +5,12 @@ import { action } from "@storybook/addon-actions";
 
 export default {
   component: Alert,
+  parameters: {
+    design: {
+      type: "figma",
+      url: "https://www.figma.com/design/qs72V79n1s9wYOcZ1TzBwM/Components-V2?node-id=1593:19796",
+    },
+  },
 } as Meta<typeof Alert>;
 
 type Story = StoryObj<typeof Alert>;

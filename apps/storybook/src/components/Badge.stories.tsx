@@ -4,6 +4,12 @@ import { Badge, Button, Flex, Heading, Text } from "@optiaxiom/react";
 
 export default {
   component: Badge,
+  parameters: {
+    design: {
+      type: "figma",
+      url: "https://www.figma.com/design/qs72V79n1s9wYOcZ1TzBwM/Components-V2?node-id=980:35700",
+    },
+  },
 } as Meta<typeof Badge>;
 
 type Story = StoryObj<typeof Badge>;

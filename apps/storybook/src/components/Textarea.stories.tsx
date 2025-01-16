@@ -4,6 +4,12 @@ import { Flex, Text, Textarea } from "@optiaxiom/react";
 
 export default {
   component: Textarea,
+  parameters: {
+    design: {
+      type: "figma",
+      url: "https://www.figma.com/design/qs72V79n1s9wYOcZ1TzBwM/Components-V2?node-id=679:6927",
+    },
+  },
 } as Meta<typeof Textarea>;
 
 type Story = StoryObj<typeof Textarea>;

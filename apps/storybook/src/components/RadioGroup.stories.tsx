@@ -9,6 +9,12 @@ export default {
     name: "story",
   },
   component: RadioGroup,
+  parameters: {
+    design: {
+      type: "figma",
+      url: "https://www.figma.com/design/qs72V79n1s9wYOcZ1TzBwM/Components-V2?node-id=4790:78962",
+    },
+  },
 } as Meta<typeof RadioGroup>;
 
 type Story = StoryObj<typeof RadioGroup>;
