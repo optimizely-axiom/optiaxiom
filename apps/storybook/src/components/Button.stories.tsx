@@ -17,6 +17,12 @@ export default {
     onClick: { action: "click" },
   },
   component: Button,
+  parameters: {
+    design: {
+      type: "figma",
+      url: "https://www.figma.com/design/qs72V79n1s9wYOcZ1TzBwM/Components-V2?node-id=20%3A61",
+    },
+  },
 } as Meta<typeof Button>;
 
 type Story = StoryObj<typeof Button>;

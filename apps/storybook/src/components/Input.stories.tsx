@@ -5,6 +5,12 @@ import { IconCalendar } from "@tabler/icons-react";
 
 export default {
   component: Input,
+  parameters: {
+    design: {
+      type: "figma",
+      url: "https://www.figma.com/design/qs72V79n1s9wYOcZ1TzBwM/Components-V2?node-id=20%3A2741",
+    },
+  },
 } as Meta<typeof Input>;
 
 type Story = StoryObj<typeof Input>;

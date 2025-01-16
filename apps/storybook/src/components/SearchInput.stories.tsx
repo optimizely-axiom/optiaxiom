@@ -10,6 +10,12 @@ export default {
     w: "224",
   },
   component: SearchInput,
+  parameters: {
+    design: {
+      type: "figma",
+      url: "https://www.figma.com/design/qs72V79n1s9wYOcZ1TzBwM/Components-V2?node-id=814:36171",
+    },
+  },
 } as Meta<typeof SearchInput>;
 
 type Story = StoryObj<typeof SearchInput>;

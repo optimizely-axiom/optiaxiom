@@ -5,9 +5,9 @@ import { reactDocgenPlugin } from "./react-docgen-plugin";
 const config: StorybookConfig = {
   addons: [
     "@storybook/addon-essentials",
-    "@storybook/addon-links",
     "@storybook/experimental-addon-test",
     "@storybook/addon-a11y",
+    "@storybook/addon-designs",
   ],
   core: {
     disableTelemetry: true,

@@ -7,6 +7,12 @@ export default {
     children: "Label",
   },
   component: Checkbox,
+  parameters: {
+    design: {
+      type: "figma",
+      url: "https://www.figma.com/design/qs72V79n1s9wYOcZ1TzBwM/Components-V2?node-id=99:1127",
+    },
+  },
 } as Meta<typeof Checkbox>;
 
 type Story = StoryObj<typeof Checkbox>;

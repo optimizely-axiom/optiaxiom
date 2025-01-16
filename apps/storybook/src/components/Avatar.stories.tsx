@@ -7,6 +7,12 @@ const sizes = ["xs", "sm", "md", "lg", "xl", "3xl"] as const;
 
 export default {
   component: Avatar,
+  parameters: {
+    design: {
+      type: "figma",
+      url: "https://www.figma.com/design/qs72V79n1s9wYOcZ1TzBwM/Components-V2?node-id=111:2533",
+    },
+  },
   render: (args) => (
     <Flex flexDirection="row">
       {sizes.map((size) => (

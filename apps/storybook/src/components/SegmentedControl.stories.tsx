@@ -43,6 +43,12 @@ export default {
     ),
   },
   component: SegmentedControl,
+  parameters: {
+    design: {
+      type: "figma",
+      url: "https://www.figma.com/design/qs72V79n1s9wYOcZ1TzBwM/Components-V2?node-id=2429:8594",
+    },
+  },
 } as Meta<typeof SegmentedControl>;
 
 type Story = StoryObj<typeof SegmentedControl>;

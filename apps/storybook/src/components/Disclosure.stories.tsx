@@ -21,6 +21,12 @@ export default {
     w: "224",
   },
   component: Disclosure,
+  parameters: {
+    design: {
+      type: "figma",
+      url: "https://www.figma.com/design/qs72V79n1s9wYOcZ1TzBwM/Components-V2?node-id=2549:58765",
+    },
+  },
 } as Meta<typeof Disclosure>;
 
 type Story = StoryObj<typeof Disclosure>;

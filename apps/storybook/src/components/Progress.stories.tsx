@@ -6,6 +6,12 @@ import { useState } from "react";
 
 export default {
   component: Progress,
+  parameters: {
+    design: {
+      type: "figma",
+      url: "https://www.figma.com/design/qs72V79n1s9wYOcZ1TzBwM/Components-V2?node-id=8028:11251",
+    },
+  },
 } as Meta<typeof Progress>;
 
 type Story = StoryObj<typeof Progress>;

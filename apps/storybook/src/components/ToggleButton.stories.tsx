@@ -19,6 +19,12 @@ export default {
     onClick: { action: "click" },
   },
   component: ToggleButton,
+  parameters: {
+    design: {
+      type: "figma",
+      url: "https://www.figma.com/design/qs72V79n1s9wYOcZ1TzBwM/Components-V2?node-id=5462:22275",
+    },
+  },
   render: (args) => (
     <Flex flexDirection="row">
       <ToggleButton {...args} appearance="subtle" />

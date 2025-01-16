@@ -30,6 +30,10 @@ export default {
   },
   component: AlertDialog,
   parameters: {
+    design: {
+      type: "figma",
+      url: "https://www.figma.com/design/qs72V79n1s9wYOcZ1TzBwM/Components-V2?node-id=5640:38835",
+    },
     useOverlayDecorator: true,
   },
   render: ({ action, cancel, description, size, title, ...args }) => {

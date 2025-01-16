@@ -4,6 +4,12 @@ import { Flex, Spinner } from "@optiaxiom/react";
 
 export default {
   component: Spinner,
+  parameters: {
+    design: {
+      type: "figma",
+      url: "https://www.figma.com/design/qs72V79n1s9wYOcZ1TzBwM/Components-V2?node-id=3411:37560",
+    },
+  },
 } as Meta<typeof Spinner>;
 
 type Story = StoryObj<typeof Spinner>;

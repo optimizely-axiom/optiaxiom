@@ -7,6 +7,12 @@ export default {
     children: "Label",
   },
   component: Switch,
+  parameters: {
+    design: {
+      type: "figma",
+      url: "https://www.figma.com/design/qs72V79n1s9wYOcZ1TzBwM/Components-V2?node-id=293:3346",
+    },
+  },
 } as Meta<typeof Switch>;
 
 type Story = StoryObj<typeof Switch>;
