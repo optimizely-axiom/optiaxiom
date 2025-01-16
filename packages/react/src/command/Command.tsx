@@ -113,7 +113,10 @@ export function Command<Item>({
       onOpenChange?.(isOpen);
 
       if (isOpen) {
-        if (type === useCombobox.stateChangeTypes.InputClick) {
+        if (
+          type === useCombobox.stateChangeTypes.InputClick ||
+          type === useCombobox.stateChangeTypes.ToggleButtonClick
+        ) {
           setLastInteractionSource("pointer");
         } else {
           setLastInteractionSource("keyboard");
