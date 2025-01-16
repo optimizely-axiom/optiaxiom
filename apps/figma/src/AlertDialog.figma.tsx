@@ -35,8 +35,8 @@ figma.connect(
         children: figma.string("Body text"),
       }),
       size: figma.enum("Size", {
-        sm: "sm",
-        md: undefined,
+        sm: undefined,
+        md: "md",
         lg: "lg",
       }),
       title: figma.nestedProps("Header", {
