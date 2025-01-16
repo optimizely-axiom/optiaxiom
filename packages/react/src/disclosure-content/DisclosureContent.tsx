@@ -1,11 +1,16 @@
 import * as RadixCollapsible from "@radix-ui/react-collapsible";
 import { forwardRef } from "react";
 
+import type { ExcludeProps } from "../utils";
+
 import { Box, type BoxProps } from "../box";
 import { useDisclosureContext } from "../disclosure-context";
 import * as styles from "./DisclosureContent.css";
 
-type DisclosureContentProps = BoxProps<typeof RadixCollapsible.Content>;
+type DisclosureContentProps = ExcludeProps<
+  BoxProps<typeof RadixCollapsible.Content>,
+  "forceMount"
+>;
 
 export const DisclosureContent = forwardRef<
   HTMLDivElement,
