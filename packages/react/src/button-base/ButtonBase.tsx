@@ -3,6 +3,7 @@ import { type ElementType, forwardRef } from "react";
 
 import { Box, type BoxProps, extractBoxProps } from "../box";
 import { Spinner } from "../spinner";
+import { Transition } from "../transition";
 import { TransitionGroup } from "../transition-group";
 import { decorateChildren, type ExtendProps } from "../utils";
 import * as styles from "./ButtonBase.css";
@@ -81,11 +82,13 @@ export const ButtonBase = forwardRef<HTMLButtonElement, ButtonBaseProps>(
           {decorateChildren({ asChild, children }, (children) => (
             <>
               <TransitionGroup open={loading}>
-                <Spinner
-                  appearance={variant === "solid" ? "inverse" : "default"}
-                  aria-hidden="true"
-                  {...styles.spinner()}
-                />
+                <Transition>
+                  <Spinner
+                    appearance={variant === "solid" ? "inverse" : "default"}
+                    aria-hidden="true"
+                    {...styles.spinner()}
+                  />
+                </Transition>
               </TransitionGroup>
 
               {children}
