@@ -13,18 +13,31 @@ import {
 
 figma.connect(
   Dialog,
-  "https://www.figma.com/design/qs72V79n1s9wYOcZ1TzBwM/Components-V2?node-id=833:46549",
+  "https://www.figma.com/design/qs72V79n1s9wYOcZ1TzBwM/Components-V2?node-id=5324:11893",
   {
-    example: ({ body, header, size }) => (
+    example: ({ children }) => (
       <Dialog>
         <DialogTrigger>Example</DialogTrigger>
 
-        <DialogContent size={size}>
-          <DialogHeader>{header.title}</DialogHeader>
-
-          {body}
-        </DialogContent>
+        {children}
       </Dialog>
+    ),
+    props: {
+      children: figma.children("Dialog Body"),
+    },
+  },
+);
+
+figma.connect(
+  DialogContent,
+  "https://www.figma.com/design/qs72V79n1s9wYOcZ1TzBwM/Components-V2?node-id=833:46549",
+  {
+    example: ({ body, header, size }) => (
+      <DialogContent size={size}>
+        <DialogHeader>{header.title}</DialogHeader>
+
+        {body}
+      </DialogContent>
     ),
     props: {
       body: figma.children("◇ Dialog content"),
