@@ -16,7 +16,7 @@ const mapComponentToBase: Record<string, string> = {
   AlertDialogAction: "Button",
   AlertDialogCancel: "Button",
   AlertDialogTrigger: "Button",
-  AutocompleteTrigger: "SearchInput",
+  AutocompleteTrigger: "Input",
   ComboboxInput: "Input",
   ComboboxSeparator: "Separator",
   ComboboxTrigger: "Button",
