@@ -1,5 +1,5 @@
 import { Demo } from "@/components/demo";
-import { PropsTable } from "@/components/props-table";
+import { components, PropsTable } from "@/components/props-table";
 import {
   DescriptionUsage,
   ErrorUsage,
@@ -7,7 +7,6 @@ import {
   RequiredUsage,
   Usage,
 } from "@/demos/field";
-import { Field } from "@optiaxiom/react";
 
 # Field
 
@@ -51,7 +50,9 @@ Use the `info` prop to display a help icon with additional context for the input
 
 ## Props
 
-<PropsTable component={Field} />
+### Field
+
+<PropsTable component={components["Field"]} />
 
 ## Changelog
 

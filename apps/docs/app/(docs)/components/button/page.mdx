@@ -1,6 +1,6 @@
 import { Cards } from "@/components/cards";
 import { Demo } from "@/components/demo";
-import { PropsTable } from "@/components/props-table";
+import { components, PropsTable } from "@/components/props-table";
 import {
   AppearanceUsage,
   DisabledUsage,
@@ -14,7 +14,6 @@ import {
   SizeUsage,
   Usage,
 } from "@/demos/button";
-import { Button, ButtonGroup } from "@optiaxiom/react";
 
 # Button
 
@@ -106,9 +105,13 @@ We can create a simple file upload button by rendering the button as a `label` a
 
 ## Props
 
-<PropsTable component={Button} />
+### Button
 
-<PropsTable component={ButtonGroup} />
+<PropsTable component={components["Button"]} />
+
+### ButtonGroup
+
+<PropsTable component={components["ButtonGroup"]} />
 
 ## Changelog
 

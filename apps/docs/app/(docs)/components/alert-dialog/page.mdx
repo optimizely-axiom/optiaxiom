@@ -1,6 +1,6 @@
 import { Cards } from "@/components/cards";
 import { Demo } from "@/components/demo";
-import { PropsTable } from "@/components/props-table";
+import { components, PropsTable } from "@/components/props-table";
 import {
   AsyncUsage,
   ConfirmationUsage,
@@ -9,17 +9,6 @@ import {
   TriggerUsage,
   Usage,
 } from "@/demos/alert-dialog";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogBody,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTrigger,
-  Button,
-} from "@optiaxiom/react";
 
 # AlertDialog
 
@@ -71,21 +60,37 @@ We can also completely change the trigger by using `asChild` and passing our own
 
 ## Props
 
-<PropsTable component={AlertDialog} />
+### AlertDialog
 
-<PropsTable component={AlertDialogTrigger} />
+<PropsTable component={components["AlertDialog"]} />
 
-<PropsTable component={AlertDialogContent} />
+### AlertDialogTrigger
 
-<PropsTable component={AlertDialogHeader} />
+<PropsTable component={components["AlertDialogTrigger"]} />
 
-<PropsTable component={AlertDialogBody} />
+### AlertDialogContent
 
-<PropsTable component={AlertDialogFooter} />
+<PropsTable component={components["AlertDialogContent"]} />
 
-<PropsTable component={AlertDialogCancel} />
+### AlertDialogHeader
 
-<PropsTable component={AlertDialogAction} />
+<PropsTable component={components["AlertDialogHeader"]} />
+
+### AlertDialogBody
+
+<PropsTable component={components["AlertDialogBody"]} />
+
+### AlertDialogFooter
+
+<PropsTable component={components["AlertDialogFooter"]} />
+
+### AlertDialogCancel
+
+<PropsTable component={components["AlertDialogCancel"]} />
+
+### AlertDialogAction
+
+<PropsTable component={components["AlertDialogAction"]} />
 
 ## Changelog
 

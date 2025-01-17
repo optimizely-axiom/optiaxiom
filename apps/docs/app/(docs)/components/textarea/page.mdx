@@ -1,6 +1,6 @@
 import { Cards } from "@/components/cards";
 import { Demo } from "@/components/demo";
-import { PropsTable } from "@/components/props-table";
+import { components, PropsTable } from "@/components/props-table";
 import {
   AddonPointerUsage,
   AddonUsage,
@@ -14,7 +14,6 @@ import {
   SizeUsage,
   Usage,
 } from "@/demos/textarea";
-import { Textarea } from "@optiaxiom/react";
 
 # Textarea
 
@@ -98,7 +97,9 @@ Use the `addonPointerEvents` prop to control whether clicking blank spaces in th
 
 ## Props
 
-<PropsTable component={Textarea} />
+### Textarea
+
+<PropsTable component={components["Textarea"]} />
 
 ## Changelog
 

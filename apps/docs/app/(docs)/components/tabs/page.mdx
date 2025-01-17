@@ -1,7 +1,6 @@
 import { Demo } from "@/components/demo";
-import { PropsTable } from "@/components/props-table";
+import { components, PropsTable } from "@/components/props-table";
 import { Usage } from "@/demos/tabs";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@optiaxiom/react";
 
 # Tabs
 
@@ -17,13 +16,21 @@ Use the `value` and `defaultValue` props to toggle between controlled and uncont
 
 ## Props
 
-<PropsTable component={Tabs} />
+### Tabs
 
-<PropsTable component={TabsList} />
+<PropsTable component={components["Tabs"]} />
 
-<PropsTable component={TabsTrigger} />
+### TabsList
 
-<PropsTable component={TabsContent} />
+<PropsTable component={components["TabsList"]} />
+
+### TabsTrigger
+
+<PropsTable component={components["TabsTrigger"]} />
+
+### TabsContent
+
+<PropsTable component={components["TabsContent"]} />
 
 ## Changelog
 

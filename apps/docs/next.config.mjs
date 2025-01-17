@@ -1,6 +1,10 @@
+import { getDocs } from "@optiaxiom/shared";
+import fs from "fs";
 import createNextra from "nextra";
 
 import { remarkPlugin } from "./plugins/remark-axiom-plugin/remarkPlugin.mjs";
+
+writeComponentProps();
 
 const withNextra = createNextra({
   mdxOptions: {
@@ -30,5 +34,12 @@ const nextConfig = {
     tsconfigPath: "tsconfig.next.json",
   },
 };
+
+function writeComponentProps() {
+  fs.writeFileSync(
+    "./data/props.json",
+    JSON.stringify(getDocs({ shouldExtractValuesFromUnion: true })),
+  );
+}
 
 export default withNextra(nextConfig);

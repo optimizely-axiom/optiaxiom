@@ -1,11 +1,6 @@
 import { Demo } from "@/components/demo";
-import { PropsTable } from "@/components/props-table";
+import { components, PropsTable } from "@/components/props-table";
 import { ChevronPositionUsage, Usage } from "@/demos/disclosure";
-import {
-  Disclosure,
-  DisclosureContent,
-  DisclosureTrigger,
-} from "@optiaxiom/react";
 
 # Disclosure
 
@@ -30,11 +25,17 @@ Use the `chevronPosition` prop on `DisclosureTrigger` to control which side the 
 
 ## Props
 
-<PropsTable component={Disclosure} />
+### Disclosure
 
-<PropsTable component={DisclosureTrigger} />
+<PropsTable component={components["Disclosure"]} />
 
-<PropsTable component={DisclosureContent} />
+### DisclosureTrigger
+
+<PropsTable component={components["DisclosureTrigger"]} />
+
+### DisclosureContent
+
+<PropsTable component={components["DisclosureContent"]} />
 
 ## Changelog
 

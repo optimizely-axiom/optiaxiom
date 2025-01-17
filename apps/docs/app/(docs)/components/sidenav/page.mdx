@@ -1,15 +1,6 @@
 import { Demo } from "@/components/demo";
-import { PropsTable } from "@/components/props-table";
+import { components, PropsTable } from "@/components/props-table";
 import { Usage } from "@/demos/sidenav";
-import {
-  Sidenav,
-  SidenavAccountItem,
-  SidenavBody,
-  SidenavFooter,
-  SidenavHeader,
-  SidenavItem,
-  SidenavToggle,
-} from "@optiaxiom/react";
 
 # Sidenav
 
@@ -55,13 +46,21 @@ export default () => (
 
 ## Props
 
-<PropsTable component={Sidenav} />
-<PropsTable component={SidenavHeader} />
-<PropsTable component={SidenavBody} />
-<PropsTable component={SidenavItem} />
-<PropsTable component={SidenavAccountItem} />
-<PropsTable component={SidenavFooter} />
-<PropsTable component={SidenavToggle} />
+### Sidenav
+
+<PropsTable component={components["Sidenav"]} />
+### SidenavHeader
+<PropsTable component={components["SidenavHeader"]} />
+### SidenavBody
+<PropsTable component={components["SidenavBody"]} />
+### SidenavItem
+<PropsTable component={components["SidenavItem"]} />
+### SidenavAccountItem
+<PropsTable component={components["SidenavAccountItem"]} />
+### SidenavFooter
+<PropsTable component={components["SidenavFooter"]} />
+### SidenavToggle
+<PropsTable component={components["SidenavToggle"]} />
 
 ## Changelog
 

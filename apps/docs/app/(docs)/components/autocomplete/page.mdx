@@ -1,6 +1,6 @@
 import { Cards } from "@/components/cards";
 import { Demo } from "@/components/demo";
-import { PropsTable } from "@/components/props-table";
+import { components, PropsTable } from "@/components/props-table";
 import {
   ComplexUsage,
   ControlledUsage,
@@ -9,14 +9,6 @@ import {
   Usage,
   VirtualizedUsage,
 } from "@/demos/autocomplete";
-import { SearchInput } from "@optiaxiom/react";
-import {
-  Autocomplete,
-  AutocompleteContent,
-  AutocompleteEmpty,
-  AutocompleteRadioItem,
-  AutocompleteTrigger,
-} from "@optiaxiom/react/unstable";
 
 # Autocomplete
 
@@ -115,11 +107,17 @@ Use the `loading` prop on `AutocompleteContent` to show a loading spinner if the
 
 ## Props
 
-<PropsTable component={Autocomplete} />
-<PropsTable component={AutocompleteTrigger} />
-<PropsTable component={AutocompleteContent} />
-<PropsTable component={AutocompleteRadioItem} />
-<PropsTable component={AutocompleteEmpty} />
+### Autocomplete
+
+<PropsTable component={components["Autocomplete"]} />
+### AutocompleteTrigger
+<PropsTable component={components["AutocompleteTrigger"]} />
+### AutocompleteContent
+<PropsTable component={components["AutocompleteContent"]} />
+### AutocompleteRadioItem
+<PropsTable component={components["AutocompleteRadioItem"]} />
+### AutocompleteEmpty
+<PropsTable component={components["AutocompleteEmpty"]} />
 
 ## Changelog
 

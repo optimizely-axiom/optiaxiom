@@ -1,6 +1,6 @@
 import { Cards } from "@/components/cards";
 import { Demo } from "@/components/demo";
-import { PropsTable } from "@/components/props-table";
+import { components, PropsTable } from "@/components/props-table";
 import {
   ControlledUsage,
   DescriptionUsage,
@@ -9,7 +9,6 @@ import {
   LabelUsage,
   Usage,
 } from "@/demos/radio-group";
-import { RadioGroup, Radio } from "@optiaxiom/react";
 
 # RadioGroup
 
@@ -57,9 +56,13 @@ Use the `description` prop to add helper text after the label.
 
 ## Props
 
-<PropsTable component={RadioGroup} />
+### RadioGroup
 
-<PropsTable component={Radio} />
+<PropsTable component={components["RadioGroup"]} />
+
+### Radio
+
+<PropsTable component={components["Radio"]} />
 
 ## Changelog
 

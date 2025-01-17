@@ -1,6 +1,6 @@
 import { Cards } from "@/components/cards";
 import { Demo } from "@/components/demo";
-import { PropsTable } from "@/components/props-table";
+import { components, PropsTable } from "@/components/props-table";
 import {
   AlignmentUsage,
   GapUsage,
@@ -8,7 +8,6 @@ import {
   Usage,
   VerticalUsage,
 } from "@/demos/flex";
-import { Flex } from "@optiaxiom/react";
 
 # Flex
 
@@ -50,7 +49,9 @@ Use `alignItems` and `justifyContent` prop to control the layout and alignment o
 
 ## Props
 
-<PropsTable component={Flex} />
+### Flex
+
+<PropsTable component={components["Flex"]} />
 
 ## Changelog
 

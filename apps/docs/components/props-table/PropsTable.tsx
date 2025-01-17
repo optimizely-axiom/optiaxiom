@@ -1,13 +1,10 @@
-import type { PropItem } from "react-docgen-typescript";
-
 import { Box, Code, Flex, Text } from "@optiaxiom/react";
 import { Link } from "nextra-theme-docs";
-import {
-  Children,
-  type ComponentType,
-  isValidElement,
-  type ReactNode,
-} from "react";
+import { compileMdx } from "nextra/compile";
+import { MDXRemote } from "nextra/mdx-remote";
+import { type ReactNode } from "react";
+
+import type { components } from "./components";
 
 import { PropType } from "../prop-type";
 import { Table, Td, Th, Thead, Tr } from "../table";
@@ -41,25 +38,14 @@ const mapComponentToBase: Record<string, string> = {
   ToggleButton: "Button",
 };
 
-export function PropsTable({
-  children,
+export async function PropsTable({
   component,
-  exclude = [],
-  propItems,
 }: {
-  children: ReactNode;
-  component: ComponentType;
-  exclude?: string[];
-  propItems: PropItem[];
+  component: (typeof components)[keyof typeof components];
 }) {
-  const descriptions = Object.fromEntries(
-    Children.toArray(children)
-      .filter((child) => isValidElement(child))
-      .map((child) => [child.props.name, child.props.children]),
-  );
+  const componentName = component["name"];
+  const propItems = await component["props"];
 
-  const componentName =
-    component?.displayName?.replace("@optiaxiom/react/", "") ?? "";
   const baseName =
     mapComponentToBase[componentName] ??
     (propItems.find((prop) => prop.name === "asChild") ? "Box" : "");
@@ -89,39 +75,55 @@ export function PropsTable({
           </tr>
         </Thead>
         <tbody>
-          {propItems
-            ?.filter((prop) => !exclude.includes(prop.name))
-            .map((prop) => (
-              <Tr key={prop.name}>
-                <Td>
-                  <Flex
-                    alignItems="start"
-                    flexDirection={["column", "row"]}
-                    gap="12"
+          {propItems.map(async (prop) => (
+            <Tr key={prop.name}>
+              <Td>
+                <Flex
+                  alignItems="start"
+                  flexDirection={["column", "row"]}
+                  gap="12"
+                >
+                  <Box
+                    fontFamily="mono"
+                    style={{ color: "var(--shiki-token-function)" }}
+                    w="1/4"
+                    whiteSpace="nowrap"
                   >
-                    <Box
-                      fontFamily="mono"
-                      style={{ color: "var(--shiki-token-function)" }}
-                      w="1/4"
-                      whiteSpace="nowrap"
-                    >
-                      {prop.name}
-                      {prop.required ? "*" : ""}
-                    </Box>
-                    <Flex flex="1" gap="12">
-                      {Children.toArray(descriptions[prop.name]).map(
-                        (child, index) => (
-                          <Box asChild key={index}>
-                            {child}
-                          </Box>
-                        ),
-                      )}
-                      <PropType component={component} prop={prop} />
-                    </Flex>
+                    {prop.name}
+                    {prop.required ? "*" : ""}
+                  </Box>
+                  <Flex flex="1" gap="12">
+                    {prop.description && (
+                      <MDXRemote
+                        compiledSource={await compileMdx(
+                          prop.description
+                            .replaceAll(
+                              /{@link ([^\s}]+)(?:\s([^}]+))}/g,
+                              "[$2]($1)",
+                            )
+                            .replaceAll(/{@link ([^}]+)}/g, "[$1]($1)")
+                            .replaceAll(
+                              "https://optimizely-axiom.github.io/optiaxiom",
+                              "",
+                            )
+                            .replaceAll(/@example .+/g, "\n\n")
+                            .replaceAll("@see", "\n\n"),
+                        )}
+                        components={{
+                          p: ({ ...props }) => (
+                            <Box asChild>
+                              <p {...props} />
+                            </Box>
+                          ),
+                        }}
+                      />
+                    )}
+                    <PropType prop={prop} />
                   </Flex>
-                </Td>
-              </Tr>
-            ))}
+                </Flex>
+              </Td>
+            </Tr>
+          ))}
         </tbody>
       </Table>
     </>

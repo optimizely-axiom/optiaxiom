@@ -1,12 +1,7 @@
 import { Cards } from "@/components/cards";
 import { Demo } from "@/components/demo";
-import { PropsTable } from "@/components/props-table";
+import { components, PropsTable } from "@/components/props-table";
 import { ControlledUsage, Usage } from "@/demos/segmented-control";
-import {
-  Button,
-  SegmentedControl,
-  SegmentedControlItem,
-} from "@optiaxiom/react";
 
 # SegmentedControl
 
@@ -34,9 +29,13 @@ Use the `value` and `defaultValue` props to toggle between controlled and uncont
 
 ## Props
 
-<PropsTable component={SegmentedControl} />
+### SegmentedControl
 
-<PropsTable component={SegmentedControlItem} />
+<PropsTable component={components["SegmentedControl"]} />
+
+### SegmentedControlItem
+
+<PropsTable component={components["SegmentedControlItem"]} />
 
 ## Changelog
 

@@ -1,15 +1,7 @@
 import { Cards } from "@/components/cards";
 import { Demo } from "@/components/demo";
-import { PropsTable } from "@/components/props-table";
+import { components, PropsTable } from "@/components/props-table";
 import { Usage } from "@/demos/table";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHeader,
-  TableHeaderCell,
-  TableRow,
-} from "@optiaxiom/react/unstable";
 
 # Table
 
@@ -56,12 +48,19 @@ export default () => (
 
 ## Props
 
-<PropsTable component={Table} />
-<PropsTable component={TableHeader} />
-<PropsTable component={TableHeaderCell} />
-<PropsTable component={TableBody} />
-<PropsTable component={TableRow} />
-<PropsTable component={TableCell} />
+### Table
+
+<PropsTable component={components["Table"]} />
+### TableHeader
+<PropsTable component={components["TableHeader"]} />
+### TableHeaderCell
+<PropsTable component={components["TableHeaderCell"]} />
+### TableBody
+<PropsTable component={components["TableBody"]} />
+### TableRow
+<PropsTable component={components["TableRow"]} />
+### TableCell
+<PropsTable component={components["TableCell"]} />
 
 ## Changelog
 

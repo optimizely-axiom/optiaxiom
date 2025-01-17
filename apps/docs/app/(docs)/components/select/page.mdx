@@ -1,19 +1,7 @@
 import { Cards } from "@/components/cards";
 import { Demo } from "@/components/demo";
-import { PropsTable } from "@/components/props-table";
+import { components, PropsTable } from "@/components/props-table";
 import { Usage } from "@/demos/select";
-import { Button } from "@optiaxiom/react";
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectRadioItem,
-  SelectSeparator,
-  SelectTrigger,
-  SelectValue,
-} from "@optiaxiom/react/unstable";
 
 # Select
 
@@ -68,15 +56,25 @@ export default () => (
 
 ## Props
 
-<PropsTable component={Select} />
-<PropsTable component={SelectTrigger} />
-<PropsTable component={SelectValue} />
-<PropsTable component={SelectContent} />
-<PropsTable component={SelectItem} />
-<PropsTable component={SelectRadioItem} />
-<PropsTable component={SelectGroup} />
-<PropsTable component={SelectLabel} />
-<PropsTable component={SelectSeparator} />
+### Select
+
+<PropsTable component={components["Select"]} />
+### SelectTrigger
+<PropsTable component={components["SelectTrigger"]} />
+### SelectValue
+<PropsTable component={components["SelectValue"]} />
+### SelectContent
+<PropsTable component={components["SelectContent"]} />
+### SelectItem
+<PropsTable component={components["SelectItem"]} />
+### SelectRadioItem
+<PropsTable component={components["SelectRadioItem"]} />
+### SelectGroup
+<PropsTable component={components["SelectGroup"]} />
+### SelectLabel
+<PropsTable component={components["SelectLabel"]} />
+### SelectSeparator
+<PropsTable component={components["SelectSeparator"]} />
 
 ## Changelog
 
