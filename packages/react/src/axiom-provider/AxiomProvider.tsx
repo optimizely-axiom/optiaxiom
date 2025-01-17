@@ -23,12 +23,16 @@ type AxiomProviderProps = {
    *
    * {@link https://optimizely-axiom.github.io/optiaxiom/components/tooltip/ Documentation}
    */
-  tooltip?: Omit<ComponentPropsWithoutRef<typeof TooltipProvider>, "children">;
+  tooltip?: Omit<TooltipProviderProps, "children">;
 };
 
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
 interface ToastProviderProps
   extends ComponentPropsWithoutRef<typeof ToastProvider> {}
+
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
+interface TooltipProviderProps
+  extends ComponentPropsWithoutRef<typeof TooltipProvider> {}
 
 export function AxiomProvider({
   children,
