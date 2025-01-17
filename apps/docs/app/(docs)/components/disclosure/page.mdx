@@ -1,6 +1,5 @@
-import { Demo } from "@/components/demo";
+import { Demo, demos } from "@/components/demo";
 import { components, PropsTable } from "@/components/props-table";
-import { ChevronPositionUsage, Usage } from "@/demos/disclosure";
 
 # Disclosure
 
@@ -12,7 +11,7 @@ An interactive component which expands/collapses a panel.
 
 Use the `open` and `defaultOpen` props to toggle between controlled and uncontrolled usage. And combine it with `onOpenChange` to listen for changes to the state.
 
-<Demo component={Usage} />
+<Demo component={demos["disclosure/usage"]} />
 
 ### Description
 
@@ -20,7 +19,7 @@ Use the `chevronPosition` prop on `DisclosureTrigger` to control which side the 
 
 <Demo
   meta="/chevronPosition={chevronPosition}/"
-  component={ChevronPositionUsage}
+  component={demos["disclosure/chevron-position-usage"]}
 />
 
 ## Props

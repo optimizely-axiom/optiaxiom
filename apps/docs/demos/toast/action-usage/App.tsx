@@ -1,3 +1,5 @@
+"use client";
+
 import { Button, Flex, Text, toaster } from "@optiaxiom/react";
 import { IconTrash } from "@tabler/icons-react";
 import { useState } from "react";

@@ -1,7 +1,5 @@
 import { Scale } from "@/components/scale";
-
-import { Demo } from "@/components/demo";
-import { PercentageUsage, ResetUsage, Usage } from "@/demos/size";
+import { Demo, demos } from "@/components/demo";
 
 # Size
 
@@ -13,12 +11,12 @@ Use `size` prop to control both the width and height of an element.
 
 ### Usage
 
-<Demo component={Usage} />
+<Demo component={demos["size/usage"]} />
 
 ### Percentage
 
-<Demo component={PercentageUsage} />
+<Demo component={demos["size/percentage-usage"]} />
 
 ### Reset
 
-<Demo component={ResetUsage} />
+<Demo component={demos["size/reset-usage"]} />

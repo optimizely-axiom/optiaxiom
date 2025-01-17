@@ -1,7 +1,6 @@
 import { Cards } from "@/components/cards";
-import { Demo } from "@/components/demo";
+import { Demo, demos } from "@/components/demo";
 import { components, PropsTable } from "@/components/props-table";
-import { AppearanceUsage, CloseUsage, Usage } from "@/demos/banner";
 
 # Banner
 
@@ -11,19 +10,19 @@ Display a prominent message at the top of the screen.
 
 ### Usage
 
-<Demo component={Usage} />
+<Demo component={demos["banner/usage"]} />
 
 ### Appearance
 
 Use the `intent` prop to select between the different banner types.
 
-<Demo component={AppearanceUsage} />
+<Demo component={demos["banner/appearance-usage"]} />
 
 ### Close button
 
 Use the `onClose` prop to show a close button to the top right of the banner.
 
-<Demo component={CloseUsage} />
+<Demo component={demos["banner/close-usage"]} />
 
 ### Related
 

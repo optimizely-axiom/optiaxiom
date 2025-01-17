@@ -1,3 +1,5 @@
+"use client";
+
 import { Alert, Button } from "@optiaxiom/react";
 import { useState } from "react";
 

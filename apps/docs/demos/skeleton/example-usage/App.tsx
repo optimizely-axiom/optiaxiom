@@ -1,3 +1,5 @@
+"use client";
+
 import { Avatar, Box, Flex, Heading, Skeleton, Text } from "@optiaxiom/react";
 
 export function App({ loading = true }: { loading: boolean }) {

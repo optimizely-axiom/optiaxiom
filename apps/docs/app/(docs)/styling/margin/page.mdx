@@ -1,7 +1,5 @@
 import { Scale } from "@/components/scale";
-
-import { Demo } from "@/components/demo";
-import { MultipleUsage, SingleUsage, Usage } from "@/demos/margin";
+import { Demo, demos } from "@/components/demo";
 
 # Margin
 
@@ -15,12 +13,12 @@ import { MultipleUsage, SingleUsage, Usage } from "@/demos/margin";
 
 Use the space scale to set the margin of elements.
 
-<Demo component={Usage} />
+<Demo component={demos["margin/usage"]} />
 
 ### Multiple sides
 
-<Demo component={MultipleUsage} />
+<Demo component={demos["margin/multiple-usage"]} />
 
 ### Single side
 
-<Demo component={SingleUsage} />
+<Demo component={demos["margin/single-usage"]} />

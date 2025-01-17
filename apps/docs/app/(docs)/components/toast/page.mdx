@@ -1,12 +1,6 @@
 import { Cards } from "@/components/cards";
-import { Demo } from "@/components/demo";
+import { Demo, demos } from "@/components/demo";
 import { components, PropsTable } from "@/components/props-table";
-import {
-  ActionUsage,
-  AppearanceUsage,
-  DismissUsage,
-  Usage,
-} from "@/demos/toast";
 
 # Toast
 
@@ -18,25 +12,25 @@ Display a brief notification.
 
 Use `toaster.create()` to add toasts. The method takes two arguments `message` and `options`.
 
-<Demo component={Usage} />
+<Demo component={demos["toast/usage"]} />
 
 ### Appearance
 
 Use the `type` option in the second argument to select between the different toast types.
 
-<Demo component={AppearanceUsage} />
+<Demo component={demos["toast/appearance-usage"]} />
 
 ### Action
 
 Use the `action` and `onAction` options to include a short action button associated with the toast.
 
-<Demo component={ActionUsage} />
+<Demo component={demos["toast/action-usage"]} />
 
 ### Dismiss
 
 Use `toaster.remove()` to remove toasts. The `create()` method returns a unique ID for the toast which can then be passed to the `remove()` method.
 
-<Demo component={DismissUsage} />
+<Demo component={demos["toast/dismiss-usage"]} />
 
 ### Related
 

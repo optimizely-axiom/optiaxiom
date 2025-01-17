@@ -1,7 +1,6 @@
 import { Cards } from "@/components/cards";
-import { Demo } from "@/components/demo";
+import { Demo, demos } from "@/components/demo";
 import { components, PropsTable } from "@/components/props-table";
-import { SizeUsage, Usage } from "@/demos/heading";
 
 # Heading
 
@@ -13,13 +12,13 @@ import { SizeUsage, Usage } from "@/demos/heading";
 
 Use the `level` prop to control both the semantic tag and visual size.
 
-<Demo component={Usage} />
+<Demo component={demos["heading/usage"]} />
 
 ### Visual size
 
 Combine the `level` prop with `asChild` to set the visual size while manually controlling the semantic tag.
 
-<Demo component={SizeUsage} />
+<Demo component={demos["heading/size-usage"]} />
 
 ### Related
 

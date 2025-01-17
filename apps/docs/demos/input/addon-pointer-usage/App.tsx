@@ -1,3 +1,5 @@
+"use client";
+
 import { Input } from "@optiaxiom/react";
 import { type ComponentPropsWithoutRef } from "react";
 

@@ -1,19 +1,6 @@
 import { Cards } from "@/components/cards";
-import { Demo } from "@/components/demo";
+import { Demo, demos } from "@/components/demo";
 import { components, PropsTable } from "@/components/props-table";
-import {
-  AppearanceUsage,
-  DisabledUsage,
-  FileUploadUsage,
-  GroupUsage,
-  IconOnlyUsage,
-  IconUsage,
-  LinkDisabledUsage,
-  LinkUsage,
-  LoadingUsage,
-  SizeUsage,
-  Usage,
-} from "@/demos/button";
 
 # Button
 
@@ -23,19 +10,19 @@ import {
 
 ### Usage
 
-<Demo component={Usage} />
+<Demo component={demos["button/usage"]} />
 
 ### Appearance
 
 Use the `appearance` prop to select between the different button appearances.
 
-<Demo component={AppearanceUsage} />
+<Demo component={demos["button/appearance-usage"]} />
 
 ### Different sizes
 
 Use the `size` prop to modify the size of the button.
 
-<Demo component={SizeUsage} />
+<Demo component={demos["button/size-usage"]} />
 
 ### Disabled state
 
@@ -43,7 +30,7 @@ Set the `disabled` prop to `true` to disable buttons and prevent any interaction
 
 For accessibility please make sure to include text that explains why the button is disabled or use a tooltip.
 
-<Demo component={DisabledUsage} />
+<Demo component={demos["button/disabled-usage"]} />
 
 ### Icons
 
@@ -53,7 +40,7 @@ Use the `icon` prop to add icons to a button.
 
 Icons are placed to the left by default but can be placed to the right using the `iconPosition` prop.
 
-<Demo component={IconUsage} />
+<Demo component={demos["button/icon-usage"]} />
 
 #### Icon only button
 
@@ -61,13 +48,13 @@ Use the `icon` prop and omit the `children` to display an icon only button.
 
 For accessibility please make sure to always include an `aria-label` prop for screen readers and optionally use tooltips to visually denote the button's intent.
 
-<Demo component={IconOnlyUsage} />
+<Demo component={demos["button/icon-only-usage"]} />
 
 ### Grouping buttons
 
 Use the `<ButtonGroup />` component to group related buttons together.
 
-<Demo component={GroupUsage} />
+<Demo component={demos["button/group-usage"]} />
 
 ### Links
 
@@ -75,7 +62,7 @@ Use the `<ButtonGroup />` component to group related buttons together.
 
 Set `asChild` to `true` and wrap children in an `<a>` element to render buttons as links.
 
-<Demo component={LinkUsage} />
+<Demo component={demos["button/link-usage"]} />
 
 #### Disabled button links
 
@@ -83,7 +70,7 @@ Make sure to prevent interactions manually using `event.preventDefault()` since 
 
 Alternatively you can use our `Link` component which supports the `disabled` prop.
 
-<Demo component={LinkDisabledUsage} />
+<Demo component={demos["button/link-disabled-usage"]} />
 
 ### Loading state
 
@@ -91,13 +78,13 @@ Set the `loading` prop to `true` to show a loading spinner and set `disabled` to
 
 For accessibility please make sure to include text that explains why the button is disabled or use a tooltip.
 
-<Demo component={LoadingUsage} />
+<Demo component={demos["button/loading-usage"]} />
 
 ### File upload
 
 We can create a simple file upload button by rendering the button as a `label` and including a visually hidden file input.
 
-<Demo component={FileUploadUsage} />
+<Demo component={demos["button/file-upload-usage"]} />
 
 ### Related
 

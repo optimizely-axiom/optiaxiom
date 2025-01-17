@@ -1,7 +1,5 @@
 import { Scale } from "@/components/scale";
-
-import { Demo } from "@/components/demo";
-import { MultipleUsage, SingleUsage, Usage } from "@/demos/padding";
+import { Demo, demos } from "@/components/demo";
 
 # Padding
 
@@ -15,12 +13,12 @@ import { MultipleUsage, SingleUsage, Usage } from "@/demos/padding";
 
 Use the space scale to set the padding of elements.
 
-<Demo component={Usage} />
+<Demo component={demos["padding/usage"]} />
 
 ### Multiple sides
 
-<Demo component={MultipleUsage} />
+<Demo component={demos["padding/multiple-usage"]} />
 
 ### Single side
 
-<Demo component={SingleUsage} />
+<Demo component={demos["padding/single-usage"]} />

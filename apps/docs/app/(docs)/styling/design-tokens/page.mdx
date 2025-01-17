@@ -1,6 +1,5 @@
 import { Scale } from "@/components/scale";
-import { Demo } from "@/components/demo";
-import { CssUsage, JsUsage, PropUsage } from "@/demos/styles";
+import { Demo, demos } from "@/components/demo";
 import { theme } from "@optiaxiom/react";
 
 # Design Tokens
@@ -53,13 +52,13 @@ console.log(theme.zIndex.popover === "var(--ax-zIndex-popover)"); // true
 
 For all react components you can use the various style props to set the styles using tokens.
 
-<Demo component={PropUsage} />
+<Demo component={demos["styles/prop-usage"]} />
 
 ### Consuming variables from CSS
 
 You can also directly use the CSS variable name in your `.css` files.
 
-<Demo component={CssUsage} />
+<Demo component={demos["styles/css-usage"]} />
 
 ### Consuming variables from JS
 
@@ -67,7 +66,7 @@ Axiom exports a `theme` contract that contains a map of all tokens to the corres
 
 You can use this `theme` object when implementing any CSS-in-JS solutions.
 
-<Demo component={JsUsage} />
+<Demo component={demos["styles/js-usage"]} />
 
 ## Reference
 

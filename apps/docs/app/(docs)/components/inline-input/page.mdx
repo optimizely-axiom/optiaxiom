@@ -1,15 +1,6 @@
 import { Callout } from "nextra/components";
-import { Demo } from "@/components/demo";
+import { Demo, demos } from "@/components/demo";
 import { components, PropsTable } from "@/components/props-table";
-import {
-  AppearanceUsage,
-  ChangeUsage,
-  ControlledUsage,
-  DisabledUsage,
-  MultilineUsage,
-  PlaceholderUsage,
-  Usage,
-} from "@/demos/inline-input";
 import { Alert } from "@optiaxiom/react";
 
 # InlineInput
@@ -22,13 +13,13 @@ Seamless textbox for capturing user input with completely customizable visual st
 
 The `InlineInput` component requires the `label` prop and is typically paired with another component to provide the visual styles.
 
-<Demo component={Usage} />
+<Demo component={demos["inline-input/usage"]} />
 
 ### Handling changes
 
 Use the `onValueChange` prop to listen for changes to the value.
 
-<Demo component={ChangeUsage} />
+<Demo component={demos["inline-input/change-usage"]} />
 
 ### Controlled
 
@@ -38,31 +29,31 @@ Use the `value` and `defaultValue` props to toggle between controlled and uncont
   Remove the text from the following input and press `Enter`:
 </Alert>
 
-<Demo component={ControlledUsage} />
+<Demo component={demos["inline-input/controlled-usage"]} />
 
 ### Read-only state
 
 Enable the `disabled` prop to display the read-only state of the input field.
 
-<Demo component={DisabledUsage} />
+<Demo component={demos["inline-input/disabled-usage"]} />
 
 ### Appearance
 
 The inline input field will inherit styles from the parent component.
 
-<Demo component={AppearanceUsage} />
+<Demo component={demos["inline-input/appearance-usage"]} />
 
 ### Multiline
 
 Enable the `multiline` prop to allow multi-line text input.
 
-<Demo component={MultilineUsage} />
+<Demo component={demos["inline-input/multiline-usage"]} />
 
 ### Placeholder
 
 By default we re-use the `label` prop for empty placeholder - but this can be customized using the `placeholder` prop.
 
-<Demo component={PlaceholderUsage} />
+<Demo component={demos["inline-input/placeholder-usage"]} />
 
 ## Props
 

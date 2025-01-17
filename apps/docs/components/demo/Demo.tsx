@@ -1,78 +1,96 @@
+import type { demos } from "@/demos/index";
+import type { ReactNode } from "react";
 import type { Props } from "react-docgen-typescript";
 
-import { Box, Flex, Separator } from "@optiaxiom/react";
-import { type ComponentType, type ReactNode, useState } from "react";
+import { Box } from "@optiaxiom/react";
+import { promises as fs } from "fs";
+import { compileMdx } from "nextra/compile";
+import { Tabs } from "nextra/components";
+import { MDXRemote } from "nextra/mdx-remote";
+import path from "path";
 
-import styles from "./Demo.module.css";
 import { DemoCode } from "./DemoCode";
-import { DemoControls } from "./DemoControls";
-import { DemoIframe } from "./DemoIframe";
+import { DemoPreview } from "./DemoPreview";
 
-export function Demo({
-  children,
-  component: Component,
+export async function Demo({
+  component,
   height,
   iframe,
-  propTypes = {},
+  meta,
 }: {
-  children: ReactNode;
-  component: ComponentType;
+  component: (typeof demos)[keyof typeof demos];
   height?: string;
   iframe?: string;
-  propTypes: Props;
+  meta?: Record<string, string> | string;
 }) {
-  const [props, setProps] = useState(() =>
-    Object.entries(propTypes).reduce(
-      (result, [name, item]) =>
-        Object.assign(result, {
-          [name]:
-            item.defaultValue?.value === ""
-              ? undefined
-              : item.defaultValue?.value === "false"
-                ? false
-                : item.defaultValue?.value === "true"
-                  ? true
-                  : item.defaultValue?.value,
-        }),
-      {},
-    ),
+  const Component = (await component["demo"]).App as () => ReactNode;
+
+  const files = ["App.tsx"];
+  const filesDir = `${process.cwd()}/demos/${component["path"]}`;
+  for (const file of await fs.readdir(filesDir)) {
+    if (
+      !files.includes(file) &&
+      (file.endsWith(".css") || file.endsWith(".ts") || file.endsWith(".tsx"))
+    ) {
+      files.push(file);
+    }
+  }
+
+  const docs = JSON.parse(
+    await fs.readFile(process.cwd() + "/data/demos.json", "utf8"),
+  ) as Array<{
+    displayName: string;
+    filePath: string;
+    props: Props;
+  }>;
+  const doc = docs.find(
+    (doc) =>
+      doc.filePath === `${filesDir.replace(process.cwd() + "/", "")}/App.tsx`,
   );
 
   return (
     <Box bg="bg.default" border="1" mt="32" rounded="lg">
-      <Box
-        alignItems="stretch"
-        borderB="1"
-        className={iframe && styles.resize}
-        display="flex"
-        flexDirection={["column", "row"]}
-      >
-        <Flex
-          flex="1"
-          flexDirection="row"
-          gap="0"
-          justifyContent="center"
-          p="32"
-        >
-          {iframe ? (
-            <DemoIframe height={height} src={iframe} />
-          ) : (
-            <Component {...props} />
+      <DemoPreview
+        component={<Component />}
+        height={height}
+        iframe={iframe}
+        propTypes={doc?.props}
+      />
+      <DemoCode>
+        <MDXRemote
+          compiledSource={await compileMdx(
+            [
+              files.length > 1 && `<Tabs items={${JSON.stringify(files)}}>`,
+              ...(await Promise.all(
+                files.map(async (fileName) =>
+                  [
+                    files.length > 1 && "<Tabs.Tab>",
+                    `~~~${path.extname(fileName).slice(1)} ${
+                      meta && typeof meta === "object" ? meta[fileName] : meta
+                    }`,
+                    removeDirectives(
+                      await fs.readFile(path.join(filesDir, fileName), "utf8"),
+                    ).trim(),
+                    "~~~",
+                    files.length > 1 && "</Tabs.Tab>",
+                  ]
+                    .filter(Boolean)
+                    .join("\n"),
+                ),
+              )),
+              files.length > 1 && "</Tabs>",
+            ]
+              .filter(Boolean)
+              .join("\n"),
           )}
-        </Flex>
-        {Object.keys(propTypes).length > 0 && (
-          <>
-            <Separator orientation={["horizontal", "vertical"]} />
-            <DemoControls
-              onChange={setProps}
-              propTypes={propTypes}
-              propValues={props}
-              w={["auto", "224"]}
-            />
-          </>
-        )}
-      </Box>
-      <DemoCode>{children}</DemoCode>
+          components={{ Tabs }}
+        />
+      </DemoCode>
     </Box>
   );
 }
+
+const removeDirectives = (source: string) =>
+  source.startsWith('"use client";')
+    ? source.slice('"use client";\n'.length)
+    : source;

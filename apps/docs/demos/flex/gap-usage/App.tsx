@@ -1,3 +1,5 @@
+"use client";
+
 import type { ComponentPropsWithoutRef } from "react";
 
 import { Box, Flex } from "@optiaxiom/react";

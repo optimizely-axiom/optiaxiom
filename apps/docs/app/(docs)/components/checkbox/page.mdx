@@ -1,14 +1,6 @@
 import { Cards } from "@/components/cards";
-import { Demo } from "@/components/demo";
+import { Demo, demos } from "@/components/demo";
 import { components, PropsTable } from "@/components/props-table";
-import {
-  ControlledUsage,
-  DescriptionUsage,
-  DisabledUsage,
-  IndeterminateUsage,
-  LabelUsage,
-  Usage,
-} from "@/demos/checkbox";
 
 # Checkbox
 
@@ -18,37 +10,37 @@ Basic control to allow selecting one or more items from a set.
 
 ### Usage
 
-<Demo component={Usage} />
+<Demo component={demos["checkbox/usage"]} />
 
 ### Label
 
 The `children` prop is used as the label of the checkbox control.
 
-<Demo component={LabelUsage} />
+<Demo component={demos["checkbox/label-usage"]} />
 
 ### Disabled state
 
 Enable the `disabled` prop to toggle the disabled state of the checkbox control.
 
-<Demo component={DisabledUsage} />
+<Demo component={demos["checkbox/disabled-usage"]} />
 
 ### Controlled
 
 Use the `checked` and `defaultChecked` props to toggle between controlled and uncontrolled usage. And combine it with `onCheckedChange` to listen for changes to the state.
 
-<Demo component={ControlledUsage} />
+<Demo component={demos["checkbox/controlled-usage"]} />
 
 ### Indeterminate
 
 Enable the `indeterminate` prop to toggle the indeterminate state of the checkbox control.
 
-<Demo component={IndeterminateUsage} />
+<Demo component={demos["checkbox/indeterminate-usage"]} />
 
 ### Description
 
 Use the `description` prop to add helper text after the label.
 
-<Demo component={DescriptionUsage} />
+<Demo component={demos["checkbox/description-usage"]} />
 
 ### Related
 

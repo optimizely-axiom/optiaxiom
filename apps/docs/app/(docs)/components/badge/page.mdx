@@ -1,7 +1,6 @@
 import { Cards } from "@/components/cards";
-import { Demo } from "@/components/demo";
+import { Demo, demos } from "@/components/demo";
 import { components, PropsTable } from "@/components/props-table";
-import { AppearanceUsage, LinkUsage, Usage } from "@/demos/badge";
 
 # Badge
 
@@ -11,19 +10,19 @@ Use to emphasize a status, count, state or value.
 
 ### Usage
 
-<Demo component={Usage} />
+<Demo component={demos["badge/usage"]} />
 
 ### Appearance
 
 Use the `intent` and `variant` props to fine tune the appearance of the badge.
 
-<Demo component={AppearanceUsage} />
+<Demo component={demos["badge/appearance-usage"]} />
 
 ### Badge as links
 
 Set `asChild` to `true` and wrap children in an `<a>` element to render badge as links.
 
-<Demo component={LinkUsage} />
+<Demo component={demos["badge/link-usage"]} />
 
 ### Related
 

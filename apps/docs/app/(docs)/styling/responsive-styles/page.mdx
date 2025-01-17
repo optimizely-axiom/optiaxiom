@@ -1,8 +1,6 @@
 import { tokens } from "@optiaxiom/react";
 import { Scale } from "@/components/scale";
-
-import { Demo } from "@/components/demo";
-import { ResponsiveComplexUsage } from "@/demos/styles";
+import { Demo, demos } from "@/components/demo";
 
 # Responsive Styles
 
@@ -43,4 +41,7 @@ export function App() {
 
 ### Example
 
-<Demo iframe="/iframe/responsive/" component={ResponsiveComplexUsage} />
+<Demo
+  iframe="/iframe/responsive/"
+  component={demos["styles/responsive-complex-usage"]}
+/>

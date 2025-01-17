@@ -1,7 +1,6 @@
 import { Cards } from "@/components/cards";
-import { Demo } from "@/components/demo";
+import { Demo, demos } from "@/components/demo";
 import { components, PropsTable } from "@/components/props-table";
-import { GapUsage, SpanUsage, Usage } from "@/demos/grid";
 
 # Grid
 
@@ -13,19 +12,19 @@ Use `Grid` component to place items in a grid using equal width columns.
 
 Use `gridTemplateColumns` prop to create equally sized columns in a grid layout.
 
-<Demo component={Usage} meta="/gridTemplateColumns/" />
+<Demo component={demos["grid/usage"]} meta="/gridTemplateColumns/" />
 
 ### Gap
 
 Use `gap` prop to control the gap between grid items.
 
-<Demo component={GapUsage} />
+<Demo component={demos["grid/gap-usage"]} />
 
 ### Spanning columns
 
 Use the `gridColumn` prop on children to make them span across multiple columns.
 
-<Demo meta="/gridColumn/" component={SpanUsage} />
+<Demo meta="/gridColumn/" component={demos["grid/span-usage"]} />
 
 ### Related
 

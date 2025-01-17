@@ -1,3 +1,5 @@
+"use client";
+
 import type { ComponentPropsWithRef } from "react";
 
 import { Avatar } from "@optiaxiom/react";

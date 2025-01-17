@@ -1,3 +1,5 @@
+"use client";
+
 import { Progress } from "@optiaxiom/react";
 
 type AppProps = {

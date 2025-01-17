@@ -1,16 +1,6 @@
 import { Cards } from "@/components/cards";
-import { Demo } from "@/components/demo";
+import { Demo, demos } from "@/components/demo";
 import { components, PropsTable } from "@/components/props-table";
-import {
-  AlertDialogUsage,
-  ControlledUsage,
-  DescriptionUsage,
-  FormUsage,
-  NestedUsage,
-  SizeUsage,
-  TriggerUsage,
-  Usage,
-} from "@/demos/dialog";
 import { Alert } from "@optiaxiom/react";
 import { Callout } from "nextra/components";
 
@@ -22,25 +12,25 @@ Display a modal dialog box.
 
 ### Usage
 
-<Demo component={Usage} />
+<Demo component={demos["dialog/usage"]} />
 
 ### Controlled
 
 Use the `open` and `defaultOpen` props to toggle between controlled and uncontrolled usage. And combine it with `onOpenChange` to listen for changes to the state.
 
-<Demo component={ControlledUsage} meta="{17}" />
+<Demo component={demos["dialog/controlled-usage"]} meta="{17}" />
 
 ### Sizes
 
 Use the `size` prop to change the size of the dialog box.
 
-<Demo meta="/size={size}/" component={SizeUsage} />
+<Demo meta="/size={size}/" component={demos["dialog/size-usage"]} />
 
 ### Description
 
 You can add accessible description to the modal using the `description` prop on `DialogHeader` component.
 
-<Demo meta="{16}" component={DescriptionUsage} />
+<Demo meta="{16}" component={demos["dialog/description-usage"]} />
 
 ### Customize trigger
 
@@ -48,19 +38,19 @@ By default we use the `Button` component for the dialog trigger which accepts al
 
 We can also completely change the trigger by using `asChild` and passing our own component.
 
-<Demo component={TriggerUsage} meta="{16-20}" />
+<Demo component={demos["dialog/trigger-usage"]} meta="{16-20}" />
 
 ### Form dialogs
 
 Wrap `DialogBody` and `DialogFooter` with the `DialogForm` component to use forms in dialogs.
 
-<Demo component={FormUsage} meta="{31-41,62}" />
+<Demo component={demos["dialog/form-usage"]} meta="{31-41,62}" />
 
 ### Nested dialogs
 
 Combine dialogs to show nested dialogs.
 
-<Demo component={NestedUsage} />
+<Demo component={demos["dialog/nested-usage"]} />
 
 ### Nested alert dialogs
 
@@ -72,7 +62,7 @@ Use the `onOpenChange` handler to trigger the nested callback instead of an expl
   Type something into the text field and then attempt to close the dialog:
 </Alert>
 
-<Demo component={AlertDialogUsage} />
+<Demo component={demos["dialog/alert-dialog-usage"]} />
 
 ### Related
 

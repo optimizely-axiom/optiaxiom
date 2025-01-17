@@ -1,14 +1,6 @@
 import { Cards } from "@/components/cards";
-import { Demo } from "@/components/demo";
+import { Demo, demos } from "@/components/demo";
 import { components, PropsTable } from "@/components/props-table";
-import {
-  AsyncUsage,
-  ConfirmationUsage,
-  ControlledUsage,
-  SizeUsage,
-  TriggerUsage,
-  Usage,
-} from "@/demos/alert-dialog";
 
 # AlertDialog
 
@@ -18,25 +10,25 @@ Display a modal with important content that expects confirmation from the user.
 
 ### Usage
 
-<Demo component={Usage} />
+<Demo component={demos["alert-dialog/usage"]} />
 
 ### Controlled
 
 Use the `open` and `defaultOpen` props to toggle between controlled and uncontrolled usage. And combine it with `onOpenChange` to listen for changes to the state.
 
-<Demo component={ControlledUsage} meta="{17}" />
+<Demo component={demos["alert-dialog/controlled-usage"]} meta="{17}" />
 
 ### Sizes
 
 Use the `size` prop to change the size of the dialog box.
 
-<Demo component={SizeUsage} meta="/size={size}/" />
+<Demo component={demos["alert-dialog/size-usage"]} meta="/size={size}/" />
 
 ### Handling confirmation
 
 Add an `onClick` handler to `AlertDialogAction` to perform an action on confirmation.
 
-<Demo component={ConfirmationUsage} meta="{42}" />
+<Demo component={demos["alert-dialog/confirmation-usage"]} meta="{42}" />
 
 ### Handling async events
 
@@ -44,7 +36,7 @@ We can prevent closing the dialog in the action button's `onClick` handler to pe
 
 Make sure to use the controlled props and call `event.preventDefault()` in your action to stop the modal from being dismissed.
 
-<Demo component={AsyncUsage} />
+<Demo component={demos["alert-dialog/async-usage"]} />
 
 ### Customize trigger
 
@@ -52,7 +44,7 @@ By default we use the `Button` component for the dialog trigger which accepts al
 
 We can also completely change the trigger by using `asChild` and passing our own component.
 
-<Demo component={TriggerUsage} />
+<Demo component={demos["alert-dialog/trigger-usage"]} />
 
 ### Related
 

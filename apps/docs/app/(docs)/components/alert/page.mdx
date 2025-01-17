@@ -1,7 +1,6 @@
 import { Cards } from "@/components/cards";
-import { Demo } from "@/components/demo";
+import { Demo, demos } from "@/components/demo";
 import { components, PropsTable } from "@/components/props-table";
-import { AppearanceUsage, CloseUsage, Usage } from "@/demos/alert";
 import { Alert } from "@optiaxiom/react";
 
 # Alert
@@ -12,19 +11,19 @@ Keeps users informed of important and sometimes time-sensitive changes.
 
 ### Usage
 
-<Demo component={Usage} />
+<Demo component={demos["alert/usage"]} />
 
 ### Appearance
 
 Use the `intent` prop to select between the different alert types.
 
-<Demo component={AppearanceUsage} />
+<Demo component={demos["alert/appearance-usage"]} />
 
 ### Close button
 
 Use the `onClose` prop to show a close button to the top right of the alert.
 
-<Demo component={CloseUsage} />
+<Demo component={demos["alert/close-usage"]} />
 
 ### Related
 
