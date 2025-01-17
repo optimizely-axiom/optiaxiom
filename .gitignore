@@ -26,3 +26,4 @@ storybook-static
 # project
 .eslintcache
 .next
+_pagefind/
