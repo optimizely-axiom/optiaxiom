@@ -75,7 +75,7 @@ You can use this `theme` object when implementing any CSS-in-JS solutions.
 <Scale
   hidePreview
   pixelLabel="Theme"
-  pixelTransform={(name) => `theme.borderRadius.${name}`}
+  pixelTemplate="theme.borderRadius.{name}"
   values={theme.borderRadius}
 />
 
@@ -84,7 +84,7 @@ You can use this `theme` object when implementing any CSS-in-JS solutions.
 <Scale
   hidePreview
   pixelLabel="Theme"
-  pixelTransform={(name) => `theme.boxShadow.${name}`}
+  pixelTemplate="theme.boxShadow.{name}"
   values={theme.boxShadow}
 />
 
@@ -93,7 +93,7 @@ You can use this `theme` object when implementing any CSS-in-JS solutions.
 <Scale
   hidePreview
   pixelLabel="Theme"
-  pixelTransform={(name) => `theme.colors["${name}"]`}
+  pixelTemplate='theme.colors["{name}"]'
   values={theme.colors}
 />
 
@@ -102,7 +102,7 @@ You can use this `theme` object when implementing any CSS-in-JS solutions.
 <Scale
   hidePreview
   pixelLabel="Theme"
-  pixelTransform={(name) => `theme.fontFamily.${name}`}
+  pixelTemplate="theme.fontFamily.{name}"
   values={theme.fontFamily}
 />
 
@@ -111,9 +111,7 @@ You can use this `theme` object when implementing any CSS-in-JS solutions.
 <Scale
   hidePreview
   pixelLabel="Theme"
-  pixelTransform={(name, _value, key) =>
-    `theme.fontSize${name.match(/^\d/) ? `["${name}"]` : `.${name}`}.${key}`
-  }
+  pixelTemplate='theme.fontSize["{name}"].{key}'
   values={theme.fontSize}
 />
 
@@ -122,7 +120,7 @@ You can use this `theme` object when implementing any CSS-in-JS solutions.
 <Scale
   hidePreview
   pixelLabel="Theme"
-  pixelTransform={(name) => `theme.maxSize.${name}`}
+  pixelTemplate="theme.maxSize.{name}"
   values={theme.maxSize}
 />
 
@@ -131,9 +129,7 @@ You can use this `theme` object when implementing any CSS-in-JS solutions.
 <Scale
   hidePreview
   pixelLabel="Theme"
-  pixelTransform={(name) =>
-    `theme.fontSize${name.match(/^\d/) ? `["${name}"]` : `.${name}`}`
-  }
+  pixelTemplate='theme.fontSize["{name}"]'
   values={theme.size}
 />
 
@@ -142,6 +138,6 @@ You can use this `theme` object when implementing any CSS-in-JS solutions.
 <Scale
   hidePreview
   pixelLabel="Theme"
-  pixelTransform={(name) => `theme.zIndex.${name}`}
+  pixelTemplate="theme.zIndex.{name}"
   values={theme.zIndex}
 />
