@@ -2,6 +2,7 @@ import type { ComponentPropsWithoutRef } from "react";
 import type { PropItem } from "react-docgen-typescript";
 
 import { sprinkles, Text } from "@optiaxiom/react";
+import { promises as fs } from "fs";
 
 import { Table, Td, Th, Thead, Tr } from "../table";
 import { ScaleValue } from "./ScaleValue";
@@ -20,15 +21,14 @@ const tshirts = [
   "5xl",
 ];
 
-export const Scale = ({
+export const Scale = async ({
   hidePixels,
   hidePreview,
   keyLabel = "Name",
   maxH = "sm",
   mode,
   pixelLabel = "Pixels",
-  pixelTransform,
-  prop,
+  pixelTemplate,
   valueLabel = "Value",
   values,
 }: ComponentPropsWithoutRef<typeof Table> & {
@@ -37,10 +37,7 @@ export const Scale = ({
   keyLabel?: string;
   mode?: "color";
   pixelLabel?: string;
-  pixelTransform?: ComponentPropsWithoutRef<
-    typeof ScaleValue
-  >["pixelTransform"];
-  prop?: PropItem;
+  pixelTemplate?: string;
   valueLabel?: string;
   values: Record<string, string> | string;
 }) => (
@@ -65,8 +62,8 @@ export const Scale = ({
       </tr>
     </Thead>
     <tbody>
-      {(typeof values === "string" && prop
-        ? getPropValues(prop).map((value) => [
+      {(typeof values === "string"
+        ? getPropValues(await getBoxProp(values)).map((value) => [
             value,
             sprinkles({ [values]: value }),
           ])
@@ -108,7 +105,7 @@ export const Scale = ({
               hidePreview={hidePreview}
               mode={mode}
               name={name}
-              pixelTransform={pixelTransform}
+              pixelTemplate={pixelTemplate}
               type={
                 typeof values === "string" || mode === "color"
                   ? "selector"
@@ -121,6 +118,26 @@ export const Scale = ({
     </tbody>
   </Table>
 );
+
+const getBoxProp = async (name: string) => {
+  const docs = JSON.parse(
+    await fs.readFile(process.cwd() + "/data/props.json", "utf8"),
+  ) as Array<{
+    displayName: string;
+    props: PropItem[];
+  }>;
+  const doc = docs.find((doc) => doc.displayName === "@optiaxiom/react/Box");
+  if (!doc) {
+    throw new Error("Could not find component doc: Box");
+  }
+
+  const prop = doc.props.find((prop) => prop.name === name);
+  if (!prop) {
+    throw new Error(`Could not find prop type: ${name}`);
+  }
+
+  return prop;
+};
 
 const getPropValues = (prop: PropItem) =>
   (

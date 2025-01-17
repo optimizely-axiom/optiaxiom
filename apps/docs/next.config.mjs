@@ -4,8 +4,6 @@ import fs from "fs";
 import createNextra from "nextra";
 import docgen from "react-docgen-typescript";
 
-import { remarkPlugin } from "./plugins/remark-axiom-plugin/remarkPlugin.mjs";
-
 writeComponentProps();
 writeDemoProps();
 
@@ -17,7 +15,6 @@ const withNextra = createNextra({
         light: "min-light",
       },
     },
-    remarkPlugins: [remarkPlugin],
   },
 });
 

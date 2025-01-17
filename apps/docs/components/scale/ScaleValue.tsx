@@ -17,7 +17,7 @@ export const ScaleValue = ({
   hidePreview,
   mode,
   name,
-  pixelTransform = px,
+  pixelTemplate,
   type,
   value,
 }: {
@@ -25,7 +25,7 @@ export const ScaleValue = ({
   hidePreview?: boolean;
   mode?: "color";
   name: string;
-  pixelTransform?: (name: string, value: string, key?: string) => string;
+  pixelTemplate?: string;
   type: "selector" | "value";
   value: Record<string, string> | string;
 }) => {
@@ -75,9 +75,9 @@ export const ScaleValue = ({
               {(typeof size === "object"
                 ? Object.entries<string>(size).map(
                     ([key, value]) =>
-                      `${key}: ${pixelTransform(name, value, key)}`,
+                      `${key}: ${transform(pixelTemplate, name, value, key)}`,
                   )
-                : [pixelTransform(name, size)]
+                : [transform(pixelTemplate, name, size, "")]
               ).map((value) => (
                 <Text
                   fontFamily="mono"
@@ -173,3 +173,17 @@ const getStyleValues = (selector: string) => {
 const isColorType = (value: unknown) =>
   typeof value === "string" &&
   (value.startsWith("#") || value.startsWith("light-dark("));
+
+const transform = (
+  template: string | undefined,
+  name: string,
+  value: string,
+  key: string,
+) => {
+  return template
+    ? template
+        .replace("{name}", name)
+        .replace("{value}", value)
+        .replace("{key}", key)
+    : px(name, value);
+};
