@@ -1,3 +1,5 @@
+"use client";
+
 import { type RefObject, useContext, useEffect, useState } from "react";
 
 import { TransitionGroupContext } from "../transition-group-context";

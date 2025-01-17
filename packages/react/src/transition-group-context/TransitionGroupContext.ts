@@ -1,3 +1,5 @@
+"use client";
+
 import { createContext, type RefObject } from "react";
 
 export const TransitionGroupContext = createContext<
