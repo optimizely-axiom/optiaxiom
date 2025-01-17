@@ -1,7 +1,6 @@
 import { Cards } from "@/components/cards";
-import { Demo } from "@/components/demo";
+import { Demo, demos } from "@/components/demo";
 import { components, PropsTable } from "@/components/props-table";
-import { ColorUsage, LabelUsage, SizeUsage, Usage } from "@/demos/spinner";
 
 # Spinner
 
@@ -11,25 +10,25 @@ Used for indicating an unspecified wait time.
 
 ### Usage
 
-<Demo component={Usage} />
+<Demo component={demos["spinner/usage"]} />
 
 ### Size
 
 Use the `size` prop to select between the different sizes.
 
-<Demo component={SizeUsage} />
+<Demo component={demos["spinner/size-usage"]} />
 
 ### Label
 
 Use `children` to show an optional label for the spinner.
 
-<Demo component={LabelUsage} />
+<Demo component={demos["spinner/label-usage"]} />
 
 ### Appearance
 
 Set the `appearance` prop to `inverse` when displaying spinner on dark background.
 
-<Demo component={ColorUsage} />
+<Demo component={demos["spinner/color-usage"]} />
 
 ### Related
 

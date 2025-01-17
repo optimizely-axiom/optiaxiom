@@ -1,12 +1,5 @@
-import { Demo } from "@/components/demo";
+import { Demo, demos } from "@/components/demo";
 import { components, PropsTable } from "@/components/props-table";
-import {
-  AppearanceUsage,
-  ButtonUsage,
-  DisabledUsage,
-  ExternalUsage,
-  Usage,
-} from "@/demos/link";
 
 # Link
 
@@ -16,31 +9,31 @@ Anchor element for creating hyperlinks.
 
 ### Usage
 
-<Demo component={Usage} />
+<Demo component={demos["link/usage"]} />
 
 ### Appearance
 
 Use the `appearance` prop to select between the different link appearances.
 
-<Demo component={AppearanceUsage} />
+<Demo component={demos["link/appearance-usage"]} />
 
 ### Disabled links
 
 Set the `disabled` prop to `true` to style links to appear disabled and also prevent any interactions.
 
-<Demo component={DisabledUsage} />
+<Demo component={demos["link/disabled-usage"]} />
 
 ### External links
 
 Set the `external` prop to `true` to add an icon and set the correct rel and target attributes.
 
-<Demo component={ExternalUsage} />
+<Demo component={demos["link/external-usage"]} />
 
 ### Links as buttons
 
 Set `asChild` to `true` and wrap children in a `<button>` element to render links as buttons.
 
-<Demo component={ButtonUsage} />
+<Demo component={demos["link/button-usage"]} />
 
 ## Props
 

@@ -1,14 +1,6 @@
 import { Cards } from "@/components/cards";
-import { Demo } from "@/components/demo";
+import { Demo, demos } from "@/components/demo";
 import { components, PropsTable } from "@/components/props-table";
-import {
-  ComplexUsage,
-  ControlledUsage,
-  CreatableUsage,
-  LoadingUsage,
-  Usage,
-  VirtualizedUsage,
-} from "@/demos/autocomplete";
 
 # Autocomplete
 
@@ -18,7 +10,7 @@ Text field with inline autocomplete to show suggestions while allowing freeform 
 
 ### Usage
 
-<Demo component={Usage} />
+<Demo component={demos["autocomplete/usage"]} />
 
 ### Anatomy
 
@@ -49,31 +41,43 @@ Use the `items` prop to pass the collection of data to `Autocomplete`. Items can
 
 In case item is an object you need to pass some additional props for `Autocomplete` to work.
 
-<Demo component={ComplexUsage} meta={{ "App.tsx": "{20}" }} />
+<Demo
+  component={demos["autocomplete/complex-usage"]}
+  meta={{ "App.tsx": "{20}" }}
+/>
 
 ### Filtering
 
 Use the `onInputValueChange` handler to handle filtering your list of items as the user is typing.
 
-<Demo component={ComplexUsage} meta={{ "App.tsx": "{21-29}" }} />
+<Demo
+  component={demos["autocomplete/complex-usage"]}
+  meta={{ "App.tsx": "{21-29}" }}
+/>
 
 ### Controlled
 
 Use the `value` and `defaultValue` props on `Autocomplete` to toggle between controlled and uncontrolled usage. And combine it with `onValueChange` to listen for changes to the value.
 
-<Demo component={ControlledUsage} meta={{ "App.tsx": "{14,29-30}" }} />
+<Demo
+  component={demos["autocomplete/controlled-usage"]}
+  meta={{ "App.tsx": "{14,29-30}" }}
+/>
 
 ### Disabled
 
 Use the optional `isItemDisabled` prop to configure which items should be disabled. The callback is passed the item and the index number as arguments and expects a boolean result.
 
-<Demo component={ComplexUsage} meta={{ "App.tsx": "{18}", "data.ts": "{3}" }} />
+<Demo
+  component={demos["autocomplete/complex-usage"]}
+  meta={{ "App.tsx": "{18}", "data.ts": "{3}" }}
+/>
 
 ### Creatable
 
 We can combine filtering and controlled usage to build **creatable** autocompletes by allowing the user to add new entries on the fly.
 
-<Demo component={CreatableUsage} />
+<Demo component={demos["autocomplete/creatable-usage"]} />
 
 ### Trigger
 
@@ -83,23 +87,32 @@ By default we use the `Input` component for the autocomplete trigger which accep
 
 The `AutocompleteRadioItem` component accepts `icon`, `addonBefore`, `addonAfter`, and `description` props for additional content inside the items.
 
-<Demo component={ComplexUsage} meta={{ "App.tsx": "{36-41}" }} />
+<Demo
+  component={demos["autocomplete/complex-usage"]}
+  meta={{ "App.tsx": "{36-41}" }}
+/>
 
 ### Empty
 
 Use the `AutocompleteEmpty` component when there are no available items or suggestions.
 
-<Demo component={ComplexUsage} meta={{ "App.tsx": "{49-51}" }} />
+<Demo
+  component={demos["autocomplete/complex-usage"]}
+  meta={{ "App.tsx": "{49-51}" }}
+/>
 
 ### Loading
 
 Use the `loading` prop on `AutocompleteContent` to show a loading spinner if the initial data for the autocomplete has not loaded yet.
 
-<Demo component={LoadingUsage} meta={{ "App.tsx": "{34}" }} />
+<Demo
+  component={demos["autocomplete/loading-usage"]}
+  meta={{ "App.tsx": "{34}" }}
+/>
 
 ### Virtualized
 
-<Demo component={VirtualizedUsage} meta="{32-38}" />
+<Demo component={demos["autocomplete/virtualized-usage"]} meta="{32-38}" />
 
 ### Related
 

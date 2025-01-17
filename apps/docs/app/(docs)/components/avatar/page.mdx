@@ -1,14 +1,5 @@
-import { Demo } from "@/components/demo";
+import { Demo, demos } from "@/components/demo";
 import { components, PropsTable } from "@/components/props-table";
-import {
-  ColorUsage,
-  FallbackChildrenUsage,
-  FallbackIconUsage,
-  FallbackNameUsage,
-  GroupUsage,
-  SizeUsage,
-  Usage,
-} from "@/demos/avatar";
 
 # Avatar
 
@@ -20,19 +11,19 @@ import {
 
 Provide the `src` and an optional `name` prop to render an avatar.
 
-<Demo component={Usage} />
+<Demo component={demos["avatar/usage"]} />
 
 ### Color scheme
 
 Use the `colorScheme` prop to control the avatar fallback background and text colors.
 
-<Demo component={ColorUsage} />
+<Demo component={demos["avatar/color-usage"]} />
 
 ### Different sizes
 
 Use the `size` prop to modify the size of the avatar.
 
-<Demo component={SizeUsage} />
+<Demo component={demos["avatar/size-usage"]} />
 
 ### Fallback
 
@@ -44,13 +35,13 @@ The fallback renders `name`, `children`, and `fallback` in that order.
 
 Generate initials from the `name` prop if `src` is not provided or fails to load.
 
-<Demo component={FallbackNameUsage} />
+<Demo component={demos["avatar/fallback-name-usage"]} />
 
 #### Children
 
 Render `children` prop if `src` and `name` are not provided.
 
-<Demo component={FallbackChildrenUsage} />
+<Demo component={demos["avatar/fallback-children-usage"]} />
 
 #### Icon
 
@@ -58,13 +49,13 @@ Render an icon based on `fallback` prop if neither `src`, `name`, and `children`
 
 By default `fallback` is set to `user`.
 
-<Demo component={FallbackIconUsage} />
+<Demo component={demos["avatar/fallback-icon-usage"]} />
 
 ### Grouping avatars
 
 Use the `<AvatarGroup />` component to stack avatars together.
 
-<Demo component={GroupUsage} />
+<Demo component={demos["avatar/group-usage"]} />
 
 ## Props
 

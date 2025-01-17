@@ -1,12 +1,6 @@
 import { Cards } from "@/components/cards";
-import { Demo } from "@/components/demo";
+import { Demo, demos } from "@/components/demo";
 import { components, PropsTable } from "@/components/props-table";
-import {
-  ChildrenUsage,
-  DimensionUsage,
-  ExampleUsage,
-  Usage,
-} from "@/demos/skeleton";
 
 # Skeleton
 
@@ -16,23 +10,23 @@ Display placeholder content while data is loading.
 
 ### Usage
 
-<Demo component={Usage} />
+<Demo component={demos["skeleton/usage"]} />
 
 ### Children
 
 Use `children` to insert things such as icons or graphics.
 
-<Demo component={ChildrenUsage} />
+<Demo component={demos["skeleton/children-usage"]} />
 
 ### Dimensions
 
 Skeleton is automatically sized according to the parent `font-size`/`line-height` styles so we can combine it with `Text` or `Heading` component to achieve correctly sized textual placeholders.
 
-<Demo component={DimensionUsage} />
+<Demo component={demos["skeleton/dimension-usage"]} />
 
 ### Example
 
-<Demo component={ExampleUsage} />
+<Demo component={demos["skeleton/example-usage"]} />
 
 ### Related
 

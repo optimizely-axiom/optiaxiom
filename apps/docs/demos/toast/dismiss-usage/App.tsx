@@ -1,3 +1,5 @@
+"use client";
+
 import { Button, toaster } from "@optiaxiom/react";
 
 export function App() {

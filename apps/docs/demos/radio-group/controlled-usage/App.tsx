@@ -1,3 +1,5 @@
+"use client";
+
 import { Button, Flex, Radio, RadioGroup } from "@optiaxiom/react";
 import { useState } from "react";
 

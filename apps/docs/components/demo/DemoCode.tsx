@@ -1,3 +1,5 @@
+"use client";
+
 import { Box } from "@optiaxiom/react";
 import { type ReactNode, useEffect, useRef, useState } from "react";
 

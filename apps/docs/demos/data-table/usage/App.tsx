@@ -1,3 +1,5 @@
+"use client";
+
 import { DataTable } from "@optiaxiom/react/unstable";
 import { getCoreRowModel, useReactTable } from "@tanstack/react-table";
 

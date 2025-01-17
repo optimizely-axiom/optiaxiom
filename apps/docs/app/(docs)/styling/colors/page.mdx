@@ -1,7 +1,6 @@
 import { theme } from "@optiaxiom/react";
-import { Demo } from "@/components/demo";
+import { Demo, demos } from "@/components/demo";
 import { Scale } from "@/components/scale";
-import { CssUsage, PropUsage } from "@/demos/styles";
 
 # Colors
 
@@ -13,11 +12,11 @@ You can also use the `--ax-colors-*` CSS variables directly in any CSS property.
 
 ### Using style props
 
-<Demo component={PropUsage} />
+<Demo component={demos["styles/prop-usage"]} />
 
 ### Using CSS variables
 
-<Demo component={CssUsage} />
+<Demo component={demos["styles/css-usage"]} />
 
 ### Dark mode
 

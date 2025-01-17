@@ -1,8 +1,7 @@
 import { Callout } from "nextra/components";
 
-import { Demo } from "@/components/demo";
+import { Demo, demos } from "@/components/demo";
 import { components, PropsTable } from "@/components/props-table";
-import { ResponsiveUsage, VerticalUsage, Usage } from "@/demos/separator";
 import { Alert } from "@optiaxiom/react";
 
 # Separator
@@ -13,13 +12,13 @@ import { Alert } from "@optiaxiom/react";
 
 ### Usage
 
-<Demo component={Usage} />
+<Demo component={demos["separator/usage"]} />
 
 ### Orientation
 
 Use `orientation="vertical"` to display a vertical separator.
 
-<Demo component={VerticalUsage} />
+<Demo component={demos["separator/vertical-usage"]} />
 
 ### Responsive
 
@@ -29,7 +28,11 @@ You can also use object or array prop notation to change orientation at various 
   Resize the canvas to see the orientation change:
 </Alert>
 
-<Demo iframe="/iframe/separator/" height="150" component={ResponsiveUsage} />
+<Demo
+  iframe="/iframe/separator/"
+  height="150"
+  component={demos["separator/responsive-usage"]}
+/>
 
 ## Props
 

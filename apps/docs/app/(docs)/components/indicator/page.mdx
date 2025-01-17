@@ -1,11 +1,5 @@
-import { Demo } from "@/components/demo";
+import { Demo, demos } from "@/components/demo";
 import { components, PropsTable } from "@/components/props-table";
-import {
-  AppearanceUsage,
-  ContentUsage,
-  DisabledUsage,
-  Usage,
-} from "@/demos/indicator";
 
 # Indicator
 
@@ -15,25 +9,28 @@ Display a badge at the corner of another element.
 
 ### Usage
 
-<Demo component={Usage} />
+<Demo component={demos["indicator/usage"]} />
 
 ### Content
 
 Use the `content` prop to set the content of the badge.
 
-<Demo component={ContentUsage} />
+<Demo component={demos["indicator/content-usage"]} />
 
 ### Appearance
 
 Use the `intent` and `variant` props to fine tune the appearance of the badge.
 
-<Demo component={AppearanceUsage} />
+<Demo component={demos["indicator/appearance-usage"]} />
 
 ### Hide indicator
 
 Use the `disabled` prop to hide the badge.
 
-<Demo component={DisabledUsage} meta="/disabled={disabled}/" />
+<Demo
+  component={demos["indicator/disabled-usage"]}
+  meta="/disabled={disabled}/"
+/>
 
 ## Props
 

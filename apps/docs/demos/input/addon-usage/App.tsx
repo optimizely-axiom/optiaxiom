@@ -1,3 +1,5 @@
+"use client";
+
 import { Button, Flex, Input } from "@optiaxiom/react";
 import { IconEye, IconEyeOff } from "@tabler/icons-react";
 import { useState } from "react";

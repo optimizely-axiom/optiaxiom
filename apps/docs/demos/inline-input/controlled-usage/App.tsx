@@ -1,3 +1,5 @@
+"use client";
+
 import { Heading, toaster } from "@optiaxiom/react";
 import { InlineInput } from "@optiaxiom/react/unstable";
 import { useState } from "react";

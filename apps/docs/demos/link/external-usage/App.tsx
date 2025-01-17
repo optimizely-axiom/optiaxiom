@@ -1,3 +1,5 @@
+"use client";
+
 import type { ComponentPropsWithRef } from "react";
 
 import { Link, Text } from "@optiaxiom/react";

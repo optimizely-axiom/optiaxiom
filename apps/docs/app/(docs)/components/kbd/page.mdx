@@ -1,6 +1,5 @@
-import { Demo } from "@/components/demo";
+import { Demo, demos } from "@/components/demo";
 import { components, PropsTable } from "@/components/props-table";
-import { AppearanceUsage, KeysUsage, Usage } from "@/demos/kbd";
 
 # Kbd
 
@@ -10,19 +9,19 @@ Inline text representing keyboard input.
 
 ### Usage
 
-<Demo component={Usage} />
+<Demo component={demos["kbd/usage"]} />
 
 ### Key codes
 
 Use the `keys` prop to display commonly used key codes.
 
-<Demo component={KeysUsage} />
+<Demo component={demos["kbd/keys-usage"]} />
 
 ### Appearance
 
 Use the `variant` prop to select between the different appearances.
 
-<Demo component={AppearanceUsage} />
+<Demo component={demos["kbd/appearance-usage"]} />
 
 ## Props
 

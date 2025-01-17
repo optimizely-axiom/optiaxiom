@@ -1,7 +1,6 @@
 import { Cards } from "@/components/cards";
-import { Demo } from "@/components/demo";
+import { Demo, demos } from "@/components/demo";
 import { components, PropsTable } from "@/components/props-table";
-import { ControlledUsage, Usage } from "@/demos/pagination";
 
 # Pagination
 
@@ -11,13 +10,13 @@ Display active page and navigate between multiple pages.
 
 ### Usage
 
-<Demo component={Usage} />
+<Demo component={demos["pagination/usage"]} />
 
 ### Controlled
 
 Use the `page` and `defaultPage` props to toggle between controlled and uncontrolled usage. And combine it with `onPageChange` to listen for changes to the state.
 
-<Demo component={ControlledUsage} />
+<Demo component={demos["pagination/controlled-usage"]} />
 
 ### Related
 

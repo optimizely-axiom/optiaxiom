@@ -1,6 +1,5 @@
-import { Demo } from "@/components/demo";
+import { Demo, demos } from "@/components/demo";
 import { components, PropsTable } from "@/components/props-table";
-import { Usage } from "@/demos/modal-layer";
 
 # ModalLayer
 
@@ -14,7 +13,7 @@ Dialog and popover components internally use focus managers to ensure focus trap
 
 All of our components automatically handle this focus management when being rendered inside dialogs/popovers - but third party portalled components need to be manually wrapped in the `ModalLayer` component.
 
-<Demo component={Usage} />
+<Demo component={demos["modal-layer/usage"]} />
 
 ## Props
 

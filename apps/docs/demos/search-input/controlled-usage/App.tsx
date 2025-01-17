@@ -1,3 +1,5 @@
+"use client";
+
 import { Button, Flex, SearchInput } from "@optiaxiom/react";
 import { useRef, useState } from "react";
 

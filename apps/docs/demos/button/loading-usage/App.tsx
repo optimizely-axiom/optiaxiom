@@ -1,3 +1,5 @@
+"use client";
+
 import { Button, Flex, Switch, Tooltip } from "@optiaxiom/react";
 import { useState } from "react";
 

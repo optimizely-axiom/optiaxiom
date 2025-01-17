@@ -1,19 +1,6 @@
 import { Cards } from "@/components/cards";
-import { Demo } from "@/components/demo";
+import { Demo, demos } from "@/components/demo";
 import { components, PropsTable } from "@/components/props-table";
-import {
-  AddonUsage,
-  AlertDialogUsage,
-  AppearanceUsage,
-  ControlledUsage,
-  DescriptionUsage,
-  DisabledUsage,
-  ModalUsage,
-  PositionUsage,
-  SelectUsage,
-  TriggerUsage,
-  Usage,
-} from "@/demos/dropdown-menu";
 
 # DropdownMenu
 
@@ -25,19 +12,19 @@ Display a dropdown menu.
 
 Use the `DropdownMenu`, `DropdownMenuTrigger`, and `DropdownMenuContent` components to build out menus.
 
-<Demo component={Usage} />
+<Demo component={demos["dropdown-menu/usage"]} />
 
 ### Controlled
 
 Use the `open` and `defaultOpen` props to toggle between controlled and uncontrolled usage. And combine it with `onOpenChange` to listen for changes to the state.
 
-<Demo component={ControlledUsage} meta="{16,24-25}" />
+<Demo component={demos["dropdown-menu/controlled-usage"]} meta="{16,24-25}" />
 
 ### Non modal usage
 
 By default scrolling and interactions with outside elements is disabled when menu is open. Set `modal` prop to `false` in order to render a non-modal dropdown.
 
-<Demo component={ModalUsage} meta="/modal={false}/" />
+<Demo component={demos["dropdown-menu/modal-usage"]} meta="/modal={false}/" />
 
 ### Trigger
 
@@ -45,7 +32,7 @@ By default scrolling and interactions with outside elements is disabled when men
 
 By default we use the `Button` component for the menu trigger which accepts all of the existing button props.
 
-<Demo component={TriggerUsage} meta="{15-17}" />
+<Demo component={demos["dropdown-menu/trigger-usage"]} meta="{15-17}" />
 
 ### Content
 
@@ -53,7 +40,10 @@ By default we use the `Button` component for the menu trigger which accepts all 
 
 Use the `align` and `side` props on `DropdownMenuContent` to change the default position of the dropdown.
 
-<Demo component={PositionUsage} meta="/align={align}/ /side={side}/" />
+<Demo
+  component={demos["dropdown-menu/position-usage"]}
+  meta="/align={align}/ /side={side}/"
+/>
 
 ### Item
 
@@ -61,37 +51,46 @@ Use the `align` and `side` props on `DropdownMenuContent` to change the default 
 
 Use the `intent` prop to control the appearance of items.
 
-<Demo meta='/intent="danger"/' component={AppearanceUsage} />
+<Demo
+  meta='/intent="danger"/'
+  component={demos["dropdown-menu/appearance-usage"]}
+/>
 
 #### Description
 
 Use the `description` prop to add secondary text to items.
 
-<Demo meta="/description/" component={DescriptionUsage} />
+<Demo
+  meta="/description/"
+  component={demos["dropdown-menu/description-usage"]}
+/>
 
 #### Disabled items
 
 Use the `disabled` prop on menu items to disable them.
 
-<Demo meta="/disabled/" component={DisabledUsage} />
+<Demo meta="/disabled/" component={demos["dropdown-menu/disabled-usage"]} />
 
 #### Selection
 
 Use the `onSelect` prop to handle selection of items.
 
-<Demo component={SelectUsage} meta="{26,33}" />
+<Demo component={demos["dropdown-menu/select-usage"]} meta="{26,33}" />
 
 #### Left and right addons
 
 Use the `icon`, `addonBefore`, and `addonAfter` props to add icons, text, or any other element to the start or end of the menu items.
 
-<Demo meta="{20-24,25,32-36,37}" component={AddonUsage} />
+<Demo
+  meta="{20-24,25,32-36,37}"
+  component={demos["dropdown-menu/addon-usage"]}
+/>
 
 ### Label
 
 Use the `DropdownMenuLabel` component to render a read-only label.
 
-<Demo meta="{5,17}" component={Usage} />
+<Demo meta="{5,17}" component={demos["dropdown-menu/usage"]} />
 
 ### Dialogs inside menus
 
@@ -99,7 +98,7 @@ Combine dropdown menus with dialog to show alerts when selecting an item.
 
 Make sure to enable `asChild` prop on `AlertDialogTrigger` and call `event.preventDefault()` in the item `onSelect` handler.
 
-<Demo component={AlertDialogUsage} meta="{25,29}" />
+<Demo component={demos["dropdown-menu/alert-dialog-usage"]} meta="{25,29}" />
 
 ### Related
 

@@ -10,18 +10,17 @@ Place demos in the `demos/` folder and use with the `Demo` component to showcase
 
 ```mdx
 {/* pages/components/switch.mdx */}
-import { Demo } from "@/components/demo";
-import { SizeUsage, Usage } from "@/demos/switch";
+import { Demo, demos } from "@/components/demo";
 
-<Demo component={Usage} />
+<Demo component={demos["switch/usage"]} />
 
-<Demo component={SizeUsage} />
+<Demo component={demos["switch/size-usage"]} />
 ```
 
 Export an `App` component from your demo usage:
 
 ```tsx
-// demons/switch/usage/App.tsx
+// demos/switch/usage/App.tsx
 import { Switch } from "@optiaxiom/react";
 
 export function App() {
@@ -32,7 +31,7 @@ export function App() {
 Optionally specify props on the `App` component to expose dynamic demo controls:
 
 ```tsx
-// demons/switch/size-usage/App.tsx
+// demos/switch/size-usage/App.tsx
 import type { ComponentPropsWithRef } from "react";
 
 import { Switch } from "@optiaxiom/react";

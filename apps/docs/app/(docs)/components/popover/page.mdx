@@ -1,11 +1,5 @@
-import { Demo } from "@/components/demo";
+import { Demo, demos } from "@/components/demo";
 import { components, PropsTable } from "@/components/props-table";
-import {
-  ControlledUsage,
-  ExampleUsage,
-  TriggerUsage,
-  Usage,
-} from "@/demos/popover";
 
 # Popover
 
@@ -15,17 +9,17 @@ Display arbitrary rich content inside a non-modal dialog triggered by a button.
 
 ### Usage
 
-<Demo component={Usage} />
+<Demo component={demos["popover/usage"]} />
 
 ### Controlled
 
 Use the `open` and `defaultOpen` props to toggle between controlled and uncontrolled usage. And combine it with `onOpenChange` to listen for changes to the state.
 
-<Demo component={ControlledUsage} />
+<Demo component={demos["popover/controlled-usage"]} />
 
 ### Example
 
-<Demo component={ExampleUsage} />
+<Demo component={demos["popover/example-usage"]} />
 
 ### Customize trigger
 
@@ -33,7 +27,7 @@ By default we use the `Button` component for the dialog trigger which accepts al
 
 We can also completely change the trigger by using `asChild` and passing our own component.
 
-<Demo component={TriggerUsage} />
+<Demo component={demos["popover/trigger-usage"]} />
 
 ## Props
 

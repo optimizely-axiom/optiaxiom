@@ -1,3 +1,5 @@
+"use client";
+
 import { Button, Flex, ToggleButton } from "@optiaxiom/react";
 import { IconLayoutSidebar } from "@tabler/icons-react";
 import { useState } from "react";

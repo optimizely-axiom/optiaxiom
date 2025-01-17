@@ -1,12 +1,5 @@
-import { Demo } from "@/components/demo";
+import { Demo, demos } from "@/components/demo";
 import { components, PropsTable } from "@/components/props-table";
-import {
-  DescriptionUsage,
-  ErrorUsage,
-  InfoUsage,
-  RequiredUsage,
-  Usage,
-} from "@/demos/field";
 
 # Field
 
@@ -18,13 +11,13 @@ Wrapper for inputs to provide context such as label/help/required etc.
 
 Wrap your actual input controls with `Field` to show additional context for the input.
 
-<Demo component={Usage} />
+<Demo component={demos["field/usage"]} />
 
 ### Required
 
 Enable the `required` prop to display an asterisk for required inputs.
 
-<Demo component={RequiredUsage} />
+<Demo component={demos["field/required-usage"]} />
 
 The `required` prop will be available to the input element via a `FieldContext`.
 
@@ -32,13 +25,13 @@ The `required` prop will be available to the input element via a `FieldContext`.
 
 Use the `description` prop to provide help text for the input.
 
-<Demo component={DescriptionUsage} />
+<Demo component={demos["field/description-usage"]} />
 
 ### Error
 
 Use the `error` prop to display validation or other errors for the input.
 
-<Demo component={ErrorUsage} />
+<Demo component={demos["field/error-usage"]} />
 
 The `error` prop will be available as a boolean to the input element via a `FieldContext`.
 
@@ -46,7 +39,7 @@ The `error` prop will be available as a boolean to the input element via a `Fiel
 
 Use the `info` prop to display a help icon with additional context for the input.
 
-<Demo component={InfoUsage} />
+<Demo component={demos["field/info-usage"]} />
 
 ## Props
 
