@@ -1,6 +1,6 @@
 import { Cards } from "@/components/cards";
 import { Demo } from "@/components/demo";
-import { PropsTable } from "@/components/props-table";
+import { components, PropsTable } from "@/components/props-table";
 import {
   CompositionUsage,
   FormattingUsage,
@@ -8,7 +8,6 @@ import {
   TruncateUsage,
   Usage,
 } from "@/demos/text";
-import { Text } from "@optiaxiom/react";
 
 # Text
 
@@ -48,7 +47,9 @@ Use the `lineClamp` prop to truncate the text at specific number of lines.
 
 ## Props
 
-<PropsTable component={Text} />
+### Text
+
+<PropsTable component={components["Text"]} />
 
 ## Changelog
 

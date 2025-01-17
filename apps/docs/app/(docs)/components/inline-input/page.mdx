@@ -1,6 +1,6 @@
 import { Callout } from "nextra/components";
 import { Demo } from "@/components/demo";
-import { PropsTable } from "@/components/props-table";
+import { components, PropsTable } from "@/components/props-table";
 import {
   AppearanceUsage,
   ChangeUsage,
@@ -11,7 +11,6 @@ import {
   Usage,
 } from "@/demos/inline-input";
 import { Alert } from "@optiaxiom/react";
-import { InlineInput } from "@optiaxiom/react/unstable";
 
 # InlineInput
 
@@ -67,7 +66,9 @@ By default we re-use the `label` prop for empty placeholder - but this can be cu
 
 ## Props
 
-<PropsTable component={InlineInput} />
+### InlineInput
+
+<PropsTable component={components["InlineInput"]} />
 
 ## Changelog
 

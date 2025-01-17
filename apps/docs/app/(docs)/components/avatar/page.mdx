@@ -1,5 +1,5 @@
 import { Demo } from "@/components/demo";
-import { PropsTable } from "@/components/props-table";
+import { components, PropsTable } from "@/components/props-table";
 import {
   ColorUsage,
   FallbackChildrenUsage,
@@ -9,7 +9,6 @@ import {
   SizeUsage,
   Usage,
 } from "@/demos/avatar";
-import { Avatar, AvatarGroup } from "@optiaxiom/react";
 
 # Avatar
 
@@ -69,9 +68,13 @@ Use the `<AvatarGroup />` component to stack avatars together.
 
 ## Props
 
-<PropsTable component={Avatar} />
+### Avatar
 
-<PropsTable component={AvatarGroup} />
+<PropsTable component={components["Avatar"]} />
+
+### AvatarGroup
+
+<PropsTable component={components["AvatarGroup"]} />
 
 ## Changelog
 

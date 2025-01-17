@@ -1,6 +1,6 @@
 import { Cards } from "@/components/cards";
 import { Demo } from "@/components/demo";
-import { PropsTable } from "@/components/props-table";
+import { components, PropsTable } from "@/components/props-table";
 import {
   AlertDialogUsage,
   ControlledUsage,
@@ -11,18 +11,7 @@ import {
   TriggerUsage,
   Usage,
 } from "@/demos/dialog";
-import {
-  Alert,
-  Button,
-  Dialog,
-  DialogBody,
-  DialogClose,
-  DialogContent,
-  DialogFooter,
-  DialogForm,
-  DialogHeader,
-  DialogTrigger,
-} from "@optiaxiom/react";
+import { Alert } from "@optiaxiom/react";
 import { Callout } from "nextra/components";
 
 # Dialog
@@ -91,14 +80,23 @@ Use the `onOpenChange` handler to trigger the nested callback instead of an expl
 
 ## Props
 
-<PropsTable component={Dialog} />
-<PropsTable component={DialogTrigger} />
-<PropsTable component={DialogContent} />
-<PropsTable component={DialogHeader} />
-<PropsTable component={DialogForm} />
-<PropsTable component={DialogBody} />
-<PropsTable component={DialogFooter} />
-<PropsTable component={DialogClose} />
+### Dialog
+
+<PropsTable component={components["Dialog"]} />
+### DialogTrigger
+<PropsTable component={components["DialogTrigger"]} />
+### DialogContent
+<PropsTable component={components["DialogContent"]} />
+### DialogHeader
+<PropsTable component={components["DialogHeader"]} />
+### DialogForm
+<PropsTable component={components["DialogForm"]} />
+### DialogBody
+<PropsTable component={components["DialogBody"]} />
+### DialogFooter
+<PropsTable component={components["DialogFooter"]} />
+### DialogClose
+<PropsTable component={components["DialogClose"]} />
 
 ## Changelog
 

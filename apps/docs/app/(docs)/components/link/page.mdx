@@ -1,5 +1,5 @@
 import { Demo } from "@/components/demo";
-import { PropsTable } from "@/components/props-table";
+import { components, PropsTable } from "@/components/props-table";
 import {
   AppearanceUsage,
   ButtonUsage,
@@ -7,7 +7,6 @@ import {
   ExternalUsage,
   Usage,
 } from "@/demos/link";
-import { Link } from "@optiaxiom/react";
 
 # Link
 
@@ -45,7 +44,9 @@ Set `asChild` to `true` and wrap children in a `<button>` element to render link
 
 ## Props
 
-<PropsTable component={Link} />
+### Link
+
+<PropsTable component={components["Link"]} />
 
 ## Changelog
 

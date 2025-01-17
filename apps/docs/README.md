@@ -49,10 +49,9 @@ export function App({
 Add prop tables for components using the `PropsTable` component.
 
 ```mdx
-import { PropsTable } from "@/components/props-table";
-import { Button } from "@optiaxiom/react";
+import { components, PropsTable } from "@/components/props-table";
 
-<PropsTable component={Button} />
+<PropsTable component={components["Button"]} />
 ```
 
 ## Contributing

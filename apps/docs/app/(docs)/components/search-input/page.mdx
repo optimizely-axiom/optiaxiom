@@ -1,8 +1,7 @@
 import { Cards } from "@/components/cards";
 import { Demo } from "@/components/demo";
-import { PropsTable } from "@/components/props-table";
+import { components, PropsTable } from "@/components/props-table";
 import { ControlledUsage, DisabledUsage, Usage } from "@/demos/search-input";
-import { Input, SearchInput } from "@optiaxiom/react";
 
 # SearchInput
 
@@ -34,7 +33,9 @@ Use the `value` and `defaultValue` props to toggle between controlled and uncont
 
 ## Props
 
-<PropsTable component={SearchInput} />
+### SearchInput
+
+<PropsTable component={components["SearchInput"]} />
 
 ## Changelog
 

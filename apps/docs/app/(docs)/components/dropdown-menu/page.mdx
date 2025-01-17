@@ -1,6 +1,6 @@
 import { Cards } from "@/components/cards";
 import { Demo } from "@/components/demo";
-import { PropsTable } from "@/components/props-table";
+import { components, PropsTable } from "@/components/props-table";
 import {
   AddonUsage,
   AlertDialogUsage,
@@ -14,18 +14,6 @@ import {
   TriggerUsage,
   Usage,
 } from "@/demos/dropdown-menu";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
-  DropdownMenuTrigger,
-} from "@optiaxiom/react";
 
 # DropdownMenu
 
@@ -119,16 +107,27 @@ Make sure to enable `asChild` prop on `AlertDialogTrigger` and call `event.preve
 
 ## Props
 
-<PropsTable component={DropdownMenu} />
-<PropsTable component={DropdownMenuTrigger} />
-<PropsTable component={DropdownMenuContent} />
-<PropsTable component={DropdownMenuItem} />
-<PropsTable component={DropdownMenuLabel} />
-<PropsTable component={DropdownMenuGroup} />
-<PropsTable component={DropdownMenuSeparator} />
-<PropsTable component={DropdownMenuSub} />
-<PropsTable component={DropdownMenuSubTrigger} />
-<PropsTable component={DropdownMenuSubContent} />
+### DropdownMenu
+
+<PropsTable component={components["DropdownMenu"]} />
+### DropdownMenuTrigger
+<PropsTable component={components["DropdownMenuTrigger"]} />
+### DropdownMenuContent
+<PropsTable component={components["DropdownMenuContent"]} />
+### DropdownMenuItem
+<PropsTable component={components["DropdownMenuItem"]} />
+### DropdownMenuLabel
+<PropsTable component={components["DropdownMenuLabel"]} />
+### DropdownMenuGroup
+<PropsTable component={components["DropdownMenuGroup"]} />
+### DropdownMenuSeparator
+<PropsTable component={components["DropdownMenuSeparator"]} />
+### DropdownMenuSub
+<PropsTable component={components["DropdownMenuSub"]} />
+### DropdownMenuSubTrigger
+<PropsTable component={components["DropdownMenuSubTrigger"]} />
+### DropdownMenuSubContent
+<PropsTable component={components["DropdownMenuSubContent"]} />
 
 ## Changelog
 

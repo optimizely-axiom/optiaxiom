@@ -1,12 +1,11 @@
 import { Demo } from "@/components/demo";
-import { PropsTable } from "@/components/props-table";
+import { components, PropsTable } from "@/components/props-table";
 import {
   ControlledUsage,
   DelayUsage,
   PlacementUsage,
   Usage,
 } from "@/demos/tooltip";
-import { Tooltip, TooltipProvider } from "@optiaxiom/react";
 
 # Tooltip
 
@@ -38,8 +37,11 @@ Use the `side` and `align` props to control where the tooltip is placed by defau
 
 ## Props
 
-<PropsTable component={Tooltip} />
-<PropsTable component={TooltipProvider} />
+### Tooltip
+
+<PropsTable component={components["Tooltip"]} />
+### TooltipProvider
+<PropsTable component={components["TooltipProvider"]} />
 
 ## Changelog
 

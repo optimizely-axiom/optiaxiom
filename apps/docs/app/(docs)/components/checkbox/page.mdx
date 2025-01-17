@@ -1,6 +1,6 @@
 import { Cards } from "@/components/cards";
 import { Demo } from "@/components/demo";
-import { PropsTable } from "@/components/props-table";
+import { components, PropsTable } from "@/components/props-table";
 import {
   ControlledUsage,
   DescriptionUsage,
@@ -9,7 +9,6 @@ import {
   LabelUsage,
   Usage,
 } from "@/demos/checkbox";
-import { Checkbox } from "@optiaxiom/react";
 
 # Checkbox
 
@@ -57,7 +56,9 @@ Use the `description` prop to add helper text after the label.
 
 ## Props
 
-<PropsTable component={Checkbox} />
+### Checkbox
+
+<PropsTable component={components["Checkbox"]} />
 
 ## Changelog
 

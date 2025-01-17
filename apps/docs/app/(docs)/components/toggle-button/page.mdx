@@ -1,13 +1,12 @@
 import { Cards } from "@/components/cards";
 import { Demo } from "@/components/demo";
-import { PropsTable } from "@/components/props-table";
+import { components, PropsTable } from "@/components/props-table";
 import {
   AppearanceUsage,
   ControlledUsage,
   DisabledUsage,
   Usage,
 } from "@/demos/toggle-button";
-import { Button, ToggleButton } from "@optiaxiom/react";
 
 # ToggleButton
 
@@ -47,7 +46,9 @@ For accessibility please make sure to include text that explains why the button 
 
 ## Props
 
-<PropsTable component={ToggleButton} />
+### ToggleButton
+
+<PropsTable component={components["ToggleButton"]} />
 
 ## Changelog
 

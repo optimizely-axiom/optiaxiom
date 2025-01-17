@@ -1,18 +1,12 @@
 import { Cards } from "@/components/cards";
 import { Demo } from "@/components/demo";
-import { PropsTable } from "@/components/props-table";
+import { components, PropsTable } from "@/components/props-table";
 import {
   ActionUsage,
   AppearanceUsage,
   DismissUsage,
   Usage,
 } from "@/demos/toast";
-import {
-  Toast,
-  ToastTitle,
-  ToastAction,
-  ToastProvider,
-} from "@optiaxiom/react";
 
 # Toast
 
@@ -50,13 +44,21 @@ Use `toaster.remove()` to remove toasts. The `create()` method returns a unique 
 
 ## Props
 
-<PropsTable component={Toast} />
+### Toast
 
-<PropsTable component={ToastTitle} />
+<PropsTable component={components["Toast"]} />
 
-<PropsTable component={ToastAction} />
+### ToastTitle
 
-<PropsTable component={ToastProvider} />
+<PropsTable component={components["ToastTitle"]} />
+
+### ToastAction
+
+<PropsTable component={components["ToastAction"]} />
+
+### ToastProvider
+
+<PropsTable component={components["ToastProvider"]} />
 
 ## Changelog
 
