@@ -24,15 +24,16 @@ export default defineConfig([
       index: "src/index.ts",
     },
     output: {
-      banner:
-        env === "production"
-          ? undefined
-          : async (chunk) => {
-              if (chunk.name === "client") {
-                return '"use client";';
-              }
-              return "";
-            },
+      banner: (chunk) => {
+        if (
+          env === "production"
+            ? bannerFilter(chunk.facadeModuleId)
+            : chunk.name === "client"
+        ) {
+          return '"use client";';
+        }
+        return "";
+      },
       dir: "dist",
       entryFileNames: (info) => {
         return info.name.endsWith(".css")

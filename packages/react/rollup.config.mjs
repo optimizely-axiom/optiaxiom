@@ -1,7 +1,6 @@
 import hash from "@emotion/hash";
 import json from "@rollup/plugin-json";
 import { nodeResolve } from "@rollup/plugin-node-resolve";
-import { createFilter } from "@rollup/pluginutils";
 import {
   getSourceFromVirtualCssFile,
   virtualCssFileFilter,
@@ -14,7 +13,6 @@ import esbuild from "rollup-plugin-esbuild";
 
 const env = process.env.NODE_ENV ?? "development";
 const pkg = JSON.parse(readFileSync("./package.json"));
-const bannerFilter = createFilter(["**/*.tsx"]);
 const external = new RegExp(
   "^(?:" +
     Object.keys({
@@ -38,16 +36,6 @@ export default defineConfig([
       warn(warning);
     },
     output: {
-      banner: async (chunk) => {
-        if (
-          env === "production"
-            ? bannerFilter(chunk.facadeModuleId)
-            : chunk.name === "client"
-        ) {
-          return '"use client";';
-        }
-        return "";
-      },
       dir: "dist",
       entryFileNames: (info) => {
         return info.name.endsWith(".css")
@@ -58,8 +46,8 @@ export default defineConfig([
       manualChunks:
         env === "production"
           ? undefined
-          : (id) => {
-              if (bannerFilter(id)) {
+          : (id, { getModuleInfo }) => {
+              if (getModuleInfo(id).meta.preserveDirectives) {
                 return "client";
               }
               return "server";
@@ -67,6 +55,26 @@ export default defineConfig([
       preserveModules: env === "production",
     },
     plugins: [
+      {
+        name: "preserve-directives",
+        renderChunk(code, chunk) {
+          const directives = chunk.moduleIds.some(
+            (id) => this.getModuleInfo(id).meta.preserveDirectives,
+          );
+          return directives ? '"use client";\n' + code : code;
+        },
+        transform(code, id) {
+          if (
+            code.startsWith('"use client";') ||
+            id.endsWith(".tsx") ||
+            id.includes("node_modules/@mantine/hooks")
+          ) {
+            return { code, meta: { preserveDirectives: "client" } };
+          }
+
+          return null;
+        },
+      },
       {
         name: "sprinkles-merge",
         transform(code, id) {
