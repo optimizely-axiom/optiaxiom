@@ -1,0 +1,13 @@
+diff --git a/dist/server/page-map/normalize.js b/dist/server/page-map/normalize.js
+index c843328914a51d41c7948ab459f1430c28e9ef27..a13e506b28b0de93339323d8e9a24d164215a805 100644
+--- a/dist/server/page-map/normalize.js
++++ b/dist/server/page-map/normalize.js
+@@ -42,8 +42,6 @@ function sortFolder(pageMap) {
+   const items = newChildren.sort((a, b) => {
+     const indexA = metaKeys.indexOf(a.name);
+     const indexB = metaKeys.indexOf(b.name);
+-    if (b.name === "index") return 1;
+-    if (a.name === "index") return -1;
+     if (indexA === -1 && indexB === -1) return a.name < b.name ? -1 : 1;
+     if (indexA === -1) return 1;
+     if (indexB === -1) return -1;
