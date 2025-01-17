@@ -62,7 +62,7 @@ export default defineConfig([
               if (bannerFilter(id)) {
                 return "client";
               }
-              return null;
+              return "server";
             },
       preserveModules: env === "production",
     },
