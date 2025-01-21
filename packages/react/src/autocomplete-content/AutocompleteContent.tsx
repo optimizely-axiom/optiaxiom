@@ -7,6 +7,7 @@ import type { ExcludeProps } from "../utils";
 
 import { useAutocompleteContext } from "../autocomplete-context";
 import { Box, type BoxProps } from "../box";
+import { useCommandContext } from "../command-context";
 import { CommandListbox } from "../command-listbox";
 import { MenuListbox } from "../menu-listbox";
 import { ModalLayer } from "../modal-layer";
@@ -51,6 +52,7 @@ export const AutocompleteContent = forwardRef<
     ref,
   ) => {
     const { isOpen, items } = useAutocompleteContext("AutocompleteContent");
+    const { setPlaced } = useCommandContext("AutocompleteContent");
 
     return (
       isOpen && (
@@ -80,7 +82,12 @@ export const AutocompleteContent = forwardRef<
                   {...styles.content({}, className)}
                   {...props}
                 >
-                  <PopperContent align={align} side={side} sideOffset={5}>
+                  <PopperContent
+                    align={align}
+                    onPlaced={() => setPlaced(true)}
+                    side={side}
+                    sideOffset={5}
+                  >
                     {loading ? (
                       <Box display="flex" justifyContent="center" p="16">
                         <Spinner />

@@ -46,12 +46,13 @@ export function Select<Item>({
     prop: open,
   });
 
-  const [highlightedIndex, setHighlightedIndex] = usePortalPatch(isOpen);
+  const [highlightedIndex, setHighlightedIndex, placed, setPlaced] =
+    usePortalPatch(isOpen);
 
   const downshift = useSelect({
     ...props,
     highlightedIndex,
-    isOpen,
+    isOpen: placed,
     items,
     itemToKey,
     itemToString,
@@ -78,11 +79,12 @@ export function Select<Item>({
         disabled={disabled}
         downshift={downshift}
         highlightedItem={items[downshift.highlightedIndex]}
-        isOpen={downshift.isOpen}
+        isOpen={isOpen}
         items={items}
         itemToKey={itemToKey}
         itemToString={itemToString}
         selectedItem={selectedItem}
+        setPlaced={setPlaced}
       >
         {children}
       </SelectContextProvider>

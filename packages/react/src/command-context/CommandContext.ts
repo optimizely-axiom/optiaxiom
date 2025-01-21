@@ -20,5 +20,6 @@ export const [CommandContextProvider, useCommandContext] = createContext<{
     source: "keyboard" | "pointer",
   ) => void;
   setInputValue: (value: string) => void;
+  setPlaced: (placed: boolean) => void;
   value?: Set<any>;
 }>("Command");

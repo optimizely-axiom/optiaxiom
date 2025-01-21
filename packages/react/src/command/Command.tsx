@@ -69,7 +69,8 @@ export function Command<Item>({
     "keyboard" | "pointer"
   >("pointer");
 
-  const [highlightedIndex, setHighlightedIndex] = usePortalPatch(open);
+  const [highlightedIndex, setHighlightedIndex, placed, setPlaced] =
+    usePortalPatch(open);
   const [highlightedSubIndex, setHighlightedSubIndex] = useState(-1);
 
   const downshift = useCombobox({
@@ -80,7 +81,7 @@ export function Command<Item>({
         : highlightedIndex,
     inputValue,
     isItemDisabled,
-    isOpen: open,
+    isOpen: placed,
     items,
     itemToKey,
     itemToString,
@@ -153,6 +154,7 @@ export function Command<Item>({
         setLastInteractionSource(source);
       }}
       setInputValue={setInputValue}
+      setPlaced={setPlaced}
       value={value}
     >
       {children}
