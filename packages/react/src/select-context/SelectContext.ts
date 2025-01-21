@@ -14,4 +14,5 @@ export const [SelectContextProvider, useSelectContext] = createContext<{
   itemToKey: (item: any) => string;
   itemToString: (item: any) => string;
   selectedItem: any;
+  setPlaced: (placed: boolean) => void;
 }>("Select");
