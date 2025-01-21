@@ -1,6 +1,12 @@
 import { PopperAnchor } from "@radix-ui/react-popper";
 import { Slot } from "@radix-ui/react-slot";
-import { forwardRef, type KeyboardEvent, useEffect, useRef } from "react";
+import {
+  forwardRef,
+  type KeyboardEvent,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 
 import { type ButtonProps } from "../button";
 import { useFieldContext } from "../field-context";
@@ -11,7 +17,7 @@ type SelectTriggerProps = ButtonProps<typeof PopperAnchor>;
 
 export const SelectTrigger = forwardRef<HTMLButtonElement, SelectTriggerProps>(
   ({ asChild, children, onKeyDown, ...props }, ref) => {
-    const { disabled, downshift } = useSelectContext("SelectTrigger");
+    const { disabled, downshift, isOpen } = useSelectContext("SelectTrigger");
 
     const { labelId } = useFieldContext();
     const buttonRef = useRef<HTMLButtonElement>(null);
@@ -30,6 +36,17 @@ export const SelectTrigger = forwardRef<HTMLButtonElement, SelectTriggerProps>(
       label.addEventListener("click", onLabelClick);
       return () => label.removeEventListener("click", onLabelClick);
     }, [labelId]);
+
+    // Focus the toggle button on first render if defaultOpen is enabled.
+    const focusOnOpen = useState(isOpen);
+    useEffect(
+      function () {
+        if (focusOnOpen && buttonRef.current) {
+          buttonRef.current.focus();
+        }
+      },
+      [focusOnOpen],
+    );
 
     return (
       <PopperAnchor
