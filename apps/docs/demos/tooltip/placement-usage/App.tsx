@@ -1,3 +1,5 @@
+"use client";
+
 import { Button, Grid, Tooltip } from "@optiaxiom/react";
 
 export function App() {
