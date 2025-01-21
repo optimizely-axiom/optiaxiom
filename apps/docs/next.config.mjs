@@ -43,20 +43,11 @@ function writeComponentProps() {
 }
 
 function writeDemoProps() {
-  const parser = docgen.withCompilerOptions(
-    {
-      esModuleInterop: true,
-      paths: {
-        "@optiaxiom/react/unstable": [
-          "../../packages/react/dist/unstable.d.ts",
-        ],
-      },
-    },
-    {
-      savePropValueAsString: true,
-      shouldExtractValuesFromUnion: true,
-    },
-  );
+  const parser = docgen.withCustomConfig("./tsconfig.json", {
+    savePropValueAsString: true,
+    shouldExtractValuesFromUnion: true,
+    shouldRemoveUndefinedFromOptional: true,
+  });
   fs.writeFileSync(
     "./data/demos.json",
     JSON.stringify(parser.parse(fg.globSync("./demos/**/App.tsx"))),
