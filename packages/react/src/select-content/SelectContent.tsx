@@ -46,7 +46,8 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
     ref,
   ) => {
     const { boxProps, restProps } = extractBoxProps(props);
-    const { downshift, isOpen, setPlaced } = useSelectContext("SelectContent");
+    const { downshift, isOpen, placed, setPlaced } =
+      useSelectContext("SelectContent");
 
     return (
       isOpen && (
@@ -59,7 +60,7 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
               provider="popper"
               {...styles.content({}, className)}
               {...boxProps}
-              {...downshift.getMenuProps({ ref, ...restProps })}
+              {...(placed && downshift.getMenuProps({ ref, ...restProps }))}
             >
               <PopperContent
                 align={align}
