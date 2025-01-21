@@ -55,6 +55,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     let isIconOnly = false;
     children = decorateChildren({ asChild, children }, (children) => {
       isIconOnly = Boolean(!children && icon);
+      if (isIconOnly) {
+        iconOnly = true;
+      }
       if (icon && !isIconOnly) {
         if (iconPosition === "start") {
           addonBefore = <Icon asChild>{icon}</Icon>;
@@ -62,15 +65,16 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           addonAfter = <Icon asChild>{icon}</Icon>;
         }
       }
+
       return (
         <>
           {addonBefore && (
             <ButtonAddon asChild>{fallbackSpan(addonBefore)}</ButtonAddon>
           )}
 
-          {isIconOnly ? (
+          {iconOnly ? (
             <ButtonLoadable asChild>
-              <Icon asChild>{icon}</Icon>
+              <Icon asChild>{icon ?? children}</Icon>
             </ButtonLoadable>
           ) : (
             <ButtonLabel>{children}</ButtonLabel>
@@ -95,10 +99,10 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <ButtonBase
         asChild
-        iconOnly={isIconOnly || iconOnly}
+        iconOnly={iconOnly}
         ref={ref}
         {...props}
-        {...((isIconOnly || iconOnly) && {
+        {...(iconOnly && {
           justifyContent: "center",
         })}
       >

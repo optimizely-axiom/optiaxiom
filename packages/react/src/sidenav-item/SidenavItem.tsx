@@ -6,7 +6,7 @@ import { Flex } from "../flex";
 import { useSidenavContext } from "../sidenav-context";
 import { Tooltip } from "../tooltip";
 import { Transition } from "../transition";
-import { decorateChildren, fallbackSpan } from "../utils";
+import { decorateChildren } from "../utils";
 import * as styles from "./SidenavItem.css";
 
 export type SidenavItemProps = ButtonProps<
@@ -40,13 +40,7 @@ export const SidenavItem = forwardRef<HTMLButtonElement, SidenavItemProps>(
           side="right"
         >
           <Button
-            addonAfter={
-              expanded && (
-                <Box asChild ml="auto">
-                  {fallbackSpan(addonAfter)}
-                </Box>
-              )
-            }
+            addonAfter={expanded && addonAfter}
             appearance="subtle"
             asChild={asChild}
             data-state={active ? "active" : undefined}
