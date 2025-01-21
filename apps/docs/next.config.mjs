@@ -24,6 +24,9 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  experimental: {
+    cssChunking: "strict",
+  },
   images: {
     unoptimized: true,
   },
