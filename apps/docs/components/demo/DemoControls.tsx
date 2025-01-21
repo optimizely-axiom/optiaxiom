@@ -225,7 +225,7 @@ function isNumberType(item: PropItem) {
 }
 
 function isTextType(item: PropItem) {
-  if (!(item.type.name === "any" || item.type.name === "string")) {
+  if (!(item.type.raw === "string" || item.type.raw === "ReactNode")) {
     return false;
   }
 
@@ -237,6 +237,10 @@ function isTextType(item: PropItem) {
 }
 
 function itemToControl(item: PropItem) {
+  const text = isTextType(item);
+  if (text) {
+    return text;
+  }
   const number = isNumberType(item);
   if (number) {
     return number;
@@ -258,10 +262,6 @@ function itemToControl(item: PropItem) {
       };
     }
     return dropdown;
-  }
-  const text = isTextType(item);
-  if (text) {
-    return text;
   }
   return;
 }
