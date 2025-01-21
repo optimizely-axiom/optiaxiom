@@ -17,6 +17,7 @@ export const list = recipe({
 export const cursor = recipe({
   base: [
     {
+      justifyContent: "center",
       z: "10",
     },
     style({
@@ -38,7 +39,12 @@ export const cursor = recipe({
 });
 
 export const button = recipe({
-  base: style({
-    minWidth: theme.size.md,
-  }),
+  base: [
+    {
+      justifyContent: "center",
+    },
+    style({
+      minWidth: theme.size.md,
+    }),
+  ],
 });
