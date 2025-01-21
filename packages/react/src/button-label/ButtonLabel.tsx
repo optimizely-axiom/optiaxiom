@@ -10,7 +10,7 @@ export const ButtonLabel = forwardRef<HTMLDivElement, ButtonLabelProps>(
   ({ children, ...props }, ref) => {
     return (
       <ButtonLoadable asChild>
-        <Flex flexDirection="row" gap="4" mx="4" ref={ref} {...props}>
+        <Flex flex="1" flexDirection="row" gap="4" mx="4" ref={ref} {...props}>
           {children}
         </Flex>
       </ButtonLoadable>

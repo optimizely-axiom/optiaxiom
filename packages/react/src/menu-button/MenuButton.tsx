@@ -8,13 +8,7 @@ type MenuButtonProps = ComponentPropsWithoutRef<typeof Button>;
 export const MenuButton = forwardRef<HTMLButtonElement, MenuButtonProps>(
   ({ children, ...props }, ref) => {
     return (
-      <Button
-        icon={<IconAngleDown />}
-        iconPosition="end"
-        justifyContent="space-between"
-        ref={ref}
-        {...props}
-      >
+      <Button icon={<IconAngleDown />} iconPosition="end" ref={ref} {...props}>
         {children}
       </Button>
     );
