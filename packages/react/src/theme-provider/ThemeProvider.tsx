@@ -2,6 +2,8 @@ import { theme, tokens } from "@optiaxiom/globals";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
 import { type ReactNode } from "react";
 
+import { layers } from "../layers";
+
 type ThemeProviderProps = {
   children?: ReactNode;
   selector?: string;
@@ -24,7 +26,7 @@ export function ThemeProvider({
   return (
     <>
       <style>{`
-        @layer optiaxiom.theme {
+        @layer ${layers.theme} {
           ${selector} {
             ${assignInlineVars(theme, {
               ...tokens,
