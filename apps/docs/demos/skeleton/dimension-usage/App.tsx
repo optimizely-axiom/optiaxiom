@@ -1,3 +1,5 @@
+"use client";
+
 import { Flex, Grid, Heading, Skeleton, Text } from "@optiaxiom/react";
 
 export function App() {
