@@ -2,47 +2,39 @@
 
 import { useEffect, useState } from "react";
 
-import { useDelayedState } from "./useDelayedState";
-import { useForceRerender } from "./useForceRerender";
-
 export function usePortalPatch(
   open: boolean | undefined,
   initialHighlightedIndex = -1,
 ) {
   /**
-   * In cases where the menu is rendered inside a portal we need to place the
-   * menu first before we can tell downshift to "open" the menu. First we need
-   * to insert the menu in the DOM and then also position it relative to the
-   * trigger. Otherwise we get scroll jumps where downshift tries to focus input
-   * or menu item that has not been placed yet and so page scroll jumps to top
-   * (since the default position is 0, 0).
+   * In cases where the menu is rendered inside a portal we need to first insert
+   * the menu into the DOM, position it relative to the trigger, and then tell
+   * downshift that the menu is "open".
+   *
+   * Otherwise we get scroll jumps where downshift tries to focus input or menu
+   * item that has not been placed yet as the default position is (0px, 0px).
    */
   const [placed, setPlaced] = useState(false);
   useEffect(() => {
     return () => setPlaced(false);
   }, [open]);
 
-  /**
-   * Downshift attempts to scroll to the currently selected item when the menu
-   * opens. But since we don't render the menu until it is open the `ref` will
-   * not be available yet.
-   *
-   * So we hold the active highlightedIndex in a ref/queue on first open and
-   * wait for next effect/tick to set the highlightedIndex state.
-   */
-  const [highlightedIndex, setHighlightedIndex] = useDelayedState(
+  const [highlightedIndex, setHighlightedIndex] = useState(
     initialHighlightedIndex,
-    placed,
   );
 
-  /**
-   * Downshift stores a ref to the menu to check if interactions are happening
-   * within the menu. But since we don't render the menu until it is open the
-   * `ref` will not be available yet.
-   *
-   * So we re-render the component once it opens to force update the menu ref.
-   */
-  useForceRerender(placed);
-
-  return [highlightedIndex, setHighlightedIndex, placed, setPlaced] as const;
+  return [
+    /**
+     * Downshift attempts to scroll to the currently selected item when the menu
+     * opens. But since we don't render the menu until it is open the `ref` will
+     * not be available yet.
+     *
+     * So we only return the index when it has been placed and return -1
+     * otherwise.
+     */
+    placed ? highlightedIndex : -1,
+    setHighlightedIndex,
+    placed,
+    setPlaced,
+  ] as const;
 }
