@@ -1,3 +1,5 @@
+"use client";
+
 import { useMediaQuery } from "@mantine/hooks";
 
 import { conditions } from "../utils";
