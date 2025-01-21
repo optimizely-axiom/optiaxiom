@@ -40,7 +40,7 @@ export default {
 const languages = [
   "Afrikaans",
   "Arabic",
-  "Bengali",
+  "Bangla",
   "Bulgarian",
   "Catalan",
   "Chinese (Simplified)",
@@ -84,7 +84,7 @@ export const Basic: Story = {
   render: function Basic(args) {
     const [open, setOpen] = useState(args.defaultOpen);
     const [items, setItems] = useState(languages);
-    const [value, setValue] = useState("");
+    const [value, setValue] = useState("Bangla");
 
     return (
       <Combobox

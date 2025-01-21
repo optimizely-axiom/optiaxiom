@@ -47,7 +47,12 @@ export function Select<Item>({
   });
 
   const [highlightedIndex, setHighlightedIndex, placed, setPlaced] =
-    usePortalPatch(isOpen);
+    usePortalPatch(
+      isOpen,
+      selectedItem
+        ? items.findIndex((item) => itemToKey(selectedItem) === itemToKey(item))
+        : -1,
+    );
 
   const downshift = useSelect({
     ...props,
@@ -78,7 +83,7 @@ export function Select<Item>({
       <SelectContextProvider
         disabled={disabled}
         downshift={downshift}
-        highlightedItem={items[downshift.highlightedIndex]}
+        highlightedItem={items[highlightedIndex]}
         isOpen={isOpen}
         items={items}
         itemToKey={itemToKey}
