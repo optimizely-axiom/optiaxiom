@@ -38,7 +38,7 @@ export const SelectTrigger = forwardRef<HTMLButtonElement, SelectTriggerProps>(
     }, [labelId]);
 
     // Focus the toggle button on first render if defaultOpen is enabled.
-    const focusOnOpen = useState(isOpen);
+    const [focusOnOpen] = useState(isOpen);
     useEffect(
       function () {
         if (focusOnOpen && buttonRef.current) {
