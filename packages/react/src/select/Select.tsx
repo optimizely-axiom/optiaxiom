@@ -88,6 +88,7 @@ export function Select<Item>({
         items={items}
         itemToKey={itemToKey}
         itemToString={itemToString}
+        placed={placed}
         selectedItem={selectedItem}
         setPlaced={setPlaced}
       >
