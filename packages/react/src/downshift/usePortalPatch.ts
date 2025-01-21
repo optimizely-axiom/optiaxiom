@@ -5,7 +5,10 @@ import { useEffect, useState } from "react";
 import { useDelayedState } from "./useDelayedState";
 import { useForceRerender } from "./useForceRerender";
 
-export function usePortalPatch(open: boolean | undefined) {
+export function usePortalPatch(
+  open: boolean | undefined,
+  initialHighlightedIndex = -1,
+) {
   /**
    * In cases where the menu is rendered inside a portal we need to place the
    * menu first before we can tell downshift to "open" the menu. First we need
@@ -27,7 +30,10 @@ export function usePortalPatch(open: boolean | undefined) {
    * So we hold the active highlightedIndex in a ref/queue on first open and
    * wait for next effect/tick to set the highlightedIndex state.
    */
-  const [highlightedIndex, setHighlightedIndex] = useDelayedState(-1, placed);
+  const [highlightedIndex, setHighlightedIndex] = useDelayedState(
+    initialHighlightedIndex,
+    placed,
+  );
 
   /**
    * Downshift stores a ref to the menu to check if interactions are happening

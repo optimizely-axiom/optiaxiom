@@ -51,6 +51,7 @@ export function Command<Item>({
   onItemSelect,
   onOpenChange,
   open,
+  selectedItem,
   value: valueProp,
   ...props
 }: CommandProps<Item>) {
@@ -70,7 +71,12 @@ export function Command<Item>({
   >("pointer");
 
   const [highlightedIndex, setHighlightedIndex, placed, setPlaced] =
-    usePortalPatch(open);
+    usePortalPatch(
+      open,
+      selectedItem
+        ? items.findIndex((item) => itemToKey(selectedItem) === itemToKey(item))
+        : -1,
+    );
   const [highlightedSubIndex, setHighlightedSubIndex] = useState(-1);
 
   const downshift = useCombobox({
@@ -129,6 +135,7 @@ export function Command<Item>({
         onItemSelect?.(selectedItem);
       }
     },
+    selectedItem,
   });
 
   /**

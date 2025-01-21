@@ -43,7 +43,7 @@ const languages = [
   "Turkish",
   "Arabic",
   "Hindi",
-  "Bengali",
+  "Bangla",
   "Vietnamese",
   "Thai",
   "Indonesian",
@@ -67,6 +67,9 @@ const languages = [
 ];
 
 export const Basic: Story = {
+  args: {
+    defaultValue: "Bangla",
+  },
   render: function Basic(args) {
     const [items, setItems] = useState(languages);
 
