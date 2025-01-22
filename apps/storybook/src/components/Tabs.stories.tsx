@@ -7,12 +7,6 @@ import {
   TabsList,
   TabsTrigger,
 } from "@optiaxiom/react";
-import {
-  IconListCheck,
-  IconMessageCircle,
-  IconTrash,
-  IconUser,
-} from "@tabler/icons-react";
 
 export default {
   args: {
@@ -20,9 +14,7 @@ export default {
       <>
         <TabsList>
           <TabsTrigger value="first">First</TabsTrigger>
-          <TabsTrigger icon={<IconMessageCircle />} value="second">
-            Second
-          </TabsTrigger>
+          <TabsTrigger value="second">Second</TabsTrigger>
           <TabsTrigger
             addonAfter={
               <Badge intent="primary" variant="solid">
@@ -69,19 +61,14 @@ export const Vertical: Story = {
     children: (
       <>
         <TabsList>
-          <TabsTrigger icon={<IconUser />} value="first">
-            First
-          </TabsTrigger>
-          <TabsTrigger icon={<IconListCheck />} value="second">
-            Second
-          </TabsTrigger>
+          <TabsTrigger value="first">First</TabsTrigger>
+          <TabsTrigger value="second">Second</TabsTrigger>
           <TabsTrigger
             addonAfter={
               <Badge intent="primary" variant="solid">
                 8
               </Badge>
             }
-            icon={<IconTrash />}
             value="third"
           >
             Third
