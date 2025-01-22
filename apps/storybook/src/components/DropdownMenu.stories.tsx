@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import {
   Avatar,
   DropdownMenu,
+  DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuItem,
@@ -308,6 +309,63 @@ export const AsyncLoading: Story = {
               <DropdownMenuItem intent="danger">Delete task</DropdownMenuItem>
             </>
           )}
+        </DropdownMenuContent>
+      </DropdownMenu>
+    );
+  },
+};
+
+export const CheckboxItem: Story = {
+  render: function NotificationSettings(args) {
+    const [notifications, setNotifications] = useState<string[]>(["email"]);
+
+    const notificationOptions = [
+      { id: "email", label: "Email Notifications" },
+      { id: "push", label: "Push Notifications" },
+      { id: "sms", label: "SMS Notifications" },
+      { id: "slack", label: "Slack Notifications" },
+    ];
+
+    const handleNotificationChange = (type: string, checked: boolean) => {
+      setNotifications((prev) => {
+        if (checked) {
+          return [...prev, type];
+        }
+        return prev.filter((t) => t !== type);
+      });
+    };
+
+    return (
+      <DropdownMenu {...args}>
+        <DropdownMenuTrigger>Notification Settings</DropdownMenuTrigger>
+
+        <DropdownMenuContent>
+          <DropdownMenuItem>
+            Active Channels: {notifications.length}
+          </DropdownMenuItem>
+          <DropdownMenuSeparator />
+
+          {notificationOptions.map((option) => (
+            <DropdownMenuCheckboxItem
+              checked={notifications.includes(option.id)}
+              disabled={option.id === "push"}
+              key={option.id}
+              onCheckedChange={(checked) =>
+                handleNotificationChange(option.id, checked)
+              }
+            >
+              {option.label}
+            </DropdownMenuCheckboxItem>
+          ))}
+
+          <DropdownMenuSeparator />
+          <DropdownMenuItem
+            disabled={notifications.length === 0}
+            intent="danger"
+            onSelect={() => setNotifications([])}
+          >
+            Disable All
+          </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
     );

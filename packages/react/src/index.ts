@@ -39,6 +39,7 @@ export * from "./drawer-header";
 export * from "./drawer-title";
 export * from "./drawer-trigger";
 export * from "./dropdown-menu";
+export * from "./dropdown-menu-checkbox-item";
 export * from "./dropdown-menu-content";
 export * from "./dropdown-menu-group";
 export * from "./dropdown-menu-item";
