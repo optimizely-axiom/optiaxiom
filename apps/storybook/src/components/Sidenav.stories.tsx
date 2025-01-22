@@ -6,6 +6,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  Nav,
   Sidenav,
   SidenavAccountItem,
   SidenavBody,
@@ -63,7 +64,7 @@ const body = (
 export default {
   args: {
     children: (
-      <>
+      <Nav>
         {body}
 
         <SidenavFooter>
@@ -84,7 +85,7 @@ export default {
             </DropdownMenuContent>
           </DropdownMenu>
         </SidenavFooter>
-      </>
+      </Nav>
     ),
     style: {
       height: "80vh",
@@ -105,7 +106,7 @@ export const Basic: Story = {};
 export const NotCollapsible: Story = {
   args: {
     children: (
-      <>
+      <Nav>
         {body}
 
         <SidenavFooter>
@@ -125,7 +126,7 @@ export const NotCollapsible: Story = {
             </DropdownMenuContent>
           </DropdownMenu>
         </SidenavFooter>
-      </>
+      </Nav>
     ),
   },
 };

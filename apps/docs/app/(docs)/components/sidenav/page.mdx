@@ -15,6 +15,7 @@ Primary navigation menu for left side of the page that includes support for bran
 
 ```tsx
 import {
+  Nav,
   Sidenav,
   SidenavAccountItem,
   SidenavBody,
@@ -26,19 +27,21 @@ import {
 
 export default () => (
   <Sidenav>
-    <SidenavHeader>
-      <SidenavItem />
-    </SidenavHeader>
+    <Nav>
+      <SidenavHeader>
+        <SidenavItem />
+      </SidenavHeader>
 
-    <SidenavBody>
-      <SidenavItem />
-    </SidenavBody>
+      <SidenavBody>
+        <SidenavItem />
+      </SidenavBody>
 
-    <SidenavFooter>
-      <SidenavToggle />
-      <SidenavItem />
-      <SidenavAccountItem />
-    </SidenavBody>
+      <SidenavFooter>
+        <SidenavToggle />
+        <SidenavItem />
+        <SidenavAccountItem />
+      </SidenavFooter>
+    </Nav>
   </Sidenav>
 );
 ```

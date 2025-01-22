@@ -74,6 +74,7 @@ export * from "./listbox-scroll-area";
 export * from "./listbox-separator";
 export * from "./menu-button";
 export * from "./modal-layer";
+export * from "./nav";
 export * from "./pagination";
 export * from "./paper";
 export * from "./popover";
