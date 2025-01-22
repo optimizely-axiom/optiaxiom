@@ -60,7 +60,10 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
               provider="popper"
               {...styles.content({}, className)}
               {...boxProps}
-              {...(placed && downshift.getMenuProps({ ref, ...restProps }))}
+              {...downshift.getMenuProps(
+                { ref, ...restProps },
+                { suppressRefError: !placed },
+              )}
             >
               <PopperContent
                 align={align}
