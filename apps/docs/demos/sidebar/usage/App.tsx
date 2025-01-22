@@ -4,12 +4,12 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
   Nav,
-  Sidenav,
-  SidenavAccountItem,
-  SidenavBody,
-  SidenavFooter,
-  SidenavItem,
-  SidenavToggle,
+  NavAccountItem,
+  NavBody,
+  NavFooter,
+  NavItem,
+  Sidebar,
+  SidebarToggle,
 } from "@optiaxiom/react";
 import {
   IconBinaryTree,
@@ -26,36 +26,36 @@ import { Canvas } from "../Canvas";
 export function App() {
   return (
     <Canvas>
-      <Sidenav defaultExpanded>
+      <Sidebar defaultExpanded>
         <Nav>
-          <SidenavBody>
-            <SidenavItem aria-label="Projects" icon={<IconBinaryTree />}>
+          <NavBody>
+            <NavItem aria-label="Projects" icon={<IconBinaryTree />}>
               Projects
-            </SidenavItem>
-            <SidenavItem active aria-label="Flags" icon={<IconFlag2 />}>
+            </NavItem>
+            <NavItem active aria-label="Flags" icon={<IconFlag2 />}>
               Flags
-            </SidenavItem>
-            <SidenavItem aria-label="Events" icon={<IconChartLine />}>
+            </NavItem>
+            <NavItem aria-label="Events" icon={<IconChartLine />}>
               Events
-            </SidenavItem>
-            <SidenavItem aria-label="Settings" icon={<IconSettings />}>
+            </NavItem>
+            <NavItem aria-label="Settings" icon={<IconSettings />}>
               Settings
-            </SidenavItem>
-            <SidenavItem
+            </NavItem>
+            <NavItem
               addonAfter={<IconExternalLink size="16" />}
               aria-label="Tutorial"
               asChild
               icon={<IconVocabulary />}
             >
               <a href="/">Tutorial</a>
-            </SidenavItem>
-          </SidenavBody>
+            </NavItem>
+          </NavBody>
 
-          <SidenavFooter>
-            <SidenavToggle icon={<IconLayoutSidebar />} />
+          <NavFooter>
+            <SidebarToggle icon={<IconLayoutSidebar />} />
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <SidenavAccountItem
+                <NavAccountItem
                   name="Rhaenyra Targaryen"
                   organization="Optimizely"
                   src="https://i.pravatar.cc/150?img=10"
@@ -68,9 +68,9 @@ export function App() {
                 <DropdownMenuItem>Logout</DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
-          </SidenavFooter>
+          </NavFooter>
         </Nav>
-      </Sidenav>
+      </Sidebar>
     </Canvas>
   );
 }

@@ -3,9 +3,9 @@ import { forwardRef } from "react";
 import { type BoxProps } from "../box";
 import { Flex } from "../flex";
 
-type SidenavHeaderProps = BoxProps<"div">;
+type NavHeaderProps = BoxProps<"div">;
 
-export const SidenavHeader = forwardRef<HTMLDivElement, SidenavHeaderProps>(
+export const NavHeader = forwardRef<HTMLDivElement, NavHeaderProps>(
   ({ children, ...props }, ref) => {
     return (
       <Flex ref={ref} role="list" {...props}>
@@ -15,4 +15,4 @@ export const SidenavHeader = forwardRef<HTMLDivElement, SidenavHeaderProps>(
   },
 );
 
-SidenavHeader.displayName = "@optiaxiom/react/SidenavHeader";
+NavHeader.displayName = "@optiaxiom/react/NavHeader";

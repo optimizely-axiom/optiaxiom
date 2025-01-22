@@ -7,12 +7,12 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
   Nav,
-  Sidenav,
-  SidenavAccountItem,
-  SidenavBody,
-  SidenavFooter,
-  SidenavItem,
-  SidenavToggle,
+  NavAccountItem,
+  NavBody,
+  NavFooter,
+  NavItem,
+  Sidebar,
+  SidebarToggle,
 } from "@optiaxiom/react";
 import {
   IconBinaryTree,
@@ -28,37 +28,37 @@ import {
 } from "@tabler/icons-react";
 
 const body = (
-  <SidenavBody>
-    <SidenavItem aria-label="Projects" icon={<IconBinaryTree />}>
+  <NavBody>
+    <NavItem aria-label="Projects" icon={<IconBinaryTree />}>
       Projects
-    </SidenavItem>
-    <SidenavItem active aria-label="Flags" icon={<IconFlag2 />}>
+    </NavItem>
+    <NavItem active aria-label="Flags" icon={<IconFlag2 />}>
       Flags
-    </SidenavItem>
-    <SidenavItem aria-label="Idea Lab" icon={<IconChartInfographic />}>
+    </NavItem>
+    <NavItem aria-label="Idea Lab" icon={<IconChartInfographic />}>
       Idea Lab
-    </SidenavItem>
-    <SidenavItem aria-label="Audiences" icon={<IconUsers />}>
+    </NavItem>
+    <NavItem aria-label="Audiences" icon={<IconUsers />}>
       Audiences
-    </SidenavItem>
-    <SidenavItem aria-label="History" icon={<IconHistory />}>
+    </NavItem>
+    <NavItem aria-label="History" icon={<IconHistory />}>
       History
-    </SidenavItem>
-    <SidenavItem aria-label="Events" icon={<IconChartLine />}>
+    </NavItem>
+    <NavItem aria-label="Events" icon={<IconChartLine />}>
       Events
-    </SidenavItem>
-    <SidenavItem aria-label="Settings" icon={<IconSettings />}>
+    </NavItem>
+    <NavItem aria-label="Settings" icon={<IconSettings />}>
       Settings
-    </SidenavItem>
-    <SidenavItem
+    </NavItem>
+    <NavItem
       addonAfter={<IconExternalLink size="16" />}
       aria-label="Tutorial"
       asChild
       icon={<IconVocabulary />}
     >
       <a href="/">Tutorial</a>
-    </SidenavItem>
-  </SidenavBody>
+    </NavItem>
+  </NavBody>
 );
 
 export default {
@@ -67,11 +67,11 @@ export default {
       <Nav>
         {body}
 
-        <SidenavFooter>
-          <SidenavToggle icon={<IconLayoutSidebar />} />
+        <NavFooter>
+          <SidebarToggle icon={<IconLayoutSidebar />} />
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <SidenavAccountItem
+              <NavAccountItem
                 name="Rhaenyra Targaryen"
                 organization="Optimizely"
                 src="https://i.pravatar.cc/150?img=10"
@@ -84,22 +84,22 @@ export default {
               <DropdownMenuItem>Logout</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
-        </SidenavFooter>
+        </NavFooter>
       </Nav>
     ),
     style: {
       height: "80vh",
     },
   },
-  component: Sidenav,
+  component: Sidebar,
   decorators: (Story) => (
     <Box bg="bg.page" p="24" w="384">
       <Story />
     </Box>
   ),
-} as Meta<typeof Sidenav>;
+} as Meta<typeof Sidebar>;
 
-type Story = StoryObj<typeof Sidenav>;
+type Story = StoryObj<typeof Sidebar>;
 
 export const Basic: Story = {};
 
@@ -109,10 +109,10 @@ export const NotCollapsible: Story = {
       <Nav>
         {body}
 
-        <SidenavFooter>
+        <NavFooter>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <SidenavAccountItem
+              <NavAccountItem
                 name="Rhaenyra Targaryen"
                 organization="Optimizely"
                 src="https://i.pravatar.cc/150?img=10"
@@ -125,7 +125,7 @@ export const NotCollapsible: Story = {
               <DropdownMenuItem>Logout</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
-        </SidenavFooter>
+        </NavFooter>
       </Nav>
     ),
   },

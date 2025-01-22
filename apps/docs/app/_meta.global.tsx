@@ -109,8 +109,8 @@ export default {
       select: {
         title: <AlphaItem>Select</AlphaItem>,
       },
-      sidenav: {
-        title: <AlphaItem>Sidenav</AlphaItem>,
+      sidebar: {
+        title: <AlphaItem>Sidebar</AlphaItem>,
       },
       skeleton: "Skeleton",
       spinner: "Spinner",

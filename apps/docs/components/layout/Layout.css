@@ -273,7 +273,7 @@
 
       &:not(.x\:text-end) {
         div {
-          justify-content: start;
+          justify-content: start !important;
         }
 
         &::before {
@@ -287,8 +287,8 @@
         margin-left: auto;
 
         & div {
-          flex-direction: row-reverse;
-          justify-content: end;
+          flex-direction: row-reverse !important;
+          justify-content: end !important;
         }
 
         &::before {

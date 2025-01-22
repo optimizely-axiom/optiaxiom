@@ -2,7 +2,7 @@ import { forwardRef } from "react";
 
 import { type BoxProps } from "../box";
 import { Flex } from "../flex";
-import { useSidenavContext } from "../sidenav-context";
+import { useSidebarContext } from "../sidebar-context";
 
 type NavProps = BoxProps<
   "nav",
@@ -15,7 +15,7 @@ type NavProps = BoxProps<
 
 export const Nav = forwardRef<HTMLDivElement, NavProps>(
   ({ children, ...props }, ref) => {
-    const { animations, expanded } = useSidenavContext("Nav");
+    const { animations, expanded } = useSidebarContext("Nav");
 
     return (
       <Flex borderR="1" h="full" ref={ref} w="fit" {...props}>

@@ -623,9 +623,9 @@ export const demos = {
     demo: import("./separator/vertical-usage/App"),
     path: "separator/vertical-usage",
   },
-  "sidenav/usage": {
-    demo: import("./sidenav/usage/App"),
-    path: "sidenav/usage",
+  "sidebar/usage": {
+    demo: import("./sidebar/usage/App"),
+    path: "sidebar/usage",
   },
   "size/percentage-usage": {
     demo: import("./size/percentage-usage/App"),

@@ -1,0 +1,83 @@
+import { Demo, demos } from "@/components/demo";
+import { components, PropsTable } from "@/components/props-table";
+
+# Sidebar
+
+Primary navigation menu for left side of the page that includes support for branding, links, etc.
+
+## Documentation
+
+### Usage
+
+<Demo component={demos["sidebar/usage"]} />
+
+### Anatomy
+
+```tsx
+import {
+  Nav,
+  NavAccountItem,
+  NavBody,
+  NavFooter,
+  NavHeader,
+  NavItem,
+  Sidebar,
+  SidebarToggle,
+} from "@optiaxiom/react";
+
+export default () => (
+  <Sidebar>
+    <Nav>
+      <NavHeader>
+        <NavItem />
+      </NavHeader>
+
+      <NavBody>
+        <NavItem />
+      </NavBody>
+
+      <NavFooter>
+        <SidebarToggle />
+        <NavItem />
+        <NavAccountItem />
+      </NavFooter>
+    </Nav>
+  </Sidebar>
+);
+```
+
+## Props
+
+### Sidebar
+
+<PropsTable component={components["Sidebar"]} />
+
+### SidebarToggle
+
+<PropsTable component={components["SidebarToggle"]} />
+
+### NavHeader
+
+<PropsTable component={components["NavHeader"]} />
+
+### NavBody
+
+<PropsTable component={components["NavBody"]} />
+
+### NavItem
+
+<PropsTable component={components["NavItem"]} />
+
+### NavAccountItem
+
+<PropsTable component={components["NavAccountItem"]} />
+
+### NavFooter
+
+<PropsTable component={components["NavFooter"]} />
+
+## Changelog
+
+### 0.4.0
+
+- Added component

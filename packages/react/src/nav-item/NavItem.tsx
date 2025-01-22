@@ -3,13 +3,13 @@ import { forwardRef } from "react";
 import { Box } from "../box";
 import { Button, type ButtonProps } from "../button";
 import { Flex } from "../flex";
-import { useSidenavContext } from "../sidenav-context";
+import { useSidebarContext } from "../sidebar-context";
 import { Tooltip } from "../tooltip";
 import { Transition } from "../transition";
 import { decorateChildren } from "../utils";
-import * as styles from "./SidenavItem.css";
+import * as styles from "./NavItem.css";
 
-export type SidenavItemProps = ButtonProps<
+export type NavItemProps = ButtonProps<
   typeof Button,
   {
     active?: boolean;
@@ -17,9 +17,9 @@ export type SidenavItemProps = ButtonProps<
   }
 >;
 
-export const SidenavItem = forwardRef<HTMLButtonElement, SidenavItemProps>(
+export const NavItem = forwardRef<HTMLButtonElement, NavItemProps>(
   ({ active, addonAfter, asChild, children, className, ...props }, ref) => {
-    const { animations, expanded } = useSidenavContext("SidenavItem");
+    const { animations, expanded } = useSidebarContext("NavItem");
 
     let tooltip = null;
     children = decorateChildren({ asChild, children }, (children) => {
@@ -59,4 +59,4 @@ export const SidenavItem = forwardRef<HTMLButtonElement, SidenavItemProps>(
   },
 );
 
-SidenavItem.displayName = "@optiaxiom/react/SidenavItem";
+NavItem.displayName = "@optiaxiom/react/NavItem";
