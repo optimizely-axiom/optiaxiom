@@ -14,7 +14,7 @@ type SidenavProps = BoxProps<
   }
 >;
 
-export const Sidenav = forwardRef<HTMLElement, SidenavProps>(
+export const Sidenav = forwardRef<HTMLDivElement, SidenavProps>(
   (
     {
       children,
@@ -48,7 +48,7 @@ export const Sidenav = forwardRef<HTMLElement, SidenavProps>(
           setExpanded(flag);
         }}
       >
-        <Flex borderR="1" h="full" w="fit" {...props}>
+        <Flex borderR="1" h="full" ref={ref} w="fit" {...props}>
           <Flex
             asChild
             bg="bg.default"
@@ -60,9 +60,7 @@ export const Sidenav = forwardRef<HTMLElement, SidenavProps>(
             transition={animations ? "all" : undefined}
             w={expanded ? "224" : "56"}
           >
-            <nav aria-label="Main" ref={ref}>
-              {children}
-            </nav>
+            <nav aria-label="Main">{children}</nav>
           </Flex>
         </Flex>
       </SidenavContextProvider>
