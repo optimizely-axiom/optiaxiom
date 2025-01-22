@@ -4,11 +4,11 @@ import { Avatar } from "../avatar";
 import { Box, type BoxProps } from "../box";
 import { Flex } from "../flex";
 import { IconEllipsis } from "../icons/IconEllipsis";
-import { useSidenavContext } from "../sidenav-context";
+import { useSidebarContext } from "../sidebar-context";
 import { Text } from "../text";
 import { Transition } from "../transition";
 
-export type SidenavAccountItemProps = BoxProps<
+export type NavAccountItemProps = BoxProps<
   "div",
   {
     name?: string;
@@ -17,11 +17,11 @@ export type SidenavAccountItemProps = BoxProps<
   }
 >;
 
-export const SidenavAccountItem = forwardRef<
+export const NavAccountItem = forwardRef<
   HTMLButtonElement,
-  SidenavAccountItemProps
+  NavAccountItemProps
 >(({ name, organization, src, ...props }, ref) => {
-  const { animations, expanded } = useSidenavContext("SidenavAccountItem");
+  const { animations, expanded } = useSidebarContext("NavAccountItem");
 
   return (
     <Flex my="8" role="listitem">
@@ -68,4 +68,4 @@ export const SidenavAccountItem = forwardRef<
   );
 });
 
-SidenavAccountItem.displayName = "@optiaxiom/react/SidenavAccountItem";
+NavAccountItem.displayName = "@optiaxiom/react/NavAccountItem";

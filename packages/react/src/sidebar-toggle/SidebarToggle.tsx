@@ -1,20 +1,20 @@
 import { type ComponentPropsWithRef, forwardRef } from "react";
 
-import { useSidenavContext } from "../sidenav-context";
-import { SidenavItem } from "../sidenav-item";
+import { NavItem } from "../nav-item";
+import { useSidebarContext } from "../sidebar-context";
 
-export type SidenavToggleProps = Omit<
-  ComponentPropsWithRef<typeof SidenavItem>,
+export type SidebarToggleProps = Omit<
+  ComponentPropsWithRef<typeof NavItem>,
   "aria-label"
 > & {
   "aria-label"?: string;
 };
 
-export const SidenavToggle = forwardRef<HTMLButtonElement, SidenavToggleProps>(
+export const SidebarToggle = forwardRef<HTMLButtonElement, SidebarToggleProps>(
   ({ "aria-label": ariaLabel, children, ...props }, ref) => {
-    const { expanded, onExpandedChange } = useSidenavContext("SidenavToggle");
+    const { expanded, onExpandedChange } = useSidebarContext("SidebarToggle");
     return (
-      <SidenavItem
+      <NavItem
         aria-label={ariaLabel || (expanded ? "Collapse" : "Expand")}
         fontWeight="400"
         onClick={() => onExpandedChange(!expanded)}
@@ -22,9 +22,9 @@ export const SidenavToggle = forwardRef<HTMLButtonElement, SidenavToggleProps>(
         {...props}
       >
         {children ? children : expanded ? "Collapse" : "Expand"}
-      </SidenavItem>
+      </NavItem>
     );
   },
 );
 
-SidenavToggle.displayName = "@optiaxiom/react/SidenavToggle";
+SidebarToggle.displayName = "@optiaxiom/react/SidebarToggle";

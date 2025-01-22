@@ -25,13 +25,13 @@ const mapComponentToBase: Record<string, string> = {
   Heading: "Text",
   KBd: "Code",
   ModalLayer: "",
+  NavItem: "Button",
   PopoverTrigger: "Button",
   SearchInput: "Input",
   SegmentedControlItem: "Button",
   SelectSeparator: "Separator",
   SelectTrigger: "Button",
-  SidenavItem: "Button",
-  SidenavToggle: "Button",
+  SidebarToggle: "Button",
   TabsTrigger: "Button",
   ToastAction: "Button",
   ToastTitle: "Text",
@@ -159,7 +159,7 @@ function PropsTableDescription({
         </>
       ) : name !== "Box" && !children ? (
         "Doesn't render its own HTML element."
-      ) : ["SidenavAccountItem"].includes(name) ? (
+      ) : ["NavAccountItem"].includes(name) ? (
         <>
           Renders a <Code>&lt;button&gt;</Code> element.
         </>

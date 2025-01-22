@@ -1,24 +1,30 @@
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
-import { useEffect, useRef, useState } from "react";
+import { type ReactNode, useEffect, useRef, useState } from "react";
 
-import { type BoxProps } from "../box";
-import { SidenavContextProvider } from "../sidenav-context";
+import { SidebarContextProvider } from "../sidebar-context";
 
-type SidenavProps = BoxProps<
-  "nav",
-  {
-    defaultExpanded?: boolean;
-    expanded?: boolean;
-    onExpandedChange?: (expanded: boolean) => void;
-  }
->;
+type SidebarProps = {
+  children?: ReactNode;
+  /**
+   * The initial expanded state in uncontrolled mode.
+   */
+  defaultExpanded?: boolean;
+  /**
+   * The expanded state in controlled mode.
+   */
+  expanded?: boolean;
+  /**
+   * Handler that is called when the expanded state changes.
+   */
+  onExpandedChange?: (expanded: boolean) => void;
+};
 
-export const Sidenav = ({
+export const Sidebar = ({
   children,
   defaultExpanded,
   expanded: expandedProp,
   onExpandedChange,
-}: SidenavProps) => {
+}: SidebarProps) => {
   const [expanded, setExpanded] = useControllableState({
     defaultProp: defaultExpanded,
     onChange: onExpandedChange,
@@ -32,7 +38,7 @@ export const Sidenav = ({
   }, [animations]);
 
   return (
-    <SidenavContextProvider
+    <SidebarContextProvider
       animations={animations}
       expanded={expanded}
       onExpandedChange={(flag) => {
@@ -43,8 +49,8 @@ export const Sidenav = ({
       }}
     >
       {children}
-    </SidenavContextProvider>
+    </SidebarContextProvider>
   );
 };
 
-Sidenav.displayName = "@optiaxiom/react/Sidenav";
+Sidebar.displayName = "@optiaxiom/react/Sidebar";

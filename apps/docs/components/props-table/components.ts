@@ -300,6 +300,26 @@ export const components = {
     name: "ModalLayer",
     props: getProps("ModalLayer"),
   },
+  NavAccountItem: {
+    name: "NavAccountItem",
+    props: getProps("NavAccountItem"),
+  },
+  NavBody: {
+    name: "NavBody",
+    props: getProps("NavBody"),
+  },
+  NavFooter: {
+    name: "NavFooter",
+    props: getProps("NavFooter"),
+  },
+  NavHeader: {
+    name: "NavHeader",
+    props: getProps("NavHeader"),
+  },
+  NavItem: {
+    name: "NavItem",
+    props: getProps("NavItem"),
+  },
   Pagination: {
     name: "Pagination",
     props: getProps("Pagination"),
@@ -380,33 +400,13 @@ export const components = {
     name: "Separator",
     props: getProps("Separator"),
   },
-  Sidenav: {
-    name: "Sidenav",
-    props: getProps("Sidenav"),
+  Sidebar: {
+    name: "Sidebar",
+    props: getProps("Sidebar"),
   },
-  SidenavAccountItem: {
-    name: "SidenavAccountItem",
-    props: getProps("SidenavAccountItem"),
-  },
-  SidenavBody: {
-    name: "SidenavBody",
-    props: getProps("SidenavBody"),
-  },
-  SidenavFooter: {
-    name: "SidenavFooter",
-    props: getProps("SidenavFooter"),
-  },
-  SidenavHeader: {
-    name: "SidenavHeader",
-    props: getProps("SidenavHeader"),
-  },
-  SidenavItem: {
-    name: "SidenavItem",
-    props: getProps("SidenavItem"),
-  },
-  SidenavToggle: {
-    name: "SidenavToggle",
-    props: getProps("SidenavToggle"),
+  SidebarToggle: {
+    name: "SidebarToggle",
+    props: getProps("SidebarToggle"),
   },
   Skeleton: {
     name: "Skeleton",
