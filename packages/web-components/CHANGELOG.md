@@ -1,5 +1,18 @@
 # @optiaxiom/web-components
 
+## 0.8.0
+
+### Minor Changes
+
+- 24617af: **Breaking:** rename onClose to onDismiss
+- 9f7f9cc: split Sidenav to Sidebar and Nav components
+
+### Patch Changes
+
+- 4e0d75a: global font smoothing for code and related elements
+- 833b09e: change default button justify to start
+- 75136da: improve downshift portal patch hook
+
 ## 0.7.1
 
 ### Patch Changes

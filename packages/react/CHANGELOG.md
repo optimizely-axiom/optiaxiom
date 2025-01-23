@@ -1,5 +1,26 @@
 # @optiaxiom/react
 
+## 0.12.0
+
+### Minor Changes
+
+- e7ee36c: Add `DropdownMenuCheckboxItem` component
+- 24617af: **Breaking:** rename onClose to onDismiss
+- 9f7f9cc: split Sidenav to Sidebar and Nav components
+- 68dc5ba: remove support for icon prop in Tabs Trigger
+
+### Patch Changes
+
+- 4e0d75a: global font smoothing for code and related elements
+- 833b09e: change default button justify to start
+- 761d4cd: remove default transition from spinner
+- a0c01dd: fix pointer source for command toggle button
+- 4f430bf: grab theme layer name from layers object
+- 53cfc13: improve filter for client directive files
+- 75136da: improve downshift portal patch hook
+- Updated dependencies [53cfc13]
+  - @optiaxiom/globals@0.7.1
+
 ## 0.11.1
 
 ### Patch Changes
