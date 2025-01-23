@@ -147,6 +147,7 @@ export const SingleSelect: Story = {
             aria-selected={item === "Bangla"}
             asChild
             key={item}
+            role="option"
           >
             <PointerItem>{item}</PointerItem>
           </ListboxRadioItem>
@@ -165,6 +166,7 @@ export const MultiSelect: Story = {
             aria-selected={item === "Bangla" || item === "Catalan"}
             asChild
             key={item}
+            role="option"
           >
             <PointerItem>{item}</PointerItem>
           </ListboxCheckboxItem>

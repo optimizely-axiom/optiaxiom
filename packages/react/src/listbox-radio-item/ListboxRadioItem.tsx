@@ -15,7 +15,13 @@ export const ListboxRadioItem = forwardRef<
       addonAfter={
         <Flex flexDirection="row" gap="8">
           {addonAfter}
-          <ListboxItemIndicator active={Boolean(props["aria-selected"])} />
+          <ListboxItemIndicator
+            active={Boolean(
+              props[
+                props["role"] === "option" ? "aria-selected" : "aria-checked"
+              ],
+            )}
+          />
         </Flex>
       }
       ref={ref}
