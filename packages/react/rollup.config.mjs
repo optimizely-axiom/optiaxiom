@@ -47,7 +47,9 @@ export default defineConfig([
         env === "production"
           ? undefined
           : (id, { getModuleInfo }) => {
-              if (getModuleInfo(id).meta.preserveDirectives) {
+              if (id.includes("/axiom-provider/")) {
+                return "provider";
+              } else if (getModuleInfo(id).meta.preserveDirectives) {
                 return "client";
               }
               return "server";

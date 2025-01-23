@@ -1,5 +1,3 @@
-"use client";
-
 import { Box, Grid } from "@optiaxiom/react";
 
 import { Canvas } from "../Canvas";
