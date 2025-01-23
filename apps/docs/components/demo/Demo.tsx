@@ -9,6 +9,7 @@ import { Tabs } from "nextra/components";
 import { MDXRemote } from "nextra/mdx-remote";
 import path from "path";
 
+import { mdxOptions } from "../../mdx.config.mjs";
 import { DemoCode } from "./DemoCode";
 import { DemoPreview } from "./DemoPreview";
 
@@ -82,6 +83,7 @@ export async function Demo({
             ]
               .filter(Boolean)
               .join("\n"),
+            { mdxOptions },
           )}
           components={{ Tabs }}
         />
