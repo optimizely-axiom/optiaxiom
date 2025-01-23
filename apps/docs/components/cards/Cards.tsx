@@ -67,7 +67,7 @@ const COMPONENTS = {
   Box: {
     description:
       "Box is the base component for all our other components and provides a convenient way to use our design tokens and set element styles without having to write any custom CSS.",
-    href: "/components/box/",
+    href: "/components/",
     icon: <BoxIcon />,
     title: "Box",
   },
