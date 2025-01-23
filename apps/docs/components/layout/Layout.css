@@ -15,7 +15,7 @@
   samp,
   pre {
     font-family: var(--ax-fontFamily-mono);
-    font-feature-settings: normal;
+    font-feature-settings: normal !important;
     font-variant-ligatures: none;
   }
 
