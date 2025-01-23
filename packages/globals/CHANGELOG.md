@@ -1,5 +1,11 @@
 # @optiaxiom/globals
 
+## 0.7.1
+
+### Patch Changes
+
+- 53cfc13: add 'use client' banner for globals package prod build
+
 ## 0.7.0
 
 ### Minor Changes
