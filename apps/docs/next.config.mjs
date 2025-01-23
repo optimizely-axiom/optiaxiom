@@ -27,7 +27,6 @@ const nextConfig = {
   },
   output: "export",
   trailingSlash: true,
-  transpilePackages: ["@optiaxiom/react"],
   typescript: {
     tsconfigPath: "tsconfig.next.json",
   },
