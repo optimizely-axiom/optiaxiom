@@ -16,7 +16,7 @@ figma.connect(
         Success: "success",
         Warning: "warning",
       }),
-      onClose: figma.boolean("Dismissible"),
+      onDismiss: figma.boolean("Dismissible"),
     },
   },
 );

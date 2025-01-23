@@ -29,7 +29,7 @@ export const WithCloseButton: Story = {
         requires careful consideration.
       </>
     ),
-    onClose: action("close"),
+    onDismiss: action("onDismiss"),
   },
   render: (args) => (
     <Flex>

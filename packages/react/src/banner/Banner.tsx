@@ -18,7 +18,7 @@ type BannerProps = BoxProps<
     /**
      * Show a close button inside the banner and invoke this callback when the close button is clicked.
      */
-    onClose?: () => void;
+    onDismiss?: () => void;
   }
 >;
 
@@ -31,7 +31,7 @@ const mapIntentToIcon = {
 };
 
 export const Banner = forwardRef<HTMLDivElement, BannerProps>(
-  ({ children, className, intent = "neutral", onClose, ...props }, ref) => {
+  ({ children, className, intent = "neutral", onDismiss, ...props }, ref) => {
     const labelId = useId();
 
     return (
@@ -50,14 +50,14 @@ export const Banner = forwardRef<HTMLDivElement, BannerProps>(
           {children}
         </Flex>
 
-        {!!onClose && (
+        {!!onDismiss && (
           <Button
             appearance="subtle"
             aria-label="close"
             color="fg.default"
             flex="none"
             icon={<IconX />}
-            onClick={onClose}
+            onClick={onDismiss}
             size="sm"
           />
         )}
