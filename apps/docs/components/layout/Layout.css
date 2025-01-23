@@ -19,6 +19,10 @@
     font-variant-ligatures: none;
   }
 
+  abbr:where([title]) {
+    text-underline-offset: 3px;
+  }
+
   :root {
     --docs-bg-shadow-size: 85%;
     --docs-code-bg: light-dark(var(--ax-colors-bg-secondary), rgb(1, 22, 39));
