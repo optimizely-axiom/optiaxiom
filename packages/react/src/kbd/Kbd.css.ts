@@ -13,7 +13,6 @@ export const kbd = recipe({
     },
     style({
       fontSize: "0.9em",
-      WebkitFontSmoothing: "auto",
     }),
   ],
 

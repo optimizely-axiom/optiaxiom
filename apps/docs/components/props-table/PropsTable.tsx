@@ -84,13 +84,16 @@ export async function PropsTable({
                   gap="12"
                 >
                   <Box
+                    asChild
                     fontFamily="mono"
                     style={{ color: "var(--shiki-token-function)" }}
                     w="1/4"
                     whiteSpace="nowrap"
                   >
-                    {prop.name}
-                    {prop.required ? "*" : ""}
+                    <code>
+                      {prop.name}
+                      {prop.required ? "*" : ""}
+                    </code>
                   </Box>
                   <Flex flex="1" gap="12">
                     {prop.description && (
