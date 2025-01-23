@@ -8,7 +8,6 @@ export const code = recipe({
     style({
       fontSize: "0.9em",
       fontVariantLigatures: "none",
-      WebkitFontSmoothing: "auto",
 
       selectors: {
         "&::after, &::before": {

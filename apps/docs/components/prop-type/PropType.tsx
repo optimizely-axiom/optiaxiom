@@ -16,7 +16,7 @@ export const PropType = ({ prop }: PropTypeProps) => {
     <>
       <Text>
         <Box asChild fontFamily="mono">
-          <span>
+          <code>
             {prop.type.raw?.startsWith(
               "ConditionalStyleWithResponsiveArray<",
             ) ? (
@@ -35,7 +35,7 @@ export const PropType = ({ prop }: PropTypeProps) => {
             ) : (
               defn
             )}
-          </span>
+          </code>
         </Box>
       </Text>
       {prop.defaultValue && (
@@ -44,9 +44,9 @@ export const PropType = ({ prop }: PropTypeProps) => {
             <strong>Default: </strong>
           </Box>
           <Box asChild fontFamily="mono">
-            <span style={{ color: "var(--shiki-token-string-expression)" }}>
+            <code style={{ color: "var(--shiki-token-string-expression)" }}>
               {prop.defaultValue.value === "" ? '""' : prop.defaultValue.value}
-            </span>
+            </code>
           </Box>
         </Text>
       )}

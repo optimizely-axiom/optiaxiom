@@ -59,6 +59,7 @@ export const box = recipe({
             fontFamily: theme.fontFamily.mono /* 1 */,
             fontFeatureSettings: "normal" /* 2 */,
             fontSize: "1em" /* 4 */,
+            WebkitFontSmoothing: "auto",
           },
 
           /**
