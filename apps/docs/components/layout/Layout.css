@@ -39,9 +39,13 @@
     }
 
     --shiki-color-text: light-dark(#24292eff, #d6deeb);
+    --shiki-token-comment: light-dark(#c2c3c5, #637777);
     --shiki-token-constant: light-dark(#1976d2, #f78c6c);
-    --shiki-token-keyword: light-dark(#d32f2f, #c792ea);
+    --shiki-token-css-constant: light-dark(#1976d2, #80cbc4);
+    --shiki-token-css-function: light-dark(#6f42c1, #c5e478);
+    --shiki-token-css-keyword: light-dark(#d32f2f, #ffeb95);
     --shiki-token-function: light-dark(#6f42c1, #82aaff);
+    --shiki-token-keyword: light-dark(#d32f2f, #c792ea);
     --shiki-token-string-expression: light-dark(#22863a, #ecc48d);
   }
 

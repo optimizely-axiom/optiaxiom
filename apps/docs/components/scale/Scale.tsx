@@ -22,52 +22,43 @@ const tshirts = [
 ];
 
 export const Scale = async ({
-  hidePixels,
-  hidePreview,
-  keyLabel = "Name",
   maxH = "sm",
   mode,
-  pixelLabel = "Pixels",
-  pixelTemplate,
-  valueLabel = "Value",
-  values,
+  themeKey,
+  valueLabel = "Styles",
+  values: sprinklePropOrValues,
 }: ComponentPropsWithoutRef<typeof Table> & {
-  hidePixels?: boolean;
-  hidePreview?: boolean;
-  keyLabel?: string;
   mode?: "color";
-  pixelLabel?: string;
-  pixelTemplate?: string;
+  themeKey?: ComponentPropsWithoutRef<typeof ScaleValue>["themeKey"];
   valueLabel?: string;
   values: Record<string, string> | string;
 }) => (
   <Table maxH={maxH}>
     <Thead>
       <tr>
-        <Th className="x:sticky x:top-0">{keyLabel}</Th>
+        <Th className="x:sticky x:top-0">Name</Th>
         <Th
           className="x:sticky x:top-0"
           w={mode === "color" ? "3xl" : undefined}
         >
           {valueLabel}
         </Th>
-        {!hidePixels && <Th className="x:sticky x:top-0">{pixelLabel}</Th>}
-        {!hidePreview && (
+        {mode === "color" && (
           <Th
             className="x:sticky x:top-0"
             display={["none", "table-cell"]}
-            w={mode === "color" ? "3xl" : "full"}
+            w="3xl"
           />
         )}
       </tr>
     </Thead>
     <tbody>
-      {(typeof values === "string"
-        ? getPropValues(await getBoxProp(values)).map((value) => [
+      {(typeof sprinklePropOrValues === "string"
+        ? getPropValues(await getBoxProp(sprinklePropOrValues)).map((value) => [
             value,
-            sprinkles({ [values]: value }),
+            sprinkles({ [sprinklePropOrValues]: value }),
           ])
-        : Object.entries(values)
+        : Object.entries(sprinklePropOrValues)
       )
         .sort(([a], [b]) => {
           const aMatch = a.match(/^([0-9.]+)$/);
@@ -85,33 +76,30 @@ export const Scale = async ({
           if (isNaN(bNum)) return isTShirtSizing(b) ? 1 : -1;
           return aNum - bNum;
         })
-        .map(([name, size]) => (
+        .map(([name, value]) => (
           <Tr key={name}>
             <Td
               valign={mode === "color" ? "middle" : undefined}
               whiteSpace="nowrap"
             >
               <Text
+                asChild
                 fontFamily="mono"
-                fontSize="sm"
-                fontWeight="500"
-                style={{ color: "var(--shiki-token-constant)" }}
+                style={{ color: "var(--shiki-token-string-expression)" }}
               >
-                {name}
+                <code>{name}</code>
               </Text>
             </Td>
             <ScaleValue
-              hidePixels={hidePixels}
-              hidePreview={hidePreview}
               mode={mode}
               name={name}
-              pixelTemplate={pixelTemplate}
+              themeKey={themeKey}
               type={
-                typeof values === "string" || mode === "color"
+                typeof sprinklePropOrValues === "string" || mode === "color"
                   ? "selector"
                   : "value"
               }
-              value={size}
+              value={value}
             />
           </Tr>
         ))}
