@@ -4,18 +4,13 @@ import fs from "fs";
 import createNextra from "nextra";
 import docgen from "react-docgen-typescript";
 
+import { mdxOptions } from "./mdx.config.mjs";
+
 writeComponentProps();
 writeDemoProps();
 
 const withNextra = createNextra({
-  mdxOptions: {
-    rehypePrettyCodeOptions: {
-      theme: {
-        dark: "night-owl",
-        light: "min-light",
-      },
-    },
-  },
+  mdxOptions,
 });
 
 /** @type {import('next').NextConfig} */
