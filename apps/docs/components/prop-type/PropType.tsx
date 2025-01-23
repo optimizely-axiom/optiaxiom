@@ -68,9 +68,11 @@ const PropDefinition = ({ prop }: PropTypeProps) => {
           ) {
             defn = (
               <ThemeLink
-                name={scope === "sprinkles" ? prop.name : key}
+                name={
+                  scope === "sprinkles" ? config.path.replaceAll("/", "") : key
+                }
                 {...config}
-                scope={scope}
+                scope={scope === "sprinkles" ? "styling" : scope}
                 type={prop.type}
               />
             );
@@ -96,7 +98,7 @@ const ThemeLink = ({
 }: {
   name: string;
   path: string;
-  scope: "sprinkles" | "theme";
+  scope: "styling" | "theme";
   type: PropItemType;
 }) => {
   return (
