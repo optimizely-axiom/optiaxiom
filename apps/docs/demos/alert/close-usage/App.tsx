@@ -9,7 +9,7 @@ export function App() {
   return (
     <>
       {open && (
-        <Alert onClose={() => setOpen(false)}>
+        <Alert onDismiss={() => setOpen(false)}>
           You do not have the required permissions to perform this action.
         </Alert>
       )}

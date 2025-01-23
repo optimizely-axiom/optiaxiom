@@ -9,7 +9,7 @@ export function App() {
   return (
     <>
       {open && (
-        <Banner onClose={() => setOpen(false)}>
+        <Banner onDismiss={() => setOpen(false)}>
           You do not have the required permissions to perform this action.
         </Banner>
       )}

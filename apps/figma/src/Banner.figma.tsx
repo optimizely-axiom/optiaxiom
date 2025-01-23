@@ -6,7 +6,7 @@ figma.connect(
   "https://www.figma.com/design/qs72V79n1s9wYOcZ1TzBwM/Components-V2?node-id=2013:26186",
   {
     example: ({ children, ...props }) => (
-      <Banner onClose={() => {}} {...props}>
+      <Banner onDismiss={() => {}} {...props}>
         {children}
       </Banner>
     ),
