@@ -1,1 +1,1 @@
-export * from "./AutocompletItem";
+export * from "./AutocompleteItem";
