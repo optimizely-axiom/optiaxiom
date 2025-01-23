@@ -2,6 +2,9 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 import {
   Box,
+  Disclosure,
+  DisclosureContent,
+  DisclosureTrigger,
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
@@ -15,14 +18,29 @@ import {
   SidebarToggle,
 } from "@optiaxiom/react";
 import {
+  NavGroup,
+  NavGroupContent,
+  NavGroupLabel,
+  NavSeparator,
+  SubNav,
+} from "@optiaxiom/react/unstable";
+import {
   IconBinaryTree,
   IconChartInfographic,
   IconChartLine,
+  IconCopy,
+  IconDashboard,
+  IconDeviceDesktop,
   IconExternalLink,
   IconFlag2,
   IconHistory,
   IconLayoutSidebar,
+  IconRectangle,
+  IconReport,
   IconSettings,
+  IconStar,
+  IconTestPipe,
+  IconTrash,
   IconUsers,
   IconVocabulary,
 } from "@tabler/icons-react";
@@ -64,7 +82,7 @@ const body = (
 export default {
   args: {
     children: (
-      <Nav>
+      <Nav style={{ height: "90vh" }}>
         {body}
 
         <NavFooter>
@@ -93,7 +111,13 @@ export default {
   },
   component: Sidebar,
   decorators: (Story) => (
-    <Box bg="bg.page" p="24" w="384">
+    <Box
+      bg="bg.page"
+      p="24"
+      style={{
+        width: "600px",
+      }}
+    >
       <Story />
     </Box>
   ),
@@ -106,7 +130,7 @@ export const Basic: Story = {};
 export const NotCollapsible: Story = {
   args: {
     children: (
-      <Nav>
+      <Nav style={{ height: "90vh" }}>
         {body}
 
         <NavFooter>
@@ -134,5 +158,89 @@ export const NotCollapsible: Story = {
 export const Expanded: Story = {
   args: {
     defaultExpanded: true,
+  },
+};
+
+export const WithSubNav: Story = {
+  args: {
+    children: [
+      <Nav key="nav" style={{ height: "90vh" }}>
+        {body}
+
+        <NavFooter>
+          <SidebarToggle icon={<IconLayoutSidebar />} />
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <NavAccountItem
+                name="Rhaenyra Targaryen"
+                organization="Optimizely"
+                src="https://i.pravatar.cc/150?img=10"
+              />
+            </DropdownMenuTrigger>
+
+            <DropdownMenuContent align="end" side="right">
+              <DropdownMenuItem>View Profile</DropdownMenuItem>
+              <DropdownMenuItem>Settings</DropdownMenuItem>
+              <DropdownMenuItem>Logout</DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </NavFooter>
+      </Nav>,
+      <SubNav key="SubNav" style={{ height: "90vh" }}>
+        <NavBody>
+          <NavItem aria-label="All" icon={<IconCopy />}>
+            All
+          </NavItem>
+          <NavItem aria-label="Recent" icon={<IconRectangle />}>
+            Recent
+          </NavItem>
+          <NavItem aria-label="Favorites" icon={<IconStar />}>
+            Favorites
+          </NavItem>
+          <NavItem aria-label="Trash" icon={<IconTrash />}>
+            Trash
+          </NavItem>
+          <NavSeparator />
+          <Disclosure defaultOpen>
+            <NavGroup>
+              <DisclosureTrigger chevronPosition="end">
+                <NavGroupLabel>Location</NavGroupLabel>
+              </DisclosureTrigger>
+              <DisclosureContent asChild m="0" p="0">
+                <NavGroupContent>
+                  <NavItem active aria-label="CMP" icon={<IconDashboard />}>
+                    CMP
+                  </NavItem>
+                  <NavItem aria-label="CMS" icon={<IconDeviceDesktop />}>
+                    CMS
+                  </NavItem>
+                  <NavItem aria-label="Experimentation" icon={<IconTestPipe />}>
+                    Experimentation
+                  </NavItem>
+                </NavGroupContent>
+              </DisclosureContent>
+            </NavGroup>
+          </Disclosure>
+          <NavSeparator />
+          <Disclosure>
+            <NavGroup>
+              <DisclosureTrigger chevronPosition="end">
+                <NavGroupLabel>Analytics</NavGroupLabel>
+              </DisclosureTrigger>
+              <DisclosureContent>
+                <NavGroupContent>
+                  <NavItem aria-label="Dashboard" icon={<IconDashboard />}>
+                    Dashboard
+                  </NavItem>
+                  <NavItem aria-label="Reports" icon={<IconReport />}>
+                    Reports
+                  </NavItem>
+                </NavGroupContent>
+              </DisclosureContent>
+            </NavGroup>
+          </Disclosure>
+        </NavBody>
+      </SubNav>,
+    ],
   },
 };
