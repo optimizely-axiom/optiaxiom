@@ -8,7 +8,7 @@ figma.connect(
     example: ({ children, ...props }) => <Badge {...props}>{children}</Badge>,
     props: {
       children: figma.string("Label"),
-      intent: figma.enum("Variant", {
+      intent: figma.enum("Intent", {
         Danger: "danger",
         Info: "information",
         Neutral: undefined,
@@ -16,7 +16,7 @@ figma.connect(
         Success: "success",
         Warning: "warning",
       }),
-      variant: figma.enum("Style", {
+      variant: figma.enum("Variant", {
         Accent: "solid",
         Subtle: undefined,
       }),
