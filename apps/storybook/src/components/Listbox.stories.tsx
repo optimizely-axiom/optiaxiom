@@ -209,7 +209,11 @@ export const ComplexContent: Story = {
     children: (
       <>
         {languages.map((item) => (
-          <ListboxRadioItem aria-selected={item === "Bangla"} key={item}>
+          <ListboxRadioItem
+            aria-selected={item === "Bangla"}
+            key={item}
+            role="option"
+          >
             <IconLanguage />
             {item}
           </ListboxRadioItem>
