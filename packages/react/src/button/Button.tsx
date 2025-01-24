@@ -73,13 +73,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           )}
 
           {square ? (
-            children ? (
-              <ButtonLoadable>{children}</ButtonLoadable>
-            ) : (
-              <ButtonLoadable asChild>
-                <Icon asChild>{icon}</Icon>
-              </ButtonLoadable>
-            )
+            <ButtonLoadable asChild>
+              {children ? fallbackSpan(children) : <Icon asChild>{icon}</Icon>}
+            </ButtonLoadable>
           ) : (
             <ButtonLabel>{children}</ButtonLabel>
           )}
