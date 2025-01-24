@@ -111,7 +111,7 @@ export const ScaleValue = ({
           </Flex>
         </Td>
         {mode === "color" && typeof resolvedValue !== "object" && (
-          <Td display={["none", "table-cell"]}>
+          <Td>
             <Box
               rounded="sm"
               style={{
