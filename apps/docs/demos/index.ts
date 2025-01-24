@@ -195,6 +195,10 @@ export const demos = {
     demo: import("./button/usage/App"),
     path: "button/usage",
   },
+  "calendar/usage": {
+    demo: import("./calendar/usage/App"),
+    path: "calendar/usage",
+  },
   "checkbox/controlled-usage": {
     demo: import("./checkbox/controlled-usage/App"),
     path: "checkbox/controlled-usage",

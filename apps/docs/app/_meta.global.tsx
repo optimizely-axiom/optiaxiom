@@ -75,6 +75,9 @@ export default {
         title: <AlphaItem>Breadcrumb</AlphaItem>,
       },
       button: "Button",
+      calendar: {
+        title: <AlphaItem>Calendar</AlphaItem>,
+      },
       checkbox: "Checkbox",
       code: {
         display: "hidden",
