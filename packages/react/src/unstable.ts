@@ -10,6 +10,7 @@ export * from "./breadcrumb-ellipsis";
 export * from "./breadcrumb-item";
 export * from "./breadcrumb-link";
 export * from "./breadcrumb-page";
+export * from "./calendar";
 export * from "./combobox";
 export * from "./combobox-checkbox-item";
 export * from "./combobox-content";

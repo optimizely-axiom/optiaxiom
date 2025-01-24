@@ -108,6 +108,10 @@ export const components = {
     name: "ButtonGroup",
     props: getProps("ButtonGroup"),
   },
+  Calendar: {
+    name: "Calendar",
+    props: getProps("Calendar"),
+  },
   Checkbox: {
     name: "Checkbox",
     props: getProps("Checkbox"),

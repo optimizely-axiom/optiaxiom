@@ -67,6 +67,7 @@
     "@vanilla-extract/dynamic": "^2.1.2",
     "clsx": "^2.1.1",
     "downshift": "^9.0.8",
+    "react-day-picker": "^9.5.0",
     "react-remove-scroll": "^2.6.2",
     "use-sync-external-store": "^1.4.0"
   },
