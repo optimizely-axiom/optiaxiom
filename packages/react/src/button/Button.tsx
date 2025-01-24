@@ -44,8 +44,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       asChild,
       children,
       icon,
-      iconOnly,
       iconPosition = "start",
+      square,
       ...props
     },
     ref,
@@ -56,7 +56,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     children = decorateChildren({ asChild, children }, (children) => {
       isIconOnly = Boolean(!children && icon);
       if (isIconOnly) {
-        iconOnly = true;
+        square = true;
       }
       if (icon && !isIconOnly) {
         if (iconPosition === "start") {
@@ -72,7 +72,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             <ButtonAddon asChild>{fallbackSpan(addonBefore)}</ButtonAddon>
           )}
 
-          {iconOnly ? (
+          {square ? (
             <ButtonLoadable asChild>
               <Icon asChild>{icon ?? children}</Icon>
             </ButtonLoadable>
@@ -99,10 +99,10 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <ButtonBase
         asChild
-        iconOnly={iconOnly}
         ref={ref}
+        square={square}
         {...props}
-        {...(iconOnly && {
+        {...(square && {
           justifyContent: "center",
         })}
       >

@@ -224,7 +224,7 @@ export const AvatarTrigger: Story = {
   args: {
     children: (
       <>
-        <DropdownMenuTrigger appearance="subtle" icon={null} iconOnly size="lg">
+        <DropdownMenuTrigger appearance="subtle" icon={null} size="lg" square>
           <Avatar name="Arthur Morgan" size="sm" />
         </DropdownMenuTrigger>
 
@@ -242,7 +242,7 @@ export const Group: Story = {
   args: {
     children: (
       <>
-        <DropdownMenuTrigger appearance="subtle" icon={null} iconOnly size="lg">
+        <DropdownMenuTrigger appearance="subtle" icon={null} size="lg" square>
           <Avatar
             name="Arya Stark"
             size="sm"
