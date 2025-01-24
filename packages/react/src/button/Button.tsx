@@ -73,9 +73,13 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           )}
 
           {square ? (
-            <ButtonLoadable asChild>
-              <Icon asChild>{icon ?? children}</Icon>
-            </ButtonLoadable>
+            children ? (
+              <ButtonLoadable>{children}</ButtonLoadable>
+            ) : (
+              <ButtonLoadable asChild>
+                <Icon asChild>{icon}</Icon>
+              </ButtonLoadable>
+            )
           ) : (
             <ButtonLabel>{children}</ButtonLabel>
           )}
