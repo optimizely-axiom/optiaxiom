@@ -49,9 +49,9 @@ export const ButtonBase = forwardRef<HTMLButtonElement, ButtonBaseProps>(
       children,
       className,
       disabled,
-      iconOnly,
       loading,
       size = "md",
+      square,
       ...props
     },
     ref,
@@ -69,9 +69,9 @@ export const ButtonBase = forwardRef<HTMLButtonElement, ButtonBaseProps>(
         data-loading={loading ? "" : undefined}
         {...styles.buttonBase(
           {
-            iconOnly: Boolean(iconOnly),
             intent,
             size,
+            square: Boolean(square),
             variant,
           },
           className,

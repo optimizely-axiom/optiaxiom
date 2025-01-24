@@ -49,15 +49,6 @@ export const buttonBase = recipe({
     }),
   ],
   variants: {
-    /**
-     * Whether button should have square shape.
-     */
-    iconOnly: {
-      false: style({
-        minWidth: "fit-content",
-      }),
-      true: {},
-    },
     intent: {
       danger: style({
         vars: {
@@ -112,6 +103,15 @@ export const buttonBase = recipe({
         gap: "4",
         h: "lg",
       },
+    },
+    /**
+     * Whether button should have square shape.
+     */
+    square: {
+      false: style({
+        minWidth: "fit-content",
+      }),
+      true: {},
     },
     variant: {
       outline: style({
@@ -228,8 +228,8 @@ export const buttonBase = recipe({
         w: "sm",
       },
       variants: {
-        iconOnly: true,
         size: "sm",
+        square: true,
       },
     },
     {
@@ -239,8 +239,8 @@ export const buttonBase = recipe({
         },
       }),
       variants: {
-        iconOnly: false,
         size: "sm",
+        square: false,
       },
     },
     {
@@ -248,8 +248,8 @@ export const buttonBase = recipe({
         w: "md",
       },
       variants: {
-        iconOnly: true,
         size: "md",
+        square: true,
       },
     },
     {
@@ -259,8 +259,8 @@ export const buttonBase = recipe({
         },
       }),
       variants: {
-        iconOnly: false,
         size: "md",
+        square: false,
       },
     },
     {
@@ -268,8 +268,8 @@ export const buttonBase = recipe({
         w: "lg",
       },
       variants: {
-        iconOnly: true,
         size: "lg",
+        square: true,
       },
     },
     {
@@ -279,8 +279,8 @@ export const buttonBase = recipe({
         },
       }),
       variants: {
-        iconOnly: false,
         size: "lg",
+        square: false,
       },
     },
   ],
