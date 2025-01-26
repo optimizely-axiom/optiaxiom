@@ -31,6 +31,7 @@ export * from "./command-item";
 export * from "./command-listbox";
 export * from "./data-table";
 export * from "./data-table-header-cell";
+export * from "./date-input";
 export * from "./highlight";
 export * from "./inline-input";
 export * from "./pill";
