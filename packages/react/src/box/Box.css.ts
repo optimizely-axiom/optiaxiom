@@ -152,6 +152,11 @@ export const box = recipe({
             WebkitAppearance: "none",
           },
 
+          "&::-webkit-calendar-picker-indicator": {
+            display: "none",
+            WebkitAppearance: "none",
+          },
+
           /**
            * Make replaced elements `display: block` by default. (https://github.com/mozdevs/cssremedy/issues/14)
            */
