@@ -82,7 +82,13 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
             {...props}
           />
         </PopoverAnchor>
-        <PopoverContent p="0">
+        <PopoverContent
+          onCloseAutoFocus={(event) => {
+            event.preventDefault();
+            innerRef.current?.focus();
+          }}
+          p="0"
+        >
           <Calendar
             defaultValue={dateValue}
             max={maxDate}
