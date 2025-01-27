@@ -17,14 +17,6 @@ type CalendarProps = BoxProps<
   "div",
   {
     /**
-     * When a selection mode is set, DayPicker will focus the first selected day
-     * (if set) or today's date (if not disabled).
-     *
-     * Use this prop when you need to focus DayPicker after a user action, for
-     * improved accessibility.
-     */
-    autoFocus?: boolean;
-    /**
      * The initial selected value in uncontrolled mode.
      */
     defaultValue?: Date;
@@ -66,7 +58,6 @@ const components = {
 export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
   (
     {
-      autoFocus,
       defaultValue,
       max,
       min,
@@ -93,7 +84,7 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
         {...props}
       >
         <DayPicker
-          autoFocus={autoFocus}
+          autoFocus
           components={components}
           defaultMonth={value}
           endMonth={max}
