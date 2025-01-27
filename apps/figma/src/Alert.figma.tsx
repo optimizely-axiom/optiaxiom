@@ -9,7 +9,7 @@ figma.connect(
     example: ({ children, ...props }) => <Alert {...props}>{children}</Alert>,
     props: {
       children: figma.string("Text"),
-      intent: figma.enum("Variant", {
+      intent: figma.enum("Intent", {
         Danger: "danger",
         Information: "information",
         Neutral: "neutral",

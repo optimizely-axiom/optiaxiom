@@ -12,7 +12,7 @@ figma.connect(
     ),
     props: {
       children: figma.string("Text"),
-      intent: figma.enum("Variant", {
+      intent: figma.enum("Intent", {
         Danger: "danger",
         Information: "information",
         Neutral: "neutral",
