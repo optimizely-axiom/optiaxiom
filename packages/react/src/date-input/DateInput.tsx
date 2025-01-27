@@ -16,6 +16,7 @@ import { PopoverAnchor } from "../popover-anchor";
 import { PopoverContent } from "../popover-content";
 import { PopoverTrigger } from "../popover-trigger";
 import { forceValueChange } from "../utils";
+import { format, parse } from "./utils";
 
 type DateInputProps = ComponentPropsWithoutRef<typeof Input>;
 
@@ -27,8 +28,6 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
       defaultProp: props.defaultValue,
       prop: props.value,
     });
-    const dateValue =
-      value && typeof value === "string" ? new Date(value) : undefined;
 
     const innerRef = useRef<HTMLInputElement>(null);
     const ref = useComposedRefs(innerRef, outerRef);
@@ -93,18 +92,12 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
                 return;
               }
 
-              const utcDate = new Date(
-                Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()),
-              );
               if (innerRef.current) {
-                forceValueChange(
-                  innerRef?.current,
-                  utcDate.toISOString().split("T")[0],
-                );
+                forceValueChange(innerRef?.current, format(date));
               }
               setOpen(false);
             }}
-            value={dateValue}
+            value={parse(value)}
           />
         </PopoverContent>
       </Popover>
