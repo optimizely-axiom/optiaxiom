@@ -1,18 +1,8 @@
 import { theme } from "@optiaxiom/globals";
 
-import * as styles from "../toggle-input/ToggleInput.css";
+import * as inputStyles from "../toggle-input-hidden-input/ToggleInputHiddenInput.css";
+import * as rootStyles from "../toggle-input/ToggleInput.css";
 import { recipe, style } from "../vanilla-extract";
-
-const marker = style({});
-const inputMarker = style({});
-
-export const checkbox = recipe({
-  base: marker,
-});
-
-export const input = recipe({
-  base: inputMarker,
-});
 
 export const icon = recipe({
   base: [
@@ -24,7 +14,7 @@ export const icon = recipe({
       transitionDelay: "125ms",
 
       selectors: {
-        [`${marker}:has(${inputMarker}:checked) &`]: {
+        [`${rootStyles.className}:has(${inputStyles.className}:checked) &`]: {
           clipPath: "inset(0 0 0 0)",
         },
       },
@@ -42,7 +32,7 @@ export const control = recipe({
     },
     style({
       backgroundColor: theme.colors["bg.default"],
-      borderColor: styles.controlColorVar,
+      borderColor: rootStyles.controlColorVar,
       borderWidth: "1px",
       placeContent: "center",
       transitionDuration: "150ms",
@@ -50,7 +40,7 @@ export const control = recipe({
       transitionTimingFunction: "ease",
 
       selectors: {
-        [`${marker}:has(${inputMarker}:checked) &`]: {
+        [`${rootStyles.className}:has(${inputStyles.className}:checked) &`]: {
           borderWidth: "8px",
         },
       },

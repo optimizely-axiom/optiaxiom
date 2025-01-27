@@ -13,7 +13,10 @@ export default ESLintUtils.RuleCreator.withoutDocs({
 
         if (
           node.specifiers.length > 1 ||
-          node.specifiers[0].local.name !== "styles"
+          !(
+            node.specifiers[0].local.name === "styles" ||
+            node.specifiers[0].local.name.endsWith("Styles")
+          )
         ) {
           context.report({
             fix: (fixer) => [
