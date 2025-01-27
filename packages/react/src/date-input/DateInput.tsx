@@ -15,7 +15,7 @@ import { Popover } from "../popover";
 import { PopoverAnchor } from "../popover-anchor";
 import { PopoverContent } from "../popover-content";
 import { PopoverTrigger } from "../popover-trigger";
-import { forceValueChange } from "../search-input";
+import { forceValueChange } from "../utils/forceValueChange";
 
 type DateInputProps = ComponentPropsWithoutRef<typeof Input>;
 

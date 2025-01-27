@@ -10,6 +10,7 @@ import { Button } from "../button";
 import { IconMagnifyingGlass } from "../icons/IconMagnifyingGlass";
 import { IconX } from "../icons/IconX";
 import { Input } from "../input";
+import { forceValueChange } from "../utils/forceValueChange";
 import * as styles from "./SearchInput.css";
 
 type SearchProps = ComponentPropsWithRef<typeof Input> & {
@@ -73,11 +74,3 @@ export const SearchInput = forwardRef<HTMLInputElement, SearchProps>(
 );
 
 SearchInput.displayName = "@optiaxiom/react/SearchInput";
-
-export function forceValueChange(input: HTMLInputElement, value: string) {
-  Object.getOwnPropertyDescriptor(
-    input.constructor.prototype,
-    "value",
-  )?.set?.call(input, value);
-  input.dispatchEvent(new Event("change", { bubbles: true }));
-}
