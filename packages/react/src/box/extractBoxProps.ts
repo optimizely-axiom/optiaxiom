@@ -5,7 +5,7 @@ export function extractBoxProps<S extends Record<string, unknown>>(props: S) {
   const restProps = {} as Omit<S, "className" | keyof Sprinkles>;
 
   for (const [name, value] of Object.entries(props)) {
-    if (sprinkles.properties.has(name as never)) {
+    if (name === "className" || sprinkles.properties.has(name as never)) {
       if (value !== null && value !== undefined) {
         // @ts-expect-error -- too complex
         boxProps[name] = value;
