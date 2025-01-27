@@ -14,12 +14,9 @@ export const CardDescription = forwardRef<
   return (
     <Text
       color="fg.tertiary"
-      flex="none"
       fontSize="sm"
       id={descriptionId}
       ref={ref}
-      truncate
-      w="full"
       {...props}
     >
       {children}

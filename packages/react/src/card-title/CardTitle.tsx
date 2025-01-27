@@ -17,9 +17,7 @@ export const CardTitle = forwardRef<HTMLDivElement, CardTitleProps>(
         fontWeight="500"
         id={labelId}
         level="6"
-        pt="12"
         ref={ref}
-        w="full"
         {...props}
       >
         <Comp>{children}</Comp>
