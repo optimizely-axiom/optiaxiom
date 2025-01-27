@@ -7,11 +7,9 @@ export const borderRadiusVar = createVar();
 export const card = recipe({
   base: [
     {
-      alignItems: "start",
       border: "1",
-      borderColor: "border.tertiary",
-      flexDirection: "column",
-      gap: "0",
+      color: "fg.default",
+      gap: "12",
       p: "16",
     },
     style({
@@ -20,19 +18,7 @@ export const card = recipe({
       },
 
       borderRadius: borderRadiusVar,
-      maxHeight: "180px",
-      maxWidth: "300px",
       position: "relative",
-
-      "@media": {
-        "(hover: hover)": {
-          selectors: {
-            "&:hover:not(:active, [data-disabled], [data-loading])": {
-              background: theme.colors["bg.default.hovered"],
-            },
-          },
-        },
-      },
 
       //   selectors: {
       //     "&:focus-visible": {

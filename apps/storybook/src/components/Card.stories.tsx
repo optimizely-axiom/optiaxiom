@@ -2,17 +2,19 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 import {
   Badge,
-  Button,
+  Box,
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
+  EllipsisMenuButton,
   Flex,
   Link,
 } from "@optiaxiom/react";
 import {
   Card,
+  CardContent,
   CardDescription,
   CardImage,
   CardOverflow,
@@ -21,6 +23,9 @@ import {
 import { IconDots } from "@tabler/icons-react";
 
 export default {
+  args: {
+    maxW: "xs",
+  },
   component: Card,
 } as Meta<typeof Card>;
 
@@ -46,25 +51,29 @@ export const WithCaption: Story = {
         <CardOverflow>
           <CardImage alt="" src="https://placehold.co/600x400" />
         </CardOverflow>
-        <CardTitle>The majestic world of turtles</CardTitle>
-        <CardDescription>Unveiling the secrets.</CardDescription>
+        <CardContent>
+          <CardTitle>The majestic world of turtles</CardTitle>
+          <CardDescription>Unveiling the secrets.</CardDescription>
+        </CardContent>
       </>
     ),
   },
 };
 
-const largeText =
-  "This is a longer piece of content that demonstrates how the CardDescription handles more text.";
-
-export const WithLongDescription: Story = {
+export const WithTruncatedDescription: Story = {
   args: {
     children: (
       <>
         <CardOverflow>
           <CardImage alt="" src="https://placehold.co/600x400" />
         </CardOverflow>
-        <CardTitle>The majestic world of turtles</CardTitle>
-        <CardDescription>{largeText}</CardDescription>
+        <CardContent>
+          <CardTitle>The majestic world of turtles</CardTitle>
+          <CardDescription lineClamp="2">
+            This is a longer piece of content that demonstrates what truncating
+            the CardDescription would look like.
+          </CardDescription>
+        </CardContent>
       </>
     ),
   },
@@ -77,38 +86,51 @@ export const WithBadge: Story = {
         <CardOverflow>
           <CardImage alt="" src="https://placehold.co/600x400" />
         </CardOverflow>
-        <CardTitle>
-          <Flex flexDirection="column" gap="8">
-            <Badge intent="information" w="48">
-              Badge
-            </Badge>
-            The majestic world of turtles
-          </Flex>
-        </CardTitle>
-        <CardDescription>Unveiling the secrets.</CardDescription>
+        <CardContent>
+          <Box>
+            <Badge intent="information">Badge</Badge>
+          </Box>
+          <CardTitle>The majestic world of turtles</CardTitle>
+          <CardDescription>Unveiling the secrets.</CardDescription>
+        </CardContent>
       </>
     ),
   },
 };
 
-export const Ellipsis: Story = {
+export const WithLink: Story = {
   args: {
     children: (
       <>
         <CardOverflow>
           <CardImage alt="" src="https://placehold.co/600x400" />
         </CardOverflow>
-        <CardTitle
-          display="flex"
-          flexDirection="row"
-          justifyContent="space-between"
-        >
-          <Link href="data:," overlay>
+        <CardTitle>
+          <Link appearance="subtle" href="data:," overlay>
             The majestic world of turtles
           </Link>
+        </CardTitle>
+      </>
+    ),
+  },
+};
+
+export const WithLinkAndEllipsis: Story = {
+  args: {
+    children: (
+      <>
+        <CardOverflow>
+          <CardImage alt="" src="https://placehold.co/600x400" />
+        </CardOverflow>
+        <Flex flexDirection="row" justifyContent="space-between">
+          <CardTitle>
+            <Link appearance="subtle" href="data:," overlay>
+              The majestic world of turtles
+            </Link>
+          </CardTitle>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button
+              <EllipsisMenuButton
                 appearance="subtle"
                 aria-label="actions"
                 icon={<IconDots />}
@@ -127,7 +149,7 @@ export const Ellipsis: Story = {
               <DropdownMenuItem intent="danger">Delete task</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
-        </CardTitle>
+        </Flex>
       </>
     ),
   },
