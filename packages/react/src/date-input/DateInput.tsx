@@ -54,7 +54,7 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
             addonAfter={
               <PopoverTrigger
                 appearance="subtle"
-                aria-label="toggle calendar"
+                aria-label="Show date picker"
                 disabled={disabled}
                 icon={<IconCalendar />}
                 size="sm"
