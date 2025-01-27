@@ -74,7 +74,7 @@ export const SearchInput = forwardRef<HTMLInputElement, SearchProps>(
 
 SearchInput.displayName = "@optiaxiom/react/SearchInput";
 
-function forceValueChange(input: HTMLInputElement, value: string) {
+export function forceValueChange(input: HTMLInputElement, value: string) {
   Object.getOwnPropertyDescriptor(
     input.constructor.prototype,
     "value",
