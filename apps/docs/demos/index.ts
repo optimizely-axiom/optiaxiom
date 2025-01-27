@@ -239,6 +239,10 @@ export const demos = {
     demo: import("./data-table/usage/App"),
     path: "data-table/usage",
   },
+  "date-input/usage": {
+    demo: import("./date-input/usage/App"),
+    path: "date-input/usage",
+  },
   "dialog/alert-dialog-usage": {
     demo: import("./dialog/alert-dialog-usage/App"),
     path: "dialog/alert-dialog-usage",

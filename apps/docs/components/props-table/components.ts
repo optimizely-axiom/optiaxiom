@@ -180,6 +180,10 @@ export const components = {
     name: "DataTable",
     props: getProps("DataTable"),
   },
+  DateInput: {
+    name: "DateInput",
+    props: getProps("DateInput"),
+  },
   Dialog: {
     name: "Dialog",
     props: getProps("Dialog"),
