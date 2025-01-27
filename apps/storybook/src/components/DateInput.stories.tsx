@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 import { Button, Flex } from "@optiaxiom/react";
 import { DateInput } from "@optiaxiom/react/unstable";
+import { userEvent } from "@storybook/test";
 import { useRef } from "react";
 
 export default {
@@ -40,6 +41,9 @@ export const Disabled: Story = {
 };
 
 export const ShowPicker: Story = {
+  play: async ({ canvas }) => {
+    await userEvent.click(canvas.getByRole("button", { name: "Show Picker" }));
+  },
   render: function ShowPicker() {
     const ref = useRef<HTMLInputElement>(null);
 
