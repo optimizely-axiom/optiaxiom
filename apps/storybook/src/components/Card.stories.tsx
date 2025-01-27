@@ -14,6 +14,7 @@ import {
 } from "@optiaxiom/react";
 import {
   Card,
+  CardCheckbox,
   CardContent,
   CardDescription,
   CardImage,
@@ -150,6 +151,24 @@ export const WithLinkAndEllipsis: Story = {
             </DropdownMenuContent>
           </DropdownMenu>
         </Flex>
+      </>
+    ),
+  },
+};
+
+export const WithCheckboxAndLink: Story = {
+  args: {
+    children: (
+      <>
+        <CardCheckbox />
+        <CardOverflow>
+          <CardImage alt="" src="https://placehold.co/600x400" />
+        </CardOverflow>
+        <CardTitle>
+          <Link appearance="subtle" href="data:,">
+            The majestic world of turtles
+          </Link>
+        </CardTitle>
       </>
     ),
   },
