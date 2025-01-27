@@ -303,6 +303,10 @@ export const demos = {
     demo: import("./dropdown-menu/disabled-usage/App"),
     path: "dropdown-menu/disabled-usage",
   },
+  "dropdown-menu/ellipsis-trigger-usage": {
+    demo: import("./dropdown-menu/ellipsis-trigger-usage/App"),
+    path: "dropdown-menu/ellipsis-trigger-usage",
+  },
   "dropdown-menu/modal-usage": {
     demo: import("./dropdown-menu/modal-usage/App"),
     path: "dropdown-menu/modal-usage",

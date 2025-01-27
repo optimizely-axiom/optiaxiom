@@ -8,9 +8,9 @@ import {
   useState,
 } from "react";
 
+import { AngleMenuButton } from "../angle-menu-button";
 import { type ButtonProps } from "../button";
 import { useFieldContext } from "../field-context";
-import { MenuButton } from "../menu-button";
 import { useSelectContext } from "../select-context";
 
 type SelectTriggerProps = ButtonProps<typeof PopperAnchor>;
@@ -64,9 +64,9 @@ export const SelectTrigger = forwardRef<HTMLButtonElement, SelectTriggerProps>(
           {asChild ? (
             children
           ) : (
-            <MenuButton aria-labelledby={labelId} ref={buttonRef}>
+            <AngleMenuButton aria-labelledby={labelId} ref={buttonRef}>
               {children}
-            </MenuButton>
+            </AngleMenuButton>
           )}
         </Slot>
       </PopperAnchor>

@@ -6,9 +6,9 @@ import {
   useRef,
 } from "react";
 
+import { AngleMenuButton } from "../angle-menu-button";
 import { useComboboxContext } from "../combobox-context";
 import { useFieldContext } from "../field-context";
-import { MenuButton } from "../menu-button";
 import { PopoverTrigger } from "../popover-trigger";
 
 type ComboboxTriggerProps = ComponentPropsWithoutRef<typeof PopoverTrigger>;
@@ -54,7 +54,7 @@ export const ComboboxTrigger = forwardRef<
       role="combobox"
       {...props}
     >
-      {asChild ? children : <MenuButton>{children}</MenuButton>}
+      {asChild ? children : <AngleMenuButton>{children}</AngleMenuButton>}
     </components.Trigger>
   );
 });
