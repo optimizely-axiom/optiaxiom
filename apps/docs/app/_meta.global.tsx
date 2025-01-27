@@ -99,6 +99,9 @@ export default {
       "data-table": {
         title: <AlphaItem>DataTable</AlphaItem>,
       },
+      "date-input": {
+        title: <AlphaItem>DateInput</AlphaItem>,
+      },
       dialog: "Dialog",
       disclosure: "Disclosure",
       drawer: "Drawer",
