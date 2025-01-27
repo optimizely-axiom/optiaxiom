@@ -5,13 +5,17 @@ figma.connect(
   ToggleButton,
   "https://www.figma.com/design/qs72V79n1s9wYOcZ1TzBwM/Components-V2?node-id=5462:22275",
   {
-    example: ({ button, ...props }) => <ToggleButton {...button} {...props} />,
+    example: ({ button, ...props }) => (
+      <ToggleButton icon={button.icon} {...props} />
+    ),
     props: {
       appearance: figma.enum("Variant", {
         Default: "default",
         Subtle: undefined,
       }),
-      button: figma.instance("Button").getProps(),
+      button: figma.nestedProps("Button", {
+        icon: figma.instance("Icon"),
+      }),
     },
   },
 );
