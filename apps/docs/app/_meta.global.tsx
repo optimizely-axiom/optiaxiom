@@ -11,6 +11,17 @@ const AlphaItem = ({ children }: { children?: ReactNode }) => (
 export default {
   iframe: {
     display: "hidden",
+    items: {
+      responsive: {
+        display: "hidden",
+      },
+      separator: {
+        display: "hidden",
+      },
+      styling: {
+        display: "hidden",
+      },
+    },
   },
 
   index: {
