@@ -47,8 +47,10 @@ export default defineConfig([
         env === "production"
           ? undefined
           : (id, { getModuleInfo }) => {
-              if (id.includes("/axiom-provider/")) {
-                return "provider";
+              if (id.includes("/axiom-provider/") || id.includes("/box/")) {
+                return "base";
+              } else if (id.includes("recipe")) {
+                return "vanilla";
               } else if (getModuleInfo(id).meta.preserveDirectives) {
                 return "client";
               }
