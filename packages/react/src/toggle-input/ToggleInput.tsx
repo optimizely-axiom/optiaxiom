@@ -15,7 +15,10 @@ type ToggleInputProps = BoxProps<
 >;
 
 export const ToggleInput = forwardRef<HTMLLabelElement, ToggleInputProps>(
-  ({ asChild, children, className, description, ...props }, ref) => {
+  (
+    { asChild, children, className, description, onMouseDown, ...props },
+    ref,
+  ) => {
     const Comp = asChild ? Slot : "label";
     const { boxProps, restProps } = extractBoxProps(props);
 
@@ -28,7 +31,16 @@ export const ToggleInput = forwardRef<HTMLLabelElement, ToggleInputProps>(
         labelId={labelId}
       >
         <Flex asChild {...styles.toggleInput({}, className)} {...boxProps}>
-          <Comp ref={ref} {...restProps}>
+          <Comp
+            onMouseDown={(event) => {
+              onMouseDown?.(event);
+              if (!event.defaultPrevented && event.detail > 1) {
+                event.preventDefault();
+              }
+            }}
+            ref={ref}
+            {...restProps}
+          >
             {children}
           </Comp>
         </Flex>
