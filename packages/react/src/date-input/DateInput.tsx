@@ -89,6 +89,10 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
             max={maxDate}
             min={minDate}
             onValueChange={(date) => {
+              if (!date) {
+                return;
+              }
+
               const utcDate = new Date(
                 Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()),
               );

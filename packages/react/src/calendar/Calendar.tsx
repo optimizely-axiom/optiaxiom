@@ -31,7 +31,7 @@ type CalendarProps = BoxProps<
     /**
      * Handler that is called when the selected value changes.
      */
-    onValueChange?: (value: Date) => void;
+    onValueChange?: (value: Date | undefined) => void;
     /**
      * The today’s date. Default is the current date.
      */
