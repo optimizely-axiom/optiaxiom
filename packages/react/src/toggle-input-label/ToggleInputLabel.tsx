@@ -8,21 +8,11 @@ type ToggleInputLabelProps = BoxProps<"div">;
 export const ToggleInputLabel = forwardRef<
   HTMLDivElement,
   ToggleInputLabelProps
->(({ children, onMouseDown, ...props }, ref) => {
+>(({ children, ...props }, ref) => {
   const { labelId } = useToggleInputContext("ToggleInputLabel");
 
   return (
-    <Box
-      id={labelId}
-      onMouseDown={(event) => {
-        onMouseDown?.(event);
-        if (!event.defaultPrevented && event.detail > 1) {
-          event.preventDefault();
-        }
-      }}
-      ref={ref}
-      {...props}
-    >
+    <Box id={labelId} ref={ref} {...props}>
       {children}
     </Box>
   );
