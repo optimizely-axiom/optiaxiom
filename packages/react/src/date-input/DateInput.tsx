@@ -48,17 +48,18 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
     const minDate = min ? new Date(min) : undefined;
 
     return (
-      <Popover onOpenChange={setOpen} open={open}>
+      <Popover onOpenChange={setOpen} open={!disabled && open}>
         <PopoverAnchor>
           <Input
             addonAfter={
-              <PopoverTrigger
-                appearance="subtle"
-                aria-label="Show date picker"
-                disabled={disabled}
-                icon={<IconCalendar />}
-                size="sm"
-              />
+              !disabled && (
+                <PopoverTrigger
+                  appearance="subtle"
+                  aria-label="Show date picker"
+                  icon={<IconCalendar />}
+                  size="sm"
+                />
+              )
             }
             disabled={disabled}
             max={max}
