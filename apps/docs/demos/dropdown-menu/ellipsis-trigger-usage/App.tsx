@@ -5,17 +5,16 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
+  EllipsisMenuButton,
 } from "@optiaxiom/react";
-import { IconFilter, IconLogout, IconUser } from "@tabler/icons-react";
+import { IconLogout, IconUser } from "@tabler/icons-react";
 
 export function App() {
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger
-        appearance="subtle"
-        aria-label="Filters"
-        icon={<IconFilter />}
-      />
+      <DropdownMenuTrigger asChild>
+        <EllipsisMenuButton appearance="subtle" aria-label="My Account" />
+      </DropdownMenuTrigger>
 
       <DropdownMenuContent>
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
