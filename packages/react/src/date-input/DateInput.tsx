@@ -1,27 +1,43 @@
-import { type ComponentPropsWithRef, forwardRef, useState } from "react";
+import { useComposedRefs } from "@radix-ui/react-compose-refs";
+// import { useControllableState } from "@radix-ui/react-use-controllable-state";
+import {
+  type ComponentPropsWithoutRef,
+  forwardRef,
+  useRef,
+  useState,
+} from "react";
 
 import { Calendar } from "../calendar";
-import { IconAngleDown } from "../icons/IconAngleDown";
 import { IconCalendar } from "../icons/IconCalendar";
 import { Input } from "../input";
 import { Popover } from "../popover";
 import { PopoverAnchor } from "../popover-anchor";
 import { PopoverContent } from "../popover-content";
 import { PopoverTrigger } from "../popover-trigger";
+import { forceValueChange } from "../search-input";
 
 type DateInputProps = ComponentPropsWithoutRef<typeof Input>;
 
 export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
   (
     { defaultValue, disabled, max, min, onChange, value: valueProp, ...props },
-    ref,
+    outerRef,
   ) => {
     const [open, setOpen] = useState(false);
-    const [innerValue, setValue] = useState(defaultValue);
 
+    // const [value, setValue] = useControllableState({
+    //   defaultProp: defaultValue,
+    //   onChange: onChange,
+    //   prop: valueProp,
+    // });
+
+    const [innerValue, setValue] = useState(defaultValue);
     const value = typeof valueProp === "undefined" ? innerValue : valueProp;
     const dateValue =
       value && typeof value === "string" ? new Date(value) : undefined;
+
+    const innerRef = useRef<HTMLInputElement>(null);
+    const ref = useComposedRefs(innerRef, outerRef);
 
     const maxDate = max ? new Date(max) : undefined;
     const minDate = min ? new Date(min) : undefined;
@@ -31,11 +47,16 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
       const month = date.getMonth();
       const day = date.getDate();
       const utcDate = new Date(Date.UTC(year, month, day));
-
       const formattedDate = utcDate.toISOString().split("T")[0];
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      onChange?.({ target: { value: formattedDate } } as any);
-      setValue(formattedDate);
+
+      // const formattedDate = date.toISOString().split("T")[0];
+      // const formattedDate = date.toISOString();
+
+      if (innerRef.current) {
+        forceValueChange(innerRef?.current, formattedDate);
+      }
+      // setValue(formattedDate);
+      setOpen(false);
     };
 
     return (
@@ -46,18 +67,21 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
               <PopoverTrigger
                 appearance="subtle"
                 aria-label="toggle calendar"
-                cursor="default"
                 disabled={disabled}
-                icon={<IconAngleDown />}
+                icon={<IconCalendar />}
                 size="sm"
               />
             }
-            addonBefore={<IconCalendar />}
             addonPointerEvents="none"
             disabled={disabled}
+            max={max}
+            min={min}
             onChange={(event) => {
               onChange?.(event);
               setValue(event.target.value);
+            }}
+            onClick={(e) => {
+              e.preventDefault();
             }}
             onKeyDown={(e) => {
               if (e.key === " ") {
@@ -73,14 +97,10 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
         </PopoverAnchor>
         <PopoverContent p="0">
           <Calendar
-            autoFocus
             defaultValue={dateValue}
             max={maxDate}
             min={minDate}
-            onValueChange={(date) => {
-              handleDateChange(date);
-              setOpen(false);
-            }}
+            onValueChange={handleDateChange}
           />
         </PopoverContent>
       </Popover>
