@@ -4,31 +4,27 @@ All Axiom styles are declared inside an [@layer](https://developer.mozilla.org/e
 
 ```css
 @layer optiaxiom {
+  @layer theme, base, components;
+
   /* all Axiom styles */
 }
 ```
 
-We also declare a layer called `optiaxiom.base` where you can place your own styles so they come first in the cascade.
-
-```css
-@layer optiaxiom.base {
-  /* these styles are placed before other Axiom styles */
-}
-```
+Application styles containing reset/normalize rules and rules that target elements without any class modifiers can conflict with styles coming from Axiom. Place these application styles inside the `optiaxiom.base` layer so they come first in the cascade and can be overridden by Axiom.
 
 ## Usage
 
 ### Global styles
 
-Global styles include reset/normalize rules and rules that target elements without any class modifiers. These global styles can conflict with styles coming from Axiom.
-
 Place your global style rules inside the `optiaxiom.base` layer to ensure they are applied before any of Axiom's other styles.
 
-```css {1,5}
+```css {1,7}
 @layer optiaxiom.base {
-  a {
-    /* your global styles */
-  }
+  /* your global styles */
+  /*
+    html { ... }
+    a { ... }
+  */
 }
 ```
 
