@@ -47,19 +47,6 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
     const maxDate = max ? new Date(max) : undefined;
     const minDate = min ? new Date(min) : undefined;
 
-    const handleDateChange = (date: Date) => {
-      const utcDate = new Date(
-        Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()),
-      );
-      if (innerRef.current) {
-        forceValueChange(
-          innerRef?.current,
-          utcDate.toISOString().split("T")[0],
-        );
-      }
-      setOpen(false);
-    };
-
     return (
       <Popover onOpenChange={setOpen} open={open}>
         <PopoverAnchor>
@@ -100,7 +87,18 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
             defaultValue={dateValue}
             max={maxDate}
             min={minDate}
-            onValueChange={handleDateChange}
+            onValueChange={(date) => {
+              const utcDate = new Date(
+                Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()),
+              );
+              if (innerRef.current) {
+                forceValueChange(
+                  innerRef?.current,
+                  utcDate.toISOString().split("T")[0],
+                );
+              }
+              setOpen(false);
+            }}
           />
         </PopoverContent>
       </Popover>
