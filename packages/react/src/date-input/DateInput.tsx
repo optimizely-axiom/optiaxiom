@@ -1,5 +1,5 @@
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
-// import { useControllableState } from "@radix-ui/react-use-controllable-state";
+import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import {
   type ComponentPropsWithoutRef,
   forwardRef,
@@ -25,14 +25,11 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
   ) => {
     const [open, setOpen] = useState(false);
 
-    // const [value, setValue] = useControllableState({
-    //   defaultProp: defaultValue,
-    //   onChange: onChange,
-    //   prop: valueProp,
-    // });
+    const [value, setValue] = useControllableState({
+      defaultProp: defaultValue ?? "",
+      prop: valueProp,
+    });
 
-    const [innerValue, setValue] = useState(defaultValue);
-    const value = typeof valueProp === "undefined" ? innerValue : valueProp;
     const dateValue =
       value && typeof value === "string" ? new Date(value) : undefined;
 
@@ -43,19 +40,15 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
     const minDate = min ? new Date(min) : undefined;
 
     const handleDateChange = (date: Date) => {
-      const year = date.getFullYear();
-      const month = date.getMonth();
-      const day = date.getDate();
-      const utcDate = new Date(Date.UTC(year, month, day));
-      const formattedDate = utcDate.toISOString().split("T")[0];
-
-      // const formattedDate = date.toISOString().split("T")[0];
-      // const formattedDate = date.toISOString();
-
+      const utcDate = new Date(
+        Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()),
+      );
       if (innerRef.current) {
-        forceValueChange(innerRef?.current, formattedDate);
+        forceValueChange(
+          innerRef?.current,
+          utcDate.toISOString().split("T")[0],
+        );
       }
-      // setValue(formattedDate);
       setOpen(false);
     };
 
