@@ -15,22 +15,18 @@ import { Popover } from "../popover";
 import { PopoverAnchor } from "../popover-anchor";
 import { PopoverContent } from "../popover-content";
 import { PopoverTrigger } from "../popover-trigger";
-import { forceValueChange } from "../utils/forceValueChange";
+import { forceValueChange } from "../utils";
 
 type DateInputProps = ComponentPropsWithoutRef<typeof Input>;
 
 export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
-  (
-    { defaultValue, disabled, max, min, onChange, value: valueProp, ...props },
-    outerRef,
-  ) => {
+  ({ disabled, max, min, onChange, ...props }, outerRef) => {
     const [open, setOpen] = useState(false);
 
     const [value, setValue] = useControllableState({
-      defaultProp: defaultValue ?? "",
-      prop: valueProp,
+      defaultProp: props.defaultValue,
+      prop: props.value,
     });
-
     const dateValue =
       value && typeof value === "string" ? new Date(value) : undefined;
 
@@ -79,7 +75,6 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
             }}
             ref={ref}
             type="date"
-            value={value}
             {...props}
           />
         </PopoverAnchor>
@@ -91,7 +86,6 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
           p="0"
         >
           <Calendar
-            defaultValue={dateValue}
             max={maxDate}
             min={minDate}
             onValueChange={(date) => {
@@ -106,6 +100,7 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
               }
               setOpen(false);
             }}
+            value={dateValue}
           />
         </PopoverContent>
       </Popover>

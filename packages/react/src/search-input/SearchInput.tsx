@@ -10,7 +10,7 @@ import { Button } from "../button";
 import { IconMagnifyingGlass } from "../icons/IconMagnifyingGlass";
 import { IconX } from "../icons/IconX";
 import { Input } from "../input";
-import { forceValueChange } from "../utils/forceValueChange";
+import { forceValueChange } from "../utils";
 import * as styles from "./SearchInput.css";
 
 type SearchProps = ComponentPropsWithRef<typeof Input> & {
