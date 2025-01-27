@@ -1,5 +1,5 @@
 ---
-"@optiaxiom/react": minor
+"@optiaxiom/react": patch
 ---
 
 Add `Card` component

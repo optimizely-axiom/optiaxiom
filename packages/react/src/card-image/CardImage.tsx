@@ -5,7 +5,7 @@ import * as styles from "./CardImage.css";
 
 type CardImageProps = BoxProps<"img">;
 
-export const CardImage = forwardRef<HTMLDivElement, CardImageProps>(
+export const CardImage = forwardRef<HTMLImageElement, CardImageProps>(
   ({ alt, className, src, ...props }, ref) => {
     return (
       <Box asChild ref={ref} {...styles.cardImage({}, className)} {...props}>
