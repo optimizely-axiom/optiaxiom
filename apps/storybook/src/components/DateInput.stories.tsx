@@ -1,13 +1,15 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
+import { Button, Flex } from "@optiaxiom/react";
 import { DateInput } from "@optiaxiom/react/unstable";
+import { useRef } from "react";
 
 export default {
   component: DateInput,
   parameters: {
     design: {
       type: "figma",
-      url: "https://www.figma.com/design/qs72V79n1s9wYOcZ1TzBwM/Components-V2?node-id=5743-27400",
+      url: "https://www.figma.com/design/qs72V79n1s9wYOcZ1TzBwM/Components-V2?node-id=5743-27575",
     },
   },
 } as Meta<typeof DateInput>;
@@ -34,5 +36,18 @@ export const Disabled: Story = {
   args: {
     defaultValue: "2025-01-22",
     disabled: true,
+  },
+};
+
+export const ShowPicker: Story = {
+  render: function ShowPicker() {
+    const ref = useRef<HTMLInputElement>(null);
+
+    return (
+      <Flex flexDirection="row">
+        <DateInput defaultValue="2025-01-22" ref={ref} />
+        <Button onClick={() => ref.current?.showPicker()}>Show Picker</Button>
+      </Flex>
+    );
   },
 };
