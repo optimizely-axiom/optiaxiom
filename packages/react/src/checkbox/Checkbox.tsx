@@ -1,60 +1,32 @@
-import { forwardRef, type ReactNode } from "react";
+import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
-import { Box, type BoxProps, extractBoxProps } from "../box";
-import { CheckboxCheck } from "../icons/CheckboxCheck";
-import { IconMinus } from "../icons/IconMinus";
-import { ToggleInput } from "../toggle-input";
-import { ToggleInputContent } from "../toggle-input-content";
-import { ToggleInputControl } from "../toggle-input-control";
-import { ToggleInputDescription } from "../toggle-input-description";
+import { type BoxProps } from "../box";
+import { CheckboxContent } from "../checkbox-content";
+import { CheckboxControl } from "../checkbox-control";
+import { CheckboxRoot } from "../checkbox-root";
 import { ToggleInputHiddenInput } from "../toggle-input-hidden-input";
-import { ToggleInputLabel } from "../toggle-input-label";
-import * as styles from "./Checkbox.css";
 
 type CheckboxProps = BoxProps<
   typeof ToggleInputHiddenInput,
-  {
-    /**
-     * Add helper text after the label.
-     */
-    description?: ReactNode;
-    /**
-     * Display a partially checked icon instead of the regular checkmark.
-     */
-    indeterminate?: boolean;
-  }
+  Pick<ComponentPropsWithoutRef<typeof CheckboxContent>, "description"> &
+    Pick<ComponentPropsWithoutRef<typeof CheckboxControl>, "indeterminate">
 >;
 
 export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
-  ({ children, className, description, indeterminate, ...props }, ref) => {
-    const { boxProps, restProps } = extractBoxProps(props);
-
+  ({ children, description, indeterminate, ...props }, ref) => {
     return (
-      <ToggleInput
-        description={!!description}
-        {...styles.checkbox({}, className)}
-        {...boxProps}
-      >
-        <ToggleInputHiddenInput ref={ref} {...styles.input()} {...restProps} />
-
-        <ToggleInputControl {...styles.control({ shift: Boolean(children) })}>
-          <Box {...styles.indicator()}>
-            <Box asChild {...styles.icon()}>
-              {indeterminate ? <IconMinus /> : <CheckboxCheck />}
-            </Box>
-          </Box>
-        </ToggleInputControl>
+      <CheckboxRoot description={!!description} ref={ref} {...props}>
+        <CheckboxControl
+          indeterminate={indeterminate}
+          shift={Boolean(children)}
+        />
 
         {(children || description) && (
-          <ToggleInputContent>
-            {children && <ToggleInputLabel>{children}</ToggleInputLabel>}
-
-            {description && (
-              <ToggleInputDescription>{description}</ToggleInputDescription>
-            )}
-          </ToggleInputContent>
+          <CheckboxContent description={description}>
+            {children}
+          </CheckboxContent>
         )}
-      </ToggleInput>
+      </CheckboxRoot>
     );
   },
 );
