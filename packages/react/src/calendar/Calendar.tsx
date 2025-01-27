@@ -91,6 +91,7 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
           fixedWeeks
           mode="single"
           onSelect={setValue}
+          required
           selected={value}
           showOutsideDays
           startMonth={min}
