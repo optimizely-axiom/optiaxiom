@@ -25,9 +25,13 @@ figma.connect(
   SegmentedControlItem,
   "https://www.figma.com/design/qs72V79n1s9wYOcZ1TzBwM/Components-V2?node-id=2429:8531",
   {
-    example: ({ button }) => <SegmentedControlItem {...button} value="foo" />,
+    example: ({ button }) => (
+      <SegmentedControlItem icon={button.icon} value="foo" />
+    ),
     props: {
-      button: figma.instance("Button").getProps(),
+      button: figma.nestedProps("Button", {
+        icon: figma.instance("Icon"),
+      }),
     },
   },
 );

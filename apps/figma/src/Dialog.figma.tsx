@@ -12,35 +12,28 @@ import {
 } from "@optiaxiom/react";
 
 figma.connect(
-  Dialog,
   "https://www.figma.com/design/qs72V79n1s9wYOcZ1TzBwM/Components-V2?node-id=5324:11893",
   {
-    example: ({ children }) => (
+    example: ({ content, header }) => (
       <Dialog>
         <DialogTrigger>Example</DialogTrigger>
 
-        {children}
+        <DialogContent size={content.size}>
+          <DialogHeader>{header.title}</DialogHeader>
+
+          {content.body}
+        </DialogContent>
       </Dialog>
     ),
     props: {
-      children: figma.children("Dialog Body"),
-    },
-  },
-);
-
-figma.connect(
-  DialogContent,
-  "https://www.figma.com/design/qs72V79n1s9wYOcZ1TzBwM/Components-V2?node-id=833:46549",
-  {
-    example: ({ body, header, size }) => (
-      <DialogContent size={size}>
-        <DialogHeader>{header.title}</DialogHeader>
-
-        {body}
-      </DialogContent>
-    ),
-    props: {
-      body: figma.children("◇ Dialog content"),
+      content: figma.nestedProps("Dialog Body", {
+        body: figma.children("◇ Dialog content"),
+        size: figma.enum("Size", {
+          Lg: "lg",
+          Md: undefined,
+          Sm: "sm",
+        }),
+      }),
       header: figma.nestedProps("◇ Dialog header", {
         description: figma.boolean("Show description", {
           false: undefined,
@@ -48,17 +41,11 @@ figma.connect(
         }),
         title: figma.string("Dialog title"),
       }),
-      size: figma.enum("Size", {
-        Lg: "lg",
-        Md: undefined,
-        Sm: "sm",
-      }),
     },
   },
 );
 
 figma.connect(
-  DialogBody,
   "https://www.figma.com/design/qs72V79n1s9wYOcZ1TzBwM/Components-V2?node-id=833:46411",
   {
     example: ({ children }) => (
@@ -85,7 +72,6 @@ figma.connect(
 );
 
 figma.connect(
-  DialogBody,
   "https://www.figma.com/design/qs72V79n1s9wYOcZ1TzBwM/Components-V2?node-id=833:46411",
   {
     example: ({ children }) => (

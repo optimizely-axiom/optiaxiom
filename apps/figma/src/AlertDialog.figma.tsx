@@ -11,7 +11,6 @@ import {
 } from "@optiaxiom/react";
 
 figma.connect(
-  AlertDialog,
   "https://www.figma.com/design/qs72V79n1s9wYOcZ1TzBwM/Components-V2?node-id=5640:38835",
   {
     example: ({ body, size, title }) => (
