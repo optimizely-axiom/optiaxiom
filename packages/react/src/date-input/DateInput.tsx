@@ -73,7 +73,6 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
                 size="sm"
               />
             }
-            addonPointerEvents="none"
             disabled={disabled}
             max={max}
             min={min}

@@ -9,7 +9,7 @@ export default {
   parameters: {
     design: {
       type: "figma",
-      url: "https://www.figma.com/design/qs72V79n1s9wYOcZ1TzBwM/Components-V2?node-id=5743-27575",
+      url: "https://www.figma.com/design/qs72V79n1s9wYOcZ1TzBwM/Components-V2?node-id=5743-27573",
     },
   },
 } as Meta<typeof DateInput>;
