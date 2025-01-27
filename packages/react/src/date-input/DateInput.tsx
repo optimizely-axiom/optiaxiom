@@ -90,9 +90,9 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
               }
             }}
             ref={ref}
+            type="date"
             value={value}
             {...props}
-            type="date"
           />
         </PopoverAnchor>
         <PopoverContent p="0">
