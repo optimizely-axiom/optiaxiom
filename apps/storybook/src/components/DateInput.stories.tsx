@@ -14,19 +14,15 @@ export default {
 
 type Story = StoryObj<typeof DateInput>;
 
-export const Default: Story = {
-  args: {
-    placeholder: "Select date",
-  },
-};
+export const Basic: Story = {};
 
-export const WithDefaultValue: Story = {
+export const DefaultValue: Story = {
   args: {
     defaultValue: "2025-01-22",
   },
 };
 
-export const WithMinMaxDates: Story = {
+export const MinMaxDates: Story = {
   args: {
     defaultValue: "2025-01-22",
     max: "2025-12-31",
@@ -38,12 +34,5 @@ export const Disabled: Story = {
   args: {
     defaultValue: "2025-01-22",
     disabled: true,
-  },
-};
-
-export const WithCustomFormat: Story = {
-  args: {
-    defaultValue: "2025-01-22",
-    placeholder: "YYYY-MM-DD",
   },
 };
