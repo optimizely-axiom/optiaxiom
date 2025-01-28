@@ -89,6 +89,9 @@ export default {
       calendar: {
         title: <AlphaItem>Calendar</AlphaItem>,
       },
+      card: {
+        title: <AlphaItem>Card</AlphaItem>,
+      },
       checkbox: "Checkbox",
       code: {
         display: "hidden",

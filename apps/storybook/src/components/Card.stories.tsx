@@ -22,7 +22,6 @@ import {
   CardTitle,
 } from "@optiaxiom/react/unstable";
 import { userEvent } from "@storybook/test";
-import { IconDots } from "@tabler/icons-react";
 
 export default {
   args: {
@@ -138,7 +137,6 @@ export const WithLinkAndEllipsis: Story = {
               <EllipsisMenuButton
                 appearance="subtle"
                 aria-label="actions"
-                icon={<IconDots />}
                 size="sm"
               />
             </DropdownMenuTrigger>
