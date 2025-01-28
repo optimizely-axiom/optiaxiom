@@ -1,9 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Button, Flex } from "@optiaxiom/react";
 import { DateInput } from "@optiaxiom/react/unstable";
-import { userEvent } from "@storybook/test";
-import { useRef } from "react";
 
 export default {
   component: DateInput,
@@ -37,21 +34,5 @@ export const Disabled: Story = {
   args: {
     defaultValue: "2025-01-22",
     disabled: true,
-  },
-};
-
-export const ShowPicker: Story = {
-  play: async ({ canvas }) => {
-    await userEvent.click(canvas.getByRole("button", { name: "Show Picker" }));
-  },
-  render: function ShowPicker() {
-    const ref = useRef<HTMLInputElement>(null);
-
-    return (
-      <Flex flexDirection="row">
-        <DateInput defaultValue="2025-01-22" ref={ref} />
-        <Button onClick={() => ref.current?.showPicker()}>Show Picker</Button>
-      </Flex>
-    );
   },
 };
