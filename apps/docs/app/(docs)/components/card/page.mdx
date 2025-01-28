@@ -1,0 +1,79 @@
+import { Demo } from "@/components/demo";
+import { PropsTable } from "@/components/props-table";
+
+# Card
+
+Generic container for grouping related components together.
+
+## Documentation
+
+### Usage
+
+<Demo component="card/usage" />
+
+### Anatomy
+
+```tsx
+import {
+  Card,
+  CardCheckbox,
+  CardContent,
+  CardDescription,
+  CardImage,
+  CardOverflow,
+  CardTitle,
+} from "@optiaxiom/react/unstable";
+
+export default () => (
+  <Card>
+    <CardCheckbox />
+
+    <CardOverflow>
+      <CardImage />
+    </CardOverflow>
+
+    <CardImage />
+
+    <CardContent>
+      <CardTitle />
+      <CardDescription />
+    </CardContent>
+  </Card>
+);
+```
+
+## Props
+
+### Card
+
+<PropsTable component="Card" />
+
+### CardContent
+
+<PropsTable component="CardContent" />
+
+### CardTitle
+
+<PropsTable component="CardTitle" />
+
+### CardDescription
+
+<PropsTable component="CardDescription" />
+
+### CardImage
+
+<PropsTable component="CardImage" />
+
+### CardOverflow
+
+<PropsTable component="CardOverflow" />
+
+### CardCheckbox
+
+<PropsTable component="CardCheckbox" />
+
+## Changelog
+
+### 0.12.1
+
+- Added component

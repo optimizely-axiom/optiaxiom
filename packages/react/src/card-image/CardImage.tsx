@@ -6,10 +6,10 @@ import * as styles from "./CardImage.css";
 type CardImageProps = BoxProps<"img">;
 
 export const CardImage = forwardRef<HTMLImageElement, CardImageProps>(
-  ({ alt, className, src, ...props }, ref) => {
+  ({ alt, asChild, children, className, src, ...props }, ref) => {
     return (
       <Box asChild ref={ref} {...styles.cardImage({}, className)} {...props}>
-        <img alt={alt} src={src} />
+        {asChild ? children : <img alt={alt} src={src} />}
       </Box>
     );
   },

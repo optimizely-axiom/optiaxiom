@@ -59,6 +59,7 @@ export const demos = {
   "button/size-usage": import("./button/size-usage/App"),
   "button/usage": import("./button/usage/App"),
   "calendar/usage": import("./calendar/usage/App"),
+  "card/usage": import("./card/usage/App"),
   "checkbox/controlled-usage": import("./checkbox/controlled-usage/App"),
   "checkbox/description-usage": import("./checkbox/description-usage/App"),
   "checkbox/disabled-usage": import("./checkbox/disabled-usage/App"),
