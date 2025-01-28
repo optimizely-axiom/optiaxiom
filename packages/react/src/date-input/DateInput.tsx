@@ -3,7 +3,6 @@ import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import {
   type ComponentPropsWithoutRef,
   forwardRef,
-  useImperativeHandle,
   useRef,
   useState,
 } from "react";
@@ -32,15 +31,26 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
     const innerRef = useRef<HTMLInputElement>(null);
     const ref = useComposedRefs(innerRef, outerRef);
 
-    useImperativeHandle(outerRef, () => ({
-      ...innerRef.current!,
-      showPicker: () => {
-        setOpen(true);
-      },
-    }));
-
     const maxDate = max ? new Date(max) : undefined;
     const minDate = min ? new Date(min) : undefined;
+
+    if (
+      typeof CSS !== "undefined" &&
+      typeof CSS.supports !== "undefined" &&
+      !CSS.supports("selector(::-webkit-calendar-picker-indicator)")
+    ) {
+      return (
+        <Input
+          disabled={disabled}
+          max={max}
+          min={min}
+          onChange={onChange}
+          ref={ref}
+          type="date"
+          {...props}
+        />
+      );
+    }
 
     return (
       <Popover onOpenChange={setOpen} open={!disabled && open}>
