@@ -1,8 +1,7 @@
 import { theme } from "@optiaxiom/globals";
 
-import { createVar, recipe, style } from "../vanilla-extract";
-
-export const borderRadiusVar = createVar();
+import * as styles from "../link/Link.css";
+import { recipe, style } from "../vanilla-extract";
 
 export const card = recipe({
   base: [
@@ -14,18 +13,11 @@ export const card = recipe({
     },
     style({
       vars: {
-        [borderRadiusVar]: theme.borderRadius.lg,
+        [styles.borderRadiusVar]: theme.borderRadius.lg,
       },
 
-      borderRadius: borderRadiusVar,
+      borderRadius: theme.borderRadius.lg,
       position: "relative",
-
-      //   selectors: {
-      //     "&:focus-visible": {
-      //       outline: `2px solid ${theme.colors["border.focus"]}`,
-      //       outlineOffset: "1px",
-      //     },
-      //   },
     }),
   ],
 });
