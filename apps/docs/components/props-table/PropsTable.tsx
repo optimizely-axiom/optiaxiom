@@ -4,10 +4,9 @@ import { compileMdx } from "nextra/compile";
 import { MDXRemote } from "nextra/mdx-remote";
 import { type ReactNode } from "react";
 
-import type { components } from "./components";
-
 import { PropType } from "../prop-type";
 import { Table, Td, Th, Thead, Tr } from "../table";
+import { components } from "./components";
 
 const mapComponentToBase: Record<string, string> = {
   AlertDialogAction: "Button",
@@ -41,10 +40,10 @@ const mapComponentToBase: Record<string, string> = {
 export async function PropsTable({
   component,
 }: {
-  component: (typeof components)[keyof typeof components];
+  component: keyof typeof components;
 }) {
-  const componentName = component["name"];
-  const propItems = await component["props"];
+  const componentName = component;
+  const propItems = await components[component];
 
   const baseName =
     mapComponentToBase[componentName] ??

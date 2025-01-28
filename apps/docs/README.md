@@ -48,9 +48,9 @@ export function App({
 Add prop tables for components using the `PropsTable` component.
 
 ```mdx
-import { components, PropsTable } from "@/components/props-table";
+import { PropsTable } from "@/components/props-table";
 
-<PropsTable component={components["Button"]} />
+<PropsTable component="Button" />
 ```
 
 ## Contributing

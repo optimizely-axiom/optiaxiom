@@ -20,488 +20,125 @@ const getProps = async (component: string) => {
 };
 
 export const components = {
-  Alert: {
-    name: "Alert",
-    props: getProps("Alert"),
-  },
-  AlertDialog: {
-    name: "AlertDialog",
-    props: getProps("AlertDialog"),
-  },
-  AlertDialogAction: {
-    name: "AlertDialogAction",
-    props: getProps("AlertDialogAction"),
-  },
-  AlertDialogBody: {
-    name: "AlertDialogBody",
-    props: getProps("AlertDialogBody"),
-  },
-  AlertDialogCancel: {
-    name: "AlertDialogCancel",
-    props: getProps("AlertDialogCancel"),
-  },
-  AlertDialogContent: {
-    name: "AlertDialogContent",
-    props: getProps("AlertDialogContent"),
-  },
-  AlertDialogFooter: {
-    name: "AlertDialogFooter",
-    props: getProps("AlertDialogFooter"),
-  },
-  AlertDialogHeader: {
-    name: "AlertDialogHeader",
-    props: getProps("AlertDialogHeader"),
-  },
-  AlertDialogTrigger: {
-    name: "AlertDialogTrigger",
-    props: getProps("AlertDialogTrigger"),
-  },
-  Autocomplete: {
-    name: "Autocomplete",
-    props: getProps("Autocomplete"),
-  },
-  AutocompleteContent: {
-    name: "AutocompleteContent",
-    props: getProps("AutocompleteContent"),
-  },
-  AutocompleteEmpty: {
-    name: "AutocompleteEmpty",
-    props: getProps("AutocompleteEmpty"),
-  },
-  AutocompleteRadioItem: {
-    name: "AutocompleteRadioItem",
-    props: getProps("AutocompleteRadioItem"),
-  },
-  AutocompleteTrigger: {
-    name: "AutocompleteTrigger",
-    props: getProps("AutocompleteTrigger"),
-  },
-  Avatar: {
-    name: "Avatar",
-    props: getProps("Avatar"),
-  },
-  AvatarGroup: {
-    name: "AvatarGroup",
-    props: getProps("AvatarGroup"),
-  },
-  AxiomProvider: {
-    name: "AxiomProvider",
-    props: getProps("AxiomProvider"),
-  },
-  Badge: {
-    name: "Badge",
-    props: getProps("Badge"),
-  },
-  Banner: {
-    name: "Banner",
-    props: getProps("Banner"),
-  },
-  Box: {
-    name: "Box",
-    props: getProps("Box"),
-  },
-  Button: {
-    name: "Button",
-    props: getProps("Button"),
-  },
-  ButtonGroup: {
-    name: "ButtonGroup",
-    props: getProps("ButtonGroup"),
-  },
-  Calendar: {
-    name: "Calendar",
-    props: getProps("Calendar"),
-  },
-  Checkbox: {
-    name: "Checkbox",
-    props: getProps("Checkbox"),
-  },
-  Code: {
-    name: "Code",
-    props: getProps("Code"),
-  },
-  Combobox: {
-    name: "Combobox",
-    props: getProps("Combobox"),
-  },
-  ComboboxCheckboxItem: {
-    name: "ComboboxCheckboxItem",
-    props: getProps("ComboboxCheckboxItem"),
-  },
-  ComboboxContent: {
-    name: "ComboboxContent",
-    props: getProps("ComboboxContent"),
-  },
-  ComboboxEmpty: {
-    name: "ComboboxEmpty",
-    props: getProps("ComboboxEmpty"),
-  },
-  ComboboxFooter: {
-    name: "ComboboxFooter",
-    props: getProps("ComboboxFooter"),
-  },
-  ComboboxGroup: {
-    name: "ComboboxGroup",
-    props: getProps("ComboboxGroup"),
-  },
-  ComboboxInput: {
-    name: "ComboboxInput",
-    props: getProps("ComboboxInput"),
-  },
-  ComboboxItem: {
-    name: "ComboboxItem",
-    props: getProps("ComboboxItem"),
-  },
-  ComboboxLabel: {
-    name: "ComboboxLabel",
-    props: getProps("ComboboxLabel"),
-  },
-  ComboboxRadioItem: {
-    name: "ComboboxRadioItem",
-    props: getProps("ComboboxRadioItem"),
-  },
-  ComboboxScrollArea: {
-    name: "ComboboxScrollArea",
-    props: getProps("ComboboxScrollArea"),
-  },
-  ComboboxSeparator: {
-    name: "ComboboxSeparator",
-    props: getProps("ComboboxSeparator"),
-  },
-  ComboboxTrigger: {
-    name: "ComboboxTrigger",
-    props: getProps("ComboboxTrigger"),
-  },
-  ComboboxValue: {
-    name: "ComboboxValue",
-    props: getProps("ComboboxValue"),
-  },
-  DataTable: {
-    name: "DataTable",
-    props: getProps("DataTable"),
-  },
-  DateInput: {
-    name: "DateInput",
-    props: getProps("DateInput"),
-  },
-  Dialog: {
-    name: "Dialog",
-    props: getProps("Dialog"),
-  },
-  DialogBody: {
-    name: "DialogBody",
-    props: getProps("DialogBody"),
-  },
-  DialogClose: {
-    name: "DialogClose",
-    props: getProps("DialogClose"),
-  },
-  DialogContent: {
-    name: "DialogContent",
-    props: getProps("DialogContent"),
-  },
-  DialogFooter: {
-    name: "DialogFooter",
-    props: getProps("DialogFooter"),
-  },
-  DialogForm: {
-    name: "DialogForm",
-    props: getProps("DialogForm"),
-  },
-  DialogHeader: {
-    name: "DialogHeader",
-    props: getProps("DialogHeader"),
-  },
-  DialogTrigger: {
-    name: "DialogTrigger",
-    props: getProps("DialogTrigger"),
-  },
-  Disclosure: {
-    name: "Disclosure",
-    props: getProps("Disclosure"),
-  },
-  DisclosureContent: {
-    name: "DisclosureContent",
-    props: getProps("DisclosureContent"),
-  },
-  DisclosureTrigger: {
-    name: "DisclosureTrigger",
-    props: getProps("DisclosureTrigger"),
-  },
-  DropdownMenu: {
-    name: "DropdownMenu",
-    props: getProps("DropdownMenu"),
-  },
-  DropdownMenuContent: {
-    name: "DropdownMenuContent",
-    props: getProps("DropdownMenuContent"),
-  },
-  DropdownMenuGroup: {
-    name: "DropdownMenuGroup",
-    props: getProps("DropdownMenuGroup"),
-  },
-  DropdownMenuItem: {
-    name: "DropdownMenuItem",
-    props: getProps("DropdownMenuItem"),
-  },
-  DropdownMenuLabel: {
-    name: "DropdownMenuLabel",
-    props: getProps("DropdownMenuLabel"),
-  },
-  DropdownMenuSeparator: {
-    name: "DropdownMenuSeparator",
-    props: getProps("DropdownMenuSeparator"),
-  },
-  DropdownMenuSub: {
-    name: "DropdownMenuSub",
-    props: getProps("DropdownMenuSub"),
-  },
-  DropdownMenuSubContent: {
-    name: "DropdownMenuSubContent",
-    props: getProps("DropdownMenuSubContent"),
-  },
-  DropdownMenuSubTrigger: {
-    name: "DropdownMenuSubTrigger",
-    props: getProps("DropdownMenuSubTrigger"),
-  },
-  DropdownMenuTrigger: {
-    name: "DropdownMenuTrigger",
-    props: getProps("DropdownMenuTrigger"),
-  },
-  Field: {
-    name: "Field",
-    props: getProps("Field"),
-  },
-  Flex: {
-    name: "Flex",
-    props: getProps("Flex"),
-  },
-  Grid: {
-    name: "Grid",
-    props: getProps("Grid"),
-  },
-  Heading: {
-    name: "Heading",
-    props: getProps("Heading"),
-  },
-  Indicator: {
-    name: "Indicator",
-    props: getProps("Indicator"),
-  },
-  InlineInput: {
-    name: "InlineInput",
-    props: getProps("InlineInput"),
-  },
-  Input: {
-    name: "Input",
-    props: getProps("Input"),
-  },
-  Kbd: {
-    name: "Kbd",
-    props: getProps("Kbd"),
-  },
-  Link: {
-    name: "Link",
-    props: getProps("Link"),
-  },
-  ModalLayer: {
-    name: "ModalLayer",
-    props: getProps("ModalLayer"),
-  },
-  NavAccountItem: {
-    name: "NavAccountItem",
-    props: getProps("NavAccountItem"),
-  },
-  NavBody: {
-    name: "NavBody",
-    props: getProps("NavBody"),
-  },
-  NavFooter: {
-    name: "NavFooter",
-    props: getProps("NavFooter"),
-  },
-  NavHeader: {
-    name: "NavHeader",
-    props: getProps("NavHeader"),
-  },
-  NavItem: {
-    name: "NavItem",
-    props: getProps("NavItem"),
-  },
-  Pagination: {
-    name: "Pagination",
-    props: getProps("Pagination"),
-  },
-  Popover: {
-    name: "Popover",
-    props: getProps("Popover"),
-  },
-  PopoverContent: {
-    name: "PopoverContent",
-    props: getProps("PopoverContent"),
-  },
-  PopoverTrigger: {
-    name: "PopoverTrigger",
-    props: getProps("PopoverTrigger"),
-  },
-  Progress: {
-    name: "Progress",
-    props: getProps("Progress"),
-  },
-  Radio: {
-    name: "Radio",
-    props: getProps("Radio"),
-  },
-  RadioGroup: {
-    name: "RadioGroup",
-    props: getProps("RadioGroup"),
-  },
-  SearchInput: {
-    name: "SearchInput",
-    props: getProps("SearchInput"),
-  },
-  SegmentedControl: {
-    name: "SegmentedControl",
-    props: getProps("SegmentedControl"),
-  },
-  SegmentedControlItem: {
-    name: "SegmentedControlItem",
-    props: getProps("SegmentedControlItem"),
-  },
-  Select: {
-    name: "Select",
-    props: getProps("Select"),
-  },
-  SelectContent: {
-    name: "SelectContent",
-    props: getProps("SelectContent"),
-  },
-  SelectGroup: {
-    name: "SelectGroup",
-    props: getProps("SelectGroup"),
-  },
-  SelectItem: {
-    name: "SelectItem",
-    props: getProps("SelectItem"),
-  },
-  SelectLabel: {
-    name: "SelectLabel",
-    props: getProps("SelectLabel"),
-  },
-  SelectRadioItem: {
-    name: "SelectRadioItem",
-    props: getProps("SelectRadioItem"),
-  },
-  SelectSeparator: {
-    name: "SelectSeparator",
-    props: getProps("SelectSeparator"),
-  },
-  SelectTrigger: {
-    name: "SelectTrigger",
-    props: getProps("SelectTrigger"),
-  },
-  SelectValue: {
-    name: "SelectValue",
-    props: getProps("SelectValue"),
-  },
-  Separator: {
-    name: "Separator",
-    props: getProps("Separator"),
-  },
-  Sidebar: {
-    name: "Sidebar",
-    props: getProps("Sidebar"),
-  },
-  SidebarToggle: {
-    name: "SidebarToggle",
-    props: getProps("SidebarToggle"),
-  },
-  Skeleton: {
-    name: "Skeleton",
-    props: getProps("Skeleton"),
-  },
-  Spinner: {
-    name: "Spinner",
-    props: getProps("Spinner"),
-  },
-  Switch: {
-    name: "Switch",
-    props: getProps("Switch"),
-  },
-  Table: {
-    name: "Table",
-    props: getProps("Table"),
-  },
-  TableBody: {
-    name: "TableBody",
-    props: getProps("TableBody"),
-  },
-  TableCell: {
-    name: "TableCell",
-    props: getProps("TableCell"),
-  },
-  TableHeader: {
-    name: "TableHeader",
-    props: getProps("TableHeader"),
-  },
-  TableHeaderCell: {
-    name: "TableHeaderCell",
-    props: getProps("TableHeaderCell"),
-  },
-  TableRow: {
-    name: "TableRow",
-    props: getProps("TableRow"),
-  },
-  Tabs: {
-    name: "Tabs",
-    props: getProps("Tabs"),
-  },
-  TabsContent: {
-    name: "TabsContent",
-    props: getProps("TabsContent"),
-  },
-  TabsList: {
-    name: "TabsList",
-    props: getProps("TabsList"),
-  },
-  TabsTrigger: {
-    name: "TabsTrigger",
-    props: getProps("TabsTrigger"),
-  },
-  Text: {
-    name: "Text",
-    props: getProps("Text"),
-  },
-  Textarea: {
-    name: "Textarea",
-    props: getProps("Textarea"),
-  },
-  Toast: {
-    name: "Toast",
-    props: getProps("Toast"),
-  },
-  ToastAction: {
-    name: "ToastAction",
-    props: getProps("ToastAction"),
-  },
-  ToastProvider: {
-    name: "ToastProvider",
-    props: getProps("ToastProvider"),
-  },
-  ToastTitle: {
-    name: "ToastTitle",
-    props: getProps("ToastTitle"),
-  },
-  ToggleButton: {
-    name: "ToggleButton",
-    props: getProps("ToggleButton"),
-  },
-  Tooltip: {
-    name: "Tooltip",
-    props: getProps("Tooltip"),
-  },
-  TooltipProvider: {
-    name: "TooltipProvider",
-    props: getProps("TooltipProvider"),
-  },
+  Alert: getProps("Alert"),
+  AlertDialog: getProps("AlertDialog"),
+  AlertDialogAction: getProps("AlertDialogAction"),
+  AlertDialogBody: getProps("AlertDialogBody"),
+  AlertDialogCancel: getProps("AlertDialogCancel"),
+  AlertDialogContent: getProps("AlertDialogContent"),
+  AlertDialogFooter: getProps("AlertDialogFooter"),
+  AlertDialogHeader: getProps("AlertDialogHeader"),
+  AlertDialogTrigger: getProps("AlertDialogTrigger"),
+  Autocomplete: getProps("Autocomplete"),
+  AutocompleteContent: getProps("AutocompleteContent"),
+  AutocompleteEmpty: getProps("AutocompleteEmpty"),
+  AutocompleteRadioItem: getProps("AutocompleteRadioItem"),
+  AutocompleteTrigger: getProps("AutocompleteTrigger"),
+  Avatar: getProps("Avatar"),
+  AvatarGroup: getProps("AvatarGroup"),
+  AxiomProvider: getProps("AxiomProvider"),
+  Badge: getProps("Badge"),
+  Banner: getProps("Banner"),
+  Box: getProps("Box"),
+  Button: getProps("Button"),
+  ButtonGroup: getProps("ButtonGroup"),
+  Calendar: getProps("Calendar"),
+  Checkbox: getProps("Checkbox"),
+  Code: getProps("Code"),
+  Combobox: getProps("Combobox"),
+  ComboboxCheckboxItem: getProps("ComboboxCheckboxItem"),
+  ComboboxContent: getProps("ComboboxContent"),
+  ComboboxEmpty: getProps("ComboboxEmpty"),
+  ComboboxFooter: getProps("ComboboxFooter"),
+  ComboboxGroup: getProps("ComboboxGroup"),
+  ComboboxInput: getProps("ComboboxInput"),
+  ComboboxItem: getProps("ComboboxItem"),
+  ComboboxLabel: getProps("ComboboxLabel"),
+  ComboboxRadioItem: getProps("ComboboxRadioItem"),
+  ComboboxScrollArea: getProps("ComboboxScrollArea"),
+  ComboboxSeparator: getProps("ComboboxSeparator"),
+  ComboboxTrigger: getProps("ComboboxTrigger"),
+  ComboboxValue: getProps("ComboboxValue"),
+  DataTable: getProps("DataTable"),
+  DateInput: getProps("DateInput"),
+  Dialog: getProps("Dialog"),
+  DialogBody: getProps("DialogBody"),
+  DialogClose: getProps("DialogClose"),
+  DialogContent: getProps("DialogContent"),
+  DialogFooter: getProps("DialogFooter"),
+  DialogForm: getProps("DialogForm"),
+  DialogHeader: getProps("DialogHeader"),
+  DialogTrigger: getProps("DialogTrigger"),
+  Disclosure: getProps("Disclosure"),
+  DisclosureContent: getProps("DisclosureContent"),
+  DisclosureTrigger: getProps("DisclosureTrigger"),
+  DropdownMenu: getProps("DropdownMenu"),
+  DropdownMenuContent: getProps("DropdownMenuContent"),
+  DropdownMenuGroup: getProps("DropdownMenuGroup"),
+  DropdownMenuItem: getProps("DropdownMenuItem"),
+  DropdownMenuLabel: getProps("DropdownMenuLabel"),
+  DropdownMenuSeparator: getProps("DropdownMenuSeparator"),
+  DropdownMenuSub: getProps("DropdownMenuSub"),
+  DropdownMenuSubContent: getProps("DropdownMenuSubContent"),
+  DropdownMenuSubTrigger: getProps("DropdownMenuSubTrigger"),
+  DropdownMenuTrigger: getProps("DropdownMenuTrigger"),
+  Field: getProps("Field"),
+  Flex: getProps("Flex"),
+  Grid: getProps("Grid"),
+  Heading: getProps("Heading"),
+  Indicator: getProps("Indicator"),
+  InlineInput: getProps("InlineInput"),
+  Input: getProps("Input"),
+  Kbd: getProps("Kbd"),
+  Link: getProps("Link"),
+  ModalLayer: getProps("ModalLayer"),
+  NavAccountItem: getProps("NavAccountItem"),
+  NavBody: getProps("NavBody"),
+  NavFooter: getProps("NavFooter"),
+  NavHeader: getProps("NavHeader"),
+  NavItem: getProps("NavItem"),
+  Pagination: getProps("Pagination"),
+  Popover: getProps("Popover"),
+  PopoverContent: getProps("PopoverContent"),
+  PopoverTrigger: getProps("PopoverTrigger"),
+  Progress: getProps("Progress"),
+  Radio: getProps("Radio"),
+  RadioGroup: getProps("RadioGroup"),
+  SearchInput: getProps("SearchInput"),
+  SegmentedControl: getProps("SegmentedControl"),
+  SegmentedControlItem: getProps("SegmentedControlItem"),
+  Select: getProps("Select"),
+  SelectContent: getProps("SelectContent"),
+  SelectGroup: getProps("SelectGroup"),
+  SelectItem: getProps("SelectItem"),
+  SelectLabel: getProps("SelectLabel"),
+  SelectRadioItem: getProps("SelectRadioItem"),
+  SelectSeparator: getProps("SelectSeparator"),
+  SelectTrigger: getProps("SelectTrigger"),
+  SelectValue: getProps("SelectValue"),
+  Separator: getProps("Separator"),
+  Sidebar: getProps("Sidebar"),
+  SidebarToggle: getProps("SidebarToggle"),
+  Skeleton: getProps("Skeleton"),
+  Spinner: getProps("Spinner"),
+  Switch: getProps("Switch"),
+  Table: getProps("Table"),
+  TableBody: getProps("TableBody"),
+  TableCell: getProps("TableCell"),
+  TableHeader: getProps("TableHeader"),
+  TableHeaderCell: getProps("TableHeaderCell"),
+  TableRow: getProps("TableRow"),
+  Tabs: getProps("Tabs"),
+  TabsContent: getProps("TabsContent"),
+  TabsList: getProps("TabsList"),
+  TabsTrigger: getProps("TabsTrigger"),
+  Text: getProps("Text"),
+  Textarea: getProps("Textarea"),
+  Toast: getProps("Toast"),
+  ToastAction: getProps("ToastAction"),
+  ToastProvider: getProps("ToastProvider"),
+  ToastTitle: getProps("ToastTitle"),
+  ToggleButton: getProps("ToggleButton"),
+  Tooltip: getProps("Tooltip"),
+  TooltipProvider: getProps("TooltipProvider"),
 };
