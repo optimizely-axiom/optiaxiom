@@ -6,18 +6,36 @@ import { CardContextProvider } from "../card-context";
 import { Flex } from "../flex";
 import * as styles from "./Card.css";
 
-type CardProps = BoxProps<"div">;
+type CardProps = BoxProps<
+  "div",
+  {
+    /**
+     * The orientation/layout of the elements inside the card.
+     */
+    orientation?: "horizontal" | "vertical";
+  }
+>;
+
+const mapOrientationToFlexDirection = {
+  horizontal: "row",
+  vertical: "column",
+} as const;
 
 export const Card = forwardRef<HTMLDivElement, CardProps>(
-  ({ children, className, ...props }, ref) => {
+  ({ children, className, orientation = "vertical", ...props }, ref) => {
     const descriptionId = useId();
     const labelId = useId();
 
     return (
-      <CardContextProvider descriptionId={descriptionId} labelId={labelId}>
+      <CardContextProvider
+        descriptionId={descriptionId}
+        labelId={labelId}
+        orientation={orientation}
+      >
         <Flex
           aria-describedby={descriptionId}
           aria-labelledby={labelId}
+          flexDirection={mapOrientationToFlexDirection[orientation]}
           ref={ref}
           {...styles.card({}, className)}
           {...props}
