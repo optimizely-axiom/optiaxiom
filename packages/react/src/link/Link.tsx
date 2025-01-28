@@ -47,6 +47,7 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
         <Comp
           aria-disabled={disabled}
           data-disabled={disabled ? "" : undefined}
+          data-overlay={overlay ? "" : undefined}
           href={href}
           ref={ref}
           {...(external && { rel: "noopener noreferrer", target: "_blank" })}

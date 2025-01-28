@@ -3,11 +3,11 @@ import { theme } from "@optiaxiom/globals";
 import * as styles from "../card/Card.css";
 import { recipe, style } from "../vanilla-extract";
 
-const marker = style({});
+export const className = style({});
 
 export const root = recipe({
   base: [
-    marker,
+    className,
     {
       rounded: "inherit",
       transition: "opacity",
@@ -48,7 +48,7 @@ export const control = recipe({
       top: "16px",
 
       selectors: {
-        [`${marker}:has(:focus-visible) &`]: {
+        [`${className}:has(:focus-visible) &`]: {
           outline: "none",
         },
       },
