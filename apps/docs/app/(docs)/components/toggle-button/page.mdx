@@ -1,5 +1,5 @@
 import { Cards } from "@/components/cards";
-import { Demo, demos } from "@/components/demo";
+import { Demo } from "@/components/demo";
 import { components, PropsTable } from "@/components/props-table";
 
 # ToggleButton
@@ -12,19 +12,19 @@ import { components, PropsTable } from "@/components/props-table";
 
 `ToggleButton` extends the [Button](./button/) component.
 
-<Demo component={demos["toggle-button/usage"]} />
+<Demo component="toggle-button/usage" />
 
 ### Controlled
 
 Use the `pressed` and `defaultPressed` props to toggle between controlled and uncontrolled usage. And combine it with `onPressedChange` to listen for changes to the state.
 
-<Demo component={demos["toggle-button/controlled-usage"]} />
+<Demo component="toggle-button/controlled-usage" />
 
 ### Appearance
 
 Use the `appearance` prop to select between the different button appearances.
 
-<Demo component={demos["toggle-button/appearance-usage"]} />
+<Demo component="toggle-button/appearance-usage" />
 
 ### Disabled state
 
@@ -32,7 +32,7 @@ Set the `disabled` prop to `true` to disable buttons and prevent any interaction
 
 For accessibility please make sure to include text that explains why the button is disabled or use a tooltip.
 
-<Demo component={demos["toggle-button/disabled-usage"]} />
+<Demo component="toggle-button/disabled-usage" />
 
 ### Related
 

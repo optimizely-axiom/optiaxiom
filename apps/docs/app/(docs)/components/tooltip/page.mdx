@@ -1,4 +1,4 @@
-import { Demo, demos } from "@/components/demo";
+import { Demo } from "@/components/demo";
 import { components, PropsTable } from "@/components/props-table";
 
 # Tooltip
@@ -9,25 +9,25 @@ Popup with brief information shown when user interacts with an element using key
 
 ### Usage
 
-<Demo component={demos["tooltip/usage"]} />
+<Demo component="tooltip/usage" />
 
 ### Controlled
 
 Use the `open` and `defaultOpen` props to toggle between controlled and uncontrolled usage. And combine it with `onOpenChange` to listen for changes to the state.
 
-<Demo component={demos["tooltip/controlled-usage"]} />
+<Demo component="tooltip/controlled-usage" />
 
 ### Delay
 
 Use the `delayDuration` prop to control how long to wait to open the tooltip after mouse hover.
 
-<Demo component={demos["tooltip/delay-usage"]} />
+<Demo component="tooltip/delay-usage" />
 
 ### Placement
 
 Use the `side` and `align` props to control where the tooltip is placed by default.
 
-<Demo component={demos["tooltip/placement-usage"]} />
+<Demo component="tooltip/placement-usage" />
 
 ## Props
 

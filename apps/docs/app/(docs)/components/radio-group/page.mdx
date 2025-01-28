@@ -1,5 +1,5 @@
 import { Cards } from "@/components/cards";
-import { Demo, demos } from "@/components/demo";
+import { Demo } from "@/components/demo";
 import { components, PropsTable } from "@/components/props-table";
 
 # RadioGroup
@@ -12,35 +12,35 @@ Basic control to allow selecting only one item from a set.
 
 Use `RadioGroup` and `Radio` components together to create sets of radio buttons.
 
-<Demo component={demos["radio-group/usage"]} />
+<Demo component="radio-group/usage" />
 
 ### Label
 
 The `children` prop on `Radio` is used as the label of the radio control.
 
-<Demo component={demos["radio-group/label-usage"]} />
+<Demo component="radio-group/label-usage" />
 
 ### Disabled state
 
 Enable the `disabled` prop on the `RadioGroup` to toggle the disabled state of all the radio controls.
 
-<Demo component={demos["radio-group/disabled-group-usage"]} />
+<Demo component="radio-group/disabled-group-usage" />
 
 You can also enable the `disabled` prop on each `Radio` to toggle the disabled state of each radio control.
 
-<Demo component={demos["radio-group/disabled-usage"]} />
+<Demo component="radio-group/disabled-usage" />
 
 ### Controlled
 
 Use the `value` and `defaultValue` props on `RadioGroup` to toggle between controlled and uncontrolled usage. And combine it with `onValueChange` to listen for changes to the value.
 
-<Demo component={demos["radio-group/controlled-usage"]} />
+<Demo component="radio-group/controlled-usage" />
 
 ### Description
 
 Use the `description` prop to add helper text after the label.
 
-<Demo component={demos["radio-group/description-usage"]} />
+<Demo component="radio-group/description-usage" />
 
 ### Related
 

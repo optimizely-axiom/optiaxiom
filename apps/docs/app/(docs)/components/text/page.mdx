@@ -1,5 +1,5 @@
 import { Cards } from "@/components/cards";
-import { Demo, demos } from "@/components/demo";
+import { Demo } from "@/components/demo";
 import { components, PropsTable } from "@/components/props-table";
 
 # Text
@@ -10,29 +10,29 @@ Display body or any other form of text. By default it outputs the `<p>` paragrap
 
 ### Usage
 
-<Demo component={demos["text/usage"]} />
+<Demo component="text/usage" />
 
 ### Formatting
 
-<Demo component={demos["text/formatting-usage"]} />
+<Demo component="text/formatting-usage" />
 
 ### Truncate
 
 Use the `truncate` prop to truncate the text and add an ellipsis at the end.
 
-<Demo component={demos["text/truncate-usage"]} />
+<Demo component="text/truncate-usage" />
 
 ### Line clamp
 
 Use the `lineClamp` prop to truncate the text at specific number of lines.
 
-<Demo component={demos["text/line-clamp-usage"]} />
+<Demo component="text/line-clamp-usage" />
 
 ### Composition
 
 `Text` component uses the [Radix Composition](https://www.radix-ui.com/primitives/docs/guides/composition) approach and accepts an `asChild` prop. By default it renders a `<p>` element but when `asChild` is enabled it will forward all of its own props to its child and only render the child element instead.
 
-<Demo component={demos["text/composition-usage"]} />
+<Demo component="text/composition-usage" />
 
 ### Related
 

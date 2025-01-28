@@ -1,5 +1,5 @@
 import { Cards } from "@/components/cards";
-import { Demo, demos } from "@/components/demo";
+import { Demo } from "@/components/demo";
 import { components, PropsTable } from "@/components/props-table";
 
 # Textarea
@@ -10,25 +10,25 @@ Multi-line text field for capturing user input.
 
 ### Usage
 
-<Demo component={demos["textarea/usage"]} />
+<Demo component="textarea/usage" />
 
 ### Error state
 
 Enable the `error` prop to display the error state of the text field.
 
-<Demo component={demos["textarea/error-usage"]} />
+<Demo component="textarea/error-usage" />
 
 ### Disabled state
 
 Enable the `disabled` prop to toggle the disabled state of the text field.
 
-<Demo component={demos["textarea/disabled-usage"]} />
+<Demo component="textarea/disabled-usage" />
 
 ### Read-only state
 
 Enable the `readOnly` prop to display the read-only state of the text field.
 
-<Demo component={demos["textarea/readonly-usage"]} />
+<Demo component="textarea/readonly-usage" />
 
 ### Sizing
 
@@ -36,17 +36,17 @@ Enable the `readOnly` prop to display the read-only state of the text field.
 
 By default `Textarea` does not allow resizing and you can use the `rows` prop to set the size.
 
-<Demo component={demos["textarea/size-usage"]} />
+<Demo component="textarea/size-usage" />
 
 #### Auto sizing
 
 Use `resize=auto` prop to automatically resize the textarea as the value changes.
 
-<Demo component={demos["textarea/size-auto-usage"]} />
+<Demo component="textarea/size-auto-usage" />
 
 You can use the `maxRows` and `rows` props to limit the textarea size.
 
-<Demo component={demos["textarea/size-auto-minmax-usage"]} />
+<Demo component="textarea/size-auto-minmax-usage" />
 
 #### Manual sizing
 
@@ -54,7 +54,7 @@ Use the `resize=vertical` prop to allow users to manually resize the textarea.
 
 You can use `rows` prop to set the initial size of the textarea.
 
-<Demo component={demos["textarea/size-manual-usage"]} />
+<Demo component="textarea/size-manual-usage" />
 
 #### Reset sizing
 
@@ -62,7 +62,7 @@ Use the `resize=none` prop to disallow resizing the textarea.
 
 You can use `rows` prop to set the size of the textarea.
 
-<Demo component={demos["textarea/size-reset-usage"]} />
+<Demo component="textarea/size-reset-usage" />
 
 ### Addons
 
@@ -70,13 +70,13 @@ You can use `rows` prop to set the size of the textarea.
 
 Use the `addonBefore` and `addonAfter` prop to add icons, text, or any other element to the start or end of the text field.
 
-<Demo component={demos["textarea/addon-usage"]} />
+<Demo component="textarea/addon-usage" />
 
 #### Handling addon clicks
 
 Use the `addonPointerEvents` prop to control whether clicking blank spaces in the addons focuses the input or not.
 
-<Demo component={demos["textarea/addon-pointer-usage"]} />
+<Demo component="textarea/addon-pointer-usage" />
 
 ### Related
 
