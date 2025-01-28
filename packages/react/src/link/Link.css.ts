@@ -13,6 +13,7 @@ export const borderRadiusVar = createVar();
 export const link = recipe({
   base: [
     style({
+      position: "relative",
       textDecoration: "none",
 
       "@media": {
@@ -70,6 +71,8 @@ export const link = recipe({
     overlay: {
       false: {},
       true: style({
+        position: "static",
+
         selectors: {
           "&::after": {
             borderRadius: fallbackVar(borderRadiusVar, "inherit"),
