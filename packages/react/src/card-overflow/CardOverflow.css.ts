@@ -4,13 +4,26 @@ export const cardOverflow = recipe({
   base: [
     {
       alignSelf: "stretch",
-      overflow: "hidden",
     },
-    style({
-      aspectRatio: "2",
-      borderTopLeftRadius: "inherit",
-      borderTopRightRadius: "inherit",
-      margin: "-16px -16px 0",
-    }),
+    style({}),
   ],
+
+  variants: {
+    orientation: {
+      horizontal: [
+        style({
+          borderBottomLeftRadius: "inherit",
+          borderTopLeftRadius: "inherit",
+          margin: "-16px 0 -16px -16px",
+        }),
+      ],
+      vertical: [
+        style({
+          borderTopLeftRadius: "inherit",
+          borderTopRightRadius: "inherit",
+          margin: "-16px -16px 0",
+        }),
+      ],
+    },
+  },
 });

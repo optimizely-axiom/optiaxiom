@@ -181,3 +181,69 @@ export const WithCheckboxAndLink: Story = {
     canvas.getByRole("checkbox").focus();
   },
 };
+
+export const Horizontal: Story = {
+  args: {
+    h: "80",
+    maxW: "full",
+    orientation: "horizontal",
+  },
+  render: (args) => (
+    <Flex>
+      <Card {...args}>
+        <CardImage alt="" src="https://placehold.co/400x400" />
+        <CardContent>
+          <CardTitle>
+            <Link appearance="subtle" href="data:," overlay>
+              The majestic world of turtles
+            </Link>
+          </CardTitle>
+        </CardContent>
+      </Card>
+      <Card {...args}>
+        <CardOverflow>
+          <CardImage alt="" src="https://placehold.co/400x400" />
+        </CardOverflow>
+        <CardContent>
+          <CardTitle>
+            <Link appearance="subtle" href="data:," overlay>
+              The majestic world of turtles
+            </Link>
+          </CardTitle>
+        </CardContent>
+      </Card>
+    </Flex>
+  ),
+};
+
+export const Vertical: Story = {
+  args: {
+    orientation: "vertical",
+  },
+  render: (args) => (
+    <Flex flexDirection="row">
+      <Card {...args}>
+        <CardImage alt="" src="https://placehold.co/600x400" />
+        <CardContent>
+          <CardTitle>
+            <Link appearance="subtle" href="data:," overlay>
+              The majestic world of turtles
+            </Link>
+          </CardTitle>
+        </CardContent>
+      </Card>
+      <Card {...args}>
+        <CardOverflow>
+          <CardImage alt="" src="https://placehold.co/600x400" />
+        </CardOverflow>
+        <CardContent>
+          <CardTitle>
+            <Link appearance="subtle" href="data:," overlay>
+              The majestic world of turtles
+            </Link>
+          </CardTitle>
+        </CardContent>
+      </Card>
+    </Flex>
+  ),
+};
