@@ -1,6 +1,7 @@
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import { type ReactNode, useEffect, useRef, useState } from "react";
 
+import { Flex } from "../flex";
 import { SidebarContextProvider } from "../sidebar-context";
 
 type SidebarProps = {
@@ -48,7 +49,9 @@ export const Sidebar = ({
         setExpanded(flag);
       }}
     >
-      {children}
+      <Flex flexDirection="row" gap="0">
+        {children}
+      </Flex>
     </SidebarContextProvider>
   );
 };
