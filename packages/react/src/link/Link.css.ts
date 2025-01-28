@@ -1,4 +1,4 @@
-import { theme } from "@optiaxiom/globals";
+import { theme as linkStyles } from "@optiaxiom/globals";
 
 import {
   createVar,
@@ -9,9 +9,11 @@ import {
 import { recipe } from "../vanilla-extract";
 
 export const borderRadiusVar = createVar();
+export const className = style({});
 
 export const link = recipe({
   base: [
+    className,
     style({
       position: "relative",
       textDecoration: "none",
@@ -28,14 +30,14 @@ export const link = recipe({
 
       selectors: {
         "&:focus-visible": {
-          outline: `2px auto ${theme.colors["border.focus"]}`,
+          outline: `2px auto ${linkStyles.colors["border.focus"]}`,
           outlineOffset: "1px",
         },
         "&:visited": {
-          color: theme.colors["fg.link.visited"],
+          color: linkStyles.colors["fg.link.visited"],
         },
         "&[data-disabled]": {
-          color: theme.colors["fg.disabled"],
+          color: linkStyles.colors["fg.disabled"],
         },
       },
     }),
@@ -46,23 +48,29 @@ export const link = recipe({
      */
     appearance: {
       default: style({
-        color: theme.colors["fg.link.default"],
+        color: linkStyles.colors["fg.link.default"],
 
         "@media": {
           "(hover: hover)": {
             selectors: {
               "&:hover:not([data-disabled])": {
-                color: theme.colors["fg.link.default.hovered"],
+                color: linkStyles.colors["fg.link.default.hovered"],
               },
             },
           },
         },
       }),
       inverse: style({
-        color: theme.colors["fg.link.inverse"],
+        color: linkStyles.colors["fg.link.inverse"],
       }),
       subtle: style({
-        color: theme.colors["fg.link.subtle"],
+        color: linkStyles.colors["fg.link.subtle"],
+
+        selectors: {
+          "&:visited": {
+            color: linkStyles.colors["fg.link.subtle"],
+          },
+        },
       }),
     },
     /**
@@ -84,7 +92,7 @@ export const link = recipe({
             outline: "none",
           },
           "&:focus-visible::after": {
-            outline: `2px auto ${theme.colors["border.focus"]}`,
+            outline: `2px auto ${linkStyles.colors["border.focus"]}`,
             outlineOffset: "1px",
           },
         },
