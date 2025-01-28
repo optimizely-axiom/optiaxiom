@@ -1,5 +1,5 @@
 import { Cards } from "@/components/cards";
-import { Demo, demos } from "@/components/demo";
+import { Demo } from "@/components/demo";
 import { components, PropsTable } from "@/components/props-table";
 
 # Box
@@ -10,13 +10,13 @@ import { components, PropsTable } from "@/components/props-table";
 
 ### Using design tokens
 
-<Demo component={demos["box/usage"]} />
+<Demo component="box/usage" />
 
 ### Composition
 
 `Box` component uses the [Radix Composition](https://www.radix-ui.com/primitives/docs/guides/composition) approach and accepts an `asChild` prop. By default it renders a `<div>` element but when `asChild` is enabled it will forward all of its own props to its child and only render the child element instead.
 
-<Demo component={demos["box/composition-usage"]} />
+<Demo component="box/composition-usage" />
 
 ### BoxProps
 

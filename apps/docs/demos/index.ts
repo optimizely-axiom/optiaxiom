@@ -1,862 +1,261 @@
 export const demos = {
-  "alert-dialog/async-usage": {
-    demo: import("./alert-dialog/async-usage/App"),
-    path: "alert-dialog/async-usage",
-  },
-  "alert-dialog/confirmation-usage": {
-    demo: import("./alert-dialog/confirmation-usage/App"),
-    path: "alert-dialog/confirmation-usage",
-  },
-  "alert-dialog/controlled-usage": {
-    demo: import("./alert-dialog/controlled-usage/App"),
-    path: "alert-dialog/controlled-usage",
-  },
-  "alert-dialog/size-usage": {
-    demo: import("./alert-dialog/size-usage/App"),
-    path: "alert-dialog/size-usage",
-  },
-  "alert-dialog/trigger-usage": {
-    demo: import("./alert-dialog/trigger-usage/App"),
-    path: "alert-dialog/trigger-usage",
-  },
-  "alert-dialog/usage": {
-    demo: import("./alert-dialog/usage/App"),
-    path: "alert-dialog/usage",
-  },
-  "alert/appearance-usage": {
-    demo: import("./alert/appearance-usage/App"),
-    path: "alert/appearance-usage",
-  },
-  "alert/close-usage": {
-    demo: import("./alert/close-usage/App"),
-    path: "alert/close-usage",
-  },
-  "alert/usage": {
-    demo: import("./alert/usage/App"),
-    path: "alert/usage",
-  },
-  "animation/pulse-usage": {
-    demo: import("./animation/pulse-usage/App"),
-    path: "animation/pulse-usage",
-  },
-  "autocomplete/complex-usage": {
-    demo: import("./autocomplete/complex-usage/App"),
-    path: "autocomplete/complex-usage",
-  },
-  "autocomplete/controlled-usage": {
-    demo: import("./autocomplete/controlled-usage/App"),
-    path: "autocomplete/controlled-usage",
-  },
-  "autocomplete/creatable-usage": {
-    demo: import("./autocomplete/creatable-usage/App"),
-    path: "autocomplete/creatable-usage",
-  },
-  "autocomplete/loading-usage": {
-    demo: import("./autocomplete/loading-usage/App"),
-    path: "autocomplete/loading-usage",
-  },
-  "autocomplete/usage": {
-    demo: import("./autocomplete/usage/App"),
-    path: "autocomplete/usage",
-  },
-  "autocomplete/virtualized-usage": {
-    demo: import("./autocomplete/virtualized-usage/App"),
-    path: "autocomplete/virtualized-usage",
-  },
-  "avatar/color-usage": {
-    demo: import("./avatar/color-usage/App"),
-    path: "avatar/color-usage",
-  },
-  "avatar/fallback-children-usage": {
-    demo: import("./avatar/fallback-children-usage/App"),
-    path: "avatar/fallback-children-usage",
-  },
-  "avatar/fallback-icon-usage": {
-    demo: import("./avatar/fallback-icon-usage/App"),
-    path: "avatar/fallback-icon-usage",
-  },
-  "avatar/fallback-name-usage": {
-    demo: import("./avatar/fallback-name-usage/App"),
-    path: "avatar/fallback-name-usage",
-  },
-  "avatar/group-usage": {
-    demo: import("./avatar/group-usage/App"),
-    path: "avatar/group-usage",
-  },
-  "avatar/size-usage": {
-    demo: import("./avatar/size-usage/App"),
-    path: "avatar/size-usage",
-  },
-  "avatar/usage": {
-    demo: import("./avatar/usage/App"),
-    path: "avatar/usage",
-  },
-  "background-color/usage": {
-    demo: import("./background-color/usage/App"),
-    path: "background-color/usage",
-  },
-  "badge/appearance-usage": {
-    demo: import("./badge/appearance-usage/App"),
-    path: "badge/appearance-usage",
-  },
-  "badge/link-usage": {
-    demo: import("./badge/link-usage/App"),
-    path: "badge/link-usage",
-  },
-  "badge/usage": {
-    demo: import("./badge/usage/App"),
-    path: "badge/usage",
-  },
-  "banner/appearance-usage": {
-    demo: import("./banner/appearance-usage/App"),
-    path: "banner/appearance-usage",
-  },
-  "banner/close-usage": {
-    demo: import("./banner/close-usage/App"),
-    path: "banner/close-usage",
-  },
-  "banner/usage": {
-    demo: import("./banner/usage/App"),
-    path: "banner/usage",
-  },
-  "border-color/usage": {
-    demo: import("./border-color/usage/App"),
-    path: "border-color/usage",
-  },
-  "border-radius/usage": {
-    demo: import("./border-radius/usage/App"),
-    path: "border-radius/usage",
-  },
-  "border-width/single-usage": {
-    demo: import("./border-width/single-usage/App"),
-    path: "border-width/single-usage",
-  },
-  "border-width/usage": {
-    demo: import("./border-width/usage/App"),
-    path: "border-width/usage",
-  },
-  "box-shadow/none-usage": {
-    demo: import("./box-shadow/none-usage/App"),
-    path: "box-shadow/none-usage",
-  },
-  "box-shadow/usage": {
-    demo: import("./box-shadow/usage/App"),
-    path: "box-shadow/usage",
-  },
-  "box/composition-usage": {
-    demo: import("./box/composition-usage/App"),
-    path: "box/composition-usage",
-  },
-  "box/usage": {
-    demo: import("./box/usage/App"),
-    path: "box/usage",
-  },
-  "button/appearance-usage": {
-    demo: import("./button/appearance-usage/App"),
-    path: "button/appearance-usage",
-  },
-  "button/disabled-usage": {
-    demo: import("./button/disabled-usage/App"),
-    path: "button/disabled-usage",
-  },
-  "button/file-upload-usage": {
-    demo: import("./button/file-upload-usage/App"),
-    path: "button/file-upload-usage",
-  },
-  "button/group-usage": {
-    demo: import("./button/group-usage/App"),
-    path: "button/group-usage",
-  },
-  "button/icon-only-usage": {
-    demo: import("./button/icon-only-usage/App"),
-    path: "button/icon-only-usage",
-  },
-  "button/icon-usage": {
-    demo: import("./button/icon-usage/App"),
-    path: "button/icon-usage",
-  },
-  "button/link-disabled-usage": {
-    demo: import("./button/link-disabled-usage/App"),
-    path: "button/link-disabled-usage",
-  },
-  "button/link-usage": {
-    demo: import("./button/link-usage/App"),
-    path: "button/link-usage",
-  },
-  "button/loading-usage": {
-    demo: import("./button/loading-usage/App"),
-    path: "button/loading-usage",
-  },
-  "button/size-usage": {
-    demo: import("./button/size-usage/App"),
-    path: "button/size-usage",
-  },
-  "button/usage": {
-    demo: import("./button/usage/App"),
-    path: "button/usage",
-  },
-  "calendar/usage": {
-    demo: import("./calendar/usage/App"),
-    path: "calendar/usage",
-  },
-  "checkbox/controlled-usage": {
-    demo: import("./checkbox/controlled-usage/App"),
-    path: "checkbox/controlled-usage",
-  },
-  "checkbox/description-usage": {
-    demo: import("./checkbox/description-usage/App"),
-    path: "checkbox/description-usage",
-  },
-  "checkbox/disabled-usage": {
-    demo: import("./checkbox/disabled-usage/App"),
-    path: "checkbox/disabled-usage",
-  },
-  "checkbox/indeterminate-usage": {
-    demo: import("./checkbox/indeterminate-usage/App"),
-    path: "checkbox/indeterminate-usage",
-  },
-  "checkbox/label-usage": {
-    demo: import("./checkbox/label-usage/App"),
-    path: "checkbox/label-usage",
-  },
-  "checkbox/usage": {
-    demo: import("./checkbox/usage/App"),
-    path: "checkbox/usage",
-  },
-  "code/usage": {
-    demo: import("./code/usage/App"),
-    path: "code/usage",
-  },
-  "color/usage": {
-    demo: import("./color/usage/App"),
-    path: "color/usage",
-  },
-  "combobox/usage": {
-    demo: import("./combobox/usage/App"),
-    path: "combobox/usage",
-  },
-  "data-table/usage": {
-    demo: import("./data-table/usage/App"),
-    path: "data-table/usage",
-  },
-  "date-input/usage": {
-    demo: import("./date-input/usage/App"),
-    path: "date-input/usage",
-  },
-  "dialog/alert-dialog-usage": {
-    demo: import("./dialog/alert-dialog-usage/App"),
-    path: "dialog/alert-dialog-usage",
-  },
-  "dialog/controlled-usage": {
-    demo: import("./dialog/controlled-usage/App"),
-    path: "dialog/controlled-usage",
-  },
-  "dialog/description-usage": {
-    demo: import("./dialog/description-usage/App"),
-    path: "dialog/description-usage",
-  },
-  "dialog/form-usage": {
-    demo: import("./dialog/form-usage/App"),
-    path: "dialog/form-usage",
-  },
-  "dialog/nested-usage": {
-    demo: import("./dialog/nested-usage/App"),
-    path: "dialog/nested-usage",
-  },
-  "dialog/size-usage": {
-    demo: import("./dialog/size-usage/App"),
-    path: "dialog/size-usage",
-  },
-  "dialog/trigger-usage": {
-    demo: import("./dialog/trigger-usage/App"),
-    path: "dialog/trigger-usage",
-  },
-  "dialog/usage": {
-    demo: import("./dialog/usage/App"),
-    path: "dialog/usage",
-  },
-  "disclosure/chevron-position-usage": {
-    demo: import("./disclosure/chevron-position-usage/App"),
-    path: "disclosure/chevron-position-usage",
-  },
-  "disclosure/usage": {
-    demo: import("./disclosure/usage/App"),
-    path: "disclosure/usage",
-  },
-  "dropdown-menu/addon-usage": {
-    demo: import("./dropdown-menu/addon-usage/App"),
-    path: "dropdown-menu/addon-usage",
-  },
-  "dropdown-menu/alert-dialog-usage": {
-    demo: import("./dropdown-menu/alert-dialog-usage/App"),
-    path: "dropdown-menu/alert-dialog-usage",
-  },
-  "dropdown-menu/appearance-usage": {
-    demo: import("./dropdown-menu/appearance-usage/App"),
-    path: "dropdown-menu/appearance-usage",
-  },
-  "dropdown-menu/controlled-usage": {
-    demo: import("./dropdown-menu/controlled-usage/App"),
-    path: "dropdown-menu/controlled-usage",
-  },
-  "dropdown-menu/description-usage": {
-    demo: import("./dropdown-menu/description-usage/App"),
-    path: "dropdown-menu/description-usage",
-  },
-  "dropdown-menu/disabled-usage": {
-    demo: import("./dropdown-menu/disabled-usage/App"),
-    path: "dropdown-menu/disabled-usage",
-  },
-  "dropdown-menu/ellipsis-trigger-usage": {
-    demo: import("./dropdown-menu/ellipsis-trigger-usage/App"),
-    path: "dropdown-menu/ellipsis-trigger-usage",
-  },
-  "dropdown-menu/modal-usage": {
-    demo: import("./dropdown-menu/modal-usage/App"),
-    path: "dropdown-menu/modal-usage",
-  },
-  "dropdown-menu/position-usage": {
-    demo: import("./dropdown-menu/position-usage/App"),
-    path: "dropdown-menu/position-usage",
-  },
-  "dropdown-menu/select-usage": {
-    demo: import("./dropdown-menu/select-usage/App"),
-    path: "dropdown-menu/select-usage",
-  },
-  "dropdown-menu/trigger-usage": {
-    demo: import("./dropdown-menu/trigger-usage/App"),
-    path: "dropdown-menu/trigger-usage",
-  },
-  "dropdown-menu/usage": {
-    demo: import("./dropdown-menu/usage/App"),
-    path: "dropdown-menu/usage",
-  },
-  "field/description-usage": {
-    demo: import("./field/description-usage/App"),
-    path: "field/description-usage",
-  },
-  "field/error-usage": {
-    demo: import("./field/error-usage/App"),
-    path: "field/error-usage",
-  },
-  "field/info-usage": {
-    demo: import("./field/info-usage/App"),
-    path: "field/info-usage",
-  },
-  "field/required-usage": {
-    demo: import("./field/required-usage/App"),
-    path: "field/required-usage",
-  },
-  "field/usage": {
-    demo: import("./field/usage/App"),
-    path: "field/usage",
-  },
-  "flex/alignment-usage": {
-    demo: import("./flex/alignment-usage/App"),
-    path: "flex/alignment-usage",
-  },
-  "flex/gap-usage": {
-    demo: import("./flex/gap-usage/App"),
-    path: "flex/gap-usage",
-  },
-  "flex/horizontal-usage": {
-    demo: import("./flex/horizontal-usage/App"),
-    path: "flex/horizontal-usage",
-  },
-  "flex/usage": {
-    demo: import("./flex/usage/App"),
-    path: "flex/usage",
-  },
-  "flex/vertical-usage": {
-    demo: import("./flex/vertical-usage/App"),
-    path: "flex/vertical-usage",
-  },
-  "font/family-usage": {
-    demo: import("./font/family-usage/App"),
-    path: "font/family-usage",
-  },
-  "font/size-usage": {
-    demo: import("./font/size-usage/App"),
-    path: "font/size-usage",
-  },
-  "gap/usage": {
-    demo: import("./gap/usage/App"),
-    path: "gap/usage",
-  },
-  "grid/gap-usage": {
-    demo: import("./grid/gap-usage/App"),
-    path: "grid/gap-usage",
-  },
-  "grid/span-usage": {
-    demo: import("./grid/span-usage/App"),
-    path: "grid/span-usage",
-  },
-  "grid/usage": {
-    demo: import("./grid/usage/App"),
-    path: "grid/usage",
-  },
-  "heading/size-usage": {
-    demo: import("./heading/size-usage/App"),
-    path: "heading/size-usage",
-  },
-  "heading/usage": {
-    demo: import("./heading/usage/App"),
-    path: "heading/usage",
-  },
-  "height/usage": {
-    demo: import("./height/usage/App"),
-    path: "height/usage",
-  },
-  "indicator/appearance-usage": {
-    demo: import("./indicator/appearance-usage/App"),
-    path: "indicator/appearance-usage",
-  },
-  "indicator/content-usage": {
-    demo: import("./indicator/content-usage/App"),
-    path: "indicator/content-usage",
-  },
-  "indicator/disabled-usage": {
-    demo: import("./indicator/disabled-usage/App"),
-    path: "indicator/disabled-usage",
-  },
-  "indicator/usage": {
-    demo: import("./indicator/usage/App"),
-    path: "indicator/usage",
-  },
-  "inline-input/appearance-usage": {
-    demo: import("./inline-input/appearance-usage/App"),
-    path: "inline-input/appearance-usage",
-  },
-  "inline-input/change-usage": {
-    demo: import("./inline-input/change-usage/App"),
-    path: "inline-input/change-usage",
-  },
-  "inline-input/controlled-usage": {
-    demo: import("./inline-input/controlled-usage/App"),
-    path: "inline-input/controlled-usage",
-  },
-  "inline-input/disabled-usage": {
-    demo: import("./inline-input/disabled-usage/App"),
-    path: "inline-input/disabled-usage",
-  },
-  "inline-input/multiline-usage": {
-    demo: import("./inline-input/multiline-usage/App"),
-    path: "inline-input/multiline-usage",
-  },
-  "inline-input/placeholder-usage": {
-    demo: import("./inline-input/placeholder-usage/App"),
-    path: "inline-input/placeholder-usage",
-  },
-  "inline-input/usage": {
-    demo: import("./inline-input/usage/App"),
-    path: "inline-input/usage",
-  },
-  "input/addon-pointer-usage": {
-    demo: import("./input/addon-pointer-usage/App"),
-    path: "input/addon-pointer-usage",
-  },
-  "input/addon-usage": {
-    demo: import("./input/addon-usage/App"),
-    path: "input/addon-usage",
-  },
-  "input/disabled-usage": {
-    demo: import("./input/disabled-usage/App"),
-    path: "input/disabled-usage",
-  },
-  "input/error-usage": {
-    demo: import("./input/error-usage/App"),
-    path: "input/error-usage",
-  },
-  "input/readonly-usage": {
-    demo: import("./input/readonly-usage/App"),
-    path: "input/readonly-usage",
-  },
-  "input/size-usage": {
-    demo: import("./input/size-usage/App"),
-    path: "input/size-usage",
-  },
-  "input/usage": {
-    demo: import("./input/usage/App"),
-    path: "input/usage",
-  },
-  "kbd/appearance-usage": {
-    demo: import("./kbd/appearance-usage/App"),
-    path: "kbd/appearance-usage",
-  },
-  "kbd/keys-usage": {
-    demo: import("./kbd/keys-usage/App"),
-    path: "kbd/keys-usage",
-  },
-  "kbd/usage": {
-    demo: import("./kbd/usage/App"),
-    path: "kbd/usage",
-  },
-  "link/appearance-usage": {
-    demo: import("./link/appearance-usage/App"),
-    path: "link/appearance-usage",
-  },
-  "link/button-usage": {
-    demo: import("./link/button-usage/App"),
-    path: "link/button-usage",
-  },
-  "link/disabled-usage": {
-    demo: import("./link/disabled-usage/App"),
-    path: "link/disabled-usage",
-  },
-  "link/external-usage": {
-    demo: import("./link/external-usage/App"),
-    path: "link/external-usage",
-  },
-  "link/usage": {
-    demo: import("./link/usage/App"),
-    path: "link/usage",
-  },
-  "margin/multiple-usage": {
-    demo: import("./margin/multiple-usage/App"),
-    path: "margin/multiple-usage",
-  },
-  "margin/single-usage": {
-    demo: import("./margin/single-usage/App"),
-    path: "margin/single-usage",
-  },
-  "margin/usage": {
-    demo: import("./margin/usage/App"),
-    path: "margin/usage",
-  },
-  "max-height/usage": {
-    demo: import("./max-height/usage/App"),
-    path: "max-height/usage",
-  },
-  "max-width/usage": {
-    demo: import("./max-width/usage/App"),
-    path: "max-width/usage",
-  },
-  "modal-layer/usage": {
-    demo: import("./modal-layer/usage/App"),
-    path: "modal-layer/usage",
-  },
-  "padding/multiple-usage": {
-    demo: import("./padding/multiple-usage/App"),
-    path: "padding/multiple-usage",
-  },
-  "padding/single-usage": {
-    demo: import("./padding/single-usage/App"),
-    path: "padding/single-usage",
-  },
-  "padding/usage": {
-    demo: import("./padding/usage/App"),
-    path: "padding/usage",
-  },
-  "pagination/controlled-usage": {
-    demo: import("./pagination/controlled-usage/App"),
-    path: "pagination/controlled-usage",
-  },
-  "pagination/usage": {
-    demo: import("./pagination/usage/App"),
-    path: "pagination/usage",
-  },
-  "popover/controlled-usage": {
-    demo: import("./popover/controlled-usage/App"),
-    path: "popover/controlled-usage",
-  },
-  "popover/example-usage": {
-    demo: import("./popover/example-usage/App"),
-    path: "popover/example-usage",
-  },
-  "popover/trigger-usage": {
-    demo: import("./popover/trigger-usage/App"),
-    path: "popover/trigger-usage",
-  },
-  "popover/usage": {
-    demo: import("./popover/usage/App"),
-    path: "popover/usage",
-  },
-  "progress/usage": {
-    demo: import("./progress/usage/App"),
-    path: "progress/usage",
-  },
-  "radio-group/controlled-usage": {
-    demo: import("./radio-group/controlled-usage/App"),
-    path: "radio-group/controlled-usage",
-  },
-  "radio-group/description-usage": {
-    demo: import("./radio-group/description-usage/App"),
-    path: "radio-group/description-usage",
-  },
-  "radio-group/disabled-group-usage": {
-    demo: import("./radio-group/disabled-group-usage/App"),
-    path: "radio-group/disabled-group-usage",
-  },
-  "radio-group/disabled-usage": {
-    demo: import("./radio-group/disabled-usage/App"),
-    path: "radio-group/disabled-usage",
-  },
-  "radio-group/label-usage": {
-    demo: import("./radio-group/label-usage/App"),
-    path: "radio-group/label-usage",
-  },
-  "radio-group/usage": {
-    demo: import("./radio-group/usage/App"),
-    path: "radio-group/usage",
-  },
-  "search-input/controlled-usage": {
-    demo: import("./search-input/controlled-usage/App"),
-    path: "search-input/controlled-usage",
-  },
-  "search-input/disabled-usage": {
-    demo: import("./search-input/disabled-usage/App"),
-    path: "search-input/disabled-usage",
-  },
-  "search-input/usage": {
-    demo: import("./search-input/usage/App"),
-    path: "search-input/usage",
-  },
-  "segmented-control/controlled-usage": {
-    demo: import("./segmented-control/controlled-usage/App"),
-    path: "segmented-control/controlled-usage",
-  },
-  "segmented-control/usage": {
-    demo: import("./segmented-control/usage/App"),
-    path: "segmented-control/usage",
-  },
-  "select/usage": {
-    demo: import("./select/usage/App"),
-    path: "select/usage",
-  },
-  "separator/responsive-usage": {
-    demo: import("./separator/responsive-usage/App"),
-    path: "separator/responsive-usage",
-  },
-  "separator/usage": {
-    demo: import("./separator/usage/App"),
-    path: "separator/usage",
-  },
-  "separator/vertical-usage": {
-    demo: import("./separator/vertical-usage/App"),
-    path: "separator/vertical-usage",
-  },
-  "sidebar/usage": {
-    demo: import("./sidebar/usage/App"),
-    path: "sidebar/usage",
-  },
-  "size/percentage-usage": {
-    demo: import("./size/percentage-usage/App"),
-    path: "size/percentage-usage",
-  },
-  "size/reset-usage": {
-    demo: import("./size/reset-usage/App"),
-    path: "size/reset-usage",
-  },
-  "size/usage": {
-    demo: import("./size/usage/App"),
-    path: "size/usage",
-  },
-  "skeleton/children-usage": {
-    demo: import("./skeleton/children-usage/App"),
-    path: "skeleton/children-usage",
-  },
-  "skeleton/dimension-usage": {
-    demo: import("./skeleton/dimension-usage/App"),
-    path: "skeleton/dimension-usage",
-  },
-  "skeleton/example-usage": {
-    demo: import("./skeleton/example-usage/App"),
-    path: "skeleton/example-usage",
-  },
-  "skeleton/usage": {
-    demo: import("./skeleton/usage/App"),
-    path: "skeleton/usage",
-  },
-  "spinner/color-usage": {
-    demo: import("./spinner/color-usage/App"),
-    path: "spinner/color-usage",
-  },
-  "spinner/label-usage": {
-    demo: import("./spinner/label-usage/App"),
-    path: "spinner/label-usage",
-  },
-  "spinner/size-usage": {
-    demo: import("./spinner/size-usage/App"),
-    path: "spinner/size-usage",
-  },
-  "spinner/usage": {
-    demo: import("./spinner/usage/App"),
-    path: "spinner/usage",
-  },
-  "styles/css-usage": {
-    demo: import("./styles/css-usage/App"),
-    path: "styles/css-usage",
-  },
-  "styles/js-usage": {
-    demo: import("./styles/js-usage/App"),
-    path: "styles/js-usage",
-  },
-  "styles/prop-usage": {
-    demo: import("./styles/prop-usage/App"),
-    path: "styles/prop-usage",
-  },
-  "styles/responsive-complex-usage": {
-    demo: import("./styles/responsive-complex-usage/App"),
-    path: "styles/responsive-complex-usage",
-  },
-  "styles/responsive-usage": {
-    demo: import("./styles/responsive-usage/App"),
-    path: "styles/responsive-usage",
-  },
-  "switch/controlled-usage": {
-    demo: import("./switch/controlled-usage/App"),
-    path: "switch/controlled-usage",
-  },
-  "switch/disabled-usage": {
-    demo: import("./switch/disabled-usage/App"),
-    path: "switch/disabled-usage",
-  },
-  "switch/label-usage": {
-    demo: import("./switch/label-usage/App"),
-    path: "switch/label-usage",
-  },
-  "switch/size-usage": {
-    demo: import("./switch/size-usage/App"),
-    path: "switch/size-usage",
-  },
-  "switch/usage": {
-    demo: import("./switch/usage/App"),
-    path: "switch/usage",
-  },
-  "table/usage": {
-    demo: import("./table/usage/App"),
-    path: "table/usage",
-  },
-  "tabs/usage": {
-    demo: import("./tabs/usage/App"),
-    path: "tabs/usage",
-  },
-  "text/composition-usage": {
-    demo: import("./text/composition-usage/App"),
-    path: "text/composition-usage",
-  },
-  "text/formatting-usage": {
-    demo: import("./text/formatting-usage/App"),
-    path: "text/formatting-usage",
-  },
-  "text/line-clamp-usage": {
-    demo: import("./text/line-clamp-usage/App"),
-    path: "text/line-clamp-usage",
-  },
-  "text/truncate-usage": {
-    demo: import("./text/truncate-usage/App"),
-    path: "text/truncate-usage",
-  },
-  "text/usage": {
-    demo: import("./text/usage/App"),
-    path: "text/usage",
-  },
-  "textarea/addon-pointer-usage": {
-    demo: import("./textarea/addon-pointer-usage/App"),
-    path: "textarea/addon-pointer-usage",
-  },
-  "textarea/addon-usage": {
-    demo: import("./textarea/addon-usage/App"),
-    path: "textarea/addon-usage",
-  },
-  "textarea/disabled-usage": {
-    demo: import("./textarea/disabled-usage/App"),
-    path: "textarea/disabled-usage",
-  },
-  "textarea/error-usage": {
-    demo: import("./textarea/error-usage/App"),
-    path: "textarea/error-usage",
-  },
-  "textarea/readonly-usage": {
-    demo: import("./textarea/readonly-usage/App"),
-    path: "textarea/readonly-usage",
-  },
-  "textarea/size-auto-minmax-usage": {
-    demo: import("./textarea/size-auto-minmax-usage/App"),
-    path: "textarea/size-auto-minmax-usage",
-  },
-  "textarea/size-auto-usage": {
-    demo: import("./textarea/size-auto-usage/App"),
-    path: "textarea/size-auto-usage",
-  },
-  "textarea/size-manual-usage": {
-    demo: import("./textarea/size-manual-usage/App"),
-    path: "textarea/size-manual-usage",
-  },
-  "textarea/size-reset-usage": {
-    demo: import("./textarea/size-reset-usage/App"),
-    path: "textarea/size-reset-usage",
-  },
-  "textarea/size-usage": {
-    demo: import("./textarea/size-usage/App"),
-    path: "textarea/size-usage",
-  },
-  "textarea/usage": {
-    demo: import("./textarea/usage/App"),
-    path: "textarea/usage",
-  },
-  "toast/action-usage": {
-    demo: import("./toast/action-usage/App"),
-    path: "toast/action-usage",
-  },
-  "toast/appearance-usage": {
-    demo: import("./toast/appearance-usage/App"),
-    path: "toast/appearance-usage",
-  },
-  "toast/dismiss-usage": {
-    demo: import("./toast/dismiss-usage/App"),
-    path: "toast/dismiss-usage",
-  },
-  "toast/usage": {
-    demo: import("./toast/usage/App"),
-    path: "toast/usage",
-  },
-  "toggle-button/appearance-usage": {
-    demo: import("./toggle-button/appearance-usage/App"),
-    path: "toggle-button/appearance-usage",
-  },
-  "toggle-button/controlled-usage": {
-    demo: import("./toggle-button/controlled-usage/App"),
-    path: "toggle-button/controlled-usage",
-  },
-  "toggle-button/disabled-usage": {
-    demo: import("./toggle-button/disabled-usage/App"),
-    path: "toggle-button/disabled-usage",
-  },
-  "toggle-button/usage": {
-    demo: import("./toggle-button/usage/App"),
-    path: "toggle-button/usage",
-  },
-  "tooltip/controlled-usage": {
-    demo: import("./tooltip/controlled-usage/App"),
-    path: "tooltip/controlled-usage",
-  },
-  "tooltip/delay-usage": {
-    demo: import("./tooltip/delay-usage/App"),
-    path: "tooltip/delay-usage",
-  },
-  "tooltip/placement-usage": {
-    demo: import("./tooltip/placement-usage/App"),
-    path: "tooltip/placement-usage",
-  },
-  "tooltip/usage": {
-    demo: import("./tooltip/usage/App"),
-    path: "tooltip/usage",
-  },
-  "transition/colors-usage": {
-    demo: import("./transition/colors-usage/App"),
-    path: "transition/colors-usage",
-  },
-  "width/percentage-usage": {
-    demo: import("./width/percentage-usage/App"),
-    path: "width/percentage-usage",
-  },
-  "width/usage": {
-    demo: import("./width/usage/App"),
-    path: "width/usage",
-  },
-  "z-index/usage": {
-    demo: import("./z-index/usage/App"),
-    path: "z-index/usage",
-  },
+  "alert-dialog/async-usage": import("./alert-dialog/async-usage/App"),
+  "alert-dialog/confirmation-usage": import(
+    "./alert-dialog/confirmation-usage/App"
+  ),
+  "alert-dialog/controlled-usage": import(
+    "./alert-dialog/controlled-usage/App"
+  ),
+  "alert-dialog/size-usage": import("./alert-dialog/size-usage/App"),
+  "alert-dialog/trigger-usage": import("./alert-dialog/trigger-usage/App"),
+  "alert-dialog/usage": import("./alert-dialog/usage/App"),
+  "alert/appearance-usage": import("./alert/appearance-usage/App"),
+  "alert/close-usage": import("./alert/close-usage/App"),
+  "alert/usage": import("./alert/usage/App"),
+  "animation/pulse-usage": import("./animation/pulse-usage/App"),
+  "autocomplete/complex-usage": import("./autocomplete/complex-usage/App"),
+  "autocomplete/controlled-usage": import(
+    "./autocomplete/controlled-usage/App"
+  ),
+  "autocomplete/creatable-usage": import("./autocomplete/creatable-usage/App"),
+  "autocomplete/loading-usage": import("./autocomplete/loading-usage/App"),
+  "autocomplete/usage": import("./autocomplete/usage/App"),
+  "autocomplete/virtualized-usage": import(
+    "./autocomplete/virtualized-usage/App"
+  ),
+  "avatar/color-usage": import("./avatar/color-usage/App"),
+  "avatar/fallback-children-usage": import(
+    "./avatar/fallback-children-usage/App"
+  ),
+  "avatar/fallback-icon-usage": import("./avatar/fallback-icon-usage/App"),
+  "avatar/fallback-name-usage": import("./avatar/fallback-name-usage/App"),
+  "avatar/group-usage": import("./avatar/group-usage/App"),
+  "avatar/size-usage": import("./avatar/size-usage/App"),
+  "avatar/usage": import("./avatar/usage/App"),
+  "background-color/usage": import("./background-color/usage/App"),
+  "badge/appearance-usage": import("./badge/appearance-usage/App"),
+  "badge/link-usage": import("./badge/link-usage/App"),
+  "badge/usage": import("./badge/usage/App"),
+  "banner/appearance-usage": import("./banner/appearance-usage/App"),
+  "banner/close-usage": import("./banner/close-usage/App"),
+  "banner/usage": import("./banner/usage/App"),
+  "border-color/usage": import("./border-color/usage/App"),
+  "border-radius/usage": import("./border-radius/usage/App"),
+  "border-width/single-usage": import("./border-width/single-usage/App"),
+  "border-width/usage": import("./border-width/usage/App"),
+  "box-shadow/none-usage": import("./box-shadow/none-usage/App"),
+  "box-shadow/usage": import("./box-shadow/usage/App"),
+  "box/composition-usage": import("./box/composition-usage/App"),
+  "box/usage": import("./box/usage/App"),
+  "button/appearance-usage": import("./button/appearance-usage/App"),
+  "button/disabled-usage": import("./button/disabled-usage/App"),
+  "button/file-upload-usage": import("./button/file-upload-usage/App"),
+  "button/group-usage": import("./button/group-usage/App"),
+  "button/icon-only-usage": import("./button/icon-only-usage/App"),
+  "button/icon-usage": import("./button/icon-usage/App"),
+  "button/link-disabled-usage": import("./button/link-disabled-usage/App"),
+  "button/link-usage": import("./button/link-usage/App"),
+  "button/loading-usage": import("./button/loading-usage/App"),
+  "button/size-usage": import("./button/size-usage/App"),
+  "button/usage": import("./button/usage/App"),
+  "calendar/usage": import("./calendar/usage/App"),
+  "checkbox/controlled-usage": import("./checkbox/controlled-usage/App"),
+  "checkbox/description-usage": import("./checkbox/description-usage/App"),
+  "checkbox/disabled-usage": import("./checkbox/disabled-usage/App"),
+  "checkbox/indeterminate-usage": import("./checkbox/indeterminate-usage/App"),
+  "checkbox/label-usage": import("./checkbox/label-usage/App"),
+  "checkbox/usage": import("./checkbox/usage/App"),
+  "code/usage": import("./code/usage/App"),
+  "color/usage": import("./color/usage/App"),
+  "combobox/usage": import("./combobox/usage/App"),
+  "data-table/usage": import("./data-table/usage/App"),
+  "date-input/usage": import("./date-input/usage/App"),
+  "dialog/alert-dialog-usage": import("./dialog/alert-dialog-usage/App"),
+  "dialog/controlled-usage": import("./dialog/controlled-usage/App"),
+  "dialog/description-usage": import("./dialog/description-usage/App"),
+  "dialog/form-usage": import("./dialog/form-usage/App"),
+  "dialog/nested-usage": import("./dialog/nested-usage/App"),
+  "dialog/size-usage": import("./dialog/size-usage/App"),
+  "dialog/trigger-usage": import("./dialog/trigger-usage/App"),
+  "dialog/usage": import("./dialog/usage/App"),
+  "disclosure/chevron-position-usage": import(
+    "./disclosure/chevron-position-usage/App"
+  ),
+  "disclosure/usage": import("./disclosure/usage/App"),
+  "dropdown-menu/addon-usage": import("./dropdown-menu/addon-usage/App"),
+  "dropdown-menu/alert-dialog-usage": import(
+    "./dropdown-menu/alert-dialog-usage/App"
+  ),
+  "dropdown-menu/appearance-usage": import(
+    "./dropdown-menu/appearance-usage/App"
+  ),
+  "dropdown-menu/controlled-usage": import(
+    "./dropdown-menu/controlled-usage/App"
+  ),
+  "dropdown-menu/description-usage": import(
+    "./dropdown-menu/description-usage/App"
+  ),
+  "dropdown-menu/disabled-usage": import("./dropdown-menu/disabled-usage/App"),
+  "dropdown-menu/ellipsis-trigger-usage": import(
+    "./dropdown-menu/ellipsis-trigger-usage/App"
+  ),
+  "dropdown-menu/modal-usage": import("./dropdown-menu/modal-usage/App"),
+  "dropdown-menu/position-usage": import("./dropdown-menu/position-usage/App"),
+  "dropdown-menu/select-usage": import("./dropdown-menu/select-usage/App"),
+  "dropdown-menu/trigger-usage": import("./dropdown-menu/trigger-usage/App"),
+  "dropdown-menu/usage": import("./dropdown-menu/usage/App"),
+  "field/description-usage": import("./field/description-usage/App"),
+  "field/error-usage": import("./field/error-usage/App"),
+  "field/info-usage": import("./field/info-usage/App"),
+  "field/required-usage": import("./field/required-usage/App"),
+  "field/usage": import("./field/usage/App"),
+  "flex/alignment-usage": import("./flex/alignment-usage/App"),
+  "flex/gap-usage": import("./flex/gap-usage/App"),
+  "flex/horizontal-usage": import("./flex/horizontal-usage/App"),
+  "flex/usage": import("./flex/usage/App"),
+  "flex/vertical-usage": import("./flex/vertical-usage/App"),
+  "font/family-usage": import("./font/family-usage/App"),
+  "font/size-usage": import("./font/size-usage/App"),
+  "gap/usage": import("./gap/usage/App"),
+  "grid/gap-usage": import("./grid/gap-usage/App"),
+  "grid/span-usage": import("./grid/span-usage/App"),
+  "grid/usage": import("./grid/usage/App"),
+  "heading/size-usage": import("./heading/size-usage/App"),
+  "heading/usage": import("./heading/usage/App"),
+  "height/usage": import("./height/usage/App"),
+  "indicator/appearance-usage": import("./indicator/appearance-usage/App"),
+  "indicator/content-usage": import("./indicator/content-usage/App"),
+  "indicator/disabled-usage": import("./indicator/disabled-usage/App"),
+  "indicator/usage": import("./indicator/usage/App"),
+  "inline-input/appearance-usage": import(
+    "./inline-input/appearance-usage/App"
+  ),
+  "inline-input/change-usage": import("./inline-input/change-usage/App"),
+  "inline-input/controlled-usage": import(
+    "./inline-input/controlled-usage/App"
+  ),
+  "inline-input/disabled-usage": import("./inline-input/disabled-usage/App"),
+  "inline-input/multiline-usage": import("./inline-input/multiline-usage/App"),
+  "inline-input/placeholder-usage": import(
+    "./inline-input/placeholder-usage/App"
+  ),
+  "inline-input/usage": import("./inline-input/usage/App"),
+  "input/addon-pointer-usage": import("./input/addon-pointer-usage/App"),
+  "input/addon-usage": import("./input/addon-usage/App"),
+  "input/disabled-usage": import("./input/disabled-usage/App"),
+  "input/error-usage": import("./input/error-usage/App"),
+  "input/readonly-usage": import("./input/readonly-usage/App"),
+  "input/size-usage": import("./input/size-usage/App"),
+  "input/usage": import("./input/usage/App"),
+  "kbd/appearance-usage": import("./kbd/appearance-usage/App"),
+  "kbd/keys-usage": import("./kbd/keys-usage/App"),
+  "kbd/usage": import("./kbd/usage/App"),
+  "link/appearance-usage": import("./link/appearance-usage/App"),
+  "link/button-usage": import("./link/button-usage/App"),
+  "link/disabled-usage": import("./link/disabled-usage/App"),
+  "link/external-usage": import("./link/external-usage/App"),
+  "link/usage": import("./link/usage/App"),
+  "margin/multiple-usage": import("./margin/multiple-usage/App"),
+  "margin/single-usage": import("./margin/single-usage/App"),
+  "margin/usage": import("./margin/usage/App"),
+  "max-height/usage": import("./max-height/usage/App"),
+  "max-width/usage": import("./max-width/usage/App"),
+  "modal-layer/usage": import("./modal-layer/usage/App"),
+  "padding/multiple-usage": import("./padding/multiple-usage/App"),
+  "padding/single-usage": import("./padding/single-usage/App"),
+  "padding/usage": import("./padding/usage/App"),
+  "pagination/controlled-usage": import("./pagination/controlled-usage/App"),
+  "pagination/usage": import("./pagination/usage/App"),
+  "popover/controlled-usage": import("./popover/controlled-usage/App"),
+  "popover/example-usage": import("./popover/example-usage/App"),
+  "popover/trigger-usage": import("./popover/trigger-usage/App"),
+  "popover/usage": import("./popover/usage/App"),
+  "progress/usage": import("./progress/usage/App"),
+  "radio-group/controlled-usage": import("./radio-group/controlled-usage/App"),
+  "radio-group/description-usage": import(
+    "./radio-group/description-usage/App"
+  ),
+  "radio-group/disabled-group-usage": import(
+    "./radio-group/disabled-group-usage/App"
+  ),
+  "radio-group/disabled-usage": import("./radio-group/disabled-usage/App"),
+  "radio-group/label-usage": import("./radio-group/label-usage/App"),
+  "radio-group/usage": import("./radio-group/usage/App"),
+  "search-input/controlled-usage": import(
+    "./search-input/controlled-usage/App"
+  ),
+  "search-input/disabled-usage": import("./search-input/disabled-usage/App"),
+  "search-input/usage": import("./search-input/usage/App"),
+  "segmented-control/controlled-usage": import(
+    "./segmented-control/controlled-usage/App"
+  ),
+  "segmented-control/usage": import("./segmented-control/usage/App"),
+  "select/usage": import("./select/usage/App"),
+  "separator/responsive-usage": import("./separator/responsive-usage/App"),
+  "separator/usage": import("./separator/usage/App"),
+  "separator/vertical-usage": import("./separator/vertical-usage/App"),
+  "sidebar/usage": import("./sidebar/usage/App"),
+  "size/percentage-usage": import("./size/percentage-usage/App"),
+  "size/reset-usage": import("./size/reset-usage/App"),
+  "size/usage": import("./size/usage/App"),
+  "skeleton/children-usage": import("./skeleton/children-usage/App"),
+  "skeleton/dimension-usage": import("./skeleton/dimension-usage/App"),
+  "skeleton/example-usage": import("./skeleton/example-usage/App"),
+  "skeleton/usage": import("./skeleton/usage/App"),
+  "spinner/color-usage": import("./spinner/color-usage/App"),
+  "spinner/label-usage": import("./spinner/label-usage/App"),
+  "spinner/size-usage": import("./spinner/size-usage/App"),
+  "spinner/usage": import("./spinner/usage/App"),
+  "styles/css-usage": import("./styles/css-usage/App"),
+  "styles/js-usage": import("./styles/js-usage/App"),
+  "styles/prop-usage": import("./styles/prop-usage/App"),
+  "styles/responsive-complex-usage": import(
+    "./styles/responsive-complex-usage/App"
+  ),
+  "styles/responsive-usage": import("./styles/responsive-usage/App"),
+  "switch/controlled-usage": import("./switch/controlled-usage/App"),
+  "switch/disabled-usage": import("./switch/disabled-usage/App"),
+  "switch/label-usage": import("./switch/label-usage/App"),
+  "switch/size-usage": import("./switch/size-usage/App"),
+  "switch/usage": import("./switch/usage/App"),
+  "table/usage": import("./table/usage/App"),
+  "tabs/usage": import("./tabs/usage/App"),
+  "text/composition-usage": import("./text/composition-usage/App"),
+  "text/formatting-usage": import("./text/formatting-usage/App"),
+  "text/line-clamp-usage": import("./text/line-clamp-usage/App"),
+  "text/truncate-usage": import("./text/truncate-usage/App"),
+  "text/usage": import("./text/usage/App"),
+  "textarea/addon-pointer-usage": import("./textarea/addon-pointer-usage/App"),
+  "textarea/addon-usage": import("./textarea/addon-usage/App"),
+  "textarea/disabled-usage": import("./textarea/disabled-usage/App"),
+  "textarea/error-usage": import("./textarea/error-usage/App"),
+  "textarea/readonly-usage": import("./textarea/readonly-usage/App"),
+  "textarea/size-auto-minmax-usage": import(
+    "./textarea/size-auto-minmax-usage/App"
+  ),
+  "textarea/size-auto-usage": import("./textarea/size-auto-usage/App"),
+  "textarea/size-manual-usage": import("./textarea/size-manual-usage/App"),
+  "textarea/size-reset-usage": import("./textarea/size-reset-usage/App"),
+  "textarea/size-usage": import("./textarea/size-usage/App"),
+  "textarea/usage": import("./textarea/usage/App"),
+  "toast/action-usage": import("./toast/action-usage/App"),
+  "toast/appearance-usage": import("./toast/appearance-usage/App"),
+  "toast/dismiss-usage": import("./toast/dismiss-usage/App"),
+  "toast/usage": import("./toast/usage/App"),
+  "toggle-button/appearance-usage": import(
+    "./toggle-button/appearance-usage/App"
+  ),
+  "toggle-button/controlled-usage": import(
+    "./toggle-button/controlled-usage/App"
+  ),
+  "toggle-button/disabled-usage": import("./toggle-button/disabled-usage/App"),
+  "toggle-button/usage": import("./toggle-button/usage/App"),
+  "tooltip/controlled-usage": import("./tooltip/controlled-usage/App"),
+  "tooltip/delay-usage": import("./tooltip/delay-usage/App"),
+  "tooltip/placement-usage": import("./tooltip/placement-usage/App"),
+  "tooltip/usage": import("./tooltip/usage/App"),
+  "transition/colors-usage": import("./transition/colors-usage/App"),
+  "width/percentage-usage": import("./width/percentage-usage/App"),
+  "width/usage": import("./width/usage/App"),
+  "z-index/usage": import("./z-index/usage/App"),
 };

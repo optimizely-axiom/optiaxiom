@@ -10,11 +10,11 @@ Place demos in the `demos/` folder and use with the `Demo` component to showcase
 
 ```mdx
 {/* pages/components/switch.mdx */}
-import { Demo, demos } from "@/components/demo";
+import { Demo } from "@/components/demo";
 
-<Demo component={demos["switch/usage"]} />
+<Demo component="switch/usage" />
 
-<Demo component={demos["switch/size-usage"]} />
+<Demo component="switch/size-usage" />
 ```
 
 Export an `App` component from your demo usage:

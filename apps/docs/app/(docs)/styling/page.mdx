@@ -1,6 +1,6 @@
 import { Callout } from "nextra/components";
 
-import { Demo, demos } from "@/components/demo";
+import { Demo } from "@/components/demo";
 import { Alert } from "@optiaxiom/react";
 
 # Style Props
@@ -15,7 +15,7 @@ We provide out of the box support for consuming our design tokens and commonly u
 
 You can use props on the `<Box />` component to control styles:
 
-<Demo component={demos["styles/prop-usage"]} />
+<Demo component="styles/prop-usage" />
 
 Learn more about consuming [Design Tokens](/styling/design-tokens/).
 
@@ -30,7 +30,7 @@ You can also use object or array prop notation to apply styles at various respon
 <Demo
   iframe="/iframe/styling/"
   height="150"
-  component={demos["styles/responsive-usage"]}
+  component="styles/responsive-usage"
 />
 
 Check out the documentation on [Responsive Styles](/styling/responsive-styles/).

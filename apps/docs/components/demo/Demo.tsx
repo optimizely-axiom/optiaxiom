@@ -1,7 +1,7 @@
-import type { demos } from "@/demos/index";
 import type { ReactNode } from "react";
 import type { Props } from "react-docgen-typescript";
 
+import { demos } from "@/demos/index";
 import { Box } from "@optiaxiom/react";
 import { promises as fs } from "fs";
 import { compileMdx } from "nextra/compile";
@@ -19,15 +19,15 @@ export async function Demo({
   iframe,
   meta,
 }: {
-  component: (typeof demos)[keyof typeof demos];
+  component: keyof typeof demos;
   height?: string;
   iframe?: string;
   meta?: Record<string, string> | string;
 }) {
-  const Component = (await component["demo"]).App as () => ReactNode;
+  const Component = (await demos[component]).App as () => ReactNode;
 
   const files = ["App.tsx"];
-  const filesDir = `${process.cwd()}/demos/${component["path"]}`;
+  const filesDir = `${process.cwd()}/demos/${component}`;
   for (const file of await fs.readdir(filesDir)) {
     if (
       !files.includes(file) &&
