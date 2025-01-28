@@ -1,7 +1,14 @@
 import { theme } from "@optiaxiom/globals";
 
-import { type RecipeVariants, style } from "../vanilla-extract";
+import {
+  createVar,
+  fallbackVar,
+  type RecipeVariants,
+  style,
+} from "../vanilla-extract";
 import { recipe } from "../vanilla-extract";
+
+export const borderRadiusVar = createVar();
 
 export const link = recipe({
   base: [
@@ -65,7 +72,7 @@ export const link = recipe({
       true: style({
         selectors: {
           "&::after": {
-            borderRadius: "inherit",
+            borderRadius: fallbackVar(borderRadiusVar, "inherit"),
             content: "",
             inset: "0",
             position: "absolute",
