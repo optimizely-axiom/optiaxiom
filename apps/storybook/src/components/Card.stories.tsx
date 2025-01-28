@@ -21,6 +21,7 @@ import {
   CardOverflow,
   CardTitle,
 } from "@optiaxiom/react/unstable";
+import { userEvent } from "@storybook/test";
 import { IconDots } from "@tabler/icons-react";
 
 export default {
@@ -114,6 +115,9 @@ export const WithLink: Story = {
       </>
     ),
   },
+  play: async ({ canvas }) => {
+    canvas.getByRole("link").focus();
+  },
 };
 
 export const WithLinkAndEllipsis: Story = {
@@ -154,6 +158,9 @@ export const WithLinkAndEllipsis: Story = {
       </>
     ),
   },
+  play: async ({ canvas }) => {
+    await userEvent.click(canvas.getByRole("button"));
+  },
 };
 
 export const WithCheckboxAndLink: Story = {
@@ -171,5 +178,8 @@ export const WithCheckboxAndLink: Story = {
         </CardTitle>
       </>
     ),
+  },
+  play: async ({ canvas }) => {
+    canvas.getByRole("checkbox").focus();
   },
 };
