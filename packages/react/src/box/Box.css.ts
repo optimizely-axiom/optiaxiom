@@ -144,18 +144,14 @@ export const box = recipe({
             cursor: "default",
           },
 
-          "&::-webkit-search-decoration": {
-            WebkitAppearance: "none",
-          },
-
-          "&::-webkit-search-cancel-button": {
-            WebkitAppearance: "none",
-          },
-
-          "&::-webkit-calendar-picker-indicator": {
-            display: "none",
-            WebkitAppearance: "none",
-          },
+          /**
+           * Hide browser default icons inside inputs
+           */
+          "&::-webkit-calendar-picker-indicator, &::-webkit-search-cancel-button, &::-webkit-search-decoration":
+            {
+              display: "none",
+              WebkitAppearance: "none",
+            },
 
           /**
            * Make replaced elements `display: block` by default. (https://github.com/mozdevs/cssremedy/issues/14)
