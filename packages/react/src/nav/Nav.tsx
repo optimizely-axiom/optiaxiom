@@ -3,6 +3,7 @@ import { forwardRef } from "react";
 import { type BoxProps } from "../box";
 import { Flex } from "../flex";
 import { useSidebarContext } from "../sidebar-context";
+import * as styles from "./Nav.css";
 
 type NavProps = BoxProps<
   "nav",
@@ -19,17 +20,7 @@ export const Nav = forwardRef<HTMLDivElement, NavProps>(
 
     return (
       <Flex borderR="1" h="full" ref={ref} w="fit" {...props}>
-        <Flex
-          asChild
-          bg="bg.default"
-          flex="1"
-          gap="0"
-          overflow="hidden"
-          pb="8"
-          pt="16"
-          transition="all"
-          w={expanded ? "224" : "56"}
-        >
+        <Flex asChild {...styles.nav()} w={expanded ? "224" : "56"}>
           <nav aria-label="Main">{children}</nav>
         </Flex>
       </Flex>
