@@ -79,7 +79,7 @@ const body = (
 export default {
   args: {
     children: (
-      <Nav style={{ height: "90vh" }}>
+      <Nav>
         {body}
 
         <NavFooter>
@@ -127,7 +127,7 @@ export const Basic: Story = {};
 export const NotCollapsible: Story = {
   args: {
     children: (
-      <Nav style={{ height: "90vh" }}>
+      <Nav>
         {body}
 
         <NavFooter>
@@ -161,7 +161,7 @@ export const Expanded: Story = {
 export const WithSubNav: Story = {
   args: {
     children: [
-      <Nav key="nav" style={{ height: "90vh" }}>
+      <Nav key="nav">
         {body}
 
         <NavFooter>
@@ -183,7 +183,7 @@ export const WithSubNav: Story = {
           </DropdownMenu>
         </NavFooter>
       </Nav>,
-      <SubNav key="SubNav" style={{ height: "90vh" }}>
+      <SubNav key="SubNav">
         <NavBody>
           <NavItem aria-label="All" icon={<IconCopy />}>
             All
