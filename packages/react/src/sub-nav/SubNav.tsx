@@ -17,6 +17,7 @@ export const SubNav = forwardRef<HTMLDivElement, SubNavProps>(
           flex="1"
           gap="0"
           overflow="hidden"
+          px="4"
           py="16"
         >
           <nav aria-label="SubNav" {...styles.item({}, className)}>
