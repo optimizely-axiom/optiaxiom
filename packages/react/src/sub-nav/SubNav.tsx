@@ -13,11 +13,7 @@ export const SubNav = forwardRef<HTMLDivElement, SubNavProps>(
       <Flex borderR="1" h="full" ref={ref} w="fit" {...props}>
         <Flex asChild {...styles.nav()}>
           <nav aria-label="SubNav">
-            <SidebarContextProvider
-              animations={false}
-              expanded
-              onExpandedChange={() => {}}
-            >
+            <SidebarContextProvider expanded onExpandedChange={() => {}}>
               {children}
             </SidebarContextProvider>
           </nav>
