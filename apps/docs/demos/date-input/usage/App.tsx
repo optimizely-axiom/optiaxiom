@@ -20,6 +20,7 @@ export function App({
       error={error}
       label={label}
       required={required}
+      w="224"
     >
       <DateInput />
     </Field>
