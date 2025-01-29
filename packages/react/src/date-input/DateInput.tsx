@@ -15,6 +15,7 @@ import { PopoverAnchor } from "../popover-anchor";
 import { PopoverContent } from "../popover-content";
 import { PopoverTrigger } from "../popover-trigger";
 import { forceValueChange } from "../utils";
+import { useCalendarSupported } from "./useCalendarSupported";
 import { format, parse } from "./utils";
 
 type DateInputProps = ComponentPropsWithoutRef<typeof Input>;
@@ -34,11 +35,10 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
     const maxDate = max ? new Date(max) : undefined;
     const minDate = min ? new Date(min) : undefined;
 
-    if (
-      typeof CSS !== "undefined" &&
-      typeof CSS.supports !== "undefined" &&
-      !CSS.supports("selector(::-webkit-calendar-picker-indicator)")
-    ) {
+    const supported = useCalendarSupported();
+    if (supported === null) {
+      return null;
+    } else if (!supported) {
       return (
         <Input
           disabled={disabled}
