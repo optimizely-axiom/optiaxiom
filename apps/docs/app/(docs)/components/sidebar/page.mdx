@@ -11,6 +11,10 @@ Primary navigation menu for left side of the page that includes support for bran
 
 <Demo component="sidebar/usage" />
 
+### Secondary navigation
+
+<Demo component="sidebar/sub-nav-usage" />
+
 ### Anatomy
 
 ```tsx
@@ -23,6 +27,7 @@ import {
   NavItem,
   Sidebar,
   SidebarToggle,
+  SubNav,
 } from "@optiaxiom/react";
 
 export default () => (
@@ -42,6 +47,8 @@ export default () => (
         <NavAccountItem />
       </NavFooter>
     </Nav>
+
+    <SubNav />
   </Sidebar>
 );
 ```
@@ -55,6 +62,10 @@ export default () => (
 ### SidebarToggle
 
 <PropsTable component="SidebarToggle" />
+
+### Nav
+
+<PropsTable component="Nav" />
 
 ### NavHeader
 
@@ -75,6 +86,10 @@ export default () => (
 ### NavFooter
 
 <PropsTable component="NavFooter" />
+
+### SubNav
+
+<PropsTable component="SubNav" />
 
 ## Changelog
 
