@@ -195,6 +195,7 @@ export const demos = {
   "separator/responsive-usage": import("./separator/responsive-usage/App"),
   "separator/usage": import("./separator/usage/App"),
   "separator/vertical-usage": import("./separator/vertical-usage/App"),
+  "sidebar/sub-nav-usage": import("./sidebar/sub-nav-usage/App"),
   "sidebar/usage": import("./sidebar/usage/App"),
   "size/percentage-usage": import("./size/percentage-usage/App"),
   "size/reset-usage": import("./size/reset-usage/App"),
