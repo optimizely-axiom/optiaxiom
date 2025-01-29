@@ -2,9 +2,6 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 import {
   Box,
-  Disclosure,
-  DisclosureContent,
-  DisclosureTrigger,
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
@@ -201,44 +198,33 @@ export const WithSubNav: Story = {
             Trash
           </NavItem>
           <NavSeparator />
-          <Disclosure defaultOpen>
-            <NavGroup>
-              <DisclosureTrigger chevronPosition="end">
-                <NavGroupLabel>Location</NavGroupLabel>
-              </DisclosureTrigger>
-              <DisclosureContent asChild m="0" p="0">
-                <NavGroupContent>
-                  <NavItem active aria-label="CMP" icon={<IconDashboard />}>
-                    CMP
-                  </NavItem>
-                  <NavItem aria-label="CMS" icon={<IconDeviceDesktop />}>
-                    CMS
-                  </NavItem>
-                  <NavItem aria-label="Experimentation" icon={<IconTestPipe />}>
-                    Experimentation
-                  </NavItem>
-                </NavGroupContent>
-              </DisclosureContent>
-            </NavGroup>
-          </Disclosure>
+
+          <NavGroup defaultOpen>
+            <NavGroupLabel>Location</NavGroupLabel>
+            <NavGroupContent>
+              <NavItem active aria-label="CMP" icon={<IconDashboard />}>
+                CMP
+              </NavItem>
+              <NavItem aria-label="CMS" icon={<IconDeviceDesktop />}>
+                CMS
+              </NavItem>
+              <NavItem aria-label="Experimentation" icon={<IconTestPipe />}>
+                Experimentation
+              </NavItem>
+            </NavGroupContent>
+          </NavGroup>
           <NavSeparator />
-          <Disclosure>
-            <NavGroup>
-              <DisclosureTrigger chevronPosition="end">
-                <NavGroupLabel>Analytics</NavGroupLabel>
-              </DisclosureTrigger>
-              <DisclosureContent>
-                <NavGroupContent>
-                  <NavItem aria-label="Dashboard" icon={<IconDashboard />}>
-                    Dashboard
-                  </NavItem>
-                  <NavItem aria-label="Reports" icon={<IconReport />}>
-                    Reports
-                  </NavItem>
-                </NavGroupContent>
-              </DisclosureContent>
-            </NavGroup>
-          </Disclosure>
+          <NavGroup defaultOpen>
+            <NavGroupLabel>Analytics</NavGroupLabel>
+            <NavGroupContent>
+              <NavItem aria-label="Dashboard" icon={<IconDashboard />}>
+                Dashboard
+              </NavItem>
+              <NavItem aria-label="Reports" icon={<IconReport />}>
+                Reports
+              </NavItem>
+            </NavGroupContent>
+          </NavGroup>
         </NavBody>
       </SubNav>,
     ],
