@@ -14,9 +14,13 @@ export const NavGroup = forwardRef<HTMLDivElement, NavGroupProps>(
     return (
       <NavGroupContextProvider id={groupId}>
         <Disclosure
+          alignItems="stretch"
           aria-labelledby={groupId}
           asChild
           defaultOpen={defaultOpen}
+          display="flex"
+          flexDirection="column"
+          my="8"
           ref={ref}
           role="group"
           {...props}

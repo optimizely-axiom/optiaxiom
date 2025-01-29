@@ -8,19 +8,11 @@ import * as styles from "./SubNav.css";
 type SubNavProps = BoxProps<"nav">;
 
 export const SubNav = forwardRef<HTMLDivElement, SubNavProps>(
-  ({ children, className, ...props }, ref) => {
+  ({ children, ...props }, ref) => {
     return (
       <Flex borderR="1" h="full" ref={ref} w="fit" {...props}>
-        <Flex
-          asChild
-          bg="bg.default"
-          flex="1"
-          gap="0"
-          overflow="hidden"
-          px="4"
-          py="16"
-        >
-          <nav aria-label="SubNav" {...styles.item({}, className)}>
+        <Flex asChild {...styles.nav()}>
+          <nav aria-label="SubNav">
             <SidebarContextProvider
               animations={false}
               expanded

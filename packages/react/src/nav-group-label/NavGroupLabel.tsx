@@ -1,27 +1,30 @@
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
-import { Box } from "../box";
 import { DisclosureTrigger } from "../disclosure-trigger";
 import { useNavGroupContext } from "../nav-group-context";
 
-type NavGroupLabelProps = ComponentPropsWithoutRef<typeof Box>;
+type NavGroupLabelProps = ComponentPropsWithoutRef<typeof DisclosureTrigger>;
 
-export const NavGroupLabel = forwardRef<HTMLDivElement, NavGroupLabelProps>(
+export const NavGroupLabel = forwardRef<HTMLButtonElement, NavGroupLabelProps>(
   ({ children, ...props }, ref) => {
     const { id } = useNavGroupContext("NavGroupLabel");
 
     return (
-      <Box
-        asChild
+      <DisclosureTrigger
+        chevronPosition="end"
         color="fg.tertiary"
         fontSize="sm"
         id={id}
-        p="8"
+        mt="8"
+        mx="8"
+        px="12"
+        py="4"
         ref={ref}
+        w="auto"
         {...props}
       >
-        <DisclosureTrigger chevronPosition="end">{children}</DisclosureTrigger>
-      </Box>
+        {children}
+      </DisclosureTrigger>
     );
   },
 );

@@ -8,7 +8,16 @@ type NavGroupContentProps = BoxProps<"div">;
 export const NavGroupContent = forwardRef<HTMLDivElement, NavGroupContentProps>(
   ({ children, ...props }, ref) => {
     return (
-      <DisclosureContent m="0" p="0" ref={ref} role="list" w="full" {...props}>
+      <DisclosureContent
+        display="flex"
+        flexDirection="column"
+        gap="4"
+        p="0"
+        pt="4"
+        ref={ref}
+        role="list"
+        {...props}
+      >
         {children}
       </DisclosureContent>
     );
