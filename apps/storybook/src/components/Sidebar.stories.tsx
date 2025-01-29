@@ -160,73 +160,75 @@ export const Expanded: Story = {
 
 export const WithSubNav: Story = {
   args: {
-    children: [
-      <Nav key="nav">
-        {body}
+    children: (
+      <>
+        <Nav>
+          {body}
 
-        <NavFooter>
-          <SidebarToggle icon={<IconLayoutSidebar />} />
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <NavAccountItem
-                name="Rhaenyra Targaryen"
-                organization="Optimizely"
-                src="https://i.pravatar.cc/150?img=10"
-              />
-            </DropdownMenuTrigger>
+          <NavFooter>
+            <SidebarToggle icon={<IconLayoutSidebar />} />
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <NavAccountItem
+                  name="Rhaenyra Targaryen"
+                  organization="Optimizely"
+                  src="https://i.pravatar.cc/150?img=10"
+                />
+              </DropdownMenuTrigger>
 
-            <DropdownMenuContent align="end" side="right">
-              <DropdownMenuItem>View Profile</DropdownMenuItem>
-              <DropdownMenuItem>Settings</DropdownMenuItem>
-              <DropdownMenuItem>Logout</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </NavFooter>
-      </Nav>,
-      <SubNav key="SubNav">
-        <NavBody>
-          <NavItem aria-label="All" icon={<IconCopy />}>
-            All
-          </NavItem>
-          <NavItem aria-label="Recent" icon={<IconRectangle />}>
-            Recent
-          </NavItem>
-          <NavItem aria-label="Favorites" icon={<IconStar />}>
-            Favorites
-          </NavItem>
-          <NavItem aria-label="Trash" icon={<IconTrash />}>
-            Trash
-          </NavItem>
-          <NavSeparator />
+              <DropdownMenuContent align="end" side="right">
+                <DropdownMenuItem>View Profile</DropdownMenuItem>
+                <DropdownMenuItem>Settings</DropdownMenuItem>
+                <DropdownMenuItem>Logout</DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </NavFooter>
+        </Nav>
+        <SubNav>
+          <NavBody>
+            <NavItem aria-label="All" icon={<IconCopy />}>
+              All
+            </NavItem>
+            <NavItem aria-label="Recent" icon={<IconRectangle />}>
+              Recent
+            </NavItem>
+            <NavItem aria-label="Favorites" icon={<IconStar />}>
+              Favorites
+            </NavItem>
+            <NavItem aria-label="Trash" icon={<IconTrash />}>
+              Trash
+            </NavItem>
+            <NavSeparator />
 
-          <NavGroup defaultOpen>
-            <NavGroupLabel>Location</NavGroupLabel>
-            <NavGroupContent>
-              <NavItem active aria-label="CMP" icon={<IconDashboard />}>
-                CMP
-              </NavItem>
-              <NavItem aria-label="CMS" icon={<IconDeviceDesktop />}>
-                CMS
-              </NavItem>
-              <NavItem aria-label="Experimentation" icon={<IconTestPipe />}>
-                Experimentation
-              </NavItem>
-            </NavGroupContent>
-          </NavGroup>
-          <NavSeparator />
-          <NavGroup defaultOpen>
-            <NavGroupLabel>Analytics</NavGroupLabel>
-            <NavGroupContent>
-              <NavItem aria-label="Dashboard" icon={<IconDashboard />}>
-                Dashboard
-              </NavItem>
-              <NavItem aria-label="Reports" icon={<IconReport />}>
-                Reports
-              </NavItem>
-            </NavGroupContent>
-          </NavGroup>
-        </NavBody>
-      </SubNav>,
-    ],
+            <NavGroup defaultOpen>
+              <NavGroupLabel>Location</NavGroupLabel>
+              <NavGroupContent>
+                <NavItem active aria-label="CMP" icon={<IconDashboard />}>
+                  CMP
+                </NavItem>
+                <NavItem aria-label="CMS" icon={<IconDeviceDesktop />}>
+                  CMS
+                </NavItem>
+                <NavItem aria-label="Experimentation" icon={<IconTestPipe />}>
+                  Experimentation
+                </NavItem>
+              </NavGroupContent>
+            </NavGroup>
+            <NavSeparator />
+            <NavGroup defaultOpen>
+              <NavGroupLabel>Analytics</NavGroupLabel>
+              <NavGroupContent>
+                <NavItem aria-label="Dashboard" icon={<IconDashboard />}>
+                  Dashboard
+                </NavItem>
+                <NavItem aria-label="Reports" icon={<IconReport />}>
+                  Reports
+                </NavItem>
+              </NavGroupContent>
+            </NavGroup>
+          </NavBody>
+        </SubNav>
+      </>
+    ),
   },
 };
