@@ -15,7 +15,7 @@ type NavProps = BoxProps<
 
 export const Nav = forwardRef<HTMLDivElement, NavProps>(
   ({ children, ...props }, ref) => {
-    const { animations, expanded } = useSidebarContext("Nav");
+    const { expanded } = useSidebarContext("Nav");
 
     return (
       <Flex borderR="1" h="full" ref={ref} w="fit" {...props}>
@@ -27,7 +27,7 @@ export const Nav = forwardRef<HTMLDivElement, NavProps>(
           overflow="hidden"
           pb="8"
           pt="16"
-          transition={animations ? "all" : undefined}
+          transition="all"
           w={expanded ? "224" : "56"}
         >
           <nav aria-label="Main">{children}</nav>

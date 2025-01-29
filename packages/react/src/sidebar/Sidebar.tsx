@@ -1,5 +1,5 @@
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
-import { forwardRef, useEffect, useRef, useState } from "react";
+import { forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
 import { SidebarContextProvider } from "../sidebar-context";
@@ -39,22 +39,10 @@ export const Sidebar = forwardRef<HTMLDivElement, SidebarProps>(
       prop: expandedProp,
     });
 
-    const [animations, setAnimations] = useState(false);
-    const timerRef = useRef<number | undefined>();
-    useEffect(() => {
-      timerRef.current = window.setTimeout(() => setAnimations(false), 300);
-    }, [animations]);
-
     return (
       <SidebarContextProvider
-        animations={animations}
         expanded={expanded}
-        onExpandedChange={(flag) => {
-          window.clearTimeout(timerRef.current);
-          setAnimations(true);
-
-          setExpanded(flag);
-        }}
+        onExpandedChange={setExpanded}
       >
         <Box
           alignItems="stretch"
