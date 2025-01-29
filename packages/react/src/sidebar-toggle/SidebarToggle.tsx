@@ -21,7 +21,7 @@ export const SidebarToggle = forwardRef<HTMLButtonElement, SidebarToggleProps>(
         ref={ref}
         {...props}
       >
-        {children ? children : expanded ? "Collapse" : "Expand"}
+        {children ?? "Collapse"}
       </NavItem>
     );
   },
