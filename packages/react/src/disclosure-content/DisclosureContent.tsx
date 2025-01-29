@@ -15,13 +15,13 @@ type DisclosureContentProps = ExcludeProps<
 export const DisclosureContent = forwardRef<
   HTMLDivElement,
   DisclosureContentProps
->(({ children, className, ...props }, ref) => {
+>(({ children, ...props }, ref) => {
   useDisclosureContext("DisclosureContent");
 
   return (
-    <Box asChild ref={ref} {...styles.content({}, className)}>
+    <Box asChild {...styles.content()}>
       <RadixCollapsible.Content>
-        <Box p="8" pt="0" {...props}>
+        <Box p="8" pt="0" ref={ref} {...props}>
           {children}
         </Box>
       </RadixCollapsible.Content>
