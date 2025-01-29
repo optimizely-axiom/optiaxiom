@@ -47,7 +47,6 @@
   "pnpm": {
     "patchedDependencies": {
       "@vanilla-extract/sprinkles": "patches/@vanilla-extract__sprinkles.patch",
-      "nextra": "patches/nextra.patch",
       "react-docgen": "patches/react-docgen.patch",
       "react-docgen-typescript": "patches/react-docgen-typescript.patch"
     }
