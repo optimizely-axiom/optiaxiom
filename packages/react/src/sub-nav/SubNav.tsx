@@ -2,21 +2,12 @@ import { forwardRef } from "react";
 
 import { type BoxProps } from "../box";
 import { Flex } from "../flex";
-import { useSidebarContext } from "../sidebar-context";
+import { SidebarContextProvider } from "../sidebar-context";
 
-type SubNavProps = BoxProps<
-  "nav",
-  {
-    defaultExpanded?: boolean;
-    expanded?: boolean;
-    onExpandedChange?: (expanded: boolean) => void;
-  }
->;
+type SubNavProps = BoxProps<"nav">;
 
 export const SubNav = forwardRef<HTMLDivElement, SubNavProps>(
   ({ children, ...props }, ref) => {
-    const { animations, expanded } = useSidebarContext("SubNav");
-
     return (
       <Flex borderR="1" h="full" ref={ref} w="fit" {...props}>
         <Flex
@@ -25,12 +16,17 @@ export const SubNav = forwardRef<HTMLDivElement, SubNavProps>(
           flex="1"
           gap="0"
           overflow="hidden"
-          pb="8"
-          pt="16"
-          transition={animations ? "all" : undefined}
-          w={expanded ? "224" : "56"}
+          w="224"
         >
-          <nav aria-label="Main">{children}</nav>
+          <nav aria-label="SubNav">
+            <SidebarContextProvider
+              animations={false}
+              expanded
+              onExpandedChange={() => {}}
+            >
+              {children}
+            </SidebarContextProvider>
+          </nav>
         </Flex>
       </Flex>
     );
