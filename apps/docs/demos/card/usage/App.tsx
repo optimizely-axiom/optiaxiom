@@ -46,7 +46,7 @@ export function App() {
                 size="sm"
               />
             </DropdownMenuTrigger>
-            <DropdownMenuContent>
+            <DropdownMenuContent align="end">
               <DropdownMenuItem icon={<IconPencil />}>Edit</DropdownMenuItem>
               <DropdownMenuItem icon={<IconLogout />} intent="danger">
                 Delete
