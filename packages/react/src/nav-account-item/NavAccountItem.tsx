@@ -6,7 +6,7 @@ import { Flex } from "../flex";
 import { IconEllipsis } from "../icons/IconEllipsis";
 import { useSidebarContext } from "../sidebar-context";
 import { Text } from "../text";
-import { Transition } from "../transition";
+import * as styles from "./NavAccountItem.css";
 
 export type NavAccountItemProps = BoxProps<
   "div",
@@ -21,7 +21,7 @@ export const NavAccountItem = forwardRef<
   HTMLButtonElement,
   NavAccountItemProps
 >(({ name, organization, src, ...props }, ref) => {
-  const { animations, expanded } = useSidebarContext("NavAccountItem");
+  const { expanded } = useSidebarContext("NavAccountItem");
 
   return (
     <Flex my="8" role="listitem">
@@ -44,24 +44,20 @@ export const NavAccountItem = forwardRef<
             src={src}
           />
 
-          {expanded && (
-            <Transition skipAnimations={!animations}>
-              <Flex flex="1" flexDirection="row" gap="8" overflowX="hidden">
-                <Flex flex="1" gap="0" overflowX="hidden">
-                  <Text color="fg.default" fontWeight="500" truncate>
-                    {name}
-                  </Text>
-                  <Text color="fg.tertiary" fontSize="sm" truncate>
-                    {organization}
-                  </Text>
-                </Flex>
+          <Flex {...styles.item({ expanded: Boolean(expanded) })}>
+            <Flex flex="1" gap="0" overflowX="hidden">
+              <Text color="fg.default" fontWeight="500" truncate>
+                {name}
+              </Text>
+              <Text color="fg.tertiary" fontSize="sm" truncate>
+                {organization}
+              </Text>
+            </Flex>
 
-                <Box asChild>
-                  <IconEllipsis />
-                </Box>
-              </Flex>
-            </Transition>
-          )}
+            <Box asChild>
+              <IconEllipsis />
+            </Box>
+          </Flex>
         </button>
       </Flex>
     </Flex>
