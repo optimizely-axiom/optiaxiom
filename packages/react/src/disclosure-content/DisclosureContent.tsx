@@ -21,7 +21,7 @@ export const DisclosureContent = forwardRef<
   return (
     <Box asChild ref={ref} {...styles.content({}, className)}>
       <RadixCollapsible.Content>
-        <Box color="fg.default" fontSize="md" p="8" pt="0" {...props}>
+        <Box p="8" pt="0" {...props}>
           {children}
         </Box>
       </RadixCollapsible.Content>

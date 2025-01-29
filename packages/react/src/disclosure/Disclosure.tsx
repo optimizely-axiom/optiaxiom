@@ -25,7 +25,7 @@ type DisclosureProps = BoxProps<
 export const Disclosure = forwardRef<HTMLDivElement, DisclosureProps>(
   ({ children, ...props }, ref) => {
     return (
-      <Box asChild ref={ref} {...props}>
+      <Box asChild color="fg.default" fontSize="md" ref={ref} {...props}>
         <RadixCollapsible.Root>
           <DisclosureContextProvider>{children}</DisclosureContextProvider>
         </RadixCollapsible.Root>
