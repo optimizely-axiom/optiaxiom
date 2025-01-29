@@ -20,7 +20,6 @@ export default defineConfig({
       name: "chrome",
       provider: "webdriverio",
     },
-    include: ["src/**/*.stories.tsx"],
     isolate: false,
     setupFiles: ["./.storybook/vitest.setup.ts"],
   },
