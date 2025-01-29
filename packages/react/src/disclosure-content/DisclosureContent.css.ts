@@ -5,6 +5,8 @@ const slideDown = keyframes({
     height: 0,
     opacity: 0,
     overflowY: "hidden",
+    scale: 0.95,
+    translate: "0 -8px",
   },
   to: {
     height: "var(--radix-collapsible-content-height)",
@@ -21,6 +23,8 @@ const slideUp = keyframes({
     height: 0,
     opacity: 0,
     overflowY: "hidden",
+    scale: 0.95,
+    translate: "0 -8px",
   },
 });
 
