@@ -79,7 +79,6 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
         bg="bg.default"
         color="fg.default"
         fontSize="md"
-        p="16"
         ref={ref}
         {...props}
       >
