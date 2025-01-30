@@ -50,9 +50,9 @@ export const NavItem = forwardRef<HTMLButtonElement, NavItemProps>(
       tooltip = children;
       return (
         <>
-          <Flex flex="none" size="lg">
+          <Box display="grid" flex="none" placeItems="center" size="lg">
             <Icon asChild>{icon}</Icon>
-          </Flex>
+          </Box>
 
           <Box {...styles.label({ expanded: Boolean(expanded) })}>
             <Text truncate>{children}</Text>
