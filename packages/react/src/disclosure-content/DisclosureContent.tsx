@@ -1,10 +1,12 @@
 import * as RadixCollapsible from "@radix-ui/react-collapsible";
-import { forwardRef } from "react";
+import { forwardRef, useEffect, useState } from "react";
 
 import type { ExcludeProps } from "../utils";
 
 import { Box, type BoxProps } from "../box";
 import { useDisclosureContext } from "../disclosure-context";
+import { Transition } from "../transition";
+import { TransitionGroup } from "../transition-group";
 import * as styles from "./DisclosureContent.css";
 
 type DisclosureContentProps = ExcludeProps<
@@ -16,16 +18,33 @@ export const DisclosureContent = forwardRef<
   HTMLDivElement,
   DisclosureContentProps
 >(({ children, ...props }, ref) => {
-  useDisclosureContext("DisclosureContent");
+  const { open } = useDisclosureContext("DisclosureContent");
+
+  const [skipAnimations, setSkipAnimations] = useState(Boolean(open));
+  useEffect(() => {
+    if (skipAnimations) {
+      requestAnimationFrame(() => setSkipAnimations(false));
+    }
+  }, [skipAnimations]);
 
   return (
-    <Box asChild {...styles.content()}>
-      <RadixCollapsible.Content>
-        <Box p="8" pt="0" ref={ref} {...props}>
-          {children}
+    <TransitionGroup open={open}>
+      <Transition
+        data-side="bottom"
+        skipAnimations={skipAnimations}
+        type="slide"
+      >
+        <Box {...styles.outer()}>
+          <Box asChild {...styles.inner()}>
+            <RadixCollapsible.Content forceMount>
+              <Box p="8" pt="0" ref={ref} {...props}>
+                {children}
+              </Box>
+            </RadixCollapsible.Content>
+          </Box>
         </Box>
-      </RadixCollapsible.Content>
-    </Box>
+      </Transition>
+    </TransitionGroup>
   );
 });
 

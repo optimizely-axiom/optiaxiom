@@ -1,4 +1,5 @@
 import * as RadixCollapsible from "@radix-ui/react-collapsible";
+import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import { forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
@@ -23,11 +24,19 @@ type DisclosureProps = BoxProps<
 >;
 
 export const Disclosure = forwardRef<HTMLDivElement, DisclosureProps>(
-  ({ children, ...props }, ref) => {
+  ({ children, defaultOpen, onOpenChange, open: openProp, ...props }, ref) => {
+    const [open, setOpen] = useControllableState({
+      defaultProp: defaultOpen,
+      onChange: onOpenChange,
+      prop: openProp,
+    });
+
     return (
       <Box asChild color="fg.default" fontSize="md" ref={ref} {...props}>
-        <RadixCollapsible.Root>
-          <DisclosureContextProvider>{children}</DisclosureContextProvider>
+        <RadixCollapsible.Root onOpenChange={setOpen} open={open}>
+          <DisclosureContextProvider open={open}>
+            {children}
+          </DisclosureContextProvider>
         </RadixCollapsible.Root>
       </Box>
     );

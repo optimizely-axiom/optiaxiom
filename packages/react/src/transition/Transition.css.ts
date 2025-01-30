@@ -19,19 +19,28 @@ const presets = {
     scale: 0.95,
     ...(dir && translate(dir, 8)),
   }),
+  slide: (dir?: "down" | "left" | "right" | "up") => ({
+    gridTemplateRows: "0fr !important",
+    opacity: 0,
+    scale: 0.95,
+    ...(dir && translate(dir, 8)),
+  }),
 };
 
 const generate = ({
+  gridTemplateRows,
   opacity,
   scale,
   x,
   y,
 }: {
+  gridTemplateRows?: string;
   opacity: number;
   scale?: number;
   x?: number;
   y?: number;
 }) => ({
+  ...(typeof gridTemplateRows !== "undefined" && { gridTemplateRows }),
   ...(typeof opacity !== "undefined" && { opacity }),
   ...((typeof scale !== "undefined" ||
     typeof x !== "undefined" ||
@@ -55,7 +64,7 @@ export const transitionDuration = {
 export const transition = recipe({
   base: style({
     transformOrigin: "var(--radix-popper-transform-origin)",
-    transitionProperty: "opacity, transform",
+    transitionProperty: "grid-template-rows, opacity, transform",
     transitionTimingFunction: "ease",
   }),
 

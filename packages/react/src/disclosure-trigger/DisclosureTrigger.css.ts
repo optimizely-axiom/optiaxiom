@@ -14,6 +14,7 @@ export const trigger = recipe({
       rounded: "md",
       textAlign: "start",
       w: "full",
+      z: "10",
     },
     style({
       color: theme.colors["fg.default"],
@@ -37,6 +38,7 @@ export const trigger = recipe({
     }),
   ],
 });
+
 export const icon = recipe({
   base: [
     {
