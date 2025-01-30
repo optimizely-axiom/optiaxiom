@@ -20,7 +20,6 @@ export const NavGroup = forwardRef<HTMLDivElement, NavGroupProps>(
           defaultOpen={defaultOpen}
           display="flex"
           flexDirection="column"
-          my="8"
           ref={ref}
           role="group"
           {...props}
