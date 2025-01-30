@@ -3,13 +3,13 @@ import { recipe, style } from "../vanilla-extract";
 export const list = recipe({
   base: [
     {
-      alignItems: "center",
       borderColor: "border.default",
       display: "flex",
     },
     style({
       selectors: {
         '&[data-orientation="horizontal"]': {
+          alignItems: "center",
           borderBottomWidth: "1px",
           flexDirection: "row",
           gap: "24px",
