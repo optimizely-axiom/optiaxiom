@@ -1,3 +1,5 @@
+"use client";
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -35,10 +37,13 @@ import {
   IconTrash,
   IconVocabulary,
 } from "@tabler/icons-react";
+import { useState } from "react";
 
 import { Canvas } from "../Canvas";
 
 export function App() {
+  const [selected, setSelected] = useState<string>("CMP");
+
   return (
     <Canvas>
       <Sidebar>
@@ -88,16 +93,36 @@ export function App() {
 
         <SubNav>
           <NavBody>
-            <NavItem aria-label="All" icon={<IconCopy />}>
+            <NavItem
+              active={selected === "All"}
+              aria-label="All"
+              icon={<IconCopy />}
+              onClick={() => setSelected("All")}
+            >
               All
             </NavItem>
-            <NavItem aria-label="Recent" icon={<IconRectangle />}>
+            <NavItem
+              active={selected === "Recent"}
+              aria-label="Recent"
+              icon={<IconRectangle />}
+              onClick={() => setSelected("Recent")}
+            >
               Recent
             </NavItem>
-            <NavItem aria-label="Favorites" icon={<IconStar />}>
+            <NavItem
+              active={selected === "Favorites"}
+              aria-label="Favorites"
+              icon={<IconStar />}
+              onClick={() => setSelected("Favorites")}
+            >
               Favorites
             </NavItem>
-            <NavItem aria-label="Trash" icon={<IconTrash />}>
+            <NavItem
+              active={selected === "Trash"}
+              aria-label="Trash"
+              icon={<IconTrash />}
+              onClick={() => setSelected("Trash")}
+            >
               Trash
             </NavItem>
             <NavSeparator />
@@ -105,13 +130,28 @@ export function App() {
             <NavGroup defaultOpen>
               <NavGroupLabel>Location</NavGroupLabel>
               <NavGroupContent>
-                <NavItem active aria-label="CMP" icon={<IconDashboard />}>
+                <NavItem
+                  active={selected === "CMP"}
+                  aria-label="CMP"
+                  icon={<IconDashboard />}
+                  onClick={() => setSelected("CMP")}
+                >
                   CMP
                 </NavItem>
-                <NavItem aria-label="CMS" icon={<IconDeviceDesktop />}>
+                <NavItem
+                  active={selected === "CMS"}
+                  aria-label="CMS"
+                  icon={<IconDeviceDesktop />}
+                  onClick={() => setSelected("CMS")}
+                >
                   CMS
                 </NavItem>
-                <NavItem aria-label="Experimentation" icon={<IconTestPipe />}>
+                <NavItem
+                  active={selected === "Experimentation"}
+                  aria-label="Experimentation"
+                  icon={<IconTestPipe />}
+                  onClick={() => setSelected("Experimentation")}
+                >
                   Experimentation
                 </NavItem>
               </NavGroupContent>
@@ -120,10 +160,20 @@ export function App() {
             <NavGroup defaultOpen>
               <NavGroupLabel>Analytics</NavGroupLabel>
               <NavGroupContent>
-                <NavItem aria-label="Dashboard" icon={<IconDashboard />}>
+                <NavItem
+                  active={selected === "Dashboard"}
+                  aria-label="Dashboard"
+                  icon={<IconDashboard />}
+                  onClick={() => setSelected("Dashboard")}
+                >
                   Dashboard
                 </NavItem>
-                <NavItem aria-label="Reports" icon={<IconReport />}>
+                <NavItem
+                  active={selected === "Reports"}
+                  aria-label="Reports"
+                  icon={<IconReport />}
+                  onClick={() => setSelected("Reports")}
+                >
                   Reports
                 </NavItem>
               </NavGroupContent>
