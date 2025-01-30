@@ -11,7 +11,7 @@ export const nav = recipe({
       pt: "16",
     },
     style({
-      transition: "width 300ms ease",
+      transition: "width 250ms ease",
     }),
   ],
 });
