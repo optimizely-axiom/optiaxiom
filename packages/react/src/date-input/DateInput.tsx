@@ -56,7 +56,7 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
       <Popover onOpenChange={setOpen} open={!disabled && open}>
         <PopoverAnchor>
           <Input
-            addonAfter={
+            addonBefore={
               !disabled && (
                 <PopoverTrigger
                   appearance="subtle"
