@@ -13,6 +13,7 @@ export const item = recipe({
       h: "lg",
       justifyContent: "start",
       mx: "8",
+      pr: "10",
       rounded: "md",
       textAlign: "start",
       transition: "colors",
@@ -66,7 +67,12 @@ export const item = recipe({
 export const label = recipe({
   base: [
     {
+      alignItems: "center",
+      display: "flex",
       flex: "1",
+      gap: "10",
+      justifyContent: "space-between",
+      overflow: "hidden",
     },
     style({
       transition: "opacity 250ms ease",
