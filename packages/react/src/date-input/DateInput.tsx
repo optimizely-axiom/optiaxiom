@@ -92,7 +92,6 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
             event.preventDefault();
             innerRef.current?.focus();
           }}
-          p="0"
         >
           <Calendar
             max={maxDate}
