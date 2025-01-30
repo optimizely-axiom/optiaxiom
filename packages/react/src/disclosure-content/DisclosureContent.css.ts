@@ -6,6 +6,7 @@ export const outer = recipe({
       display: "grid",
     },
     style({
+      gridTemplateColumns: "100%",
       gridTemplateRows: "1fr",
     }),
   ],
