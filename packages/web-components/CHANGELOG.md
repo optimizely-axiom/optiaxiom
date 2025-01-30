@@ -1,5 +1,15 @@
 # @optiaxiom/web-components
 
+## 0.8.1
+
+### Patch Changes
+
+- 2ec3675: rename iconOnly prop to square
+- 4487b31: add calendar component
+- 4d41aef: add ellipsis menu button
+- 3776778: use Transition component for disclosure animation
+- 6f597ea: update dependencies
+
 ## 0.8.0
 
 ### Minor Changes

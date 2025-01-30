@@ -1,5 +1,17 @@
 # @optiaxiom/react
 
+## 0.12.1
+
+### Patch Changes
+
+- 2ec3675: rename iconOnly prop to square
+- 4487b31: add calendar component
+- 4d41aef: add ellipsis menu button
+- 3cde382: Add `Card` component
+- 3776778: use Transition component for disclosure animation
+- 6f597ea: update dependencies
+- b40b98b: Add `DateInput` component
+
 ## 0.12.0
 
 ### Minor Changes
