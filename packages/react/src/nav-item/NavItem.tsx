@@ -54,15 +54,15 @@ export const NavItem = forwardRef<HTMLButtonElement, NavItemProps>(
             <Icon asChild>{icon}</Icon>
           </Flex>
 
-          <Text truncate {...styles.label({ expanded: Boolean(expanded) })}>
-            {children}
-          </Text>
+          <Box {...styles.label({ expanded: Boolean(expanded) })}>
+            <Text truncate>{children}</Text>
 
-          {addonAfter && expanded && (
-            <Box asChild display="flex" flex="none">
-              {fallbackSpan(addonAfter)}
-            </Box>
-          )}
+            {addonAfter && (
+              <Box asChild display="flex" flex="none">
+                {fallbackSpan(addonAfter)}
+              </Box>
+            )}
+          </Box>
         </>
       );
     });
