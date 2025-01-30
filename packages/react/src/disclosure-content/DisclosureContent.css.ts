@@ -1,44 +1,20 @@
-import { keyframes, recipe, style } from "../vanilla-extract";
+import { recipe, style } from "../vanilla-extract";
 
-const slideDown = keyframes({
-  from: {
-    height: 0,
-    opacity: 0,
-    overflowY: "hidden",
-    scale: 0.95,
-    translate: "0 -8px",
-  },
-  to: {
-    height: "var(--radix-collapsible-content-height)",
-    overflowY: "hidden",
-  },
+export const outer = recipe({
+  base: [
+    {
+      display: "grid",
+    },
+    style({
+      gridTemplateRows: "1fr",
+    }),
+  ],
 });
 
-const slideUp = keyframes({
-  from: {
-    height: "var(--radix-collapsible-content-height)",
-    overflowY: "hidden",
-  },
-  to: {
-    height: 0,
-    opacity: 0,
-    overflowY: "hidden",
-    scale: 0.95,
-    translate: "0 -8px",
-  },
-});
-
-export const content = recipe({
+export const inner = recipe({
   base: [
     style({
-      selectors: {
-        '&[data-state="closed"]': {
-          animation: `${slideUp} 300ms ease`,
-        },
-        '&[data-state="open"]': {
-          animation: `${slideDown} 300ms ease`,
-        },
-      },
+      minHeight: 0,
     }),
   ],
 });
