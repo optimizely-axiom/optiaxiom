@@ -64,10 +64,14 @@ export const item = recipe({
 });
 
 export const label = recipe({
-  base: {
-    flex: "1",
-    transition: "opacity",
-  },
+  base: [
+    {
+      flex: "1",
+    },
+    style({
+      transition: "opacity 250ms ease",
+    }),
+  ],
 
   variants: {
     expanded: {
