@@ -17,7 +17,6 @@ export const NavGroupLabel = forwardRef<HTMLButtonElement, NavGroupLabelProps>(
         id={id}
         mb="4"
         mt="8"
-        mx="8"
         px="12"
         py="4"
         ref={ref}

@@ -7,7 +7,7 @@ import { Separator } from "../separator";
 type NavSeparatorProps = BoxProps<typeof Separator>;
 
 export const NavSeparator = forwardRef<HTMLDivElement, NavSeparatorProps>(
-  (props, ref) => <Separator flex="none" mx="20" my="8" ref={ref} {...props} />,
+  (props, ref) => <Separator flex="none" mx="12" my="8" ref={ref} {...props} />,
 );
 
 NavSeparator.displayName = "@optiaxiom/react/NavSeparator";

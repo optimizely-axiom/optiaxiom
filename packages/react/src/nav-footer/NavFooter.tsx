@@ -2,13 +2,24 @@ import { forwardRef } from "react";
 
 import { type BoxProps } from "../box";
 import { Flex } from "../flex";
+import { useSidebarContext } from "../sidebar-context";
 
 type NavFooterProps = BoxProps<"div">;
 
 export const NavFooter = forwardRef<HTMLDivElement, NavFooterProps>(
   ({ children, ...props }, ref) => {
+    const { spacing } = useSidebarContext("NavFooter");
+
     return (
-      <Flex gap="8" mt="auto" overflowX="hidden" py="8" ref={ref} {...props}>
+      <Flex
+        gap="8"
+        mt="auto"
+        overflowX="hidden"
+        px={spacing}
+        py="8"
+        ref={ref}
+        {...props}
+      >
         {children}
       </Flex>
     );

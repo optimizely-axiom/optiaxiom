@@ -30,7 +30,6 @@ export const NavAccountItem = forwardRef<
           asChild
           flexDirection="row"
           gap="8"
-          mx="8"
           p="4"
           textAlign="start"
           {...props}

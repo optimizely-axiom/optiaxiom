@@ -12,7 +12,6 @@ export const item = recipe({
       fontWeight: "500",
       h: "lg",
       justifyContent: "start",
-      mx: "8",
       rounded: "md",
       textAlign: "start",
       transition: "colors",
