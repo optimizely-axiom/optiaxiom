@@ -42,17 +42,19 @@ export async function PropsTable({
 }: {
   component: keyof typeof components;
 }) {
-  const componentName = component;
+  if (!(component in components)) {
+    throw new Error(`Could not find props for component: ${component}`);
+  }
   const propItems = await components[component];
 
   const baseName =
-    mapComponentToBase[componentName] ??
+    mapComponentToBase[component] ??
     (propItems.find((prop) => prop.name === "asChild") ? "Box" : "");
-  const isBox = componentName === "Box";
+  const isBox = component === "Box";
 
   return (
     <>
-      <PropsTableDescription baseName={baseName} name={componentName}>
+      <PropsTableDescription baseName={baseName} name={component}>
         {baseName && !isBox && (
           <>
             Supports all{" "}
