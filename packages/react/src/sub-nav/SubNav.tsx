@@ -17,6 +17,7 @@ export const SubNav = forwardRef<HTMLDivElement, SubNavProps>(
               expanded
               navId=""
               onExpandedChange={() => {}}
+              spacing="12"
             >
               {children}
             </SidebarContextProvider>

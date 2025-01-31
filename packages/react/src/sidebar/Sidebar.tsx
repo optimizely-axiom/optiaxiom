@@ -45,6 +45,7 @@ export const Sidebar = forwardRef<HTMLDivElement, SidebarProps>(
         expanded={expanded}
         navId={useId()}
         onExpandedChange={setExpanded}
+        spacing="8"
       >
         <Box
           alignItems="stretch"

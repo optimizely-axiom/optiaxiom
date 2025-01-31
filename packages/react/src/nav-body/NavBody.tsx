@@ -9,10 +9,15 @@ type NavBodyProps = BoxProps<"div">;
 
 export const NavBody = forwardRef<HTMLDivElement, NavBodyProps>(
   ({ children, className, ...props }, ref) => {
-    const { expanded } = useSidebarContext("NavBody");
+    const { expanded, spacing } = useSidebarContext("NavBody");
 
     return (
-      <Flex ref={ref} {...styles.body({ expanded }, className)} {...props}>
+      <Flex
+        px={spacing}
+        ref={ref}
+        {...styles.body({ expanded }, className)}
+        {...props}
+      >
         {children}
       </Flex>
     );
