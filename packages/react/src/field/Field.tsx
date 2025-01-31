@@ -32,6 +32,10 @@ type FieldProps = BoxProps<
      */
     label?: ReactNode;
     /**
+     * Override the default generated label ID used for associating the controls to the label.
+     */
+    labelId?: string;
+    /**
      * Display an asterisk for required inputs.
      */
     required?: boolean;
@@ -47,6 +51,7 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(
       info,
       inputId: inputIdProp,
       label,
+      labelId: labelIdProp,
       required,
       ...props
     },
@@ -55,7 +60,7 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(
     const inputId = useId(inputIdProp);
     const descriptionId = useId();
     const errorId = useId();
-    const labelId = useId();
+    const labelId = useId(labelIdProp);
 
     return (
       <Flex flexDirection="column" gap="4" ref={ref} {...props}>
