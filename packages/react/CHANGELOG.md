@@ -1,5 +1,13 @@
 # @optiaxiom/react
 
+## 0.12.2
+
+### Patch Changes
+
+- 357c579: allow controlling Field label ID from outside
+- bbe6784: improve sidebar toggle a11y
+- af9edf7: use proper semantic lists in sidebar nav
+
 ## 0.12.1
 
 ### Patch Changes
