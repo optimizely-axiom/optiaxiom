@@ -60,5 +60,8 @@
 }
 
 .editor [role="tabpanel"] {
-  margin-top: 0;
+  &,
+  & > div {
+    margin-top: 0;
+  }
 }
