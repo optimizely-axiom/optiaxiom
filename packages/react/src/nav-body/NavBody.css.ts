@@ -1,4 +1,4 @@
-import { recipe, style } from "../vanilla-extract";
+import { recipe } from "../vanilla-extract";
 
 export const body = recipe({
   base: [
@@ -7,12 +7,19 @@ export const body = recipe({
       gap: "4",
       justifyContent: "start",
       overflowX: "hidden",
-      overflowY: "auto",
       py: "8",
       w: "full",
     },
-    style({
-      scrollbarGutter: "stable",
-    }),
   ],
+
+  variants: {
+    expanded: {
+      false: {
+        overflowY: "hidden",
+      },
+      true: {
+        overflowY: "auto",
+      },
+    },
+  },
 });
