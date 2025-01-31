@@ -16,11 +16,11 @@ type NavProps = BoxProps<
 
 export const Nav = forwardRef<HTMLDivElement, NavProps>(
   ({ children, ...props }, ref) => {
-    const { expanded } = useSidebarContext("Nav");
+    const { expanded, navId } = useSidebarContext("Nav");
 
     return (
       <Flex borderR="1" h="full" ref={ref} w="fit" {...props}>
-        <Flex asChild {...styles.nav()} w={expanded ? "224" : "56"}>
+        <Flex asChild id={navId} w={expanded ? "224" : "56"} {...styles.nav()}>
           <nav aria-label="Main">{children}</nav>
         </Flex>
       </Flex>
