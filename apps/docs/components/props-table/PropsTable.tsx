@@ -24,13 +24,13 @@ const mapComponentToBase: Record<string, string> = {
   Heading: "Text",
   KBd: "Code",
   ModalLayer: "",
-  NavItem: "Button",
+  NavGroup: "Disclosure",
+  NavSeparator: "Separator",
   PopoverTrigger: "Button",
   SearchInput: "Input",
   SegmentedControlItem: "Button",
   SelectSeparator: "Separator",
   SelectTrigger: "Button",
-  SidebarToggle: "Button",
   TabsTrigger: "Button",
   ToastAction: "Button",
   ToastTitle: "Text",
@@ -161,10 +161,6 @@ function PropsTableDescription({
         </>
       ) : name !== "Box" && !children ? (
         "Doesn't render its own HTML element."
-      ) : ["NavAccountItem"].includes(name) ? (
-        <>
-          Renders a <Code>&lt;button&gt;</Code> element.
-        </>
       ) : ["Avatar", "Badge", "Skeleton"].includes(name) ? (
         <>
           Renders a <Code>&lt;span&gt;</Code> element.
@@ -204,6 +200,23 @@ function PropsTableDescription({
       ) : ["Link"].includes(name) ? (
         <>
           Renders an <Code>&lt;a&gt;</Code> element.
+        </>
+      ) : ["NavAccountItem", "NavItem", "SidebarToggle"].includes(name) ? (
+        <>
+          Renders an <Code>&lt;li&gt;</Code> element element but forwards all
+          props to an inner <Code>&lt;button&gt;</Code> element.
+        </>
+      ) : ["NavGroup"].includes(name) ? (
+        <>
+          Renders an <Code>&lt;li&gt;</Code> element.
+        </>
+      ) : ["NavGroupLabel"].includes(name) ? (
+        <>
+          Renders a <Code>&lt;button&gt;</Code> element.
+        </>
+      ) : ["NavList"].includes(name) ? (
+        <>
+          Renders a <Code>&lt;ul&gt;</Code> element.
         </>
       ) : ["Table"].includes(name) ? (
         <>
