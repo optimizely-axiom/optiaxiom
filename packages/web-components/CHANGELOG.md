@@ -1,5 +1,11 @@
 # @optiaxiom/web-components
 
+## 0.8.2
+
+### Patch Changes
+
+- af9edf7: use proper semantic lists in sidebar nav
+
 ## 0.8.1
 
 ### Patch Changes
