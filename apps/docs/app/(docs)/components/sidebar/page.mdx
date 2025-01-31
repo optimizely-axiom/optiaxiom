@@ -11,10 +11,6 @@ Primary navigation menu for left side of the page that includes support for bran
 
 <Demo component="sidebar/usage" />
 
-### Secondary navigation
-
-<Demo component="sidebar/sub-nav-usage" />
-
 ### Anatomy
 
 ```tsx
@@ -70,6 +66,74 @@ export default () => (
 );
 ```
 
+### Panels
+
+The `Nav` component is used to create the **primary navigation** panel.
+
+<Demo component="sidebar/panel/usage" />
+
+We can also create additional **secondary navigation** panels using the `SubNav` component. The rest of the hierarchy within `SubNav` is the exact same as `Nav`.
+
+<Demo component="sidebar/panel/sub-usage" />
+
+### Sections
+
+Each navigation panel contains three sections: header, body, and footer.
+
+<Demo component="sidebar/section/usage" />
+
+Both primary and secondary navigation panels can contain these sections.
+
+<Demo component="sidebar/section/sub-usage" />
+
+### Lists
+
+Use `NavList` and `NavItem` to place navigation lists inside the body (or header/footer) navigation sections.
+
+<Demo component="sidebar/item/usage" />
+
+### Active items
+
+Enable the `active` prop on `NavItem` to highlight the currently active/selected navigation item.
+
+<Demo component="sidebar/item/active-usage" />
+
+### Items as links
+
+Set `asChild` to `true` on `NavItem` and wrap children in an `<a>` element to render buttons as links.
+
+<Demo component="sidebar/item/link-usage" />
+
+### Account items
+
+Use `NavAccountItem` to include an account profile button within navigation lists.
+
+<Demo component="sidebar/account-item/usage" />
+
+### Sidebar toggle
+
+Use `SidebarToggle` to include a toggle button within navigation lists for collapsing/expanding the primary navigation panel.
+
+Use the `expanded` and `defaultExpanded` props on `Sidebar` to toggle between controlled and uncontrolled usage. And combine it with `onExpandedChange` to listen for changes to the state.
+
+<Demo component="sidebar/toggle/usage" />
+
+### Groups
+
+Combine `NavList` with `NavGroup` and `NavGroupLabel` to group related navigation items together inside a collapsible section.
+
+<Demo component="sidebar/group/usage" />
+
+### Group separators
+
+Use `NavSeparator` inside `NavGroup` to add separators between navigation items or groups.
+
+<Demo component="sidebar/group/separator-usage" />
+
+### Secondary navigation
+
+<Demo component="sidebar/sub-nav-usage" />
+
 ## Props
 
 ### Sidebar
@@ -83,6 +147,10 @@ export default () => (
 ### Nav
 
 <PropsTable component="Nav" />
+
+### SubNav
+
+<PropsTable component="SubNav" />
 
 ### NavHeader
 
@@ -119,10 +187,6 @@ export default () => (
 ### NavFooter
 
 <PropsTable component="NavFooter" />
-
-### SubNav
-
-<PropsTable component="SubNav" />
 
 ## Changelog
 
