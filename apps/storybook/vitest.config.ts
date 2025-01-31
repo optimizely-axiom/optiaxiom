@@ -1,5 +1,9 @@
 import { storybookTest } from "@storybook/experimental-addon-test/vitest-plugin";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 import { defineConfig } from "vitest/config";
+
+const dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
   optimizeDeps: {
@@ -10,6 +14,7 @@ export default defineConfig({
   },
   plugins: [
     storybookTest({
+      configDir: path.join(dirname, ".storybook"),
       storybookScript: "pnpm dev --ci",
     }),
   ],
@@ -17,7 +22,7 @@ export default defineConfig({
     browser: {
       enabled: true,
       headless: true,
-      name: "chrome",
+      instances: [{ browser: "chrome" }],
       provider: "webdriverio",
     },
     isolate: false,
