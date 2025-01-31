@@ -1,3 +1,4 @@
+import { useId } from "@radix-ui/react-id";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import { forwardRef } from "react";
 
@@ -42,6 +43,7 @@ export const Sidebar = forwardRef<HTMLDivElement, SidebarProps>(
     return (
       <SidebarContextProvider
         expanded={expanded}
+        navId={useId()}
         onExpandedChange={setExpanded}
       >
         <Box
