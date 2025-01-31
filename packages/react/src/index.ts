@@ -82,6 +82,7 @@ export * from "./nav-body";
 export * from "./nav-footer";
 export * from "./nav-header";
 export * from "./nav-item";
+export * from "./nav-list";
 export * from "./pagination";
 export * from "./paper";
 export * from "./popover";

@@ -8,15 +8,7 @@ type NavFooterProps = BoxProps<"div">;
 export const NavFooter = forwardRef<HTMLDivElement, NavFooterProps>(
   ({ children, ...props }, ref) => {
     return (
-      <Flex
-        gap="8"
-        mt="auto"
-        overflowX="hidden"
-        py="8"
-        ref={ref}
-        role="list"
-        {...props}
-      >
+      <Flex gap="8" mt="auto" overflowX="hidden" py="8" ref={ref} {...props}>
         {children}
       </Flex>
     );

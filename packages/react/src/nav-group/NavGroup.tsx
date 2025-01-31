@@ -1,30 +1,27 @@
 import { useId } from "@radix-ui/react-id";
-import { forwardRef } from "react";
+import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
-import { type BoxProps } from "../box";
 import { Disclosure } from "../disclosure";
 import { NavGroupContextProvider } from "../nav-group-context";
 
-type NavGroupProps = BoxProps<"div", { defaultOpen?: boolean }>;
+type NavGroupProps = ComponentPropsWithoutRef<typeof Disclosure>;
 
-export const NavGroup = forwardRef<HTMLDivElement, NavGroupProps>(
-  ({ children, defaultOpen = true, ...props }, ref) => {
+export const NavGroup = forwardRef<HTMLLIElement, NavGroupProps>(
+  ({ children, ...props }, ref) => {
     const groupId = useId();
 
     return (
       <NavGroupContextProvider id={groupId}>
         <Disclosure
           alignItems="stretch"
-          aria-labelledby={groupId}
+          aria-labelledby={props["aria-label"] ? undefined : groupId}
           asChild
-          defaultOpen={defaultOpen}
+          defaultOpen
           display="flex"
           flexDirection="column"
-          ref={ref}
-          role="group"
           {...props}
         >
-          {children}
+          <li ref={ref}>{children}</li>
         </Disclosure>
       </NavGroupContextProvider>
     );

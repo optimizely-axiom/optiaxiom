@@ -8,6 +8,7 @@ import {
   NavBody,
   NavFooter,
   NavItem,
+  NavList,
   Sidebar,
   SidebarToggle,
 } from "@optiaxiom/react";
@@ -29,45 +30,49 @@ export function App() {
       <Sidebar defaultExpanded>
         <Nav>
           <NavBody>
-            <NavItem aria-label="Projects" icon={<IconBinaryTree />}>
-              Projects
-            </NavItem>
-            <NavItem active aria-label="Flags" icon={<IconFlag2 />}>
-              Flags
-            </NavItem>
-            <NavItem aria-label="Events" icon={<IconChartLine />}>
-              Events
-            </NavItem>
-            <NavItem aria-label="Settings" icon={<IconSettings />}>
-              Settings
-            </NavItem>
-            <NavItem
-              addonAfter={<IconExternalLink size="16" />}
-              aria-label="Tutorial"
-              asChild
-              icon={<IconVocabulary />}
-            >
-              <a href="/">Tutorial</a>
-            </NavItem>
+            <NavList>
+              <NavItem aria-label="Projects" icon={<IconBinaryTree />}>
+                Projects
+              </NavItem>
+              <NavItem active aria-label="Flags" icon={<IconFlag2 />}>
+                Flags
+              </NavItem>
+              <NavItem aria-label="Events" icon={<IconChartLine />}>
+                Events
+              </NavItem>
+              <NavItem aria-label="Settings" icon={<IconSettings />}>
+                Settings
+              </NavItem>
+              <NavItem
+                addonAfter={<IconExternalLink size="16" />}
+                aria-label="Tutorial"
+                asChild
+                icon={<IconVocabulary />}
+              >
+                <a href="/">Tutorial</a>
+              </NavItem>
+            </NavList>
           </NavBody>
 
           <NavFooter>
-            <SidebarToggle icon={<IconLayoutSidebar />} />
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <NavAccountItem
-                  name="Rhaenyra Targaryen"
-                  organization="Optimizely"
-                  src="https://i.pravatar.cc/150?img=10"
-                />
-              </DropdownMenuTrigger>
+            <NavList>
+              <SidebarToggle icon={<IconLayoutSidebar />} />
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <NavAccountItem
+                    name="Rhaenyra Targaryen"
+                    organization="Optimizely"
+                    src="https://i.pravatar.cc/150?img=10"
+                  />
+                </DropdownMenuTrigger>
 
-              <DropdownMenuContent align="end" side="right">
-                <DropdownMenuItem>View Profile</DropdownMenuItem>
-                <DropdownMenuItem>Settings</DropdownMenuItem>
-                <DropdownMenuItem>Logout</DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+                <DropdownMenuContent align="end" side="right">
+                  <DropdownMenuItem>View Profile</DropdownMenuItem>
+                  <DropdownMenuItem>Settings</DropdownMenuItem>
+                  <DropdownMenuItem>Logout</DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </NavList>
           </NavFooter>
         </Nav>
       </Sidebar>

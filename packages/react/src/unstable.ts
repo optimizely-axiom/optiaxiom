@@ -42,7 +42,6 @@ export * from "./date-input";
 export * from "./highlight";
 export * from "./inline-input";
 export * from "./nav-group";
-export * from "./nav-group-content";
 export * from "./nav-group-label";
 export * from "./nav-separator";
 export * from "./pill";

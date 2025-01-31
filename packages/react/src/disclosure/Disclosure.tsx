@@ -24,7 +24,10 @@ type DisclosureProps = BoxProps<
 >;
 
 export const Disclosure = forwardRef<HTMLDivElement, DisclosureProps>(
-  ({ children, defaultOpen, onOpenChange, open: openProp, ...props }, ref) => {
+  (
+    { asChild, children, defaultOpen, onOpenChange, open: openProp, ...props },
+    ref,
+  ) => {
     const [open, setOpen] = useControllableState({
       defaultProp: defaultOpen,
       onChange: onOpenChange,
@@ -32,13 +35,17 @@ export const Disclosure = forwardRef<HTMLDivElement, DisclosureProps>(
     });
 
     return (
-      <Box asChild color="fg.default" fontSize="md" ref={ref} {...props}>
-        <RadixCollapsible.Root onOpenChange={setOpen} open={open}>
-          <DisclosureContextProvider open={open}>
+      <DisclosureContextProvider open={open}>
+        <Box asChild color="fg.default" fontSize="md" ref={ref} {...props}>
+          <RadixCollapsible.Root
+            asChild={asChild}
+            onOpenChange={setOpen}
+            open={open}
+          >
             {children}
-          </DisclosureContextProvider>
-        </RadixCollapsible.Root>
-      </Box>
+          </RadixCollapsible.Root>
+        </Box>
+      </DisclosureContextProvider>
     );
   },
 );
