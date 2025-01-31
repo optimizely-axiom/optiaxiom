@@ -24,6 +24,9 @@ export async function Demo({
   iframe?: string;
   meta?: Record<string, string> | string;
 }) {
+  if (!(component in demos)) {
+    throw new Error(`Could not find demo: ${component}`);
+  }
   const Component = (await demos[component]).App as () => ReactNode;
 
   const files = ["App.tsx"];
