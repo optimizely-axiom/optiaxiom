@@ -12,7 +12,7 @@ export const SubNav = forwardRef<HTMLDivElement, SubNavProps>(
     return (
       <Flex borderR="1" h="full" ref={ref} w="fit" {...props}>
         <Flex asChild {...styles.nav()}>
-          <nav aria-label="SubNav">
+          <nav aria-label="Secondary">
             <SidebarContextProvider
               expanded
               navId=""
