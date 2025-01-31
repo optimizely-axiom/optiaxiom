@@ -8,7 +8,7 @@ type NavHeaderProps = BoxProps<"div">;
 export const NavHeader = forwardRef<HTMLDivElement, NavHeaderProps>(
   ({ children, ...props }, ref) => {
     return (
-      <Flex ref={ref} role="list" {...props}>
+      <Flex ref={ref} {...props}>
         {children}
       </Flex>
     );

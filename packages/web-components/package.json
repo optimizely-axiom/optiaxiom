@@ -98,6 +98,7 @@
     "./NavFooter": "./dist/components/NavFooter.js",
     "./NavHeader": "./dist/components/NavHeader.js",
     "./NavItem": "./dist/components/NavItem.js",
+    "./NavList": "./dist/components/NavList.js",
     "./Pagination": "./dist/components/Pagination.js",
     "./Paper": "./dist/components/Paper.js",
     "./Popover": "./dist/components/Popover.js",

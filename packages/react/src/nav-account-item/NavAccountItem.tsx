@@ -24,42 +24,44 @@ export const NavAccountItem = forwardRef<
   const { expanded } = useSidebarContext("NavAccountItem");
 
   return (
-    <Flex my="8" role="listitem">
-      <Flex
-        asChild
-        flexDirection="row"
-        gap="8"
-        mx="8"
-        p="4"
-        textAlign="start"
-        {...props}
-      >
-        <button ref={ref}>
-          <Avatar
-            aria-hidden
-            flex="none"
-            my="2"
-            name={name}
-            rounded="sm"
-            src={src}
-          />
+    <Flex asChild my="8">
+      <li>
+        <Flex
+          asChild
+          flexDirection="row"
+          gap="8"
+          mx="8"
+          p="4"
+          textAlign="start"
+          {...props}
+        >
+          <button ref={ref}>
+            <Avatar
+              aria-hidden
+              flex="none"
+              my="2"
+              name={name}
+              rounded="sm"
+              src={src}
+            />
 
-          <Flex {...styles.item({ expanded: Boolean(expanded) })}>
-            <Flex flex="1" gap="0" overflowX="hidden">
-              <Text color="fg.default" fontWeight="500" truncate>
-                {name}
-              </Text>
-              <Text color="fg.tertiary" fontSize="sm" truncate>
-                {organization}
-              </Text>
+            <Flex {...styles.item({ expanded: Boolean(expanded) })}>
+              <Flex flex="1" gap="0" overflowX="hidden">
+                <Text color="fg.default" fontWeight="500" truncate>
+                  {name}
+                </Text>
+                <Text color="fg.tertiary" fontSize="sm" truncate>
+                  {organization}
+                </Text>
+              </Flex>
+
+              <Box asChild>
+                <IconEllipsis />
+              </Box>
             </Flex>
-
-            <Box asChild>
-              <IconEllipsis />
-            </Box>
-          </Flex>
-        </button>
-      </Flex>
+          </button>
+        </Flex>
+      </li>
     </Flex>
   );
 });

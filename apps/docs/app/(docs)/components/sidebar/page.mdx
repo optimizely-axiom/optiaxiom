@@ -25,26 +25,43 @@ import {
   NavFooter,
   NavHeader,
   NavItem,
+  NavList,
   Sidebar,
   SidebarToggle,
-  SubNav,
 } from "@optiaxiom/react";
+import {
+  NavGroup,
+  NavGroupLabel,
+  NavSeparator,
+  SubNav,
+} from "@optiaxiom/react/unstable";
 
 export default () => (
   <Sidebar>
     <Nav>
-      <NavHeader>
-        <NavItem />
-      </NavHeader>
+      <NavHeader />
 
       <NavBody>
-        <NavItem />
+        <NavList>
+          <NavItem />
+
+          <NavGroup>
+            <NavGroupLabel />
+            <NavSeparator />
+
+            <NavList>
+              <NavItem />
+            </NavList>
+          </NavGroup>
+        </NavList>
       </NavBody>
 
       <NavFooter>
-        <SidebarToggle />
-        <NavItem />
-        <NavAccountItem />
+        <NavList>
+          <SidebarToggle />
+          <NavItem />
+          <NavAccountItem />
+        </NavList>
       </NavFooter>
     </Nav>
 
@@ -75,9 +92,25 @@ export default () => (
 
 <PropsTable component="NavBody" />
 
+### NavList
+
+<PropsTable component="NavList" />
+
 ### NavItem
 
 <PropsTable component="NavItem" />
+
+### NavGroup
+
+<PropsTable component="NavGroup" />
+
+### NavGroupLabel
+
+<PropsTable component="NavGroupLabel" />
+
+### NavSeparator
+
+<PropsTable component="NavSeparator" />
 
 ### NavAccountItem
 

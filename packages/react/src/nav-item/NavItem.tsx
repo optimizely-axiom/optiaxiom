@@ -68,24 +68,26 @@ export const NavItem = forwardRef<HTMLButtonElement, NavItemProps>(
     });
 
     return (
-      <Flex role="listitem">
-        <Tooltip
-          content={props["aria-label"] || tooltip}
-          disabled={expanded}
-          side="right"
-        >
-          <Box
-            asChild
-            data-disabled={disabled ? "" : undefined}
-            data-state={active ? "active" : undefined}
-            {...styles.item({}, className)}
-            {...boxProps}
+      <Flex asChild>
+        <li>
+          <Tooltip
+            content={props["aria-label"] || tooltip}
+            disabled={expanded}
+            side="right"
           >
-            <Comp disabled={disabled} ref={ref} {...restProps}>
-              {children}
-            </Comp>
-          </Box>
-        </Tooltip>
+            <Box
+              asChild
+              data-disabled={disabled ? "" : undefined}
+              data-state={active ? "active" : undefined}
+              {...styles.item({}, className)}
+              {...boxProps}
+            >
+              <Comp disabled={disabled} ref={ref} {...restProps}>
+                {children}
+              </Comp>
+            </Box>
+          </Tooltip>
+        </li>
       </Flex>
     );
   },

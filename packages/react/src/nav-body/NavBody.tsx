@@ -12,12 +12,7 @@ export const NavBody = forwardRef<HTMLDivElement, NavBodyProps>(
     const { expanded } = useSidebarContext("NavBody");
 
     return (
-      <Flex
-        ref={ref}
-        role="list"
-        {...styles.body({ expanded }, className)}
-        {...props}
-      >
+      <Flex ref={ref} {...styles.body({ expanded }, className)} {...props}>
         {children}
       </Flex>
     );
