@@ -2,7 +2,7 @@
  * Forked from https://github.com/preactjs/preact-custom-element
  */
 
-import type { ReactElement } from "react";
+import type { ChangeEvent, ReactElement } from "react";
 
 import {
   cloneElement,
@@ -45,8 +45,12 @@ export function register<P extends object>(
     customEvents?: readonly never[];
   } = {},
 ) {
-  const withPreactElement = (element: HTMLElement) => {
+  const withPreactElement = (
+    element: HTMLElement,
+    internals?: ElementInternals,
+  ) => {
     let vdom: null | ReactElement<object> = null;
+    const ref: { current: HTMLInputElement | null } = { current: null };
 
     const root = createRoot(
       element.shadowRoot
@@ -70,20 +74,33 @@ export function register<P extends object>(
       });
     });
 
-    const props = (options.customEvents ?? []).reduce<
-      Record<string, (detail: unknown) => void>
-    >((result, eventName) => {
-      result[eventName] = (detail) => {
-        element.dispatchEvent(
-          new CustomEvent("ax-" + toNormalizedEvent(eventName), {
-            bubbles: true,
-            cancelable: true,
-            detail,
-          }),
-        );
-      };
-      return result;
-    }, {});
+    const props = (options.customEvents ?? []).reduce<Record<string, unknown>>(
+      (result, eventName) => {
+        result[eventName] = (detail: unknown) => {
+          element.dispatchEvent(
+            new CustomEvent("ax-" + toNormalizedEvent(eventName), {
+              bubbles: true,
+              cancelable: true,
+              detail,
+            }),
+          );
+        };
+        return result;
+      },
+      internals
+        ? {
+            onChange: (event: ChangeEvent<HTMLInputElement>) => {
+              setFormValue(internals, event.target);
+              element.dispatchEvent(
+                new CustomEvent("ax-" + event.type, {
+                  bubbles: true,
+                  cancelable: true,
+                }),
+              );
+            },
+          }
+        : {},
+    );
 
     const attributeChangedCallback = (name: string, value: null | string) => {
       if (!vdom) {
@@ -99,11 +116,14 @@ export function register<P extends object>(
     const connectedCallback = () => {
       const mount = (context: unknown) => {
         vdom = cloneElement(
-          toVdom(element, withContextProvider(Component, context))!,
+          toVdom(element, withContextProvider(Component, { context, ref }))!,
           props,
         );
         root.render(vdom);
         observer.observe(element, { attributes: true });
+        if (internals && ref.current) {
+          setFormValue(internals, ref.current);
+        }
       };
 
       let parent = element.parentElement;
@@ -165,11 +185,11 @@ export function register<P extends object>(
       root.unmount();
     };
 
-    return { connectedCallback, disconnectedCallback };
+    return { connectedCallback, disconnectedCallback, ref };
   };
 
   if (!customElements.get(name)) {
-    customElements.define(name, factory(withPreactElement));
+    customElements.define(name, factory(name, withPreactElement));
   }
 
   return withPreactElement;
@@ -212,7 +232,7 @@ const withContextBridge = (element: Element) => {
  */
 const withContextProvider = <P extends { context?: unknown }>(
   Component: ComponentType<P>,
-  context: unknown,
+  { context, ref }: { context: unknown; ref: unknown },
 ) => {
   return function ContextProvider(
     this: { getChildContext: () => unknown },
@@ -220,7 +240,7 @@ const withContextProvider = <P extends { context?: unknown }>(
   ) {
     this.getChildContext = () => context;
 
-    const props = Object.assign({}, rawProps);
+    const props = Object.assign({ ref }, rawProps);
     delete props.context;
     return createElement<P>(Component, props);
   };
@@ -307,6 +327,20 @@ const createEmptyDiv = (parent: DocumentFragment) => {
   div.style.display = "contents";
   parent.insertBefore(div, parent.firstChild);
   return div;
+};
+
+const setFormValue = (
+  internals: ElementInternals,
+  target: HTMLInputElement,
+) => {
+  internals.setValidity(target.validity, target.validationMessage, target);
+  internals.setFormValue(
+    ["checkbox", "radio"].includes(target.type)
+      ? target.checked
+        ? target.value
+        : null
+      : target.value,
+  );
 };
 
 const toCamelCase = (str: string) =>

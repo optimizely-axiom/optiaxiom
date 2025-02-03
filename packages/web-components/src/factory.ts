@@ -1,12 +1,16 @@
+import { formAssociated } from "./mapping";
+
 type Component = {
   connectedCallback: () => void;
   disconnectedCallback: () => void;
+  ref: { current: HTMLInputElement | null };
 };
 
 export const factory = (
+  name: string,
   spec: ((element: HTMLElement) => Component) | string,
 ): CustomElementConstructor => {
-  return class extends HTMLElement {
+  const AxiomHTMLElement = class extends HTMLElement {
     _component?: Component;
 
     #connected = false;
@@ -68,4 +72,71 @@ export const factory = (
       }
     }
   };
+
+  return formAssociated.has(name)
+    ? class extends AxiomHTMLElement {
+        static formAssociated = true;
+
+        get checked() {
+          return this._component?.ref.current?.checked;
+        }
+        set checked(checked) {
+          if (!this._component?.ref.current) {
+            return;
+          }
+          this._component.ref.current.checked = checked ?? false;
+        }
+        get form() {
+          return this.#internals.form;
+        }
+        get name() {
+          return this.getAttribute("name");
+        }
+        get type() {
+          return this.localName;
+        }
+        get validationMessage() {
+          return this.#internals.validationMessage;
+        }
+        get validity() {
+          return this.#internals.validity;
+        }
+        get value() {
+          return this._component?.ref.current?.value;
+        }
+        set value(value) {
+          if (!this._component?.ref.current) {
+            return;
+          }
+          this._component.ref.current.value = value ?? "";
+        }
+        get willValidate() {
+          return this.#internals.willValidate;
+        }
+
+        #internals;
+
+        constructor() {
+          super();
+          this.#internals = this.attachInternals();
+        }
+
+        build(
+          builder: (
+            element: HTMLElement,
+            internals: ElementInternals,
+          ) => Component,
+        ) {
+          return builder(this, this.#internals);
+        }
+
+        checkValidity() {
+          return this.#internals.checkValidity();
+        }
+
+        reportValidity() {
+          return this.#internals.reportValidity();
+        }
+      }
+    : AxiomHTMLElement;
 };
