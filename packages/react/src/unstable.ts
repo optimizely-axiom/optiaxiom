@@ -41,6 +41,7 @@ export * from "./data-table-header-cell";
 export * from "./date-input";
 export * from "./highlight";
 export * from "./inline-input";
+export * from "./layout";
 export * from "./nav-group";
 export * from "./nav-group-label";
 export * from "./nav-separator";
