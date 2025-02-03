@@ -14,6 +14,7 @@ import {
 } from "react";
 import { createRoot } from "react-dom/client";
 
+import { factory } from "./factory";
 import { mapping } from "./mapping";
 import { styleSheet } from "./styles";
 
@@ -168,28 +169,7 @@ export function register<P extends object>(
   };
 
   if (!customElements.get(name)) {
-    customElements.define(
-      name,
-      class extends HTMLElement {
-        #internal: {
-          connectedCallback: () => void;
-          disconnectedCallback: () => void;
-        };
-
-        constructor() {
-          super();
-          this.#internal = withPreactElement(this);
-        }
-
-        connectedCallback() {
-          this.#internal.connectedCallback();
-        }
-
-        disconnectedCallback() {
-          this.#internal.disconnectedCallback();
-        }
-      },
-    );
+    customElements.define(name, factory(withPreactElement));
   }
 
   return withPreactElement;
