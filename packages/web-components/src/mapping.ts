@@ -42,3 +42,12 @@ const exported = (
 export const mapping: AllComponents = Object.fromEntries(exported) as {
   [T in (typeof exported)[number] as T[0]]: T[1];
 };
+
+export const formAssociated: Set<string> = new Set([
+  "ax-checkbox",
+  "ax-input",
+  "ax-radio",
+  "ax-search-input",
+  "ax-switch",
+  "ax-textarea",
+]) satisfies Set<keyof AllComponents>;
