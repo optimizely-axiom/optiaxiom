@@ -37,7 +37,11 @@ export default defineConfig([
     },
     output: [
       {
-        dir: "dist",
+        dir: "dist/cjs",
+        format: "cjs",
+      },
+      {
+        dir: "dist/esm",
         entryFileNames: (info) => {
           return info.name.endsWith(".css")
             ? `${info.name.replace(/\.css$/, "-css")}.js`

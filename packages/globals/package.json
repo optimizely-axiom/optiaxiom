@@ -15,15 +15,18 @@
   "license": "Apache-2.0",
   "exports": {
     ".": {
-      "import": "./dist/index.js",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js",
       "types": "./dist/index.d.ts"
     },
     "./fonts": {
-      "import": "./dist/fonts.js"
+      "import": "./dist/esm/fonts.js",
+      "require": "./dist/cjs/fonts.js"
     }
   },
   "sideEffects": [
-    "./dist/fonts.js"
+    "./dist/cjs/fonts.js",
+    "./dist/esm/fonts.js"
   ],
   "types": "dist/index.d.ts",
   "scripts": {

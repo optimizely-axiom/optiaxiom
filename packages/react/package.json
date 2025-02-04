@@ -15,11 +15,13 @@
   "license": "Apache-2.0",
   "exports": {
     ".": {
-      "import": "./dist/index.js",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js",
       "types": "./dist/index.d.ts"
     },
     "./unstable": {
-      "import": "./dist/unstable.js",
+      "import": "./dist/esm/unstable.js",
+      "require": "./dist/cjs/unstable.js",
       "types": "./dist/unstable.d.ts"
     }
   },
