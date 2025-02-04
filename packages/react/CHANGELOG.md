@@ -1,5 +1,13 @@
 # @optiaxiom/react
 
+## 0.12.3
+
+### Patch Changes
+
+- 38a3b62: create cjs distribution in addition to esm
+- Updated dependencies [38a3b62]
+  - @optiaxiom/globals@0.7.2
+
 ## 0.12.2
 
 ### Patch Changes

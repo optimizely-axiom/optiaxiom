@@ -1,5 +1,11 @@
 # @optiaxiom/globals
 
+## 0.7.2
+
+### Patch Changes
+
+- 38a3b62: create cjs distribution in addition to esm
+
 ## 0.7.1
 
 ### Patch Changes
