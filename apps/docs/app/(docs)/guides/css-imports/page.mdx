@@ -30,6 +30,31 @@ export default {
 
 ## Webpack
 
-### CSS loader
+### Configure loaders
 
-Use [css-loader](https://webpack.js.org/loaders/css-loader/) to include the CSS in your bundled code.
+Follow the [Webpack Asset Management](https://webpack.js.org/guides/asset-management/) guide to configure loading CSS and fonts.
+
+Install the required style loaders.
+
+```sh npm2yarn
+npm install -D style-loader css-loader
+```
+
+Add the appropriate loaders in your Webpack config file.
+
+```js filename="webpack.config.js"
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"],
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/i,
+        type: "asset/resource",
+      },
+    ],
+  },
+};
+```
