@@ -35,34 +35,36 @@ export default defineConfig([
       }
       warn(warning);
     },
-    output: {
-      dir: "dist",
-      entryFileNames: (info) => {
-        return info.name.endsWith(".css")
-          ? `${info.name.replace(/\.css$/, "-css")}.js`
-          : "[name].js";
+    output: [
+      {
+        dir: "dist",
+        entryFileNames: (info) => {
+          return info.name.endsWith(".css")
+            ? `${info.name.replace(/\.css$/, "-css")}.js`
+            : "[name].js";
+        },
+        format: "es",
+        manualChunks:
+          env === "production"
+            ? undefined
+            : (id, { getModuleInfo }) => {
+                if (
+                  id.includes("/axiom-provider/") ||
+                  id.includes("/box/") ||
+                  id.includes("/button/") ||
+                  id.includes("/icon/")
+                ) {
+                  return "base";
+                } else if (id.includes("recipe")) {
+                  return "vanilla";
+                } else if (getModuleInfo(id).meta.preserveDirectives) {
+                  return "client";
+                }
+                return "server";
+              },
+        preserveModules: env === "production",
       },
-      format: "es",
-      manualChunks:
-        env === "production"
-          ? undefined
-          : (id, { getModuleInfo }) => {
-              if (
-                id.includes("/axiom-provider/") ||
-                id.includes("/box/") ||
-                id.includes("/button/") ||
-                id.includes("/icon/")
-              ) {
-                return "base";
-              } else if (id.includes("recipe")) {
-                return "vanilla";
-              } else if (getModuleInfo(id).meta.preserveDirectives) {
-                return "client";
-              }
-              return "server";
-            },
-      preserveModules: env === "production",
-    },
+    ],
     plugins: [
       {
         name: "preserve-directives",
