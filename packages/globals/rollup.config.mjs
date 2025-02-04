@@ -23,35 +23,37 @@ export default defineConfig([
       fonts: "src/fonts.ts",
       index: "src/index.ts",
     },
-    output: {
-      banner: (chunk) => {
-        if (
+    output: [
+      {
+        banner: (chunk) => {
+          if (
+            env === "production"
+              ? bannerFilter(chunk.facadeModuleId)
+              : chunk.name === "client"
+          ) {
+            return '"use client";';
+          }
+          return "";
+        },
+        dir: "dist",
+        entryFileNames: (info) => {
+          return info.name.endsWith(".css")
+            ? `${info.name.replace(/\.css$/, "-css")}.js`
+            : "[name].js";
+        },
+        format: "es",
+        manualChunks:
           env === "production"
-            ? bannerFilter(chunk.facadeModuleId)
-            : chunk.name === "client"
-        ) {
-          return '"use client";';
-        }
-        return "";
+            ? undefined
+            : (id) => {
+                if (bannerFilter(id)) {
+                  return "client";
+                }
+                return "server";
+              },
+        preserveModules: env === "production",
       },
-      dir: "dist",
-      entryFileNames: (info) => {
-        return info.name.endsWith(".css")
-          ? `${info.name.replace(/\.css$/, "-css")}.js`
-          : "[name].js";
-      },
-      format: "es",
-      manualChunks:
-        env === "production"
-          ? undefined
-          : (id) => {
-              if (bannerFilter(id)) {
-                return "client";
-              }
-              return "server";
-            },
-      preserveModules: env === "production",
-    },
+    ],
     plugins: [
       esbuild({
         define: {
