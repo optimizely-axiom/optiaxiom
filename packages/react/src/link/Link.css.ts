@@ -1,4 +1,4 @@
-import { theme as linkStyles } from "@optiaxiom/globals";
+import { theme } from "@optiaxiom/globals";
 
 import {
   createVar,
@@ -30,14 +30,14 @@ export const link = recipe({
 
       selectors: {
         "&:focus-visible": {
-          outline: `2px auto ${linkStyles.colors["border.focus"]}`,
+          outline: `2px auto ${theme.colors["border.focus"]}`,
           outlineOffset: "1px",
         },
         "&:visited": {
-          color: linkStyles.colors["fg.link.visited"],
+          color: theme.colors["fg.link.visited"],
         },
         "&[data-disabled]": {
-          color: linkStyles.colors["fg.disabled"],
+          color: theme.colors["fg.disabled"],
         },
       },
     }),
@@ -48,27 +48,27 @@ export const link = recipe({
      */
     appearance: {
       default: style({
-        color: linkStyles.colors["fg.link.default"],
+        color: theme.colors["fg.link.default"],
 
         "@media": {
           "(hover: hover)": {
             selectors: {
               "&:hover:not([data-disabled])": {
-                color: linkStyles.colors["fg.link.default.hovered"],
+                color: theme.colors["fg.link.default.hovered"],
               },
             },
           },
         },
       }),
       inverse: style({
-        color: linkStyles.colors["fg.link.inverse"],
+        color: theme.colors["fg.link.inverse"],
       }),
       subtle: style({
-        color: linkStyles.colors["fg.link.subtle"],
+        color: theme.colors["fg.link.subtle"],
 
         selectors: {
           "&:visited": {
-            color: linkStyles.colors["fg.link.subtle"],
+            color: theme.colors["fg.link.subtle"],
           },
         },
       }),
@@ -92,7 +92,7 @@ export const link = recipe({
             outline: "none",
           },
           "&:focus-visible::after": {
-            outline: `2px auto ${linkStyles.colors["border.focus"]}`,
+            outline: `2px auto ${theme.colors["border.focus"]}`,
             outlineOffset: "1px",
           },
         },
