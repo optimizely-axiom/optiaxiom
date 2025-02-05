@@ -5,6 +5,7 @@ import { CardsItem } from "./CardsItem";
 import { AlertDialogIcon } from "./icons/AlertDialogIcon";
 import { AlertIcon } from "./icons/AlertIcon";
 import { AutocompleteIcon } from "./icons/AutocompleteIcon";
+import { BadgeIcon } from "./icons/BadgeIcon";
 import { BannerIcon } from "./icons/BannerIcon";
 import { BoxIcon } from "./icons/BoxIcon";
 import { ButtonIcon } from "./icons/ButtonIcon";
@@ -57,6 +58,12 @@ const COMPONENTS = {
     href: "/components/autocomplete/",
     icon: <AutocompleteIcon />,
     title: "Autocomplete",
+  },
+  Badge: {
+    description: "Use to emphasize a status, count, state or value.",
+    href: "/components/badge/",
+    icon: <BadgeIcon />,
+    title: "Badge",
   },
   Banner: {
     description: "Display a prominent message at the top of the screen.",

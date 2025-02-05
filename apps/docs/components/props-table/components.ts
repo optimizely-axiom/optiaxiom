@@ -110,6 +110,8 @@ export const components = {
   NavList: getProps("NavList"),
   NavSeparator: getProps("NavSeparator"),
   Pagination: getProps("Pagination"),
+  Pill: getProps("Pill"),
+  PillGroup: getProps("PillGroup"),
   Popover: getProps("Popover"),
   PopoverContent: getProps("PopoverContent"),
   PopoverTrigger: getProps("PopoverTrigger"),

@@ -1,0 +1,53 @@
+import { Cards } from "@/components/cards";
+import { Demo } from "@/components/demo";
+import { PropsTable } from "@/components/props-table";
+
+# Pill
+
+A pill is a visual representation of an attribute, usually representing tags or metrics.
+
+## Documentation
+
+### Usage
+
+<Demo component="pill/usage" />
+
+### Different sizes
+
+Use the `size` prop to modify the size of the button.
+
+<Demo component="pill/size-usage" />
+
+### Disabled state
+
+Set the `disabled` prop to `true` to disable pills and prevent any interactions.
+
+For accessibility please make sure to include text that explains why the button is disabled or use a tooltip.
+
+<Demo component="pill/disabled-usage" />
+
+### Grouping pills
+
+Use the `<PillGroup />` component to group related pills together.
+
+<Demo component="pill/group-usage" />
+
+### Related
+
+<Cards items={["Badge", "Button"]} />
+
+## Props
+
+### Pill
+
+<PropsTable component="Pill" />
+
+### PillGroup
+
+<PropsTable component="PillGroup" />
+
+## Changelog
+
+### 0.12.4
+
+- Added component
