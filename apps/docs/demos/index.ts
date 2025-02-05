@@ -79,6 +79,7 @@ export const demos = {
   "dialog/size-usage": import("./dialog/size-usage/App"),
   "dialog/trigger-usage": import("./dialog/trigger-usage/App"),
   "dialog/usage": import("./dialog/usage/App"),
+  "disclosure/addon-usage": import("./disclosure/addon-usage/App"),
   "disclosure/chevron-position-usage": import(
     "./disclosure/chevron-position-usage/App"
   ),

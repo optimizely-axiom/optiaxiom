@@ -18,7 +18,6 @@ const mapComponentToBase: Record<string, string> = {
   ComboboxTrigger: "Button",
   DialogClose: "Button",
   DialogTrigger: "Button",
-  DisclosureTrigger: "Button",
   DropdownMenuSeparator: "Separator",
   DropdownMenuTrigger: "Button",
   Heading: "Text",
