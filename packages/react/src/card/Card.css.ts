@@ -1,6 +1,7 @@
 import { theme } from "@optiaxiom/globals";
 
 import * as checkboxStyles from "../card-checkbox/CardCheckbox.css";
+import * as coverStyles from "../cover/Cover.css";
 import * as linkStyles from "../link/Link.css";
 import { recipe, style } from "../vanilla-extract";
 
@@ -18,7 +19,7 @@ export const card = recipe({
     },
     style({
       vars: {
-        [linkStyles.borderRadiusVar]: theme.borderRadius.lg,
+        [coverStyles.borderRadiusVar]: theme.borderRadius.lg,
       },
 
       borderRadius: theme.borderRadius.lg,
