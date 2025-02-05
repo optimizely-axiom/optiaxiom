@@ -5,30 +5,55 @@ import { recipe, type RecipeVariants, style } from "../vanilla-extract";
 export const pill = recipe({
   base: [
     {
-      bg: "bg.secondary",
+      alignItems: "center",
       border: "0",
+      color: "fg.default",
+      display: "flex",
       fontSize: "sm",
+      gap: "4",
+      px: "6",
       rounded: "md",
+      whiteSpace: "nowrap",
     },
     style({
-      minWidth: "auto",
+      backgroundColor: theme.colors["bg.tertiary"],
       position: "relative",
+      transitionDuration: "150ms",
+      transitionProperty: "background-color, color, transform",
+      transitionTimingFunction: "ease",
       userSelect: "none",
+
+      "@media": {
+        "(hover: hover)": {
+          selectors: {
+            "&:not([data-disabled]):hover": {
+              backgroundColor: theme.colors["bg.tertiary.hovered"],
+            },
+          },
+        },
+      },
 
       selectors: {
         "&:focus-visible": {
           outline: `2px solid ${theme.colors["border.focus"]}`,
           outlineOffset: "1px",
         },
+
+        "&:not([data-disabled]):active": {
+          transform: "scale(0.97)",
+        },
+        "&[data-disabled]": {
+          opacity: 0.6,
+        },
       },
     }),
   ],
   variants: {
     size: {
-      md: {
+      xs: {
         h: "xs",
       },
-      lg: {
+      sm: {
         h: "sm",
       },
     },
