@@ -1,5 +1,7 @@
 import { theme as coverStyles } from "@optiaxiom/globals";
+import { style as veStyle } from "@vanilla-extract/css";
 
+import { layers } from "../layers";
 import {
   createVar,
   fallbackVar,
@@ -17,25 +19,35 @@ export const cover = recipe({
      */
     overlay: {
       false: {},
-      true: style({
-        position: "static",
+      true: [
+        veStyle({
+          "@layer": {
+            [layers.axiom]: {
+              position: "static",
 
-        selectors: {
-          "&::after": {
-            borderRadius: fallbackVar(borderRadiusVar, "inherit"),
-            content: "",
-            inset: "0",
-            position: "absolute",
+              selectors: {
+                "&:focus-visible": {
+                  outline: "none",
+                },
+              },
+            },
           },
-          "&:focus-visible": {
-            outline: "none !important",
+        }),
+        style({
+          selectors: {
+            "&::after": {
+              borderRadius: fallbackVar(borderRadiusVar, "inherit"),
+              content: "",
+              inset: "0",
+              position: "absolute",
+            },
+            "&:focus-visible::after": {
+              outline: `2px auto ${coverStyles.colors["border.focus"]}`,
+              outlineOffset: "1px",
+            },
           },
-          "&:focus-visible::after": {
-            outline: `2px auto ${coverStyles.colors["border.focus"]}`,
-            outlineOffset: "1px",
-          },
-        },
-      }),
+        }),
+      ],
     },
   },
 });
