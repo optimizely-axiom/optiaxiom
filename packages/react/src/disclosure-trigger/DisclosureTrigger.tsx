@@ -1,16 +1,21 @@
 import * as RadixCollapsible from "@radix-ui/react-collapsible";
-import { forwardRef, type ReactNode } from "react";
+import {
+  type ComponentPropsWithoutRef,
+  forwardRef,
+  type ReactNode,
+} from "react";
 
-import { Box, type BoxProps, extractBoxProps } from "../box";
+import { Box, type BoxProps } from "../box";
+import { Cover } from "../cover";
 import { useDisclosureContext } from "../disclosure-context";
 import { Flex } from "../flex";
-import { IconAngleDown } from "../icons/IconAngleDown";
+import { IconAngleLeft } from "../icons/IconAngleLeft";
 import { IconAngleRight } from "../icons/IconAngleRight";
 import * as styles from "./DisclosureTrigger.css";
 
 type DisclosureTriggerProps = BoxProps<
-  typeof RadixCollapsible.Trigger,
-  {
+  "div",
+  Pick<ComponentPropsWithoutRef<typeof Cover>, "overlay"> & {
     addonAfter?: ReactNode;
     addonBefore?: ReactNode;
     chevronPosition?: "end" | "start";
@@ -18,7 +23,7 @@ type DisclosureTriggerProps = BoxProps<
 >;
 
 export const DisclosureTrigger = forwardRef<
-  HTMLButtonElement,
+  HTMLDivElement,
   DisclosureTriggerProps
 >(
   (
@@ -34,30 +39,37 @@ export const DisclosureTrigger = forwardRef<
   ) => {
     useDisclosureContext("DisclosureTrigger");
 
-    const { boxProps, restProps } = extractBoxProps(props);
-    const startIcon =
-      addonBefore ||
-      (chevronPosition === "start" && !addonAfter && <IconAngleRight />);
-    const endIcon =
-      addonAfter || (chevronPosition === "end" && <IconAngleDown />);
-
     return (
-      <Flex asChild {...styles.trigger({}, className)} {...boxProps}>
-        <RadixCollapsible.Trigger ref={ref} {...restProps}>
-          {startIcon && (
-            <Box asChild {...styles.icon({ chevronPosition })}>
-              {startIcon}
-            </Box>
-          )}
-          <Box flex="1" px="4">
-            {children}
-          </Box>
-          {endIcon && (
-            <Box asChild {...styles.icon({ chevronPosition })}>
-              {endIcon}
-            </Box>
-          )}
-        </RadixCollapsible.Trigger>
+      <Flex ref={ref} {...styles.trigger({}, className)} {...props}>
+        {addonBefore}
+
+        <Flex
+          asChild
+          flexDirection="row"
+          fontWeight="inherit"
+          gap="4"
+          rounded="md"
+          textAlign="start"
+          w="full"
+        >
+          <Cover asChild overlay>
+            <RadixCollapsible.Trigger>
+              {chevronPosition === "start" && (
+                <Box asChild {...styles.icon({ chevronPosition })}>
+                  <IconAngleRight />
+                </Box>
+              )}
+              <Box flex="1">{children}</Box>
+              {chevronPosition === "end" && (
+                <Box asChild {...styles.icon({ chevronPosition })}>
+                  <IconAngleLeft />
+                </Box>
+              )}
+            </RadixCollapsible.Trigger>
+          </Cover>
+        </Flex>
+
+        {addonAfter}
       </Flex>
     );
   },

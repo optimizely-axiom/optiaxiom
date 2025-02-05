@@ -5,7 +5,7 @@ import { useNavGroupContext } from "../nav-group-context";
 
 type NavGroupLabelProps = ComponentPropsWithoutRef<typeof DisclosureTrigger>;
 
-export const NavGroupLabel = forwardRef<HTMLButtonElement, NavGroupLabelProps>(
+export const NavGroupLabel = forwardRef<HTMLDivElement, NavGroupLabelProps>(
   ({ children, ...props }, ref) => {
     const { id } = useNavGroupContext("NavGroupLabel");
 
@@ -14,11 +14,11 @@ export const NavGroupLabel = forwardRef<HTMLButtonElement, NavGroupLabelProps>(
         chevronPosition="end"
         color="fg.tertiary"
         fontSize="sm"
+        h="sm"
         id={id}
         mb="4"
         mt="8"
         px="12"
-        py="4"
         ref={ref}
         w="auto"
         {...props}

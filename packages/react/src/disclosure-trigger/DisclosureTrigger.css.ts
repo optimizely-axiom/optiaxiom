@@ -8,31 +8,22 @@ export const trigger = recipe({
       flexDirection: "row",
       fontSize: "md",
       fontWeight: "500",
-      gap: "4",
-      p: "8",
-      px: "4",
-      rounded: "md",
-      textAlign: "start",
-      w: "full",
-      z: "10",
+      gap: "8",
+      h: "lg",
+      px: "8",
+      transition: "colors",
     },
     style({
       color: theme.colors["fg.default"],
+      position: "relative",
 
       "@media": {
         "(hover: hover)": {
           selectors: {
             "&:is([data-disabled], :hover)": {
-              color: theme.colors["fg.secondary"],
+              color: theme.colors["bg.default.inverse.hovered"],
             },
           },
-        },
-      },
-
-      selectors: {
-        "&:focus-visible": {
-          outline: `2px solid ${theme.colors["border.focus"]}`,
-          outlineOffset: "1px",
         },
       },
     }),
@@ -50,7 +41,7 @@ export const icon = recipe({
       end: style({
         selectors: {
           "[data-state=open] > &": {
-            transform: "rotate(180deg)",
+            transform: "rotate(-90deg)",
           },
         },
       }),
