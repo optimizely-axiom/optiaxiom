@@ -1,52 +1,36 @@
-import { forwardRef, type KeyboardEvent } from "react";
+import { Slot } from "@radix-ui/react-slot";
+import { forwardRef } from "react";
 
-import { type BoxProps } from "../box";
-import { Button } from "../button";
+import { Box, type BoxProps, extractBoxProps } from "../box";
+import { Icon } from "../icon";
+import { IconX } from "../icons/IconX";
 import { Text } from "../text";
-import { Tooltip } from "../tooltip";
 import * as styles from "./Pill.css";
 
-type PillProps = BoxProps<
-  typeof Button,
-  styles.PillVariants & {
-    onRemove?: () => void;
-  }
->;
+type PillProps = BoxProps<"button", styles.PillVariants>;
 
 export const Pill = forwardRef<HTMLButtonElement, PillProps>(
-  (
-    {
-      addonAfter,
-      addonBefore,
-      children,
-      className,
-      onRemove,
-      size = "md",
-      ...props
-    },
-    ref,
-  ) => {
-    const handleKeyDown = (e: KeyboardEvent<HTMLButtonElement>) => {
-      if (e.key === "Backspace" && onRemove) {
-        onRemove();
-      }
-    };
+  ({ asChild, children, className, disabled, size = "sm", ...props }, ref) => {
+    const Comp = asChild ? Slot : "button";
+    const { boxProps, restProps } = extractBoxProps(props);
 
     return (
-      <Tooltip auto content={children}>
-        <Button
-          addonAfter={addonAfter}
-          addonBefore={addonBefore}
-          onKeyDown={handleKeyDown}
-          ref={ref}
-          {...styles.pill({ size }, className)}
-          {...props}
-        >
-          <Text display="block" fontSize="inherit" truncate>
+      <Box
+        asChild
+        data-disabled={disabled ? "" : undefined}
+        {...styles.pill({ size }, className)}
+        {...boxProps}
+      >
+        <Comp disabled={disabled} ref={ref} {...restProps}>
+          <Text fontSize="inherit" truncate>
             {children}
           </Text>
-        </Button>
-      </Tooltip>
+
+          <Icon asChild h="12" ml="auto">
+            <IconX />
+          </Icon>
+        </Comp>
+      </Box>
     );
   },
 );
