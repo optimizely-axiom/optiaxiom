@@ -1,14 +1,8 @@
 import { theme } from "@optiaxiom/globals";
 
-import {
-  createVar,
-  fallbackVar,
-  type RecipeVariants,
-  style,
-} from "../vanilla-extract";
+import { type RecipeVariants, style } from "../vanilla-extract";
 import { recipe } from "../vanilla-extract";
 
-export const borderRadiusVar = createVar();
 export const className = style({});
 
 export const link = recipe({
@@ -69,31 +63,6 @@ export const link = recipe({
         selectors: {
           "&:visited": {
             color: theme.colors["fg.link.subtle"],
-          },
-        },
-      }),
-    },
-    /**
-     * Whether to expand and fill up the whole area of the parent which has `position: relative`.
-     */
-    overlay: {
-      false: {},
-      true: style({
-        position: "static",
-
-        selectors: {
-          "&::after": {
-            borderRadius: fallbackVar(borderRadiusVar, "inherit"),
-            content: "",
-            inset: "0",
-            position: "absolute",
-          },
-          "&:focus-visible": {
-            outline: "none",
-          },
-          "&:focus-visible::after": {
-            outline: `2px auto ${theme.colors["border.focus"]}`,
-            outlineOffset: "1px",
           },
         },
       }),
