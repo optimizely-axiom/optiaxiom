@@ -1,9 +1,14 @@
 import * as RadixTabs from "@radix-ui/react-tabs";
 import { forwardRef } from "react";
 
+import type { ExcludeProps } from "../utils";
+
 import { Box, type BoxProps } from "../box";
 
-type TabsContentProps = BoxProps<typeof RadixTabs.TabsContent>;
+type TabsContentProps = ExcludeProps<
+  BoxProps<typeof RadixTabs.TabsContent>,
+  "forceMount"
+>;
 
 export const TabsContent = forwardRef<HTMLDivElement, TabsContentProps>(
   ({ children, value, ...props }, ref) => {
