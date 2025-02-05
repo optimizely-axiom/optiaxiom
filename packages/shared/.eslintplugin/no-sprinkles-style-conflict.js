@@ -9,7 +9,6 @@ const mapSprinkleToStyle = {
   borderT: ["borderTopWidth"],
   fontSize: ["fontSize", "lineHeight"],
   h: ["height"],
-  leading: ["lineHeight"],
   m: ["margin", "marginBottom", "marginLeft", "marginRight", "marginTop"],
   maxH: ["maxHeight"],
   maxW: ["maxWidth"],
@@ -29,7 +28,12 @@ const mapSprinkleToStyle = {
   rounded: ["borderRadius"],
   shadow: ["boxShadow"],
   size: ["height", "width"],
-  tracking: ["letterSpacing"],
+  transition: [
+    "transition",
+    "transitionDuration",
+    "transitionProperty",
+    "transitionTimingFunction",
+  ],
   w: ["width"],
   z: ["zIndex"],
 };
