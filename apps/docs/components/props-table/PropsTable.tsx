@@ -1,4 +1,6 @@
 import { Box, Code, Flex, Text } from "@optiaxiom/react";
+import * as Components from "@optiaxiom/react";
+import * as UnstableComponents from "@optiaxiom/react/unstable";
 import { Link } from "nextra-theme-docs";
 import { compileMdx } from "nextra/compile";
 import { MDXRemote } from "nextra/mdx-remote";
@@ -8,7 +10,9 @@ import { PropType } from "../prop-type";
 import { Table, Td, Th, Thead, Tr } from "../table";
 import { components } from "./components";
 
-const mapComponentToBase: Record<string, string> = {
+type AllComponents = keyof typeof Components | keyof typeof UnstableComponents;
+
+const mapComponentToBase: Partial<Record<AllComponents, "" | AllComponents>> = {
   AlertDialogAction: "Button",
   AlertDialogCancel: "Button",
   AlertDialogTrigger: "Button",
@@ -21,7 +25,7 @@ const mapComponentToBase: Record<string, string> = {
   DropdownMenuSeparator: "Separator",
   DropdownMenuTrigger: "Button",
   Heading: "Text",
-  KBd: "Code",
+  Kbd: "Code",
   ModalLayer: "",
   NavGroup: "Disclosure",
   NavGroupTrigger: "DisclosureTrigger",
@@ -145,25 +149,25 @@ function PropsTableDescription({
   children,
   name,
 }: {
-  baseName: string;
+  baseName: "" | AllComponents;
   children?: ReactNode;
-  name: string;
+  name: AllComponents;
 }) {
   return (
     <Text fontSize="lg" mt="16">
       {children}
-      {name === "Tooltip" ? (
+      {matches(["Tooltip"], name) ? (
         <>
           Doesn&apos;t render its own HTML element and forwards all props to the{" "}
           <Code>content</Code> component instead.
         </>
-      ) : ["ModalLayer", "ToastTitle"].includes(name) ? (
+      ) : matches(["ModalLayer", "ToastTitle"], name) ? (
         <>
           Renders a <Code>&lt;div&gt;</Code> element.
         </>
       ) : name !== "Box" && !children ? (
         "Doesn't render its own HTML element."
-      ) : ["Avatar", "Badge", "Skeleton"].includes(name) ? (
+      ) : matches(["Avatar", "Badge", "Skeleton"], name) ? (
         <>
           Renders a <Code>&lt;span&gt;</Code> element.
         </>
@@ -171,20 +175,20 @@ function PropsTableDescription({
         <>
           Renders a <Code>&lt;button&gt;</Code> element.
         </>
-      ) : ["Code"].includes(name) ? (
+      ) : matches(["Code"], name) ? (
         <>
           Renders a <Code>&lt;code&gt;</Code> element.
         </>
-      ) : ["Checkbox", "Radio", "Switch"].includes(name) ? (
+      ) : matches(["Checkbox", "Radio", "Switch"], name) ? (
         <>
           Renders a <Code>&lt;div&gt;</Code> element but forwards all props to a
           hidden <Code>&lt;input&gt;</Code> element.
         </>
-      ) : ["DialogForm"].includes(name) ? (
+      ) : matches(["DialogForm"], name) ? (
         <>
           Renders a <Code>&lt;form&gt;</Code> element.
         </>
-      ) : ["Heading"].includes(name) ? (
+      ) : matches(["Heading"], name) ? (
         <>
           Renders an <Code>&lt;h1&gt;</Code> element.
         </>
@@ -195,52 +199,52 @@ function PropsTableDescription({
           <Code>&lt;{name === "Textarea" ? "textarea" : "input"}&gt;</Code>{" "}
           element.
         </>
-      ) : ["Kbd"].includes(name) ? (
+      ) : matches(["Kbd"], name) ? (
         <>
           Renders a <Code>&lt;kbd&gt;</Code> element.
         </>
-      ) : ["Link"].includes(name) ? (
+      ) : matches(["Link"], name) ? (
         <>
           Renders an <Code>&lt;a&gt;</Code> element.
         </>
-      ) : ["NavAccountItem", "NavItem", "SidebarToggle"].includes(name) ? (
+      ) : matches(["NavAccountItem", "NavItem", "SidebarToggle"], name) ? (
         <>
           Renders an <Code>&lt;li&gt;</Code> element element but forwards all
           props to an inner <Code>&lt;button&gt;</Code> element.
         </>
-      ) : ["NavGroup"].includes(name) ? (
+      ) : matches(["NavGroup"], name) ? (
         <>
           Renders an <Code>&lt;li&gt;</Code> element.
         </>
-      ) : ["NavGroupTrigger"].includes(name) ? (
+      ) : matches(["NavGroupTrigger"], name) ? (
         <>
           Renders a <Code>&lt;button&gt;</Code> element.
         </>
-      ) : ["NavList"].includes(name) ? (
+      ) : matches(["NavList"], name) ? (
         <>
           Renders a <Code>&lt;ul&gt;</Code> element.
         </>
-      ) : ["Table"].includes(name) ? (
+      ) : matches(["Table"], name) ? (
         <>
           Renders a <Code>&lt;table&gt;</Code> element.
         </>
-      ) : ["TableBody"].includes(name) ? (
+      ) : matches(["TableBody"], name) ? (
         <>
           Renders a <Code>&lt;tbody&gt;</Code> element.
         </>
-      ) : ["TableCell"].includes(name) ? (
+      ) : matches(["TableCell"], name) ? (
         <>
           Renders a <Code>&lt;td&gt;</Code> element.
         </>
-      ) : ["TableHeader"].includes(name) ? (
+      ) : matches(["TableHeader"], name) ? (
         <>
           Renders a <Code>&lt;thead&gt;</Code> element.
         </>
-      ) : ["TableHeaderCell"].includes(name) ? (
+      ) : matches(["TableHeaderCell"], name) ? (
         <>
           Renders a <Code>&lt;th&gt;</Code> element.
         </>
-      ) : ["TableRow"].includes(name) ? (
+      ) : matches(["TableRow"], name) ? (
         <>
           Renders a <Code>&lt;tr&gt;</Code> element.
         </>
@@ -257,5 +261,8 @@ function PropsTableDescription({
   );
 }
 
-const matches = (items: string[], baseName: string, name: string) =>
-  items.includes(baseName) || items.includes(name);
+const matches = (
+  items: ("" | AllComponents)[],
+  baseName: "" | AllComponents,
+  name?: AllComponents,
+) => items.includes(baseName) || (name && items.includes(name));
