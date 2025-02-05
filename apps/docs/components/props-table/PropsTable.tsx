@@ -28,6 +28,7 @@ const mapComponentToBase: Partial<Record<AllComponents, "" | AllComponents>> = {
   Kbd: "Code",
   ModalLayer: "",
   NavGroup: "Disclosure",
+  NavGroupContent: "DisclosureContent",
   NavGroupTrigger: "DisclosureTrigger",
   NavSeparator: "Separator",
   PopoverTrigger: "Button",
@@ -216,11 +217,7 @@ function PropsTableDescription({
         <>
           Renders an <Code>&lt;li&gt;</Code> element.
         </>
-      ) : matches(["NavGroupTrigger"], name) ? (
-        <>
-          Renders a <Code>&lt;button&gt;</Code> element.
-        </>
-      ) : matches(["NavList"], name) ? (
+      ) : matches(["NavGroupContent", "NavList"], name) ? (
         <>
           Renders a <Code>&lt;ul&gt;</Code> element.
         </>

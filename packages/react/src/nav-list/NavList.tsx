@@ -1,7 +1,6 @@
 import { forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
-import { DisclosureContent } from "../disclosure-content";
 import { useNavGroupContext } from "../nav-group-context";
 
 type NavListProps = BoxProps<"div">;
@@ -9,10 +8,12 @@ type NavListProps = BoxProps<"div">;
 export const NavList = forwardRef<HTMLUListElement, NavListProps>(
   ({ children, ...props }, ref) => {
     const { id } = useNavGroupContext("NavList");
-    const Comp = id ? DisclosureContent : Box;
+    if (id) {
+      throw new Error("huh");
+    }
 
     return (
-      <Comp
+      <Box
         asChild
         display="flex"
         flexDirection="column"
@@ -21,7 +22,7 @@ export const NavList = forwardRef<HTMLUListElement, NavListProps>(
         {...props}
       >
         <ul ref={ref}>{children}</ul>
-      </Comp>
+      </Box>
     );
   },
 );
