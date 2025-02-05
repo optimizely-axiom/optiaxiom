@@ -1,5 +1,9 @@
 import { Nav, NavBody, NavItem, NavList, Sidebar } from "@optiaxiom/react";
-import { NavGroup, NavGroupTrigger } from "@optiaxiom/react/unstable";
+import {
+  NavGroup,
+  NavGroupContent,
+  NavGroupTrigger,
+} from "@optiaxiom/react/unstable";
 import {
   IconDashboard,
   IconDeviceDesktop,
@@ -17,7 +21,7 @@ export function App() {
             <NavList>
               <NavGroup defaultOpen>
                 <NavGroupTrigger>Location</NavGroupTrigger>
-                <NavList>
+                <NavGroupContent>
                   <NavItem aria-label="CMP" icon={<IconDashboard />}>
                     CMP
                   </NavItem>
@@ -27,7 +31,7 @@ export function App() {
                   <NavItem aria-label="Experimentation" icon={<IconTestPipe />}>
                     Experimentation
                   </NavItem>
-                </NavList>
+                </NavGroupContent>
               </NavGroup>
             </NavList>
           </NavBody>

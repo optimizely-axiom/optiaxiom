@@ -43,6 +43,7 @@ export * from "./highlight";
 export * from "./inline-input";
 export * from "./layout";
 export * from "./nav-group";
+export * from "./nav-group-content";
 export * from "./nav-group-trigger";
 export * from "./nav-separator";
 export * from "./pill";

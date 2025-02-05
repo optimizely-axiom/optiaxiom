@@ -108,6 +108,7 @@ export const components = {
   NavBody: getProps("NavBody"),
   NavFooter: getProps("NavFooter"),
   NavGroup: getProps("NavGroup"),
+  NavGroupContent: getProps("NavGroupContent"),
   NavGroupTrigger: getProps("NavGroupTrigger"),
   NavHeader: getProps("NavHeader"),
   NavItem: getProps("NavItem"),
