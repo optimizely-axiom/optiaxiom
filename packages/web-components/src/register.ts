@@ -4,23 +4,20 @@
 
 import type { ChangeEvent, ReactElement } from "react";
 
-import {
-  cloneElement,
-  type ComponentType,
-  createElement,
-  forwardRef,
-  type FunctionComponent,
-  useLayoutEffect,
-} from "react";
+import { cloneElement, type FunctionComponent } from "react";
 import { createRoot } from "react-dom/client";
 
+import {
+  CustomContextEvent,
+  CustomMountEvent,
+  CustomUnmountEvent,
+} from "./events";
 import { factory } from "./factory";
 import { mapping } from "./mapping";
 import { styleSheet } from "./styles";
-
-const CustomContextEvent = "__ax_context";
-const CustomMountEvent = "__ax_mount";
-const CustomUnmountEvent = "__ax_unmount";
+import { toCamelCase } from "./toCamelCase";
+import { toVdom } from "./toVdom";
+import { withContextProvider } from "./withContextProvider";
 
 type CustomContextEventDetail = {
   context: unknown;
@@ -28,10 +25,6 @@ type CustomContextEventDetail = {
 };
 
 declare global {
-  interface Element {
-    queue: Element[];
-  }
-
   interface ElementEventMap {
     [CustomContextEvent]: CustomEvent<CustomContextEventDetail>;
     [CustomMountEvent]: CustomEvent<{ context: unknown }>;
@@ -195,133 +188,6 @@ export function register<P extends object>(
   return withPreactElement;
 }
 
-const withContextBridge = (element: Element) => {
-  /**
-   * Provide the current rendering status and preact context via a custom event.
-   */
-  let context: unknown = undefined;
-  let rendered = false;
-  element.addEventListener(CustomContextEvent, (event) => {
-    event.detail.context = context;
-    event.detail.rendered = rendered;
-  });
-
-  return (_props: unknown, _context: unknown) => {
-    context = _context;
-    rendered = true;
-
-    useLayoutEffect(() => {
-      element.dispatchEvent(
-        new CustomEvent(CustomMountEvent, {
-          cancelable: true,
-          detail: { context },
-        }),
-      );
-
-      return () => {
-        element.dispatchEvent(new CustomEvent(CustomUnmountEvent));
-      };
-    }, []);
-
-    return null;
-  };
-};
-
-/**
- * Wrap an existing component with custom preact context.
- */
-const withContextProvider = <P extends { context?: unknown }>(
-  Component: ComponentType<P>,
-  { context, ref }: { context: unknown; ref: unknown },
-) => {
-  return function ContextProvider(
-    this: { getChildContext: () => unknown },
-    rawProps: P,
-  ) {
-    this.getChildContext = () => context;
-
-    const props = Object.assign({ ref }, rawProps);
-    delete props.context;
-    return createElement<P>(Component, props);
-  };
-};
-
-/**
- * Forward correct ref when wrapping children in slot in root node.
- *
- * Instead of forwarding the ref to the <slot> element inside the shadow root
- * we instead assign it to the source HTML element from which we created the
- * slot.
- */
-const withSlot = (element: Element) => {
-  const Bridge = withContextBridge(element);
-
-  return forwardRef((props, ref) => {
-    useLayoutEffect(() => {
-      if (typeof ref === "function") {
-        ref(element);
-      } else if (ref && "current" in ref) {
-        ref.current = element;
-      }
-
-      return () => {
-        if (typeof ref === "function") {
-          ref(null);
-        } else if (ref && "current" in ref) {
-          ref.current = undefined;
-        }
-      };
-    }, [ref]);
-
-    return createElement("slot", { ...props, ref }, createElement(Bridge));
-  });
-};
-
-function toVdom<P>(
-  element: unknown,
-  Component?: ComponentType<P>,
-): null | ReactElement {
-  if (!(element instanceof Element)) {
-    return null;
-  }
-
-  const isRootNode = !!Component;
-
-  const props: Record<string, null | ReactElement | string> = {};
-  for (const { name, value } of element.attributes) {
-    if (name.startsWith("on") || name === "slot" || name === "style") {
-      continue;
-    }
-    props[toCamelCase(name)] = value;
-  }
-
-  const children = [];
-  for (const child of element.childNodes) {
-    if (child instanceof Text && child.data.match(/^\s+$/)) {
-      continue;
-    }
-    if (child instanceof Element && child.slot) {
-      props[child.slot] = createElement("slot", {
-        name: child.slot,
-        style: { display: "inline-flex" },
-      });
-    } else {
-      children.push(child instanceof Text ? child.data : toVdom(child));
-    }
-  }
-
-  return createElement(
-    // @ts-expect-error -- too complex
-    Component || element.nodeName.toLowerCase(),
-    props,
-    isRootNode
-      ? children.length
-        ? createElement(withSlot(element))
-        : null
-      : children,
-  );
-}
-
 const createEmptyDiv = (parent: DocumentFragment) => {
   const div = document.createElement("div");
   div.style.display = "contents";
@@ -342,11 +208,6 @@ const setFormValue = (
       : target.value,
   );
 };
-
-const toCamelCase = (str: string) =>
-  str.startsWith("aria-") || str.startsWith("data-")
-    ? str
-    : str.replace(/-(\w)/g, (_, c) => c.toUpperCase());
 
 const toNormalizedEvent = (name: string) =>
   name.slice("on".length).toLowerCase();
