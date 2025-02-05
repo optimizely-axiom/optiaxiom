@@ -3,11 +3,11 @@ import { type ComponentPropsWithoutRef, forwardRef } from "react";
 import { DisclosureTrigger } from "../disclosure-trigger";
 import { useNavGroupContext } from "../nav-group-context";
 
-type NavGroupLabelProps = ComponentPropsWithoutRef<typeof DisclosureTrigger>;
+type NavGroupTriggerProps = ComponentPropsWithoutRef<typeof DisclosureTrigger>;
 
-export const NavGroupLabel = forwardRef<HTMLDivElement, NavGroupLabelProps>(
+export const NavGroupTrigger = forwardRef<HTMLDivElement, NavGroupTriggerProps>(
   ({ children, ...props }, ref) => {
-    const { id } = useNavGroupContext("NavGroupLabel");
+    const { id } = useNavGroupContext("NavGroupTrigger");
 
     return (
       <DisclosureTrigger
@@ -29,4 +29,4 @@ export const NavGroupLabel = forwardRef<HTMLDivElement, NavGroupLabelProps>(
   },
 );
 
-NavGroupLabel.displayName = "@optiaxiom/react/NavGroupLabel";
+NavGroupTrigger.displayName = "@optiaxiom/react/NavGroupTrigger";

@@ -3,7 +3,7 @@
 import { NavBody, NavItem, NavList, Sidebar } from "@optiaxiom/react";
 import {
   NavGroup,
-  NavGroupLabel,
+  NavGroupTrigger,
   NavSeparator,
   SubNav,
 } from "@optiaxiom/react/unstable";
@@ -68,7 +68,7 @@ export function App() {
 
               <NavGroup defaultOpen>
                 <NavSeparator />
-                <NavGroupLabel>Location</NavGroupLabel>
+                <NavGroupTrigger>Location</NavGroupTrigger>
                 <NavList>
                   <NavItem
                     active={selected === "CMP"}
@@ -99,7 +99,7 @@ export function App() {
 
               <NavGroup defaultOpen>
                 <NavSeparator />
-                <NavGroupLabel>Analytics</NavGroupLabel>
+                <NavGroupTrigger>Analytics</NavGroupTrigger>
                 <NavList>
                   <NavItem
                     active={selected === "Dashboard"}

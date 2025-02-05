@@ -1,8 +1,12 @@
 import type { PropItem } from "react-docgen-typescript";
 
+import * as Components from "@optiaxiom/react";
+import * as UnstableComponents from "@optiaxiom/react/unstable";
 import { promises as fs } from "fs";
 
-const getProps = async (component: string) => {
+const getProps = async (
+  component: keyof typeof Components | keyof typeof UnstableComponents,
+) => {
   const docs = JSON.parse(
     await fs.readFile(process.cwd() + "/data/props.json", "utf8"),
   ) as Array<{
@@ -104,7 +108,7 @@ export const components = {
   NavBody: getProps("NavBody"),
   NavFooter: getProps("NavFooter"),
   NavGroup: getProps("NavGroup"),
-  NavGroupLabel: getProps("NavGroupLabel"),
+  NavGroupTrigger: getProps("NavGroupTrigger"),
   NavHeader: getProps("NavHeader"),
   NavItem: getProps("NavItem"),
   NavList: getProps("NavList"),
