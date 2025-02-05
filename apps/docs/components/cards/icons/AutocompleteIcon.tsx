@@ -20,6 +20,7 @@ export const AutocompleteIcon = () => (
     <Flex
       bg="bg.default"
       border="1"
+      borderColor="border.secondary"
       gap="4"
       p="6"
       rounded="sm"

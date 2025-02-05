@@ -9,6 +9,7 @@ export const ComboboxIcon = () => (
     <Flex
       bg="bg.default"
       border="1"
+      borderColor="border.secondary"
       gap="4"
       p="4"
       rounded="sm"
