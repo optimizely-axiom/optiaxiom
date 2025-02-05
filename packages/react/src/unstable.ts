@@ -46,6 +46,7 @@ export * from "./nav-group";
 export * from "./nav-group-label";
 export * from "./nav-separator";
 export * from "./pill";
+export * from "./pill-group";
 export * from "./select";
 export * from "./select-content";
 export * from "./select-group";

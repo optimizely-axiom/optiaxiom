@@ -121,6 +121,9 @@ export default {
       },
       link: "Link",
       pagination: "Pagination",
+      pill: {
+        title: <AlphaItem>Pill</AlphaItem>,
+      },
       popover: "Popover",
       progress: "Progress",
       "radio-group": "RadioGroup",
