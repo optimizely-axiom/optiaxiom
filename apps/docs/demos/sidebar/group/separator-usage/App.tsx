@@ -1,7 +1,7 @@
 import { Nav, NavBody, NavItem, NavList, Sidebar } from "@optiaxiom/react";
 import {
   NavGroup,
-  NavGroupLabel,
+  NavGroupTrigger,
   NavSeparator,
 } from "@optiaxiom/react/unstable";
 import {
@@ -29,7 +29,7 @@ export function App() {
               </NavItem>
               <NavGroup defaultOpen>
                 <NavSeparator />
-                <NavGroupLabel>Location</NavGroupLabel>
+                <NavGroupTrigger>Location</NavGroupTrigger>
                 <NavList>
                   <NavItem aria-label="CMP" icon={<IconDashboard />}>
                     CMP

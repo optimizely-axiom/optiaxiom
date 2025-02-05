@@ -27,7 +27,7 @@ import {
 } from "@optiaxiom/react";
 import {
   NavGroup,
-  NavGroupLabel,
+  NavGroupTrigger,
   NavSeparator,
   SubNav,
 } from "@optiaxiom/react/unstable";
@@ -42,7 +42,7 @@ export default () => (
           <NavItem />
 
           <NavGroup>
-            <NavGroupLabel />
+            <NavGroupTrigger />
             <NavSeparator />
 
             <NavList>
@@ -120,7 +120,7 @@ Use the `expanded` and `defaultExpanded` props on `Sidebar` to toggle between co
 
 ### Groups
 
-Combine `NavList` with `NavGroup` and `NavGroupLabel` to group related navigation items together inside a collapsible section.
+Combine `NavList` with `NavGroup` and `NavGroupTrigger` to group related navigation items together inside a collapsible section.
 
 <Demo component="sidebar/group/usage" />
 
@@ -172,9 +172,9 @@ Use `NavSeparator` inside `NavGroup` to add separators between navigation items 
 
 <PropsTable component="NavGroup" />
 
-### NavGroupLabel
+### NavGroupTrigger
 
-<PropsTable component="NavGroupLabel" />
+<PropsTable component="NavGroupTrigger" />
 
 ### NavSeparator
 

@@ -24,6 +24,7 @@ const mapComponentToBase: Record<string, string> = {
   KBd: "Code",
   ModalLayer: "",
   NavGroup: "Disclosure",
+  NavGroupTrigger: "DisclosureTrigger",
   NavSeparator: "Separator",
   PopoverTrigger: "Button",
   SearchInput: "Input",
@@ -211,7 +212,7 @@ function PropsTableDescription({
         <>
           Renders an <Code>&lt;li&gt;</Code> element.
         </>
-      ) : ["NavGroupLabel"].includes(name) ? (
+      ) : ["NavGroupTrigger"].includes(name) ? (
         <>
           Renders a <Code>&lt;button&gt;</Code> element.
         </>

@@ -17,7 +17,7 @@ import {
 } from "@optiaxiom/react";
 import {
   NavGroup,
-  NavGroupLabel,
+  NavGroupTrigger,
   NavSeparator,
   SubNav,
 } from "@optiaxiom/react/unstable";
@@ -212,7 +212,7 @@ export const WithSubNav: Story = {
               <NavGroup defaultOpen>
                 <NavSeparator />
 
-                <NavGroupLabel>Location</NavGroupLabel>
+                <NavGroupTrigger>Location</NavGroupTrigger>
 
                 <NavList>
                   <NavItem active aria-label="CMP" icon={<IconDashboard />}>
@@ -230,7 +230,7 @@ export const WithSubNav: Story = {
               <NavGroup defaultOpen>
                 <NavSeparator />
 
-                <NavGroupLabel>Analytics</NavGroupLabel>
+                <NavGroupTrigger>Analytics</NavGroupTrigger>
 
                 <NavList>
                   <NavItem aria-label="Dashboard" icon={<IconDashboard />}>
