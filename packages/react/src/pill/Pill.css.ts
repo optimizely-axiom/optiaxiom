@@ -6,7 +6,6 @@ export const pill = recipe({
   base: [
     {
       alignItems: "center",
-      border: "0",
       color: "fg.default",
       display: "flex",
       fontSize: "sm",

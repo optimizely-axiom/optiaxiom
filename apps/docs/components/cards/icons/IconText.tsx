@@ -18,7 +18,7 @@ export const IconText = ({
           intent === "primary"
             ? "border.control"
             : intent === "secondary"
-              ? "border.tertiary"
+              ? "border.default"
               : "bg.error.subtle"
         ],
       ...style,

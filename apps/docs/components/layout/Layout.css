@@ -84,11 +84,11 @@
   .nextra-code {
     div:has(~ pre) {
       background-color: transparent;
-      border-color: var(--ax-colors-border-default);
+      border-color: var(--ax-colors-border-tertiary);
     }
 
     pre {
-      --tw-ring-color: var(--ax-colors-border-default);
+      --tw-ring-color: var(--ax-colors-border-tertiary);
       background-color: var(--docs-code-bg);
     }
   }
@@ -109,7 +109,7 @@
 
     /* nav links container */
     a {
-      border-color: var(--ax-colors-border-default);
+      border-color: var(--ax-colors-border-tertiary);
       border-radius: var(--ax-borderRadius-md);
       border-width: 1px;
       flex-wrap: wrap;

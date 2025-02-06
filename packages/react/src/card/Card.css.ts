@@ -12,6 +12,7 @@ export const card = recipe({
     className,
     {
       border: "1",
+      borderColor: "border.tertiary",
       color: "fg.default",
       gap: "12",
       p: "16",
