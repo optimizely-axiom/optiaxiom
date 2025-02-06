@@ -10,7 +10,7 @@ import { IconFilter } from "@tabler/icons-react";
 export function App() {
   return (
     <Popover>
-      <Indicator content="4" intent="information" variant="solid">
+      <Indicator content="4" intent="information" variant="strong">
         <PopoverTrigger
           appearance="subtle"
           aria-label="Filters"

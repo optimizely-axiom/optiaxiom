@@ -83,13 +83,13 @@ export const badge = recipe({
      * Control the style of the badge.
      */
     variant: {
-      light: style({
-        backgroundColor: subtleBackgroundColorVar,
-        color: subtleColorVar,
-      }),
-      solid: style({
+      strong: style({
         backgroundColor: solidBackgroundColorVar,
         color: solidColorVar,
+      }),
+      subtle: style({
+        backgroundColor: subtleBackgroundColorVar,
+        color: subtleColorVar,
       }),
     },
   },

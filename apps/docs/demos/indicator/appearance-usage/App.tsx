@@ -7,7 +7,7 @@ import { IconBell } from "@tabler/icons-react";
 
 export function App({
   intent = "success",
-  variant = "light",
+  variant = "subtle",
 }: Pick<ComponentPropsWithRef<typeof Indicator>, "intent" | "variant">) {
   return (
     <Indicator content="4" intent={intent} variant={variant}>

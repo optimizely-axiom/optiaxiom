@@ -11,14 +11,14 @@ figma.connect(
       intent: figma.enum("Intent", {
         Danger: "danger",
         Info: "information",
-        Neutral: undefined,
+        Neutral: "neutral",
         Primary: "primary",
         Success: "success",
         Warning: "warning",
       }),
       variant: figma.enum("Variant", {
-        Accent: "solid",
-        Subtle: undefined,
+        Strong: "strong",
+        Subtle: "subtle",
       }),
     },
   },
