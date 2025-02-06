@@ -10,8 +10,12 @@ import postcss from "postcss";
 import postcssrc from "postcss-load-config";
 import docgen from "react-docgen-typescript";
 import { defineConfig } from "rollup";
+import dts from "rollup-plugin-dts";
 import esbuild from "rollup-plugin-esbuild";
 
+const external = new RegExp(
+  "^(?:" + ["react", "react-dom"].join("|") + ")(?:/.+)?$",
+);
 const require = createRequire(import.meta.url);
 const env = process.env.NODE_ENV ?? "development";
 const pkg = JSON.parse(readFileSync("./package.json"));
@@ -220,6 +224,28 @@ export { Portal, Portal as Root };`;
       webComponentPlugin({ include: ["src/components/**/*.ts"] }),
     ],
   },
+  {
+    external,
+    input: Object.fromEntries(
+      Object.entries(input).map(([key, value]) => [
+        key,
+        value.replace(".ts", ".d.ts"),
+      ]),
+    ),
+    output: {
+      dir: "dist",
+      format: "es",
+    },
+    plugins: [
+      typeDeclarationPlugin({
+        include: ["src/components/**/*.d.ts", "src/index.d.ts"],
+      }),
+      dts({
+        respectExternal: true,
+        tsconfig: "tsconfig.build.json",
+      }),
+    ],
+  },
 ]);
 
 /** @returns {import('rollup').Plugin} */
@@ -271,6 +297,61 @@ function stylePlugin({ exclude = [], include = [] } = {}) {
 }
 
 /** @returns {import('rollup').Plugin} */
+function typeDeclarationPlugin({ include = [] }) {
+  const filter = createFilter(include ?? []);
+
+  const generateDts = (id) => {
+    const component = path.parse(id).name.replace(".d", "");
+    return `import { ${component} as ${component}Component } from "@optiaxiom/react";
+
+export const ${component} = "ax${toKebabCase(component)}";
+
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      [${component}]: ComponentAttributes<
+        ComponentPropsWithoutRef<typeof ${component}Component>
+      >;
+    }
+  }
+}`;
+  };
+
+  return {
+    load(id) {
+      if (!filter(id)) {
+        return null;
+      }
+
+      return (
+        id.endsWith("/index.d.ts")
+          ? [
+              'import type { ComponentPropsWithoutRef } from "react";',
+              'import type { ComponentAttributes } from "./ComponentAttributes";',
+              ...Object.entries(input).map(([key, value]) =>
+                key === "index" ? "" : generateDts(value),
+              ),
+            ]
+          : [
+              'import type { ComponentPropsWithoutRef } from "react";',
+              'import type { ComponentAttributes } from "../ComponentAttributes";',
+              generateDts(id),
+            ]
+      ).join("\n");
+    },
+    name: "rollup-plugin-type-declaration",
+    order: "pre",
+    async resolveId(id, importer) {
+      if (!importer && filter(path.resolve(id))) {
+        return path.resolve(id);
+      }
+
+      return null;
+    },
+  };
+}
+
+/** @returns {import('rollup').Plugin} */
 function webComponentPlugin({ include = [] }) {
   const prefix = `\0virtual:`;
   const filter = createFilter(include ?? []);
@@ -301,7 +382,7 @@ function webComponentPlugin({ include = [] }) {
 
 import { register } from "../register";
 
-export const ${component} = "ax${component.replace(/[A-Z]/g, (m) => "-" + m.toLowerCase())}";
+export const ${component} = "ax${toKebabCase(component)}";
 export default register(
   ${component},
   ${component}Component,
@@ -322,3 +403,6 @@ export default register(
     },
   };
 }
+
+const toKebabCase = (str) =>
+  str.replace(/[A-Z]/g, (m) => "-" + m.toLowerCase());
