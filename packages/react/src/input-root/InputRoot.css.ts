@@ -14,7 +14,7 @@ export const root = recipe({
     },
     style({
       backgroundColor: theme.colors["bg.default"],
-      borderColor: theme.colors["border.tertiary"],
+      borderColor: theme.colors["border.default"],
       borderRadius: theme.borderRadius.md,
       borderWidth: "1px",
       color: theme.colors["fg.default"],
@@ -50,7 +50,7 @@ export const root = recipe({
           borderColor: theme.colors["border.error"],
         },
         [`&:has(${marker}:is([data-readonly]))`]: {
-          borderColor: theme.colors["border.default"],
+          borderColor: theme.colors["border.tertiary"],
         },
 
         [`&:has(${marker}:is([data-disabled]))`]: {

@@ -41,6 +41,7 @@ export function DemoPreview({
     <Box
       alignItems="stretch"
       borderB="1"
+      borderColor="border.tertiary"
       className={iframe && styles.resize}
       display="flex"
       flexDirection={["column", "row"]}
@@ -55,7 +56,7 @@ export function DemoPreview({
       {Object.keys(propTypes).length > 0 && (
         <>
           <Separator
-            borderColor="border.default"
+            borderColor="border.tertiary"
             orientation={["horizontal", "vertical"]}
           />
           <DemoControls

@@ -6,7 +6,7 @@ body > div:has(.brand)::before {
     linear-gradient(to right, var(--bg) 1px, transparent 1px);
   background-position: center;
   background-size: 70px 70px;
-  border-bottom: 1px solid var(--ax-colors-border-tertiary);
+  border-bottom: 1px solid var(--ax-colors-border-default);
   content: "";
   inset: 0;
   mask-image: linear-gradient(
