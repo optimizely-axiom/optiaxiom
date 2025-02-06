@@ -3,7 +3,7 @@ import json from "@rollup/plugin-json";
 import { nodeResolve } from "@rollup/plugin-node-resolve";
 import { createFilter } from "@rollup/pluginutils";
 import fg from "fast-glob";
-import { readFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { createRequire } from "node:module";
 import path from "node:path";
 import postcss from "postcss";
@@ -302,6 +302,16 @@ function typeDeclarationPlugin({ include = [] }) {
 
   const generateDts = (id) => {
     const component = path.parse(id).name.replace(".d", "");
+    if (!existsSync(component)) {
+      mkdirSync(component);
+    }
+    writeFileSync(
+      `${component}/package.json`,
+      `{
+  "module": "../dist/components/${component}.js",
+  "types": "../dist/components/${component}.d.ts"
+}`,
+    );
     return `import { ${component} as ${component}Component } from "@optiaxiom/react";
 
 export const ${component} = "ax${toKebabCase(component)}";
