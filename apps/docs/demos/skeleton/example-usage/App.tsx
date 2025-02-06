@@ -8,10 +8,10 @@ export function App({ loading = true }: { loading: boolean }) {
       <Flex alignItems="start" flexDirection="row">
         {loading ? (
           <Skeleton>
-            <Avatar size="lg" />
+            <Avatar size="xl" />
           </Skeleton>
         ) : (
-          <Avatar name="Sample Person" size="lg" />
+          <Avatar name="Sample Person" size="xl" />
         )}
 
         <Flex flex="1">
