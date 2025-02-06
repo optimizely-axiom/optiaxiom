@@ -78,3 +78,15 @@ export const Disabled: Story = {
     </Flex>
   ),
 };
+
+export const LabelPosition: Story = {
+  args: {
+    defaultChecked: true,
+  },
+  render: (args) => (
+    <Flex>
+      <Switch {...args} labelPosition="start" />
+      <Switch {...args} labelPosition="end" />
+    </Flex>
+  ),
+};

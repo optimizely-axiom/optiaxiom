@@ -1,10 +1,9 @@
-import { forwardRef, type ReactNode } from "react";
+import { forwardRef } from "react";
 
 import { Box, type BoxProps, extractBoxProps } from "../box";
 import { ToggleInput } from "../toggle-input";
 import { ToggleInputContent } from "../toggle-input-content";
 import { ToggleInputControl } from "../toggle-input-control";
-import { ToggleInputDescription } from "../toggle-input-description";
 import { ToggleInputHiddenInput } from "../toggle-input-hidden-input";
 import { ToggleInputLabel } from "../toggle-input-label";
 import * as styles from "./Switch.css";
@@ -13,22 +12,27 @@ type SwitchProps = BoxProps<
   typeof ToggleInputHiddenInput,
   styles.SwitchVariants & {
     /**
-     * Add helper text after the label.
+     * Control whether to show the helper text before or after the switch.
      */
-    description?: ReactNode;
+    labelPosition?: "end" | "start";
   }
 >;
 
 export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
-  ({ children, className, description, size = "md", ...props }, ref) => {
+  (
+    { children, className, labelPosition = "end", size = "md", ...props },
+    ref,
+  ) => {
     const { boxProps, restProps } = extractBoxProps(props);
 
+    const labelContent = children && (
+      <ToggleInputContent pt={size === "lg" ? "2" : "0"}>
+        <ToggleInputLabel>{children}</ToggleInputLabel>
+      </ToggleInputContent>
+    );
+
     return (
-      <ToggleInput
-        description={!!description}
-        {...styles.root({}, className)}
-        {...boxProps}
-      >
+      <ToggleInput {...styles.root({}, className)} {...boxProps}>
         <ToggleInputHiddenInput
           ref={ref}
           role="switch"
@@ -36,19 +40,13 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
           {...restProps}
         />
 
+        {labelPosition === "start" && labelContent}
+
         <ToggleInputControl {...styles.control()}>
           <Box {...styles.thumb({ size })}></Box>
         </ToggleInputControl>
 
-        {(children || description) && (
-          <ToggleInputContent pt={size === "lg" ? "2" : "0"}>
-            {children && <ToggleInputLabel>{children}</ToggleInputLabel>}
-
-            {description && (
-              <ToggleInputDescription>{description}</ToggleInputDescription>
-            )}
-          </ToggleInputContent>
-        )}
+        {labelPosition === "end" && labelContent}
       </ToggleInput>
     );
   },

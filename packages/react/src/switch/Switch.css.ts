@@ -19,6 +19,8 @@ export const root = recipe({
         [styles.controlColorVar]: theme.colors["bg.tertiary"],
       },
 
+      width: "160px",
+
       "@media": {
         "(hover: hover)": {
           selectors: {
