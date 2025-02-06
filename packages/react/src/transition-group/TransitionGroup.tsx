@@ -50,7 +50,7 @@ export function TransitionGroup({
   }, [open, transitions]);
 
   if (TransitionGlobalConfig.skipAnimations) {
-    return open && children;
+    return <>{open && children}</>;
   }
 
   return (
