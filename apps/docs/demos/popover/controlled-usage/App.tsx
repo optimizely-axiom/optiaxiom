@@ -22,7 +22,7 @@ export function App() {
       <Popover onOpenChange={(flag) => setOpen(flag || keepOpen)} open={open}>
         <PopoverTrigger>Open popover</PopoverTrigger>
         <PopoverContent>
-          <Heading level="6">Popover content</Heading>
+          <Heading fontSize="md">Popover content</Heading>
           <Text>This is the popover content</Text>
         </PopoverContent>
       </Popover>

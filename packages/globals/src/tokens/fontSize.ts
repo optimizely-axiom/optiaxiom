@@ -18,23 +18,19 @@ export const fontSize = {
     lineHeight: rem("24px"),
   },
   xl: {
-    fontSize: rem("18px"),
-    lineHeight: rem("28px"),
-  },
-  "2xl": {
     fontSize: rem("20px"),
     lineHeight: rem("28px"),
   },
-  "3xl": {
+  "2xl": {
     fontSize: rem("24px"),
     lineHeight: rem("32px"),
   },
-  "4xl": {
-    fontSize: rem("30px"),
-    lineHeight: rem("36px"),
-  },
-  "5xl": {
-    fontSize: rem("36px"),
+  "3xl": {
+    fontSize: rem("28px"),
     lineHeight: rem("40px"),
+  },
+  "4xl": {
+    fontSize: rem("32px"),
+    lineHeight: rem("44px"),
   },
 } as const;

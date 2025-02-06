@@ -14,9 +14,9 @@ export const CardTitle = forwardRef<HTMLDivElement, CardTitleProps>(
     return (
       <Heading
         asChild
+        fontSize="md"
         fontWeight="500"
         id={labelId}
-        level="6"
         ref={ref}
         {...props}
       >

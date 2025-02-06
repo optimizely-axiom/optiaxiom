@@ -7,7 +7,7 @@ export function App() {
       asChild
       bg="bg.secondary"
       color="fg.default"
-      level="5"
+      level="4"
       px="12"
       py="8"
       rounded="md"

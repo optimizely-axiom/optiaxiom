@@ -21,7 +21,7 @@ export function Panel({
       p="12"
       rounded="sm"
     >
-      <Heading level="6">{title}</Heading>
+      <Heading fontSize="md">{title}</Heading>
       <Text>{description}</Text>
       {children}
     </Flex>

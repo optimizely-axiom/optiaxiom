@@ -11,7 +11,7 @@ export function App() {
     <Popover>
       <PopoverTrigger>Open popover</PopoverTrigger>
       <PopoverContent>
-        <Heading level="6">Popover content</Heading>
+        <Heading fontSize="md">Popover content</Heading>
         <Text>This is the popover content</Text>
       </PopoverContent>
     </Popover>

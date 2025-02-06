@@ -21,7 +21,7 @@ export function App() {
   }
 
   return (
-    <Heading asChild level="5" w="224">
+    <Heading asChild level="4" w="224">
       <InlineInput
         label="Task title"
         onBlur={setTitle}
