@@ -221,7 +221,9 @@ export { Portal, Portal as Root };`;
       }),
       json(),
       stylePlugin({ include: ["**/*.css"] }),
-      webComponentPlugin({ include: ["src/components/**/*.ts"] }),
+      webComponentPlugin({
+        include: ["src/components/**/*.ts", "src/index.ts"],
+      }),
     ],
   },
   {
@@ -388,7 +390,26 @@ function webComponentPlugin({ include = [] }) {
       const actions = Object.keys(doc?.props ?? {}).filter((name) =>
         name.startsWith("on"),
       );
-      return `import { ${component} as ${component}Component } from "@optiaxiom/react";
+      return component === "index"
+        ? `import { factory } from "./factory";
+import { mapping } from "./mapping";
+
+for (const [name, component] of Object.entries(mapping)) {
+  if (!customElements.get(name)) {
+    customElements.define(name, factory(name, component));
+  }
+}
+
+${Object.entries(input)
+  .map(([key, value]) => {
+    const component = path.parse(value).name;
+    return key === "index"
+      ? ""
+      : `export const ${component} = "ax${toKebabCase(component)}"`;
+  })
+  .join("\n")}
+`
+        : `import { ${component} as ${component}Component } from "@optiaxiom/react";
 
 import { register } from "../register";
 
