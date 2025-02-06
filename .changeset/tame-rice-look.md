@@ -1,5 +1,4 @@
 ---
-"@optiaxiom/globals": minor
 "@optiaxiom/react": minor
 ---
 
