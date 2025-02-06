@@ -1,4 +1,4 @@
-import type { ReactElement, RefObject, useSyncExternalStore } from "react";
+import type { ReactElement, RefObject } from "react";
 
 type ToastItem = {
   id: string;
@@ -26,7 +26,11 @@ type Toaster = {
     ...args: [message: string, options?: ToastOptions] | [toast: ReactElement]
   ) => string;
   remove: (id: string) => void;
-  store: Parameters<typeof useSyncExternalStore<ToastItem[]>>;
+  store: [
+    subscribe: (onStoreChange: () => void) => () => void,
+    getSnapshot: () => ToastItem[],
+    getServerSnapshot?: () => ToastItem[],
+  ];
 };
 
 export const createToaster = (): Toaster => {
