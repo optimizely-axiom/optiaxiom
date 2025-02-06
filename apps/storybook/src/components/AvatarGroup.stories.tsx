@@ -67,7 +67,7 @@ type Story = StoryObj<typeof AvatarGroup>;
 
 export const Basic: Story = {};
 
-const sizes = ["2xs", "xs", "sm", "md", "lg", "xl"] as const;
+const sizes = ["2xs", "xs", "sm", "md", "xl", "3xl"] as const;
 
 export const Sizes: Story = {
   render: (args) => {
