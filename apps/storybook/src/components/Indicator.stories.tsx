@@ -36,17 +36,17 @@ const Variants: Story = {
 
 export const Basic: Story = {};
 
-export const Solid: Story = {
+export const Strong: Story = {
   ...Variants,
   args: {
-    variant: "solid",
+    variant: "strong",
   },
 };
 
-export const Light: Story = {
+export const Subtle: Story = {
   ...Variants,
   args: {
-    variant: "light",
+    variant: "subtle",
   },
 };
 
@@ -59,7 +59,7 @@ export const Disabled: Story = {
 export const Position: Story = {
   args: {
     intent: "danger",
-    variant: "solid",
+    variant: "strong",
   },
   render: (args) => (
     <Flex gap="24">
@@ -77,7 +77,7 @@ export const Ping: Story = {
     content: "",
     intent: "information",
     ping: true,
-    variant: "solid",
+    variant: "strong",
   },
 };
 

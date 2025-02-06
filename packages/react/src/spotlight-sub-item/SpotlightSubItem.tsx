@@ -20,7 +20,7 @@ export const SpotlightSubItem = forwardRef<
     >
       <Badge
         intent={selected ? "information" : "neutral"}
-        variant={selected ? "solid" : "light"}
+        variant={selected ? "strong" : "subtle"}
       >
         {children}
       </Badge>

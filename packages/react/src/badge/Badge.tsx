@@ -13,7 +13,7 @@ export const Badge = forwardRef<HTMLSpanElement, BadgeProps>(
       children,
       className,
       intent = "neutral",
-      variant = "light",
+      variant = "subtle",
       ...props
     },
     ref,
