@@ -19,7 +19,7 @@ export const badge = recipe({
       fontSize: "sm",
       fontWeight: "500",
       justifyContent: "center",
-      px: "8",
+      px: "6",
       py: "2",
       rounded: "full",
     },
