@@ -33,7 +33,7 @@ export const Basic: Story = {
   },
 };
 
-export const Solid: Story = {
+export const Strong: Story = {
   ...Variants,
   args: {
     children: "Badge",
@@ -41,7 +41,7 @@ export const Solid: Story = {
   },
 };
 
-export const Light: Story = {
+export const Subtle: Story = {
   ...Variants,
   args: {
     children: "Badge",
