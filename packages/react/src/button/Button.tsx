@@ -3,6 +3,7 @@ import { type ElementType, forwardRef, type ReactNode, useEffect } from "react";
 
 import { ButtonAddon } from "../button-addon";
 import { ButtonBase, type ButtonBaseProps } from "../button-base";
+import { useButtonContext } from "../button-context";
 import { ButtonLabel } from "../button-label";
 import { ButtonLoadable } from "../button-loadable";
 import { Icon } from "../icon";
@@ -45,12 +46,16 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       children,
       icon,
       iconPosition = "start",
+      size: sizeProp,
       square,
       ...props
     },
     ref,
   ) => {
     const Comp = asChild ? Slot : "button";
+
+    const context = useButtonContext("Button");
+    const size = sizeProp || context.size || "md";
 
     let isIconOnly = false;
     children = decorateChildren({ asChild, children }, (children) => {
@@ -100,6 +105,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       <ButtonBase
         asChild
         ref={ref}
+        size={size}
         square={square}
         {...props}
         {...(square && {
