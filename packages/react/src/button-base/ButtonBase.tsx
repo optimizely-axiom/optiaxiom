@@ -9,11 +9,11 @@ import { decorateChildren, type ExtendProps } from "../utils";
 import * as styles from "./ButtonBase.css";
 
 const appearances = {
-  danger: { intent: "danger", variant: "solid" },
+  danger: { intent: "danger", variant: "strong" },
   "danger-outline": { intent: "danger", variant: "outline" },
   default: { intent: "neutral", variant: "outline" },
-  inverse: { intent: "neutral", variant: "solid" },
-  primary: { intent: "primary", variant: "solid" },
+  inverse: { intent: "neutral", variant: "strong" },
+  primary: { intent: "primary", variant: "strong" },
   subtle: { intent: "neutral", variant: "subtle" },
 } satisfies Record<string, styles.ButtonVariants>;
 
@@ -84,7 +84,7 @@ export const ButtonBase = forwardRef<HTMLButtonElement, ButtonBaseProps>(
               <TransitionGroup open={loading}>
                 <Transition>
                   <Spinner
-                    appearance={variant === "solid" ? "inverse" : "default"}
+                    appearance={variant === "strong" ? "inverse" : "default"}
                     aria-hidden="true"
                     {...styles.spinner()}
                   />
