@@ -156,7 +156,7 @@ export const buttonBase = recipe({
           },
         },
       }),
-      solid: style({
+      strong: style({
         backgroundColor: accentColorVar,
         color: fallbackVar(solidTextColorVar, theme.colors["fg.white"]),
 
