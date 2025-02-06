@@ -3,8 +3,8 @@ import { Flex, Heading } from "@optiaxiom/react";
 export function App() {
   return (
     <Flex>
-      <Heading asChild level="5">
-        <h1>This is an h1 heading in h5 size</h1>
+      <Heading asChild level="4">
+        <h1>This is an h1 heading in h4 size</h1>
       </Heading>
       <Heading asChild>
         <h5>This is an h5 heading in h1 size</h5>

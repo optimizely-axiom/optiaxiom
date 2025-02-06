@@ -102,7 +102,7 @@ export const avatar = recipe({
           size: "xl",
         },
         style({
-          fontSize: theme.fontSize["2xl"].fontSize,
+          fontSize: theme.fontSize["xl"].fontSize,
           selectors: {
             [`${styles.className} &:not(:first-child)`]: {
               marginLeft: "-11px",

@@ -153,8 +153,8 @@ describe("tokens", () => {
       count: Object.keys(tokens.fontSize).length,
       keys: Object.keys(tokens.fontSize),
     }).toEqual({
-      count: 9,
-      keys: ["xs", "sm", "md", "lg", "xl", "2xl", "3xl", "4xl", "5xl"],
+      count: 8,
+      keys: ["xs", "sm", "md", "lg", "xl", "2xl", "3xl", "4xl"],
     });
   });
 
