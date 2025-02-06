@@ -493,6 +493,18 @@ importers:
       '@optiaxiom/shared':
         specifier: workspace:^
         version: link:../shared
+      '@radix-ui/react-context':
+        specifier: ^1.1.1
+        version: 1.1.1(@types/react@18.3.18)(react@18.3.1)
+      '@radix-ui/react-primitive':
+        specifier: ^2.0.2
+        version: 2.0.2(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@radix-ui/react-roving-focus':
+        specifier: ^1.1.2
+        version: 1.1.2(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@radix-ui/rect':
+        specifier: ^1.1.0
+        version: 1.1.0
       '@rollup/plugin-commonjs':
         specifier: ^28.0.2
         version: 28.0.2(rollup@4.32.1)
