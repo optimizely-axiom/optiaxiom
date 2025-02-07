@@ -23,7 +23,7 @@ export const root = recipe({
       },
 
       selectors: {
-        "&:has(:checked, :focus-visible)": {
+        [`${styles.className}:focus-within &, &:has(:checked)`]: {
           opacity: "1",
         },
       },
