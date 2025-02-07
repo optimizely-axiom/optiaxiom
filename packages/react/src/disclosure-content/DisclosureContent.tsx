@@ -47,7 +47,7 @@ export const DisclosureContent = forwardRef<
         <Box {...styles.outer()}>
           <Box asChild {...styles.inner()}>
             <RadixCollapsible.Content forceMount>
-              <Box p="8" pt="0" ref={ref} {...props}>
+              <Box p="8" ref={ref} {...props}>
                 {children}
               </Box>
             </RadixCollapsible.Content>
