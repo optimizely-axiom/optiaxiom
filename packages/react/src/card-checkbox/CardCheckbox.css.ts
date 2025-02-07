@@ -1,21 +1,16 @@
-import { theme } from "@optiaxiom/globals";
-
 import * as styles from "../card/Card.css";
 import { recipe, style } from "../vanilla-extract";
 
-export const className = style({});
-
 export const root = recipe({
   base: [
-    className,
     {
-      rounded: "inherit",
       transition: "opacity",
     },
     style({
-      inset: "0",
+      left: "16px",
       opacity: "0",
       position: "absolute",
+      top: "16px",
 
       "@media": {
         "(hover: hover)": {
@@ -30,26 +25,6 @@ export const root = recipe({
       selectors: {
         "&:has(:checked, :focus-visible)": {
           opacity: "1",
-        },
-        "&:has(:focus-visible)": {
-          outline: `2px solid ${theme.colors["border.focus"]}`,
-          outlineOffset: "1px",
-        },
-      },
-    }),
-  ],
-});
-
-export const control = recipe({
-  base: [
-    style({
-      left: "16px",
-      position: "relative",
-      top: "16px",
-
-      selectors: {
-        [`${className}:has(:focus-visible) &`]: {
-          outline: "none",
         },
       },
     }),
