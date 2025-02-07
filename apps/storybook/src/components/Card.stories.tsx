@@ -39,7 +39,7 @@ export const Basic: Story = {
     children: (
       <>
         <CardOverflow>
-          <CardImage alt="" src="https://placehold.co/600x400" />
+          <CardImage src="https://placehold.co/600x400" />
         </CardOverflow>
         <CardTitle>The majestic world of turtles</CardTitle>
       </>
@@ -52,7 +52,7 @@ export const WithCaption: Story = {
     children: (
       <>
         <CardOverflow>
-          <CardImage alt="" src="https://placehold.co/600x400" />
+          <CardImage src="https://placehold.co/600x400" />
         </CardOverflow>
         <CardContent>
           <CardTitle>The majestic world of turtles</CardTitle>
@@ -68,7 +68,7 @@ export const WithTruncatedDescription: Story = {
     children: (
       <>
         <CardOverflow>
-          <CardImage alt="" src="https://placehold.co/600x400" />
+          <CardImage src="https://placehold.co/600x400" />
         </CardOverflow>
         <CardContent>
           <CardTitle>The majestic world of turtles</CardTitle>
@@ -87,7 +87,7 @@ export const WithBadge: Story = {
     children: (
       <>
         <CardOverflow>
-          <CardImage alt="" src="https://placehold.co/600x400" />
+          <CardImage src="https://placehold.co/600x400" />
         </CardOverflow>
         <CardContent>
           <Box>
@@ -106,7 +106,7 @@ export const WithLink: Story = {
     children: (
       <>
         <CardOverflow>
-          <CardImage alt="" src="https://placehold.co/600x400" />
+          <CardImage src="https://placehold.co/600x400" />
         </CardOverflow>
         <CardTitle>
           <CardLink href="data:,">The majestic world of turtles</CardLink>
@@ -124,7 +124,7 @@ export const WithLinkAndEllipsis: Story = {
     children: (
       <>
         <CardOverflow>
-          <CardImage alt="" src="https://placehold.co/600x400" />
+          <CardImage src="https://placehold.co/600x400" />
         </CardOverflow>
         <Flex flexDirection="row" justifyContent="space-between">
           <CardTitle>
@@ -169,7 +169,7 @@ export const WithCheckboxAndLink: Story = {
           <CardActions>
             <CardCheckbox />
           </CardActions>
-          <CardImage alt="" src="https://placehold.co/600x400" />
+          <CardImage src="https://placehold.co/600x400" />
         </CardOverflow>
         <CardTitle>
           <Link appearance="subtle" href="data:,">
@@ -213,7 +213,7 @@ export const WithCheckboxAndActions: Story = {
               </DropdownMenuContent>
             </DropdownMenu>
           </CardActions>
-          <CardImage alt="" src="https://placehold.co/600x400" />
+          <CardImage src="https://placehold.co/600x400" />
         </CardOverflow>
         <CardTitle>
           <Link appearance="subtle" href="data:,">
@@ -237,7 +237,7 @@ export const Horizontal: Story = {
   render: (args) => (
     <Flex>
       <Card {...args}>
-        <CardImage alt="" src="https://placehold.co/400x400" />
+        <CardImage src="https://placehold.co/400x400" />
         <CardContent>
           <CardTitle>
             <CardLink href="data:,">The majestic world of turtles</CardLink>
@@ -246,7 +246,7 @@ export const Horizontal: Story = {
       </Card>
       <Card {...args}>
         <CardOverflow>
-          <CardImage alt="" src="https://placehold.co/400x400" />
+          <CardImage src="https://placehold.co/400x400" />
         </CardOverflow>
         <CardContent>
           <CardTitle>
@@ -265,7 +265,7 @@ export const Vertical: Story = {
   render: (args) => (
     <Flex flexDirection="row">
       <Card {...args}>
-        <CardImage alt="" src="https://placehold.co/600x400" />
+        <CardImage src="https://placehold.co/600x400" />
         <CardContent>
           <CardTitle>
             <CardLink href="data:,">The majestic world of turtles</CardLink>
@@ -274,7 +274,7 @@ export const Vertical: Story = {
       </Card>
       <Card {...args}>
         <CardOverflow>
-          <CardImage alt="" src="https://placehold.co/600x400" />
+          <CardImage src="https://placehold.co/600x400" />
         </CardOverflow>
         <CardContent>
           <CardTitle>

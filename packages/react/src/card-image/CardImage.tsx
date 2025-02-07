@@ -7,7 +7,7 @@ import * as styles from "./CardImage.css";
 type CardImageProps = BoxProps<"img">;
 
 export const CardImage = forwardRef<HTMLImageElement, CardImageProps>(
-  ({ alt, asChild, children, className, src, ...props }, ref) => {
+  ({ alt = "", asChild, children, className, src, ...props }, ref) => {
     const { orientation } = useCardContext("CardImage");
 
     return (
