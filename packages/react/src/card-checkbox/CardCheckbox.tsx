@@ -20,7 +20,6 @@ export const CardCheckbox = forwardRef<HTMLInputElement, CardCheckboxProps>(
         <CheckboxControl
           indeterminate={indeterminate}
           shift={Boolean(children)}
-          {...styles.control({}, className)}
         />
         <CheckboxContent description={description}>{children}</CheckboxContent>
       </CheckboxRoot>
