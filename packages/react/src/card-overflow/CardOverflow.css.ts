@@ -1,11 +1,16 @@
 import { recipe, style } from "../vanilla-extract";
 
+export const className = style({});
+
 export const cardOverflow = recipe({
   base: [
+    className,
     {
       alignSelf: "stretch",
     },
-    style({}),
+    style({
+      position: "relative",
+    }),
   ],
 
   variants: {

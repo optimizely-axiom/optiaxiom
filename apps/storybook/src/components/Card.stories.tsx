@@ -14,6 +14,7 @@ import {
 } from "@optiaxiom/react";
 import {
   Card,
+  CardActions,
   CardCheckbox,
   CardContent,
   CardDescription,
@@ -129,26 +130,28 @@ export const WithLinkAndEllipsis: Story = {
           <CardTitle>
             <CardLink href="data:,">The majestic world of turtles</CardLink>
           </CardTitle>
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <EllipsisMenuButton
-                appearance="subtle"
-                aria-label="actions"
-                size="sm"
-              />
-            </DropdownMenuTrigger>
+          <CardActions>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <EllipsisMenuButton
+                  appearance="subtle"
+                  aria-label="actions"
+                  size="sm"
+                />
+              </DropdownMenuTrigger>
 
-            <DropdownMenuContent>
-              <DropdownMenuItem description="Create a new task">
-                New task
-              </DropdownMenuItem>
-              <DropdownMenuItem description="Copy this task">
-                Copy task
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem intent="danger">Delete task</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+              <DropdownMenuContent>
+                <DropdownMenuItem description="Create a new task">
+                  New task
+                </DropdownMenuItem>
+                <DropdownMenuItem description="Copy this task">
+                  Copy task
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem intent="danger">Delete task</DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </CardActions>
         </Flex>
       </>
     ),
@@ -162,8 +165,10 @@ export const WithCheckboxAndLink: Story = {
   args: {
     children: (
       <>
-        <CardCheckbox />
         <CardOverflow>
+          <CardActions>
+            <CardCheckbox />
+          </CardActions>
           <CardImage alt="" src="https://placehold.co/600x400" />
         </CardOverflow>
         <CardTitle>
@@ -176,6 +181,50 @@ export const WithCheckboxAndLink: Story = {
   },
   play: async ({ canvas }) => {
     canvas.getByRole("checkbox").focus();
+  },
+};
+
+export const WithCheckboxAndActions: Story = {
+  args: {
+    children: (
+      <>
+        <CardOverflow>
+          <CardActions>
+            <CardCheckbox />
+
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <EllipsisMenuButton
+                  appearance="subtle"
+                  aria-label="actions"
+                  size="sm"
+                />
+              </DropdownMenuTrigger>
+
+              <DropdownMenuContent>
+                <DropdownMenuItem description="Create a new task">
+                  New task
+                </DropdownMenuItem>
+                <DropdownMenuItem description="Copy this task">
+                  Copy task
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem intent="danger">Delete task</DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </CardActions>
+          <CardImage alt="" src="https://placehold.co/600x400" />
+        </CardOverflow>
+        <CardTitle>
+          <Link appearance="subtle" href="data:,">
+            The majestic world of turtles
+          </Link>
+        </CardTitle>
+      </>
+    ),
+  },
+  play: async ({ canvas }) => {
+    await userEvent.click(canvas.getByRole("button"));
   },
 };
 

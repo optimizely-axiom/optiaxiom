@@ -16,6 +16,7 @@ Generic container for grouping related components together.
 ```tsx
 import {
   Card,
+  CardActions,
   CardCheckbox,
   CardContent,
   CardDescription,
@@ -27,9 +28,11 @@ import {
 
 export default () => (
   <Card>
-    <CardCheckbox />
-
     <CardOverflow>
+      <CardActions>
+        <CardCheckbox />
+      </CardActions>
+
       <CardImage />
     </CardOverflow>
 

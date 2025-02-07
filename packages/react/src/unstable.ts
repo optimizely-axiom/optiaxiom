@@ -12,6 +12,7 @@ export * from "./breadcrumb-link";
 export * from "./breadcrumb-page";
 export * from "./calendar";
 export * from "./card";
+export * from "./card-actions";
 export * from "./card-checkbox";
 export * from "./card-content";
 export * from "./card-description";
