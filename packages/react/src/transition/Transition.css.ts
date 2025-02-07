@@ -22,6 +22,11 @@ const presets = {
   slide: (dir?: "down" | "left" | "right" | "up") => ({
     gridTemplateRows: "0fr !important",
     opacity: 0,
+    ...(dir && translate(dir, 8)),
+  }),
+  slidePop: (dir?: "down" | "left" | "right" | "up") => ({
+    gridTemplateRows: "0fr !important",
+    opacity: 0,
     scale: 0.95,
     ...(dir && translate(dir, 8)),
   }),

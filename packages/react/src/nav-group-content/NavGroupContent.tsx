@@ -17,6 +17,7 @@ export const NavGroupContent = forwardRef<
       flexDirection="column"
       gap="4"
       p="0"
+      transitionType="slidePop"
       {...props}
     >
       <ul ref={ref}>{children}</ul>
