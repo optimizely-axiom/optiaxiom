@@ -20,6 +20,7 @@ import {
   CardContent,
   CardDescription,
   CardImage,
+  CardLink,
   CardOverflow,
   CardTitle,
 } from "@optiaxiom/react/unstable";
@@ -35,7 +36,10 @@ export default () => (
     <CardImage />
 
     <CardContent>
-      <CardTitle />
+      <CardTitle>
+        <CardLink />
+      </CardTitle>
+
       <CardDescription />
     </CardContent>
   </Card>

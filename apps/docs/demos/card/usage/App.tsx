@@ -6,13 +6,13 @@ import {
   DropdownMenuTrigger,
   EllipsisMenuButton,
   Flex,
-  Link,
 } from "@optiaxiom/react";
 import {
   Card,
   CardContent,
   CardDescription,
   CardImage,
+  CardLink,
   CardOverflow,
   CardTitle,
 } from "@optiaxiom/react/unstable";
@@ -34,9 +34,7 @@ export function App() {
       <CardContent>
         <Flex flexDirection="row" justifyContent="space-between">
           <CardTitle>
-            <Link appearance="subtle" href="#usage" overlay>
-              The majestic world of turtles
-            </Link>
+            <CardLink href="#usage">The majestic world of turtles</CardLink>
           </CardTitle>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>

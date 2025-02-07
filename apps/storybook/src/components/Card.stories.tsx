@@ -18,6 +18,7 @@ import {
   CardContent,
   CardDescription,
   CardImage,
+  CardLink,
   CardOverflow,
   CardTitle,
 } from "@optiaxiom/react/unstable";
@@ -107,9 +108,7 @@ export const WithLink: Story = {
           <CardImage alt="" src="https://placehold.co/600x400" />
         </CardOverflow>
         <CardTitle>
-          <Link appearance="subtle" href="data:," overlay>
-            The majestic world of turtles
-          </Link>
+          <CardLink href="data:,">The majestic world of turtles</CardLink>
         </CardTitle>
       </>
     ),
@@ -128,9 +127,7 @@ export const WithLinkAndEllipsis: Story = {
         </CardOverflow>
         <Flex flexDirection="row" justifyContent="space-between">
           <CardTitle>
-            <Link appearance="subtle" href="data:," overlay>
-              The majestic world of turtles
-            </Link>
+            <CardLink href="data:,">The majestic world of turtles</CardLink>
           </CardTitle>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -194,9 +191,7 @@ export const Horizontal: Story = {
         <CardImage alt="" src="https://placehold.co/400x400" />
         <CardContent>
           <CardTitle>
-            <Link appearance="subtle" href="data:," overlay>
-              The majestic world of turtles
-            </Link>
+            <CardLink href="data:,">The majestic world of turtles</CardLink>
           </CardTitle>
         </CardContent>
       </Card>
@@ -206,9 +201,7 @@ export const Horizontal: Story = {
         </CardOverflow>
         <CardContent>
           <CardTitle>
-            <Link appearance="subtle" href="data:," overlay>
-              The majestic world of turtles
-            </Link>
+            <CardLink href="data:,">The majestic world of turtles</CardLink>
           </CardTitle>
         </CardContent>
       </Card>
@@ -226,9 +219,7 @@ export const Vertical: Story = {
         <CardImage alt="" src="https://placehold.co/600x400" />
         <CardContent>
           <CardTitle>
-            <Link appearance="subtle" href="data:," overlay>
-              The majestic world of turtles
-            </Link>
+            <CardLink href="data:,">The majestic world of turtles</CardLink>
           </CardTitle>
         </CardContent>
       </Card>
@@ -238,9 +229,7 @@ export const Vertical: Story = {
         </CardOverflow>
         <CardContent>
           <CardTitle>
-            <Link appearance="subtle" href="data:," overlay>
-              The majestic world of turtles
-            </Link>
+            <CardLink href="data:,">The majestic world of turtles</CardLink>
           </CardTitle>
         </CardContent>
       </Card>
