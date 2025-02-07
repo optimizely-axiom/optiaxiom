@@ -16,6 +16,7 @@ export * from "./card-checkbox";
 export * from "./card-content";
 export * from "./card-description";
 export * from "./card-image";
+export * from "./card-link";
 export * from "./card-overflow";
 export * from "./card-title";
 export * from "./combobox";
