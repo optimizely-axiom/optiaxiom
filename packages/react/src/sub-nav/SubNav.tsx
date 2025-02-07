@@ -10,7 +10,14 @@ type SubNavProps = BoxProps<"nav">;
 export const SubNav = forwardRef<HTMLDivElement, SubNavProps>(
   ({ children, ...props }, ref) => {
     return (
-      <Flex borderR="1" h="full" ref={ref} w="fit" {...props}>
+      <Flex
+        borderColor="border.tertiary"
+        borderR="1"
+        h="full"
+        ref={ref}
+        w="fit"
+        {...props}
+      >
         <Flex asChild {...styles.nav()}>
           <nav aria-label="Secondary">
             <SidebarContextProvider

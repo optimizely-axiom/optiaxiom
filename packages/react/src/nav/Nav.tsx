@@ -19,7 +19,14 @@ export const Nav = forwardRef<HTMLDivElement, NavProps>(
     const { expanded, navId } = useSidebarContext("Nav");
 
     return (
-      <Flex borderR="1" h="full" ref={ref} w="fit" {...props}>
+      <Flex
+        borderColor="border.tertiary"
+        borderR="1"
+        h="full"
+        ref={ref}
+        w="fit"
+        {...props}
+      >
         <Flex asChild id={navId} w={expanded ? "224" : "56"} {...styles.nav()}>
           <nav aria-label="Main">{children}</nav>
         </Flex>
