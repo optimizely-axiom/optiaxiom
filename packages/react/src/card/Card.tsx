@@ -33,8 +33,6 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
         orientation={orientation}
       >
         <Flex
-          aria-describedby={descriptionId}
-          aria-labelledby={labelId}
           flexDirection={mapOrientationToFlexDirection[orientation]}
           ref={ref}
           {...styles.card({}, className)}
