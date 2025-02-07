@@ -11,7 +11,6 @@ import { useCardContext } from "../card-context";
 import { Checkbox } from "../checkbox";
 import { CheckboxControl } from "../checkbox-control";
 import { CheckboxRoot } from "../checkbox-root";
-import * as styles from "./CardCheckbox.css";
 
 type CardCheckboxProps = ExcludeProps<
   ComponentPropsWithoutRef<typeof Checkbox>,
@@ -19,7 +18,7 @@ type CardCheckboxProps = ExcludeProps<
 >;
 
 export const CardCheckbox = forwardRef<HTMLInputElement, CardCheckboxProps>(
-  ({ children, className, indeterminate, onChange, ...props }, ref) => {
+  ({ children, indeterminate, onChange, ...props }, ref) => {
     const labelPrefixId = useId();
     const { labelId } = useCardContext("CardCheckbox");
 
@@ -37,7 +36,6 @@ export const CardCheckbox = forwardRef<HTMLInputElement, CardCheckboxProps>(
           setChecked(event.target.checked);
         }}
         ref={ref}
-        {...styles.root({}, className)}
         {...props}
       >
         <CheckboxControl

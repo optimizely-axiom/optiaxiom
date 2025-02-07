@@ -9,6 +9,7 @@ import {
 } from "@optiaxiom/react";
 import {
   Card,
+  CardActions,
   CardContent,
   CardDescription,
   CardImage,
@@ -36,21 +37,23 @@ export function App() {
           <CardTitle>
             <CardLink href="#usage">The majestic world of turtles</CardLink>
           </CardTitle>
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <EllipsisMenuButton
-                appearance="subtle"
-                aria-label="actions"
-                size="sm"
-              />
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuItem icon={<IconPencil />}>Edit</DropdownMenuItem>
-              <DropdownMenuItem icon={<IconLogout />} intent="danger">
-                Delete
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <CardActions>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <EllipsisMenuButton
+                  appearance="subtle"
+                  aria-label="actions"
+                  size="sm"
+                />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuItem icon={<IconPencil />}>Edit</DropdownMenuItem>
+                <DropdownMenuItem icon={<IconLogout />} intent="danger">
+                  Delete
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </CardActions>
         </Flex>
         <CardDescription>Unveiling the secrets.</CardDescription>
       </CardContent>
