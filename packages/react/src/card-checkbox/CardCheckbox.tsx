@@ -1,18 +1,41 @@
+import { useId } from "@radix-ui/react-id";
+import { useControllableState } from "@radix-ui/react-use-controllable-state";
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
+import clsx from "clsx";
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
+import type { ExcludeProps } from "../utils";
+
+import { Box } from "../box";
+import { useCardContext } from "../card-context";
 import { Checkbox } from "../checkbox";
-import { CheckboxContent } from "../checkbox-content";
 import { CheckboxControl } from "../checkbox-control";
 import { CheckboxRoot } from "../checkbox-root";
 import * as styles from "./CardCheckbox.css";
 
-type CardCheckboxProps = ComponentPropsWithoutRef<typeof Checkbox>;
+type CardCheckboxProps = ExcludeProps<
+  ComponentPropsWithoutRef<typeof Checkbox>,
+  "description"
+>;
 
 export const CardCheckbox = forwardRef<HTMLInputElement, CardCheckboxProps>(
-  ({ children, className, description, indeterminate, ...props }, ref) => {
+  ({ children, className, indeterminate, onChange, ...props }, ref) => {
+    const labelPrefixId = useId();
+    const { labelId } = useCardContext("CardCheckbox");
+
+    const [checked, setChecked] = useControllableState({
+      defaultProp: props.defaultChecked,
+      prop: props.checked,
+    });
+
     return (
       <CheckboxRoot
-        description={!!description}
+        aria-labelledby={clsx(labelPrefixId, labelId)}
+        description={false}
+        onChange={(event) => {
+          onChange?.(event);
+          setChecked(event.target.checked);
+        }}
         ref={ref}
         {...styles.root({}, className)}
         {...props}
@@ -21,7 +44,11 @@ export const CardCheckbox = forwardRef<HTMLInputElement, CardCheckboxProps>(
           indeterminate={indeterminate}
           shift={Boolean(children)}
         />
-        <CheckboxContent description={description}>{children}</CheckboxContent>
+        <VisuallyHidden>
+          <Box id={labelPrefixId}>
+            Check to {checked ? "unselect" : "select"}
+          </Box>
+        </VisuallyHidden>
       </CheckboxRoot>
     );
   },
