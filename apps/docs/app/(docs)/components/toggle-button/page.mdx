@@ -10,8 +10,6 @@ import { PropsTable } from "@/components/props-table";
 
 ### Usage
 
-`ToggleButton` extends the [Button](./button/) component.
-
 <Demo component="toggle-button/usage" />
 
 ### Controlled
@@ -25,6 +23,12 @@ Use the `pressed` and `defaultPressed` props to toggle between controlled and un
 Use the `appearance` prop to select between the different button appearances.
 
 <Demo component="toggle-button/appearance-usage" />
+
+### Accessibility
+
+When using icon only buttons please make sure to always include an `aria-label` prop for screen readers and optionally use tooltips to visually denote the button's intent.
+
+<Demo component="toggle-button/tooltip-usage" />
 
 ### Disabled state
 
