@@ -77,8 +77,10 @@ export const icon = recipe({
       ml: "4",
     },
     style({
-      height: "auto",
-      width: "0.875em",
+      height: "0.8lh",
+      marginTop: "0.1lh",
+      verticalAlign: "top",
+      width: "auto",
     }),
   ],
 });
