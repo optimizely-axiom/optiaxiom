@@ -6,7 +6,7 @@ export const item = recipe({
   base: style({
     selectors: {
       "&[data-highlighted][data-focus-visible]": {
-        outline: `2px solid ${theme.colors["border.control"]}`,
+        outline: `2px solid ${theme.colors["border.focus"]}`,
         outlineOffset: "1px",
       },
     },
