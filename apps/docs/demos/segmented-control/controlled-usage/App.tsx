@@ -7,33 +7,46 @@ import {
   SegmentedControlItem,
   Tooltip,
 } from "@optiaxiom/react";
-import { IconLayoutGrid, IconList } from "@tabler/icons-react";
+import {
+  IconDeviceImac,
+  IconDeviceMobile,
+  IconDeviceTablet,
+} from "@tabler/icons-react";
 import { useState } from "react";
 
 export function App() {
-  const [value, setValue] = useState("list");
+  const [value, setValue] = useState("desktop");
 
   return (
     <Flex flexDirection="row">
       <SegmentedControl onValueChange={setValue} value={value}>
-        <Tooltip content="List">
+        <Tooltip content="Desktop">
           <SegmentedControlItem
-            aria-label="List"
-            icon={<IconList />}
-            value="list"
+            aria-label="Desktop"
+            icon={<IconDeviceImac />}
+            key="desktop"
+            value="desktop"
           />
         </Tooltip>
-
-        <Tooltip content="Grid">
+        <Tooltip content="Tablet">
           <SegmentedControlItem
-            aria-label="Grid"
-            icon={<IconLayoutGrid />}
-            value="grid"
+            aria-label="Tablet"
+            icon={<IconDeviceTablet />}
+            key="tablet"
+            value="tablet"
+          />
+        </Tooltip>
+        <Tooltip content="Mobile">
+          <SegmentedControlItem
+            aria-label="Mobile"
+            icon={<IconDeviceMobile />}
+            key="mobile"
+            value="mobile"
           />
         </Tooltip>
       </SegmentedControl>
 
-      <Button disabled={!value} onClick={() => setValue("list")}>
+      <Button disabled={!value} onClick={() => setValue("desktop")}>
         Reset
       </Button>
     </Flex>
