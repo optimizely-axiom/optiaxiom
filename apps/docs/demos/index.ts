@@ -176,6 +176,7 @@ export const demos = {
   "popover/example-usage": import("./popover/example-usage/App"),
   "popover/trigger-usage": import("./popover/trigger-usage/App"),
   "popover/usage": import("./popover/usage/App"),
+  "progress/appearance-usage": import("./progress/appearance-usage/App"),
   "progress/usage": import("./progress/usage/App"),
   "radio-group/controlled-usage": import("./radio-group/controlled-usage/App"),
   "radio-group/description-usage": import(
