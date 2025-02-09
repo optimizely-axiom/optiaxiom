@@ -84,6 +84,7 @@ export const components = {
   DisclosureContent: getProps("DisclosureContent"),
   DisclosureTrigger: getProps("DisclosureTrigger"),
   DropdownMenu: getProps("DropdownMenu"),
+  DropdownMenuCheckboxItem: getProps("DropdownMenuCheckboxItem"),
   DropdownMenuContent: getProps("DropdownMenuContent"),
   DropdownMenuGroup: getProps("DropdownMenuGroup"),
   DropdownMenuItem: getProps("DropdownMenuItem"),

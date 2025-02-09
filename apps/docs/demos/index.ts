@@ -91,6 +91,7 @@ export const demos = {
   "dropdown-menu/appearance-usage": import(
     "./dropdown-menu/appearance-usage/App"
   ),
+  "dropdown-menu/checkbox-usage": import("./dropdown-menu/checkbox-usage/App"),
   "dropdown-menu/controlled-usage": import(
     "./dropdown-menu/controlled-usage/App"
   ),
@@ -102,6 +103,7 @@ export const demos = {
     "./dropdown-menu/ellipsis-trigger-usage/App"
   ),
   "dropdown-menu/modal-usage": import("./dropdown-menu/modal-usage/App"),
+  "dropdown-menu/nested-usage": import("./dropdown-menu/nested-usage/App"),
   "dropdown-menu/position-usage": import("./dropdown-menu/position-usage/App"),
   "dropdown-menu/select-usage": import("./dropdown-menu/select-usage/App"),
   "dropdown-menu/trigger-usage": import("./dropdown-menu/trigger-usage/App"),
