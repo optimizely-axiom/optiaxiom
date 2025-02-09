@@ -269,6 +269,7 @@ export const demos = {
     "./toggle-button/controlled-usage/App"
   ),
   "toggle-button/disabled-usage": import("./toggle-button/disabled-usage/App"),
+  "toggle-button/tooltip-usage": import("./toggle-button/tooltip-usage/App"),
   "toggle-button/usage": import("./toggle-button/usage/App"),
   "tooltip/controlled-usage": import("./tooltip/controlled-usage/App"),
   "tooltip/delay-usage": import("./tooltip/delay-usage/App"),
