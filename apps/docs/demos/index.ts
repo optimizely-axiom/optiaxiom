@@ -146,6 +146,7 @@ export const demos = {
   "inline-input/usage": import("./inline-input/usage/App"),
   "input/addon-pointer-usage": import("./input/addon-pointer-usage/App"),
   "input/addon-usage": import("./input/addon-usage/App"),
+  "input/appearance-usage": import("./input/appearance-usage/App"),
   "input/disabled-usage": import("./input/disabled-usage/App"),
   "input/error-usage": import("./input/error-usage/App"),
   "input/readonly-usage": import("./input/readonly-usage/App"),
