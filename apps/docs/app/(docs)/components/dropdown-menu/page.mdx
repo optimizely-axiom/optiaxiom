@@ -86,11 +86,23 @@ Use the `icon`, `addonBefore`, and `addonAfter` props to add icons, text, or any
 
 <Demo meta="{20-24,25,32-36,37}" component="dropdown-menu/addon-usage" />
 
+### CheckboxItem
+
+Use the `DropdownMenuCheckboxItem` component to render a checkbox and add the `checked` and `onCheckedChange` props to control the state.
+
+<Demo component="dropdown-menu/checkbox-usage" />
+
 ### Label
 
 Use the `DropdownMenuLabel` component to render a read-only label.
 
 <Demo meta="{5,17}" component="dropdown-menu/usage" />
+
+### Submenus
+
+Use `DropdownMenuSub`, `DropdownMenuSubTrigger`, and `DropdownMenuSubContent` to render a submenus.
+
+<Demo meta="{7-9,20-27}" component="dropdown-menu/nested-usage" />
 
 ### Dialogs inside menus
 
@@ -115,6 +127,8 @@ Make sure to enable `asChild` prop on `AlertDialogTrigger` and call `event.preve
 <PropsTable component="DropdownMenuContent" />
 ### DropdownMenuItem
 <PropsTable component="DropdownMenuItem" />
+### DropdownMenuCheckboxItem
+<PropsTable component="DropdownMenuCheckboxItem" />
 ### DropdownMenuLabel
 <PropsTable component="DropdownMenuLabel" />
 ### DropdownMenuGroup
