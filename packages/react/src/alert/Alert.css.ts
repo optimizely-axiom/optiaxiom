@@ -1,4 +1,6 @@
-import { recipe, type RecipeVariants } from "../vanilla-extract";
+import { theme } from "@optiaxiom/globals";
+
+import { recipe, type RecipeVariants, style } from "../vanilla-extract";
 
 export const alert = recipe({
   base: [
@@ -65,6 +67,18 @@ export const icon = recipe({
       },
     },
   },
+});
+
+export const content = recipe({
+  base: [
+    {
+      flex: "1",
+      gap: "8",
+    },
+    style({
+      minHeight: theme.size.sm,
+    }),
+  ],
 });
 
 export type AlertVariants = RecipeVariants<typeof alert>;
