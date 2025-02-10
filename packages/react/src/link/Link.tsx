@@ -31,7 +31,6 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
       className,
       disabled,
       external,
-      href,
       overlay,
       ...props
     },
@@ -47,7 +46,6 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
             aria-disabled={disabled}
             data-disabled={disabled ? "" : undefined}
             data-overlay={overlay ? "" : undefined}
-            href={href}
             ref={ref}
             {...(external && { rel: "noopener noreferrer", target: "_blank" })}
             {...restProps}
