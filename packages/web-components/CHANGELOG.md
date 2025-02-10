@@ -1,5 +1,20 @@
 # @optiaxiom/web-components
 
+## 0.8.3
+
+### Patch Changes
+
+- 373849f: fix button size in dialog footers
+- e937704: split NavGroupContent from NavList
+- 9598d35: update dependencies
+- c5256f1: add form controls to input web components
+- 97885d5: refactor disclosure trigger implementation
+- 4cbfdb2: fix alert/banner height
+- 1d83eb0: rename NavGroupLabel to NavGroupTrigger
+- 277fcdc: allow disclosure content transition to be configurable
+- 2b1262d: generate type declarations for web components
+- ce6a82d: swap border.tertiary and border.default
+
 ## 0.8.2
 
 ### Patch Changes

@@ -1,5 +1,14 @@
 # @optiaxiom/globals
 
+## 0.7.3
+
+### Patch Changes
+
+- a18bc51: fix generated types
+- 9598d35: update dependencies
+- 27f3acd: update font-size tokens
+- ce6a82d: swap border.tertiary and border.default
+
 ## 0.7.2
 
 ### Patch Changes
