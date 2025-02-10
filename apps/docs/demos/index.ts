@@ -37,6 +37,7 @@ export const demos = {
   "badge/link-usage": import("./badge/link-usage/App"),
   "badge/usage": import("./badge/usage/App"),
   "banner/appearance-usage": import("./banner/appearance-usage/App"),
+  "banner/button-usage": import("./banner/button-usage/App"),
   "banner/close-usage": import("./banner/close-usage/App"),
   "banner/usage": import("./banner/usage/App"),
   "border-color/usage": import("./border-color/usage/App"),
