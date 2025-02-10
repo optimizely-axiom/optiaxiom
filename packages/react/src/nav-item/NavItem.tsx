@@ -18,7 +18,6 @@ export type NavItemProps = BoxProps<
      * Display content inside the button after `children`.
      */
     addonAfter?: ReactNode;
-    "aria-label": string;
     /**
      * Display an icon before button content.
      */

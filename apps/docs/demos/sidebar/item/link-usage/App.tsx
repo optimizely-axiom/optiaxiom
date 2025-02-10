@@ -12,7 +12,6 @@ export function App() {
             <NavList>
               <NavItem
                 addonAfter={<IconExternalLink size="16" />}
-                aria-label="Tutorial"
                 asChild
                 icon={<IconVocabulary />}
               >

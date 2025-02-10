@@ -36,7 +36,6 @@ export function App() {
             <NavList>
               <NavItem
                 active={selected === "All"}
-                aria-label="All"
                 icon={<IconCopy />}
                 onClick={() => setSelected("All")}
               >
@@ -44,7 +43,6 @@ export function App() {
               </NavItem>
               <NavItem
                 active={selected === "Recent"}
-                aria-label="Recent"
                 icon={<IconRectangle />}
                 onClick={() => setSelected("Recent")}
               >
@@ -52,7 +50,6 @@ export function App() {
               </NavItem>
               <NavItem
                 active={selected === "Favorites"}
-                aria-label="Favorites"
                 icon={<IconStar />}
                 onClick={() => setSelected("Favorites")}
               >
@@ -60,7 +57,6 @@ export function App() {
               </NavItem>
               <NavItem
                 active={selected === "Trash"}
-                aria-label="Trash"
                 icon={<IconTrash />}
                 onClick={() => setSelected("Trash")}
               >
@@ -73,7 +69,6 @@ export function App() {
                 <NavGroupContent>
                   <NavItem
                     active={selected === "CMP"}
-                    aria-label="CMP"
                     icon={<IconDashboard />}
                     onClick={() => setSelected("CMP")}
                   >
@@ -81,7 +76,6 @@ export function App() {
                   </NavItem>
                   <NavItem
                     active={selected === "CMS"}
-                    aria-label="CMS"
                     icon={<IconDeviceDesktop />}
                     onClick={() => setSelected("CMS")}
                   >
@@ -89,7 +83,6 @@ export function App() {
                   </NavItem>
                   <NavItem
                     active={selected === "Experimentation"}
-                    aria-label="Experimentation"
                     icon={<IconTestPipe />}
                     onClick={() => setSelected("Experimentation")}
                   >
@@ -104,7 +97,6 @@ export function App() {
                 <NavGroupContent>
                   <NavItem
                     active={selected === "Dashboard"}
-                    aria-label="Dashboard"
                     icon={<IconDashboard />}
                     onClick={() => setSelected("Dashboard")}
                   >
@@ -112,7 +104,6 @@ export function App() {
                   </NavItem>
                   <NavItem
                     active={selected === "Reports"}
-                    aria-label="Reports"
                     icon={<IconReport />}
                     onClick={() => setSelected("Reports")}
                   >

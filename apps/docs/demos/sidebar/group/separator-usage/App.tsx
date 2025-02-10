@@ -22,25 +22,15 @@ export function App() {
         <Nav>
           <NavBody>
             <NavList>
-              <NavItem aria-label="All" icon={<IconCopy />}>
-                All
-              </NavItem>
-              <NavItem aria-label="Recent" icon={<IconRectangle />}>
-                Recent
-              </NavItem>
+              <NavItem icon={<IconCopy />}>All</NavItem>
+              <NavItem icon={<IconRectangle />}>Recent</NavItem>
               <NavGroup defaultOpen>
                 <NavSeparator />
                 <NavGroupTrigger>Location</NavGroupTrigger>
                 <NavGroupContent>
-                  <NavItem aria-label="CMP" icon={<IconDashboard />}>
-                    CMP
-                  </NavItem>
-                  <NavItem aria-label="CMS" icon={<IconDeviceDesktop />}>
-                    CMS
-                  </NavItem>
-                  <NavItem aria-label="Experimentation" icon={<IconTestPipe />}>
-                    Experimentation
-                  </NavItem>
+                  <NavItem icon={<IconDashboard />}>CMP</NavItem>
+                  <NavItem icon={<IconDeviceDesktop />}>CMS</NavItem>
+                  <NavItem icon={<IconTestPipe />}>Experimentation</NavItem>
                 </NavGroupContent>
               </NavGroup>
             </NavList>
