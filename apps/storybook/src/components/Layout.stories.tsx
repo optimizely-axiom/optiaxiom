@@ -47,30 +47,17 @@ const SideNavTemplate = () => (
     <Nav>
       <NavBody>
         <NavList>
-          <NavItem aria-label="Projects" icon={<IconBinaryTree />}>
-            Projects
-          </NavItem>
-          <NavItem active aria-label="Flags" icon={<IconFlag2 />}>
+          <NavItem icon={<IconBinaryTree />}>Projects</NavItem>
+          <NavItem active icon={<IconFlag2 />}>
             Flags
           </NavItem>
-          <NavItem aria-label="Idea Lab" icon={<IconChartInfographic />}>
-            Idea Lab
-          </NavItem>
-          <NavItem aria-label="Audiences" icon={<IconUsers />}>
-            Audiences
-          </NavItem>
-          <NavItem aria-label="History" icon={<IconHistory />}>
-            History
-          </NavItem>
-          <NavItem aria-label="Events" icon={<IconChartLine />}>
-            Events
-          </NavItem>
-          <NavItem aria-label="Settings" icon={<IconSettings />}>
-            Settings
-          </NavItem>
+          <NavItem icon={<IconChartInfographic />}>Idea Lab</NavItem>
+          <NavItem icon={<IconUsers />}>Audiences</NavItem>
+          <NavItem icon={<IconHistory />}>History</NavItem>
+          <NavItem icon={<IconChartLine />}>Events</NavItem>
+          <NavItem icon={<IconSettings />}>Settings</NavItem>
           <NavItem
             addonAfter={<IconExternalLink size="16" />}
-            aria-label="Tutorial"
             asChild
             icon={<IconVocabulary />}
           >

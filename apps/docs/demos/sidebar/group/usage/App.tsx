@@ -22,15 +22,9 @@ export function App() {
               <NavGroup defaultOpen>
                 <NavGroupTrigger>Location</NavGroupTrigger>
                 <NavGroupContent>
-                  <NavItem aria-label="CMP" icon={<IconDashboard />}>
-                    CMP
-                  </NavItem>
-                  <NavItem aria-label="CMS" icon={<IconDeviceDesktop />}>
-                    CMS
-                  </NavItem>
-                  <NavItem aria-label="Experimentation" icon={<IconTestPipe />}>
-                    Experimentation
-                  </NavItem>
+                  <NavItem icon={<IconDashboard />}>CMP</NavItem>
+                  <NavItem icon={<IconDeviceDesktop />}>CMS</NavItem>
+                  <NavItem icon={<IconTestPipe />}>Experimentation</NavItem>
                 </NavGroupContent>
               </NavGroup>
             </NavList>

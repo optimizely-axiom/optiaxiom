@@ -46,30 +46,17 @@ import {
 const body = (
   <NavBody>
     <NavList>
-      <NavItem aria-label="Projects" icon={<IconBinaryTree />}>
-        Projects
-      </NavItem>
-      <NavItem active aria-label="Flags" icon={<IconFlag2 />}>
+      <NavItem icon={<IconBinaryTree />}>Projects</NavItem>
+      <NavItem active icon={<IconFlag2 />}>
         Flags
       </NavItem>
-      <NavItem aria-label="Idea Lab" icon={<IconChartInfographic />}>
-        Idea Lab
-      </NavItem>
-      <NavItem aria-label="Audiences" icon={<IconUsers />}>
-        Audiences
-      </NavItem>
-      <NavItem aria-label="History" icon={<IconHistory />}>
-        History
-      </NavItem>
-      <NavItem aria-label="Events" icon={<IconChartLine />}>
-        Events
-      </NavItem>
-      <NavItem aria-label="Settings" icon={<IconSettings />}>
-        Settings
-      </NavItem>
+      <NavItem icon={<IconChartInfographic />}>Idea Lab</NavItem>
+      <NavItem icon={<IconUsers />}>Audiences</NavItem>
+      <NavItem icon={<IconHistory />}>History</NavItem>
+      <NavItem icon={<IconChartLine />}>Events</NavItem>
+      <NavItem icon={<IconSettings />}>Settings</NavItem>
       <NavItem
         addonAfter={<IconExternalLink size="16" />}
-        aria-label="Tutorial"
         asChild
         icon={<IconVocabulary />}
       >
@@ -197,18 +184,10 @@ export const WithSubNav: Story = {
         <SubNav>
           <NavBody>
             <NavList>
-              <NavItem aria-label="All" icon={<IconCopy />}>
-                All
-              </NavItem>
-              <NavItem aria-label="Recent" icon={<IconRectangle />}>
-                Recent
-              </NavItem>
-              <NavItem aria-label="Favorites" icon={<IconStar />}>
-                Favorites
-              </NavItem>
-              <NavItem aria-label="Trash" icon={<IconTrash />}>
-                Trash
-              </NavItem>
+              <NavItem icon={<IconCopy />}>All</NavItem>
+              <NavItem icon={<IconRectangle />}>Recent</NavItem>
+              <NavItem icon={<IconStar />}>Favorites</NavItem>
+              <NavItem icon={<IconTrash />}>Trash</NavItem>
 
               <NavGroup defaultOpen>
                 <NavSeparator />
@@ -216,15 +195,11 @@ export const WithSubNav: Story = {
                 <NavGroupTrigger>Location</NavGroupTrigger>
 
                 <NavGroupContent>
-                  <NavItem active aria-label="CMP" icon={<IconDashboard />}>
+                  <NavItem active icon={<IconDashboard />}>
                     CMP
                   </NavItem>
-                  <NavItem aria-label="CMS" icon={<IconDeviceDesktop />}>
-                    CMS
-                  </NavItem>
-                  <NavItem aria-label="Experimentation" icon={<IconTestPipe />}>
-                    Experimentation
-                  </NavItem>
+                  <NavItem icon={<IconDeviceDesktop />}>CMS</NavItem>
+                  <NavItem icon={<IconTestPipe />}>Experimentation</NavItem>
                 </NavGroupContent>
               </NavGroup>
 
@@ -234,12 +209,8 @@ export const WithSubNav: Story = {
                 <NavGroupTrigger>Analytics</NavGroupTrigger>
 
                 <NavGroupContent>
-                  <NavItem aria-label="Dashboard" icon={<IconDashboard />}>
-                    Dashboard
-                  </NavItem>
-                  <NavItem aria-label="Reports" icon={<IconReport />}>
-                    Reports
-                  </NavItem>
+                  <NavItem icon={<IconDashboard />}>Dashboard</NavItem>
+                  <NavItem icon={<IconReport />}>Reports</NavItem>
                 </NavGroupContent>
               </NavGroup>
             </NavList>
