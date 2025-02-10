@@ -1,5 +1,35 @@
 # @optiaxiom/react
 
+## 0.13.0
+
+### Minor Changes
+
+- c4ecad3: rename variant prop values of Badge
+- d6712dd: add 2xs & remove lg size for avatar
+
+### Patch Changes
+
+- 373849f: fix button size in dialog footers
+- e937704: split NavGroupContent from NavList
+- 544749b: add generic CardActions container
+- 9598d35: update dependencies
+- 158fad6: fix TransitionGroup return type
+- 3dc9a1d: add Layout Component
+- 6874fc2: fix setting href when using asChild
+- 27f3acd: update font-size tokens
+- 97885d5: refactor disclosure trigger implementation
+- 4cbfdb2: fix alert/banner height
+- 1d83eb0: rename NavGroupLabel to NavGroupTrigger
+- 277fcdc: allow disclosure content transition to be configurable
+- 9608cc4: remove aria-label as required prop from NavItem
+- ce6a82d: swap border.tertiary and border.default
+- eefcd44: add dedicated CardLink component
+- Updated dependencies [a18bc51]
+- Updated dependencies [9598d35]
+- Updated dependencies [27f3acd]
+- Updated dependencies [ce6a82d]
+  - @optiaxiom/globals@0.7.3
+
 ## 0.12.3
 
 ### Patch Changes
