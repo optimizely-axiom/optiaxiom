@@ -46,7 +46,7 @@ export const Banner = forwardRef<HTMLDivElement, BannerProps>(
           {createElement(mapIntentToIcon[intent])}
         </Icon>
 
-        <Flex flex="1" gap="8" id={labelId} my="2">
+        <Flex id={labelId} {...styles.content()}>
           {children}
         </Flex>
 
