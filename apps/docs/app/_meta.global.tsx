@@ -26,7 +26,10 @@ export default {
 
   index: {
     display: "hidden",
-    theme: { layout: "full" },
+    theme: {
+      layout: "full",
+      toc: false,
+    },
     title: "Axiom",
     type: "page",
   },
