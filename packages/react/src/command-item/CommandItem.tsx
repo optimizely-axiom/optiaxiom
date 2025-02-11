@@ -26,6 +26,7 @@ export const CommandItem = forwardRef<HTMLDivElement, CommandItemProps>(
     const itemProps = downshift.getItemProps({
       "aria-selected": selected ?? value?.has(item),
       item,
+      ref,
       ...props,
     });
 
@@ -33,7 +34,6 @@ export const CommandItem = forwardRef<HTMLDivElement, CommandItemProps>(
       <CommandFocusableItem
         data-disabled={itemProps["aria-disabled"] ? "" : undefined}
         data-highlighted={highlightedItem === item ? "" : undefined}
-        ref={ref}
         size={size}
         tabIndex={-1}
         {...itemProps}
