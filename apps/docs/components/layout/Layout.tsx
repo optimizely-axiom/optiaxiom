@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 
-import { AxiomProvider, tokens } from "@optiaxiom/react";
+import { AxiomProvider, Badge, tokens } from "@optiaxiom/react";
 import { Footer, Navbar, Layout as NextraLayout } from "nextra-theme-docs";
 import { Head } from "nextra/components";
-
-import "./Layout.css";
-
 import { getPageMap } from "nextra/page-map";
+
+import pkg from "../../../../packages/react/package.json";
+import "./Layout.css";
 
 export const metadata: Metadata = {
   openGraph: {
@@ -58,14 +58,23 @@ export async function Layout({ children }: { children: ReactNode }) {
                   </strong>
                 }
                 projectLink="https://github.com/optimizely-axiom/optiaxiom"
-                // ... Your additional navbar options
-              />
+              >
+                <Badge
+                  asChild
+                  className="version"
+                  intent="warning"
+                  variant="strong"
+                >
+                  <a href="https://www.npmjs.com/package/@optiaxiom/react">
+                    v{pkg.version}
+                  </a>
+                </Badge>
+              </Navbar>
             }
             pageMap={await getPageMap()}
             sidebar={{
               defaultMenuCollapseLevel: 1,
             }}
-            // ... Your additional layout options
           >
             {children}
           </NextraLayout>

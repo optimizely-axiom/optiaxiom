@@ -58,6 +58,16 @@
     background-color: var(--ax-colors-bg-default);
   }
 
+  header nav {
+    a:has(.logo) {
+      order: -1;
+    }
+
+    .version {
+      order: -1;
+    }
+  }
+
   .nextra-navbar-blur {
     background-color: rgb(255 255 255 / 30%);
 
