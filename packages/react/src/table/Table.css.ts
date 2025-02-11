@@ -31,6 +31,7 @@ export const table = recipe({
           w: "fit",
         },
         style({
+          isolation: "isolate",
           tableLayout: "fixed",
         }),
       ],
