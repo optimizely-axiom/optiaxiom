@@ -10,6 +10,12 @@ export const cellOffsetVar = createVar();
 export const leftTotalSizeVar = createVar();
 export const rightTotalSizeVar = createVar();
 
+const bgHoverColor = createVar({
+  inherits: false,
+  initialValue: "transparent",
+  syntax: "<color>",
+});
+
 const shadowSize = "1px";
 const shadows = {
   left: [
@@ -138,17 +144,16 @@ export const cell = recipe({
     pinnedType: {
       body: style({
         backgroundColor: theme.colors["bg.default"],
+        backgroundImage: `linear-gradient(${bgHoverColor}, ${bgHoverColor})`,
+        transition: `${bgHoverColor.match(/^var\((.*)\)$/)![1]} 150ms ease`,
 
         "@media": {
           "(hover: hover)": {
             selectors: {
               [`${row}:hover &`]: {
-                backgroundImage: `
-                  linear-gradient(
-                    ${theme.colors["bg.default.hovered"]},
-                    ${theme.colors["bg.default.hovered"]}
-                  )
-                `,
+                vars: {
+                  [bgHoverColor]: theme.colors["bg.default.hovered"],
+                },
               },
             },
           },
