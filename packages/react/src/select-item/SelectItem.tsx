@@ -15,14 +15,13 @@ export const SelectItem = forwardRef<HTMLDivElement, SelectItemProps>(
     const { downshift, highlightedItem, selectedItem } =
       useSelectContext("SelectItem");
 
-    const itemProps = downshift.getItemProps({ item, ...props });
+    const itemProps = downshift.getItemProps({ item, ref, ...props });
 
     return (
       <Box
         data-disabled={itemProps["aria-disabled"] ? "" : undefined}
         data-highlighted={highlightedItem === item ? "" : undefined}
         data-selected={selectedItem === item ? "" : undefined}
-        ref={ref}
         size={size}
         {...itemProps}
       >
