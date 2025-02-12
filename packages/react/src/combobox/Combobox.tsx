@@ -70,7 +70,7 @@ export function Combobox<Item>({
     onInputValueChange ?? (() => {}),
   );
   useEffect(() => {
-    if (!open) {
+    if (open) {
       onInputValueChangeStable("");
     }
   }, [open, onInputValueChangeStable]);
