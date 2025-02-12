@@ -34,6 +34,7 @@ export * from "./combobox-scroll-area";
 export * from "./combobox-separator";
 export * from "./combobox-trigger";
 export * from "./combobox-value";
+export * from "./combobox-virtualized";
 export * from "./command";
 export * from "./command-input";
 export * from "./command-item";

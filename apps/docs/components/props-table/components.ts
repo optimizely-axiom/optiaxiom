@@ -70,6 +70,7 @@ export const components = {
   ComboboxSeparator: getProps("ComboboxSeparator"),
   ComboboxTrigger: getProps("ComboboxTrigger"),
   ComboboxValue: getProps("ComboboxValue"),
+  ComboboxVirtualized: getProps("ComboboxVirtualized"),
   DataTable: getProps("DataTable"),
   DateInput: getProps("DateInput"),
   Dialog: getProps("Dialog"),
