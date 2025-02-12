@@ -7,6 +7,7 @@ import {
 } from "react";
 
 import type { Command } from "../command";
+import type { ExtendProps } from "../utils";
 
 import { ComboboxContextProvider } from "../combobox-context";
 import { ComboboxDialogContent } from "../combobox-dialog-content";
@@ -18,16 +19,27 @@ import { PopoverTrigger } from "../popover-trigger";
 import { useEffectEvent } from "../use-event";
 import { useResponsiveMatches } from "../use-responsive-matches";
 
-type ComboBoxProps<Item> = Omit<
-  ComponentPropsWithoutRef<typeof Command<Item>>,
-  "inputId" | "itemToSubItems" | "selectedItem" | "stateReducer"
-> & {
-  children: ReactNode;
-  defaultOpen?: boolean;
-  onInputValueChange?: (inputValue: string) => void;
-  onOpenChange?: (open: boolean) => void;
-  open?: boolean;
-};
+type ComboboxProps<Item> = ExtendProps<
+  Omit<
+    ComponentPropsWithoutRef<typeof Command<Item>>,
+    "inputId" | "itemToSubItems" | "selectedItem" | "stateReducer"
+  >,
+  {
+    children: ReactNode;
+    /**
+     * The initial open state in uncontrolled mode.
+     */
+    defaultOpen?: boolean;
+    /**
+     * Handler that is called when the open state changes.
+     */
+    onOpenChange?: (open: boolean) => void;
+    /**
+     * The open state in controlled mode.
+     */
+    open?: boolean;
+  }
+>;
 
 export function Combobox<Item>({
   children,
@@ -42,7 +54,7 @@ export function Combobox<Item>({
   onOpenChange,
   open: openProp,
   value: valueProp,
-}: ComboBoxProps<Item>) {
+}: ComboboxProps<Item>) {
   const components = useResponsiveMatches({
     base: {
       Content: ComboboxDialogContent,

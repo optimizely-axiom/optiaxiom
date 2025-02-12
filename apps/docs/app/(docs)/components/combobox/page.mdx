@@ -70,6 +70,75 @@ export default () => (
 );
 ```
 
+### Data
+
+Use the `items` prop to pass the collection of data to `Combobox`. Items can be an array of primitive types such as strings or it can be an array of objects.
+
+In case item is an object you need to pass an additional `itemToString` prop for `Combobox` to work.
+
+<Demo component="combobox/complex-usage" meta={{ "App.tsx": "{24}" }} />
+
+### Filtering
+
+Use the `onInputValueChange` handler to handle filtering your list of items as the user is typing.
+
+<Demo component="combobox/complex-usage" meta={{ "App.tsx": "{25-33}" }} />
+
+### Controlled
+
+We can only use `Combobox` in a controlled mode and using the following props:
+
+- `value`: Represents an array of currently selected elements from the `items` array.
+- `onItemSelect`: Handler invoked when user selects an item with the item as the only parameter.
+
+Developers are expected to manually track the selection on their side since items inside a combobox can represent values or actions.
+
+<Demo
+  component="combobox/controlled-usage"
+  meta={{ "App.tsx": "{18,33-34}" }}
+/>
+
+### Disabled
+
+Use the optional `isItemDisabled` prop to configure which items should be disabled. The callback is passed the item and the index number as arguments and expects a boolean result.
+
+<Demo
+  component="combobox/complex-usage"
+  meta={{ "App.tsx": "{22}", "data.ts": "{3}" }}
+/>
+
+### Creatable
+
+We can combine filtering and controlled usage to build **creatable** comboboxes by allowing the user to add new entries on the fly.
+
+<Demo component="combobox/creatable-usage" />
+
+### Trigger
+
+By default we use the `Button` component for the combobox trigger which accepts all of the existing button props.
+
+### Item
+
+The `ComboboxCheckboxItem` component accepts `icon`, `addonBefore`, `addonAfter`, and `description` props for additional content inside the items.
+
+<Demo component="combobox/complex-usage" meta={{ "App.tsx": "{53-58}" }} />
+
+### Empty
+
+Use the `ComboboxEmpty` component when there are no available items or suggestions.
+
+<Demo component="combobox/complex-usage" meta={{ "App.tsx": "66" }} />
+
+### Loading
+
+Use the `loading` prop on `ComboboxScrollArea` to show a loading spinner if the initial data for the combobox has not loaded yet.
+
+<Demo component="combobox/loading-usage" meta={{ "App.tsx": "{42}" }} />
+
+### Virtualized
+
+<Demo component="combobox/virtualized-usage" meta="{32-38}" />
+
 ### Related
 
 <Cards items={["Autocomplete", "DropdownMenu", "Select"]} />

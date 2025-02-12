@@ -12,6 +12,11 @@ type CommandProps<Item> = Pick<
   UseComboboxProps<Item>,
   "inputId" | "selectedItem" | "stateReducer"
 > & {
+  children: ReactNode;
+  /**
+   * The input value in controlled mode.
+   */
+  inputValue?: string;
   /**
    * Return true if items need to be marked as disabled and skipped from keyboard navigation.
    */
@@ -28,11 +33,14 @@ type CommandProps<Item> = Pick<
    * Return a string representation of items if they are objects. Needed to show selected values inside triggers.
    */
   itemToString?: UseComboboxProps<Item>["itemToString"];
-} & {
-  children: ReactNode;
-  inputValue?: string;
   itemToSubItems?: (value: Item) => Item[] | null;
+  /**
+   * Handler that is called when input value changes.
+   */
   onInputValueChange?: (inputValue: string) => void;
+  /**
+   * Handler that is called when an item is selected either via keyboard or mouse.
+   */
   onItemSelect?: (value: Item) => void;
   onOpenChange?: (open: boolean) => void;
   open?: boolean;
