@@ -135,6 +135,65 @@ export const WithLabel: Story = {
   ),
 };
 
+export const AsyncLoading: Story = {
+  render: function AsyncLoading(args) {
+    const [open, setOpen] = useState(args.defaultOpen);
+    const [items, setItems] = useState(languages);
+    const [value, setValue] = useState("Bangla");
+
+    const [isLoading, setIsLoading] = useState(true);
+    useEffect(() => {
+      setTimeout(() => {
+        setItems(languages);
+        setIsLoading(false);
+      }, 3000);
+    }, []);
+
+    const fetchData = (query: string) => {
+      setIsLoading(true);
+      setTimeout(() => {
+        const filteredLanguages = languages.filter((lang) =>
+          lang.toLowerCase().includes(query.toLowerCase()),
+        );
+        setItems(filteredLanguages);
+        setIsLoading(false);
+      }, 500);
+    };
+
+    return (
+      <Combobox
+        {...args}
+        items={items}
+        onInputValueChange={fetchData}
+        onItemSelect={(value) => {
+          setValue(value);
+          setOpen(false);
+        }}
+        onOpenChange={setOpen}
+        open={open}
+        value={value ? [value] : []}
+      >
+        <ComboboxTrigger>
+          <ComboboxValue placeholder="Select a language" />
+        </ComboboxTrigger>
+        <ComboboxContent>
+          <ComboboxInput placeholder="Languages..." />
+          <ComboboxScrollArea loading={isLoading}>
+            {items.map((item) => (
+              <ComboboxRadioItem item={item} key={item}>
+                {item}
+              </ComboboxRadioItem>
+            ))}
+          </ComboboxScrollArea>
+          {items.length === 0 && !isLoading && (
+            <ComboboxEmpty>No result found</ComboboxEmpty>
+          )}
+        </ComboboxContent>
+      </Combobox>
+    );
+  },
+};
+
 export const Multiple: Story = {
   render: function Multiple(args) {
     const [open, setOpen] = useState(args.defaultOpen);
