@@ -16,7 +16,6 @@ const mapComponentToBase: Partial<Record<AllComponents, "" | AllComponents>> = {
   AlertDialogAction: "Button",
   AlertDialogCancel: "Button",
   AlertDialogTrigger: "Button",
-  AutocompleteTrigger: "Input",
   ComboboxInput: "Input",
   ComboboxSeparator: "Separator",
   ComboboxTrigger: "Button",
