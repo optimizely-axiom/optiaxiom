@@ -1,6 +1,8 @@
 import { createFilter } from "@rollup/pluginutils";
 import { vanillaExtractPlugin } from "@vanilla-extract/rollup-plugin";
 import { readFileSync } from "node:fs";
+import { readFile } from "node:fs/promises";
+import { resolve } from "node:path";
 import { defineConfig } from "rollup";
 import dts from "rollup-plugin-dts";
 import esbuild from "rollup-plugin-esbuild";
@@ -30,11 +32,7 @@ export default defineConfig([
       },
       {
         banner: (chunk) => {
-          if (
-            env === "production"
-              ? bannerFilter(chunk.facadeModuleId)
-              : chunk.name === "client"
-          ) {
+          if (bannerFilter(chunk.facadeModuleId)) {
             return '"use client";';
           }
           return "";
@@ -46,16 +44,7 @@ export default defineConfig([
             : "[name].js";
         },
         format: "es",
-        manualChunks:
-          env === "production"
-            ? undefined
-            : (id) => {
-                if (bannerFilter(id)) {
-                  return "client";
-                }
-                return "server";
-              },
-        preserveModules: env === "production",
+        preserveModules: true,
       },
     ],
     plugins: [
@@ -66,6 +55,23 @@ export default defineConfig([
         target: "esnext",
       }),
       vanillaExtractPlugin(),
+      env !== "production" && {
+        async generateBundle(options, bundle) {
+          for (const [fileName, chunk] of Object.entries(bundle)) {
+            try {
+              const existing = await readFile(resolve(options.dir, fileName), {
+                encoding: "utf-8",
+              });
+              if (existing === chunk.code) {
+                delete bundle[fileName];
+              }
+            } catch {
+              /* empty */
+            }
+          }
+        },
+        name: "optimize-generate-bundle",
+      },
     ],
   },
   {
