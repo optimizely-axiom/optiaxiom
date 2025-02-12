@@ -47,7 +47,16 @@ export const DropdownMenuContent = forwardRef<
           provider="dropdown-menu"
           {...props}
         >
-          <RadixMenu.Content align={align} ref={ref} sideOffset={4}>
+          <RadixMenu.Content
+            align={align}
+            onPointerMove={(event) => {
+              if (!open) {
+                event.preventDefault();
+              }
+            }}
+            ref={ref}
+            sideOffset={4}
+          >
             {loading ? (
               <Box display="flex" justifyContent="center" p="16">
                 <Spinner />
