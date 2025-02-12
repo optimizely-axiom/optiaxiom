@@ -4,7 +4,6 @@ import styles from "./Cards.module.css";
 import { CardsItem } from "./CardsItem";
 import { AlertDialogIcon } from "./icons/AlertDialogIcon";
 import { AlertIcon } from "./icons/AlertIcon";
-import { AutocompleteIcon } from "./icons/AutocompleteIcon";
 import { BadgeIcon } from "./icons/BadgeIcon";
 import { BannerIcon } from "./icons/BannerIcon";
 import { BoxIcon } from "./icons/BoxIcon";
@@ -51,13 +50,6 @@ const COMPONENTS = {
     href: "/components/alert-dialog/",
     icon: <AlertDialogIcon />,
     title: "AlertDialog",
-  },
-  Autocomplete: {
-    description:
-      "Text field with inline autocomplete to show suggestions while allowing freeform user input.",
-    href: "/components/autocomplete/",
-    icon: <AutocompleteIcon />,
-    title: "Autocomplete",
   },
   Badge: {
     description: "Use to emphasize a status, count, state or value.",

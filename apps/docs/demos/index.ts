@@ -13,16 +13,6 @@ export const demos = {
   "alert/close-usage": import("./alert/close-usage/App"),
   "alert/usage": import("./alert/usage/App"),
   "animation/pulse-usage": import("./animation/pulse-usage/App"),
-  "autocomplete/complex-usage": import("./autocomplete/complex-usage/App"),
-  "autocomplete/controlled-usage": import(
-    "./autocomplete/controlled-usage/App"
-  ),
-  "autocomplete/creatable-usage": import("./autocomplete/creatable-usage/App"),
-  "autocomplete/loading-usage": import("./autocomplete/loading-usage/App"),
-  "autocomplete/usage": import("./autocomplete/usage/App"),
-  "autocomplete/virtualized-usage": import(
-    "./autocomplete/virtualized-usage/App"
-  ),
   "avatar/color-usage": import("./avatar/color-usage/App"),
   "avatar/fallback-children-usage": import(
     "./avatar/fallback-children-usage/App"

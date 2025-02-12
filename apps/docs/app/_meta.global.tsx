@@ -79,9 +79,6 @@ export default {
       },
       alert: "Alert",
       "alert-dialog": "AlertDialog",
-      autocomplete: {
-        title: <AlphaItem>Autocomplete</AlphaItem>,
-      },
       avatar: "Avatar",
       badge: "Badge",
       banner: "Banner",
