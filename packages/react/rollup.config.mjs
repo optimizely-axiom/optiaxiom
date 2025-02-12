@@ -1,12 +1,10 @@
 import hash from "@emotion/hash";
 import json from "@rollup/plugin-json";
 import { nodeResolve } from "@rollup/plugin-node-resolve";
-import {
-  getSourceFromVirtualCssFile,
-  virtualCssFileFilter,
-} from "@vanilla-extract/integration";
 import { vanillaExtractPlugin } from "@vanilla-extract/rollup-plugin";
 import { readFileSync } from "node:fs";
+import { readFile } from "node:fs/promises";
+import { resolve } from "node:path";
 import { defineConfig } from "rollup";
 import dts from "rollup-plugin-dts";
 import esbuild from "rollup-plugin-esbuild";
@@ -48,25 +46,7 @@ export default defineConfig([
             : "[name].js";
         },
         format: "es",
-        manualChunks:
-          env === "production"
-            ? undefined
-            : (id, { getModuleInfo }) => {
-                if (
-                  id.includes("/axiom-provider/") ||
-                  id.includes("/box/") ||
-                  id.includes("/button/") ||
-                  id.includes("/icon/")
-                ) {
-                  return "base";
-                } else if (id.includes("recipe")) {
-                  return "vanilla";
-                } else if (getModuleInfo(id).meta.preserveDirectives) {
-                  return "client";
-                }
-                return "server";
-              },
-        preserveModules: env === "production",
+        preserveModules: true,
       },
     ],
     plugins: [
@@ -118,32 +98,6 @@ export default defineConfig([
         target: "esnext",
       }),
       json(),
-      env !== "production" && {
-        async load(id) {
-          if (!virtualCssFileFilter.test(id)) {
-            return null;
-          }
-          const { fileName, source } = await getSourceFromVirtualCssFile(id);
-          return `
-            if (typeof document !== "undefined") {
-              const style = document.head.appendChild(
-                document.createElement("style"),
-              );
-              style.dataset.fileName = ${JSON.stringify(fileName)};
-              style.appendChild(
-                document.createTextNode(${JSON.stringify(source)}),
-              );
-            }
-          `;
-        },
-        name: "vanilla-extract-inject",
-        async resolveId(id) {
-          if (!virtualCssFileFilter.test(id)) {
-            return null;
-          }
-          return id;
-        },
-      },
       vanillaExtractPlugin(
         env === "production"
           ? {
@@ -152,6 +106,23 @@ export default defineConfig([
             }
           : {},
       ),
+      env !== "production" && {
+        async generateBundle(options, bundle) {
+          for (const [fileName, chunk] of Object.entries(bundle)) {
+            try {
+              const existing = await readFile(resolve(options.dir, fileName), {
+                encoding: "utf-8",
+              });
+              if (existing === chunk.code) {
+                delete bundle[fileName];
+              }
+            } catch {
+              /* empty */
+            }
+          }
+        },
+        name: "optimize-generate-bundle",
+      },
     ],
   },
   {
