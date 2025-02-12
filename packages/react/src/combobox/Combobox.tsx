@@ -18,7 +18,10 @@ import { PopoverTrigger } from "../popover-trigger";
 import { useEffectEvent } from "../use-event";
 import { useResponsiveMatches } from "../use-responsive-matches";
 
-type ComboBoxProps<Item> = ComponentPropsWithoutRef<typeof Command<Item>> & {
+type ComboBoxProps<Item> = Omit<
+  ComponentPropsWithoutRef<typeof Command<Item>>,
+  "inputId" | "itemToSubItems" | "selectedItem" | "stateReducer"
+> & {
   children: ReactNode;
   defaultOpen?: boolean;
   onInputValueChange?: (inputValue: string) => void;
@@ -29,6 +32,7 @@ type ComboBoxProps<Item> = ComponentPropsWithoutRef<typeof Command<Item>> & {
 export function Combobox<Item>({
   children,
   defaultOpen = false,
+  inputValue,
   isItemDisabled = () => false,
   items,
   itemToKey = (value) => value,
@@ -75,6 +79,7 @@ export function Combobox<Item>({
     <components.Root onOpenChange={setOpen} open={open}>
       <ComboboxContextProvider
         components={components}
+        inputValue={inputValue}
         isItemDisabled={isItemDisabled}
         items={items}
         itemToKey={itemToKey}

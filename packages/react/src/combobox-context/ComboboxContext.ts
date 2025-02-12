@@ -17,6 +17,7 @@ export const [ComboboxContextProvider, useComboboxContext] = createContext<{
     Root: typeof Dialog | typeof Popover;
     Trigger: typeof DialogTrigger | typeof PopoverTrigger;
   };
+  inputValue?: string;
   isItemDisabled: (item: any, index: number) => boolean;
   items: any[];
   itemToKey: (item: any) => string;

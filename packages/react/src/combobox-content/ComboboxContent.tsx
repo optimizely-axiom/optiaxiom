@@ -24,6 +24,7 @@ export const ComboboxContent = forwardRef<HTMLDivElement, ComboboxContentProps>(
     const { labelId } = useFieldContext();
     const {
       components,
+      inputValue,
       isItemDisabled,
       items,
       itemToKey,
@@ -42,6 +43,7 @@ export const ComboboxContent = forwardRef<HTMLDivElement, ComboboxContentProps>(
         {...props}
       >
         <Command
+          inputValue={inputValue}
           isItemDisabled={isItemDisabled}
           items={items}
           itemToKey={itemToKey}
