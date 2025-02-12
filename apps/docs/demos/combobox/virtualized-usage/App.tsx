@@ -9,14 +9,17 @@ import {
   ComboboxScrollArea,
   ComboboxTrigger,
   ComboboxValue,
+  ComboboxVirtualized,
 } from "@optiaxiom/react/unstable";
 import { useState } from "react";
 
-import { colors } from "./data";
+const colors = Array.from({ length: 2000 }).map(
+  (_, index) => `Color ${index + 1}`,
+);
 
 export function App() {
   const [items, setItems] = useState(colors);
-  const [value, setValue] = useState<string[]>([]);
+  const [value, setValue] = useState([colors[0]]);
 
   return (
     <Combobox
@@ -38,18 +41,20 @@ export function App() {
       value={value}
     >
       <ComboboxTrigger w="224">
-        <ComboboxValue placeholder="Select colors..." />
+        <ComboboxValue placeholder="Search a color..." />
       </ComboboxTrigger>
 
       <ComboboxContent>
         <ComboboxInput />
 
         <ComboboxScrollArea>
-          {items.map((item) => (
-            <ComboboxCheckboxItem item={item} key={item}>
-              {item}
-            </ComboboxCheckboxItem>
-          ))}
+          <ComboboxVirtualized items={items}>
+            {(item) => (
+              <ComboboxCheckboxItem item={item} key={item}>
+                {item}
+              </ComboboxCheckboxItem>
+            )}
+          </ComboboxVirtualized>
 
           {items.length === 0 && <ComboboxEmpty>No result found</ComboboxEmpty>}
         </ComboboxScrollArea>

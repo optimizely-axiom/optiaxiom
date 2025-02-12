@@ -13,32 +13,30 @@ import {
 import { useState } from "react";
 
 import { colors } from "./data";
+import { useSet } from "./useSet";
 
 export function App() {
   const [items, setItems] = useState(colors);
-  const [value, setValue] = useState<string[]>([]);
+  const [value, { toggle }] = useSet([colors[1]]);
 
   return (
     <Combobox
       items={items}
+      itemToString={(item) => item?.label || ""}
       onInputValueChange={(inputValue) => {
         setItems(
           inputValue
-            ? colors.filter((color) => new RegExp(inputValue, "i").test(color))
+            ? colors.filter((color) =>
+                new RegExp(inputValue, "i").test(color.label),
+              )
             : colors,
         );
       }}
-      onItemSelect={(value) =>
-        setValue((prev) =>
-          prev.includes(value)
-            ? prev.filter((v) => v !== value)
-            : [...prev, value],
-        )
-      }
+      onItemSelect={(value) => toggle(value)}
       value={value}
     >
       <ComboboxTrigger w="224">
-        <ComboboxValue placeholder="Select colors..." />
+        <ComboboxValue placeholder="Search a color..." />
       </ComboboxTrigger>
 
       <ComboboxContent>
@@ -46,8 +44,8 @@ export function App() {
 
         <ComboboxScrollArea>
           {items.map((item) => (
-            <ComboboxCheckboxItem item={item} key={item}>
-              {item}
+            <ComboboxCheckboxItem item={item} key={item.label}>
+              {item.label}
             </ComboboxCheckboxItem>
           ))}
 
