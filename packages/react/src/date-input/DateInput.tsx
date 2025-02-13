@@ -7,7 +7,9 @@ import {
   useState,
 } from "react";
 
+import { Button } from "../button";
 import { Calendar } from "../calendar";
+import { Flex } from "../flex";
 import { IconCalendar } from "../icons/IconCalendar";
 import { Input } from "../input";
 import { Popover } from "../popover";
@@ -88,6 +90,7 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
           />
         </PopoverAnchor>
         <PopoverContent
+          gap="8"
           onCloseAutoFocus={(event) => {
             event.preventDefault();
             innerRef.current?.focus();
@@ -108,6 +111,20 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
             }}
             value={parse(value)}
           />
+          <Flex flexDirection="row">
+            <Button
+              appearance="subtle"
+              onClick={() => {
+                if (innerRef.current) {
+                  forceValueChange(innerRef.current, "");
+                }
+
+                setOpen(false);
+              }}
+            >
+              Clear
+            </Button>
+          </Flex>
         </PopoverContent>
       </Popover>
     );
