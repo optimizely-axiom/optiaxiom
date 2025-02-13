@@ -1,5 +1,6 @@
 import * as RadixMenu from "@radix-ui/react-dropdown-menu";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
+import { useState } from "react";
 
 import { DropdownMenuContextProvider } from "../dropdown-menu-context";
 
@@ -35,10 +36,15 @@ export function DropdownMenu({
     onChange: onOpenChange,
     prop: openProp,
   });
+  const [presence, setPresence] = useState<boolean>();
 
   return (
     <RadixMenu.Root onOpenChange={setOpen} open={open} {...props}>
-      <DropdownMenuContextProvider open={open}>
+      <DropdownMenuContextProvider
+        open={open}
+        presence={presence}
+        setPresence={setPresence}
+      >
         {children}
       </DropdownMenuContextProvider>
     </RadixMenu.Root>
