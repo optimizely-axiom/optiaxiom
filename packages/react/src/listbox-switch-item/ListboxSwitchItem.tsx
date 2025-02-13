@@ -1,21 +1,21 @@
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
-import { Checkbox } from "../checkbox";
 import { Flex } from "../flex";
 import { Icon } from "../icon";
 import { ListboxItem } from "../listbox-item";
+import { Switch } from "../switch";
 
-type ListboxCheckboxItemProps = ComponentPropsWithoutRef<typeof ListboxItem>;
+type ListboxSwitchItemProps = ComponentPropsWithoutRef<typeof ListboxItem>;
 
-export const ListboxCheckboxItem = forwardRef<
+export const ListboxSwitchItem = forwardRef<
   HTMLDivElement,
-  ListboxCheckboxItemProps
+  ListboxSwitchItemProps
 >(({ addonBefore, icon, ...props }, ref) => {
   return (
     <ListboxItem
       addonBefore={
         <Flex flexDirection="row" gap="8">
-          <Checkbox
+          <Switch
             checked={Boolean(
               props[
                 props["role"] === "option" ? "aria-selected" : "aria-checked"
@@ -38,4 +38,4 @@ export const ListboxCheckboxItem = forwardRef<
   );
 });
 
-ListboxCheckboxItem.displayName = "@optiaxiom/react/ListboxCheckboxItem";
+ListboxSwitchItem.displayName = "@optiaxiom/react/ListboxSwitchItem";
