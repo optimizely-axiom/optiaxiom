@@ -87,7 +87,6 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
           components={components}
           defaultMonth={value}
           endMonth={max}
-          fixedWeeks
           mode="single"
           onSelect={setValue}
           required
