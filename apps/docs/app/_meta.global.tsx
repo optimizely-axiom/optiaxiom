@@ -132,9 +132,7 @@ export default {
       select: {
         title: <AlphaItem>Select</AlphaItem>,
       },
-      sidebar: {
-        title: <AlphaItem>Sidebar</AlphaItem>,
-      },
+      sidebar: "Sidebar",
       skeleton: "Skeleton",
       spinner: "Spinner",
       switch: "Switch",
