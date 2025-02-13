@@ -32,10 +32,14 @@ type PopoverContentProps = ExcludeProps<
 
 export const PopoverContent = forwardRef<HTMLDivElement, PopoverContentProps>(
   ({ align = "start", children, sideOffset = 2, withArrow, ...props }, ref) => {
-    const { open } = usePopoverContext("PopoverContent");
+    const { open, presence, setPresence } = usePopoverContext("PopoverContent");
 
     return (
-      <TransitionGroup open={open}>
+      <TransitionGroup
+        onPresenceChange={setPresence}
+        open={open}
+        presence={presence}
+      >
         <RadixPopover.Portal forceMount>
           <MenuListbox
             asChild

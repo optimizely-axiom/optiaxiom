@@ -22,11 +22,15 @@ export const AlertDialogContent = forwardRef<
   HTMLDivElement,
   AlertDialogContentProps
 >(({ children, size = "sm", style, ...props }, ref) => {
-  const { nestedDialogCount, open } =
+  const { nestedDialogCount, open, presence, setPresence } =
     useAlertDialogContext("AlertDialogContent");
 
   return (
-    <TransitionGroup open={open}>
+    <TransitionGroup
+      onPresenceChange={setPresence}
+      open={open}
+      presence={presence}
+    >
       <RadixAlertDialog.Portal forceMount>
         <Transition>
           <Backdrop
