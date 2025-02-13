@@ -6,6 +6,8 @@ import {
 import { assignInlineVars } from "@vanilla-extract/dynamic";
 import { forwardRef } from "react";
 
+import type { Sprinkles } from "../sprinkles";
+
 import { Box, type BoxProps } from "../box";
 import { DataTableHeaderCell } from "../data-table-header-cell";
 import { Pagination } from "../pagination";
@@ -93,14 +95,19 @@ export const DataTable = forwardRef<HTMLDivElement, DataTableProps>(
           </TableHeader>
           <TableBody>
             {(loading
-              ? Array.from({ length: 10 }, (_, i) => ({
+              ? Array.from({ length: 10 }, (_, rowIndex) => ({
                   getVisibleCells: () =>
-                    table.getVisibleFlatColumns().map((column) => ({
-                      column,
-                      getContext: () => ({}) as CellContext<unknown, unknown>,
-                      id: column.id,
-                    })),
-                  id: "loading" + i,
+                    table
+                      .getVisibleFlatColumns()
+                      .map((column, columnIndex) => ({
+                        column,
+                        getContext: () => ({}) as CellContext<unknown, unknown>,
+                        id:
+                          column.id +
+                          "-" +
+                          ["1/2", "full", "3/4"][(rowIndex + columnIndex) % 3],
+                      })),
+                  id: "loading" + rowIndex,
                 }))
               : table.getRowModel().rows
             ).map((row) => (
@@ -123,7 +130,7 @@ export const DataTable = forwardRef<HTMLDivElement, DataTableProps>(
                       })}
                     >
                       {loading ? (
-                        <Skeleton h="24" w="64"></Skeleton>
+                        <Skeleton w={cell.id.split("-")[1] as Sprinkles["w"]} />
                       ) : (
                         flexRender(
                           cell.column.columnDef.cell,
