@@ -11,7 +11,7 @@ export const content = recipe({
     },
     style({
       opacity: "0",
-      transition: `opacity ${theme.duration.sm} ease ${theme.duration.md}`,
+      transition: `opacity ${theme.duration.sm} ease`,
 
       "@media": {
         "(hover: hover)": {
@@ -25,7 +25,7 @@ export const content = recipe({
       },
 
       selectors: {
-        [`${rootStyles.className}:focus-within &, &:has(:checked, [data-state=open])`]:
+        [`${rootStyles.className}:focus-within &, &:has(:checked, [data-expanded], [data-state=open])`]:
           {
             opacity: "1",
             transition: "none",

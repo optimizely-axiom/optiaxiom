@@ -36,10 +36,16 @@ export const DropdownMenuContent = forwardRef<
   HTMLDivElement,
   DropdownMenuContentProps
 >(({ align = "start", children, loading, ...props }, ref) => {
-  const { open } = useDropdownMenuContext("DropdownMenuContent");
+  const { open, presence, setPresence } = useDropdownMenuContext(
+    "DropdownMenuContent",
+  );
 
   return (
-    <TransitionGroup open={open}>
+    <TransitionGroup
+      onPresenceChange={setPresence}
+      open={open}
+      presence={presence}
+    >
       <RadixMenu.Portal forceMount>
         <MenuListbox
           asChild

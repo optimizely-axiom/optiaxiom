@@ -1,3 +1,4 @@
+import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import {
   type ReactElement,
   type RefObject,
@@ -11,10 +12,14 @@ import { TransitionGroupContext } from "../transition-group-context";
 
 export function TransitionGroup({
   children,
+  onPresenceChange,
   open,
+  presence: presenceProp,
 }: {
   children?: false | ReactElement;
+  onPresenceChange?: (presence: boolean) => void;
   open?: boolean;
+  presence?: boolean;
 }) {
   const [transitions, setTransitions] = useState<Array<RefObject<HTMLElement>>>(
     [],
@@ -28,10 +33,13 @@ export function TransitionGroup({
     );
   }, []);
 
-  const [connected, setConnected] = useState(false);
+  const [presence, setPresence] = useControllableState({
+    onChange: onPresenceChange,
+    prop: presenceProp,
+  });
   useEffect(() => {
     if (open) {
-      setConnected(true);
+      setPresence(true);
     } else {
       if (transitions.length) {
         void Promise.allSettled(
@@ -42,12 +50,12 @@ export function TransitionGroup({
                   .map((animation) => animation.finished)
               : [Promise.resolve()],
           ),
-        ).then(() => setConnected(false));
+        ).then(() => setPresence(false));
       } else {
-        setConnected(false);
+        setPresence(false);
       }
     }
-  }, [open, transitions]);
+  }, [open, setPresence, transitions]);
 
   if (TransitionGlobalConfig.skipAnimations) {
     return <>{open && children}</>;
@@ -55,7 +63,7 @@ export function TransitionGroup({
 
   return (
     <TransitionGroupContext.Provider value={{ onMount, onUnmount, open }}>
-      {(open || connected) && children}
+      {(open || presence) && children}
     </TransitionGroupContext.Provider>
   );
 }
