@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
+import { Field } from "@optiaxiom/react";
 import { DateInput } from "@optiaxiom/react/unstable";
+import { expect, screen, userEvent } from "@storybook/test";
 
 export default {
   component: DateInput,
@@ -15,6 +17,33 @@ export default {
 type Story = StoryObj<typeof DateInput>;
 
 export const Basic: Story = {};
+
+export const WithLabel: Story = {
+  decorators: (Story) => (
+    <Field label="Label">
+      <Story />
+    </Field>
+  ),
+  play: async ({ canvas }) => {
+    await userEvent.click(
+      canvas.getByRole("button", { name: "Show date picker" }),
+    );
+    await userEvent.click(screen.getByText("15"));
+    const date = new Date();
+    await expect(canvas.getByLabelText("Label")).toHaveValue(
+      date.getFullYear() +
+        "-" +
+        (date.getMonth() + 1).toString().padStart(2, "0") +
+        "-15",
+    );
+
+    await userEvent.click(
+      canvas.getByRole("button", { name: "Show date picker" }),
+    );
+    await userEvent.click(screen.getByRole("button", { name: "Clear" }));
+    await expect(canvas.getByLabelText("Label")).toHaveValue("");
+  },
+};
 
 export const DefaultValue: Story = {
   args: {
