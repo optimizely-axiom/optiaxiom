@@ -57,12 +57,26 @@ export const root = recipe({
 
       animationDuration: "300ms",
       animationTimingFunction: "ease",
+      pointerEvents: "auto",
       transitionDuration: "300ms",
       transitionProperty: "opacity",
       transitionTimingFunction: "ease",
       translate: `${translateXVar} ${translateYVar}`,
 
       selectors: {
+        "&::after": {
+          bottom: "-16px",
+        },
+        "&::after, &::before": {
+          content: "",
+          height: `${styles.gap}px`,
+          left: 0,
+          position: "absolute",
+          right: 0,
+        },
+        "&::before": {
+          top: "-16px",
+        },
         "&:focus-visible": {
           outline: `2px solid ${theme.colors["border.focus"]}`,
           outlineOffset: "1px",
