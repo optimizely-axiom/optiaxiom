@@ -66,6 +66,7 @@ export * from "./spotlight-sub-item";
 export * from "./spotlight-trigger";
 export * from "./sub-nav";
 export * from "./table";
+export * from "./table-actions";
 export * from "./table-body";
 export * from "./table-cell";
 export * from "./table-header";

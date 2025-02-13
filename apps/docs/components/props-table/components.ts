@@ -140,6 +140,7 @@ export const components = {
   SubNav: getProps("SubNav"),
   Switch: getProps("Switch"),
   Table: getProps("Table"),
+  TableActions: getProps("TableActions"),
   TableBody: getProps("TableBody"),
   TableCell: getProps("TableCell"),
   TableHeader: getProps("TableHeader"),

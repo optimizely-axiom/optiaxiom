@@ -1,13 +1,22 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+  EllipsisMenuButton,
+} from "@optiaxiom/react";
+import {
   Table,
+  TableActions,
   TableBody,
   TableCell,
   TableHeader,
   TableHeaderCell,
   TableRow,
 } from "@optiaxiom/react/unstable";
+import { userEvent } from "@storybook/test";
 
 export default {
   component: Table,
@@ -145,6 +154,48 @@ export const CustomWidth: Story = {
             <TableCell>{invoice.paymentStatus}</TableCell>
             <TableCell>{invoice.paymentMethod}</TableCell>
             <TableCell textAlign="end">{invoice.totalAmount}</TableCell>
+          </TableRow>
+        ))}
+      </TableBody>
+    </Table>
+  ),
+};
+
+export const Actions: Story = {
+  play: async ({ canvas }) => {
+    await userEvent.click(canvas.getAllByRole("button")[0]);
+  },
+  render: () => (
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHeaderCell>Invoice</TableHeaderCell>
+          <TableHeaderCell>Status</TableHeaderCell>
+          <TableHeaderCell>Method</TableHeaderCell>
+          <TableHeaderCell>Amount</TableHeaderCell>
+          <TableHeaderCell></TableHeaderCell>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        {invoices.map((invoice) => (
+          <TableRow key={invoice.invoice}>
+            <TableCell>{invoice.invoice}</TableCell>
+            <TableCell>{invoice.paymentStatus}</TableCell>
+            <TableCell>{invoice.paymentMethod}</TableCell>
+            <TableCell>{invoice.totalAmount}</TableCell>
+            <TableCell>
+              <TableActions>
+                <DropdownMenu>
+                  <DropdownMenuTrigger appearance="subtle" asChild size="sm">
+                    <EllipsisMenuButton />
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent>
+                    <DropdownMenuItem>Edit</DropdownMenuItem>
+                    <DropdownMenuItem intent="danger">Delete</DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </TableActions>
+            </TableCell>
           </TableRow>
         ))}
       </TableBody>
