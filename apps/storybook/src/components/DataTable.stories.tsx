@@ -263,6 +263,7 @@ export const EmptyRows: Story = {
     );
   },
 };
+
 export const LoadingState: Story = {
   ...Basic,
   args: {
