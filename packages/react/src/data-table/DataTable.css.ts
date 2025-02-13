@@ -1,7 +1,7 @@
 import { theme } from "@optiaxiom/globals";
 
 import * as styles from "../table-row/TableRow.css";
-import { createVar, recipe, style } from "../vanilla-extract";
+import { createVar, getVarName, recipe, style } from "../vanilla-extract";
 
 const row = styles.className;
 
@@ -145,7 +145,7 @@ export const cell = recipe({
       body: style({
         backgroundColor: theme.colors["bg.default"],
         backgroundImage: `linear-gradient(${bgHoverColor}, ${bgHoverColor})`,
-        transition: `${bgHoverColor.match(/^var\((.*)\)$/)![1]} 150ms ease`,
+        transition: `${getVarName(bgHoverColor)} 150ms ease`,
 
         "@media": {
           "(hover: hover)": {
