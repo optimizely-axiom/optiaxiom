@@ -145,7 +145,7 @@ export const cell = recipe({
       body: style({
         backgroundColor: theme.colors["bg.default"],
         backgroundImage: `linear-gradient(${bgHoverColor}, ${bgHoverColor})`,
-        transition: `${getVarName(bgHoverColor)} 150ms ease`,
+        transition: `${getVarName(bgHoverColor)} ${theme.duration.sm} ease`,
 
         "@media": {
           "(hover: hover)": {

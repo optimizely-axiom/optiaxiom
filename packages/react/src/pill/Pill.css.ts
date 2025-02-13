@@ -17,7 +17,7 @@ export const pill = recipe({
     style({
       backgroundColor: theme.colors["bg.tertiary"],
       position: "relative",
-      transitionDuration: "150ms",
+      transitionDuration: theme.duration.sm,
       transitionProperty: "background-color, color, transform",
       transitionTimingFunction: "ease",
       userSelect: "none",

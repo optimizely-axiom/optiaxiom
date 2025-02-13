@@ -1,3 +1,5 @@
+import { theme } from "@optiaxiom/globals";
+
 import { mapValues } from "../utils";
 import { recipe, type RecipeVariants, style } from "../vanilla-extract";
 
@@ -60,12 +62,6 @@ const generate = ({
   }),
 });
 
-export const transitionDuration = {
-  sm: 150,
-  md: 250,
-  lg: 400,
-} as const;
-
 export const transition = recipe({
   base: style({
     transformOrigin: "var(--radix-popper-transform-origin)",
@@ -74,8 +70,8 @@ export const transition = recipe({
   }),
 
   variants: {
-    duration: mapValues(transitionDuration, (duration) =>
-      style({ transitionDuration: `${duration}ms` }),
+    duration: mapValues(theme.duration, (transitionDuration) =>
+      style({ transitionDuration }),
     ),
 
     type: mapValues(presets, (fn) =>

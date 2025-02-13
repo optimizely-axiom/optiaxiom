@@ -8,11 +8,12 @@ describe("tokens", () => {
       count: Object.keys(tokens).length,
       keys: Object.keys(tokens),
     }).toEqual({
-      count: 9,
+      count: 10,
       keys: [
         "borderRadius",
         "boxShadow",
         "colors",
+        "duration",
         "fontFamily",
         "fontSize",
         "maxSize",
@@ -135,6 +136,16 @@ describe("tokens", () => {
         "fg.warning.strong",
         "fg.white",
       ],
+    });
+  });
+
+  it("should contain duration keys", () => {
+    expect({
+      count: Object.keys(tokens.duration).length,
+      keys: Object.keys(tokens.duration),
+    }).toEqual({
+      count: 3,
+      keys: ["sm", "md", "lg"],
     });
   });
 

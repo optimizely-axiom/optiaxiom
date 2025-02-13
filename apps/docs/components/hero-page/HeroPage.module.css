@@ -81,16 +81,16 @@ article:has(.brand) main {
 }
 
 .fade {
-  animation: fadeIn 650ms forwards;
+  animation: fadeIn calc(3 * var(--ax-duration-sm)) forwards;
   opacity: 0;
 }
 
 .fade ~ .fade {
-  animation-delay: 250ms;
+  animation-delay: var(--ax-duration-sm);
 }
 
 .fade ~ .fade ~ .fade {
-  animation-delay: 400ms;
+  animation-delay: calc(2 * var(--ax-duration-sm));
 }
 
 @keyframes fadeIn {

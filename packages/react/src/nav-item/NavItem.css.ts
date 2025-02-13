@@ -74,7 +74,7 @@ export const label = recipe({
       overflow: "hidden",
     },
     style({
-      transition: "opacity 250ms ease",
+      transition: `opacity ${theme.duration.md} ease`,
     }),
   ],
 
