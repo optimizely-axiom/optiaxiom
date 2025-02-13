@@ -1,10 +1,15 @@
-import { flexRender, type Table as ReactTable } from "@tanstack/react-table";
+import {
+  type CellContext,
+  flexRender,
+  type Table as ReactTable,
+} from "@tanstack/react-table";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
 import { forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
 import { DataTableHeaderCell } from "../data-table-header-cell";
 import { Pagination } from "../pagination";
+import { Skeleton } from "../skeleton";
 import { Table } from "../table";
 import { TableBody } from "../table-body";
 import { TableCell } from "../table-cell";
@@ -16,6 +21,10 @@ type DataTableProps = BoxProps<
   "div",
   {
     /**
+     * Indicates if the table is loading
+     */
+    loading: boolean;
+    /**
      * Pass the table instance returned from `useReactTable()` hook.
      */
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -24,7 +33,7 @@ type DataTableProps = BoxProps<
 >;
 
 export const DataTable = forwardRef<HTMLDivElement, DataTableProps>(
-  ({ table, ...props }, ref) => {
+  ({ loading, table, ...props }, ref) => {
     return (
       <Box
         alignItems="center"
@@ -83,7 +92,18 @@ export const DataTable = forwardRef<HTMLDivElement, DataTableProps>(
             ))}
           </TableHeader>
           <TableBody>
-            {table.getRowModel().rows.map((row) => (
+            {(loading
+              ? Array.from({ length: 10 }, (_, i) => ({
+                  getVisibleCells: () =>
+                    table.getVisibleFlatColumns().map((column) => ({
+                      column,
+                      getContext: () => ({}) as CellContext<unknown, unknown>,
+                      id: column.id,
+                    })),
+                  id: "loading" + i,
+                }))
+              : table.getRowModel().rows
+            ).map((row) => (
               <TableRow key={row.id}>
                 {row.getVisibleCells().map((cell) => {
                   return (
@@ -102,9 +122,13 @@ export const DataTable = forwardRef<HTMLDivElement, DataTableProps>(
                           : undefined,
                       })}
                     >
-                      {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext(),
+                      {loading ? (
+                        <Skeleton h="24" w="64"></Skeleton>
+                      ) : (
+                        flexRender(
+                          cell.column.columnDef.cell,
+                          cell.getContext(),
+                        )
                       )}
                     </TableCell>
                   );
