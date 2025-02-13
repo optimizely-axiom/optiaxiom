@@ -28,7 +28,7 @@ export const WithLabel: Story = {
     await userEvent.click(
       canvas.getByRole("button", { name: "Show date picker" }),
     );
-    await userEvent.click(screen.getByText("15"));
+    await userEvent.click(await screen.findByText("15"));
     const date = new Date();
     await expect(canvas.getByLabelText("Label")).toHaveValue(
       date.getFullYear() +
