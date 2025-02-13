@@ -263,6 +263,12 @@ export const EmptyRows: Story = {
     );
   },
 };
+export const LoadingState: Story = {
+  ...Basic,
+  args: {
+    loading: true,
+  },
+};
 
 export const Pagination: Story = {
   render: function Render(args) {

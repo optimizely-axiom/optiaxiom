@@ -23,7 +23,7 @@ type DataTableProps = BoxProps<
     /**
      * Indicates if the table is loading
      */
-    loading: boolean;
+    loading?: boolean;
     /**
      * Pass the table instance returned from `useReactTable()` hook.
      */
