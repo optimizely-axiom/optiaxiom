@@ -1,3 +1,5 @@
+import { theme } from "@optiaxiom/globals";
+
 import { recipe, style } from "../vanilla-extract";
 
 export const nav = recipe({
@@ -11,7 +13,7 @@ export const nav = recipe({
       pt: "16",
     },
     style({
-      transition: "width 250ms ease",
+      transition: `width ${theme.duration.md} ease`,
     }),
   ],
 });

@@ -55,10 +55,10 @@ export const root = recipe({
         [translateYVar]: "0",
       },
 
-      animationDuration: "300ms",
+      animationDuration: theme.duration.lg,
       animationTimingFunction: "ease",
       pointerEvents: "auto",
-      transitionDuration: "300ms",
+      transitionDuration: theme.duration.lg,
       transitionProperty: "opacity",
       transitionTimingFunction: "ease",
       translate: `${translateXVar} ${translateYVar}`,

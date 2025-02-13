@@ -11,7 +11,7 @@ export const icon = recipe({
     },
     style({
       clipPath: "inset(100% 0 0 0)",
-      transitionDelay: "125ms",
+      transitionDelay: `calc(0.8 * ${theme.duration.sm})`,
 
       selectors: {
         [`${rootStyles.className}:has(${inputStyles.className}:checked) &`]: {
@@ -35,7 +35,7 @@ export const control = recipe({
       borderColor: rootStyles.controlColorVar,
       borderWidth: "1px",
       placeContent: "center",
-      transitionDuration: "150ms",
+      transitionDuration: theme.duration.sm,
       transitionProperty: "border-width",
       transitionTimingFunction: "ease",
 

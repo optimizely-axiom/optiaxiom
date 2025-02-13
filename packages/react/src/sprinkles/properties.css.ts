@@ -74,7 +74,7 @@ const shadows = merge(theme.boxShadow, {
 });
 
 const transitions = {
-  transitionDuration: "150ms",
+  transitionDuration: theme.duration.sm,
   transitionTimingFunction: "ease",
 } as const;
 

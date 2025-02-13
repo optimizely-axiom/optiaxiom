@@ -1,6 +1,7 @@
 import { borderRadius } from "./borderRadius";
 import { boxShadow } from "./boxShadow";
 import { colors } from "./colors";
+import { duration } from "./duration";
 import { fontFamily } from "./fontFamily";
 import { fontSize } from "./fontSize";
 import { maxSize } from "./maxSize";
@@ -12,6 +13,7 @@ export const tokens = {
   borderRadius,
   boxShadow,
   colors,
+  duration,
   fontFamily,
   fontSize,
   maxSize,
