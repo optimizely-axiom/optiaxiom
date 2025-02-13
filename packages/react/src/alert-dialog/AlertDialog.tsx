@@ -1,5 +1,6 @@
 import * as RadixAlertDialog from "@radix-ui/react-alert-dialog";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
+import { useState } from "react";
 
 import { AlertDialogContextProvider } from "../alert-dialog-context";
 import {
@@ -35,6 +36,7 @@ export function AlertDialog({
     onChange: onOpenChange,
     prop: openProp,
   });
+  const [presence, setPresence] = useState<boolean>();
 
   const [nestedDialogCount, setNestedDialogCount] = useNestedDialogCount(
     "AlertDialog",
@@ -47,6 +49,8 @@ export function AlertDialog({
         <AlertDialogContextProvider
           nestedDialogCount={nestedDialogCount}
           open={open}
+          presence={presence}
+          setPresence={setPresence}
         >
           {children}
         </AlertDialogContextProvider>

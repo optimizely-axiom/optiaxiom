@@ -1,5 +1,6 @@
 import * as RadixPopover from "@radix-ui/react-popover";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
+import { useState } from "react";
 
 import { PopoverContextProvider } from "../popover-context";
 
@@ -35,10 +36,17 @@ export function Popover({
     onChange: onOpenChange,
     prop: openProp,
   });
+  const [presence, setPresence] = useState<boolean>();
 
   return (
     <RadixPopover.Root onOpenChange={setOpen} open={open} {...props}>
-      <PopoverContextProvider open={open}>{children}</PopoverContextProvider>
+      <PopoverContextProvider
+        open={open}
+        presence={presence}
+        setPresence={setPresence}
+      >
+        {children}
+      </PopoverContextProvider>
     </RadixPopover.Root>
   );
 }
