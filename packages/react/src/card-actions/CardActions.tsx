@@ -1,6 +1,7 @@
 import { forwardRef } from "react";
 
-import { Box, type BoxProps } from "../box";
+import { ActionsContent } from "../actions-content";
+import { type BoxProps } from "../box";
 import * as styles from "./CardActions.css";
 
 type CardActionsProps = BoxProps<"div">;
@@ -8,9 +9,9 @@ type CardActionsProps = BoxProps<"div">;
 export const CardActions = forwardRef<HTMLDivElement, CardActionsProps>(
   ({ children, className, ...props }, ref) => {
     return (
-      <Box ref={ref} {...styles.actions({}, className)} {...props}>
+      <ActionsContent ref={ref} {...styles.actions({}, className)} {...props}>
         {children}
-      </Box>
+      </ActionsContent>
     );
   },
 );
