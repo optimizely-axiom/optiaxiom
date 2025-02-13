@@ -1,8 +1,8 @@
 import * as RadixMenu from "@radix-ui/react-dropdown-menu";
 import { forwardRef } from "react";
 
-import { ListboxCheckboxItem } from "../listbox-checkbox-item";
 import { type ListboxItemProps } from "../listbox-item";
+import { ListboxSwitchItem } from "../listbox-switch-item";
 
 type DropdownMenuCheckboxItemProps = ListboxItemProps<
   typeof RadixMenu.CheckboxItem
@@ -14,7 +14,7 @@ export const DropdownMenuCheckboxItem = forwardRef<
 >(({ children, ...props }, ref) => {
   return (
     <RadixMenu.CheckboxItem asChild ref={ref} {...props}>
-      <ListboxCheckboxItem>{children}</ListboxCheckboxItem>
+      <ListboxSwitchItem>{children}</ListboxSwitchItem>
     </RadixMenu.CheckboxItem>
   );
 });

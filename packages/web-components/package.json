@@ -210,6 +210,7 @@
     "./ListboxRadioItem": "./dist/components/ListboxRadioItem.js",
     "./ListboxScrollArea": "./dist/components/ListboxScrollArea.js",
     "./ListboxSeparator": "./dist/components/ListboxSeparator.js",
+    "./ListboxSwitchItem": "./dist/components/ListboxSwitchItem.js",
     "./ModalLayer": "./dist/components/ModalLayer.js",
     "./Nav": "./dist/components/Nav.js",
     "./NavAccountItem": "./dist/components/NavAccountItem.js",
