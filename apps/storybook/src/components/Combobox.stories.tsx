@@ -18,7 +18,7 @@ import {
   ComboboxValue,
 } from "@optiaxiom/react/unstable";
 import { IconUsers } from "@tabler/icons-react";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 
 type Story<T = string> = StoryObj<typeof Combobox<T>>;
 
@@ -142,22 +142,17 @@ export const AsyncLoading: Story = {
     const [value, setValue] = useState("Bangla");
 
     const [isLoading, setIsLoading] = useState(true);
-    useEffect(() => {
-      setTimeout(() => {
-        setItems(languages);
-        setIsLoading(false);
-      }, 3000);
-    }, []);
-
+    const timerRef = useRef(0);
     const fetchData = (query: string) => {
       setIsLoading(true);
-      setTimeout(() => {
+      clearTimeout(timerRef.current);
+      timerRef.current = window.setTimeout(() => {
         const filteredLanguages = languages.filter((lang) =>
           lang.toLowerCase().includes(query.toLowerCase()),
         );
         setItems(filteredLanguages);
         setIsLoading(false);
-      }, 500);
+      }, 3000);
     };
 
     return (
