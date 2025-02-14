@@ -97,6 +97,19 @@ export const avatar = recipe({
           },
         }),
       ],
+      lg: [
+        {
+          size: "lg",
+        },
+        style({
+          fontSize: theme.fontSize["lg"].fontSize,
+          selectors: {
+            [`${styles.className} &:not(:first-child)`]: {
+              marginLeft: "-9px",
+            },
+          },
+        }),
+      ],
       xl: [
         {
           size: "xl",
