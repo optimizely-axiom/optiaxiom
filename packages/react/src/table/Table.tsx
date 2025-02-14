@@ -3,13 +3,13 @@ import { forwardRef } from "react";
 import { Box, type BoxProps } from "../box";
 import * as styles from "./Table.css";
 
-type TableProps = BoxProps<"table", styles.TableVariants>;
+type TableProps = BoxProps<"div", styles.TableVariants>;
 
-export const Table = forwardRef<HTMLTableElement, TableProps>(
+export const Table = forwardRef<HTMLDivElement, TableProps>(
   ({ children, className, layout = "auto", ...props }, ref) => (
     <Box {...styles.wrapper({}, className)} ref={ref} {...props}>
       <Box asChild {...styles.table({ layout })}>
-        <table ref={ref}>{children}</table>
+        <table>{children}</table>
       </Box>
     </Box>
   ),
