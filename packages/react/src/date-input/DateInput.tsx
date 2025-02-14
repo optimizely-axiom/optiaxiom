@@ -17,7 +17,7 @@ import { PopoverAnchor } from "../popover-anchor";
 import { PopoverContent } from "../popover-content";
 import { PopoverTrigger } from "../popover-trigger";
 import { forceValueChange } from "../utils";
-import { useCalendarSupported } from "./useCalendarSupported";
+import * as styles from "./DateInput.css";
 import { format, parse } from "./utils";
 
 type DateInputProps = ComponentPropsWithoutRef<typeof Input>;
@@ -37,23 +37,6 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
     const maxDate = max ? new Date(max) : undefined;
     const minDate = min ? new Date(min) : undefined;
 
-    const supported = useCalendarSupported();
-    if (supported === null) {
-      return null;
-    } else if (!supported) {
-      return (
-        <Input
-          disabled={disabled}
-          max={max}
-          min={min}
-          onChange={onChange}
-          ref={ref}
-          type="date"
-          {...props}
-        />
-      );
-    }
-
     return (
       <Popover onOpenChange={setOpen} open={!disabled && open}>
         <PopoverAnchor>
@@ -65,6 +48,7 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
                   aria-label="Show date picker"
                   icon={<IconCalendar />}
                   size="sm"
+                  {...styles.picker()}
                 />
               )
             }
@@ -79,7 +63,10 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
               e.preventDefault();
             }}
             onKeyDown={(e) => {
-              if (e.key === " ") {
+              if (
+                e.key === " " &&
+                CSS.supports("selector(::-webkit-datetime-edit)")
+              ) {
                 e.preventDefault();
                 setOpen(true);
               }
