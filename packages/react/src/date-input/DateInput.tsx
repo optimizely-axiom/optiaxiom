@@ -46,6 +46,7 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
                 <PopoverTrigger
                   appearance="subtle"
                   aria-label="Show date picker"
+                  hasCustomAnchor
                   icon={<IconCalendar />}
                   size="sm"
                   {...styles.picker()}
