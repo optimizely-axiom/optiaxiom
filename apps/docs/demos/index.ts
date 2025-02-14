@@ -65,7 +65,27 @@ export const demos = {
   "combobox/loading-usage": import("./combobox/loading-usage/App"),
   "combobox/usage": import("./combobox/usage/App"),
   "combobox/virtualized-usage": import("./combobox/virtualized-usage/App"),
+  "data-table/loading-usage": import("./data-table/loading-usage/App"),
+  "data-table/pagination-client-usage": import(
+    "./data-table/pagination-client-usage/App"
+  ),
+  "data-table/pagination-server-usage": import(
+    "./data-table/pagination-server-usage/App"
+  ),
+  "data-table/sorting-client-usage": import(
+    "./data-table/sorting-client-usage/App"
+  ),
+  "data-table/sorting-server-usage": import(
+    "./data-table/sorting-server-usage/App"
+  ),
+  "data-table/sticky-column-usage": import(
+    "./data-table/sticky-column-usage/App"
+  ),
+  "data-table/sticky-header-usage": import(
+    "./data-table/sticky-header-usage/App"
+  ),
   "data-table/usage": import("./data-table/usage/App"),
+  "data-table/virtualized-usage": import("./data-table/virtualized-usage/App"),
   "date-input/usage": import("./date-input/usage/App"),
   "dialog/alert-dialog-usage": import("./dialog/alert-dialog-usage/App"),
   "dialog/controlled-usage": import("./dialog/controlled-usage/App"),

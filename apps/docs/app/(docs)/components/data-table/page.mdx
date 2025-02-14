@@ -1,6 +1,7 @@
 import { Cards } from "@/components/cards";
 import { Demo } from "@/components/demo";
 import { PropsTable } from "@/components/props-table";
+import { Alert } from "@optiaxiom/react";
 
 # DataTable
 
@@ -18,7 +19,75 @@ npm install @tanstack/react-table
 
 ### Usage
 
+Use the `table` prop to pass a table instance returned from `useReactTable()` hook. At minimum make sure to include `columns`, `data`, and `getCoreRowModel` when using the hook.
+
 <Demo component="data-table/usage" />
+
+### Vertical scrolling
+
+Headers in `DataTable` are sticky by default. Set a height on the component to allow scrolling vertically when a large number of rows are present.
+
+<Demo component="data-table/sticky-header-usage" />
+
+### Column pinning
+
+Follow the [column pinning guide](https://tanstack.com/table/v8/docs/guide/column-pinning) and use the `columnPinning` option to pin columns either to the left or right side of the table.
+
+<Demo component="data-table/sticky-column-usage" />
+
+### Pagination
+
+`DataTable` supports both client-side and server-side pagination. Follow the [pagination guide](https://tanstack.com/table/v8/docs/guide/pagination) to learn how to implement pagination with TanStack Table.
+
+#### Client side
+
+Simply provide the `getPaginationRowModel` and `pagination` options to use client-side pagination.
+
+<Demo component="data-table/pagination-client-usage" />
+
+#### Server side
+
+To implement manual server-side pagination we can use `manualPagination` and `rowCount`. Then combine it with `onPaginationChange` and `state.pagination` to control pagination and react to changes.
+
+<Demo component="data-table/pagination-server-usage" />
+
+### Loading state
+
+Set the `loading` prop to `true` to show a loading skeleton while your table data is loading.
+
+<Demo component="data-table/loading-usage" />
+
+### Sorting
+
+`DataTable` supports both client-side and server-side sorting. Follow the [sorting guide](https://tanstack.com/table/v8/docs/guide/sorting) to learn how to implement sorting with TanStack Table.
+
+#### Client side
+
+Simply provide `getSortedRowModel` on table and `enableSorting` on each column you'd like to be sortable to use client-side sorting.
+
+<Alert intent="warning" mt="16">
+  Hover over and click the table headers to sort by columns:
+</Alert>
+
+<Demo component="data-table/sorting-client-usage" />
+
+#### Server side
+
+To implement manual server-side sorting we can use `manualSorting` and `enableSorting`. Then combine it with `onSortingChange` and `state.sorting` to control sorting and react to changes.
+
+<Alert intent="warning" mt="16">
+  Hover over and click the table headers to sort by columns:
+</Alert>
+
+<Demo component="data-table/sorting-server-usage" />
+
+### Virtualized
+
+Table automatically uses virtualized rendering when rows and columns cross a certain threshold to improve rendering performance.
+
+Columns will be virtualized when there are more than 20 columns in a table and rows will be virtualized when there are more than 20 rows rendered or if columns are also being virtualized.
+
+<Demo component="data-table/virtualized-usage" />
 
 ## Props
 
