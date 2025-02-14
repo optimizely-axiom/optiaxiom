@@ -11,7 +11,7 @@ export const cell = recipe({
       p: "16",
     },
     style({
-      verticalAlign: "middle",
+      verticalAlign: "top",
       wordBreak: "break-word",
 
       selectors: {
