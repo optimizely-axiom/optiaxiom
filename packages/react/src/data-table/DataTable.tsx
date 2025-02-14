@@ -40,6 +40,7 @@ type DataTableProps = BoxProps<
   }
 >;
 
+const COL_VIRTUALIZATION_THRESHOLD = 20;
 const ROW_VIRTUALIZATION_THRESHOLD = 20;
 
 export const DataTable = forwardRef<HTMLDivElement, DataTableProps>(
@@ -47,9 +48,23 @@ export const DataTable = forwardRef<HTMLDivElement, DataTableProps>(
     const tableRef = useRef<HTMLDivElement>(null);
 
     const { rows } = table.getRowModel();
+    const centerColumns = table.getCenterVisibleLeafColumns();
+
+    const columnVirtualizer = useVirtualizer({
+      count: centerColumns.length,
+      enabled: centerColumns.length > COL_VIRTUALIZATION_THRESHOLD,
+      estimateSize: (index) => centerColumns[index].getSize(),
+      getScrollElement: () => tableRef.current,
+      horizontal: true,
+    });
+    const virtualColumns = columnVirtualizer.getVirtualItems();
+    const virtualColumnsOffset = virtualColumns[0]?.start ?? 0;
+
     const rowVirtualizer = useVirtualizer({
       count: rows.length,
-      enabled: rows.length > ROW_VIRTUALIZATION_THRESHOLD,
+      enabled:
+        centerColumns.length > COL_VIRTUALIZATION_THRESHOLD ||
+        rows.length > ROW_VIRTUALIZATION_THRESHOLD,
       estimateSize: () => estimatedRowHeight,
       getScrollElement: () => tableRef.current,
     });
@@ -112,6 +127,7 @@ export const DataTable = forwardRef<HTMLDivElement, DataTableProps>(
               </TableRow>
             ))}
           </TableHeader>
+
           <TableBody
             style={
               rowVirtualizer.options.enabled
@@ -167,7 +183,18 @@ export const DataTable = forwardRef<HTMLDivElement, DataTableProps>(
                   </TableCell>
                 ))}
 
-                {row.getCenterVisibleCells().map((cell) => (
+                {columnVirtualizer.options.enabled &&
+                  virtualColumnsOffset > 0 && (
+                    <TableCell style={{ width: virtualColumnsOffset }} />
+                  )}
+
+                {(columnVirtualizer.options.enabled
+                  ? virtualColumns.map((virtualCell) => {
+                      const cells = row.getCenterVisibleCells();
+                      return cells[virtualCell.index];
+                    })
+                  : row.getCenterVisibleCells()
+                ).map((cell) => (
                   <TableCell
                     key={cell.id}
                     style={{
