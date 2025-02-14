@@ -3,8 +3,9 @@ import {
   flexRender,
   type Table as ReactTable,
 } from "@tanstack/react-table";
+import { useVirtualizer } from "@tanstack/react-virtual";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
-import { forwardRef } from "react";
+import { forwardRef, useRef } from "react";
 
 import type { Sprinkles } from "../sprinkles";
 
@@ -23,6 +24,10 @@ type DataTableProps = BoxProps<
   "div",
   {
     /**
+     * The estimated height of rows in pixels when virtualization is enabled.
+     */
+    estimatedRowHeight?: number;
+    /**
      * Indicates if the table is loading
      */
     loading?: boolean;
@@ -34,8 +39,20 @@ type DataTableProps = BoxProps<
   }
 >;
 
+const ROW_VIRTUALIZATION_THRESHOLD = 20;
+
 export const DataTable = forwardRef<HTMLDivElement, DataTableProps>(
-  ({ loading, table, ...props }, ref) => {
+  ({ estimatedRowHeight = 52, loading, table, ...props }, ref) => {
+    const tableRef = useRef<HTMLDivElement>(null);
+
+    const { rows } = table.getRowModel();
+    const rowVirtualizer = useVirtualizer({
+      count: rows.length,
+      enabled: rows.length > ROW_VIRTUALIZATION_THRESHOLD,
+      estimateSize: () => estimatedRowHeight,
+      getScrollElement: () => tableRef.current,
+    });
+
     return (
       <Box
         alignItems="center"
@@ -47,6 +64,7 @@ export const DataTable = forwardRef<HTMLDivElement, DataTableProps>(
       >
         <Table
           layout="fixed"
+          ref={tableRef}
           style={assignInlineVars({
             [styles.leftTotalSizeVar]: `${table.getLeftTotalSize()}px`,
             [styles.rightTotalSizeVar]: `${table.getRightTotalSize()}px`,
@@ -93,25 +111,55 @@ export const DataTable = forwardRef<HTMLDivElement, DataTableProps>(
               </TableRow>
             ))}
           </TableHeader>
-          <TableBody>
+          <TableBody
+            style={
+              rowVirtualizer.options.enabled
+                ? { height: `${rowVirtualizer.getTotalSize()}px` }
+                : undefined
+            }
+          >
             {(loading
               ? Array.from({ length: 10 }, (_, rowIndex) => ({
-                  getVisibleCells: () =>
-                    table
-                      .getVisibleFlatColumns()
-                      .map((column, columnIndex) => ({
-                        column,
-                        getContext: () => ({}) as CellContext<unknown, unknown>,
-                        id:
-                          column.id +
-                          "-" +
-                          ["1/2", "full", "3/4"][(rowIndex + columnIndex) % 3],
-                      })),
-                  id: "loading" + rowIndex,
+                  row: {
+                    getVisibleCells: () =>
+                      table
+                        .getVisibleFlatColumns()
+                        .map((column, columnIndex) => ({
+                          column,
+                          getContext: () =>
+                            ({}) as CellContext<unknown, unknown>,
+                          id:
+                            column.id +
+                            "-" +
+                            ["1/2", "full", "3/4"][
+                              (rowIndex + columnIndex) % 3
+                            ],
+                        })),
+                    id: "loading" + rowIndex,
+                  },
+                  virtualRow: undefined,
                 }))
-              : table.getRowModel().rows
-            ).map((row) => (
-              <TableRow key={row.id}>
+              : rowVirtualizer.options.enabled
+                ? rowVirtualizer.getVirtualItems().map((virtualRow) => ({
+                    row: rows[virtualRow.index],
+                    virtualRow,
+                  }))
+                : rows.map((row) => ({ row, virtualRow: undefined }))
+            ).map(({ row, virtualRow }) => (
+              <TableRow
+                data-index={virtualRow?.index}
+                key={row.id}
+                ref={virtualRow ? rowVirtualizer.measureElement : undefined}
+                style={
+                  virtualRow
+                    ? {
+                        minHeight: virtualRow.size,
+                        position: "absolute",
+                        transform: `translateY(${virtualRow.start}px)`,
+                      }
+                    : undefined
+                }
+              >
                 {row.getVisibleCells().map((cell) => {
                   return (
                     <TableCell
