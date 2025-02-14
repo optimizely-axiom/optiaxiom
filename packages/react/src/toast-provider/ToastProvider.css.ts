@@ -39,14 +39,17 @@ export const viewport = recipe({
       }),
       top: style({
         left: "50%",
+        marginTop: "40px",
         top: 0,
         transform: "translateX(-50%)",
       }),
       "top-left": style({
         left: 0,
+        marginTop: "40px",
         top: 0,
       }),
       "top-right": style({
+        marginTop: "40px",
         right: 0,
         top: 0,
       }),

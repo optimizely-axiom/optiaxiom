@@ -48,7 +48,7 @@ export const ToastProvider = forwardRef<HTMLOListElement, ToastProps>(
       container,
       duration,
       label,
-      position = "bottom-right",
+      position = "top-right",
       swipeDirection,
       swipeThreshold,
       toaster: toasterProp = toaster,
