@@ -1,5 +1,6 @@
 import {
   type CellContext,
+  type Column,
   flexRender,
   type Table as ReactTable,
 } from "@tanstack/react-table";
@@ -120,23 +121,7 @@ export const DataTable = forwardRef<HTMLDivElement, DataTableProps>(
           >
             {(loading
               ? Array.from({ length: 10 }, (_, rowIndex) => ({
-                  row: {
-                    getVisibleCells: () =>
-                      table
-                        .getVisibleFlatColumns()
-                        .map((column, columnIndex) => ({
-                          column,
-                          getContext: () =>
-                            ({}) as CellContext<unknown, unknown>,
-                          id:
-                            column.id +
-                            "-" +
-                            ["1/2", "full", "3/4"][
-                              (rowIndex + columnIndex) % 3
-                            ],
-                        })),
-                    id: "loading" + rowIndex,
-                  },
+                  row: fakeRow(table, rowIndex),
                   virtualRow: undefined,
                 }))
               : rowVirtualizer.options.enabled
@@ -160,34 +145,67 @@ export const DataTable = forwardRef<HTMLDivElement, DataTableProps>(
                     : undefined
                 }
               >
-                {row.getVisibleCells().map((cell) => {
-                  return (
-                    <TableCell
-                      key={cell.id}
-                      style={{
-                        ...assignInlineVars({
-                          [styles.cellOffsetVar]: `${cell.column.getStart(cell.column.getIsPinned() || "left")}px`,
-                          [styles.cellSizeVar]: `${cell.column.getSize()}px`,
-                        }),
-                      }}
-                      {...styles.cell({
-                        pinned: cell.column.getIsPinned() || undefined,
-                        pinnedType: cell.column.getIsPinned()
-                          ? "body"
-                          : undefined,
-                      })}
-                    >
-                      {loading ? (
-                        <Skeleton w={cell.id.split("-")[1] as Sprinkles["w"]} />
-                      ) : (
-                        flexRender(
-                          cell.column.columnDef.cell,
-                          cell.getContext(),
-                        )
-                      )}
-                    </TableCell>
-                  );
-                })}
+                {row.getLeftVisibleCells().map((cell) => (
+                  <TableCell
+                    key={cell.id}
+                    style={{
+                      ...assignInlineVars({
+                        [styles.cellOffsetVar]: `${cell.column.getStart("left")}px`,
+                        [styles.cellSizeVar]: `${cell.column.getSize()}px`,
+                      }),
+                    }}
+                    {...styles.cell({
+                      pinned: "left",
+                      pinnedType: "body",
+                    })}
+                  >
+                    {loading ? (
+                      <Skeleton w={fakeCellWidth(cell.id)} />
+                    ) : (
+                      flexRender(cell.column.columnDef.cell, cell.getContext())
+                    )}
+                  </TableCell>
+                ))}
+
+                {row.getCenterVisibleCells().map((cell) => (
+                  <TableCell
+                    key={cell.id}
+                    style={{
+                      ...assignInlineVars({
+                        [styles.cellSizeVar]: `${cell.column.getSize()}px`,
+                      }),
+                    }}
+                    {...styles.cell()}
+                  >
+                    {loading ? (
+                      <Skeleton w={fakeCellWidth(cell.id)} />
+                    ) : (
+                      flexRender(cell.column.columnDef.cell, cell.getContext())
+                    )}
+                  </TableCell>
+                ))}
+
+                {row.getRightVisibleCells().map((cell) => (
+                  <TableCell
+                    key={cell.id}
+                    style={{
+                      ...assignInlineVars({
+                        [styles.cellOffsetVar]: `${cell.column.getStart("right")}px`,
+                        [styles.cellSizeVar]: `${cell.column.getSize()}px`,
+                      }),
+                    }}
+                    {...styles.cell({
+                      pinned: "right",
+                      pinnedType: "body",
+                    })}
+                  >
+                    {loading ? (
+                      <Skeleton w={fakeCellWidth(cell.id)} />
+                    ) : (
+                      flexRender(cell.column.columnDef.cell, cell.getContext())
+                    )}
+                  </TableCell>
+                ))}
               </TableRow>
             ))}
           </TableBody>
@@ -208,3 +226,30 @@ export const DataTable = forwardRef<HTMLDivElement, DataTableProps>(
 );
 
 DataTable.displayName = "@optiaxiom/react/DataTable";
+
+const fakeCellsFactory =
+  (columns: Column<unknown, unknown>[], rowIndex: number) => () =>
+    columns.map((column, columnIndex) => ({
+      column,
+      getContext: () => ({}) as CellContext<unknown, unknown>,
+      id:
+        column.id + "-" + ["1/2", "full", "3/4"][(rowIndex + columnIndex) % 3],
+    }));
+
+const fakeCellWidth = (id: string) => id.split("-")[1] as Sprinkles["w"];
+
+const fakeRow = (table: ReactTable<unknown>, rowIndex: number) => ({
+  getCenterVisibleCells: fakeCellsFactory(
+    table.getCenterVisibleLeafColumns(),
+    rowIndex,
+  ),
+  getLeftVisibleCells: fakeCellsFactory(
+    table.getLeftVisibleLeafColumns(),
+    rowIndex,
+  ),
+  getRightVisibleCells: fakeCellsFactory(
+    table.getRightVisibleLeafColumns(),
+    rowIndex,
+  ),
+  id: "loading" + rowIndex,
+});
