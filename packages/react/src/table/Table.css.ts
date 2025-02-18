@@ -8,11 +8,6 @@ export const table = recipe({
     },
     style({
       captionSide: "bottom",
-      /**
-       * Setting the table height to 1px allows cell content to stretch and fill
-       * up the whole cell height.
-       */
-      height: "1px",
     }),
   ],
 
@@ -23,16 +18,20 @@ export const table = recipe({
           w: "full",
         },
         style({
-          tableLayout: "auto",
+          /**
+           * Setting the table height to 1px allows cell content to stretch and fill
+           * up the whole cell height.
+           */
+          height: "1px",
         }),
       ],
       fixed: [
         {
+          display: "grid",
           w: "fit",
         },
         style({
           isolation: "isolate",
-          tableLayout: "fixed",
         }),
       ],
     },

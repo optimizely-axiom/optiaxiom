@@ -98,7 +98,7 @@ export const DataTable = forwardRef<HTMLDivElement, DataTableProps>(
         >
           <TableHeader {...styles.header()}>
             {table.getHeaderGroups().map((headerGroup) => (
-              <TableRow key={headerGroup.id}>
+              <TableRow display="flex" key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
                   <DataTableHeaderCell
                     header={header}
@@ -129,6 +129,7 @@ export const DataTable = forwardRef<HTMLDivElement, DataTableProps>(
           </TableHeader>
 
           <TableBody
+            display="grid"
             style={
               rowVirtualizer.options.enabled
                 ? { height: `${rowVirtualizer.getTotalSize()}px` }
@@ -149,6 +150,7 @@ export const DataTable = forwardRef<HTMLDivElement, DataTableProps>(
             ).map(({ row, virtualRow }) => (
               <TableRow
                 data-index={virtualRow?.index}
+                display="flex"
                 key={row.id}
                 ref={virtualRow ? rowVirtualizer.measureElement : undefined}
                 style={
