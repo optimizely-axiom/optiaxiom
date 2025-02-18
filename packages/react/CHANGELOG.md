@@ -1,5 +1,32 @@
 # @optiaxiom/react
 
+## 0.13.1
+
+### Patch Changes
+
+- 9a2f375: allow combobox inputValue to be controlled
+- 9b93961: remove Autocomplete component
+- ca1124b: add DataTable column virtualization
+- 2927b46: fix bg transition on pinned cell hover
+- f42c67f: prevent interactions in dropdown while closing
+- 4880293: remove duplicate size sprinkle
+- f4ce497: tokenize transition durations
+- 9e76f6f: set default toast position to top right corner
+- 41338b0: add loading spinner to combobox scroll area
+- 76f6a1b: reset combobox inputValue on open
+- 0fe0c2a: add loading state for DataTable
+- 5f6d146: use switch instead of checkbox in dropdown checkbox item
+- e33bfa0: Allow clearing values in DateInput component
+- a75c7da: add TableActions component for row actions
+- e8ef65f: fix z-index containment within DataTable
+- a081773: remove pointer events from toast viewport
+- e00b0c7: fix ref for downshift items
+- 863b3c0: add DataTable row virtualization
+- 000d625: add combobox virtualized component
+- 48405c3: add back lg size avatar
+- Updated dependencies [f4ce497]
+  - @optiaxiom/globals@0.7.4
+
 ## 0.13.0
 
 ### Minor Changes

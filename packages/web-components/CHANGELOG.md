@@ -1,5 +1,14 @@
 # @optiaxiom/web-components
 
+## 0.8.4
+
+### Patch Changes
+
+- 4880293: remove duplicate size sprinkle
+- 9e76f6f: set default toast position to top right corner
+- 5f6d146: use switch instead of checkbox in dropdown checkbox item
+- 48405c3: add back lg size avatar
+
 ## 0.8.3
 
 ### Patch Changes
