@@ -18,9 +18,9 @@ export const content = recipe({
       display: "flex",
       fontSize: "sm",
       fontWeight: "400",
-      h: "full",
       px: "16",
       py: "12",
+      size: "full",
     },
     style({
       boxShadow: `0 1px 0 ${theme.colors["border.tertiary"]}`,

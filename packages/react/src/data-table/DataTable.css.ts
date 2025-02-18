@@ -114,6 +114,9 @@ export const table = recipe({
 
 export const header = recipe({
   base: [
+    {
+      display: "grid",
+    },
     style({
       position: "sticky",
       top: 0,
@@ -124,6 +127,9 @@ export const header = recipe({
 
 export const cell = recipe({
   base: [
+    {
+      display: "flex",
+    },
     style({
       width: cellSizeVar,
     }),
