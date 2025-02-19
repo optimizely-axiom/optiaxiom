@@ -45,7 +45,11 @@ export function AlertDialog({
 
   return (
     <NestedDialogContextProvider onCountChange={setNestedDialogCount}>
-      <RadixAlertDialog.Root onOpenChange={setOpen} open={open} {...props}>
+      <RadixAlertDialog.Root
+        onOpenChange={setOpen}
+        open={open || presence}
+        {...props}
+      >
         <AlertDialogContextProvider
           nestedDialogCount={nestedDialogCount}
           open={open}

@@ -25,7 +25,7 @@ export const content = recipe({
       },
 
       selectors: {
-        [`${rootStyles.className}:not(:has(${rootStyles.className})):focus-within &, &:has(:checked, [data-expanded], [data-state=open])`]:
+        [`${rootStyles.className}:not(:has(${rootStyles.className})):focus-within &, &:has(:checked, [data-state=open])`]:
           {
             opacity: "1",
             transition: "none",
