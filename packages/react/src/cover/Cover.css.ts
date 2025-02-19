@@ -1,4 +1,4 @@
-import { theme as coverStyles } from "@optiaxiom/globals";
+import { theme } from "@optiaxiom/globals";
 import { style as veStyle } from "@vanilla-extract/css";
 
 import { layers } from "../layers";
@@ -42,7 +42,7 @@ export const cover = recipe({
               position: "absolute",
             },
             "&:focus-visible::before": {
-              outline: `2px auto ${coverStyles.colors["border.focus"]}`,
+              outline: `2px auto ${theme.colors["border.focus"]}`,
               outlineOffset: "1px",
             },
           },
