@@ -95,3 +95,9 @@ export const Footer: Story = {
     withFooter: true,
   },
 };
+
+export const NonModal: Story = {
+  args: {
+    modal: false,
+  },
+};
