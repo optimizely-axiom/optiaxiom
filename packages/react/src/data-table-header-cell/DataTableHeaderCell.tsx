@@ -2,9 +2,10 @@ import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { type Header } from "@tanstack/react-table";
 import { forwardRef } from "react";
 
+import { ActionsContent } from "../actions-content";
+import { ActionsRoot } from "../actions-root";
 import { type BoxProps } from "../box";
 import { Cover } from "../cover";
-import { Grid } from "../grid";
 import { Icon } from "../icon";
 import { IconSort } from "../icons/IconSort";
 import { IconSortDown } from "../icons/IconSortDown";
@@ -41,35 +42,35 @@ export const DataTableHeaderCell = forwardRef<
       {...props}
     >
       {header.column.columnDef.enableSorting ? (
-        <Cover asChild inset overlay {...styles.button()}>
-          <button onClick={() => header.column.toggleSorting()}>
-            {children}
+        <ActionsRoot asChild>
+          <Cover asChild inset overlay {...styles.button()}>
+            <button onClick={() => header.column.toggleSorting()}>
+              {children}
 
-            {sortDir && (
-              <VisuallyHidden>
-                sorted {sortDir === "asc" ? "ascending" : "descending"}
-              </VisuallyHidden>
-            )}
+              {sortDir && (
+                <VisuallyHidden>
+                  sorted {sortDir === "asc" ? "ascending" : "descending"}
+                </VisuallyHidden>
+              )}
 
-            <Grid placeItems="center">
-              <Icon
-                asChild
-                {...styles.icon({
-                  active: sortDir === false,
-                  muted: !sortDir,
-                })}
+              <ActionsContent
+                display="grid"
+                placeItems="center"
+                visible={!!sortDir}
               >
-                <IconSort />
-              </Icon>
-              <Icon asChild {...styles.icon({ active: sortDir === "asc" })}>
-                <IconSortUp />
-              </Icon>
-              <Icon asChild {...styles.icon({ active: sortDir === "desc" })}>
-                <IconSortDown />
-              </Icon>
-            </Grid>
-          </button>
-        </Cover>
+                <Icon asChild {...styles.icon({ active: sortDir === false })}>
+                  <IconSort />
+                </Icon>
+                <Icon asChild {...styles.icon({ active: sortDir === "asc" })}>
+                  <IconSortUp />
+                </Icon>
+                <Icon asChild {...styles.icon({ active: sortDir === "desc" })}>
+                  <IconSortDown />
+                </Icon>
+              </ActionsContent>
+            </button>
+          </Cover>
+        </ActionsRoot>
       ) : (
         children
       )}

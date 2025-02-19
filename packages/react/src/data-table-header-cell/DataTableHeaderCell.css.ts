@@ -2,8 +2,6 @@ import { theme } from "@optiaxiom/globals";
 
 import { recipe, style } from "../vanilla-extract";
 
-const marker = style({});
-
 export const button = recipe({
   base: [
     {
@@ -16,7 +14,6 @@ export const button = recipe({
       transition: "colors",
       w: "full",
     },
-    marker,
     style({
       color: theme.colors["fg.tertiary"],
       textDecoration: "none",
@@ -61,22 +58,6 @@ export const icon = recipe({
       }),
       true: style({
         opacity: "1",
-      }),
-    },
-    muted: {
-      false: {},
-      true: style({
-        opacity: "0",
-
-        "@media": {
-          "(hover: hover)": {
-            selectors: {
-              [`${marker}:is(:focus-visible, :hover) &`]: {
-                opacity: "1",
-              },
-            },
-          },
-        },
       }),
     },
   },
