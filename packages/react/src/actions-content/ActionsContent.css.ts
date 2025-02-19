@@ -15,16 +15,17 @@ export const content = recipe({
       "@media": {
         "(hover: hover)": {
           selectors: {
-            [`${rootStyles.className}:hover &`]: {
-              opacity: "1",
-              transition: "none",
-            },
+            [`${rootStyles.className}:not(:has(${rootStyles.className})):hover &`]:
+              {
+                opacity: "1",
+                transition: "none",
+              },
           },
         },
       },
 
       selectors: {
-        [`${rootStyles.className}:focus-within &, &:has(:checked, [data-expanded], [data-state=open])`]:
+        [`${rootStyles.className}:not(:has(${rootStyles.className})):focus-within &, &:has(:checked, [data-expanded], [data-state=open])`]:
           {
             opacity: "1",
             transition: "none",
