@@ -1,5 +1,13 @@
 # @optiaxiom/react
 
+## 0.13.2
+
+### Patch Changes
+
+- fc1836f: use before pseudo element in cover component
+- 9568546: simplify drawer components
+- e1eee45: refactor presence of popovers
+
 ## 0.13.1
 
 ### Patch Changes

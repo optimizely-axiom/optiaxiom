@@ -1,5 +1,11 @@
 # @optiaxiom/web-components
 
+## 0.8.5
+
+### Patch Changes
+
+- e1eee45: refactor presence of popovers
+
 ## 0.8.4
 
 ### Patch Changes
