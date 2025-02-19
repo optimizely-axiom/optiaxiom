@@ -1,7 +1,7 @@
 import { theme } from "@optiaxiom/globals";
 
 import * as rootStyles from "../actions-root/ActionsRoot.css";
-import { recipe, style } from "../vanilla-extract";
+import { recipe, type RecipeVariants, style } from "../vanilla-extract";
 
 export const content = recipe({
   base: [
@@ -10,7 +10,6 @@ export const content = recipe({
       justifyContent: "space-between",
     },
     style({
-      opacity: "0",
       transition: `opacity ${theme.duration.sm} ease`,
 
       "@media": {
@@ -33,4 +32,17 @@ export const content = recipe({
       },
     }),
   ],
+
+  variants: {
+    visible: {
+      false: style({
+        opacity: "0",
+      }),
+      true: style({
+        opacity: "1",
+      }),
+    },
+  },
 });
+
+export type ContentVariants = RecipeVariants<typeof content>;
