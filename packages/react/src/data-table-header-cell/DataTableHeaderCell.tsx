@@ -43,7 +43,7 @@ export const DataTableHeaderCell = forwardRef<
     >
       {header.column.columnDef.enableSorting ? (
         <ActionsRoot asChild>
-          <Cover asChild inset overlay {...styles.button()}>
+          <Cover asChild inset {...styles.button()}>
             <button onClick={() => header.column.toggleSorting()}>
               {children}
 

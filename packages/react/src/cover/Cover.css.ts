@@ -15,24 +15,11 @@ const offsetVar = createVar();
 
 export const cover = recipe({
   variants: {
-    inset: {
-      false: style({
-        vars: {
-          [offsetVar]: "1px",
-        },
-      }),
-      true: style({
-        vars: {
-          [offsetVar]: "-2px",
-        },
-      }),
-    },
     /**
      * Whether to expand and fill up the whole area of the parent which has `position: relative`.
      */
-    overlay: {
-      false: {},
-      true: [
+    disabled: {
+      false: [
         veStyle({
           "@layer": {
             [layers.axiom]: {
@@ -61,6 +48,19 @@ export const cover = recipe({
           },
         }),
       ],
+      true: {},
+    },
+    inset: {
+      false: style({
+        vars: {
+          [offsetVar]: "1px",
+        },
+      }),
+      true: style({
+        vars: {
+          [offsetVar]: "-2px",
+        },
+      }),
     },
   },
 });

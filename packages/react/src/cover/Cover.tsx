@@ -6,10 +6,10 @@ import * as styles from "./Cover.css";
 type CoverProps = BoxProps<"div", styles.CoverVariants>;
 
 export const Cover = forwardRef<HTMLDivElement, CoverProps>(
-  ({ className, inset = false, overlay, ...props }, ref) => (
+  ({ className, disabled, inset = false, ...props }, ref) => (
     <Box
       ref={ref}
-      {...styles.cover({ inset, overlay }, className)}
+      {...styles.cover({ disabled, inset }, className)}
       {...props}
     />
   ),
