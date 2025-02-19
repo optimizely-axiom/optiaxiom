@@ -32,6 +32,7 @@ export default {
     actions,
     content,
     description,
+    position,
     withFooter,
     ...args
   }) {
@@ -39,7 +40,7 @@ export default {
       <Drawer {...args}>
         <DrawerTrigger>Open Drawer</DrawerTrigger>
 
-        <DrawerContent>
+        <DrawerContent position={position}>
           <DrawerHeader addonAfter={actions} description={description}>
             Drawer
           </DrawerHeader>
