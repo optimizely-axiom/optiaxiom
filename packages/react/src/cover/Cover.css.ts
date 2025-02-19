@@ -35,13 +35,13 @@ export const cover = recipe({
         }),
         style({
           selectors: {
-            "&::after": {
+            "&::before": {
               borderRadius: fallbackVar(borderRadiusVar, "inherit"),
               content: "",
               inset: "0",
               position: "absolute",
             },
-            "&:focus-visible::after": {
+            "&:focus-visible::before": {
               outline: `2px auto ${coverStyles.colors["border.focus"]}`,
               outlineOffset: "1px",
             },
