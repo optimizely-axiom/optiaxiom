@@ -1,9 +1,5 @@
 import * as RadixCollapsible from "@radix-ui/react-collapsible";
-import {
-  type ComponentPropsWithoutRef,
-  forwardRef,
-  type ReactNode,
-} from "react";
+import { forwardRef, type ReactNode } from "react";
 
 import { Box, type BoxProps } from "../box";
 import { Cover } from "../cover";
@@ -15,7 +11,7 @@ import * as styles from "./DisclosureTrigger.css";
 
 type DisclosureTriggerProps = BoxProps<
   "div",
-  Pick<ComponentPropsWithoutRef<typeof Cover>, "overlay"> & {
+  {
     addonAfter?: ReactNode;
     addonBefore?: ReactNode;
     chevronPosition?: "end" | "start";
@@ -52,7 +48,7 @@ export const DisclosureTrigger = forwardRef<
           textAlign="start"
           w="full"
         >
-          <Cover asChild overlay>
+          <Cover asChild>
             <RadixCollapsible.Trigger>
               {chevronPosition === "start" && (
                 <Box asChild {...styles.icon({ chevronPosition })}>
