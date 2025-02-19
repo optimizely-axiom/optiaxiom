@@ -2,7 +2,8 @@ import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { type Header } from "@tanstack/react-table";
 import { forwardRef } from "react";
 
-import { Box, type BoxProps } from "../box";
+import { type BoxProps } from "../box";
+import { Cover } from "../cover";
 import { Grid } from "../grid";
 import { Icon } from "../icon";
 import { IconSort } from "../icons/IconSort";
@@ -40,7 +41,7 @@ export const DataTableHeaderCell = forwardRef<
       {...props}
     >
       {header.column.columnDef.enableSorting ? (
-        <Box asChild {...styles.button()}>
+        <Cover asChild inset overlay {...styles.button()}>
           <button onClick={() => header.column.toggleSorting()}>
             {children}
 
@@ -68,7 +69,7 @@ export const DataTableHeaderCell = forwardRef<
               </Icon>
             </Grid>
           </button>
-        </Box>
+        </Cover>
       ) : (
         children
       )}
