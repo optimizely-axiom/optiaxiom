@@ -11,9 +11,22 @@ import {
 } from "../vanilla-extract";
 
 export const borderRadiusVar = createVar();
+const offsetVar = createVar();
 
 export const cover = recipe({
   variants: {
+    inset: {
+      false: style({
+        vars: {
+          [offsetVar]: "1px",
+        },
+      }),
+      true: style({
+        vars: {
+          [offsetVar]: "-2px",
+        },
+      }),
+    },
     /**
      * Whether to expand and fill up the whole area of the parent which has `position: relative`.
      */
@@ -43,7 +56,7 @@ export const cover = recipe({
             },
             "&:focus-visible::before": {
               outline: `2px auto ${theme.colors["border.focus"]}`,
-              outlineOffset: "1px",
+              outlineOffset: offsetVar,
             },
           },
         }),

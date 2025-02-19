@@ -11,6 +11,7 @@ export const button = recipe({
       display: "flex",
       gap: "4",
       justifyContent: "start",
+      rounded: "md",
       textAlign: "start",
       transition: "colors",
       w: "full",
@@ -32,19 +33,9 @@ export const button = recipe({
       },
 
       selectors: {
-        "&::after": {
-          content: "",
-          inset: "0",
-          position: "absolute",
-        },
         "&:focus-visible": {
           outline: "none",
           zIndex: "10",
-        },
-        "&:focus-visible::after": {
-          borderRadius: theme.borderRadius.md,
-          outline: `2px solid ${theme.colors["border.focus"]}`,
-          outlineOffset: "-2px",
         },
       },
     }),
