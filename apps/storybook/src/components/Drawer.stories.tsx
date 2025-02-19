@@ -2,14 +2,11 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 import {
   Drawer,
-  DrawerActions,
   DrawerBody,
   DrawerClose,
   DrawerContent,
-  DrawerDescription,
   DrawerFooter,
   DrawerHeader,
-  DrawerTitle,
   DrawerTrigger,
 } from "@optiaxiom/react";
 import { type ComponentPropsWithoutRef, type ReactNode } from "react";
@@ -42,14 +39,9 @@ export default {
       <Drawer {...args}>
         <DrawerTrigger>Open Drawer</DrawerTrigger>
 
-        <DrawerContent
-          {...(!description && { ["aria-describedby"]: undefined })}
-          {...args}
-        >
-          <DrawerHeader>
-            <DrawerTitle>Drawer</DrawerTitle>
-            {actions && <DrawerActions />}
-            {description && <DrawerDescription>Drawer</DrawerDescription>}
+        <DrawerContent>
+          <DrawerHeader addonAfter={actions} description={description}>
+            Drawer
           </DrawerHeader>
 
           <DrawerBody>{content}</DrawerBody>
