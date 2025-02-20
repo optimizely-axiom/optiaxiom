@@ -8,6 +8,7 @@ import { useAlertDialogContext } from "../alert-dialog-context";
 import { Backdrop } from "../backdrop";
 import { Box, type BoxProps } from "../box";
 import { Flex } from "../flex";
+import { ModalContextProvider } from "../modal-context";
 import { Paper } from "../paper";
 import { Transition } from "../transition";
 import { TransitionGroup } from "../transition-group";
@@ -57,7 +58,7 @@ export const AlertDialogContent = forwardRef<
               {...styles.content({ size })}
             >
               <RadixAlertDialog.Content ref={ref} {...props}>
-                {children}
+                <ModalContextProvider enabled>{children}</ModalContextProvider>
               </RadixAlertDialog.Content>
             </Paper>
           </Transition>

@@ -4,6 +4,7 @@ import { forwardRef } from "react";
 import { Backdrop } from "../backdrop";
 import { type BoxProps } from "../box";
 import { useDrawerContext } from "../drawer-context";
+import { ModalContextProvider } from "../modal-context";
 import { Paper } from "../paper";
 import { Transition } from "../transition";
 import { TransitionGroup } from "../transition-group";
@@ -45,7 +46,7 @@ export const DrawerContent = forwardRef<HTMLDivElement, DrawerContentProps>(
               {...styles.content({ position })}
             >
               <RadixDialog.Content ref={ref} {...props}>
-                {children}
+                <ModalContextProvider enabled>{children}</ModalContextProvider>
               </RadixDialog.Content>
             </Paper>
           </Transition>
