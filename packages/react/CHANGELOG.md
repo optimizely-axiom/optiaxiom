@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 0.13.3
+
+### Patch Changes
+
+- a2e5ec7: use context to conditionally enable modal layer
+
 ## 0.13.2
 
 ### Patch Changes

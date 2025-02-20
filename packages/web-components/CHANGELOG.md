@@ -1,5 +1,11 @@
 # @optiaxiom/web-components
 
+## 0.8.6
+
+### Patch Changes
+
+- a2e5ec7: use context to conditionally enable modal layer
+
 ## 0.8.5
 
 ### Patch Changes
