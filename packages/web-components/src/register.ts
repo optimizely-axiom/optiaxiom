@@ -13,7 +13,6 @@ import {
   CustomUnmountEvent,
 } from "./events";
 import { factory } from "./factory";
-import { mapping } from "./mapping";
 import { styleSheet } from "./styles";
 import { toCamelCase } from "./toCamelCase";
 import { toVdom } from "./toVdom";
@@ -34,9 +33,8 @@ declare global {
 export function register<P extends object>(
   name: `${string}-${string}`,
   Component: FunctionComponent<P>,
-  options: {
-    customEvents?: readonly never[];
-  } = {},
+  propTypes: Record<string, "boolean" | "function" | "number" | "object">,
+  components: Set<string>,
 ) {
   const withPreactElement = (
     element: HTMLElement,
@@ -61,49 +59,57 @@ export function register<P extends object>(
         }
 
         attributeChangedCallback(
-          attributeName,
+          toCamelCase(attributeName),
           element.getAttribute(attributeName),
         );
       });
     });
 
-    const props = (options.customEvents ?? []).reduce<Record<string, unknown>>(
-      (result, eventName) => {
-        result[eventName] = (detail: unknown) => {
+    const props: Record<string, unknown> = internals
+      ? {
+          onChange: (event: ChangeEvent<HTMLInputElement>) => {
+            setFormValue(internals, event.target);
+          },
+        }
+      : {};
+    for (const [name, type] of Object.entries(propTypes)) {
+      if (type === "function") {
+        props[name] = (detail: unknown) => {
           element.dispatchEvent(
-            new CustomEvent("ax-" + toNormalizedEvent(eventName), {
+            new CustomEvent(toNormalizedEvent(name), {
               bubbles: true,
               cancelable: true,
               detail,
             }),
           );
         };
-        return result;
-      },
-      internals
-        ? {
-            onChange: (event: ChangeEvent<HTMLInputElement>) => {
-              setFormValue(internals, event.target);
-              element.dispatchEvent(
-                new CustomEvent("ax-" + event.type, {
-                  bubbles: true,
-                  cancelable: true,
-                }),
-              );
-            },
-          }
-        : {},
-    );
+      } else {
+        // @ts-expect-error -- too complex
+        if (name in element && element[name] !== undefined) {
+          // @ts-expect-error -- too complex
+          props[name] = element[name];
+        }
+        Object.defineProperty(element, name, {
+          get() {
+            return props[name];
+          },
+          set(value) {
+            attributeChangedCallback(name, value);
+          },
+        });
+      }
+    }
 
     const attributeChangedCallback = (name: string, value: null | string) => {
       if (!vdom) {
         return;
       }
 
-      vdom = cloneElement(vdom, {
-        [toCamelCase(name)]: value === null ? undefined : value,
-      });
-      root.render(vdom);
+      props[name] =
+        value === null
+          ? undefined
+          : parsePropertyValue(value, propTypes[name] ?? "string");
+      root.render(cloneElement(vdom, props));
     };
 
     const connectedCallback = () => {
@@ -126,7 +132,7 @@ export function register<P extends object>(
          * Hook into the context bridge if this element is a child of another
          * of our web component.
          */
-        if (parent.nodeName.toLowerCase() in mapping) {
+        if (components.has(parent.nodeName.toLowerCase())) {
           if (skipFirst) {
             skipFirst = false;
             parent = parent.parentElement;
@@ -182,7 +188,7 @@ export function register<P extends object>(
   };
 
   if (!customElements.get(name)) {
-    customElements.define(name, factory(name, withPreactElement));
+    customElements.define(name, factory(name, withPreactElement, propTypes));
   }
 
   return withPreactElement;
@@ -193,6 +199,25 @@ const createEmptyDiv = (parent: DocumentFragment) => {
   div.style.display = "contents";
   parent.insertBefore(div, parent.firstChild);
   return div;
+};
+
+const parsePropertyValue = (
+  propValue: unknown,
+  propType: "boolean" | "function" | "number" | "object" | "string",
+) => {
+  if (
+    propValue != null &&
+    typeof propValue !== "object" &&
+    typeof propValue !== "function"
+  ) {
+    if (propType === "boolean") {
+      return propValue === "false" ? false : propValue === "" || !!propValue;
+    } else if (propType === "number") {
+      return parseFloat(String(propValue));
+    }
+    return String(propValue);
+  }
+  return propValue;
 };
 
 const setFormValue = (

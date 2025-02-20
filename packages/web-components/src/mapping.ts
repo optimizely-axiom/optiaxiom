@@ -2,9 +2,11 @@ import * as Components from "@optiaxiom/react";
 
 import { exports } from "../package.json";
 
-type AllComponents = {
-  [Key in ComponentNames as `ax${KebabCase<Key>}`]: Key;
-};
+type AllComponents = Set<
+  keyof {
+    [Key in ComponentNames as `ax${KebabCase<Key>}`]: never;
+  }
+>;
 
 type ComponentNames = Exclude<
   keyof {
@@ -34,21 +36,13 @@ const exported = (
   >
 ).map(
   <S extends string>(path: S) =>
-    [
-      "ax" + path.slice(2).replace(/[A-Z]/g, (m) => "-" + m.toLowerCase()),
-      path.slice(2),
-    ] as S extends `./${infer N}` ? [`ax${KebabCase<N>}`, N] : never,
+    ("ax" +
+      path
+        .slice(2)
+        .replace(
+          /[A-Z]/g,
+          (m) => "-" + m.toLowerCase(),
+        )) as S extends `./${infer N}` ? `ax${KebabCase<N>}` : never,
 );
 
-export const mapping: AllComponents = Object.fromEntries(exported) as {
-  [T in (typeof exported)[number] as T[0]]: T[1];
-};
-
-export const formAssociated: Set<string> = new Set([
-  "ax-checkbox",
-  "ax-input",
-  "ax-radio",
-  "ax-search-input",
-  "ax-switch",
-  "ax-textarea",
-]) satisfies Set<keyof AllComponents>;
+export const components: AllComponents = new Set(exported);

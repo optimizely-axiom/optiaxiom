@@ -1,4 +1,4 @@
-import { formAssociated } from "./mapping";
+import type { components } from "./mapping";
 
 type Component = {
   connectedCallback: () => void;
@@ -6,9 +6,19 @@ type Component = {
   ref: { current: HTMLInputElement | null };
 };
 
+export const formAssociated: Set<string> = new Set([
+  "ax-checkbox",
+  "ax-input",
+  "ax-radio",
+  "ax-search-input",
+  "ax-switch",
+  "ax-textarea",
+]) satisfies typeof components;
+
 export const factory = (
   name: string,
   spec: ((element: HTMLElement) => Component) | string,
+  propTypes: Record<string, unknown>,
 ): CustomElementConstructor => {
   const AxiomHTMLElement = class extends HTMLElement {
     _component?: Component;
@@ -26,6 +36,12 @@ export const factory = (
       } else {
         this.#loader = Promise.resolve();
         this._component = this.build(spec);
+      }
+      for (const [prop, type] of Object.entries(propTypes)) {
+        if (type !== "function" && !(prop in this)) {
+          // @ts-expect-error -- too complex
+          this[prop] = undefined;
+        }
       }
     }
 
