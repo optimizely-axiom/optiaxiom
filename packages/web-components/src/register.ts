@@ -235,4 +235,4 @@ const setFormValue = (
 };
 
 const toNormalizedEvent = (name: string) =>
-  name.slice("on".length).toLowerCase();
+  name[2].toLowerCase() + name.slice(3);
