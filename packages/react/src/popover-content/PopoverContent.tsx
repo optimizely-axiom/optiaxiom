@@ -5,6 +5,7 @@ import { type ComponentPropsWithoutRef, forwardRef } from "react";
 import type { BoxProps } from "../box";
 
 import { MenuListbox } from "../menu-listbox";
+import { ModalContextProvider } from "../modal-context";
 import { usePopoverContext } from "../popover-context";
 import { TransitionGroup } from "../transition-group";
 import { type ExcludeProps, onReactSelectInputBlur } from "../utils";
@@ -53,7 +54,7 @@ export const PopoverContent = forwardRef<HTMLDivElement, PopoverContentProps>(
               ref={ref}
               sideOffset={sideOffset}
             >
-              {children}
+              <ModalContextProvider enabled>{children}</ModalContextProvider>
 
               {withArrow && (
                 <RadixPopover.Arrow asChild>

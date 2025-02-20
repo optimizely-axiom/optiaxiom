@@ -73,6 +73,7 @@ export * from "./listbox-radio-item";
 export * from "./listbox-scroll-area";
 export * from "./listbox-separator";
 export * from "./listbox-switch-item";
+export * from "./modal-context";
 export * from "./modal-layer";
 export * from "./nav";
 export * from "./nav-account-item";

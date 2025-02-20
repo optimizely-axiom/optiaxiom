@@ -5,6 +5,7 @@ import { type ComponentPropsWithoutRef, forwardRef } from "react";
 import { Backdrop } from "../backdrop";
 import { type BoxProps } from "../box";
 import { useDialogContext } from "../dialog-context";
+import { ModalContextProvider } from "../modal-context";
 import { Paper } from "../paper";
 import { Transition } from "../transition";
 import { TransitionGroup } from "../transition-group";
@@ -61,7 +62,9 @@ export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
               {...styles.content({ size }, className)}
               {...props}
             >
-              <RadixDialog.Content ref={ref}>{children}</RadixDialog.Content>
+              <RadixDialog.Content ref={ref}>
+                <ModalContextProvider enabled>{children}</ModalContextProvider>
+              </RadixDialog.Content>
             </Paper>
           </Transition>
         </RadixDialog.Portal>

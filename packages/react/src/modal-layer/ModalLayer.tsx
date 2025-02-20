@@ -11,19 +11,36 @@ import { RemoveScroll as ReactRemoveScroll } from "react-remove-scroll";
 
 import type { Box } from "../box";
 
+import { useModalContext } from "../modal-context";
+
 type ModalLayerProps = Pick<ComponentPropsWithoutRef<typeof Box>, "asChild"> & {
   children?: ReactNode;
 };
 
 export const ModalLayer = forwardRef<HTMLDivElement, ModalLayerProps>(
   ({ asChild, children, ...props }, ref) => {
+    const { enabled } = useModalContext("ModalLayer");
+    const [locked] = useState(() => document.body.dataset.scrollLocked);
+    const [guards] = useState(() =>
+      document.querySelector("[data-radix-focus-guard]"),
+    );
+
+    if (!enabled) {
+      return asChild ? (
+        <Slot ref={ref} {...props}>
+          {children}
+        </Slot>
+      ) : (
+        <>{children}</>
+      );
+    }
+
     let result = (
       <DismissableLayer asChild={asChild} ref={ref} {...props}>
         {children}
       </DismissableLayer>
     );
 
-    const [locked] = useState(() => document.body.dataset.scrollLocked);
     if (locked) {
       result = (
         <ReactRemoveScroll allowPinchZoom as={Slot}>
@@ -32,9 +49,6 @@ export const ModalLayer = forwardRef<HTMLDivElement, ModalLayerProps>(
       );
     }
 
-    const [guards] = useState(() =>
-      document.querySelector("[data-radix-focus-guard]"),
-    );
     if (guards) {
       result = <FocusGuards>{result}</FocusGuards>;
     }

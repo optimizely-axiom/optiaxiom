@@ -15,6 +15,7 @@ type ComponentNames = Exclude<
       : never]: never;
   },
   | "FieldContext"
+  | "ModalContextProvider"
   | "ToastProvider"
   | "TooltipProvider"
   | "TransitionGlobalConfig"
