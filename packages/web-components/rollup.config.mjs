@@ -222,7 +222,12 @@ export { Portal, Portal as Root };`;
       json(),
       stylePlugin({ include: ["**/*.css"] }),
       webComponentPlugin({
-        include: ["src/components/**/*.ts", "src/index.ts"],
+        include: [
+          "src/components/**/*.ts",
+          "src/index.ts",
+          process.cwd() + "/src/mapping",
+          process.cwd() + "/src/propTypes",
+        ],
       }),
     ],
   },
@@ -386,39 +391,65 @@ function webComponentPlugin({ include = [] }) {
       }
 
       const component = path.parse(id).name;
-      const doc = docs.find((doc) => doc.displayName === component);
-      const actions = Object.keys(doc?.props ?? {}).filter((name) =>
-        name.startsWith("on"),
-      );
-      return component === "index"
-        ? `import { factory } from "./factory";
-import { mapping } from "./mapping";
 
-for (const [name, component] of Object.entries(mapping)) {
-  if (!customElements.get(name)) {
-    customElements.define(name, factory(name, component));
-  }
-}
+      switch (component) {
+        case "index":
+          return `import { factory } from "./factory";
 
 ${Object.entries(input)
   .map(([key, value]) => {
     const component = path.parse(value).name;
     return key === "index"
       ? ""
-      : `export const ${component} = "ax${toKebabCase(component)}"`;
-  })
-  .join("\n")}
-`
-        : `import { ${component} as ${component}Component } from "@optiaxiom/react";
+      : `import { ${component}Props } from "./propTypes";
 
+export const ${component} = "ax${toKebabCase(component)}"
+if (!customElements.get(${component})) {
+  customElements.define(${component}, factory(${component}, "${component}", ${component}Props));
+}`;
+  })
+  .join("\n")}`;
+        case "mapping":
+          return `export const components = new Set([${Object.entries(input)
+            .map(([key, value]) => {
+              const component = path.parse(value).name;
+              return key === "index" ? "" : `"ax${toKebabCase(component)}",`;
+            })
+            .join("\n")}]);`;
+        case "propTypes":
+          return Object.entries(input)
+            .map(([key, value]) => {
+              const component = path.parse(value).name;
+              const doc = docs.find((doc) => doc.displayName === component);
+              const propTypes = Object.fromEntries(
+                Object.entries(doc?.props ?? {}).flatMap(([name, value]) => {
+                  const type = name.startsWith("on")
+                    ? "function"
+                    : getPropType(value.type);
+                  return type ? [[name, type]] : [];
+                }),
+              );
+
+              return key === "index"
+                ? ""
+                : `export const ${component}Props = ${JSON.stringify(propTypes)};`;
+            })
+            .join("\n");
+        default:
+          return `import { ${component} as ${component}Component } from "@optiaxiom/react";
+
+import { components } from "../mapping";
+import { ${component}Props } from "../propTypes";
 import { register } from "../register";
 
 export const ${component} = "ax${toKebabCase(component)}";
 export default register(
   ${component},
   ${component}Component,
-  { customEvents: ${JSON.stringify(actions)} },
+  ${component}Props,
+  components,
 );`;
+      }
     },
     name: "rollup-plugin-web-component",
     async resolveId(id, importer, options) {
@@ -427,6 +458,13 @@ export default register(
       }
 
       if (importer?.startsWith(prefix)) {
+        const resolved = path.resolve(
+          path.dirname(importer.slice(prefix.length)),
+          id,
+        );
+        if (filter(resolved)) {
+          return prefix + resolved;
+        }
         return await this.resolve(id, importer.slice(prefix.length), options);
       }
 
@@ -434,6 +472,27 @@ export default register(
     },
   };
 }
+
+/**
+ * @param {import('react-docgen-typescript').PropItemType} type
+ */
+const getPropType = (type) => {
+  if (type.name === "number") {
+    return "number";
+  } else if (type.name === "enum" && type.raw === "boolean") {
+    return "boolean";
+  } else if (type.raw === "ReactNode") {
+    return "object";
+  } else if (
+    type.name === "enum" &&
+    type.value.find(
+      ({ value }) =>
+        value.startsWith("ResponsiveArray<") || value.startsWith("{ "),
+    )
+  ) {
+    return "object";
+  }
+};
 
 const toKebabCase = (str) =>
   str.replace(/[A-Z]/g, (m) => "-" + m.toLowerCase());
