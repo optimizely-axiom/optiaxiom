@@ -14,7 +14,9 @@ import dts from "rollup-plugin-dts";
 import esbuild from "rollup-plugin-esbuild";
 
 const external = new RegExp(
-  "^(?:" + ["react", "react-dom"].join("|") + ")(?:/.+)?$",
+  "^(?:" +
+    ["@stencil/core/internal", "react", "react-dom"].join("|") +
+    ")(?:/.+)?$",
 );
 const require = createRequire(import.meta.url);
 const env = process.env.NODE_ENV ?? "development";
@@ -306,6 +308,18 @@ function stylePlugin({ exclude = [], include = [] } = {}) {
 /** @returns {import('rollup').Plugin} */
 function typeDeclarationPlugin({ include = [] }) {
   const filter = createFilter(include ?? []);
+  const docs = docgen
+    .withCompilerOptions(
+      { esModuleInterop: true },
+      {
+        propFilter: (prop) =>
+          prop.parent ? !prop.parent.fileName.includes("@types/react") : true,
+        savePropValueAsString: true,
+        shouldExtractValuesFromUnion: true,
+      },
+    )
+    .parse(fg.globSync("../react/dist/**/*.d.ts"));
+  const box = docs.find((doc) => doc.displayName === "Box");
 
   const generateDts = (id) => {
     const component = path.parse(id).name.replace(".d", "");
@@ -319,16 +333,103 @@ function typeDeclarationPlugin({ include = [] }) {
   "types": "../dist/components/${component}.d.ts"
 }`,
     );
-    return `import { ${component} as ${component}Component } from "@optiaxiom/react";
 
-export const ${component} = "ax${toKebabCase(component)}";
+    const doc = docs.find((doc) => doc.displayName === component);
+    const propTypes = Object.values(doc?.props ?? {})
+      .filter(({ type }) => !type.name.startsWith("RefObject<"))
+      .filter(
+        ({ name, type }) =>
+          component === "Box" ||
+          name === "asChild" ||
+          !("asChild" in doc.props && component !== "ModalLayer") ||
+          !(name in box.props) ||
+          box.props[name].type.raw !== type.raw,
+      )
+      .flatMap(({ name, type }) => {
+        const props = [
+          `"${name}"?: ${
+            type.raw === "ReactNode"
+              ? "string | number | false | true"
+              : name.startsWith("on")
+                ? "any"
+                : type.raw
+                  ? type.value
+                      .map(({ value }) =>
+                        value.startsWith("ResponsiveArray<")
+                          ? `ResponsiveArray<${type.value
+                              .map(({ value }) => value)
+                              .filter(
+                                (value) =>
+                                  !(
+                                    value.startsWith("ResponsiveArray<") ||
+                                    value.startsWith("{ ")
+                                  ),
+                              )
+                              .join(" | ")}>`
+                          : value.startsWith("{ ")
+                            ? `ResponsiveObject<${type.value
+                                .map(({ value }) => value)
+                                .filter(
+                                  (value) =>
+                                    !(
+                                      value.startsWith("ResponsiveArray<") ||
+                                      value.startsWith("{ ")
+                                    ),
+                                )
+                                .join(" | ")}>`
+                            : value.startsWith("(")
+                              ? `(${value})`
+                              : value,
+                      )
+                      .join(" | ")
+                  : type.name
+          };`,
+        ];
+        if (name.toLowerCase() !== name && !name.startsWith("on")) {
+          props.push(
+            `"${toKebabCase(name)}"?: ${
+              type.raw === "ReactNode"
+                ? "string"
+                : type.raw
+                  ? type.value
+                      .map(({ value }) => value)
+                      .filter(
+                        (value) =>
+                          !(
+                            value.startsWith("ResponsiveArray<") ||
+                            value.startsWith("{ ")
+                          ),
+                      )
+                      .join(" | ")
+                  : type.name
+            };`,
+          );
+        }
+        return props;
+      });
+    const extendsBox =
+      component !== "Box" &&
+      "asChild" in doc.props &&
+      component !== "ModalLayer";
 
-declare global {
+    return `export const ${component} = "ax${toKebabCase(component)}";
+
+export type ${component}Props = ${extendsBox ? "BoxProps & " : ""} {
+  ${propTypes.join("\n")}
+};
+
+declare module "@stencil/core" {
   namespace JSX {
     interface IntrinsicElements {
-      [${component}]: ComponentAttributes<
-        ComponentPropsWithoutRef<typeof ${component}Component>
-      >;
+      [${component}]: ${component}Props & JSXBase.HTMLAttributes;
+    }
+  }
+}
+
+declare module "react" {
+  namespace JSX {
+    interface IntrinsicElements {
+      [${component}]: ${component}Props & ComponentPropsWithoutRef<"div">;
     }
   }
 }`;
@@ -343,15 +444,20 @@ declare global {
       return (
         id.endsWith("/index.d.ts")
           ? [
+              'import type { JSXBase } from "@stencil/core/internal";',
               'import type { ComponentPropsWithoutRef } from "react";',
-              'import type { ComponentAttributes } from "./ComponentAttributes";',
+              'import type { ResponsiveArray, ResponsiveObject, Toaster } from "./types";',
               ...Object.entries(input).map(([key, value]) =>
                 key === "index" ? "" : generateDts(value),
               ),
             ]
           : [
+              'import type { JSXBase } from "@stencil/core/internal";',
               'import type { ComponentPropsWithoutRef } from "react";',
-              'import type { ComponentAttributes } from "../ComponentAttributes";',
+              'import type { ResponsiveArray, ResponsiveObject, Toaster } from "../types";',
+              id.endsWith("/Box.d.ts")
+                ? ""
+                : 'import type { BoxProps } from "./Box";',
               generateDts(id),
             ]
       ).join("\n");
@@ -359,8 +465,11 @@ declare global {
     name: "rollup-plugin-type-declaration",
     order: "pre",
     async resolveId(id, importer) {
-      if (!importer && filter(path.resolve(id))) {
-        return path.resolve(id);
+      const resolved = importer
+        ? path.resolve(path.dirname(importer), id + ".d.ts")
+        : path.resolve(id);
+      if (filter(resolved)) {
+        return resolved;
       }
 
       return null;
