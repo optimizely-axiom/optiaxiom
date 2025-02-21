@@ -21,6 +21,11 @@ export const row = recipe({
           },
         },
       },
+      selectors: {
+        "&[data-highlighted]": {
+          backgroundColor: theme.colors["bg.default.hovered"],
+        },
+      },
     }),
   ],
 });
