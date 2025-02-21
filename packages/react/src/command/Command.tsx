@@ -155,7 +155,13 @@ export function Command<Item>({
     <CommandContextProvider
       downshift={downshift}
       highlightedItem={items[downshift.highlightedIndex]}
-      highlightedSubIndex={highlightedSubIndex}
+      highlightedSubIndex={
+        highlightedSubIndex === -1 &&
+        items[downshift.highlightedIndex] &&
+        itemToSubItems?.(items[downshift.highlightedIndex])?.length
+          ? 0
+          : highlightedSubIndex
+      }
       isItemDisabled={isItemDisabled}
       items={items}
       itemToSubItems={itemToSubItems}
