@@ -1,5 +1,11 @@
 # @optiaxiom/web-components
 
+## 0.8.8
+
+### Patch Changes
+
+- f195018: fix responsive box prop types
+
 ## 0.8.7
 
 ### Patch Changes
