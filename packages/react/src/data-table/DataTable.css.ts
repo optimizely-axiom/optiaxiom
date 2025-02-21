@@ -164,6 +164,13 @@ export const cell = recipe({
             },
           },
         },
+        selectors: {
+          [`${row}[data-highlighted] &`]: {
+            vars: {
+              [bgHoverColor]: theme.colors["bg.default.hovered"],
+            },
+          },
+        },
       }),
       header: {},
     },

@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
+import { Checkbox } from "@optiaxiom/react";
 import { DataTable } from "@optiaxiom/react/unstable";
 import {
   type ColumnDef,
@@ -42,6 +43,25 @@ export default meta;
 type Story = StoryObj<typeof DataTable>;
 
 const columns: ColumnDef<Payment>[] = [
+  {
+    cell: ({ row }) => (
+      <Checkbox
+        aria-label="Select row"
+        checked={row.getIsSelected()}
+        onChange={row.getToggleSelectedHandler()}
+      />
+    ),
+    header: ({ table }) => (
+      <Checkbox
+        aria-label="Select all"
+        checked={table.getIsAllPageRowsSelected()}
+        indeterminate={table.getIsSomePageRowsSelected()}
+        onChange={table.getToggleAllPageRowsSelectedHandler()}
+      />
+    ),
+    id: "select",
+    size: 48,
+  },
   {
     accessorKey: "id",
     header: "ID",

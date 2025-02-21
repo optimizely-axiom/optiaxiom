@@ -149,6 +149,7 @@ export const DataTable = forwardRef<HTMLDivElement, DataTableProps>(
                 : rows.map((row) => ({ row, virtualRow: undefined }))
             ).map(({ row, virtualRow }) => (
               <TableRow
+                data-highlighted={row.getIsSelected() ? "" : undefined}
                 data-index={virtualRow?.index}
                 display="flex"
                 key={row.id}
@@ -272,6 +273,7 @@ const fakeRow = (table: ReactTable<unknown>, rowIndex: number) => ({
     table.getCenterVisibleLeafColumns(),
     rowIndex,
   ),
+  getIsSelected: () => false,
   getLeftVisibleCells: fakeCellsFactory(
     table.getLeftVisibleLeafColumns(),
     rowIndex,
