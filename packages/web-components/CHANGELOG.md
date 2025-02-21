@@ -1,5 +1,12 @@
 # @optiaxiom/web-components
 
+## 0.8.7
+
+### Patch Changes
+
+- 7a67f59: handle non-string properties on custom elements
+- 0a33d26: properly add component jsx typings for stencil
+
 ## 0.8.6
 
 ### Patch Changes
