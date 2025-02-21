@@ -1,4 +1,4 @@
-import { forwardRef } from "react";
+import { forwardRef, useEffect } from "react";
 
 import { type BoxProps } from "../box";
 import { useCommandContext } from "../command-context";
@@ -8,7 +8,10 @@ type CommandListProps = BoxProps;
 
 export const CommandListbox = forwardRef<HTMLDivElement, CommandListProps>(
   ({ children, size, ...props }, ref) => {
-    const { downshift } = useCommandContext("CommandList");
+    const { downshift, setPlaced } = useCommandContext("CommandList");
+    useEffect(() => {
+      setPlaced(true);
+    }, [setPlaced]);
 
     return (
       <Listbox size={size} {...downshift.getMenuProps({ ref, ...props })}>
