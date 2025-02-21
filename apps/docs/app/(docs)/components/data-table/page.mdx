@@ -41,6 +41,16 @@ Follow the [row selection guide](https://tanstack.com/table/latest/docs/guide/ro
 
 <Demo component="data-table/row-selection-usage" />
 
+### Row actions
+
+Use the `TableActions` component to show dropdown menus within rows that are only visible when the user hovers over the row or navigates to the menu using keyboards.
+
+<Alert intent="warning" mt="16">
+  Hover over the rows to perform more actions:
+</Alert>
+
+<Demo component="data-table/row-action-usage" />
+
 ### Pagination
 
 `DataTable` supports both client-side and server-side pagination. Follow the [pagination guide](https://tanstack.com/table/latest/docs/guide/pagination) to learn how to implement pagination with TanStack Table.
@@ -100,6 +110,8 @@ Columns will be virtualized when there are more than 20 columns in a table and r
 ### DataTable
 
 <PropsTable component="DataTable" />
+
+<PropsTable component="TableActions" />
 
 ## Changelog
 

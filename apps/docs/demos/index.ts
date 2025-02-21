@@ -72,6 +72,7 @@ export const demos = {
   "data-table/pagination-server-usage": import(
     "./data-table/pagination-server-usage/App"
   ),
+  "data-table/row-action-usage": import("./data-table/row-action-usage/App"),
   "data-table/row-selection-usage": import(
     "./data-table/row-selection-usage/App"
   ),
