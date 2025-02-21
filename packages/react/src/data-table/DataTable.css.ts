@@ -128,6 +128,7 @@ export const header = recipe({
 export const cell = recipe({
   base: [
     {
+      alignItems: "start",
       display: "flex",
     },
     style({
