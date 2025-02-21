@@ -65,7 +65,7 @@ export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
         <RadixAvatar.Root ref={ref}>
           {src && (
             <Box asChild objectFit="cover" rounded="inherit" size="full">
-              <RadixAvatar.Image alt={name} src={src} />
+              <RadixAvatar.Image alt={name ?? "avatar"} src={src} />
             </Box>
           )}
           <Box asChild {...styles.fallback({})}>
