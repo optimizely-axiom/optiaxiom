@@ -37,8 +37,8 @@ export const factory = (
         this.#loader = Promise.resolve();
         this._component = this.build(spec);
       }
-      for (const [prop, type] of Object.entries(propTypes)) {
-        if (type !== "function" && !(prop in this)) {
+      for (const prop of Object.keys(propTypes)) {
+        if (!(prop in this)) {
           // @ts-expect-error -- too complex
           this[prop] = undefined;
         }
