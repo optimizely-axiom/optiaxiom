@@ -12,6 +12,7 @@ import {
 
 export const borderRadiusVar = createVar();
 const offsetVar = createVar();
+const styleVar = createVar();
 
 export const cover = recipe({
   variants: {
@@ -34,6 +35,10 @@ export const cover = recipe({
           },
         }),
         style({
+          vars: {
+            [styleVar]: "solid",
+          },
+
           selectors: {
             "&::before": {
               borderRadius: fallbackVar(borderRadiusVar, "inherit"),
@@ -42,7 +47,7 @@ export const cover = recipe({
               position: "absolute",
             },
             "&:focus-visible::before": {
-              outline: `2px solid ${theme.colors["border.focus"]}`,
+              outline: `2px ${styleVar} ${theme.colors["border.focus"]}`,
               outlineOffset: offsetVar,
             },
           },
@@ -59,6 +64,14 @@ export const cover = recipe({
       true: style({
         vars: {
           [offsetVar]: "-2px",
+        },
+
+        selectors: {
+          "&:is(a)": {
+            vars: {
+              [styleVar]: "auto",
+            },
+          },
         },
       }),
     },
