@@ -62,3 +62,30 @@ export const icon = recipe({
     },
   },
 });
+
+export const handle = recipe({
+  base: [
+    {
+      h: "full",
+      z: "10",
+    },
+    style({
+      borderLeftWidth: 3,
+      cursor: "col-resize",
+      position: "absolute",
+      right: "0",
+      top: "0",
+      touchAction: "none",
+      userSelect: "none",
+    }),
+  ],
+
+  variants: {
+    resizing: {
+      false: {},
+      true: {
+        borderColor: "border.focus",
+      },
+    },
+  },
+});

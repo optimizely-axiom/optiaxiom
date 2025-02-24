@@ -10,6 +10,7 @@ import { Icon } from "../icon";
 import { IconSort } from "../icons/IconSort";
 import { IconSortDown } from "../icons/IconSortDown";
 import { IconSortUp } from "../icons/IconSortUp";
+import { Separator } from "../separator";
 import { TableHeaderCell } from "../table-header-cell";
 import * as styles from "./DataTableHeaderCell.css";
 
@@ -27,22 +28,43 @@ export const DataTableHeaderCell = forwardRef<
   const sortDir = header.column.getIsSorted();
 
   return (
-    <TableHeaderCell
-      aria-sort={
-        header.column.columnDef.enableSorting
-          ? sortDir === false
-            ? "none"
-            : sortDir === "asc"
-              ? "ascending"
-              : "descending"
-          : undefined
-      }
-      colSpan={header.colSpan}
-      ref={ref}
-      {...props}
-    >
-      {header.column.columnDef.enableSorting ? (
-        <ActionsRoot asChild>
+    <ActionsRoot asChild>
+      <TableHeaderCell
+        aria-sort={
+          header.column.columnDef.enableSorting
+            ? sortDir === false
+              ? "none"
+              : sortDir === "asc"
+                ? "ascending"
+                : "descending"
+            : undefined
+        }
+        colSpan={header.colSpan}
+        ref={ref}
+        {...props}
+      >
+        {header.column.columnDef.enableResizing && (
+          <ActionsContent visible={header.column.getIsResizing()}>
+            <Separator
+              onDoubleClick={() => header.column.resetSize()}
+              onMouseDown={header.getResizeHandler()}
+              onTouchStart={header.getResizeHandler()}
+              orientation="vertical"
+              style={{
+                transform:
+                  header.getContext().table.options.columnResizeMode ===
+                    "onEnd" && header.column.getIsResizing()
+                    ? `translateX(${header.getContext().table.getState().columnSizingInfo.deltaOffset}px)`
+                    : "",
+              }}
+              {...styles.handle({
+                resizing: header.column.getIsResizing(),
+              })}
+            />
+          </ActionsContent>
+        )}
+
+        {header.column.columnDef.enableSorting ? (
           <Cover asChild inset {...styles.button()}>
             <button onClick={() => header.column.toggleSorting()}>
               {children}
@@ -70,11 +92,11 @@ export const DataTableHeaderCell = forwardRef<
               </ActionsContent>
             </button>
           </Cover>
-        </ActionsRoot>
-      ) : (
-        children
-      )}
-    </TableHeaderCell>
+        ) : (
+          children
+        )}
+      </TableHeaderCell>
+    </ActionsRoot>
   );
 });
 

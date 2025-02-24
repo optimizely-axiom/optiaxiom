@@ -71,7 +71,7 @@ export const DataTable = forwardRef<HTMLDivElement, DataTableProps>(
 
     return (
       <Box
-        alignItems="center"
+        alignItems="start"
         display="flex"
         flexDirection="column"
         maxW="full"

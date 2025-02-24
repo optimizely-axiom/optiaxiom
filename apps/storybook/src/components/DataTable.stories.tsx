@@ -64,6 +64,7 @@ const columns: ColumnDef<Payment>[] = [
   },
   {
     accessorKey: "id",
+    enableResizing: true,
     header: "ID",
   },
   {
@@ -72,6 +73,7 @@ const columns: ColumnDef<Payment>[] = [
   },
   {
     accessorKey: "email",
+    enableResizing: true,
     enableSorting: true,
     header: "Email",
   },
@@ -302,6 +304,25 @@ export const Pagination: Story = {
           getCoreRowModel: getCoreRowModel(),
           getPaginationRowModel: getPaginationRowModel(),
           getSortedRowModel: getSortedRowModel(),
+        })}
+      />
+    );
+  },
+};
+
+export const Resizing: Story = {
+  play: async ({ canvas }) => {
+    canvas.getByRole("columnheader", { name: "Email" }).focus();
+  },
+  render: function Render(args) {
+    return (
+      <DataTable
+        {...args}
+        table={useReactTable({
+          columnResizeMode: "onEnd",
+          columns: columns.slice(0, 5),
+          data,
+          getCoreRowModel: getCoreRowModel(),
         })}
       />
     );
