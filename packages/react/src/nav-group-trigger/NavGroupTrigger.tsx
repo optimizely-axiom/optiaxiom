@@ -18,6 +18,7 @@ export const NavGroupTrigger = forwardRef<HTMLDivElement, NavGroupTriggerProps>(
         id={id}
         mb="4"
         mt="8"
+        p="0"
         px="12"
         ref={ref}
         w="auto"

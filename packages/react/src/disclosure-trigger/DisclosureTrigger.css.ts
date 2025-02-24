@@ -2,15 +2,14 @@ import { theme } from "@optiaxiom/globals";
 
 import { recipe, style } from "../vanilla-extract";
 
-export const trigger = recipe({
+export const root = recipe({
   base: [
     {
       flexDirection: "row",
       fontSize: "md",
       fontWeight: "500",
       gap: "8",
-      h: "lg",
-      px: "8",
+      p: "8",
       transition: "colors",
     },
     style({
@@ -26,6 +25,23 @@ export const trigger = recipe({
           },
         },
       },
+    }),
+  ],
+});
+
+export const trigger = recipe({
+  base: [
+    {
+      flexDirection: "row",
+      fontSize: "inherit",
+      fontWeight: "inherit",
+      gap: "4",
+      rounded: "md",
+      textAlign: "start",
+      w: "full",
+    },
+    style({
+      minHeight: theme.size.sm,
     }),
   ],
 });
