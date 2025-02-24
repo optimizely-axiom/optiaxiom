@@ -350,13 +350,22 @@ function typeDeclarationPlugin({ include = [] }) {
           `"${name}"?: ${
             type.raw === "ReactNode"
               ? "string | number | false | true"
-              : name.startsWith("on")
-                ? "any"
-                : type.raw
-                  ? type.value
-                      .map(({ value }) =>
-                        value.startsWith("ResponsiveArray<")
-                          ? `ResponsiveArray<${type.value
+              : type.raw
+                ? type.value
+                    .map(({ value }) =>
+                      value.startsWith("ResponsiveArray<")
+                        ? `ResponsiveArray<${type.value
+                            .map(({ value }) => value)
+                            .filter(
+                              (value) =>
+                                !(
+                                  value.startsWith("ResponsiveArray<") ||
+                                  value.startsWith("{ ")
+                                ),
+                            )
+                            .join(" | ")}>`
+                        : value.startsWith("{ ")
+                          ? `ResponsiveObject<${type.value
                               .map(({ value }) => value)
                               .filter(
                                 (value) =>
@@ -366,23 +375,12 @@ function typeDeclarationPlugin({ include = [] }) {
                                   ),
                               )
                               .join(" | ")}>`
-                          : value.startsWith("{ ")
-                            ? `ResponsiveObject<${type.value
-                                .map(({ value }) => value)
-                                .filter(
-                                  (value) =>
-                                    !(
-                                      value.startsWith("ResponsiveArray<") ||
-                                      value.startsWith("{ ")
-                                    ),
-                                )
-                                .join(" | ")}>`
-                            : value.startsWith("(")
-                              ? `(${value})`
-                              : value,
-                      )
-                      .join(" | ")
-                  : type.name
+                          : value.startsWith("(")
+                            ? `(${value})`
+                            : value,
+                    )
+                    .join(" | ")
+                : type.name
           };`,
         ];
         if (name.toLowerCase() !== name && !name.startsWith("on")) {
@@ -446,7 +444,7 @@ declare module "react" {
           ? [
               'import type { JSXBase } from "@stencil/core/internal";',
               'import type { ComponentPropsWithoutRef } from "react";',
-              'import type { ResponsiveArray, ResponsiveObject, Toaster } from "./types";',
+              'import type { ChangeEventHandler, FocusEventHandler, FocusOutsideEvent, PointerDownOutsideEvent, ResponsiveArray, ResponsiveObject, SwipeEvent, Toaster } from "./types";',
               ...Object.entries(input).map(([key, value]) =>
                 key === "index" ? "" : generateDts(value),
               ),
@@ -454,7 +452,7 @@ declare module "react" {
           : [
               'import type { JSXBase } from "@stencil/core/internal";',
               'import type { ComponentPropsWithoutRef } from "react";',
-              'import type { ResponsiveArray, ResponsiveObject, Toaster } from "../types";',
+              'import type { ChangeEventHandler, FocusEventHandler, FocusOutsideEvent, PointerDownOutsideEvent, ResponsiveArray, ResponsiveObject, SwipeEvent, Toaster } from "../types";',
               id.endsWith("/Box.d.ts")
                 ? ""
                 : 'import type { BoxProps } from "./Box";',
