@@ -1,5 +1,16 @@
 # @optiaxiom/react
 
+## 0.13.4
+
+### Patch Changes
+
+- 64ef870: fallback to static alt if name is missing
+- 83d37e6: add table column resize handle
+- 399ce88: fix command placed callback
+- 6e292f9: add width constraint for combobox popover
+- df58ff5: add stable scrollbar to dialog body
+- 343e444: add row selection
+
 ## 0.13.3
 
 ### Patch Changes
