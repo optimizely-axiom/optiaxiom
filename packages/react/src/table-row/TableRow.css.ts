@@ -12,6 +12,8 @@ export const row = recipe({
       w: "full",
     },
     style({
+      position: "relative",
+
       "@media": {
         "(hover: hover)": {
           selectors: {
