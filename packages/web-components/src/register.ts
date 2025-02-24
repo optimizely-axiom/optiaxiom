@@ -125,7 +125,10 @@ export function register<P extends object>(
         }
       };
 
-      let parent = element.parentElement;
+      let parent =
+        element.parentNode instanceof ShadowRoot
+          ? element.parentNode.host
+          : element.parentElement;
       let skipFirst = !!element.slot;
       while (parent) {
         /**
@@ -168,7 +171,10 @@ export function register<P extends object>(
 
           return;
         }
-        parent = parent.parentElement;
+        parent =
+          parent.parentNode instanceof ShadowRoot
+            ? parent.parentNode.host
+            : parent.parentElement;
       }
 
       /**
