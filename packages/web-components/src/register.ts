@@ -72,35 +72,26 @@ export function register<P extends object>(
           },
         }
       : {};
-    for (const [name, type] of Object.entries(propTypes)) {
-      if (type === "function") {
-        props[name] = (detail: unknown) => {
-          element.dispatchEvent(
-            new CustomEvent(toNormalizedEvent(name), {
-              bubbles: true,
-              cancelable: true,
-              detail,
-            }),
-          );
-        };
-      } else {
+    for (const name of Object.keys(propTypes)) {
+      // @ts-expect-error -- too complex
+      if (name in element && element[name] !== undefined) {
         // @ts-expect-error -- too complex
-        if (name in element && element[name] !== undefined) {
-          // @ts-expect-error -- too complex
-          props[name] = element[name];
-        }
-        Object.defineProperty(element, name, {
-          get() {
-            return props[name];
-          },
-          set(value) {
-            attributeChangedCallback(name, value);
-          },
-        });
+        props[name] = element[name];
       }
+      Object.defineProperty(element, name, {
+        get() {
+          return props[name];
+        },
+        set(value) {
+          attributeChangedCallback(name, value);
+        },
+      });
     }
 
-    const attributeChangedCallback = (name: string, value: null | string) => {
+    const attributeChangedCallback = (
+      name: string,
+      value: ((...args: unknown[]) => void) | null | string,
+    ) => {
       if (!vdom) {
         return;
       }
@@ -239,6 +230,3 @@ const setFormValue = (
       : target.value,
   );
 };
-
-const toNormalizedEvent = (name: string) =>
-  name[2].toLowerCase() + name.slice(3);
