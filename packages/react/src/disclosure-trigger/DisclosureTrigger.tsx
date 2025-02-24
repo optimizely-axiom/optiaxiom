@@ -36,18 +36,10 @@ export const DisclosureTrigger = forwardRef<
     useDisclosureContext("DisclosureTrigger");
 
     return (
-      <Flex ref={ref} {...styles.trigger({}, className)} {...props}>
+      <Flex ref={ref} {...styles.root({}, className)} {...props}>
         {addonBefore}
 
-        <Flex
-          asChild
-          flexDirection="row"
-          fontWeight="inherit"
-          gap="4"
-          rounded="md"
-          textAlign="start"
-          w="full"
-        >
+        <Flex asChild {...styles.trigger()}>
           <Cover asChild>
             <RadixCollapsible.Trigger>
               {chevronPosition === "start" && (
