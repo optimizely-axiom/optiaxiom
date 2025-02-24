@@ -4,7 +4,8 @@ import { faker } from "@faker-js/faker";
 import { Flex, Text } from "@optiaxiom/react";
 import { DataTable } from "@optiaxiom/react/unstable";
 import { getCoreRowModel, useReactTable } from "@tanstack/react-table";
-import { useEffect, useRef, useState } from "react";
+
+import { useInViewTimer } from "./useInViewTimer";
 
 faker.seed(123);
 
@@ -32,18 +33,13 @@ export function App() {
     state: { pagination: { pageIndex: 0, pageSize: data.length } },
   });
 
-  const [count, setCount] = useState(0);
-  const timerRef = useRef(0);
-  useEffect(() => {
-    timerRef.current = window.setInterval(
-      () => setCount((count) => count + 1),
-      1000,
-    );
-    return () => clearInterval(timerRef.current);
-  }, []);
+  /**
+   * A simple hook to re-render the table when it is visible on the screen.
+   */
+  const [count, ref] = useInViewTimer();
 
   return (
-    <Flex>
+    <Flex ref={ref}>
       <Text>Timer: {count}s (to simulate re-rendering)</Text>
       <DataTable maxH="sm" maxW="lg" table={table} />
     </Flex>
