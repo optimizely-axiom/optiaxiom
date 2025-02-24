@@ -2,22 +2,14 @@ import { type ComponentPropsWithRef, forwardRef } from "react";
 
 import { Box } from "../box";
 import { Flex } from "../flex";
+import * as styles from "./DialogBody.css";
 
 type DialogBodyProps = ComponentPropsWithRef<typeof Box>;
 
 export const DialogBody = forwardRef<HTMLDivElement, DialogBodyProps>(
-  ({ children, ...props }, ref) => {
+  ({ children, className, ...props }, ref) => {
     return (
-      <Flex
-        flex="1"
-        fontSize="md"
-        justifyContent="start"
-        overflow="auto"
-        px="24"
-        py="16"
-        ref={ref}
-        {...props}
-      >
+      <Flex ref={ref} {...styles.body({}, className)} {...props}>
         {children}
       </Flex>
     );
