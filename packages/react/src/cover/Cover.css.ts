@@ -42,7 +42,7 @@ export const cover = recipe({
               position: "absolute",
             },
             "&:focus-visible::before": {
-              outline: `2px auto ${theme.colors["border.focus"]}`,
+              outline: `2px solid ${theme.colors["border.focus"]}`,
               outlineOffset: offsetVar,
             },
           },
