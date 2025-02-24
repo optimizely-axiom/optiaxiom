@@ -1,5 +1,12 @@
 # @optiaxiom/web-components
 
+## 0.8.9
+
+### Patch Changes
+
+- 1e5d206: fix attaching event listener props
+- 78cfcbb: fix traversing parent from within shadow dom
+
 ## 0.8.8
 
 ### Patch Changes
