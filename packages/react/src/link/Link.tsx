@@ -19,13 +19,9 @@ type LinkProps = BoxProps<
      */
     external?: boolean;
     /**
-     * Show focus outline within the bounding box when overlay is also enabled.
-     */
-    inset?: boolean;
-    /**
      * Whether to expand and fill up the whole area of the parent which has `position: relative`.
      */
-    overlay?: boolean;
+    overlay?: "inset" | boolean;
   }
 >;
 
@@ -38,7 +34,6 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
       className,
       disabled,
       external,
-      inset,
       overlay,
       ...props
     },
@@ -49,7 +44,7 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
 
     return (
       <Box asChild {...styles.link({ appearance }, className)} {...boxProps}>
-        <Cover asChild disabled={!overlay} inset={inset}>
+        <Cover asChild disabled={!overlay} inset={overlay === "inset"}>
           <Comp
             aria-disabled={disabled}
             data-disabled={disabled ? "" : undefined}
