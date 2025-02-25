@@ -107,7 +107,6 @@ export default {
       },
       dialog: "Dialog",
       disclosure: "Disclosure",
-      drawer: "Drawer",
       "dropdown-menu": "DropdownMenu",
       field: "Field",
       heading: "Heading",

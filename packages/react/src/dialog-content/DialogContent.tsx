@@ -55,7 +55,7 @@ export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
           <Transition data-side="bottom" type={transitionType}>
             <Paper
               asChild
-              elevation={size === "fullscreen" ? "drawer" : "dialog"}
+              elevation={size === "fullscreen" ? undefined : "dialog"}
               onBlur={onReactSelectInputBlur}
               style={{
                 ...assignInlineVars({
