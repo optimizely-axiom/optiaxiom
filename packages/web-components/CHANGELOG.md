@@ -1,5 +1,11 @@
 # @optiaxiom/web-components
 
+## 0.8.10
+
+### Patch Changes
+
+- be08e41: fix disclosure trigger size
+
 ## 0.8.9
 
 ### Patch Changes

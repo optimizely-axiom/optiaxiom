@@ -1,5 +1,12 @@
 # @optiaxiom/react
 
+## 0.13.5
+
+### Patch Changes
+
+- be08e41: fix disclosure trigger size
+- 0936f3e: pass shard ref to scroll lock
+
 ## 0.13.4
 
 ### Patch Changes
