@@ -1,6 +1,7 @@
 import { theme } from "@optiaxiom/globals";
+import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import * as RadixPopover from "@radix-ui/react-popover";
-import { type ComponentPropsWithoutRef, forwardRef } from "react";
+import { type ComponentPropsWithoutRef, forwardRef, useRef } from "react";
 
 import type { BoxProps } from "../box";
 
@@ -32,8 +33,14 @@ type PopoverContentProps = ExcludeProps<
 >;
 
 export const PopoverContent = forwardRef<HTMLDivElement, PopoverContentProps>(
-  ({ align = "start", children, sideOffset = 2, withArrow, ...props }, ref) => {
+  (
+    { align = "start", children, sideOffset = 2, withArrow, ...props },
+    outerRef,
+  ) => {
     const { open, presence, setPresence } = usePopoverContext("PopoverContent");
+
+    const innerRef = useRef<HTMLDivElement>(null);
+    const ref = useComposedRefs(innerRef, outerRef);
 
     return (
       <TransitionGroup
@@ -54,7 +61,9 @@ export const PopoverContent = forwardRef<HTMLDivElement, PopoverContentProps>(
               ref={ref}
               sideOffset={sideOffset}
             >
-              <ModalContextProvider enabled>{children}</ModalContextProvider>
+              <ModalContextProvider shardRef={innerRef}>
+                {children}
+              </ModalContextProvider>
 
               {withArrow && (
                 <RadixPopover.Arrow asChild>
