@@ -13,7 +13,6 @@ export const paper = recipe({
       dialog: {
         rounded: "lg",
       },
-      drawer: {},
       menu: {
         border: "1",
         borderColor: "border.secondary",
