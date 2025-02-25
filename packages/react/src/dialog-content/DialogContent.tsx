@@ -1,6 +1,7 @@
+import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import * as RadixDialog from "@radix-ui/react-dialog";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
-import { type ComponentPropsWithoutRef, forwardRef } from "react";
+import { type ComponentPropsWithoutRef, forwardRef, useRef } from "react";
 
 import { Backdrop } from "../backdrop";
 import { type BoxProps } from "../box";
@@ -32,9 +33,12 @@ export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
       transitionType = "fade",
       ...props
     },
-    ref,
+    outerRef,
   ) => {
     const { nestedDialogCount, open } = useDialogContext("DialogContent");
+
+    const innerRef = useRef<HTMLDivElement>(null);
+    const ref = useComposedRefs(innerRef, outerRef);
 
     return (
       <TransitionGroup open={open}>
@@ -63,7 +67,9 @@ export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
               {...props}
             >
               <RadixDialog.Content ref={ref}>
-                <ModalContextProvider enabled>{children}</ModalContextProvider>
+                <ModalContextProvider shardRef={innerRef}>
+                  {children}
+                </ModalContextProvider>
               </RadixDialog.Content>
             </Paper>
           </Transition>

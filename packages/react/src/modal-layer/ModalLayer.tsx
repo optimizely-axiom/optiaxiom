@@ -19,13 +19,13 @@ type ModalLayerProps = Pick<ComponentPropsWithoutRef<typeof Box>, "asChild"> & {
 
 export const ModalLayer = forwardRef<HTMLDivElement, ModalLayerProps>(
   ({ asChild, children, ...props }, ref) => {
-    const { enabled } = useModalContext("ModalLayer");
+    const { shardRef } = useModalContext("ModalLayer");
     const [locked] = useState(() => document.body.dataset.scrollLocked);
     const [guards] = useState(() =>
       document.querySelector("[data-radix-focus-guard]"),
     );
 
-    if (!enabled) {
+    if (!shardRef.current) {
       return asChild ? (
         <Slot ref={ref} {...props}>
           {children}
@@ -43,7 +43,7 @@ export const ModalLayer = forwardRef<HTMLDivElement, ModalLayerProps>(
 
     if (locked) {
       result = (
-        <ReactRemoveScroll allowPinchZoom as={Slot}>
+        <ReactRemoveScroll allowPinchZoom as={Slot} shards={[shardRef]}>
           {result}
         </ReactRemoveScroll>
       );

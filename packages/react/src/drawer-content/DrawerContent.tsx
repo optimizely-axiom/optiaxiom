@@ -1,5 +1,6 @@
+import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import * as RadixDialog from "@radix-ui/react-dialog";
-import { forwardRef } from "react";
+import { forwardRef, useRef } from "react";
 
 import { Backdrop } from "../backdrop";
 import { type BoxProps } from "../box";
@@ -23,8 +24,11 @@ const mapPositionToTransitionSide = {
 } as const;
 
 export const DrawerContent = forwardRef<HTMLDivElement, DrawerContentProps>(
-  ({ children, position = "right", ...props }, ref) => {
+  ({ children, position = "right", ...props }, outerRef) => {
     const { open } = useDrawerContext("DrawerContent");
+
+    const innerRef = useRef<HTMLDivElement>(null);
+    const ref = useComposedRefs(innerRef, outerRef);
 
     return (
       <TransitionGroup open={open}>
@@ -46,7 +50,9 @@ export const DrawerContent = forwardRef<HTMLDivElement, DrawerContentProps>(
               {...styles.content({ position })}
             >
               <RadixDialog.Content ref={ref} {...props}>
-                <ModalContextProvider enabled>{children}</ModalContextProvider>
+                <ModalContextProvider shardRef={innerRef}>
+                  {children}
+                </ModalContextProvider>
               </RadixDialog.Content>
             </Paper>
           </Transition>

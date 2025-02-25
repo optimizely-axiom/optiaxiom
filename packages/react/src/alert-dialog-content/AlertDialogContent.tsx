@@ -1,6 +1,7 @@
 import * as RadixAlertDialog from "@radix-ui/react-alert-dialog";
+import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
-import { forwardRef } from "react";
+import { forwardRef, useRef } from "react";
 
 import type { ExcludeProps } from "../utils";
 
@@ -22,9 +23,12 @@ type AlertDialogContentProps = ExcludeProps<
 export const AlertDialogContent = forwardRef<
   HTMLDivElement,
   AlertDialogContentProps
->(({ children, size = "sm", style, ...props }, ref) => {
+>(({ children, size = "sm", style, ...props }, outerRef) => {
   const { nestedDialogCount, open, presence, setPresence } =
     useAlertDialogContext("AlertDialogContent");
+
+  const innerRef = useRef<HTMLDivElement>(null);
+  const ref = useComposedRefs(innerRef, outerRef);
 
   return (
     <TransitionGroup
@@ -58,7 +62,9 @@ export const AlertDialogContent = forwardRef<
               {...styles.content({ size })}
             >
               <RadixAlertDialog.Content ref={ref} {...props}>
-                <ModalContextProvider enabled>{children}</ModalContextProvider>
+                <ModalContextProvider shardRef={innerRef}>
+                  {children}
+                </ModalContextProvider>
               </RadixAlertDialog.Content>
             </Paper>
           </Transition>

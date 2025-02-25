@@ -1,7 +1,9 @@
 "use client";
 
+import type { RefObject } from "react";
+
 import { createContext } from "@radix-ui/react-context";
 
 export const [ModalContextProvider, useModalContext] = createContext<{
-  enabled: boolean;
-}>("Modal", { enabled: false });
+  shardRef: RefObject<HTMLElement>;
+}>("Modal", { shardRef: { current: null } });
