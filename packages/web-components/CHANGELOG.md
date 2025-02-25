@@ -1,5 +1,11 @@
 # @optiaxiom/web-components
 
+## 0.8.11
+
+### Patch Changes
+
+- 89b65db: remove Drawer component
+
 ## 0.8.10
 
 ### Patch Changes

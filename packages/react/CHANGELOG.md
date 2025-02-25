@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 0.13.6
+
+### Patch Changes
+
+- 89b65db: remove Drawer component
+
 ## 0.13.5
 
 ### Patch Changes
