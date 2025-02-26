@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 0.13.7
+
+### Patch Changes
+
+- 0ba2ad8: fix nested ModalLayer usage
+
 ## 0.13.6
 
 ### Patch Changes
