@@ -9,6 +9,7 @@ import {
 } from "react";
 
 import { AngleMenuButton } from "../angle-menu-button";
+import { extractBoxProps } from "../box";
 import { type ButtonProps } from "../button";
 import { useFieldContext } from "../field-context";
 import { useSelectContext } from "../select-context";
@@ -16,10 +17,20 @@ import { useSelectContext } from "../select-context";
 type SelectTriggerProps = ButtonProps<typeof PopperAnchor>;
 
 export const SelectTrigger = forwardRef<HTMLButtonElement, SelectTriggerProps>(
-  ({ asChild, children, onKeyDown, ...props }, ref) => {
+  (
+    {
+      "aria-labelledby": ariaLabelledBy,
+      asChild,
+      children,
+      onKeyDown,
+      ...props
+    },
+    ref,
+  ) => {
     const { disabled, downshift, isOpen } = useSelectContext("SelectTrigger");
+    const { boxProps, restProps } = extractBoxProps(props);
 
-    const { labelId } = useFieldContext();
+    const { labelId = ariaLabelledBy } = useFieldContext();
     const buttonRef = useRef<HTMLButtonElement>(null);
     useEffect(() => {
       if (!labelId || !buttonRef.current) {
@@ -51,8 +62,10 @@ export const SelectTrigger = forwardRef<HTMLButtonElement, SelectTriggerProps>(
     return (
       <PopperAnchor
         asChild
-        {...props}
+        {...boxProps}
         {...downshift.getToggleButtonProps({
+          ...restProps,
+          "aria-labelledby": labelId,
           disabled,
           onKeyDown: (event) => {
             onKeyDown?.(event as KeyboardEvent<HTMLDivElement>);
@@ -64,9 +77,7 @@ export const SelectTrigger = forwardRef<HTMLButtonElement, SelectTriggerProps>(
           {asChild ? (
             children
           ) : (
-            <AngleMenuButton aria-labelledby={labelId} ref={buttonRef}>
-              {children}
-            </AngleMenuButton>
+            <AngleMenuButton ref={buttonRef}>{children}</AngleMenuButton>
           )}
         </Slot>
       </PopperAnchor>
