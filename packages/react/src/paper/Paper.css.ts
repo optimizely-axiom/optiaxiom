@@ -18,6 +18,7 @@ export const paper = recipe({
         borderColor: "border.secondary",
         rounded: "lg",
       },
+      screen: {},
     },
   },
 });
