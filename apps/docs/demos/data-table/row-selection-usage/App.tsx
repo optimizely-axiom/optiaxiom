@@ -13,7 +13,7 @@ export function App() {
     getCoreRowModel: getCoreRowModel(),
   });
   return (
-    <DataTable maxW="lg" table={table}>
+    <DataTable table={table}>
       <DataTableBody />
     </DataTable>
   );

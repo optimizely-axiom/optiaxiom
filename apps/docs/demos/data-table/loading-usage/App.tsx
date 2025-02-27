@@ -18,7 +18,7 @@ export function App() {
   const [loading, setLoading] = useState(true);
 
   return (
-    <Flex alignItems="start">
+    <Flex alignItems="start" maxW="full">
       <Switch checked={loading} onCheckedChange={setLoading}>
         Loading
       </Switch>
