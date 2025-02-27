@@ -1,5 +1,13 @@
 # @optiaxiom/react
 
+## 0.13.8
+
+### Patch Changes
+
+- 873fc41: add page size options and row count
+- d9ffa72: fix aria-labelledby overriding in SelectTrigger
+- a4816b2: split DataTable into modular parts
+
 ## 0.13.7
 
 ### Patch Changes
