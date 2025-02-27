@@ -2,7 +2,7 @@
 
 import { faker } from "@faker-js/faker";
 import { Flex, Text } from "@optiaxiom/react";
-import { DataTable } from "@optiaxiom/react/unstable";
+import { DataTable, DataTableBody } from "@optiaxiom/react/unstable";
 import { getCoreRowModel, useReactTable } from "@tanstack/react-table";
 
 import { useInViewTimer } from "./useInViewTimer";
@@ -41,7 +41,9 @@ export function App() {
   return (
     <Flex ref={ref}>
       <Text>Timer: {count}s (to simulate re-rendering)</Text>
-      <DataTable maxH="sm" maxW="lg" table={table} />
+      <DataTable maxH="sm" maxW="lg" table={table}>
+        <DataTableBody />
+      </DataTable>
     </Flex>
   );
 }

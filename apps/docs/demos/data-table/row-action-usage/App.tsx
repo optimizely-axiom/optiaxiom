@@ -1,6 +1,6 @@
 "use client";
 
-import { DataTable } from "@optiaxiom/react/unstable";
+import { DataTable, DataTableBody } from "@optiaxiom/react/unstable";
 import { getCoreRowModel, useReactTable } from "@tanstack/react-table";
 
 import { columns } from "./columns";
@@ -12,5 +12,9 @@ export function App() {
     data,
     getCoreRowModel: getCoreRowModel(),
   });
-  return <DataTable maxW="lg" table={table} />;
+  return (
+    <DataTable maxW="lg" table={table}>
+      <DataTableBody />
+    </DataTable>
+  );
 }

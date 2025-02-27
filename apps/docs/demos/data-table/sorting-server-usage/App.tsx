@@ -1,6 +1,6 @@
 "use client";
 
-import { DataTable } from "@optiaxiom/react/unstable";
+import { DataTable, DataTableBody } from "@optiaxiom/react/unstable";
 import {
   getCoreRowModel,
   type SortingState,
@@ -26,7 +26,11 @@ export function App() {
     onSortingChange: setSorting,
     state: { sorting },
   });
-  return <DataTable maxH="xs" table={table} />;
+  return (
+    <DataTable maxH="xs" table={table}>
+      <DataTableBody />
+    </DataTable>
+  );
 }
 
 /**

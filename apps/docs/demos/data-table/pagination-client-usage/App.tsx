@@ -1,6 +1,10 @@
 "use client";
 
-import { DataTable } from "@optiaxiom/react/unstable";
+import {
+  DataTable,
+  DataTableBody,
+  DataTableFooter,
+} from "@optiaxiom/react/unstable";
 import {
   getCoreRowModel,
   getPaginationRowModel,
@@ -18,5 +22,10 @@ export function App() {
     getPaginationRowModel: getPaginationRowModel(),
     initialState: { pagination: { pageIndex: 0, pageSize: 10 } },
   });
-  return <DataTable maxH="xs" table={table} />;
+  return (
+    <DataTable maxH="xs" table={table}>
+      <DataTableBody />
+      <DataTableFooter />
+    </DataTable>
+  );
 }

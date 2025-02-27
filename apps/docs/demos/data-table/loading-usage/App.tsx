@@ -1,7 +1,7 @@
 "use client";
 
 import { Flex, Switch } from "@optiaxiom/react";
-import { DataTable } from "@optiaxiom/react/unstable";
+import { DataTable, DataTableBody } from "@optiaxiom/react/unstable";
 import { getCoreRowModel, useReactTable } from "@tanstack/react-table";
 import { useState } from "react";
 
@@ -23,7 +23,9 @@ export function App() {
         Loading
       </Switch>
 
-      <DataTable loading={loading} maxH="xs" table={table} />
+      <DataTable maxH="xs" table={table}>
+        <DataTableBody loading={loading} />
+      </DataTable>
     </Flex>
   );
 }
