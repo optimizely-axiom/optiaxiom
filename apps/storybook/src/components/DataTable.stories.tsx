@@ -327,7 +327,7 @@ export const Pagination: Story = {
     return (
       <DataTable {...args} table={table}>
         <DataTableBody />
-        <DataTableFooter />
+        <DataTableFooter showPageSizeOptions />
       </DataTable>
     );
   },
