@@ -1,7 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { Checkbox } from "@optiaxiom/react";
-import { DataTable } from "@optiaxiom/react/unstable";
+import {
+  DataTable,
+  DataTableBody,
+  DataTableFooter,
+} from "@optiaxiom/react/unstable";
 import {
   type ColumnDef,
   getCoreRowModel,
@@ -228,7 +232,9 @@ export const Basic: Story = {
           data,
           getCoreRowModel: getCoreRowModel(),
         })}
-      />
+      >
+        <DataTableBody />
+      </DataTable>
     );
   },
 };
@@ -244,7 +250,9 @@ export const VerticalScroll: Story = {
           getCoreRowModel: getCoreRowModel(),
           state: { pagination: { pageIndex: 0, pageSize: 100 } },
         })}
-      />
+      >
+        <DataTableBody />
+      </DataTable>
     );
   },
 };
@@ -266,7 +274,9 @@ export const Pinned: Story = {
             pagination: { pageIndex: 0, pageSize: 100 },
           },
         })}
-      />
+      >
+        <DataTableBody />
+      </DataTable>
     );
   },
 };
@@ -281,31 +291,44 @@ export const EmptyRows: Story = {
           data: [],
           getCoreRowModel: getCoreRowModel(),
         })}
-      />
+      >
+        <DataTableBody />
+      </DataTable>
     );
   },
 };
 
 export const LoadingState: Story = {
-  ...Basic,
-  args: {
-    loading: true,
-  },
-};
-
-export const Pagination: Story = {
   render: function Render(args) {
     return (
       <DataTable
         {...args}
         table={useReactTable({
-          columns: columns,
-          data: largeData,
+          columns: columns.slice(0, 5),
+          data,
           getCoreRowModel: getCoreRowModel(),
-          getPaginationRowModel: getPaginationRowModel(),
-          getSortedRowModel: getSortedRowModel(),
         })}
-      />
+      >
+        <DataTableBody loading />
+      </DataTable>
+    );
+  },
+};
+
+export const Pagination: Story = {
+  render: function Render(args) {
+    const table = useReactTable({
+      columns: columns,
+      data: largeData,
+      getCoreRowModel: getCoreRowModel(),
+      getPaginationRowModel: getPaginationRowModel(),
+      getSortedRowModel: getSortedRowModel(),
+    });
+    return (
+      <DataTable {...args} table={table}>
+        <DataTableBody />
+        <DataTableFooter />
+      </DataTable>
     );
   },
 };
@@ -324,7 +347,9 @@ export const Resizing: Story = {
           data,
           getCoreRowModel: getCoreRowModel(),
         })}
-      />
+      >
+        <DataTableBody />
+      </DataTable>
     );
   },
 };

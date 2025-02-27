@@ -23,6 +23,19 @@ Use the `table` prop to pass a table instance returned from `useReactTable()` ho
 
 <Demo component="data-table/usage" />
 
+### Anatomy
+
+```tsx
+import { DataTable, DataTableBody, DataTableFooter } from "@optiaxiom/react";
+
+export default () => (
+  <DataTable>
+    <DataTableBody />
+    <DataTableFooter />
+  </DataTable>
+);
+```
+
 ### Vertical scrolling
 
 Headers in `DataTable` are sticky by default. Set a height on the component to allow scrolling vertically when a large number of rows are present.
@@ -110,6 +123,16 @@ Columns will be virtualized when there are more than 20 columns in a table and r
 ### DataTable
 
 <PropsTable component="DataTable" />
+
+### DataTableBody
+
+<PropsTable component="DataTableBody" />
+
+### DataTableFooter
+
+<PropsTable component="DataTableFooter" />
+
+### TableActions
 
 <PropsTable component="TableActions" />
 
