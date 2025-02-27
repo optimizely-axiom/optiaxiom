@@ -19,7 +19,7 @@ export function App() {
     },
   });
   return (
-    <DataTable maxH="xs" maxW="lg" table={table}>
+    <DataTable maxH="xs" table={table}>
       <DataTableBody />
     </DataTable>
   );

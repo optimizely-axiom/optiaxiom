@@ -46,7 +46,14 @@ export function DemoPreview({
       display="flex"
       flexDirection={["column", "row"]}
     >
-      <Flex flex="1" flexDirection="row" gap="0" justifyContent="center" p="32">
+      <Flex
+        flex="1"
+        flexDirection="row"
+        gap="0"
+        justifyContent="center"
+        maxW="full"
+        p="32"
+      >
         {iframe ? (
           <DemoIframe height={height} src={iframe} />
         ) : (

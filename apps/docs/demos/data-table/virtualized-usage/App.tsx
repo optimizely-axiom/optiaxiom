@@ -39,9 +39,9 @@ export function App() {
   const [count, ref] = useInViewTimer();
 
   return (
-    <Flex ref={ref}>
+    <Flex maxW="full" ref={ref}>
       <Text>Timer: {count}s (to simulate re-rendering)</Text>
-      <DataTable maxH="sm" maxW="lg" table={table}>
+      <DataTable maxH="sm" table={table}>
         <DataTableBody />
       </DataTable>
     </Flex>
