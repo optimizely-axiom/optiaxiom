@@ -36,3 +36,19 @@ export const OutsideDays: Story = {
     );
   },
 };
+
+export const Holidays: Story = {
+  args: {
+    holiday: new Date("2025-01-15T00:00:00"),
+    today: new Date("2025-01-24T00:00:00"),
+  },
+};
+
+export const Weekends: Story = {
+  args: {
+    today: new Date("2025-01-24T00:00:00"),
+    weekend: {
+      dayOfWeek: [0, 6],
+    },
+  },
+};
