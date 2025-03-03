@@ -24,9 +24,11 @@ Components should not have breaking changes between versions. Try to avoid makin
 
 Instead make sure there is a smooth transition path and in case breaking changes are necessary they should be well documented in changelogs and migration guides
 
-#### Use consistent prop names
+#### Use consistent component and prop names
 
-Components should always use consistent prop names. Make sure to look at existing components (and even other existing component libraries) when naming props. For example use `variant` to specify the basic variations of a component.
+Components should always use consistent prop names. Make sure to look at existing components (and even other existing component libraries) when naming props. For example use `intent` to specify the basic color variations of a component.
+
+Similarly composable components should use consistent names across different components. For example `DialogHeader/DialogBody/DialogFooter` and `NavHeader/NavBody/NavFooter`.
 
 This will make components intuitive and easy to use.
 
@@ -36,7 +38,7 @@ Components should support `className` prop to allow styling from outside. Allow 
 
 #### Verify visual changes with design team
 
-Each PR has an associated storybook on chromatic which should be validated with design team before publishing.
+Rely on chromatic and storybook to validate changes with design team before publishing.
 
 #### Always provide stories
 
@@ -46,7 +48,7 @@ Additional stories should be provided to showcase more advanced use cases of the
 
 ## How to add new components
 
-A component can be added to the component library whenever it is used across multiple different products.
+A component can be added to the component library whenever it is used across **three** different products.
 
 After verification from the design team you should follow proper development guidelines to add the component to the component library.
 
@@ -72,13 +74,17 @@ After verification from the design team you should follow proper development gui
 
 [Radix Primitives](https://www.radix-ui.com/primitives) is used to build fully accessible components.
 
-### downshift
+### Downshift
 
 [Downshift](https://www.downshift-js.com/) is used to build fully accessible comboboxes.
 
 ### TanStack Table
 
 [TanStack Table](https://tanstack.com/table) is used to build accessible and flexible tables.
+
+### React DayPicker
+
+[React DayPicker](https://daypicker.dev/) is used to build accessible date pickers, calendars, and date inputs.
 
 ### Vanilla Extract
 
