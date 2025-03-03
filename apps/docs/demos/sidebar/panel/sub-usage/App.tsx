@@ -2,7 +2,7 @@ import { Nav, Sidebar } from "@optiaxiom/react";
 import { SubNav } from "@optiaxiom/react/unstable";
 
 import { Canvas } from "../../Canvas";
-import { Panel } from "../../Panel";
+import { Note } from "../../Note";
 
 export function App() {
   return (
@@ -10,7 +10,7 @@ export function App() {
       <Sidebar>
         <Nav />
         <SubNav>
-          <Panel description="A secondary navigation panel." title="SubNav" />
+          <Note description="A secondary navigation panel." title="SubNav" />
         </SubNav>
       </Sidebar>
     </Canvas>

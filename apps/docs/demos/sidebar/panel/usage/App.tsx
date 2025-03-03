@@ -1,14 +1,14 @@
 import { Nav, Sidebar } from "@optiaxiom/react";
 
 import { Canvas } from "../../Canvas";
-import { Panel } from "../../Panel";
+import { Note } from "../../Note";
 
 export function App() {
   return (
     <Canvas size="sm">
       <Sidebar expanded>
         <Nav>
-          <Panel description="The primary navigation panel." title="Nav" />
+          <Note description="The primary navigation panel." title="Nav" />
         </Nav>
       </Sidebar>
     </Canvas>
