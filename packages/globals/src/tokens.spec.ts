@@ -29,8 +29,8 @@ describe("tokens", () => {
       count: Object.keys(tokens.borderRadius).length,
       keys: Object.keys(tokens.borderRadius),
     }).toEqual({
-      count: 5,
-      keys: ["xs", "sm", "md", "lg", "full"],
+      count: 6,
+      keys: ["xs", "sm", "md", "lg", "xl", "full"],
     });
   });
 
