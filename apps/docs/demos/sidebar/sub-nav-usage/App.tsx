@@ -1,13 +1,16 @@
 "use client";
 
-import { NavBody, NavItem, NavList, Sidebar } from "@optiaxiom/react";
 import {
+  NavBody,
   NavGroup,
   NavGroupContent,
   NavGroupTrigger,
+  NavItem,
+  NavList,
   NavSeparator,
+  Sidebar,
   SubNav,
-} from "@optiaxiom/react/unstable";
+} from "@optiaxiom/react";
 import {
   IconCopy,
   IconDashboard,

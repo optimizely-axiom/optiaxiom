@@ -1,5 +1,4 @@
-import { Nav, Sidebar } from "@optiaxiom/react";
-import { SubNav } from "@optiaxiom/react/unstable";
+import { Nav, Sidebar, SubNav } from "@optiaxiom/react";
 
 import { Canvas } from "../../Canvas";
 import { Note } from "../../Note";

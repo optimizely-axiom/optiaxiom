@@ -10,18 +10,16 @@ import {
   NavAccountItem,
   NavBody,
   NavFooter,
-  NavItem,
-  NavList,
-  Sidebar,
-  SidebarToggle,
-} from "@optiaxiom/react";
-import {
   NavGroup,
   NavGroupContent,
   NavGroupTrigger,
+  NavItem,
+  NavList,
   NavSeparator,
+  Sidebar,
+  SidebarToggle,
   SubNav,
-} from "@optiaxiom/react/unstable";
+} from "@optiaxiom/react";
 import {
   IconBinaryTree,
   IconChartInfographic,

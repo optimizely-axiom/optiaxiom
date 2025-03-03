@@ -1,9 +1,13 @@
-import { Nav, NavBody, NavItem, NavList, Sidebar } from "@optiaxiom/react";
 import {
+  Nav,
+  NavBody,
   NavGroup,
   NavGroupContent,
   NavGroupTrigger,
-} from "@optiaxiom/react/unstable";
+  NavItem,
+  NavList,
+  Sidebar,
+} from "@optiaxiom/react";
 import {
   IconDashboard,
   IconDeviceDesktop,
