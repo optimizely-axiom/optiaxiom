@@ -160,6 +160,8 @@ function getCssRuleText(
         return result;
       }
     }
+  } else if (node instanceof CSSStyleRule && node.selectorText == selector) {
+    return node.style.cssText;
   } else if (node instanceof CSSGroupingRule || node instanceof CSSStyleSheet) {
     for (const cssRule of node.cssRules) {
       const result = getCssRuleText(cssRule, selector);
@@ -167,8 +169,6 @@ function getCssRuleText(
         return result;
       }
     }
-  } else if (node instanceof CSSStyleRule && node.selectorText == selector) {
-    return node.style.cssText;
   }
 
   return false;
@@ -182,6 +182,7 @@ const getStyleValues = (selector: string) => {
         .map((part) =>
           getCssRuleText(document, `.${cssesc(part, { isIdentifier: true })}`),
         )
+        .filter((style) => style)
         .join("\n");
   if (!style) {
     throw new Error("Could not parse style for selector");
