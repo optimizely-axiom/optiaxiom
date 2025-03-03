@@ -1,4 +1,4 @@
-.panel {
+.note {
   & :is(h6, p) {
     font-family:
       Comic Sans MS,

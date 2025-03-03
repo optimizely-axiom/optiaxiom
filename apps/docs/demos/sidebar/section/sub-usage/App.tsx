@@ -2,7 +2,7 @@ import { Nav, NavBody, NavFooter, NavHeader, Sidebar } from "@optiaxiom/react";
 import { SubNav } from "@optiaxiom/react/unstable";
 
 import { Canvas } from "../../Canvas";
-import { Panel } from "../../Panel";
+import { Note } from "../../Note";
 
 export function App() {
   return (
@@ -11,19 +11,19 @@ export function App() {
         <Nav />
         <SubNav>
           <NavHeader>
-            <Panel
+            <Note
               description="A sticky header that is always visible at the top of the panel."
               title="NavHeader"
             />
           </NavHeader>
           <NavBody>
-            <Panel
+            <Note
               description="The main navigation body that is scrollable and should contain all your navigation items."
               title="NavBody"
             />
           </NavBody>
           <NavFooter>
-            <Panel
+            <Note
               description="A sticky footer that is always visible at the bottom of the panel."
               title="NavFooter"
             />

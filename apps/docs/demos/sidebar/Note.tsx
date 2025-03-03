@@ -2,9 +2,9 @@ import type { ReactNode } from "react";
 
 import { Flex, Heading, Text } from "@optiaxiom/react";
 
-import styles from "./Panel.module.css";
+import styles from "./Note.module.css";
 
-export function Panel({
+export function Note({
   children,
   description,
   title,
@@ -16,7 +16,7 @@ export function Panel({
   return (
     <Flex
       bg="bg.warning.subtle"
-      className={styles.panel}
+      className={styles.note}
       gap="4"
       p="12"
       rounded="sm"
