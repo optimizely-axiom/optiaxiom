@@ -4,36 +4,6 @@
 
 Our goal is to create an accessible component library that is extremely easy to pick up and use.
 
-### Principles at a glance
-
-1. Efficient
-2. Accessible
-3. Desirable (to both designers and developers)
-
-## Principles
-
-### Efficient
-
-An efficient component should:
-
-1. Have well defined responsibilities
-2. Have clear and concise API
-3. Have comprehensive documentation
-4. Have good performance in terms of rendering speed
-
-A collection of components should similarly:
-
-1. Have well defined boundaries; so that component responsibilities do not overlap
-2. Have consistent API across components; so they are intuitive
-
-### Accessible
-
-[Radix Primitives](https://www.radix-ui.com/primitives) is used to build accessible components.
-
-### Desirable
-
-TODO
-
 ## Development Guidelines
 
 We should maintain the following guidelines when developing components:
