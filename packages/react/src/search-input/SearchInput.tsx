@@ -7,6 +7,7 @@ import {
 } from "react";
 
 import { Button } from "../button";
+import { Flex } from "../flex";
 import { IconMagnifyingGlass } from "../icons/IconMagnifyingGlass";
 import { IconX } from "../icons/IconX";
 import { Input } from "../input";
@@ -20,6 +21,7 @@ type SearchProps = ComponentPropsWithRef<typeof Input> & {
 export const SearchInput = forwardRef<HTMLInputElement, SearchProps>(
   (
     {
+      addonBefore,
       className,
       defaultValue = "",
       onChange,
@@ -56,7 +58,12 @@ export const SearchInput = forwardRef<HTMLInputElement, SearchProps>(
             />
           )
         }
-        addonBefore={<IconMagnifyingGlass />}
+        addonBefore={
+          <Flex flexDirection="row" gap="8">
+            <IconMagnifyingGlass />
+            {addonBefore}
+          </Flex>
+        }
         addonPointerEvents="none"
         autoComplete="off"
         onChange={(event) => {
