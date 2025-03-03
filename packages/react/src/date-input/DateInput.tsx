@@ -20,10 +20,11 @@ import { forceValueChange } from "../utils";
 import * as styles from "./DateInput.css";
 import { format, parse } from "./utils";
 
-type DateInputProps = ComponentPropsWithoutRef<typeof Input>;
+type DateInputProps = ComponentPropsWithoutRef<typeof Input> &
+  Pick<ComponentPropsWithoutRef<typeof Calendar>, "holiday" | "weekend">;
 
 export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
-  ({ disabled, max, min, onChange, ...props }, outerRef) => {
+  ({ disabled, holiday, max, min, onChange, weekend, ...props }, outerRef) => {
     const [open, setOpen] = useState(false);
 
     const [value, setValue] = useControllableState({
@@ -85,6 +86,7 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
           }}
         >
           <Calendar
+            holiday={holiday}
             max={maxDate}
             min={minDate}
             onValueChange={(date) => {
@@ -98,6 +100,7 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
               setOpen(false);
             }}
             value={parse(value)}
+            weekend={weekend}
           />
           <Flex flexDirection="row">
             <Button

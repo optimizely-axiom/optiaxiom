@@ -1,7 +1,7 @@
 import { type ComponentPropsWithoutRef, useEffect, useRef } from "react";
 import { DayButton } from "react-day-picker";
 
-import { Button } from "../button";
+import { Box } from "../box";
 import * as styles from "./CalendarDayButton.css";
 
 type CalendarDayButtonProps = ComponentPropsWithoutRef<typeof DayButton>;
@@ -22,16 +22,27 @@ export function CalendarDayButton({
   }, [modifiers.focused]);
 
   return (
-    <Button
-      appearance={modifiers.selected ? "primary" : "subtle"}
-      data-state={modifiers.today ? "active" : undefined}
-      ref={ref}
-      square
-      {...styles.button({ outside: modifiers.outside }, className)}
-      {...props}
+    <Box
+      asChild
+      {...styles.button(
+        {
+          appearance: modifiers.selected
+            ? "selected"
+            : modifiers.holiday
+              ? "holiday"
+              : modifiers.weekend
+                ? "weekend"
+                : "default",
+          outside: modifiers.outside,
+        },
+        className,
+      )}
     >
-      {children}
-    </Button>
+      <button ref={ref} {...props}>
+        {children}
+        {modifiers.today && <Box {...styles.today()} />}
+      </button>
+    </Box>
   );
 }
 

@@ -1,6 +1,6 @@
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import { forwardRef } from "react";
-import { DayPicker } from "react-day-picker";
+import { DayPicker, type Matcher } from "react-day-picker";
 
 import { Box, type BoxProps } from "../box";
 import { CalendarChevron } from "./CalendarChevron";
@@ -21,6 +21,10 @@ type CalendarProps = BoxProps<
      */
     defaultValue?: Date;
     /**
+     * Apply the `holiday` modifier to the matching days.
+     */
+    holiday?: Matcher | Matcher[];
+    /**
      * The latest month to end the month navigation.
      */
     max?: Date;
@@ -40,6 +44,10 @@ type CalendarProps = BoxProps<
      * The selected value in controlled mode.
      */
     value?: Date;
+    /**
+     * Apply the `weekend` modifier to the matching days.
+     */
+    weekend?: Matcher | Matcher[];
   }
 >;
 
@@ -59,11 +67,13 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
   (
     {
       defaultValue,
+      holiday,
       max,
       min,
       onValueChange,
       today,
       value: valueProp,
+      weekend,
       ...props
     },
     ref,
@@ -88,6 +98,7 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
           defaultMonth={value}
           endMonth={max}
           mode="single"
+          modifiers={{ holiday, weekend }}
           onSelect={setValue}
           required
           selected={value}
