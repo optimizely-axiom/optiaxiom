@@ -10,16 +10,16 @@ figma.connect(
     ),
     props: {
       placeholder: figma.enum("Variant", {
-        Placeholder: figma.string("Placeholder"),
+        Placeholder: "Search...",
         Text: undefined,
       }),
       size: figma.enum("Size", {
-        "Large - 40": "lg",
+        "Large -40": "lg",
         "Medium - 32": undefined,
       }),
       value: figma.enum("Variant", {
         Placeholder: undefined,
-        Text: figma.string("Value"),
+        Text: "Search query",
       }),
     },
     variant: { Label: false },
@@ -49,16 +49,16 @@ figma.connect(
         required: figma.boolean("IsRequired"),
       }),
       placeholder: figma.enum("Variant", {
-        Placeholder: figma.string("Placeholder"),
+        Placeholder: "Search...",
         Text: undefined,
       }),
       size: figma.enum("Size", {
-        "Large - 40": "lg",
+        "Large -40": "lg",
         "Medium - 32": undefined,
       }),
       value: figma.enum("Variant", {
         Placeholder: undefined,
-        Text: figma.string("Value"),
+        Text: "Search query",
       }),
     },
     variant: { Label: true },
