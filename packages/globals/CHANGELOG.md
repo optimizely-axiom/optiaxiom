@@ -1,5 +1,11 @@
 # @optiaxiom/globals
 
+## 0.7.5
+
+### Patch Changes
+
+- 6b0470d: add xl size borderRadius token
+
 ## 0.7.4
 
 ### Patch Changes

@@ -1,5 +1,14 @@
 # @optiaxiom/react
 
+## 0.13.9
+
+### Patch Changes
+
+- 6b0470d: add xl size borderRadius token
+- 54dae70: fix appending addonBefore in SearchInput
+- Updated dependencies [6b0470d]
+  - @optiaxiom/globals@0.7.5
+
 ## 0.13.8
 
 ### Patch Changes

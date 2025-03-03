@@ -1,5 +1,11 @@
 # @optiaxiom/web-components
 
+## 0.8.12
+
+### Patch Changes
+
+- 54dae70: fix appending addonBefore in SearchInput
+
 ## 0.8.11
 
 ### Patch Changes
