@@ -1,10 +1,14 @@
-import { Nav, NavBody, NavItem, NavList, Sidebar } from "@optiaxiom/react";
 import {
+  Nav,
+  NavBody,
   NavGroup,
   NavGroupContent,
   NavGroupTrigger,
+  NavItem,
+  NavList,
   NavSeparator,
-} from "@optiaxiom/react/unstable";
+  Sidebar,
+} from "@optiaxiom/react";
 import {
   IconCopy,
   IconDashboard,
