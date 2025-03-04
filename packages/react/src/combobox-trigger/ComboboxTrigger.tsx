@@ -1,15 +1,10 @@
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
-import {
-  type ComponentPropsWithoutRef,
-  forwardRef,
-  useEffect,
-  useRef,
-} from "react";
+import { type ComponentPropsWithoutRef, forwardRef, useRef } from "react";
 
 import { AngleMenuButton } from "../angle-menu-button";
 import { useComboboxContext } from "../combobox-context";
-import { useFieldContext } from "../field-context";
 import { PopoverTrigger } from "../popover-trigger";
+import { useFieldLabelTrigger } from "../use-field-label-trigger";
 
 type ComboboxTriggerProps = ComponentPropsWithoutRef<typeof PopoverTrigger>;
 
@@ -26,22 +21,7 @@ export const ComboboxTrigger = forwardRef<
     const buttonRef = useRef<HTMLButtonElement>(null);
     const ref = useComposedRefs(outerRef, buttonRef);
 
-    const { labelId = ariaLabelledBy } = useFieldContext();
-    useEffect(() => {
-      if (!labelId || !buttonRef.current) {
-        return;
-      }
-
-      const button = buttonRef.current;
-      const label = document.getElementById(labelId);
-      if (!label) {
-        return;
-      }
-
-      const onLabelClick = () => button.focus();
-      label.addEventListener("click", onLabelClick);
-      return () => label.removeEventListener("click", onLabelClick);
-    }, [labelId]);
+    const labelId = useFieldLabelTrigger(buttonRef, ariaLabelledBy);
 
     return (
       <components.Trigger
