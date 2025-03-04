@@ -1,6 +1,13 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Box, Button, Field, Flex } from "@optiaxiom/react";
+import {
+  Box,
+  Button,
+  Field,
+  Flex,
+  SegmentedControl,
+  SegmentedControlItem,
+} from "@optiaxiom/react";
 import {
   DatePicker,
   DatePickerContent,
@@ -98,6 +105,63 @@ export const Content: Story = {
       >
         <DatePickerTrigger />
         <DatePickerContent>
+          <Flex flexDirection="row">
+            <Button
+              appearance="primary"
+              ml="auto"
+              onClick={() => setOpen(false)}
+            >
+              Done
+            </Button>
+          </Flex>
+        </DatePickerContent>
+      </DatePicker>
+    );
+  },
+};
+
+export const Addons: Story = {
+  render: function Render(args) {
+    const [open, setOpen] = useState(true);
+    const [value, setValue] = useState<Date>();
+    const [time, setTime] = useState<string>();
+
+    return (
+      <DatePicker
+        {...args}
+        onOpenChange={setOpen}
+        onValueChange={setValue}
+        open={open}
+        value={value}
+      >
+        <DatePickerTrigger />
+        <DatePickerContent
+          addonAfter={
+            <SegmentedControl
+              flexDirection="column"
+              gap="2"
+              justifyContent="start"
+              onValueChange={setTime}
+              overflow="auto"
+              p="4"
+              value={time}
+            >
+              {["AM", "PM"].map((meridiem) =>
+                [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((hour) => (
+                  <SegmentedControlItem
+                    appearance="subtle"
+                    flex="none"
+                    key={`${hour}-${meridiem}`}
+                    size="sm"
+                    value={`${hour}:00 ${meridiem}`}
+                  >
+                    {hour}:00 {meridiem}
+                  </SegmentedControlItem>
+                )),
+              )}
+            </SegmentedControl>
+          }
+        >
           <Flex flexDirection="row">
             <Button
               appearance="primary"

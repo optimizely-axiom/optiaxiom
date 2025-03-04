@@ -1,13 +1,14 @@
 import { recipe, style } from "../vanilla-extract";
 
-export const content = recipe({
+export const panels = recipe({
   base: [
     {
-      gap: "8",
-      maxW: undefined,
+      alignItems: "stretch",
+      flexDirection: "row",
+      gap: "0",
     },
     style({
-      width: "498px",
+      maxHeight: 304,
     }),
   ],
 });

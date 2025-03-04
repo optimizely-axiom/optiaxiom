@@ -5,7 +5,6 @@ export const months = recipe({
     {
       alignItems: "start",
       flexDirection: "row",
-      flexWrap: "wrap",
     },
     style({
       position: "relative",
