@@ -138,3 +138,46 @@ export const Content: Story = {
     );
   },
 };
+
+export const Addons: Story = {
+  render: function Render(args) {
+    const [open, setOpen] = useState(true);
+    const [value, setValue] = useState<{
+      from: Date | undefined;
+      to?: Date | undefined;
+    }>();
+
+    return (
+      <DateRangePicker
+        {...args}
+        onOpenChange={setOpen}
+        onValueChange={setValue}
+        open={open}
+        value={value}
+      >
+        <DateRangePickerTrigger />
+        <DateRangePickerContent
+          addonBefore={
+            <Flex gap="2">
+              <Button appearance="subtle">Today</Button>
+              <Button appearance="subtle">This week</Button>
+              <Button appearance="subtle">This month</Button>
+              <Button appearance="subtle">Next week</Button>
+              <Button appearance="subtle">Next month</Button>
+            </Flex>
+          }
+        >
+          <Flex flexDirection="row">
+            <Button
+              appearance="primary"
+              ml="auto"
+              onClick={() => setOpen(false)}
+            >
+              Done
+            </Button>
+          </Flex>
+        </DateRangePickerContent>
+      </DateRangePicker>
+    );
+  },
+};
