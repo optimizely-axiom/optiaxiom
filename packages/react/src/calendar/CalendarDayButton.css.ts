@@ -1,6 +1,6 @@
 import { theme } from "@optiaxiom/globals";
 
-import { createVar, recipe, style } from "../vanilla-extract";
+import { createVar, fallbackVar, recipe, style } from "../vanilla-extract";
 
 const bgVar = createVar();
 
@@ -23,7 +23,13 @@ export const button = recipe({
         "(hover: hover)": {
           selectors: {
             "&:hover": {
-              backgroundColor: `color-mix(in srgb, ${bgVar}, ${theme.colors["bg.default.inverse"]} 8%)`,
+              backgroundColor: `
+                color-mix(
+                  in srgb,
+                  ${fallbackVar(bgVar, "transparent")},
+                  ${theme.colors["bg.default.inverse"]} 8%
+                )
+              `,
             },
           },
         },
@@ -71,17 +77,9 @@ export const button = recipe({
           },
         }),
       ],
-      weekend: style({
-        vars: {
-          [bgVar]: theme.colors["bg.secondary"],
-        },
-      }),
-    },
-    outside: {
-      false: {},
-      true: style({
-        opacity: 0.6,
-      }),
+      weekend: {
+        color: "fg.tertiary",
+      },
     },
     range: {
       end: [

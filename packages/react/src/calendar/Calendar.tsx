@@ -127,7 +127,6 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
           onSelect={setValue as (value: Date | undefined) => void}
           required
           selected={value as Date | undefined}
-          showOutsideDays
           startMonth={min}
           today={today}
         />
