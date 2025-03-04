@@ -29,7 +29,14 @@ export default ESLintUtils.RuleCreator.withoutDocs({
           if (attribute.name.type !== "JSXIdentifier") {
             continue;
           }
-          if (attribute.value?.type !== "Literal") {
+          if (
+            !(
+              attribute.value?.type == "Literal" ||
+              (attribute.value?.type === "JSXExpressionContainer" &&
+                attribute.value.expression.type === "Identifier" &&
+                attribute.value.expression.name === "undefined")
+            )
+          ) {
             continue;
           }
 
