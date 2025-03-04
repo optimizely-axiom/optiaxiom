@@ -105,6 +105,9 @@ export default {
       "date-input": {
         title: <AlphaItem>DateInput</AlphaItem>,
       },
+      "date-picker": {
+        title: <AlphaItem>DatePicker</AlphaItem>,
+      },
       dialog: "Dialog",
       disclosure: "Disclosure",
       "dropdown-menu": "DropdownMenu",
