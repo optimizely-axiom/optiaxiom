@@ -108,6 +108,9 @@ export default {
       "date-picker": {
         title: <AlphaItem>DatePicker</AlphaItem>,
       },
+      "date-range-picker": {
+        title: <AlphaItem>DateRangePicker</AlphaItem>,
+      },
       dialog: "Dialog",
       disclosure: "Disclosure",
       "dropdown-menu": "DropdownMenu",
