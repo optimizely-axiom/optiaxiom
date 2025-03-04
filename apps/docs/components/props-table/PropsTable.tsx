@@ -59,10 +59,15 @@ export async function PropsTable({
     mapComponentToBase[component] ??
     (propItems.find((prop) => prop.name === "asChild") ? "Box" : "");
   const isBox = component === "Box";
+  const virtual = !propItems.find((prop) => prop.name === "asChild");
 
   return (
     <>
-      <PropsTableDescription baseName={baseName} name={component}>
+      <PropsTableDescription
+        baseName={baseName}
+        name={component}
+        virtual={virtual}
+      >
         {baseName && !isBox && (
           <>
             Supports all{" "}
@@ -152,10 +157,12 @@ function PropsTableDescription({
   baseName,
   children,
   name,
+  virtual,
 }: {
   baseName: "" | AllComponents;
   children?: ReactNode;
   name: AllComponents;
+  virtual?: boolean;
 }) {
   return (
     <Text fontSize="lg" mt="16">
@@ -169,8 +176,6 @@ function PropsTableDescription({
         <>
           Renders a <Code>&lt;div&gt;</Code> element.
         </>
-      ) : name !== "Box" && !children ? (
-        "Doesn't render its own HTML element."
       ) : matches(["Avatar", "Badge", "Skeleton"], name) ? (
         <>
           Renders a <Code>&lt;span&gt;</Code> element.
@@ -252,6 +257,8 @@ function PropsTableDescription({
         <>
           Renders a <Code>&lt;p&gt;</Code> element.
         </>
+      ) : virtual ? (
+        "Doesn't render its own HTML element."
       ) : (
         <>
           Renders a <Code>&lt;div&gt;</Code> element.
