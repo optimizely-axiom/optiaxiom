@@ -92,6 +92,7 @@ export const demos = {
   "data-table/virtualized-usage": import("./data-table/virtualized-usage/App"),
   "date-input/usage": import("./date-input/usage/App"),
   "date-picker/usage": import("./date-picker/usage/App"),
+  "date-range-picker/usage": import("./date-range-picker/usage/App"),
   "dialog/alert-dialog-usage": import("./dialog/alert-dialog-usage/App"),
   "dialog/controlled-usage": import("./dialog/controlled-usage/App"),
   "dialog/description-usage": import("./dialog/description-usage/App"),

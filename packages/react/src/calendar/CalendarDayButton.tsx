@@ -26,14 +26,26 @@ export function CalendarDayButton({
       asChild
       {...styles.button(
         {
-          appearance: modifiers.selected
-            ? "selected"
-            : modifiers.holiday
-              ? "holiday"
-              : modifiers.weekend
-                ? "weekend"
-                : "default",
+          appearance: modifiers.range_middle
+            ? "range_middle"
+            : modifiers.selected
+              ? "selected"
+              : modifiers.holiday
+                ? "holiday"
+                : modifiers.weekend
+                  ? "weekend"
+                  : "default",
           outside: modifiers.outside,
+          range:
+            modifiers.range_start && modifiers.range_end
+              ? undefined
+              : modifiers.range_start
+                ? "start"
+                : modifiers.range_middle
+                  ? "middle"
+                  : modifiers.range_end
+                    ? "end"
+                    : undefined,
         },
         className,
       )}

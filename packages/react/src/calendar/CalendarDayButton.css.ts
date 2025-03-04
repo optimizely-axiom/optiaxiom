@@ -10,12 +10,12 @@ export const button = recipe({
       color: "fg.default",
       fontSize: "md",
       mt: "8",
-      rounded: "md",
       size: "md",
       transition: "colors",
     },
     style({
       backgroundColor: bgVar,
+      borderRadius: theme.borderRadius.md,
       position: "relative",
       userSelect: "none",
 
@@ -56,6 +56,11 @@ export const button = recipe({
           },
         }),
       ],
+      range_middle: style({
+        vars: {
+          [bgVar]: theme.colors["bg.secondary"],
+        },
+      }),
       selected: [
         {
           color: "fg.white",
@@ -77,6 +82,25 @@ export const button = recipe({
       true: style({
         opacity: 0.6,
       }),
+    },
+    range: {
+      end: [
+        style({
+          borderBottomLeftRadius: "0",
+          borderTopLeftRadius: "0",
+        }),
+      ],
+      middle: [
+        style({
+          borderRadius: "0",
+        }),
+      ],
+      start: [
+        style({
+          borderBottomRightRadius: "0",
+          borderTopRightRadius: "0",
+        }),
+      ],
     },
   },
 });
