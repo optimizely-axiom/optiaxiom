@@ -3,6 +3,7 @@ import { forwardRef } from "react";
 import { type DateRange, DayPicker, type Matcher } from "react-day-picker";
 
 import { Box, type BoxProps } from "../box";
+import { useResponsiveMatches } from "../use-responsive-matches";
 import { CalendarChevron } from "./CalendarChevron";
 import { CalendarDay } from "./CalendarDay";
 import { CalendarDayButton } from "./CalendarDayButton";
@@ -107,6 +108,10 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
       onChange: onValueChange as (value: Date | DateRange | undefined) => void,
       prop: valueProp,
     });
+    const numberOfMonths = useResponsiveMatches({
+      base: 1,
+      sm: 2,
+    });
 
     return (
       <Box
@@ -123,7 +128,7 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
           endMonth={max}
           mode={mode as "single"}
           modifiers={{ holiday, weekend }}
-          numberOfMonths={mode === "range" ? 2 : 1}
+          numberOfMonths={mode === "range" ? numberOfMonths : 1}
           onSelect={setValue as (value: Date | undefined) => void}
           required
           selected={value as Date | undefined}
