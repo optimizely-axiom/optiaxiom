@@ -9,7 +9,6 @@ import {
   SelectRadioItem,
   SelectSeparator,
   SelectTrigger,
-  SelectValue,
 } from "@optiaxiom/react/unstable";
 import { expect, screen, userEvent } from "@storybook/test";
 import { useEffect, useState } from "react";
@@ -63,9 +62,7 @@ export default {
   args: {
     children: (
       <>
-        <SelectTrigger>
-          <SelectValue placeholder="Select a language" />
-        </SelectTrigger>
+        <SelectTrigger placeholder="Select a language" />
 
         <SelectContent>
           {languages.map((item, index) => {
@@ -123,9 +120,7 @@ export const Group: Story = {
   args: {
     children: (
       <>
-        <SelectTrigger>
-          <SelectValue placeholder="Select an item" />
-        </SelectTrigger>
+        <SelectTrigger placeholder="Select an item" />
 
         <SelectContent>
           <SelectGroup>
@@ -240,9 +235,7 @@ export const Controlled: Story<Book> = {
   args: {
     children: (
       <>
-        <SelectTrigger>
-          <SelectValue placeholder="Select a book" />
-        </SelectTrigger>
+        <SelectTrigger placeholder="Select a book" />
 
         <SelectContent>
           {books.map((item, index) => {
@@ -286,9 +279,7 @@ export const AsyncLoading: Story = {
 
     return (
       <Select {...args} items={items}>
-        <SelectTrigger>
-          <SelectValue placeholder="Select a language" />
-        </SelectTrigger>
+        <SelectTrigger placeholder="Select a language" />
 
         <SelectContent loading={isLoading}>
           {items.map((item) => (

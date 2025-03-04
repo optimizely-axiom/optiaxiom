@@ -15,7 +15,6 @@ import {
   ComboboxScrollArea,
   ComboboxSeparator,
   ComboboxTrigger,
-  ComboboxValue,
 } from "@optiaxiom/react/unstable";
 import { IconUsers } from "@tabler/icons-react";
 import { Fragment, useEffect, useRef, useState } from "react";
@@ -107,9 +106,7 @@ export const Basic: Story = {
         open={open}
         value={value ? [value] : []}
       >
-        <ComboboxTrigger>
-          <ComboboxValue placeholder="Select a language" />
-        </ComboboxTrigger>
+        <ComboboxTrigger placeholder="Select a language" />
         <ComboboxContent>
           <ComboboxInput placeholder="Languages..." />
           <ComboboxScrollArea>
@@ -168,9 +165,7 @@ export const AsyncLoading: Story = {
         open={open}
         value={value ? [value] : []}
       >
-        <ComboboxTrigger>
-          <ComboboxValue placeholder="Select a language" />
-        </ComboboxTrigger>
+        <ComboboxTrigger placeholder="Select a language" />
         <ComboboxContent>
           <ComboboxInput placeholder="Languages..." />
           <ComboboxScrollArea loading={isLoading}>
@@ -219,9 +214,7 @@ export const Multiple: Story = {
         open={open}
         value={value}
       >
-        <ComboboxTrigger>
-          <ComboboxValue placeholder="Select a language" />
-        </ComboboxTrigger>
+        <ComboboxTrigger placeholder="Select a language" />
         <ComboboxContent>
           <ComboboxInput placeholder="Languages..." />
           <ComboboxScrollArea>
@@ -340,25 +333,23 @@ export const People: Story<(typeof users)[number]> = {
         open={open}
         value={value}
       >
-        <ComboboxTrigger>
-          <ComboboxValue placeholder="Select assignees">
-            <AvatarGroup>
-              {[...value].slice(0, 3).map((user) => (
-                <Avatar
-                  colorScheme="purple"
-                  key={user.id}
-                  name={user.name}
-                  size="xs"
-                  src={user.src}
-                />
-              ))}
-            </AvatarGroup>
-            {!value.size ? null : value.size > 1 ? (
-              <>{value.size} assignees</>
-            ) : (
-              [...value][0].name
-            )}
-          </ComboboxValue>
+        <ComboboxTrigger placeholder="Select assignees">
+          <AvatarGroup>
+            {[...value].slice(0, 3).map((user) => (
+              <Avatar
+                colorScheme="purple"
+                key={user.id}
+                name={user.name}
+                size="xs"
+                src={user.src}
+              />
+            ))}
+          </AvatarGroup>
+          {!value.size ? null : value.size > 1 ? (
+            <>{value.size} assignees</>
+          ) : (
+            [...value][0].name
+          )}
         </ComboboxTrigger>
 
         <ComboboxContent>
@@ -527,9 +518,7 @@ export const Controlled: Story<Book> = {
         open={open}
         value={value}
       >
-        <ComboboxTrigger>
-          <ComboboxValue placeholder="Select books" />
-        </ComboboxTrigger>
+        <ComboboxTrigger placeholder="Select books" />
 
         <ComboboxContent>
           <ComboboxInput placeholder="Books..." />
@@ -603,9 +592,7 @@ export const Group: Story = {
         open={open}
         value={value ? [value] : []}
       >
-        <ComboboxTrigger>
-          <ComboboxValue placeholder="Select an item" />
-        </ComboboxTrigger>
+        <ComboboxTrigger placeholder="Select an item" />
 
         <ComboboxContent>
           <ComboboxInput placeholder="Search foods..." />

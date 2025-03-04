@@ -8,7 +8,6 @@ import {
   ComboboxInput,
   ComboboxScrollArea,
   ComboboxTrigger,
-  ComboboxValue,
 } from "@optiaxiom/react/unstable";
 import { useState } from "react";
 
@@ -37,9 +36,7 @@ export function App() {
       }
       value={value}
     >
-      <ComboboxTrigger w="224">
-        <ComboboxValue placeholder="Select colors..." />
-      </ComboboxTrigger>
+      <ComboboxTrigger placeholder="Select colors..." w="224" />
 
       <ComboboxContent>
         <ComboboxInput />

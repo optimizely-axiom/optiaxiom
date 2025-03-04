@@ -14,7 +14,12 @@ import { type ButtonProps } from "../button";
 import { useSelectContext } from "../select-context";
 import { useFieldLabelTrigger } from "../use-field-label-trigger";
 
-type SelectTriggerProps = ButtonProps<typeof PopperAnchor>;
+type SelectTriggerProps = ButtonProps<
+  typeof PopperAnchor,
+  {
+    placeholder?: string;
+  }
+>;
 
 export const SelectTrigger = forwardRef<HTMLButtonElement, SelectTriggerProps>(
   (
@@ -23,11 +28,13 @@ export const SelectTrigger = forwardRef<HTMLButtonElement, SelectTriggerProps>(
       asChild,
       children,
       onKeyDown,
+      placeholder,
       ...props
     },
     ref,
   ) => {
-    const { disabled, downshift, isOpen } = useSelectContext("SelectTrigger");
+    const { disabled, downshift, isOpen, itemToString, selectedItem } =
+      useSelectContext("SelectTrigger");
     const { boxProps, restProps } = extractBoxProps(props);
 
     const buttonRef = useRef<HTMLButtonElement>(null);
@@ -62,7 +69,10 @@ export const SelectTrigger = forwardRef<HTMLButtonElement, SelectTriggerProps>(
           {asChild ? (
             children
           ) : (
-            <AngleMenuButton ref={buttonRef}>{children}</AngleMenuButton>
+            <AngleMenuButton ref={buttonRef}>
+              {children ??
+                (selectedItem ? itemToString(selectedItem) : placeholder)}
+            </AngleMenuButton>
           )}
         </Slot>
       </PopperAnchor>

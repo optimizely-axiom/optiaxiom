@@ -9,7 +9,6 @@ import { Select } from "../select";
 import { SelectContent } from "../select-content";
 import { SelectRadioItem } from "../select-radio-item";
 import { SelectTrigger } from "../select-trigger";
-import { SelectValue } from "../select-value";
 import { Text } from "../text";
 
 type DataTableFooterProps = BoxProps<
@@ -53,9 +52,10 @@ export const DataTableFooter = forwardRef<HTMLDivElement, DataTableFooterProps>(
                 }
                 value={pagination.pageSize.toString()}
               >
-                <SelectTrigger appearance="subtle" aria-labelledby={pageSizeId}>
-                  <SelectValue />
-                </SelectTrigger>
+                <SelectTrigger
+                  appearance="subtle"
+                  aria-labelledby={pageSizeId}
+                />
 
                 <SelectContent>
                   {pageSizeOptions.map((rows) => (

@@ -6,7 +6,6 @@ import {
   SelectContent,
   SelectRadioItem,
   SelectTrigger,
-  SelectValue,
 } from "@optiaxiom/react/unstable";
 
 import { colors } from "./data";
@@ -18,9 +17,7 @@ export function App() {
       items={colors}
       itemToString={(item) => (item ? item.label : "")}
     >
-      <SelectTrigger>
-        <SelectValue placeholder="Select a color..." />
-      </SelectTrigger>
+      <SelectTrigger placeholder="Select a color..." />
 
       <SelectContent>
         {colors.map((color) => (
