@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { Calendar } from "@optiaxiom/react/unstable";
-import { userEvent } from "@storybook/test";
 
 export default {
   args: {
@@ -22,18 +21,6 @@ export const Basic: Story = {
   args: {
     defaultValue: new Date("2025-01-22T00:00:00"),
     today: new Date("2025-01-24T00:00:00"),
-  },
-};
-
-export const OutsideDays: Story = {
-  args: {
-    defaultValue: new Date("2024-12-30T00:00:00"),
-    today: new Date("2025-01-24T00:00:00"),
-  },
-  play: async ({ canvas }) => {
-    await userEvent.click(
-      canvas.getByRole("button", { name: "Go to the Next Month" }),
-    );
   },
 };
 
