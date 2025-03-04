@@ -13,7 +13,6 @@ import {
   SelectContent,
   SelectRadioItem,
   SelectTrigger,
-  SelectValue,
 } from "@optiaxiom/react/unstable";
 import {
   IconAdjustmentsHorizontal,
@@ -56,9 +55,7 @@ export function App() {
           px="16"
         >
           <Select defaultValue="Status" items={["Status", "Due Dates"]}>
-            <SelectTrigger ml="12" size="sm">
-              <SelectValue />
-            </SelectTrigger>
+            <SelectTrigger ml="12" size="sm" />
 
             <SelectContent align="end">
               {["Status", "Due Dates"].map((item) => (
@@ -80,9 +77,7 @@ export function App() {
             defaultValue="No grouping"
             items={["No grouping", "Campaign"]}
           >
-            <SelectTrigger ml="12" size="sm">
-              <SelectValue />
-            </SelectTrigger>
+            <SelectTrigger ml="12" size="sm" />
 
             <SelectContent align="end">
               {["No grouping", "Campaign"].map((item) => (
@@ -103,9 +98,7 @@ export function App() {
           px="16"
         >
           <Select defaultValue="Tasks" items={["Tasks", "Steps"]}>
-            <SelectTrigger ml="12" size="sm">
-              <SelectValue />
-            </SelectTrigger>
+            <SelectTrigger ml="12" size="sm" />
 
             <SelectContent align="end">
               {["Tasks", "Steps"].map((item) => (

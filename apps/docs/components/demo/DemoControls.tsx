@@ -7,7 +7,6 @@ import {
   SelectContent,
   SelectRadioItem,
   SelectTrigger,
-  SelectValue,
 } from "@optiaxiom/react/unstable";
 
 type DemoControlProps = ComponentPropsWithRef<typeof Flex> & {
@@ -66,9 +65,7 @@ export function DemoControls({
                     propValues[item.prop] ? String(propValues[item.prop]) : ""
                   }
                 >
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select an option..." />
-                  </SelectTrigger>
+                  <SelectTrigger placeholder="Select an option..." />
                   <SelectContent>
                     {item.options.map((item) => {
                       return (

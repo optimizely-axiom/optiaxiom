@@ -19,12 +19,10 @@ import {
   ComboboxRadioItem,
   ComboboxScrollArea,
   ComboboxTrigger,
-  ComboboxValue,
   Select,
   SelectContent,
   SelectRadioItem,
   SelectTrigger,
-  SelectValue,
 } from "@optiaxiom/react/unstable";
 import { expect, screen, userEvent, waitFor } from "@storybook/test";
 import { IconArrowsDiagonal } from "@tabler/icons-react";
@@ -248,9 +246,7 @@ function SampleCombobox() {
       onOpenChange={setOpen}
       open={open}
     >
-      <ComboboxTrigger>
-        <ComboboxValue placeholder="Select a language" />
-      </ComboboxTrigger>
+      <ComboboxTrigger placeholder="Select a language" />
 
       <ComboboxContent>
         <ComboboxInput placeholder="Languages..." />
@@ -276,9 +272,7 @@ export const WithForm: Story = {
         <SampleCombobox />
 
         <Select items={languages}>
-          <SelectTrigger>
-            <SelectValue placeholder="Select language" />
-          </SelectTrigger>
+          <SelectTrigger placeholder="Select language" />
 
           <SelectContent>
             {languages.map((item) => (

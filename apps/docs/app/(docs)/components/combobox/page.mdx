@@ -29,15 +29,12 @@ import {
   ComboboxScrollArea,
   ComboboxSeparator,
   ComboboxTrigger,
-  ComboboxValue,
   ComboboxVirtualized,
 } from "@optiaxiom/react";
 
 export default () => (
   <Combobox>
-    <ComboboxTrigger>
-      <ComboboxValue />
-    </ComboboxTrigger>
+    <ComboboxTrigger />
 
     <ComboboxContent>
       <ComboboxInput />
@@ -152,8 +149,6 @@ We can use `ComboboxVirtualized` component to improve performance when rendering
 <PropsTable component="Combobox" />
 ### ComboboxTrigger
 <PropsTable component="ComboboxTrigger" />
-### ComboboxValue
-<PropsTable component="ComboboxValue" />
 ### ComboboxContent
 <PropsTable component="ComboboxContent" />
 ### ComboboxInput
