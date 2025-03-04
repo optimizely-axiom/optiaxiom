@@ -35,7 +35,6 @@ export function CalendarDayButton({
                 : modifiers.weekend
                   ? "weekend"
                   : "default",
-          outside: modifiers.outside,
           range:
             modifiers.range_start && modifiers.range_end
               ? undefined
