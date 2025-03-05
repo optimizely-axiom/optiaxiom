@@ -1,5 +1,17 @@
 # @optiaxiom/react
 
+## 0.13.10
+
+### Patch Changes
+
+- 38d8169: fix DataTable height and alignment
+- 6dd8143: stretch table to fill container
+- 576fdf4: add holiday and weekend support to calendar
+- 0bf80fe: add DatePicker component
+- 219b810: promote secondary nav components to stable
+- e04d773: remove redundant Value component part
+- d244eec: add DateRangePicker component
+
 ## 0.13.9
 
 ### Patch Changes

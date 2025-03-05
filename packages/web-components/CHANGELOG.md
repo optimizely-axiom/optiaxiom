@@ -1,5 +1,11 @@
 # @optiaxiom/web-components
 
+## 0.8.13
+
+### Patch Changes
+
+- 219b810: promote secondary nav components to stable
+
 ## 0.8.12
 
 ### Patch Changes
