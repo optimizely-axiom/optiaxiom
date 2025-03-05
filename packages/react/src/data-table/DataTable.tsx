@@ -20,7 +20,15 @@ type DataTableProps = BoxProps<
 export const DataTable = forwardRef<HTMLDivElement, DataTableProps>(
   ({ children, table, ...props }, ref) => {
     return (
-      <Flex alignItems="start" gap="8" maxW="full" ref={ref} {...props}>
+      <Flex
+        alignItems="start"
+        gap="8"
+        justifyContent="start"
+        maxH="full"
+        maxW="full"
+        ref={ref}
+        {...props}
+      >
         <DataTableContextProvider table={table}>
           {children}
         </DataTableContextProvider>
