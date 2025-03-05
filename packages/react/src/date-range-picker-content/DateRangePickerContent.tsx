@@ -13,7 +13,10 @@ import * as styles from "./DateRangePickerContent.css";
 type DateRangePickerContentProps = ComponentPropsWithoutRef<
   typeof PopoverContent
 > &
-  Pick<ComponentPropsWithoutRef<typeof Calendar>, "holiday" | "weekend"> & {
+  Pick<
+    ComponentPropsWithoutRef<typeof Calendar>,
+    "holiday" | "max" | "min" | "today" | "weekend"
+  > & {
     /**
      * Display content inside the popover after the calendar.
      */
@@ -27,27 +30,45 @@ type DateRangePickerContentProps = ComponentPropsWithoutRef<
 export const DateRangePickerContent = forwardRef<
   HTMLInputElement,
   DateRangePickerContentProps
->(({ addonAfter, addonBefore, children, holiday, weekend, ...props }, ref) => {
-  const { setValue, value } = useDateRangePickerContext(
-    "DateRangePickerContent",
-  );
+>(
+  (
+    {
+      addonAfter,
+      addonBefore,
+      children,
+      holiday,
+      max,
+      min,
+      today,
+      weekend,
+      ...props
+    },
+    ref,
+  ) => {
+    const { setValue, value } = useDateRangePickerContext(
+      "DateRangePickerContent",
+    );
 
-  return (
-    <PopoverContent gap="8" maxW={undefined} ref={ref} {...props}>
-      <Flex {...styles.panels()}>
-        {addonBefore}
-        <Calendar
-          holiday={holiday}
-          mode="range"
-          onValueChange={setValue}
-          value={value}
-          weekend={weekend}
-        />
-        {addonAfter}
-      </Flex>
-      {children}
-    </PopoverContent>
-  );
-});
+    return (
+      <PopoverContent gap="8" maxW={undefined} ref={ref} {...props}>
+        <Flex {...styles.panels()}>
+          {addonBefore}
+          <Calendar
+            holiday={holiday}
+            max={max}
+            min={min}
+            mode="range"
+            onValueChange={setValue}
+            today={today}
+            value={value}
+            weekend={weekend}
+          />
+          {addonAfter}
+        </Flex>
+        {children}
+      </PopoverContent>
+    );
+  },
+);
 
 DateRangePickerContent.displayName = "@optiaxiom/react/DateRangePickerContent";

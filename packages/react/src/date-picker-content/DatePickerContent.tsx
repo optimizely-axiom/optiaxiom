@@ -11,7 +11,10 @@ import { PopoverContent } from "../popover-content";
 import * as styles from "./DatePickerContent.css";
 
 type DatePickerContentProps = ComponentPropsWithoutRef<typeof PopoverContent> &
-  Pick<ComponentPropsWithoutRef<typeof Calendar>, "holiday" | "weekend"> & {
+  Pick<
+    ComponentPropsWithoutRef<typeof Calendar>,
+    "holiday" | "max" | "min" | "today" | "weekend"
+  > & {
     /**
      * Display content inside the popover after the calendar.
      */
@@ -25,24 +28,42 @@ type DatePickerContentProps = ComponentPropsWithoutRef<typeof PopoverContent> &
 export const DatePickerContent = forwardRef<
   HTMLInputElement,
   DatePickerContentProps
->(({ addonAfter, addonBefore, children, holiday, weekend, ...props }, ref) => {
-  const { setValue, value } = useDatePickerContext("DatePickerContent");
+>(
+  (
+    {
+      addonAfter,
+      addonBefore,
+      children,
+      holiday,
+      max,
+      min,
+      today,
+      weekend,
+      ...props
+    },
+    ref,
+  ) => {
+    const { setValue, value } = useDatePickerContext("DatePickerContent");
 
-  return (
-    <PopoverContent gap="8" maxW={undefined} ref={ref} {...props}>
-      <Flex {...styles.panels()}>
-        {addonBefore}
-        <Calendar
-          holiday={holiday}
-          onValueChange={setValue}
-          value={value}
-          weekend={weekend}
-        />
-        {addonAfter}
-      </Flex>
-      {children}
-    </PopoverContent>
-  );
-});
+    return (
+      <PopoverContent gap="8" maxW={undefined} ref={ref} {...props}>
+        <Flex {...styles.panels()}>
+          {addonBefore}
+          <Calendar
+            holiday={holiday}
+            max={max}
+            min={min}
+            onValueChange={setValue}
+            today={today}
+            value={value}
+            weekend={weekend}
+          />
+          {addonAfter}
+        </Flex>
+        {children}
+      </PopoverContent>
+    );
+  },
+);
 
 DatePickerContent.displayName = "@optiaxiom/react/DatePickerContent";
