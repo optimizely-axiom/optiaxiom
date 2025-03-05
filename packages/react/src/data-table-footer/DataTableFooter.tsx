@@ -36,6 +36,7 @@ export const DataTableFooter = forwardRef<HTMLDivElement, DataTableFooterProps>(
         alignSelf="stretch"
         flexDirection="row"
         justifyContent="space-between"
+        mt="auto"
         ref={ref}
         {...props}
       >
