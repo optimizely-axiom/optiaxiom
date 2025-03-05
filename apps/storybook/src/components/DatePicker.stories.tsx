@@ -13,7 +13,7 @@ import {
   DatePickerContent,
   DatePickerTrigger,
 } from "@optiaxiom/react/unstable";
-import { expect, screen, userEvent } from "@storybook/test";
+import { expect, screen, userEvent, waitFor } from "@storybook/test";
 import { useState } from "react";
 
 export default {
@@ -34,7 +34,7 @@ export default {
     return (
       <DatePicker {...args}>
         <DatePickerTrigger />
-        <DatePickerContent />
+        <DatePickerContent today={new Date("2025-01-24T00:00:00")} />
       </DatePicker>
     );
   },
@@ -53,16 +53,9 @@ export const WithLabel: Story = {
   play: async ({ canvas }) => {
     await userEvent.click(await canvas.findByRole("button", { name: "Label" }));
     await userEvent.click(await screen.findByText("15"));
-    const today = new Date();
-    const expectedDate = new Date(
-      today.getFullYear() +
-        "-" +
-        (today.getMonth() + 1).toString().padStart(2, "0") +
-        "-15 00:00:00",
-    );
     await expect(
       canvas.getByText(
-        expectedDate.toLocaleDateString(undefined, {
+        new Date("2025-01-15 00:00:00").toLocaleDateString(undefined, {
           day: "numeric",
           month: "short",
           year: "numeric",
@@ -90,6 +83,14 @@ export const Content: Story = {
     await expect(await screen.findByRole("dialog")).toBeInTheDocument();
     await userEvent.click(screen.getByRole("button", { name: "Done" }));
     await expect(canvas.queryByRole("dialog")).not.toBeInTheDocument();
+
+    await waitFor(() =>
+      expect(canvas.getByRole("button")).toHaveAttribute(
+        "aria-expanded",
+        "false",
+      ),
+    );
+    await userEvent.click(await canvas.findByRole("button"));
   },
   render: function Render(args) {
     const [open, setOpen] = useState(true);
@@ -104,7 +105,7 @@ export const Content: Story = {
         value={value}
       >
         <DatePickerTrigger />
-        <DatePickerContent>
+        <DatePickerContent today={new Date("2025-01-24T00:00:00")}>
           <Flex flexDirection="row">
             <Button
               appearance="primary"
@@ -161,6 +162,7 @@ export const Addons: Story = {
               )}
             </SegmentedControl>
           }
+          today={new Date("2025-01-24T00:00:00")}
         >
           <Flex flexDirection="row">
             <Button

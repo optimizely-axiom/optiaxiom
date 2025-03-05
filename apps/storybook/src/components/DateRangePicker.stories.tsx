@@ -6,7 +6,7 @@ import {
   DateRangePickerContent,
   DateRangePickerTrigger,
 } from "@optiaxiom/react/unstable";
-import { expect, screen, userEvent } from "@storybook/test";
+import { expect, screen, userEvent, waitFor } from "@storybook/test";
 import { useState } from "react";
 
 export default {
@@ -27,7 +27,7 @@ export default {
     return (
       <DateRangePicker {...args}>
         <DateRangePickerTrigger />
-        <DateRangePickerContent />
+        <DateRangePickerContent today={new Date("2025-01-24T00:00:00")} />
       </DateRangePicker>
     );
   },
@@ -47,32 +47,15 @@ export const WithLabel: Story = {
     await userEvent.click(await canvas.findByRole("button", { name: "Label" }));
     await userEvent.click((await screen.findAllByText("15"))[0]);
     await userEvent.click((await screen.findAllByText("14"))[1]);
-    const today = new Date();
-    const expectedFrom = new Date(
-      today.getFullYear() +
-        "-" +
-        (today.getMonth() + 1).toString().padStart(2, "0") +
-        "-15 00:00:00",
-    );
-    const expectedTo = new Date(
-      (today.getMonth() === 11
-        ? today.getFullYear() + 1
-        : today.getFullYear()) +
-        "-" +
-        (today.getMonth() === 11 ? 1 : today.getMonth() + 2)
-          .toString()
-          .padStart(2, "0") +
-        "-14 00:00:00",
-    );
     await expect(
       canvas.getByText(
-        expectedFrom.toLocaleDateString(undefined, {
+        new Date("2025-01-15 00:00:00").toLocaleDateString(undefined, {
           day: "numeric",
           month: "short",
           year: "numeric",
         }) +
           " - " +
-          expectedTo.toLocaleDateString(undefined, {
+          new Date("2025-02-14 00:00:00").toLocaleDateString(undefined, {
             day: "numeric",
             month: "short",
             year: "numeric",
@@ -106,6 +89,14 @@ export const Content: Story = {
     await expect(await screen.findByRole("dialog")).toBeInTheDocument();
     await userEvent.click(screen.getByRole("button", { name: "Done" }));
     await expect(canvas.queryByRole("dialog")).not.toBeInTheDocument();
+
+    await waitFor(() =>
+      expect(canvas.getByRole("button")).toHaveAttribute(
+        "aria-expanded",
+        "false",
+      ),
+    );
+    await userEvent.click(await canvas.findByRole("button"));
   },
   render: function Render(args) {
     const [open, setOpen] = useState(true);
@@ -123,7 +114,7 @@ export const Content: Story = {
         value={value}
       >
         <DateRangePickerTrigger />
-        <DateRangePickerContent>
+        <DateRangePickerContent today={new Date("2025-01-24T00:00:00")}>
           <Flex flexDirection="row">
             <Button
               appearance="primary"
@@ -166,6 +157,7 @@ export const Addons: Story = {
               <Button appearance="subtle">Next month</Button>
             </Flex>
           }
+          today={new Date("2025-01-24T00:00:00")}
         >
           <Flex flexDirection="row">
             <Button
