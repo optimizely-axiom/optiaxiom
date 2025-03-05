@@ -6,11 +6,72 @@ import { PropsTable } from "@/components/props-table";
 
 Multi-purpose combobox widget to allow selection from a dynamic set of options.
 
-## Documentation
-
-### Usage
-
 <Demo component="combobox/usage" />
+
+## Guide
+
+### Structure
+
+Combobox works with lists of items provided via the `items` prop. The basic structure includes the main component provider, a trigger, and a content.
+
+- `Combobox`
+- `ComboboxTrigger`
+- `ComboboxContent`
+
+The trigger can be provided a `placeholder` to display in case no values have been selected yet.
+
+<Demo component="combobox/overview/usage" />
+
+### Content
+
+The content popover will be empty until we render the same items we provided to the `items` prop. Items need to be rendered inside a `ComboboxScrollArea` component.
+
+#### Multi-select
+
+We can render multi-select items using `ComboboxCheckboxItem`.
+
+<Demo component="combobox/overview/content-checkbox-usage" meta="{16-22}" />
+
+#### Single-select
+
+We can render single-select items using `ComboboxRadioItem`.
+
+<Demo component="combobox/overview/content-radio-usage" meta="{18,20}" />
+
+### Input
+
+Notice that keyboard interactions inside the content popover do not work in the previous demos. This is because we need to render the `ComboboxInput` component that handles keyboard interaction and also filtering of visible items.
+
+Additionally we need to add an `onInputValueChange` prop to the main `Combobox` component to manually handle the actual filtering of items.
+
+<Demo component="combobox/overview/input-usage" meta="{14,19-25,29}" />
+
+How you store the items and handle filtering is up to you. In this demo we've stored the items in a state and update the state in the `onInputValueChange` handler. Alternatively you could store the input value in a state and filter the items based on that on each render.
+
+<Demo
+  component="combobox/overview/input-controlled-usage"
+  meta="{14-17,21,23}"
+/>
+
+### Selection
+
+Pressing enter or clicking items will not do anything in previous demos. For that we need to add the `value` and `onItemSelect` props to the main `Combobox` component.
+
+#### Multi-select
+
+<Demo component="combobox/overview/value-checkbox-usage" meta="{15,27-34}" />
+
+#### Single-select
+
+<Demo component="combobox/overview/value-radio-usage" meta="{15,27-30}" />
+
+### Empty
+
+Finally we can render an empty state in the content using the `ComboboxEmpty` component.
+
+<Demo component="combobox/overview/empty-usage" meta="{37}" />
+
+## Documentation
 
 ### Anatomy
 
