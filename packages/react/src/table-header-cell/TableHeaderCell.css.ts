@@ -18,8 +18,6 @@ export const content = recipe({
       display: "flex",
       fontSize: "sm",
       fontWeight: "400",
-      px: "16",
-      py: "12",
       size: "full",
     },
     style({

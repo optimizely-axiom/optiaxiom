@@ -21,7 +21,6 @@ export const DataTable = forwardRef<HTMLDivElement, DataTableProps>(
   ({ children, table, ...props }, ref) => {
     return (
       <Flex
-        alignItems="start"
         gap="8"
         justifyContent="start"
         maxH="full"

@@ -5,6 +5,7 @@ export const table = recipe({
     {
       color: "fg.default",
       fontSize: "md",
+      w: "full",
     },
     style({
       captionSide: "bottom",
@@ -14,9 +15,6 @@ export const table = recipe({
   variants: {
     layout: {
       auto: [
-        {
-          w: "full",
-        },
         style({
           /**
            * Setting the table height to 1px allows cell content to stretch and fill
@@ -28,7 +26,6 @@ export const table = recipe({
       fixed: [
         {
           display: "grid",
-          w: "fit",
         },
         style({
           isolation: "isolate",

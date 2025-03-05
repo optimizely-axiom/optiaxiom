@@ -19,6 +19,7 @@ import { Table } from "../table";
 import { TableBody } from "../table-body";
 import { TableCell } from "../table-cell";
 import { TableHeader } from "../table-header";
+import { TableHeaderCell } from "../table-header-cell";
 import { TableRow } from "../table-row";
 import * as styles from "./DataTableBody.css";
 
@@ -119,6 +120,8 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
                       )}
                 </DataTableHeaderCell>
               ))}
+
+              <TableHeaderCell flex="1" p="0" w="0" />
             </TableRow>
           ))}
         </TableHeader>
@@ -231,6 +234,8 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
                   )}
                 </TableCell>
               ))}
+
+              <TableCell flex="1" p="0" w="0" />
             </TableRow>
           ))}
         </TableBody>
