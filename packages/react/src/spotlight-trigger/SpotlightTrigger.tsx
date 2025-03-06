@@ -20,18 +20,13 @@ const DEFAULT_HOTKEY = "mod+K";
 export const SpotlightTrigger = forwardRef<
   HTMLButtonElement,
   SpotlightTriggerProps
->(({ addonAfter, children, hotkey = DEFAULT_HOTKEY, ...props }, ref) => {
+>(({ children, hotkey = DEFAULT_HOTKEY, ...props }, ref) => {
   const { open, setOpen } = useSpotlightContext("SpotlightTrigger");
 
   useHotkeys([[hotkey, () => setOpen(!open)]]);
 
   return (
-    <DialogTrigger
-      addonAfter={addonAfter}
-      icon={<IconMagnifyingGlass />}
-      ref={ref}
-      {...props}
-    >
+    <DialogTrigger icon={<IconMagnifyingGlass />} ref={ref} {...props}>
       <Box color="fg.tertiary">{children}</Box>
     </DialogTrigger>
   );
