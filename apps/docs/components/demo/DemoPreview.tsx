@@ -3,7 +3,13 @@
 import type { Props } from "react-docgen-typescript";
 
 import { Box, Flex, Separator } from "@optiaxiom/react";
-import { cloneElement, type ReactElement, useState } from "react";
+import {
+  cloneElement,
+  type ReactElement,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 
 import { DemoControls } from "./DemoControls";
 import { DemoIframe } from "./DemoIframe";
@@ -36,15 +42,41 @@ export function DemoPreview({
       {},
     ),
   );
+  const [resizing, setResizing] = useState<{
+    w: number;
+    x: number;
+  }>();
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const detach = () => setResizing(undefined);
+    const resize = ({ clientX }: MouseEvent) => {
+      if (!resizing || !ref.current) {
+        return;
+      }
+
+      ref.current.style.width = `${resizing.w + clientX - resizing.x}px`;
+    };
+
+    document.addEventListener("mousemove", resize);
+    document.addEventListener("pointerup", detach);
+    return () => {
+      document.removeEventListener("mousemove", resize);
+      document.removeEventListener("pointerup", detach);
+    };
+  }, [resizing]);
 
   return (
     <Box
       alignItems="stretch"
-      borderB="1"
+      bg="bg.default"
+      border="1"
+      borderB="0"
       borderColor="border.tertiary"
-      className={iframe && styles.resize}
+      className={`${iframe ? styles.resize : ""} ${styles.root}`}
       display="flex"
       flexDirection={["column", "row"]}
+      ref={ref}
     >
       <Flex
         flex="1"
@@ -53,6 +85,7 @@ export function DemoPreview({
         justifyContent="center"
         maxW="full"
         p="32"
+        pointerEvents={resizing ? "none" : undefined}
       >
         {iframe ? (
           <DemoIframe height={height} src={iframe} />
@@ -73,6 +106,25 @@ export function DemoPreview({
             w={["auto", "224"]}
           />
         </>
+      )}
+      {iframe && (
+        <Box
+          bg="bg.secondary"
+          border="1"
+          className={styles.handler}
+          data-resizing={resizing ? "" : undefined}
+          h="48"
+          m="auto"
+          onPointerDown={(event) =>
+            setResizing({
+              w: ref.current?.clientWidth ?? 0,
+              x: event.clientX,
+            })
+          }
+          rounded="sm"
+          transition="colors"
+          w="12"
+        />
       )}
     </Box>
   );

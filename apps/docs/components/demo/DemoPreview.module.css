@@ -1,6 +1,29 @@
+.root {
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
+}
+
 .resize {
-  overflow: auto;
+  position: relative;
   resize: horizontal;
   max-width: 100%;
   min-width: 320px;
+}
+
+.handler {
+  cursor: grab;
+  inset-block: 0;
+  position: absolute;
+  right: -7px;
+  user-select: none;
+
+  &:hover,
+  &[data-resizing] {
+    background-color: var(--ax-colors-bg-tertiary);
+  }
+
+  &:active,
+  &[data-resizing] {
+    cursor: grabbing;
+  }
 }

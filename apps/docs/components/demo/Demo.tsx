@@ -53,13 +53,7 @@ export async function Demo({
   );
 
   return (
-    <Box
-      bg="bg.default"
-      border="1"
-      borderColor="border.tertiary"
-      mt="32"
-      rounded="lg"
-    >
+    <Box bg="bg.avatar.neutral" mt="32" rounded="lg">
       <DemoPreview
         component={<Component />}
         height={height}

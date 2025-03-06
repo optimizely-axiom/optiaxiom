@@ -28,6 +28,8 @@ export function DemoCode({ children }: { children: ReactNode }) {
 
   return (
     <Box
+      border="1"
+      borderColor="border.tertiary"
       className={[
         styles.editor,
         collapsed !== null && styles.expandable,
