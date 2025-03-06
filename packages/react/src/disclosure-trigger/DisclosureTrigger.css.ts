@@ -7,9 +7,8 @@ export const root = recipe({
     {
       flexDirection: "row",
       fontSize: "md",
-      fontWeight: "500",
       gap: "8",
-      p: "8",
+      py: "8",
       transition: "colors",
     },
     style({
