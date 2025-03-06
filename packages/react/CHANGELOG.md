@@ -1,5 +1,13 @@
 # @optiaxiom/react
 
+## 0.13.11
+
+### Patch Changes
+
+- 4070e40: sync disclosure spec with figma
+- c2bf8b6: fix button alignment
+- ef5a627: fix table pagination layout shifting
+
 ## 0.13.10
 
 ### Patch Changes
