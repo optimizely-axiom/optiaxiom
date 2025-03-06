@@ -104,13 +104,13 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <ButtonBase
         asChild
+        justifyContent={
+          square ? "center" : iconPosition === "end" ? "space-between" : "start"
+        }
         ref={ref}
         size={size}
         square={square}
         {...props}
-        {...(square && {
-          justifyContent: "center",
-        })}
       >
         <Comp>{children}</Comp>
       </ButtonBase>
