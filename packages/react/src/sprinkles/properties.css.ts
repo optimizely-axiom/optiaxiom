@@ -360,16 +360,7 @@ export const responsiveProps = defineProperties({
     /**
      * Set the element's `align-items` CSS property
      */
-    alignItems: [
-      "center",
-      "end",
-      "normal",
-      "space-around",
-      "space-between",
-      "space-evenly",
-      "start",
-      "stretch",
-    ] as const,
+    alignItems: ["center", "end", "normal", "start", "stretch"] as const,
     /**
      * Set the element's `align-self` CSS property
      */
