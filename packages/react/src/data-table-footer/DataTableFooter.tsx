@@ -1,7 +1,7 @@
 import { useId } from "@radix-ui/react-id";
 import { forwardRef } from "react";
 
-import { type BoxProps } from "../box";
+import { Box, type BoxProps } from "../box";
 import { useDataTableContext } from "../data-table-context";
 import { Flex } from "../flex";
 import { Pagination } from "../pagination";
@@ -10,6 +10,7 @@ import { SelectContent } from "../select-content";
 import { SelectRadioItem } from "../select-radio-item";
 import { SelectTrigger } from "../select-trigger";
 import { Text } from "../text";
+import * as styles from "./DataTableFooter.css";
 
 type DataTableFooterProps = BoxProps<
   "div",
@@ -40,9 +41,9 @@ export const DataTableFooter = forwardRef<HTMLDivElement, DataTableFooterProps>(
         ref={ref}
         {...props}
       >
-        <Flex flexDirection="row" gap="8">
+        <Box {...styles.addon({ position: "start" })}>
           {showPageSizeOptions && (
-            <>
+            <Flex flexDirection="row" gap="8">
               <Text color="fg.secondary" id={pageSizeId}>
                 Page Size
               </Text>
@@ -66,9 +67,9 @@ export const DataTableFooter = forwardRef<HTMLDivElement, DataTableFooterProps>(
                   ))}
                 </SelectContent>
               </Select>
-            </>
+            </Flex>
           )}
-        </Flex>
+        </Box>
 
         {table.getPageCount() > 1 && (
           <Pagination
@@ -78,7 +79,7 @@ export const DataTableFooter = forwardRef<HTMLDivElement, DataTableFooterProps>(
           />
         )}
 
-        <Text>
+        <Text {...styles.addon({ position: "end" })}>
           {table.getRowCount() > 0 && (
             <>
               {pagination.pageIndex * pagination.pageSize + 1} -{" "}
