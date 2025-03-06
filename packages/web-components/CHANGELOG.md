@@ -1,5 +1,12 @@
 # @optiaxiom/web-components
 
+## 0.8.14
+
+### Patch Changes
+
+- 4070e40: sync disclosure spec with figma
+- c2bf8b6: fix button alignment
+
 ## 0.8.13
 
 ### Patch Changes
