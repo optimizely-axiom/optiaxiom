@@ -2,6 +2,10 @@ import { createMapValueFn, createSprinkles } from "@vanilla-extract/sprinkles";
 
 import * as styles from "./properties.css";
 
+export const vars = {
+  fontFamilyVar: styles.fontFamilyVar,
+};
+
 export const sprinkles = createSprinkles(
   styles.unresponsiveProps,
   styles.responsiveProps,
