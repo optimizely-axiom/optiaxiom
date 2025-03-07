@@ -23,7 +23,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx",
-    "mdx.config.mjs",
+    "nextra.config.mjs",
     "props.config.mjs"
   ],
   "exclude": ["node_modules"],
