@@ -1,8 +1,9 @@
 import { theme } from "@optiaxiom/globals";
 // eslint-disable-next-line local/no-global-styles
-import { style } from "@vanilla-extract/css";
+import { fallbackVar, style } from "@vanilla-extract/css";
 
 import { layers } from "../layers";
+import { vars } from "../sprinkles";
 import { recipe } from "../vanilla-extract";
 
 export const box = recipe({
@@ -11,7 +12,7 @@ export const box = recipe({
       [layers.reset]: {
         border: `0 solid ${theme.colors["border.default"]}`,
         boxSizing: "border-box",
-        fontFamily: theme.fontFamily.sans,
+        fontFamily: fallbackVar(vars.fontFamilyVar, theme.fontFamily.sans),
         fontFeatureSettings: '"cv02", "cv03", "cv04"',
         margin: 0,
         padding: 0,

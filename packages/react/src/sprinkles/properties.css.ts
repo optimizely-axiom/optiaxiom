@@ -1,5 +1,5 @@
 import { theme } from "@optiaxiom/globals";
-import { keyframes } from "@vanilla-extract/css";
+import { createGlobalVar, keyframes } from "@vanilla-extract/css";
 import { defineProperties } from "@vanilla-extract/sprinkles";
 
 import { layers } from "../layers";
@@ -117,6 +117,8 @@ const zIndexes = merge(theme.zIndex, {
   auto: "auto",
 });
 
+export const fontFamilyVar = createGlobalVar("ax-styles-fontFamily");
+
 export const unresponsiveProps = defineProperties({
   "@layer": layers.axiom,
   properties: {
@@ -162,7 +164,11 @@ export const unresponsiveProps = defineProperties({
     /**
      * Set the element's font family
      */
-    fontFamily: theme.fontFamily,
+    fontFamily: mapValues(theme.fontFamily, (fontFamily) => ({
+      vars: {
+        [fontFamilyVar]: fontFamily,
+      },
+    })),
     /**
      * Set the element's `font-size` and `line-height` CSS properties
      */
