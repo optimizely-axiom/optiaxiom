@@ -1,5 +1,16 @@
 # @optiaxiom/react
 
+## 0.13.12
+
+### Patch Changes
+
+- f6e25e1: remove invalid align-items values
+- 66a3a34: fix sidebar nav group padding
+- 47e36be: add flex-start/flex-end to justifyContent
+- 1961b53: set font-family via css var
+- Updated dependencies [f6e25e1]
+  - @optiaxiom/globals@0.7.6
+
 ## 0.13.11
 
 ### Patch Changes
