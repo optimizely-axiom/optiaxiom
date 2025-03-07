@@ -1,3 +1,9 @@
 .base {
+  height: 64px;
   width: 100%;
+}
+
+.pointer {
+  inset: 0;
+  position: absolute;
 }

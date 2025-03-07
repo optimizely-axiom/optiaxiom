@@ -15,14 +15,14 @@ import { DemoPreview } from "./DemoPreview";
 
 export async function Demo({
   component,
-  height,
-  iframe,
   meta,
+  resizable,
+  scrollable,
 }: {
   component: keyof typeof demos;
-  height?: string;
-  iframe?: string;
   meta?: Record<string, string> | string;
+  resizable?: boolean;
+  scrollable?: boolean;
 }) {
   if (!(component in demos)) {
     throw new Error(`Could not find demo: ${component}`);
@@ -56,9 +56,9 @@ export async function Demo({
     <Box bg="bg.avatar.neutral" mt="32" rounded="lg">
       <DemoPreview
         component={<Component />}
-        height={height}
-        iframe={iframe}
         propTypes={doc?.props}
+        resizable={resizable}
+        scrollable={scrollable}
       />
       <DemoCode>
         <MDXRemote

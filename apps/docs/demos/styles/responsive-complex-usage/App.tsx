@@ -6,6 +6,7 @@ export function App() {
   return (
     <Box
       bg="bg.default"
+      m="4"
       maxW={["sm", "lg"]}
       overflow="hidden"
       rounded="sm"
