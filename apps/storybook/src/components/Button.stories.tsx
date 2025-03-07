@@ -89,7 +89,7 @@ export const Loading: Story = {
     children: "Button",
     disabled: true,
     icon: "chevron-down",
-    justifyContent: "start",
+    justifyContent: "flex-start",
     loading: true,
   },
   render: (args) => (

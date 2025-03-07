@@ -7,7 +7,7 @@ export const footer = recipe({
       borderT: "1",
       flexDirection: "row",
       gap: "16",
-      justifyContent: "end",
+      justifyContent: "flex-end",
       px: "24",
       py: "20",
     },

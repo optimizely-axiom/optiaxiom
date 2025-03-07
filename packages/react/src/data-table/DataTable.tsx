@@ -22,7 +22,7 @@ export const DataTable = forwardRef<HTMLDivElement, DataTableProps>(
     return (
       <Flex
         gap="8"
-        justifyContent="start"
+        justifyContent="flex-start"
         maxH="full"
         maxW="full"
         ref={ref}

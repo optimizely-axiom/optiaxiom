@@ -15,8 +15,8 @@ const mapDirectionToAlign = {
 const mapDirectionToJustify = {
   column: "center",
   "column-reverse": "center",
-  row: "start",
-  "row-reverse": "start",
+  row: "flex-start",
+  "row-reverse": "flex-start",
 } as const;
 
 export const Flex = forwardRef<HTMLDivElement, FlexProps>(

@@ -8,7 +8,7 @@ export const button = recipe({
       alignItems: "center",
       display: "flex",
       gap: "4",
-      justifyContent: "start",
+      justifyContent: "flex-start",
       rounded: "md",
       textAlign: "start",
       transition: "colors",

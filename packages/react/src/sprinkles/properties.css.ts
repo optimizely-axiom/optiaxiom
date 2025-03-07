@@ -438,6 +438,8 @@ export const responsiveProps = defineProperties({
     justifyContent: [
       "center",
       "end",
+      "flex-end",
+      "flex-start",
       "normal",
       "space-around",
       "space-between",
