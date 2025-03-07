@@ -12,6 +12,10 @@ export const demos = {
   "alert/appearance-usage": import("./alert/appearance-usage/App"),
   "alert/close-usage": import("./alert/close-usage/App"),
   "alert/usage": import("./alert/usage/App"),
+  "align-items/responsive-usage": import("./align-items/responsive-usage/App"),
+  "align-items/usage": import("./align-items/usage/App"),
+  "align-self/responsive-usage": import("./align-self/responsive-usage/App"),
+  "align-self/usage": import("./align-self/usage/App"),
   "animation/pulse-usage": import("./animation/pulse-usage/App"),
   "avatar/color-usage": import("./avatar/color-usage/App"),
   "avatar/fallback-children-usage": import(
@@ -156,7 +160,15 @@ export const demos = {
   "field/info-usage": import("./field/info-usage/App"),
   "field/required-usage": import("./field/required-usage/App"),
   "field/usage": import("./field/usage/App"),
+  "flex-direction/responsive-usage": import(
+    "./flex-direction/responsive-usage/App"
+  ),
+  "flex-direction/usage": import("./flex-direction/usage/App"),
+  "flex-wrap/responsive-usage": import("./flex-wrap/responsive-usage/App"),
+  "flex-wrap/usage": import("./flex-wrap/usage/App"),
   "flex/alignment-usage": import("./flex/alignment-usage/App"),
+  "flex/flex-responsive-usage": import("./flex/flex-responsive-usage/App"),
+  "flex/flex-usage": import("./flex/flex-usage/App"),
   "flex/gap-usage": import("./flex/gap-usage/App"),
   "flex/horizontal-usage": import("./flex/horizontal-usage/App"),
   "flex/usage": import("./flex/usage/App"),
@@ -196,6 +208,10 @@ export const demos = {
   "input/readonly-usage": import("./input/readonly-usage/App"),
   "input/size-usage": import("./input/size-usage/App"),
   "input/usage": import("./input/usage/App"),
+  "justify-content/responsive-usage": import(
+    "./justify-content/responsive-usage/App"
+  ),
+  "justify-content/usage": import("./justify-content/usage/App"),
   "kbd/appearance-usage": import("./kbd/appearance-usage/App"),
   "kbd/keys-usage": import("./kbd/keys-usage/App"),
   "kbd/usage": import("./kbd/usage/App"),

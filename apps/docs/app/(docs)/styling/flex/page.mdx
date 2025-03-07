@@ -1,0 +1,23 @@
+import { Scale } from "@/components/scale";
+import { Demo } from "@/components/demo";
+
+# Flex
+
+Use `flex` prop to control how flex items grow and shrink.
+
+<Scale values="flex" />
+
+## Documentation
+
+### Usage
+
+- `initial`: allow flex item to shrink but not grow, taking into account the initial size.
+- `none`: prevent flex items from shrinking or growing.
+- `auto`: allow flex items to grow and shrink taking into account the initial size.
+- `1`: allow flex items to grow and shrink ignoring the initial size.
+
+<Demo component="flex/flex-usage" resizable />
+
+### Responsive
+
+<Demo component="flex/flex-responsive-usage" resizable />
