@@ -2,10 +2,8 @@
 
 import type { ComponentPropsWithoutRef } from "react";
 
-import { stripes } from "@/demos/stripes";
+import { Canvas } from "@/demos/Canvas";
 import { Box, Flex } from "@optiaxiom/react";
-
-import { Canvas } from "../Canvas";
 
 export function App({
   alignItems = "center",
@@ -16,14 +14,12 @@ export function App({
   "alignItems" | "flexDirection" | "justifyContent"
 >) {
   return (
-    <Canvas>
+    <Canvas asChild striped>
       <Flex
         alignItems={alignItems}
         flexDirection={flexDirection}
         h="224"
         justifyContent={justifyContent}
-        rounded="md"
-        style={stripes}
       >
         <Box p="12">01</Box>
         <Box p="16">02</Box>

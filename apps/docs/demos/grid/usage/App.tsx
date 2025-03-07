@@ -1,10 +1,9 @@
+import { Canvas } from "@/demos/Canvas";
 import { Grid } from "@optiaxiom/react";
-
-import { Canvas } from "../Canvas";
 
 export function App() {
   return (
-    <Canvas>
+    <Canvas asChild>
       <Grid gridTemplateColumns="3">
         <div>01</div>
         <div>02</div>

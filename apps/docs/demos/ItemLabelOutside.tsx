@@ -3,10 +3,10 @@ import { type ComponentPropsWithRef, type ReactElement } from "react";
 
 export const ItemLabelOutside = ({
   children,
+  ...props
 }: {
   children: ReactElement<ComponentPropsWithRef<typeof Box>>;
 }) => {
-  const { children: label, ...props } = children.props;
   return (
     <Flex alignItems="center" gap="8">
       <Text
@@ -15,16 +15,20 @@ export const ItemLabelOutside = ({
         fontWeight="600"
         textAlign="center"
       >
-        {label}
+        {children.props.children}
       </Text>
 
       <Box
         bg="bg.avatar.purple"
         display="grid"
         placeItems="center"
+        rounded="sm"
         size="56"
         {...props}
-      />
+        {...children.props}
+      >
+        {null}
+      </Box>
     </Flex>
   );
 };
