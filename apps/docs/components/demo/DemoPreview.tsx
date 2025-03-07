@@ -17,14 +17,14 @@ import styles from "./DemoPreview.module.css";
 
 export function DemoPreview({
   component,
-  height,
-  iframe,
   propTypes = {},
+  resizable,
+  scrollable,
 }: {
   component: ReactElement;
-  height?: string;
-  iframe?: string;
   propTypes: Props | undefined;
+  resizable?: boolean;
+  scrollable?: boolean;
 }) {
   const [props, setProps] = useState(() =>
     Object.entries(propTypes).reduce(
@@ -73,7 +73,7 @@ export function DemoPreview({
       border="1"
       borderB="0"
       borderColor="border.tertiary"
-      className={`${iframe ? styles.resize : ""} ${styles.root}`}
+      className={`${resizable ? styles.resize : ""} ${styles.root}`}
       display="flex"
       flexDirection={["column", "row"]}
       ref={ref}
@@ -82,13 +82,15 @@ export function DemoPreview({
         flex="1"
         flexDirection="row"
         gap="0"
-        justifyContent="center"
+        justifyContent={scrollable ? "start" : "center"}
         maxW="full"
-        p="32"
-        pointerEvents={resizing ? "none" : undefined}
+        overflow="auto"
+        p={resizable ? undefined : "32"}
       >
-        {iframe ? (
-          <DemoIframe height={height} src={iframe} />
+        {resizable ? (
+          <DemoIframe disablePointerEvents={!!resizing} scrollable={scrollable}>
+            {cloneElement(component, props)}
+          </DemoIframe>
         ) : (
           cloneElement(component, props)
         )}
@@ -107,7 +109,7 @@ export function DemoPreview({
           />
         </>
       )}
-      {iframe && (
+      {resizable && (
         <Box
           bg="bg.secondary"
           border="1"
