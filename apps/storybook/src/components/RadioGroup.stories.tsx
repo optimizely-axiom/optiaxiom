@@ -95,7 +95,7 @@ export const DisabledItems: Story = {
 const props = {
   border: "1",
   gap: "8",
-  justifyContent: "start",
+  justifyContent: "flex-start",
   p: "16",
   rounded: "sm",
 } as const;

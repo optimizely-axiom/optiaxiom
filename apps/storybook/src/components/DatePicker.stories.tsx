@@ -141,7 +141,7 @@ export const Addons: Story = {
             <SegmentedControl
               flexDirection="column"
               gap="2"
-              justifyContent="start"
+              justifyContent="flex-start"
               onValueChange={setTime}
               overflow="auto"
               p="4"

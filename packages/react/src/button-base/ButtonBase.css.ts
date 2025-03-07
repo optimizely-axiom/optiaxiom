@@ -27,7 +27,7 @@ export const buttonBase = recipe({
       alignItems: "center",
       display: "inline-flex",
       flexDirection: "row",
-      justifyContent: "start",
+      justifyContent: "flex-start",
       transition: "colors",
     },
     style({

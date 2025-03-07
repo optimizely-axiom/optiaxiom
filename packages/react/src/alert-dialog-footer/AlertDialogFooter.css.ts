@@ -8,7 +8,7 @@ export const footer = recipe({
     {
       flexDirection: ["column-reverse", "row"],
       gap: "16",
-      justifyContent: "end",
+      justifyContent: "flex-end",
       px: "24",
       py: "20",
     },

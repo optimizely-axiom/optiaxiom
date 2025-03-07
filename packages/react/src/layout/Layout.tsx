@@ -20,7 +20,7 @@ export const Layout = forwardRef<HTMLDivElement, LayoutProps>(
           alignItems="start"
           flexDirection="row"
           gap="0"
-          justifyContent="start"
+          justifyContent="flex-start"
         >
           {sidenav}
           <Box flex="1" h="full">

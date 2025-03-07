@@ -5,7 +5,7 @@ export const body = recipe({
     {
       flex: "1",
       gap: "4",
-      justifyContent: "start",
+      justifyContent: "flex-start",
       overflowX: "hidden",
       py: "8",
       w: "full",

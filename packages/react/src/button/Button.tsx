@@ -105,7 +105,11 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       <ButtonBase
         asChild
         justifyContent={
-          square ? "center" : iconPosition === "end" ? "space-between" : "start"
+          square
+            ? "center"
+            : iconPosition === "end"
+              ? "space-between"
+              : "flex-start"
         }
         ref={ref}
         size={size}

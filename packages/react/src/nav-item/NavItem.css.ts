@@ -11,7 +11,7 @@ export const item = recipe({
       fontSize: "md",
       fontWeight: "500",
       h: "lg",
-      justifyContent: "start",
+      justifyContent: "flex-start",
       rounded: "md",
       textAlign: "start",
       transition: "colors",

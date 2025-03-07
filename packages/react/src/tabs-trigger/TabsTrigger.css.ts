@@ -61,7 +61,7 @@ export const content = recipe({
     {
       flexDirection: "row",
       gap: "8",
-      justifyContent: ["center", "start"],
+      justifyContent: ["center", "flex-start"],
       py: "6",
       rounded: "sm",
       transition: "colors",
