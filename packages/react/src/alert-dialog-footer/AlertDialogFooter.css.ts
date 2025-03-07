@@ -6,7 +6,7 @@ import { recipe } from "../vanilla-extract";
 export const footer = recipe({
   base: [
     {
-      flexDirection: ["column-reverse", "row"],
+      flexDirection: "row",
       gap: "16",
       justifyContent: "flex-end",
       px: "24",
