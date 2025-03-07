@@ -1,10 +1,9 @@
+import { Canvas } from "@/demos/Canvas";
 import { Flex } from "@optiaxiom/react";
-
-import { Canvas } from "../Canvas";
 
 export function App() {
   return (
-    <Canvas>
+    <Canvas asChild>
       <Flex>
         <div>01</div>
         <div>02</div>

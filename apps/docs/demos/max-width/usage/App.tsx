@@ -1,10 +1,9 @@
+import { Canvas } from "@/demos/Canvas";
 import { Box } from "@optiaxiom/react";
-
-import { Canvas } from "../Canvas";
 
 export function App() {
   return (
-    <Canvas>
+    <Canvas flexDirection="column" striped>
       <Box maxW="lg" w="full">
         maxW=lg
       </Box>

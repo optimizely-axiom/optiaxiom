@@ -1,10 +1,15 @@
+import { Canvas } from "@/demos/Canvas";
 import { Box } from "@optiaxiom/react";
-
-import { Canvas } from "../Canvas";
 
 export function App() {
   return (
-    <Canvas>
+    <Canvas
+      alignItems="end"
+      flexDirection="row"
+      justifyContent="center"
+      striped
+      style={{ height: "576px" }}
+    >
       <Box display={["none", "grid"]} h="full" maxH="lg">
         maxH=lg
       </Box>

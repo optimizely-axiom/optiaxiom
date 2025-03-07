@@ -2,15 +2,14 @@
 
 import type { ComponentPropsWithoutRef } from "react";
 
+import { Canvas } from "@/demos/Canvas";
 import { Box, Flex } from "@optiaxiom/react";
-
-import { Canvas } from "../Canvas";
 
 export function App({
   gap = "16",
 }: Pick<ComponentPropsWithoutRef<typeof Flex>, "gap">) {
   return (
-    <Canvas>
+    <Canvas asChild>
       <Flex flexDirection="row" gap={gap}>
         <Box p="12">01</Box>
         <Box p="16">02</Box>
