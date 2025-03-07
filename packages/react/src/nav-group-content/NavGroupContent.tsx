@@ -16,7 +16,8 @@ export const NavGroupContent = forwardRef<
       display="flex"
       flexDirection="column"
       gap="4"
-      p="0"
+      pb="0"
+      pt="0"
       transitionType="slidePop"
       {...props}
     >
