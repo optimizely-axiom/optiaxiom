@@ -150,18 +150,6 @@ export const unresponsiveProps = defineProperties({
      */
     cursor: ["pointer", "default", "not-allowed", "text"] as const,
     /**
-     * Toggle element visibility based on `:empty` pseudo-class
-     */
-    empty: {
-      hidden: {
-        selectors: {
-          "&:empty": {
-            display: "none",
-          },
-        },
-      },
-    },
-    /**
      * Set the element's font family
      */
     fontFamily: mapValues(theme.fontFamily, (fontFamily) => ({
