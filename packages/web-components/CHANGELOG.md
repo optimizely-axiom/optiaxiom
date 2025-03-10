@@ -1,5 +1,15 @@
 # @optiaxiom/web-components
 
+## 0.8.15
+
+### Patch Changes
+
+- f6e25e1: remove invalid align-items values
+- 66a3a34: fix sidebar nav group padding
+- 47e36be: add flex-start/flex-end to justifyContent
+- b03d0bf: remove unused empty sprinkle
+- 1961b53: set font-family via css var
+
 ## 0.8.14
 
 ### Patch Changes

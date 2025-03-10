@@ -1,5 +1,15 @@
 # @optiaxiom/globals
 
+## 1.0.0
+
+### Major Changes
+
+- b95fcaa: initial release
+
+### Patch Changes
+
+- f6e25e1: remove invalid align-items values
+
 ## 0.7.5
 
 ### Patch Changes
