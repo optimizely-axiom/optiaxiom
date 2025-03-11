@@ -103,11 +103,15 @@ export const createToaster = (): Toaster => {
   };
 };
 
-const waitForAnimation = async (element?: HTMLElement | null) => {
+const waitForAnimation = async (element: HTMLElement | null | undefined) => {
+  if (!element) {
+    return;
+  }
+
   await new Promise((resolve) => requestAnimationFrame(resolve));
   await Promise.allSettled(
-    typeof element?.getAnimations === "function"
-      ? element?.getAnimations().map((animation) => animation.finished)
+    typeof element.getAnimations === "function"
+      ? element.getAnimations().map((animation) => animation.finished)
       : [Promise.resolve()],
   );
 };
