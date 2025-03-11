@@ -124,7 +124,11 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
         <DayPicker
           autoFocus
           components={components}
-          defaultMonth={value && "from" in value ? value.from : value}
+          defaultMonth={
+            value && typeof value === "object" && "from" in value
+              ? value.from
+              : value
+          }
           endMonth={max}
           mode={mode as "single"}
           modifiers={{ holiday, weekend }}
