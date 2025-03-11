@@ -117,12 +117,15 @@ export function DemoPreview({
           data-resizing={resizing ? "" : undefined}
           h="48"
           m="auto"
-          onPointerDown={(event) =>
+          onPointerDown={(event) => {
+            if (event.button !== 0) {
+              return;
+            }
             setResizing({
               w: ref.current?.clientWidth ?? 0,
               x: event.clientX,
-            })
-          }
+            });
+          }}
           rounded="sm"
           transition="colors"
           w="12"
