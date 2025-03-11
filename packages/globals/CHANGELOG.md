@@ -1,5 +1,11 @@
 # @optiaxiom/globals
 
+## 1.0.1
+
+### Patch Changes
+
+- e48e274: skip waiting for animation in toaster queue
+
 ## 1.0.0
 
 ### Major Changes

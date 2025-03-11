@@ -1,5 +1,13 @@
 # @optiaxiom/react
 
+## 1.0.1
+
+### Patch Changes
+
+- 2d1c5ad: more strict type check in calendar when setting default month
+- Updated dependencies [e48e274]
+  - @optiaxiom/globals@1.0.1
+
 ## 1.0.0
 
 ### Major Changes
