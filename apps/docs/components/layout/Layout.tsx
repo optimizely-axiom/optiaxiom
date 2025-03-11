@@ -62,7 +62,7 @@ export async function Layout({ children }: { children: ReactNode }) {
                 <Badge
                   asChild
                   className="version"
-                  intent="warning"
+                  intent="success"
                   variant="strong"
                 >
                   <a href="https://www.npmjs.com/package/@optiaxiom/react">
