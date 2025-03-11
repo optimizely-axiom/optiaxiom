@@ -1,5 +1,11 @@
 # @optiaxiom/web-components
 
+## 0.8.16
+
+### Patch Changes
+
+- e48e274: skip waiting for animation in toaster queue
+
 ## 0.8.15
 
 ### Patch Changes
