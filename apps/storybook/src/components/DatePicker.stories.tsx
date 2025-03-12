@@ -117,6 +117,7 @@ export const Content: Story = {
 export const WithTime: Story = {
   args: {
     defaultOpen: true,
+    defaultValue: new Date("2025-01-22 10:10:00"),
     step: "300",
     type: "datetime-local",
   },
