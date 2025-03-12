@@ -313,9 +313,14 @@ function typeDeclarationPlugin({ include = [] }) {
       { esModuleInterop: true },
       {
         propFilter: (prop) =>
-          prop.parent ? !prop.parent.fileName.includes("@types/react") : true,
+          prop.parent
+            ? prop.parent.fileName.includes("@types/react")
+              ? prop.name === "ref"
+              : true
+            : true,
         savePropValueAsString: true,
         shouldExtractValuesFromUnion: true,
+        skipChildrenPropWithoutDoc: false,
       },
     )
     .parse(fg.globSync("../react/dist/**/*.d.ts"));
@@ -336,7 +341,14 @@ function typeDeclarationPlugin({ include = [] }) {
 
     const doc = docs.find((doc) => doc.displayName === component);
     const propTypes = Object.values(doc?.props ?? {})
-      .filter(({ type }) => !type.name.startsWith("RefObject<"))
+      .filter(
+        ({ name, type }) =>
+          !(
+            type.name.startsWith("RefObject<") ||
+            name === "children" ||
+            name === "ref"
+          ),
+      )
       .filter(
         ({ name, type }) =>
           component === "Box" ||
@@ -405,6 +417,22 @@ function typeDeclarationPlugin({ include = [] }) {
         }
         return props;
       });
+
+    const ref = doc.props.ref?.type.raw
+      .match(/<([^>]+)>/)[1]
+      .split(" & ")
+      .map((instance) =>
+        instance
+          .replace(/^(HTML|SVG)/, "")
+          .replace(/Element$/, "")
+          .toLowerCase()
+          .replace("anchor", "a")
+          .replace("heading", "h1")
+          .replace("paragraph", "p")
+          .replace("olist", "ol")
+          .replace("ulist", "ul"),
+      );
+
     const extendsBox =
       component !== "Box" &&
       "asChild" in doc.props &&
@@ -419,7 +447,16 @@ export type ${component}Props = ${extendsBox ? "BoxProps & " : ""} {
 declare module "@stencil/core" {
   namespace JSX {
     interface IntrinsicElements {
-      [${component}]: ${component}Props & JSXBase.HTMLAttributes;
+      [${component}]: ${component}Props${
+        ref
+          ? ` & Omit<(${ref
+              .map(
+                (tagName) =>
+                  `JSXBase.IntrinsicElements["${tagName || "main"}"]`,
+              )
+              .join(" | ")}), keyof ${component}Props>`
+          : ""
+      };
     }
   }
 }
@@ -427,7 +464,17 @@ declare module "@stencil/core" {
 declare module "react" {
   namespace JSX {
     interface IntrinsicElements {
-      [${component}]: ${component}Props & ComponentPropsWithoutRef<"div">;
+      [${component}]: ${component}Props${
+        ref
+          ? ` & Omit<(${ref
+              .map(
+                (tagName) => `ComponentPropsWithoutRef<"${tagName || "main"}">`,
+              )
+              .join(" | ")}), keyof ${component}Props>`
+          : doc.props.children
+            ? " & { children?: ReactNode }"
+            : ""
+      };
     }
   }
 }`;
@@ -443,7 +490,7 @@ declare module "react" {
         id.endsWith("/index.d.ts")
           ? [
               'import type { JSXBase } from "@stencil/core/internal";',
-              'import type { ComponentPropsWithoutRef } from "react";',
+              'import type { ComponentPropsWithoutRef, ReactNode } from "react";',
               'import type { ChangeEventHandler, FocusEventHandler, FocusOutsideEvent, PointerDownOutsideEvent, ResponsiveArray, ResponsiveObject, SwipeEvent, Toaster } from "./types";',
               ...Object.entries(input).map(([key, value]) =>
                 key === "index" ? "" : generateDts(value),
@@ -451,7 +498,7 @@ declare module "react" {
             ]
           : [
               'import type { JSXBase } from "@stencil/core/internal";',
-              'import type { ComponentPropsWithoutRef } from "react";',
+              'import type { ComponentPropsWithoutRef, ReactNode } from "react";',
               'import type { ChangeEventHandler, FocusEventHandler, FocusOutsideEvent, PointerDownOutsideEvent, ResponsiveArray, ResponsiveObject, SwipeEvent, Toaster } from "../types";',
               id.endsWith("/Box.d.ts")
                 ? ""
