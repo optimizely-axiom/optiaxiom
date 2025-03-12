@@ -1,3 +1,5 @@
+import { theme } from "@optiaxiom/globals";
+
 import { recipe, style } from "../vanilla-extract";
 
 export const panels = recipe({
@@ -8,7 +10,18 @@ export const panels = recipe({
       gap: "0",
     },
     style({
-      maxHeight: 304,
+      transition: `height ${theme.duration.sm} ease`,
     }),
   ],
+
+  variants: {
+    height: {
+      sm: style({
+        height: 264,
+      }),
+      lg: style({
+        height: 304,
+      }),
+    },
+  },
 });

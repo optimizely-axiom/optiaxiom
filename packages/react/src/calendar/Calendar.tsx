@@ -1,8 +1,10 @@
+import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
-import { forwardRef } from "react";
+import { forwardRef, useEffect, useRef } from "react";
 import { type DateRange, DayPicker, type Matcher } from "react-day-picker";
 
 import { Box, type BoxProps } from "../box";
+import { useEffectEvent } from "../use-event";
 import { useResponsiveMatches } from "../use-responsive-matches";
 import { CalendarChevron } from "./CalendarChevron";
 import { CalendarDay } from "./CalendarDay";
@@ -30,6 +32,7 @@ type CalendarProps = BoxProps<
      * The earliest month to start the month navigation.
      */
     min?: Date;
+    onHeightChange?: (height: number) => void;
     /**
      * The today’s date. Default is the current date.
      */
@@ -93,13 +96,14 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
       max,
       min,
       mode = "single",
+      onHeightChange,
       onValueChange,
       today,
       value: valueProp,
       weekend,
       ...props
     },
-    ref,
+    outerRef,
   ) => {
     const [value, setValue] = useControllableState<
       Date | DateRange | undefined
@@ -112,6 +116,25 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
       base: 1,
       sm: 2,
     });
+
+    const innerRef = useRef<HTMLDivElement>(null);
+    const ref = useComposedRefs(innerRef, outerRef);
+
+    const onHeightChangeStable = useEffectEvent(onHeightChange ?? (() => {}));
+    useEffect(() => {
+      if (!innerRef.current) {
+        return;
+      }
+
+      const observer = new ResizeObserver((entries) => {
+        for (const entry of entries) {
+          onHeightChangeStable(entry.contentRect.height);
+        }
+      });
+      observer.observe(innerRef.current);
+
+      return () => observer.disconnect();
+    }, [onHeightChangeStable]);
 
     return (
       <Box

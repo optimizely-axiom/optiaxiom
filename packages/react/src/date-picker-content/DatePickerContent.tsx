@@ -52,6 +52,8 @@ export const DatePickerContent = forwardRef<
     const { setValue, step, type, value } =
       useDatePickerContext("DatePickerContent");
 
+    const [height, setHeight] = useState<"lg" | "sm">("sm");
+
     const [time, setTime] = useState<string>();
     useEffect(() => {
       setTime(
@@ -63,12 +65,16 @@ export const DatePickerContent = forwardRef<
 
     return (
       <PopoverContent gap="8" maxW={undefined} ref={ref} {...props}>
-        <Flex {...styles.panels()}>
+        <Flex {...styles.panels({ height })}>
           {addonBefore}
           <Calendar
+            alignSelf="start"
             holiday={holiday}
             max={max}
             min={min}
+            onHeightChange={(height) => {
+              setHeight(height > 300 ? "lg" : "sm");
+            }}
             onValueChange={(value) =>
               setValue(
                 value
