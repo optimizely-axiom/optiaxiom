@@ -16,7 +16,9 @@ export function format(date: Date) {
 export function parse(str: number | readonly string[] | string | undefined) {
   const rawDate = str && typeof str === "string" ? new Date(str) : undefined;
   return isValidDate(rawDate)
-    ? new Date(rawDate.getTime() + new Date().getTimezoneOffset() * 60 * 1000)
+    ? new Date(
+        rawDate.getTime() + new Date(rawDate).getTimezoneOffset() * 60 * 1000,
+      )
     : undefined;
 }
 
