@@ -1,10 +1,10 @@
+import { toLocalDate } from "../utils";
+
 /**
- * Format local datetime object into local date string.
+ * Format instant datetime object into local date string.
  */
 export function format(date: Date) {
-  return new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()))
-    .toISOString()
-    .split("T")[0];
+  return toLocalDate(date).split("T")[0];
 }
 
 /**

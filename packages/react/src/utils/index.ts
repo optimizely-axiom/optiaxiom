@@ -6,3 +6,4 @@ export * from "./fallbackSpan";
 export * from "./forceValueChange";
 export * from "./mapValues";
 export * from "./onReactSelectInputBlur";
+export * from "./toLocalDate";

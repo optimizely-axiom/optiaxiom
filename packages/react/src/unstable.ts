@@ -13,6 +13,7 @@ export * from "./card-image";
 export * from "./card-link";
 export * from "./card-overflow";
 export * from "./card-title";
+export * from "./clock";
 export * from "./combobox";
 export * from "./combobox-checkbox-item";
 export * from "./combobox-content";

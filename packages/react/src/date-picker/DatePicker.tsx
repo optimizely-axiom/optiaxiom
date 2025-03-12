@@ -14,6 +14,8 @@ type DatePickerProps = ComponentPropsWithRef<typeof Popover> & {
    * Handler that is called when the selected value changes.
    */
   onValueChange?: (value: Date | undefined) => void;
+  step?: "60" | "300" | "900";
+  type?: "date" | "datetime-local";
   /**
    * The selected value in controlled mode.
    */
@@ -28,6 +30,8 @@ export function DatePicker({
   onOpenChange,
   onValueChange,
   open: openProp,
+  step,
+  type = "date",
   value: valueProp,
   ...props
 }: DatePickerProps) {
@@ -47,6 +51,8 @@ export function DatePicker({
       <DatePickerContextProvider
         disabled={disabled}
         setValue={setValue}
+        step={step as string}
+        type={type}
         value={value}
       >
         {children}

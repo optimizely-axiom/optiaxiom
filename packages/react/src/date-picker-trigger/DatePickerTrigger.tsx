@@ -14,12 +14,18 @@ type DatePickerTriggerProps = ComponentPropsWithoutRef<
   placeholder?: string;
 };
 
-const DEFAULT_FORMATTER = (date: Date) =>
-  date.toLocaleDateString(undefined, {
-    day: "numeric",
-    month: "short",
-    year: "numeric",
-  });
+const dateFormatter = new Intl.DateTimeFormat(undefined, {
+  day: "numeric",
+  month: "short",
+  year: "numeric",
+});
+const dateTimeFormatter = new Intl.DateTimeFormat(undefined, {
+  day: "numeric",
+  hour: "numeric",
+  minute: "numeric",
+  month: "short",
+  year: "numeric",
+});
 
 export const DatePickerTrigger = forwardRef<
   HTMLButtonElement,
@@ -29,13 +35,18 @@ export const DatePickerTrigger = forwardRef<
     {
       "aria-labelledby": ariaLabelledBy,
       children,
-      format = DEFAULT_FORMATTER,
+      format,
       placeholder = "Pick a date",
       ...props
     },
     outerRef,
   ) => {
-    const { disabled, value } = useDatePickerContext("DatePickerTrigger");
+    const { disabled, type, value } = useDatePickerContext("DatePickerTrigger");
+    const formatter = format
+      ? { format }
+      : type === "datetime-local"
+        ? dateTimeFormatter
+        : dateFormatter;
 
     const buttonRef = useRef<HTMLButtonElement>(null);
     const ref = useComposedRefs(outerRef, buttonRef);
@@ -52,7 +63,7 @@ export const DatePickerTrigger = forwardRef<
       >
         {children ??
           (value ? (
-            format(value)
+            formatter.format(value)
           ) : (
             <Box color="fg.tertiary">{placeholder}</Box>
           ))}
