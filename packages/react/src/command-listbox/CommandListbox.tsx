@@ -8,7 +8,7 @@ type CommandListProps = BoxProps;
 
 export const CommandListbox = forwardRef<HTMLDivElement, CommandListProps>(
   ({ children, size, ...props }, ref) => {
-    const { downshift, setPlaced } = useCommandContext("CommandList");
+    const { downshift, setPlaced } = useCommandContext("CommandListbox");
     useEffect(() => {
       setPlaced(true);
     }, [setPlaced]);
