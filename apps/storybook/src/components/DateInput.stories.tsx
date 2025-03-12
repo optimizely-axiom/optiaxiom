@@ -61,7 +61,7 @@ export const MinMaxDates: Story = {
     await userEvent.click(
       await canvas.findByRole("button", { name: "Show date picker" }),
     );
-    await screen.findByText("22");
+    await screen.findByRole("button", { name: "Clear" });
   },
 };
 
