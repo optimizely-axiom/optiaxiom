@@ -129,14 +129,16 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
               ? value.from
               : value
           }
-          endMonth={max}
+          disabled={[
+            ...(min ? [{ before: min }] : []),
+            ...(max ? [{ after: max }] : []),
+          ]}
           mode={mode as "single"}
           modifiers={{ holiday, weekend }}
           numberOfMonths={mode === "range" ? numberOfMonths : 1}
           onSelect={setValue as (value: Date | undefined) => void}
           required
           selected={value as Date | undefined}
-          startMonth={min}
           today={today}
         />
       </Box>

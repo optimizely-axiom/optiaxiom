@@ -54,8 +54,13 @@ export const DefaultValue: Story = {
 export const MinMaxDates: Story = {
   args: {
     defaultValue: "2025-01-22",
-    max: "2025-12-31",
-    min: "2025-01-01",
+    max: "2025-01-28",
+    min: "2025-01-07",
+  },
+  play: async ({ canvas }) => {
+    await userEvent.click(
+      await canvas.findByRole("button", { name: "Show date picker" }),
+    );
   },
 };
 
