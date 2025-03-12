@@ -24,14 +24,11 @@ export const Basic: Story = {
   },
 };
 
-export const Holidays: Story = {
-  args: {
-    holiday: new Date("2025-01-15T00:00:00"),
-  },
-};
-
 export const Weekends: Story = {
   args: {
+    holiday: new Date("2025-01-15T00:00:00"),
+    max: new Date("2025-01-28T00:00"),
+    min: new Date("2025-01-07T00:00"),
     weekend: {
       dayOfWeek: [0, 6],
     },

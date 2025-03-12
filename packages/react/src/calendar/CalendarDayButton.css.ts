@@ -22,7 +22,7 @@ export const button = recipe({
       "@media": {
         "(hover: hover)": {
           selectors: {
-            "&:hover": {
+            "&:not([disabled]):hover": {
               backgroundColor: `
                 color-mix(
                   in srgb,
@@ -40,6 +40,9 @@ export const button = recipe({
           outline: `2px solid ${theme.colors["border.focus"]}`,
           outlineOffset: "1px",
           zIndex: "10",
+        },
+        "&[disabled]": {
+          opacity: 0.32,
         },
       },
     }),
@@ -77,9 +80,14 @@ export const button = recipe({
           },
         }),
       ],
-      weekend: {
-        color: "fg.tertiary",
-      },
+      weekend: [
+        {
+          color: "fg.tertiary",
+        },
+        style({
+          opacity: 0.8,
+        }),
+      ],
     },
     range: {
       end: [
