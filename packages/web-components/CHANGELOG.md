@@ -1,5 +1,11 @@
 # @optiaxiom/web-components
 
+## 0.8.17
+
+### Patch Changes
+
+- 3c0c3af: fix html attribute prop types for components
+
 ## 0.8.16
 
 ### Patch Changes

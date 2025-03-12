@@ -1,5 +1,12 @@
 # @optiaxiom/react
 
+## 1.0.2
+
+### Patch Changes
+
+- 27bcf70: fix date input date parsing
+- e4337d3: fix disabled dates on calendar
+
 ## 1.0.1
 
 ### Patch Changes
