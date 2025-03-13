@@ -170,6 +170,7 @@ export default {
       "flex-direction": "Flex Direction",
       "flex-wrap": "Flex Wrap",
       gap: "Gap",
+      "grid-column": "Grid Column",
       "justify-content": "Justify Content",
       margin: "Margin",
       padding: "Padding",
