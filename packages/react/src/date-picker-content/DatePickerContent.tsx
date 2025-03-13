@@ -12,6 +12,8 @@ import { useDatePickerContext } from "../date-picker-context";
 import { Flex } from "../flex";
 import { PopoverContent } from "../popover-content";
 import { usePopoverContext } from "../popover-context";
+import { Separator } from "../separator";
+import { Text } from "../text";
 import { toLocalDate } from "../utils";
 import * as styles from "./DatePickerContent.css";
 
@@ -86,9 +88,12 @@ export const DatePickerContent = forwardRef<
             value={value}
             weekend={weekend}
           />
-          {type === "datetime-local" && (
+          {addonAfter}
+        </Flex>
+        {type === "datetime-local" && (
+          <Flex gap="8">
+            <Separator mb="8" />
             <Clock
-              ml="8"
               onValueChange={(time) => {
                 setTime(time);
                 if (value) {
@@ -98,9 +103,11 @@ export const DatePickerContent = forwardRef<
               step={step}
               value={time}
             />
-          )}
-          {addonAfter}
-        </Flex>
+            <Text color="fg.tertiary" fontSize="sm" w="full">
+              {(value ?? new Date()).toTimeString().slice(9)}
+            </Text>
+          </Flex>
+        )}
         {children}
       </PopoverContent>
     );
