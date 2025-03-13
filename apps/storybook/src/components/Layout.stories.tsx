@@ -33,16 +33,14 @@ import {
 
 export default {
   component: Layout,
-  decorators: (Story) => (
-    <Box style={{ height: "100vh", width: "90vw" }}>
-      <Story />
-    </Box>
-  ),
+  parameters: {
+    layout: "fullscreen",
+  },
 } satisfies Meta<typeof Layout>;
 
 type Story = StoryObj<typeof Layout>;
 
-const SideNavTemplate = () => (
+const SidebarExample = () => (
   <Sidebar>
     <Nav>
       <NavBody>
@@ -89,18 +87,67 @@ const SideNavTemplate = () => (
     </Nav>
   </Sidebar>
 );
+
 const Header = () => (
-  <Box bg="bg.secondary" border="2">
-    <Heading p="4" size="xl">
-      Header
-    </Heading>
+  <Box bg="bg.default.inverse" color="fg.default.inverse" p="16">
+    <Heading level="4">Header</Heading>
   </Box>
 );
 
 const Content = () => (
-  <Box border="1" flexDirection="column" h="full" p="8">
-    <Text size="xl">Main Content</Text>
-    <Text>This is the main content area of your application.</Text>
+  <Box display="flex" flexDirection="column" gap="16">
+    <Heading level="3">Main Content</Heading>
+    <Text>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed rhoncus
+      tincidunt massa, quis euismod diam fringilla eu. Mauris lobortis laoreet
+      enim blandit varius. In vitae orci nec dui feugiat finibus blandit sit
+      amet enim. Phasellus congue aliquet justo, eget sollicitudin leo dictum
+      et. Donec ac rhoncus sem, ullamcorper porta ex. Aliquam congue ex nec
+      rhoncus dignissim. Nulla facilisi. Orci varius natoque penatibus et magnis
+      dis parturient montes, nascetur ridiculus mus. In nec elit faucibus,
+      tristique arcu et, aliquam neque. Etiam sed erat eu libero mollis tempor.
+      Praesent scelerisque mi eu enim lobortis venenatis ut sed ligula.
+    </Text>
+    <Text>
+      Praesent dolor dui, finibus id libero tincidunt, aliquam vehicula lectus.
+      Duis tempor et nunc eu scelerisque. Sed luctus at nibh sed facilisis.
+      Curabitur eu finibus lacus. Suspendisse tempor posuere eleifend.
+      Pellentesque ante quam, varius nec dignissim at, lobortis vel ante. Nunc
+      in ullamcorper felis. Integer laoreet, nibh volutpat consequat vehicula,
+      lacus lectus mollis ipsum, non dapibus dui dolor sit amet velit. Morbi
+      velit ipsum, convallis in massa consectetur, lobortis ultricies arcu. Orci
+      varius natoque penatibus et magnis dis parturient montes, nascetur
+      ridiculus mus. Nulla justo ex, pulvinar et faucibus sodales, sodales vitae
+      ligula. Praesent non orci id sapien malesuada rhoncus et id ante.
+    </Text>
+    <Text>
+      In semper aliquam lectus, non pulvinar lectus dapibus in. Quisque tellus
+      massa, sodales sed porttitor sed, luctus tincidunt ipsum. Curabitur eget
+      consequat dolor. Nunc diam libero, maximus vel facilisis eu, convallis et
+      purus. Quisque a vulputate mi. Maecenas in mauris ac quam rutrum suscipit.
+      Aliquam ex augue, rhoncus at quam scelerisque, laoreet sollicitudin neque.
+      Fusce arcu nulla, placerat nec tortor ut, fermentum porta odio. Nam
+      faucibus lacus eros, ac feugiat ante viverra ut. Aliquam a nunc at arcu
+      sollicitudin porttitor. Nam vestibulum ut justo vel rhoncus. Etiam diam
+      felis, ornare nec scelerisque in, finibus at sem. Quisque non interdum
+      odio.
+    </Text>
+    <Text>
+      Fusce euismod pulvinar nisi vitae blandit. Integer at tortor nibh.
+      Suspendisse sodales fermentum libero, nec ornare neque euismod quis.
+      Integer at urna tincidunt, tincidunt justo vitae, ornare lorem. Cras
+      tempor interdum erat, et euismod leo. Etiam ac interdum lectus. Nunc
+      vehicula neque dui, ac varius neque rutrum sed. Proin porttitor
+      scelerisque nunc eget aliquam.
+    </Text>
+    <Text>
+      Aliquam interdum felis velit, ut tincidunt mi ornare quis. Duis at
+      sollicitudin nulla, vel mattis dolor. Quisque fermentum, mauris sit amet
+      molestie ullamcorper, ex ante tristique enim, ac sollicitudin quam lacus a
+      ligula. Morbi vel purus quis ante aliquam malesuada. Curabitur in
+      tincidunt est. Vivamus at metus enim. Sed eget arcu sollicitudin, tempor
+      tortor ac, tempor lorem. Integer gravida libero vel dictum consectetur.
+    </Text>
   </Box>
 );
 
@@ -108,14 +155,14 @@ export const Default: Story = {
   args: {
     children: <Content />,
     header: <Header />,
-    sidenav: <SideNavTemplate />,
+    sidebar: <SidebarExample />,
   },
 };
 
 export const NoHeader: Story = {
   args: {
     children: <Content />,
-    sidenav: <SideNavTemplate />,
+    sidebar: <SidebarExample />,
   },
 };
 

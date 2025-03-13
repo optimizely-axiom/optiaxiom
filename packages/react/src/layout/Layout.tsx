@@ -1,33 +1,34 @@
 import { forwardRef, type ReactNode } from "react";
 
 import { Box, type BoxProps } from "../box";
-import { Flex } from "../flex";
+import * as styles from "./Layouts.css";
 
 type LayoutProps = BoxProps<
   "div",
   {
     header?: ReactNode;
-    sidenav?: ReactNode;
+    sidebar?: ReactNode;
   }
 >;
 
 export const Layout = forwardRef<HTMLDivElement, LayoutProps>(
-  ({ children, header, sidenav, ...props }, ref) => {
+  ({ children, className, header, sidebar, ...props }, ref) => {
     return (
-      <Flex gap="0" h="full" ref={ref} {...props}>
+      <Box ref={ref} {...styles.layout({}, className)} {...props}>
         {header}
-        <Flex
-          alignItems="start"
+        <Box
+          alignItems="stretch"
+          display="flex"
+          flex="1"
           flexDirection="row"
-          gap="0"
-          justifyContent="flex-start"
+          overflow="auto"
         >
-          {sidenav}
-          <Box flex="1" h="full">
+          {sidebar}
+          <Box flex="1" overflow="auto" px="32" py="24">
             {children}
           </Box>
-        </Flex>
-      </Flex>
+        </Box>
+      </Box>
     );
   },
 );
