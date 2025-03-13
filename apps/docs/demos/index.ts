@@ -181,6 +181,7 @@ export const demos = {
   "gap/responsive-usage": import("./gap/responsive-usage/App"),
   "gap/usage": import("./gap/usage/App"),
   "grid/gap-usage": import("./grid/gap-usage/App"),
+  "grid/span-responsive-usage": import("./grid/span-responsive-usage/App"),
   "grid/span-usage": import("./grid/span-usage/App"),
   "grid/usage": import("./grid/usage/App"),
   "heading/size-usage": import("./heading/size-usage/App"),
