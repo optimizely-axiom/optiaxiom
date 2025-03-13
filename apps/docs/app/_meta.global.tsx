@@ -165,6 +165,7 @@ export default {
       },
       "align-items": "Align Items",
       "align-self": "Align Self",
+      display: "Display",
       flex: "Flex",
       "flex-direction": "Flex Direction",
       "flex-wrap": "Flex Wrap",
