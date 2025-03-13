@@ -176,6 +176,7 @@ export const demos = {
   "font/color-usage": import("./font/color-usage/App"),
   "font/family-usage": import("./font/family-usage/App"),
   "font/size-usage": import("./font/size-usage/App"),
+  "gap/responsive-usage": import("./gap/responsive-usage/App"),
   "gap/usage": import("./gap/usage/App"),
   "grid/gap-usage": import("./grid/gap-usage/App"),
   "grid/span-usage": import("./grid/span-usage/App"),
