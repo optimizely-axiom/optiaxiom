@@ -24,6 +24,12 @@ export default {
         props: ["border", "borderB", "borderL", "borderR", "borderT"],
       },
     ],
+    display: [
+      {
+        path: "/display/",
+        props: ["display"],
+      },
+    ],
     flex: [
       {
         path: "/flex/",

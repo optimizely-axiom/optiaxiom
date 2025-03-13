@@ -131,6 +131,8 @@ export const demos = {
     "./disclosure/chevron-position-usage/App"
   ),
   "disclosure/usage": import("./disclosure/usage/App"),
+  "display/responsive-usage": import("./display/responsive-usage/App"),
+  "display/usage": import("./display/usage/App"),
   "dropdown-menu/addon-usage": import("./dropdown-menu/addon-usage/App"),
   "dropdown-menu/alert-dialog-usage": import(
     "./dropdown-menu/alert-dialog-usage/App"
