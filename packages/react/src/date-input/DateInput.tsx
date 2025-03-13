@@ -26,6 +26,8 @@ type DateInputProps = ComponentPropsWithoutRef<typeof Input> &
 export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
   ({ disabled, holiday, max, min, onChange, weekend, ...props }, outerRef) => {
     const [open, setOpen] = useState(false);
+    const hasInteractedOutsideRef = useRef(false);
+    const pickerRef = useRef<HTMLButtonElement>(null);
 
     const [value, setValue] = useControllableState({
       defaultProp: props.defaultValue,
@@ -49,6 +51,7 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
                   aria-label="Show date picker"
                   hasCustomAnchor
                   icon={<IconCalendar />}
+                  ref={pickerRef}
                   size="sm"
                   {...styles.picker()}
                 />
@@ -81,8 +84,22 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
         <PopoverContent
           gap="8"
           onCloseAutoFocus={(event) => {
-            event.preventDefault();
-            innerRef.current?.focus();
+            if (hasInteractedOutsideRef.current) {
+              hasInteractedOutsideRef.current = false;
+            } else {
+              event.preventDefault();
+              innerRef.current?.focus();
+            }
+          }}
+          onInteractOutside={(event) => {
+            if (
+              !(
+                event.target instanceof Node &&
+                pickerRef.current?.contains(event.target)
+              )
+            ) {
+              hasInteractedOutsideRef.current = true;
+            }
           }}
         >
           <Calendar
