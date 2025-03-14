@@ -1,6 +1,6 @@
 import { type ComponentPropsWithRef, forwardRef } from "react";
 
-import { ButtonContextProvider } from "../button-context";
+import { ButtonProvider } from "../button-context";
 import { Flex } from "../flex";
 import * as styles from "./DialogFooter.css";
 
@@ -10,7 +10,7 @@ export const DialogFooter = forwardRef<HTMLDivElement, DialogFooterProps>(
   ({ children, className, ...props }, ref) => {
     return (
       <Flex ref={ref} {...styles.footer({}, className)} {...props}>
-        <ButtonContextProvider size="lg">{children}</ButtonContextProvider>
+        <ButtonProvider size="lg">{children}</ButtonProvider>
       </Flex>
     );
   },

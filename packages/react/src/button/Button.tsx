@@ -54,7 +54,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ) => {
     const Comp = asChild ? Slot : "button";
 
-    const context = useButtonContext("Button");
+    const context = useButtonContext("@optiaxiom/react/Button");
     const size = sizeProp || context.size || "md";
 
     let isIconOnly = false;

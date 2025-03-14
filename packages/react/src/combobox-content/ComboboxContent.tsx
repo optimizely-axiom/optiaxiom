@@ -32,7 +32,7 @@ export const ComboboxContent = forwardRef<HTMLDivElement, ComboboxContentProps>(
       onInputValueChange,
       onItemSelect,
       value,
-    } = useComboboxContext("ComboboxContent");
+    } = useComboboxContext("@optiaxiom/react/ComboboxContent");
 
     return (
       <components.Content

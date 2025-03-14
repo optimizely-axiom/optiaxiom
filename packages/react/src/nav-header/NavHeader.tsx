@@ -8,7 +8,7 @@ type NavHeaderProps = BoxProps<"div">;
 
 export const NavHeader = forwardRef<HTMLDivElement, NavHeaderProps>(
   ({ children, ...props }, ref) => {
-    const { spacing } = useSidebarContext("NavHeader");
+    const { spacing } = useSidebarContext("@optiaxiom/react/NavHeader");
 
     return (
       <Flex px={spacing} ref={ref} {...props}>

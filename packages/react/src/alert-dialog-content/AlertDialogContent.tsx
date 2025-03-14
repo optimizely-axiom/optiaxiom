@@ -9,7 +9,7 @@ import { useAlertDialogContext } from "../alert-dialog-context";
 import { Backdrop } from "../backdrop";
 import { Box, type BoxProps } from "../box";
 import { Flex } from "../flex";
-import { ModalContextProvider } from "../modal-context";
+import { ModalProvider } from "../modal-context";
 import { Paper } from "../paper";
 import { Transition } from "../transition";
 import { TransitionGroup } from "../transition-group";
@@ -25,7 +25,7 @@ export const AlertDialogContent = forwardRef<
   AlertDialogContentProps
 >(({ children, size = "sm", style, ...props }, outerRef) => {
   const { nestedDialogCount, open, presence, setPresence } =
-    useAlertDialogContext("AlertDialogContent");
+    useAlertDialogContext("@optiaxiom/react/AlertDialogContent");
 
   const innerRef = useRef<HTMLDivElement>(null);
   const ref = useComposedRefs(innerRef, outerRef);
@@ -62,9 +62,7 @@ export const AlertDialogContent = forwardRef<
               {...styles.content({ size })}
             >
               <RadixAlertDialog.Content ref={ref} {...props}>
-                <ModalContextProvider shardRef={innerRef}>
-                  {children}
-                </ModalContextProvider>
+                <ModalProvider shardRef={innerRef}>{children}</ModalProvider>
               </RadixAlertDialog.Content>
             </Paper>
           </Transition>

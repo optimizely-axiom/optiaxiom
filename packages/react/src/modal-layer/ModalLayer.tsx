@@ -13,7 +13,7 @@ import { RemoveScroll as ReactRemoveScroll } from "react-remove-scroll";
 
 import type { Box } from "../box";
 
-import { ModalContextProvider, useModalContext } from "../modal-context";
+import { ModalProvider, useModalContext } from "../modal-context";
 
 type ModalLayerProps = Pick<ComponentPropsWithoutRef<typeof Box>, "asChild"> & {
   children?: ReactNode;
@@ -21,7 +21,7 @@ type ModalLayerProps = Pick<ComponentPropsWithoutRef<typeof Box>, "asChild"> & {
 
 export const ModalLayer = forwardRef<HTMLDivElement, ModalLayerProps>(
   ({ asChild, children, ...props }, outerRef) => {
-    const { shardRef } = useModalContext("ModalLayer");
+    const { shardRef } = useModalContext("@optiaxiom/react/ModalLayer");
     const [locked] = useState(() => document.body.dataset.scrollLocked);
     const [guards] = useState(() =>
       document.querySelector("[data-radix-focus-guard]"),
@@ -58,9 +58,7 @@ export const ModalLayer = forwardRef<HTMLDivElement, ModalLayerProps>(
       result = <FocusGuards>{result}</FocusGuards>;
     }
 
-    return (
-      <ModalContextProvider shardRef={innerRef}>{result}</ModalContextProvider>
-    );
+    return <ModalProvider shardRef={innerRef}>{result}</ModalProvider>;
   },
 );
 

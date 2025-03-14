@@ -1,7 +1,7 @@
 import { forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
-import { CommandSubContextProvider } from "../command-sub-context";
+import { CommandSubProvider } from "../command-sub-context";
 
 type CommandSubProps = BoxProps<
   "div",
@@ -13,11 +13,11 @@ type CommandSubProps = BoxProps<
 export const CommandSub = forwardRef<HTMLDivElement, CommandSubProps>(
   ({ children, item, ...props }, ref) => {
     return (
-      <CommandSubContextProvider item={item}>
+      <CommandSubProvider item={item}>
         <Box ref={ref} role="group" {...props}>
           {children}
         </Box>
-      </CommandSubContextProvider>
+      </CommandSubProvider>
     );
   },
 );

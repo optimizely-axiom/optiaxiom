@@ -10,7 +10,7 @@ export const SegmentedControlItem = forwardRef<
   HTMLButtonElement,
   SegmentedControlItemProps
 >(({ children, ...props }, ref) => {
-  useSegmentedControlContext("SegmentedControlItem");
+  useSegmentedControlContext("@optiaxiom/react/SegmentedControlItem");
 
   return (
     <RadixSegmentedControl.Item

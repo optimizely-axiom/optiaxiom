@@ -7,7 +7,9 @@ type InputAddonProps = BoxProps<"div">;
 
 export const InputAddon = forwardRef<HTMLDivElement, InputAddonProps>(
   ({ children, ...props }, ref) => {
-    const { addonPointerEvents, inputRef } = useInputContext("InputAddon");
+    const { addonPointerEvents, inputRef } = useInputContext(
+      "@optiaxiom/react/InputAddon",
+    );
 
     const addonProps =
       addonPointerEvents === "none"

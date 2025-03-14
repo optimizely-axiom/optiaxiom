@@ -4,7 +4,7 @@ import { useSelect, type UseSelectProps } from "downshift";
 import { type ReactNode } from "react";
 
 import { usePortalPatch } from "../downshift";
-import { SelectContextProvider } from "../select-context";
+import { SelectProvider } from "../select-context";
 
 type SelectProps<Item> = Pick<
   UseSelectProps<Item>,
@@ -80,7 +80,7 @@ export function Select<Item>({
 
   return (
     <Popper>
-      <SelectContextProvider
+      <SelectProvider
         disabled={disabled}
         downshift={downshift}
         highlightedItem={items[highlightedIndex]}
@@ -93,7 +93,7 @@ export function Select<Item>({
         setPlaced={setPlaced}
       >
         {children}
-      </SelectContextProvider>
+      </SelectProvider>
     </Popper>
   );
 }

@@ -4,7 +4,7 @@
 
 import { createContext } from "@radix-ui/react-context";
 
-export const [SpotlightContextProvider, useSpotlightContext] = createContext<{
+export const [SpotlightProvider, useSpotlightContext] = createContext<{
   inputValue?: string;
   isItemDisabled: (item: any, index: number) => boolean;
   items: any[];
@@ -15,4 +15,4 @@ export const [SpotlightContextProvider, useSpotlightContext] = createContext<{
   onItemSelect?: (value: any) => void;
   open?: boolean | undefined;
   setOpen: (open: boolean) => void;
-}>("Spotlight");
+}>("@optiaxiom/react/Spotlight");

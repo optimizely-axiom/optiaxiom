@@ -37,7 +37,7 @@ export const DropdownMenuContent = forwardRef<
   DropdownMenuContentProps
 >(({ align = "start", children, loading, ...props }, ref) => {
   const { open, presence, setPresence } = useDropdownMenuContext(
-    "DropdownMenuContent",
+    "@optiaxiom/react/DropdownMenuContent",
   );
 
   return (

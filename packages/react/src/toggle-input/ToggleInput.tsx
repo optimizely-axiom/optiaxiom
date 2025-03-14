@@ -4,7 +4,7 @@ import { forwardRef } from "react";
 
 import { type BoxProps, extractBoxProps } from "../box";
 import { Flex } from "../flex";
-import { ToggleInputContextProvider } from "../toggle-input-context";
+import { ToggleInputProvider } from "../toggle-input-context";
 import * as styles from "./ToggleInput.css";
 
 type ToggleInputProps = BoxProps<
@@ -26,7 +26,7 @@ export const ToggleInput = forwardRef<HTMLLabelElement, ToggleInputProps>(
     const labelId = useId();
 
     return (
-      <ToggleInputContextProvider
+      <ToggleInputProvider
         descriptionId={description ? descriptionId : undefined}
         labelId={labelId}
       >
@@ -44,7 +44,7 @@ export const ToggleInput = forwardRef<HTMLLabelElement, ToggleInputProps>(
             {children}
           </Comp>
         </Flex>
-      </ToggleInputContextProvider>
+      </ToggleInputProvider>
     );
   },
 );

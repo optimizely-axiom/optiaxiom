@@ -2,7 +2,7 @@ import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import { useCombobox, type UseComboboxProps } from "downshift";
 import { type ReactNode, useMemo, useState } from "react";
 
-import { CommandContextProvider } from "../command-context";
+import { CommandProvider } from "../command-context";
 import { usePortalPatch } from "../downshift";
 
 const isHoverSupported =
@@ -152,7 +152,7 @@ export function Command<Item>({
   downshift.getMenuProps({}, { suppressRefError: true });
 
   return (
-    <CommandContextProvider
+    <CommandProvider
       downshift={downshift}
       highlightedItem={items[downshift.highlightedIndex]}
       highlightedSubIndex={
@@ -179,7 +179,7 @@ export function Command<Item>({
       value={value}
     >
       {children}
-    </CommandContextProvider>
+    </CommandProvider>
   );
 }
 

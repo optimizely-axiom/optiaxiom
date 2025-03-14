@@ -8,7 +8,7 @@ type CardOverflowProps = ComponentPropsWithRef<typeof Box>;
 
 export const CardOverflow = forwardRef<HTMLDivElement, CardOverflowProps>(
   ({ children, className, ...props }, ref) => {
-    const { orientation } = useCardContext("CardOverflow");
+    const { orientation } = useCardContext("@optiaxiom/react/CardOverflow");
 
     return (
       <Box

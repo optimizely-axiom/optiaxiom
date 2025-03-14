@@ -2,8 +2,8 @@
 
 import { createContext } from "@radix-ui/react-context";
 
-export const [CardContextProvider, useCardContext] = createContext<{
+export const [CardProvider, useCardContext] = createContext<{
   descriptionId?: string;
   labelId?: string;
   orientation: "horizontal" | "vertical";
-}>("Card");
+}>("@optiaxiom/react/Card");

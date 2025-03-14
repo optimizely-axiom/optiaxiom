@@ -28,7 +28,7 @@ export const DisclosureContent = forwardRef<
   HTMLDivElement,
   DisclosureContentProps
 >(({ children, transitionType = "slide", ...props }, ref) => {
-  const { open } = useDisclosureContext("DisclosureContent");
+  const { open } = useDisclosureContext("@optiaxiom/react/DisclosureContent");
 
   const [skipAnimations, setSkipAnimations] = useState(Boolean(open));
   useEffect(() => {

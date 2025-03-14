@@ -3,7 +3,7 @@ import type { DateRange } from "react-day-picker";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import { type ComponentPropsWithRef } from "react";
 
-import { DateRangePickerContextProvider } from "../date-range-picker-context";
+import { DateRangePickerProvider } from "../date-range-picker-context";
 import { Popover } from "../popover";
 
 type DateRangePickerProps = ComponentPropsWithRef<typeof Popover> & {
@@ -46,13 +46,13 @@ export function DateRangePicker({
 
   return (
     <Popover onOpenChange={setOpen} open={open} {...props}>
-      <DateRangePickerContextProvider
+      <DateRangePickerProvider
         disabled={disabled}
         setValue={setValue}
         value={value}
       >
         {children}
-      </DateRangePickerContextProvider>
+      </DateRangePickerProvider>
     </Popover>
   );
 }

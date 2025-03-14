@@ -8,7 +8,7 @@ import {
 import type { Command } from "../command";
 
 import { Dialog } from "../dialog";
-import { SpotlightContextProvider } from "../spotlight-context";
+import { SpotlightProvider } from "../spotlight-context";
 import { useEffectEvent } from "../use-event";
 
 type SpotlightProps<Item> = ComponentPropsWithoutRef<typeof Command<Item>> & {
@@ -49,7 +49,7 @@ export function Spotlight<Item>({
 
   return (
     <Dialog onOpenChange={setOpen} open={open}>
-      <SpotlightContextProvider
+      <SpotlightProvider
         inputValue={inputValue}
         isItemDisabled={isItemDisabled}
         items={items}
@@ -62,7 +62,7 @@ export function Spotlight<Item>({
         setOpen={setOpen}
       >
         {children}
-      </SpotlightContextProvider>
+      </SpotlightProvider>
     </Dialog>
   );
 }

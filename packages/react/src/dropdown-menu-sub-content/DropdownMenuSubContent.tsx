@@ -30,7 +30,9 @@ export const DropdownMenuSubContent = forwardRef<
   HTMLDivElement,
   MenuSubContentProps
 >(({ children, ...props }, ref) => {
-  const { open } = useDropdownMenuSubContext("DropdownMenuSubContent");
+  const { open } = useDropdownMenuSubContext(
+    "@optiaxiom/react/DropdownMenuSubContent",
+  );
 
   return (
     <TransitionGroup open={open}>

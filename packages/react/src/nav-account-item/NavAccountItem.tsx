@@ -21,7 +21,7 @@ export const NavAccountItem = forwardRef<
   HTMLButtonElement,
   NavAccountItemProps
 >(({ name, organization, src, ...props }, ref) => {
-  const { expanded } = useSidebarContext("NavAccountItem");
+  const { expanded } = useSidebarContext("@optiaxiom/react/NavAccountItem");
 
   return (
     <Flex asChild my="8">

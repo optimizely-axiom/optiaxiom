@@ -12,8 +12,9 @@ export type SidebarToggleProps = Omit<
 
 export const SidebarToggle = forwardRef<HTMLButtonElement, SidebarToggleProps>(
   ({ "aria-label": ariaLabel, children, ...props }, ref) => {
-    const { expanded, navId, onExpandedChange } =
-      useSidebarContext("SidebarToggle");
+    const { expanded, navId, onExpandedChange } = useSidebarContext(
+      "@optiaxiom/react/SidebarToggle",
+    );
 
     return (
       <NavItem

@@ -19,7 +19,7 @@ export const ToggleInputHiddenInput = forwardRef<
   ToggleInputHiddenInputProps
 >(({ className, onChange, onCheckedChange, ...props }, ref) => {
   const { descriptionId, labelId } = useToggleInputContext(
-    "ToggleInputHiddenInput",
+    "@optiaxiom/react/ToggleInputHiddenInput",
   );
 
   return (

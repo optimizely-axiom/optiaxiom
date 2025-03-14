@@ -9,7 +9,7 @@ type CardTitleProps = HeadingProps<"h2">;
 export const CardTitle = forwardRef<HTMLDivElement, CardTitleProps>(
   ({ asChild, children, ...props }, ref) => {
     const Comp = asChild ? Slot : "h2";
-    const { labelId } = useCardContext("CardTitle");
+    const { labelId } = useCardContext("@optiaxiom/react/CardTitle");
 
     return (
       <Heading

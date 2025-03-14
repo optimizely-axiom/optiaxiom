@@ -3,7 +3,7 @@ import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import { useRef } from "react";
 
 import { type BoxProps } from "../box";
-import { TooltipContextProvider } from "../tooltip-context";
+import { TooltipProvider } from "../tooltip-context";
 
 type TooltipRootProps = BoxProps<
   typeof RadixTooltip.Root,
@@ -67,13 +67,9 @@ export function TooltipRoot({
       open={open}
       {...props}
     >
-      <TooltipContextProvider
-        open={open}
-        setOpen={setOpen}
-        triggerRef={triggerRef}
-      >
+      <TooltipProvider open={open} setOpen={setOpen} triggerRef={triggerRef}>
         {children}
-      </TooltipContextProvider>
+      </TooltipProvider>
     </RadixTooltip.Root>
   );
 }

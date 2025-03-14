@@ -27,7 +27,7 @@ export const DataTableFooter = forwardRef<HTMLDivElement, DataTableFooterProps>(
     { pageSizeOptions = DEFAULT_PAGE_SIZES, showPageSizeOptions, ...props },
     ref,
   ) => {
-    const { table } = useDataTableContext("DataTableFooter");
+    const { table } = useDataTableContext("@optiaxiom/react/DataTableFooter");
 
     const { pagination } = table.getState();
     const pageSizeId = useId();

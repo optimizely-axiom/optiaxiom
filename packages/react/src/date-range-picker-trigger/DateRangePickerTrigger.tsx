@@ -46,7 +46,7 @@ export const DateRangePickerTrigger = forwardRef<
     outerRef,
   ) => {
     const { disabled, value } = useDateRangePickerContext(
-      "DateRangePickerTrigger",
+      "@optiaxiom/react/DateRangePickerTrigger",
     );
 
     const buttonRef = useRef<HTMLButtonElement>(null);

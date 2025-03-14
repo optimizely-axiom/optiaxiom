@@ -44,8 +44,9 @@ export const DatePickerContent = forwardRef<
     },
     ref,
   ) => {
-    const { setValue, step, type, value } =
-      useDatePickerContext("DatePickerContent");
+    const { setValue, step, type, value } = useDatePickerContext(
+      "@optiaxiom/react/DatePickerContent",
+    );
 
     const panelRef = useRef<HTMLDivElement>(null);
 

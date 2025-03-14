@@ -42,7 +42,7 @@ export const NavItem = forwardRef<HTMLButtonElement, NavItemProps>(
     const Comp = asChild ? Slot : "button";
     const { boxProps, restProps } = extractBoxProps(props);
 
-    const { expanded } = useSidebarContext("NavItem");
+    const { expanded } = useSidebarContext("@optiaxiom/react/NavItem");
 
     let tooltip = null;
     children = decorateChildren({ asChild, children }, (children) => {

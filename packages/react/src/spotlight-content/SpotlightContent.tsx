@@ -26,7 +26,7 @@ export const SpotlightContent = forwardRef<
     itemToSubItems,
     onInputValueChange,
     onItemSelect,
-  } = useSpotlightContext("SpotlightContent");
+  } = useSpotlightContext("@optiaxiom/react/SpotlightContent");
 
   return (
     <DialogContent

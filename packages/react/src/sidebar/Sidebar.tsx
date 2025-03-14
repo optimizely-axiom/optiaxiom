@@ -3,7 +3,7 @@ import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import { forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
-import { SidebarContextProvider } from "../sidebar-context";
+import { SidebarProvider } from "../sidebar-context";
 
 type SidebarProps = BoxProps<
   "div",
@@ -41,7 +41,7 @@ export const Sidebar = forwardRef<HTMLDivElement, SidebarProps>(
     });
 
     return (
-      <SidebarContextProvider
+      <SidebarProvider
         expanded={expanded}
         navId={useId()}
         onExpandedChange={setExpanded}
@@ -57,7 +57,7 @@ export const Sidebar = forwardRef<HTMLDivElement, SidebarProps>(
         >
           {children}
         </Box>
-      </SidebarContextProvider>
+      </SidebarProvider>
     );
   },
 );

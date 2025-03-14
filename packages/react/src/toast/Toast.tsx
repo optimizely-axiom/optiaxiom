@@ -1,4 +1,4 @@
-import { useToastContext } from "@optiaxiom/globals";
+import { useToastProviderContext } from "@optiaxiom/globals";
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import * as RadixToast from "@radix-ui/react-toast";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
@@ -35,7 +35,7 @@ export const Toast = forwardRef<HTMLLIElement, ToastProps>(
     outerRef,
   ) => {
     const { boxProps, restProps } = extractBoxProps(props);
-    const context = useToastContext("Toast");
+    const context = useToastProviderContext("@optiaxiom/react/Toast");
 
     const ref = useComposedRefs(outerRef, context.toastRef);
 

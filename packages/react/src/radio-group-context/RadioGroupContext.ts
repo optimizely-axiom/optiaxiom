@@ -4,7 +4,7 @@ import type { ComponentPropsWithoutRef } from "react";
 
 import { createContext } from "@radix-ui/react-context";
 
-export const [RadioGroupContextProvider, useRadioGroupContext] = createContext<
+export const [RadioGroupProvider, useRadioGroupContext] = createContext<
   | null
   | (Pick<
       ComponentPropsWithoutRef<"input">,
@@ -13,4 +13,4 @@ export const [RadioGroupContextProvider, useRadioGroupContext] = createContext<
       defaultValue?: string;
       value?: string;
     })
->("RadioGroup", null);
+>("@optiaxiom/react/RadioGroup", null);

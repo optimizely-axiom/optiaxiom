@@ -5,7 +5,7 @@ import type { UseSelectReturnValue } from "downshift";
 
 import { createContext } from "@radix-ui/react-context";
 
-export const [SelectContextProvider, useSelectContext] = createContext<{
+export const [SelectProvider, useSelectContext] = createContext<{
   disabled?: boolean;
   downshift: UseSelectReturnValue<any>;
   highlightedItem: any;
@@ -16,4 +16,4 @@ export const [SelectContextProvider, useSelectContext] = createContext<{
   placed: boolean;
   selectedItem: any;
   setPlaced: (placed: boolean) => void;
-}>("Select");
+}>("@optiaxiom/react/Select");

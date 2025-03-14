@@ -9,7 +9,7 @@ export const CardDescription = forwardRef<
   HTMLParagraphElement,
   CardDescriptionProps
 >(({ children, ...props }, ref) => {
-  const { descriptionId } = useCardContext("CardDescription");
+  const { descriptionId } = useCardContext("@optiaxiom/react/CardDescription");
 
   return (
     <Text

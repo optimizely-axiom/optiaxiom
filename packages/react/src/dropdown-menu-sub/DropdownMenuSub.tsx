@@ -1,7 +1,7 @@
 import * as RadixMenu from "@radix-ui/react-dropdown-menu";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
 
-import { DropdownMenuSubContextProvider } from "../dropdown-menu-sub-context";
+import { DropdownMenuSubProvider } from "../dropdown-menu-sub-context";
 
 type MenuSubProps = {
   children?: React.ReactNode;
@@ -34,9 +34,7 @@ export function DropdownMenuSub({
 
   return (
     <RadixMenu.Sub onOpenChange={setOpen} open={open} {...props}>
-      <DropdownMenuSubContextProvider open={open}>
-        {children}
-      </DropdownMenuSubContextProvider>
+      <DropdownMenuSubProvider open={open}>{children}</DropdownMenuSubProvider>
     </RadixMenu.Sub>
   );
 }

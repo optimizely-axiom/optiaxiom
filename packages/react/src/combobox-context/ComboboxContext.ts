@@ -11,7 +11,7 @@ import type { DialogTrigger } from "../dialog-trigger";
 import type { Popover } from "../popover";
 import type { PopoverTrigger } from "../popover-trigger";
 
-export const [ComboboxContextProvider, useComboboxContext] = createContext<{
+export const [ComboboxProvider, useComboboxContext] = createContext<{
   components: {
     Content: typeof ComboboxDialogContent | typeof ComboboxPopoverContent;
     Root: typeof Dialog | typeof Popover;
@@ -27,4 +27,4 @@ export const [ComboboxContextProvider, useComboboxContext] = createContext<{
   open?: boolean | undefined;
   setOpen: (open: boolean) => void;
   value?: Set<any>;
-}>("Combobox");
+}>("@optiaxiom/react/Combobox");

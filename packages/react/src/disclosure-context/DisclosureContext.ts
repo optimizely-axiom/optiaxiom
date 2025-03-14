@@ -2,6 +2,6 @@
 
 import { createContext } from "@radix-ui/react-context";
 
-export const [DisclosureContextProvider, useDisclosureContext] = createContext<{
+export const [DisclosureProvider, useDisclosureContext] = createContext<{
   open: boolean | undefined;
-}>("Disclosure");
+}>("@optiaxiom/react/Disclosure");

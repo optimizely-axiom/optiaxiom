@@ -10,7 +10,9 @@ export const CommandToggleButton = forwardRef<
   CommandToggleButtonProps
 >(({ children, className, ...props }, ref) => {
   const { boxProps, restProps } = extractBoxProps(props);
-  const { downshift } = useCommandContext("CommandToggleButton");
+  const { downshift } = useCommandContext(
+    "@optiaxiom/react/CommandToggleButton",
+  );
   return (
     <Box asChild className={className} {...boxProps}>
       <button ref={ref} {...downshift.getToggleButtonProps(restProps)}>

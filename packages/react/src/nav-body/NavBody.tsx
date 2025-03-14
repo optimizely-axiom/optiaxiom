@@ -9,7 +9,7 @@ type NavBodyProps = BoxProps<"div">;
 
 export const NavBody = forwardRef<HTMLDivElement, NavBodyProps>(
   ({ children, className, ...props }, ref) => {
-    const { expanded, spacing } = useSidebarContext("NavBody");
+    const { expanded, spacing } = useSidebarContext("@optiaxiom/react/NavBody");
 
     return (
       <Flex

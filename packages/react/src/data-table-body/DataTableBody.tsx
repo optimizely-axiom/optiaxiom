@@ -45,7 +45,7 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
     const innerRef = useRef<HTMLDivElement>(null);
     const ref = useComposedRefs(innerRef, outerRef);
 
-    const { table } = useDataTableContext("DataTableBody");
+    const { table } = useDataTableContext("@optiaxiom/react/DataTableBody");
 
     const { rows } = table.getRowModel();
     const centerColumns = table.getCenterVisibleLeafColumns();

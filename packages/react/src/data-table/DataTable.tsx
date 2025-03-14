@@ -3,7 +3,7 @@ import type { Table } from "@tanstack/table-core";
 import { forwardRef } from "react";
 
 import { type BoxProps } from "../box";
-import { DataTableContextProvider } from "../data-table-context";
+import { DataTableProvider } from "../data-table-context";
 import { Flex } from "../flex";
 
 type DataTableProps = BoxProps<
@@ -28,9 +28,7 @@ export const DataTable = forwardRef<HTMLDivElement, DataTableProps>(
         ref={ref}
         {...props}
       >
-        <DataTableContextProvider table={table}>
-          {children}
-        </DataTableContextProvider>
+        <DataTableProvider table={table}>{children}</DataTableProvider>
       </Flex>
     );
   },

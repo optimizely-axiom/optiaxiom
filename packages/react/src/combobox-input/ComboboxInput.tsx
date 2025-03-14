@@ -15,8 +15,10 @@ type ComboboxInputProps = ComponentPropsWithoutRef<typeof CommandInput>;
 
 export const ComboboxInput = forwardRef<HTMLInputElement, ComboboxInputProps>(
   (props, ref) => {
-    const { downshift, highlightedItem } = useCommandContext("ComboboxInput");
-    const { open } = useComboboxContext("ComboboxInput");
+    const { downshift, highlightedItem } = useCommandContext(
+      "@optiaxiom/react/ComboboxInput",
+    );
+    const { open } = useComboboxContext("@optiaxiom/react/ComboboxInput");
 
     const [minWidth, setMinWidth] = useState(160);
     const containerRef = useRef<HTMLDivElement>(null);

@@ -34,7 +34,7 @@ export const ComboboxTrigger = forwardRef<
       itemToString,
       setOpen,
       value: valueContext,
-    } = useComboboxContext("ComboboxTrigger");
+    } = useComboboxContext("@optiaxiom/react/ComboboxTrigger");
     const value = useMemo(
       () => (valueContext instanceof Set ? [...valueContext] : valueContext),
       [valueContext],

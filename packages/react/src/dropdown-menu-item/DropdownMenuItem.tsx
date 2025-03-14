@@ -10,7 +10,7 @@ export const DropdownMenuItem = forwardRef<
   HTMLDivElement,
   DropdownMenuItemProps
 >(({ asChild, children, onSelect, ...props }, ref) => {
-  const { open } = useDropdownMenuContext("DropdownMenuItem");
+  const { open } = useDropdownMenuContext("@optiaxiom/react/DropdownMenuItem");
 
   return (
     <ListboxItem asChild ref={ref} {...props}>

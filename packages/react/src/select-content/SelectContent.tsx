@@ -46,8 +46,9 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
     ref,
   ) => {
     const { boxProps, restProps } = extractBoxProps(props);
-    const { downshift, isOpen, placed, setPlaced } =
-      useSelectContext("SelectContent");
+    const { downshift, isOpen, placed, setPlaced } = useSelectContext(
+      "@optiaxiom/react/SelectContent",
+    );
 
     return (
       isOpen && (

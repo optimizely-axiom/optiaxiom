@@ -6,7 +6,7 @@ import { type ComponentPropsWithoutRef, forwardRef, useRef } from "react";
 import type { BoxProps } from "../box";
 
 import { MenuListbox } from "../menu-listbox";
-import { ModalContextProvider } from "../modal-context";
+import { ModalProvider } from "../modal-context";
 import { usePopoverContext } from "../popover-context";
 import { TransitionGroup } from "../transition-group";
 import { type ExcludeProps, onReactSelectInputBlur } from "../utils";
@@ -37,7 +37,9 @@ export const PopoverContent = forwardRef<HTMLDivElement, PopoverContentProps>(
     { align = "start", children, sideOffset = 2, withArrow, ...props },
     outerRef,
   ) => {
-    const { open, presence, setPresence } = usePopoverContext("PopoverContent");
+    const { open, presence, setPresence } = usePopoverContext(
+      "@optiaxiom/react/PopoverContent",
+    );
 
     const innerRef = useRef<HTMLDivElement>(null);
     const ref = useComposedRefs(innerRef, outerRef);
@@ -61,9 +63,7 @@ export const PopoverContent = forwardRef<HTMLDivElement, PopoverContentProps>(
               ref={ref}
               sideOffset={sideOffset}
             >
-              <ModalContextProvider shardRef={innerRef}>
-                {children}
-              </ModalContextProvider>
+              <ModalProvider shardRef={innerRef}>{children}</ModalProvider>
 
               {withArrow && (
                 <RadixPopover.Arrow asChild>

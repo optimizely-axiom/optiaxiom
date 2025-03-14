@@ -9,7 +9,9 @@ export const ToggleInputDescription = forwardRef<
   HTMLDivElement,
   ToggleInputDescriptionProps
 >(({ children, ...props }, ref) => {
-  const { descriptionId } = useToggleInputContext("ToggleInputDescription");
+  const { descriptionId } = useToggleInputContext(
+    "@optiaxiom/react/ToggleInputDescription",
+  );
 
   return (
     <Box

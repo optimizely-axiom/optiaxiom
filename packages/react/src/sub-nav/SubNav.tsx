@@ -2,7 +2,7 @@ import { forwardRef } from "react";
 
 import { type BoxProps } from "../box";
 import { Flex } from "../flex";
-import { SidebarContextProvider } from "../sidebar-context";
+import { SidebarProvider } from "../sidebar-context";
 import * as styles from "./SubNav.css";
 
 type SubNavProps = BoxProps<"nav">;
@@ -20,14 +20,14 @@ export const SubNav = forwardRef<HTMLDivElement, SubNavProps>(
       >
         <Flex asChild {...styles.nav()}>
           <nav aria-label="Secondary">
-            <SidebarContextProvider
+            <SidebarProvider
               expanded
               navId=""
               onExpandedChange={() => {}}
               spacing="12"
             >
               {children}
-            </SidebarContextProvider>
+            </SidebarProvider>
           </nav>
         </Flex>
       </Flex>
