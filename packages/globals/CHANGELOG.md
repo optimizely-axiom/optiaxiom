@@ -1,5 +1,11 @@
 # @optiaxiom/globals
 
+## 1.0.2
+
+### Patch Changes
+
+- 0323fb3: use full component name in context providers and consumers
+
 ## 1.0.1
 
 ### Patch Changes
