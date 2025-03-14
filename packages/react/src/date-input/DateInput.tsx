@@ -103,6 +103,7 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
               }
             }}
             ref={ref}
+            step={step}
             type={type}
             {...props}
           />
