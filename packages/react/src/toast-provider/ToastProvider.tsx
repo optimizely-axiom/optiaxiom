@@ -1,4 +1,4 @@
-import { ToastContextProvider } from "@optiaxiom/globals";
+import { ToastProviderProvider } from "@optiaxiom/globals";
 import { type createToaster, toaster } from "@optiaxiom/globals";
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import { Portal } from "@radix-ui/react-portal";
@@ -80,7 +80,7 @@ export const ToastProvider = forwardRef<HTMLOListElement, ToastProps>(
         swipeThreshold={swipeThreshold}
       >
         {toasts.map(({ id, open, ref, toast }) => (
-          <ToastContextProvider
+          <ToastProviderProvider
             key={id}
             offset={
               (exitingToastOffsets +=
@@ -110,7 +110,7 @@ export const ToastProvider = forwardRef<HTMLOListElement, ToastProps>(
                 </Toast>
               )
             }
-          </ToastContextProvider>
+          </ToastProviderProvider>
         ))}
 
         <Portal container={container}>

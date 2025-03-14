@@ -6,7 +6,7 @@ import type { UseComboboxReturnValue } from "downshift";
 
 import { createContext } from "@radix-ui/react-context";
 
-export const [CommandContextProvider, useCommandContext] = createContext<{
+export const [CommandProvider, useCommandContext] = createContext<{
   downshift: UseComboboxReturnValue<any>;
   highlightedItem: any;
   highlightedSubIndex: number;
@@ -22,4 +22,4 @@ export const [CommandContextProvider, useCommandContext] = createContext<{
   setInputValue: (value: string) => void;
   setPlaced: (placed: boolean) => void;
   value?: Set<any>;
-}>("Command");
+}>("@optiaxiom/react/Command");

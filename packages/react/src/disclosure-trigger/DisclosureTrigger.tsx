@@ -33,7 +33,7 @@ export const DisclosureTrigger = forwardRef<
     },
     ref,
   ) => {
-    useDisclosureContext("DisclosureTrigger");
+    useDisclosureContext("@optiaxiom/react/DisclosureTrigger");
 
     return (
       <Flex ref={ref} {...styles.root({}, className)} {...props}>

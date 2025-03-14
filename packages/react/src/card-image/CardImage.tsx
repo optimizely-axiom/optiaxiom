@@ -8,7 +8,7 @@ type CardImageProps = BoxProps<"img">;
 
 export const CardImage = forwardRef<HTMLImageElement, CardImageProps>(
   ({ alt = "", asChild, children, className, src, ...props }, ref) => {
-    const { orientation } = useCardContext("CardImage");
+    const { orientation } = useCardContext("@optiaxiom/react/CardImage");
 
     return (
       <Box

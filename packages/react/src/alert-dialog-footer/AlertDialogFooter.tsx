@@ -1,6 +1,6 @@
 import { type ComponentPropsWithRef, forwardRef } from "react";
 
-import { ButtonContextProvider } from "../button-context";
+import { ButtonProvider } from "../button-context";
 import { Flex } from "../flex";
 import * as styles from "./AlertDialogFooter.css";
 
@@ -12,7 +12,7 @@ export const AlertDialogFooter = forwardRef<
 >(({ children, className, ...props }, ref) => {
   return (
     <Flex {...styles.footer({}, className)} ref={ref} {...props}>
-      <ButtonContextProvider size="lg">{children}</ButtonContextProvider>
+      <ButtonProvider size="lg">{children}</ButtonProvider>
     </Flex>
   );
 });

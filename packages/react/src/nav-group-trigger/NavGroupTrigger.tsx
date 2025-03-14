@@ -7,7 +7,7 @@ type NavGroupTriggerProps = ComponentPropsWithoutRef<typeof DisclosureTrigger>;
 
 export const NavGroupTrigger = forwardRef<HTMLDivElement, NavGroupTriggerProps>(
   ({ children, ...props }, ref) => {
-    const { id } = useNavGroupContext("NavGroupTrigger");
+    const { id } = useNavGroupContext("@optiaxiom/react/NavGroupTrigger");
 
     return (
       <DisclosureTrigger

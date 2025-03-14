@@ -2,15 +2,12 @@ import { type ComponentPropsWithoutRef, forwardRef, useRef } from "react";
 
 import { type BoxProps } from "../box";
 import { Flex } from "../flex";
-import { InputContextProvider } from "../input-context";
+import { InputProvider } from "../input-context";
 import * as styles from "./InputRoot.css";
 
 type InputRootProps = BoxProps<
   "div",
-  Pick<
-    ComponentPropsWithoutRef<typeof InputContextProvider>,
-    "addonPointerEvents"
-  >
+  Pick<ComponentPropsWithoutRef<typeof InputProvider>, "addonPointerEvents">
 >;
 
 export const InputRoot = forwardRef<
@@ -21,12 +18,12 @@ export const InputRoot = forwardRef<
 
   return (
     <Flex ref={ref} {...styles.root({}, className)} {...props}>
-      <InputContextProvider
+      <InputProvider
         addonPointerEvents={addonPointerEvents}
         inputRef={inputRef}
       >
         {children}
-      </InputContextProvider>
+      </InputProvider>
     </Flex>
   );
 });

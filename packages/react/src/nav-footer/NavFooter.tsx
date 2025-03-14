@@ -8,7 +8,7 @@ type NavFooterProps = BoxProps<"div">;
 
 export const NavFooter = forwardRef<HTMLDivElement, NavFooterProps>(
   ({ children, ...props }, ref) => {
-    const { spacing } = useSidebarContext("NavFooter");
+    const { spacing } = useSidebarContext("@optiaxiom/react/NavFooter");
 
     return (
       <Flex

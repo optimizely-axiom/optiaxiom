@@ -2,7 +2,7 @@
 
 import { createContext } from "@radix-ui/react-context";
 
-export const [DialogContextProvider, useDialogContext] = createContext<{
+export const [DialogProvider, useDialogContext] = createContext<{
   nestedDialogCount: number;
   open?: boolean;
-}>("Dialog");
+}>("@optiaxiom/react/Dialog");

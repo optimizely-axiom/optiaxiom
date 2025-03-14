@@ -20,7 +20,7 @@ type CardCheckboxProps = ExcludeProps<
 export const CardCheckbox = forwardRef<HTMLInputElement, CardCheckboxProps>(
   ({ children, indeterminate, onChange, ...props }, ref) => {
     const labelPrefixId = useId();
-    const { labelId } = useCardContext("CardCheckbox");
+    const { labelId } = useCardContext("@optiaxiom/react/CardCheckbox");
 
     const [checked, setChecked] = useControllableState({
       defaultProp: props.defaultChecked,

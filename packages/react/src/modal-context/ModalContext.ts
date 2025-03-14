@@ -4,6 +4,6 @@ import type { RefObject } from "react";
 
 import { createContext } from "@radix-ui/react-context";
 
-export const [ModalContextProvider, useModalContext] = createContext<{
+export const [ModalProvider, useModalContext] = createContext<{
   shardRef: RefObject<HTMLElement>;
-}>("Modal", { shardRef: { current: null } });
+}>("@optiaxiom/react/Modal", { shardRef: { current: null } });

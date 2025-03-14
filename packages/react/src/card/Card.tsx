@@ -3,7 +3,7 @@ import { forwardRef } from "react";
 
 import { ActionsRoot } from "../actions-root";
 import { type BoxProps } from "../box";
-import { CardContextProvider } from "../card-context";
+import { CardProvider } from "../card-context";
 import { Flex } from "../flex";
 import * as styles from "./Card.css";
 
@@ -28,7 +28,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
     const labelId = useId();
 
     return (
-      <CardContextProvider
+      <CardProvider
         descriptionId={descriptionId}
         labelId={labelId}
         orientation={orientation}
@@ -43,7 +43,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
             {children}
           </Flex>
         </ActionsRoot>
-      </CardContextProvider>
+      </CardProvider>
     );
   },
 );

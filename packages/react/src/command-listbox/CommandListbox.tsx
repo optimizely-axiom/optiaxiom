@@ -8,7 +8,9 @@ type CommandListProps = BoxProps;
 
 export const CommandListbox = forwardRef<HTMLDivElement, CommandListProps>(
   ({ children, size, ...props }, ref) => {
-    const { downshift, setPlaced } = useCommandContext("CommandListbox");
+    const { downshift, setPlaced } = useCommandContext(
+      "@optiaxiom/react/CommandListbox",
+    );
     useEffect(() => {
       setPlaced(true);
     }, [setPlaced]);

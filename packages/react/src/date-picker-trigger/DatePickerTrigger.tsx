@@ -41,7 +41,9 @@ export const DatePickerTrigger = forwardRef<
     },
     outerRef,
   ) => {
-    const { disabled, type, value } = useDatePickerContext("DatePickerTrigger");
+    const { disabled, type, value } = useDatePickerContext(
+      "@optiaxiom/react/DatePickerTrigger",
+    );
     const formatter = format
       ? { format }
       : type === "datetime-local"

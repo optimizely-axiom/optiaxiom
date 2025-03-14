@@ -1,7 +1,7 @@
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import { type ComponentPropsWithRef } from "react";
 
-import { DatePickerContextProvider } from "../date-picker-context";
+import { DatePickerProvider } from "../date-picker-context";
 import { Popover } from "../popover";
 
 type DatePickerProps = ComponentPropsWithRef<typeof Popover> & {
@@ -48,7 +48,7 @@ export function DatePicker({
 
   return (
     <Popover onOpenChange={setOpen} open={open} {...props}>
-      <DatePickerContextProvider
+      <DatePickerProvider
         disabled={disabled}
         setValue={setValue}
         step={step as string}
@@ -56,7 +56,7 @@ export function DatePicker({
         value={value}
       >
         {children}
-      </DatePickerContextProvider>
+      </DatePickerProvider>
     </Popover>
   );
 }

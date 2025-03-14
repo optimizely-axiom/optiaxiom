@@ -12,8 +12,9 @@ type SelectItemProps = BoxProps<
 
 export const SelectItem = forwardRef<HTMLDivElement, SelectItemProps>(
   ({ children, item, size, ...props }, ref) => {
-    const { downshift, highlightedItem, selectedItem } =
-      useSelectContext("SelectItem");
+    const { downshift, highlightedItem, selectedItem } = useSelectContext(
+      "@optiaxiom/react/SelectItem",
+    );
 
     const itemProps = downshift.getItemProps({ item, ref, ...props });
 

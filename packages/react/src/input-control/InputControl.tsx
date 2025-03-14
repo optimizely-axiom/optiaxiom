@@ -48,7 +48,7 @@ export const InputControl = forwardRef<
     });
     const { boxProps, restProps } = extractBoxProps(props);
 
-    const { inputRef } = useInputContext("InputControl");
+    const { inputRef } = useInputContext("@optiaxiom/react/InputControl");
     const ref = useComposedRefs(inputRef, outerRef);
 
     return (

@@ -45,7 +45,9 @@ export const ComboboxVirtualized = forwardRef<
     getScrollElement: () => innerRef.current,
   });
 
-  const { downshift } = useCommandContext("ComboboxVirtualized");
+  const { downshift } = useCommandContext(
+    "@optiaxiom/react/ComboboxVirtualized",
+  );
   useEffect(() => {
     rowVirtualizer.scrollToIndex(downshift.highlightedIndex);
   }, [downshift.highlightedIndex, enabled, rowVirtualizer]);

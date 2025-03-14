@@ -35,7 +35,7 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
     ref,
   ) => {
     const { boxProps, restProps } = extractBoxProps(props);
-    const groupContext = useRadioGroupContext("Radio");
+    const groupContext = useRadioGroupContext("@optiaxiom/react/Radio");
 
     if (groupContext) {
       if ("checked" in props) {

@@ -15,7 +15,7 @@ export const CommandInput = forwardRef<HTMLInputElement, CommandInputProps>(
       itemToSubItems,
       setHighlightedSubIndex,
       setInputValue,
-    } = useCommandContext("CommandInput");
+    } = useCommandContext("@optiaxiom/react/CommandInput");
 
     return (
       <Input

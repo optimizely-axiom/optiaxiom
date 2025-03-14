@@ -10,7 +10,9 @@ export const CommandFocusableItem = forwardRef<
   HTMLDivElement,
   CommandFocusableItemProps
 >(({ children, className, ...props }, ref) => {
-  const { lastInteractionSource } = useCommandContext("CommandFocusableItem");
+  const { lastInteractionSource } = useCommandContext(
+    "@optiaxiom/react/CommandFocusableItem",
+  );
 
   return (
     <Box

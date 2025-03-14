@@ -34,7 +34,7 @@ export const SelectTrigger = forwardRef<HTMLButtonElement, SelectTriggerProps>(
     ref,
   ) => {
     const { disabled, downshift, isOpen, itemToString, selectedItem } =
-      useSelectContext("SelectTrigger");
+      useSelectContext("@optiaxiom/react/SelectTrigger");
     const { boxProps, restProps } = extractBoxProps(props);
 
     const buttonRef = useRef<HTMLButtonElement>(null);

@@ -14,7 +14,7 @@ export const TooltipTrigger = forwardRef<
   HTMLButtonElement,
   TooltipTriggerProps
 >(({ asChild, children, ...props }, outerRef) => {
-  const { triggerRef } = useTooltipContext("TooltipTrigger");
+  const { triggerRef } = useTooltipContext("@optiaxiom/react/TooltipTrigger");
   const ref = useComposedRefs(triggerRef, outerRef);
 
   return (

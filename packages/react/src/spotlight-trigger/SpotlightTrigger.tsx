@@ -21,7 +21,9 @@ export const SpotlightTrigger = forwardRef<
   HTMLButtonElement,
   SpotlightTriggerProps
 >(({ children, hotkey = DEFAULT_HOTKEY, ...props }, ref) => {
-  const { open, setOpen } = useSpotlightContext("SpotlightTrigger");
+  const { open, setOpen } = useSpotlightContext(
+    "@optiaxiom/react/SpotlightTrigger",
+  );
 
   useHotkeys([[hotkey, () => setOpen(!open)]]);
 

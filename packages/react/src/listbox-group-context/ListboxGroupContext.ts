@@ -2,7 +2,6 @@
 
 import { createContext } from "@radix-ui/react-context";
 
-export const [ListboxGroupContextProvider, useListboxGroupContext] =
-  createContext<{
-    id?: string;
-  }>("ListboxGroup", { id: undefined });
+export const [ListboxGroupProvider, useListboxGroupContext] = createContext<{
+  id?: string;
+}>("@optiaxiom/react/ListboxGroup", { id: undefined });

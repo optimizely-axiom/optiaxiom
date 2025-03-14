@@ -27,7 +27,7 @@ type TooltipContentProps = ExcludeProps<
 
 export const TooltipContent = forwardRef<HTMLDivElement, TooltipContentProps>(
   ({ align = "center", children, className, side = "top", ...props }, ref) => {
-    const { open } = useTooltipContext("TooltipContent");
+    const { open } = useTooltipContext("@optiaxiom/react/TooltipContent");
 
     return (
       <TransitionGroup open={open}>

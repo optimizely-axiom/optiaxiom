@@ -9,7 +9,9 @@ export const ToggleInputLabel = forwardRef<
   HTMLDivElement,
   ToggleInputLabelProps
 >(({ children, ...props }, ref) => {
-  const { labelId } = useToggleInputContext("ToggleInputLabel");
+  const { labelId } = useToggleInputContext(
+    "@optiaxiom/react/ToggleInputLabel",
+  );
 
   return (
     <Box id={labelId} ref={ref} {...props}>

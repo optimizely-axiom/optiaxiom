@@ -29,8 +29,10 @@ export const CommandSubItem = forwardRef<HTMLDivElement, CommandSubItemProps>(
       setHighlightedIndex,
       setHighlightedSubIndex,
       value,
-    } = useCommandContext("CommandSubItem");
-    const { item: parentItem } = useCommandSubContext("CommandSubItem");
+    } = useCommandContext("@optiaxiom/react/CommandSubItem");
+    const { item: parentItem } = useCommandSubContext(
+      "@optiaxiom/react/CommandSubItem",
+    );
     const subItems = itemToSubItems?.(parentItem) ?? [];
     const highlightedSubItem =
       highlightedItem === parentItem && highlightedSubIndex !== -1

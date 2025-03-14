@@ -3,7 +3,7 @@ import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import { forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
-import { DisclosureContextProvider } from "../disclosure-context";
+import { DisclosureProvider } from "../disclosure-context";
 
 type DisclosureProps = BoxProps<
   typeof RadixCollapsible.Root,
@@ -35,7 +35,7 @@ export const Disclosure = forwardRef<HTMLDivElement, DisclosureProps>(
     });
 
     return (
-      <DisclosureContextProvider open={open}>
+      <DisclosureProvider open={open}>
         <Box asChild color="fg.default" fontSize="md" ref={ref} {...props}>
           <RadixCollapsible.Root
             asChild={asChild}
@@ -45,7 +45,7 @@ export const Disclosure = forwardRef<HTMLDivElement, DisclosureProps>(
             {children}
           </RadixCollapsible.Root>
         </Box>
-      </DisclosureContextProvider>
+      </DisclosureProvider>
     );
   },
 );

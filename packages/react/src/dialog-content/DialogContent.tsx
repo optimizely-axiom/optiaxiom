@@ -6,7 +6,7 @@ import { type ComponentPropsWithoutRef, forwardRef, useRef } from "react";
 import { Backdrop } from "../backdrop";
 import { type BoxProps } from "../box";
 import { useDialogContext } from "../dialog-context";
-import { ModalContextProvider } from "../modal-context";
+import { ModalProvider } from "../modal-context";
 import { Paper } from "../paper";
 import { Transition } from "../transition";
 import { TransitionGroup } from "../transition-group";
@@ -35,7 +35,9 @@ export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
     },
     outerRef,
   ) => {
-    const { nestedDialogCount, open } = useDialogContext("DialogContent");
+    const { nestedDialogCount, open } = useDialogContext(
+      "@optiaxiom/react/DialogContent",
+    );
 
     const innerRef = useRef<HTMLDivElement>(null);
     const ref = useComposedRefs(innerRef, outerRef);
@@ -67,9 +69,7 @@ export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
               {...props}
             >
               <RadixDialog.Content ref={ref}>
-                <ModalContextProvider shardRef={innerRef}>
-                  {children}
-                </ModalContextProvider>
+                <ModalProvider shardRef={innerRef}>{children}</ModalProvider>
               </RadixDialog.Content>
             </Paper>
           </Transition>

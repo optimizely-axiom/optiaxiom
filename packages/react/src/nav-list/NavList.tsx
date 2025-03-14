@@ -7,7 +7,7 @@ type NavListProps = BoxProps<"div">;
 
 export const NavList = forwardRef<HTMLUListElement, NavListProps>(
   ({ children, ...props }, ref) => {
-    const { id } = useNavGroupContext("NavList");
+    const { id } = useNavGroupContext("@optiaxiom/react/NavList");
     if (id) {
       throw new Error("huh");
     }

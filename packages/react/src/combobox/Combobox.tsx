@@ -9,7 +9,7 @@ import {
 import type { Command } from "../command";
 import type { ExtendProps } from "../utils";
 
-import { ComboboxContextProvider } from "../combobox-context";
+import { ComboboxProvider } from "../combobox-context";
 import { ComboboxDialogContent } from "../combobox-dialog-content";
 import { ComboboxPopover } from "../combobox-popover";
 import { ComboboxPopoverContent } from "../combobox-popover-content";
@@ -89,7 +89,7 @@ export function Combobox<Item>({
 
   return (
     <components.Root onOpenChange={setOpen} open={open}>
-      <ComboboxContextProvider
+      <ComboboxProvider
         components={components}
         inputValue={inputValue}
         isItemDisabled={isItemDisabled}
@@ -103,7 +103,7 @@ export function Combobox<Item>({
         value={value}
       >
         {children}
-      </ComboboxContextProvider>
+      </ComboboxProvider>
     </components.Root>
   );
 }

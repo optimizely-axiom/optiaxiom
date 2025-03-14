@@ -1,9 +1,9 @@
 import * as RadixDialog from "@radix-ui/react-dialog";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
 
-import { DialogContextProvider } from "../dialog-context";
+import { DialogProvider } from "../dialog-context";
 import {
-  NestedDialogContextProvider,
+  NestedDialogProvider,
   useNestedDialogCount,
 } from "../nested-dialog-context";
 
@@ -42,16 +42,13 @@ export function Dialog({
   );
 
   return (
-    <NestedDialogContextProvider onCountChange={setNestedDialogCount}>
+    <NestedDialogProvider onCountChange={setNestedDialogCount}>
       <RadixDialog.Root onOpenChange={setOpen} open={open} {...props}>
-        <DialogContextProvider
-          nestedDialogCount={nestedDialogCount}
-          open={open}
-        >
+        <DialogProvider nestedDialogCount={nestedDialogCount} open={open}>
           {children}
-        </DialogContextProvider>
+        </DialogProvider>
       </RadixDialog.Root>
-    </NestedDialogContextProvider>
+    </NestedDialogProvider>
   );
 }
 

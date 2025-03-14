@@ -3,7 +3,7 @@ import { type ComponentPropsWithoutRef, forwardRef } from "react";
 import type { BoxProps } from "../box";
 
 import { Flex } from "../flex";
-import { RadioGroupContextProvider } from "../radio-group-context";
+import { RadioGroupProvider } from "../radio-group-context";
 import { mapResponsiveValue } from "../sprinkles";
 
 type InputProps = ComponentPropsWithoutRef<"input">;
@@ -44,7 +44,7 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>(
     ref,
   ) => {
     return (
-      <RadioGroupContextProvider
+      <RadioGroupProvider
         defaultValue={defaultValue}
         disabled={disabled}
         name={name}
@@ -66,7 +66,7 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>(
         >
           {children}
         </Flex>
-      </RadioGroupContextProvider>
+      </RadioGroupProvider>
     );
   },
 );

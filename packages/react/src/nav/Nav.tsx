@@ -16,7 +16,7 @@ type NavProps = BoxProps<
 
 export const Nav = forwardRef<HTMLDivElement, NavProps>(
   ({ children, ...props }, ref) => {
-    const { expanded, navId } = useSidebarContext("Nav");
+    const { expanded, navId } = useSidebarContext("@optiaxiom/react/Nav");
 
     return (
       <Flex

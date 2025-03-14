@@ -46,7 +46,7 @@ export const DateRangePickerContent = forwardRef<
     ref,
   ) => {
     const { setValue, value } = useDateRangePickerContext(
-      "DateRangePickerContent",
+      "@optiaxiom/react/DateRangePickerContent",
     );
 
     return (

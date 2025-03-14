@@ -2,7 +2,7 @@ import { useId } from "@radix-ui/react-id";
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import { Disclosure } from "../disclosure";
-import { NavGroupContextProvider } from "../nav-group-context";
+import { NavGroupProvider } from "../nav-group-context";
 
 type NavGroupProps = ComponentPropsWithoutRef<typeof Disclosure>;
 
@@ -11,7 +11,7 @@ export const NavGroup = forwardRef<HTMLLIElement, NavGroupProps>(
     const groupId = useId();
 
     return (
-      <NavGroupContextProvider id={groupId}>
+      <NavGroupProvider id={groupId}>
         <Disclosure
           alignItems="stretch"
           aria-labelledby={props["aria-label"] ? undefined : groupId}
@@ -23,7 +23,7 @@ export const NavGroup = forwardRef<HTMLLIElement, NavGroupProps>(
         >
           <li ref={ref}>{children}</li>
         </Disclosure>
-      </NavGroupContextProvider>
+      </NavGroupProvider>
     );
   },
 );

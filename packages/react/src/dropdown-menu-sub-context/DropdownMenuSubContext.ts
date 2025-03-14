@@ -2,7 +2,7 @@
 
 import { createContext } from "@radix-ui/react-context";
 
-export const [DropdownMenuSubContextProvider, useDropdownMenuSubContext] =
+export const [DropdownMenuSubProvider, useDropdownMenuSubContext] =
   createContext<{
     open: boolean | undefined;
-  }>("DropdownMenuSub");
+  }>("@optiaxiom/react/DropdownMenuSub");

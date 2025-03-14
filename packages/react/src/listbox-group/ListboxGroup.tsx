@@ -2,7 +2,7 @@ import { useId } from "@radix-ui/react-id";
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import { Box } from "../box";
-import { ListboxGroupContextProvider } from "../listbox-group-context";
+import { ListboxGroupProvider } from "../listbox-group-context";
 
 type ListboxGroupProps = ComponentPropsWithoutRef<typeof Box>;
 
@@ -11,11 +11,11 @@ export const ListboxGroup = forwardRef<HTMLDivElement, ListboxGroupProps>(
     const groupId = useId();
 
     return (
-      <ListboxGroupContextProvider id={groupId}>
+      <ListboxGroupProvider id={groupId}>
         <Box aria-labelledby={groupId} ref={ref} role="group" {...props}>
           {children}
         </Box>
-      </ListboxGroupContextProvider>
+      </ListboxGroupProvider>
     );
   },
 );

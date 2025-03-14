@@ -78,7 +78,7 @@
     "./ListboxScrollArea": "./dist/components/ListboxScrollArea.js",
     "./ListboxSeparator": "./dist/components/ListboxSeparator.js",
     "./ListboxSwitchItem": "./dist/components/ListboxSwitchItem.js",
-    "./ModalContextProvider": "./dist/components/ModalContextProvider.js",
+    "./ModalProvider": "./dist/components/ModalProvider.js",
     "./ModalLayer": "./dist/components/ModalLayer.js",
     "./Nav": "./dist/components/Nav.js",
     "./NavAccountItem": "./dist/components/NavAccountItem.js",
