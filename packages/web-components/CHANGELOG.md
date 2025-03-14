@@ -1,5 +1,11 @@
 # @optiaxiom/web-components
 
+## 0.8.18
+
+### Patch Changes
+
+- 0323fb3: use full component name in context providers and consumers
+
 ## 0.8.17
 
 ### Patch Changes
