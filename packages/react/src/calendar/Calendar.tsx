@@ -3,9 +3,14 @@ import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import { forwardRef, useEffect, useRef } from "react";
 import { type DateRange, DayPicker, type Matcher } from "react-day-picker";
 
-import { Box, type BoxProps } from "../box";
+import { type BoxProps } from "../box";
+import { Clock } from "../clock";
+import { Flex } from "../flex";
+import { Separator } from "../separator";
+import { Text } from "../text";
 import { useEffectEvent } from "../use-event";
 import { useResponsiveMatches } from "../use-responsive-matches";
+import { toPlainDate, toPlainTime } from "../utils";
 import { CalendarChevron } from "./CalendarChevron";
 import { CalendarDay } from "./CalendarDay";
 import { CalendarDayButton } from "./CalendarDayButton";
@@ -35,10 +40,12 @@ type CalendarProps = BoxProps<
      */
     min?: Date;
     onHeightChange?: (height: number) => void;
+    step?: number | string;
     /**
      * The today’s date. Default is the current date.
      */
     today?: Date;
+    type?: "date" | "datetime-local";
     /**
      * Apply the `weekend` modifier to the matching days.
      */
@@ -102,7 +109,9 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
       mode = "single",
       onHeightChange,
       onValueChange,
+      step,
       today,
+      type = "date",
       value: valueProp,
       weekend,
       ...props
@@ -116,6 +125,10 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
       onChange: onValueChange as (value: Date | DateRange | undefined) => void,
       prop: valueProp,
     });
+    const time =
+      type === "date"
+        ? "00:00"
+        : toPlainTime(value instanceof Date ? value : new Date(), step);
     const numberOfMonths = useResponsiveMatches({
       base: 1,
       sm: 2,
@@ -141,10 +154,11 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
     }, [onHeightChangeStable]);
 
     return (
-      <Box
+      <Flex
         bg="bg.default"
         color="fg.default"
         fontSize="md"
+        gap="4"
         ref={ref}
         {...props}
       >
@@ -163,12 +177,41 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
           mode={mode as "single"}
           modifiers={{ holiday, weekend }}
           numberOfMonths={mode === "range" ? numberOfMonths : 1}
-          onSelect={setValue as (value: Date | undefined) => void}
+          onSelect={(value: Date | DateRange | undefined) => {
+            setValue(
+              value instanceof Date
+                ? new Date(toPlainDate(value) + "T" + (time ?? "00:00"))
+                : value,
+            );
+          }}
           required
           selected={value as Date | undefined}
           today={today}
         />
-      </Box>
+        {type === "datetime-local" && mode == "single" && (
+          <Flex gap="8">
+            <Separator mb="4" />
+            <Clock
+              onValueChange={(time) => {
+                setValue(
+                  new Date(
+                    toPlainDate(value instanceof Date ? value : new Date()) +
+                      "T" +
+                      time,
+                  ),
+                );
+              }}
+              step={step}
+              value={time}
+            />
+            <Text color="fg.tertiary" fontSize="sm" w="full">
+              {(value instanceof Date ? value : new Date())
+                .toTimeString()
+                .slice(9)}
+            </Text>
+          </Flex>
+        )}
+      </Flex>
     );
   },
 );
