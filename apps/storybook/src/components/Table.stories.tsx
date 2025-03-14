@@ -9,7 +9,7 @@ import {
 } from "@optiaxiom/react";
 import {
   Table,
-  TableActions,
+  TableAction,
   TableBody,
   TableCell,
   TableHeader,
@@ -184,7 +184,7 @@ export const Actions: Story = {
             <TableCell>{invoice.paymentMethod}</TableCell>
             <TableCell>{invoice.totalAmount}</TableCell>
             <TableCell>
-              <TableActions>
+              <TableAction>
                 <DropdownMenu>
                   <DropdownMenuTrigger appearance="subtle" asChild size="sm">
                     <EllipsisMenuButton />
@@ -194,7 +194,7 @@ export const Actions: Story = {
                     <DropdownMenuItem intent="danger">Delete</DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
-              </TableActions>
+              </TableAction>
             </TableCell>
           </TableRow>
         ))}

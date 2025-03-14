@@ -14,7 +14,7 @@ import {
 } from "@optiaxiom/react";
 import {
   Card,
-  CardActions,
+  CardAction,
   CardCheckbox,
   CardContent,
   CardDescription,
@@ -130,7 +130,7 @@ export const WithLinkAndEllipsis: Story = {
           <CardTitle>
             <CardLink href="data:,">The majestic world of turtles</CardLink>
           </CardTitle>
-          <CardActions>
+          <CardAction>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <EllipsisMenuButton
@@ -151,7 +151,7 @@ export const WithLinkAndEllipsis: Story = {
                 <DropdownMenuItem intent="danger">Delete task</DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
-          </CardActions>
+          </CardAction>
         </Flex>
       </>
     ),
@@ -166,9 +166,9 @@ export const WithCheckboxAndLink: Story = {
     children: (
       <>
         <CardOverflow>
-          <CardActions>
+          <CardAction>
             <CardCheckbox />
-          </CardActions>
+          </CardAction>
           <CardImage src="https://placehold.co/600x400" />
         </CardOverflow>
         <CardTitle>
@@ -189,7 +189,7 @@ export const WithCheckboxAndActions: Story = {
     children: (
       <>
         <CardOverflow>
-          <CardActions>
+          <CardAction>
             <CardCheckbox />
 
             <DropdownMenu>
@@ -212,7 +212,7 @@ export const WithCheckboxAndActions: Story = {
                 <DropdownMenuItem intent="danger">Delete task</DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
-          </CardActions>
+          </CardAction>
           <CardImage src="https://placehold.co/600x400" />
         </CardOverflow>
         <CardTitle>

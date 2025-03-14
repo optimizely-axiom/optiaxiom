@@ -9,7 +9,7 @@ import {
 } from "@optiaxiom/react";
 import {
   Card,
-  CardActions,
+  CardAction,
   CardContent,
   CardDescription,
   CardImage,
@@ -37,7 +37,7 @@ export function App() {
           <CardTitle>
             <CardLink href="#usage">The majestic world of turtles</CardLink>
           </CardTitle>
-          <CardActions>
+          <CardAction>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <EllipsisMenuButton
@@ -53,7 +53,7 @@ export function App() {
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
-          </CardActions>
+          </CardAction>
         </Flex>
         <CardDescription>Unveiling the secrets.</CardDescription>
       </CardContent>

@@ -5,7 +5,7 @@ import {
   DropdownMenuTrigger,
   EllipsisMenuButton,
 } from "@optiaxiom/react";
-import { TableActions } from "@optiaxiom/react/unstable";
+import { TableAction } from "@optiaxiom/react/unstable";
 import { createColumnHelper } from "@tanstack/react-table";
 
 const columnHelper = createColumnHelper<{
@@ -29,7 +29,7 @@ export const columns = [
   }),
   columnHelper.display({
     cell: ({ row }) => (
-      <TableActions>
+      <TableAction>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <EllipsisMenuButton
@@ -50,7 +50,7 @@ export const columns = [
             <DropdownMenuItem intent="danger">Delete</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
-      </TableActions>
+      </TableAction>
     ),
     id: "actions",
     size: 56,
