@@ -9,7 +9,6 @@ import {
 
 import { Button } from "../button";
 import { Calendar } from "../calendar";
-import { Clock } from "../clock";
 import { Flex } from "../flex";
 import { IconCalendar } from "../icons/IconCalendar";
 import { Input } from "../input";
@@ -17,14 +16,21 @@ import { Popover } from "../popover";
 import { PopoverAnchor } from "../popover-anchor";
 import { PopoverContent } from "../popover-content";
 import { PopoverTrigger } from "../popover-trigger";
-import { Separator } from "../separator";
-import { Text } from "../text";
-import { forceValueChange, toPlainDate, toPlainTime } from "../utils";
+import {
+  type ExtendProps,
+  forceValueChange,
+  toPlainDate,
+  toPlainDateTime,
+} from "../utils";
 import * as styles from "./DateInput.css";
 import { toInstant } from "./utils";
 
-type DateInputProps = ComponentPropsWithoutRef<typeof Input> &
-  Pick<ComponentPropsWithoutRef<typeof Calendar>, "holiday" | "weekend">;
+type DateInputProps = ExtendProps<
+  ComponentPropsWithoutRef<typeof Input>,
+  Pick<ComponentPropsWithoutRef<typeof Calendar>, "holiday" | "weekend"> & {
+    type?: "date" | "datetime-local";
+  }
+>;
 
 export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
   (
@@ -53,7 +59,6 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
       typeof value === "string"
         ? toInstant(value.includes("T") ? value : value + "T00:00")
         : undefined;
-    const time = instant ? toPlainTime(instant, step) : undefined;
 
     const innerRef = useRef<HTMLInputElement>(null);
     const ref = useComposedRefs(innerRef, outerRef);
@@ -135,37 +140,20 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
               if (innerRef.current) {
                 forceValueChange(
                   innerRef?.current,
-                  toPlainDate(date) +
-                    (type === "datetime-local" ? "T" + time : ""),
+                  type === "datetime-local"
+                    ? toPlainDateTime(date)
+                    : toPlainDate(date),
                 );
               }
               if (type === "date") {
                 setOpen(false);
               }
             }}
+            step={step}
+            type={type}
             value={instant}
             weekend={weekend}
           />
-          {type === "datetime-local" && (
-            <Flex gap="8">
-              <Separator mb="8" />
-              <Clock
-                onValueChange={(time) => {
-                  if (innerRef.current) {
-                    forceValueChange(
-                      innerRef?.current,
-                      toPlainDate(instant ?? new Date()) + "T" + time,
-                    );
-                  }
-                }}
-                step={step}
-                value={time}
-              />
-              <Text color="fg.tertiary" fontSize="sm" w="full">
-                {(instant ?? new Date()).toTimeString().slice(9)}
-              </Text>
-            </Flex>
-          )}
           <Flex flexDirection="row" justifyContent="space-between">
             <Button
               onClick={() => {
