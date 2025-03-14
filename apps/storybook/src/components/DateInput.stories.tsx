@@ -71,3 +71,17 @@ export const Disabled: Story = {
     disabled: true,
   },
 };
+
+export const WithTime: Story = {
+  args: {
+    defaultValue: "2025-01-22T10:10",
+    step: "300",
+    type: "datetime-local",
+  },
+  play: async ({ canvas }) => {
+    await userEvent.click(
+      await canvas.findByRole("button", { name: "Show date picker" }),
+    );
+    await screen.findByRole("button", { name: "Clear" });
+  },
+};

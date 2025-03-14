@@ -14,7 +14,7 @@ import { PopoverContent } from "../popover-content";
 import { usePopoverContext } from "../popover-context";
 import { Separator } from "../separator";
 import { Text } from "../text";
-import { toLocalDate } from "../utils";
+import { toPlainDate, toPlainTime } from "../utils";
 import * as styles from "./DatePickerContent.css";
 
 type DatePickerContentProps = ComponentPropsWithoutRef<typeof PopoverContent> &
@@ -59,9 +59,7 @@ export const DatePickerContent = forwardRef<
     const [time, setTime] = useState<string>();
     useEffect(() => {
       setTime(
-        type === "date"
-          ? "00:00"
-          : formatTime(value ?? new Date(), parseInt(step) / 60),
+        type === "date" ? "00:00" : toPlainTime(value ?? new Date(), step),
       );
     }, [open, step, type, value]);
 
@@ -80,7 +78,7 @@ export const DatePickerContent = forwardRef<
             onValueChange={(value) =>
               setValue(
                 value
-                  ? new Date(formatDate(value) + "T" + (time ?? "00:00"))
+                  ? new Date(toPlainDate(value) + "T" + (time ?? "00:00"))
                   : undefined,
               )
             }
@@ -97,7 +95,7 @@ export const DatePickerContent = forwardRef<
               onValueChange={(time) => {
                 setTime(time);
                 if (value) {
-                  setValue(new Date(formatDate(value) + "T" + time));
+                  setValue(new Date(toPlainDate(value) + "T" + time));
                 }
               }}
               step={step}
@@ -115,16 +113,3 @@ export const DatePickerContent = forwardRef<
 );
 
 DatePickerContent.displayName = "@optiaxiom/react/DatePickerContent";
-
-function formatDate(date: Date) {
-  return toLocalDate(date).split("T")[0];
-}
-
-function formatTime(date: Date, step = 1) {
-  const [hour, minute] = toLocalDate(date).split("T")[1].slice(0, 5).split(":");
-  return (
-    hour +
-    ":" +
-    (Math.floor(parseInt(minute) / step) * step).toString().padStart(2, "0")
-  );
-}
