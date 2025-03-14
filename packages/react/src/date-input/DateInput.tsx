@@ -9,6 +9,7 @@ import {
 
 import { Button } from "../button";
 import { Calendar } from "../calendar";
+import { Clock } from "../clock";
 import { Flex } from "../flex";
 import { IconCalendar } from "../icons/IconCalendar";
 import { Input } from "../input";
@@ -16,15 +17,30 @@ import { Popover } from "../popover";
 import { PopoverAnchor } from "../popover-anchor";
 import { PopoverContent } from "../popover-content";
 import { PopoverTrigger } from "../popover-trigger";
-import { forceValueChange } from "../utils";
+import { Separator } from "../separator";
+import { Text } from "../text";
+import { forceValueChange, toPlainDate, toPlainTime } from "../utils";
 import * as styles from "./DateInput.css";
-import { format, parse } from "./utils";
+import { toInstant } from "./utils";
 
 type DateInputProps = ComponentPropsWithoutRef<typeof Input> &
   Pick<ComponentPropsWithoutRef<typeof Calendar>, "holiday" | "weekend">;
 
 export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
-  ({ disabled, holiday, max, min, onChange, weekend, ...props }, outerRef) => {
+  (
+    {
+      disabled,
+      holiday,
+      max,
+      min,
+      onChange,
+      step,
+      type = "date",
+      weekend,
+      ...props
+    },
+    outerRef,
+  ) => {
     const [open, setOpen] = useState(false);
     const hasInteractedOutsideRef = useRef(false);
     const pickerRef = useRef<HTMLButtonElement>(null);
@@ -33,6 +49,11 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
       defaultProp: props.defaultValue,
       prop: props.value,
     });
+    const instant =
+      typeof value === "string"
+        ? toInstant(value.includes("T") ? value : value + "T00:00")
+        : undefined;
+    const time = instant ? toPlainTime(instant, step) : undefined;
 
     const innerRef = useRef<HTMLInputElement>(null);
     const ref = useComposedRefs(innerRef, outerRef);
@@ -77,7 +98,7 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
               }
             }}
             ref={ref}
-            type="date"
+            type={type}
             {...props}
           />
         </PopoverAnchor>
@@ -112,26 +133,59 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
               }
 
               if (innerRef.current) {
-                forceValueChange(innerRef?.current, format(date));
+                forceValueChange(
+                  innerRef?.current,
+                  toPlainDate(date) +
+                    (type === "datetime-local" ? "T" + time : ""),
+                );
               }
-              setOpen(false);
+              if (type === "date") {
+                setOpen(false);
+              }
             }}
-            value={parse(value)}
+            value={instant}
             weekend={weekend}
           />
-          <Flex flexDirection="row">
+          {type === "datetime-local" && (
+            <Flex gap="8">
+              <Separator mb="8" />
+              <Clock
+                onValueChange={(time) => {
+                  if (innerRef.current) {
+                    forceValueChange(
+                      innerRef?.current,
+                      toPlainDate(instant ?? new Date()) + "T" + time,
+                    );
+                  }
+                }}
+                step={step}
+                value={time}
+              />
+              <Text color="fg.tertiary" fontSize="sm" w="full">
+                {(instant ?? new Date()).toTimeString().slice(9)}
+              </Text>
+            </Flex>
+          )}
+          <Flex flexDirection="row" justifyContent="space-between">
             <Button
-              appearance="subtle"
               onClick={() => {
                 if (innerRef.current) {
                   forceValueChange(innerRef.current, "");
                 }
 
-                setOpen(false);
+                if (type === "date") {
+                  setOpen(false);
+                }
               }}
             >
               Clear
             </Button>
+
+            {type === "datetime-local" && (
+              <Button appearance="primary" onClick={() => setOpen(false)}>
+                Done
+              </Button>
+            )}
           </Flex>
         </PopoverContent>
       </Popover>

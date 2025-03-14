@@ -15,7 +15,7 @@ type ClockProps = BoxProps<
   {
     defaultValue?: string;
     onValueChange?: (value: string) => void;
-    step?: string;
+    step?: number | string;
     value?: string;
   }
 >;
@@ -30,10 +30,12 @@ export const Clock = forwardRef<HTMLDivElement, ClockProps>(
       onChange: onValueChange,
       prop: valueProp,
     });
-    const parsed = parse(value, parseInt(step) / 60);
+    const stepInMinutes =
+      (typeof step === "string" ? parseInt(step) : step) / 60;
+    const parsed = parse(value, stepInMinutes);
 
     const hours = range(1, 12);
-    const minutes = range(0, 59, parseInt(step) / 60).map((minute) =>
+    const minutes = range(0, 59, stepInMinutes).map((minute) =>
       minute.padStart(2, "0"),
     );
     const periods = ["AM" as const, "PM" as const];
