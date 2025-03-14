@@ -13,15 +13,4 @@ export const panels = recipe({
       transition: `height ${theme.duration.sm} ease`,
     }),
   ],
-
-  variants: {
-    height: {
-      sm: style({
-        height: 264,
-      }),
-      lg: style({
-        height: 304,
-      }),
-    },
-  },
 });

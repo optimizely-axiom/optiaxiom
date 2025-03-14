@@ -2,7 +2,7 @@ import {
   type ComponentPropsWithoutRef,
   forwardRef,
   type ReactNode,
-  useState,
+  useRef,
 } from "react";
 
 import { Calendar } from "../calendar";
@@ -47,11 +47,11 @@ export const DatePickerContent = forwardRef<
     const { setValue, step, type, value } =
       useDatePickerContext("DatePickerContent");
 
-    const [height, setHeight] = useState<"lg" | "sm">("sm");
+    const panelRef = useRef<HTMLDivElement>(null);
 
     return (
       <PopoverContent gap="8" maxW={undefined} ref={ref} {...props}>
-        <Flex {...styles.panels({ height })}>
+        <Flex ref={panelRef} {...styles.panels()}>
           {addonBefore}
           <Calendar
             alignSelf="start"
@@ -59,7 +59,9 @@ export const DatePickerContent = forwardRef<
             max={max}
             min={min}
             onHeightChange={(height) => {
-              setHeight(height > 300 ? "lg" : "sm");
+              if (panelRef.current) {
+                panelRef.current.style.height = `${height}px`;
+              }
             }}
             onValueChange={setValue}
             step={step}
