@@ -146,7 +146,7 @@ export const components = {
   SubNav: getProps("SubNav"),
   Switch: getProps("Switch"),
   Table: getProps("Table"),
-  TableActions: getProps("TableActions"),
+  TableAction: getProps("TableAction"),
   TableBody: getProps("TableBody"),
   TableCell: getProps("TableCell"),
   TableHeader: getProps("TableHeader"),

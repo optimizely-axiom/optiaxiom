@@ -1,7 +1,7 @@
 import * as overflowStyles from "../card-overflow/CardOverflow.css";
 import { recipe, style } from "../vanilla-extract";
 
-export const actions = recipe({
+export const action = recipe({
   base: [
     style({
       selectors: {
