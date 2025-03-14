@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 import { Field } from "@optiaxiom/react";
 import { DateInput } from "@optiaxiom/react/unstable";
-import { expect, screen, userEvent } from "@storybook/test";
+import { expect, screen, userEvent, waitFor } from "@storybook/test";
 
 export default {
   component: DateInput,
@@ -61,7 +61,12 @@ export const MinMaxDates: Story = {
     await userEvent.click(
       await canvas.findByRole("button", { name: "Show date picker" }),
     );
-    await screen.findByRole("button", { name: "Clear" });
+    await waitFor(
+      async () =>
+        await expect(
+          await screen.findByRole("button", { name: "Clear" }),
+        ).toBeVisible(),
+    );
   },
 };
 
@@ -82,6 +87,11 @@ export const WithTime: Story = {
     await userEvent.click(
       await canvas.findByRole("button", { name: "Show date picker" }),
     );
-    await screen.findByRole("button", { name: "Clear" });
+    await waitFor(
+      async () =>
+        await expect(
+          await screen.findByRole("button", { name: "Clear" }),
+        ).toBeVisible(),
+    );
   },
 };
