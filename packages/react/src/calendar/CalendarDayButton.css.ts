@@ -9,7 +9,6 @@ export const button = recipe({
     {
       color: "fg.default",
       fontSize: "md",
-      mt: "8",
       size: "md",
       transition: "colors",
     },
@@ -28,6 +27,15 @@ export const button = recipe({
                   in srgb,
                   ${fallbackVar(bgVar, "transparent")},
                   ${theme.colors["bg.default.inverse"]} 8%
+                )
+              `,
+            },
+            "&:not([disabled]):hover:active": {
+              backgroundColor: `
+                color-mix(
+                  in srgb,
+                  ${fallbackVar(bgVar, "transparent")},
+                  ${theme.colors["bg.default.inverse"]} 16%
                 )
               `,
             },
@@ -85,7 +93,9 @@ export const button = recipe({
           color: "fg.tertiary",
         },
         style({
-          opacity: 0.8,
+          vars: {
+            [bgVar]: theme.colors["bg.page"],
+          },
         }),
       ],
     },

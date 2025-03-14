@@ -15,7 +15,9 @@ import { CalendarMonths } from "./CalendarMonths";
 import { CalendarNav } from "./CalendarNav";
 import { CalendarNextMonthButton } from "./CalendarNextMonthButton";
 import { CalendarPreviousMonthButton } from "./CalendarPreviousMonthButton";
+import { CalendarWeek } from "./CalendarWeek";
 import { CalendarWeekday } from "./CalendarWeekday";
+import { CalendarWeekdays } from "./CalendarWeekdays";
 
 type CalendarProps = BoxProps<
   "div",
@@ -85,7 +87,9 @@ const components = {
   Nav: CalendarNav,
   NextMonthButton: CalendarNextMonthButton,
   PreviousMonthButton: CalendarPreviousMonthButton,
+  Week: CalendarWeek,
   Weekday: CalendarWeekday,
+  Weekdays: CalendarWeekdays,
 };
 
 export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
