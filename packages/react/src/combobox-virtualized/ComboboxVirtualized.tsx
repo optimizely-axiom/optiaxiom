@@ -5,6 +5,7 @@ import {
   type ReactElement,
   type ReactNode,
   useEffect,
+  useMemo,
   useRef,
   useState,
 } from "react";
@@ -45,12 +46,20 @@ export const ComboboxVirtualized = forwardRef<
     getScrollElement: () => innerRef.current,
   });
 
-  const { downshift } = useCommandContext(
+  const { highlightedItem } = useCommandContext(
     "@optiaxiom/react/ComboboxVirtualized",
   );
+  const itemToIndexMap = useMemo(
+    () => new Map(items.map((item, index) => [item, index])),
+    [items],
+  );
   useEffect(() => {
-    rowVirtualizer.scrollToIndex(downshift.highlightedIndex);
-  }, [downshift.highlightedIndex, enabled, rowVirtualizer]);
+    const index = itemToIndexMap.get(highlightedItem);
+    if (typeof index !== "number") {
+      return;
+    }
+    rowVirtualizer.scrollToIndex(index);
+  }, [enabled, highlightedItem, itemToIndexMap, rowVirtualizer]);
 
   return (
     <ListboxScrollArea ref={ref} {...props}>
