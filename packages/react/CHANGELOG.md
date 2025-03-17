@@ -1,5 +1,19 @@
 # @optiaxiom/react
 
+## 1.0.3
+
+### Patch Changes
+
+- e020c8f: allow dynamic virtual combobox item height
+- 125e586: add time controls to DateInput component
+- 9a6460e: use updated design for time controls
+- d7fc0d0: incorporate clock into calendar component
+- 711f62c: fix returning focus to date input on picker close
+- 8e260b3: use correct index when scrolling inside combobox virtual list
+- 0323fb3: use full component name in context providers and consumers
+- Updated dependencies [0323fb3]
+  - @optiaxiom/globals@1.0.2
+
 ## 1.0.2
 
 ### Patch Changes
