@@ -74,6 +74,22 @@ export const ComboboxVirtualized = forwardRef<
         ]
       : [0, 0];
 
+  const [minWidth, setMinWidth] = useState(0);
+  useEffect(() => {
+    if (!innerRef.current) {
+      return;
+    }
+
+    const observer = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        setMinWidth(entry.contentRect.width);
+      }
+    });
+    observer.observe(innerRef.current);
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <ListboxScrollArea ref={ref} {...props}>
       <Box
@@ -81,6 +97,7 @@ export const ComboboxVirtualized = forwardRef<
         style={{
           height: `${rowVirtualizer.getTotalSize() - paddingTop - paddingBottom}px`,
           minHeight: Math.min(items.length, 8) * 40,
+          minWidth,
           paddingBottom,
           paddingTop,
         }}
