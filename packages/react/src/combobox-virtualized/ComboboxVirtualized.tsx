@@ -64,10 +64,7 @@ export const ComboboxVirtualized = forwardRef<
   return (
     <ListboxScrollArea ref={ref} {...props}>
       <Box
-        display="flex"
         flex="none"
-        flexDirection="column"
-        gap="2"
         style={{
           height: `${rowVirtualizer.getTotalSize()}px`,
           position: "relative",
@@ -75,10 +72,12 @@ export const ComboboxVirtualized = forwardRef<
       >
         {rowVirtualizer.getVirtualItems().map((virtualItem) => (
           <Box
+            data-index={virtualItem.index}
             key={virtualItem.key}
+            ref={rowVirtualizer.measureElement}
             style={{
-              height: virtualItem.size,
               left: 0,
+              minHeight: virtualItem.size,
               position: "absolute",
               top: 0,
               transform: `translateY(${virtualItem.start}px)`,
@@ -86,6 +85,7 @@ export const ComboboxVirtualized = forwardRef<
             w="full"
           >
             {children(items[virtualItem.index])}
+            {virtualItem.index < items.length - 1 && <Box pb="2" />}
           </Box>
         ))}
       </Box>
