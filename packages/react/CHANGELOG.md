@@ -1,5 +1,17 @@
 # @optiaxiom/react
 
+## 1.1.0
+
+### Minor Changes
+
+- ecd95b4: remove default font-size from Text component
+
+### Patch Changes
+
+- 3533644: update dependencies
+- Updated dependencies [3533644]
+  - @optiaxiom/globals@1.0.3
+
 ## 1.0.3
 
 ### Patch Changes

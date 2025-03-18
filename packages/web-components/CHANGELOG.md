@@ -1,5 +1,15 @@
 # @optiaxiom/web-components
 
+## 0.9.0
+
+### Minor Changes
+
+- ecd95b4: remove default font-size from Text component
+
+### Patch Changes
+
+- 3533644: update dependencies
+
 ## 0.8.18
 
 ### Patch Changes
