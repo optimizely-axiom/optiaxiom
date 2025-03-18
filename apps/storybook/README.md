@@ -10,12 +10,6 @@ Default: `true`
 
 When true a decorator containing the AxiomProvider will be added to the story.
 
-### `useOverlayDecorator`
-
-Default: `false`
-
-Enable this when testing overlay components that display content in a portal outside the storybook canvas. Adds a decorator spanning the whole screen with minimum 512px dimensions so Chromatic can capture the overlay in snapshots.
-
 ## Contributing
 
 ### Development
