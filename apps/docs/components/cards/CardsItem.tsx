@@ -42,7 +42,7 @@ export function CardsItem({
             <NextLink href={href}>{title}</NextLink>
           </Link>
         </Heading>
-        <Text lineClamp="2" mt="4">
+        <Text fontSize="md" lineClamp="2" mt="4">
           {children}
         </Text>
       </Box>

@@ -12,6 +12,7 @@ export const ItemLabelOutside = ({
       <Text
         color="fg.tertiary"
         fontFamily="mono"
+        fontSize="md"
         fontWeight="600"
         textAlign="center"
       >
