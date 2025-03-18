@@ -57,8 +57,8 @@ jobs:
           name: pr-build
           path: pr/
 
-  test:
-    if: ${{ github.event_name == 'pull_request' || github.repository_owner == 'optimizely-axiom' }}
+  docs:
+    if: ${{ github.event_name == 'pull_request' && github.repository_owner == 'optimizely-axiom' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -79,15 +79,43 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-nextjs-${{ hashFiles('pnpm-lock.yaml') }}-
 
-      - if: ${{ github.event_name == 'push' }}
-        run: pnpm -F web-components... build
+      - run: pnpm -F docs... build
 
-      - if: ${{ github.event_name != 'push' }}
-        run: pnpm -F docs... -F web-components... build
+  lint:
+    if: ${{ github.event_name == 'pull_request' || github.repository_owner == 'optimizely-axiom' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v3
+
+      - uses: actions/setup-node@v4
+        with:
+          cache: pnpm
+          node-version-file: .node-version
+
+      - run: pnpm install
 
       - run: pnpm lint --no-fix
 
+  test:
+    if: ${{ github.event_name == 'pull_request' || github.repository_owner == 'optimizely-axiom' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v3
+
+      - uses: actions/setup-node@v4
+        with:
+          cache: pnpm
+          node-version-file: .node-version
+
+      - run: pnpm install
+
       - run: pnpm exec playwright install
+
+      - run: pnpm -F web-components... build
 
       - if: ${{ github.event_name == 'push' }}
         run: pnpm exec vitest run --project=@optiaxiom/globals --project=@optiaxiom/react --project=@optiaxiom/web-components
