@@ -14,10 +14,6 @@ const lineClampBase = [
 ];
 
 export const text = recipe({
-  base: {
-    fontSize: "md",
-  },
-
   variants: {
     /**
      * Truncate the text at specific number of lines.

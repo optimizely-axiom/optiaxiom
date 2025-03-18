@@ -22,9 +22,7 @@ export const Pill = forwardRef<HTMLButtonElement, PillProps>(
         {...boxProps}
       >
         <Comp disabled={disabled} ref={ref} {...restProps}>
-          <Text fontSize="inherit" truncate>
-            {children}
-          </Text>
+          <Text truncate>{children}</Text>
 
           <Icon asChild h="12" ml="auto">
             <IconX />
