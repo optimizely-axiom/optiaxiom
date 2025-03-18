@@ -14,9 +14,6 @@ import { useState } from "react";
 
 export default {
   component: Tooltip,
-  parameters: {
-    useOverlayDecorator: true,
-  },
 } as Meta<typeof Tooltip>;
 
 type Story = StoryObj<typeof Tooltip>;

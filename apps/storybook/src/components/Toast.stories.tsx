@@ -49,7 +49,6 @@ export default {
   ],
   parameters: {
     useAxiomProvider: false,
-    useOverlayDecorator: true,
   },
   render: (args) => (
     <Button onClick={() => toaster.create(<Toast {...args} />)}>

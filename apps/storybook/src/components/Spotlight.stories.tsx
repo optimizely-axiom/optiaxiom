@@ -21,9 +21,6 @@ export default {
     defaultOpen: true,
   },
   component: Spotlight,
-  parameters: {
-    useOverlayDecorator: true,
-  },
 } as Meta<typeof Spotlight>;
 
 type Story<T> = StoryObj<typeof Spotlight<T>>;

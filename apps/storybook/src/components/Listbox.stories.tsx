@@ -23,9 +23,6 @@ type Story = StoryObj<typeof Listbox>;
 
 export default {
   component: Listbox,
-  parameters: {
-    useOverlayDecorator: true,
-  },
   render: (args) => (
     <Paper asChild maxH="xs" p="4" w="224">
       <Listbox {...args} />

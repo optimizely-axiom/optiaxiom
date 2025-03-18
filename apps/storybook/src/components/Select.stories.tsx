@@ -80,9 +80,6 @@ export default {
     items: languages,
   },
   component: Select,
-  parameters: {
-    useOverlayDecorator: true,
-  },
 } as Meta<typeof Select>;
 
 export const Basic: Story = {};

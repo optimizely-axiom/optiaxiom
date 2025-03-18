@@ -31,9 +31,6 @@ export default {
       <Story />
     </Box>
   ),
-  parameters: {
-    useOverlayDecorator: true,
-  },
 } as Meta<typeof Combobox>;
 
 const languages = [
