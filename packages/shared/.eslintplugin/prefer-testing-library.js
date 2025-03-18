@@ -1,9 +1,10 @@
-/** @type {import('eslint').Rule.RuleModule} */
-export default {
+import { ESLintUtils } from "@typescript-eslint/utils";
+
+export default ESLintUtils.RuleCreator.withoutDocs({
   create(context) {
     return {
       /**
-       * @type {import('eslint').Rule.RuleListener['ImportDeclaration']}
+       * @type {import('@typescript-eslint/utils').TSESLint.RuleListener['ImportDeclaration']}
        */
       'ImportDeclaration:matches([source.value="@testing-library/dom"], [source.value="@testing-library/react"], [source.value="@testing-library/user-event"])':
         (node) => {
@@ -17,6 +18,8 @@ export default {
     };
   },
 
+  defaultOptions: [],
+
   meta: {
     fixable: "code",
     messages: {
@@ -25,4 +28,4 @@ export default {
     schema: [],
     type: "suggestion",
   },
-};
+});
