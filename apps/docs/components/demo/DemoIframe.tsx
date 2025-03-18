@@ -79,7 +79,7 @@ const useIframe = (targetRef: RefObject<HTMLIFrameElement>) => {
       });
 
       if (target.location.href === "about:blank") {
-        target.addEventListener("load", setup);
+        targetRef.current.addEventListener("load", setup);
       } else {
         setup();
       }
