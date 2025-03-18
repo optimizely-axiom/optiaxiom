@@ -87,6 +87,8 @@ jobs:
 
       - run: pnpm lint --no-fix
 
+      - run: pnpm exec playwright install
+
       - if: ${{ github.event_name == 'push' }}
         run: pnpm exec vitest run --project=@optiaxiom/globals --project=@optiaxiom/react --project=@optiaxiom/web-components
 

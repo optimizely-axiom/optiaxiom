@@ -22,8 +22,8 @@ export default defineConfig({
     browser: {
       enabled: true,
       headless: true,
-      instances: [{ browser: "chrome" }],
-      provider: "webdriverio",
+      instances: [{ browser: "chromium" }],
+      provider: "playwright",
     },
     isolate: false,
     setupFiles: ["./.storybook/vitest.setup.ts"],
