@@ -17,7 +17,7 @@ export default {
     </Box>
   ),
   render: (args) => (
-    <Text asChild>
+    <Text asChild fontSize="md">
       <InlineInput {...args} />
     </Text>
   ),
@@ -65,7 +65,7 @@ export const Multiline: Story = {
     multiline: true,
   },
   render: (args) => (
-    <Flex>
+    <Flex fontSize="md">
       <Text asChild>
         <InlineInput {...args} />
       </Text>

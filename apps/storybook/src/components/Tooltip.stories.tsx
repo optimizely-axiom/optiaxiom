@@ -172,7 +172,7 @@ export const Truncate: Story = {
     );
   },
   render: (args) => (
-    <Flex>
+    <Flex fontSize="md">
       <Tooltip {...args} content="Not truncated text">
         <Text data-testid="not-truncated">
           The quick brown fox jumps over the lazy dog.

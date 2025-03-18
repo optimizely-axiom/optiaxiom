@@ -5,7 +5,7 @@ import { Heading, Link, Text } from "@optiaxiom/react";
 export default {
   component: Link,
   render: (args) => (
-    <Text>
+    <Text fontSize="md">
       This is{" "}
       <Link {...args} href="data:,">
         a text link

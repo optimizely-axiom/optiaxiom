@@ -41,6 +41,7 @@ export const root = recipe({
       bg: "bg.default.inverse",
       color: "fg.default.inverse",
       display: "flex",
+      fontSize: "md",
       gap: "8",
       maxW: "full",
       p: "12",

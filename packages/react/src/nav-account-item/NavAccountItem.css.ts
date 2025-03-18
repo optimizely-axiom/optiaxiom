@@ -4,6 +4,7 @@ export const item = recipe({
   base: {
     flex: "1",
     flexDirection: "row",
+    fontSize: "md",
     gap: "8",
     overflowX: "hidden",
     transition: "opacity",

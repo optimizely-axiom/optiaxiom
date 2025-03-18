@@ -36,6 +36,7 @@ export const description = recipe({
   base: [
     {
       color: "fg.secondary",
+      fontSize: "md",
       fontWeight: "400",
       w: "full",
     },
