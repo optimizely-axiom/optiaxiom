@@ -2,7 +2,8 @@ body > div:has(.brand)::before {
   --bg: color-mix(in srgb, var(--ax-colors-fg-accent) 20%, transparent);
 
   animation: pulse 10s infinite;
-  background-image: linear-gradient(var(--bg) 1px, transparent 1px),
+  background-image:
+    linear-gradient(var(--bg) 1px, transparent 1px),
     linear-gradient(to right, var(--bg) 1px, transparent 1px);
   background-position: center;
   background-size: 70px 70px;
@@ -54,7 +55,8 @@ article:has(.brand) main {
 
   animation: spin 5s linear infinite;
   border: 1px solid transparent;
-  background-image: linear-gradient(var(--bg), var(--bg)),
+  background-image:
+    linear-gradient(var(--bg), var(--bg)),
     conic-gradient(
       from var(--angle),
       color-mix(in srgb, var(--ax-colors-border-accent) 10%, var(--bg)) 15%,
