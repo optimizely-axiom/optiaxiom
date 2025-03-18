@@ -73,7 +73,7 @@ export const Inline: Story = {
   render: () => (
     <Flex>
       <Flex asChild flexDirection="row">
-        <Text>
+        <Text fontSize="md">
           Status
           <Badge intent="success" variant="subtle">
             Published

@@ -57,6 +57,7 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>(
       >
         <Flex
           flexDirection={flexDirection}
+          fontSize="md"
           gap={mapResponsiveValue(
             flexDirection,
             (value) => mapGapToOrientation[value],

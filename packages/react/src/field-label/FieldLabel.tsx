@@ -42,6 +42,7 @@ export const FieldLabel = forwardRef<HTMLDivElement, FieldLabelProps>(
           asChild
           color="fg.secondary"
           display="flex"
+          fontSize="md"
           fontWeight="400"
           gap="2"
         >

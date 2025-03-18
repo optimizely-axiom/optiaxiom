@@ -6,6 +6,7 @@ export const layout = recipe({
       bg: "bg.page",
       display: "flex",
       flexDirection: "column",
+      fontSize: "md",
     },
     style({
       height: "100vh",
