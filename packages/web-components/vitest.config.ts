@@ -8,8 +8,8 @@ export default defineConfig({
     browser: {
       enabled: true,
       headless: true,
-      instances: [{ browser: "chrome" }],
-      provider: "webdriverio",
+      instances: [{ browser: "chromium" }],
+      provider: "playwright",
     },
     restoreMocks: true,
     retry: 1,
