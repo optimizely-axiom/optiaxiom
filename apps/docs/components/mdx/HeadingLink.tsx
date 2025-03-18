@@ -35,6 +35,7 @@ export function HeadingLink({
               className={styles.pound}
               color="fg.disabled"
               display="grid"
+              fontSize="md"
               placeItems="center"
               rounded="md"
               shadow="sm"

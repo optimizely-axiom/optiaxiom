@@ -41,6 +41,7 @@ export const ItemLabelInside = ({
     >
       <Text
         fontFamily="mono"
+        fontSize="md"
         fontWeight="600"
         {...(shaded && {
           bg: "bg.default.pressed",
