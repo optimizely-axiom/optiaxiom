@@ -9,7 +9,6 @@ export const button = recipe({
     {
       color: "fg.default",
       fontSize: "md",
-      mt: "2",
       size: "md",
       transition: "colors",
     },
@@ -50,7 +49,7 @@ export const button = recipe({
           outlineOffset: "1px",
           zIndex: "10",
         },
-        "&[disabled]": {
+        "&:is([data-disabled], [disabled])": {
           opacity: 0.32,
         },
       },

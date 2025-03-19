@@ -1,4 +1,4 @@
-import { recipe, style } from "../vanilla-extract";
+import { recipe } from "../vanilla-extract";
 
 export const panels = recipe({
   base: [
@@ -7,8 +7,5 @@ export const panels = recipe({
       flexDirection: "row",
       gap: "0",
     },
-    style({
-      maxHeight: 304,
-    }),
   ],
 });
