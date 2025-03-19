@@ -9,6 +9,7 @@ export const button = recipe({
     {
       color: "fg.default",
       fontSize: "md",
+      mt: "2",
       size: "md",
       transition: "colors",
     },
