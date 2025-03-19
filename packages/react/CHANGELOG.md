@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 1.1.1
+
+### Patch Changes
+
+- 267d678: fix calendar button vertical gap
+
 ## 1.1.0
 
 ### Minor Changes
