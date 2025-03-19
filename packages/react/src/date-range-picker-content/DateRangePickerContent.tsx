@@ -69,6 +69,7 @@ export const DateRangePickerContent = forwardRef<
         <Flex {...styles.panels()}>
           {addonBefore}
           <Calendar
+            alignSelf="start"
             holiday={holiday}
             max={max}
             min={min}

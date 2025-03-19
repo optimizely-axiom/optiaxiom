@@ -175,6 +175,7 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
             ...(min ? [{ before: min }] : []),
             ...(max ? [{ after: max }] : []),
           ]}
+          fixedWeeks={mode === "range"}
           mode={mode as "single"}
           modifiers={{ holiday, weekend }}
           numberOfMonths={mode === "range" ? numberOfMonths : 1}
@@ -187,6 +188,7 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
           }}
           required
           selected={value as Date | undefined}
+          showOutsideDays={mode === "range"}
           today={today}
         />
         {type === "datetime-local" && mode == "single" && (

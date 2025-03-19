@@ -8,7 +8,7 @@ type CalendarWeekProps = ComponentPropsWithoutRef<typeof Week>;
 
 export function CalendarWeek({ children, ...props }: CalendarWeekProps) {
   return (
-    <Box asChild display="flex" gap="2">
+    <Box asChild display="flex" gap="2" mt="2">
       <Week {...props}>{children}</Week>
     </Box>
   );

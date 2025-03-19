@@ -24,6 +24,7 @@ export function CalendarDayButton({
   return (
     <Box
       asChild
+      data-disabled={modifiers.outside || props.disabled}
       {...styles.button(
         {
           appearance: modifiers.range_middle
@@ -36,7 +37,7 @@ export function CalendarDayButton({
                   ? "weekend"
                   : "default",
           range:
-            modifiers.range_start && modifiers.range_end
+            modifiers.outside || (modifiers.range_start && modifiers.range_end)
               ? undefined
               : modifiers.range_start
                 ? "start"
