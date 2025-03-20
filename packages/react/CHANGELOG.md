@@ -1,5 +1,12 @@
 # @optiaxiom/react
 
+## 1.1.2
+
+### Patch Changes
+
+- b62ebc5: use DateTimeFormat to show time zone name
+- a54216f: fix height of virtualized combobox list
+
 ## 1.1.1
 
 ### Patch Changes
