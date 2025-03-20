@@ -23,6 +23,7 @@ import { CalendarPreviousMonthButton } from "./CalendarPreviousMonthButton";
 import { CalendarWeek } from "./CalendarWeek";
 import { CalendarWeekday } from "./CalendarWeekday";
 import { CalendarWeekdays } from "./CalendarWeekdays";
+import { toTimeZoneName } from "./toTimeZoneName";
 
 type CalendarProps = BoxProps<
   "div",
@@ -205,9 +206,7 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
               value={time}
             />
             <Text color="fg.tertiary" fontSize="sm" w="full">
-              {(value instanceof Date ? value : new Date())
-                .toTimeString()
-                .slice(9)}
+              {toTimeZoneName(value instanceof Date ? value : new Date())}
             </Text>
           </Flex>
         )}
