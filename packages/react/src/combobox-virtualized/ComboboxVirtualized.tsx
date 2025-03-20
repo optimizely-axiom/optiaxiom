@@ -95,7 +95,6 @@ export const ComboboxVirtualized = forwardRef<
       <Box
         flex="none"
         style={{
-          height: `${rowVirtualizer.getTotalSize() - paddingTop - paddingBottom}px`,
           minHeight: Math.min(items.length, 8) * 40,
           minWidth,
           paddingBottom,
