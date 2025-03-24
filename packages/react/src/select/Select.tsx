@@ -47,7 +47,12 @@ export function Select<Item>({
   });
 
   const [highlightedIndex, setHighlightedIndex, placed, setPlaced] =
-    usePortalPatch(isOpen);
+    usePortalPatch(
+      isOpen,
+      selectedItem
+        ? items.findIndex((item) => itemToKey(selectedItem) === itemToKey(item))
+        : -1,
+    );
 
   const downshift = useSelect({
     ...props,
