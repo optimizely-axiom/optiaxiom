@@ -70,10 +70,11 @@ export function Select<Item>({
     onIsOpenChange({ isOpen }) {
       setIsOpen(isOpen);
     },
-    onSelectedItemChange({ selectedItem }) {
+    onSelectedItemChange({ selectedItem, type }) {
       setSelectedItem((prevSelectedItem) =>
         selectedItem &&
         prevSelectedItem &&
+        type !== useSelect.stateChangeTypes.ToggleButtonBlur &&
         itemToKey(selectedItem) === itemToKey(prevSelectedItem)
           ? null
           : selectedItem,
