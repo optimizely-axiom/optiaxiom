@@ -1,5 +1,14 @@
 # @optiaxiom/react
 
+## 1.1.2
+
+### Patch Changes
+
+- b62ebc5: use DateTimeFormat to show time zone name
+- 1e49827: Add `LabelMenuButton` component
+- d7a8d50: allow deselecting values from Select component
+- a54216f: fix height of virtualized combobox list
+
 ## 1.1.1
 
 ### Patch Changes
