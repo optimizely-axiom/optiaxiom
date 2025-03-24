@@ -47,15 +47,13 @@ export function Select<Item>({
   });
 
   const [highlightedIndex, setHighlightedIndex, placed, setPlaced] =
-    usePortalPatch(
-      isOpen,
-      selectedItem
-        ? items.findIndex((item) => itemToKey(selectedItem) === itemToKey(item))
-        : -1,
-    );
+    usePortalPatch(isOpen);
 
   const downshift = useSelect({
     ...props,
+    defaultHighlightedIndex: selectedItem
+      ? items.findIndex((item) => itemToKey(selectedItem) === itemToKey(item))
+      : 0,
     highlightedIndex,
     isOpen: placed,
     items,
@@ -68,9 +66,15 @@ export function Select<Item>({
       setIsOpen(isOpen);
     },
     onSelectedItemChange({ selectedItem }) {
-      setSelectedItem(selectedItem);
+      setSelectedItem((prevSelectedItem) =>
+        selectedItem &&
+        prevSelectedItem &&
+        itemToKey(selectedItem) === itemToKey(prevSelectedItem)
+          ? null
+          : selectedItem,
+      );
     },
-    selectedItem: selectedItem ?? null,
+    selectedItem: null,
   });
 
   /**

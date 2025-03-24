@@ -17,6 +17,7 @@ export const SelectItem = forwardRef<HTMLDivElement, SelectItemProps>(
     );
 
     const itemProps = downshift.getItemProps({ item, ref, ...props });
+    itemProps["aria-selected"] = selectedItem === item;
 
     return (
       <Box
