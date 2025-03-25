@@ -53,7 +53,11 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
 
     return (
       <TransitionGroup
-        onPresenceChange={setPlaced}
+        onPresenceChange={(presence) => {
+          if (!presence) {
+            setPlaced(presence);
+          }
+        }}
         open={isOpen}
         presence={placed}
       >
@@ -71,7 +75,12 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
                 { suppressRefError: !placed },
               )}
             >
-              <PopperContent align={align} side={side} sideOffset={5}>
+              <PopperContent
+                align={align}
+                onPlaced={() => setPlaced(true)}
+                side={side}
+                sideOffset={5}
+              >
                 {loading ? (
                   <Box display="flex" justifyContent="center" p="16">
                     <Spinner />
