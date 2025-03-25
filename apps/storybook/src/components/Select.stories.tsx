@@ -259,7 +259,7 @@ export const Controlled: Story<Book> = {
     const [value, setValue] = useState<Book | null>(books[9]);
 
     return (
-      <Flex alignItems="center">
+      <Flex>
         <Select {...args} onValueChange={setValue} value={value} />
 
         <Text>Selected Value: {value ? value.title : "None"}</Text>
