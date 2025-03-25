@@ -264,6 +264,10 @@ export const demos = {
     "./segmented-control/controlled-usage/App"
   ),
   "segmented-control/usage": import("./segmented-control/usage/App"),
+  "select/overview/content-usage": import(
+    "./select/overview/content-usage/App"
+  ),
+  "select/overview/usage": import("./select/overview/usage/App"),
   "select/usage": import("./select/usage/App"),
   "separator/responsive-usage": import("./separator/responsive-usage/App"),
   "separator/usage": import("./separator/usage/App"),
