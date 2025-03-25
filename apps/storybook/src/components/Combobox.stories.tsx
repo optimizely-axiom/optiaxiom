@@ -279,7 +279,7 @@ export const People: Story<(typeof users)[number]> = {
     const [value, setValue] = useState(new Set<(typeof users)[number]>());
 
     useEffect(() => {
-      if (!open) {
+      if (open) {
         const list = value.size
           ? [actions.me, ...value, actions.all]
           : [actions.me, ...users];
