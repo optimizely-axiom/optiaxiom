@@ -1,5 +1,15 @@
 # @optiaxiom/react
 
+## 1.1.3
+
+### Patch Changes
+
+- 26288f8: highlight first selected item in combobox
+- 33961d1: prevent selection on space if there is search value
+- c3d12fe: close date range picker on selecting end date
+- b253d3e: wait for DOM paint before setting presence to true
+- 0d74a01: animate closing select popover
+
 ## 1.1.2
 
 ### Patch Changes
