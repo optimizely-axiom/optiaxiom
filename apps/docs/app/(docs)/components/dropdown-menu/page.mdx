@@ -18,7 +18,7 @@ Use the `DropdownMenu`, `DropdownMenuTrigger`, and `DropdownMenuContent` compone
 
 Use the `open` and `defaultOpen` props to toggle between controlled and uncontrolled usage. And combine it with `onOpenChange` to listen for changes to the state.
 
-<Demo component="dropdown-menu/controlled-usage" meta="{16,24-25}" />
+<Demo component="dropdown-menu/controlled-usage" meta="{18,26-27}" />
 
 ### Non modal usage
 
@@ -32,7 +32,7 @@ By default scrolling and interactions with outside elements is disabled when men
 
 By default we use the `Button` component for the menu trigger which accepts all of the existing button props.
 
-<Demo component="dropdown-menu/trigger-usage" meta="{15-17}" />
+<Demo component="dropdown-menu/trigger-usage" meta="{17-19}" />
 
 #### Ellipsis trigger
 
@@ -41,7 +41,7 @@ We can also use `asChild` to render a completely different component. We provide
 - `AngleMenuButton` (default)
 - `EllipsisMenuButton`
 
-<Demo component="dropdown-menu/ellipsis-trigger-usage" meta="{15-17}" />
+<Demo component="dropdown-menu/ellipsis-trigger-usage" meta="{17-19}" />
 
 ### Content
 
@@ -78,13 +78,13 @@ Use the `disabled` prop on menu items to disable them.
 
 Use the `onSelect` prop to handle selection of items.
 
-<Demo component="dropdown-menu/select-usage" meta="{26,33}" />
+<Demo component="dropdown-menu/select-usage" meta="{28,35}" />
 
 #### Left and right addons
 
 Use the `icon`, `addonBefore`, and `addonAfter` props to add icons, text, or any other element to the start or end of the menu items.
 
-<Demo meta="{20-24,25,32-36,37}" component="dropdown-menu/addon-usage" />
+<Demo component="dropdown-menu/addon-usage" meta="{22-26,27,34-38,39}" />
 
 ### CheckboxItem
 
@@ -96,13 +96,13 @@ Use the `DropdownMenuCheckboxItem` component to render a checkbox and add the `c
 
 Use the `DropdownMenuLabel` component to render a read-only label.
 
-<Demo meta="{5,17}" component="dropdown-menu/usage" />
+<Demo component="dropdown-menu/usage" meta="{7,19}" />
 
 ### Submenus
 
 Use `DropdownMenuSub`, `DropdownMenuSubTrigger`, and `DropdownMenuSubContent` to render a submenus.
 
-<Demo meta="{7-9,20-27}" component="dropdown-menu/nested-usage" />
+<Demo component="dropdown-menu/nested-usage" meta="{9-11,22-29}" />
 
 ### Dialogs inside menus
 
@@ -110,7 +110,7 @@ Combine dropdown menus with dialog to show alerts when selecting an item.
 
 Make sure to enable `asChild` prop on `AlertDialogTrigger` and call `event.preventDefault()` in the item `onSelect` handler.
 
-<Demo component="dropdown-menu/alert-dialog-usage" meta="{25,29}" />
+<Demo component="dropdown-menu/alert-dialog-usage" meta="{27,31}" />
 
 ### Related
 

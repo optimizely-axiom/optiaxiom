@@ -72,8 +72,8 @@ export async function Demo({
                     `~~~${path.extname(fileName).slice(1)} ${
                       meta && typeof meta === "object" ? meta[fileName] : meta
                     }`,
-                    removeDirectives(
-                      await fs.readFile(path.join(filesDir, fileName), "utf8"),
+                    (
+                      await fs.readFile(path.join(filesDir, fileName), "utf8")
                     ).trim(),
                     "~~~",
                     files.length > 1 && "</Tabs.Tab>",
@@ -94,8 +94,3 @@ export async function Demo({
     </Box>
   );
 }
-
-const removeDirectives = (source: string) =>
-  source.startsWith('"use client";')
-    ? source.slice('"use client";\n'.length)
-    : source;
