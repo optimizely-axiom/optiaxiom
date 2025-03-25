@@ -2,12 +2,15 @@ import {
   type ComponentPropsWithoutRef,
   forwardRef,
   type ReactNode,
+  useEffect,
+  useState,
 } from "react";
 
 import { Calendar } from "../calendar";
 import { useDateRangePickerContext } from "../date-range-picker-context";
 import { Flex } from "../flex";
 import { PopoverContent } from "../popover-content";
+import { usePopoverContext } from "../popover-context";
 import * as styles from "./DateRangePickerContent.css";
 
 type DateRangePickerContentProps = ComponentPropsWithoutRef<
@@ -45,9 +48,19 @@ export const DateRangePickerContent = forwardRef<
     },
     ref,
   ) => {
-    const { setValue, value } = useDateRangePickerContext(
+    const { open } = usePopoverContext(
       "@optiaxiom/react/DateRangePickerContent",
     );
+    const { setOpen, setValue, value } = useDateRangePickerContext(
+      "@optiaxiom/react/DateRangePickerContent",
+    );
+
+    const [from, setFrom] = useState<Date>();
+    useEffect(() => {
+      if (!open) {
+        setFrom(undefined);
+      }
+    }, [open]);
 
     return (
       <PopoverContent gap="8" maxW={undefined} ref={ref} {...props}>
@@ -58,7 +71,19 @@ export const DateRangePickerContent = forwardRef<
             max={max}
             min={min}
             mode="range"
-            onValueChange={setValue}
+            onValueChange={(newValue) => {
+              if (!from) {
+                const newFrom =
+                  value?.from && newValue?.from && newValue.from < value.from
+                    ? newValue.from
+                    : newValue?.to;
+                setFrom(newFrom);
+                setValue({ from: newFrom, to: newFrom });
+              } else if (newValue?.to) {
+                setValue(newValue);
+                setOpen(false);
+              }
+            }}
             today={today}
             value={value}
             weekend={weekend}

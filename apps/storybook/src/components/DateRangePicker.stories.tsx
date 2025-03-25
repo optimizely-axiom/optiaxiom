@@ -61,6 +61,9 @@ export const WithLabel: Story = {
           }),
       ),
     ).toBeInTheDocument();
+    await waitFor(() =>
+      expect(screen.queryByRole("dialog")).not.toBeInTheDocument(),
+    );
   },
 };
 

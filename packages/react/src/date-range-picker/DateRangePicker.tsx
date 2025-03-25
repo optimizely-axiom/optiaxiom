@@ -48,6 +48,7 @@ export function DateRangePicker({
     <Popover onOpenChange={setOpen} open={open} {...props}>
       <DateRangePickerProvider
         disabled={disabled}
+        setOpen={setOpen}
         setValue={setValue}
         value={value}
       >
