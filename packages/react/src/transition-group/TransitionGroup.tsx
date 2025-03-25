@@ -39,7 +39,7 @@ export function TransitionGroup({
   });
   useEffect(() => {
     if (open) {
-      setPresence(true);
+      requestAnimationFrame(() => setPresence(true));
     } else {
       if (transitions.length) {
         void Promise.allSettled(
