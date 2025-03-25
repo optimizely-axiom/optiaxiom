@@ -50,7 +50,6 @@ export const SpotlightContent = forwardRef<
         itemToSubItems={itemToSubItems}
         onInputValueChange={onInputValueChange}
         onItemSelect={onItemSelect}
-        selectedItem={null}
         stateReducer={(state, actionAndChanges) => {
           const { changes, type } = actionAndChanges;
 

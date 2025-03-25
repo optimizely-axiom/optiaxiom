@@ -10,7 +10,7 @@ const isHoverSupported =
 
 type CommandProps<Item> = Pick<
   UseComboboxProps<Item>,
-  "inputId" | "selectedItem" | "stateReducer"
+  "inputId" | "stateReducer"
 > & {
   children: ReactNode;
   /**
@@ -55,7 +55,6 @@ export function Command<Item>({
   itemToSubItems,
   onInputValueChange,
   onItemSelect,
-  selectedItem,
   value: valueProp,
   ...props
 }: CommandProps<Item>) {
@@ -75,11 +74,7 @@ export function Command<Item>({
   >("pointer");
 
   const [highlightedIndex, setHighlightedIndex, placed, setPlaced] =
-    usePortalPatch(
-      selectedItem
-        ? items.findIndex((item) => itemToKey(selectedItem) === itemToKey(item))
-        : -1,
-    );
+    usePortalPatch(items.findIndex((item) => value?.has(item)));
   const [highlightedSubIndex, setHighlightedSubIndex] = useState(-1);
 
   const downshift = useCombobox({
@@ -136,7 +131,7 @@ export function Command<Item>({
         onItemSelect?.(selectedItem);
       }
     },
-    selectedItem,
+    selectedItem: null,
   });
 
   /**
