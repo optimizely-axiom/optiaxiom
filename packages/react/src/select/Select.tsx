@@ -55,9 +55,6 @@ export function Select<Item>({
 
   const downshift = useSelect({
     ...props,
-    defaultHighlightedIndex: selectedItem
-      ? items.findIndex((item) => itemToKey(selectedItem) === itemToKey(item))
-      : 0,
     highlightedIndex,
     isOpen: placed,
     items,
@@ -76,17 +73,10 @@ export function Select<Item>({
     onIsOpenChange({ isOpen }) {
       setIsOpen(isOpen);
     },
-    onSelectedItemChange({ selectedItem, type }) {
-      setSelectedItem((prevSelectedItem) =>
-        selectedItem &&
-        prevSelectedItem &&
-        type !== useSelect.stateChangeTypes.ToggleButtonBlur &&
-        itemToKey(selectedItem) === itemToKey(prevSelectedItem)
-          ? null
-          : selectedItem,
-      );
+    onSelectedItemChange({ selectedItem }) {
+      setSelectedItem(selectedItem);
     },
-    selectedItem: null,
+    selectedItem: selectedItem ?? null,
   });
 
   /**
