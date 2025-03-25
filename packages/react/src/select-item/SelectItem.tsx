@@ -41,7 +41,6 @@ export const SelectItem = forwardRef<HTMLDivElement, SelectItemProps>(
       ref,
       ...props,
     });
-    itemProps["aria-selected"] = selectedItem === item;
 
     return (
       <Box

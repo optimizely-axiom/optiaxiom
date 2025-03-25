@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Box, Field, Flex, Text } from "@optiaxiom/react";
+import { Box, Button, Field, Flex, Text } from "@optiaxiom/react";
 import {
   LabelMenuButton,
   Select,
@@ -302,12 +302,18 @@ export const AlternateTrigger: Story<string> = {
   args: {
     defaultOpen: false,
     defaultValue: null,
-    items: environments,
   },
   render: function AsyncLoading(args) {
+    const [value, setValue] = useState<null | string>();
+
     return (
       <Flex w="224">
-        <Select {...args} items={environments}>
+        <Select
+          {...args}
+          items={environments}
+          onValueChange={setValue}
+          value={value}
+        >
           <SelectTrigger asChild>
             <LabelMenuButton label="Environment" />
           </SelectTrigger>
@@ -321,7 +327,12 @@ export const AlternateTrigger: Story<string> = {
           </SelectContent>
         </Select>
 
-        <Select {...args} items={environments}>
+        <Select
+          {...args}
+          items={environments}
+          onValueChange={setValue}
+          value={value}
+        >
           <SelectTrigger asChild placeholder="Select an environment">
             <LabelMenuButton label="Environment" />
           </SelectTrigger>
@@ -334,6 +345,9 @@ export const AlternateTrigger: Story<string> = {
             ))}
           </SelectContent>
         </Select>
+        <Button alignSelf="start" onClick={() => setValue(null)}>
+          Reset
+        </Button>
       </Flex>
     );
   },
