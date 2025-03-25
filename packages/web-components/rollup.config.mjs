@@ -334,8 +334,8 @@ function typeDeclarationPlugin({ include = [] }) {
     writeFileSync(
       `${component}/package.json`,
       `{
-  "module": "../dist/components/${component}.js",
-  "types": "../dist/components/${component}.d.ts"
+  "types": "../dist/components/${component}.d.ts",
+  "module": "../dist/components/${component}.js"
 }`,
     );
 

@@ -15,14 +15,14 @@
   "license": "Apache-2.0",
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/esm/index.js",
-      "require": "./dist/cjs/index.js",
-      "types": "./dist/index.d.ts"
+      "require": "./dist/cjs/index.js"
     },
     "./unstable": {
+      "types": "./dist/unstable.d.ts",
       "import": "./dist/esm/unstable.js",
-      "require": "./dist/cjs/unstable.js",
-      "types": "./dist/unstable.d.ts"
+      "require": "./dist/cjs/unstable.js"
     }
   },
   "sideEffects": [
