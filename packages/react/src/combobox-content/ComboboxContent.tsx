@@ -50,7 +50,6 @@ export const ComboboxContent = forwardRef<HTMLDivElement, ComboboxContentProps>(
           itemToString={itemToString}
           onInputValueChange={onInputValueChange}
           onItemSelect={onItemSelect}
-          selectedItem={null}
           stateReducer={(state, actionAndChanges) => {
             const { changes, type } = actionAndChanges;
 
