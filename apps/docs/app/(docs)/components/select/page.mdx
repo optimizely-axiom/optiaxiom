@@ -6,11 +6,29 @@ import { PropsTable } from "@/components/props-table";
 
 Single select combobox widget to allow selection from a fixed set of options.
 
-## Documentation
-
-### Usage
-
 <Demo component="select/usage" />
+
+## Guide
+
+### Structure
+
+Select works with lists of items provided via the `items` prop. The basic structure includes the main component provider, a trigger, and a content.
+
+- `Select`
+- `SelectTrigger`
+- `SelectContent`
+
+The trigger can be provided a `placeholder` to display in case no values have been selected yet.
+
+<Demo component="select/overview/usage" />
+
+### Content
+
+The content popover will be empty until we render the same items we provided to the `items` prop. We can render items using `SelectRadioItem`.
+
+<Demo component="select/overview/content-usage" meta="{16,18}" />
+
+## Documentation
 
 ### Anatomy
 

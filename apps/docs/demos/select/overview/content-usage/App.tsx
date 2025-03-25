@@ -7,17 +7,16 @@ import {
   SelectTrigger,
 } from "@optiaxiom/react/unstable";
 
-import { colors } from "./data";
+const colors = ["Ocean", "Blue", "Purple", "Red", "Orange", "Yellow"];
 
 export function App() {
   return (
     <Select items={colors}>
-      <SelectTrigger placeholder="Select a color..." w="224" />
-
+      <SelectTrigger placeholder="Select colors..." />
       <SelectContent>
-        {colors.map((color) => (
-          <SelectRadioItem item={color} key={color}>
-            {color}
+        {colors.map((item) => (
+          <SelectRadioItem item={item} key={item}>
+            {item}
           </SelectRadioItem>
         ))}
       </SelectContent>
