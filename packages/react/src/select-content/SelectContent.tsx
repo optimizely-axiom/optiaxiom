@@ -9,6 +9,7 @@ import { MenuListbox } from "../menu-listbox";
 import { ModalLayer } from "../modal-layer";
 import { useSelectContext } from "../select-context";
 import { Spinner } from "../spinner";
+import { TransitionGroup } from "../transition-group";
 import * as styles from "./SelectContent.css";
 
 type SelectContentProps = ExcludeProps<
@@ -51,7 +52,11 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
     );
 
     return (
-      isOpen && (
+      <TransitionGroup
+        onPresenceChange={setPlaced}
+        open={isOpen}
+        presence={placed}
+      >
         <Portal asChild>
           <ModalLayer asChild>
             <MenuListbox
@@ -66,12 +71,7 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
                 { suppressRefError: !placed },
               )}
             >
-              <PopperContent
-                align={align}
-                onPlaced={() => setPlaced(true)}
-                side={side}
-                sideOffset={5}
-              >
+              <PopperContent align={align} side={side} sideOffset={5}>
                 {loading ? (
                   <Box display="flex" justifyContent="center" p="16">
                     <Spinner />
@@ -83,7 +83,7 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
             </MenuListbox>
           </ModalLayer>
         </Portal>
-      )
+      </TransitionGroup>
     );
   },
 );

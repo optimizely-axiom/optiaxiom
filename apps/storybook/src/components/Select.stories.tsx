@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Field, Flex, Text } from "@optiaxiom/react";
+import { Box, Field, Flex, Text } from "@optiaxiom/react";
 import {
   LabelMenuButton,
   Select,
@@ -81,6 +81,11 @@ export default {
     items: languages,
   },
   component: Select,
+  decorators: (Story) => (
+    <Box w="224">
+      <Story />
+    </Box>
+  ),
 } as Meta<typeof Select>;
 
 export const Basic: Story = {};

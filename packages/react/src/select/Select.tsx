@@ -48,7 +48,6 @@ export function Select<Item>({
 
   const [highlightedIndex, setHighlightedIndex, placed, setPlaced] =
     usePortalPatch(
-      isOpen,
       selectedItem
         ? items.findIndex((item) => itemToKey(selectedItem) === itemToKey(item))
         : -1,
@@ -65,7 +64,14 @@ export function Select<Item>({
     itemToKey,
     itemToString,
     onHighlightedIndexChange(changes) {
-      setHighlightedIndex(changes.highlightedIndex);
+      if (
+        ((changes.type === useSelect.stateChangeTypes.ItemMouseMove ||
+          changes.type === useSelect.stateChangeTypes.MenuMouseLeave) &&
+          isOpen) ||
+        changes.isOpen
+      ) {
+        setHighlightedIndex(changes.highlightedIndex);
+      }
     },
     onIsOpenChange({ isOpen }) {
       setIsOpen(isOpen);
