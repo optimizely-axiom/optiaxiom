@@ -39,7 +39,10 @@ export const ComboboxInput = forwardRef<HTMLInputElement, ComboboxInputProps>(
           htmlSize={1}
           m="4"
           onKeyDown={(event) => {
-            if (event.key === " " && highlightedItem) {
+            if (!(event.target instanceof HTMLInputElement)) {
+              return;
+            }
+            if (event.key === " " && !event.target.value) {
               event.preventDefault();
               downshift.selectItem(highlightedItem);
             }
