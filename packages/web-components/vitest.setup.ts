@@ -8,7 +8,9 @@ window.jest = {
 };
 
 beforeEach(() => {
-  vi.useFakeTimers();
+  vi.useFakeTimers({
+    shouldAdvanceTime: true,
+  });
 });
 
 afterEach(() => {
