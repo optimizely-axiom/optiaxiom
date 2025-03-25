@@ -42,8 +42,6 @@ type CommandProps<Item> = Pick<
    * Handler that is called when an item is selected either via keyboard or mouse.
    */
   onItemSelect?: (value: Item) => void;
-  onOpenChange?: (open: boolean) => void;
-  open?: boolean;
   value?: Item[] | Set<Item>;
 };
 
@@ -57,8 +55,6 @@ export function Command<Item>({
   itemToSubItems,
   onInputValueChange,
   onItemSelect,
-  onOpenChange,
-  open,
   selectedItem,
   value: valueProp,
   ...props
@@ -80,7 +76,6 @@ export function Command<Item>({
 
   const [highlightedIndex, setHighlightedIndex, placed, setPlaced] =
     usePortalPatch(
-      open,
       selectedItem
         ? items.findIndex((item) => itemToKey(selectedItem) === itemToKey(item))
         : -1,
@@ -125,8 +120,6 @@ export function Command<Item>({
       }
     },
     onIsOpenChange({ isOpen, type }) {
-      onOpenChange?.(isOpen);
-
       if (isOpen) {
         if (
           type === useCombobox.stateChangeTypes.InputClick ||

@@ -1,11 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-export function usePortalPatch(
-  open: boolean | undefined,
-  initialHighlightedIndex = -1,
-) {
+export function usePortalPatch(initialHighlightedIndex = -1) {
   /**
    * In cases where the menu is rendered inside a portal we need to first insert
    * the menu into the DOM, position it relative to the trigger, and then tell
@@ -15,10 +12,6 @@ export function usePortalPatch(
    * item that has not been placed yet as the default position is (0px, 0px).
    */
   const [placed, setPlaced] = useState(false);
-  useEffect(() => {
-    return () => setPlaced(false);
-  }, [open]);
-
   const [highlightedIndex, setHighlightedIndex] = useState(
     initialHighlightedIndex,
   );

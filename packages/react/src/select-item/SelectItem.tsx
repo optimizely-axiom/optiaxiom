@@ -1,4 +1,4 @@
-import { forwardRef } from "react";
+import { forwardRef, type MouseEvent } from "react";
 
 import { Box, type BoxProps } from "../box";
 import { useSelectContext } from "../select-context";
@@ -11,12 +11,36 @@ type SelectItemProps = BoxProps<
 >;
 
 export const SelectItem = forwardRef<HTMLDivElement, SelectItemProps>(
-  ({ children, item, size, ...props }, ref) => {
-    const { downshift, highlightedItem, selectedItem } = useSelectContext(
-      "@optiaxiom/react/SelectItem",
-    );
+  ({ children, item, onMouseMove, size, ...props }, ref) => {
+    const { downshift, highlightedItem, isOpen, selectedItem } =
+      useSelectContext("@optiaxiom/react/SelectItem");
 
-    const itemProps = downshift.getItemProps({ item, ref, ...props });
+    const itemProps = downshift.getItemProps({
+      item,
+      onMouseMove: (event: MouseEvent<HTMLDivElement>) => {
+        onMouseMove?.(event);
+        if (event.defaultPrevented) {
+          return;
+        }
+
+        /**
+         * Downshift listens to mousemove on items and disables scrolling to
+         * highlighted items (since should only scroll when using keyboard).
+         *
+         * But since we use exit animations downshift menu is present in DOM
+         * while closing - and we need to prevent triggering mousemove during
+         * that time.
+         */
+        if (!isOpen) {
+          event.preventDefault();
+          Object.assign(event.nativeEvent, {
+            preventDownshiftDefault: true,
+          });
+        }
+      },
+      ref,
+      ...props,
+    });
     itemProps["aria-selected"] = selectedItem === item;
 
     return (
