@@ -34,7 +34,7 @@ export const SelectTrigger = forwardRef<HTMLButtonElement, SelectTriggerProps>(
     },
     ref,
   ) => {
-    const { disabled, downshift, isOpen, itemToString, selectedItem } =
+    const { disabled, downshift, isOpen, itemToLabel, selectedItem } =
       useSelectContext("@optiaxiom/react/SelectTrigger");
     const { boxProps, restProps } = extractBoxProps(props);
 
@@ -52,7 +52,7 @@ export const SelectTrigger = forwardRef<HTMLButtonElement, SelectTriggerProps>(
       [focusOnOpen],
     );
 
-    const value = selectedItem ? itemToString(selectedItem) : placeholder;
+    const value = selectedItem ? itemToLabel(selectedItem) : placeholder;
 
     return (
       <PopperAnchor

@@ -253,16 +253,16 @@ export const Controlled: Story<Book> = {
     ),
     isItemDisabled: (book) => book.disabled,
     items: books,
-    itemToString: (book) => book?.title ?? "",
+    itemToLabel: (book) => book?.title ?? "",
+    itemToValue: (book) => book?.id,
   },
   render: function Controlled(args) {
-    const [value, setValue] = useState<Book | null>(books[9]);
+    const [value, setValue] = useState<null | string>(books[9].id);
 
     return (
-      <Flex>
+      <Flex flexDirection="row" fontSize="md">
         <Select {...args} onValueChange={setValue} value={value} />
-
-        <Text>Selected Value: {value ? value.title : "None"}</Text>
+        <Text>Selected: {value ? value : "None"}</Text>
       </Flex>
     );
   },
