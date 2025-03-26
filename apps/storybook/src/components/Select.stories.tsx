@@ -64,16 +64,7 @@ export default {
     children: (
       <>
         <SelectTrigger placeholder="Select a language" />
-
-        <SelectContent>
-          {languages.map((item, index) => {
-            return (
-              <SelectRadioItem item={item} key={index}>
-                {item}
-              </SelectRadioItem>
-            );
-          })}
-        </SelectContent>
+        <SelectContent />
       </>
     ),
     defaultOpen: true,

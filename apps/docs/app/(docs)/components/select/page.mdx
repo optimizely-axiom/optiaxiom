@@ -18,15 +18,17 @@ Select works with lists of items provided via the `items` prop. The basic struct
 - `SelectTrigger`
 - `SelectContent`
 
+Items can be an array of strings or it can be an array of objects.
+
 The trigger can be provided a `placeholder` to display in case no values have been selected yet.
 
 <Demo component="select/overview/usage" />
 
 ### Content
 
-The content popover will be empty until we render the same items we provided to the `items` prop. We can render items using `SelectRadioItem`.
+By default, content popover will be populated using the `items` prop but we can provide our own children to customize how items are rendered.
 
-<Demo component="select/overview/content-usage" meta="{18,20}" />
+<Demo component="select/overview/content-usage" meta="{18-31}" />
 
 ## Documentation
 

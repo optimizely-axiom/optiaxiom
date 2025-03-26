@@ -12,6 +12,7 @@ export const [SelectProvider, useSelectContext] = createContext<{
   isOpen: boolean | undefined;
   items: any[];
   itemToLabel: (item: any) => string;
+  itemToValue: (item: any) => string | undefined;
   placed: boolean;
   selectedItem: any;
   setPlaced: (placed: boolean) => void;

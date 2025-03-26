@@ -110,6 +110,7 @@ export function Select<Item>({
         isOpen={isOpen}
         items={items}
         itemToLabel={itemToLabel}
+        itemToValue={itemToValue}
         placed={placed}
         selectedItem={selectedItem}
         setPlaced={setPlaced}
