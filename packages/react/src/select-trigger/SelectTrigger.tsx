@@ -66,6 +66,7 @@ export const SelectTrigger = forwardRef<HTMLButtonElement, SelectTriggerProps>(
             onKeyDown?.(event as KeyboardEvent<HTMLDivElement>);
             document.dispatchEvent(new Event("tooltip.open"));
           },
+          type: "button",
         })}
       >
         <Slot ref={ref}>
