@@ -6,7 +6,7 @@ import {
   SelectTrigger,
 } from "@optiaxiom/react/unstable";
 
-const colors = ["Ocean", "Blue", "Purple", "Red", "Orange", "Yellow"];
+const colors = ["Blue", "Purple", "Red", "Orange", "Yellow"];
 
 export function App() {
   return (

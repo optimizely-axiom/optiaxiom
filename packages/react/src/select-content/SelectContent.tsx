@@ -8,6 +8,7 @@ import { Box, type BoxProps, extractBoxProps } from "../box";
 import { MenuListbox } from "../menu-listbox";
 import { ModalLayer } from "../modal-layer";
 import { useSelectContext } from "../select-context";
+import { SelectRadioItem } from "../select-radio-item";
 import { Spinner } from "../spinner";
 import { TransitionGroup } from "../transition-group";
 import * as styles from "./SelectContent.css";
@@ -47,9 +48,15 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
     ref,
   ) => {
     const { boxProps, restProps } = extractBoxProps(props);
-    const { downshift, isOpen, placed, setPlaced } = useSelectContext(
-      "@optiaxiom/react/SelectContent",
-    );
+    const {
+      downshift,
+      isOpen,
+      items,
+      itemToLabel,
+      itemToValue,
+      placed,
+      setPlaced,
+    } = useSelectContext("@optiaxiom/react/SelectContent");
 
     return (
       <TransitionGroup
@@ -86,7 +93,14 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
                     <Spinner />
                   </Box>
                 ) : (
-                  children
+                  (children ??
+                  items.map((item) => {
+                    return (
+                      <SelectRadioItem item={item} key={itemToValue(item)}>
+                        {itemToLabel(item)}
+                      </SelectRadioItem>
+                    );
+                  }))
                 )}
               </PopperContent>
             </MenuListbox>

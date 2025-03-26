@@ -1,5 +1,6 @@
 "use client";
 
+import { Box } from "@optiaxiom/react";
 import {
   Select,
   SelectContent,
@@ -7,16 +8,25 @@ import {
   SelectTrigger,
 } from "@optiaxiom/react/unstable";
 
-const colors = ["Ocean", "Blue", "Purple", "Red", "Orange", "Yellow"];
+const colors = ["Blue", "Purple", "Red", "Orange", "Yellow"];
 
 export function App() {
   return (
     <Select items={colors}>
       <SelectTrigger placeholder="Select colors..." />
       <SelectContent>
-        {colors.map((item) => (
-          <SelectRadioItem item={item} key={item}>
-            {item}
+        {colors.map((color) => (
+          <SelectRadioItem
+            icon={
+              <Box
+                rounded="sm"
+                style={{ aspectRatio: 1, backgroundColor: color }}
+              />
+            }
+            item={color}
+            key={color}
+          >
+            {color}
           </SelectRadioItem>
         ))}
       </SelectContent>
