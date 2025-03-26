@@ -7,6 +7,7 @@ import {
   forwardRef,
   type ReactElement,
   type ReactNode,
+  useMemo,
   useRef,
 } from "react";
 
@@ -78,9 +79,13 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps<any>>(
     useObserveValue(innerRef, setShadowValue);
     useObserveReset(innerRef, setShadowValue);
 
-    const selectedItem = shadowValue
-      ? items.find((item) => itemToValue(item) === shadowValue)
-      : undefined;
+    const selectedItem = useMemo(
+      () =>
+        shadowValue
+          ? items.find((item) => itemToValue(item) === shadowValue)
+          : undefined,
+      [itemToValue, items, shadowValue],
+    );
 
     const [isOpen, setIsOpen] = useControllableState({
       defaultProp: defaultOpen,
@@ -89,7 +94,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps<any>>(
     });
 
     const [highlightedIndex, setHighlightedIndex, placed, setPlaced] =
-      usePortalPatch(
+      usePortalPatch(() =>
         selectedItem
           ? items.findIndex(
               (item) => itemToValue(selectedItem) === itemToValue(item),

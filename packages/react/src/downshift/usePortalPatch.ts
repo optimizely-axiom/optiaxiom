@@ -2,7 +2,9 @@
 
 import { useState } from "react";
 
-export function usePortalPatch(initialHighlightedIndex = -1) {
+export function usePortalPatch(
+  initialHighlightedIndex: (() => number) | number = -1,
+) {
   /**
    * In cases where the menu is rendered inside a portal we need to first insert
    * the menu into the DOM, position it relative to the trigger, and then tell
