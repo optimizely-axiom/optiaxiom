@@ -1,23 +1,34 @@
 import { Popper } from "@radix-ui/react-popper";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
-import { useSelect, type UseSelectProps } from "downshift";
+import { useSelect } from "downshift";
 import { type ReactNode } from "react";
 
 import { usePortalPatch } from "../downshift";
 import { SelectProvider } from "../select-context";
 
-type SelectProps<Item> = Pick<
-  UseSelectProps<Item>,
-  "isItemDisabled" | "items" | "itemToKey" | "itemToString"
-> & {
+type SelectProps<Item> = (NoInfer<Item> extends string
+  ? {
+      defaultValue?: NoInfer<Item> | null;
+      itemToValue?: (
+        item: NoInfer<Item> | null,
+      ) => NoInfer<Item> | null | undefined;
+      onValueChange?: (value: NoInfer<Item> | null) => void;
+      value?: NoInfer<Item> | null;
+    }
+  : {
+      defaultValue?: null | string;
+      itemToValue: (item: NoInfer<Item> | null) => null | string | undefined;
+      onValueChange?: (value: null | string) => void;
+      value?: null | string;
+    }) & {
   children?: ReactNode;
   defaultOpen?: boolean;
-  defaultValue?: Item | null;
   disabled?: boolean;
+  isItemDisabled?: (item: NoInfer<Item>, index: number) => boolean;
+  items: Item[];
+  itemToLabel?: (item: NoInfer<Item> | null) => string;
   onOpenChange?: (open: boolean) => void;
-  onValueChange?: (value: Item | null) => void;
   open?: boolean;
-  value?: Item | null;
 };
 
 export function Select<Item>({
@@ -26,19 +37,23 @@ export function Select<Item>({
   defaultValue,
   disabled,
   items,
-  itemToKey = (value) => value,
-  itemToString = (value) => (value ? String(value) : ""),
+  itemToLabel = (value) => (value ? String(value) : ""),
+  itemToValue = (item: unknown) =>
+    typeof item === "string" ? item : undefined,
   onOpenChange,
   onValueChange,
   open,
-  value,
+  value: valueProp,
   ...props
 }: SelectProps<Item>) {
-  const [selectedItem, setSelectedItem] = useControllableState({
+  const [value, setValue] = useControllableState({
     defaultProp: defaultValue,
-    onChange: onValueChange,
-    prop: value,
+    onChange: onValueChange as (value: null | string) => void,
+    prop: valueProp,
   });
+  const selectedItem = value
+    ? items.find((item) => itemToValue(item) === value)
+    : undefined;
 
   const [isOpen, setIsOpen] = useControllableState({
     defaultProp: defaultOpen,
@@ -49,7 +64,9 @@ export function Select<Item>({
   const [highlightedIndex, setHighlightedIndex, placed, setPlaced] =
     usePortalPatch(
       selectedItem
-        ? items.findIndex((item) => itemToKey(selectedItem) === itemToKey(item))
+        ? items.findIndex(
+            (item) => itemToValue(selectedItem) === itemToValue(item),
+          )
         : -1,
     );
 
@@ -58,8 +75,8 @@ export function Select<Item>({
     highlightedIndex,
     isOpen: placed,
     items,
-    itemToKey,
-    itemToString,
+    itemToKey: itemToValue,
+    itemToString: itemToLabel,
     onHighlightedIndexChange(changes) {
       if (
         ((changes.type === useSelect.stateChangeTypes.ItemMouseMove ||
@@ -74,7 +91,7 @@ export function Select<Item>({
       setIsOpen(isOpen);
     },
     onSelectedItemChange({ selectedItem }) {
-      setSelectedItem(selectedItem);
+      setValue(itemToValue(selectedItem));
     },
     selectedItem: selectedItem ?? null,
   });
@@ -92,8 +109,7 @@ export function Select<Item>({
         highlightedItem={items[highlightedIndex]}
         isOpen={isOpen}
         items={items}
-        itemToKey={itemToKey}
-        itemToString={itemToString}
+        itemToLabel={itemToLabel}
         placed={placed}
         selectedItem={selectedItem}
         setPlaced={setPlaced}
