@@ -1,6 +1,7 @@
 import { PopperAnchor } from "@radix-ui/react-popper";
 import { Slot } from "@radix-ui/react-slot";
 import {
+  type FocusEvent,
   forwardRef,
   type KeyboardEvent,
   useEffect,
@@ -28,13 +29,14 @@ export const SelectTrigger = forwardRef<HTMLButtonElement, SelectTriggerProps>(
       "aria-labelledby": ariaLabelledBy,
       asChild,
       children,
+      onBlur: onBlurProp,
       onKeyDown,
       placeholder,
       ...props
     },
     ref,
   ) => {
-    const { disabled, downshift, isOpen, itemToLabel, selectedItem } =
+    const { disabled, downshift, isOpen, itemToLabel, onBlur, selectedItem } =
       useSelectContext("@optiaxiom/react/SelectTrigger");
     const { boxProps, restProps } = extractBoxProps(props);
 
@@ -62,6 +64,10 @@ export const SelectTrigger = forwardRef<HTMLButtonElement, SelectTriggerProps>(
           ...restProps,
           "aria-labelledby": labelId,
           disabled,
+          onBlur: (event) => {
+            onBlurProp?.(event as FocusEvent<HTMLDivElement>);
+            onBlur?.(event);
+          },
           onKeyDown: (event) => {
             onKeyDown?.(event as KeyboardEvent<HTMLDivElement>);
             document.dispatchEvent(new Event("tooltip.open"));

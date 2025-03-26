@@ -155,7 +155,7 @@ export const Group: Story = {
         </SelectContent>
       </>
     ),
-    defaultValue: null,
+    defaultValue: undefined,
     items: combinedFoodList,
   },
 };
@@ -242,6 +242,7 @@ export const Controlled: Story<Book> = {
         </SelectContent>
       </>
     ),
+    defaultValue: undefined,
     isItemDisabled: (book) => book.disabled,
     items: books,
     itemToLabel: (book) => book?.title ?? "",
@@ -292,7 +293,7 @@ const environments = ["Development", "QA", "Stage", "Production"];
 export const AlternateTrigger: Story<string> = {
   args: {
     defaultOpen: false,
-    defaultValue: null,
+    defaultValue: undefined,
   },
   render: function AsyncLoading(args) {
     const [value, setValue] = useState<null | string>();
