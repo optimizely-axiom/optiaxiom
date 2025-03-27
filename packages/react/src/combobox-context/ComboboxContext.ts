@@ -19,12 +19,11 @@ export const [ComboboxProvider, useComboboxContext] = createContext<{
   };
   inputValue?: string;
   isItemDisabled: (item: any, index: number) => boolean;
+  isItemSelected: (item: any, index: number) => boolean;
   items: any[];
-  itemToKey: (item: any) => string;
-  itemToString: (item: any) => string;
+  itemToLabel: (item: any) => string;
   onInputValueChange?: (value: string) => void;
   onItemSelect?: (value: any) => void;
   open?: boolean | undefined;
   setOpen: (open: boolean) => void;
-  value?: Set<any>;
 }>("@optiaxiom/react/Combobox");

@@ -24,11 +24,11 @@ export const CommandSubItem = forwardRef<HTMLDivElement, CommandSubItemProps>(
       highlightedItem,
       highlightedSubIndex,
       isItemDisabled,
+      isItemSelected,
       items,
       itemToSubItems,
       setHighlightedIndex,
       setHighlightedSubIndex,
-      value,
     } = useCommandContext("@optiaxiom/react/CommandSubItem");
     const { item: parentItem } = useCommandSubContext(
       "@optiaxiom/react/CommandSubItem",
@@ -38,10 +38,11 @@ export const CommandSubItem = forwardRef<HTMLDivElement, CommandSubItemProps>(
       highlightedItem === parentItem && highlightedSubIndex !== -1
         ? subItems[highlightedSubIndex]
         : null;
+    const index = items.indexOf(parentItem);
     const subIndex = subItems.indexOf(item);
     const disabled = isItemDisabled(item, subIndex);
     const highlighted = highlightedSubItem === item;
-    const isSelected = selected ?? value?.has(item);
+    const isSelected = selected ?? isItemSelected(item, index);
 
     const innerRef = useRef<HTMLDivElement>(null);
     const ref = useComposedRefs(innerRef, outerRef);
@@ -76,7 +77,7 @@ export const CommandSubItem = forwardRef<HTMLDivElement, CommandSubItemProps>(
             return;
           }
 
-          setHighlightedIndex(items.indexOf(parentItem), "pointer");
+          setHighlightedIndex(index, "pointer");
           setHighlightedSubIndex(subIndex, "pointer");
         }}
         ref={ref}

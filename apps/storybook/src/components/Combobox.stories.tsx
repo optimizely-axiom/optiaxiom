@@ -85,6 +85,7 @@ export const Basic: Story = {
     return (
       <Combobox
         {...args}
+        isItemSelected={(item) => item === value}
         items={items}
         onInputValueChange={(inputValue) => {
           setItems(
@@ -101,7 +102,6 @@ export const Basic: Story = {
         }}
         onOpenChange={setOpen}
         open={open}
-        value={value ? [value] : []}
       >
         <ComboboxTrigger placeholder="Select a language" />
         <ComboboxContent>
@@ -152,6 +152,7 @@ export const AsyncLoading: Story = {
     return (
       <Combobox
         {...args}
+        isItemSelected={(item) => item === value}
         items={items}
         onInputValueChange={fetchData}
         onItemSelect={(value) => {
@@ -160,7 +161,6 @@ export const AsyncLoading: Story = {
         }}
         onOpenChange={setOpen}
         open={open}
-        value={value ? [value] : []}
       >
         <ComboboxTrigger placeholder="Select a language" />
         <ComboboxContent>
@@ -190,6 +190,7 @@ export const Multiple: Story = {
     return (
       <Combobox
         {...args}
+        isItemSelected={(item) => value.includes(item)}
         items={items}
         onInputValueChange={(inputValue) => {
           setItems(
@@ -209,7 +210,6 @@ export const Multiple: Story = {
         }}
         onOpenChange={setOpen}
         open={open}
-        value={value}
       >
         <ComboboxTrigger placeholder="Select a language" />
         <ComboboxContent>
@@ -293,8 +293,9 @@ export const People: Story<(typeof users)[number]> = {
     return (
       <Combobox
         {...args}
+        isItemSelected={(item) => value.has(item)}
         items={items}
-        itemToString={(user) => (user ? user.name : "")}
+        itemToLabel={(user) => (user ? user.name : "")}
         onInputValueChange={(inputValue) => {
           setItems(
             inputValue
@@ -328,7 +329,6 @@ export const People: Story<(typeof users)[number]> = {
         }}
         onOpenChange={setOpen}
         open={open}
-        value={value}
       >
         <ComboboxTrigger placeholder="Select assignees">
           <AvatarGroup>
@@ -486,8 +486,9 @@ export const Controlled: Story<Book> = {
         isItemDisabled={(item) =>
           item === controlledActions.clear && value.length === 0
         }
+        isItemSelected={(item) => value.includes(item)}
         items={[...items, controlledActions.clear, controlledActions.done]}
-        itemToString={(book) => (book ? String(book.title) : "")}
+        itemToLabel={(book) => (book ? String(book.title) : "")}
         onInputValueChange={(inputValue) => {
           setItems(
             books.filter(
@@ -513,7 +514,6 @@ export const Controlled: Story<Book> = {
         }}
         onOpenChange={setOpen}
         open={open}
-        value={value}
       >
         <ComboboxTrigger placeholder="Select books" />
 
@@ -570,6 +570,7 @@ export const Group: Story = {
     return (
       <Combobox
         {...args}
+        isItemSelected={(item) => item === value}
         items={items}
         onInputValueChange={(inputValue) => {
           setItems(
@@ -587,7 +588,6 @@ export const Group: Story = {
         }}
         onOpenChange={setOpen}
         open={open}
-        value={value ? [value] : []}
       >
         <ComboboxTrigger placeholder="Select an item" />
 

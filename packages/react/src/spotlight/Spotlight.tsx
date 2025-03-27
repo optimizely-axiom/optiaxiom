@@ -25,8 +25,7 @@ export function Spotlight<Item>({
   inputValue,
   isItemDisabled = () => false,
   items,
-  itemToKey = (value) => value,
-  itemToString = (value) => (value ? String(value) : ""),
+  itemToLabel = (value) => (value ? String(value) : ""),
   itemToSubItems,
   onInputValueChange,
   onItemSelect,
@@ -53,8 +52,7 @@ export function Spotlight<Item>({
         inputValue={inputValue}
         isItemDisabled={isItemDisabled}
         items={items}
-        itemToKey={itemToKey}
-        itemToString={itemToString}
+        itemToLabel={itemToLabel}
         itemToSubItems={itemToSubItems}
         onInputValueChange={onInputValueChange}
         onItemSelect={onItemSelect}

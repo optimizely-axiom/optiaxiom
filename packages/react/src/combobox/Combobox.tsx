@@ -3,7 +3,6 @@ import {
   type ComponentPropsWithoutRef,
   type ReactNode,
   useEffect,
-  useMemo,
 } from "react";
 
 import type { Command } from "../command";
@@ -46,14 +45,13 @@ export function Combobox<Item>({
   defaultOpen = false,
   inputValue,
   isItemDisabled = () => false,
+  isItemSelected = () => false,
   items,
-  itemToKey = (value) => value,
-  itemToString = (value) => (value ? String(value) : ""),
+  itemToLabel = (value) => (value ? String(value) : ""),
   onInputValueChange,
   onItemSelect,
   onOpenChange,
   open: openProp,
-  value: valueProp,
 }: ComboboxProps<Item>) {
   const components = useResponsiveMatches({
     base: {
@@ -67,11 +65,6 @@ export function Combobox<Item>({
       Trigger: PopoverTrigger,
     },
   });
-
-  const value = useMemo(
-    () => (Array.isArray(valueProp) ? new Set(valueProp) : valueProp),
-    [valueProp],
-  );
 
   const [open, setOpen] = useControllableState({
     defaultProp: defaultOpen,
@@ -93,14 +86,13 @@ export function Combobox<Item>({
         components={components}
         inputValue={inputValue}
         isItemDisabled={isItemDisabled}
+        isItemSelected={isItemSelected}
         items={items}
-        itemToKey={itemToKey}
-        itemToString={itemToString}
+        itemToLabel={itemToLabel}
         onInputValueChange={onInputValueChange}
         onItemSelect={onItemSelect}
         open={open}
         setOpen={setOpen}
-        value={value}
       >
         {children}
       </ComboboxProvider>

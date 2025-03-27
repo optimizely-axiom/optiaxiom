@@ -21,8 +21,7 @@ export const SpotlightContent = forwardRef<
     inputValue,
     isItemDisabled,
     items,
-    itemToKey,
-    itemToString,
+    itemToLabel,
     itemToSubItems,
     onInputValueChange,
     onItemSelect,
@@ -45,8 +44,7 @@ export const SpotlightContent = forwardRef<
         inputValue={inputValue}
         isItemDisabled={isItemDisabled}
         items={items}
-        itemToKey={itemToKey}
-        itemToString={itemToString}
+        itemToLabel={itemToLabel}
         itemToSubItems={itemToSubItems}
         onInputValueChange={onInputValueChange}
         onItemSelect={onItemSelect}

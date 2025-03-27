@@ -26,12 +26,11 @@ export const ComboboxContent = forwardRef<HTMLDivElement, ComboboxContentProps>(
       components,
       inputValue,
       isItemDisabled,
+      isItemSelected,
       items,
-      itemToKey,
-      itemToString,
+      itemToLabel,
       onInputValueChange,
       onItemSelect,
-      value,
     } = useComboboxContext("@optiaxiom/react/ComboboxContent");
 
     return (
@@ -45,9 +44,9 @@ export const ComboboxContent = forwardRef<HTMLDivElement, ComboboxContentProps>(
         <Command
           inputValue={inputValue}
           isItemDisabled={isItemDisabled}
+          isItemSelected={isItemSelected}
           items={items}
-          itemToKey={itemToKey}
-          itemToString={itemToString}
+          itemToLabel={itemToLabel}
           onInputValueChange={onInputValueChange}
           onItemSelect={onItemSelect}
           stateReducer={(state, actionAndChanges) => {
@@ -67,7 +66,6 @@ export const ComboboxContent = forwardRef<HTMLDivElement, ComboboxContentProps>(
                 return changes;
             }
           }}
-          value={value}
         >
           <CommandListbox>{children}</CommandListbox>
         </Command>

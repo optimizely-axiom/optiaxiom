@@ -21,8 +21,9 @@ export function App() {
   return (
     <Combobox
       isItemDisabled={(item) => Boolean(item.isDisabled)}
+      isItemSelected={(item) => value.includes(item)}
       items={items}
-      itemToString={(item) => (item ? item.label : "")}
+      itemToLabel={(item) => (item ? item.label : "")}
       onInputValueChange={(inputValue) => {
         setItems(
           inputValue
@@ -39,7 +40,6 @@ export function App() {
             : [...prev, value],
         )
       }
-      value={value}
     >
       <ComboboxTrigger placeholder="Search a color..." w="224" />
 

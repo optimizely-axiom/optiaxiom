@@ -21,11 +21,10 @@ type CommandItemProps = BoxProps<
 
 export const CommandItem = forwardRef<HTMLDivElement, CommandItemProps>(
   ({ children, item, selected, size, ...props }, ref) => {
-    const { downshift, highlightedItem, value } = useCommandContext(
-      "@optiaxiom/react/CommandItem",
-    );
+    const { downshift, highlightedItem, isItemSelected, items } =
+      useCommandContext("@optiaxiom/react/CommandItem");
     const itemProps = downshift.getItemProps({
-      "aria-selected": selected ?? value?.has(item),
+      "aria-selected": selected ?? isItemSelected(item, items.indexOf(item)),
       item,
       ref,
       ...props,
