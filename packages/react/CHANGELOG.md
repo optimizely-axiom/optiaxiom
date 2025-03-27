@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 1.2.1
+
+### Patch Changes
+
+- d308d23: set select popover min-width to trigger
+
 ## 1.2.0
 
 ### Minor Changes
