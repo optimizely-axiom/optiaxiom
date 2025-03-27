@@ -12,7 +12,7 @@ export const CommandListbox = forwardRef<HTMLDivElement, CommandListProps>(
       "@optiaxiom/react/CommandListbox",
     );
     useEffect(() => {
-      setPlaced(true);
+      requestAnimationFrame(() => setPlaced(true));
     }, [setPlaced]);
 
     return (
