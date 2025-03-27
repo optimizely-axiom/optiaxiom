@@ -105,6 +105,15 @@ export function register<P extends object>(
 
     const connectedCallback = () => {
       const mount = (context: unknown) => {
+        const checked =
+          "checked" in element && typeof element.checked === "boolean"
+            ? element.checked
+            : undefined;
+        const value =
+          "value" in element && typeof element.value === "string"
+            ? element.value
+            : undefined;
+
         vdom = cloneElement(
           toVdom(element, withContextProvider(Component, { context, ref }))!,
           props,
@@ -112,6 +121,12 @@ export function register<P extends object>(
         root.render(vdom);
         observer.observe(element, { attributes: true });
         if (internals && ref.current) {
+          if (checked) {
+            ref.current.checked = checked;
+          }
+          if (value) {
+            ref.current.value = value;
+          }
           setFormValue(internals, ref.current);
         }
       };
