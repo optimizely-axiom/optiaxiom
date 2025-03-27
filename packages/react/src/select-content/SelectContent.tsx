@@ -81,7 +81,7 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
             <MenuListbox
               asChild
               maxH="sm"
-              minW={loading ? "trigger" : undefined}
+              minW="trigger"
               provider="popper"
               {...styles.content({}, className)}
               {...boxProps}
