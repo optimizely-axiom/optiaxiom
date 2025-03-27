@@ -8,7 +8,6 @@ import {
   ComboboxInput,
   ComboboxScrollArea,
   ComboboxTrigger,
-  ComboboxVirtualized,
 } from "@optiaxiom/react/unstable";
 import { useState } from "react";
 
@@ -45,16 +44,14 @@ export function App() {
         <ComboboxInput />
 
         <ComboboxScrollArea>
-          <ComboboxVirtualized items={items}>
-            {(item) => (
-              <ComboboxCheckboxItem item={item} key={item}>
-                {item}
-              </ComboboxCheckboxItem>
-            )}
-          </ComboboxVirtualized>
-
-          {items.length === 0 && <ComboboxEmpty>No result found</ComboboxEmpty>}
+          {(item) => (
+            <ComboboxCheckboxItem item={item} key={item}>
+              {item}
+            </ComboboxCheckboxItem>
+          )}
         </ComboboxScrollArea>
+
+        {items.length === 0 && <ComboboxEmpty>No result found</ComboboxEmpty>}
       </ComboboxContent>
     </Combobox>
   );

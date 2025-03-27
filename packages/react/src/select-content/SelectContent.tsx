@@ -1,10 +1,15 @@
 import { PopperContent } from "@radix-ui/react-popper";
 import { Portal } from "@radix-ui/react-portal";
-import { type ComponentPropsWithoutRef, forwardRef } from "react";
+import {
+  type ComponentPropsWithoutRef,
+  forwardRef,
+  type ReactNode,
+} from "react";
 
 import type { ExcludeProps } from "../utils";
 
 import { Box, type BoxProps, extractBoxProps } from "../box";
+import { ListboxVirtualized } from "../listbox-virtualized";
 import { MenuListbox } from "../menu-listbox";
 import { ModalLayer } from "../modal-layer";
 import { useSelectContext } from "../select-context";
@@ -17,6 +22,8 @@ type SelectContentProps = ExcludeProps<
   BoxProps<
     typeof PopperContent,
     Pick<ComponentPropsWithoutRef<typeof MenuListbox>, "maxH" | "minW"> & {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      children?: ((item: any) => ReactNode) | ReactNode;
       /**
        * Whether to show loading spinner inside the menu.
        */
@@ -50,6 +57,7 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
     const { boxProps, restProps } = extractBoxProps(props);
     const {
       downshift,
+      highlightedItem,
       isOpen,
       items,
       itemToLabel,
@@ -84,6 +92,7 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
             >
               <PopperContent
                 align={align}
+                asChild={!loading && typeof children === "function"}
                 onPlaced={() => setPlaced(true)}
                 side={side}
                 sideOffset={5}
@@ -92,15 +101,25 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
                   <Box display="flex" justifyContent="center" p="16">
                     <Spinner />
                   </Box>
+                ) : children ? (
+                  typeof children === "function" ? (
+                    <ListboxVirtualized
+                      highlightedItem={highlightedItem}
+                      items={items}
+                    >
+                      {children}
+                    </ListboxVirtualized>
+                  ) : (
+                    children
+                  )
                 ) : (
-                  (children ??
                   items.map((item) => {
                     return (
                       <SelectRadioItem item={item} key={itemToValue(item)}>
                         {itemToLabel(item)}
                       </SelectRadioItem>
                     );
-                  }))
+                  })
                 )}
               </PopperContent>
             </MenuListbox>
