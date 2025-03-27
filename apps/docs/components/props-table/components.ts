@@ -64,7 +64,6 @@ export const components = {
   ComboboxScrollArea: getProps("ComboboxScrollArea"),
   ComboboxSeparator: getProps("ComboboxSeparator"),
   ComboboxTrigger: getProps("ComboboxTrigger"),
-  ComboboxVirtualized: getProps("ComboboxVirtualized"),
   DataTable: getProps("DataTable"),
   DataTableBody: getProps("DataTableBody"),
   DataTableFooter: getProps("DataTableFooter"),

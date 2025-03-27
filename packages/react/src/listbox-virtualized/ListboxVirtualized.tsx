@@ -2,6 +2,7 @@ import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import { useVirtualizer } from "@tanstack/react-virtual";
 import {
   forwardRef,
+  type LegacyRef,
   type ReactElement,
   type ReactNode,
   useEffect,
@@ -11,21 +12,22 @@ import {
 } from "react";
 
 import { Box, type BoxProps } from "../box";
-import { useCommandContext } from "../command-context";
 import { ListboxScrollArea } from "../listbox-scroll-area";
 
-type ComboboxVirtualizedProps<T = unknown> = BoxProps<
+type ListboxVirtualizedProps<T = unknown> = BoxProps<
   "div",
   {
     children: (item: T) => ReactNode;
+    highlightedItem?: T;
     items: T[];
+    ref?: LegacyRef<HTMLDivElement>;
   }
 >;
 
-export const ComboboxVirtualized = forwardRef<
+export const ListboxVirtualized = forwardRef<
   HTMLDivElement,
-  ComboboxVirtualizedProps
->(({ children, items, ...props }, outerRef) => {
+  ListboxVirtualizedProps
+>(({ children, highlightedItem, items, ...props }, outerRef) => {
   const innerRef = useRef<HTMLDivElement>(null);
   const ref = useComposedRefs(outerRef, innerRef);
 
@@ -46,16 +48,13 @@ export const ComboboxVirtualized = forwardRef<
     getScrollElement: () => innerRef.current,
   });
 
-  const { highlightedItem } = useCommandContext(
-    "@optiaxiom/react/ComboboxVirtualized",
-  );
   const itemToIndexMap = useMemo(
     () => new Map(items.map((item, index) => [item, index])),
     [items],
   );
   useEffect(() => {
     const index = itemToIndexMap.get(highlightedItem);
-    if (typeof index !== "number") {
+    if (!enabled || typeof index !== "number") {
       return;
     }
     rowVirtualizer.scrollToIndex(index);
@@ -114,8 +113,8 @@ export const ComboboxVirtualized = forwardRef<
       </Box>
     </ListboxScrollArea>
   );
-}) as (<T>(props: ComboboxVirtualizedProps<T>) => ReactElement) & {
+}) as (<T>(props: ListboxVirtualizedProps<T>) => ReactElement) & {
   displayName: string;
 };
 
-ComboboxVirtualized.displayName = "@optiaxiom/react/ComboboxVirtualized";
+ListboxVirtualized.displayName = "@optiaxiom/react/ListboxVirtualized";

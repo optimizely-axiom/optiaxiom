@@ -94,7 +94,6 @@ import {
   ComboboxScrollArea,
   ComboboxSeparator,
   ComboboxTrigger,
-  ComboboxVirtualized,
 } from "@optiaxiom/react";
 
 export default () => (
@@ -115,12 +114,6 @@ export default () => (
           <ComboboxCheckboxItem />
           <ComboboxRadioItem />
         </ComboboxGroup>
-
-        <ComboboxVirtualized>
-          <ComboboxItem />
-          <ComboboxCheckboxItem />
-          <ComboboxRadioItem />
-        </ComboboxVirtualized>
 
         <ComboboxEmpty />
         <ComboboxSeparator />
@@ -199,9 +192,9 @@ Use the `loading` prop on `ComboboxScrollArea` to show a loading spinner if the 
 
 ### Virtualized
 
-We can use `ComboboxVirtualized` component to improve performance when rendering a large number of items inside the combobox.
+We can use virtualization to improve performance when rendering a large number of items inside the combobox. Change `children` to a render prop to enable virtualization.
 
-<Demo component="combobox/virtualized-usage" meta="{34-40}" />
+<Demo component="combobox/virtualized-usage" meta="{47-51}" />
 
 ### Related
 
@@ -220,8 +213,6 @@ We can use `ComboboxVirtualized` component to improve performance when rendering
 <PropsTable component="ComboboxInput" />
 ### ComboboxScrollArea
 <PropsTable component="ComboboxScrollArea" />
-### ComboboxVirtualized
-<PropsTable component="ComboboxVirtualized" />
 ### ComboboxItem
 <PropsTable component="ComboboxItem" />
 ### ComboboxCheckboxItem
