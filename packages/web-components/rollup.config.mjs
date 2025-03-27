@@ -531,7 +531,11 @@ function webComponentPlugin({ include = [] }) {
       { esModuleInterop: true },
       {
         propFilter: (prop) =>
-          prop.parent ? !prop.parent.fileName.includes("@types/react") : true,
+          prop.parent
+            ? prop.parent.fileName.includes("@types/react")
+              ? ["defaultChecked", "defaultValue"].includes(prop.name)
+              : true
+            : true,
         savePropValueAsString: true,
         shouldExtractValuesFromUnion: true,
       },
