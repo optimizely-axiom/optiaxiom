@@ -1,5 +1,20 @@
 # @optiaxiom/react
 
+## 1.2.0
+
+### Minor Changes
+
+- 3e36dca: refactor item/value Select API
+- 855de4a: refactor Combobox selection API
+- 6fcd605: simplify Combobox virtualization and also enable in Select component
+
+### Patch Changes
+
+- 64a9519: populate combobox items by default
+- eac251d: do not use controlled value for SearchInput
+- df7a5cd: support form usage with hidden select
+- c9fd619: populate select items by default
+
 ## 1.1.3
 
 ### Patch Changes

@@ -1,5 +1,14 @@
 # @optiaxiom/web-components
 
+## 0.9.1
+
+### Patch Changes
+
+- ebc3141: include more form related native prop types when building components
+- eac251d: do not use controlled value for SearchInput
+- be5d476: hydrate value while component is being built
+- 53c3af1: fix parsing string prop types
+
 ## 0.9.0
 
 ### Minor Changes
