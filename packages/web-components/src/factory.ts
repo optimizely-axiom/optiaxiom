@@ -94,13 +94,16 @@ export const factory = (
         static formAssociated = true;
 
         get checked() {
-          return this._component?.ref.current?.checked;
+          return this._component?.ref.current
+            ? this._component.ref.current.checked
+            : this.#_checked;
         }
         set checked(checked) {
-          if (!this._component?.ref.current) {
-            return;
+          if (this._component?.ref.current) {
+            this._component.ref.current.checked = checked ?? false;
+          } else {
+            this.#_checked = checked;
           }
-          this._component.ref.current.checked = checked ?? false;
         }
         get form() {
           return this.#internals.form;
@@ -118,18 +121,23 @@ export const factory = (
           return this.#internals.validity;
         }
         get value() {
-          return this._component?.ref.current?.value;
+          return this._component?.ref.current
+            ? this._component.ref.current.value
+            : this.#_value;
         }
         set value(value) {
-          if (!this._component?.ref.current) {
-            return;
+          if (this._component?.ref.current) {
+            this._component.ref.current.value = value ?? "";
+          } else {
+            this.#_value = value;
           }
-          this._component.ref.current.value = value ?? "";
         }
         get willValidate() {
           return this.#internals.willValidate;
         }
 
+        #_checked?: boolean;
+        #_value?: string;
         #internals;
 
         constructor() {
