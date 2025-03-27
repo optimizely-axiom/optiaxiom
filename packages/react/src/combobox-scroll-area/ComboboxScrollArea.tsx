@@ -1,6 +1,8 @@
 import { forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
+import { ComboboxRadioItem } from "../combobox-radio-item";
+import { useCommandContext } from "../command-context";
 import { ListboxScrollArea } from "../listbox-scroll-area";
 import { Spinner } from "../spinner";
 
@@ -18,6 +20,8 @@ export const ComboboxScrollArea = forwardRef<
   HTMLDivElement,
   ComboboxScrollAreaProps
 >(({ children, loading, ...props }, ref) => {
+  const { items } = useCommandContext("@optiaxiom/react/ComboboxScrollArea");
+
   return (
     <ListboxScrollArea ref={ref} {...props}>
       {loading ? (
@@ -25,7 +29,12 @@ export const ComboboxScrollArea = forwardRef<
           <Spinner />
         </Box>
       ) : (
-        children
+        (children ??
+        items.map((item) => (
+          <ComboboxRadioItem item={item} key={item}>
+            {item}
+          </ComboboxRadioItem>
+        )))
       )}
     </ListboxScrollArea>
   );

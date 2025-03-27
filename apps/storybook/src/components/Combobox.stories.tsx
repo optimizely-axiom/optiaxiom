@@ -104,17 +104,7 @@ export const Basic: Story = {
         open={open}
       >
         <ComboboxTrigger placeholder="Select a language" />
-        <ComboboxContent>
-          <ComboboxInput placeholder="Languages..." />
-          <ComboboxScrollArea>
-            {items.map((item) => (
-              <ComboboxRadioItem item={item} key={item}>
-                {item}
-              </ComboboxRadioItem>
-            ))}
-          </ComboboxScrollArea>
-          {items.length === 0 && <ComboboxEmpty>No result found</ComboboxEmpty>}
-        </ComboboxContent>
+        <ComboboxContent />
       </Combobox>
     );
   },
