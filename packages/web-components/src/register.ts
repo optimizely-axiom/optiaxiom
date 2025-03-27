@@ -33,7 +33,10 @@ declare global {
 export function register<P extends object>(
   name: `${string}-${string}`,
   Component: FunctionComponent<P>,
-  propTypes: Record<string, "boolean" | "function" | "number" | "object">,
+  propTypes: Record<
+    string,
+    "boolean" | "function" | "number" | "object" | "string"
+  >,
   components: Set<string>,
 ) {
   const withPreactElement = (

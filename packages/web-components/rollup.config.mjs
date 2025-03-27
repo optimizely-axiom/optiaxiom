@@ -637,7 +637,12 @@ export default register(
 const getPropType = (type) => {
   if (type.name === "number") {
     return "number";
-  } else if (type.name === "enum" && type.raw === "boolean") {
+  } else if (type.name === "string") {
+    return "string";
+  } else if (
+    type.name === "enum" &&
+    (type.raw === "boolean" || type.raw === "Booleanish")
+  ) {
     return "boolean";
   } else if (type.raw === "ReactNode") {
     return "object";
@@ -649,6 +654,28 @@ const getPropType = (type) => {
     )
   ) {
     return "object";
+  } else if (
+    type.name === "enum" &&
+    Array.isArray(type.value) &&
+    (type.value.find(
+      (item) => item.value === "string" || item.value === "string & {}",
+    ) ||
+      type.value.every(
+        (item) =>
+          (item.value.startsWith('"') && item.value.endsWith('"')) ||
+          ["false", "true"].includes(item.value) ||
+          item.value.endsWith("[]"),
+      ))
+  ) {
+    return "string";
+  } else if (
+    type.name === "enum" &&
+    Array.isArray(type.value) &&
+    type.value.every((item) => item.value === parseInt(item.value).toString())
+  ) {
+    return "number";
+  } else if (type.name.startsWith('"') && type.name.endsWith('"')) {
+    return "string";
   }
 };
 
