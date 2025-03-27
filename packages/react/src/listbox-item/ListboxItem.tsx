@@ -9,6 +9,9 @@ import { Text } from "../text";
 import { decorateChildren, type ExtendProps, fallbackSpan } from "../utils";
 import * as styles from "./ListboxItem.css";
 
+const isHoverSupported =
+  typeof window !== "undefined" && window.matchMedia("(hover: hover)").matches;
+
 export type ListboxItemProps<
   T extends ElementType = "div",
   P = unknown,
@@ -24,6 +27,10 @@ export type ListboxItemProps<
        * Display content inside the item before `children`.
        */
       addonBefore?: ReactNode;
+      /**
+       * Whether to mark item as highlighted.
+       */
+      "data-highlighted"?: boolean;
       /**
        * Add secondary text after the primary label.
        */
@@ -45,6 +52,7 @@ export const ListboxItem = forwardRef<HTMLDivElement, ListboxItemProps>(
       asChild,
       children,
       className,
+      "data-highlighted": dataHighlighted,
       description,
       icon,
       intent = "neutral",
@@ -62,6 +70,7 @@ export const ListboxItem = forwardRef<HTMLDivElement, ListboxItemProps>(
         aria-describedby={description ? descriptionId : undefined}
         aria-labelledby={labelId}
         asChild
+        data-highlighted={isHoverSupported ? dataHighlighted : undefined}
         ref={ref}
         {...styles.item({ intent }, className)}
         {...props}
