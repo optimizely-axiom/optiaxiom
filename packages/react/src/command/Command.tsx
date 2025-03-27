@@ -1,6 +1,6 @@
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import { useCombobox, type UseComboboxProps } from "downshift";
-import { type ReactNode, useMemo, useState } from "react";
+import { type ReactNode, useState } from "react";
 
 import { CommandProvider } from "../command-context";
 import { usePortalPatch } from "../downshift";
@@ -22,17 +22,17 @@ type CommandProps<Item> = Pick<
    */
   isItemDisabled?: UseComboboxProps<Item>["isItemDisabled"];
   /**
+   * Return true if item need to be marked as selected.
+   */
+  isItemSelected?: (item: Item, index: number) => boolean;
+  /**
    * The items we want to render.
    */
   items: UseComboboxProps<Item>["items"];
   /**
-   * Return a unique key for each item when the object reference will change during renders.
-   */
-  itemToKey?: UseComboboxProps<Item>["itemToKey"];
-  /**
    * Return a string representation of items if they are objects. Needed to show selected values inside triggers.
    */
-  itemToString?: UseComboboxProps<Item>["itemToString"];
+  itemToLabel?: UseComboboxProps<Item>["itemToString"];
   itemToSubItems?: (value: Item) => Item[] | null;
   /**
    * Handler that is called when input value changes.
@@ -42,27 +42,20 @@ type CommandProps<Item> = Pick<
    * Handler that is called when an item is selected either via keyboard or mouse.
    */
   onItemSelect?: (value: Item) => void;
-  value?: Item[] | Set<Item>;
 };
 
 export function Command<Item>({
   children,
   inputValue: inputValueProp,
   isItemDisabled = () => false,
+  isItemSelected = () => false,
   items,
-  itemToKey = (value) => value,
-  itemToString = (value) => (value ? String(value) : ""),
+  itemToLabel = (value) => (value ? String(value) : ""),
   itemToSubItems,
   onInputValueChange,
   onItemSelect,
-  value: valueProp,
   ...props
 }: CommandProps<Item>) {
-  const value = useMemo(
-    () => (Array.isArray(valueProp) ? new Set(valueProp) : valueProp),
-    [valueProp],
-  );
-
   const [inputValue, setInputValue] = useControllableState({
     defaultProp: "",
     onChange: onInputValueChange,
@@ -74,7 +67,9 @@ export function Command<Item>({
   >("pointer");
 
   const [highlightedIndex, setHighlightedIndex, placed, setPlaced] =
-    usePortalPatch(items.findIndex((item) => value?.has(item)));
+    usePortalPatch(
+      items.findIndex((item, index) => isItemSelected(item, index)),
+    );
   const [highlightedSubIndex, setHighlightedSubIndex] = useState(-1);
 
   const downshift = useCombobox({
@@ -87,8 +82,7 @@ export function Command<Item>({
     isItemDisabled,
     isOpen: placed,
     items,
-    itemToKey,
-    itemToString,
+    itemToString: itemToLabel,
     onHighlightedIndexChange({ highlightedIndex, type }) {
       if (type !== useCombobox.stateChangeTypes.MenuMouseLeave) {
         setHighlightedIndex(highlightedIndex);
@@ -151,6 +145,7 @@ export function Command<Item>({
           : highlightedSubIndex
       }
       isItemDisabled={isItemDisabled}
+      isItemSelected={isItemSelected}
       items={items}
       itemToSubItems={itemToSubItems}
       lastInteractionSource={lastInteractionSource}
@@ -164,7 +159,6 @@ export function Command<Item>({
       }}
       setInputValue={setInputValue}
       setPlaced={setPlaced}
-      value={value}
     >
       {children}
     </CommandProvider>

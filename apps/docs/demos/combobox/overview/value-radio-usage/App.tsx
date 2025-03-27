@@ -18,6 +18,7 @@ export function App() {
 
   return (
     <Combobox
+      isItemSelected={(item) => item === value}
       items={items}
       onInputValueChange={(inputValue) => {
         setItems(
@@ -29,7 +30,6 @@ export function App() {
       onItemSelect={(value) =>
         setValue((prev) => (prev !== value ? value : undefined))
       }
-      value={value ? [value] : undefined}
     >
       <ComboboxTrigger placeholder="Select colors..." />
       <ComboboxContent>

@@ -19,6 +19,7 @@ export function App() {
 
   return (
     <Combobox
+      isItemSelected={(item) => value.includes(item)}
       items={items}
       onInputValueChange={(inputValue) => {
         setItems(
@@ -34,7 +35,6 @@ export function App() {
             : [...prev, value],
         )
       }
-      value={value}
     >
       <ComboboxTrigger placeholder="Select colors..." w="224" />
 

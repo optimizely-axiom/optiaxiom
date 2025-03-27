@@ -1,10 +1,5 @@
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
-import {
-  type ComponentPropsWithoutRef,
-  forwardRef,
-  useMemo,
-  useRef,
-} from "react";
+import { type ComponentPropsWithoutRef, forwardRef, useRef } from "react";
 
 import { AngleMenuButton } from "../angle-menu-button";
 import { useComboboxContext } from "../combobox-context";
@@ -29,16 +24,9 @@ export const ComboboxTrigger = forwardRef<
     },
     outerRef,
   ) => {
-    const {
-      components,
-      itemToString,
-      setOpen,
-      value: valueContext,
-    } = useComboboxContext("@optiaxiom/react/ComboboxTrigger");
-    const value = useMemo(
-      () => (valueContext instanceof Set ? [...valueContext] : valueContext),
-      [valueContext],
-    );
+    const { components, isItemSelected, items, itemToLabel, setOpen } =
+      useComboboxContext("@optiaxiom/react/ComboboxTrigger");
+    const value = items.filter((item, index) => isItemSelected(item, index));
 
     const buttonRef = useRef<HTMLButtonElement>(null);
     const ref = useComposedRefs(outerRef, buttonRef);
@@ -68,7 +56,7 @@ export const ComboboxTrigger = forwardRef<
               ? (children ?? (
                   <>
                     {value.length === 1 ? (
-                      itemToString(value[0])
+                      itemToLabel(value[0])
                     ) : (
                       <>{value.length} selected</>
                     )}

@@ -11,6 +11,7 @@ export const [CommandProvider, useCommandContext] = createContext<{
   highlightedItem: any;
   highlightedSubIndex: number;
   isItemDisabled: (item: any, index: number) => boolean;
+  isItemSelected: (item: any, index: number) => boolean;
   items: any[];
   itemToSubItems?: (item: any) => any[] | null;
   lastInteractionSource: "keyboard" | "pointer";
@@ -21,5 +22,4 @@ export const [CommandProvider, useCommandContext] = createContext<{
   ) => void;
   setInputValue: (value: string) => void;
   setPlaced: (placed: boolean) => void;
-  value?: Set<any>;
 }>("@optiaxiom/react/Command");

@@ -20,8 +20,9 @@ export function App() {
 
   return (
     <Combobox
+      isItemSelected={(item) => value.includes(item)}
       items={items}
-      itemToString={(item) => item?.label || ""}
+      itemToLabel={(item) => item?.label || ""}
       onInputValueChange={(inputValue) => {
         setItems(
           inputValue
@@ -32,7 +33,6 @@ export function App() {
         );
       }}
       onItemSelect={(value) => toggle(value)}
-      value={value}
     >
       <ComboboxTrigger placeholder="Search a color..." w="224" />
 

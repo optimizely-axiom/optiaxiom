@@ -57,7 +57,7 @@ How you store the items and handle filtering is up to you. In this demo we've st
 
 ### Selection
 
-Pressing enter or clicking items will not do anything in previous demos. For that we need to add the `value` and `onItemSelect` props to the main `Combobox` component.
+Pressing enter or clicking items will not do anything in previous demos. For that we need to add the `isItemSelected` and `onItemSelect` props to the main `Combobox` component.
 
 #### Multi-select
 
@@ -134,7 +134,7 @@ export default () => (
 
 Use the `items` prop to pass the collection of data to `Combobox`. Items can be an array of primitive types such as strings or it can be an array of objects.
 
-In case item is an object you need to pass an additional `itemToString` prop for `Combobox` to work.
+In case item is an object you need to pass an additional `itemToLabel` prop for `Combobox` to work.
 
 <Demo component="combobox/complex-usage" meta={{ "App.tsx": "{24}" }} />
 
@@ -148,7 +148,7 @@ Use the `onInputValueChange` handler to handle filtering your list of items as t
 
 We can only use `Combobox` in a controlled mode and using the following props:
 
-- `value`: Represents an array of currently selected elements from the `items` array.
+- `isItemSelected`: Return true if an item should be marked as selected where the item and the index are passed as parameters.
 - `onItemSelect`: Handler invoked when user selects an item with the item as the only parameter.
 
 Developers are expected to manually track the selection on their side since items inside a combobox can represent values or actions.
