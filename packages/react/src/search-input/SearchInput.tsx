@@ -1,10 +1,6 @@
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
-import {
-  type ComponentPropsWithRef,
-  forwardRef,
-  useRef,
-  useState,
-} from "react";
+import { useControllableState } from "@radix-ui/react-use-controllable-state";
+import { type ComponentPropsWithRef, forwardRef, useRef } from "react";
 
 import { Button } from "../button";
 import { Flex } from "../flex";
@@ -19,22 +15,13 @@ type SearchProps = ComponentPropsWithRef<typeof Input> & {
 };
 
 export const SearchInput = forwardRef<HTMLInputElement, SearchProps>(
-  (
-    {
-      addonBefore,
-      className,
-      defaultValue = "",
-      onChange,
-      onValueClear,
-      value: valueProp,
-      ...props
-    },
-    outerRef,
-  ) => {
+  ({ addonBefore, className, onChange, onValueClear, ...props }, outerRef) => {
     const innerRef = useRef<HTMLInputElement>(null);
     const ref = useComposedRefs(innerRef, outerRef);
-    const [innerValue, setValue] = useState(defaultValue);
-    const value = typeof valueProp === "undefined" ? innerValue : valueProp;
+    const [value, setValue] = useControllableState({
+      defaultProp: props.defaultValue,
+      prop: props.value,
+    });
 
     return (
       <Input
@@ -72,7 +59,6 @@ export const SearchInput = forwardRef<HTMLInputElement, SearchProps>(
         }}
         ref={ref}
         type="search"
-        value={value}
         {...styles.search({}, className)}
         {...props}
       />
