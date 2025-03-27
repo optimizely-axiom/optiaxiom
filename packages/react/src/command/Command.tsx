@@ -67,7 +67,7 @@ export function Command<Item>({
   >("pointer");
 
   const [highlightedIndex, setHighlightedIndex, placed, setPlaced] =
-    usePortalPatch(
+    usePortalPatch(() =>
       items.findIndex((item, index) => isItemSelected(item, index)),
     );
   const [highlightedSubIndex, setHighlightedSubIndex] = useState(-1);
