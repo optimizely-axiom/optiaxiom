@@ -6,7 +6,7 @@ import {
 } from "react";
 
 import type { Command } from "../command";
-import type { ExtendProps } from "../utils";
+import type { ExcludeProps, ExtendProps } from "../utils";
 
 import { ComboboxProvider } from "../combobox-context";
 import { ComboboxDialogContent } from "../combobox-dialog-content";
@@ -15,38 +15,39 @@ import { ComboboxPopoverContent } from "../combobox-popover-content";
 import { Dialog } from "../dialog";
 import { DialogTrigger } from "../dialog-trigger";
 import { PopoverTrigger } from "../popover-trigger";
-import { useEffectEvent } from "../use-event";
+import { useCommandItems } from "../use-command-items";
 import { useResponsiveMatches } from "../use-responsive-matches";
 
-type ComboboxProps<Item> = ExtendProps<
-  Omit<
+type ComboboxProps<Item> = ExcludeProps<
+  ExtendProps<
     ComponentPropsWithoutRef<typeof Command<Item>>,
-    "inputId" | "itemToSubItems" | "selectedItem" | "stateReducer"
+    {
+      children: ReactNode;
+      /**
+       * The initial open state in uncontrolled mode.
+       */
+      defaultOpen?: boolean;
+      /**
+       * Handler that is called when the open state changes.
+       */
+      onOpenChange?: (open: boolean) => void;
+      /**
+       * The open state in controlled mode.
+       */
+      open?: boolean;
+    }
   >,
-  {
-    children: ReactNode;
-    /**
-     * The initial open state in uncontrolled mode.
-     */
-    defaultOpen?: boolean;
-    /**
-     * Handler that is called when the open state changes.
-     */
-    onOpenChange?: (open: boolean) => void;
-    /**
-     * The open state in controlled mode.
-     */
-    open?: boolean;
-  }
+  "itemToSubItems"
 >;
 
 export function Combobox<Item>({
   children,
+  defaultItems,
   defaultOpen = false,
-  inputValue,
+  inputValue: inputValueProp,
   isItemDisabled = () => false,
   isItemSelected = () => false,
-  items,
+  items: itemsProp,
   itemToLabel = (value) => (value ? String(value) : ""),
   onInputValueChange,
   onItemSelect,
@@ -71,14 +72,19 @@ export function Combobox<Item>({
     onChange: onOpenChange,
     prop: openProp,
   });
-  const onInputValueChangeStable = useEffectEvent(
-    onInputValueChange ?? (() => {}),
-  );
+
+  const [items, inputValue, setInputValue] = useCommandItems({
+    defaultItems,
+    inputValue: inputValueProp,
+    items: itemsProp,
+    itemToLabel,
+    onInputValueChange,
+  });
   useEffect(() => {
     if (open) {
-      onInputValueChangeStable("");
+      setInputValue("");
     }
-  }, [open, onInputValueChangeStable]);
+  }, [open, setInputValue]);
 
   return (
     <components.Root onOpenChange={setOpen} open={open}>
@@ -89,7 +95,7 @@ export function Combobox<Item>({
         isItemSelected={isItemSelected}
         items={items}
         itemToLabel={itemToLabel}
-        onInputValueChange={onInputValueChange}
+        onInputValueChange={setInputValue}
         onItemSelect={onItemSelect}
         open={open}
         setOpen={setOpen}

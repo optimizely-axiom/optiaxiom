@@ -11,7 +11,7 @@ const colors = ["Blue", "Purple", "Red", "Orange", "Yellow"];
 export function App() {
   return (
     <Select items={colors}>
-      <SelectTrigger placeholder="Select colors..." />
+      <SelectTrigger placeholder="Select a color..." />
       <SelectContent />
     </Select>
   );

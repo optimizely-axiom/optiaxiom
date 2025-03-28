@@ -72,11 +72,17 @@ export const demos = {
   "combobox/overview/content-radio-usage": import(
     "./combobox/overview/content-radio-usage/App"
   ),
+  "combobox/overview/content-usage": import(
+    "./combobox/overview/content-usage/App"
+  ),
   "combobox/overview/empty-usage": import(
     "./combobox/overview/empty-usage/App"
   ),
+  "combobox/overview/input-controlled-input-usage": import(
+    "./combobox/overview/input-controlled-input-usage/App"
+  ),
   "combobox/overview/input-controlled-usage": import(
-    "./combobox/overview/input-controlled-usage/App"
+    "./combobox/overview/input-controlled-input-usage/App"
   ),
   "combobox/overview/input-usage": import(
     "./combobox/overview/input-usage/App"

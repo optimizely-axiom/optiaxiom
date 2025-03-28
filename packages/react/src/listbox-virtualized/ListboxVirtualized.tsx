@@ -12,7 +12,7 @@ import {
 } from "react";
 
 import { Box, type BoxProps } from "../box";
-import { ListboxScrollArea } from "../listbox-scroll-area";
+import { Listbox } from "../listbox";
 
 type ListboxVirtualizedProps<T = unknown> = BoxProps<
   "div",
@@ -90,7 +90,7 @@ export const ListboxVirtualized = forwardRef<
   }, []);
 
   return (
-    <ListboxScrollArea ref={ref} {...props}>
+    <Listbox ref={ref} {...props}>
       <Box
         flex="none"
         style={{
@@ -111,7 +111,7 @@ export const ListboxVirtualized = forwardRef<
           </Box>
         ))}
       </Box>
-    </ListboxScrollArea>
+    </Listbox>
   );
 }) as (<T>(props: ListboxVirtualizedProps<T>) => ReactElement) & {
   displayName: string;

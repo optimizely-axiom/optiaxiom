@@ -75,7 +75,6 @@
     "./ListboxItemIndicator": "./dist/components/ListboxItemIndicator.js",
     "./ListboxLabel": "./dist/components/ListboxLabel.js",
     "./ListboxRadioItem": "./dist/components/ListboxRadioItem.js",
-    "./ListboxScrollArea": "./dist/components/ListboxScrollArea.js",
     "./ListboxSeparator": "./dist/components/ListboxSeparator.js",
     "./ListboxSwitchItem": "./dist/components/ListboxSwitchItem.js",
     "./ModalProvider": "./dist/components/ModalProvider.js",

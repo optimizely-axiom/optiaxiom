@@ -9,7 +9,7 @@ import type { Command } from "../command";
 
 import { Dialog } from "../dialog";
 import { SpotlightProvider } from "../spotlight-context";
-import { useEffectEvent } from "../use-event";
+import { useCommandItems } from "../use-command-items";
 
 type SpotlightProps<Item> = ComponentPropsWithoutRef<typeof Command<Item>> & {
   children: ReactNode;
@@ -21,10 +21,11 @@ type SpotlightProps<Item> = ComponentPropsWithoutRef<typeof Command<Item>> & {
 
 export function Spotlight<Item>({
   children,
+  defaultItems,
   defaultOpen = false,
-  inputValue,
+  inputValue: inputValueProp,
   isItemDisabled = () => false,
-  items,
+  items: itemsProp,
   itemToLabel = (value) => (value ? String(value) : ""),
   itemToSubItems,
   onInputValueChange,
@@ -37,14 +38,19 @@ export function Spotlight<Item>({
     onChange: onOpenChange,
     prop: openProp,
   });
-  const onInputValueChangeStable = useEffectEvent(
-    onInputValueChange ?? (() => {}),
-  );
+
+  const [items, inputValue, setInputValue] = useCommandItems({
+    defaultItems,
+    inputValue: inputValueProp,
+    items: itemsProp,
+    itemToLabel,
+    onInputValueChange,
+  });
   useEffect(() => {
     if (!open) {
-      onInputValueChangeStable("");
+      setInputValue("");
     }
-  }, [open, onInputValueChangeStable]);
+  }, [open, setInputValue]);
 
   return (
     <Dialog onOpenChange={setOpen} open={open}>
@@ -54,7 +60,7 @@ export function Spotlight<Item>({
         items={items}
         itemToLabel={itemToLabel}
         itemToSubItems={itemToSubItems}
-        onInputValueChange={onInputValueChange}
+        onInputValueChange={setInputValue}
         onItemSelect={onItemSelect}
         open={open}
         setOpen={setOpen}

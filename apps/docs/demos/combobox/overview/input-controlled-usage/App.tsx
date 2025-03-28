@@ -2,10 +2,7 @@
 
 import {
   Combobox,
-  ComboboxCheckboxItem,
   ComboboxContent,
-  ComboboxInput,
-  ComboboxScrollArea,
   ComboboxTrigger,
 } from "@optiaxiom/react/unstable";
 import { useState } from "react";
@@ -13,28 +10,23 @@ import { useState } from "react";
 const colors = ["Ocean", "Blue", "Purple", "Red", "Orange", "Yellow"];
 
 export function App() {
-  const [inputValue, setInputValue] = useState("");
-  const items = inputValue
-    ? colors.filter((color) => new RegExp(inputValue, "i").test(color))
-    : colors;
+  const [items, setItems] = useState(colors);
 
   return (
     <Combobox
-      inputValue={inputValue}
       items={items}
-      onInputValueChange={setInputValue}
+      onInputValueChange={(inputValue) => {
+        setItems(
+          inputValue
+            ? colors.filter((color) =>
+                color.toLowerCase().includes(inputValue.toLowerCase()),
+              )
+            : colors,
+        );
+      }}
     >
       <ComboboxTrigger placeholder="Select colors..." />
-      <ComboboxContent>
-        <ComboboxInput />
-        <ComboboxScrollArea>
-          {items.map((item) => (
-            <ComboboxCheckboxItem item={item} key={item}>
-              {item}
-            </ComboboxCheckboxItem>
-          ))}
-        </ComboboxScrollArea>
-      </ComboboxContent>
+      <ComboboxContent />
     </Combobox>
   );
 }

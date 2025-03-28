@@ -13,6 +13,7 @@ export const [CommandProvider, useCommandContext] = createContext<{
   isItemDisabled: (item: any, index: number) => boolean;
   isItemSelected: (item: any, index: number) => boolean;
   items: any[];
+  itemToLabel: (item: any) => string;
   itemToSubItems?: (item: any) => any[] | null;
   lastInteractionSource: "keyboard" | "pointer";
   setHighlightedIndex: (index: number, source: "keyboard" | "pointer") => void;

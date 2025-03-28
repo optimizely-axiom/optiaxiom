@@ -1,15 +1,13 @@
-import { useControllableState } from "@radix-ui/react-use-controllable-state";
-import { useCombobox, type UseComboboxProps } from "downshift";
+import { useCombobox } from "downshift";
 import { type ReactNode, useState } from "react";
 
 import { CommandProvider } from "../command-context";
 import { usePortalPatch } from "../downshift";
+import { useCommandItems } from "../use-command-items";
 
-type CommandProps<Item> = Pick<
-  UseComboboxProps<Item>,
-  "inputId" | "stateReducer"
-> & {
-  children: ReactNode;
+type CommandProps<Item> = {
+  children?: ReactNode;
+  defaultItems?: Item[];
   /**
    * The input value in controlled mode.
    */
@@ -17,7 +15,7 @@ type CommandProps<Item> = Pick<
   /**
    * Return true if items need to be marked as disabled and skipped from keyboard navigation.
    */
-  isItemDisabled?: UseComboboxProps<Item>["isItemDisabled"];
+  isItemDisabled?: (item: Item, index: number) => boolean;
   /**
    * Return true if item need to be marked as selected.
    */
@@ -25,11 +23,11 @@ type CommandProps<Item> = Pick<
   /**
    * The items we want to render.
    */
-  items: UseComboboxProps<Item>["items"];
+  items?: Item[];
   /**
    * Return a string representation of items if they are objects. Needed to show selected values inside triggers.
    */
-  itemToLabel?: UseComboboxProps<Item>["itemToString"];
+  itemToLabel?: (item: Item | null) => string;
   itemToSubItems?: (value: Item) => Item[] | null;
   /**
    * Handler that is called when input value changes.
@@ -43,20 +41,22 @@ type CommandProps<Item> = Pick<
 
 export function Command<Item>({
   children,
+  defaultItems,
   inputValue: inputValueProp,
   isItemDisabled = () => false,
   isItemSelected = () => false,
-  items,
+  items: itemsProp,
   itemToLabel = (value) => (value ? String(value) : ""),
   itemToSubItems,
   onInputValueChange,
   onItemSelect,
-  ...props
 }: CommandProps<Item>) {
-  const [inputValue, setInputValue] = useControllableState({
-    defaultProp: "",
-    onChange: onInputValueChange,
-    prop: inputValueProp,
+  const [items, inputValue, setInputValue] = useCommandItems({
+    defaultItems,
+    inputValue: inputValueProp,
+    items: itemsProp,
+    itemToLabel,
+    onInputValueChange,
   });
 
   const [lastInteractionSource, setLastInteractionSource] = useState<
@@ -70,7 +70,6 @@ export function Command<Item>({
   const [highlightedSubIndex, setHighlightedSubIndex] = useState(-1);
 
   const downshift = useCombobox({
-    ...props,
     highlightedIndex:
       highlightedIndex === -1
         ? items.findIndex((item, index) => !isItemDisabled(item, index))
@@ -123,6 +122,23 @@ export function Command<Item>({
       }
     },
     selectedItem: null,
+    stateReducer: (state, actionAndChanges) => {
+      const { changes, type } = actionAndChanges;
+
+      switch (type) {
+        case useCombobox.stateChangeTypes.InputKeyDownEnter:
+        case useCombobox.stateChangeTypes.ItemClick:
+          return {
+            ...changes,
+            /**
+             * Keep the selected option highlighted rather than resetting to -1
+             */
+            highlightedIndex: state.highlightedIndex,
+          };
+        default:
+          return changes;
+      }
+    },
   });
 
   /**
@@ -144,6 +160,7 @@ export function Command<Item>({
       isItemDisabled={isItemDisabled}
       isItemSelected={isItemSelected}
       items={items}
+      itemToLabel={itemToLabel}
       itemToSubItems={itemToSubItems}
       lastInteractionSource={lastInteractionSource}
       setHighlightedIndex={(index, source) => {

@@ -28,7 +28,7 @@ export function App() {
         setItems(
           inputValue
             ? colors.filter((color) =>
-                new RegExp(inputValue, "i").test(color.label),
+                color.label.toLowerCase().includes(inputValue.toLowerCase()),
               )
             : colors,
         );

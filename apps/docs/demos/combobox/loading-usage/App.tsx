@@ -17,7 +17,7 @@ export function App() {
   const [items, setItems] = useState<string[]>([]);
   const [inputValue, setInputValue] = useState("");
   const filteredItems = inputValue
-    ? items.filter((color) => new RegExp(inputValue, "i").test(color))
+    ? items.filter((color) => color.toLowerCase().includes(inputValue))
     : items;
 
   const [open, setOpen] = useState(false);

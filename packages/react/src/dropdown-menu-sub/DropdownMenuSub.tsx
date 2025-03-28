@@ -1,6 +1,10 @@
 import * as RadixMenu from "@radix-ui/react-dropdown-menu";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
 
+import {
+  DropdownMenuNestedProvider,
+  useDropdownMenuNestedContext,
+} from "../dropdown-menu-nested-context";
 import { DropdownMenuSubProvider } from "../dropdown-menu-sub-context";
 
 type MenuSubProps = {
@@ -26,15 +30,24 @@ export function DropdownMenuSub({
   open: openProp,
   ...props
 }: MenuSubProps) {
+  const { open: parentOpen } = useDropdownMenuNestedContext(
+    "@optiaxiom/react/DropdownMenuSub",
+  );
   const [open, setOpen] = useControllableState({
     defaultProp: defaultOpen,
     onChange: onOpenChange,
     prop: openProp,
   });
 
+  const resolvedOpen = parentOpen && open;
+
   return (
-    <RadixMenu.Sub onOpenChange={setOpen} open={open} {...props}>
-      <DropdownMenuSubProvider open={open}>{children}</DropdownMenuSubProvider>
+    <RadixMenu.Sub onOpenChange={setOpen} open={resolvedOpen} {...props}>
+      <DropdownMenuSubProvider open={resolvedOpen}>
+        <DropdownMenuNestedProvider open={resolvedOpen}>
+          {children}
+        </DropdownMenuNestedProvider>
+      </DropdownMenuSubProvider>
     </RadixMenu.Sub>
   );
 }

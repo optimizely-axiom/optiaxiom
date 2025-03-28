@@ -13,7 +13,6 @@ import {
   ListboxItemIndicator,
   ListboxLabel,
   ListboxRadioItem,
-  ListboxScrollArea,
   ListboxSeparator,
   Paper,
 } from "@optiaxiom/react";
@@ -254,13 +253,13 @@ export const Footer: Story = {
   args: {
     children: (
       <>
-        <ListboxScrollArea>
+        <Listbox>
           {languages.map((item) => (
             <ListboxItem asChild key={item}>
               <PointerItem>{item}</PointerItem>
             </ListboxItem>
           ))}
-        </ListboxScrollArea>
+        </Listbox>
 
         <ListboxFooter>
           <Button>Clear All</Button>
