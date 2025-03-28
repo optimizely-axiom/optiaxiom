@@ -70,8 +70,11 @@ export const ListboxItem = forwardRef<HTMLDivElement, ListboxItemProps>(
         aria-describedby={description ? descriptionId : undefined}
         aria-labelledby={labelId}
         asChild
-        data-highlighted={isHoverSupported ? dataHighlighted : undefined}
         ref={ref}
+        {...(isHoverSupported &&
+          dataHighlighted !== undefined && {
+            "data-highlighted": dataHighlighted,
+          })}
         {...styles.item({ intent }, className)}
         {...props}
       >
