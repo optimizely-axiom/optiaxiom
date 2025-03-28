@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 1.2.2
+
+### Patch Changes
+
+- dd09828: fix dropdown highlight
+
 ## 1.2.1
 
 ### Patch Changes
