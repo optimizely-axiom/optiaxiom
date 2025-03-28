@@ -6,7 +6,7 @@ import {
 } from "react";
 
 import type { Command } from "../command";
-import type { ExtendProps } from "../utils";
+import type { ExcludeProps, ExtendProps } from "../utils";
 
 import { ComboboxProvider } from "../combobox-context";
 import { ComboboxDialogContent } from "../combobox-dialog-content";
@@ -18,26 +18,26 @@ import { PopoverTrigger } from "../popover-trigger";
 import { useCommandItems } from "../use-command-items";
 import { useResponsiveMatches } from "../use-responsive-matches";
 
-type ComboboxProps<Item> = ExtendProps<
-  Omit<
+type ComboboxProps<Item> = ExcludeProps<
+  ExtendProps<
     ComponentPropsWithoutRef<typeof Command<Item>>,
-    "inputId" | "itemToSubItems" | "selectedItem" | "stateReducer"
+    {
+      children: ReactNode;
+      /**
+       * The initial open state in uncontrolled mode.
+       */
+      defaultOpen?: boolean;
+      /**
+       * Handler that is called when the open state changes.
+       */
+      onOpenChange?: (open: boolean) => void;
+      /**
+       * The open state in controlled mode.
+       */
+      open?: boolean;
+    }
   >,
-  {
-    children: ReactNode;
-    /**
-     * The initial open state in uncontrolled mode.
-     */
-    defaultOpen?: boolean;
-    /**
-     * Handler that is called when the open state changes.
-     */
-    onOpenChange?: (open: boolean) => void;
-    /**
-     * The open state in controlled mode.
-     */
-    open?: boolean;
-  }
+  "itemToSubItems"
 >;
 
 export function Combobox<Item>({
