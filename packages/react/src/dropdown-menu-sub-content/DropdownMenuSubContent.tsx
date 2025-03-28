@@ -29,7 +29,7 @@ type MenuSubContentProps = ExcludeProps<
 export const DropdownMenuSubContent = forwardRef<
   HTMLDivElement,
   MenuSubContentProps
->(({ children, ...props }, ref) => {
+>(({ asChild, children, ...props }, ref) => {
   const { open } = useDropdownMenuSubContext(
     "@optiaxiom/react/DropdownMenuSubContent",
   );
@@ -37,8 +37,13 @@ export const DropdownMenuSubContent = forwardRef<
   return (
     <TransitionGroup open={open}>
       <RadixMenu.Portal forceMount>
-        <MenuListbox asChild provider="dropdown-menu" {...props}>
-          <RadixMenu.SubContent alignOffset={-4} ref={ref} sideOffset={0}>
+        <MenuListbox asChild minW="trigger" provider="dropdown-menu" {...props}>
+          <RadixMenu.SubContent
+            alignOffset={-4}
+            asChild={asChild}
+            ref={ref}
+            sideOffset={0}
+          >
             {children}
           </RadixMenu.SubContent>
         </MenuListbox>
