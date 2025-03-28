@@ -1,5 +1,11 @@
 # @optiaxiom/web-components
 
+## 0.9.2
+
+### Patch Changes
+
+- dd09828: fix dropdown highlight
+
 ## 0.9.1
 
 ### Patch Changes
