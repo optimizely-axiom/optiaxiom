@@ -22,7 +22,7 @@ export function App() {
   const filteredItems = inputValue
     ? [
         ...items.filter((color) =>
-          new RegExp(inputValue, "i").test(color.label),
+          color.label.toLowerCase().includes(inputValue.toLowerCase()),
         ),
         ...(items.find(
           (color) => color.label.toLowerCase() === inputValue.toLowerCase(),

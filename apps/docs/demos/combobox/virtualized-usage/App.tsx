@@ -26,7 +26,9 @@ export function App() {
       onInputValueChange={(inputValue) => {
         setItems(
           inputValue
-            ? colors.filter((color) => new RegExp(inputValue, "i").test(color))
+            ? colors.filter((color) =>
+                color.toLowerCase().includes(inputValue.toLowerCase()),
+              )
             : colors,
         );
       }}
@@ -45,9 +47,7 @@ export function App() {
 
         <ComboboxScrollArea>
           {(item) => (
-            <ComboboxCheckboxItem item={item} key={item}>
-              {item}
-            </ComboboxCheckboxItem>
+            <ComboboxCheckboxItem item={item}>{item}</ComboboxCheckboxItem>
           )}
         </ComboboxScrollArea>
 

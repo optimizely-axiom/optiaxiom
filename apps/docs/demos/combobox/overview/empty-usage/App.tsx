@@ -2,7 +2,6 @@
 
 import {
   Combobox,
-  ComboboxCheckboxItem,
   ComboboxContent,
   ComboboxEmpty,
   ComboboxInput,
@@ -22,7 +21,9 @@ export function App() {
       onInputValueChange={(inputValue) => {
         setItems(
           inputValue
-            ? colors.filter((color) => new RegExp(inputValue, "i").test(color))
+            ? colors.filter((color) =>
+                color.toLowerCase().includes(inputValue.toLowerCase()),
+              )
             : colors,
         );
       }}
@@ -30,14 +31,8 @@ export function App() {
       <ComboboxTrigger placeholder="Select colors..." />
       <ComboboxContent>
         <ComboboxInput />
-        <ComboboxScrollArea>
-          {items.map((item) => (
-            <ComboboxCheckboxItem item={item} key={item}>
-              {item}
-            </ComboboxCheckboxItem>
-          ))}
-          {items.length === 0 && <ComboboxEmpty>No result found</ComboboxEmpty>}
-        </ComboboxScrollArea>
+        <ComboboxScrollArea />
+        {items.length === 0 && <ComboboxEmpty>No result found</ComboboxEmpty>}
       </ComboboxContent>
     </Combobox>
   );
