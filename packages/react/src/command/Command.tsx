@@ -1,14 +1,11 @@
-import { useCombobox, type UseComboboxProps } from "downshift";
+import { useCombobox } from "downshift";
 import { type ReactNode, useState } from "react";
 
 import { CommandProvider } from "../command-context";
 import { usePortalPatch } from "../downshift";
 import { useCommandItems } from "../use-command-items";
 
-type CommandProps<Item> = Pick<
-  UseComboboxProps<Item>,
-  "inputId" | "stateReducer"
-> & {
+type CommandProps<Item> = {
   children: ReactNode;
   defaultItems?: Item[];
   /**
@@ -53,7 +50,6 @@ export function Command<Item>({
   itemToSubItems,
   onInputValueChange,
   onItemSelect,
-  ...props
 }: CommandProps<Item>) {
   const [items, inputValue, setInputValue] = useCommandItems({
     defaultItems,
@@ -74,7 +70,6 @@ export function Command<Item>({
   const [highlightedSubIndex, setHighlightedSubIndex] = useState(-1);
 
   const downshift = useCombobox({
-    ...props,
     highlightedIndex:
       highlightedIndex === -1
         ? items.findIndex((item, index) => !isItemDisabled(item, index))
@@ -127,6 +122,23 @@ export function Command<Item>({
       }
     },
     selectedItem: null,
+    stateReducer: (state, actionAndChanges) => {
+      const { changes, type } = actionAndChanges;
+
+      switch (type) {
+        case useCombobox.stateChangeTypes.InputKeyDownEnter:
+        case useCombobox.stateChangeTypes.ItemClick:
+          return {
+            ...changes,
+            /**
+             * Keep the selected option highlighted rather than resetting to -1
+             */
+            highlightedIndex: state.highlightedIndex,
+          };
+        default:
+          return changes;
+      }
+    },
   });
 
   /**

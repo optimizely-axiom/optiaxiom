@@ -1,4 +1,3 @@
-import { useCombobox } from "downshift";
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import type { ComboboxDialogContent } from "../combobox-dialog-content";
@@ -52,23 +51,6 @@ export const ComboboxContent = forwardRef<HTMLDivElement, ComboboxContentProps>(
           itemToLabel={itemToLabel}
           onInputValueChange={onInputValueChange}
           onItemSelect={onItemSelect}
-          stateReducer={(state, actionAndChanges) => {
-            const { changes, type } = actionAndChanges;
-
-            switch (type) {
-              case useCombobox.stateChangeTypes.InputKeyDownEnter:
-              case useCombobox.stateChangeTypes.ItemClick:
-                return {
-                  ...changes,
-                  /**
-                   * Keep the selected option highlighted rather than resetting to -1
-                   */
-                  highlightedIndex: state.highlightedIndex,
-                };
-              default:
-                return changes;
-            }
-          }}
         >
           <CommandListbox>
             {children ?? (
