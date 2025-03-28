@@ -10,20 +10,18 @@ import { useState } from "react";
 const colors = ["Ocean", "Blue", "Purple", "Red", "Orange", "Yellow"];
 
 export function App() {
-  const [items, setItems] = useState(colors);
+  const [inputValue, setInputValue] = useState("");
+  const items = inputValue
+    ? colors.filter((color) =>
+        color.toLowerCase().includes(inputValue.toLowerCase()),
+      )
+    : colors;
 
   return (
     <Combobox
+      inputValue={inputValue}
       items={items}
-      onInputValueChange={(inputValue) => {
-        setItems(
-          inputValue
-            ? colors.filter((color) =>
-                color.toLowerCase().includes(inputValue.toLowerCase()),
-              )
-            : colors,
-        );
-      }}
+      onInputValueChange={setInputValue}
     >
       <ComboboxTrigger placeholder="Select colors..." />
       <ComboboxContent />

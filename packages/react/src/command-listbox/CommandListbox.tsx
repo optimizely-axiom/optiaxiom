@@ -4,9 +4,9 @@ import { type BoxProps } from "../box";
 import { useCommandContext } from "../command-context";
 import { Listbox } from "../listbox";
 
-type CommandListProps = BoxProps;
+type CommandListboxProps = BoxProps;
 
-export const CommandListbox = forwardRef<HTMLDivElement, CommandListProps>(
+export const CommandListbox = forwardRef<HTMLDivElement, CommandListboxProps>(
   ({ children, size, ...props }, ref) => {
     const { downshift, setPlaced } = useCommandContext(
       "@optiaxiom/react/CommandListbox",

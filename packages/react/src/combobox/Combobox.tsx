@@ -15,7 +15,7 @@ import { ComboboxPopoverContent } from "../combobox-popover-content";
 import { Dialog } from "../dialog";
 import { DialogTrigger } from "../dialog-trigger";
 import { PopoverTrigger } from "../popover-trigger";
-import { useEffectEvent } from "../use-event";
+import { useCommandItems } from "../use-command-items";
 import { useResponsiveMatches } from "../use-responsive-matches";
 
 type ComboboxProps<Item> = ExtendProps<
@@ -42,11 +42,12 @@ type ComboboxProps<Item> = ExtendProps<
 
 export function Combobox<Item>({
   children,
+  defaultItems,
   defaultOpen = false,
-  inputValue,
+  inputValue: inputValueProp,
   isItemDisabled = () => false,
   isItemSelected = () => false,
-  items,
+  items: itemsProp,
   itemToLabel = (value) => (value ? String(value) : ""),
   onInputValueChange,
   onItemSelect,
@@ -71,14 +72,19 @@ export function Combobox<Item>({
     onChange: onOpenChange,
     prop: openProp,
   });
-  const onInputValueChangeStable = useEffectEvent(
-    onInputValueChange ?? (() => {}),
-  );
+
+  const [items, inputValue, setInputValue] = useCommandItems({
+    defaultItems,
+    inputValue: inputValueProp,
+    items: itemsProp,
+    itemToLabel,
+    onInputValueChange,
+  });
   useEffect(() => {
     if (open) {
-      onInputValueChangeStable("");
+      setInputValue("");
     }
-  }, [open, onInputValueChangeStable]);
+  }, [open, setInputValue]);
 
   return (
     <components.Root onOpenChange={setOpen} open={open}>
@@ -89,7 +95,7 @@ export function Combobox<Item>({
         isItemSelected={isItemSelected}
         items={items}
         itemToLabel={itemToLabel}
-        onInputValueChange={onInputValueChange}
+        onInputValueChange={setInputValue}
         onItemSelect={onItemSelect}
         open={open}
         setOpen={setOpen}
