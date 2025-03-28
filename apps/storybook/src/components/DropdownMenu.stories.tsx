@@ -88,6 +88,14 @@ export const Basic: Story = {
 
     await expect(menuItems[0]).not.toBeDisabled();
     await expect(menuItems[1]).toHaveAttribute("aria-disabled", "true");
+
+    await waitFor(
+      async () =>
+        await expect(
+          screen.getByRole("menuitem", { name: "Excel" }),
+        ).not.toHaveStyle("pointer-events: none"),
+    );
+    await userEvent.type(menu, "{ArrowDown}");
   },
 };
 
