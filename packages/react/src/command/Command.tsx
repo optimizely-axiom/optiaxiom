@@ -160,6 +160,7 @@ export function Command<Item>({
       isItemDisabled={isItemDisabled}
       isItemSelected={isItemSelected}
       items={items}
+      itemToLabel={itemToLabel}
       itemToSubItems={itemToSubItems}
       lastInteractionSource={lastInteractionSource}
       setHighlightedIndex={(index, source) => {

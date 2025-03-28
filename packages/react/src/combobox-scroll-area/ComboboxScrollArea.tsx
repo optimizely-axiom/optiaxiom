@@ -32,7 +32,7 @@ export const ComboboxScrollArea = forwardRef<
   HTMLDivElement,
   ComboboxScrollAreaProps
 >(({ children, items: itemsProp, loading, ...props }, ref) => {
-  const { highlightedItem, items } = useCommandContext(
+  const { highlightedItem, items, itemToLabel } = useCommandContext(
     "@optiaxiom/react/ComboboxScrollArea",
   );
 
@@ -58,9 +58,12 @@ export const ComboboxScrollArea = forwardRef<
           children
         )
       ) : (
-        items.map((item) => (
-          <ComboboxRadioItem item={item} key={item}>
-            {item}
+        items.map((item, index) => (
+          <ComboboxRadioItem
+            item={item}
+            key={typeof item === "string" ? item : index}
+          >
+            {itemToLabel(item)}
           </ComboboxRadioItem>
         ))
       )}
