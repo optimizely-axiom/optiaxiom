@@ -9,6 +9,7 @@ export const Listbox = forwardRef<HTMLDivElement, ListboxProps>(
     return (
       <Box
         display="flex"
+        flex="1"
         flexDirection="column"
         gap="2"
         overflow="auto"

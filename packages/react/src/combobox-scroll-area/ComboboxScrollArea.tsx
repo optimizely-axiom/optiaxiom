@@ -3,12 +3,12 @@ import { forwardRef, type ReactNode } from "react";
 import { Box, type BoxProps } from "../box";
 import { ComboboxRadioItem } from "../combobox-radio-item";
 import { useCommandContext } from "../command-context";
-import { ListboxScrollArea } from "../listbox-scroll-area";
+import { Listbox } from "../listbox";
 import { ListboxVirtualized } from "../listbox-virtualized";
 import { Spinner } from "../spinner";
 
 type ComboboxScrollAreaProps = BoxProps<
-  typeof ListboxScrollArea,
+  typeof Listbox,
   {
     /**
      * Whether to show loading spinner inside the menu.
@@ -37,7 +37,7 @@ export const ComboboxScrollArea = forwardRef<
   );
 
   return (
-    <ListboxScrollArea
+    <Listbox
       asChild={!loading && typeof children === "function"}
       ref={ref}
       {...props}
@@ -64,7 +64,7 @@ export const ComboboxScrollArea = forwardRef<
           </ComboboxRadioItem>
         ))
       )}
-    </ListboxScrollArea>
+    </Listbox>
   );
 });
 
