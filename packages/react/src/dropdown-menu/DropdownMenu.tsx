@@ -3,6 +3,7 @@ import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import { useState } from "react";
 
 import { DropdownMenuProvider } from "../dropdown-menu-context";
+import { DropdownMenuNestedProvider } from "../dropdown-menu-nested-context";
 
 type MenuProps = {
   children?: React.ReactNode;
@@ -45,7 +46,9 @@ export function DropdownMenu({
         presence={presence}
         setPresence={setPresence}
       >
-        {children}
+        <DropdownMenuNestedProvider open={open}>
+          {children}
+        </DropdownMenuNestedProvider>
       </DropdownMenuProvider>
     </RadixMenu.Root>
   );
