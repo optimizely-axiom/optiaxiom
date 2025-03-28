@@ -44,6 +44,7 @@ export function DropdownMenu({
       <DropdownMenuProvider
         open={open}
         presence={presence}
+        setOpen={setOpen}
         setPresence={setPresence}
       >
         <DropdownMenuNestedProvider open={open}>

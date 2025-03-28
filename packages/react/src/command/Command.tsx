@@ -6,7 +6,7 @@ import { usePortalPatch } from "../downshift";
 import { useCommandItems } from "../use-command-items";
 
 type CommandProps<Item> = {
-  children: ReactNode;
+  children?: ReactNode;
   defaultItems?: Item[];
   /**
    * The input value in controlled mode.
