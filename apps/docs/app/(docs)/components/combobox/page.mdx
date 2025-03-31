@@ -24,19 +24,19 @@ The trigger can be provided a `placeholder` to display in case no values have be
 
 <Demo component="combobox/overview/usage" />
 
-The `ComboboxContent` component further includes the input, a listbox, and an empty section.
+The `ComboboxContent` component further includes the input, a listbox, and a footer.
 
 - `ComboboxInput`
-- `ComboboxScrollArea`
-- `ComboboxEmpty`
+- `ComboboxListbox`
+- `ComboboxFooter`
 
 We'll talk about them more in the following sections.
 
-### Content
+### Listbox
 
-By default content popover will render an input and the provided items. But we can customize how items are rendered using the `ComboboxScrollArea` component.
+By default content popover will render an input and the provided items. But we can customize how items are rendered using the `ComboboxListbox` component.
 
-`ComboboxScrollArea` accepts a react node as well as a render prop where the first parameter is the item that needs to be rendered.
+`ComboboxListbox` accepts a react node as well as a render prop where the first parameter is the item that needs to be rendered.
 
 <Demo component="combobox/overview/content-usage" meta="{15}" />
 
@@ -87,7 +87,7 @@ Pressing enter or clicking items will not do anything in previous demos. For tha
 
 Finally we can render an empty state in the content using the `ComboboxEmpty` component. And you also have to use the `items` prop when manually rendering the empty state.
 
-<Demo component="combobox/overview/empty-usage" meta="{35}" />
+<Demo component="combobox/overview/empty-usage" meta="{41-43}" />
 
 ## Documentation
 
@@ -104,8 +104,8 @@ import {
   ComboboxInput,
   ComboboxItem,
   ComboboxLabel,
+  ComboboxListbox,
   ComboboxRadioItem,
-  ComboboxScrollArea,
   ComboboxSeparator,
   ComboboxTrigger,
 } from "@optiaxiom/react";
@@ -117,7 +117,7 @@ export default () => (
     <ComboboxContent>
       <ComboboxInput />
 
-      <ComboboxScrollArea>
+      <ComboboxListbox>
         <ComboboxItem />
         <ComboboxCheckboxItem />
         <ComboboxRadioItem />
@@ -130,9 +130,9 @@ export default () => (
         </ComboboxGroup>
 
         <ComboboxSeparator />
-      </ComboboxScrollArea>
+        <ComboboxEmpty />
+      </ComboboxListbox>
 
-      <ComboboxEmpty />
       <ComboboxFooter />
     </ComboboxContent>
   </Combobox>
@@ -196,19 +196,19 @@ The `ComboboxCheckboxItem` component accepts `icon`, `addonBefore`, `addonAfter`
 
 Use the `ComboboxEmpty` component when there are no available items or suggestions.
 
-<Demo component="combobox/complex-usage" meta={{ "App.tsx": "66" }} />
+<Demo component="combobox/complex-usage" meta={{ "App.tsx": "{65-67}" }} />
 
 ### Loading
 
-Use the `loading` prop on `ComboboxScrollArea` to show a loading spinner if the initial data for the combobox has not loaded yet.
+Use the `loading` prop on `ComboboxListbox` to show a loading spinner if the initial data for the combobox has not loaded yet.
 
 <Demo component="combobox/loading-usage" meta={{ "App.tsx": "{42}" }} />
 
 ### Virtualized
 
-We can use virtualization to improve performance when rendering a large number of items inside the combobox. Inside `ComboboxScrollArea` set `children` to a render prop to enable virtualization.
+We can use virtualization to improve performance when rendering a large number of items inside the combobox. Inside `ComboboxListbox` set `children` to a render prop to enable virtualization.
 
-<Demo component="combobox/virtualized-usage" meta="{49-51}" />
+<Demo component="combobox/virtualized-usage" meta="{49-55}" />
 
 ### Related
 
@@ -225,8 +225,8 @@ We can use virtualization to improve performance when rendering a large number o
 <PropsTable component="ComboboxContent" />
 ### ComboboxInput
 <PropsTable component="ComboboxInput" />
-### ComboboxScrollArea
-<PropsTable component="ComboboxScrollArea" />
+### ComboboxListbox
+<PropsTable component="ComboboxListbox" />
 ### ComboboxItem
 <PropsTable component="ComboboxItem" />
 ### ComboboxCheckboxItem

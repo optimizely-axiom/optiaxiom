@@ -8,8 +8,8 @@ import {
   SpotlightEmpty,
   SpotlightInput,
   SpotlightLabel,
+  SpotlightListbox,
   SpotlightRadioItem,
-  SpotlightScrollArea,
   SpotlightSub,
   SpotlightSubItem,
   SpotlightTrigger,
@@ -189,7 +189,7 @@ export const Basic: Story<Item & { items?: Item[] }> = {
             ))}
           </SpotlightSub>
 
-          <SpotlightScrollArea>
+          <SpotlightListbox>
             {filteredItems.map((item) => (
               <Fragment key={item.title}>
                 {shouldShowCategory(item.category) && (
@@ -248,7 +248,7 @@ export const Basic: Story<Item & { items?: Item[] }> = {
                 )}
               </Fragment>
             ))}
-          </SpotlightScrollArea>
+          </SpotlightListbox>
         </SpotlightContent>
       </Spotlight>
     );

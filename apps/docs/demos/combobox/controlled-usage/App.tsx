@@ -5,7 +5,7 @@ import {
   ComboboxCheckboxItem,
   ComboboxContent,
   ComboboxInput,
-  ComboboxScrollArea,
+  ComboboxListbox,
   ComboboxTrigger,
 } from "@optiaxiom/react/unstable";
 
@@ -26,13 +26,13 @@ export function App() {
 
       <ComboboxContent>
         <ComboboxInput />
-        <ComboboxScrollArea>
+        <ComboboxListbox>
           {(item) => (
             <ComboboxCheckboxItem item={item} key={item.label}>
               {item.label}
             </ComboboxCheckboxItem>
           )}
-        </ComboboxScrollArea>
+        </ComboboxListbox>
       </ComboboxContent>
     </Combobox>
   );

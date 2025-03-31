@@ -7,7 +7,7 @@ import {
   ComboboxContent,
   ComboboxEmpty,
   ComboboxInput,
-  ComboboxScrollArea,
+  ComboboxListbox,
   ComboboxTrigger,
 } from "@optiaxiom/react/unstable";
 import { useState } from "react";
@@ -46,7 +46,7 @@ export function App() {
       <ComboboxContent>
         <ComboboxInput />
 
-        <ComboboxScrollArea>
+        <ComboboxListbox>
           {items.map((item) => (
             <ComboboxCheckboxItem
               icon={
@@ -62,8 +62,10 @@ export function App() {
             </ComboboxCheckboxItem>
           ))}
 
-          {items.length === 0 && <ComboboxEmpty>No result found</ComboboxEmpty>}
-        </ComboboxScrollArea>
+          {items.length === 0 && (
+            <ComboboxEmpty>No results found.</ComboboxEmpty>
+          )}
+        </ComboboxListbox>
       </ComboboxContent>
     </Combobox>
   );
