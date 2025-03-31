@@ -1,7 +1,7 @@
 import { type RefObject, useEffect } from "react";
 
 export const useObserveValue = (
-  inputRef: RefObject<HTMLElement>,
+  inputRef: RefObject<HTMLInputElement | HTMLSelectElement>,
   setValue: (value: string) => void,
 ) => {
   useEffect(() => {
@@ -26,4 +26,13 @@ export const useObserveValue = (
       },
     });
   }, [inputRef, setValue]);
+
+  return (value: string) => {
+    if (!inputRef.current) {
+      return;
+    }
+
+    inputRef.current.value = value;
+    inputRef.current.dispatchEvent(new Event("change", { bubbles: true }));
+  };
 };

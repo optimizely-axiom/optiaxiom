@@ -16,12 +16,8 @@ import { Popover } from "../popover";
 import { PopoverAnchor } from "../popover-anchor";
 import { PopoverContent } from "../popover-content";
 import { PopoverTrigger } from "../popover-trigger";
-import {
-  type ExtendProps,
-  forceValueChange,
-  toPlainDate,
-  toPlainDateTime,
-} from "../utils";
+import { useObserveValue } from "../use-observe-value";
+import { type ExtendProps, toPlainDate, toPlainDateTime } from "../utils";
 import * as styles from "./DateInput.css";
 import { toInstant } from "./utils";
 
@@ -51,17 +47,18 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
     const hasInteractedOutsideRef = useRef(false);
     const pickerRef = useRef<HTMLButtonElement>(null);
 
+    const innerRef = useRef<HTMLInputElement>(null);
+    const ref = useComposedRefs(innerRef, outerRef);
+
     const [value, setValue] = useControllableState({
       defaultProp: props.defaultValue,
       prop: props.value,
     });
+    const forceValueChange = useObserveValue(innerRef, setValue);
     const instant =
       typeof value === "string"
         ? toInstant(value.includes("T") ? value : value + "T00:00")
         : undefined;
-
-    const innerRef = useRef<HTMLInputElement>(null);
-    const ref = useComposedRefs(innerRef, outerRef);
 
     const maxDate = max ? new Date(max) : undefined;
     const minDate = min ? new Date(min) : undefined;
@@ -138,14 +135,11 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
                 return;
               }
 
-              if (innerRef.current) {
-                forceValueChange(
-                  innerRef?.current,
-                  type === "datetime-local"
-                    ? toPlainDateTime(date)
-                    : toPlainDate(date),
-                );
-              }
+              forceValueChange(
+                type === "datetime-local"
+                  ? toPlainDateTime(date)
+                  : toPlainDate(date),
+              );
               if (type === "date") {
                 setOpen(false);
               }
@@ -158,10 +152,7 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
           <Flex flexDirection="row" justifyContent="space-between">
             <Button
               onClick={() => {
-                if (innerRef.current) {
-                  forceValueChange(innerRef.current, "");
-                }
-
+                forceValueChange("");
                 if (type === "date") {
                   setOpen(false);
                 }

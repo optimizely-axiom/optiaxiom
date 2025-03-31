@@ -14,8 +14,8 @@ import {
 import { usePortalPatch } from "../downshift";
 import { SelectProvider } from "../select-context";
 import { SelectHiddenSelect } from "../select-hidden-select";
+import { useObserveValue } from "../use-observe-value";
 import { useObserveReset } from "./useObserveReset";
-import { useObserveValue } from "./useObserveValue";
 
 type SelectProps<Item> = (NoInfer<Item> extends string
   ? {
