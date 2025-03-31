@@ -46,7 +46,11 @@ export const Controlled: Story = {
       <Flex flexDirection="column" gap="12" w="224">
         <SearchInput {...args} onChange={handleChange} value={value} />
         <Text fontSize="md">Current value: {value}</Text>
-        <Button disabled={!value} onClick={() => setValue("")}>
+        <Button
+          alignSelf="start"
+          disabled={!value}
+          onClick={() => setValue("")}
+        >
           Clear
         </Button>
       </Flex>

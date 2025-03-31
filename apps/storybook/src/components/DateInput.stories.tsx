@@ -1,8 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Field } from "@optiaxiom/react";
+import { Button, Field, Flex, Text } from "@optiaxiom/react";
 import { DateInput } from "@optiaxiom/react/unstable";
 import { expect, screen, userEvent, waitFor } from "@storybook/test";
+import { useState } from "react";
 
 export default {
   component: DateInput,
@@ -48,6 +49,32 @@ export const WithLabel: Story = {
 export const DefaultValue: Story = {
   args: {
     defaultValue: "2025-01-22",
+  },
+};
+
+export const Controlled: Story = {
+  render: function Sample(args) {
+    const [value, setValue] = useState("");
+
+    return (
+      <Flex flexDirection="column" gap="12" w="224">
+        <DateInput
+          {...args}
+          onChange={(event) => {
+            setValue(event.target.value);
+          }}
+          value={value}
+        />
+        <Text fontSize="md">Current value: {value}</Text>
+        <Button
+          alignSelf="start"
+          disabled={!value}
+          onClick={() => setValue("")}
+        >
+          Clear
+        </Button>
+      </Flex>
+    );
   },
 };
 

@@ -7,7 +7,7 @@ import { Flex } from "../flex";
 import { IconMagnifyingGlass } from "../icons/IconMagnifyingGlass";
 import { IconX } from "../icons/IconX";
 import { Input } from "../input";
-import { forceValueChange } from "../utils";
+import { useObserveValue } from "../use-observe-value";
 import * as styles from "./SearchInput.css";
 
 type SearchProps = ComponentPropsWithRef<typeof Input> & {
@@ -18,10 +18,12 @@ export const SearchInput = forwardRef<HTMLInputElement, SearchProps>(
   ({ addonBefore, className, onChange, onValueClear, ...props }, outerRef) => {
     const innerRef = useRef<HTMLInputElement>(null);
     const ref = useComposedRefs(innerRef, outerRef);
+
     const [value, setValue] = useControllableState({
       defaultProp: props.defaultValue,
       prop: props.value,
     });
+    const forceValueChange = useObserveValue(innerRef, setValue);
 
     return (
       <Input
@@ -32,12 +34,8 @@ export const SearchInput = forwardRef<HTMLInputElement, SearchProps>(
               aria-label="Clear"
               icon={value && <IconX />}
               onClick={() => {
-                if (!innerRef.current) {
-                  return;
-                }
-
-                forceValueChange(innerRef.current, "");
-                innerRef.current.focus();
+                forceValueChange("");
+                innerRef.current?.focus();
                 onValueClear?.();
               }}
               tabIndex={-1}
