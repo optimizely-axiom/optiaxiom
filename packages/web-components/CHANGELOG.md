@@ -1,5 +1,13 @@
 # @optiaxiom/web-components
 
+## 0.9.3
+
+### Patch Changes
+
+- be16d0c: collapse portal and toast viewport element
+- cd61f1d: fix nested dropdown open state
+- 4b488b7: observe value of DateInput and SearchInput
+
 ## 0.9.2
 
 ### Patch Changes

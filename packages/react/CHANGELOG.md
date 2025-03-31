@@ -1,5 +1,16 @@
 # @optiaxiom/react
 
+## 1.2.3
+
+### Patch Changes
+
+- be16d0c: collapse portal and toast viewport element
+- cd61f1d: fix nested dropdown open state
+- b264fff: allow uncontrolled filtering of Command items
+- 9a3fd88: rename ComboboxScrollArea to ComboboxListbox
+- 4b488b7: observe value of DateInput and SearchInput
+- 711d744: add nested dropdown combobox components
+
 ## 1.2.2
 
 ### Patch Changes
