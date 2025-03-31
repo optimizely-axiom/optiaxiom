@@ -4,11 +4,9 @@ import type { ComboboxDialogContent } from "../combobox-dialog-content";
 import type { ComboboxPopoverContent } from "../combobox-popover-content";
 
 import { useComboboxContext } from "../combobox-context";
-import { ComboboxEmpty } from "../combobox-empty";
 import { ComboboxInput } from "../combobox-input";
-import { ComboboxScrollArea } from "../combobox-scroll-area";
+import { ComboboxListbox } from "../combobox-listbox";
 import { Command } from "../command";
-import { CommandListbox } from "../command-listbox";
 import { useFieldContext } from "../field-context";
 import { useResponsiveMatches } from "../use-responsive-matches";
 
@@ -52,17 +50,12 @@ export const ComboboxContent = forwardRef<HTMLDivElement, ComboboxContentProps>(
           onInputValueChange={onInputValueChange}
           onItemSelect={onItemSelect}
         >
-          <CommandListbox>
-            {children ?? (
-              <>
-                <ComboboxInput placeholder="Search..." />
-                <ComboboxScrollArea />
-                {items.length === 0 && (
-                  <ComboboxEmpty>No result found</ComboboxEmpty>
-                )}
-              </>
-            )}
-          </CommandListbox>
+          {children ?? (
+            <>
+              <ComboboxInput placeholder="Search..." />
+              <ComboboxListbox />
+            </>
+          )}
         </Command>
       </components.Content>
     );

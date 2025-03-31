@@ -16,8 +16,8 @@ import {
   Combobox,
   ComboboxContent,
   ComboboxInput,
+  ComboboxListbox,
   ComboboxRadioItem,
-  ComboboxScrollArea,
   ComboboxTrigger,
   Select,
   SelectContent,
@@ -249,13 +249,13 @@ function SampleCombobox() {
 
       <ComboboxContent>
         <ComboboxInput placeholder="Languages..." />
-        <ComboboxScrollArea>
+        <ComboboxListbox>
           {items.map((item) => (
             <ComboboxRadioItem item={item} key={item}>
               {item}
             </ComboboxRadioItem>
           ))}
-        </ComboboxScrollArea>
+        </ComboboxListbox>
       </ComboboxContent>
     </Combobox>
   );

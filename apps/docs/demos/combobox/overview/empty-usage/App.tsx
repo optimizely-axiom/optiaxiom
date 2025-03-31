@@ -5,7 +5,8 @@ import {
   ComboboxContent,
   ComboboxEmpty,
   ComboboxInput,
-  ComboboxScrollArea,
+  ComboboxListbox,
+  ComboboxRadioItem,
   ComboboxTrigger,
 } from "@optiaxiom/react/unstable";
 import { useState } from "react";
@@ -31,8 +32,16 @@ export function App() {
       <ComboboxTrigger placeholder="Select colors..." />
       <ComboboxContent>
         <ComboboxInput />
-        <ComboboxScrollArea />
-        {items.length === 0 && <ComboboxEmpty>No result found</ComboboxEmpty>}
+        <ComboboxListbox>
+          {items.map((item) => (
+            <ComboboxRadioItem item={item} key={item}>
+              {item}
+            </ComboboxRadioItem>
+          ))}
+          {items.length === 0 && (
+            <ComboboxEmpty>No results found.</ComboboxEmpty>
+          )}
+        </ComboboxListbox>
       </ComboboxContent>
     </Combobox>
   );

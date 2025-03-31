@@ -6,7 +6,7 @@ import {
   ComboboxContent,
   ComboboxEmpty,
   ComboboxInput,
-  ComboboxScrollArea,
+  ComboboxListbox,
   ComboboxTrigger,
 } from "@optiaxiom/react/unstable";
 import { useState } from "react";
@@ -45,13 +45,15 @@ export function App() {
       <ComboboxContent>
         <ComboboxInput />
 
-        <ComboboxScrollArea>
-          {(item) => (
-            <ComboboxCheckboxItem item={item}>{item}</ComboboxCheckboxItem>
+        <ComboboxListbox>
+          {items.length === 0 ? (
+            <ComboboxEmpty>No results found.</ComboboxEmpty>
+          ) : (
+            (item) => (
+              <ComboboxCheckboxItem item={item}>{item}</ComboboxCheckboxItem>
+            )
           )}
-        </ComboboxScrollArea>
-
-        {items.length === 0 && <ComboboxEmpty>No result found</ComboboxEmpty>}
+        </ComboboxListbox>
       </ComboboxContent>
     </Combobox>
   );

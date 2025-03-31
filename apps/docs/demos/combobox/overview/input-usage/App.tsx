@@ -2,7 +2,7 @@ import {
   Combobox,
   ComboboxContent,
   ComboboxInput,
-  ComboboxScrollArea,
+  ComboboxListbox,
   ComboboxTrigger,
 } from "@optiaxiom/react/unstable";
 
@@ -14,7 +14,7 @@ export function App() {
       <ComboboxTrigger placeholder="Select colors..." />
       <ComboboxContent>
         <ComboboxInput placeholder="Search..." />
-        <ComboboxScrollArea />
+        <ComboboxListbox />
       </ComboboxContent>
     </Combobox>
   );

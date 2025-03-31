@@ -4,7 +4,7 @@ import {
   Combobox,
   ComboboxCheckboxItem,
   ComboboxContent,
-  ComboboxScrollArea,
+  ComboboxListbox,
   ComboboxTrigger,
 } from "@optiaxiom/react/unstable";
 
@@ -15,11 +15,11 @@ export function App() {
     <Combobox defaultItems={colors}>
       <ComboboxTrigger placeholder="Select colors..." />
       <ComboboxContent>
-        <ComboboxScrollArea>
+        <ComboboxListbox>
           {(item) => (
             <ComboboxCheckboxItem item={item}>{item}</ComboboxCheckboxItem>
           )}
-        </ComboboxScrollArea>
+        </ComboboxListbox>
       </ComboboxContent>
     </Combobox>
   );

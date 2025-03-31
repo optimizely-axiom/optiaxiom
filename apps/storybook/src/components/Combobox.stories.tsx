@@ -9,10 +9,9 @@ import {
   ComboboxFooter,
   ComboboxGroup,
   ComboboxInput,
-  ComboboxItem,
   ComboboxLabel,
+  ComboboxListbox,
   ComboboxRadioItem,
-  ComboboxScrollArea,
   ComboboxSeparator,
   ComboboxTrigger,
 } from "@optiaxiom/react/unstable";
@@ -155,16 +154,16 @@ export const AsyncLoading: Story = {
         <ComboboxTrigger placeholder="Select a language" />
         <ComboboxContent>
           <ComboboxInput placeholder="Languages..." />
-          <ComboboxScrollArea loading={isLoading}>
+          <ComboboxListbox loading={isLoading}>
             {items.map((item) => (
               <ComboboxRadioItem item={item} key={item}>
                 {item}
               </ComboboxRadioItem>
             ))}
-          </ComboboxScrollArea>
-          {items.length === 0 && !isLoading && (
-            <ComboboxEmpty>No result found</ComboboxEmpty>
-          )}
+            {items.length === 0 && !isLoading && (
+              <ComboboxEmpty>No results found.</ComboboxEmpty>
+            )}
+          </ComboboxListbox>
         </ComboboxContent>
       </Combobox>
     );
@@ -204,14 +203,16 @@ export const Multiple: Story = {
         <ComboboxTrigger placeholder="Select a language" />
         <ComboboxContent>
           <ComboboxInput placeholder="Languages..." />
-          <ComboboxScrollArea>
+          <ComboboxListbox>
             {items.map((item) => (
               <ComboboxCheckboxItem item={item} key={item}>
                 {item}
               </ComboboxCheckboxItem>
             ))}
-          </ComboboxScrollArea>
-          {items.length === 0 && <ComboboxEmpty>No result found</ComboboxEmpty>}
+            {items.length === 0 && (
+              <ComboboxEmpty>No results found.</ComboboxEmpty>
+            )}
+          </ComboboxListbox>
         </ComboboxContent>
       </Combobox>
     );
@@ -341,7 +342,7 @@ export const People: Story<(typeof users)[number]> = {
 
         <ComboboxContent>
           <ComboboxInput placeholder="People..." />
-          <ComboboxScrollArea>
+          <ComboboxListbox>
             {items.map((user) => (
               <Fragment key={user.id}>
                 {user === actions.all && <ComboboxSeparator />}
@@ -383,7 +384,7 @@ export const People: Story<(typeof users)[number]> = {
                 {user === actions.me && <ComboboxSeparator />}
               </Fragment>
             ))}
-          </ComboboxScrollArea>
+          </ComboboxListbox>
         </ComboboxContent>
       </Combobox>
     );
@@ -455,15 +456,6 @@ const books = [
   },
 ];
 
-const controlledActions: { clear: Book; done: Book } = {
-  clear: {
-    id: "clear",
-  },
-  done: {
-    id: "done",
-  },
-};
-
 export const Controlled: Story<Book> = {
   render: function DefaultSelected(args) {
     const [items, setItems] = useState(books);
@@ -473,11 +465,8 @@ export const Controlled: Story<Book> = {
     return (
       <Combobox
         {...args}
-        isItemDisabled={(item) =>
-          item === controlledActions.clear && value.length === 0
-        }
         isItemSelected={(item) => value.includes(item)}
-        items={[...items, controlledActions.clear, controlledActions.done]}
+        items={items}
         itemToLabel={(book) => (book ? String(book.title) : "")}
         onInputValueChange={(inputValue) => {
           setItems(
@@ -490,17 +479,11 @@ export const Controlled: Story<Book> = {
           );
         }}
         onItemSelect={(value) => {
-          if (value === controlledActions.clear) {
-            setValue([]);
-          } else if (value === controlledActions.done) {
-            setOpen(false);
-          } else {
-            setValue((values) =>
-              values.includes(value)
-                ? values.filter((v) => v !== value)
-                : [...values, value],
-            );
-          }
+          setValue((values) =>
+            values.includes(value)
+              ? values.filter((v) => v !== value)
+              : [...values, value],
+          );
         }}
         onOpenChange={setOpen}
         open={open}
@@ -510,22 +493,21 @@ export const Controlled: Story<Book> = {
         <ComboboxContent>
           <ComboboxInput placeholder="Books..." />
 
-          <ComboboxScrollArea>
+          <ComboboxListbox>
             {items.map((book) => (
               <ComboboxCheckboxItem item={book} key={book.id}>
                 {book.title}
               </ComboboxCheckboxItem>
             ))}
-          </ComboboxScrollArea>
+          </ComboboxListbox>
 
           <ComboboxFooter>
-            <ComboboxItem asChild item={controlledActions.clear}>
-              <Button disabled={value.length === 0}>Clear All</Button>
-            </ComboboxItem>
-
-            <ComboboxItem asChild item={controlledActions.done}>
-              <Button appearance="primary">Done</Button>
-            </ComboboxItem>
+            <Button disabled={value.length === 0} onClick={() => setValue([])}>
+              Clear All
+            </Button>
+            <Button appearance="primary" onClick={() => setOpen(false)}>
+              Done
+            </Button>
           </ComboboxFooter>
         </ComboboxContent>
       </Combobox>
@@ -583,7 +565,7 @@ export const Group: Story = {
 
         <ComboboxContent>
           <ComboboxInput placeholder="Search foods..." />
-          <ComboboxScrollArea>
+          <ComboboxListbox>
             {filteredFruits.length > 0 && (
               <ComboboxGroup>
                 <ComboboxLabel>Fruits</ComboboxLabel>
@@ -616,7 +598,7 @@ export const Group: Story = {
                 ))}
               </ComboboxGroup>
             )}
-          </ComboboxScrollArea>
+          </ComboboxListbox>
         </ComboboxContent>
       </Combobox>
     );

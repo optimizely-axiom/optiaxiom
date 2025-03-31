@@ -3,7 +3,6 @@ import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import { Command } from "../command";
-import { CommandListbox } from "../command-listbox";
 import { DialogContent } from "../dialog-content";
 import { PopoverContent } from "../popover-content";
 import { useSpotlightContext } from "../spotlight-context";
@@ -48,7 +47,7 @@ export const SpotlightContent = forwardRef<
         onInputValueChange={onInputValueChange}
         onItemSelect={onItemSelect}
       >
-        <CommandListbox>{children}</CommandListbox>
+        {children}
       </Command>
     </DialogContent>
   );
