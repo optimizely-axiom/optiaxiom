@@ -48,12 +48,16 @@ export const ComboboxListbox = forwardRef<HTMLDivElement, ComboboxListboxProps>(
           </Box>
         ) : children ? (
           typeof children === "function" ? (
-            <ListboxVirtualized
-              highlightedItem={highlightedItem}
-              items={itemsProp ?? items}
-            >
-              {children}
-            </ListboxVirtualized>
+            items.length > 0 ? (
+              <ListboxVirtualized
+                highlightedItem={highlightedItem}
+                items={itemsProp ?? items}
+              >
+                {children}
+              </ListboxVirtualized>
+            ) : (
+              <ComboboxEmpty />
+            )
           ) : (
             children
           )
@@ -67,7 +71,7 @@ export const ComboboxListbox = forwardRef<HTMLDivElement, ComboboxListboxProps>(
             </ComboboxRadioItem>
           ))
         ) : (
-          <ComboboxEmpty>No results found.</ComboboxEmpty>
+          <ComboboxEmpty />
         )}
       </CommandListbox>
     );

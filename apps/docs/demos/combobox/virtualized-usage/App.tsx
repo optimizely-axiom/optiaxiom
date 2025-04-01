@@ -4,7 +4,6 @@ import {
   Combobox,
   ComboboxCheckboxItem,
   ComboboxContent,
-  ComboboxEmpty,
   ComboboxInput,
   ComboboxListbox,
   ComboboxTrigger,
@@ -16,22 +15,12 @@ const colors = Array.from({ length: 2000 }).map(
 );
 
 export function App() {
-  const [items, setItems] = useState(colors);
   const [value, setValue] = useState([colors[0]]);
 
   return (
     <Combobox
+      defaultItems={colors}
       isItemSelected={(item) => value.includes(item)}
-      items={items}
-      onInputValueChange={(inputValue) => {
-        setItems(
-          inputValue
-            ? colors.filter((color) =>
-                color.toLowerCase().includes(inputValue.toLowerCase()),
-              )
-            : colors,
-        );
-      }}
       onItemSelect={(value) =>
         setValue((prev) =>
           prev.includes(value)
@@ -46,12 +35,8 @@ export function App() {
         <ComboboxInput />
 
         <ComboboxListbox>
-          {items.length === 0 ? (
-            <ComboboxEmpty>No results found.</ComboboxEmpty>
-          ) : (
-            (item) => (
-              <ComboboxCheckboxItem item={item}>{item}</ComboboxCheckboxItem>
-            )
+          {(item) => (
+            <ComboboxCheckboxItem item={item}>{item}</ComboboxCheckboxItem>
           )}
         </ComboboxListbox>
       </ComboboxContent>
