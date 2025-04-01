@@ -160,9 +160,7 @@ export const AsyncLoading: Story = {
                 {item}
               </ComboboxRadioItem>
             ))}
-            {items.length === 0 && !isLoading && (
-              <ComboboxEmpty>No results found.</ComboboxEmpty>
-            )}
+            {items.length === 0 && !isLoading && <ComboboxEmpty />}
           </ComboboxListbox>
         </ComboboxContent>
       </Combobox>
@@ -209,9 +207,7 @@ export const Multiple: Story = {
                 {item}
               </ComboboxCheckboxItem>
             ))}
-            {items.length === 0 && (
-              <ComboboxEmpty>No results found.</ComboboxEmpty>
-            )}
+            {items.length === 0 && <ComboboxEmpty />}
           </ComboboxListbox>
         </ComboboxContent>
       </Combobox>

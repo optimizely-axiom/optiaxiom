@@ -5,7 +5,7 @@ import { Box, type BoxProps } from "../box";
 type ListboxEmptyProps = BoxProps;
 
 export const ListboxEmpty = forwardRef<HTMLDivElement, ListboxEmptyProps>(
-  ({ children, ...props }, ref) => {
+  ({ children = "No results found.", ...props }, ref) => {
     return (
       <Box
         alignItems="center"
@@ -17,7 +17,7 @@ export const ListboxEmpty = forwardRef<HTMLDivElement, ListboxEmptyProps>(
         ref={ref}
         {...props}
       >
-        {children || "No options"}
+        {children}
       </Box>
     );
   },
