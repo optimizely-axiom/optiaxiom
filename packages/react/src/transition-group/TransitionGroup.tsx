@@ -9,6 +9,7 @@ import {
 
 import { TransitionGlobalConfig } from "../transition";
 import { TransitionGroupContext } from "../transition-group-context";
+import { waitForAnimation } from "./waitForAnimation";
 
 export function TransitionGroup({
   children,
@@ -39,21 +40,21 @@ export function TransitionGroup({
   });
   useEffect(() => {
     if (open) {
-      requestAnimationFrame(() => setPresence(true));
+      const timer = setTimeout(() => {
+        if (transitions.length) {
+          void waitForAnimation(transitions).then(() => setPresence(true));
+        } else {
+          setPresence(true);
+        }
+      }, 10);
+      return () => clearTimeout(timer);
     } else {
       if (transitions.length) {
-        void Promise.allSettled(
-          transitions.flatMap<Promise<unknown>>((ref) =>
-            typeof ref.current?.getAnimations === "function"
-              ? ref.current
-                  ?.getAnimations()
-                  .map((animation) => animation.finished)
-              : [Promise.resolve()],
-          ),
-        ).then(() => setPresence(false));
+        void waitForAnimation(transitions).then(() => setPresence(false));
       } else {
         setPresence(false);
       }
+      return;
     }
   }, [open, setPresence, transitions]);
 
@@ -62,7 +63,9 @@ export function TransitionGroup({
   }
 
   return (
-    <TransitionGroupContext.Provider value={{ onMount, onUnmount, open }}>
+    <TransitionGroupContext.Provider
+      value={{ onMount, onUnmount, open, presence }}
+    >
       {(open || presence) && children}
     </TransitionGroupContext.Provider>
   );

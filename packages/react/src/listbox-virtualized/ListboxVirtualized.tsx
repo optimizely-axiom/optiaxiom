@@ -5,6 +5,7 @@ import {
   type LegacyRef,
   type ReactElement,
   type ReactNode,
+  useContext,
   useEffect,
   useMemo,
   useRef,
@@ -13,6 +14,7 @@ import {
 
 import { Box, type BoxProps } from "../box";
 import { Listbox } from "../listbox";
+import { TransitionGroupContext } from "../transition-group-context";
 
 type ListboxVirtualizedProps<T = unknown> = BoxProps<
   "div",
@@ -41,6 +43,8 @@ export const ListboxVirtualized = forwardRef<
     requestAnimationFrame(() => setEnabled(true));
   }, []);
 
+  const { presence } = useContext(TransitionGroupContext) ?? {};
+
   const rowVirtualizer = useVirtualizer({
     count: items.length,
     enabled,
@@ -54,11 +58,11 @@ export const ListboxVirtualized = forwardRef<
   );
   useEffect(() => {
     const index = itemToIndexMap.get(highlightedItem);
-    if (!enabled || typeof index !== "number") {
+    if (!presence || typeof index !== "number" || rowVirtualizer.isScrolling) {
       return;
     }
     rowVirtualizer.scrollToIndex(index);
-  }, [enabled, highlightedItem, itemToIndexMap, rowVirtualizer]);
+  }, [presence, highlightedItem, itemToIndexMap, rowVirtualizer]);
 
   const virtualItems = rowVirtualizer.getVirtualItems();
   const [paddingTop, paddingBottom] =
