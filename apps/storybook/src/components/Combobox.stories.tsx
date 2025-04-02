@@ -5,7 +5,6 @@ import {
   Combobox,
   ComboboxCheckboxItem,
   ComboboxContent,
-  ComboboxEmpty,
   ComboboxFooter,
   ComboboxGroup,
   ComboboxInput,
@@ -150,7 +149,6 @@ export const AsyncLoading: Story = {
                 {item}
               </ComboboxRadioItem>
             ))}
-            {items.length === 0 && !isLoading && <ComboboxEmpty />}
           </ComboboxListbox>
         </ComboboxContent>
       </Combobox>

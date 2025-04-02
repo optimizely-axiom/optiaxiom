@@ -17,7 +17,6 @@ export * from "./clock";
 export * from "./combobox";
 export * from "./combobox-checkbox-item";
 export * from "./combobox-content";
-export * from "./combobox-empty";
 export * from "./combobox-footer";
 export * from "./combobox-group";
 export * from "./combobox-input";

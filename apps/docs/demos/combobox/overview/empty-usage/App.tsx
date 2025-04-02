@@ -3,10 +3,8 @@
 import {
   Combobox,
   ComboboxContent,
-  ComboboxEmpty,
   ComboboxInput,
   ComboboxListbox,
-  ComboboxRadioItem,
   ComboboxTrigger,
 } from "@optiaxiom/react/unstable";
 import { useState } from "react";
@@ -23,7 +21,7 @@ export function App() {
         setItems(
           inputValue
             ? colors.filter((color) =>
-                color.toLowerCase().includes(inputValue.toLowerCase()),
+                color.toLowerCase().startsWith(inputValue.toLowerCase()),
               )
             : colors,
         );
@@ -32,16 +30,7 @@ export function App() {
       <ComboboxTrigger>Select color</ComboboxTrigger>
       <ComboboxContent>
         <ComboboxInput />
-        <ComboboxListbox>
-          {items.map((item) => (
-            <ComboboxRadioItem item={item} key={item}>
-              {item}
-            </ComboboxRadioItem>
-          ))}
-          {items.length === 0 && (
-            <ComboboxEmpty>No results found.</ComboboxEmpty>
-          )}
-        </ComboboxListbox>
+        <ComboboxListbox empty="No colors matched." />
       </ComboboxContent>
     </Combobox>
   );
