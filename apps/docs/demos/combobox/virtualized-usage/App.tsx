@@ -30,10 +30,8 @@ export function App() {
       }
     >
       <ComboboxTrigger w="224">Select colors</ComboboxTrigger>
-
       <ComboboxContent>
         <ComboboxInput />
-
         <ComboboxListbox>
           {(item) => (
             <ComboboxCheckboxItem item={item}>{item}</ComboboxCheckboxItem>

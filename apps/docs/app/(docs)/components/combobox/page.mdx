@@ -76,6 +76,11 @@ We can also manually control `items` in combination with the `onInputValueChange
 
 Pressing enter or clicking items will not do anything in previous demos. For that we need to add the `isItemSelected` and `onItemSelect` props to the main `Combobox` component.
 
+- `isItemSelected`: Return true if an item should be marked as selected where the item and the index are passed as parameters.
+- `onItemSelect`: Handler invoked when user selects an item with the item as the only parameter.
+
+Developers are expected to manually track the selection on their side since items inside a combobox can represent values or actions.
+
 #### Single-select
 
 <Demo component="combobox/overview/value-radio-usage" meta="{13,18-21}" />
@@ -140,33 +145,13 @@ export default () => (
 );
 ```
 
-### Data
+### Object data
 
 Use the `defaultItems` or `items` prop to pass the collection of data to `Combobox`. Items can be an array of primitive types such as strings or it can be an array of objects.
 
 In case item is an object you need to pass an additional `itemToLabel` prop for `Combobox` to work.
 
-<Demo component="combobox/complex-usage" meta={{ "App.tsx": "{26}" }} />
-
-### Filtering
-
-Use the `onInputValueChange` handler to handle filtering your list of items as the user is typing.
-
-<Demo component="combobox/complex-usage" meta={{ "App.tsx": "{25-33}" }} />
-
-### Selection
-
-We can only specify `Combobox` selection in a controlled mode and using the following props:
-
-- `isItemSelected`: Return true if an item should be marked as selected where the item and the index are passed as parameters.
-- `onItemSelect`: Handler invoked when user selects an item with the item as the only parameter.
-
-Developers are expected to manually track the selection on their side since items inside a combobox can represent values or actions.
-
-<Demo
-  component="combobox/controlled-usage"
-  meta={{ "App.tsx": "{16,21,23}" }}
-/>
+<Demo component="combobox/complex-usage" meta={{ "App.tsx": "{24}" }} />
 
 ### Disabled
 
@@ -174,7 +159,7 @@ Use the optional `isItemDisabled` prop to configure which items should be disabl
 
 <Demo
   component="combobox/complex-usage"
-  meta={{ "App.tsx": "{22}", "data.ts": "{3}" }}
+  meta={{ "App.tsx": "{22}", "data.ts": "{5}" }}
 />
 
 ### Creatable
@@ -189,27 +174,15 @@ By default we use the `Button` component for the combobox trigger which accepts 
 
 ### Item
 
-The `ComboboxCheckboxItem` component accepts `icon`, `addonBefore`, `addonAfter`, and `description` props for additional content inside the items.
+The `ComboboxCheckboxItem` and `ComboboxRadioItem` components accepts `icon`, `addonBefore`, `addonAfter`, and `description` props for additional content inside the items.
 
-<Demo component="combobox/complex-usage" meta={{ "App.tsx": "{53-58}" }} />
-
-### Empty
-
-Use the `ComboboxEmpty` component when there are no available items or suggestions.
-
-<Demo component="combobox/complex-usage" meta={{ "App.tsx": "{65-67}" }} />
-
-### Loading
-
-Use the `loading` prop on `ComboboxListbox` to show a loading spinner if the initial data for the combobox has not loaded yet.
-
-<Demo component="combobox/loading-usage" meta={{ "App.tsx": "{42}" }} />
+<Demo component="combobox/complex-usage" meta={{ "App.tsx": "{39-44}" }} />
 
 ### Virtualized
 
 We can use virtualization to improve performance when rendering a large number of items inside the combobox. Inside `ComboboxListbox` set `children` to a render prop to enable virtualization.
 
-<Demo component="combobox/virtualized-usage" meta="{49-55}" />
+<Demo component="combobox/virtualized-usage" meta="{36-38}" />
 
 ### Related
 
