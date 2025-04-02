@@ -22,7 +22,7 @@ export function App() {
       itemToLabel={(item) => item?.label || ""}
       onItemSelect={(value) => toggle(value)}
     >
-      <ComboboxTrigger placeholder="Search a color..." w="224" />
+      <ComboboxTrigger w="224">Select colors</ComboboxTrigger>
 
       <ComboboxContent>
         <ComboboxInput />

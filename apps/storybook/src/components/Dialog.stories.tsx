@@ -238,7 +238,7 @@ function SampleCombobox() {
       onOpenChange={setOpen}
       open={open}
     >
-      <ComboboxTrigger placeholder="Select a language" />
+      <ComboboxTrigger>Set language</ComboboxTrigger>
 
       <ComboboxContent>
         <ComboboxInput placeholder="Languages..." />

@@ -29,7 +29,7 @@ export function App() {
         );
       }}
     >
-      <ComboboxTrigger placeholder="Select colors..." />
+      <ComboboxTrigger>Select color</ComboboxTrigger>
       <ComboboxContent>
         <ComboboxInput />
         <ComboboxListbox>

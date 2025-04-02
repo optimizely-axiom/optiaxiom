@@ -26,7 +26,7 @@ export function App() {
       items={data}
       onInputValueChange={(inputValue) => refetch(inputValue)}
     >
-      <ComboboxTrigger placeholder="Select colors..." />
+      <ComboboxTrigger w="224">Select colors</ComboboxTrigger>
       <ComboboxContent>
         <ComboboxInput />
         <ComboboxListbox loading={isLoading} />

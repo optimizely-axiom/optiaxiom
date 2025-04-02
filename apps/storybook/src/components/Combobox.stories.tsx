@@ -92,7 +92,7 @@ export const Basic: Story = {
         onOpenChange={setOpen}
         open={open}
       >
-        <ComboboxTrigger placeholder="Select a language" />
+        <ComboboxTrigger>{value || "Set language"}</ComboboxTrigger>
         <ComboboxContent />
       </Combobox>
     );
@@ -141,7 +141,7 @@ export const AsyncLoading: Story = {
         onOpenChange={setOpen}
         open={open}
       >
-        <ComboboxTrigger placeholder="Select a language" />
+        <ComboboxTrigger>Set language</ComboboxTrigger>
         <ComboboxContent>
           <ComboboxInput placeholder="Languages..." />
           <ComboboxListbox loading={isLoading}>
@@ -178,7 +178,7 @@ export const Multiple: Story = {
         onOpenChange={setOpen}
         open={open}
       >
-        <ComboboxTrigger placeholder="Select a language" />
+        <ComboboxTrigger>Set languages</ComboboxTrigger>
         <ComboboxContent>
           <ComboboxInput placeholder="Languages..." />
           <ComboboxListbox>
@@ -296,22 +296,28 @@ export const People: Story<(typeof users)[number]> = {
         onOpenChange={setOpen}
         open={open}
       >
-        <ComboboxTrigger placeholder="Select assignees">
-          <AvatarGroup>
-            {[...value].slice(0, 3).map((user) => (
-              <Avatar
-                colorScheme="purple"
-                key={user.id}
-                name={user.name}
-                size="xs"
-                src={user.src}
-              />
-            ))}
-          </AvatarGroup>
-          {!value.size ? null : value.size > 1 ? (
-            <>{value.size} assignees</>
+        <ComboboxTrigger>
+          {value.size ? (
+            <>
+              <AvatarGroup>
+                {[...value].slice(0, 3).map((user) => (
+                  <Avatar
+                    colorScheme="purple"
+                    key={user.id}
+                    name={user.name}
+                    size="xs"
+                    src={user.src}
+                  />
+                ))}
+              </AvatarGroup>
+              {value.size > 1 ? (
+                <>{value.size} assignees</>
+              ) : (
+                [...value][0].name
+              )}
+            </>
           ) : (
-            [...value][0].name
+            "Assign"
           )}
         </ComboboxTrigger>
 
@@ -456,7 +462,7 @@ export const Controlled: Story<Book> = {
         onOpenChange={setOpen}
         open={open}
       >
-        <ComboboxTrigger placeholder="Select books" />
+        <ComboboxTrigger>Select books</ComboboxTrigger>
 
         <ComboboxContent>
           <ComboboxInput placeholder="Books..." />
@@ -519,7 +525,7 @@ export const Group: Story = {
         onOpenChange={setOpen}
         open={open}
       >
-        <ComboboxTrigger placeholder="Select an item" />
+        <ComboboxTrigger>Select an item</ComboboxTrigger>
 
         <ComboboxContent>
           <ComboboxInput placeholder="Search foods..." />

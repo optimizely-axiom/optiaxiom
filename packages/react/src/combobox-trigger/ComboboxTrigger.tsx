@@ -3,35 +3,22 @@ import { type ComponentPropsWithoutRef, forwardRef, useRef } from "react";
 
 import { AngleMenuButton } from "../angle-menu-button";
 import { useComboboxContext } from "../combobox-context";
-import { useCommandContext } from "../command-context";
 import { PopoverTrigger } from "../popover-trigger";
 import { useFieldLabelTrigger } from "../use-field-label-trigger";
 
-type ComboboxTriggerProps = ComponentPropsWithoutRef<typeof PopoverTrigger> & {
-  placeholder?: string;
-};
+type ComboboxTriggerProps = ComponentPropsWithoutRef<typeof PopoverTrigger>;
 
 export const ComboboxTrigger = forwardRef<
   HTMLButtonElement,
   ComboboxTriggerProps
 >(
   (
-    {
-      "aria-labelledby": ariaLabelledBy,
-      asChild,
-      children,
-      placeholder,
-      ...props
-    },
+    { "aria-labelledby": ariaLabelledBy, asChild, children, ...props },
     outerRef,
   ) => {
     const { components, setOpen } = useComboboxContext(
       "@optiaxiom/react/ComboboxTrigger",
     );
-    const { isItemSelected, items, itemToLabel } = useCommandContext(
-      "@optiaxiom/react/ComboboxTrigger",
-    );
-    const value = items.filter((item, index) => isItemSelected(item, index));
 
     const buttonRef = useRef<HTMLButtonElement>(null);
     const ref = useComposedRefs(outerRef, buttonRef);
@@ -50,26 +37,9 @@ export const ComboboxTrigger = forwardRef<
           }
         }}
         ref={ref}
-        role="combobox"
         {...props}
       >
-        {asChild ? (
-          children
-        ) : (
-          <AngleMenuButton>
-            {Array.isArray(value) && value.length > 0
-              ? (children ?? (
-                  <>
-                    {value.length === 1 ? (
-                      itemToLabel(value[0])
-                    ) : (
-                      <>{value.length} selected</>
-                    )}
-                  </>
-                ))
-              : placeholder}
-          </AngleMenuButton>
-        )}
+        {asChild ? children : <AngleMenuButton>{children}</AngleMenuButton>}
       </components.Trigger>
     );
   },
