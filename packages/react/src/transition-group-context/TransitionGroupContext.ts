@@ -8,5 +8,6 @@ export const TransitionGroupContext = createContext<
       onMount: (ref: RefObject<HTMLElement>) => void;
       onUnmount: (ref: RefObject<HTMLElement>) => void;
       open: boolean | undefined;
+      presence: boolean | undefined;
     }
 >(undefined);

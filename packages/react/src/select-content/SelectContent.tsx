@@ -74,7 +74,6 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
           }
         }}
         open={isOpen}
-        presence={placed}
       >
         <Portal asChild>
           <ModalLayer asChild>
