@@ -78,23 +78,13 @@ const languages = [
 export const Basic: Story = {
   render: function Basic(args) {
     const [open, setOpen] = useState(args.defaultOpen);
-    const [items, setItems] = useState(languages);
     const [value, setValue] = useState("Bangla");
 
     return (
       <Combobox
         {...args}
+        defaultItems={languages}
         isItemSelected={(item) => item === value}
-        items={items}
-        onInputValueChange={(inputValue) => {
-          setItems(
-            languages.filter(
-              (language) =>
-                !inputValue ||
-                language.toLowerCase().includes(inputValue.toLowerCase()),
-            ),
-          );
-        }}
         onItemSelect={(value) => {
           setValue(value);
           setOpen(false);
@@ -171,23 +161,13 @@ export const AsyncLoading: Story = {
 export const Multiple: Story = {
   render: function Multiple(args) {
     const [open, setOpen] = useState(args.defaultOpen);
-    const [items, setItems] = useState(languages);
     const [value, setValue] = useState<string[]>([]);
 
     return (
       <Combobox
         {...args}
+        defaultItems={languages}
         isItemSelected={(item) => value.includes(item)}
-        items={items}
-        onInputValueChange={(inputValue) => {
-          setItems(
-            languages.filter(
-              (language) =>
-                !inputValue ||
-                language.toLowerCase().includes(inputValue.toLowerCase()),
-            ),
-          );
-        }}
         onItemSelect={(value) => {
           setValue((values) =>
             values.includes(value)
@@ -202,12 +182,11 @@ export const Multiple: Story = {
         <ComboboxContent>
           <ComboboxInput placeholder="Languages..." />
           <ComboboxListbox>
-            {items.map((item) => (
+            {(item) => (
               <ComboboxCheckboxItem item={item} key={item}>
                 {item}
               </ComboboxCheckboxItem>
-            ))}
-            {items.length === 0 && <ComboboxEmpty />}
+            )}
           </ComboboxListbox>
         </ComboboxContent>
       </Combobox>
@@ -514,12 +493,10 @@ export const Controlled: Story<Book> = {
 const fruits = ["Apple", "Banana", "Blueberry", "Grapes", "Pineapple"];
 const vegetables = ["Aubergine", "Broccoli", "Carrot", "Courgette", "Leek"];
 const meats = ["Beef", "Chicken", "Lamb", "Pork"];
-const combinedFoodList = [...fruits, ...vegetables, ...meats];
 
 export const Group: Story = {
   render: function Group(args) {
     const [open, setOpen] = useState(args.defaultOpen);
-    const [items, setItems] = useState(combinedFoodList);
     const [searchInput, setSearchInput] = useState("");
     const [value, setValue] = useState("");
 
@@ -534,22 +511,14 @@ export const Group: Story = {
     const filteredFruits = getFilteredItems(fruits);
     const filteredVegetables = getFilteredItems(vegetables);
     const filteredMeats = getFilteredItems(meats);
+    const items = [...filteredFruits, ...filteredVegetables, ...filteredMeats];
 
     return (
       <Combobox
         {...args}
         isItemSelected={(item) => item === value}
         items={items}
-        onInputValueChange={(inputValue) => {
-          setItems(
-            combinedFoodList.filter(
-              (food) =>
-                !inputValue ||
-                food.toLowerCase().includes(inputValue.toLowerCase()),
-            ),
-          );
-          setSearchInput(inputValue);
-        }}
+        onInputValueChange={setSearchInput}
         onItemSelect={(value) => {
           setValue(value);
           setOpen(false);
