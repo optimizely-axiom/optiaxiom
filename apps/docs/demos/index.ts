@@ -63,9 +63,7 @@ export const demos = {
   "checkbox/usage": import("./checkbox/usage/App"),
   "code/usage": import("./code/usage/App"),
   "combobox/complex-usage": import("./combobox/complex-usage/App"),
-  "combobox/controlled-usage": import("./combobox/controlled-usage/App"),
   "combobox/creatable-usage": import("./combobox/creatable-usage/App"),
-  "combobox/loading-usage": import("./combobox/loading-usage/App"),
   "combobox/overview/content-checkbox-usage": import(
     "./combobox/overview/content-checkbox-usage/App"
   ),
