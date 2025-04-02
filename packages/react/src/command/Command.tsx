@@ -126,7 +126,10 @@ export function Command<Item>({
       }
     },
     onSelectedItemChange({ selectedItem, type }) {
-      if (type !== useCombobox.stateChangeTypes.InputBlur && selectedItem) {
+      if (
+        type !== useCombobox.stateChangeTypes.InputBlur &&
+        selectedItem !== null
+      ) {
         onItemSelect?.(selectedItem);
       }
     },
