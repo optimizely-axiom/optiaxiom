@@ -4,6 +4,7 @@ import { type ReactNode, useState } from "react";
 import { CommandProvider } from "../command-context";
 import { usePortalPatch } from "../downshift";
 import { useCommandItems } from "../use-command-items";
+import { useEffectEvent } from "../use-event";
 
 type CommandProps<Item> = {
   children?: ReactNode;
@@ -187,7 +188,13 @@ export function Command<Item>({
         setHighlightedSubIndex(index);
         setLastInteractionSource(source);
       }}
-      setInputValue={setInputValue}
+      setInputValue={useEffectEvent((newInputValue: string) => {
+        if (inputValue === "" && newInputValue === "") {
+          onInputValueChange?.("");
+        } else {
+          setInputValue(newInputValue);
+        }
+      })}
       setPlaced={setPlaced}
     >
       {children}
