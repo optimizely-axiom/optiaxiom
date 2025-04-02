@@ -17,7 +17,6 @@ import {
   ComboboxContent,
   ComboboxInput,
   ComboboxListbox,
-  ComboboxRadioItem,
   ComboboxTrigger,
   Select,
   SelectContent,
@@ -230,17 +229,11 @@ const languages = [
 ];
 
 function SampleCombobox() {
-  const [items, setItems] = useState(languages);
   const [open, setOpen] = useState(false);
 
   return (
     <Combobox
-      items={items}
-      onInputValueChange={(value) =>
-        setItems(
-          value ? languages.filter((item) => item.includes(value)) : languages,
-        )
-      }
+      defaultItems={languages}
       onItemSelect={() => setOpen(false)}
       onOpenChange={setOpen}
       open={open}
@@ -249,13 +242,7 @@ function SampleCombobox() {
 
       <ComboboxContent>
         <ComboboxInput placeholder="Languages..." />
-        <ComboboxListbox>
-          {items.map((item) => (
-            <ComboboxRadioItem item={item} key={item}>
-              {item}
-            </ComboboxRadioItem>
-          ))}
-        </ComboboxListbox>
+        <ComboboxListbox />
       </ComboboxContent>
     </Combobox>
   );
