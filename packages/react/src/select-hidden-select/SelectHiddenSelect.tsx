@@ -1,14 +1,26 @@
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
-import { type ComponentPropsWithoutRef, forwardRef } from "react";
+import { type ComponentPropsWithoutRef, forwardRef, useMemo } from "react";
 
 import { useSelectContext } from "../select-context";
+import { useEffectEvent } from "../use-event";
 
 export const SelectHiddenSelect = forwardRef<
   HTMLSelectElement,
   ComponentPropsWithoutRef<"select">
 >(({ defaultValue, disabled, name, onChange, required, value }, ref) => {
-  const { items, itemToLabel, itemToValue } = useSelectContext(
+  const { items, itemToValue } = useSelectContext(
     "@optiaxiom/react/SelectHiddenSelect",
+  );
+
+  const itemToValueStable = useEffectEvent(itemToValue);
+  const options = useMemo(
+    () =>
+      items.map((item) => (
+        <option key={itemToValueStable(item)} value={itemToValueStable(item)}>
+          {itemToValueStable(item)}
+        </option>
+      )),
+    [itemToValueStable, items],
   );
 
   return (
@@ -24,11 +36,7 @@ export const SelectHiddenSelect = forwardRef<
         value={value}
       >
         <option value=""></option>
-        {items.map((item) => (
-          <option key={itemToValue(item)} value={itemToValue(item)}>
-            {itemToLabel(item)}
-          </option>
-        ))}
+        {options}
       </select>
     </VisuallyHidden>
   );
