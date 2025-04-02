@@ -252,9 +252,6 @@ export const People: Story<(typeof users)[number]> = {
         setList(list);
       }
     }, [open, value]);
-    useEffect(() => {
-      setItems(list);
-    }, [list]);
 
     return (
       <Combobox
@@ -265,7 +262,7 @@ export const People: Story<(typeof users)[number]> = {
         onInputValueChange={(inputValue) => {
           setItems(
             inputValue
-              ? list.filter(
+              ? users.filter(
                   (user) =>
                     user !== actions.all &&
                     user !== actions.me &&
@@ -284,7 +281,7 @@ export const People: Story<(typeof users)[number]> = {
             setValue(new Set([users[0]]));
             setOpen(false);
           } else if (value === actions.all) {
-            setList([actions.me, ...users]);
+            setItems([actions.me, ...users]);
           } else {
             setValue((values) =>
               values.has(value)
@@ -293,7 +290,12 @@ export const People: Story<(typeof users)[number]> = {
             );
           }
         }}
-        onOpenChange={setOpen}
+        onOpenChange={(open) => {
+          if (open) {
+            setItems(list);
+          }
+          setOpen(open);
+        }}
         open={open}
       >
         <ComboboxTrigger>
