@@ -78,11 +78,11 @@ export const demos = {
   "combobox/overview/empty-usage": import(
     "./combobox/overview/empty-usage/App"
   ),
-  "combobox/overview/input-controlled-input-usage": import(
-    "./combobox/overview/input-controlled-input-usage/App"
-  ),
   "combobox/overview/input-controlled-usage": import(
-    "./combobox/overview/input-controlled-input-usage/App"
+    "./combobox/overview/input-controlled-usage/App"
+  ),
+  "combobox/overview/input-filter-usage": import(
+    "./combobox/overview/input-filter-usage/App"
   ),
   "combobox/overview/input-usage": import(
     "./combobox/overview/input-usage/App"

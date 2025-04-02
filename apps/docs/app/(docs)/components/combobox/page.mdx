@@ -60,16 +60,17 @@ Notice that keyboard interactions inside the content popover do not work in the 
 
 #### Filtering
 
-Combobox automatically handles filtering items when using the `defaultItems` prop. But if we need manual control we can use `items` prop instead along with `onInputValueChange`.
+Combobox automatically handles filtering when using the `defaultItems` prop using a built-in filter. We can override this filter using the `defaultFilter` prop or use the `items` prop to manually control the filtered list.
 
-<Demo component="combobox/overview/input-controlled-usage" meta="{17-26}" />
+This example shows using `defaultFilter` to provide a custom filter function:
 
-How you store the items and handle filtering is up to you. In the previous demo we've stored the items in a state and update the state in the `onInputValueChange` handler. Alternatively you could store the input value in a state and filter the items based on that on each render.
+<Demo component="combobox/overview/input-filter-usage" meta="{14-16}" />
 
-<Demo
-  component="combobox/overview/input-controlled-input-usage"
-  meta="{13-18,22}"
-/>
+#### Async loading
+
+We can also manually control `items` in combination with the `onInputValueChange` prop to load items as the user types.
+
+<Demo component="combobox/overview/input-controlled-usage" meta="{26-27}" />
 
 ### Selection
 
