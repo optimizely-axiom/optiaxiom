@@ -138,7 +138,9 @@ export function Command<Item>({
       const { changes, type } = actionAndChanges;
 
       switch (type) {
+        case useCombobox.stateChangeTypes.InputBlur:
         case useCombobox.stateChangeTypes.InputKeyDownEnter:
+        case useCombobox.stateChangeTypes.InputKeyDownEscape:
         case useCombobox.stateChangeTypes.ItemClick:
           return {
             ...changes,
