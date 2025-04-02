@@ -6,7 +6,6 @@ import type { ComboboxPopoverContent } from "../combobox-popover-content";
 import { useComboboxContext } from "../combobox-context";
 import { ComboboxInput } from "../combobox-input";
 import { ComboboxListbox } from "../combobox-listbox";
-import { Command } from "../command";
 import { useFieldContext } from "../field-context";
 import { useResponsiveMatches } from "../use-responsive-matches";
 
@@ -22,16 +21,9 @@ export const ComboboxContent = forwardRef<HTMLDivElement, ComboboxContentProps>(
     });
 
     const { labelId } = useFieldContext();
-    const {
-      components,
-      inputValue,
-      isItemDisabled,
-      isItemSelected,
-      items,
-      itemToLabel,
-      onInputValueChange,
-      onItemSelect,
-    } = useComboboxContext("@optiaxiom/react/ComboboxContent");
+    const { components } = useComboboxContext(
+      "@optiaxiom/react/ComboboxContent",
+    );
 
     return (
       <components.Content
@@ -41,22 +33,12 @@ export const ComboboxContent = forwardRef<HTMLDivElement, ComboboxContentProps>(
         ref={ref}
         {...props}
       >
-        <Command
-          inputValue={inputValue}
-          isItemDisabled={isItemDisabled}
-          isItemSelected={isItemSelected}
-          items={items}
-          itemToLabel={itemToLabel}
-          onInputValueChange={onInputValueChange}
-          onItemSelect={onItemSelect}
-        >
-          {children ?? (
-            <>
-              <ComboboxInput placeholder="Search..." />
-              <ComboboxListbox />
-            </>
-          )}
-        </Command>
+        {children ?? (
+          <>
+            <ComboboxInput placeholder="Search..." />
+            <ComboboxListbox />
+          </>
+        )}
       </components.Content>
     );
   },

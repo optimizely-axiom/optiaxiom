@@ -1,6 +1,6 @@
 import * as RadixMenu from "@radix-ui/react-dropdown-menu";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import {
   DropdownMenuNestedProvider,
@@ -45,11 +45,16 @@ export function DropdownMenuSub({
       setOpen(false);
     }
   }, [parentOpen, setOpen]);
+  const [presence, setPresence] = useState<boolean>();
 
   return (
-    <RadixMenu.Sub onOpenChange={setOpen} open={open} {...props}>
-      <DropdownMenuSubProvider open={open}>
-        <DropdownMenuNestedProvider open={open}>
+    <RadixMenu.Sub onOpenChange={setOpen} open={open || presence} {...props}>
+      <DropdownMenuSubProvider
+        open={open}
+        presence={presence}
+        setPresence={setPresence}
+      >
+        <DropdownMenuNestedProvider open={open || presence}>
           {children}
         </DropdownMenuNestedProvider>
       </DropdownMenuSubProvider>

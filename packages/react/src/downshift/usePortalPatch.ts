@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export function usePortalPatch(
   initialHighlightedIndex: (() => number) | number = -1,
@@ -17,6 +17,11 @@ export function usePortalPatch(
   const [highlightedIndex, setHighlightedIndex] = useState(
     initialHighlightedIndex,
   );
+  useEffect(() => {
+    if (!placed) {
+      setHighlightedIndex(initialHighlightedIndex);
+    }
+  }, [initialHighlightedIndex, placed]);
 
   return [
     /**
