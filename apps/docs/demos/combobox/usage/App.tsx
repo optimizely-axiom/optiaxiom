@@ -18,7 +18,7 @@ export function App() {
       isItemSelected={(item) => item === value}
       onItemSelect={setValue}
     >
-      <ComboboxTrigger placeholder="Select a color..." w="224" />
+      <ComboboxTrigger w="224">{value || "Set color"}</ComboboxTrigger>
       <ComboboxContent />
     </Combobox>
   );

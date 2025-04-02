@@ -13,7 +13,7 @@ const colors = ["Ocean", "Blue", "Purple", "Red", "Orange", "Yellow"];
 export function App() {
   return (
     <Combobox defaultItems={colors}>
-      <ComboboxTrigger placeholder="Select colors..." />
+      <ComboboxTrigger>Select color</ComboboxTrigger>
       <ComboboxContent>
         <ComboboxListbox>
           {(item) => <ComboboxRadioItem item={item}>{item}</ComboboxRadioItem>}

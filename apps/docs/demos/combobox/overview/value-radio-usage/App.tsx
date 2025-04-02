@@ -20,7 +20,7 @@ export function App() {
         setValue((prev) => (prev !== value ? value : undefined))
       }
     >
-      <ComboboxTrigger placeholder="Select colors..." w="224" />
+      <ComboboxTrigger w="224">Select color</ComboboxTrigger>
       <ComboboxContent />
     </Combobox>
   );

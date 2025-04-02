@@ -29,7 +29,7 @@ export function App() {
         )
       }
     >
-      <ComboboxTrigger placeholder="Search a color..." w="224" />
+      <ComboboxTrigger w="224">Select colors</ComboboxTrigger>
 
       <ComboboxContent>
         <ComboboxInput />

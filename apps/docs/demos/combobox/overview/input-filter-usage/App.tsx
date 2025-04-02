@@ -16,7 +16,7 @@ export function App() {
       }
       defaultItems={colors}
     >
-      <ComboboxTrigger placeholder="Select colors..." />
+      <ComboboxTrigger>Select color</ComboboxTrigger>
       <ComboboxContent />
     </Combobox>
   );
