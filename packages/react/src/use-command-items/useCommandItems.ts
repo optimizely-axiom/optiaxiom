@@ -4,11 +4,7 @@ import { type ComponentPropsWithoutRef, useState } from "react";
 import type { Command } from "../command";
 
 import { useEffectEvent } from "../use-event";
-
-const collator = new Intl.Collator(undefined, {
-  sensitivity: "base",
-  usage: "search",
-});
+import { fuzzysearch } from "./fuzzysearch";
 
 type useCommandItemsProps<Item> = Pick<
   ComponentPropsWithoutRef<typeof Command<Item>>,
@@ -37,16 +33,8 @@ export const useCommandItems = <Item>({
   const filterFn = useEffectEvent(
     defaultFilter ??
       ((item: Item, inputValue: string) => {
-        const string = itemToLabel(item).normalize("NFC");
-
-        for (let i = 0; i + inputValue.length <= string.length; i++) {
-          const slice = string.slice(i, i + inputValue.length);
-          if (collator.compare(inputValue, slice) === 0) {
-            return true;
-          }
-        }
-
-        return false;
+        const string = itemToLabel(item).normalize();
+        return fuzzysearch(string, inputValue);
       }),
   );
   const [itemsState, setItemsState] = useState(
@@ -71,6 +59,6 @@ const filter = <Item>(
   inputValue: string | undefined,
   filterFn: (item: Item, inputValue: string) => boolean,
 ) => {
-  const substring = (inputValue ?? "").normalize("NFC");
+  const substring = (inputValue ?? "").normalize();
   return inputValue ? items.filter((item) => filterFn(item, substring)) : items;
 };
