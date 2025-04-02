@@ -14,6 +14,7 @@ import {
 import { usePortalPatch } from "../downshift";
 import { SelectProvider } from "../select-context";
 import { SelectHiddenSelect } from "../select-hidden-select";
+import { useEffectEvent } from "../use-event";
 import { useObserveValue } from "../use-observe-value";
 import { useObserveReset } from "./useObserveReset";
 
@@ -79,12 +80,13 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps<any>>(
     useObserveValue(innerRef, setShadowValue);
     useObserveReset(innerRef, setShadowValue);
 
+    const itemToValueStable = useEffectEvent(itemToValue);
     const selectedItem = useMemo(
       () =>
         shadowValue
-          ? items.find((item) => itemToValue(item) === shadowValue)
+          ? items.find((item) => itemToValueStable(item) === shadowValue)
           : undefined,
-      [itemToValue, items, shadowValue],
+      [itemToValueStable, items, shadowValue],
     );
 
     const [isOpen, setIsOpen] = useControllableState({
