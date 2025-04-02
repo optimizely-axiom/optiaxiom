@@ -367,10 +367,10 @@ export const People: Story<(typeof users)[number]> = {
 };
 
 type Book = {
-  author?: string;
+  author: string;
   disabled?: boolean;
   id: string;
-  title?: string;
+  title: string;
 };
 
 const books = [
@@ -433,26 +433,19 @@ const books = [
 
 export const Controlled: Story<Book> = {
   render: function DefaultSelected(args) {
-    const [items, setItems] = useState(books);
     const [open, setOpen] = useState(args.defaultOpen);
     const [value, setValue] = useState<Book[]>([books[9]]);
 
     return (
       <Combobox
         {...args}
+        defaultFilter={(book, inputValue) =>
+          book.title.includes(inputValue.toLowerCase()) ||
+          book.author.includes(inputValue.toLowerCase())
+        }
+        defaultItems={books}
         isItemSelected={(item) => value.includes(item)}
-        items={items}
         itemToLabel={(book) => (book ? String(book.title) : "")}
-        onInputValueChange={(inputValue) => {
-          setItems(
-            books.filter(
-              (book) =>
-                !inputValue ||
-                book.title.includes(inputValue.toLowerCase()) ||
-                book.author.includes(inputValue.toLowerCase()),
-            ),
-          );
-        }}
         onItemSelect={(value) => {
           setValue((values) =>
             values.includes(value)
@@ -469,11 +462,11 @@ export const Controlled: Story<Book> = {
           <ComboboxInput placeholder="Books..." />
 
           <ComboboxListbox>
-            {items.map((book) => (
+            {(book) => (
               <ComboboxCheckboxItem item={book} key={book.id}>
                 {book.title}
               </ComboboxCheckboxItem>
-            ))}
+            )}
           </ComboboxListbox>
 
           <ComboboxFooter>

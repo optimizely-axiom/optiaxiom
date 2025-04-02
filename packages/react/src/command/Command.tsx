@@ -7,6 +7,13 @@ import { useCommandItems } from "../use-command-items";
 
 type CommandProps<Item> = {
   children?: ReactNode;
+  /**
+   * Return true/false for filtering items with the given search input.
+   */
+  defaultFilter?: (item: Item, inputValue: string) => boolean;
+  /**
+   * The initial items we want to render in uncontrolled mode.
+   */
   defaultItems?: Item[];
   /**
    * The input value in controlled mode.
@@ -21,7 +28,7 @@ type CommandProps<Item> = {
    */
   isItemSelected?: (item: Item, index: number) => boolean;
   /**
-   * The items we want to render.
+   * The items we want to render in controlled mode.
    */
   items?: Item[];
   /**
@@ -41,6 +48,7 @@ type CommandProps<Item> = {
 
 export function Command<Item>({
   children,
+  defaultFilter,
   defaultItems,
   inputValue: inputValueProp,
   isItemDisabled = () => false,
@@ -52,6 +60,7 @@ export function Command<Item>({
   onItemSelect,
 }: CommandProps<Item>) {
   const [items, inputValue, setInputValue] = useCommandItems({
+    defaultFilter,
     defaultItems,
     inputValue: inputValueProp,
     items: itemsProp,
