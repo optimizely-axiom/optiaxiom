@@ -54,7 +54,6 @@ export const components = {
   Combobox: getProps("Combobox"),
   ComboboxCheckboxItem: getProps("ComboboxCheckboxItem"),
   ComboboxContent: getProps("ComboboxContent"),
-  ComboboxEmpty: getProps("ComboboxEmpty"),
   ComboboxFooter: getProps("ComboboxFooter"),
   ComboboxGroup: getProps("ComboboxGroup"),
   ComboboxInput: getProps("ComboboxInput"),

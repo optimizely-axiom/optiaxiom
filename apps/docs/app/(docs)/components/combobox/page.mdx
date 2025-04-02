@@ -91,7 +91,7 @@ Developers are expected to manually track the selection on their side since item
 
 ### Empty
 
-Finally we can render an empty state in the content using the `ComboboxEmpty` component. And you also have to use the `items` prop when manually rendering the empty state.
+By default combobox will display a generic empty content message if no results are found matching your query. We can customize this empty message by setting the `empty` prop on `ComboboxListbox`.
 
 <Demo component="combobox/overview/empty-usage" meta="{41-43}" />
 
@@ -104,7 +104,6 @@ import {
   Combobox,
   ComboboxCheckboxItem,
   ComboboxContent,
-  ComboboxEmpty,
   ComboboxFooter,
   ComboboxGroup,
   ComboboxInput,
@@ -136,7 +135,6 @@ export default () => (
         </ComboboxGroup>
 
         <ComboboxSeparator />
-        <ComboboxEmpty />
       </ComboboxListbox>
 
       <ComboboxFooter />
@@ -213,8 +211,6 @@ We can use virtualization to improve performance when rendering a large number o
 <PropsTable component="ComboboxLabel" />
 ### ComboboxSeparator
 <PropsTable component="ComboboxSeparator" />
-### ComboboxEmpty
-<PropsTable component="ComboboxEmpty" />
 ### ComboboxFooter
 <PropsTable component="ComboboxFooter" />
 

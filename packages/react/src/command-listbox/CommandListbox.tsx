@@ -10,20 +10,30 @@ const VIRTUALIZE_THRESHOLD = 50;
 
 type CommandListboxProps = BoxProps<
   "div",
-  | {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      children: ((item: any) => ReactNode) | ReactNode;
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      items?: any[];
-    }
-  | {
-      children?: ReactNode;
-      items?: never;
-    }
+  {
+    /**
+     * Custom empty state content.
+     */
+    empty?: ReactNode;
+  } & (
+    | {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        children: ((item: any) => ReactNode) | ReactNode;
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        items?: any[];
+      }
+    | {
+        children?: ReactNode;
+        items?: never;
+      }
+  )
 >;
 
 export const CommandListbox = forwardRef<HTMLDivElement, CommandListboxProps>(
-  ({ children, items: itemsProp, size, ...props }, ref) => {
+  (
+    { children, empty = "No results found.", items: itemsProp, size, ...props },
+    ref,
+  ) => {
     const { downshift, highlightedItem, items, placed, setPlaced } =
       useCommandContext("@optiaxiom/react/CommandListbox");
     useEffect(() => {
@@ -56,10 +66,12 @@ export const CommandListbox = forwardRef<HTMLDivElement, CommandListboxProps>(
               <Fragment key={index}>{children(item)}</Fragment>
             ))
           ) : (
-            <ListboxEmpty />
+            <ListboxEmpty>{empty}</ListboxEmpty>
           )
-        ) : (
+        ) : items.length > 0 ? (
           children
+        ) : (
+          <ListboxEmpty>{empty}</ListboxEmpty>
         )}
       </Listbox>
     );
