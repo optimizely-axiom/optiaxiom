@@ -3,6 +3,7 @@ import { type ComponentPropsWithoutRef, forwardRef, useRef } from "react";
 
 import { AngleMenuButton } from "../angle-menu-button";
 import { useComboboxContext } from "../combobox-context";
+import { useCommandContext } from "../command-context";
 import { PopoverTrigger } from "../popover-trigger";
 import { useFieldLabelTrigger } from "../use-field-label-trigger";
 
@@ -24,8 +25,12 @@ export const ComboboxTrigger = forwardRef<
     },
     outerRef,
   ) => {
-    const { components, isItemSelected, items, itemToLabel, setOpen } =
-      useComboboxContext("@optiaxiom/react/ComboboxTrigger");
+    const { components, setOpen } = useComboboxContext(
+      "@optiaxiom/react/ComboboxTrigger",
+    );
+    const { isItemSelected, items, itemToLabel } = useCommandContext(
+      "@optiaxiom/react/ComboboxTrigger",
+    );
     const value = items.filter((item, index) => isItemSelected(item, index));
 
     const buttonRef = useRef<HTMLButtonElement>(null);

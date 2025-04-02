@@ -1,15 +1,9 @@
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
-import {
-  type ComponentPropsWithoutRef,
-  type ReactNode,
-  useEffect,
-} from "react";
+import { type ComponentPropsWithoutRef, type ReactNode } from "react";
 
-import type { Command } from "../command";
-
+import { Command } from "../command";
 import { Dialog } from "../dialog";
 import { SpotlightProvider } from "../spotlight-context";
-import { useCommandItems } from "../use-command-items";
 
 type SpotlightProps<Item> = ComponentPropsWithoutRef<typeof Command<Item>> & {
   children: ReactNode;
@@ -21,17 +15,10 @@ type SpotlightProps<Item> = ComponentPropsWithoutRef<typeof Command<Item>> & {
 
 export function Spotlight<Item>({
   children,
-  defaultItems,
   defaultOpen = false,
-  inputValue: inputValueProp,
-  isItemDisabled = () => false,
-  items: itemsProp,
-  itemToLabel = (value) => (value ? String(value) : ""),
-  itemToSubItems,
-  onInputValueChange,
-  onItemSelect,
   onOpenChange,
   open: openProp,
+  ...props
 }: SpotlightProps<Item>) {
   const [open, setOpen] = useControllableState({
     defaultProp: defaultOpen,
@@ -39,33 +26,10 @@ export function Spotlight<Item>({
     prop: openProp,
   });
 
-  const [items, inputValue, setInputValue] = useCommandItems({
-    defaultItems,
-    inputValue: inputValueProp,
-    items: itemsProp,
-    itemToLabel,
-    onInputValueChange,
-  });
-  useEffect(() => {
-    if (!open) {
-      setInputValue("");
-    }
-  }, [open, setInputValue]);
-
   return (
     <Dialog onOpenChange={setOpen} open={open}>
-      <SpotlightProvider
-        inputValue={inputValue}
-        isItemDisabled={isItemDisabled}
-        items={items}
-        itemToLabel={itemToLabel}
-        itemToSubItems={itemToSubItems}
-        onInputValueChange={setInputValue}
-        onItemSelect={onItemSelect}
-        open={open}
-        setOpen={setOpen}
-      >
-        {children}
+      <SpotlightProvider open={open} setOpen={setOpen}>
+        <Command {...props}>{children}</Command>
       </SpotlightProvider>
     </Dialog>
   );

@@ -1,21 +1,16 @@
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
-import {
-  type ComponentPropsWithoutRef,
-  type ReactNode,
-  useEffect,
-} from "react";
+import { type ComponentPropsWithoutRef, type ReactNode } from "react";
 
-import type { Command } from "../command";
 import type { ExcludeProps, ExtendProps } from "../utils";
 
 import { ComboboxProvider } from "../combobox-context";
 import { ComboboxDialogContent } from "../combobox-dialog-content";
 import { ComboboxPopover } from "../combobox-popover";
 import { ComboboxPopoverContent } from "../combobox-popover-content";
+import { Command } from "../command";
 import { Dialog } from "../dialog";
 import { DialogTrigger } from "../dialog-trigger";
 import { PopoverTrigger } from "../popover-trigger";
-import { useCommandItems } from "../use-command-items";
 import { useResponsiveMatches } from "../use-responsive-matches";
 
 type ComboboxProps<Item> = ExcludeProps<
@@ -42,17 +37,10 @@ type ComboboxProps<Item> = ExcludeProps<
 
 export function Combobox<Item>({
   children,
-  defaultItems,
   defaultOpen = false,
-  inputValue: inputValueProp,
-  isItemDisabled = () => false,
-  isItemSelected = () => false,
-  items: itemsProp,
-  itemToLabel = (value) => (value ? String(value) : ""),
-  onInputValueChange,
-  onItemSelect,
   onOpenChange,
   open: openProp,
+  ...props
 }: ComboboxProps<Item>) {
   const components = useResponsiveMatches({
     base: {
@@ -73,34 +61,10 @@ export function Combobox<Item>({
     prop: openProp,
   });
 
-  const [items, inputValue, setInputValue] = useCommandItems({
-    defaultItems,
-    inputValue: inputValueProp,
-    items: itemsProp,
-    itemToLabel,
-    onInputValueChange,
-  });
-  useEffect(() => {
-    if (open) {
-      setInputValue("");
-    }
-  }, [open, setInputValue]);
-
   return (
     <components.Root onOpenChange={setOpen} open={open}>
-      <ComboboxProvider
-        components={components}
-        inputValue={inputValue}
-        isItemDisabled={isItemDisabled}
-        isItemSelected={isItemSelected}
-        items={items}
-        itemToLabel={itemToLabel}
-        onInputValueChange={setInputValue}
-        onItemSelect={onItemSelect}
-        open={open}
-        setOpen={setOpen}
-      >
-        {children}
+      <ComboboxProvider components={components} open={open} setOpen={setOpen}>
+        <Command {...props}>{children}</Command>
       </ComboboxProvider>
     </components.Root>
   );

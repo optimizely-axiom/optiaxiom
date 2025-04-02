@@ -8,11 +8,12 @@ type CommandListboxProps = BoxProps;
 
 export const CommandListbox = forwardRef<HTMLDivElement, CommandListboxProps>(
   ({ children, size, ...props }, ref) => {
-    const { downshift, setPlaced } = useCommandContext(
+    const { downshift, placed, setPlaced } = useCommandContext(
       "@optiaxiom/react/CommandListbox",
     );
     useEffect(() => {
       requestAnimationFrame(() => setPlaced(true));
+      return () => setPlaced(false);
     }, [setPlaced]);
 
     return (

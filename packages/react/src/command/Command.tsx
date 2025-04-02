@@ -144,6 +144,7 @@ export function Command<Item>({
   /**
    * Dummy calls to suppress warning from downshift
    */
+  downshift.getInputProps({}, { suppressRefError: true });
   downshift.getMenuProps({}, { suppressRefError: true });
 
   return (
@@ -163,6 +164,7 @@ export function Command<Item>({
       itemToLabel={itemToLabel}
       itemToSubItems={itemToSubItems}
       lastInteractionSource={lastInteractionSource}
+      placed={placed}
       setHighlightedIndex={(index, source) => {
         setHighlightedIndex(index);
         setLastInteractionSource(source);

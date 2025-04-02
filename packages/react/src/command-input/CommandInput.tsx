@@ -1,4 +1,4 @@
-import { type ComponentPropsWithoutRef, forwardRef } from "react";
+import { type ComponentPropsWithoutRef, forwardRef, useEffect } from "react";
 
 import { useCommandContext } from "../command-context";
 import { IconMagnifyingGlass } from "../icons/IconMagnifyingGlass";
@@ -16,6 +16,9 @@ export const CommandInput = forwardRef<HTMLInputElement, CommandInputProps>(
       setHighlightedSubIndex,
       setInputValue,
     } = useCommandContext("@optiaxiom/react/CommandInput");
+    useEffect(() => {
+      setInputValue("");
+    }, [setInputValue]);
 
     return (
       <Input

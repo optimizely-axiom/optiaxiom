@@ -2,10 +2,8 @@ import * as RadixDialog from "@radix-ui/react-dialog";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
-import { Command } from "../command";
 import { DialogContent } from "../dialog-content";
 import { PopoverContent } from "../popover-content";
-import { useSpotlightContext } from "../spotlight-context";
 
 type SpotlightContentProps = ComponentPropsWithoutRef<
   typeof DialogContent | typeof PopoverContent
@@ -15,16 +13,6 @@ export const SpotlightContent = forwardRef<
   HTMLDivElement,
   SpotlightContentProps
 >(({ "aria-label": ariaLabel, children, size: _size, ...props }, ref) => {
-  const {
-    inputValue,
-    isItemDisabled,
-    items,
-    itemToLabel,
-    itemToSubItems,
-    onInputValueChange,
-    onItemSelect,
-  } = useSpotlightContext("@optiaxiom/react/SpotlightContent");
-
   return (
     <DialogContent
       gap="0"
@@ -38,17 +26,7 @@ export const SpotlightContent = forwardRef<
         <RadixDialog.Title>{ariaLabel ?? "Quick search"}</RadixDialog.Title>
       </VisuallyHidden>
 
-      <Command
-        inputValue={inputValue}
-        isItemDisabled={isItemDisabled}
-        items={items}
-        itemToLabel={itemToLabel}
-        itemToSubItems={itemToSubItems}
-        onInputValueChange={onInputValueChange}
-        onItemSelect={onItemSelect}
-      >
-        {children}
-      </Command>
+      {children}
     </DialogContent>
   );
 });

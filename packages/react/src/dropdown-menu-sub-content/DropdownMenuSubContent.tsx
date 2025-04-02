@@ -30,12 +30,12 @@ export const DropdownMenuSubContent = forwardRef<
   HTMLDivElement,
   MenuSubContentProps
 >(({ asChild, children, ...props }, ref) => {
-  const { open } = useDropdownMenuSubContext(
+  const { open, setPresence } = useDropdownMenuSubContext(
     "@optiaxiom/react/DropdownMenuSubContent",
   );
 
   return (
-    <TransitionGroup open={open}>
+    <TransitionGroup onPresenceChange={setPresence} open={open}>
       <RadixMenu.Portal forceMount>
         <MenuListbox asChild minW="trigger" provider="dropdown-menu" {...props}>
           <RadixMenu.SubContent
