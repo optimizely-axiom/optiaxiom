@@ -77,7 +77,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps<any>>(
       onChange: onValueChange,
       prop: value,
     });
-    useObserveValue(innerRef, setShadowValue);
+    const forceValueChange = useObserveValue(innerRef, setShadowValue);
     useObserveReset(innerRef, setShadowValue);
 
     const itemToValueStable = useEffectEvent(itemToValue);
@@ -125,9 +125,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps<any>>(
         setIsOpen(isOpen);
       },
       onSelectedItemChange({ selectedItem }) {
-        if (innerRef.current) {
-          innerRef.current.value = itemToValue(selectedItem) ?? "";
-        }
+        forceValueChange(itemToValue(selectedItem) ?? "");
       },
       selectedItem: selectedItem ?? null,
     });
