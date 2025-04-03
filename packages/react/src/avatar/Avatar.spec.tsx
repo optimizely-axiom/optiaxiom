@@ -10,9 +10,14 @@ describe("Avatar component", () => {
       await screen.findByText("TH");
     });
 
-    it("should render initials if name is provided", async () => {
-      render(<Avatar name="Mary Celine">TH</Avatar>);
+    it("should render initials if name is provided and children is not", async () => {
+      render(<Avatar name="Mary Celine" />);
       await screen.findByText("MC");
+    });
+
+    it("should render children if name is provided but children is also set", async () => {
+      render(<Avatar name="Mary Celine">TH</Avatar>);
+      await screen.findByText("TH");
     });
   });
 });
