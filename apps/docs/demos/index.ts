@@ -257,10 +257,14 @@ export const demos = {
     "./segmented-control/controlled-usage/App"
   ),
   "segmented-control/usage": import("./segmented-control/usage/App"),
-  "select/overview/content-usage": import(
-    "./select/overview/content-usage/App"
+  "select/content-usage": import("./select/content-usage/App"),
+  "select/controlled-onchange-usage": import(
+    "./select/controlled-onchange-usage/App"
   ),
-  "select/overview/usage": import("./select/overview/usage/App"),
+  "select/controlled-usage": import("./select/controlled-usage/App"),
+  "select/disabled-usage": import("./select/disabled-usage/App"),
+  "select/field-usage": import("./select/field-usage/App"),
+  "select/form-usage": import("./select/form-usage/App"),
   "select/usage": import("./select/usage/App"),
   "separator/responsive-usage": import("./separator/responsive-usage/App"),
   "separator/usage": import("./separator/usage/App"),
