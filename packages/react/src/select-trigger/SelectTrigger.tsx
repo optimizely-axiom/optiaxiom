@@ -54,7 +54,9 @@ export const SelectTrigger = forwardRef<HTMLButtonElement, SelectTriggerProps>(
       [focusOnOpen],
     );
 
-    const value = selectedItem ? itemToLabel(selectedItem) : placeholder;
+    const value = selectedItem
+      ? itemToLabel(selectedItem) || placeholder
+      : placeholder;
 
     return (
       <PopperAnchor
