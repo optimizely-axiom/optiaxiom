@@ -131,7 +131,6 @@ export const components = {
   Select: getProps("Select"),
   SelectContent: getProps("SelectContent"),
   SelectGroup: getProps("SelectGroup"),
-  SelectItem: getProps("SelectItem"),
   SelectLabel: getProps("SelectLabel"),
   SelectRadioItem: getProps("SelectRadioItem"),
   SelectSeparator: getProps("SelectSeparator"),

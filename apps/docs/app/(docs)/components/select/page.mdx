@@ -6,9 +6,42 @@ import { PropsTable } from "@/components/props-table";
 
 Single select combobox widget to allow selection from a fixed set of options.
 
-<Demo component="select/usage" />
+## Documentation
 
-## Guide
+### Usage
+
+<Demo component="select/field-usage" />
+
+### Anatomy
+
+```tsx
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectLabel,
+  SelectRadioItem,
+  SelectSeparator,
+  SelectTrigger,
+} from "@optiaxiom/react";
+
+export default () => (
+  <Select>
+    <SelectTrigger />
+
+    <SelectContent>
+      <SelectRadioItem />
+
+      <SelectGroup>
+        <SelectLabel />
+        <SelectRadioItem />
+      </SelectGroup>
+
+      <SelectSeparator />
+    </SelectContent>
+  </Select>
+);
+```
 
 ### Structure
 
@@ -22,49 +55,37 @@ Items can be an array of strings or it can be an array of objects.
 
 The trigger can be provided a `placeholder` to display in case no values have been selected yet.
 
-<Demo component="select/overview/usage" />
+<Demo component="select/usage" />
 
 ### Content
 
-By default content popover will be populated using the `items` prop but we can provide our own children to customize how items are rendered.
+By default content popover will be populated using the `items` prop. We can also manually set the children of `SelectContent` for more granular control.
 
-<Demo component="select/overview/content-usage" meta="{18-31}" />
+<Demo component="select/content-usage" meta="{31}" />
 
-## Documentation
+### Controlled
 
-### Anatomy
+Use the `value` and `defaultValue` props to toggle between controlled and uncontrolled usage. And combine it with `onValueChange` / `onChange` to listen for changes to the state.
 
-```tsx
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectRadioItem,
-  SelectSeparator,
-  SelectTrigger,
-} from "@optiaxiom/react";
+Using `onValueChange`:
 
-export default () => (
-  <Select>
-    <SelectTrigger />
+<Demo component="select/controlled-usage" meta="{14,21-22}" />
 
-    <SelectContent>
-      <SelectItem />
-      <SelectRadioItem />
+Using `onChange`:
 
-      <SelectGroup>
-        <SelectLabel />
-        <SelectItem />
-        <SelectRadioItem />
-      </SelectGroup>
+<Demo component="select/controlled-onchange-usage" meta="{14,21-22}" />
 
-      <SelectSeparator />
-    </SelectContent>
-  </Select>
-);
-```
+### Form usage
+
+Use the `name` prop (and optionally `ref` and `onChange`) to integrate `Select` with forms.
+
+<Demo component="select/form-usage" meta="{30}" />
+
+### Disabled state
+
+Enable the `disabled` prop on `Select` to toggle the disabled state of the input field.
+
+<Demo component="select/disabled-usage" meta="{18}" />
 
 ### Related
 
@@ -79,8 +100,6 @@ export default () => (
 <PropsTable component="SelectTrigger" />
 ### SelectContent
 <PropsTable component="SelectContent" />
-### SelectItem
-<PropsTable component="SelectItem" />
 ### SelectRadioItem
 <PropsTable component="SelectRadioItem" />
 ### SelectGroup

@@ -3,7 +3,8 @@ import { Popper } from "@radix-ui/react-popper";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import { useSelect } from "downshift";
 import {
-  type ComponentPropsWithoutRef,
+  type ChangeEventHandler,
+  type FocusEventHandler,
   forwardRef,
   type ReactElement,
   type ReactNode,
@@ -26,22 +27,57 @@ type SelectProps<Item> = (NoInfer<Item> extends string
       value?: NoInfer<Item>;
     }
   : {
+      /**
+       * The initial selected value in uncontrolled mode.
+       */
       defaultValue?: string;
+      /**
+       * Return a unique key for each item.
+       */
       itemToValue: (item: NoInfer<Item>) => string | undefined;
+      /**
+       * Handler that is called when the selected value changes.
+       */
       onValueChange?: (value: string) => void;
+      /**
+       * The selected value in controlled mode.
+       */
       value?: string;
-    }) &
-  Pick<ComponentPropsWithoutRef<"main">, "onBlur"> &
-  Pick<ComponentPropsWithoutRef<"select">, "name" | "onChange" | "required"> & {
-    children?: ReactNode;
-    defaultOpen?: boolean;
-    disabled?: boolean;
-    isItemDisabled?: (item: NoInfer<Item>, index: number) => boolean;
-    items: Item[];
-    itemToLabel?: (item: NoInfer<Item>) => string;
-    onOpenChange?: (open: boolean) => void;
-    open?: boolean;
-  };
+    }) & {
+  children?: ReactNode;
+  /**
+   * The initial open state in uncontrolled mode.
+   */
+  defaultOpen?: boolean;
+  /**
+   * Whether the select is disabled.
+   */
+  disabled?: boolean;
+  /**
+   * Return true if items need to be marked as disabled and skipped from keyboard navigation.
+   */
+  isItemDisabled?: (item: NoInfer<Item>, index: number) => boolean;
+  /**
+   * The select items/options we want to render.
+   */
+  items: Item[];
+  /**
+   * Return a string representation of items if they are objects.
+   */
+  itemToLabel?: (item: NoInfer<Item>) => string;
+  name?: string;
+  onBlur?: FocusEventHandler<HTMLElement>;
+  onChange?: ChangeEventHandler<HTMLSelectElement>;
+  /**
+   * Handler that is called when the open state changes.
+   */
+  onOpenChange?: (open: boolean) => void;
+  /**
+   * The open state in controlled mode.
+   */
+  open?: boolean;
+  required?: boolean;
+};
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const Select = forwardRef<HTMLSelectElement, SelectProps<any>>(
