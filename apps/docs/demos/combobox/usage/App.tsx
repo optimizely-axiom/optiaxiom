@@ -7,18 +7,20 @@ import {
 } from "@optiaxiom/react/unstable";
 import { useState } from "react";
 
-import { colors } from "./data";
+const priorities = ["No priority", "Urgent", "High", "Medium", "Low"];
 
 export function App() {
-  const [value, setValue] = useState<string>();
+  const [value, setValue] = useState<string>("No priority");
 
   return (
     <Combobox
-      defaultItems={colors}
+      defaultItems={priorities}
       isItemSelected={(item) => item === value}
       onItemSelect={setValue}
     >
-      <ComboboxTrigger w="224">{value || "Set color"}</ComboboxTrigger>
+      <ComboboxTrigger w="224">
+        {value !== "No priority" ? value : "Set priority"}
+      </ComboboxTrigger>
       <ComboboxContent />
     </Combobox>
   );
