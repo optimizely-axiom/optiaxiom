@@ -1,10 +1,11 @@
 import { forwardRef, Fragment, type ReactNode, useEffect } from "react";
 
-import { type BoxProps } from "../box";
+import { Box, type BoxProps } from "../box";
 import { useCommandContext } from "../command-context";
 import { Listbox } from "../listbox";
 import { ListboxEmpty } from "../listbox-empty";
 import { ListboxVirtualized } from "../listbox-virtualized";
+import { Spinner } from "../spinner";
 
 const VIRTUALIZE_THRESHOLD = 50;
 
@@ -15,6 +16,10 @@ type CommandListboxProps = BoxProps<
      * Custom empty state content.
      */
     empty?: ReactNode;
+    /**
+     * Whether to show loading spinner inside the menu.
+     */
+    loading?: boolean;
   } & (
     | {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -31,7 +36,14 @@ type CommandListboxProps = BoxProps<
 
 export const CommandListbox = forwardRef<HTMLDivElement, CommandListboxProps>(
   (
-    { children, empty = "No results found.", items: itemsProp, size, ...props },
+    {
+      children,
+      empty = "No results found.",
+      items: itemsProp,
+      loading,
+      size,
+      ...props
+    },
     ref,
   ) => {
     const { downshift, highlightedItem, items, placed, setPlaced } =
@@ -51,7 +63,11 @@ export const CommandListbox = forwardRef<HTMLDivElement, CommandListboxProps>(
         size={size}
         {...downshift.getMenuProps({ ref, ...props })}
       >
-        {typeof children === "function" ? (
+        {loading ? (
+          <Box display="flex" justifyContent="center" p="16">
+            <Spinner />
+          </Box>
+        ) : typeof children === "function" ? (
           items.length > VIRTUALIZE_THRESHOLD ? (
             placed && (
               <ListboxVirtualized
