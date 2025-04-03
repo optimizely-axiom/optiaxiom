@@ -46,6 +46,14 @@ export const Image: Story = {
   },
 };
 
+export const InitialsOverride: Story = {
+  args: {
+    children: "JD",
+    name: "Some Name",
+  },
+  render: (args) => <Avatar {...args} />,
+};
+
 export const Fallback: Story = {
   args: {
     colorScheme: "purple",
@@ -78,7 +86,6 @@ export const Colors: Story = {
 
 export const WithTooltip: Story = {
   args: {
-    children: "JL",
     colorScheme: "purple",
     name: "Jamie Lannister",
   },
