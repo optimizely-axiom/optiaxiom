@@ -50,13 +50,7 @@ export const Clock = forwardRef<HTMLDivElement, ClockProps>(
           value={parsed.hour}
         >
           <SelectTrigger aria-label="Select hour" flex="1" placeholder="HH" />
-          <SelectContent>
-            {hours.map((hour) => (
-              <SelectRadioItem item={hour} key={hour}>
-                {hour}
-              </SelectRadioItem>
-            ))}
-          </SelectContent>
+          <SelectContent />
         </Select>
 
         <Select
@@ -92,13 +86,7 @@ export const Clock = forwardRef<HTMLDivElement, ClockProps>(
             flex="1"
             placeholder="--"
           />
-          <SelectContent>
-            {periods.map((meridiem) => (
-              <SelectRadioItem item={meridiem} key={meridiem}>
-                {meridiem}
-              </SelectRadioItem>
-            ))}
-          </SelectContent>
+          <SelectContent />
         </Select>
       </Flex>
     );

@@ -11,7 +11,6 @@ import {
 import {
   Select,
   SelectContent,
-  SelectRadioItem,
   SelectTrigger,
 } from "@optiaxiom/react/unstable";
 import {
@@ -56,14 +55,7 @@ export function App() {
         >
           <Select defaultValue="Status" items={["Status", "Due Dates"]}>
             <SelectTrigger ml="12" size="sm" />
-
-            <SelectContent align="end">
-              {["Status", "Due Dates"].map((item) => (
-                <SelectRadioItem item={item} key={item}>
-                  {item}
-                </SelectRadioItem>
-              ))}
-            </SelectContent>
+            <SelectContent align="end" />
           </Select>
         </Field>
 
@@ -78,14 +70,7 @@ export function App() {
             items={["No grouping", "Campaign"]}
           >
             <SelectTrigger ml="12" size="sm" />
-
-            <SelectContent align="end">
-              {["No grouping", "Campaign"].map((item) => (
-                <SelectRadioItem item={item} key={item}>
-                  {item}
-                </SelectRadioItem>
-              ))}
-            </SelectContent>
+            <SelectContent align="end" />
           </Select>
         </Field>
 
@@ -99,14 +84,7 @@ export function App() {
         >
           <Select defaultValue="Tasks" items={["Tasks", "Steps"]}>
             <SelectTrigger ml="12" size="sm" />
-
-            <SelectContent align="end">
-              {["Tasks", "Steps"].map((item) => (
-                <SelectRadioItem item={item} key={item}>
-                  {item}
-                </SelectRadioItem>
-              ))}
-            </SelectContent>
+            <SelectContent align="end" />
           </Select>
         </Field>
       </PopoverContent>

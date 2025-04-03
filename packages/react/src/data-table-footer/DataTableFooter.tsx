@@ -7,7 +7,6 @@ import { Flex } from "../flex";
 import { Pagination } from "../pagination";
 import { Select } from "../select";
 import { SelectContent } from "../select-content";
-import { SelectRadioItem } from "../select-radio-item";
 import { SelectTrigger } from "../select-trigger";
 import { Text } from "../text";
 import * as styles from "./DataTableFooter.css";
@@ -59,14 +58,7 @@ export const DataTableFooter = forwardRef<HTMLDivElement, DataTableFooterProps>(
                   appearance="subtle"
                   aria-labelledby={pageSizeId}
                 />
-
-                <SelectContent>
-                  {pageSizeOptions.map((rows) => (
-                    <SelectRadioItem item={rows} key={rows}>
-                      {rows}
-                    </SelectRadioItem>
-                  ))}
-                </SelectContent>
+                <SelectContent />
               </Select>
             </Flex>
           )}
