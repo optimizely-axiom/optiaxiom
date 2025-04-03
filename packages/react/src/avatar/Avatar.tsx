@@ -70,7 +70,7 @@ export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
           )}
           <Box asChild {...styles.fallback({})}>
             <RadixAvatar.Fallback delayMs={src ? 600 : undefined}>
-              {(name ? getInitialsFromName(name) : children) || (
+              {(children ?? (name ? getInitialsFromName(name) : undefined)) || (
                 <Box asChild {...styles.icon({ size })}>
                   {mapFallbackToIcon[fallback]}
                 </Box>
