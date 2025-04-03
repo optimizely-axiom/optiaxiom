@@ -12,14 +12,14 @@ export const DropdownMenuComboboxListbox = forwardRef<
   HTMLDivElement,
   DropdownMenuAutocompleteListboxProps
 >(({ children, ...props }, ref) => {
-  const { items, itemToLabel } = useCommandContext(
+  const { itemToLabel } = useCommandContext(
     "@optiaxiom/react/DropdownMenuComboboxListbox",
   );
 
   return (
     <CommandListbox ref={ref} {...props}>
       {children ??
-        items.map((item) => (
+        ((item) => (
           <DropdownMenuAutocompleteItem item={item} key={item}>
             {itemToLabel(item)}
           </DropdownMenuAutocompleteItem>
