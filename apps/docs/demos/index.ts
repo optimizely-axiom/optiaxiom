@@ -62,37 +62,26 @@ export const demos = {
   "checkbox/label-usage": import("./checkbox/label-usage/App"),
   "checkbox/usage": import("./checkbox/usage/App"),
   "code/usage": import("./code/usage/App"),
+  "combobox/addon-usage": import("./combobox/addon-usage/App"),
+  "combobox/basic-usage": import("./combobox/basic-usage/App"),
   "combobox/complex-usage": import("./combobox/complex-usage/App"),
+  "combobox/content-checkbox-usage": import(
+    "./combobox/content-checkbox-usage/App"
+  ),
+  "combobox/content-radio-usage": import("./combobox/content-radio-usage/App"),
+  "combobox/content-usage": import("./combobox/content-usage/App"),
   "combobox/creatable-usage": import("./combobox/creatable-usage/App"),
-  "combobox/overview/content-checkbox-usage": import(
-    "./combobox/overview/content-checkbox-usage/App"
+  "combobox/empty-usage": import("./combobox/empty-usage/App"),
+  "combobox/input-controlled-usage": import(
+    "./combobox/input-controlled-usage/App"
   ),
-  "combobox/overview/content-radio-usage": import(
-    "./combobox/overview/content-radio-usage/App"
-  ),
-  "combobox/overview/content-usage": import(
-    "./combobox/overview/content-usage/App"
-  ),
-  "combobox/overview/empty-usage": import(
-    "./combobox/overview/empty-usage/App"
-  ),
-  "combobox/overview/input-controlled-usage": import(
-    "./combobox/overview/input-controlled-usage/App"
-  ),
-  "combobox/overview/input-filter-usage": import(
-    "./combobox/overview/input-filter-usage/App"
-  ),
-  "combobox/overview/input-usage": import(
-    "./combobox/overview/input-usage/App"
-  ),
-  "combobox/overview/usage": import("./combobox/overview/usage/App"),
-  "combobox/overview/value-checkbox-usage": import(
-    "./combobox/overview/value-checkbox-usage/App"
-  ),
-  "combobox/overview/value-radio-usage": import(
-    "./combobox/overview/value-radio-usage/App"
-  ),
+  "combobox/input-filter-usage": import("./combobox/input-filter-usage/App"),
+  "combobox/input-usage": import("./combobox/input-usage/App"),
   "combobox/usage": import("./combobox/usage/App"),
+  "combobox/value-checkbox-usage": import(
+    "./combobox/value-checkbox-usage/App"
+  ),
+  "combobox/value-radio-usage": import("./combobox/value-radio-usage/App"),
   "combobox/virtualized-usage": import("./combobox/virtualized-usage/App"),
   "data-table/loading-usage": import("./data-table/loading-usage/App"),
   "data-table/pagination-client-usage": import(

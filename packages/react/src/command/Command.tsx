@@ -33,7 +33,7 @@ type CommandProps<Item> = {
    */
   items?: Item[];
   /**
-   * Return a string representation of items if they are objects. Needed to show selected values inside triggers.
+   * Return a string representation of items if they are objects.
    */
   itemToLabel?: (item: Item | null) => string;
   itemToSubItems?: (value: Item) => Item[] | null;
