@@ -15,7 +15,7 @@ type CommandProps<Item> = {
   /**
    * The initial items we want to render in uncontrolled mode.
    */
-  defaultItems?: Item[];
+  defaultItems?: Item[] | readonly Item[];
   /**
    * The input value in controlled mode.
    */
@@ -31,7 +31,7 @@ type CommandProps<Item> = {
   /**
    * The items we want to render in controlled mode.
    */
-  items?: Item[];
+  items?: Item[] | readonly Item[];
   /**
    * Return a string representation of items if they are objects.
    */
@@ -87,6 +87,7 @@ export function Command<Item>({
     inputValue,
     isItemDisabled,
     isOpen: placed,
+    // @ts-expect-error -- no harm in supporting read only arrays
     items,
     itemToString: (item) => (item !== null ? itemToLabel(item) : ""),
     onHighlightedIndexChange({ highlightedIndex, type }) {

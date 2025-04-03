@@ -55,7 +55,7 @@ export const useCommandItems = <Item>({
 };
 
 const filter = <Item>(
-  items: Item[],
+  items: Item[] | readonly Item[],
   inputValue: string | undefined,
   filterFn: (item: Item, inputValue: string) => boolean,
 ) => {

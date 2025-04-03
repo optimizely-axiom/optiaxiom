@@ -21,7 +21,7 @@ type ListboxVirtualizedProps<T = unknown> = BoxProps<
   {
     children: (item: T) => ReactNode;
     highlightedItem?: T;
-    items: T[];
+    items: readonly T[] | T[];
     ref?: LegacyRef<HTMLDivElement>;
   }
 >;

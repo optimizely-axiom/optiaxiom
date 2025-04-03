@@ -11,7 +11,7 @@ export const [SelectProvider, useSelectContext] = createContext<{
   downshift: UseSelectReturnValue<any>;
   highlightedItem: any;
   isOpen: boolean | undefined;
-  items: any[];
+  items: any[] | readonly any[];
   itemToLabel: (item: any) => string;
   itemToValue: (item: any) => string | undefined;
   onBlur: FocusEventHandler<HTMLElement> | undefined;

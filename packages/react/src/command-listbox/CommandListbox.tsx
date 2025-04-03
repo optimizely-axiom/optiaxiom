@@ -25,7 +25,7 @@ type CommandListboxProps = BoxProps<
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         children: ((item: any) => ReactNode) | ReactNode;
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        items?: any[];
+        items?: any[] | readonly any[];
       }
     | {
         children?: ReactNode;
