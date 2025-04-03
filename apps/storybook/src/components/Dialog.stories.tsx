@@ -20,7 +20,6 @@ import {
   ComboboxTrigger,
   Select,
   SelectContent,
-  SelectRadioItem,
   SelectTrigger,
 } from "@optiaxiom/react/unstable";
 import { expect, screen, userEvent, waitFor } from "@storybook/test";
@@ -260,13 +259,7 @@ export const WithForm: Story = {
         <Select items={languages}>
           <SelectTrigger placeholder="Select language" />
 
-          <SelectContent>
-            {languages.map((item) => (
-              <SelectRadioItem item={item} key={item}>
-                {item}
-              </SelectRadioItem>
-            ))}
-          </SelectContent>
+          <SelectContent />
         </Select>
       </>
     ),
