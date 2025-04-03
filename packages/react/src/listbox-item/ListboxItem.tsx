@@ -28,10 +28,6 @@ export type ListboxItemProps<
        */
       addonBefore?: ReactNode;
       /**
-       * Whether to mark item as highlighted.
-       */
-      "data-highlighted"?: boolean;
-      /**
        * Add secondary text after the primary label.
        */
       description?: ReactNode;
@@ -52,7 +48,6 @@ export const ListboxItem = forwardRef<HTMLDivElement, ListboxItemProps>(
       asChild,
       children,
       className,
-      "data-highlighted": dataHighlighted,
       description,
       icon,
       intent = "neutral",
@@ -71,12 +66,11 @@ export const ListboxItem = forwardRef<HTMLDivElement, ListboxItemProps>(
         aria-labelledby={labelId}
         asChild
         ref={ref}
-        {...(isHoverSupported &&
-          dataHighlighted !== undefined && {
-            "data-highlighted": dataHighlighted,
-          })}
         {...styles.item({ intent }, className)}
         {...props}
+        {...(!isHoverSupported && {
+          "data-highlighted": undefined,
+        })}
       >
         <Comp>
           {decorateChildren({ asChild, children }, (children) => (
