@@ -9,10 +9,8 @@ describe("Select component", () => {
   it("should value types correctly for string items", async () => {
     const languages = ["Bangla", "English"];
 
-    const [numberValue, setNumberValue] = fakeState<null | number>(1);
-    const [stringValue, setStringValue] = fakeState<null | string>(
-      languages[0],
-    );
+    const [numberValue, setNumberValue] = fakeState<number>(1);
+    const [stringValue, setStringValue] = fakeState<string>(languages[0]);
 
     <>
       {/* 📁 string */}
@@ -58,10 +56,8 @@ describe("Select component", () => {
   it("should value types correctly for const string items", async () => {
     const languages = ["Bangla" as const, "English" as const];
 
-    const [stringValue, setStringValue] = fakeState<null | string>(
-      languages[0],
-    );
-    const [constValue, setConstValue] = fakeState<"Bangla" | "English" | null>(
+    const [stringValue, setStringValue] = fakeState<string>(languages[0]);
+    const [constValue, setConstValue] = fakeState<"Bangla" | "English">(
       languages[0],
     );
 
@@ -127,8 +123,8 @@ describe("Select component", () => {
       },
     ];
 
-    const [stringValue, setStringValue] = fakeState<null | string>(books[0].id);
-    const [bookValue, setBookValue] = fakeState<Book | null>(books[0]);
+    const [stringValue, setStringValue] = fakeState<string>(books[0].id);
+    const [bookValue, setBookValue] = fakeState<Book>(books[0]);
 
     <>
       {/* 📁 string */}
@@ -136,7 +132,7 @@ describe("Select component", () => {
       {/* ✅ should pass */}
       <Select
         items={books}
-        itemToValue={(book) => book?.id}
+        itemToValue={(book) => book.id}
         onValueChange={setStringValue}
         value={stringValue}
       />
@@ -163,7 +159,7 @@ describe("Select component", () => {
       {/* ❌ should fail */}
       <Select
         items={books}
-        itemToValue={(book) => book?.id}
+        itemToValue={(book) => book.id}
         // @ts-expect-error -- value must be string
         onValueChange={setBookValue}
         // @ts-expect-error -- value must be string

@@ -35,8 +35,8 @@ type CommandProps<Item> = {
   /**
    * Return a string representation of items if they are objects.
    */
-  itemToLabel?: (item: Item | null) => string;
-  itemToSubItems?: (value: Item) => Item[] | null;
+  itemToLabel?: (item: Item) => string;
+  itemToSubItems?: (value: Item) => Item[] | undefined;
   /**
    * Handler that is called when input value changes.
    */
@@ -88,7 +88,7 @@ export function Command<Item>({
     isItemDisabled,
     isOpen: placed,
     items,
-    itemToString: itemToLabel,
+    itemToString: (item) => (item !== null ? itemToLabel(item) : ""),
     onHighlightedIndexChange({ highlightedIndex, type }) {
       if (type !== useCombobox.stateChangeTypes.MenuMouseLeave) {
         setHighlightedIndex(highlightedIndex);

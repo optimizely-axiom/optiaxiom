@@ -16,7 +16,7 @@ export function App() {
     <Combobox
       defaultItems={colors}
       isItemSelected={(item) => value === item}
-      itemToLabel={(item) => (item ? item.label : "")}
+      itemToLabel={(item) => item.label}
       onItemSelect={(value) =>
         setValue((prev) => (prev !== value ? value : undefined))
       }

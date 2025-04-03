@@ -245,11 +245,11 @@ export const Controlled: Story<Book> = {
     defaultValue: undefined,
     isItemDisabled: (book) => book.disabled,
     items: books,
-    itemToLabel: (book) => book?.title ?? "",
-    itemToValue: (book) => book?.id,
+    itemToLabel: (book) => book.title,
+    itemToValue: (book) => book.id,
   },
   render: function Controlled(args) {
-    const [value, setValue] = useState<null | string>(books[9].id);
+    const [value, setValue] = useState<string>(books[9].id);
 
     return (
       <Flex flexDirection="row" fontSize="md">
@@ -296,7 +296,7 @@ export const AlternateTrigger: Story<string> = {
     defaultValue: undefined,
   },
   render: function AsyncLoading(args) {
-    const [value, setValue] = useState<null | string>();
+    const [value, setValue] = useState<string>();
 
     return (
       <Flex w="224">
@@ -337,7 +337,7 @@ export const AlternateTrigger: Story<string> = {
             ))}
           </SelectContent>
         </Select>
-        <Button alignSelf="start" onClick={() => setValue(null)}>
+        <Button alignSelf="start" onClick={() => setValue("")}>
           Reset
         </Button>
       </Flex>
