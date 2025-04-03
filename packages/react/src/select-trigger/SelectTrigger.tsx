@@ -14,13 +14,16 @@ import { extractBoxProps } from "../box";
 import { type ButtonProps } from "../button";
 import { useSelectContext } from "../select-context";
 import { useFieldLabelTrigger } from "../use-field-label-trigger";
-import { decorateChildren } from "../utils";
+import { decorateChildren, type ExcludeProps } from "../utils";
 
-type SelectTriggerProps = ButtonProps<
-  typeof PopperAnchor,
-  {
-    placeholder?: string;
-  }
+type SelectTriggerProps = ExcludeProps<
+  ButtonProps<
+    typeof PopperAnchor,
+    {
+      placeholder?: string;
+    }
+  >,
+  "disabled"
 >;
 
 export const SelectTrigger = forwardRef<HTMLButtonElement, SelectTriggerProps>(
