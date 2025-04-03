@@ -16,9 +16,7 @@ export default {
   render: (args) => (
     <Flex flexDirection="row">
       {sizes.map((size) => (
-        <Avatar key={size} size={size} {...args}>
-          {size}
-        </Avatar>
+        <Avatar key={size} size={size} {...args} />
       ))}
     </Flex>
   ),
