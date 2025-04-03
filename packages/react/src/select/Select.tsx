@@ -83,7 +83,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps<any>>(
     const itemToValueStable = useEffectEvent(itemToValue);
     const selectedItem = useMemo(
       () =>
-        shadowValue
+        shadowValue !== undefined
           ? items.find((item) => itemToValueStable(item) === shadowValue)
           : undefined,
       [itemToValueStable, items, shadowValue],
