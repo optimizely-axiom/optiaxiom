@@ -12,7 +12,7 @@ export const [CommandProvider, useCommandContext] = createContext<{
   highlightedSubIndex: number;
   isItemDisabled: (item: any, index: number) => boolean;
   isItemSelected: (item: any, index: number) => boolean;
-  items: any[];
+  items: any[] | readonly any[];
   itemToLabel: (item: any) => string;
   itemToSubItems?: (item: any) => any[] | undefined;
   lastInteractionSource: "keyboard" | "pointer";

@@ -6,6 +6,9 @@ import { useSelectContext } from "../select-context";
 type SelectItemProps = BoxProps<
   "div",
   {
+    /**
+     * The exact item element from the collection.
+     */
     item: unknown;
   }
 >;

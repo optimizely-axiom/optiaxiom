@@ -60,7 +60,7 @@ type SelectProps<Item> = (NoInfer<Item> extends string
   /**
    * The select items/options we want to render.
    */
-  items: Item[];
+  items: Item[] | readonly Item[];
   /**
    * Return a string representation of items if they are objects.
    */
@@ -141,6 +141,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps<any>>(
       highlightedIndex,
       isItemDisabled,
       isOpen: placed,
+      // @ts-expect-error -- no harm in supporting read only arrays
       items,
       itemToKey: (item) => (item !== null ? itemToValue(item) : item),
       itemToString: (item) => (item !== null ? itemToLabel(item) : ""),
