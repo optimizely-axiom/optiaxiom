@@ -4,7 +4,7 @@ export const useQuery = <T extends (...args: Parameters<T>) => ReturnType<T>>(
   fetchFn: T,
 ) => {
   const [data, setData] = useState<ReturnType<T>>();
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const fetchRef = useRef(fetchFn);
   fetchRef.current = fetchFn;
