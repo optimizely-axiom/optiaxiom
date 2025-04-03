@@ -152,6 +152,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps<any>>(
         >
           <SelectHiddenSelect
             defaultValue={defaultValue}
+            disabled={disabled}
             name={name}
             onChange={(event) => {
               setShadowValue(event.target.value);
