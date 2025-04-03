@@ -36,7 +36,7 @@ export function App() {
       inputValue={inputValue}
       isItemSelected={(item) => value.includes(item)}
       items={filteredItems}
-      itemToLabel={(item) => item?.label || ""}
+      itemToLabel={(item) => item.label}
       onInputValueChange={setInputValue}
       onItemSelect={(value) => {
         if (value.new) {

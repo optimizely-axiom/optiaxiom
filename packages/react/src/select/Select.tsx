@@ -20,18 +20,16 @@ import { useObserveReset } from "./useObserveReset";
 
 type SelectProps<Item> = (NoInfer<Item> extends string
   ? {
-      defaultValue?: NoInfer<Item> | null;
-      itemToValue?: (
-        item: NoInfer<Item> | null,
-      ) => NoInfer<Item> | null | undefined;
-      onValueChange?: (value: NoInfer<Item> | null) => void;
-      value?: NoInfer<Item> | null;
+      defaultValue?: NoInfer<Item>;
+      itemToValue?: (item: NoInfer<Item>) => NoInfer<Item> | undefined;
+      onValueChange?: (value: NoInfer<Item>) => void;
+      value?: NoInfer<Item>;
     }
   : {
-      defaultValue?: null | string;
-      itemToValue: (item: NoInfer<Item> | null) => null | string | undefined;
-      onValueChange?: (value: null | string) => void;
-      value?: null | string;
+      defaultValue?: string;
+      itemToValue: (item: NoInfer<Item>) => string | undefined;
+      onValueChange?: (value: string) => void;
+      value?: string;
     }) &
   Pick<ComponentPropsWithoutRef<"main">, "onBlur"> &
   Pick<ComponentPropsWithoutRef<"select">, "name" | "onChange" | "required"> & {
@@ -40,7 +38,7 @@ type SelectProps<Item> = (NoInfer<Item> extends string
     disabled?: boolean;
     isItemDisabled?: (item: NoInfer<Item>, index: number) => boolean;
     items: Item[];
-    itemToLabel?: (item: NoInfer<Item> | null) => string;
+    itemToLabel?: (item: NoInfer<Item>) => string;
     onOpenChange?: (open: boolean) => void;
     open?: boolean;
   };
@@ -56,8 +54,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps<any>>(
       isItemDisabled = () => false,
       items,
       itemToLabel = (value) => (value ? String(value) : ""),
-      itemToValue = (item: unknown) =>
-        typeof item === "string" ? item : undefined,
+      itemToValue = (item) => item,
       name,
       onBlur,
       onChange,
@@ -109,8 +106,8 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps<any>>(
       isItemDisabled,
       isOpen: placed,
       items,
-      itemToKey: itemToValue,
-      itemToString: itemToLabel,
+      itemToKey: (item) => (item !== null ? itemToValue(item) : item),
+      itemToString: (item) => (item !== null ? itemToLabel(item) : ""),
       onHighlightedIndexChange(changes) {
         if (
           ((changes.type === useSelect.stateChangeTypes.ItemMouseMove ||

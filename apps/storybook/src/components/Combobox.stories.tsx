@@ -256,7 +256,7 @@ export const People: Story<(typeof users)[number]> = {
         {...args}
         isItemSelected={(item) => value.has(item)}
         items={items}
-        itemToLabel={(user) => (user ? user.name : "")}
+        itemToLabel={(user) => user.name}
         onInputValueChange={(inputValue) => {
           setItems(
             inputValue
@@ -451,7 +451,7 @@ export const Controlled: Story<Book> = {
         }
         defaultItems={books}
         isItemSelected={(item) => value.includes(item)}
-        itemToLabel={(book) => (book ? String(book.title) : "")}
+        itemToLabel={(book) => book.title}
         onItemSelect={(value) => {
           setValue((values) =>
             values.includes(value)

@@ -20,7 +20,7 @@ export function App() {
     <Combobox
       defaultItems={colors}
       isItemSelected={(item) => value.includes(item)}
-      itemToLabel={(item) => (item ? item.label : "")}
+      itemToLabel={(item) => item.label}
       onItemSelect={(value) =>
         setValue((prev) =>
           prev.includes(value)
