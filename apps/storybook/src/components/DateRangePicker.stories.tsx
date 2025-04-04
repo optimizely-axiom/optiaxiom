@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Box, Button, Field, Flex } from "@optiaxiom/react";
+import { Box, Button, Field, Flex, Text } from "@optiaxiom/react";
 import {
   DateRangePicker,
   DateRangePickerContent,
@@ -86,10 +86,11 @@ export const Disabled: Story = {
   },
 };
 
-export const Content: Story = {
+export const Addons: Story = {
   play: async ({ canvas }) => {
     await expect(await screen.findByRole("dialog")).toBeInTheDocument();
-    await userEvent.click(screen.getByRole("button", { name: "Done" }));
+    await userEvent.click((await screen.findAllByText("15"))[0]);
+    await userEvent.click((await screen.findAllByText("14"))[1]);
     await expect(canvas.queryByRole("dialog")).not.toBeInTheDocument();
 
     await waitFor(() =>
@@ -108,70 +109,41 @@ export const Content: Story = {
     }>();
 
     return (
-      <DateRangePicker
-        {...args}
-        onOpenChange={setOpen}
-        onValueChange={setValue}
-        open={open}
-        value={value}
-      >
-        <DateRangePickerTrigger />
-        <DateRangePickerContent today={new Date("2025-01-24T00:00:00")}>
-          <Flex flexDirection="row">
-            <Button
-              appearance="primary"
-              ml="auto"
-              onClick={() => setOpen(false)}
-            >
-              Done
-            </Button>
-          </Flex>
-        </DateRangePickerContent>
-      </DateRangePicker>
-    );
-  },
-};
-
-export const Addons: Story = {
-  render: function Render(args) {
-    const [open, setOpen] = useState(true);
-    const [value, setValue] = useState<{
-      from: Date | undefined;
-      to?: Date | undefined;
-    }>();
-
-    return (
-      <DateRangePicker
-        {...args}
-        onOpenChange={setOpen}
-        onValueChange={setValue}
-        open={open}
-        value={value}
-      >
-        <DateRangePickerTrigger />
-        <DateRangePickerContent
-          addonBefore={
-            <Flex gap="2">
-              <Button appearance="subtle">Today</Button>
-              <Button appearance="subtle">This week</Button>
-              <Button appearance="subtle">This month</Button>
-              <Button appearance="subtle">Next week</Button>
-              <Button appearance="subtle">Next month</Button>
-            </Flex>
-          }
-          today={new Date("2025-01-24T00:00:00")}
+      <Flex>
+        <Text fontSize="md">Start: {value?.from?.toISOString()}</Text>
+        <Text fontSize="md">End: {value?.to?.toISOString()}</Text>
+        <DateRangePicker
+          {...args}
+          onOpenChange={setOpen}
+          onValueChange={setValue}
+          open={open}
+          value={value}
         >
-          <Flex flexDirection="row">
-            <Button
-              appearance="primary"
-              ml="auto"
-              onClick={() => setOpen(false)}
-            >
-              Done
-            </Button>
-          </Flex>
-        </DateRangePickerContent>
-      </DateRangePicker>
+          <DateRangePickerTrigger />
+          <DateRangePickerContent
+            addonBefore={
+              <Flex gap="2">
+                <Button appearance="subtle">Today</Button>
+                <Button appearance="subtle">This week</Button>
+                <Button appearance="subtle">This month</Button>
+                <Button appearance="subtle">Next week</Button>
+                <Button appearance="subtle">Next month</Button>
+              </Flex>
+            }
+            today={new Date("2025-01-24T00:00:00")}
+          >
+            <Flex flexDirection="row">
+              <Button
+                appearance="primary"
+                ml="auto"
+                onClick={() => setOpen(false)}
+              >
+                Done
+              </Button>
+            </Flex>
+          </DateRangePickerContent>
+        </DateRangePicker>
+      </Flex>
     );
   },
 };

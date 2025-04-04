@@ -7,10 +7,12 @@ import {
 } from "react";
 
 import { Calendar } from "../calendar";
+import { toInstant } from "../date-input/utils";
 import { useDateRangePickerContext } from "../date-range-picker-context";
 import { Flex } from "../flex";
 import { PopoverContent } from "../popover-content";
 import { usePopoverContext } from "../popover-context";
+import { toPlainDate } from "../utils";
 import * as styles from "./DateRangePickerContent.css";
 
 type DateRangePickerContentProps = ComponentPropsWithoutRef<
@@ -78,9 +80,17 @@ export const DateRangePickerContent = forwardRef<
                     ? newValue.from
                     : newValue?.to;
                 setFrom(newFrom);
-                setValue({ from: newFrom, to: newFrom });
+                setValue({
+                  from: newFrom,
+                  to: newFrom
+                    ? toInstant(toPlainDate(newFrom) + "T23:59:59.999")
+                    : undefined,
+                });
               } else if (newValue?.to) {
-                setValue(newValue);
+                setValue({
+                  from: newValue.from,
+                  to: toInstant(toPlainDate(newValue.to) + "T23:59:59.999"),
+                });
                 setOpen(false);
               }
             }}
