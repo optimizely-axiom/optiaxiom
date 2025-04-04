@@ -1,5 +1,11 @@
 # @optiaxiom/web-components
 
+## 0.9.4
+
+### Patch Changes
+
+- 61afcf3: give avatar children priority as fallback over initials
+
 ## 0.9.3
 
 ### Patch Changes
