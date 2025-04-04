@@ -1,5 +1,18 @@
 # @optiaxiom/react
 
+## 1.2.4
+
+### Patch Changes
+
+- 61afcf3: give avatar children priority as fallback over initials
+- ba3f295: simplify setting empty message in combobox
+- d6bc27a: add animation for single listbox indicator
+- 8cfc861: remove placeholder and value rendering from combobox trigger
+- 394b43a: add ability to customize filter for combobox defaultItems
+- 754b8e2: set date range end date to end of day in DateRangePicker
+- bc00de3: wait for enter animation end before scrolling in virtual list
+- b992e6b: show empty state in virtualized combobox
+
 ## 1.2.3
 
 ### Patch Changes
