@@ -12,6 +12,8 @@ const VIRTUALIZE_THRESHOLD = 50;
 type CommandListboxProps = BoxProps<
   "div",
   {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    children?: ((item: any) => ReactNode) | ReactNode;
     /**
      * Custom empty state content.
      */
@@ -20,32 +22,11 @@ type CommandListboxProps = BoxProps<
      * Whether to show loading spinner inside the menu.
      */
     loading?: boolean;
-  } & (
-    | {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        children: ((item: any) => ReactNode) | ReactNode;
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        items?: any[] | readonly any[];
-      }
-    | {
-        children?: ReactNode;
-        items?: never;
-      }
-  )
+  }
 >;
 
 export const CommandListbox = forwardRef<HTMLDivElement, CommandListboxProps>(
-  (
-    {
-      children,
-      empty = "No results found.",
-      items: itemsProp,
-      loading,
-      size,
-      ...props
-    },
-    ref,
-  ) => {
+  ({ children, empty = "No results found.", loading, size, ...props }, ref) => {
     const { downshift, highlightedItem, items, placed, setPlaced } =
       useCommandContext("@optiaxiom/react/CommandListbox");
     useEffect(() => {
@@ -72,7 +53,7 @@ export const CommandListbox = forwardRef<HTMLDivElement, CommandListboxProps>(
             placed && (
               <ListboxVirtualized
                 highlightedItem={highlightedItem}
-                items={itemsProp ?? items}
+                items={items}
               >
                 {children}
               </ListboxVirtualized>
