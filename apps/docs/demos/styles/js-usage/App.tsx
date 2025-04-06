@@ -1,4 +1,4 @@
-import { theme } from "@optiaxiom/react";
+import { theme } from "@optiaxiom/globals";
 
 export function App() {
   return (
