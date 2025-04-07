@@ -47,7 +47,9 @@ export const DisclosureTrigger = forwardRef<
                   <IconAngleRight />
                 </Box>
               )}
-              <Box flex="1">{children}</Box>
+              <Box flex="1" overflow="hidden">
+                {children}
+              </Box>
               {chevronPosition === "end" && (
                 <Box asChild {...styles.icon({ chevronPosition })}>
                   <IconAngleLeft />

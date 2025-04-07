@@ -75,3 +75,18 @@ export const Disabled: Story = {
     disabled: true,
   },
 };
+
+export const LongContentTrigger: Story = {
+  args: {
+    children: (
+      <>
+        <DisclosureTrigger>
+          Thisisareallylargepieceoftextinonewordtoshowcasehowdisclosurehandlesthem.
+        </DisclosureTrigger>
+        <DisclosureContent>
+          Content for the item. Contains multiple lines of lorem ipsum.
+        </DisclosureContent>
+      </>
+    ),
+  },
+};

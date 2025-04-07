@@ -48,6 +48,7 @@ export const trigger = recipe({
 export const icon = recipe({
   base: [
     {
+      flex: "none",
       transition: "transform",
     },
   ],
