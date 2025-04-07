@@ -1,5 +1,11 @@
 # @optiaxiom/web-components
 
+## 0.9.5
+
+### Patch Changes
+
+- 42431fa: handle long text inside disclosure trigger
+
 ## 0.9.4
 
 ### Patch Changes
