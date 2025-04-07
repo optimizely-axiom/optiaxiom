@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 1.2.5
+
+### Patch Changes
+
+- 42431fa: handle long text inside disclosure trigger
+
 ## 1.2.4
 
 ### Patch Changes
