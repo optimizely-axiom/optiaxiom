@@ -15,7 +15,7 @@ export function fuzzysearch(haystack: string, needle: string) {
     return false;
   }
   if (nlen === hlen) {
-    return needle === haystack;
+    return collator.compare(needle, haystack) === 0;
   }
   outer: for (let i = 0, j = 0; i < nlen; i++) {
     const nch = needle.charAt(i);
