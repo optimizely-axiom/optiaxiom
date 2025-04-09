@@ -1,20 +1,13 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Box, Kbd, Toast, toaster, ToastTitle } from "@optiaxiom/react";
+import { Kbd, Toast, toaster, ToastTitle } from "@optiaxiom/react";
 import {
-  Highlight,
+  type ComboboxOption,
   Spotlight,
   SpotlightContent,
-  SpotlightEmpty,
-  SpotlightInput,
-  SpotlightLabel,
-  SpotlightListbox,
-  SpotlightRadioItem,
-  SpotlightSub,
-  SpotlightSubItem,
   SpotlightTrigger,
 } from "@optiaxiom/react/unstable";
-import { Fragment, useState } from "react";
+import { useState } from "react";
 
 export default {
   args: {
@@ -23,85 +16,73 @@ export default {
   component: Spotlight,
 } as Meta<typeof Spotlight>;
 
-type Story<T> = StoryObj<typeof Spotlight<T>>;
+type Story = StoryObj<typeof Spotlight>;
 
-const empty: Item = {
-  title: "Empty",
-};
-
-const types = {
-  items: [
-    {
-      title: "Colors",
-    },
-    {
-      title: "Names",
-    },
-    {
-      title: "Numbers",
-    },
-  ],
-  title: "Types",
+const categories = {
+  Layout: {
+    name: "Layout",
+    visible: true,
+  },
+  Sizing: {
+    name: "Sizing",
+    visible: true,
+  },
+  Typography: {
+    name: "Typography",
+    visible: true,
+  },
 };
 
 const pages = [
   {
-    category: "Layout",
+    category: categories.Layout,
     description: "Set the element's `gap` CSS property",
     tag: "Numbers",
     title: "Gap",
   },
   {
-    category: "Layout",
+    category: categories.Layout,
     description: "Set the element's margin on all sides",
     tag: "Numbers",
     title: "Margin",
   },
   {
-    category: "Typography",
+    category: categories.Typography,
     description: "Set the element's font family",
     tag: "Names",
     title: "Font Family",
   },
   {
-    category: "Typography",
+    category: categories.Typography,
     description:
       "Set the element's `font-size` and `line-height` CSS properties",
     tag: "Numbers",
     title: "Font Size",
   },
   {
-    category: "Typography",
+    category: categories.Typography,
     description: "Set the element's text color",
     tag: "Colors",
     title: "Text Color",
   },
   {
-    category: "Sizing",
+    category: categories.Sizing,
     description: "Set the element's height",
     tag: "Numbers",
     title: "Height",
   },
   {
-    category: "Sizing",
+    category: categories.Sizing,
     description: "Set the element's width",
     tag: "Numbers",
     title: "Width",
   },
 ];
 
-type Item = {
-  category?: string;
-  description?: string;
-  title: string;
-};
-
-export const Basic: Story<Item & { items?: Item[] }> = {
+export const Basic: Story = {
   render: function Basic(args) {
-    const [open, setOpen] = useState(args.defaultOpen);
-    const [inputValue, setInputValueState] = useState("");
     const [items, setItems] = useState(pages);
-    const [filter, setFilter] = useState<Item | null>(null);
+    const [inputValue, setInputValueState] = useState("");
 
     const setInputValue = (inputValue: string) => {
       setInputValueState(inputValue);
@@ -109,54 +90,35 @@ export const Basic: Story<Item & { items?: Item[] }> = {
         pages.filter(
           (page) =>
             !inputValue ||
-            getAllPhrasesMatchingRegex(
-              inputValue
-                .split(" ")
-                .map((q) => q.trim())
-                .filter(Boolean),
-            ).test(page.description + "\n" + page.title),
+            (page.description + "\n" + page.title)
+              .toLowerCase()
+              .includes(inputValue.toLowerCase()),
         ),
       );
     };
 
-    const categories = new Set();
-    const shouldShowCategory = (category: string | undefined) => {
-      const flag = categories.has(category);
-      categories.add(category);
-      return !flag;
-    };
-
-    const filteredItems = (() => {
-      const filteredItems = items.filter(
-        (item) => !filter || item.tag === filter.title,
-      );
-      return filteredItems.length ? filteredItems : [empty];
-    })();
-
     return (
       <Spotlight
         {...args}
+        empty={`No results for "${inputValue}"`}
         inputValue={inputValue}
-        items={[types, ...filteredItems]}
-        itemToSubItems={(item) => ("items" in item ? (item.items ?? []) : [])}
+        items={[
+          ...items.map<ComboboxOption>((item) => ({
+            description: item.description,
+            execute: () => {
+              toaster.create(
+                <Toast intent="success">
+                  <ToastTitle>
+                    Selected <strong>{item.title}</strong>
+                  </ToastTitle>
+                </Toast>,
+              );
+            },
+            group: item.category,
+            label: item.title,
+          })),
+        ]}
         onInputValueChange={setInputValue}
-        onItemSelect={(value) => {
-          if (types.items.includes(value)) {
-            setFilter((filter) => (filter === value ? null : value));
-          } else if (value === empty) {
-            setFilter(null);
-            setInputValue("gap");
-          }
-          toaster.create(
-            <Toast intent="success">
-              <ToastTitle>
-                Selected <strong>{value.title}</strong>
-              </ToastTitle>
-            </Toast>,
-          );
-        }}
-        onOpenChange={setOpen}
-        open={open}
       >
         <SpotlightTrigger
           addonAfter={
@@ -168,102 +130,8 @@ export const Basic: Story<Item & { items?: Item[] }> = {
         >
           Quick search...
         </SpotlightTrigger>
-
-        <SpotlightContent>
-          <SpotlightInput placeholder="Search..." />
-
-          <SpotlightSub
-            borderB="1"
-            borderColor="border.secondary"
-            item={types}
-            pb="12"
-          >
-            {types.items.map((item) => (
-              <SpotlightSubItem
-                item={item}
-                key={item.title}
-                selected={filter === item}
-              >
-                {item.title}
-              </SpotlightSubItem>
-            ))}
-          </SpotlightSub>
-
-          <SpotlightListbox>
-            {filteredItems.map((item) => (
-              <Fragment key={item.title}>
-                {shouldShowCategory(item.category) && (
-                  <SpotlightLabel>{item.category}</SpotlightLabel>
-                )}
-
-                {item === empty ? (
-                  <>
-                    <SpotlightEmpty>
-                      <Box>
-                        No results for &quot;
-                        <Box asChild color="fg.default">
-                          <span>{inputValue}</span>
-                        </Box>
-                        &quot;
-                      </Box>
-                    </SpotlightEmpty>
-
-                    <SpotlightRadioItem item={item}>
-                      Try searching for: <strong>Gap</strong>
-                    </SpotlightRadioItem>
-                  </>
-                ) : (
-                  <SpotlightRadioItem
-                    description={
-                      <Highlight content={item.description} query={inputValue}>
-                        {(chunk) => (
-                          <Box
-                            asChild
-                            borderB="2"
-                            borderColor="border.focus"
-                            fontWeight="600"
-                          >
-                            {chunk}
-                          </Box>
-                        )}
-                      </Highlight>
-                    }
-                    item={item}
-                  >
-                    <Box>
-                      <Highlight content={item.title} query={inputValue}>
-                        {(chunk) => (
-                          <Box
-                            asChild
-                            borderB="2"
-                            borderColor="border.focus"
-                            fontWeight="600"
-                          >
-                            {chunk}
-                          </Box>
-                        )}
-                      </Highlight>
-                    </Box>
-                  </SpotlightRadioItem>
-                )}
-              </Fragment>
-            ))}
-          </SpotlightListbox>
-        </SpotlightContent>
+        <SpotlightContent />
       </Spotlight>
     );
   },
 };
-
-function escapeRegExp(string: string) {
-  return string.replace(/[/\-\\^$*+?.()|[\]{}]/g, "\\$&");
-}
-
-function getAllPhrasesMatchingRegex(phrases: string[]) {
-  const escapedPhrases = phrases.map((p) => escapeRegExp(p));
-
-  return new RegExp(
-    "(?![^<>]*>)(^|\\b)(?=[^/.])(" + escapedPhrases.join("|") + ")",
-    "gi",
-  );
-}

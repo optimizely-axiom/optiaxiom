@@ -3,34 +3,60 @@
 import {
   Combobox,
   ComboboxContent,
-  ComboboxInput,
-  ComboboxListbox,
   ComboboxTrigger,
 } from "@optiaxiom/react/unstable";
 
 import { useQuery } from "./useQuery";
 
-const colors = ["Ocean", "Blue", "Purple", "Red", "Orange", "Yellow"];
+const colors = [
+  {
+    label: "Ocean",
+    visible: true,
+  },
+  {
+    label: "Blue",
+    visible: true,
+  },
+  {
+    label: "Purple",
+    visible: true,
+  },
+  {
+    label: "Red",
+    visible: true,
+  },
+  {
+    label: "Orange",
+    visible: true,
+  },
+  {
+    label: "Yellow",
+    visible: true,
+  },
+];
 
 export function App() {
-  const { data, isLoading, refetch } = useQuery((inputValue: string) =>
+  const {
+    data = [],
+    isLoading,
+    refetch,
+  } = useQuery((inputValue: string) =>
     inputValue
       ? colors.filter((color) =>
-          color.toLowerCase().includes(inputValue.toLowerCase()),
+          color.label.toLowerCase().startsWith(inputValue.toLowerCase()),
         )
       : colors,
   );
 
   return (
     <Combobox
+      defaultInputVisible
       items={data}
+      loading={isLoading}
       onInputValueChange={(inputValue) => refetch(inputValue)}
     >
       <ComboboxTrigger w="224">Select colors</ComboboxTrigger>
-      <ComboboxContent>
-        <ComboboxInput />
-        <ComboboxListbox loading={isLoading} />
-      </ComboboxContent>
+      <ComboboxContent />
     </Combobox>
   );
 }

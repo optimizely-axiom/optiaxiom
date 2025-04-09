@@ -15,9 +15,10 @@ import type { Box } from "../box";
 
 import { ModalProvider, useModalContext } from "../modal-context";
 
-type ModalLayerProps = Pick<ComponentPropsWithoutRef<typeof Box>, "asChild"> & {
-  children?: ReactNode;
-};
+type ModalLayerProps = Pick<ComponentPropsWithoutRef<typeof Box>, "asChild"> &
+  Pick<ComponentPropsWithoutRef<typeof DismissableLayer>, "onEscapeKeyDown"> & {
+    children?: ReactNode;
+  };
 
 export const ModalLayer = forwardRef<HTMLDivElement, ModalLayerProps>(
   ({ asChild, children, ...props }, outerRef) => {

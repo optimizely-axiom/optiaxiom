@@ -1,31 +1,40 @@
-import * as RadixDialog from "@radix-ui/react-dialog";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
-import type { MenuListbox } from "../menu-listbox";
-import type { ExcludeProps } from "../utils";
+import type { ComboboxContent } from "../combobox-content";
 
 import { DialogContent } from "../dialog-content";
+import { DialogHeader } from "../dialog-header";
 
-type ComboboxDialogContentProps = ExcludeProps<
-  ComponentPropsWithoutRef<typeof DialogContent> &
-    Pick<ComponentPropsWithoutRef<typeof MenuListbox>, "maxH" | "minW">,
-  "size"
+type ComboboxDialogContentProps = ComponentPropsWithoutRef<
+  typeof ComboboxContent
 >;
 
 export const ComboboxDialogContent = forwardRef<
   HTMLDivElement,
   ComboboxDialogContentProps
->(({ "aria-label": ariaLabel, children, minW: _minW, ...props }, ref) => {
-  return (
-    <DialogContent ref={ref} {...props}>
-      <VisuallyHidden>
-        <RadixDialog.Title>{ariaLabel}</RadixDialog.Title>
-      </VisuallyHidden>
+>(
+  (
+    {
+      align: _align,
+      "aria-label": ariaLabel,
+      children,
+      side: _side,
+      sideOffset: _sideOffset,
+      ...props
+    },
+    ref,
+  ) => {
+    return (
+      <DialogContent ref={ref} transitionType="pop" {...props}>
+        <VisuallyHidden tabIndex={-1}>
+          <DialogHeader>{ariaLabel}</DialogHeader>
+        </VisuallyHidden>
 
-      {children}
-    </DialogContent>
-  );
-});
+        {children}
+      </DialogContent>
+    );
+  },
+);
 
 ComboboxDialogContent.displayName = "@optiaxiom/react/ComboboxDialogContent";

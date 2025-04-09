@@ -3,6 +3,7 @@ import { type ComponentPropsWithoutRef, forwardRef, useRef } from "react";
 
 import { AngleMenuButton } from "../angle-menu-button";
 import { useComboboxContext } from "../combobox-context";
+import { DialogTrigger } from "../dialog-trigger";
 import { PopoverTrigger } from "../popover-trigger";
 import { useFieldLabelTrigger } from "../use-field-label-trigger";
 
@@ -16,9 +17,10 @@ export const ComboboxTrigger = forwardRef<
     { "aria-labelledby": ariaLabelledBy, asChild, children, ...props },
     outerRef,
   ) => {
-    const { components, setOpen } = useComboboxContext(
+    const { setOpen, size } = useComboboxContext(
       "@optiaxiom/react/ComboboxTrigger",
     );
+    const Comp = size === "sm" ? PopoverTrigger : DialogTrigger;
 
     const buttonRef = useRef<HTMLButtonElement>(null);
     const ref = useComposedRefs(outerRef, buttonRef);
@@ -26,7 +28,7 @@ export const ComboboxTrigger = forwardRef<
     const labelId = useFieldLabelTrigger(buttonRef, ariaLabelledBy);
 
     return (
-      <components.Trigger
+      <Comp
         aria-labelledby={labelId}
         asChild
         onKeyDown={(event) => {
@@ -40,7 +42,7 @@ export const ComboboxTrigger = forwardRef<
         {...props}
       >
         {asChild ? children : <AngleMenuButton>{children}</AngleMenuButton>}
-      </components.Trigger>
+      </Comp>
     );
   },
 );

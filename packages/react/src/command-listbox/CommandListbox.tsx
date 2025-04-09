@@ -1,7 +1,7 @@
 import { forwardRef, Fragment, type ReactNode, useEffect } from "react";
 
 import { Box, type BoxProps } from "../box";
-import { useCommandContext } from "../command-context";
+import { type CommandOption, useCommandContext } from "../command-context";
 import { Listbox } from "../listbox";
 import { ListboxEmpty } from "../listbox-empty";
 import { ListboxVirtualized } from "../listbox-virtualized";
@@ -12,8 +12,7 @@ const VIRTUALIZE_THRESHOLD = 50;
 type CommandListboxProps = BoxProps<
   "div",
   {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    children?: ((item: any) => ReactNode) | ReactNode;
+    children?: ((item: CommandOption) => ReactNode) | ReactNode;
     /**
      * Custom empty state content.
      */

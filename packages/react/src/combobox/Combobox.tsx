@@ -1,23 +1,23 @@
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
-import { type ComponentPropsWithoutRef, type ReactNode } from "react";
+import { type ComponentPropsWithoutRef, type ReactNode, useRef } from "react";
 
+import type { CommandOption } from "../command-context";
 import type { ExcludeProps, ExtendProps } from "../utils";
 
 import { ComboboxProvider } from "../combobox-context";
-import { ComboboxDialogContent } from "../combobox-dialog-content";
 import { ComboboxPopover } from "../combobox-popover";
-import { ComboboxPopoverContent } from "../combobox-popover-content";
 import { Command } from "../command";
 import { Dialog } from "../dialog";
-import { DialogTrigger } from "../dialog-trigger";
-import { PopoverTrigger } from "../popover-trigger";
 import { useResponsiveMatches } from "../use-responsive-matches";
 
-type ComboboxProps<Item> = ExcludeProps<
+export type ComboboxOption = CommandOption;
+
+type ComboboxProps = ExcludeProps<
   ExtendProps<
-    ComponentPropsWithoutRef<typeof Command<Item>>,
+    ComponentPropsWithoutRef<typeof Command>,
     {
       children: ReactNode;
+      defaultInputVisible?: boolean;
       /**
        * The initial open state in uncontrolled mode.
        */
@@ -30,30 +30,28 @@ type ComboboxProps<Item> = ExcludeProps<
        * The open state in controlled mode.
        */
       open?: boolean;
+      placeholder?: string;
+      size?: "lg" | "sm";
     }
   >,
-  "itemToSubItems"
+  "onItemSelect"
 >;
 
-export function Combobox<Item>({
+export function Combobox({
   children,
+  defaultInputVisible,
   defaultOpen = false,
   onOpenChange,
   open: openProp,
+  placeholder = "Filter...",
+  size: sizeProp,
   ...props
-}: ComboboxProps<Item>) {
-  const components = useResponsiveMatches({
-    base: {
-      Content: ComboboxDialogContent,
-      Root: Dialog,
-      Trigger: DialogTrigger,
-    },
-    sm: {
-      Content: ComboboxPopoverContent,
-      Root: ComboboxPopover,
-      Trigger: PopoverTrigger,
-    },
+}: ComboboxProps) {
+  const size = useResponsiveMatches({
+    base: "lg",
+    sm: sizeProp ?? "sm",
   });
+  const Comp = size === "sm" ? ComboboxPopover : Dialog;
 
   const [open, setOpen] = useControllableState({
     defaultProp: defaultOpen,
@@ -61,12 +59,30 @@ export function Combobox<Item>({
     prop: openProp,
   });
 
+  const inputRef = useRef<HTMLInputElement>(null);
+
   return (
-    <components.Root onOpenChange={setOpen} open={open}>
-      <ComboboxProvider components={components} open={open} setOpen={setOpen}>
-        <Command {...props}>{children}</Command>
+    <Comp onOpenChange={setOpen} open={open}>
+      <ComboboxProvider
+        defaultInputVisible={defaultInputVisible || false}
+        inputRef={inputRef}
+        open={open}
+        placeholder={placeholder}
+        setOpen={setOpen}
+        size={size}
+      >
+        <Command
+          onItemSelect={() => {
+            if (typeof openProp === "undefined") {
+              setOpen(false);
+            }
+          }}
+          {...props}
+        >
+          {children}
+        </Command>
       </ComboboxProvider>
-    </components.Root>
+    </Comp>
   );
 }
 

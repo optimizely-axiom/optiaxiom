@@ -1,9 +1,9 @@
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
-import { ComboboxItem } from "../combobox-item";
+import { CommandItem } from "../command-item";
 import { ListboxRadioItem } from "../listbox-radio-item";
 
-type ComboboxRadioItemProps = ComponentPropsWithoutRef<typeof ComboboxItem> &
+type ComboboxRadioItemProps = ComponentPropsWithoutRef<typeof CommandItem> &
   ComponentPropsWithoutRef<typeof ListboxRadioItem>;
 
 export const ComboboxRadioItem = forwardRef<
@@ -11,9 +11,11 @@ export const ComboboxRadioItem = forwardRef<
   ComboboxRadioItemProps
 >(({ children, ...props }, ref) => {
   return (
-    <ComboboxItem asChild ref={ref} {...props}>
-      <ListboxRadioItem>{children}</ListboxRadioItem>
-    </ComboboxItem>
+    <CommandItem asChild ref={ref} {...props}>
+      <ListboxRadioItem addonBefore={props.item.addon}>
+        {children}
+      </ListboxRadioItem>
+    </CommandItem>
   );
 });
 

@@ -3,13 +3,11 @@
 import { Box } from "@optiaxiom/react";
 import {
   Combobox,
-  ComboboxCheckboxItem,
   ComboboxContent,
-  ComboboxInput,
-  ComboboxListbox,
+  type ComboboxOption,
   ComboboxTrigger,
 } from "@optiaxiom/react/unstable";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 import { type Color, colors } from "./data";
 
@@ -18,36 +16,31 @@ export function App() {
 
   return (
     <Combobox
-      defaultItems={colors}
-      isItemSelected={(item) => value.includes(item)}
-      itemToLabel={(item) => item.label}
-      onItemSelect={(value) =>
-        setValue((prev) =>
-          prev.includes(value)
-            ? prev.filter((v) => v !== value)
-            : [...prev, value],
-        )
-      }
+      items={useMemo(
+        () =>
+          colors.map<ComboboxOption>((color) => ({
+            addon: (
+              <Box
+                rounded="full"
+                size="10"
+                style={{ backgroundColor: color.color }}
+              />
+            ),
+            execute: () =>
+              setValue((value) =>
+                value.includes(color)
+                  ? value.filter((v) => v !== color)
+                  : [...value, color],
+              ),
+            label: color.label,
+            multi: true,
+            selected: () => value.includes(color),
+          })),
+        [value],
+      )}
     >
       <ComboboxTrigger w="224">Select colors</ComboboxTrigger>
-      <ComboboxContent>
-        <ComboboxInput />
-        <ComboboxListbox>
-          {(item) => (
-            <ComboboxCheckboxItem
-              icon={
-                <Box
-                  rounded="sm"
-                  style={{ aspectRatio: 1, backgroundColor: item.color }}
-                />
-              }
-              item={item}
-            >
-              {item.label}
-            </ComboboxCheckboxItem>
-          )}
-        </ComboboxListbox>
-      </ComboboxContent>
+      <ComboboxContent />
     </Combobox>
   );
 }

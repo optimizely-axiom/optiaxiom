@@ -1,42 +1,34 @@
+import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import { useCombobox } from "downshift";
-import { type ReactNode, useState } from "react";
+import { type ReactNode, useEffect, useRef, useState } from "react";
 
-import { CommandProvider } from "../command-context";
+import {
+  type CommandOption,
+  CommandProvider,
+  resolveItemProperty,
+} from "../command-context";
 import { usePortalPatch } from "../downshift";
 import { useCommandItems } from "../use-command-items";
 import { useEffectEvent } from "../use-event";
 
-type CommandProps<Item> = {
+type CommandProps = {
   children?: ReactNode;
   /**
-   * Return true/false for filtering items with the given search input.
+   * Custom empty state content.
    */
-  defaultFilter?: (item: Item, inputValue: string) => boolean;
-  /**
-   * The initial items we want to render in uncontrolled mode.
-   */
-  defaultItems?: Item[] | readonly Item[];
+  empty?: ReactNode;
   /**
    * The input value in controlled mode.
    */
   inputValue?: string;
   /**
-   * Return true if items need to be marked as disabled and skipped from keyboard navigation.
+   * The items we want to render.
    */
-  isItemDisabled?: (item: Item, index: number) => boolean;
+  items: CommandOption[] | readonly CommandOption[];
   /**
-   * Return true if item need to be marked as selected.
+   * Whether to show loading spinner inside the menu.
    */
-  isItemSelected?: (item: Item, index: number) => boolean;
-  /**
-   * The items we want to render in controlled mode.
-   */
-  items?: Item[] | readonly Item[];
-  /**
-   * Return a string representation of items if they are objects.
-   */
-  itemToLabel?: (item: Item) => string;
-  itemToSubItems?: (value: Item) => Item[] | undefined;
+  loading?: boolean;
   /**
    * Handler that is called when input value changes.
    */
@@ -44,95 +36,90 @@ type CommandProps<Item> = {
   /**
    * Handler that is called when an item is selected either via keyboard or mouse.
    */
-  onItemSelect?: (value: Item) => void;
+  onItemSelect?: () => void;
 };
 
-export function Command<Item>({
+export function Command({
   children,
-  defaultFilter,
-  defaultItems,
+  empty,
   inputValue: inputValueProp,
-  isItemDisabled = () => false,
-  isItemSelected = () => false,
   items: itemsProp,
-  itemToLabel = (value) => (value ? String(value) : ""),
-  itemToSubItems,
+  loading,
   onInputValueChange,
   onItemSelect,
-}: CommandProps<Item>) {
-  const [items, inputValue, setInputValue] = useCommandItems({
-    defaultFilter,
-    defaultItems,
-    inputValue: inputValueProp,
-    items: itemsProp,
-    itemToLabel,
-    onInputValueChange,
+}: CommandProps) {
+  const [inputValue, setInputValue] = useControllableState({
+    defaultProp: "",
+    onChange: onInputValueChange,
+    prop: inputValueProp,
   });
+  const items = useCommandItems({ inputValue, items: itemsProp });
 
-  const [lastInteractionSource, setLastInteractionSource] = useState<
-    "keyboard" | "pointer"
-  >("pointer");
+  const [activePath, setActivePath] = useState<number[]>([]);
+  useEffect(() => {
+    if (inputValue) {
+      setActivePath((path) => (path.length ? [] : path));
+    }
+  }, [inputValue]);
 
   const [highlightedIndex, setHighlightedIndex, placed, setPlaced] =
     usePortalPatch(() =>
-      items.findIndex((item, index) => isItemSelected(item, index)),
+      items.findIndex((item) => resolveItemProperty(item.selected)),
     );
-  const [highlightedSubIndex, setHighlightedSubIndex] = useState(-1);
+
+  const pauseInteractionRef = useRef({
+    timer: undefined,
+    triangle: null,
+  });
 
   const downshift = useCombobox({
     highlightedIndex:
       highlightedIndex === -1
-        ? items.findIndex((item, index) => !isItemDisabled(item, index))
+        ? items.findIndex((item) => !resolveItemProperty(item.disabledReason))
         : highlightedIndex,
     inputValue,
-    isItemDisabled,
+    isItemDisabled: (item) =>
+      Boolean(resolveItemProperty(item?.disabledReason)),
     isOpen: placed,
-    // @ts-expect-error -- no harm in supporting read only arrays
     items,
-    itemToString: (item) => (item !== null ? itemToLabel(item) : ""),
+    itemToString: (item) =>
+      item !== null ? resolveItemProperty(item.label, { inputValue }) : "",
     onHighlightedIndexChange({ highlightedIndex, type }) {
-      if (type !== useCombobox.stateChangeTypes.MenuMouseLeave) {
-        setHighlightedIndex(highlightedIndex);
+      if (type === useCombobox.stateChangeTypes.MenuMouseLeave) {
+        return;
       }
 
-      if (
-        type === useCombobox.stateChangeTypes.InputKeyDownArrowDown ||
-        type === useCombobox.stateChangeTypes.InputKeyDownArrowUp ||
-        type === useCombobox.stateChangeTypes.InputKeyDownPageDown ||
-        type === useCombobox.stateChangeTypes.InputKeyDownPageUp
-      ) {
-        setLastInteractionSource("keyboard");
-      } else {
-        setLastInteractionSource("pointer");
-      }
+      setHighlightedIndex(highlightedIndex);
 
       if (
         highlightedIndex !== -1 &&
-        itemToSubItems?.(items[highlightedIndex])?.length
+        type === useCombobox.stateChangeTypes.ItemMouseMove
       ) {
-        setHighlightedSubIndex(0);
-      } else {
-        setHighlightedSubIndex(-1);
-      }
-    },
-    onIsOpenChange({ isOpen, type }) {
-      if (isOpen) {
-        if (
-          type === useCombobox.stateChangeTypes.InputClick ||
-          type === useCombobox.stateChangeTypes.ToggleButtonClick
-        ) {
-          setLastInteractionSource("pointer");
+        if (items[highlightedIndex]?.subItems?.length) {
+          setActivePath((path) =>
+            !path.includes(highlightedIndex) ? [highlightedIndex] : path,
+          );
         } else {
-          setLastInteractionSource("keyboard");
+          setActivePath((path) => (path.length ? [] : path));
         }
       }
     },
-    onSelectedItemChange({ selectedItem, type }) {
+    onSelectedItemChange({ highlightedIndex, selectedItem, type }) {
       if (
         type !== useCombobox.stateChangeTypes.InputBlur &&
         selectedItem !== null
       ) {
-        onItemSelect?.(selectedItem);
+        if (
+          typeof highlightedIndex === "number" &&
+          selectedItem.subItems?.length
+        ) {
+          setActivePath((path) =>
+            !path.includes(highlightedIndex) ? [highlightedIndex] : path,
+          );
+        } else {
+          selectedItem.execute?.({ inputValue });
+          onItemSelect?.();
+        }
       }
     },
     selectedItem: null,
@@ -148,6 +135,7 @@ export function Command<Item>({
             ...changes,
             /**
              * Keep the selected option highlighted rather than resetting to -1
+             * TODO: reset if activePath had values
              */
             highlightedIndex: state.highlightedIndex,
           };
@@ -165,30 +153,17 @@ export function Command<Item>({
 
   return (
     <CommandProvider
+      activePath={activePath}
       downshift={downshift}
+      empty={empty}
       highlightedItem={items[downshift.highlightedIndex]}
-      highlightedSubIndex={
-        highlightedSubIndex === -1 &&
-        items[downshift.highlightedIndex] &&
-        itemToSubItems?.(items[downshift.highlightedIndex])?.length
-          ? 0
-          : highlightedSubIndex
-      }
-      isItemDisabled={isItemDisabled}
-      isItemSelected={isItemSelected}
+      inputValue={inputValue}
       items={items}
-      itemToLabel={itemToLabel}
-      itemToSubItems={itemToSubItems}
-      lastInteractionSource={lastInteractionSource}
+      loading={loading}
+      pauseInteractionRef={pauseInteractionRef}
       placed={placed}
-      setHighlightedIndex={(index, source) => {
-        setHighlightedIndex(index);
-        setLastInteractionSource(source);
-      }}
-      setHighlightedSubIndex={(index, source) => {
-        setHighlightedSubIndex(index);
-        setLastInteractionSource(source);
-      }}
+      setActivePath={setActivePath}
+      setHighlightedIndex={setHighlightedIndex}
       setInputValue={useEffectEvent((newInputValue: string) => {
         if (inputValue === "" && newInputValue === "") {
           onInputValueChange?.("");
