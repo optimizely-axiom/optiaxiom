@@ -16,8 +16,6 @@ const mapComponentToBase: Partial<Record<AllComponents, "" | AllComponents>> = {
   AlertDialogAction: "Button",
   AlertDialogCancel: "Button",
   AlertDialogTrigger: "Button",
-  ComboboxInput: "Input",
-  ComboboxSeparator: "Separator",
   ComboboxTrigger: "Button",
   DatePicker: "Popover",
   DatePickerTrigger: "Button",

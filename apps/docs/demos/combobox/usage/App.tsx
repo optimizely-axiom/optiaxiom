@@ -3,9 +3,10 @@
 import {
   Combobox,
   ComboboxContent,
+  type ComboboxOption,
   ComboboxTrigger,
 } from "@optiaxiom/react/unstable";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 const priorities = ["No priority", "Urgent", "High", "Medium", "Low"];
 
@@ -14,9 +15,15 @@ export function App() {
 
   return (
     <Combobox
-      defaultItems={priorities}
-      isItemSelected={(item) => item === value}
-      onItemSelect={setValue}
+      items={useMemo(
+        () =>
+          priorities.map<ComboboxOption>((priority) => ({
+            execute: () => setValue(priority),
+            label: priority,
+            selected: priority === value,
+          })),
+        [value],
+      )}
     >
       <ComboboxTrigger w="224">
         {value !== "No priority" ? value : "Set priority"}

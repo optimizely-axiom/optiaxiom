@@ -1,12 +1,12 @@
 import { useHotkeys } from "@mantine/hooks";
 import { forwardRef } from "react";
 
-import type { ButtonProps } from "../button";
-
 import { Box } from "../box";
+import { Button, type ButtonProps } from "../button";
+import { useComboboxContext } from "../combobox-context";
+import { ComboboxTrigger } from "../combobox-trigger";
 import { DialogTrigger } from "../dialog-trigger";
 import { IconMagnifyingGlass } from "../icons/IconMagnifyingGlass";
-import { useSpotlightContext } from "../spotlight-context";
 
 type SpotlightTriggerProps = ButtonProps<
   typeof DialogTrigger,
@@ -21,16 +21,18 @@ export const SpotlightTrigger = forwardRef<
   HTMLButtonElement,
   SpotlightTriggerProps
 >(({ children, hotkey = DEFAULT_HOTKEY, ...props }, ref) => {
-  const { open, setOpen } = useSpotlightContext(
+  const { open, setOpen } = useComboboxContext(
     "@optiaxiom/react/SpotlightTrigger",
   );
 
   useHotkeys([[hotkey, () => setOpen(!open)]]);
 
   return (
-    <DialogTrigger icon={<IconMagnifyingGlass />} ref={ref} {...props}>
-      <Box color="fg.tertiary">{children}</Box>
-    </DialogTrigger>
+    <ComboboxTrigger asChild ref={ref} {...props}>
+      <Button icon={<IconMagnifyingGlass />}>
+        <Box color="fg.tertiary">{children}</Box>
+      </Button>
+    </ComboboxTrigger>
   );
 });
 

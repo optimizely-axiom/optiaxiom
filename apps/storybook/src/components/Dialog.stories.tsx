@@ -15,8 +15,7 @@ import {
 import {
   Combobox,
   ComboboxContent,
-  ComboboxInput,
-  ComboboxListbox,
+  type ComboboxOption,
   ComboboxTrigger,
   Select,
   SelectContent,
@@ -24,7 +23,12 @@ import {
 } from "@optiaxiom/react/unstable";
 import { expect, screen, userEvent, waitFor } from "@storybook/test";
 import { IconArrowsDiagonal } from "@tabler/icons-react";
-import { type ComponentPropsWithoutRef, type ReactNode, useState } from "react";
+import {
+  type ComponentPropsWithoutRef,
+  type ReactNode,
+  useMemo,
+  useState,
+} from "react";
 
 type DialogStoryProps = ComponentPropsWithoutRef<typeof Dialog> &
   Pick<ComponentPropsWithoutRef<typeof DialogContent>, "size"> & {
@@ -228,21 +232,22 @@ const languages = [
 ];
 
 function SampleCombobox() {
-  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState<string>();
 
   return (
     <Combobox
-      defaultItems={languages}
-      onItemSelect={() => setOpen(false)}
-      onOpenChange={setOpen}
-      open={open}
+      items={useMemo(
+        () =>
+          languages.map<ComboboxOption>((language) => ({
+            execute: () => setValue(language),
+            label: language,
+            selected: () => value === language,
+          })),
+        [value],
+      )}
     >
-      <ComboboxTrigger>Set language</ComboboxTrigger>
-
-      <ComboboxContent>
-        <ComboboxInput placeholder="Languages..." />
-        <ComboboxListbox />
-      </ComboboxContent>
+      <ComboboxTrigger>{value || "Set language"}</ComboboxTrigger>
+      <ComboboxContent />
     </Combobox>
   );
 }
@@ -258,7 +263,6 @@ export const WithForm: Story = {
 
         <Select items={languages}>
           <SelectTrigger placeholder="Select language" />
-
           <SelectContent />
         </Select>
       </>

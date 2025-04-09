@@ -64,7 +64,6 @@ export const demos = {
   "code/usage": import("./code/usage/App"),
   "combobox/addon-usage": import("./combobox/addon-usage/App"),
   "combobox/basic-usage": import("./combobox/basic-usage/App"),
-  "combobox/complex-usage": import("./combobox/complex-usage/App"),
   "combobox/content-checkbox-usage": import(
     "./combobox/content-checkbox-usage/App"
   ),
@@ -75,13 +74,8 @@ export const demos = {
   "combobox/input-controlled-usage": import(
     "./combobox/input-controlled-usage/App"
   ),
-  "combobox/input-filter-usage": import("./combobox/input-filter-usage/App"),
   "combobox/input-usage": import("./combobox/input-usage/App"),
   "combobox/usage": import("./combobox/usage/App"),
-  "combobox/value-checkbox-usage": import(
-    "./combobox/value-checkbox-usage/App"
-  ),
-  "combobox/value-radio-usage": import("./combobox/value-radio-usage/App"),
   "combobox/virtualized-usage": import("./combobox/virtualized-usage/App"),
   "data-table/loading-usage": import("./data-table/loading-usage/App"),
   "data-table/pagination-client-usage": import(

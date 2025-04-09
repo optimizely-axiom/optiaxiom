@@ -1,21 +1,25 @@
+"use client";
+
 import {
   Combobox,
   ComboboxContent,
-  ComboboxInput,
-  ComboboxListbox,
   ComboboxTrigger,
 } from "@optiaxiom/react/unstable";
 
-const colors = ["Ocean", "Blue", "Purple", "Red", "Orange", "Yellow"];
+const colors = [
+  { label: "Ocean" },
+  { label: "Blue" },
+  { label: "Purple" },
+  { label: "Red" },
+  { label: "Orange" },
+  { label: "Yellow" },
+];
 
 export function App() {
   return (
-    <Combobox defaultItems={colors}>
+    <Combobox defaultInputVisible items={colors}>
       <ComboboxTrigger>Select color</ComboboxTrigger>
-      <ComboboxContent>
-        <ComboboxInput placeholder="Search..." />
-        <ComboboxListbox />
-      </ComboboxContent>
+      <ComboboxContent />
     </Combobox>
   );
 }

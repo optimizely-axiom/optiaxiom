@@ -6,88 +6,78 @@ import { PropsTable } from "@/components/props-table";
 
 Multi-purpose combobox widget to allow selection from a dynamic set of options.
 
+## Documentation
+
+### Usage
+
 <Demo component="combobox/usage" />
 
-## Guide
+### Anatomy
+
+```tsx
+import { Combobox, ComboboxContent, ComboboxTrigger } from "@optiaxiom/react";
+
+export default () => (
+  <Combobox>
+    <ComboboxTrigger />
+    <ComboboxContent />
+  </Combobox>
+);
+```
 
 ### Structure
 
-Combobox works with lists of items provided via the `defaultItems` prop. The basic structure includes the main component provider, a trigger, and a content.
+Combobox works with lists of items provided via the `items` prop. The basic structure includes the main component provider, a trigger, and the content popover.
 
 - `Combobox`
 - `ComboboxTrigger`
 - `ComboboxContent`
 
-Items can be an array of strings or it can be an array of objects.
+Items must be an array of objects of `ComboboxOption` type.
 
 <Demo component="combobox/basic-usage" />
 
-The `ComboboxContent` component further includes the input, a listbox, and a footer.
+### Selection
 
-- `ComboboxInput`
-- `ComboboxListbox`
-- `ComboboxFooter`
+Clicking the items will not do anything yet. For that we'll have to add the `execute` property to each item.
 
-We'll talk about them more in the following sections.
-
-### Listbox
-
-By default content popover will render an input and the provided items. But we can customize how items are rendered using the `ComboboxListbox` component.
-
-`ComboboxListbox` accepts a react node as well as a render prop where the first parameter is the item that needs to be rendered.
-
-<Demo component="combobox/content-usage" meta="{15}" />
+<Demo component="combobox/content-usage" meta="{20-22}" />
 
 #### Single-select
 
-We can render single-select items using `ComboboxRadioItem`.
+Now that we can perform actions on selection, we can also store that state and show the selected states for each item using the `selected` property.
 
-<Demo component="combobox/content-radio-usage" meta="{19}" />
+<Demo component="combobox/content-radio-usage" meta="{23}" />
 
 #### Multi-select
 
-We can render multi-select items using `ComboboxCheckboxItem`.
+We can render multi-select items by enabling the `multi` property.
 
-<Demo component="combobox/content-checkbox-usage" meta="{19-21}" />
+<Demo component="combobox/content-checkbox-usage" meta="{27}" />
 
 ### Input
 
-Notice that keyboard interactions inside the content popover do not work in the previous demos. This is because we need to render the `ComboboxInput` component that handles keyboard interaction and triggers filtering of visible items.
+By default the input is only shown if there are any selectable items (items with a `selected` property). But we can always show the input by enabling the `defaultInputVisible` prop.
 
-<Demo component="combobox/input-usage" meta="{16}" />
+<Demo component="combobox/input-usage" meta="/defaultInputVisible/" />
 
 #### Filtering
 
-Combobox automatically handles filtering when using the `defaultItems` prop using a built-in filter. We can override this filter using the `defaultFilter` prop or use the `items` prop to manually control the filtered list.
+Combobox automatically handles filtering using a built-in fuzzy filter based on the `name` and `keywords` properties of items.
 
-This example shows using `defaultFilter` to provide a custom filter function:
+We can customize the filter behavior of `useComboboxFilter()` using the `visible` property on items.
 
-<Demo component="combobox/input-filter-usage" meta="{14-16}" />
+The following example shows how we can build **creatable** comboboxes by allowing the user to add new entries on the fly.
+
+<Demo component="combobox/creatable-usage" />
 
 #### Async loading
 
-We can also manually control `items` in combination with the `onInputValueChange` prop to load items as the user types.
+We can also manually control `items` in combination with the `inputValue` and `onInputValueChange` prop to load items as the user types.
 
-And we can toggle the `loading` prop on `ComboboxListbox` to show a loading spinner while the data is loading (an empty state will be shown otherwise).
+And we can toggle the `loading` prop to show a loading spinner while the data is loading (an empty state will be shown otherwise).
 
-<Demo component="combobox/input-controlled-usage" meta="{26-27,32}" />
-
-### Selection
-
-Pressing enter or clicking items will not do anything in previous demos. For that we need to add the `isItemSelected` and `onItemSelect` props to the main `Combobox` component.
-
-- `isItemSelected`: Return true if an item should be marked as selected where the item and the index are passed as parameters.
-- `onItemSelect`: Handler invoked when user selects an item with the item as the only parameter.
-
-Developers are expected to manually track the selection on their side since items inside a combobox can represent values or actions.
-
-#### Single-select
-
-<Demo component="combobox/value-radio-usage" meta="{13,18-21}" />
-
-#### Multi-select
-
-<Demo component="combobox/value-checkbox-usage" meta="{16,21-28}" />
+<Demo component="combobox/input-controlled-usage" meta="{55,56}" />
 
 ### Empty
 
@@ -95,75 +85,13 @@ By default combobox will display a generic empty content message if no results a
 
 <Demo component="combobox/empty-usage" meta="{41-43}" />
 
-## Documentation
-
-### Anatomy
-
-```tsx
-import {
-  Combobox,
-  ComboboxCheckboxItem,
-  ComboboxContent,
-  ComboboxFooter,
-  ComboboxGroup,
-  ComboboxInput,
-  ComboboxItem,
-  ComboboxLabel,
-  ComboboxListbox,
-  ComboboxRadioItem,
-  ComboboxSeparator,
-  ComboboxTrigger,
-} from "@optiaxiom/react";
-
-export default () => (
-  <Combobox>
-    <ComboboxTrigger />
-
-    <ComboboxContent>
-      <ComboboxInput />
-
-      <ComboboxListbox>
-        <ComboboxItem />
-        <ComboboxCheckboxItem />
-        <ComboboxRadioItem />
-
-        <ComboboxGroup>
-          <ComboboxLabel />
-          <ComboboxItem />
-          <ComboboxCheckboxItem />
-          <ComboboxRadioItem />
-        </ComboboxGroup>
-
-        <ComboboxSeparator />
-      </ComboboxListbox>
-
-      <ComboboxFooter />
-    </ComboboxContent>
-  </Combobox>
-);
-```
-
-### Complex data
-
-Use the `defaultItems` or `items` prop to pass the collection of data to `Combobox`. Items can be an array of primitive types such as strings or it can be an array of objects.
-
-In case item is an object you need to pass an additional `itemToLabel` prop for `Combobox` to work. By default items will be rendered using this label, but we can override that by manually rendering our own custom `ComboboxListbox`.
-
-<Demo component="combobox/complex-usage" meta={{ "App.tsx": "{19}" }} />
-
-### Creatable
-
-We can combine filtering and controlled usage to build **creatable** comboboxes by allowing the user to add new entries on the fly.
-
-<Demo component="combobox/creatable-usage" />
-
 ### Trigger
 
 By default we use the `Button` component for the combobox trigger which accepts all of the existing button props.
 
-### Item
+### Addons
 
-The `ComboboxCheckboxItem` and `ComboboxRadioItem` components accepts `icon`, `addonBefore`, `addonAfter`, and `description` props for additional content inside the items.
+We can add the `addon` and `description` properties to show additional content inside the items.
 
 <Demo component="combobox/addon-usage" meta={{ "App.tsx": "{38-43}" }} />
 
@@ -182,28 +110,14 @@ We can use virtualization to improve performance when rendering a large number o
 ### Combobox
 
 <PropsTable component="Combobox" />
+
 ### ComboboxTrigger
+
 <PropsTable component="ComboboxTrigger" />
+
 ### ComboboxContent
+
 <PropsTable component="ComboboxContent" />
-### ComboboxInput
-<PropsTable component="ComboboxInput" />
-### ComboboxListbox
-<PropsTable component="ComboboxListbox" />
-### ComboboxItem
-<PropsTable component="ComboboxItem" />
-### ComboboxCheckboxItem
-<PropsTable component="ComboboxCheckboxItem" />
-### ComboboxRadioItem
-<PropsTable component="ComboboxRadioItem" />
-### ComboboxGroup
-<PropsTable component="ComboboxGroup" />
-### ComboboxLabel
-<PropsTable component="ComboboxLabel" />
-### ComboboxSeparator
-<PropsTable component="ComboboxSeparator" />
-### ComboboxFooter
-<PropsTable component="ComboboxFooter" />
 
 ## Changelog
 

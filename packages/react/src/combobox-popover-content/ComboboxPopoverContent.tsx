@@ -1,12 +1,11 @@
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
-import type { ExcludeProps } from "../utils";
+import type { ComboboxContent } from "../combobox-content";
 
 import { PopoverContent } from "../popover-content";
 
-type ComboboxPopoverContentProps = ExcludeProps<
-  ComponentPropsWithoutRef<typeof PopoverContent>,
-  "size"
+type ComboboxPopoverContentProps = ComponentPropsWithoutRef<
+  typeof ComboboxContent
 >;
 
 export const ComboboxPopoverContent = forwardRef<

@@ -1,64 +1,44 @@
-import { useControllableState } from "@radix-ui/react-use-controllable-state";
-import { type ComponentPropsWithoutRef, useState } from "react";
+import { type ComponentPropsWithoutRef, useMemo } from "react";
 
 import type { Command } from "../command";
 
+import { type CommandOption, resolveItemProperty } from "../command-context";
 import { useEffectEvent } from "../use-event";
 import { fuzzysearch } from "./fuzzysearch";
 
-type useCommandItemsProps<Item> = Pick<
-  ComponentPropsWithoutRef<typeof Command<Item>>,
-  | "defaultFilter"
-  | "defaultItems"
-  | "inputValue"
-  | "items"
-  | "onInputValueChange"
-> &
-  Required<Pick<ComponentPropsWithoutRef<typeof Command<Item>>, "itemToLabel">>;
+type useCommandItemsProps = Pick<
+  ComponentPropsWithoutRef<typeof Command>,
+  "inputValue" | "items"
+>;
 
-export const useCommandItems = <Item>({
-  defaultFilter,
-  defaultItems,
-  inputValue: inputValueProp,
+export const useCommandItems = ({
+  inputValue,
   items: itemsProp,
-  itemToLabel,
-  onInputValueChange,
-}: useCommandItemsProps<Item>) => {
-  const [inputValue, setInputValue] = useControllableState({
-    defaultProp: "",
-    onChange: onInputValueChange,
-    prop: inputValueProp,
+}: useCommandItemsProps) => {
+  const filterFn = useEffectEvent((item: CommandOption, inputValue: string) => {
+    const string = resolveItemProperty(item.label, {
+      inputValue,
+    }).normalize();
+    return item.visible
+      ? resolveItemProperty(item.visible, { inputValue })
+      : inputValue
+        ? fuzzysearch(string, inputValue) ||
+          (item.keywords && fuzzysearch(item.keywords, inputValue))
+        : true;
   });
-
-  const filterFn = useEffectEvent(
-    defaultFilter ??
-      ((item: Item, inputValue: string) => {
-        const string = itemToLabel(item).normalize();
-        return fuzzysearch(string, inputValue);
-      }),
-  );
-  const [itemsState, setItemsState] = useState(
-    defaultItems ? filter(defaultItems, inputValue, filterFn) : [],
-  );
-  const items = typeof itemsProp !== "undefined" ? itemsProp : itemsState;
-
-  return [
-    items,
-    inputValue,
-    useEffectEvent((inputValue: string) => {
-      setInputValue(inputValue);
-      if (typeof itemsProp === "undefined" && defaultItems) {
-        setItemsState(filter(defaultItems, inputValue, filterFn));
+  return useMemo(() => {
+    const substring = (inputValue ?? "").normalize();
+    return itemsProp.flatMap((item) => {
+      if (item.subItems && substring) {
+        return item.subItems
+          .filter((item) => filterFn(item, substring))
+          .map((subItem) => ({
+            ...subItem,
+            parentItem: item,
+          }));
+      } else {
+        return filterFn(item, substring) ? [item] : [];
       }
-    }),
-  ] as const;
-};
-
-const filter = <Item>(
-  items: Item[] | readonly Item[],
-  inputValue: string | undefined,
-  filterFn: (item: Item, inputValue: string) => boolean,
-) => {
-  const substring = (inputValue ?? "").normalize();
-  return inputValue ? items.filter((item) => filterFn(item, substring)) : items;
+    });
+  }, [itemsProp, filterFn, inputValue]);
 };

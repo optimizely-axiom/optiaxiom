@@ -1,23 +1,16 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Avatar, AvatarGroup, Box, Button, Field } from "@optiaxiom/react";
+import { Avatar, AvatarGroup, Box, Field } from "@optiaxiom/react";
 import {
   Combobox,
-  ComboboxCheckboxItem,
   ComboboxContent,
-  ComboboxFooter,
-  ComboboxGroup,
-  ComboboxInput,
-  ComboboxLabel,
-  ComboboxListbox,
-  ComboboxRadioItem,
-  ComboboxSeparator,
+  type ComboboxOption,
   ComboboxTrigger,
 } from "@optiaxiom/react/unstable";
-import { IconUsers } from "@tabler/icons-react";
-import { Fragment, useEffect, useRef, useState } from "react";
+import { IconSend, IconUserCircle } from "@tabler/icons-react";
+import { useMemo, useRef, useState } from "react";
 
-type Story<T = string> = StoryObj<typeof Combobox<T>>;
+type Story = StoryObj<typeof Combobox>;
 
 export default {
   args: {
@@ -76,20 +69,20 @@ const languages = [
 
 export const Basic: Story = {
   render: function Basic(args) {
-    const [open, setOpen] = useState(args.defaultOpen);
     const [value, setValue] = useState("Bangla");
 
     return (
       <Combobox
         {...args}
-        defaultItems={languages}
-        isItemSelected={(item) => item === value}
-        onItemSelect={(value) => {
-          setValue(value);
-          setOpen(false);
-        }}
-        onOpenChange={setOpen}
-        open={open}
+        items={useMemo(
+          () =>
+            languages.map<ComboboxOption>((language) => ({
+              execute: () => setValue(language),
+              label: language,
+              selected: value === language,
+            })),
+          [value],
+        )}
       >
         <ComboboxTrigger>{value || "Set language"}</ComboboxTrigger>
         <ComboboxContent />
@@ -109,7 +102,6 @@ export const WithLabel: Story = {
 
 export const AsyncLoading: Story = {
   render: function AsyncLoading(args) {
-    const [open, setOpen] = useState(args.defaultOpen);
     const [items, setItems] = useState(languages);
     const [value, setValue] = useState("Bangla");
 
@@ -130,27 +122,22 @@ export const AsyncLoading: Story = {
     return (
       <Combobox
         {...args}
-        isItemSelected={(item) => item === value}
-        items={items}
+        defaultInputVisible
+        items={useMemo(
+          () =>
+            items.map<ComboboxOption>((language) => ({
+              execute: () => setValue(language),
+              label: language,
+              selected: () => value === language,
+              visible: true,
+            })),
+          [items, value],
+        )}
+        loading={isLoading}
         onInputValueChange={fetchData}
-        onItemSelect={(value) => {
-          setValue(value);
-          setOpen(false);
-        }}
-        onOpenChange={setOpen}
-        open={open}
       >
         <ComboboxTrigger>Set language</ComboboxTrigger>
-        <ComboboxContent>
-          <ComboboxInput placeholder="Languages..." />
-          <ComboboxListbox loading={isLoading}>
-            {items.map((item) => (
-              <ComboboxRadioItem item={item} key={item}>
-                {item}
-              </ComboboxRadioItem>
-            ))}
-          </ComboboxListbox>
-        </ComboboxContent>
+        <ComboboxContent />
       </Combobox>
     );
   },
@@ -158,54 +145,43 @@ export const AsyncLoading: Story = {
 
 export const Multiple: Story = {
   render: function Multiple(args) {
-    const [open, setOpen] = useState(args.defaultOpen);
     const [value, setValue] = useState<string[]>([]);
 
     return (
       <Combobox
         {...args}
-        defaultItems={languages}
-        isItemSelected={(item) => value.includes(item)}
-        onItemSelect={(value) => {
-          setValue((values) =>
-            values.includes(value)
-              ? values.filter((v) => v !== value)
-              : [...values, value],
-          );
-        }}
-        onOpenChange={setOpen}
-        open={open}
+        items={useMemo(
+          () =>
+            languages.map<ComboboxOption>((language) => ({
+              execute: () =>
+                setValue((values) =>
+                  values.includes(language)
+                    ? values.filter((v) => v !== language)
+                    : [...values, language],
+                ),
+              label: language,
+              multi: true,
+              selected: () => value.includes(language),
+            })),
+          [value],
+        )}
       >
         <ComboboxTrigger>Set languages</ComboboxTrigger>
-        <ComboboxContent>
-          <ComboboxInput placeholder="Languages..." />
-          <ComboboxListbox>
-            {(item) => (
-              <ComboboxCheckboxItem item={item} key={item}>
-                {item}
-              </ComboboxCheckboxItem>
-            )}
-          </ComboboxListbox>
-        </ComboboxContent>
+        <ComboboxContent />
       </Combobox>
     );
   },
 };
 
-const actions = {
-  all: {
-    email: "",
-    id: "all",
-    name: "Show all users",
-    src: undefined,
-  },
-  me: {
-    email: "arthur.morgan@example.com",
-    id: "me",
-    name: "Arthur Morgan",
-    src: undefined,
-  },
+const inviteGroup = {
+  name: "Invite",
+  separator: true,
 };
+const userGroup = {
+  name: "Users",
+  separator: true,
+};
+
 const users = [
   {
     email: "arthur.morgan@example.com",
@@ -235,72 +211,62 @@ const users = [
   },
 ];
 
-export const People: Story<(typeof users)[number]> = {
-  render: function People(args) {
-    const [open, setOpen] = useState(args.defaultOpen);
-    const [list, setList] = useState([actions.me, ...users]);
-    const [items, setItems] = useState(list);
-    const [value, setValue] = useState(new Set<(typeof users)[number]>());
-
-    useEffect(() => {
-      if (open) {
-        const list = value.size
-          ? [actions.me, ...value, actions.all]
-          : [actions.me, ...users];
-        setList(list);
-      }
-    }, [open, value]);
+export const People: Story = {
+  render: function People() {
+    const [inputValue, setInputValue] = useState("");
+    const [value, setValue] = useState<typeof users>([]);
 
     return (
       <Combobox
-        {...args}
-        isItemSelected={(item) => value.has(item)}
-        items={items}
-        itemToLabel={(user) => user.name}
-        onInputValueChange={(inputValue) => {
-          setItems(
-            inputValue
-              ? users.filter(
-                  (user) =>
-                    user !== actions.all &&
-                    user !== actions.me &&
-                    (user.email
-                      .toLowerCase()
-                      .includes(inputValue.toLowerCase()) ||
-                      user.name
-                        .toLowerCase()
-                        .includes(inputValue.toLowerCase())),
-                )
-              : list,
-          );
-        }}
-        onItemSelect={(value) => {
-          if (value === actions.me) {
-            setValue(new Set([users[0]]));
-            setOpen(false);
-          } else if (value === actions.all) {
-            setItems([actions.me, ...users]);
-          } else {
-            setValue((values) =>
-              values.has(value)
-                ? new Set([...values].filter((v) => v !== value))
-                : new Set([value, ...values]),
-            );
-          }
-        }}
-        onOpenChange={(open) => {
-          if (open) {
-            setItems(list);
-          }
-          setOpen(open);
-        }}
-        open={open}
+        defaultOpen
+        inputValue={inputValue}
+        items={useMemo<ComboboxOption[]>(
+          () => [
+            {
+              addon: <IconUserCircle size={20} />,
+              execute: () => setValue([users[0]]),
+              label: "Assign to me",
+              visible: () => !inputValue,
+            },
+            ...users.map<ComboboxOption>((item) => ({
+              addon: (
+                <Avatar
+                  colorScheme="purple"
+                  name={item.name}
+                  size="xs"
+                  src={item.src}
+                />
+              ),
+              execute: () =>
+                setValue((value) =>
+                  value.includes(item)
+                    ? [...value].filter((v) => v !== item)
+                    : [item, ...value],
+                ),
+              group: userGroup,
+              label: item.name,
+              multi: true,
+              selected: () => value.includes(item),
+              visible: () =>
+                item.email.toLowerCase().includes(inputValue.toLowerCase()) ||
+                item.name.toLowerCase().includes(inputValue.toLowerCase()),
+            })),
+            {
+              addon: <IconSend size={20} />,
+              group: inviteGroup,
+              label: "Invite user",
+              visible: () => !!inputValue,
+            },
+          ],
+          [inputValue, value],
+        )}
+        onInputValueChange={setInputValue}
       >
         <ComboboxTrigger>
-          {value.size ? (
+          {value.length ? (
             <>
               <AvatarGroup>
-                {[...value].slice(0, 3).map((user) => (
+                {value.slice(0, 3).map((user) => (
                   <Avatar
                     colorScheme="purple"
                     key={user.id}
@@ -310,260 +276,149 @@ export const People: Story<(typeof users)[number]> = {
                   />
                 ))}
               </AvatarGroup>
-              {value.size > 1 ? (
-                <>{value.size} assignees</>
-              ) : (
-                [...value][0].name
-              )}
+              {value.length > 1 ? <>{value.length} assignees</> : value[0].name}
             </>
           ) : (
             "Assign"
           )}
         </ComboboxTrigger>
-
-        <ComboboxContent>
-          <ComboboxInput placeholder="People..." />
-          <ComboboxListbox>
-            {items.map((user) => (
-              <Fragment key={user.id}>
-                {user === actions.all && <ComboboxSeparator />}
-
-                {user === actions.me ? (
-                  <ComboboxRadioItem
-                    addonBefore={
-                      <Avatar
-                        colorScheme="purple"
-                        name={user.name}
-                        size="xs"
-                        src={user.src}
-                      />
-                    }
-                    item={user}
-                  >
-                    Assign to me
-                  </ComboboxRadioItem>
-                ) : user === actions.all ? (
-                  <ComboboxRadioItem icon={<IconUsers />} item={user}>
-                    Show all users
-                  </ComboboxRadioItem>
-                ) : (
-                  <ComboboxCheckboxItem
-                    addonBefore={
-                      <Avatar
-                        colorScheme="purple"
-                        name={user.name}
-                        size="xs"
-                        src={user.src}
-                      />
-                    }
-                    item={user}
-                  >
-                    {user.name}
-                  </ComboboxCheckboxItem>
-                )}
-
-                {user === actions.me && <ComboboxSeparator />}
-              </Fragment>
-            ))}
-          </ComboboxListbox>
-        </ComboboxContent>
+        <ComboboxContent />
       </Combobox>
     );
   },
-};
-
-type Book = {
-  author: string;
-  disabled?: boolean;
-  id: string;
-  title: string;
 };
 
 const books = [
-  { author: "George Orwell", disabled: false, id: "book-5", title: "1984" },
+  { id: "book-5", keywords: "George Orwell", label: "1984" },
   {
-    author: "Oscar Wilde",
-    disabled: true,
+    disabledReason: () => "sample reason",
     id: "book-4",
-    title: "A Picture of Dorian Gray",
+    keywords: "Oscar Wilde",
+    label: "A Picture of Dorian Gray",
   },
   {
-    author: "Lev Tolstoy",
-    disabled: false,
+    keywords: "Lev Tolstoy",
+
     id: "book-9",
-    title: "Anna Karenina",
+    label: "Anna Karenina",
   },
   {
-    author: "Fyodor Dostoevsky",
-    disabled: false,
+    keywords: "Fyodor Dostoevsky",
+
     id: "book-10",
-    title: "Crime and Punishment",
+    label: "Crime and Punishment",
   },
   {
-    author: "Marcus Aurelius",
-    disabled: false,
+    keywords: "Marcus Aurelius",
+
     id: "book-7",
-    title: "Meditations",
+    label: "Meditations",
   },
   {
-    author: "Jane Austen",
-    disabled: true,
+    disabledReason: () => "another reason",
     id: "book-6",
-    title: "Pride and Prejudice",
+    keywords: "Jane Austen",
+    label: "Pride and Prejudice",
   },
   {
-    author: "Fyodor Dostoevsky",
-    disabled: true,
+    disabledReason: () => "one more reason",
     id: "book-8",
-    title: "The Brothers Karamazov",
+    keywords: "Fyodor Dostoevsky",
+    label: "The Brothers Karamazov",
   },
   {
-    author: "Fyodor Dostoyevsky",
-    disabled: false,
+    keywords: "Fyodor Dostoyevsky",
+
     id: "book-3",
-    title: "The Idiot",
+    label: "The Idiot",
   },
   {
-    author: "Harper Lee",
-    disabled: false,
+    keywords: "Harper Lee",
+
     id: "book-1",
-    title: "To Kill a Mockingbird",
+    label: "To Kill a Mockingbird",
   },
   {
-    author: "Lev Tolstoy",
-    disabled: false,
+    keywords: "Lev Tolstoy",
+
     id: "book-2",
-    title: "War and Peace",
+    label: "War and Peace",
   },
 ];
 
-export const Controlled: Story<Book> = {
+export const Controlled: Story = {
   render: function DefaultSelected(args) {
-    const [open, setOpen] = useState(args.defaultOpen);
-    const [value, setValue] = useState<Book[]>([books[9]]);
+    const [value, setValue] = useState<string[]>([books[9].id]);
 
     return (
       <Combobox
         {...args}
-        defaultFilter={(book, inputValue) =>
-          book.title.includes(inputValue.toLowerCase()) ||
-          book.author.includes(inputValue.toLowerCase())
-        }
-        defaultItems={books}
-        isItemSelected={(item) => value.includes(item)}
-        itemToLabel={(book) => book.title}
-        onItemSelect={(value) => {
-          setValue((values) =>
-            values.includes(value)
-              ? values.filter((v) => v !== value)
-              : [...values, value],
-          );
-        }}
-        onOpenChange={setOpen}
-        open={open}
+        defaultInputVisible
+        items={useMemo(
+          () =>
+            books.map<ComboboxOption>((book) => ({
+              ...book,
+              execute: () =>
+                setValue((value) =>
+                  value.includes(book.id)
+                    ? value.filter((v) => v !== book.id)
+                    : [...value, book.id],
+                ),
+              multi: true,
+              selected: () => value.includes(book.id),
+            })),
+          [value],
+        )}
       >
         <ComboboxTrigger>Select books</ComboboxTrigger>
-
-        <ComboboxContent>
-          <ComboboxInput placeholder="Books..." />
-
-          <ComboboxListbox>
-            {(book) => (
-              <ComboboxCheckboxItem item={book} key={book.id}>
-                {book.title}
-              </ComboboxCheckboxItem>
-            )}
-          </ComboboxListbox>
-
-          <ComboboxFooter>
-            <Button disabled={value.length === 0} onClick={() => setValue([])}>
-              Clear All
-            </Button>
-            <Button appearance="primary" onClick={() => setOpen(false)}>
-              Done
-            </Button>
-          </ComboboxFooter>
-        </ComboboxContent>
+        <ComboboxContent />
       </Combobox>
     );
   },
 };
 
-const fruits = ["Apple", "Banana", "Blueberry", "Grapes", "Pineapple"];
-const vegetables = ["Aubergine", "Broccoli", "Carrot", "Courgette", "Leek"];
-const meats = ["Beef", "Chicken", "Lamb", "Pork"];
+const groups = [
+  { name: "Fruits", visible: true },
+  { name: "Vegetables", visible: true },
+  { name: "Meats", visible: true },
+];
+
+const foods = [
+  { group: groups[0], label: "Apple" },
+  { group: groups[0], label: "Banana" },
+  { group: groups[0], label: "Blueberry" },
+  { group: groups[0], label: "Grapes" },
+  { group: groups[0], label: "Pineapple" },
+  { group: groups[1], label: "Aubergine" },
+  { group: groups[1], label: "Broccoli" },
+  { group: groups[1], label: "Carrot" },
+  { group: groups[1], label: "Courgette" },
+  { group: groups[1], label: "Leek" },
+  { group: groups[2], label: "Beef" },
+  { group: groups[2], label: "Chicken" },
+  { group: groups[2], label: "Lamb" },
+  { group: groups[2], label: "Pork" },
+];
 
 export const Group: Story = {
   render: function Group(args) {
-    const [open, setOpen] = useState(args.defaultOpen);
-    const [searchInput, setSearchInput] = useState("");
-    const [value, setValue] = useState("");
-
-    const getFilteredItems = (items: string[]) => {
-      return items.filter(
-        (food) =>
-          !searchInput ||
-          food.toLowerCase().includes(searchInput.toLowerCase()),
-      );
-    };
-
-    const filteredFruits = getFilteredItems(fruits);
-    const filteredVegetables = getFilteredItems(vegetables);
-    const filteredMeats = getFilteredItems(meats);
-    const items = [...filteredFruits, ...filteredVegetables, ...filteredMeats];
+    const [value, setValue] = useState<{ label: string }>();
 
     return (
       <Combobox
         {...args}
-        isItemSelected={(item) => item === value}
-        items={items}
-        onInputValueChange={setSearchInput}
-        onItemSelect={(value) => {
-          setValue(value);
-          setOpen(false);
-        }}
-        onOpenChange={setOpen}
-        open={open}
+        items={useMemo(
+          () =>
+            foods.map<ComboboxOption>((food) => ({
+              ...food,
+              execute: () => setValue(food),
+              selected: () => value === food,
+            })),
+          [value],
+        )}
       >
         <ComboboxTrigger>Select an item</ComboboxTrigger>
-
-        <ComboboxContent>
-          <ComboboxInput placeholder="Search foods..." />
-          <ComboboxListbox>
-            {filteredFruits.length > 0 && (
-              <ComboboxGroup>
-                <ComboboxLabel>Fruits</ComboboxLabel>
-                {filteredFruits.map((item, index) => (
-                  <ComboboxRadioItem item={item} key={`fruit-${index}`}>
-                    {item}
-                  </ComboboxRadioItem>
-                ))}
-              </ComboboxGroup>
-            )}
-
-            {filteredVegetables.length > 0 && (
-              <ComboboxGroup>
-                <ComboboxLabel>Vegetables</ComboboxLabel>
-                {filteredVegetables.map((item, index) => (
-                  <ComboboxRadioItem item={item} key={`vegetable-${index}`}>
-                    {item}
-                  </ComboboxRadioItem>
-                ))}
-              </ComboboxGroup>
-            )}
-
-            {filteredMeats.length > 0 && (
-              <ComboboxGroup>
-                <ComboboxLabel>Meats</ComboboxLabel>
-                {filteredMeats.map((item, index) => (
-                  <ComboboxRadioItem item={item} key={`meat-${index}`}>
-                    {item}
-                  </ComboboxRadioItem>
-                ))}
-              </ComboboxGroup>
-            )}
-          </ComboboxListbox>
-        </ComboboxContent>
+        <ComboboxContent />
       </Combobox>
     );
   },

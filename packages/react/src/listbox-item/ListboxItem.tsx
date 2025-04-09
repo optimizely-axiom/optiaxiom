@@ -6,11 +6,13 @@ import { Box, type BoxProps } from "../box";
 import { Flex } from "../flex";
 import { Icon } from "../icon";
 import { Text } from "../text";
-import { decorateChildren, type ExtendProps, fallbackSpan } from "../utils";
+import {
+  decorateChildren,
+  type ExtendProps,
+  fallbackSpan,
+  isHoverSupported,
+} from "../utils";
 import * as styles from "./ListboxItem.css";
-
-const isHoverSupported =
-  typeof window !== "undefined" && window.matchMedia("(hover: hover)").matches;
 
 export type ListboxItemProps<
   T extends ElementType = "div",

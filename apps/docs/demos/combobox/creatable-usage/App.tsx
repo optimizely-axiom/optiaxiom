@@ -2,67 +2,50 @@
 
 import {
   Combobox,
-  ComboboxCheckboxItem,
   ComboboxContent,
-  ComboboxInput,
-  ComboboxListbox,
+  type ComboboxOption,
   ComboboxTrigger,
 } from "@optiaxiom/react/unstable";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
-import { type Color, colors } from "./data";
 import { useSet } from "./useSet";
+
+const colors = ["Ocean", "Blue", "Purple", "Red", "Orange", "Yellow"];
 
 export function App() {
   const [items, setItems] = useState(colors);
-  const [value, { toggle }] = useSet<Color>([]);
-
-  const [inputValue, setInputValue] = useState("");
-  const filteredItems = inputValue
-    ? [
-        ...items.filter((color) =>
-          color.label.toLowerCase().includes(inputValue.toLowerCase()),
-        ),
-        ...(items.find(
-          (color) => color.label.toLowerCase() === inputValue.toLowerCase(),
-        )
-          ? []
-          : [{ label: inputValue, new: true }]),
-      ]
-    : items;
+  const [value, { toggle }] = useSet<string>([]);
 
   return (
     <Combobox
-      inputValue={inputValue}
-      isItemSelected={(item) => value.includes(item)}
-      items={filteredItems}
-      itemToLabel={(item) => item.label}
-      onInputValueChange={setInputValue}
-      onItemSelect={(value) => {
-        if (value.new) {
-          const newItem = { label: value.label };
-          setItems((items) => [...items, newItem]);
-          toggle(newItem);
-
-          setInputValue("");
-        } else {
-          toggle(value);
-        }
-      }}
+      items={useMemo<ComboboxOption[]>(
+        () => [
+          ...items.map<ComboboxOption>((color) => ({
+            execute: () => toggle(color),
+            label: color,
+            selected: value.includes(color),
+          })),
+          {
+            detail: ({ inputValue }) => `"${inputValue}"`,
+            execute: ({ inputValue }) => {
+              if (inputValue) {
+                setItems((items) => [...items, inputValue]);
+              }
+            },
+            label: "Create: ",
+            visible: ({ inputValue }) =>
+              inputValue
+                ? !items.find(
+                    (item) => item.toLowerCase() === inputValue.toLowerCase(),
+                  )
+                : false,
+          },
+        ],
+        [items, toggle, value],
+      )}
     >
       <ComboboxTrigger w="224">Select colors</ComboboxTrigger>
-
-      <ComboboxContent>
-        <ComboboxInput />
-
-        <ComboboxListbox>
-          {filteredItems.map((item) => (
-            <ComboboxCheckboxItem item={item} key={item.label}>
-              {item.new ? `Create "${item.label}"` : item.label}
-            </ComboboxCheckboxItem>
-          ))}
-        </ComboboxListbox>
-      </ComboboxContent>
+      <ComboboxContent />
     </Combobox>
   );
 }

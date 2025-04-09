@@ -1,37 +1,19 @@
-import { useControllableState } from "@radix-ui/react-use-controllable-state";
-import { type ComponentPropsWithoutRef, type ReactNode } from "react";
+import { type ComponentPropsWithoutRef } from "react";
 
-import { Command } from "../command";
-import { Dialog } from "../dialog";
-import { SpotlightProvider } from "../spotlight-context";
+import type { ExcludeProps } from "../utils";
 
-type SpotlightProps<Item> = ComponentPropsWithoutRef<typeof Command<Item>> & {
-  children: ReactNode;
-  defaultOpen?: boolean;
-  onInputValueChange?: (inputValue: string) => void;
-  onOpenChange?: (open: boolean) => void;
-  open?: boolean;
-};
+import { Combobox } from "../combobox";
 
-export function Spotlight<Item>({
-  children,
-  defaultOpen = false,
-  onOpenChange,
-  open: openProp,
-  ...props
-}: SpotlightProps<Item>) {
-  const [open, setOpen] = useControllableState({
-    defaultProp: defaultOpen,
-    onChange: onOpenChange,
-    prop: openProp,
-  });
+type SpotlightProps = ExcludeProps<
+  ComponentPropsWithoutRef<typeof Combobox>,
+  "defaultInputVisible" | "size"
+>;
 
+export function Spotlight({ children, ...props }: SpotlightProps) {
   return (
-    <Dialog onOpenChange={setOpen} open={open}>
-      <SpotlightProvider open={open} setOpen={setOpen}>
-        <Command {...props}>{children}</Command>
-      </SpotlightProvider>
-    </Dialog>
+    <Combobox defaultInputVisible size="lg" {...props}>
+      {children}
+    </Combobox>
   );
 }
 

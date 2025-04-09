@@ -1,20 +1,14 @@
 "use client";
 
+import type { RefObject } from "react";
+
 import { createContext } from "@radix-ui/react-context";
 
-import type { ComboboxDialogContent } from "../combobox-dialog-content";
-import type { ComboboxPopoverContent } from "../combobox-popover-content";
-import type { Dialog } from "../dialog";
-import type { DialogTrigger } from "../dialog-trigger";
-import type { Popover } from "../popover";
-import type { PopoverTrigger } from "../popover-trigger";
-
 export const [ComboboxProvider, useComboboxContext] = createContext<{
-  components: {
-    Content: typeof ComboboxDialogContent | typeof ComboboxPopoverContent;
-    Root: typeof Dialog | typeof Popover;
-    Trigger: typeof DialogTrigger | typeof PopoverTrigger;
-  };
+  defaultInputVisible: boolean;
+  inputRef: RefObject<HTMLInputElement>;
   open?: boolean | undefined;
+  placeholder: string | undefined;
   setOpen: (open: boolean) => void;
+  size: "lg" | "sm";
 }>("@optiaxiom/react/Combobox");

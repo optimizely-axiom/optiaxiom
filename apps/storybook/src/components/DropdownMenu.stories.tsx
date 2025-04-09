@@ -15,11 +15,6 @@ import {
   DropdownMenuTrigger,
   Flex,
 } from "@optiaxiom/react";
-import {
-  DropdownMenuCombobox,
-  DropdownMenuComboboxContent,
-  DropdownMenuComboboxTrigger,
-} from "@optiaxiom/react/unstable";
 import { action } from "@storybook/addon-actions";
 import { expect, screen, userEvent, waitFor } from "@storybook/test";
 import {
@@ -202,40 +197,6 @@ export const Nested: Story = {
         await expect(
           screen.getByRole("menuitem", { name: "Privacy" }),
         ).toBeVisible(),
-    );
-  },
-};
-
-const colors = ["Blue", "Purple", "Red", "Orange", "Yellow"];
-
-export const NestedCombobox: Story = {
-  args: {
-    children: (
-      <>
-        <DropdownMenuTrigger>Profile</DropdownMenuTrigger>
-
-        <DropdownMenuContent>
-          <DropdownMenuLabel>My Profile</DropdownMenuLabel>
-          <DropdownMenuCombobox defaultItems={colors}>
-            <DropdownMenuComboboxTrigger>Settings</DropdownMenuComboboxTrigger>
-            <DropdownMenuComboboxContent />
-          </DropdownMenuCombobox>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem>Logout</DropdownMenuItem>
-        </DropdownMenuContent>
-      </>
-    ),
-  },
-  play: async () => {
-    await waitFor(
-      async () =>
-        await expect(
-          screen.getByRole("menuitem", { name: "Settings" }),
-        ).not.toHaveStyle("pointer-events: none"),
-    );
-    await userEvent.type(
-      screen.getByRole("menuitem", { name: "Settings" }),
-      "{Enter}",
     );
   },
 };
