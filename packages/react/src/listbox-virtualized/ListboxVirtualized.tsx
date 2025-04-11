@@ -19,7 +19,7 @@ import { TransitionGroupContext } from "../transition-group-context";
 type ListboxVirtualizedProps<T = unknown> = BoxProps<
   "div",
   {
-    children: (item: T) => ReactNode;
+    children: (item: T, index: number) => ReactNode;
     highlightedItem?: T;
     items: readonly T[] | T[];
     ref?: LegacyRef<HTMLDivElement>;
@@ -110,7 +110,7 @@ export const ListboxVirtualized = forwardRef<
             key={virtualItem.key}
             ref={rowVirtualizer.measureElement}
           >
-            {children(items[virtualItem.index])}
+            {children(items[virtualItem.index], virtualItem.index)}
             {virtualItem.index < items.length - 1 && <Box pb="2" />}
           </Box>
         ))}

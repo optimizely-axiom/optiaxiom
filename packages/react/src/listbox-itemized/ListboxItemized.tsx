@@ -13,7 +13,7 @@ type ListboxItemizedProps = BoxProps<
   "div",
   {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    children?: ((item: any) => ReactNode) | ReactNode;
+    children?: ((item: any, index: number) => ReactNode) | ReactNode;
     /**
      * Custom empty state content.
      */
@@ -77,7 +77,7 @@ export const ListboxItemized = forwardRef<HTMLDivElement, ListboxItemizedProps>(
             )
           ) : items.length > 0 ? (
             items.map((item, index) => (
-              <Fragment key={index}>{children(item)}</Fragment>
+              <Fragment key={index}>{children(item, index)}</Fragment>
             ))
           ) : (
             <ListboxEmpty>{empty}</ListboxEmpty>

@@ -29,7 +29,12 @@ export const ComboboxListbox = forwardRef<HTMLDivElement, ComboboxListboxProps>(
     return (
       <CommandListbox ref={ref} tabIndex={-1} {...props}>
         {children ??
-          ((item: CommandOption) => {
+          ((item: CommandOption, index) => {
+            if (index === 0) {
+              isFirstItem = true;
+              lastGroup = undefined;
+            }
+
             const Comp = item.subItems?.length
               ? ComboboxSub
               : "selected" in item

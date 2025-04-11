@@ -96,7 +96,12 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
                   placed={placed}
                 >
                   {children ??
-                    ((item: SelectOption) => {
+                    ((item: SelectOption, index) => {
+                      if (index === 0) {
+                        isFirstItem = true;
+                        lastGroup = undefined;
+                      }
+
                       const group = item.group;
                       return (
                         <>
