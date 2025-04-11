@@ -14,12 +14,15 @@ import * as styles from "./DataTableFooter.css";
 type DataTableFooterProps = BoxProps<
   "div",
   {
-    pageSizeOptions?: string[];
+    pageSizeOptions?: Array<{ label: string; value: string }>;
     showPageSizeOptions?: boolean;
   }
 >;
 
-const DEFAULT_PAGE_SIZES = ["10", "20", "30", "50", "100"];
+const DEFAULT_PAGE_SIZES = ["10", "20", "30", "50", "100"].map((size) => ({
+  label: size,
+  value: size,
+}));
 
 export const DataTableFooter = forwardRef<HTMLDivElement, DataTableFooterProps>(
   (
@@ -48,10 +51,10 @@ export const DataTableFooter = forwardRef<HTMLDivElement, DataTableFooterProps>(
                 Page Size
               </Text>
               <Select
-                items={pageSizeOptions}
                 onValueChange={(value) =>
                   value && table.setPageSize(parseFloat(value))
                 }
+                options={pageSizeOptions}
                 value={pagination.pageSize.toString()}
               >
                 <SelectTrigger

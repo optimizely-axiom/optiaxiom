@@ -6,11 +6,17 @@ import {
   SelectTrigger,
 } from "@optiaxiom/react/unstable";
 
-const priorities = ["", "Urgent", "High", "Medium", "Low"];
-
 export function App() {
   return (
-    <Select items={priorities} itemToLabel={(item) => item || "No priority"}>
+    <Select
+      options={[
+        { label: "No priority", value: "" },
+        { label: "Urgent", value: "Urgent" },
+        { label: "High", value: "High" },
+        { label: "Medium", value: "Medium" },
+        { label: "Low", value: "Low" },
+      ]}
+    >
       <SelectTrigger placeholder="Set priority" w="224" />
       <SelectContent />
     </Select>

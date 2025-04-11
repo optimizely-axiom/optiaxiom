@@ -15,53 +15,38 @@ Single select combobox widget to allow selection from a fixed set of options.
 ### Anatomy
 
 ```tsx
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectLabel,
-  SelectRadioItem,
-  SelectSeparator,
-  SelectTrigger,
-} from "@optiaxiom/react";
+import { Select, SelectContent, SelectTrigger } from "@optiaxiom/react";
 
 export default () => (
   <Select>
     <SelectTrigger />
-
-    <SelectContent>
-      <SelectRadioItem />
-
-      <SelectGroup>
-        <SelectLabel />
-        <SelectRadioItem />
-      </SelectGroup>
-
-      <SelectSeparator />
-    </SelectContent>
+    <SelectContent />
   </Select>
 );
 ```
 
 ### Structure
 
-Select works with lists of items provided via the `items` prop. The basic structure includes the main component provider, a trigger, and a content.
+Select works with lists of items provided via the `options` prop. The basic structure includes the main component provider, a trigger, and the content.
 
 - `Select`
 - `SelectTrigger`
 - `SelectContent`
 
-Items can be an array of strings or it can be an array of objects.
+Items must be an array of objects of `SelectOption` type and at minimum must contain the following two properties:
 
-The trigger can be provided a `placeholder` to display in case no values have been selected yet.
+- `label`
+- `value`
+
+The trigger can be provided a `placeholder` to display in case no values have been selected yet (or if an empty value is selected).
 
 <Demo component="select/usage" />
 
 ### Content
 
-By default content popover will be populated using the `items` prop. We can also manually set the children of `SelectContent` for more granular control.
+Select options use the `label` property as the display text. We can add the `addon` and `description` properties to show additional content inside the items.
 
-<Demo component="select/content-usage" meta="{31}" />
+<Demo component="select/content-usage" />
 
 ### Controlled
 
@@ -69,23 +54,29 @@ Use the `value` and `defaultValue` props to toggle between controlled and uncont
 
 Using `onValueChange`:
 
-<Demo component="select/controlled-usage" meta="{14,21-22}" />
+<Demo component="select/controlled-usage" meta="{20,24}" />
 
 Using `onChange`:
 
-<Demo component="select/controlled-onchange-usage" meta="{14,21-22}" />
+<Demo component="select/controlled-onchange-usage" meta="{20,25,27}" />
 
 ### Form usage
 
 Use the `name` prop (and optionally `ref` and `onChange`) to integrate `Select` with forms.
 
-<Demo component="select/form-usage" meta="{30}" />
+<Demo component="select/form-usage" meta="{32}" />
 
 ### Disabled state
 
 Enable the `disabled` prop on `Select` to toggle the disabled state of the input field.
 
-<Demo component="select/disabled-usage" meta="{18}" />
+<Demo component="select/disabled-usage" meta="{16}" />
+
+### Group
+
+We can group options using the `group` property.
+
+<Demo component="select/group-usage" />
 
 ### Related
 
@@ -96,20 +87,54 @@ Enable the `disabled` prop on `Select` to toggle the disabled state of the input
 ### Select
 
 <PropsTable component="Select" />
+
 ### SelectTrigger
+
 <PropsTable component="SelectTrigger" />
+
 ### SelectContent
+
 <PropsTable component="SelectContent" />
-### SelectRadioItem
-<PropsTable component="SelectRadioItem" />
-### SelectGroup
-<PropsTable component="SelectGroup" />
-### SelectLabel
-<PropsTable component="SelectLabel" />
-### SelectSeparator
-<PropsTable component="SelectSeparator" />
 
 ## Changelog
+
+### 1.3.0
+
+- Renamed `items` prop to `options`:
+
+  ```jsx
+  // Before
+  <Select items={[]} />
+
+  // After
+  <Select options={[]} />
+  ```
+
+- Removed `itemToLabel`, `itemToValue`, and `isItemDisabled` props in favor of fixed properties on options:
+
+  ```jsx
+  // Before
+  <Select
+    items={[
+      {
+        id: "1",
+        name: "Sample",
+      },
+    ]}
+    itemToLabel={(item) => item.name}
+    itemToValue={(item) => item.id}
+  />
+
+  // After
+  <Select
+    options={[
+      {
+        label: "Sample",
+        value: "1",
+      },
+    ]}
+  />
+  ```
 
 ### 0.2.0
 

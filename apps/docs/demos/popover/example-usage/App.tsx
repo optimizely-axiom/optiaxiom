@@ -53,7 +53,13 @@ export function App() {
           label="Columns"
           px="16"
         >
-          <Select defaultValue="Status" items={["Status", "Due Dates"]}>
+          <Select
+            defaultValue="Status"
+            options={[
+              { label: "Status", value: "Status" },
+              { label: "Due Dates", value: "Due Dates" },
+            ]}
+          >
             <SelectTrigger ml="12" size="sm" />
             <SelectContent align="end" />
           </Select>
@@ -67,7 +73,10 @@ export function App() {
         >
           <Select
             defaultValue="No grouping"
-            items={["No grouping", "Campaign"]}
+            options={[
+              { label: "No grouping", value: "No grouping" },
+              { label: "Campaign", value: "Campaign" },
+            ]}
           >
             <SelectTrigger ml="12" size="sm" />
             <SelectContent align="end" />
@@ -82,7 +91,13 @@ export function App() {
           label="View"
           px="16"
         >
-          <Select defaultValue="Tasks" items={["Tasks", "Steps"]}>
+          <Select
+            defaultValue="Tasks"
+            options={[
+              { label: "Tasks", value: "Tasks" },
+              { label: "Steps", value: "Steps" },
+            ]}
+          >
             <SelectTrigger ml="12" size="sm" />
             <SelectContent align="end" />
           </Select>

@@ -261,7 +261,12 @@ export const WithForm: Story = {
 
         <SampleCombobox />
 
-        <Select items={languages}>
+        <Select
+          options={languages.map((language) => ({
+            label: language,
+            value: language,
+          }))}
+        >
           <SelectTrigger placeholder="Select language" />
           <SelectContent />
         </Select>

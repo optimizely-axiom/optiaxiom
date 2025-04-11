@@ -1,11 +1,10 @@
 import type { ComponentPropsWithRef, Dispatch, SetStateAction } from "react";
 import type { PropItem, Props } from "react-docgen-typescript";
 
-import { Field, Flex, Input, Switch, Text, Tooltip } from "@optiaxiom/react";
+import { Field, Flex, Input, Switch, Tooltip } from "@optiaxiom/react";
 import {
   Select,
   SelectContent,
-  SelectRadioItem,
   SelectTrigger,
 } from "@optiaxiom/react/unstable";
 
@@ -47,7 +46,6 @@ export function DemoControls({
             <Field key={String(item.prop)} label={propToLabel(item.prop)}>
               {item?.type === "dropdown" ? (
                 <Select
-                  items={item.options}
                   onValueChange={(value) =>
                     onChange((props) => ({
                       ...props,
@@ -61,24 +59,16 @@ export function DemoControls({
                               : value,
                     }))
                   }
+                  options={item.options.map((option) => ({
+                    label: option === "" ? "<no value>" : option,
+                    value: option,
+                  }))}
                   value={
                     propValues[item.prop] ? String(propValues[item.prop]) : ""
                   }
                 >
                   <SelectTrigger placeholder="Select an option..." />
-                  <SelectContent>
-                    {item.options.map((item) => {
-                      return (
-                        <SelectRadioItem item={item} key={item}>
-                          {item === "" ? (
-                            <Text color="fg.secondary">{"<no value>"}</Text>
-                          ) : (
-                            item
-                          )}
-                        </SelectRadioItem>
-                      );
-                    })}
-                  </SelectContent>
+                  <SelectContent />
                 </Select>
               ) : item?.type === "range" ? (
                 <Tooltip

@@ -6,7 +6,6 @@ import type { BoxProps } from "../box";
 import { Flex } from "../flex";
 import { Select } from "../select";
 import { SelectContent } from "../select-content";
-import { SelectRadioItem } from "../select-radio-item";
 import { SelectTrigger } from "../select-trigger";
 import { format, parse, range } from "./utils";
 
@@ -43,10 +42,10 @@ export const Clock = forwardRef<HTMLDivElement, ClockProps>(
     return (
       <Flex flexDirection="row" gap="4" ref={ref} {...props}>
         <Select
-          items={hours}
           onValueChange={(hour) =>
             hour && setValue(format({ ...parsed, hour }))
           }
+          options={hours.map((hour) => ({ label: hour, value: hour }))}
           value={parsed.hour}
         >
           <SelectTrigger aria-label="Select hour" flex="1" placeholder="HH" />
@@ -54,31 +53,26 @@ export const Clock = forwardRef<HTMLDivElement, ClockProps>(
         </Select>
 
         <Select
-          items={minutes}
           onValueChange={(minute) =>
             minute && setValue(format({ ...parsed, minute }))
           }
+          options={minutes.map((minute) => ({
+            ariaLabel: `${parseInt(minute)}`,
+            label: minute,
+            value: minute,
+          }))}
           value={parsed.minute}
         >
           <SelectTrigger aria-label="Select minute" flex="1" placeholder="MM" />
-          <SelectContent>
-            {minutes.map((minute) => (
-              <SelectRadioItem
-                aria-label={`${parseInt(minute)}`}
-                item={minute}
-                key={minute}
-              >
-                {minute}
-              </SelectRadioItem>
-            ))}
-          </SelectContent>
+          <SelectContent />
         </Select>
 
         <Select
-          items={periods}
           onValueChange={(meridiem) =>
-            meridiem && setValue(format({ ...parsed, meridiem }))
+            (meridiem === "AM" || meridiem === "PM") &&
+            setValue(format({ ...parsed, meridiem }))
           }
+          options={periods.map((period) => ({ label: period, value: period }))}
           value={parsed.meridiem}
         >
           <SelectTrigger
