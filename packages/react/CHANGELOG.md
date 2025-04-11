@@ -1,5 +1,15 @@
 # @optiaxiom/react
 
+## 1.3.0
+
+### Minor Changes
+
+- a6e4a2f: refactor Select component options
+
+### Patch Changes
+
+- 393eab4: refactor combobox to support nested menus
+
 ## 1.2.5
 
 ### Patch Changes
