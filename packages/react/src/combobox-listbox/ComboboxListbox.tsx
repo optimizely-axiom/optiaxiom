@@ -6,7 +6,7 @@ import { ComboboxLabel } from "../combobox-label";
 import { ComboboxRadioItem } from "../combobox-radio-item";
 import { ComboboxSeparator } from "../combobox-separator";
 import { ComboboxSub } from "../combobox-sub";
-import { type Group } from "../command-context";
+import { type CommandOption, type Group } from "../command-context";
 import { CommandListbox } from "../command-listbox";
 
 type ComboboxListboxProps = ComponentPropsWithoutRef<typeof CommandListbox>;
@@ -29,7 +29,7 @@ export const ComboboxListbox = forwardRef<HTMLDivElement, ComboboxListboxProps>(
     return (
       <CommandListbox ref={ref} tabIndex={-1} {...props}>
         {children ??
-          ((item) => {
+          ((item: CommandOption) => {
             const Comp = item.subItems?.length
               ? ComboboxSub
               : "selected" in item
