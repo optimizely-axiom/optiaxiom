@@ -1,7 +1,6 @@
 import type { ReactNode } from "react";
 import type { Props } from "react-docgen-typescript";
 
-import { demos } from "@/demos/index";
 import { Box } from "@optiaxiom/react";
 import { promises as fs } from "fs";
 import { compileMdx } from "nextra/compile";
@@ -12,6 +11,7 @@ import path from "path";
 import { nextraOptions } from "../../nextra.config.mjs";
 import { DemoCode } from "./DemoCode";
 import { DemoPreview } from "./DemoPreview";
+import { demos } from "./demos";
 
 export async function Demo({
   component,
