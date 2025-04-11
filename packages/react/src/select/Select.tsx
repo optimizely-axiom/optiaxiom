@@ -6,65 +6,35 @@ import {
   type ChangeEventHandler,
   type FocusEventHandler,
   forwardRef,
-  type ReactElement,
   type ReactNode,
   useMemo,
   useRef,
 } from "react";
 
 import { usePortalPatch } from "../downshift";
-import { SelectProvider } from "../select-context";
+import { type SelectOption, SelectProvider } from "../select-context";
 import { SelectHiddenSelect } from "../select-hidden-select";
-import { useEffectEvent } from "../use-event";
 import { useObserveValue } from "../use-observe-value";
 import { useObserveReset } from "./useObserveReset";
 
-type SelectProps<Item> = (NoInfer<Item> extends string
-  ? {
-      defaultValue?: NoInfer<Item>;
-      itemToValue?: (item: NoInfer<Item>) => NoInfer<Item> | undefined;
-      onValueChange?: (value: NoInfer<Item>) => void;
-      value?: NoInfer<Item>;
-    }
-  : {
-      /**
-       * The initial selected value in uncontrolled mode.
-       */
-      defaultValue?: string;
-      /**
-       * Return a unique key for each item.
-       */
-      itemToValue: (item: NoInfer<Item>) => string | undefined;
-      /**
-       * Handler that is called when the selected value changes.
-       */
-      onValueChange?: (value: string) => void;
-      /**
-       * The selected value in controlled mode.
-       */
-      value?: string;
-    }) & {
+type SelectProps = {
   children?: ReactNode;
   /**
    * The initial open state in uncontrolled mode.
    */
   defaultOpen?: boolean;
   /**
+   * The initial selected value in uncontrolled mode.
+   */
+  defaultValue?: string;
+  /**
    * Whether the select is disabled.
    */
   disabled?: boolean;
   /**
-   * Return true if items need to be marked as disabled and skipped from keyboard navigation.
+   * Whether to show loading spinner inside the menu.
    */
-  isItemDisabled?: (item: NoInfer<Item>, index: number) => boolean;
-  /**
-   * The select items/options we want to render.
-   */
-  items: Item[] | readonly Item[];
-  /**
-   * Return a string representation of items if they are objects.
-   */
-  itemToLabel?: (item: NoInfer<Item>) => string;
+  loading?: boolean;
   name?: string;
   onBlur?: FocusEventHandler<HTMLElement>;
   onChange?: ChangeEventHandler<HTMLSelectElement>;
@@ -73,30 +43,39 @@ type SelectProps<Item> = (NoInfer<Item> extends string
    */
   onOpenChange?: (open: boolean) => void;
   /**
+   * Handler that is called when the selected value changes.
+   */
+  onValueChange?: (value: string) => void;
+  /**
    * The open state in controlled mode.
    */
   open?: boolean;
+  /**
+   * The select items/options we want to render.
+   */
+  options: readonly SelectOption[] | SelectOption[];
   required?: boolean;
+  /**
+   * The selected value in controlled mode.
+   */
+  value?: string;
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const Select = forwardRef<HTMLSelectElement, SelectProps<any>>(
+export const Select = forwardRef<HTMLSelectElement, SelectProps>(
   (
     {
       children,
       defaultOpen = false,
       defaultValue,
       disabled,
-      isItemDisabled = () => false,
-      items,
-      itemToLabel = (value) => (value ? String(value) : ""),
-      itemToValue = (item) => item,
+      loading,
       name,
       onBlur,
       onChange,
       onOpenChange,
       onValueChange,
       open,
+      options: items,
       required,
       value,
     },
@@ -113,13 +92,12 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps<any>>(
     const forceValueChange = useObserveValue(innerRef, setShadowValue);
     useObserveReset(innerRef, setShadowValue);
 
-    const itemToValueStable = useEffectEvent(itemToValue);
     const selectedItem = useMemo(
       () =>
         shadowValue !== undefined
-          ? items.find((item) => itemToValueStable(item) === shadowValue)
+          ? items.find((item) => item.value === shadowValue)
           : undefined,
-      [itemToValueStable, items, shadowValue],
+      [items, shadowValue],
     );
 
     const [isOpen, setIsOpen] = useControllableState({
@@ -131,20 +109,18 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps<any>>(
     const [highlightedIndex, setHighlightedIndex, placed, setPlaced] =
       usePortalPatch(() =>
         selectedItem
-          ? items.findIndex(
-              (item) => itemToValue(selectedItem) === itemToValue(item),
-            )
+          ? items.findIndex((item) => selectedItem.value === item.value)
           : -1,
       );
 
     const downshift = useSelect({
       highlightedIndex,
-      isItemDisabled,
+      isItemDisabled: (item) => !!item.disabledReason,
       isOpen: placed,
       // @ts-expect-error -- no harm in supporting read only arrays
       items,
-      itemToKey: (item) => (item !== null ? itemToValue(item) : item),
-      itemToString: (item) => (item !== null ? itemToLabel(item) : ""),
+      itemToKey: (item) => (item !== null ? item.value : item),
+      itemToString: (item) => (item !== null ? item.label : ""),
       onHighlightedIndexChange(changes) {
         if (
           ((changes.type === useSelect.stateChangeTypes.ItemMouseMove ||
@@ -159,7 +135,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps<any>>(
         setIsOpen(isOpen);
       },
       onSelectedItemChange({ selectedItem }) {
-        forceValueChange(itemToValue(selectedItem) ?? "");
+        forceValueChange(selectedItem?.value ?? "");
       },
       selectedItem: selectedItem ?? null,
     });
@@ -177,8 +153,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps<any>>(
           highlightedItem={items[highlightedIndex]}
           isOpen={isOpen}
           items={items}
-          itemToLabel={itemToLabel}
-          itemToValue={itemToValue}
+          loading={loading}
           onBlur={onBlur}
           placed={placed}
           selectedItem={selectedItem}
@@ -201,8 +176,6 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps<any>>(
       </Popper>
     );
   },
-) as (<Item>(
-  props: SelectProps<Item>,
-) => null | ReactElement<SelectProps<Item>>) & { displayName: string };
+);
 
 Select.displayName = "@optiaxiom/react/Select";

@@ -8,7 +8,13 @@ import {
 } from "@optiaxiom/react/unstable";
 import { useState } from "react";
 
-const priorities = ["", "Urgent", "High", "Medium", "Low"];
+const priorities = [
+  { label: "No priority", value: "" },
+  { label: "Urgent", value: "Urgent" },
+  { label: "High", value: "High" },
+  { label: "Medium", value: "Medium" },
+  { label: "Low", value: "Low" },
+];
 
 export function App() {
   const [value, setValue] = useState("");
@@ -23,12 +29,7 @@ export function App() {
       }}
     >
       <Flex alignItems="start">
-        <Select
-          defaultValue={value}
-          items={priorities}
-          itemToLabel={(item) => item || "No priority"}
-          name="priority"
-        >
+        <Select defaultValue={value} name="priority" options={priorities}>
           <SelectTrigger placeholder="Set priority" w="224" />
           <SelectContent />
         </Select>

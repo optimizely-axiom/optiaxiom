@@ -5,16 +5,12 @@ import {
   LabelMenuButton,
   Select,
   SelectContent,
-  SelectGroup,
-  SelectLabel,
-  SelectRadioItem,
-  SelectSeparator,
   SelectTrigger,
 } from "@optiaxiom/react/unstable";
 import { expect, screen, userEvent } from "@storybook/test";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
-type Story<T = string> = StoryObj<typeof Select<T>>;
+type Story = StoryObj<typeof Select>;
 
 const languages = [
   "Afrikaans",
@@ -69,7 +65,10 @@ export default {
     ),
     defaultOpen: true,
     defaultValue: "Bangla",
-    items: languages,
+    options: languages.map((language) => ({
+      label: language,
+      value: language,
+    })),
   },
   component: Select,
   decorators: (Story) => (
@@ -105,69 +104,43 @@ export const Disabled: Story = {
   },
 };
 
-const fruits = ["Apple", "Banana", "Blueberry", "Grapes", "Pineapple"];
-const vegetables = ["Aubergine", "Broccoli", "Carrot", "Courgette", "Leek"];
-const meats = ["Beef", "Chicken", "Lamb", "Pork"];
-const combinedFoodList = [...fruits, ...vegetables, ...meats];
+const groups = {
+  fruits: { label: "Fruits", separator: true },
+  meats: { label: "Meats", separator: true },
+  vegetables: { label: "Vegetables", separator: true },
+};
+
+const foods = [
+  { group: groups.fruits, label: "Apple", value: "Apple" },
+  { group: groups.fruits, label: "Banana", value: "Banana" },
+  { group: groups.fruits, label: "Blueberry", value: "Blueberry" },
+  { group: groups.fruits, label: "Grapes", value: "Grapes" },
+  { group: groups.fruits, label: "Pineapple", value: "Pineapple" },
+  { group: groups.vegetables, label: "Aubergine", value: "Aubergine" },
+  { group: groups.vegetables, label: "Broccoli", value: "Broccoli" },
+  { group: groups.vegetables, label: "Carrot", value: "Carrot" },
+  { group: groups.vegetables, label: "Courgette", value: "Courgette" },
+  { group: groups.vegetables, label: "Leek", value: "Leek" },
+  { group: groups.meats, label: "Beef", value: "Beef" },
+  { group: groups.meats, label: "Chicken", value: "Chicken" },
+  { group: groups.meats, label: "Lamb", value: "Lamb" },
+  { group: groups.meats, label: "Pork", value: "Pork" },
+];
 
 export const Group: Story = {
   args: {
     children: (
       <>
         <SelectTrigger placeholder="Select an item" />
-
-        <SelectContent>
-          <SelectGroup>
-            <SelectLabel>Fruits</SelectLabel>
-            {fruits.map((item, index) => {
-              return (
-                <SelectRadioItem item={item} key={index}>
-                  {item}
-                </SelectRadioItem>
-              );
-            })}
-          </SelectGroup>
-
-          <SelectSeparator />
-          <SelectGroup>
-            <SelectLabel>Vegetables</SelectLabel>
-            {vegetables.map((item, index) => {
-              return (
-                <SelectRadioItem item={item} key={index}>
-                  {item}
-                </SelectRadioItem>
-              );
-            })}
-          </SelectGroup>
-
-          <SelectSeparator />
-
-          <SelectGroup>
-            <SelectLabel>Meats</SelectLabel>
-            {meats.map((item, index) => {
-              return (
-                <SelectRadioItem item={item} key={index}>
-                  {item}
-                </SelectRadioItem>
-              );
-            })}
-          </SelectGroup>
-        </SelectContent>
+        <SelectContent />
       </>
     ),
     defaultValue: undefined,
-    items: combinedFoodList,
+    options: foods,
   },
 };
 
-type Book = {
-  author: string;
-  disabled: boolean;
-  id: string;
-  title: string;
-};
-
-const books: Book[] = [
+const books = [
   {
     author: "Harper Lee",
     disabled: false,
@@ -225,28 +198,20 @@ const books: Book[] = [
   },
 ];
 
-export const Controlled: Story<Book> = {
+export const Controlled: Story = {
   args: {
     children: (
       <>
         <SelectTrigger placeholder="Select a book" />
-
-        <SelectContent>
-          {books.map((item, index) => {
-            return (
-              <SelectRadioItem item={item} key={index}>
-                {item.title}
-              </SelectRadioItem>
-            );
-          })}
-        </SelectContent>
+        <SelectContent />
       </>
     ),
     defaultValue: undefined,
-    isItemDisabled: (book) => book.disabled,
-    items: books,
-    itemToLabel: (book) => book.title,
-    itemToValue: (book) => book.id,
+    options: books.map((book) => ({
+      disabledReason: book.disabled ? "Some reason" : undefined,
+      label: book.title,
+      value: book.id,
+    })),
   },
   render: function Controlled(args) {
     const [value, setValue] = useState<string>(books[9].id);
@@ -262,27 +227,30 @@ export const Controlled: Story<Book> = {
 
 export const AsyncLoading: Story = {
   render: function AsyncLoading(args) {
-    const [items, setItems] = useState<string[]>([]);
+    const [items, setItems] = useState<
+      Array<{
+        label: string;
+        value: string;
+      }>
+    >([]);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
       setTimeout(() => {
-        setItems(languages);
+        setItems(
+          languages.map((language) => ({
+            label: language,
+            value: language,
+          })),
+        );
         setIsLoading(false);
       }, 3000);
     }, []);
 
     return (
-      <Select {...args} items={items}>
+      <Select {...args} loading={isLoading} options={items}>
         <SelectTrigger placeholder="Select a language" />
-
-        <SelectContent loading={isLoading}>
-          {items.map((item) => (
-            <SelectRadioItem item={item} key={item}>
-              {item}
-            </SelectRadioItem>
-          ))}
-        </SelectContent>
+        <SelectContent />
       </Select>
     );
   },
@@ -290,7 +258,7 @@ export const AsyncLoading: Story = {
 
 const environments = ["Development", "QA", "Stage", "Production"];
 
-export const AlternateTrigger: Story<string> = {
+export const AlternateTrigger: Story = {
   args: {
     defaultOpen: false,
     defaultValue: undefined,
@@ -302,40 +270,40 @@ export const AlternateTrigger: Story<string> = {
       <Flex w="224">
         <Select
           {...args}
-          items={environments}
           onValueChange={setValue}
+          options={useMemo(
+            () =>
+              environments.map((environment) => ({
+                label: environment,
+                value: environment,
+              })),
+            [],
+          )}
           value={value}
         >
           <SelectTrigger asChild>
             <LabelMenuButton label="Environment" />
           </SelectTrigger>
-
-          <SelectContent>
-            {environments.map((item) => (
-              <SelectRadioItem item={item} key={item}>
-                {item}
-              </SelectRadioItem>
-            ))}
-          </SelectContent>
+          <SelectContent />
         </Select>
 
         <Select
           {...args}
-          items={environments}
           onValueChange={setValue}
+          options={useMemo(
+            () =>
+              environments.map((environment) => ({
+                label: environment,
+                value: environment,
+              })),
+            [],
+          )}
           value={value}
         >
           <SelectTrigger asChild placeholder="Select an environment">
             <LabelMenuButton label="Environment" />
           </SelectTrigger>
-
-          <SelectContent>
-            {environments.map((item) => (
-              <SelectRadioItem item={item} key={item}>
-                {item}
-              </SelectRadioItem>
-            ))}
-          </SelectContent>
+          <SelectContent />
         </Select>
         <Button alignSelf="start" onClick={() => setValue("")}>
           Reset

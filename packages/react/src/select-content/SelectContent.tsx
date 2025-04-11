@@ -8,13 +8,18 @@ import {
 
 import type { ExcludeProps } from "../utils";
 
-import { Box, type BoxProps, extractBoxProps } from "../box";
-import { ListboxVirtualized } from "../listbox-virtualized";
+import { type BoxProps } from "../box";
+import { ListboxItemized } from "../listbox-itemized";
+import { ListboxLabel } from "../listbox-label";
+import { ListboxSeparator } from "../listbox-separator";
 import { MenuListbox } from "../menu-listbox";
 import { ModalLayer } from "../modal-layer";
-import { useSelectContext } from "../select-context";
+import {
+  type Group,
+  type SelectOption,
+  useSelectContext,
+} from "../select-context";
 import { SelectRadioItem } from "../select-radio-item";
-import { Spinner } from "../spinner";
 import { TransitionGroup } from "../transition-group";
 import * as styles from "./SelectContent.css";
 
@@ -24,10 +29,6 @@ type SelectContentProps = ExcludeProps<
     Pick<ComponentPropsWithoutRef<typeof MenuListbox>, "maxH" | "minW"> & {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       children?: ((item: any) => ReactNode) | ReactNode;
-      /**
-       * Whether to show loading spinner inside the menu.
-       */
-      loading?: boolean;
     }
   >,
   | "alignOffset"
@@ -44,84 +45,80 @@ type SelectContentProps = ExcludeProps<
 
 export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
   (
-    {
-      align = "start",
-      children,
-      className,
-      loading,
-      side = "bottom",
-      ...props
-    },
+    { align = "start", children, className, side = "bottom", size, ...props },
     ref,
   ) => {
-    const { boxProps, restProps } = extractBoxProps(props);
     const {
       downshift,
       highlightedItem,
       isOpen,
       items,
-      itemToLabel,
-      itemToValue,
+      loading,
       placed,
       setPlaced,
     } = useSelectContext("@optiaxiom/react/SelectContent");
 
+    let isFirstItem = true;
+    let lastGroup: Group | undefined = undefined;
+    const shouldShowSeparator = (group: Group | undefined) => {
+      const show = !isFirstItem;
+      isFirstItem = false;
+      return show && group && group !== lastGroup && group.separator;
+    };
+    const shouldShowGroup = (group: Group | undefined): group is Group => {
+      const show = group !== lastGroup;
+      lastGroup = group;
+      return show && !group?.hidden;
+    };
+
     return (
-      <TransitionGroup
-        onPresenceChange={(presence) => {
-          if (!presence) {
-            setPlaced(presence);
-          }
-        }}
-        open={isOpen}
-      >
+      <TransitionGroup open={isOpen}>
         <Portal asChild>
           <ModalLayer asChild>
-            <MenuListbox
-              asChild
-              maxH="sm"
-              minW="trigger"
-              provider="popper"
-              {...styles.content({}, className)}
-              {...boxProps}
-              {...downshift.getMenuProps(
-                { ref, ...restProps },
-                { suppressRefError: !placed },
-              )}
-            >
-              <PopperContent
-                align={align}
-                asChild={!loading && typeof children === "function"}
-                onPlaced={() => setPlaced(true)}
-                side={side}
-                sideOffset={5}
-              >
-                {loading ? (
-                  <Box display="flex" justifyContent="center" p="16">
-                    <Spinner />
-                  </Box>
-                ) : children ? (
-                  typeof children === "function" ? (
-                    <ListboxVirtualized
-                      highlightedItem={highlightedItem}
-                      items={items}
-                    >
-                      {children}
-                    </ListboxVirtualized>
-                  ) : (
-                    children
-                  )
-                ) : (
-                  items.map((item) => {
-                    return (
-                      <SelectRadioItem item={item} key={itemToValue(item)}>
-                        {itemToLabel(item)}
-                      </SelectRadioItem>
-                    );
-                  })
+            <PopperContent align={align} asChild side={side} sideOffset={5}>
+              <MenuListbox
+                asChild
+                maxH="sm"
+                minW="trigger"
+                provider="popper"
+                size={size}
+                {...styles.content({}, className)}
+                {...downshift.getMenuProps(
+                  { ref, ...props },
+                  { suppressRefError: !placed },
                 )}
-              </PopperContent>
-            </MenuListbox>
+              >
+                <ListboxItemized
+                  highlightedItem={highlightedItem}
+                  items={items}
+                  loading={loading}
+                  onPlacedChange={setPlaced}
+                  placed={placed}
+                >
+                  {children ??
+                    ((item: SelectOption) => {
+                      const group = item.group;
+                      return (
+                        <>
+                          {shouldShowSeparator(group) && <ListboxSeparator />}
+                          {shouldShowGroup(group) && (
+                            <ListboxLabel>{group.label}</ListboxLabel>
+                          )}
+                          <SelectRadioItem
+                            addonBefore={item.addon}
+                            aria-label={item["aria-label"]}
+                            description={item.description}
+                            item={item}
+                            key={item.value}
+                          >
+                            {item.label}
+                          </SelectRadioItem>
+                        </>
+                      );
+                    })}
+                </ListboxItemized>
+              </MenuListbox>
+            </PopperContent>
           </ModalLayer>
         </Portal>
       </TransitionGroup>

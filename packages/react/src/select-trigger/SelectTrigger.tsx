@@ -39,7 +39,7 @@ export const SelectTrigger = forwardRef<HTMLButtonElement, SelectTriggerProps>(
     },
     ref,
   ) => {
-    const { disabled, downshift, isOpen, itemToLabel, onBlur, selectedItem } =
+    const { disabled, downshift, isOpen, onBlur, selectedItem } =
       useSelectContext("@optiaxiom/react/SelectTrigger");
     const { boxProps, restProps } = extractBoxProps(props);
 
@@ -57,8 +57,8 @@ export const SelectTrigger = forwardRef<HTMLButtonElement, SelectTriggerProps>(
       [focusOnOpen],
     );
 
-    const value = selectedItem
-      ? itemToLabel(selectedItem) || placeholder
+    const value = selectedItem?.value
+      ? selectedItem.label || placeholder
       : placeholder;
 
     return (

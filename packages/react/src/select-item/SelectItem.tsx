@@ -1,7 +1,7 @@
 import { forwardRef, type MouseEvent } from "react";
 
 import { Box, type BoxProps } from "../box";
-import { useSelectContext } from "../select-context";
+import { type SelectOption, useSelectContext } from "../select-context";
 
 type SelectItemProps = BoxProps<
   "div",
@@ -9,7 +9,7 @@ type SelectItemProps = BoxProps<
     /**
      * The exact item element from the collection.
      */
-    item: unknown;
+    item: SelectOption;
   }
 >;
 

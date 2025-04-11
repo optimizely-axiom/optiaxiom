@@ -35,7 +35,6 @@ const mapComponentToBase: Partial<Record<AllComponents, "" | AllComponents>> = {
   PopoverTrigger: "Button",
   SearchInput: "Input",
   SegmentedControlItem: "Button",
-  SelectSeparator: "Separator",
   SelectTrigger: "Button",
   TabsTrigger: "Button",
   ToastAction: "Button",
