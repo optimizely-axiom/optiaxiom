@@ -1,75 +1,31 @@
-import { forwardRef, Fragment, type ReactNode, useEffect } from "react";
+import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
-import { Box, type BoxProps } from "../box";
-import { type CommandOption, useCommandContext } from "../command-context";
-import { Listbox } from "../listbox";
-import { ListboxEmpty } from "../listbox-empty";
-import { ListboxVirtualized } from "../listbox-virtualized";
-import { Spinner } from "../spinner";
+import type { ExcludeProps } from "../utils";
 
-const VIRTUALIZE_THRESHOLD = 50;
+import { useCommandContext } from "../command-context";
+import { ListboxItemized } from "../listbox-itemized";
 
-type CommandListboxProps = BoxProps<
-  "div",
-  {
-    children?: ((item: CommandOption) => ReactNode) | ReactNode;
-    /**
-     * Custom empty state content.
-     */
-    empty?: ReactNode;
-    /**
-     * Whether to show loading spinner inside the menu.
-     */
-    loading?: boolean;
-  }
+type CommandListboxProps = ExcludeProps<
+  ComponentPropsWithoutRef<typeof ListboxItemized>,
+  "highlightedItem" | "items" | "onPlacedChange" | "placed"
 >;
 
 export const CommandListbox = forwardRef<HTMLDivElement, CommandListboxProps>(
-  ({ children, empty = "No results found.", loading, size, ...props }, ref) => {
+  ({ children, size, ...props }, ref) => {
     const { downshift, highlightedItem, items, placed, setPlaced } =
       useCommandContext("@optiaxiom/react/CommandListbox");
-    useEffect(() => {
-      requestAnimationFrame(() => setPlaced(true));
-      return () => setPlaced(false);
-    }, [setPlaced]);
 
     return (
-      <Listbox
-        asChild={
-          typeof children === "function" &&
-          items.length > VIRTUALIZE_THRESHOLD &&
-          placed
-        }
+      <ListboxItemized
+        highlightedItem={highlightedItem}
+        items={items}
+        onPlacedChange={setPlaced}
+        placed={placed}
         size={size}
         {...downshift.getMenuProps({ ref, ...props })}
       >
-        {loading ? (
-          <Box display="flex" justifyContent="center" p="16">
-            <Spinner />
-          </Box>
-        ) : typeof children === "function" ? (
-          items.length > VIRTUALIZE_THRESHOLD ? (
-            placed && (
-              <ListboxVirtualized
-                highlightedItem={highlightedItem}
-                items={items}
-              >
-                {children}
-              </ListboxVirtualized>
-            )
-          ) : items.length > 0 ? (
-            items.map((item, index) => (
-              <Fragment key={index}>{children(item)}</Fragment>
-            ))
-          ) : (
-            <ListboxEmpty>{empty}</ListboxEmpty>
-          )
-        ) : items.length > 0 ? (
-          children
-        ) : (
-          <ListboxEmpty>{empty}</ListboxEmpty>
-        )}
-      </Listbox>
+        {children}
+      </ListboxItemized>
     );
   },
 );
