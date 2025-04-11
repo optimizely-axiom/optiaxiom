@@ -33,12 +33,12 @@ export type CommandOption = {
    * Whether item is multi-selectable.
    */
   multi?: boolean;
-  parentItem?: CommandOption;
+  parentOption?: CommandOption;
   /**
    * Return true if item need to be marked as selected.
    */
   selected?: (() => boolean) | boolean;
-  subItems?: CommandOption[];
+  subOptions?: CommandOption[];
   type?: "action" | "checkbox" | "radio";
   visible?:
     | ((context: { inputValue: string | undefined }) => boolean | undefined)

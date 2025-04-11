@@ -13,10 +13,10 @@ import {
   Textarea,
 } from "@optiaxiom/react";
 import {
-  Combobox,
-  ComboboxContent,
-  type ComboboxOption,
-  ComboboxTrigger,
+  Menu,
+  MenuContent,
+  type MenuOption,
+  MenuTrigger,
   Select,
   SelectContent,
   SelectTrigger,
@@ -231,14 +231,14 @@ const languages = [
   "Hebrew",
 ];
 
-function SampleCombobox() {
+function SampleMenu() {
   const [value, setValue] = useState<string>();
 
   return (
-    <Combobox
-      items={useMemo(
+    <Menu
+      options={useMemo(
         () =>
-          languages.map<ComboboxOption>((language) => ({
+          languages.map<MenuOption>((language) => ({
             execute: () => setValue(language),
             label: language,
             selected: () => value === language,
@@ -246,9 +246,9 @@ function SampleCombobox() {
         [value],
       )}
     >
-      <ComboboxTrigger>{value || "Set language"}</ComboboxTrigger>
-      <ComboboxContent />
-    </Combobox>
+      <MenuTrigger>{value || "Set language"}</MenuTrigger>
+      <MenuContent />
+    </Menu>
   );
 }
 
@@ -259,7 +259,7 @@ export const WithForm: Story = {
         <Input placeholder="Enter Name" />
         <Textarea placeholder="Enter Address" />
 
-        <SampleCombobox />
+        <SampleMenu />
 
         <Select
           options={languages.map((language) => ({

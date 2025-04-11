@@ -12,8 +12,8 @@ import { type BoxProps } from "../box";
 import { ListboxItemized } from "../listbox-itemized";
 import { ListboxLabel } from "../listbox-label";
 import { ListboxSeparator } from "../listbox-separator";
-import { MenuListbox } from "../menu-listbox";
 import { ModalLayer } from "../modal-layer";
+import { OverlayListbox } from "../overlay-listbox";
 import {
   type Group,
   type SelectOption,
@@ -26,7 +26,7 @@ import * as styles from "./SelectContent.css";
 type SelectContentProps = ExcludeProps<
   BoxProps<
     typeof PopperContent,
-    Pick<ComponentPropsWithoutRef<typeof MenuListbox>, "maxH" | "minW"> & {
+    Pick<ComponentPropsWithoutRef<typeof OverlayListbox>, "maxH" | "minW"> & {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       children?: ((item: any) => ReactNode) | ReactNode;
     }
@@ -76,7 +76,7 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
         <Portal asChild>
           <ModalLayer asChild>
             <PopperContent align={align} asChild side={side} sideOffset={5}>
-              <MenuListbox
+              <OverlayListbox
                 asChild
                 maxH="sm"
                 minW="trigger"
@@ -122,7 +122,7 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
                       );
                     })}
                 </ListboxItemized>
-              </MenuListbox>
+              </OverlayListbox>
             </PopperContent>
           </ModalLayer>
         </Portal>

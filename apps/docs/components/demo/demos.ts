@@ -78,25 +78,6 @@ export const demos = {
   "checkbox/label-usage": import("@/demos/checkbox/label-usage/App"),
   "checkbox/usage": import("@/demos/checkbox/usage/App"),
   "code/usage": import("@/demos/code/usage/App"),
-  "combobox/addon-usage": import("@/demos/combobox/addon-usage/App"),
-  "combobox/basic-usage": import("@/demos/combobox/basic-usage/App"),
-  "combobox/content-checkbox-usage": import(
-    "@/demos/combobox/content-checkbox-usage/App"
-  ),
-  "combobox/content-radio-usage": import(
-    "@/demos/combobox/content-radio-usage/App"
-  ),
-  "combobox/content-usage": import("@/demos/combobox/content-usage/App"),
-  "combobox/creatable-usage": import("@/demos/combobox/creatable-usage/App"),
-  "combobox/empty-usage": import("@/demos/combobox/empty-usage/App"),
-  "combobox/input-controlled-usage": import(
-    "@/demos/combobox/input-controlled-usage/App"
-  ),
-  "combobox/input-usage": import("@/demos/combobox/input-usage/App"),
-  "combobox/usage": import("@/demos/combobox/usage/App"),
-  "combobox/virtualized-usage": import(
-    "@/demos/combobox/virtualized-usage/App"
-  ),
   "data-table/loading-usage": import("@/demos/data-table/loading-usage/App"),
   "data-table/pagination-client-usage": import(
     "@/demos/data-table/pagination-client-usage/App"
@@ -264,6 +245,21 @@ export const demos = {
   "margin/usage": import("@/demos/margin/usage/App"),
   "max-height/usage": import("@/demos/max-height/usage/App"),
   "max-width/usage": import("@/demos/max-width/usage/App"),
+  "menu/addon-usage": import("@/demos/menu/addon-usage/App"),
+  "menu/basic-usage": import("@/demos/menu/basic-usage/App"),
+  "menu/content-checkbox-usage": import(
+    "@/demos/menu/content-checkbox-usage/App"
+  ),
+  "menu/content-radio-usage": import("@/demos/menu/content-radio-usage/App"),
+  "menu/content-usage": import("@/demos/menu/content-usage/App"),
+  "menu/creatable-usage": import("@/demos/menu/creatable-usage/App"),
+  "menu/empty-usage": import("@/demos/menu/empty-usage/App"),
+  "menu/input-controlled-usage": import(
+    "@/demos/menu/input-controlled-usage/App"
+  ),
+  "menu/input-usage": import("@/demos/menu/input-usage/App"),
+  "menu/usage": import("@/demos/menu/usage/App"),
+  "menu/virtualized-usage": import("@/demos/menu/virtualized-usage/App"),
   "modal-layer/usage": import("@/demos/modal-layer/usage/App"),
   "padding/multiple-usage": import("@/demos/padding/multiple-usage/App"),
   "padding/single-usage": import("@/demos/padding/single-usage/App"),

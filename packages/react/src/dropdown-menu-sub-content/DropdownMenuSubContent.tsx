@@ -5,13 +5,13 @@ import type { BoxProps } from "../box";
 import type { ExcludeProps } from "../utils";
 
 import { useDropdownMenuSubContext } from "../dropdown-menu-sub-context";
-import { MenuListbox } from "../menu-listbox";
+import { OverlayListbox } from "../overlay-listbox";
 import { TransitionGroup } from "../transition-group";
 
 type MenuSubContentProps = ExcludeProps<
   BoxProps<
     typeof RadixMenu.SubContent,
-    Pick<ComponentPropsWithoutRef<typeof MenuListbox>, "maxH" | "minW">
+    Pick<ComponentPropsWithoutRef<typeof OverlayListbox>, "maxH" | "minW">
   >,
   | "alignOffset"
   | "arrowPadding"
@@ -37,7 +37,12 @@ export const DropdownMenuSubContent = forwardRef<
   return (
     <TransitionGroup onPresenceChange={setPresence} open={open}>
       <RadixMenu.Portal forceMount>
-        <MenuListbox asChild minW="trigger" provider="dropdown-menu" {...props}>
+        <OverlayListbox
+          asChild
+          minW="trigger"
+          provider="dropdown-menu"
+          {...props}
+        >
           <RadixMenu.SubContent
             alignOffset={-4}
             asChild={asChild}
@@ -46,7 +51,7 @@ export const DropdownMenuSubContent = forwardRef<
           >
             {children}
           </RadixMenu.SubContent>
-        </MenuListbox>
+        </OverlayListbox>
       </RadixMenu.Portal>
     </TransitionGroup>
   );

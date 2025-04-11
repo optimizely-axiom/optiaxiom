@@ -1,14 +1,14 @@
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
-import { ComboboxContent } from "../combobox-content";
+import { MenuContent } from "../menu-content";
 
-type SpotlightContentProps = ComponentPropsWithoutRef<typeof ComboboxContent>;
+type SpotlightContentProps = ComponentPropsWithoutRef<typeof MenuContent>;
 
 export const SpotlightContent = forwardRef<
   HTMLDivElement,
   SpotlightContentProps
 >((props, ref) => {
-  return <ComboboxContent aria-label="Quick search" ref={ref} {...props} />;
+  return <MenuContent aria-label="Quick search" ref={ref} {...props} />;
 });
 
 SpotlightContent.displayName = "@optiaxiom/react/SpotlightContent";

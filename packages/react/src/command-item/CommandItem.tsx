@@ -82,10 +82,10 @@ export const CommandItem = forwardRef<HTMLDivElement, CommandItemProps>(
           (children) =>
             children ?? (
               <>
-                {item.parentItem && (
+                {item.parentOption && (
                   <>
                     <Text color="fg.secondary">
-                      {resolveItemProperty(item.parentItem.label, {
+                      {resolveItemProperty(item.parentOption.label, {
                         inputValue,
                       })}
                     </Text>
