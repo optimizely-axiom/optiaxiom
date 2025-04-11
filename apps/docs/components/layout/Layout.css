@@ -26,7 +26,10 @@
 
   :root {
     --docs-bg-shadow-size: 85%;
-    --docs-code-bg: light-dark(var(--ax-colors-bg-secondary), rgb(1, 22, 39));
+    --docs-code-bg: light-dark(
+      var(--ax-colors-bg-secondary),
+      color-mix(in srgb, var(--ax-colors-bg-secondary), #fff 2%)
+    );
 
     &[class~="dark"] {
       --docs-bg-pillar-opacity: 20%;
