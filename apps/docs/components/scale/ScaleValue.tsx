@@ -135,12 +135,12 @@ export const ScaleValue = ({
 };
 
 const addShiki = (str: null | string) =>
-  str?.split(/(light-dark|px|rem|var|\(|\))/).map((part, index) =>
+  str?.split(/(light-dark|px|rem|%|var|\(|\))/).map((part, index) =>
     part === "light-dark" || part === "var" || part === "(" || part === ")" ? (
       <span key={index} style={{ color: "var(--shiki-token-css-function)" }}>
         {part}
       </span>
-    ) : part === "px" || part === "rem" ? (
+    ) : part === "%" || part === "px" || part === "rem" ? (
       <span key={index} style={{ color: "var(--shiki-token-css-keyword)" }}>
         {part}
       </span>
