@@ -9,7 +9,6 @@ import { BannerIcon } from "./icons/BannerIcon";
 import { BoxIcon } from "./icons/BoxIcon";
 import { ButtonIcon } from "./icons/ButtonIcon";
 import { CheckboxIcon } from "./icons/CheckboxIcon";
-import { ComboboxIcon } from "./icons/ComboboxIcon";
 import { ComponentsIcon } from "./icons/ComponentsIcon";
 import { DialogIcon } from "./icons/DialogIcon";
 import { DropdownMenuIcon } from "./icons/DropdownMenuIcon";
@@ -19,6 +18,7 @@ import { HeadingIcon } from "./icons/HeadingIcon";
 import { IconsIcon } from "./icons/IconsIcon";
 import { IndicatorIcon } from "./icons/IndicatorIcon";
 import { InputIcon } from "./icons/InputIcon";
+import { MenuIcon } from "./icons/MenuIcon";
 import { PaginationIcon } from "./icons/PaginationIcon";
 import { ProgressIcon } from "./icons/ProgressIcon";
 import { RadioGroupIcon } from "./icons/RadioGroupIcon";
@@ -83,13 +83,6 @@ const COMPONENTS = {
     icon: <CheckboxIcon />,
     title: "Checkbox",
   },
-  Combobox: {
-    description:
-      "Multi-purpose combobox widget to allow selection from a dynamic set of options.",
-    href: "/components/combobox/",
-    icon: <ComboboxIcon />,
-    title: "Combobox",
-  },
   Components: {
     description:
       "Discover all the components available in our library and how to use them.",
@@ -148,6 +141,13 @@ const COMPONENTS = {
     href: "/components/input/",
     icon: <InputIcon />,
     title: "Input",
+  },
+  Menu: {
+    description:
+      "Multi-purpose combobox widget to allow selection from a dynamic set of options.",
+    href: "/components/menu/",
+    icon: <MenuIcon />,
+    title: "Menu",
   },
   Pagination: {
     description: "Display active page and navigate between multiple pages.",

@@ -1,31 +1,61 @@
-import { forwardRef } from "react";
+import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
-import type { BoxProps } from "../box";
+import { type CommandOption, type Group } from "../command-context";
+import { CommandListbox } from "../command-listbox";
+import { ListboxLabel } from "../listbox-label";
+import { ListboxSeparator } from "../listbox-separator";
+import { MenuCheckboxItem } from "../menu-checkbox-item";
+import { MenuItem } from "../menu-item";
+import { MenuRadioItem } from "../menu-radio-item";
+import { MenuSub } from "../menu-sub";
 
-import { Listbox } from "../listbox";
-import { Paper } from "../paper";
-import { Transition } from "../transition";
-import * as styles from "./MenuListbox.css";
+type MenuListboxProps = ComponentPropsWithoutRef<typeof CommandListbox>;
 
-type MenuProps = BoxProps<typeof Listbox, NonNullable<styles.ListboxVariants>>;
+export const MenuListbox = forwardRef<HTMLDivElement, MenuListboxProps>(
+  ({ children, ...props }, ref) => {
+    let isFirstItem = true;
+    let lastGroup: Group | undefined = undefined;
+    const shouldShowSeparator = (group: Group | undefined) => {
+      const show = !isFirstItem;
+      isFirstItem = false;
+      return show && group && group !== lastGroup && group.separator;
+    };
+    const shouldShowGroup = (group: Group | undefined): group is Group => {
+      const show = group !== lastGroup;
+      lastGroup = group;
+      return show && !!group?.visible;
+    };
 
-export const MenuListbox = forwardRef<HTMLDivElement, MenuProps>(
-  (
-    { children, className, maxH, minW, provider = "popover", ...props },
-    ref,
-  ) => (
-    <Transition duration="sm" type="pop">
-      <Paper asChild>
-        <Listbox
-          ref={ref}
-          {...styles.listbox({ maxH, minW, provider }, className)}
-          {...props}
-        >
-          {children}
-        </Listbox>
-      </Paper>
-    </Transition>
-  ),
+    return (
+      <CommandListbox ref={ref} tabIndex={-1} {...props}>
+        {children ??
+          ((item: CommandOption, index) => {
+            if (index === 0) {
+              isFirstItem = true;
+              lastGroup = undefined;
+            }
+
+            const Comp = item.subOptions?.length
+              ? MenuSub
+              : "selected" in item
+                ? item.multi
+                  ? MenuCheckboxItem
+                  : MenuRadioItem
+                : MenuItem;
+            const group = item.group;
+            return (
+              <>
+                {shouldShowSeparator(group) && <ListboxSeparator />}
+                {shouldShowGroup(group) && (
+                  <ListboxLabel>{group.name}</ListboxLabel>
+                )}
+                <Comp item={item} />
+              </>
+            );
+          })}
+      </CommandListbox>
+    );
+  },
 );
 
 MenuListbox.displayName = "@optiaxiom/react/MenuListbox";

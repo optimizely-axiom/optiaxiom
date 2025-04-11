@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 import { Kbd, Toast, toaster, ToastTitle } from "@optiaxiom/react";
 import {
-  type ComboboxOption,
+  type MenuOption,
   Spotlight,
   SpotlightContent,
   SpotlightTrigger,
@@ -102,8 +102,9 @@ export const Basic: Story = {
         {...args}
         empty={`No results for "${inputValue}"`}
         inputValue={inputValue}
-        items={[
-          ...items.map<ComboboxOption>((item) => ({
+        onInputValueChange={setInputValue}
+        options={[
+          ...items.map<MenuOption>((item) => ({
             description: item.description,
             execute: () => {
               toaster.create(
@@ -118,7 +119,6 @@ export const Basic: Story = {
             label: item.title,
           })),
         ]}
-        onInputValueChange={setInputValue}
       >
         <SpotlightTrigger
           addonAfter={

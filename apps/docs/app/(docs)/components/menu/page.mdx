@@ -1,0 +1,180 @@
+import { Cards } from "@/components/cards";
+import { Demo } from "@/components/demo";
+import { PropsTable } from "@/components/props-table";
+
+# Menu
+
+Multi-purpose combobox widget to allow selection from a dynamic set of options.
+
+## Documentation
+
+### Usage
+
+<Demo component="menu/usage" />
+
+### Anatomy
+
+```tsx
+import { Menu, MenuContent, MenuTrigger } from "@optiaxiom/react";
+
+export default () => (
+  <Menu>
+    <MenuTrigger />
+    <MenuContent />
+  </Menu>
+);
+```
+
+### Structure
+
+Menu works with lists of items provided via the `options` prop. The basic structure includes the main component provider, a trigger, and the content popover.
+
+- `Menu`
+- `MenuTrigger`
+- `MenuContent`
+
+Items must be an array of objects of `MenuOption` type.
+
+<Demo component="menu/basic-usage" />
+
+### Selection
+
+Clicking the items will not do anything yet. For that we'll have to add the `execute` property to each item.
+
+<Demo component="menu/content-usage" meta="{20-22}" />
+
+#### Single-select
+
+Now that we can perform actions on selection, we can also store that state and show the selected states for each item using the `selected` property.
+
+<Demo component="menu/content-radio-usage" meta="{23}" />
+
+#### Multi-select
+
+We can render multi-select items by enabling the `multi` property.
+
+<Demo component="menu/content-checkbox-usage" meta="{27}" />
+
+### Input
+
+By default the input is only shown if there are any selectable items (items with a `selected` property). But we can always show the input by enabling the `defaultInputVisible` prop.
+
+<Demo component="menu/input-usage" meta="/defaultInputVisible/" />
+
+#### Filtering
+
+Menu automatically handles filtering using a built-in fuzzy filter based on the `name` and `keywords` properties of items.
+
+We can customize the filter behavior using the `visible` property on items.
+
+The following example shows how we can build **creatable** menus by allowing the user to add new entries on the fly.
+
+<Demo component="menu/creatable-usage" />
+
+#### Async loading
+
+We can also manually control `options` in combination with the `inputValue` and `onInputValueChange` prop to load items as the user types.
+
+And we can toggle the `loading` prop to show a loading spinner while the data is loading (an empty state will be shown otherwise).
+
+<Demo component="menu/input-controlled-usage" meta="{55,56}" />
+
+### Empty
+
+By default menu will display a generic empty content message if no results are found matching your query. We can customize this empty message by setting the `empty` prop.
+
+<Demo component="menu/empty-usage" meta="{41-43}" />
+
+### Trigger
+
+By default we use the `Button` component for the menu trigger which accepts all of the existing button props.
+
+### Addons
+
+We can add the `addon` and `description` properties to show additional content inside the items.
+
+<Demo component="menu/addon-usage" meta={{ "App.tsx": "{38-43}" }} />
+
+### Virtualized
+
+Menu automatically uses virtualization to improve performance when rendering a large number of items.
+
+<Demo component="menu/virtualized-usage" meta="{36-38}" />
+
+### Related
+
+<Cards items={["DropdownMenu", "Select"]} />
+
+## Props
+
+### Menu
+
+<PropsTable component="Menu" />
+
+### MenuTrigger
+
+<PropsTable component="MenuTrigger" />
+
+### MenuContent
+
+<PropsTable component="MenuContent" />
+
+## Changelog
+
+### 1.3.0
+
+- Renamed `Combobox` component to `Menu`:
+
+  ```jsx
+  // Before
+  <Combobox>
+    <ComboboxTrigger />
+    <ComboboxContent />
+  </Combobox>
+
+  // After
+  <Menu>
+    <MenuTrigger />
+    <MenuContent />
+  </Menu>
+  ```
+
+- Renamed `items` prop to `options`:
+
+  ```jsx
+  // Before
+  <Combobox items={[]} />
+
+  // After
+  <Combobox options={[]} />
+  ```
+
+- Removed `itemToLabel` and `isItemSelected` props in favor of fixed properties on options:
+
+  ```jsx
+  // Before
+  <Combobox
+    items={[
+      {
+        id: "1",
+        name: "Sample",
+      },
+    ]}
+    isItemSelected={(item) => value.includes(item)}
+    itemToLabel={(item) => item.name}
+  />
+
+  // After
+  <Combobox
+    options={[
+      {
+        label: "Sample",
+        selected: true,
+      },
+    ]}
+  />
+  ```
+
+### 0.4.0
+
+- Added component

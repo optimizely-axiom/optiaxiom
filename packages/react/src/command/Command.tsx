@@ -22,10 +22,6 @@ type CommandProps = {
    */
   inputValue?: string;
   /**
-   * The items we want to render.
-   */
-  items: CommandOption[] | readonly CommandOption[];
-  /**
    * Whether to show loading spinner inside the menu.
    */
   loading?: boolean;
@@ -36,24 +32,28 @@ type CommandProps = {
   /**
    * Handler that is called when an item is selected either via keyboard or mouse.
    */
-  onItemSelect?: () => void;
+  onOptionSelect?: () => void;
+  /**
+   * The items we want to render.
+   */
+  options: CommandOption[] | readonly CommandOption[];
 };
 
 export function Command({
   children,
   empty,
   inputValue: inputValueProp,
-  items: itemsProp,
   loading,
   onInputValueChange,
-  onItemSelect,
+  onOptionSelect: onItemSelect,
+  options,
 }: CommandProps) {
   const [inputValue, setInputValue] = useControllableState({
     defaultProp: "",
     onChange: onInputValueChange,
     prop: inputValueProp,
   });
-  const items = useCommandItems({ inputValue, items: itemsProp });
+  const items = useCommandItems({ inputValue, options });
 
   const [activePath, setActivePath] = useState<number[]>([]);
   useEffect(() => {
@@ -95,7 +95,7 @@ export function Command({
         highlightedIndex !== -1 &&
         type === useCombobox.stateChangeTypes.ItemMouseMove
       ) {
-        if (items[highlightedIndex]?.subItems?.length) {
+        if (items[highlightedIndex]?.subOptions?.length) {
           setActivePath((path) =>
             !path.includes(highlightedIndex) ? [highlightedIndex] : path,
           );
@@ -111,7 +111,7 @@ export function Command({
       ) {
         if (
           typeof highlightedIndex === "number" &&
-          selectedItem.subItems?.length
+          selectedItem.subOptions?.length
         ) {
           setActivePath((path) =>
             !path.includes(highlightedIndex) ? [highlightedIndex] : path,

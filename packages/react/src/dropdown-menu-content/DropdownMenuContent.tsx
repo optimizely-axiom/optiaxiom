@@ -5,14 +5,14 @@ import type { ExcludeProps } from "../utils";
 
 import { Box, type BoxProps } from "../box";
 import { useDropdownMenuContext } from "../dropdown-menu-context";
-import { MenuListbox } from "../menu-listbox";
+import { OverlayListbox } from "../overlay-listbox";
 import { Spinner } from "../spinner";
 import { TransitionGroup } from "../transition-group";
 
 type DropdownMenuContentProps = ExcludeProps<
   BoxProps<
     typeof RadixMenu.Content,
-    Pick<ComponentPropsWithoutRef<typeof MenuListbox>, "maxH" | "minW"> & {
+    Pick<ComponentPropsWithoutRef<typeof OverlayListbox>, "maxH" | "minW"> & {
       /**
        * Whether to show loading spinner inside the menu.
        */
@@ -47,7 +47,7 @@ export const DropdownMenuContent = forwardRef<
       presence={presence}
     >
       <RadixMenu.Portal forceMount>
-        <MenuListbox
+        <OverlayListbox
           asChild
           minW={loading ? "trigger" : undefined}
           provider="dropdown-menu"
@@ -71,7 +71,7 @@ export const DropdownMenuContent = forwardRef<
               children
             )}
           </RadixMenu.Content>
-        </MenuListbox>
+        </OverlayListbox>
       </RadixMenu.Portal>
     </TransitionGroup>
   );

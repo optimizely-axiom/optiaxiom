@@ -3,10 +3,10 @@ import { forwardRef } from "react";
 
 import { Box } from "../box";
 import { Button, type ButtonProps } from "../button";
-import { useComboboxContext } from "../combobox-context";
-import { ComboboxTrigger } from "../combobox-trigger";
 import { DialogTrigger } from "../dialog-trigger";
 import { IconMagnifyingGlass } from "../icons/IconMagnifyingGlass";
+import { useMenuContext } from "../menu-context";
+import { MenuTrigger } from "../menu-trigger";
 
 type SpotlightTriggerProps = ButtonProps<
   typeof DialogTrigger,
@@ -21,18 +21,16 @@ export const SpotlightTrigger = forwardRef<
   HTMLButtonElement,
   SpotlightTriggerProps
 >(({ children, hotkey = DEFAULT_HOTKEY, ...props }, ref) => {
-  const { open, setOpen } = useComboboxContext(
-    "@optiaxiom/react/SpotlightTrigger",
-  );
+  const { open, setOpen } = useMenuContext("@optiaxiom/react/SpotlightTrigger");
 
   useHotkeys([[hotkey, () => setOpen(!open)]]);
 
   return (
-    <ComboboxTrigger asChild ref={ref} {...props}>
+    <MenuTrigger asChild ref={ref} {...props}>
       <Button icon={<IconMagnifyingGlass />}>
         <Box color="fg.tertiary">{children}</Box>
       </Button>
-    </ComboboxTrigger>
+    </MenuTrigger>
   );
 });
 

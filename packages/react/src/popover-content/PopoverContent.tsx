@@ -5,8 +5,8 @@ import { type ComponentPropsWithoutRef, forwardRef, useRef } from "react";
 
 import type { BoxProps } from "../box";
 
-import { MenuListbox } from "../menu-listbox";
 import { ModalProvider } from "../modal-context";
+import { OverlayListbox } from "../overlay-listbox";
 import { usePopoverContext } from "../popover-context";
 import { TransitionGroup } from "../transition-group";
 import { type ExcludeProps, onReactSelectInputBlur } from "../utils";
@@ -14,7 +14,7 @@ import { type ExcludeProps, onReactSelectInputBlur } from "../utils";
 type PopoverContentProps = ExcludeProps<
   BoxProps<
     typeof RadixPopover.Content,
-    Pick<ComponentPropsWithoutRef<typeof MenuListbox>, "maxH" | "minW"> & {
+    Pick<ComponentPropsWithoutRef<typeof OverlayListbox>, "maxH" | "minW"> & {
       /**
        * Whether to show an arrow.
        */
@@ -51,7 +51,7 @@ export const PopoverContent = forwardRef<HTMLDivElement, PopoverContentProps>(
         presence={presence}
       >
         <RadixPopover.Portal forceMount>
-          <MenuListbox
+          <OverlayListbox
             asChild
             onBlur={onReactSelectInputBlur}
             p="16"
@@ -86,7 +86,7 @@ export const PopoverContent = forwardRef<HTMLDivElement, PopoverContentProps>(
                 </RadixPopover.Arrow>
               )}
             </RadixPopover.Content>
-          </MenuListbox>
+          </OverlayListbox>
         </RadixPopover.Portal>
       </TransitionGroup>
     );

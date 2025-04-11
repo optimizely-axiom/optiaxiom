@@ -81,9 +81,6 @@ export default {
       code: {
         display: "hidden",
       },
-      combobox: {
-        title: <AlphaItem>Combobox</AlphaItem>,
-      },
       "data-table": {
         title: <AlphaItem>DataTable</AlphaItem>,
       },
@@ -110,6 +107,9 @@ export default {
         display: "hidden",
       },
       link: "Link",
+      menu: {
+        title: <AlphaItem>Menu</AlphaItem>,
+      },
       pagination: "Pagination",
       pill: {
         title: <AlphaItem>Pill</AlphaItem>,

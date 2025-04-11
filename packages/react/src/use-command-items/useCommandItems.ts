@@ -8,12 +8,12 @@ import { fuzzysearch } from "./fuzzysearch";
 
 type useCommandItemsProps = Pick<
   ComponentPropsWithoutRef<typeof Command>,
-  "inputValue" | "items"
+  "inputValue" | "options"
 >;
 
 export const useCommandItems = ({
   inputValue,
-  items: itemsProp,
+  options,
 }: useCommandItemsProps) => {
   const filterFn = useEffectEvent((item: CommandOption, inputValue: string) => {
     const string = resolveItemProperty(item.label, {
@@ -28,17 +28,17 @@ export const useCommandItems = ({
   });
   return useMemo(() => {
     const substring = (inputValue ?? "").normalize();
-    return itemsProp.flatMap((item) => {
-      if (item.subItems && substring) {
-        return item.subItems
+    return options.flatMap((item) => {
+      if (item.subOptions && substring) {
+        return item.subOptions
           .filter((item) => filterFn(item, substring))
-          .map((subItem) => ({
+          .map<CommandOption>((subItem) => ({
             ...subItem,
-            parentItem: item,
+            parentOption: item,
           }));
       } else {
         return filterFn(item, substring) ? [item] : [];
       }
     });
-  }, [itemsProp, filterFn, inputValue]);
+  }, [options, filterFn, inputValue]);
 };
