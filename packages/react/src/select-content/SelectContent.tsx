@@ -77,6 +77,7 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
               minW="trigger"
               provider="popper"
               ref={ref}
+              role="dialog"
               size={size}
               {...props}
             >
