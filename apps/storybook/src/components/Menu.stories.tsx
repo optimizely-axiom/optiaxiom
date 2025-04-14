@@ -378,11 +378,7 @@ export const Controlled: Story = {
   },
 };
 
-const groups = [
-  { name: "Fruits", visible: true },
-  { name: "Vegetables", visible: true },
-  { name: "Meats", visible: true },
-];
+const groups = [{ name: "Fruits" }, { name: "Vegetables" }, { name: "Meats" }];
 
 const foods = [
   { group: groups[0], label: "Apple" },
