@@ -22,6 +22,8 @@ type ListboxItemizedProps = BoxProps<
     highlightedItem?: any;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     items: any[] | readonly any[];
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    itemToKey: (item: any) => string;
     /**
      * Whether to show loading spinner inside the menu.
      */
@@ -38,6 +40,7 @@ export const ListboxItemized = forwardRef<HTMLDivElement, ListboxItemizedProps>(
       empty = "No results found.",
       highlightedItem,
       items,
+      itemToKey,
       loading,
       onPlacedChange,
       placed,
@@ -77,7 +80,7 @@ export const ListboxItemized = forwardRef<HTMLDivElement, ListboxItemizedProps>(
             )
           ) : items.length > 0 ? (
             items.map((item, index) => (
-              <Fragment key={index}>{children(item, index)}</Fragment>
+              <Fragment key={itemToKey(item)}>{children(item, index)}</Fragment>
             ))
           ) : (
             <ListboxEmpty>{empty}</ListboxEmpty>

@@ -23,6 +23,7 @@ export type CommandOption = {
    */
   execute?: (context: { inputValue: string | undefined }) => void;
   group?: Group;
+  key?: string;
   keywords?: string;
   /**
    * Return a string representation of item.
