@@ -50,7 +50,7 @@ export const ListboxItemized = forwardRef<HTMLDivElement, ListboxItemizedProps>(
   ) => {
     const onPlacedChangeStable = useEffectEvent(onPlacedChange ?? (() => {}));
     useEffect(() => {
-      onPlacedChangeStable(true);
+      requestAnimationFrame(() => onPlacedChangeStable(true));
       return () => onPlacedChangeStable(false);
     }, [onPlacedChangeStable]);
 
@@ -62,6 +62,7 @@ export const ListboxItemized = forwardRef<HTMLDivElement, ListboxItemizedProps>(
           placed
         }
         ref={ref}
+        tabIndex={-1}
         {...props}
       >
         {loading ? (
