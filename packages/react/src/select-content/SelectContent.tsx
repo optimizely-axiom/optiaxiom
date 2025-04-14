@@ -91,6 +91,7 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
                 <ListboxItemized
                   highlightedItem={highlightedItem}
                   items={items}
+                  itemToKey={(item: SelectOption) => item.value}
                   loading={loading}
                   onPlacedChange={setPlaced}
                   placed={placed}
