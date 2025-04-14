@@ -90,6 +90,7 @@ export const MenuSubContent = forwardRef<HTMLDivElement, MenuSubContentProps>(
             <DropdownMenuContent
               align={align}
               alignOffset={-4}
+              loop
               onCloseAutoFocus={(event) => {
                 if (activePath.length) {
                   return;
