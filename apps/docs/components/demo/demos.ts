@@ -258,6 +258,7 @@ export const demos = {
     "@/demos/menu/input-controlled-usage/App"
   ),
   "menu/input-usage": import("@/demos/menu/input-usage/App"),
+  "menu/nested-usage": import("@/demos/menu/nested-usage/App"),
   "menu/usage": import("@/demos/menu/usage/App"),
   "menu/virtualized-usage": import("@/demos/menu/virtualized-usage/App"),
   "modal-layer/usage": import("@/demos/modal-layer/usage/App"),

@@ -1,12 +1,7 @@
 "use client";
 
 import type { UseComboboxReturnValue } from "downshift";
-import type {
-  Dispatch,
-  MutableRefObject,
-  ReactNode,
-  SetStateAction,
-} from "react";
+import type { MutableRefObject, ReactNode } from "react";
 
 import { createContext } from "@radix-ui/react-context";
 
@@ -65,7 +60,6 @@ export const resolveItemProperty = <Value>(
     : Value;
 
 export const [CommandProvider, useCommandContext] = createContext<{
-  activePath: number[];
   downshift: UseComboboxReturnValue<CommandOption>;
   empty: ReactNode;
   highlightedItem: CommandOption | undefined;
@@ -81,7 +75,6 @@ export const [CommandProvider, useCommandContext] = createContext<{
     };
   }>;
   placed: boolean;
-  setActivePath: Dispatch<SetStateAction<number[]>>;
   setHighlightedIndex: (index: number) => void;
   setInputValue: (value: string) => void;
   setPlaced: (placed: boolean) => void;

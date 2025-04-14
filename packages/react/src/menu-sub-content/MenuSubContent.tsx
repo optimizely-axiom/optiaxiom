@@ -49,11 +49,12 @@ export const MenuSubContent = forwardRef<HTMLDivElement, MenuSubContentProps>(
     { align = "start", children, className, item, side = "right", ...props },
     outerRef,
   ) => {
-    const { inputRef, setOpen } = useMenuContext(
+    const { activePath, inputRef, onSelect, setOpen } = useMenuContext(
       "@optiaxiom/react/MenuSubContent",
     );
-    const { activePath, downshift, inputValue, setInputValue } =
-      useCommandContext("@optiaxiom/react/MenuSubContent");
+    const { inputValue, setInputValue } = useCommandContext(
+      "@optiaxiom/react/MenuSubContent",
+    );
     const {
       contentRef,
       open,
@@ -125,7 +126,10 @@ export const MenuSubContent = forwardRef<HTMLDivElement, MenuSubContentProps>(
                   switch (type) {
                     case "action":
                       element = (
-                        <DropdownMenuItem asChild>
+                        <DropdownMenuItem
+                          asChild
+                          onSelect={() => onSelect(item, { close: true })}
+                        >
                           <ListboxItem addonBefore={item.addon}>
                             {resolveItemProperty(item.label, { inputValue })}
                           </ListboxItem>
@@ -137,9 +141,20 @@ export const MenuSubContent = forwardRef<HTMLDivElement, MenuSubContentProps>(
                         <DropdownMenuCheckboxItem
                           asChild
                           checked={resolveItemProperty(item.selected)}
-                          onSelect={() => downshift.selectItem(item)}
+                          onKeyDown={(event) => {
+                            if (event.key === " ") {
+                              event.preventDefault();
+                              onSelect(item, { close: false });
+                            }
+                          }}
+                          onSelect={() => onSelect(item, { close: true })}
                         >
-                          <ListboxCheckboxItem addonBefore={item.addon}>
+                          <ListboxCheckboxItem
+                            addonBefore={item.addon}
+                            onCheckedChange={() =>
+                              onSelect(item, { close: false })
+                            }
+                          >
                             {resolveItemProperty(item.label, { inputValue })}
                           </ListboxCheckboxItem>
                         </DropdownMenuCheckboxItem>
@@ -150,7 +165,13 @@ export const MenuSubContent = forwardRef<HTMLDivElement, MenuSubContentProps>(
                         <DropdownMenuCheckboxItem
                           asChild
                           checked={resolveItemProperty(item.selected)}
-                          onSelect={() => downshift.selectItem(item)}
+                          onKeyDown={(event) => {
+                            if (event.key === " ") {
+                              event.preventDefault();
+                              onSelect(item, { close: false });
+                            }
+                          }}
+                          onSelect={() => onSelect(item, { close: true })}
                         >
                           <ListboxRadioItem addonBefore={item.addon}>
                             {resolveItemProperty(item.label, { inputValue })}

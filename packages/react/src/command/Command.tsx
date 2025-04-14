@@ -1,6 +1,6 @@
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import { useCombobox } from "downshift";
-import { type ReactNode, useEffect, useRef, useState } from "react";
+import { type ReactNode, useRef } from "react";
 
 import {
   type CommandOption,
@@ -26,13 +26,17 @@ type CommandProps = {
    */
   loading?: boolean;
   /**
+   * Handler that is called when an item is hovered via mouse.
+   */
+  onHover?: (item: CommandOption) => void;
+  /**
    * Handler that is called when input value changes.
    */
   onInputValueChange?: (inputValue: string) => void;
   /**
    * Handler that is called when an item is selected either via keyboard or mouse.
    */
-  onOptionSelect?: () => void;
+  onSelect?: (item: CommandOption, context: { close: boolean }) => void;
   /**
    * The items we want to render.
    */
@@ -44,8 +48,9 @@ export function Command({
   empty,
   inputValue: inputValueProp,
   loading,
+  onHover,
   onInputValueChange,
-  onOptionSelect: onItemSelect,
+  onSelect: onItemSelect,
   options,
 }: CommandProps) {
   const [inputValue, setInputValue] = useControllableState({
@@ -54,13 +59,6 @@ export function Command({
     prop: inputValueProp,
   });
   const items = useCommandItems({ inputValue, options });
-
-  const [activePath, setActivePath] = useState<number[]>([]);
-  useEffect(() => {
-    if (inputValue) {
-      setActivePath((path) => (path.length ? [] : path));
-    }
-  }, [inputValue]);
 
   const [highlightedIndex, setHighlightedIndex, placed, setPlaced] =
     usePortalPatch(() =>
@@ -95,31 +93,17 @@ export function Command({
         highlightedIndex !== -1 &&
         type === useCombobox.stateChangeTypes.ItemMouseMove
       ) {
-        if (items[highlightedIndex]?.subOptions?.length) {
-          setActivePath((path) =>
-            !path.includes(highlightedIndex) ? [highlightedIndex] : path,
-          );
-        } else {
-          setActivePath((path) => (path.length ? [] : path));
-        }
+        onHover?.(items[highlightedIndex]);
       }
     },
-    onSelectedItemChange({ highlightedIndex, selectedItem, type }) {
+    onSelectedItemChange({ selectedItem, type }) {
       if (
         type !== useCombobox.stateChangeTypes.InputBlur &&
         selectedItem !== null
       ) {
-        if (
-          typeof highlightedIndex === "number" &&
-          selectedItem.subOptions?.length
-        ) {
-          setActivePath((path) =>
-            !path.includes(highlightedIndex) ? [highlightedIndex] : path,
-          );
-        } else {
-          selectedItem.execute?.({ inputValue });
-          onItemSelect?.();
-        }
+        onItemSelect?.(selectedItem, {
+          close: type !== useCombobox.stateChangeTypes.FunctionSelectItem,
+        });
       }
     },
     selectedItem: null,
@@ -153,7 +137,6 @@ export function Command({
 
   return (
     <CommandProvider
-      activePath={activePath}
       downshift={downshift}
       empty={empty}
       highlightedItem={items[downshift.highlightedIndex]}
@@ -162,7 +145,6 @@ export function Command({
       loading={loading}
       pauseInteractionRef={pauseInteractionRef}
       placed={placed}
-      setActivePath={setActivePath}
       setHighlightedIndex={setHighlightedIndex}
       setInputValue={useEffectEvent((newInputValue: string) => {
         if (inputValue === "" && newInputValue === "") {

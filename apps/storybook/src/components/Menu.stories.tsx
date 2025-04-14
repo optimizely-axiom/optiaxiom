@@ -7,6 +7,7 @@ import {
   type MenuOption,
   MenuTrigger,
 } from "@optiaxiom/react/unstable";
+import { expect, screen, userEvent, waitFor } from "@storybook/test";
 import { IconSend, IconUserCircle } from "@tabler/icons-react";
 import { useMemo, useRef, useState } from "react";
 
@@ -420,6 +421,43 @@ export const Group: Story = {
         <MenuTrigger>Select an item</MenuTrigger>
         <MenuContent />
       </Menu>
+    );
+  },
+};
+
+export const Nested: Story = {
+  args: {
+    children: (
+      <>
+        <MenuTrigger />
+        <MenuContent />
+      </>
+    ),
+    options: [
+      { label: "Create Task" },
+      {
+        label: "Add to",
+        subOptions: [
+          { label: "Favorite" },
+          { label: "Collection" },
+          { label: "Campaign" },
+        ],
+      },
+    ],
+  },
+  play: async () => {
+    await waitFor(
+      async () =>
+        await expect(
+          screen.getByRole("option", { name: "Add to" }),
+        ).not.toHaveStyle("pointer-events: none"),
+    );
+    await userEvent.hover(screen.getByRole("option", { name: "Add to" }));
+    await waitFor(
+      async () =>
+        await expect(
+          screen.getByRole("menuitem", { name: "Favorite" }),
+        ).toBeVisible(),
     );
   },
 };

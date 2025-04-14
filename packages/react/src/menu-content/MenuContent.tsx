@@ -1,11 +1,4 @@
-import {
-  type ComponentPropsWithoutRef,
-  forwardRef,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import type { DialogContent } from "../dialog-content";
 import type { PopoverContent } from "../popover-content";
@@ -29,34 +22,13 @@ type MenuContentProps = ExcludeProps<
 export const MenuContent = forwardRef<HTMLDivElement, MenuContentProps>(
   ({ children, ...props }, ref) => {
     const { labelId } = useFieldContext();
-    const { defaultInputVisible, open, placeholder, size } = useMenuContext(
+    const { inputVisible, placeholder, size } = useMenuContext(
       "@optiaxiom/react/MenuContent",
     );
-    const { empty, inputValue, items, loading } = useCommandContext(
+    const { empty, loading } = useCommandContext(
       "@optiaxiom/react/MenuContent",
     );
     const Comp = size === "sm" ? MenuPopoverContent : MenuDialogContent;
-
-    const hasSelectableItem = useMemo(
-      () => items.some((item) => "selected" in item),
-      [items],
-    );
-    const inputDefaultVisibleRef = useRef(hasSelectableItem);
-    inputDefaultVisibleRef.current = hasSelectableItem || defaultInputVisible;
-
-    const [inputVisible, setInputVisible] = useState(
-      inputDefaultVisibleRef.current,
-    );
-    useEffect(() => {
-      if (inputValue) {
-        setInputVisible(true);
-      }
-    }, [inputValue]);
-    useEffect(() => {
-      if (open) {
-        setInputVisible(inputDefaultVisibleRef.current);
-      }
-    }, [open]);
 
     return (
       <Comp
