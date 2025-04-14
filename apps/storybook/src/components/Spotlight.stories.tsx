@@ -21,15 +21,12 @@ type Story = StoryObj<typeof Spotlight>;
 const categories = {
   Layout: {
     name: "Layout",
-    visible: true,
   },
   Sizing: {
     name: "Sizing",
-    visible: true,
   },
   Typography: {
     name: "Typography",
-    visible: true,
   },
 };
 

@@ -73,7 +73,7 @@ export const MenuSubContent = forwardRef<HTMLDivElement, MenuSubContentProps>(
     const shouldShowGroup = (group: Group | undefined): group is Group => {
       const show = group !== lastGroup;
       lastGroup = group;
-      return show && !!group?.visible;
+      return show && !group?.hidden;
     };
 
     return (

@@ -42,9 +42,9 @@ export type CommandOption = {
 };
 
 export type Group = {
+  hidden?: boolean;
   name: string;
   separator?: boolean;
-  visible?: boolean;
 };
 
 export const resolveItemProperty = <Value>(
