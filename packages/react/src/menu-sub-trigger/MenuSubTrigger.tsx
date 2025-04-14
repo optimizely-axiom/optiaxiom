@@ -55,6 +55,9 @@ export const MenuSubTrigger = forwardRef<HTMLDivElement, MenuSubTriggerProps>(
                   y: box.top,
                 },
               };
+              pauseInteractionRef.current.timer = window.setTimeout(() => {
+                pauseInteractionRef.current.triangle = null;
+              }, 50);
             }}
             ref={ref}
             {...props}
