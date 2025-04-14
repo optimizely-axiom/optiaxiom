@@ -104,7 +104,7 @@ export const ListboxVirtualized = forwardRef<
           paddingTop,
         }}
       >
-        {rowVirtualizer.getVirtualItems().map((virtualItem) => (
+        {virtualItems.map((virtualItem) => (
           <Box
             data-index={virtualItem.index}
             key={virtualItem.key}

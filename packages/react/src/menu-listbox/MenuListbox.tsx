@@ -27,7 +27,7 @@ export const MenuListbox = forwardRef<HTMLDivElement, MenuListboxProps>(
     };
 
     return (
-      <CommandListbox ref={ref} tabIndex={-1} {...props}>
+      <CommandListbox ref={ref} {...props}>
         {children ??
           ((item: CommandOption, index) => {
             if (index === 0) {

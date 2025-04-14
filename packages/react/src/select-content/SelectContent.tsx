@@ -21,7 +21,6 @@ import {
 } from "../select-context";
 import { SelectRadioItem } from "../select-radio-item";
 import { TransitionGroup } from "../transition-group";
-import * as styles from "./SelectContent.css";
 
 type SelectContentProps = ExcludeProps<
   BoxProps<
@@ -44,10 +43,7 @@ type SelectContentProps = ExcludeProps<
 >;
 
 export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
-  (
-    { align = "start", children, className, side = "bottom", size, ...props },
-    ref,
-  ) => {
+  ({ align = "start", children, side = "bottom", size, ...props }, ref) => {
     const {
       downshift,
       highlightedItem,
@@ -75,19 +71,16 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
       <TransitionGroup open={isOpen}>
         <Portal asChild>
           <ModalLayer asChild>
-            <PopperContent align={align} asChild side={side} sideOffset={5}>
-              <OverlayListbox
-                asChild
-                maxH="sm"
-                minW="trigger"
-                provider="popper"
-                size={size}
-                {...styles.content({}, className)}
-                {...downshift.getMenuProps(
-                  { ref, ...props },
-                  { suppressRefError: !placed },
-                )}
-              >
+            <OverlayListbox
+              asChild
+              maxH="sm"
+              minW="trigger"
+              provider="popper"
+              ref={ref}
+              size={size}
+              {...props}
+            >
+              <PopperContent align={align} side={side} sideOffset={5}>
                 <ListboxItemized
                   highlightedItem={highlightedItem}
                   items={items}
@@ -95,6 +88,7 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
                   loading={loading}
                   onPlacedChange={setPlaced}
                   placed={placed}
+                  {...downshift.getMenuProps({}, { suppressRefError: !placed })}
                 >
                   {children ??
                     ((item: SelectOption, index) => {
@@ -123,8 +117,8 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
                       );
                     })}
                 </ListboxItemized>
-              </OverlayListbox>
-            </PopperContent>
+              </PopperContent>
+            </OverlayListbox>
           </ModalLayer>
         </Portal>
       </TransitionGroup>
