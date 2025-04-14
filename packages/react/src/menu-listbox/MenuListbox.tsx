@@ -5,6 +5,7 @@ import { CommandListbox } from "../command-listbox";
 import { ListboxLabel } from "../listbox-label";
 import { ListboxSeparator } from "../listbox-separator";
 import { MenuCheckboxItem } from "../menu-checkbox-item";
+import { useMenuContext } from "../menu-context";
 import { MenuItem } from "../menu-item";
 import { MenuRadioItem } from "../menu-radio-item";
 import { MenuSub } from "../menu-sub";
@@ -13,6 +14,8 @@ type MenuListboxProps = ComponentPropsWithoutRef<typeof CommandListbox>;
 
 export const MenuListbox = forwardRef<HTMLDivElement, MenuListboxProps>(
   ({ children, ...props }, ref) => {
+    const { size } = useMenuContext("@optiaxiom/react/MenuListbox");
+
     let isFirstItem = true;
     let lastGroup: Group | undefined = undefined;
     const shouldShowSeparator = (group: Group | undefined) => {
@@ -35,13 +38,14 @@ export const MenuListbox = forwardRef<HTMLDivElement, MenuListboxProps>(
               lastGroup = undefined;
             }
 
-            const Comp = item.subOptions?.length
-              ? MenuSub
-              : "selected" in item
-                ? item.multi
-                  ? MenuCheckboxItem
-                  : MenuRadioItem
-                : MenuItem;
+            const Comp =
+              item.subOptions?.length && size === "sm"
+                ? MenuSub
+                : "selected" in item
+                  ? item.multi
+                    ? MenuCheckboxItem
+                    : MenuRadioItem
+                  : MenuItem;
             const group = item.group;
             return (
               <>

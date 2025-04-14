@@ -1,5 +1,5 @@
 import { DropdownMenu } from "@radix-ui/react-dropdown-menu";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 import { type CommandOption, useCommandContext } from "../command-context";
 import { useMenuContext } from "../menu-context";
@@ -13,19 +13,12 @@ type MenuSubProps = {
 };
 
 export function MenuSub({ children, item }: MenuSubProps) {
-  const { open } = useMenuContext("@optiaxiom/react/MenuSub");
-  const { activePath, items, setActivePath } = useCommandContext(
+  const { activePath, setActivePath } = useMenuContext(
     "@optiaxiom/react/MenuSub",
   );
+  const { items } = useCommandContext("@optiaxiom/react/MenuSub");
   const index = items.indexOf(item);
 
-  useEffect(() => {
-    if (!open) {
-      setActivePath((path) =>
-        path.at(-1) === index ? path.slice(0, -1) : path,
-      );
-    }
-  }, [index, open, setActivePath]);
   const [presence, setPresence] = useState<boolean>();
 
   const contentRef = useRef<HTMLDivElement>(null);
