@@ -1,5 +1,17 @@
 # @optiaxiom/react
 
+## 1.3.0
+
+### Minor Changes
+
+- 594898a: rename Combobox to Menu
+- a6e4a2f: refactor Select component options
+
+### Patch Changes
+
+- 8cf742d: display fixed weeks and outside days for date range picker
+- 393eab4: refactor combobox to support nested menus
+
 ## 1.2.5
 
 ### Patch Changes
