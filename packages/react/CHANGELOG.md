@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 1.3.1
+
+### Patch Changes
+
+- 6e2b529: support arbitrary nested menus
+
 ## 1.3.0
 
 ### Minor Changes
