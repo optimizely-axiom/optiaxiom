@@ -45,12 +45,12 @@ export const CommandItem = forwardRef<HTMLDivElement, CommandItemProps>(
           return;
         }
 
-        if (!pauseInteractionRef.current.triangle) {
+        if (!pauseInteractionRef.current.isInsideTriangle) {
           return;
         }
 
         if (
-          isInsideTriangle(pauseInteractionRef.current.triangle, {
+          pauseInteractionRef.current.isInsideTriangle({
             x: event.clientX,
             y: event.clientY,
           })
@@ -62,10 +62,10 @@ export const CommandItem = forwardRef<HTMLDivElement, CommandItemProps>(
 
           window.clearTimeout(pauseInteractionRef.current.timer);
           pauseInteractionRef.current.timer = window.setTimeout(() => {
-            pauseInteractionRef.current.triangle = null;
+            pauseInteractionRef.current.isInsideTriangle = null;
           }, 50);
         } else {
-          pauseInteractionRef.current.triangle = null;
+          pauseInteractionRef.current.isInsideTriangle = null;
         }
       },
       ref,
@@ -111,36 +111,3 @@ export const CommandItem = forwardRef<HTMLDivElement, CommandItemProps>(
 );
 
 CommandItem.displayName = "@optiaxiom/react/CommandItem";
-
-type Coords = { x: number; y: number };
-
-function isInsideTriangle(
-  {
-    bottom,
-    side,
-    top,
-  }: {
-    bottom: Coords;
-    side: Coords;
-    top: Coords;
-  },
-  target: Coords,
-) {
-  const b0 =
-      (top.x - side.x) * (bottom.y - side.y) -
-      (bottom.x - side.x) * (top.y - side.y),
-    b1 =
-      ((top.x - target.x) * (bottom.y - target.y) -
-        (bottom.x - target.x) * (top.y - target.y)) /
-      b0,
-    b2 =
-      ((bottom.x - target.x) * (side.y - target.y) -
-        (side.x - target.x) * (bottom.y - target.y)) /
-      b0,
-    b3 =
-      ((side.x - target.x) * (top.y - target.y) -
-        (top.x - target.x) * (side.y - target.y)) /
-      b0;
-
-  return b1 > 0 && b2 > 0 && b3 > 0;
-}
