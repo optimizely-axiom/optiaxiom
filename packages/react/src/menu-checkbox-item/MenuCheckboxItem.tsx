@@ -11,15 +11,20 @@ export const MenuCheckboxItem = forwardRef<
   HTMLDivElement,
   MenuCheckboxItemProps
 >(({ children, ...props }, ref) => {
+  const Comp = props.item.link ? "a" : "div";
   const { inputValue } = useCommandContext("@optiaxiom/react/MenuCheckboxItem");
 
   return (
     <CommandItem asChild ref={ref} {...props}>
       <ListboxCheckboxItem
         addonBefore={props.item.addon}
+        asChild
+        description={props.item.description}
         onCheckedChange={() => props.item.execute?.({ inputValue })}
       >
-        {children}
+        <Comp {...(props.item.link && { href: props.item.link })}>
+          {children}
+        </Comp>
       </ListboxCheckboxItem>
     </CommandItem>
   );
