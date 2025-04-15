@@ -17,7 +17,7 @@ import {
 const options: MenuOption[] = [
   {
     addon: <IconUpload size={16} />,
-    label: "Select from",
+    label: "Select from…",
     subOptions: [
       {
         addon: <IconUpload size={16} />,

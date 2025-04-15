@@ -8,10 +8,10 @@ import {
   useState,
 } from "react";
 
-import type { CommandOption } from "../command-context";
 import type { ExcludeProps, ExtendProps } from "../utils";
 
 import { Command } from "../command";
+import { type CommandOption, resolveItemProperty } from "../command-context";
 import { Dialog } from "../dialog";
 import { MenuProvider } from "../menu-context";
 import { MenuPopover } from "../menu-popover";
@@ -97,8 +97,18 @@ export function Menu({
     () =>
       activePath.length && size === "lg"
         ? (optionsProp[activePath[0]].subOptions ?? [])
-        : optionsProp,
-    [activePath, optionsProp, size],
+        : size === "sm"
+          ? optionsProp.map((option) => ({
+              ...option,
+              label: option.subOptions
+                ? resolveItemProperty(option.label, { inputValue }).replace(
+                    "…",
+                    "",
+                  )
+                : resolveItemProperty(option.label, { inputValue }),
+            }))
+          : optionsProp,
+    [activePath, inputValue, optionsProp, size],
   );
 
   const hasSelectableItem = useMemo(
