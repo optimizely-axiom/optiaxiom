@@ -102,11 +102,17 @@ export const WithLabel: Story = {
 };
 
 export const AsyncLoading: Story = {
+  play: async () => {
+    await waitFor(
+      async () => await expect(screen.getByRole("combobox")).toHaveFocus(),
+    );
+    await userEvent.keyboard("b");
+  },
   render: function AsyncLoading(args) {
-    const [items, setItems] = useState(languages);
+    const [items, setItems] = useState<string[]>();
     const [value, setValue] = useState("Bangla");
 
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
     const timerRef = useRef(0);
     const fetchData = (query: string) => {
       setIsLoading(true);
@@ -124,11 +130,12 @@ export const AsyncLoading: Story = {
       <Menu
         {...args}
         defaultInputVisible
+        empty={items ? undefined : "Start typing to search..."}
         loading={isLoading}
         onInputValueChange={fetchData}
         options={useMemo(
           () =>
-            items.map<MenuOption>((language) => ({
+            (items ?? []).map<MenuOption>((language) => ({
               execute: () => setValue(language),
               label: language,
               selected: () => value === language,
