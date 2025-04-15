@@ -6,8 +6,17 @@ import type { MutableRefObject, ReactNode } from "react";
 import { createContext } from "@radix-ui/react-context";
 
 export type CommandOption = {
+  /**
+   * Images, icons, or avatars to be displayed before the item label.
+   */
   addon?: ReactNode;
+  /**
+   * Additional description on second line after the label.
+   */
   description?: string;
+  /**
+   * Secondary text displayed next to the label.
+   */
   detail?: (context: { inputValue: string | undefined }) => string;
   /**
    * Provide a reason why item needs to be marked as disabled and skipped from keyboard navigation.
@@ -17,25 +26,46 @@ export type CommandOption = {
    * Handler that is called when an item is selected either via keyboard or mouse.
    */
   execute?: (context: { inputValue: string | undefined }) => void;
+  /**
+   * Group item belongs to.
+   */
   group?: Group;
+  /**
+   * Return a unique key for each item (otherwise label is used).
+   */
   key?: string;
+  /**
+   * Additional text to use for filtering items based on input value.
+   */
   keywords?: string;
   /**
    * Return a string representation of item.
    */
   label: ((context: { inputValue: string | undefined }) => string) | string;
+  /**
+   * Render a link with the given value as the `href` attribute.
+   */
   link?: string;
   /**
    * Whether item is multi-selectable.
    */
   multi?: boolean;
+  /**
+   * @private
+   */
   parentOption?: CommandOption;
   /**
-   * Return true if item need to be marked as selected.
+   * Return true if item needs to be marked as selected.
    */
   selected?: (() => boolean) | boolean;
+  /**
+   * An array of sub items that will be displayed in a nested menu.
+   */
   subOptions?: CommandOption[];
-  type?: "action" | "checkbox" | "radio";
+  /**
+   * Override the default filtering logic and fully control when an item is
+   * visible based on the current inputValue.
+   */
   visible?:
     | ((context: { inputValue: string | undefined }) => boolean | undefined)
     | boolean;

@@ -31,6 +31,11 @@ export const CommandItem = forwardRef<HTMLDivElement, CommandItemProps>(
     const itemProps = downshift.getItemProps({
       "aria-selected": selected ?? resolveItemProperty(item.selected),
       item,
+      onClick: (event) => {
+        if (event.currentTarget instanceof HTMLAnchorElement) {
+          event.preventDefault();
+        }
+      },
       onMouseMove: (event) => {
         if (resolveItemProperty(item.disabledReason)) {
           event.preventDefault();
@@ -76,6 +81,7 @@ export const CommandItem = forwardRef<HTMLDivElement, CommandItemProps>(
         size={size}
         tabIndex={-1}
         {...itemProps}
+        {...(item.link && { href: item.link })}
       >
         {decorateChildren(
           { asChild, children },
