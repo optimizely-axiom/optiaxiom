@@ -446,6 +446,17 @@ export const Nested: Story = {
           { label: "Campaign" },
         ],
       },
+      {
+        label: "Download as",
+        subOptions: [
+          {
+            label: "PNG",
+            subOptions: [{ label: "Original" }, { label: "Custom" }],
+          },
+          { label: "JPG" },
+          { label: "PDF" },
+        ],
+      },
     ],
   },
   play: async () => {
@@ -459,7 +470,7 @@ export const Nested: Story = {
     await waitFor(
       async () =>
         await expect(
-          screen.getByRole("menuitem", { name: "Favorite" }),
+          screen.getByRole("option", { name: "Favorite" }),
         ).toBeVisible(),
     );
   },

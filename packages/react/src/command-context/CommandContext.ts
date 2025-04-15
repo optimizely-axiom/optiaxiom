@@ -97,12 +97,8 @@ export const [CommandProvider, useCommandContext] = createContext<{
   items: CommandOption[] | readonly CommandOption[];
   loading: boolean | undefined;
   pauseInteractionRef: MutableRefObject<{
+    isInsideTriangle: ((target: { x: number; y: number }) => boolean) | null;
     timer: number | undefined;
-    triangle: null | {
-      bottom: { x: number; y: number };
-      side: { x: number; y: number };
-      top: { x: number; y: number };
-    };
   }>;
   placed: boolean;
   setHighlightedIndex: (index: number) => void;

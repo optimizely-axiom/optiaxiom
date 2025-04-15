@@ -72,8 +72,8 @@ export function Command({
   }, [placed, setInputValueStable]);
 
   const pauseInteractionRef = useRef({
+    isInsideTriangle: null,
     timer: undefined,
-    triangle: null,
   });
 
   const downshift = useCombobox({

@@ -96,7 +96,10 @@ export function Menu({
   const options = useMemo(
     () =>
       activePath.length && size === "lg"
-        ? (optionsProp[activePath[0]].subOptions ?? [])
+        ? activePath.reduce(
+            (result, index) => result[index].subOptions ?? [],
+            optionsProp,
+          )
         : size === "sm"
           ? optionsProp.map((option) => ({
               ...option,
@@ -164,7 +167,9 @@ export function Menu({
           onSelect={(item, { close }) => {
             if (item.subOptions?.length) {
               const index = options.indexOf(item);
-              setActivePath((path) => (!path.includes(index) ? [index] : path));
+              setActivePath((path) =>
+                path.at(-1) !== index ? [...path, index] : path,
+              );
             } else {
               item.execute?.({ inputValue });
               if (typeof openProp === "undefined" && close) {

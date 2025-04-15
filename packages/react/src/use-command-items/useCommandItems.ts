@@ -28,17 +28,22 @@ export const useCommandItems = ({
   });
   return useMemo(() => {
     const substring = (inputValue ?? "").normalize();
-    return options.flatMap((item) => {
-      if (item.subOptions && substring) {
-        return item.subOptions
-          .filter((item) => filterFn(item, substring))
-          .map<CommandOption>((subItem) => ({
-            ...subItem,
-            parentOption: item,
-          }));
-      } else {
-        return filterFn(item, substring) ? [item] : [];
-      }
-    });
+    const callback =
+      (parentOption?: CommandOption) =>
+      (item: CommandOption): CommandOption[] => {
+        return item.subOptions && substring
+          ? item.subOptions.flatMap(callback(item))
+          : filterFn(item, substring)
+            ? [
+                parentOption
+                  ? {
+                      ...item,
+                      parentOption,
+                    }
+                  : item,
+              ]
+            : [];
+      };
+    return options.flatMap(callback());
   }, [options, filterFn, inputValue]);
 };

@@ -20,9 +20,7 @@ export const MenuInput = forwardRef<HTMLInputElement, MenuInputProps>(
     const { inputRef, open, size } = useMenuContext(
       "@optiaxiom/react/MenuInput",
     );
-    const { downshift, highlightedItem } = useCommandContext(
-      "@optiaxiom/react/MenuInput",
-    );
+    const { downshift } = useCommandContext("@optiaxiom/react/MenuInput");
     const ref = useComposedRefs(inputRef, outerRef);
 
     const [minWidth, setMinWidth] = useState(160);
@@ -41,27 +39,6 @@ export const MenuInput = forwardRef<HTMLInputElement, MenuInputProps>(
     return (
       <Box ref={containerRef} style={{ minWidth }}>
         <CommandInput
-          htmlSize={1}
-          onKeyDown={(event) => {
-            if (!(event.target instanceof HTMLInputElement)) {
-              return;
-            }
-            if (event.target.value) {
-              return;
-            }
-            if (!highlightedItem) {
-              return;
-            }
-
-            const subOptions = highlightedItem.subOptions;
-            if (event.key === " ") {
-              event.preventDefault();
-              downshift.selectItem(highlightedItem);
-            } else if (event.key === "ArrowRight" && subOptions?.length) {
-              event.preventDefault();
-              downshift.selectItem(highlightedItem);
-            }
-          }}
           ref={ref}
           size={size === "sm" ? "md" : "xl"}
           {...styles.input({ size }, className)}

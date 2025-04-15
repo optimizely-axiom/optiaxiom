@@ -21,7 +21,6 @@ type PopoverContentProps = ExcludeProps<
       withArrow?: boolean;
     }
   >,
-  | "alignOffset"
   | "arrowPadding"
   | "avoidCollisions"
   | "collisionBoundary"
