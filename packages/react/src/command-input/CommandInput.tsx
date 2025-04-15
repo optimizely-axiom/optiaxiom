@@ -1,4 +1,4 @@
-import { type ComponentPropsWithoutRef, forwardRef, useEffect } from "react";
+import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import { useCommandContext } from "../command-context";
 import { IconMagnifyingGlass } from "../icons/IconMagnifyingGlass";
@@ -11,20 +11,17 @@ export const CommandInput = forwardRef<HTMLInputElement, CommandInputProps>(
     const { downshift, setInputValue } = useCommandContext(
       "@optiaxiom/react/CommandInput",
     );
-    useEffect(() => {
-      setInputValue("");
-    }, [setInputValue]);
 
     return (
       <Input
         addonBefore={<IconMagnifyingGlass />}
         size={size}
         {...downshift.getInputProps({
+          ref,
           ...props,
           onChange: (event) => {
             setInputValue("value" in event.target ? event.target.value : "");
           },
-          ref,
         })}
       />
     );

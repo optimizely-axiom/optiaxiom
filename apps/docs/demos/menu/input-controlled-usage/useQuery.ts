@@ -1,6 +1,8 @@
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
-export const useQuery = <T extends (...args: Parameters<T>) => ReturnType<T>>(
+export const useQuery = <
+  T extends (...args: [inputValue: string]) => ReturnType<T>,
+>(
   fetchFn: T,
 ) => {
   const [data, setData] = useState<ReturnType<T>>();
@@ -11,7 +13,7 @@ export const useQuery = <T extends (...args: Parameters<T>) => ReturnType<T>>(
 
   const timerRef = useRef<number>();
 
-  const refetch = useCallback((...args: Parameters<T>) => {
+  const refetch = useCallback((...args: [inputValue: string]) => {
     setIsLoading(true);
     window.clearTimeout(timerRef.current);
     timerRef.current = window.setTimeout(() => {
@@ -19,6 +21,10 @@ export const useQuery = <T extends (...args: Parameters<T>) => ReturnType<T>>(
       setIsLoading(false);
     }, 600);
   }, []);
+
+  useEffect(() => {
+    refetch("");
+  }, [refetch]);
 
   return { data, isLoading, refetch };
 };
