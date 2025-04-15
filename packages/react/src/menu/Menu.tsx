@@ -133,7 +133,12 @@ export function Menu({
     if (open) {
       setInputVisible(inputDefaultVisibleRef.current);
     }
-  }, [activePath, open]);
+  }, [open]);
+  useEffect(() => {
+    if (size === "lg") {
+      setInputVisible(inputDefaultVisibleRef.current);
+    }
+  }, [activePath, size]);
 
   return (
     <Comp onOpenChange={setOpen} open={open}>
