@@ -108,7 +108,9 @@ export function Command({
         selectedItem !== null
       ) {
         onItemSelect?.(selectedItem, {
-          close: type !== useCombobox.stateChangeTypes.FunctionSelectItem,
+          close:
+            type !== useCombobox.stateChangeTypes.FunctionSelectItem ||
+            !("selected" in selectedItem),
         });
       }
     },
