@@ -132,6 +132,7 @@ export const cell = recipe({
       display: "flex",
     },
     style({
+      flexGrow: "999",
       width: cellSizeVar,
     }),
   ],
