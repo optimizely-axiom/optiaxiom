@@ -50,7 +50,14 @@ export const ListboxItemized = forwardRef<HTMLDivElement, ListboxItemizedProps>(
   ) => {
     const onPlacedChangeStable = useEffectEvent(onPlacedChange ?? (() => {}));
     useEffect(() => {
-      requestAnimationFrame(() => onPlacedChangeStable(true));
+      /**
+       * We wait for first paint to render the menu and then another paint for
+       * radix popper to place the menu and set the max-height. Otherwise we
+       * cannot scroll to the item because it isn't scrollable yet.
+       */
+      requestAnimationFrame(() =>
+        requestAnimationFrame(() => onPlacedChangeStable(true)),
+      );
       return () => onPlacedChangeStable(false);
     }, [onPlacedChangeStable]);
 
