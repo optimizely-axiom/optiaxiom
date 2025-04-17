@@ -1,5 +1,12 @@
 # @optiaxiom/react
 
+## 1.3.2
+
+### Patch Changes
+
+- 50fa0b2: fix regular cell width compared to fill cell
+- ca3df93: fix field content alignment
+
 ## 1.3.1
 
 ### Patch Changes
