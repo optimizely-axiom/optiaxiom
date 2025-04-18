@@ -1,14 +1,24 @@
 import { forwardRef } from "react";
 
-import { Box, type BoxProps } from "../box";
+import { type BoxProps } from "../box";
+import { Text } from "../text";
+import { Tooltip } from "../tooltip";
 
 export type BreadcrumbPageProps = BoxProps<"span">;
 export const BreadcrumbPage = forwardRef<HTMLSpanElement, BreadcrumbPageProps>(
   ({ ...props }, ref) => {
     return (
-      <Box aria-current="page" asChild color="fg.default" fontSize="md">
-        <span ref={ref} {...props} />
-      </Box>
+      <Tooltip auto content={props.children}>
+        <Text
+          aria-current="page"
+          asChild
+          color="fg.default"
+          fontSize="md"
+          truncate
+        >
+          <span ref={ref} {...props} />
+        </Text>
+      </Tooltip>
     );
   },
 );
