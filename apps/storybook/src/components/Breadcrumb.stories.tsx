@@ -99,3 +99,25 @@ export const WithDropdown: Story = {
     ),
   },
 };
+
+export const Truncated: Story = {
+  args: {
+    children: (
+      <>
+        <BreadcrumbItem>
+          <BreadcrumbLink href="/">
+            This is a home page breadcrumb
+          </BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbItem>
+          <BreadcrumbLink href="/components">
+            This is a component page breadcrumb
+          </BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbItem>
+          <BreadcrumbPage>This is a page of breadcrumb</BreadcrumbPage>
+        </BreadcrumbItem>
+      </>
+    ),
+  },
+};

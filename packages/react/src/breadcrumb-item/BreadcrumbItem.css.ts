@@ -9,6 +9,8 @@ export const item = recipe({
       display: "inline-flex",
     },
     style({
+      maxWidth: "160px",
+
       selectors: {
         "&:not(:first-child)::before": {
           color: theme.colors["fg.tertiary"],
