@@ -4,10 +4,8 @@ export const checkbox = recipe({
   base: [
     {
       display: "inline-flex",
-      transition: "opacity",
     },
     style({
-      opacity: 0,
       position: "relative",
 
       selectors: {
@@ -19,13 +17,4 @@ export const checkbox = recipe({
       },
     }),
   ],
-
-  variants: {
-    visible: {
-      false: {},
-      true: style({
-        opacity: 1,
-      }),
-    },
-  },
 });
