@@ -1,12 +1,14 @@
 import { forwardRef, type ReactNode } from "react";
 
 import { Box, type BoxProps, extractBoxProps } from "../box";
-import { ToggleInput } from "../toggle-input";
-import { ToggleInputContent } from "../toggle-input-content";
-import { ToggleInputControl } from "../toggle-input-control";
-import { ToggleInputDescription } from "../toggle-input-description";
-import { ToggleInputHiddenInput } from "../toggle-input-hidden-input";
-import { ToggleInputLabel } from "../toggle-input-label";
+import {
+  ToggleInput,
+  ToggleInputContent,
+  ToggleInputControl,
+  ToggleInputDescription,
+  ToggleInputHiddenInput,
+  ToggleInputLabel,
+} from "../toggle-input";
 import * as styles from "./Switch.css";
 
 type SwitchProps = BoxProps<

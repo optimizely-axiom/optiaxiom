@@ -7,11 +7,14 @@ import {
 } from "react";
 
 import { extractBoxProps } from "../box";
-import { InputAddon } from "../input-addon";
-import { InputControl, type InputControlProps } from "../input-control";
-import { InputRoot } from "../input-root";
-import { TextareaAutosize } from "../textarea-autosize";
+import {
+  InputAddon,
+  InputControl,
+  type InputControlProps,
+  InputRoot,
+} from "../input";
 import { fallbackSpan } from "../utils";
+import { TextareaAutosize } from "./TextareaAutosize";
 
 type TextareaProps = InputControlProps<
   typeof TextareaAutosize,

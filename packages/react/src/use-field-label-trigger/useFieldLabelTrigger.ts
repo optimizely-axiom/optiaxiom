@@ -1,6 +1,6 @@
 import { type RefObject, useEffect } from "react";
 
-import { useFieldContext } from "../field-context";
+import { useFieldContext } from "../field/internals";
 
 export const useFieldLabelTrigger = (
   ref: RefObject<HTMLButtonElement>,

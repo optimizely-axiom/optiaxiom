@@ -3,9 +3,9 @@ import { type ComponentPropsWithRef, type ReactNode } from "react";
 import type { ExcludeProps } from "../utils";
 
 import { type BoxProps } from "../box";
-import { TooltipContent } from "../tooltip-content";
-import { TooltipRoot } from "../tooltip-root";
-import { TooltipTrigger } from "../tooltip-trigger";
+import { TooltipContent } from "./TooltipContent";
+import { TooltipRoot } from "./TooltipRoot";
+import { TooltipTrigger } from "./TooltipTrigger";
 
 type TooltipProps = ExcludeProps<
   BoxProps<

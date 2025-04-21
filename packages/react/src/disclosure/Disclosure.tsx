@@ -3,7 +3,7 @@ import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import { forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
-import { DisclosureProvider } from "../disclosure-context";
+import { DisclosureProvider } from "./DisclosureContext";
 
 type DisclosureProps = BoxProps<
   typeof RadixCollapsible.Root,

@@ -1,10 +1,10 @@
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import { type BoxProps } from "../box";
-import { CheckboxContent } from "../checkbox-content";
-import { CheckboxControl } from "../checkbox-control";
-import { CheckboxRoot } from "../checkbox-root";
-import { ToggleInputHiddenInput } from "../toggle-input-hidden-input";
+import { ToggleInputHiddenInput } from "../toggle-input";
+import { CheckboxContent } from "./CheckboxContent";
+import { CheckboxControl } from "./CheckboxControl";
+import { CheckboxRoot } from "./CheckboxRoot";
 
 type CheckboxProps = BoxProps<
   typeof ToggleInputHiddenInput,

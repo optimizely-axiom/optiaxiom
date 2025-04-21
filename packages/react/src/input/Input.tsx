@@ -6,11 +6,11 @@ import {
 } from "react";
 
 import { extractBoxProps } from "../box";
-import { InputAddon } from "../input-addon";
-import { InputControl, type InputControlProps } from "../input-control";
-import { InputRoot } from "../input-root";
 import { fallbackSpan } from "../utils";
 import * as styles from "./Input.css";
+import { InputAddon } from "./InputAddon";
+import { InputControl, type InputControlProps } from "./InputControl";
+import { InputRoot } from "./InputRoot";
 
 type InputProps = InputControlProps<
   "input",

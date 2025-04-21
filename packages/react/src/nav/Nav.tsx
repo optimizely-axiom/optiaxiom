@@ -2,7 +2,7 @@ import { forwardRef } from "react";
 
 import { type BoxProps } from "../box";
 import { Flex } from "../flex";
-import { useSidebarContext } from "../sidebar-context";
+import { useSidebarContext } from "../sidebar/internals";
 import * as styles from "./Nav.css";
 
 type NavProps = BoxProps<

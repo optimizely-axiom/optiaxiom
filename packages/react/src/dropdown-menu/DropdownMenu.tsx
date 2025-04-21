@@ -2,8 +2,8 @@ import * as RadixMenu from "@radix-ui/react-dropdown-menu";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import { useState } from "react";
 
-import { DropdownMenuProvider } from "../dropdown-menu-context";
-import { DropdownMenuNestedProvider } from "../dropdown-menu-nested-context";
+import { DropdownMenuProvider } from "./DropdownMenuContext";
+import { DropdownMenuNestedProvider } from "./DropdownMenuNestedContext";
 
 type MenuProps = {
   children?: React.ReactNode;

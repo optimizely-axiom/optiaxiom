@@ -1,8 +1,7 @@
 import { theme } from "@optiaxiom/globals";
 
-import { style } from "../vanilla-extract";
-import { recipe, type RecipeVariants } from "../vanilla-extract";
-import * as styles from "./../avatar-group/AvatarGroup.css";
+import { recipe, type RecipeVariants, style } from "../vanilla-extract";
+import * as styles from "./AvatarGroup.css";
 
 export const avatar = recipe({
   base: [

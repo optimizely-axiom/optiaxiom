@@ -1,7 +1,6 @@
 import { theme } from "@optiaxiom/globals";
 
-import { type RecipeVariants, style } from "../vanilla-extract";
-import { recipe } from "../vanilla-extract";
+import { recipe, type RecipeVariants, style } from "../vanilla-extract";
 
 export const className = style({});
 

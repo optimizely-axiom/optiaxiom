@@ -4,9 +4,7 @@ import { forwardRef } from "react";
 import type { BoxProps } from "../box";
 
 import { Flex } from "../flex";
-import { Select } from "../select";
-import { SelectContent } from "../select-content";
-import { SelectTrigger } from "../select-trigger";
+import { Select, SelectContent, SelectTrigger } from "../select";
 import { format, parse, range } from "./utils";
 
 type ClockProps = BoxProps<

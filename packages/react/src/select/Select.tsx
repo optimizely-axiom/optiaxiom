@@ -12,9 +12,9 @@ import {
 } from "react";
 
 import { usePortalPatch } from "../downshift";
-import { type SelectOption, SelectProvider } from "../select-context";
-import { SelectHiddenSelect } from "../select-hidden-select";
 import { useObserveValue } from "../use-observe-value";
+import { type SelectOption, SelectProvider } from "./SelectContext";
+import { SelectHiddenSelect } from "./SelectHiddenSelect";
 import { useObserveReset } from "./useObserveReset";
 
 type SelectProps = {

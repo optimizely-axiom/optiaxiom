@@ -1,18 +1,18 @@
 import { Slot } from "@radix-ui/react-slot";
 import { type ElementType, forwardRef, type ReactNode, useEffect } from "react";
 
-import { ButtonAddon } from "../button-addon";
-import { ButtonBase, type ButtonBaseProps } from "../button-base";
-import { useButtonContext } from "../button-context";
-import { ButtonLabel } from "../button-label";
-import { ButtonLoadable } from "../button-loadable";
 import { Icon } from "../icon";
 import { decorateChildren, type ExtendProps, fallbackSpan } from "../utils";
+import { ButtonAddon } from "./ButtonAddon";
+import { useButtonContext } from "./ButtonContext";
+import { ButtonLabel } from "./ButtonLabel";
+import { ButtonLoadable } from "./ButtonLoadable";
+import { ButtonRoot, type ButtonRootProps } from "./ButtonRoot";
 
 export type ButtonProps<
   T extends ElementType = "button",
   P = unknown,
-> = ButtonBaseProps<
+> = ButtonRootProps<
   T,
   ExtendProps<
     {
@@ -102,7 +102,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     }, [isIconMissingAriaLabel]);
 
     return (
-      <ButtonBase
+      <ButtonRoot
         asChild
         justifyContent={
           square
@@ -117,7 +117,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         {...props}
       >
         <Comp>{children}</Comp>
-      </ButtonBase>
+      </ButtonRoot>
     );
   },
 );

@@ -1,11 +1,11 @@
 import * as RadixAvatar from "@radix-ui/react-avatar";
 import { forwardRef, useContext } from "react";
 
-import { AvatarContext } from "../avatar-context";
 import { Box, type BoxProps } from "../box";
 import { IconUserSolid } from "../icons/IconUserSolid";
 import { IconUsersSolid } from "../icons/IconUsersSolid";
 import * as styles from "./Avatar.css";
+import { AvatarContext } from "./AvatarContext";
 
 type AvatarProps = BoxProps<
   "span",

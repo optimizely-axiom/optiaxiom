@@ -2,9 +2,9 @@ import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import { Slot } from "@radix-ui/react-slot";
 import { forwardRef, type ReactElement, useRef } from "react";
 
-import { useTransitionStatus } from "../use-transition-status";
 import * as styles from "./Transition.css";
 import { TransitionGlobalConfig } from "./TransitionGlobalConfig";
+import { useTransitionStatus } from "./useTransitionStatus";
 
 type TransitionProps = styles.TransitionVariants & {
   children: ReactElement;

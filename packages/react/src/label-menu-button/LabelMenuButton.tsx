@@ -3,14 +3,14 @@ import { Label } from "@radix-ui/react-label";
 import clsx from "clsx";
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
-import { ButtonAddon } from "../button-addon";
-import { ButtonBase } from "../button-base";
+import { ButtonAddon } from "../button/ButtonAddon";
+import { ButtonRoot } from "../button/ButtonRoot";
 import { Flex } from "../flex";
 import { IconAngleDown } from "../icons/IconAngleDown";
 import { Text } from "../text";
 import * as styles from "./LabelMenuButton.css";
 
-type FilterMenuButtonProps = ComponentPropsWithoutRef<typeof ButtonBase> & {
+type FilterMenuButtonProps = ComponentPropsWithoutRef<typeof ButtonRoot> & {
   appearance?: never;
   label: string;
   size?: never;
@@ -30,7 +30,7 @@ export const LabelMenuButton = forwardRef<
     const valueId = useId();
 
     return (
-      <ButtonBase
+      <ButtonRoot
         aria-labelledby={ariaLabelledBy ?? clsx(labelId, children && valueId)}
         data-filled={filled ? "" : undefined}
         ref={ref}
@@ -49,7 +49,7 @@ export const LabelMenuButton = forwardRef<
         <ButtonAddon asChild>
           <IconAngleDown />
         </ButtonAddon>
-      </ButtonBase>
+      </ButtonRoot>
     );
   },
 );

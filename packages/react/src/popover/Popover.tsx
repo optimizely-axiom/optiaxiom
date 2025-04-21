@@ -2,7 +2,7 @@ import * as RadixPopover from "@radix-ui/react-popover";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import { useState } from "react";
 
-import { PopoverProvider } from "../popover-context";
+import { PopoverProvider } from "./PopoverContext";
 
 type PopoverProps = {
   children?: React.ReactNode;

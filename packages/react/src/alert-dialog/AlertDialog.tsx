@@ -2,11 +2,11 @@ import * as RadixAlertDialog from "@radix-ui/react-alert-dialog";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import { useState } from "react";
 
-import { AlertDialogProvider } from "../alert-dialog-context";
 import {
   NestedDialogProvider,
   useNestedDialogCount,
 } from "../nested-dialog-context";
+import { AlertDialogProvider } from "./AlertDialogContext";
 
 type AlertDialogProps = {
   children?: React.ReactNode;

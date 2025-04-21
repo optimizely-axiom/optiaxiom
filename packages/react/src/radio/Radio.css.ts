@@ -1,6 +1,5 @@
 import * as styles from "../toggle-input/ToggleInput.css";
-import { style } from "../vanilla-extract";
-import { recipe } from "../vanilla-extract";
+import { recipe, style } from "../vanilla-extract";
 
 const marker = style({});
 const inputMarker = style({});

@@ -1,6 +1,5 @@
 import { theme } from "@optiaxiom/globals";
 
-import * as styles from "../toast-provider/ToastProvider.css";
 import {
   createVar,
   fallbackVar,
@@ -10,6 +9,7 @@ import {
   type RecipeVariants,
   style,
 } from "../vanilla-extract";
+import * as styles from "./ToastProvider.css";
 
 const accentColorVar = createVar();
 

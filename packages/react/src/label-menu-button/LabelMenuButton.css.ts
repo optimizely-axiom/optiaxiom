@@ -1,4 +1,4 @@
-import * as styles from "../button-base/ButtonBase.css";
+import * as styles from "../button/ButtonRoot.css";
 import { recipe, style } from "../vanilla-extract";
 
 export const button = recipe({

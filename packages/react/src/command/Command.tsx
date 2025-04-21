@@ -2,14 +2,14 @@ import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import { useCombobox } from "downshift";
 import { type ReactNode, useEffect, useRef } from "react";
 
+import { usePortalPatch } from "../downshift";
+import { useEffectEvent } from "../use-event";
 import {
   type CommandOption,
   CommandProvider,
   resolveItemProperty,
-} from "../command-context";
-import { usePortalPatch } from "../downshift";
-import { useCommandItems } from "../use-command-items";
-import { useEffectEvent } from "../use-event";
+} from "./CommandContext";
+import { useCommandItems } from "./useCommandItems";
 
 type CommandProps = {
   children?: ReactNode;
