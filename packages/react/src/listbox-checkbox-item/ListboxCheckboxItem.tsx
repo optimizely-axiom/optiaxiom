@@ -5,7 +5,6 @@ import { Checkbox } from "../checkbox";
 import { Flex } from "../flex";
 import { Icon } from "../icon";
 import { ListboxItem } from "../listbox-item";
-import { isHoverSupported } from "../utils";
 import * as styles from "./ListboxCheckboxItem.css";
 
 type ListboxCheckboxItemProps = ComponentPropsWithoutRef<typeof ListboxItem> &
@@ -29,13 +28,7 @@ export const ListboxCheckboxItem = forwardRef<
               event.stopPropagation();
               onCheckedChange?.(true);
             }}
-            {...styles.checkbox({
-              visible:
-                checked ||
-                !isHoverSupported ||
-                ("data-highlighted" in props &&
-                  props["data-highlighted"] !== undefined),
-            })}
+            {...styles.checkbox()}
           >
             <Checkbox checked={checked} pointerEvents="none" tabIndex={-1} />
           </Box>

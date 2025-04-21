@@ -1,6 +1,6 @@
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
-import { useCommandContext } from "../command-context";
+import { resolveItemProperty, useCommandContext } from "../command-context";
 import { CommandItem } from "../command-item";
 import { ListboxCheckboxItem } from "../listbox-checkbox-item";
 
@@ -20,7 +20,10 @@ export const MenuCheckboxItem = forwardRef<
         addonBefore={props.item.addon}
         asChild
         description={props.item.description}
-        onCheckedChange={() => props.item.execute?.({ inputValue })}
+        onCheckedChange={() =>
+          !resolveItemProperty(props.item.disabledReason) &&
+          props.item.execute?.({ inputValue })
+        }
       >
         <Comp {...(props.item.link && { href: props.item.link })}>
           {children}
