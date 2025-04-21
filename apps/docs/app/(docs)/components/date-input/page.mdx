@@ -1,5 +1,6 @@
 import { Demo } from "@/components/demo";
 import { PropsTable } from "@/components/props-table";
+import { Flex, Kbd } from "@optiaxiom/react";
 
 # DateInput
 
@@ -16,6 +17,18 @@ Input field with calendar that lets user enter dates.
 ### DateInput
 
 <PropsTable component="DateInput" />
+
+## Accessibility
+
+### Keyboard interactions
+
+| Key                                                                                                                                                                                      | Description                                                                                                                                       |
+| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------ |
+| <Kbd>Space</Kbd>                                                                                                                                                                         | When focus is on `DateInput`, opens the calendar and focuses the selected day (or today's date). When focus is on a day, selects the focused day. |
+| <Kbd>Enter</Kbd>                                                                                                                                                                         | Selects the focused day in the calendar.                                                                                                          |
+| <Flex gap="8"><Flex flexDirection="row" gap="8"><Kbd>ArrowUp</Kbd> <Kbd>ArrowDown</Kbd></Flex><Flex flexDirection="row" gap="8"><Kbd>ArrowRight</Kbd> <Kbd>ArrowLeft</Kbd></Flex></Flex> | Navigate between days in the calendar.                                                                                                            |
+| <Flex flexDirection="row" gap="8"><Kbd>PageUp</Kbd> <Kbd>PageDown</Kbd></Flex>                                                                                                           | Navigate between months in the calendar.                                                                                                          |
+| <Kbd>Esc</Kbd>                                                                                                                                                                           | Closes the calendar popover and moves focus back to `DateInput`.                                                                                  |
 
 ## Changelog
 
