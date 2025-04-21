@@ -42,6 +42,12 @@ const mapComponentToBase: Partial<Record<AllComponents, "" | AllComponents>> = {
   ToggleButton: "Button",
 };
 
+const mapComponentToScope: Partial<Record<"" | AllComponents, AllComponents>> =
+  {
+    DisclosureContent: "Disclosure",
+    DisclosureTrigger: "Disclosure",
+  };
+
 export async function PropsTable({
   component,
 }: {
@@ -55,6 +61,7 @@ export async function PropsTable({
   const baseName =
     mapComponentToBase[component] ??
     (propItems.find((prop) => prop.name === "asChild") ? "Box" : "");
+  const baseNameScope = mapComponentToScope[baseName] || baseName;
   const isBox = component === "Box";
   const virtual = !propItems.find((prop) => prop.name === "asChild");
 
@@ -68,7 +75,7 @@ export async function PropsTable({
         {baseName && !isBox && (
           <>
             Supports all{" "}
-            <Link href={`/components/${kebabCase(baseName)}#props`}>
+            <Link href={`/components/${kebabCase(baseNameScope)}`}>
               {baseName}
             </Link>{" "}
             props
