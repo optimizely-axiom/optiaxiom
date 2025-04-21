@@ -22,7 +22,6 @@ export const kbd = recipe({
         border: "1",
         borderB: "2",
         borderColor: "border.tertiary",
-        fontWeight: "600",
         gap: "4",
       },
       subtle: {

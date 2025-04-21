@@ -8,6 +8,8 @@ import { HeadingLink } from "./components/mdx";
 
 const themeComponents = getThemeComponents();
 
+import { Table, Td, Th, Tr } from "@/components/table";
+
 import styles from "./mdx-components.module.css";
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
@@ -44,6 +46,12 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         className={`${("className" in props && props.className) || ""} x:not-first:mt-4`}
       />
     ),
+    table: ({ border: _border, color: _color, ...props }) => (
+      <Table {...props} />
+    ),
+    td: ({ color: _color, ...props }) => <Td {...props} />,
+    th: ({ color: _color, ...props }) => <Th {...props} />,
+    tr: ({ color: _color, ...props }) => <Tr {...props} />,
     ...components,
   };
 }
