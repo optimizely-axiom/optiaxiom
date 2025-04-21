@@ -1,11 +1,11 @@
 import { useId } from "@radix-ui/react-id";
 import { forwardRef } from "react";
 
-import { ActionsRoot } from "../actions-root";
+import { ActionsRoot } from "../actions";
 import { type BoxProps } from "../box";
-import { CardProvider } from "../card-context";
 import { Flex } from "../flex";
 import * as styles from "./Card.css";
+import { CardProvider } from "./CardContext";
 
 type CardProps = BoxProps<
   "div",

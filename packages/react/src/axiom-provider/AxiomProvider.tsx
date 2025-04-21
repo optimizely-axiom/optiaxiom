@@ -7,8 +7,8 @@ import {
 
 import { version } from "../../package.json";
 import { ThemeProvider } from "../theme-provider";
-import { ToastProvider } from "../toast-provider";
-import { TooltipProvider } from "../tooltip-provider";
+import { ToastProvider } from "../toast";
+import { TooltipProvider } from "../tooltip";
 
 type AxiomProviderProps = {
   children?: ReactNode;

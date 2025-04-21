@@ -1,7 +1,7 @@
 import { theme } from "@optiaxiom/globals";
 
-import * as styles from "../toggle-input-hidden-input/ToggleInputHiddenInput.css";
 import { createVar, recipe, style } from "../vanilla-extract";
+import * as styles from "./ToggleInputHiddenInput.css";
 
 const input = styles.className;
 

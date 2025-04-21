@@ -11,11 +11,11 @@ import {
 import type { ExcludeProps, ExtendProps } from "../utils";
 
 import { Command } from "../command";
-import { type CommandOption, resolveItemProperty } from "../command-context";
+import { type CommandOption, resolveItemProperty } from "../command/internals";
 import { Dialog } from "../dialog";
-import { MenuProvider } from "../menu-context";
-import { MenuPopover } from "../menu-popover";
 import { useResponsiveMatches } from "../use-responsive-matches";
+import { MenuProvider } from "./MenuContext";
+import { MenuPopover } from "./MenuPopover";
 
 export type MenuOption = CommandOption;
 

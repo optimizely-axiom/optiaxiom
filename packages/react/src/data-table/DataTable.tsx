@@ -3,8 +3,8 @@ import type { Table } from "@tanstack/table-core";
 import { forwardRef } from "react";
 
 import { type BoxProps } from "../box";
-import { DataTableProvider } from "../data-table-context";
 import { Flex } from "../flex";
+import { DataTableProvider } from "./DataTableContext";
 
 type DataTableProps = BoxProps<
   "div",

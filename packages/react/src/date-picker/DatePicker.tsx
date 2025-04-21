@@ -1,8 +1,8 @@
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import { type ComponentPropsWithRef } from "react";
 
-import { DatePickerProvider } from "../date-picker-context";
 import { Popover } from "../popover";
+import { DatePickerProvider } from "./DatePickerContext";
 
 type DatePickerProps = ComponentPropsWithRef<typeof Popover> & {
   /**

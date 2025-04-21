@@ -3,7 +3,7 @@ import { forwardRef } from "react";
 
 import { type BoxProps } from "../box";
 import { Flex } from "../flex";
-import { SegmentedControlProvider } from "../segmented-control-context";
+import { SegmentedControlProvider } from "./SegmentedControlContext";
 
 type SegmentedControlProps = BoxProps<
   typeof RadixSegmentedControl.Root,

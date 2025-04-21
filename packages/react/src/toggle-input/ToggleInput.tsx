@@ -4,8 +4,8 @@ import { forwardRef } from "react";
 
 import { type BoxProps, extractBoxProps } from "../box";
 import { Flex } from "../flex";
-import { ToggleInputProvider } from "../toggle-input-context";
 import * as styles from "./ToggleInput.css";
+import { ToggleInputProvider } from "./ToggleInputContext";
 
 type ToggleInputProps = BoxProps<
   "label",

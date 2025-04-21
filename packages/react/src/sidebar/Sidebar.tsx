@@ -3,7 +3,7 @@ import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import { forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
-import { SidebarProvider } from "../sidebar-context";
+import { SidebarProvider } from "./SidebarContext";
 
 type SidebarProps = BoxProps<
   "div",

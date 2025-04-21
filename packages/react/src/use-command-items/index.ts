@@ -1,1 +1,1 @@
-export * from "./useCommandItems";
+export * from "../command/useCommandItems";

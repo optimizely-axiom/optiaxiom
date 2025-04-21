@@ -1,14 +1,16 @@
 import { forwardRef, type ReactNode } from "react";
 
 import { Box, type BoxProps, extractBoxProps } from "../box";
-import { useRadioGroupContext } from "../radio-group-context";
-import { ToggleInput } from "../toggle-input";
-import { ToggleInputContent } from "../toggle-input-content";
-import { ToggleInputControl } from "../toggle-input-control";
-import { ToggleInputDescription } from "../toggle-input-description";
-import { ToggleInputHiddenInput } from "../toggle-input-hidden-input";
-import { ToggleInputLabel } from "../toggle-input-label";
+import {
+  ToggleInput,
+  ToggleInputContent,
+  ToggleInputControl,
+  ToggleInputDescription,
+  ToggleInputHiddenInput,
+  ToggleInputLabel,
+} from "../toggle-input";
 import * as styles from "./Radio.css";
+import { useRadioGroupContext } from "./RadioGroupContext";
 
 type RadioProps = BoxProps<
   typeof ToggleInputHiddenInput,

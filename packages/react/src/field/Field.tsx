@@ -2,11 +2,11 @@ import { useId } from "@radix-ui/react-id";
 import { forwardRef, type ReactNode } from "react";
 
 import { Box, type BoxProps } from "../box";
-import { FieldContext } from "../field-context";
-import { FieldLabel } from "../field-label";
 import { Flex } from "../flex";
 import { IconTriangleExclamation } from "../icons/IconTriangleExclamation";
 import { fallbackSpan } from "../utils";
+import { FieldContext } from "./FieldContext";
+import { FieldLabel } from "./FieldLabel";
 
 type FieldProps = BoxProps<
   "div",

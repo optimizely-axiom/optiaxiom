@@ -1,11 +1,11 @@
 import * as RadixDialog from "@radix-ui/react-dialog";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
 
-import { DialogProvider } from "../dialog-context";
 import {
   NestedDialogProvider,
   useNestedDialogCount,
 } from "../nested-dialog-context";
+import { DialogProvider } from "./DialogContext";
 
 type DialogProps = {
   children?: React.ReactNode;

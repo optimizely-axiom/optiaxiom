@@ -5,7 +5,7 @@ import { forwardRef, useEffect, useRef, useState } from "react";
 
 import { Box, type BoxProps } from "../box";
 import { Button } from "../button";
-import { ButtonBase } from "../button-base";
+import { ButtonRoot } from "../button/ButtonRoot";
 import { Flex } from "../flex";
 import { Icon } from "../icon";
 import { IconAngleLeft } from "../icons/IconAngleLeft";
@@ -75,7 +75,7 @@ export const Pagination = forwardRef<HTMLElement, PaginationProps>(
         <nav aria-label="pagination" ref={ref}>
           <Flex asChild {...styles.list()}>
             <ul>
-              <ButtonBase
+              <ButtonRoot
                 appearance="subtle"
                 aria-hidden
                 asChild
@@ -85,7 +85,7 @@ export const Pagination = forwardRef<HTMLElement, PaginationProps>(
                 {...styles.cursor({ animation })}
               >
                 <span>{active}</span>
-              </ButtonBase>
+              </ButtonRoot>
 
               <li>
                 <Tooltip content="Prev" disabled={disabled || active === 1}>
@@ -127,7 +127,7 @@ export const Pagination = forwardRef<HTMLElement, PaginationProps>(
                       </Icon>
                     </Box>
                   ) : (
-                    <ButtonBase
+                    <ButtonRoot
                       appearance="subtle"
                       aria-current={active === page ? "page" : undefined}
                       disabled={disabled}
@@ -141,7 +141,7 @@ export const Pagination = forwardRef<HTMLElement, PaginationProps>(
                       ) : page === total ? (
                         <VisuallyHidden>(last page)</VisuallyHidden>
                       ) : null}
-                    </ButtonBase>
+                    </ButtonRoot>
                   )}
                 </li>
               ))}
