@@ -12,7 +12,7 @@ import {
 } from "react";
 
 import { usePortalPatch } from "../downshift";
-import { useObserveValue } from "../use-observe-value";
+import { useObserveValue } from "../hooks";
 import { type SelectOption, SelectProvider } from "./SelectContext";
 import { SelectHiddenSelect } from "./SelectHiddenSelect";
 import { useObserveReset } from "./useObserveReset";

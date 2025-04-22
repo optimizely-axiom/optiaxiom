@@ -3,7 +3,7 @@ import { useCombobox } from "downshift";
 import { type ReactNode, useEffect, useRef } from "react";
 
 import { usePortalPatch } from "../downshift";
-import { useEffectEvent } from "../use-event";
+import { useEffectEvent } from "../hooks";
 import {
   type CommandOption,
   CommandProvider,

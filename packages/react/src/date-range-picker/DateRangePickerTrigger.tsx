@@ -4,9 +4,9 @@ import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import { type ComponentPropsWithoutRef, forwardRef, useRef } from "react";
 
 import { Box } from "../box";
+import { useFieldLabelTrigger } from "../hooks";
 import { IconCalendar } from "../icons/IconCalendar";
 import { PopoverTrigger } from "../popover";
-import { useFieldLabelTrigger } from "../use-field-label-trigger";
 import { useDateRangePickerContext } from "./DateRangePickerContext";
 
 type DateRangePickerTriggerProps = ComponentPropsWithoutRef<

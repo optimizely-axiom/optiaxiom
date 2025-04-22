@@ -1,8 +1,8 @@
 import { forwardRef, Fragment, type ReactNode, useEffect } from "react";
 
 import { Box, type BoxProps } from "../box";
+import { useEffectEvent } from "../hooks";
 import { Spinner } from "../spinner";
-import { useEffectEvent } from "../use-event";
 import { Listbox } from "./Listbox";
 import { ListboxEmpty } from "./ListboxEmpty";
 import { ListboxVirtualized } from "./ListboxVirtualized";

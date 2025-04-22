@@ -12,7 +12,7 @@ import {
 import { AngleMenuButton } from "../angle-menu-button";
 import { extractBoxProps } from "../box";
 import { type ButtonProps } from "../button";
-import { useFieldLabelTrigger } from "../use-field-label-trigger";
+import { useFieldLabelTrigger } from "../hooks";
 import { decorateChildren, type ExcludeProps } from "../utils";
 import { useSelectContext } from "./SelectContext";
 
