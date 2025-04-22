@@ -1,4 +1,5 @@
 import { ESLintUtils } from "@typescript-eslint/utils";
+import path from "node:path";
 
 export default ESLintUtils.RuleCreator.withoutDocs({
   create(context) {
@@ -20,7 +21,13 @@ export default ESLintUtils.RuleCreator.withoutDocs({
 
         context.report({
           fix: (fixer) =>
-            fixer.replaceText(parent.source, '"../vanilla-extract"'),
+            fixer.replaceText(
+              parent.source,
+              `"${path.relative(
+                path.dirname(context.filename),
+                path.join(process.cwd(), "packages/react/src/vanilla-extract"),
+              )}"`,
+            ),
           messageId: "import",
           node,
         });
