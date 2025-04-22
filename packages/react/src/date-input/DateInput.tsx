@@ -53,13 +53,10 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
       prop: props.value,
     });
     const forceValueChange = useObserveValue(innerRef, setValue);
-    const instant =
-      typeof value === "string"
-        ? toInstant(value.includes("T") ? value : value + "T00:00")
-        : undefined;
+    const instant = typeof value === "string" ? toInstant(value) : undefined;
 
-    const maxDate = max ? new Date(max) : undefined;
-    const minDate = min ? new Date(min) : undefined;
+    const maxDate = max ? toInstant(max) : undefined;
+    const minDate = min ? toInstant(min) : undefined;
 
     return (
       <Popover onOpenChange={setOpen} open={!disabled && open}>

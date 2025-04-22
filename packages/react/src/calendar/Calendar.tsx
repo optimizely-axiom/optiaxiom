@@ -32,11 +32,11 @@ type CalendarProps = BoxProps<
      */
     holiday?: Matcher | Matcher[];
     /**
-     * The latest month to end the month navigation.
+     * The latest date that is allowed.
      */
     max?: Date;
     /**
-     * The earliest month to start the month navigation.
+     * The earliest date that is allowed.
      */
     min?: Date;
     onHeightChange?: (height: number) => void;
