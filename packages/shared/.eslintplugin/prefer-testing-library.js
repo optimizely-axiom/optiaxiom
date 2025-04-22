@@ -1,4 +1,5 @@
 import { ESLintUtils } from "@typescript-eslint/utils";
+import path from "node:path";
 
 export default ESLintUtils.RuleCreator.withoutDocs({
   create(context) {
@@ -10,7 +11,13 @@ export default ESLintUtils.RuleCreator.withoutDocs({
         (node) => {
           context.report({
             fix: (fixer) =>
-              fixer.replaceText(node.source, '"../../vitest.rtl"'),
+              fixer.replaceText(
+                node.source,
+                `"${path.relative(
+                  path.dirname(context.filename),
+                  path.join(process.cwd(), "packages/react/vitest.rtl"),
+                )}"`,
+              ),
             messageId: "common",
             node: node.source,
           });
