@@ -4,7 +4,10 @@
 export function toInstant(
   str: number | readonly string[] | string | undefined,
 ) {
-  const rawDate = str && typeof str === "string" ? new Date(str) : undefined;
+  const rawDate =
+    str && typeof str === "string"
+      ? new Date(str.includes("T") ? str : str + "T00:00")
+      : undefined;
   return isValidDate(rawDate) ? rawDate : undefined;
 }
 
