@@ -2,7 +2,7 @@ import { type ComponentPropsWithoutRef, useMemo } from "react";
 
 import type { Command } from "./Command";
 
-import { useEffectEvent } from "../use-event";
+import { useEffectEvent } from "../hooks";
 import { type CommandOption, resolveItemProperty } from "./CommandContext";
 import { fuzzysearch } from "./fuzzysearch";
 

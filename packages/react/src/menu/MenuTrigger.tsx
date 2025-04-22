@@ -3,8 +3,8 @@ import { type ComponentPropsWithoutRef, forwardRef, useRef } from "react";
 
 import { AngleMenuButton } from "../angle-menu-button";
 import { DialogTrigger } from "../dialog";
+import { useFieldLabelTrigger } from "../hooks";
 import { PopoverTrigger } from "../popover";
-import { useFieldLabelTrigger } from "../use-field-label-trigger";
 import { useMenuContext } from "./MenuContext";
 
 type MenuTriggerProps = ComponentPropsWithoutRef<typeof PopoverTrigger>;

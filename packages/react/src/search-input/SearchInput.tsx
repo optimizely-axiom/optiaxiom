@@ -4,10 +4,10 @@ import { type ComponentPropsWithRef, forwardRef, useRef } from "react";
 
 import { Button } from "../button";
 import { Flex } from "../flex";
+import { useObserveValue } from "../hooks";
 import { IconMagnifyingGlass } from "../icons/IconMagnifyingGlass";
 import { IconX } from "../icons/IconX";
 import { Input } from "../input";
-import { useObserveValue } from "../use-observe-value";
 import * as styles from "./SearchInput.css";
 
 type SearchProps = ComponentPropsWithRef<typeof Input> & {

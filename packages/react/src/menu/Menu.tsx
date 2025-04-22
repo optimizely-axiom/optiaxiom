@@ -13,7 +13,7 @@ import type { ExcludeProps, ExtendProps } from "../utils";
 import { Command } from "../command";
 import { type CommandOption, resolveItemProperty } from "../command/internals";
 import { Dialog } from "../dialog";
-import { useResponsiveMatches } from "../use-responsive-matches";
+import { useResponsiveMatches } from "../hooks";
 import { MenuProvider } from "./MenuContext";
 import { MenuPopover } from "./MenuPopover";
 

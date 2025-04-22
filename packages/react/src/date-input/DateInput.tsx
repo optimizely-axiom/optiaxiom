@@ -10,11 +10,11 @@ import {
 import { Button } from "../button";
 import { Calendar } from "../calendar";
 import { Flex } from "../flex";
+import { useObserveValue } from "../hooks";
 import { IconCalendar } from "../icons/IconCalendar";
 import { Input } from "../input";
 import { Popover } from "../popover";
 import { PopoverAnchor, PopoverContent, PopoverTrigger } from "../popover";
-import { useObserveValue } from "../use-observe-value";
 import { type ExtendProps, toPlainDate, toPlainDateTime } from "../utils";
 import * as styles from "./DateInput.css";
 import { toInstant } from "./utils";
