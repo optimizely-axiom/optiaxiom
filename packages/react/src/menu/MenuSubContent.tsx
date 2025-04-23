@@ -1,5 +1,4 @@
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
-import { DropdownMenuContent } from "@radix-ui/react-dropdown-menu";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { type ComponentPropsWithoutRef, forwardRef, useMemo } from "react";
 
@@ -17,19 +16,10 @@ import { useMenuSubContext } from "./MenuSubContext";
 
 type MenuSubContentProps = ExcludeProps<
   BoxProps<
-    typeof DropdownMenuContent,
-    Pick<ComponentPropsWithoutRef<typeof CommandItem>, "item"> &
-      Pick<ComponentPropsWithoutRef<typeof PopoverContent>, "maxH" | "minW">
+    typeof PopoverContent,
+    Pick<ComponentPropsWithoutRef<typeof CommandItem>, "item">
   >,
-  | "alignOffset"
-  | "arrowPadding"
-  | "avoidCollisions"
-  | "collisionBoundary"
-  | "collisionPadding"
-  | "hideWhenDetached"
-  | "sideOffset"
-  | "sticky"
-  | "updatePositionStrategy"
+  "alignOffset" | "maxH" | "minW" | "sideOffset"
 >;
 
 export const MenuSubContent = forwardRef<HTMLDivElement, MenuSubContentProps>(
