@@ -144,24 +144,28 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
             value={instant}
             weekend={weekend}
           />
-          <Flex flexDirection="row" justifyContent="space-between">
-            <Button
-              onClick={() => {
-                forceValueChange("");
-                if (type === "date") {
-                  setOpen(false);
-                }
-              }}
-            >
-              Clear
-            </Button>
+          {(!props.required || type === "datetime-local") && (
+            <Flex flexDirection="row" justifyContent="space-between">
+              {!props.required && (
+                <Button
+                  onClick={() => {
+                    forceValueChange("");
+                    if (type === "date") {
+                      setOpen(false);
+                    }
+                  }}
+                >
+                  Clear
+                </Button>
+              )}
 
-            {type === "datetime-local" && (
-              <Button appearance="primary" onClick={() => setOpen(false)}>
-                Done
-              </Button>
-            )}
-          </Flex>
+              {type === "datetime-local" && (
+                <Button appearance="primary" onClick={() => setOpen(false)}>
+                  Done
+                </Button>
+              )}
+            </Flex>
+          )}
         </PopoverContent>
       </Popover>
     );
