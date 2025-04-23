@@ -1,5 +1,15 @@
 # @optiaxiom/react
 
+## 1.3.2
+
+### Patch Changes
+
+- 50fa0b2: fix regular cell width compared to fill cell
+- dd4e0a7: fix converting plain min/max date to instant
+- 4ab0ba1: disabled menu checkbox should also be disabled
+- ca3df93: fix field content alignment
+- 1e492ed: hide clear button in date input picker if required
+
 ## 1.3.1
 
 ### Patch Changes
