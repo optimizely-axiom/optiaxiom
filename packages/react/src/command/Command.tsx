@@ -1,9 +1,8 @@
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import { useCombobox } from "downshift";
-import { type ReactNode, useEffect, useRef } from "react";
+import { type ReactNode, useRef } from "react";
 
 import { usePortalPatch } from "../downshift";
-import { useEffectEvent } from "../hooks";
 import {
   type CommandOption,
   CommandProvider,
@@ -66,12 +65,6 @@ export function Command({
         (item) => resolveItemProperty(item.selected) && !item.multi,
       ),
     );
-  const setInputValueStable = useEffectEvent(setInputValue);
-  useEffect(() => {
-    if (placed) {
-      setInputValueStable("");
-    }
-  }, [placed, setInputValueStable]);
 
   const pauseInteractionRef = useRef({
     isInsideTriangle: null,
