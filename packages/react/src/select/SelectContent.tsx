@@ -24,8 +24,7 @@ type SelectContentProps = ExcludeProps<
   BoxProps<
     typeof PopperContent,
     Pick<ComponentPropsWithoutRef<typeof ModalListbox>, "maxH" | "minW"> & {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      children?: ((item: any) => ReactNode) | ReactNode;
+      children?: ((item: SelectOption) => ReactNode) | ReactNode;
     }
   >,
   | "alignOffset"
