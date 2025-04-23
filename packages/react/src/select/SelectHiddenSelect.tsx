@@ -1,6 +1,6 @@
-import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { type ComponentPropsWithoutRef, forwardRef, useMemo } from "react";
 
+import { VisuallyHidden } from "../visually-hidden";
 import { useSelectContext } from "./SelectContext";
 
 export const SelectHiddenSelect = forwardRef<

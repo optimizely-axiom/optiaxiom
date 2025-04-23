@@ -1,6 +1,5 @@
 import { usePagination } from "@mantine/hooks";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
-import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { forwardRef, useEffect, useRef, useState } from "react";
 
 import { Box, type BoxProps } from "../box";
@@ -12,6 +11,7 @@ import { IconAngleLeft } from "../icons/IconAngleLeft";
 import { IconAngleRight } from "../icons/IconAngleRight";
 import { IconEllipsis } from "../icons/IconEllipsis";
 import { Tooltip } from "../tooltip";
+import { VisuallyHidden } from "../visually-hidden";
 import * as styles from "./Pagination.css";
 
 export type PaginationProps = BoxProps<

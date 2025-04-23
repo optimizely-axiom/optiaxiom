@@ -1,5 +1,4 @@
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
-import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { type ComponentPropsWithoutRef, forwardRef, useMemo } from "react";
 
 import type { CommandItem } from "../command";
@@ -9,6 +8,7 @@ import { type BoxProps } from "../box";
 import { Command, CommandInput } from "../command";
 import { useCommandContext } from "../command/internals";
 import { PopoverContent } from "../popover";
+import { VisuallyHidden } from "../visually-hidden";
 import { useMenuContext } from "./MenuContext";
 import { MenuListbox } from "./MenuListbox";
 import { MenuNestedProvider, useMenuNestedContext } from "./MenuNestedContext";
