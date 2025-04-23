@@ -40,7 +40,9 @@ export const TooltipContent = forwardRef<HTMLDivElement, TooltipContentProps>(
                 side={side}
                 sideOffset={5}
               >
-                <Text fontSize="sm">{children}</Text>
+                <Text asChild fontSize="sm">
+                  <div>{children}</div>
+                </Text>
 
                 <RadixTooltip.Arrow
                   fill={theme.colors["bg.default.inverse"]}
