@@ -43,9 +43,7 @@ export type MapLeafNodes<Obj, LeafType> = {
       ? MapLeafNodes<Obj[Prop], LeafType>
       : never;
 };
-type CSSVarFunction =
-  | `var(--${string})`
-  | `var(--${string}, ${number | string})`;
+type CSSVarFunction = `var(--${string})` | `var(--${string}, ${string})`;
 type NullableTokens = {
   [key: string]: null | NullableTokens | string;
 };
