@@ -64,6 +64,7 @@ export const Basic: Story = {
   },
   play: async ({ canvas }) => {
     await userEvent.click(canvas.getByRole("button"));
+    await new Promise((resolve) => setTimeout(resolve, 300));
     await expect(
       await screen.findByRole("alertdialog", { name: "Delete Image" }),
     ).toBeInTheDocument();
