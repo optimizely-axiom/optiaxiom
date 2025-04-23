@@ -25,12 +25,13 @@ type DialogProps = {
 
 export function Dialog({
   children,
-  defaultOpen,
+  defaultOpen = false,
   onOpenChange,
   open: openProp,
   ...props
 }: DialogProps) {
   const [open, setOpen] = useControllableState({
+    caller: "@optiaxiom/react/Dialog",
     defaultProp: defaultOpen,
     onChange: onOpenChange,
     prop: openProp,

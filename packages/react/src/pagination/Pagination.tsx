@@ -42,10 +42,18 @@ export type PaginationProps = BoxProps<
 
 export const Pagination = forwardRef<HTMLElement, PaginationProps>(
   (
-    { defaultPage, disabled, onPageChange, page: pageProp, total, ...props },
+    {
+      defaultPage = 1,
+      disabled,
+      onPageChange,
+      page: pageProp,
+      total,
+      ...props
+    },
     ref,
   ) => {
     const [value, setValue] = useControllableState({
+      caller: "@optiaxiom/react/Pagination",
       defaultProp: defaultPage,
       onChange: onPageChange,
       prop: pageProp,

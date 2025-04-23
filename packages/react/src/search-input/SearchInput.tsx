@@ -20,6 +20,7 @@ export const SearchInput = forwardRef<HTMLInputElement, SearchProps>(
     const ref = useComposedRefs(innerRef, outerRef);
 
     const [value, setValue] = useControllableState({
+      caller: "@optiaxiom/react/SearchInput",
       defaultProp: props.defaultValue,
       prop: props.value,
     });

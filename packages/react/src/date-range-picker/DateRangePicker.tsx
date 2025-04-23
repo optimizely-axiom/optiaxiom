@@ -24,7 +24,7 @@ type DateRangePickerProps = ComponentPropsWithRef<typeof Popover> & {
 
 export function DateRangePicker({
   children,
-  defaultOpen,
+  defaultOpen = false,
   defaultValue,
   disabled,
   onOpenChange,
@@ -34,11 +34,13 @@ export function DateRangePicker({
   ...props
 }: DateRangePickerProps) {
   const [open, setOpen] = useControllableState({
+    caller: "@optiaxiom/react/DateRangePicker",
     defaultProp: defaultOpen,
     onChange: onOpenChange,
     prop: openProp,
   });
   const [value, setValue] = useControllableState({
+    caller: "@optiaxiom/react/DateRangePicker",
     defaultProp: defaultValue,
     onChange: onValueChange,
     prop: valueProp,

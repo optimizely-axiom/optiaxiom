@@ -64,11 +64,13 @@ export function Menu({
   const Comp = size === "sm" ? MenuPopover : Dialog;
 
   const [open, setOpen] = useControllableState({
+    caller: "@optiaxiom/react/Menu",
     defaultProp: defaultOpen,
     onChange: onOpenChange,
     prop: openProp,
   });
   const [inputValue, setInputValue] = useControllableState({
+    caller: "@optiaxiom/react/Menu",
     defaultProp: "",
     onChange: onInputValueChange,
     prop: inputValueProp,

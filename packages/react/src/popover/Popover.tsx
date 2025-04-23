@@ -26,12 +26,13 @@ type PopoverProps = {
 
 export function Popover({
   children,
-  defaultOpen,
+  defaultOpen = false,
   onOpenChange,
   open: openProp,
   ...props
 }: PopoverProps) {
   const [open, setOpen] = useControllableState({
+    caller: "@optiaxiom/react/Popover",
     defaultProp: defaultOpen,
     onChange: onOpenChange,
     prop: openProp,

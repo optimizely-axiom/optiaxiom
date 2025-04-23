@@ -66,7 +66,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
     {
       children,
       defaultOpen = false,
-      defaultValue,
+      defaultValue = "",
       disabled,
       loading,
       name,
@@ -85,6 +85,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
     const ref = useComposedRefs(innerRef, outerRef);
 
     const [shadowValue, setShadowValue] = useControllableState({
+      caller: "@optiaxiom/react/Select",
       defaultProp: defaultValue,
       onChange: onValueChange,
       prop: value,
@@ -101,6 +102,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
     );
 
     const [isOpen, setIsOpen] = useControllableState({
+      caller: "@optiaxiom/react/Select",
       defaultProp: defaultOpen,
       onChange: onOpenChange,
       prop: open,

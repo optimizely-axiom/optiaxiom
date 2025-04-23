@@ -31,6 +31,18 @@ export default ESLintUtils.RuleCreator.withoutDocs({
         hooks.push(arg);
       },
       /**
+       * @type {import('@typescript-eslint/utils').TSESLint.RuleListener['Property']}
+       */
+      "CallExpression[callee.name=useControllableState] > ObjectExpression > Property[key.name=caller]":
+        (node) => {
+          const arg = node.value;
+          if (arg?.type !== "Literal") {
+            return;
+          }
+
+          hooks.push(arg);
+        },
+      /**
        * @type {import('@typescript-eslint/utils').TSESLint.RuleListener['VariableDeclarator']}
        */
       'Program > ExportNamedDeclaration > VariableDeclaration > VariableDeclarator[id.type="ArrayPattern"][init.type="CallExpression"][init.callee.name="createContext"]':

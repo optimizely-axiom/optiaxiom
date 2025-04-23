@@ -26,12 +26,13 @@ type MenuSubProps = {
 
 export function DropdownMenuSub({
   children,
-  defaultOpen,
+  defaultOpen = false,
   onOpenChange,
   open: openProp,
   ...props
 }: MenuSubProps) {
   const [open, setOpen] = useControllableState({
+    caller: "@optiaxiom/react/DropdownMenuSub",
     defaultProp: defaultOpen,
     onChange: onOpenChange,
     prop: openProp,
