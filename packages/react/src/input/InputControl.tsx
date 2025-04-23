@@ -1,5 +1,5 @@
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
-import { Slot } from "@radix-ui/react-slot";
+import { createSlot } from "@radix-ui/react-slot";
 import clsx from "clsx";
 import { type ElementType, forwardRef } from "react";
 
@@ -9,6 +9,8 @@ import { Box, type BoxProps, extractBoxProps } from "../box";
 import { useFieldContext } from "../field/internals";
 import { useInputContext } from "./InputContext";
 import * as styles from "./InputControl.css";
+
+const Slot = createSlot("@optiaxiom/react/InputControl");
 
 export type InputControlProps<
   T extends ElementType = "input" | "textarea",

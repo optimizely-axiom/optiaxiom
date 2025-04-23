@@ -1,7 +1,7 @@
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import { DismissableLayer } from "@radix-ui/react-dismissable-layer";
 import { FocusGuards } from "@radix-ui/react-focus-guards";
-import { Slot } from "@radix-ui/react-slot";
+import { createSlot } from "@radix-ui/react-slot";
 import {
   type ComponentPropsWithoutRef,
   forwardRef,
@@ -14,6 +14,8 @@ import { RemoveScroll as ReactRemoveScroll } from "react-remove-scroll";
 import type { Box } from "../box";
 
 import { ModalProvider, useModalContext } from "../modal";
+
+const Slot = createSlot("@optiaxiom/react/ModalLayer");
 
 type ModalLayerProps = Pick<ComponentPropsWithoutRef<typeof Box>, "asChild"> &
   Pick<ComponentPropsWithoutRef<typeof DismissableLayer>, "onEscapeKeyDown"> & {

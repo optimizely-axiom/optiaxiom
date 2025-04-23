@@ -20,6 +20,17 @@ export default ESLintUtils.RuleCreator.withoutDocs({
         hooks.push(arg);
       },
       /**
+       * @type {import('@typescript-eslint/utils').TSESLint.RuleListener['CallExpression']}
+       */
+      "CallExpression[callee.name=createSlot]": (node) => {
+        const arg = node.arguments[0];
+        if (arg?.type !== "Literal") {
+          return;
+        }
+
+        hooks.push(arg);
+      },
+      /**
        * @type {import('@typescript-eslint/utils').TSESLint.RuleListener['VariableDeclarator']}
        */
       'Program > ExportNamedDeclaration > VariableDeclaration > VariableDeclarator[id.type="ArrayPattern"][init.type="CallExpression"][init.callee.name="createContext"]':

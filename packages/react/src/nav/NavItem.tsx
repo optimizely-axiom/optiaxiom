@@ -1,4 +1,4 @@
-import { Slot } from "@radix-ui/react-slot";
+import { createSlot } from "@radix-ui/react-slot";
 import { forwardRef, type ReactNode } from "react";
 
 import { Box, type BoxProps, extractBoxProps } from "../box";
@@ -9,6 +9,8 @@ import { Text } from "../text";
 import { Tooltip } from "../tooltip";
 import { decorateChildren, fallbackSpan } from "../utils";
 import * as styles from "./NavItem.css";
+
+const Slot = createSlot("@optiaxiom/react/NavItem");
 
 export type NavItemProps = BoxProps<
   "button",

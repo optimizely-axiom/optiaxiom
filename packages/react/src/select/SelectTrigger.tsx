@@ -1,5 +1,5 @@
 import { PopperAnchor } from "@radix-ui/react-popper";
-import { Slot } from "@radix-ui/react-slot";
+import { createSlot } from "@radix-ui/react-slot";
 import {
   type FocusEvent,
   forwardRef,
@@ -15,6 +15,8 @@ import { type ButtonProps } from "../button";
 import { useFieldLabelTrigger } from "../hooks";
 import { decorateChildren, type ExcludeProps } from "../utils";
 import { useSelectContext } from "./SelectContext";
+
+const Slot = createSlot("@optiaxiom/react/SelectTrigger");
 
 type SelectTriggerProps = ExcludeProps<
   ButtonProps<

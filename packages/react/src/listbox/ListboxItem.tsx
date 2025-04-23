@@ -1,5 +1,5 @@
 import { useId } from "@radix-ui/react-id";
-import { Slot } from "@radix-ui/react-slot";
+import { createSlot } from "@radix-ui/react-slot";
 import { type ElementType, forwardRef, type ReactNode } from "react";
 
 import { Box, type BoxProps } from "../box";
@@ -13,6 +13,8 @@ import {
   isHoverSupported,
 } from "../utils";
 import * as styles from "./ListboxItem.css";
+
+const Slot = createSlot("@optiaxiom/react/ListboxItem");
 
 export type ListboxItemProps<
   T extends ElementType = "div",

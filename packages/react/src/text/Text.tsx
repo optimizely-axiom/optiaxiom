@@ -1,10 +1,12 @@
-import { Slot } from "@radix-ui/react-slot";
+import { createSlot } from "@radix-ui/react-slot";
 import { type ElementType, forwardRef } from "react";
 
 import type { ExtendProps } from "../utils";
 
 import { Box, type BoxProps } from "../box";
 import * as styles from "./Text.css";
+
+const Slot = createSlot("@optiaxiom/react/Text");
 
 export type TextProps<T extends ElementType = "p", P = unknown> = BoxProps<
   T,
