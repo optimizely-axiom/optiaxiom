@@ -62,7 +62,7 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
     const shouldShowGroup = (group: Group | undefined): group is Group => {
       const show = group !== lastGroup;
       lastGroup = group;
-      return show && !group?.hidden;
+      return show && !!group && !group?.hidden;
     };
 
     return (
