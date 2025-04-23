@@ -44,7 +44,7 @@ export const DatePickerContent = forwardRef<
     },
     ref,
   ) => {
-    const { setValue, step, type, value } = useDatePickerContext(
+    const { setOpen, setValue, step, type, value } = useDatePickerContext(
       "@optiaxiom/react/DatePickerContent",
     );
 
@@ -64,7 +64,12 @@ export const DatePickerContent = forwardRef<
                 panelRef.current.style.height = `${height}px`;
               }
             }}
-            onValueChange={setValue}
+            onValueChange={(date) => {
+              setValue(date);
+              if (type === "date") {
+                setOpen(false);
+              }
+            }}
             step={step}
             today={today}
             type={type}

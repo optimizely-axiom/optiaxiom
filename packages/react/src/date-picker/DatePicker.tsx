@@ -50,6 +50,7 @@ export function DatePicker({
     <Popover onOpenChange={setOpen} open={open} {...props}>
       <DatePickerProvider
         disabled={disabled}
+        setOpen={setOpen}
         setValue={setValue}
         step={step as string}
         type={type}
