@@ -20,5 +20,10 @@ const customRender = (...args: Parameters<typeof render>) => ({
   }),
 });
 
-export * from "@testing-library/react";
+/**
+ * There's some bug in vitest <3.1.2 that causes render from
+ * "@testing-library/react" to overwrite our custom render.
+ * So we explicitly list out the re-exported modules.
+ */
+export { screen, waitForElementToBeRemoved } from "@testing-library/react";
 export { customRender as render };
