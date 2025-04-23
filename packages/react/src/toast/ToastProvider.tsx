@@ -9,7 +9,7 @@ import {
   isValidElement,
   useRef,
 } from "react";
-import { useSyncExternalStore } from "use-sync-external-store/shim/index.js";
+import { useSyncExternalStore } from "use-sync-external-store/shim";
 
 import { type BoxProps, extractBoxProps } from "../box";
 import { Flex } from "../flex";
