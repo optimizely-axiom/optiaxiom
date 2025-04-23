@@ -62,7 +62,9 @@ export function Command({
 
   const [highlightedIndex, setHighlightedIndex, placed, setPlaced] =
     usePortalPatch(() =>
-      items.findIndex((item) => resolveItemProperty(item.selected)),
+      items.findIndex(
+        (item) => resolveItemProperty(item.selected) && !item.multi,
+      ),
     );
   const setInputValueStable = useEffectEvent(setInputValue);
   useEffect(() => {
