@@ -1,12 +1,12 @@
-import { useComposedRefs } from "@radix-ui/react-compose-refs";
-import { createSlot } from "@radix-ui/react-slot";
+import { Slot as RadixSlot } from "radix-ui";
+import { useComposedRefs } from "radix-ui/internal";
 import { forwardRef, type ReactElement, useRef } from "react";
 
 import * as styles from "./Transition.css";
 import { TransitionGlobalConfig } from "./TransitionGlobalConfig";
 import { useTransitionStatus } from "./useTransitionStatus";
 
-const Slot = createSlot("@optiaxiom/react/Transition");
+const Slot = RadixSlot.createSlot("@optiaxiom/react/Transition");
 
 type TransitionProps = styles.TransitionVariants & {
   children: ReactElement;

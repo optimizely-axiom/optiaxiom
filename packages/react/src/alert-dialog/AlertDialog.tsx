@@ -1,5 +1,5 @@
-import * as RadixAlertDialog from "@radix-ui/react-alert-dialog";
-import { useControllableState } from "@radix-ui/react-use-controllable-state";
+import { AlertDialog as RadixAlertDialog } from "radix-ui";
+import { useControllableState } from "radix-ui/internal";
 import { useState } from "react";
 
 import {

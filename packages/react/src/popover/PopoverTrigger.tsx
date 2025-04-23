@@ -1,4 +1,4 @@
-import * as RadixPopover from "@radix-ui/react-popover";
+import { Popover as RadixPopover } from "radix-ui";
 import { forwardRef, useEffect, useState } from "react";
 
 import { Button, type ButtonProps } from "../button";

@@ -1,4 +1,4 @@
-import * as RadixToast from "@radix-ui/react-toast";
+import { Toast as RadixToast } from "radix-ui";
 import { forwardRef } from "react";
 
 import { Button, type ButtonProps } from "../button";

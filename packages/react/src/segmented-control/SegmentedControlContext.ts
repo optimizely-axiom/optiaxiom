@@ -1,6 +1,8 @@
 "use client";
 
-import { createContext } from "@radix-ui/react-context";
+import { Context } from "radix-ui/internal";
 
 export const [SegmentedControlProvider, useSegmentedControlContext] =
-  createContext<Record<never, never>>("@optiaxiom/react/SegmentedControl");
+  Context.createContext<Record<never, never>>(
+    "@optiaxiom/react/SegmentedControl",
+  );

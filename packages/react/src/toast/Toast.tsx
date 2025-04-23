@@ -1,7 +1,7 @@
 import { useToastProviderContext } from "@optiaxiom/globals";
-import { useComposedRefs } from "@radix-ui/react-compose-refs";
-import * as RadixToast from "@radix-ui/react-toast";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
+import { Toast as RadixToast } from "radix-ui";
+import { useComposedRefs } from "radix-ui/internal";
 import { createElement, forwardRef } from "react";
 
 import type { ExcludeProps } from "../utils";

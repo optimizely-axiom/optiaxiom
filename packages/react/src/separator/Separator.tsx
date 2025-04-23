@@ -1,5 +1,5 @@
-import * as RadixSeparator from "@radix-ui/react-separator";
 import clsx from "clsx";
+import { Separator as RadixSeparator } from "radix-ui";
 import { forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";

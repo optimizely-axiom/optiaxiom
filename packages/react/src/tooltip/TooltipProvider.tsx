@@ -1,11 +1,11 @@
 import type { ComponentPropsWithoutRef } from "react";
 
-import * as TooltipPrimitive from "@radix-ui/react-tooltip";
+import { Tooltip as RadixTooltip } from "radix-ui";
 
 import type { ExtendProps } from "../utils";
 
 type TooltipProviderProps = ExtendProps<
-  ComponentPropsWithoutRef<typeof TooltipPrimitive.Provider>,
+  ComponentPropsWithoutRef<typeof RadixTooltip.Provider>,
   {
     /**
      * When `true`, trying to hover the content will result in the tooltip closing as the pointer leaves the trigger.
@@ -19,7 +19,7 @@ export function TooltipProvider({
   ...props
 }: TooltipProviderProps) {
   return (
-    <TooltipPrimitive.Provider
+    <RadixTooltip.Provider
       disableHoverableContent={disableHoverableContent}
       {...props}
     />

@@ -1,6 +1,6 @@
-import * as RadixAlertDialog from "@radix-ui/react-alert-dialog";
-import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
+import { AlertDialog as RadixAlertDialog } from "radix-ui";
+import { useComposedRefs } from "radix-ui/internal";
 import { forwardRef, useRef } from "react";
 
 import type { ExcludeProps } from "../utils";

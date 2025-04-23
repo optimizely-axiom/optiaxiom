@@ -1,4 +1,4 @@
-import { createSlot } from "@radix-ui/react-slot";
+import { Slot as RadixSlot } from "radix-ui";
 import {
   type ComponentPropsWithoutRef,
   forwardRef,
@@ -12,7 +12,7 @@ import { InputAddon } from "./InputAddon";
 import { InputControl, type InputControlProps } from "./InputControl";
 import { InputRoot } from "./InputRoot";
 
-const Slot = createSlot("@optiaxiom/react/Input");
+const Slot = RadixSlot.createSlot("@optiaxiom/react/Input");
 
 type InputProps = InputControlProps<
   "input",

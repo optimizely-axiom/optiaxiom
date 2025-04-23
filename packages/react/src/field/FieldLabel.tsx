@@ -1,5 +1,5 @@
 import { useId } from "@radix-ui/react-id";
-import * as RadixLabel from "@radix-ui/react-label";
+import { Label as RadixLabel } from "radix-ui";
 import { forwardRef, type ReactNode } from "react";
 
 import { Box, type BoxProps } from "../box";

@@ -1,6 +1,6 @@
 import { useId } from "@radix-ui/react-id";
-import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import clsx from "clsx";
+import { useControllableState } from "radix-ui/internal";
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import type { ExcludeProps } from "../utils";

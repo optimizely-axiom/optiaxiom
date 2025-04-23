@@ -1,4 +1,4 @@
-import * as RadixAlertDialog from "@radix-ui/react-alert-dialog";
+import { AlertDialog as RadixAlertDialog } from "radix-ui";
 import { forwardRef, type ReactNode } from "react";
 
 import type { BoxProps } from "../box";

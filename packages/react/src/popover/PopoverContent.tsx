@@ -1,6 +1,6 @@
 import { theme } from "@optiaxiom/globals";
-import { useComposedRefs } from "@radix-ui/react-compose-refs";
-import * as RadixPopover from "@radix-ui/react-popover";
+import { Popover as RadixPopover } from "radix-ui";
+import { useComposedRefs } from "radix-ui/internal";
 import { type ComponentPropsWithoutRef, forwardRef, useRef } from "react";
 
 import type { BoxProps } from "../box";

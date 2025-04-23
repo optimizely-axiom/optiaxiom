@@ -1,4 +1,4 @@
-import * as RadixTabs from "@radix-ui/react-tabs";
+import { Tabs as RadixTabs } from "radix-ui";
 import { forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";

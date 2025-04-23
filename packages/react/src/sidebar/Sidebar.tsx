@@ -1,5 +1,5 @@
 import { useId } from "@radix-ui/react-id";
-import { useControllableState } from "@radix-ui/react-use-controllable-state";
+import { useControllableState } from "radix-ui/internal";
 import { forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";

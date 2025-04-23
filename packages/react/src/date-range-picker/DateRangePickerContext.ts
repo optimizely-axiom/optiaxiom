@@ -2,10 +2,10 @@
 
 import type { DateRange } from "react-day-picker";
 
-import { createContext } from "@radix-ui/react-context";
+import { Context } from "radix-ui/internal";
 
 export const [DateRangePickerProvider, useDateRangePickerContext] =
-  createContext<{
+  Context.createContext<{
     disabled: boolean | undefined;
     setOpen: (open: boolean) => void;
     setValue: (date: DateRange | null) => void;

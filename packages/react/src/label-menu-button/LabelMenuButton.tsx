@@ -1,6 +1,6 @@
 import { useId } from "@radix-ui/react-id";
-import { Label } from "@radix-ui/react-label";
 import clsx from "clsx";
+import { Label } from "radix-ui";
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import { ButtonAddon } from "../button/ButtonAddon";
@@ -44,7 +44,7 @@ export const LabelMenuButton = forwardRef<
       >
         <Flex gap="0" overflow="hidden" textAlign="start">
           <Text asChild id={labelId} truncate {...styles.label({ filled })}>
-            <Label>{label}</Label>
+            <Label.Root>{label}</Label.Root>
           </Text>
           <Text id={valueId} truncate {...styles.content({ filled })}>
             {children ?? <>&nbsp;</>}

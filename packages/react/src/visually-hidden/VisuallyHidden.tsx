@@ -1,4 +1,4 @@
-import * as RadixVisuallyHidden from "@radix-ui/react-visually-hidden";
+import { VisuallyHidden as RadixVisuallyHidden } from "radix-ui";
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import { FilteredSlot } from "../filtered-slot";

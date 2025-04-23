@@ -2,9 +2,9 @@
 
 import type { ComponentPropsWithoutRef } from "react";
 
-import { createContext } from "@radix-ui/react-context";
+import { Context } from "radix-ui/internal";
 
-export const [RadioGroupProvider, useRadioGroupContext] = createContext<
+export const [RadioGroupProvider, useRadioGroupContext] = Context.createContext<
   | null
   | (Pick<
       ComponentPropsWithoutRef<"input">,

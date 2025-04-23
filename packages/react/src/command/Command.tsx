@@ -1,5 +1,5 @@
-import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import { useCombobox } from "downshift";
+import { useControllableState } from "radix-ui/internal";
 import { type ReactNode, useRef } from "react";
 
 import { usePortalPatch } from "../downshift";

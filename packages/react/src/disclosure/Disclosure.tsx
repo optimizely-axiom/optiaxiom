@@ -1,5 +1,5 @@
-import * as RadixCollapsible from "@radix-ui/react-collapsible";
-import { useControllableState } from "@radix-ui/react-use-controllable-state";
+import { Collapsible as RadixCollapsible } from "radix-ui";
+import { useControllableState } from "radix-ui/internal";
 import { forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";

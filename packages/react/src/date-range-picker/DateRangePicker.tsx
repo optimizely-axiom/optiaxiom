@@ -1,6 +1,6 @@
 import type { DateRange } from "react-day-picker";
 
-import { useControllableState } from "@radix-ui/react-use-controllable-state";
+import { useControllableState } from "radix-ui/internal";
 import { type ComponentPropsWithRef } from "react";
 
 import { Popover } from "../popover";

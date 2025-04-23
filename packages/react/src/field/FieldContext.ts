@@ -1,8 +1,8 @@
 "use client";
 
-import { createContext } from "@radix-ui/react-context";
+import { Context } from "radix-ui/internal";
 
-export const [FieldProvider, useFieldContext] = createContext<{
+export const [FieldProvider, useFieldContext] = Context.createContext<{
   descriptionId: string | undefined;
   error: boolean;
   errorId: string | undefined;

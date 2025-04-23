@@ -2,9 +2,9 @@
 
 import type { RefObject } from "react";
 
-import { createContext } from "@radix-ui/react-context";
+import { Context } from "radix-ui/internal";
 
-export const [TooltipProvider, useTooltipContext] = createContext<{
+export const [TooltipProvider, useTooltipContext] = Context.createContext<{
   open?: boolean;
   setOpen: (open: boolean) => void;
   triggerRef: RefObject<HTMLButtonElement>;

@@ -1,4 +1,4 @@
-import { createSlot } from "@radix-ui/react-slot";
+import { Slot as RadixSlot } from "radix-ui";
 import { forwardRef } from "react";
 
 import { Box, type BoxProps, extractBoxProps } from "../box";
@@ -7,7 +7,7 @@ import { IconX } from "../icons/IconX";
 import { Text } from "../text";
 import * as styles from "./Pill.css";
 
-const Slot = createSlot("@optiaxiom/react/Pill");
+const Slot = RadixSlot.createSlot("@optiaxiom/react/Pill");
 
 type PillProps = BoxProps<"button", styles.PillVariants>;
 

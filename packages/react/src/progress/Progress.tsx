@@ -1,10 +1,10 @@
-import * as ProgressPrimitive from "@radix-ui/react-progress";
+import { Progress as RadixProgress } from "radix-ui";
 import { forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
 import * as styles from "./Progress.css";
 
-type ProgressProps = BoxProps<typeof ProgressPrimitive.Root> &
+type ProgressProps = BoxProps<typeof RadixProgress.Root> &
   styles.ProgressVariants;
 
 export const Progress = forwardRef<HTMLDivElement, ProgressProps>(
@@ -19,7 +19,7 @@ export const Progress = forwardRef<HTMLDivElement, ProgressProps>(
 
     return (
       <Box asChild {...styles.progress({}, className)} {...props}>
-        <ProgressPrimitive.Root ref={ref}>
+        <RadixProgress.Root ref={ref}>
           {isValidValue && (
             <Box
               asChild
@@ -30,10 +30,10 @@ export const Progress = forwardRef<HTMLDivElement, ProgressProps>(
                 intent,
               })}
             >
-              <ProgressPrimitive.Indicator />
+              <RadixProgress.Indicator />
             </Box>
           )}
-        </ProgressPrimitive.Root>
+        </RadixProgress.Root>
       </Box>
     );
   },

@@ -1,5 +1,5 @@
-import * as RadixPopover from "@radix-ui/react-popover";
-import { useControllableState } from "@radix-ui/react-use-controllable-state";
+import { Popover as RadixPopover } from "radix-ui";
+import { useControllableState } from "radix-ui/internal";
 import { useState } from "react";
 
 import { PopoverProvider } from "./PopoverContext";

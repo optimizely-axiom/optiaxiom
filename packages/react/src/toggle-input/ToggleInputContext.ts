@@ -1,8 +1,9 @@
 "use client";
 
-import { createContext } from "@radix-ui/react-context";
+import { Context } from "radix-ui/internal";
 
-export const [ToggleInputProvider, useToggleInputContext] = createContext<{
-  descriptionId?: string;
-  labelId?: string;
-}>("@optiaxiom/react/ToggleInput");
+export const [ToggleInputProvider, useToggleInputContext] =
+  Context.createContext<{
+    descriptionId?: string;
+    labelId?: string;
+  }>("@optiaxiom/react/ToggleInput");

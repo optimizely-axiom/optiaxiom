@@ -1,7 +1,9 @@
-import { useComposedRefs } from "@radix-ui/react-compose-refs";
-import { Popper } from "@radix-ui/react-popper";
-import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import { useSelect } from "downshift";
+import {
+  Popper,
+  useComposedRefs,
+  useControllableState,
+} from "radix-ui/internal";
 import {
   type ChangeEventHandler,
   type FocusEventHandler,
@@ -176,7 +178,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
     downshift.getMenuProps({}, { suppressRefError: true });
 
     return (
-      <Popper>
+      <Popper.Root>
         <SelectProvider
           disabled={disabled}
           downshift={downshift}
@@ -201,7 +203,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
           />
           {children}
         </SelectProvider>
-      </Popper>
+      </Popper.Root>
     );
   },
 );

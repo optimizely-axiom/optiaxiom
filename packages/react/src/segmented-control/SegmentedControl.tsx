@@ -1,4 +1,4 @@
-import * as RadixSegmentedControl from "@radix-ui/react-toggle-group";
+import { ToggleGroup } from "radix-ui";
 import { forwardRef } from "react";
 
 import { type BoxProps } from "../box";
@@ -6,7 +6,7 @@ import { Flex } from "../flex";
 import { SegmentedControlProvider } from "./SegmentedControlContext";
 
 type SegmentedControlProps = BoxProps<
-  typeof RadixSegmentedControl.Root,
+  typeof ToggleGroup.Root,
   {
     type?: "multiple" | "single";
   }
@@ -18,9 +18,9 @@ export const SegmentedControl = forwardRef<
 >(({ children, type = "single", ...props }, ref) => {
   return (
     <Flex asChild flexDirection="row" gap="0" {...props}>
-      <RadixSegmentedControl.Root ref={ref} type={type}>
+      <ToggleGroup.Root ref={ref} type={type}>
         <SegmentedControlProvider>{children}</SegmentedControlProvider>
-      </RadixSegmentedControl.Root>
+      </ToggleGroup.Root>
     </Flex>
   );
 });

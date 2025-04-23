@@ -1,4 +1,3 @@
-import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import {
   type CellContext,
   type Column,
@@ -7,6 +6,7 @@ import {
 } from "@tanstack/react-table";
 import { useVirtualizer } from "@tanstack/react-virtual";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
+import { useComposedRefs } from "radix-ui/internal";
 import { forwardRef, useRef } from "react";
 
 import type { Sprinkles } from "../sprinkles";

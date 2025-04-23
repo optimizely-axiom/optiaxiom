@@ -2,11 +2,11 @@
 
 import type { RefObject } from "react";
 
-import { createContext } from "@radix-ui/react-context";
+import { Context } from "radix-ui/internal";
 
 import type { CommandOption } from "../command/internals";
 
-export const [MenuProvider, useMenuContext] = createContext<{
+export const [MenuProvider, useMenuContext] = Context.createContext<{
   inputRef: RefObject<HTMLInputElement>;
   inputVisible: boolean;
   onSelect: (item: CommandOption, context: { close: boolean }) => void;

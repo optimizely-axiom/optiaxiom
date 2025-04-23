@@ -1,4 +1,4 @@
-import { createSlot } from "@radix-ui/react-slot";
+import { Slot as RadixSlot } from "radix-ui";
 import { forwardRef } from "react";
 
 import { Box, type BoxProps, extractBoxProps } from "../box";
@@ -7,7 +7,7 @@ import { IconUpRightFromSquare } from "../icons/IconUpRightFromSquare";
 import { decorateChildren } from "../utils";
 import * as styles from "./Link.css";
 
-const Slot = createSlot("@optiaxiom/react/Link");
+const Slot = RadixSlot.createSlot("@optiaxiom/react/Link");
 
 type LinkProps = BoxProps<
   "a",

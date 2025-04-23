@@ -1,5 +1,5 @@
-import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import { useVirtualizer } from "@tanstack/react-virtual";
+import { useComposedRefs } from "radix-ui/internal";
 import {
   forwardRef,
   type LegacyRef,

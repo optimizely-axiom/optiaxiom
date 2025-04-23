@@ -1,10 +1,10 @@
-import { createSlot } from "@radix-ui/react-slot";
+import { Slot as RadixSlot } from "radix-ui";
 import { forwardRef } from "react";
 
 import { Heading, type HeadingProps } from "../heading";
 import { useCardContext } from "./CardContext";
 
-const Slot = createSlot("@optiaxiom/react/CardTitle");
+const Slot = RadixSlot.createSlot("@optiaxiom/react/CardTitle");
 
 type CardTitleProps = HeadingProps<"h2">;
 

@@ -1,5 +1,5 @@
-import { useComposedRefs } from "@radix-ui/react-compose-refs";
-import * as RadixTooltip from "@radix-ui/react-tooltip";
+import { Tooltip as RadixTooltip } from "radix-ui";
+import { useComposedRefs } from "radix-ui/internal";
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import { Button } from "../button";

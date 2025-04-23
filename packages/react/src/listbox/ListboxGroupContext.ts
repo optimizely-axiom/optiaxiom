@@ -1,7 +1,8 @@
 "use client";
 
-import { createContext } from "@radix-ui/react-context";
+import { Context } from "radix-ui/internal";
 
-export const [ListboxGroupProvider, useListboxGroupContext] = createContext<{
-  id?: string;
-}>("@optiaxiom/react/ListboxGroup", { id: undefined });
+export const [ListboxGroupProvider, useListboxGroupContext] =
+  Context.createContext<{
+    id?: string;
+  }>("@optiaxiom/react/ListboxGroup", { id: undefined });

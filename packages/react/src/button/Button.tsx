@@ -1,4 +1,4 @@
-import { createSlot } from "@radix-ui/react-slot";
+import { Slot as RadixSlot } from "radix-ui";
 import { type ElementType, forwardRef, type ReactNode, useEffect } from "react";
 
 import { Icon } from "../icon";
@@ -9,7 +9,7 @@ import { ButtonLabel } from "./ButtonLabel";
 import { ButtonLoadable } from "./ButtonLoadable";
 import { ButtonRoot, type ButtonRootProps } from "./ButtonRoot";
 
-const Slot = createSlot("@optiaxiom/react/Button");
+const Slot = RadixSlot.createSlot("@optiaxiom/react/Button");
 
 export type ButtonProps<
   T extends ElementType = "button",

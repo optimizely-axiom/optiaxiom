@@ -1,6 +1,6 @@
-import { useComposedRefs } from "@radix-ui/react-compose-refs";
-import * as RadixDialog from "@radix-ui/react-dialog";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
+import { Dialog as RadixDialog } from "radix-ui";
+import { useComposedRefs } from "radix-ui/internal";
 import { type ComponentPropsWithoutRef, forwardRef, useRef } from "react";
 
 import { Backdrop } from "../backdrop";

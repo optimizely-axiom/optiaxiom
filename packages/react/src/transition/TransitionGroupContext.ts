@@ -1,10 +1,10 @@
 "use client";
 
-import { createContext } from "@radix-ui/react-context";
+import { Context } from "radix-ui/internal";
 import { type RefObject } from "react";
 
 export const [TransitionGroupProvider, useTransitionGroupContext] =
-  createContext<null | {
+  Context.createContext<null | {
     onMount: (ref: RefObject<HTMLElement>) => void;
     onUnmount: (ref: RefObject<HTMLElement>) => void;
     open: boolean | undefined;

@@ -1,10 +1,11 @@
 import type { RefObject } from "react";
 
-import { createContext } from "@radix-ui/react-context";
+import { Context } from "radix-ui/internal";
 
-export const [ToastProviderProvider, useToastProviderContext] = createContext<{
-  offset: number;
-  onOpenChange: (open: boolean) => void;
-  open: boolean;
-  toastRef: RefObject<HTMLElement>;
-}>("@optiaxiom/react/ToastProvider");
+export const [ToastProviderProvider, useToastProviderContext] =
+  Context.createContext<{
+    offset: number;
+    onOpenChange: (open: boolean) => void;
+    open: boolean;
+    toastRef: RefObject<HTMLElement>;
+  }>("@optiaxiom/react/ToastProvider");

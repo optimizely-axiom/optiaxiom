@@ -1,10 +1,10 @@
-import { createSlot } from "@radix-ui/react-slot";
+import { Slot as RadixSlot } from "radix-ui";
 import { forwardRef } from "react";
 
 import { Box, type BoxProps, extractBoxProps } from "../box";
 import * as styles from "./Code.css";
 
-const Slot = createSlot("@optiaxiom/react/Code");
+const Slot = RadixSlot.createSlot("@optiaxiom/react/Code");
 
 type CodeProps = BoxProps<"code">;
 

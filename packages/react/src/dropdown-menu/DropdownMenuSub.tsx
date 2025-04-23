@@ -1,5 +1,5 @@
-import * as RadixMenu from "@radix-ui/react-dropdown-menu";
-import { useControllableState } from "@radix-ui/react-use-controllable-state";
+import { DropdownMenu as RadixMenu } from "radix-ui";
+import { useControllableState } from "radix-ui/internal";
 import { useEffect, useState } from "react";
 
 import {

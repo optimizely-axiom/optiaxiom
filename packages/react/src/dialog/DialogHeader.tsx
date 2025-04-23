@@ -1,4 +1,4 @@
-import * as RadixDialog from "@radix-ui/react-dialog";
+import { Dialog as RadixDialog } from "radix-ui";
 import { forwardRef, type ReactNode } from "react";
 
 import { Box, type BoxProps } from "../box";

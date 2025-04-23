@@ -2,9 +2,9 @@
 
 import type { RefObject } from "react";
 
-import { createContext } from "@radix-ui/react-context";
+import { Context } from "radix-ui/internal";
 
-export const [MenuSubProvider, useMenuSubContext] = createContext<{
+export const [MenuSubProvider, useMenuSubContext] = Context.createContext<{
   inputRef: RefObject<HTMLInputElement>;
   open: boolean;
   setOpen: (open: boolean) => void;

@@ -1,6 +1,6 @@
-import { createContext } from "@radix-ui/react-context";
+import { Context } from "radix-ui/internal";
 
-export const [SidebarProvider, useSidebarContext] = createContext<{
+export const [SidebarProvider, useSidebarContext] = Context.createContext<{
   expanded: boolean | undefined;
   navId: string;
   onExpandedChange: (expanded: boolean) => void;

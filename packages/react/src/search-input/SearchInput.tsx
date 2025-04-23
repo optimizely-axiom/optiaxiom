@@ -1,5 +1,4 @@
-import { useComposedRefs } from "@radix-ui/react-compose-refs";
-import { useControllableState } from "@radix-ui/react-use-controllable-state";
+import { useComposedRefs, useControllableState } from "radix-ui/internal";
 import { type ComponentPropsWithRef, forwardRef, useRef } from "react";
 
 import { Button } from "../button";

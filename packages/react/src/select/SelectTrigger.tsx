@@ -1,7 +1,7 @@
 import { useId } from "@radix-ui/react-id";
-import { PopperAnchor } from "@radix-ui/react-popper";
-import { createSlot } from "@radix-ui/react-slot";
 import clsx from "clsx";
+import { Slot as RadixSlot } from "radix-ui";
+import { Popper } from "radix-ui/internal";
 import {
   type FocusEvent,
   forwardRef,
@@ -18,11 +18,11 @@ import { useFieldLabelTrigger } from "../hooks";
 import { decorateChildren, type ExcludeProps } from "../utils";
 import { useSelectContext } from "./SelectContext";
 
-const Slot = createSlot("@optiaxiom/react/SelectTrigger");
+const Slot = RadixSlot.createSlot("@optiaxiom/react/SelectTrigger");
 
 type SelectTriggerProps = ExcludeProps<
   ButtonProps<
-    typeof PopperAnchor,
+    typeof Popper.Anchor,
     {
       placeholder?: string;
     }
@@ -67,7 +67,7 @@ export const SelectTrigger = forwardRef<HTMLButtonElement, SelectTriggerProps>(
       : placeholder;
 
     return (
-      <PopperAnchor
+      <Popper.Anchor
         asChild
         {...boxProps}
         {...downshift.getToggleButtonProps({
@@ -140,7 +140,7 @@ export const SelectTrigger = forwardRef<HTMLButtonElement, SelectTriggerProps>(
             </AngleMenuButton>
           )}
         </Slot>
-      </PopperAnchor>
+      </Popper.Anchor>
     );
   },
 );

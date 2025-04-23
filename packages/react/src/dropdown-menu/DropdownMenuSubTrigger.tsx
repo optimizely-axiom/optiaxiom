@@ -1,4 +1,4 @@
-import * as RadixMenu from "@radix-ui/react-dropdown-menu";
+import { DropdownMenu as RadixMenu } from "radix-ui";
 import { forwardRef } from "react";
 
 import { IconAngleRight } from "../icons/IconAngleRight";

@@ -1,5 +1,5 @@
-import * as RadixTooltip from "@radix-ui/react-tooltip";
-import { useControllableState } from "@radix-ui/react-use-controllable-state";
+import { Tooltip as RadixTooltip } from "radix-ui";
+import { useControllableState } from "radix-ui/internal";
 import { useRef } from "react";
 
 import { type BoxProps } from "../box";

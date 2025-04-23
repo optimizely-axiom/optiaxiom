@@ -1,10 +1,10 @@
-import * as RadixSegmentedControl from "@radix-ui/react-toggle-group";
+import { ToggleGroup } from "radix-ui";
 import { forwardRef } from "react";
 
 import { Button, type ButtonProps } from "../button";
 import { useSegmentedControlContext } from "./SegmentedControlContext";
 
-type SegmentedControlItemProps = ButtonProps<typeof RadixSegmentedControl.Item>;
+type SegmentedControlItemProps = ButtonProps<typeof ToggleGroup.Item>;
 
 export const SegmentedControlItem = forwardRef<
   HTMLButtonElement,
@@ -13,14 +13,9 @@ export const SegmentedControlItem = forwardRef<
   useSegmentedControlContext("@optiaxiom/react/SegmentedControlItem");
 
   return (
-    <RadixSegmentedControl.Item
-      appearance="subtle"
-      asChild
-      ref={ref}
-      {...props}
-    >
+    <ToggleGroup.Item appearance="subtle" asChild ref={ref} {...props}>
       <Button>{children}</Button>
-    </RadixSegmentedControl.Item>
+    </ToggleGroup.Item>
   );
 });
 

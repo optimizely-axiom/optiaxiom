@@ -1,5 +1,5 @@
-import * as RadixDialog from "@radix-ui/react-dialog";
-import { useControllableState } from "@radix-ui/react-use-controllable-state";
+import { Dialog as RadixDialog } from "radix-ui";
+import { useControllableState } from "radix-ui/internal";
 
 import {
   NestedDialogProvider,

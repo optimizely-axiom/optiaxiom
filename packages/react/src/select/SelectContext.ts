@@ -3,7 +3,7 @@
 import type { UseSelectReturnValue } from "downshift";
 import type { FocusEventHandler, ReactNode } from "react";
 
-import { createContext } from "@radix-ui/react-context";
+import { Context } from "radix-ui/internal";
 
 export type Group = {
   /**
@@ -51,7 +51,7 @@ export type SelectOption = {
   value: string;
 };
 
-export const [SelectProvider, useSelectContext] = createContext<{
+export const [SelectProvider, useSelectContext] = Context.createContext<{
   disabled?: boolean;
   downshift: UseSelectReturnValue<SelectOption>;
   highlightedItem: SelectOption;

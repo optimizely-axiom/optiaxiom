@@ -1,10 +1,10 @@
-import { createSlot } from "@radix-ui/react-slot";
+import { Slot as RadixSlot } from "radix-ui";
 import { forwardRef } from "react";
 
 import { Text, type TextProps } from "../text";
 import * as styles from "./Badge.css";
 
-const Slot = createSlot("@optiaxiom/react/Badge");
+const Slot = RadixSlot.createSlot("@optiaxiom/react/Badge");
 
 type BadgeProps = TextProps<"span", styles.BadgeVariants>;
 

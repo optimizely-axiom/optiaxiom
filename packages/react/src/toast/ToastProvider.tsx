@@ -1,8 +1,7 @@
 import { ToastProviderProvider } from "@optiaxiom/globals";
 import { type createToaster, toaster } from "@optiaxiom/globals";
-import { useComposedRefs } from "@radix-ui/react-compose-refs";
-import { Portal } from "@radix-ui/react-portal";
-import * as RadixToast from "@radix-ui/react-toast";
+import { Portal, Toast as RadixToast } from "radix-ui";
+import { useComposedRefs } from "radix-ui/internal";
 import {
   type ComponentPropsWithoutRef,
   forwardRef,
@@ -24,7 +23,7 @@ type ToastProps = BoxProps<
   ComponentPropsWithoutRef<typeof RadixToast.ToastProvider> &
     styles.ViewportVariants & {
       children?: never;
-      container?: ComponentPropsWithoutRef<typeof Portal>["container"];
+      container?: ComponentPropsWithoutRef<typeof Portal.Root>["container"];
       /**
        * An instance of toaster returned from the `createToaster` method.
        */
@@ -113,7 +112,7 @@ export const ToastProvider = forwardRef<HTMLOListElement, ToastProps>(
           </ToastProviderProvider>
         ))}
 
-        <Portal asChild container={container}>
+        <Portal.Root asChild container={container}>
           <Flex
             alignItems={
               position.endsWith("left")
@@ -132,7 +131,7 @@ export const ToastProvider = forwardRef<HTMLOListElement, ToastProps>(
           >
             <RadixToast.Viewport ref={ref} {...restProps} />
           </Flex>
-        </Portal>
+        </Portal.Root>
       </RadixToast.ToastProvider>
     );
   },

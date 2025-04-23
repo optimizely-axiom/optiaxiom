@@ -2,10 +2,10 @@
 
 import type { ComponentPropsWithoutRef } from "react";
 
-import { createContext } from "@radix-ui/react-context";
+import { Context } from "radix-ui/internal";
 
 import type { Button } from "./Button";
 
-export const [ButtonProvider, useButtonContext] = createContext<
+export const [ButtonProvider, useButtonContext] = Context.createContext<
   Pick<ComponentPropsWithoutRef<typeof Button>, "size">
 >("@optiaxiom/react/Button", { size: undefined });

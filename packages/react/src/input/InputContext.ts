@@ -2,9 +2,9 @@
 
 import type { RefObject } from "react";
 
-import { createContext } from "@radix-ui/react-context";
+import { Context } from "radix-ui/internal";
 
-export const [InputProvider, useInputContext] = createContext<{
+export const [InputProvider, useInputContext] = Context.createContext<{
   /**
    * When this prop is set to `none` clicking empty space inside the
    * addon will focus the input box.

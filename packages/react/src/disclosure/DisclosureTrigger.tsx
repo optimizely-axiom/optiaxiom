@@ -1,4 +1,4 @@
-import * as RadixCollapsible from "@radix-ui/react-collapsible";
+import { Collapsible as RadixCollapsible } from "radix-ui";
 import { forwardRef, type ReactNode } from "react";
 
 import { Box, type BoxProps } from "../box";

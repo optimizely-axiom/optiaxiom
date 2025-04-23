@@ -1,4 +1,4 @@
-import * as RadixCollapsible from "@radix-ui/react-collapsible";
+import { Collapsible as RadixCollapsible } from "radix-ui";
 import {
   type ComponentPropsWithoutRef,
   forwardRef,

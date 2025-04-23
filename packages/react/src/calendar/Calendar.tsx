@@ -1,5 +1,4 @@
-import { useComposedRefs } from "@radix-ui/react-compose-refs";
-import { useControllableState } from "@radix-ui/react-use-controllable-state";
+import { useComposedRefs, useControllableState } from "radix-ui/internal";
 import {
   type ComponentPropsWithoutRef,
   forwardRef,

@@ -1,5 +1,5 @@
 import { useId } from "@radix-ui/react-id";
-import { createSlot } from "@radix-ui/react-slot";
+import { Slot as RadixSlot } from "radix-ui";
 import { type ElementType, forwardRef, type ReactNode } from "react";
 
 import { Box, type BoxProps } from "../box";
@@ -14,7 +14,7 @@ import {
 } from "../utils";
 import * as styles from "./ListboxItem.css";
 
-const Slot = createSlot("@optiaxiom/react/ListboxItem");
+const Slot = RadixSlot.createSlot("@optiaxiom/react/ListboxItem");
 
 export type ListboxItemProps<
   T extends ElementType = "div",

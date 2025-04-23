@@ -1,11 +1,11 @@
-import { createSlot } from "@radix-ui/react-slot";
+import { Slot as RadixSlot } from "radix-ui";
 import { type ElementType, forwardRef } from "react";
 
 import type { ExtendProps } from "../utils";
 
 import { Text, type TextProps } from "../text";
 
-const Slot = createSlot("@optiaxiom/react/Heading");
+const Slot = RadixSlot.createSlot("@optiaxiom/react/Heading");
 
 export type HeadingProps<T extends ElementType = "h1", P = unknown> = TextProps<
   T,

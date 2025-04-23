@@ -1,4 +1,4 @@
-import * as RadixAvatar from "@radix-ui/react-avatar";
+import { Avatar as RadixAvatar } from "radix-ui";
 import { forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";

@@ -1,5 +1,5 @@
 import { theme } from "@optiaxiom/globals";
-import * as RadixTooltip from "@radix-ui/react-tooltip";
+import { Tooltip as RadixTooltip } from "radix-ui";
 import { forwardRef } from "react";
 
 import type { ExcludeProps } from "../utils";

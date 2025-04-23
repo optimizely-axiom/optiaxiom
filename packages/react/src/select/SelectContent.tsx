@@ -1,5 +1,5 @@
-import { PopperContent } from "@radix-ui/react-popper";
-import { Portal } from "@radix-ui/react-portal";
+import { Portal } from "radix-ui";
+import { Popper } from "radix-ui/internal";
 import {
   type ComponentPropsWithoutRef,
   forwardRef,
@@ -23,7 +23,7 @@ import { SelectRadioItem } from "./SelectRadioItem";
 
 type SelectContentProps = ExcludeProps<
   BoxProps<
-    typeof PopperContent,
+    typeof Popper.Content,
     Pick<ComponentPropsWithoutRef<typeof ModalListbox>, "maxH" | "minW"> & {
       children?: ((item: SelectOption) => ReactNode) | ReactNode;
     }
@@ -66,7 +66,7 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
 
     return (
       <TransitionGroup open={isOpen}>
-        <Portal asChild>
+        <Portal.Root asChild>
           <ModalLayer asChild>
             <ModalListbox
               asChild
@@ -78,7 +78,7 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
               size={size}
               {...props}
             >
-              <PopperContent align={align} side={side} sideOffset={5}>
+              <Popper.Content align={align} side={side} sideOffset={5}>
                 <ListboxItemized
                   highlightedItem={highlightedItem}
                   items={items}
@@ -114,10 +114,10 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
                       );
                     })}
                 </ListboxItemized>
-              </PopperContent>
+              </Popper.Content>
             </ModalListbox>
           </ModalLayer>
-        </Portal>
+        </Portal.Root>
       </TransitionGroup>
     );
   },

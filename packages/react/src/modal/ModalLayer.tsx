@@ -1,7 +1,9 @@
-import { useComposedRefs } from "@radix-ui/react-compose-refs";
-import { DismissableLayer } from "@radix-ui/react-dismissable-layer";
-import { FocusGuards } from "@radix-ui/react-focus-guards";
-import { createSlot } from "@radix-ui/react-slot";
+import { Slot as RadixSlot } from "radix-ui";
+import {
+  DismissableLayer,
+  FocusGuards,
+  useComposedRefs,
+} from "radix-ui/internal";
 import {
   type ComponentPropsWithoutRef,
   forwardRef,
@@ -15,10 +17,13 @@ import type { Box } from "../box";
 
 import { ModalProvider, useModalContext } from "../modal/ModalContext";
 
-const Slot = createSlot("@optiaxiom/react/ModalLayer");
+const Slot = RadixSlot.createSlot("@optiaxiom/react/ModalLayer");
 
 type ModalLayerProps = Pick<ComponentPropsWithoutRef<typeof Box>, "asChild"> &
-  Pick<ComponentPropsWithoutRef<typeof DismissableLayer>, "onEscapeKeyDown"> & {
+  Pick<
+    ComponentPropsWithoutRef<typeof DismissableLayer.Root>,
+    "onEscapeKeyDown"
+  > & {
     children?: ReactNode;
   };
 
@@ -44,9 +49,9 @@ export const ModalLayer = forwardRef<HTMLDivElement, ModalLayerProps>(
     }
 
     let result = (
-      <DismissableLayer asChild={asChild} ref={ref} {...props}>
+      <DismissableLayer.Root asChild={asChild} ref={ref} {...props}>
         {children}
-      </DismissableLayer>
+      </DismissableLayer.Root>
     );
 
     if (locked) {
@@ -58,7 +63,7 @@ export const ModalLayer = forwardRef<HTMLDivElement, ModalLayerProps>(
     }
 
     if (guards) {
-      result = <FocusGuards>{result}</FocusGuards>;
+      result = <FocusGuards.Root>{result}</FocusGuards.Root>;
     }
 
     return <ModalProvider shardRef={innerRef}>{result}</ModalProvider>;

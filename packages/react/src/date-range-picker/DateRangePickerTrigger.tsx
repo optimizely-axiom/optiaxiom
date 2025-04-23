@@ -1,6 +1,6 @@
 import type { DateRange } from "react-day-picker";
 
-import { useComposedRefs } from "@radix-ui/react-compose-refs";
+import { useComposedRefs } from "radix-ui/internal";
 import { type ComponentPropsWithoutRef, forwardRef, useRef } from "react";
 
 import { Box } from "../box";

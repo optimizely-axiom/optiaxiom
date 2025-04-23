@@ -3,7 +3,7 @@
 import type { UseComboboxReturnValue } from "downshift";
 import type { MutableRefObject, ReactNode } from "react";
 
-import { createContext } from "@radix-ui/react-context";
+import { Context } from "radix-ui/internal";
 
 export type CommandOption = {
   /**
@@ -89,7 +89,7 @@ export const resolveItemProperty = <Value>(
     ? ReturnType<Value>
     : Value;
 
-export const [CommandProvider, useCommandContext] = createContext<{
+export const [CommandProvider, useCommandContext] = Context.createContext<{
   downshift: UseComboboxReturnValue<CommandOption>;
   empty: ReactNode;
   highlightedItem: CommandOption | undefined;
