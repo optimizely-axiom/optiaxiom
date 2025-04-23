@@ -1,11 +1,13 @@
 "use client";
 
-import { type RefObject, useContext, useEffect, useState } from "react";
+import { type RefObject, useEffect, useState } from "react";
 
-import { TransitionGroupContext } from "./TransitionGroupContext";
+import { useTransitionGroupContext } from "./TransitionGroupContext";
 
 export const useTransitionStatus = (ref: RefObject<HTMLElement>) => {
-  const { onMount, onUnmount, open } = useContext(TransitionGroupContext) ?? {
+  const { onMount, onUnmount, open } = useTransitionGroupContext(
+    "useTransitionStatus",
+  ) ?? {
     open: true,
   };
 

@@ -6,7 +6,7 @@ export const useFieldLabelTrigger = (
   ref: RefObject<HTMLButtonElement>,
   ariaLabelledBy: string | undefined,
 ) => {
-  const { labelId = ariaLabelledBy } = useFieldContext();
+  const { labelId = ariaLabelledBy } = useFieldContext("useFieldLabelTrigger");
   useEffect(() => {
     if (!labelId || !ref.current) {
       return;

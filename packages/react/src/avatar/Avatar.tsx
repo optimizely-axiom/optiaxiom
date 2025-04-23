@@ -1,11 +1,11 @@
 import * as RadixAvatar from "@radix-ui/react-avatar";
-import { forwardRef, useContext } from "react";
+import { forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
 import { IconUserSolid } from "../icons/IconUserSolid";
 import { IconUsersSolid } from "../icons/IconUsersSolid";
 import * as styles from "./Avatar.css";
-import { AvatarContext } from "./AvatarContext";
+import { useAvatarContext } from "./AvatarContext";
 
 type AvatarProps = BoxProps<
   "span",
@@ -53,7 +53,7 @@ export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
     },
     ref,
   ) => {
-    const context = useContext(AvatarContext);
+    const context = useAvatarContext("@optiaxiom/react/Avatar");
     const size = sizeProp || context?.size || "md";
 
     return (

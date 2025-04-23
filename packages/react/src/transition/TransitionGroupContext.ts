@@ -1,13 +1,12 @@
 "use client";
 
-import { createContext, type RefObject } from "react";
+import { createContext } from "@radix-ui/react-context";
+import { type RefObject } from "react";
 
-export const TransitionGroupContext = createContext<
-  | undefined
-  | {
-      onMount: (ref: RefObject<HTMLElement>) => void;
-      onUnmount: (ref: RefObject<HTMLElement>) => void;
-      open: boolean | undefined;
-      presence: boolean | undefined;
-    }
->(undefined);
+export const [TransitionGroupProvider, useTransitionGroupContext] =
+  createContext<null | {
+    onMount: (ref: RefObject<HTMLElement>) => void;
+    onUnmount: (ref: RefObject<HTMLElement>) => void;
+    open: boolean | undefined;
+    presence: boolean | undefined;
+  }>("@optiaxiom/react/TransitionGroup", null);

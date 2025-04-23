@@ -5,7 +5,6 @@ import {
   type LegacyRef,
   type ReactElement,
   type ReactNode,
-  useContext,
   useEffect,
   useMemo,
   useRef,
@@ -13,7 +12,7 @@ import {
 } from "react";
 
 import { Box, type BoxProps } from "../box";
-import { TransitionGroupContext } from "../transition/internals";
+import { useTransitionGroupContext } from "../transition/internals";
 import { Listbox } from "./Listbox";
 
 type ListboxVirtualizedProps<T = unknown> = BoxProps<
@@ -43,7 +42,8 @@ export const ListboxVirtualized = forwardRef<
     requestAnimationFrame(() => setEnabled(true));
   }, []);
 
-  const { presence } = useContext(TransitionGroupContext) ?? {};
+  const { presence } =
+    useTransitionGroupContext("@optiaxiom/react/ListboxVirtualized") ?? {};
 
   const rowVirtualizer = useVirtualizer({
     count: items.length,

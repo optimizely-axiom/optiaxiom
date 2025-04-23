@@ -21,7 +21,7 @@ type MenuContentProps = ExcludeProps<
 
 export const MenuContent = forwardRef<HTMLDivElement, MenuContentProps>(
   ({ children, ...props }, ref) => {
-    const { labelId } = useFieldContext();
+    const { labelId } = useFieldContext("@optiaxiom/react/MenuContent");
     const { inputVisible, placeholder, size } = useMenuContext(
       "@optiaxiom/react/MenuContent",
     );

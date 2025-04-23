@@ -1,14 +1,17 @@
 "use client";
 
-import { createContext } from "react";
+import { createContext } from "@radix-ui/react-context";
 
-export const FieldContext = createContext<
-  | undefined
-  | {
-      descriptionId: string | undefined;
-      error: boolean;
-      errorId: string | undefined;
-      inputId: string | undefined;
-      labelId: string | undefined;
-    }
->(undefined);
+export const [FieldProvider, useFieldContext] = createContext<{
+  descriptionId: string | undefined;
+  error: boolean;
+  errorId: string | undefined;
+  inputId: string | undefined;
+  labelId: string | undefined;
+}>("@optiaxiom/react/Field", {
+  descriptionId: undefined,
+  error: false,
+  errorId: undefined,
+  inputId: undefined,
+  labelId: undefined,
+});

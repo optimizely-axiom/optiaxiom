@@ -8,7 +8,7 @@ import {
 } from "react";
 
 import { TransitionGlobalConfig } from "./TransitionGlobalConfig";
-import { TransitionGroupContext } from "./TransitionGroupContext";
+import { TransitionGroupProvider } from "./TransitionGroupContext";
 import { waitForAnimation } from "./waitForAnimation";
 
 export function TransitionGroup({
@@ -65,11 +65,14 @@ export function TransitionGroup({
   }
 
   return (
-    <TransitionGroupContext.Provider
-      value={{ onMount, onUnmount, open, presence }}
+    <TransitionGroupProvider
+      onMount={onMount}
+      onUnmount={onUnmount}
+      open={open}
+      presence={presence}
     >
       {(open || presence) && children}
-    </TransitionGroupContext.Provider>
+    </TransitionGroupProvider>
   );
 }
 
