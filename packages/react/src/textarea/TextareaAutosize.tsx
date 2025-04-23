@@ -29,6 +29,7 @@ export const TextareaAutosize = forwardRef<
     const { boxProps, restProps } = extractBoxProps(props);
 
     const [value, setValue] = useControllableState({
+      caller: "@optiaxiom/react/TextareaAutosize",
       defaultProp: props.defaultValue,
       prop: props.value,
     });

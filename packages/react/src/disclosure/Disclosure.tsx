@@ -25,10 +25,18 @@ type DisclosureProps = BoxProps<
 
 export const Disclosure = forwardRef<HTMLDivElement, DisclosureProps>(
   (
-    { asChild, children, defaultOpen, onOpenChange, open: openProp, ...props },
+    {
+      asChild,
+      children,
+      defaultOpen = false,
+      onOpenChange,
+      open: openProp,
+      ...props
+    },
     ref,
   ) => {
     const [open, setOpen] = useControllableState({
+      caller: "@optiaxiom/react/Disclosure",
       defaultProp: defaultOpen,
       onChange: onOpenChange,
       prop: openProp,

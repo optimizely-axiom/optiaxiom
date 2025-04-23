@@ -53,6 +53,7 @@ export function Command({
   options,
 }: CommandProps) {
   const [inputValue, setInputValue] = useControllableState({
+    caller: "@optiaxiom/react/Command",
     defaultProp: "",
     onChange: onInputValueChange,
     prop: inputValueProp,

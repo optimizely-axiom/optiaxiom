@@ -49,6 +49,7 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
     const ref = useComposedRefs(innerRef, outerRef);
 
     const [value, setValue] = useControllableState({
+      caller: "@optiaxiom/react/DateInput",
       defaultProp: props.defaultValue,
       prop: props.value,
     });

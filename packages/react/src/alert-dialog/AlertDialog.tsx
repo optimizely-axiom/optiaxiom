@@ -26,12 +26,13 @@ type AlertDialogProps = {
 
 export function AlertDialog({
   children,
-  defaultOpen,
+  defaultOpen = false,
   onOpenChange,
   open: openProp,
   ...props
 }: AlertDialogProps) {
   const [open, setOpen] = useControllableState({
+    caller: "@optiaxiom/react/AlertDialog",
     defaultProp: defaultOpen,
     onChange: onOpenChange,
     prop: openProp,

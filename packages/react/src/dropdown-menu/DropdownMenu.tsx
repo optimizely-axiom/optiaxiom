@@ -27,12 +27,13 @@ type MenuProps = {
 
 export function DropdownMenu({
   children,
-  defaultOpen,
+  defaultOpen = false,
   onOpenChange,
   open: openProp,
   ...props
 }: MenuProps) {
   const [open, setOpen] = useControllableState({
+    caller: "@optiaxiom/react/DropdownMenu",
     defaultProp: defaultOpen,
     onChange: onOpenChange,
     prop: openProp,

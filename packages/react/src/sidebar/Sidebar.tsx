@@ -27,7 +27,7 @@ export const Sidebar = forwardRef<HTMLDivElement, SidebarProps>(
   (
     {
       children,
-      defaultExpanded,
+      defaultExpanded = false,
       expanded: expandedProp,
       onExpandedChange,
       ...props
@@ -35,6 +35,7 @@ export const Sidebar = forwardRef<HTMLDivElement, SidebarProps>(
     ref,
   ) => {
     const [expanded, setExpanded] = useControllableState({
+      caller: "@optiaxiom/react/Sidebar",
       defaultProp: defaultExpanded,
       onChange: onExpandedChange,
       prop: expandedProp,

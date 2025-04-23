@@ -33,6 +33,7 @@ export const InlineInput = forwardRef<HTMLDivElement, InlineInputProps>(
     ref,
   ) => {
     const [value, setValue] = useControllableState({
+      caller: "@optiaxiom/react/InlineInput",
       defaultProp: defaultValue,
       onChange: onValueChange,
       prop: valueProp,

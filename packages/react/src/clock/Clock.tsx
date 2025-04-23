@@ -19,10 +19,17 @@ type ClockProps = BoxProps<
 
 export const Clock = forwardRef<HTMLDivElement, ClockProps>(
   (
-    { defaultValue, onValueChange, step = "60", value: valueProp, ...props },
+    {
+      defaultValue = "",
+      onValueChange,
+      step = "60",
+      value: valueProp,
+      ...props
+    },
     ref,
   ) => {
     const [value, setValue] = useControllableState({
+      caller: "@optiaxiom/react/Clock",
       defaultProp: defaultValue,
       onChange: onValueChange,
       prop: valueProp,

@@ -23,6 +23,7 @@ export const CardCheckbox = forwardRef<HTMLInputElement, CardCheckboxProps>(
     const { labelId } = useCardContext("@optiaxiom/react/CardCheckbox");
 
     const [checked, setChecked] = useControllableState({
+      caller: "@optiaxiom/react/CardCheckbox",
       defaultProp: props.defaultChecked,
       prop: props.checked,
     });

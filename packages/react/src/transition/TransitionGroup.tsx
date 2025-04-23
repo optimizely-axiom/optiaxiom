@@ -35,6 +35,8 @@ export function TransitionGroup({
   }, []);
 
   const [presence, setPresence] = useControllableState({
+    caller: "@optiaxiom/react/TransitionGroup",
+    defaultProp: false,
     onChange: onPresenceChange,
     prop: presenceProp,
   });

@@ -15,7 +15,7 @@ type TooltipRootProps = BoxProps<
 export function TooltipRoot({
   auto,
   children,
-  defaultOpen,
+  defaultOpen = false,
   delayDuration,
   onOpenChange,
   open: openProp,
@@ -24,6 +24,7 @@ export function TooltipRoot({
   const triggerRef = useRef<HTMLButtonElement>(null);
 
   const [open, setOpen] = useControllableState({
+    caller: "@optiaxiom/react/TooltipRoot",
     defaultProp: defaultOpen,
     onChange: onOpenChange,
     prop: openProp,
