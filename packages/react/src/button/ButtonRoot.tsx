@@ -1,4 +1,4 @@
-import { Slot } from "@radix-ui/react-slot";
+import { createSlot } from "@radix-ui/react-slot";
 import { type ElementType, forwardRef } from "react";
 
 import { Box, type BoxProps, extractBoxProps } from "../box";
@@ -6,6 +6,8 @@ import { Spinner } from "../spinner";
 import { Transition, TransitionGroup } from "../transition";
 import { decorateChildren, type ExtendProps } from "../utils";
 import * as styles from "./ButtonRoot.css";
+
+const Slot = createSlot("@optiaxiom/react/ButtonRoot");
 
 const appearances = {
   danger: { intent: "danger", variant: "strong" },

@@ -1,9 +1,11 @@
-import { Slot } from "@radix-ui/react-slot";
+import { createSlot } from "@radix-ui/react-slot";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import { forwardRef } from "react";
 
 import { Box, type BoxProps, extractBoxProps } from "../box";
 import * as styles from "./TextareaAutosize.css";
+
+const Slot = createSlot("@optiaxiom/react/TextareaAutosize");
 
 type TextareaAutosizeProps = BoxProps<"textarea", styles.WrapperVariants>;
 

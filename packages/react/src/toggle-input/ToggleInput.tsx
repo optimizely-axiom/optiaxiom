@@ -1,11 +1,13 @@
 import { useId } from "@radix-ui/react-id";
-import { Slot } from "@radix-ui/react-slot";
+import { createSlot } from "@radix-ui/react-slot";
 import { forwardRef } from "react";
 
 import { type BoxProps, extractBoxProps } from "../box";
 import { Flex } from "../flex";
 import * as styles from "./ToggleInput.css";
 import { ToggleInputProvider } from "./ToggleInputContext";
+
+const Slot = createSlot("@optiaxiom/react/ToggleInput");
 
 type ToggleInputProps = BoxProps<
   "label",

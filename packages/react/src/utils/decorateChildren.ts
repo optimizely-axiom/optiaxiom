@@ -1,4 +1,3 @@
-import { Slot } from "@radix-ui/react-slot";
 import { cloneElement, isValidElement, type ReactNode } from "react";
 
 export const decorateChildren = (
@@ -14,7 +13,12 @@ export const decorateChildren = (
           decorateChildren(
             {
               ...newElement.props,
-              asChild: newElement.props.asChild || newElement.type === Slot,
+              asChild:
+                newElement.props.asChild ||
+                (typeof newElement.type !== "string" &&
+                  "displayName" in newElement.type &&
+                  typeof newElement.type.displayName === "string" &&
+                  newElement.type.displayName?.endsWith(".Slot")),
             },
             decorator,
           ),

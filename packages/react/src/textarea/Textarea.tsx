@@ -1,4 +1,4 @@
-import { Slot } from "@radix-ui/react-slot";
+import { createSlot } from "@radix-ui/react-slot";
 import {
   type ComponentPropsWithoutRef,
   type ComponentPropsWithRef,
@@ -15,6 +15,8 @@ import {
 } from "../input";
 import { fallbackSpan } from "../utils";
 import { TextareaAutosize } from "./TextareaAutosize";
+
+const Slot = createSlot("@optiaxiom/react/Textarea");
 
 type TextareaProps = InputControlProps<
   typeof TextareaAutosize,

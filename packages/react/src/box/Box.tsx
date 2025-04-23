@@ -1,5 +1,5 @@
 import "@optiaxiom/globals/fonts";
-import { Slot } from "@radix-ui/react-slot";
+import { createSlot } from "@radix-ui/react-slot";
 import {
   type ComponentPropsWithoutRef,
   type ElementType,
@@ -12,6 +12,8 @@ import { version } from "../../package.json";
 import { type Sprinkles, sprinkles, sprinklesMerge } from "../sprinkles";
 import * as styles from "./Box.css";
 import { extractBoxProps } from "./extractBoxProps";
+
+const Slot = createSlot("@optiaxiom/react/Box");
 
 export type BoxProps<T extends ElementType = "div", P = unknown> = ExtendProps<
   ComponentPropsWithoutRef<T>,

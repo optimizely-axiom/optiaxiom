@@ -1,5 +1,7 @@
-import { Slot, type SlotProps } from "@radix-ui/react-slot";
+import { createSlot, type SlotProps } from "@radix-ui/react-slot";
 import { forwardRef } from "react";
+
+const Slot = createSlot("@optiaxiom/react/FilteredSlot");
 
 type FilteredSlotProps = SlotProps & {
   exclude?: string;
