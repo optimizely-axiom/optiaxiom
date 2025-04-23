@@ -244,9 +244,15 @@ importers:
       raw-loader:
         specifier: ^4.0.2
         version: 4.0.2(webpack@5.93.0(esbuild@0.25.1))
+      react:
+        specifier: ^18.3.1
+        version: 18.3.1
       react-docgen:
         specifier: ^7.1.1
         version: 7.1.1(patch_hash=jrenouyb6tsithaog3fiiutev4)
+      react-dom:
+        specifier: ^18.3.1
+        version: 18.3.1(react@18.3.1)
       storybook:
         specifier: ^8.6.7
         version: 8.6.7(prettier@3.5.3)
@@ -265,12 +271,6 @@ importers:
       inter-ui:
         specifier: ^4.1.0
         version: 4.1.0
-      react:
-        specifier: ^16.14.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
-        version: 18.3.1
-      react-dom:
-        specifier: ^16.14.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
-        version: 18.3.1(react@18.3.1)
     devDependencies:
       '@optiaxiom/shared':
         specifier: workspace:^
@@ -278,6 +278,12 @@ importers:
       '@vanilla-extract/css':
         specifier: ^1.17.1
         version: 1.17.1(babel-plugin-macros@3.1.0)
+      react:
+        specifier: ^18.3.1
+        version: 18.3.1
+      react-dom:
+        specifier: ^18.3.1
+        version: 18.3.1(react@18.3.1)
 
   packages/react:
     dependencies:
@@ -386,15 +392,9 @@ importers:
       downshift:
         specifier: ^9.0.9
         version: 9.0.9(react@18.3.1)
-      react:
-        specifier: ^16.14.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
-        version: 18.3.1
       react-day-picker:
         specifier: ^9.6.2
         version: 9.6.2(react@18.3.1)
-      react-dom:
-        specifier: ^16.14.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
-        version: 18.3.1(react@18.3.1)
       react-remove-scroll:
         specifier: ^2.6.3
         version: 2.6.3(@types/react@18.3.18)(react@18.3.1)
@@ -426,6 +426,12 @@ importers:
       '@vanilla-extract/sprinkles':
         specifier: ^1.6.3
         version: 1.6.3(patch_hash=eh2tyazhmaumpwivglvpekok3e)(@vanilla-extract/css@1.17.1(babel-plugin-macros@3.1.0))
+      react:
+        specifier: ^18.3.1
+        version: 18.3.1
+      react-dom:
+        specifier: ^18.3.1
+        version: 18.3.1(react@18.3.1)
 
   packages/shared:
     dependencies:
@@ -5517,6 +5523,7 @@ packages:
   node-domexception@1.0.0:
     resolution: {integrity: sha512-/jKZoMpw0F8GRwl4/eLROPA3cfcXtLApP0QzLmUT/HuPCZWyB7IY9ZrMeKw2O/nFIqPQB3PVM9aYm0F312AXDQ==}
     engines: {node: '>=10.5.0'}
+    deprecated: Use your platform's native DOMException instead
 
   node-fetch@3.3.2:
     resolution: {integrity: sha512-dRB78srN/l6gqWulah9SrxeYnxeddIG30+GOqK/9OlLVyLg3HPnr6SqOWTWOXKRwC2eGYCkZ59NNuSgvSrpgOA==}

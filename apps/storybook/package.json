@@ -26,7 +26,9 @@
     "@vitejs/plugin-react": "^4.3.4",
     "chromatic": "^11.27.0",
     "raw-loader": "^4.0.2",
+    "react": "^18.3.1",
     "react-docgen": "^7.1.1",
+    "react-dom": "^18.3.1",
     "storybook": "^8.6.7",
     "vite": "^6.2.2"
   }
