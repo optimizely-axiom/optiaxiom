@@ -1,6 +1,5 @@
 import { useId } from "@radix-ui/react-id";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
-import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import clsx from "clsx";
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
@@ -10,6 +9,7 @@ import { Box } from "../box";
 import { Checkbox } from "../checkbox";
 import { CheckboxControl } from "../checkbox/CheckboxControl";
 import { CheckboxRoot } from "../checkbox/CheckboxRoot";
+import { VisuallyHidden } from "../visually-hidden";
 import { useCardContext } from "./CardContext";
 
 type CardCheckboxProps = ExcludeProps<

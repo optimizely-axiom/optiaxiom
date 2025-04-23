@@ -1,9 +1,9 @@
-import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import clsx from "clsx";
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import type { ExtendProps } from "../utils";
 
+import { VisuallyHidden } from "../visually-hidden";
 import { useToggleInputContext } from "./ToggleInputContext";
 import * as styles from "./ToggleInputHiddenInput.css";
 

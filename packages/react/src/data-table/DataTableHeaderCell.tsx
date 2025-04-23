@@ -1,4 +1,3 @@
-import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { type Header } from "@tanstack/react-table";
 import { forwardRef } from "react";
 
@@ -11,6 +10,7 @@ import { IconSortDown } from "../icons/IconSortDown";
 import { IconSortUp } from "../icons/IconSortUp";
 import { Separator } from "../separator";
 import { TableHeaderCell } from "../table";
+import { VisuallyHidden } from "../visually-hidden";
 import * as styles from "./DataTableHeaderCell.css";
 
 type DataTableHeaderCellProps = BoxProps<

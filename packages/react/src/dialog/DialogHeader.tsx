@@ -1,5 +1,4 @@
 import * as RadixDialog from "@radix-ui/react-dialog";
-import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { forwardRef, type ReactNode } from "react";
 
 import { Box, type BoxProps } from "../box";
@@ -8,6 +7,7 @@ import { Flex } from "../flex";
 import { Heading } from "../heading";
 import { IconX } from "../icons/IconX";
 import { Text } from "../text";
+import { VisuallyHidden } from "../visually-hidden";
 import * as styles from "./DialogHeader.css";
 
 type DialogHeaderProps = BoxProps<

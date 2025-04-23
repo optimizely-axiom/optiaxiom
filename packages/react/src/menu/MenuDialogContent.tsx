@@ -1,9 +1,9 @@
-import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import type { MenuContent } from "./MenuContent";
 
 import { DialogContent, DialogHeader } from "../dialog";
+import { VisuallyHidden } from "../visually-hidden";
 
 type MenuDialogContentProps = ComponentPropsWithoutRef<typeof MenuContent>;
 
