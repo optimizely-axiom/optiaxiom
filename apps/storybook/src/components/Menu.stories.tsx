@@ -103,10 +103,9 @@ export const WithLabel: Story = {
 
 export const AsyncLoading: Story = {
   play: async () => {
-    await waitFor(
-      async () => await expect(screen.getByRole("combobox")).toHaveFocus(),
-    );
+    await waitFor(() => expect(screen.getByRole("combobox")).toHaveFocus());
     await userEvent.keyboard("b");
+    await waitFor(() => expect(screen.getByRole("combobox")).toHaveValue("b"));
   },
   render: function AsyncLoading(args) {
     const [items, setItems] = useState<string[]>();
