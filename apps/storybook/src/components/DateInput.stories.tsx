@@ -104,6 +104,22 @@ export const Disabled: Story = {
   },
 };
 
+export const Required: Story = {
+  args: {
+    defaultValue: "2025-01-22",
+    required: true,
+  },
+  play: async ({ canvas }) => {
+    await userEvent.click(
+      await canvas.findByRole("button", { name: "Show date picker" }),
+    );
+    await waitFor(
+      async () =>
+        await expect(await screen.findByText("January 2025")).toBeVisible(),
+    );
+  },
+};
+
 export const WithTime: Story = {
   args: {
     defaultValue: "2025-01-22T10:10",
