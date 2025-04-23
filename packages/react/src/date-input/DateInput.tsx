@@ -83,7 +83,9 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
               setValue(event.target.value);
             }}
             onClick={(e) => {
-              e.preventDefault();
+              if (CSS.supports("selector(::-webkit-datetime-edit)")) {
+                e.preventDefault();
+              }
             }}
             onKeyDown={(e) => {
               if (
