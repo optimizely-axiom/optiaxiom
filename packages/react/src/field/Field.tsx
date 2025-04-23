@@ -5,7 +5,7 @@ import { Box, type BoxProps } from "../box";
 import { Flex } from "../flex";
 import { IconTriangleExclamation } from "../icons/IconTriangleExclamation";
 import { fallbackSpan } from "../utils";
-import { FieldContext } from "./FieldContext";
+import { FieldProvider } from "./FieldContext";
 import { FieldLabel } from "./FieldLabel";
 
 type FieldProps = BoxProps<
@@ -81,17 +81,15 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(
           </FieldLabel>
         )}
 
-        <FieldContext.Provider
-          value={{
-            descriptionId: description ? descriptionId : undefined,
-            error: !!error,
-            errorId: error ? errorId : undefined,
-            inputId,
-            labelId: label ? labelId : undefined,
-          }}
+        <FieldProvider
+          descriptionId={description ? descriptionId : undefined}
+          error={!!error}
+          errorId={error ? errorId : undefined}
+          inputId={inputId}
+          labelId={label ? labelId : undefined}
         >
           {children}
-        </FieldContext.Provider>
+        </FieldProvider>
 
         {error && error !== true && (
           <Flex

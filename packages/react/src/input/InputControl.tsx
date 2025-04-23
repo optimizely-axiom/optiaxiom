@@ -45,9 +45,9 @@ export const InputControl = forwardRef<
     const disabled = props.disabled;
     const readOnly = props.readOnly;
 
-    const { descriptionId, error, errorId, inputId } = useFieldContext({
-      error: errorProp,
-    });
+    const { descriptionId, error, errorId, inputId } = useFieldContext(
+      "@optiaxiom/react/InputControl",
+    );
     const { boxProps, restProps } = extractBoxProps(props);
 
     const { inputRef } = useInputContext("@optiaxiom/react/InputControl");
@@ -59,10 +59,10 @@ export const InputControl = forwardRef<
           errorId || descriptionId ? clsx(errorId, descriptionId) : undefined
         }
         aria-disabled={disabled}
-        aria-invalid={error ? true : undefined}
+        aria-invalid={error || errorProp ? true : undefined}
         asChild
         data-disabled={disabled ? "" : undefined}
-        data-invalid={error ? "" : undefined}
+        data-invalid={error || errorProp ? "" : undefined}
         data-readonly={readOnly ? "" : undefined}
         {...styles.control({ size }, className)}
         {...boxProps}
