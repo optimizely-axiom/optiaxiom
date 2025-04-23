@@ -38,10 +38,9 @@ export const WithLabel: Story = {
         "-15",
     );
 
-    await userEvent.click(
-      canvas.getByRole("button", { name: "Show date picker" }),
-    );
-    await userEvent.click(screen.getByRole("button", { name: "Clear" }));
+    await expect(canvas.getByLabelText("Label")).toHaveFocus();
+    await userEvent.keyboard(" ");
+    await userEvent.click(await screen.findByRole("button", { name: "Clear" }));
     await expect(canvas.getByLabelText("Label")).toHaveValue("");
   },
 };
