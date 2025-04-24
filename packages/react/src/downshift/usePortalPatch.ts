@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 
 export function usePortalPatch(
+  open: boolean | undefined,
   initialHighlightedIndex: (() => number) | number = -1,
 ) {
   /**
@@ -14,6 +15,14 @@ export function usePortalPatch(
    * item that has not been placed yet as the default position is (0px, 0px).
    */
   const [placed, setPlaced] = useState(false);
+  useEffect(() => {
+    if (open) {
+      requestAnimationFrame(() => setPlaced(true));
+    } else {
+      setPlaced(false);
+    }
+  }, [open, setPlaced]);
+
   const [highlightedIndex, setHighlightedIndex] = useState(
     initialHighlightedIndex,
   );
@@ -35,6 +44,5 @@ export function usePortalPatch(
     placed ? highlightedIndex : -1,
     setHighlightedIndex,
     placed,
-    setPlaced,
   ] as const;
 }

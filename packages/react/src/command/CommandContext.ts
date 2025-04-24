@@ -100,8 +100,6 @@ export const [CommandProvider, useCommandContext] = createContext<{
     isInsideTriangle: ((target: { x: number; y: number }) => boolean) | null;
     timer: number | undefined;
   }>;
-  placed: boolean;
   setHighlightedIndex: (index: number) => void;
   setInputValue: (value: string) => void;
-  setPlaced: (placed: boolean) => void;
 }>("@optiaxiom/react/Command");
