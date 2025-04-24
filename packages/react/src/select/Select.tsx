@@ -111,7 +111,10 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
     const [highlightedIndex, setHighlightedIndex, placed, setPlaced] =
       usePortalPatch(() =>
         selectedItem
-          ? items.findIndex((item) => selectedItem.value === item.value)
+          ? items.findIndex(
+              (item) =>
+                !item.disabledReason && selectedItem.value === item.value,
+            )
           : -1,
       );
 

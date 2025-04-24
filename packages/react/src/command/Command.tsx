@@ -63,7 +63,10 @@ export function Command({
   const [highlightedIndex, setHighlightedIndex, placed, setPlaced] =
     usePortalPatch(() =>
       items.findIndex(
-        (item) => resolveItemProperty(item.selected) && !item.multi,
+        (item) =>
+          !resolveItemProperty(item.disabledReason) &&
+          resolveItemProperty(item.selected) &&
+          !item.multi,
       ),
     );
 
