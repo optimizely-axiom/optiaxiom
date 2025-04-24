@@ -1,10 +1,18 @@
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
-import { forwardRef, useEffect, useRef } from "react";
+import {
+  type ComponentPropsWithoutRef,
+  forwardRef,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { type DateRange, DayPicker, type Matcher } from "react-day-picker";
 
 import { type BoxProps } from "../box";
 import { Clock } from "../clock";
+import { toInstant } from "../date-input/utils";
 import { Flex } from "../flex";
 import { useEffectEvent, useResponsiveMatches } from "../hooks";
 import { Separator } from "../separator";
@@ -87,7 +95,6 @@ type CalendarProps = BoxProps<
 const components = {
   Chevron: CalendarChevron,
   Day: CalendarDay,
-  DayButton: CalendarDayButton,
   MonthCaption: CalendarMonthCaption,
   MonthGrid: CalendarMonthGrid,
   Months: CalendarMonths,
@@ -128,6 +135,7 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
       type === "date"
         ? "00:00"
         : toPlainTime(value instanceof Date ? value : new Date(), step);
+
     const numberOfMonths = useResponsiveMatches({
       base: 1,
       sm: 2,
@@ -135,6 +143,38 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
 
     const innerRef = useRef<HTMLDivElement>(null);
     const ref = useComposedRefs(innerRef, outerRef);
+
+    const [from, setFrom] = useState<Date>();
+    const [to, setTo] = useState<Date>();
+
+    const DayButtonMemo = useMemo(
+      () =>
+        function DayButton({
+          onFocus,
+          onPointerEnter,
+          onPointerLeave,
+          ...props
+        }: ComponentPropsWithoutRef<typeof CalendarDayButton>) {
+          return (
+            <CalendarDayButton
+              onFocus={(event) => {
+                onFocus?.(event);
+                setTo(props.day.date);
+              }}
+              onPointerEnter={(event) => {
+                onPointerEnter?.(event);
+                setTo(props.day.date);
+              }}
+              onPointerLeave={(event) => {
+                onPointerLeave?.(event);
+                setTo(undefined);
+              }}
+              {...props}
+            />
+          );
+        },
+      [],
+    );
 
     const onHeightChangeStable = useEffectEvent(onHeightChange ?? (() => {}));
     useEffect(() => {
@@ -161,34 +201,93 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
         ref={ref}
         {...props}
       >
-        <DayPicker
-          autoFocus
-          components={components}
-          defaultMonth={
-            value && typeof value === "object" && "from" in value
-              ? value.from
-              : (value ?? undefined)
-          }
-          disabled={[
-            ...(min ? [{ before: min }] : []),
-            ...(max ? [{ after: max }] : []),
-          ]}
-          fixedWeeks={mode === "range"}
-          mode={mode as "single"}
-          modifiers={{ holiday, weekend }}
-          numberOfMonths={mode === "range" ? numberOfMonths : 1}
-          onSelect={(value: Date | DateRange | undefined) => {
-            setValue(
-              value instanceof Date
-                ? new Date(toPlainDate(value) + "T" + (time ?? "00:00"))
-                : (value ?? null),
-            );
-          }}
-          required
-          selected={value as Date | undefined}
-          showOutsideDays={mode === "range"}
-          today={today}
-        />
+        {mode === "single" ? (
+          <DayPicker
+            autoFocus
+            components={{
+              ...components,
+              DayButton: DayButtonMemo,
+            }}
+            defaultMonth={value instanceof Date ? value : undefined}
+            disabled={[
+              ...(min ? [{ before: min }] : []),
+              ...(max ? [{ after: max }] : []),
+            ]}
+            mode="single"
+            modifiers={{ holiday, weekend }}
+            onSelect={(value) => {
+              setValue(
+                value
+                  ? new Date(toPlainDate(value) + "T" + (time ?? "00:00"))
+                  : (value ?? null),
+              );
+            }}
+            required
+            selected={value instanceof Date ? value : undefined}
+            today={today}
+          />
+        ) : (
+          <DayPicker
+            autoFocus
+            components={{
+              ...components,
+              DayButton: DayButtonMemo,
+            }}
+            defaultMonth={
+              value && typeof value === "object" && "from" in value
+                ? value.from
+                : undefined
+            }
+            disabled={[
+              ...(min ? [{ before: min }] : []),
+              ...(max ? [{ after: max }] : []),
+            ]}
+            fixedWeeks
+            mode="range"
+            modifiers={{ holiday, weekend }}
+            numberOfMonths={numberOfMonths}
+            onSelect={(newValue) => {
+              if (!from) {
+                const oldFrom =
+                  value && typeof value === "object" && "from" in value
+                    ? value.from
+                    : undefined;
+                const newFrom =
+                  oldFrom && newValue?.from && newValue.from < oldFrom
+                    ? newValue.from
+                    : newValue?.to;
+                setFrom(newFrom);
+              } else {
+                setFrom(undefined);
+                setValue(
+                  to && to < from
+                    ? {
+                        from: to,
+                        to: toInstant(toPlainDate(from) + "T23:59:59.999"),
+                      }
+                    : {
+                        from,
+                        to: to
+                          ? toInstant(toPlainDate(to) + "T23:59:59.999")
+                          : undefined,
+                      },
+                );
+              }
+            }}
+            required
+            selected={
+              from
+                ? to && to < from
+                  ? { from: to, to: from }
+                  : { from, to }
+                : value && typeof value === "object" && "from" in value
+                  ? value
+                  : undefined
+            }
+            showOutsideDays
+            today={today}
+          />
+        )}
         {type === "datetime-local" && mode == "single" && (
           <Flex gap="8">
             <Separator mb="4" />
