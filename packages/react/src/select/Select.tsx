@@ -119,7 +119,10 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
       );
 
     const downshift = useSelect({
-      highlightedIndex,
+      highlightedIndex:
+        highlightedIndex === -1
+          ? items.findIndex((item) => !item.disabledReason)
+          : highlightedIndex,
       isItemDisabled: (item) => !!item.disabledReason,
       isOpen: placed,
       // @ts-expect-error -- no harm in supporting read only arrays
@@ -143,6 +146,23 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
         forceValueChange(selectedItem?.value ?? "");
       },
       selectedItem: selectedItem ?? null,
+      stateReducer: (state, actionAndChanges) => {
+        const { changes, type } = actionAndChanges;
+
+        switch (type) {
+          case useSelect.stateChangeTypes.ToggleButtonBlur:
+            return {
+              ...changes,
+              /**
+               * Do not select highlighted item when tabbing out of clicking
+               * outside to close the menu.
+               */
+              selectedItem: state.selectedItem,
+            };
+          default:
+            return changes;
+        }
+      },
     });
 
     /**
@@ -155,7 +175,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
         <SelectProvider
           disabled={disabled}
           downshift={downshift}
-          highlightedItem={items[highlightedIndex]}
+          highlightedItem={items[downshift.highlightedIndex]}
           isOpen={isOpen}
           items={items}
           loading={loading}
