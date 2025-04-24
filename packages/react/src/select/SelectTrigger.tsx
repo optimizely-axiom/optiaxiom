@@ -41,7 +41,7 @@ export const SelectTrigger = forwardRef<HTMLButtonElement, SelectTriggerProps>(
     },
     ref,
   ) => {
-    const { disabled, downshift, isOpen, onBlur, selectedItem } =
+    const { disabled, downshift, isOpen, items, onBlur, selectedItem } =
       useSelectContext("@optiaxiom/react/SelectTrigger");
     const { boxProps, restProps } = extractBoxProps(props);
 
@@ -78,6 +78,46 @@ export const SelectTrigger = forwardRef<HTMLButtonElement, SelectTriggerProps>(
           onKeyDown: (event) => {
             onKeyDown?.(event as KeyboardEvent<HTMLDivElement>);
             document.dispatchEvent(new Event("tooltip.open"));
+
+            if (isOpen) {
+              return;
+            }
+
+            const selectedItemIndex = downshift.selectedItem
+              ? items.indexOf(downshift.selectedItem)
+              : -1;
+            switch (event.key) {
+              case "ArrowLeft": {
+                let prevItemIndex = selectedItemIndex;
+                for (prevItemIndex--; prevItemIndex >= 0; prevItemIndex--) {
+                  const item = items[prevItemIndex];
+                  if (!item.disabledReason) {
+                    break;
+                  }
+                }
+
+                downshift.selectItem(items[Math.max(0, prevItemIndex)]);
+                break;
+              }
+              case "ArrowRight": {
+                let nextItemIndex = selectedItemIndex;
+                for (
+                  nextItemIndex++;
+                  nextItemIndex < items.length;
+                  nextItemIndex++
+                ) {
+                  const item = items[nextItemIndex];
+                  if (!item.disabledReason) {
+                    break;
+                  }
+                }
+
+                downshift.selectItem(
+                  items[Math.min(nextItemIndex, items.length - 1)],
+                );
+                break;
+              }
+            }
           },
           type: "button",
         })}
