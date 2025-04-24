@@ -37,7 +37,7 @@ export function Popover({
     onChange: onOpenChange,
     prop: openProp,
   });
-  const [presence, setPresence] = useState<boolean>();
+  const [presence, setPresence] = useState<boolean>(false);
 
   return (
     <RadixPopover.Root

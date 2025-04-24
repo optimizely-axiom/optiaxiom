@@ -103,10 +103,10 @@ export const Addons: Story = {
   },
   render: function Render(args) {
     const [open, setOpen] = useState(true);
-    const [value, setValue] = useState<{
+    const [value, setValue] = useState<null | {
       from: Date | undefined;
       to?: Date | undefined;
-    }>();
+    }>(null);
 
     return (
       <Flex>

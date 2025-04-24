@@ -10,22 +10,22 @@ type DateRangePickerProps = ComponentPropsWithRef<typeof Popover> & {
   /**
    * The initial selected value in uncontrolled mode.
    */
-  defaultValue?: DateRange;
+  defaultValue?: DateRange | null;
   disabled?: boolean;
   /**
    * Handler that is called when the selected value changes.
    */
-  onValueChange?: (value: DateRange | undefined) => void;
+  onValueChange?: (value: DateRange | null) => void;
   /**
    * The selected value in controlled mode.
    */
-  value?: DateRange;
+  value?: DateRange | null;
 };
 
 export function DateRangePicker({
   children,
   defaultOpen = false,
-  defaultValue,
+  defaultValue = null,
   disabled,
   onOpenChange,
   onValueChange,

@@ -86,7 +86,7 @@ export const Content: Story = {
   },
   render: function Render(args) {
     const [open, setOpen] = useState(true);
-    const [value, setValue] = useState<Date>();
+    const [value, setValue] = useState<Date | null>(null);
 
     return (
       <DatePicker

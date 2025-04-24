@@ -8,6 +8,6 @@ export const [DateRangePickerProvider, useDateRangePickerContext] =
   createContext<{
     disabled: boolean | undefined;
     setOpen: (open: boolean) => void;
-    setValue: (date: DateRange | undefined) => void;
-    value: DateRange | undefined;
+    setValue: (date: DateRange | null) => void;
+    value: DateRange | null;
   }>("@optiaxiom/react/DateRangePicker");

@@ -55,31 +55,31 @@ type CalendarProps = BoxProps<
         /**
          * The initial selected value in uncontrolled mode.
          */
-        defaultValue?: Date;
-        mode?: "single";
+        defaultValue?: DateRange | null;
+        mode: "range";
         /**
          * Handler that is called when the selected value changes.
          */
-        onValueChange?: (value: Date | undefined) => void;
+        onValueChange?: (value: DateRange | null) => void;
         /**
          * The selected value in controlled mode.
          */
-        value?: Date;
+        value?: DateRange | null;
       }
     | {
         /**
          * The initial selected value in uncontrolled mode.
          */
-        defaultValue?: DateRange;
-        mode: "range";
+        defaultValue?: Date | null;
+        mode?: "single";
         /**
          * Handler that is called when the selected value changes.
          */
-        onValueChange?: (value: DateRange | undefined) => void;
+        onValueChange?: (value: Date | null) => void;
         /**
          * The selected value in controlled mode.
          */
-        value?: DateRange;
+        value?: Date | null;
       }
   )
 >;
@@ -102,7 +102,7 @@ const components = {
 export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
   (
     {
-      defaultValue,
+      defaultValue = null,
       holiday,
       max,
       min,
@@ -118,11 +118,10 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
     },
     outerRef,
   ) => {
-    const [value, setValue] = useControllableState<
-      Date | DateRange | undefined
-    >({
+    const [value, setValue] = useControllableState<Date | DateRange | null>({
+      caller: "@optiaxiom/react/Calendar",
       defaultProp: defaultValue,
-      onChange: onValueChange as (value: Date | DateRange | undefined) => void,
+      onChange: onValueChange as (value: Date | DateRange | null) => void,
       prop: valueProp,
     });
     const time =
@@ -168,7 +167,7 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
           defaultMonth={
             value && typeof value === "object" && "from" in value
               ? value.from
-              : value
+              : (value ?? undefined)
           }
           disabled={[
             ...(min ? [{ before: min }] : []),
@@ -182,7 +181,7 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
             setValue(
               value instanceof Date
                 ? new Date(toPlainDate(value) + "T" + (time ?? "00:00"))
-                : value,
+                : (value ?? null),
             );
           }}
           required
