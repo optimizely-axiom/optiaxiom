@@ -1,5 +1,7 @@
+import { useId } from "@radix-ui/react-id";
 import { PopperAnchor } from "@radix-ui/react-popper";
 import { createSlot } from "@radix-ui/react-slot";
+import clsx from "clsx";
 import {
   type FocusEvent,
   forwardRef,
@@ -47,6 +49,7 @@ export const SelectTrigger = forwardRef<HTMLButtonElement, SelectTriggerProps>(
 
     const buttonRef = useRef<HTMLButtonElement>(null);
     const labelId = useFieldLabelTrigger(buttonRef, ariaLabelledBy);
+    const valueId = useId();
 
     // Focus the toggle button on first render if defaultOpen is enabled.
     const [focusOnOpen] = useState(isOpen);
@@ -69,7 +72,7 @@ export const SelectTrigger = forwardRef<HTMLButtonElement, SelectTriggerProps>(
         {...boxProps}
         {...downshift.getToggleButtonProps({
           ...restProps,
-          "aria-labelledby": labelId,
+          "aria-labelledby": labelId ? clsx(labelId, valueId) : valueId,
           disabled,
           onBlur: (event) => {
             onBlurProp?.(event as FocusEvent<HTMLDivElement>);
@@ -124,13 +127,12 @@ export const SelectTrigger = forwardRef<HTMLButtonElement, SelectTriggerProps>(
       >
         <Slot ref={ref}>
           {asChild ? (
-            decorateChildren(
-              { asChild, children },
-              (children) => children ?? value,
-            )
+            decorateChildren({ asChild, children }, (children) => (
+              <span id={valueId}>{children ?? value}</span>
+            ))
           ) : (
             <AngleMenuButton ref={buttonRef}>
-              {children ?? value}
+              <span id={valueId}>{children ?? value}</span>
             </AngleMenuButton>
           )}
         </Slot>
