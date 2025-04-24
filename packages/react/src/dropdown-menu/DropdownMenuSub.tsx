@@ -46,7 +46,7 @@ export function DropdownMenuSub({
       setOpen(false);
     }
   }, [parentOpen, setOpen]);
-  const [presence, setPresence] = useState<boolean>();
+  const [presence, setPresence] = useState<boolean>(false);
 
   return (
     <RadixMenu.Sub onOpenChange={setOpen} open={open || presence} {...props}>

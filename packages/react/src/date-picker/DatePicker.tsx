@@ -8,24 +8,24 @@ type DatePickerProps = ComponentPropsWithRef<typeof Popover> & {
   /**
    * The initial selected value in uncontrolled mode.
    */
-  defaultValue?: Date;
+  defaultValue?: Date | null;
   disabled?: boolean;
   /**
    * Handler that is called when the selected value changes.
    */
-  onValueChange?: (value: Date | undefined) => void;
+  onValueChange?: (value: Date | null) => void;
   step?: "60" | "300" | "900";
   type?: "date" | "datetime-local";
   /**
    * The selected value in controlled mode.
    */
-  value?: Date;
+  value?: Date | null;
 };
 
 export function DatePicker({
   children,
   defaultOpen = false,
-  defaultValue,
+  defaultValue = null,
   disabled,
   onOpenChange,
   onValueChange,

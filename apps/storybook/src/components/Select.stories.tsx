@@ -264,7 +264,7 @@ export const AlternateTrigger: Story = {
     defaultValue: undefined,
   },
   render: function AsyncLoading(args) {
-    const [value, setValue] = useState<string>();
+    const [value, setValue] = useState<string>("");
 
     return (
       <Flex w="224">

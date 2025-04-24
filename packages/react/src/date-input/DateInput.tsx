@@ -54,7 +54,8 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
       prop: props.value,
     });
     const forceValueChange = useObserveValue(innerRef, setValue);
-    const instant = typeof value === "string" ? toInstant(value) : undefined;
+    const instant =
+      typeof value === "string" ? (toInstant(value) ?? null) : null;
 
     const maxDate = max ? toInstant(max) : undefined;
     const minDate = min ? toInstant(min) : undefined;

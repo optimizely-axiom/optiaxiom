@@ -66,7 +66,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
     {
       children,
       defaultOpen = false,
-      defaultValue = "",
+      defaultValue,
       disabled,
       loading,
       name,
@@ -86,7 +86,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
 
     const [shadowValue, setShadowValue] = useControllableState({
       caller: "@optiaxiom/react/Select",
-      defaultProp: defaultValue,
+      defaultProp: defaultValue ?? "",
       onChange: onValueChange,
       prop: value,
     });
