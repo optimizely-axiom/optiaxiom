@@ -127,9 +127,13 @@ export const SelectTrigger = forwardRef<HTMLButtonElement, SelectTriggerProps>(
       >
         <Slot ref={ref}>
           {asChild ? (
-            decorateChildren({ asChild, children }, (children) => (
-              <span id={valueId}>{children ?? value}</span>
-            ))
+            decorateChildren(
+              { asChild, children },
+              (children) =>
+                (children ?? value) && (
+                  <span id={valueId}>{children ?? value}</span>
+                ),
+            )
           ) : (
             <AngleMenuButton ref={buttonRef}>
               <span id={valueId}>{children ?? value}</span>
