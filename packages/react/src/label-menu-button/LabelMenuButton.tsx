@@ -31,7 +31,11 @@ export const LabelMenuButton = forwardRef<
 
     return (
       <ButtonRoot
-        aria-labelledby={ariaLabelledBy ?? clsx(labelId, children && valueId)}
+        aria-labelledby={
+          ariaLabelledBy
+            ? clsx(labelId, ariaLabelledBy)
+            : clsx(labelId, children && valueId)
+        }
         data-filled={filled ? "" : undefined}
         ref={ref}
         size="lg"
