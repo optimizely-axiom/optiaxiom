@@ -59,7 +59,5 @@ export const [SelectProvider, useSelectContext] = createContext<{
   items: readonly SelectOption[] | SelectOption[];
   loading: boolean | undefined;
   onBlur: FocusEventHandler<HTMLElement> | undefined;
-  placed: boolean;
   selectedItem: SelectOption | undefined;
-  setPlaced: (placed: boolean) => void;
 }>("@optiaxiom/react/Select");

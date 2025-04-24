@@ -4,6 +4,7 @@ import {
   type ComponentPropsWithoutRef,
   forwardRef,
   type ReactNode,
+  useState,
 } from "react";
 
 import type { ExcludeProps } from "../utils";
@@ -41,15 +42,10 @@ type SelectContentProps = ExcludeProps<
 
 export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
   ({ align = "start", children, side = "bottom", size, ...props }, ref) => {
-    const {
-      downshift,
-      highlightedItem,
-      isOpen,
-      items,
-      loading,
-      placed,
-      setPlaced,
-    } = useSelectContext("@optiaxiom/react/SelectContent");
+    const { downshift, highlightedItem, isOpen, items, loading } =
+      useSelectContext("@optiaxiom/react/SelectContent");
+
+    const [placed, setPlaced] = useState(false);
 
     let isFirstItem = true;
     let lastGroup: Group | undefined = undefined;

@@ -184,6 +184,7 @@ export function Menu({
               }
             }
           }}
+          open={open}
           options={options}
           {...props}
         >

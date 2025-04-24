@@ -1,4 +1,4 @@
-import { type ComponentPropsWithoutRef, forwardRef } from "react";
+import { type ComponentPropsWithoutRef, forwardRef, useState } from "react";
 
 import type { ExcludeProps } from "../utils";
 
@@ -16,8 +16,10 @@ type CommandListboxProps = ExcludeProps<
 
 export const CommandListbox = forwardRef<HTMLDivElement, CommandListboxProps>(
   ({ children, size, ...props }, ref) => {
-    const { downshift, highlightedItem, inputValue, items, placed, setPlaced } =
-      useCommandContext("@optiaxiom/react/CommandListbox");
+    const { downshift, highlightedItem, inputValue, items } = useCommandContext(
+      "@optiaxiom/react/CommandListbox",
+    );
+    const [placed, setPlaced] = useState(false);
 
     return (
       <ListboxItemized

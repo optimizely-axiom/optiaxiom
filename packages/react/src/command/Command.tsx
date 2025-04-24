@@ -36,6 +36,7 @@ type CommandProps = {
    * Handler that is called when an item is selected either via keyboard or mouse.
    */
   onSelect?: (item: CommandOption, context: { close: boolean }) => void;
+  open?: boolean;
   /**
    * The items we want to render.
    */
@@ -50,6 +51,7 @@ export function Command({
   onHover,
   onInputValueChange,
   onSelect: onItemSelect,
+  open,
   options,
 }: CommandProps) {
   const [inputValue, setInputValue] = useControllableState({
@@ -60,15 +62,16 @@ export function Command({
   });
   const items = useCommandItems({ inputValue, options });
 
-  const [highlightedIndex, setHighlightedIndex, placed, setPlaced] =
-    usePortalPatch(() =>
+  const [highlightedIndex, setHighlightedIndex, placed] = usePortalPatch(
+    open,
+    () =>
       items.findIndex(
         (item) =>
           !resolveItemProperty(item.disabledReason) &&
           resolveItemProperty(item.selected) &&
           !item.multi,
       ),
-    );
+  );
 
   const pauseInteractionRef = useRef({
     isInsideTriangle: null,
@@ -151,10 +154,8 @@ export function Command({
       items={items}
       loading={loading}
       pauseInteractionRef={pauseInteractionRef}
-      placed={placed}
       setHighlightedIndex={setHighlightedIndex}
       setInputValue={setInputValue}
-      setPlaced={setPlaced}
     >
       {children}
     </CommandProvider>

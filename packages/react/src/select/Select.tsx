@@ -108,19 +108,20 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
       prop: open,
     });
 
-    const [highlightedIndex, setHighlightedIndex, placed, setPlaced] =
-      usePortalPatch(() =>
+    const [highlightedIndex, setHighlightedIndex, placed] = usePortalPatch(
+      isOpen,
+      () =>
         selectedItem
           ? items.findIndex(
               (item) =>
                 !item.disabledReason && selectedItem.value === item.value,
             )
           : -1,
-      );
+    );
 
     const downshift = useSelect({
       highlightedIndex:
-        highlightedIndex === -1
+        highlightedIndex === -1 && placed
           ? items.findIndex((item) => !item.disabledReason)
           : highlightedIndex,
       isItemDisabled: (item) => !!item.disabledReason,
@@ -180,9 +181,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
           items={items}
           loading={loading}
           onBlur={onBlur}
-          placed={placed}
           selectedItem={selectedItem}
-          setPlaced={setPlaced}
         >
           <SelectHiddenSelect
             defaultValue={defaultValue}
