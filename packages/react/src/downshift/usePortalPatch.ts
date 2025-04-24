@@ -17,7 +17,12 @@ export function usePortalPatch(
   const [placed, setPlaced] = useState(false);
   useEffect(() => {
     if (open) {
-      requestAnimationFrame(() => setPlaced(true));
+      /**
+       * We wait for first paint to render the menu and then another paint for
+       * radix popper to place the menu and set the max-height. Otherwise we
+       * cannot scroll to the item because it isn't scrollable yet.
+       */
+      requestAnimationFrame(() => requestAnimationFrame(() => setPlaced(true)));
     } else {
       setPlaced(false);
     }
