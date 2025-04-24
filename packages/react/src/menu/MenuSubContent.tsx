@@ -99,6 +99,7 @@ export const MenuSubContent = forwardRef<HTMLDivElement, MenuSubContentProps>(
                 onSelect(item, { close });
               }
             }}
+            open
             options={options}
           >
             <VisuallyHidden>
