@@ -1,5 +1,11 @@
 # @optiaxiom/globals
 
+## 1.0.4
+
+### Patch Changes
+
+- abaf1fd: update dependencies
+
 ## 1.0.3
 
 ### Patch Changes

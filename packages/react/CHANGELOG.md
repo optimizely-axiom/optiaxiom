@@ -1,5 +1,27 @@
 # @optiaxiom/react
 
+## 1.3.3
+
+### Patch Changes
+
+- 52e9d6d: improve aria-label of select trigger
+- 420cb2f: improve collapse/expand a11y for select and menu
+- 4caba9c: fix native date picker for firefox
+- abaf1fd: update dependencies
+- 482601b: fix menu group handling
+- 1904635: support truncation in breadcrumb items
+- f309e9c: improve date range selection UX
+- c448c2f: highlight first item when opening select
+- b3db596: replace raw context with radix context util
+- 15092c4: prevent nested p tag in tooltip content
+- b619bdd: allow toggling select value using arrow right/left keys
+- 137920f: do not consider multi select items for initial highlight
+- b8fbfe1: improve slot display name
+- 2b448c0: exclude disabled items from initial highlight
+- 7bc280e: auto close date picker after selection
+- Updated dependencies [abaf1fd]
+  - @optiaxiom/globals@1.0.4
+
 ## 1.3.2
 
 ### Patch Changes
