@@ -2,16 +2,11 @@ import {
   type ComponentPropsWithoutRef,
   forwardRef,
   type ReactNode,
-  useEffect,
-  useState,
 } from "react";
 
 import { Calendar } from "../calendar";
-import { toInstant } from "../date-input/utils";
 import { Flex } from "../flex";
 import { PopoverContent } from "../popover";
-import { usePopoverContext } from "../popover/internals";
-import { toPlainDate } from "../utils";
 import * as styles from "./DateRangePickerContent.css";
 import { useDateRangePickerContext } from "./DateRangePickerContext";
 
@@ -50,19 +45,9 @@ export const DateRangePickerContent = forwardRef<
     },
     ref,
   ) => {
-    const { open } = usePopoverContext(
-      "@optiaxiom/react/DateRangePickerContent",
-    );
     const { setOpen, setValue, value } = useDateRangePickerContext(
       "@optiaxiom/react/DateRangePickerContent",
     );
-
-    const [from, setFrom] = useState<Date>();
-    useEffect(() => {
-      if (!open) {
-        setFrom(undefined);
-      }
-    }, [open]);
 
     return (
       <PopoverContent gap="8" maxW={undefined} ref={ref} {...props}>
@@ -74,26 +59,9 @@ export const DateRangePickerContent = forwardRef<
             max={max}
             min={min}
             mode="range"
-            onValueChange={(newValue) => {
-              if (!from) {
-                const newFrom =
-                  value?.from && newValue?.from && newValue.from < value.from
-                    ? newValue.from
-                    : newValue?.to;
-                setFrom(newFrom);
-                setValue({
-                  from: newFrom,
-                  to: newFrom
-                    ? toInstant(toPlainDate(newFrom) + "T23:59:59.999")
-                    : undefined,
-                });
-              } else if (newValue?.to) {
-                setValue({
-                  from: newValue.from,
-                  to: toInstant(toPlainDate(newValue.to) + "T23:59:59.999"),
-                });
-                setOpen(false);
-              }
+            onValueChange={(value) => {
+              setValue(value);
+              setOpen(false);
             }}
             today={today}
             value={value}
