@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 1.3.5
+
+### Patch Changes
+
+- e7be803: do not reset highlight when mouse leaves menu
+
 ## 1.3.4
 
 ### Patch Changes
