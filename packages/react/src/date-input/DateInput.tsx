@@ -77,6 +77,7 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
                 />
               )
             }
+            asChild
             disabled={disabled}
             max={max}
             min={min}
@@ -102,7 +103,9 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
             step={step}
             type={type}
             {...props}
-          />
+          >
+            <input {...styles.input()} />
+          </Input>
         </PopoverAnchor>
         <PopoverContent
           gap="8"

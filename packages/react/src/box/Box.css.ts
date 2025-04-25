@@ -146,15 +146,6 @@ export const box = recipe({
           },
 
           /**
-           * Hide browser default icons inside inputs
-           */
-          "&::-webkit-calendar-picker-indicator, &::-webkit-search-cancel-button, &::-webkit-search-decoration":
-            {
-              display: "none",
-              WebkitAppearance: "none",
-            },
-
-          /**
            * Make replaced elements `display: block` by default. (https://github.com/mozdevs/cssremedy/issues/14)
            */
           "&:is(img, svg, video, canvas, audio, iframe, embed, object)": {
