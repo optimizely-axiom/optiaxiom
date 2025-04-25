@@ -131,9 +131,12 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
       itemToKey: (item) => (item !== null ? item.value : item),
       itemToString: (item) => (item !== null ? item.label : ""),
       onHighlightedIndexChange(changes) {
+        if (changes.type === useSelect.stateChangeTypes.MenuMouseLeave) {
+          return;
+        }
+
         if (
-          ((changes.type === useSelect.stateChangeTypes.ItemMouseMove ||
-            changes.type === useSelect.stateChangeTypes.MenuMouseLeave) &&
+          (changes.type === useSelect.stateChangeTypes.ItemMouseMove &&
             isOpen) ||
           changes.isOpen
         ) {
