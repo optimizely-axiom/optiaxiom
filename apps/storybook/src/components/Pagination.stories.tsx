@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Pagination, type PaginationProps } from "@optiaxiom/react";
+import { Pagination } from "@optiaxiom/react";
 import { expect, userEvent } from "@storybook/test";
 import { useState } from "react";
 
@@ -19,6 +19,9 @@ type Story = StoryObj<typeof Pagination>;
 export const Basic: Story = {};
 
 export const Controlled: Story = {
+  args: {
+    page: 1,
+  },
   play: async ({ canvas }) => {
     await expect(
       await canvas.findByRole("button", { name: "page 1 (first page)" }),
@@ -33,9 +36,8 @@ export const Controlled: Story = {
       await canvas.findByRole("button", { name: "page 2" }),
     ).toHaveAttribute("aria-current", "page");
   },
-  render: function Template(args: PaginationProps) {
+  render: function Template(args) {
     const [offset, setOffset] = useState(args.page);
-
     return <Pagination {...args} onPageChange={setOffset} page={offset} />;
   },
 };
