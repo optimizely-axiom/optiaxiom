@@ -4,6 +4,7 @@ export * from "./card";
 export * from "./clock";
 export * from "./command";
 export * from "./data-table";
+export * from "./data-table/DataTableHeaderCell";
 export * from "./date-input";
 export * from "./date-picker";
 export * from "./date-range-picker";
