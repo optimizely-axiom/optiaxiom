@@ -64,7 +64,9 @@ export const Basic: Story = {
   play: async ({ canvas }) => {
     await userEvent.click(canvas.getByText("Show Toast"));
 
-    const toast = await screen.findByRole("status");
+    const toast = await within(await screen.findByRole("list")).findByRole(
+      "status",
+    );
     await expect(toast).toHaveTextContent("This is an example toast message.");
 
     await userEvent.click(within(toast).getByRole("button", { name: "close" }));
@@ -73,7 +75,11 @@ export const Basic: Story = {
     );
 
     await userEvent.click(canvas.getByText("Show Toast"));
-    await expect(await screen.findByRole("status")).toBeVisible();
+    await waitFor(async () =>
+      expect(
+        await within(await screen.findByRole("list")).findByRole("status"),
+      ).toBeVisible(),
+    );
   },
 };
 
@@ -133,9 +139,9 @@ export const Position: Story = {
   play: async ({ canvas }) => {
     await userEvent.click(canvas.getByText("Show Toast"));
 
-    await expect(await screen.findByRole("status")).toHaveTextContent(
-      "This is an example toast message.",
-    );
+    await expect(
+      await within(await screen.findByRole("list")).findByRole("status"),
+    ).toHaveTextContent("This is an example toast message.");
   },
 };
 
@@ -153,9 +159,9 @@ export const Action: Story = {
   play: async ({ canvas }) => {
     await userEvent.click(canvas.getByText("Show Toast"));
 
-    await expect(await screen.findByRole("status")).toHaveTextContent(
-      "This is an example toast message.",
-    );
+    await expect(
+      await within(await screen.findByRole("list")).findByRole("status"),
+    ).toHaveTextContent("This is an example toast message.");
     await expect(
       await screen.findByRole("button", { name: "Undo" }),
     ).toBeInTheDocument();
@@ -175,7 +181,9 @@ export const Link: Story = {
   play: async ({ canvas }) => {
     await userEvent.click(canvas.getByText("Show Toast"));
 
-    const toast = await screen.findByRole("status");
+    const toast = await within(await screen.findByRole("list")).findByRole(
+      "status",
+    );
     await expect(toast).toHaveTextContent("This is an example toast message.");
   },
 };
@@ -191,7 +199,9 @@ export const LongContent: Story = {
   play: async ({ canvas }) => {
     await userEvent.click(canvas.getByText("Show Toast"));
 
-    await expect(await screen.findByRole("status")).toHaveTextContent(
+    await expect(
+      await within(await screen.findByRole("list")).findByRole("status"),
+    ).toHaveTextContent(
       "This is an example toast message that should span two lines.",
     );
   },
