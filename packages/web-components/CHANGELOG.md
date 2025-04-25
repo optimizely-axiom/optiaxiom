@@ -1,5 +1,11 @@
 # @optiaxiom/web-components
 
+## 0.9.7
+
+### Patch Changes
+
+- 39ca264: do not remove UA buttons/icons from inputs by default
+
 ## 0.9.6
 
 ### Patch Changes

@@ -1,5 +1,12 @@
 # @optiaxiom/react
 
+## 1.3.4
+
+### Patch Changes
+
+- 39ca264: do not remove UA buttons/icons from inputs by default
+- 4905016: export DataTableHeaderCell for internal usage
+
 ## 1.3.3
 
 ### Patch Changes
