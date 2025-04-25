@@ -8,6 +8,8 @@ const dirname = path.dirname(fileURLToPath(import.meta.url));
 export default defineConfig({
   optimizeDeps: {
     include: [
+      "@optiaxiom/*",
+      "@radix-ui/*",
       "@storybook/experimental-addon-test/internal/test-utils",
       "react/jsx-dev-runtime",
     ],
