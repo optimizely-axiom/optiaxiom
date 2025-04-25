@@ -6,6 +6,20 @@ export const search = recipe({
   base: marker,
 });
 
+export const input = recipe({
+  base: style({
+    selectors: {
+      /**
+       * Hide browser default icons inside inputs
+       */
+      "&::-webkit-search-cancel-button, &::-webkit-search-decoration": {
+        display: "none",
+        WebkitAppearance: "none",
+      },
+    },
+  }),
+});
+
 export const clear = recipe({
   base: [
     {

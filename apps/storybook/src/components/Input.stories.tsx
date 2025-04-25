@@ -108,3 +108,19 @@ export const NumberInput: Story = {
     </Flex>
   ),
 };
+
+export const Types: Story = {
+  args: {
+    placeholder: "Enter text...",
+  },
+  render: (args) => (
+    <Flex>
+      <Input {...args} type="date" />
+      <Input {...args} type="file" />
+      <Input {...args} defaultValue="query" type="password" />
+      <Input {...args} autoFocus defaultValue="query" type="search" />
+      <Input {...args} defaultValue="query" type="text" />
+      <Input {...args} type="time" />
+    </Flex>
+  ),
+};

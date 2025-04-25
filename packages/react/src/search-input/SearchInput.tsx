@@ -51,6 +51,7 @@ export const SearchInput = forwardRef<HTMLInputElement, SearchProps>(
           </Flex>
         }
         addonPointerEvents="none"
+        asChild
         autoComplete="off"
         onChange={(event) => {
           onChange?.(event);
@@ -60,7 +61,9 @@ export const SearchInput = forwardRef<HTMLInputElement, SearchProps>(
         type="search"
         {...styles.search({}, className)}
         {...props}
-      />
+      >
+        <input {...styles.input()} />
+      </Input>
     );
   },
 );
