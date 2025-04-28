@@ -128,8 +128,8 @@ export const AsyncLoading: Story = {
     return (
       <Menu
         {...args}
-        defaultInputVisible
         empty={items ? undefined : "Start typing to search..."}
+        initialInputVisible
         loading={isLoading}
         onInputValueChange={fetchData}
         options={useMemo(
@@ -360,7 +360,7 @@ export const Controlled: Story = {
     return (
       <Menu
         {...args}
-        defaultInputVisible
+        initialInputVisible
         options={useMemo(
           () =>
             books.map<MenuOption>((book) => ({

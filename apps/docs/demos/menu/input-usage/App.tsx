@@ -13,7 +13,7 @@ const colors = [
 
 export function App() {
   return (
-    <Menu defaultInputVisible options={colors}>
+    <Menu initialInputVisible options={colors}>
       <MenuTrigger>Select color</MenuTrigger>
       <MenuContent />
     </Menu>

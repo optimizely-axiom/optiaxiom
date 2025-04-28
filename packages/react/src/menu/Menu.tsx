@@ -25,11 +25,11 @@ type MenuProps = ExcludeProps<
     ComponentPropsWithoutRef<typeof Command>,
     {
       children: ReactNode;
-      defaultInputVisible?: boolean;
       /**
        * The initial open state in uncontrolled mode.
        */
       defaultOpen?: boolean;
+      initialInputVisible?: boolean;
       /**
        * Handler that is called when the open state changes.
        */
@@ -47,8 +47,8 @@ type MenuProps = ExcludeProps<
 
 export function Menu({
   children,
-  defaultInputVisible,
   defaultOpen = false,
+  initialInputVisible,
   inputValue: inputValueProp,
   onInputValueChange,
   onOpenChange,
@@ -114,12 +114,15 @@ export function Menu({
   );
 
   const hasSelectableItem = useMemo(
-    () => options.some((item) => "selected" in item),
+    () =>
+      options.filter((item) => "selected" in item).length > options.length / 2,
     [options],
   );
   const inputDefaultVisibleRef = useRef(hasSelectableItem);
   inputDefaultVisibleRef.current =
-    hasSelectableItem || defaultInputVisible || false;
+    initialInputVisible !== undefined
+      ? initialInputVisible
+      : hasSelectableItem || false;
   const [inputVisible, setInputVisible] = useState(
     inputDefaultVisibleRef.current,
   );

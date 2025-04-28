@@ -6,12 +6,12 @@ import { Menu } from "../menu";
 
 type SpotlightProps = ExcludeProps<
   ComponentPropsWithoutRef<typeof Menu>,
-  "defaultInputVisible" | "size"
+  "initialInputVisible" | "size"
 >;
 
 export function Spotlight({ children, ...props }: SpotlightProps) {
   return (
-    <Menu defaultInputVisible size="lg" {...props}>
+    <Menu initialInputVisible size="lg" {...props}>
       {children}
     </Menu>
   );
