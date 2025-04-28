@@ -1,4 +1,4 @@
-import { forwardRef } from "react";
+import { forwardRef, type RefObject } from "react";
 
 import type { BoxProps } from "../box";
 
@@ -6,18 +6,21 @@ import { useCommandContext } from "../command/internals";
 import { FilteredSlot } from "../filtered-slot";
 import { IconAngleRight } from "../icons/IconAngleRight";
 import { PopoverTrigger } from "../popover";
+import { usePopoverContext } from "../popover/internals";
 import { MenuItem } from "./MenuItem";
-import { useMenuSubContext } from "./MenuSubContext";
 
-type MenuSubTriggerProps = BoxProps<typeof MenuItem>;
+type MenuSubTriggerProps = BoxProps<
+  typeof MenuItem,
+  {
+    contentRef: RefObject<HTMLDivElement>;
+  }
+>;
 
 export const MenuSubTrigger = forwardRef<HTMLDivElement, MenuSubTriggerProps>(
-  ({ children, item, onPointerDown, ...props }, ref) => {
+  ({ children, contentRef, item, onPointerDown, ...props }, ref) => {
     const { downshift, highlightedItem, pauseInteractionRef } =
       useCommandContext("@optiaxiom/react/MenuSubTrigger");
-    const { contentRef, open } = useMenuSubContext(
-      "@optiaxiom/react/MenuSubTrigger",
-    );
+    const { open } = usePopoverContext("@optiaxiom/react/MenuSubTrigger");
 
     return (
       <PopoverTrigger asChild>

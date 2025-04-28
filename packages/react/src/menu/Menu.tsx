@@ -16,6 +16,7 @@ import { Dialog } from "../dialog";
 import { useResponsiveMatches } from "../hooks";
 import { MenuProvider } from "./MenuContext";
 import { MenuPopover } from "./MenuPopover";
+import { MenuSubProvider } from "./MenuSubContext";
 
 export type MenuOption = CommandOption;
 
@@ -76,20 +77,21 @@ export function Menu({
     prop: inputValueProp,
   });
 
-  const [activePath, setActivePath] = useState<number[]>([]);
+  const [activeItems, setActiveItems] = useState<CommandOption[]>();
+  const [subMenuOpen, setSubMenuOpen] = useState(false);
   useEffect(() => {
     if (inputValue && size === "sm") {
-      setActivePath((path) => (path.length ? [] : path));
+      setSubMenuOpen(false);
     }
   }, [inputValue, size]);
   useEffect(() => {
     if (size === "sm") {
       if (!open) {
-        setActivePath((path) => (path.length ? [] : path));
+        setSubMenuOpen(false);
       }
     } else {
       if (open) {
-        setActivePath((path) => (path.length ? [] : path));
+        setActiveItems(undefined);
       }
     }
   }, [open, size]);
@@ -97,23 +99,18 @@ export function Menu({
   const inputRef = useRef<HTMLInputElement>(null);
   const options = useMemo(
     () =>
-      activePath.length && size === "lg"
-        ? activePath.reduce(
-            (result, index) => result[index].subOptions ?? [],
-            optionsProp,
-          )
-        : size === "sm"
-          ? optionsProp.map((option) => ({
-              ...option,
-              label: option.subOptions
-                ? resolveItemProperty(option.label, { inputValue }).replace(
-                    "…",
-                    "",
-                  )
-                : resolveItemProperty(option.label, { inputValue }),
-            }))
-          : optionsProp,
-    [activePath, inputValue, optionsProp, size],
+      size === "sm"
+        ? optionsProp.map((option) => ({
+            ...option,
+            label: option.subOptions
+              ? resolveItemProperty(option.label, { inputValue }).replace(
+                  "…",
+                  "",
+                )
+              : resolveItemProperty(option.label, { inputValue }),
+          }))
+        : (activeItems ?? optionsProp),
+    [activeItems, inputValue, optionsProp, size],
   );
 
   const hasSelectableItem = useMemo(
@@ -140,12 +137,11 @@ export function Menu({
     if (size === "lg") {
       setInputVisible(inputDefaultVisibleRef.current);
     }
-  }, [activePath, size]);
+  }, [activeItems, size]);
 
   return (
     <Comp onOpenChange={setOpen} open={open}>
       <MenuProvider
-        activePath={activePath}
         inputRef={inputRef}
         inputVisible={inputVisible}
         onSelect={(item, { close }) => {
@@ -156,27 +152,22 @@ export function Menu({
         }}
         open={open}
         placeholder={placeholder}
-        setActivePath={setActivePath}
         setOpen={setOpen}
         size={size}
       >
         <Command
           inputValue={inputValue}
           onHover={(item) => {
-            if (item.subOptions?.length) {
-              const index = options.indexOf(item);
-              setActivePath((path) => (!path.includes(index) ? [index] : path));
-            } else {
-              setActivePath((path) => (path.length ? [] : path));
-            }
+            setSubMenuOpen(!!item.subOptions?.length);
           }}
           onInputValueChange={setInputValue}
           onSelect={(item, { close }) => {
             if (item.subOptions?.length) {
-              const index = options.indexOf(item);
-              setActivePath((path) =>
-                path.at(-1) !== index ? [...path, index] : path,
-              );
+              if (size === "lg") {
+                setActiveItems(item.subOptions);
+              } else {
+                setSubMenuOpen(true);
+              }
             } else {
               item.execute?.({ inputValue });
               if (typeof openProp === "undefined" && close) {
@@ -188,7 +179,13 @@ export function Menu({
           options={options}
           {...props}
         >
-          {children}
+          <MenuSubProvider
+            inputRef={inputRef}
+            open={subMenuOpen}
+            setOpen={setSubMenuOpen}
+          >
+            {children}
+          </MenuSubProvider>
         </Command>
       </MenuProvider>
     </Comp>

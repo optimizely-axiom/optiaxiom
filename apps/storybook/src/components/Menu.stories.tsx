@@ -437,6 +437,7 @@ export const Nested: Story = {
     ),
     options: [
       { label: "Create Task" },
+      { label: "Hidden item", visible: false },
       {
         label: "Add to",
         subOptions: [
