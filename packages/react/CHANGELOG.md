@@ -1,5 +1,13 @@
 # @optiaxiom/react
 
+## 1.3.6
+
+### Patch Changes
+
+- 1641315: change initial input visible logic
+- a5821cb: fix handling submenus
+- fca0e16: show group separator for first and last item
+
 ## 1.3.5
 
 ### Patch Changes
