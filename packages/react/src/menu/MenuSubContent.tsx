@@ -1,5 +1,11 @@
-import { useComposedRefs } from "@radix-ui/react-compose-refs";
-import { type ComponentPropsWithoutRef, forwardRef, useMemo } from "react";
+import {
+  type ComponentPropsWithoutRef,
+  forwardRef,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 
 import type { CommandItem } from "../command";
 import type { ExcludeProps } from "../utils";
@@ -11,8 +17,7 @@ import { PopoverContent } from "../popover";
 import { VisuallyHidden } from "../visually-hidden";
 import { useMenuContext } from "./MenuContext";
 import { MenuListbox } from "./MenuListbox";
-import { MenuNestedProvider, useMenuNestedContext } from "./MenuNestedContext";
-import { useMenuSubContext } from "./MenuSubContext";
+import { MenuSubProvider, useMenuSubContext } from "./MenuSubContext";
 
 type MenuSubContentProps = ExcludeProps<
   BoxProps<
@@ -23,28 +28,28 @@ type MenuSubContentProps = ExcludeProps<
 >;
 
 export const MenuSubContent = forwardRef<HTMLDivElement, MenuSubContentProps>(
-  ({ align = "start", children, item, side = "right", ...props }, outerRef) => {
+  ({ align = "start", children, item, side = "right", ...props }, ref) => {
     const options = useMemo(() => item.subOptions ?? [], [item]);
-    const {
-      activePath,
-      inputRef: rootInputRef,
-      onSelect,
-      setActivePath,
-      setOpen,
-    } = useMenuContext("@optiaxiom/react/MenuSubContent");
+    const { onSelect, setOpen: setRootMenuOpen } = useMenuContext(
+      "@optiaxiom/react/MenuSubContent",
+    );
     const { setInputValue } = useCommandContext(
       "@optiaxiom/react/MenuSubContent",
     );
     const {
-      contentRef,
-      inputRef,
-      level,
-      setOpen: setSubOpen,
+      inputRef: parentInputRef,
+      open,
+      setOpen,
     } = useMenuSubContext("@optiaxiom/react/MenuSubContent");
-    const { inputRef: parentInputRef = rootInputRef } = useMenuNestedContext(
-      "@optiaxiom/react/MenuSubContent",
-    );
-    const ref = useComposedRefs(contentRef, outerRef);
+
+    const inputRef = useRef<HTMLInputElement>(null);
+
+    const [subMenuOpen, setSubMenuOpen] = useState(false);
+    useEffect(() => {
+      if (!open) {
+        setSubMenuOpen(false);
+      }
+    }, [open]);
 
     return (
       <PopoverContent
@@ -53,14 +58,14 @@ export const MenuSubContent = forwardRef<HTMLDivElement, MenuSubContentProps>(
         maxH="sm"
         minW="trigger"
         onCloseAutoFocus={(event) => {
-          if (activePath.length > level) {
+          if (open) {
             return;
           }
 
           event.preventDefault();
           parentInputRef.current?.focus();
         }}
-        onEscapeKeyDown={() => setOpen(false)}
+        onEscapeKeyDown={() => setRootMenuOpen(false)}
         p="4"
         ref={ref}
         side={side}
@@ -70,18 +75,7 @@ export const MenuSubContent = forwardRef<HTMLDivElement, MenuSubContentProps>(
         {children ?? (
           <Command
             onHover={(item) => {
-              if (item.subOptions?.length) {
-                const index = options.indexOf(item);
-                setActivePath((path) =>
-                  path[level + 1] !== index
-                    ? [...path.slice(0, level + 1), index]
-                    : path,
-                );
-              } else {
-                setActivePath((path) =>
-                  path.length > level + 1 ? path.slice(0, level + 1) : path,
-                );
-              }
+              setSubMenuOpen(!!item.subOptions?.length);
             }}
             onInputValueChange={(inputValue) => {
               parentInputRef.current?.focus();
@@ -89,12 +83,7 @@ export const MenuSubContent = forwardRef<HTMLDivElement, MenuSubContentProps>(
             }}
             onSelect={(item, { close }) => {
               if (item.subOptions?.length) {
-                const index = options.indexOf(item);
-                setActivePath((path) =>
-                  path[level + 1] !== index
-                    ? [...path.slice(0, level + 1), index]
-                    : path,
-                );
+                setSubMenuOpen(true);
               } else {
                 onSelect(item, { close });
               }
@@ -107,15 +96,19 @@ export const MenuSubContent = forwardRef<HTMLDivElement, MenuSubContentProps>(
                 onKeyDown={(event) => {
                   if (event.key === "ArrowLeft") {
                     event.preventDefault();
-                    setSubOpen(false);
+                    setOpen(false);
                   }
                 }}
                 ref={inputRef}
               />
             </VisuallyHidden>
-            <MenuNestedProvider inputRef={inputRef} level={level + 1}>
+            <MenuSubProvider
+              inputRef={inputRef}
+              open={subMenuOpen}
+              setOpen={setSubMenuOpen}
+            >
               <MenuListbox />
-            </MenuNestedProvider>
+            </MenuSubProvider>
           </Command>
         )}
       </PopoverContent>
