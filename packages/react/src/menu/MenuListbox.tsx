@@ -20,7 +20,11 @@ export const MenuListbox = forwardRef<HTMLDivElement, MenuListboxProps>(
     const shouldShowSeparator = (group: Group | undefined) => {
       const show = !isFirstItem;
       isFirstItem = false;
-      return show && group && group !== lastGroup && group.separator;
+      return (
+        show &&
+        group !== lastGroup &&
+        (group?.separator || lastGroup?.separator)
+      );
     };
     const shouldShowGroup = (group: Group | undefined): group is Group => {
       const show = group !== lastGroup;
