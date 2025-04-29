@@ -38,6 +38,14 @@ export const useCommandItems = ({
                 parentOption
                   ? {
                       ...item,
+                      key: [
+                        parentOption.key ??
+                          resolveItemProperty(parentOption.label, {
+                            inputValue,
+                          }),
+                        item.key ??
+                          resolveItemProperty(item.label, { inputValue }),
+                      ].join("-"),
                       parentOption,
                     }
                   : item,
