@@ -31,7 +31,9 @@ export function App() {
         [value],
       )}
     >
-      <MenuTrigger>Select color</MenuTrigger>
+      <MenuTrigger w="224">
+        {value.length ? `${value.length} selected` : "Select color"}
+      </MenuTrigger>
       <MenuContent />
     </Menu>
   );
