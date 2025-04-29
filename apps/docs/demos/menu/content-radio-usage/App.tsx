@@ -18,14 +18,14 @@ export function App() {
       options={useMemo(
         () =>
           colors.map<MenuOption>((color) => ({
-            execute: () => setValue(color),
+            execute: () => setValue((value) => (value === color ? "" : color)),
             label: color,
             selected: value === color,
           })),
         [value],
       )}
     >
-      <MenuTrigger>Select color</MenuTrigger>
+      <MenuTrigger w="224">{value || "Select color"}</MenuTrigger>
       <MenuContent />
     </Menu>
   );
