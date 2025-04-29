@@ -14,6 +14,7 @@ import { type BoxProps } from "../box";
 import { Command, CommandInput } from "../command";
 import { useCommandContext } from "../command/internals";
 import { PopoverContent } from "../popover";
+import { usePopoverContext } from "../popover/PopoverContext";
 import { VisuallyHidden } from "../visually-hidden";
 import { useMenuContext } from "./MenuContext";
 import { MenuListbox } from "./MenuListbox";
@@ -38,9 +39,10 @@ export const MenuSubContent = forwardRef<HTMLDivElement, MenuSubContentProps>(
     );
     const {
       inputRef: parentInputRef,
-      open,
+      open: parentSubMenuOpen,
       setOpen,
     } = useMenuSubContext("@optiaxiom/react/MenuSubContent");
+    const { open } = usePopoverContext("@optiaxiom/react/MenuSubContent");
 
     const inputRef = useRef<HTMLInputElement>(null);
 
@@ -58,7 +60,7 @@ export const MenuSubContent = forwardRef<HTMLDivElement, MenuSubContentProps>(
         maxH="sm"
         minW="trigger"
         onCloseAutoFocus={(event) => {
-          if (open) {
+          if (parentSubMenuOpen) {
             return;
           }
 
