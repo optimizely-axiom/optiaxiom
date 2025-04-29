@@ -119,9 +119,7 @@ export default {
       "radio-group": "RadioGroup",
       "search-input": "SearchInput",
       "segmented-control": "SegmentedControl",
-      select: {
-        title: <AlphaItem>Select</AlphaItem>,
-      },
+      select: "Select",
       sidebar: "Sidebar",
       skeleton: "Skeleton",
       spinner: "Spinner",

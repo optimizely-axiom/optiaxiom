@@ -14,6 +14,5 @@ export * from "./label-menu-button";
 export * from "./layout";
 export * from "./menu";
 export * from "./pill";
-export * from "./select";
 export * from "./spotlight";
 export * from "./table";

@@ -1,12 +1,16 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Box, Button, Field, Flex, Text } from "@optiaxiom/react";
 import {
-  LabelMenuButton,
+  Box,
+  Button,
+  Field,
+  Flex,
   Select,
   SelectContent,
   SelectTrigger,
-} from "@optiaxiom/react/unstable";
+  Text,
+} from "@optiaxiom/react";
+import { LabelMenuButton } from "@optiaxiom/react/unstable";
 import { expect, screen, userEvent } from "@storybook/test";
 import { useEffect, useMemo, useState } from "react";
 

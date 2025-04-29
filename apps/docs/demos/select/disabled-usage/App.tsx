@@ -2,11 +2,7 @@
 
 import type { ComponentPropsWithoutRef } from "react";
 
-import {
-  Select,
-  SelectContent,
-  SelectTrigger,
-} from "@optiaxiom/react/unstable";
+import { Select, SelectContent, SelectTrigger } from "@optiaxiom/react";
 
 export function App({
   disabled = true,

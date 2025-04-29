@@ -1,12 +1,16 @@
 import type { ComponentPropsWithRef, Dispatch, SetStateAction } from "react";
 import type { PropItem, Props } from "react-docgen-typescript";
 
-import { Field, Flex, Input, Switch, Tooltip } from "@optiaxiom/react";
 import {
+  Field,
+  Flex,
+  Input,
   Select,
   SelectContent,
   SelectTrigger,
-} from "@optiaxiom/react/unstable";
+  Switch,
+  Tooltip,
+} from "@optiaxiom/react";
 
 type DemoControlProps = ComponentPropsWithRef<typeof Flex> & {
   onChange: Dispatch<

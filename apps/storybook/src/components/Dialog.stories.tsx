@@ -10,6 +10,9 @@ import {
   DialogHeader,
   DialogTrigger,
   Input,
+  Select,
+  SelectContent,
+  SelectTrigger,
   Textarea,
 } from "@optiaxiom/react";
 import {
@@ -17,9 +20,6 @@ import {
   MenuContent,
   type MenuOption,
   MenuTrigger,
-  Select,
-  SelectContent,
-  SelectTrigger,
 } from "@optiaxiom/react/unstable";
 import { expect, screen, userEvent, waitFor } from "@storybook/test";
 import { IconArrowsDiagonal } from "@tabler/icons-react";

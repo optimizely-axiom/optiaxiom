@@ -1,10 +1,6 @@
 "use client";
 
-import {
-  Select,
-  SelectContent,
-  SelectTrigger,
-} from "@optiaxiom/react/unstable";
+import { Select, SelectContent, SelectTrigger } from "@optiaxiom/react";
 
 const groups = {
   none: {

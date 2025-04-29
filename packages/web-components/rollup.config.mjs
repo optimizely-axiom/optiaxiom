@@ -47,6 +47,7 @@ export default defineConfig([
         react: "preact/compat",
         "react-dom": "preact/compat",
         "react-dom/client": "preact/compat/client",
+        "react-is": "preact/compat",
         "react/jsx-runtime": "preact/jsx-runtime",
       }),
       nodeResolve({
@@ -72,6 +73,26 @@ export default defineConfig([
           }
 
           return code.replace(":root", ":host");
+        },
+      },
+      {
+        name: "downshift",
+        transform(code, id) {
+          if (!id.includes("node_modules/downshift")) {
+            return null;
+          }
+
+          /**
+           * Remove incompatible and unused Downshift class based component
+           */
+          return (
+            code.slice(
+              0,
+              code.indexOf("var Downshift = /*#__PURE__*/function () {"),
+            ) +
+            "\n" +
+            code.slice(code.indexOf("var dropdownDefaultStateValues = {"))
+          ).replace("Downshift as default,", "");
         },
       },
       {
@@ -121,9 +142,9 @@ export default defineConfig([
           }
 
           return code.replaceAll(
-            "document.activeElement",
-            `(() => {
-  let active = document.activeElement;
+            /(\w+\.)?document\.activeElement/g,
+            (match) => `(() => {
+  let active = ${match};
   while (active?.shadowRoot) {
     active = active.shadowRoot.activeElement;
   }
