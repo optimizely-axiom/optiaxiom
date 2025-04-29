@@ -2,12 +2,7 @@
 
 import type { ComponentPropsWithoutRef } from "react";
 
-import { Field } from "@optiaxiom/react";
-import {
-  Select,
-  SelectContent,
-  SelectTrigger,
-} from "@optiaxiom/react/unstable";
+import { Field, Select, SelectContent, SelectTrigger } from "@optiaxiom/react";
 
 export function App({
   description,

@@ -5,14 +5,12 @@ import {
   PopoverTrigger,
   SegmentedControl,
   SegmentedControlItem,
-  Separator,
-  Tooltip,
-} from "@optiaxiom/react";
-import {
   Select,
   SelectContent,
   SelectTrigger,
-} from "@optiaxiom/react/unstable";
+  Separator,
+  Tooltip,
+} from "@optiaxiom/react";
 import {
   IconAdjustmentsHorizontal,
   IconLayoutGrid,

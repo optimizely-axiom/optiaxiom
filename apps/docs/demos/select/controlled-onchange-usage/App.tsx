@@ -1,11 +1,12 @@
 "use client";
 
-import { Flex, Text } from "@optiaxiom/react";
 import {
+  Flex,
   Select,
   SelectContent,
   SelectTrigger,
-} from "@optiaxiom/react/unstable";
+  Text,
+} from "@optiaxiom/react";
 import { useState } from "react";
 
 const priorities = [
