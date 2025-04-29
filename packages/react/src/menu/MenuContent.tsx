@@ -12,6 +12,7 @@ import { MenuDialogContent } from "./MenuDialogContent";
 import { MenuInput } from "./MenuInput";
 import { MenuListbox } from "./MenuListbox";
 import { MenuPopoverContent } from "./MenuPopoverContent";
+import { useMenuSubContext } from "./MenuSubContext";
 
 type MenuContentProps = ExcludeProps<
   ComponentPropsWithoutRef<typeof DialogContent> &
@@ -28,6 +29,7 @@ export const MenuContent = forwardRef<HTMLDivElement, MenuContentProps>(
     const { empty, loading } = useCommandContext(
       "@optiaxiom/react/MenuContent",
     );
+    const { setOpen } = useMenuSubContext("@optiaxiom/react/MenuContent");
     const Comp = size === "sm" ? MenuPopoverContent : MenuDialogContent;
 
     return (
@@ -44,6 +46,7 @@ export const MenuContent = forwardRef<HTMLDivElement, MenuContentProps>(
         <MenuListbox
           empty={empty}
           loading={loading}
+          onScroll={() => setOpen(false)}
           p={size === "lg" ? "6" : "0"}
         >
           {children}

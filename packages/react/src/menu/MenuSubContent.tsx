@@ -107,7 +107,7 @@ export const MenuSubContent = forwardRef<HTMLDivElement, MenuSubContentProps>(
               open={subMenuOpen}
               setOpen={setSubMenuOpen}
             >
-              <MenuListbox />
+              <MenuListbox onScroll={() => setSubMenuOpen(false)} />
             </MenuSubProvider>
           </Command>
         )}
