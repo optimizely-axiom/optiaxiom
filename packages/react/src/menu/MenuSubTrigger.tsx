@@ -80,7 +80,7 @@ export const MenuSubTrigger = forwardRef<HTMLDivElement, MenuSubTriggerProps>(
               };
               pauseInteractionRef.current.timer = window.setTimeout(() => {
                 pauseInteractionRef.current.isInsideTriangle = null;
-              }, 50);
+              }, 20);
             }}
             ref={ref}
             {...props}

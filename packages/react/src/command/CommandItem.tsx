@@ -26,8 +26,14 @@ type CommandItemProps = BoxProps<
 
 export const CommandItem = forwardRef<HTMLDivElement, CommandItemProps>(
   ({ asChild, children, item, selected, size, ...props }, ref) => {
-    const { downshift, highlightedItem, inputValue, pauseInteractionRef } =
-      useCommandContext("@optiaxiom/react/CommandItem");
+    const {
+      downshift,
+      highlightedItem,
+      inputValue,
+      items,
+      pauseInteractionRef,
+    } = useCommandContext("@optiaxiom/react/CommandItem");
+
     const itemProps = downshift.getItemProps({
       "aria-selected": selected ?? resolveItemProperty(item.selected),
       item,
@@ -35,6 +41,9 @@ export const CommandItem = forwardRef<HTMLDivElement, CommandItemProps>(
         if (event.currentTarget instanceof HTMLAnchorElement) {
           event.preventDefault();
         }
+      },
+      onMouseLeave: () => {
+        window.clearTimeout(pauseInteractionRef.current.timer);
       },
       onMouseMove: (event) => {
         if (resolveItemProperty(item.disabledReason)) {
@@ -63,7 +72,8 @@ export const CommandItem = forwardRef<HTMLDivElement, CommandItemProps>(
           window.clearTimeout(pauseInteractionRef.current.timer);
           pauseInteractionRef.current.timer = window.setTimeout(() => {
             pauseInteractionRef.current.isInsideTriangle = null;
-          }, 50);
+            downshift.setHighlightedIndex(items.indexOf(item));
+          }, 20);
         } else {
           pauseInteractionRef.current.isInsideTriangle = null;
         }
