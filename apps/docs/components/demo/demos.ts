@@ -254,6 +254,7 @@ export const demos = {
   "menu/content-usage": import("@/demos/menu/content-usage/App"),
   "menu/creatable-usage": import("@/demos/menu/creatable-usage/App"),
   "menu/empty-usage": import("@/demos/menu/empty-usage/App"),
+  "menu/group-usage": import("@/demos/menu/group-usage/App"),
   "menu/input-controlled-usage": import(
     "@/demos/menu/input-controlled-usage/App"
   ),
