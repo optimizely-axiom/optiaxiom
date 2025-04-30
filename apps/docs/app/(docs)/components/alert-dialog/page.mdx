@@ -1,7 +1,5 @@
-import { Cards } from "@/components/cards";
-import { Demo } from "@/components/demo";
-import { Links } from "@/components/links";
-import { PropsTable } from "@/components/props-table";
+import { Cards, Demo, Links, PropsTable } from "@/components";
+import { Flex, Kbd } from "@optiaxiom/react";
 
 # AlertDialog
 
@@ -86,6 +84,15 @@ We can also completely change the trigger by using `asChild` and passing our own
 ### AlertDialogAction
 
 <PropsTable component="AlertDialogAction" />
+
+## Accessibility
+
+### Keyboard interactions
+
+| Key                                                                        | Description                                                |
+| :------------------------------------------------------------------------- | :--------------------------------------------------------- |
+| <Flex flexDirection="row" gap="8"><Kbd>Space</Kbd> <Kbd>Enter</Kbd></Flex> | When focus is on `AlertDialogTrigger`, opens the dialog.   |
+| <Kbd>Esc</Kbd>                                                             | Closes the dialog and moves focus to `AlertDialogTrigger`. |
 
 ## Changelog
 

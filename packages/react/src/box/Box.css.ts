@@ -57,10 +57,13 @@ export const box = recipe({
            * 4. Correct the odd `em` font sizing in all browsers.
            */
           "&:is(code, kbd, samp, pre)": {
-            fontFamily: theme.fontFamily.mono /* 1 */,
             fontFeatureSettings: "normal" /* 2 */,
             fontSize: "1em" /* 4 */,
             WebkitFontSmoothing: "auto",
+
+            vars: {
+              [vars.fontFamilyVar]: theme.fontFamily.mono /* 1 */,
+            },
           },
 
           /**

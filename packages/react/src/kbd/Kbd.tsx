@@ -33,7 +33,7 @@ export const Kbd = forwardRef<HTMLElement, KbdProps>(
         <kbd ref={ref}>
           {keys &&
             (Array.isArray(keys) ? keys : [keys]).map((key) => (
-              <abbr key={key} title={key} {...styles.keys({ variant })}>
+              <abbr aria-label={key} key={key} title={key} {...styles.keys()}>
                 {mapKeyToCode[key]}
               </abbr>
             ))}

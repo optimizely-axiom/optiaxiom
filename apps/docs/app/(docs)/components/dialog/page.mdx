@@ -1,8 +1,5 @@
-import { Cards } from "@/components/cards";
-import { Demo } from "@/components/demo";
-import { Links } from "@/components/links";
-import { PropsTable } from "@/components/props-table";
-import { Alert } from "@optiaxiom/react";
+import { Cards, Demo, Links, PropsTable } from "@/components";
+import { Alert, Flex, Kbd } from "@optiaxiom/react";
 
 # Dialog
 
@@ -89,6 +86,15 @@ Use the `onOpenChange` handler to trigger the nested callback instead of an expl
 <PropsTable component="DialogFooter" />
 ### DialogClose
 <PropsTable component="DialogClose" />
+
+## Accessibility
+
+### Keyboard interactions
+
+| Key                                                                        | Description                                           |
+| :------------------------------------------------------------------------- | :---------------------------------------------------- |
+| <Flex flexDirection="row" gap="8"><Kbd>Space</Kbd> <Kbd>Enter</Kbd></Flex> | When focus is on `DialogTrigger`, opens the dialog.   |
+| <Kbd>Esc</Kbd>                                                             | Closes the dialog and moves focus to `DialogTrigger`. |
 
 ## Changelog
 

@@ -10,7 +10,7 @@ Place demos in the `demos/` folder and use with the `Demo` component to showcase
 
 ```mdx
 {/* pages/components/switch.mdx */}
-import { Demo } from "@/components/demo";
+import { Demo } from "@/components";
 
 <Demo component="switch/usage" />
 
@@ -48,7 +48,7 @@ export function App({
 Add prop tables for components using the `PropsTable` component.
 
 ```mdx
-import { PropsTable } from "@/components/props-table";
+import { PropsTable } from "@/components";
 
 <PropsTable component="Button" />
 ```
