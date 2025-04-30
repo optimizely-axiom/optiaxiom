@@ -1,6 +1,4 @@
-import { Demo } from "@/components/demo";
-import { Links } from "@/components/links";
-import { PropsTable } from "@/components/props-table";
+import { Demo, Links, PropsTable } from "@/components";
 import { Flex, Kbd } from "@optiaxiom/react";
 
 # DateInput
@@ -31,6 +29,7 @@ Input field with calendar that lets user enter dates.
 | <Kbd>Enter</Kbd>                                                                                                                                                                         | Selects the focused day in the calendar.                                                                                                          |
 | <Flex gap="8"><Flex flexDirection="row" gap="8"><Kbd>ArrowUp</Kbd> <Kbd>ArrowDown</Kbd></Flex><Flex flexDirection="row" gap="8"><Kbd>ArrowRight</Kbd> <Kbd>ArrowLeft</Kbd></Flex></Flex> | Navigate between days in the calendar.                                                                                                            |
 | <Flex flexDirection="row" gap="8"><Kbd>PageUp</Kbd> <Kbd>PageDown</Kbd></Flex>                                                                                                           | Navigate between months in the calendar.                                                                                                          |
+| <Flex flexDirection="row" gap="8"><Kbd keys="shift">PageUp</Kbd> <Kbd keys="shift">PageDown</Kbd></Flex>                                                                                 | Navigate between years in the calendar.                                                                                                           |
 | <Kbd>Esc</Kbd>                                                                                                                                                                           | Closes the calendar popover and moves focus back to `DateInput`.                                                                                  |
 
 ## Changelog

@@ -1,7 +1,5 @@
-import { Cards } from "@/components/cards";
-import { Demo } from "@/components/demo";
-import { Links } from "@/components/links";
-import { PropsTable } from "@/components/props-table";
+import { Cards, Demo, Links, PropsTable } from "@/components";
+import { Flex, Kbd } from "@optiaxiom/react";
 
 # Menu
 
@@ -139,6 +137,22 @@ Menu automatically uses virtualization to improve performance when rendering a l
 ### MenuContent
 
 <PropsTable component="MenuContent" />
+
+## Accessibility
+
+### Keyboard interactions
+
+| Key                                                                                 | Description                                                                                                                                                             |
+| :---------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| <Kbd>Space</Kbd>                                                                    | When focus is on `MenuTrigger`, opens the menu and focuses the first item (or selected item). When focus is on an item, activates the focused item.                     |
+| <Kbd>Enter</Kbd>                                                                    | When focus is on `MenuTrigger`, opens the menu and focuses the first item (or selected item). When focus is on an item, activates the focused item and closes the menu. |
+| <Kbd>ArrowDown</Kbd>                                                                | When focus is on `MenuTrigger`, opens the menu and focuses the first item (or selected item). When focus is on an item, moves focus to the next item.                   |
+| <Kbd>ArrowUp</Kbd>                                                                  | When focus is on an item, moves focus to the previous item.                                                                                                             |
+| <Flex flexDirection="row" gap="8"><Kbd>PageUp</Kbd> <Kbd>PageDown</Kbd></Flex>      | Moves focus up/down by 10 items at a time.                                                                                                                              |
+| <Flex flexDirection="row" gap="8"><Kbd>Home</Kbd> <Kbd>End</Kbd></Flex>             | Moves focus to the first/last item.                                                                                                                                     |
+| <Flex flexDirection="row" gap="8"><Kbd>ArrowRight</Kbd> <Kbd>ArrowLeft</Kbd></Flex> | When focus is on an item with a submenu, opens/closes the submenu.                                                                                                      |
+| <Flex flexDirection="row" gap="8"><Kbd>A</Kbd> - <Kbd>Z</Kbd></Flex>                | When focus is on an item, filter and display matching items as you type.                                                                                                |
+| <Kbd>Esc</Kbd>                                                                      | Closes the menu and moves focus back to `MenuTrigger`.                                                                                                                  |
 
 ## Changelog
 

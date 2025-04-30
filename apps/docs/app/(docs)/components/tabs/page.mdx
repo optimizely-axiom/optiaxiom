@@ -1,6 +1,5 @@
-import { Demo } from "@/components/demo";
-import { Links } from "@/components/links";
-import { PropsTable } from "@/components/props-table";
+import { Demo, Links, PropsTable } from "@/components";
+import { Flex, Kbd } from "@optiaxiom/react";
 
 # Tabs
 
@@ -33,6 +32,17 @@ Use the `value` and `defaultValue` props to toggle between controlled and uncont
 ### TabsContent
 
 <PropsTable component="TabsContent" />
+
+## Accessibility
+
+### Keyboard interactions
+
+| Key                                                                                 | Description                                                                                                               |
+| :---------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------ |
+| <Kbd>Tab</Kbd>                                                                      | When focus moves onto the tabs, focuses the active trigger. When a trigger is focused, moves focus to the active content. |
+| <Flex flexDirection="row" gap="8"><Kbd>ArrowDown</Kbd> <Kbd>ArrowRight</Kbd></Flex> | Moves focus to the next trigger depending on `orientation` and activates its associated content.                          |
+| <Flex flexDirection="row" gap="8"><Kbd>ArrowUp</Kbd> <Kbd>ArrowLeft</Kbd></Flex>    | Moves focus to the previous trigger depending on `orientation` and activates its associated content.                      |
+| <Flex flexDirection="row" gap="8"><Kbd>Home</Kbd> <Kbd>End</Kbd></Flex>             | Moves focus to the first/last trigger and activates its associated content.                                               |
 
 ## Changelog
 

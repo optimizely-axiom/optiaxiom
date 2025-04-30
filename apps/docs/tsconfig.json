@@ -9,6 +9,7 @@
     "jsx": "preserve",
     "lib": ["dom", "dom.iterable", "esnext"],
     "paths": {
+      "@/components": ["components"],
       "@/components/*": ["components/*"],
       "@/demos/*": ["demos/*"],
       "@optiaxiom/globals": ["../../packages/globals/src"],

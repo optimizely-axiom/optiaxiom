@@ -1,6 +1,5 @@
-import { Demo } from "@/components/demo";
-import { Links } from "@/components/links";
-import { PropsTable } from "@/components/props-table";
+import { Demo, Links, PropsTable } from "@/components";
+import { Flex, Kbd } from "@optiaxiom/react";
 
 # Disclosure
 
@@ -44,6 +43,14 @@ Use the `addonBefore` and `addonAfter` prop to add icons, text, or any other int
 ### DisclosureContent
 
 <PropsTable component="DisclosureContent" />
+
+## Accessibility
+
+### Keyboard interactions
+
+| Key                                                                        | Description             |
+| :------------------------------------------------------------------------- | :---------------------- |
+| <Flex flexDirection="row" gap="8"><Kbd>Space</Kbd> <Kbd>Enter</Kbd></Flex> | Opens/closes the panel. |
 
 ## Changelog
 
