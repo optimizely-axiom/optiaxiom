@@ -10,4 +10,3 @@ export * from "./ListboxLabel";
 export * from "./ListboxRadioItem";
 export * from "./ListboxSeparator";
 export * from "./ListboxSwitchItem";
-export * from "./ListboxVirtualized";

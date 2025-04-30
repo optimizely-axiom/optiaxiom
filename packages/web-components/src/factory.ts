@@ -13,7 +13,7 @@ export const formAssociated: Set<string> = new Set([
   "ax-search-input",
   "ax-switch",
   "ax-textarea",
-]) satisfies typeof components;
+]) satisfies Set<keyof typeof components>;
 
 export const factory = (
   name: string,

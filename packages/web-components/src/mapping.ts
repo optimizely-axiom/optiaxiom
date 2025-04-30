@@ -2,11 +2,9 @@ import * as Components from "@optiaxiom/react";
 
 import { exports } from "../package.json";
 
-type AllComponents = Set<
-  keyof {
-    [Key in ComponentNames as `ax${KebabCase<Key>}`]: never;
-  }
->;
+type AllComponents = {
+  [Key in ComponentNames as `ax${KebabCase<Key>}`]: true;
+};
 
 type ComponentNames = Exclude<
   keyof {
@@ -26,19 +24,20 @@ type KebabCase<
   ? KebabCase<R, `${A}${F extends Lowercase<F> ? "" : "-"}${Lowercase<F>}`>
   : A;
 
-const exported = (
-  Object.keys(exports).filter((n) => n !== ".") as Array<
-    Exclude<keyof typeof exports, ".">
-  >
-).map(
-  <S extends string>(path: S) =>
-    ("ax" +
-      path
-        .slice(2)
-        .replace(
-          /[A-Z]/g,
-          (m) => "-" + m.toLowerCase(),
-        )) as S extends `./${infer N}` ? `ax${KebabCase<N>}` : never,
-);
+type WebComponents = {
+  [Key in Exclude<keyof typeof exports, "."> extends `./${infer S}`
+    ? `ax${KebabCase<S>}`
+    : never]: true;
+};
 
-export const components: AllComponents = new Set(exported);
+const exported = Object.fromEntries(
+  Object.keys(exports)
+    .filter((n) => n !== ".")
+    .map((path) => [
+      "ax" + path.slice(2).replace(/[A-Z]/g, (m) => "-" + m.toLowerCase()),
+      true,
+    ]),
+) as WebComponents;
+
+export const components: AllComponents = exported;
+export const exported_check: WebComponents = components;
