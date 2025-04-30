@@ -21,7 +21,6 @@ export const SidebarToggle = forwardRef<HTMLButtonElement, SidebarToggleProps>(
         aria-controls={navId}
         aria-expanded={expanded ? "true" : "false"}
         aria-label={ariaLabel || (expanded ? "Collapse" : "Expand")}
-        fontWeight="400"
         onClick={() => onExpandedChange(!expanded)}
         ref={ref}
         {...props}
