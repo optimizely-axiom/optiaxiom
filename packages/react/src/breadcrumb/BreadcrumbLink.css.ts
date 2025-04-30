@@ -5,14 +5,14 @@ import { recipe, style } from "../vanilla-extract";
 export const link = recipe({
   base: [
     {
+      alignItems: "center",
+      display: "flex",
       fontSize: "md",
-      overflow: "hidden",
+      h: "md",
       rounded: "md",
     },
     style({
       color: theme.colors["fg.tertiary"],
-      textOverflow: "ellipsis",
-      whiteSpace: "nowrap",
 
       "@media": {
         "(hover: hover)": {
