@@ -92,8 +92,25 @@ export default defineConfig([
             ) +
             "\n" +
             code.slice(code.indexOf("var dropdownDefaultStateValues = {"))
-          ).replace("Downshift as default,", "");
+          )
+            .replace("Downshift as default,", "")
+            .replace("import { isForwardRef } from 'react-is';", "")
+            .replace(
+              /var (propTypes|commonPropTypes|commonDropdownPropTypes|propTypes\$\d)([^;]|\s)+;/g,
+              "var $1 = _extends({})",
+            )
+            .replace(/PropTypes.checkPropTypes[^;]+;/g, "");
         },
+      },
+      {
+        load(id) {
+          if (!id.includes("prop-types")) {
+            return null;
+          }
+
+          return "export default {}";
+        },
+        name: "prop-types",
       },
       {
         name: "radix-collection:document-querySelectorAll",
