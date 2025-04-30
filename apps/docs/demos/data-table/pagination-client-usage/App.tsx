@@ -1,10 +1,6 @@
 "use client";
 
-import {
-  DataTable,
-  DataTableBody,
-  DataTableFooter,
-} from "@optiaxiom/react/unstable";
+import { DataTable, DataTableBody, DataTableFooter } from "@optiaxiom/react";
 import {
   getCoreRowModel,
   getPaginationRowModel,

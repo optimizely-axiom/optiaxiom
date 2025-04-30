@@ -5,7 +5,7 @@ import {
   TableHeader,
   TableHeaderCell,
   TableRow,
-} from "@optiaxiom/react/unstable";
+} from "@optiaxiom/react";
 
 import { data } from "./data";
 

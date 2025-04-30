@@ -4,8 +4,8 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
   EllipsisMenuButton,
+  TableAction,
 } from "@optiaxiom/react";
-import { TableAction } from "@optiaxiom/react/unstable";
 import { createColumnHelper } from "@tanstack/react-table";
 
 const columnHelper = createColumnHelper<{
