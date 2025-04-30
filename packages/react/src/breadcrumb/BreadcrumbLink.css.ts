@@ -5,11 +5,7 @@ import { recipe, style } from "../vanilla-extract";
 export const link = recipe({
   base: [
     {
-      alignItems: "center",
-      display: "flex",
       fontSize: "md",
-      h: "md",
-      rounded: "md",
     },
     style({
       color: theme.colors["fg.tertiary"],
