@@ -82,9 +82,7 @@ export default {
       code: {
         display: "hidden",
       },
-      "data-table": {
-        title: <AlphaItem>DataTable</AlphaItem>,
-      },
+      "data-table": "DataTable",
       "date-input": {
         title: <AlphaItem>DateInput</AlphaItem>,
       },
@@ -125,9 +123,7 @@ export default {
       skeleton: "Skeleton",
       spinner: "Spinner",
       switch: "Switch",
-      table: {
-        title: <AlphaItem>Table</AlphaItem>,
-      },
+      table: "Table",
       tabs: "Tabs",
       text: "Text",
       textarea: "Textarea",

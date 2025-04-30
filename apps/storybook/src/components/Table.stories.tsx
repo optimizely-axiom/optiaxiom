@@ -6,8 +6,6 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
   EllipsisMenuButton,
-} from "@optiaxiom/react";
-import {
   Table,
   TableAction,
   TableBody,
@@ -15,7 +13,7 @@ import {
   TableHeader,
   TableHeaderCell,
   TableRow,
-} from "@optiaxiom/react/unstable";
+} from "@optiaxiom/react";
 import { userEvent } from "@storybook/test";
 
 export default {

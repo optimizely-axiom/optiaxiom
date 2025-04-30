@@ -1,6 +1,6 @@
 "use client";
 
-import { DataTable, DataTableBody } from "@optiaxiom/react/unstable";
+import { DataTable, DataTableBody } from "@optiaxiom/react";
 import {
   getCoreRowModel,
   type SortingState,

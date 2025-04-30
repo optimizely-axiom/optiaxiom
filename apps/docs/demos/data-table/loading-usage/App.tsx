@@ -1,7 +1,6 @@
 "use client";
 
-import { Flex, Switch } from "@optiaxiom/react";
-import { DataTable, DataTableBody } from "@optiaxiom/react/unstable";
+import { DataTable, DataTableBody, Flex, Switch } from "@optiaxiom/react";
 import { getCoreRowModel, useReactTable } from "@tanstack/react-table";
 import { useState } from "react";
 

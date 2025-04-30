@@ -1,8 +1,7 @@
 "use client";
 
 import { faker } from "@faker-js/faker";
-import { Flex, Text } from "@optiaxiom/react";
-import { DataTable, DataTableBody } from "@optiaxiom/react/unstable";
+import { DataTable, DataTableBody, Flex, Text } from "@optiaxiom/react";
 import { getCoreRowModel, useReactTable } from "@tanstack/react-table";
 
 import { useInViewTimer } from "./useInViewTimer";

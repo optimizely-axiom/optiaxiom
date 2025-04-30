@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Checkbox } from "@optiaxiom/react";
 import {
+  Checkbox,
   DataTable,
   DataTableBody,
   DataTableFooter,
-} from "@optiaxiom/react/unstable";
+} from "@optiaxiom/react";
 import {
   type ColumnDef,
   getCoreRowModel,
