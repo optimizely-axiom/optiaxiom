@@ -5,12 +5,12 @@ import {
   Button,
   Field,
   Flex,
+  LabelMenuButton,
   Select,
   SelectContent,
   SelectTrigger,
   Text,
 } from "@optiaxiom/react";
-import { LabelMenuButton } from "@optiaxiom/react/unstable";
 import { expect, screen, userEvent } from "@storybook/test";
 import { useEffect, useMemo, useState } from "react";
 
