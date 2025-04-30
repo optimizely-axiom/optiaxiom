@@ -2,9 +2,11 @@
 
 import { useEffect, useState } from "react";
 
+import { useEffectEvent } from "../hooks";
+
 export function usePortalPatch(
   open: boolean | undefined,
-  initialHighlightedIndex: (() => number) | number = -1,
+  getInitialHighlightedIndex: () => number,
 ) {
   /**
    * In cases where the menu is rendered inside a portal we need to first insert
@@ -29,13 +31,16 @@ export function usePortalPatch(
   }, [open, setPlaced]);
 
   const [highlightedIndex, setHighlightedIndex] = useState(
-    initialHighlightedIndex,
+    getInitialHighlightedIndex,
+  );
+  const getInitialHighlightedIndexStable = useEffectEvent(
+    getInitialHighlightedIndex,
   );
   useEffect(() => {
     if (!placed) {
-      setHighlightedIndex(initialHighlightedIndex);
+      setHighlightedIndex(getInitialHighlightedIndexStable);
     }
-  }, [initialHighlightedIndex, placed]);
+  }, [getInitialHighlightedIndexStable, placed]);
 
   return [
     /**

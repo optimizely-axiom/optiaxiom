@@ -29,7 +29,6 @@ export const MenuTrigger = forwardRef<HTMLButtonElement, MenuTriggerProps>(
         onKeyDown={(event) => {
           switch (event.key) {
             case "ArrowDown":
-            case "ArrowUp":
               setOpen(true);
           }
         }}
