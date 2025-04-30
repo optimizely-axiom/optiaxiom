@@ -172,6 +172,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
     /**
      * Dummy calls to suppress warning from downshift
      */
+    downshift.getToggleButtonProps({}, { suppressRefError: true });
     downshift.getMenuProps({}, { suppressRefError: true });
 
     return (
