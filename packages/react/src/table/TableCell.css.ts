@@ -10,6 +10,7 @@ export const cell = recipe({
       p: "16",
     },
     style({
+      position: "relative",
       verticalAlign: "top",
       wordBreak: "break-word",
 

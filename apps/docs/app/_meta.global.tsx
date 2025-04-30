@@ -48,6 +48,7 @@ export default {
       },
       index: "Box",
 
+      cover: "Cover",
       flex: "Flex",
       grid: "Grid",
       separator: "Separator",

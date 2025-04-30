@@ -55,6 +55,9 @@ export const cover = recipe({
       ],
       true: {},
     },
+    /**
+     * Whether to offset the outline or not.
+     */
     inset: {
       false: style({
         vars: {
