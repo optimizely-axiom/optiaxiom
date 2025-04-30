@@ -31,6 +31,7 @@
     "./ButtonGroup": "./dist/components/ButtonGroup.js",
     "./Checkbox": "./dist/components/Checkbox.js",
     "./Code": "./dist/components/Code.js",
+    "./Cover": "./dist/components/Cover.js",
     "./Dialog": "./dist/components/Dialog.js",
     "./DialogBody": "./dist/components/DialogBody.js",
     "./DialogClose": "./dist/components/DialogClose.js",

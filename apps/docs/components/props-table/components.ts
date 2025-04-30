@@ -51,6 +51,7 @@ export const components = {
   CardTitle: getProps("CardTitle"),
   Checkbox: getProps("Checkbox"),
   Code: getProps("Code"),
+  Cover: getProps("Cover"),
   DataTable: getProps("DataTable"),
   DataTableBody: getProps("DataTableBody"),
   DataTableFooter: getProps("DataTableFooter"),

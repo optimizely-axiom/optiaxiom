@@ -1,4 +1,4 @@
-import { Checkbox } from "@optiaxiom/react";
+import { Checkbox, Cover } from "@optiaxiom/react";
 import { createColumnHelper } from "@tanstack/react-table";
 
 const columnHelper = createColumnHelper<{
@@ -11,21 +11,26 @@ const columnHelper = createColumnHelper<{
 export const columns = [
   columnHelper.display({
     cell: ({ row }) => (
-      <Checkbox
-        aria-label="Select row"
-        checked={row.getIsSelected()}
-        onChange={row.getToggleSelectedHandler()}
-      />
+      <Cover asChild>
+        <Checkbox
+          aria-label="Select row"
+          checked={row.getIsSelected()}
+          onChange={row.getToggleSelectedHandler()}
+        />
+      </Cover>
     ),
     header: ({ table }) => (
-      <Checkbox
-        aria-label="Select all"
-        checked={
-          table.getIsAllPageRowsSelected() || table.getIsSomePageRowsSelected()
-        }
-        indeterminate={table.getIsSomePageRowsSelected()}
-        onChange={table.getToggleAllPageRowsSelectedHandler()}
-      />
+      <Cover asChild>
+        <Checkbox
+          aria-label="Select all"
+          checked={
+            table.getIsAllPageRowsSelected() ||
+            table.getIsSomePageRowsSelected()
+          }
+          indeterminate={table.getIsSomePageRowsSelected()}
+          onChange={table.getToggleAllPageRowsSelectedHandler()}
+        />
+      </Cover>
     ),
     id: "select",
     size: 48,
