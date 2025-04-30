@@ -316,6 +316,7 @@ export const demos = {
   "select/field-usage": import("@/demos/select/field-usage/App"),
   "select/form-usage": import("@/demos/select/form-usage/App"),
   "select/group-usage": import("@/demos/select/group-usage/App"),
+  "select/trigger-usage": import("@/demos/select/trigger-usage/App"),
   "select/usage": import("@/demos/select/usage/App"),
   "separator/responsive-usage": import(
     "@/demos/separator/responsive-usage/App"

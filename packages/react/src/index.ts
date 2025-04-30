@@ -22,6 +22,7 @@ export * from "./heading";
 export * from "./indicator";
 export * from "./input";
 export * from "./kbd";
+export * from "./label-menu-button";
 export * from "./layers";
 export * from "./link";
 export * from "./listbox";

@@ -9,7 +9,6 @@ export * from "./date-picker";
 export * from "./date-range-picker";
 export * from "./highlight";
 export * from "./inline-input";
-export * from "./label-menu-button";
 export * from "./layout";
 export * from "./menu";
 export * from "./pill";

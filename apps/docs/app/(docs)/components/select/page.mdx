@@ -73,6 +73,17 @@ Enable the `disabled` prop on `Select` to toggle the disabled state of the input
 
 <Demo component="select/disabled-usage" meta="{16}" />
 
+### Trigger
+
+By default we use the `Button` component for the menu trigger which accepts all of the existing button props.
+
+We can also use `asChild` to render a completely different component. We provide a few built-in buttons:
+
+- `AngleMenuButton` (default)
+- `LabelMenuButton`
+
+<Demo component="select/trigger-usage" />
+
 ### Group
 
 We can group options using the `group` property.
