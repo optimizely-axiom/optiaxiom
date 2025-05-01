@@ -5,7 +5,6 @@ export * from "./clock";
 export * from "./command";
 export * from "./data-table/DataTableHeaderCell";
 export * from "./date-input";
-export * from "./date-picker";
 export * from "./date-range-picker";
 export * from "./highlight";
 export * from "./inline-input";

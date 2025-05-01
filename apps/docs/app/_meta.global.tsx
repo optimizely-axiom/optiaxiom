@@ -72,9 +72,6 @@ export default {
         title: <AlphaItem>Breadcrumb</AlphaItem>,
       },
       button: "Button",
-      calendar: {
-        title: <AlphaItem>Calendar</AlphaItem>,
-      },
       card: {
         title: <AlphaItem>Card</AlphaItem>,
       },
@@ -85,9 +82,6 @@ export default {
       "data-table": "DataTable",
       "date-input": {
         title: <AlphaItem>DateInput</AlphaItem>,
-      },
-      "date-picker": {
-        title: <AlphaItem>DatePicker</AlphaItem>,
       },
       "date-range-picker": {
         title: <AlphaItem>DateRangePicker</AlphaItem>,
