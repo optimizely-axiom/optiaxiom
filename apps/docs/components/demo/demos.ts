@@ -109,7 +109,6 @@ export const demos = {
     "@/demos/data-table/virtualized-usage/App"
   ),
   "date-input/usage": import("@/demos/date-input/usage/App"),
-  "date-picker/usage": import("@/demos/date-picker/usage/App"),
   "date-range-picker/usage": import("@/demos/date-range-picker/usage/App"),
   "dialog/alert-dialog-usage": import("@/demos/dialog/alert-dialog-usage/App"),
   "dialog/controlled-usage": import("@/demos/dialog/controlled-usage/App"),
