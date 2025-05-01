@@ -8,7 +8,12 @@ import {
   useRef,
   useState,
 } from "react";
-import { type DateRange, DayPicker, type Matcher } from "react-day-picker";
+import {
+  CaptionLabel,
+  type DateRange,
+  DayPicker,
+  type Matcher,
+} from "react-day-picker";
 
 import { type BoxProps } from "../box";
 import { Clock } from "../clock";
@@ -34,7 +39,10 @@ import { toTimeZoneName } from "./toTimeZoneName";
 
 type CalendarProps = BoxProps<
   "div",
-  {
+  Pick<
+    ComponentPropsWithoutRef<typeof DayPicker>,
+    "month" | "onMonthChange" | "today"
+  > & {
     /**
      * Apply the `holiday` modifier to the matching days.
      */
@@ -49,47 +57,43 @@ type CalendarProps = BoxProps<
     min?: Date;
     onHeightChange?: (height: number) => void;
     step?: number | string;
-    /**
-     * The today’s date. Default is the current date.
-     */
-    today?: Date;
     type?: "date" | "datetime-local";
     /**
      * Apply the `weekend` modifier to the matching days.
      */
     weekend?: Matcher | Matcher[];
   } & (
-    | {
-        /**
-         * The initial selected value in uncontrolled mode.
-         */
-        defaultValue?: DateRange | null;
-        mode: "range";
-        /**
-         * Handler that is called when the selected value changes.
-         */
-        onValueChange?: (value: DateRange | null) => void;
-        /**
-         * The selected value in controlled mode.
-         */
-        value?: DateRange | null;
-      }
-    | {
-        /**
-         * The initial selected value in uncontrolled mode.
-         */
-        defaultValue?: Date | null;
-        mode?: "single";
-        /**
-         * Handler that is called when the selected value changes.
-         */
-        onValueChange?: (value: Date | null) => void;
-        /**
-         * The selected value in controlled mode.
-         */
-        value?: Date | null;
-      }
-  )
+      | {
+          /**
+           * The initial selected value in uncontrolled mode.
+           */
+          defaultValue?: DateRange | null;
+          mode: "range";
+          /**
+           * Handler that is called when the selected value changes.
+           */
+          onValueChange?: (value: DateRange | null) => void;
+          /**
+           * The selected value in controlled mode.
+           */
+          value?: DateRange | null;
+        }
+      | {
+          /**
+           * The initial selected value in uncontrolled mode.
+           */
+          defaultValue?: Date | null;
+          mode?: "single";
+          /**
+           * Handler that is called when the selected value changes.
+           */
+          onValueChange?: (value: Date | null) => void;
+          /**
+           * The selected value in controlled mode.
+           */
+          value?: Date | null;
+        }
+    )
 >;
 
 const components = {
@@ -109,12 +113,15 @@ const components = {
 export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
   (
     {
+      autoFocus,
       defaultValue = null,
       holiday,
       max,
       min,
       mode = "single",
+      month,
       onHeightChange,
+      onMonthChange,
       onValueChange,
       step,
       today,
@@ -147,6 +154,20 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
     const [from, setFrom] = useState<Date>();
     const [to, setTo] = useState<Date>();
 
+    const CaptionLabelMemo = useMemo(
+      () =>
+        function CaptionLabelMemo(
+          props: ComponentPropsWithoutRef<typeof CaptionLabel>,
+        ) {
+          return (
+            <CaptionLabel
+              {...props}
+              aria-live={autoFocus ? undefined : "off"}
+            />
+          );
+        },
+      [autoFocus],
+    );
     const DayButtonMemo = useMemo(
       () =>
         function DayButton({
@@ -157,6 +178,7 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
         }: ComponentPropsWithoutRef<typeof CalendarDayButton>) {
           return (
             <CalendarDayButton
+              autoFocus={autoFocus}
               onFocus={(event) => {
                 onFocus?.(event);
                 setTo(props.day.date);
@@ -173,7 +195,7 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
             />
           );
         },
-      [],
+      [autoFocus],
     );
 
     const onHeightChangeStable = useEffectEvent(onHeightChange ?? (() => {}));
@@ -203,9 +225,10 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
       >
         {mode === "single" ? (
           <DayPicker
-            autoFocus
+            autoFocus={autoFocus}
             components={{
               ...components,
+              CaptionLabel: CaptionLabelMemo,
               DayButton: DayButtonMemo,
             }}
             defaultMonth={value instanceof Date ? value : undefined}
@@ -215,6 +238,8 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
             ]}
             mode="single"
             modifiers={{ holiday, weekend }}
+            month={month}
+            onMonthChange={onMonthChange}
             onSelect={(value) => {
               setValue(
                 value
@@ -228,7 +253,7 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
           />
         ) : (
           <DayPicker
-            autoFocus
+            autoFocus={autoFocus}
             components={{
               ...components,
               DayButton: DayButtonMemo,
@@ -245,7 +270,9 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
             fixedWeeks
             mode="range"
             modifiers={{ holiday, weekend }}
+            month={month}
             numberOfMonths={numberOfMonths}
+            onMonthChange={onMonthChange}
             onSelect={(newValue) => {
               if (!from) {
                 const oldFrom =

@@ -26,10 +26,8 @@ export const WithLabel: Story = {
     </Field>
   ),
   play: async ({ canvas }) => {
-    await userEvent.click(
-      await canvas.findByRole("button", { name: "Show date picker" }),
-    );
-    await userEvent.click(await screen.findByText("15"));
+    await userEvent.click(canvas.getByLabelText("Label"));
+    (await screen.findByText("15")).click();
     const date = new Date();
     await expect(canvas.getByLabelText("Label")).toHaveValue(
       date.getFullYear() +
@@ -38,8 +36,7 @@ export const WithLabel: Story = {
         "-15",
     );
 
-    await expect(canvas.getByLabelText("Label")).toHaveFocus();
-    await userEvent.keyboard(" ");
+    await userEvent.click(canvas.getByLabelText("Label"));
     await userEvent.click(await screen.findByRole("button", { name: "Clear" }));
     await expect(canvas.getByLabelText("Label")).toHaveValue("");
   },
@@ -84,9 +81,7 @@ export const MinMaxDates: Story = {
     min: "2025-01-07",
   },
   play: async ({ canvas }) => {
-    await userEvent.click(
-      await canvas.findByRole("button", { name: "Show date picker" }),
-    );
+    await userEvent.click(canvas.getByDisplayValue("2025-01-22"));
     await waitFor(
       async () =>
         await expect(
@@ -109,9 +104,7 @@ export const Required: Story = {
     required: true,
   },
   play: async ({ canvas }) => {
-    await userEvent.click(
-      await canvas.findByRole("button", { name: "Show date picker" }),
-    );
+    await userEvent.click(canvas.getByDisplayValue("2025-01-22"));
     await waitFor(
       async () =>
         await expect(await screen.findByText("January 2025")).toBeVisible(),
@@ -126,13 +119,11 @@ export const WithTime: Story = {
     type: "datetime-local",
   },
   play: async ({ canvas }) => {
-    await userEvent.click(
-      await canvas.findByRole("button", { name: "Show date picker" }),
-    );
+    await userEvent.click(canvas.getByDisplayValue("2025-01-22T10:10"));
     await waitFor(
       async () =>
         await expect(
-          await screen.findByRole("button", { name: "Clear" }),
+          await screen.findByRole("button", { name: "Done" }),
         ).toBeVisible(),
     );
   },

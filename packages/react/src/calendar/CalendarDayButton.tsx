@@ -7,6 +7,7 @@ import * as styles from "./CalendarDayButton.css";
 type CalendarDayButtonProps = ComponentPropsWithoutRef<typeof DayButton>;
 
 export function CalendarDayButton({
+  autoFocus,
   children,
   className,
   color: _color,
@@ -16,10 +17,10 @@ export function CalendarDayButton({
 }: CalendarDayButtonProps) {
   const ref = useRef<HTMLButtonElement>(null);
   useEffect(() => {
-    if (modifiers.focused) {
+    if (autoFocus && modifiers.focused) {
       ref.current?.focus();
     }
-  }, [modifiers.focused]);
+  }, [autoFocus, modifiers.focused]);
 
   return (
     <Box
