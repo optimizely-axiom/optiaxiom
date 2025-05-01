@@ -124,17 +124,16 @@ export const button = recipe({
 export const today = recipe({
   base: [
     {
-      bg: "current",
+      bg: "bg.accent",
       mx: "auto",
       rounded: "full",
     },
     style({
-      bottom: 6,
-      height: 2,
+      bottom: 0,
+      height: 8,
       insetInline: 0,
-      opacity: 0.8,
       position: "absolute",
-      width: 6,
+      width: 8,
     }),
   ],
 });

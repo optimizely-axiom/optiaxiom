@@ -20,7 +20,6 @@ import { Clock } from "../clock";
 import { toInstant } from "../date-input/utils";
 import { Flex } from "../flex";
 import { useEffectEvent, useResponsiveMatches } from "../hooks";
-import { Separator } from "../separator";
 import { Text } from "../text";
 import { toPlainDate, toPlainTime } from "../utils";
 import { CalendarChevron } from "./CalendarChevron";
@@ -316,8 +315,7 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
           />
         )}
         {type === "datetime-local" && mode == "single" && (
-          <Flex gap="8">
-            <Separator mb="4" />
+          <Flex gap="8" mt="8">
             <Clock
               onValueChange={(time) => {
                 setValue(
@@ -331,7 +329,7 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
               step={step}
               value={time}
             />
-            <Text color="fg.tertiary" fontSize="sm" w="full">
+            <Text color="fg.tertiary" fontSize="sm" textAlign="center" w="full">
               {toTimeZoneName(value instanceof Date ? value : new Date())}
             </Text>
           </Flex>
