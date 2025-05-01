@@ -14,7 +14,6 @@ export const InputAddon = forwardRef<HTMLDivElement, InputAddonProps>(
     const addonProps =
       addonPointerEvents === "none"
         ? ({
-            cursor: "text",
             fontSize: "md",
             onMouseDown: (event: MouseEvent) => {
               if (event.target !== event.currentTarget) {
