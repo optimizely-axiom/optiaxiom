@@ -29,7 +29,6 @@ type ListboxItemizedProps = BoxProps<
      */
     loading?: boolean;
     onPlacedChange?: (placed: boolean) => void;
-    placed?: boolean;
   }
 >;
 
@@ -43,7 +42,6 @@ export const ListboxItemized = forwardRef<HTMLDivElement, ListboxItemizedProps>(
       itemToKey,
       loading,
       onPlacedChange,
-      placed,
       ...props
     },
     ref,
@@ -64,9 +62,7 @@ export const ListboxItemized = forwardRef<HTMLDivElement, ListboxItemizedProps>(
     return (
       <Listbox
         asChild={
-          typeof children === "function" &&
-          items.length > VIRTUALIZE_THRESHOLD &&
-          placed
+          typeof children === "function" && items.length > VIRTUALIZE_THRESHOLD
         }
         ref={ref}
         tabIndex={-1}
@@ -78,14 +74,9 @@ export const ListboxItemized = forwardRef<HTMLDivElement, ListboxItemizedProps>(
           </Box>
         ) : typeof children === "function" ? (
           items.length > VIRTUALIZE_THRESHOLD ? (
-            placed && (
-              <ListboxVirtualized
-                highlightedItem={highlightedItem}
-                items={items}
-              >
-                {children}
-              </ListboxVirtualized>
-            )
+            <ListboxVirtualized highlightedItem={highlightedItem} items={items}>
+              {children}
+            </ListboxVirtualized>
           ) : items.length > 0 ? (
             items.map((item, index) => (
               <Fragment key={itemToKey(item)}>{children(item, index)}</Fragment>

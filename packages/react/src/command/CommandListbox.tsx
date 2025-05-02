@@ -1,4 +1,4 @@
-import { type ComponentPropsWithoutRef, forwardRef, useState } from "react";
+import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import type { ExcludeProps } from "../utils";
 
@@ -11,7 +11,7 @@ import {
 
 type CommandListboxProps = ExcludeProps<
   ComponentPropsWithoutRef<typeof ListboxItemized>,
-  "highlightedItem" | "items" | "itemToKey" | "onPlacedChange" | "placed"
+  "highlightedItem" | "items" | "itemToKey" | "onPlacedChange"
 >;
 
 export const CommandListbox = forwardRef<HTMLDivElement, CommandListboxProps>(
@@ -19,7 +19,6 @@ export const CommandListbox = forwardRef<HTMLDivElement, CommandListboxProps>(
     const { downshift, highlightedItem, inputValue, items } = useCommandContext(
       "@optiaxiom/react/CommandListbox",
     );
-    const [placed, setPlaced] = useState(false);
 
     return (
       <ListboxItemized
@@ -28,8 +27,6 @@ export const CommandListbox = forwardRef<HTMLDivElement, CommandListboxProps>(
         itemToKey={(item: CommandOption) =>
           item.key ?? resolveItemProperty(item.label, { inputValue })
         }
-        onPlacedChange={setPlaced}
-        placed={placed}
         size={size}
         {...downshift.getMenuProps({ ref, ...props })}
       >
