@@ -108,7 +108,15 @@ export const demos = {
   "data-table/virtualized-usage": import(
     "@/demos/data-table/virtualized-usage/App"
   ),
+  "date-input/disabled-usage": import("@/demos/date-input/disabled-usage/App"),
+  "date-input/error-usage": import("@/demos/date-input/error-usage/App"),
+  "date-input/holiday-usage": import("@/demos/date-input/holiday-usage/App"),
+  "date-input/max-usage": import("@/demos/date-input/max-usage/App"),
+  "date-input/min-usage": import("@/demos/date-input/min-usage/App"),
+  "date-input/required-usage": import("@/demos/date-input/required-usage/App"),
+  "date-input/time-usage": import("@/demos/date-input/time-usage/App"),
   "date-input/usage": import("@/demos/date-input/usage/App"),
+  "date-input/weekend-usage": import("@/demos/date-input/weekend-usage/App"),
   "date-range-picker/usage": import("@/demos/date-range-picker/usage/App"),
   "dialog/alert-dialog-usage": import("@/demos/dialog/alert-dialog-usage/App"),
   "dialog/controlled-usage": import("@/demos/dialog/controlled-usage/App"),
