@@ -55,7 +55,6 @@ export const DateRangePickerContent = forwardRef<
           {addonBefore}
           <Calendar
             alignSelf="start"
-            autoFocus
             holiday={holiday}
             max={max}
             min={min}
