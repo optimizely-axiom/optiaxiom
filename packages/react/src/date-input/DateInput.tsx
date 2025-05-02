@@ -114,7 +114,14 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
                 e.preventDefault();
               }
             }}
-            onFocus={() => {
+            onFocus={(event) => {
+              if (
+                event.relatedTarget &&
+                event.relatedTarget.getRootNode() !==
+                  innerRef.current?.ownerDocument
+              ) {
+                return;
+              }
               if (CSS.supports("selector(::-webkit-datetime-edit)")) {
                 setOpen(true);
               }
