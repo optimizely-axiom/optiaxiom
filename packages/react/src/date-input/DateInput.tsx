@@ -74,7 +74,7 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
                 <Button
                   appearance="subtle"
                   aria-label="Clear"
-                  icon={value && <IconX />}
+                  icon={<IconX />}
                   onPointerDown={(event) => {
                     event.preventDefault();
                     forceValueChange("");
@@ -85,7 +85,16 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
               )
             }
             addonBefore={
-              <Icon asChild {...styles.picker()}>
+              <Icon
+                asChild
+                onPointerDown={(event) => {
+                  if (document.activeElement === innerRef.current) {
+                    event.preventDefault();
+                    setOpen(true);
+                  }
+                }}
+                {...styles.picker()}
+              >
                 <IconCalendar />
               </Icon>
             }

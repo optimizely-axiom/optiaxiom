@@ -13,19 +13,48 @@ type InputRootProps = BoxProps<
 export const InputRoot = forwardRef<
   HTMLInputElement & HTMLTextAreaElement,
   InputRootProps
->(({ addonPointerEvents = "auto", children, className, ...props }, ref) => {
-  const inputRef = useRef<HTMLInputElement & HTMLTextAreaElement>(null);
+>(
+  (
+    {
+      addonPointerEvents = "auto",
+      children,
+      className,
+      onPointerDown,
+      ...props
+    },
+    ref,
+  ) => {
+    const inputRef = useRef<HTMLInputElement & HTMLTextAreaElement>(null);
 
-  return (
-    <Flex ref={ref} {...styles.root({}, className)} {...props}>
-      <InputProvider
-        addonPointerEvents={addonPointerEvents}
-        inputRef={inputRef}
+    return (
+      <Flex
+        onPointerDown={(event) => {
+          onPointerDown?.(event);
+          if (event.defaultPrevented) {
+            return;
+          }
+
+          if (event.target !== event.currentTarget) {
+            return;
+          }
+
+          event.preventDefault();
+          event.stopPropagation();
+          inputRef.current?.focus();
+        }}
+        ref={ref}
+        {...styles.root({}, className)}
+        {...props}
       >
-        {children}
-      </InputProvider>
-    </Flex>
-  );
-});
+        <InputProvider
+          addonPointerEvents={addonPointerEvents}
+          inputRef={inputRef}
+        >
+          {children}
+        </InputProvider>
+      </Flex>
+    );
+  },
+);
 
 InputRoot.displayName = "@optiaxiom/react/InputRoot";

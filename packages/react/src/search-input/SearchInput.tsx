@@ -34,9 +34,9 @@ export const SearchInput = forwardRef<HTMLInputElement, SearchProps>(
               appearance="subtle"
               aria-label="Clear"
               icon={value && <IconX />}
-              onClick={() => {
+              onPointerDown={(event) => {
+                event.preventDefault();
                 forceValueChange("");
-                innerRef.current?.focus();
                 onValueClear?.();
               }}
               tabIndex={-1}
