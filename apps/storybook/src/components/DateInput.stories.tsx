@@ -83,12 +83,12 @@ export const MinMaxDates: Story = {
     min: "2025-01-07",
   },
   play: async ({ canvas }) => {
-    await userEvent.click(canvas.getByDisplayValue("2025-01-22"));
+    await userEvent.click(
+      await canvas.findByRole("img", { name: "Show date picker" }),
+    );
     await waitFor(
       async () =>
-        await expect(
-          await screen.findByRole("button", { name: "Clear" }),
-        ).toBeVisible(),
+        await expect(await screen.findByText("January 2025")).toBeVisible(),
     );
   },
 };
