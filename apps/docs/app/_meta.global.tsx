@@ -72,6 +72,9 @@ export default {
         title: <AlphaItem>Breadcrumb</AlphaItem>,
       },
       button: "Button",
+      calendar: {
+        display: "hidden",
+      },
       card: {
         title: <AlphaItem>Card</AlphaItem>,
       },
