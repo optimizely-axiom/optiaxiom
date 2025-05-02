@@ -1,5 +1,4 @@
 import { PopperContent } from "@radix-ui/react-popper";
-import { Portal } from "@radix-ui/react-portal";
 import {
   type ComponentPropsWithoutRef,
   forwardRef,
@@ -13,6 +12,7 @@ import { type BoxProps } from "../box";
 import { ListboxItemized, ListboxLabel, ListboxSeparator } from "../listbox";
 import { ModalLayer } from "../modal";
 import { ModalListbox } from "../modal/internals";
+import { Portal } from "../portal";
 import { TransitionGroup } from "../transition";
 import {
   type Group,

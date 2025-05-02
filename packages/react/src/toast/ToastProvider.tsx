@@ -1,7 +1,6 @@
 import { ToastProviderProvider } from "@optiaxiom/globals";
 import { type createToaster, toaster } from "@optiaxiom/globals";
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
-import { Portal } from "@radix-ui/react-portal";
 import * as RadixToast from "@radix-ui/react-toast";
 import {
   type ComponentPropsWithoutRef,
@@ -13,6 +12,7 @@ import { useSyncExternalStore } from "use-sync-external-store/shim";
 
 import { type BoxProps, extractBoxProps } from "../box";
 import { Flex } from "../flex";
+import { Portal } from "../portal";
 import { Toast } from "./Toast";
 import { ToastAction } from "./ToastAction";
 import * as styles from "./ToastProvider.css";
@@ -113,7 +113,7 @@ export const ToastProvider = forwardRef<HTMLOListElement, ToastProps>(
           </ToastProviderProvider>
         ))}
 
-        <Portal asChild container={container}>
+        <Portal asChild {...(container && { container })}>
           <Flex
             alignItems={
               position.endsWith("left")

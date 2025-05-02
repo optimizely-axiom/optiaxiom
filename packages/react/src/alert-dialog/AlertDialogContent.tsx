@@ -10,6 +10,7 @@ import { Box, type BoxProps } from "../box";
 import { Flex } from "../flex";
 import { ModalProvider } from "../modal";
 import { Paper } from "../paper";
+import { Portal } from "../portal";
 import { Transition, TransitionGroup } from "../transition";
 import * as styles from "./AlertDialogContent.css";
 import { useAlertDialogContext } from "./AlertDialogContext";
@@ -35,7 +36,7 @@ export const AlertDialogContent = forwardRef<
       open={open}
       presence={presence}
     >
-      <RadixAlertDialog.Portal forceMount>
+      <Portal>
         <Transition>
           <Backdrop
             asChild
@@ -69,7 +70,7 @@ export const AlertDialogContent = forwardRef<
           <Box flex="1" pointerEvents="none" />
           <Box flex="1" pointerEvents="none" />
         </Flex>
-      </RadixAlertDialog.Portal>
+      </Portal>
     </TransitionGroup>
   );
 });
