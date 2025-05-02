@@ -15,8 +15,8 @@ export const InputAddon = forwardRef<HTMLDivElement, InputAddonProps>(
       addonPointerEvents === "none"
         ? ({
             fontSize: "md",
-            onMouseDown: (event: MouseEvent) => {
-              if (event.target !== event.currentTarget) {
+            onPointerUp: (event: MouseEvent) => {
+              if (event.currentTarget.contains(document.activeElement)) {
                 return;
               }
 
