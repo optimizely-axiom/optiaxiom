@@ -90,6 +90,7 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
               <PopoverTrigger
                 aria-label="Show date picker"
                 asChild
+                hasCustomAnchor
                 ref={pickerRef}
                 role="img"
                 {...styles.picker()}
