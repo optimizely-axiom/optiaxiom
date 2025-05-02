@@ -1,6 +1,4 @@
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
-import { Popper, PopperAnchor, PopperContent } from "@radix-ui/react-popper";
-import { Portal } from "@radix-ui/react-portal";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import {
   type ComponentPropsWithoutRef,
@@ -12,13 +10,15 @@ import {
 import { Button } from "../button";
 import { Calendar } from "../calendar";
 import { useObserveValue } from "../hooks";
-import { Icon } from "../icon";
 import { IconCalendar } from "../icons/IconCalendar";
 import { IconX } from "../icons/IconX";
 import { Input } from "../input";
-import { ModalLayer } from "../modal";
-import { ModalListbox } from "../overlay-listbox";
-import { TransitionGroup } from "../transition";
+import {
+  Popover,
+  PopoverAnchor,
+  PopoverContent,
+  PopoverTrigger,
+} from "../popover";
 import { type ExtendProps, toPlainDate, toPlainDateTime } from "../utils";
 import * as styles from "./DateInput.css";
 import { toInstant } from "./utils";
@@ -47,6 +47,8 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
     outerRef,
   ) => {
     const [open, setOpen] = useState(false);
+    const hasInteractedOutsideRef = useRef(false);
+    const pickerRef = useRef<HTMLButtonElement>(null);
 
     const innerRef = useRef<HTMLInputElement>(null);
     const ref = useComposedRefs(innerRef, outerRef);
@@ -65,8 +67,8 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
     const minDate = min ? toInstant(min) : undefined;
 
     return (
-      <Popper>
-        <PopperAnchor>
+      <Popover onOpenChange={setOpen} open={!disabled && open}>
+        <PopoverAnchor>
           <Input
             addonAfter={
               value &&
@@ -85,25 +87,20 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
               )
             }
             addonBefore={
-              <Icon
+              <PopoverTrigger
+                aria-label="Show date picker"
                 asChild
-                onPointerDown={(event) => {
-                  if (document.activeElement === innerRef.current) {
-                    event.preventDefault();
-                    setOpen(true);
-                  }
-                }}
+                ref={pickerRef}
+                role="img"
                 {...styles.picker()}
               >
                 <IconCalendar />
-              </Icon>
+              </PopoverTrigger>
             }
-            addonPointerEvents="none"
             asChild
             disabled={disabled}
             max={max}
             min={min}
-            onBlur={() => setOpen(false)}
             onChange={(event) => {
               onChange?.(event);
               setValue(event.target.value);
@@ -112,18 +109,6 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
             onClick={(e) => {
               if (CSS.supports("selector(::-webkit-datetime-edit)")) {
                 e.preventDefault();
-              }
-            }}
-            onFocus={(event) => {
-              if (
-                event.relatedTarget &&
-                event.relatedTarget.getRootNode() !==
-                  innerRef.current?.ownerDocument
-              ) {
-                return;
-              }
-              if (CSS.supports("selector(::-webkit-datetime-edit)")) {
-                setOpen(true);
               }
             }}
             onKeyDown={(e) => {
@@ -145,69 +130,64 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
           >
             <input {...styles.input()} />
           </Input>
-        </PopperAnchor>
-        <TransitionGroup open={!disabled && open}>
-          <Portal asChild>
-            <ModalLayer asChild>
-              <ModalListbox
-                asChild
-                gap="8"
-                minW="trigger"
-                onFocus={(event) => event.target.blur()}
-                onPointerDown={(event) => event.preventDefault()}
-                p="16"
-                provider="popper"
-              >
-                <PopperContent align="start" side="bottom" sideOffset={5}>
-                  <Calendar
-                    holiday={holiday}
-                    max={maxDate}
-                    min={minDate}
-                    month={month}
-                    onMonthChange={setMonth}
-                    onValueChange={(date) => {
-                      if (!date) {
-                        return;
-                      }
+        </PopoverAnchor>
+        <PopoverContent
+          gap="8"
+          onCloseAutoFocus={(event) => {
+            if (hasInteractedOutsideRef.current) {
+              hasInteractedOutsideRef.current = false;
+            } else {
+              event.preventDefault();
+              innerRef.current?.focus();
+            }
+          }}
+          onInteractOutside={(event) => {
+            if (
+              !(
+                event.target instanceof Node &&
+                pickerRef.current?.contains(event.target)
+              )
+            ) {
+              hasInteractedOutsideRef.current = true;
+            }
+          }}
+        >
+          <Calendar
+            holiday={holiday}
+            max={maxDate}
+            min={minDate}
+            month={month}
+            onMonthChange={setMonth}
+            onValueChange={(date) => {
+              if (!date) {
+                return;
+              }
 
-                      forceValueChange(
-                        type === "datetime-local"
-                          ? toPlainDateTime(date)
-                          : toPlainDate(date),
-                      );
-                      if (type === "date") {
-                        /**
-                         * We blur and re-focus the input to make sure screen
-                         * reader will read out the new date value rather than
-                         * announce selection of date in calendar and exiting
-                         * calendar dialog.
-                         */
-                        innerRef.current?.blur();
-                        innerRef.current?.focus();
-
-                        setOpen(false);
-                      }
-                    }}
-                    step={step}
-                    type={type}
-                    value={instant}
-                    weekend={weekend}
-                  />
-                  {type === "datetime-local" && (
-                    <Button
-                      flex="none"
-                      justifyContent="center"
-                      onClick={() => setOpen(false)}
-                    >
-                      Done
-                    </Button>
-                  )}
-                </PopperContent>
-              </ModalListbox>
-            </ModalLayer>
-          </Portal>
-        </TransitionGroup>
-      </Popper>
+              forceValueChange(
+                type === "datetime-local"
+                  ? toPlainDateTime(date)
+                  : toPlainDate(date),
+              );
+              if (type === "date") {
+                setOpen(false);
+              }
+            }}
+            step={step}
+            type={type}
+            value={instant}
+            weekend={weekend}
+          />
+          {type === "datetime-local" && (
+            <Button
+              flex="none"
+              justifyContent="center"
+              onClick={() => setOpen(false)}
+            >
+              Done
+            </Button>
+          )}
+        </PopoverContent>
+      </Popover>
     );
   },
 );

@@ -8,12 +8,7 @@ import {
   useRef,
   useState,
 } from "react";
-import {
-  CaptionLabel,
-  type DateRange,
-  DayPicker,
-  type Matcher,
-} from "react-day-picker";
+import { type DateRange, DayPicker, type Matcher } from "react-day-picker";
 
 import { type BoxProps } from "../box";
 import { Clock } from "../clock";
@@ -112,7 +107,6 @@ const components = {
 export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
   (
     {
-      autoFocus,
       defaultValue = null,
       holiday,
       max,
@@ -153,20 +147,6 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
     const [from, setFrom] = useState<Date>();
     const [to, setTo] = useState<Date>();
 
-    const CaptionLabelMemo = useMemo(
-      () =>
-        function CaptionLabelMemo(
-          props: ComponentPropsWithoutRef<typeof CaptionLabel>,
-        ) {
-          return (
-            <CaptionLabel
-              {...props}
-              aria-live={autoFocus ? undefined : "off"}
-            />
-          );
-        },
-      [autoFocus],
-    );
     const DayButtonMemo = useMemo(
       () =>
         function DayButton({
@@ -177,7 +157,6 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
         }: ComponentPropsWithoutRef<typeof CalendarDayButton>) {
           return (
             <CalendarDayButton
-              autoFocus={autoFocus}
               onFocus={(event) => {
                 onFocus?.(event);
                 setTo(props.day.date);
@@ -194,7 +173,7 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
             />
           );
         },
-      [autoFocus],
+      [],
     );
 
     const onHeightChangeStable = useEffectEvent(onHeightChange ?? (() => {}));
@@ -224,10 +203,9 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
       >
         {mode === "single" ? (
           <DayPicker
-            autoFocus={autoFocus}
+            autoFocus
             components={{
               ...components,
-              CaptionLabel: CaptionLabelMemo,
               DayButton: DayButtonMemo,
             }}
             defaultMonth={value instanceof Date ? value : undefined}
@@ -252,7 +230,7 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
           />
         ) : (
           <DayPicker
-            autoFocus={autoFocus}
+            autoFocus
             components={{
               ...components,
               DayButton: DayButtonMemo,
