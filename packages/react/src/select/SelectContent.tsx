@@ -85,7 +85,6 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
                   itemToKey={(item: SelectOption) => item.value}
                   loading={loading}
                   onPlacedChange={setPlaced}
-                  placed={placed}
                   {...downshift.getMenuProps({}, { suppressRefError: !placed })}
                 >
                   {children ??

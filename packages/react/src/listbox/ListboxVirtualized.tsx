@@ -33,13 +33,14 @@ export const ListboxVirtualized = forwardRef<
   const ref = useComposedRefs(outerRef, innerRef);
 
   /**
-   * We wait for first paint before enabling virtualizer to ensure we render a
-   * smaller set of data in actually visible in the overflow element rather than
-   * trying to render the full list of items.
+   * We wait for first paint to render the menu and then another paint for
+   * radix popper to place the menu and set the max-height. Otherwise virtualizer
+   * will try to render the full list of items instead of a smaller set of data
+   * that is actually visible in the overflow element.
    */
   const [enabled, setEnabled] = useState(false);
   useEffect(() => {
-    requestAnimationFrame(() => setEnabled(true));
+    requestAnimationFrame(() => requestAnimationFrame(() => setEnabled(true)));
   }, []);
 
   const { presence } =
@@ -96,7 +97,10 @@ export const ListboxVirtualized = forwardRef<
   return (
     <Listbox ref={ref} {...props}>
       <Box
+        display="flex"
         flex="none"
+        flexDirection="column"
+        gap="2"
         style={{
           minHeight: Math.min(items.length, 8) * 40,
           minWidth,
@@ -111,7 +115,6 @@ export const ListboxVirtualized = forwardRef<
             ref={rowVirtualizer.measureElement}
           >
             {children(items[virtualItem.index], virtualItem.index)}
-            {virtualItem.index < items.length - 1 && <Box pb="2" />}
           </Box>
         ))}
       </Box>
