@@ -5,6 +5,7 @@ import { forwardRef } from "react";
 import type { ExcludeProps } from "../utils";
 
 import { Box, type BoxProps } from "../box";
+import { Portal } from "../portal";
 import { Text } from "../text";
 import { Transition, TransitionGroup } from "../transition";
 import * as styles from "./TooltipContent.css";
@@ -30,7 +31,7 @@ export const TooltipContent = forwardRef<HTMLDivElement, TooltipContentProps>(
 
     return (
       <TransitionGroup open={open}>
-        <RadixTooltip.Portal forceMount>
+        <Portal asChild>
           <Transition duration="sm" type="pop">
             <Box asChild {...styles.content({}, className)} {...props}>
               <RadixTooltip.Content
@@ -52,7 +53,7 @@ export const TooltipContent = forwardRef<HTMLDivElement, TooltipContentProps>(
               </RadixTooltip.Content>
             </Box>
           </Transition>
-        </RadixTooltip.Portal>
+        </Portal>
       </TransitionGroup>
     );
   },

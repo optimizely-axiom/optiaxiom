@@ -1,12 +1,12 @@
 import { theme, tokens } from "@optiaxiom/globals";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
-import { type ReactNode } from "react";
+import { type ReactNode, useEffect, useRef, useState } from "react";
 
 import { layers } from "../layers";
+import { PortalProvider } from "../portal/internals";
 
 type ThemeProviderProps = {
   children?: ReactNode;
-  selector?: string;
 };
 
 /**
@@ -19,13 +19,24 @@ const lightColors = Object.fromEntries(
   ]),
 ) as typeof tokens.colors;
 
-export function ThemeProvider({
-  children,
-  selector = ":root",
-}: ThemeProviderProps) {
+export function ThemeProvider({ children }: ThemeProviderProps) {
+  const [container, setContainer] = useState<ShadowRoot>();
+  const selector =
+    typeof ShadowRoot !== "undefined" && container instanceof ShadowRoot
+      ? ":host"
+      : ":root";
+
+  const ref = useRef<HTMLStyleElement>(null);
+  useEffect(() => {
+    const root = ref.current?.getRootNode();
+    if (root instanceof ShadowRoot) {
+      setContainer(root);
+    }
+  }, []);
+
   return (
-    <>
-      <style>{`
+    <PortalProvider container={container}>
+      <style ref={ref}>{`
         @layer ${layers.theme} {
           ${selector} {
             ${assignInlineVars(theme, {
@@ -42,7 +53,7 @@ export function ThemeProvider({
         }
       `}</style>
       {children}
-    </>
+    </PortalProvider>
   );
 }
 

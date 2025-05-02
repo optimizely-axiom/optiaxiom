@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { render, screen, waitForElementToBeRemoved } from "../../vitest.rtl";
+import { render, screen, waitFor } from "../../vitest.rtl";
 import { Tooltip } from "./Tooltip";
 
 describe("Tooltip component", () => {
@@ -37,8 +37,10 @@ describe("Tooltip component", () => {
     ).toBeInTheDocument();
 
     await user.click(screen.getByText("Outside Content"));
-    await waitForElementToBeRemoved(
-      screen.queryByRole("tooltip", { name: "Tooltip Content" }),
+    await waitFor(() =>
+      expect(
+        screen.queryByRole("tooltip", { name: "Tooltip Content" }),
+      ).not.toBeInTheDocument(),
     );
   });
 });

@@ -7,6 +7,7 @@ import type { BoxProps } from "../box";
 
 import { ModalProvider } from "../modal";
 import { ModalListbox } from "../modal/internals";
+import { Portal } from "../portal";
 import { TransitionGroup } from "../transition";
 import { type ExcludeProps, onReactSelectInputBlur } from "../utils";
 import { usePopoverContext } from "./PopoverContext";
@@ -49,7 +50,7 @@ export const PopoverContent = forwardRef<HTMLDivElement, PopoverContentProps>(
         open={open}
         presence={presence}
       >
-        <RadixPopover.Portal forceMount>
+        <Portal asChild>
           <ModalListbox
             asChild
             onBlur={onReactSelectInputBlur}
@@ -86,7 +87,7 @@ export const PopoverContent = forwardRef<HTMLDivElement, PopoverContentProps>(
               )}
             </RadixPopover.Content>
           </ModalListbox>
-        </RadixPopover.Portal>
+        </Portal>
       </TransitionGroup>
     );
   },

@@ -5,6 +5,7 @@ import type { BoxProps } from "../box";
 import type { ExcludeProps } from "../utils";
 
 import { ModalListbox } from "../modal/internals";
+import { Portal } from "../portal";
 import { TransitionGroup } from "../transition";
 import { useDropdownMenuSubContext } from "./DropdownMenuSubContext";
 
@@ -36,7 +37,7 @@ export const DropdownMenuSubContent = forwardRef<
 
   return (
     <TransitionGroup onPresenceChange={setPresence} open={open}>
-      <RadixMenu.Portal forceMount>
+      <Portal asChild>
         <ModalListbox
           asChild
           minW="trigger"
@@ -52,7 +53,7 @@ export const DropdownMenuSubContent = forwardRef<
             {children}
           </RadixMenu.SubContent>
         </ModalListbox>
-      </RadixMenu.Portal>
+      </Portal>
     </TransitionGroup>
   );
 });

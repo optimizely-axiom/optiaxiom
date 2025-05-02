@@ -25,5 +25,5 @@ const customRender = (...args: Parameters<typeof render>) => ({
  * "@testing-library/react" to overwrite our custom render.
  * So we explicitly list out the re-exported modules.
  */
-export { screen, waitForElementToBeRemoved } from "@testing-library/react";
+export { screen, waitFor } from "@testing-library/react";
 export { customRender as render };

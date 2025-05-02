@@ -7,6 +7,7 @@ import { Backdrop } from "../backdrop";
 import { type BoxProps } from "../box";
 import { ModalProvider } from "../modal";
 import { Paper } from "../paper";
+import { Portal } from "../portal";
 import { Transition, TransitionGroup } from "../transition";
 import { type ExcludeProps, onReactSelectInputBlur } from "../utils";
 import * as styles from "./DialogContent.css";
@@ -43,7 +44,7 @@ export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
 
     return (
       <TransitionGroup open={open}>
-        <RadixDialog.Portal forceMount>
+        <Portal>
           <Transition>
             <Backdrop
               asChild
@@ -72,7 +73,7 @@ export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
               </RadixDialog.Content>
             </Paper>
           </Transition>
-        </RadixDialog.Portal>
+        </Portal>
       </TransitionGroup>
     );
   },
