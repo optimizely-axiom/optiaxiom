@@ -14,11 +14,7 @@ import { ModalLayer } from "../modal";
 import { ModalListbox } from "../modal/internals";
 import { Portal } from "../portal";
 import { TransitionGroup } from "../transition";
-import {
-  type Group,
-  type SelectOption,
-  useSelectContext,
-} from "./SelectContext";
+import { type SelectOption, useSelectContext } from "./SelectContext";
 import { SelectRadioItem } from "./SelectRadioItem";
 
 export type SelectContentProps = ExcludeProps<
@@ -48,8 +44,8 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
     const [placed, setPlaced] = useState(false);
 
     let isFirstItem = true;
-    let lastGroup: Group | undefined = undefined;
-    const shouldShowSeparator = (group: Group | undefined) => {
+    let lastGroup: SelectOption["group"] = undefined;
+    const shouldShowSeparator = (group: SelectOption["group"]) => {
       const show = !isFirstItem;
       isFirstItem = false;
       return (
@@ -58,7 +54,9 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
         (group?.separator || lastGroup?.separator)
       );
     };
-    const shouldShowGroup = (group: Group | undefined): group is Group => {
+    const shouldShowGroup = (
+      group: SelectOption["group"],
+    ): group is NonNullable<SelectOption["group"]> => {
       const show = group !== lastGroup;
       lastGroup = group;
       return show && !!group && !group?.hidden;
