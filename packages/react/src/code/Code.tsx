@@ -6,7 +6,7 @@ import * as styles from "./Code.css";
 
 const Slot = createSlot("@optiaxiom/react/Code");
 
-type CodeProps = BoxProps<"code">;
+export type CodeProps = BoxProps<"code">;
 
 export const Code = forwardRef<HTMLElement, CodeProps>(
   ({ asChild, children, className, ...props }, ref) => {

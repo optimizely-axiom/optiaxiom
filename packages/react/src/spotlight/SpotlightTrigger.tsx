@@ -7,7 +7,7 @@ import { IconMagnifyingGlass } from "../icons/IconMagnifyingGlass";
 import { MenuTrigger } from "../menu";
 import { useMenuContext } from "../menu/internals";
 
-type SpotlightTriggerProps = ButtonProps<
+export type SpotlightTriggerProps = ButtonProps<
   typeof MenuTrigger,
   {
     hotkey?: string;

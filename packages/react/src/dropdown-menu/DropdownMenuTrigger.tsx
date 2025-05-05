@@ -4,11 +4,11 @@ import { type ComponentPropsWithoutRef, forwardRef } from "react";
 import { AngleMenuButton } from "../angle-menu-button";
 import { Button } from "../button";
 
-type MenuTriggerProps = ComponentPropsWithoutRef<typeof Button>;
+export type DropdownMenuTriggerProps = ComponentPropsWithoutRef<typeof Button>;
 
 export const DropdownMenuTrigger = forwardRef<
   HTMLButtonElement,
-  MenuTriggerProps
+  DropdownMenuTriggerProps
 >(({ asChild, children, ...props }, ref) => {
   return (
     <RadixMenu.Trigger asChild ref={ref} {...props}>

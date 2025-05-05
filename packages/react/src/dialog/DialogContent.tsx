@@ -13,7 +13,7 @@ import { type ExcludeProps, onReactSelectInputBlur } from "../utils";
 import * as styles from "./DialogContent.css";
 import { useDialogContext } from "./DialogContext";
 
-type DialogContentProps = ExcludeProps<
+export type DialogContentProps = ExcludeProps<
   BoxProps<
     typeof RadixDialog.Content,
     styles.DialogVariants & {

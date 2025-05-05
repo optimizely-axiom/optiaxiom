@@ -9,7 +9,7 @@ import { PopoverTrigger } from "../popover";
 import { usePopoverContext } from "../popover/internals";
 import { MenuItem } from "./MenuItem";
 
-type MenuSubTriggerProps = BoxProps<
+export type MenuSubTriggerProps = BoxProps<
   typeof MenuItem,
   {
     contentRef: RefObject<HTMLDivElement>;

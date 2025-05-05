@@ -4,7 +4,9 @@ import { Flex } from "../flex";
 import { ListboxItem } from "./ListboxItem";
 import { ListboxItemIndicator } from "./ListboxItemIndicator";
 
-type ListboxRadioItemProps = ComponentPropsWithoutRef<typeof ListboxItem>;
+export type ListboxRadioItemProps = ComponentPropsWithoutRef<
+  typeof ListboxItem
+>;
 
 export const ListboxRadioItem = forwardRef<
   HTMLDivElement,

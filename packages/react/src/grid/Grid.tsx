@@ -2,7 +2,7 @@ import { type ComponentPropsWithRef, forwardRef } from "react";
 
 import { Box } from "../box";
 
-type GridProps = ComponentPropsWithRef<typeof Box>;
+export type GridProps = ComponentPropsWithRef<typeof Box>;
 
 export const Grid = forwardRef<HTMLDivElement, GridProps>((props, ref) => {
   return (

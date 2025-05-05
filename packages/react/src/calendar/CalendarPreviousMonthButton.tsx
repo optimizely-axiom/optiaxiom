@@ -4,7 +4,7 @@ import { PreviousMonthButton } from "react-day-picker";
 
 import { Button } from "../button";
 
-type CalendarPreviousMonthButtonProps = ComponentPropsWithoutRef<
+export type CalendarPreviousMonthButtonProps = ComponentPropsWithoutRef<
   typeof PreviousMonthButton
 >;
 

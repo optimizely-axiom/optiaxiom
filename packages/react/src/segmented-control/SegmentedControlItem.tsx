@@ -4,7 +4,9 @@ import { forwardRef } from "react";
 import { Button, type ButtonProps } from "../button";
 import { useSegmentedControlContext } from "./SegmentedControlContext";
 
-type SegmentedControlItemProps = ButtonProps<typeof RadixSegmentedControl.Item>;
+export type SegmentedControlItemProps = ButtonProps<
+  typeof RadixSegmentedControl.Item
+>;
 
 export const SegmentedControlItem = forwardRef<
   HTMLButtonElement,

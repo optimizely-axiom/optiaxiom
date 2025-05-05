@@ -4,7 +4,7 @@ import { MonthGrid } from "react-day-picker";
 
 import { Box } from "../box";
 
-type CalendarMonthGridProps = ComponentPropsWithoutRef<typeof MonthGrid>;
+export type CalendarMonthGridProps = ComponentPropsWithoutRef<typeof MonthGrid>;
 
 export function CalendarMonthGrid({
   children,

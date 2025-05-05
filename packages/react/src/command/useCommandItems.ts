@@ -6,7 +6,7 @@ import { useEffectEvent } from "../hooks";
 import { type CommandOption, resolveItemProperty } from "./CommandContext";
 import { fuzzysearch } from "./fuzzysearch";
 
-type useCommandItemsProps = Pick<
+export type useCommandItemsProps = Pick<
   ComponentPropsWithoutRef<typeof Command>,
   "inputValue" | "options"
 >;

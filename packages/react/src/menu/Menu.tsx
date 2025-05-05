@@ -20,7 +20,7 @@ import { MenuSubProvider } from "./MenuSubContext";
 
 export type MenuOption = CommandOption;
 
-type MenuProps = ExcludeProps<
+export type MenuProps = ExcludeProps<
   ExtendProps<
     ComponentPropsWithoutRef<typeof Command>,
     {

@@ -3,7 +3,7 @@ import { type ComponentPropsWithRef, forwardRef } from "react";
 import { Text } from "../text";
 import { useCardContext } from "./CardContext";
 
-type CardDescriptionProps = ComponentPropsWithRef<typeof Text>;
+export type CardDescriptionProps = ComponentPropsWithRef<typeof Text>;
 
 export const CardDescription = forwardRef<
   HTMLParagraphElement,

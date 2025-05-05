@@ -4,7 +4,7 @@ import { forwardRef, useEffect, useRef } from "react";
 import { Box, type BoxProps } from "../box";
 import * as styles from "./InlineInput.css";
 
-type InlineInputProps = BoxProps<
+export type InlineInputProps = BoxProps<
   "div",
   {
     defaultValue?: string;

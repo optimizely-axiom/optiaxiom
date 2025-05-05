@@ -2,7 +2,7 @@ import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import { ListboxLabel } from "../listbox";
 
-type SelectLabelProps = ComponentPropsWithoutRef<typeof ListboxLabel>;
+export type SelectLabelProps = ComponentPropsWithoutRef<typeof ListboxLabel>;
 
 export const SelectLabel = forwardRef<HTMLDivElement, SelectLabelProps>(
   (props, ref) => {

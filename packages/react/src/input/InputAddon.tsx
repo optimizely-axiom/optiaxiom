@@ -3,7 +3,7 @@ import { forwardRef, type MouseEvent } from "react";
 import { Box, type BoxProps } from "../box";
 import { useInputContext } from "./InputContext";
 
-type InputAddonProps = BoxProps<"div">;
+export type InputAddonProps = BoxProps<"div">;
 
 export const InputAddon = forwardRef<HTMLDivElement, InputAddonProps>(
   ({ children, ...props }, ref) => {

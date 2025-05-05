@@ -19,7 +19,7 @@ import * as styles from "./ToastProvider.css";
 import { ToastTitle } from "./ToastTitle";
 import { useOverflowAnchor } from "./useOverflowAnchor";
 
-type ToastProps = BoxProps<
+export type ToastProviderProps = BoxProps<
   typeof RadixToast.Viewport,
   ComponentPropsWithoutRef<typeof RadixToast.ToastProvider> &
     styles.ViewportVariants & {
@@ -41,7 +41,7 @@ const mapPositionToSwipeDirection = {
   "top-right": "right",
 } as const;
 
-export const ToastProvider = forwardRef<HTMLOListElement, ToastProps>(
+export const ToastProvider = forwardRef<HTMLOListElement, ToastProviderProps>(
   (
     {
       className,

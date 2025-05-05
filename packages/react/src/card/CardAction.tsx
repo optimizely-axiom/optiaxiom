@@ -4,7 +4,7 @@ import { ActionsContent } from "../actions";
 import { type BoxProps } from "../box";
 import * as styles from "./CardAction.css";
 
-type CardActionProps = BoxProps<"div">;
+export type CardActionProps = BoxProps<"div">;
 
 export const CardAction = forwardRef<HTMLDivElement, CardActionProps>(
   ({ children, className, ...props }, ref) => {

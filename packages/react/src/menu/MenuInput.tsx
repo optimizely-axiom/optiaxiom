@@ -13,7 +13,7 @@ import { useCommandContext } from "../command/internals";
 import { useMenuContext } from "./MenuContext";
 import * as styles from "./MenuInput.css";
 
-type MenuInputProps = ComponentPropsWithoutRef<typeof CommandInput>;
+export type MenuInputProps = ComponentPropsWithoutRef<typeof CommandInput>;
 
 export const MenuInput = forwardRef<HTMLInputElement, MenuInputProps>(
   ({ className, ...props }, outerRef) => {

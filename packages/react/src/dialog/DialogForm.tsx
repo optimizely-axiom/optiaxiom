@@ -2,7 +2,7 @@ import { forwardRef } from "react";
 
 import { Box, type BoxProps, extractBoxProps } from "../box";
 
-type DialogFormProps = BoxProps<"form">;
+export type DialogFormProps = BoxProps<"form">;
 
 export const DialogForm = forwardRef<HTMLFormElement, DialogFormProps>(
   ({ children, className, ...props }, ref) => {

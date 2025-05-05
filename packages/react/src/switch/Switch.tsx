@@ -11,7 +11,7 @@ import {
 } from "../toggle-input";
 import * as styles from "./Switch.css";
 
-type SwitchProps = BoxProps<
+export type SwitchProps = BoxProps<
   typeof ToggleInputHiddenInput,
   styles.SwitchVariants & {
     /**

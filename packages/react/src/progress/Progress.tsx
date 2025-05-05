@@ -4,7 +4,7 @@ import { forwardRef } from "react";
 import { Box, type BoxProps } from "../box";
 import * as styles from "./Progress.css";
 
-type ProgressProps = BoxProps<typeof ProgressPrimitive.Root> &
+export type ProgressProps = BoxProps<typeof ProgressPrimitive.Root> &
   styles.ProgressVariants;
 
 export const Progress = forwardRef<HTMLDivElement, ProgressProps>(

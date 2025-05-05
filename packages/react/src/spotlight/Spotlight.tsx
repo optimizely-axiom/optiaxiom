@@ -4,7 +4,7 @@ import type { ExcludeProps } from "../utils";
 
 import { Menu } from "../menu";
 
-type SpotlightProps = ExcludeProps<
+export type SpotlightProps = ExcludeProps<
   ComponentPropsWithoutRef<typeof Menu>,
   "initialInputVisible" | "size"
 >;

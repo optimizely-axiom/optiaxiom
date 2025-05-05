@@ -4,7 +4,7 @@ import { Box, type BoxProps } from "../box";
 import * as styles from "./Highlight.css";
 import { useHighlightedChunks } from "./useHighlightedChunks";
 
-type HighlightProps = BoxProps<
+export type HighlightProps = BoxProps<
   "div",
   {
     children?: (chunk: ReactElement) => ReactNode;

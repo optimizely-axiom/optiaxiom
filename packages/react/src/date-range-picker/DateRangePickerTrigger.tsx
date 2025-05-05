@@ -13,7 +13,7 @@ const dateFormatter = new Intl.DateTimeFormat(undefined, {
   year: "numeric",
 });
 
-type DateRangePickerTriggerProps = ComponentPropsWithoutRef<
+export type DateRangePickerTriggerProps = ComponentPropsWithoutRef<
   typeof PopoverTrigger
 > & {
   formatRange?: Intl.DateTimeFormat["formatRange"];

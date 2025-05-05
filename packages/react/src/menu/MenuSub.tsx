@@ -6,7 +6,7 @@ import { MenuSubContent } from "./MenuSubContent";
 import { useMenuSubContext } from "./MenuSubContext";
 import { MenuSubTrigger } from "./MenuSubTrigger";
 
-type MenuSubProps = {
+export type MenuSubProps = {
   item: CommandOption;
 };
 

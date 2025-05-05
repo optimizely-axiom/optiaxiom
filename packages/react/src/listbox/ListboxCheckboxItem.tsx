@@ -7,7 +7,9 @@ import { Icon } from "../icon";
 import * as styles from "./ListboxCheckboxItem.css";
 import { ListboxItem } from "./ListboxItem";
 
-type ListboxCheckboxItemProps = ComponentPropsWithoutRef<typeof ListboxItem> &
+export type ListboxCheckboxItemProps = ComponentPropsWithoutRef<
+  typeof ListboxItem
+> &
   Pick<ComponentPropsWithoutRef<typeof Checkbox>, "onCheckedChange">;
 
 export const ListboxCheckboxItem = forwardRef<

@@ -14,7 +14,7 @@ import { InputRoot } from "./InputRoot";
 
 const Slot = createSlot("@optiaxiom/react/Input");
 
-type InputProps = InputControlProps<
+export type InputProps = InputControlProps<
   "input",
   Pick<ComponentPropsWithoutRef<typeof InputRoot>, "addonPointerEvents"> &
     styles.InputVariants & {

@@ -3,7 +3,7 @@ import { forwardRef, type ReactNode } from "react";
 import { Box, type BoxProps } from "../box";
 import * as styles from "./Layouts.css";
 
-type LayoutProps = BoxProps<
+export type LayoutProps = BoxProps<
   "div",
   {
     header?: ReactNode;

@@ -4,7 +4,9 @@ import { MonthCaption } from "react-day-picker";
 
 import { Box } from "../box";
 
-type CalendarMonthCaptionProps = ComponentPropsWithoutRef<typeof MonthCaption>;
+export type CalendarMonthCaptionProps = ComponentPropsWithoutRef<
+  typeof MonthCaption
+>;
 
 export function CalendarMonthCaption({
   children,

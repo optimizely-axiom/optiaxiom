@@ -4,7 +4,7 @@ import { forwardRef } from "react";
 import { Box, type BoxProps } from "../box";
 import * as styles from "./TabsList.css";
 
-type TabsListProps = BoxProps<typeof RadixTabs.List>;
+export type TabsListProps = BoxProps<typeof RadixTabs.List>;
 
 export const TabsList = forwardRef<HTMLDivElement, TabsListProps>(
   ({ children, className, ...props }, ref) => {

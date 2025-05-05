@@ -3,7 +3,7 @@ import { forwardRef } from "react";
 import { Box, type BoxProps } from "../box";
 import * as styles from "./ActionsRoot.css";
 
-type ActionsRootProps = BoxProps<"div">;
+export type ActionsRootProps = BoxProps<"div">;
 
 export const ActionsRoot = forwardRef<HTMLDivElement, ActionsRootProps>(
   ({ children, className, ...props }, ref) => {

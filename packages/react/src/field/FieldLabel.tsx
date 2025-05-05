@@ -10,7 +10,7 @@ import { Text } from "../text";
 import { Tooltip } from "../tooltip";
 import { VisuallyHidden } from "../visually-hidden";
 
-type FieldLabelProps = BoxProps<
+export type FieldLabelProps = BoxProps<
   "div",
   {
     info?: ReactNode;

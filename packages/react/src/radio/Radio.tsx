@@ -12,7 +12,7 @@ import {
 import * as styles from "./Radio.css";
 import { useRadioGroupContext } from "./RadioGroupContext";
 
-type RadioProps = BoxProps<
+export type RadioProps = BoxProps<
   typeof ToggleInputHiddenInput,
   {
     /**

@@ -10,7 +10,9 @@ import { IconAngleDown } from "../icons/IconAngleDown";
 import { Text } from "../text";
 import * as styles from "./LabelMenuButton.css";
 
-type FilterMenuButtonProps = ComponentPropsWithoutRef<typeof ButtonRoot> & {
+export type LabelMenuButtonProps = ComponentPropsWithoutRef<
+  typeof ButtonRoot
+> & {
   appearance?: never;
   label: string;
   size?: never;
@@ -18,7 +20,7 @@ type FilterMenuButtonProps = ComponentPropsWithoutRef<typeof ButtonRoot> & {
 
 export const LabelMenuButton = forwardRef<
   HTMLButtonElement,
-  FilterMenuButtonProps
+  LabelMenuButtonProps
 >(
   (
     { "aria-labelledby": ariaLabelledBy, children, className, label, ...props },

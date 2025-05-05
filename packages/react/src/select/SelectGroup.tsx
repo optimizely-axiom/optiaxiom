@@ -2,7 +2,7 @@ import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import { ListboxGroup } from "../listbox";
 
-type SelectGroupProps = ComponentPropsWithoutRef<typeof ListboxGroup>;
+export type SelectGroupProps = ComponentPropsWithoutRef<typeof ListboxGroup>;
 
 export const SelectGroup = forwardRef<HTMLDivElement, SelectGroupProps>(
   (props, ref) => {

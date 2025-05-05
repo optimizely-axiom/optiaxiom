@@ -10,7 +10,7 @@ import { Spinner } from "../spinner";
 import { TransitionGroup } from "../transition";
 import { useDropdownMenuContext } from "./DropdownMenuContext";
 
-type DropdownMenuContentProps = ExcludeProps<
+export type DropdownMenuContentProps = ExcludeProps<
   BoxProps<
     typeof RadixMenu.Content,
     Pick<ComponentPropsWithoutRef<typeof ModalListbox>, "maxH" | "minW"> & {

@@ -3,7 +3,9 @@ import { type ComponentPropsWithoutRef, forwardRef } from "react";
 import { ListboxRadioItem } from "../listbox";
 import { SelectItem } from "./SelectItem";
 
-type SelectRadioItemProps = ComponentPropsWithoutRef<typeof ListboxRadioItem> &
+export type SelectRadioItemProps = ComponentPropsWithoutRef<
+  typeof ListboxRadioItem
+> &
   ComponentPropsWithoutRef<typeof SelectItem>;
 
 export const SelectRadioItem = forwardRef<HTMLDivElement, SelectRadioItemProps>(

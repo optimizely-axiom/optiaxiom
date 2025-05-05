@@ -3,7 +3,7 @@ import { forwardRef, type MouseEvent } from "react";
 import { Box, type BoxProps } from "../box";
 import { type SelectOption, useSelectContext } from "./SelectContext";
 
-type SelectItemProps = BoxProps<
+export type SelectItemProps = BoxProps<
   "div",
   {
     /**

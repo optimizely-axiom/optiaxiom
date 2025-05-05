@@ -7,7 +7,7 @@ import { Flex } from "../flex";
 import * as styles from "./Card.css";
 import { CardProvider } from "./CardContext";
 
-type CardProps = BoxProps<
+export type CardProps = BoxProps<
   "div",
   {
     /**

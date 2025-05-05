@@ -10,7 +10,7 @@ import {
 } from "./CommandContext";
 import { useCommandItems } from "./useCommandItems";
 
-type CommandProps = {
+export type CommandProps = {
   children?: ReactNode;
   /**
    * Custom empty state content.

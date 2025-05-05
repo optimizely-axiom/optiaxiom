@@ -4,7 +4,7 @@ import { Box, type BoxProps } from "../box";
 import { useCardContext } from "./CardContext";
 import * as styles from "./CardImage.css";
 
-type CardImageProps = BoxProps<"img">;
+export type CardImageProps = BoxProps<"img">;
 
 export const CardImage = forwardRef<HTMLImageElement, CardImageProps>(
   ({ alt = "", asChild, children, className, src, ...props }, ref) => {

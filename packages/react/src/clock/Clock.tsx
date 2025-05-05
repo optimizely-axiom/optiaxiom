@@ -7,7 +7,7 @@ import { Flex } from "../flex";
 import { Select, SelectContent, SelectTrigger } from "../select";
 import { format, parse, range } from "./utils";
 
-type ClockProps = BoxProps<
+export type ClockProps = BoxProps<
   "div",
   {
     defaultValue?: string;

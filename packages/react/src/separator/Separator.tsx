@@ -5,7 +5,7 @@ import { forwardRef } from "react";
 import { Box, type BoxProps } from "../box";
 import * as styles from "./Separator.css";
 
-type SeparatorProps = BoxProps<
+export type SeparatorProps = BoxProps<
   typeof RadixSeparator.Root,
   styles.SeparatorVariants
 >;

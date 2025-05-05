@@ -3,7 +3,7 @@ import { type ComponentPropsWithRef, forwardRef } from "react";
 import { Box } from "../box";
 import { mapResponsiveValue } from "../sprinkles";
 
-type FlexProps = ComponentPropsWithRef<typeof Box>;
+export type FlexProps = ComponentPropsWithRef<typeof Box>;
 
 const mapDirectionToAlign = {
   column: "stretch",

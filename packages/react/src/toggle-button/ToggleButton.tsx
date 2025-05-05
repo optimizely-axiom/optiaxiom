@@ -3,7 +3,7 @@ import { forwardRef } from "react";
 
 import { Button, type ButtonProps } from "../button";
 
-type ToggleButtonProps = ButtonProps<
+export type ToggleButtonProps = ButtonProps<
   typeof RadixToggle.Root,
   {
     /**

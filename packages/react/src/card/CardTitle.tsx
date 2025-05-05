@@ -6,7 +6,7 @@ import { useCardContext } from "./CardContext";
 
 const Slot = createSlot("@optiaxiom/react/CardTitle");
 
-type CardTitleProps = HeadingProps<"h2">;
+export type CardTitleProps = HeadingProps<"h2">;
 
 export const CardTitle = forwardRef<HTMLDivElement, CardTitleProps>(
   ({ asChild, children, ...props }, ref) => {

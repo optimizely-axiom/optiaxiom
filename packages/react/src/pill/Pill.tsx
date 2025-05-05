@@ -9,7 +9,7 @@ import * as styles from "./Pill.css";
 
 const Slot = createSlot("@optiaxiom/react/Pill");
 
-type PillProps = BoxProps<"button", styles.PillVariants>;
+export type PillProps = BoxProps<"button", styles.PillVariants>;
 
 export const Pill = forwardRef<HTMLButtonElement, PillProps>(
   ({ asChild, children, className, disabled, size = "sm", ...props }, ref) => {

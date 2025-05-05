@@ -9,7 +9,7 @@ import { Icon } from "../icon";
 import { IconTriangleExclamationSolid } from "../icons/IconTriangleExclamationSolid";
 import { fallbackSpan } from "../utils";
 
-type AlertDialogHeaderProps = BoxProps<
+export type AlertDialogHeaderProps = BoxProps<
   "div",
   {
     /**

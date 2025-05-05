@@ -3,9 +3,9 @@ import { forwardRef } from "react";
 
 import { Text, type TextProps } from "../text";
 
-type ToastProps = TextProps<typeof RadixToast.Title>;
+export type ToastTitleProps = TextProps<typeof RadixToast.Title>;
 
-export const ToastTitle = forwardRef<HTMLDivElement, ToastProps>(
+export const ToastTitle = forwardRef<HTMLDivElement, ToastTitleProps>(
   ({ children, ...props }, ref) => {
     return (
       <Text asChild flex="1" {...props}>

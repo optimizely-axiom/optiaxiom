@@ -7,7 +7,7 @@ import { TooltipContent } from "./TooltipContent";
 import { TooltipRoot } from "./TooltipRoot";
 import { TooltipTrigger } from "./TooltipTrigger";
 
-type TooltipProps = ExcludeProps<
+export type TooltipProps = ExcludeProps<
   BoxProps<
     typeof TooltipContent,
     Pick<ComponentPropsWithRef<typeof TooltipRoot>, "delayDuration"> & {

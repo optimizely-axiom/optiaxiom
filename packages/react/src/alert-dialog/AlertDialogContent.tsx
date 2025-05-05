@@ -15,7 +15,7 @@ import { Transition, TransitionGroup } from "../transition";
 import * as styles from "./AlertDialogContent.css";
 import { useAlertDialogContext } from "./AlertDialogContext";
 
-type AlertDialogContentProps = ExcludeProps<
+export type AlertDialogContentProps = ExcludeProps<
   BoxProps<typeof RadixAlertDialog.Content, styles.DialogVariants>,
   "forceMount"
 >;

@@ -11,7 +11,7 @@ import { Transition, TransitionGroup } from "../transition";
 import * as styles from "./TooltipContent.css";
 import { useTooltipContext } from "./TooltipContext";
 
-type TooltipContentProps = ExcludeProps<
+export type TooltipContentProps = ExcludeProps<
   BoxProps<typeof RadixTooltip.Content>,
   | "alignOffset"
   | "arrowPadding"

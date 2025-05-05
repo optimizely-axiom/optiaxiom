@@ -3,7 +3,7 @@ import { forwardRef } from "react";
 import { Box, type BoxProps } from "../box";
 import { useToggleInputContext } from "./ToggleInputContext";
 
-type ToggleInputLabelProps = BoxProps<"div">;
+export type ToggleInputLabelProps = BoxProps<"div">;
 
 export const ToggleInputLabel = forwardRef<
   HTMLDivElement,

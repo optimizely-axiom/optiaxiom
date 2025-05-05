@@ -18,7 +18,7 @@ import { TextareaAutosize } from "./TextareaAutosize";
 
 const Slot = createSlot("@optiaxiom/react/Textarea");
 
-type TextareaProps = InputControlProps<
+export type TextareaProps = InputControlProps<
   typeof TextareaAutosize,
   Pick<ComponentPropsWithoutRef<typeof InputRoot>, "addonPointerEvents"> & {
     addonAfter?: ReactNode;

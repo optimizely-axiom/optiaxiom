@@ -13,7 +13,7 @@ import { TableHeaderCell } from "../table";
 import { VisuallyHidden } from "../visually-hidden";
 import * as styles from "./DataTableHeaderCell.css";
 
-type DataTableHeaderCellProps = BoxProps<
+export type DataTableHeaderCellProps = BoxProps<
   "th",
   {
     header: Header<unknown, unknown>;

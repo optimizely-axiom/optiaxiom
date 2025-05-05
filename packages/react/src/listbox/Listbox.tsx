@@ -2,7 +2,7 @@ import { forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
 
-type ListboxProps = BoxProps<"div">;
+export type ListboxProps = BoxProps<"div">;
 
 export const Listbox = forwardRef<HTMLDivElement, ListboxProps>(
   ({ children, ...props }, ref) => {

@@ -9,7 +9,7 @@ import { MenuItem } from "./MenuItem";
 import { MenuRadioItem } from "./MenuRadioItem";
 import { MenuSub } from "./MenuSub";
 
-type MenuListboxProps = ComponentPropsWithoutRef<typeof CommandListbox>;
+export type MenuListboxProps = ComponentPropsWithoutRef<typeof CommandListbox>;
 
 export const MenuListbox = forwardRef<HTMLDivElement, MenuListboxProps>(
   ({ children, ...props }, ref) => {

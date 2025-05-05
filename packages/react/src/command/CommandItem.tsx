@@ -10,7 +10,7 @@ import {
   useCommandContext,
 } from "./CommandContext";
 
-type CommandItemProps = BoxProps<
+export type CommandItemProps = BoxProps<
   "div",
   {
     /**

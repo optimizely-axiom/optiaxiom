@@ -4,7 +4,7 @@ import { useState } from "react";
 
 import { PopoverProvider } from "./PopoverContext";
 
-type PopoverProps = {
+export type PopoverProps = {
   children?: React.ReactNode;
   /**
    * The initial open state in uncontrolled mode.

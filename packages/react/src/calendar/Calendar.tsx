@@ -31,7 +31,7 @@ import { CalendarWeekday } from "./CalendarWeekday";
 import { CalendarWeekdays } from "./CalendarWeekdays";
 import { toTimeZoneName } from "./toTimeZoneName";
 
-type CalendarProps = BoxProps<
+export type CalendarProps = BoxProps<
   "div",
   Pick<
     ComponentPropsWithoutRef<typeof DayPicker>,

@@ -2,7 +2,7 @@ import { type ComponentPropsWithRef, forwardRef } from "react";
 
 import { Flex } from "../flex";
 
-type PillGroupProps = ComponentPropsWithRef<typeof Flex>;
+export type PillGroupProps = ComponentPropsWithRef<typeof Flex>;
 
 export const PillGroup = forwardRef<HTMLDivElement, PillGroupProps>(
   ({ children, ...props }, ref) => {

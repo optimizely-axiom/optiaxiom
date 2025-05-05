@@ -8,7 +8,7 @@ import {
 } from "../nested-dialog-context";
 import { AlertDialogProvider } from "./AlertDialogContext";
 
-type AlertDialogProps = {
+export type AlertDialogProps = {
   children?: React.ReactNode;
   /**
    * The initial open state in uncontrolled mode.

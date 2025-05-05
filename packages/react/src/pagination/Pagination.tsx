@@ -14,7 +14,7 @@ import { Tooltip } from "../tooltip";
 import { VisuallyHidden } from "../visually-hidden";
 import * as styles from "./Pagination.css";
 
-type PaginationProps = BoxProps<
+export type PaginationProps = BoxProps<
   "nav",
   {
     /**

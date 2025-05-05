@@ -6,7 +6,7 @@ import * as styles from "./Badge.css";
 
 const Slot = createSlot("@optiaxiom/react/Badge");
 
-type BadgeProps = TextProps<"span", styles.BadgeVariants>;
+export type BadgeProps = TextProps<"span", styles.BadgeVariants>;
 
 export const Badge = forwardRef<HTMLSpanElement, BadgeProps>(
   (

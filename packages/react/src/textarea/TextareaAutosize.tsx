@@ -7,7 +7,10 @@ import * as styles from "./TextareaAutosize.css";
 
 const Slot = createSlot("@optiaxiom/react/TextareaAutosize");
 
-type TextareaAutosizeProps = BoxProps<"textarea", styles.WrapperVariants>;
+export type TextareaAutosizeProps = BoxProps<
+  "textarea",
+  styles.WrapperVariants
+>;
 
 export const TextareaAutosize = forwardRef<
   HTMLTextAreaElement,

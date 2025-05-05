@@ -5,7 +5,7 @@ import { IconMagnifyingGlass } from "../icons/IconMagnifyingGlass";
 import { Input } from "../input";
 import { useCommandContext } from "./CommandContext";
 
-type CommandInputProps = ComponentPropsWithoutRef<typeof Input>;
+export type CommandInputProps = ComponentPropsWithoutRef<typeof Input>;
 
 export const CommandInput = forwardRef<HTMLInputElement, CommandInputProps>(
   ({ onKeyDown, size, ...props }, ref) => {

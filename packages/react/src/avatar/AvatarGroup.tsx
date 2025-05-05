@@ -5,7 +5,7 @@ import { Avatar } from "./Avatar";
 import { AvatarProvider } from "./AvatarContext";
 import * as styles from "./AvatarGroup.css";
 
-type AvatarGroupProps = BoxProps<
+export type AvatarGroupProps = BoxProps<
   "div",
   {
     /**

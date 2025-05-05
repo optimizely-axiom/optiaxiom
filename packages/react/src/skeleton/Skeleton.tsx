@@ -6,7 +6,7 @@ import * as styles from "./Skeleton.css";
 
 const Slot = createSlot("@optiaxiom/react/Skeleton");
 
-type SkeletonProps = BoxProps<
+export type SkeletonProps = BoxProps<
   "span",
   {
     children?: ReactElement;

@@ -3,7 +3,7 @@ import { type ComponentPropsWithoutRef, forwardRef } from "react";
 import { Button } from "../button";
 import { IconEllipsisSolid } from "../icons/IconEllipsisSolid";
 
-type EllipsisMenuButtonProps = ComponentPropsWithoutRef<typeof Button>;
+export type EllipsisMenuButtonProps = ComponentPropsWithoutRef<typeof Button>;
 
 export const EllipsisMenuButton = forwardRef<
   HTMLButtonElement,

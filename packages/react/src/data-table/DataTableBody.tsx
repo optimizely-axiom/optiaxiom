@@ -18,7 +18,7 @@ import * as styles from "./DataTableBody.css";
 import { useDataTableContext } from "./DataTableContext";
 import { DataTableHeaderCell } from "./DataTableHeaderCell";
 
-type DataTableBodyProps = BoxProps<
+export type DataTableBodyProps = BoxProps<
   "div",
   {
     /**

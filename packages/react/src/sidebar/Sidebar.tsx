@@ -5,7 +5,7 @@ import { forwardRef } from "react";
 import { Box, type BoxProps } from "../box";
 import { SidebarProvider } from "./SidebarContext";
 
-type SidebarProps = BoxProps<
+export type SidebarProps = BoxProps<
   "div",
   {
     /**

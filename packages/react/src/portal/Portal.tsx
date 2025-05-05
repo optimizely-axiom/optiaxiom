@@ -3,7 +3,7 @@ import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import { usePortalContext } from "./PortalContext";
 
-type PortalProps = ComponentPropsWithoutRef<typeof RadixPortal.Root>;
+export type PortalProps = ComponentPropsWithoutRef<typeof RadixPortal.Root>;
 
 export const Portal = forwardRef<HTMLDivElement, PortalProps>(
   ({ children, ...props }, ref) => {

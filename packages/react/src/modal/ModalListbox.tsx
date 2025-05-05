@@ -7,12 +7,12 @@ import { Paper } from "../paper";
 import { Transition } from "../transition";
 import * as styles from "./ModalListbox.css";
 
-type OverlayListboxProps = BoxProps<
+export type ModalListboxProps = BoxProps<
   typeof Listbox,
   NonNullable<styles.ListboxVariants>
 >;
 
-export const ModalListbox = forwardRef<HTMLDivElement, OverlayListboxProps>(
+export const ModalListbox = forwardRef<HTMLDivElement, ModalListboxProps>(
   (
     { children, className, maxH, minW, provider = "popover", ...props },
     ref,

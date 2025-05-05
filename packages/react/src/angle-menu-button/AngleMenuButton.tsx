@@ -3,7 +3,7 @@ import { type ComponentPropsWithoutRef, forwardRef } from "react";
 import { Button } from "../button";
 import { IconAngleDown } from "../icons/IconAngleDown";
 
-type AngleMenuButtonProps = ComponentPropsWithoutRef<typeof Button>;
+export type AngleMenuButtonProps = ComponentPropsWithoutRef<typeof Button>;
 
 export const AngleMenuButton = forwardRef<
   HTMLButtonElement,

@@ -5,7 +5,7 @@ import { type BoxProps } from "../box";
 import { Flex } from "../flex";
 import { SegmentedControlProvider } from "./SegmentedControlContext";
 
-type SegmentedControlProps = BoxProps<
+export type SegmentedControlProps = BoxProps<
   typeof RadixSegmentedControl.Root,
   {
     type?: "multiple" | "single";

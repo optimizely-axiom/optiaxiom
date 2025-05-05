@@ -5,7 +5,7 @@ import { Chevron } from "react-day-picker";
 import { IconAngleLeft } from "../icons/IconAngleLeft";
 import { IconAngleRight } from "../icons/IconAngleRight";
 
-type CalendarChevronProps = ComponentPropsWithoutRef<typeof Chevron>;
+export type CalendarChevronProps = ComponentPropsWithoutRef<typeof Chevron>;
 
 export function CalendarChevron({
   orientation,

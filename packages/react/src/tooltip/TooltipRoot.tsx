@@ -5,7 +5,7 @@ import { useRef } from "react";
 import { type BoxProps } from "../box";
 import { TooltipProvider } from "./TooltipContext";
 
-type TooltipRootProps = BoxProps<
+export type TooltipRootProps = BoxProps<
   typeof RadixTooltip.Root,
   {
     auto?: boolean;

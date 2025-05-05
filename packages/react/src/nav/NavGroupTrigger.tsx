@@ -3,7 +3,9 @@ import { type ComponentPropsWithoutRef, forwardRef } from "react";
 import { DisclosureTrigger } from "../disclosure";
 import { useNavGroupContext } from "./NavGroupContext";
 
-type NavGroupTriggerProps = ComponentPropsWithoutRef<typeof DisclosureTrigger>;
+export type NavGroupTriggerProps = ComponentPropsWithoutRef<
+  typeof DisclosureTrigger
+>;
 
 export const NavGroupTrigger = forwardRef<HTMLDivElement, NavGroupTriggerProps>(
   ({ children, ...props }, ref) => {

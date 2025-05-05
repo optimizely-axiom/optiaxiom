@@ -10,7 +10,7 @@ import { Text } from "../text";
 import { VisuallyHidden } from "../visually-hidden";
 import * as styles from "./DialogHeader.css";
 
-type DialogHeaderProps = BoxProps<
+export type DialogHeaderProps = BoxProps<
   "div",
   {
     addonAfter?: ReactNode;

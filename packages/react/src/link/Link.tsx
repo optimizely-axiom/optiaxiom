@@ -9,7 +9,7 @@ import * as styles from "./Link.css";
 
 const Slot = createSlot("@optiaxiom/react/Link");
 
-type LinkProps = BoxProps<
+export type LinkProps = BoxProps<
   "a",
   styles.LinkVariants & {
     /**

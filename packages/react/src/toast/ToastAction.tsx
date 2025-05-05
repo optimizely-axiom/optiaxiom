@@ -4,9 +4,9 @@ import { forwardRef } from "react";
 import { Button, type ButtonProps } from "../button";
 import { Separator } from "../separator";
 
-type ToastProps = ButtonProps<typeof RadixToast.Action>;
+export type ToastActionProps = ButtonProps<typeof RadixToast.Action>;
 
-export const ToastAction = forwardRef<HTMLButtonElement, ToastProps>(
+export const ToastAction = forwardRef<HTMLButtonElement, ToastActionProps>(
   (
     { altText, appearance = "inverse", children, size = "sm", ...props },
     ref,
