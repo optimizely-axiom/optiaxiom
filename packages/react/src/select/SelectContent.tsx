@@ -13,6 +13,7 @@ import { ListboxItemized, ListboxLabel, ListboxSeparator } from "../listbox";
 import { ModalLayer } from "../modal";
 import { ModalListbox } from "../modal/internals";
 import { Portal } from "../portal";
+import { Tooltip } from "../tooltip";
 import { TransitionGroup } from "../transition";
 import { type SelectOption, useSelectContext } from "./SelectContext";
 import { SelectRadioItem } from "./SelectRadioItem";
@@ -99,15 +100,17 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
                           {shouldShowGroup(group) && (
                             <ListboxLabel>{group.label}</ListboxLabel>
                           )}
-                          <SelectRadioItem
-                            addonBefore={item.addon}
-                            aria-label={item["aria-label"]}
-                            description={item.description}
-                            item={item}
-                            key={item.value}
-                          >
-                            {item.label}
-                          </SelectRadioItem>
+                          <Tooltip content={item.disabledReason}>
+                            <SelectRadioItem
+                              addonBefore={item.addon}
+                              aria-label={item["aria-label"]}
+                              description={item.description}
+                              item={item}
+                              key={item.value}
+                            >
+                              {item.label}
+                            </SelectRadioItem>
+                          </Tooltip>
                         </>
                       );
                     })}
