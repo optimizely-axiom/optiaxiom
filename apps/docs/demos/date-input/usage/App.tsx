@@ -2,8 +2,7 @@
 
 import type { ComponentPropsWithoutRef } from "react";
 
-import { Field } from "@optiaxiom/react";
-import { DateInput } from "@optiaxiom/react/unstable";
+import { DateInput, Field } from "@optiaxiom/react";
 
 export function App({
   description,

@@ -1,11 +1,15 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Box, Button, Field, Flex, Text } from "@optiaxiom/react";
 import {
+  Box,
+  Button,
   DateRangePicker,
   DateRangePickerContent,
   DateRangePickerTrigger,
-} from "@optiaxiom/react/unstable";
+  Field,
+  Flex,
+  Text,
+} from "@optiaxiom/react";
 import { expect, screen, userEvent, waitFor } from "@storybook/test";
 import { useState } from "react";
 

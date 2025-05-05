@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Button, Field, Flex, Text } from "@optiaxiom/react";
-import { DateInput } from "@optiaxiom/react/unstable";
+import { Button, DateInput, Field, Flex, Text } from "@optiaxiom/react";
 import { expect, screen, userEvent, waitFor } from "@storybook/test";
 import { useState } from "react";
 

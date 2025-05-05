@@ -1,7 +1,6 @@
 "use client";
 
-import { Field } from "@optiaxiom/react";
-import { DateInput } from "@optiaxiom/react/unstable";
+import { DateInput, Field } from "@optiaxiom/react";
 
 export function App() {
   return (

@@ -2,7 +2,7 @@
 
 import type { ComponentPropsWithoutRef } from "react";
 
-import { DateInput } from "@optiaxiom/react/unstable";
+import { DateInput } from "@optiaxiom/react";
 
 export function App({
   type = "datetime-local",

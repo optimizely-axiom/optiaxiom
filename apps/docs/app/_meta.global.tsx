@@ -83,12 +83,8 @@ export default {
         display: "hidden",
       },
       "data-table": "DataTable",
-      "date-input": {
-        title: <AlphaItem>DateInput</AlphaItem>,
-      },
-      "date-range-picker": {
-        title: <AlphaItem>DateRangePicker</AlphaItem>,
-      },
+      "date-input": "DateInput",
+      "date-range-picker": "DateRangePicker",
       dialog: "Dialog",
       disclosure: "Disclosure",
       "dropdown-menu": "DropdownMenu",
