@@ -63,6 +63,10 @@ export type CommandOption = {
    */
   subOptions?: CommandOption[];
   /**
+   * Allow filtering through sub-options independent of the parent menu.
+   */
+  subOptionsInputVisible?: boolean;
+  /**
    * Override the default filtering logic and fully control when an item is
    * visible based on the current inputValue.
    */

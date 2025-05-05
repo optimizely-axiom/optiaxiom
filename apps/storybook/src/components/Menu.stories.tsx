@@ -475,3 +475,61 @@ export const Nested: Story = {
     );
   },
 };
+
+export const NestedAndSearchable: Story = {
+  args: {
+    children: (
+      <>
+        <MenuTrigger />
+        <MenuContent />
+      </>
+    ),
+    initialInputVisible: true,
+    options: [
+      { label: "Create Task" },
+      { label: "Hidden item", visible: false },
+      {
+        label: "Add to",
+        subOptions: [
+          { label: "Favorite" },
+          { label: "Collection" },
+          { label: "Campaign" },
+        ],
+        subOptionsInputVisible: true,
+      },
+      {
+        label: "Download as",
+        subOptions: [
+          {
+            label: "PNG",
+            subOptions: [{ label: "Original" }, { label: "Custom" }],
+          },
+          { label: "JPG" },
+          { label: "PDF" },
+        ],
+      },
+    ],
+  },
+  play: async () => {
+    await waitFor(
+      async () =>
+        await expect(
+          screen.getByRole("option", { name: "Add to" }),
+        ).not.toHaveStyle("pointer-events: none"),
+    );
+    await userEvent.hover(screen.getByRole("option", { name: "Add to" }));
+    await waitFor(
+      async () =>
+        await expect(
+          screen.getByRole("option", { name: "Favorite" }),
+        ).toBeVisible(),
+    );
+    await userEvent.keyboard("c");
+    await waitFor(
+      async () =>
+        await expect(
+          screen.queryByRole("option", { name: "Favorite" }),
+        ).not.toBeInTheDocument(),
+    );
+  },
+};
