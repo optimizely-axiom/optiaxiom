@@ -65,12 +65,14 @@ export function Command({
   const [highlightedIndex, setHighlightedIndex, placed] = usePortalPatch(
     open,
     () =>
-      items.findIndex(
-        (item) =>
-          !resolveItemProperty(item.disabledReason) &&
-          resolveItemProperty(item.selected) &&
-          !item.multi,
-      ),
+      items.filter((item) => "selected" in item).length > items.length / 2
+        ? items.findIndex(
+            (item) =>
+              !resolveItemProperty(item.disabledReason) &&
+              resolveItemProperty(item.selected) &&
+              !item.multi,
+          )
+        : -1,
   );
 
   const pauseInteractionRef = useRef({
