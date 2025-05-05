@@ -1,5 +1,21 @@
 # @optiaxiom/web-components
 
+## 0.10.0
+
+### Minor Changes
+
+- 9b3d39b: move Select to stable
+- 5b87c01: move DateInput and DateRangePicker to stable
+
+### Patch Changes
+
+- c2a4488: export Cover component
+- b00fa51: gracefully handle rendering inside shadow DOM
+- 9d6f0bf: move Table and DataTable out of alpha
+- 913b147: fix initial highlight index
+- 55ed612: fix downshift web-components exports
+- d142cc5: improve detection of addon click in input
+
 ## 0.9.7
 
 ### Patch Changes

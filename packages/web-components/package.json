@@ -7,7 +7,7 @@
     "url": "https://github.com/optimizely-axiom/optiaxiom.git"
   },
   "type": "module",
-  "version": "0.9.7",
+  "version": "0.10.0",
   "license": "Apache-2.0",
   "exports": {
     ".": "./dist/index.js",
