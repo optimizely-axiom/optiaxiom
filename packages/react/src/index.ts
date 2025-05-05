@@ -11,6 +11,8 @@ export * from "./checkbox";
 export * from "./code";
 export * from "./cover";
 export * from "./data-table";
+export * from "./date-input";
+export * from "./date-range-picker";
 export * from "./dialog";
 export * from "./disclosure";
 export * from "./dropdown-menu";

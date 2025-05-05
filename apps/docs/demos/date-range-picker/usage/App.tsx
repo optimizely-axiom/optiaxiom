@@ -4,7 +4,7 @@ import {
   DateRangePicker,
   DateRangePickerContent,
   DateRangePickerTrigger,
-} from "@optiaxiom/react/unstable";
+} from "@optiaxiom/react";
 
 export function App() {
   return (
