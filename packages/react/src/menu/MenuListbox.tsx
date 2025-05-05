@@ -1,7 +1,7 @@
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import { CommandListbox } from "../command";
-import { type CommandOption, type Group } from "../command/internals";
+import { type CommandOption } from "../command/internals";
 import { ListboxLabel, ListboxSeparator } from "../listbox";
 import { MenuCheckboxItem } from "./MenuCheckboxItem";
 import { useMenuContext } from "./MenuContext";
@@ -16,8 +16,8 @@ export const MenuListbox = forwardRef<HTMLDivElement, MenuListboxProps>(
     const { size } = useMenuContext("@optiaxiom/react/MenuListbox");
 
     let isFirstItem = true;
-    let lastGroup: Group | undefined = undefined;
-    const shouldShowSeparator = (group: Group | undefined) => {
+    let lastGroup: CommandOption["group"] = undefined;
+    const shouldShowSeparator = (group: CommandOption["group"]) => {
       const show = !isFirstItem;
       isFirstItem = false;
       return (
@@ -26,7 +26,9 @@ export const MenuListbox = forwardRef<HTMLDivElement, MenuListboxProps>(
         (group?.separator || lastGroup?.separator)
       );
     };
-    const shouldShowGroup = (group: Group | undefined): group is Group => {
+    const shouldShowGroup = (
+      group: CommandOption["group"],
+    ): group is NonNullable<CommandOption["group"]> => {
       const show = group !== lastGroup;
       lastGroup = group;
       return show && !!group && !group?.hidden;

@@ -5,21 +5,6 @@ import type { FocusEventHandler, ReactNode } from "react";
 
 import { createContext } from "@radix-ui/react-context";
 
-export type Group = {
-  /**
-   * Whether the group label should be hidden or not.
-   */
-  hidden?: boolean;
-  /**
-   * The label group.
-   */
-  label: string;
-  /**
-   * Whether to display a separator before this group.
-   */
-  separator?: boolean;
-};
-
 export type SelectOption = {
   /**
    * Addons such as avatars or icons to show beside each item label.
@@ -40,7 +25,7 @@ export type SelectOption = {
   /**
    * Provide an optional group that item belongs to.
    */
-  group?: Group;
+  group?: SelectOptionGroup;
   /**
    * String representation of items.
    */
@@ -49,6 +34,21 @@ export type SelectOption = {
    * Return a unique key for each item.
    */
   value: string;
+};
+
+type SelectOptionGroup = {
+  /**
+   * Whether the group label should be hidden or not.
+   */
+  hidden?: boolean;
+  /**
+   * The label group.
+   */
+  label: string;
+  /**
+   * Whether to display a separator before this group.
+   */
+  separator?: boolean;
 };
 
 export const [SelectProvider, useSelectContext] = createContext<{

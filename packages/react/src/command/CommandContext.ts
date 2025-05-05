@@ -29,7 +29,7 @@ export type CommandOption = {
   /**
    * Group item belongs to.
    */
-  group?: Group;
+  group?: CommandOptionGroup;
   /**
    * Return a unique key for each item (otherwise label is used).
    */
@@ -71,7 +71,7 @@ export type CommandOption = {
     | boolean;
 };
 
-export type Group = {
+type CommandOptionGroup = {
   hidden?: boolean;
   name: string;
   separator?: boolean;
