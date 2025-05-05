@@ -117,6 +117,12 @@ export const demos = {
   "date-input/time-usage": import("@/demos/date-input/time-usage/App"),
   "date-input/usage": import("@/demos/date-input/usage/App"),
   "date-input/weekend-usage": import("@/demos/date-input/weekend-usage/App"),
+  "date-range-picker/addon-usage": import(
+    "@/demos/date-range-picker/addon-usage/App"
+  ),
+  "date-range-picker/controlled-usage": import(
+    "@/demos/date-range-picker/controlled-usage/App"
+  ),
   "date-range-picker/usage": import("@/demos/date-range-picker/usage/App"),
   "dialog/alert-dialog-usage": import("@/demos/dialog/alert-dialog-usage/App"),
   "dialog/controlled-usage": import("@/demos/dialog/controlled-usage/App"),

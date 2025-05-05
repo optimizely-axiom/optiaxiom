@@ -9,7 +9,7 @@ import {
 export function App() {
   return (
     <DateRangePicker>
-      <DateRangePickerTrigger w="384" />
+      <DateRangePickerTrigger w="224" />
       <DateRangePickerContent />
     </DateRangePicker>
   );

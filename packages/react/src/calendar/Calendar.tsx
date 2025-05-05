@@ -8,7 +8,7 @@ import {
   useRef,
   useState,
 } from "react";
-import { type DateRange, DayPicker, type Matcher } from "react-day-picker";
+import { DayPicker, type Matcher } from "react-day-picker";
 
 import { type BoxProps } from "../box";
 import { Clock } from "../clock";
@@ -89,6 +89,8 @@ type CalendarProps = BoxProps<
         }
     )
 >;
+
+type DateRange = { from: Date; to: Date };
 
 const components = {
   Chevron: CalendarChevron,
@@ -263,18 +265,20 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
                 setFrom(newFrom);
               } else {
                 setFrom(undefined);
-                setValue(
+                const start = to && to < from ? to : from;
+                const end =
                   to && to < from
+                    ? toInstant(toPlainDate(from) + "T23:59:59.999")
+                    : to
+                      ? toInstant(toPlainDate(to) + "T23:59:59.999")
+                      : undefined;
+                setValue(
+                  end
                     ? {
-                        from: to,
-                        to: toInstant(toPlainDate(from) + "T23:59:59.999"),
+                        from: start,
+                        to: end,
                       }
-                    : {
-                        from,
-                        to: to
-                          ? toInstant(toPlainDate(to) + "T23:59:59.999")
-                          : undefined,
-                      },
+                    : null,
                 );
               }
             }}

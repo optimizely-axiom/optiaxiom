@@ -13,6 +13,35 @@ Calendar popover that lets user pick date ranges.
 
 <Demo component="date-range-picker/usage" />
 
+### Anatomy
+
+```tsx
+import {
+  DateRangePicker,
+  DateRangePickerContent,
+  DateRangePickerTrigger,
+} from "@optiaxiom/react";
+
+export default () => (
+  <DateRangePicker>
+    <DateRangePickerTrigger />
+    <DateRangePickerContent />
+  </DateRangePicker>
+);
+```
+
+### Controlled
+
+Use the `value` and `defaultValue` props to toggle between controlled and uncontrolled usage. And combine it with `onValueChange` to listen for changes to the state.
+
+<Demo component="date-range-picker/controlled-usage" />
+
+### Addons
+
+Use the `addonBefore` and `addonAfter` prop on `DateRangePickerContent` to add content to either side of the calendar.
+
+<Demo component="date-range-picker/addon-usage" />
+
 ## Props
 
 ### DateRangePicker
