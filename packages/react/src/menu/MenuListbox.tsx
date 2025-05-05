@@ -1,8 +1,9 @@
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import { CommandListbox } from "../command";
-import { type CommandOption } from "../command/internals";
+import { type CommandOption, resolveItemProperty } from "../command/internals";
 import { ListboxLabel, ListboxSeparator } from "../listbox";
+import { Tooltip } from "../tooltip";
 import { MenuCheckboxItem } from "./MenuCheckboxItem";
 import { useMenuContext } from "./MenuContext";
 import { MenuItem } from "./MenuItem";
@@ -59,7 +60,13 @@ export const MenuListbox = forwardRef<HTMLDivElement, MenuListboxProps>(
                 {shouldShowGroup(group) && (
                   <ListboxLabel>{group.name}</ListboxLabel>
                 )}
-                <Comp item={item} />
+                {Comp === MenuSub ? (
+                  <Comp item={item} />
+                ) : (
+                  <Tooltip content={resolveItemProperty(item.disabledReason)}>
+                    <Comp item={item} />
+                  </Tooltip>
+                )}
               </>
             );
           })}

@@ -1,7 +1,12 @@
 import { useRef } from "react";
 
-import { type CommandOption, useCommandContext } from "../command/internals";
+import {
+  type CommandOption,
+  resolveItemProperty,
+  useCommandContext,
+} from "../command/internals";
 import { Popover } from "../popover";
+import { Tooltip } from "../tooltip";
 import { MenuSubContent } from "./MenuSubContent";
 import { useMenuSubContext } from "./MenuSubContext";
 import { MenuSubTrigger } from "./MenuSubTrigger";
@@ -18,7 +23,9 @@ export function MenuSub({ item }: MenuSubProps) {
 
   return (
     <Popover open={open && highlightedItem === item}>
-      <MenuSubTrigger contentRef={contentRef} item={item} />
+      <Tooltip content={resolveItemProperty(item.disabledReason)}>
+        <MenuSubTrigger contentRef={contentRef} item={item} />
+      </Tooltip>
       <MenuSubContent item={item} ref={contentRef} />
     </Popover>
   );
