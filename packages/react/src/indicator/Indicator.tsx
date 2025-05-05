@@ -5,7 +5,7 @@ import { Box, type BoxProps } from "../box";
 import { Flex } from "../flex";
 import * as styles from "./Indicator.css";
 
-type IndicatorProps = BoxProps<
+export type IndicatorProps = BoxProps<
   typeof Badge,
   {
     /**

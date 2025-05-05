@@ -3,7 +3,7 @@ import { forwardRef } from "react";
 
 import { Button, type ButtonProps } from "../button";
 
-type DialogTriggerProps = ButtonProps<typeof RadixDialog.Trigger>;
+export type DialogTriggerProps = ButtonProps<typeof RadixDialog.Trigger>;
 
 export const DialogTrigger = forwardRef<HTMLButtonElement, DialogTriggerProps>(
   ({ asChild, children, ...props }, ref) => {

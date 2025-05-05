@@ -4,7 +4,7 @@ import { forwardRef } from "react";
 import { ListboxItem, type ListboxItemProps } from "../listbox";
 import { useDropdownMenuContext } from "./DropdownMenuContext";
 
-type DropdownMenuItemProps = ListboxItemProps<typeof RadixMenu.Item>;
+export type DropdownMenuItemProps = ListboxItemProps<typeof RadixMenu.Item>;
 
 export const DropdownMenuItem = forwardRef<
   HTMLDivElement,

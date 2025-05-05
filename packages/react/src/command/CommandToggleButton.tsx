@@ -3,7 +3,7 @@ import { forwardRef } from "react";
 import { Box, type BoxProps, extractBoxProps } from "../box";
 import { useCommandContext } from "./CommandContext";
 
-type CommandToggleButtonProps = BoxProps<"button">;
+export type CommandToggleButtonProps = BoxProps<"button">;
 
 export const CommandToggleButton = forwardRef<
   HTMLButtonElement,

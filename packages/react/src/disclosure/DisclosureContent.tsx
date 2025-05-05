@@ -13,7 +13,7 @@ import { Transition, TransitionGroup } from "../transition";
 import * as styles from "./DisclosureContent.css";
 import { useDisclosureContext } from "./DisclosureContext";
 
-type DisclosureContentProps = ExcludeProps<
+export type DisclosureContentProps = ExcludeProps<
   BoxProps<
     typeof RadixCollapsible.Content,
     {

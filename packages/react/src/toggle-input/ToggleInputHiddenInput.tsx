@@ -7,7 +7,7 @@ import { VisuallyHidden } from "../visually-hidden";
 import { useToggleInputContext } from "./ToggleInputContext";
 import * as styles from "./ToggleInputHiddenInput.css";
 
-type ToggleInputHiddenInputProps = ExtendProps<
+export type ToggleInputHiddenInputProps = ExtendProps<
   ComponentPropsWithoutRef<"input">,
   {
     onCheckedChange?: (checked: boolean) => void;

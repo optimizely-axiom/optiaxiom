@@ -17,7 +17,7 @@ import { type SelectOption, SelectProvider } from "./SelectContext";
 import { SelectHiddenSelect } from "./SelectHiddenSelect";
 import { useObserveReset } from "./useObserveReset";
 
-type SelectProps = {
+export type SelectProps = {
   children?: ReactNode;
   /**
    * The initial open state in uncontrolled mode.

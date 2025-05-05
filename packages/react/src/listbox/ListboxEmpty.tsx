@@ -2,7 +2,7 @@ import { forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
 
-type ListboxEmptyProps = BoxProps;
+export type ListboxEmptyProps = BoxProps;
 
 export const ListboxEmpty = forwardRef<HTMLDivElement, ListboxEmptyProps>(
   ({ children = "No results found.", ...props }, ref) => {

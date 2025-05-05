@@ -3,7 +3,7 @@ import { forwardRef } from "react";
 
 import { Button, type ButtonProps } from "../button";
 
-type DialogCloseProps = ButtonProps<typeof RadixDialog.Close>;
+export type DialogCloseProps = ButtonProps<typeof RadixDialog.Close>;
 
 export const DialogClose = forwardRef<HTMLButtonElement, DialogCloseProps>(
   ({ appearance = "subtle", asChild, children, ...props }, ref) => {

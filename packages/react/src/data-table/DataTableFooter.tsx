@@ -9,7 +9,7 @@ import { Text } from "../text";
 import { useDataTableContext } from "./DataTableContext";
 import * as styles from "./DataTableFooter.css";
 
-type DataTableFooterProps = BoxProps<
+export type DataTableFooterProps = BoxProps<
   "div",
   {
     pageSizeOptions?: Array<{ label: string; value: string }>;

@@ -5,7 +5,7 @@ import { Flex } from "../flex";
 import { SidebarProvider } from "../sidebar/internals";
 import * as styles from "./SubNav.css";
 
-type SubNavProps = BoxProps<"nav">;
+export type SubNavProps = BoxProps<"nav">;
 
 export const SubNav = forwardRef<HTMLDivElement, SubNavProps>(
   ({ children, ...props }, ref) => {

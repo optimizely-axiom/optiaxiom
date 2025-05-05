@@ -3,7 +3,7 @@ import { forwardRef } from "react";
 import { Box, type BoxProps } from "../box";
 import * as styles from "./TableBody.css";
 
-type TableBodyProps = BoxProps<"tbody">;
+export type TableBodyProps = BoxProps<"tbody">;
 
 export const TableBody = forwardRef<HTMLTableSectionElement, TableBodyProps>(
   ({ children, className, ...props }, ref) => (

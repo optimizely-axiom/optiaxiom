@@ -4,7 +4,7 @@ import * as TooltipPrimitive from "@radix-ui/react-tooltip";
 
 import type { ExtendProps } from "../utils";
 
-type TooltipProviderProps = ExtendProps<
+export type TooltipProviderProps = ExtendProps<
   ComponentPropsWithoutRef<typeof TooltipPrimitive.Provider>,
   {
     /**

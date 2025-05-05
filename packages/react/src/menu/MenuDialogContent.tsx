@@ -5,7 +5,9 @@ import type { MenuContent } from "./MenuContent";
 import { DialogContent, DialogHeader } from "../dialog";
 import { VisuallyHidden } from "../visually-hidden";
 
-type MenuDialogContentProps = ComponentPropsWithoutRef<typeof MenuContent>;
+export type MenuDialogContentProps = ComponentPropsWithoutRef<
+  typeof MenuContent
+>;
 
 export const MenuDialogContent = forwardRef<
   HTMLDivElement,

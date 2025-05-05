@@ -9,7 +9,7 @@ import { ToggleInputProvider } from "./ToggleInputContext";
 
 const Slot = createSlot("@optiaxiom/react/ToggleInput");
 
-type ToggleInputProps = BoxProps<
+export type ToggleInputProps = BoxProps<
   "label",
   {
     description?: boolean;

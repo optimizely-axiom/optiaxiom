@@ -4,11 +4,13 @@ import { forwardRef } from "react";
 import { IconAngleRight } from "../icons/IconAngleRight";
 import { ListboxItem, type ListboxItemProps } from "../listbox";
 
-type MenuSubTriggerProps = ListboxItemProps<typeof RadixMenu.SubTrigger>;
+export type DropdownMenuSubTriggerProps = ListboxItemProps<
+  typeof RadixMenu.SubTrigger
+>;
 
 export const DropdownMenuSubTrigger = forwardRef<
   HTMLDivElement,
-  MenuSubTriggerProps
+  DropdownMenuSubTriggerProps
 >(({ children, ...props }, ref) => {
   return (
     <ListboxItem addonAfter={<IconAngleRight />} asChild ref={ref} {...props}>

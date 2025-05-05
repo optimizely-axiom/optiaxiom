@@ -3,7 +3,7 @@ import { forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
 
-type PopoverAnchorProps = BoxProps<typeof RadixPopover.Anchor>;
+export type PopoverAnchorProps = BoxProps<typeof RadixPopover.Anchor>;
 
 export const PopoverAnchor = forwardRef<HTMLDivElement, PopoverAnchorProps>(
   ({ asChild, children, ...props }, ref) => {

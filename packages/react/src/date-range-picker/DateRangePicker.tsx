@@ -4,9 +4,7 @@ import { type ComponentPropsWithRef } from "react";
 import { Popover } from "../popover";
 import { DateRangePickerProvider } from "./DateRangePickerContext";
 
-type DateRange = { from: Date; to: Date };
-
-type DateRangePickerProps = ComponentPropsWithRef<typeof Popover> & {
+export type DateRangePickerProps = ComponentPropsWithRef<typeof Popover> & {
   /**
    * The initial selected value in uncontrolled mode.
    */
@@ -21,6 +19,8 @@ type DateRangePickerProps = ComponentPropsWithRef<typeof Popover> & {
    */
   value?: DateRange | null;
 };
+
+type DateRange = { from: Date; to: Date };
 
 export function DateRangePicker({
   children,

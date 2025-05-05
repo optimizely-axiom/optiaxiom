@@ -2,7 +2,7 @@ import { type ComponentPropsWithRef, forwardRef } from "react";
 
 import { Flex } from "../flex";
 
-type ListboxFooterProps = ComponentPropsWithRef<typeof Flex>;
+export type ListboxFooterProps = ComponentPropsWithRef<typeof Flex>;
 
 export const ListboxFooter = forwardRef<HTMLDivElement, ListboxFooterProps>(
   ({ children, ...props }, ref) => {

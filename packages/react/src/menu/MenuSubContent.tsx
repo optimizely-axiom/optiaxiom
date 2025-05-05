@@ -20,7 +20,7 @@ import { useMenuContext } from "./MenuContext";
 import { MenuListbox } from "./MenuListbox";
 import { MenuSubProvider, useMenuSubContext } from "./MenuSubContext";
 
-type MenuSubContentProps = ExcludeProps<
+export type MenuSubContentProps = ExcludeProps<
   BoxProps<
     typeof PopoverContent,
     Pick<ComponentPropsWithoutRef<typeof CommandItem>, "item">

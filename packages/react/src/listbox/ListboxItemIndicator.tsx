@@ -4,7 +4,7 @@ import { Box, type BoxProps } from "../box";
 import { IconCheck } from "../icons/IconCheck";
 import * as styles from "./ListboxItemIndicator.css";
 
-type ListboxItemIndicatorProps = BoxProps<
+export type ListboxItemIndicatorProps = BoxProps<
   typeof IconCheck,
   {
     active?: boolean;

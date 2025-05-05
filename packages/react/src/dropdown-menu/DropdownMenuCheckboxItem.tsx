@@ -3,7 +3,7 @@ import { forwardRef } from "react";
 
 import { type ListboxItemProps, ListboxSwitchItem } from "../listbox";
 
-type DropdownMenuCheckboxItemProps = ListboxItemProps<
+export type DropdownMenuCheckboxItemProps = ListboxItemProps<
   typeof RadixMenu.CheckboxItem
 >;
 

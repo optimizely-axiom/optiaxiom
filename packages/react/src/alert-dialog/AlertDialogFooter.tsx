@@ -4,7 +4,7 @@ import { ButtonProvider } from "../button/internals";
 import { Flex } from "../flex";
 import * as styles from "./AlertDialogFooter.css";
 
-type AlertDialogFooterProps = ComponentPropsWithRef<typeof Flex>;
+export type AlertDialogFooterProps = ComponentPropsWithRef<typeof Flex>;
 
 export const AlertDialogFooter = forwardRef<
   HTMLDivElement,

@@ -20,7 +20,7 @@ import { useSelectContext } from "./SelectContext";
 
 const Slot = createSlot("@optiaxiom/react/SelectTrigger");
 
-type SelectTriggerProps = ExcludeProps<
+export type SelectTriggerProps = ExcludeProps<
   ButtonProps<
     typeof PopperAnchor,
     {

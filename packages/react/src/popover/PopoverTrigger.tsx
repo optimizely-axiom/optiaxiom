@@ -3,7 +3,7 @@ import { forwardRef, useEffect, useState } from "react";
 
 import { Button, type ButtonProps } from "../button";
 
-type PopoverTriggerProps = ButtonProps<
+export type PopoverTriggerProps = ButtonProps<
   typeof RadixPopover.Trigger,
   {
     hasCustomAnchor?: boolean;

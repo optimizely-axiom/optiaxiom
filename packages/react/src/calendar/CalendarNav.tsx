@@ -5,7 +5,7 @@ import { Nav } from "react-day-picker";
 import { Box } from "../box";
 import * as styles from "./CalendarNav.css";
 
-type CalendarNavProps = ComponentPropsWithoutRef<typeof Nav>;
+export type CalendarNavProps = ComponentPropsWithoutRef<typeof Nav>;
 
 export function CalendarNav({ children, ...props }: CalendarNavProps) {
   return (

@@ -3,7 +3,7 @@ import { forwardRef } from "react";
 import { Box, type BoxProps } from "../box";
 import * as styles from "./TableHeaderCell.css";
 
-type TableHeaderCellProps = BoxProps<"th">;
+export type TableHeaderCellProps = BoxProps<"th">;
 
 export const TableHeaderCell = forwardRef<
   HTMLTableCellElement,

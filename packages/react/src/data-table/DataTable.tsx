@@ -6,7 +6,7 @@ import { type BoxProps } from "../box";
 import { Flex } from "../flex";
 import { DataTableProvider } from "./DataTableContext";
 
-type DataTableProps = BoxProps<
+export type DataTableProps = BoxProps<
   "div",
   {
     /**

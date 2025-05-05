@@ -7,7 +7,7 @@ import {
 } from "../nested-dialog-context";
 import { DialogProvider } from "./DialogContext";
 
-type DialogProps = {
+export type DialogProps = {
   children?: React.ReactNode;
   /**
    * The initial open state in uncontrolled mode.

@@ -3,7 +3,7 @@ import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import { FilteredSlot } from "../filtered-slot";
 
-type VisuallyHiddenProps = ComponentPropsWithoutRef<
+export type VisuallyHiddenProps = ComponentPropsWithoutRef<
   typeof RadixVisuallyHidden.Root
 > & {
   disabled?: boolean;

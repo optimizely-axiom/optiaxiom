@@ -8,7 +8,7 @@ import {
   ToggleInputLabel,
 } from "../toggle-input";
 
-type CheckboxContentProps = BoxProps<
+export type CheckboxContentProps = BoxProps<
   typeof ToggleInputHiddenInput,
   {
     /**

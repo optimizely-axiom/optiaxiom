@@ -6,7 +6,7 @@ import { IconMinus } from "../icons/IconMinus";
 import { ToggleInputControl } from "../toggle-input";
 import * as styles from "./CheckboxControl.css";
 
-type CheckboxControlProps = BoxProps<
+export type CheckboxControlProps = BoxProps<
   typeof ToggleInputControl,
   {
     /**

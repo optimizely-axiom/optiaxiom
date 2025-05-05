@@ -10,11 +10,11 @@ import { IconX } from "../icons/IconX";
 import { Input } from "../input";
 import * as styles from "./SearchInput.css";
 
-type SearchProps = ComponentPropsWithRef<typeof Input> & {
+export type SearchInputProps = ComponentPropsWithRef<typeof Input> & {
   onValueClear?: () => void;
 };
 
-export const SearchInput = forwardRef<HTMLInputElement, SearchProps>(
+export const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
   ({ addonBefore, className, onChange, onValueClear, ...props }, outerRef) => {
     const innerRef = useRef<HTMLInputElement>(null);
     const ref = useComposedRefs(innerRef, outerRef);

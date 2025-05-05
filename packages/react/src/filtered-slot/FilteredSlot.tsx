@@ -3,7 +3,7 @@ import { forwardRef } from "react";
 
 const Slot = createSlot("@optiaxiom/react/FilteredSlot");
 
-type FilteredSlotProps = SlotProps & {
+export type FilteredSlotProps = SlotProps & {
   exclude?: string;
 };
 

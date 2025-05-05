@@ -5,7 +5,7 @@ import type { ExcludeProps } from "../utils";
 
 import { Box, type BoxProps } from "../box";
 
-type TabsContentProps = ExcludeProps<
+export type TabsContentProps = ExcludeProps<
   BoxProps<typeof RadixTabs.TabsContent>,
   "forceMount"
 >;

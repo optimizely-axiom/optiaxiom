@@ -4,7 +4,7 @@ import type { BoxProps } from "../box";
 
 import { Separator } from "../separator";
 
-type ListboxSeparatorProps = BoxProps<typeof Separator>;
+export type ListboxSeparatorProps = BoxProps<typeof Separator>;
 
 export const ListboxSeparator = forwardRef<
   HTMLDivElement,

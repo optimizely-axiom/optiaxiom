@@ -2,7 +2,7 @@ import { forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
 
-type ToggleInputContentProps = BoxProps<"div">;
+export type ToggleInputContentProps = BoxProps<"div">;
 
 export const ToggleInputContent = forwardRef<
   HTMLDivElement,

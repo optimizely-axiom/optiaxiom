@@ -5,7 +5,7 @@ import type { BoxProps } from "../box";
 import { Flex } from "../flex";
 import * as styles from "./ButtonGroup.css";
 
-type ButtonGroupProps = BoxProps<
+export type ButtonGroupProps = BoxProps<
   "div",
   {
     /**

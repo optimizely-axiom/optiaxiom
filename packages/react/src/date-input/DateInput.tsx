@@ -23,7 +23,7 @@ import { type ExtendProps, toPlainDate, toPlainDateTime } from "../utils";
 import * as styles from "./DateInput.css";
 import { toInstant } from "./utils";
 
-type DateInputProps = ExtendProps<
+export type DateInputProps = ExtendProps<
   ComponentPropsWithoutRef<typeof Input>,
   Pick<ComponentPropsWithoutRef<typeof Calendar>, "holiday" | "weekend"> & {
     type?: "date" | "datetime-local";

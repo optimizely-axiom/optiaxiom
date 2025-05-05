@@ -10,7 +10,7 @@ import { PopoverContent } from "../popover";
 import * as styles from "./DateRangePickerContent.css";
 import { useDateRangePickerContext } from "./DateRangePickerContext";
 
-type DateRangePickerContentProps = ComponentPropsWithoutRef<
+export type DateRangePickerContentProps = ComponentPropsWithoutRef<
   typeof PopoverContent
 > &
   Pick<

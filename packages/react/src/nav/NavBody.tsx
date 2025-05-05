@@ -5,7 +5,7 @@ import { Flex } from "../flex";
 import { useSidebarContext } from "../sidebar/internals";
 import * as styles from "./NavBody.css";
 
-type NavBodyProps = BoxProps<"div">;
+export type NavBodyProps = BoxProps<"div">;
 
 export const NavBody = forwardRef<HTMLDivElement, NavBodyProps>(
   ({ children, className, ...props }, ref) => {

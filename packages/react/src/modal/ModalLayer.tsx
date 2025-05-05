@@ -17,7 +17,10 @@ import { ModalProvider, useModalContext } from "../modal/ModalContext";
 
 const Slot = createSlot("@optiaxiom/react/ModalLayer");
 
-type ModalLayerProps = Pick<ComponentPropsWithoutRef<typeof Box>, "asChild"> &
+export type ModalLayerProps = Pick<
+  ComponentPropsWithoutRef<typeof Box>,
+  "asChild"
+> &
   Pick<ComponentPropsWithoutRef<typeof DismissableLayer>, "onEscapeKeyDown"> & {
     children?: ReactNode;
   };

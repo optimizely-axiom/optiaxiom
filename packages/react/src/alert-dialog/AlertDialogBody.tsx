@@ -4,7 +4,9 @@ import { forwardRef } from "react";
 import { type BoxProps } from "../box";
 import { Flex } from "../flex";
 
-type AlertDialogBodyProps = BoxProps<typeof RadixAlertDialog.Description>;
+export type AlertDialogBodyProps = BoxProps<
+  typeof RadixAlertDialog.Description
+>;
 
 export const AlertDialogBody = forwardRef<HTMLDivElement, AlertDialogBodyProps>(
   ({ children, ...props }, ref) => (

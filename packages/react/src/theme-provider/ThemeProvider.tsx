@@ -5,7 +5,7 @@ import { type ReactNode, useEffect, useRef, useState } from "react";
 import { layers } from "../layers";
 import { PortalProvider } from "../portal/internals";
 
-type ThemeProviderProps = {
+export type ThemeProviderProps = {
   children?: ReactNode;
 };
 

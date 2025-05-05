@@ -12,7 +12,7 @@ import { TransitionGroup } from "../transition";
 import { type ExcludeProps, onReactSelectInputBlur } from "../utils";
 import { usePopoverContext } from "./PopoverContext";
 
-type PopoverContentProps = ExcludeProps<
+export type PopoverContentProps = ExcludeProps<
   BoxProps<
     typeof RadixPopover.Content,
     Pick<ComponentPropsWithoutRef<typeof ModalListbox>, "maxH" | "minW"> & {

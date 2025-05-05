@@ -3,7 +3,7 @@ import { forwardRef } from "react";
 import { Box, type BoxProps } from "../box";
 import { ButtonLoadable } from "./ButtonLoadable";
 
-type ButtonAddonProps = BoxProps<"div">;
+export type ButtonAddonProps = BoxProps<"div">;
 
 export const ButtonAddon = forwardRef<HTMLDivElement, ButtonAddonProps>(
   ({ children, ...props }, ref) => {

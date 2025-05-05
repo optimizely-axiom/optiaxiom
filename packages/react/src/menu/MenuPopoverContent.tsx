@@ -4,7 +4,9 @@ import type { MenuContent } from "./MenuContent";
 
 import { PopoverContent } from "../popover";
 
-type MenuPopoverContentProps = ComponentPropsWithoutRef<typeof MenuContent>;
+export type MenuPopoverContentProps = ComponentPropsWithoutRef<
+  typeof MenuContent
+>;
 
 export const MenuPopoverContent = forwardRef<
   HTMLDivElement,

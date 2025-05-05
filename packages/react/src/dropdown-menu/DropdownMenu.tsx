@@ -5,7 +5,7 @@ import { useState } from "react";
 import { DropdownMenuProvider } from "./DropdownMenuContext";
 import { DropdownMenuNestedProvider } from "./DropdownMenuNestedContext";
 
-type MenuProps = {
+export type DropdownMenuProps = {
   children?: React.ReactNode;
   /**
    * The initial open state in uncontrolled mode.
@@ -31,7 +31,7 @@ export function DropdownMenu({
   onOpenChange,
   open: openProp,
   ...props
-}: MenuProps) {
+}: DropdownMenuProps) {
   const [open, setOpen] = useControllableState({
     caller: "@optiaxiom/react/DropdownMenu",
     defaultProp: defaultOpen,

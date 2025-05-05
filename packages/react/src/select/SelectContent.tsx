@@ -21,7 +21,7 @@ import {
 } from "./SelectContext";
 import { SelectRadioItem } from "./SelectRadioItem";
 
-type SelectContentProps = ExcludeProps<
+export type SelectContentProps = ExcludeProps<
   BoxProps<
     typeof PopperContent,
     Pick<ComponentPropsWithoutRef<typeof ModalListbox>, "maxH" | "minW"> & {

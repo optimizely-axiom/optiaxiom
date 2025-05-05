@@ -15,7 +15,7 @@ import { Box, type BoxProps } from "../box";
 import { useTransitionGroupContext } from "../transition/internals";
 import { Listbox } from "./Listbox";
 
-type ListboxVirtualizedProps<T = unknown> = BoxProps<
+export type ListboxVirtualizedProps<T = unknown> = BoxProps<
   "div",
   {
     children: (item: T, index: number) => ReactNode;

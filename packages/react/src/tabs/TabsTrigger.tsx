@@ -5,7 +5,7 @@ import { Box, type BoxProps, extractBoxProps } from "../box";
 import { Flex } from "../flex";
 import * as styles from "./TabsTrigger.css";
 
-type TabsTriggerProps = BoxProps<
+export type TabsTriggerProps = BoxProps<
   typeof RadixTabs.Trigger,
   {
     /**

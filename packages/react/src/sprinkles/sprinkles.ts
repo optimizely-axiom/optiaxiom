@@ -12,8 +12,7 @@ export const sprinkles = createSprinkles(
 );
 export const mapResponsiveValue = createMapValueFn(styles.responsiveProps);
 
-export type Sprinkles = Omit<Parameters<typeof sprinkles>[0], LonghandProps>;
-type LonghandProps = keyof Pick<
+export type LonghandProps = keyof Pick<
   Parameters<typeof sprinkles>[0],
   | "backgroundColor"
   | "borderBottomWidth"
@@ -36,3 +35,4 @@ type LonghandProps = keyof Pick<
   | "width"
   | "zIndex"
 >;
+export type Sprinkles = Omit<Parameters<typeof sprinkles>[0], LonghandProps>;

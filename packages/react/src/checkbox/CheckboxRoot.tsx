@@ -3,7 +3,7 @@ import { forwardRef } from "react";
 import { type BoxProps, extractBoxProps } from "../box";
 import { ToggleInput, ToggleInputHiddenInput } from "../toggle-input";
 
-type CheckboxRootProps = BoxProps<
+export type CheckboxRootProps = BoxProps<
   typeof ToggleInputHiddenInput,
   {
     description?: boolean;

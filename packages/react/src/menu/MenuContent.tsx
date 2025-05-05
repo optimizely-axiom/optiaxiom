@@ -14,7 +14,7 @@ import { MenuListbox } from "./MenuListbox";
 import { MenuPopoverContent } from "./MenuPopoverContent";
 import { useMenuSubContext } from "./MenuSubContext";
 
-type MenuContentProps = ExcludeProps<
+export type MenuContentProps = ExcludeProps<
   ComponentPropsWithoutRef<typeof DialogContent> &
     ComponentPropsWithoutRef<typeof PopoverContent>,
   "minW" | "size" | "transitionType" | "withArrow"

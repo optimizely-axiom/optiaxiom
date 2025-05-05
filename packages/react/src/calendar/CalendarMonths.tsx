@@ -5,7 +5,7 @@ import { Months } from "react-day-picker";
 import { Flex } from "../flex";
 import * as styles from "./CalendarMonths.css";
 
-type CalendarMonthsProps = ComponentPropsWithoutRef<typeof Months>;
+export type CalendarMonthsProps = ComponentPropsWithoutRef<typeof Months>;
 
 export function CalendarMonths({ children, ...props }: CalendarMonthsProps) {
   return (

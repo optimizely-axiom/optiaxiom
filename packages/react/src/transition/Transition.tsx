@@ -8,7 +8,7 @@ import { useTransitionStatus } from "./useTransitionStatus";
 
 const Slot = createSlot("@optiaxiom/react/Transition");
 
-type TransitionProps = styles.TransitionVariants & {
+export type TransitionProps = styles.TransitionVariants & {
   children: ReactElement;
   "data-side"?: "bottom" | "left" | "right" | "top";
   skipAnimations?: boolean;

@@ -3,7 +3,7 @@ import { forwardRef } from "react";
 import { Box, type BoxProps } from "../box";
 import * as styles from "./ToggleInputControl.css";
 
-type ToggleInputControlProps = BoxProps<"div">;
+export type ToggleInputControlProps = BoxProps<"div">;
 
 export const ToggleInputControl = forwardRef<
   HTMLDivElement,

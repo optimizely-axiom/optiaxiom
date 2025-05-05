@@ -4,7 +4,7 @@ import { Week } from "react-day-picker";
 
 import { Box } from "../box";
 
-type CalendarWeekProps = ComponentPropsWithoutRef<typeof Week>;
+export type CalendarWeekProps = ComponentPropsWithoutRef<typeof Week>;
 
 export function CalendarWeek({ children, ...props }: CalendarWeekProps) {
   return (

@@ -3,7 +3,7 @@ import { forwardRef } from "react";
 import { Box, type BoxProps } from "../box";
 import { useNavGroupContext } from "./NavGroupContext";
 
-type NavListProps = BoxProps<"div">;
+export type NavListProps = BoxProps<"div">;
 
 export const NavList = forwardRef<HTMLUListElement, NavListProps>(
   ({ children, ...props }, ref) => {

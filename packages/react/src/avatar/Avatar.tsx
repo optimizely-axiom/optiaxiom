@@ -7,7 +7,7 @@ import { IconUsersSolid } from "../icons/IconUsersSolid";
 import * as styles from "./Avatar.css";
 import { useAvatarContext } from "./AvatarContext";
 
-type AvatarProps = BoxProps<
+export type AvatarProps = BoxProps<
   "span",
   styles.AvatarVariants & {
     /**

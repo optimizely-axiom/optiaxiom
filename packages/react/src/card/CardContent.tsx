@@ -3,7 +3,7 @@ import { forwardRef } from "react";
 import { type BoxProps } from "../box";
 import { Flex } from "../flex";
 
-type CardContentProps = BoxProps<"div">;
+export type CardContentProps = BoxProps<"div">;
 
 export const CardContent = forwardRef<HTMLDivElement, CardContentProps>(
   ({ children, ...props }, ref) => {

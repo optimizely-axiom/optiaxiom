@@ -4,7 +4,7 @@ import { type BoxProps } from "../box";
 import { Flex } from "../flex";
 import { useSidebarContext } from "../sidebar/internals";
 
-type NavFooterProps = BoxProps<"div">;
+export type NavFooterProps = BoxProps<"div">;
 
 export const NavFooter = forwardRef<HTMLDivElement, NavFooterProps>(
   ({ children, ...props }, ref) => {

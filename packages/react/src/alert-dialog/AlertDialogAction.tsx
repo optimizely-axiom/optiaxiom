@@ -3,7 +3,9 @@ import { forwardRef } from "react";
 
 import { Button, type ButtonProps } from "../button";
 
-type AlertDialogActionProps = ButtonProps<typeof RadixAlertDialog.Action>;
+export type AlertDialogActionProps = ButtonProps<
+  typeof RadixAlertDialog.Action
+>;
 
 export const AlertDialogAction = forwardRef<
   HTMLButtonElement,

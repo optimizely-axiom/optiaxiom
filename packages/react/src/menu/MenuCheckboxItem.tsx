@@ -4,7 +4,9 @@ import { CommandItem } from "../command";
 import { resolveItemProperty, useCommandContext } from "../command/internals";
 import { ListboxCheckboxItem } from "../listbox";
 
-type MenuCheckboxItemProps = ComponentPropsWithoutRef<typeof CommandItem> &
+export type MenuCheckboxItemProps = ComponentPropsWithoutRef<
+  typeof CommandItem
+> &
   ComponentPropsWithoutRef<typeof ListboxCheckboxItem>;
 
 export const MenuCheckboxItem = forwardRef<

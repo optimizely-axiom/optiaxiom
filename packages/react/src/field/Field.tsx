@@ -8,7 +8,7 @@ import { fallbackSpan } from "../utils";
 import { FieldProvider } from "./FieldContext";
 import { FieldLabel } from "./FieldLabel";
 
-type FieldProps = BoxProps<
+export type FieldProps = BoxProps<
   "div",
   {
     /**

@@ -4,7 +4,7 @@ import { DayButton } from "react-day-picker";
 import { Box } from "../box";
 import * as styles from "./CalendarDayButton.css";
 
-type CalendarDayButtonProps = ComponentPropsWithoutRef<typeof DayButton>;
+export type CalendarDayButtonProps = ComponentPropsWithoutRef<typeof DayButton>;
 
 export function CalendarDayButton({
   children,

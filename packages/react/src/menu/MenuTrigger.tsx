@@ -7,7 +7,7 @@ import { useFieldLabelTrigger } from "../hooks";
 import { PopoverTrigger } from "../popover";
 import { useMenuContext } from "./MenuContext";
 
-type MenuTriggerProps = ComponentPropsWithoutRef<typeof PopoverTrigger>;
+export type MenuTriggerProps = ComponentPropsWithoutRef<typeof PopoverTrigger>;
 
 export const MenuTrigger = forwardRef<HTMLButtonElement, MenuTriggerProps>(
   (

@@ -2,7 +2,7 @@ import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import { Link } from "../link";
 
-type CardLinkProps = ComponentPropsWithoutRef<typeof Link>;
+export type CardLinkProps = ComponentPropsWithoutRef<typeof Link>;
 
 export const CardLink = forwardRef<HTMLAnchorElement, CardLinkProps>(
   ({ ...props }, ref) => {

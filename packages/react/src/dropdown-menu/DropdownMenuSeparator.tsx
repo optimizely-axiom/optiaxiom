@@ -5,11 +5,11 @@ import type { BoxProps } from "../box";
 
 import { ListboxSeparator } from "../listbox";
 
-type MenuSeparatorProps = BoxProps<typeof RadixMenu.Separator>;
+export type DropdownMenuSeparatorProps = BoxProps<typeof RadixMenu.Separator>;
 
 export const DropdownMenuSeparator = forwardRef<
   HTMLDivElement,
-  MenuSeparatorProps
+  DropdownMenuSeparatorProps
 >((props, ref) => (
   <ListboxSeparator asChild {...props}>
     <RadixMenu.Separator ref={ref} />

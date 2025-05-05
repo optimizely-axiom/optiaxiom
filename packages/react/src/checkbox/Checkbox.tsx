@@ -6,7 +6,7 @@ import { CheckboxContent } from "./CheckboxContent";
 import { CheckboxControl } from "./CheckboxControl";
 import { CheckboxRoot } from "./CheckboxRoot";
 
-type CheckboxProps = BoxProps<
+export type CheckboxProps = BoxProps<
   typeof ToggleInputHiddenInput,
   Pick<ComponentPropsWithoutRef<typeof CheckboxContent>, "description"> &
     Pick<ComponentPropsWithoutRef<typeof CheckboxControl>, "indeterminate">

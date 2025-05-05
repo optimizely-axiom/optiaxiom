@@ -2,7 +2,7 @@ import { type ComponentPropsWithRef, forwardRef } from "react";
 
 import { Box } from "../box";
 
-type IconProps = ComponentPropsWithRef<typeof Box>;
+export type IconProps = ComponentPropsWithRef<typeof Box>;
 
 export const Icon = forwardRef<HTMLDivElement, IconProps>(
   ({ children, ...props }, ref) => {

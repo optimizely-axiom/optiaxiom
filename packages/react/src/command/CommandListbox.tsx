@@ -9,7 +9,7 @@ import {
   useCommandContext,
 } from "./CommandContext";
 
-type CommandListboxProps = ExcludeProps<
+export type CommandListboxProps = ExcludeProps<
   ComponentPropsWithoutRef<typeof ListboxItemized>,
   "highlightedItem" | "items" | "itemToKey" | "onPlacedChange"
 >;

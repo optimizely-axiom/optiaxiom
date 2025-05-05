@@ -6,8 +6,7 @@ import { Flex } from "../flex";
 import { mapResponsiveValue } from "../sprinkles";
 import { RadioGroupProvider } from "./RadioGroupContext";
 
-type InputProps = ComponentPropsWithoutRef<"input">;
-type RadioGroupProps = BoxProps<
+export type RadioGroupProps = BoxProps<
   "div",
   {
     defaultValue?: string;
@@ -19,6 +18,7 @@ type RadioGroupProps = BoxProps<
     value?: string;
   }
 >;
+type InputProps = ComponentPropsWithoutRef<"input">;
 
 const mapGapToOrientation = {
   column: "12",

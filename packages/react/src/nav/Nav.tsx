@@ -5,7 +5,7 @@ import { Flex } from "../flex";
 import { useSidebarContext } from "../sidebar/internals";
 import * as styles from "./Nav.css";
 
-type NavProps = BoxProps<
+export type NavProps = BoxProps<
   "nav",
   {
     defaultExpanded?: boolean;

@@ -5,7 +5,9 @@ import { Icon } from "../icon";
 import { Switch } from "../switch";
 import { ListboxItem } from "./ListboxItem";
 
-type ListboxSwitchItemProps = ComponentPropsWithoutRef<typeof ListboxItem>;
+export type ListboxSwitchItemProps = ComponentPropsWithoutRef<
+  typeof ListboxItem
+>;
 
 export const ListboxSwitchItem = forwardRef<
   HTMLDivElement,

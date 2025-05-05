@@ -4,7 +4,7 @@ import { Box, type BoxProps } from "../box";
 import { Flex } from "../flex";
 import * as styles from "./Spinner.css";
 
-type SpinnerProps = BoxProps<
+export type SpinnerProps = BoxProps<
   "div",
   {
     appearance?: "default" | "inverse";

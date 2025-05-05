@@ -6,7 +6,7 @@ import { Button } from "../button";
 import { FilteredSlot } from "../filtered-slot";
 import { useTooltipContext } from "./TooltipContext";
 
-type TooltipTriggerProps = ComponentPropsWithoutRef<
+export type TooltipTriggerProps = ComponentPropsWithoutRef<
   typeof RadixTooltip.Trigger
 >;
 

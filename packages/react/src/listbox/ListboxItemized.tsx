@@ -9,7 +9,7 @@ import { ListboxVirtualized } from "./ListboxVirtualized";
 
 const VIRTUALIZE_THRESHOLD = 50;
 
-type ListboxItemizedProps = BoxProps<
+export type ListboxItemizedProps = BoxProps<
   "div",
   {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

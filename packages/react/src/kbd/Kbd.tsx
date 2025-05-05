@@ -3,7 +3,7 @@ import { forwardRef } from "react";
 import { Box, type BoxProps } from "../box";
 import * as styles from "./Kbd.css";
 
-type KbdProps = BoxProps<
+export type KbdProps = BoxProps<
   "kbd",
   styles.KdbVariants & {
     keys?: Array<keyof typeof mapKeyToCode> | keyof typeof mapKeyToCode;

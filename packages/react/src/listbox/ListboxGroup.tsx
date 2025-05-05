@@ -4,7 +4,7 @@ import { type ComponentPropsWithoutRef, forwardRef } from "react";
 import { Box } from "../box";
 import { ListboxGroupProvider } from "./ListboxGroupContext";
 
-type ListboxGroupProps = ComponentPropsWithoutRef<typeof Box>;
+export type ListboxGroupProps = ComponentPropsWithoutRef<typeof Box>;
 
 export const ListboxGroup = forwardRef<HTMLDivElement, ListboxGroupProps>(
   ({ children, ...props }, ref) => {

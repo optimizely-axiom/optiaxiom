@@ -3,7 +3,7 @@ import { type ComponentPropsWithoutRef, forwardRef } from "react";
 import { CommandItem } from "../command";
 import { ListboxItem } from "../listbox";
 
-type MenuItemProps = ComponentPropsWithoutRef<typeof CommandItem> &
+export type MenuItemProps = ComponentPropsWithoutRef<typeof CommandItem> &
   ComponentPropsWithoutRef<typeof ListboxItem>;
 
 export const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>(

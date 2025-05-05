@@ -10,7 +10,7 @@ import { ThemeProvider } from "../theme-provider";
 import { ToastProvider } from "../toast";
 import { TooltipProvider } from "../tooltip";
 
-type AxiomProviderProps = {
+export type AxiomProviderProps = {
   children?: ReactNode;
   /**
    * Props for the `ToastProvider` component

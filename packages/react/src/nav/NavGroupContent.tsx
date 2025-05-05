@@ -4,7 +4,7 @@ import type { BoxProps } from "../box";
 
 import { DisclosureContent } from "../disclosure";
 
-type NavGroupContentProps = BoxProps<"div">;
+export type NavGroupContentProps = BoxProps<"div">;
 
 export const NavGroupContent = forwardRef<
   HTMLUListElement,

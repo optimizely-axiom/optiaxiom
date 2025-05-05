@@ -5,7 +5,7 @@ import { forwardRef } from "react";
 import { Box, type BoxProps } from "../box";
 import { DisclosureProvider } from "./DisclosureContext";
 
-type DisclosureProps = BoxProps<
+export type DisclosureProps = BoxProps<
   typeof RadixCollapsible.Root,
   {
     /**

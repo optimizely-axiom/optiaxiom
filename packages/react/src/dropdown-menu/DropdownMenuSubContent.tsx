@@ -9,7 +9,7 @@ import { Portal } from "../portal";
 import { TransitionGroup } from "../transition";
 import { useDropdownMenuSubContext } from "./DropdownMenuSubContext";
 
-type MenuSubContentProps = ExcludeProps<
+export type DropdownMenuSubContentProps = ExcludeProps<
   BoxProps<
     typeof RadixMenu.SubContent,
     Pick<ComponentPropsWithoutRef<typeof ModalListbox>, "maxH" | "minW">
@@ -29,7 +29,7 @@ type MenuSubContentProps = ExcludeProps<
 
 export const DropdownMenuSubContent = forwardRef<
   HTMLDivElement,
-  MenuSubContentProps
+  DropdownMenuSubContentProps
 >(({ asChild, children, ...props }, ref) => {
   const { open, setPresence } = useDropdownMenuSubContext(
     "@optiaxiom/react/DropdownMenuSubContent",

@@ -2,7 +2,9 @@ import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import { ListboxSeparator } from "../listbox";
 
-type SelectSeparatorProps = ComponentPropsWithoutRef<typeof ListboxSeparator>;
+export type SelectSeparatorProps = ComponentPropsWithoutRef<
+  typeof ListboxSeparator
+>;
 
 export const SelectSeparator = forwardRef<HTMLDivElement, SelectSeparatorProps>(
   (props, ref) => {

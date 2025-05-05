@@ -2,7 +2,7 @@ import { forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
 
-type TableHeaderProps = BoxProps<"thead">;
+export type TableHeaderProps = BoxProps<"thead">;
 
 export const TableHeader = forwardRef<
   HTMLTableSectionElement,

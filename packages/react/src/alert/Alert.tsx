@@ -12,7 +12,7 @@ import { IconTriangleExclamationSolid } from "../icons/IconTriangleExclamationSo
 import { IconX } from "../icons/IconX";
 import * as styles from "./Alert.css";
 
-type AlertProps = BoxProps<
+export type AlertProps = BoxProps<
   "div",
   styles.AlertVariants & {
     /**

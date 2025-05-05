@@ -4,7 +4,7 @@ import { type ComponentPropsWithoutRef, forwardRef } from "react";
 import { Disclosure } from "../disclosure";
 import { NavGroupProvider } from "./NavGroupContext";
 
-type NavGroupProps = ComponentPropsWithoutRef<typeof Disclosure>;
+export type NavGroupProps = ComponentPropsWithoutRef<typeof Disclosure>;
 
 export const NavGroup = forwardRef<HTMLLIElement, NavGroupProps>(
   ({ children, ...props }, ref) => {

@@ -4,7 +4,7 @@ import { Box } from "../box";
 import { Flex } from "../flex";
 import * as styles from "./DialogBody.css";
 
-type DialogBodyProps = ComponentPropsWithRef<typeof Box>;
+export type DialogBodyProps = ComponentPropsWithRef<typeof Box>;
 
 export const DialogBody = forwardRef<HTMLDivElement, DialogBodyProps>(
   ({ children, className, ...props }, ref) => {

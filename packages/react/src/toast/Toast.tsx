@@ -16,7 +16,7 @@ import { IconTriangleExclamationSolid } from "../icons/IconTriangleExclamationSo
 import { IconX } from "../icons/IconX";
 import * as styles from "./Toast.css";
 
-type ToastProps = ExcludeProps<
+export type ToastProps = ExcludeProps<
   BoxProps<typeof RadixToast.Root, styles.RootVariants>,
   "forceMount" | "open"
 >;

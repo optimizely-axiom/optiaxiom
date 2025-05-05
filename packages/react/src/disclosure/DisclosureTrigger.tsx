@@ -9,7 +9,7 @@ import { IconAngleRight } from "../icons/IconAngleRight";
 import { useDisclosureContext } from "./DisclosureContext";
 import * as styles from "./DisclosureTrigger.css";
 
-type DisclosureTriggerProps = BoxProps<
+export type DisclosureTriggerProps = BoxProps<
   "div",
   {
     addonAfter?: ReactNode;

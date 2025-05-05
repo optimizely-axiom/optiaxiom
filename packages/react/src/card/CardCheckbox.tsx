@@ -12,7 +12,7 @@ import { CheckboxRoot } from "../checkbox/CheckboxRoot";
 import { VisuallyHidden } from "../visually-hidden";
 import { useCardContext } from "./CardContext";
 
-type CardCheckboxProps = ExcludeProps<
+export type CardCheckboxProps = ExcludeProps<
   ComponentPropsWithoutRef<typeof Checkbox>,
   "description"
 >;

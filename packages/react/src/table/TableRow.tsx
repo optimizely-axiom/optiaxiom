@@ -4,7 +4,7 @@ import { ActionsRoot } from "../actions";
 import { Box, type BoxProps } from "../box";
 import * as styles from "./TableRow.css";
 
-type TableRowProps = BoxProps<"tr">;
+export type TableRowProps = BoxProps<"tr">;
 
 export const TableRow = forwardRef<HTMLTableRowElement, TableRowProps>(
   ({ children, className, ...props }, ref) => (

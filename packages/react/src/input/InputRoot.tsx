@@ -5,7 +5,7 @@ import { Flex } from "../flex";
 import { InputProvider } from "./InputContext";
 import * as styles from "./InputRoot.css";
 
-type InputRootProps = BoxProps<
+export type InputRootProps = BoxProps<
   "div",
   Pick<ComponentPropsWithoutRef<typeof InputProvider>, "addonPointerEvents">
 >;
