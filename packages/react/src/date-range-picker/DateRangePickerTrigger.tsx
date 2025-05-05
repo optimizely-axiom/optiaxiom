@@ -1,5 +1,3 @@
-import type { DateRange } from "react-day-picker";
-
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import { type ComponentPropsWithoutRef, forwardRef, useRef } from "react";
 
@@ -9,27 +7,18 @@ import { IconCalendar } from "../icons/IconCalendar";
 import { PopoverTrigger } from "../popover";
 import { useDateRangePickerContext } from "./DateRangePickerContext";
 
+const dateFormatter = new Intl.DateTimeFormat(undefined, {
+  day: "numeric",
+  month: "short",
+  year: "numeric",
+});
+
 type DateRangePickerTriggerProps = ComponentPropsWithoutRef<
   typeof PopoverTrigger
 > & {
-  format?: (date: DateRange) => string;
+  formatRange?: Intl.DateTimeFormat["formatRange"];
   placeholder?: string;
 };
-
-const DEFAULT_FORMATTER = (date: DateRange) =>
-  date.from && date.to
-    ? date.from.toLocaleDateString(undefined, {
-        day: "numeric",
-        month: "short",
-        year: "numeric",
-      }) +
-      " - " +
-      date.to.toLocaleDateString(undefined, {
-        day: "numeric",
-        month: "short",
-        year: "numeric",
-      })
-    : null;
 
 export const DateRangePickerTrigger = forwardRef<
   HTMLButtonElement,
@@ -39,7 +28,7 @@ export const DateRangePickerTrigger = forwardRef<
     {
       "aria-labelledby": ariaLabelledBy,
       children,
-      format = DEFAULT_FORMATTER,
+      formatRange,
       placeholder = "Pick a date",
       ...props
     },
@@ -48,6 +37,7 @@ export const DateRangePickerTrigger = forwardRef<
     const { disabled, value } = useDateRangePickerContext(
       "@optiaxiom/react/DateRangePickerTrigger",
     );
+    const formatter = formatRange ? { formatRange } : dateFormatter;
 
     const buttonRef = useRef<HTMLButtonElement>(null);
     const ref = useComposedRefs(outerRef, buttonRef);
@@ -64,7 +54,7 @@ export const DateRangePickerTrigger = forwardRef<
       >
         {children ??
           (value ? (
-            format(value)
+            formatter.formatRange(value.from, value.to)
           ) : (
             <Box color="fg.tertiary">{placeholder}</Box>
           ))}

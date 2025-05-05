@@ -1,8 +1,8 @@
 "use client";
 
-import type { DateRange } from "react-day-picker";
-
 import { createContext } from "@radix-ui/react-context";
+
+type DateRange = { from: Date; to: Date };
 
 export const [DateRangePickerProvider, useDateRangePickerContext] =
   createContext<{

@@ -16,7 +16,7 @@ import { useState } from "react";
 export default {
   component: DateRangePicker,
   decorators: (Story) => (
-    <Box w="384">
+    <Box w="224">
       <Story />
     </Box>
   ),
@@ -52,17 +52,15 @@ export const WithLabel: Story = {
     await userEvent.click((await screen.findAllByText("14"))[1]);
     await expect(
       canvas.getByText(
-        new Date("2025-01-15 00:00:00").toLocaleDateString(undefined, {
+        new Intl.DateTimeFormat(undefined, {
           day: "numeric",
           month: "short",
           year: "numeric",
-        }) +
-          " - " +
-          new Date("2025-02-14 00:00:00").toLocaleDateString(undefined, {
-            day: "numeric",
-            month: "short",
-            year: "numeric",
-          }),
+        }).formatRange(
+          new Date("2025-01-15T00:00:00"),
+          new Date("2025-02-14T00:00:00"),
+        ),
+        { collapseWhitespace: false },
       ),
     ).toBeInTheDocument();
     await waitFor(() =>
@@ -107,10 +105,7 @@ export const Addons: Story = {
   },
   render: function Render(args) {
     const [open, setOpen] = useState(true);
-    const [value, setValue] = useState<null | {
-      from: Date | undefined;
-      to?: Date | undefined;
-    }>(null);
+    const [value, setValue] = useState<null | { from: Date; to: Date }>(null);
 
     return (
       <Flex>
