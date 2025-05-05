@@ -13,14 +13,7 @@ import type { Sprinkles } from "../sprinkles";
 
 import { type BoxProps } from "../box";
 import { Skeleton } from "../skeleton";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHeader,
-  TableHeaderCell,
-  TableRow,
-} from "../table";
+import { Table, TableBody, TableCell, TableHeader, TableRow } from "../table";
 import * as styles from "./DataTableBody.css";
 import { useDataTableContext } from "./DataTableContext";
 import { DataTableHeaderCell } from "./DataTableHeaderCell";
@@ -122,8 +115,6 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
                       )}
                 </DataTableHeaderCell>
               ))}
-
-              <TableHeaderCell flex="1" p="0" w="0" />
             </TableRow>
           ))}
         </TableHeader>
@@ -236,8 +227,6 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
                   )}
                 </TableCell>
               ))}
-
-              <TableCell flex="1" p="0" w="0" />
             </TableRow>
           ))}
         </TableBody>
