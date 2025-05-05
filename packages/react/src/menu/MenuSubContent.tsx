@@ -56,7 +56,7 @@ export const MenuSubContent = forwardRef<HTMLDivElement, MenuSubContentProps>(
     return (
       <PopoverContent
         align={align}
-        alignOffset={-4}
+        alignOffset={item.subOptionsInputVisible ? -46 : -4}
         maxH="sm"
         minW="trigger"
         onCloseAutoFocus={(event) => {
@@ -68,6 +68,12 @@ export const MenuSubContent = forwardRef<HTMLDivElement, MenuSubContentProps>(
           parentInputRef.current?.focus();
         }}
         onEscapeKeyDown={() => setRootMenuOpen(false)}
+        onPointerEnter={() => {
+          inputRef.current?.focus();
+        }}
+        onPointerLeave={() => {
+          parentInputRef.current?.focus();
+        }}
         p="4"
         ref={ref}
         side={side}
@@ -80,6 +86,10 @@ export const MenuSubContent = forwardRef<HTMLDivElement, MenuSubContentProps>(
               setSubMenuOpen(!!item.subOptions?.length);
             }}
             onInputValueChange={(inputValue) => {
+              if (item.subOptionsInputVisible) {
+                return;
+              }
+
               parentInputRef.current?.focus();
               setInputValue(inputValue);
             }}
@@ -93,10 +103,15 @@ export const MenuSubContent = forwardRef<HTMLDivElement, MenuSubContentProps>(
             open
             options={options}
           >
-            <VisuallyHidden>
+            <VisuallyHidden disabled={item.subOptionsInputVisible}>
               <CommandInput
+                m="4"
                 onKeyDown={(event) => {
-                  if (event.key === "ArrowLeft") {
+                  if (!(event.target instanceof HTMLInputElement)) {
+                    return;
+                  }
+
+                  if (!event.target.value && event.key === "ArrowLeft") {
                     event.preventDefault();
                     setOpen(false);
                   }
