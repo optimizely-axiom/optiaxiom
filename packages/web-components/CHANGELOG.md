@@ -1,5 +1,13 @@
 # @optiaxiom/web-components
 
+## 0.10.1
+
+### Patch Changes
+
+- 1df8b2b: make portal context optional
+- 4e64ba7: calculate correct flex ratio of columns
+- 1bb3b18: use skeleton loader in menu and select
+
 ## 0.10.0
 
 ### Minor Changes
