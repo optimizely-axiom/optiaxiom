@@ -1,10 +1,11 @@
 import { forwardRef, Fragment, type ReactNode, useEffect } from "react";
 
-import { Box, type BoxProps } from "../box";
+import { type BoxProps } from "../box";
 import { useEffectEvent } from "../hooks";
-import { Spinner } from "../spinner";
+import { Skeleton } from "../skeleton";
 import { Listbox } from "./Listbox";
 import { ListboxEmpty } from "./ListboxEmpty";
+import { ListboxItem } from "./ListboxItem";
 import { ListboxVirtualized } from "./ListboxVirtualized";
 
 const VIRTUALIZE_THRESHOLD = 50;
@@ -69,9 +70,16 @@ export const ListboxItemized = forwardRef<HTMLDivElement, ListboxItemizedProps>(
         {...props}
       >
         {loading ? (
-          <Box display="flex" justifyContent="center" p="16">
-            <Spinner />
-          </Box>
+          <>
+            {[1, 2, 3].map((item) => (
+              <ListboxItem
+                addonBefore={<Skeleton circle size="xs" />}
+                key={item}
+              >
+                <Skeleton />
+              </ListboxItem>
+            ))}
+          </>
         ) : typeof children === "function" ? (
           items.length > VIRTUALIZE_THRESHOLD ? (
             <ListboxVirtualized highlightedItem={highlightedItem} items={items}>
