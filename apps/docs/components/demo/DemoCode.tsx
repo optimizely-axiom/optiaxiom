@@ -11,7 +11,7 @@ export function DemoCode({ children }: { children: ReactNode }) {
 
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    if (ref.current && ref.current.offsetHeight > 400) {
+    if (ref.current && ref.current.scrollHeight > 300) {
       setCollapsed(true);
     }
   }, []);
@@ -33,7 +33,7 @@ export function DemoCode({ children }: { children: ReactNode }) {
       className={[
         styles.editor,
         collapsed !== null && styles.expandable,
-        collapsed && styles.collapsed,
+        collapsed === false && styles.expanded,
       ]
         .filter(Boolean)
         .join(" ")}
