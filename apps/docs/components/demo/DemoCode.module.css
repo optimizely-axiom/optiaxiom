@@ -1,30 +1,13 @@
-.expandable {
-  display: flex;
-  flex-direction: column;
-  max-height: 700px;
-  overflow: hidden;
-}
-
-.expandable {
-  --overflow: auto;
-}
-
-.expandable pre {
-  padding-bottom: 56px;
-}
-
-.collapsed {
-  height: 300px;
-}
-
-.collapsed {
-  --overflow: hidden;
-}
-
 .editor {
+  --overflow: hidden;
+
   background-color: var(--docs-code-bg);
   border-bottom-left-radius: inherit;
   border-bottom-right-radius: inherit;
+  display: flex;
+  flex-direction: column;
+  max-height: 300px;
+  overflow: hidden;
   position: relative;
 }
 
@@ -64,4 +47,14 @@
   & > div {
     margin-top: 0;
   }
+}
+
+.expandable pre {
+  padding-bottom: 56px;
+}
+
+.expanded {
+  --overflow: auto;
+
+  max-height: 700px;
 }
