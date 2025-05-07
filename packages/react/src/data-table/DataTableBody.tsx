@@ -71,6 +71,7 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
         style={assignInlineVars({
           [styles.leftTotalSizeVar]: `${table.getLeftTotalSize()}px`,
           [styles.rightTotalSizeVar]: `${table.getRightTotalSize()}px`,
+          [styles.totalSizeVar]: `${table.getTotalSize()}`,
         })}
         {...styles.table(
           {
@@ -97,7 +98,7 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
                   style={{
                     ...assignInlineVars({
                       [styles.cellOffsetVar]: `${header.column.getStart(header.column.getIsPinned() || "left")}px`,
-                      [styles.cellSizeVar]: `${header.getSize()}px`,
+                      [styles.cellSizeVar]: `${header.getSize()}`,
                     }),
                   }}
                   {...styles.cell({
@@ -161,7 +162,7 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
                   style={{
                     ...assignInlineVars({
                       [styles.cellOffsetVar]: `${cell.column.getStart("left")}px`,
-                      [styles.cellSizeVar]: `${cell.column.getSize()}px`,
+                      [styles.cellSizeVar]: `${cell.column.getSize()}`,
                     }),
                   }}
                   {...styles.cell({
@@ -193,7 +194,7 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
                   key={cell.id}
                   style={{
                     ...assignInlineVars({
-                      [styles.cellSizeVar]: `${cell.column.getSize()}px`,
+                      [styles.cellSizeVar]: `${cell.column.getSize()}`,
                     }),
                   }}
                   {...styles.cell()}
@@ -212,7 +213,7 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
                   style={{
                     ...assignInlineVars({
                       [styles.cellOffsetVar]: `${cell.column.getStart("right")}px`,
-                      [styles.cellSizeVar]: `${cell.column.getSize()}px`,
+                      [styles.cellSizeVar]: `${cell.column.getSize()}`,
                     }),
                   }}
                   {...styles.cell({

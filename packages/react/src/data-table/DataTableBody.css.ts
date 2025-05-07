@@ -9,6 +9,7 @@ export const cellSizeVar = createVar();
 export const cellOffsetVar = createVar();
 export const leftTotalSizeVar = createVar();
 export const rightTotalSizeVar = createVar();
+export const totalSizeVar = createVar();
 
 const bgHoverColor = createVar({
   inherits: false,
@@ -132,8 +133,8 @@ export const cell = recipe({
       display: "flex",
     },
     style({
-      flexGrow: "999",
-      width: cellSizeVar,
+      flexGrow: `calc(${cellSizeVar} / ${totalSizeVar})`,
+      width: `calc(1px * ${cellSizeVar})`,
     }),
   ],
   variants: {
