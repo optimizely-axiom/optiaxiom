@@ -1,6 +1,4 @@
 .editor {
-  --overflow: hidden;
-
   background-color: var(--docs-code-bg);
   border-bottom-left-radius: inherit;
   border-bottom-right-radius: inherit;
@@ -47,6 +45,10 @@
   & > div {
     margin-top: 0;
   }
+}
+
+.expandable {
+  --overflow: hidden;
 }
 
 .expandable pre {
