@@ -1,5 +1,11 @@
 # @optiaxiom/web-components
 
+## 0.10.2
+
+### Patch Changes
+
+- caa7d34: fix detecting group/separator options in ListboxItemized
+
 ## 0.10.1
 
 ### Patch Changes
