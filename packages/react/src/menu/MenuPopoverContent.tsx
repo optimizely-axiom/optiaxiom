@@ -30,17 +30,21 @@ export const MenuPopoverContent = forwardRef<
       return;
     }
 
-    requestAnimationFrame(() => {
-      if (innerRef.current?.dataset.side !== "top") {
-        return;
-      }
-
-      const rect = innerRef.current.getBoundingClientRect();
-      if (rect.height > minHeight) {
-        setMinHeight(rect.height);
+    const observer = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        setMinHeight(entry.borderBoxSize[0].blockSize);
       }
     });
-  }, [minHeight, open, props.side]);
+
+    setMinHeight(0);
+    requestAnimationFrame(() => {
+      if (innerRef.current?.dataset.side === "top") {
+        observer.observe(innerRef.current);
+      }
+    });
+
+    return () => observer.disconnect();
+  }, [open, props.side]);
 
   return (
     <PopoverContent
