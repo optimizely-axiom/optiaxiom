@@ -68,6 +68,20 @@ export const MenuSubContent = forwardRef<HTMLDivElement, MenuSubContentProps>(
           parentInputRef.current?.focus();
         }}
         onEscapeKeyDown={() => setRootMenuOpen(false)}
+        onPointerDown={(event) => {
+          if (event.defaultPrevented) {
+            return;
+          }
+
+          if (
+            event.target instanceof HTMLElement &&
+            event.target.closest('[role="option"]')
+          ) {
+            return;
+          }
+
+          event.preventDefault();
+        }}
         onPointerEnter={() => {
           if (item.subOptionsInputVisible) {
             inputRef.current?.focus();

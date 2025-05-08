@@ -21,7 +21,7 @@ export type MenuContentProps = ExcludeProps<
 >;
 
 export const MenuContent = forwardRef<HTMLDivElement, MenuContentProps>(
-  ({ children, ...props }, ref) => {
+  ({ children, onPointerDown, ...props }, ref) => {
     const { labelId } = useFieldContext("@optiaxiom/react/MenuContent");
     const { inputVisible, placeholder, size } = useMenuContext(
       "@optiaxiom/react/MenuContent",
@@ -35,6 +35,21 @@ export const MenuContent = forwardRef<HTMLDivElement, MenuContentProps>(
     return (
       <Comp
         aria-labelledby={labelId}
+        onPointerDown={(event) => {
+          onPointerDown?.(event);
+          if (event.defaultPrevented) {
+            return;
+          }
+
+          if (
+            event.target instanceof HTMLElement &&
+            event.target.closest('[role="option"]')
+          ) {
+            return;
+          }
+
+          event.preventDefault();
+        }}
         overflow="hidden"
         p={size === "sm" ? "4" : "0"}
         ref={ref}
