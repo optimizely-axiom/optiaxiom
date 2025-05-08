@@ -3,6 +3,7 @@ import { type ComponentPropsWithoutRef, forwardRef } from "react";
 import { CommandListbox } from "../command";
 import { type CommandOption, resolveItemProperty } from "../command/internals";
 import { ListboxLabel, ListboxSeparator } from "../listbox";
+import { shouldShowGroup, shouldShowSeparator } from "../listbox/utils";
 import { Tooltip } from "../tooltip";
 import { MenuCheckboxItem } from "./MenuCheckboxItem";
 import { useMenuContext } from "./MenuContext";
@@ -16,34 +17,10 @@ export const MenuListbox = forwardRef<HTMLDivElement, MenuListboxProps>(
   ({ children, ...props }, ref) => {
     const { size } = useMenuContext("@optiaxiom/react/MenuListbox");
 
-    let isFirstItem = true;
-    let lastGroup: CommandOption["group"] = undefined;
-    const shouldShowSeparator = (group: CommandOption["group"]) => {
-      const show = !isFirstItem;
-      isFirstItem = false;
-      return (
-        show &&
-        group !== lastGroup &&
-        (group?.separator || lastGroup?.separator)
-      );
-    };
-    const shouldShowGroup = (
-      group: CommandOption["group"],
-    ): group is NonNullable<CommandOption["group"]> => {
-      const show = group !== lastGroup;
-      lastGroup = group;
-      return show && !!group && !group?.hidden;
-    };
-
     return (
       <CommandListbox ref={ref} {...props}>
         {children ??
-          ((item: CommandOption, index) => {
-            if (index === 0) {
-              isFirstItem = true;
-              lastGroup = undefined;
-            }
-
+          ((item: CommandOption, prevItem: CommandOption | undefined) => {
             const Comp = item.subOptions?.length
               ? size === "sm"
                 ? MenuSub
@@ -56,9 +33,9 @@ export const MenuListbox = forwardRef<HTMLDivElement, MenuListboxProps>(
             const group = item.group;
             return (
               <>
-                {shouldShowSeparator(group) && <ListboxSeparator />}
-                {shouldShowGroup(group) && (
-                  <ListboxLabel>{group.name}</ListboxLabel>
+                {shouldShowSeparator(group, prevItem) && <ListboxSeparator />}
+                {shouldShowGroup(group, prevItem) && (
+                  <ListboxLabel>{group.label}</ListboxLabel>
                 )}
                 {Comp === MenuSub ? (
                   <Comp item={item} />

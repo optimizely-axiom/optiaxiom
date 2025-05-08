@@ -181,13 +181,13 @@ export const Multiple: Story = {
 };
 
 const inviteGroup = {
-  name: "Invite",
+  label: "Invite",
   separator: true,
-};
+} satisfies MenuOption["group"];
 const userGroup = {
-  name: "Users",
+  label: "Users",
   separator: true,
-};
+} satisfies MenuOption["group"];
 
 const users = [
   {
@@ -384,7 +384,11 @@ export const Controlled: Story = {
   },
 };
 
-const groups = [{ name: "Fruits" }, { name: "Vegetables" }, { name: "Meats" }];
+const groups = [
+  { label: "Fruits" },
+  { label: "Vegetables" },
+  { label: "Meats" },
+] satisfies Array<MenuOption["group"]>;
 
 const foods = [
   { group: groups[0], label: "Apple" },

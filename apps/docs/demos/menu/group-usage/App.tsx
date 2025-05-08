@@ -9,11 +9,11 @@ import {
 
 const groups = {
   display: {
-    name: "Publishing Options",
+    label: "Publishing Options",
   },
   divider: {
     hidden: true,
-    name: "Blank",
+    label: "Blank",
     separator: true,
   },
 } satisfies Record<string, MenuOption["group"]>;

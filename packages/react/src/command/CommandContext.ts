@@ -80,7 +80,7 @@ export type CommandOption = {
 
 type CommandOptionGroup = {
   hidden?: boolean;
-  name: string;
+  label: string;
   separator?: boolean;
 };
 
