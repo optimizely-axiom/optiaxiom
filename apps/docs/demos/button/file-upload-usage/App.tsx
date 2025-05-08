@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@optiaxiom/react";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { IconCloudUpload } from "@tabler/icons-react";
