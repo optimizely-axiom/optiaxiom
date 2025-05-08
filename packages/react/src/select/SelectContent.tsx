@@ -10,6 +10,7 @@ import type { ExcludeProps } from "../utils";
 
 import { type BoxProps } from "../box";
 import { ListboxItemized, ListboxLabel, ListboxSeparator } from "../listbox";
+import { shouldShowGroup, shouldShowSeparator } from "../listbox/utils";
 import { ModalLayer } from "../modal";
 import { ModalListbox } from "../modal/internals";
 import { Portal } from "../portal";
@@ -44,25 +45,6 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
 
     const [placed, setPlaced] = useState(false);
 
-    let isFirstItem = true;
-    let lastGroup: SelectOption["group"] = undefined;
-    const shouldShowSeparator = (group: SelectOption["group"]) => {
-      const show = !isFirstItem;
-      isFirstItem = false;
-      return (
-        show &&
-        group !== lastGroup &&
-        (group?.separator || lastGroup?.separator)
-      );
-    };
-    const shouldShowGroup = (
-      group: SelectOption["group"],
-    ): group is NonNullable<SelectOption["group"]> => {
-      const show = group !== lastGroup;
-      lastGroup = group;
-      return show && !!group && !group?.hidden;
-    };
-
     return (
       <TransitionGroup open={isOpen}>
         <Portal asChild>
@@ -87,17 +69,17 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
                   {...downshift.getMenuProps({}, { suppressRefError: !placed })}
                 >
                   {children ??
-                    ((item: SelectOption, index) => {
-                      if (index === 0) {
-                        isFirstItem = true;
-                        lastGroup = undefined;
-                      }
-
+                    ((
+                      item: SelectOption,
+                      prevItem: SelectOption | undefined,
+                    ) => {
                       const group = item.group;
                       return (
                         <>
-                          {shouldShowSeparator(group) && <ListboxSeparator />}
-                          {shouldShowGroup(group) && (
+                          {shouldShowSeparator(group, prevItem) && (
+                            <ListboxSeparator />
+                          )}
+                          {shouldShowGroup(group, prevItem) && (
                             <ListboxLabel>{group.label}</ListboxLabel>
                           )}
                           <Tooltip content={item.disabledReason}>

@@ -18,7 +18,7 @@ import { Listbox } from "./Listbox";
 export type ListboxVirtualizedProps<T = unknown> = BoxProps<
   "div",
   {
-    children: (item: T, index: number) => ReactNode;
+    children: (item: T, prevItem: T | undefined) => ReactNode;
     highlightedItem?: T;
     items: readonly T[] | T[];
     ref?: LegacyRef<HTMLDivElement>;
@@ -114,7 +114,7 @@ export const ListboxVirtualized = forwardRef<
             key={virtualItem.key}
             ref={rowVirtualizer.measureElement}
           >
-            {children(items[virtualItem.index], virtualItem.index)}
+            {children(items[virtualItem.index], items[virtualItem.index - 1])}
           </Box>
         ))}
       </Box>

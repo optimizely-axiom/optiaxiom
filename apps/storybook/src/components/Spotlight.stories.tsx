@@ -20,15 +20,15 @@ type Story = StoryObj<typeof Spotlight>;
 
 const categories = {
   Layout: {
-    name: "Layout",
+    label: "Layout",
   },
   Sizing: {
-    name: "Sizing",
+    label: "Sizing",
   },
   Typography: {
-    name: "Typography",
+    label: "Typography",
   },
-};
+} satisfies Record<string, MenuOption["group"]>;
 
 const pages = [
   {
