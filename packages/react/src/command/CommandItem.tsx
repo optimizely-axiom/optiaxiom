@@ -1,4 +1,4 @@
-import { forwardRef } from "react";
+import { forwardRef, type MouseEvent } from "react";
 
 import { Box, type BoxProps } from "../box";
 import { IconAngleRight } from "../icons/IconAngleRight";
@@ -25,7 +25,20 @@ export type CommandItemProps = BoxProps<
 >;
 
 export const CommandItem = forwardRef<HTMLDivElement, CommandItemProps>(
-  ({ asChild, children, item, selected, size, ...props }, ref) => {
+  (
+    {
+      asChild,
+      children,
+      item,
+      onClick,
+      onMouseLeave,
+      onMouseMove,
+      selected,
+      size,
+      ...props
+    },
+    ref,
+  ) => {
     const {
       downshift,
       highlightedItem,
@@ -37,15 +50,18 @@ export const CommandItem = forwardRef<HTMLDivElement, CommandItemProps>(
     const itemProps = downshift.getItemProps({
       "aria-selected": selected ?? resolveItemProperty(item.selected),
       item,
-      onClick: (event) => {
+      onClick: (event: MouseEvent<HTMLDivElement>) => {
+        onClick?.(event);
         if (event.currentTarget instanceof HTMLAnchorElement) {
           event.preventDefault();
         }
       },
-      onMouseLeave: () => {
+      onMouseLeave: (event: MouseEvent<HTMLDivElement>) => {
+        onMouseLeave?.(event);
         window.clearTimeout(pauseInteractionRef.current.timer);
       },
-      onMouseMove: (event) => {
+      onMouseMove: (event: MouseEvent<HTMLDivElement>) => {
+        onMouseMove?.(event);
         if (resolveItemProperty(item.disabledReason)) {
           event.preventDefault();
           Object.assign(event.nativeEvent, {
