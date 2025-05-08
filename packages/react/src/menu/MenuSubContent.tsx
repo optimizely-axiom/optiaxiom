@@ -98,11 +98,11 @@ export const MenuSubContent = forwardRef<HTMLDivElement, MenuSubContentProps>(
               parentInputRef.current?.focus();
               setInputValue(inputValue);
             }}
-            onSelect={(item, { close }) => {
+            onSelect={(item, { dismiss }) => {
               if (item.subOptions?.length) {
                 setSubMenuOpen(true);
               } else {
-                onSelect(item, { close });
+                onSelect(item, { dismiss });
               }
             }}
             open

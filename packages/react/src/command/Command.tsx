@@ -35,7 +35,7 @@ export type CommandProps = {
   /**
    * Handler that is called when an item is selected either via keyboard or mouse.
    */
-  onSelect?: (item: CommandOption, context: { close: boolean }) => void;
+  onSelect?: (item: CommandOption, context: { dismiss: boolean }) => void;
   open?: boolean;
   /**
    * The items we want to render.
@@ -112,7 +112,7 @@ export function Command({
         selectedItem !== null
       ) {
         onItemSelect?.(selectedItem, {
-          close:
+          dismiss:
             type !== useCombobox.stateChangeTypes.FunctionSelectItem ||
             !("selected" in selectedItem),
         });

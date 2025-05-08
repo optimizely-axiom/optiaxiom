@@ -25,7 +25,10 @@ export type CommandOption = {
   /**
    * Handler that is called when an item is selected either via keyboard or mouse.
    */
-  execute?: (context: { inputValue: string | undefined }) => void;
+  execute?: (context: {
+    dismiss: boolean;
+    inputValue: string | undefined;
+  }) => void;
   /**
    * Group item belongs to.
    */
