@@ -147,9 +147,9 @@ export function Menu({
       <MenuProvider
         inputRef={inputRef}
         inputVisible={inputVisible}
-        onSelect={(item, { close }) => {
-          item.execute?.({ inputValue });
-          if (typeof openProp === "undefined" && close) {
+        onSelect={(item, { dismiss }) => {
+          item.execute?.({ dismiss, inputValue });
+          if (typeof openProp === "undefined" && dismiss) {
             setOpen(false);
           }
         }}
@@ -164,7 +164,7 @@ export function Menu({
             setSubMenuOpen(!!item.subOptions?.length);
           }}
           onInputValueChange={setInputValue}
-          onSelect={(item, { close }) => {
+          onSelect={(item, { dismiss }) => {
             if (item.subOptions?.length) {
               if (size === "lg") {
                 setActiveItems(item.subOptions);
@@ -172,8 +172,8 @@ export function Menu({
                 setSubMenuOpen(true);
               }
             } else {
-              item.execute?.({ inputValue });
-              if (typeof openProp === "undefined" && close) {
+              item.execute?.({ dismiss, inputValue });
+              if (typeof openProp === "undefined" && dismiss) {
                 setOpen(false);
               }
             }

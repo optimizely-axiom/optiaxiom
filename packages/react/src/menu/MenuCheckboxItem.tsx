@@ -24,7 +24,7 @@ export const MenuCheckboxItem = forwardRef<
         description={props.item.description}
         onCheckedChange={() =>
           !resolveItemProperty(props.item.disabledReason) &&
-          props.item.execute?.({ inputValue })
+          props.item.execute?.({ dismiss: false, inputValue })
         }
       >
         <Comp {...(props.item.link && { href: props.item.link })}>

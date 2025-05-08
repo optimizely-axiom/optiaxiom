@@ -1,15 +1,15 @@
 "use client";
 
-import type { RefObject } from "react";
+import type { ComponentPropsWithoutRef, RefObject } from "react";
 
 import { createContext } from "@radix-ui/react-context";
 
-import type { CommandOption } from "../command/internals";
+import type { Command } from "../command";
 
 export const [MenuProvider, useMenuContext] = createContext<{
   inputRef: RefObject<HTMLInputElement>;
   inputVisible: boolean;
-  onSelect: (item: CommandOption, context: { close: boolean }) => void;
+  onSelect: NonNullable<ComponentPropsWithoutRef<typeof Command>["onSelect"]>;
   open?: boolean | undefined;
   placeholder: string | undefined;
   setOpen: (open: boolean) => void;
