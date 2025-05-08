@@ -1,5 +1,13 @@
 # @optiaxiom/react
 
+## 1.4.2
+
+### Patch Changes
+
+- 4e0c2cc: provide dismiss context to execute method
+- 0116466: correctly override pointer props
+- d680428: prevent command input from losing focus
+
 ## 1.4.1
 
 ### Patch Changes
