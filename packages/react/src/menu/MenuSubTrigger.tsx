@@ -17,7 +17,18 @@ export type MenuSubTriggerProps = BoxProps<
 >;
 
 export const MenuSubTrigger = forwardRef<HTMLDivElement, MenuSubTriggerProps>(
-  ({ children, contentRef, item, onPointerDown, ...props }, ref) => {
+  (
+    {
+      children,
+      contentRef,
+      item,
+      onPointerDown,
+      onPointerEnter,
+      onPointerLeave,
+      ...props
+    },
+    ref,
+  ) => {
     const { downshift, highlightedItem, pauseInteractionRef } =
       useCommandContext("@optiaxiom/react/MenuSubTrigger");
     const { open } = usePopoverContext("@optiaxiom/react/MenuSubTrigger");
@@ -34,7 +45,8 @@ export const MenuSubTrigger = forwardRef<HTMLDivElement, MenuSubTriggerProps>(
                 event.preventDefault();
               }
             }}
-            onPointerEnter={() => {
+            onPointerEnter={(event) => {
+              onPointerEnter?.(event);
               if (highlightedItem !== item) {
                 return;
               }
@@ -42,6 +54,7 @@ export const MenuSubTrigger = forwardRef<HTMLDivElement, MenuSubTriggerProps>(
               downshift.selectItem(item);
             }}
             onPointerLeave={(event) => {
+              onPointerLeave?.(event);
               const box = contentRef.current?.getBoundingClientRect();
               if (!box) {
                 return;
