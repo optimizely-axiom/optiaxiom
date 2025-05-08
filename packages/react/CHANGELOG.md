@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 1.4.3
+
+### Patch Changes
+
+- caa7d34: fix detecting group/separator options in ListboxItemized
+
 ## 1.4.2
 
 ### Patch Changes
