@@ -8,28 +8,27 @@ import {
 } from "@optiaxiom/react/unstable";
 import { useMemo, useState } from "react";
 
-import { useSet } from "./useSet";
-
 const colors = ["Ocean", "Blue", "Purple", "Red", "Orange", "Yellow"];
 
 export function App() {
   const [items, setItems] = useState(colors);
-  const [value, { toggle }] = useSet<string>([]);
+  const [value, setValue] = useState<string>();
 
   return (
     <Menu
       options={useMemo<MenuOption[]>(
         () => [
           ...items.map<MenuOption>((color) => ({
-            execute: () => toggle(color),
+            execute: () => setValue(color),
             label: color,
-            selected: value.includes(color),
+            selected: value === color,
           })),
           {
             detail: ({ inputValue }) => `"${inputValue}"`,
             execute: ({ inputValue }) => {
               if (inputValue) {
                 setItems((items) => [...items, inputValue]);
+                setValue(inputValue);
               }
             },
             label: "Create: ",
@@ -41,10 +40,10 @@ export function App() {
                 : false,
           },
         ],
-        [items, toggle, value],
+        [items, value],
       )}
     >
-      <MenuTrigger w="224">Select colors</MenuTrigger>
+      <MenuTrigger w="224">{value || "Select colors"}</MenuTrigger>
       <MenuContent />
     </Menu>
   );
