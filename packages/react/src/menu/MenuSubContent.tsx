@@ -11,7 +11,7 @@ import type { CommandItem } from "../command";
 import type { ExcludeProps } from "../utils";
 
 import { type BoxProps } from "../box";
-import { Command, CommandInput } from "../command";
+import { Command } from "../command";
 import { useCommandContext } from "../command/internals";
 import { PopoverContent } from "../popover";
 import { usePopoverContext } from "../popover/PopoverContext";
@@ -19,6 +19,7 @@ import { VisuallyHidden } from "../visually-hidden";
 import { useMenuContext } from "./MenuContext";
 import { MenuListbox } from "./MenuListbox";
 import { MenuSubProvider, useMenuSubContext } from "./MenuSubContext";
+import { MenuSubInput } from "./MenuSubInput";
 
 export type MenuSubContentProps = ExcludeProps<
   BoxProps<
@@ -37,11 +38,8 @@ export const MenuSubContent = forwardRef<HTMLDivElement, MenuSubContentProps>(
     const { setInputValue } = useCommandContext(
       "@optiaxiom/react/MenuSubContent",
     );
-    const {
-      inputRef: parentInputRef,
-      open: parentSubMenuOpen,
-      setOpen,
-    } = useMenuSubContext("@optiaxiom/react/MenuSubContent");
+    const { inputRef: parentInputRef, open: parentSubMenuOpen } =
+      useMenuSubContext("@optiaxiom/react/MenuSubContent");
     const { open } = usePopoverContext("@optiaxiom/react/MenuSubContent");
 
     const inputRef = useRef<HTMLInputElement>(null);
@@ -123,20 +121,7 @@ export const MenuSubContent = forwardRef<HTMLDivElement, MenuSubContentProps>(
             options={options}
           >
             <VisuallyHidden disabled={item.subOptionsInputVisible}>
-              <CommandInput
-                m="4"
-                onKeyDown={(event) => {
-                  if (!(event.target instanceof HTMLInputElement)) {
-                    return;
-                  }
-
-                  if (!event.target.value && event.key === "ArrowLeft") {
-                    event.preventDefault();
-                    setOpen(false);
-                  }
-                }}
-                ref={inputRef}
-              />
+              <MenuSubInput ref={inputRef} />
             </VisuallyHidden>
             <MenuSubProvider
               inputRef={inputRef}

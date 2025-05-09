@@ -40,15 +40,8 @@ export const CommandInput = forwardRef<HTMLInputElement, CommandInputProps>(
             if (event.target.value) {
               return;
             }
-            if (!highlightedItem) {
-              return;
-            }
 
-            const subOptions = highlightedItem.subOptions;
-            if (event.key === " ") {
-              event.preventDefault();
-              downshift.selectItem(highlightedItem);
-            } else if (event.key === "ArrowRight" && subOptions?.length) {
+            if (event.key === " " && highlightedItem) {
               event.preventDefault();
               downshift.selectItem(highlightedItem);
             }
