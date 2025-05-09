@@ -20,7 +20,11 @@ export const MenuListbox = forwardRef<HTMLDivElement, MenuListboxProps>(
     return (
       <CommandListbox ref={ref} {...props}>
         {children ??
-          ((item: CommandOption, prevItem: CommandOption | undefined) => {
+          ((
+            item: CommandOption,
+            index: number,
+            prevItem: CommandOption | undefined,
+          ) => {
             const Comp = item.subOptions?.length
               ? size === "sm"
                 ? MenuSub
@@ -38,10 +42,10 @@ export const MenuListbox = forwardRef<HTMLDivElement, MenuListboxProps>(
                   <ListboxLabel>{group.label}</ListboxLabel>
                 )}
                 {Comp === MenuSub ? (
-                  <Comp item={item} />
+                  <Comp index={index} item={item} />
                 ) : (
                   <Tooltip content={resolveItemProperty(item.disabledReason)}>
-                    <Comp item={item} />
+                    <Comp index={index} item={item} />
                   </Tooltip>
                 )}
               </>

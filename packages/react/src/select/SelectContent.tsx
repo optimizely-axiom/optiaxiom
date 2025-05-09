@@ -71,6 +71,7 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
                   {children ??
                     ((
                       item: SelectOption,
+                      index: number,
                       prevItem: SelectOption | undefined,
                     ) => {
                       const group = item.group;
@@ -87,6 +88,7 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
                               addonBefore={item.addon}
                               aria-label={item["aria-label"]}
                               description={item.description}
+                              index={index}
                               item={item}
                               key={item.value}
                             >
