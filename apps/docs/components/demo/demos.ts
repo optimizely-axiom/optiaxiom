@@ -197,6 +197,7 @@ export const demos = {
   "flex/horizontal-usage": import("@/demos/flex/horizontal-usage/App"),
   "flex/usage": import("@/demos/flex/usage/App"),
   "flex/vertical-usage": import("@/demos/flex/vertical-usage/App"),
+  "font/align-usage": import("@/demos/font/align-usage/App"),
   "font/color-usage": import("@/demos/font/color-usage/App"),
   "font/family-usage": import("@/demos/font/family-usage/App"),
   "font/size-usage": import("@/demos/font/size-usage/App"),
