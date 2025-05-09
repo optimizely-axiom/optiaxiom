@@ -1,5 +1,11 @@
 import { type BoxProps, Flex } from "@optiaxiom/react";
-import { Children, cloneElement, isValidElement } from "react";
+import Image from "next/image";
+import {
+  Children,
+  cloneElement,
+  isValidElement,
+  type ReactElement,
+} from "react";
 
 import { ItemLabelInside } from "./ItemLabelInside";
 import { ItemLabelOutside } from "./ItemLabelOutside";
@@ -54,15 +60,24 @@ export function Canvas({
     >
       {Children.toArray(children)
         .filter(isValidElement<BoxProps>)
-        .map((cItem, cIndex) => (
-          <Item
-            key={cIndex}
-            shaded={shaded}
-            {...(transparent && { bg: "transparent" })}
-          >
-            {cItem}
-          </Item>
-        ))}
+        .map((cItem, cIndex) =>
+          isImage(cItem) ? (
+            cItem
+          ) : (
+            <Item
+              key={cIndex}
+              shaded={shaded}
+              {...(transparent && { bg: "transparent" })}
+            >
+              {cItem}
+            </Item>
+          ),
+        )}
     </Flex>
   );
 }
+
+const isImage = (element: ReactElement) =>
+  element.type === Image ||
+  (isValidElement(element.props.children) &&
+    element.props.children.type === Image);
