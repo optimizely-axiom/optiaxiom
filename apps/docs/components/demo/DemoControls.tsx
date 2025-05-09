@@ -176,6 +176,10 @@ function isNumberType(item: PropItem) {
       return false;
     }
 
+    if ("description" in value) {
+      continue;
+    }
+
     let maybeNumber;
     try {
       maybeNumber = JSON.parse(value.value);
