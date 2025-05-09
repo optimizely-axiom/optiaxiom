@@ -26,11 +26,11 @@ export const MenuDialogContent = forwardRef<
   ) => {
     return (
       <DialogContent ref={ref} transitionType="pop" {...props}>
+        {children}
+
         <VisuallyHidden tabIndex={-1}>
           <DialogHeader>{ariaLabel}</DialogHeader>
         </VisuallyHidden>
-
-        {children}
       </DialogContent>
     );
   },
