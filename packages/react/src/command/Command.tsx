@@ -36,7 +36,7 @@ export type CommandProps = {
    * Handler that is called when an item is selected either via keyboard or mouse.
    */
   onSelect?: (item: CommandOption, context: { dismiss: boolean }) => void;
-  open?: boolean;
+  open?: boolean | number;
   /**
    * The items we want to render.
    */
@@ -129,7 +129,6 @@ export function Command({
             ...changes,
             /**
              * Keep the selected option highlighted rather than resetting to -1
-             * TODO: reset if activePath had values
              */
             highlightedIndex: state.highlightedIndex,
           };
