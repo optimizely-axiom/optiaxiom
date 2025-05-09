@@ -1,5 +1,12 @@
 # @optiaxiom/react
 
+## 1.4.4
+
+### Patch Changes
+
+- e10b393: use resize observer to minimize layout shift
+- 5185772: add aria attributes to support virtualized listbox
+
 ## 1.4.3
 
 ### Patch Changes
