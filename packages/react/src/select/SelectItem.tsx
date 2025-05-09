@@ -7,6 +7,10 @@ export type SelectItemProps = BoxProps<
   "div",
   {
     /**
+     * The index of the item element within the collection.
+     */
+    index: number;
+    /**
      * The exact item element from the collection.
      */
     item: SelectOption;
@@ -14,11 +18,13 @@ export type SelectItemProps = BoxProps<
 >;
 
 export const SelectItem = forwardRef<HTMLDivElement, SelectItemProps>(
-  ({ children, item, onMouseMove, size, ...props }, ref) => {
-    const { downshift, highlightedItem, isOpen, selectedItem } =
+  ({ children, index, item, onMouseMove, size, ...props }, ref) => {
+    const { downshift, highlightedItem, isOpen, items, selectedItem } =
       useSelectContext("@optiaxiom/react/SelectItem");
 
     const itemProps = downshift.getItemProps({
+      "aria-posinset": index + 1,
+      "aria-setsize": items.length,
       item,
       onMouseMove: (event: MouseEvent<HTMLDivElement>) => {
         onMouseMove?.(event);

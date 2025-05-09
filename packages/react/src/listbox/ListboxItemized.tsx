@@ -13,8 +13,8 @@ const VIRTUALIZE_THRESHOLD = 50;
 export type ListboxItemizedProps = BoxProps<
   "div",
   {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    children?: ((item: any, prevItem: any) => ReactNode) | ReactNode;
+    children?: // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    ((item: any, index: number, prevItem: any) => ReactNode) | ReactNode;
     /**
      * Custom empty state content.
      */
@@ -88,7 +88,7 @@ export const ListboxItemized = forwardRef<HTMLDivElement, ListboxItemizedProps>(
           ) : items.length > 0 ? (
             items.map((item, index) => (
               <Fragment key={itemToKey(item)}>
-                {children(item, items[index - 1])}
+                {children(item, index, items[index - 1])}
               </Fragment>
             ))
           ) : (

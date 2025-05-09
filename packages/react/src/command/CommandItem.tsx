@@ -14,6 +14,10 @@ export type CommandItemProps = BoxProps<
   "div",
   {
     /**
+     * The index of the item object within the collection.
+     */
+    index: number;
+    /**
      * The exact item object from the collection.
      */
     item: CommandOption;
@@ -29,6 +33,7 @@ export const CommandItem = forwardRef<HTMLDivElement, CommandItemProps>(
     {
       asChild,
       children,
+      index,
       item,
       onClick,
       onMouseLeave,
@@ -48,7 +53,9 @@ export const CommandItem = forwardRef<HTMLDivElement, CommandItemProps>(
     } = useCommandContext("@optiaxiom/react/CommandItem");
 
     const itemProps = downshift.getItemProps({
+      "aria-posinset": index + 1,
       "aria-selected": selected ?? resolveItemProperty(item.selected),
+      "aria-setsize": items.length,
       item,
       onClick: (event: MouseEvent<HTMLDivElement>) => {
         onClick?.(event);
@@ -88,7 +95,7 @@ export const CommandItem = forwardRef<HTMLDivElement, CommandItemProps>(
           window.clearTimeout(pauseInteractionRef.current.timer);
           pauseInteractionRef.current.timer = window.setTimeout(() => {
             pauseInteractionRef.current.isInsideTriangle = null;
-            downshift.setHighlightedIndex(items.indexOf(item));
+            downshift.setHighlightedIndex(index);
           }, 20);
         } else {
           pauseInteractionRef.current.isInsideTriangle = null;

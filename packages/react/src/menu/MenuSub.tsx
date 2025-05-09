@@ -12,10 +12,11 @@ import { useMenuSubContext } from "./MenuSubContext";
 import { MenuSubTrigger } from "./MenuSubTrigger";
 
 export type MenuSubProps = {
+  index: number;
   item: CommandOption;
 };
 
-export function MenuSub({ item }: MenuSubProps) {
+export function MenuSub({ index, item }: MenuSubProps) {
   const { highlightedItem } = useCommandContext("@optiaxiom/react/MenuSub");
   const { open } = useMenuSubContext("@optiaxiom/react/MenuSub");
 
@@ -24,7 +25,7 @@ export function MenuSub({ item }: MenuSubProps) {
   return (
     <Popover open={open && highlightedItem === item}>
       <Tooltip content={resolveItemProperty(item.disabledReason)}>
-        <MenuSubTrigger contentRef={contentRef} item={item} />
+        <MenuSubTrigger contentRef={contentRef} index={index} item={item} />
       </Tooltip>
       <MenuSubContent item={item} ref={contentRef} />
     </Popover>
