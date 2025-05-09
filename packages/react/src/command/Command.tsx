@@ -93,10 +93,6 @@ export function Command({
     itemToString: (item) =>
       item !== null ? resolveItemProperty(item.label, { inputValue }) : "",
     onHighlightedIndexChange({ highlightedIndex, type }) {
-      if (type === useCombobox.stateChangeTypes.MenuMouseLeave) {
-        return;
-      }
-
       setHighlightedIndex(highlightedIndex);
 
       if (
@@ -124,9 +120,11 @@ export function Command({
 
       switch (type) {
         case useCombobox.stateChangeTypes.InputBlur:
+        case useCombobox.stateChangeTypes.InputClick:
         case useCombobox.stateChangeTypes.InputKeyDownEnter:
         case useCombobox.stateChangeTypes.InputKeyDownEscape:
         case useCombobox.stateChangeTypes.ItemClick:
+        case useCombobox.stateChangeTypes.MenuMouseLeave:
           return {
             ...changes,
             /**
