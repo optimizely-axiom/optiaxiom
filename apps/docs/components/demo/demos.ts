@@ -280,6 +280,7 @@ export const demos = {
   "menu/virtualized-usage": import("@/demos/menu/virtualized-usage/App"),
   "modal-layer/usage": import("@/demos/modal-layer/usage/App"),
   "object-fit/usage": import("@/demos/object-fit/usage/App"),
+  "overflow/usage": import("@/demos/overflow/usage/App"),
   "padding/multiple-usage": import("@/demos/padding/multiple-usage/App"),
   "padding/single-usage": import("@/demos/padding/single-usage/App"),
   "padding/usage": import("@/demos/padding/usage/App"),
