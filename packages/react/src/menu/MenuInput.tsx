@@ -20,7 +20,9 @@ export const MenuInput = forwardRef<HTMLInputElement, MenuInputProps>(
     const { inputRef, open, setActiveItemStack, size } = useMenuContext(
       "@optiaxiom/react/MenuInput",
     );
-    const { downshift } = useCommandContext("@optiaxiom/react/MenuInput");
+    const { downshift, highlightedItem } = useCommandContext(
+      "@optiaxiom/react/MenuInput",
+    );
     const ref = useComposedRefs(inputRef, outerRef);
 
     const [minWidth, setMinWidth] = useState(160);
@@ -57,6 +59,13 @@ export const MenuInput = forwardRef<HTMLInputElement, MenuInputProps>(
               setActiveItemStack((stack) =>
                 stack.length ? stack.slice(0, -1) : stack,
               );
+            } else if (
+              event.key === "ArrowRight" &&
+              highlightedItem?.subOptions?.length &&
+              size === "sm"
+            ) {
+              event.preventDefault();
+              downshift.selectItem(highlightedItem);
             }
           }}
           ref={ref}
