@@ -161,6 +161,7 @@ export default {
       "grid-column": "Grid Column",
       "justify-content": "Justify Content",
       margin: "Margin",
+      "object-fit": "Object Fit",
       padding: "Padding",
       "z-index": "Z-Index",
 
