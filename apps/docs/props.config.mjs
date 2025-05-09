@@ -111,6 +111,10 @@ export default {
       path: "/object-fit/",
       props: ["objectFit"],
     },
+    overflow: {
+      path: "/overflow/",
+      props: ["overflow"],
+    },
     size: [
       { path: "/height/", props: ["h"] },
       { path: "/max-height/", props: ["maxH"] },

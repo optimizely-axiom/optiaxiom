@@ -162,6 +162,7 @@ export default {
       "justify-content": "Justify Content",
       margin: "Margin",
       "object-fit": "Object Fit",
+      overflow: "Overflow",
       padding: "Padding",
       "z-index": "Z-Index",
 
