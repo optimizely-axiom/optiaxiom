@@ -107,6 +107,10 @@ export default {
       path: "/font-weight/",
       props: ["fontWeight"],
     },
+    objectFit: {
+      path: "/object-fit/",
+      props: ["objectFit"],
+    },
     size: [
       { path: "/height/", props: ["h"] },
       { path: "/max-height/", props: ["maxH"] },
