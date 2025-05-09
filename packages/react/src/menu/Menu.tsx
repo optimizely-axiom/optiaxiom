@@ -187,7 +187,7 @@ export function Menu({
               }
             }
           }}
-          open={open}
+          open={open ? activeItemStack.length + 1 : false}
           options={options}
           {...props}
         >

@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useEffectEvent } from "../hooks";
 
 export function usePortalPatch(
-  open: boolean | undefined,
+  open: boolean | number | undefined,
   getInitialHighlightedIndex: () => number,
 ) {
   /**
@@ -30,17 +30,17 @@ export function usePortalPatch(
     }
   }, [open, setPlaced]);
 
-  const [highlightedIndex, setHighlightedIndex] = useState(
-    getInitialHighlightedIndex,
-  );
+  const [highlightedIndex, setHighlightedIndex] = useState(-1);
   const getInitialHighlightedIndexStable = useEffectEvent(
     getInitialHighlightedIndex,
   );
   useEffect(() => {
     if (!placed) {
+      setHighlightedIndex(-1);
+    } else if (open) {
       setHighlightedIndex(getInitialHighlightedIndexStable);
     }
-  }, [getInitialHighlightedIndexStable, placed]);
+  }, [getInitialHighlightedIndexStable, open, placed]);
 
   return [
     /**
