@@ -188,6 +188,7 @@ export default {
       "font-family": "Font Family",
       "font-size": "Font Size",
       "font-weight": "Font Weight",
+      "text-align": "Text Align",
       "text-color": "Text Color",
 
       "-- Backgrounds": {

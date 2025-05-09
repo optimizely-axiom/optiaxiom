@@ -122,6 +122,10 @@ export default {
       { path: "/size/", props: ["size"] },
       { path: "/width/", props: ["w"] },
     ],
+    textAlign: {
+      path: "/text-align/",
+      props: ["textAlign"],
+    },
     zIndex: {
       path: "/z-index/",
       props: ["z"],
