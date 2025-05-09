@@ -1,4 +1,10 @@
-import { type ComponentPropsWithoutRef, forwardRef } from "react";
+import { useComposedRefs } from "@radix-ui/react-compose-refs";
+import {
+  type ComponentPropsWithoutRef,
+  forwardRef,
+  useEffect,
+  useRef,
+} from "react";
 
 import type { DialogContent } from "../dialog";
 import type { PopoverContent } from "../popover";
@@ -21,9 +27,12 @@ export type MenuContentProps = ExcludeProps<
 >;
 
 export const MenuContent = forwardRef<HTMLDivElement, MenuContentProps>(
-  ({ children, onPointerDown, ...props }, ref) => {
+  ({ children, onPointerDown, ...props }, outerRef) => {
+    const innerRef = useRef<HTMLDivElement>(null);
+    const ref = useComposedRefs(innerRef, outerRef);
+
     const { labelId } = useFieldContext("@optiaxiom/react/MenuContent");
-    const { inputVisible, placeholder, size } = useMenuContext(
+    const { activeItemStack, inputVisible, placeholder, size } = useMenuContext(
       "@optiaxiom/react/MenuContent",
     );
     const { empty, loading } = useCommandContext(
@@ -31,6 +40,12 @@ export const MenuContent = forwardRef<HTMLDivElement, MenuContentProps>(
     );
     const { setOpen } = useMenuSubContext("@optiaxiom/react/MenuContent");
     const Comp = size === "sm" ? MenuPopoverContent : MenuDialogContent;
+
+    useEffect(() => {
+      innerRef.current?.animate([{ scale: 1 }, { scale: 0.97 }, { scale: 1 }], {
+        duration: 150,
+      });
+    }, [activeItemStack]);
 
     return (
       <Comp

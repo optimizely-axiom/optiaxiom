@@ -77,7 +77,9 @@ export function Menu({
     prop: inputValueProp,
   });
 
-  const [activeItems, setActiveItems] = useState<CommandOption[]>();
+  const [activeItemStack, setActiveItemStack] = useState<
+    Array<CommandOption[]>
+  >([]);
   const [subMenuOpen, setSubMenuOpen] = useState(false);
   useEffect(() => {
     if (inputValue && size === "sm") {
@@ -91,7 +93,7 @@ export function Menu({
       }
     } else {
       if (open) {
-        setActiveItems(undefined);
+        setActiveItemStack([]);
       }
     }
   }, [open, size]);
@@ -109,8 +111,10 @@ export function Menu({
                 )
               : resolveItemProperty(option.label, { inputValue }),
           }))
-        : (activeItems ?? optionsProp),
-    [activeItems, inputValue, optionsProp, size],
+        : activeItemStack.length
+          ? activeItemStack[activeItemStack.length - 1]
+          : optionsProp,
+    [activeItemStack, inputValue, optionsProp, size],
   );
 
   const hasSelectableItem = useMemo(
@@ -140,11 +144,12 @@ export function Menu({
     if (size === "lg") {
       setInputVisible(inputDefaultVisibleRef.current);
     }
-  }, [activeItems, size]);
+  }, [activeItemStack, size]);
 
   return (
     <Comp onOpenChange={setOpen} open={open}>
       <MenuProvider
+        activeItemStack={activeItemStack}
         inputRef={inputRef}
         inputVisible={inputVisible}
         onSelect={(item, { dismiss }) => {
@@ -155,6 +160,7 @@ export function Menu({
         }}
         open={open}
         placeholder={placeholder}
+        setActiveItemStack={setActiveItemStack}
         setOpen={setOpen}
         size={size}
       >
@@ -167,7 +173,10 @@ export function Menu({
           onSelect={(item, { dismiss }) => {
             if (item.subOptions?.length) {
               if (size === "lg") {
-                setActiveItems(item.subOptions);
+                setActiveItemStack((stack) => [
+                  ...(stack ?? []),
+                  item.subOptions ?? [],
+                ]);
               } else {
                 setSubMenuOpen(true);
               }

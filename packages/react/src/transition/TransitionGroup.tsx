@@ -1,6 +1,6 @@
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import {
-  type ReactElement,
+  type ReactNode,
   type RefObject,
   useCallback,
   useEffect,
@@ -17,7 +17,7 @@ export function TransitionGroup({
   open,
   presence: presenceProp,
 }: {
-  children?: false | ReactElement;
+  children?: ReactNode;
   onPresenceChange?: (presence: boolean) => void;
   open?: boolean;
   presence?: boolean;
