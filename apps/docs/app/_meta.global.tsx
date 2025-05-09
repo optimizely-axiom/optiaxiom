@@ -169,6 +169,7 @@ export default {
       "flex-wrap": "Flex Wrap",
       gap: "Gap",
       "grid-column": "Grid Column",
+      "grid-template-columns": "Grid Template Columns",
       "justify-content": "Justify Content",
 
       "-- Sizing": {

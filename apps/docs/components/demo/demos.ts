@@ -204,6 +204,10 @@ export const demos = {
   "font/weight-usage": import("@/demos/font/weight-usage/App"),
   "gap/responsive-usage": import("@/demos/gap/responsive-usage/App"),
   "gap/usage": import("@/demos/gap/usage/App"),
+  "grid/cols-responsive-usage": import(
+    "@/demos/grid/cols-responsive-usage/App"
+  ),
+  "grid/cols-usage": import("@/demos/grid/cols-usage/App"),
   "grid/gap-usage": import("@/demos/grid/gap-usage/App"),
   "grid/span-responsive-usage": import(
     "@/demos/grid/span-responsive-usage/App"
