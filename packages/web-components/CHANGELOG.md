@@ -1,5 +1,11 @@
 # @optiaxiom/web-components
 
+## 0.10.3
+
+### Patch Changes
+
+- 5185772: add aria attributes to support virtualized listbox
+
 ## 0.10.2
 
 ### Patch Changes
