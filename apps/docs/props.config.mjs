@@ -103,6 +103,10 @@ export default {
       path: "/font-size/",
       props: ["fontSize"],
     },
+    fontWeight: {
+      path: "/font-weight/",
+      props: ["fontWeight"],
+    },
     size: [
       { path: "/height/", props: ["h"] },
       { path: "/max-height/", props: ["maxH"] },

@@ -180,6 +180,7 @@ export default {
       },
       "font-family": "Font Family",
       "font-size": "Font Size",
+      "font-weight": "Font Weight",
       "text-color": "Text Color",
 
       "-- Backgrounds": {

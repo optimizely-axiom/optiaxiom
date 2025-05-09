@@ -200,6 +200,7 @@ export const demos = {
   "font/color-usage": import("@/demos/font/color-usage/App"),
   "font/family-usage": import("@/demos/font/family-usage/App"),
   "font/size-usage": import("@/demos/font/size-usage/App"),
+  "font/weight-usage": import("@/demos/font/weight-usage/App"),
   "gap/responsive-usage": import("@/demos/gap/responsive-usage/App"),
   "gap/usage": import("@/demos/gap/usage/App"),
   "grid/gap-usage": import("@/demos/grid/gap-usage/App"),
