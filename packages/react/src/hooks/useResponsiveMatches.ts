@@ -11,7 +11,7 @@ export const useResponsiveMatches = <const B, const T>(
 ) => {
   const matches = {
     base: true,
-    sm: useMediaQuery(conditions.conditions.sm["@media"]),
+    sm: useMediaQuery(conditions.conditions.sm["@media"], true),
     md: useMediaQuery(conditions.conditions.md["@media"]),
   };
 
