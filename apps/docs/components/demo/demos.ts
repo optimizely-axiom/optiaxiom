@@ -269,6 +269,7 @@ export const demos = {
   "max-height/usage": import("@/demos/max-height/usage/App"),
   "max-width/usage": import("@/demos/max-width/usage/App"),
   "menu/addon-usage": import("@/demos/menu/addon-usage/App"),
+  "menu/appearance-usage": import("@/demos/menu/appearance-usage/App"),
   "menu/basic-usage": import("@/demos/menu/basic-usage/App"),
   "menu/content-checkbox-usage": import(
     "@/demos/menu/content-checkbox-usage/App"
