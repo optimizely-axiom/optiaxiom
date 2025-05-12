@@ -6,6 +6,7 @@ const config: StorybookConfig = {
   addons: [
     "@storybook/addon-essentials",
     "@storybook/experimental-addon-test",
+    "storybook-addon-test-codegen",
     "@storybook/addon-a11y",
     "@storybook/addon-designs",
   ],
