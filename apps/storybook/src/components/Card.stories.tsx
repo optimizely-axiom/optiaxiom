@@ -15,7 +15,7 @@ import {
   MenuContent,
   MenuTrigger,
 } from "@optiaxiom/react/unstable";
-import { userEvent } from "@storybook/test";
+import { expect, screen, userEvent } from "@storybook/test";
 
 export default {
   args: {
@@ -150,6 +150,7 @@ export const WithLinkAndEllipsis: Story = {
   },
   play: async ({ canvas }) => {
     await userEvent.click(canvas.getByRole("button"));
+    await expect(await screen.findByRole("dialog")).toBeInTheDocument();
   },
 };
 
@@ -217,6 +218,7 @@ export const WithCheckboxAndActions: Story = {
   },
   play: async ({ canvas }) => {
     await userEvent.click(canvas.getByRole("button"));
+    await expect(await screen.findByRole("dialog")).toBeInTheDocument();
   },
 };
 

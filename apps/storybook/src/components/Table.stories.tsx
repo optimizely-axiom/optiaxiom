@@ -11,7 +11,7 @@ import {
   TableRow,
 } from "@optiaxiom/react";
 import { Menu, MenuContent, MenuTrigger } from "@optiaxiom/react/unstable";
-import { userEvent } from "@storybook/test";
+import { expect, screen, userEvent } from "@storybook/test";
 
 export default {
   component: Table,
@@ -159,6 +159,7 @@ export const CustomWidth: Story = {
 export const Actions: Story = {
   play: async ({ canvas }) => {
     await userEvent.click(canvas.getAllByRole("button")[0]);
+    await expect(await screen.findByRole("dialog")).toBeInTheDocument();
   },
   render: () => (
     <Table>
