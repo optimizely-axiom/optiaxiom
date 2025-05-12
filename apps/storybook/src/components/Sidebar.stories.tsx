@@ -31,7 +31,6 @@ import {
   IconFlag2,
   IconHistory,
   IconLayoutSidebar,
-  IconRectangle,
   IconReport,
   IconSettings,
   IconStar,
@@ -183,7 +182,7 @@ export const WithSubNav: Story = {
           <NavBody>
             <NavList>
               <NavItem icon={<IconCopy />}>All</NavItem>
-              <NavItem icon={<IconRectangle />}>Recent</NavItem>
+              <NavItem>Recent</NavItem>
               <NavItem icon={<IconStar />}>Favorites</NavItem>
               <NavItem icon={<IconTrash />}>Trash</NavItem>
 
