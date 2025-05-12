@@ -36,10 +36,10 @@ This will spin up all the apps and packages in `dev` mode. Use [pnpm filtering](
 
 ```sh
 # run docs only (along with all dependencies)
-pnpm -F docs... --parallel dev
+pnpm dev:docs
 
 # run storybook only (along with all dependencies)
-pnpm -F storybook... --parallel dev
+pnpm dev:storybook
 ```
 
 ### Testing
