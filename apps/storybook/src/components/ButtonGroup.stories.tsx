@@ -4,12 +4,11 @@ import type { ComponentPropsWithRef } from "react";
 import {
   Button,
   ButtonGroup,
-  DropdownMenu,
-  DropdownMenuTrigger,
   Field,
   Flex,
   SearchInput,
 } from "@optiaxiom/react";
+import { Menu, MenuContent, MenuTrigger } from "@optiaxiom/react/unstable";
 import {
   IconArrowRight,
   IconDownload,
@@ -118,9 +117,10 @@ export const WithInput: Story = {
   args: {
     children: (
       <>
-        <DropdownMenu>
-          <DropdownMenuTrigger>Category</DropdownMenuTrigger>
-        </DropdownMenu>
+        <Menu options={[{ label: "Sample" }]}>
+          <MenuTrigger>Category</MenuTrigger>
+          <MenuContent />
+        </Menu>
         <Field>
           <SearchInput />
         </Field>

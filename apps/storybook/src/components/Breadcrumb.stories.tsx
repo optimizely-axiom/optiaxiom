@@ -1,17 +1,14 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@optiaxiom/react";
-import {
   Breadcrumb,
   BreadcrumbEllipsis,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbPage,
+  Menu,
+  MenuContent,
+  MenuTrigger,
 } from "@optiaxiom/react/unstable";
 
 export default {
@@ -72,25 +69,21 @@ export const WithDropdown: Story = {
           <BreadcrumbLink href="/">Home</BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbItem>
-          <DropdownMenu>
-            <DropdownMenuTrigger
+          <Menu
+            options={[
+              { label: "Documentation", link: "/docs" },
+              { label: "Themes", link: "/themes" },
+              { label: "GitHub", link: "https://github.com/optiaxiom/ui" },
+            ]}
+          >
+            <MenuTrigger
               appearance="subtle"
               aria-label="Ellipsis"
               icon={<BreadcrumbEllipsis />}
               size="sm"
             />
-            <DropdownMenuContent align="start">
-              <DropdownMenuItem asChild>
-                <a href="/docs">Documentation</a>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <a href="/themes">Themes</a>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <a href="https://github.com/optiaxiom/ui">GitHub</a>
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+            <MenuContent />
+          </Menu>
         </BreadcrumbItem>
         <BreadcrumbItem>
           <BreadcrumbPage>Breadcrumb</BreadcrumbPage>

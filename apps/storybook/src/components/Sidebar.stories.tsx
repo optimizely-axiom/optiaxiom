@@ -2,10 +2,6 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 import {
   Box,
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
   Nav,
   NavAccountItem,
   NavBody,
@@ -20,6 +16,7 @@ import {
   SidebarToggle,
   SubNav,
 } from "@optiaxiom/react";
+import { Menu, MenuContent, MenuTrigger } from "@optiaxiom/react/unstable";
 import {
   IconBinaryTree,
   IconChartInfographic,
@@ -72,21 +69,22 @@ export default {
         <NavFooter>
           <NavList>
             <SidebarToggle icon={<IconLayoutSidebar />} />
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
+            <Menu
+              options={[
+                { label: "View Profile" },
+                { label: "Settings" },
+                { label: "Logout" },
+              ]}
+            >
+              <MenuTrigger asChild>
                 <NavAccountItem
                   name="Rhaenyra Targaryen"
                   organization="Optimizely"
                   src="https://i.pravatar.cc/150?img=10"
                 />
-              </DropdownMenuTrigger>
-
-              <DropdownMenuContent align="end" side="right">
-                <DropdownMenuItem>View Profile</DropdownMenuItem>
-                <DropdownMenuItem>Settings</DropdownMenuItem>
-                <DropdownMenuItem>Logout</DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+              </MenuTrigger>
+              <MenuContent align="end" side="right" />
+            </Menu>
           </NavList>
         </NavFooter>
       </Nav>
@@ -121,21 +119,22 @@ export const NotCollapsible: Story = {
 
         <NavFooter>
           <NavList>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
+            <Menu
+              options={[
+                { label: "View Profile" },
+                { label: "Settings" },
+                { label: "Logout" },
+              ]}
+            >
+              <MenuTrigger asChild>
                 <NavAccountItem
                   name="Rhaenyra Targaryen"
                   organization="Optimizely"
                   src="https://i.pravatar.cc/150?img=10"
                 />
-              </DropdownMenuTrigger>
-
-              <DropdownMenuContent align="end" side="right">
-                <DropdownMenuItem>View Profile</DropdownMenuItem>
-                <DropdownMenuItem>Settings</DropdownMenuItem>
-                <DropdownMenuItem>Logout</DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+              </MenuTrigger>
+              <MenuContent align="end" side="right" />
+            </Menu>
           </NavList>
         </NavFooter>
       </Nav>
@@ -159,21 +158,22 @@ export const WithSubNav: Story = {
           <NavFooter>
             <NavList>
               <SidebarToggle icon={<IconLayoutSidebar />} />
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
+              <Menu
+                options={[
+                  { label: "View Profile" },
+                  { label: "Settings" },
+                  { label: "Logout" },
+                ]}
+              >
+                <MenuTrigger asChild>
                   <NavAccountItem
                     name="Rhaenyra Targaryen"
                     organization="Optimizely"
                     src="https://i.pravatar.cc/150?img=10"
                   />
-                </DropdownMenuTrigger>
-
-                <DropdownMenuContent align="end" side="right">
-                  <DropdownMenuItem>View Profile</DropdownMenuItem>
-                  <DropdownMenuItem>Settings</DropdownMenuItem>
-                  <DropdownMenuItem>Logout</DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
+                </MenuTrigger>
+                <MenuContent align="end" side="right" />
+              </Menu>
             </NavList>
           </NavFooter>
         </Nav>
