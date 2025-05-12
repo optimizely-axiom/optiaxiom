@@ -2,10 +2,6 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 import {
   Box,
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
   Heading,
   Nav,
   NavAccountItem,
@@ -17,7 +13,12 @@ import {
   SidebarToggle,
   Text,
 } from "@optiaxiom/react";
-import { Layout } from "@optiaxiom/react/unstable";
+import {
+  Layout,
+  Menu,
+  MenuContent,
+  MenuTrigger,
+} from "@optiaxiom/react/unstable";
 import {
   IconBinaryTree,
   IconChartInfographic,
@@ -67,21 +68,22 @@ const SidebarExample = () => (
       <NavFooter>
         <NavList>
           <SidebarToggle icon={<IconLayoutSidebar />} />
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
+          <Menu
+            options={[
+              { label: "View Profile" },
+              { label: "Settings" },
+              { label: "Logout" },
+            ]}
+          >
+            <MenuTrigger asChild>
               <NavAccountItem
                 name="Rhaenyra Targaryen"
                 organization="Optimizely"
                 src="https://i.pravatar.cc/150?img=10"
               />
-            </DropdownMenuTrigger>
-
-            <DropdownMenuContent align="end" side="right">
-              <DropdownMenuItem>View Profile</DropdownMenuItem>
-              <DropdownMenuItem>Settings</DropdownMenuItem>
-              <DropdownMenuItem>Logout</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+            </MenuTrigger>
+            <MenuContent align="end" side="right" />
+          </Menu>
         </NavList>
       </NavFooter>
     </Nav>

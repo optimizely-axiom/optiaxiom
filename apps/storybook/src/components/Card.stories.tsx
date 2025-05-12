@@ -1,17 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import {
-  Badge,
-  Box,
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-  EllipsisMenuButton,
-  Flex,
-  Link,
-} from "@optiaxiom/react";
+import { Badge, Box, EllipsisMenuButton, Flex, Link } from "@optiaxiom/react";
 import {
   Card,
   CardAction,
@@ -22,6 +11,9 @@ import {
   CardLink,
   CardOverflow,
   CardTitle,
+  Menu,
+  MenuContent,
+  MenuTrigger,
 } from "@optiaxiom/react/unstable";
 import { userEvent } from "@storybook/test";
 
@@ -131,26 +123,26 @@ export const WithLinkAndEllipsis: Story = {
             <CardLink href="data:,">The majestic world of turtles</CardLink>
           </CardTitle>
           <CardAction>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
+            <Menu
+              options={[
+                { description: "Create a new task", label: "New task" },
+                { description: "Copy this task", label: "Copy task" },
+                {
+                  group: { hidden: true, label: "Delete", separator: true },
+                  intent: "danger",
+                  label: "Delete task",
+                },
+              ]}
+            >
+              <MenuTrigger asChild>
                 <EllipsisMenuButton
                   appearance="subtle"
                   aria-label="actions"
                   size="sm"
                 />
-              </DropdownMenuTrigger>
-
-              <DropdownMenuContent>
-                <DropdownMenuItem description="Create a new task">
-                  New task
-                </DropdownMenuItem>
-                <DropdownMenuItem description="Copy this task">
-                  Copy task
-                </DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem intent="danger">Delete task</DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+              </MenuTrigger>
+              <MenuContent />
+            </Menu>
           </CardAction>
         </Flex>
       </>
@@ -192,26 +184,26 @@ export const WithCheckboxAndActions: Story = {
           <CardAction>
             <CardCheckbox />
 
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
+            <Menu
+              options={[
+                { description: "Create a new task", label: "New task" },
+                { description: "Copy this task", label: "Copy task" },
+                {
+                  group: { hidden: true, label: "Delete", separator: true },
+                  intent: "danger",
+                  label: "Delete task",
+                },
+              ]}
+            >
+              <MenuTrigger asChild>
                 <EllipsisMenuButton
                   appearance="subtle"
                   aria-label="actions"
                   size="sm"
                 />
-              </DropdownMenuTrigger>
-
-              <DropdownMenuContent>
-                <DropdownMenuItem description="Create a new task">
-                  New task
-                </DropdownMenuItem>
-                <DropdownMenuItem description="Copy this task">
-                  Copy task
-                </DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem intent="danger">Delete task</DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+              </MenuTrigger>
+              <MenuContent />
+            </Menu>
           </CardAction>
           <CardImage src="https://placehold.co/600x400" />
         </CardOverflow>

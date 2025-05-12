@@ -1,10 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
   EllipsisMenuButton,
   Table,
   TableAction,
@@ -14,6 +10,7 @@ import {
   TableHeaderCell,
   TableRow,
 } from "@optiaxiom/react";
+import { Menu, MenuContent, MenuTrigger } from "@optiaxiom/react/unstable";
 import { userEvent } from "@storybook/test";
 
 export default {
@@ -183,15 +180,17 @@ export const Actions: Story = {
             <TableCell>{invoice.totalAmount}</TableCell>
             <TableCell>
               <TableAction>
-                <DropdownMenu>
-                  <DropdownMenuTrigger appearance="subtle" asChild size="sm">
+                <Menu
+                  options={[
+                    { label: "Edit" },
+                    { intent: "danger", label: "Delete" },
+                  ]}
+                >
+                  <MenuTrigger appearance="subtle" asChild size="sm">
                     <EllipsisMenuButton />
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent>
-                    <DropdownMenuItem>Edit</DropdownMenuItem>
-                    <DropdownMenuItem intent="danger">Delete</DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
+                  </MenuTrigger>
+                  <MenuContent />
+                </Menu>
               </TableAction>
             </TableCell>
           </TableRow>
