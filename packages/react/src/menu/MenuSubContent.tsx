@@ -55,7 +55,6 @@ export const MenuSubContent = forwardRef<HTMLDivElement, MenuSubContentProps>(
       <PopoverContent
         align={align}
         alignOffset={item.subOptionsInputVisible ? -46 : -4}
-        maxH="sm"
         minW="trigger"
         onCloseAutoFocus={(event) => {
           if (parentSubMenuOpen) {
