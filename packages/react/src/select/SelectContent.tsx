@@ -39,7 +39,17 @@ export type SelectContentProps = ExcludeProps<
 >;
 
 export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
-  ({ align = "start", children, side = "bottom", size, ...props }, ref) => {
+  (
+    {
+      align = "start",
+      children,
+      onPointerDown,
+      side = "bottom",
+      size,
+      ...props
+    },
+    ref,
+  ) => {
     const { downshift, highlightedItem, isOpen, items, loading } =
       useSelectContext("@optiaxiom/react/SelectContent");
 
@@ -53,6 +63,21 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
               asChild
               maxH="sm"
               minW="trigger"
+              onPointerDown={(event) => {
+                onPointerDown?.(event);
+                if (event.defaultPrevented) {
+                  return;
+                }
+
+                if (
+                  event.target instanceof HTMLElement &&
+                  event.target.closest('[role="option"]')
+                ) {
+                  return;
+                }
+
+                event.preventDefault();
+              }}
               provider="popper"
               ref={ref}
               role="dialog"
