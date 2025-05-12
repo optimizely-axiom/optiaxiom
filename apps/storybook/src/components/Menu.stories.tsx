@@ -95,7 +95,12 @@ export const Basic: Story = {
 export const WithLabel: Story = {
   ...Basic,
   decorators: (Story) => (
-    <Field label="Label">
+    <Field
+      label="Label"
+      // Apply a bottom margin to force popover to appear below the label for
+      // snapshot testing
+      mb="80"
+    >
       <Story />
     </Field>
   ),
