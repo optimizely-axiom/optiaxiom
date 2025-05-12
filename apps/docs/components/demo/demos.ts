@@ -136,6 +136,9 @@ export const demos = {
   "disclosure/chevron-position-usage": import(
     "@/demos/disclosure/chevron-position-usage/App"
   ),
+  "disclosure/controlled-usage": import(
+    "@/demos/disclosure/controlled-usage/App"
+  ),
   "disclosure/usage": import("@/demos/disclosure/usage/App"),
   "display/responsive-usage": import("@/demos/display/responsive-usage/App"),
   "display/usage": import("@/demos/display/usage/App"),
@@ -346,6 +349,9 @@ export const demos = {
   "separator/vertical-usage": import("@/demos/separator/vertical-usage/App"),
   "sidebar/account-item/usage": import(
     "@/demos/sidebar/account-item/usage/App"
+  ),
+  "sidebar/group/collapsible-usage": import(
+    "@/demos/sidebar/group/collapsible-usage/App"
   ),
   "sidebar/group/separator-usage": import(
     "@/demos/sidebar/group/separator-usage/App"

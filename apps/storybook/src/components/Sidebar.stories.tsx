@@ -187,9 +187,7 @@ export const WithSubNav: Story = {
               <NavItem icon={<IconStar />}>Favorites</NavItem>
               <NavItem icon={<IconTrash />}>Trash</NavItem>
 
-              <NavGroup defaultOpen>
-                <NavSeparator />
-
+              <NavGroup collapsible>
                 <NavGroupTrigger>Location</NavGroupTrigger>
 
                 <NavGroupContent>
@@ -201,7 +199,7 @@ export const WithSubNav: Story = {
                 </NavGroupContent>
               </NavGroup>
 
-              <NavGroup defaultOpen>
+              <NavGroup>
                 <NavSeparator />
 
                 <NavGroupTrigger>Analytics</NavGroupTrigger>
