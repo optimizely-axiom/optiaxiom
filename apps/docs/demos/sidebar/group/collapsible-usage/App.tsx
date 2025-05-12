@@ -23,7 +23,7 @@ export function App() {
         <Nav>
           <NavBody>
             <NavList>
-              <NavGroup>
+              <NavGroup collapsible>
                 <NavGroupTrigger>Location</NavGroupTrigger>
                 <NavGroupContent>
                   <NavItem icon={<IconDashboard />}>CMP</NavItem>

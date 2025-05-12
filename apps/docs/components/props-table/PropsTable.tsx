@@ -225,7 +225,8 @@ function PropsTableDescription({
         </>
       ) : matches(["NavGroup"], name) ? (
         <>
-          Renders an <Code>&lt;li&gt;</Code> element.
+          Renders an <Code>&lt;li&gt;</Code> element element but forwards all
+          props to an inner <Code>&lt;div&gt;</Code> element.
         </>
       ) : matches(["NavGroupContent", "NavList"], name) ? (
         <>

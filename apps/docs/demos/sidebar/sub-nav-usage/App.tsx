@@ -66,7 +66,7 @@ export function App() {
                 Trash
               </NavItem>
 
-              <NavGroup defaultOpen>
+              <NavGroup>
                 <NavSeparator />
                 <NavGroupTrigger>Location</NavGroupTrigger>
                 <NavGroupContent>
@@ -94,7 +94,7 @@ export function App() {
                 </NavGroupContent>
               </NavGroup>
 
-              <NavGroup defaultOpen>
+              <NavGroup>
                 <NavSeparator />
                 <NavGroupTrigger>Analytics</NavGroupTrigger>
                 <NavGroupContent>

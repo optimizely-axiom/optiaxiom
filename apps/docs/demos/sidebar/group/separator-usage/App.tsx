@@ -28,7 +28,7 @@ export function App() {
             <NavList>
               <NavItem icon={<IconCopy />}>All</NavItem>
               <NavItem icon={<IconRectangle />}>Recent</NavItem>
-              <NavGroup defaultOpen>
+              <NavGroup>
                 <NavSeparator />
                 <NavGroupTrigger>Location</NavGroupTrigger>
                 <NavGroupContent>
