@@ -34,6 +34,10 @@ export type CommandOption = {
    */
   group?: CommandOptionGroup;
   /**
+   * Control the appearance by selecting between the different item types.
+   */
+  intent?: "danger" | "neutral";
+  /**
    * Return a unique key for each item (otherwise label is used).
    */
   key?: string;

@@ -16,6 +16,7 @@ export const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>(
           addonBefore={props.item.addon}
           asChild
           description={props.item.description}
+          intent={props.item.intent}
         >
           <Comp {...(props.item.link && { href: props.item.link })}>
             {children}
