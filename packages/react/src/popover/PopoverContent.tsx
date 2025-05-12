@@ -34,7 +34,7 @@ export type PopoverContentProps = ExcludeProps<
 
 export const PopoverContent = forwardRef<HTMLDivElement, PopoverContentProps>(
   (
-    { align = "start", children, sideOffset = 2, withArrow, ...props },
+    { align = "start", children, sideOffset = 4, withArrow, ...props },
     outerRef,
   ) => {
     const { open, presence, setPresence } = usePopoverContext(
