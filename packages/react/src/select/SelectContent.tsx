@@ -84,7 +84,7 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
               size={size}
               {...props}
             >
-              <PopperContent align={align} side={side} sideOffset={5}>
+              <PopperContent align={align} side={side} sideOffset={4}>
                 <ListboxItemized
                   highlightedItem={highlightedItem}
                   items={items}

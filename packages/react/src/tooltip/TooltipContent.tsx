@@ -39,7 +39,7 @@ export const TooltipContent = forwardRef<HTMLDivElement, TooltipContentProps>(
                 arrowPadding={6}
                 ref={ref}
                 side={side}
-                sideOffset={5}
+                sideOffset={4}
               >
                 <Text asChild fontSize="sm">
                   <div>{children}</div>
