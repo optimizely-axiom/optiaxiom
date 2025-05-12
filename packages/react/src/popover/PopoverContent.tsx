@@ -60,6 +60,7 @@ export const PopoverContent = forwardRef<HTMLDivElement, PopoverContentProps>(
           >
             <RadixPopover.Content
               align={align}
+              collisionPadding={16}
               ref={ref}
               sideOffset={sideOffset}
             >

@@ -48,7 +48,6 @@ export const MenuPopoverContent = forwardRef<
 
   return (
     <PopoverContent
-      maxH="sm"
       minW="trigger"
       ref={ref}
       style={{ ...style, minHeight }}
