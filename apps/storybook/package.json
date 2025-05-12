@@ -31,6 +31,7 @@
     "react-docgen": "^8.0.0",
     "react-dom": "^18.3.1",
     "storybook": "^8.6.12",
+    "storybook-addon-test-codegen": "^1.3.4",
     "vite": "^6.3.2",
     "vitest": "3.1.1"
   }
