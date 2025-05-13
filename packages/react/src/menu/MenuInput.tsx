@@ -61,7 +61,8 @@ export const MenuInput = forwardRef<HTMLInputElement, MenuInputProps>(
               );
             } else if (
               event.key === "ArrowRight" &&
-              highlightedItem?.subOptions?.length &&
+              (typeof highlightedItem?.subOptions === "function" ||
+                highlightedItem?.subOptions?.length) &&
               size === "sm"
             ) {
               event.preventDefault();
