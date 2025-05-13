@@ -68,7 +68,9 @@ export type CommandOption = {
   /**
    * An array of sub items that will be displayed in a nested menu.
    */
-  subOptions?: CommandOption[];
+  subOptions?:
+    | ((context: { inputValue: string | undefined }) => CommandOption[])
+    | CommandOption[];
   /**
    * Allow filtering through sub-options independent of the parent menu.
    */

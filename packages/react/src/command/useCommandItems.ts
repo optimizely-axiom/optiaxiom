@@ -32,7 +32,9 @@ export const useCommandItems = ({
       (parentOption?: CommandOption) =>
       (item: CommandOption): CommandOption[] => {
         return item.subOptions && substring
-          ? item.subOptions.flatMap(callback(item))
+          ? resolveItemProperty(item.subOptions, { inputValue }).flatMap(
+              callback(item),
+            )
           : filterFn(item, substring)
             ? [
                 parentOption
