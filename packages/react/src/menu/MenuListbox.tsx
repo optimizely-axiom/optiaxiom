@@ -25,15 +25,16 @@ export const MenuListbox = forwardRef<HTMLDivElement, MenuListboxProps>(
             index: number,
             prevItem: CommandOption | undefined,
           ) => {
-            const Comp = item.subOptions?.length
-              ? size === "sm"
-                ? MenuSub
-                : MenuItem
-              : "selected" in item
-                ? item.multi
-                  ? MenuCheckboxItem
-                  : MenuRadioItem
-                : MenuItem;
+            const Comp =
+              typeof item.subOptions === "function" || item.subOptions?.length
+                ? size === "sm"
+                  ? MenuSub
+                  : MenuItem
+                : "selected" in item
+                  ? item.multi
+                    ? MenuCheckboxItem
+                    : MenuRadioItem
+                  : MenuItem;
             const group = item.group;
             return (
               <>

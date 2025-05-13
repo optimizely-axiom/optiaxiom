@@ -449,7 +449,7 @@ export const Nested: Story = {
       { label: "Hidden item", visible: false },
       {
         label: "Add to",
-        subOptions: [
+        subOptions: () => [
           { label: "Favorite" },
           { label: "Collection" },
           { label: "Campaign" },

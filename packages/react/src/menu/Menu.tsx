@@ -77,9 +77,7 @@ export function Menu({
     prop: inputValueProp,
   });
 
-  const [activeItemStack, setActiveItemStack] = useState<
-    Array<CommandOption[]>
-  >([]);
+  const [activeItemStack, setActiveItemStack] = useState<CommandOption[]>([]);
   const [subMenuOpen, setSubMenuOpen] = useState(false);
   useEffect(() => {
     if (inputValue && size === "sm") {
@@ -112,7 +110,24 @@ export function Menu({
               : resolveItemProperty(option.label, { inputValue }),
           }))
         : activeItemStack.length
-          ? activeItemStack[activeItemStack.length - 1]
+          ? activeItemStack.reduce((result, stackItem) => {
+              const stackKey =
+                stackItem.key ??
+                resolveItemProperty(stackItem.label, { inputValue });
+              for (const resultItem of result) {
+                const resultKey =
+                  resultItem.key ??
+                  resolveItemProperty(resultItem.label, { inputValue });
+                if (resultKey === stackKey) {
+                  return (
+                    resolveItemProperty(resultItem.subOptions, {
+                      inputValue,
+                    }) ?? []
+                  );
+                }
+              }
+              throw new Error(`Could not find item: ${stackKey}`);
+            }, optionsProp)
           : optionsProp,
     [activeItemStack, inputValue, optionsProp, size],
   );
@@ -167,16 +182,19 @@ export function Menu({
         <Command
           inputValue={inputValue}
           onHover={(item) => {
-            setSubMenuOpen(!!item.subOptions?.length);
+            setSubMenuOpen(
+              typeof item.subOptions === "function" ||
+                !!item.subOptions?.length,
+            );
           }}
           onInputValueChange={setInputValue}
           onSelect={(item, { dismiss }) => {
-            if (item.subOptions?.length) {
+            if (
+              typeof item.subOptions === "function" ||
+              item.subOptions?.length
+            ) {
               if (size === "lg") {
-                setActiveItemStack((stack) => [
-                  ...(stack ?? []),
-                  item.subOptions ?? [],
-                ]);
+                setActiveItemStack((stack) => [...(stack ?? []), item]);
               } else {
                 setSubMenuOpen(true);
               }
