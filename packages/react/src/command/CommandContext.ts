@@ -33,6 +33,7 @@ export type CommandOption = {
    * Group item belongs to.
    */
   group?: CommandOptionGroup;
+  hiddenInSearchContext?: boolean;
   /**
    * Control the appearance by selecting between the different item types.
    */
