@@ -7,7 +7,7 @@ import { Backdrop } from "../backdrop";
 import { type BoxProps } from "../box";
 import { ModalProvider } from "../modal";
 import { Paper } from "../paper";
-import { usePortalContext } from "../portal/internals";
+import { Portal } from "../portal";
 import { Transition, TransitionGroup } from "../transition";
 import { type ExcludeProps, onReactSelectInputBlur } from "../utils";
 import * as styles from "./DialogContent.css";
@@ -42,20 +42,20 @@ export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
     const innerRef = useRef<HTMLDivElement>(null);
     const ref = useComposedRefs(innerRef, outerRef);
 
-    const { container } = usePortalContext("@optiaxiom/react/DialogContent");
-
     return (
       <TransitionGroup open={open}>
-        <RadixDialog.Portal container={container} forceMount>
+        <Portal asChild>
           <Transition>
             <Backdrop
               asChild
               {...styles.backdrop({ hidden: nestedDialogCount > 0 })}
             >
-              <RadixDialog.Overlay />
+              <RadixDialog.Overlay forceMount />
             </Backdrop>
           </Transition>
+        </Portal>
 
+        <Portal asChild>
           <Transition data-side="bottom" type={transitionType}>
             <Paper
               asChild
@@ -70,12 +70,12 @@ export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
               {...styles.content({ size }, className)}
               {...props}
             >
-              <RadixDialog.Content ref={ref}>
+              <RadixDialog.Content forceMount ref={ref}>
                 <ModalProvider shardRef={innerRef}>{children}</ModalProvider>
               </RadixDialog.Content>
             </Paper>
           </Transition>
-        </RadixDialog.Portal>
+        </Portal>
       </TransitionGroup>
     );
   },
