@@ -37,6 +37,7 @@ export const TooltipContent = forwardRef<HTMLDivElement, TooltipContentProps>(
               <RadixTooltip.Content
                 align={align}
                 arrowPadding={6}
+                forceMount
                 ref={ref}
                 side={side}
                 sideOffset={4}
