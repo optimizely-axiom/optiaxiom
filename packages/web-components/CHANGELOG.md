@@ -1,5 +1,13 @@
 # @optiaxiom/web-components
 
+## 0.10.4
+
+### Patch Changes
+
+- f440bca: fix regression from portal refactor
+- f04c828: allow configuring NavGroup to be collapsible
+- 29a2bf1: handle SubNav item not having icon
+
 ## 0.10.3
 
 ### Patch Changes

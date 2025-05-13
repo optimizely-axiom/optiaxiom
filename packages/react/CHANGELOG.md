@@ -1,5 +1,15 @@
 # @optiaxiom/react
 
+## 1.4.5
+
+### Patch Changes
+
+- f440bca: fix regression from portal refactor
+- f04c828: allow configuring NavGroup to be collapsible
+- 01ce4f5: remove max-height restriction from menu content
+- 29a2bf1: handle SubNav item not having icon
+- 51b6275: add danger intent to menu items
+
 ## 1.4.4
 
 ### Patch Changes
