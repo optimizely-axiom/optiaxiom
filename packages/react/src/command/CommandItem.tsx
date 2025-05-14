@@ -135,7 +135,11 @@ export const CommandItem = forwardRef<HTMLDivElement, CommandItemProps>(
                     </>
                   )}
                 {resolveItemProperty(item.label, { inputValue })}
-                {detail && <Text color="fg.secondary">{detail}</Text>}
+                {detail && (
+                  <Text color="fg.secondary" flex="1">
+                    {detail}
+                  </Text>
+                )}
               </>
             ),
         )}
