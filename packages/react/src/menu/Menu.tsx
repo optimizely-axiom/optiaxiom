@@ -174,7 +174,14 @@ export function Menu({
           }
         }}
         open={open}
-        placeholder={placeholder}
+        placeholder={
+          activeItemStack.length
+            ? resolveItemProperty(
+                activeItemStack[activeItemStack.length - 1].label,
+                { inputValue },
+              )
+            : placeholder
+        }
         setActiveItemStack={setActiveItemStack}
         setOpen={setOpen}
         size={size}
