@@ -54,6 +54,8 @@ export const useCommandItems = ({
               ]
             : [];
       };
-    return options.flatMap(callback());
+    return options.flatMap(callback()).sort((a, b) => {
+      return (b.group?.priority ?? 0) - (a.group?.priority ?? 0);
+    });
   }, [options, filterFn, inputValue]);
 };
