@@ -86,8 +86,21 @@ export type CommandOption = {
 };
 
 type CommandOptionGroup = {
+  /**
+   * Whether to hide the group label.
+   */
   hidden?: boolean;
+  /**
+   * Return a string representation of the group.
+   */
   label: string;
+  /**
+   * The sorting priority of the group (default: 0).
+   */
+  priority?: number;
+  /**
+   * Whether to show separators around the whole group.
+   */
   separator?: boolean;
 };
 

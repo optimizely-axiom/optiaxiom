@@ -451,7 +451,10 @@ export const Nested: Story = {
         hiddenInSearchContext: true,
         label: "Add to",
         subOptions: () => [
-          { label: "Favorite" },
+          {
+            group: { hidden: true, label: "", priority: -1 },
+            label: "Favorite",
+          },
           { label: "Collection" },
           { label: "Campaign" },
         ],
