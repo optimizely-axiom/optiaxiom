@@ -17,7 +17,7 @@ export type CommandOption = {
   /**
    * Secondary text displayed next to the label.
    */
-  detail?: (context: { inputValue: string | undefined }) => string;
+  detail?: ((context: { inputValue: string | undefined }) => string) | string;
   /**
    * Provide a reason why item needs to be marked as disabled and skipped from keyboard navigation.
    */
