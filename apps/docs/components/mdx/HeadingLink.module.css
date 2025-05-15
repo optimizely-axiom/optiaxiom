@@ -1,6 +1,14 @@
 .hidden {
   opacity: 0;
   pointer-events: none;
+
+  h6 {
+    counter-increment: none;
+
+    &::before {
+      content: "";
+    }
+  }
 }
 
 .group {
