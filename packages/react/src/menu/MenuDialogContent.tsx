@@ -4,6 +4,7 @@ import type { MenuContent } from "./MenuContent";
 
 import { DialogContent, DialogHeader } from "../dialog";
 import { VisuallyHidden } from "../visually-hidden";
+import * as styles from "./MenuDialogContent.css";
 
 export type MenuDialogContentProps = ComponentPropsWithoutRef<
   typeof MenuContent
@@ -18,6 +19,7 @@ export const MenuDialogContent = forwardRef<
       align: _align,
       "aria-label": ariaLabel,
       children,
+      className,
       side: _side,
       sideOffset: _sideOffset,
       ...props
@@ -25,7 +27,12 @@ export const MenuDialogContent = forwardRef<
     ref,
   ) => {
     return (
-      <DialogContent ref={ref} transitionType="pop" {...props}>
+      <DialogContent
+        ref={ref}
+        transitionType="pop"
+        {...styles.content({}, className)}
+        {...props}
+      >
         {children}
 
         <VisuallyHidden tabIndex={-1}>
