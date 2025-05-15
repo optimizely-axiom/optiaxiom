@@ -1,5 +1,11 @@
 # @optiaxiom/web-components
 
+## 0.10.5
+
+### Patch Changes
+
+- 9cb019b: allow packages to work in legacy CJS environments
+
 ## 0.10.4
 
 ### Patch Changes
