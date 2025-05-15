@@ -13,8 +13,8 @@ npm install @optiaxiom/react
 
 ## Packages
 
-- [`@optiaxiom/react`](https://github.com/optimizely-axiom/optiaxiom/tree/main/packages/react): React component library
-- [`@optiaxiom/web-components`](https://github.com/optimizely-axiom/optiaxiom/tree/main/packages/web-components): Web component library
+- [`@optiaxiom/react`](./packages/react): React component library
+- [`@optiaxiom/web-components`](./packages/web-components): Web component library
 
 ## Contributing
 
