@@ -33,7 +33,8 @@ export const MenuSubInput = forwardRef<HTMLInputElement, MenuSubInputProps>(
             setOpen(false);
           } else if (
             event.key === "ArrowRight" &&
-            highlightedItem?.subOptions?.length
+            (typeof highlightedItem?.subOptions === "function" ||
+              highlightedItem?.subOptions?.length)
           ) {
             event.preventDefault();
             downshift.selectItem(highlightedItem);

@@ -13,13 +13,13 @@ import type { Command } from "../command";
 import type { CommandOption } from "../command/internals";
 
 export const [MenuProvider, useMenuContext] = createContext<{
-  activeItemStack: Array<CommandOption[]>;
+  activeItemStack: CommandOption[];
   inputRef: RefObject<HTMLInputElement>;
   inputVisible: boolean;
   onSelect: NonNullable<ComponentPropsWithoutRef<typeof Command>["onSelect"]>;
   open?: boolean | undefined;
   placeholder: string | undefined;
-  setActiveItemStack: Dispatch<SetStateAction<Array<CommandOption[]>>>;
+  setActiveItemStack: Dispatch<SetStateAction<CommandOption[]>>;
   setOpen: (open: boolean) => void;
   size: "lg" | "sm";
 }>("@optiaxiom/react/Menu");

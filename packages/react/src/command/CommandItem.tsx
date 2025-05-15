@@ -121,20 +121,25 @@ export const CommandItem = forwardRef<HTMLDivElement, CommandItemProps>(
           (children) =>
             children ?? (
               <>
-                {item.parentOption && (
-                  <>
-                    <Text color="fg.secondary">
-                      {resolveItemProperty(item.parentOption.label, {
-                        inputValue,
-                      })}
-                    </Text>
-                    <Box asChild h="10" w="auto">
-                      <IconAngleRight />
-                    </Box>
-                  </>
-                )}
+                {item.parentOption &&
+                  !item.parentOption.hiddenInSearchContext && (
+                    <>
+                      <Text color="fg.secondary">
+                        {resolveItemProperty(item.parentOption.label, {
+                          inputValue,
+                        })}
+                      </Text>
+                      <Box asChild h="10" w="auto">
+                        <IconAngleRight />
+                      </Box>
+                    </>
+                  )}
                 {resolveItemProperty(item.label, { inputValue })}
-                {detail && <Text color="fg.secondary">{detail}</Text>}
+                {detail && (
+                  <Text color="fg.secondary" flex="1">
+                    {detail}
+                  </Text>
+                )}
               </>
             ),
         )}

@@ -32,7 +32,9 @@ export const useCommandItems = ({
       (parentOption?: CommandOption) =>
       (item: CommandOption): CommandOption[] => {
         return item.subOptions && substring
-          ? item.subOptions.flatMap(callback(item))
+          ? resolveItemProperty(item.subOptions, { inputValue }).flatMap(
+              callback(item),
+            )
           : filterFn(item, substring)
             ? [
                 parentOption
@@ -52,6 +54,8 @@ export const useCommandItems = ({
               ]
             : [];
       };
-    return options.flatMap(callback());
+    return options.flatMap(callback()).sort((a, b) => {
+      return (b.group?.priority ?? 0) - (a.group?.priority ?? 0);
+    });
   }, [options, filterFn, inputValue]);
 };

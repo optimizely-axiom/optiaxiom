@@ -12,7 +12,7 @@ import type { ExcludeProps } from "../utils";
 
 import { type BoxProps } from "../box";
 import { Command } from "../command";
-import { useCommandContext } from "../command/internals";
+import { resolveItemProperty, useCommandContext } from "../command/internals";
 import { PopoverContent } from "../popover";
 import { usePopoverContext } from "../popover/PopoverContext";
 import { VisuallyHidden } from "../visually-hidden";
@@ -31,12 +31,16 @@ export type MenuSubContentProps = ExcludeProps<
 
 export const MenuSubContent = forwardRef<HTMLDivElement, MenuSubContentProps>(
   ({ align = "start", children, item, side = "right", ...props }, ref) => {
-    const options = useMemo(() => item.subOptions ?? [], [item]);
     const { onSelect, setOpen: setRootMenuOpen } = useMenuContext(
       "@optiaxiom/react/MenuSubContent",
     );
-    const { setInputValue } = useCommandContext(
+    const { setInputValue: setParentInputValue } = useCommandContext(
       "@optiaxiom/react/MenuSubContent",
+    );
+    const [inputValue, setInputValue] = useState("");
+    const options = useMemo(
+      () => resolveItemProperty(item.subOptions, { inputValue }) ?? [],
+      [inputValue, item],
     );
     const { inputRef: parentInputRef, open: parentSubMenuOpen } =
       useMenuSubContext("@optiaxiom/react/MenuSubContent");
@@ -98,19 +102,27 @@ export const MenuSubContent = forwardRef<HTMLDivElement, MenuSubContentProps>(
       >
         {children ?? (
           <Command
+            inputValue={inputValue}
             onHover={(item) => {
-              setSubMenuOpen(!!item.subOptions?.length);
+              setSubMenuOpen(
+                typeof item.subOptions === "function" ||
+                  !!item.subOptions?.length,
+              );
             }}
             onInputValueChange={(inputValue) => {
               if (item.subOptionsInputVisible) {
+                setInputValue(inputValue);
                 return;
               }
 
               parentInputRef.current?.focus();
-              setInputValue(inputValue);
+              setParentInputValue(inputValue);
             }}
             onSelect={(item, { dismiss }) => {
-              if (item.subOptions?.length) {
+              if (
+                typeof item.subOptions === "function" ||
+                item.subOptions?.length
+              ) {
                 setSubMenuOpen(true);
               } else {
                 onSelect(item, { dismiss });

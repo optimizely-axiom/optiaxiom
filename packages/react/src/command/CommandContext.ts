@@ -17,7 +17,7 @@ export type CommandOption = {
   /**
    * Secondary text displayed next to the label.
    */
-  detail?: (context: { inputValue: string | undefined }) => string;
+  detail?: ((context: { inputValue: string | undefined }) => string) | string;
   /**
    * Provide a reason why item needs to be marked as disabled and skipped from keyboard navigation.
    */
@@ -33,6 +33,7 @@ export type CommandOption = {
    * Group item belongs to.
    */
   group?: CommandOptionGroup;
+  hiddenInSearchContext?: boolean;
   /**
    * Control the appearance by selecting between the different item types.
    */
@@ -68,7 +69,9 @@ export type CommandOption = {
   /**
    * An array of sub items that will be displayed in a nested menu.
    */
-  subOptions?: CommandOption[];
+  subOptions?:
+    | ((context: { inputValue: string | undefined }) => CommandOption[])
+    | CommandOption[];
   /**
    * Allow filtering through sub-options independent of the parent menu.
    */
@@ -83,8 +86,21 @@ export type CommandOption = {
 };
 
 type CommandOptionGroup = {
+  /**
+   * Whether to hide the group label.
+   */
   hidden?: boolean;
+  /**
+   * Return a string representation of the group.
+   */
   label: string;
+  /**
+   * The sorting priority of the group (default: 0).
+   */
+  priority?: number;
+  /**
+   * Whether to show separators around the whole group.
+   */
   separator?: boolean;
 };
 
