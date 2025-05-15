@@ -1,4 +1,4 @@
-import { forwardRef, type RefObject } from "react";
+import { forwardRef, type RefObject, useEffect, useState } from "react";
 
 import type { BoxProps } from "../box";
 
@@ -33,6 +33,11 @@ export const MenuSubTrigger = forwardRef<HTMLDivElement, MenuSubTriggerProps>(
       useCommandContext("@optiaxiom/react/MenuSubTrigger");
     const { open } = usePopoverContext("@optiaxiom/react/MenuSubTrigger");
 
+    const [isMounted, setIsMounted] = useState(false);
+    useEffect(() => {
+      setIsMounted(true);
+    }, []);
+
     return (
       <PopoverTrigger asChild>
         <FilteredSlot exclude="type">
@@ -47,7 +52,7 @@ export const MenuSubTrigger = forwardRef<HTMLDivElement, MenuSubTriggerProps>(
             }}
             onPointerEnter={(event) => {
               onPointerEnter?.(event);
-              if (highlightedItem !== item) {
+              if (!isMounted || highlightedItem !== item) {
                 return;
               }
 
