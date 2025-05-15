@@ -1,5 +1,13 @@
 # @optiaxiom/react
 
+## 1.4.6
+
+### Patch Changes
+
+- 9cb019b: allow packages to work in legacy CJS environments
+- Updated dependencies [9cb019b]
+  - @optiaxiom/globals@1.0.5
+
 ## 1.4.5
 
 ### Patch Changes

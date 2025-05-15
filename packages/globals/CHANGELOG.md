@@ -1,5 +1,11 @@
 # @optiaxiom/globals
 
+## 1.0.5
+
+### Patch Changes
+
+- 9cb019b: allow packages to work in legacy CJS environments
+
 ## 1.0.4
 
 ### Patch Changes
