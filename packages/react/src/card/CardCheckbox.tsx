@@ -5,11 +5,9 @@ import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import type { ExcludeProps } from "../utils";
 
-import { Box } from "../box";
 import { Checkbox } from "../checkbox";
-import { CheckboxControl } from "../checkbox/CheckboxControl";
-import { CheckboxRoot } from "../checkbox/CheckboxRoot";
 import { VisuallyHidden } from "../visually-hidden";
+import * as styles from "./CardCheckbox.css";
 import { useCardContext } from "./CardContext";
 
 export type CardCheckboxProps = ExcludeProps<
@@ -18,7 +16,7 @@ export type CardCheckboxProps = ExcludeProps<
 >;
 
 export const CardCheckbox = forwardRef<HTMLInputElement, CardCheckboxProps>(
-  ({ children, indeterminate, onChange, ...props }, ref) => {
+  ({ className, onChange, ...props }, ref) => {
     const labelPrefixId = useId();
     const { labelId } = useCardContext("@optiaxiom/react/CardCheckbox");
 
@@ -29,26 +27,22 @@ export const CardCheckbox = forwardRef<HTMLInputElement, CardCheckboxProps>(
     });
 
     return (
-      <CheckboxRoot
-        aria-labelledby={clsx(labelPrefixId, labelId)}
-        description={false}
-        onChange={(event) => {
-          onChange?.(event);
-          setChecked(event.target.checked);
-        }}
-        ref={ref}
-        {...props}
-      >
-        <CheckboxControl
-          indeterminate={indeterminate}
-          shift={Boolean(children)}
-        />
-        <VisuallyHidden>
-          <Box id={labelPrefixId}>
-            Check to {checked ? "unselect" : "select"}
-          </Box>
+      <>
+        <VisuallyHidden id={labelPrefixId}>
+          Check to {checked ? "unselect" : "select"}
         </VisuallyHidden>
-      </CheckboxRoot>
+        <Checkbox
+          aria-labelledby={clsx(labelPrefixId, labelId)}
+          description={false}
+          onChange={(event) => {
+            onChange?.(event);
+            setChecked(event.target.checked);
+          }}
+          ref={ref}
+          {...styles.checkbox({}, className)}
+          {...props}
+        />
+      </>
     );
   },
 );

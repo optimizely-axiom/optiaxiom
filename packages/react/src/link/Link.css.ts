@@ -2,11 +2,8 @@ import { theme } from "@optiaxiom/globals";
 
 import { recipe, type RecipeVariants, style } from "../vanilla-extract";
 
-export const className = style({});
-
 export const link = recipe({
   base: [
-    className,
     style({
       position: "relative",
       textDecoration: "none",
