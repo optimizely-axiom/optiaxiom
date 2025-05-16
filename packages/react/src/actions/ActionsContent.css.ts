@@ -6,6 +6,7 @@ import * as rootStyles from "./ActionsRoot.css";
 export const content = recipe({
   base: [
     {
+      alignItems: "center",
       display: "flex",
       justifyContent: "space-between",
     },

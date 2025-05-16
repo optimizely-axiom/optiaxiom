@@ -1,16 +1,23 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Badge, Box, EllipsisMenuButton, Flex, Link } from "@optiaxiom/react";
+import {
+  Badge,
+  Box,
+  EllipsisMenuButton,
+  Flex,
+  Link,
+  Text,
+} from "@optiaxiom/react";
 import {
   Card,
   CardAction,
   CardCheckbox,
-  CardContent,
-  CardDescription,
+  CardFooter,
+  CardHeader,
   CardImage,
   CardLink,
-  CardOverflow,
-  CardTitle,
+  CardOverlay,
+  CardPreview,
   Menu,
   MenuContent,
   MenuTrigger,
@@ -30,12 +37,14 @@ export const Basic: Story = {
   args: {
     children: (
       <>
-        <CardOverflow>
+        <CardPreview>
           <CardImage src="https://placehold.co/600x400" />
-        </CardOverflow>
-        <CardTitle>The majestic world of turtles</CardTitle>
+        </CardPreview>
+        <CardHeader>The majestic world of turtles</CardHeader>
       </>
     ),
+    maxH: "xs",
+    style: { height: "100vh" },
   },
 };
 
@@ -43,13 +52,12 @@ export const WithCaption: Story = {
   args: {
     children: (
       <>
-        <CardOverflow>
+        <CardPreview>
           <CardImage src="https://placehold.co/600x400" />
-        </CardOverflow>
-        <CardContent>
-          <CardTitle>The majestic world of turtles</CardTitle>
-          <CardDescription>Unveiling the secrets.</CardDescription>
-        </CardContent>
+        </CardPreview>
+        <CardHeader description="Unveiling the secrets.">
+          The majestic world of turtles
+        </CardHeader>
       </>
     ),
   },
@@ -59,16 +67,19 @@ export const WithTruncatedDescription: Story = {
   args: {
     children: (
       <>
-        <CardOverflow>
+        <CardPreview>
           <CardImage src="https://placehold.co/600x400" />
-        </CardOverflow>
-        <CardContent>
-          <CardTitle>The majestic world of turtles</CardTitle>
-          <CardDescription lineClamp="2">
-            This is a longer piece of content that demonstrates what truncating
-            the CardDescription would look like.
-          </CardDescription>
-        </CardContent>
+        </CardPreview>
+        <CardHeader
+          description={
+            <Text lineClamp="2">
+              This is a longer piece of content that demonstrates what
+              truncating the CardDescription would look like.
+            </Text>
+          }
+        >
+          The majestic world of turtles
+        </CardHeader>
       </>
     ),
   },
@@ -78,16 +89,13 @@ export const WithBadge: Story = {
   args: {
     children: (
       <>
-        <CardOverflow>
+        <CardPreview>
           <CardImage src="https://placehold.co/600x400" />
-        </CardOverflow>
-        <CardContent>
-          <Box>
-            <Badge intent="information">Badge</Badge>
-          </Box>
-          <CardTitle>The majestic world of turtles</CardTitle>
-          <CardDescription>Unveiling the secrets.</CardDescription>
-        </CardContent>
+        </CardPreview>
+        <Badge intent="information">Badge</Badge>
+        <CardHeader description="Unveiling the secrets.">
+          The majestic world of turtles
+        </CardHeader>
       </>
     ),
   },
@@ -97,12 +105,12 @@ export const WithLink: Story = {
   args: {
     children: (
       <>
-        <CardOverflow>
+        <CardPreview>
           <CardImage src="https://placehold.co/600x400" />
-        </CardOverflow>
-        <CardTitle>
+        </CardPreview>
+        <CardHeader>
           <CardLink href="data:,">The majestic world of turtles</CardLink>
-        </CardTitle>
+        </CardHeader>
       </>
     ),
   },
@@ -115,38 +123,41 @@ export const WithLinkAndEllipsis: Story = {
   args: {
     children: (
       <>
-        <CardOverflow>
-          <CardImage src="https://placehold.co/600x400" />
-        </CardOverflow>
-        <Flex flexDirection="row" justifyContent="space-between">
-          <CardTitle>
-            <CardLink href="data:,">The majestic world of turtles</CardLink>
-          </CardTitle>
-          <CardAction>
-            <Menu
-              options={[
-                { description: "Create a new task", label: "New task" },
-                { description: "Copy this task", label: "Copy task" },
-                {
-                  group: { hidden: true, label: "Delete", separator: true },
-                  intent: "danger",
-                  label: "Delete task",
-                },
-              ]}
-            >
-              <MenuTrigger asChild>
-                <EllipsisMenuButton
-                  appearance="subtle"
-                  aria-label="actions"
-                  size="sm"
-                />
-              </MenuTrigger>
-              <MenuContent />
-            </Menu>
-          </CardAction>
-        </Flex>
+        <CardHeader
+          addonAfter={
+            <CardAction>
+              <Menu
+                options={[
+                  { description: "Create a new task", label: "New task" },
+                  { description: "Copy this task", label: "Copy task" },
+                  {
+                    group: { hidden: true, label: "Delete", separator: true },
+                    intent: "danger",
+                    label: "Delete task",
+                  },
+                ]}
+              >
+                <MenuTrigger asChild>
+                  <EllipsisMenuButton
+                    appearance="subtle"
+                    aria-label="actions"
+                    size="sm"
+                  />
+                </MenuTrigger>
+                <MenuContent />
+              </Menu>
+            </CardAction>
+          }
+          description="Unveiling the secrets."
+        >
+          <CardLink href="data:,">The majestic world of turtles</CardLink>
+        </CardHeader>
+        <CardFooter>
+          <Badge intent="information">Badge</Badge>
+        </CardFooter>
       </>
     ),
+    h: "224",
   },
   play: async ({ canvas }) => {
     await userEvent.click(canvas.getByRole("button"));
@@ -158,17 +169,19 @@ export const WithCheckboxAndLink: Story = {
   args: {
     children: (
       <>
-        <CardOverflow>
-          <CardAction>
-            <CardCheckbox />
-          </CardAction>
+        <CardPreview>
           <CardImage src="https://placehold.co/600x400" />
-        </CardOverflow>
-        <CardTitle>
+          <CardOverlay>
+            <CardAction>
+              <CardCheckbox />
+            </CardAction>
+          </CardOverlay>
+        </CardPreview>
+        <CardHeader>
           <Link appearance="subtle" href="data:,">
             The majestic world of turtles
           </Link>
-        </CardTitle>
+        </CardHeader>
       </>
     ),
   },
@@ -181,38 +194,40 @@ export const WithCheckboxAndActions: Story = {
   args: {
     children: (
       <>
-        <CardOverflow>
-          <CardAction>
-            <CardCheckbox />
+        <CardPreview>
+          <CardOverlay>
+            <CardAction>
+              <CardCheckbox />
 
-            <Menu
-              options={[
-                { description: "Create a new task", label: "New task" },
-                { description: "Copy this task", label: "Copy task" },
-                {
-                  group: { hidden: true, label: "Delete", separator: true },
-                  intent: "danger",
-                  label: "Delete task",
-                },
-              ]}
-            >
-              <MenuTrigger asChild>
-                <EllipsisMenuButton
-                  appearance="subtle"
-                  aria-label="actions"
-                  size="sm"
-                />
-              </MenuTrigger>
-              <MenuContent />
-            </Menu>
-          </CardAction>
+              <Menu
+                options={[
+                  { description: "Create a new task", label: "New task" },
+                  { description: "Copy this task", label: "Copy task" },
+                  {
+                    group: { hidden: true, label: "Delete", separator: true },
+                    intent: "danger",
+                    label: "Delete task",
+                  },
+                ]}
+              >
+                <MenuTrigger asChild>
+                  <EllipsisMenuButton
+                    appearance="subtle"
+                    aria-label="actions"
+                    size="sm"
+                  />
+                </MenuTrigger>
+                <MenuContent />
+              </Menu>
+            </CardAction>
+          </CardOverlay>
           <CardImage src="https://placehold.co/600x400" />
-        </CardOverflow>
-        <CardTitle>
+        </CardPreview>
+        <CardHeader>
           <Link appearance="subtle" href="data:,">
             The majestic world of turtles
           </Link>
-        </CardTitle>
+        </CardHeader>
       </>
     ),
   },
@@ -226,55 +241,49 @@ export const Horizontal: Story = {
   args: {
     h: "80",
     maxW: "full",
-    orientation: "horizontal",
   },
   render: (args) => (
-    <Flex>
+    <Flex maxW="lg" style={{ width: "100vw" }}>
       <Card {...args}>
-        <CardImage src="https://placehold.co/400x400" />
-        <CardContent>
-          <CardTitle>
-            <CardLink href="data:,">The majestic world of turtles</CardLink>
-          </CardTitle>
-        </CardContent>
+        <CardHeader
+          addonAfter={
+            <Menu
+              options={[
+                { description: "Create a new task", label: "New task" },
+                { description: "Copy this task", label: "Copy task" },
+                {
+                  group: { hidden: true, label: "Delete", separator: true },
+                  intent: "danger",
+                  label: "Delete task",
+                },
+              ]}
+            >
+              <MenuTrigger asChild>
+                <EllipsisMenuButton
+                  appearance="subtle"
+                  aria-label="actions"
+                  size="sm"
+                />
+              </MenuTrigger>
+              <MenuContent />
+            </Menu>
+          }
+          addonBefore={
+            <Box asChild rounded="xs" size="xl">
+              <img alt="" src="https://placehold.co/400x400" />
+            </Box>
+          }
+        >
+          <CardLink href="data:,">The majestic world of turtles</CardLink>
+        </CardHeader>
       </Card>
       <Card {...args}>
-        <CardOverflow>
-          <CardImage src="https://placehold.co/400x400" />
-        </CardOverflow>
-        <CardContent>
-          <CardTitle>
-            <CardLink href="data:,">The majestic world of turtles</CardLink>
-          </CardTitle>
-        </CardContent>
-      </Card>
-    </Flex>
-  ),
-};
-
-export const Vertical: Story = {
-  args: {
-    orientation: "vertical",
-  },
-  render: (args) => (
-    <Flex flexDirection="row">
-      <Card {...args}>
-        <CardImage src="https://placehold.co/600x400" />
-        <CardContent>
-          <CardTitle>
-            <CardLink href="data:,">The majestic world of turtles</CardLink>
-          </CardTitle>
-        </CardContent>
-      </Card>
-      <Card {...args}>
-        <CardOverflow>
-          <CardImage src="https://placehold.co/600x400" />
-        </CardOverflow>
-        <CardContent>
-          <CardTitle>
-            <CardLink href="data:,">The majestic world of turtles</CardLink>
-          </CardTitle>
-        </CardContent>
+        <CardHeader
+          addonAfter={<Badge>On</Badge>}
+          description="A/B Test - United Kingdom or Canada or Germany"
+        >
+          <CardLink href="data:,">Launch Scooter Beta Sign Up</CardLink>
+        </CardHeader>
       </Card>
     </Flex>
   ),

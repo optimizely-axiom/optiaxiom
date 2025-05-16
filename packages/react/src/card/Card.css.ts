@@ -1,7 +1,6 @@
 import { theme } from "@optiaxiom/globals";
 
 import * as coverStyles from "../cover/Cover.css";
-import * as linkStyles from "../link/Link.css";
 import { recipe, style } from "../vanilla-extract";
 
 export const className = style({});
@@ -10,12 +9,15 @@ export const card = recipe({
   base: [
     className,
     {
+      alignItems: "start",
+      bg: "bg.default",
       border: "1",
       borderColor: "border.tertiary",
       color: "fg.default",
-      gap: "12",
+      fontSize: "md",
+      gap: "8",
+      justifyContent: "flex-start",
       p: "16",
-      transition: "transform",
     },
     style({
       vars: {
@@ -24,13 +26,6 @@ export const card = recipe({
 
       borderRadius: theme.borderRadius.lg,
       position: "relative",
-
-      selectors: {
-        [`&:has(${linkStyles.className}[data-overlay]:not([data-disabled]):active)`]:
-          {
-            transform: "scale(0.97)",
-          },
-      },
     }),
   ],
 });

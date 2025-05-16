@@ -1,0 +1,14 @@
+.section {
+  backdrop-filter: blur(2px);
+  background-color: color-mix(in srgb, var(--bg) 50%, transparent);
+  border-style: dashed;
+  justify-self: stretch;
+
+  &[data-depth="0"] {
+    --bg: var(--ax-colors-bg-information-subtle);
+  }
+
+  &[data-depth="1"] {
+    --bg: var(--ax-colors-bg-success-subtle);
+  }
+}

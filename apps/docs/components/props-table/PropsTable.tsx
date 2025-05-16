@@ -16,6 +16,8 @@ const mapComponentToBase: Partial<Record<AllComponents, "" | AllComponents>> = {
   AlertDialogAction: "Button",
   AlertDialogCancel: "Button",
   AlertDialogTrigger: "Button",
+  CardCheckbox: "Checkbox",
+  CardLink: "Link",
   DateRangePicker: "Popover",
   DateRangePickerTrigger: "Button",
   DialogClose: "Button",
@@ -186,11 +188,15 @@ function PropsTableDescription({
         <>
           Renders a <Code>&lt;button&gt;</Code> element.
         </>
+      ) : matches(["CardImage"], name) ? (
+        <>
+          Renders an <Code>&lt;img&gt;</Code> element.
+        </>
       ) : matches(["Code"], name) ? (
         <>
           Renders a <Code>&lt;code&gt;</Code> element.
         </>
-      ) : matches(["Checkbox", "Radio", "Switch"], name) ? (
+      ) : matches(["Checkbox", "Radio", "Switch"], baseName, name) ? (
         <>
           Renders a <Code>&lt;div&gt;</Code> element but forwards all props to a
           hidden <Code>&lt;input&gt;</Code> element.
@@ -214,7 +220,7 @@ function PropsTableDescription({
         <>
           Renders a <Code>&lt;kbd&gt;</Code> element.
         </>
-      ) : matches(["Link"], name) ? (
+      ) : matches(["Link"], baseName, name) ? (
         <>
           Renders an <Code>&lt;a&gt;</Code> element.
         </>

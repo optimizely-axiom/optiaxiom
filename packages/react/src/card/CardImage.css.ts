@@ -5,30 +5,11 @@ export const cardImage = recipe({
     {
       h: "full",
       rounded: "inherit",
+      w: "full",
     },
     style({
+      aspectRatio: "2",
       objectFit: "cover",
     }),
   ],
-
-  variants: {
-    orientation: {
-      horizontal: [
-        {
-          w: "auto",
-        },
-        style({
-          aspectRatio: "1",
-        }),
-      ],
-      vertical: [
-        {
-          w: "full",
-        },
-        style({
-          aspectRatio: "2",
-        }),
-      ],
-    },
-  },
 });

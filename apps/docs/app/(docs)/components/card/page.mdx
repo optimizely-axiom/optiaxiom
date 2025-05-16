@@ -1,6 +1,5 @@
-import { Demo } from "@/components/demo";
-import { Links } from "@/components/links";
-import { PropsTable } from "@/components/props-table";
+import { Demo, Links, PropsTable } from "@/components";
+import { Alert } from "@optiaxiom/react";
 
 # Card
 
@@ -21,38 +20,98 @@ import {
   Card,
   CardAction,
   CardCheckbox,
-  CardContent,
-  CardDescription,
+  CardFooter,
+  CardHeader,
   CardImage,
   CardLink,
-  CardOverflow,
-  CardTitle,
+  CardOverlay,
+  CardPreview,
 } from "@optiaxiom/react/unstable";
 
 export default () => (
   <Card>
-    <CardOverflow>
-      <CardAction>
-        <CardCheckbox />
-      </CardAction>
-
+    <CardPreview>
       <CardImage />
-    </CardOverflow>
 
-    <CardImage />
+      <CardOverlay>
+        <CardCheckbox />
+      </CardOverlay>
+    </CardPreview>
 
-    <CardContent>
-      <CardTitle>
-        <CardLink />
-      </CardTitle>
+    <CardHeader>
+      <CardLink />
+    </CardHeader>
 
-      <CardDescription />
-
-      <CardAction />
-    </CardContent>
+    <CardFooter />
+    <CardAction />
   </Card>
 );
 ```
+
+### Structure
+
+Card has a basic structure containing the following parts:
+
+- `CardPreview`: An optional media/thumbnail preview.
+- `CardOverlay`: An optional container for checkbox and tertiary actions within the preview panel.
+- `CardHeader`: Contains the title and an optional short description along with slots for icons, actions, etc. on left/right side of the title.
+- `CardFooter`: Contains secondary information and sticks to the bottom of the card.
+
+`CardHeader` is the only required element - and all other elements are optional.
+
+<Demo component="card/anatomy-usage" />
+
+### Header
+
+Use the `CardHeader` component to add a title to cards.
+
+<Demo component="card/title-usage" />
+
+#### Description
+
+Use the `description` prop on `CardHeader` to add short descriptions to cards.
+
+<Demo component="card/description-usage" />
+
+#### Addons
+
+Use the `addonAfter` prop on `CardHeader` to add menus and other secondary actions after the title.
+
+<Demo component="card/addon-after-usage" />
+
+Use the `addonBefore` prop on `CardHeader` to add icons or other visuals before the title.
+
+<Demo component="card/addon-before-usage" />
+
+### Links
+
+Use the `CardLink` component to render links and make the whole card clickable.
+
+<Demo component="card/link-usage" meta="{35}" />
+
+### Preview
+
+Use the `CardPreview` component to add a preview section for cards.
+
+<Demo component="card/preview-usage" />
+
+We can also use the `CardImage` component to add thumbnail images for cards.
+
+<Demo component="card/preview-image-usage" meta="{16-22}" />
+
+### Overlay
+
+Use the `CardOverlay` component to add checkbox and other tertiary actions to cards.
+
+<Demo component="card/overlay-usage" meta="{17-19,26-29}" />
+
+Include the `CardAction` component if you'd like the checkbox to be hidden until hovered or interacted with.
+
+<Alert intent="warning" mt="16">
+  Hover over the card to see the checkbox:
+</Alert>
+
+<Demo component="card/overlay-action-usage" meta="{19,21,30,33}" />
 
 ## Props
 
@@ -60,29 +119,33 @@ export default () => (
 
 <PropsTable component="Card" />
 
-### CardContent
+### CardAction
 
-<PropsTable component="CardContent" />
+<PropsTable component="CardAction" />
 
-### CardTitle
+### CardCheckbox
 
-<PropsTable component="CardTitle" />
+<PropsTable component="CardCheckbox" />
 
-### CardDescription
+### CardFooter
 
-<PropsTable component="CardDescription" />
+<PropsTable component="CardFooter" />
+
+### CardHeader
+
+<PropsTable component="CardHeader" />
 
 ### CardImage
 
 <PropsTable component="CardImage" />
 
-### CardOverflow
+### CardLink
 
-<PropsTable component="CardOverflow" />
+<PropsTable component="CardLink" />
 
-### CardCheckbox
+### CardPreview
 
-<PropsTable component="CardCheckbox" />
+<PropsTable component="CardPreview" />
 
 ## Changelog
 
