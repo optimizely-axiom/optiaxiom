@@ -129,7 +129,6 @@ export const Pagination = forwardRef<HTMLElement, PaginationProps>(
                       <Icon
                         asChild
                         color={disabled ? "fg.disabled" : "fg.default"}
-                        cursor={disabled ? "not-allowed" : "default"}
                       >
                         <IconEllipsis />
                       </Icon>

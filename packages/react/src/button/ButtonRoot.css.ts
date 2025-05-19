@@ -37,6 +37,7 @@ export const buttonBase = recipe({
     },
     style({
       borderRadius: theme.borderRadius.md,
+      cursor: "pointer",
       paddingInline: paddingInlineVar,
       position: "relative",
       textDecoration: "none",
@@ -49,6 +50,9 @@ export const buttonBase = recipe({
             outlineOffset: "1px",
             zIndex: "10",
           },
+        "&[data-disabled]": {
+          cursor: "not-allowed",
+        },
         ...groupStyle(),
       },
     }),
