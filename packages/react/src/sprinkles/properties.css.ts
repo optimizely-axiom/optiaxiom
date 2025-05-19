@@ -148,7 +148,7 @@ export const unresponsiveProps = defineProperties({
     /**
      * Set the element's `cursor` CSS property
      */
-    cursor: ["pointer", "default", "not-allowed", "text"] as const,
+    cursor: ["pointer", "default", "text"] as const,
     /**
      * Set the element's font family
      */
