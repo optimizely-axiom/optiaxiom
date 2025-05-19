@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import {
   Badge,
   Box,
+  Button,
   EllipsisMenuButton,
   Flex,
   Link,
@@ -21,8 +22,14 @@ import {
   Menu,
   MenuContent,
   MenuTrigger,
+  Sortable,
+  SortableElement,
+  SortableHandle,
+  SortableItem,
 } from "@optiaxiom/react/unstable";
 import { expect, screen, userEvent } from "@storybook/test";
+import { IconGripVertical } from "@tabler/icons-react";
+import { useState } from "react";
 
 export default {
   args: {
@@ -287,4 +294,89 @@ export const Horizontal: Story = {
       </Card>
     </Flex>
   ),
+};
+
+export const WithSortable: Story = {
+  render: function Render() {
+    const [items, setItems] = useState([
+      {
+        description: "A/B Test - United Kingdom or Canada or Germany",
+        id: "a1",
+        title: "Launch Scooter Beta Sign Up",
+      },
+      {
+        description: "A/B Test - Everyone: 14, 16, 18",
+        id: "a2",
+        title: "Age Experiment",
+      },
+      {
+        description: "Multi-armed bandit - Everyone: Off, Image 1",
+        id: "a3",
+        title: "Multi-Armed Bandit for Images",
+      },
+    ]);
+
+    return (
+      <Box
+        bg="bg.page"
+        style={{
+          display: "grid",
+          height: "max(512px, calc(100dvh - 2rem))",
+          placeItems: "center",
+          width: "max(512px, calc(100dvw - 2rem))",
+        }}
+      >
+        <Flex style={{ height: 400, width: 600 }}>
+          <Sortable onValueChange={setItems} value={items}>
+            {items.map((item, index) => (
+              <SortableItem asChild index={index} item={item} key={item.id}>
+                <Flex flexDirection="row">
+                  <Text color="fg.secondary" fontSize="md" w="20">
+                    {index + 1}
+                  </Text>
+                  <SortableElement asChild>
+                    <Card flex="1">
+                      <CardHeader
+                        addonAfter={
+                          <Menu
+                            options={[
+                              { label: "Edit" },
+                              { label: "Move down" },
+                            ]}
+                          >
+                            <MenuTrigger asChild>
+                              <EllipsisMenuButton
+                                appearance="subtle"
+                                ml="auto"
+                              />
+                            </MenuTrigger>
+                            <MenuContent />
+                          </Menu>
+                        }
+                        addonBefore={
+                          <SortableHandle
+                            asChild
+                            color="fg.tertiary"
+                            transition="colors"
+                          >
+                            <Button
+                              appearance="subtle"
+                              icon={<IconGripVertical />}
+                            />
+                          </SortableHandle>
+                        }
+                        description={item.description}
+                      >
+                        <CardLink href="data:,">{item.title}</CardLink>
+                      </CardHeader>
+                    </Card>
+                  </SortableElement>
+                </Flex>
+              </SortableItem>
+            ))}
+          </Sortable>
+        </Flex>
+      </Box>
+    );
+  },
 };

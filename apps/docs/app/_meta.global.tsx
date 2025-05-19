@@ -114,6 +114,9 @@ export default {
       select: "Select",
       sidebar: "Sidebar",
       skeleton: "Skeleton",
+      sortable: {
+        title: <AlphaItem>Sortable</AlphaItem>,
+      },
       spinner: "Spinner",
       switch: "Switch",
       table: "Table",

@@ -8,4 +8,5 @@ export * from "./inline-input";
 export * from "./layout";
 export * from "./menu";
 export * from "./pill";
+export * from "./sortable";
 export * from "./spotlight";

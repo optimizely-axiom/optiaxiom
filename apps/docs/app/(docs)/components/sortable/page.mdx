@@ -1,0 +1,59 @@
+import { Demo } from "@/components/demo";
+import { Links } from "@/components/links";
+import { PropsTable } from "@/components/props-table";
+
+# Sortable
+
+Basic building blocks for sortable interfaces.
+
+<Links component="sortable" />
+
+## Documentation
+
+### Usage
+
+<Demo component="sortable/usage" />
+
+### Anatomy
+
+```tsx
+import {
+  Sortable,
+  SortableElement,
+  SortableHandle,
+  SortableItem,
+} from "@optiaxiom/react/unstable";
+
+export default () => (
+  <Sortable>
+    <SortableItem>
+      <SortableElement />
+      <SortableHandle />
+    </SortableItem>
+  </Sortable>
+);
+```
+
+## Props
+
+### Sortable
+
+<PropsTable component="Sortable" />
+
+### SortableItem
+
+<PropsTable component="SortableItem" />
+
+### SortableHandle
+
+<PropsTable component="SortableHandle" />
+
+### SortableElement
+
+<PropsTable component="SortableElement" />
+
+## Changelog
+
+### 1.4.6
+
+- Added component
