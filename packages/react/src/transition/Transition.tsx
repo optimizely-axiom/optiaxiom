@@ -10,13 +10,21 @@ const Slot = createSlot("@optiaxiom/react/Transition");
 
 export type TransitionProps = styles.TransitionVariants & {
   children: ReactElement;
+  className?: string;
   "data-side"?: "bottom" | "left" | "right" | "top";
   skipAnimations?: boolean;
 };
 
 export const Transition = forwardRef<HTMLDivElement, TransitionProps>(
   (
-    { children, duration = "md", skipAnimations, type = "fade", ...props },
+    {
+      children,
+      className,
+      duration = "md",
+      skipAnimations,
+      type = "fade",
+      ...props
+    },
     outerRef,
   ) => {
     const innerRef = useRef<HTMLElement>(null);
@@ -24,7 +32,9 @@ export const Transition = forwardRef<HTMLDivElement, TransitionProps>(
     const ref = useComposedRefs(outerRef, innerRef);
 
     return skipAnimations || TransitionGlobalConfig.skipAnimations ? (
-      <Slot ref={ref}>{children}</Slot>
+      <Slot className={className} ref={ref} {...props}>
+        {children}
+      </Slot>
     ) : (
       <Slot
         ref={ref}
@@ -33,7 +43,7 @@ export const Transition = forwardRef<HTMLDivElement, TransitionProps>(
             duration,
             type: transitionStatus ? type : undefined,
           },
-          undefined,
+          className,
         )}
         {...props}
       >
