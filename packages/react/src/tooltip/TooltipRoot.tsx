@@ -1,16 +1,14 @@
 import * as RadixTooltip from "@radix-ui/react-tooltip";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
-import { useRef } from "react";
+import { type ComponentPropsWithoutRef, useRef } from "react";
 
-import { type BoxProps } from "../box";
 import { TooltipProvider } from "./TooltipContext";
 
-export type TooltipRootProps = BoxProps<
-  typeof RadixTooltip.Root,
-  {
-    auto?: boolean;
-  }
->;
+export type TooltipRootProps = ComponentPropsWithoutRef<
+  typeof RadixTooltip.Root
+> & {
+  auto?: boolean;
+};
 
 export function TooltipRoot({
   auto,
