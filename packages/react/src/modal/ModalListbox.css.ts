@@ -58,7 +58,7 @@ export const listbox = recipe({
     minW: {
       "0": {},
       trigger: style({
-        minWidth: triggerWidth,
+        minWidth: `max(${triggerWidth}, 120px)`,
       }),
     },
     provider: {
