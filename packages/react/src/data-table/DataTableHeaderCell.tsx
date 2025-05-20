@@ -43,7 +43,9 @@ export const DataTableHeaderCell = forwardRef<
         {...props}
       >
         {header.column.columnDef.enableResizing && (
-          <ActionsContent visible={header.column.getIsResizing()}>
+          <ActionsContent
+            visible={header.column.getIsResizing() ? "always" : "if-needed"}
+          >
             <Separator
               onDoubleClick={() => header.column.resetSize()}
               onMouseDown={header.getResizeHandler()}
@@ -77,7 +79,7 @@ export const DataTableHeaderCell = forwardRef<
               <ActionsContent
                 display="grid"
                 placeItems="center"
-                visible={!!sortDir}
+                visible={sortDir ? "always" : "if-needed"}
               >
                 <Icon asChild {...styles.icon({ active: sortDir === false })}>
                   <IconSort />
