@@ -130,10 +130,10 @@ export const today = recipe({
     },
     style({
       bottom: 0,
-      height: 8,
+      height: 6,
       insetInline: 0,
       position: "absolute",
-      width: 8,
+      width: 6,
     }),
   ],
 });
