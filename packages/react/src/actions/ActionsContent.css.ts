@@ -37,11 +37,11 @@ export const content = recipe({
 
   variants: {
     visible: {
-      false: style({
-        opacity: "0",
-      }),
-      true: style({
+      always: style({
         opacity: "1",
+      }),
+      "if-needed": style({
+        opacity: "0",
       }),
     },
   },
