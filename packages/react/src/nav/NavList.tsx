@@ -1,17 +1,11 @@
 import { forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
-import { useNavGroupContext } from "./NavGroupContext";
 
 export type NavListProps = BoxProps<"div">;
 
 export const NavList = forwardRef<HTMLUListElement, NavListProps>(
   ({ children, ...props }, ref) => {
-    const { id } = useNavGroupContext("@optiaxiom/react/NavList");
-    if (id) {
-      throw new Error("huh");
-    }
-
     return (
       <Box
         asChild
