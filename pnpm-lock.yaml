@@ -296,9 +296,6 @@ importers:
 
   packages/react:
     dependencies:
-      '@dnd-kit/abstract':
-        specifier: ^0.1.13
-        version: 0.1.13
       '@dnd-kit/helpers':
         specifier: ^0.1.13
         version: 0.1.13

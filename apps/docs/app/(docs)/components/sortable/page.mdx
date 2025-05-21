@@ -1,6 +1,5 @@
-import { Demo } from "@/components/demo";
-import { Links } from "@/components/links";
-import { PropsTable } from "@/components/props-table";
+import { Demo, Links, PropsTable } from "@/components";
+import { Alert } from "@optiaxiom/react";
 
 # Sortable
 
@@ -19,7 +18,6 @@ Basic building blocks for sortable interfaces.
 ```tsx
 import {
   Sortable,
-  SortableElement,
   SortableHandle,
   SortableItem,
 } from "@optiaxiom/react/unstable";
@@ -27,12 +25,52 @@ import {
 export default () => (
   <Sortable>
     <SortableItem>
-      <SortableElement />
       <SortableHandle />
     </SortableItem>
   </Sortable>
 );
 ```
+
+### Basic
+
+`Sortable` works with a list of items provided via the `items` prop. Each item must be a unique string identifying the sortable item within the list.
+
+Next we provide a render prop in `children` that takes in two arguments - the **item** and the **index** - to render the contents of each item.
+
+Finally we use `SortableItem` to render each sortable element inside the render function.
+
+<Demo component="sortable/basic-usage" />
+
+### Sorting
+
+Notice in the previous demo items are draggable but they always revert back to their original position.
+
+We need to use either the `onItemsChange` or `onChange` prop to store the new sorted state.
+
+<Alert intent="warning" mt="16">
+  Only use either `onItemsChange` or `onChange`. Do not use both props on the
+  same component.
+</Alert>
+
+Using `onValueChange` is the simplest way to handle sorting for smaller pieces of data where we can update the sorting rank for all items in one call.
+
+<Demo component="sortable/controlled-usage" />
+
+Using `onChange` is necessary in cases where we're sorting a large number of items and we only want to mutate the item that is being dragged.
+
+<Demo component="sortable/controlled-onchange-usage" />
+
+### Drag handle
+
+By default the whole item acts as the drag handle, but we can use the `SortableHandle` component to render separate drag handles within the items.
+
+<Demo component="sortable/handle-usage" />
+
+### Card example
+
+We can combine Sortable with the [Card](../card/) component to build a sortable list of cards.
+
+<Demo component="sortable/card-usage" />
 
 ## Props
 
@@ -47,10 +85,6 @@ export default () => (
 ### SortableHandle
 
 <PropsTable component="SortableHandle" />
-
-### SortableElement
-
-<PropsTable component="SortableElement" />
 
 ## Changelog
 

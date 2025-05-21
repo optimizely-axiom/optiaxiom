@@ -1,60 +1,55 @@
-import type { UniqueIdentifier } from "@dnd-kit/abstract";
-
 import { useSortable } from "@dnd-kit/react/sortable";
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
-import { forwardRef, useRef } from "react";
+import { forwardRef, type ReactNode, useRef } from "react";
 
 import { Box, type BoxProps } from "../box";
+import { useSortableContext } from "./SortableContext";
 import * as styles from "./SortableItem.css";
 import { SortableItemProvider } from "./SortableItemContext";
 
 export type SortableItemProps = BoxProps<
   "div",
   {
-    group?: string;
-    index: number;
-    item: Record<string, unknown> & {
-      id: UniqueIdentifier;
-    };
+    children?: (() => ReactNode) | ReactNode;
   }
 >;
 
 export const SortableItem = forwardRef<HTMLDivElement, SortableItemProps>(
-  ({ children, className, group, index, item, style, ...props }, outerRef) => {
-    const {
-      handleRef,
-      isDragging,
-      ref: innerRef,
-      sourceRef: sourceOuterRef,
-    } = useSortable({
+  ({ children, className, style, ...props }, outerRef) => {
+    const { index, isSorting, item } = useSortableContext(
+      "@optiaxiom/react/SortableItem",
+    );
+    const handleRef = useRef<HTMLDivElement>(null);
+    const { isDragging, ref: innerRef } = useSortable({
       accept: "item",
-      data: item,
-      group,
-      id: item.id,
+      handle: handleRef,
+      id: item,
       index,
       type: "item",
     });
     const ref = useComposedRefs(innerRef, outerRef);
-    const sourceInnerRef = useRef<HTMLDivElement>(null);
-    const sourceRef = useComposedRefs(sourceInnerRef, sourceOuterRef);
+
+    const cacheRef = useRef<ReactNode>();
+    if (!isSorting || typeof children !== "function") {
+      cacheRef.current = typeof children === "function" ? children() : children;
+    }
 
     return (
       <SortableItemProvider
         handleRef={handleRef}
-        id={item.id}
+        id={item}
         isDragging={isDragging}
-        sourceRef={sourceRef}
       >
         <Box
           ref={ref}
           style={{
-            opacity: !sourceInnerRef.current && isDragging ? 0.5 : undefined,
+            opacity: isDragging ? 0.5 : undefined,
             ...style,
           }}
-          {...styles.item({ handle: !sourceInnerRef.current }, className)}
+          {...styles.item({ handle: !handleRef.current }, className)}
           {...props}
         >
-          {children}
+          {cacheRef.current}
         </Box>
       </SortableItemProvider>
     );

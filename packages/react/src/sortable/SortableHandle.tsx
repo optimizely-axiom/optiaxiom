@@ -16,6 +16,7 @@ export const SortableHandle = forwardRef<HTMLDivElement, SortableHandleProps>(
 
     return (
       <Box
+        aria-label="draggable"
         data-state={isDragging ? "active" : undefined}
         ref={ref}
         {...styles.handle({}, className)}

@@ -1,63 +1,82 @@
-import type { UniqueIdentifier } from "@dnd-kit/abstract";
-
 import { move } from "@dnd-kit/helpers";
 import { DragDropProvider, DragOverlay } from "@dnd-kit/react";
-import { type ReactNode, useState } from "react";
+import { forwardRef, type ReactNode, useState } from "react";
 
-import { Box } from "../box";
+import { Box, type BoxProps } from "../box";
+import { Flex } from "../flex";
 import { Portal } from "../portal";
 import * as styles from "./Sortable.css";
+import { SortableProvider } from "./SortableContext";
 
-export type SortableProps<Item extends BaseItem> = {
-  children?: ReactNode;
-  onChange?: (data: { source: Item; value: Item[] }) => void;
-  onValueChange?: (value: Item[]) => void;
-  value?: Item[];
-};
+export type SortableProps = BoxProps<
+  "div",
+  {
+    children?: (item: string, index: number) => ReactNode;
+    items: string[];
+    onChange?: (data: { items: string[]; source: string }) => void;
+    onItemsChange?: (value: string[]) => void;
+  }
+>;
 
-type BaseItem = { id: UniqueIdentifier };
+export const Sortable = forwardRef<HTMLDivElement, SortableProps>(
+  ({ children, items: itemsProp, onChange, onItemsChange, ...props }, ref) => {
+    const [showOverlay, setShowOverlay] = useState(false);
+    const [itemsState, setItemsState] = useState<null | string[]>(null);
+    const items = itemsState === null ? (itemsProp ?? []) : itemsState;
 
-export function Sortable<Item extends BaseItem>({
-  children,
-  onChange,
-  onValueChange,
-  value,
-  ...props
-}: SortableProps<Item>) {
-  const [showOverlay, setShowOverlay] = useState(false);
+    return (
+      <DragDropProvider
+        onDragEnd={(event) => {
+          const { source } = event.operation;
+          if (!source || itemsState === null) {
+            return;
+          }
 
-  return (
-    <DragDropProvider
-      onDragEnd={(event) => {
-        const { source } = event.operation;
-        if (!source || !value) {
-          return;
-        }
-        const nextValue = move(value, event);
-        if (value === nextValue) {
-          return;
-        }
+          if (!event.canceled) {
+            onChange?.({
+              items: itemsState,
+              source: source.id.toString(),
+            });
+            onItemsChange?.(itemsState);
+          }
+          setItemsState(null);
+        }}
+        onDragOver={(event) => {
+          const { source } = event.operation;
+          if (!source || itemsState === null) {
+            return;
+          }
 
-        onChange?.({
-          source: source.data as Item,
-          value: nextValue,
-        });
-        onValueChange?.(nextValue);
-      }}
-      onDragStart={(event) => {
-        setShowOverlay(event.nativeEvent instanceof PointerEvent);
-      }}
-      {...props}
-    >
-      {children}
+          setItemsState(move(itemsState, event));
+        }}
+        onDragStart={(event) => {
+          setShowOverlay(event.nativeEvent instanceof PointerEvent);
+          setItemsState(itemsProp ?? []);
+        }}
+      >
+        <Flex ref={ref} {...props}>
+          {typeof children === "function"
+            ? items.map((item, index) => (
+                <SortableProvider
+                  index={index}
+                  isSorting={itemsState !== null}
+                  item={item}
+                  key={item}
+                >
+                  {children(item, index)}
+                </SortableProvider>
+              ))
+            : children}
+        </Flex>
 
-      <Portal asChild {...styles.overlay()}>
-        <DragOverlay>
-          {showOverlay && <Box bg="bg.overlay" rounded="sm" size="full" />}
-        </DragOverlay>
-      </Portal>
-    </DragDropProvider>
-  );
-}
+        <Portal asChild {...styles.overlay()}>
+          <DragOverlay>
+            {showOverlay && <Box bg="bg.overlay" rounded="sm" size="full" />}
+          </DragOverlay>
+        </Portal>
+      </DragDropProvider>
+    );
+  },
+);
 
 Sortable.displayName = "@optiaxiom/react/Sortable";
