@@ -38,7 +38,7 @@ export function CardsItem({
 
       <Box flex="1">
         <Heading fontSize="xl" fontWeight="600" level="4">
-          <Link asChild color="fg.default" overlay>
+          <Link asChild color="fg.default" cover>
             <NextLink href={href}>{title}</NextLink>
           </Link>
         </Heading>
