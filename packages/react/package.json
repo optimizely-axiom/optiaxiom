@@ -36,7 +36,6 @@
     "test": "vitest"
   },
   "dependencies": {
-    "@dnd-kit/abstract": "^0.1.13",
     "@dnd-kit/helpers": "^0.1.13",
     "@dnd-kit/react": "^0.1.13",
     "@optiaxiom/globals": "workspace:^",

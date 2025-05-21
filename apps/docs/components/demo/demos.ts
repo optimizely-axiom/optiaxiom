@@ -384,7 +384,13 @@ export const demos = {
   "skeleton/dimension-usage": import("@/demos/skeleton/dimension-usage/App"),
   "skeleton/example-usage": import("@/demos/skeleton/example-usage/App"),
   "skeleton/usage": import("@/demos/skeleton/usage/App"),
+  "sortable/basic-usage": import("@/demos/sortable/basic-usage/App"),
   "sortable/card-usage": import("@/demos/sortable/card-usage/App"),
+  "sortable/controlled-onchange-usage": import(
+    "@/demos/sortable/controlled-onchange-usage/App"
+  ),
+  "sortable/controlled-usage": import("@/demos/sortable/controlled-usage/App"),
+  "sortable/handle-usage": import("@/demos/sortable/handle-usage/App"),
   "sortable/usage": import("@/demos/sortable/usage/App"),
   "spinner/color-usage": import("@/demos/spinner/color-usage/App"),
   "spinner/label-usage": import("@/demos/spinner/label-usage/App"),

@@ -23,7 +23,6 @@ import {
   MenuContent,
   MenuTrigger,
   Sortable,
-  SortableElement,
   SortableHandle,
   SortableItem,
 } from "@optiaxiom/react/unstable";
@@ -298,23 +297,31 @@ export const Horizontal: Story = {
 
 export const WithSortable: Story = {
   render: function Render() {
-    const [items, setItems] = useState([
+    const data: Record<
+      string,
       {
+        description: string;
+        id: string;
+        title: string;
+      }
+    > = {
+      a1: {
         description: "A/B Test - United Kingdom or Canada or Germany",
         id: "a1",
         title: "Launch Scooter Beta Sign Up",
       },
-      {
+      a2: {
         description: "A/B Test - Everyone: 14, 16, 18",
         id: "a2",
         title: "Age Experiment",
       },
-      {
+      a3: {
         description: "Multi-armed bandit - Everyone: Off, Image 1",
         id: "a3",
         title: "Multi-Armed Bandit for Images",
       },
-    ]);
+    };
+    const [items, setItems] = useState(Object.keys(data));
 
     return (
       <Box
@@ -327,14 +334,14 @@ export const WithSortable: Story = {
         }}
       >
         <Flex style={{ height: 400, width: 600 }}>
-          <Sortable onValueChange={setItems} value={items}>
-            {items.map((item, index) => (
-              <SortableItem asChild index={index} item={item} key={item.id}>
-                <Flex flexDirection="row">
-                  <Text color="fg.secondary" fontSize="md" w="20">
-                    {index + 1}
-                  </Text>
-                  <SortableElement asChild>
+          <Sortable items={items} onItemsChange={setItems}>
+            {(item, index) => (
+              <Flex flexDirection="row" key={item}>
+                <Text color="fg.secondary" fontSize="md" w="20">
+                  {index + 1}
+                </Text>
+                <SortableItem asChild>
+                  {() => (
                     <Card flex="1">
                       <CardHeader
                         addonAfter={
@@ -347,6 +354,7 @@ export const WithSortable: Story = {
                             <MenuTrigger asChild>
                               <EllipsisMenuButton
                                 appearance="subtle"
+                                aria-label="actions"
                                 ml="auto"
                               />
                             </MenuTrigger>
@@ -365,15 +373,15 @@ export const WithSortable: Story = {
                             />
                           </SortableHandle>
                         }
-                        description={item.description}
+                        description={data[item].description}
                       >
-                        <CardLink href="data:,">{item.title}</CardLink>
+                        <CardLink href="data:,">{data[item].title}</CardLink>
                       </CardHeader>
                     </Card>
-                  </SortableElement>
-                </Flex>
-              </SortableItem>
-            ))}
+                  )}
+                </SortableItem>
+              </Flex>
+            )}
           </Sortable>
         </Flex>
       </Box>

@@ -126,7 +126,6 @@ export const components = {
   SidebarToggle: getProps("SidebarToggle"),
   Skeleton: getProps("Skeleton"),
   Sortable: getProps("Sortable"),
-  SortableElement: getProps("SortableElement"),
   SortableHandle: getProps("SortableHandle"),
   SortableItem: getProps("SortableItem"),
   Spinner: getProps("Spinner"),
