@@ -17,7 +17,6 @@ import {
   CardHeader,
   CardImage,
   CardLink,
-  CardOverlay,
   CardPreview,
   Menu,
   MenuContent,
@@ -175,13 +174,14 @@ export const WithCheckboxAndLink: Story = {
   args: {
     children: (
       <>
-        <CardPreview>
-          <CardImage src="https://placehold.co/600x400" />
-          <CardOverlay>
+        <CardPreview
+          addonTopLeft={
             <CardAction>
               <CardCheckbox />
             </CardAction>
-          </CardOverlay>
+          }
+        >
+          <CardImage src="https://placehold.co/600x400" />
         </CardPreview>
         <CardHeader>
           <Link appearance="subtle" href="data:,">
@@ -200,11 +200,14 @@ export const WithCheckboxAndActions: Story = {
   args: {
     children: (
       <>
-        <CardPreview>
-          <CardOverlay>
+        <CardPreview
+          addonTopLeft={
             <CardAction>
               <CardCheckbox />
-
+            </CardAction>
+          }
+          addonTopRight={
+            <CardAction>
               <Menu
                 options={[
                   { description: "Create a new task", label: "New task" },
@@ -226,7 +229,8 @@ export const WithCheckboxAndActions: Story = {
                 <MenuContent />
               </Menu>
             </CardAction>
-          </CardOverlay>
+          }
+        >
           <CardImage src="https://placehold.co/600x400" />
         </CardPreview>
         <CardHeader>

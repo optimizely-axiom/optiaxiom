@@ -15,3 +15,18 @@ export const preview = recipe({
     }),
   ],
 });
+
+export const overlay = recipe({
+  base: [
+    {
+      display: "flex",
+      flexWrap: "wrap",
+    },
+    style({
+      inset: "0",
+      padding: "16px",
+      placeContent: "space-between",
+      position: "absolute",
+    }),
+  ],
+});

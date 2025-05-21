@@ -1,8 +1,8 @@
 .section {
-  backdrop-filter: blur(2px);
   background-color: color-mix(in srgb, var(--bg) 50%, transparent);
   border-style: dashed;
-  justify-self: stretch;
+  justify-self: center;
+  position: relative;
 
   &[data-depth="0"] {
     --bg: var(--ax-colors-bg-information-subtle);
@@ -11,4 +11,29 @@
   &[data-depth="1"] {
     --bg: var(--ax-colors-bg-success-subtle);
   }
+}
+
+.label {
+  display: grid;
+  inset-block: 0;
+  left: -40px;
+  margin: auto;
+  padding-right: 8px;
+  place-items: center;
+  position: absolute;
+  transform: translateX(-100%);
+
+  &::after {
+    border-style: solid;
+    border-width: 1px 0 1px 1px;
+    content: "";
+    inset-block: 0;
+    right: -8px;
+    position: absolute;
+    width: 8px;
+  }
+}
+
+.section[data-inset] .label {
+  left: -24px;
 }

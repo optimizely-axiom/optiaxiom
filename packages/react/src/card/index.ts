@@ -5,5 +5,4 @@ export * from "./CardFooter";
 export * from "./CardHeader";
 export * from "./CardImage";
 export * from "./CardLink";
-export * from "./CardOverlay";
 export * from "./CardPreview";
