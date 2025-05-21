@@ -1,4 +1,5 @@
 import { Demo, Links, PropsTable } from "@/components";
+import { App as AnatomyUsage } from "@/demos/card/anatomy-usage/App";
 import { Alert } from "@optiaxiom/react";
 
 # Card
@@ -24,7 +25,6 @@ import {
   CardHeader,
   CardImage,
   CardLink,
-  CardOverlay,
   CardPreview,
 } from "@optiaxiom/react/unstable";
 
@@ -32,10 +32,8 @@ export default () => (
   <Card>
     <CardPreview>
       <CardImage />
-
-      <CardOverlay>
-        <CardCheckbox />
-      </CardOverlay>
+      <CardCheckbox />
+      <CardAction />
     </CardPreview>
 
     <CardHeader>
@@ -43,7 +41,6 @@ export default () => (
     </CardHeader>
 
     <CardFooter />
-    <CardAction />
   </Card>
 );
 ```
@@ -53,13 +50,12 @@ export default () => (
 Card has a basic structure containing the following parts:
 
 - `CardPreview`: An optional media/thumbnail preview.
-- `CardOverlay`: An optional container for checkbox and tertiary actions within the preview panel.
 - `CardHeader`: Contains the title and an optional short description along with slots for icons, actions, etc. on left/right side of the title.
 - `CardFooter`: Contains secondary information and sticks to the bottom of the card.
 
 `CardHeader` is the only required element - and all other elements are optional.
 
-<Demo component="card/anatomy-usage" />
+<AnatomyUsage />
 
 ### Header
 
@@ -101,9 +97,9 @@ We can also use the `CardImage` component to add thumbnail images for cards.
 
 ### Overlay
 
-Use the `CardOverlay` component to add checkbox and other tertiary actions to cards.
+Use the `addonTopLeft`/`addonTopRight`/`addonBottomRight`/`addonBottomLeft` props on `CardPreview` to add checkbox and other tertiary actions to cards.
 
-<Demo component="card/overlay-usage" meta="{17-19,26-29}" />
+<Demo component="card/overlay-usage" meta="{26-28,43-46}" />
 
 Include the `CardAction` component if you'd like the checkbox to be hidden until hovered or interacted with.
 
@@ -111,7 +107,7 @@ Include the `CardAction` component if you'd like the checkbox to be hidden until
   Hover over the card to see the checkbox:
 </Alert>
 
-<Demo component="card/overlay-action-usage" meta="{19,21,30,33}" />
+<Demo component="card/overlay-action-usage" meta="{28,30,47,50}" />
 
 ### Sortable
 

@@ -1,8 +1,8 @@
+import { Box } from "@optiaxiom/react";
 import {
   Card,
   CardFooter,
   CardHeader,
-  CardOverlay,
   CardPreview,
 } from "@optiaxiom/react/unstable";
 
@@ -10,26 +10,40 @@ import { Section } from "../Section";
 
 export function App() {
   return (
-    <Card style={{ height: "320px" }}>
-      <CardPreview>
-        <Section label="Preview" style={{ height: "70px" }}>
-          <CardOverlay>
-            <Section flex="1">Overlay</Section>
-          </CardOverlay>
+    <Box
+      bg="bg.default"
+      border="1"
+      borderColor="border.tertiary"
+      display="flex"
+      justifyContent="center"
+      mt="32"
+      p="32"
+      rounded="lg"
+    >
+      <Card style={{ height: "384px" }}>
+        <Section asChild inset label="Preview" style={{ height: "148px" }}>
+          <CardPreview
+            addonBottomLeft={<Section>addonBottomLeft</Section>}
+            addonBottomRight={<Section>addonBottomRight</Section>}
+            addonTopLeft={<Section>addonTopLeft</Section>}
+            addonTopRight={<Section>addonTopRight</Section>}
+          >
+            <Section>children</Section>
+          </CardPreview>
         </Section>
-      </CardPreview>
-      <Section label="Header">
-        <CardHeader
-          addonAfter={<Section>addonAfter</Section>}
-          addonBefore={<Section>addonBefore</Section>}
-          description={<Section>description</Section>}
-        >
-          <Section>children</Section>
-        </CardHeader>
-      </Section>
-      <CardFooter>
-        <Section>Footer</Section>
-      </CardFooter>
-    </Card>
+        <Section label="Header">
+          <CardHeader
+            addonAfter={<Section>addonAfter</Section>}
+            addonBefore={<Section>addonBefore</Section>}
+            description={<Section>description</Section>}
+          >
+            <Section>children</Section>
+          </CardHeader>
+        </Section>
+        <CardFooter>
+          <Section w="full">Footer</Section>
+        </CardFooter>
+      </Card>
+    </Box>
   );
 }

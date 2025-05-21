@@ -1,15 +1,44 @@
-import { type ComponentPropsWithRef, forwardRef } from "react";
+import { forwardRef, type ReactNode } from "react";
 
-import { Box } from "../box";
+import { Box, type BoxProps } from "../box";
 import * as styles from "./CardPreview.css";
 
-export type CardPreviewProps = ComponentPropsWithRef<typeof Box>;
+export type CardPreviewProps = BoxProps<
+  "div",
+  {
+    addonBottomLeft?: ReactNode;
+    addonBottomRight?: ReactNode;
+    addonTopLeft?: ReactNode;
+    addonTopRight?: ReactNode;
+  }
+>;
 
 export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
-  ({ children, className, ...props }, ref) => {
+  (
+    {
+      addonBottomLeft,
+      addonBottomRight,
+      addonTopLeft,
+      addonTopRight,
+      children,
+      className,
+      ...props
+    },
+    ref,
+  ) => {
     return (
       <Box ref={ref} {...styles.preview({}, className)} {...props}>
         {children}
+
+        {(addonTopLeft || addonTopRight) && (
+          <Box {...styles.overlay()}>
+            <Box alignSelf="start">{addonTopLeft}</Box>
+            <Box alignSelf="start">{addonTopRight}</Box>
+            <Box w="full" />
+            <Box alignSelf="end">{addonBottomLeft}</Box>
+            <Box alignSelf="end">{addonBottomRight}</Box>
+          </Box>
+        )}
       </Box>
     );
   },
