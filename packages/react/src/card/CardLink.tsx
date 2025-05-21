@@ -6,7 +6,7 @@ export type CardLinkProps = ComponentPropsWithoutRef<typeof Link>;
 
 export const CardLink = forwardRef<HTMLAnchorElement, CardLinkProps>(
   ({ ...props }, ref) => {
-    return <Link appearance="subtle" overlay ref={ref} {...props} />;
+    return <Link appearance="subtle" cover ref={ref} {...props} />;
   },
 );
 

@@ -13,6 +13,10 @@ export type LinkProps = BoxProps<
   "a",
   styles.LinkVariants & {
     /**
+     * Whether to expand and fill up the whole area of the parent which has `position: relative`.
+     */
+    cover?: "inset" | boolean;
+    /**
      * Whether to show disabled state and disable interactions.
      */
     disabled?: boolean;
@@ -20,10 +24,6 @@ export type LinkProps = BoxProps<
      * Show an external link icon and sets the correct rel/target attributes.
      */
     external?: boolean;
-    /**
-     * Whether to expand and fill up the whole area of the parent which has `position: relative`.
-     */
-    overlay?: "inset" | boolean;
   }
 >;
 
@@ -34,9 +34,9 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
       asChild,
       children,
       className,
+      cover,
       disabled,
       external,
-      overlay,
       ...props
     },
     ref,
@@ -46,11 +46,10 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
 
     return (
       <Box asChild {...styles.link({ appearance }, className)} {...boxProps}>
-        <Cover asChild disabled={!overlay} inset={overlay === "inset"}>
+        <Cover asChild disabled={!cover} inset={cover === "inset"}>
           <Comp
             aria-disabled={disabled}
             data-disabled={disabled ? "" : undefined}
-            data-overlay={overlay ? "" : undefined}
             ref={ref}
             {...(external && { rel: "noopener noreferrer", target: "_blank" })}
             {...restProps}
