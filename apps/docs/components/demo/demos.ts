@@ -51,7 +51,6 @@ export const demos = {
   "box-shadow/none-usage": import("@/demos/box-shadow/none-usage/App"),
   "box-shadow/usage": import("@/demos/box-shadow/usage/App"),
   "box/composition-usage": import("@/demos/box/composition-usage/App"),
-  "box/usage": import("@/demos/box/usage/App"),
   "button/appearance-usage": import("@/demos/button/appearance-usage/App"),
   "button/disabled-usage": import("@/demos/button/disabled-usage/App"),
   "button/file-upload-usage": import("@/demos/button/file-upload-usage/App"),
