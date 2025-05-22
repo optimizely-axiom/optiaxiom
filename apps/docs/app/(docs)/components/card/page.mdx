@@ -165,6 +165,41 @@ We can combine cards with the [Sortable](../sortable/) component to build a sort
 
 ## Changelog
 
+### 1.5.0
+
+- Renamed `CardOverflow` component to `CardPreview`:
+
+  ```jsx
+  // Before
+  <Card>
+    <CardOverflow />
+  </Card>
+
+  // After
+  <Card>
+    <CardPreview />
+  </Card>
+  ```
+
+- Removed `CardContent` component
+
+- Combined `CardTitle` and `CardDescription` into one `CardHeader` component:
+
+  ```jsx
+  // Before
+  <Card>
+    <CardTitle>Sample Title</CardTitle>
+    <CardDescription>Sample Description</CardDescription>
+  </Card>
+
+  // After
+  <Card>
+    <CardHeader description="Sample Description">
+      Sample Title
+    </CardHeader>
+  </Card>
+  ```
+
 ### 0.12.1
 
 - Added component
