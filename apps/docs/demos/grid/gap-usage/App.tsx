@@ -2,8 +2,9 @@
 
 import type { ComponentPropsWithoutRef } from "react";
 
-import { Canvas } from "@/demos/Canvas";
 import { Box, Grid } from "@optiaxiom/react";
+
+import { Canvas } from "@/demos/Canvas";
 
 export function App({
   gap = "16",

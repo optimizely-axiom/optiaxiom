@@ -1,6 +1,7 @@
-import beach from "@/demos/beach.jpg";
 import { Box, Flex, Text } from "@optiaxiom/react";
 import Image from "next/image";
+
+import beach from "@/demos/beach.jpg";
 
 export function App() {
   return (

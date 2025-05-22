@@ -2,10 +2,11 @@
 
 import type { ComponentPropsWithoutRef } from "react";
 
-import beach from "@/demos/beach.jpg";
-import { Canvas } from "@/demos/Canvas";
 import { Box, Flex } from "@optiaxiom/react";
 import Image from "next/image";
+
+import beach from "@/demos/beach.jpg";
+import { Canvas } from "@/demos/Canvas";
 
 export function App({
   objectFit = "cover",
