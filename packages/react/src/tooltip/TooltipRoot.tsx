@@ -43,9 +43,17 @@ export function TooltipRoot({
                   if (!(element instanceof HTMLElement)) {
                     continue;
                   }
-                  const { offsetWidth, scrollWidth } = element;
+                  const {
+                    offsetHeight,
+                    offsetWidth,
+                    scrollHeight,
+                    scrollWidth,
+                  } = element;
 
-                  if (offsetWidth < scrollWidth) {
+                  if (
+                    offsetWidth < scrollWidth ||
+                    offsetHeight < scrollHeight
+                  ) {
                     truncated = true;
                     break;
                   }

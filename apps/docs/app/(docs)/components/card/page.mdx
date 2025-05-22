@@ -79,11 +79,25 @@ Use the `addonBefore` prop on `CardHeader` to add icons or other visuals before 
 
 <Demo component="card/addon-before-usage" />
 
+#### Truncate
+
+We can use the [Text](../text/) component to truncate header titles.
+
+<Demo component="card/truncate-usage" />
+
 ### Links
 
 Use the `CardLink` component to render links and make the whole card clickable.
 
 <Demo component="card/link-usage" meta="{35}" />
+
+#### Tooltip
+
+We can combine this with the [Text](../text/) and [Tooltip](../tooltip/) component to truncate header titles while also showing the full title in a tooltip.
+
+Use the `auto` prop on `Tooltip` to only show a tooltip if the text is actually clipped.
+
+<Demo component="card/link-truncate-usage" />
 
 ### Preview
 
