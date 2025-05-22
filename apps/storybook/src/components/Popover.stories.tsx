@@ -10,38 +10,57 @@ import {
   SearchInput,
   Separator,
 } from "@optiaxiom/react";
-import { type ComponentPropsWithoutRef, useState } from "react";
+import { expect, screen, userEvent } from "@storybook/test";
+import { useState } from "react";
 
 type Story = StoryObj<typeof Popover>;
 
-const withTemplate = ({ triggerText = "Toggle Popover" } = {}) =>
-  function Template(props: Partial<ComponentPropsWithoutRef<typeof Popover>>) {
-    return (
-      <Flex>
-        <Popover {...props}>
-          <PopoverTrigger>{triggerText}</PopoverTrigger>
-
-          {props.children}
-        </Popover>
-      </Flex>
-    );
-  };
-
 export default {
+  args: {
+    defaultOpen: true,
+  },
   component: Popover,
-  render: withTemplate(),
 } as Meta<typeof Popover>;
 
 export const Basic: Story = {
   args: {
-    children: <PopoverContent>This is a popover element.</PopoverContent>,
+    children: (
+      <>
+        <PopoverTrigger>Toggle Popover</PopoverTrigger>
+        <PopoverContent>This is a popover element.</PopoverContent>
+      </>
+    ),
+    defaultOpen: false,
+  },
+  play: async ({ canvas }) => {
+    await userEvent.click(canvas.getByRole("button"));
+    await expect(screen.queryByRole("dialog")).toBeInTheDocument();
+  },
+};
+
+export const Disabled: Story = {
+  args: {
+    children: (
+      <>
+        <PopoverTrigger disabled>Disabled</PopoverTrigger>
+        <PopoverContent />
+      </>
+    ),
+    defaultOpen: false,
+  },
+  play: async ({ canvas }) => {
+    await userEvent.click(canvas.getByRole("button"));
+    await expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
   },
 };
 
 export const WithArrow: Story = {
   args: {
     children: (
-      <PopoverContent withArrow>This popover has an arrow.</PopoverContent>
+      <>
+        <PopoverTrigger>Toggle Popover</PopoverTrigger>
+        <PopoverContent withArrow>This popover has an arrow.</PopoverContent>
+      </>
     ),
   },
 };
@@ -49,9 +68,12 @@ export const WithArrow: Story = {
 export const CustomPositioning: Story = {
   args: {
     children: (
-      <PopoverContent align="end">
-        This popover is on custom position.
-      </PopoverContent>
+      <>
+        <PopoverTrigger>Toggle Popover</PopoverTrigger>
+        <PopoverContent align="end">
+          This popover is on custom position.
+        </PopoverContent>
+      </>
     ),
   },
 };
