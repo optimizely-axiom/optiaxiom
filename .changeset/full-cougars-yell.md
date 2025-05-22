@@ -1,5 +1,5 @@
 ---
-"@optiaxiom/react": patch
+"@optiaxiom/react": minor
 ---
 
 add basic Sortable component
