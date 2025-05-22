@@ -1,4 +1,3 @@
-import beach from "@/demos/beach.jpg";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -15,6 +14,8 @@ import {
 } from "@optiaxiom/react/unstable";
 import { IconLogout, IconPencil } from "@tabler/icons-react";
 import Image from "next/image";
+
+import beach from "@/demos/beach.jpg";
 
 export function App() {
   return (

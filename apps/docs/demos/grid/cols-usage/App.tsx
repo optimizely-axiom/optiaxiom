@@ -1,7 +1,8 @@
 import type { ComponentPropsWithoutRef } from "react";
 
-import { Canvas } from "@/demos/Canvas";
 import { Grid } from "@optiaxiom/react";
+
+import { Canvas } from "@/demos/Canvas";
 
 export function App({
   gridTemplateColumns = "3",

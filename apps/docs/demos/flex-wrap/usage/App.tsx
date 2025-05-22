@@ -2,8 +2,9 @@
 
 import type { ComponentPropsWithoutRef } from "react";
 
-import { Canvas } from "@/demos/Canvas";
 import { Box, Flex } from "@optiaxiom/react";
+
+import { Canvas } from "@/demos/Canvas";
 
 export function App({
   flexWrap = "nowrap",

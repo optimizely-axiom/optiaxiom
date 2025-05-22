@@ -1,4 +1,3 @@
-import beach from "@/demos/beach.jpg";
 import { Box } from "@optiaxiom/react";
 import {
   Card,
@@ -7,6 +6,8 @@ import {
   CardPreview,
 } from "@optiaxiom/react/unstable";
 import Image from "next/image";
+
+import beach from "@/demos/beach.jpg";
 
 export function App() {
   return (
