@@ -1,4 +1,3 @@
-import { theme } from "@optiaxiom/globals";
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import * as RadixPopover from "@radix-ui/react-popover";
 import { type ComponentPropsWithoutRef, forwardRef, useRef } from "react";
@@ -15,12 +14,7 @@ import { usePopoverContext } from "./PopoverContext";
 export type PopoverContentProps = ExcludeProps<
   BoxProps<
     typeof RadixPopover.Content,
-    Pick<ComponentPropsWithoutRef<typeof ModalListbox>, "maxH" | "minW"> & {
-      /**
-       * Whether to show an arrow.
-       */
-      withArrow?: boolean;
-    }
+    Pick<ComponentPropsWithoutRef<typeof ModalListbox>, "maxH" | "minW">
   >,
   | "arrowPadding"
   | "avoidCollisions"
@@ -33,10 +27,7 @@ export type PopoverContentProps = ExcludeProps<
 >;
 
 export const PopoverContent = forwardRef<HTMLDivElement, PopoverContentProps>(
-  (
-    { align = "start", children, sideOffset = 4, withArrow, ...props },
-    outerRef,
-  ) => {
+  ({ align = "start", children, sideOffset = 4, ...props }, outerRef) => {
     const { open, presence, setPresence } = usePopoverContext(
       "@optiaxiom/react/PopoverContent",
     );
@@ -65,27 +56,6 @@ export const PopoverContent = forwardRef<HTMLDivElement, PopoverContentProps>(
               sideOffset={sideOffset}
             >
               <ModalProvider shardRef={innerRef}>{children}</ModalProvider>
-
-              {withArrow && (
-                <RadixPopover.Arrow asChild>
-                  <svg
-                    fill={theme.colors["bg.default"]}
-                    height={4}
-                    preserveAspectRatio="none"
-                    stroke={theme.colors["border.secondary"]}
-                    viewBox="0 0 30 10"
-                    width={8}
-                  >
-                    <polygon points="0,0 30,0 15,10" />
-                    <polyline
-                      points="0,0 15,10 30,0"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2.5"
-                    />
-                  </svg>
-                </RadixPopover.Arrow>
-              )}
             </RadixPopover.Content>
           </ModalListbox>
         </Portal>
