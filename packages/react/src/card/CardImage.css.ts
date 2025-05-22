@@ -1,15 +1,9 @@
-import { recipe, style } from "../vanilla-extract";
+import { recipe } from "../vanilla-extract";
 
-export const cardImage = recipe({
-  base: [
-    {
-      h: "full",
-      rounded: "inherit",
-      w: "full",
-    },
-    style({
-      aspectRatio: "2",
-      objectFit: "cover",
-    }),
-  ],
+export const image = recipe({
+  base: {
+    objectFit: "cover",
+    rounded: "inherit",
+    size: "full",
+  },
 });
