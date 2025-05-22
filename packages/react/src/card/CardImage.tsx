@@ -8,7 +8,7 @@ export type CardImageProps = BoxProps<"img">;
 export const CardImage = forwardRef<HTMLImageElement, CardImageProps>(
   ({ alt = "", asChild, children, className, src, ...props }, ref) => {
     return (
-      <Box asChild ref={ref} {...styles.cardImage({}, className)} {...props}>
+      <Box asChild ref={ref} {...styles.image({}, className)} {...props}>
         {asChild ? children : <img alt={alt} src={src} />}
       </Box>
     );
