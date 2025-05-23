@@ -493,7 +493,7 @@ export const NestedAndSearchable: Story = {
   args: {
     children: (
       <>
-        inputVisible
+        <MenuTrigger />
         <MenuContent />
       </>
     ),
