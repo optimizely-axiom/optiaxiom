@@ -13,6 +13,9 @@ export const table = recipe({
   ],
 
   variants: {
+    /**
+     * Use default table layout or grid for rows and cells.
+     */
     layout: {
       auto: [
         style({

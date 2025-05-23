@@ -16,7 +16,13 @@ const dateFormatter = new Intl.DateTimeFormat(undefined, {
 export type DateRangePickerTriggerProps = ComponentPropsWithoutRef<
   typeof PopoverTrigger
 > & {
+  /**
+   * Provide a custom date range formatter.
+   */
   formatRange?: Intl.DateTimeFormat["formatRange"];
+  /**
+   * The placeholder when there is no value.
+   */
   placeholder?: string;
 };
 

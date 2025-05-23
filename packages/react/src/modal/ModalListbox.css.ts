@@ -61,6 +61,9 @@ export const listbox = recipe({
         minWidth: `max(${triggerWidth}, 120px)`,
       }),
     },
+    /**
+     * The type of component used to render the listbox.
+     */
     provider: {
       "dropdown-menu": style({
         vars: {

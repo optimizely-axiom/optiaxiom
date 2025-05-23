@@ -12,6 +12,9 @@ import { MenuItem } from "./MenuItem";
 export type MenuSubTriggerProps = BoxProps<
   typeof MenuItem,
   {
+    /**
+     * A ref pointing to the popover content element. Used to determine if user's pointer is moving towards the sub menu.
+     */
     contentRef: RefObject<HTMLDivElement>;
   }
 >;

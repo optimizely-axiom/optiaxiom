@@ -14,6 +14,9 @@ export type LabelMenuButtonProps = ComponentPropsWithoutRef<
   typeof ButtonRoot
 > & {
   appearance?: never;
+  /**
+   * The label of the button.
+   */
   label: string;
   size?: never;
 };

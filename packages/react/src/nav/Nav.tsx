@@ -8,8 +8,17 @@ import * as styles from "./Nav.css";
 export type NavProps = BoxProps<
   "nav",
   {
+    /**
+     * The initial expanded state in uncontrolled mode.
+     */
     defaultExpanded?: boolean;
+    /**
+     * The expanded state in controlled mode.
+     */
     expanded?: boolean;
+    /**
+     * Handler that is called when the expanded state changes.
+     */
     onExpandedChange?: (expanded: boolean) => void;
   }
 >;

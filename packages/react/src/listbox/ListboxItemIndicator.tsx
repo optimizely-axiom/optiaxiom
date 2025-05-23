@@ -7,6 +7,9 @@ import * as styles from "./ListboxItemIndicator.css";
 export type ListboxItemIndicatorProps = BoxProps<
   typeof IconCheck,
   {
+    /**
+     * Whether to display a tick to indicate if the item is active or not.
+     */
     active?: boolean;
   }
 >;

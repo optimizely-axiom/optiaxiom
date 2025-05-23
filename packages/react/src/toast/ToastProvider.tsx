@@ -22,9 +22,9 @@ import { useOverflowAnchor } from "./useOverflowAnchor";
 export type ToastProviderProps = BoxProps<
   typeof RadixToast.Viewport,
   ComponentPropsWithoutRef<typeof RadixToast.ToastProvider> &
+    Pick<ComponentPropsWithoutRef<typeof Portal>, "container"> &
     styles.ViewportVariants & {
       children?: never;
-      container?: ComponentPropsWithoutRef<typeof Portal>["container"];
       /**
        * An instance of toaster returned from the `createToaster` method.
        */

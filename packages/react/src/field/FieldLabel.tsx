@@ -13,9 +13,21 @@ import { VisuallyHidden } from "../visually-hidden";
 export type FieldLabelProps = BoxProps<
   "div",
   {
+    /**
+     * Display a help icon with additional context for the input.
+     */
     info?: ReactNode;
+    /**
+     * Override the default generated input ID used for associating the label to the input.
+     */
     inputId?: string;
+    /**
+     * Override the default generated label ID used for associating the controls to the label.
+     */
     labelId?: string;
+    /**
+     * Display an asterisk for required inputs.
+     */
     required?: boolean;
   }
 >;

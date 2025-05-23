@@ -50,6 +50,9 @@ export const control = recipe({
   ],
 
   variants: {
+    /**
+     * Control the size of the input.
+     */
     size: {
       md: {},
       lg: {},

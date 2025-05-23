@@ -15,7 +15,7 @@ export type SelectOption = {
    */
   ["aria-label"]?: string;
   /**
-   * Description to show under each item label.
+   * Add secondary text after the label.
    */
   description?: string;
   /**

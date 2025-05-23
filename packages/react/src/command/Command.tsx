@@ -39,7 +39,15 @@ export type CommandProps = {
   /**
    * Handler that is called when an item is selected either via keyboard or mouse.
    */
-  onSelect?: (item: CommandOption, context: { dismiss: boolean }) => void;
+  onSelect?: (
+    item: CommandOption,
+    context: {
+      /**
+       * Whether to dismiss the associated popover or keep it open.
+       */
+      dismiss: boolean;
+    },
+  ) => void;
   /**
    * The items we want to render.
    */

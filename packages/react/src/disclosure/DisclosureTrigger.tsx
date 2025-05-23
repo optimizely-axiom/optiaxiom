@@ -12,8 +12,17 @@ import * as styles from "./DisclosureTrigger.css";
 export type DisclosureTriggerProps = BoxProps<
   "div",
   {
+    /**
+     * Display content after the button.
+     */
     addonAfter?: ReactNode;
+    /**
+     * Display content before the button.
+     */
     addonBefore?: ReactNode;
+    /**
+     * Control which side to place the chevron.
+     */
     chevronPosition?: "end" | "start";
   }
 >;

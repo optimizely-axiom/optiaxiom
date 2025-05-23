@@ -9,8 +9,17 @@ import * as styles from "./CardHeader.css";
 export type CardHeaderProps = BoxProps<
   "div",
   {
+    /**
+     * Display content inside the header after `children`.
+     */
     addonAfter?: ReactNode;
+    /**
+     * Display content inside the header before `children`.
+     */
     addonBefore?: ReactNode;
+    /**
+     * Add secondary text after the primary title.
+     */
     description?: ReactNode;
   }
 >;

@@ -16,7 +16,7 @@ export type RadioProps = BoxProps<
   typeof ToggleInputHiddenInput,
   {
     /**
-     * Add helper text after the label.
+     * Add secondary text after the label.
      */
     description?: ReactNode;
   }

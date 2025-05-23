@@ -2,7 +2,6 @@ import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import { useVirtualizer } from "@tanstack/react-virtual";
 import {
   forwardRef,
-  type LegacyRef,
   type ReactElement,
   type ReactNode,
   useEffect,
@@ -19,9 +18,14 @@ export type ListboxVirtualizedProps<T = unknown> = BoxProps<
   "div",
   {
     children: (item: T, index: number, prevItem: T | undefined) => ReactNode;
+    /**
+     * The currently highlighted item.
+     */
     highlightedItem?: T;
+    /**
+     * The collection of items to display.
+     */
     items: readonly T[] | T[];
-    ref?: LegacyRef<HTMLDivElement>;
   }
 >;
 

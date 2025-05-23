@@ -12,6 +12,9 @@ export const kbd = recipe({
   },
 
   variants: {
+    /**
+     * Control the style of the element.
+     */
     variant: {
       outline: [
         {

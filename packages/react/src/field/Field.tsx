@@ -1,5 +1,9 @@
 import { useId } from "@radix-ui/react-id";
-import { forwardRef, type ReactNode } from "react";
+import {
+  type ComponentPropsWithoutRef,
+  forwardRef,
+  type ReactNode,
+} from "react";
 
 import { Box, type BoxProps } from "../box";
 import { Flex } from "../flex";
@@ -10,7 +14,10 @@ import { FieldLabel } from "./FieldLabel";
 
 export type FieldProps = BoxProps<
   "div",
-  {
+  Pick<
+    ComponentPropsWithoutRef<typeof FieldLabel>,
+    "info" | "inputId" | "labelId" | "required"
+  > & {
     /**
      * Provide description and help text for the field.
      */
@@ -20,25 +27,9 @@ export type FieldProps = BoxProps<
      */
     error?: ReactNode;
     /**
-     * Display a help icon with additional context for the input.
-     */
-    info?: ReactNode;
-    /**
-     * Override the default generated input ID used for associating the label to the input.
-     */
-    inputId?: string;
-    /**
      * The label of the field.
      */
     label?: ReactNode;
-    /**
-     * Override the default generated label ID used for associating the controls to the label.
-     */
-    labelId?: string;
-    /**
-     * Display an asterisk for required inputs.
-     */
-    required?: boolean;
   }
 >;
 

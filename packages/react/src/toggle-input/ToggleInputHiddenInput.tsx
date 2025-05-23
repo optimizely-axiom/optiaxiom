@@ -10,6 +10,9 @@ import * as styles from "./ToggleInputHiddenInput.css";
 export type ToggleInputHiddenInputProps = ExtendProps<
   ComponentPropsWithoutRef<"input">,
   {
+    /**
+     * Handler that is called when the checked state changes.
+     */
     onCheckedChange?: (checked: boolean) => void;
   }
 >;

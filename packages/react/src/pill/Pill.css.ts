@@ -48,6 +48,9 @@ export const pill = recipe({
     }),
   ],
   variants: {
+    /**
+     * Control the size of the pill.
+     */
     size: {
       xs: {
         h: "xs",

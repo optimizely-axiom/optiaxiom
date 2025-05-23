@@ -26,6 +26,9 @@ import { toInstant } from "./utils";
 export type DateInputProps = ExtendProps<
   ComponentPropsWithoutRef<typeof Input>,
   Pick<ComponentPropsWithoutRef<typeof Calendar>, "holiday" | "weekend"> & {
+    /**
+     * Control whether the input allows only date or both date and time.
+     */
     type?: "date" | "datetime-local";
   }
 >;

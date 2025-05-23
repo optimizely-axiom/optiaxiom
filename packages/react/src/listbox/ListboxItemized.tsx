@@ -19,16 +19,28 @@ export type ListboxItemizedProps = BoxProps<
      * Custom empty state content.
      */
     empty?: ReactNode;
+    /**
+     * The currently highlighted item.
+     */
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     highlightedItem?: any;
+    /**
+     * The collection of items to display.
+     */
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     items: any[] | readonly any[];
+    /**
+     * Function to get the unique key for each item as a string.
+     */
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     itemToKey: (item: any) => string;
     /**
      * Whether to show loading spinner inside the menu.
      */
     loading?: boolean;
+    /**
+     * Handler that is called when the element mounts or unmounts from the DOM.
+     */
     onPlacedChange?: (placed: boolean) => void;
   }
 >;

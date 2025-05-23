@@ -36,6 +36,9 @@ export const content = recipe({
   ],
 
   variants: {
+    /**
+     * Control whether to always show the contents or only when user is hovering or interacting with them.
+     */
     visible: {
       always: style({
         opacity: "1",

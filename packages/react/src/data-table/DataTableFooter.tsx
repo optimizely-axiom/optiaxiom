@@ -12,7 +12,22 @@ import * as styles from "./DataTableFooter.css";
 export type DataTableFooterProps = BoxProps<
   "div",
   {
-    pageSizeOptions?: Array<{ label: string; value: string }>;
+    /**
+     * Specify a custom set of page size options.
+     */
+    pageSizeOptions?: Array<{
+      /**
+       * String representation of page size option.
+       */
+      label: string;
+      /**
+       * The unique key/value for each page size option.
+       */
+      value: string;
+    }>;
+    /**
+     * Whether to show a dropdown that allows controlling how many rows to show per page.
+     */
     showPageSizeOptions?: boolean;
   }
 >;

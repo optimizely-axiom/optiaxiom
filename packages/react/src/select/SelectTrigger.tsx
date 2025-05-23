@@ -24,6 +24,9 @@ export type SelectTriggerProps = ExcludeProps<
   ButtonProps<
     typeof PopperAnchor,
     {
+      /**
+       * The placeholder when there is no value.
+       */
       placeholder?: string;
     }
   >,

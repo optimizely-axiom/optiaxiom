@@ -4,6 +4,9 @@ import { forwardRef } from "react";
 const Slot = createSlot("@optiaxiom/react/FilteredSlot");
 
 export type FilteredSlotProps = SlotProps & {
+  /**
+   * Exclude props from being forwarded by Slot.
+   */
   exclude?: string;
 };
 

@@ -12,7 +12,13 @@ import { useMenuSubContext } from "./MenuSubContext";
 import { MenuSubTrigger } from "./MenuSubTrigger";
 
 export type MenuSubProps = {
+  /**
+   * The index of the item in the collection.
+   */
   index: number;
+  /**
+   * The item containing the sub options.
+   */
   item: CommandOption;
 };
 

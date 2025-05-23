@@ -20,16 +20,21 @@ const Slot = createSlot("@optiaxiom/react/Textarea");
 
 export type TextareaProps = InputControlProps<
   typeof TextareaAutosize,
-  Pick<ComponentPropsWithoutRef<typeof InputRoot>, "addonPointerEvents"> & {
-    addonAfter?: ReactNode;
-    addonBefore?: ReactNode;
-    /**
-     * Limits the height of the textarea when `resize=auto` is used.
-     */
-    maxRows?: ComponentPropsWithRef<typeof TextareaAutosize>["maxRows"];
-    resize?: ComponentPropsWithRef<typeof TextareaAutosize>["resize"];
-    size?: never;
-  }
+  Pick<ComponentPropsWithoutRef<typeof InputRoot>, "addonPointerEvents"> &
+    Pick<
+      ComponentPropsWithRef<typeof TextareaAutosize>,
+      "maxRows" | "resize"
+    > & {
+      /**
+       * Display content below the textarea.
+       */
+      addonAfter?: ReactNode;
+      /**
+       * Display content above the textarea.
+       */
+      addonBefore?: ReactNode;
+      size?: never;
+    }
 >;
 
 export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(

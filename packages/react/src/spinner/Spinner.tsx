@@ -7,6 +7,9 @@ import * as styles from "./Spinner.css";
 export type SpinnerProps = BoxProps<
   "div",
   {
+    /**
+     * Control the appearance depending on whether the spinner is placed on a light/dark background.
+     */
     appearance?: "default" | "inverse";
   }
 >;
