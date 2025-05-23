@@ -9,18 +9,10 @@ import { ToggleInputProvider } from "./ToggleInputContext";
 
 const Slot = createSlot("@optiaxiom/react/ToggleInput");
 
-export type ToggleInputProps = BoxProps<
-  "label",
-  {
-    description?: boolean;
-  }
->;
+export type ToggleInputProps = BoxProps<"label">;
 
 export const ToggleInput = forwardRef<HTMLLabelElement, ToggleInputProps>(
-  (
-    { asChild, children, className, description, onMouseDown, ...props },
-    ref,
-  ) => {
+  ({ asChild, children, className, onMouseDown, ...props }, ref) => {
     const Comp = asChild ? Slot : "label";
     const { boxProps, restProps } = extractBoxProps(props);
 
@@ -28,10 +20,7 @@ export const ToggleInput = forwardRef<HTMLLabelElement, ToggleInputProps>(
     const labelId = useId();
 
     return (
-      <ToggleInputProvider
-        descriptionId={description ? descriptionId : undefined}
-        labelId={labelId}
-      >
+      <ToggleInputProvider descriptionId={descriptionId} labelId={labelId}>
         <Flex asChild {...styles.toggleInput({}, className)} {...boxProps}>
           <Comp
             onMouseDown={(event) => {
