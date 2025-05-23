@@ -77,9 +77,13 @@ export default defineConfig([
             return null;
           }
 
-          const search = `import { createMapValueFn, createSprinkles } from "@vanilla-extract/sprinkles";`;
+          const search = `import {
+  createMapValueFn,
+  createNormalizeValueFn,
+  createSprinkles,
+} from "@vanilla-extract/sprinkles";`;
           const replace = [
-            `import { createMapValueFn } from "@vanilla-extract/sprinkles/createUtils";`,
+            `import { createMapValueFn, createNormalizeValueFn } from "@vanilla-extract/sprinkles/createUtils";`,
             `import { createSprinkles } from "@vanilla-extract/sprinkles/createRuntimeSprinkles";`,
           ].join("\n");
           if (!code.includes(search)) {

@@ -3,6 +3,8 @@ import clsx from "clsx";
 import { forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
+import { useResponsiveMatches } from "../hooks";
+import { normalizeResponsiveValue } from "../sprinkles";
 import * as styles from "./Separator.css";
 
 export type SeparatorProps = BoxProps<
@@ -12,6 +14,11 @@ export type SeparatorProps = BoxProps<
 
 export const Separator = forwardRef<HTMLDivElement, SeparatorProps>(
   ({ className, orientation = "horizontal", ...props }, ref) => {
+    const resolvedOrientation = useResponsiveMatches({
+      base: "horizontal",
+      ...normalizeResponsiveValue(orientation),
+    });
+
     return (
       <Box
         asChild
@@ -19,7 +26,7 @@ export const Separator = forwardRef<HTMLDivElement, SeparatorProps>(
         {...styles.base({}, clsx(styles.separator({ orientation }), className))}
         {...props}
       >
-        <RadixSeparator.Root />
+        <RadixSeparator.Root orientation={resolvedOrientation} />
       </Box>
     );
   },

@@ -14,6 +14,9 @@ const props = defineProperties({
   "@layer": layers.components,
   ...conditions,
   properties: {
+    /**
+     * The orientation of the separator.
+     */
     orientation: {
       horizontal: {
         borderLeftWidth: "0",
