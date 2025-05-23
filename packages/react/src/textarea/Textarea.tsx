@@ -23,7 +23,6 @@ export type TextareaProps = InputControlProps<
   Pick<ComponentPropsWithoutRef<typeof InputRoot>, "addonPointerEvents"> & {
     addonAfter?: ReactNode;
     addonBefore?: ReactNode;
-    children?: never;
     /**
      * Limits the height of the textarea when `resize=auto` is used.
      */
@@ -47,7 +46,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
     },
     ref,
   ) => {
-    const Comp = asChild ? Slot : TextareaAutosize;
+    const Comp = asChild ? Slot : "textarea";
     const { boxProps, restProps } = extractBoxProps(props);
 
     return (
@@ -63,9 +62,11 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
         )}
 
         <InputControl asChild p="8" size="lg" {...restProps}>
-          <Comp ref={ref} rows={props.rows ?? 3}>
-            {children}
-          </Comp>
+          <TextareaAutosize asChild>
+            <Comp ref={ref} rows={props.rows ?? 3}>
+              {children}
+            </Comp>
+          </TextareaAutosize>
         </InputControl>
 
         {addonAfter && (
