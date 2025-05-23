@@ -1,5 +1,27 @@
 # @optiaxiom/react
 
+## 1.5.0
+
+### Minor Changes
+
+- b56b4cb: add basic Sortable component
+- 9ce9ed9: refactor Card to simplify API
+
+### Patch Changes
+
+- 68adb62: rename Link overlay prop to cover
+- 5bf9b5d: add priority to menu items
+- e1da995: update dependencies
+- 48373ac: bump down indicator size for today on calendar
+- 9cb019b: allow packages to work in legacy CJS environments
+- 4e1ffa0: handle line-clamp for tooltip clipping detection
+- ffde537: rename inputVisible prop to make intent clearer
+- 6f7f5aa: allow generating sub options based on context
+- 0fca0f9: simplify transition types
+- Updated dependencies [e1da995]
+- Updated dependencies [9cb019b]
+  - @optiaxiom/globals@1.0.5
+
 ## 1.4.5
 
 ### Patch Changes
