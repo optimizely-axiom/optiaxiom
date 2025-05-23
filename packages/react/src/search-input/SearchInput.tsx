@@ -11,6 +11,9 @@ import { Input } from "../input";
 import * as styles from "./SearchInput.css";
 
 export type SearchInputProps = ComponentPropsWithRef<typeof Input> & {
+  /**
+   * Handler that is called when the input value is cleared using the cross button.
+   */
   onValueClear?: () => void;
 };
 

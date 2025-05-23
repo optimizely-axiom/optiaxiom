@@ -145,6 +145,9 @@ export const root = recipe({
     }),
   ],
   variants: {
+    /**
+     * Control the appearance by selecting between the different toast types.
+     */
     intent: {
       danger: style({
         vars: {

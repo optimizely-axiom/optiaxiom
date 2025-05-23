@@ -11,7 +11,7 @@ export type CommandOption = {
    */
   addon?: ReactNode;
   /**
-   * Additional description on second line after the label.
+   * Add secondary text after the label.
    */
   description?: string;
   /**

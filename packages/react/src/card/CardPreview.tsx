@@ -6,9 +6,21 @@ import * as styles from "./CardPreview.css";
 export type CardPreviewProps = BoxProps<
   "div",
   {
+    /**
+     * Display content in the bottom-left corner of the preview panel.
+     */
     addonBottomLeft?: ReactNode;
+    /**
+     * Display content in the bottom-right corner of the preview panel.
+     */
     addonBottomRight?: ReactNode;
+    /**
+     * Display content in the top-left corner of the preview panel.
+     */
     addonTopLeft?: ReactNode;
+    /**
+     * Display content in the top-right corner of the preview panel.
+     */
     addonTopRight?: ReactNode;
   }
 >;

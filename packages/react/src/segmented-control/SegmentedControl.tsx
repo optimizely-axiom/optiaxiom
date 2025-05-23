@@ -8,6 +8,9 @@ import { SegmentedControlProvider } from "./SegmentedControlContext";
 export type SegmentedControlProps = BoxProps<
   typeof RadixSegmentedControl.Root,
   {
+    /**
+     * Whether to allow multiple values or only activate one item at a time.
+     */
     type?: "multiple" | "single";
   }
 >;

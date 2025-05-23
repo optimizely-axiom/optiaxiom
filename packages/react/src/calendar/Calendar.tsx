@@ -48,7 +48,13 @@ export type CalendarProps = BoxProps<
      * The earliest date that is allowed.
      */
     min?: Date;
+    /**
+     * Specify the stepping value in days (date) or seconds (datetime-local) for the allowed values.
+     */
     step?: number | string;
+    /**
+     * Control whether the calendar shows only date or both date and time pickers.
+     */
     type?: "date" | "datetime-local";
     /**
      * Apply the `weekend` modifier to the matching days.
@@ -60,6 +66,9 @@ export type CalendarProps = BoxProps<
            * The initial selected value in uncontrolled mode.
            */
           defaultValue?: DateRange | null;
+          /**
+           * Enable the selection of a single day or a range of days.
+           */
           mode: "range";
           /**
            * Handler that is called when the selected value changes.
@@ -75,6 +84,9 @@ export type CalendarProps = BoxProps<
            * The initial selected value in uncontrolled mode.
            */
           defaultValue?: Date | null;
+          /**
+           * Enable the selection of a single day or a range of days.
+           */
           mode?: "single";
           /**
            * Handler that is called when the selected value changes.

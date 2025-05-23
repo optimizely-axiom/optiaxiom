@@ -12,7 +12,7 @@ export type CheckboxContentProps = BoxProps<
   typeof ToggleInputHiddenInput,
   {
     /**
-     * Add helper text after the label.
+     * Add secondary text after the label.
      */
     description?: ReactNode;
   }

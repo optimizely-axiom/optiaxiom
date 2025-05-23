@@ -12,8 +12,26 @@ export type SortableProps = BoxProps<
   "div",
   {
     children?: (item: string, index: number) => ReactNode;
+    /**
+     * An array of item IDs in controlled mode.
+     */
     items: string[];
-    onChange?: (data: { items: string[]; source: string }) => void;
+    /**
+     * Event handler that is called when items are re-sorted with full information about the event.
+     */
+    onChange?: (data: {
+      /**
+       * The re-sorted item IDs.
+       */
+      items: string[];
+      /**
+       * ID of the item that was being dragged.
+       */
+      source: string;
+    }) => void;
+    /**
+     * Handler that is called when the item IDs are re-sorted.
+     */
     onItemsChange?: (value: string[]) => void;
   }
 >;

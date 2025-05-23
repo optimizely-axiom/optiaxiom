@@ -35,8 +35,17 @@ export type SelectProps = {
    * Whether to show loading spinner inside the menu.
    */
   loading?: boolean;
+  /**
+   * The name of the inner select element.
+   */
   name?: string;
+  /**
+   * Handler for `blur` event forwarded to inner select element.
+   */
   onBlur?: FocusEventHandler<HTMLElement>;
+  /**
+   * Handler for `change` event forwarded to inner select element.
+   */
   onChange?: ChangeEventHandler<HTMLSelectElement>;
   /**
    * Handler that is called when the open state changes.
@@ -54,6 +63,9 @@ export type SelectProps = {
    * The select items/options we want to render.
    */
   options: readonly SelectOption[] | SelectOption[];
+  /**
+   * Whether the select value is required.
+   */
   required?: boolean;
   /**
    * The selected value in controlled mode.

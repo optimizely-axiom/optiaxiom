@@ -7,12 +7,33 @@ import * as styles from "./InlineInput.css";
 export type InlineInputProps = BoxProps<
   "div",
   {
+    /**
+     * The initial input value in uncontrolled mode.
+     */
     defaultValue?: string;
+    /**
+     * Whether the input is disabled and in read only mode.
+     */
     disabled?: boolean;
+    /**
+     * The label and placeholder of the input.
+     */
     label: string;
+    /**
+     * Whether to allow multiple lines of text.
+     */
     multiline?: boolean;
+    /**
+     * Handler that is called when the input value changes.
+     */
     onValueChange?: (value: string) => void;
+    /**
+     * Provide a custom placeholder instead of using the label when input has no value.
+     */
     placeholder?: string;
+    /**
+     * The input value in controlled mode.
+     */
     value?: string;
   }
 >;

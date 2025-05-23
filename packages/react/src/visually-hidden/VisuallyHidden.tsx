@@ -6,6 +6,9 @@ import { FilteredSlot } from "../filtered-slot";
 export type VisuallyHiddenProps = ComponentPropsWithoutRef<
   typeof RadixVisuallyHidden.Root
 > & {
+  /**
+   * Set to true to hide the content.
+   */
   disabled?: boolean;
 };
 

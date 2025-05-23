@@ -16,6 +16,9 @@ import * as styles from "./DataTableHeaderCell.css";
 export type DataTableHeaderCellProps = BoxProps<
   "th",
   {
+    /**
+     * The Header instance to render.
+     */
     header: Header<unknown, unknown>;
   }
 >;

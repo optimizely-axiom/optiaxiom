@@ -8,7 +8,13 @@ export type HighlightProps = BoxProps<
   "div",
   {
     children?: (chunk: ReactElement) => ReactNode;
+    /**
+     * The string content to display and highlight terms.
+     */
     content?: string;
+    /**
+     * The query terms to highlight in the text.
+     */
     query?: RegExp | RegExp[] | string | string[];
   }
 >;

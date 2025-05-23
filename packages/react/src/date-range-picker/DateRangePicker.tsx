@@ -9,6 +9,9 @@ export type DateRangePickerProps = ComponentPropsWithRef<typeof Popover> & {
    * The initial selected value in uncontrolled mode.
    */
   defaultValue?: DateRange | null;
+  /**
+   * Whether the date range picker is disabled.
+   */
   disabled?: boolean;
   /**
    * Handler that is called when the selected value changes.

@@ -13,7 +13,13 @@ import * as styles from "./DialogHeader.css";
 export type DialogHeaderProps = BoxProps<
   "div",
   {
+    /**
+     * Display content inside the header after `children`.
+     */
     addonAfter?: ReactNode;
+    /**
+     * Add secondary text after the primary title.
+     */
     description?: ReactNode;
   }
 >;

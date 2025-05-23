@@ -41,7 +41,13 @@ export type MenuProps = ExcludeProps<
        * The open state in controlled mode.
        */
       open?: boolean;
+      /**
+       * The placeholder for the search input.
+       */
       placeholder?: string;
+      /**
+       * Whether to show a small popover or a dialog. Defaults to popover on large screens and dialog on mobile screens.
+       */
       size?: "lg" | "sm";
     }
   >,

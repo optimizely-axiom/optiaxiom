@@ -6,6 +6,9 @@ import * as styles from "./Kbd.css";
 export type KbdProps = BoxProps<
   "kbd",
   styles.KdbVariants & {
+    /**
+     * Keyboard symbols/shortcuts to include.
+     */
     keys?: Array<keyof typeof mapKeyToCode> | keyof typeof mapKeyToCode;
   }
 >;

@@ -11,8 +11,17 @@ import * as styles from "./NavAccountItem.css";
 export type NavAccountItemProps = BoxProps<
   "div",
   {
+    /**
+     * The name of the user.
+     */
     name?: string;
+    /**
+     * The name of the current organization user belongs to.
+     */
     organization?: string;
+    /**
+     * Render the image inside the avatar.
+     */
     src?: string;
   }
 >;

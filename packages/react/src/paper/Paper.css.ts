@@ -9,6 +9,9 @@ export const paper = recipe({
   },
 
   variants: {
+    /**
+     * Which elevation to use for the paper.
+     */
     elevation: {
       dialog: {
         rounded: "lg",

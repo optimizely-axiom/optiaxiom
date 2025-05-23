@@ -15,7 +15,7 @@ export type SwitchProps = BoxProps<
   typeof ToggleInputHiddenInput,
   styles.SwitchVariants & {
     /**
-     * Add helper text after the label.
+     * Add secondary text after the label.
      */
     description?: ReactNode;
   }

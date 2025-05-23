@@ -19,6 +19,9 @@ export const wrapper = recipe({
   },
 
   variants: {
+    /**
+     * Limits the height of the textarea when `resize=auto` is used.
+     */
     maxRows: mapValues(
       {
         1: "1",
@@ -36,6 +39,9 @@ export const wrapper = recipe({
         }),
       ],
     ),
+    /**
+     * Control whether resizing mode is manual, automatic, or disabled.
+     */
     resize: {
       auto: {},
       none: {},

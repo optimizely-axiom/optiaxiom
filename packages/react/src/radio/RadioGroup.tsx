@@ -9,12 +9,37 @@ import { RadioGroupProvider } from "./RadioGroupContext";
 export type RadioGroupProps = BoxProps<
   "div",
   {
+    /**
+     * The initial selected value in uncontrolled mode.
+     */
     defaultValue?: string;
+    /**
+     * Whether the input is disabled and in read only mode.
+     */
     disabled?: InputProps["disabled"];
+    /**
+     * The name of the form control elements. Will override any name specified on the inner Radio components.
+     */
     name?: InputProps["name"];
+    /**
+     * Handler for `blur` event forwarded to all inner Radio components.
+     *
+     * Useful for integrating with third party form libraries.
+     */
     onBlur?: InputProps["onBlur"];
+    /**
+     * Handler for `change` event forwarded to all inner Radio components.
+     *
+     * Useful for integrating with third party form libraries.
+     */
     onChange?: InputProps["onChange"];
+    /**
+     * Handler that is called when the selected value changes.
+     */
     onValueChange?: (value: string) => void;
+    /**
+     * The selected value in controlled mode.
+     */
     value?: string;
   }
 >;

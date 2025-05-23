@@ -15,6 +15,9 @@ const Slot = createSlot("@optiaxiom/react/NavItem");
 export type NavItemProps = BoxProps<
   "button",
   {
+    /**
+     * Whether the nav item is currently active.
+     */
     active?: boolean;
     /**
      * Display content inside the button after `children`.

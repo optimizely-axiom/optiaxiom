@@ -10,9 +10,21 @@ import { format, parse, range } from "./utils";
 export type ClockProps = BoxProps<
   "div",
   {
+    /**
+     * The initial time value in uncontrolled mode.
+     */
     defaultValue?: string;
+    /**
+     * Handler that is called when the time value changes.
+     */
     onValueChange?: (value: string) => void;
+    /**
+     * Specify the stepping value in seconds for the allowed values.
+     */
     step?: number | string;
+    /**
+     * The time value in controlled mode in 24-hour HH:mm format.
+     */
     value?: string;
   }
 >;

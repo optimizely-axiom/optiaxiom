@@ -23,6 +23,9 @@ export const viewport = recipe({
     }),
   ],
   variants: {
+    /**
+     * Control where in the screen toasts will be placed.
+     */
     position: {
       bottom: style({
         bottom: 0,

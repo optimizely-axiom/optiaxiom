@@ -6,7 +6,13 @@ import * as styles from "./Layouts.css";
 export type LayoutProps = BoxProps<
   "div",
   {
+    /**
+     * Content for the header area of the layout.
+     */
     header?: ReactNode;
+    /**
+     * Content for the sidebar area of the layout.
+     */
     sidebar?: ReactNode;
   }
 >;
