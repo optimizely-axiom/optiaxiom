@@ -46,7 +46,7 @@ export function App() {
 
   return (
     <Menu
-      initialInputVisible
+      inputVisible="always"
       loading={isLoading}
       onInputValueChange={(inputValue) => refetch(inputValue)}
       options={data}

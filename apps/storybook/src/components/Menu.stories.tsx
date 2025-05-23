@@ -134,7 +134,7 @@ export const AsyncLoading: Story = {
       <Menu
         {...args}
         empty={items ? undefined : "Start typing to search..."}
-        initialInputVisible
+        inputVisible="always"
         loading={isLoading}
         onInputValueChange={fetchData}
         options={useMemo(
@@ -365,7 +365,7 @@ export const Controlled: Story = {
     return (
       <Menu
         {...args}
-        initialInputVisible
+        inputVisible="always"
         options={useMemo(
           () =>
             books.map<MenuOption>((book) => ({
@@ -493,11 +493,11 @@ export const NestedAndSearchable: Story = {
   args: {
     children: (
       <>
-        <MenuTrigger />
+        inputVisible
         <MenuContent />
       </>
     ),
-    initialInputVisible: true,
+    inputVisible: "always",
     options: [
       { label: "Create Task" },
       { label: "Hidden item", visible: false },

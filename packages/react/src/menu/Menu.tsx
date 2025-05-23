@@ -29,7 +29,10 @@ export type MenuProps = ExcludeProps<
        * The initial open state in uncontrolled mode.
        */
       defaultOpen?: boolean;
-      initialInputVisible?: boolean;
+      /**
+       * Whether to always show the input or only if there are selectable options and/or when user starts to type.
+       */
+      inputVisible?: "always" | "if-needed";
       /**
        * Handler that is called when the open state changes.
        */
@@ -48,8 +51,8 @@ export type MenuProps = ExcludeProps<
 export function Menu({
   children,
   defaultOpen = false,
-  initialInputVisible,
   inputValue: inputValueProp,
+  inputVisible: inputVisibleProp,
   onInputValueChange,
   onOpenChange,
   open: openProp,
@@ -139,9 +142,7 @@ export function Menu({
   );
   const inputDefaultVisibleRef = useRef(hasSelectableItem);
   inputDefaultVisibleRef.current =
-    initialInputVisible !== undefined
-      ? initialInputVisible
-      : hasSelectableItem || false;
+    inputVisibleProp === "always" ? true : hasSelectableItem || false;
   const [inputVisible, setInputVisible] = useState(
     inputDefaultVisibleRef.current,
   );
