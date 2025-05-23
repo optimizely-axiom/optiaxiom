@@ -1,5 +1,16 @@
 # @optiaxiom/web-components
 
+## 0.10.5
+
+### Patch Changes
+
+- 68adb62: rename Link overlay prop to cover
+- e1da995: update dependencies
+- 48373ac: bump down indicator size for today on calendar
+- 9cb019b: allow packages to work in legacy CJS environments
+- 4e1ffa0: handle line-clamp for tooltip clipping detection
+- 0fca0f9: simplify transition types
+
 ## 0.10.4
 
 ### Patch Changes
