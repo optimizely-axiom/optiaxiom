@@ -26,11 +26,7 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
     const { boxProps, restProps } = extractBoxProps(props);
 
     return (
-      <ToggleInput
-        description={!!description}
-        {...styles.root({}, className)}
-        {...boxProps}
-      >
+      <ToggleInput {...styles.root({}, className)} {...boxProps}>
         <ToggleInputHiddenInput
           ref={ref}
           role="switch"
