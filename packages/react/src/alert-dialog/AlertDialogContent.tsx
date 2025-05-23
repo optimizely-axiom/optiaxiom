@@ -49,7 +49,7 @@ export const AlertDialogContent = forwardRef<
         <Flex {...styles.root()}>
           <Box flex="1" pointerEvents="none" />
 
-          <Transition data-side="bottom" type="fade">
+          <Transition type="pop">
             <Paper
               asChild
               elevation="dialog"

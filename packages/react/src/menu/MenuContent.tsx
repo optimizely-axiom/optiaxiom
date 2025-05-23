@@ -23,7 +23,7 @@ import { useMenuSubContext } from "./MenuSubContext";
 export type MenuContentProps = ExcludeProps<
   ComponentPropsWithoutRef<typeof DialogContent> &
     ComponentPropsWithoutRef<typeof PopoverContent>,
-  "minW" | "size" | "transitionType"
+  "minW" | "size"
 >;
 
 export const MenuContent = forwardRef<HTMLDivElement, MenuContentProps>(

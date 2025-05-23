@@ -12,7 +12,16 @@ export type TransitionProps = styles.TransitionVariants & {
   children: ReactElement;
   className?: string;
   "data-side"?: "bottom" | "left" | "right" | "top";
+  /**
+   * Whether to skip the animation or not. Useful for initial mount and unit testing.
+   */
   skipAnimations?: boolean;
+  /**
+   * The properties to animate during transition.
+   *  - fade: only animate the opacity
+   *  - pop: animate the opacity, scale, and translate (depending on data-side)
+   */
+  type?: "fade" | "pop";
 };
 
 export const Transition = forwardRef<HTMLDivElement, TransitionProps>(
@@ -37,14 +46,16 @@ export const Transition = forwardRef<HTMLDivElement, TransitionProps>(
       </Slot>
     ) : (
       <Slot
+        data-transition-fade={transitionStatus ? "" : undefined}
+        data-transition-pop={
+          transitionStatus && type === "pop" ? "" : undefined
+        }
+        data-transition-state={transitionStatus}
+        data-transition-translate={
+          transitionStatus && type === "pop" ? "" : undefined
+        }
         ref={ref}
-        {...styles.transition(
-          {
-            duration,
-            type: transitionStatus ? type : undefined,
-          },
-          className,
-        )}
+        {...styles.transition({ duration }, className)}
         {...props}
       >
         {children}

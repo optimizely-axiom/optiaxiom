@@ -1,7 +1,7 @@
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import * as RadixDialog from "@radix-ui/react-dialog";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
-import { type ComponentPropsWithoutRef, forwardRef, useRef } from "react";
+import { forwardRef, useRef } from "react";
 
 import { Backdrop } from "../backdrop";
 import { type BoxProps } from "../box";
@@ -14,27 +14,12 @@ import * as styles from "./DialogContent.css";
 import { useDialogContext } from "./DialogContext";
 
 export type DialogContentProps = ExcludeProps<
-  BoxProps<
-    typeof RadixDialog.Content,
-    styles.DialogVariants & {
-      transitionType?: ComponentPropsWithoutRef<typeof Transition>["type"];
-    }
-  >,
+  BoxProps<typeof RadixDialog.Content, styles.DialogVariants>,
   "forceMount"
 >;
 
 export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
-  (
-    {
-      children,
-      className,
-      size = "md",
-      style,
-      transitionType = "fade",
-      ...props
-    },
-    outerRef,
-  ) => {
+  ({ children, className, size = "md", style, ...props }, outerRef) => {
     const { nestedDialogCount, open } = useDialogContext(
       "@optiaxiom/react/DialogContent",
     );
@@ -56,7 +41,7 @@ export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
         </Portal>
 
         <Portal asChild>
-          <Transition data-side="bottom" type={transitionType}>
+          <Transition type="pop">
             <Paper
               asChild
               elevation={size === "fullscreen" ? "screen" : "dialog"}
