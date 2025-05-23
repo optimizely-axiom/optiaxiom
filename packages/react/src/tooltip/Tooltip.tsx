@@ -10,11 +10,10 @@ import { TooltipTrigger } from "./TooltipTrigger";
 export type TooltipProps = ExcludeProps<
   BoxProps<
     typeof TooltipContent,
-    Pick<ComponentPropsWithRef<typeof TooltipRoot>, "delayDuration"> & {
-      /**
-       * Enable this option to only show the tooltip when children is partially hidden due to text overflow.
-       */
-      auto?: boolean;
+    Pick<
+      ComponentPropsWithRef<typeof TooltipRoot>,
+      "auto" | "delayDuration"
+    > & {
       children: ReactNode;
       /**
        * The tooltip content.

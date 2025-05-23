@@ -451,6 +451,7 @@ export const demos = {
     "@/demos/toggle-button/tooltip-usage/App"
   ),
   "toggle-button/usage": import("@/demos/toggle-button/usage/App"),
+  "tooltip/auto-usage": import("@/demos/tooltip/auto-usage/App"),
   "tooltip/controlled-usage": import("@/demos/tooltip/controlled-usage/App"),
   "tooltip/delay-usage": import("@/demos/tooltip/delay-usage/App"),
   "tooltip/placement-usage": import("@/demos/tooltip/placement-usage/App"),
