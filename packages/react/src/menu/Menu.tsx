@@ -94,7 +94,9 @@ export function Menu({
       }
     } else {
       if (open) {
-        setActiveItemStack([]);
+        setActiveItemStack((activeItemStack) =>
+          activeItemStack.length ? [] : activeItemStack,
+        );
       }
     }
   }, [open, size]);
