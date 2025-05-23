@@ -102,6 +102,7 @@ export const MenuSubContent = forwardRef<HTMLDivElement, MenuSubContentProps>(
       >
         {children ?? (
           <Command
+            enabled
             inputValue={inputValue}
             onHover={(item) => {
               setSubMenuOpen(
@@ -128,7 +129,6 @@ export const MenuSubContent = forwardRef<HTMLDivElement, MenuSubContentProps>(
                 onSelect(item, { dismiss });
               }
             }}
-            open
             options={options}
           >
             <VisuallyHidden disabled={item.subOptionsInputVisible}>

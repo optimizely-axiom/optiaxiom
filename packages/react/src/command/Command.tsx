@@ -17,6 +17,10 @@ export type CommandProps = {
    */
   empty?: ReactNode;
   /**
+   * Whether combobox should be active or not.
+   */
+  enabled?: boolean | number;
+  /**
    * The input value in controlled mode.
    */
   inputValue?: string;
@@ -36,7 +40,6 @@ export type CommandProps = {
    * Handler that is called when an item is selected either via keyboard or mouse.
    */
   onSelect?: (item: CommandOption, context: { dismiss: boolean }) => void;
-  open?: boolean | number;
   /**
    * The items we want to render.
    */
@@ -46,12 +49,12 @@ export type CommandProps = {
 export function Command({
   children,
   empty,
+  enabled,
   inputValue: inputValueProp,
   loading,
   onHover,
   onInputValueChange,
   onSelect: onItemSelect,
-  open,
   options,
 }: CommandProps) {
   const [inputValue, setInputValue] = useControllableState({
@@ -63,7 +66,7 @@ export function Command({
   const items = useCommandItems({ inputValue, options });
 
   const [highlightedIndex, setHighlightedIndex, placed] = usePortalPatch(
-    open,
+    enabled,
     () =>
       items.filter((item) => "selected" in item).length > items.length / 2
         ? items.findIndex(

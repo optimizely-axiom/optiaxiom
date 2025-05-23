@@ -188,6 +188,7 @@ export function Menu({
         size={size}
       >
         <Command
+          enabled={open ? activeItemStack.length + 1 : false}
           inputValue={inputValue}
           onHover={(item) => {
             setSubMenuOpen(
@@ -213,7 +214,6 @@ export function Menu({
               }
             }
           }}
-          open={open ? activeItemStack.length + 1 : false}
           options={options}
           {...props}
         >
