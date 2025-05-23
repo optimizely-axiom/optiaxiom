@@ -7,6 +7,9 @@ import { TooltipProvider } from "./TooltipContext";
 export type TooltipRootProps = ComponentPropsWithoutRef<
   typeof RadixTooltip.Root
 > & {
+  /**
+   * Enable this option to only show the tooltip when children is partially hidden due to text overflow.
+   */
   auto?: boolean;
 };
 
