@@ -138,6 +138,7 @@ export default tsEslint.config(
       ],
       "local/consistent-display-name": "error",
       "local/consistent-exported-props": "error",
+      "local/missing-prop-description": "error",
       "local/missing-recipe-classname": "error",
       "local/no-useless-clsx": "error",
       "local/prefer-styles-import": "error",
