@@ -3,7 +3,6 @@ import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import {
   type ComponentPropsWithoutRef,
   forwardRef,
-  useEffect,
   useMemo,
   useRef,
   useState,
@@ -14,7 +13,7 @@ import { type BoxProps } from "../box";
 import { Clock } from "../clock";
 import { toInstant } from "../date-input/utils";
 import { Flex } from "../flex";
-import { useEffectEvent, useResponsiveMatches } from "../hooks";
+import { useResponsiveMatches } from "../hooks";
 import { Text } from "../text";
 import { toPlainDate, toPlainTime } from "../utils";
 import { CalendarChevron } from "./CalendarChevron";
@@ -49,7 +48,6 @@ export type CalendarProps = BoxProps<
      * The earliest date that is allowed.
      */
     min?: Date;
-    onHeightChange?: (height: number) => void;
     step?: number | string;
     type?: "date" | "datetime-local";
     /**
@@ -115,7 +113,6 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
       min,
       mode = "single",
       month,
-      onHeightChange,
       onMonthChange,
       onValueChange,
       step,
@@ -177,22 +174,6 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
         },
       [],
     );
-
-    const onHeightChangeStable = useEffectEvent(onHeightChange ?? (() => {}));
-    useEffect(() => {
-      if (!innerRef.current) {
-        return;
-      }
-
-      const observer = new ResizeObserver((entries) => {
-        for (const entry of entries) {
-          onHeightChangeStable(entry.contentRect.height);
-        }
-      });
-      observer.observe(innerRef.current);
-
-      return () => observer.disconnect();
-    }, [onHeightChangeStable]);
 
     return (
       <Flex
