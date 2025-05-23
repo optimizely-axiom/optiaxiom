@@ -13,12 +13,12 @@ export const NavGroupContent = forwardRef<
   return (
     <DisclosureContent
       asChild
+      data-transition-scale
       display="flex"
       flexDirection="column"
       gap="4"
       pb="0"
       pt="0"
-      transitionType="slidePop"
       {...props}
     >
       <ul ref={ref}>{children}</ul>

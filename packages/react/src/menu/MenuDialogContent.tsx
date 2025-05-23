@@ -27,12 +27,7 @@ export const MenuDialogContent = forwardRef<
     ref,
   ) => {
     return (
-      <DialogContent
-        ref={ref}
-        transitionType="pop"
-        {...styles.content({}, className)}
-        {...props}
-      >
+      <DialogContent ref={ref} {...styles.content({}, className)} {...props}>
         {children}
 
         <VisuallyHidden tabIndex={-1}>

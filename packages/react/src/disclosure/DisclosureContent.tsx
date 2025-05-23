@@ -1,10 +1,5 @@
 import * as RadixCollapsible from "@radix-ui/react-collapsible";
-import {
-  type ComponentPropsWithoutRef,
-  forwardRef,
-  useEffect,
-  useState,
-} from "react";
+import { forwardRef, useEffect, useState } from "react";
 
 import type { ExcludeProps } from "../utils";
 
@@ -14,19 +9,14 @@ import * as styles from "./DisclosureContent.css";
 import { useDisclosureContext } from "./DisclosureContext";
 
 export type DisclosureContentProps = ExcludeProps<
-  BoxProps<
-    typeof RadixCollapsible.Content,
-    {
-      transitionType?: ComponentPropsWithoutRef<typeof Transition>["type"];
-    }
-  >,
+  BoxProps<typeof RadixCollapsible.Content>,
   "forceMount"
 >;
 
 export const DisclosureContent = forwardRef<
   HTMLDivElement,
   DisclosureContentProps
->(({ children, transitionType = "slide", ...props }, ref) => {
+>(({ children, ...props }, ref) => {
   const { open } = useDisclosureContext("@optiaxiom/react/DisclosureContent");
 
   const [skipAnimations, setSkipAnimations] = useState(Boolean(open));
@@ -38,12 +28,15 @@ export const DisclosureContent = forwardRef<
 
   return (
     <TransitionGroup open={open}>
-      <Transition
-        data-side="bottom"
-        skipAnimations={skipAnimations}
-        type={transitionType}
-      >
-        <Box {...styles.outer()}>
+      <Transition data-side="bottom" skipAnimations={skipAnimations} type="pop">
+        <Box
+          {...styles.outer({
+            scale: Boolean(
+              "data-transition-scale" in props &&
+                props["data-transition-scale"],
+            ),
+          })}
+        >
           <Box asChild {...styles.inner()}>
             <RadixCollapsible.Content forceMount>
               <Box pb="8" pt="4" ref={ref} {...props}>
