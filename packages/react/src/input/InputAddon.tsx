@@ -1,6 +1,7 @@
 import { forwardRef, type MouseEvent } from "react";
 
 import { Box, type BoxProps } from "../box";
+import { isFocusCaptured } from "../utils";
 import { useInputContext } from "./InputContext";
 
 export type InputAddonProps = BoxProps<"div">;
@@ -16,7 +17,7 @@ export const InputAddon = forwardRef<HTMLDivElement, InputAddonProps>(
         ? ({
             fontSize: "md",
             onPointerUp: (event: MouseEvent) => {
-              if (event.currentTarget.contains(document.activeElement)) {
+              if (isFocusCaptured(event)) {
                 return;
               }
 
