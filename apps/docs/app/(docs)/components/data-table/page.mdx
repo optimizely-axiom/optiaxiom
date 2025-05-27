@@ -33,7 +33,10 @@ import { DataTable, DataTableBody, DataTableFooter } from "@optiaxiom/react";
 
 export default () => (
   <DataTable>
-    <DataTableBody />
+    <DataTableBody>
+      <DataTableCheckbox />
+    </DataTableBody>
+
     <DataTableFooter />
   </DataTable>
 );
@@ -55,7 +58,7 @@ Follow the [column pinning guide](https://tanstack.com/table/latest/docs/guide/c
 
 Follow the [row selection guide](https://tanstack.com/table/latest/docs/guide/row-selection) to allow selecting and highlighting rows.
 
-Combine `Checkbox` with `Cover` to make them easier to interact with by spanning the whole cell.
+Use the `DataTableCheckbox` component to automatically attach selection handlers and make the whole row selectable.
 
 <Demo component="data-table/row-selection-usage" />
 
@@ -137,11 +140,19 @@ Columns will be virtualized when there are more than 20 columns in a table and r
 
 <PropsTable component="DataTableFooter" />
 
+### DataTableCheckbox
+
+<PropsTable component="DataTableCheckbox" />
+
 ### TableAction
 
 <PropsTable component="TableAction" />
 
 ## Changelog
+
+### 1.5.0
+
+- Added `DataTableCheckbox` component
 
 ### 1.4.0
 

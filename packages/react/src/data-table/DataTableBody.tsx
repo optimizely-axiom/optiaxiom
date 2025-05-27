@@ -1,10 +1,5 @@
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
-import {
-  type CellContext,
-  type Column,
-  flexRender,
-  type Table as ReactTable,
-} from "@tanstack/react-table";
+import { flexRender } from "@tanstack/react-table";
 import { useVirtualizer } from "@tanstack/react-virtual";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
 import { forwardRef, useRef } from "react";
@@ -17,6 +12,8 @@ import { Table, TableBody, TableCell, TableHeader, TableRow } from "../table";
 import * as styles from "./DataTableBody.css";
 import { useDataTableContext } from "./DataTableContext";
 import { DataTableHeaderCell } from "./DataTableHeaderCell";
+import { DataTableRow } from "./DataTableRow";
+import { fakeRow } from "./DataTableRowContext";
 
 export type DataTableBodyProps = BoxProps<
   "div",
@@ -140,12 +137,13 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
                 }))
               : rows.map((row) => ({ row, virtualRow: undefined }))
           ).map(({ row, virtualRow }) => (
-            <TableRow
+            <DataTableRow
               data-highlighted={row.getIsSelected() ? "" : undefined}
               data-index={virtualRow?.index}
               display="flex"
               key={row.id}
               ref={virtualRow ? rowVirtualizer.measureElement : undefined}
+              row={row}
               style={
                 virtualRow
                   ? {
@@ -228,7 +226,7 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
                   )}
                 </TableCell>
               ))}
-            </TableRow>
+            </DataTableRow>
           ))}
         </TableBody>
       </Table>
@@ -238,30 +236,4 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
 
 DataTableBody.displayName = "@optiaxiom/react/DataTableBody";
 
-const fakeCellsFactory =
-  (columns: Column<unknown, unknown>[], rowIndex: number) => () =>
-    columns.map((column, columnIndex) => ({
-      column,
-      getContext: () => ({}) as CellContext<unknown, unknown>,
-      id:
-        column.id + "-" + ["1/2", "full", "3/4"][(rowIndex + columnIndex) % 3],
-    }));
-
 const fakeCellWidth = (id: string) => id.split("-")[1] as Sprinkles["w"];
-
-const fakeRow = (table: ReactTable<unknown>, rowIndex: number) => ({
-  getCenterVisibleCells: fakeCellsFactory(
-    table.getCenterVisibleLeafColumns(),
-    rowIndex,
-  ),
-  getIsSelected: () => false,
-  getLeftVisibleCells: fakeCellsFactory(
-    table.getLeftVisibleLeafColumns(),
-    rowIndex,
-  ),
-  getRightVisibleCells: fakeCellsFactory(
-    table.getRightVisibleLeafColumns(),
-    rowIndex,
-  ),
-  id: "loading" + rowIndex,
-});
