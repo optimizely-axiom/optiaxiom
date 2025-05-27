@@ -107,7 +107,9 @@ export function Menu({
     }
   }, [open, size]);
 
+  const contentRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const triggerRef = useRef<HTMLDivElement | null>(null);
   const options = useMemo(
     () =>
       size === "sm"
@@ -226,9 +228,11 @@ export function Menu({
           {...props}
         >
           <MenuSubProvider
+            contentRef={contentRef}
             inputRef={inputRef}
             open={subMenuOpen}
             setOpen={setSubMenuOpen}
+            triggerRef={triggerRef}
           >
             {children}
           </MenuSubProvider>
