@@ -119,6 +119,9 @@ export const demos = {
   "data-table/virtualized-usage": import(
     "@/demos/data-table/virtualized-usage/App"
   ),
+  "date-input/controlled-usage": import(
+    "@/demos/date-input/controlled-usage/App"
+  ),
   "date-input/disabled-usage": import("@/demos/date-input/disabled-usage/App"),
   "date-input/error-usage": import("@/demos/date-input/error-usage/App"),
   "date-input/holiday-usage": import("@/demos/date-input/holiday-usage/App"),
@@ -257,6 +260,10 @@ export const demos = {
   "input/addon-pointer-usage": import("@/demos/input/addon-pointer-usage/App"),
   "input/addon-usage": import("@/demos/input/addon-usage/App"),
   "input/appearance-usage": import("@/demos/input/appearance-usage/App"),
+  "input/controlled-onchange-usage": import(
+    "@/demos/input/controlled-onchange-usage/App"
+  ),
+  "input/controlled-usage": import("@/demos/input/controlled-usage/App"),
   "input/disabled-usage": import("@/demos/input/disabled-usage/App"),
   "input/error-usage": import("@/demos/input/error-usage/App"),
   "input/readonly-usage": import("@/demos/input/readonly-usage/App"),
@@ -421,6 +428,10 @@ export const demos = {
     "@/demos/textarea/addon-pointer-usage/App"
   ),
   "textarea/addon-usage": import("@/demos/textarea/addon-usage/App"),
+  "textarea/controlled-onchange-usage": import(
+    "@/demos/textarea/controlled-onchange-usage/App"
+  ),
+  "textarea/controlled-usage": import("@/demos/textarea/controlled-usage/App"),
   "textarea/disabled-usage": import("@/demos/textarea/disabled-usage/App"),
   "textarea/error-usage": import("@/demos/textarea/error-usage/App"),
   "textarea/readonly-usage": import("@/demos/textarea/readonly-usage/App"),

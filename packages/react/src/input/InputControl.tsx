@@ -1,7 +1,7 @@
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import { createSlot } from "@radix-ui/react-slot";
 import clsx from "clsx";
-import { type ElementType, forwardRef } from "react";
+import { type ChangeEvent, type ElementType, forwardRef } from "react";
 
 import type { ExtendProps } from "../utils";
 
@@ -27,6 +27,10 @@ export type InputControlProps<
        * Whether to show the input error state.
        */
       error?: boolean;
+      /**
+       * Handler that is called when the value changes.
+       */
+      onValueChange?: (value: string) => void;
     },
     P
   >
@@ -37,7 +41,16 @@ export const InputControl = forwardRef<
   InputControlProps
 >(
   (
-    { asChild, children, className, error: errorProp, size = "md", ...props },
+    {
+      asChild,
+      children,
+      className,
+      error: errorProp,
+      onChange,
+      onValueChange,
+      size = "md",
+      ...props
+    },
     outerRef,
   ) => {
     const Comp = (asChild ? Slot : "input") as typeof Slot;
@@ -67,7 +80,23 @@ export const InputControl = forwardRef<
         {...styles.control({ size }, className)}
         {...boxProps}
       >
-        <Comp id={inputId} ref={ref} {...restProps}>
+        <Comp
+          id={inputId}
+          onChange={(event) => {
+            onChange?.(
+              event as ChangeEvent<HTMLInputElement> &
+                ChangeEvent<HTMLTextAreaElement>,
+            );
+            if (
+              event.target instanceof HTMLInputElement ||
+              event.target instanceof HTMLTextAreaElement
+            ) {
+              onValueChange?.(event.target.value);
+            }
+          }}
+          ref={ref}
+          {...restProps}
+        >
           {children}
         </Comp>
       </Box>
