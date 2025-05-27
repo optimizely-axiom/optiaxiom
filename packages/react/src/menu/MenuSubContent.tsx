@@ -94,7 +94,7 @@ export const MenuSubContent = forwardRef<HTMLDivElement, MenuSubContentProps>(
             }
 
             if (
-              event.target instanceof HTMLElement &&
+              event.target instanceof Element &&
               event.target.closest('[role="option"]')
             ) {
               return;

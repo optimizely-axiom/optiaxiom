@@ -70,7 +70,7 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
                 }
 
                 if (
-                  event.target instanceof HTMLElement &&
+                  event.target instanceof Element &&
                   event.target.closest('[role="option"]')
                 ) {
                   return;
