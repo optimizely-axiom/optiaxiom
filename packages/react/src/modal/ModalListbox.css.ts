@@ -29,6 +29,7 @@ export const listbox = recipe({
           ${fallbackVar(maxHeightVar, "100vh")}
         )
       `,
+      minWidth: "120px",
     }),
   ],
 
