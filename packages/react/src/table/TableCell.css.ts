@@ -1,4 +1,4 @@
-import { recipe, style } from "../vanilla-extract";
+import { recipe, type RecipeVariants, style } from "../vanilla-extract";
 import * as styles from "./TableRow.css";
 
 const row = styles.className;
@@ -10,7 +10,6 @@ export const cell = recipe({
       p: "16",
     },
     style({
-      position: "relative",
       verticalAlign: "top",
       wordBreak: "break-word",
 
@@ -21,4 +20,21 @@ export const cell = recipe({
       },
     }),
   ],
+
+  variants: {
+    /**
+     * Whether to pin the header cell to left/right of table.
+     */
+    pinned: {
+      false: style({
+        position: "relative",
+      }),
+      true: style({
+        position: "sticky",
+        zIndex: "10",
+      }),
+    },
+  },
 });
+
+export type CellVariants = RecipeVariants<typeof cell>;

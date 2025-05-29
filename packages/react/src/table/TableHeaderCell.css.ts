@@ -1,12 +1,26 @@
 import { theme } from "@optiaxiom/globals";
 
-import { recipe, style } from "../vanilla-extract";
+import { recipe, type RecipeVariants, style } from "../vanilla-extract";
 
 export const cell = recipe({
   base: style({
-    position: "relative",
     textAlign: "start",
   }),
+
+  variants: {
+    /**
+     * Whether to pin the header cell to left/right of table.
+     */
+    pinned: {
+      false: style({
+        position: "relative",
+      }),
+      true: style({
+        position: "sticky",
+        zIndex: "10",
+      }),
+    },
+  },
 });
 
 export const content = recipe({
@@ -25,3 +39,5 @@ export const content = recipe({
     }),
   ],
 });
+
+export type CellVariants = RecipeVariants<typeof cell>;
