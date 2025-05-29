@@ -69,7 +69,22 @@ export const CommandItem = forwardRef<HTMLDivElement, CommandItemProps>(
       },
       onMouseMove: (event: MouseEvent<HTMLDivElement>) => {
         onMouseMove?.(event);
-        if (resolveItemProperty(item.disabledReason)) {
+        if (event.defaultPrevented) {
+          return;
+        }
+
+        /**
+         * Downshift listens to mousemove on items for highlighting and
+         * scrolling.
+         *
+         * For disabled items we don't want this as downshift will try to reset
+         * highlightedIndex to -1 when mousing over them.
+         *
+         * We also use exit animations where downshift menu will be present in
+         * DOM while closing - and we need to prevent triggering mousemove
+         * during that time.
+         */
+        if (!downshift.isOpen || resolveItemProperty(item.disabledReason)) {
           event.preventDefault();
           Object.assign(event.nativeEvent, {
             preventDownshiftDefault: true,
