@@ -32,9 +32,8 @@ export const MenuContent = forwardRef<HTMLDivElement, MenuContentProps>(
     const ref = useComposedRefs(innerRef, outerRef);
 
     const { labelId } = useFieldContext("@optiaxiom/react/MenuContent");
-    const { activeItemStack, inputVisible, placeholder, size } = useMenuContext(
-      "@optiaxiom/react/MenuContent",
-    );
+    const { activeItemStack, inputRef, inputVisible, placeholder, size } =
+      useMenuContext("@optiaxiom/react/MenuContent");
     const { empty, loading } = useCommandContext(
       "@optiaxiom/react/MenuContent",
     );
@@ -64,6 +63,7 @@ export const MenuContent = forwardRef<HTMLDivElement, MenuContentProps>(
           }
 
           event.preventDefault();
+          inputRef.current?.focus();
         }}
         overflow="hidden"
         p={size === "sm" ? "4" : "0"}
