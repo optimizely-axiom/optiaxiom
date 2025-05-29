@@ -8,9 +8,7 @@ import {
   style,
 } from "../vanilla-extract";
 
-export const contentAvailableHeightVar = createVar();
 const maxHeightVar = createVar();
-export const triggerWidth = createVar();
 
 export const listbox = recipe({
   base: [
@@ -19,7 +17,18 @@ export const listbox = recipe({
       p: "4",
     },
     style({
-      maxHeight: `min(${contentAvailableHeightVar}, ${fallbackVar(maxHeightVar, "100vh")})`,
+      maxHeight: `
+        min(
+          var(
+            --radix-dropdown-menu-content-available-height,
+            var(
+              --radix-popover-content-available-height,
+              var(--radix-popper-available-height)
+            )
+          ),
+          ${fallbackVar(maxHeightVar, "100vh")}
+        )
+      `,
     }),
   ],
 
@@ -58,32 +67,18 @@ export const listbox = recipe({
     minW: {
       "0": {},
       trigger: style({
-        minWidth: `max(${triggerWidth}, 120px)`,
-      }),
-    },
-    /**
-     * The type of component used to render the listbox.
-     */
-    provider: {
-      "dropdown-menu": style({
-        vars: {
-          [contentAvailableHeightVar]:
-            "var(--radix-dropdown-menu-content-available-height)",
-          [triggerWidth]: "var(--radix-dropdown-menu-trigger-width)",
-        },
-      }),
-      popover: style({
-        vars: {
-          [contentAvailableHeightVar]:
-            "var(--radix-popover-content-available-height)",
-          [triggerWidth]: "var(--radix-popover-trigger-width)",
-        },
-      }),
-      popper: style({
-        vars: {
-          [contentAvailableHeightVar]: "var(--radix-popper-available-height)",
-          [triggerWidth]: "var(--radix-popper-anchor-width)",
-        },
+        minWidth: `
+          max(
+            var(
+              --radix-dropdown-menu-trigger-width,
+              var(
+                --radix-popover-trigger-width,
+                var(--radix-popper-anchor-width)
+              )
+            ),
+            120px
+          )
+        `,
       }),
     },
   },

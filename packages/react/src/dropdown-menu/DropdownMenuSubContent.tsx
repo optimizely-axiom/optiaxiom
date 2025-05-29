@@ -38,12 +38,7 @@ export const DropdownMenuSubContent = forwardRef<
   return (
     <TransitionGroup onPresenceChange={setPresence} open={open}>
       <Portal asChild>
-        <ModalListbox
-          asChild
-          minW="trigger"
-          provider="dropdown-menu"
-          {...props}
-        >
+        <ModalListbox asChild minW="trigger" {...props}>
           <RadixMenu.SubContent
             alignOffset={-4}
             asChild={asChild}

@@ -46,7 +46,6 @@ export const PopoverContent = forwardRef<HTMLDivElement, PopoverContentProps>(
             asChild
             onBlur={onReactSelectInputBlur}
             p="16"
-            provider="popover"
             {...props}
           >
             <RadixPopover.Content
