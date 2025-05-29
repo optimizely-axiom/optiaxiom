@@ -2,6 +2,7 @@ import * as RadixAlertDialog from "@radix-ui/react-alert-dialog";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import { useState } from "react";
 
+import { FocusBookmarkRestore } from "../focus-bookmark";
 import {
   NestedDialogProvider,
   useNestedDialogCount,
@@ -57,6 +58,9 @@ export function AlertDialog({
           presence={presence}
           setPresence={setPresence}
         >
+          <RadixAlertDialog.Trigger asChild>
+            <FocusBookmarkRestore />
+          </RadixAlertDialog.Trigger>
           {children}
         </AlertDialogProvider>
       </RadixAlertDialog.Root>
