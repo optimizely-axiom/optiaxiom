@@ -85,13 +85,14 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
         )}
         {...props}
       >
-        <TableHeader {...styles.header()}>
+        <TableHeader display="grid" pinned>
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow display="flex" key={headerGroup.id}>
               {headerGroup.headers.map((header) => (
                 <DataTableHeaderCell
                   header={header}
                   key={header.id}
+                  pinned={!!header.column.getIsPinned()}
                   style={{
                     ...assignInlineVars({
                       [styles.cellOffsetVar]: `${header.column.getStart(header.column.getIsPinned() || "left")}px`,
@@ -157,6 +158,7 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
               {row.getLeftVisibleCells().map((cell) => (
                 <TableCell
                   key={cell.id}
+                  pinned
                   style={{
                     ...assignInlineVars({
                       [styles.cellOffsetVar]: `${cell.column.getStart("left")}px`,
@@ -208,6 +210,7 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
               {row.getRightVisibleCells().map((cell) => (
                 <TableCell
                   key={cell.id}
+                  pinned
                   style={{
                     ...assignInlineVars({
                       [styles.cellOffsetVar]: `${cell.column.getStart("right")}px`,

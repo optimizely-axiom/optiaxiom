@@ -113,19 +113,6 @@ export const table = recipe({
   },
 });
 
-export const header = recipe({
-  base: [
-    {
-      display: "grid",
-    },
-    style({
-      position: "sticky",
-      top: 0,
-      zIndex: "20",
-    }),
-  ],
-});
-
 export const cell = recipe({
   base: [
     {
@@ -141,13 +128,9 @@ export const cell = recipe({
     pinned: {
       left: style({
         left: cellOffsetVar,
-        position: "sticky",
-        zIndex: "10",
       }),
       right: style({
-        position: "sticky",
         right: cellOffsetVar,
-        zIndex: "10",
       }),
     },
     pinnedType: {

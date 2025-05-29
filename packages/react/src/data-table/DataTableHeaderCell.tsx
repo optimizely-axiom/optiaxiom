@@ -14,7 +14,7 @@ import { VisuallyHidden } from "../visually-hidden";
 import * as styles from "./DataTableHeaderCell.css";
 
 export type DataTableHeaderCellProps = BoxProps<
-  "th",
+  typeof TableHeaderCell,
   {
     /**
      * The Header instance to render.
