@@ -54,6 +54,7 @@ export const components = {
   Code: getProps("Code"),
   Cover: getProps("Cover"),
   DataTable: getProps("DataTable"),
+  DataTableAction: getProps("DataTableAction"),
   DataTableBody: getProps("DataTableBody"),
   DataTableCheckbox: getProps("DataTableCheckbox"),
   DataTableFooter: getProps("DataTableFooter"),

@@ -136,11 +136,11 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
                   virtualRow,
                 }))
               : rows.map((row) => ({ row, virtualRow: undefined }))
-          ).map(({ row, virtualRow }) => (
+          ).map(({ row, virtualRow }, index) => (
             <DataTableRow
-              data-highlighted={row.getIsSelected() ? "" : undefined}
               data-index={virtualRow?.index}
               display="flex"
+              index={virtualRow?.index ?? index}
               key={row.id}
               ref={virtualRow ? rowVirtualizer.measureElement : undefined}
               row={row}

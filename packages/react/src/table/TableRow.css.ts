@@ -20,12 +20,32 @@ export const row = recipe({
             "&:hover": {
               backgroundColor: theme.colors["bg.default.hovered"],
             },
+            "&[data-selected]:hover": {
+              backgroundColor: `
+                color-mix(
+                  in srgb,
+                  ${theme.colors["bg.accent.subtle"]},
+                  ${theme.colors["bg.accent.light"]} 15%
+                )
+              `,
+            },
           },
         },
       },
       selectors: {
-        "&[data-highlighted]": {
-          backgroundColor: theme.colors["bg.default.hovered"],
+        "&[data-focus-visible]:focus-visible": {
+          outline: "none",
+          zIndex: "10",
+        },
+        "&[data-focus-visible]:focus-visible::before": {
+          border: `2px solid ${theme.colors["border.focus"]}`,
+          borderRadius: theme.borderRadius.md,
+          content: "",
+          inset: "1px 0 0",
+          position: "absolute",
+        },
+        "&[data-selected]": {
+          backgroundColor: theme.colors["bg.accent.subtle"],
         },
       },
     }),

@@ -1,6 +1,6 @@
 import type { Table } from "@tanstack/table-core";
 
-import { forwardRef } from "react";
+import { forwardRef, useState } from "react";
 
 import { type BoxProps } from "../box";
 import { Flex } from "../flex";
@@ -19,6 +19,8 @@ export type DataTableProps = BoxProps<
 
 export const DataTable = forwardRef<HTMLDivElement, DataTableProps>(
   ({ children, table, ...props }, ref) => {
+    const [highlightedIndex, setHighlightedIndex] = useState(-1);
+
     return (
       <Flex
         gap="8"
@@ -28,7 +30,13 @@ export const DataTable = forwardRef<HTMLDivElement, DataTableProps>(
         ref={ref}
         {...props}
       >
-        <DataTableProvider table={table}>{children}</DataTableProvider>
+        <DataTableProvider
+          highlightedIndex={highlightedIndex}
+          setHighlightedIndex={setHighlightedIndex}
+          table={table}
+        >
+          {children}
+        </DataTableProvider>
       </Flex>
     );
   },
