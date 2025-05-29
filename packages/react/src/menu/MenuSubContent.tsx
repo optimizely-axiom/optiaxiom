@@ -32,7 +32,6 @@ export const MenuSubContent = forwardRef<HTMLDivElement, MenuSubContentProps>(
     const {
       contentRef: parentContentRef,
       inputRef: parentInputRef,
-      open: parentSubMenuOpen,
       triggerRef: parentTriggerRef,
     } = useMenuSubContext("@optiaxiom/react/MenuSubContent");
     const { open, presence } = usePopoverContext(
@@ -73,10 +72,6 @@ export const MenuSubContent = forwardRef<HTMLDivElement, MenuSubContentProps>(
           align={align}
           alignOffset={item.subOptionsInputVisible ? -46 : -4}
           onCloseAutoFocus={(event) => {
-            if (parentSubMenuOpen) {
-              return;
-            }
-
             event.preventDefault();
             parentInputRef.current?.focus();
           }}
