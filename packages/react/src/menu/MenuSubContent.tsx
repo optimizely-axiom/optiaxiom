@@ -89,6 +89,7 @@ export const MenuSubContent = forwardRef<HTMLDivElement, MenuSubContentProps>(
             }
 
             event.preventDefault();
+            inputRef.current?.focus();
           }}
           onPointerEnter={() => {
             if (item.subOptionsInputVisible) {
