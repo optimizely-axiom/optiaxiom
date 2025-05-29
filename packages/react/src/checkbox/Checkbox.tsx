@@ -15,7 +15,11 @@ export type CheckboxProps = BoxProps<
 export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
   ({ children, description, indeterminate, ...props }, ref) => {
     return (
-      <CheckboxRoot ref={ref} {...props}>
+      <CheckboxRoot
+        aria-checked={indeterminate ? "mixed" : undefined}
+        ref={ref}
+        {...props}
+      >
         <CheckboxControl
           indeterminate={indeterminate}
           shift={Boolean(children)}
