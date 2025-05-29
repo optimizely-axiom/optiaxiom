@@ -1,4 +1,7 @@
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
+import { useId } from "@radix-ui/react-id";
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
+import clsx from "clsx";
 import {
   type ComponentPropsWithoutRef,
   forwardRef,
@@ -19,9 +22,11 @@ export const DataTableCheckbox = forwardRef<
   DataTableCheckboxProps
 >(({ children, disabled, visible, ...props }, outerRef) => {
   const { table } = useDataTableContext("@optiaxiom/react/DataTableCheckbox");
-  const { row, setSelector } = useDataTableRowContext(
+  const { labelId, row, setSelector } = useDataTableRowContext(
     "@optiaxiom/react/DataTableCheckbox",
   );
+
+  const labelPrefixId = useId();
 
   const innerRef = useRef<HTMLInputElement>(null);
   const ref = useComposedRefs(innerRef, outerRef);
@@ -37,35 +42,43 @@ export const DataTableCheckbox = forwardRef<
   }, [disabled, setSelector]);
 
   return (
-    <DataTableAction
-      asChild
-      visible={
-        (visible ?? (table.getIsSomeRowsSelected() || !row))
-          ? "always"
-          : undefined
-      }
-    >
-      <Checkbox
-        aria-label={row ? "Select row" : "Select all"}
-        checked={
-          row
-            ? row.getIsSelected()
-            : table.getIsAllPageRowsSelected() ||
-              table.getIsSomePageRowsSelected()
+    <>
+      {row && (
+        <VisuallyHidden id={labelPrefixId}>
+          Check to {row.getIsSelected() ? "unselect" : "select"}
+        </VisuallyHidden>
+      )}
+      <DataTableAction
+        asChild
+        visible={
+          (visible ?? (table.getIsSomeRowsSelected() || !row))
+            ? "always"
+            : undefined
         }
-        disabled={disabled}
-        indeterminate={!row && table.getIsSomePageRowsSelected()}
-        onChange={
-          row
-            ? row.getToggleSelectedHandler()
-            : table.getToggleAllPageRowsSelectedHandler()
-        }
-        ref={ref}
-        {...props}
       >
-        {children}
-      </Checkbox>
-    </DataTableAction>
+        <Checkbox
+          aria-label={!row ? "Select all" : undefined}
+          aria-labelledby={row && clsx(labelPrefixId, labelId)}
+          checked={
+            row
+              ? row.getIsSelected()
+              : table.getIsAllPageRowsSelected() ||
+                table.getIsSomePageRowsSelected()
+          }
+          disabled={disabled}
+          indeterminate={!row && table.getIsSomePageRowsSelected()}
+          onChange={
+            row
+              ? row.getToggleSelectedHandler()
+              : table.getToggleAllPageRowsSelectedHandler()
+          }
+          ref={ref}
+          {...props}
+        >
+          {children}
+        </Checkbox>
+      </DataTableAction>
+    </>
   );
 });
 

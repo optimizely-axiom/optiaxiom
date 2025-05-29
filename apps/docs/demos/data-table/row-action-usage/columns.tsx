@@ -2,6 +2,7 @@ import {
   Box,
   Button,
   DataTableAction,
+  DataTableLabel,
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
@@ -26,18 +27,20 @@ export const columns = [
   columnHelper.display({
     cell: ({ row }) => (
       <Flex flexDirection="row" justifyContent="space-between" w="full">
-        <DataTableAction asChild flex="initial" overflow="hidden" primary>
-          <Link
-            appearance="subtle"
-            href="data:,"
-            onClick={(event) => {
-              event.preventDefault();
-              toaster.create(`Clicked: ${row.original.name}`);
-            }}
-          >
-            <Text truncate>{row.original.name}</Text>
-          </Link>
-        </DataTableAction>
+        <DataTableLabel asChild>
+          <DataTableAction asChild flex="initial" overflow="hidden" primary>
+            <Link
+              appearance="subtle"
+              href="data:,"
+              onClick={(event) => {
+                event.preventDefault();
+                toaster.create(`Clicked: ${row.original.name}`);
+              }}
+            >
+              <Text truncate>{row.original.name}</Text>
+            </Link>
+          </DataTableAction>
+        </DataTableLabel>
 
         <Flex flex="none" flexDirection="row" gap="8">
           <DropdownMenu>

@@ -36,6 +36,7 @@ export default () => (
     <DataTableBody>
       <DataTableAction />
       <DataTableCheckbox />
+      <DataTableLabel />
     </DataTableBody>
 
     <DataTableFooter />
@@ -63,6 +64,8 @@ Use the `DataTableCheckbox` component to automatically attach selection handlers
 
 Combine `Checkbox`/`DataTableCheckbox` with `Cover` to make them easier to interact with by spanning the whole cell.
 
+Finally, make sure to use the `DataTableLabel` in your primary cell to set the label of the row and the checkbox for screen readers.
+
 <Alert intent="warning" mt="16">
   Hover over the rows to see the checkboxes:
 </Alert>
@@ -77,6 +80,8 @@ You can enable the `primary` prop on any one of those actions to mark that as th
 
 - Double click on row to perform primary action.
 - Use up/down/left/right arrow keys to navigate between rows and actions.
+
+Finally, make sure to use the `DataTableLabel` in your primary cell to set the label of the row for screen readers.
 
 <Alert intent="warning" mt="16">
   Hover over the rows to perform more actions:
@@ -160,11 +165,17 @@ Columns will be virtualized when there are more than 20 columns in a table and r
 
 <PropsTable component="DataTableCheckbox" />
 
+### DataTableLabel
+
+<PropsTable component="DataTableLabel" />
+
 ## Changelog
 
 ### 1.5.0
 
+- Added `DataTableAction` component
 - Added `DataTableCheckbox` component
+- Added `DataTableLabel` component
 
 ### 1.4.0
 
