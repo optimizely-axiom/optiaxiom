@@ -78,7 +78,6 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
 
                 event.preventDefault();
               }}
-              provider="popper"
               ref={ref}
               role="dialog"
               size={size}

@@ -48,12 +48,7 @@ export const DropdownMenuContent = forwardRef<
       presence={presence}
     >
       <Portal asChild>
-        <ModalListbox
-          asChild
-          minW={loading ? "trigger" : undefined}
-          provider="dropdown-menu"
-          {...props}
-        >
+        <ModalListbox asChild minW={loading ? "trigger" : undefined} {...props}>
           <RadixMenu.Content
             align={align}
             onPointerMove={(event) => {
