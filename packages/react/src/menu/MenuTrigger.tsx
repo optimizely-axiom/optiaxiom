@@ -11,7 +11,13 @@ export type MenuTriggerProps = ComponentPropsWithoutRef<typeof PopoverTrigger>;
 
 export const MenuTrigger = forwardRef<HTMLButtonElement, MenuTriggerProps>(
   (
-    { "aria-labelledby": ariaLabelledBy, asChild, children, ...props },
+    {
+      "aria-labelledby": ariaLabelledBy,
+      asChild,
+      children,
+      onKeyDown,
+      ...props
+    },
     outerRef,
   ) => {
     const { setOpen, size } = useMenuContext("@optiaxiom/react/MenuTrigger");
@@ -27,6 +33,11 @@ export const MenuTrigger = forwardRef<HTMLButtonElement, MenuTriggerProps>(
         aria-labelledby={labelId}
         asChild
         onKeyDown={(event) => {
+          onKeyDown?.(event);
+          if (event.defaultPrevented) {
+            return;
+          }
+
           switch (event.key) {
             case "ArrowDown":
               setOpen(true);
