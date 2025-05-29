@@ -25,7 +25,7 @@ export const MenuSubContent = forwardRef<HTMLDivElement, MenuSubContentProps>(
       "@optiaxiom/react/MenuSubContent",
     );
     const {
-      highlightedItem,
+      highlightedItem: item,
       inputValue: parentInputValue,
       setInputValue: setParentInputValue,
     } = useCommandContext("@optiaxiom/react/MenuSubContent");
@@ -39,17 +39,6 @@ export const MenuSubContent = forwardRef<HTMLDivElement, MenuSubContentProps>(
       "@optiaxiom/react/MenuSubContent",
     );
     const ref = useComposedRefs(parentContentRef, outerRef);
-
-    const itemRef = useRef(highlightedItem);
-    if (
-      parentSubMenuOpen &&
-      highlightedItem &&
-      (typeof highlightedItem.subOptions === "function" ||
-        !!highlightedItem.subOptions?.length)
-    ) {
-      itemRef.current = highlightedItem;
-    }
-    const item = itemRef.current;
 
     const [inputValue, setInputValue] = useState("");
     const options = useMemo(

@@ -4,6 +4,7 @@ import {
   type RefObject,
   useCallback,
   useEffect,
+  useRef,
   useState,
 } from "react";
 
@@ -60,6 +61,11 @@ export function TransitionGroup({
     }
   }, [open, setPresence, transitions]);
 
+  const childrenRef = useRef(children);
+  if (open) {
+    childrenRef.current = children;
+  }
+
   if (TransitionGlobalConfig.skipAnimations) {
     return <>{open && children}</>;
   }
@@ -71,7 +77,7 @@ export function TransitionGroup({
       open={open}
       presence={presence}
     >
-      {(open || presence) && children}
+      {(open || presence) && childrenRef.current}
     </TransitionGroupProvider>
   );
 }
