@@ -42,6 +42,8 @@ const fakeCellsFactory =
     }));
 
 export const fakeRow = (table: Table<unknown>, rowIndex: number) => ({
+  getCanMultiSelect: () => false,
+  getCanSelect: () => false,
   getCenterVisibleCells: fakeCellsFactory(
     table.getCenterVisibleLeafColumns(),
     rowIndex,

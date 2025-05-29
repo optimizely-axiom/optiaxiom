@@ -81,6 +81,7 @@ export const DataTableRow = forwardRef<HTMLTableRowElement, DataTableRowProps>(
     return (
       <TableRow
         aria-labelledby={labelId}
+        aria-selected={row.getCanSelect() ? row.getIsSelected() : undefined}
         data-focus-visible={focusManaged ? "" : undefined}
         data-selected={row.getIsSelected() ? "" : undefined}
         onClick={(event) => {
@@ -138,7 +139,7 @@ export const DataTableRow = forwardRef<HTMLTableRowElement, DataTableRowProps>(
 
               if (selector) {
                 const nextRow = rows[nextIndex];
-                if (event.shiftKey) {
+                if (event.shiftKey && row.getCanMultiSelect()) {
                   table.setRowSelection((selection) =>
                     selection[nextRow.id]
                       ? {
