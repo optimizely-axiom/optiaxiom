@@ -1,5 +1,21 @@
 # @optiaxiom/web-components
 
+## 0.10.5
+
+### Patch Changes
+
+- 95ffd99: add DataTableAction for primary/secondary actions
+- 68adb62: rename Link overlay prop to cover
+- e1da995: update dependencies
+- 48373ac: bump down indicator size for today on calendar
+- d9ea02b: forward non style/sprinkle props to inner table instance
+- 9cb019b: allow packages to work in legacy CJS environments
+- f0eeb7a: add DataTableLabel to label rows for a11y
+- d22bb5a: allow whole row to be selectable in DataTable
+- 4e1ffa0: handle line-clamp for tooltip clipping detection
+- 61af1a9: add onValueChange prop to input
+- 0fca0f9: simplify transition types
+
 ## 0.10.4
 
 ### Patch Changes
