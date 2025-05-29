@@ -41,7 +41,12 @@ export const MenuSubContent = forwardRef<HTMLDivElement, MenuSubContentProps>(
     const ref = useComposedRefs(parentContentRef, outerRef);
 
     const itemRef = useRef(highlightedItem);
-    if (parentSubMenuOpen) {
+    if (
+      parentSubMenuOpen &&
+      highlightedItem &&
+      (typeof highlightedItem.subOptions === "function" ||
+        !!highlightedItem.subOptions?.length)
+    ) {
       itemRef.current = highlightedItem;
     }
     const item = itemRef.current;
