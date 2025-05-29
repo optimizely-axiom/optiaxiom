@@ -30,6 +30,14 @@ export const MenuSubTrigger = forwardRef<HTMLDivElement, MenuSubTriggerProps>(
       "@optiaxiom/react/MenuSubTrigger",
     );
 
+    /**
+     * We use a ref and combine pointerenter + pointermove because pointerenter
+     * is triggered both when mouse moves into the element and also when element
+     * is inserted into DOM and mouse happens to be present at that coordinate.
+     *
+     * So we only open the submenu when user moves the enters and then moves
+     * the mouse for the first time.
+     */
     const pointerEnterRef = useRef(false);
 
     const innerRef = useRef();
@@ -112,7 +120,7 @@ export const MenuSubTrigger = forwardRef<HTMLDivElement, MenuSubTriggerProps>(
             return;
           }
 
-          if (pointerEnterRef.current) {
+          if (pointerEnterRef.current && downshift.isOpen) {
             downshift.selectItem(item);
           }
           pointerEnterRef.current = false;
