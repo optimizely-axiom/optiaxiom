@@ -34,6 +34,7 @@ import { DataTable, DataTableBody, DataTableFooter } from "@optiaxiom/react";
 export default () => (
   <DataTable>
     <DataTableBody>
+      <DataTableAction />
       <DataTableCheckbox />
     </DataTableBody>
 
@@ -60,11 +61,22 @@ Follow the [row selection guide](https://tanstack.com/table/latest/docs/guide/ro
 
 Use the `DataTableCheckbox` component to automatically attach selection handlers and make the whole row selectable.
 
+Combine `Checkbox`/`DataTableCheckbox` with `Cover` to make them easier to interact with by spanning the whole cell.
+
+<Alert intent="warning" mt="16">
+  Hover over the rows to see the checkboxes:
+</Alert>
+
 <Demo component="data-table/row-selection-usage" />
 
 ### Row actions
 
-Use the `TableAction` component to show dropdown menus within rows that are only visible when the user hovers over the row or navigates to the menu using keyboards.
+Use the `DataTableAction` component to show links, buttons, or dropdown menus within rows that are only visible when the user hovers over the row.
+
+You can enable the `primary` prop on any one of those actions to mark that as the primary action. This will automatically enable keyboard navigation within the table:
+
+- Double click on row to perform primary action.
+- Use up/down/left/right arrow keys to navigate between rows and actions.
 
 <Alert intent="warning" mt="16">
   Hover over the rows to perform more actions:
@@ -140,13 +152,13 @@ Columns will be virtualized when there are more than 20 columns in a table and r
 
 <PropsTable component="DataTableFooter" />
 
+### DataTableAction
+
+<PropsTable component="DataTableAction" />
+
 ### DataTableCheckbox
 
 <PropsTable component="DataTableCheckbox" />
-
-### TableAction
-
-<PropsTable component="TableAction" />
 
 ## Changelog
 

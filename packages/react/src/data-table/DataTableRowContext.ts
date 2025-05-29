@@ -1,15 +1,33 @@
 "use client";
 
 import type { CellContext, Column, Table } from "@tanstack/table-core";
+import type { RefObject } from "react";
 
 import { createContext } from "@radix-ui/react-context";
 
 export const [DataTableRowProvider, useDataTableRowContext] = createContext<{
+  actions: Array<RefObject<HTMLDivElement>>;
+  focusManaged: boolean | undefined;
+  highlightedIndex: number;
+  onActionMount:
+    | ((params: {
+        primary: boolean | undefined;
+        ref: RefObject<HTMLDivElement>;
+      }) => void)
+    | undefined;
   row: ReturnType<typeof fakeRow> | undefined;
-  setSelectionMode: ((mode: "single" | false) => void) | undefined;
+  setHighlightedIndex: ((highlightedIndex: number) => void) | undefined;
+  setSelector:
+    | ((ref: RefObject<HTMLInputElement> | undefined) => void)
+    | undefined;
 }>("@optiaxiom/react/DataTableRow", {
+  actions: [],
+  focusManaged: undefined,
+  highlightedIndex: -1,
+  onActionMount: undefined,
   row: undefined,
-  setSelectionMode: undefined,
+  setHighlightedIndex: undefined,
+  setSelector: undefined,
 });
 
 const fakeCellsFactory =
@@ -37,4 +55,5 @@ export const fakeRow = (table: Table<unknown>, rowIndex: number) => ({
   ),
   getToggleSelectedHandler: () => (_event: unknown) => {},
   id: "loading" + rowIndex,
+  toggleSelected: (_value?: boolean) => {},
 });

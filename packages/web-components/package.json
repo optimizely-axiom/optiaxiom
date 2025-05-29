@@ -34,6 +34,7 @@
     "./Cover": "./dist/components/Cover.js",
     "./DataTable": "./dist/components/DataTable.js",
     "./DataTableBody": "./dist/components/DataTableBody.js",
+    "./DataTableAction": "./dist/components/DataTableAction.js",
     "./DataTableCheckbox": "./dist/components/DataTableCheckbox.js",
     "./DataTableFooter": "./dist/components/DataTableFooter.js",
     "./DateInput": "./dist/components/DateInput.js",

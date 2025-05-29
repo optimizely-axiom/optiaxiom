@@ -1,4 +1,4 @@
-import { DataTableCheckbox } from "@optiaxiom/react";
+import { Cover, DataTableCheckbox } from "@optiaxiom/react";
 import { createColumnHelper } from "@tanstack/react-table";
 
 const columnHelper = createColumnHelper<{
@@ -10,8 +10,16 @@ const columnHelper = createColumnHelper<{
 
 export const columns = [
   columnHelper.display({
-    cell: () => <DataTableCheckbox />,
-    header: () => <DataTableCheckbox />,
+    cell: () => (
+      <Cover asChild>
+        <DataTableCheckbox />
+      </Cover>
+    ),
+    header: () => (
+      <Cover asChild>
+        <DataTableCheckbox />
+      </Cover>
+    ),
     id: "select",
     size: 48,
   }),
