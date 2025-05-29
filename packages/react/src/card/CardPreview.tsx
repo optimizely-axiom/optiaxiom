@@ -44,11 +44,39 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
 
         {(addonTopLeft || addonTopRight) && (
           <Box {...styles.overlay()}>
-            <Box alignSelf="start">{addonTopLeft}</Box>
-            <Box alignSelf="start">{addonTopRight}</Box>
+            <Box
+              alignItems="center"
+              alignSelf="start"
+              display="flex"
+              justifyContent="space-between"
+            >
+              {addonTopLeft}
+            </Box>
+            <Box
+              alignItems="center"
+              alignSelf="start"
+              display="flex"
+              justifyContent="space-between"
+            >
+              {addonTopRight}
+            </Box>
             <Box w="full" />
-            <Box alignSelf="end">{addonBottomLeft}</Box>
-            <Box alignSelf="end">{addonBottomRight}</Box>
+            <Box
+              alignItems="center"
+              alignSelf="end"
+              display="flex"
+              justifyContent="space-between"
+            >
+              {addonBottomLeft}
+            </Box>
+            <Box
+              alignItems="center"
+              alignSelf="end"
+              display="flex"
+              justifyContent="space-between"
+            >
+              {addonBottomRight}
+            </Box>
           </Box>
         )}
       </Box>
