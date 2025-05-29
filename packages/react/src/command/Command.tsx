@@ -106,9 +106,13 @@ export function Command({
     onHighlightedIndexChange({ highlightedIndex, type }) {
       setHighlightedIndex(highlightedIndex);
 
+      const item = items[highlightedIndex];
+      const hasSubOptions =
+        item &&
+        (typeof item.subOptions === "function" || !!item.subOptions?.length);
       if (
         highlightedIndex !== -1 &&
-        type === useCombobox.stateChangeTypes.ItemMouseMove
+        (!hasSubOptions || type === useCombobox.stateChangeTypes.ItemMouseMove)
       ) {
         onHover?.(items[highlightedIndex]);
       }
