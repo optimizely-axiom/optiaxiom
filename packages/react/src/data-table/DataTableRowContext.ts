@@ -9,6 +9,7 @@ export const [DataTableRowProvider, useDataTableRowContext] = createContext<{
   actions: Array<RefObject<HTMLDivElement>>;
   focusManaged: boolean | undefined;
   highlightedIndex: number;
+  labelId: string | undefined;
   onActionMount:
     | ((params: {
         primary: boolean | undefined;
@@ -24,6 +25,7 @@ export const [DataTableRowProvider, useDataTableRowContext] = createContext<{
   actions: [],
   focusManaged: undefined,
   highlightedIndex: -1,
+  labelId: undefined,
   onActionMount: undefined,
   row: undefined,
   setHighlightedIndex: undefined,

@@ -58,6 +58,7 @@ export const components = {
   DataTableBody: getProps("DataTableBody"),
   DataTableCheckbox: getProps("DataTableCheckbox"),
   DataTableFooter: getProps("DataTableFooter"),
+  DataTableLabel: getProps("DataTableLabel"),
   DateInput: getProps("DateInput"),
   DateRangePicker: getProps("DateRangePicker"),
   DateRangePickerContent: getProps("DateRangePickerContent"),

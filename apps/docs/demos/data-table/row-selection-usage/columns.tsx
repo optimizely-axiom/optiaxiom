@@ -1,11 +1,10 @@
-import { Cover, DataTableCheckbox } from "@optiaxiom/react";
+import { Cover, DataTableCheckbox, DataTableLabel } from "@optiaxiom/react";
 import { createColumnHelper } from "@tanstack/react-table";
 
 const columnHelper = createColumnHelper<{
   amount: string;
-  firstName: string;
   id: number;
-  lastName: string;
+  name: string;
 }>();
 
 export const columns = [
@@ -27,11 +26,10 @@ export const columns = [
     header: "ID",
     size: 60,
   }),
-  columnHelper.accessor("firstName", {
-    header: "First Name",
-  }),
-  columnHelper.accessor("lastName", {
-    header: "Last Name",
+  columnHelper.accessor("name", {
+    cell: ({ renderValue }) => <DataTableLabel>{renderValue()}</DataTableLabel>,
+    header: "Name",
+    size: 200,
   }),
   columnHelper.accessor("amount", {
     cell: ({ renderValue }) => `$${renderValue()}`,

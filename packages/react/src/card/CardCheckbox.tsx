@@ -33,7 +33,6 @@ export const CardCheckbox = forwardRef<HTMLInputElement, CardCheckboxProps>(
         </VisuallyHidden>
         <Checkbox
           aria-labelledby={clsx(labelPrefixId, labelId)}
-          description={false}
           onChange={(event) => {
             onChange?.(event);
             setChecked(event.target.checked);

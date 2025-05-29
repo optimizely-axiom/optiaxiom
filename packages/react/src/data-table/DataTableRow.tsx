@@ -1,4 +1,5 @@
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
+import { useId } from "@radix-ui/react-id";
 import {
   forwardRef,
   type MouseEvent,
@@ -33,7 +34,9 @@ export const DataTableRow = forwardRef<HTMLTableRowElement, DataTableRowProps>(
   ({ children, index, row, ...props }, outerRef) => {
     const { highlightedIndex, setHighlightedIndex, table } =
       useDataTableContext("@optiaxiom/react/DataTableRow");
+
     const [subHighlightedIndex, setSubHighlightedIndex] = useState(-1);
+    const labelId = useId();
 
     const innerRef = useRef<HTMLTableRowElement>(null);
     const ref = useComposedRefs(innerRef, outerRef);
@@ -77,7 +80,8 @@ export const DataTableRow = forwardRef<HTMLTableRowElement, DataTableRowProps>(
 
     return (
       <TableRow
-        data-focus-visible={focusManaged}
+        aria-labelledby={labelId}
+        data-focus-visible={focusManaged ? "" : undefined}
         data-selected={row.getIsSelected() ? "" : undefined}
         onClick={(event) => {
           if (selector && getAssociatedControl(event) !== selector.current) {
@@ -188,6 +192,7 @@ export const DataTableRow = forwardRef<HTMLTableRowElement, DataTableRowProps>(
           actions={actions.map(({ ref }) => ref)}
           focusManaged={focusManaged}
           highlightedIndex={subHighlightedIndex}
+          labelId={labelId}
           onActionMount={onActionMount}
           row={row}
           setHighlightedIndex={useEffectEvent((nextIndex: number) => {
