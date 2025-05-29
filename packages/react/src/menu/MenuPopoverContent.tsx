@@ -47,12 +47,7 @@ export const MenuPopoverContent = forwardRef<
   }, [open, props.side]);
 
   return (
-    <PopoverContent
-      minW="trigger"
-      ref={ref}
-      style={{ ...style, minHeight }}
-      {...props}
-    />
+    <PopoverContent ref={ref} style={{ ...style, minHeight }} {...props} />
   );
 });
 
