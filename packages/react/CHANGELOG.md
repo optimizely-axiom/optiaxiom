@@ -1,5 +1,14 @@
 # @optiaxiom/react
 
+## 1.5.1
+
+### Patch Changes
+
+- ee1b30f: remove minW from submenu popover
+- 0c2e4d5: remove minW=trigger from all popovers except Select
+- b14e956: freeze children when closing TransitionGroup
+- 7a6ca33: automatically restore focus back to menu from nested dialog
+
 ## 1.5.0
 
 ### Minor Changes
