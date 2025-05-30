@@ -1,5 +1,12 @@
 # @optiaxiom/web-components
 
+## 0.10.6
+
+### Patch Changes
+
+- 0c2e4d5: remove minW=trigger from all popovers except Select
+- b14e956: freeze children when closing TransitionGroup
+
 ## 0.10.5
 
 ### Patch Changes
