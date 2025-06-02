@@ -34,7 +34,9 @@ export const DataTableAction = forwardRef<HTMLDivElement, DataTableActionProps>(
 
       return onActionMount({ primary, ref: innerRef });
     }, [onActionMount, primary]);
-    const index = actions.indexOf(innerRef);
+    const index = actions.includes(innerRef)
+      ? actions.indexOf(innerRef)
+      : undefined;
     useEffect(() => {
       if (highlightedIndex === index) {
         innerRef.current?.focus();
@@ -74,7 +76,7 @@ export const DataTableAction = forwardRef<HTMLDivElement, DataTableActionProps>(
         }}
         onPointerDown={(event) => {
           onPointerDown?.(event);
-          if (event.defaultPrevented) {
+          if (event.defaultPrevented || !index) {
             return;
           }
 
