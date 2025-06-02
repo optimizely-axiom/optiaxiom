@@ -8,7 +8,7 @@ export type MenuRadioItemProps = ComponentPropsWithoutRef<typeof CommandItem> &
 
 export const MenuRadioItem = forwardRef<HTMLDivElement, MenuRadioItemProps>(
   ({ children, ...props }, ref) => {
-    const Comp = props.item.link ? "a" : "div";
+    const Comp = props.item.href ? "a" : "div";
 
     return (
       <CommandItem asChild ref={ref} {...props}>
@@ -17,7 +17,7 @@ export const MenuRadioItem = forwardRef<HTMLDivElement, MenuRadioItemProps>(
           asChild
           description={props.item.description}
         >
-          <Comp {...(props.item.link && { href: props.item.link })}>
+          <Comp {...(props.item.href && { href: props.item.href })}>
             {children}
           </Comp>
         </ListboxRadioItem>

@@ -35,6 +35,10 @@ export type CommandOption = {
   group?: CommandOptionGroup;
   hiddenInSearchContext?: boolean;
   /**
+   * Render a link with the given value as the `href` attribute.
+   */
+  href?: string;
+  /**
    * Control the appearance by selecting between the different item types.
    */
   intent?: "danger" | "neutral";
@@ -50,10 +54,6 @@ export type CommandOption = {
    * Return a string representation of item.
    */
   label: ((context: { inputValue: string | undefined }) => string) | string;
-  /**
-   * Render a link with the given value as the `href` attribute.
-   */
-  link?: string;
   /**
    * Whether item is multi-selectable.
    */

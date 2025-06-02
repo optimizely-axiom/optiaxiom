@@ -10,8 +10,8 @@ import { useMemo, useState } from "react";
 
 const users = [
   {
+    href: "https://www.imdb.com/title/tt0086856/",
     label: "Buckaroo Banzai",
-    link: "https://www.imdb.com/title/tt0086856/",
   },
   { label: "Emilio Lizardo" },
   { label: "Perfect Tommy" },

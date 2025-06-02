@@ -129,7 +129,7 @@ export const CommandItem = forwardRef<HTMLDivElement, CommandItemProps>(
         size={size}
         tabIndex={-1}
         {...itemProps}
-        {...(item.link && { href: item.link })}
+        {...(item.href && { href: item.href })}
       >
         {decorateChildren(
           { asChild, children },

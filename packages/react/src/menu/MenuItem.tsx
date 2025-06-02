@@ -8,7 +8,7 @@ export type MenuItemProps = ComponentPropsWithoutRef<typeof CommandItem> &
 
 export const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>(
   ({ children, ...props }, ref) => {
-    const Comp = props.item.link ? "a" : "div";
+    const Comp = props.item.href ? "a" : "div";
 
     return (
       <CommandItem asChild ref={ref} {...props}>
@@ -18,7 +18,7 @@ export const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>(
           description={props.item.description}
           intent={props.item.intent}
         >
-          <Comp {...(props.item.link && { href: props.item.link })}>
+          <Comp {...(props.item.href && { href: props.item.href })}>
             {children}
           </Comp>
         </ListboxItem>
