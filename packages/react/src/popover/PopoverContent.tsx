@@ -1,14 +1,13 @@
-import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import * as RadixPopover from "@radix-ui/react-popover";
-import { type ComponentPropsWithoutRef, forwardRef, useRef } from "react";
+import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import type { BoxProps } from "../box";
 
-import { ModalProvider } from "../modal";
 import { ModalListbox } from "../modal/internals";
 import { Portal } from "../portal";
 import { TransitionGroup } from "../transition";
 import { type ExcludeProps, onReactSelectInputBlur } from "../utils";
+import { PopoverContentImpl } from "./PopoverContentImpl";
 import { usePopoverContext } from "./PopoverContext";
 
 export type PopoverContentProps = ExcludeProps<
@@ -27,13 +26,10 @@ export type PopoverContentProps = ExcludeProps<
 >;
 
 export const PopoverContent = forwardRef<HTMLDivElement, PopoverContentProps>(
-  ({ align = "start", children, sideOffset = 4, ...props }, outerRef) => {
+  ({ align = "start", asChild, children, sideOffset = 4, ...props }, ref) => {
     const { open, presence, setPresence } = usePopoverContext(
       "@optiaxiom/react/PopoverContent",
     );
-
-    const innerRef = useRef<HTMLDivElement>(null);
-    const ref = useComposedRefs(innerRef, outerRef);
 
     return (
       <TransitionGroup
@@ -50,11 +46,14 @@ export const PopoverContent = forwardRef<HTMLDivElement, PopoverContentProps>(
           >
             <RadixPopover.Content
               align={align}
+              asChild
               collisionPadding={16}
               ref={ref}
               sideOffset={sideOffset}
             >
-              <ModalProvider shardRef={innerRef}>{children}</ModalProvider>
+              <PopoverContentImpl asChild={asChild}>
+                {children}
+              </PopoverContentImpl>
             </RadixPopover.Content>
           </ModalListbox>
         </Portal>
