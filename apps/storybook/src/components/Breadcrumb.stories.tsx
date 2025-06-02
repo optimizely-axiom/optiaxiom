@@ -1,94 +1,117 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import {
-  Breadcrumb,
-  BreadcrumbEllipsis,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbPage,
-  Menu,
-  MenuContent,
-  MenuTrigger,
-} from "@optiaxiom/react/unstable";
+import { Button, Flex, Separator } from "@optiaxiom/react";
+import { Breadcrumb } from "@optiaxiom/react/unstable";
+import { IconPencil } from "@tabler/icons-react";
 
 export default {
-  args: {
-    children: (
-      <>
-        <BreadcrumbItem>
-          <BreadcrumbLink href="/">Home</BreadcrumbLink>
-        </BreadcrumbItem>
-        <BreadcrumbItem>
-          <BreadcrumbLink href="/documents">Documents</BreadcrumbLink>
-        </BreadcrumbItem>
-        <BreadcrumbItem>
-          <BreadcrumbLink href="/theme">Theme</BreadcrumbLink>
-        </BreadcrumbItem>
-        <BreadcrumbItem>
-          <BreadcrumbLink href="/components">Components</BreadcrumbLink>
-        </BreadcrumbItem>
-        <BreadcrumbItem>
-          <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
-        </BreadcrumbItem>
-      </>
-    ),
-  },
   component: Breadcrumb,
 } as Meta<typeof Breadcrumb>;
 
 type Story = StoryObj<typeof Breadcrumb>;
 
-export const Basic: Story = {};
-
-export const WithEllipsis: Story = {
+export const Basic: Story = {
   args: {
-    children: (
-      <>
-        <BreadcrumbItem>
-          <BreadcrumbLink href="/">Home</BreadcrumbLink>
-        </BreadcrumbItem>
-        <BreadcrumbItem>
-          <BreadcrumbEllipsis />
-        </BreadcrumbItem>
-        <BreadcrumbItem>
-          <BreadcrumbLink href="/components">Components</BreadcrumbLink>
-        </BreadcrumbItem>
-        <BreadcrumbItem>
-          <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
-        </BreadcrumbItem>
-      </>
-    ),
+    items: [
+      {
+        href: "/",
+        label: "Home",
+      },
+      {
+        href: "/documentation",
+        label: "Documentation",
+      },
+    ],
   },
 };
 
-export const WithDropdown: Story = {
+export const WithEllipsis: Story = {
   args: {
-    children: (
-      <>
-        <BreadcrumbItem>
-          <BreadcrumbLink href="/">Home</BreadcrumbLink>
-        </BreadcrumbItem>
-        <BreadcrumbItem>
-          <Menu
-            options={[
-              { label: "Documentation", link: "/docs" },
-              { label: "Themes", link: "/themes" },
-              { label: "GitHub", link: "https://github.com/optiaxiom/ui" },
-            ]}
-          >
-            <MenuTrigger
-              appearance="subtle"
-              aria-label="Ellipsis"
-              icon={<BreadcrumbEllipsis />}
-              size="sm"
-            />
-            <MenuContent />
-          </Menu>
-        </BreadcrumbItem>
-        <BreadcrumbItem>
-          <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
-        </BreadcrumbItem>
-      </>
-    ),
+    items: [
+      {
+        href: "/",
+        label: "Home",
+      },
+      {
+        href: "/documentation",
+        label: "Documentation",
+      },
+      {
+        href: "/themes",
+        label: "Themes",
+      },
+      {
+        href: "https://github.com/optimizely-axiom/optiaxiom",
+        label: "GitHub",
+      },
+      {
+        href: "/components",
+        label: "Components",
+      },
+      {
+        href: "/breadcrumb",
+        label: "Breadcrumb",
+      },
+    ],
+  },
+};
+
+export const Addons: Story = {
+  args: {
+    items: [
+      {
+        href: "/",
+        label: "Home",
+      },
+      {
+        addonAfter: (
+          <Button
+            appearance="subtle"
+            aria-label="Edit"
+            icon={<IconPencil />}
+            size="sm"
+          />
+        ),
+        href: "/documentation",
+        label: "Documentation",
+      },
+      {
+        addonAfter: (
+          <Flex flexDirection="row" gap="8" ml="4">
+            <Separator orientation="vertical" />
+            CPN-3461
+          </Flex>
+        ),
+        href: "/components",
+        label: "Campaign",
+      },
+    ],
+  },
+};
+
+export const Truncated: Story = {
+  args: {
+    items: [
+      {
+        href: "/",
+        label: "This is a home page breadcrumb",
+      },
+      {
+        addonAfter: (
+          <Button
+            appearance="subtle"
+            aria-label="Edit"
+            icon={<IconPencil />}
+            size="sm"
+          />
+        ),
+        href: "/components",
+        label: "This is a component page breadcrumb",
+      },
+      {
+        href: "/page",
+        label: "This is a page of breadcrumb",
+      },
+    ],
   },
 };

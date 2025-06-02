@@ -39,6 +39,7 @@ export const components = {
   Badge: getProps("Badge"),
   Banner: getProps("Banner"),
   Box: getProps("Box"),
+  Breadcrumb: getProps("Breadcrumb"),
   Button: getProps("Button"),
   ButtonGroup: getProps("ButtonGroup"),
   Calendar: getProps("Calendar"),

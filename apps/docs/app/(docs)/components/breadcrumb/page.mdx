@@ -1,10 +1,70 @@
-import { Links } from "@/components/links";
+import { Demo, Links, PropsTable } from "@/components";
 import { Callout } from "nextra/components";
 
 # Breadcrumb
 
-<Callout emoji="🚨">
-  This page is a stub. Help us expand it by contributing!
-</Callout>
+Display a list of links showing the location of the current page in the navigational hierarchy.
 
 <Links component="breadcrumb" />
+
+## Documentation
+
+### Usage
+
+<Demo component="breadcrumb/usage" />
+
+### Structure
+
+Breadcrumb works with lists of items provided via the `items` prop. Items must be an array of objects of `BreadcrumbLink` type and at minimum must contain the `label` property.
+
+<Demo component="breadcrumb/link-usage" />
+
+### Addons
+
+We can use the `addonAfter` property to show additional content inside the items.
+
+<Demo component="breadcrumb/addon-usage" />
+
+### Truncate
+
+`Breadcrumb` will by default only show 3 items and collapse the rest into a dropdown menu.
+
+This can be configured using the `maxItems` prop.
+
+<Demo component="breadcrumb/truncate-usage" />
+
+## Props
+
+### Breadcrumb
+
+<PropsTable component="Breadcrumb" />
+
+## Changelog
+
+### 1.5.2
+
+- Simplified `Breadcrumb` API:
+
+  ```jsx
+  // Before
+  <Breadcrumb>
+    <BreadcrumbItem>
+      <BreadcrumbLink href="/components">Components</BreadcrumbLink>
+    </BreadcrumbItem>
+    <BreadcrumbItem>
+      <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
+    </BreadcrumbItem>
+  </Breadcrumb>
+
+  // After
+  <Breadcrumb
+    items={[
+      { href: "/components", label: "Components" },
+      { href: "/components/breadcrumb", label: "Breadcrumb" },
+    ]}
+  />
+  ```
+
+### 0.1.0
+
+- Added component
