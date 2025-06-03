@@ -1,5 +1,13 @@
 # @optiaxiom/web-components
 
+## 0.10.7
+
+### Patch Changes
+
+- ddd25e3: restrict min-height of calendar when inside popover placed on top
+- d0004a1: use onPointerMove to disable tooltip trigger
+- bfd8dca: fix table action focus on initial render
+
 ## 0.10.6
 
 ### Patch Changes
