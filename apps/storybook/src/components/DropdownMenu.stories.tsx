@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import {
   Avatar,
@@ -15,8 +15,6 @@ import {
   DropdownMenuTrigger,
   Flex,
 } from "@optiaxiom/react";
-import { action } from "@storybook/addon-actions";
-import { expect, screen, userEvent, waitFor } from "@storybook/test";
 import {
   IconBell,
   IconBook,
@@ -32,6 +30,8 @@ import {
   IconVideo,
 } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
+import { action } from "storybook/actions";
+import { expect, screen, userEvent, waitFor } from "storybook/test";
 
 export default {
   args: {

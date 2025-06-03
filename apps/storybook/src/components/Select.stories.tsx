@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import {
   Box,
@@ -11,8 +11,8 @@ import {
   SelectTrigger,
   Text,
 } from "@optiaxiom/react";
-import { expect, screen, userEvent } from "@storybook/test";
 import { useEffect, useMemo, useState } from "react";
+import { expect, screen, userEvent } from "storybook/test";
 
 type Story = StoryObj<typeof Select>;
 

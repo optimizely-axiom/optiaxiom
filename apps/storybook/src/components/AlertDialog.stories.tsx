@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import {
   AlertDialog,
@@ -10,8 +10,8 @@ import {
   AlertDialogHeader,
   AlertDialogTrigger,
 } from "@optiaxiom/react";
-import { expect, screen, userEvent, waitFor } from "@storybook/test";
 import { type ComponentPropsWithoutRef } from "react";
+import { expect, screen, userEvent, waitFor } from "storybook/test";
 
 type AlertDialogStoryProps = ComponentPropsWithoutRef<typeof AlertDialog> &
   Pick<ComponentPropsWithoutRef<typeof AlertDialogContent>, "size"> & {

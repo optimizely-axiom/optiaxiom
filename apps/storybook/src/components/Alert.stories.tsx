@@ -1,7 +1,7 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Alert, Flex, Link, Text } from "@optiaxiom/react";
-import { action } from "@storybook/addon-actions";
+import { action } from "storybook/actions";
 
 export default {
   component: Alert,

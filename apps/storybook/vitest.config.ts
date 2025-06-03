@@ -1,4 +1,4 @@
-import { storybookTest } from "@storybook/experimental-addon-test/vitest-plugin";
+import { storybookTest } from "@storybook/addon-vitest/vitest-plugin";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { defineConfig } from "vitest/config";
@@ -10,7 +10,7 @@ export default defineConfig({
     include: [
       "@optiaxiom/*",
       "@radix-ui/*",
-      "@storybook/experimental-addon-test/internal/test-utils",
+      "@storybook/addon-vitest/internal/test-utils",
       "react/jsx-dev-runtime",
     ],
   },

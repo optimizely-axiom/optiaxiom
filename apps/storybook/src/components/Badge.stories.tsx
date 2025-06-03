@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Badge, Button, Flex, Heading, Text } from "@optiaxiom/react";
 

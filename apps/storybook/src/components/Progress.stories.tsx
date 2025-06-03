@@ -1,8 +1,8 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Button, Flex, Progress } from "@optiaxiom/react";
-import { userEvent } from "@storybook/test";
 import { useState } from "react";
+import { userEvent } from "storybook/test";
 
 export default {
   component: Progress,
