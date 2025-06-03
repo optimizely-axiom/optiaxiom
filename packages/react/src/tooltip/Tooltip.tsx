@@ -61,7 +61,21 @@ export function Tooltip({
       onOpenChange={onOpenChange}
       open={open}
     >
-      <TooltipTrigger asChild>{children}</TooltipTrigger>
+      <TooltipTrigger
+        asChild
+        onFocus={(event) => {
+          if (disabled || empty) {
+            event.preventDefault();
+          }
+        }}
+        onPointerMove={(event) => {
+          if (disabled || empty) {
+            event.preventDefault();
+          }
+        }}
+      >
+        {children}
+      </TooltipTrigger>
 
       {!disabled && !empty && (
         <TooltipContent maxW="xs" {...props}>
