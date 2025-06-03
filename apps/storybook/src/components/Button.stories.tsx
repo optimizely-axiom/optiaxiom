@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Button, Flex } from "@optiaxiom/react";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";

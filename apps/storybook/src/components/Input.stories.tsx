@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Flex, Input } from "@optiaxiom/react";
 import { IconCalendar } from "@tabler/icons-react";

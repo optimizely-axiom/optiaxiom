@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Box, Flex, Heading, Text } from "@optiaxiom/react";
 import { InlineInput } from "@optiaxiom/react/unstable";

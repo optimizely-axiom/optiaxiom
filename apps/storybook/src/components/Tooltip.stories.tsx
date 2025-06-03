@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import {
   Box,
@@ -9,8 +9,8 @@ import {
   Text,
   Tooltip,
 } from "@optiaxiom/react";
-import { expect, screen, userEvent, waitFor } from "@storybook/test";
 import { useState } from "react";
+import { expect, screen, userEvent, waitFor } from "storybook/test";
 
 export default {
   component: Tooltip,

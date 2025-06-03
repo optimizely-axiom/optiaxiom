@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Avatar, Box, Button, Flex, Indicator } from "@optiaxiom/react";
 import { IconBell, IconClockFilled } from "@tabler/icons-react";

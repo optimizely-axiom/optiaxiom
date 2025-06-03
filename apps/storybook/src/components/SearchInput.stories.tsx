@@ -1,8 +1,8 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Button, Flex, SearchInput, Text } from "@optiaxiom/react";
-import { expect, userEvent, waitFor } from "@storybook/test";
 import { type ChangeEvent, useState } from "react";
+import { expect, userEvent, waitFor } from "storybook/test";
 
 export default {
   args: {

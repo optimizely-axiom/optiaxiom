@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Avatar, AvatarGroup, Box, Field } from "@optiaxiom/react";
 import {
@@ -7,9 +7,9 @@ import {
   type MenuOption,
   MenuTrigger,
 } from "@optiaxiom/react/unstable";
-import { expect, screen, userEvent, waitFor } from "@storybook/test";
 import { IconSend, IconUserCircle } from "@tabler/icons-react";
 import { useMemo, useRef, useState } from "react";
+import { expect, screen, userEvent, waitFor } from "storybook/test";
 
 type Story = StoryObj<typeof Menu>;
 

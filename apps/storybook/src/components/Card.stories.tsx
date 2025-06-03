@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import {
   Badge,
@@ -25,9 +25,9 @@ import {
   SortableHandle,
   SortableItem,
 } from "@optiaxiom/react/unstable";
-import { expect, screen, userEvent } from "@storybook/test";
 import { IconGripVertical } from "@tabler/icons-react";
 import { useState } from "react";
+import { expect, screen, userEvent } from "storybook/test";
 
 export default {
   args: {

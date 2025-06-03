@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import {
   Button,
@@ -21,7 +21,6 @@ import {
   type MenuOption,
   MenuTrigger,
 } from "@optiaxiom/react/unstable";
-import { expect, screen, userEvent, waitFor } from "@storybook/test";
 import { IconArrowsDiagonal } from "@tabler/icons-react";
 import {
   type ComponentPropsWithoutRef,
@@ -29,6 +28,7 @@ import {
   useMemo,
   useState,
 } from "react";
+import { expect, screen, userEvent, waitFor } from "storybook/test";
 
 type DialogStoryProps = ComponentPropsWithoutRef<typeof Dialog> &
   Pick<ComponentPropsWithoutRef<typeof DialogContent>, "size"> & {

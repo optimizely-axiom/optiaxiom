@@ -1,7 +1,7 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Popover, PopoverContent, PopoverTrigger } from "@optiaxiom/react";
-import { expect, screen, userEvent } from "@storybook/test";
+import { expect, screen, userEvent } from "storybook/test";
 
 type Story = StoryObj<typeof Popover>;
 
