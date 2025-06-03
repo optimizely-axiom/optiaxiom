@@ -1,5 +1,15 @@
 # @optiaxiom/react
 
+## 1.5.2
+
+### Patch Changes
+
+- bf7deca: revert breadcrumb to more structured/configurable API
+- ddd25e3: restrict min-height of calendar when inside popover placed on top
+- 55fe331: rename menu link prop to href
+- d0004a1: use onPointerMove to disable tooltip trigger
+- bfd8dca: fix table action focus on initial render
+
 ## 1.5.1
 
 ### Patch Changes
