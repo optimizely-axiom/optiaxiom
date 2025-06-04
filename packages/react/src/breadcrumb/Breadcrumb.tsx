@@ -2,7 +2,10 @@ import { forwardRef, Fragment, type ReactNode } from "react";
 
 import { Box, type BoxProps, extractBoxProps } from "../box";
 import { IconEllipsisSolid } from "../icons/IconEllipsisSolid";
+import { Link } from "../link";
 import { Menu, MenuContent, MenuTrigger } from "../menu";
+import { Text } from "../text";
+import { Tooltip } from "../tooltip";
 import * as styles from "./Breadcrumb.css";
 import { BreadcrumbItem } from "./BreadcrumbItem";
 
@@ -43,12 +46,28 @@ export const Breadcrumb = forwardRef<HTMLElement, BreadcrumbProps>(
           <Box asChild {...styles.list()}>
             <ol>
               {renderItems(items, maxItems, (item, index) => (
-                <BreadcrumbItem
-                  addonAfter={item.addonAfter}
-                  current={index === items.length - 1}
-                  href={item.href}
-                >
-                  {item.label}
+                <BreadcrumbItem addonAfter={item.addonAfter}>
+                  <Tooltip auto content={item.label}>
+                    <Text asChild truncate>
+                      {index === items.length - 1 || !item.href ? (
+                        <Box
+                          aria-current={
+                            index === items.length - 1 ? "page" : undefined
+                          }
+                        >
+                          {item.label}
+                        </Box>
+                      ) : (
+                        <Link
+                          appearance="subtle"
+                          href={item.href}
+                          {...styles.link()}
+                        >
+                          {item.label}
+                        </Link>
+                      )}
+                    </Text>
+                  </Tooltip>
                 </BreadcrumbItem>
               ))}
             </ol>

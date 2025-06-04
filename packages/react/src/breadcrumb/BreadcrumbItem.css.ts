@@ -23,25 +23,3 @@ export const item = recipe({
     }),
   ],
 });
-
-export const link = recipe({
-  base: style({
-    color: theme.colors["fg.tertiary"],
-
-    "@media": {
-      "(hover: hover)": {
-        selectors: {
-          "&:hover:not([data-disabled])": {
-            color: theme.colors["fg.secondary"],
-          },
-        },
-      },
-    },
-
-    selectors: {
-      "&:visited": {
-        color: theme.colors["fg.tertiary"],
-      },
-    },
-  }),
-});
