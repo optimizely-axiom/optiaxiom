@@ -5,50 +5,58 @@ import * as styles from "./Kbd.css";
 
 export type KbdProps = BoxProps<
   "kbd",
-  styles.KdbVariants & {
+  styles.KeyVariants & {
     /**
      * Keyboard symbols/shortcuts to include.
      */
-    keys?: Array<keyof typeof mapKeyToCode> | keyof typeof mapKeyToCode;
+    modifiers?:
+      | Array<keyof (typeof mapModifierToCode)["mac"]>
+      | keyof (typeof mapModifierToCode)["mac"];
   }
 >;
-
-const mapKeyToCode = {
-  command: "⌘",
-  ctrl: "⌃",
-  down: "↓",
-  enter: "↵",
-  escape: "⎋",
-  help: "?",
-  left: "←",
-  option: "⌥",
-  right: "→",
-  shift: "⇧",
-  space: "␣",
-  tab: "⇥",
-  up: "↑",
+const platform =
+  typeof navigator !== "undefined" &&
+  (navigator.platform.startsWith("Mac") || navigator.platform === "iPhone")
+    ? "mac"
+    : "win";
+const mapModifierToCode = {
+  mac: {
+    alt: "⌥",
+    ctrl: "⌃",
+    meta: "⌘",
+    shift: "⇧",
+  },
+  win: {
+    alt: "Alt",
+    ctrl: "Ctrl",
+    meta: "Win",
+    shift: "Shift",
+  },
 };
 
 export const Kbd = forwardRef<HTMLElement, KbdProps>(
-  ({ children, className, keys, variant = "outline", ...props }, ref) => {
+  ({ children, className, modifiers, variant = "outline", ...props }, ref) => {
     return (
-      <Box asChild {...styles.kbd({ variant }, className)} {...props}>
+      <Box asChild {...styles.kbd({}, className)} {...props}>
         <kbd ref={ref}>
-          {keys &&
-            (Array.isArray(keys) ? keys : [keys]).map(
+          {modifiers &&
+            (Array.isArray(modifiers) ? modifiers : [modifiers]).map(
               (key) =>
-                key in mapKeyToCode && (
-                  <abbr
+                key in mapModifierToCode[platform] && (
+                  <Box
                     aria-label={key}
+                    asChild
                     key={key}
                     title={key}
-                    {...styles.keys()}
+                    {...styles.key({ variant })}
                   >
-                    {mapKeyToCode[key]}
-                  </abbr>
+                    <kbd>{mapModifierToCode[platform][key]}</kbd>
+                  </Box>
                 ),
             )}
-          {children}
+          <Box asChild {...styles.key({ variant })}>
+            <kbd>{children}</kbd>
+          </Box>
         </kbd>
       </Box>
     );

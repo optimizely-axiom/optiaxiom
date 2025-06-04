@@ -5,11 +5,11 @@ import type { ComponentPropsWithoutRef } from "react";
 import { Kbd, Text } from "@optiaxiom/react";
 
 export function App({
-  keys = "command",
-}: Pick<ComponentPropsWithoutRef<typeof Kbd>, "keys">) {
+  modifiers = "meta",
+}: Pick<ComponentPropsWithoutRef<typeof Kbd>, "modifiers">) {
   return (
     <Text>
-      <Kbd keys={keys}>K</Kbd>
+      <Kbd modifiers={modifiers}>K</Kbd>
     </Text>
   );
 }

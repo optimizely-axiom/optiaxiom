@@ -5,7 +5,7 @@ export function App() {
     <Text fontSize="lg">
       This is a paragraph showcasing <strong>bold text</strong>,{" "}
       <em>italic emphasis</em>, computer <Code>code</Code>, and even hotkey
-      combination <Kbd keys="command">K</Kbd> within text.
+      combination <Kbd modifiers="meta">K</Kbd> within text.
     </Text>
   );
 }
