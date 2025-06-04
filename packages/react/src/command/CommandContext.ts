@@ -1,7 +1,7 @@
 "use client";
 
 import type { UseComboboxReturnValue } from "downshift";
-import type { MutableRefObject, ReactNode } from "react";
+import type { MutableRefObject, ReactNode, RefObject } from "react";
 
 import { createContext } from "@radix-ui/react-context";
 
@@ -120,6 +120,7 @@ export const [CommandProvider, useCommandContext] = createContext<{
   downshift: UseComboboxReturnValue<CommandOption>;
   empty: ReactNode;
   highlightedItem: CommandOption | undefined;
+  highlightedItemRef: RefObject<HTMLElement>;
   inputValue: string | undefined;
   items: CommandOption[] | readonly CommandOption[];
   loading: boolean | undefined;

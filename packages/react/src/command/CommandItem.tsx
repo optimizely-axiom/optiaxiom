@@ -1,3 +1,4 @@
+import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import { forwardRef, type MouseEvent } from "react";
 
 import { Box, type BoxProps } from "../box";
@@ -42,15 +43,20 @@ export const CommandItem = forwardRef<HTMLDivElement, CommandItemProps>(
       size,
       ...props
     },
-    ref,
+    outerRef,
   ) => {
     const {
       downshift,
       highlightedItem,
+      highlightedItemRef,
       inputValue,
       items,
       pauseInteractionRef,
     } = useCommandContext("@optiaxiom/react/CommandItem");
+    const ref = useComposedRefs(
+      highlightedItem === item ? highlightedItemRef : undefined,
+      outerRef,
+    );
 
     const itemProps = downshift.getItemProps({
       "aria-posinset": index + 1,
@@ -60,7 +66,18 @@ export const CommandItem = forwardRef<HTMLDivElement, CommandItemProps>(
       onClick: (event: MouseEvent<HTMLDivElement>) => {
         onClick?.(event);
         if (event.currentTarget instanceof HTMLAnchorElement) {
-          event.preventDefault();
+          if (event.altKey || event.metaKey || event.shiftKey) {
+            Object.assign(event, {
+              preventDownshiftDefault: true,
+            });
+          } else {
+            /**
+             * Skip following the link if a custom execute handler is attached
+             */
+            if (item.execute) {
+              event.preventDefault();
+            }
+          }
         }
       },
       onMouseLeave: (event: MouseEvent<HTMLDivElement>) => {

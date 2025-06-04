@@ -1,38 +1,20 @@
-"use client";
-
-import {
-  Menu,
-  MenuContent,
-  type MenuOption,
-  MenuTrigger,
-} from "@optiaxiom/react/unstable";
-import { useMemo, useState } from "react";
-
-const users = [
-  {
-    href: "https://www.imdb.com/title/tt0086856/",
-    label: "Buckaroo Banzai",
-  },
-  { label: "Emilio Lizardo" },
-  { label: "Perfect Tommy" },
-] satisfies MenuOption[];
+import { Menu, MenuContent, MenuTrigger } from "@optiaxiom/react/unstable";
 
 export function App() {
-  const [value, setValue] = useState<(typeof users)[number]>();
-
   return (
     <Menu
-      options={useMemo(
-        () =>
-          users.map<MenuOption>((user) => ({
-            execute: () => setValue(user),
-            selected: value === user,
-            ...user,
-          })),
-        [value],
-      )}
+      options={[
+        {
+          href: "../../",
+          label: "Home",
+        },
+        {
+          href: "../",
+          label: "Components",
+        },
+      ]}
     >
-      <MenuTrigger>Select assignee</MenuTrigger>
+      <MenuTrigger>Navigate to section</MenuTrigger>
       <MenuContent />
     </Menu>
   );
