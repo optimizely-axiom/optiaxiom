@@ -119,6 +119,7 @@ export const resolveItemProperty = <Value>(
 export const [CommandProvider, useCommandContext] = createContext<{
   downshift: UseComboboxReturnValue<CommandOption>;
   empty: ReactNode;
+  enabled: boolean;
   highlightedItem: CommandOption | undefined;
   highlightedItemRef: RefObject<HTMLElement>;
   inputValue: string | undefined;

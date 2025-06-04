@@ -164,6 +164,7 @@ export function Command({
     <CommandProvider
       downshift={downshift}
       empty={empty}
+      enabled={Boolean(enabled)}
       highlightedItem={items[downshift.highlightedIndex]}
       highlightedItemRef={highlightedItemRef}
       inputValue={inputValue}

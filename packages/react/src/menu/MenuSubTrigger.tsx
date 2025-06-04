@@ -23,7 +23,7 @@ export const MenuSubTrigger = forwardRef<HTMLDivElement, MenuSubTriggerProps>(
     },
     outerRef,
   ) => {
-    const { downshift, highlightedItem, pauseInteractionRef } =
+    const { downshift, enabled, highlightedItem, pauseInteractionRef } =
       useCommandContext("@optiaxiom/react/MenuSubTrigger");
     const { open } = usePopoverContext("@optiaxiom/react/MenuSubTrigger");
     const { contentRef, triggerRef } = useMenuSubContext(
@@ -120,7 +120,7 @@ export const MenuSubTrigger = forwardRef<HTMLDivElement, MenuSubTriggerProps>(
             return;
           }
 
-          if (pointerEnterRef.current && downshift.isOpen) {
+          if (pointerEnterRef.current && enabled) {
             downshift.selectItem(item);
           }
           pointerEnterRef.current = false;
