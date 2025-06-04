@@ -35,11 +35,19 @@ export const Kbd = forwardRef<HTMLElement, KbdProps>(
       <Box asChild {...styles.kbd({ variant }, className)} {...props}>
         <kbd ref={ref}>
           {keys &&
-            (Array.isArray(keys) ? keys : [keys]).map((key) => (
-              <abbr aria-label={key} key={key} title={key} {...styles.keys()}>
-                {mapKeyToCode[key]}
-              </abbr>
-            ))}
+            (Array.isArray(keys) ? keys : [keys]).map(
+              (key) =>
+                key in mapKeyToCode && (
+                  <abbr
+                    aria-label={key}
+                    key={key}
+                    title={key}
+                    {...styles.keys()}
+                  >
+                    {mapKeyToCode[key]}
+                  </abbr>
+                ),
+            )}
           {children}
         </kbd>
       </Box>
