@@ -9,7 +9,7 @@ export function App({
 }: Pick<ComponentPropsWithoutRef<typeof Kbd>, "variant">) {
   return (
     <Text>
-      <Kbd keys="command" variant={variant}>
+      <Kbd modifiers="meta" variant={variant}>
         K
       </Kbd>
     </Text>

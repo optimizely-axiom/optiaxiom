@@ -18,7 +18,7 @@ export function App() {
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuItem
           addonAfter={
-            <Kbd keys={["option", "shift"]} variant="subtle">
+            <Kbd modifiers={["alt", "shift"]} variant="subtle">
               P
             </Kbd>
           }
@@ -30,7 +30,7 @@ export function App() {
         <DropdownMenuSeparator />
         <DropdownMenuItem
           addonAfter={
-            <Kbd keys={["option", "shift"]} variant="subtle">
+            <Kbd modifiers={["alt", "shift"]} variant="subtle">
               Q
             </Kbd>
           }

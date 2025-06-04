@@ -2,13 +2,20 @@ import { recipe, type RecipeVariants, style } from "../vanilla-extract";
 
 export const kbd = recipe({
   base: {
+    display: "inline-flex",
+    gap: "2",
+    whiteSpace: "nowrap",
+  },
+});
+
+export const key = recipe({
+  base: {
     alignItems: "center",
     color: "fg.secondary",
     display: "inline-flex",
-    flexDirection: "row",
     fontFamily: "sans",
     gap: "2",
-    whiteSpace: "nowrap",
+    justifyContent: "center",
   },
 
   variants: {
@@ -22,11 +29,12 @@ export const kbd = recipe({
           border: "1",
           borderB: "2",
           borderColor: "border.secondary",
-          px: "6",
           rounded: "sm",
         },
         style({
           fontSize: "0.8em",
+          minWidth: "calc(1lh + 5px)", // line-height + border + padding
+          padding: "1px 5px",
         }),
       ],
       subtle: {},
@@ -34,10 +42,4 @@ export const kbd = recipe({
   },
 });
 
-export const keys = recipe({
-  base: style({
-    textDecoration: "none",
-  }),
-});
-
-export type KdbVariants = RecipeVariants<typeof kbd>;
+export type KeyVariants = RecipeVariants<typeof key>;
