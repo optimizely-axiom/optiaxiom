@@ -1,5 +1,12 @@
 # @optiaxiom/react
 
+## 1.5.3
+
+### Patch Changes
+
+- d227776: improve link handling in menu
+- a69ba32: fix breadcrumb item rendering
+
 ## 1.5.2
 
 ### Patch Changes
