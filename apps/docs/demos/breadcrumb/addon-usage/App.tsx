@@ -9,7 +9,7 @@ export function App() {
     <Breadcrumb
       items={[
         {
-          href: "/",
+          href: "/optiaxiom",
           label: "Home",
         },
         {
@@ -21,11 +21,11 @@ export function App() {
               size="sm"
             />
           ),
-          href: "/components",
+          href: "/optiaxiom/components",
           label: "Components",
         },
         {
-          href: "/components/breadcrumb",
+          href: "/optiaxiom/components/breadcrumb",
           label: "Breadcrumb",
         },
       ]}
