@@ -305,6 +305,7 @@ export const demos = {
     "@/demos/menu/input-controlled-usage/App"
   ),
   "menu/input-usage": import("@/demos/menu/input-usage/App"),
+  "menu/link-execute-usage": import("@/demos/menu/link-execute-usage/App"),
   "menu/link-usage": import("@/demos/menu/link-usage/App"),
   "menu/nested-usage": import("@/demos/menu/nested-usage/App"),
   "menu/usage": import("@/demos/menu/usage/App"),

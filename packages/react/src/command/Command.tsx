@@ -91,6 +91,7 @@ export function Command({
     timer: undefined,
   });
 
+  const highlightedItemRef = useRef<HTMLElement>(null);
   const downshift = useCombobox({
     highlightedIndex:
       highlightedIndex === -1
@@ -164,6 +165,7 @@ export function Command({
       downshift={downshift}
       empty={empty}
       highlightedItem={items[downshift.highlightedIndex]}
+      highlightedItemRef={highlightedItemRef}
       inputValue={inputValue}
       items={items}
       loading={loading}

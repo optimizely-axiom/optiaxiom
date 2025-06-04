@@ -106,7 +106,13 @@ Use the `intent` prop to control the appearance of items.
 
 Add the `href` property to options to render them as links.
 
-<Demo component="menu/link-usage" meta="{14}" />
+If the `execute` property is also present then the default link clicking behavior will be prevented (unless users use a modifier like <Kbd keys="command">Enter</Kbd> to open in a new tab).
+
+<Demo component="menu/link-execute-usage" meta="{13,28}" />
+
+If the `execute` property is omitted then clicking an item will simply follow the link and close the menu.
+
+<Demo component="menu/link-usage" meta="{8,12}" />
 
 ### Groups
 
