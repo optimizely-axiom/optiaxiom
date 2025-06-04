@@ -47,6 +47,7 @@ export const CommandItem = forwardRef<HTMLDivElement, CommandItemProps>(
   ) => {
     const {
       downshift,
+      enabled,
       highlightedItem,
       highlightedItemRef,
       inputValue,
@@ -101,7 +102,7 @@ export const CommandItem = forwardRef<HTMLDivElement, CommandItemProps>(
          * DOM while closing - and we need to prevent triggering mousemove
          * during that time.
          */
-        if (!downshift.isOpen || resolveItemProperty(item.disabledReason)) {
+        if (!enabled || resolveItemProperty(item.disabledReason)) {
           event.preventDefault();
           Object.assign(event.nativeEvent, {
             preventDownshiftDefault: true,
