@@ -18,22 +18,22 @@
     "gzip-size": "^7.0.0",
     "monosize": "^0.6.3",
     "pretty-bytes": "^7.0.0",
-    "yargs": "^17.7.2"
+    "yargs": "^18.0.0"
   },
   "devDependencies": {
-    "@types/node": "^22.15.21",
+    "@types/node": "^22.15.29",
     "@types/yargs": "^17.0.33",
-    "@typescript-eslint/eslint-plugin": "^8.32.1",
-    "@typescript-eslint/parser": "^8.32.1",
-    "eslint": "^9.27.0",
+    "@typescript-eslint/eslint-plugin": "^8.33.1",
+    "@typescript-eslint/parser": "^8.33.1",
+    "eslint": "^9.28.0",
     "eslint-plugin-jsx-a11y": "^6.10.2",
-    "eslint-plugin-perfectionist": "^4.13.0",
+    "eslint-plugin-perfectionist": "^4.14.0",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^5.2.0",
-    "eslint-plugin-testing-library": "^7.2.1",
+    "eslint-plugin-testing-library": "^7.3.0",
     "fast-glob": "^3.3.3",
-    "globals": "^16.1.0",
+    "globals": "^16.2.0",
     "react-docgen-typescript": "^2.2.2",
-    "typescript-eslint": "^8.32.1"
+    "typescript-eslint": "^8.33.1"
   }
 }
