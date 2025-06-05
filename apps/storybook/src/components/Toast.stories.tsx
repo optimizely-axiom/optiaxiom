@@ -7,9 +7,7 @@ import {
   createToaster,
   Flex,
   Toast,
-  ToastAction,
   ToastProvider,
-  ToastTitle,
 } from "@optiaxiom/react";
 import { action } from "storybook/actions";
 import { expect, screen, userEvent, waitFor, within } from "storybook/test";
@@ -20,7 +18,7 @@ type Story = StoryObj<StoryProps>;
 
 export default {
   args: {
-    children: <ToastTitle>This is an example toast message.</ToastTitle>,
+    message: "This is an example toast message.",
   },
   argTypes: {
     position: {
@@ -59,15 +57,15 @@ export default {
   parameters: {
     useAxiomProvider: false,
   },
-  render: (args) => (
-    <Button onClick={() => toaster.create(<Toast {...args} />)}>
-      Show Toast
-    </Button>
+  render: ({ message, ...args }) => (
+    <Button onClick={() => toaster.create(message, args)}>Show Toast</Button>
   ),
 } as Meta<StoryProps>;
 
-type StoryProps = ComponentPropsWithoutRef<typeof Toast> &
-  Pick<ComponentPropsWithoutRef<typeof ToastProvider>, "position">;
+type StoryProps = Parameters<typeof toaster.create>[1] &
+  Pick<ComponentPropsWithoutRef<typeof ToastProvider>, "position"> & {
+    message: string;
+  };
 
 export const Basic: Story = {
   play: async ({ canvas }) => {
@@ -106,33 +104,33 @@ export const Appearance: Story = {
       ).toHaveLength(5),
     );
   },
-  render: (args) => {
+  render: ({ message, ...args }) => {
     return (
       <Flex flexDirection="row">
         <Button
-          onClick={() => toaster.create(<Toast {...args} intent="neutral" />)}
+          onClick={() => toaster.create(message, { ...args, type: "neutral" })}
         >
           Neutral
         </Button>
         <Button
           onClick={() =>
-            toaster.create(<Toast {...args} intent="information" />)
+            toaster.create(message, { ...args, type: "information" })
           }
         >
           Information
         </Button>
         <Button
-          onClick={() => toaster.create(<Toast {...args} intent="warning" />)}
+          onClick={() => toaster.create(message, { ...args, type: "warning" })}
         >
           Warning
         </Button>
         <Button
-          onClick={() => toaster.create(<Toast {...args} intent="danger" />)}
+          onClick={() => toaster.create(message, { ...args, type: "danger" })}
         >
           Danger
         </Button>
         <Button
-          onClick={() => toaster.create(<Toast {...args} intent="success" />)}
+          onClick={() => toaster.create(message, { ...args, type: "success" })}
         >
           Success
         </Button>
@@ -156,14 +154,8 @@ export const Position: Story = {
 
 export const Action: Story = {
   args: {
-    children: (
-      <>
-        <ToastTitle>This is an example toast message.</ToastTitle>
-        <ToastAction altText="Undo" onClick={action("undo")}>
-          Undo
-        </ToastAction>
-      </>
-    ),
+    action: "Undo",
+    onAction: action("undo"),
   },
   play: async ({ canvas }) => {
     await userEvent.click(canvas.getByText("Show Toast"));
@@ -177,33 +169,9 @@ export const Action: Story = {
   },
 };
 
-export const Link: Story = {
-  args: {
-    children: (
-      <>
-        <ToastTitle>
-          This is an <a href="data:,">example toast</a> message.
-        </ToastTitle>
-      </>
-    ),
-  },
-  play: async ({ canvas }) => {
-    await userEvent.click(canvas.getByText("Show Toast"));
-
-    const toast = await within(await screen.findByRole("list")).findByRole(
-      "status",
-    );
-    await expect(toast).toHaveTextContent("This is an example toast message.");
-  },
-};
-
 export const LongContent: Story = {
   args: {
-    children: (
-      <ToastTitle>
-        This is an example toast message that should span two lines.
-      </ToastTitle>
-    ),
+    message: "This is an example toast message that should span two lines.",
   },
   play: async ({ canvas }) => {
     await userEvent.click(canvas.getByText("Show Toast"));

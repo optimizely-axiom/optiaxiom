@@ -40,19 +40,19 @@ export function AxiomProvider({
   tooltip,
 }: AxiomProviderProps) {
   const axiom = useContext(AxiomVersionContext);
-  if (axiom) {
-    return <>{children}</>;
+  if (!axiom) {
+    children = (
+      <ThemeProvider>
+        {children}
+
+        <ToastProvider {...toast} />
+      </ThemeProvider>
+    );
   }
 
   return (
     <AxiomVersionContext.Provider value={version}>
-      <TooltipProvider {...tooltip}>
-        <ThemeProvider>
-          {children}
-
-          <ToastProvider {...toast} />
-        </ThemeProvider>
-      </TooltipProvider>
+      <TooltipProvider {...tooltip}>{children}</TooltipProvider>
     </AxiomVersionContext.Provider>
   );
 }

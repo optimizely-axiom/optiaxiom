@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Kbd, Toast, toaster, ToastTitle } from "@optiaxiom/react";
+import { Kbd, toaster } from "@optiaxiom/react";
 import {
   type MenuOption,
   Spotlight,
@@ -104,13 +104,7 @@ export const Basic: Story = {
           ...items.map<MenuOption>((item) => ({
             description: item.description,
             execute: () => {
-              toaster.create(
-                <Toast intent="success">
-                  <ToastTitle>
-                    Selected <strong>{item.title}</strong>
-                  </ToastTitle>
-                </Toast>,
-              );
+              toaster.create(`Selected "${item.title}"`, { type: "success" });
             },
             group: item.category,
             label: item.title,

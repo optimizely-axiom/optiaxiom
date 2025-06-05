@@ -2,12 +2,7 @@ import { ToastProviderProvider } from "@optiaxiom/globals";
 import { type createToaster, toaster } from "@optiaxiom/globals";
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import * as RadixToast from "@radix-ui/react-toast";
-import {
-  type ComponentPropsWithoutRef,
-  forwardRef,
-  isValidElement,
-  useRef,
-} from "react";
+import { type ComponentPropsWithoutRef, forwardRef, useRef } from "react";
 import { useSyncExternalStore } from "use-sync-external-store/shim";
 
 import { type BoxProps, extractBoxProps } from "../box";
@@ -92,24 +87,14 @@ export const ToastProvider = forwardRef<HTMLOListElement, ToastProviderProps>(
             open={open}
             toastRef={ref}
           >
-            {
-              // eslint-disable-next-line @typescript-eslint/no-explicit-any -- https://github.com/microsoft/TypeScript/issues/53178
-              isValidElement<any>(toast) ? (
-                toast
-              ) : (
-                <Toast intent={toast.type} key={id}>
-                  <ToastTitle>{toast.title}</ToastTitle>
-                  {toast.action && (
-                    <ToastAction
-                      altText={toast.action}
-                      onClick={toast.onAction}
-                    >
-                      {toast.action}
-                    </ToastAction>
-                  )}
-                </Toast>
-              )
-            }
+            <Toast intent={toast.type} key={id}>
+              <ToastTitle>{toast.title}</ToastTitle>
+              {toast.action && (
+                <ToastAction altText={toast.action} onClick={toast.onAction}>
+                  {toast.action}
+                </ToastAction>
+              )}
+            </Toast>
           </ToastProviderProvider>
         ))}
 
