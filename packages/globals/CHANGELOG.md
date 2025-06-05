@@ -1,5 +1,11 @@
 # @optiaxiom/globals
 
+## 1.0.6
+
+### Patch Changes
+
+- dc144d1: fix module federation usage for AxiomProvider
+
 ## 1.0.5
 
 ### Patch Changes

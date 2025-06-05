@@ -1,5 +1,13 @@
 # @optiaxiom/react
 
+## 1.5.4
+
+### Patch Changes
+
+- dc144d1: fix module federation usage for AxiomProvider
+- Updated dependencies [dc144d1]
+  - @optiaxiom/globals@1.0.6
+
 ## 1.5.3
 
 ### Patch Changes
