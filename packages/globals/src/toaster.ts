@@ -1,10 +1,10 @@
-import type { ReactElement, RefObject } from "react";
+import type { RefObject } from "react";
 
 type ToastItem = {
   id: string;
   open: boolean;
   ref: RefObject<HTMLElement>;
-  toast: ReactElement | (ToastOptions & { title: string });
+  toast: ToastOptions & { title: string };
 };
 
 type ToastOptions = {
@@ -22,9 +22,7 @@ const genId = () => {
 
 type Toaster = {
   clear: () => void;
-  create: (
-    ...args: [message: string, options?: ToastOptions] | [toast: ReactElement]
-  ) => string;
+  create: (message: string, options?: ToastOptions) => string;
   remove: (id: string) => void;
   store: [
     subscribe: (onStoreChange: () => void) => () => void,
@@ -60,14 +58,7 @@ export const createToaster = (): Toaster => {
       emit();
     },
 
-    create: (...args) => {
-      const toast =
-        typeof args[0] === "string"
-          ? {
-              ...args[1],
-              title: args[0],
-            }
-          : args[0];
+    create: (message, options) => {
       const id = genId();
 
       queue = queue.then(async () => {
@@ -75,7 +66,10 @@ export const createToaster = (): Toaster => {
           id,
           open: true,
           ref: { current: null },
-          toast,
+          toast: {
+            ...options,
+            title: message,
+          },
         };
         snapshot = [...snapshot, item];
         emit();
