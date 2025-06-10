@@ -284,6 +284,9 @@ importers:
 
   packages/react:
     dependencies:
+      '@dnd-kit/collision':
+        specifier: ^0.1.18
+        version: 0.1.18
       '@dnd-kit/helpers':
         specifier: ^0.1.18
         version: 0.1.18

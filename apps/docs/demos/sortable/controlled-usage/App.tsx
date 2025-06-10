@@ -8,7 +8,7 @@ export function App() {
 
   return (
     <Sortable items={items} onItemsChange={setItems}>
-      {(item) => <SortableItem border="1">Item {item}</SortableItem>}
+      {({ id }) => <SortableItem border="1">Item {id}</SortableItem>}
     </Sortable>
   );
 }

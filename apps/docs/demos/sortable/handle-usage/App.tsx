@@ -13,12 +13,12 @@ export function App() {
 
   return (
     <Sortable items={items} onItemsChange={setItems}>
-      {(item) => (
+      {({ id }) => (
         <SortableItem alignItems="center" border="1" display="flex">
           <SortableHandle>
             <IconGripVertical size={20} />
           </SortableHandle>
-          Item {item}
+          Item {id}
         </SortableItem>
       )}
     </Sortable>

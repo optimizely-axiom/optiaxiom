@@ -339,50 +339,45 @@ export const WithSortable: Story = {
       >
         <Flex style={{ height: 400, width: 600 }}>
           <Sortable items={items} onItemsChange={setItems}>
-            {(item, index) => (
-              <Flex flexDirection="row" key={item}>
+            {({ id: item, index }) => (
+              <Flex flexDirection="row">
                 <Text color="fg.secondary" fontSize="md" w="20">
                   {index + 1}
                 </Text>
                 <SortableItem asChild>
-                  {() => (
-                    <Card flex="1">
-                      <CardHeader
-                        addonAfter={
-                          <Menu
-                            options={[
-                              { label: "Edit" },
-                              { label: "Move down" },
-                            ]}
-                          >
-                            <MenuTrigger asChild>
-                              <EllipsisMenuButton
-                                appearance="subtle"
-                                aria-label="actions"
-                                ml="auto"
-                              />
-                            </MenuTrigger>
-                            <MenuContent />
-                          </Menu>
-                        }
-                        addonBefore={
-                          <SortableHandle
-                            asChild
-                            color="fg.tertiary"
-                            transition="colors"
-                          >
-                            <Button
+                  <Card flex="1">
+                    <CardHeader
+                      addonAfter={
+                        <Menu
+                          options={[{ label: "Edit" }, { label: "Move down" }]}
+                        >
+                          <MenuTrigger asChild>
+                            <EllipsisMenuButton
                               appearance="subtle"
-                              icon={<IconGripVertical />}
+                              aria-label="actions"
+                              ml="auto"
                             />
-                          </SortableHandle>
-                        }
-                        description={data[item].description}
-                      >
-                        <CardLink href="data:,">{data[item].title}</CardLink>
-                      </CardHeader>
-                    </Card>
-                  )}
+                          </MenuTrigger>
+                          <MenuContent />
+                        </Menu>
+                      }
+                      addonBefore={
+                        <SortableHandle
+                          asChild
+                          color="fg.tertiary"
+                          transition="colors"
+                        >
+                          <Button
+                            appearance="subtle"
+                            icon={<IconGripVertical />}
+                          />
+                        </SortableHandle>
+                      }
+                      description={data[item].description}
+                    >
+                      <CardLink href="data:,">{data[item].title}</CardLink>
+                    </CardHeader>
+                  </Card>
                 </SortableItem>
               </Flex>
             )}
