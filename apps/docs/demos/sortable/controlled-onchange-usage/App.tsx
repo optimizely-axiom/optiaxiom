@@ -37,7 +37,7 @@ export function App() {
         );
       }}
     >
-      {(item) => <SortableItem border="1">Item {item}</SortableItem>}
+      {({ id }) => <SortableItem border="1">Item {id}</SortableItem>}
     </Sortable>
   );
 }

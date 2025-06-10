@@ -1,57 +1,41 @@
-import { useSortable } from "@dnd-kit/react/sortable";
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
-import { forwardRef, type ReactNode, useRef } from "react";
+import { forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
 import { useSortableContext } from "./SortableContext";
 import * as styles from "./SortableItem.css";
-import { SortableItemProvider } from "./SortableItemContext";
+import { useSortableItemContainerContext } from "./SortableItemContainerContext";
 
-export type SortableItemProps = BoxProps<
-  "div",
-  {
-    children?: (() => ReactNode) | ReactNode;
-  }
->;
+export type SortableItemProps = BoxProps<"div">;
 
 export const SortableItem = forwardRef<HTMLDivElement, SortableItemProps>(
-  ({ children, className, style, ...props }, outerRef) => {
-    const { index, isSorting, item } = useSortableContext(
+  ({ children, className, ...props }, outerRef) => {
+    const { cacheRef, isSorting } = useSortableContext(
       "@optiaxiom/react/SortableItem",
     );
-    const handleRef = useRef<HTMLDivElement>(null);
-    const { isDragging, ref: innerRef } = useSortable({
-      accept: "item",
-      handle: handleRef,
-      id: item,
-      index,
-      type: "item",
-    });
-    const ref = useComposedRefs(innerRef, outerRef);
+    const { elementRef, handleRef, id, isDragging } =
+      useSortableItemContainerContext("@optiaxiom/react/SortableItem");
+    if (!id) {
+      throw new Error(
+        `\`@optiaxiom/react/SortableItem\` needs an additional \`@optiaxiom/react/SortableList\``,
+      );
+    }
 
-    const cacheRef = useRef<ReactNode>();
-    if (!isSorting || typeof children !== "function") {
-      cacheRef.current = typeof children === "function" ? children() : children;
+    const ref = useComposedRefs(elementRef, outerRef);
+
+    if (!isSorting) {
+      cacheRef.current.set(id, children);
     }
 
     return (
-      <SortableItemProvider
-        handleRef={handleRef}
-        id={item}
-        isDragging={isDragging}
+      <Box
+        data-sortable-dragging={isDragging ? "" : undefined}
+        ref={ref}
+        {...styles.item({ handle: !handleRef.current }, className)}
+        {...props}
       >
-        <Box
-          ref={ref}
-          style={{
-            opacity: isDragging ? 0.5 : undefined,
-            ...style,
-          }}
-          {...styles.item({ handle: !handleRef.current }, className)}
-          {...props}
-        >
-          {cacheRef.current}
-        </Box>
-      </SortableItemProvider>
+        {cacheRef.current.get(id)}
+      </Box>
     );
   },
 );

@@ -3,13 +3,13 @@ import { forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
 import * as styles from "./SortableHandle.css";
-import { useSortableItemContext } from "./SortableItemContext";
+import { useSortableItemContainerContext } from "./SortableItemContainerContext";
 
 export type SortableHandleProps = BoxProps;
 
 export const SortableHandle = forwardRef<HTMLDivElement, SortableHandleProps>(
   ({ children, className, ...props }, outerRef) => {
-    const { handleRef, isDragging } = useSortableItemContext(
+    const { handleRef, isDragging } = useSortableItemContainerContext(
       "@optiaxiom/react/SortableHandle",
     );
     const ref = useComposedRefs(handleRef, outerRef);

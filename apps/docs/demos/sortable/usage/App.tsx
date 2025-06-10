@@ -1,7 +1,6 @@
 "use client";
 
-import { Box } from "@optiaxiom/react";
-import { Sortable } from "@optiaxiom/react/unstable";
+import { Sortable, SortableItem } from "@optiaxiom/react/unstable";
 import { useState } from "react";
 
 export function App() {
@@ -16,16 +15,16 @@ export function App() {
       items={items}
       onItemsChange={setItems}
     >
-      {(item) => (
-        <Box
+      {({ id }) => (
+        <SortableItem
           bg="bg.avatar.neutral"
           p="12"
           rounded="sm"
           textAlign="center"
           w="224"
         >
-          Item {item}
-        </Box>
+          Item {id}
+        </SortableItem>
       )}
     </Sortable>
   );

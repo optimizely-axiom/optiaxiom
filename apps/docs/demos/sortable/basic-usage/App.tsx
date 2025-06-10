@@ -5,9 +5,9 @@ import { Sortable, SortableItem } from "@optiaxiom/react/unstable";
 export function App() {
   return (
     <Sortable items={["A", "B", "C"]}>
-      {(item, index) => (
+      {({ id, index }) => (
         <SortableItem border="1">
-          {index}. Item {item}
+          {index}. Item {id}
         </SortableItem>
       )}
     </Sortable>

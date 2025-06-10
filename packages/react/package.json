@@ -36,6 +36,7 @@
     "test": "vitest"
   },
   "dependencies": {
+    "@dnd-kit/collision": "^0.1.18",
     "@dnd-kit/helpers": "^0.1.18",
     "@dnd-kit/react": "^0.1.18",
     "@optiaxiom/globals": "workspace:^",

@@ -22,7 +22,7 @@ export function App() {
 
   return (
     <Sortable items={items} onItemsChange={setItems}>
-      {(item, index) => (
+      {({ id, index }) => (
         <Flex flexDirection="row">
           <Text color="fg.secondary" fontSize="md" w="20">
             {index + 1}
@@ -51,9 +51,9 @@ export function App() {
                     <Button appearance="subtle" icon={<IconGripVertical />} />
                   </SortableHandle>
                 }
-                description={data[item].description}
+                description={data[id].description}
               >
-                <CardLink href="data:,">{data[item].title}</CardLink>
+                <CardLink href="data:,">{data[id].title}</CardLink>
               </CardHeader>
             </Card>
           </SortableItem>

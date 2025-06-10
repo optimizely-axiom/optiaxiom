@@ -1,9 +1,10 @@
 "use client";
 
+import type { MutableRefObject, ReactNode } from "react";
+
 import { createContext } from "@radix-ui/react-context";
 
 export const [SortableProvider, useSortableContext] = createContext<{
-  index: number;
+  cacheRef: MutableRefObject<Map<string, ReactNode>>;
   isSorting: boolean;
-  item: string;
 }>("@optiaxiom/react/Sortable");

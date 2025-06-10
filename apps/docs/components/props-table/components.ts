@@ -132,6 +132,7 @@ export const components = {
   Sortable: getProps("Sortable"),
   SortableHandle: getProps("SortableHandle"),
   SortableItem: getProps("SortableItem"),
+  SortableList: getProps("SortableList"),
   Spinner: getProps("Spinner"),
   SubNav: getProps("SubNav"),
   Switch: getProps("Switch"),
