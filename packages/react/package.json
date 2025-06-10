@@ -36,9 +36,9 @@
     "test": "vitest"
   },
   "dependencies": {
-    "@dnd-kit/collision": "^0.1.18",
-    "@dnd-kit/helpers": "^0.1.18",
-    "@dnd-kit/react": "^0.1.18",
+    "@dnd-kit/collision": "^0.1.19",
+    "@dnd-kit/helpers": "^0.1.19",
+    "@dnd-kit/react": "^0.1.19",
     "@optiaxiom/globals": "workspace:^",
     "@radix-ui/react-alert-dialog": "^1.1.14",
     "@radix-ui/react-arrow": "^1.1.7",
