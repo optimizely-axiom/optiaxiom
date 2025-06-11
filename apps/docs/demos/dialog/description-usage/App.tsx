@@ -13,7 +13,7 @@ export function App() {
       <DialogTrigger>Open Dialog</DialogTrigger>
 
       <DialogContent>
-        <DialogHeader description="This is additional description of the modal">
+        <DialogHeader description="This is additional text to describe the modal">
           Modal Title
         </DialogHeader>
         <DialogFooter>
