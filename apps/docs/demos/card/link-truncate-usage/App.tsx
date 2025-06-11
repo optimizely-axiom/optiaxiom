@@ -10,7 +10,7 @@ export function App() {
             auto
             content="Step by step: How to brainstorm a creative marketing campaign (+ free template)"
           >
-            <CardLink href="#usage">
+            <CardLink href="../">
               <Text lineClamp="1">
                 Step by step: How to brainstorm a creative marketing campaign (+
                 free template)
