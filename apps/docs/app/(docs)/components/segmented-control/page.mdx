@@ -17,6 +17,18 @@ Use `SegmentedControl` and `SegmentedControlItem` components together to create 
 
 <Demo component="segmented-control/usage" />
 
+### Anatomy
+
+```tsx
+import { SegmentedControl, SegmentedControlItem } from "@optiaxiom/react";
+
+export default () => (
+  <SegmentedControl>
+    <SegmentedControlItem />
+  </SegmentedControl>
+);
+```
+
 ### Controlled
 
 Use the `value` and `defaultValue` props to toggle between controlled and uncontrolled usage. And combine it with `onValueChange` to listen for changes to the state.

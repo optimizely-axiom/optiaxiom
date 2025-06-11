@@ -13,6 +13,41 @@ Display a modal dialog box.
 
 <Demo component="dialog/usage" />
 
+### Anatomy
+
+```tsx
+import {
+  Dialog,
+  DialogBody,
+  DialogClose,
+  DialogContent,
+  DialogFooter,
+  DialogForm,
+  DialogHeader,
+  DialogTrigger,
+} from "@optiaxiom/react";
+
+export default () => (
+  <Dialog>
+    <DialogTrigger />
+
+    <DialogContent>
+      <DialogHeader />
+      <DialogBody />
+
+      <DialogFooter>
+        <DialogClose />
+      </DialogFooter>
+
+      <DialogForm>
+        <DialogBody />
+        <DialogFooter />
+      </DialogForm>
+    </DialogContent>
+  </Dialog>
+);
+```
+
 ### Controlled
 
 Use the `open` and `defaultOpen` props to toggle between controlled and uncontrolled usage. And combine it with `onOpenChange` to listen for changes to the state.

@@ -13,6 +13,37 @@ Display a modal with important content that expects confirmation from the user.
 
 <Demo component="alert-dialog/usage" />
 
+### Anatomy
+
+```tsx
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogBody,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTrigger,
+} from "@optiaxiom/react";
+
+export default () => (
+  <AlertDialog>
+    <AlertDialogTrigger />
+
+    <AlertDialogContent>
+      <AlertDialogHeader />
+      <AlertDialogBody />
+
+      <AlertDialogFooter>
+        <AlertDialogCancel />
+        <AlertDialogAction />
+      </AlertDialogFooter>
+    </AlertDialogContent>
+  </AlertDialog>
+);
+```
+
 ### Controlled
 
 Use the `open` and `defaultOpen` props to toggle between controlled and uncontrolled usage. And combine it with `onOpenChange` to listen for changes to the state.
