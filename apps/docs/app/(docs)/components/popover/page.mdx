@@ -13,6 +13,19 @@ Display arbitrary rich content inside a non-modal dialog triggered by a button.
 
 <Demo component="popover/usage" />
 
+### Anatomy
+
+```tsx
+import { Popover, PopoverContent, PopoverTrigger } from "@optiaxiom/react";
+
+export default () => (
+  <Popover>
+    <PopoverTrigger />
+    <PopoverContent />
+  </Popover>
+);
+```
+
 ### Controlled
 
 Use the `open` and `defaultOpen` props to toggle between controlled and uncontrolled usage. And combine it with `onOpenChange` to listen for changes to the state.

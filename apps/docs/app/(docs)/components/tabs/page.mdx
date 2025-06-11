@@ -15,6 +15,22 @@ Use the `value` and `defaultValue` props to toggle between controlled and uncont
 
 <Demo component="tabs/usage" />
 
+### Anatomy
+
+```tsx
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@optiaxiom/react";
+
+export default () => (
+  <Tabs>
+    <TabsList>
+      <TabsTrigger />
+    </TabsList>
+
+    <TabsContent />
+  </Tabs>
+);
+```
+
 ## Props
 
 ### Tabs

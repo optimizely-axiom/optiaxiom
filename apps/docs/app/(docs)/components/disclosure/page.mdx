@@ -13,6 +13,23 @@ An interactive component which expands/collapses a panel.
 
 <Demo component="disclosure/usage" />
 
+### Anatomy
+
+```tsx
+import {
+  Disclosure,
+  DisclosureContent,
+  DisclosureTrigger,
+} from "@optiaxiom/react";
+
+export default () => (
+  <Disclosure>
+    <DisclosureTrigger />
+    <DisclosureContent />
+  </Disclosure>
+);
+```
+
 ### Controlled
 
 Use the `open` and `defaultOpen` props to toggle between controlled and uncontrolled usage. And combine it with `onOpenChange` to listen for changes to the state.
