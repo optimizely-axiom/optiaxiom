@@ -10,7 +10,6 @@ import {
 import { Box } from "../box";
 import { CommandInput } from "../command";
 import { useCommandContext } from "../command/internals";
-import { useFocusBookmark } from "../focus-bookmark";
 import { useMenuContext } from "./MenuContext";
 import * as styles from "./MenuInput.css";
 
@@ -25,7 +24,6 @@ export const MenuInput = forwardRef<HTMLInputElement, MenuInputProps>(
       "@optiaxiom/react/MenuInput",
     );
     const ref = useComposedRefs(inputRef, outerRef);
-    useFocusBookmark(inputRef);
 
     const [minWidth, setMinWidth] = useState(160);
     const containerRef = useRef<HTMLDivElement>(null);

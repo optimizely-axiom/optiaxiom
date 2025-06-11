@@ -5,6 +5,7 @@ import { forwardRef, useRef } from "react";
 
 import { Backdrop } from "../backdrop";
 import { type BoxProps } from "../box";
+import { FocusBookmarkProvider } from "../focus-bookmark";
 import { ModalProvider } from "../modal";
 import { Paper } from "../paper";
 import { Portal } from "../portal";
@@ -56,7 +57,11 @@ export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
               {...props}
             >
               <RadixDialog.Content forceMount ref={ref}>
-                <ModalProvider shardRef={innerRef}>{children}</ModalProvider>
+                <ModalProvider shardRef={innerRef}>
+                  <FocusBookmarkProvider containerRef={innerRef}>
+                    {children}
+                  </FocusBookmarkProvider>
+                </ModalProvider>
               </RadixDialog.Content>
             </Paper>
           </Transition>

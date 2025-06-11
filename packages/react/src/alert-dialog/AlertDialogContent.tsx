@@ -8,6 +8,7 @@ import type { ExcludeProps } from "../utils";
 import { Backdrop } from "../backdrop";
 import { Box, type BoxProps } from "../box";
 import { Flex } from "../flex";
+import { FocusBookmarkProvider } from "../focus-bookmark";
 import { ModalProvider } from "../modal";
 import { Paper } from "../paper";
 import { Portal } from "../portal";
@@ -62,7 +63,11 @@ export const AlertDialogContent = forwardRef<
               {...styles.content({ size })}
             >
               <RadixAlertDialog.Content ref={ref} {...props}>
-                <ModalProvider shardRef={innerRef}>{children}</ModalProvider>
+                <ModalProvider shardRef={innerRef}>
+                  <FocusBookmarkProvider containerRef={innerRef}>
+                    {children}
+                  </FocusBookmarkProvider>
+                </ModalProvider>
               </RadixAlertDialog.Content>
             </Paper>
           </Transition>
