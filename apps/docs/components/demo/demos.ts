@@ -291,6 +291,7 @@ export const demos = {
   "max-height/usage": import("@/demos/max-height/usage/App"),
   "max-width/usage": import("@/demos/max-width/usage/App"),
   "menu/addon-usage": import("@/demos/menu/addon-usage/App"),
+  "menu/alert-dialog-usage": import("@/demos/menu/alert-dialog-usage/App"),
   "menu/appearance-usage": import("@/demos/menu/appearance-usage/App"),
   "menu/basic-usage": import("@/demos/menu/basic-usage/App"),
   "menu/content-checkbox-usage": import(
@@ -299,6 +300,9 @@ export const demos = {
   "menu/content-radio-usage": import("@/demos/menu/content-radio-usage/App"),
   "menu/content-usage": import("@/demos/menu/content-usage/App"),
   "menu/creatable-usage": import("@/demos/menu/creatable-usage/App"),
+  "menu/ellipsis-trigger-usage": import(
+    "@/demos/menu/ellipsis-trigger-usage/App"
+  ),
   "menu/empty-usage": import("@/demos/menu/empty-usage/App"),
   "menu/group-usage": import("@/demos/menu/group-usage/App"),
   "menu/input-controlled-usage": import(
@@ -308,6 +312,7 @@ export const demos = {
   "menu/link-execute-usage": import("@/demos/menu/link-execute-usage/App"),
   "menu/link-usage": import("@/demos/menu/link-usage/App"),
   "menu/nested-usage": import("@/demos/menu/nested-usage/App"),
+  "menu/trigger-usage": import("@/demos/menu/trigger-usage/App"),
   "menu/usage": import("@/demos/menu/usage/App"),
   "menu/virtualized-usage": import("@/demos/menu/virtualized-usage/App"),
   "modal-layer/usage": import("@/demos/modal-layer/usage/App"),
