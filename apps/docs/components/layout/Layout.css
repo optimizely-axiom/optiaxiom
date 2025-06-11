@@ -4,7 +4,6 @@
   html {
     font-family: var(--ax-fontFamily-sans);
     font-feature-settings: "cv02", "cv03", "cv04";
-    scroll-behavior: smooth;
   }
 
   body {

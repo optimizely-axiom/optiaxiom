@@ -32,7 +32,7 @@ export function App() {
             </DropdownMenu>
           }
         >
-          <CardLink href="#usage">The majestic world of turtles</CardLink>
+          <CardLink href="../">The majestic world of turtles</CardLink>
         </CardHeader>
       </Card>
     </Box>

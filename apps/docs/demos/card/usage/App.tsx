@@ -49,7 +49,7 @@ export function App() {
         }
         description="Unveiling the secrets."
       >
-        <CardLink href="#usage">The majestic world of turtles</CardLink>
+        <CardLink href="../">The majestic world of turtles</CardLink>
       </CardHeader>
     </Card>
   );
