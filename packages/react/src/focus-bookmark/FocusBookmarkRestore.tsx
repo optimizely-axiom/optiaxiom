@@ -4,7 +4,7 @@ import {
   useImperativeHandle,
 } from "react";
 
-import { useFocusBookmarkRestore } from ".";
+import { useFocusBookmarkProviderContext } from "./FocusBookmarkProviderContext";
 
 export type FocusBookmarkRestoreProps = ComponentPropsWithoutRef<"button">;
 
@@ -15,15 +15,30 @@ export const FocusBookmarkRestore = forwardRef<
   },
   FocusBookmarkRestoreProps
 >((_props, ref) => {
-  const restore = useFocusBookmarkRestore();
+  const { bookmarksRef } = useFocusBookmarkProviderContext(
+    "@optiaxiom/react/FocusBookmarkRestore",
+  );
 
   useImperativeHandle(
     ref,
     () => ({
       contains: () => false,
-      focus: restore,
+      focus: () => {
+        bookmarksRef.current = bookmarksRef.current.filter((element) =>
+          document.body.contains(element),
+        );
+        while (bookmarksRef.current.length) {
+          const element = bookmarksRef.current.pop();
+          if (!element) {
+            break;
+          }
+
+          element.focus();
+          break;
+        }
+      },
     }),
-    [restore],
+    [bookmarksRef],
   );
 
   return null;

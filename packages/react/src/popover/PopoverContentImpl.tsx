@@ -2,6 +2,7 @@ import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import { forwardRef, useRef } from "react";
 
 import { Box, type BoxProps } from "../box";
+import { FocusBookmarkProvider } from "../focus-bookmark";
 import { ModalProvider } from "../modal";
 import { PopoverContentProvider } from "./PopoverContentContext";
 
@@ -27,9 +28,11 @@ export const PopoverContentImpl = forwardRef<
       }
     >
       <ModalProvider shardRef={innerRef}>
-        <Box ref={ref} {...props}>
-          {children}
-        </Box>
+        <FocusBookmarkProvider containerRef={innerRef}>
+          <Box ref={ref} {...props}>
+            {children}
+          </Box>
+        </FocusBookmarkProvider>
       </ModalProvider>
     </PopoverContentProvider>
   );

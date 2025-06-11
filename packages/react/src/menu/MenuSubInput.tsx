@@ -1,23 +1,17 @@
-import { useComposedRefs } from "@radix-ui/react-compose-refs";
-import { type ComponentPropsWithoutRef, forwardRef, useRef } from "react";
+import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import { CommandInput } from "../command";
 import { useCommandContext } from "../command/internals";
-import { useFocusBookmark } from "../focus-bookmark";
 import { useMenuSubContext } from "./MenuSubContext";
 
 export type MenuSubInputProps = ComponentPropsWithoutRef<typeof CommandInput>;
 
 export const MenuSubInput = forwardRef<HTMLInputElement, MenuSubInputProps>(
-  ({ onKeyDown, ...props }, outerRef) => {
+  ({ onKeyDown, ...props }, ref) => {
     const { downshift, highlightedItem } = useCommandContext(
       "@optiaxiom/react/MenuSubInput",
     );
     const { setOpen } = useMenuSubContext("@optiaxiom/react/MenuSubInput");
-
-    const innerRef = useRef<HTMLInputElement>(null);
-    const ref = useComposedRefs(innerRef, outerRef);
-    useFocusBookmark(innerRef);
 
     return (
       <CommandInput
