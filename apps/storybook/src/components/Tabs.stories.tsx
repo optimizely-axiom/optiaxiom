@@ -91,3 +91,28 @@ export const Vertical: Story = {
     orientation: "vertical",
   },
 };
+
+export const Link: Story = {
+  args: {
+    children: (
+      <>
+        <TabsList>
+          <TabsTrigger asChild value="first">
+            <a href="#first">First</a>
+          </TabsTrigger>
+          <TabsTrigger asChild value="second">
+            <a href="#second">Second</a>
+          </TabsTrigger>
+        </TabsList>
+
+        <TabsContent py="16" value="first">
+          This is first content
+        </TabsContent>
+
+        <TabsContent py="16" value="second">
+          This is second content
+        </TabsContent>
+      </>
+    ),
+  },
+};
