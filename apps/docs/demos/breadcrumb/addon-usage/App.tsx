@@ -1,5 +1,3 @@
-"use client";
-
 import { Button } from "@optiaxiom/react";
 import { Breadcrumb } from "@optiaxiom/react/unstable";
 import { IconPencil } from "@tabler/icons-react";

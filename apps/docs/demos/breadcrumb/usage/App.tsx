@@ -1,5 +1,3 @@
-"use client";
-
 import { Breadcrumb } from "@optiaxiom/react/unstable";
 
 export function App() {

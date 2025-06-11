@@ -107,13 +107,16 @@ Use the `CardPreview` component to add a preview section for cards.
 
 We can also use the `CardImage` component to add thumbnail images for cards.
 
-<Demo component="card/preview-image-usage" meta="{16-22}" />
+<Demo component="card/preview-image-usage" meta="{17-23}" />
 
 ### Overlay
 
 Use the `addonTopLeft`/`addonTopRight`/`addonBottomRight`/`addonBottomLeft` props on `CardPreview` to add checkbox and other tertiary actions to cards.
 
-<Demo component="card/overlay-usage" meta="{26-28,43-46}" />
+<Demo
+  component="card/overlay-usage"
+  meta="/addonTopLeft/ /addonTopRight/ /addonBottomRight/ /addonBottomLeft/"
+/>
 
 Include the `CardAction` component if you'd like the checkbox to be hidden until hovered or interacted with.
 
@@ -121,7 +124,7 @@ Include the `CardAction` component if you'd like the checkbox to be hidden until
   Hover over the card to see the checkbox:
 </Alert>
 
-<Demo component="card/overlay-action-usage" meta="{28,30,47,50}" />
+<Demo component="card/overlay-action-usage" meta="{17,19,40,42,45,47}" />
 
 ### Sortable
 

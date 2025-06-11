@@ -55,23 +55,26 @@ Use the `value` and `defaultValue` props to toggle between controlled and uncont
 
 Using `onValueChange`:
 
-<Demo component="select/controlled-usage" meta="{20,24}" />
+<Demo
+  component="select/controlled-usage"
+  meta="/onValueChange={setValue}/ /value={value}/"
+/>
 
 Using `onChange`:
 
-<Demo component="select/controlled-onchange-usage" meta="{20,25,27}" />
+<Demo component="select/controlled-onchange-usage" meta="{21,26,28}" />
 
 ### Form usage
 
 Use the `name` prop (and optionally `ref` and `onChange`) to integrate `Select` with forms.
 
-<Demo component="select/form-usage" meta="{32}" />
+<Demo component="select/form-usage" meta='/name="priority"/ {29}' />
 
 ### Disabled state
 
 Enable the `disabled` prop on `Select` to toggle the disabled state of the input field.
 
-<Demo component="select/disabled-usage" meta="{16}" />
+<Demo component="select/disabled-usage" meta="/disabled={disabled}/" />
 
 ### Trigger
 

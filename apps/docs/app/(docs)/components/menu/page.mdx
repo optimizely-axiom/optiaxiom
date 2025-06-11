@@ -78,13 +78,13 @@ We can also manually control `options` in combination with the `inputValue` and 
 
 And we can toggle the `loading` prop to show a loading state while the data is loading (an empty state will be shown otherwise).
 
-<Demo component="menu/input-controlled-usage" meta="{55,56}" />
+<Demo component="menu/input-controlled-usage" meta="{50,51}" />
 
 ### Empty
 
 By default menu will display a generic empty content message if no results are found matching your query. We can customize this empty message by setting the `empty` prop.
 
-<Demo component="menu/empty-usage" meta="{41-43}" />
+<Demo component="menu/empty-usage" meta="/empty/" />
 
 ### Trigger
 
@@ -92,7 +92,7 @@ By default menu will display a generic empty content message if no results are f
 
 By default we use the `Button` component for the menu trigger which accepts all of the existing button props.
 
-<Demo component="menu/trigger-usage" meta="{15-17}" />
+<Demo component="menu/trigger-usage" meta="{27-29}" />
 
 #### Ellipsis trigger
 
@@ -101,13 +101,13 @@ We can also use `asChild` to render a completely different component. We provide
 - `AngleMenuButton` (default)
 - `EllipsisMenuButton`
 
-<Demo component="menu/ellipsis-trigger-usage" meta="{15-17}" />
+<Demo component="menu/ellipsis-trigger-usage" meta="{27-29}" />
 
 ### Addons
 
 We can add the `addon` and `description` properties to show additional content inside the items.
 
-<Demo component="menu/addon-usage" meta={{ "App.tsx": "{38-43}" }} />
+<Demo component="menu/addon-usage" meta={{ "App.tsx": "{22-28}" }} />
 
 ### Appearance
 
@@ -151,7 +151,7 @@ Make sure to use `AlertDialog` or `Dialog` in controlled mode since there is no 
 
 Menu automatically uses virtualization to improve performance when rendering a large number of items.
 
-<Demo component="menu/virtualized-usage" meta="{36-38}" />
+<Demo component="menu/virtualized-usage" />
 
 ### Related
 

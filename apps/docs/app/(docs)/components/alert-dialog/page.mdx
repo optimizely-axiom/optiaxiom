@@ -48,7 +48,10 @@ export default () => (
 
 Use the `open` and `defaultOpen` props to toggle between controlled and uncontrolled usage. And combine it with `onOpenChange` to listen for changes to the state.
 
-<Demo component="alert-dialog/controlled-usage" meta="{19}" />
+<Demo
+  component="alert-dialog/controlled-usage"
+  meta="/onOpenChange={setOpen}/ /open={open}/"
+/>
 
 ### Sizes
 
@@ -60,7 +63,10 @@ Use the `size` prop to change the size of the dialog box.
 
 Add an `onClick` handler to `AlertDialogAction` to perform an action on confirmation.
 
-<Demo component="alert-dialog/confirmation-usage" meta="{44}" />
+<Demo
+  component="alert-dialog/confirmation-usage"
+  meta='/onClick={() => setState("confirm")}/'
+/>
 
 ### Handling async events
 
