@@ -1,5 +1,17 @@
 # @optiaxiom/react
 
+## 1.5.5
+
+### Patch Changes
+
+- 292edd1: simply remove TooltipTrigger when tooltip is disabled or empty
+- fa86de1: allow composing tabs trigger using asChild
+- eb9f70a: update dependencies
+- 3a6bd09: improve focus bookmark managing via focusin events
+- 4383f8a: add SortableList component for multiple lists
+- Updated dependencies [eb9f70a]
+  - @optiaxiom/globals@1.0.7
+
 ## 1.5.4
 
 ### Patch Changes

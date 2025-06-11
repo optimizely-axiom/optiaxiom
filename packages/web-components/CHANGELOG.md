@@ -1,5 +1,13 @@
 # @optiaxiom/web-components
 
+## 0.10.8
+
+### Patch Changes
+
+- 292edd1: simply remove TooltipTrigger when tooltip is disabled or empty
+- fa86de1: allow composing tabs trigger using asChild
+- eb9f70a: update dependencies
+
 ## 0.10.7
 
 ### Patch Changes
