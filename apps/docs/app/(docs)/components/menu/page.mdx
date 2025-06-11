@@ -88,7 +88,20 @@ By default menu will display a generic empty content message if no results are f
 
 ### Trigger
 
+#### Customize trigger
+
 By default we use the `Button` component for the menu trigger which accepts all of the existing button props.
+
+<Demo component="menu/trigger-usage" meta="{15-17}" />
+
+#### Ellipsis trigger
+
+We can also use `asChild` to render a completely different component. We provide two built-in buttons:
+
+- `AngleMenuButton` (default)
+- `EllipsisMenuButton`
+
+<Demo component="menu/ellipsis-trigger-usage" meta="{15-17}" />
 
 ### Addons
 
@@ -125,6 +138,14 @@ Use `group` property to group items.
 Use `subOptions` property to render submenus.
 
 <Demo component="menu/nested-usage" meta="{21-30}" />
+
+### Dialogs inside menus
+
+Combine with dialogs to show modals or alerts when selecting an item.
+
+Make sure to use `AlertDialog` or `Dialog` in controlled mode since there is no actual trigger.
+
+<Demo component="menu/alert-dialog-usage" />
 
 ### Virtualized
 
