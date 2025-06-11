@@ -17,6 +17,7 @@ export const trigger = recipe({
     style({
       borderColor: `transparent`,
       color: theme.colors["fg.tertiary"],
+      textDecoration: "none",
       userSelect: "none",
 
       "@media": {
