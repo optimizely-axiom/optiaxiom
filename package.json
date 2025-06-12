@@ -29,7 +29,7 @@
     "@types/react": "^18.3.23",
     "@types/react-dom": "^18.3.7",
     "@vanilla-extract/integration": "^8.0.3",
-    "@vanilla-extract/rollup-plugin": "^1.3.16",
+    "@vanilla-extract/rollup-plugin": "^1.3.17",
     "@vanilla-extract/vite-plugin": "^5.0.5",
     "@vitest/browser": "3.1.1",
     "concurrently": "^9.1.2",
