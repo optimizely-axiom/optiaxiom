@@ -20,7 +20,7 @@ export type MenuSubContentProps = ExcludeProps<
 >;
 
 export const MenuSubContent = forwardRef<HTMLDivElement, MenuSubContentProps>(
-  ({ align = "start", children, side = "right", ...props }, outerRef) => {
+  ({ align = "start", side = "right", ...props }, outerRef) => {
     const { onSelect, setOpen: setRootMenuOpen } = useMenuContext(
       "@optiaxiom/react/MenuSubContent",
     );
@@ -108,57 +108,55 @@ export const MenuSubContent = forwardRef<HTMLDivElement, MenuSubContentProps>(
           sideOffset={0}
           {...props}
         >
-          {children ?? (
-            <Command
-              enabled
-              inputValue={inputValue}
-              key={
-                item.key ??
-                resolveItemProperty(item.label, {
-                  inputValue: parentInputValue,
-                })
+          <Command
+            enabled
+            inputValue={inputValue}
+            key={
+              item.key ??
+              resolveItemProperty(item.label, {
+                inputValue: parentInputValue,
+              })
+            }
+            onHover={(item) => {
+              setSubMenuOpen(
+                typeof item.subOptions === "function" ||
+                  !!item.subOptions?.length,
+              );
+            }}
+            onInputValueChange={(inputValue) => {
+              if (item.subOptionsInputVisible) {
+                setInputValue(inputValue);
+                return;
               }
-              onHover={(item) => {
-                setSubMenuOpen(
-                  typeof item.subOptions === "function" ||
-                    !!item.subOptions?.length,
-                );
-              }}
-              onInputValueChange={(inputValue) => {
-                if (item.subOptionsInputVisible) {
-                  setInputValue(inputValue);
-                  return;
-                }
 
-                parentInputRef.current?.focus();
-                setParentInputValue(inputValue);
-              }}
-              onSelect={(item, { dismiss }) => {
-                if (
-                  typeof item.subOptions === "function" ||
-                  item.subOptions?.length
-                ) {
-                  setSubMenuOpen(true);
-                } else {
-                  onSelect(item, { dismiss });
-                }
-              }}
-              options={options}
+              parentInputRef.current?.focus();
+              setParentInputValue(inputValue);
+            }}
+            onSelect={(item, { dismiss }) => {
+              if (
+                typeof item.subOptions === "function" ||
+                item.subOptions?.length
+              ) {
+                setSubMenuOpen(true);
+              } else {
+                onSelect(item, { dismiss });
+              }
+            }}
+            options={options}
+          >
+            <VisuallyHidden disabled={item.subOptionsInputVisible}>
+              <MenuSubInput ref={inputRef} />
+            </VisuallyHidden>
+            <MenuSubProvider
+              contentRef={contentRef}
+              inputRef={inputRef}
+              open={subMenuOpen}
+              setOpen={setSubMenuOpen}
+              triggerRef={triggerRef}
             >
-              <VisuallyHidden disabled={item.subOptionsInputVisible}>
-                <MenuSubInput ref={inputRef} />
-              </VisuallyHidden>
-              <MenuSubProvider
-                contentRef={contentRef}
-                inputRef={inputRef}
-                open={subMenuOpen}
-                setOpen={setSubMenuOpen}
-                triggerRef={triggerRef}
-              >
-                <MenuListbox onScroll={() => setSubMenuOpen(false)} />
-              </MenuSubProvider>
-            </Command>
-          )}
+              <MenuListbox onScroll={() => setSubMenuOpen(false)} />
+            </MenuSubProvider>
+          </Command>
         </PopoverContent>
       </>
     );
