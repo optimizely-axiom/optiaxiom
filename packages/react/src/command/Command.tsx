@@ -31,7 +31,7 @@ export type CommandProps = {
   /**
    * Handler that is called when an item is hovered via mouse.
    */
-  onHover?: (item: CommandOption) => void;
+  onHover?: (item: CommandOption, pointer: boolean) => void;
   /**
    * Handler that is called when input value changes.
    */
@@ -107,15 +107,12 @@ export function Command({
     onHighlightedIndexChange({ highlightedIndex, type }) {
       setHighlightedIndex(highlightedIndex);
 
-      const item = items[highlightedIndex];
-      const hasSubOptions =
-        item &&
-        (typeof item.subOptions === "function" || !!item.subOptions?.length);
-      if (
-        highlightedIndex !== -1 &&
-        (!hasSubOptions || type === useCombobox.stateChangeTypes.ItemMouseMove)
-      ) {
-        onHover?.(items[highlightedIndex]);
+      if (highlightedIndex !== -1) {
+        onHover?.(
+          items[highlightedIndex],
+          type === useCombobox.stateChangeTypes.FunctionSetHighlightedIndex ||
+            type === useCombobox.stateChangeTypes.ItemMouseMove,
+        );
       }
     },
     onSelectedItemChange({ selectedItem, type }) {

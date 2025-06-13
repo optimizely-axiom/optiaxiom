@@ -200,10 +200,11 @@ export function Menu({
         <Command
           enabled={open ? activeItemStack.length + 1 : false}
           inputValue={inputValue}
-          onHover={(item) => {
+          onHover={(item, pointer) => {
             setSubMenuOpen(
-              typeof item.subOptions === "function" ||
-                !!item.subOptions?.length,
+              pointer &&
+                (typeof item.subOptions === "function" ||
+                  !!item.subOptions?.length),
             );
           }}
           onInputValueChange={setInputValue}

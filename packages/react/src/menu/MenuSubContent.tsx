@@ -117,10 +117,11 @@ export const MenuSubContent = forwardRef<HTMLDivElement, MenuSubContentProps>(
                 inputValue: parentInputValue,
               })
             }
-            onHover={(item) => {
+            onHover={(item, pointer) => {
               setSubMenuOpen(
-                typeof item.subOptions === "function" ||
-                  !!item.subOptions?.length,
+                pointer &&
+                  (typeof item.subOptions === "function" ||
+                    !!item.subOptions?.length),
               );
             }}
             onInputValueChange={(inputValue) => {
