@@ -1,5 +1,14 @@
 # @optiaxiom/react
 
+## 1.5.6
+
+### Patch Changes
+
+- 5f1462b: simplify Sortable API
+- fdeaaad: fix menu dialog aria-labels
+- 7150d90: fix nested TransitionGroup closing
+- 511d99c: manually scroll selected item into view after mount
+
 ## 1.5.5
 
 ### Patch Changes
