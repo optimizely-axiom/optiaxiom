@@ -98,7 +98,9 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
                   onPlacedChange={(placed) => {
                     setPlaced(placed);
                     if (placed && highlightedItemRef.current) {
-                      highlightedItemRef.current.scrollIntoView();
+                      highlightedItemRef.current.scrollIntoView({
+                        block: "nearest",
+                      });
                     }
                   }}
                   {...downshift.getMenuProps({}, { suppressRefError: !placed })}

@@ -33,7 +33,7 @@ export const CommandListbox = forwardRef<HTMLDivElement, CommandListboxProps>(
         }
         onPlacedChange={(placed) => {
           if (placed && highlightedItemRef.current) {
-            highlightedItemRef.current.scrollIntoView();
+            highlightedItemRef.current.scrollIntoView({ block: "nearest" });
           }
         }}
         size={size}
