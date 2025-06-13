@@ -29,6 +29,7 @@ export const CommandInput = forwardRef<HTMLInputElement, CommandInputProps>(
         htmlSize={1}
         size={size}
         {...downshift.getInputProps({
+          "aria-label": props.placeholder,
           ref,
           ...props,
           onBlur: (event) => {
