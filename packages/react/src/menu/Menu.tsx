@@ -109,7 +109,8 @@ export function Menu({
 
   const contentRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
-  const triggerRef = useRef<HTMLDivElement | null>(null);
+  const itemRef = useRef<HTMLDivElement | null>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
   const options = useMemo(
     () =>
       size === "sm"
@@ -196,6 +197,7 @@ export function Menu({
         setActiveItemStack={setActiveItemStack}
         setOpen={setOpen}
         size={size}
+        triggerRef={triggerRef}
       >
         <Command
           enabled={open ? activeItemStack.length + 1 : false}
@@ -231,9 +233,9 @@ export function Menu({
           <MenuSubProvider
             contentRef={contentRef}
             inputRef={inputRef}
+            itemRef={itemRef}
             open={subMenuOpen}
             setOpen={setSubMenuOpen}
-            triggerRef={triggerRef}
           >
             {children}
           </MenuSubProvider>

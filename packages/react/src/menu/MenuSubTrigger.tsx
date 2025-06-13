@@ -26,7 +26,7 @@ export const MenuSubTrigger = forwardRef<HTMLDivElement, MenuSubTriggerProps>(
     const { downshift, enabled, highlightedItem, pauseInteractionRef } =
       useCommandContext("@optiaxiom/react/MenuSubTrigger");
     const { open } = usePopoverContext("@optiaxiom/react/MenuSubTrigger");
-    const { contentRef, triggerRef } = useMenuSubContext(
+    const { contentRef, itemRef } = useMenuSubContext(
       "@optiaxiom/react/MenuSubTrigger",
     );
 
@@ -44,9 +44,9 @@ export const MenuSubTrigger = forwardRef<HTMLDivElement, MenuSubTriggerProps>(
     const ref = useComposedRefs(innerRef, outerRef);
     useEffect(() => {
       if (open && highlightedItem === item && innerRef.current) {
-        triggerRef.current = innerRef.current;
+        itemRef.current = innerRef.current;
       }
-    }, [highlightedItem, item, open, triggerRef]);
+    }, [highlightedItem, item, open, itemRef]);
 
     return (
       <MenuItem

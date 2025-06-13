@@ -1,4 +1,6 @@
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
+import { useId } from "@radix-ui/react-id";
+import clsx from "clsx";
 import { forwardRef, useEffect, useMemo, useRef, useState } from "react";
 
 import type { ExcludeProps } from "../utils";
@@ -32,11 +34,13 @@ export const MenuSubContent = forwardRef<HTMLDivElement, MenuSubContentProps>(
     const {
       contentRef: parentContentRef,
       inputRef: parentInputRef,
-      triggerRef: parentTriggerRef,
+      itemRef: parentItemRef,
     } = useMenuSubContext("@optiaxiom/react/MenuSubContent");
     const { open, presence } = usePopoverContext(
       "@optiaxiom/react/MenuSubContent",
     );
+
+    const labelId = useId();
     const ref = useComposedRefs(parentContentRef, outerRef);
 
     const [inputValue, setInputValue] = useState("");
@@ -46,7 +50,7 @@ export const MenuSubContent = forwardRef<HTMLDivElement, MenuSubContentProps>(
     );
     const contentRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
-    const triggerRef = useRef<HTMLDivElement | null>(null);
+    const itemRef = useRef<HTMLDivElement | null>(null);
 
     const [subMenuOpen, setSubMenuOpen] = useState(false);
     useEffect(() => {
@@ -67,10 +71,11 @@ export const MenuSubContent = forwardRef<HTMLDivElement, MenuSubContentProps>(
 
     return (
       <>
-        <PopoverAnchor virtualRef={parentTriggerRef} />
+        <PopoverAnchor virtualRef={parentItemRef} />
         <PopoverContent
           align={align}
           alignOffset={item.subOptionsInputVisible ? -46 : -4}
+          aria-labelledby={clsx(parentItemRef.current?.id, labelId)}
           onCloseAutoFocus={(event) => {
             event.preventDefault();
             parentInputRef.current?.focus();
@@ -108,6 +113,9 @@ export const MenuSubContent = forwardRef<HTMLDivElement, MenuSubContentProps>(
           sideOffset={0}
           {...props}
         >
+          <VisuallyHidden asChild>
+            <h2 id={labelId}>Submenu</h2>
+          </VisuallyHidden>
           <Command
             enabled
             inputValue={inputValue}
@@ -151,9 +159,9 @@ export const MenuSubContent = forwardRef<HTMLDivElement, MenuSubContentProps>(
             <MenuSubProvider
               contentRef={contentRef}
               inputRef={inputRef}
+              itemRef={itemRef}
               open={subMenuOpen}
               setOpen={setSubMenuOpen}
-              triggerRef={triggerRef}
             >
               <MenuListbox onScroll={() => setSubMenuOpen(false)} />
             </MenuSubProvider>
