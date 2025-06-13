@@ -8,6 +8,7 @@ import { Icon } from "../icon";
 import { IconCircleCheckSolid } from "../icons/IconCircleCheckSolid";
 import { IconCircleExclamationSolid } from "../icons/IconCircleExclamationSolid";
 import { IconCircleInfoSolid } from "../icons/IconCircleInfoSolid";
+import { IconOpal } from "../icons/IconOpal";
 import { IconTriangleExclamationSolid } from "../icons/IconTriangleExclamationSolid";
 import { IconX } from "../icons/IconX";
 import * as styles from "./Alert.css";
@@ -26,6 +27,7 @@ const mapIntentToIcon = {
   danger: IconCircleExclamationSolid,
   information: IconCircleInfoSolid,
   neutral: IconCircleInfoSolid,
+  opal: IconOpal,
   success: IconCircleCheckSolid,
   warning: IconTriangleExclamationSolid,
 };
@@ -43,7 +45,7 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>(
         {...props}
       >
         <Icon asChild {...styles.icon({ intent })}>
-          {createElement(mapIntentToIcon[intent])}
+          {createElement<object>(mapIntentToIcon[intent])}
         </Icon>
 
         <Flex id={labelId} {...styles.content()}>

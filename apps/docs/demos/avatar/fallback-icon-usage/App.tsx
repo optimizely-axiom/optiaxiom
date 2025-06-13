@@ -1,11 +1,12 @@
-"use client";
+import { Avatar, Flex } from "@optiaxiom/react";
 
-import type { ComponentPropsWithoutRef } from "react";
-
-import { Avatar } from "@optiaxiom/react";
-
-export function App({
-  fallback = "user",
-}: Pick<ComponentPropsWithoutRef<typeof Avatar>, "fallback">) {
-  return <Avatar fallback={fallback} />;
+export function App() {
+  return (
+    <Flex flexDirection="row">
+      <Avatar />
+      <Avatar fallback="user" />
+      <Avatar fallback="team" />
+      <Avatar fallback="opal" />
+    </Flex>
+  );
 }

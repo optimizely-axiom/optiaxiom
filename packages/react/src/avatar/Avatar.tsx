@@ -2,6 +2,7 @@ import * as RadixAvatar from "@radix-ui/react-avatar";
 import { forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
+import { IconOpal } from "../icons/IconOpal";
 import { IconUserSolid } from "../icons/IconUserSolid";
 import { IconUsersSolid } from "../icons/IconUsersSolid";
 import * as styles from "./Avatar.css";
@@ -35,6 +36,7 @@ function getInitialsFromName(name: string) {
 }
 
 const mapFallbackToIcon = {
+  opal: null,
   team: <IconUsersSolid />,
   user: <IconUserSolid />,
 };
@@ -56,6 +58,11 @@ export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
     const context = useAvatarContext("@optiaxiom/react/Avatar");
     const size = sizeProp || context?.size || "md";
 
+    if (fallback === "opal") {
+      fallback = "user";
+      src = "opal";
+    }
+
     return (
       <Box
         asChild
@@ -65,7 +72,13 @@ export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
         <RadixAvatar.Root ref={ref}>
           {src && (
             <Box asChild objectFit="cover" rounded="inherit" size="full">
-              <RadixAvatar.Image alt={name ?? "avatar"} src={src} />
+              {src === "opal" ? (
+                <IconOpal asChild>
+                  <RadixAvatar.Image alt={name ?? "Opal"} />
+                </IconOpal>
+              ) : (
+                <RadixAvatar.Image alt={name ?? "avatar"} src={src} />
+              )}
             </Box>
           )}
           <Box asChild {...styles.fallback({})}>

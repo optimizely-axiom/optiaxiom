@@ -31,6 +31,10 @@ export const alert = recipe({
       neutral: {
         bg: "bg.secondary",
       },
+      opal: style({
+        backgroundImage:
+          "radial-gradient(150% 150% at 22px 22px, #F5F3FF, #E5EFFF)",
+      }),
       success: {
         bg: "bg.success.subtle",
       },
@@ -58,6 +62,10 @@ export const icon = recipe({
       },
       neutral: {
         color: "fg.tertiary",
+      },
+      opal: {
+        h: "xs",
+        mt: "2",
       },
       success: {
         color: "fg.success.strong",

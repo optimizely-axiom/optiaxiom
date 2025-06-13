@@ -38,6 +38,7 @@ const appearances = [
   "subtle",
   "danger",
   "danger-outline",
+  "primary-opal",
 ] as const;
 
 export const Basic: Story = {

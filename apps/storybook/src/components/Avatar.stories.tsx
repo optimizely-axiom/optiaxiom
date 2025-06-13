@@ -44,6 +44,12 @@ export const Image: Story = {
   },
 };
 
+export const Opal: Story = {
+  args: {
+    fallback: "opal",
+  },
+};
+
 export const InitialsOverride: Story = {
   args: {
     children: "JD",
