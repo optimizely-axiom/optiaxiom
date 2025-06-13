@@ -146,7 +146,7 @@ export const MenuSubContent = forwardRef<HTMLDivElement, MenuSubContentProps>(
             options={options}
           >
             <VisuallyHidden disabled={item.subOptionsInputVisible}>
-              <MenuSubInput ref={inputRef} />
+              <MenuSubInput placeholder="Filter..." ref={inputRef} />
             </VisuallyHidden>
             <MenuSubProvider
               contentRef={contentRef}
