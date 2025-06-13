@@ -14,8 +14,8 @@ import {
   Card,
   CardHeader,
   Sortable,
+  SortableGroup,
   SortableItem,
-  SortableList,
 } from "@optiaxiom/react/unstable";
 import { useState } from "react";
 
@@ -100,14 +100,15 @@ export const Basic: Story = {
       status: (typeof columns)[number];
     }>;
     const [items, setItems] = useState(() => {
-      const items = Object.fromEntries(
-        swimlanes.map((swimlane) => [
-          swimlane,
-          Object.fromEntries(columns.map((column) => [column, [] as string[]])),
-        ]),
-      );
+      const items: Record<string, string[]> = {};
+      for (const swimlane of swimlanes) {
+        for (const column of columns) {
+          items[`${swimlane}:${column}`] = [];
+        }
+      }
       for (const card of cards) {
-        items[card.assignee][card.status].push(card.id);
+        const id = `${card.assignee}:${card.status}`;
+        items[id].push(card.id);
       }
       return items;
     });
@@ -121,65 +122,91 @@ export const Basic: Story = {
         onItemsChange={setItems}
         p="16"
       >
-        {({ count, id: swimlane }) => (
-          <Flex asChild gap="0" justifyContent="flex-start" key={swimlane}>
-            <Disclosure defaultOpen>
-              <DisclosureTrigger flex="none">
-                <Box alignItems="center" display="flex" gap="8">
-                  <Avatar
-                    name={
-                      swimlane === "unassigned"
-                        ? undefined
-                        : store.users[swimlane].name
-                    }
-                    size="sm"
-                  />
-                  {store.users[swimlane].name}
-                  <Text color="fg.tertiary" display="inline">
-                    {count} cards
-                  </Text>
-                </Box>
-              </DisclosureTrigger>
-              <DisclosureContent asChild>
-                <SortableList alignItems="stretch" flex="1" flexDirection="row">
-                  {({ count, id: column, isDropTarget }) => (
-                    <Flex
-                      bg={
-                        isDropTarget
-                          ? "bg.information.subtle"
-                          : "bg.avatar.neutral"
+        {(items) =>
+          swimlanes.map((swimlane, index) => (
+            <Flex asChild gap="0" justifyContent="flex-start" key={swimlane}>
+              <Disclosure defaultOpen>
+                <DisclosureTrigger flex="none">
+                  <Box alignItems="center" display="flex" gap="8">
+                    <Avatar
+                      name={
+                        swimlane === "unassigned"
+                          ? undefined
+                          : store.users[swimlane].name
                       }
-                      flex="1"
-                      justifyContent="flex-start"
-                      py="16"
-                      rounded="md"
-                      transition="colors"
-                    >
-                      <Text display="flex" fontWeight="500" gap="12" mx="16">
-                        {store.statuses[column].label}
-                        <Badge>{count}</Badge>
-                      </Text>
-                      <SortableList
+                      size="sm"
+                    />
+                    {store.users[swimlane].name}
+                    <Text color="fg.tertiary" display="inline">
+                      {columns.reduce(
+                        (count, column) =>
+                          count + items[`${swimlane}:${column}`].length,
+                        0,
+                      )}{" "}
+                      cards
+                    </Text>
+                  </Box>
+                </DisclosureTrigger>
+                <DisclosureContent asChild>
+                  <Flex alignItems="stretch" flex="1" flexDirection="row">
+                    {columns.map((column) => (
+                      <SortableGroup
+                        asChild
                         flex="1"
-                        overflow="auto"
-                        px="16"
-                        style={{ flexBasis: 200 }}
+                        group={`${swimlane}:${column}`}
+                        index={index}
+                        justifyContent="flex-start"
+                        key={column}
+                        py="16"
+                        rounded="md"
+                        transition="colors"
                       >
-                        {({ id: item }) => (
-                          <Card asChild border="0">
-                            <SortableItem>
-                              <CardHeader>{item}</CardHeader>
-                            </SortableItem>
-                          </Card>
+                        {(isDropTarget) => (
+                          <Box
+                            bg={
+                              isDropTarget
+                                ? "bg.information.subtle"
+                                : "bg.avatar.neutral"
+                            }
+                          >
+                            <Text
+                              display="flex"
+                              fontWeight="500"
+                              gap="12"
+                              mx="16"
+                            >
+                              {store.statuses[column].label}
+                              <Badge>
+                                {items[`${swimlane}:${column}`].length}
+                              </Badge>
+                            </Text>
+                            <Flex
+                              flex="1"
+                              justifyContent="flex-start"
+                              overflow="auto"
+                              px="16"
+                              style={{ flexBasis: 200 }}
+                            >
+                              {items[`${swimlane}:${column}`].map(
+                                (item, index) => (
+                                  <Card asChild border="0" key={item}>
+                                    <SortableItem index={index} item={item}>
+                                      <CardHeader>{item}</CardHeader>
+                                    </SortableItem>
+                                  </Card>
+                                ),
+                              )}
+                            </Flex>
+                          </Box>
                         )}
-                      </SortableList>
-                    </Flex>
-                  )}
-                </SortableList>
-              </DisclosureContent>
-            </Disclosure>
-          </Flex>
-        )}
+                      </SortableGroup>
+                    ))}
+                  </Flex>
+                </DisclosureContent>
+              </Disclosure>
+            </Flex>
+          ))
+        }
       </Sortable>
     );
   },

@@ -13,14 +13,23 @@ export function App() {
 
   return (
     <Sortable items={items} onItemsChange={setItems}>
-      {({ id }) => (
-        <SortableItem alignItems="center" border="1" display="flex">
-          <SortableHandle>
-            <IconGripVertical size={20} />
-          </SortableHandle>
-          Item {id}
-        </SortableItem>
-      )}
+      {(items) =>
+        items.map((item, index) => (
+          <SortableItem
+            alignItems="center"
+            border="1"
+            display="flex"
+            index={index}
+            item={item}
+            key={item}
+          >
+            <SortableHandle>
+              <IconGripVertical size={20} />
+            </SortableHandle>
+            Item {item}
+          </SortableItem>
+        ))
+      }
     </Sortable>
   );
 }

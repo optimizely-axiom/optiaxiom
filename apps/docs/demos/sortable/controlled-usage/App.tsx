@@ -8,7 +8,13 @@ export function App() {
 
   return (
     <Sortable items={items} onItemsChange={setItems}>
-      {({ id }) => <SortableItem border="1">Item {id}</SortableItem>}
+      {(items) =>
+        items.map((item, index) => (
+          <SortableItem border="1" index={index} item={item} key={item}>
+            Item {item}
+          </SortableItem>
+        ))
+      }
     </Sortable>
   );
 }

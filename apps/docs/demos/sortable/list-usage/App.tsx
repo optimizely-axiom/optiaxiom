@@ -1,10 +1,10 @@
 "use client";
 
-import { Box } from "@optiaxiom/react";
+import { Box, Flex } from "@optiaxiom/react";
 import {
   Sortable,
+  SortableGroup,
   SortableItem,
-  SortableList,
 } from "@optiaxiom/react/unstable";
 import { useState } from "react";
 
@@ -28,37 +28,50 @@ export function App() {
       items={items}
       onItemsChange={setItems}
     >
-      {({ id, isDropTarget }) => (
-        <Box
-          bg={isDropTarget ? "bg.warning.subtle" : "bg.secondary"}
-          display="flex"
-          flexDirection="column"
-          overflow="hidden"
-          rounded="sm"
-          transition="colors"
-        >
-          <Box
-            bg={isDropTarget ? "bg.warning.light" : "bg.avatar.neutral"}
-            p="12"
-            transition="colors"
+      {(items) =>
+        Object.entries(items).map(([column, items], index) => (
+          <SortableGroup
+            asChild
+            gap="0"
+            group={column}
+            index={index}
+            key={column}
+            overflow="hidden"
+            rounded="sm"
           >
-            {id}
-          </Box>
-          <SortableList flex="1" p="12">
-            {({ id }) => (
-              <SortableItem
-                bg="bg.default"
-                p="12"
-                rounded="sm"
-                textAlign="center"
-                w="224"
+            {(isDropTarget) => (
+              <Box
+                bg={isDropTarget ? "bg.warning.subtle" : "bg.secondary"}
+                transition="colors"
               >
-                Item {id}
-              </SortableItem>
+                <Box
+                  bg={isDropTarget ? "bg.warning.light" : "bg.avatar.neutral"}
+                  p="12"
+                  transition="colors"
+                >
+                  {column}
+                </Box>
+                <Flex flex="1" justifyContent="flex-start" p="12">
+                  {items.map((item, index) => (
+                    <SortableItem
+                      bg="bg.default"
+                      index={index}
+                      item={item}
+                      key={item}
+                      p="24"
+                      rounded="sm"
+                      textAlign="center"
+                      w="224"
+                    >
+                      Item {item}
+                    </SortableItem>
+                  ))}
+                </Flex>
+              </Box>
             )}
-          </SortableList>
-        </Box>
-      )}
+          </SortableGroup>
+        ))
+      }
     </Sortable>
   );
 }
