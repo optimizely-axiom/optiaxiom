@@ -11,7 +11,6 @@ import type { PopoverContent } from "../popover";
 import type { ExcludeProps } from "../utils";
 
 import { useCommandContext } from "../command/internals";
-import { useFieldContext } from "../field/internals";
 import { VisuallyHidden } from "../visually-hidden";
 import { useMenuContext } from "./MenuContext";
 import { MenuDialogContent } from "./MenuDialogContent";
@@ -31,7 +30,6 @@ export const MenuContent = forwardRef<HTMLDivElement, MenuContentProps>(
     const innerRef = useRef<HTMLDivElement>(null);
     const ref = useComposedRefs(innerRef, outerRef);
 
-    const { labelId } = useFieldContext("@optiaxiom/react/MenuContent");
     const { activeItemStack, inputRef, inputVisible, placeholder, size } =
       useMenuContext("@optiaxiom/react/MenuContent");
     const { empty, loading } = useCommandContext(
@@ -48,7 +46,6 @@ export const MenuContent = forwardRef<HTMLDivElement, MenuContentProps>(
 
     return (
       <Comp
-        aria-labelledby={labelId}
         onPointerDown={(event) => {
           onPointerDown?.(event);
           if (event.defaultPrevented) {

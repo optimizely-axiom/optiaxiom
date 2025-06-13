@@ -1,5 +1,6 @@
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
-import { type ComponentPropsWithoutRef, forwardRef, useRef } from "react";
+import { useId } from "@radix-ui/react-id";
+import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import { AngleMenuButton } from "../angle-menu-button";
 import { DialogTrigger } from "../dialog";
@@ -20,18 +21,21 @@ export const MenuTrigger = forwardRef<HTMLButtonElement, MenuTriggerProps>(
     },
     outerRef,
   ) => {
-    const { setOpen, size } = useMenuContext("@optiaxiom/react/MenuTrigger");
+    const { setOpen, size, triggerRef } = useMenuContext(
+      "@optiaxiom/react/MenuTrigger",
+    );
     const Comp = size === "sm" ? PopoverTrigger : DialogTrigger;
 
-    const buttonRef = useRef<HTMLButtonElement>(null);
-    const ref = useComposedRefs(outerRef, buttonRef);
+    const ref = useComposedRefs(outerRef, triggerRef);
 
-    const labelId = useFieldLabelTrigger(buttonRef, ariaLabelledBy);
+    const id = useId();
+    const labelId = useFieldLabelTrigger(triggerRef, ariaLabelledBy);
 
     return (
       <Comp
         aria-labelledby={labelId}
         asChild
+        id={id}
         onKeyDown={(event) => {
           onKeyDown?.(event);
           if (event.defaultPrevented) {

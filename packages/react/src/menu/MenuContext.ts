@@ -22,4 +22,5 @@ export const [MenuProvider, useMenuContext] = createContext<{
   setActiveItemStack: Dispatch<SetStateAction<CommandOption[]>>;
   setOpen: (open: boolean) => void;
   size: "lg" | "sm";
+  triggerRef: RefObject<HTMLButtonElement>;
 }>("@optiaxiom/react/Menu");
