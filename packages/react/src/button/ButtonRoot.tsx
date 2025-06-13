@@ -15,6 +15,7 @@ const appearances = {
   default: { intent: "neutral", variant: "outline" },
   inverse: { intent: "neutral", variant: "strong" },
   primary: { intent: "primary", variant: "strong" },
+  "primary-opal": { intent: "primary", variant: "opal" },
   subtle: { intent: "neutral", variant: "subtle" },
 } satisfies Record<string, styles.ButtonVariants>;
 

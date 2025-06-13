@@ -44,6 +44,12 @@ export const Image: Story = {
   },
 };
 
+export const Opal: Story = {
+  args: {
+    src: "opal",
+  },
+};
+
 export const InitialsOverride: Story = {
   args: {
     children: "JD",

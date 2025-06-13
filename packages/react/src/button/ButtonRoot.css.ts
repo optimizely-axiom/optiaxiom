@@ -123,6 +123,20 @@ export const buttonBase = recipe({
       true: {},
     },
     variant: {
+      opal: style({
+        backgroundImage: `linear-gradient(135deg, #392ECF 15%, #7740EC 85%)`,
+        color: fallbackVar(solidTextColorVar, theme.colors["fg.white"]),
+
+        selectors: {
+          "&[data-disabled]:not([data-loading])": {
+            backgroundColor: theme.colors["bg.secondary"],
+            backgroundImage: "none",
+            border: `1px solid ${theme.colors["border.disabled"]}`,
+            color: theme.colors["fg.disabled"],
+            paddingInline: `calc(${paddingInlineVar} - 1px)`,
+          },
+        },
+      }),
       outline: style({
         backgroundColor: theme.colors["bg.default"],
         border: `1px solid ${fallbackVar(subtleOutlineColorVar, accentColorVar)}`,
