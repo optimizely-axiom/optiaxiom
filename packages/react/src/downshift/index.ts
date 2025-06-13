@@ -1,1 +1,1 @@
-export * from "./usePortalPatch";
+export * from "./useHighlightedIndex";

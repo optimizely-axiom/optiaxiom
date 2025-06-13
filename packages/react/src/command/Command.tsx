@@ -2,7 +2,7 @@ import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import { useCombobox } from "downshift";
 import { type ReactNode, useRef } from "react";
 
-import { usePortalPatch } from "../downshift";
+import { useHighlightedIndex } from "../downshift";
 import {
   type CommandOption,
   CommandProvider,
@@ -73,7 +73,7 @@ export function Command({
   });
   const items = useCommandItems({ inputValue, options });
 
-  const [highlightedIndex, setHighlightedIndex, placed] = usePortalPatch(
+  const [highlightedIndex, setHighlightedIndex] = useHighlightedIndex(
     enabled,
     () =>
       items.filter((item) => "selected" in item).length > items.length / 2
@@ -100,7 +100,7 @@ export function Command({
     inputValue,
     isItemDisabled: (item) =>
       Boolean(resolveItemProperty(item?.disabledReason)),
-    isOpen: placed,
+    isOpen: !!enabled,
     items,
     itemToString: (item) =>
       item !== null ? resolveItemProperty(item.label, { inputValue }) : "",

@@ -16,9 +16,13 @@ export type CommandListboxProps = ExcludeProps<
 
 export const CommandListbox = forwardRef<HTMLDivElement, CommandListboxProps>(
   ({ children, size, ...props }, ref) => {
-    const { downshift, highlightedItem, inputValue, items } = useCommandContext(
-      "@optiaxiom/react/CommandListbox",
-    );
+    const {
+      downshift,
+      highlightedItem,
+      highlightedItemRef,
+      inputValue,
+      items,
+    } = useCommandContext("@optiaxiom/react/CommandListbox");
 
     return (
       <ListboxItemized
@@ -27,6 +31,11 @@ export const CommandListbox = forwardRef<HTMLDivElement, CommandListboxProps>(
         itemToKey={(item: CommandOption) =>
           item.key ?? resolveItemProperty(item.label, { inputValue })
         }
+        onPlacedChange={(placed) => {
+          if (placed && highlightedItemRef.current) {
+            highlightedItemRef.current.scrollIntoView();
+          }
+        }}
         size={size}
         {...downshift.getMenuProps({ ref, ...props })}
       >

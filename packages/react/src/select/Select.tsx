@@ -11,7 +11,7 @@ import {
   useRef,
 } from "react";
 
-import { usePortalPatch } from "../downshift";
+import { useHighlightedIndex } from "../downshift";
 import { useObserveValue } from "../hooks";
 import { type SelectOption, SelectProvider } from "./SelectContext";
 import { SelectHiddenSelect } from "./SelectHiddenSelect";
@@ -120,7 +120,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
       prop: open,
     });
 
-    const [highlightedIndex, setHighlightedIndex, placed] = usePortalPatch(
+    const [highlightedIndex, setHighlightedIndex] = useHighlightedIndex(
       isOpen,
       () =>
         selectedItem
@@ -130,14 +130,15 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
             )
           : -1,
     );
+    const highlightedItemRef = useRef<HTMLElement>(null);
 
     const downshift = useSelect({
       highlightedIndex:
-        highlightedIndex === -1 && placed
+        highlightedIndex === -1
           ? items.findIndex((item) => !item.disabledReason)
           : highlightedIndex,
       isItemDisabled: (item) => !!item.disabledReason,
-      isOpen: placed,
+      isOpen,
       // @ts-expect-error -- no harm in supporting read only arrays
       items,
       itemToKey: (item) => (item !== null ? item.value : item),
@@ -193,6 +194,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
           disabled={disabled}
           downshift={downshift}
           highlightedItem={items[downshift.highlightedIndex]}
+          highlightedItemRef={highlightedItemRef}
           isOpen={isOpen}
           items={items}
           loading={loading}

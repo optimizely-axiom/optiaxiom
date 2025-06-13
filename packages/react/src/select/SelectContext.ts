@@ -1,7 +1,7 @@
 "use client";
 
 import type { UseSelectReturnValue } from "downshift";
-import type { FocusEventHandler, ReactNode } from "react";
+import type { FocusEventHandler, ReactNode, RefObject } from "react";
 
 import { createContext } from "@radix-ui/react-context";
 
@@ -55,6 +55,7 @@ export const [SelectProvider, useSelectContext] = createContext<{
   disabled?: boolean;
   downshift: UseSelectReturnValue<SelectOption>;
   highlightedItem: SelectOption;
+  highlightedItemRef: RefObject<HTMLElement>;
   isOpen: boolean | undefined;
   items: readonly SelectOption[] | SelectOption[];
   loading: boolean | undefined;

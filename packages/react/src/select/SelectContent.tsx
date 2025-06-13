@@ -50,8 +50,14 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
     },
     ref,
   ) => {
-    const { downshift, highlightedItem, isOpen, items, loading } =
-      useSelectContext("@optiaxiom/react/SelectContent");
+    const {
+      downshift,
+      highlightedItem,
+      highlightedItemRef,
+      isOpen,
+      items,
+      loading,
+    } = useSelectContext("@optiaxiom/react/SelectContent");
 
     const [placed, setPlaced] = useState(false);
 
@@ -89,7 +95,12 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
                   items={items}
                   itemToKey={(item: SelectOption) => item.value}
                   loading={loading}
-                  onPlacedChange={setPlaced}
+                  onPlacedChange={(placed) => {
+                    setPlaced(placed);
+                    if (placed && highlightedItemRef.current) {
+                      highlightedItemRef.current.scrollIntoView();
+                    }
+                  }}
                   {...downshift.getMenuProps({}, { suppressRefError: !placed })}
                 >
                   {children ??
