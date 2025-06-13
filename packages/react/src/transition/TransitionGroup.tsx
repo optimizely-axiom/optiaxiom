@@ -9,13 +9,16 @@ import {
 } from "react";
 
 import { TransitionGlobalConfig } from "./TransitionGlobalConfig";
-import { TransitionGroupProvider } from "./TransitionGroupContext";
+import {
+  TransitionGroupProvider,
+  useTransitionGroupContext,
+} from "./TransitionGroupContext";
 import { waitForAnimation } from "./waitForAnimation";
 
 export function TransitionGroup({
   children,
   onPresenceChange,
-  open,
+  open: openProp,
   presence: presenceProp,
 }: {
   children?: ReactNode;
@@ -41,6 +44,9 @@ export function TransitionGroup({
     onChange: onPresenceChange,
     prop: presenceProp,
   });
+  const { open: openParent } =
+    useTransitionGroupContext("@optiaxiom/react/TransitionGroup") ?? {};
+  const open = openParent === false ? openParent : openProp;
   useEffect(() => {
     if (open) {
       const timer = setTimeout(() => {
