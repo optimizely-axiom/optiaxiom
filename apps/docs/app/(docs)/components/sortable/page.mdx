@@ -18,9 +18,9 @@ Basic building blocks for sortable interfaces.
 ```tsx
 import {
   Sortable,
+  SortableGroup,
   SortableHandle,
   SortableItem,
-  SortableList,
 } from "@optiaxiom/react/unstable";
 
 export default () => (
@@ -29,9 +29,9 @@ export default () => (
       <SortableHandle />
     </SortableItem>
 
-    <SortableList>
+    <SortableGroup>
       <SortableItem />
-    </SortableList>
+    </SortableGroup>
   </Sortable>
 );
 ```
@@ -40,7 +40,7 @@ export default () => (
 
 `Sortable` works with a list of items provided via the `items` prop. Each item must be a unique string identifying the sortable item within the list.
 
-Next we provide a render prop in `children` that takes in an object with the properties **id** and **index** - to render the contents of each item.
+Next we provide a render prop in `children` that has the same `items` as an argument but representing the live state as they are being sorted.
 
 Finally we use `SortableItem` to render each sortable element inside the render function.
 
@@ -73,9 +73,9 @@ By default the whole item acts as the drag handle, but we can use the `SortableH
 
 ### Multiple lists
 
-Use the `SortableList` component to swap items between lists in addition to sorting with each other.
+Use the `SortableGroup` component to swap items between lists in addition to sorting with each other.
 
-We also need to change the `items` prop to an object where the key is the ID of the list and the value is the list of items within that list.
+We also need to change the `items` prop to an object where the key is the ID of the group and the value is the ID of items within that list.
 
 <Demo component="sortable/list-usage" />
 
@@ -91,9 +91,9 @@ We can combine Sortable with the [Card](../card/) component to build a sortable 
 
 <PropsTable component="Sortable" />
 
-### SortableList
+### SortableGroup
 
-<PropsTable component="SortableList" />
+<PropsTable component="SortableGroup" />
 
 ### SortableItem
 

@@ -2,10 +2,10 @@
 
 import { createContext } from "@radix-ui/react-context";
 
-export const [SortableListProvider, useSortableListContext] = createContext<{
+export const [SortableGroupProvider, useSortableGroupContext] = createContext<{
   id: string | undefined;
   setHasDropTarget: (flag: boolean) => void;
-}>("@optiaxiom/react/SortableList", {
+}>("@optiaxiom/react/SortableGroup", {
   id: undefined,
   setHasDropTarget: () => {},
 });

@@ -15,17 +15,22 @@ export function App() {
       items={items}
       onItemsChange={setItems}
     >
-      {({ id }) => (
-        <SortableItem
-          bg="bg.avatar.neutral"
-          p="12"
-          rounded="sm"
-          textAlign="center"
-          w="224"
-        >
-          Item {id}
-        </SortableItem>
-      )}
+      {(items) =>
+        items.map((item, index) => (
+          <SortableItem
+            bg="bg.avatar.neutral"
+            index={index}
+            item={item}
+            key={item}
+            p="12"
+            rounded="sm"
+            textAlign="center"
+            w="224"
+          >
+            Item {item}
+          </SortableItem>
+        ))
+      }
     </Sortable>
   );
 }

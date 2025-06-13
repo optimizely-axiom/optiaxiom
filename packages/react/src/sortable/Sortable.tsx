@@ -12,14 +12,11 @@ import {
 import { type BoxProps } from "../box";
 import { Flex } from "../flex";
 import { SortableProvider } from "./SortableContext";
-import { SortableItemContainer } from "./SortableItemContainer";
-import { SortableListContainer } from "./SortableListContainer";
-import { collapse, type Context, expand, type Items } from "./utils";
 
 export type SortableProps<T extends Items> = BoxProps<
   "div",
   {
-    children?: (item: Context) => ReactNode;
+    children?: (items: T) => ReactNode;
     /**
      * An array of item IDs in controlled mode.
      */
@@ -43,6 +40,8 @@ export type SortableProps<T extends Items> = BoxProps<
     onItemsChange?: (value: T) => void;
   }
 >;
+
+type Items = Record<string, string[]> | string[];
 
 export const Sortable = forwardRef<HTMLDivElement, SortableProps<Items>>(
   ({ children, items: itemsProp, onChange, onItemsChange, ...props }, ref) => {
@@ -73,11 +72,7 @@ export const Sortable = forwardRef<HTMLDivElement, SortableProps<Items>>(
             return;
           }
 
-          const normalized = collapse(itemsState);
-          const nextNormalized = move(normalized, event);
-          if (nextNormalized !== normalized) {
-            setItemsState(expand(nextNormalized));
-          }
+          setItemsState(move(itemsState, event));
         }}
         onDragStart={() => {
           setItemsState(itemsProp ?? []);
@@ -85,26 +80,7 @@ export const Sortable = forwardRef<HTMLDivElement, SortableProps<Items>>(
       >
         <SortableProvider cacheRef={cacheRef} isSorting={itemsState !== null}>
           <Flex ref={ref} {...props}>
-            {typeof children === "function"
-              ? Array.isArray(items)
-                ? items.map((item, index) => (
-                    <SortableItemContainer id={item} index={index} key={item}>
-                      {children}
-                    </SortableItemContainer>
-                  ))
-                : Object.entries<Record<string, string[]> | string[]>(
-                    items,
-                  ).map(([group, items], index) => (
-                    <SortableListContainer
-                      id={group}
-                      index={index}
-                      items={items}
-                      key={group}
-                    >
-                      {children}
-                    </SortableListContainer>
-                  ))
-              : children}
+            {children?.(items)}
           </Flex>
         </SortableProvider>
       </DragDropProvider>
