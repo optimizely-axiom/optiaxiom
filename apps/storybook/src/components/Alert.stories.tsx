@@ -49,6 +49,7 @@ export const Appearance: Story = {
       <Alert intent="warning" {...args} />
       <Alert intent="danger" {...args} />
       <Alert intent="success" {...args} />
+      <Alert intent="opal" {...args} />
     </Flex>
   ),
 };

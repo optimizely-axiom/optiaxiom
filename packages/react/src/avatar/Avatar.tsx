@@ -2,6 +2,7 @@ import * as RadixAvatar from "@radix-ui/react-avatar";
 import { forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
+import { IconOpal } from "../icons/IconOpal";
 import { IconUserSolid } from "../icons/IconUserSolid";
 import { IconUsersSolid } from "../icons/IconUsersSolid";
 import * as styles from "./Avatar.css";
@@ -21,7 +22,7 @@ export type AvatarProps = BoxProps<
     /**
      * Render the image inside the avatar.
      */
-    src?: string;
+    src?: "opal" | (string & {});
   }
 >;
 
@@ -65,7 +66,13 @@ export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
         <RadixAvatar.Root ref={ref}>
           {src && (
             <Box asChild objectFit="cover" rounded="inherit" size="full">
-              <RadixAvatar.Image alt={name ?? "avatar"} src={src} />
+              {src === "opal" ? (
+                <IconOpal asChild>
+                  <RadixAvatar.Image alt={name ?? "Opal"} />
+                </IconOpal>
+              ) : (
+                <RadixAvatar.Image alt={name ?? "avatar"} src={src} />
+              )}
             </Box>
           )}
           <Box asChild {...styles.fallback({})}>
