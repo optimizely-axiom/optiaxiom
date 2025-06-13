@@ -1,3 +1,4 @@
+import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import { forwardRef, type MouseEvent } from "react";
 
 import { Box, type BoxProps } from "../box";
@@ -18,9 +19,19 @@ export type SelectItemProps = BoxProps<
 >;
 
 export const SelectItem = forwardRef<HTMLDivElement, SelectItemProps>(
-  ({ children, index, item, onMouseMove, size, ...props }, ref) => {
-    const { downshift, highlightedItem, isOpen, items, selectedItem } =
-      useSelectContext("@optiaxiom/react/SelectItem");
+  ({ children, index, item, onMouseMove, size, ...props }, outerRef) => {
+    const {
+      downshift,
+      highlightedItem,
+      highlightedItemRef,
+      isOpen,
+      items,
+      selectedItem,
+    } = useSelectContext("@optiaxiom/react/SelectItem");
+    const ref = useComposedRefs(
+      highlightedItem === item ? highlightedItemRef : undefined,
+      outerRef,
+    );
 
     const itemProps = downshift.getItemProps({
       "aria-posinset": index + 1,
