@@ -1,3 +1,4 @@
+export * from "./aside";
 export * from "./breadcrumb";
 export * from "./calendar";
 export * from "./card";
