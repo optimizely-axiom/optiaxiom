@@ -5,6 +5,9 @@ import { useState } from "react";
 import { userEvent } from "storybook/test";
 
 export default {
+  args: {
+    "aria-label": "Label",
+  },
   component: Progress,
   parameters: {
     design: {
@@ -51,7 +54,7 @@ export const CompletionStages: Story = {
   play: async ({ canvas }) => {
     await userEvent.click(canvas.getByRole("button", { name: "Forward" }));
   },
-  render: function CompletionStagesComponent() {
+  render: function CompletionStagesComponent(args) {
     const [scale, setScale] = useState(1);
     return (
       <Flex w="384">
@@ -62,6 +65,7 @@ export const CompletionStages: Story = {
 
         {values.map(({ max, value }, index) => (
           <Progress
+            {...args}
             key={index}
             max={max}
             value={typeof value !== "undefined" ? value * scale : undefined}

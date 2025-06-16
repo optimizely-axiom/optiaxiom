@@ -17,7 +17,9 @@ export const Basic: Story = {
     children: (
       <>
         <PopoverTrigger>Toggle Popover</PopoverTrigger>
-        <PopoverContent>This is a popover element.</PopoverContent>
+        <PopoverContent aria-label="Toggle Popover Popover">
+          This is a popover element.
+        </PopoverContent>
       </>
     ),
     defaultOpen: false,
@@ -49,7 +51,7 @@ export const CustomPositioning: Story = {
     children: (
       <>
         <PopoverTrigger>Toggle Popover</PopoverTrigger>
-        <PopoverContent align="end">
+        <PopoverContent align="end" aria-label="Toggle Popover Popover">
           This popover is on custom position.
         </PopoverContent>
       </>

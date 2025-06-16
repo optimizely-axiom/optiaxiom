@@ -3,11 +3,9 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import {
   Box,
   type BoxProps,
-  Button,
   Listbox,
   ListboxCheckboxItem,
   ListboxEmpty,
-  ListboxFooter,
   ListboxGroup,
   ListboxItem,
   ListboxItemIndicator,
@@ -21,6 +19,11 @@ import { IconLanguage, IconStar } from "@tabler/icons-react";
 type Story = StoryObj<typeof Listbox>;
 
 export default {
+  args: {
+    "aria-label": "Sample",
+    role: "listbox",
+    tabIndex: 0,
+  },
   component: Listbox,
   render: (args) => (
     <Paper asChild maxH="xs" p="4" w="224">
@@ -89,7 +92,7 @@ export const Basic: Story = {
     children: (
       <>
         {languages.map((item) => (
-          <ListboxItem asChild key={item}>
+          <ListboxItem asChild key={item} role="option">
             <PointerItem>{item}</PointerItem>
           </ListboxItem>
         ))}
@@ -107,6 +110,7 @@ export const Appearance: Story = {
             asChild
             intent={item === "Bangla" ? "danger" : undefined}
             key={item}
+            role="option"
           >
             <PointerItem>{item}</PointerItem>
           </ListboxItem>
@@ -125,6 +129,7 @@ export const Indicator: Story = {
             addonAfter={<ListboxItemIndicator active={item === "Bangla"} />}
             asChild
             key={item}
+            role="option"
           >
             <PointerItem>{item}</PointerItem>
           </ListboxItem>
@@ -177,7 +182,12 @@ export const IconSingleSelect: Story = {
     children: (
       <>
         {languages.map((item) => (
-          <ListboxRadioItem asChild icon={<IconStar />} key={item}>
+          <ListboxRadioItem
+            asChild
+            icon={<IconStar />}
+            key={item}
+            role="option"
+          >
             <PointerItem>{item}</PointerItem>
           </ListboxRadioItem>
         ))}
@@ -191,7 +201,12 @@ export const IconMultiSelect: Story = {
     children: (
       <>
         {languages.map((item) => (
-          <ListboxCheckboxItem asChild icon={<IconStar />} key={item}>
+          <ListboxCheckboxItem
+            asChild
+            icon={<IconStar />}
+            key={item}
+            role="option"
+          >
             <PointerItem>{item}</PointerItem>
           </ListboxCheckboxItem>
         ))}
@@ -223,14 +238,14 @@ export const Separator: Story = {
   args: {
     children: (
       <>
-        <ListboxItem asChild>
+        <ListboxItem asChild role="option">
           <PointerItem>Select All</PointerItem>
         </ListboxItem>
 
         <ListboxSeparator />
 
         {languages.map((item) => (
-          <ListboxItem asChild key={item}>
+          <ListboxItem asChild key={item} role="option">
             <PointerItem>{item}</PointerItem>
           </ListboxItem>
         ))}
@@ -244,28 +259,6 @@ export const Empty: Story = {
     children: (
       <>
         <ListboxEmpty>No results</ListboxEmpty>
-      </>
-    ),
-  },
-};
-
-export const Footer: Story = {
-  args: {
-    children: (
-      <>
-        <Listbox>
-          {languages.map((item) => (
-            <ListboxItem asChild key={item}>
-              <PointerItem>{item}</PointerItem>
-            </ListboxItem>
-          ))}
-        </Listbox>
-
-        <ListboxFooter>
-          <Button>Clear All</Button>
-
-          <Button appearance="primary">Done</Button>
-        </ListboxFooter>
       </>
     ),
   },
@@ -286,6 +279,7 @@ export const Group: Story = {
               addonAfter={<ListboxItemIndicator />}
               asChild
               key={`fruits-${item}`}
+              role="option"
             >
               <PointerItem>{item}</PointerItem>
             </ListboxItem>
@@ -299,6 +293,7 @@ export const Group: Story = {
               addonAfter={<ListboxItemIndicator />}
               asChild
               key={`meats-${item}`}
+              role="option"
             >
               <PointerItem>{item}</PointerItem>
             </ListboxItem>
@@ -312,6 +307,7 @@ export const Group: Story = {
               addonAfter={<ListboxItemIndicator />}
               asChild
               key={`vegetables-${item}`}
+              role="option"
             >
               <PointerItem>{item}</PointerItem>
             </ListboxItem>

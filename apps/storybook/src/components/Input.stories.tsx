@@ -4,6 +4,9 @@ import { Flex, Input } from "@optiaxiom/react";
 import { IconCalendar } from "@tabler/icons-react";
 
 export default {
+  args: {
+    placeholder: "Enter text...",
+  },
   component: Input,
   parameters: {
     design: {
@@ -15,11 +18,7 @@ export default {
 
 type Story = StoryObj<typeof Input>;
 
-export const Basic: Story = {
-  args: {
-    placeholder: "Enter text...",
-  },
-};
+export const Basic: Story = {};
 
 export const Value: Story = {
   args: {
@@ -28,9 +27,6 @@ export const Value: Story = {
 };
 
 export const Sizes: Story = {
-  args: {
-    placeholder: "Enter text...",
-  },
   render: (args) => (
     <Flex>
       <Input {...args} size="md" />
@@ -99,20 +95,22 @@ export const Addons: Story = {
 };
 
 export const NumberInput: Story = {
-  render: () => (
+  render: (args) => (
     <Flex>
-      <Input appearance="number" defaultValue="20.00" placeholder="00.00" />
-      <Input appearance="number" placeholder="00.00" />
-      <Input appearance="number" disabled placeholder="00.00" />
-      <Input appearance="number" defaultValue="20.00" error />
+      <Input
+        {...args}
+        appearance="number"
+        defaultValue="20.00"
+        placeholder="00.00"
+      />
+      <Input {...args} appearance="number" placeholder="00.00" />
+      <Input {...args} appearance="number" disabled placeholder="00.00" />
+      <Input {...args} appearance="number" defaultValue="20.00" error />
     </Flex>
   ),
 };
 
 export const Types: Story = {
-  args: {
-    placeholder: "Enter text...",
-  },
   render: (args) => (
     <Flex>
       <Input {...args} type="date" />

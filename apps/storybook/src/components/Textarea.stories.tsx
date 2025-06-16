@@ -3,6 +3,9 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Flex, Text, Textarea } from "@optiaxiom/react";
 
 export default {
+  args: {
+    placeholder: "Enter text....",
+  },
   component: Textarea,
   parameters: {
     design: {
@@ -14,11 +17,7 @@ export default {
 
 type Story = StoryObj<typeof Textarea>;
 
-export const Basic: Story = {
-  args: {
-    placeholder: "Enter text....",
-  },
-};
+export const Basic: Story = {};
 
 export const Value: Story = {
   args: {
@@ -28,14 +27,12 @@ export const Value: Story = {
 
 export const ManualResize: Story = {
   args: {
-    placeholder: "Enter text....",
     resize: "vertical",
   },
 };
 
 export const AutoSize: Story = {
   args: {
-    placeholder: "Enter text....",
     resize: "auto",
   },
 };
@@ -77,9 +74,6 @@ export const Error: Story = {
 };
 
 export const Addons: Story = {
-  args: {
-    placeholder: "Enter text....",
-  },
   render: (args) => (
     <Flex>
       <Textarea {...args} addonBefore={<Text>Top Section</Text>} />

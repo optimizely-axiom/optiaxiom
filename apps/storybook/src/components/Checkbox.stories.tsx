@@ -78,7 +78,7 @@ export const VerticalAlignment: Story = {
         <Checkbox alignItems="center" h="xl" {...args} />
       </Flex>
       <Flex border="1">
-        <Checkbox alignItems="center" h="xl" {...args}>
+        <Checkbox alignItems="center" aria-label="Label" h="xl" {...args}>
           {null}
         </Checkbox>
       </Flex>
