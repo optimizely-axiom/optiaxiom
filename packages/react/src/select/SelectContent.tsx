@@ -1,4 +1,6 @@
+import { useId } from "@radix-ui/react-id";
 import { PopperContent } from "@radix-ui/react-popper";
+import clsx from "clsx";
 import {
   type ComponentPropsWithoutRef,
   forwardRef,
@@ -9,6 +11,7 @@ import {
 import type { ExcludeProps } from "../utils";
 
 import { type BoxProps } from "../box";
+import { useFieldContext } from "../field/FieldContext";
 import { ListboxItemized, ListboxLabel, ListboxSeparator } from "../listbox";
 import { shouldShowGroup, shouldShowSeparator } from "../listbox/utils";
 import { ModalLayer } from "../modal";
@@ -42,6 +45,7 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
   (
     {
       align = "start",
+      "aria-label": ariaLabel,
       children,
       onPointerDown,
       side = "bottom",
@@ -50,6 +54,9 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
     },
     ref,
   ) => {
+    const { labelId: fieldLabelId } = useFieldContext(
+      "@optiaxiom/react/SelectContent",
+    );
     const {
       downshift,
       highlightedItem,
@@ -59,6 +66,7 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
       loading,
     } = useSelectContext("@optiaxiom/react/SelectContent");
 
+    const labelId = useId();
     const [placed, setPlaced] = useState(false);
 
     return (
@@ -66,6 +74,7 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
         <Portal asChild>
           <ModalLayer asChild>
             <ModalListbox
+              aria-label={ariaLabel || "Menu"}
               asChild
               maxH="sm"
               minW="trigger"
@@ -89,7 +98,12 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
               size={size}
               {...props}
             >
-              <PopperContent align={align} side={side} sideOffset={4}>
+              <PopperContent
+                align={align}
+                aria-labelledby={clsx(fieldLabelId, labelId)}
+                side={side}
+                sideOffset={4}
+              >
                 <ListboxItemized
                   highlightedItem={highlightedItem}
                   items={items}
@@ -103,7 +117,12 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
                       });
                     }
                   }}
-                  {...downshift.getMenuProps({}, { suppressRefError: !placed })}
+                  {...downshift.getMenuProps(
+                    {
+                      "aria-labelledby": fieldLabelId,
+                    },
+                    { suppressRefError: !placed },
+                  )}
                 >
                   {children ??
                     ((

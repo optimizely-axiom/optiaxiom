@@ -1,5 +1,7 @@
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
+import { useId } from "@radix-ui/react-id";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
+import clsx from "clsx";
 import {
   type ComponentPropsWithoutRef,
   forwardRef,
@@ -9,6 +11,7 @@ import {
 
 import { Button } from "../button";
 import { Calendar } from "../calendar";
+import { useFieldContext } from "../field/FieldContext";
 import { useObserveValue } from "../hooks";
 import { IconCalendar } from "../icons/IconCalendar";
 import { IconX } from "../icons/IconX";
@@ -20,6 +23,7 @@ import {
   PopoverTrigger,
 } from "../popover";
 import { type ExtendProps, toPlainDate, toPlainDateTime } from "../utils";
+import { VisuallyHidden } from "../visually-hidden";
 import * as styles from "./DateInput.css";
 import { toInstant } from "./utils";
 
@@ -49,6 +53,11 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
     },
     outerRef,
   ) => {
+    const { labelId: fieldLabelId } = useFieldContext(
+      "@optiaxiom/react/DateInput",
+    );
+    const labelId = useId();
+
     const [open, setOpen] = useState(false);
     const hasInteractedOutsideRef = useRef(false);
     const pickerRef = useRef<HTMLButtonElement>(null);
@@ -136,6 +145,7 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
           </Input>
         </PopoverAnchor>
         <PopoverContent
+          aria-labelledby={clsx(labelId, fieldLabelId)}
           gap="8"
           onCloseAutoFocus={(event) => {
             if (hasInteractedOutsideRef.current) {
@@ -156,6 +166,9 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
             }
           }}
         >
+          <VisuallyHidden asChild id={labelId}>
+            <h2>Calendar</h2>
+          </VisuallyHidden>
           <Calendar
             holiday={holiday}
             max={maxDate}

@@ -60,7 +60,7 @@ export const DropdownMenuContent = forwardRef<
             sideOffset={4}
           >
             {loading ? (
-              <Box display="flex" justifyContent="center" p="16">
+              <Box aria-hidden display="flex" justifyContent="center" p="16">
                 <Spinner />
               </Box>
             ) : (

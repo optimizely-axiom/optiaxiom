@@ -86,6 +86,7 @@ export const ListboxItemized = forwardRef<HTMLDivElement, ListboxItemizedProps>(
             {[1, 2, 3].map((item) => (
               <ListboxItem
                 addonBefore={<Skeleton circle size="xs" />}
+                aria-hidden
                 key={item}
               >
                 <Skeleton />

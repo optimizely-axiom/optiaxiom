@@ -178,11 +178,15 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
               }}
               onPointerEnter={(event) => {
                 onPointerEnter?.(event);
-                setTo(props.day.date);
+                if (!event.currentTarget.disabled) {
+                  setTo(props.day.date);
+                }
               }}
               onPointerLeave={(event) => {
                 onPointerLeave?.(event);
-                setTo(undefined);
+                if (!event.currentTarget.disabled) {
+                  setTo(undefined);
+                }
               }}
               {...props}
             />

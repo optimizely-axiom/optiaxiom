@@ -1,5 +1,6 @@
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
-import { type ComponentPropsWithoutRef, forwardRef, useRef } from "react";
+import { useId } from "@radix-ui/react-id";
+import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import { Box } from "../box";
 import { useFieldLabelTrigger } from "../hooks";
@@ -40,21 +41,22 @@ export const DateRangePickerTrigger = forwardRef<
     },
     outerRef,
   ) => {
-    const { disabled, value } = useDateRangePickerContext(
+    const { disabled, triggerRef, value } = useDateRangePickerContext(
       "@optiaxiom/react/DateRangePickerTrigger",
     );
+
+    const id = useId();
+    const ref = useComposedRefs(outerRef, triggerRef);
+    const labelId = useFieldLabelTrigger(triggerRef, ariaLabelledBy);
+
     const formatter = formatRange ? { formatRange } : dateFormatter;
-
-    const buttonRef = useRef<HTMLButtonElement>(null);
-    const ref = useComposedRefs(outerRef, buttonRef);
-
-    const labelId = useFieldLabelTrigger(buttonRef, ariaLabelledBy);
 
     return (
       <PopoverTrigger
         aria-labelledby={labelId}
         disabled={disabled}
         icon={<IconCalendar />}
+        id={id}
         ref={ref}
         {...props}
       >

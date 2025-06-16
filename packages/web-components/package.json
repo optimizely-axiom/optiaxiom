@@ -81,7 +81,6 @@
     "./Listbox": "./dist/components/Listbox.js",
     "./ListboxCheckboxItem": "./dist/components/ListboxCheckboxItem.js",
     "./ListboxEmpty": "./dist/components/ListboxEmpty.js",
-    "./ListboxFooter": "./dist/components/ListboxFooter.js",
     "./ListboxGroup": "./dist/components/ListboxGroup.js",
     "./ListboxItem": "./dist/components/ListboxItem.js",
     "./ListboxItemIndicator": "./dist/components/ListboxItemIndicator.js",

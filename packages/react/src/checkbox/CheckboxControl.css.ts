@@ -14,9 +14,10 @@ export const icon = recipe({
       transitionDelay: `calc(0.8 * ${theme.duration.sm})`,
 
       selectors: {
-        [`${rootStyles.className}:has(${inputStyles.className}:checked) &`]: {
-          clipPath: "inset(0 0 0 0)",
-        },
+        [`${rootStyles.className}:has(${inputStyles.className}:checked, ${inputStyles.className}:indeterminate) &`]:
+          {
+            clipPath: "inset(0 0 0 0)",
+          },
       },
     }),
   ],
@@ -40,9 +41,10 @@ export const control = recipe({
       transitionTimingFunction: "ease",
 
       selectors: {
-        [`${rootStyles.className}:has(${inputStyles.className}:checked) &`]: {
-          borderWidth: "8px",
-        },
+        [`${rootStyles.className}:has(${inputStyles.className}:checked, ${inputStyles.className}:indeterminate) &`]:
+          {
+            borderWidth: "8px",
+          },
       },
     }),
   ],
