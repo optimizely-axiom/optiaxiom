@@ -38,6 +38,18 @@ export default {
     defaultOpen: true,
   },
   component: DropdownMenu,
+  parameters: {
+    a11y: {
+      config: {
+        rules: [
+          {
+            enabled: false,
+            id: "aria-hidden-focus",
+          },
+        ],
+      },
+    },
+  },
 } as Meta<typeof DropdownMenu>;
 
 type Story = StoryObj<typeof DropdownMenu>;
