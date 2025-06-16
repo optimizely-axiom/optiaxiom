@@ -5,8 +5,7 @@ import { type RefObject } from "react";
 
 export const [TransitionGroupProvider, useTransitionGroupContext] =
   createContext<null | {
-    onMount: (ref: RefObject<HTMLElement>) => void;
-    onUnmount: (ref: RefObject<HTMLElement>) => void;
     open: boolean | undefined;
     presence: boolean | undefined;
+    register: (ref: RefObject<HTMLElement>) => void;
   }>("@optiaxiom/react/TransitionGroup", null);

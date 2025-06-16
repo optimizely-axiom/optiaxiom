@@ -5,16 +5,15 @@ import { type RefObject, useEffect, useState } from "react";
 import { useTransitionGroupContext } from "./TransitionGroupContext";
 
 export const useTransitionStatus = (ref: RefObject<HTMLElement>) => {
-  const { onMount, onUnmount, open } = useTransitionGroupContext(
+  const { open, register } = useTransitionGroupContext(
     "useTransitionStatus",
   ) ?? {
     open: true,
   };
 
   useEffect(() => {
-    onMount?.(ref);
-    return () => onUnmount?.(ref);
-  }, [onMount, onUnmount, ref]);
+    return register?.(ref);
+  }, [register, ref]);
 
   const [mounted, setMounted] = useState(false);
   useEffect(() => {

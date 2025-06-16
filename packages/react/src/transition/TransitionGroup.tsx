@@ -29,13 +29,13 @@ export function TransitionGroup({
   const [transitions, setTransitions] = useState<Array<RefObject<HTMLElement>>>(
     [],
   );
-  const onMount = useCallback((ref: RefObject<HTMLElement>) => {
+  const register = useCallback((ref: RefObject<HTMLElement>) => {
     setTransitions((transitions) => [...transitions, ref]);
-  }, []);
-  const onUnmount = useCallback((ref: RefObject<HTMLElement>) => {
-    setTransitions((transitions) =>
-      transitions.filter((transition) => transition !== ref),
-    );
+
+    return () =>
+      setTransitions((transitions) =>
+        transitions.filter((transition) => transition !== ref),
+      );
   }, []);
 
   const [presence, setPresence] = useControllableState({
@@ -78,10 +78,9 @@ export function TransitionGroup({
 
   return (
     <TransitionGroupProvider
-      onMount={onMount}
-      onUnmount={onUnmount}
       open={open}
       presence={presence}
+      register={register}
     >
       {(open || presence) && childrenRef.current}
     </TransitionGroupProvider>
