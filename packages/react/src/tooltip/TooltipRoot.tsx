@@ -1,6 +1,6 @@
 import * as RadixTooltip from "@radix-ui/react-tooltip";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
-import { type ComponentPropsWithoutRef } from "react";
+import { type ComponentPropsWithoutRef, useRef } from "react";
 
 import { TooltipProvider } from "./TooltipContext";
 
@@ -22,6 +22,7 @@ export function TooltipRoot({
   open: openProp,
   ...props
 }: TooltipRootProps) {
+  const triggerRef = useRef<HTMLButtonElement>(null);
   const [open, setOpen] = useControllableState({
     caller: "@optiaxiom/react/TooltipRoot",
     defaultProp: defaultOpen,
@@ -32,11 +33,26 @@ export function TooltipRoot({
   return (
     <RadixTooltip.Root
       delayDuration={delayDuration}
-      onOpenChange={setOpen}
+      onOpenChange={
+        openProp === undefined
+          ? (open) => {
+              if (
+                auto &&
+                open &&
+                triggerRef.current &&
+                !hasTruncatedContent(triggerRef.current)
+              ) {
+                return;
+              }
+
+              setOpen(open);
+            }
+          : setOpen
+      }
       open={open}
       {...props}
     >
-      <TooltipProvider auto={auto} open={open} setOpen={setOpen}>
+      <TooltipProvider open={open} setOpen={setOpen} triggerRef={triggerRef}>
         {children}
       </TooltipProvider>
     </RadixTooltip.Root>
@@ -44,3 +60,25 @@ export function TooltipRoot({
 }
 
 TooltipRoot.displayName = "@optiaxiom/react/TooltipRoot";
+
+const hasTruncatedContent = (element: HTMLButtonElement) => {
+  let truncated = false;
+
+  const elements: Element[] = [element];
+  while (!truncated && elements.length) {
+    const element = elements.shift();
+    if (!(element instanceof HTMLElement)) {
+      continue;
+    }
+    const { offsetHeight, offsetWidth, scrollHeight, scrollWidth } = element;
+
+    if (offsetWidth < scrollWidth || offsetHeight < scrollHeight) {
+      truncated = true;
+      break;
+    }
+
+    elements.push(...element.children);
+  }
+
+  return truncated;
+};
