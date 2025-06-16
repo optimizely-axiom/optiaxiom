@@ -122,9 +122,9 @@ export const WithInput: Story = {
           <MenuContent />
         </Menu>
         <Field>
-          <SearchInput />
+          <SearchInput aria-label="Search" />
         </Field>
-        <Button icon={<IconX />} />
+        <Button aria-label="clear" icon={<IconX />} />
       </>
     ),
   },

@@ -148,7 +148,13 @@ export const CloseButton: Story = {
 
 export const Actions: Story = {
   args: {
-    actions: <Button appearance="subtle" icon={<IconArrowsDiagonal />} />,
+    actions: (
+      <Button
+        appearance="subtle"
+        aria-label="maximize"
+        icon={<IconArrowsDiagonal />}
+      />
+    ),
   },
 };
 

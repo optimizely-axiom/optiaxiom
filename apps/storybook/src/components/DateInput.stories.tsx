@@ -5,6 +5,9 @@ import { useState } from "react";
 import { expect, screen, userEvent, waitFor } from "storybook/test";
 
 export default {
+  args: {
+    "aria-label": "Label",
+  },
   component: DateInput,
   parameters: {
     design: {
@@ -19,6 +22,9 @@ type Story = StoryObj<typeof DateInput>;
 export const Basic: Story = {};
 
 export const WithLabel: Story = {
+  args: {
+    "aria-label": undefined,
+  },
   decorators: (Story) => (
     <Field label="Label">
       <Story />
