@@ -5,8 +5,8 @@ import { beforeAll } from "vitest";
 import * as previewAnnotations from "./preview";
 
 const annotations = setProjectAnnotations([
-  previewAnnotations,
   a11yAddonAnnotations,
+  previewAnnotations,
 ]);
 
 beforeAll(annotations.beforeAll);
