@@ -104,7 +104,7 @@ export const Basic: Story = {
           ...items.map<MenuOption>((item) => ({
             description: item.description,
             execute: () => {
-              toaster.create(`Selected "${item.title}"`, { type: "success" });
+              toaster.create(`Selected "${item.title}"`, { intent: "success" });
             },
             group: item.category,
             label: item.title,

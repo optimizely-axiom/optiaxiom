@@ -108,29 +108,35 @@ export const Appearance: Story = {
     return (
       <Flex flexDirection="row">
         <Button
-          onClick={() => toaster.create(message, { ...args, type: "neutral" })}
+          onClick={() =>
+            toaster.create(message, { ...args, intent: "neutral" })
+          }
         >
           Neutral
         </Button>
         <Button
           onClick={() =>
-            toaster.create(message, { ...args, type: "information" })
+            toaster.create(message, { ...args, intent: "information" })
           }
         >
           Information
         </Button>
         <Button
-          onClick={() => toaster.create(message, { ...args, type: "warning" })}
+          onClick={() =>
+            toaster.create(message, { ...args, intent: "warning" })
+          }
         >
           Warning
         </Button>
         <Button
-          onClick={() => toaster.create(message, { ...args, type: "danger" })}
+          onClick={() => toaster.create(message, { ...args, intent: "danger" })}
         >
           Danger
         </Button>
         <Button
-          onClick={() => toaster.create(message, { ...args, type: "success" })}
+          onClick={() =>
+            toaster.create(message, { ...args, intent: "success" })
+          }
         >
           Success
         </Button>

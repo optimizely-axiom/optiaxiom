@@ -7,14 +7,14 @@ export function App() {
     <Flex flexDirection="row" flexWrap="wrap">
       {(
         ["danger", "information", "neutral", "success", "warning"] as const
-      ).map((type) => (
+      ).map((intent) => (
         <Button
-          key={type}
+          key={intent}
           onClick={() =>
-            toaster.create("This is an example toast message.", { type })
+            toaster.create("This is an example toast message.", { intent })
           }
         >
-          {type} toast
+          {intent} toast
         </Button>
       ))}
     </Flex>

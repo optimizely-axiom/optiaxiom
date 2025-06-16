@@ -12,10 +12,10 @@ export function App() {
     setTimeout(() => {
       if (!value.length) {
         setValue(serverValue);
-        toaster.create("Title is a required field", { type: "danger" });
+        toaster.create("Title is a required field", { intent: "danger" });
       } else if (value !== serverValue) {
         setServerValue(value);
-        toaster.create("Title updated", { type: "success" });
+        toaster.create("Title updated", { intent: "success" });
       }
     }, 300);
   }

@@ -87,7 +87,7 @@ export const ToastProvider = forwardRef<HTMLOListElement, ToastProviderProps>(
             open={open}
             toastRef={ref}
           >
-            <Toast intent={toast.type} key={id}>
+            <Toast intent={toast.intent || toast.type} key={id}>
               <ToastTitle>{toast.title}</ToastTitle>
               {toast.action && (
                 <ToastAction altText={toast.action} onClick={toast.onAction}>

@@ -9,7 +9,11 @@ type ToastItem = {
 
 type ToastOptions = {
   action?: string;
+  intent?: "danger" | "information" | "neutral" | "success" | "warning";
   onAction?: () => void;
+  /**
+   * @deprecated
+   */
   type?: "danger" | "information" | "neutral" | "success" | "warning";
 };
 
