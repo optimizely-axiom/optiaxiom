@@ -85,7 +85,11 @@ export const ButtonRoot = forwardRef<HTMLButtonElement, ButtonRootProps>(
               <TransitionGroup open={loading}>
                 <Transition>
                   <Spinner
-                    appearance={variant === "strong" ? "inverse" : "default"}
+                    appearance={
+                      variant === "strong" || variant === "opal"
+                        ? "inverse"
+                        : "default"
+                    }
                     aria-hidden="true"
                     {...styles.spinner()}
                   />
