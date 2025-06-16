@@ -10,7 +10,7 @@ export function App() {
         // simulate network request
         await new Promise((resolve) => setTimeout(resolve, 3_000));
         toaster.remove(id);
-        toaster.create("Could not save task", { type: "danger" });
+        toaster.create("Could not save task", { intent: "danger" });
       }}
     >
       Create Toast
