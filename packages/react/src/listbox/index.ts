@@ -1,7 +1,6 @@
 export * from "./Listbox";
 export * from "./ListboxCheckboxItem";
 export * from "./ListboxEmpty";
-export * from "./ListboxFooter";
 export * from "./ListboxGroup";
 export * from "./ListboxItem";
 export * from "./ListboxItemIndicator";

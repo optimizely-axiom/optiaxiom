@@ -23,6 +23,7 @@ export const ListboxSwitchItem = forwardRef<
                 props["role"] === "option" ? "aria-selected" : "aria-checked"
               ],
             )}
+            hidden
             pointerEvents="none"
             tabIndex={-1}
           />

@@ -11,6 +11,7 @@ export function CalendarDayButton({
   className,
   color: _color,
   day: _day,
+  disabled,
   modifiers,
   ...props
 }: CalendarDayButtonProps) {
@@ -24,7 +25,6 @@ export function CalendarDayButton({
   return (
     <Box
       asChild
-      data-disabled={modifiers.outside || props.disabled}
       {...styles.button(
         {
           appearance: modifiers.range_middle
@@ -50,7 +50,7 @@ export function CalendarDayButton({
         className,
       )}
     >
-      <button ref={ref} {...props}>
+      <button disabled={modifiers.outside || disabled} ref={ref} {...props}>
         {children}
         {modifiers.today && <Box {...styles.today()} />}
       </button>

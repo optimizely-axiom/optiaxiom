@@ -32,7 +32,12 @@ export const ListboxCheckboxItem = forwardRef<
             }}
             {...styles.checkbox()}
           >
-            <Checkbox checked={checked} pointerEvents="none" tabIndex={-1} />
+            <Checkbox
+              checked={checked}
+              hidden
+              pointerEvents="none"
+              tabIndex={-1}
+            />
           </Box>
 
           {addonBefore ? (

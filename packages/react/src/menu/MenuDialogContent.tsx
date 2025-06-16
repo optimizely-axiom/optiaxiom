@@ -44,12 +44,16 @@ export const MenuDialogContent = forwardRef<
       >
         {children}
 
-        <VisuallyHidden asChild tabIndex={-1}>
+        <VisuallyHidden asChild>
           <h2 id={labelId}>{ariaLabel || "Menu"}</h2>
+        </VisuallyHidden>
 
+        <VisuallyHidden tabIndex={-1}>
           <DialogHeader
           // Prevent radix from throwing warnings in development mode
-          />
+          >
+            Menu
+          </DialogHeader>
         </VisuallyHidden>
       </DialogContent>
     );

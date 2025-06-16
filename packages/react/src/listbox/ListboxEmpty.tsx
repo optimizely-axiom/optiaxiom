@@ -9,11 +9,12 @@ export const ListboxEmpty = forwardRef<HTMLDivElement, ListboxEmptyProps>(
     return (
       <Box
         alignItems="center"
-        color="fg.disabled"
+        aria-hidden
+        color="fg.tertiary"
         display="flex"
         flexDirection="column"
         fontSize="md"
-        p="16"
+        p="10"
         ref={ref}
         {...props}
       >

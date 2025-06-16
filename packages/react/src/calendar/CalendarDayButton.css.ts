@@ -49,7 +49,7 @@ export const button = recipe({
           outlineOffset: "1px",
           zIndex: "10",
         },
-        "&:is([data-disabled], [disabled])": {
+        "&[disabled]": {
           opacity: 0.32,
         },
       },

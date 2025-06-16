@@ -1,3 +1,5 @@
+import { useId } from "@radix-ui/react-id";
+import clsx from "clsx";
 import {
   type ComponentPropsWithoutRef,
   forwardRef,
@@ -5,8 +7,10 @@ import {
 } from "react";
 
 import { Calendar } from "../calendar";
+import { useFieldContext } from "../field/FieldContext";
 import { Flex } from "../flex";
 import { PopoverContent } from "../popover";
+import { VisuallyHidden } from "../visually-hidden";
 import * as styles from "./DateRangePickerContent.css";
 import { useDateRangePickerContext } from "./DateRangePickerContext";
 
@@ -35,6 +39,7 @@ export const DateRangePickerContent = forwardRef<
     {
       addonAfter,
       addonBefore,
+      "aria-label": ariaLabel,
       children,
       holiday,
       max,
@@ -45,12 +50,23 @@ export const DateRangePickerContent = forwardRef<
     },
     ref,
   ) => {
-    const { setOpen, setValue, value } = useDateRangePickerContext(
+    const { labelId: fieldLabelId } = useFieldContext(
       "@optiaxiom/react/DateRangePickerContent",
     );
+    const { setOpen, setValue, triggerRef, value } = useDateRangePickerContext(
+      "@optiaxiom/react/DateRangePickerContent",
+    );
+    const labelId = useId();
 
     return (
-      <PopoverContent gap="8" maxW={undefined} ref={ref} {...props}>
+      <PopoverContent
+        aria-labelledby={clsx(fieldLabelId ?? triggerRef.current?.id, labelId)}
+        gap="8"
+        maxW={undefined}
+        ref={ref}
+        {...props}
+      >
+        <VisuallyHidden id={labelId}>{ariaLabel || "Calendar"}</VisuallyHidden>
         <Flex {...styles.panels()}>
           {addonBefore}
           <Calendar

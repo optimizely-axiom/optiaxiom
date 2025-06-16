@@ -1,5 +1,5 @@
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
-import { type ComponentPropsWithRef } from "react";
+import { type ComponentPropsWithRef, useRef } from "react";
 
 import { Popover } from "../popover";
 import { DateRangePickerProvider } from "./DateRangePickerContext";
@@ -36,6 +36,8 @@ export function DateRangePicker({
   value: valueProp,
   ...props
 }: DateRangePickerProps) {
+  const triggerRef = useRef<HTMLButtonElement>(null);
+
   const [open, setOpen] = useControllableState({
     caller: "@optiaxiom/react/DateRangePicker",
     defaultProp: defaultOpen,
@@ -55,6 +57,7 @@ export function DateRangePicker({
         disabled={disabled}
         setOpen={setOpen}
         setValue={setValue}
+        triggerRef={triggerRef}
         value={value}
       >
         {children}
