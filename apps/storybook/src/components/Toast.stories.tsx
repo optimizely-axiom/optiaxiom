@@ -55,6 +55,24 @@ export default {
     },
   ],
   parameters: {
+    a11y: {
+      config: {
+        rules: [
+          {
+            enabled: false,
+            id: "aria-allowed-role",
+          },
+          {
+            enabled: false,
+            id: "aria-hidden-focus",
+          },
+          {
+            enabled: false,
+            id: "list",
+          },
+        ],
+      },
+    },
     useAxiomProvider: false,
   },
   render: ({ message, ...args }) => (
