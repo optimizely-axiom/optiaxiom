@@ -16,6 +16,9 @@ export const loaders = isChromatic()
   : [];
 
 export const parameters = {
+  a11y: {
+    test: "error",
+  },
   controls: { sort: "requiredFirst" },
   layout: "centered",
   options: {
@@ -24,7 +27,7 @@ export const parameters = {
     },
   },
   useAxiomProvider: true,
-};
+} satisfies Preview["parameters"];
 
 export const decorators = [
   (Story, context) =>
