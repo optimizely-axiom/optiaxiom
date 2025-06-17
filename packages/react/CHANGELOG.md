@@ -1,5 +1,19 @@
 # @optiaxiom/react
 
+## 1.5.6
+
+### Patch Changes
+
+- 5f1462b: simplify Sortable API
+- a6afa73: rename toast "type" property to "intent"
+- fdeaaad: fix menu dialog aria-labels
+- fd5c164: a11y fixes
+- c6f3e31: add opal variants to components
+- 7150d90: fix nested TransitionGroup closing
+- 511d99c: manually scroll selected item into view after mount
+- Updated dependencies [a6afa73]
+  - @optiaxiom/globals@1.0.8
+
 ## 1.5.5
 
 ### Patch Changes

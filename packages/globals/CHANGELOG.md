@@ -1,5 +1,11 @@
 # @optiaxiom/globals
 
+## 1.0.8
+
+### Patch Changes
+
+- a6afa73: rename toast "type" property to "intent"
+
 ## 1.0.7
 
 ### Patch Changes
