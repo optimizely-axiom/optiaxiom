@@ -22,11 +22,12 @@ export const root = recipe({
       "@media": {
         "(hover: hover)": {
           selectors: {
-            [`&:has(${inputMarker}:not(:disabled):not(:checked)):hover`]: {
-              vars: {
-                [styles.controlColorVar]: theme.colors["bg.tertiary.hovered"],
+            [`&:has(${inputMarker}:not(:disabled):not(:checked, [type=checkbox]:indeterminate)):hover`]:
+              {
+                vars: {
+                  [styles.controlColorVar]: theme.colors["bg.tertiary.hovered"],
+                },
               },
-            },
           },
         },
       },
