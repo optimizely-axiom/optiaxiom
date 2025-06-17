@@ -28,13 +28,13 @@ export const toggleInput = recipe({
       "@media": {
         "(hover: hover)": {
           selectors: {
-            [`&:has(${input}:not(:disabled):is(:checked, :indeterminate)):hover`]:
+            [`&:has(${input}:not(:disabled):is(:checked, [type=checkbox]:indeterminate)):hover`]:
               {
                 vars: {
                   [controlColorVar]: theme.colors["bg.accent.hovered"],
                 },
               },
-            [`&:has(${input}:not(:disabled):not(:checked, :indeterminate)):hover`]:
+            [`&:has(${input}:not(:disabled):not(:checked, [type=checkbox]:indeterminate)):hover`]:
               {
                 vars: {
                   [controlColorVar]: theme.colors["border.control.hovered"],
@@ -45,7 +45,7 @@ export const toggleInput = recipe({
       },
 
       selectors: {
-        [`&:has(${input}:is(:checked, :indeterminate))`]: {
+        [`&:has(${input}:is(:checked, [type=checkbox]:indeterminate))`]: {
           vars: {
             [controlColorVar]: theme.colors["bg.accent"],
           },
