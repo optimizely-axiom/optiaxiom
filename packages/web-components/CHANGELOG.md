@@ -1,5 +1,14 @@
 # @optiaxiom/web-components
 
+## 0.10.9
+
+### Patch Changes
+
+- fd5c164: a11y fixes
+- c6f3e31: add opal variants to components
+- 7150d90: fix nested TransitionGroup closing
+- 511d99c: manually scroll selected item into view after mount
+
 ## 0.10.8
 
 ### Patch Changes
