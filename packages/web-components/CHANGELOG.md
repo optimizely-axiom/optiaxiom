@@ -1,5 +1,11 @@
 # @optiaxiom/web-components
 
+## 0.10.10
+
+### Patch Changes
+
+- 45a597b: fix switch hover color
+
 ## 0.10.9
 
 ### Patch Changes
