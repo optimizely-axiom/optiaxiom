@@ -34,7 +34,6 @@ export const content = recipe({
       maxHeight: "75dvh",
       maxWidth: "calc(100dvw - 2 * 24px)",
       position: "fixed",
-      scrollbarGutter: "stable",
       top: "12dvh",
       transform: `
         translateY(calc(1rem * ${nestedDialogCountVar}))
