@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 1.5.7
+
+### Patch Changes
+
+- 45a597b: fix switch hover color
+
 ## 1.5.6
 
 ### Patch Changes
