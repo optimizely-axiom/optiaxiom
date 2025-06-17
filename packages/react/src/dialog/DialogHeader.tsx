@@ -1,3 +1,4 @@
+import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import * as RadixDialog from "@radix-ui/react-dialog";
 import { forwardRef, type ReactNode } from "react";
 
@@ -8,6 +9,7 @@ import { Heading } from "../heading";
 import { IconX } from "../icons/IconX";
 import { Text } from "../text";
 import { VisuallyHidden } from "../visually-hidden";
+import { useDialogContext } from "./DialogContext";
 import * as styles from "./DialogHeader.css";
 
 export type DialogHeaderProps = BoxProps<
@@ -24,18 +26,13 @@ export type DialogHeaderProps = BoxProps<
   }
 >;
 
-export const DialogHeader = forwardRef<HTMLHeadingElement, DialogHeaderProps>(
-  ({ addonAfter, children, description, ...props }, ref) => {
+export const DialogHeader = forwardRef<HTMLDivElement, DialogHeaderProps>(
+  ({ addonAfter, children, className, description, ...props }, outerRef) => {
+    const { headerRef } = useDialogContext("@optiaxiom/react/DialogHeader");
+    const ref = useComposedRefs(headerRef, outerRef);
+
     return (
-      <Box
-        display="flex"
-        flexWrap="wrap"
-        gap="8"
-        p="24"
-        pb="16"
-        ref={ref}
-        {...props}
-      >
+      <Box ref={ref} {...styles.header({}, className)} {...props}>
         <Button
           appearance="subtle"
           aria-label="Close"

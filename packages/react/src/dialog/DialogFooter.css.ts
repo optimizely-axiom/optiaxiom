@@ -1,8 +1,9 @@
-import { recipe } from "../vanilla-extract";
+import { recipe, style } from "../vanilla-extract";
 
 export const footer = recipe({
   base: [
     {
+      bg: "bg.default",
       borderColor: "border.secondary",
       borderT: "1",
       flexDirection: "row",
@@ -11,5 +12,9 @@ export const footer = recipe({
       px: "24",
       py: "20",
     },
+    style({
+      bottom: "0",
+      position: "sticky",
+    }),
   ],
 });

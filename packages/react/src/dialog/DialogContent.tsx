@@ -12,6 +12,7 @@ import { Portal } from "../portal";
 import { Transition, TransitionGroup } from "../transition";
 import { type ExcludeProps, onReactSelectInputBlur } from "../utils";
 import * as styles from "./DialogContent.css";
+import { DialogContentImpl } from "./DialogContentImpl";
 import { useDialogContext } from "./DialogContext";
 
 export type DialogContentProps = ExcludeProps<
@@ -56,12 +57,14 @@ export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
               {...styles.content({ size }, className)}
               {...props}
             >
-              <RadixDialog.Content forceMount ref={ref}>
-                <ModalProvider shardRef={innerRef}>
-                  <FocusBookmarkProvider containerRef={innerRef}>
-                    {children}
-                  </FocusBookmarkProvider>
-                </ModalProvider>
+              <RadixDialog.Content asChild forceMount ref={ref}>
+                <DialogContentImpl>
+                  <ModalProvider shardRef={innerRef}>
+                    <FocusBookmarkProvider containerRef={innerRef}>
+                      {children}
+                    </FocusBookmarkProvider>
+                  </ModalProvider>
+                </DialogContentImpl>
               </RadixDialog.Content>
             </Paper>
           </Transition>

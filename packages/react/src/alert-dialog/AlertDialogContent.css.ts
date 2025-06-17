@@ -38,6 +38,7 @@ export const content = recipe({
       color: "fg.default",
       display: "flex",
       flexDirection: "column",
+      overflow: "auto",
     },
     style({
       maxHeight: "50dvh",
@@ -46,6 +47,12 @@ export const content = recipe({
         translateY(calc(1rem * ${nestedDialogCountVar}))
         scale(calc(1 - 0.06 * ${nestedDialogCountVar}))
       `,
+
+      selectors: {
+        "&:focus-visible": {
+          outline: "none",
+        },
+      },
     }),
   ],
   variants: {
