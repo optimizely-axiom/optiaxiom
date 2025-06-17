@@ -7,6 +7,7 @@ export const content = recipe({
       color: "fg.default",
       display: "flex",
       flexDirection: "column",
+      rounded: "lg",
     },
     style({
       bottom: 0,
