@@ -4,8 +4,11 @@ import {
   type RecipeVariants,
   style,
 } from "../vanilla-extract";
+import * as bodyStyles from "./DialogBody.css";
 
 export const nestedDialogCountVar = createVar();
+export const scrollPaddingBottomVar = createVar();
+export const scrollPaddingTopVar = createVar();
 
 export const backdrop = recipe({
   variants: {
@@ -24,18 +27,30 @@ export const content = recipe({
       color: "fg.default",
       display: "flex",
       flexDirection: "column",
+      overflow: "auto",
     },
     style({
       left: "50%",
       maxHeight: "75dvh",
       maxWidth: "calc(100dvw - 2 * 24px)",
       position: "fixed",
+      scrollbarGutter: "stable",
       top: "12dvh",
       transform: `
         translateY(calc(1rem * ${nestedDialogCountVar}))
         scale(calc(1 - 0.06 * ${nestedDialogCountVar}))
       `,
       translate: "-50% 0",
+
+      selectors: {
+        "&:focus-visible": {
+          outline: "none",
+        },
+        [`&:has(${bodyStyles.className}:focus-within)`]: {
+          scrollPaddingBottom: scrollPaddingBottomVar,
+          scrollPaddingTop: scrollPaddingTopVar,
+        },
+      },
     }),
   ],
   variants: {

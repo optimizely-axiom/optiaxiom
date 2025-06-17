@@ -15,10 +15,10 @@ export const AlertDialogBody = forwardRef<HTMLDivElement, AlertDialogBodyProps>(
       flex="1"
       fontSize="md"
       justifyContent="flex-start"
-      overflow="auto"
       px="24"
       py="16"
       ref={ref}
+      z="0"
       {...props}
     >
       <RadixAlertDialog.Description asChild>

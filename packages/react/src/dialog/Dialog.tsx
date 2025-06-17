@@ -1,5 +1,6 @@
 import * as RadixDialog from "@radix-ui/react-dialog";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
+import { useRef } from "react";
 
 import { FocusBookmarkRestore } from "../focus-bookmark";
 import {
@@ -43,10 +44,18 @@ export function Dialog({
     open,
   );
 
+  const headerRef = useRef<HTMLDivElement>(null);
+  const footerRef = useRef<HTMLDivElement>(null);
+
   return (
     <NestedDialogProvider onCountChange={setNestedDialogCount}>
       <RadixDialog.Root onOpenChange={setOpen} open={open} {...props}>
-        <DialogProvider nestedDialogCount={nestedDialogCount} open={open}>
+        <DialogProvider
+          footerRef={footerRef}
+          headerRef={headerRef}
+          nestedDialogCount={nestedDialogCount}
+          open={open}
+        >
           <RadixDialog.Trigger asChild>
             <FocusBookmarkRestore />
           </RadixDialog.Trigger>

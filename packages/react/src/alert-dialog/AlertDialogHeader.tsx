@@ -8,6 +8,7 @@ import { Heading } from "../heading";
 import { Icon } from "../icon";
 import { IconTriangleExclamationSolid } from "../icons/IconTriangleExclamationSolid";
 import { fallbackSpan } from "../utils";
+import * as styles from "./AlertDialogHeader.css";
 
 export type AlertDialogHeaderProps = BoxProps<
   "div",
@@ -22,9 +23,9 @@ export type AlertDialogHeaderProps = BoxProps<
 export const AlertDialogHeader = forwardRef<
   HTMLHeadingElement,
   AlertDialogHeaderProps
->(({ addonBefore, children, ...props }, ref) => {
+>(({ addonBefore, children, className, ...props }, ref) => {
   return (
-    <Flex flexDirection="row" gap="8" p="24" pb="16" ref={ref} {...props}>
+    <Flex ref={ref} {...styles.header({}, className)} {...props}>
       <Icon asChild color="fg.error">
         {addonBefore ? (
           fallbackSpan(addonBefore)
