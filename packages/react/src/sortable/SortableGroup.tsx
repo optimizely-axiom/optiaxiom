@@ -34,7 +34,7 @@ export const SortableGroup = forwardRef<HTMLDivElement, SortableGroupProps>(
 
     return (
       <SortableGroupProvider id={id} setHasDropTarget={setHasDropTarget}>
-        <Flex justifyContent="flex-start" ref={ref} {...props}>
+        <Flex ref={ref} {...props}>
           {typeof children === "function"
             ? children(isDropTarget || hasDropTarget)
             : children}

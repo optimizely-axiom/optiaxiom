@@ -22,14 +22,7 @@ export const DataTable = forwardRef<HTMLDivElement, DataTableProps>(
     const [highlightedIndex, setHighlightedIndex] = useState(-1);
 
     return (
-      <Flex
-        gap="8"
-        justifyContent="flex-start"
-        maxH="full"
-        maxW="full"
-        ref={ref}
-        {...props}
-      >
+      <Flex gap="8" maxH="full" maxW="full" ref={ref} {...props}>
         <DataTableProvider
           highlightedIndex={highlightedIndex}
           setHighlightedIndex={setHighlightedIndex}

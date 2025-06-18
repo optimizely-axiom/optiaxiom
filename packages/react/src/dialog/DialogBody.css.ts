@@ -7,7 +7,6 @@ export const body = recipe({
     {
       flex: "1",
       fontSize: "md",
-      justifyContent: "flex-start",
       px: "24",
       py: "16",
       z: "0",

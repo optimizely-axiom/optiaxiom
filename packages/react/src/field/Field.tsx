@@ -54,13 +54,7 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(
     const labelId = useId(labelIdProp);
 
     return (
-      <Flex
-        flexDirection="column"
-        gap="4"
-        justifyContent="flex-start"
-        ref={ref}
-        {...props}
-      >
+      <Flex flexDirection="column" gap="4" ref={ref} {...props}>
         {label && (
           <FieldLabel
             info={info}

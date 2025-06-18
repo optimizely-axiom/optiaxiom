@@ -72,6 +72,7 @@ export const content = recipe({
     {
       flex: "1",
       gap: "8",
+      justifyContent: "center",
     },
     style({
       minHeight: theme.size.sm,

@@ -7,7 +7,6 @@ export const viewport = recipe({
   base: [
     {
       gap,
-      justifyContent: "normal",
       maxH: "full",
       overflowX: "hidden",
       overflowY: "auto",
