@@ -14,6 +14,10 @@ import {
   Text,
 } from "@optiaxiom/react";
 import {
+  Aside,
+  AsideBody,
+  AsideFooter,
+  AsideHeader,
   Layout,
   Menu,
   MenuContent,
@@ -153,6 +157,16 @@ const Content = () => (
   </Box>
 );
 
+const AsideContent = () => {
+  return (
+    <Aside>
+      <AsideHeader>Header</AsideHeader>
+      <AsideBody>Body</AsideBody>
+      <AsideFooter>Footer</AsideFooter>
+    </Aside>
+  );
+};
+
 export const Default: Story = {
   args: {
     children: <Content />,
@@ -178,5 +192,14 @@ export const NoNavbar: Story = {
 export const OnlyContent: Story = {
   args: {
     children: <Content />,
+  },
+};
+
+export const WithAside: Story = {
+  args: {
+    aside: <AsideContent />,
+    children: <Content />,
+    header: <Header />,
+    sidebar: <SidebarExample />,
   },
 };
