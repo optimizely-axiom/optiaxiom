@@ -3,7 +3,7 @@
 /lib
 /node_modules
 /public
-/rollup.config.mjs
+/rolldown.config.mjs
 /src
 /tests
 /tsconfig.build.json

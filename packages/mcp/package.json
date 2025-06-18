@@ -29,7 +29,7 @@
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
   "scripts": {
-    "build": "wait-on ../../packages/react/dist/index.d.ts && rm -rf dist && NODE_ENV=production rollup -c"
+    "build": "wait-on ../../packages/react/dist/index.d.ts && rm -rf dist && NODE_ENV=production rolldown -c"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.0.4",

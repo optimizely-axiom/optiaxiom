@@ -1,7 +1,6 @@
-import json from "@rollup/plugin-json";
-import { defineConfig } from "rollup";
-import dts from "rollup-plugin-dts";
-import esbuild from "rollup-plugin-esbuild";
+import nodePolyfills from "@rolldown/plugin-node-polyfills";
+import { defineConfig } from "rolldown";
+import { dts } from "rolldown-plugin-dts";
 
 import pkg from "./package.json" with { type: "json" };
 import { generateDataPlugin } from "./plugins/rollup-plugin-generate-data.mjs";
@@ -19,16 +18,13 @@ export default defineConfig([
       format: "es",
       preserveModules: true,
     },
-    plugins: [
-      generateDataPlugin(),
-      esbuild({
-        define: {
-          "process.env.NODE_ENV": JSON.stringify(env),
-        },
-        target: "esnext",
-      }),
-      json(),
-    ],
+    plugins: [generateDataPlugin(), nodePolyfills()],
+    transform: {
+      define: {
+        "process.env.NODE_ENV": JSON.stringify(env),
+      },
+      target: "esnext",
+    },
   },
   {
     input: "src/index.ts",
