@@ -1,5 +1,13 @@
 # @optiaxiom/react
 
+## 1.5.8
+
+### Patch Changes
+
+- 1b15ce5: remove default justify-content from Flex
+- 5bdbc83: apply autoprefixer postcss plugin
+- fa12c0e: disable selection of text inside badges
+
 ## 1.5.7
 
 ### Patch Changes
