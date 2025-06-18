@@ -15,21 +15,16 @@ import {
 import { useState } from "react";
 
 export function App() {
-  const [open, setOpen] = useState(false);
   const [state, setState] = useState("");
 
   return (
-    <Flex flexDirection="row">
-      <AlertDialog
-        onOpenChange={(open) => {
-          if (open) {
-            setState("");
-          }
-          setOpen(open);
-        }}
-        open={open}
-      >
-        <AlertDialogTrigger>Delete comment</AlertDialogTrigger>
+    <Flex>
+      <AlertDialog>
+        <AlertDialogTrigger
+          onClick={() => requestAnimationFrame(() => setState(""))}
+        >
+          Delete comment
+        </AlertDialogTrigger>
 
         <AlertDialogContent>
           <AlertDialogHeader>Delete comment?</AlertDialogHeader>
