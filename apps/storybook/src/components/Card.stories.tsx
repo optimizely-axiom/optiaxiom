@@ -337,7 +337,7 @@ export const WithSortable: Story = {
           width: "max(512px, calc(100dvw - 2rem))",
         }}
       >
-        <Flex style={{ height: 400, width: 600 }}>
+        <Flex style={{ width: 600 }}>
           <Sortable items={items} onItemsChange={setItems}>
             {(items) =>
               items.map((item, index) => (
