@@ -58,7 +58,6 @@ export const floating = recipe({
 export const badge = recipe({
   base: style({
     position: "relative",
-    userSelect: "none",
 
     selectors: {
       "&:empty": {
