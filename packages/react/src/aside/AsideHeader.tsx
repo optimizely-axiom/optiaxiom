@@ -1,10 +1,8 @@
 import { forwardRef, type ReactNode } from "react";
 
 import { Box, type BoxProps } from "../box";
-import { Button } from "../button";
 import { Flex } from "../flex";
 import { Heading } from "../heading";
-import { IconX } from "../icons/IconX";
 import { Text } from "../text";
 import * as styles from "./AsideHeader.css";
 
@@ -16,6 +14,10 @@ export type AsideHeaderProps = BoxProps<
      */
     addonAfter?: ReactNode;
     /**
+     * Display content inside the header before `children`.
+     */
+    addonBefore?: ReactNode;
+    /**
      * Add secondary text after the primary title.
      */
     description?: ReactNode;
@@ -23,7 +25,7 @@ export type AsideHeaderProps = BoxProps<
 >;
 
 export const AsideHeader = forwardRef<HTMLHeadingElement, AsideHeaderProps>(
-  ({ addonAfter, children, description, ...props }, ref) => {
+  ({ addonAfter, addonBefore, children, description, ...props }, ref) => {
     return (
       <Box
         display="flex"
@@ -34,13 +36,7 @@ export const AsideHeader = forwardRef<HTMLHeadingElement, AsideHeaderProps>(
         ref={ref}
         {...props}
       >
-        <Button
-          appearance="subtle"
-          aria-label="Close"
-          asChild
-          icon={<IconX />}
-          {...styles.close()}
-        />
+        {addonBefore && <Flex {...styles.actions()}>{addonBefore}</Flex>}
 
         <Heading level="3" {...styles.title()}>
           {children}
