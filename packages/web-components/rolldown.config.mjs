@@ -1,6 +1,3 @@
-import commonjs from "@rollup/plugin-commonjs";
-import json from "@rollup/plugin-json";
-import { nodeResolve } from "@rollup/plugin-node-resolve";
 import { createFilter } from "@rollup/pluginutils";
 import fg from "fast-glob";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
@@ -9,9 +6,8 @@ import path from "node:path";
 import postcss from "postcss";
 import postcssrc from "postcss-load-config";
 import docgen from "react-docgen-typescript";
-import { defineConfig } from "rollup";
-import dts from "rollup-plugin-dts";
-import esbuild from "rollup-plugin-esbuild";
+import { defineConfig } from "rolldown";
+import { dts } from "rolldown-plugin-dts";
 
 const external = new RegExp(
   "^(?:" +
@@ -41,6 +37,7 @@ export default defineConfig([
     output: {
       dir: "dist",
       format: "es",
+      minify: env === "production",
     },
     plugins: [
       aliasPlugin({
@@ -49,16 +46,6 @@ export default defineConfig([
         "react-dom/client": "preact/compat/client",
         "react-is": "preact/compat",
         "react/jsx-runtime": "preact/jsx-runtime",
-      }),
-      nodeResolve({
-        preferBuiltins: false,
-      }),
-      commonjs({
-        include: [
-          "**/node_modules/attr-accept/**",
-          "**/node_modules/prop-types/**",
-          "**/node_modules/use-sync-external-store/**",
-        ],
       }),
       {
         name: "axiom:theme-provider",
@@ -251,15 +238,6 @@ Portal.displayName = PORTAL_NAME;
 export { Portal, Portal as Root };`;
         },
       },
-      esbuild({
-        define: {
-          "process.env.NODE_ENV": JSON.stringify(env),
-        },
-        exclude: [],
-        minify: env === "production",
-        target: "es2022",
-      }),
-      json(),
       stylePlugin({ include: ["**/*.css"] }),
       webComponentPlugin({
         include: [
@@ -270,6 +248,12 @@ export { Portal, Portal as Root };`;
         ],
       }),
     ],
+    target: "es2022",
+    transform: {
+      define: {
+        "process.env.NODE_ENV": JSON.stringify(env),
+      },
+    },
   },
   {
     external,
@@ -288,17 +272,19 @@ export { Portal, Portal as Root };`;
         include: ["src/components/**/*.d.ts", "src/index.d.ts"],
       }),
       dts({
-        respectExternal: true,
+        dtsInput: true,
+        emitDtsOnly: true,
+        sourcemap: false,
         tsconfig: "tsconfig.build.json",
       }),
     ],
   },
 ]);
 
-/** @returns {import('rollup').Plugin} */
+/** @returns {import('rolldown').Plugin} */
 function aliasPlugin(aliases = {}) {
   return {
-    name: "rollup-plugin-alias",
+    name: "rolldown-plugin-alias",
     resolveId(source) {
       const alias = aliases[source];
       return alias ? this.resolve(alias) : null;
@@ -306,7 +292,7 @@ function aliasPlugin(aliases = {}) {
   };
 }
 
-/** @returns {import('rollup').Plugin} */
+/** @returns {import('rolldown').Plugin} */
 function stylePlugin({ exclude = [], include = [] } = {}) {
   const filter = createFilter(include ?? [], exclude ?? []);
 
@@ -321,7 +307,7 @@ function stylePlugin({ exclude = [], include = [] } = {}) {
   };
 
   return {
-    name: "rollup-plugin-style",
+    name: "rolldown-plugin-style",
     async transform(code, id) {
       if (!filter(id)) {
         return null;
@@ -333,17 +319,20 @@ function stylePlugin({ exclude = [], include = [] } = {}) {
         from: id,
         to: "dist/index.css",
       });
-      return [
-        `import { injectGlobalStyle, injectLocalStyle } from '${require.resolve("./src/styles.ts")}';`,
-        id.includes("node_modules")
-          ? `injectGlobalStyle(${JSON.stringify(css)})`
-          : `injectLocalStyle(${JSON.stringify(css)})`,
-      ].join("\n");
+      return {
+        code: [
+          `import { injectGlobalStyle, injectLocalStyle } from '${require.resolve("./src/styles.ts")}';`,
+          id.includes("node_modules")
+            ? `injectGlobalStyle(${JSON.stringify(css)})`
+            : `injectLocalStyle(${JSON.stringify(css)})`,
+        ].join("\n"),
+        moduleType: "js",
+      };
     },
   };
 }
 
-/** @returns {import('rollup').Plugin} */
+/** @returns {import('rolldown').Plugin} */
 function typeDeclarationPlugin({ include = [] }) {
   const filter = createFilter(include ?? []);
   const docs = docgen
@@ -377,7 +366,13 @@ function typeDeclarationPlugin({ include = [] }) {
 }`,
     );
 
-    const doc = docs.find((doc) => doc.displayName === component);
+    /**
+     * For some reason rolldown-plugin-dts is naming Table as Table$1 in the
+     * final d.ts. So we check for both names here.
+     */
+    const doc =
+      docs.find((doc) => doc.displayName === component) ??
+      docs.find((doc) => doc.displayName === component + "$1");
     const propTypes = Object.values(doc?.props ?? {})
       .filter(
         ({ name, type }) =>
@@ -545,7 +540,7 @@ declare module "react" {
             ]
       ).join("\n");
     },
-    name: "rollup-plugin-type-declaration",
+    name: "rolldown-plugin-type-declaration",
     order: "pre",
     async resolveId(id, importer) {
       const resolved = importer
@@ -560,7 +555,7 @@ declare module "react" {
   };
 }
 
-/** @returns {import('rollup').Plugin} */
+/** @returns {import('rolldown').Plugin} */
 function webComponentPlugin({ include = [] }) {
   const prefix = `\0virtual:`;
   const filter = createFilter(include ?? []);
@@ -647,7 +642,7 @@ export default register(
 );`;
       }
     },
-    name: "rollup-plugin-web-component",
+    name: "rolldown-plugin-web-component",
     async resolveId(id, importer, options) {
       if (filter(path.resolve(id))) {
         return prefix + path.resolve(id);

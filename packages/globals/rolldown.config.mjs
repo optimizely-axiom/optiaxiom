@@ -3,9 +3,8 @@ import { vanillaExtractPlugin } from "@vanilla-extract/rollup-plugin";
 import { readFileSync } from "node:fs";
 import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
-import { defineConfig } from "rollup";
-import dts from "rollup-plugin-dts";
-import esbuild from "rollup-plugin-esbuild";
+import { defineConfig } from "rolldown";
+import { dts } from "rolldown-plugin-dts";
 
 const env = process.env.NODE_ENV ?? "development";
 const pkg = JSON.parse(readFileSync("./package.json"));
@@ -48,12 +47,6 @@ export default defineConfig([
       },
     ],
     plugins: [
-      esbuild({
-        define: {
-          "process.env.NODE_ENV": JSON.stringify(env),
-        },
-        target: "esnext",
-      }),
       vanillaExtractPlugin(),
       env !== "production" && {
         async generateBundle(options, bundle) {
@@ -73,6 +66,12 @@ export default defineConfig([
         name: "optimize-generate-bundle",
       },
     ],
+    target: "esnext",
+    transform: {
+      define: {
+        "process.env.NODE_ENV": JSON.stringify(env),
+      },
+    },
   },
   {
     input: {
@@ -84,6 +83,8 @@ export default defineConfig([
     },
     plugins: [
       dts({
+        emitDtsOnly: true,
+        sourcemap: false,
         tsconfig: "tsconfig.build.json",
       }),
     ],
