@@ -1,23 +1,16 @@
-import { recipe, style } from "../vanilla-extract";
+import { recipe } from "../vanilla-extract";
 
-export const content = recipe({
+export const root = recipe({
   base: [
     {
       borderL: "1",
       color: "fg.default",
       display: "flex",
       flexDirection: "column",
+      maxW: "lg",
       rounded: "lg",
+      w: "1/3",
     },
-    style({
-      bottom: 0,
-      height: "100%",
-      maxWidth: ["100%", "lg"],
-      position: "fixed",
-      right: 0,
-      top: 0,
-      width: ["100%", "33%"],
-    }),
   ],
 });
 

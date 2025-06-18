@@ -8,7 +8,7 @@ export type Aside = BoxProps<"div">;
 export const Aside = forwardRef<HTMLDivElement, Aside>(
   ({ children, className, ...props }, ref) => {
     return (
-      <Box ref={ref} {...styles.content({}, className)} {...props}>
+      <Box ref={ref} {...styles.root({}, className)} {...props}>
         {children}
       </Box>
     );
