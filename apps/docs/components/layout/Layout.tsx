@@ -33,6 +33,13 @@ export async function Layout({ children }: { children: ReactNode }) {
           rel="shortcut icon"
           type="image/x-icon"
         />
+        <script type="text/javascript">
+          {`(function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+})(window, document, "clarity", "script", "s1khn5ocv3");`}
+        </script>
       </Head>
       <body>
         <AxiomProvider>
