@@ -4,7 +4,7 @@
   "repository": {
     "directory": "packages/globals",
     "type": "git",
-    "url": "https://github.com/optimizely-axiom/optiaxiom.git"
+    "url": "git+https://github.com/optimizely-axiom/optiaxiom.git"
   },
   "type": "module",
   "version": "1.0.8",
