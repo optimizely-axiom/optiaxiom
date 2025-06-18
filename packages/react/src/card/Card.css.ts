@@ -16,7 +16,6 @@ export const card = recipe({
       color: "fg.default",
       fontSize: "md",
       gap: "8",
-      justifyContent: "flex-start",
       p: "16",
     },
     style({

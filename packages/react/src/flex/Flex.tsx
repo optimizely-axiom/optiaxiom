@@ -12,24 +12,8 @@ const mapDirectionToAlign = {
   "row-reverse": "center",
 } as const;
 
-const mapDirectionToJustify = {
-  column: "center",
-  "column-reverse": "center",
-  row: "flex-start",
-  "row-reverse": "flex-start",
-} as const;
-
 export const Flex = forwardRef<HTMLDivElement, FlexProps>(
-  (
-    {
-      alignItems,
-      flexDirection = "column",
-      gap = "16",
-      justifyContent,
-      ...props
-    },
-    ref,
-  ) => {
+  ({ alignItems, flexDirection = "column", gap = "16", ...props }, ref) => {
     return (
       <Box
         alignItems={
@@ -42,13 +26,6 @@ export const Flex = forwardRef<HTMLDivElement, FlexProps>(
         display="flex"
         flexDirection={flexDirection}
         gap={gap}
-        justifyContent={
-          justifyContent ??
-          mapResponsiveValue(
-            flexDirection,
-            (value) => mapDirectionToJustify[value],
-          )
-        }
         ref={ref}
         {...props}
       />
