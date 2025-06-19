@@ -1,6 +1,7 @@
 import { forwardRef, type ReactNode } from "react";
 
 import { Box, type BoxProps } from "../box";
+import { Resizable, ResizableHandle, ResizablePanel } from "../resizable";
 import * as styles from "./Layouts.css";
 
 export type LayoutProps = BoxProps<
@@ -34,10 +35,20 @@ export const Layout = forwardRef<HTMLDivElement, LayoutProps>(
           overflow="auto"
         >
           {sidebar}
-          <Box flex="1" overflow="auto" px="32" py="24">
-            {children}
-          </Box>
-          {aside}
+
+          {aside ? (
+            <Box flex="1" overflow="auto" px="32" py="24">
+              <Resizable direction="horizontal">
+                <ResizablePanel>{children}</ResizablePanel>
+                <ResizableHandle />
+                <ResizablePanel>{aside}</ResizablePanel>
+              </Resizable>
+            </Box>
+          ) : (
+            <Box flex="1" overflow="auto" px="32" py="24">
+              {children}
+            </Box>
+          )}
         </Box>
       </Box>
     );
