@@ -159,7 +159,7 @@ const Content = () => (
 
 const AsideContent = () => {
   return (
-    <Aside>
+    <Aside h="full">
       <AsideHeader>Header</AsideHeader>
       <AsideBody>Body</AsideBody>
       <AsideFooter>Footer</AsideFooter>
