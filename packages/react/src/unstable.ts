@@ -1,3 +1,4 @@
+export * from "./aside";
 export * from "./breadcrumb";
 export * from "./calendar";
 export * from "./card";
@@ -8,5 +9,6 @@ export * from "./inline-input";
 export * from "./layout";
 export * from "./menu";
 export * from "./pill";
+export * from "./resizable";
 export * from "./sortable";
 export * from "./spotlight";
