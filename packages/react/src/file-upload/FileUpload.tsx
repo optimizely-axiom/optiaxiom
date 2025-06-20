@@ -1,15 +1,8 @@
-import { createContext, forwardRef, useContext } from "react";
+import { forwardRef } from "react";
 import { type DropzoneOptions, type FileRejection, useDropzone } from "react-dropzone";
 
+import { FileUploadContext } from "./FileUploadContext";
 import { FileUploadDropzone } from "./FileUploadDropzone";
-
-interface FileUploadContextProps {
-  getInputProps: ReturnType<typeof useDropzone>["getInputProps"];
-  getRootProps: ReturnType<typeof useDropzone>["getRootProps"];
-  isDragActive: boolean;
-}
-
-export const FileUploadContext = createContext<FileUploadContextProps | undefined>(undefined);
 
 export type FileUploadProps = {
   /**
@@ -41,10 +34,4 @@ export const FileUpload = forwardRef<HTMLDivElement, FileUploadProps>(
   },
 );
 
-FileUpload.displayName = "@optiaxiom/react/FileUpload";
-
-export const useFileUploadContext = () => {
-  const ctx = useContext(FileUploadContext);
-  if (!ctx) throw new Error("useFileUploadContext must be used within FileUpload");
-  return ctx;
-}; 
+FileUpload.displayName = "@optiaxiom/react/FileUpload"; 
