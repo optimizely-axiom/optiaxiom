@@ -3,6 +3,7 @@ export * from "./calendar";
 export * from "./card";
 export * from "./command";
 export * from "./data-table/DataTableHeaderCell";
+export * from "./file-upload";
 export * from "./highlight";
 export * from "./inline-input";
 export * from "./layout";
