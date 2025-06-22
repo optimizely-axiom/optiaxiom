@@ -8,7 +8,9 @@ import * as styles from "./FileUpload.css";
 import { useFileUploadContext } from "./FileUploadContext";
 
 export const FileUploadDropzone: React.FC = () => {
-  const { getInputProps, getRootProps } = useFileUploadContext("@optiaxiom/react/FileUploadDropzone");
+  const { getInputProps, getRootProps } = useFileUploadContext(
+    "@optiaxiom/react/FileUploadDropzone",
+  );
 
   const inputProps = getInputProps();
   const { color: _color, size: _size, ...filteredProps } = inputProps;
@@ -19,11 +21,11 @@ export const FileUploadDropzone: React.FC = () => {
         <VisuallyHidden>
           <Input {...filteredProps} />
         </VisuallyHidden>
-        <IconDragAndDrop/>
+        <IconDragAndDrop />
         <Text>Drag and drop or click to upload</Text>
       </Flex>
     </Box>
   );
 };
 
-FileUploadDropzone.displayName = '@optiaxiom/react/FileUploadDropzone';
+FileUploadDropzone.displayName = "@optiaxiom/react/FileUploadDropzone";

@@ -1,7 +1,12 @@
 import { forwardRef } from "react";
-import { type DropzoneOptions, type FileRejection, useDropzone } from "react-dropzone";
+import {
+  type DropzoneOptions,
+  type FileRejection,
+  useDropzone,
+} from "react-dropzone";
 
-import { FileUploadContext } from "./FileUploadContext";
+import { Box } from "../box";
+import { FileUploadProvider } from "./FileUploadContext";
 import { FileUploadDropzone } from "./FileUploadDropzone";
 
 export type FileUploadProps = {
@@ -12,7 +17,10 @@ export type FileUploadProps = {
   /**
    * Callback function called when files are dropped or selected
    */
-  onFilesDrop?: (acceptedFiles: File[], fileRejections: FileRejection[]) => void;
+  onFilesDrop?: (
+    acceptedFiles: File[],
+    fileRejections: FileRejection[],
+  ) => void;
 };
 
 export const FileUpload = forwardRef<HTMLDivElement, FileUploadProps>(
@@ -25,13 +33,17 @@ export const FileUpload = forwardRef<HTMLDivElement, FileUploadProps>(
     });
 
     return (
-      <FileUploadContext.Provider value={{ getInputProps, getRootProps, isDragActive }}>
-        <div ref={ref}>
+      <FileUploadProvider
+        getInputProps={getInputProps}
+        getRootProps={getRootProps}
+        isDragActive={isDragActive}
+      >
+        <Box ref={ref}>
           <FileUploadDropzone />
-        </div>
-      </FileUploadContext.Provider>
+        </Box>
+      </FileUploadProvider>
     );
   },
 );
 
-FileUpload.displayName = "@optiaxiom/react/FileUpload"; 
+FileUpload.displayName = "@optiaxiom/react/FileUpload";

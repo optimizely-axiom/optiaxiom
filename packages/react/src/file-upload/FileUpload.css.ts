@@ -5,7 +5,7 @@ export const className = style({});
 export const fileUpload = recipe({
   base: [
     {
-      alignItems: "center", 
+      alignItems: "center",
       bg: "bg.secondary",
       border: "1",
       borderColor: "border.default",

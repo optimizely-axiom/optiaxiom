@@ -11,5 +11,4 @@ export default {
 
 type Story = StoryObj<typeof FileUpload>;
 
-export const Basic: Story = {
-}; 
+export const Basic: Story = {};
