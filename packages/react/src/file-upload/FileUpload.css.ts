@@ -12,15 +12,15 @@ export const fileUpload = recipe({
       flex: "1",
       flexDirection: "column",
       gap: "8",
+      h: "224",
       justifyContent: "center",
+      w: "384",
     },
     style({
       borderColor: "border.default",
       borderRadius: "lg",
       borderStyle: "dashed",
       borderWidth: "1px",
-      height: "224px",
-      width: "384px",
     }),
   ],
 });
