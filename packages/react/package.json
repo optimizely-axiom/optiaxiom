@@ -70,9 +70,11 @@
     "@tanstack/react-virtual": "^3.13.10",
     "@tanstack/virtual-core": "^3.13.10",
     "@vanilla-extract/dynamic": "^2.1.4",
+    "attr-accept": "2.2.2",
     "clsx": "^2.1.1",
     "downshift": "^9.0.9",
     "react-day-picker": "^9.7.0",
+    "react-dropzone": "^14.3.8",
     "react-remove-scroll": "^2.7.1",
     "use-sync-external-store": "^1.5.0"
   },
