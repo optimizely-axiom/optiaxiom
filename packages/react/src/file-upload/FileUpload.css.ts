@@ -6,21 +6,18 @@ export const fileUpload = recipe({
   base: [
     {
       alignItems: "center", 
-      alignSelf: "stretch",
       bg: "bg.secondary",
-      display: "flex",
+      border: "1",
+      borderColor: "border.default",
       flex: "1",
-      flexDirection: "column",
       gap: "8",
       h: "224",
       justifyContent: "center",
+      rounded: "lg",
       w: "384",
     },
     style({
-      borderColor: "border.default",
-      borderRadius: "lg",
       borderStyle: "dashed",
-      borderWidth: "1px",
     }),
   ],
 });
