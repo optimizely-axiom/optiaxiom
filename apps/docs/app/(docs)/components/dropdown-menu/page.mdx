@@ -114,7 +114,7 @@ Use `DropdownMenuSub`, `DropdownMenuSubTrigger`, and `DropdownMenuSubContent` to
 
 Combine dropdown menus with dialog to show alerts when selecting an item.
 
-Make sure to enable `asChild` prop on `AlertDialogTrigger` and call `event.preventDefault()` in the item `onSelect` handler.
+Make sure to use `AlertDialog` or `Dialog` in controlled mode since there is no actual trigger.
 
 <Demo component="dropdown-menu/alert-dialog-usage" meta="{27,31}" />
 
