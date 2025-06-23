@@ -2,6 +2,12 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import {
   Avatar,
+  Dialog,
+  DialogBody,
+  DialogClose,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
@@ -13,7 +19,9 @@ import {
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
+  Field,
   Flex,
+  Input,
 } from "@optiaxiom/react";
 import {
   IconBell,
@@ -385,6 +393,65 @@ export const CheckboxItem: Story = {
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
+    );
+  },
+};
+
+export const WithDialog: Story = {
+  play: async () => {
+    await waitFor(async () => {
+      return await expect(screen.getByRole("menu")).toHaveAttribute(
+        "data-state",
+        "open",
+      );
+    });
+    await userEvent.click(screen.getByRole("menuitem", { name: "Delete" }));
+    await waitFor(
+      async () =>
+        await expect(
+          screen.queryByRole("textbox", { name: "Label" }),
+        ).toHaveFocus(),
+    );
+  },
+  render: function WithDialog(args) {
+    const [open, setOpen] = useState(false);
+
+    return (
+      <Flex>
+        <DropdownMenu {...args}>
+          <DropdownMenuTrigger>Menu</DropdownMenuTrigger>
+
+          <DropdownMenuContent
+            onCloseAutoFocus={(event) => {
+              event.preventDefault();
+            }}
+          >
+            <DropdownMenuItem>Edit</DropdownMenuItem>
+            <DropdownMenuItem
+              intent="danger"
+              onSelect={() => {
+                requestAnimationFrame(() => setOpen(true));
+              }}
+            >
+              Delete
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+
+        <Dialog onOpenChange={setOpen} open={open}>
+          <DialogContent>
+            <DialogHeader>Testing input autoFocus</DialogHeader>
+            <DialogBody>
+              <Field label="Label">
+                <Input autoFocus placeholder="Should be focused" />
+              </Field>
+            </DialogBody>
+            <DialogFooter>
+              <DialogClose appearance="primary">Close</DialogClose>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
+      </Flex>
     );
   },
 };

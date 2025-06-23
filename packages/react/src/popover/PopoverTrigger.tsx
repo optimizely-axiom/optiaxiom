@@ -2,6 +2,7 @@ import * as RadixPopover from "@radix-ui/react-popover";
 import { forwardRef, useEffect, useState } from "react";
 
 import { Button, type ButtonProps } from "../button";
+import { usePopoverContext } from "./PopoverContext";
 
 export type PopoverTriggerProps = ButtonProps<
   typeof RadixPopover.Trigger,
@@ -19,6 +20,10 @@ export const PopoverTrigger = forwardRef<
   HTMLButtonElement,
   PopoverTriggerProps
 >(({ asChild, children, hasCustomAnchor, ...props }, ref) => {
+  const { open, presence } = usePopoverContext(
+    "@optiaxiom/react/PopoverTrigger",
+  );
+
   const [shouldRender, setShouldRender] = useState(!hasCustomAnchor);
   useEffect(() => {
     if (!shouldRender) {
@@ -28,7 +33,13 @@ export const PopoverTrigger = forwardRef<
 
   return (
     shouldRender && (
-      <RadixPopover.Trigger asChild ref={ref} {...props}>
+      <RadixPopover.Trigger
+        aria-expanded={open || presence}
+        asChild
+        data-state={open || presence ? "open" : "closed"}
+        ref={ref}
+        {...props}
+      >
         {asChild ? children : <Button>{children}</Button>}
       </RadixPopover.Trigger>
     )

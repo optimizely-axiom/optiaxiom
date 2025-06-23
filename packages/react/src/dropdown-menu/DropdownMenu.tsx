@@ -41,7 +41,7 @@ export function DropdownMenu({
   const [presence, setPresence] = useState<boolean>(false);
 
   return (
-    <RadixMenu.Root onOpenChange={setOpen} open={open || presence} {...props}>
+    <RadixMenu.Root onOpenChange={setOpen} open={open} {...props}>
       <DropdownMenuProvider
         open={open}
         presence={presence}

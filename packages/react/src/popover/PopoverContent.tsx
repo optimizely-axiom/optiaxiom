@@ -26,8 +26,18 @@ export type PopoverContentProps = ExcludeProps<
 >;
 
 export const PopoverContent = forwardRef<HTMLDivElement, PopoverContentProps>(
-  ({ align = "start", asChild, children, sideOffset = 4, ...props }, ref) => {
-    const { open, presence, setPresence } = usePopoverContext(
+  (
+    {
+      align = "start",
+      asChild,
+      children,
+      onCloseAutoFocus,
+      sideOffset = 4,
+      ...props
+    },
+    ref,
+  ) => {
+    const { modal, open, presence, setPresence } = usePopoverContext(
       "@optiaxiom/react/PopoverContent",
     );
 
@@ -48,6 +58,28 @@ export const PopoverContent = forwardRef<HTMLDivElement, PopoverContentProps>(
               align={align}
               asChild
               collisionPadding={16}
+              data-state={presence ? "open" : "closed"}
+              forceMount
+              onCloseAutoFocus={(event) => {
+                onCloseAutoFocus?.(event);
+                if (event.defaultPrevented) {
+                  return;
+                }
+
+                if (modal && document.activeElement !== document.body) {
+                  /**
+                   * A modal popover will use a pseudo backdrop to capture
+                   * clicks/focus. Clicking this backdrop typically dismisses
+                   * the popover.
+                   *
+                   * But in case we open a dialog from a popover that has an
+                   * input with autoFocus - or we shift the focus away
+                   * programmatically in some other way we need to handle that
+                   * case and prevent shifting focus back to the trigger.
+                   */
+                  event.preventDefault();
+                }
+              }}
               ref={ref}
               sideOffset={sideOffset}
             >
