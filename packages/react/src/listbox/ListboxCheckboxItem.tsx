@@ -25,11 +25,15 @@ export const ListboxCheckboxItem = forwardRef<
       addonBefore={
         <Flex flexDirection="row" gap="8">
           <Box
-            onClick={(event) => {
-              event.preventDefault();
-              event.stopPropagation();
-              onCheckedChange?.(true);
-            }}
+            onClick={
+              onCheckedChange
+                ? (event) => {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    onCheckedChange(true);
+                  }
+                : undefined
+            }
             {...styles.checkbox()}
           >
             <Checkbox

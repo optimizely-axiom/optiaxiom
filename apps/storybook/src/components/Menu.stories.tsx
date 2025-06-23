@@ -23,7 +23,9 @@ import {
 import {
   IconPencil,
   IconSend,
+  IconSparkles,
   IconTrash,
+  IconUser,
   IconUserCircle,
 } from "@tabler/icons-react";
 import { useMemo, useRef, useState } from "react";
@@ -643,6 +645,34 @@ export const WithDialog: Story = {
           </DialogContent>
         </Dialog>
       </Flex>
+    );
+  },
+};
+
+export const SwitchItem: Story = {
+  render: function SwitchItem(args) {
+    const [enabled, setEnabled] = useState(true);
+
+    return (
+      <Menu
+        {...args}
+        options={[
+          {
+            addon: <IconUser size={16} />,
+            label: "My Profile",
+          },
+          {
+            addon: <IconSparkles size={16} />,
+            execute: () => setEnabled(!enabled),
+            label: "New UI (Beta)",
+            selected: enabled,
+            switch: true,
+          },
+        ]}
+      >
+        <MenuTrigger>Menu</MenuTrigger>
+        <MenuContent />
+      </Menu>
     );
   },
 };
