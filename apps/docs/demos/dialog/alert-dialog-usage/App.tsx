@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  Alert,
   AlertDialog,
   AlertDialogAction,
   AlertDialogBody,
@@ -49,6 +50,11 @@ export function App() {
           }}
         >
           <DialogBody>
+            <Alert intent="warning">
+              Type something into the text field and then attempt to cancel the
+              dialog:
+            </Alert>
+
             <Textarea autoFocus ref={textRef} required />
           </DialogBody>
 
