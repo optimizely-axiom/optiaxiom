@@ -77,6 +77,10 @@ export type CommandOption = {
    */
   subOptionsInputVisible?: boolean;
   /**
+   * Whether to show a switch toggle instead of a check mark.
+   */
+  switch?: boolean;
+  /**
    * Override the default filtering logic and fully control when an item is
    * visible based on the current inputValue.
    */

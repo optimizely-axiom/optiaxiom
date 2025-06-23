@@ -17,6 +17,7 @@ import { MenuRadioItem } from "./MenuRadioItem";
 import { MenuSubContent } from "./MenuSubContent";
 import { useMenuSubContext } from "./MenuSubContext";
 import { MenuSubTrigger } from "./MenuSubTrigger";
+import { MenuSwitchItem } from "./MenuSwitchItem";
 
 export type MenuListboxProps = ComponentPropsWithoutRef<typeof CommandListbox>;
 
@@ -43,7 +44,9 @@ export const MenuListbox = forwardRef<HTMLDivElement, MenuListboxProps>(
                   : "selected" in item
                     ? item.multi
                       ? MenuCheckboxItem
-                      : MenuRadioItem
+                      : item.switch
+                        ? MenuSwitchItem
+                        : MenuRadioItem
                     : MenuItem;
               const group = item.group;
               return (
