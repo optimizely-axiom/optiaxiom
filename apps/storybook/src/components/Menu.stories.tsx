@@ -1,13 +1,31 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Avatar, AvatarGroup, Box, Field } from "@optiaxiom/react";
+import {
+  Avatar,
+  AvatarGroup,
+  Box,
+  Dialog,
+  DialogBody,
+  DialogClose,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  Field,
+  Flex,
+  Input,
+} from "@optiaxiom/react";
 import {
   Menu,
   MenuContent,
   type MenuOption,
   MenuTrigger,
 } from "@optiaxiom/react/unstable";
-import { IconSend, IconUserCircle } from "@tabler/icons-react";
+import {
+  IconPencil,
+  IconSend,
+  IconTrash,
+  IconUserCircle,
+} from "@tabler/icons-react";
 import { useMemo, useRef, useState } from "react";
 import { expect, screen, userEvent, waitFor } from "storybook/test";
 
@@ -473,12 +491,12 @@ export const Nested: Story = {
     ],
   },
   play: async () => {
-    await waitFor(
-      async () =>
-        await expect(
-          screen.getByRole("option", { name: "Add to" }),
-        ).not.toHaveStyle("pointer-events: none"),
-    );
+    await waitFor(async () => {
+      return await expect(screen.getByRole("dialog")).toHaveAttribute(
+        "data-state",
+        "open",
+      );
+    });
     await userEvent.hover(screen.getByRole("option", { name: "Add to" }));
     await waitFor(
       async () =>
@@ -524,12 +542,12 @@ export const NestedAndSearchable: Story = {
     ],
   },
   play: async () => {
-    await waitFor(
-      async () =>
-        await expect(
-          screen.getByRole("option", { name: "Add to" }),
-        ).not.toHaveStyle("pointer-events: none"),
-    );
+    await waitFor(async () => {
+      return await expect(screen.getByRole("dialog")).toHaveAttribute(
+        "data-state",
+        "open",
+      );
+    });
     await userEvent.hover(screen.getByRole("option", { name: "Add to" }));
     await waitFor(
       async () =>
@@ -543,6 +561,88 @@ export const NestedAndSearchable: Story = {
         await expect(
           screen.queryByRole("option", { name: "Favorite" }),
         ).not.toBeInTheDocument(),
+    );
+  },
+};
+
+export const Addons: Story = {
+  render: (args) => {
+    return (
+      <Menu
+        {...args}
+        options={[
+          {
+            addon: <IconPencil size={16} />,
+            label: "Edit",
+          },
+          {
+            addon: <IconTrash size={16} />,
+            intent: "danger",
+            label: "Delete",
+          },
+        ]}
+      >
+        <MenuTrigger>Menu</MenuTrigger>
+        <MenuContent />
+      </Menu>
+    );
+  },
+};
+
+export const WithDialog: Story = {
+  play: async () => {
+    await waitFor(async () => {
+      return await expect(screen.getByRole("dialog")).toHaveAttribute(
+        "data-state",
+        "open",
+      );
+    });
+    await userEvent.click(screen.getByRole("option", { name: "Delete" }));
+    await waitFor(
+      async () =>
+        await expect(
+          screen.queryByRole("textbox", { name: "Label" }),
+        ).toHaveFocus(),
+    );
+  },
+  render: function WithDialog(args) {
+    const [open, setOpen] = useState(false);
+
+    return (
+      <Flex>
+        <Menu
+          {...args}
+          options={[
+            {
+              addon: <IconPencil size={16} />,
+              label: "Edit",
+            },
+            {
+              addon: <IconTrash size={16} />,
+              execute: () => setOpen(true),
+              intent: "danger",
+              label: "Delete",
+            },
+          ]}
+        >
+          <MenuTrigger>Menu</MenuTrigger>
+          <MenuContent />
+        </Menu>
+
+        <Dialog onOpenChange={setOpen} open={open}>
+          <DialogContent>
+            <DialogHeader>Testing input autoFocus</DialogHeader>
+            <DialogBody>
+              <Field label="Label">
+                <Input autoFocus placeholder="Should be focused" />
+              </Field>
+            </DialogBody>
+            <DialogFooter>
+              <DialogClose appearance="primary">Close</DialogClose>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
+      </Flex>
     );
   },
 };

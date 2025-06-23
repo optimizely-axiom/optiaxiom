@@ -27,9 +27,9 @@ export type PopoverProps = {
 export function Popover({
   children,
   defaultOpen = false,
+  modal,
   onOpenChange,
   open: openProp,
-  ...props
 }: PopoverProps) {
   const [open, setOpen] = useControllableState({
     caller: "@optiaxiom/react/Popover",
@@ -40,12 +40,9 @@ export function Popover({
   const [presence, setPresence] = useState<boolean>(false);
 
   return (
-    <RadixPopover.Root
-      onOpenChange={setOpen}
-      open={open || presence}
-      {...props}
-    >
+    <RadixPopover.Root modal={modal} onOpenChange={setOpen} open={open}>
       <PopoverProvider
+        modal={modal}
         open={open}
         presence={presence}
         setPresence={setPresence}

@@ -51,6 +51,8 @@ export const DropdownMenuContent = forwardRef<
         <ModalListbox asChild {...props}>
           <RadixMenu.Content
             align={align}
+            data-state={presence ? "open" : "closed"}
+            forceMount
             onPointerMove={(event) => {
               if (!open) {
                 event.preventDefault();
