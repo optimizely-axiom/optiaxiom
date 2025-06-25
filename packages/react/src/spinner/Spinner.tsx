@@ -26,6 +26,7 @@ export const Spinner = forwardRef<HTMLDivElement, SpinnerProps>(
         alignItems="center"
         aria-label="Loading"
         display="inline-flex"
+        justifyContent="center"
         ref={ref}
         role="status"
         {...props}
