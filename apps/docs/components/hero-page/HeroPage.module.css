@@ -1,19 +1,26 @@
 body > div:has(.brand)::before {
-  --bg: color-mix(in srgb, var(--ax-colors-fg-accent) 20%, transparent);
+  --bg: color-mix(in srgb, var(--ax-colors-fg-accent) 15%, transparent);
 
   animation: pulse 10s infinite;
   background-image:
     linear-gradient(var(--bg) 1px, transparent 1px),
-    linear-gradient(to right, var(--bg) 1px, transparent 1px);
-  background-position: center;
-  background-size: 70px 70px;
+    linear-gradient(to right, var(--bg) 1px, transparent 1px),
+    radial-gradient(
+      color-mix(in srgb, var(--ax-colors-fg-accent) 10%, transparent) 2px,
+      transparent 0
+    );
+  background-position:
+    0 0,
+    0 0,
+    -24.5px -24.5px;
+  background-size: 50px 50px;
   border-bottom: 1px solid var(--ax-colors-border-default);
   content: "";
   inset: 0;
   mask-image: linear-gradient(
     120deg,
     rgb(0 0 0 / 20%) calc(40%),
-    rgb(0 0 0 / 100%),
+    rgb(0 0 0 / 60%),
     rgb(0 0 0 / 20%) calc(60%)
   );
   mask-position: 200% 0%;
