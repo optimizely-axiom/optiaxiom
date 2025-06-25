@@ -5,7 +5,12 @@ import styles from "./HeroPage.module.css";
 
 export function HeroPage() {
   return (
-    <Flex alignItems={["start", "center"]} h="full" justifyContent="center">
+    <Flex
+      alignItems={["start", "center"]}
+      className={styles.root}
+      h="full"
+      justifyContent="center"
+    >
       <Heading className={`${styles.heading} ${styles.fade}`} level="1">
         <Box asChild className={styles.brand}>
           <span>Axiom</span>
@@ -13,7 +18,7 @@ export function HeroPage() {
         Design System
       </Heading>
 
-      <Text className={styles.fade} fontSize="2xl" mb="24">
+      <Text className={styles.fade} mb="24">
         Axiom is a modular design system for efficiently designing and building
         UI at Optimizely.
       </Text>
@@ -22,7 +27,6 @@ export function HeroPage() {
         <Box
           asChild
           color="fg.accent.strong"
-          fontSize="2xl"
           fontWeight="600"
           px="24"
           py="12"
