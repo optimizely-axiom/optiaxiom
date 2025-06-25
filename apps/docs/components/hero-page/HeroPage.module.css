@@ -29,6 +29,15 @@ body > div:has(.brand)::before {
   position: absolute;
 }
 
+.root {
+  font-size: 17px;
+
+  @media screen and (min-width: 37.5rem) {
+    font-size: 24px;
+    text-align: center;
+  }
+}
+
 .heading {
   font-weight: 800;
   letter-spacing: -0.025em;
