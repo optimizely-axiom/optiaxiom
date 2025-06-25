@@ -47,7 +47,7 @@ export function App() {
   return (
     <Menu
       inputVisible="always"
-      loading={isLoading}
+      loading={isLoading && "spinner"}
       onInputValueChange={(inputValue) => refetch(inputValue)}
       options={data}
     >

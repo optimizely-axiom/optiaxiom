@@ -11,6 +11,7 @@ import type { PopoverContent } from "../popover";
 import type { ExcludeProps } from "../utils";
 
 import { useCommandContext } from "../command/internals";
+import { Spinner } from "../spinner";
 import { VisuallyHidden } from "../visually-hidden";
 import { useMenuContext } from "./MenuContext";
 import { MenuDialogContent } from "./MenuDialogContent";
@@ -68,11 +69,18 @@ export const MenuContent = forwardRef<HTMLDivElement, MenuContentProps>(
         {...props}
       >
         <VisuallyHidden disabled={inputVisible}>
-          <MenuInput placeholder={placeholder} />
+          <MenuInput
+            addonAfter={
+              (loading === "both" || loading === "spinner") && (
+                <Spinner size="2xs" />
+              )
+            }
+            placeholder={placeholder}
+          />
         </VisuallyHidden>
         <MenuListbox
           empty={empty}
-          loading={loading}
+          loading={loading === true ? "both" : loading || undefined}
           onScroll={() => setOpen(false)}
           p={size === "lg" ? "6" : "0"}
         >

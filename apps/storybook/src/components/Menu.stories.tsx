@@ -175,6 +175,55 @@ export const AsyncLoading: Story = {
   },
 };
 
+export const AsyncLoadingSpinner: Story = {
+  play: async () => {
+    await waitFor(() => expect(screen.getByRole("combobox")).toHaveFocus());
+    await userEvent.keyboard("b");
+    await waitFor(() => expect(screen.getByRole("combobox")).toHaveValue("b"));
+  },
+  render: function AsyncLoading(args) {
+    const [items, setItems] = useState<string[]>();
+    const [value, setValue] = useState("Bangla");
+
+    const [isLoading, setIsLoading] = useState<"spinner">();
+    const timerRef = useRef(0);
+    const fetchData = (query: string) => {
+      setIsLoading("spinner");
+      clearTimeout(timerRef.current);
+      timerRef.current = window.setTimeout(() => {
+        const filteredLanguages = languages.filter((lang) =>
+          lang.toLowerCase().includes(query.toLowerCase()),
+        );
+        setItems(filteredLanguages);
+        setIsLoading(undefined);
+      }, 3000);
+    };
+
+    return (
+      <Menu
+        {...args}
+        empty={items ? undefined : "Start typing to search..."}
+        inputVisible="always"
+        loading={isLoading}
+        onInputValueChange={fetchData}
+        options={useMemo(
+          () =>
+            (items ?? []).map<MenuOption>((language) => ({
+              execute: () => setValue(language),
+              label: language,
+              selected: () => value === language,
+              visible: true,
+            })),
+          [items, value],
+        )}
+      >
+        <MenuTrigger>Set language</MenuTrigger>
+        <MenuContent />
+      </Menu>
+    );
+  },
+};
+
 export const Multiple: Story = {
   render: function Multiple(args) {
     const [value, setValue] = useState<string[]>([]);
