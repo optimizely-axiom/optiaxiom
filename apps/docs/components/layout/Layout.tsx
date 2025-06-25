@@ -7,6 +7,7 @@ import { Head } from "nextra/components";
 import { getPageMap } from "nextra/page-map";
 
 import pkg from "../../../../packages/react/package.json";
+import { CookieConsent } from "./CookieConsent";
 import "./Layout.css";
 
 export const metadata: Metadata = {
@@ -84,6 +85,7 @@ export async function Layout({ children }: { children: ReactNode }) {
             }}
           >
             {children}
+            <CookieConsent />
           </NextraLayout>
         </AxiomProvider>
       </body>
