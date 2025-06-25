@@ -37,7 +37,7 @@ export type ListboxItemizedProps = BoxProps<
     /**
      * Whether to show loading spinner inside the menu.
      */
-    loading?: boolean;
+    loading?: "both" | "placeholder" | "spinner";
     /**
      * Handler that is called when the element mounts or unmounts from the DOM.
      */
@@ -81,7 +81,7 @@ export const ListboxItemized = forwardRef<HTMLDivElement, ListboxItemizedProps>(
         tabIndex={-1}
         {...props}
       >
-        {loading ? (
+        {loading === "both" || loading === "placeholder" ? (
           <>
             {[1, 2, 3].map((item) => (
               <ListboxItem
@@ -105,12 +105,12 @@ export const ListboxItemized = forwardRef<HTMLDivElement, ListboxItemizedProps>(
               </Fragment>
             ))
           ) : (
-            <ListboxEmpty>{empty}</ListboxEmpty>
+            loading !== "spinner" && <ListboxEmpty>{empty}</ListboxEmpty>
           )
         ) : items.length > 0 ? (
           children
         ) : (
-          <ListboxEmpty>{empty}</ListboxEmpty>
+          loading !== "spinner" && <ListboxEmpty>{empty}</ListboxEmpty>
         )}
       </Listbox>
     );
