@@ -1,0 +1,93 @@
+# Test Environments
+
+Axiom should work out of the box with most testing libraries. But certain test environments may require custom configuration to work.
+
+## Global provider
+
+### Wrap tests in AxiomProvider
+
+Always make sure to wrap your elements with AxiomProvider during tests.
+
+For example if you're using [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) then you should export a custom render function that sets `AxiomProvider` as the default `wrapper`.
+
+```ts
+import { AxiomProvider } from "@optiaxiom/react";
+import { render } from "@testing-library/react";
+
+const customRender = (...args: Parameters<typeof render>) => ({
+  ...render(args[0], {
+    wrapper: AxiomProvider,
+    ...args[1],
+  }),
+});
+
+export * from "@testing-library/react";
+export { customRender as render };
+```
+
+## Jest
+
+### Mock CSS imports
+
+Jest does not support CSS imports by default and needs to be manually configured to handle them.
+
+Install the `jest-transform-stub` package.
+
+```sh npm2yarn
+npm install -D jest-transform-stub
+```
+
+Stub CSS files by transforming them into empty modules in your Jest config file.
+
+```js filename="jest.config.js"
+module.exports = {
+  moduleNameMapper: {
+    "\\.css$": "jest-transform-stub",
+  },
+};
+```
+
+## Vitest
+
+### Process CSS imports
+
+Vitest does not process CSS imports from within dependencies by default. So we have to manually configure it to bundle the Axiom dependencies:
+
+```ts filename="vitest.config.ts"
+import { defineConfig } from "vitest/config";
+
+export default defineConfig({
+  test: {
+    server: {
+      deps: {
+        inline: ["@optiaxiom"],
+      },
+    },
+  },
+});
+```
+
+### Cannot find 'react/jsx-runtime'
+
+If you're using React 16 or 17 then running tests using Vitest will cause errors like this:
+
+```
+Error: Cannot find module 'react/jsx-runtime' imported from /node_modules/@optiaxiom/react/...
+Did you mean to import "react/jsx-runtime.js"?
+```
+
+In order to fix this we have to manually configure it to bundle the Axiom dependencies:
+
+```ts filename="vitest.config.ts"
+import { defineConfig } from "vitest/config";
+
+export default defineConfig({
+  test: {
+    server: {
+      deps: {
+        inline: ["@optiaxiom", "@radix"],
+      },
+    },
+  },
+});
+```
