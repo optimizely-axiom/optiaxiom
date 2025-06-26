@@ -1,3 +1,5 @@
+"use client";
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -20,18 +22,43 @@ import {
   IconSettings,
   IconVocabulary,
 } from "@tabler/icons-react";
+import { useState } from "react";
 
 export function PrimaryNav() {
+  const [selected, setSelected] = useState("flags");
+
   return (
     <Nav>
       <NavBody>
         <NavList>
-          <NavItem icon={<IconBinaryTree />}>Projects</NavItem>
-          <NavItem active icon={<IconFlag2 />}>
+          <NavItem
+            active={selected === "projects"}
+            icon={<IconBinaryTree />}
+            onClick={() => setSelected("projects")}
+          >
+            Projects
+          </NavItem>
+          <NavItem
+            active={selected === "flags"}
+            icon={<IconFlag2 />}
+            onClick={() => setSelected("flags")}
+          >
             Flags
           </NavItem>
-          <NavItem icon={<IconChartLine />}>Events</NavItem>
-          <NavItem icon={<IconSettings />}>Settings</NavItem>
+          <NavItem
+            active={selected === "events"}
+            icon={<IconChartLine />}
+            onClick={() => setSelected("events")}
+          >
+            Events
+          </NavItem>
+          <NavItem
+            active={selected === "settings"}
+            icon={<IconSettings />}
+            onClick={() => setSelected("settings")}
+          >
+            Settings
+          </NavItem>
           <NavItem
             addonAfter={<IconExternalLink size="16" />}
             asChild
