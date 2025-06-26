@@ -1,16 +1,31 @@
-"use client";
+import { Badge, Flex } from "@optiaxiom/react";
 
-import type { ComponentPropsWithRef } from "react";
+const appearances = [
+  "neutral",
+  "information",
+  "success",
+  "warning",
+  "danger",
+  "primary",
+] as const;
 
-import { Badge } from "@optiaxiom/react";
-
-export function App({
-  intent = "success",
-  variant = "subtle",
-}: Pick<ComponentPropsWithRef<typeof Badge>, "intent" | "variant">) {
+export function App() {
   return (
-    <Badge intent={intent} variant={variant}>
-      Pending
-    </Badge>
+    <Flex>
+      <Flex flexDirection="row">
+        {appearances.map((intent) => (
+          <Badge intent={intent} key={intent}>
+            {intent}
+          </Badge>
+        ))}
+      </Flex>
+      <Flex flexDirection="row">
+        {appearances.map((intent) => (
+          <Badge intent={intent} key={intent} variant="strong">
+            {intent}
+          </Badge>
+        ))}
+      </Flex>
+    </Flex>
   );
 }
