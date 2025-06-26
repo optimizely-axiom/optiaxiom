@@ -11,6 +11,7 @@ export default defineConfig({
       instances: [{ browser: "chromium" }],
       provider: "playwright",
     },
+    maxWorkers: 1,
     restoreMocks: true,
     retry: 1,
     setupFiles: ["./vitest.setup.ts"],
