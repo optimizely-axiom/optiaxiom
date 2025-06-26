@@ -33,7 +33,9 @@ export const NavGroupTrigger = forwardRef<HTMLDivElement, NavGroupTriggerProps>(
       </DisclosureTrigger>
     ) : (
       <Box
+        alignItems="center"
         color="fg.tertiary"
+        display="flex"
         fontSize="sm"
         h="sm"
         id={id}
