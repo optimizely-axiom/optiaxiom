@@ -28,6 +28,7 @@ export default defineConfig({
       provider: "playwright",
     },
     isolate: false,
+    maxWorkers: 4,
     setupFiles: ["./.storybook/vitest.setup.ts"],
   },
 });
