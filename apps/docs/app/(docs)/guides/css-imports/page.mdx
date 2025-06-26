@@ -58,25 +58,3 @@ module.exports = {
   },
 };
 ```
-
-## Jest
-
-### Mock CSS imports
-
-Jest does not support CSS imports by default and needs to be manually configured to handle them.
-
-Install the `jest-transform-stub` package.
-
-```sh npm2yarn
-npm install -D jest-transform-stub
-```
-
-Stub CSS files by transforming them into empty modules in your Jest config file.
-
-```js filename="jest.config.js"
-module.exports = {
-  moduleNameMapper: {
-    "\\.css$": "jest-transform-stub",
-  },
-};
-```

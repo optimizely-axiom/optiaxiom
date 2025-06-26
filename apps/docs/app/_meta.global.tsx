@@ -26,6 +26,7 @@ export default {
         type: "separator",
       },
       index: "Installation",
+      "test-environments": "Test Environments",
 
       "-- Guides": {
         title: "Guides",
