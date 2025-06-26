@@ -11,9 +11,17 @@ import {
 import { useEffect, useId, useState } from "react";
 
 export function CookieConsent() {
+  const clarity =
+    typeof window !== "undefined" &&
+    "clarity" in window &&
+    typeof window.clarity === "function"
+      ? window.clarity
+      : undefined;
+
   const [consent, setConsent] = useState(true);
   useEffect(() => {
     if (
+      clarity &&
       !(
         document.cookie.includes("_clck=") ||
         document.cookie.includes("consent=decline")
@@ -21,7 +29,7 @@ export function CookieConsent() {
     ) {
       requestAnimationFrame(() => setConsent(false));
     }
-  }, []);
+  }, [clarity]);
 
   const id = useId();
 
@@ -73,12 +81,7 @@ export function CookieConsent() {
               <Button
                 appearance="inverse"
                 onClick={() => {
-                  if (
-                    "clarity" in window &&
-                    typeof window.clarity === "function"
-                  ) {
-                    window.clarity("consent");
-                  }
+                  clarity?.("consent");
                   setConsent(true);
                 }}
               >
