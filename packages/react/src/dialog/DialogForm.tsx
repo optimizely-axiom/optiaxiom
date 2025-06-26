@@ -14,7 +14,6 @@ export const DialogForm = forwardRef<HTMLFormElement, DialogFormProps>(
         className={className}
         display="flex"
         flexDirection="column"
-        overflow="auto"
         {...boxProps}
       >
         <form ref={ref} {...restProps}>
