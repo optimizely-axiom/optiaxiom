@@ -1,6 +1,4 @@
 import eslint from "@eslint/js";
-// @ts-expect-error -- no types
-import jsxA11y from "eslint-plugin-jsx-a11y";
 import perfectionistNatural from "eslint-plugin-perfectionist";
 import reactHooks from "eslint-plugin-react-hooks";
 // @ts-expect-error -- no types
@@ -53,12 +51,9 @@ export default tsEslint.config(
     },
     plugins: {
       ...reactRecommended.plugins,
-      "jsx-a11y": { rules: jsxA11y.rules },
     },
     rules: {
       ...reactRecommended.rules,
-      ...jsxA11y.configs.recommended.rules,
-      "jsx-a11y/no-autofocus": "off",
       "local/consistent-recipe-sprinkles": "error",
       "react/jsx-boolean-value": "error",
       "react/jsx-curly-brace-presence": "error",

@@ -166,7 +166,6 @@ export const Link: Story = {
         <a href="/">Sample Link</a>
       </Button>
       <Button {...args} aria-label="Sample Link">
-        {/* eslint-disable-next-line jsx-a11y/anchor-has-content */}
         <a href="/" />
       </Button>
     </Flex>
