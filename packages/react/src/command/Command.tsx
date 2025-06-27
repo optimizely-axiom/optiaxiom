@@ -73,18 +73,7 @@ export function Command({
   });
   const items = useCommandItems({ inputValue, options });
 
-  const [highlightedIndex, setHighlightedIndex] = useHighlightedIndex(
-    enabled,
-    () =>
-      items.filter((item) => "selected" in item).length > items.length / 2
-        ? items.findIndex(
-            (item) =>
-              !resolveItemProperty(item.disabledReason) &&
-              resolveItemProperty(item.selected) &&
-              !item.multi,
-          )
-        : -1,
-  );
+  const [highlightedIndex, setHighlightedIndex] = useHighlightedIndex(enabled);
 
   const pauseInteractionRef = useRef({
     isInsideTriangle: null,
