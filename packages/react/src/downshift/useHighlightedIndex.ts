@@ -6,7 +6,7 @@ import { useEffectEvent } from "../hooks";
 
 export function useHighlightedIndex(
   open: boolean | number | undefined,
-  getInitialHighlightedIndex: () => number,
+  getInitialHighlightedIndex: () => number = () => -1,
 ) {
   const [highlightedIndex, setHighlightedIndex] = useState(-1);
 
