@@ -389,9 +389,6 @@ importers:
       '@vanilla-extract/dynamic':
         specifier: ^2.1.4
         version: 2.1.4
-      attr-accept:
-        specifier: 2.2.2
-        version: 2.2.2
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -3246,10 +3243,6 @@ packages:
 
   asynckit@0.4.0:
     resolution: {integrity: sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==}
-
-  attr-accept@2.2.2:
-    resolution: {integrity: sha512-7prDjvt9HmqiZ0cl5CRjtS84sEyhsHP2coDkaZKRKVfCDo9s7iw7ChVmar78Gu9pC4SoR/28wFu/G5JJhTnqEg==}
-    engines: {node: '>=4'}
 
   attr-accept@2.2.5:
     resolution: {integrity: sha512-0bDNnY/u6pPwHDMoF0FieU354oBi0a8rD9FcsLwzcGWbc8KS8KPIi7y+s13OlVY+gMWc/9xEMUgNE6Qm8ZllYQ==}
@@ -10571,8 +10564,6 @@ snapshots:
     optional: true
 
   asynckit@0.4.0: {}
-
-  attr-accept@2.2.2: {}
 
   attr-accept@2.2.5: {}
 

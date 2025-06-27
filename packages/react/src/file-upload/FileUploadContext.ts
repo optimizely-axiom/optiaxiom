@@ -9,5 +9,6 @@ import {
 export const [FileUploadProvider, useFileUploadContext] = createContext<{
   getInputProps: <T extends DropzoneInputProps>(props?: T) => T;
   getRootProps: <T extends DropzoneRootProps>(props?: T) => T;
-  isDragActive: boolean;
+  isDragAccept: boolean;
+  isDragReject: boolean;
 }>("@optiaxiom/react/FileUpload");

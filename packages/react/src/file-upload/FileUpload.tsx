@@ -1,34 +1,43 @@
 import { forwardRef } from "react";
-import {
-  type DropzoneOptions,
-  type FileRejection,
-  useDropzone,
-} from "react-dropzone";
+import { type DropzoneOptions, useDropzone } from "react-dropzone";
 
-import { Box } from "../box";
+import { Box, type BoxProps } from "../box";
 import { FileUploadProvider } from "./FileUploadContext";
-import { FileUploadDropzone } from "./FileUploadDropzone";
 
-export type FileUploadProps = {
-  /**
-   * File types to accept for upload
-   */
-  accept?: DropzoneOptions["accept"];
-  /**
-   * Callback function called when files are dropped or selected
-   */
-  onFilesDrop?: (
-    acceptedFiles: File[],
-    fileRejections: FileRejection[],
-  ) => void;
-};
+export type FileUploadProps = BoxProps<
+  "div",
+  {
+    /**
+     * File types to accept for upload. An object with the keys set to the MIME
+     * type and the values an array of file extensions.
+     *
+     * @example
+     * {
+     *   "image/*": [],
+     * }
+     */
+    accept?: DropzoneOptions["accept"];
+    /**
+     * Callback function called when files are dropped or selected
+     */
+    onFilesDrop?: (files: File[]) => void;
+  }
+>;
 
 export const FileUpload = forwardRef<HTMLDivElement, FileUploadProps>(
-  ({ accept, onFilesDrop }, ref) => {
-    const { getInputProps, getRootProps, isDragActive } = useDropzone({
+  ({ accept, children, onFilesDrop, ...props }, ref) => {
+    const {
+      getInputProps,
+      getRootProps,
+      isDragAccept,
+      isDragActive,
+      isDragReject,
+    } = useDropzone({
       accept,
-      onDrop: (acceptedFiles, fileRejections) => {
-        onFilesDrop?.(acceptedFiles, fileRejections);
+      onDrop: (acceptedFiles) => {
+        if (acceptedFiles.length) {
+          onFilesDrop?.(acceptedFiles);
+        }
       },
     });
 
@@ -36,10 +45,11 @@ export const FileUpload = forwardRef<HTMLDivElement, FileUploadProps>(
       <FileUploadProvider
         getInputProps={getInputProps}
         getRootProps={getRootProps}
-        isDragActive={isDragActive}
+        isDragAccept={isDragActive && isDragAccept}
+        isDragReject={isDragActive && isDragReject}
       >
-        <Box ref={ref}>
-          <FileUploadDropzone />
+        <Box color="fg.default" ref={ref} {...props}>
+          {children}
         </Box>
       </FileUploadProvider>
     );

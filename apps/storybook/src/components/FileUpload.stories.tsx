@@ -1,8 +1,23 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { FileUpload } from "@optiaxiom/react/unstable";
+import { Text } from "@optiaxiom/react";
+import { FileUpload, FileUploadDropzone } from "@optiaxiom/react/unstable";
 
 export default {
+  args: {
+    accept: {
+      "image/*": [],
+    },
+    children: (
+      <FileUploadDropzone py="64">
+        <Text color="fg.tertiary" fontSize="sm">
+          SVG, PNG, JPG or GIF (max. 2MB)
+        </Text>
+      </FileUploadDropzone>
+    ),
+    h: "224",
+    w: "384",
+  },
   argTypes: {
     onFilesDrop: { action: "onFilesDrop" },
   },
