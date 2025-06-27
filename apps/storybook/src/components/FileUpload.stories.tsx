@@ -5,18 +5,7 @@ import { FileUpload, FileUploadDropzone } from "@optiaxiom/react/unstable";
 
 export default {
   args: {
-    accept: {
-      "image/*": [],
-    },
-    children: (
-      <FileUploadDropzone py="64">
-        <Text color="fg.tertiary" fontSize="sm">
-          SVG, PNG, JPG or GIF (max. 2MB)
-        </Text>
-      </FileUploadDropzone>
-    ),
-    h: "224",
-    w: "384",
+    children: <FileUploadDropzone py="64" />,
   },
   argTypes: {
     onFilesDrop: { action: "onFilesDrop" },
@@ -26,4 +15,23 @@ export default {
 
 type Story = StoryObj<typeof FileUpload>;
 
-export const Basic: Story = {};
+export const Basic: Story = {
+  args: {
+    w: "384",
+  },
+};
+
+export const Description: Story = {
+  args: {
+    accept: {
+      "image/*": [],
+    },
+    children: (
+      <FileUploadDropzone p="32">
+        <Text color="fg.tertiary" fontSize="sm">
+          SVG, PNG, JPG or GIF (max. 2MB)
+        </Text>
+      </FileUploadDropzone>
+    ),
+  },
+};
