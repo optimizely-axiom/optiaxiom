@@ -22,13 +22,13 @@ export const FileUploadDropzone = forwardRef<
     <Box
       ref={ref}
       {...getRootProps({
-        ...props,
         ...styles.dropzone(
           {
             drag: isDragAccept ? "accept" : isDragReject ? "reject" : "default",
           },
           className,
         ),
+        ...props,
       })}
     >
       <input aria-labelledby={id} {...getInputProps()} />
