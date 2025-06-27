@@ -1,31 +1,46 @@
-import { Box } from "../box";
-import { Flex } from "../flex";
-import { IconDragAndDrop } from "../icons/IconDragAndDrop";
-import { Input } from "../input";
+import { useId } from "@radix-ui/react-id";
+import { forwardRef } from "react";
+
+import { Box, type BoxProps } from "../box";
+import { Icon } from "../icon";
+import { IconFileImportSolid } from "../icons/IconFileImportSolid";
 import { Text } from "../text";
-import { VisuallyHidden } from "../visually-hidden";
-import * as styles from "./FileUpload.css";
 import { useFileUploadContext } from "./FileUploadContext";
+import * as styles from "./FileUploadDropzone.css";
 
-export const FileUploadDropzone: React.FC = () => {
-  const { getInputProps, getRootProps } = useFileUploadContext(
-    "@optiaxiom/react/FileUploadDropzone",
-  );
+export type FileUploadDropzoneProps = BoxProps;
 
-  const inputProps = getInputProps();
-  const { color: _color, size: _size, ...filteredProps } = inputProps;
+export const FileUploadDropzone = forwardRef<
+  HTMLDivElement,
+  FileUploadDropzoneProps
+>(({ children, className, ...props }, ref) => {
+  const { getInputProps, getRootProps, isDragAccept, isDragReject } =
+    useFileUploadContext("@optiaxiom/react/FileUploadDropzone");
+  const id = useId();
 
   return (
-    <Box {...getRootProps()}>
-      <Flex {...styles.fileUpload({})}>
-        <VisuallyHidden>
-          <Input {...filteredProps} />
-        </VisuallyHidden>
-        <IconDragAndDrop />
-        <Text>Drag and drop or click to upload</Text>
-      </Flex>
+    <Box
+      ref={ref}
+      {...getRootProps({
+        ...props,
+        ...styles.dropzone(
+          {
+            drag: isDragAccept ? "accept" : isDragReject ? "reject" : undefined,
+          },
+          className,
+        ),
+      })}
+    >
+      <input aria-labelledby={id} {...getInputProps()} />
+      <Icon asChild color="fg.secondary">
+        <IconFileImportSolid />
+      </Icon>
+      <Text aria-hidden id={id}>
+        Drag and drop or click to upload
+      </Text>
+      {children}
     </Box>
   );
-};
+});
 
 FileUploadDropzone.displayName = "@optiaxiom/react/FileUploadDropzone";
