@@ -25,7 +25,7 @@ export const FileUploadDropzone = forwardRef<
         ...props,
         ...styles.dropzone(
           {
-            drag: isDragAccept ? "accept" : isDragReject ? "reject" : undefined,
+            drag: isDragAccept ? "accept" : isDragReject ? "reject" : "default",
           },
           className,
         ),
