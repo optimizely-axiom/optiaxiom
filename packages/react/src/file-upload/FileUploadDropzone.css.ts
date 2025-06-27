@@ -22,21 +22,11 @@ export const dropzone = recipe({
     },
     style({
       vars: {
-        [bgColorVar]: theme.colors["bg.secondary"],
+        [bgColorVar]: theme.colors["bg.default"],
       },
 
-      backgroundColor: theme.colors["bg.default"],
+      backgroundColor: bgColorVar,
       borderStyle: "dashed",
-
-      "@media": {
-        "(hover: hover)": {
-          selectors: {
-            "&:hover": {
-              backgroundColor: bgColorVar,
-            },
-          },
-        },
-      },
     }),
   ],
 
@@ -52,6 +42,19 @@ export const dropzone = recipe({
           },
         }),
       ],
+      default: style({
+        "@media": {
+          "(hover: hover)": {
+            selectors: {
+              "&:hover": {
+                vars: {
+                  backgroundColor: theme.colors["bg.secondary"],
+                },
+              },
+            },
+          },
+        },
+      }),
       reject: [
         {
           borderColor: "border.error",
