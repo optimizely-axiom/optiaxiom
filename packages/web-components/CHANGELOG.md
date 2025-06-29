@@ -1,5 +1,12 @@
 # @optiaxiom/web-components
 
+## 0.10.12
+
+### Patch Changes
+
+- dd91307: fix sidebar non-collapsible group label alignment
+- 43a55fd: fix default spinner vertical alignment
+
 ## 0.10.11
 
 ### Patch Changes
