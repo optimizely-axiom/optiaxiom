@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
+import { Flex } from "@optiaxiom/react";
 import {
   Aside,
   AsideBody,
@@ -9,6 +10,19 @@ import {
 
 export default {
   component: Aside,
+  decorators: (Story) => (
+    <Flex
+      alignItems="end"
+      bg="bg.page"
+      p="24"
+      style={{
+        height: "80vh",
+        width: "600px",
+      }}
+    >
+      <Story />
+    </Flex>
+  ),
 } as Meta<typeof Aside>;
 
 type Story = StoryObj<typeof Aside>;
