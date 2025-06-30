@@ -1,3 +1,5 @@
+import { RemoveScroll } from "react-remove-scroll";
+
 import { recipe, type RecipeVariants, style } from "../vanilla-extract";
 
 export const gap = "16";
@@ -35,10 +37,13 @@ export const viewport = recipe({
         bottom: 0,
         left: 0,
       }),
-      "bottom-right": style({
-        bottom: 0,
-        right: 0,
-      }),
+      "bottom-right": [
+        RemoveScroll.classNames.zeroRight,
+        style({
+          bottom: 0,
+          right: 0,
+        }),
+      ],
       top: style({
         left: "50%",
         marginTop: "40px",
@@ -50,11 +55,14 @@ export const viewport = recipe({
         marginTop: "40px",
         top: 0,
       }),
-      "top-right": style({
-        marginTop: "40px",
-        right: 0,
-        top: 0,
-      }),
+      "top-right": [
+        RemoveScroll.classNames.zeroRight,
+        style({
+          marginTop: "40px",
+          right: 0,
+          top: 0,
+        }),
+      ],
     },
   },
 });
