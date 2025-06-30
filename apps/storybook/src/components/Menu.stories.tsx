@@ -725,3 +725,41 @@ export const SwitchItem: Story = {
     );
   },
 };
+
+export const SearchRank: Story = {
+  args: {
+    children: (
+      <>
+        <MenuTrigger>Add Field</MenuTrigger>
+        <MenuContent />
+      </>
+    ),
+    options: [
+      { label: "Co-branding" },
+      {
+        label: "Describe the product update or changes you'd like to announce.",
+      },
+      { label: "Existing brand guidelines" },
+      {
+        label:
+          "Have you informed applicable colleagues in Marketing, Account Advancement, Legal, Commercial Programs, Global Technical Support, Fin Ops and/or Renewals?",
+      },
+      { label: "Number of attendees (estimate)" },
+      {
+        label:
+          "Please list any details about your recording location including addresses or building names",
+      },
+      { label: "Primary Brand" },
+      { label: "Public Registration Required" },
+      {
+        label:
+          "The final deliverable will be provided as a word document, please specify if you need a different file type.",
+      },
+      { label: "Webinar Title and Description" },
+      {
+        label:
+          "Who are the stakeholders that need to approve the brand elements?",
+      },
+    ],
+  },
+};

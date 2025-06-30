@@ -3,6 +3,8 @@
  * Intl.Collator for unicode support.
  */
 
+import { type CommandOption, resolveItemProperty } from "./CommandContext";
+
 const collator = new Intl.Collator(undefined, {
   sensitivity: "base",
   usage: "search",
@@ -27,4 +29,34 @@ export function fuzzysearch(haystack: string, needle: string) {
     return false;
   }
   return true;
+}
+
+export function score(item: CommandOption, inputValue: string) {
+  if (!inputValue) {
+    return 0;
+  }
+
+  const label = resolveItemProperty(item.label, { inputValue })
+    .normalize()
+    .toLowerCase();
+  inputValue = inputValue.toLowerCase();
+
+  let score = 0;
+
+  if (label === inputValue) {
+    score = 1;
+  } else if (label.includes(inputValue)) {
+    score = 0.75;
+    if (label.startsWith(inputValue)) {
+      score += 0.1;
+    }
+  } else if (item.keywords?.toLowerCase().includes(inputValue)) {
+    score = 0.5;
+  }
+
+  if (item.parentOption) {
+    score -= -0.1;
+  }
+
+  return score;
 }

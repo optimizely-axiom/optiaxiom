@@ -4,7 +4,7 @@ import type { Command } from "./Command";
 
 import { useEffectEvent } from "../hooks";
 import { type CommandOption, resolveItemProperty } from "./CommandContext";
-import { fuzzysearch } from "./fuzzysearch";
+import { fuzzysearch, score } from "./fuzzysearch";
 
 export type useCommandItemsProps = Pick<
   ComponentPropsWithoutRef<typeof Command>,
@@ -55,7 +55,11 @@ export const useCommandItems = ({
             : [];
       };
     return options.flatMap(callback()).sort((a, b) => {
-      return (b.group?.priority ?? 0) - (a.group?.priority ?? 0);
+      return (
+        (b.group?.priority ?? 0) +
+        score(b, substring) -
+        ((a.group?.priority ?? 0) + score(a, substring))
+      );
     });
   }, [options, filterFn, inputValue]);
 };
