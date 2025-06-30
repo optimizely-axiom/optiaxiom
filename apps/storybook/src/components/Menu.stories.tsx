@@ -762,4 +762,11 @@ export const SearchRank: Story = {
       },
     ],
   },
+  play: async () => {
+    await waitFor(() => expect(screen.getByRole("combobox")).toHaveFocus());
+    await userEvent.keyboard("brand");
+    await waitFor(() =>
+      expect(screen.getByRole("combobox")).toHaveValue("brand"),
+    );
+  },
 };
