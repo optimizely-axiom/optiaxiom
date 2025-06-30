@@ -7,6 +7,10 @@ export type LayoutProps = BoxProps<
   "div",
   {
     /**
+     * Content for the aside area of the layout.
+     */
+    aside?: ReactNode;
+    /**
      * Content for the header area of the layout.
      */
     header?: ReactNode;
@@ -18,7 +22,7 @@ export type LayoutProps = BoxProps<
 >;
 
 export const Layout = forwardRef<HTMLDivElement, LayoutProps>(
-  ({ children, className, header, sidebar, ...props }, ref) => {
+  ({ aside, children, className, header, sidebar, ...props }, ref) => {
     return (
       <Box ref={ref} {...styles.layout({}, className)} {...props}>
         {header}
@@ -33,6 +37,7 @@ export const Layout = forwardRef<HTMLDivElement, LayoutProps>(
           <Box flex="1" overflow="auto" px="32" py="24">
             {children}
           </Box>
+          {aside}
         </Box>
       </Box>
     );
