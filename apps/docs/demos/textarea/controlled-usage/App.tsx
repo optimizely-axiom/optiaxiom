@@ -7,7 +7,7 @@ export function App() {
   const [value, setValue] = useState("");
 
   return (
-    <Flex>
+    <Flex maxW="xs" w="full">
       <Textarea onValueChange={setValue} value={value} />
       <Text fontSize="md">Input value: {value}</Text>
     </Flex>
