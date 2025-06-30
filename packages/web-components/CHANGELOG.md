@@ -1,5 +1,14 @@
 # @optiaxiom/web-components
 
+## 0.10.12
+
+### Patch Changes
+
+- dd91307: fix sidebar non-collapsible group label alignment
+- c2df343: keep toasts positioned correctly on scroll lock
+- 499c1d1: fix overflow for maxRows and auto sizing textarea
+- 43a55fd: fix default spinner vertical alignment
+
 ## 0.10.11
 
 ### Patch Changes
