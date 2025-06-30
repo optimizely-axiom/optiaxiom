@@ -1,5 +1,20 @@
 # @optiaxiom/react
 
+## 1.5.9
+
+### Patch Changes
+
+- dd91307: fix sidebar non-collapsible group label alignment
+- 49bcc16: do not highlight selected item in Menu
+- 5fc6839: allow minW on MenuContent
+- c2df343: keep toasts positioned correctly on scroll lock
+- 988276e: add FileUpload component
+- 499c1d1: fix overflow for maxRows and auto sizing textarea
+- 0d10b31: allow loading spinner inside menu input
+- 8a15bf0: implement scoring for menu filter
+- 43a55fd: fix default spinner vertical alignment
+- 11045dd: fix DialogForm scrolling
+
 ## 1.5.8
 
 ### Patch Changes
