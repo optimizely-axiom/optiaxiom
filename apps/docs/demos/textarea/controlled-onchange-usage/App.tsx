@@ -7,7 +7,7 @@ export function App() {
   const [value, setValue] = useState("");
 
   return (
-    <Flex>
+    <Flex maxW="xs" w="full">
       <Textarea
         onChange={(event) => setValue(event.target.value)}
         value={value}

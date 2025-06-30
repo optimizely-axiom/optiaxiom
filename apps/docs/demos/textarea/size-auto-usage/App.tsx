@@ -1,5 +1,9 @@
-import { Textarea } from "@optiaxiom/react";
+import { Flex, Textarea } from "@optiaxiom/react";
 
 export function App() {
-  return <Textarea placeholder="Enter text..." resize="auto" />;
+  return (
+    <Flex maxW="xs" w="full">
+      <Textarea placeholder="Enter text..." resize="auto" />
+    </Flex>
+  );
 }
