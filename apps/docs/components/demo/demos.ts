@@ -304,11 +304,17 @@ export const demos = {
     "@/demos/menu/ellipsis-trigger-usage/App"
   ),
   "menu/empty-usage": import("@/demos/menu/empty-usage/App"),
+  "menu/group-hidden-usage": import("@/demos/menu/group-hidden-usage/App"),
+  "menu/group-priority-usage": import("@/demos/menu/group-priority-usage/App"),
+  "menu/group-separator-usage": import(
+    "@/demos/menu/group-separator-usage/App"
+  ),
   "menu/group-usage": import("@/demos/menu/group-usage/App"),
   "menu/input-controlled-usage": import(
     "@/demos/menu/input-controlled-usage/App"
   ),
   "menu/input-usage": import("@/demos/menu/input-usage/App"),
+  "menu/keyword-usage": import("@/demos/menu/keyword-usage/App"),
   "menu/link-execute-usage": import("@/demos/menu/link-execute-usage/App"),
   "menu/link-usage": import("@/demos/menu/link-usage/App"),
   "menu/nested-usage": import("@/demos/menu/nested-usage/App"),

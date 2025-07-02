@@ -9,7 +9,9 @@ import {
 
 const groups = {
   display: {
+    hidden: true,
     label: "Publishing Options",
+    separator: true,
   },
 } satisfies Record<string, MenuOption["group"]>;
 

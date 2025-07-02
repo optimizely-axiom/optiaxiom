@@ -1,5 +1,5 @@
 import { Cards, Demo, Links, PropsTable } from "@/components";
-import { Flex, Kbd } from "@optiaxiom/react";
+import { Alert, Flex, Kbd } from "@optiaxiom/react";
 
 # Menu
 
@@ -64,15 +64,23 @@ By default the input is only shown if there are any selectable items (items with
 
 #### Filtering
 
-Menu automatically handles filtering using a built-in fuzzy filter based on the `name` and `keywords` properties of items.
+Menu automatically handles filtering using a built-in fuzzy filter based on the `label` and `keywords` properties of items.
+
+<Alert intent="warning" mt="16">
+  Type "placeholder" into the menu and see how "Workflow" is highlighted:
+</Alert>
+
+<Demo component="menu/keyword-usage" />
+
+#### Creatable example
 
 We can customize the filter behavior using the `visible` property on items.
 
 The following example shows how we can build **creatable** menus by allowing the user to add new entries on the fly.
 
-<Demo component="menu/creatable-usage" />
+<Demo component="menu/creatable-usage" meta="{35-40}" />
 
-#### Async loading
+#### Async loading example
 
 We can also manually control `options` in combination with the `inputValue` and `onInputValueChange` prop to load items as the user types.
 
@@ -132,6 +140,24 @@ If the `execute` property is omitted then clicking an item will simply follow th
 Use `group` property to group items.
 
 <Demo component="menu/group-usage" />
+
+#### Separator
+
+Use `group.separator` to show a horizontal separator before/after the group.
+
+<Demo component="menu/group-separator-usage" />
+
+#### Hidden label
+
+Use `group.hidden` property to hide the group label. Useful when you want to separate groups but do not want show any labels.
+
+<Demo component="menu/group-hidden-usage" />
+
+#### Priority
+
+Use `group.priority` property to sort groups among each other.
+
+<Demo component="menu/group-priority-usage" />
 
 ### Submenus
 
