@@ -13,4 +13,6 @@ export const [FileUploadProvider, useFileUploadContext] = createContext<{
   isDragAccept: boolean;
   isDragReject: boolean;
   setFiles: React.Dispatch<React.SetStateAction<File[]>>;
+  setView: React.Dispatch<React.SetStateAction<"grid" | "list">>;
+  view: "grid" | "list";
 }>("@optiaxiom/react/FileUpload");

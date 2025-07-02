@@ -2,7 +2,11 @@ import { forwardRef, useState } from "react";
 import { type DropzoneOptions, useDropzone } from "react-dropzone";
 
 import { Box, type BoxProps } from "../box";
-import { FilePreviewList } from "./FilePreviewList";
+import { Flex } from "../flex";
+import { IconAngleLeft } from "../icons/IconAngleLeft";
+import { IconAngleRight } from "../icons/IconAngleRight";
+import { SegmentedControl, SegmentedControlItem } from "../segmented-control";
+import { FileList } from "./FileList";
 import { FileUploadProvider } from "./FileUploadContext";
 
 export type FileUploadProps = BoxProps<
@@ -32,8 +36,9 @@ export type FileUploadProps = BoxProps<
 >;
 
 export const FileUpload = forwardRef<HTMLDivElement, FileUploadProps>(
-  ({ accept, children, onFilesDrop, view = "list", ...props }, ref) => {
+  ({ accept, children, onFilesDrop, view: viewProp, ...props }, ref) => {
     const [files, setFiles] = useState<File[]>([]);
+    const [view, setView] = useState<"grid" | "list">(viewProp || "list");
     const {
       getInputProps,
       getRootProps,
@@ -58,10 +63,34 @@ export const FileUpload = forwardRef<HTMLDivElement, FileUploadProps>(
         isDragAccept={isDragActive && isDragAccept}
         isDragReject={isDragActive && isDragReject}
         setFiles={setFiles}
+        setView={setView}
+        view={view}
       >
         <Box color="fg.default" ref={ref} {...props}>
-          {children}
-          <FilePreviewList files={files} view={view} />
+          {files.length > 0 ? (
+            <>
+              <Flex alignItems="end" mb="8" mt="16">
+                <SegmentedControl
+                  onValueChange={(val: string) =>
+                    setView(val as "grid" | "list")
+                  }
+                  type="single"
+                  value={view}
+                >
+                  <SegmentedControlItem value="list">
+                    <IconAngleLeft />
+                  </SegmentedControlItem>
+                  <SegmentedControlItem value="grid">
+                    <IconAngleRight />
+                  </SegmentedControlItem>
+                </SegmentedControl>
+              </Flex>
+
+              <FileList files={files} />
+            </>
+          ) : (
+            children
+          )}
         </Box>
       </FileUploadProvider>
     );
