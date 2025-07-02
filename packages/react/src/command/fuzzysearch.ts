@@ -32,7 +32,7 @@ export function fuzzysearch(haystack: string, needle: string) {
 }
 
 export function score(item: CommandOption, inputValue: string) {
-  if (!inputValue) {
+  if (!inputValue || item.skipFilterScoring) {
     return 0;
   }
 
