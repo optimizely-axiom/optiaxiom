@@ -67,6 +67,10 @@ export type CommandOption = {
    */
   selected?: (() => boolean) | boolean;
   /**
+   * Whether to skip scoring when filtering and sorting by the score.
+   */
+  skipFilterScoring?: boolean;
+  /**
    * An array of sub items that will be displayed in a nested menu.
    */
   subOptions?:

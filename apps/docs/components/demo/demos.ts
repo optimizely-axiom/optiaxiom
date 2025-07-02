@@ -318,6 +318,7 @@ export const demos = {
   "menu/link-execute-usage": import("@/demos/menu/link-execute-usage/App"),
   "menu/link-usage": import("@/demos/menu/link-usage/App"),
   "menu/nested-usage": import("@/demos/menu/nested-usage/App"),
+  "menu/skip-score-usage": import("@/demos/menu/skip-score-usage/App"),
   "menu/trigger-usage": import("@/demos/menu/trigger-usage/App"),
   "menu/usage": import("@/demos/menu/usage/App"),
   "menu/virtualized-usage": import("@/demos/menu/virtualized-usage/App"),
