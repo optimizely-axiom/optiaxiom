@@ -21,7 +21,10 @@ export function FileList({ files }: FileListProps) {
   );
 
   return (
-    <Flex flexDirection={view === "list" ? "column" : "row"} gap="8">
+    <Flex
+      flexDirection={view === "list" ? "column" : "row"}
+      gap={view === "list" ? "20" : "8"}
+    >
       <FileUploadDropzone py="4" />
       {files.map((file, idx) => (
         <FileListItem file={file} key={idx} />
