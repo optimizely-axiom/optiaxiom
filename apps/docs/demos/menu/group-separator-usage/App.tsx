@@ -10,6 +10,7 @@ import {
 const groups = {
   display: {
     label: "Publishing Options",
+    separator: true,
   },
 } satisfies Record<string, MenuOption["group"]>;
 

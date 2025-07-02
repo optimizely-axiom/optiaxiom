@@ -8,8 +8,16 @@ import {
 } from "@optiaxiom/react/unstable";
 
 const groups = {
-  display: {
-    label: "Publishing Options",
+  delete: {
+    hidden: true,
+    label: "Delete",
+    priority: -100,
+    separator: true,
+  },
+  edit: {
+    hidden: true,
+    label: "Edit",
+    separator: true,
   },
 } satisfies Record<string, MenuOption["group"]>;
 
@@ -18,16 +26,17 @@ export function App() {
     <Menu
       options={[
         {
-          group: groups.display,
-          label: "Save to Library",
-          selected: true,
+          group: groups.delete,
+          intent: "danger",
+          label: "Delete",
         },
         {
-          group: groups.display,
-          label: "Overwrite Existing",
+          group: groups.edit,
+          label: "View",
         },
         {
-          label: "Copy Link",
+          group: groups.edit,
+          label: "Download",
         },
       ]}
     >
