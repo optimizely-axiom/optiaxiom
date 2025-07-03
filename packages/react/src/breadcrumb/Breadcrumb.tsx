@@ -21,6 +21,10 @@ export type BreadcrumbProps = BoxProps<
        */
       addonAfter?: ReactNode;
       /**
+       * Handler that is called when an item is selected either via keyboard or mouse.
+       */
+      execute?: () => void;
+      /**
        * Render a link with the given value as the `href` attribute.
        */
       href?: string;
@@ -49,7 +53,7 @@ export const Breadcrumb = forwardRef<HTMLElement, BreadcrumbProps>(
                 <BreadcrumbItem addonAfter={item.addonAfter}>
                   <Tooltip auto content={item.label}>
                     <Text asChild truncate>
-                      {index === items.length - 1 || !item.href ? (
+                      {index === items.length - 1 ? (
                         <Box
                           aria-current={
                             index === items.length - 1 ? "page" : undefined
@@ -57,7 +61,7 @@ export const Breadcrumb = forwardRef<HTMLElement, BreadcrumbProps>(
                         >
                           {item.label}
                         </Box>
-                      ) : (
+                      ) : item.href ? (
                         <Link
                           appearance="subtle"
                           href={item.href}
@@ -65,7 +69,13 @@ export const Breadcrumb = forwardRef<HTMLElement, BreadcrumbProps>(
                         >
                           {item.label}
                         </Link>
-                      )}
+                      ) : item.execute ? (
+                        <Link appearance="subtle" asChild {...styles.link()}>
+                          <button onClick={() => item.execute?.()}>
+                            {item.label}
+                          </button>
+                        </Link>
+                      ) : null}
                     </Text>
                   </Tooltip>
                 </BreadcrumbItem>

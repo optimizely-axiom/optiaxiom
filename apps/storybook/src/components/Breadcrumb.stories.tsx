@@ -1,11 +1,24 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Button, Flex, Separator } from "@optiaxiom/react";
+import { Button, Flex, Separator, toaster } from "@optiaxiom/react";
 import { Breadcrumb } from "@optiaxiom/react/unstable";
 import { IconPencil } from "@tabler/icons-react";
 
 export default {
   component: Breadcrumb,
+  render: ({ items, ...args }) => (
+    <Flex>
+      <Breadcrumb items={items} {...args} />
+      <Breadcrumb
+        aria-label="Breadcrumb buttons"
+        items={items.map(({ href, ...item }) => ({
+          ...item,
+          execute: () => toaster.create(`Clicked: ${href}`),
+        }))}
+        {...args}
+      />
+    </Flex>
+  ),
 } as Meta<typeof Breadcrumb>;
 
 type Story = StoryObj<typeof Breadcrumb>;
