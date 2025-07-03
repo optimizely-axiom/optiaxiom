@@ -17,7 +17,17 @@ Display a list of links showing the location of the current page in the navigati
 
 Breadcrumb works with lists of items provided via the `items` prop. Items must be an array of objects of `BreadcrumbLink` type and at minimum must contain the `label` property.
 
-<Demo component="breadcrumb/link-usage" />
+#### Links
+
+We can use the `href` property to create actual links which will rely on your application's router to handle navigation.
+
+<Demo component="breadcrumb/usage" />
+
+#### Buttons
+
+Alternatively we can provide an `execute` property if the breadcrumb doesn't point to an actual link and instead requires programmatic navigation.
+
+<Demo component="breadcrumb/button-usage" />
 
 ### Addons
 
