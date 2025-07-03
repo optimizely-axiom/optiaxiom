@@ -119,6 +119,9 @@ export function Command({
         );
       }
     },
+    scrollIntoView(node) {
+      node.scrollIntoView({ block: "nearest" });
+    },
     selectedItem: null,
     stateReducer: (state, actionAndChanges) => {
       const { changes, type } = actionAndChanges;
