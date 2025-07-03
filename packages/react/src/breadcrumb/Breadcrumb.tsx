@@ -7,7 +7,7 @@ import { Menu, MenuContent, MenuTrigger } from "../menu";
 import { Text } from "../text";
 import { Tooltip } from "../tooltip";
 import * as styles from "./Breadcrumb.css";
-import { BreadcrumbItem } from "./BreadcrumbItem";
+import { BreadcrumbNode } from "./BreadcrumbNode";
 
 export type BreadcrumbProps = BoxProps<
   "nav",
@@ -50,7 +50,7 @@ export const Breadcrumb = forwardRef<HTMLElement, BreadcrumbProps>(
           <Box asChild {...styles.list()}>
             <ol>
               {renderItems(items, maxItems, (item, index) => (
-                <BreadcrumbItem addonAfter={item.addonAfter}>
+                <BreadcrumbNode addonAfter={item.addonAfter}>
                   <Tooltip auto content={item.label}>
                     <Text asChild truncate>
                       {index === items.length - 1 ? (
@@ -78,7 +78,7 @@ export const Breadcrumb = forwardRef<HTMLElement, BreadcrumbProps>(
                       ) : null}
                     </Text>
                   </Tooltip>
-                </BreadcrumbItem>
+                </BreadcrumbNode>
               ))}
             </ol>
           </Box>
@@ -118,7 +118,7 @@ const renderItems = (
         <Fragment key={"left" + index}>{renderItem(item, index)}</Fragment>
       )),
     boundaries[2] > boundaries[1] && (
-      <BreadcrumbItem key="ellipsis">
+      <BreadcrumbNode key="ellipsis">
         <Menu options={items.slice(boundaries[1], boundaries[2])}>
           <MenuTrigger
             appearance="subtle"
@@ -131,7 +131,7 @@ const renderItems = (
           />
           <MenuContent />
         </Menu>
-      </BreadcrumbItem>
+      </BreadcrumbNode>
     ),
     ...items
       .slice(boundaries[2], boundaries[3])
