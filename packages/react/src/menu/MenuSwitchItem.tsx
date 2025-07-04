@@ -15,9 +15,11 @@ export const MenuSwitchItem = forwardRef<HTMLDivElement, MenuSwitchItemProps>(
     return (
       <CommandItem asChild ref={ref} {...props}>
         <ListboxSwitchItem
-          addonBefore={props.item.addon}
+          addonBefore={resolveItemProperty(props.item.addon, { inputValue })}
           asChild
-          description={props.item.description}
+          description={resolveItemProperty(props.item.description, {
+            inputValue,
+          })}
           onCheckedChange={() =>
             !resolveItemProperty(props.item.disabledReason) &&
             props.item.execute?.({ dismiss: false, inputValue })

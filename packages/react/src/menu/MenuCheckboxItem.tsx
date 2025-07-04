@@ -19,9 +19,11 @@ export const MenuCheckboxItem = forwardRef<
   return (
     <CommandItem asChild ref={ref} {...props}>
       <ListboxCheckboxItem
-        addonBefore={props.item.addon}
+        addonBefore={resolveItemProperty(props.item.addon, { inputValue })}
         asChild
-        description={props.item.description}
+        description={resolveItemProperty(props.item.description, {
+          inputValue,
+        })}
         onCheckedChange={() =>
           !resolveItemProperty(props.item.disabledReason) &&
           props.item.execute?.({ dismiss: false, inputValue })
