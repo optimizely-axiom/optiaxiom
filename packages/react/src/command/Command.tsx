@@ -1,9 +1,8 @@
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import { useCombobox } from "downshift";
-import { type ReactNode, useEffect, useRef, useState } from "react";
+import { type ReactNode, useRef } from "react";
 
 import { useHighlightedIndex } from "../downshift";
-import { useEffectEvent } from "../hooks";
 import {
   type CommandOption,
   CommandProvider,
@@ -82,20 +81,6 @@ export function Command({
   });
 
   const highlightedItemRef = useRef<HTMLElement>(null);
-  const [selectedItem, setSelectedItem] = useState<null | {
-    context: { dismiss: boolean };
-    item: CommandOption;
-  }>(null);
-  const onItemSelectStable = useEffectEvent(onItemSelect ?? (() => {}));
-  useEffect(() => {
-    if (selectedItem === null) {
-      return;
-    }
-
-    onItemSelectStable(selectedItem.item, selectedItem.context);
-    setSelectedItem(null);
-  }, [onItemSelectStable, selectedItem]);
-
   const downshift = useCombobox({
     highlightedIndex:
       highlightedIndex === -1
@@ -119,32 +104,32 @@ export function Command({
         );
       }
     },
+    onSelectedItemChange({ selectedItem, type }) {
+      if (
+        type !== useCombobox.stateChangeTypes.InputBlur &&
+        selectedItem !== null
+      ) {
+        onItemSelect?.(selectedItem, {
+          dismiss:
+            type !== useCombobox.stateChangeTypes.FunctionSelectItem ||
+            !("selected" in selectedItem),
+        });
+        /**
+         * Reset selection back to null. Otherwise downshift keeps a ref of
+         * selectedItem to try to set the inputValue based on that. But this
+         * causes double selection of items since we always keep selectedItem as
+         * null and this causes a mismatch between the controlled prop and
+         * internal downshift state.
+         */
+        downshift.selectItem(null);
+      }
+    },
     scrollIntoView(node) {
       node.scrollIntoView({ block: "nearest" });
     },
     selectedItem: null,
     stateReducer: (state, actionAndChanges) => {
       const { changes, type } = actionAndChanges;
-
-      /**
-       * Manually handle selection since we trigger our own handlers for
-       * selection and do not rely on downshift.
-       *
-       * Otherwise downshift keeps a ref of selectedItem and tries to set the
-       * inputValue based on that. But this causes double selection of items
-       * since we always keep selectedItem as null.
-       */
-      if (changes.selectedItem) {
-        setSelectedItem({
-          context: {
-            dismiss:
-              type !== useCombobox.stateChangeTypes.FunctionSelectItem ||
-              !("selected" in changes.selectedItem),
-          },
-          item: changes.selectedItem,
-        });
-        changes.selectedItem = null;
-      }
 
       switch (type) {
         case useCombobox.stateChangeTypes.InputBlur:
