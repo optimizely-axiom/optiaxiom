@@ -7,7 +7,7 @@ import {
 } from "react";
 
 import { Calendar } from "../calendar";
-import { useFieldContext } from "../field/FieldContext";
+import { useFieldContext } from "../field/internals";
 import { Flex } from "../flex";
 import { PopoverContent } from "../popover";
 import { VisuallyHidden } from "../visually-hidden";

@@ -9,7 +9,7 @@ import { type BoxProps } from "../box";
 import { Command } from "../command";
 import { resolveItemProperty, useCommandContext } from "../command/internals";
 import { PopoverAnchor, PopoverContent } from "../popover";
-import { usePopoverContext } from "../popover/PopoverContext";
+import { usePopoverContext } from "../popover/internals";
 import { VisuallyHidden } from "../visually-hidden";
 import { useMenuContext } from "./MenuContext";
 import { MenuListbox } from "./MenuListbox";

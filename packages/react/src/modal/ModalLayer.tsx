@@ -13,7 +13,7 @@ import { RemoveScroll as ReactRemoveScroll } from "react-remove-scroll";
 
 import type { Box } from "../box";
 
-import { ModalProvider, useModalContext } from "../modal/ModalContext";
+import { ModalProvider, useModalContext } from "./ModalContext";
 
 const Slot = createSlot("@optiaxiom/react/ModalLayer");
 
