@@ -9,11 +9,15 @@ export type CommandOption = {
   /**
    * Images, icons, or avatars to be displayed before the item label.
    */
-  addon?: ReactNode;
+  addon?:
+    | ((context: { inputValue: string | undefined }) => ReactNode)
+    | ReactNode;
   /**
    * Add secondary text after the label.
    */
-  description?: string;
+  description?:
+    | ((context: { inputValue: string | undefined }) => string)
+    | string;
   /**
    * Secondary text displayed next to the label.
    */
