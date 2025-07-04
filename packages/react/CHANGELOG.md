@@ -1,5 +1,15 @@
 # @optiaxiom/react
 
+## 1.5.10
+
+### Patch Changes
+
+- b29374e: ability to skip ranking menu items by search score
+- 8c2a990: provide inputValue context to item addons and description
+- ef1260f: fix command scroll into view behavior
+- 097f483: allow breadcrumb buttons
+- 64815f7: fix menu item selection
+
 ## 1.5.9
 
 ### Patch Changes
