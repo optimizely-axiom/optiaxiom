@@ -11,7 +11,7 @@ import {
 import type { ExcludeProps } from "../utils";
 
 import { type BoxProps } from "../box";
-import { useFieldContext } from "../field/FieldContext";
+import { useFieldContext } from "../field/internals";
 import { ListboxItemized, ListboxLabel, ListboxSeparator } from "../listbox";
 import { shouldShowGroup, shouldShowSeparator } from "../listbox/utils";
 import { ModalLayer } from "../modal";

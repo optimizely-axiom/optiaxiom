@@ -11,7 +11,7 @@ import {
 
 import { Button } from "../button";
 import { Calendar } from "../calendar";
-import { useFieldContext } from "../field/FieldContext";
+import { useFieldContext } from "../field/internals";
 import { useObserveValue } from "../hooks";
 import { IconCalendar } from "../icons/IconCalendar";
 import { IconX } from "../icons/IconX";

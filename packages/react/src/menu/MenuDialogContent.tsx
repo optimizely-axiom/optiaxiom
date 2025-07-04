@@ -4,7 +4,7 @@ import { type ComponentPropsWithoutRef, forwardRef, useId } from "react";
 import type { MenuContent } from "./MenuContent";
 
 import { DialogContent, DialogHeader } from "../dialog";
-import { useFieldContext } from "../field/FieldContext";
+import { useFieldContext } from "../field/internals";
 import { VisuallyHidden } from "../visually-hidden";
 import { useMenuContext } from "./MenuContext";
 import * as styles from "./MenuDialogContent.css";

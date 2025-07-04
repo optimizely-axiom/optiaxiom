@@ -4,7 +4,7 @@ import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import type { MenuContent } from "./MenuContent";
 
-import { useFieldContext } from "../field/FieldContext";
+import { useFieldContext } from "../field/internals";
 import { PopoverContent } from "../popover";
 import { VisuallyHidden } from "../visually-hidden";
 import { useMenuContext } from "./MenuContext";
