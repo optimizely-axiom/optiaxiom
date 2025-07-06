@@ -16,6 +16,10 @@ export type LayoutProps = BoxProps<
      */
     header?: ReactNode;
     /**
+     * Whether to enable resizable panels for the aside area.
+     */
+    resizable?: boolean;
+    /**
      * Content for the sidebar area of the layout.
      */
     sidebar?: ReactNode;
@@ -23,7 +27,10 @@ export type LayoutProps = BoxProps<
 >;
 
 export const Layout = forwardRef<HTMLDivElement, LayoutProps>(
-  ({ aside, children, className, header, sidebar, ...props }, ref) => {
+  (
+    { aside, children, className, header, resizable, sidebar, ...props },
+    ref,
+  ) => {
     return (
       <Box ref={ref} {...styles.layout({}, className)} {...props}>
         {header}
@@ -36,7 +43,7 @@ export const Layout = forwardRef<HTMLDivElement, LayoutProps>(
         >
           {sidebar}
 
-          {aside ? (
+          {resizable ? (
             <Box flex="1" overflow="auto" px="32" py="24">
               <Resizable direction="horizontal">
                 <ResizablePanel>{children}</ResizablePanel>
@@ -45,9 +52,12 @@ export const Layout = forwardRef<HTMLDivElement, LayoutProps>(
               </Resizable>
             </Box>
           ) : (
-            <Box flex="1" overflow="auto" px="32" py="24">
-              {children}
-            </Box>
+            <>
+              <Box flex="1" overflow="auto" px="32" py="24">
+                {children}
+              </Box>
+              {aside}
+            </>
           )}
         </Box>
       </Box>

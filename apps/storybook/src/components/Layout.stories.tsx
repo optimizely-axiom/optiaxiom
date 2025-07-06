@@ -203,3 +203,12 @@ export const WithAside: Story = {
     sidebar: <SidebarExample />,
   },
 };
+export const WithResizableAside: Story = {
+  args: {
+    aside: <AsideContent />,
+    children: <Content />,
+    header: <Header />,
+    resizable: true,
+    sidebar: <SidebarExample />,
+  },
+};
