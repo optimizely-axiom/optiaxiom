@@ -44,13 +44,15 @@ export const Layout = forwardRef<HTMLDivElement, LayoutProps>(
           {sidebar}
 
           {resizable ? (
-            <Box flex="1" overflow="auto" px="32" py="24">
-              <Resizable direction="horizontal">
-                <ResizablePanel>{children}</ResizablePanel>
-                <ResizableHandle />
-                <ResizablePanel>{aside}</ResizablePanel>
-              </Resizable>
-            </Box>
+            <Resizable direction="horizontal">
+              <ResizablePanel>
+                <Box flex="1" overflow="auto" px="32" py="24">
+                  {children}
+                </Box>
+              </ResizablePanel>
+              <ResizableHandle withHandle />
+              <ResizablePanel>{aside}</ResizablePanel>
+            </Resizable>
           ) : (
             <>
               <Box flex="1" overflow="auto" px="32" py="24">
