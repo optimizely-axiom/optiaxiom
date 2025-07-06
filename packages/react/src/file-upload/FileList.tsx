@@ -5,6 +5,7 @@ import * as styles from "./FileList.css";
 import { FileListItem } from "./FileListItem";
 import { useFileUploadContext } from "./FileUploadContext";
 import { FileUploadDropzone } from "./FileUploadDropzone";
+import { FileUploadDropzoneButton } from "./FileUploadDropzoneButton";
 
 export type FileListProps = BoxProps<"div", styles.FileListVariants> & {
   /**
@@ -20,7 +21,11 @@ export function FileList({ files }: FileListProps) {
 
   return (
     <Flex {...styles.root({ view })}>
-      <FileUploadDropzone py="4" />
+      {view === "grid" ? (
+        <FileUploadDropzoneButton py="16" />
+      ) : (
+        <FileUploadDropzone py="16" />
+      )}
       {files.map((file: File, idx: number) => (
         <FileListItem file={file} key={idx} />
       ))}
