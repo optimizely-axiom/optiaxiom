@@ -2,7 +2,7 @@ import type { ComponentPropsWithoutRef } from "react";
 
 import * as ResizablePrimitive from "react-resizable-panels";
 
-import { IconX } from "../icons/IconX";
+import { Box } from "../box";
 
 export type ResizableHandleProps = ComponentPropsWithoutRef<
   typeof ResizablePrimitive.PanelResizeHandle
@@ -19,7 +19,9 @@ export const ResizableHandle = ({
 }: ResizableHandleProps) => {
   return (
     <ResizablePrimitive.PanelResizeHandle {...props}>
-      {withHandle && <IconX />}
+      {withHandle && (
+        <Box bg="bg.secondary" border="1" h="56" rounded="sm" w="12" />
+      )}
     </ResizablePrimitive.PanelResizeHandle>
   );
 };
