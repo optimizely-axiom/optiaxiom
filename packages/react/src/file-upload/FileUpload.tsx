@@ -38,7 +38,7 @@ export type FileUploadProps = BoxProps<
 export const FileUpload = forwardRef<HTMLDivElement, FileUploadProps>(
   ({ accept, children, onFilesDrop, view: viewProp, ...props }, ref) => {
     const [files, setFiles] = useState<File[]>([]);
-    const [view, setView] = useState<"grid" | "list">(viewProp || "list");
+    const [view, setView] = useState<"grid" | "list">(viewProp || "grid");
     const {
       getInputProps,
       getRootProps,
@@ -68,8 +68,8 @@ export const FileUpload = forwardRef<HTMLDivElement, FileUploadProps>(
       >
         <Box color="fg.default" ref={ref} {...props}>
           {files.length > 0 ? (
-            <>
-              <Flex alignItems="end" mb="8" mt="16">
+            <Flex gap="20">
+              <Flex alignItems="end">
                 <SegmentedControl
                   onValueChange={(val: string) =>
                     setView(val as "grid" | "list")
@@ -87,7 +87,7 @@ export const FileUpload = forwardRef<HTMLDivElement, FileUploadProps>(
               </Flex>
 
               <FileList files={files} />
-            </>
+            </Flex>
           ) : (
             children
           )}
