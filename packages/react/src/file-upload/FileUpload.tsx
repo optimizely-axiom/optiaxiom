@@ -3,8 +3,8 @@ import { type DropzoneOptions, useDropzone } from "react-dropzone";
 
 import { Box, type BoxProps } from "../box";
 import { Flex } from "../flex";
-import { IconAngleLeft } from "../icons/IconAngleLeft";
-import { IconAngleRight } from "../icons/IconAngleRight";
+import { IconGrid } from "../icons/IconGrid";
+import { IconList } from "../icons/IconList";
 import { SegmentedControl, SegmentedControlItem } from "../segmented-control";
 import { FileList } from "./FileList";
 import { FileUploadProvider } from "./FileUploadContext";
@@ -77,11 +77,11 @@ export const FileUpload = forwardRef<HTMLDivElement, FileUploadProps>(
                   type="single"
                   value={view}
                 >
-                  <SegmentedControlItem value="list">
-                    <IconAngleLeft />
-                  </SegmentedControlItem>
                   <SegmentedControlItem value="grid">
-                    <IconAngleRight />
+                    <IconGrid />
+                  </SegmentedControlItem>
+                  <SegmentedControlItem value="list">
+                    <IconList />
                   </SegmentedControlItem>
                 </SegmentedControl>
               </Flex>
