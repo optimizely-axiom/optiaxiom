@@ -16,8 +16,8 @@ export type CommandOption = {
    * Add secondary text after the label.
    */
   description?:
-    | ((context: { inputValue: string | undefined }) => string)
-    | string;
+    | ((context: { inputValue: string | undefined }) => ReactNode)
+    | ReactNode;
   /**
    * Secondary text displayed next to the label.
    */
