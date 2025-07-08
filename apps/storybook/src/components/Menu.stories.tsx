@@ -29,7 +29,7 @@ import {
   IconUserCircle,
 } from "@tabler/icons-react";
 import { useMemo, useRef, useState } from "react";
-import { expect, screen, userEvent, waitFor } from "storybook/test";
+import { expect, screen, userEvent, waitFor, within } from "storybook/test";
 
 type Story = StoryObj<typeof Menu>;
 
@@ -593,18 +593,20 @@ export const NestedAndSearchable: Story = {
     ],
   },
   play: async () => {
-    await waitFor(async () => {
-      return await expect(screen.getByRole("dialog")).toHaveAttribute(
-        "data-state",
-        "open",
-      );
-    });
+    await waitFor(
+      async () =>
+        await expect(
+          within(screen.getByRole("dialog")).getByRole("combobox"),
+        ).toHaveFocus(),
+    );
     await userEvent.hover(screen.getByRole("option", { name: "Add to" }));
     await waitFor(
       async () =>
         await expect(
-          screen.getByRole("option", { name: "Favorite" }),
-        ).toBeVisible(),
+          within(
+            screen.getByRole("dialog", { name: "Add to Submenu" }),
+          ).getByRole("combobox"),
+        ).toHaveFocus(),
     );
     await userEvent.keyboard("c");
     await waitFor(
