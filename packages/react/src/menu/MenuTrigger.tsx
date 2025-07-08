@@ -44,6 +44,7 @@ export const MenuTrigger = forwardRef<HTMLButtonElement, MenuTriggerProps>(
 
           switch (event.key) {
             case "ArrowDown":
+              event.preventDefault();
               setOpen(true);
           }
         }}
