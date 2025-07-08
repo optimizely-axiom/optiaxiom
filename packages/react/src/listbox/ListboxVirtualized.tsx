@@ -26,13 +26,18 @@ export type ListboxVirtualizedProps<T = unknown> = BoxProps<
      * The collection of items to display.
      */
     items: readonly T[] | T[];
+    /**
+     * Function to get the unique key for each item as a string.
+     */
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    itemToKey: (item: any) => string;
   }
 >;
 
 export const ListboxVirtualized = forwardRef<
   HTMLDivElement,
   ListboxVirtualizedProps
->(({ children, highlightedItem, items, ...props }, outerRef) => {
+>(({ children, highlightedItem, items, itemToKey, ...props }, outerRef) => {
   const innerRef = useRef<HTMLDivElement>(null);
   const ref = useComposedRefs(outerRef, innerRef);
 
@@ -115,7 +120,7 @@ export const ListboxVirtualized = forwardRef<
         {virtualItems.map((virtualItem) => (
           <Box
             data-index={virtualItem.index}
-            key={virtualItem.key}
+            key={itemToKey(items[virtualItem.index])}
             ref={rowVirtualizer.measureElement}
           >
             {children(
