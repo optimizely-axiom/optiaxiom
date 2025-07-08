@@ -81,6 +81,7 @@ export const MenuSubContent = forwardRef<HTMLDivElement, MenuSubContentProps>(
             parentInputRef.current?.focus();
           }}
           onEscapeKeyDown={() => setRootMenuOpen(false)}
+          onOpenAutoFocus={(event) => event.preventDefault()}
           onPointerDown={(event) => {
             if (event.defaultPrevented) {
               return;
@@ -117,7 +118,7 @@ export const MenuSubContent = forwardRef<HTMLDivElement, MenuSubContentProps>(
             <h2 id={labelId}>Submenu</h2>
           </VisuallyHidden>
           <Command
-            enabled
+            enabled={open && presence}
             inputValue={inputValue}
             key={
               item.key ??
