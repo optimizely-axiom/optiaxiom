@@ -1,11 +1,17 @@
 import { Cards, Demo, Links, PropsTable } from "@/components";
-import { Flex, Kbd } from "@optiaxiom/react";
+import { Alert, Flex, Kbd } from "@optiaxiom/react";
 
 # Select
 
-Single select combobox widget to allow selection from a fixed set of options.
+Select a value from a list of options inside a dropdown menu. This is an alternative to radios when you have a large number of options.
 
 <Links component="select" />
+
+<Alert intent="information" mt="16">
+  This component is meant to capture user input and should only be used inside
+  forms. If you need an action menu or a generic dropdown menu please use
+  [DropdownMenu](../dropdown-menu/) instead.
+</Alert>
 
 ## Documentation
 
@@ -95,7 +101,7 @@ We can group options using the `group` property.
 
 ### Related
 
-<Cards items={["Menu", "DropdownMenu"]} />
+<Cards items={["RadioGroup"]} />
 
 ## Props
 
