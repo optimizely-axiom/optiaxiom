@@ -4,7 +4,6 @@ import {
   forwardRef,
   useEffect,
   useRef,
-  useState,
 } from "react";
 
 import { Box } from "../box";
@@ -25,7 +24,6 @@ export const MenuInput = forwardRef<HTMLInputElement, MenuInputProps>(
     );
     const ref = useComposedRefs(inputRef, outerRef);
 
-    const [minWidth, setMinWidth] = useState(160);
     const containerRef = useRef<HTMLDivElement>(null);
     useEffect(() => {
       if (!containerRef.current) {
@@ -33,13 +31,13 @@ export const MenuInput = forwardRef<HTMLInputElement, MenuInputProps>(
       }
 
       const rect = containerRef.current.getBoundingClientRect();
-      if (open && rect.width > minWidth) {
-        setMinWidth(rect.width);
+      if (open) {
+        containerRef.current.style.minWidth = `${rect.width}px`;
       }
-    }, [downshift.inputValue, minWidth, open]);
+    }, [downshift.inputValue, open]);
 
     return (
-      <Box ref={containerRef} style={{ minWidth }}>
+      <Box ref={containerRef} style={{ minWidth: 160 }}>
         <CommandInput
           onKeyDown={(event) => {
             onKeyDown?.(event);
