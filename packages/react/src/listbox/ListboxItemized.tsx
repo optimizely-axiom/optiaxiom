@@ -95,7 +95,11 @@ export const ListboxItemized = forwardRef<HTMLDivElement, ListboxItemizedProps>(
           </>
         ) : typeof children === "function" ? (
           items.length > VIRTUALIZE_THRESHOLD ? (
-            <ListboxVirtualized highlightedItem={highlightedItem} items={items}>
+            <ListboxVirtualized
+              highlightedItem={highlightedItem}
+              items={items}
+              itemToKey={itemToKey}
+            >
               {children}
             </ListboxVirtualized>
           ) : items.length > 0 ? (
