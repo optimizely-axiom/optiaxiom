@@ -143,8 +143,7 @@ const COMPONENTS = {
     title: "Input",
   },
   Menu: {
-    description:
-      "Multi-purpose combobox widget to allow selection from a dynamic set of options.",
+    description: "Dropdown menu for displaying actions.",
     href: "/components/menu/",
     icon: <MenuIcon />,
     title: "Menu",
@@ -182,7 +181,7 @@ const COMPONENTS = {
   },
   Select: {
     description:
-      "Single select combobox widget to allow selection from a fixed set of options.",
+      "Select a value from a list of options inside a dropdown menu.",
     href: "/components/select/",
     icon: <SelectIcon />,
     title: "Select",
