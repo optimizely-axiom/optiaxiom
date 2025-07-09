@@ -1,9 +1,12 @@
 import { forwardRef, type ReactNode } from "react";
 
 import { Box, type BoxProps } from "../box";
+import { ButtonProvider } from "../button/ButtonContext";
 import { Flex } from "../flex";
 import { Heading } from "../heading";
 import { Text } from "../text";
+import { fallbackSpan } from "../utils";
+import { useAsideContext } from "./AsideContext";
 import * as styles from "./AsideHeader.css";
 
 export type AsideHeaderProps = BoxProps<
@@ -25,31 +28,52 @@ export type AsideHeaderProps = BoxProps<
 >;
 
 export const AsideHeader = forwardRef<HTMLHeadingElement, AsideHeaderProps>(
-  ({ addonAfter, addonBefore, children, description, ...props }, ref) => {
+  (
+    { addonAfter, addonBefore, children, className, description, ...props },
+    ref,
+  ) => {
+    const { descriptionId, labelId } = useAsideContext(
+      "@optiaxiom/react/AsideHeader",
+    );
+
     return (
-      <Box
-        display="flex"
-        flexWrap="wrap"
-        gap="8"
-        p="24"
-        pb="16"
-        ref={ref}
-        {...props}
-      >
-        {addonBefore && <Flex {...styles.actions()}>{addonBefore}</Flex>}
+      <ButtonProvider size="sm">
+        <Box ref={ref} {...styles.header({}, className)} {...props}>
+          {addonBefore && (
+            <Flex flexDirection="row" gap="8">
+              {addonBefore}
+            </Flex>
+          )}
 
-        <Heading level="3" {...styles.title()}>
-          {children}
-        </Heading>
+          <Heading
+            flex="1"
+            fontSize="lg"
+            fontWeight="600"
+            id={labelId}
+            level="2"
+          >
+            {children}
+          </Heading>
 
-        {addonAfter && <Flex {...styles.actions()}>{addonAfter}</Flex>}
+          {addonAfter && (
+            <Flex flexDirection="row" gap="8">
+              {addonAfter}
+            </Flex>
+          )}
 
-        {description && (
-          <Text asChild {...styles.description()}>
-            {description}
-          </Text>
-        )}
-      </Box>
+          {description && (
+            <Text
+              asChild
+              color="fg.secondary"
+              fontSize="sm"
+              id={descriptionId}
+              w="full"
+            >
+              {fallbackSpan(description)}
+            </Text>
+          )}
+        </Box>
+      </ButtonProvider>
     );
   },
 );

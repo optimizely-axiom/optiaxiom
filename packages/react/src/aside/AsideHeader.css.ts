@@ -1,39 +1,18 @@
 import { recipe, style } from "../vanilla-extract";
 
-export const title = recipe({
+export const header = recipe({
   base: [
     {
-      flex: "1",
-      fontWeight: "500",
+      bg: "bg.default",
+      display: "flex",
+      flexWrap: "wrap",
+      p: "16",
+      pb: "8",
     },
     style({
-      order: "1",
-    }),
-  ],
-});
-
-export const actions = recipe({
-  base: [
-    {
-      flexDirection: "row",
-      gap: "8",
-    },
-    style({
-      order: "2",
-    }),
-  ],
-});
-
-export const description = recipe({
-  base: [
-    {
-      color: "fg.secondary",
-      fontSize: "md",
-      fontWeight: "400",
-      w: "full",
-    },
-    style({
-      order: "4",
+      columnGap: "4px",
+      position: "sticky",
+      top: "0",
     }),
   ],
 });

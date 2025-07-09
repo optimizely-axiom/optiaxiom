@@ -1,15 +1,17 @@
-import { recipe } from "../vanilla-extract";
+import { recipe, style } from "../vanilla-extract";
 
 export const footer = recipe({
   base: [
     {
-      borderColor: "border.secondary",
-      borderT: "1",
+      bg: "bg.default",
       flexDirection: "row",
-      gap: "16",
-      justifyContent: "flex-end",
-      px: "24",
-      py: "20",
+      gap: "8",
+      p: "16",
+      pt: "8",
     },
+    style({
+      bottom: "0",
+      position: "sticky",
+    }),
   ],
 });
