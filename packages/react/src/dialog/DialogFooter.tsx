@@ -14,9 +14,11 @@ export const DialogFooter = forwardRef<HTMLDivElement, DialogFooterProps>(
     const ref = useComposedRefs(footerRef, outerRef);
 
     return (
-      <Flex ref={ref} {...styles.footer({}, className)} {...props}>
-        <ButtonProvider size="lg">{children}</ButtonProvider>
-      </Flex>
+      <ButtonProvider size="lg">
+        <Flex ref={ref} {...styles.footer({}, className)} {...props}>
+          {children}
+        </Flex>
+      </ButtonProvider>
     );
   },
 );

@@ -11,9 +11,11 @@ export const AlertDialogFooter = forwardRef<
   AlertDialogFooterProps
 >(({ children, className, ...props }, ref) => {
   return (
-    <Flex {...styles.footer({}, className)} ref={ref} {...props}>
-      <ButtonProvider size="lg">{children}</ButtonProvider>
-    </Flex>
+    <ButtonProvider size="lg">
+      <Flex {...styles.footer({}, className)} ref={ref} {...props}>
+        {children}
+      </Flex>
+    </ButtonProvider>
   );
 });
 
