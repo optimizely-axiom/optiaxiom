@@ -42,7 +42,6 @@ export function Popover({
   return (
     <RadixPopover.Root modal={modal} onOpenChange={setOpen} open={open}>
       <PopoverProvider
-        modal={modal}
         open={open}
         presence={presence}
         setPresence={setPresence}
