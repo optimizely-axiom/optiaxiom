@@ -16,7 +16,7 @@ export function HeadingLink({
   const { h6: H6 = "h6" } = useMDXComponents();
 
   return (
-    <Heading {...props}>
+    <Heading className={styles.root} {...props}>
       <Box className={styles.hidden} size="0">
         {/* Dummy header to ensure active item in TOC gets updated */}
         <H6 id={id} style={{ marginTop: 0 }} />
