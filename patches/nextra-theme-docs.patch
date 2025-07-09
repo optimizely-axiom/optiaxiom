@@ -1,0 +1,20 @@
+diff --git a/dist/style.css b/dist/style.css
+index 27ab9c4ec96f65bca5969b1ba02b46b43ba164ec..3a7d0e9ecd2a35174079c3b8df1deac5093a7d62 100644
+--- a/dist/style.css
++++ b/dist/style.css
+@@ -120,12 +120,14 @@
+   }
+ }
+ @layer base {
+-  *, ::after, ::before, ::backdrop, ::file-selector-button {
++  :where([class^="x:"], [class*=" x:"], [class^="nextra-"], [class*=" nextra-"]) {
++  &, &::after, &::before, &::backdrop, &::file-selector-button {
+     box-sizing: border-box;
+     margin: 0;
+     padding: 0;
+     border: 0 solid;
+   }
++  }
+   html, :host {
+     line-height: 1.5;
+     -webkit-text-size-adjust: 100%;
