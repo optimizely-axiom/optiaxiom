@@ -34,32 +34,35 @@ export const Layout = forwardRef<HTMLDivElement, LayoutProps>(
     return (
       <Box ref={ref} {...styles.layout({}, className)} {...props}>
         {header}
-        <Box
-          alignItems="stretch"
-          display="flex"
-          flex="1"
-          flexDirection="row"
-          overflow="auto"
-        >
+        <Box alignItems="stretch" display="flex" flex="1" overflow="auto">
           {sidebar}
 
           {resizable ? (
             <Resizable direction="horizontal">
               <ResizablePanel>
-                <Box flex="1" overflow="auto" px="32" py="24">
+                <Box h="full" overflow="auto" px="32" py="24">
                   {children}
                 </Box>
               </ResizablePanel>
-              <ResizableHandle withHandle />
-              <ResizablePanel>{aside}</ResizablePanel>
+              {aside && (
+                <>
+                  <ResizableHandle />
+                  <ResizablePanel defaultSize={33}>{aside}</ResizablePanel>
+                </>
+              )}
             </Resizable>
           ) : (
-            <>
-              <Box flex="1" overflow="auto" px="32" py="24">
+            <Box alignItems="stretch" display="flex" flex="1">
+              <Box
+                overflow="auto"
+                px="32"
+                py="24"
+                w={aside ? "2/3" : undefined}
+              >
                 {children}
               </Box>
-              {aside}
-            </>
+              {aside && <Box w="1/3">{aside}</Box>}
+            </Box>
           )}
         </Box>
       </Box>

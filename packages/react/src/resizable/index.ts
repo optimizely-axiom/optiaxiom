@@ -1,3 +1,3 @@
 export * from "./Resizable";
-export * from "./ResizeableHandle";
-export * from "./ResizeablePanel";
+export * from "./ResizableHandle";
+export * from "./ResizablePanel";

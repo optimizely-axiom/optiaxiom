@@ -8,21 +8,13 @@ import * as styles from "./ResizableHandle.css";
 
 export type ResizableHandleProps = ComponentPropsWithoutRef<
   typeof ResizablePrimitive.PanelResizeHandle
-> & {
-  /**
-   * Display a visible handle (with an icon) inside the resizeable panel handle.
-   */
-  withHandle?: boolean;
-};
+>;
 
-export const ResizableHandle = ({
-  withHandle,
-  ...props
-}: ResizableHandleProps) => {
+export const ResizableHandle = (props: ResizableHandleProps) => {
   return (
-    <Flex {...styles.root()}>
+    <Flex asChild {...styles.root()}>
       <ResizablePrimitive.PanelResizeHandle {...props}>
-        {withHandle && <Box {...styles.handle()} />}
+        <Box {...styles.handle()} />
       </ResizablePrimitive.PanelResizeHandle>
     </Flex>
   );
