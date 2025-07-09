@@ -562,7 +562,7 @@ export const NestedAndSearchable: Story = {
   args: {
     children: (
       <>
-        <MenuTrigger />
+        <MenuTrigger aria-label="File options" />
         <MenuContent />
       </>
     ),
