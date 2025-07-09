@@ -11,6 +11,7 @@ import {
   TableRow,
 } from "@optiaxiom/react";
 import { Menu, MenuContent, MenuTrigger } from "@optiaxiom/react/unstable";
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { expect, screen, userEvent } from "storybook/test";
 
 export default {
@@ -169,7 +170,9 @@ export const Actions: Story = {
           <TableHeaderCell>Status</TableHeaderCell>
           <TableHeaderCell>Method</TableHeaderCell>
           <TableHeaderCell>Amount</TableHeaderCell>
-          <TableHeaderCell></TableHeaderCell>
+          <TableHeaderCell>
+            <VisuallyHidden>More actions</VisuallyHidden>
+          </TableHeaderCell>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -187,7 +190,12 @@ export const Actions: Story = {
                     { intent: "danger", label: "Delete" },
                   ]}
                 >
-                  <MenuTrigger appearance="subtle" asChild size="sm">
+                  <MenuTrigger
+                    appearance="subtle"
+                    aria-label="More actions"
+                    asChild
+                    size="sm"
+                  >
                     <EllipsisMenuButton />
                   </MenuTrigger>
                   <MenuContent />
