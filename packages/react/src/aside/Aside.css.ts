@@ -1,18 +1,28 @@
-import { recipe } from "../vanilla-extract";
+import { theme } from "@optiaxiom/globals";
+
+import { recipe, style } from "../vanilla-extract";
 
 export const root = recipe({
   base: [
     {
+      bg: "bg.default",
+      borderColor: "border.secondary",
+      borderL: "1",
       color: "fg.default",
       display: "flex",
       flexDirection: "column",
       h: "full",
-      maxW: "lg",
-      rounded: "lg",
-      shadow: "lg",
-      w: "384",
+      overflow: "auto",
     },
+    style({
+      borderBottomLeftRadius: theme.borderRadius.lg,
+      borderTopLeftRadius: theme.borderRadius.lg,
+
+      selectors: {
+        "&:focus-visible": {
+          outline: "none",
+        },
+      },
+    }),
   ],
 });
-
-// export type AsideVariants = RecipeVariants<typeof content>;

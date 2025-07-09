@@ -9,9 +9,11 @@ export type AsideFooterProps = ComponentPropsWithRef<typeof Flex>;
 export const AsideFooter = forwardRef<HTMLDivElement, AsideFooterProps>(
   ({ children, className, ...props }, ref) => {
     return (
-      <Flex ref={ref} {...styles.footer({}, className)} {...props}>
-        <ButtonProvider size="lg">{children}</ButtonProvider>
-      </Flex>
+      <ButtonProvider size="lg">
+        <Flex ref={ref} {...styles.footer({}, className)} {...props}>
+          {children}
+        </Flex>
+      </ButtonProvider>
     );
   },
 );

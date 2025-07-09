@@ -1,16 +1,35 @@
+import { useId } from "@radix-ui/react-id";
+import { createSlot } from "@radix-ui/react-slot";
 import { forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
 import * as styles from "./Aside.css";
+import { AsideProvider } from "./AsideContext";
 
-export type Aside = BoxProps<"div">;
+const Slot = createSlot("@optiaxiom/react/Aside");
 
-export const Aside = forwardRef<HTMLDivElement, Aside>(
-  ({ children, className, ...props }, ref) => {
+export type Aside = BoxProps<"aside">;
+
+export const Aside = forwardRef<HTMLElement, Aside>(
+  ({ asChild, children, className, ...props }, ref) => {
+    const Comp = asChild ? Slot : "aside";
+
+    const labelId = useId();
+    const descriptionId = useId();
+
     return (
-      <Box ref={ref} {...styles.root({}, className)} {...props}>
-        {children}
-      </Box>
+      <AsideProvider descriptionId={descriptionId} labelId={labelId}>
+        <Box
+          aria-describedby={descriptionId}
+          aria-labelledby={labelId}
+          asChild
+          tabIndex={0}
+          {...styles.root({}, className)}
+          {...props}
+        >
+          <Comp ref={ref}>{children}</Comp>
+        </Box>
+      </AsideProvider>
     );
   },
 );
