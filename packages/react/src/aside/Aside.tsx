@@ -8,9 +8,9 @@ import { AsideProvider } from "./AsideContext";
 
 const Slot = createSlot("@optiaxiom/react/Aside");
 
-export type Aside = BoxProps<"aside">;
+export type AsideProps = BoxProps<"aside">;
 
-export const Aside = forwardRef<HTMLElement, Aside>(
+export const Aside = forwardRef<HTMLElement, AsideProps>(
   ({ asChild, children, className, ...props }, ref) => {
     const Comp = asChild ? Slot : "aside";
 
