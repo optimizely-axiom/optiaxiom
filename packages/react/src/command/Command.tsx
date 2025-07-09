@@ -125,7 +125,7 @@ export function Command({
       }
     },
     scrollIntoView(node) {
-      node.scrollIntoView({ block: "nearest" });
+      node?.scrollIntoView({ block: "nearest" });
     },
     selectedItem: null,
     stateReducer: (state, actionAndChanges) => {
