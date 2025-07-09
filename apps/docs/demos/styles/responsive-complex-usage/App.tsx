@@ -7,6 +7,7 @@ export function App() {
   return (
     <Box
       bg="bg.default"
+      fontSize="md"
       m="4"
       maxW={["sm", "lg"]}
       overflow="hidden"
