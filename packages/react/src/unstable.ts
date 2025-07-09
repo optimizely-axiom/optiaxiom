@@ -10,6 +10,5 @@ export * from "./inline-input";
 export * from "./layout";
 export * from "./menu";
 export * from "./pill";
-export * from "./resizable";
 export * from "./sortable";
 export * from "./spotlight";

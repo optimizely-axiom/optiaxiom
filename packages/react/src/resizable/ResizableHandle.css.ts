@@ -1,30 +1,55 @@
-import { recipe, style } from "../vanilla-extract";
+import { theme } from "@optiaxiom/globals";
+
+import { createVar, recipe, style } from "../vanilla-extract";
+
+const bgVar = createVar();
+
+export const root = recipe({
+  base: [
+    {
+      justifyContent: "center",
+      rounded: "sm",
+      z: "10",
+    },
+    style({
+      vars: {
+        [bgVar]: theme.colors["bg.secondary"],
+      },
+
+      marginInline: "-6px",
+
+      "@media": {
+        "(hover: hover)": {
+          selectors: {
+            "&:hover": {
+              vars: {
+                [bgVar]: theme.colors["bg.avatar.neutral"],
+              },
+            },
+          },
+        },
+      },
+
+      selectors: {
+        "&:focus-visible": {
+          outline: `2px solid ${theme.colors["border.focus"]}`,
+          outlineOffset: "-2px",
+        },
+      },
+    }),
+  ],
+});
 
 export const handle = recipe({
   base: [
     {
-      bg: "bg.secondary",
       border: "1",
       h: "56",
       rounded: "sm",
       w: "12",
     },
     style({
-      left: "-6px",
-      position: "relative",
-    }),
-  ],
-});
-
-export const root = recipe({
-  base: [
-    {
-      justifyContent: "center",
-      ml: "12",
-    },
-    style({
-      boxShadow:
-        "-6px 1px 12px -3px rgba(9, 30, 66, 0.08), -4px 0px 5px 0px rgba(9, 30, 66, 0.04)",
+      backgroundColor: bgVar,
     }),
   ],
 });
