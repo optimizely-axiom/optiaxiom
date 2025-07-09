@@ -101,6 +101,7 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
               <PopperContent
                 align={align}
                 aria-labelledby={clsx(fieldLabelId, labelId)}
+                collisionPadding={16}
                 side={side}
                 sideOffset={4}
               >
