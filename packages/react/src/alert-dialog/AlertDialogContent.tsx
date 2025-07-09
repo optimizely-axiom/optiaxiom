@@ -41,6 +41,18 @@ export const AlertDialogContent = forwardRef<
         <Transition>
           <Backdrop
             asChild
+            onClick={() => {
+              innerRef.current?.animate(
+                [
+                  { translate: "6px" },
+                  { translate: "-4px" },
+                  { translate: "4px" },
+                ],
+                {
+                  duration: 150,
+                },
+              );
+            }}
             {...styles.backdrop({ hidden: nestedDialogCount > 0 })}
           >
             <RadixAlertDialog.Overlay />
