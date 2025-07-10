@@ -9,6 +9,7 @@ import { TransitionGroup } from "../transition";
 import { type ExcludeProps, onReactSelectInputBlur } from "../utils";
 import { PopoverContentImpl } from "./PopoverContentImpl";
 import { usePopoverContext } from "./PopoverContext";
+import { usePopoverScope } from "./usePopoverScope";
 
 export type PopoverContentProps = ExcludeProps<
   BoxProps<
@@ -78,6 +79,7 @@ export const PopoverContent = forwardRef<HTMLDivElement, PopoverContentProps>(
               }}
               ref={ref}
               sideOffset={sideOffset}
+              {...usePopoverScope(undefined)}
             >
               <PopoverContentImpl asChild={asChild}>
                 {children}
