@@ -3,6 +3,7 @@ import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import { useState } from "react";
 
 import { PopoverProvider } from "./PopoverContext";
+import { usePopoverScope } from "./usePopoverScope";
 
 export type PopoverProps = {
   children?: React.ReactNode;
@@ -40,7 +41,12 @@ export function Popover({
   const [presence, setPresence] = useState<boolean>(false);
 
   return (
-    <RadixPopover.Root modal={modal} onOpenChange={setOpen} open={open}>
+    <RadixPopover.Root
+      modal={modal}
+      onOpenChange={setOpen}
+      open={open}
+      {...usePopoverScope(undefined)}
+    >
       <PopoverProvider
         open={open}
         presence={presence}

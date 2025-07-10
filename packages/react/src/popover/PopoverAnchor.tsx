@@ -1,17 +1,18 @@
-import * as RadixPopover from "@radix-ui/react-popover";
+import * as RadixPopper from "@radix-ui/react-popper";
 import { forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
+import { usePopoverScope } from "./usePopoverScope";
 
-export type PopoverAnchorProps = BoxProps<typeof RadixPopover.Anchor>;
+export type PopoverAnchorProps = BoxProps<typeof RadixPopper.Anchor>;
 
 export const PopoverAnchor = forwardRef<HTMLDivElement, PopoverAnchorProps>(
-  ({ asChild, children, ...props }, ref) => {
+  ({ children, ...props }, ref) => {
+    const { __scopePopover } = usePopoverScope(undefined);
+
     return (
-      <Box asChild {...props}>
-        <RadixPopover.Anchor asChild={asChild} ref={ref}>
-          {children}
-        </RadixPopover.Anchor>
+      <Box asChild ref={ref} {...props} {...{ __scopePopper: __scopePopover }}>
+        <RadixPopper.Anchor>{children}</RadixPopper.Anchor>
       </Box>
     );
   },
