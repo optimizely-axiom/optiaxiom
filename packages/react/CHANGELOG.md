@@ -1,5 +1,14 @@
 # @optiaxiom/react
 
+## 1.5.11
+
+### Patch Changes
+
+- d2ae123: improve menu open performance
+- a0996f4: allow disclosure to always be present in DOM
+- 4e6b3e0: directly render PopperAnchor
+- a45b96a: shake alert dialog when trying to dismiss with overlay
+
 ## 1.5.10
 
 ### Patch Changes
