@@ -41,7 +41,11 @@ export const DisclosureContent = forwardRef<
   const innerRef = useRef<HTMLDivElement>(null);
   const ref = useComposedRefs(innerRef, outerRef);
   useEffect(() => {
-    if (!innerRef.current || !hiddenUntilFound) {
+    if (
+      !innerRef.current ||
+      !("onbeforematch" in innerRef.current) ||
+      !hiddenUntilFound
+    ) {
       return;
     }
 
@@ -52,7 +56,11 @@ export const DisclosureContent = forwardRef<
   }, [hiddenUntilFound, setOpen]);
   const [presence, setPresence] = useState(false);
   useEffect(() => {
-    if (!innerRef.current || !hiddenUntilFound) {
+    if (
+      !innerRef.current ||
+      !("onbeforematch" in innerRef.current) ||
+      !hiddenUntilFound
+    ) {
       return;
     }
 
