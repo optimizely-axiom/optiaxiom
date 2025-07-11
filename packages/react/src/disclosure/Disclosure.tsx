@@ -43,7 +43,7 @@ export const Disclosure = forwardRef<HTMLDivElement, DisclosureProps>(
     });
 
     return (
-      <DisclosureProvider open={open}>
+      <DisclosureProvider open={open} setOpen={setOpen}>
         <Box asChild color="fg.default" fontSize="md" ref={ref} {...props}>
           <RadixCollapsible.Root
             asChild={asChild}

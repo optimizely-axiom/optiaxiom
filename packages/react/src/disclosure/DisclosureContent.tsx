@@ -1,5 +1,6 @@
 import * as RadixCollapsible from "@radix-ui/react-collapsible";
-import { forwardRef, useEffect, useState } from "react";
+import { useComposedRefs } from "@radix-ui/react-compose-refs";
+import { forwardRef, useEffect, useRef, useState } from "react";
 
 import type { ExcludeProps } from "../utils";
 
@@ -9,15 +10,26 @@ import * as styles from "./DisclosureContent.css";
 import { useDisclosureContext } from "./DisclosureContext";
 
 export type DisclosureContentProps = ExcludeProps<
-  BoxProps<typeof RadixCollapsible.Content>,
+  BoxProps<
+    typeof RadixCollapsible.Content,
+    {
+      /**
+       * Enable this to always keep content present in DOM and visually hidden
+       * when collapsed.
+       */
+      hiddenUntilFound?: boolean;
+    }
+  >,
   "forceMount"
 >;
 
 export const DisclosureContent = forwardRef<
   HTMLDivElement,
   DisclosureContentProps
->(({ children, ...props }, ref) => {
-  const { open } = useDisclosureContext("@optiaxiom/react/DisclosureContent");
+>(({ children, hiddenUntilFound, ...props }, outerRef) => {
+  const { open, setOpen } = useDisclosureContext(
+    "@optiaxiom/react/DisclosureContent",
+  );
 
   const [skipAnimations, setSkipAnimations] = useState(Boolean(open));
   useEffect(() => {
@@ -26,8 +38,37 @@ export const DisclosureContent = forwardRef<
     }
   }, [skipAnimations]);
 
+  const innerRef = useRef<HTMLDivElement>(null);
+  const ref = useComposedRefs(innerRef, outerRef);
+  useEffect(() => {
+    if (!innerRef.current || !hiddenUntilFound) {
+      return;
+    }
+
+    const element = innerRef.current;
+    const listener = () => setOpen(true);
+    element.addEventListener("beforematch", listener);
+    return () => element.removeEventListener("beforematch", listener);
+  }, [hiddenUntilFound, setOpen]);
+  const [presence, setPresence] = useState(false);
+  useEffect(() => {
+    if (!innerRef.current || !hiddenUntilFound) {
+      return;
+    }
+
+    if (open || presence) {
+      innerRef.current.removeAttribute("hidden");
+    } else {
+      innerRef.current.setAttribute("hidden", "until-found");
+    }
+  }, [open, hiddenUntilFound, presence]);
+
   return (
-    <TransitionGroup open={open}>
+    <TransitionGroup
+      forceMount={hiddenUntilFound}
+      onPresenceChange={setPresence}
+      open={open}
+    >
       <Transition data-side="bottom" skipAnimations={skipAnimations} type="pop">
         <Box
           {...styles.outer({
