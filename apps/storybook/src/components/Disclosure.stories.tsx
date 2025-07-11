@@ -7,6 +7,7 @@ import {
   Flex,
 } from "@optiaxiom/react";
 import { useState } from "react";
+import { expect } from "storybook/test";
 
 export default {
   args: {
@@ -88,5 +89,25 @@ export const LongContentTrigger: Story = {
         </DisclosureContent>
       </>
     ),
+  },
+};
+
+export const ForceMount: Story = {
+  args: {
+    children: (
+      <>
+        <DisclosureTrigger>Summary item</DisclosureTrigger>
+        <DisclosureContent hiddenUntilFound>
+          Content for the item. Contains multiple lines of lorem ipsum.
+        </DisclosureContent>
+      </>
+    ),
+  },
+  play: async ({ canvas }) => {
+    await expect(
+      canvas.getByText(
+        "Content for the item. Contains multiple lines of lorem ipsum.",
+      ),
+    ).toBeInTheDocument();
   },
 };

@@ -17,11 +17,13 @@ import { waitForAnimation } from "./waitForAnimation";
 
 export function TransitionGroup({
   children,
+  forceMount,
   onPresenceChange,
   open: openProp,
   presence: presenceProp,
 }: {
   children?: ReactNode;
+  forceMount?: boolean;
   onPresenceChange?: (presence: boolean) => void;
   open?: boolean;
   presence?: boolean;
@@ -82,7 +84,7 @@ export function TransitionGroup({
       presence={presence}
       register={register}
     >
-      {(open || presence) && childrenRef.current}
+      {(open || presence || forceMount) && childrenRef.current}
     </TransitionGroupProvider>
   );
 }

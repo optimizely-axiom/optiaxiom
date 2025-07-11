@@ -22,9 +22,5 @@ export const useTransitionStatus = (ref: RefObject<HTMLElement>) => {
     }
   }, [open]);
 
-  return open && !mounted
-    ? "starting"
-    : !open && mounted
-      ? "ending"
-      : undefined;
+  return open && !mounted ? "starting" : !open ? "ending" : undefined;
 };
