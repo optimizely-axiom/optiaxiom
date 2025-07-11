@@ -1,5 +1,13 @@
 # @optiaxiom/web-components
 
+## 0.10.13
+
+### Patch Changes
+
+- a0996f4: allow disclosure to always be present in DOM
+- 4e6b3e0: directly render PopperAnchor
+- a45b96a: shake alert dialog when trying to dismiss with overlay
+
 ## 0.10.12
 
 ### Patch Changes
