@@ -1,6 +1,5 @@
 import * as RadixCollapsible from "@radix-ui/react-collapsible";
-import { useComposedRefs } from "@radix-ui/react-compose-refs";
-import { forwardRef, useEffect, useRef, useState } from "react";
+import { forwardRef, useEffect, useState } from "react";
 
 import type { ExcludeProps } from "../utils";
 
@@ -26,10 +25,8 @@ export type DisclosureContentProps = ExcludeProps<
 export const DisclosureContent = forwardRef<
   HTMLDivElement,
   DisclosureContentProps
->(({ children, hiddenUntilFound, ...props }, outerRef) => {
-  const { open, setOpen } = useDisclosureContext(
-    "@optiaxiom/react/DisclosureContent",
-  );
+>(({ children, hiddenUntilFound, ...props }, ref) => {
+  const { open } = useDisclosureContext("@optiaxiom/react/DisclosureContent");
 
   const [skipAnimations, setSkipAnimations] = useState(Boolean(open));
   useEffect(() => {
@@ -38,45 +35,8 @@ export const DisclosureContent = forwardRef<
     }
   }, [skipAnimations]);
 
-  const innerRef = useRef<HTMLDivElement>(null);
-  const ref = useComposedRefs(innerRef, outerRef);
-  useEffect(() => {
-    if (
-      !innerRef.current ||
-      !("onbeforematch" in innerRef.current) ||
-      !hiddenUntilFound
-    ) {
-      return;
-    }
-
-    const element = innerRef.current;
-    const listener = () => setOpen(true);
-    element.addEventListener("beforematch", listener);
-    return () => element.removeEventListener("beforematch", listener);
-  }, [hiddenUntilFound, setOpen]);
-  const [presence, setPresence] = useState(false);
-  useEffect(() => {
-    if (
-      !innerRef.current ||
-      !("onbeforematch" in innerRef.current) ||
-      !hiddenUntilFound
-    ) {
-      return;
-    }
-
-    if (open || presence) {
-      innerRef.current.removeAttribute("hidden");
-    } else {
-      innerRef.current.setAttribute("hidden", "until-found");
-    }
-  }, [open, hiddenUntilFound, presence]);
-
   return (
-    <TransitionGroup
-      forceMount={hiddenUntilFound}
-      onPresenceChange={setPresence}
-      open={open}
-    >
+    <TransitionGroup forceMount={hiddenUntilFound} open={open}>
       <Transition data-side="bottom" skipAnimations={skipAnimations} type="pop">
         <Box
           {...styles.outer({
