@@ -2,10 +2,6 @@ import { forwardRef, useState } from "react";
 import { type DropzoneOptions, useDropzone } from "react-dropzone";
 
 import { Box, type BoxProps } from "../box";
-import { Flex } from "../flex";
-import { IconGrid } from "../icons/IconGrid";
-import { IconList } from "../icons/IconList";
-import { SegmentedControl, SegmentedControlItem } from "../segmented-control";
 import { FileList } from "./FileList";
 import { FileUploadProvider } from "./FileUploadContext";
 
@@ -26,19 +22,13 @@ export type FileUploadProps = BoxProps<
      * Callback function called when files are dropped or selected
      */
     onFilesDrop?: (files: File[]) => void;
-    /**
-     * The view to use for the file preview list.
-     *
-     * @default "list"
-     */
-    view?: "grid" | "list";
   }
 >;
 
 export const FileUpload = forwardRef<HTMLDivElement, FileUploadProps>(
-  ({ accept, children, onFilesDrop, view: viewProp, ...props }, ref) => {
+  ({ accept, children, onFilesDrop, ...props }, ref) => {
     const [files, setFiles] = useState<File[]>([]);
-    const [view, setView] = useState<"grid" | "list">(viewProp || "grid");
+    // const [view, setView] = useState<"grid" | "list">(viewProp || "grid");
     const {
       getInputProps,
       getRootProps,
@@ -63,34 +53,9 @@ export const FileUpload = forwardRef<HTMLDivElement, FileUploadProps>(
         isDragAccept={isDragActive && isDragAccept}
         isDragReject={isDragActive && isDragReject}
         setFiles={setFiles}
-        setView={setView}
-        view={view}
       >
         <Box color="fg.default" ref={ref} {...props}>
-          {files.length > 0 ? (
-            <Flex gap="20">
-              <Flex alignItems="end">
-                <SegmentedControl
-                  onValueChange={(val: string) =>
-                    setView(val as "grid" | "list")
-                  }
-                  type="single"
-                  value={view}
-                >
-                  <SegmentedControlItem value="grid">
-                    <IconGrid />
-                  </SegmentedControlItem>
-                  <SegmentedControlItem value="list">
-                    <IconList />
-                  </SegmentedControlItem>
-                </SegmentedControl>
-              </Flex>
-
-              <FileList files={files} />
-            </Flex>
-          ) : (
-            children
-          )}
+          {files.length > 0 ? <FileList files={files} /> : children}
         </Box>
       </FileUploadProvider>
     );
