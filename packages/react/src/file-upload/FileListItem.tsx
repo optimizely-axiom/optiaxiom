@@ -13,8 +13,10 @@ export type FileListItemProps = BoxProps<"div"> & {
 export function FileListItem({ file }: FileListItemProps) {
   return (
     <Flex flexDirection="row" gap="12">
-      <Box asChild rounded="sm" size="24">
-        <img alt={file.name} src={URL.createObjectURL(file)} />
+      <Box overflow="hidden" rounded="sm" size="24">
+        <Box asChild objectFit="cover">
+          <img alt={file.name} src={URL.createObjectURL(file)} />
+        </Box>
       </Box>
       <Text fontSize="sm" textAlign="start" truncate w="full">
         {file.name}
