@@ -38,7 +38,12 @@ export const TextareaAutosize = forwardRef<
     });
 
     return (
-      <Box {...styles.wrapper({ maxRows, resize })}>
+      <Box
+        {...styles.wrapper({
+          maxRows: resize === "auto" ? maxRows : undefined,
+          resize,
+        })}
+      >
         <Box asChild {...styles.textarea({ resize }, className)} {...boxProps}>
           <Comp
             onChange={(event) => {
