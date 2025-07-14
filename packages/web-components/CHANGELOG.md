@@ -1,5 +1,11 @@
 # @optiaxiom/web-components
 
+## 0.10.14
+
+### Patch Changes
+
+- 248edc5: fix textarea scrollbar for manual resize
+
 ## 0.10.13
 
 ### Patch Changes
