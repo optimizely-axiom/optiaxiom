@@ -27,8 +27,16 @@ export const Value: Story = {
 
 export const ManualResize: Story = {
   args: {
+    defaultValue:
+      "Lorem Ipsum is a placeholder text commonly used in the design and printing industries.\nDespite its widespread use, the origins of Lorem Ipsum are somewhat mysterious. Several theories exist about who may have invented the text, but no one knows.",
     resize: "vertical",
   },
+  render: (args) => (
+    <Flex maxW="xs">
+      <Textarea {...args} />
+      <Textarea {...args} resize="none" />
+    </Flex>
+  ),
 };
 
 export const AutoSize: Story = {

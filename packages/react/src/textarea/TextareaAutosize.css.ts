@@ -69,13 +69,20 @@ export const shadow = recipe({
 export const textarea = recipe({
   base: [
     common,
-    {
-      overflow: "hidden",
-    },
     style({
       resize: "none",
     }),
   ],
+
+  variants: {
+    resize: {
+      auto: {
+        overflow: "hidden",
+      },
+      none: {},
+      vertical: {},
+    },
+  },
 });
 
 export type WrapperVariants = RecipeVariants<typeof wrapper>;
