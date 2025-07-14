@@ -39,7 +39,7 @@ export const TextareaAutosize = forwardRef<
 
     return (
       <Box {...styles.wrapper({ maxRows, resize })}>
-        <Box asChild {...styles.textarea({}, className)} {...boxProps}>
+        <Box asChild {...styles.textarea({ resize }, className)} {...boxProps}>
           <Comp
             onChange={(event) => {
               setValue(event.target.value);
