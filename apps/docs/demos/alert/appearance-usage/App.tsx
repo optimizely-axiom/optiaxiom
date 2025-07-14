@@ -1,11 +1,16 @@
-"use client";
+import { Alert, Flex } from "@optiaxiom/react";
 
-import type { ComponentPropsWithoutRef } from "react";
-
-import { Alert } from "@optiaxiom/react";
-
-export function App({
-  intent,
-}: Pick<ComponentPropsWithoutRef<typeof Alert>, "intent">) {
-  return <Alert intent={intent}>Description of the alert message</Alert>;
+export function App() {
+  return (
+    <Flex>
+      <Alert intent="neutral">This is an example of a neutral alert.</Alert>
+      <Alert intent="information">
+        This is an example of an information alert.
+      </Alert>
+      <Alert intent="success">This is an example of a success alert.</Alert>
+      <Alert intent="warning">This is an example of a warning alert.</Alert>
+      <Alert intent="danger">This is an example of a danger alert.</Alert>
+      <Alert intent="opal">This is an example of an opal alert.</Alert>
+    </Flex>
+  );
 }
