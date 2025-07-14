@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 1.5.12
+
+### Patch Changes
+
+- 248edc5: fix textarea scrollbar for manual resize
+
 ## 1.5.11
 
 ### Patch Changes
