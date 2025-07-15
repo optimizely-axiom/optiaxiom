@@ -1,5 +1,11 @@
 # @optiaxiom/web-components
 
+## 0.10.15
+
+### Patch Changes
+
+- 5c62008: hard-code dark mode colors for opal gradient
+
 ## 0.10.14
 
 ### Patch Changes

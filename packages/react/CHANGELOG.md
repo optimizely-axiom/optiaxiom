@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 1.5.13
+
+### Patch Changes
+
+- 5c62008: hard-code dark mode colors for opal gradient
+
 ## 1.5.12
 
 ### Patch Changes
