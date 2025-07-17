@@ -1,7 +1,8 @@
-import { forwardRef } from "react";
+import { forwardRef, useState } from "react";
 import { type DropzoneOptions, useDropzone } from "react-dropzone";
 
 import { Box, type BoxProps } from "../box";
+import { FileList } from "./FileList";
 import { FileUploadProvider } from "./FileUploadContext";
 
 export type FileUploadProps = BoxProps<
@@ -26,6 +27,8 @@ export type FileUploadProps = BoxProps<
 
 export const FileUpload = forwardRef<HTMLDivElement, FileUploadProps>(
   ({ accept, children, onFilesDrop, ...props }, ref) => {
+    const [files, setFiles] = useState<File[]>([]);
+    // const [view, setView] = useState<"grid" | "list">(viewProp || "grid");
     const {
       getInputProps,
       getRootProps,
@@ -36,6 +39,7 @@ export const FileUpload = forwardRef<HTMLDivElement, FileUploadProps>(
       accept,
       onDrop: (acceptedFiles) => {
         if (acceptedFiles.length) {
+          setFiles((prev) => [...prev, ...acceptedFiles]);
           onFilesDrop?.(acceptedFiles);
         }
       },
@@ -43,13 +47,15 @@ export const FileUpload = forwardRef<HTMLDivElement, FileUploadProps>(
 
     return (
       <FileUploadProvider
+        files={files}
         getInputProps={getInputProps}
         getRootProps={getRootProps}
         isDragAccept={isDragActive && isDragAccept}
         isDragReject={isDragActive && isDragReject}
+        setFiles={setFiles}
       >
         <Box color="fg.default" ref={ref} {...props}>
-          {children}
+          {files.length > 0 ? <FileList files={files} /> : children}
         </Box>
       </FileUploadProvider>
     );
