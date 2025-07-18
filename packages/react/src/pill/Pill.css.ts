@@ -12,14 +12,12 @@ export const pill = recipe({
       gap: "4",
       px: "6",
       rounded: "md",
+      transition: "colors",
       whiteSpace: "nowrap",
     },
     style({
       backgroundColor: theme.colors["bg.tertiary"],
       position: "relative",
-      transitionDuration: theme.duration.sm,
-      transitionProperty: "background-color, color, transform",
-      transitionTimingFunction: "ease",
       userSelect: "none",
 
       "@media": {
@@ -38,9 +36,6 @@ export const pill = recipe({
           outlineOffset: "1px",
         },
 
-        "&:not([data-disabled]):active": {
-          transform: "scale(0.97)",
-        },
         "&[data-disabled]": {
           opacity: 0.6,
         },
