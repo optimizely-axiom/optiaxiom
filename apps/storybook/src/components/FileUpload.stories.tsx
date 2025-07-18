@@ -1,11 +1,20 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Text } from "@optiaxiom/react";
-import { FileUpload, FileUploadDropzone } from "@optiaxiom/react/unstable";
+import { Button, Flex, Textarea, Tooltip } from "@optiaxiom/react";
+import {
+  FileUpload,
+  FileUploadDropzone,
+  FileUploadTrigger,
+} from "@optiaxiom/react/unstable";
+import { IconArrowUp, IconPhoto } from "@tabler/icons-react";
 
 export default {
   args: {
-    children: <FileUploadDropzone py="64" />,
+    children: (
+      <FileUploadDropzone>
+        <FileUploadTrigger />
+      </FileUploadDropzone>
+    ),
   },
   argTypes: {
     onFilesDrop: { action: "onFilesDrop" },
@@ -27,11 +36,52 @@ export const Description: Story = {
       "image/*": [],
     },
     children: (
-      <FileUploadDropzone p="32">
-        <Text color="fg.tertiary" fontSize="sm">
-          SVG, PNG, JPG or GIF (max. 2MB)
-        </Text>
+      <FileUploadDropzone description="SVG, PNG, JPG or GIF (max. 2MB)">
+        <FileUploadTrigger />
       </FileUploadDropzone>
     ),
+    w: "384",
+  },
+};
+
+export const Overlay: Story = {
+  args: {
+    accept: {
+      "image/*": [],
+    },
+    children: (
+      <>
+        <Textarea
+          addonAfter={
+            <Flex borderT="1" flexDirection="row" gap="4" p="4">
+              <Tooltip content="Add images">
+                <FileUploadTrigger asChild>
+                  <Button
+                    appearance="subtle"
+                    aria-label="Add images"
+                    icon={<IconPhoto />}
+                    size="sm"
+                  />
+                </FileUploadTrigger>
+              </Tooltip>
+
+              <Tooltip content="Submit">
+                <Button
+                  appearance="primary"
+                  aria-label="Submit"
+                  icon={<IconArrowUp />}
+                  ml="auto"
+                  size="sm"
+                />
+              </Tooltip>
+            </Flex>
+          }
+          placeholder="Add a comment"
+        />
+        <FileUploadDropzone overlay />
+      </>
+    ),
+    maxW: "xs",
+    style: { width: "100vw" },
   },
 };

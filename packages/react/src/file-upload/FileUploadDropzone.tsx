@@ -1,46 +1,90 @@
-import { useId } from "@radix-ui/react-id";
 import { forwardRef } from "react";
 
-import { Box, type BoxProps } from "../box";
+import { type BoxProps } from "../box";
+import { Flex } from "../flex";
 import { Icon } from "../icon";
 import { IconFileImportSolid } from "../icons/IconFileImportSolid";
 import { Text } from "../text";
 import { useFileUploadContext } from "./FileUploadContext";
 import * as styles from "./FileUploadDropzone.css";
+import { useDraggingOverBody } from "./useDraggingOverBody";
 
-export type FileUploadDropzoneProps = BoxProps;
+export type FileUploadDropzoneProps = BoxProps<
+  "div",
+  {
+    /**
+     * Add secondary text after the primary label.
+     */
+    description?: string;
+    /**
+     * The label of the dropzone.
+     */
+    label?: string;
+    /**
+     * Whether to place the dropzone as an overlay fully covering the parent
+     * container and only showing when user is dragging a file into the browser.
+     */
+    overlay?: boolean;
+  }
+>;
 
 export const FileUploadDropzone = forwardRef<
   HTMLDivElement,
   FileUploadDropzoneProps
->(({ children, className, ...props }, ref) => {
-  const { getInputProps, getRootProps, isDragAccept, isDragReject } =
-    useFileUploadContext("@optiaxiom/react/FileUploadDropzone");
-  const id = useId();
+>(
+  (
+    {
+      children,
+      className,
+      description,
+      label = "Drop your files here",
+      overlay,
+      ...props
+    },
+    ref,
+  ) => {
+    const { getInputProps, getRootProps, isDragActive } = useFileUploadContext(
+      "@optiaxiom/react/FileUploadDropzone",
+    );
 
-  return (
-    <Box
-      ref={ref}
-      {...getRootProps({
-        ...styles.dropzone(
-          {
-            drag: isDragAccept ? "accept" : isDragReject ? "reject" : "default",
-          },
-          className,
-        ),
-        ...props,
-      })}
-    >
-      <input aria-labelledby={id} {...getInputProps()} />
-      <Icon asChild color="fg.secondary">
-        <IconFileImportSolid />
-      </Icon>
-      <Text aria-hidden id={id}>
-        Drag and drop or click to upload
-      </Text>
-      {children}
-    </Box>
-  );
-});
+    const isDraggingOverBody = useDraggingOverBody();
+
+    return (
+      <Flex
+        ref={ref}
+        {...getRootProps({
+          ...styles.dropzone(
+            {
+              drag: isDragActive,
+              hidden: overlay && !isDraggingOverBody,
+              overlay,
+            },
+            className,
+          ),
+          ...props,
+        })}
+      >
+        <input
+          {...getInputProps({
+            "aria-description": description,
+            "aria-label": label,
+          })}
+        />
+        <Flex alignItems="center" gap="8">
+          <Icon asChild color="fg.secondary">
+            <IconFileImportSolid />
+          </Icon>
+          <Text>{label}</Text>
+          {description && (
+            <Text color="fg.tertiary" fontSize="sm">
+              {description}
+            </Text>
+          )}
+        </Flex>
+        {!overlay && children}
+      </Flex>
+    );
+  },
+);
 
 FileUploadDropzone.displayName = "@optiaxiom/react/FileUploadDropzone";

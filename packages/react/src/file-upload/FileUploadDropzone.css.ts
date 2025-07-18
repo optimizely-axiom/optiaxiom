@@ -1,70 +1,50 @@
 import { theme } from "@optiaxiom/globals";
 
-import { createVar, recipe, style } from "../vanilla-extract";
-
-const bgColorVar = createVar();
+import { recipe, style } from "../vanilla-extract";
 
 export const dropzone = recipe({
   base: [
     {
       alignItems: "center",
+      bg: "bg.secondary",
       border: "1",
-      cursor: "pointer",
-      display: "flex",
-      flexDirection: "column",
       fontSize: "md",
-      gap: "8",
       justifyContent: "center",
-      p: "16",
-      rounded: "lg",
+      p: "32",
+      rounded: "md",
       textAlign: "center",
       transition: "colors",
+      z: "10",
     },
     style({
-      vars: {
-        [bgColorVar]: theme.colors["bg.default"],
-      },
-
-      backgroundColor: bgColorVar,
       borderStyle: "dashed",
     }),
   ],
 
   variants: {
     drag: {
-      accept: [
-        {
-          borderColor: "border.success",
-        },
+      false: {},
+      true: [
         style({
-          vars: {
-            [bgColorVar]: theme.colors["bg.success.subtle"],
-          },
+          outline: `2px solid ${theme.colors["border.focus"]}`,
+          outlineOffset: "1px",
         }),
       ],
-      default: style({
-        "@media": {
-          "(hover: hover)": {
-            selectors: {
-              "&:hover": {
-                vars: {
-                  backgroundColor: theme.colors["bg.secondary"],
-                },
-              },
-            },
-          },
-        },
+    },
+    hidden: {
+      false: style({
+        visibility: "visible",
       }),
-      reject: [
-        {
-          borderColor: "border.error",
-        },
-        style({
-          vars: {
-            [bgColorVar]: theme.colors["bg.error.subtlest"],
-          },
-        }),
-      ],
+      true: style({
+        visibility: "hidden",
+      }),
+    },
+    overlay: {
+      false: {},
+      true: style({
+        inset: 0,
+        position: "absolute",
+      }),
     },
   },
 });
