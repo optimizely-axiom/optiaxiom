@@ -10,5 +10,6 @@ export * from "./inline-input";
 export * from "./layout";
 export * from "./menu";
 export * from "./pill";
+export * from "./pill-menu";
 export * from "./sortable";
 export * from "./spotlight";
