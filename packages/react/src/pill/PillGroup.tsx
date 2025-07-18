@@ -7,7 +7,7 @@ export type PillGroupProps = ComponentPropsWithRef<typeof Flex>;
 export const PillGroup = forwardRef<HTMLDivElement, PillGroupProps>(
   ({ children, ...props }, ref) => {
     return (
-      <Flex flexDirection="row" gap="12" ref={ref} {...props}>
+      <Flex flexDirection="row" flexWrap="wrap" gap="8" ref={ref} {...props}>
         {children}
       </Flex>
     );
