@@ -6,6 +6,7 @@ import type { BoxProps } from "../box";
 
 import { resolveItemProperty, useCommandContext } from "../command/internals";
 import { PillGroup } from "../pill";
+import { PopoverAnchor } from "../popover";
 import { usePillMenuContext } from "./PillMenuContext";
 import { PillMenuPill } from "./PillMenuPill";
 
@@ -43,6 +44,7 @@ export const PillMenuImpl = forwardRef<HTMLDivElement, PillMenuImplProps>(
             </PillGroup>
           </RadixRovingFocus.Root>
         </PillGroup>
+        <PopoverAnchor staticRef={innerRef} />
       </>
     );
   },
