@@ -2,6 +2,7 @@ import { forwardRef } from "react";
 import { type DropzoneOptions, useDropzone } from "react-dropzone";
 
 import { Box, type BoxProps } from "../box";
+import * as styles from "./FileUpload.css";
 import { FileUploadProvider } from "./FileUploadContext";
 
 export type FileUploadProps = BoxProps<
@@ -25,15 +26,11 @@ export type FileUploadProps = BoxProps<
 >;
 
 export const FileUpload = forwardRef<HTMLDivElement, FileUploadProps>(
-  ({ accept, children, onFilesDrop, ...props }, ref) => {
-    const {
-      getInputProps,
-      getRootProps,
-      isDragAccept,
-      isDragActive,
-      isDragReject,
-    } = useDropzone({
+  ({ accept, children, className, onFilesDrop, ...props }, ref) => {
+    const { getInputProps, getRootProps, isDragActive, open } = useDropzone({
       accept,
+      noClick: true,
+      noKeyboard: true,
       onDrop: (acceptedFiles) => {
         if (acceptedFiles.length) {
           onFilesDrop?.(acceptedFiles);
@@ -45,10 +42,10 @@ export const FileUpload = forwardRef<HTMLDivElement, FileUploadProps>(
       <FileUploadProvider
         getInputProps={getInputProps}
         getRootProps={getRootProps}
-        isDragAccept={isDragActive && isDragAccept}
-        isDragReject={isDragActive && isDragReject}
+        isDragActive={isDragActive}
+        openFileDialog={open}
       >
-        <Box color="fg.default" ref={ref} {...props}>
+        <Box ref={ref} {...styles.upload({}, className)} {...props}>
           {children}
         </Box>
       </FileUploadProvider>
