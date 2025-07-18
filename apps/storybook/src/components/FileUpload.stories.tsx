@@ -1,11 +1,30 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Text } from "@optiaxiom/react";
-import { FileUpload, FileUploadDropzone } from "@optiaxiom/react/unstable";
+import { Button, Flex, Textarea, toaster, Tooltip } from "@optiaxiom/react";
+import {
+  FileUpload,
+  FileUploadDropzone,
+  FileUploadTrigger,
+  Menu,
+  MenuContent,
+  MenuTrigger,
+  useFileUploadTrigger,
+} from "@optiaxiom/react/unstable";
+import {
+  IconArrowUp,
+  IconBooks,
+  IconPhoto,
+  IconPlus,
+  IconUpload,
+} from "@tabler/icons-react";
 
 export default {
   args: {
-    children: <FileUploadDropzone py="64" />,
+    children: (
+      <FileUploadDropzone>
+        <FileUploadTrigger />
+      </FileUploadDropzone>
+    ),
   },
   argTypes: {
     onFilesDrop: { action: "onFilesDrop" },
@@ -27,11 +46,88 @@ export const Description: Story = {
       "image/*": [],
     },
     children: (
-      <FileUploadDropzone p="32">
-        <Text color="fg.tertiary" fontSize="sm">
-          SVG, PNG, JPG or GIF (max. 2MB)
-        </Text>
+      <FileUploadDropzone description="SVG, PNG, JPG or GIF (max. 2MB)">
+        <FileUploadTrigger />
       </FileUploadDropzone>
     ),
+    w: "384",
+  },
+};
+
+export const Overlay: Story = {
+  args: {
+    accept: {
+      "image/*": [],
+    },
+    children: (
+      <>
+        <Textarea
+          addonAfter={
+            <Flex borderT="1" flexDirection="row" gap="4" p="4">
+              <Tooltip content="Add images">
+                <FileUploadTrigger asChild>
+                  <Button
+                    appearance="subtle"
+                    aria-label="Add images"
+                    icon={<IconPhoto />}
+                    size="sm"
+                  />
+                </FileUploadTrigger>
+              </Tooltip>
+
+              <Tooltip content="Submit">
+                <Button
+                  appearance="primary"
+                  aria-label="Submit"
+                  icon={<IconArrowUp />}
+                  ml="auto"
+                  size="sm"
+                />
+              </Tooltip>
+            </Flex>
+          }
+          placeholder="Add a comment"
+        />
+        <FileUploadDropzone overlay />
+      </>
+    ),
+    maxW: "xs",
+    style: { width: "100vw" },
+  },
+};
+
+function FileUploadMenu() {
+  const triggerFileUpload = useFileUploadTrigger();
+  return (
+    <Menu
+      options={[
+        {
+          addon: <IconUpload size={16} />,
+          execute: triggerFileUpload,
+          label: "Your device",
+        },
+        {
+          addon: <IconBooks size={16} />,
+          execute: () => toaster.create("Uploading from library..."),
+          label: "Library",
+        },
+      ]}
+    >
+      <MenuTrigger icon={<IconPlus />} iconPosition="start">
+        Add Content
+      </MenuTrigger>
+      <MenuContent />
+    </Menu>
+  );
+}
+
+export const MultipleSources: Story = {
+  args: {
+    children: (
+      <FileUploadDropzone>
+        <FileUploadMenu />
+      </FileUploadDropzone>
+    ),
+    w: "384",
   },
 };
