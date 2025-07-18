@@ -20,16 +20,6 @@ export const pill = recipe({
       position: "relative",
       userSelect: "none",
 
-      "@media": {
-        "(hover: hover)": {
-          selectors: {
-            "&:not([data-disabled]):hover": {
-              backgroundColor: theme.colors["bg.tertiary.hovered"],
-            },
-          },
-        },
-      },
-
       selectors: {
         "&:focus-visible": {
           outline: `2px solid ${theme.colors["border.focus"]}`,
@@ -43,6 +33,20 @@ export const pill = recipe({
     }),
   ],
   variants: {
+    interactive: {
+      false: {},
+      true: style({
+        "@media": {
+          "(hover: hover)": {
+            selectors: {
+              "&:not([data-disabled]):hover": {
+                backgroundColor: theme.colors["bg.tertiary.hovered"],
+              },
+            },
+          },
+        },
+      }),
+    },
     /**
      * Control the size of the pill.
      */
@@ -57,4 +61,7 @@ export const pill = recipe({
   },
 });
 
-export type PillVariants = RecipeVariants<typeof pill>;
+export type PillVariants = Omit<
+  NonNullable<RecipeVariants<typeof pill>>,
+  "interactive"
+>;

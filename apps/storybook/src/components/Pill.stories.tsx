@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Flex } from "@optiaxiom/react";
 import { Pill } from "@optiaxiom/react/unstable";
+import { action } from "storybook/actions";
 
 export default {
   component: Pill,
@@ -39,10 +40,18 @@ export const Sizes: Story = {
   ),
 };
 
+export const Dismiss: Story = {
+  args: {
+    children: "Label",
+    onDismiss: action("onDismiss"),
+  },
+};
+
 export const Disabled: Story = {
   args: {
     children: "Disabled",
     disabled: true,
+    onDismiss: action("onDismiss"),
   },
 };
 
