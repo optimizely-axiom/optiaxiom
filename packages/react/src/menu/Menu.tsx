@@ -51,7 +51,7 @@ export type MenuProps = ExcludeProps<
       size?: "lg" | "sm";
     }
   >,
-  "onSelect"
+  "enabled" | "onHover" | "onSelect"
 >;
 
 export function Menu({
