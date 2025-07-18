@@ -334,6 +334,7 @@ export const demos = {
   ),
   "pagination/usage": import("@/demos/pagination/usage/App"),
   "pill/disabled-usage": import("@/demos/pill/disabled-usage/App"),
+  "pill/dismiss-usage": import("@/demos/pill/dismiss-usage/App"),
   "pill/group-usage": import("@/demos/pill/group-usage/App"),
   "pill/size-usage": import("@/demos/pill/size-usage/App"),
   "pill/usage": import("@/demos/pill/usage/App"),

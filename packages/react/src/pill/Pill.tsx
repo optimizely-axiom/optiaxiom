@@ -9,26 +9,66 @@ import * as styles from "./Pill.css";
 
 const Slot = createSlot("@optiaxiom/react/Pill");
 
-export type PillProps = BoxProps<"button", styles.PillVariants>;
+export type PillProps = BoxProps<
+  "button",
+  styles.PillVariants & {
+    /**
+     * Show a close button inside the pill and invoke this callback when the pill is clicked.
+     */
+    onDismiss?: () => void;
+  }
+>;
 
 export const Pill = forwardRef<HTMLButtonElement, PillProps>(
-  ({ asChild, children, className, disabled, size = "sm", ...props }, ref) => {
-    const Comp = asChild ? Slot : "button";
+  (
+    {
+      asChild,
+      children,
+      className,
+      disabled,
+      onClick,
+      onDismiss,
+      size = "sm",
+      ...props
+    },
+    ref,
+  ) => {
+    const Comp = asChild ? Slot : onClick || onDismiss ? "button" : "span";
     const { boxProps, restProps } = extractBoxProps(props);
 
     return (
       <Box
         asChild
         data-disabled={disabled ? "" : undefined}
-        {...styles.pill({ size }, className)}
+        {...styles.pill(
+          {
+            interactive: Boolean(onClick || onDismiss),
+            size,
+          },
+          className,
+        )}
         {...boxProps}
       >
-        <Comp disabled={disabled} ref={ref} {...restProps}>
+        <Comp
+          disabled={disabled}
+          onClick={(event) => {
+            onClick?.(event);
+            if (event.defaultPrevented) {
+              return;
+            }
+
+            onDismiss?.();
+          }}
+          ref={ref}
+          {...restProps}
+        >
           <Text truncate>{children}</Text>
 
-          <Icon asChild h="12" ml="auto">
-            <IconX />
-          </Icon>
+          {onDismiss && (
+            <Icon asChild h="12" ml="auto">
+              <IconX />
+            </Icon>
+          )}
         </Comp>
       </Box>
     );
