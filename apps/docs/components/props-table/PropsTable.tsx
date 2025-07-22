@@ -128,7 +128,10 @@ export async function PropsTable({
                               "https://optimizely-axiom.github.io/optiaxiom",
                               "",
                             )
-                            .replaceAll(/@example .+/g, "\n\n")
+                            .replaceAll(
+                              /@example ([^@]+)/g,
+                              "\n\n```\n$1\n```\n",
+                            )
                             .replaceAll("@see", "\n\n"),
                         )}
                         components={{
