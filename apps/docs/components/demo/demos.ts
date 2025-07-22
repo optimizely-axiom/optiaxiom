@@ -201,6 +201,7 @@ export const demos = {
   "field/info-usage": import("@/demos/field/info-usage/App"),
   "field/required-usage": import("@/demos/field/required-usage/App"),
   "field/usage": import("@/demos/field/usage/App"),
+  "file-upload/usage": import("@/demos/file-upload/usage/App"),
   "flex-direction/responsive-usage": import(
     "@/demos/flex-direction/responsive-usage/App"
   ),

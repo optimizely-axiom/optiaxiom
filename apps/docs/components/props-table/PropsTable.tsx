@@ -24,6 +24,7 @@ const mapComponentToBase: Partial<Record<AllComponents, "" | AllComponents>> = {
   DialogTrigger: "Button",
   DropdownMenuSeparator: "Separator",
   DropdownMenuTrigger: "Button",
+  FileUploadTrigger: "Button",
   Heading: "Text",
   Kbd: "Code",
   MenuTrigger: "Button",
