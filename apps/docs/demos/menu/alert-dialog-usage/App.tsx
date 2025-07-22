@@ -20,11 +20,11 @@ export function App() {
     <Menu
       options={[
         {
-          addon: <IconPencil size={16} />,
+          addon: <IconPencil />,
           label: "Edit",
         },
         {
-          addon: <IconTrash size={16} />,
+          addon: <IconTrash />,
           execute: () => setOpen(true),
           intent: "danger",
           label: "Delete",

@@ -13,22 +13,22 @@ export function App() {
     <Select
       options={[
         {
-          addon: <IconCircle size={16} />,
+          addon: <IconCircle />,
           label: "Todo",
           value: "Todo",
         },
         {
-          addon: <IconProgress size={16} />,
+          addon: <IconProgress />,
           label: "In progress",
           value: "In progress",
         },
         {
-          addon: <IconProgressCheck size={16} />,
+          addon: <IconProgressCheck />,
           label: "Done",
           value: "Done",
         },
         {
-          addon: <IconProgressX size={16} />,
+          addon: <IconProgressX />,
           label: "Closed",
           value: "Closed",
         },

@@ -16,25 +16,25 @@ import {
 
 const options: MenuOption[] = [
   {
-    addon: <IconUpload size={16} />,
+    addon: <IconUpload />,
     label: "Select from…",
     subOptions: [
       {
-        addon: <IconUpload size={16} />,
+        addon: <IconUpload />,
         label: "Your device",
       },
       {
-        addon: <IconBooks size={16} />,
+        addon: <IconBooks />,
         label: "Library",
       },
     ],
   },
   {
-    addon: <IconLink size={16} />,
+    addon: <IconLink />,
     label: "Add URL",
   },
   {
-    addon: <IconSparkles size={16} />,
+    addon: <IconSparkles />,
     label: "Generate",
   },
 ];
