@@ -1,12 +1,12 @@
 "use client";
 
-import { Box } from "@optiaxiom/react";
 import {
+  Box,
   Menu,
   MenuContent,
   type MenuOption,
   MenuTrigger,
-} from "@optiaxiom/react/unstable";
+} from "@optiaxiom/react";
 import { useMemo, useState } from "react";
 
 import { type Color, colors } from "./data";

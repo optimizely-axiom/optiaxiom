@@ -5,7 +5,7 @@ import {
   MenuContent,
   type MenuOption,
   MenuTrigger,
-} from "@optiaxiom/react/unstable";
+} from "@optiaxiom/react";
 
 const groups = {
   display: {

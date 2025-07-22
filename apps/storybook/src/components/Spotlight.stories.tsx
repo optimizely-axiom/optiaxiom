@@ -1,8 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Kbd, toaster } from "@optiaxiom/react";
+import { Kbd, type MenuOption, toaster } from "@optiaxiom/react";
 import {
-  type MenuOption,
   Spotlight,
   SpotlightContent,
   SpotlightTrigger,

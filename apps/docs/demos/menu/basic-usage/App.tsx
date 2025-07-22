@@ -3,7 +3,7 @@ import {
   MenuContent,
   type MenuOption,
   MenuTrigger,
-} from "@optiaxiom/react/unstable";
+} from "@optiaxiom/react";
 
 const colors: MenuOption[] = [
   { label: "Ocean" },

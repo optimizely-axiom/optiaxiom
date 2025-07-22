@@ -1,12 +1,13 @@
 "use client";
 
-import { Flex, Text } from "@optiaxiom/react";
 import {
+  Flex,
   Menu,
   MenuContent,
   type MenuOption,
   MenuTrigger,
-} from "@optiaxiom/react/unstable";
+  Text,
+} from "@optiaxiom/react";
 import { useMemo, useState } from "react";
 
 const colors = ["Ocean", "Blue", "Purple", "Red", "Orange", "Yellow"];

@@ -5,7 +5,7 @@ import {
   MenuContent,
   type MenuOption,
   MenuTrigger,
-} from "@optiaxiom/react/unstable";
+} from "@optiaxiom/react";
 import { useMemo, useState } from "react";
 
 const colors = ["Ocean", "Blue", "Purple", "Red", "Orange", "Yellow"];

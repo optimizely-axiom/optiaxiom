@@ -7,6 +7,9 @@ import {
   EllipsisMenuButton,
   Flex,
   Link,
+  Menu,
+  MenuContent,
+  MenuTrigger,
   Text,
 } from "@optiaxiom/react";
 import {
@@ -18,9 +21,6 @@ import {
   CardImage,
   CardLink,
   CardPreview,
-  Menu,
-  MenuContent,
-  MenuTrigger,
   Sortable,
   SortableHandle,
   SortableItem,

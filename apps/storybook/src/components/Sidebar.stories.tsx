@@ -2,6 +2,9 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import {
   Box,
+  Menu,
+  MenuContent,
+  MenuTrigger,
   Nav,
   NavAccountItem,
   NavBody,
@@ -16,7 +19,6 @@ import {
   SidebarToggle,
   SubNav,
 } from "@optiaxiom/react";
-import { Menu, MenuContent, MenuTrigger } from "@optiaxiom/react/unstable";
 import {
   IconBinaryTree,
   IconChartInfographic,

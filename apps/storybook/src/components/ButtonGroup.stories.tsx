@@ -6,9 +6,11 @@ import {
   ButtonGroup,
   Field,
   Flex,
+  Menu,
+  MenuContent,
+  MenuTrigger,
   SearchInput,
 } from "@optiaxiom/react";
-import { Menu, MenuContent, MenuTrigger } from "@optiaxiom/react/unstable";
 import {
   IconArrowRight,
   IconDownload,

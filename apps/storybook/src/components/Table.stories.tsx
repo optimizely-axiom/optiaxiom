@@ -2,6 +2,9 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import {
   EllipsisMenuButton,
+  Menu,
+  MenuContent,
+  MenuTrigger,
   Table,
   TableAction,
   TableBody,
@@ -10,7 +13,6 @@ import {
   TableHeaderCell,
   TableRow,
 } from "@optiaxiom/react";
-import { Menu, MenuContent, MenuTrigger } from "@optiaxiom/react/unstable";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { expect, screen, userEvent } from "storybook/test";
 

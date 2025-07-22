@@ -1,8 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Field } from "@optiaxiom/react";
+import { Field, type MenuOption } from "@optiaxiom/react";
 import {
-  type MenuOption,
   PillMenu,
   PillMenuContent,
   PillMenuTrigger,

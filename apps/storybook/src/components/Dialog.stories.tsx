@@ -10,17 +10,15 @@ import {
   DialogHeader,
   DialogTrigger,
   Input,
+  Menu,
+  MenuContent,
+  type MenuOption,
+  MenuTrigger,
   Select,
   SelectContent,
   SelectTrigger,
   Textarea,
 } from "@optiaxiom/react";
-import {
-  Menu,
-  MenuContent,
-  type MenuOption,
-  MenuTrigger,
-} from "@optiaxiom/react/unstable";
 import { IconArrowsDiagonal } from "@tabler/icons-react";
 import {
   type ComponentPropsWithoutRef,

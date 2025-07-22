@@ -2,6 +2,9 @@ import * as RadixMenu from "@radix-ui/react-dropdown-menu";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import { useState } from "react";
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import type { Menu } from "../menu/";
+
 import { DropdownMenuProvider } from "./DropdownMenuContext";
 import { DropdownMenuNestedProvider } from "./DropdownMenuNestedContext";
 
@@ -25,6 +28,9 @@ export type DropdownMenuProps = {
   open?: boolean;
 };
 
+/**
+ * @deprecated use {@link Menu} instead
+ */
 export function DropdownMenu({
   children,
   defaultOpen = false,

@@ -13,13 +13,11 @@ import {
   Field,
   Flex,
   Input,
-} from "@optiaxiom/react";
-import {
   Menu,
   MenuContent,
   type MenuOption,
   MenuTrigger,
-} from "@optiaxiom/react/unstable";
+} from "@optiaxiom/react";
 import {
   IconPencil,
   IconSend,

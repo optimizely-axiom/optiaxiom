@@ -1,4 +1,4 @@
-import { Menu, MenuContent, MenuTrigger } from "@optiaxiom/react/unstable";
+import { Menu, MenuContent, MenuTrigger } from "@optiaxiom/react";
 import { IconFilter, IconLogout, IconUser } from "@tabler/icons-react";
 
 export function App() {
