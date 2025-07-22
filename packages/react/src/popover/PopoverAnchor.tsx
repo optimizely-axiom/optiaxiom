@@ -40,13 +40,14 @@ export const PopoverAnchor = forwardRef<HTMLDivElement, PopoverAnchorProps>(
     }, [open, presence, staticRef]);
 
     return (
-      <Box asChild ref={ref} {...props} {...{ __scopePopper: __scopePopover }}>
-        <RadixPopper.Anchor
-          asChild={asChild}
-          virtualRef={virtualRef.current ? virtualRef : undefined}
-        >
-          {children}
-        </RadixPopper.Anchor>
+      <Box
+        asChild
+        ref={ref}
+        virtualRef={virtualRef.current ? virtualRef : undefined}
+        {...props}
+        {...{ __scopePopper: __scopePopover }}
+      >
+        <RadixPopper.Anchor asChild={asChild}>{children}</RadixPopper.Anchor>
       </Box>
     );
   },
