@@ -7,6 +7,7 @@ import { IconFileImportSolid } from "../icons/IconFileImportSolid";
 import { Text } from "../text";
 import { useFileUploadContext } from "./FileUploadContext";
 import * as styles from "./FileUploadDropzone.css";
+import { FileUploadTrigger } from "./FileUploadTrigger";
 import { useDraggingOverBody } from "./useDraggingOverBody";
 
 export type FileUploadDropzoneProps = BoxProps<
@@ -81,7 +82,7 @@ export const FileUploadDropzone = forwardRef<
             </Text>
           )}
         </Flex>
-        {!overlay && children}
+        {!overlay && (children ?? <FileUploadTrigger />)}
       </Flex>
     );
   },
