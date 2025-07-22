@@ -25,9 +25,9 @@ export type CommandProps = {
    */
   inputValue?: string;
   /**
-   * Whether to show loading spinner or placeholder items inside the menu.
+   * Whether to show loading spinner or skeleton items inside the menu.
    */
-  loading?: "both" | "placeholder" | "spinner" | boolean;
+  loading?: "both" | "skeleton" | "spinner" | boolean;
   /**
    * Handler that is called when an item is hovered via mouse.
    */

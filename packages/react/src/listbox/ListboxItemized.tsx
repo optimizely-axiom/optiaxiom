@@ -37,7 +37,7 @@ export type ListboxItemizedProps = BoxProps<
     /**
      * Whether to show loading spinner inside the menu.
      */
-    loading?: "both" | "placeholder" | "spinner";
+    loading?: "both" | "skeleton" | "spinner";
     /**
      * Handler that is called when the element mounts or unmounts from the DOM.
      */
@@ -81,7 +81,7 @@ export const ListboxItemized = forwardRef<HTMLDivElement, ListboxItemizedProps>(
         tabIndex={-1}
         {...props}
       >
-        {loading === "both" || loading === "placeholder" ? (
+        {loading === "both" || loading === "skeleton" ? (
           <>
             {[1, 2, 3].map((item) => (
               <ListboxItem
