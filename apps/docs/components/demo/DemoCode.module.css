@@ -45,6 +45,10 @@
   & > div {
     margin-top: 0;
   }
+
+  & > h3[id] {
+    margin: 0;
+  }
 }
 
 .expandable {
