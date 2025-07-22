@@ -20,11 +20,7 @@ import {
 
 export default {
   args: {
-    children: (
-      <FileUploadDropzone>
-        <FileUploadTrigger />
-      </FileUploadDropzone>
-    ),
+    children: <FileUploadDropzone />,
   },
   argTypes: {
     onFilesDrop: { action: "onFilesDrop" },
