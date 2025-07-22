@@ -1,5 +1,9 @@
-import { EllipsisMenuButton } from "@optiaxiom/react";
-import { Menu, MenuContent, MenuTrigger } from "@optiaxiom/react/unstable";
+import {
+  EllipsisMenuButton,
+  Menu,
+  MenuContent,
+  MenuTrigger,
+} from "@optiaxiom/react";
 import { IconLogout, IconUser } from "@tabler/icons-react";
 
 export function App() {

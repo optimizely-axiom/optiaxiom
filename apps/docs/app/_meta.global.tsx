@@ -8,6 +8,12 @@ const AlphaItem = ({ children }: { children?: ReactNode }) => (
   </Flex>
 );
 
+const LegacyItem = ({ children }: { children?: ReactNode }) => (
+  <Flex flex="1" flexDirection="row" justifyContent="space-between">
+    {children} <Badge intent="danger">LEGACY</Badge>
+  </Flex>
+);
+
 export default {
   index: {
     display: "hidden",
@@ -88,7 +94,9 @@ export default {
       "date-range-picker": "DateRangePicker",
       dialog: "Dialog",
       disclosure: "Disclosure",
-      "dropdown-menu": "DropdownMenu",
+      "dropdown-menu": {
+        title: <LegacyItem>DropdownMenu</LegacyItem>,
+      },
       field: "Field",
       "file-upload": {
         title: <AlphaItem>FileUpload</AlphaItem>,
@@ -103,9 +111,7 @@ export default {
         display: "hidden",
       },
       link: "Link",
-      menu: {
-        title: <AlphaItem>Menu</AlphaItem>,
-      },
+      menu: "Menu",
       pagination: "Pagination",
       pill: {
         title: <AlphaItem>Pill</AlphaItem>,

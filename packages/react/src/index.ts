@@ -28,6 +28,7 @@ export * from "./label-menu-button";
 export * from "./layers";
 export * from "./link";
 export * from "./listbox";
+export * from "./menu";
 export * from "./modal";
 export * from "./nav";
 export * from "./pagination";

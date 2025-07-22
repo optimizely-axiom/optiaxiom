@@ -4,6 +4,9 @@ import {
   Box,
   Button,
   Heading,
+  Menu,
+  MenuContent,
+  MenuTrigger,
   Nav,
   NavAccountItem,
   NavBody,
@@ -20,9 +23,6 @@ import {
   AsideFooter,
   AsideHeader,
   Layout,
-  Menu,
-  MenuContent,
-  MenuTrigger,
 } from "@optiaxiom/react/unstable";
 import {
   IconBinaryTree,

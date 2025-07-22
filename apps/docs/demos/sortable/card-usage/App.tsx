@@ -1,13 +1,18 @@
 "use client";
 
-import { Button, EllipsisMenuButton, Flex, Text } from "@optiaxiom/react";
+import {
+  Button,
+  EllipsisMenuButton,
+  Flex,
+  Menu,
+  MenuContent,
+  MenuTrigger,
+  Text,
+} from "@optiaxiom/react";
 import {
   Card,
   CardHeader,
   CardLink,
-  Menu,
-  MenuContent,
-  MenuTrigger,
   Sortable,
   SortableHandle,
   SortableItem,

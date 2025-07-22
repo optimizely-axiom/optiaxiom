@@ -8,8 +8,10 @@ import {
   AlertDialogContent,
   AlertDialogFooter,
   AlertDialogHeader,
+  Menu,
+  MenuContent,
+  MenuTrigger,
 } from "@optiaxiom/react";
-import { Menu, MenuContent, MenuTrigger } from "@optiaxiom/react/unstable";
 import { IconPencil, IconTrash } from "@tabler/icons-react";
 import { useState } from "react";
 

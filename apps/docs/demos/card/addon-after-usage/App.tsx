@@ -1,11 +1,10 @@
 import {
   Badge,
   Box,
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
   EllipsisMenuButton,
+  Menu,
+  MenuContent,
+  MenuTrigger,
 } from "@optiaxiom/react";
 import { Card, CardHeader } from "@optiaxiom/react/unstable";
 import { IconLogout, IconPencil } from "@tabler/icons-react";
@@ -18,23 +17,21 @@ export function App() {
           addonAfter={
             <>
               <Badge>On</Badge>
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
+              <Menu
+                options={[
+                  { addon: <IconPencil />, label: "Edit" },
+                  { addon: <IconLogout />, intent: "danger", label: "Delete" },
+                ]}
+              >
+                <MenuTrigger asChild>
                   <EllipsisMenuButton
                     appearance="subtle"
                     aria-label="actions"
                     size="sm"
                   />
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end">
-                  <DropdownMenuItem icon={<IconPencil />}>
-                    Edit
-                  </DropdownMenuItem>
-                  <DropdownMenuItem icon={<IconLogout />} intent="danger">
-                    Delete
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
+                </MenuTrigger>
+                <MenuContent align="end" />
+              </Menu>
             </>
           }
         >

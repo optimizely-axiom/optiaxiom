@@ -1,9 +1,8 @@
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
   EllipsisMenuButton,
+  Menu,
+  MenuContent,
+  MenuTrigger,
 } from "@optiaxiom/react";
 import {
   Card,
@@ -31,21 +30,21 @@ export function App() {
       </CardPreview>
       <CardHeader
         addonAfter={
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
+          <Menu
+            options={[
+              { addon: <IconPencil />, label: "Edit" },
+              { addon: <IconLogout />, intent: "danger", label: "Delete" },
+            ]}
+          >
+            <MenuTrigger asChild>
               <EllipsisMenuButton
                 appearance="subtle"
                 aria-label="actions"
                 size="sm"
               />
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuItem icon={<IconPencil />}>Edit</DropdownMenuItem>
-              <DropdownMenuItem icon={<IconLogout />} intent="danger">
-                Delete
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+            </MenuTrigger>
+            <MenuContent align="end" />
+          </Menu>
         }
         description="Unveiling the secrets."
       >

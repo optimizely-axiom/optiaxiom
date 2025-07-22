@@ -1,6 +1,6 @@
 "use client";
 
-import { Menu, MenuContent, MenuTrigger } from "@optiaxiom/react/unstable";
+import { Menu, MenuContent, MenuTrigger } from "@optiaxiom/react";
 
 export function App() {
   return (

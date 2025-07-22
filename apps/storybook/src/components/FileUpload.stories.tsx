@@ -1,13 +1,19 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Button, Flex, Textarea, toaster, Tooltip } from "@optiaxiom/react";
+import {
+  Button,
+  Flex,
+  Menu,
+  MenuContent,
+  MenuTrigger,
+  Textarea,
+  toaster,
+  Tooltip,
+} from "@optiaxiom/react";
 import {
   FileUpload,
   FileUploadDropzone,
   FileUploadTrigger,
-  Menu,
-  MenuContent,
-  MenuTrigger,
   useFileUploadTrigger,
 } from "@optiaxiom/react/unstable";
 import {

@@ -1,7 +1,6 @@
 "use client";
 
-import { Box } from "@optiaxiom/react";
-import { Menu, MenuContent, MenuTrigger } from "@optiaxiom/react/unstable";
+import { Box, Menu, MenuContent, MenuTrigger } from "@optiaxiom/react";
 
 export function App({
   skipFilterScoring = true,

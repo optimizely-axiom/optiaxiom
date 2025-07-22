@@ -1,8 +1,7 @@
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
+  Menu,
+  MenuContent,
+  MenuTrigger,
   Nav,
   NavAccountItem,
   NavFooter,
@@ -19,21 +18,23 @@ export function App() {
         <Nav>
           <NavFooter>
             <NavList>
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
+              <Menu
+                options={[
+                  { label: "View Profile" },
+                  { label: "Settings" },
+                  { label: "Logout" },
+                ]}
+              >
+                <MenuTrigger asChild>
                   <NavAccountItem
                     name="Rhaenyra Targaryen"
                     organization="Optimizely"
                     src="https://i.pravatar.cc/150?img=10"
                   />
-                </DropdownMenuTrigger>
+                </MenuTrigger>
 
-                <DropdownMenuContent align="end" side="right">
-                  <DropdownMenuItem>View Profile</DropdownMenuItem>
-                  <DropdownMenuItem>Settings</DropdownMenuItem>
-                  <DropdownMenuItem>Logout</DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
+                <MenuContent align="end" side="right" />
+              </Menu>
             </NavList>
           </NavFooter>
         </Nav>

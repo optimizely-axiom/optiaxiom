@@ -3,13 +3,12 @@ import {
   Button,
   DataTableAction,
   DataTableLabel,
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
   EllipsisMenuButton,
   Flex,
   Link,
+  Menu,
+  MenuContent,
+  MenuTrigger,
   Text,
   toaster,
 } from "@optiaxiom/react";
@@ -43,28 +42,28 @@ export const columns = [
         </DataTableLabel>
 
         <Flex flex="none" flexDirection="row" gap="8">
-          <DropdownMenu>
+          <Menu
+            options={[
+              {
+                execute: () =>
+                  navigator.clipboard.writeText(row.original.id.toString()),
+                label: "Copy ID",
+              },
+              { label: "Edit" },
+              { intent: "danger", label: "Delete" },
+            ]}
+          >
             <DataTableAction asChild>
-              <DropdownMenuTrigger asChild>
+              <MenuTrigger asChild>
                 <EllipsisMenuButton
                   appearance="subtle"
                   aria-label="More options"
                   size="sm"
                 />
-              </DropdownMenuTrigger>
+              </MenuTrigger>
             </DataTableAction>
-            <DropdownMenuContent>
-              <DropdownMenuItem
-                onSelect={() =>
-                  navigator.clipboard.writeText(row.original.id.toString())
-                }
-              >
-                Copy ID
-              </DropdownMenuItem>
-              <DropdownMenuItem>Edit</DropdownMenuItem>
-              <DropdownMenuItem intent="danger">Delete</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+            <MenuContent />
+          </Menu>
 
           <DataTableAction asChild>
             <Button
