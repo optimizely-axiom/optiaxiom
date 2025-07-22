@@ -623,11 +623,11 @@ export const Addons: Story = {
         {...args}
         options={[
           {
-            addon: <IconPencil size={16} />,
+            addon: <IconPencil />,
             label: "Edit",
           },
           {
-            addon: <IconTrash size={16} />,
+            addon: <IconTrash />,
             intent: "danger",
             label: "Delete",
           },
@@ -665,11 +665,11 @@ export const WithDialog: Story = {
           {...args}
           options={[
             {
-              addon: <IconPencil size={16} />,
+              addon: <IconPencil />,
               label: "Edit",
             },
             {
-              addon: <IconTrash size={16} />,
+              addon: <IconTrash />,
               execute: () => setOpen(true),
               intent: "danger",
               label: "Delete",
@@ -707,11 +707,11 @@ export const SwitchItem: Story = {
         {...args}
         options={[
           {
-            addon: <IconUser size={16} />,
+            addon: <IconUser />,
             label: "My Profile",
           },
           {
-            addon: <IconSparkles size={16} />,
+            addon: <IconSparkles />,
             execute: () => setEnabled(!enabled),
             label: "New UI (Beta)",
             selected: enabled,
