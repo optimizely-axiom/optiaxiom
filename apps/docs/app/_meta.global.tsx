@@ -90,6 +90,9 @@ export default {
       disclosure: "Disclosure",
       "dropdown-menu": "DropdownMenu",
       field: "Field",
+      "file-upload": {
+        title: <AlphaItem>FileUpload</AlphaItem>,
+      },
       heading: "Heading",
       indicator: "Indicator",
       "inline-input": {
