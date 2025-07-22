@@ -136,7 +136,7 @@ export const [CommandProvider, useCommandContext] = createContext<{
   highlightedItemRef: RefObject<HTMLElement>;
   inputValue: string | undefined;
   items: CommandOption[] | readonly CommandOption[];
-  loading: "both" | "placeholder" | "spinner" | boolean | undefined;
+  loading: "both" | "skeleton" | "spinner" | boolean | undefined;
   pauseInteractionRef: MutableRefObject<{
     isInsideTriangle: ((target: { x: number; y: number }) => boolean) | null;
     timer: number | undefined;

@@ -109,7 +109,7 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
                   highlightedItem={highlightedItem}
                   items={items}
                   itemToKey={(item: SelectOption) => item.value}
-                  loading={loading ? "placeholder" : undefined}
+                  loading={loading ? "skeleton" : undefined}
                   onPlacedChange={(placed) => {
                     setPlaced(placed);
                     if (placed && highlightedItemRef.current) {
