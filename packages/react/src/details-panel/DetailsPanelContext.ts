@@ -2,7 +2,7 @@
 
 import { createContext } from "@radix-ui/react-context";
 
-export const [AsideProvider, useAsideContext] = createContext<{
+export const [DetailsPanelProvider, useDetailsPanelContext] = createContext<{
   descriptionId: string;
   labelId: string;
-}>("@optiaxiom/react/Aside");
+}>("@optiaxiom/react/DetailsPanel");

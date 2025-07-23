@@ -8,15 +8,15 @@ export type LayoutProps = BoxProps<
   "div",
   {
     /**
-     * Content for the aside area of the layout.
+     * Content for the details panel area of the layout.
      */
-    aside?: ReactNode;
+    detailsPanel?: ReactNode;
     /**
      * Content for the header area of the layout.
      */
     header?: ReactNode;
     /**
-     * Whether to enable resizable panels for the aside area.
+     * Whether to enable resizable panels for the details panel area.
      */
     resizable?: boolean;
     /**
@@ -28,7 +28,7 @@ export type LayoutProps = BoxProps<
 
 export const Layout = forwardRef<HTMLDivElement, LayoutProps>(
   (
-    { aside, children, className, header, resizable, sidebar, ...props },
+    { children, className, detailsPanel, header, resizable, sidebar, ...props },
     ref,
   ) => {
     return (
@@ -44,10 +44,12 @@ export const Layout = forwardRef<HTMLDivElement, LayoutProps>(
                   {children}
                 </Box>
               </ResizablePanel>
-              {aside && (
+              {detailsPanel && (
                 <>
                   <ResizableHandle />
-                  <ResizablePanel defaultSize={33}>{aside}</ResizablePanel>
+                  <ResizablePanel defaultSize={33}>
+                    {detailsPanel}
+                  </ResizablePanel>
                 </>
               )}
             </Resizable>
@@ -57,11 +59,11 @@ export const Layout = forwardRef<HTMLDivElement, LayoutProps>(
                 overflow="auto"
                 px="32"
                 py="24"
-                w={aside ? "2/3" : undefined}
+                w={detailsPanel ? "2/3" : undefined}
               >
                 {children}
               </Box>
-              {aside && <Box w="1/3">{aside}</Box>}
+              {detailsPanel && <Box w="1/3">{detailsPanel}</Box>}
             </Box>
           )}
         </Box>

@@ -2,10 +2,10 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Button, Flex } from "@optiaxiom/react";
 import {
-  Aside,
-  AsideBody,
-  AsideFooter,
-  AsideHeader,
+  DetailsPanel,
+  DetailsPanelBody,
+  DetailsPanelFooter,
+  DetailsPanelHeader,
 } from "@optiaxiom/react/unstable";
 import { IconX } from "@tabler/icons-react";
 
@@ -13,7 +13,7 @@ export default {
   args: {
     w: "384",
   },
-  component: Aside,
+  component: DetailsPanel,
   decorators: (Story) => (
     <Flex
       alignItems="end"
@@ -27,26 +27,26 @@ export default {
       <Story />
     </Flex>
   ),
-} as Meta<typeof Aside>;
+} as Meta<typeof DetailsPanel>;
 
-type Story = StoryObj<typeof Aside>;
+type Story = StoryObj<typeof DetailsPanel>;
 
 export const Basic: Story = {
   args: {
     children: (
       <>
-        <AsideHeader
+        <DetailsPanelHeader
           addonAfter={
             <Button appearance="subtle" aria-label="Close" icon={<IconX />} />
           }
           description="Original Image (Oct 23, 2024)"
         >
           Header Contents
-        </AsideHeader>
-        <AsideBody>Body Contents</AsideBody>
-        <AsideFooter>
+        </DetailsPanelHeader>
+        <DetailsPanelBody>Body Contents</DetailsPanelBody>
+        <DetailsPanelFooter>
           <Button appearance="primary">Create Task</Button>
-        </AsideFooter>
+        </DetailsPanelFooter>
       </>
     ),
   },

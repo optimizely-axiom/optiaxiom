@@ -3,14 +3,14 @@ import { createSlot } from "@radix-ui/react-slot";
 import { forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
-import * as styles from "./Aside.css";
-import { AsideProvider } from "./AsideContext";
+import * as styles from "./DetailsPanel.css";
+import { DetailsPanelProvider } from "./DetailsPanelContext";
 
-const Slot = createSlot("@optiaxiom/react/Aside");
+const Slot = createSlot("@optiaxiom/react/DetailsPanel");
 
-export type AsideProps = BoxProps<"aside">;
+export type DetailsPanelProps = BoxProps<"aside">;
 
-export const Aside = forwardRef<HTMLElement, AsideProps>(
+export const DetailsPanel = forwardRef<HTMLElement, DetailsPanelProps>(
   ({ asChild, children, className, ...props }, ref) => {
     const Comp = asChild ? Slot : "aside";
 
@@ -18,7 +18,7 @@ export const Aside = forwardRef<HTMLElement, AsideProps>(
     const descriptionId = useId();
 
     return (
-      <AsideProvider descriptionId={descriptionId} labelId={labelId}>
+      <DetailsPanelProvider descriptionId={descriptionId} labelId={labelId}>
         <Box
           aria-describedby={descriptionId}
           aria-labelledby={labelId}
@@ -29,9 +29,9 @@ export const Aside = forwardRef<HTMLElement, AsideProps>(
         >
           <Comp ref={ref}>{children}</Comp>
         </Box>
-      </AsideProvider>
+      </DetailsPanelProvider>
     );
   },
 );
 
-Aside.displayName = "@optiaxiom/react/Aside";
+DetailsPanel.displayName = "@optiaxiom/react/DetailsPanel";
