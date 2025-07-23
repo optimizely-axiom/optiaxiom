@@ -43,7 +43,7 @@ export const PopoverAnchor = forwardRef<HTMLDivElement, PopoverAnchorProps>(
       <Box
         asChild
         ref={ref}
-        virtualRef={virtualRef.current ? virtualRef : undefined}
+        virtualRef={staticRef ? virtualRef : undefined}
         {...props}
         {...{ __scopePopper: __scopePopover }}
       >
