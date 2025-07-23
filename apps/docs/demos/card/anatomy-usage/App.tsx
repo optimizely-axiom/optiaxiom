@@ -1,10 +1,10 @@
-import { Box } from "@optiaxiom/react";
 import {
+  Box,
   Card,
   CardFooter,
   CardHeader,
   CardPreview,
-} from "@optiaxiom/react/unstable";
+} from "@optiaxiom/react";
 
 import { Section } from "../Section";
 

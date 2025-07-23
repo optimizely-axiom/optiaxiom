@@ -80,9 +80,7 @@ export default {
       calendar: {
         display: "hidden",
       },
-      card: {
-        title: <AlphaItem>Card</AlphaItem>,
-      },
+      card: "Card",
       checkbox: "Checkbox",
       code: {
         display: "hidden",

@@ -26,7 +26,7 @@ import {
   CardImage,
   CardLink,
   CardPreview,
-} from "@optiaxiom/react/unstable";
+} from "@optiaxiom/react";
 
 export default () => (
   <Card>
@@ -167,6 +167,18 @@ We can combine cards with the [Sortable](../sortable/) component to build a sort
 <PropsTable component="CardPreview" />
 
 ## Changelog
+
+### 1.6.0
+
+- Moved component out of **Alpha**.
+
+  ```jsx
+  // Before
+  import { Card } from "@optiaxiom/react/unstable";
+
+  // After
+  import { Card } from "@optiaxiom/react";
+  ```
 
 ### 1.5.0
 

@@ -1,16 +1,14 @@
 import {
-  EllipsisMenuButton,
-  Menu,
-  MenuContent,
-  MenuTrigger,
-} from "@optiaxiom/react";
-import {
   Card,
   CardHeader,
   CardImage,
   CardLink,
   CardPreview,
-} from "@optiaxiom/react/unstable";
+  EllipsisMenuButton,
+  Menu,
+  MenuContent,
+  MenuTrigger,
+} from "@optiaxiom/react";
 import { IconLogout, IconPencil } from "@tabler/icons-react";
 import Image from "next/image";
 

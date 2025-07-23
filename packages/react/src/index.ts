@@ -8,6 +8,7 @@ export * from "./banner";
 export * from "./box";
 export * from "./breadcrumb";
 export * from "./button";
+export * from "./card";
 export * from "./checkbox";
 export * from "./code";
 export * from "./cover";

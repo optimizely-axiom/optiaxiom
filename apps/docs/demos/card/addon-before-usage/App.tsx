@@ -1,5 +1,4 @@
-import { Box } from "@optiaxiom/react";
-import { Card, CardHeader } from "@optiaxiom/react/unstable";
+import { Box, Card, CardHeader } from "@optiaxiom/react";
 import { IconFolder } from "@tabler/icons-react";
 
 export function App() {
