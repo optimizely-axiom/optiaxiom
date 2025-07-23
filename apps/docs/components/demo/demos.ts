@@ -142,6 +142,7 @@ export const demos = {
     "@/demos/date-range-picker/controlled-usage/App"
   ),
   "date-range-picker/usage": import("@/demos/date-range-picker/usage/App"),
+  "details-panel/usage": import("@/demos/details-panel/usage/App"),
   "dialog/alert-dialog-usage": import("@/demos/dialog/alert-dialog-usage/App"),
   "dialog/controlled-usage": import("@/demos/dialog/controlled-usage/App"),
   "dialog/description-usage": import("@/demos/dialog/description-usage/App"),
