@@ -53,17 +53,17 @@ export const Count: Story = {
   render: () => (
     <>
       <Flex flexDirection="row">
-        <Button>
+        <Button
+          addonAfter={
+            <Badge intent="information" variant="subtle">
+              8
+            </Badge>
+          }
+        >
           Notifications
-          <Badge intent="information" variant="subtle">
-            8
-          </Badge>
         </Button>
 
-        <Button>
-          Errors
-          <Badge intent="danger">15</Badge>
-        </Button>
+        <Button addonAfter={<Badge intent="danger">15</Badge>}>Errors</Button>
       </Flex>
     </>
   ),

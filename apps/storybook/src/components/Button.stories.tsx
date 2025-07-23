@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Button, Flex } from "@optiaxiom/react";
+import { Button, Flex, Select, SelectTrigger } from "@optiaxiom/react";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { IconChevronDown, IconCloudUpload } from "@tabler/icons-react";
 
@@ -196,6 +196,22 @@ export const Upload: Story = {
           </VisuallyHidden>
         </label>
       </Button>
+    </Flex>
+  ),
+};
+
+export const Truncate: Story = {
+  args: {
+    children: "This is a really long button label",
+  },
+  render: (args) => (
+    <Flex w="224">
+      <Button>Short label</Button>
+      <Button {...args} />
+      <Select options={[]}>
+        <SelectTrigger {...args} />
+      </Select>
+      <Button justifyContent="center">Centered label</Button>
     </Flex>
   ),
 };
