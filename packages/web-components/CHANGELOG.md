@@ -1,5 +1,20 @@
 # @optiaxiom/web-components
 
+## 0.11.0
+
+### Minor Changes
+
+- c6885f2: release Card to stable
+- 29936a1: release Menu component
+- 0097e73: truncate button label
+- fa02fbf: release Breadcrumb to stable
+
+### Patch Changes
+
+- 5c62008: hard-code dark mode colors for opal gradient
+- c629797: always show tooltip trigger
+- 9ed0238: remove default alert icon from AlertDialog
+
 ## 0.10.14
 
 ### Patch Changes

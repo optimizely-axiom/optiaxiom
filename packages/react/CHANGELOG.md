@@ -1,5 +1,23 @@
 # @optiaxiom/react
 
+## 1.6.0
+
+### Minor Changes
+
+- c6885f2: release Card to stable
+- 29936a1: release Menu component
+- 0097e73: truncate button label
+- fa02fbf: release Breadcrumb to stable
+
+### Patch Changes
+
+- 5c62008: hard-code dark mode colors for opal gradient
+- 07ddded: rename Aside to DetailsPanel
+- c629797: always show tooltip trigger
+- 9ed0238: remove default alert icon from AlertDialog
+- 1071abf: allow dropzone overlay
+- 75189c3: add PillMenu component for showing selected items as pills
+
 ## 1.5.12
 
 ### Patch Changes
