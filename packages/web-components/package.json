@@ -27,6 +27,7 @@
     "./Badge": "./dist/components/Badge.js",
     "./Banner": "./dist/components/Banner.js",
     "./Box": "./dist/components/Box.js",
+    "./Breadcrumb": "./dist/components/Breadcrumb.js",
     "./Button": "./dist/components/Button.js",
     "./ButtonGroup": "./dist/components/ButtonGroup.js",
     "./Checkbox": "./dist/components/Checkbox.js",

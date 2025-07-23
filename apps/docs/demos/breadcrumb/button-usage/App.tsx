@@ -1,7 +1,6 @@
 "use client";
 
-import { toaster } from "@optiaxiom/react";
-import { Breadcrumb } from "@optiaxiom/react/unstable";
+import { Breadcrumb, toaster } from "@optiaxiom/react";
 
 export function App() {
   return (

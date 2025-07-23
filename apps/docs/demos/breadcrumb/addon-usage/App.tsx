@@ -1,5 +1,4 @@
-import { Button } from "@optiaxiom/react";
-import { Breadcrumb } from "@optiaxiom/react/unstable";
+import { Breadcrumb, Button } from "@optiaxiom/react";
 import { IconPencil } from "@tabler/icons-react";
 
 export function App() {

@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Button, Flex, Separator, toaster } from "@optiaxiom/react";
-import { Breadcrumb } from "@optiaxiom/react/unstable";
+import { Breadcrumb, Button, Flex, Separator, toaster } from "@optiaxiom/react";
 import { IconPencil } from "@tabler/icons-react";
 
 export default {

@@ -6,6 +6,7 @@ export * from "./axiom-provider";
 export * from "./badge";
 export * from "./banner";
 export * from "./box";
+export * from "./breadcrumb";
 export * from "./button";
 export * from "./checkbox";
 export * from "./code";
