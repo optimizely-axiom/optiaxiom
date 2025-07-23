@@ -5,6 +5,7 @@ import { forwardRef, useRef } from "react";
 import type { BoxProps } from "../box";
 
 import { resolveItemProperty, useCommandContext } from "../command/internals";
+import { useMenuContext } from "../menu/internals";
 import { PillGroup } from "../pill";
 import { PopoverAnchor } from "../popover";
 import { usePillMenuContext } from "./PillMenuContext";
@@ -15,6 +16,7 @@ export type PillMenuImplProps = BoxProps<"div">;
 export const PillMenuImpl = forwardRef<HTMLDivElement, PillMenuImplProps>(
   ({ children, ...props }, outerRef) => {
     const { options } = usePillMenuContext("@optiaxiom/react/PillMenuImpl");
+    const { size } = useMenuContext("@optiaxiom/react/PillMenuImpl");
     const { inputValue } = useCommandContext("@optiaxiom/react/PillMenuImpl");
 
     const innerRef = useRef<HTMLDivElement>(null);
@@ -44,7 +46,7 @@ export const PillMenuImpl = forwardRef<HTMLDivElement, PillMenuImplProps>(
             </PillGroup>
           </RadixRovingFocus.Root>
         </PillGroup>
-        <PopoverAnchor staticRef={innerRef} />
+        {size === "sm" && <PopoverAnchor staticRef={innerRef} />}
       </>
     );
   },
