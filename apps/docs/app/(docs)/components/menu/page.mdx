@@ -16,7 +16,7 @@ Dropdown menu for displaying actions.
 ### Anatomy
 
 ```tsx
-import { Menu, MenuContent, MenuTrigger } from "@optiaxiom/react/unstable";
+import { Menu, MenuContent, MenuTrigger } from "@optiaxiom/react";
 
 export default () => (
   <Menu>
@@ -210,6 +210,18 @@ Menu automatically uses virtualization to improve performance when rendering a l
 | <Kbd>Esc</Kbd>                                                                      | Closes the menu and moves focus back to `MenuTrigger`.                                                                                                                  |
 
 ## Changelog
+
+### 1.6.0
+
+- Moved component out of **Alpha**.
+
+  ```jsx
+  // Before
+  import { Menu, MenuContent, MenuTrigger } from "@optiaxiom/react/unstable";
+
+  // After
+  import { Menu, MenuContent, MenuTrigger } from "@optiaxiom/react";
+  ```
 
 ### 1.3.0
 
