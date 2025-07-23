@@ -92,6 +92,9 @@ export default {
       "data-table": "DataTable",
       "date-input": "DateInput",
       "date-range-picker": "DateRangePicker",
+      "details-panel": {
+        title: <AlphaItem>DetailsPanel</AlphaItem>,
+      },
       dialog: "Dialog",
       disclosure: "Disclosure",
       "dropdown-menu": {
