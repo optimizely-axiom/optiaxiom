@@ -42,6 +42,10 @@ async function compare({ file }) {
       ...value,
       path: value.name,
     })),
+    {
+      size: 10,
+      type: "percent",
+    },
   );
 }
 
