@@ -2,11 +2,11 @@ import { forwardRef, type ReactNode } from "react";
 
 import { Box, type BoxProps } from "../box";
 import { Resizable, ResizableHandle, ResizablePanel } from "../resizable";
-import * as styles from "./Layouts.css";
+import * as styles from "./Layout.css";
 
 export type LayoutProps = BoxProps<
   "div",
-  {
+  styles.LayoutVariants & {
     /**
      * Content for the details panel area of the layout.
      */
@@ -28,39 +28,43 @@ export type LayoutProps = BoxProps<
 
 export const Layout = forwardRef<HTMLDivElement, LayoutProps>(
   (
-    { children, className, detailsPanel, header, resizable, sidebar, ...props },
+    {
+      children,
+      className,
+      detailsPanel,
+      header,
+      resizable,
+      sidebar,
+      size = "screen",
+      ...props
+    },
     ref,
   ) => {
     return (
-      <Box ref={ref} {...styles.layout({}, className)} {...props}>
+      <Box ref={ref} {...styles.layout({ size }, className)} {...props}>
         {header}
-        <Box alignItems="stretch" display="flex" flex="1" overflow="auto">
+        <Box display="flex" flex="1" overflow="auto">
           {sidebar}
 
           {resizable ? (
             <Resizable direction="horizontal">
-              <ResizablePanel>
-                <Box h="full" overflow="auto" px="32" py="24">
+              <ResizablePanel minSize={33}>
+                <Box asChild h="full">
                   {children}
                 </Box>
               </ResizablePanel>
               {detailsPanel && (
                 <>
                   <ResizableHandle />
-                  <ResizablePanel defaultSize={33}>
+                  <ResizablePanel defaultSize={33} minSize={33}>
                     {detailsPanel}
                   </ResizablePanel>
                 </>
               )}
             </Resizable>
           ) : (
-            <Box alignItems="stretch" display="flex" flex="1">
-              <Box
-                overflow="auto"
-                px="32"
-                py="24"
-                w={detailsPanel ? "2/3" : undefined}
-              >
+            <Box display="flex" flex="1">
+              <Box asChild w={detailsPanel ? "2/3" : "full"}>
                 {children}
               </Box>
               {detailsPanel && <Box w="1/3">{detailsPanel}</Box>}

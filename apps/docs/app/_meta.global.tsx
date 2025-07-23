@@ -113,6 +113,9 @@ export default {
       kbd: {
         display: "hidden",
       },
+      layout: {
+        title: <AlphaItem>Layout</AlphaItem>,
+      },
       link: "Link",
       menu: "Menu",
       pagination: "Pagination",

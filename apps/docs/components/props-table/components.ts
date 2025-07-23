@@ -101,6 +101,8 @@ export const components = {
   InlineInput: getProps("InlineInput"),
   Input: getProps("Input"),
   Kbd: getProps("Kbd"),
+  Layout: getProps("Layout"),
+  LayoutContent: getProps("LayoutContent"),
   Link: getProps("Link"),
   Menu: getProps("Menu"),
   MenuContent: getProps("MenuContent"),
