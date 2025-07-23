@@ -1,5 +1,5 @@
 import * as RadixPopper from "@radix-ui/react-popper";
-import { forwardRef, type RefObject, useEffect, useRef } from "react";
+import { forwardRef, type RefObject, useEffect, useState } from "react";
 
 import { Box, type BoxProps } from "../box";
 import { usePopoverContext } from "./PopoverContext";
@@ -24,18 +24,18 @@ export const PopoverAnchor = forwardRef<HTMLDivElement, PopoverAnchorProps>(
       "@optiaxiom/react/PopoverAnchor",
     );
 
-    const virtualRef = useRef<null | { getBoundingClientRect(): DOMRect }>(
-      null,
-    );
+    const [virtualRef, setVirtualRef] = useState<{
+      current: null | { getBoundingClientRect(): DOMRect };
+    }>({ current: null });
     useEffect(() => {
       if (!staticRef?.current || !(open || presence)) {
         return;
       }
 
       const rect = staticRef.current.getBoundingClientRect();
-      virtualRef.current = { getBoundingClientRect: () => rect };
+      setVirtualRef({ current: { getBoundingClientRect: () => rect } });
       return () => {
-        virtualRef.current = null;
+        requestAnimationFrame(() => setVirtualRef({ current: null }));
       };
     }, [open, presence, staticRef]);
 
