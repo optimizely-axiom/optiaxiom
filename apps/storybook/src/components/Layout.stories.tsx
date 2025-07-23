@@ -18,10 +18,10 @@ import {
   Text,
 } from "@optiaxiom/react";
 import {
-  Aside,
-  AsideBody,
-  AsideFooter,
-  AsideHeader,
+  DetailsPanel,
+  DetailsPanelBody,
+  DetailsPanelFooter,
+  DetailsPanelHeader,
   Layout,
 } from "@optiaxiom/react/unstable";
 import {
@@ -158,11 +158,11 @@ const Content = () => (
   </Box>
 );
 
-const AsideContent = () => {
+const DetailsPanelContent = () => {
   return (
-    <Aside>
-      <AsideHeader>Header</AsideHeader>
-      <AsideBody>
+    <DetailsPanel>
+      <DetailsPanelHeader>Header</DetailsPanelHeader>
+      <DetailsPanelBody>
         <Text>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed rhoncus
           tincidunt massa, quis euismod diam fringilla eu. Mauris lobortis
@@ -217,11 +217,11 @@ const AsideContent = () => {
           sollicitudin, tempor tortor ac, tempor lorem. Integer gravida libero
           vel dictum consectetur.
         </Text>
-      </AsideBody>
-      <AsideFooter>
+      </DetailsPanelBody>
+      <DetailsPanelFooter>
         <Button appearance="primary">Create something</Button>
-      </AsideFooter>
-    </Aside>
+      </DetailsPanelFooter>
+    </DetailsPanel>
   );
 };
 
@@ -253,18 +253,18 @@ export const OnlyContent: Story = {
   },
 };
 
-export const WithAside: Story = {
+export const WithDetailsPanel: Story = {
   args: {
-    aside: <AsideContent />,
     children: <Content />,
+    detailsPanel: <DetailsPanelContent />,
     header: <Header />,
     sidebar: <SidebarExample />,
   },
 };
-export const WithResizableAside: Story = {
+export const WithResizableDetailsPanel: Story = {
   args: {
-    aside: <AsideContent />,
     children: <Content />,
+    detailsPanel: <DetailsPanelContent />,
     header: <Header />,
     resizable: true,
     sidebar: <SidebarExample />,

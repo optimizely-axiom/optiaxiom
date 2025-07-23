@@ -6,10 +6,10 @@ import { Flex } from "../flex";
 import { Heading } from "../heading";
 import { Text } from "../text";
 import { fallbackSpan } from "../utils";
-import { useAsideContext } from "./AsideContext";
-import * as styles from "./AsideHeader.css";
+import { useDetailsPanelContext } from "./DetailsPanelContext";
+import * as styles from "./DetailsPanelHeader.css";
 
-export type AsideHeaderProps = BoxProps<
+export type DetailsPanelHeaderProps = BoxProps<
   "div",
   {
     /**
@@ -27,13 +27,16 @@ export type AsideHeaderProps = BoxProps<
   }
 >;
 
-export const AsideHeader = forwardRef<HTMLHeadingElement, AsideHeaderProps>(
+export const DetailsPanelHeader = forwardRef<
+  HTMLHeadingElement,
+  DetailsPanelHeaderProps
+>(
   (
     { addonAfter, addonBefore, children, className, description, ...props },
     ref,
   ) => {
-    const { descriptionId, labelId } = useAsideContext(
-      "@optiaxiom/react/AsideHeader",
+    const { descriptionId, labelId } = useDetailsPanelContext(
+      "@optiaxiom/react/DetailsPanelHeader",
     );
 
     return (
@@ -78,4 +81,4 @@ export const AsideHeader = forwardRef<HTMLHeadingElement, AsideHeaderProps>(
   },
 );
 
-AsideHeader.displayName = "@optiaxiom/react/AsideHeader";
+DetailsPanelHeader.displayName = "@optiaxiom/react/DetailsPanelHeader";
