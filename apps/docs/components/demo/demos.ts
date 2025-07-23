@@ -282,6 +282,7 @@ export const demos = {
   "kbd/appearance-usage": import("@/demos/kbd/appearance-usage/App"),
   "kbd/keys-usage": import("@/demos/kbd/keys-usage/App"),
   "kbd/usage": import("@/demos/kbd/usage/App"),
+  "layout/usage": import("@/demos/layout/usage/App"),
   "link/appearance-usage": import("@/demos/link/appearance-usage/App"),
   "link/button-usage": import("@/demos/link/button-usage/App"),
   "link/disabled-usage": import("@/demos/link/disabled-usage/App"),
