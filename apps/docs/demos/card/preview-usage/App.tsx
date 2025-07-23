@@ -1,4 +1,4 @@
-import { Card, CardHeader, CardPreview } from "@optiaxiom/react/unstable";
+import { Card, CardHeader, CardPreview } from "@optiaxiom/react";
 import { IconMusic } from "@tabler/icons-react";
 
 export function App() {

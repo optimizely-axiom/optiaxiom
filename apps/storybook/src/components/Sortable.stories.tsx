@@ -4,6 +4,8 @@ import {
   Avatar,
   Badge,
   Box,
+  Card,
+  CardHeader,
   Disclosure,
   DisclosureContent,
   DisclosureTrigger,
@@ -11,8 +13,6 @@ import {
   Text,
 } from "@optiaxiom/react";
 import {
-  Card,
-  CardHeader,
   Sortable,
   SortableGroup,
   SortableItem,

@@ -1,5 +1,4 @@
 export * from "./calendar";
-export * from "./card";
 export * from "./command";
 export * from "./data-table/DataTableHeaderCell";
 export * from "./details-panel";

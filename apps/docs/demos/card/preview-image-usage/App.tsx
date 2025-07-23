@@ -1,10 +1,10 @@
-import { Box } from "@optiaxiom/react";
 import {
+  Box,
   Card,
   CardHeader,
   CardImage,
   CardPreview,
-} from "@optiaxiom/react/unstable";
+} from "@optiaxiom/react";
 import Image from "next/image";
 
 import beach from "@/demos/beach.jpg";

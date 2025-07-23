@@ -1,12 +1,13 @@
 import {
   Badge,
   Box,
+  Card,
+  CardHeader,
   EllipsisMenuButton,
   Menu,
   MenuContent,
   MenuTrigger,
 } from "@optiaxiom/react";
-import { Card, CardHeader } from "@optiaxiom/react/unstable";
 import { IconLogout, IconPencil } from "@tabler/icons-react";
 
 export function App() {

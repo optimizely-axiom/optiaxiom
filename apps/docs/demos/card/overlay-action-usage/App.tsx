@@ -1,11 +1,14 @@
-import { Badge, Box, Button, Flex } from "@optiaxiom/react";
 import {
+  Badge,
+  Box,
+  Button,
   Card,
   CardAction,
   CardCheckbox,
   CardHeader,
   CardPreview,
-} from "@optiaxiom/react/unstable";
+  Flex,
+} from "@optiaxiom/react";
 import { IconMusic, IconStar } from "@tabler/icons-react";
 
 export function App() {

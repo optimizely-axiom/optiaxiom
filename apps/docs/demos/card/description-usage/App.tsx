@@ -1,5 +1,4 @@
-import { Box } from "@optiaxiom/react";
-import { Card, CardHeader } from "@optiaxiom/react/unstable";
+import { Box, Card, CardHeader } from "@optiaxiom/react";
 
 export function App() {
   return (

@@ -1,5 +1,11 @@
-import { Box, Text, Tooltip } from "@optiaxiom/react";
-import { Card, CardHeader, CardLink } from "@optiaxiom/react/unstable";
+import {
+  Box,
+  Card,
+  CardHeader,
+  CardLink,
+  Text,
+  Tooltip,
+} from "@optiaxiom/react";
 
 export function App() {
   return (
