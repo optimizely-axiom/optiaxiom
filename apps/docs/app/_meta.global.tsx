@@ -75,9 +75,7 @@ export default {
       avatar: "Avatar",
       badge: "Badge",
       banner: "Banner",
-      breadcrumb: {
-        title: <AlphaItem>Breadcrumb</AlphaItem>,
-      },
+      breadcrumb: "Breadcrumb",
       button: "Button",
       calendar: {
         display: "hidden",

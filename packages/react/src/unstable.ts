@@ -1,4 +1,3 @@
-export * from "./breadcrumb";
 export * from "./calendar";
 export * from "./card";
 export * from "./command";

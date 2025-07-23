@@ -1,4 +1,4 @@
-import { Breadcrumb } from "@optiaxiom/react/unstable";
+import { Breadcrumb } from "@optiaxiom/react";
 
 export function App() {
   return (
