@@ -1,3 +1,4 @@
+import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import {
   type ComponentPropsWithoutRef,
   forwardRef,
@@ -33,20 +34,26 @@ export const PillMenu = forwardRef<HTMLDivElement, PillMenuProps>(
   (
     {
       children,
-      defaultOpen,
+      defaultOpen = false,
       empty,
       inputValue,
       inputVisible,
       loading,
       onInputValueChange,
       onOpenChange,
-      open,
+      open: openProp,
       options,
       placeholder,
       ...props
     },
     ref,
   ) => {
+    const [open, setOpen] = useControllableState({
+      caller: "@optiaxiom/react/PillMenu",
+      defaultProp: defaultOpen,
+      onChange: onOpenChange,
+      prop: openProp,
+    });
     const [optionIndexes, setOptionIndexes] = useState(() =>
       groupOptions(options),
     );
@@ -56,14 +63,13 @@ export const PillMenu = forwardRef<HTMLDivElement, PillMenuProps>(
         options={options.filter((item) => resolveItemProperty(item.selected))}
       >
         <Menu
-          defaultOpen={defaultOpen}
           empty={empty}
           inputValue={inputValue}
           inputVisible={inputVisible}
           loading={loading}
           onInputValueChange={onInputValueChange}
           onOpenChange={(open) => {
-            onOpenChange?.(open);
+            setOpen(open);
             if (open) {
               setOptionIndexes(groupOptions(options));
             }
