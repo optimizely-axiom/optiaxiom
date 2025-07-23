@@ -194,9 +194,12 @@
   }
 
   .tabler-icon {
-    height: 16px;
     stroke-width: 1.5;
-    width: auto;
+
+    &[height="24"] {
+      height: 16px;
+      width: auto;
+    }
   }
 
   .hover\:_underline:hover {

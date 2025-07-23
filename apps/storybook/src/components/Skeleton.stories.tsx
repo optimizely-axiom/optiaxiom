@@ -40,7 +40,7 @@ export const Card: Story = {
 
 export const Children: Story = {
   args: {
-    children: <IconUserFilled />,
+    children: <IconUserFilled size="20" />,
     color: "fg.default.inverse",
     p: "8",
     rounded: "full",
