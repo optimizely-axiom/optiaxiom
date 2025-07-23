@@ -23,7 +23,7 @@ const Slot = createSlot("@optiaxiom/react/SelectTrigger");
 
 export type SelectTriggerProps = ExcludeProps<
   ButtonProps<
-    typeof PopperAnchor,
+    "button",
     {
       /**
        * The placeholder when there is no value.
@@ -71,65 +71,65 @@ export const SelectTrigger = forwardRef<HTMLButtonElement, SelectTriggerProps>(
       : placeholder;
 
     return (
-      <PopperAnchor
-        asChild
-        {...boxProps}
-        {...downshift.getToggleButtonProps({
-          ...restProps,
-          "aria-labelledby": labelId ? clsx(labelId, valueId) : valueId,
-          disabled,
-          onBlur: (event) => {
-            onBlurProp?.(event as FocusEvent<HTMLDivElement>);
-            onBlur?.(event);
-          },
-          onKeyDown: (event) => {
-            onKeyDown?.(event as KeyboardEvent<HTMLDivElement>);
-            document.dispatchEvent(new Event("tooltip.open"));
+      <PopperAnchor asChild>
+        <Slot
+          ref={ref}
+          {...boxProps}
+          {...downshift.getToggleButtonProps({
+            ...restProps,
+            "aria-labelledby": labelId ? clsx(labelId, valueId) : valueId,
+            disabled,
+            onBlur: (event) => {
+              onBlurProp?.(event as FocusEvent<HTMLButtonElement>);
+              onBlur?.(event);
+            },
+            onKeyDown: (event) => {
+              onKeyDown?.(event as KeyboardEvent<HTMLButtonElement>);
+              document.dispatchEvent(new Event("tooltip.open"));
 
-            if (isOpen) {
-              return;
-            }
-
-            const selectedItemIndex = downshift.selectedItem
-              ? items.indexOf(downshift.selectedItem)
-              : -1;
-            switch (event.key) {
-              case "ArrowLeft": {
-                let prevItemIndex = selectedItemIndex;
-                for (prevItemIndex--; prevItemIndex >= 0; prevItemIndex--) {
-                  const item = items[prevItemIndex];
-                  if (!item.disabledReason) {
-                    break;
-                  }
-                }
-
-                downshift.selectItem(items[Math.max(0, prevItemIndex)]);
-                break;
+              if (isOpen) {
+                return;
               }
-              case "ArrowRight": {
-                let nextItemIndex = selectedItemIndex;
-                for (
-                  nextItemIndex++;
-                  nextItemIndex < items.length;
-                  nextItemIndex++
-                ) {
-                  const item = items[nextItemIndex];
-                  if (!item.disabledReason) {
-                    break;
-                  }
-                }
 
-                downshift.selectItem(
-                  items[Math.min(nextItemIndex, items.length - 1)],
-                );
-                break;
+              const selectedItemIndex = downshift.selectedItem
+                ? items.indexOf(downshift.selectedItem)
+                : -1;
+              switch (event.key) {
+                case "ArrowLeft": {
+                  let prevItemIndex = selectedItemIndex;
+                  for (prevItemIndex--; prevItemIndex >= 0; prevItemIndex--) {
+                    const item = items[prevItemIndex];
+                    if (!item.disabledReason) {
+                      break;
+                    }
+                  }
+
+                  downshift.selectItem(items[Math.max(0, prevItemIndex)]);
+                  break;
+                }
+                case "ArrowRight": {
+                  let nextItemIndex = selectedItemIndex;
+                  for (
+                    nextItemIndex++;
+                    nextItemIndex < items.length;
+                    nextItemIndex++
+                  ) {
+                    const item = items[nextItemIndex];
+                    if (!item.disabledReason) {
+                      break;
+                    }
+                  }
+
+                  downshift.selectItem(
+                    items[Math.min(nextItemIndex, items.length - 1)],
+                  );
+                  break;
+                }
               }
-            }
-          },
-          type: "button",
-        })}
-      >
-        <Slot ref={ref}>
+            },
+            type: "button",
+          })}
+        >
           {asChild ? (
             decorateChildren(
               { asChild, children },
