@@ -6,7 +6,6 @@ import type { BoxProps } from "../box";
 import { Flex } from "../flex";
 import { Heading } from "../heading";
 import { Icon } from "../icon";
-import { IconTriangleExclamationSolid } from "../icons/IconTriangleExclamationSolid";
 import { fallbackSpan } from "../utils";
 import * as styles from "./AlertDialogHeader.css";
 
@@ -27,11 +26,7 @@ export const AlertDialogHeader = forwardRef<
   return (
     <Flex ref={ref} {...styles.header({}, className)} {...props}>
       <Icon asChild color="fg.error">
-        {addonBefore ? (
-          fallbackSpan(addonBefore)
-        ) : (
-          <IconTriangleExclamationSolid />
-        )}
+        {addonBefore && fallbackSpan(addonBefore)}
       </Icon>
 
       <Heading asChild color="fg.default" fontWeight="500" level="3">
