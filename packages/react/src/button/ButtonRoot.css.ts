@@ -117,9 +117,7 @@ export const buttonBase = recipe({
      * Whether button should have square shape.
      */
     square: {
-      false: style({
-        minWidth: "fit-content",
-      }),
+      false: {},
       true: {},
     },
     variant: {

@@ -1,7 +1,7 @@
 import { forwardRef } from "react";
 
 import { type BoxProps } from "../box";
-import { Flex } from "../flex";
+import { Text } from "../text";
 import { ButtonLoadable } from "./ButtonLoadable";
 
 export type ButtonLabelProps = BoxProps<"div">;
@@ -10,9 +10,11 @@ export const ButtonLabel = forwardRef<HTMLDivElement, ButtonLabelProps>(
   ({ children, ...props }, ref) => {
     return (
       <ButtonLoadable asChild>
-        <Flex flexDirection="row" gap="4" mx="4" ref={ref} {...props}>
-          {children}
-        </Flex>
+        <Text asChild mx="4" truncate>
+          <div ref={ref} {...props}>
+            {children}
+          </div>
+        </Text>
       </ButtonLoadable>
     );
   },

@@ -15,6 +15,7 @@ import { AngleMenuButton } from "../angle-menu-button";
 import { extractBoxProps } from "../box";
 import { type ButtonProps } from "../button";
 import { useFieldLabelTrigger } from "../hooks";
+import { Text } from "../text";
 import { decorateChildren, type ExcludeProps } from "../utils";
 import { useSelectContext } from "./SelectContext";
 
@@ -134,12 +135,16 @@ export const SelectTrigger = forwardRef<HTMLButtonElement, SelectTriggerProps>(
               { asChild, children },
               (children) =>
                 (children ?? value) && (
-                  <span id={valueId}>{children ?? value}</span>
+                  <Text asChild truncate>
+                    <span id={valueId}>{children ?? value}</span>
+                  </Text>
                 ),
             )
           ) : (
             <AngleMenuButton ref={buttonRef}>
-              <span id={valueId}>{children ?? value}</span>
+              <Text asChild truncate>
+                <span id={valueId}>{children ?? value}</span>
+              </Text>
             </AngleMenuButton>
           )}
         </Slot>
