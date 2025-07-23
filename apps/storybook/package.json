@@ -15,7 +15,7 @@
     "@radix-ui/react-visually-hidden": "^1.2.3",
     "@storybook/addon-a11y": "^9.0.8",
     "@storybook/addon-designs": "^10.0.1",
-    "@storybook/addon-vitest": "9.0.4",
+    "@storybook/addon-vitest": "^9.0.8",
     "@storybook/react-vite": "^9.0.8",
     "@tabler/icons-react": "^3.34.0",
     "@tanstack/react-table": "^8.21.3",
