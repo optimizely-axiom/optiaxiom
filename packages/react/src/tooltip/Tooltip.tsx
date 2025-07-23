@@ -61,11 +61,7 @@ export function Tooltip({
       onOpenChange={onOpenChange}
       open={open}
     >
-      {disabled || empty ? (
-        children
-      ) : (
-        <TooltipTrigger asChild>{children}</TooltipTrigger>
-      )}
+      <TooltipTrigger asChild>{children}</TooltipTrigger>
 
       {!disabled && !empty && (
         <TooltipContent maxW="xs" {...props}>
