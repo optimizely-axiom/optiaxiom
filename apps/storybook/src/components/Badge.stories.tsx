@@ -56,7 +56,7 @@ export const Count: Story = {
         <Button
           addonAfter={
             <Badge intent="information" variant="subtle">
-              8
+              1
             </Badge>
           }
         >
@@ -64,6 +64,10 @@ export const Count: Story = {
         </Button>
 
         <Button addonAfter={<Badge intent="danger">15</Badge>}>Errors</Button>
+        <Button addonAfter={<Badge intent="warning">8</Badge>}>Warnings</Button>
+        <Button addonAfter={<Badge intent="success">123</Badge>}>
+          Success
+        </Button>
       </Flex>
     </>
   ),

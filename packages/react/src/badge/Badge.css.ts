@@ -29,6 +29,12 @@ export const badge = recipe({
       },
 
       userSelect: "none",
+
+      selectors: {
+        "&:not(:empty)": {
+          minWidth: theme.size["xs"],
+        },
+      },
     }),
   ],
   variants: {

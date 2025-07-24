@@ -6,7 +6,7 @@ import { IconBell, IconClockFilled } from "@tabler/icons-react";
 export default {
   args: {
     children: <Button aria-label="Notifications" icon={<IconBell />} />,
-    content: "4",
+    content: "1",
   },
   component: Indicator,
 } as Meta<typeof Indicator>;
@@ -88,7 +88,7 @@ export const Presence: Story = {
       <Avatar name="John Snow" src="https://i.pravatar.cc/150?img=10" />
     ),
     content: (
-      <Box asChild bg="bg.default" color="fg.warning.light">
+      <Box asChild bg="bg.default" color="fg.warning.light" rounded="full">
         <IconClockFilled size="14" />
       </Box>
     ),

@@ -1,9 +1,12 @@
+import { createSlot } from "@radix-ui/react-slot";
 import { forwardRef, type ReactNode } from "react";
 
 import { Badge } from "../badge";
 import { Box, type BoxProps } from "../box";
 import { Flex } from "../flex";
 import * as styles from "./Indicator.css";
+
+const Slot = createSlot("@optiaxiom/react/Indicator");
 
 export type IndicatorProps = BoxProps<
   typeof Badge,
@@ -55,25 +58,29 @@ export const Indicator = forwardRef<HTMLDivElement, IndicatorProps>(
         {!disabled && (
           <Box {...styles.floating({ offset, position })}>
             {ping && (
-              <Badge
+              <Slot
                 aria-hidden="true"
-                asChild={asChild}
-                intent={intent}
-                variant={variant}
                 {...styles.badge({ offset, ping: true })}
               >
-                {content}
-              </Badge>
+                {asChild ? (
+                  content
+                ) : (
+                  <Badge intent={intent} variant={variant}>
+                    {content}
+                  </Badge>
+                )}
+              </Slot>
             )}
 
-            <Badge
-              asChild={asChild}
-              intent={intent}
-              variant={variant}
-              {...styles.badge({ offset })}
-            >
-              {content}
-            </Badge>
+            <Slot {...styles.badge({ offset })}>
+              {asChild ? (
+                content
+              ) : (
+                <Badge intent={intent} variant={variant}>
+                  {content}
+                </Badge>
+              )}
+            </Slot>
           </Box>
         )}
       </Flex>
