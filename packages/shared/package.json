@@ -9,9 +9,6 @@
     "oas-lint": "bin/lint.sh"
   },
   "main": "src/index.mjs",
-  "scripts": {
-    "lint": "bin/lint.sh"
-  },
   "dependencies": {
     "ci-info": "^4.3.0",
     "cli-table3": "^0.6.5",

@@ -168,7 +168,6 @@
   "scripts": {
     "build": "rm -rf dist && NODE_ENV=production rollup -c",
     "dev": "rm -rf dist && wait-on ../../packages/react/dist/index.d.ts && rollup -cw",
-    "lint": "oas-lint",
     "test": "vitest"
   },
   "devDependencies": {
