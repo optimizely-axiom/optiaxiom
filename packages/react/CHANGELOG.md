@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 1.6.2
+
+### Patch Changes
+
+- 6d894e0: sticky dropzone overlay position
+
 ## 1.6.1
 
 ### Patch Changes
