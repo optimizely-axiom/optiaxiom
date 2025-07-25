@@ -44,7 +44,7 @@ export const FileUploadDropzone = forwardRef<
     },
     ref,
   ) => {
-    const { getInputProps, getRootProps, isDragActive } = useFileUploadContext(
+    const { dropzone } = useFileUploadContext(
       "@optiaxiom/react/FileUploadDropzone",
     );
 
@@ -52,21 +52,21 @@ export const FileUploadDropzone = forwardRef<
 
     return (
       <Flex
-        ref={ref}
-        {...getRootProps({
+        {...dropzone.getRootProps({
           ...styles.dropzone(
             {
-              drag: isDragActive,
+              drag: dropzone.isDragActive,
               hidden: overlay && !isDraggingOverBody,
               overlay,
             },
             className,
           ),
+          ref: useComposedRefs(dropzone.rootRef, outerRef),
           ...props,
         })}
       >
         <input
-          {...getInputProps({
+          {...dropzone.getInputProps({
             "aria-description": description,
             "aria-label": label,
           })}

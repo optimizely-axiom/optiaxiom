@@ -27,7 +27,7 @@ export type FileUploadProps = BoxProps<
 
 export const FileUpload = forwardRef<HTMLDivElement, FileUploadProps>(
   ({ accept, children, className, onFilesDrop, ...props }, ref) => {
-    const { getInputProps, getRootProps, isDragActive, open } = useDropzone({
+    const dropzone = useDropzone({
       accept,
       noClick: true,
       noKeyboard: true,
@@ -39,12 +39,7 @@ export const FileUpload = forwardRef<HTMLDivElement, FileUploadProps>(
     });
 
     return (
-      <FileUploadProvider
-        getInputProps={getInputProps}
-        getRootProps={getRootProps}
-        isDragActive={isDragActive}
-        openFileDialog={open}
-      >
+      <FileUploadProvider dropzone={dropzone}>
         <Box ref={ref} {...styles.upload({}, className)} {...props}>
           {children}
         </Box>
