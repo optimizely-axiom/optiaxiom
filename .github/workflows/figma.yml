@@ -6,6 +6,8 @@ on:
     paths:
       - apps/figma/**
 
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
 jobs:
   publish:
     if: ${{ github.repository_owner == 'optimizely-axiom' }}
