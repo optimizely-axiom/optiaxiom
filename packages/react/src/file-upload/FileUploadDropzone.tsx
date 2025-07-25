@@ -1,4 +1,5 @@
-import { forwardRef } from "react";
+import { useComposedRefs } from "@radix-ui/react-compose-refs";
+import { forwardRef, useRef } from "react";
 
 import { type BoxProps } from "../box";
 import { Flex } from "../flex";
@@ -9,6 +10,7 @@ import { useFileUploadContext } from "./FileUploadContext";
 import * as styles from "./FileUploadDropzone.css";
 import { FileUploadTrigger } from "./FileUploadTrigger";
 import { useDraggingOverBody } from "./useDraggingOverBody";
+import { useStickyPosition } from "./useStickyPosition";
 
 export type FileUploadDropzoneProps = BoxProps<
   "div",
@@ -42,13 +44,16 @@ export const FileUploadDropzone = forwardRef<
       overlay,
       ...props
     },
-    ref,
+    outerRef,
   ) => {
     const { dropzone } = useFileUploadContext(
       "@optiaxiom/react/FileUploadDropzone",
     );
 
     const isDraggingOverBody = useDraggingOverBody();
+
+    const innerRef = useRef<HTMLDivElement>(null);
+    useStickyPosition(innerRef, overlay && isDraggingOverBody);
 
     return (
       <Flex
@@ -61,7 +66,7 @@ export const FileUploadDropzone = forwardRef<
             },
             className,
           ),
-          ref: useComposedRefs(dropzone.rootRef, outerRef),
+          ref: useComposedRefs(innerRef, dropzone.rootRef, outerRef),
           ...props,
         })}
       >

@@ -1,4 +1,5 @@
-import { forwardRef } from "react";
+import { useComposedRefs } from "@radix-ui/react-compose-refs";
+import { forwardRef, useRef } from "react";
 import { type DropzoneOptions, useDropzone } from "react-dropzone";
 
 import { Box, type BoxProps } from "../box";
@@ -26,7 +27,7 @@ export type FileUploadProps = BoxProps<
 >;
 
 export const FileUpload = forwardRef<HTMLDivElement, FileUploadProps>(
-  ({ accept, children, className, onFilesDrop, ...props }, ref) => {
+  ({ accept, children, className, onFilesDrop, ...props }, outerRef) => {
     const dropzone = useDropzone({
       accept,
       noClick: true,
@@ -37,9 +38,11 @@ export const FileUpload = forwardRef<HTMLDivElement, FileUploadProps>(
         }
       },
     });
+    const innerRef = useRef<HTMLDivElement>(null);
+    const ref = useComposedRefs(innerRef, outerRef);
 
     return (
-      <FileUploadProvider dropzone={dropzone}>
+      <FileUploadProvider dropzone={dropzone} rootRef={innerRef}>
         <Box ref={ref} {...styles.upload({}, className)} {...props}>
           {children}
         </Box>
