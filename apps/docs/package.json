@@ -5,7 +5,6 @@
   "scripts": {
     "build": "next build",
     "dev": "concurrently --raw \"sleep 3 && node -e \\\"require('better-opn')('http://localhost:5055')\\\"\" \"next dev -p 5055\"",
-    "lint": "oas-lint",
     "postbuild": "pagefind --site .next/server/app --output-path out/_pagefind"
   },
   "devDependencies": {
