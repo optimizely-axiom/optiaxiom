@@ -1,5 +1,13 @@
 # @optiaxiom/web-components
 
+## 0.11.1
+
+### Patch Changes
+
+- 8ba9cbe: easily allow selecting single date range
+- 88f5a36: restrict badge width to fix shape for narrow content
+- 7ed9442: update dependencies
+
 ## 0.11.0
 
 ### Minor Changes

@@ -1,5 +1,15 @@
 # @optiaxiom/react
 
+## 1.6.1
+
+### Patch Changes
+
+- 8ba9cbe: easily allow selecting single date range
+- 88f5a36: restrict badge width to fix shape for narrow content
+- 7ed9442: update dependencies
+- Updated dependencies [7ed9442]
+  - @optiaxiom/globals@1.0.9
+
 ## 1.6.0
 
 ### Minor Changes
