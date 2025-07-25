@@ -7,6 +7,7 @@ export * from "./isFocusCaptured";
 export * from "./isHoverSupported";
 export * from "./mapValues";
 export * from "./onReactSelectInputBlur";
+export * from "./toInstant";
 export * from "./toPlainDate";
 export * from "./toPlainDateTime";
 export * from "./toPlainTime";

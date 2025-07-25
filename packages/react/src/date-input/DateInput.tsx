@@ -22,10 +22,14 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "../popover";
-import { type ExtendProps, toPlainDate, toPlainDateTime } from "../utils";
+import {
+  type ExtendProps,
+  toInstant,
+  toPlainDate,
+  toPlainDateTime,
+} from "../utils";
 import { VisuallyHidden } from "../visually-hidden";
 import * as styles from "./DateInput.css";
-import { toInstant } from "./utils";
 
 export type DateInputProps = ExtendProps<
   ComponentPropsWithoutRef<typeof Input>,
