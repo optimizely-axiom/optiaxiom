@@ -51,6 +51,10 @@ export type CalendarProps = BoxProps<
      */
     min?: Date;
     /**
+     * Handler that is called when a date is selected regardless of mode.
+     */
+    onDateSelect?: (date: Date) => void;
+    /**
      * Specify the stepping value in days (date) or seconds (datetime-local) for the allowed values.
      */
     step?: number | string;
@@ -127,6 +131,7 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
       min,
       mode = "single",
       month,
+      onDateSelect,
       onMonthChange,
       onValueChange,
       step,
@@ -222,11 +227,11 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
               month={month}
               onMonthChange={onMonthChange}
               onSelect={(value) => {
-                setValue(
-                  value
-                    ? new Date(toPlainDate(value) + "T" + (time ?? "00:00"))
-                    : (value ?? null),
-                );
+                const date = value
+                  ? new Date(toPlainDate(value) + "T" + (time ?? "00:00"))
+                  : (value ?? null);
+                setValue(date);
+                onDateSelect?.(date);
               }}
               required
               selected={value instanceof Date ? value : undefined}
@@ -265,6 +270,9 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
                       ? newValue.from
                       : newValue?.to;
                   setFrom(newFrom);
+                  if (newFrom) {
+                    onDateSelect?.(newFrom);
+                  }
                 } else {
                   setFrom(undefined);
                   const start = to && to < from ? to : from;
@@ -274,6 +282,9 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
                       : to
                         ? toInstant(toPlainDate(to) + "T23:59:59.999")
                         : undefined;
+                  if (end) {
+                    onDateSelect?.(end);
+                  }
                   setValue(
                     end
                       ? {
