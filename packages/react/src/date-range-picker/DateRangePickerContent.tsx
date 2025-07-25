@@ -53,9 +53,8 @@ export const DateRangePickerContent = forwardRef<
     const { labelId: fieldLabelId } = useFieldContext(
       "@optiaxiom/react/DateRangePickerContent",
     );
-    const { setOpen, setValue, triggerRef, value } = useDateRangePickerContext(
-      "@optiaxiom/react/DateRangePickerContent",
-    );
+    const { setFrom, setOpen, setValue, triggerRef, value } =
+      useDateRangePickerContext("@optiaxiom/react/DateRangePickerContent");
     const labelId = useId();
 
     return (
@@ -75,6 +74,9 @@ export const DateRangePickerContent = forwardRef<
             max={max}
             min={min}
             mode="range"
+            onDateSelect={(date) => {
+              setFrom((from) => (from ? undefined : date));
+            }}
             onValueChange={(value) => {
               setValue(value);
               setOpen(false);
