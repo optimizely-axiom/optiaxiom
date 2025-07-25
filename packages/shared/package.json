@@ -21,10 +21,12 @@
     "yargs": "^18.0.0"
   },
   "devDependencies": {
+    "@eslint/js": "^9.31.0",
     "@types/node": "^22.16.5",
     "@types/yargs": "^17.0.33",
     "@typescript-eslint/eslint-plugin": "^8.38.0",
     "@typescript-eslint/parser": "^8.38.0",
+    "@typescript-eslint/utils": "^8.38.0",
     "eslint": "^9.31.0",
     "eslint-plugin-perfectionist": "^4.15.0",
     "eslint-plugin-react": "^7.37.5",
