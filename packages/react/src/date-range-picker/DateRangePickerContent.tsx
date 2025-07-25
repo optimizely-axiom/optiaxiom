@@ -79,7 +79,9 @@ export const DateRangePickerContent = forwardRef<
             }}
             onValueChange={(value) => {
               setValue(value);
-              setOpen(false);
+              requestAnimationFrame(() => {
+                setOpen(false);
+              });
             }}
             today={today}
             value={value}
