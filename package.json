@@ -1,6 +1,6 @@
 {
   "name": "optiaxiom",
-  "packageManager": "pnpm@9.15.4",
+  "packageManager": "pnpm@10.13.1",
   "private": true,
   "type": "module",
   "version": "0.0.0",
@@ -47,6 +47,13 @@
     "wait-on": "^8.0.4"
   },
   "pnpm": {
+    "onlyBuiltDependencies": [
+      "edgedriver",
+      "esbuild",
+      "geckodriver",
+      "msw",
+      "sharp"
+    ],
     "patchedDependencies": {
       "@vanilla-extract/sprinkles": "patches/@vanilla-extract__sprinkles.patch",
       "nextra-theme-docs": "patches/nextra-theme-docs.patch",
