@@ -107,8 +107,11 @@ export default ESLintUtils.RuleCreator.withoutDocs({
                       stack.push(...prop.argument.properties);
                     }
                   } else if (
-                    prop.key.type === "Identifier" &&
-                    prop.key.name === "vars"
+                    (prop.key.type === "Identifier" &&
+                      prop.key.name === "vars") ||
+                    (prop.key.type === "Literal" &&
+                      (prop.key.value.endsWith("::after") ||
+                        prop.key.value.endsWith("::before")))
                   ) {
                     // skip
                   } else if (prop.value.type === "ObjectExpression") {

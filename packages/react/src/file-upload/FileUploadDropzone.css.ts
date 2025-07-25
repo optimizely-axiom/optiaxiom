@@ -7,17 +7,23 @@ export const dropzone = recipe({
     {
       alignItems: "center",
       bg: "bg.secondary",
-      border: "1",
       fontSize: "md",
       justifyContent: "center",
       p: "32",
       rounded: "md",
       textAlign: "center",
       transition: "colors",
-      z: "10",
     },
     style({
-      borderStyle: "dashed",
+      selectors: {
+        "&::before": {
+          border: `1px dashed ${theme.colors["border.default"]}`,
+          borderRadius: theme.borderRadius.md,
+          content: "",
+          inset: 0,
+          position: "absolute",
+        },
+      },
     }),
   ],
 
@@ -26,8 +32,11 @@ export const dropzone = recipe({
       false: {},
       true: [
         style({
-          outline: `2px solid ${theme.colors["border.focus"]}`,
-          outlineOffset: "1px",
+          selectors: {
+            "&::before": {
+              border: `2px solid ${theme.colors["border.focus"]}`,
+            },
+          },
         }),
       ],
     },
@@ -41,10 +50,15 @@ export const dropzone = recipe({
     },
     overlay: {
       false: {},
-      true: style({
-        inset: 0,
-        position: "absolute",
-      }),
+      true: [
+        {
+          z: "10",
+        },
+        style({
+          inset: 0,
+          position: "absolute",
+        }),
+      ],
     },
   },
 });
