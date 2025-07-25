@@ -11,12 +11,11 @@ import { DayPicker, type Matcher } from "react-day-picker";
 
 import { Box, type BoxProps } from "../box";
 import { Clock } from "../clock";
-import { toInstant } from "../date-input/utils";
 import { Flex } from "../flex";
 import { useResponsiveMatches } from "../hooks";
 import { usePopoverContentContext } from "../popover/internals";
 import { Text } from "../text";
-import { toPlainDate, toPlainTime } from "../utils";
+import { toInstant, toPlainDate, toPlainTime } from "../utils";
 import * as styles from "./Calendar.css";
 import { CalendarChevron } from "./CalendarChevron";
 import { CalendarDay } from "./CalendarDay";

@@ -1,9 +1,8 @@
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import { type ComponentPropsWithRef, useEffect, useRef, useState } from "react";
 
-import { toInstant } from "../date-input/utils";
 import { Popover } from "../popover";
-import { toPlainDate } from "../utils";
+import { toInstant, toPlainDate } from "../utils";
 import { DateRangePickerProvider } from "./DateRangePickerContext";
 
 export type DateRangePickerProps = ComponentPropsWithRef<typeof Popover> & {
