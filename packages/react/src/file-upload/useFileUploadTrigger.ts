@@ -1,9 +1,9 @@
 import { useFileUploadContext } from "./FileUploadContext";
 
 export const useFileUploadTrigger = () => {
-  const { openFileDialog } = useFileUploadContext(
+  const { dropzone } = useFileUploadContext(
     "@optiaxiom/react/useFileUploadOpen",
   );
 
-  return openFileDialog;
+  return dropzone.open;
 };

@@ -15,7 +15,7 @@ export const FileUploadTrigger = forwardRef<
 >(({ asChild, children, onClick, ...props }, ref) => {
   const { boxProps, restProps } = extractBoxProps(props);
   const Comp = asChild ? Slot : Button;
-  const { openFileDialog } = useFileUploadContext(
+  const { dropzone } = useFileUploadContext(
     "@optiaxiom/react/FileUploadTrigger",
   );
 
@@ -28,7 +28,7 @@ export const FileUploadTrigger = forwardRef<
             return;
           }
 
-          openFileDialog();
+          dropzone.open();
         }}
         ref={ref}
         {...restProps}
