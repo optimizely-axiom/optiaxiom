@@ -29,7 +29,7 @@ export type FileUploadDropzoneProps = BoxProps<
     label?: string;
     /**
      * Whether to place the dropzone as an overlay fully covering the parent
-     * container and only showing when user is dragging a file into the browser.
+     * container and only visible when user is dragging a file into the browser.
      */
     overlay?: boolean;
   }

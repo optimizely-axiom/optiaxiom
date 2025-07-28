@@ -15,6 +15,8 @@ export const dropzone = recipe({
       transition: "colors",
     },
     style({
+      isolation: "isolate",
+
       selectors: {
         "&::before": {
           border: `1px dashed ${theme.colors["border.default"]}`,
@@ -22,6 +24,7 @@ export const dropzone = recipe({
           content: "",
           inset: 0,
           position: "absolute",
+          zIndex: -1,
         },
       },
     }),
