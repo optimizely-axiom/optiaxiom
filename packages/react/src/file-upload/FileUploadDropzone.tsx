@@ -1,15 +1,18 @@
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
-import { forwardRef, useRef } from "react";
+import { forwardRef, useRef, useState } from "react";
 
 import { type BoxProps } from "../box";
 import { Flex } from "../flex";
 import { Icon } from "../icon";
 import { IconFileImportSolid } from "../icons/IconFileImportSolid";
 import { Text } from "../text";
+import { VisuallyHidden } from "../visually-hidden";
 import { useFileUploadContext } from "./FileUploadContext";
 import * as styles from "./FileUploadDropzone.css";
 import { FileUploadTrigger } from "./FileUploadTrigger";
 import { useDraggingOverBody } from "./useDraggingOverBody";
+import { useFileUploadDragging } from "./useFileUploadDragging";
+import { useFileUploadDrop } from "./useFileUploadDrop";
 import { useStickyPosition } from "./useStickyPosition";
 
 export type FileUploadDropzoneProps = BoxProps<
@@ -46,10 +49,11 @@ export const FileUploadDropzone = forwardRef<
     },
     outerRef,
   ) => {
-    const { dropzone } = useFileUploadContext(
+    const { accept, inputRef, onFilesDrop } = useFileUploadContext(
       "@optiaxiom/react/FileUploadDropzone",
     );
 
+    const [isDragging, setIsDragging] = useState(false);
     const isDraggingOverBody = useDraggingOverBody();
 
     const innerRef = useRef<HTMLDivElement>(null);
@@ -57,25 +61,31 @@ export const FileUploadDropzone = forwardRef<
 
     return (
       <Flex
-        {...dropzone.getRootProps({
-          ...styles.dropzone(
-            {
-              drag: dropzone.isDragActive,
-              hidden: overlay && !isDraggingOverBody,
-              overlay,
-            },
-            className,
-          ),
-          ref: useComposedRefs(innerRef, dropzone.rootRef, outerRef),
-          ...props,
-        })}
+        ref={useComposedRefs(innerRef, outerRef)}
+        {...styles.dropzone(
+          {
+            drag: isDragging,
+            hidden: overlay && !isDraggingOverBody,
+            overlay,
+          },
+          className,
+        )}
+        {...useFileUploadDrop(useFileUploadDragging(props, setIsDragging))}
       >
-        <input
-          {...dropzone.getInputProps({
-            "aria-description": description,
-            "aria-label": label,
-          })}
-        />
+        <VisuallyHidden asChild>
+          <input
+            accept={accept}
+            aria-description={description}
+            aria-label={label}
+            multiple
+            onChange={(event) => {
+              onFilesDrop?.([...(event.target.files || [])]);
+              event.target.value = "";
+            }}
+            ref={inputRef}
+            type="file"
+          />
+        </VisuallyHidden>
         <Flex alignItems="center" gap="8">
           <Icon asChild color="fg.secondary">
             <IconFileImportSolid />

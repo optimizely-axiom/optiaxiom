@@ -1,6 +1,5 @@
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import { forwardRef, useRef } from "react";
-import { type DropzoneOptions, useDropzone } from "react-dropzone";
 
 import { Box, type BoxProps } from "../box";
 import * as styles from "./FileUpload.css";
@@ -17,32 +16,41 @@ export type FileUploadProps = BoxProps<
      * {
      *   "image/*": [],
      * }
+     * {
+     *   "image/*": [".png", ".jpg"],
+     * }
      */
-    accept?: DropzoneOptions["accept"];
+    accept?: Record<string, string[]>;
     /**
      * Callback function called when files are dropped or selected
      */
-    onFilesDrop?: (files: File[]) => void;
+    onFilesDrop?: (files: Array<Blob | File>) => void;
   }
 >;
 
 export const FileUpload = forwardRef<HTMLDivElement, FileUploadProps>(
   ({ accept, children, className, onFilesDrop, ...props }, outerRef) => {
-    const dropzone = useDropzone({
-      accept,
-      noClick: true,
-      noKeyboard: true,
-      onDrop: (acceptedFiles) => {
-        if (acceptedFiles.length) {
-          onFilesDrop?.(acceptedFiles);
-        }
-      },
-    });
     const innerRef = useRef<HTMLDivElement>(null);
     const ref = useComposedRefs(innerRef, outerRef);
 
+    const inputRef = useRef<HTMLInputElement>(null);
+
     return (
-      <FileUploadProvider dropzone={dropzone} rootRef={innerRef}>
+      <FileUploadProvider
+        accept={Object.entries(accept ?? {})
+          .reduce(
+            (result, [mimeType, extensions]) => [
+              ...result,
+              mimeType,
+              ...extensions,
+            ],
+            [] as string[],
+          )
+          .join(",")}
+        inputRef={inputRef}
+        onFilesDrop={onFilesDrop}
+        rootRef={innerRef}
+      >
         <Box ref={ref} {...styles.upload({}, className)} {...props}>
           {children}
         </Box>
