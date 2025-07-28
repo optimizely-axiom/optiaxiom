@@ -4,6 +4,8 @@ export const upload = recipe({
   base: [
     {
       color: "fg.default",
+      display: "flex",
+      flexDirection: "column",
     },
     style({
       position: "relative",

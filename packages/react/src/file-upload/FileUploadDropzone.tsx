@@ -10,6 +10,7 @@ import { VisuallyHidden } from "../visually-hidden";
 import { useFileUploadContext } from "./FileUploadContext";
 import * as styles from "./FileUploadDropzone.css";
 import { FileUploadTrigger } from "./FileUploadTrigger";
+import { useContainerSize } from "./useContainerSize";
 import { useDraggingOverBody } from "./useDraggingOverBody";
 import { useFileUploadDragging } from "./useFileUploadDragging";
 import { useFileUploadDrop } from "./useFileUploadDrop";
@@ -43,8 +44,8 @@ export const FileUploadDropzone = forwardRef<
       children,
       className,
       description,
-      label = "Drop your files here",
-      overlay,
+      label = "Drag and drop files here",
+      overlay = false,
       ...props
     },
     outerRef,
@@ -58,6 +59,8 @@ export const FileUploadDropzone = forwardRef<
 
     const innerRef = useRef<HTMLDivElement>(null);
     useStickyPosition(innerRef, overlay && isDraggingOverBody);
+
+    const size = useContainerSize(innerRef) ?? 0;
 
     return (
       <Flex
@@ -87,15 +90,11 @@ export const FileUploadDropzone = forwardRef<
           />
         </VisuallyHidden>
         <Flex alignItems="center" gap="8">
-          <Icon asChild color="fg.secondary">
+          <Icon asChild color="fg.secondary" h={size > 448 ? "lg" : "sm"}>
             <IconFileImport />
           </Icon>
           <Text>{label}</Text>
-          {description && (
-            <Text color="fg.tertiary" fontSize="sm">
-              {description}
-            </Text>
-          )}
+          {description && <Text color="fg.tertiary">{description}</Text>}
         </Flex>
         {!overlay && (children ?? <FileUploadTrigger />)}
       </Flex>
