@@ -155,3 +155,22 @@ export const Sizes: Story = {
     </Flex>
   ),
 };
+
+export const Disabled: Story = {
+  args: {
+    disabled: true,
+    w: "384",
+  },
+  parameters: {
+    a11y: {
+      config: {
+        rules: [
+          {
+            enabled: false,
+            id: "color-contrast",
+          },
+        ],
+      },
+    },
+  },
+};

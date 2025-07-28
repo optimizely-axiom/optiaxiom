@@ -50,7 +50,7 @@ export const FileUploadDropzone = forwardRef<
     },
     outerRef,
   ) => {
-    const { accept, inputRef, onFilesDrop } = useFileUploadContext(
+    const { accept, disabled, inputRef, onFilesDrop } = useFileUploadContext(
       "@optiaxiom/react/FileUploadDropzone",
     );
 
@@ -80,6 +80,7 @@ export const FileUploadDropzone = forwardRef<
             accept={accept}
             aria-description={description}
             aria-label={label}
+            disabled={disabled}
             multiple
             onChange={(event) => {
               onFilesDrop?.([...(event.target.files || [])]);
@@ -89,7 +90,7 @@ export const FileUploadDropzone = forwardRef<
             type="file"
           />
         </VisuallyHidden>
-        <Flex alignItems="center" gap="8">
+        <Flex {...styles.label({ disabled })}>
           <Icon asChild color="fg.secondary" h={size > 448 ? "lg" : "sm"}>
             <IconFileImport />
           </Icon>

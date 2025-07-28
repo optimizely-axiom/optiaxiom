@@ -22,6 +22,10 @@ export type FileUploadProps = BoxProps<
      */
     accept?: Record<string, string[]>;
     /**
+     * Whether the file uploader is disabled.
+     */
+    disabled?: boolean;
+    /**
      * Callback function called when files are dropped or selected
      */
     onFilesDrop?: (files: Array<Blob | File>) => void;
@@ -29,7 +33,10 @@ export type FileUploadProps = BoxProps<
 >;
 
 export const FileUpload = forwardRef<HTMLDivElement, FileUploadProps>(
-  ({ accept, children, className, onFilesDrop, ...props }, outerRef) => {
+  (
+    { accept, children, className, disabled, onFilesDrop, ...props },
+    outerRef,
+  ) => {
     const innerRef = useRef<HTMLDivElement>(null);
     const ref = useComposedRefs(innerRef, outerRef);
 
@@ -47,6 +54,7 @@ export const FileUpload = forwardRef<HTMLDivElement, FileUploadProps>(
             [] as string[],
           )
           .join(",")}
+        disabled={disabled}
         inputRef={inputRef}
         onFilesDrop={onFilesDrop}
         rootRef={innerRef}
