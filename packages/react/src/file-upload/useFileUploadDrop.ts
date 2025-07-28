@@ -1,6 +1,6 @@
 import type { BoxProps } from "../box";
 
-import { useFileUploadContext } from "./FileUploadContext";
+import { type RemoteFile, useFileUploadContext } from "./FileUploadContext";
 
 export const useFileUploadDrop = ({
   onDragOver,
@@ -30,14 +30,31 @@ export const useFileUploadDrop = ({
       event.preventDefault();
       onFilesDrop?.(
         (event.dataTransfer.items
-          ? Array.from(event.dataTransfer.items).flatMap((item) => {
-              const file =
-                item.kind === "file"
-                  ? item.getAsFile()
-                  : new Blob([event.dataTransfer.getData(item.type)], {
-                      type: item.type,
-                    });
-              return file ? [file] : [];
+          ? Array.from(event.dataTransfer.items).map((item) => {
+              if (item.kind === "file") {
+                return item.getAsFile();
+              } else if (
+                item.type === "opal-chat-dnd-data" ||
+                item.type === "opal-host-dnd-data"
+              ) {
+                try {
+                  const data = JSON.parse(
+                    event.dataTransfer.getData(item.type),
+                  ) as {
+                    link: string;
+                    mime_type: string;
+                    name?: string;
+                  };
+                  return {
+                    name: data.name || "",
+                    type: data.mime_type || "",
+                    url: data.link,
+                  };
+                } catch {
+                  /* empty */
+                }
+              }
+              return null;
             })
           : Array.from(event.dataTransfer.files)
         ).filter((file) => isValidFile(file, accept)),
@@ -47,9 +64,15 @@ export const useFileUploadDrop = ({
 };
 
 /**
- * Copied from https://github.com/dropzone/dropzone
+ * Copied and modified from https://github.com/dropzone/dropzone
  */
-function isValidFile(file: Blob | File, accept: string) {
+function isValidFile(
+  file: File | null | RemoteFile,
+  accept: string,
+): file is File | RemoteFile {
+  if (!file) {
+    return false;
+  }
   if (!accept) {
     return true;
   }
