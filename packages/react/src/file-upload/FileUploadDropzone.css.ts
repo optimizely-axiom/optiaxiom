@@ -67,3 +67,21 @@ export const dropzone = recipe({
     },
   },
 });
+
+export const label = recipe({
+  base: [
+    {
+      alignItems: "center",
+      gap: "8",
+    },
+  ],
+
+  variants: {
+    disabled: {
+      false: {},
+      true: style({
+        opacity: 0.5,
+      }),
+    },
+  },
+});

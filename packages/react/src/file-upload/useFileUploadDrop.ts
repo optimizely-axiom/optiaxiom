@@ -7,7 +7,7 @@ export const useFileUploadDrop = ({
   onDrop,
   ...props
 }: BoxProps = {}): BoxProps => {
-  const { accept, onFilesDrop } = useFileUploadContext(
+  const { accept, disabled, onFilesDrop } = useFileUploadContext(
     "@optiaxiom/react/useFileUploadDrop",
   );
 
@@ -15,14 +15,19 @@ export const useFileUploadDrop = ({
     ...props,
     onDragOver: (event) => {
       onDragOver?.(event);
+      if (disabled) {
+        return;
+      }
 
       event.preventDefault();
     },
     onDrop: (event) => {
       onDrop?.(event);
+      if (disabled) {
+        return;
+      }
 
       event.preventDefault();
-
       onFilesDrop?.(
         (event.dataTransfer.items
           ? Array.from(event.dataTransfer.items).flatMap((item) => {
