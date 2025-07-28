@@ -49,7 +49,9 @@ export const dropzone = recipe({
       }),
     },
     overlay: {
-      false: {},
+      false: {
+        flex: "1",
+      },
       true: [
         {
           z: "10",

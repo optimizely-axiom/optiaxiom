@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import {
+  Box,
   Button,
   Flex,
   Menu,
@@ -132,4 +133,25 @@ export const MultipleSources: Story = {
     ),
     w: "384",
   },
+};
+
+export const Sizes: Story = {
+  args: {
+    children: (
+      <FileUploadDropzone description="SVG, PNG, JPG or GIF (max. 2MB)">
+        <FileUploadTrigger />
+      </FileUploadDropzone>
+    ),
+    w: "384",
+  },
+  render: (args) => (
+    <Flex flexDirection="row">
+      <Box display="flex">
+        <FileUpload {...args} />
+      </Box>
+      <Box display="flex" style={{ height: 600 }}>
+        <FileUpload {...args} />
+      </Box>
+    </Flex>
+  ),
 };
