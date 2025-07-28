@@ -4,7 +4,7 @@ import { forwardRef, useRef, useState } from "react";
 import { type BoxProps } from "../box";
 import { Flex } from "../flex";
 import { Icon } from "../icon";
-import { IconFileImportSolid } from "../icons/IconFileImportSolid";
+import { IconFileImport } from "../icons/IconFileImport";
 import { Text } from "../text";
 import { VisuallyHidden } from "../visually-hidden";
 import { useFileUploadContext } from "./FileUploadContext";
@@ -88,7 +88,7 @@ export const FileUploadDropzone = forwardRef<
         </VisuallyHidden>
         <Flex alignItems="center" gap="8">
           <Icon asChild color="fg.secondary">
-            <IconFileImportSolid />
+            <IconFileImport />
           </Icon>
           <Text>{label}</Text>
           {description && (
