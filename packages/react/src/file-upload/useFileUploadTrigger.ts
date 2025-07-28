@@ -1,9 +1,13 @@
+import { useCallback } from "react";
+
 import { useFileUploadContext } from "./FileUploadContext";
 
 export const useFileUploadTrigger = () => {
-  const { dropzone } = useFileUploadContext(
+  const { inputRef } = useFileUploadContext(
     "@optiaxiom/react/useFileUploadOpen",
   );
 
-  return dropzone.open;
+  return useCallback(() => {
+    inputRef.current?.click();
+  }, [inputRef]);
 };
