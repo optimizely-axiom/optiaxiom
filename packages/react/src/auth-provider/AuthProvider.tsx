@@ -1,6 +1,8 @@
 import { AxiomAuthContext } from "@optiaxiom/globals";
 import { type ReactNode, useMemo } from "react";
 
+import { useEffectEvent } from "../hooks";
+
 export type AuthProviderProps = {
   children?: ReactNode;
   /**
@@ -8,15 +10,29 @@ export type AuthProviderProps = {
    */
   instance: string;
   /**
+   * Callback to refresh and return a new auth token in case it becomes stale.
+   */
+  refresh: () => Promise<string>;
+  /**
    * The auth token of the current user session.
    */
   token: string;
 };
 
-export function AuthProvider({ children, instance, token }: AuthProviderProps) {
+export function AuthProvider({
+  children,
+  instance,
+  refresh: refreshProp,
+  token,
+}: AuthProviderProps) {
+  const refresh = useEffectEvent(refreshProp);
+
   return (
     <AxiomAuthContext.Provider
-      value={useMemo(() => ({ instance, token }), [instance, token])}
+      value={useMemo(
+        () => ({ instance, refresh, token }),
+        [instance, refresh, token],
+      )}
     >
       {children}
     </AxiomAuthContext.Provider>
