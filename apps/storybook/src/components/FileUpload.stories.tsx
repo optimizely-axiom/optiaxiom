@@ -45,9 +45,7 @@ export const Basic: Story = {
 
 export const Description: Story = {
   args: {
-    accept: {
-      "image/*": [],
-    },
+    accept: ["image/*"],
     children: (
       <FileUploadDropzone description="SVG, PNG, JPG or GIF (max. 2MB)">
         <FileUploadTrigger />
@@ -59,9 +57,7 @@ export const Description: Story = {
 
 export const Overlay: Story = {
   args: {
-    accept: {
-      "image/*": [],
-    },
+    accept: ["image/*"],
     children: (
       <>
         <Textarea

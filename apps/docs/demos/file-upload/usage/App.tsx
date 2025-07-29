@@ -6,7 +6,7 @@ import { FileUpload, FileUploadDropzone } from "@optiaxiom/react/unstable";
 export function App() {
   return (
     <FileUpload
-      accept={{ "image/*": [] }}
+      accept={["image/*"]}
       onFilesDrop={(files) => {
         toaster.create(`${files.length} files added!`);
       }}
