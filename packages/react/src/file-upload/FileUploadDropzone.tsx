@@ -64,6 +64,7 @@ export const FileUploadDropzone = forwardRef<
 
     return (
       <Flex
+        fontSize={size > 448 ? "lg" : "md"}
         ref={useComposedRefs(innerRef, outerRef)}
         {...styles.dropzone(
           {

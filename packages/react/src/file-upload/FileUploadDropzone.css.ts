@@ -7,7 +7,6 @@ export const dropzone = recipe({
     {
       alignItems: "center",
       bg: "bg.secondary",
-      fontSize: "md",
       justifyContent: "center",
       p: "32",
       rounded: "md",
