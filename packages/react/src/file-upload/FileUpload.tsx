@@ -3,7 +3,7 @@ import { forwardRef, useRef } from "react";
 
 import { Box, type BoxProps } from "../box";
 import * as styles from "./FileUpload.css";
-import { FileUploadProvider, type RemoteFile } from "./FileUploadContext";
+import { FileUploadProvider } from "./FileUploadContext";
 
 export type FileUploadProps = BoxProps<
   "div",
@@ -24,7 +24,7 @@ export type FileUploadProps = BoxProps<
     /**
      * Callback function called when files are dropped or selected
      */
-    onFilesDrop?: (files: Array<File | RemoteFile>) => void;
+    onFilesDrop?: (files: File[]) => void;
   }
 >;
 

@@ -21,6 +21,7 @@
     "./AlertDialogHeader": "./dist/components/AlertDialogHeader.js",
     "./AlertDialogTrigger": "./dist/components/AlertDialogTrigger.js",
     "./AngleMenuButton": "./dist/components/AngleMenuButton.js",
+    "./AuthProvider": "./dist/components/AuthProvider.js",
     "./Avatar": "./dist/components/Avatar.js",
     "./AvatarGroup": "./dist/components/AvatarGroup.js",
     "./AxiomProvider": "./dist/components/AxiomProvider.js",

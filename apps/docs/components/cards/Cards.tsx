@@ -12,6 +12,7 @@ import { CheckboxIcon } from "./icons/CheckboxIcon";
 import { ComponentsIcon } from "./icons/ComponentsIcon";
 import { DialogIcon } from "./icons/DialogIcon";
 import { DropdownMenuIcon } from "./icons/DropdownMenuIcon";
+import { FileUploadIcon } from "./icons/FileUploadIcon";
 import { FlexIcon } from "./icons/FlexIcon";
 import { GridIcon } from "./icons/GridIcon";
 import { HeadingIcon } from "./icons/HeadingIcon";
@@ -101,6 +102,12 @@ const COMPONENTS = {
     href: "/components/dropdown-menu/",
     icon: <DropdownMenuIcon />,
     title: "DropdownMenu",
+  },
+  FileUpload: {
+    description: "Capture file input from users with drag and drop.",
+    href: "/components/file-upload/",
+    icon: <FileUploadIcon />,
+    title: "FileUpload",
   },
   Flex: {
     description:

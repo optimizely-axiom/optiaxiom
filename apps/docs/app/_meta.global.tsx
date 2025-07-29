@@ -66,6 +66,8 @@ export default {
       },
       "axiom-provider": "AxiomProvider",
 
+      "auth-provider": "AuthProvider",
+
       "-- Components": {
         title: "Components",
         type: "separator",

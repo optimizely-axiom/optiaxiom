@@ -33,6 +33,7 @@ export const components = {
   AlertDialogFooter: getProps("AlertDialogFooter"),
   AlertDialogHeader: getProps("AlertDialogHeader"),
   AlertDialogTrigger: getProps("AlertDialogTrigger"),
+  AuthProvider: getProps("AuthProvider"),
   Avatar: getProps("Avatar"),
   AvatarGroup: getProps("AvatarGroup"),
   AxiomProvider: getProps("AxiomProvider"),
