@@ -3,7 +3,7 @@ import * as RadixRovingFocus from "@radix-ui/react-roving-focus";
 import { type ComponentPropsWithoutRef, forwardRef, useRef } from "react";
 
 import { useCommandContext } from "../command/internals";
-import { IconPlusSolid } from "../icons/IconPlusSolid";
+import { IconPlus } from "../icons/IconPlus";
 import { MenuTrigger } from "../menu";
 import { usePillMenuContext } from "./PillMenuContext";
 
@@ -24,7 +24,7 @@ export const PillMenuTrigger = forwardRef<
       <MenuTrigger
         appearance={options.length ? "subtle" : "default"}
         aria-label={props["aria-label"]}
-        icon={<IconPlusSolid />}
+        icon={<IconPlus />}
         onKeyDown={(event) => {
           onKeyDown?.(event);
           if (event.defaultPrevented) {
