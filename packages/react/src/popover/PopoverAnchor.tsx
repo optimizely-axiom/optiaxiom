@@ -20,24 +20,19 @@ export const PopoverAnchor = forwardRef<HTMLDivElement, PopoverAnchorProps>(
   ({ asChild, children, staticRef, ...props }, ref) => {
     const { __scopePopover } = usePopoverScope(undefined);
 
-    const { open, presence } = usePopoverContext(
-      "@optiaxiom/react/PopoverAnchor",
-    );
+    const { open } = usePopoverContext("@optiaxiom/react/PopoverAnchor");
 
     const [virtualRef, setVirtualRef] = useState<{
       current: null | { getBoundingClientRect(): DOMRect };
     }>({ current: null });
     useEffect(() => {
-      if (!staticRef?.current || !(open || presence)) {
+      if (!staticRef?.current || !open) {
         return;
       }
 
       const rect = staticRef.current.getBoundingClientRect();
       setVirtualRef({ current: { getBoundingClientRect: () => rect } });
-      return () => {
-        requestAnimationFrame(() => setVirtualRef({ current: null }));
-      };
-    }, [open, presence, staticRef]);
+    }, [open, staticRef]);
 
     return (
       <Box
