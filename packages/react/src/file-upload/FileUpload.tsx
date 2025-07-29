@@ -13,14 +13,10 @@ export type FileUploadProps = BoxProps<
      * type and the values an array of file extensions.
      *
      * @example
-     * {
-     *   "image/*": [],
-     * }
-     * {
-     *   "image/*": [".png", ".jpg"],
-     * }
+     * ["image/*"]
+     * [".png", ".jpg"]
      */
-    accept?: Record<string, string[]>;
+    accept?: string[];
     /**
      * Whether the file uploader is disabled.
      */
@@ -44,16 +40,7 @@ export const FileUpload = forwardRef<HTMLDivElement, FileUploadProps>(
 
     return (
       <FileUploadProvider
-        accept={Object.entries(accept ?? {})
-          .reduce(
-            (result, [mimeType, extensions]) => [
-              ...result,
-              mimeType,
-              ...extensions,
-            ],
-            [] as string[],
-          )
-          .join(",")}
+        accept={(accept ?? []).join(",")}
         disabled={disabled}
         inputRef={inputRef}
         onFilesDrop={onFilesDrop}
