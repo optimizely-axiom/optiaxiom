@@ -8,6 +8,10 @@ export const AxiomAuthContext = createContext<
        */
       instance: string;
       /**
+       * Callback to refresh and return a new auth token in case it becomes stale.
+       */
+      refresh: () => Promise<string>;
+      /**
        * The auth token of the current user session.
        */
       token: string;

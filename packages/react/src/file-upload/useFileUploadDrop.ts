@@ -65,7 +65,7 @@ export const useFileUploadDrop = ({
                       };
 
                       return isValidFile(resource, accept)
-                        ? getRemoteFile(resource, auth)
+                        ? getRemoteFile(resource, auth, true)
                         : null;
                     } catch {
                       /* empty */
@@ -89,7 +89,12 @@ async function getRemoteFile(
     type: string;
     url: string;
   },
-  auth: { instance: string; token: string },
+  auth: {
+    instance: string;
+    refresh: () => Promise<string>;
+    token: string;
+  },
+  retry = false,
 ) {
   const url = new URL(resource.url);
   if (!url.searchParams.has("instance_id")) {
@@ -102,6 +107,12 @@ async function getRemoteFile(
       "X-Product-Sku": "Axiom",
     },
   });
+  if (response.status === 401 && retry) {
+    return getRemoteFile(resource, {
+      ...auth,
+      token: await auth.refresh(),
+    });
+  }
   if (!response.ok) {
     return null;
   }
