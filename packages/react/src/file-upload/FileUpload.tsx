@@ -9,8 +9,8 @@ export type FileUploadProps = BoxProps<
   "div",
   {
     /**
-     * File types to accept for upload. An object with the keys set to the MIME
-     * type and the values an array of file extensions.
+     * File types to accept for upload. An array of strings of the MIME type
+     * and/or file extensions to accept.
      *
      * @example
      * ["image/*"]
