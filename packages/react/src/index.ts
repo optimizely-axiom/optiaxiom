@@ -1,6 +1,7 @@
 export * from "./alert";
 export * from "./alert-dialog";
 export * from "./angle-menu-button";
+export * from "./auth-provider";
 export * from "./avatar";
 export * from "./axiom-provider";
 export * from "./badge";

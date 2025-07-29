@@ -14,6 +14,6 @@ export const [FileUploadProvider, useFileUploadContext] = createContext<{
   accept: string;
   disabled: boolean | undefined;
   inputRef: RefObject<HTMLInputElement>;
-  onFilesDrop: ((files: Array<File | RemoteFile>) => void) | undefined;
+  onFilesDrop: ((files: File[]) => void) | undefined;
   rootRef: RefObject<HTMLDivElement>;
 }>("@optiaxiom/react/FileUpload");

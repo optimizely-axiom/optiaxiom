@@ -1,0 +1,42 @@
+import { Cards, Links, PropsTable } from "@/components";
+
+# AuthProvider
+
+`AuthProvider` is used to pass down the user credentials to all components. It should be rendered near the root of your application and should be used only once.
+
+<Links component="auth-provider" />
+
+## Documentation
+
+### Usage
+
+```jsx
+import { AuthProvider } from "@optiaxiom/react";
+
+export function App() {
+  return (
+    <AuthProvider
+      instance="INSERT_INSTANCE_ID_HERE"
+      token="INSERT_AUTH_TOKEN_HERE"
+    >
+      {/* Your app code here */}
+    </AuthProvider>
+  );
+}
+```
+
+### Related
+
+<Cards items={["FileUpload"]} />
+
+## Props
+
+### AuthProvider
+
+<PropsTable component="AuthProvider" />
+
+## Changelog
+
+### 1.6.2
+
+- Added component
