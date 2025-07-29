@@ -12,7 +12,7 @@ export type PillMenuTriggerProps = ComponentPropsWithoutRef<typeof MenuTrigger>;
 export const PillMenuTrigger = forwardRef<
   HTMLButtonElement,
   PillMenuTriggerProps
->(({ onKeyDown, ...props }, outerRef) => {
+>(({ children, onKeyDown, ...props }, outerRef) => {
   const { options } = usePillMenuContext("@optiaxiom/react/PillMenuTrigger");
   const { inputValue } = useCommandContext("@optiaxiom/react/PillMenuTrigger");
 
@@ -23,7 +23,10 @@ export const PillMenuTrigger = forwardRef<
     <RadixRovingFocus.Item asChild key="trigger">
       <MenuTrigger
         appearance={options.length ? "subtle" : "default"}
-        aria-label={props["aria-label"]}
+        aria-label={
+          props["aria-label"] ??
+          (typeof children === "string" ? children : undefined)
+        }
         icon={<IconPlus />}
         onKeyDown={(event) => {
           onKeyDown?.(event);
@@ -43,7 +46,7 @@ export const PillMenuTrigger = forwardRef<
         size="sm"
         {...props}
       >
-        {options.length ? undefined : props["aria-label"]}
+        {options.length ? undefined : children}
       </MenuTrigger>
     </RadixRovingFocus.Item>
   );

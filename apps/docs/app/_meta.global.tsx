@@ -120,6 +120,9 @@ export default {
       pill: {
         title: <AlphaItem>Pill</AlphaItem>,
       },
+      "pill-menu": {
+        title: <AlphaItem>PillMenu</AlphaItem>,
+      },
       popover: "Popover",
       progress: "Progress",
       "radio-group": "RadioGroup",
