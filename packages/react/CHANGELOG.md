@@ -1,5 +1,16 @@
 # @optiaxiom/react
 
+## 1.6.2
+
+### Patch Changes
+
+- 6d894e0: sticky dropzone overlay position
+- 5326a90: allow url dropping and sticky dropzone in FileUpload
+- 1434017: update PillMenu icon
+- c148884: add AuthProvider and fetch file in FileUpload
+- Updated dependencies [c148884]
+  - @optiaxiom/globals@1.0.10
+
 ## 1.6.1
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @optiaxiom/globals
 
+## 1.0.10
+
+### Patch Changes
+
+- c148884: add AuthProvider and fetch file in FileUpload
+
 ## 1.0.9
 
 ### Patch Changes
