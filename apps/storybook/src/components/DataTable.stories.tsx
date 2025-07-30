@@ -268,7 +268,7 @@ export const Pinned: Story = {
           getCoreRowModel: getCoreRowModel(),
           state: {
             columnPinning: {
-              left: ["id", "status"],
+              left: ["select", "id", "status"],
               right: ["lastModifiedBy"],
             },
             pagination: { pageIndex: 0, pageSize: 100 },

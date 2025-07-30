@@ -3,9 +3,14 @@ import { theme } from "@optiaxiom/globals";
 import { recipe, type RecipeVariants, style } from "../vanilla-extract";
 
 export const cell = recipe({
-  base: style({
-    textAlign: "start",
-  }),
+  base: [
+    {
+      borderColor: "border.tertiary",
+    },
+    style({
+      textAlign: "start",
+    }),
+  ],
 
   variants: {
     /**
@@ -18,6 +23,15 @@ export const cell = recipe({
       true: style({
         position: "sticky",
         zIndex: "10",
+
+        selectors: {
+          "&:has(+ :not([data-pinned]))": {
+            borderRightWidth: "1px",
+          },
+          ":not([data-pinned]) + &": {
+            borderLeftWidth: "1px",
+          },
+        },
       }),
     },
   },

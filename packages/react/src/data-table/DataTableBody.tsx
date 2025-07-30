@@ -33,7 +33,7 @@ const COL_VIRTUALIZATION_THRESHOLD = 20;
 const ROW_VIRTUALIZATION_THRESHOLD = 20;
 
 export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
-  ({ className, estimatedRowHeight = 52, loading, ...props }, outerRef) => {
+  ({ estimatedRowHeight = 52, loading, ...props }, outerRef) => {
     const innerRef = useRef<HTMLDivElement>(null);
     const ref = useComposedRefs(innerRef, outerRef);
 
@@ -70,19 +70,6 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
           [styles.rightTotalSizeVar]: `${table.getRightTotalSize()}px`,
           [styles.totalSizeVar]: `${table.getTotalSize()}`,
         })}
-        {...styles.table(
-          {
-            pinned:
-              table.getLeftTotalSize() > 0 && table.getRightTotalSize() > 0
-                ? "both"
-                : table.getLeftTotalSize() > 0
-                  ? "left"
-                  : table.getRightTotalSize() > 0
-                    ? "right"
-                    : "none",
-          },
-          className,
-        )}
         {...props}
       >
         <TableHeader display="grid" pinned>
