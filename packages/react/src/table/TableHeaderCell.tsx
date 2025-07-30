@@ -25,7 +25,12 @@ export const TableHeaderCell = forwardRef<
     },
     ref,
   ) => (
-    <Box asChild {...styles.cell({ pinned }, className)} {...props}>
+    <Box
+      asChild
+      data-pinned={pinned ? "" : undefined}
+      {...styles.cell({ pinned }, className)}
+      {...props}
+    >
       <th colSpan={colSpan} ref={ref}>
         <Box {...styles.content()} px={p ?? px} py={p ?? py}>
           {children}
