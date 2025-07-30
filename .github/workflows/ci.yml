@@ -126,4 +126,4 @@ jobs:
 
       - if: ${{ github.event_name != 'push' }}
         run: pnpm exec vitest run
-        timeout-minutes: 5
+        timeout-minutes: 3
