@@ -50,6 +50,13 @@ export const useFileUploadDrop = ({
                       );
                     }
 
+                    const { instance, refresh, token } = auth;
+                    if (!instance || !token) {
+                      throw new Error(
+                        "Found empty authentication credentials. Did you forget to provide valid values to `<AuthProvider>` from `@optiaxiom/react`?",
+                      );
+                    }
+
                     try {
                       const data = JSON.parse(
                         event.dataTransfer.getData(item.type),
@@ -65,7 +72,11 @@ export const useFileUploadDrop = ({
                       };
 
                       return isValidFile(resource, accept)
-                        ? getRemoteFile(resource, auth, true)
+                        ? getRemoteFile(
+                            resource,
+                            { instance, refresh, token },
+                            true,
+                          )
                         : null;
                     } catch {
                       /* empty */
@@ -112,13 +123,17 @@ async function getRemoteFile(
       ...auth,
       token: await auth.refresh(),
     });
+  } else if (!response.ok) {
+    throw new Error("Could not download file from Opal.", {
+      cause: new Error(
+        `Got status ${response.status} attempting to download ${resource.url}`,
+      ),
+    });
+  } else {
+    return new File([await response.arrayBuffer()], resource.name, {
+      type: response.headers.get("Content-Type") || "application/octet-stream",
+    });
   }
-  if (!response.ok) {
-    return null;
-  }
-  return new File([await response.arrayBuffer()], resource.name, {
-    type: response.headers.get("Content-Type") || "application/octet-stream",
-  });
 }
 
 /**
