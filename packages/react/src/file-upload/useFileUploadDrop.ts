@@ -50,13 +50,6 @@ export const useFileUploadDrop = ({
                       );
                     }
 
-                    const { instance, refresh, token } = auth;
-                    if (!instance || !token) {
-                      throw new Error(
-                        "Found empty authentication credentials. Did you forget to provide valid values to `<AuthProvider>` from `@optiaxiom/react`?",
-                      );
-                    }
-
                     try {
                       const data = JSON.parse(
                         event.dataTransfer.getData(item.type),
@@ -72,11 +65,7 @@ export const useFileUploadDrop = ({
                       };
 
                       return isValidFile(resource, accept)
-                        ? getRemoteFile(
-                            resource,
-                            { instance, refresh, token },
-                            true,
-                          )
+                        ? getRemoteFile(resource, auth, true)
                         : null;
                     } catch {
                       /* empty */

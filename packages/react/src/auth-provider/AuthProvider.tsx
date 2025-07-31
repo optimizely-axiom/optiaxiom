@@ -8,7 +8,7 @@ export type AuthProviderProps = {
   /**
    * The ID of the instance the user is currently accessing.
    */
-  instance: string | undefined;
+  instance: string;
   /**
    * Callback to refresh and return a new auth token in case it becomes stale.
    */
@@ -16,7 +16,7 @@ export type AuthProviderProps = {
   /**
    * The auth token of the current user session.
    */
-  token: string | undefined;
+  token: string;
 };
 
 export function AuthProvider({

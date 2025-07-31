@@ -6,7 +6,7 @@ export const AxiomAuthContext = createContext<
       /**
        * The ID of the instance the user is currently accessing.
        */
-      instance: string | undefined;
+      instance: string;
       /**
        * Callback to refresh and return a new auth token in case it becomes stale.
        */
@@ -14,7 +14,7 @@ export const AxiomAuthContext = createContext<
       /**
        * The auth token of the current user session.
        */
-      token: string | undefined;
+      token: string;
     }
 >(undefined);
 export const AxiomVersionContext = createContext<string | undefined>(undefined);
