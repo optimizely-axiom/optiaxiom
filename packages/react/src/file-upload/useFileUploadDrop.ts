@@ -1,8 +1,6 @@
-import { AxiomAuthContext } from "@optiaxiom/globals";
-import { useContext } from "react";
-
 import type { BoxProps } from "../box";
 
+import { useAuthContext } from "../auth-provider";
 import { type RemoteFile, useFileUploadContext } from "./FileUploadContext";
 
 export const useFileUploadDrop = ({
@@ -13,7 +11,7 @@ export const useFileUploadDrop = ({
   const { accept, disabled, onFilesDrop } = useFileUploadContext(
     "@optiaxiom/react/useFileUploadDrop",
   );
-  const auth = useContext(AxiomAuthContext);
+  const auth = useAuthContext();
 
   return {
     ...props,
