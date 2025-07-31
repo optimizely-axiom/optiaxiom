@@ -4,7 +4,7 @@ import { forwardRef, type MouseEvent } from "react";
 import { Box, type BoxProps } from "../box";
 import { IconAngleRight } from "../icons/IconAngleRight";
 import { Text } from "../text";
-import { decorateChildren } from "../utils";
+import { decorateChildren, fallbackSpan } from "../utils";
 import {
   type CommandOption,
   resolveItemProperty,
@@ -169,8 +169,8 @@ export const CommandItem = forwardRef<HTMLDivElement, CommandItemProps>(
                   )}
                 {resolveItemProperty(item.label, { inputValue })}
                 {detail && (
-                  <Text color="fg.secondary" flex="1">
-                    {detail}
+                  <Text asChild color="fg.secondary" flex="1">
+                    {fallbackSpan(detail)}
                   </Text>
                 )}
               </>
