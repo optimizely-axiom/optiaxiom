@@ -27,7 +27,6 @@ export default defineConfig({
       instances: [{ browser: "chromium" }],
       provider: "playwright",
     },
-    isolate: false,
     maxWorkers: 4,
     setupFiles: ["./.storybook/vitest.setup.ts"],
   },
