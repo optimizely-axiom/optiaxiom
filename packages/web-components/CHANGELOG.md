@@ -1,5 +1,13 @@
 # @optiaxiom/web-components
 
+## 0.11.2
+
+### Patch Changes
+
+- 1574d8f: handle readOnly state of DateInput
+- b321bba: allow react node in menu item detail
+- 0d99111: fix pinned cell background of selected rows
+
 ## 0.11.1
 
 ### Patch Changes
