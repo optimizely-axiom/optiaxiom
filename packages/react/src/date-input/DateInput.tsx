@@ -88,6 +88,7 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
           <Input
             addonAfter={
               value &&
+              !props.readOnly &&
               !props.required && (
                 <Button
                   appearance="subtle"
@@ -106,6 +107,11 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
               <PopoverTrigger
                 aria-label="Show date picker"
                 asChild
+                onClick={(event) => {
+                  if (props.readOnly) {
+                    event.preventDefault();
+                  }
+                }}
                 ref={pickerRef}
                 role="img"
                 {...styles.picker()}
@@ -131,7 +137,9 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
               if (CSS.supports("selector(::-webkit-datetime-edit)")) {
                 if (e.key === " ") {
                   e.preventDefault();
-                  setOpen(true);
+                  if (!props.readOnly) {
+                    setOpen(true);
+                  }
                 } else if (e.key === "Escape") {
                   e.preventDefault();
                   setOpen(false);

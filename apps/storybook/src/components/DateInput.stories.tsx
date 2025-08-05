@@ -105,6 +105,19 @@ export const Disabled: Story = {
   },
 };
 
+export const ReadOnly: Story = {
+  args: {
+    defaultValue: "2025-01-22",
+    readOnly: true,
+  },
+  play: async ({ canvas }) => {
+    await userEvent.click(
+      await canvas.findByRole("img", { name: "Show date picker" }),
+    );
+    await expect(screen.queryByText("January 2025")).not.toBeInTheDocument();
+  },
+};
+
 export const Required: Story = {
   args: {
     defaultValue: "2025-01-22",
