@@ -2,7 +2,6 @@ import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import { type ComponentPropsWithRef, useEffect, useRef, useState } from "react";
 
 import { Popover } from "../popover";
-import { toInstant, toPlainDate } from "../utils";
 import { DateRangePickerProvider } from "./DateRangePickerContext";
 
 export type DateRangePickerProps = ComponentPropsWithRef<typeof Popover> & {
@@ -39,7 +38,6 @@ export function DateRangePicker({
 }: DateRangePickerProps) {
   const triggerRef = useRef<HTMLButtonElement>(null);
 
-  const [from, setFrom] = useState<Date>();
   const [open, setOpen] = useControllableState({
     caller: "@optiaxiom/react/DateRangePicker",
     defaultProp: defaultOpen,
@@ -52,26 +50,21 @@ export function DateRangePicker({
     onChange: onValueChange,
     prop: valueProp,
   });
+  const [innerValue, setInnerValue] = useState(value);
 
   useEffect(() => {
-    if (open) {
-      setFrom(undefined);
+    if (!open && innerValue) {
+      setValue(innerValue);
+      setInnerValue(null);
     }
-  }, [open]);
-  useEffect(() => {
-    if (!open && from) {
-      const end = toInstant(toPlainDate(from) + "T23:59:59.999");
-      if (end) {
-        setValue({ from: from, to: end });
-      }
-    }
-  }, [from, open, setValue]);
+  }, [innerValue, open, setValue]);
 
   return (
     <Popover onOpenChange={setOpen} open={open} {...props}>
       <DateRangePickerProvider
         disabled={disabled}
-        setFrom={setFrom}
+        innerValue={innerValue}
+        setInnerValue={setInnerValue}
         setOpen={setOpen}
         setValue={setValue}
         triggerRef={triggerRef}
