@@ -53,7 +53,7 @@ export const DateRangePickerContent = forwardRef<
     const { labelId: fieldLabelId } = useFieldContext(
       "@optiaxiom/react/DateRangePickerContent",
     );
-    const { setFrom, setOpen, setValue, triggerRef, value } =
+    const { innerValue, setInnerValue, triggerRef, value } =
       useDateRangePickerContext("@optiaxiom/react/DateRangePickerContent");
     const labelId = useId();
 
@@ -74,17 +74,11 @@ export const DateRangePickerContent = forwardRef<
             max={max}
             min={min}
             mode="range"
-            onDateSelect={(date) => {
-              setFrom((from) => (from ? undefined : date));
-            }}
             onValueChange={(value) => {
-              setValue(value);
-              requestAnimationFrame(() => {
-                setOpen(false);
-              });
+              setInnerValue(value);
             }}
             today={today}
-            value={value}
+            value={innerValue ?? value}
             weekend={weekend}
           />
           {addonAfter}

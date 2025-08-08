@@ -12,7 +12,7 @@ import { DayPicker, type Matcher } from "react-day-picker";
 import { Box, type BoxProps } from "../box";
 import { Clock } from "../clock";
 import { Flex } from "../flex";
-import { useResponsiveMatches } from "../hooks";
+import { InputControl, InputRoot } from "../input";
 import { usePopoverContentContext } from "../popover/internals";
 import { Text } from "../text";
 import { toInstant, toPlainDate, toPlainTime } from "../utils";
@@ -155,11 +155,6 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
         ? "00:00"
         : toPlainTime(value instanceof Date ? value : new Date(), step);
 
-    const numberOfMonths = useResponsiveMatches({
-      base: 1,
-      sm: 2,
-    });
-
     const innerRef = useRef<HTMLDivElement>(null);
     const ref = useComposedRefs(innerRef, outerRef);
 
@@ -178,25 +173,27 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
             <CalendarDayButton
               onFocus={(event) => {
                 onFocus?.(event);
-                setTo(props.day.date);
+                if (from) {
+                  setTo(props.day.date);
+                }
               }}
               onPointerEnter={(event) => {
                 onPointerEnter?.(event);
-                if (!event.currentTarget.disabled) {
+                if (!event.currentTarget.disabled && from) {
                   setTo(props.day.date);
                 }
               }}
               onPointerLeave={(event) => {
                 onPointerLeave?.(event);
-                if (!event.currentTarget.disabled) {
-                  setTo(undefined);
+                if (!event.currentTarget.disabled && from) {
+                  setTo(from);
                 }
               }}
               {...props}
             />
           );
         },
-      [],
+      [from],
     );
 
     return (
@@ -256,7 +253,6 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
               mode="range"
               modifiers={{ holiday, weekend }}
               month={month}
-              numberOfMonths={numberOfMonths}
               onMonthChange={onMonthChange}
               onSelect={(newValue) => {
                 if (!from) {
@@ -269,17 +265,26 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
                       ? newValue.from
                       : newValue?.to;
                   setFrom(newFrom);
+                  setTo(newFrom);
                   if (newFrom) {
                     onDateSelect?.(newFrom);
                   }
+                  setValue(
+                    newFrom
+                      ? {
+                          from: newFrom,
+                          to: toEndOfDay(newFrom),
+                        }
+                      : null,
+                  );
                 } else {
                   setFrom(undefined);
                   const start = to && to < from ? to : from;
                   const end =
                     to && to < from
-                      ? toInstant(toPlainDate(from) + "T23:59:59.999")
+                      ? toEndOfDay(from)
                       : to
-                        ? toInstant(toPlainDate(to) + "T23:59:59.999")
+                        ? toEndOfDay(to)
                         : undefined;
                   if (end) {
                     onDateSelect?.(end);
@@ -329,9 +334,108 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
             </Text>
           </Flex>
         )}
+        {mode === "range" && (
+          <InputRoot mt="8" px="8" role="group">
+            <InputControl asChild {...styles.date()}>
+              <input
+                aria-label="Start date"
+                onBlur={(event) => {
+                  const date = toInstant(event.target.value);
+                  if (!date) {
+                    return;
+                  }
+
+                  if (!(value && typeof value === "object" && "to" in value)) {
+                    setFrom(undefined);
+                    setValue({ from: date, to: toEndOfDay(date) });
+                  }
+                }}
+                onChange={(event) => {
+                  const date = toInstant(event.target.value);
+                  if (!date) {
+                    return;
+                  }
+
+                  if (value && typeof value === "object" && "to" in value) {
+                    setValue({ ...value, from: date });
+                  } else if (to) {
+                    setTo(undefined);
+                    setValue({ from: date, to: toEndOfDay(to) });
+                  } else {
+                    setFrom(date);
+                  }
+                }}
+                type="date"
+                value={
+                  from
+                    ? toPlainDate(from)
+                    : value && typeof value === "object" && "from" in value
+                      ? toPlainDate(value.from)
+                      : ""
+                }
+              />
+            </InputControl>
+            <Box aria-hidden {...styles.separator()}>
+              -
+            </Box>
+            <InputControl asChild {...styles.date({ position: "end" })}>
+              <input
+                aria-label="End date"
+                onBlur={(event) => {
+                  const date = toInstant(event.target.value);
+                  if (!date) {
+                    return;
+                  }
+
+                  if (
+                    !(value && typeof value === "object" && "from" in value)
+                  ) {
+                    setTo(undefined);
+                    setValue({ from: date, to: date });
+                  }
+                }}
+                onChange={(event) => {
+                  const date = toInstant(event.target.value);
+                  if (!date) {
+                    return;
+                  }
+
+                  if (from) {
+                    setFrom(undefined);
+                    setValue({ from, to: toEndOfDay(date) });
+                  } else if (
+                    value &&
+                    typeof value === "object" &&
+                    "from" in value
+                  ) {
+                    setValue({ ...value, to: toEndOfDay(date) });
+                  } else {
+                    setTo(date);
+                  }
+                }}
+                type="date"
+                value={
+                  value && typeof value === "object" && "to" in value
+                    ? toPlainDate(value.to)
+                    : to
+                      ? toPlainDate(to)
+                      : ""
+                }
+              />
+            </InputControl>
+          </InputRoot>
+        )}
       </Flex>
     );
   },
 );
 
 Calendar.displayName = "@optiaxiom/react/Calendar";
+
+const toEndOfDay = (date: Date) => {
+  const newDate = toInstant(toPlainDate(date) + "T23:59:59.999");
+  if (!newDate) {
+    throw new Error(`Could not get end of day (${date.toISOString()})`);
+  }
+  return newDate;
+};
