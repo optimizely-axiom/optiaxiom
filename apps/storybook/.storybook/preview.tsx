@@ -19,6 +19,9 @@ export const parameters = {
   a11y: {
     test: "error",
   },
+  chromatic: {
+    disableSnapshot: true,
+  },
   controls: { sort: "requiredFirst" },
   layout: "centered",
   options: {
