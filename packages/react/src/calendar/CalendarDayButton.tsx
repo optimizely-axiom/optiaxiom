@@ -2,6 +2,7 @@ import { type ComponentPropsWithoutRef, useEffect, useRef } from "react";
 import { DayButton } from "react-day-picker";
 
 import { Box } from "../box";
+import { useCalendarContext } from "./CalendarContext";
 import * as styles from "./CalendarDayButton.css";
 
 export type CalendarDayButtonProps = ComponentPropsWithoutRef<typeof DayButton>;
@@ -10,11 +11,13 @@ export function CalendarDayButton({
   children,
   className,
   color: _color,
-  day: _day,
+  day,
   disabled,
   modifiers,
   ...props
 }: CalendarDayButtonProps) {
+  const { setTo } = useCalendarContext("@optiaxiom/react/CalendarDayButton");
+
   const ref = useRef<HTMLButtonElement>(null);
   useEffect(() => {
     if (modifiers.focused) {
@@ -49,6 +52,19 @@ export function CalendarDayButton({
         },
         className,
       )}
+      onFocus={() => {
+        setTo(day.date);
+      }}
+      onPointerEnter={() => {
+        if (!(modifiers.outside || disabled)) {
+          setTo(day.date);
+        }
+      }}
+      onPointerLeave={() => {
+        if (!(modifiers.outside || disabled)) {
+          setTo(undefined);
+        }
+      }}
     >
       <button disabled={modifiers.outside || disabled} ref={ref} {...props}>
         {children}
