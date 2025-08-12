@@ -38,7 +38,11 @@ export default {
 
 type Story = StoryObj<typeof DateRangePicker>;
 
-export const Basic: Story = {};
+export const Basic: Story = {
+  args: {
+    defaultOpen: true,
+  },
+};
 
 export const WithLabel: Story = {
   decorators: (Story) => (
@@ -48,8 +52,11 @@ export const WithLabel: Story = {
   ),
   play: async ({ canvas }) => {
     await userEvent.click(await canvas.findByRole("button", { name: "Label" }));
-    await userEvent.click((await screen.findAllByText("15"))[0]);
-    await userEvent.click((await screen.findAllByText("14"))[1]);
+    await userEvent.click(await screen.findByText("15"));
+    await userEvent.click(
+      screen.getByRole("button", { name: "Go to the Next Month" }),
+    );
+    await userEvent.click(await screen.findByText("14"));
     await expect(
       canvas.getByText(
         new Intl.DateTimeFormat(undefined, {
@@ -91,8 +98,12 @@ export const Disabled: Story = {
 export const Addons: Story = {
   play: async ({ canvas }) => {
     await expect(await screen.findByRole("dialog")).toBeInTheDocument();
-    await userEvent.click((await screen.findAllByText("15"))[0]);
-    await userEvent.click((await screen.findAllByText("14"))[1]);
+    await userEvent.click(await screen.findByText("15"));
+    await userEvent.click(
+      screen.getByRole("button", { name: "Go to the Next Month" }),
+    );
+    await userEvent.click(await screen.findByText("14"));
+    await userEvent.click(await screen.findByRole("button", { name: "Done" }));
     await expect(canvas.queryByRole("dialog")).not.toBeInTheDocument();
 
     await waitFor(() =>

@@ -13,16 +13,7 @@ export function CalendarMonthCaption({
   ...props
 }: CalendarMonthCaptionProps) {
   return (
-    <Box
-      alignItems="center"
-      asChild
-      display="flex"
-      fontSize="lg"
-      fontWeight="500"
-      h="md"
-      mb="16"
-      mr="64"
-    >
+    <Box asChild mb="16" mr="64">
       <MonthCaption {...props}>{children}</MonthCaption>
     </Box>
   );

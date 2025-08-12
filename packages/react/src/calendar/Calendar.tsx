@@ -11,11 +11,11 @@ import { DayPicker, type Matcher } from "react-day-picker";
 import { Box, type BoxProps } from "../box";
 import { Clock } from "../clock";
 import { Flex } from "../flex";
-import { useResponsiveMatches } from "../hooks";
 import { usePopoverContentContext } from "../popover/internals";
 import { Text } from "../text";
 import { toInstant, toPlainDate, toPlainTime } from "../utils";
 import * as styles from "./Calendar.css";
+import { CalendarCaptionLabel } from "./CalendarCaptionLabel";
 import { CalendarChevron } from "./CalendarChevron";
 import { CalendarProvider } from "./CalendarContext";
 import { CalendarDay } from "./CalendarDay";
@@ -32,10 +32,7 @@ import { toTimeZoneName } from "./toTimeZoneName";
 
 export type CalendarProps = BoxProps<
   "div",
-  Pick<
-    ComponentPropsWithoutRef<typeof DayPicker>,
-    "month" | "onMonthChange" | "today"
-  > & {
+  Pick<ComponentPropsWithoutRef<typeof DayPicker>, "today"> & {
     /**
      * Apply the `holiday` modifier to the matching days.
      */
@@ -107,6 +104,7 @@ export type CalendarProps = BoxProps<
 type DateRange = { from: Date; to: Date };
 
 const components = {
+  CaptionLabel: CalendarCaptionLabel,
   Chevron: CalendarChevron,
   Day: CalendarDay,
   DayButton: CalendarDayButton,
@@ -128,9 +126,7 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
       max,
       min,
       mode = "single",
-      month,
       onDateSelect,
-      onMonthChange,
       onValueChange,
       step,
       today,
@@ -143,6 +139,7 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
   ) => {
     const { side } = usePopoverContentContext("@optiaxiom/react/Calendar");
 
+    const [view, setView] = useState<"day" | "month" | "year">("day");
     const [value, setValue] = useControllableState<Date | DateRange | null>({
       caller: "@optiaxiom/react/Calendar",
       defaultProp: defaultValue,
@@ -154,10 +151,13 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
         ? "00:00"
         : toPlainTime(value instanceof Date ? value : new Date(), step);
 
-    const numberOfMonths = useResponsiveMatches({
-      base: 1,
-      sm: 2,
-    });
+    const [month, setMonth] = useState(
+      value && typeof value === "object" && "from" in value
+        ? value.from
+        : value instanceof Date
+          ? value
+          : (today ?? new Date()),
+    );
 
     const innerRef = useRef<HTMLDivElement>(null);
     const ref = useComposedRefs(innerRef, outerRef);
@@ -166,7 +166,13 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
     const [to, setTo] = useState<Date>();
 
     return (
-      <CalendarProvider setTo={setTo}>
+      <CalendarProvider
+        month={month}
+        setMonth={setMonth}
+        setTo={setTo}
+        setView={setView}
+        view={view}
+      >
         <Flex
           bg="bg.default"
           color="fg.default"
@@ -180,7 +186,6 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
               <DayPicker
                 autoFocus
                 components={components}
-                defaultMonth={value instanceof Date ? value : undefined}
                 disabled={[
                   ...(min ? [{ before: min }] : []),
                   ...(max ? [{ after: max }] : []),
@@ -189,7 +194,7 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
                 modifiers={{ holiday, weekend }}
                 month={month}
                 navLayout="after"
-                onMonthChange={onMonthChange}
+                onMonthChange={setMonth}
                 onSelect={(value) => {
                   const date = value
                     ? new Date(toPlainDate(value) + "T" + (time ?? "00:00"))
@@ -205,11 +210,6 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
               <DayPicker
                 autoFocus
                 components={components}
-                defaultMonth={
-                  value && typeof value === "object" && "from" in value
-                    ? value.from
-                    : undefined
-                }
                 disabled={[
                   ...(min ? [{ before: min }] : []),
                   ...(max ? [{ after: max }] : []),
@@ -219,8 +219,7 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
                 modifiers={{ holiday, weekend }}
                 month={month}
                 navLayout="after"
-                numberOfMonths={numberOfMonths}
-                onMonthChange={onMonthChange}
+                onMonthChange={setMonth}
                 onSelect={(newValue) => {
                   if (!from) {
                     const oldFrom =
