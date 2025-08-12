@@ -77,7 +77,6 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
     const forceValueChange = useObserveValue(innerRef, setValue);
     const instant =
       typeof value === "string" ? (toInstant(value) ?? null) : null;
-    const [month, setMonth] = useState(instant ?? undefined);
 
     const maxDate = max ? toInstant(max) : undefined;
     const minDate = min ? toInstant(min) : undefined;
@@ -126,7 +125,6 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
             onChange={(event) => {
               onChange?.(event);
               setValue(event.target.value);
-              setMonth(toInstant(event.target.value));
             }}
             onClick={(e) => {
               if (CSS.supports("selector(::-webkit-datetime-edit)")) {
@@ -184,8 +182,6 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
             holiday={holiday}
             max={maxDate}
             min={minDate}
-            month={month}
-            onMonthChange={setMonth}
             onValueChange={(date) => {
               if (!date) {
                 return;
