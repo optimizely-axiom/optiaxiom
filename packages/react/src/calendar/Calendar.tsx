@@ -3,7 +3,6 @@ import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import {
   type ComponentPropsWithoutRef,
   forwardRef,
-  useMemo,
   useRef,
   useState,
 } from "react";
@@ -18,6 +17,7 @@ import { Text } from "../text";
 import { toInstant, toPlainDate, toPlainTime } from "../utils";
 import * as styles from "./Calendar.css";
 import { CalendarChevron } from "./CalendarChevron";
+import { CalendarProvider } from "./CalendarContext";
 import { CalendarDay } from "./CalendarDay";
 import { CalendarDayButton } from "./CalendarDayButton";
 import { CalendarMonthCaption } from "./CalendarMonthCaption";
@@ -109,6 +109,7 @@ type DateRange = { from: Date; to: Date };
 const components = {
   Chevron: CalendarChevron,
   Day: CalendarDay,
+  DayButton: CalendarDayButton,
   MonthCaption: CalendarMonthCaption,
   MonthGrid: CalendarMonthGrid,
   Months: CalendarMonths,
@@ -164,172 +165,140 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
     const [from, setFrom] = useState<Date>();
     const [to, setTo] = useState<Date>();
 
-    const DayButtonMemo = useMemo(
-      () =>
-        function DayButton({
-          onFocus,
-          onPointerEnter,
-          onPointerLeave,
-          ...props
-        }: ComponentPropsWithoutRef<typeof CalendarDayButton>) {
-          return (
-            <CalendarDayButton
-              onFocus={(event) => {
-                onFocus?.(event);
-                setTo(props.day.date);
-              }}
-              onPointerEnter={(event) => {
-                onPointerEnter?.(event);
-                if (!event.currentTarget.disabled) {
-                  setTo(props.day.date);
-                }
-              }}
-              onPointerLeave={(event) => {
-                onPointerLeave?.(event);
-                if (!event.currentTarget.disabled) {
-                  setTo(undefined);
-                }
-              }}
-              {...props}
-            />
-          );
-        },
-      [],
-    );
-
     return (
-      <Flex
-        bg="bg.default"
-        color="fg.default"
-        fontSize="md"
-        gap="4"
-        ref={ref}
-        {...props}
-      >
-        <Box asChild {...styles.picker({ side })}>
-          {mode === "single" ? (
-            <DayPicker
-              autoFocus
-              components={{
-                ...components,
-                DayButton: DayButtonMemo,
-              }}
-              defaultMonth={value instanceof Date ? value : undefined}
-              disabled={[
-                ...(min ? [{ before: min }] : []),
-                ...(max ? [{ after: max }] : []),
-              ]}
-              mode="single"
-              modifiers={{ holiday, weekend }}
-              month={month}
-              navLayout="after"
-              onMonthChange={onMonthChange}
-              onSelect={(value) => {
-                const date = value
-                  ? new Date(toPlainDate(value) + "T" + (time ?? "00:00"))
-                  : (value ?? null);
-                setValue(date);
-                onDateSelect?.(date);
-              }}
-              required
-              selected={value instanceof Date ? value : undefined}
-              today={today}
-            />
-          ) : (
-            <DayPicker
-              autoFocus
-              components={{
-                ...components,
-                DayButton: DayButtonMemo,
-              }}
-              defaultMonth={
-                value && typeof value === "object" && "from" in value
-                  ? value.from
-                  : undefined
-              }
-              disabled={[
-                ...(min ? [{ before: min }] : []),
-                ...(max ? [{ after: max }] : []),
-              ]}
-              fixedWeeks
-              mode="range"
-              modifiers={{ holiday, weekend }}
-              month={month}
-              navLayout="after"
-              numberOfMonths={numberOfMonths}
-              onMonthChange={onMonthChange}
-              onSelect={(newValue) => {
-                if (!from) {
-                  const oldFrom =
-                    value && typeof value === "object" && "from" in value
-                      ? value.from
-                      : undefined;
-                  const newFrom =
-                    oldFrom && newValue?.from && newValue.from < oldFrom
-                      ? newValue.from
-                      : newValue?.to;
-                  setFrom(newFrom);
-                  if (newFrom) {
-                    onDateSelect?.(newFrom);
-                  }
-                } else {
-                  setFrom(undefined);
-                  const start = to && to < from ? to : from;
-                  const end =
-                    to && to < from
-                      ? toInstant(toPlainDate(from) + "T23:59:59.999")
-                      : to
-                        ? toInstant(toPlainDate(to) + "T23:59:59.999")
-                        : undefined;
-                  if (end) {
-                    onDateSelect?.(end);
-                  }
-                  setValue(
-                    end
-                      ? {
-                          from: start,
-                          to: end,
-                        }
-                      : null,
-                  );
-                }
-              }}
-              required
-              selected={
-                from
-                  ? to && to < from
-                    ? { from: to, to: from }
-                    : { from, to }
-                  : value && typeof value === "object" && "from" in value
-                    ? value
+      <CalendarProvider setTo={setTo}>
+        <Flex
+          bg="bg.default"
+          color="fg.default"
+          fontSize="md"
+          gap="4"
+          ref={ref}
+          {...props}
+        >
+          <Box asChild {...styles.picker({ side })}>
+            {mode === "single" ? (
+              <DayPicker
+                autoFocus
+                components={components}
+                defaultMonth={value instanceof Date ? value : undefined}
+                disabled={[
+                  ...(min ? [{ before: min }] : []),
+                  ...(max ? [{ after: max }] : []),
+                ]}
+                mode="single"
+                modifiers={{ holiday, weekend }}
+                month={month}
+                navLayout="after"
+                onMonthChange={onMonthChange}
+                onSelect={(value) => {
+                  const date = value
+                    ? new Date(toPlainDate(value) + "T" + (time ?? "00:00"))
+                    : (value ?? null);
+                  setValue(date);
+                  onDateSelect?.(date);
+                }}
+                required
+                selected={value instanceof Date ? value : undefined}
+                today={today}
+              />
+            ) : (
+              <DayPicker
+                autoFocus
+                components={components}
+                defaultMonth={
+                  value && typeof value === "object" && "from" in value
+                    ? value.from
                     : undefined
-              }
-              showOutsideDays
-              today={today}
-            />
+                }
+                disabled={[
+                  ...(min ? [{ before: min }] : []),
+                  ...(max ? [{ after: max }] : []),
+                ]}
+                fixedWeeks
+                mode="range"
+                modifiers={{ holiday, weekend }}
+                month={month}
+                navLayout="after"
+                numberOfMonths={numberOfMonths}
+                onMonthChange={onMonthChange}
+                onSelect={(newValue) => {
+                  if (!from) {
+                    const oldFrom =
+                      value && typeof value === "object" && "from" in value
+                        ? value.from
+                        : undefined;
+                    const newFrom =
+                      oldFrom && newValue?.from && newValue.from < oldFrom
+                        ? newValue.from
+                        : newValue?.to;
+                    setFrom(newFrom);
+                    if (newFrom) {
+                      onDateSelect?.(newFrom);
+                    }
+                  } else {
+                    setFrom(undefined);
+                    const start = to && to < from ? to : from;
+                    const end =
+                      to && to < from
+                        ? toInstant(toPlainDate(from) + "T23:59:59.999")
+                        : to
+                          ? toInstant(toPlainDate(to) + "T23:59:59.999")
+                          : undefined;
+                    if (end) {
+                      onDateSelect?.(end);
+                    }
+                    setValue(
+                      end
+                        ? {
+                            from: start,
+                            to: end,
+                          }
+                        : null,
+                    );
+                  }
+                }}
+                required
+                selected={
+                  from
+                    ? to && to < from
+                      ? { from: to, to: from }
+                      : { from, to }
+                    : value && typeof value === "object" && "from" in value
+                      ? value
+                      : undefined
+                }
+                showOutsideDays
+                today={today}
+              />
+            )}
+          </Box>
+          {type === "datetime-local" && mode == "single" && (
+            <Flex gap="8" mt="8">
+              <Clock
+                onValueChange={(time) => {
+                  setValue(
+                    new Date(
+                      toPlainDate(value instanceof Date ? value : new Date()) +
+                        "T" +
+                        time,
+                    ),
+                  );
+                }}
+                step={step}
+                value={time}
+              />
+              <Text
+                color="fg.tertiary"
+                fontSize="sm"
+                textAlign="center"
+                w="full"
+              >
+                {toTimeZoneName(value instanceof Date ? value : new Date())}
+              </Text>
+            </Flex>
           )}
-        </Box>
-        {type === "datetime-local" && mode == "single" && (
-          <Flex gap="8" mt="8">
-            <Clock
-              onValueChange={(time) => {
-                setValue(
-                  new Date(
-                    toPlainDate(value instanceof Date ? value : new Date()) +
-                      "T" +
-                      time,
-                  ),
-                );
-              }}
-              step={step}
-              value={time}
-            />
-            <Text color="fg.tertiary" fontSize="sm" textAlign="center" w="full">
-              {toTimeZoneName(value instanceof Date ? value : new Date())}
-            </Text>
-          </Flex>
-        )}
-      </Flex>
+        </Flex>
+      </CalendarProvider>
     );
   },
 );
