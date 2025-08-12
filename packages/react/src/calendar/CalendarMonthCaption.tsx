@@ -20,8 +20,8 @@ export function CalendarMonthCaption({
       fontSize="lg"
       fontWeight="500"
       h="md"
-      justifyContent="center"
       mb="16"
+      mr="64"
     >
       <MonthCaption {...props}>{children}</MonthCaption>
     </Box>
