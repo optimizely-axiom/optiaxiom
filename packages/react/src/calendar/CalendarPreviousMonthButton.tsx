@@ -3,6 +3,7 @@ import type { ComponentPropsWithoutRef } from "react";
 import { PreviousMonthButton } from "react-day-picker";
 
 import { Button } from "../button";
+import * as styles from "./CalendarPreviousMonthButton.css";
 
 export type CalendarPreviousMonthButtonProps = ComponentPropsWithoutRef<
   typeof PreviousMonthButton
@@ -10,11 +11,18 @@ export type CalendarPreviousMonthButtonProps = ComponentPropsWithoutRef<
 
 export function CalendarPreviousMonthButton({
   children,
+  className,
   color: _color,
   ...props
 }: CalendarPreviousMonthButtonProps) {
   return (
-    <Button appearance="subtle" asChild icon={children} {...props}>
+    <Button
+      appearance="subtle"
+      asChild
+      icon={children}
+      {...styles.button({}, className)}
+      {...props}
+    >
       <PreviousMonthButton />
     </Button>
   );

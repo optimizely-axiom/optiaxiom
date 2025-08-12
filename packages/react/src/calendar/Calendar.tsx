@@ -23,7 +23,6 @@ import { CalendarDayButton } from "./CalendarDayButton";
 import { CalendarMonthCaption } from "./CalendarMonthCaption";
 import { CalendarMonthGrid } from "./CalendarMonthGrid";
 import { CalendarMonths } from "./CalendarMonths";
-import { CalendarNav } from "./CalendarNav";
 import { CalendarNextMonthButton } from "./CalendarNextMonthButton";
 import { CalendarPreviousMonthButton } from "./CalendarPreviousMonthButton";
 import { CalendarWeek } from "./CalendarWeek";
@@ -113,7 +112,6 @@ const components = {
   MonthCaption: CalendarMonthCaption,
   MonthGrid: CalendarMonthGrid,
   Months: CalendarMonths,
-  Nav: CalendarNav,
   NextMonthButton: CalendarNextMonthButton,
   PreviousMonthButton: CalendarPreviousMonthButton,
   Week: CalendarWeek,
@@ -224,6 +222,7 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
               mode="single"
               modifiers={{ holiday, weekend }}
               month={month}
+              navLayout="after"
               onMonthChange={onMonthChange}
               onSelect={(value) => {
                 const date = value
@@ -256,6 +255,7 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
               mode="range"
               modifiers={{ holiday, weekend }}
               month={month}
+              navLayout="after"
               numberOfMonths={numberOfMonths}
               onMonthChange={onMonthChange}
               onSelect={(newValue) => {
