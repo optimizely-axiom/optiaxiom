@@ -112,7 +112,7 @@ export const Basic: Story = {
       >
         <SpotlightTrigger
           addonAfter={
-            <Kbd ml="auto" modifiers="meta" variant="subtle">
+            <Kbd ml="auto" modifiers="mod" variant="subtle">
               K
             </Kbd>
           }
