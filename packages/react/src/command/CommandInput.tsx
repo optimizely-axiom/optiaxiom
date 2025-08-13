@@ -59,21 +59,23 @@ export const CommandInput = forwardRef<HTMLInputElement, CommandInputProps>(
               return;
             }
 
-            if (!event.target.value && event.key === " ") {
+            const selectedWithSpace = !event.target.value && event.key === " ";
+            if (
+              highlightedItemRef.current instanceof HTMLAnchorElement &&
+              (selectedWithSpace || event.key === "Enter")
+            ) {
+              const { view: _view, ...eventInit } = event;
+
+              event.preventDefault();
+              Object.assign(event, { preventDownshiftDefault: true });
+              preventDownshiftBlurRef.current = true;
+
+              highlightedItemRef.current.dispatchEvent(
+                new MouseEvent("click", eventInit),
+              );
+            } else if (selectedWithSpace) {
               event.preventDefault();
               downshift.selectItem(highlightedItem);
-            } else if (event.key === "Enter") {
-              if (highlightedItemRef.current instanceof HTMLAnchorElement) {
-                const { view: _view, ...eventInit } = event;
-
-                event.preventDefault();
-                Object.assign(event, { preventDownshiftDefault: true });
-                preventDownshiftBlurRef.current = true;
-
-                highlightedItemRef.current.dispatchEvent(
-                  new MouseEvent("click", eventInit),
-                );
-              }
             }
           },
         })}
