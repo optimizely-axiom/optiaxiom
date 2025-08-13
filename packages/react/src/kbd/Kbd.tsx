@@ -24,12 +24,14 @@ const mapModifierToCode = {
     alt: "⌥",
     ctrl: "⌃",
     meta: "⌘",
+    mod: "⌘",
     shift: "⇧",
   },
   win: {
     alt: "Alt",
     ctrl: "Ctrl",
     meta: "Win",
+    mod: "Ctrl",
     shift: "Shift",
   },
 };
