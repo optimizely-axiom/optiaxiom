@@ -1,7 +1,7 @@
 import type { BoxProps } from "../box";
 
 import { useAuthContext } from "../auth-provider";
-import { type RemoteFile, useFileUploadContext } from "./FileUploadContext";
+import { useFileUploadContext } from "./FileUploadContext";
 
 export const useFileUploadDrop = ({
   onDragOver,
@@ -79,6 +79,12 @@ export const useFileUploadDrop = ({
       );
     },
   };
+};
+
+type RemoteFile = {
+  name: string;
+  type: string;
+  url: string;
 };
 
 async function getRemoteFile(
