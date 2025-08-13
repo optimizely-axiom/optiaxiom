@@ -103,7 +103,6 @@ export const Addons: Story = {
       screen.getByRole("button", { name: "Go to the Next Month" }),
     );
     await userEvent.click(await screen.findByText("14"));
-    await userEvent.click(await screen.findByRole("button", { name: "Done" }));
     await expect(canvas.queryByRole("dialog")).not.toBeInTheDocument();
 
     await waitFor(() =>
