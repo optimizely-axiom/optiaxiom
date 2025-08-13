@@ -1,5 +1,13 @@
 # @optiaxiom/react
 
+## 1.6.4
+
+### Patch Changes
+
+- 0f59865: allow easily selecting month/year from calendar picker
+- 138dc95: fix handling space to select for links
+- 267cb13: add mod modifier to kbd component
+
 ## 1.6.3
 
 ### Patch Changes
