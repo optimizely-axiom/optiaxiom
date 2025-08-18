@@ -6,6 +6,7 @@ import {
 } from "react";
 
 import { version } from "../../package.json";
+import { DialogKitProvider } from "../dialog-kit/internals";
 import { FocusBookmarkProvider } from "../focus-bookmark";
 import { ThemeProvider } from "../theme-provider";
 import { ToastProvider } from "../toast";
@@ -54,7 +55,10 @@ export function AxiomProvider({
   return (
     <AxiomVersionContext.Provider value={version}>
       <TooltipProvider {...tooltip}>
-        <FocusBookmarkProvider>{children}</FocusBookmarkProvider>
+        <FocusBookmarkProvider>
+          {children}
+          <DialogKitProvider />
+        </FocusBookmarkProvider>
       </TooltipProvider>
     </AxiomVersionContext.Provider>
   );

@@ -2,6 +2,7 @@ export * from "./calendar";
 export * from "./command";
 export * from "./data-table/DataTableHeaderCell";
 export * from "./details-panel";
+export * from "./dialog-kit";
 export * from "./file-upload";
 export * from "./highlight";
 export * from "./inline-input";

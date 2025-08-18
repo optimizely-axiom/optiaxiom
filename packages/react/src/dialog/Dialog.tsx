@@ -1,7 +1,8 @@
 import * as RadixDialog from "@radix-ui/react-dialog";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
-import { useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 
+import { DialogKitContext } from "../dialog-kit/internals";
 import { FocusBookmarkRestore } from "../focus-bookmark";
 import {
   NestedDialogProvider,
@@ -32,6 +33,14 @@ export function Dialog({
   open: openProp,
   ...props
 }: DialogProps) {
+  if (useContext(DialogKitContext)) {
+    throw new Error(
+      "`@optiaxiom/react/Dialog` should not be used explicitly in managed mode." +
+        "\n\n" +
+        "Please remove it and only use `@optiaxiom/react/DialogContent` instead.",
+    );
+  }
+
   const [open, setOpen] = useControllableState({
     caller: "@optiaxiom/react/Dialog",
     defaultProp: defaultOpen,

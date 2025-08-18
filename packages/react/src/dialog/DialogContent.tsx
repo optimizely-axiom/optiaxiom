@@ -1,10 +1,11 @@
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import * as RadixDialog from "@radix-ui/react-dialog";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
-import { forwardRef, useRef } from "react";
+import { forwardRef, useContext, useRef } from "react";
 
 import { Backdrop } from "../backdrop";
 import { type BoxProps } from "../box";
+import { DialogKitContext } from "../dialog-kit/internals";
 import { FocusBookmarkProvider } from "../focus-bookmark";
 import { ModalProvider } from "../modal";
 import { Paper } from "../paper";
@@ -21,10 +22,14 @@ export type DialogContentProps = ExcludeProps<
 >;
 
 export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
-  ({ children, className, size = "md", style, ...props }, outerRef) => {
+  (
+    { children, className, onCloseAutoFocus, size = "md", style, ...props },
+    outerRef,
+  ) => {
     const { nestedDialogCount, open } = useDialogContext(
       "@optiaxiom/react/DialogContent",
     );
+    const { onClose } = useContext(DialogKitContext) ?? {};
 
     const innerRef = useRef<HTMLDivElement>(null);
     const ref = useComposedRefs(innerRef, outerRef);
@@ -57,7 +62,15 @@ export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
               {...styles.content({ size }, className)}
               {...props}
             >
-              <RadixDialog.Content asChild forceMount ref={ref}>
+              <RadixDialog.Content
+                asChild
+                forceMount
+                onCloseAutoFocus={(event) => {
+                  onCloseAutoFocus?.(event);
+                  onClose?.();
+                }}
+                ref={ref}
+              >
                 <DialogContentImpl>
                   <ModalProvider shardRef={innerRef}>
                     <FocusBookmarkProvider containerRef={innerRef}>
