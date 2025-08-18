@@ -44,7 +44,7 @@ const pages = [
   },
   {
     category: categories.Typography,
-    description: "Set the element's font family",
+    description: "Set the element's font family to control the visual appearance and readability of text content. Font families define the overall style and character of typography, allowing designers to establish visual hierarchy, improve readability, and create brand consistency across interfaces. Common font family categories include serif fonts for formal content, sans-serif fonts for modern interfaces, monospace fonts for code and technical content, and display fonts for headings and decorative text. The choice of font family significantly impacts user experience, accessibility, and the overall aesthetic appeal of digital products.",
     tag: "Names",
     title: "Font Family",
   },
