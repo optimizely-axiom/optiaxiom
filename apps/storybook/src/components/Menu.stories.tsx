@@ -4,7 +4,6 @@ import {
   Avatar,
   AvatarGroup,
   Box,
-  Dialog,
   DialogBody,
   DialogClose,
   DialogContent,
@@ -18,6 +17,7 @@ import {
   type MenuOption,
   MenuTrigger,
 } from "@optiaxiom/react";
+import { dialogkit } from "@optiaxiom/react/unstable";
 import {
   IconPencil,
   IconSend,
@@ -660,8 +660,6 @@ export const WithDialog: Story = {
     );
   },
   render: function WithDialog(args) {
-    const [open, setOpen] = useState(false);
-
     return (
       <Flex>
         <Menu
@@ -673,7 +671,20 @@ export const WithDialog: Story = {
             },
             {
               addon: <IconTrash />,
-              execute: () => setOpen(true),
+              execute: () =>
+                dialogkit.create(
+                  <DialogContent>
+                    <DialogHeader>Testing input autoFocus</DialogHeader>
+                    <DialogBody>
+                      <Field label="Label">
+                        <Input autoFocus placeholder="Should be focused" />
+                      </Field>
+                    </DialogBody>
+                    <DialogFooter>
+                      <DialogClose appearance="primary">Close</DialogClose>
+                    </DialogFooter>
+                  </DialogContent>,
+                ),
               intent: "danger",
               label: "Delete",
             },
@@ -682,20 +693,6 @@ export const WithDialog: Story = {
           <MenuTrigger>Menu</MenuTrigger>
           <MenuContent />
         </Menu>
-
-        <Dialog onOpenChange={setOpen} open={open}>
-          <DialogContent>
-            <DialogHeader>Testing input autoFocus</DialogHeader>
-            <DialogBody>
-              <Field label="Label">
-                <Input autoFocus placeholder="Should be focused" />
-              </Field>
-            </DialogBody>
-            <DialogFooter>
-              <DialogClose appearance="primary">Close</DialogClose>
-            </DialogFooter>
-          </DialogContent>
-        </Dialog>
       </Flex>
     );
   },

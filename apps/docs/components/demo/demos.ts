@@ -6,6 +6,9 @@ export const demos = {
   "alert-dialog/controlled-usage": import(
     "@/demos/alert-dialog/controlled-usage/App"
   ),
+  "alert-dialog/managed-usage": import(
+    "@/demos/alert-dialog/managed-usage/App"
+  ),
   "alert-dialog/size-usage": import("@/demos/alert-dialog/size-usage/App"),
   "alert-dialog/trigger-usage": import(
     "@/demos/alert-dialog/trigger-usage/App"
@@ -147,6 +150,7 @@ export const demos = {
   "dialog/controlled-usage": import("@/demos/dialog/controlled-usage/App"),
   "dialog/description-usage": import("@/demos/dialog/description-usage/App"),
   "dialog/form-usage": import("@/demos/dialog/form-usage/App"),
+  "dialog/managed-usage": import("@/demos/dialog/managed-usage/App"),
   "dialog/nested-usage": import("@/demos/dialog/nested-usage/App"),
   "dialog/size-usage": import("@/demos/dialog/size-usage/App"),
   "dialog/trigger-usage": import("@/demos/dialog/trigger-usage/App"),

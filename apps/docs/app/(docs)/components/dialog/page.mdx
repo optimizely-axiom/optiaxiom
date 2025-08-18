@@ -1,5 +1,5 @@
 import { Cards, Demo, Links, PropsTable } from "@/components";
-import { Alert, Flex, Kbd } from "@optiaxiom/react";
+import { Alert, Badge, Flex, Kbd } from "@optiaxiom/react";
 
 # Dialog
 
@@ -55,6 +55,15 @@ Use the `open` and `defaultOpen` props to toggle between controlled and uncontro
 <Demo
   component="dialog/controlled-usage"
   meta="/onOpenChange={setOpen}/ /open={open}/"
+/>
+
+### Managed <Badge intent="primary">ALPHA</Badge>
+
+Use `dialogkit.create()` to create dialogs in managed mode. In managed mode you must omit the `Dialog` element and only send the `DialogContent` element and its children.
+
+<Demo
+  component="dialog/managed-usage"
+  meta="/dialogkit.create/ /dialogkit.remove/ /useDialogKit()/"
 />
 
 ### Sizes

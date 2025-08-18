@@ -1,5 +1,5 @@
 import { Cards, Demo, Links, PropsTable } from "@/components";
-import { Flex, Kbd } from "@optiaxiom/react";
+import { Badge, Flex, Kbd } from "@optiaxiom/react";
 
 # AlertDialog
 
@@ -52,6 +52,12 @@ Use the `open` and `defaultOpen` props to toggle between controlled and uncontro
   component="alert-dialog/controlled-usage"
   meta="/onOpenChange={setOpen}/ /open={open}/"
 />
+
+### Managed <Badge intent="primary">ALPHA</Badge>
+
+Use `dialogkit.create()` to create alert dialogs in managed mode. In managed mode you must omit the `AlertDialog` element and only send the `AlertDialogContent` element and its children.
+
+<Demo component="alert-dialog/managed-usage" meta="/dialogkit.create/" />
 
 ### Sizes
 

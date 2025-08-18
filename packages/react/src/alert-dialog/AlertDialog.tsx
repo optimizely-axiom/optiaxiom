@@ -1,4 +1,7 @@
+import { useContext } from "react";
+
 import { Dialog } from "../dialog";
+import { DialogKitContext } from "../dialog-kit/internals";
 
 export type AlertDialogProps = {
   children?: React.ReactNode;
@@ -17,6 +20,14 @@ export type AlertDialogProps = {
 };
 
 export function AlertDialog(props: AlertDialogProps) {
+  if (useContext(DialogKitContext)) {
+    throw new Error(
+      "`@optiaxiom/react/AlertDialog` should not be used explicitly in managed mode." +
+        "\n\n" +
+        "Please remove it and only use `@optiaxiom/react/AlertDialogContent` instead.",
+    );
+  }
+
   return <Dialog {...props} />;
 }
 

@@ -2,7 +2,6 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import {
   Avatar,
-  Dialog,
   DialogBody,
   DialogClose,
   DialogContent,
@@ -23,6 +22,7 @@ import {
   Flex,
   Input,
 } from "@optiaxiom/react";
+import { dialogkit } from "@optiaxiom/react/unstable";
 import {
   IconBell,
   IconBook,
@@ -414,8 +414,6 @@ export const WithDialog: Story = {
     );
   },
   render: function WithDialog(args) {
-    const [open, setOpen] = useState(false);
-
     return (
       <Flex>
         <DropdownMenu {...args}>
@@ -430,27 +428,27 @@ export const WithDialog: Story = {
             <DropdownMenuItem
               intent="danger"
               onSelect={() => {
-                requestAnimationFrame(() => setOpen(true));
+                requestAnimationFrame(() =>
+                  dialogkit.create(
+                    <DialogContent>
+                      <DialogHeader>Testing input autoFocus</DialogHeader>
+                      <DialogBody>
+                        <Field label="Label">
+                          <Input autoFocus placeholder="Should be focused" />
+                        </Field>
+                      </DialogBody>
+                      <DialogFooter>
+                        <DialogClose appearance="primary">Close</DialogClose>
+                      </DialogFooter>
+                    </DialogContent>,
+                  ),
+                );
               }}
             >
               Delete
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
-
-        <Dialog onOpenChange={setOpen} open={open}>
-          <DialogContent>
-            <DialogHeader>Testing input autoFocus</DialogHeader>
-            <DialogBody>
-              <Field label="Label">
-                <Input autoFocus placeholder="Should be focused" />
-              </Field>
-            </DialogBody>
-            <DialogFooter>
-              <DialogClose appearance="primary">Close</DialogClose>
-            </DialogFooter>
-          </DialogContent>
-        </Dialog>
       </Flex>
     );
   },
