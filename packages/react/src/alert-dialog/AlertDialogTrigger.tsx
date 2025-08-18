@@ -1,20 +1,18 @@
-import * as RadixAlertDialog from "@radix-ui/react-alert-dialog";
+import * as RadixDialog from "@radix-ui/react-dialog";
 import { forwardRef } from "react";
 
 import { Button, type ButtonProps } from "../button";
 
-export type AlertDialogTriggerProps = ButtonProps<
-  typeof RadixAlertDialog.Trigger
->;
+export type AlertDialogTriggerProps = ButtonProps<typeof RadixDialog.Trigger>;
 
 export const AlertDialogTrigger = forwardRef<
   HTMLButtonElement,
   AlertDialogTriggerProps
 >(({ asChild, children, ...props }, ref) => {
   return (
-    <RadixAlertDialog.Trigger asChild ref={ref} {...props}>
+    <RadixDialog.Trigger asChild ref={ref} {...props}>
       {asChild ? children : <Button>{children}</Button>}
-    </RadixAlertDialog.Trigger>
+    </RadixDialog.Trigger>
   );
 });
 

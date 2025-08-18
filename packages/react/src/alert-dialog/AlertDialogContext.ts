@@ -1,10 +1,6 @@
 "use client";
 
-import { createContext } from "@radix-ui/react-context";
+import { DialogProvider, useDialogContext } from "../dialog/internals";
 
-export const [AlertDialogProvider, useAlertDialogContext] = createContext<{
-  nestedDialogCount: number;
-  open?: boolean;
-  presence: boolean | undefined;
-  setPresence: (presence: boolean) => void;
-}>("@optiaxiom/react/AlertDialog");
+export const AlertDialogProvider = DialogProvider;
+export const useAlertDialogContext = useDialogContext;

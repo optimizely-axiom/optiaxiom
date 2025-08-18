@@ -39,7 +39,6 @@
     "@dnd-kit/helpers": "^0.1.20",
     "@dnd-kit/react": "^0.1.20",
     "@optiaxiom/globals": "workspace:^",
-    "@radix-ui/react-alert-dialog": "^1.1.14",
     "@radix-ui/react-arrow": "^1.1.7",
     "@radix-ui/react-avatar": "^1.1.10",
     "@radix-ui/react-collapsible": "^1.1.11",
