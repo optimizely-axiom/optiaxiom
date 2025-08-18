@@ -1,5 +1,5 @@
-import * as RadixAlertDialog from "@radix-ui/react-alert-dialog";
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
+import * as RadixDialog from "@radix-ui/react-dialog";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
 import { forwardRef, useRef } from "react";
 
@@ -17,15 +17,15 @@ import * as styles from "./AlertDialogContent.css";
 import { useAlertDialogContext } from "./AlertDialogContext";
 
 export type AlertDialogContentProps = ExcludeProps<
-  BoxProps<typeof RadixAlertDialog.Content, styles.DialogVariants>,
+  BoxProps<typeof RadixDialog.Content, styles.DialogVariants>,
   "forceMount"
 >;
 
 export const AlertDialogContent = forwardRef<
   HTMLDivElement,
   AlertDialogContentProps
->(({ children, size = "sm", style, ...props }, outerRef) => {
-  const { nestedDialogCount, open, presence, setPresence } =
+>(({ children, onOpenAutoFocus, size = "sm", style, ...props }, outerRef) => {
+  const { cancelRef, nestedDialogCount, open, presence, setPresence } =
     useAlertDialogContext("@optiaxiom/react/AlertDialogContent");
 
   const innerRef = useRef<HTMLDivElement>(null);
@@ -55,7 +55,7 @@ export const AlertDialogContent = forwardRef<
             }}
             {...styles.backdrop({ hidden: nestedDialogCount > 0 })}
           >
-            <RadixAlertDialog.Overlay />
+            <RadixDialog.Overlay />
           </Backdrop>
         </Transition>
 
@@ -74,13 +74,28 @@ export const AlertDialogContent = forwardRef<
               }}
               {...styles.content({ size })}
             >
-              <RadixAlertDialog.Content ref={ref} {...props}>
+              <RadixDialog.Content
+                onOpenAutoFocus={(event) => {
+                  onOpenAutoFocus?.(event);
+                  if (event.defaultPrevented) {
+                    return;
+                  }
+
+                  event.preventDefault();
+                  cancelRef.current?.focus({ preventScroll: true });
+                }}
+                ref={ref}
+                role="alertdialog"
+                {...props}
+                onInteractOutside={(event) => event.preventDefault()}
+                onPointerDownOutside={(event) => event.preventDefault()}
+              >
                 <ModalProvider shardRef={innerRef}>
                   <FocusBookmarkProvider containerRef={innerRef}>
                     {children}
                   </FocusBookmarkProvider>
                 </ModalProvider>
-              </RadixAlertDialog.Content>
+              </RadixDialog.Content>
             </Paper>
           </Transition>
 

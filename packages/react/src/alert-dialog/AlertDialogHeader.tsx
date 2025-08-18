@@ -1,4 +1,4 @@
-import * as RadixAlertDialog from "@radix-ui/react-alert-dialog";
+import * as RadixDialog from "@radix-ui/react-dialog";
 import { forwardRef, type ReactNode } from "react";
 
 import type { BoxProps } from "../box";
@@ -30,7 +30,7 @@ export const AlertDialogHeader = forwardRef<
       </Icon>
 
       <Heading asChild color="fg.default" fontWeight="500" level="3">
-        <RadixAlertDialog.Title>{children}</RadixAlertDialog.Title>
+        <RadixDialog.Title>{children}</RadixDialog.Title>
       </Heading>
     </Flex>
   );
