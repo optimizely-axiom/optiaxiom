@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 1.6.5
+
+### Patch Changes
+
+- 166b18e: better detection of valid drag sources
+
 ## 1.6.4
 
 ### Patch Changes
