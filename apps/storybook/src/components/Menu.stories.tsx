@@ -621,6 +621,11 @@ export const Addons: Story = {
         {...args}
         options={[
           {
+            external: true,
+            href: "/external",
+            label: "External link",
+          },
+          {
             addon: <IconPencil />,
             label: "Edit",
           },

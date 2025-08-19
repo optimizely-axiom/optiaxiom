@@ -2,6 +2,7 @@ import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import { CommandItem } from "../command";
 import { resolveItemProperty, useCommandContext } from "../command/internals";
+import { IconUpRightFromSquare } from "../icons/IconUpRightFromSquare";
 import { ListboxItem } from "../listbox";
 
 export type MenuItemProps = ComponentPropsWithoutRef<typeof CommandItem> &
@@ -15,6 +16,9 @@ export const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>(
     return (
       <CommandItem asChild ref={ref} {...props}>
         <ListboxItem
+          addonAfter={
+            props.item.href && props.item.external && <IconUpRightFromSquare />
+          }
           addonBefore={resolveItemProperty(props.item.addon, { inputValue })}
           asChild
           description={resolveItemProperty(props.item.description, {
@@ -22,7 +26,14 @@ export const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>(
           })}
           intent={props.item.intent}
         >
-          <Comp {...(props.item.href && { href: props.item.href })}>
+          <Comp
+            {...(props.item.href && { href: props.item.href })}
+            {...(props.item.href &&
+              props.item.external && {
+                rel: "noopener noreferrer",
+                target: "_blank",
+              })}
+          >
             {children}
           </Comp>
         </ListboxItem>

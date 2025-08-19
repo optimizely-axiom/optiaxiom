@@ -36,6 +36,10 @@ export type CommandOption = {
     inputValue: string | undefined;
   }) => void;
   /**
+   * Shows an external link icon and sets the correct rel/target attributes if `href` is also passed.
+   */
+  external?: boolean;
+  /**
    * Group item belongs to.
    */
   group?: CommandOptionGroup;

@@ -320,6 +320,7 @@ export const demos = {
   "menu/input-usage": import("@/demos/menu/input-usage/App"),
   "menu/keyword-usage": import("@/demos/menu/keyword-usage/App"),
   "menu/link-execute-usage": import("@/demos/menu/link-execute-usage/App"),
+  "menu/link-external-usage": import("@/demos/menu/link-external-usage/App"),
   "menu/link-usage": import("@/demos/menu/link-usage/App"),
   "menu/nested-usage": import("@/demos/menu/nested-usage/App"),
   "menu/skip-score-usage": import("@/demos/menu/skip-score-usage/App"),

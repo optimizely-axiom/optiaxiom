@@ -21,7 +21,7 @@ export type LinkProps = BoxProps<
      */
     disabled?: boolean;
     /**
-     * Show an external link icon and sets the correct rel/target attributes.
+     * Shows an external link icon and sets the correct rel/target attributes.
      */
     external?: boolean;
   }

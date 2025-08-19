@@ -68,6 +68,9 @@ export const CommandInput = forwardRef<HTMLInputElement, CommandInputProps>(
 
               event.preventDefault();
               Object.assign(event, { preventDownshiftDefault: true });
+              if (highlightedItem.external) {
+                eventInit.metaKey = true;
+              }
               preventDownshiftBlurRef.current = true;
 
               highlightedItemRef.current.dispatchEvent(
