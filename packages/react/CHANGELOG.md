@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 1.6.6
+
+### Patch Changes
+
+- 842dd28: use stable useControllableState setter in date range picker
+
 ## 1.6.5
 
 ### Patch Changes
