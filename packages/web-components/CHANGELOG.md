@@ -1,5 +1,11 @@
 # @optiaxiom/web-components
 
+## 0.11.4
+
+### Patch Changes
+
+- 842dd28: use stable useControllableState setter in date range picker
+
 ## 0.11.3
 
 ### Patch Changes
