@@ -10,6 +10,7 @@ import {
   resolveItemProperty,
   useCommandContext,
 } from "./CommandContext";
+import * as styles from "./CommandItem.css";
 
 export type CommandItemProps = BoxProps<
   "div",
@@ -169,7 +170,7 @@ export const CommandItem = forwardRef<HTMLDivElement, CommandItemProps>(
                   )}
                 {resolveItemProperty(item.label, { inputValue })}
                 {detail && (
-                  <Text asChild color="fg.secondary" flex="1">
+                  <Text asChild truncate {...styles.detail()}>
                     {fallbackSpan(detail)}
                   </Text>
                 )}
