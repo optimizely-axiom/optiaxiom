@@ -23,7 +23,15 @@ export type DialogContentProps = ExcludeProps<
 
 export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
   (
-    { children, className, onCloseAutoFocus, size = "md", style, ...props },
+    {
+      children,
+      className,
+      onCloseAutoFocus,
+      onPointerDownOutside,
+      size = "md",
+      style,
+      ...props
+    },
     outerRef,
   ) => {
     const { nestedDialogCount, open } = useDialogContext(
@@ -69,6 +77,9 @@ export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
                   onCloseAutoFocus?.(event);
                   onClose?.();
                 }}
+                onPointerDownOutside={
+                  onPointerDownOutside ?? ((event) => event.preventDefault())
+                }
                 ref={ref}
               >
                 <DialogContentImpl>
