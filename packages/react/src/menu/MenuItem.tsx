@@ -9,7 +9,7 @@ export type MenuItemProps = ComponentPropsWithoutRef<typeof CommandItem> &
   ComponentPropsWithoutRef<typeof ListboxItem>;
 
 export const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>(
-  ({ children, ...props }, ref) => {
+  ({ addonAfter, children, ...props }, ref) => {
     const Comp = props.item.href ? "a" : "div";
     const { inputValue } = useCommandContext("@optiaxiom/react/MenuItem");
 
@@ -17,7 +17,11 @@ export const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>(
       <CommandItem asChild ref={ref} {...props}>
         <ListboxItem
           addonAfter={
-            props.item.href && props.item.external && <IconUpRightFromSquare />
+            props.item.href && props.item.external ? (
+              <IconUpRightFromSquare />
+            ) : (
+              addonAfter
+            )
           }
           addonBefore={resolveItemProperty(props.item.addon, { inputValue })}
           asChild
