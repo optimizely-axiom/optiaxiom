@@ -62,6 +62,7 @@ export const CommandInput = forwardRef<HTMLInputElement, CommandInputProps>(
             const selectedWithSpace = !event.target.value && event.key === " ";
             if (
               highlightedItemRef.current instanceof HTMLAnchorElement &&
+              !highlightedItem.execute &&
               (selectedWithSpace || event.key === "Enter")
             ) {
               const { view: _view, ...eventInit } = event;
