@@ -77,6 +77,7 @@ export const CommandInput = forwardRef<HTMLInputElement, CommandInputProps>(
               highlightedItemRef.current.dispatchEvent(
                 new MouseEvent("click", eventInit),
               );
+              downshift.selectItem(highlightedItem);
             } else if (selectedWithSpace) {
               event.preventDefault();
               downshift.selectItem(highlightedItem);
