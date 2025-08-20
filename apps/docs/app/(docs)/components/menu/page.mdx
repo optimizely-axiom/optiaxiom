@@ -50,6 +50,12 @@ Now that we can perform actions on selection, we can also store that state and s
 
 <Demo component="menu/content-radio-usage" meta="{23}" />
 
+#### Single-select (Switch)
+
+We can optionally use switch toggles to show selection states by enabling the `switch` property.
+
+<Demo component="menu/content-radio-switch-usage" meta="{22}" />
+
 #### Multi-select
 
 We can render multi-select items by enabling the `multi` property.
@@ -111,11 +117,23 @@ We can also use `asChild` to render a completely different component. We provide
 
 <Demo component="menu/ellipsis-trigger-usage" meta="{27-29}" />
 
-### Addons
+### Addon
 
-We can add the `addon` and `description` properties to show additional content inside the items.
+We can add the `addon` property to show additional content inside the items.
 
 <Demo component="menu/addon-usage" meta={{ "App.tsx": "{22-28}" }} />
+
+### Description
+
+We can use the `description` property to show secondary text in addition to item labels.
+
+<Demo component="menu/description-usage" meta="/description/" />
+
+### Detail
+
+We can use the `detail` property to show secondary content in addition to item labels.
+
+<Demo component="menu/detail-usage" meta="{23}" />
 
 ### Disabled items
 

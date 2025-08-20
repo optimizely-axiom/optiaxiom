@@ -300,9 +300,14 @@ export const demos = {
   "menu/content-checkbox-usage": import(
     "@/demos/menu/content-checkbox-usage/App"
   ),
+  "menu/content-radio-switch-usage": import(
+    "@/demos/menu/content-radio-switch-usage/App"
+  ),
   "menu/content-radio-usage": import("@/demos/menu/content-radio-usage/App"),
   "menu/content-usage": import("@/demos/menu/content-usage/App"),
   "menu/creatable-usage": import("@/demos/menu/creatable-usage/App"),
+  "menu/description-usage": import("@/demos/menu/description-usage/App"),
+  "menu/detail-usage": import("@/demos/menu/detail-usage/App"),
   "menu/disabled-usage": import("@/demos/menu/disabled-usage/App"),
   "menu/ellipsis-trigger-usage": import(
     "@/demos/menu/ellipsis-trigger-usage/App"
