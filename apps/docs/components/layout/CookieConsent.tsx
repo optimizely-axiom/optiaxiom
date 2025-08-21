@@ -70,7 +70,7 @@ export function CookieConsent() {
                 onClick={() => {
                   document.cookie = [
                     "consent=decline",
-                    `expires=${new Date(new Date().getTime() + 1000 * 60 * 60 * 24 * 30).toUTCString()}`,
+                    `expires=${new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toUTCString()}`,
                     "path=/",
                   ].join(";");
                   setConsent(true);
