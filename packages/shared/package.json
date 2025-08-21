@@ -14,15 +14,15 @@
     "cli-table3": "^0.6.5",
     "gzip-size": "^7.0.0",
     "monosize": "^0.7.0",
-    "pretty-bytes": "^7.0.0",
+    "pretty-bytes": "^7.0.1",
     "yargs": "^18.0.0"
   },
   "devDependencies": {
-    "@types/node": "^22.16.5",
+    "@types/node": "^22.17.2",
     "@types/yargs": "^17.0.33",
-    "@typescript-eslint/eslint-plugin": "^8.38.0",
-    "@typescript-eslint/parser": "^8.38.0",
-    "@typescript-eslint/utils": "^8.38.0",
+    "@typescript-eslint/eslint-plugin": "^8.40.0",
+    "@typescript-eslint/parser": "^8.40.0",
+    "@typescript-eslint/utils": "^8.40.0",
     "eslint-plugin-perfectionist": "^4.15.0",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^5.2.0",
@@ -30,6 +30,6 @@
     "fast-glob": "^3.3.3",
     "globals": "^16.3.0",
     "react-docgen-typescript": "^2.2.2",
-    "typescript-eslint": "^8.38.0"
+    "typescript-eslint": "^8.40.0"
   }
 }
