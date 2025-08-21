@@ -90,19 +90,19 @@ export const Basic: Story = {
     await userEvent.click(canvas.getByText("Show Toast"));
 
     const toast = await within(await screen.findByRole("list")).findByRole(
-      "status",
+      "listitem",
     );
     await expect(toast).toHaveTextContent("This is an example toast message.");
 
     await userEvent.click(within(toast).getByRole("button", { name: "close" }));
     await waitFor(() =>
-      expect(screen.queryByRole("status")).not.toBeInTheDocument(),
+      expect(screen.queryByRole("listitem")).not.toBeInTheDocument(),
     );
 
     await userEvent.click(canvas.getByText("Show Toast"));
     await waitFor(async () =>
       expect(
-        await within(await screen.findByRole("list")).findByRole("status"),
+        await within(await screen.findByRole("list")).findByRole("listitem"),
       ).toBeVisible(),
     );
   },
@@ -118,7 +118,7 @@ export const Appearance: Story = {
 
     await waitFor(async () =>
       expect(
-        await within(screen.getByRole("list")).findAllByRole("status"),
+        await within(screen.getByRole("list")).findAllByRole("listitem"),
       ).toHaveLength(5),
     );
   },
@@ -171,7 +171,7 @@ export const Position: Story = {
     await userEvent.click(canvas.getByText("Show Toast"));
 
     await expect(
-      await within(await screen.findByRole("list")).findByRole("status"),
+      await within(await screen.findByRole("list")).findByRole("listitem"),
     ).toHaveTextContent("This is an example toast message.");
   },
 };
@@ -185,7 +185,7 @@ export const Action: Story = {
     await userEvent.click(canvas.getByText("Show Toast"));
 
     await expect(
-      await within(await screen.findByRole("list")).findByRole("status"),
+      await within(await screen.findByRole("list")).findByRole("listitem"),
     ).toHaveTextContent("This is an example toast message.");
     await expect(
       await screen.findByRole("button", { name: "Undo" }),
@@ -201,7 +201,7 @@ export const LongContent: Story = {
     await userEvent.click(canvas.getByText("Show Toast"));
 
     await expect(
-      await within(await screen.findByRole("list")).findByRole("status"),
+      await within(await screen.findByRole("list")).findByRole("listitem"),
     ).toHaveTextContent(
       "This is an example toast message that should span two lines.",
     );
