@@ -30,6 +30,7 @@ export const AlertDialogContent = forwardRef<
     {
       children,
       onCloseAutoFocus,
+      onEscapeKeyDown,
       onOpenAutoFocus,
       size = "sm",
       style,
@@ -39,7 +40,7 @@ export const AlertDialogContent = forwardRef<
   ) => {
     const { cancelRef, nestedDialogCount, open, presence, setPresence } =
       useAlertDialogContext("@optiaxiom/react/AlertDialogContent");
-    const { onClose } = useContext(DialogKitContext) ?? {};
+    const { onClose, onDismiss } = useContext(DialogKitContext) ?? {};
 
     const innerRef = useRef<HTMLDivElement>(null);
     const ref = useComposedRefs(innerRef, outerRef);
@@ -91,6 +92,15 @@ export const AlertDialogContent = forwardRef<
                   onCloseAutoFocus={(event) => {
                     onCloseAutoFocus?.(event);
                     onClose?.();
+                  }}
+                  onEscapeKeyDown={(event) => {
+                    if (onDismiss) {
+                      onDismiss(event, "cancel");
+                      if (event.defaultPrevented) {
+                        return;
+                      }
+                    }
+                    onEscapeKeyDown?.(event);
                   }}
                   onOpenAutoFocus={(event) => {
                     onOpenAutoFocus?.(event);

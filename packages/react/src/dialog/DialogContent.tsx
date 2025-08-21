@@ -27,6 +27,7 @@ export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
       children,
       className,
       onCloseAutoFocus,
+      onEscapeKeyDown,
       onPointerDownOutside,
       size = "md",
       style,
@@ -37,7 +38,7 @@ export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
     const { nestedDialogCount, open } = useDialogContext(
       "@optiaxiom/react/DialogContent",
     );
-    const { onClose } = useContext(DialogKitContext) ?? {};
+    const { onClose, onDismiss } = useContext(DialogKitContext) ?? {};
 
     const innerRef = useRef<HTMLDivElement>(null);
     const ref = useComposedRefs(innerRef, outerRef);
@@ -77,8 +78,30 @@ export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
                   onCloseAutoFocus?.(event);
                   onClose?.();
                 }}
+                onEscapeKeyDown={(event) => {
+                  if (onDismiss) {
+                    onDismiss(event, "cancel");
+                    if (event.defaultPrevented) {
+                      return;
+                    }
+                  }
+                  onEscapeKeyDown?.(event);
+                }}
                 onPointerDownOutside={
-                  onPointerDownOutside ?? ((event) => event.preventDefault())
+                  onPointerDownOutside
+                    ? (event) => {
+                        onPointerDownOutside(event);
+                        if (event.defaultPrevented) {
+                          return;
+                        }
+                        if (onDismiss) {
+                          onDismiss(event, "cancel");
+                          if (event.defaultPrevented) {
+                            return;
+                          }
+                        }
+                      }
+                    : (event) => event.preventDefault()
                 }
                 ref={ref}
               >

@@ -145,6 +145,17 @@ Use the `onOpenChange` handler to trigger the nested callback instead of an expl
 
 ## Changelog
 
+### 1.6.7
+
+- Introduced **dialogkit** for easier management of dialogs.
+
+  ```jsx
+  import { DialogContent } from "@optiaxiom/react";
+  import { dialogkit } from "@optiaxiom/react/unstable";
+
+  dialogkit.create(<DialogContent>{/* ... */}</DialogContent>);
+  ```
+
 ### 0.1.0
 
 - Added component

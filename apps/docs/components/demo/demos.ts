@@ -6,6 +6,9 @@ export const demos = {
   "alert-dialog/controlled-usage": import(
     "@/demos/alert-dialog/controlled-usage/App"
   ),
+  "alert-dialog/managed-confirm-usage": import(
+    "@/demos/alert-dialog/managed-confirm-usage/App"
+  ),
   "alert-dialog/managed-usage": import(
     "@/demos/alert-dialog/managed-usage/App"
   ),

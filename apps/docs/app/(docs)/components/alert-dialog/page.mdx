@@ -59,6 +59,13 @@ Use `dialogkit.create()` to create alert dialogs in managed mode. In managed mod
 
 <Demo component="alert-dialog/managed-usage" meta="/dialogkit.create/" />
 
+We can also use the `await dialogkit.confirm()` shortcut method to show an alert dialog and get a boolean result based on whether the user confirms or cancels the dialog.
+
+<Demo
+  component="alert-dialog/managed-confirm-usage"
+  meta="/dialogkit.confirm/"
+/>
+
 ### Sizes
 
 Use the `size` prop to change the size of the dialog box.
@@ -138,6 +145,17 @@ We can also completely change the trigger by using `asChild` and passing our own
 | <Kbd>Esc</Kbd>                                                             | Closes the dialog and moves focus to `AlertDialogTrigger`. |
 
 ## Changelog
+
+### 1.6.7
+
+- Introduced **dialogkit** for easier management of dialogs.
+
+  ```jsx
+  import { AlertDialogContent } from "@optiaxiom/react";
+  import { dialogkit } from "@optiaxiom/react/unstable";
+
+  dialogkit.create(<AlertDialogContent>{/* ... */}</AlertDialogContent>);
+  ```
 
 ### 0.1.0
 
