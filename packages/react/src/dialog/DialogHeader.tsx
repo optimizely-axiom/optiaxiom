@@ -3,12 +3,12 @@ import * as RadixDialog from "@radix-ui/react-dialog";
 import { forwardRef, type ReactNode } from "react";
 
 import { Box, type BoxProps } from "../box";
-import { Button } from "../button";
 import { Flex } from "../flex";
 import { Heading } from "../heading";
 import { IconX } from "../icons/IconX";
 import { Text } from "../text";
 import { VisuallyHidden } from "../visually-hidden";
+import { DialogClose } from "./DialogClose";
 import { useDialogContext } from "./DialogContext";
 import * as styles from "./DialogHeader.css";
 
@@ -33,15 +33,12 @@ export const DialogHeader = forwardRef<HTMLDivElement, DialogHeaderProps>(
 
     return (
       <Box ref={ref} {...styles.header({}, className)} {...props}>
-        <Button
+        <DialogClose
           appearance="subtle"
           aria-label="Close"
-          asChild
           icon={<IconX />}
           {...styles.close()}
-        >
-          <RadixDialog.Close />
-        </Button>
+        />
 
         <Heading asChild level="3" {...styles.title()}>
           <RadixDialog.Title>{children}</RadixDialog.Title>

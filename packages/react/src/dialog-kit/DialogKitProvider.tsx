@@ -10,30 +10,22 @@ export function DialogKitProvider() {
   const items = useSyncExternalStore(...dialogkit.store);
   return items.reduce<ReactNode>(
     (result, item) => (
-      <Dialog
-        key={item.id}
-        onOpenChange={(open) => {
-          if (!open) {
-            const event = new Event("optiaxiom.dialog.dismiss", {
-              cancelable: true,
-            });
-            item.modal.onDismiss?.(event);
-            if (event.defaultPrevented) {
-              return;
-            }
-
-            dialogkit.remove(item.id);
-          }
-        }}
-        open={item.open}
-      >
+      <Dialog key={item.id} open={item.open}>
         <DialogKitContext.Provider
           value={{
             id: item.id,
             onClose: item.onClose,
+            onDismiss: (event, reason) => {
+              item.onDismiss?.(event, reason);
+              if (event.defaultPrevented) {
+                return;
+              }
+
+              dialogkit.remove(item.id);
+            },
           }}
         >
-          {item.modal.element}
+          {item.element}
         </DialogKitContext.Provider>
         {result}
       </Dialog>

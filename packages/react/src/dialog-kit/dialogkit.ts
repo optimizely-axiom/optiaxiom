@@ -1,15 +1,13 @@
-import type { ReactNode } from "react";
+import type { ContextType, ReactNode } from "react";
 
-type DialogItem = {
-  id: string;
-  modal: DialogOptions & { element: ReactNode };
-  onClose: () => void;
+import type { DialogKitContext } from "./DialogKitContext";
+
+type DialogItem = ContextType<typeof DialogKitContext> & {
+  element: ReactNode;
   open: boolean;
 };
 
-type DialogOptions = {
-  onDismiss?: (event: Event) => void;
-};
+type DialogOptions = Pick<DialogItem, "onDismiss">;
 
 const EMPTY: DialogItem[] = [];
 
@@ -20,6 +18,7 @@ const genId = () => {
 
 type DialogKit = {
   clear: () => void;
+  confirm: (element: ReactNode) => Promise<boolean>;
   create: (element: ReactNode, options?: DialogOptions) => string;
   remove: (id: string) => void;
   store: [
@@ -39,6 +38,26 @@ const createDialogKit = (): DialogKit => {
     }
   };
 
+  const create = (element: ReactNode, options?: DialogOptions) => {
+    const id = genId();
+
+    snapshot = [
+      {
+        ...options,
+        element,
+        id,
+        onClose: () => {
+          snapshot = snapshot.filter((item) => item.id !== id);
+          emit();
+        },
+        open: true,
+      },
+      ...snapshot,
+    ];
+    emit();
+
+    return id;
+  };
   const remove = (id: string) => {
     snapshot = snapshot.map((item) =>
       item.id === id ? { ...item, open: false } : item,
@@ -61,30 +80,16 @@ const createDialogKit = (): DialogKit => {
         remove(item.id);
       }
     },
-
-    create: (element, options) => {
-      const id = genId();
-
-      snapshot = [
-        {
-          id,
-          modal: {
-            ...options,
-            element,
+    confirm: async (element) => {
+      return new Promise((resolve) => {
+        create(element, {
+          onDismiss: (_event, reason) => {
+            resolve(reason === "action");
           },
-          onClose: () => {
-            snapshot = snapshot.filter((item) => item.id !== id);
-            emit();
-          },
-          open: true,
-        },
-        ...snapshot,
-      ];
-      emit();
-
-      return id;
+        });
+      });
     },
-
+    create,
     remove,
   };
 };
