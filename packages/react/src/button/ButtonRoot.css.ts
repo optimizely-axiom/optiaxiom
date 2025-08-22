@@ -21,6 +21,12 @@ export const textColorVar = createVar();
 const transparentHoverAccentColorVar = createVar();
 const transparentPressedAccentColorVar = createVar();
 
+const opalGradColorStopVar = createVar({
+  inherits: false,
+  initialValue: "0%",
+  syntax: "<percentage>",
+});
+
 export const paddingInlineVar = createVar();
 
 export const className = style({});
@@ -191,8 +197,30 @@ export const buttonBase = recipe({
         },
       }),
       "strong-opal": style({
-        backgroundImage: `linear-gradient(135deg, #392ECF 15%, #7740EC 85%)`,
+        vars: {
+          [opalGradColorStopVar]: "15%",
+        },
+
+        backgroundImage: `
+          linear-gradient(
+            135deg,
+            #392ecf ${opalGradColorStopVar},
+            #7740ec 85%
+          )
+        `,
         color: fallbackVar(solidTextColorVar, theme.colors["fg.white"]),
+
+        "@media": {
+          "(hover: hover)": {
+            selectors: {
+              "&:hover:not(:active, [data-disabled], [data-loading])": {
+                vars: {
+                  [opalGradColorStopVar]: "50%",
+                },
+              },
+            },
+          },
+        },
 
         selectors: {
           "&[data-disabled]:not([data-loading])": {
