@@ -38,6 +38,7 @@ const appearances = [
   "subtle",
   "danger",
   "danger-outline",
+  "default-opal",
   "primary-opal",
 ] as const;
 
