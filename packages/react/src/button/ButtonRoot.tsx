@@ -13,6 +13,7 @@ const appearances = {
   danger: { intent: "danger", variant: "strong" },
   "danger-outline": { intent: "danger", variant: "outline" },
   default: { intent: "neutral", variant: "outline" },
+  "default-opal": { intent: "neutral", variant: "outline-opal" },
   inverse: { intent: "neutral", variant: "strong" },
   primary: { intent: "primary", variant: "strong" },
   "primary-opal": { intent: "primary", variant: "strong-opal" },

@@ -3,6 +3,7 @@ import { theme } from "@optiaxiom/globals";
 import {
   createVar,
   fallbackVar,
+  keyframes,
   recipe,
   type RecipeVariants,
   style,
@@ -25,6 +26,19 @@ const opalGradColorStopVar = createVar({
   inherits: false,
   initialValue: "0%",
   syntax: "<percentage>",
+});
+const opalRingAngleVar = createVar({
+  inherits: false,
+  initialValue: "0turn",
+  syntax: "<angle>",
+});
+const opalRingColorVar = createVar();
+const opalRingSpinAnim = keyframes({
+  "100%": {
+    vars: {
+      [opalRingAngleVar]: "1turn",
+    },
+  },
 });
 
 export const paddingInlineVar = createVar();
@@ -169,6 +183,61 @@ export const buttonBase = recipe({
           },
         },
       }),
+      "outline-opal": style({
+        vars: {
+          [opalRingColorVar]: `
+            conic-gradient(
+              from ${opalRingAngleVar},
+              #8670ed 10%,
+              #617bff99 25%,
+              #8a53fe80 75%,
+              #8670ed 90%
+            )
+          `,
+        },
+
+        animation: `${opalRingSpinAnim} 4s linear infinite`,
+        backgroundClip: "padding-box, border-box",
+        backgroundColor: theme.colors["bg.default"],
+        backgroundImage: `
+          linear-gradient(
+            ${theme.colors["bg.default"]},
+            ${theme.colors["bg.default"]}
+          ),
+          ${opalRingColorVar}
+        `,
+        backgroundOrigin: "border-box",
+        border: "1px solid transparent",
+        color: fallbackVar(textColorVar, accentColorVar),
+        paddingInline: `calc(${paddingInlineVar} - 1px)`,
+
+        "@media": {
+          "(hover: hover)": {
+            selectors: {
+              "&:hover:not(:active, [data-disabled], [data-loading])": {
+                vars: {
+                  [opalRingColorVar]: `
+                      conic-gradient(
+                        from ${opalRingAngleVar},
+                        #7C3AED,
+                        #8287FF 33%,
+                        #7D04C7 67%,
+                        #7C3AED
+                      )
+                    `,
+                },
+              },
+            },
+          },
+        },
+
+        selectors: {
+          "&[data-disabled]:not([data-loading])": {
+            borderColor: theme.colors["border.disabled"],
+            color: theme.colors["fg.disabled"],
+          },
+        },
+      }),
       strong: style({
         backgroundColor: accentColorVar,
         color: fallbackVar(solidTextColorVar, theme.colors["fg.white"]),
@@ -273,6 +342,15 @@ export const buttonBase = recipe({
   },
   variantsCompounded: [
     {
+      style: style({
+        borderRadius: theme.borderRadius.full,
+      }),
+      variants: {
+        size: ["sm", "md"],
+        variant: ["outline-opal", "strong-opal"],
+      },
+    },
+    {
       style: {
         w: "sm",
       },
@@ -290,6 +368,19 @@ export const buttonBase = recipe({
       variants: {
         size: "sm",
         square: false,
+        variant: ["outline", "strong", "subtle"],
+      },
+    },
+    {
+      style: style({
+        vars: {
+          [paddingInlineVar]: "6px",
+        },
+      }),
+      variants: {
+        size: "sm",
+        square: false,
+        variant: ["outline-opal", "strong-opal"],
       },
     },
     {
