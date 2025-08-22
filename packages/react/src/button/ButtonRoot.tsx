@@ -15,7 +15,7 @@ const appearances = {
   default: { intent: "neutral", variant: "outline" },
   inverse: { intent: "neutral", variant: "strong" },
   primary: { intent: "primary", variant: "strong" },
-  "primary-opal": { intent: "primary", variant: "opal" },
+  "primary-opal": { intent: "primary", variant: "strong-opal" },
   subtle: { intent: "neutral", variant: "subtle" },
 } satisfies Record<string, styles.ButtonVariants>;
 
@@ -86,7 +86,7 @@ export const ButtonRoot = forwardRef<HTMLButtonElement, ButtonRootProps>(
                 <Transition>
                   <Spinner
                     appearance={
-                      variant === "strong" || variant === "opal"
+                      variant === "strong" || variant === "strong-opal"
                         ? "inverse"
                         : "default"
                     }
