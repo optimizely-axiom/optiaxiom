@@ -6,7 +6,7 @@ import { type Sprinkles } from "../sprinkles";
 
 type CompoundVariant<Variants extends VariantGroups> = {
   style: RecipeStyleRule;
-  variants: VariantSelection<Variants>;
+  variants: VariantSelectionArray<Variants>;
 };
 type RecipeStyleRule = Array<SprinklesRule | string> | SprinklesRule | string;
 
@@ -33,6 +33,15 @@ type VariantSelection<Variants extends VariantGroups> = [
       [VariantGroup in keyof Variants]?: StringToBoolean<
         keyof Variants[VariantGroup]
       >;
+    };
+type VariantSelectionArray<Variants extends VariantGroups> = [
+  Variants[keyof Variants],
+] extends [never]
+  ? Record<string, never>
+  : {
+      [VariantGroup in keyof Variants]?:
+        | Array<StringToBoolean<keyof Variants[VariantGroup]>>
+        | StringToBoolean<keyof Variants[VariantGroup]>;
     };
 
 export const recipeRuntime = <
@@ -99,11 +108,19 @@ export const recipeRuntime = <
 };
 
 const shouldApplyCompound = <Variants extends VariantGroups>(
-  compoundCheck: VariantSelection<Variants>,
+  compoundCheck: VariantSelectionArray<Variants>,
   selections: VariantSelection<Variants>,
 ) => {
   for (const key of Object.keys(compoundCheck)) {
-    if (compoundCheck[key] !== selections[key]) {
+    if (
+      compoundCheck[key] !== undefined &&
+      selections[key] !== undefined &&
+      !(
+        Array.isArray(compoundCheck[key])
+          ? compoundCheck[key]
+          : [compoundCheck[key]]
+      ).includes(selections[key])
+    ) {
       return false;
     }
   }
