@@ -1,5 +1,16 @@
 # @optiaxiom/web-components
 
+## 0.11.5
+
+### Patch Changes
+
+- 73b542a: update dependencies
+- 4ed6b33: fix detail grow/shrink for menu items
+- 6eb3aa8: add secondary opal button appearance
+- 5f27edb: allow external links in menu items
+- f70f6a2: fix gap for tanstack virtual
+- 200282d: disable light dismiss of dialogs by default
+
 ## 0.11.4
 
 ### Patch Changes
