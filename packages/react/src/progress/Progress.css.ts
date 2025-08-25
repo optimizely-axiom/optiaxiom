@@ -17,6 +17,7 @@ export const indicator = recipe({
   base: [
     {
       h: "full",
+      rounded: "full",
       transition: "all",
     },
   ],
