@@ -131,6 +131,18 @@ export const unresponsiveProps = defineProperties({
       spin: `${animations.spin} 1s linear infinite`,
     },
     backgroundColor: colors("bg."),
+    /**
+     * Set the element's `background-image` CSS property
+     */
+    backgroundImage: {
+      "gradient.opal": `
+        linear-gradient(
+          135deg,
+          light-dark(#f5f3ff, #1e1b3a),
+          light-dark(#e5efff, #1a2b45)
+        );
+      `,
+    },
     borderBottomWidth: borderWidths,
     /**
      * Set the element's `border-color` CSS property
