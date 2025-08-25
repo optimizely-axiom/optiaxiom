@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Button, Flex, Progress } from "@optiaxiom/react";
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import { userEvent } from "storybook/test";
 
 export default {
@@ -28,15 +28,18 @@ export const Basic: Story = {
 
 export const Intent: Story = {
   args: {
-    value: 50,
+    value: 95,
     w: "384",
   },
 
   render: (args) => (
     <Flex>
-      <Progress {...args} />
-      <Progress intent="success" {...args} />
-      <Progress intent="danger" {...args} />
+      {(["primary", "success", "danger", "opal"] as const).map((intent) => (
+        <Fragment key={intent}>
+          <Progress intent={intent} {...args} value={20} />
+          <Progress intent={intent} {...args} />
+        </Fragment>
+      ))}
     </Flex>
   ),
 };
