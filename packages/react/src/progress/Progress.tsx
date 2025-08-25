@@ -24,6 +24,7 @@ export const Progress = forwardRef<HTMLDivElement, ProgressProps>(
             <Box
               asChild
               style={{
+                backgroundSize: `${(100 * 100) / widthPercentage}%`,
                 width: `${widthPercentage}%`,
               }}
               {...styles.indicator({
