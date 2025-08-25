@@ -59,6 +59,7 @@ export const ListboxVirtualized = forwardRef<
     count: items.length,
     enabled,
     estimateSize: () => 40,
+    gap: 2,
     getScrollElement: () => innerRef.current,
   });
 
