@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 1.6.8
+
+### Patch Changes
+
+- 39a0139: allow configuring dialogkit store
+
 ## 1.6.7
 
 ### Patch Changes
