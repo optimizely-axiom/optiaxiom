@@ -6,8 +6,15 @@ import { Dialog } from "../dialog";
 import { dialogkit } from "./dialogkit";
 import { DialogKitContext } from "./DialogKitContext";
 
-export function DialogKitProvider() {
-  const items = useSyncExternalStore(...dialogkit.store);
+export type DialogKitProviderProps = {
+  /**
+   * An instance of dialogkit returned from the `createDialogKit` method.
+   */
+  kit?: typeof dialogkit;
+};
+
+export function DialogKitProvider({ kit = dialogkit }: DialogKitProviderProps) {
+  const items = useSyncExternalStore(...kit.store);
   return items.reduce<ReactNode>(
     (result, item) => (
       <Dialog key={item.id} open={item.open}>

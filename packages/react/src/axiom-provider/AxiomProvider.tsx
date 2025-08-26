@@ -15,6 +15,12 @@ import { TooltipProvider } from "../tooltip";
 export type AxiomProviderProps = {
   children?: ReactNode;
   /**
+   * Props for the `DialogKitProvider` component
+   *
+   * {@link https://optimizely-axiom.github.io/optiaxiom/components/dialog/ Documentation}
+   */
+  dialog?: Omit<DialogKitProviderProps, "children">;
+  /**
    * Props for the `ToastProvider` component
    *
    * {@link https://optimizely-axiom.github.io/optiaxiom/components/toast/ Documentation}
@@ -29,6 +35,10 @@ export type AxiomProviderProps = {
 };
 
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
+interface DialogKitProviderProps
+  extends ComponentPropsWithoutRef<typeof DialogKitProvider> {}
+
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 interface ToastProviderProps
   extends ComponentPropsWithoutRef<typeof ToastProvider> {}
 
@@ -38,6 +48,7 @@ interface TooltipProviderProps
 
 export function AxiomProvider({
   children,
+  dialog,
   toast,
   tooltip,
 }: AxiomProviderProps) {
@@ -57,7 +68,7 @@ export function AxiomProvider({
       <TooltipProvider {...tooltip}>
         <FocusBookmarkProvider>
           {children}
-          <DialogKitProvider />
+          <DialogKitProvider {...dialog} />
         </FocusBookmarkProvider>
       </TooltipProvider>
     </AxiomVersionContext.Provider>
