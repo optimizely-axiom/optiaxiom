@@ -28,7 +28,7 @@ type DialogKit = {
   ];
 };
 
-const createDialogKit = (): DialogKit => {
+export const createDialogKit = (): DialogKit => {
   let snapshot: DialogItem[] = [];
 
   const listeners = new Set<() => void>();
