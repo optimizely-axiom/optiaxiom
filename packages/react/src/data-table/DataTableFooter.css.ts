@@ -6,11 +6,11 @@ export const addon = recipe({
   }),
 
   variants: {
-    position: {
-      end: {
+    slot: {
+      after: {
         textAlign: "end",
       },
-      start: {},
+      before: {},
     },
   },
 });
