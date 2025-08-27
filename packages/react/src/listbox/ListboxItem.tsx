@@ -79,11 +79,11 @@ export const ListboxItem = forwardRef<HTMLDivElement, ListboxItemProps>(
         <Comp>
           {decorateChildren({ asChild, children }, (children) => (
             <>
-              {addonBefore ? (
-                addonBefore
-              ) : icon ? (
-                <Icon asChild>{icon}</Icon>
-              ) : null}
+              {(addonBefore || icon) && (
+                <Box {...styles.addon({ slot: "before" })}>
+                  {addonBefore ?? <Icon asChild>{icon}</Icon>}
+                </Box>
+              )}
 
               <Flex flex="1" gap="0" maxW="full">
                 <Flex asChild {...styles.title()} id={labelId}>
@@ -98,9 +98,7 @@ export const ListboxItem = forwardRef<HTMLDivElement, ListboxItemProps>(
               </Flex>
 
               {addonAfter && (
-                <Box asChild ml="8">
-                  {fallbackSpan(addonAfter)}
-                </Box>
+                <Box {...styles.addon({ slot: "after" })}>{addonAfter}</Box>
               )}
             </>
           ))}

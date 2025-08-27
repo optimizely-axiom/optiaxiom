@@ -17,6 +17,7 @@ const textColorVar = createVar();
 export const item = recipe({
   base: [
     {
+      alignItems: "start",
       flexDirection: "row",
       fontSize: "md",
       gap: "8",
@@ -77,6 +78,28 @@ export const item = recipe({
           [textColorVar]: theme.colors["fg.default"],
         },
       }),
+    },
+  },
+});
+
+export const addon = recipe({
+  base: [
+    {
+      alignItems: "center",
+      display: "flex",
+      gap: "8",
+    },
+    style({
+      minHeight: "24px",
+    }),
+  ],
+
+  variants: {
+    slot: {
+      after: {
+        ml: "8",
+      },
+      before: {},
     },
   },
 });
