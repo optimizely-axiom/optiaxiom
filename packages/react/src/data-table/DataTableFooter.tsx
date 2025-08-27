@@ -57,7 +57,7 @@ export const DataTableFooter = forwardRef<HTMLDivElement, DataTableFooterProps>(
         ref={ref}
         {...props}
       >
-        <Box {...styles.addon({ position: "start" })}>
+        <Box {...styles.addon({ slot: "before" })}>
           {showPageSizeOptions && (
             <Flex flexDirection="row" gap="8">
               <Text color="fg.secondary" id={pageSizeId}>
@@ -88,7 +88,7 @@ export const DataTableFooter = forwardRef<HTMLDivElement, DataTableFooterProps>(
           />
         )}
 
-        <Text {...styles.addon({ position: "end" })}>
+        <Text {...styles.addon({ slot: "after" })}>
           {table.getRowCount() > 0 && (
             <>
               {pagination.pageIndex * pagination.pageSize + 1} -{" "}
