@@ -39,6 +39,9 @@ export const MenuDialogContent = forwardRef<
     return (
       <DialogContent
         aria-labelledby={clsx(fieldLabelId ?? triggerRef.current?.id, labelId)}
+        onPointerDownOutside={() => {
+          // Allow light dismiss of menu by passing an empty method
+        }}
         ref={ref}
         {...styles.content({}, className)}
         {...props}
