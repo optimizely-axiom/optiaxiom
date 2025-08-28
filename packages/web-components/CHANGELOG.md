@@ -1,5 +1,12 @@
 # @optiaxiom/web-components
 
+## 0.11.6
+
+### Patch Changes
+
+- 74979dd: allow light dismiss of spotlight and menu dialog
+- bdb3768: use top row alignment for listbox item
+
 ## 0.11.5
 
 ### Patch Changes

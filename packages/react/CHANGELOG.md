@@ -1,5 +1,13 @@
 # @optiaxiom/react
 
+## 1.6.9
+
+### Patch Changes
+
+- 100491d: allow simpler API for dialogkit.confirm method
+- 74979dd: allow light dismiss of spotlight and menu dialog
+- bdb3768: use top row alignment for listbox item
+
 ## 1.6.8
 
 ### Patch Changes
