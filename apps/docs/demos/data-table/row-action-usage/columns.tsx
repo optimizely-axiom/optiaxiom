@@ -27,7 +27,7 @@ export const columns = [
     cell: ({ row }) => (
       <Flex flexDirection="row" justifyContent="space-between" w="full">
         <DataTableLabel asChild>
-          <DataTableAction asChild flex="initial" overflow="hidden" primary>
+          <DataTableAction flex="initial" overflow="hidden" primary>
             <Link
               appearance="subtle"
               href="data:,"
@@ -53,7 +53,7 @@ export const columns = [
               { intent: "danger", label: "Delete" },
             ]}
           >
-            <DataTableAction asChild>
+            <DataTableAction>
               <MenuTrigger asChild>
                 <EllipsisMenuButton
                   appearance="subtle"
@@ -65,7 +65,7 @@ export const columns = [
             <MenuContent />
           </Menu>
 
-          <DataTableAction asChild>
+          <DataTableAction>
             <Button
               appearance="subtle"
               aria-label="Share"

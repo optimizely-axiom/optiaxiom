@@ -49,7 +49,6 @@ export const DataTableCheckbox = forwardRef<
         </VisuallyHidden>
       )}
       <DataTableAction
-        asChild
         visible={
           (visible ?? (table.getIsSomeRowsSelected() || !row))
             ? "always"
