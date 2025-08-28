@@ -185,13 +185,13 @@ export const Actions: Story = {
             <TableCell>{invoice.paymentMethod}</TableCell>
             <TableCell>{invoice.totalAmount}</TableCell>
             <TableCell>
-              <TableAction>
-                <Menu
-                  options={[
-                    { label: "Edit" },
-                    { intent: "danger", label: "Delete" },
-                  ]}
-                >
+              <Menu
+                options={[
+                  { label: "Edit" },
+                  { intent: "danger", label: "Delete" },
+                ]}
+              >
+                <TableAction>
                   <MenuTrigger
                     appearance="subtle"
                     aria-label="More actions"
@@ -200,9 +200,9 @@ export const Actions: Story = {
                   >
                     <EllipsisMenuButton />
                   </MenuTrigger>
-                  <MenuContent />
-                </Menu>
-              </TableAction>
+                </TableAction>
+                <MenuContent />
+              </Menu>
             </TableCell>
           </TableRow>
         ))}
