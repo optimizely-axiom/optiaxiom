@@ -1,6 +1,20 @@
-import type { ContextType, ReactNode } from "react";
+import {
+  type ContextType,
+  isValidElement,
+  type ReactElement,
+  type ReactNode,
+} from "react";
 
 import type { DialogKitContext } from "./DialogKitContext";
+
+import {
+  AlertDialogAction,
+  AlertDialogBody,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogFooter,
+  AlertDialogHeader,
+} from "../alert-dialog";
 
 type DialogItem = ContextType<typeof DialogKitContext> & {
   element: ReactNode;
@@ -18,7 +32,15 @@ const genId = () => {
 
 type DialogKit = {
   clear: () => void;
-  confirm: (element: ReactNode) => Promise<boolean>;
+  confirm: (
+    element:
+      | ReactElement
+      | {
+          action: string;
+          body: string;
+          header: string;
+        },
+  ) => Promise<boolean>;
   create: (element: ReactNode, options?: DialogOptions) => string;
   remove: (id: string) => void;
   store: [
@@ -82,11 +104,26 @@ export const createDialogKit = (): DialogKit => {
     },
     confirm: async (element) => {
       return new Promise((resolve) => {
-        create(element, {
-          onDismiss: (_event, reason) => {
-            resolve(reason === "action");
+        create(
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          isValidElement<any>(element) ? (
+            element
+          ) : (
+            <AlertDialogContent>
+              <AlertDialogHeader>{element.header}</AlertDialogHeader>
+              <AlertDialogBody>{element.body}</AlertDialogBody>
+              <AlertDialogFooter>
+                <AlertDialogCancel />
+                <AlertDialogAction>{element.action}</AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          ),
+          {
+            onDismiss: (_event, reason) => {
+              resolve(reason === "action");
+            },
           },
-        });
+        );
       });
     },
     create,
