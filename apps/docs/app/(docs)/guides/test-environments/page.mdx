@@ -25,6 +25,19 @@ export * from "@testing-library/react";
 export { customRender as render };
 ```
 
+### Disable animations
+
+Running animations during unit tests can cause unpredictable test results or force developers to write more code waiting for animations to finish. Instead a better strategy is to disable animations during unit tests to ensure consistent test results.
+
+Enable the `TransitionGlobalConfig.skipAnimations` option to disable animations.
+
+```ts
+import { TransitionGlobalConfig } from "@optiaxiom/react";
+
+// Do this in your global test setup file
+TransitionGlobalConfig.skipAnimations = true;
+```
+
 ## Jest
 
 ### Mock CSS imports
