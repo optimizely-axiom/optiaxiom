@@ -100,6 +100,12 @@ export const demos = {
   "checkbox/usage": import("@/demos/checkbox/usage/App"),
   "code/usage": import("@/demos/code/usage/App"),
   "cover/usage": import("@/demos/cover/usage/App"),
+  "data-table/expanding-rows-usage": import(
+    "@/demos/data-table/expanding-rows-usage/App"
+  ),
+  "data-table/loading-row-usage": import(
+    "@/demos/data-table/loading-row-usage/App"
+  ),
   "data-table/loading-usage": import("@/demos/data-table/loading-usage/App"),
   "data-table/pagination-client-usage": import(
     "@/demos/data-table/pagination-client-usage/App"
