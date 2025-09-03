@@ -11,6 +11,7 @@ export * from "./breadcrumb";
 export * from "./button";
 export * from "./card";
 export * from "./checkbox";
+export * from "./cleanup";
 export * from "./code";
 export * from "./cover";
 export * from "./data-table";

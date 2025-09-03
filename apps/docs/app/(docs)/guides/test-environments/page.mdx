@@ -38,6 +38,20 @@ import { TransitionGlobalConfig } from "@optiaxiom/react";
 TransitionGlobalConfig.skipAnimations = true;
 ```
 
+### Cleanup toasts and dialogs
+
+Toasts and managed dialogs are persisted globally which can cause tests to affect one another.
+
+Use the `cleanup` method to clear out toasts and dialogs in your test setup/teardown hooks.
+
+```ts
+import { cleanup } from "@optiaxiom/react";
+
+beforeEach(() => {
+  cleanup();
+});
+```
+
 ## Jest
 
 ### Mock CSS imports
