@@ -1,5 +1,5 @@
 import { Cards, Demo, Links, PropsTable } from "@/components";
-import { Alert } from "@optiaxiom/react";
+import { Alert, Badge } from "@optiaxiom/react";
 
 # DataTable
 
@@ -108,6 +108,10 @@ Set the `loading` prop to `true` to show a loading skeleton while your table dat
 
 <Demo component="data-table/loading-usage" />
 
+Alternatively you can provide an object to the `loading` prop to denote individual loading state of sub rows.
+
+<Demo component="data-table/loading-row-usage" />
+
 ### Sorting
 
 `DataTable` supports both client-side and server-side sorting. Follow the [sorting guide](https://tanstack.com/table/latest/docs/guide/sorting) to learn how to implement sorting with TanStack Table.
@@ -131,6 +135,16 @@ To implement manual server-side sorting we can use `manualSorting` and `enableSo
 </Alert>
 
 <Demo component="data-table/sorting-server-usage" />
+
+### Expanding rows <Badge intent="primary">ALPHA</Badge>
+
+Follow the [expanding guide](https://tanstack.com/table/latest/docs/guide/expanding) to allow expanding and collapsing rows.
+
+Use the `DataTableExpandableHeader` and `DataTableExpandableCell` components to render columns with built-in buttons for toggling rows.
+
+Finally, combine it with the `loading` prop to show a loading state while expanded rows are being fetched.
+
+<Demo component="data-table/expanding-rows-usage" />
 
 ### Virtualized
 

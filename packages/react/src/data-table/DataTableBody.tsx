@@ -2,7 +2,7 @@ import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import { flexRender } from "@tanstack/react-table";
 import { useVirtualizer } from "@tanstack/react-virtual";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
-import { forwardRef, useRef } from "react";
+import { forwardRef, useMemo, useRef } from "react";
 
 import { type BoxProps } from "../box";
 import { Table, TableBody, TableCell, TableHeader, TableRow } from "../table";
@@ -20,9 +20,9 @@ export type DataTableBodyProps = BoxProps<
      */
     estimatedRowHeight?: number;
     /**
-     * Indicates if the table is loading
+     * Whether to show skeleton for the whole table or specific rows.
      */
-    loading?: boolean;
+    loading?: boolean | Record<string, "sub-rows" | boolean>;
   }
 >;
 
@@ -36,7 +36,24 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
 
     const { table } = useDataTableContext("@optiaxiom/react/DataTableBody");
 
-    const { rows } = table.getRowModel();
+    const { rows: rawRows } = table.getRowModel();
+    const rows = useMemo(() => {
+      let index = 0;
+      return rawRows.reduce<
+        Array<(typeof rawRows)[number] | ReturnType<typeof fakeRow>>
+      >((result, row) => {
+        result.push(row);
+        index++;
+        if (
+          loading &&
+          typeof loading === "object" &&
+          loading[row.id] === "sub-rows"
+        ) {
+          result.push(fakeRow(table, index++), fakeRow(table, index++));
+        }
+        return result;
+      }, []);
+    }, [loading, rawRows, table]);
     const centerColumns = table.getCenterVisibleLeafColumns();
 
     const columnVirtualizer = useVirtualizer({
@@ -110,7 +127,7 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
               : undefined
           }
         >
-          {(loading
+          {(loading === true
             ? Array.from({ length: 10 }, (_, rowIndex) => ({
                 row: fakeRow(table, rowIndex),
                 virtualRow: undefined,

@@ -7,12 +7,18 @@ import {
   DataTableFooter,
 } from "@optiaxiom/react";
 import {
+  DataTableExpandableCell,
+  DataTableExpandableHeader,
+} from "@optiaxiom/react/unstable";
+import {
   type ColumnDef,
   getCoreRowModel,
+  getExpandedRowModel,
   getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
+import { useMemo, useRef, useState } from "react";
 
 type Payment = {
   amount: number;
@@ -276,6 +282,85 @@ export const Pinned: Story = {
         })}
       >
         <DataTableBody />
+      </DataTable>
+    );
+  },
+};
+
+export const ExpandingRows: Story = {
+  render: function Render(args) {
+    const [expanded, setExpanded] = useState({});
+    const [flatRows, setFlatRows] = useState(
+      data.map((row) => ({
+        ...row,
+        parent: "0",
+      })),
+    );
+    const rows = useMemo(
+      () => flatRows.filter((row) => row.parent === "0"),
+      [flatRows],
+    );
+    const [loading, setLoading] = useState<Record<string, boolean>>({});
+    const indexRef = useRef(0);
+
+    return (
+      <DataTable
+        {...args}
+        table={useReactTable({
+          columns: [
+            columns[0],
+            {
+              accessorKey: "id",
+              cell: DataTableExpandableCell,
+              enableResizing: true,
+              header: () => (
+                <DataTableExpandableHeader>ID</DataTableExpandableHeader>
+              ),
+            },
+            ...columns.slice(2, 5),
+          ],
+          data: rows,
+          getCoreRowModel: getCoreRowModel(),
+          getExpandedRowModel: getExpandedRowModel(),
+          getRowCanExpand: (row) => row.depth < 2,
+          getRowId: (row) => row.id,
+          getSubRows: (row) => flatRows.filter((r) => r.parent === row.id),
+          onExpandedChange: (updater) => {
+            const newExpanded =
+              typeof updater === "function" ? updater(expanded) : updater;
+            setExpanded(newExpanded);
+
+            if (newExpanded === true) {
+              return;
+            }
+
+            const newLoading = { ...loading };
+            for (const key in newExpanded) {
+              if (!(key in newLoading)) {
+                newLoading[key] = true;
+                setTimeout(() => {
+                  setFlatRows((flatRows) => [
+                    ...flatRows,
+                    ...Array.from({ length: 3 }).map(() => ({
+                      ...largeData[indexRef.current++],
+                      parent: key,
+                    })),
+                  ]);
+                  setLoading((loading) => ({
+                    ...loading,
+                    [key]: false,
+                  }));
+                }, 1000);
+              }
+            }
+            setLoading(newLoading);
+          },
+          state: {
+            expanded,
+          },
+        })}
+      >
+        <DataTableBody loading={loading} />
       </DataTable>
     );
   },
