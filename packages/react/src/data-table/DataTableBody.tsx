@@ -4,10 +4,7 @@ import { useVirtualizer } from "@tanstack/react-virtual";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
 import { forwardRef, useRef } from "react";
 
-import type { Sprinkles } from "../sprinkles";
-
 import { type BoxProps } from "../box";
-import { Skeleton } from "../skeleton";
 import { Table, TableBody, TableCell, TableHeader, TableRow } from "../table";
 import * as styles from "./DataTableBody.css";
 import { useDataTableContext } from "./DataTableContext";
@@ -157,11 +154,7 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
                     pinnedType: "body",
                   })}
                 >
-                  {loading ? (
-                    <Skeleton w={fakeCellWidth(cell.id)} />
-                  ) : (
-                    flexRender(cell.column.columnDef.cell, cell.getContext())
-                  )}
+                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
                 </TableCell>
               ))}
 
@@ -186,11 +179,7 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
                   }}
                   {...styles.cell()}
                 >
-                  {loading ? (
-                    <Skeleton w={fakeCellWidth(cell.id)} />
-                  ) : (
-                    flexRender(cell.column.columnDef.cell, cell.getContext())
-                  )}
+                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
                 </TableCell>
               ))}
 
@@ -209,11 +198,7 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
                     pinnedType: "body",
                   })}
                 >
-                  {loading ? (
-                    <Skeleton w={fakeCellWidth(cell.id)} />
-                  ) : (
-                    flexRender(cell.column.columnDef.cell, cell.getContext())
-                  )}
+                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
                 </TableCell>
               ))}
             </DataTableRow>
@@ -225,5 +210,3 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
 );
 
 DataTableBody.displayName = "@optiaxiom/react/DataTableBody";
-
-const fakeCellWidth = (id: string) => id.split("-")[1] as Sprinkles["w"];
