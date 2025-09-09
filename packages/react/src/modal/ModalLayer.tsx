@@ -1,3 +1,4 @@
+import { ModalProvider, useModalContext } from "@optiaxiom/globals";
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import { DismissableLayer } from "@radix-ui/react-dismissable-layer";
 import { FocusGuards } from "@radix-ui/react-focus-guards";
@@ -12,8 +13,6 @@ import {
 import { RemoveScroll as ReactRemoveScroll } from "react-remove-scroll";
 
 import type { Box } from "../box";
-
-import { ModalProvider, useModalContext } from "./ModalContext";
 
 const Slot = createSlot("@optiaxiom/react/ModalLayer");
 
