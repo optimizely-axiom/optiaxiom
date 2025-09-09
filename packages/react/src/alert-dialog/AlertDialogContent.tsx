@@ -1,3 +1,4 @@
+import { ModalProvider } from "@optiaxiom/globals";
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import * as RadixDialog from "@radix-ui/react-dialog";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
@@ -10,7 +11,6 @@ import { Box, type BoxProps } from "../box";
 import { DialogKitContext } from "../dialog-kit/internals";
 import { Flex } from "../flex";
 import { FocusBookmarkProvider } from "../focus-bookmark";
-import { ModalProvider } from "../modal";
 import { Paper } from "../paper";
 import { Portal } from "../portal";
 import { Transition, TransitionGroup } from "../transition";

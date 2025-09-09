@@ -41,6 +41,7 @@ export default {
       "css-imports": "CSS Imports",
       "css-layers": "CSS Layers",
       icons: "Icons",
+      "module-federation": "Module Federation",
       "react-select": "React Select",
     },
     title: "Guides",

@@ -1,0 +1,31 @@
+# Module Federation
+
+Axiom supports Module Federation out of the box. But certain dependencies will need to be shared for components to work across multiple versions of Axiom on the same page.
+
+## Configuration
+
+### Shared dependencies
+
+Please make sure `@optiaxiom/globals` and the following dependencies from **Radix UI** are marked to be shared between consumers and producers.
+
+These shared dependencies are required for things like toasts, dialogs, and menus to work correctly across different versions of Axiom within the same page.
+
+```ts
+export default {
+  shared: {
+    "@optiaxiom/globals": {
+      requiredVersion: "^1.0.0",
+      singleton: true,
+    },
+    "@radix-ui/react-dismissable-layer": {
+      requiredVersion: "^1.0.0",
+      singleton: true,
+    },
+    "@radix-ui/react-focus-scope": {
+      requiredVersion: "^1.0.0",
+      singleton: true,
+    },
+    // ... other dependencies like react, react-dom, etc.
+  },
+};
+```

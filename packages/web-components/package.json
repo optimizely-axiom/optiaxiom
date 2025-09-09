@@ -103,7 +103,6 @@
     "./MenuContent": "./dist/components/MenuContent.js",
     "./MenuTrigger": "./dist/components/MenuTrigger.js",
     "./ModalLayer": "./dist/components/ModalLayer.js",
-    "./ModalProvider": "./dist/components/ModalProvider.js",
     "./Nav": "./dist/components/Nav.js",
     "./NavAccountItem": "./dist/components/NavAccountItem.js",
     "./NavBody": "./dist/components/NavBody.js",
