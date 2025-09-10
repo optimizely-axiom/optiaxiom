@@ -1,6 +1,6 @@
 export * from "./calendar";
 export * from "./command";
-export * from "./data-table/DataTableHeaderCell";
+export * from "./data-table/unstable";
 export * from "./details-panel";
 export * from "./dialog-kit";
 export * from "./file-upload";

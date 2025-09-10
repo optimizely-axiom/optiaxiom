@@ -1,9 +1,11 @@
 "use client";
 
 import type { CellContext, Column, Table } from "@tanstack/table-core";
-import type { RefObject } from "react";
 
 import { createContext } from "@radix-ui/react-context";
+import { createElement, type RefObject } from "react";
+
+import { Skeleton } from "../skeleton";
 
 export const [DataTableRowProvider, useDataTableRowContext] = createContext<{
   actions: Array<RefObject<HTMLDivElement>>;
@@ -35,10 +37,20 @@ export const [DataTableRowProvider, useDataTableRowContext] = createContext<{
 const fakeCellsFactory =
   (columns: Column<unknown, unknown>[], rowIndex: number) => () =>
     columns.map((column, columnIndex) => ({
-      column,
+      column: {
+        ...column,
+        columnDef: {
+          ...column.columnDef,
+          cell: () =>
+            createElement(Skeleton, {
+              w: (["1/2", "full", "3/4"] as const)[
+                (rowIndex + columnIndex) % 3
+              ],
+            }),
+        },
+      } as Column<unknown, unknown>,
       getContext: () => ({}) as CellContext<unknown, unknown>,
-      id:
-        column.id + "-" + ["1/2", "full", "3/4"][(rowIndex + columnIndex) % 3],
+      id: column.id,
     }));
 
 export const fakeRow = (table: Table<unknown>, rowIndex: number) => ({
