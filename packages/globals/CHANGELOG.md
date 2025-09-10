@@ -1,5 +1,11 @@
 # @optiaxiom/globals
 
+## 1.1.0
+
+### Minor Changes
+
+- a3d4c65: move modal context to globals package
+
 ## 1.0.10
 
 ### Patch Changes

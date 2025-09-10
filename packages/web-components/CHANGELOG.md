@@ -1,5 +1,11 @@
 # @optiaxiom/web-components
 
+## 0.11.7
+
+### Patch Changes
+
+- 8c676a2: enable asChild by default in TableAction and DataTableAction
+
 ## 0.11.6
 
 ### Patch Changes

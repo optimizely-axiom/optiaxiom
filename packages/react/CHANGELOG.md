@@ -1,5 +1,18 @@
 # @optiaxiom/react
 
+## 1.7.0
+
+### Minor Changes
+
+- a3d4c65: move modal context to globals package
+
+### Patch Changes
+
+- 8c676a2: enable asChild by default in TableAction and DataTableAction
+- 2ad1d52: add cleanup method for globally managed elements
+- Updated dependencies [a3d4c65]
+  - @optiaxiom/globals@1.1.0
+
 ## 1.6.9
 
 ### Patch Changes
