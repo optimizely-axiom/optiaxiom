@@ -22,11 +22,6 @@ export const textColorVar = createVar();
 const transparentHoverAccentColorVar = createVar();
 const transparentPressedAccentColorVar = createVar();
 
-const opalGradColorStopVar = createVar({
-  inherits: false,
-  initialValue: "0%",
-  syntax: "<percentage>",
-});
 const opalRingAngleVar = createVar({
   inherits: false,
   initialValue: "0turn",
@@ -266,30 +261,16 @@ export const buttonBase = recipe({
         },
       }),
       "strong-opal": style({
-        vars: {
-          [opalGradColorStopVar]: "15%",
-        },
-
+        animation: `${opalRingSpinAnim} 6s linear infinite`,
         backgroundImage: `
-          linear-gradient(
-            135deg,
-            #392ecf ${opalGradColorStopVar},
-            #7740ec 85%
+          conic-gradient(
+            from ${opalRingAngleVar},
+            #392ecf,
+            #7740ec,
+            #392ecf
           )
         `,
         color: fallbackVar(solidTextColorVar, theme.colors["fg.white"]),
-
-        "@media": {
-          "(hover: hover)": {
-            selectors: {
-              "&:hover:not(:active, [data-disabled], [data-loading])": {
-                vars: {
-                  [opalGradColorStopVar]: "50%",
-                },
-              },
-            },
-          },
-        },
 
         selectors: {
           "&[data-disabled]:not([data-loading])": {
