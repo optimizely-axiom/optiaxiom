@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 1.7.1
+
+### Patch Changes
+
+- ac74aed: animate primary opal button bg
+
 ## 1.7.0
 
 ### Minor Changes
