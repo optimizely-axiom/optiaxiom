@@ -1,5 +1,11 @@
 # @optiaxiom/web-components
 
+## 0.11.8
+
+### Patch Changes
+
+- ac74aed: animate primary opal button bg
+
 ## 0.11.7
 
 ### Patch Changes
