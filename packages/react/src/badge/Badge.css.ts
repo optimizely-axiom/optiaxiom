@@ -16,6 +16,7 @@ export const badge = recipe({
   base: [
     {
       display: "inline-flex",
+      flex: "none",
       fontSize: "sm",
       fontWeight: "500",
       justifyContent: "center",
