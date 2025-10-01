@@ -2,6 +2,7 @@ import { ModalProvider, useModalContext } from "@optiaxiom/globals";
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import { DismissableLayer } from "@radix-ui/react-dismissable-layer";
 import { FocusGuards } from "@radix-ui/react-focus-guards";
+import { FocusScope } from "@radix-ui/react-focus-scope";
 import { createSlot } from "@radix-ui/react-slot";
 import {
   type ComponentPropsWithoutRef,
@@ -60,7 +61,11 @@ export const ModalLayer = forwardRef<HTMLDivElement, ModalLayerProps>(
     }
 
     if (guards) {
-      result = <FocusGuards>{result}</FocusGuards>;
+      result = (
+        <FocusGuards>
+          <FocusScope>{result}</FocusScope>
+        </FocusGuards>
+      );
     }
 
     return <ModalProvider shardRef={innerRef}>{result}</ModalProvider>;
