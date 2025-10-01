@@ -1,5 +1,12 @@
 # @optiaxiom/react
 
+## 1.7.2
+
+### Patch Changes
+
+- 3815ff9: add flex none in badge to avoid shrinking in flex layouts
+- 45ded70: handle focus trap via FocusScope in ModalLayer
+
 ## 1.7.1
 
 ### Patch Changes
