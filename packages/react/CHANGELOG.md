@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 1.7.3
+
+### Patch Changes
+
+- ea1b90f: fix focus scope to not auto focus on mount/unmount
+
 ## 1.7.2
 
 ### Patch Changes
