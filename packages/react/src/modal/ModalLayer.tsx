@@ -63,7 +63,12 @@ export const ModalLayer = forwardRef<HTMLDivElement, ModalLayerProps>(
     if (guards) {
       result = (
         <FocusGuards>
-          <FocusScope>{result}</FocusScope>
+          <FocusScope
+            onMountAutoFocus={(event) => event.preventDefault()}
+            onUnmountAutoFocus={(event) => event.preventDefault()}
+          >
+            {result}
+          </FocusScope>
         </FocusGuards>
       );
     }
