@@ -1,11 +1,13 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import {
+  Button,
   Disclosure,
   DisclosureContent,
   DisclosureTrigger,
   Flex,
 } from "@optiaxiom/react";
+import { IconThumbDown } from "@tabler/icons-react";
 import { useState } from "react";
 // import { expect } from "storybook/test";
 
@@ -110,4 +112,19 @@ export const ForceMount: Story = {
   //     ),
   //   ).toBeInTheDocument();
   // },
+};
+
+export const CustomTrigger: Story = {
+  args: {
+    children: (
+      <>
+        <DisclosureTrigger asChild>
+          <Button aria-label="Dislike" icon={<IconThumbDown />} />
+        </DisclosureTrigger>
+        <DisclosureContent>
+          Content for the item. Contains multiple lines of lorem ipsum.
+        </DisclosureContent>
+      </>
+    ),
+  },
 };

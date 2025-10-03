@@ -1,4 +1,5 @@
 import * as RadixCollapsible from "@radix-ui/react-collapsible";
+import { createSlot } from "@radix-ui/react-slot";
 import { forwardRef, type ReactNode } from "react";
 
 import { Box, type BoxProps } from "../box";
@@ -8,6 +9,8 @@ import { IconAngleLeft } from "../icons/IconAngleLeft";
 import { IconAngleRight } from "../icons/IconAngleRight";
 import { useDisclosureContext } from "./DisclosureContext";
 import * as styles from "./DisclosureTrigger.css";
+
+const Slot = createSlot("@optiaxiom/react/DisclosureTrigger");
 
 export type DisclosureTriggerProps = BoxProps<
   "div",
@@ -35,6 +38,7 @@ export const DisclosureTrigger = forwardRef<
     {
       addonAfter,
       addonBefore,
+      asChild,
       chevronPosition = "start",
       children,
       className,
@@ -44,7 +48,11 @@ export const DisclosureTrigger = forwardRef<
   ) => {
     useDisclosureContext("@optiaxiom/react/DisclosureTrigger");
 
-    return (
+    return asChild ? (
+      <Slot className={className} ref={ref} {...props}>
+        <RadixCollapsible.Trigger asChild>{children}</RadixCollapsible.Trigger>
+      </Slot>
+    ) : (
       <Flex ref={ref} {...styles.root({}, className)} {...props}>
         {addonBefore}
 
