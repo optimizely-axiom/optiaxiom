@@ -8,6 +8,7 @@ export const avatar = recipe({
     {
       alignItems: "center",
       display: "inline-flex",
+      flex: "none",
       fontWeight: "500",
       justifyContent: "center",
       overflow: "hidden",
