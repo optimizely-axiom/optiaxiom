@@ -59,7 +59,9 @@ export default {
       cover: "Cover",
       flex: "Flex",
       grid: "Grid",
+      heading: "Heading",
       separator: "Separator",
+      text: "Text",
 
       "-- Providers": {
         title: "Providers",
@@ -103,7 +105,6 @@ export default {
       "file-upload": {
         title: <AlphaItem>FileUpload</AlphaItem>,
       },
-      heading: "Heading",
       indicator: "Indicator",
       "inline-input": {
         display: "hidden",
@@ -139,7 +140,6 @@ export default {
       switch: "Switch",
       table: "Table",
       tabs: "Tabs",
-      text: "Text",
       textarea: "Textarea",
       toast: "Toast",
       "toggle-button": "ToggleButton",
