@@ -165,6 +165,7 @@ export const demos = {
   "disclosure/controlled-usage": import(
     "@/demos/disclosure/controlled-usage/App"
   ),
+  "disclosure/trigger-usage": import("@/demos/disclosure/trigger-usage/App"),
   "disclosure/usage": import("@/demos/disclosure/usage/App"),
   "display/responsive-usage": import("@/demos/display/responsive-usage/App"),
   "display/usage": import("@/demos/display/usage/App"),
