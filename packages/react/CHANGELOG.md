@@ -1,5 +1,13 @@
 # @optiaxiom/react
 
+## 1.7.4
+
+### Patch Changes
+
+- 757c438: support expandable rows in DataTable
+- debea5c: allow asChild composition of DisclosureTrigger
+- c84cdf0: add flex none in avatar to avoid shrinking in flex layouts
+
 ## 1.7.3
 
 ### Patch Changes
