@@ -33,7 +33,10 @@ import * as styles from "./DateInput.css";
 
 export type DateInputProps = ExtendProps<
   ComponentPropsWithoutRef<typeof Input>,
-  Pick<ComponentPropsWithoutRef<typeof Calendar>, "holiday" | "weekend"> & {
+  Pick<
+    ComponentPropsWithoutRef<typeof Calendar>,
+    "holiday" | "placeholder" | "weekend"
+  > & {
     /**
      * Control whether the input allows only date or both date and time.
      */
@@ -50,6 +53,7 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
       max,
       min,
       onChange,
+      placeholder,
       step,
       type = "date",
       weekend,
@@ -196,6 +200,7 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
                 setOpen(false);
               }
             }}
+            placeholder={placeholder}
             step={step}
             type={type}
             value={instant}

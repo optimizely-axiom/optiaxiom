@@ -50,6 +50,12 @@ export type CalendarProps = BoxProps<
      */
     onDateSelect?: (date: Date) => void;
     /**
+     * The placeholder date and time to use when no value has yet been selected.
+     *
+     * The value format must an Instant, PlainDate, PlainDateTime, or PlainTime.
+     */
+    placeholder?: string;
+    /**
      * Specify the stepping value in days (date) or seconds (datetime-local) for the allowed values.
      */
     step?: number | string;
@@ -128,6 +134,7 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
       mode = "single",
       onDateSelect,
       onValueChange,
+      placeholder,
       step,
       today,
       type = "date",
@@ -146,17 +153,25 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
       onChange: onValueChange as (value: Date | DateRange | null) => void,
       prop: valueProp,
     });
+    const now = new Date();
+    const placeholderDate = placeholder
+      ? (toInstant(
+          placeholder.includes("-")
+            ? placeholder
+            : `${toPlainDate(now)}T${placeholder}`,
+        ) ?? now)
+      : now;
     const time =
       type === "date"
         ? "00:00"
-        : toPlainTime(value instanceof Date ? value : new Date(), step);
+        : toPlainTime(value instanceof Date ? value : placeholderDate, step);
 
     const [month, setMonth] = useState(
       value && typeof value === "object" && "from" in value
         ? value.from
         : value instanceof Date
           ? value
-          : (today ?? new Date()),
+          : (today ?? placeholderDate),
     );
 
     const innerRef = useRef<HTMLDivElement>(null);
@@ -277,7 +292,9 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
                 onValueChange={(time) => {
                   setValue(
                     new Date(
-                      toPlainDate(value instanceof Date ? value : new Date()) +
+                      toPlainDate(
+                        value instanceof Date ? value : placeholderDate,
+                      ) +
                         "T" +
                         time,
                     ),
@@ -292,7 +309,9 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
                 textAlign="center"
                 w="full"
               >
-                {toTimeZoneName(value instanceof Date ? value : new Date())}
+                {toTimeZoneName(
+                  value instanceof Date ? value : placeholderDate,
+                )}
               </Text>
             </Flex>
           )}
