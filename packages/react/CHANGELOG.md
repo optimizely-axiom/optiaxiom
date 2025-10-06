@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 1.7.5
+
+### Patch Changes
+
+- 6c7df42: allow setting placeholder date/time for DateInput
+
 ## 1.7.4
 
 ### Patch Changes
