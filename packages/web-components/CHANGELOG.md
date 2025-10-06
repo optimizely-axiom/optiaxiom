@@ -1,5 +1,11 @@
 # @optiaxiom/web-components
 
+## 0.11.9
+
+### Patch Changes
+
+- 6c7df42: allow setting placeholder date/time for DateInput
+
 ## 0.11.8
 
 ### Patch Changes
