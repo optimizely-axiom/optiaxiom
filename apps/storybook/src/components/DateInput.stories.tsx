@@ -152,3 +152,21 @@ export const WithTime: Story = {
     );
   },
 };
+
+export const WithTimePlaceholder: Story = {
+  args: {
+    placeholder: "10:10",
+    type: "datetime-local",
+  },
+  play: async ({ canvas }) => {
+    await userEvent.click(
+      await canvas.findByRole("img", { name: "Show date picker" }),
+    );
+    await waitFor(
+      async () =>
+        await expect(
+          await screen.findByRole("button", { name: "Done" }),
+        ).toBeVisible(),
+    );
+  },
+};
