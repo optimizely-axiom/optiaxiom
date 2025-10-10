@@ -5,6 +5,7 @@ export * from "./details-panel";
 export * from "./dialog-kit";
 export * from "./file-upload";
 export * from "./highlight";
+export * from "./hover-card";
 export * from "./inline-input";
 export * from "./layout";
 export * from "./pill";

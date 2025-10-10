@@ -1,6 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Avatar, AvatarGroup, Flex, Tooltip } from "@optiaxiom/react";
+import { Avatar, AvatarGroup, Flex, Text, Tooltip } from "@optiaxiom/react";
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@optiaxiom/react/unstable";
+import { expect, screen, userEvent } from "storybook/test";
 
 const users = [
   {
@@ -102,5 +108,50 @@ export const WithTooltip: Story = {
         </Tooltip>
       </>
     ),
+  },
+};
+
+export const WithHoverCard: Story = {
+  args: {
+    children: (
+      <>
+        {users.slice(0, 3).map((user) => (
+          <Avatar
+            colorScheme="purple"
+            key={user.id}
+            name={user.name}
+            src={user.src}
+          >
+            {user.id}
+          </Avatar>
+        ))}
+
+        <HoverCard>
+          <HoverCardTrigger asChild cursor="pointer">
+            <Avatar>+3</Avatar>
+          </HoverCardTrigger>
+
+          <HoverCardContent aria-label="Shared users list">
+            <Flex flexDirection="column" gap="8">
+              {users.slice(3).map((user, index) => (
+                <Flex flexDirection="row" gap="4" key={index}>
+                  <Avatar colorScheme="purple" name={user.name} src={user.src}>
+                    {user.id}
+                  </Avatar>
+
+                  <Text>{user.name}</Text>
+                </Flex>
+              ))}
+            </Flex>
+          </HoverCardContent>
+        </HoverCard>
+      </>
+    ),
+  },
+  play: async ({ canvas }) => {
+    await userEvent.hover(canvas.getByText("+3"));
+    await expect(
+      await screen.findByRole("dialog", { name: "Shared users list" }),
+    ).toBeInTheDocument();
   },
 };

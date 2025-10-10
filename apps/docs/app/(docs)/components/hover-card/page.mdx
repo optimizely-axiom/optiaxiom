@@ -1,0 +1,62 @@
+import { Demo, Links, PropsTable } from "@/components";
+
+# HoverCard
+
+Display helpful text or previews inside a dialog when hovering over a link or button.
+
+## Documentation
+
+### Usage
+
+<Demo component="hover-card/usage" />
+
+### Anatomy
+
+```tsx
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@optiaxiom/react/unstable";
+
+export default () => (
+  <HoverCard>
+    <HoverCardTrigger />
+    <HoverCardContent />
+  </HoverCard>
+);
+```
+
+### Controlled
+
+Use the `open` and `defaultOpen` props to toggle between controlled and uncontrolled usage. And combine it with `onOpenChange` to listen for changes to the state.
+
+<Demo component="hover-card/controlled-usage" />
+
+### Customize trigger
+
+By default we render an `<a>` element for the dialog trigger which also accepts all of our **Box** props.
+
+We can also completely change the trigger by using `asChild` and passing our own component.
+
+<Demo component="hover-card/trigger-usage" />
+
+## Props
+
+### HoverCard
+
+<PropsTable component="HoverCard" />
+
+### HoverCardTrigger
+
+<PropsTable component="HoverCardTrigger" />
+
+### HoverCardContent
+
+<PropsTable component="HoverCardContent" />
+
+## Changelog
+
+### 1.7.6
+
+- Added component
