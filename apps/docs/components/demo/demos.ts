@@ -254,6 +254,11 @@ export const demos = {
   "heading/size-usage": import("@/demos/heading/size-usage/App"),
   "heading/usage": import("@/demos/heading/usage/App"),
   "height/usage": import("@/demos/height/usage/App"),
+  "hover-card/controlled-usage": import(
+    "@/demos/hover-card/controlled-usage/App"
+  ),
+  "hover-card/trigger-usage": import("@/demos/hover-card/trigger-usage/App"),
+  "hover-card/usage": import("@/demos/hover-card/usage/App"),
   "indicator/appearance-usage": import(
     "@/demos/indicator/appearance-usage/App"
   ),

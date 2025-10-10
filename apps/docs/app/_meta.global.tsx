@@ -105,6 +105,9 @@ export default {
       "file-upload": {
         title: <AlphaItem>FileUpload</AlphaItem>,
       },
+      "hover-card": {
+        title: <AlphaItem>HoverCard</AlphaItem>,
+      },
       indicator: "Indicator",
       "inline-input": {
         display: "hidden",

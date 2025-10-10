@@ -224,7 +224,7 @@ function PropsTableDescription({
         <>
           Renders a <Code>&lt;kbd&gt;</Code> element.
         </>
-      ) : matches(["Link"], baseName, name) ? (
+      ) : matches(["HoverCardTrigger", "Link"], baseName, name) ? (
         <>
           Renders an <Code>&lt;a&gt;</Code> element.
         </>
