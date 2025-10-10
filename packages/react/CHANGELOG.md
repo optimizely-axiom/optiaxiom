@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 1.7.6
+
+### Patch Changes
+
+- 6848710: add HoverCard component
+
 ## 1.7.5
 
 ### Patch Changes
