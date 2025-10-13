@@ -162,6 +162,10 @@ export const WithTimePlaceholder: Story = {
     await userEvent.click(
       await canvas.findByRole("img", { name: "Show date picker" }),
     );
+    await userEvent.click(await screen.findByRole("status"));
+    await userEvent.click(
+      await screen.findByRole("button", { name: "Go to the previous year" }),
+    );
     await waitFor(
       async () =>
         await expect(
