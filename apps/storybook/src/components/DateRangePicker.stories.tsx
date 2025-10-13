@@ -54,7 +54,7 @@ export const WithLabel: Story = {
     await userEvent.click(await canvas.findByRole("button", { name: "Label" }));
     await userEvent.click(await screen.findByText("15"));
     await userEvent.click(
-      screen.getByRole("button", { name: "Go to the Next Month" }),
+      screen.getByRole("button", { name: "Go to the next month" }),
     );
     await userEvent.click(await screen.findByText("14"));
     await expect(
@@ -100,7 +100,7 @@ export const Addons: Story = {
     await expect(await screen.findByRole("dialog")).toBeInTheDocument();
     await userEvent.click(await screen.findByText("15"));
     await userEvent.click(
-      screen.getByRole("button", { name: "Go to the Next Month" }),
+      screen.getByRole("button", { name: "Go to the next month" }),
     );
     await userEvent.click(await screen.findByText("14"));
     await expect(canvas.queryByRole("dialog")).not.toBeInTheDocument();
