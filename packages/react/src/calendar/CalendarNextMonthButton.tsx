@@ -1,18 +1,15 @@
 import type { ComponentPropsWithoutRef } from "react";
 
-import { NextMonthButton } from "react-day-picker";
-
 import { Button } from "../button";
+import { Tooltip } from "../tooltip";
 import { useCalendarContext } from "./CalendarContext";
 import * as styles from "./CalendarNextMonthButton.css";
 import { withYear } from "./utils";
 
-export type CalendarNextMonthButtonProps = ComponentPropsWithoutRef<
-  typeof NextMonthButton
->;
+export type CalendarNextMonthButtonProps = ComponentPropsWithoutRef<"button">;
 
 export function CalendarNextMonthButton({
-  "aria-label": ariaLabel,
+  "aria-label": _ariaLabel,
   children,
   className,
   color: _color,
@@ -22,33 +19,33 @@ export function CalendarNextMonthButton({
   const { month, setMonth, view } = useCalendarContext(
     "@optiaxiom/react/CalendarNextMonthButton",
   );
+  const label =
+    "Go to the " +
+    (view === "year"
+      ? "next year range"
+      : view === "month"
+        ? "next year"
+        : "next month");
 
   return (
-    <Button
-      appearance="subtle"
-      aria-label={
-        view === "year"
-          ? "Go to next year range"
-          : view === "month"
-            ? "Go to next year"
-            : ariaLabel
-      }
-      asChild
-      icon={children}
-      onClick={(event) => {
-        if (view === "day") {
-          onClick?.(event);
-        } else {
-          setMonth(
-            withYear(month, month.getFullYear() + (view === "year" ? 12 : 1)),
-          );
-        }
-      }}
-      {...styles.button({}, className)}
-      {...props}
-    >
-      <NextMonthButton />
-    </Button>
+    <Tooltip content={label}>
+      <Button
+        appearance="subtle"
+        aria-label={label}
+        icon={children}
+        onClick={(event) => {
+          if (view === "day") {
+            onClick?.(event);
+          } else {
+            setMonth(
+              withYear(month, month.getFullYear() + (view === "year" ? 12 : 1)),
+            );
+          }
+        }}
+        {...styles.button({}, className)}
+        {...props}
+      />
+    </Tooltip>
   );
 }
 
