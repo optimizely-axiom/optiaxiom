@@ -9,20 +9,18 @@ const columnHelper = createColumnHelper<{
 
 export const columns = [
   columnHelper.accessor("id", {
+    enableSorting: false,
     header: "ID",
     size: 60,
   }),
   columnHelper.accessor("firstName", {
-    enableSorting: true,
     header: "First Name",
   }),
   columnHelper.accessor("lastName", {
-    enableSorting: true,
     header: "Last Name",
   }),
   columnHelper.accessor("amount", {
     cell: ({ renderValue }) => `$${renderValue()}`,
-    enableSorting: true,
     header: "Amount",
     sortingFn: "alphanumeric",
   }),

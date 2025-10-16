@@ -61,6 +61,8 @@ const columns: ColumnDef<Payment>[] = [
         onChange={row.getToggleSelectedHandler()}
       />
     ),
+    enableResizing: false,
+    enableSorting: false,
     header: ({ table }) => (
       <Checkbox
         aria-label="Select all"
@@ -74,17 +76,17 @@ const columns: ColumnDef<Payment>[] = [
   },
   {
     accessorKey: "id",
-    enableResizing: true,
+    enableSorting: false,
     header: "ID",
   },
   {
     accessorKey: "status",
+    enableResizing: false,
+    enableSorting: false,
     header: "Status",
   },
   {
     accessorKey: "email",
-    enableResizing: true,
-    enableSorting: true,
     header: "Email",
   },
   {
@@ -97,23 +99,31 @@ const columns: ColumnDef<Payment>[] = [
       return formatted;
     },
     accessorKey: "amount",
-    enableSorting: true,
+    enableResizing: false,
     header: "Amount",
   },
   {
     accessorKey: "createdAt",
+    enableResizing: false,
+    enableSorting: false,
     header: "Created At",
   },
   {
     accessorKey: "customerName",
+    enableResizing: false,
+    enableSorting: false,
     header: "Customer Name",
   },
   {
     accessorKey: "productName",
+    enableResizing: false,
+    enableSorting: false,
     header: "Product Name",
   },
   {
     accessorKey: "quantity",
+    enableResizing: false,
+    enableSorting: false,
     header: "Quantity",
   },
   {
@@ -126,31 +136,45 @@ const columns: ColumnDef<Payment>[] = [
       return formatted;
     },
     accessorKey: "totalPrice",
+    enableResizing: false,
+    enableSorting: false,
     header: "Total Price",
   },
   {
     accessorKey: "paymentMethod",
+    enableResizing: false,
+    enableSorting: false,
     header: "Payment Method",
   },
   {
     accessorKey: "shippingMethod",
+    enableResizing: false,
+    enableSorting: false,
     header: "Shipping Method",
   },
   {
     accessorKey: "trackingNumber",
+    enableResizing: false,
+    enableSorting: false,
     header: "Tracking Number",
   },
   {
     accessorKey: "refundStatus",
+    enableResizing: false,
+    enableSorting: false,
     header: "Refund Status",
   },
   {
     accessorFn: (row) => row.tags.join(", "),
     accessorKey: "tags",
+    enableResizing: false,
+    enableSorting: false,
     header: "Tags",
   },
   {
     accessorKey: "lastModifiedBy",
+    enableResizing: false,
+    enableSorting: false,
     header: "Last Modified By",
   },
 ];
@@ -312,7 +336,6 @@ export const ExpandingRows: Story = {
             {
               accessorKey: "id",
               cell: DataTableExpandableCell,
-              enableResizing: true,
               header: () => (
                 <DataTableExpandableHeader>ID</DataTableExpandableHeader>
               ),

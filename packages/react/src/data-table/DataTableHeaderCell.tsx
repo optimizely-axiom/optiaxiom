@@ -33,7 +33,7 @@ export const DataTableHeaderCell = forwardRef<
     <ActionsRoot asChild>
       <TableHeaderCell
         aria-sort={
-          header.column.columnDef.enableSorting
+          header.column.getCanSort()
             ? sortDir === false
               ? "none"
               : sortDir === "asc"
@@ -45,7 +45,7 @@ export const DataTableHeaderCell = forwardRef<
         ref={ref}
         {...props}
       >
-        {header.column.columnDef.enableResizing && (
+        {header.column.getCanResize() && (
           <ActionsContent
             visible={header.column.getIsResizing() ? "always" : "if-needed"}
           >
@@ -68,7 +68,7 @@ export const DataTableHeaderCell = forwardRef<
           </ActionsContent>
         )}
 
-        {header.column.columnDef.enableSorting ? (
+        {header.column.getCanSort() ? (
           <Cover asChild inset {...styles.button()}>
             <button onClick={() => header.column.toggleSorting()}>
               {children}
