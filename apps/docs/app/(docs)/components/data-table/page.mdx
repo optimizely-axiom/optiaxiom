@@ -118,7 +118,7 @@ Alternatively you can provide an object to the `loading` prop to denote individu
 
 #### Client side
 
-Simply provide `getSortedRowModel` on table and `enableSorting` on each column you'd like to be sortable to use client-side sorting.
+Simply provide `getSortedRowModel` on table and optionally use `enableSorting` to control which columns you'd like to be sortable to use client-side sorting.
 
 <Alert intent="warning" mt="16">
   Hover over and click the table headers to sort by columns:
@@ -128,7 +128,7 @@ Simply provide `getSortedRowModel` on table and `enableSorting` on each column y
 
 #### Server side
 
-To implement manual server-side sorting we can use `manualSorting` and `enableSorting`. Then combine it with `onSortingChange` and `state.sorting` to control sorting and react to changes.
+To implement manual server-side sorting we can use `manualSorting`. Then combine it with `onSortingChange` and `state.sorting` to control sorting and react to changes.
 
 <Alert intent="warning" mt="16">
   Hover over and click the table headers to sort by columns:
