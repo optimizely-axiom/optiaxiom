@@ -1,5 +1,12 @@
 # @optiaxiom/react
 
+## 1.7.7
+
+### Patch Changes
+
+- fbf8bdc: fix detecting sortable/resizable columns
+- 787b947: show tooltips on calendar nav buttons
+
 ## 1.7.6
 
 ### Patch Changes
