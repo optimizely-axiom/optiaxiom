@@ -336,6 +336,7 @@ export const ExpandingRows: Story = {
             {
               accessorKey: "id",
               cell: DataTableExpandableCell,
+              enableResizing: false,
               header: () => (
                 <DataTableExpandableHeader>ID</DataTableExpandableHeader>
               ),
