@@ -2,7 +2,7 @@ import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import { flexRender } from "@tanstack/react-table";
 import { useVirtualizer } from "@tanstack/react-virtual";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
-import { forwardRef, useMemo, useRef } from "react";
+import { forwardRef, useEffect, useMemo, useRef } from "react";
 
 import { type BoxProps } from "../box";
 import { Table, TableBody, TableCell, TableHeader, TableRow } from "../table";
@@ -54,6 +54,11 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
         return result;
       }, []);
     }, [loading, rawRows, table]);
+    const previousRowsRef = useRef(rows);
+    useEffect(() => {
+      previousRowsRef.current = rows;
+    });
+
     const centerColumns = table.getCenterVisibleLeafColumns();
 
     const columnVirtualizer = useVirtualizer({
@@ -76,6 +81,7 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
       getItemKey: (index) => rows[index].id,
       getScrollElement: () => innerRef.current,
     });
+    const virtualRows = rowVirtualizer.getVirtualItems();
 
     return (
       <Table
@@ -135,10 +141,20 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
                 virtualRow: undefined,
               }))
             : rowVirtualizer.options.enabled
-              ? rowVirtualizer.getVirtualItems().map((virtualRow) => ({
-                  row: rows[virtualRow.index],
-                  virtualRow,
-                }))
+              ? virtualRows.length === 0 && rows.length > 0
+                ? /**
+                   * If virtualization was just enabled in this render then
+                   * virtualRows will be empty so we render the rows from the
+                   * previous render instead temporarily.
+                   */
+                  previousRowsRef.current.map((row) => ({
+                    row,
+                    virtualRow: undefined,
+                  }))
+                : virtualRows.map((virtualRow) => ({
+                    row: rows[virtualRow.index],
+                    virtualRow,
+                  }))
               : rows.map((row) => ({ row, virtualRow: undefined }))
           ).map(({ row, virtualRow }, index) => (
             <DataTableRow
