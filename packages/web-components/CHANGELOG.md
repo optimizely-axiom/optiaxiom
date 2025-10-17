@@ -1,5 +1,12 @@
 # @optiaxiom/web-components
 
+## 0.11.11
+
+### Patch Changes
+
+- 520c3a8: optimize table rendering when switching to virtualization
+- 83e6cd8: use row and column ID for virtualization item keys
+
 ## 0.11.10
 
 ### Patch Changes
