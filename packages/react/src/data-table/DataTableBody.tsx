@@ -60,6 +60,7 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
       count: centerColumns.length,
       enabled: centerColumns.length > COL_VIRTUALIZATION_THRESHOLD,
       estimateSize: (index) => centerColumns[index].getSize(),
+      getItemKey: (index) => centerColumns[index].id,
       getScrollElement: () => innerRef.current,
       horizontal: true,
     });
@@ -72,6 +73,7 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
         centerColumns.length > COL_VIRTUALIZATION_THRESHOLD ||
         rows.length > ROW_VIRTUALIZATION_THRESHOLD,
       estimateSize: () => estimatedRowHeight,
+      getItemKey: (index) => rows[index].id,
       getScrollElement: () => innerRef.current,
     });
 
