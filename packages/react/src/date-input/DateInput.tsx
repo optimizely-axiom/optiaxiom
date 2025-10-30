@@ -50,8 +50,8 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
       className,
       disabled,
       holiday,
-      max,
-      min,
+      max: maxProp,
+      min: minProp,
       onChange,
       placeholder,
       step,
@@ -82,6 +82,8 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
     const instant =
       typeof value === "string" ? (toInstant(value) ?? null) : null;
 
+    const max = maxProp || "2100-12-31";
+    const min = minProp || "1900-01-01";
     const maxDate = max ? toInstant(max) : undefined;
     const minDate = min ? toInstant(min) : undefined;
 
