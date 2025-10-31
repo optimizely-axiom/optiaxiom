@@ -8,6 +8,7 @@ import { Tabs } from "nextra/components";
 import { MDXRemote } from "nextra/mdx-remote";
 import path from "path";
 
+import pkg from "../../../../packages/react/package.json";
 import { nextraOptions } from "../../nextra.config.mjs";
 import { DemoCode } from "./DemoCode";
 import { DemoPreview } from "./DemoPreview";
@@ -29,16 +30,36 @@ export async function Demo({
   }
   const Component = (await demos[component]).App as () => ReactNode;
 
-  const files = ["App.tsx"];
+  const fileNames = ["App.tsx"];
   const filesDir = `${process.cwd()}/demos/${component}`;
   for (const file of await fs.readdir(filesDir)) {
     if (
-      !files.includes(file) &&
+      !fileNames.includes(file) &&
       (file.endsWith(".css") || file.endsWith(".ts") || file.endsWith(".tsx"))
     ) {
-      files.push(file);
+      fileNames.push(file);
     }
   }
+  const files = Object.fromEntries(
+    await Promise.all(
+      fileNames.map(async (fileName) => [
+        fileName,
+        (await fs.readFile(path.join(filesDir, fileName), "utf8")).trim(),
+      ]),
+    ),
+  );
+  const templateDir = `${process.cwd()}/stackblitz`;
+  const template = Object.fromEntries(
+    await Promise.all(
+      (await fs.readdir(templateDir)).map(async (fileName) => [
+        fileName,
+        (await fs.readFile(path.join(templateDir, fileName), "utf-8")).replace(
+          "AXIOM_VERSION",
+          pkg.version,
+        ),
+      ]),
+    ),
+  );
 
   const docs = JSON.parse(
     await fs.readFile(process.cwd() + "/data/demos.json", "utf8"),
@@ -60,29 +81,26 @@ export async function Demo({
         resizable={resizable}
         scrollable={scrollable}
       />
-      <DemoCode>
+      <DemoCode files={{ ...template, ...files }}>
         <MDXRemote
           compiledSource={await compileMdx(
             [
-              files.length > 1 && `<Tabs items={${JSON.stringify(files)}}>`,
-              ...(await Promise.all(
-                files.map(async (fileName) =>
-                  [
-                    files.length > 1 && "<Tabs.Tab>",
-                    `~~~${path.extname(fileName).slice(1)} ${
-                      meta && typeof meta === "object" ? meta[fileName] : meta
-                    }`,
-                    (
-                      await fs.readFile(path.join(filesDir, fileName), "utf8")
-                    ).trim(),
-                    "~~~",
-                    files.length > 1 && "</Tabs.Tab>",
-                  ]
-                    .filter(Boolean)
-                    .join("\n"),
-                ),
-              )),
-              files.length > 1 && "</Tabs>",
+              fileNames.length > 1 &&
+                `<Tabs items={${JSON.stringify(fileNames)}}>`,
+              ...Object.entries(files).map(([fileName, content]) =>
+                [
+                  fileNames.length > 1 && "<Tabs.Tab>",
+                  `~~~${path.extname(fileName).slice(1)} ${
+                    meta && typeof meta === "object" ? meta[fileName] : meta
+                  }`,
+                  content,
+                  "~~~",
+                  fileNames.length > 1 && "</Tabs.Tab>",
+                ]
+                  .filter(Boolean)
+                  .join("\n"),
+              ),
+              fileNames.length > 1 && "</Tabs>",
             ]
               .filter(Boolean)
               .join("\n"),
