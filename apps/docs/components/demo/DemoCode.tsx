@@ -6,8 +6,15 @@ import { type ReactNode, useEffect, useRef, useState } from "react";
 import { CopyButton } from "./CopyButton";
 import styles from "./DemoCode.module.css";
 import { DemoSizeToggle } from "./DemoSizeToggle";
+import { StackblitzButton } from "./StackblitzButton";
 
-export function DemoCode({ children }: { children: ReactNode }) {
+export function DemoCode({
+  children,
+  files,
+}: {
+  children: ReactNode;
+  files: Record<string, string>;
+}) {
   const [collapsed, setCollapsed] = useState<boolean | null>(null);
 
   const ref = useRef<HTMLDivElement>(null);
@@ -47,6 +54,7 @@ export function DemoCode({ children }: { children: ReactNode }) {
         gap="2"
         transition="opacity"
       >
+        <StackblitzButton files={files} />
         <CopyButton
           onCopy={() =>
             (
