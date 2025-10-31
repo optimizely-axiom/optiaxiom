@@ -15,6 +15,11 @@
   border-top-left-radius: 0;
   border-top-right-radius: 0;
   margin-bottom: 0;
+
+  /* replace nextra code buttons with custom ones */
+  .x\:group-hover:opacity-100 {
+    display: none;
+  }
 }
 
 .editor > [class~="nextra-code"] {
@@ -63,4 +68,19 @@
   --overflow: auto;
 
   max-height: 700px;
+}
+
+.toolbar {
+  opacity: 0;
+  position: absolute;
+  right: 12px;
+  top: 12px;
+}
+
+.editor:has([role="tablist"]) .toolbar {
+  top: calc(38px + 12px);
+}
+
+:is(.editor:hover, .editor:focus-within) .toolbar {
+  opacity: 1;
 }

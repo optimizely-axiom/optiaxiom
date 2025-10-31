@@ -1,8 +1,9 @@
 "use client";
 
-import { Box } from "@optiaxiom/react";
+import { Box, Flex } from "@optiaxiom/react";
 import { type ReactNode, useEffect, useRef, useState } from "react";
 
+import { CopyButton } from "./CopyButton";
 import styles from "./DemoCode.module.css";
 import { DemoSizeToggle } from "./DemoSizeToggle";
 
@@ -40,6 +41,22 @@ export function DemoCode({ children }: { children: ReactNode }) {
       ref={ref}
     >
       {children}
+      <Flex
+        className={styles.toolbar}
+        flexDirection="row"
+        gap="2"
+        transition="opacity"
+      >
+        <CopyButton
+          onCopy={() =>
+            (
+              ref.current?.querySelector(
+                "[role='tabpanel'][tabindex='0'] pre code",
+              ) || ref.current?.querySelector("pre code")
+            )?.textContent || ""
+          }
+        />
+      </Flex>
       {collapsed !== null && (
         <DemoSizeToggle
           collapsed={collapsed}
