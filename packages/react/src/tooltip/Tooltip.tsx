@@ -64,9 +64,7 @@ export function Tooltip({
       <TooltipTrigger asChild>{children}</TooltipTrigger>
 
       {!disabled && !empty && (
-        <TooltipContent maxW="xs" {...props}>
-          {content}
-        </TooltipContent>
+        <TooltipContent {...props}>{content}</TooltipContent>
       )}
     </TooltipRoot>
   );
