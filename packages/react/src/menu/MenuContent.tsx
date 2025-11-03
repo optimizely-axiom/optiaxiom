@@ -55,7 +55,8 @@ export const MenuContent = forwardRef<HTMLDivElement, MenuContentProps>(
 
           if (
             event.target instanceof Element &&
-            event.target.closest('[role="option"]')
+            (event.target.closest('[role="option"]') ||
+              inputRef.current?.contains(event.target))
           ) {
             return;
           }
