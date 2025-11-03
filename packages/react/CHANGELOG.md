@@ -1,5 +1,13 @@
 # @optiaxiom/react
 
+## 1.7.9
+
+### Patch Changes
+
+- 5cd6d9d: set maxW on TooltipContent itself
+- e407698: allow selecting text in menu filter
+- b18c6f9: date input improve invalid date handling
+
 ## 1.7.8
 
 ### Patch Changes

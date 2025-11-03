@@ -1,5 +1,12 @@
 # @optiaxiom/web-components
 
+## 0.11.12
+
+### Patch Changes
+
+- e407698: allow selecting text in menu filter
+- b18c6f9: date input improve invalid date handling
+
 ## 0.11.11
 
 ### Patch Changes
