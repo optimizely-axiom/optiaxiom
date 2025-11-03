@@ -25,6 +25,8 @@ jobs:
           cache: pnpm
           node-version-file: .node-version
 
+      - run: npm install -g npm@latest
+
       - run: pnpm install
 
       - uses: changesets/action@v1
