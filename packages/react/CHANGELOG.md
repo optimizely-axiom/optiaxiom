@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 1.7.10
+
+### Patch Changes
+
+- a5ae472: fix overflow scroll issue with visually hidden elements
+
 ## 1.7.9
 
 ### Patch Changes
