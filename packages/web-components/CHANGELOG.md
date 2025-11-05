@@ -1,5 +1,11 @@
 # @optiaxiom/web-components
 
+## 0.11.13
+
+### Patch Changes
+
+- a5ae472: fix overflow scroll issue with visually hidden elements
+
 ## 0.11.12
 
 ### Patch Changes
