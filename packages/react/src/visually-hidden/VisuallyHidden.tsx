@@ -13,9 +13,17 @@ export type VisuallyHiddenProps = ComponentPropsWithoutRef<
 };
 
 export const VisuallyHidden = forwardRef<HTMLSpanElement, VisuallyHiddenProps>(
-  ({ asChild, children, disabled, ...props }, ref) => {
+  ({ asChild, children, disabled, style, ...props }, ref) => {
     return (
-      <RadixVisuallyHidden.Root asChild ref={ref} {...props}>
+      <RadixVisuallyHidden.Root
+        asChild
+        ref={ref}
+        style={{
+          position: "fixed",
+          ...style,
+        }}
+        {...props}
+      >
         <FilteredSlot exclude={disabled ? "style" : undefined}>
           {asChild ? children : <span>{children}</span>}
         </FilteredSlot>
