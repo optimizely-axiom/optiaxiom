@@ -131,6 +131,9 @@ export default {
       popover: "Popover",
       progress: "Progress",
       "radio-group": "RadioGroup",
+      range: {
+        title: <AlphaItem>Range</AlphaItem>,
+      },
       "search-input": "SearchInput",
       "segmented-control": "SegmentedControl",
       select: "Select",
