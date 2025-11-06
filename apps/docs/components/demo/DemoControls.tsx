@@ -9,8 +9,8 @@ import {
   SelectContent,
   SelectTrigger,
   Switch,
-  Tooltip,
 } from "@optiaxiom/react";
+import { Range } from "@optiaxiom/react/unstable";
 
 type DemoControlProps = ComponentPropsWithRef<typeof Flex> & {
   onChange: Dispatch<
@@ -75,30 +75,23 @@ export function DemoControls({
                   <SelectContent />
                 </Select>
               ) : item?.type === "range" ? (
-                <Tooltip
-                  content={propValues[item.prop]}
-                  delayDuration={0}
-                  onPointerDownOutside={(event) => {
-                    event.preventDefault();
-                  }}
-                >
-                  <input
-                    max={item.options.length - 1}
-                    min={0}
-                    onChange={(event) =>
-                      onChange((props) => ({
-                        ...props,
-                        [item.prop]:
-                          item.options[parseInt(event?.target.value)],
-                      }))
-                    }
-                    step={1}
-                    type="range"
-                    value={String(
-                      item.options.indexOf(String(propValues[item.prop])),
-                    )}
-                  />
-                </Tooltip>
+                <Range
+                  getLabel={(value) => item.options[value]}
+                  max={item.options.length - 1}
+                  min={0}
+                  onValueChange={(value) =>
+                    onChange((props) => ({
+                      ...props,
+                      [item.prop]: item.options[value],
+                    }))
+                  }
+                  showTooltip
+                  step={1}
+                  type="range"
+                  value={Number(
+                    item.options.indexOf(String(propValues[item.prop])),
+                  )}
+                />
               ) : item?.type === "text" ? (
                 <Input
                   onChange={(event) =>

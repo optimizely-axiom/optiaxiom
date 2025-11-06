@@ -1,0 +1,94 @@
+import { Cards, Demo, Links, PropsTable } from "@/components";
+import { Flex, Kbd } from "@optiaxiom/react";
+
+# Range
+
+Allow users to select a numeric value within a range.
+
+<Links component="range" />
+
+## Documentation
+
+### Usage
+
+<Demo component="range/usage" />
+
+### Label and Description
+
+Wrap Range in a `Field` component to provide a visible label and description. The Field component automatically handles the accessibility attributes (`aria-labelledby`, `aria-describedby`) for you.
+
+Alternatively, if you don't need a visible label, you can use the `aria-label` prop directly on the Range component for screen reader accessibility.
+
+<Demo component="range/usage" />
+
+### Controlled
+
+Use the `value` and `defaultValue` props to toggle between controlled and uncontrolled usage. And combine it with `onValueChange` to listen for changes to the state.
+
+<Demo component="range/controlled-usage" />
+
+### Max/Min/Step
+
+Use the `max`/`min`/`step` props to specify the maximum, minimum, and step values for the range.
+
+<Demo component="range/step-usage" />
+
+### Sizes
+
+Use the `size` prop to control the size of the range control.
+
+<Demo component="range/size-usage" />
+
+### Disabled state
+
+Enable the `disabled` prop to toggle the disabled state of the input field.
+
+<Demo component="range/disabled-usage" />
+
+### Tooltip
+
+Enable the `showTooltip` prop to toggle the visibility of the tooltip above the thumb.
+
+<Demo component="range/tooltip-usage" />
+
+### Label
+
+Use the `getLabel` prop to customize the label shown inside the tooltip.
+
+<Demo component="range/label-usage" />
+
+### Marks
+
+Use the `marks` prop to add visual markers along the range track.
+
+Marks can be an array of numbers or objects with `value` and `label` properties.
+
+<Demo component="range/marks-usage" />
+
+### Related
+
+<Cards items={["Input", "Select"]} />
+
+## Props
+
+### Range
+
+<PropsTable component="Range" />
+
+## Accessibility
+
+### Keyboard interactions
+
+| Key                                                                                 | Description                                   |
+| :---------------------------------------------------------------------------------- | :-------------------------------------------- |
+| <Flex flexDirection="row" gap="8"><Kbd>ArrowUp</Kbd> <Kbd>ArrowLeft</Kbd></Flex>    | Increments by the `step` value.               |
+| <Flex flexDirection="row" gap="8"><Kbd>ArrowDown</Kbd> <Kbd>ArrowRight</Kbd></Flex> | Decrements by the `step` value.               |
+| <Flex flexDirection="row" gap="8"><Kbd>PageUp</Kbd> <Kbd>PageDown</Kbd></Flex>      | Increments/decrements by a larger step value. |
+| <Kbd>Home</Kbd>                                                                     | Sets the value to its minimum.                |
+| <Kbd>End</Kbd>                                                                      | Sets the value to its maximum.                |
+
+## Changelog
+
+### 1.7.12
+
+- Added component
