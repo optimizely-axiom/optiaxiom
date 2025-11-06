@@ -8,13 +8,21 @@ export type FileListProps = BoxProps<"div"> & {
    * The list of file objects to be previewed.
    */
   files: File[];
+  /**
+   * Callback function called when a file is removed
+   */
+  onRemove?: (index: number) => void;
 };
 
-export function FileList({ files }: FileListProps) {
+export function FileList({ files, onRemove }: FileListProps) {
   return (
     <Flex gap="12">
       {files.map((file: File, idx: number) => (
-        <FileListItem file={file} key={idx} />
+        <FileListItem
+          file={file}
+          key={idx}
+          onRemove={onRemove ? () => onRemove(files.indexOf(file)) : undefined}
+        />
       ))}
     </Flex>
   );
