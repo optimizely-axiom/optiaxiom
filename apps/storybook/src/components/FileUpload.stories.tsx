@@ -19,11 +19,13 @@ import {
   Tooltip,
 } from "@optiaxiom/react";
 import {
+  FileList,
   FileUpload,
   FileUploadDropzone,
   FileUploadTrigger,
   useFileUploadTrigger,
 } from "@optiaxiom/react/unstable";
+import { useState } from "react";
 
 export default {
   args: {
@@ -169,4 +171,18 @@ export const Disabled: Story = {
       },
     },
   },
+};
+
+function FilePreviewExample() {
+  const [files, setFiles] = useState<File[]>([]);
+
+  return (
+    <FileUpload onFilesDrop={setFiles} w="384">
+      {files.length > 0 ? <FileList files={files} /> : <FileUploadDropzone />}
+    </FileUpload>
+  );
+}
+
+export const FilePreview: Story = {
+  render: () => <FilePreviewExample />,
 };
