@@ -173,12 +173,41 @@ export const Disabled: Story = {
   },
 };
 
+function FilePreviewContent({
+  files,
+  onRemove,
+}: {
+  files: File[];
+  onRemove: (index: number) => void;
+}) {
+  return (
+    <>
+      {files.length === 0 ? (
+        <FileUploadDropzone />
+      ) : (
+        <>
+          <FileList files={files} onRemove={onRemove} />
+          <FileUploadDropzone overlay />
+        </>
+      )}
+    </>
+  );
+}
+
 function FilePreviewExample() {
   const [files, setFiles] = useState<File[]>([]);
 
+  const handleRemove = (index: number) => {
+    setFiles((prevFiles) => prevFiles.filter((_, i) => i !== index));
+  };
+
+  const handleAdd = (newFiles: File[]) => {
+    setFiles((prevFiles) => [...prevFiles, ...newFiles]);
+  };
+
   return (
-    <FileUpload onFilesDrop={setFiles} w="384">
-      {files.length > 0 ? <FileList files={files} /> : <FileUploadDropzone />}
+    <FileUpload onFilesDrop={handleAdd} w="384">
+      <FilePreviewContent files={files} onRemove={handleRemove} />
     </FileUpload>
   );
 }
