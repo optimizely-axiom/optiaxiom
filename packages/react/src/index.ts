@@ -40,7 +40,6 @@ export * from "./paper";
 export * from "./popover";
 export * from "./progress";
 export * from "./radio";
-export * from "./range";
 export * from "./search-input";
 export * from "./segmented-control";
 export * from "./select";

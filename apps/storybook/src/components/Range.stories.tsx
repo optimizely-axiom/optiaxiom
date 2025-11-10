@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Field, Flex, Range, Text } from "@optiaxiom/react";
+import { Field, Flex, Text } from "@optiaxiom/react";
+import { Range } from "@optiaxiom/react/unstable";
 import { useState } from "react";
 
 export default {
