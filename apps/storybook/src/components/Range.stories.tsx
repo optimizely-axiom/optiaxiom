@@ -54,20 +54,20 @@ export const Disabled: Story = {
 };
 
 export const WithField: Story = {
-  render: () => (
+  render: (args) => (
     <Field description="Adjust the volume level" w="384">
       Volume
-      <Range defaultValue={[50]} />
+      <Range {...args} defaultValue={[50]} />
     </Field>
   ),
 };
 
 export const Controlled: Story = {
-  render: function ControlledRange() {
+  render: function ControlledRange(args) {
     const [value, setValue] = useState([50]);
     return (
       <Flex w="384">
-        <Range onValueChange={setValue} value={value} />
+        <Range {...args} onValueChange={setValue} value={value} />
         <Text>Value: {value[0]}</Text>
       </Flex>
     );

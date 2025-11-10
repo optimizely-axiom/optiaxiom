@@ -9,6 +9,8 @@ export type RangeProps = BoxProps<typeof SliderPrimitive.Root>;
 export const Range = forwardRef<HTMLSpanElement, RangeProps>(
   ({ className, disabled, ...props }, ref) => {
     const { boxProps, restProps } = extractBoxProps(props);
+    const { "aria-label": ariaLabel, "aria-labelledby": ariaLabelledBy } =
+      restProps;
 
     return (
       <Box asChild {...boxProps} {...styles.root({}, className)}>
@@ -27,7 +29,10 @@ export const Range = forwardRef<HTMLSpanElement, RangeProps>(
           </Box>
 
           <Box asChild {...styles.thumb()}>
-            <SliderPrimitive.Thumb />
+            <SliderPrimitive.Thumb
+              aria-label={ariaLabel}
+              aria-labelledby={ariaLabelledBy}
+            />
           </Box>
         </SliderPrimitive.Root>
       </Box>
