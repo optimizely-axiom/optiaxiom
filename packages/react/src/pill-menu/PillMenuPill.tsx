@@ -7,6 +7,7 @@ import {
 } from "../command/internals";
 import { useMenuContext } from "../menu/internals";
 import { Pill, type PillProps } from "../pill";
+import { Tooltip } from "../tooltip";
 import { usePillMenuContext } from "./PillMenuContext";
 
 export type PillMenuPillProps = PillProps & {
@@ -26,40 +27,45 @@ export const PillMenuPill = forwardRef<HTMLButtonElement, PillMenuPillProps>(
     const hasInteractedInsideRef = useRef(false);
 
     return (
-      <Pill
-        onClick={() => {
-          if (hasInteractedInsideRef.current) {
-            hasInteractedInsideRef.current = false;
-            return;
-          }
-
-          setOpen(!open);
-        }}
-        onKeyDown={(event) => {
-          if (event.key === "Backspace") {
-            /**
-             * The last item is always tied to the trigger to look nicer
-             * visually. So we skip shifting focus when deleting the last item
-             * unless it's the only item as radix will automatically move focus
-             * back to last available item.
-             */
-            if (index === 0 || index !== options.length - 1) {
-              event.key = index > 0 ? "ArrowLeft" : "ArrowRight";
+      <Tooltip content={resolveItemProperty(item.disabledReason)}>
+        <Pill
+          onClick={() => {
+            if (hasInteractedInsideRef.current) {
+              hasInteractedInsideRef.current = false;
+              return;
             }
-            if (!options[index].disabledReason) {
+
+            setOpen(!open);
+          }}
+          onKeyDown={(event) => {
+            if (event.key === "Backspace") {
+              /**
+               * The last item is always tied to the trigger to look nicer
+               * visually. So we skip shifting focus when deleting the last item
+               * unless it's the only item as radix will automatically move focus
+               * back to last available item.
+               */
+              if (resolveItemProperty(item.disabledReason)) {
+                return;
+              }
+
+              if (index === 0 || index !== options.length - 1) {
+                event.key = index > 0 ? "ArrowLeft" : "ArrowRight";
+              }
+
               item.execute?.({ dismiss: false, inputValue });
             }
-          }
-          onKeyDown?.(event);
-        }}
-        onPointerDown={() => {
-          hasInteractedInsideRef.current = Boolean(open);
-        }}
-        ref={ref}
-        {...props}
-      >
-        {resolveItemProperty(item.label, { inputValue })}
-      </Pill>
+            onKeyDown?.(event);
+          }}
+          onPointerDown={() => {
+            hasInteractedInsideRef.current = Boolean(open);
+          }}
+          ref={ref}
+          {...props}
+        >
+          {resolveItemProperty(item.label, { inputValue })}
+        </Pill>
+      </Tooltip>
     );
   },
 );
