@@ -40,7 +40,10 @@ export const PillMenuTrigger = forwardRef<
           if (event.key === "Backspace") {
             if (options.length) {
               const last = options.length - 1;
-              options[last].execute?.({ dismiss: false, inputValue });
+
+              if (!options[last].disabledReason) {
+                options[last].execute?.({ dismiss: false, inputValue });
+              }
             }
           }
         }}

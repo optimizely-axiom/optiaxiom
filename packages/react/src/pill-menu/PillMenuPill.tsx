@@ -46,7 +46,9 @@ export const PillMenuPill = forwardRef<HTMLButtonElement, PillMenuPillProps>(
             if (index === 0 || index !== options.length - 1) {
               event.key = index > 0 ? "ArrowLeft" : "ArrowRight";
             }
-            item.execute?.({ dismiss: false, inputValue });
+            if (!options[index].disabledReason) {
+              item.execute?.({ dismiss: false, inputValue });
+            }
           }
           onKeyDown?.(event);
         }}
