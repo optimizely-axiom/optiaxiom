@@ -7,6 +7,7 @@ import docgen from "react-docgen-typescript";
 import { nextraOptions } from "./nextra.config.mjs";
 
 writeComponentProps();
+writeComponentList();
 writeDemoProps();
 writeDemoImports();
 
@@ -30,6 +31,28 @@ const nextConfig = {
     tsconfigPath: "tsconfig.next.json",
   },
 };
+
+function writeComponentList() {
+  const propsData = JSON.parse(fs.readFileSync("./data/props.json", "utf8"));
+
+  const componentNames = propsData
+    .map((doc) => doc.displayName.replace("@optiaxiom/react/", ""))
+    .filter(Boolean)
+    .sort();
+
+  const componentEntries = componentNames
+    .map((name) => `  ${name}: getProps("${name}"),`)
+    .join("\n");
+
+  const content = `import { getProps } from "./getProps";
+
+export const components = {
+${componentEntries}
+};
+`;
+
+  fs.writeFileSync("./components/props-table/components.ts", content);
+}
 
 function writeComponentProps() {
   fs.writeFileSync(

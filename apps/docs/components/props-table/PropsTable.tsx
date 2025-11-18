@@ -60,7 +60,7 @@ export async function PropsTable({
   const propItems = await components[component];
 
   const baseName =
-    mapComponentToBase[component] ??
+    mapComponentToBase[component as AllComponents] ??
     (propItems.find((prop) => prop.name === "asChild") ? "Box" : "");
   const baseNameScope = mapComponentToScope[baseName] || baseName;
   const isBox = component === "Box";
@@ -70,7 +70,7 @@ export async function PropsTable({
     <>
       <PropsTableDescription
         baseName={baseName}
-        name={component}
+        name={component as AllComponents}
         virtual={virtual}
       >
         {baseName && !isBox && (

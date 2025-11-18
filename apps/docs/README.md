@@ -31,6 +31,7 @@ export function App() {
 #### Client Components
 
 Only add the `"use client"` directive when your demo uses:
+
 - React hooks (useState, useEffect, etc.)
 - Browser APIs
 - Event handlers with state
@@ -46,7 +47,11 @@ import { useState } from "react";
 
 export function App() {
   const [checked, setChecked] = useState(false);
-  return <Switch checked={checked} onCheckedChange={setChecked}>Label</Switch>;
+  return (
+    <Switch checked={checked} onCheckedChange={setChecked}>
+      Label
+    </Switch>
+  );
 }
 ```
 
@@ -70,16 +75,19 @@ export function App({
 #### Demo Guidelines
 
 **Naming Conventions:**
+
 - Use descriptive folder names ending with `-usage` (e.g., `size-usage`, `controlled-usage`)
 - The basic demo should be in the `usage/` folder
 - Use kebab-case for all folder names
 
 **Imports:**
+
 - Always import components from `@optiaxiom/react`
 - Icons should use `@tabler/icons-react`
 - Import React types from `react` (e.g., `ComponentPropsWithRef`, `useState`)
 
 **Demo Complexity:**
+
 - Keep demos focused on demonstrating one feature
 - Demos must be self-contained in a single `App.tsx` file to support StackBlitz integration
 - Use multiple separate demos to show different aspects rather than one complex demo
