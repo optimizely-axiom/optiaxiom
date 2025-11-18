@@ -28,4 +28,6 @@ storybook-static
 .next
 _pagefind/
 
+# generated files
+/apps/docs/components/demo/demos.ts
 /packages/web-components/*/package.json

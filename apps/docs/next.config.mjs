@@ -8,6 +8,7 @@ import { nextraOptions } from "./nextra.config.mjs";
 
 writeComponentProps();
 writeDemoProps();
+writeDemoImports();
 
 const withNextra = createNextra(nextraOptions);
 
@@ -35,6 +36,26 @@ function writeComponentProps() {
     "./data/props.json",
     JSON.stringify(getDocs({ shouldExtractValuesFromUnion: true })),
   );
+}
+
+function writeDemoImports() {
+  const demoPaths = fg.globSync("./demos/**/App.tsx");
+
+  const demoEntries = demoPaths
+    .map((path) => {
+      // Convert "./demos/alert-dialog/async-usage/App.tsx" to "alert-dialog/async-usage"
+      const key = path.replace("./demos/", "").replace("/App.tsx", "");
+      return `  "${key}": import("@/demos/${key}/App"),`;
+    })
+    .sort()
+    .join("\n");
+
+  const content = `export const demos = {
+${demoEntries}
+};
+`;
+
+  fs.writeFileSync("./components/demo/demos.ts", content);
 }
 
 function writeDemoProps() {
