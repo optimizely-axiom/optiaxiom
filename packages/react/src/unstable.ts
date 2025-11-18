@@ -1,5 +1,4 @@
 export * from "./calendar";
-export * from "./command";
 export * from "./data-table/unstable";
 export * from "./details-panel";
 export * from "./dialog-kit";
