@@ -1,105 +1,74 @@
-# Philosophy and Guiding Principles
-
-### Vision
+# Philosophy
 
 Our goal is to create an accessible component library that is extremely easy to pick up and use.
 
-## Development Guidelines
+We follow the [components.build specification](https://www.components.build) for modern component library best practices, including composition, accessibility, type safety, and styling patterns.
 
-We should maintain the following guidelines when developing components:
+## Core Principles
 
-#### Always provide sensible defaults
+### 1. Sensible Defaults
+Components work out of the box without configuration. Props modify behavior, not enable it.
 
-Components should just work out of the box as much as possible. Instead of requiring users to provide multiple props to setup. Props should be used to allow modifying the default behavior.
+### 2. Composition Over Configuration
+- Limit props to ~5 per component—break into smaller composable pieces beyond that
+- Follow [components.build patterns](https://www.components.build/composition): `DialogRoot`, `DialogTrigger`, `DialogContent`
+- Support [`asChild`](https://www.components.build/as-child) for polymorphic rendering
+- Support [controlled and uncontrolled state](https://www.components.build/state) where applicable
+- One component wraps one element for maximum customization
 
-#### Do not use too many props
+### 3. Accessibility First
+- Meet **WCAG 2.1 AA standards** minimum
+- Use semantic HTML, proper ARIA, keyboard navigation
+- See [components.build/accessibility](https://www.components.build/accessibility) for patterns
+- Verify Radix Primitives features are properly exposed
 
-Components should not be confusing to implement. Try to avoid having too many props for behavior on a single component.
+### 4. Type Safety
+- Extend `BoxProps` for the underlying element
+- Export all prop types as `<ComponentName>Props`
+- Spread props: `{...props}`
+- Document with JSDoc
+- See [components.build/types](https://www.components.build/types)
 
-It's tricky setting an exact number here but anything more than 5 and the behavior should likely be broken up into multiple composable components.
+### 5. Customizable Styling
+- Support `className` for external styling
+- Use Vanilla Extract recipes for type-safe variants
+- Allow layout/appearance control via props
 
-#### Do not make breaking changes
+### 6. Stability
+- Avoid breaking changes
+- Provide migration guides when necessary
+- Document changes in changelogs
 
-Components should not have breaking changes between versions. Try to avoid making breaking changes as much as possible.
+### 7. Consistency
+- Use consistent prop names across components (e.g., `intent` for color variations)
+- Use consistent sub-component naming (e.g., `Header/Body/Footer`)
+- Follow patterns from existing components
 
-Instead make sure there is a smooth transition path and in case breaking changes are necessary they should be well documented in changelogs and migration guides
+### 8. Design Validation
+- Verify all visual changes with design team via Chromatic
+- Provide Storybook stories for all components:
+  - **Basic** story showing default usage (required)
+  - Additional stories for variants and advanced use cases
 
-#### Use consistent component and prop names
+## Adding New Components
 
-Components should always use consistent prop names. Make sure to look at existing components (and even other existing component libraries) when naming props. For example use `intent` to specify the basic color variations of a component.
+Components are added when used across **three** different products, with design team verification.
 
-Similarly composable components should use consistent names across different components. For example `DialogHeader/DialogBody/DialogFooter` and `NavHeader/NavBody/NavFooter`.
+<details>
+<summary><strong>Component Checklist</strong></summary>
 
-This will make components intuitive and easy to use.
+- [ ] Used in 3+ products
+- [ ] Design team approval
+- [ ] Component implementation
+- [ ] Unit tests
+- [ ] Storybook stories (Basic + variants)
+- [ ] Documentation page
+- [ ] Accessibility verified
+- [ ] Chromatic review passed
+- [ ] Changeset added
 
-#### Allow custom styling
+</details>
 
-Components should support `className` prop to allow styling from outside. Allow developers to easily control an element's layout and appearance via props but provide `className` as an escape hatch for various other use cases.
+---
 
-#### Verify visual changes with design team
-
-Rely on chromatic and storybook to validate changes with design team before publishing.
-
-#### Always provide stories
-
-All components should be accompanied by stories. There should be at least one story called **Basic** which should showcase the very basic and default capabilities and usage.
-
-Additional stories should be provided to showcase more advanced use cases of the component. Story names should be concise and each story should only demonstrate a single functionality.
-
-## How to add new components
-
-A component can be added to the component library whenever it is used across **three** different products.
-
-After verification from the design team you should follow proper development guidelines to add the component to the component library.
-
-## Technologies
-
-### React
-
-[React](https://react.dev/) is used to build the components in our component library.
-
-### Storybook
-
-[Storybook](https://storybook.js.org/) is used to prototype and develop components. It is only meant for development and testing and **should not** be used for documenting components.
-
-### Chromatic
-
-[Chromatic](https://www.chromatic.com/) is used for visual regression testing and publishing storybook.
-
-### Nextra
-
-[Nextra](https://nextra.site/docs/docs-theme/start) is used to document the component library.
-
-### Radix Primitives
-
-[Radix Primitives](https://www.radix-ui.com/primitives) is used to build fully accessible components.
-
-### Downshift
-
-[Downshift](https://www.downshift-js.com/) is used to build fully accessible comboboxes.
-
-### TanStack Table
-
-[TanStack Table](https://tanstack.com/table) is used to build accessible and flexible tables.
-
-### React DayPicker
-
-[React DayPicker](https://daypicker.dev/) is used to build accessible date pickers, calendars, and date inputs.
-
-### Vanilla Extract
-
-[Vanilla Extract](https://vanilla-extract.style/) is used for our styling solution. This allows us to build a zero runtime CSS-in-JS styled system utilizing type safe style definitions and design tokens re-use.
-
-Style utilities and tokens should follow [Tailwind CSS](https://tailwindcss.com/) as much as possible and should be extensively documented.
-
-### Vitest
-
-[Vitest](https://vitest.dev/) is used for unit tests.
-
-### Rollup
-
-[Rollup](https://rollupjs.org/) is used to bundle the component library.
-
-### Changesets
-
-[Changesets](https://github.com/changesets/changesets) is used to manage the release process and maintain changelogs.
+**Technology stack details are maintained in [README.md](./README.md#architecture)**
