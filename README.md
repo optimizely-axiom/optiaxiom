@@ -60,23 +60,27 @@ optiaxiom/
 The project uses a modern, type-safe stack optimized for design system development:
 
 **Core Libraries:**
+
 - [React](https://react.dev/) - Component implementation
 - [TypeScript](https://www.typescriptlang.org/) - Type safety
 - [Vanilla Extract](https://vanilla-extract.style/) - Zero-runtime CSS-in-JS with type-safe design tokens
 
 **Component Primitives:**
+
 - [Radix UI](https://www.radix-ui.com/primitives) - Accessible component primitives
 - [Downshift](https://www.downshift-js.com/) - Accessible comboboxes
 - [TanStack Table](https://tanstack.com/table) - Flexible table components
 - [React DayPicker](https://daypicker.dev/) - Date pickers and calendars
 
 **Development & Testing:**
+
 - [Vitest](https://vitest.dev/) - Unit testing
 - [Testing Library](https://testing-library.com/) - Component testing
 - [Storybook](https://storybook.js.org/) - Component development & documentation
 - [Chromatic](https://www.chromatic.com/) - Visual regression testing
 
 **Documentation & Tooling:**
+
 - [Nextra](https://nextra.site/) - Documentation site
 - [Rollup](https://rollupjs.org/) - Package bundling
 - [Changesets](https://github.com/changesets/changesets) - Version management & changelog

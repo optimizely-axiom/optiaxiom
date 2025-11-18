@@ -51,7 +51,6 @@ Before you begin, ensure you have the following installed:
    ```
 
 2. **Make Your Changes**
-
    - Follow our [Philosophy](PHILOSOPHY.md) for component design principles
    - Write tests for new features
    - Update documentation as needed
@@ -107,7 +106,6 @@ Before you begin, ensure you have the following installed:
    ```
 
 4. **Open a Pull Request**
-
    - Go to the [repository on GitHub](https://github.com/optimizely-axiom/optiaxiom)
    - Click "New Pull Request"
    - Select your fork and branch
@@ -148,6 +146,7 @@ When adding a new component, ensure you:
 All components must have Storybook stories. See [apps/storybook/README.md](apps/storybook/README.md) for detailed guidelines.
 
 Required stories:
+
 - **Basic** - Simplest use case
 - **Variants** - Different props (size, appearance, etc.)
 - **States** - Disabled, loading, error states
@@ -158,6 +157,7 @@ Required stories:
 Component documentation should be added to `apps/docs/`. See [apps/docs/README.md](apps/docs/README.md) for guidelines.
 
 Required documentation:
+
 - Overview and when to use
 - Basic usage demo
 - Props table
