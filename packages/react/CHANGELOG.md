@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 1.7.11
+
+### Patch Changes
+
+- f89c0c2: update readonly and disabled input colors to match figma
+
 ## 1.7.10
 
 ### Patch Changes

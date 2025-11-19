@@ -1,5 +1,11 @@
 # @optiaxiom/web-components
 
+## 0.11.14
+
+### Patch Changes
+
+- f89c0c2: update readonly and disabled input colors to match figma
+
 ## 0.11.13
 
 ### Patch Changes
