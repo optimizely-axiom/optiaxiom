@@ -50,13 +50,14 @@ export const root = recipe({
           borderColor: theme.colors["border.error"],
         },
         [`&:has(${marker}:is([data-readonly]))`]: {
+          backgroundColor: theme.colors["bg.page"],
           borderColor: theme.colors["border.tertiary"],
         },
 
         [`&:has(${marker}:is([data-disabled]))`]: {
-          backgroundColor: theme.colors["bg.secondary"],
-          borderColor: theme.colors["border.secondary"],
-          color: theme.colors["fg.disabled"],
+          backgroundColor: theme.colors["bg.page"],
+          borderColor: theme.colors["border.default"],
+          color: theme.colors["border.control"],
         },
         ...groupStyle(),
       },
