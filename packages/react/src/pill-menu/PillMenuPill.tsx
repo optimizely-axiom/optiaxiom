@@ -7,6 +7,7 @@ import {
 } from "../command/internals";
 import { useMenuContext } from "../menu/internals";
 import { Pill, type PillProps } from "../pill";
+import { Tooltip } from "../tooltip";
 import { usePillMenuContext } from "./PillMenuContext";
 
 export type PillMenuPillProps = PillProps & {
@@ -25,8 +26,9 @@ export const PillMenuPill = forwardRef<HTMLButtonElement, PillMenuPillProps>(
     const index = options.indexOf(item);
     const hasInteractedInsideRef = useRef(false);
 
-    return (
+    const pill = (
       <Pill
+        disabled={!!item.disabledReason}
         onClick={() => {
           if (hasInteractedInsideRef.current) {
             hasInteractedInsideRef.current = false;
@@ -46,7 +48,9 @@ export const PillMenuPill = forwardRef<HTMLButtonElement, PillMenuPillProps>(
             if (index === 0 || index !== options.length - 1) {
               event.key = index > 0 ? "ArrowLeft" : "ArrowRight";
             }
-            item.execute?.({ dismiss: false, inputValue });
+            if (!options[index].disabledReason) {
+              item.execute?.({ dismiss: false, inputValue });
+            }
           }
           onKeyDown?.(event);
         }}
@@ -59,6 +63,16 @@ export const PillMenuPill = forwardRef<HTMLButtonElement, PillMenuPillProps>(
         {resolveItemProperty(item.label, { inputValue })}
       </Pill>
     );
+
+    if (item.disabledReason) {
+      return (
+        <Tooltip content={resolveItemProperty(item.disabledReason)}>
+          {pill}
+        </Tooltip>
+      );
+    }
+
+    return pill;
   },
 );
 

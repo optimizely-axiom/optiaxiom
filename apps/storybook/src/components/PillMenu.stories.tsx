@@ -93,3 +93,39 @@ export const Basic: Story = {
     );
   },
 };
+
+export const Disabled: Story = {
+  render: function Disabled(args) {
+    const [value, setValue] = useState(
+      languages.filter((_, index) => index % 6 === 0),
+    );
+
+    return (
+      <Field label="Language" maxW="md" mb="80" style={{ width: "100vw" }}>
+        <PillMenu
+          {...args}
+          options={useMemo(
+            () =>
+              languages.map<MenuOption>((language) => ({
+                disabledReason:
+                  language === "Afrikaans" ? "Required" : undefined,
+                execute: () =>
+                  setValue((values) =>
+                    values.includes(language)
+                      ? values.filter((v) => v !== language)
+                      : [...values, language],
+                  ),
+                label: language,
+                multi: true,
+                selected: () => value.includes(language),
+              })),
+            [value],
+          )}
+        >
+          <PillMenuTrigger aria-label="Add language" />
+          <PillMenuContent />
+        </PillMenu>
+      </Field>
+    );
+  },
+};
