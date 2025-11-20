@@ -12,6 +12,7 @@ import {
   Tooltip,
 } from "@optiaxiom/react";
 import {
+  FileList,
   FileUpload,
   FileUploadDropzone,
   FileUploadTrigger,
@@ -24,6 +25,7 @@ import {
   IconPlus,
   IconUpload,
 } from "@tabler/icons-react";
+import { useState } from "react";
 
 export default {
   args: {
@@ -169,4 +171,47 @@ export const Disabled: Story = {
       },
     },
   },
+};
+
+function FilePreviewContent({
+  files,
+  onRemove,
+}: {
+  files: File[];
+  onRemove: (index: number) => void;
+}) {
+  return (
+    <>
+      {files.length === 0 ? (
+        <FileUploadDropzone />
+      ) : (
+        <>
+          <FileList files={files} onRemove={onRemove} />
+          <FileUploadDropzone overlay />
+        </>
+      )}
+    </>
+  );
+}
+
+function FilePreviewExample() {
+  const [files, setFiles] = useState<File[]>([]);
+
+  const handleRemove = (index: number) => {
+    setFiles((prevFiles) => prevFiles.filter((_, i) => i !== index));
+  };
+
+  const handleAdd = (newFiles: File[]) => {
+    setFiles((prevFiles) => [...prevFiles, ...newFiles]);
+  };
+
+  return (
+    <FileUpload onFilesDrop={handleAdd} w="384">
+      <FilePreviewContent files={files} onRemove={handleRemove} />
+    </FileUpload>
+  );
+}
+
+export const FilePreview: Story = {
+  render: () => <FilePreviewExample />,
 };
