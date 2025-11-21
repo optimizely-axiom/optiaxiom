@@ -47,6 +47,7 @@ export function Tooltip({
   defaultOpen,
   delayDuration,
   disabled,
+  disableHoverableContent,
   onOpenChange,
   open,
   ...props
@@ -58,13 +59,19 @@ export function Tooltip({
       auto={auto}
       defaultOpen={defaultOpen}
       delayDuration={delayDuration}
+      disableHoverableContent={disableHoverableContent}
       onOpenChange={onOpenChange}
       open={open}
     >
       <TooltipTrigger asChild>{children}</TooltipTrigger>
 
       {!disabled && !empty && (
-        <TooltipContent {...props}>{content}</TooltipContent>
+        <TooltipContent
+          disableHoverableContent={disableHoverableContent}
+          {...props}
+        >
+          {content}
+        </TooltipContent>
       )}
     </TooltipRoot>
   );
