@@ -1,0 +1,46 @@
+{
+  "name": "@optiaxiom/mcp",
+  "homepage": "https://github.com/optimizely-axiom/optiaxiom/tree/master/packages/mcp#readme",
+  "repository": {
+    "directory": "packages/mcp",
+    "type": "git",
+    "url": "https://github.com/optimizely-axiom/optiaxiom.git"
+  },
+  "description": "MCP server for Axiom Design System - enables AI assistants to generate accurate Axiom code",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "axiom",
+    "design-system",
+    "ai",
+    "claude",
+    "cursor"
+  ],
+  "type": "module",
+  "version": "0.1.0",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "license": "Apache-2.0",
+  "bin": "dist/src/index.js",
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
+  "scripts": {
+    "build": "wait-on ../../packages/react/dist/index.d.ts && rm -rf dist && NODE_ENV=production rollup -c",
+    "dev": "wait-on ../../packages/react/dist/index.d.ts && rm -rf dist && tsx src/index.ts"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.4",
+    "fuzzysearch": "^1.0.3",
+    "zod": "^3.25.58"
+  },
+  "devDependencies": {
+    "@optiaxiom/globals": "workspace:^",
+    "@optiaxiom/react": "workspace:^",
+    "@optiaxiom/shared": "workspace:^",
+    "@types/fuzzysearch": "^1.0.2",
+    "@types/node": "^22.17.2",
+    "tsx": "^4.20.6"
+  }
+}
