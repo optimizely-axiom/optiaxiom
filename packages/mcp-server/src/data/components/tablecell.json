@@ -1,0 +1,34 @@
+{
+  "name": "TableCell",
+  "package": "@optiaxiom/react",
+  "category": "data-display",
+  "description": "TableCell component from Axiom Design System",
+  "import": "import { TableCell } from '@optiaxiom/react';",
+  "props": {
+    "className": {
+      "type": "string",
+      "description": "Additional CSS class names"
+    },
+    "children": {
+      "type": "ReactNode",
+      "description": "Component children"
+    }
+  },
+  "examples": [
+    {
+      "title": "Basic TableCell",
+      "description": "Simple example of TableCell",
+      "code": "<TableCell>\n  Content\n</TableCell>",
+      "language": "tsx",
+      "tags": [
+        "basic"
+      ]
+    }
+  ],
+  "since": "1.0.0",
+  "keywords": [
+    "tablecell",
+    "data-display"
+  ],
+  "docsUrl": "https://optimizely-axiom.github.io/optiaxiom/components/tablecell"
+}

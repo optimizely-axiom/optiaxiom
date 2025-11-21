@@ -1,0 +1,34 @@
+{
+  "name": "BreadcrumbItem",
+  "package": "@optiaxiom/react",
+  "category": "navigation",
+  "description": "BreadcrumbItem component from Axiom Design System",
+  "import": "import { BreadcrumbItem } from '@optiaxiom/react';",
+  "props": {
+    "className": {
+      "type": "string",
+      "description": "Additional CSS class names"
+    },
+    "children": {
+      "type": "ReactNode",
+      "description": "Component children"
+    }
+  },
+  "examples": [
+    {
+      "title": "Basic BreadcrumbItem",
+      "description": "Simple example of BreadcrumbItem",
+      "code": "<BreadcrumbItem>\n  Content\n</BreadcrumbItem>",
+      "language": "tsx",
+      "tags": [
+        "basic"
+      ]
+    }
+  ],
+  "since": "1.0.0",
+  "keywords": [
+    "breadcrumbitem",
+    "navigation"
+  ],
+  "docsUrl": "https://optimizely-axiom.github.io/optiaxiom/components/breadcrumbitem"
+}

@@ -1,0 +1,34 @@
+{
+  "name": "AlertDescription",
+  "package": "@optiaxiom/react",
+  "category": "feedback",
+  "description": "AlertDescription component from Axiom Design System",
+  "import": "import { AlertDescription } from '@optiaxiom/react';",
+  "props": {
+    "className": {
+      "type": "string",
+      "description": "Additional CSS class names"
+    },
+    "children": {
+      "type": "ReactNode",
+      "description": "Component children"
+    }
+  },
+  "examples": [
+    {
+      "title": "Basic AlertDescription",
+      "description": "Simple example of AlertDescription",
+      "code": "<AlertDescription>\n  Content\n</AlertDescription>",
+      "language": "tsx",
+      "tags": [
+        "basic"
+      ]
+    }
+  ],
+  "since": "1.0.0",
+  "keywords": [
+    "alertdescription",
+    "feedback"
+  ],
+  "docsUrl": "https://optimizely-axiom.github.io/optiaxiom/components/alertdescription"
+}

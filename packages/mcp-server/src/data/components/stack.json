@@ -1,0 +1,34 @@
+{
+  "name": "Stack",
+  "package": "@optiaxiom/react",
+  "category": "layout",
+  "description": "Stack component from Axiom Design System",
+  "import": "import { Stack } from '@optiaxiom/react';",
+  "props": {
+    "className": {
+      "type": "string",
+      "description": "Additional CSS class names"
+    },
+    "children": {
+      "type": "ReactNode",
+      "description": "Component children"
+    }
+  },
+  "examples": [
+    {
+      "title": "Basic Stack",
+      "description": "Simple example of Stack",
+      "code": "<Stack>\n  Content\n</Stack>",
+      "language": "tsx",
+      "tags": [
+        "basic"
+      ]
+    }
+  ],
+  "since": "1.0.0",
+  "keywords": [
+    "stack",
+    "layout"
+  ],
+  "docsUrl": "https://optimizely-axiom.github.io/optiaxiom/components/stack"
+}

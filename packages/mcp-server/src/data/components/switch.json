@@ -1,0 +1,34 @@
+{
+  "name": "Switch",
+  "package": "@optiaxiom/react",
+  "category": "forms",
+  "description": "Switch component from Axiom Design System",
+  "import": "import { Switch } from '@optiaxiom/react';",
+  "props": {
+    "className": {
+      "type": "string",
+      "description": "Additional CSS class names"
+    },
+    "children": {
+      "type": "ReactNode",
+      "description": "Component children"
+    }
+  },
+  "examples": [
+    {
+      "title": "Basic Switch",
+      "description": "Simple example of Switch",
+      "code": "<Switch>\n  Content\n</Switch>",
+      "language": "tsx",
+      "tags": [
+        "basic"
+      ]
+    }
+  ],
+  "since": "1.0.0",
+  "keywords": [
+    "switch",
+    "forms"
+  ],
+  "docsUrl": "https://optimizely-axiom.github.io/optiaxiom/components/switch"
+}
