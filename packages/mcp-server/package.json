@@ -1,0 +1,50 @@
+{
+  "name": "@optiaxiom/mcp-server",
+  "version": "1.0.0",
+  "description": "MCP server for Axiom Design System - enables AI assistants to generate accurate Axiom code",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "axiom",
+    "design-system",
+    "ai",
+    "claude",
+    "cursor"
+  ],
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "axiom-mcp": "dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "generate-metadata": "tsx scripts/generate-metadata.ts",
+    "dev": "tsx src/index.ts",
+    "prepublishOnly": "pnpm run generate-metadata && pnpm run build",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.4",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@optiaxiom/react": "workspace:^",
+    "@types/node": "^22.10.5",
+    "tsx": "^4.19.2",
+    "typescript": "^5.9.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/optimizely-axiom/optiaxiom.git",
+    "directory": "packages/mcp-server"
+  },
+  "license": "Apache-2.0"
+}

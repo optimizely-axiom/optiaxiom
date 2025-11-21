@@ -1,0 +1,43 @@
+{
+  "name": "Button",
+  "package": "@optiaxiom/react",
+  "category": "forms",
+  "description": "Button component from Axiom Design System",
+  "import": "import { Button } from '@optiaxiom/react';",
+  "props": {
+    "className": {
+      "type": "string",
+      "description": "Additional CSS class names"
+    },
+    "children": {
+      "type": "ReactNode",
+      "description": "Component children"
+    }
+  },
+  "examples": [
+    {
+      "title": "Basic Button",
+      "description": "Simple example of Button",
+      "code": "<Button>\n  Content\n</Button>",
+      "language": "tsx",
+      "tags": [
+        "basic"
+      ]
+    },
+    {
+      "title": "Button variants",
+      "description": "Different button variants",
+      "code": "<Button appearance=\"primary\">Primary</Button>\n<Button appearance=\"secondary\">Secondary</Button>\n<Button appearance=\"danger\">Danger</Button>",
+      "language": "tsx",
+      "tags": [
+        "variants"
+      ]
+    }
+  ],
+  "since": "1.0.0",
+  "keywords": [
+    "button",
+    "forms"
+  ],
+  "docsUrl": "https://optimizely-axiom.github.io/optiaxiom/components/button"
+}

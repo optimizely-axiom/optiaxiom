@@ -1,0 +1,34 @@
+{
+  "name": "MenuContent",
+  "package": "@optiaxiom/react",
+  "category": "overlays",
+  "description": "MenuContent component from Axiom Design System",
+  "import": "import { MenuContent } from '@optiaxiom/react';",
+  "props": {
+    "className": {
+      "type": "string",
+      "description": "Additional CSS class names"
+    },
+    "children": {
+      "type": "ReactNode",
+      "description": "Component children"
+    }
+  },
+  "examples": [
+    {
+      "title": "Basic MenuContent",
+      "description": "Simple example of MenuContent",
+      "code": "<MenuContent>\n  Content\n</MenuContent>",
+      "language": "tsx",
+      "tags": [
+        "basic"
+      ]
+    }
+  ],
+  "since": "1.0.0",
+  "keywords": [
+    "menucontent",
+    "overlays"
+  ],
+  "docsUrl": "https://optimizely-axiom.github.io/optiaxiom/components/menucontent"
+}

@@ -1,0 +1,34 @@
+{
+  "name": "TabsList",
+  "package": "@optiaxiom/react",
+  "category": "navigation",
+  "description": "TabsList component from Axiom Design System",
+  "import": "import { TabsList } from '@optiaxiom/react';",
+  "props": {
+    "className": {
+      "type": "string",
+      "description": "Additional CSS class names"
+    },
+    "children": {
+      "type": "ReactNode",
+      "description": "Component children"
+    }
+  },
+  "examples": [
+    {
+      "title": "Basic TabsList",
+      "description": "Simple example of TabsList",
+      "code": "<TabsList>\n  Content\n</TabsList>",
+      "language": "tsx",
+      "tags": [
+        "basic"
+      ]
+    }
+  ],
+  "since": "1.0.0",
+  "keywords": [
+    "tabslist",
+    "navigation"
+  ],
+  "docsUrl": "https://optimizely-axiom.github.io/optiaxiom/components/tabslist"
+}

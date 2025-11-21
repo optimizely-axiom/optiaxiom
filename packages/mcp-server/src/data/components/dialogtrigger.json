@@ -1,0 +1,34 @@
+{
+  "name": "DialogTrigger",
+  "package": "@optiaxiom/react",
+  "category": "overlays",
+  "description": "DialogTrigger component from Axiom Design System",
+  "import": "import { DialogTrigger } from '@optiaxiom/react';",
+  "props": {
+    "className": {
+      "type": "string",
+      "description": "Additional CSS class names"
+    },
+    "children": {
+      "type": "ReactNode",
+      "description": "Component children"
+    }
+  },
+  "examples": [
+    {
+      "title": "Basic DialogTrigger",
+      "description": "Simple example of DialogTrigger",
+      "code": "<DialogTrigger>\n  Content\n</DialogTrigger>",
+      "language": "tsx",
+      "tags": [
+        "basic"
+      ]
+    }
+  ],
+  "since": "1.0.0",
+  "keywords": [
+    "dialogtrigger",
+    "overlays"
+  ],
+  "docsUrl": "https://optimizely-axiom.github.io/optiaxiom/components/dialogtrigger"
+}

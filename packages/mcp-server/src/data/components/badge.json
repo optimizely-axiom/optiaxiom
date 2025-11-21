@@ -1,0 +1,44 @@
+{
+  "name": "Badge",
+  "package": "@optiaxiom/react",
+  "category": "feedback",
+  "description": "Badge component from Axiom Design System",
+  "import": "import { Badge } from '@optiaxiom/react';",
+  "props": {
+    "className": {
+      "type": "string",
+      "description": "Additional CSS class names"
+    },
+    "children": {
+      "type": "ReactNode",
+      "description": "Component children"
+    }
+  },
+  "examples": [
+    {
+      "title": "Basic Badge",
+      "description": "Simple example of Badge",
+      "code": "<Badge>\n  Content\n</Badge>",
+      "language": "tsx",
+      "tags": [
+        "basic"
+      ]
+    },
+    {
+      "title": "Badge with intent",
+      "description": "Badge with different intents",
+      "code": "<Badge intent=\"information\">Info</Badge>\n<Badge intent=\"success\">Success</Badge>\n<Badge intent=\"warning\">Warning</Badge>\n<Badge intent=\"danger\">Danger</Badge>",
+      "language": "tsx",
+      "tags": [
+        "intent",
+        "variants"
+      ]
+    }
+  ],
+  "since": "1.0.0",
+  "keywords": [
+    "badge",
+    "feedback"
+  ],
+  "docsUrl": "https://optimizely-axiom.github.io/optiaxiom/components/badge"
+}

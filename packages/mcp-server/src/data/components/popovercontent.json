@@ -1,0 +1,34 @@
+{
+  "name": "PopoverContent",
+  "package": "@optiaxiom/react",
+  "category": "overlays",
+  "description": "PopoverContent component from Axiom Design System",
+  "import": "import { PopoverContent } from '@optiaxiom/react';",
+  "props": {
+    "className": {
+      "type": "string",
+      "description": "Additional CSS class names"
+    },
+    "children": {
+      "type": "ReactNode",
+      "description": "Component children"
+    }
+  },
+  "examples": [
+    {
+      "title": "Basic PopoverContent",
+      "description": "Simple example of PopoverContent",
+      "code": "<PopoverContent>\n  Content\n</PopoverContent>",
+      "language": "tsx",
+      "tags": [
+        "basic"
+      ]
+    }
+  ],
+  "since": "1.0.0",
+  "keywords": [
+    "popovercontent",
+    "overlays"
+  ],
+  "docsUrl": "https://optimizely-axiom.github.io/optiaxiom/components/popovercontent"
+}

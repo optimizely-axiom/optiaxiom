@@ -1,0 +1,36 @@
+[
+  {
+    "name": "form-layout",
+    "category": "forms",
+    "description": "Standard form layout with fields and validation",
+    "components": [
+      "Field",
+      "FieldLabel",
+      "Input",
+      "Button"
+    ],
+    "code": "<form>\n  <Field>\n    <FieldLabel>Email</FieldLabel>\n    <Input type=\"email\" placeholder=\"Enter your email\" />\n  </Field>\n\n  <Field>\n    <FieldLabel>Password</FieldLabel>\n    <Input type=\"password\" placeholder=\"Enter your password\" />\n  </Field>\n\n  <Button type=\"submit\">Sign In</Button>\n</form>",
+    "notes": [
+      "Use Field component to group labels with inputs",
+      "Always provide accessible labels",
+      "Include validation feedback when needed"
+    ]
+  },
+  {
+    "name": "card-layout",
+    "category": "layout",
+    "description": "Card-based layout for content sections",
+    "components": [
+      "Card",
+      "Heading",
+      "Text",
+      "Button"
+    ],
+    "code": "<Card>\n  <Heading>Card Title</Heading>\n  <Text>\n    Card content goes here with descriptive information.\n  </Text>\n  <Button>Action</Button>\n</Card>",
+    "notes": [
+      "Use cards for grouping related content",
+      "Keep card content concise and focused",
+      "Include clear call-to-action when needed"
+    ]
+  }
+]

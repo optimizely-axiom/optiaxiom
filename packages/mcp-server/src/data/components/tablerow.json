@@ -1,0 +1,34 @@
+{
+  "name": "TableRow",
+  "package": "@optiaxiom/react",
+  "category": "data-display",
+  "description": "TableRow component from Axiom Design System",
+  "import": "import { TableRow } from '@optiaxiom/react';",
+  "props": {
+    "className": {
+      "type": "string",
+      "description": "Additional CSS class names"
+    },
+    "children": {
+      "type": "ReactNode",
+      "description": "Component children"
+    }
+  },
+  "examples": [
+    {
+      "title": "Basic TableRow",
+      "description": "Simple example of TableRow",
+      "code": "<TableRow>\n  Content\n</TableRow>",
+      "language": "tsx",
+      "tags": [
+        "basic"
+      ]
+    }
+  ],
+  "since": "1.0.0",
+  "keywords": [
+    "tablerow",
+    "data-display"
+  ],
+  "docsUrl": "https://optimizely-axiom.github.io/optiaxiom/components/tablerow"
+}

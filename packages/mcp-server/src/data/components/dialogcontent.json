@@ -1,0 +1,34 @@
+{
+  "name": "DialogContent",
+  "package": "@optiaxiom/react",
+  "category": "overlays",
+  "description": "DialogContent component from Axiom Design System",
+  "import": "import { DialogContent } from '@optiaxiom/react';",
+  "props": {
+    "className": {
+      "type": "string",
+      "description": "Additional CSS class names"
+    },
+    "children": {
+      "type": "ReactNode",
+      "description": "Component children"
+    }
+  },
+  "examples": [
+    {
+      "title": "Basic DialogContent",
+      "description": "Simple example of DialogContent",
+      "code": "<DialogContent>\n  Content\n</DialogContent>",
+      "language": "tsx",
+      "tags": [
+        "basic"
+      ]
+    }
+  ],
+  "since": "1.0.0",
+  "keywords": [
+    "dialogcontent",
+    "overlays"
+  ],
+  "docsUrl": "https://optimizely-axiom.github.io/optiaxiom/components/dialogcontent"
+}

@@ -1,0 +1,8 @@
+{
+  "servers": {
+    "axiom": {
+      "command": "node",
+      "args": ["dist/cli.js"]
+    }
+  }
+}

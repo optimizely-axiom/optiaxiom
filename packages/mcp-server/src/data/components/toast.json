@@ -1,0 +1,34 @@
+{
+  "name": "Toast",
+  "package": "@optiaxiom/react",
+  "category": "feedback",
+  "description": "Toast component from Axiom Design System",
+  "import": "import { Toast } from '@optiaxiom/react';",
+  "props": {
+    "className": {
+      "type": "string",
+      "description": "Additional CSS class names"
+    },
+    "children": {
+      "type": "ReactNode",
+      "description": "Component children"
+    }
+  },
+  "examples": [
+    {
+      "title": "Basic Toast",
+      "description": "Simple example of Toast",
+      "code": "<Toast>\n  Content\n</Toast>",
+      "language": "tsx",
+      "tags": [
+        "basic"
+      ]
+    }
+  ],
+  "since": "1.0.0",
+  "keywords": [
+    "toast",
+    "feedback"
+  ],
+  "docsUrl": "https://optimizely-axiom.github.io/optiaxiom/components/toast"
+}
