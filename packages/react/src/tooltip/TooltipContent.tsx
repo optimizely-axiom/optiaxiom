@@ -12,7 +12,7 @@ import * as styles from "./TooltipContent.css";
 import { useTooltipContext } from "./TooltipContext";
 
 export type TooltipContentProps = ExcludeProps<
-  BoxProps<typeof RadixTooltip.Content>,
+  BoxProps<typeof RadixTooltip.Content, styles.ContentVariants>,
   | "alignOffset"
   | "arrowPadding"
   | "avoidCollisions"
@@ -26,14 +26,28 @@ export type TooltipContentProps = ExcludeProps<
 >;
 
 export const TooltipContent = forwardRef<HTMLDivElement, TooltipContentProps>(
-  ({ align = "center", children, className, side = "top", ...props }, ref) => {
+  (
+    {
+      align = "center",
+      children,
+      className,
+      disableHoverableContent,
+      side = "top",
+      ...props
+    },
+    ref,
+  ) => {
     const { open } = useTooltipContext("@optiaxiom/react/TooltipContent");
 
     return (
       <TransitionGroup open={open}>
         <Portal asChild>
           <Transition duration="sm" type="pop">
-            <Box asChild {...styles.content({}, className)} {...props}>
+            <Box
+              asChild
+              {...styles.content({ disableHoverableContent }, className)}
+              {...props}
+            >
               <RadixTooltip.Content
                 align={align}
                 arrowPadding={6}

@@ -121,6 +121,7 @@ export const Range = forwardRef<HTMLInputElement, RangeProps>(
           <Tooltip
             content={getLabel(value)}
             disabled={disabled || !showTooltip}
+            disableHoverableContent
             open={tooltipOpen}
           >
             <Box {...styles.thumb()} />

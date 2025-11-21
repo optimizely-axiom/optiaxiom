@@ -1,4 +1,4 @@
-import { recipe } from "../vanilla-extract";
+import { recipe, type RecipeVariants } from "../vanilla-extract";
 
 export const content = recipe({
   base: [
@@ -12,4 +12,20 @@ export const content = recipe({
       z: "tooltip",
     },
   ],
+  variants: {
+    /**
+     * When `true`, trying to hover the content will result in the tooltip
+     * closing as the pointer leaves the trigger.
+     *
+     * @defaultValue false
+     */
+    disableHoverableContent: {
+      false: {},
+      true: {
+        pointerEvents: "none",
+      },
+    },
+  },
 });
+
+export type ContentVariants = RecipeVariants<typeof content>;
