@@ -37,6 +37,21 @@ export type TextareaProps = InputControlProps<
     }
 >;
 
+/**
+ * Multi-line text field for capturing user input.
+ *
+ * @since 0.1.0
+ *
+ * @example
+ * <Field
+ *   description={description}
+ *   error={error}
+ *   label="Input label"
+ *   required={false}
+ * >
+ *   <Textarea placeholder="Enter text..." />
+ * </Field>
+ */
 export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
   (
     {

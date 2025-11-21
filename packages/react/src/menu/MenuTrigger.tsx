@@ -10,6 +10,10 @@ import { useMenuContext } from "./MenuContext";
 
 export type MenuTriggerProps = ComponentPropsWithoutRef<typeof PopoverTrigger>;
 
+/**
+ * @extends Button
+ * @group Menu
+ */
 export const MenuTrigger = forwardRef<HTMLButtonElement, MenuTriggerProps>(
   (
     {

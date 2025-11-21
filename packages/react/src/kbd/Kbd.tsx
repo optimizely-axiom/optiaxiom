@@ -36,6 +36,17 @@ const mapModifierToCode = {
   },
 };
 
+/**
+ * Inline text representing keyboard input.
+ *
+ * @since 0.1.0
+ * @extends Code
+ *
+ * @example
+ * <Text>
+ *   <Kbd>Ctrl + Shift + P</Kbd>
+ * </Text>
+ */
 export const Kbd = forwardRef<HTMLElement, KbdProps>(
   ({ children, className, modifiers, variant = "outline", ...props }, ref) => {
     return (

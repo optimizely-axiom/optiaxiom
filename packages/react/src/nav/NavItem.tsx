@@ -30,6 +30,9 @@ export type NavItemProps = BoxProps<
   }
 >;
 
+/**
+ * @group Sidebar
+ */
 export const NavItem = forwardRef<HTMLButtonElement, NavItemProps>(
   (
     {

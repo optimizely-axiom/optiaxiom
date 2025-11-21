@@ -40,6 +40,20 @@ export type BreadcrumbProps = BoxProps<
   }
 >;
 
+/**
+ * Display a list of links showing the location of the current page in the navigational hierarchy.
+ *
+ * @since 1.6.0
+ *
+ * @example
+ * <Breadcrumb
+ *   items={[
+ *     { href: "/optiaxiom", label: "Home" },
+ *     { href: "/optiaxiom/components", label: "Components" },
+ *     { href: "/optiaxiom/components/breadcrumb", label: "Breadcrumb" },
+ *   ]}
+ * />
+ */
 export const Breadcrumb = forwardRef<HTMLElement, BreadcrumbProps>(
   ({ className, items, maxItems = 3, ...props }, ref) => {
     const { boxProps, restProps } = extractBoxProps(props);

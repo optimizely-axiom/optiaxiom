@@ -23,6 +23,10 @@ export type TabsTriggerProps = BoxProps<
   }
 >;
 
+/**
+ * @extends Button
+ * @group Tabs
+ */
 export const TabsTrigger = forwardRef<HTMLButtonElement, TabsTriggerProps>(
   (
     { addonAfter, addonBefore, asChild, children, className, value, ...props },

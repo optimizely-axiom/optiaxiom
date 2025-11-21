@@ -6,6 +6,9 @@ import { Separator } from "../separator";
 
 export type ToastActionProps = ButtonProps<typeof RadixToast.Action>;
 
+/**
+ * @extends Button
+ */
 export const ToastAction = forwardRef<HTMLButtonElement, ToastActionProps>(
   (
     { altText, appearance = "inverse", children, size = "sm", ...props },

@@ -32,6 +32,22 @@ const mapIntentToIcon = {
   warning: IconTriangleExclamationSolid,
 };
 
+/**
+ * Keeps users informed of important and sometimes time-sensitive changes.
+ *
+ * @since 0.1.0
+ *
+ * @example
+ * <Alert>
+ *   <Text>
+ *     You do not have the required permissions to perform this action.
+ *   </Text>
+ *
+ *   <Text>
+ *     <Link href="data:,">Request access</Link>
+ *   </Text>
+ * </Alert>
+ */
 export const Alert = forwardRef<HTMLDivElement, AlertProps>(
   ({ children, className, intent = "neutral", onDismiss, ...props }, ref) => {
     const labelId = useId();

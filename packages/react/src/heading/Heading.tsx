@@ -33,6 +33,20 @@ const mapLevelToFontSize = {
   "4": "xl",
 } as const;
 
+/**
+ * component is used to display page title and section headings. The default root element is `h1` which can be configured using the `level` prop.
+ *
+ * @since 0.1.0
+ * @extends Text
+ *
+ * @example
+ * <Flex>
+ *   <Heading level="1">This is h1 heading</Heading>
+ *   <Heading level="2">This is h2 heading</Heading>
+ *   <Heading level="3">This is h3 heading</Heading>
+ *   <Heading level="4">This is h4 heading</Heading>
+ * </Flex>
+ */
 export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
   ({ asChild, children, level = "1", ...props }, ref) => {
     const Comp = asChild ? Slot : (mapLevelToTag[level] ?? "h1");

@@ -23,6 +23,21 @@ export type DisclosureProps = BoxProps<
   }
 >;
 
+/**
+ * An interactive component which expands/collapses a panel.
+ *
+ * @group Disclosure
+ * @since 0.1.0
+ *
+ * @example
+ * <Disclosure maxW="sm" w="full">
+ *   <DisclosureTrigger>Disclosure label</DisclosureTrigger>
+ *   <DisclosureContent>
+ *     Aenean neque dui, lobortis et sem quis, mattis varius nisl. Nulla turpis
+ *     sapien, venenatis eu pharetra at, ullamcorper sed nibh.
+ *   </DisclosureContent>
+ * </Disclosure>
+ */
 export const Disclosure = forwardRef<HTMLDivElement, DisclosureProps>(
   (
     {

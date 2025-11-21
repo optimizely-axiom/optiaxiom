@@ -15,6 +15,9 @@ export type DataTableActionProps = BoxProps<
   }
 >;
 
+/**
+ * @group DataTable
+ */
 export const DataTableAction = forwardRef<HTMLDivElement, DataTableActionProps>(
   ({ onKeyDown, onPointerDown, primary, visible, ...props }, outerRef) => {
     const {

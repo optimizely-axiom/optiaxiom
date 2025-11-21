@@ -15,6 +15,10 @@ export type CardCheckboxProps = ExcludeProps<
   "description"
 >;
 
+/**
+ * @extends Checkbox
+ * @group Card
+ */
 export const CardCheckbox = forwardRef<HTMLInputElement, CardCheckboxProps>(
   ({ className, onChange, ...props }, ref) => {
     const labelPrefixId = useId();

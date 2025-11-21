@@ -41,6 +41,17 @@ const mapFallbackToIcon = {
   user: <IconUserSolid />,
 };
 
+/**
+ * is an image element with a fallback for representing the user.
+ *
+ * @since 0.1.0
+ *
+ * @example
+ * <Avatar
+ *   name="Jane Doe"
+ *   src="https://i.pravatar.cc/300?u=jane@doe.example"
+ * />
+ */
 export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
   (
     {

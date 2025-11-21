@@ -29,7 +29,7 @@ export function getDocs({ shouldExtractValuesFromUnion = false } = {}) {
         filePath: _filePath,
         methods: _methods,
         props,
-        tags: _tags,
+        tags,
         ...doc
       }) => {
         const component = path.basename(doc.displayName);
@@ -40,6 +40,7 @@ export function getDocs({ shouldExtractValuesFromUnion = false } = {}) {
               prop.parent
                 ? !prop.parent.fileName.includes("@types/react")
                 : prop.name === "asChild" ||
+                  prop.defaultValue ||
                   (prop.declarations?.length &&
                     (isBox ||
                       sprinkles.props[prop.name]?.declarations?.[0].fileName !==
@@ -70,6 +71,13 @@ export function getDocs({ shouldExtractValuesFromUnion = false } = {}) {
           props: Object.values(filterProps).sort((a, b) =>
             a.name.localeCompare(b.name),
           ),
+          tags: {
+            example: "",
+            ...("asChild" in filterProps && "className" in filterProps
+              ? { extends: "Box" }
+              : undefined),
+            ...tags,
+          },
           ...(description && { description }),
         };
       },

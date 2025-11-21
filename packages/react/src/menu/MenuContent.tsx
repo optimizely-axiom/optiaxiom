@@ -26,6 +26,9 @@ export type MenuContentProps = ExcludeProps<
   "size"
 >;
 
+/**
+ * @group Menu
+ */
 export const MenuContent = forwardRef<HTMLDivElement, MenuContentProps>(
   ({ children, onPointerDown, ...props }, outerRef) => {
     const innerRef = useRef<HTMLDivElement>(null);

@@ -28,6 +28,11 @@ export type FileUploadProps = BoxProps<
   }
 >;
 
+/**
+ * Capture file input from users with drag and drop.
+ *
+ * @since 1.6.0
+ */
 export const FileUpload = forwardRef<HTMLDivElement, FileUploadProps>(
   (
     { accept, children, className, disabled, onFilesDrop, ...props },

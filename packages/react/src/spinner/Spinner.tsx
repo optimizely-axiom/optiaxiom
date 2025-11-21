@@ -19,6 +19,14 @@ const mapAppearanceToFg = {
   inverse: "fg.spinner.inverse",
 } as const;
 
+/**
+ * Used for indicating an unspecified wait time.
+ *
+ * @since 0.1.0
+ *
+ * @example
+ * <Spinner />
+ */
 export const Spinner = forwardRef<HTMLDivElement, SpinnerProps>(
   ({ appearance = "default", children, size = "md", ...props }, ref) => {
     return (

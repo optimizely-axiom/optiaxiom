@@ -6,6 +6,9 @@ import { DisclosureContent } from "../disclosure";
 
 export type NavGroupContentProps = BoxProps<"div">;
 
+/**
+ * @group Sidebar
+ */
 export const NavGroupContent = forwardRef<
   HTMLUListElement,
   NavGroupContentProps

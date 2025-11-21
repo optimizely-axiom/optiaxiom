@@ -44,6 +44,22 @@ export type DateInputProps = ExtendProps<
   }
 >;
 
+/**
+ * Input field with calendar that lets user enter dates.
+ *
+ * @since 1.4.0
+ *
+ * @example
+ * <Field
+ *   description={description}
+ *   error={error}
+ *   label="Input label"
+ *   required={false}
+ *   w="224"
+ * >
+ *   <DateInput />
+ * </Field>
+ */
 export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
   (
     {

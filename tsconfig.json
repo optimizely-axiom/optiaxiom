@@ -6,6 +6,7 @@
     { "path": "apps/figma" },
     { "path": "apps/storybook" },
     { "path": "packages/globals" },
+    { "path": "packages/mcp" },
     { "path": "packages/shared" },
     { "path": "packages/react" },
     { "path": "packages/web-components" }

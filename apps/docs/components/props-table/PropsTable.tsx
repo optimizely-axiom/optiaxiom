@@ -12,43 +12,6 @@ import { components } from "./components";
 
 type AllComponents = keyof typeof Components | keyof typeof UnstableComponents;
 
-const mapComponentToBase: Partial<Record<AllComponents, "" | AllComponents>> = {
-  AlertDialogAction: "Button",
-  AlertDialogCancel: "Button",
-  AlertDialogTrigger: "Button",
-  CardCheckbox: "Checkbox",
-  CardLink: "Link",
-  DateRangePicker: "Popover",
-  DateRangePickerTrigger: "Button",
-  DialogClose: "Button",
-  DialogTrigger: "Button",
-  DropdownMenuSeparator: "Separator",
-  DropdownMenuTrigger: "Button",
-  FileUploadTrigger: "Button",
-  Heading: "Text",
-  Kbd: "Code",
-  MenuTrigger: "Button",
-  ModalLayer: "",
-  NavGroup: "Disclosure",
-  NavGroupContent: "DisclosureContent",
-  NavGroupTrigger: "DisclosureTrigger",
-  NavSeparator: "Separator",
-  PopoverTrigger: "Button",
-  SearchInput: "Input",
-  SegmentedControlItem: "Button",
-  SelectTrigger: "Button",
-  TabsTrigger: "Button",
-  ToastAction: "Button",
-  ToastTitle: "Text",
-  ToggleButton: "Button",
-};
-
-const mapComponentToScope: Partial<Record<"" | AllComponents, AllComponents>> =
-  {
-    DisclosureContent: "Disclosure",
-    DisclosureTrigger: "Disclosure",
-  };
-
 export async function PropsTable({
   component,
 }: {
@@ -57,12 +20,11 @@ export async function PropsTable({
   if (!(component in components)) {
     throw new Error(`Could not find props for component: ${component}`);
   }
-  const propItems = await components[component];
+  const doc = await components[component];
+  const propItems = doc.props;
 
-  const baseName =
-    mapComponentToBase[component as AllComponents] ??
-    (propItems.find((prop) => prop.name === "asChild") ? "Box" : "");
-  const baseNameScope = mapComponentToScope[baseName] || baseName;
+  const baseName = doc.tags.extends || "";
+  const baseNameScope = doc.tags.group || baseName;
   const isBox = component === "Box";
   const virtual = !propItems.find((prop) => prop.name === "asChild");
 
@@ -167,7 +129,7 @@ function PropsTableDescription({
   name,
   virtual,
 }: {
-  baseName: "" | AllComponents;
+  baseName: string;
   children?: ReactNode;
   name: AllComponents;
   virtual?: boolean;
@@ -283,6 +245,8 @@ function PropsTableDescription({
 
 const matches = (
   items: ("" | AllComponents)[],
-  baseName: "" | AllComponents,
+  baseName: string,
   name?: AllComponents,
-) => items.includes(baseName) || (name && items.includes(name));
+) =>
+  items.includes(baseName as "" | AllComponents) ||
+  (name && items.includes(name));

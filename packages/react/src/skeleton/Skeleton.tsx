@@ -17,6 +17,18 @@ export type SkeletonProps = BoxProps<
   }
 >;
 
+/**
+ * Display placeholder content while data is loading.
+ *
+ * @since 0.1.0
+ *
+ * @example
+ * <Flex w="full">
+ *   <Skeleton />
+ *   <Skeleton h="56" />
+ *   <Skeleton circle size="56" />
+ * </Flex>
+ */
 export const Skeleton = forwardRef<HTMLSpanElement, SkeletonProps>(
   ({ asChild = true, children, circle, className, rounded, ...props }, ref) => {
     return (

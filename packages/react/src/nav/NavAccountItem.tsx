@@ -26,6 +26,9 @@ export type NavAccountItemProps = BoxProps<
   }
 >;
 
+/**
+ * @group Sidebar
+ */
 export const NavAccountItem = forwardRef<
   HTMLButtonElement,
   NavAccountItemProps

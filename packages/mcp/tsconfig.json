@@ -1,0 +1,23 @@
+{
+  "extends": "../../tsconfig.pkg.json",
+  "compilerOptions": {
+    "checkJs": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": true,
+    "outDir": "./dist",
+    "resolveJsonModule": true,
+    "paths": {
+      "#data/*": ["./data/*"]
+    }
+  },
+  "include": [".", "**/*.json"],
+  "exclude": ["node_modules", "dist"],
+  "references": [
+    { "path": "../../packages/globals" },
+    { "path": "../../packages/shared" }
+  ]
+}

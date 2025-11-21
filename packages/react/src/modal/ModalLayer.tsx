@@ -25,6 +25,12 @@ export type ModalLayerProps = Pick<
     children?: ReactNode;
   };
 
+/**
+ * `ModalLayer` is a helper component intended to wrap components that are
+ * rendered inside portals inside other dialogs or popovers.
+ *
+ * @since 0.7.8
+ */
 export const ModalLayer = forwardRef<HTMLDivElement, ModalLayerProps>(
   ({ asChild, children, ...props }, outerRef) => {
     const { shardRef } = useModalContext("@optiaxiom/react/ModalLayer");

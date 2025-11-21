@@ -29,6 +29,9 @@ export type DataTableBodyProps = BoxProps<
 const COL_VIRTUALIZATION_THRESHOLD = 20;
 const ROW_VIRTUALIZATION_THRESHOLD = 20;
 
+/**
+ * @group DataTable
+ */
 export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
   ({ estimatedRowHeight = 52, loading, ...props }, outerRef) => {
     const innerRef = useRef<HTMLDivElement>(null);

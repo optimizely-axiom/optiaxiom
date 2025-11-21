@@ -19,6 +19,11 @@ export type PillProps = BoxProps<
   }
 >;
 
+/**
+ * A pill is a visual representation of an attribute, usually representing tags or metrics.
+ *
+ * @since 0.12.4
+ */
 export const Pill = forwardRef<HTMLButtonElement, PillProps>(
   (
     {

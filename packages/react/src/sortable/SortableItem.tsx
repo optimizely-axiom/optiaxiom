@@ -22,6 +22,9 @@ export type SortableItemProps = BoxProps<
   }
 >;
 
+/**
+ * @group Sortable
+ */
 export const SortableItem = forwardRef<HTMLDivElement, SortableItemProps>(
   ({ children, className, index, item: id, ...props }, outerRef) => {
     const { cacheRef, isSorting } = useSortableContext(

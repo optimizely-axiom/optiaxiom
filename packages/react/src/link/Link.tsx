@@ -27,6 +27,17 @@ export type LinkProps = BoxProps<
   }
 >;
 
+/**
+ * Anchor element for creating hyperlinks.
+ *
+ * @since 0.1.0
+ *
+ * @example
+ * <Text>
+ *   This is <Link href="data:,">a regular link</Link> and this is{" "}
+ *   <Link href="">a visited link</Link>
+ * </Text>
+ */
 export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
   (
     {

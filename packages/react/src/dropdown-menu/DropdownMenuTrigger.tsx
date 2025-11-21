@@ -7,6 +7,9 @@ import { useDropdownMenuContext } from "./DropdownMenuContext";
 
 export type DropdownMenuTriggerProps = ComponentPropsWithoutRef<typeof Button>;
 
+/**
+ * @extends Button
+ */
 export const DropdownMenuTrigger = forwardRef<
   HTMLButtonElement,
   DropdownMenuTriggerProps

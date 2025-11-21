@@ -19,6 +19,30 @@ export type AlertDialogProps = {
   open?: boolean;
 };
 
+/**
+ * Display a modal with important content that expects confirmation from the user.
+ *
+ * @group AlertDialog
+ * @since 0.1.0
+ *
+ * @example
+ * <AlertDialog>
+ *   <AlertDialogTrigger>Delete comment</AlertDialogTrigger>
+ *
+ *   <AlertDialogContent>
+ *     <AlertDialogHeader>Delete comment?</AlertDialogHeader>
+ *
+ *     <AlertDialogBody>
+ *       The comment and all replies will be deleted.
+ *     </AlertDialogBody>
+ *
+ *     <AlertDialogFooter>
+ *       <AlertDialogCancel />
+ *       <AlertDialogAction>Yes, delete</AlertDialogAction>
+ *     </AlertDialogFooter>
+ *   </AlertDialogContent>
+ * </AlertDialog>
+ */
 export function AlertDialog(props: AlertDialogProps) {
   if (useContext(DialogKitContext)) {
     throw new Error(

@@ -5,6 +5,9 @@ import { type BoxProps } from "../box";
 
 export type TableActionProps = BoxProps<typeof ActionsContent>;
 
+/**
+ * @group Table
+ */
 export const TableAction = forwardRef<HTMLDivElement, TableActionProps>(
   ({ asChild = true, ...props }, ref) => {
     return <ActionsContent asChild={asChild} ref={ref} {...props} />;

@@ -5,6 +5,10 @@ import { Button, type ButtonProps } from "../button";
 
 export type AlertDialogTriggerProps = ButtonProps<typeof RadixDialog.Trigger>;
 
+/**
+ * @group AlertDialog
+ * @extends Button
+ */
 export const AlertDialogTrigger = forwardRef<
   HTMLButtonElement,
   AlertDialogTriggerProps

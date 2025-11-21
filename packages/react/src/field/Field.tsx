@@ -33,6 +33,16 @@ export type FieldProps = BoxProps<
   }
 >;
 
+/**
+ * Wrapper for inputs to provide context such as label/help/required etc.
+ *
+ * @since 0.1.0
+ *
+ * @example
+ * <Field label="Input label">
+ *   <Input placeholder="Enter text..." />
+ * </Field>
+ */
 export const Field = forwardRef<HTMLDivElement, FieldProps>(
   (
     {
