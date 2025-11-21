@@ -1,5 +1,11 @@
 # @optiaxiom/web-components
 
+## 0.11.15
+
+### Patch Changes
+
+- 2fd2dac: allow disableHoverableContent prop on Tooltip
+
 ## 0.11.14
 
 ### Patch Changes
