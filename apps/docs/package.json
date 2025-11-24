@@ -5,7 +5,7 @@
   "scripts": {
     "build": "next build",
     "dev": "concurrently --raw \"sleep 3 && node -e \\\"require('better-opn')('http://localhost:5055')\\\"\" \"next dev -p 5055\"",
-    "postbuild": "pagefind --site .next/server/app --output-path out/_pagefind"
+    "postbuild": "pagefind --site .next/server/app --output-path out/_pagefind && node scripts/generate-sitemap.mjs"
   },
   "devDependencies": {
     "@faker-js/faker": "^9.9.0",
