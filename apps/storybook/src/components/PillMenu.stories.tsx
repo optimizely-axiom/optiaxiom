@@ -7,6 +7,7 @@ import {
   PillMenuTrigger,
 } from "@optiaxiom/react/unstable";
 import { useMemo, useState } from "react";
+import { expect, screen, userEvent, waitFor } from "storybook/test";
 
 type Story = StoryObj<typeof PillMenu>;
 
@@ -95,6 +96,47 @@ export const Basic: Story = {
 };
 
 export const Disabled: Story = {
+  play: async () => {
+    const disabledPill = screen.getByRole("button", { name: "Afrikaans" });
+    await userEvent.hover(disabledPill);
+    await waitFor(async () =>
+      expect(
+        await screen.findByRole("tooltip", { name: "Required" }),
+      ).toBeVisible(),
+    );
+
+    await userEvent.click(disabledPill);
+    await waitFor(async () => {
+      return await expect(screen.getByRole("dialog")).toHaveAttribute(
+        "data-state",
+        "open",
+      );
+    });
+
+    await expect(
+      screen.getByRole("option", { name: "Afrikaans" }),
+    ).toHaveAttribute("aria-disabled", "true");
+
+    await userEvent.keyboard("{Escape}");
+    await waitFor(() =>
+      expect(screen.queryByRole("dialog")).not.toBeInTheDocument(),
+    );
+
+    await expect(disabledPill).toHaveFocus();
+    await userEvent.keyboard("{Backspace}");
+    await expect(disabledPill).toBeInTheDocument();
+
+    await userEvent.keyboard("{ArrowRight}");
+    const normalPill = screen.getByRole("button", { name: "Croatian" });
+    await expect(normalPill).toHaveFocus();
+    await userEvent.keyboard("{Backspace}");
+    await waitFor(async () => {
+      return await expect(
+        screen.queryByRole("button", { name: "Croatian" }),
+      ).not.toBeInTheDocument();
+    });
+  },
+
   render: function Disabled(args) {
     const [value, setValue] = useState(
       languages.filter((_, index) => index % 6 === 0),
