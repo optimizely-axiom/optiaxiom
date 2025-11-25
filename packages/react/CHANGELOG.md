@@ -1,5 +1,13 @@
 # @optiaxiom/react
 
+## 1.7.12
+
+### Patch Changes
+
+- ddaad2c: add range component
+- d953f11: handle scroll locking when menu is used within a modal
+- 2fd2dac: allow disableHoverableContent prop on Tooltip
+
 ## 1.7.11
 
 ### Patch Changes
