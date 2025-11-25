@@ -1,5 +1,12 @@
 # @optiaxiom/web-components
 
+## 0.11.15
+
+### Patch Changes
+
+- d953f11: handle scroll locking when menu is used within a modal
+- 2fd2dac: allow disableHoverableContent prop on Tooltip
+
 ## 0.11.14
 
 ### Patch Changes
