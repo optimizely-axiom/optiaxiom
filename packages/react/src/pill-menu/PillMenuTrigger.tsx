@@ -2,7 +2,7 @@ import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import * as RadixRovingFocus from "@radix-ui/react-roving-focus";
 import { type ComponentPropsWithoutRef, forwardRef, useRef } from "react";
 
-import { useCommandContext } from "../command/internals";
+import { resolveItemProperty, useCommandContext } from "../command/internals";
 import { IconPlus } from "../icons/IconPlus";
 import { MenuTrigger } from "../menu";
 import { usePillMenuContext } from "./PillMenuContext";
@@ -37,7 +37,10 @@ export const PillMenuTrigger = forwardRef<
           if (event.key === "Backspace") {
             if (options.length) {
               const last = options.length - 1;
-              options[last].execute?.({ dismiss: false, inputValue });
+
+              if (!resolveItemProperty(options[last].disabledReason)) {
+                options[last].execute?.({ dismiss: false, inputValue });
+              }
             }
           }
         }}
