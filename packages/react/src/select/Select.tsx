@@ -73,6 +73,16 @@ export type SelectProps = {
   value?: string;
 };
 
+/**
+ * Form input for selecting a value from a dropdown list. Use this to capture
+ * user input in forms as an alternative to radios when you have many options.
+ *
+ * Use this for form inputs only. For action menus or multi-select dropdowns,
+ * use Menu instead.
+ *
+ * @group Select
+ * @since 1.4.0
+ */
 export const Select = forwardRef<HTMLSelectElement, SelectProps>(
   (
     {

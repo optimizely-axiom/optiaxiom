@@ -23,6 +23,12 @@ export type DataTableHeaderCellProps = BoxProps<
   }
 >;
 
+/**
+ * Table header cell with sorting and resizing functionality.
+ *
+ * @group DataTable
+ * @experimental
+ */
 export const DataTableHeaderCell = forwardRef<
   HTMLTableCellElement,
   DataTableHeaderCellProps

@@ -21,6 +21,12 @@ export type LabelMenuButtonProps = ComponentPropsWithoutRef<
   size?: never;
 };
 
+/**
+ * Button displaying both a label and value, used as the trigger for Select
+ * components.
+ *
+ * @group Button
+ */
 export const LabelMenuButton = forwardRef<
   HTMLButtonElement,
   LabelMenuButtonProps

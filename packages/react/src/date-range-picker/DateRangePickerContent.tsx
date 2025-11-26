@@ -31,6 +31,9 @@ export type DateRangePickerContentProps = ComponentPropsWithoutRef<
     addonBefore?: ReactNode;
   };
 
+/**
+ * @group DateRangePicker
+ */
 export const DateRangePickerContent = forwardRef<
   HTMLInputElement,
   DateRangePickerContentProps

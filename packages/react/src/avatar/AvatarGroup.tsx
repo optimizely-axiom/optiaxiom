@@ -15,6 +15,25 @@ export type AvatarGroupProps = BoxProps<
   }
 >;
 
+/**
+ * Displays a group of avatars representing multiple users with automatic layout
+ * and overflow handling.
+ *
+ * Use this component whenever you have 2 or more Avatar components together,
+ * even if they're not overlapping in the design. AvatarGroup handles consistent
+ * sizing, spacing, overflow indicators (+N), and semantic grouping
+ * automatically.
+ *
+ * Don't manually layout multiple Avatars in a Flex - use AvatarGroup instead.
+ *
+ * When to use:
+ * - Multiple assignees on a task
+ * - Team members or collaborators
+ * - Participants in a conversation
+ * - Any group of users
+ *
+ * @group Avatar
+ */
 export const AvatarGroup = forwardRef<HTMLDivElement, AvatarGroupProps>(
   ({ children, className, size = "md", ...props }, ref) => {
     return (

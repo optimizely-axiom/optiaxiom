@@ -6,6 +6,9 @@ import { Separator } from "../separator";
 
 export type ListboxSeparatorProps = BoxProps<typeof Separator>;
 
+/**
+ * @group Listbox
+ */
 export const ListboxSeparator = forwardRef<
   HTMLDivElement,
   ListboxSeparatorProps

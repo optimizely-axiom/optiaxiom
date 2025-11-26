@@ -40,6 +40,11 @@ export type BreadcrumbProps = BoxProps<
   }
 >;
 
+/**
+ * Display a list of links showing the location of the current page in the navigational hierarchy.
+ *
+ * @since 1.6.0
+ */
 export const Breadcrumb = forwardRef<HTMLElement, BreadcrumbProps>(
   ({ className, items, maxItems = 3, ...props }, ref) => {
     const { boxProps, restProps } = extractBoxProps(props);

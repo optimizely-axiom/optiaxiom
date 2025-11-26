@@ -5,6 +5,10 @@ import { Text, type TextProps } from "../text";
 
 export type ToastTitleProps = TextProps<typeof RadixToast.Title>;
 
+/**
+ * @group Toast
+ * @extends Text
+ */
 export const ToastTitle = forwardRef<HTMLDivElement, ToastTitleProps>(
   ({ children, ...props }, ref) => {
     return (

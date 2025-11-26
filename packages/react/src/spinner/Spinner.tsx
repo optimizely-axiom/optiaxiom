@@ -19,16 +19,34 @@ const mapAppearanceToFg = {
   inverse: "fg.spinner.inverse",
 } as const;
 
+/**
+ * Used for indicating an unspecified wait time.
+ *
+ * @since 0.1.0
+ */
 export const Spinner = forwardRef<HTMLDivElement, SpinnerProps>(
-  ({ appearance = "default", children, size = "md", ...props }, ref) => {
+  (
+    {
+      alignItems = "center",
+      appearance = "default",
+      "aria-label": ariaLabel = "Loading",
+      children,
+      display = "inline-flex",
+      justifyContent = "center",
+      role = "status",
+      size = "md",
+      ...props
+    },
+    ref,
+  ) => {
     return (
       <Flex
-        alignItems="center"
-        aria-label="Loading"
-        display="inline-flex"
-        justifyContent="center"
+        alignItems={alignItems}
+        aria-label={ariaLabel}
+        display={display}
+        justifyContent={justifyContent}
         ref={ref}
-        role="status"
+        role={role}
         {...props}
       >
         <Box animation="spin" asChild size={size}>

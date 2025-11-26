@@ -4,6 +4,9 @@ import { Box, type BoxProps } from "../box";
 
 export type CardFooterProps = BoxProps<"div">;
 
+/**
+ * @group Card
+ */
 export const CardFooter = forwardRef<HTMLDivElement, CardFooterProps>(
   ({ children, ...props }, ref) => {
     return (

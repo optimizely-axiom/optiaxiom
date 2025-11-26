@@ -19,6 +19,9 @@ const lightColors = Object.fromEntries(
   ]),
 ) as typeof tokens.colors;
 
+/**
+ * Provider component for theme tokens and styles. This is included in AxiomProvider by default - you only need to use this component directly for advanced customization.
+ */
 export function ThemeProvider({ children }: ThemeProviderProps) {
   const [container, setContainer] = useState<ShadowRoot>();
   const selector =

@@ -9,6 +9,12 @@ import { CardProvider } from "./CardContext";
 
 export type CardProps = BoxProps<"div">;
 
+/**
+ * Generic container for grouping related components together.
+ *
+ * @group Card
+ * @since 1.6.0
+ */
 export const Card = forwardRef<HTMLDivElement, CardProps>(
   ({ children, className, ...props }, ref) => {
     const descriptionId = useId();

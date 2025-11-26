@@ -24,7 +24,8 @@ export type InputControlProps<
        */
       disabled?: boolean;
       /**
-       * Whether to show the input error state.
+       * Whether to show the input error state. Automatically set when used
+       * inside a Field component with an error prop.
        */
       error?: boolean;
       /**
@@ -36,6 +37,9 @@ export type InputControlProps<
   >
 >;
 
+/**
+ * @group InputRoot
+ */
 export const InputControl = forwardRef<
   HTMLInputElement & HTMLTextAreaElement,
   InputControlProps

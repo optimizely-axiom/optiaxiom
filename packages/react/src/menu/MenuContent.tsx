@@ -26,6 +26,14 @@ export type MenuContentProps = ExcludeProps<
   "size"
 >;
 
+/**
+ * Menu content rendered in a portal with absolute positioning.
+ *
+ * Rendered as a popover in larger screens and in a dialog in smaller screens by
+ * default.
+ *
+ * @group Menu
+ */
 export const MenuContent = forwardRef<HTMLDivElement, MenuContentProps>(
   ({ children, onPointerDown, ...props }, outerRef) => {
     const innerRef = useRef<HTMLDivElement>(null);

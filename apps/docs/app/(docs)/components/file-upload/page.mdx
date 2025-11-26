@@ -18,6 +18,23 @@ Capture file input from users with drag and drop.
 
 <Demo component="file-upload/usage" />
 
+### Anatomy
+
+```tsx
+import {
+  FileUpload,
+  FileUploadDropzone,
+  FileUploadTrigger,
+} from "@optiaxiom/react/unstable";
+
+export default () => (
+  <FileUpload>
+    <FileUploadDropzone />
+    <FileUploadTrigger />
+  </FileUpload>
+);
+```
+
 ## Props
 
 ### FileUpload

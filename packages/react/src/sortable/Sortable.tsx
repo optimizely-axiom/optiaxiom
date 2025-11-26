@@ -43,6 +43,13 @@ export type SortableProps<T extends Items> = BoxProps<
 
 type Items = Record<string, string[]> | string[];
 
+/**
+ * Basic building blocks for sortable interfaces.
+ *
+ * @group Sortable
+ * @since 1.5.0
+ * @experimental
+ */
 export const Sortable = forwardRef<HTMLDivElement, SortableProps<Items>>(
   ({ children, items: itemsProp, onChange, onItemsChange, ...props }, ref) => {
     const [itemsState, setItemsState] = useState<Items | null>(null);

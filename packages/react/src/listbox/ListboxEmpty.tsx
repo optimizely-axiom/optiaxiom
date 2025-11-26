@@ -4,6 +4,9 @@ import { Box, type BoxProps } from "../box";
 
 export type ListboxEmptyProps = BoxProps;
 
+/**
+ * @group Listbox
+ */
 export const ListboxEmpty = forwardRef<HTMLDivElement, ListboxEmptyProps>(
   ({ children = "No results found.", ...props }, ref) => {
     return (

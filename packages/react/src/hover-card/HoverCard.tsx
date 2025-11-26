@@ -8,6 +8,13 @@ export type HoverCardProps = ComponentPropsWithoutRef<
   typeof RadixHoverCard.Root
 >;
 
+/**
+ * Display helpful text or previews inside a dialog when hovering over a link or button.
+ *
+ * @group HoverCard
+ * @since 1.7.6
+ * @experimental
+ */
 export function HoverCard({
   children,
   defaultOpen = false,

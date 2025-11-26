@@ -30,6 +30,11 @@ const mapIntentToIcon = {
   warning: IconTriangleExclamationSolid,
 };
 
+/**
+ * Display a prominent message at the top of the screen.
+ *
+ * @since 0.1.0
+ */
 export const Banner = forwardRef<HTMLDivElement, BannerProps>(
   ({ children, className, intent = "neutral", onDismiss, ...props }, ref) => {
     const labelId = useId();

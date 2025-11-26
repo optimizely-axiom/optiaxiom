@@ -13,6 +13,12 @@ export type ToggleButtonProps = ButtonProps<
   }
 >;
 
+/**
+ * `ToggleButton` component represents a button that can be toggled on or off.
+ *
+ * @since 0.1.0
+ * @extends Button
+ */
 export const ToggleButton = forwardRef<HTMLButtonElement, ToggleButtonProps>(
   ({ children, ...props }, ref) => {
     return (

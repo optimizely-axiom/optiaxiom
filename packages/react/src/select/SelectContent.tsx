@@ -41,6 +41,9 @@ export type SelectContentProps = ExcludeProps<
   | "updatePositionStrategy"
 >;
 
+/**
+ * @group Select
+ */
 export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
   (
     {

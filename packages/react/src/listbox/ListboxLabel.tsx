@@ -5,6 +5,9 @@ import { useListboxGroupContext } from "./ListboxGroupContext";
 
 export type ListboxLabelProps = ComponentPropsWithoutRef<typeof Box>;
 
+/**
+ * @group Listbox
+ */
 export const ListboxLabel = forwardRef<HTMLDivElement, ListboxLabelProps>(
   ({ children, ...props }, ref) => {
     const { id } = useListboxGroupContext("@optiaxiom/react/ListboxLabel");

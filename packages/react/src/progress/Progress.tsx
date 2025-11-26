@@ -7,6 +7,11 @@ import * as styles from "./Progress.css";
 export type ProgressProps = BoxProps<typeof ProgressPrimitive.Root> &
   styles.ProgressVariants;
 
+/**
+ * Display feedback on status of task or length of a process.
+ *
+ * @since 0.1.0
+ */
 export const Progress = forwardRef<HTMLDivElement, ProgressProps>(
   ({ className, intent = "primary", ...props }, ref) => {
     const widthPercentage =

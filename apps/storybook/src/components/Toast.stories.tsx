@@ -6,7 +6,6 @@ import {
   Button,
   createToaster,
   Flex,
-  Toast,
   ToastProvider,
 } from "@optiaxiom/react";
 import { action } from "storybook/actions";
@@ -33,7 +32,7 @@ export default {
       ],
     },
   },
-  component: Toast,
+  component: ToastProvider,
   decorators: [
     (Story, context) => (
       <AxiomProvider toast={{ position: context.args.position, toaster }}>

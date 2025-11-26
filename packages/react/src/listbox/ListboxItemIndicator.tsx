@@ -14,6 +14,9 @@ export type ListboxItemIndicatorProps = BoxProps<
   }
 >;
 
+/**
+ * @group Listbox
+ */
 export const ListboxItemIndicator = forwardRef<
   SVGSVGElement,
   ListboxItemIndicatorProps

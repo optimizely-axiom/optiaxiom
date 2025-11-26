@@ -8,6 +8,9 @@ export type NavGroupTriggerProps = ComponentPropsWithoutRef<
   typeof DisclosureTrigger
 >;
 
+/**
+ * @group Sidebar
+ */
 export const NavGroupTrigger = forwardRef<HTMLDivElement, NavGroupTriggerProps>(
   ({ children, ...props }, ref) => {
     const { collapsible, id } = useNavGroupContext(

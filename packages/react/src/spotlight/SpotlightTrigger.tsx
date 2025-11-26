@@ -11,6 +11,9 @@ export type SpotlightTriggerProps = ButtonProps<typeof MenuTrigger>;
 
 const DEFAULT_HOTKEY = "mod+K";
 
+/**
+ * @group Spotlight
+ */
 export const SpotlightTrigger = forwardRef<
   HTMLButtonElement,
   SpotlightTriggerProps

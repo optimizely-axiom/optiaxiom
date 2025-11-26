@@ -5,6 +5,9 @@ import { useDataTableRowContext } from "./DataTableRowContext";
 
 export type DataTableLabelProps = BoxProps;
 
+/**
+ * @group DataTable
+ */
 export const DataTableLabel = forwardRef<HTMLDivElement, DataTableLabelProps>(
   (props, ref) => {
     const { labelId } = useDataTableRowContext(

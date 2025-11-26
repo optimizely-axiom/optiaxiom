@@ -6,6 +6,9 @@ import * as styles from "./HoverCardTrigger.css";
 
 export type HoverCardTriggerProps = BoxProps<typeof RadixHoverCard.Trigger>;
 
+/**
+ * @group HoverCard
+ */
 export const HoverCardTrigger = forwardRef<
   HTMLAnchorElement,
   HoverCardTriggerProps

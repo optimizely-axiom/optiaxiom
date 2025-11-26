@@ -8,6 +8,9 @@ import * as styles from "./DialogFooter.css";
 
 export type DialogFooterProps = ComponentPropsWithRef<typeof Flex>;
 
+/**
+ * @group Dialog
+ */
 export const DialogFooter = forwardRef<HTMLDivElement, DialogFooterProps>(
   ({ children, className, ...props }, outerRef) => {
     const { footerRef } = useDialogContext("@optiaxiom/react/DialogFooter");

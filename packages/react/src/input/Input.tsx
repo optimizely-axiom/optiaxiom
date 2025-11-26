@@ -33,6 +33,11 @@ export type InputProps = InputControlProps<
     }
 >;
 
+/**
+ * Basic text field for capturing user input.
+ *
+ * @since 0.1.0
+ */
 export const Input = forwardRef<HTMLInputElement, InputProps>(
   (
     {

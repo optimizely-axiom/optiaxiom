@@ -10,6 +10,19 @@ import { useMenuContext } from "./MenuContext";
 
 export type MenuTriggerProps = ComponentPropsWithoutRef<typeof PopoverTrigger>;
 
+/**
+ * Trigger button for Menu component with automatic chevron icon.
+ *
+ * Use this as the trigger for Menu dropdowns. By default, renders an
+ * AngleMenuButton (button with trailing chevron). Use asChild to customize the
+ * trigger button.
+ *
+ * @example
+ * <MenuTrigger asChild><EllipsisMenuButton /></MenuTrigger>
+ *
+ * @extends Button
+ * @group Menu
+ */
 export const MenuTrigger = forwardRef<HTMLButtonElement, MenuTriggerProps>(
   (
     {

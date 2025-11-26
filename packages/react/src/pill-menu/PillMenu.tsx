@@ -30,6 +30,12 @@ export type PillMenuProps = BoxProps<
   >
 >;
 
+/**
+ * Dropdown menu for making selection with pills showing the selected items.
+ *
+ * @since 1.6.2
+ * @experimental
+ */
 export const PillMenu = forwardRef<HTMLDivElement, PillMenuProps>(
   (
     {

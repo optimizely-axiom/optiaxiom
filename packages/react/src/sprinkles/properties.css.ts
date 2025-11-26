@@ -130,6 +130,9 @@ export const unresponsiveProps = defineProperties({
       pulse: `${animations.pulse} 2s ease-in-out infinite`,
       spin: `${animations.spin} 1s linear infinite`,
     },
+    /**
+     * Set the element's background color. Only accepts predefined color tokens starting with `bg.` (e.g., `bg.default`, `bg.accent`, `bg.error`), or the special values `current` and `transparent`.
+     */
     backgroundColor: colors("bg."),
     /**
      * Set the element's `background-image` CSS property
@@ -145,16 +148,22 @@ export const unresponsiveProps = defineProperties({
     },
     borderBottomWidth: borderWidths,
     /**
-     * Set the element's `border-color` CSS property
+     * Set the element's border color. Only accepts predefined color tokens starting with `border.` (e.g., `border.default`, `border.accent`, `border.error`), or the special values `current` and `transparent`.
      */
     borderColor: colors("border."),
     borderLeftWidth: borderWidths,
+    /**
+     * Set the element's border radius. Only accepts predefined borderRadius tokens.
+     */
     borderRadius: radiuses,
     borderRightWidth: borderWidths,
     borderTopWidth: borderWidths,
+    /**
+     * Set the element's box shadow. Only accepts predefined boxShadow tokens.
+     */
     boxShadow: shadows,
     /**
-     * Set the element's text color
+     * Set the element's text color. Only accepts predefined color tokens starting with `fg.` (e.g., `fg.default`, `fg.accent`, `fg.error`), or the special values `current` and `transparent`.
      */
     color: colors("fg."),
     /**
@@ -162,7 +171,7 @@ export const unresponsiveProps = defineProperties({
      */
     cursor: ["pointer", "default", "text"] as const,
     /**
-     * Set the element's font family
+     * Set the element's font family. Only accepts predefined fontFamily tokens.
      */
     fontFamily: mapValues(theme.fontFamily, (fontFamily) => ({
       vars: {
@@ -170,7 +179,7 @@ export const unresponsiveProps = defineProperties({
       },
     })),
     /**
-     * Set the element's `font-size` and `line-height` CSS properties
+     * Set the element's font size and line height (both properties are set together). Only accepts predefined fontSize tokens.
      */
     fontSize: merge(theme.fontSize, {
       inherit: {
@@ -244,13 +253,13 @@ export const unresponsiveProps = defineProperties({
      */
     whiteSpace: ["nowrap"] as const,
     /**
-     * Set the element's z-index
+     * Set the element's stacking order. Only accepts predefined zIndex tokens (e.g., popover, toast, tooltip) or numeric values (0, 10, 20, 30, auto).
      */
     zIndex: zIndexes,
   },
   shorthands: {
     /**
-     * Set the element's background color
+     * Set the element's background color. Only accepts predefined color tokens starting with `bg.` (e.g., `bg.default`, `bg.accent`, `bg.error`), or the special values `current` and `transparent`.
      */
     bg: ["backgroundColor"],
     /**
@@ -345,15 +354,15 @@ export const unresponsiveProps = defineProperties({
     pt: ["paddingTop"],
 
     /**
-     * Set the element's border radius on all corners
+     * Set the element's border radius. Only accepts predefined borderRadius tokens.
      */
     rounded: ["borderRadius"],
     /**
-     * Set the element's box shadow
+     * Set the element's box shadow. Only accepts predefined boxShadow tokens.
      */
     shadow: ["boxShadow"],
     /**
-     * Set the element's stack order
+     * Set the element's stacking order. Only accepts predefined zIndex tokens (e.g., popover, toast, tooltip) or numeric values (0, 10, 20, 30, auto).
      */
     z: ["zIndex"],
   },
@@ -431,6 +440,9 @@ export const responsiveProps = defineProperties({
       },
       (cols) => `repeat(${cols}, minmax(0, 1fr))`,
     ),
+    /**
+     * Set the element's height. Only accepts predefined values: size tokens (xs, sm, md, etc.), numeric spacing values (16, 24, 32), fractional percentages (1/2, 1/3), or special keywords (auto, full, fit, max, min).
+     */
     height: sizes,
     /**
      * Set the element's `justify-content` CSS property
@@ -451,35 +463,44 @@ export const responsiveProps = defineProperties({
      * Set the element's `justify-items` CSS property
      */
     justifyItems: ["center", "end", "normal", "start", "stretch"] as const,
+    /**
+     * Set the element's maximum height. Only accepts predefined maxSize tokens.
+     */
     maxHeight: maxSizes,
+    /**
+     * Set the element's maximum width. Only accepts predefined maxSize tokens.
+     */
     maxWidth: maxSizes,
     /**
      * Set the element's `place-items` CSS property
      */
     placeItems: ["center"] as const,
+    /**
+     * Set the element's width. Only accepts predefined values: size tokens (xs, sm, md, etc.), numeric spacing values (16, 24, 32), fractional percentages (1/2, 1/3), or special keywords (auto, full, fit, max, min).
+     */
     width: sizes,
   },
   shorthands: {
     /**
-     * Set the element's max-height
+     * Set the element's maximum height. Only accepts predefined maxSize tokens.
      */
     maxH: ["maxHeight"],
     /**
-     * Set the element's max-width
+     * Set the element's maximum width. Only accepts predefined maxSize tokens.
      */
     maxW: ["maxWidth"],
 
     /**
-     * Set the element's width and height
+     * Set the element's width and height. Only accepts predefined values: size tokens (xs, sm, md, etc.), numeric spacing values (16, 24, 32), fractional percentages (1/2, 1/3), or special keywords (auto, full, fit, max, min).
      */
     size: ["height", "width"],
 
     /**
-     * Set the element's height
+     * Set the element's height. Only accepts predefined values: size tokens (xs, sm, md, etc.), numeric spacing values (16, 24, 32), fractional percentages (1/2, 1/3), or special keywords (auto, full, fit, max, min).
      */
     h: ["height"],
     /**
-     * Set the element's width
+     * Set the element's width. Only accepts predefined values: size tokens (xs, sm, md, etc.), numeric spacing values (16, 24, 32), fractional percentages (1/2, 1/3), or special keywords (auto, full, fit, max, min).
      */
     w: ["width"],
   },

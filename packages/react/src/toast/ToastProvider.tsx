@@ -36,6 +36,11 @@ const mapPositionToSwipeDirection = {
   "top-right": "right",
 } as const;
 
+/**
+ * Provider component for toast notifications. This is included in AxiomProvider by default - you only need to use this component directly for advanced customization. Use `toaster.create()` to display toast messages.
+ *
+ * @since 0.1.0
+ */
 export const ToastProvider = forwardRef<HTMLOListElement, ToastProviderProps>(
   (
     {

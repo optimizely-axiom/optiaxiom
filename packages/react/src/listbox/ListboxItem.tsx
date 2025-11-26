@@ -44,6 +44,9 @@ export type ListboxItemProps<
   >
 >;
 
+/**
+ * @group Listbox
+ */
 export const ListboxItem = forwardRef<HTMLDivElement, ListboxItemProps>(
   (
     {

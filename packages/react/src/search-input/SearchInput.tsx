@@ -17,6 +17,12 @@ export type SearchInputProps = ComponentPropsWithRef<typeof Input> & {
   onValueClear?: () => void;
 };
 
+/**
+ * Basic search input field with clear button.
+ *
+ * @since 0.1.0
+ * @extends Input
+ */
 export const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
   ({ addonBefore, className, onChange, onValueClear, ...props }, outerRef) => {
     const innerRef = useRef<HTMLInputElement>(null);

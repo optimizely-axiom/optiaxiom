@@ -10,6 +10,9 @@ export type TabsContentProps = ExcludeProps<
   "forceMount"
 >;
 
+/**
+ * @group Tabs
+ */
 export const TabsContent = forwardRef<HTMLDivElement, TabsContentProps>(
   ({ children, value, ...props }, ref) => {
     return (

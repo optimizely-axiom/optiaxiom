@@ -6,6 +6,9 @@ import * as styles from "./LayoutContent.css";
 
 export type LayoutContentProps = BoxProps<"div">;
 
+/**
+ * @group Layout
+ */
 export const LayoutContent = forwardRef<HTMLDivElement, LayoutContentProps>(
   ({ children, className, ...props }, ref) => {
     return (

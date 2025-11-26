@@ -45,6 +45,9 @@ export type ListboxItemizedProps = BoxProps<
   }
 >;
 
+/**
+ * @group Listbox
+ */
 export const ListboxItemized = forwardRef<HTMLDivElement, ListboxItemizedProps>(
   (
     {

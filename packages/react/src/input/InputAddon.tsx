@@ -6,6 +6,9 @@ import { useInputContext } from "./InputContext";
 
 export type InputAddonProps = BoxProps<"div">;
 
+/**
+ * @group InputRoot
+ */
 export const InputAddon = forwardRef<HTMLDivElement, InputAddonProps>(
   ({ children, ...props }, ref) => {
     const { addonPointerEvents, inputRef } = useInputContext(

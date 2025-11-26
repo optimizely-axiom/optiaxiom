@@ -7,6 +7,10 @@ import { usePopoverScope } from "./usePopoverScope";
 
 export type PopoverTriggerProps = ButtonProps<typeof RadixPopover.Trigger>;
 
+/**
+ * @extends Button
+ * @group Popover
+ */
 export const PopoverTrigger = forwardRef<
   HTMLButtonElement,
   PopoverTriggerProps

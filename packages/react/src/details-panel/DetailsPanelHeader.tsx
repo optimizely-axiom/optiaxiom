@@ -27,6 +27,9 @@ export type DetailsPanelHeaderProps = BoxProps<
   }
 >;
 
+/**
+ * @group DetailsPanel
+ */
 export const DetailsPanelHeader = forwardRef<
   HTMLHeadingElement,
   DetailsPanelHeaderProps

@@ -19,6 +19,11 @@ export type AuthProviderProps = {
   token: string;
 };
 
+/**
+ * `AuthProvider` is used to pass down the user credentials to all components. It should be rendered near the root of your application and should be used only once.
+ *
+ * @since 1.6.2
+ */
 export function AuthProvider({
   children,
   instance,

@@ -143,7 +143,7 @@ function PropsTableDescription({
           Doesn&apos;t render its own HTML element and forwards all props to the{" "}
           <Code>content</Code> component instead.
         </>
-      ) : matches(["ModalLayer", "ToastTitle"], name) ? (
+      ) : matches(["ModalLayer"], name) ? (
         <>
           Renders a <Code>&lt;div&gt;</Code> element.
         </>

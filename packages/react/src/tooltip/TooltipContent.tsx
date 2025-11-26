@@ -25,6 +25,9 @@ export type TooltipContentProps = ExcludeProps<
   | "updatePositionStrategy"
 >;
 
+/**
+ * @group TooltipRoot
+ */
 export const TooltipContent = forwardRef<HTMLDivElement, TooltipContentProps>(
   (
     {

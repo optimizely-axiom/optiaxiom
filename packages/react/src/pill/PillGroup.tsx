@@ -4,6 +4,9 @@ import { Flex } from "../flex";
 
 export type PillGroupProps = ComponentPropsWithRef<typeof Flex>;
 
+/**
+ * @group Pill
+ */
 export const PillGroup = forwardRef<HTMLDivElement, PillGroupProps>(
   ({ children, ...props }, ref) => {
     return (

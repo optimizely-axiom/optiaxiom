@@ -6,6 +6,9 @@ import { ListboxGroupProvider } from "./ListboxGroupContext";
 
 export type ListboxGroupProps = ComponentPropsWithoutRef<typeof Box>;
 
+/**
+ * @group Listbox
+ */
 export const ListboxGroup = forwardRef<HTMLDivElement, ListboxGroupProps>(
   ({ children, ...props }, ref) => {
     const groupId = useId();

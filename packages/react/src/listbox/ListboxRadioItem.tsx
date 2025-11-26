@@ -8,6 +8,9 @@ export type ListboxRadioItemProps = ComponentPropsWithoutRef<
   typeof ListboxItem
 >;
 
+/**
+ * @group Listbox
+ */
 export const ListboxRadioItem = forwardRef<
   HTMLDivElement,
   ListboxRadioItemProps

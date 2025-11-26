@@ -19,6 +19,11 @@ export type HighlightProps = BoxProps<
   }
 >;
 
+/**
+ * Highlight query terms within text content.
+ *
+ * @experimental
+ */
 export const Highlight = forwardRef<HTMLDivElement, HighlightProps>(
   ({ children = (chunk) => chunk, content, query, ...props }, ref) => {
     const chunks = useHighlightedChunks(content || "", query);

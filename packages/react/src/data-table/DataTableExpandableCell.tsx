@@ -18,6 +18,12 @@ export type DataTableExpandableCellProps<TData, TValue> = CellContext<
   children?: ReactNode;
 };
 
+/**
+ * Table cell component with expandable row functionality.
+ *
+ * @group DataTable
+ * @experimental
+ */
 export function DataTableExpandableCell<TData, TValue>({
   children,
   getValue,

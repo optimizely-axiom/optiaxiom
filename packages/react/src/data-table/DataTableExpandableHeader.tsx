@@ -6,6 +6,12 @@ export type DataTableExpandableHeaderProps = {
   children?: ReactNode;
 };
 
+/**
+ * Table header component for expandable columns.
+ *
+ * @group DataTable
+ * @experimental
+ */
 export function DataTableExpandableHeader({
   children,
 }: DataTableExpandableHeaderProps) {

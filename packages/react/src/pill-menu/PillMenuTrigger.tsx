@@ -9,6 +9,9 @@ import { usePillMenuContext } from "./PillMenuContext";
 
 export type PillMenuTriggerProps = ComponentPropsWithoutRef<typeof MenuTrigger>;
 
+/**
+ * @group PillMenu
+ */
 export const PillMenuTrigger = forwardRef<
   HTMLButtonElement,
   PillMenuTriggerProps

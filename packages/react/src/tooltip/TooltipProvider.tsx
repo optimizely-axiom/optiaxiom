@@ -14,6 +14,11 @@ export type TooltipProviderProps = ExtendProps<
   }
 >;
 
+/**
+ * Provider component for tooltips. This is included in AxiomProvider by default - you only need to use this component directly for advanced customization.
+ *
+ * @group Tooltip
+ */
 export function TooltipProvider({
   disableHoverableContent = true,
   ...props

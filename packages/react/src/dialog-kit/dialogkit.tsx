@@ -50,6 +50,11 @@ type DialogKit = {
   ];
 };
 
+/**
+ * Create a dialog kit instance for managing dialogs programmatically.
+ *
+ * @experimental
+ */
 export const createDialogKit = (): DialogKit => {
   let snapshot: DialogItem[] = [];
 
