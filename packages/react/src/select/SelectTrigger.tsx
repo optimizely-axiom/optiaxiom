@@ -34,6 +34,10 @@ export type SelectTriggerProps = ExcludeProps<
   "disabled"
 >;
 
+/**
+ * @group Select
+ * @extends Button
+ */
 export const SelectTrigger = forwardRef<HTMLButtonElement, SelectTriggerProps>(
   (
     {

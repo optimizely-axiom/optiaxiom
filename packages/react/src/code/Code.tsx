@@ -8,6 +8,11 @@ const Slot = createSlot("@optiaxiom/react/Code");
 
 export type CodeProps = BoxProps<"code">;
 
+/**
+ * Display inline code.
+ *
+ * @since 0.1.0
+ */
 export const Code = forwardRef<HTMLElement, CodeProps>(
   ({ asChild, children, className, ...props }, ref) => {
     const Comp = asChild ? Slot : "code";

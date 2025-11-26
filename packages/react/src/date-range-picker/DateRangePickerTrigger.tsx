@@ -27,6 +27,10 @@ export type DateRangePickerTriggerProps = ComponentPropsWithoutRef<
   placeholder?: string;
 };
 
+/**
+ * @group DateRangePicker
+ * @extends Button
+ */
 export const DateRangePickerTrigger = forwardRef<
   HTMLButtonElement,
   DateRangePickerTriggerProps

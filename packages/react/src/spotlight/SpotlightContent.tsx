@@ -6,6 +6,9 @@ export type SpotlightContentProps = ComponentPropsWithoutRef<
   typeof MenuContent
 >;
 
+/**
+ * @group Spotlight
+ */
 export const SpotlightContent = forwardRef<
   HTMLDivElement,
   SpotlightContentProps

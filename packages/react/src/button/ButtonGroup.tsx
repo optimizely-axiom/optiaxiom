@@ -15,6 +15,9 @@ export type ButtonGroupProps = BoxProps<
   }
 >;
 
+/**
+ * @group Button
+ */
 export const ButtonGroup = forwardRef<HTMLDivElement, ButtonGroupProps>(
   (
     { children, className, gap = "0", orientation = "horizontal", ...props },

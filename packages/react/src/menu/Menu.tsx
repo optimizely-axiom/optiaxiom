@@ -54,6 +54,19 @@ export type MenuProps = ExcludeProps<
   "enabled" | "onHover" | "onSelect"
 >;
 
+/**
+ * Dropdown menu component for displaying a list of actions or options with
+ * support for multi-select, filtering, and complex interactions.
+ *
+ * Use this with MenuTrigger for action menus and dropdowns. MenuTrigger
+ * automatically renders a button with chevron icon, or use MenuTrigger asChild
+ * with custom buttons like EllipsisMenuButton for overflow menus.
+ *
+ * For simple single-select form inputs, use Select instead.
+ *
+ * @group Menu
+ * @since 1.6.0
+ */
 export function Menu({
   children,
   defaultOpen = false,

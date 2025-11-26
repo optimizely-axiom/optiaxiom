@@ -8,6 +8,11 @@ const Slot = createSlot("@optiaxiom/react/Badge");
 
 export type BadgeProps = TextProps<"span", styles.BadgeVariants>;
 
+/**
+ * Use to emphasize a status, count, state or value.
+ *
+ * @since 0.1.0
+ */
 export const Badge = forwardRef<HTMLSpanElement, BadgeProps>(
   (
     {

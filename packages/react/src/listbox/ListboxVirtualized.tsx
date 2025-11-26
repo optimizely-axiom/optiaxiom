@@ -34,6 +34,9 @@ export type ListboxVirtualizedProps<T = unknown> = BoxProps<
   }
 >;
 
+/**
+ * @group Listbox
+ */
 export const ListboxVirtualized = forwardRef<
   HTMLDivElement,
   ListboxVirtualizedProps

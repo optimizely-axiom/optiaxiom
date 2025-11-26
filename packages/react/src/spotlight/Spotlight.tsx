@@ -9,6 +9,11 @@ export type SpotlightProps = ExcludeProps<
   "inputVisible" | "size"
 >;
 
+/**
+ * Command menu for search and application navigation.
+ *
+ * @experimental
+ */
 export function Spotlight({ children, ...props }: SpotlightProps) {
   return (
     <Menu inputVisible="always" size="lg" {...props}>

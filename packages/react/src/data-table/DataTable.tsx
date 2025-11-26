@@ -17,6 +17,12 @@ export type DataTableProps = BoxProps<
   }
 >;
 
+/**
+ * Easy to use table and datagrids built using [TanStack Table](https://tanstack.com/table/latest).
+ *
+ * @group DataTable
+ * @since 1.4.0
+ */
 export const DataTable = forwardRef<HTMLDivElement, DataTableProps>(
   ({ children, table, ...props }, ref) => {
     const [highlightedIndex, setHighlightedIndex] = useState(-1);

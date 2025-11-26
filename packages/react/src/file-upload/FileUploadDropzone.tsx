@@ -35,6 +35,9 @@ export type FileUploadDropzoneProps = BoxProps<
   }
 >;
 
+/**
+ * @group FileUpload
+ */
 export const FileUploadDropzone = forwardRef<
   HTMLDivElement,
   FileUploadDropzoneProps

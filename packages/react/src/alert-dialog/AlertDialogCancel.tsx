@@ -8,6 +8,10 @@ import { useAlertDialogContext } from "./AlertDialogContext";
 
 export type AlertDialogCancelProps = ButtonProps<typeof RadixDialog.Close>;
 
+/**
+ * @group AlertDialog
+ * @extends Button
+ */
 export const AlertDialogCancel = forwardRef<
   HTMLButtonElement,
   AlertDialogCancelProps

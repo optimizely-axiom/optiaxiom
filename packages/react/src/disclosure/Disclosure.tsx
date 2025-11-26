@@ -23,6 +23,25 @@ export type DisclosureProps = BoxProps<
   }
 >;
 
+/**
+ * Interactive component for expanding and collapsing content panels with
+ * built-in state management.
+ *
+ * Use this for collapsible sections with expand/collapse triggers. Disclosure
+ * handles the toggle state, animations, and accessibility automatically.
+ *
+ * When to use:
+ * - FAQ sections
+ * - Expandable content panels
+ * - Show/hide details sections
+ * - Any expand/collapse pattern with a chevron icon
+ *
+ * Don't manually build with Button + chevron icon + useState - use Disclosure
+ * instead.
+ *
+ * @group Disclosure
+ * @since 0.1.0
+ */
 export const Disclosure = forwardRef<HTMLDivElement, DisclosureProps>(
   (
     {

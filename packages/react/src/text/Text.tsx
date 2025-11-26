@@ -13,6 +13,20 @@ export type TextProps<T extends ElementType = "p", P = unknown> = BoxProps<
   ExtendProps<styles.TextVariants, P>
 >;
 
+/**
+ * Renders text content for body copy, descriptions, and general text without
+ * semantic meaning.
+ *
+ * Use this for paragraphs, captions, descriptions, and non-heading text.
+ *
+ * When not to use:
+ * - For headings and titles use Heading instead.
+ * - For form labels use Label instead.
+ * - Don't combine large fontSize ('xl'+) with bold fontWeight ('500'+) - that
+ *   indicates a heading.
+ *
+ * @since 0.1.0
+ */
 export const Text = forwardRef<HTMLParagraphElement, TextProps>(
   ({ asChild, children, className, lineClamp, truncate, ...props }, ref) => {
     const Comp = asChild ? Slot : "p";

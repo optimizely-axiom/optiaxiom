@@ -12,6 +12,9 @@ export type ListboxCheckboxItemProps = ComponentPropsWithoutRef<
 > &
   Pick<ComponentPropsWithoutRef<typeof Checkbox>, "onCheckedChange">;
 
+/**
+ * @group Listbox
+ */
 export const ListboxCheckboxItem = forwardRef<
   HTMLDivElement,
   ListboxCheckboxItemProps

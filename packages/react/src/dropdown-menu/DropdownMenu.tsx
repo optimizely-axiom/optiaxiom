@@ -29,7 +29,10 @@ export type DropdownMenuProps = {
 };
 
 /**
- * @deprecated use {@link Menu} instead
+ * Display a dropdown menu.
+ *
+ * @since 0.1.0
+ * @deprecated since 1.6.0 use {@link Menu} instead
  */
 export function DropdownMenu({
   children,

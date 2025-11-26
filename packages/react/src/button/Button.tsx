@@ -39,6 +39,24 @@ export type ButtonProps<
   >
 >;
 
+/**
+ * Button component for triggering actions, with support for icons, addons, and
+ * loading states.
+ *
+ * Use this for standard action buttons. The component supports icon-only
+ * buttons, buttons with leading/trailing icons, and custom addon content before
+ * or after the main label.
+ *
+ * When not to use:
+ * - For menu and select buttons with a chevron use AngleMenuButton instead.
+ * - For ellipsis menus use EllipsisMenuButton instead.
+ * - For buttons that include label use LabelMenuButton instead.
+ * - For expand/collapse triggers use Disclosure instead of Button with chevron
+ *   icon and manual state.
+ * - Don't use Button to build tab navigation - use Tabs instead.
+ *
+ * @since 0.1.0
+ */
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {

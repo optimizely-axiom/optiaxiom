@@ -7,6 +7,9 @@ import { ListboxSeparator } from "../listbox";
 
 export type DropdownMenuSeparatorProps = BoxProps<typeof RadixMenu.Separator>;
 
+/**
+ * @extends Separator
+ */
 export const DropdownMenuSeparator = forwardRef<
   HTMLDivElement,
   DropdownMenuSeparatorProps

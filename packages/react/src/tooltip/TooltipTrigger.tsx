@@ -10,6 +10,9 @@ export type TooltipTriggerProps = ComponentPropsWithoutRef<
   typeof RadixTooltip.Trigger
 >;
 
+/**
+ * @group TooltipRoot
+ */
 export const TooltipTrigger = forwardRef<
   HTMLButtonElement,
   TooltipTriggerProps

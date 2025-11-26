@@ -6,6 +6,9 @@ import * as styles from "./TableRow.css";
 
 export type TableRowProps = BoxProps<"tr">;
 
+/**
+ * @group Table
+ */
 export const TableRow = forwardRef<HTMLTableRowElement, TableRowProps>(
   ({ children, className, ...props }, ref) => (
     <ActionsRoot asChild>

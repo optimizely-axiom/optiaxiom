@@ -11,18 +11,32 @@ export type SkeletonProps = BoxProps<
   {
     children?: ReactElement;
     /**
-     * Render skeleton as a circle if `true`.
+     * Render skeleton as a circle if `true`. When enabled, automatically sets
+     * rounded="full".
      */
     circle?: boolean;
+    /**
+     * Border radius of the skeleton. Defaults to "sm" for regular shapes,
+     * automatically set to "full" when circle={true}.
+     */
+    rounded?: BoxProps["rounded"];
   }
 >;
 
+/**
+ * Display placeholder content while data is loading.
+ *
+ * @since 0.1.0
+ */
 export const Skeleton = forwardRef<HTMLSpanElement, SkeletonProps>(
-  ({ asChild = true, children, circle, className, rounded, ...props }, ref) => {
+  (
+    { asChild = true, children, circle, className, rounded = "sm", ...props },
+    ref,
+  ) => {
     return (
       <Box
         asChild={asChild}
-        rounded={circle || rounded === "full" ? "full" : (rounded ?? "sm")}
+        rounded={circle || rounded === "full" ? "full" : rounded}
         {...styles.skeleton({}, className)}
         {...props}
       >

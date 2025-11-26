@@ -8,6 +8,9 @@ export type TableHeaderProps = BoxProps<
   NonNullable<styles.HeaderVariants>
 >;
 
+/**
+ * @group Table
+ */
 export const TableHeader = forwardRef<
   HTMLTableSectionElement,
   TableHeaderProps

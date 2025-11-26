@@ -8,6 +8,10 @@ export type SegmentedControlItemProps = ButtonProps<
   typeof RadixSegmentedControl.Item
 >;
 
+/**
+ * @group SegmentedControl
+ * @extends Button
+ */
 export const SegmentedControlItem = forwardRef<
   HTMLButtonElement,
   SegmentedControlItemProps

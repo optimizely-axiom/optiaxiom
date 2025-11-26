@@ -5,6 +5,9 @@ import * as styles from "./TableCell.css";
 
 export type TableCellProps = BoxProps<"td", NonNullable<styles.CellVariants>>;
 
+/**
+ * @group Table
+ */
 export const TableCell = forwardRef<HTMLTableCellElement, TableCellProps>(
   ({ children, className, colSpan, pinned = false, ...props }, ref) => {
     return (

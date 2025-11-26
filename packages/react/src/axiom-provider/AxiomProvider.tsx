@@ -46,6 +46,11 @@ interface ToastProviderProps
 interface TooltipProviderProps
   extends ComponentPropsWithoutRef<typeof TooltipProvider> {}
 
+/**
+ * `AxiomProvider` provides all the context managers required for our components to work. It must be rendered at the root of your application and should be used only once.
+ *
+ * @since 0.1.0
+ */
 export function AxiomProvider({
   children,
   dialog,

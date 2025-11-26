@@ -8,6 +8,9 @@ export type TableHeaderCellProps = BoxProps<
   NonNullable<styles.CellVariants>
 >;
 
+/**
+ * @group Table
+ */
 export const TableHeaderCell = forwardRef<
   HTMLTableCellElement,
   TableHeaderCellProps

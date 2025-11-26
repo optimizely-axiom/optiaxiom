@@ -21,6 +21,11 @@ export type SwitchProps = BoxProps<
   }
 >;
 
+/**
+ * Control to allow toggling between checked and not checked state.
+ *
+ * @since 0.1.0
+ */
 export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
   ({ children, className, description, size = "md", ...props }, ref) => {
     const { boxProps, restProps } = extractBoxProps(props);

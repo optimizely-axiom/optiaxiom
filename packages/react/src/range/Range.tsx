@@ -67,6 +67,12 @@ export type RangeProps = BoxProps<
   }
 >;
 
+/**
+ * Allow users to select a numeric value within a range.
+ *
+ * @since 1.7.12
+ * @experimental
+ */
 export const Range = forwardRef<HTMLInputElement, RangeProps>(
   (
     {

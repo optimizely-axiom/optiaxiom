@@ -38,6 +38,12 @@ export type InlineInputProps = BoxProps<
   }
 >;
 
+/**
+ * Seamless textbox for capturing user input with completely customizable visual styles.
+ *
+ * @since 0.6.0
+ * @experimental
+ */
 export const InlineInput = forwardRef<HTMLDivElement, InlineInputProps>(
   (
     {

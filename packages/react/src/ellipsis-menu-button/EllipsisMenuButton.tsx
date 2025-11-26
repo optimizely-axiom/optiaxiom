@@ -5,6 +5,16 @@ import { IconEllipsisSolid } from "../icons/IconEllipsisSolid";
 
 export type EllipsisMenuButtonProps = ComponentPropsWithoutRef<typeof Button>;
 
+/**
+ * Button with ellipsis icon for opening overflow menus and dropdowns.
+ *
+ * Use with MenuTrigger asChild for overflow menus.
+ *
+ * @example
+ * <MenuTrigger asChild><EllipsisMenuButton /></MenuTrigger>
+ *
+ * @group Button
+ */
 export const EllipsisMenuButton = forwardRef<
   HTMLButtonElement,
   EllipsisMenuButtonProps

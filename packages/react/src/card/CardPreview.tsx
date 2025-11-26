@@ -25,6 +25,9 @@ export type CardPreviewProps = BoxProps<
   }
 >;
 
+/**
+ * @group Card
+ */
 export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
   (
     {

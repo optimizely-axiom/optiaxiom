@@ -5,6 +5,12 @@ import * as styles from "./Table.css";
 
 export type TableProps = BoxProps<"table", styles.TableVariants>;
 
+/**
+ * Display tabular data using rows and columns.
+ *
+ * @group Table
+ * @since 1.4.0
+ */
 export const Table = forwardRef<HTMLDivElement, TableProps>(
   ({ children, className, layout = "auto", style, ...props }, ref) => {
     const { boxProps, restProps } = extractBoxProps(props);

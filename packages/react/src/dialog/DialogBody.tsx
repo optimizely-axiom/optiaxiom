@@ -6,6 +6,9 @@ import * as styles from "./DialogBody.css";
 
 export type DialogBodyProps = ComponentPropsWithRef<typeof Box>;
 
+/**
+ * @group Dialog
+ */
 export const DialogBody = forwardRef<HTMLDivElement, DialogBodyProps>(
   ({ children, className, ...props }, ref) => {
     return (

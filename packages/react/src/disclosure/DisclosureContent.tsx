@@ -22,6 +22,9 @@ export type DisclosureContentProps = ExcludeProps<
   "forceMount"
 >;
 
+/**
+ * @group Disclosure
+ */
 export const DisclosureContent = forwardRef<
   HTMLDivElement,
   DisclosureContentProps

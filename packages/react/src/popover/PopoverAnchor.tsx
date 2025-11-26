@@ -16,6 +16,9 @@ export type PopoverAnchorProps = BoxProps<
   }
 >;
 
+/**
+ * @group Popover
+ */
 export const PopoverAnchor = forwardRef<HTMLDivElement, PopoverAnchorProps>(
   ({ asChild, children, staticRef, ...props }, ref) => {
     const { __scopePopover } = usePopoverScope(undefined);

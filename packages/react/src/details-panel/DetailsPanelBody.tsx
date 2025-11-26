@@ -5,6 +5,9 @@ import { Flex } from "../flex";
 
 export type DetailsPanelBodyProps = ComponentPropsWithRef<typeof Box>;
 
+/**
+ * @group DetailsPanel
+ */
 export const DetailsPanelBody = forwardRef<
   HTMLDivElement,
   DetailsPanelBodyProps

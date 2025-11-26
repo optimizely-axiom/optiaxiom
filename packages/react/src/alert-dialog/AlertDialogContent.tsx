@@ -22,6 +22,9 @@ export type AlertDialogContentProps = ExcludeProps<
   "forceMount"
 >;
 
+/**
+ * @group AlertDialog
+ */
 export const AlertDialogContent = forwardRef<
   HTMLDivElement,
   AlertDialogContentProps

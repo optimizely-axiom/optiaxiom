@@ -11,6 +11,9 @@ export type ListboxSwitchItemProps = ComponentPropsWithoutRef<
 > &
   Pick<ComponentPropsWithoutRef<typeof Switch>, "onCheckedChange">;
 
+/**
+ * @group Listbox
+ */
 export const ListboxSwitchItem = forwardRef<
   HTMLDivElement,
   ListboxSwitchItemProps

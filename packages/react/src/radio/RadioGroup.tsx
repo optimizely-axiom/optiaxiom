@@ -52,6 +52,11 @@ const mapGapToOrientation = {
   "row-reverse": "16",
 } as const;
 
+/**
+ * Basic control to allow selecting only one item from a set.
+ *
+ * @since 0.1.0
+ */
 export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>(
   (
     {

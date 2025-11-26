@@ -5,6 +5,9 @@ import * as styles from "./TableBody.css";
 
 export type TableBodyProps = BoxProps<"tbody">;
 
+/**
+ * @group Table
+ */
 export const TableBody = forwardRef<HTMLTableSectionElement, TableBodyProps>(
   ({ children, className, ...props }, ref) => (
     <Box asChild {...styles.body({}, className)} {...props}>

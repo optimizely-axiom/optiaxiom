@@ -19,6 +19,12 @@ export type AlertDialogProps = {
   open?: boolean;
 };
 
+/**
+ * Display a modal with important content that expects confirmation from the user.
+ *
+ * @group AlertDialog
+ * @since 0.1.0
+ */
 export function AlertDialog(props: AlertDialogProps) {
   if (useContext(DialogKitContext)) {
     throw new Error(

@@ -4,6 +4,9 @@ import { MenuContent } from "../menu";
 
 export type PillMenuContentProps = ComponentPropsWithoutRef<typeof MenuContent>;
 
+/**
+ * @group PillMenu
+ */
 export const PillMenuContent = forwardRef<HTMLDivElement, PillMenuContentProps>(
   (props, ref) => {
     const lastFocusRef = useRef<Element>();

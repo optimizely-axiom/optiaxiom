@@ -32,6 +32,9 @@ export type FieldLabelProps = BoxProps<
   }
 >;
 
+/**
+ * @group Field
+ */
 export const FieldLabel = forwardRef<HTMLDivElement, FieldLabelProps>(
   (
     {

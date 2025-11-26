@@ -37,6 +37,9 @@ const DEFAULT_PAGE_SIZES = ["10", "20", "30", "50", "100"].map((size) => ({
   value: size,
 }));
 
+/**
+ * @group DataTable
+ */
 export const DataTableFooter = forwardRef<HTMLDivElement, DataTableFooterProps>(
   (
     { pageSizeOptions = DEFAULT_PAGE_SIZES, showPageSizeOptions, ...props },

@@ -10,6 +10,13 @@ const Slot = createSlot("@optiaxiom/react/DetailsPanel");
 
 export type DetailsPanelProps = BoxProps<"aside">;
 
+/**
+ * Panel for showing additional content on the right side of the page.
+ *
+ * @group DetailsPanel
+ * @since 1.6.0
+ * @experimental
+ */
 export const DetailsPanel = forwardRef<HTMLElement, DetailsPanelProps>(
   ({ asChild, children, className, ...props }, ref) => {
     const Comp = asChild ? Slot : "aside";

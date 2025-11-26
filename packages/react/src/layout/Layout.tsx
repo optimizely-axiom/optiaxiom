@@ -26,6 +26,12 @@ export type LayoutProps = BoxProps<
   }
 >;
 
+/**
+ * Implement a basic page layout with multiple content areas.
+ *
+ * @since 1.6.0
+ * @experimental
+ */
 export const Layout = forwardRef<HTMLDivElement, LayoutProps>(
   (
     {

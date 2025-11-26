@@ -27,6 +27,11 @@ export type LinkProps = BoxProps<
   }
 >;
 
+/**
+ * Anchor element for creating hyperlinks.
+ *
+ * @since 0.1.0
+ */
 export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
   (
     {

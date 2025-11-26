@@ -6,6 +6,10 @@ import { DialogKitContext } from "../dialog-kit/internals";
 
 export type DialogCloseProps = ButtonProps<typeof RadixDialog.Close>;
 
+/**
+ * @extends Button
+ * @group Dialog
+ */
 export const DialogClose = forwardRef<HTMLButtonElement, DialogCloseProps>(
   ({ appearance = "subtle", asChild, children, onClick, ...props }, ref) => {
     const { onDismiss } = useContext(DialogKitContext) ?? {};

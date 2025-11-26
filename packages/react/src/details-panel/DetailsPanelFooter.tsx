@@ -6,6 +6,9 @@ import * as styles from "./DetailsPanelFooter.css";
 
 export type DetailsPanelFooterProps = ComponentPropsWithRef<typeof Flex>;
 
+/**
+ * @group DetailsPanel
+ */
 export const DetailsPanelFooter = forwardRef<
   HTMLDivElement,
   DetailsPanelFooterProps

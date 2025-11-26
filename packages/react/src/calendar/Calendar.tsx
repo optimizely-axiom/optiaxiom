@@ -124,6 +124,12 @@ const components = {
   Weekdays: CalendarWeekdays,
 };
 
+/**
+ * Base date picker component.
+ *
+ * @since 0.12.1
+ * @experimental
+ */
 export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
   (
     {

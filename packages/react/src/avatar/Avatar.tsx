@@ -41,6 +41,12 @@ const mapFallbackToIcon = {
   user: <IconUserSolid />,
 };
 
+/**
+ * Displays a user profile picture or initials. For multiple avatars, use
+ * AvatarGroup.
+ *
+ * @since 0.1.0
+ */
 export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
   (
     {

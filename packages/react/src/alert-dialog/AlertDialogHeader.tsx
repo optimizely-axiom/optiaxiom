@@ -19,6 +19,9 @@ export type AlertDialogHeaderProps = BoxProps<
   }
 >;
 
+/**
+ * @group AlertDialog
+ */
 export const AlertDialogHeader = forwardRef<
   HTMLHeadingElement,
   AlertDialogHeaderProps

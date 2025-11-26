@@ -17,6 +17,9 @@ import { useDataTableRowContext } from "./DataTableRowContext";
 export type DataTableCheckboxProps = ComponentPropsWithoutRef<typeof Checkbox> &
   Pick<ComponentPropsWithoutRef<typeof DataTableAction>, "visible">;
 
+/**
+ * @group DataTable
+ */
 export const DataTableCheckbox = forwardRef<
   HTMLInputElement,
   DataTableCheckboxProps
