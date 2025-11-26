@@ -40,6 +40,16 @@ export type TooltipProps = ExcludeProps<
   "asChild"
 >;
 
+/**
+ * Popup with brief information shown when user interacts with an element using keyboard focus or mouse hover.
+ *
+ * @since 0.1.0
+ *
+ * @example
+ * <Tooltip content="Sample tooltip content">
+ *   <Button>Hover me</Button>
+ * </Tooltip>
+ */
 export function Tooltip({
   auto,
   children,

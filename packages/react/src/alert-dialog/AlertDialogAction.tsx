@@ -6,6 +6,14 @@ import { DialogKitContext } from "../dialog-kit/internals";
 
 export type AlertDialogActionProps = ButtonProps<typeof RadixDialog.Close>;
 
+/**
+ * @group AlertDialog
+ * @example <caption>Basic usage</caption>
+ * <AlertDialogAction onClick={() => console.log("Action clicked")}>
+ *   Confirm
+ * </AlertDialogAction>
+ * @extends Button
+ */
 export const AlertDialogAction = forwardRef<
   HTMLButtonElement,
   AlertDialogActionProps

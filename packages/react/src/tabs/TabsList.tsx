@@ -6,6 +6,9 @@ import * as styles from "./TabsList.css";
 
 export type TabsListProps = BoxProps<typeof RadixTabs.List>;
 
+/**
+ * @group Tabs
+ */
 export const TabsList = forwardRef<HTMLDivElement, TabsListProps>(
   ({ children, className, ...props }, ref) => {
     return (

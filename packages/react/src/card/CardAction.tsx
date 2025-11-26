@@ -4,6 +4,9 @@ import { ActionsContent } from "../actions";
 
 export type CardActionProps = ComponentPropsWithoutRef<typeof ActionsContent>;
 
+/**
+ * @group Card
+ */
 export const CardAction = forwardRef<HTMLDivElement, CardActionProps>(
   ({ children, ...props }, ref) => {
     return (

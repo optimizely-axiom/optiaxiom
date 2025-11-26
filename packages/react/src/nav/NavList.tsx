@@ -4,6 +4,9 @@ import { Box, type BoxProps } from "../box";
 
 export type NavListProps = BoxProps<"div">;
 
+/**
+ * @group Sidebar
+ */
 export const NavList = forwardRef<HTMLUListElement, NavListProps>(
   ({ children, ...props }, ref) => {
     return (

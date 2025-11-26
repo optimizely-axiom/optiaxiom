@@ -10,6 +10,9 @@ export type SidebarToggleProps = Omit<
   "aria-label"?: string;
 };
 
+/**
+ * @group Sidebar
+ */
 export const SidebarToggle = forwardRef<HTMLButtonElement, SidebarToggleProps>(
   ({ "aria-label": ariaLabel, children, ...props }, ref) => {
     const { expanded, navId, onExpandedChange } = useSidebarContext(

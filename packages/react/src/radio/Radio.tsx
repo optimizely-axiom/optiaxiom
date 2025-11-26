@@ -22,6 +22,13 @@ export type RadioProps = BoxProps<
   }
 >;
 
+/**
+ * Basic control to allow selecting only one item from a set.
+ *
+ * @since 0.1.0
+ *
+ * @link https://optimizely-axiom.github.io/optiaxiom/components/radio-group/
+ */
 export const Radio = forwardRef<HTMLInputElement, RadioProps>(
   (
     {

@@ -73,6 +73,12 @@ export type SelectProps = {
   value?: string;
 };
 
+/**
+ * Select a value from a list of options inside a dropdown menu. This is an alternative to radios when you have a large number of options.
+ *
+ * @group Select
+ * @since 1.4.0
+ */
 export const Select = forwardRef<HTMLSelectElement, SelectProps>(
   (
     {

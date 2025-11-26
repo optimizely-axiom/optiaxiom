@@ -27,6 +27,19 @@ export type DateRangePickerProps = ComponentPropsWithRef<typeof Popover> & {
 
 type DateRange = { from: Date; to: Date };
 
+/**
+ * Calendar popover that lets user pick date ranges.
+ *
+ * @group DateRangePicker
+ * @since 1.4.0
+ * @extends Popover
+ *
+ * @example
+ * <DateRangePicker>
+ *   <DateRangePickerTrigger w="224" />
+ *   <DateRangePickerContent />
+ * </DateRangePicker>
+ */
 export function DateRangePicker({
   children,
   defaultOpen = false,

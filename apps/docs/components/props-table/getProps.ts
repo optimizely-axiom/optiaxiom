@@ -12,6 +12,10 @@ export const getProps = async (
   ) as Array<{
     displayName: string;
     props: PropItem[];
+    tags: {
+      extends?: string;
+      group?: string;
+    };
   }>;
   const doc = docs.find(
     (doc) => doc.displayName === `@optiaxiom/react/${component}`,
@@ -20,5 +24,5 @@ export const getProps = async (
     throw new Error(`Could not find component doc: ${component}`);
   }
 
-  return doc.props;
+  return doc;
 };

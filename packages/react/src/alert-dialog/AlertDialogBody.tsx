@@ -6,6 +6,9 @@ import { Flex } from "../flex";
 
 export type AlertDialogBodyProps = BoxProps<typeof RadixDialog.Description>;
 
+/**
+ * @group AlertDialog
+ */
 export const AlertDialogBody = forwardRef<HTMLDivElement, AlertDialogBodyProps>(
   ({ children, ...props }, ref) => (
     <Flex

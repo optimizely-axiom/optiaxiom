@@ -33,6 +33,24 @@ export type InputProps = InputControlProps<
     }
 >;
 
+/**
+ * Basic text field for capturing user input.
+ *
+ * @example <caption>Basic input (default input field)</caption>
+ * <Input placeholder="Enter text..." />
+ *
+ * @example <caption>Input with addon (input with icon or text addon)</caption>
+ * <Input addonBefore={<IconSearch />} placeholder="Search..." />
+ *
+ * @example <caption>Input sizes (different input sizes)</caption>
+ * <Input size="md" placeholder="Medium" />
+ * <Input size="lg" placeholder="Large" />
+ *
+ * @example <caption>Number input (input with number appearance, right-aligned)</caption>
+ * <Input appearance="number" type="number" placeholder="0" />
+  *
+  * @since 0.1.0
+ */
 export const Input = forwardRef<HTMLInputElement, InputProps>(
   (
     {

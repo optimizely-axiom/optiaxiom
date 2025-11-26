@@ -34,6 +34,16 @@ export type IndicatorProps = BoxProps<
   }
 >;
 
+/**
+ * Display a badge at the corner of another element.
+ *
+ * @since 0.1.0
+ *
+ * @example
+ * <Indicator intent="danger" variant="strong">
+ *   <Button aria-label="Notifications" icon={<IconBell />} />
+ * </Indicator>
+ */
 export const Indicator = forwardRef<HTMLDivElement, IndicatorProps>(
   (
     {

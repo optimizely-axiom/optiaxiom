@@ -5,6 +5,10 @@ import { Button, type ButtonProps } from "../button";
 
 export type DialogTriggerProps = ButtonProps<typeof RadixDialog.Trigger>;
 
+/**
+ * @extends Button
+ * @group Dialog
+ */
 export const DialogTrigger = forwardRef<HTMLButtonElement, DialogTriggerProps>(
   ({ asChild, children, ...props }, ref) => {
     return (

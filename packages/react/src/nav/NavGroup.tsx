@@ -12,6 +12,10 @@ export type NavGroupProps = ComponentPropsWithoutRef<typeof Disclosure> & {
   collapsible?: boolean;
 };
 
+/**
+ * @extends Disclosure
+ * @group Sidebar
+ */
 export const NavGroup = forwardRef<HTMLDivElement, NavGroupProps>(
   (
     { children, collapsible, defaultOpen = true, onOpenChange, open, ...props },

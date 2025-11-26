@@ -29,6 +29,11 @@ const mapIntentToIcon = {
   warning: IconTriangleExclamationSolid,
 };
 
+/**
+ * Display a brief notification.
+ *
+ * @since 0.1.0
+ */
 export const Toast = forwardRef<HTMLLIElement, ToastProps>(
   (
     { children, className, intent = "neutral", onOpenChange, style, ...props },

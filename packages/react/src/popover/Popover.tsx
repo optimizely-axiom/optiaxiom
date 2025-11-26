@@ -25,6 +25,21 @@ export type PopoverProps = {
   open?: boolean;
 };
 
+/**
+ * Display arbitrary rich content inside a non-modal dialog triggered by a button.
+ *
+ * @group Popover
+ * @since 0.1.0
+ *
+ * @example
+ * <Popover>
+ *   <PopoverTrigger>Open popover</PopoverTrigger>
+ *   <PopoverContent>
+ *     <Heading fontSize="md">Popover content</Heading>
+ *     <Text>This is the popover content</Text>
+ *   </PopoverContent>
+ * </Popover>
+ */
 export function Popover({
   children,
   defaultOpen = false,

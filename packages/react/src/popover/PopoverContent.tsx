@@ -26,6 +26,9 @@ export type PopoverContentProps = ExcludeProps<
   | "updatePositionStrategy"
 >;
 
+/**
+ * @group Popover
+ */
 export const PopoverContent = forwardRef<HTMLDivElement, PopoverContentProps>(
   (
     {

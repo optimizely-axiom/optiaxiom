@@ -30,6 +30,9 @@ export type DisclosureTriggerProps = BoxProps<
   }
 >;
 
+/**
+ * @group Disclosure
+ */
 export const DisclosureTrigger = forwardRef<
   HTMLDivElement,
   DisclosureTriggerProps

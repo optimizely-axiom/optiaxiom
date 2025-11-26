@@ -7,6 +7,9 @@ import * as styles from "./SubNav.css";
 
 export type SubNavProps = BoxProps<"nav">;
 
+/**
+ * @group Sidebar
+ */
 export const SubNav = forwardRef<HTMLDivElement, SubNavProps>(
   ({ children, ...props }, ref) => {
     return (

@@ -21,6 +21,9 @@ export type SortableGroupProps = BoxProps<
   }
 >;
 
+/**
+ * @group Sortable
+ */
 export const SortableGroup = forwardRef<HTMLDivElement, SortableGroupProps>(
   ({ children, group: id, ...props }, outerRef) => {
     const [hasDropTarget, setHasDropTarget] = useState(false);

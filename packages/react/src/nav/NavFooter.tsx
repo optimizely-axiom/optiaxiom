@@ -6,6 +6,9 @@ import { useSidebarContext } from "../sidebar/internals";
 
 export type NavFooterProps = BoxProps<"div">;
 
+/**
+ * @group Sidebar
+ */
 export const NavFooter = forwardRef<HTMLDivElement, NavFooterProps>(
   ({ children, ...props }, ref) => {
     const { spacing } = useSidebarContext("@optiaxiom/react/NavFooter");

@@ -24,6 +24,9 @@ export type CardHeaderProps = BoxProps<
   }
 >;
 
+/**
+ * @group Card
+ */
 export const CardHeader = forwardRef<HTMLDivElement, CardHeaderProps>(
   (
     { addonAfter, addonBefore, children, className, description, ...props },

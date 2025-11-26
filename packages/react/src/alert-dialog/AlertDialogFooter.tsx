@@ -6,6 +6,9 @@ import * as styles from "./AlertDialogFooter.css";
 
 export type AlertDialogFooterProps = ComponentPropsWithRef<typeof Flex>;
 
+/**
+ * @group AlertDialog
+ */
 export const AlertDialogFooter = forwardRef<
   HTMLDivElement,
   AlertDialogFooterProps

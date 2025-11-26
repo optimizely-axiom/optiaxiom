@@ -39,6 +39,41 @@ export type ButtonProps<
   >
 >;
 
+/**
+ * `Button` component is used to trigger actions.
+ *
+ * @since 0.1.0
+ *
+ * @example <caption>Basic button (default button, uses 'default' appearance not 'primary')</caption>
+ * <Button>Click me</Button>
+ *
+ * @example <caption>Primary button (primary action button)</caption>
+ * <Button appearance="primary">Save</Button>
+ *
+ * @example <caption>Button appearances (different button styles)</caption>
+ * <Button appearance="primary">Primary</Button>
+ * <Button appearance="default">Default</Button>
+ * <Button appearance="subtle">Subtle</Button>
+ * <Button appearance="danger">Danger</Button>
+ *
+ * @example <caption>Button with icon (icon positioned before content)</caption>
+ * <Button icon={<IconPlus />}>Add Item</Button>
+ *
+ * @example <caption>Icon-only button (requires aria-label for accessibility)</caption>
+ * <Button icon={<IconSearch />} aria-label="Search" />
+ *
+ * @example <caption>Loading button (button with loading spinner)</caption>
+ * <Button loading>Saving...</Button>
+ *
+ * @example <caption>Icon-only without aria-label (accessibility anti-pattern)</caption>
+ * // ❌ BAD - Not accessible
+ * <Button icon={<IconSearch />} />
+ *
+ * // ✅ GOOD - Accessible
+ * <Button icon={<IconSearch />} aria-label="Search" />
+  *
+  * @since 0.1.0
+ */
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {

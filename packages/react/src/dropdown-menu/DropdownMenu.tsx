@@ -29,7 +29,20 @@ export type DropdownMenuProps = {
 };
 
 /**
+ * @since 0.1.0
  * @deprecated use {@link Menu} instead
+ *
+ * @example
+ * <DropdownMenu>
+ *   <DropdownMenuTrigger>Open</DropdownMenuTrigger>
+ *
+ *   <DropdownMenuContent>
+ *     <DropdownMenuLabel>My Account</DropdownMenuLabel>
+ *     <DropdownMenuItem icon={<IconUser />}>View Profile</DropdownMenuItem>
+ *     <DropdownMenuSeparator />
+ *     <DropdownMenuItem icon={<IconLogout />}>Logout</DropdownMenuItem>
+ *   </DropdownMenuContent>
+ * </DropdownMenu>
  */
 export function DropdownMenu({
   children,

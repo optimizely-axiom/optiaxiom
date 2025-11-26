@@ -21,6 +21,9 @@ export type DialogContentProps = ExcludeProps<
   "forceMount"
 >;
 
+/**
+ * @group Dialog
+ */
 export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
   (
     {

@@ -26,6 +26,27 @@ export type DialogProps = {
   open?: boolean;
 };
 
+/**
+ * Display a modal dialog box.
+ *
+ * @group Dialog
+ * @since 0.1.0
+ *
+ * @example
+ * <Dialog>
+ *   <DialogTrigger>Open Dialog</DialogTrigger>
+ *
+ *   <DialogContent>
+ *     <DialogHeader>Modal Title</DialogHeader>
+ *
+ *     <DialogBody>This is the modal body</DialogBody>
+ *
+ *     <DialogFooter>
+ *       <DialogClose appearance="primary">Close</DialogClose>
+ *     </DialogFooter>
+ *   </DialogContent>
+ * </Dialog>
+ */
 export function Dialog({
   children,
   defaultOpen = false,

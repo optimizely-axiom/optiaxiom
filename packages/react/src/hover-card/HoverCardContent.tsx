@@ -22,6 +22,9 @@ export type HoverCardContentProps = ExcludeProps<
   | "updatePositionStrategy"
 >;
 
+/**
+ * @group HoverCard
+ */
 export const HoverCardContent = forwardRef<
   HTMLDivElement,
   HoverCardContentProps

@@ -6,6 +6,9 @@ import { useSidebarContext } from "../sidebar/internals";
 
 export type NavHeaderProps = BoxProps<"div">;
 
+/**
+ * @group Sidebar
+ */
 export const NavHeader = forwardRef<HTMLDivElement, NavHeaderProps>(
   ({ children, ...props }, ref) => {
     const { spacing } = useSidebarContext("@optiaxiom/react/NavHeader");

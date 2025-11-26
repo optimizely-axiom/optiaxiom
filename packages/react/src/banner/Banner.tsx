@@ -30,6 +30,22 @@ const mapIntentToIcon = {
   warning: IconTriangleExclamationSolid,
 };
 
+/**
+ * Display a prominent message at the top of the screen.
+ *
+ * @since 0.1.0
+ *
+ * @example
+ * <Banner>
+ *   <Text>
+ *     You do not have the required permissions to perform this action.
+ *   </Text>
+ *
+ *   <Text>
+ *     <Link href="data:,">Request access</Link>
+ *   </Text>
+ * </Banner>
+ */
 export const Banner = forwardRef<HTMLDivElement, BannerProps>(
   ({ children, className, intent = "neutral", onDismiss, ...props }, ref) => {
     const labelId = useId();

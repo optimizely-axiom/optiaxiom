@@ -54,6 +54,12 @@ export type MenuProps = ExcludeProps<
   "enabled" | "onHover" | "onSelect"
 >;
 
+/**
+ * Dropdown menu for displaying actions.
+ *
+ * @group Menu
+ * @since 1.6.0
+ */
 export function Menu({
   children,
   defaultOpen = false,

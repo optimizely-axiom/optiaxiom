@@ -4,6 +4,9 @@ import { Box, type BoxProps, extractBoxProps } from "../box";
 
 export type DialogFormProps = BoxProps<"form">;
 
+/**
+ * @group Dialog
+ */
 export const DialogForm = forwardRef<HTMLFormElement, DialogFormProps>(
   ({ children, className, ...props }, ref) => {
     const { boxProps, restProps } = extractBoxProps(props);

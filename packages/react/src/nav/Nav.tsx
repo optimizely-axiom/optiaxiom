@@ -23,6 +23,12 @@ export type NavProps = BoxProps<
   }
 >;
 
+/**
+ * Primary navigation menu that includes support for branding, links, and other navigation items.
+ *
+ * @group Sidebar
+ * @since 0.4.0
+ */
 export const Nav = forwardRef<HTMLDivElement, NavProps>(
   ({ children, ...props }, ref) => {
     const { expanded, navId } = useSidebarContext("@optiaxiom/react/Nav");

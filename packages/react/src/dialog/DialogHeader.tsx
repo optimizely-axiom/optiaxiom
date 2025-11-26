@@ -26,6 +26,9 @@ export type DialogHeaderProps = BoxProps<
   }
 >;
 
+/**
+ * @group Dialog
+ */
 export const DialogHeader = forwardRef<HTMLDivElement, DialogHeaderProps>(
   ({ addonAfter, children, className, description, ...props }, outerRef) => {
     const { headerRef } = useDialogContext("@optiaxiom/react/DialogHeader");

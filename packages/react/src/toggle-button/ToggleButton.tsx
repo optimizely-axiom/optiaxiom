@@ -13,6 +13,18 @@ export type ToggleButtonProps = ButtonProps<
   }
 >;
 
+/**
+ * component represents a button that can be toggled on or off.
+ *
+ * @since 0.1.0
+ * @extends Button
+ *
+ * @example
+ * <ToggleButton
+ *   aria-label="Toggle sidebar"
+ *   icon={<IconLayoutSidebar />}
+ * />
+ */
 export const ToggleButton = forwardRef<HTMLButtonElement, ToggleButtonProps>(
   ({ children, ...props }, ref) => {
     return (

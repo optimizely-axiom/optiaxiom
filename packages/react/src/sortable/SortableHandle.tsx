@@ -7,6 +7,9 @@ import { useSortableItemContext } from "./SortableItemContext";
 
 export type SortableHandleProps = BoxProps;
 
+/**
+ * @group Sortable
+ */
 export const SortableHandle = forwardRef<HTMLDivElement, SortableHandleProps>(
   ({ children, className, ...props }, outerRef) => {
     const { handleRef, isDragging } = useSortableItemContext(

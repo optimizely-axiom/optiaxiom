@@ -5,6 +5,9 @@ import * as styles from "./CardImage.css";
 
 export type CardImageProps = BoxProps<"img">;
 
+/**
+ * @group Card
+ */
 export const CardImage = forwardRef<HTMLImageElement, CardImageProps>(
   ({ alt = "", asChild, children, className, src, ...props }, ref) => {
     return (
