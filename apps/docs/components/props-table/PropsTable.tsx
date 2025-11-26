@@ -1,6 +1,7 @@
 import { Box, Code, Flex, Text } from "@optiaxiom/react";
 import * as Components from "@optiaxiom/react";
 import * as UnstableComponents from "@optiaxiom/react/unstable";
+import { getDocs } from "@optiaxiom/shared";
 import { Link } from "nextra-theme-docs";
 import { compileMdx } from "nextra/compile";
 import { MDXRemote } from "nextra/mdx-remote";
@@ -8,61 +9,21 @@ import { type ReactNode } from "react";
 
 import { PropType } from "../prop-type";
 import { Table, Td, Th, Thead, Tr } from "../table";
-import { components } from "./components";
 
 type AllComponents = keyof typeof Components | keyof typeof UnstableComponents;
 
-const mapComponentToBase: Partial<Record<AllComponents, "" | AllComponents>> = {
-  AlertDialogAction: "Button",
-  AlertDialogCancel: "Button",
-  AlertDialogTrigger: "Button",
-  CardCheckbox: "Checkbox",
-  CardLink: "Link",
-  DateRangePicker: "Popover",
-  DateRangePickerTrigger: "Button",
-  DialogClose: "Button",
-  DialogTrigger: "Button",
-  DropdownMenuSeparator: "Separator",
-  DropdownMenuTrigger: "Button",
-  FileUploadTrigger: "Button",
-  Heading: "Text",
-  Kbd: "Code",
-  MenuTrigger: "Button",
-  ModalLayer: "",
-  NavGroup: "Disclosure",
-  NavGroupContent: "DisclosureContent",
-  NavGroupTrigger: "DisclosureTrigger",
-  NavSeparator: "Separator",
-  PopoverTrigger: "Button",
-  SearchInput: "Input",
-  SegmentedControlItem: "Button",
-  SelectTrigger: "Button",
-  TabsTrigger: "Button",
-  ToastAction: "Button",
-  ToastTitle: "Text",
-  ToggleButton: "Button",
-};
-
-const mapComponentToScope: Partial<Record<"" | AllComponents, AllComponents>> =
-  {
-    DisclosureContent: "Disclosure",
-    DisclosureTrigger: "Disclosure",
-  };
-
-export async function PropsTable({
-  component,
-}: {
-  component: keyof typeof components;
-}) {
-  if (!(component in components)) {
-    throw new Error(`Could not find props for component: ${component}`);
+export async function PropsTable({ component }: { component: AllComponents }) {
+  const docs = getDocs();
+  const doc = docs.find(
+    (doc) => doc.displayName === `@optiaxiom/react/${component}`,
+  );
+  if (!doc) {
+    throw new Error(`Could not find component doc: ${component}`);
   }
-  const propItems = await components[component];
+  const propItems = doc.props;
 
-  const baseName =
-    mapComponentToBase[component as AllComponents] ??
-    (propItems.find((prop) => prop.name === "asChild") ? "Box" : "");
-  const baseNameScope = mapComponentToScope[baseName] || baseName;
+  const baseName = doc.tags.extends || "";
+  const baseNameScope = doc.tags.group || baseName;
   const isBox = component === "Box";
   const virtual = !propItems.find((prop) => prop.name === "asChild");
 
@@ -94,61 +55,63 @@ export async function PropsTable({
           </tr>
         </Thead>
         <tbody>
-          {propItems.map(async (prop) => (
-            <Tr key={prop.name}>
-              <Td>
-                <Flex
-                  alignItems="start"
-                  flexDirection={["column", "row"]}
-                  gap="12"
-                >
-                  <Box
-                    asChild
-                    fontFamily="mono"
-                    style={{ color: "var(--shiki-token-function)" }}
-                    w="1/4"
-                    whiteSpace="nowrap"
+          {propItems
+            .filter((prop) => isBox || !prop.sprinkle || prop.defaultValue)
+            .map(async (prop) => (
+              <Tr key={prop.name}>
+                <Td>
+                  <Flex
+                    alignItems="start"
+                    flexDirection={["column", "row"]}
+                    gap="12"
                   >
-                    <code>
-                      {prop.name}
-                      {prop.required ? "*" : ""}
-                    </code>
-                  </Box>
-                  <Flex flex="1" gap="12">
-                    {prop.description && (
-                      <MDXRemote
-                        compiledSource={await compileMdx(
-                          prop.description
-                            .replaceAll(
-                              /{@link ([^\s}]+)(?:\s([^}]+))}/g,
-                              "[$2]($1)",
-                            )
-                            .replaceAll(/{@link ([^}]+)}/g, "[$1]($1)")
-                            .replaceAll(
-                              "https://optimizely-axiom.github.io/optiaxiom",
-                              "",
-                            )
-                            .replaceAll(
-                              /@example ([^@]+)/g,
-                              "\n\n```\n$1\n```\n",
-                            )
-                            .replaceAll("@see", "\n\n"),
-                        )}
-                        components={{
-                          p: ({ ...props }) => (
-                            <Box asChild>
-                              <p {...props} />
-                            </Box>
-                          ),
-                        }}
-                      />
-                    )}
-                    <PropType prop={prop} />
+                    <Box
+                      asChild
+                      fontFamily="mono"
+                      style={{ color: "var(--shiki-token-function)" }}
+                      w="1/4"
+                      whiteSpace="nowrap"
+                    >
+                      <code>
+                        {prop.name}
+                        {prop.required ? "*" : ""}
+                      </code>
+                    </Box>
+                    <Flex flex="1" gap="12">
+                      {prop.description && (
+                        <MDXRemote
+                          compiledSource={await compileMdx(
+                            prop.description
+                              .replaceAll(
+                                /{@link ([^\s}]+)(?:\s([^}]+))}/g,
+                                "[$2]($1)",
+                              )
+                              .replaceAll(/{@link ([^}]+)}/g, "[$1]($1)")
+                              .replaceAll(
+                                "https://optimizely-axiom.github.io/optiaxiom",
+                                "",
+                              )
+                              .replaceAll(
+                                /@example ([^@]+)/g,
+                                "\n\n```\n$1\n```\n",
+                              )
+                              .replaceAll("@see", "\n\n"),
+                          )}
+                          components={{
+                            p: ({ ...props }) => (
+                              <Box asChild>
+                                <p {...props} />
+                              </Box>
+                            ),
+                          }}
+                        />
+                      )}
+                      <PropType prop={prop} />
+                    </Flex>
                   </Flex>
-                </Flex>
-              </Td>
-            </Tr>
-          ))}
+                </Td>
+              </Tr>
+            ))}
         </tbody>
       </Table>
     </>
@@ -167,7 +130,7 @@ function PropsTableDescription({
   name,
   virtual,
 }: {
-  baseName: "" | AllComponents;
+  baseName: string;
   children?: ReactNode;
   name: AllComponents;
   virtual?: boolean;
@@ -283,6 +246,8 @@ function PropsTableDescription({
 
 const matches = (
   items: ("" | AllComponents)[],
-  baseName: "" | AllComponents,
+  baseName: string,
   name?: AllComponents,
-) => items.includes(baseName) || (name && items.includes(name));
+) =>
+  items.includes(baseName as "" | AllComponents) ||
+  (name && items.includes(name));

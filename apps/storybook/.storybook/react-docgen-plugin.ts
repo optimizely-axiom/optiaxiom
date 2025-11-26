@@ -1,4 +1,3 @@
-// @ts-expect-error -- no types
 import { getDocs } from "@optiaxiom/shared";
 import { createFilter } from "@rollup/pluginutils";
 import { basename, relative } from "node:path";
@@ -33,8 +32,12 @@ export function reactDocgenPlugin() {
           const docgenInfo = docs.find(
             (doc: { displayName: string }) => doc.displayName === displayName,
           );
-          if (displayName) {
-            const docNode = JSON.stringify(docgenInfo);
+          if (displayName && docgenInfo) {
+            const isBox = displayName.endsWith("/Box");
+            const docNode = JSON.stringify({
+              ...docgenInfo,
+              props: docgenInfo.props.filter((prop) => isBox || !prop.sprinkle),
+            });
             code += `;${basename(displayName)}.__docgenInfo=${docNode}`;
           }
         });

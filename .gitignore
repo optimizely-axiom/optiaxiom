@@ -31,4 +31,6 @@ _pagefind/
 # generated files
 /apps/docs/components/demo/demos.ts
 /apps/docs/components/props-table/components.ts
+/apps/docs/data/
+/packages/shared/data/
 /packages/web-components/*/package.json
