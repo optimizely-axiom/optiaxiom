@@ -2,7 +2,7 @@ import type { ComponentPropsWithoutRef } from "react";
 import type { PropItem } from "react-docgen-typescript";
 
 import { sprinkles, Text } from "@optiaxiom/react";
-import { promises as fs } from "fs";
+import { getDocs } from "@optiaxiom/shared";
 
 import { Table, Td, Th, Thead, Tr } from "../table";
 import { ScaleValue } from "./ScaleValue";
@@ -21,7 +21,7 @@ const tshirts = [
   "5xl",
 ];
 
-export const Scale = async ({
+export const Scale = ({
   maxH = "sm",
   mode,
   themeKey,
@@ -54,7 +54,7 @@ export const Scale = async ({
     </Thead>
     <tbody>
       {(typeof sprinklePropOrValues === "string"
-        ? getPropValues(await getBoxProp(sprinklePropOrValues)).map((value) => [
+        ? getPropValues(getBoxProp(sprinklePropOrValues)).map((value) => [
             value,
             sprinkles({ [sprinklePropOrValues]: value }),
           ])
@@ -107,13 +107,8 @@ export const Scale = async ({
   </Table>
 );
 
-const getBoxProp = async (name: string) => {
-  const docs = JSON.parse(
-    await fs.readFile(process.cwd() + "/data/props.json", "utf8"),
-  ) as Array<{
-    displayName: string;
-    props: PropItem[];
-  }>;
+const getBoxProp = (name: string) => {
+  const docs = getDocs();
   const doc = docs.find((doc) => doc.displayName === "@optiaxiom/react/Box");
   if (!doc) {
     throw new Error("Could not find component doc: Box");

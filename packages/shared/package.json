@@ -9,6 +9,11 @@
     "oas-lint": "bin/lint.sh"
   },
   "main": "src/index.mjs",
+  "types": "src/index.d.mts",
+  "scripts": {
+    "build": "rm -rf data && node scripts/generateDocs.mjs",
+    "dev": "rm -rf data && node scripts/generateDocs.mjs"
+  },
   "dependencies": {
     "ci-info": "^4.3.0",
     "cli-table3": "^0.6.5",
