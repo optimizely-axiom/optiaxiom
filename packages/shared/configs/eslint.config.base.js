@@ -157,6 +157,7 @@ export default tsEslint.config(
   {
     ignores: [
       "**/.next/**",
+      "**/components/demo/demos.d.ts",
       "**/dist/**",
       "**/lib/**",
       "**/out/**",
