@@ -38,7 +38,7 @@ server.registerTool(
       "- Flex defaults to flexDirection='column' (VERTICAL), NOT 'row' like standard CSS\n" +
       "- Flex defaults to alignItems='stretch' in column layouts, 'center' in row layouts\n" +
       "- For form layouts with Input/Button/Textarea: use alignItems='start' to prevent inputs from stretching to full width\n" +
-      "- Example: <Flex alignItems=\"start\"><Input /><Button /></Flex>\n\n" +
+      '- Example: <Flex alignItems="start"><Input /><Button /></Flex>\n\n' +
       "---\n\n" +
       "Get detailed information about a specific Axiom component including props, examples, and usage guidelines. " +
       "Pay special attention to the component description and prop defaults, as Axiom components may have different defaults than standard HTML/CSS. " +
@@ -84,7 +84,7 @@ server.registerTool(
       "If a name doesn't appear here, it doesn't exist in Axiom.\n\n" +
       "⚠️ IMPORTANT LAYOUT DEFAULTS:\n" +
       "- Flex defaults to flexDirection='column' and alignItems='stretch'\n" +
-      "- For forms with Input/Button: use <Flex alignItems=\"start\"> to prevent stretching\n\n" +
+      '- For forms with Input/Button: use <Flex alignItems="start"> to prevent stretching\n\n' +
       "---\n\n" +
       "List all available Axiom components with their descriptions. " +
       "Use this to discover what components are available. " +
@@ -125,7 +125,7 @@ server.registerTool(
       "- TabsTab → Use TabsTrigger\n\n" +
       "⚠️ LAYOUT COMPONENT DEFAULTS:\n" +
       "- Flex defaults to flexDirection='column' and alignItems='stretch'\n" +
-      "- For forms with Input/Button: use <Flex alignItems=\"start\"> to prevent stretching\n\n" +
+      '- For forms with Input/Button: use <Flex alignItems="start"> to prevent stretching\n\n' +
       "---\n\n" +
       "Search Axiom components by name, description, or keywords. " +
       "Returns a list of matching components. " +
