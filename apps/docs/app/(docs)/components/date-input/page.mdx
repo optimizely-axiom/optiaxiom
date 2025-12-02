@@ -1,5 +1,5 @@
 import { Demo, Links, PropsTable } from "@/components";
-import { Flex, Kbd } from "@optiaxiom/react";
+import { Alert, Flex, Kbd } from "@optiaxiom/react";
 
 # DateInput
 
@@ -19,6 +19,18 @@ Use the `value` and `defaultValue` props to toggle between controlled and uncont
 
 <Demo component="date-input/controlled-usage" />
 
+### Value formats
+
+The `value` prop accepts date strings in specific formats. For `type="date"`, use `YYYY-MM-DD` format. For `type="datetime-local"`, use `YYYY-MM-DDTHH:MM` format.
+
+<Demo component="date-input/value-format-usage" />
+
+### Placeholder
+
+Use the `placeholder` prop to specify a placeholder date or time. The value format must be an Instant, PlainDate, PlainDateTime, or PlainTime.
+
+<Demo component="date-input/placeholder-usage" />
+
 ### Error state
 
 Enable the `error` prop to display the error state of the input field.
@@ -36,6 +48,24 @@ Enable the `disabled` prop to toggle the disabled state of the input field.
 By default we show a clear button when there is value but this can be removed by toggling the `required` prop.
 
 <Demo component="date-input/required-usage" />
+
+### Sizes
+
+Use the `size` prop to control the size of the input.
+
+<Demo component="date-input/size-usage" />
+
+### Addons
+
+Use the `addonAfter` prop to display content inside the input at the end.
+
+<Alert intent="warning" mt="16">
+  Note: `addonBefore` should not be used as it will override the calendar icon
+  that opens the date picker popover. If you need to use `addonBefore`, you must
+  ensure it forwards clicks to focus the input.
+</Alert>
+
+<Demo component="date-input/addon-usage" />
 
 ### Max
 
@@ -66,6 +96,12 @@ Use the `weekend` prop to provide one or more matchers to denote weekends on the
 Use the `holiday` prop to provide one or more matchers to denote holidays on the calendar.
 
 <Demo component="date-input/holiday-usage" />
+
+### Date matchers
+
+The `holiday` and `weekend` props support various matcher types including specific dates, date ranges, date intervals, day of week, and custom functions. You can also combine multiple matchers.
+
+<Demo component="date-input/matchers-usage" />
 
 ## Props
 

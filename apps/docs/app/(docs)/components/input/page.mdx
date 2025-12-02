@@ -1,4 +1,5 @@
 import { Cards, Demo, Links, PropsTable } from "@/components";
+import { Alert } from "@optiaxiom/react";
 
 # Input
 
@@ -24,6 +25,24 @@ Using `onChange`:
 
 <Demo component="input/controlled-onchange-usage" />
 
+### Input types
+
+Use the `type` prop to specify the type of data the input should accept. Common types include `email`, `password`, `tel`, `url`, and `number`.
+
+<Demo component="input/type-usage" />
+
+### Required
+
+Use the `required` prop on the Field component to mark an input as required. This adds a visual indicator and sets the appropriate ARIA attributes.
+
+<Alert intent="information" mt="16">
+  Note: This only provides visual feedback. For actual validation, use the
+  native `required` attribute on the Input or a form validation library like
+  react-hook-form.
+</Alert>
+
+<Demo component="input/required-usage" />
+
 ### Sizes
 
 Use the `size` prop to control the size of the input field.
@@ -32,7 +51,13 @@ Use the `size` prop to control the size of the input field.
 
 ### Error state
 
-Enable the `error` prop to display the error state of the input field.
+Use the `error` prop on the Field component to display validation errors. The error message will be shown below the input and the input will be styled accordingly.
+
+<Alert intent="information" mt="16">
+  Note: When you set the `error` prop on Field, it automatically sets the error
+  state on the Input inside it. You don't need to set `error` on both
+  components.
+</Alert>
 
 <Demo component="input/error-usage" />
 
@@ -50,9 +75,15 @@ Enable the `readOnly` prop to display the read-only state of the input field.
 
 ### Addons
 
-#### Left and right addons
+#### Text addons
 
-Use the `addonBefore` and `addonAfter` prop to add icons, text, or any other element to the start or end of the input.
+Use the `addonBefore` and `addonAfter` props to add text labels like currency symbols, units, or prefixes to your inputs.
+
+<Demo component="input/addon-text-usage" />
+
+#### Interactive addons
+
+You can also provide icons, buttons, or any other interactive element as addons.
 
 <Demo component="input/addon-usage" />
 
@@ -67,6 +98,12 @@ Use the `addonPointerEvents` prop to control whether clicking the addons focuses
 Use the `appearance` prop to select between the different input appearances.
 
 <Demo component="input/appearance-usage" />
+
+### Character limit
+
+Use the `maxLength` prop to limit the number of characters users can enter. Combine with a character counter in the Field description for better UX.
+
+<Demo component="input/maxlength-usage" />
 
 ### Related
 
