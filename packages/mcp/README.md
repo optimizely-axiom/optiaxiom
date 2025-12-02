@@ -41,13 +41,28 @@ pnpm add -D @optiaxiom/mcp
 
 ## Usage
 
-### With Claude Code or Cursor
+### Claude Code
 
-Add to your `.vscode/mcp.json` or project MCP configuration:
+Add the MCP server to your workspace configuration file at `.vscode/mcp.json`:
 
 ```json
 {
   "servers": {
+    "axiom": {
+      "command": "npx",
+      "args": ["-y", "@optiaxiom/mcp"]
+    }
+  }
+}
+```
+
+### Cursor
+
+Add to your Cursor MCP configuration:
+
+```json
+{
+  "mcpServers": {
     "axiom": {
       "command": "npx",
       "args": ["-y", "@optiaxiom/mcp"]
