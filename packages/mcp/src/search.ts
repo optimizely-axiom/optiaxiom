@@ -9,6 +9,8 @@ export interface IconSearchOptions {
 }
 
 export interface SearchOptions {
+  /** Optional category filter to narrow results */
+  category?: string;
   components: ComponentInfo[];
   limit?: number;
   query: string;
@@ -26,15 +28,27 @@ interface RelevanceScoreOptions {
 }
 
 export function searchComponents({
+  category,
   components,
   limit = 10,
   query,
 }: SearchOptions): ComponentInfo[] {
-  if (!query.trim()) {
-    return components.slice(0, limit);
+  // Filter by category first if specified
+  let filteredComponents = components;
+  if (category) {
+    const normalizedCategory = category.toLowerCase();
+    filteredComponents = components.filter((component) =>
+      component.category?.some(
+        (cat) => cat.toLowerCase() === normalizedCategory,
+      ),
+    );
   }
 
-  return components
+  if (!query.trim()) {
+    return filteredComponents.slice(0, limit);
+  }
+
+  return filteredComponents
     .map((component) => ({
       component,
       score: calculateRelevanceScore({

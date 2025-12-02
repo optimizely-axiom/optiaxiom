@@ -18,6 +18,7 @@ const __dirname = dirname(__filename);
 /**
  * @typedef {import('playwright').BrowserContext} BrowserContext
  * @typedef {import('../src/types.js').ComponentInfo} ComponentInfo
+ * @typedef {import('../src/types.js').DeprecationInfo} DeprecationInfo
  * @typedef {import('../src/types.js').DesignTokens} DesignTokens
  * @typedef {import('../src/types.js').Guide} Guide
  * @typedef {import('../src/types.js').IconInfo} IconInfo
@@ -66,6 +67,15 @@ export async function generateComponents(context) {
     if (group) {
       component.group = group;
     }
+    if ("category" in doc.tags && typeof doc.tags.category === "string") {
+      component.category = doc.tags.category
+        .split("\n")
+        .map((c) => c.trim())
+        .filter(Boolean);
+    }
+    if ("deprecated" in doc.tags && typeof doc.tags.deprecated === "string") {
+      component.deprecated = parseDeprecation(doc.tags.deprecated);
+    }
 
     components[component.name] = component;
   }
@@ -83,17 +93,24 @@ export async function generateComponents(context) {
     }
   }
 
-  // Update components with group information, docsUrl, and inherit "since" from parent
+  // Update components with group information, docsUrl, and inherit "since" and "category" from parent
   for (const component of Object.values(components)) {
     if (component.group) {
       // If this is the primary component (name matches group), add components array
       if (component.name === component.group) {
         component.components = componentsByGroup.get(component.group) || [];
       } else {
-        // This is a sub-component, check if it should inherit "since" from parent
+        // This is a sub-component, inherit from parent
         const parentComponent = components[component.group];
-        if (parentComponent?.since && !component.since) {
-          component.since = parentComponent.since;
+        if (parentComponent) {
+          // Inherit "since" if not defined
+          if (parentComponent.since && !component.since) {
+            component.since = parentComponent.since;
+          }
+          // Inherit "category" if not defined
+          if (parentComponent.category && !component.category) {
+            component.category = parentComponent.category;
+          }
         }
       }
 
@@ -630,6 +647,26 @@ export async function generateTokens() {
       ]),
     ),
     zIndex: tokens.zIndex,
+  };
+}
+
+/**
+ * Parse `@deprecated` tag following the pattern:
+ *
+ * @example
+ * "since X.X.X use {@link ComponentName} instead"
+ *
+ * @param {string} deprecatedTag - The raw deprecated tag value
+ * @returns {DeprecationInfo}
+ */
+function parseDeprecation(deprecatedTag) {
+  // Pattern: "since X.X.X use {@link ComponentName} instead"
+  const sinceMatch = deprecatedTag.match(/since\s+([\d.]+)/);
+  const replacementMatch = deprecatedTag.match(/\{@link\s+(\w+)\s*\}/);
+
+  return {
+    replacement: replacementMatch ? replacementMatch[1] : undefined,
+    since: sinceMatch ? sinceMatch[1] : deprecatedTag,
   };
 }
 
