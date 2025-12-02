@@ -29,6 +29,8 @@ jobs:
 
       - run: pnpm install
 
+      - run: pnpm exec playwright install chromium
+
       - uses: changesets/action@v1
         with:
           publish: pnpm release
