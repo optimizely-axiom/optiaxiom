@@ -7,12 +7,13 @@ import { z } from "zod";
 import pkg from "../package.json";
 import {
   getAllComponents,
+  getAllIcons,
   getComponent,
   getGuide,
   getTokens,
 } from "./loaders.js";
 import { createArrayResponse, createResponse } from "./responses.js";
-import { searchComponents } from "./search.js";
+import { searchComponents, searchIcons } from "./search.js";
 
 function jsonify(data: unknown): string {
   return JSON.stringify(data, null, 2);
@@ -186,6 +187,54 @@ server.registerTool(
       content: [
         {
           text: jsonify(createResponse(tokens)),
+          type: "text" as const,
+        },
+      ],
+    };
+  },
+);
+
+// Tool: search_icons
+server.registerTool(
+  "search_icons",
+  {
+    description:
+      "Search for icons from the @optimizely/axiom-icons package. " +
+      "This is a private package containing licensed Font Awesome Pro icons for Optimizely staff. " +
+      "Returns a list of matching icon component names. " +
+      "You can search by keywords (e.g., 'message', 'arrow', 'user') and the search will match icon names intelligently. " +
+      "NOTE: The @optimizely/axiom-icons package is private and only available to Optimizely staff.",
+    inputSchema: {
+      limit: z
+        .number()
+        .optional()
+        .default(10)
+        .describe("Maximum results to return (default: 10)"),
+      query: z
+        .string()
+        .describe(
+          "Search query (icon keyword or name, e.g., 'message', 'arrow', 'user')",
+        ),
+    },
+    title: "Search Icons",
+  },
+  async ({ limit, query }) => {
+    return {
+      content: [
+        {
+          text: jsonify(
+            createArrayResponse(
+              searchIcons({
+                icons: getAllIcons(),
+                limit,
+                query,
+              }).map((icon) => ({
+                import: icon.import,
+                name: icon.name,
+              })),
+              { query },
+            ),
+          ),
           type: "text" as const,
         },
       ],

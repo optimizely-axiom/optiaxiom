@@ -105,6 +105,17 @@ Get design token mappings for the Axiom Design System.
 
 **Returns:** Token-to-value mappings for colors (hex values for light mode), sizes (px/rem for width/height), spacing, borderRadius, fontSize (with lineHeight), boxShadow, duration, fontFamily, and zIndex. Useful for converting Figma design values to semantic tokens (e.g., `#4F576E` → `fg.secondary`, `32px` height → `h='md'`).
 
+### `search_icons`
+
+Search for icons from the `@optimizely/axiom-icons` package (Optimizely staff only).
+
+**Parameters:**
+
+- `query` (string, required): Search query (icon keyword or name, e.g., "message", "arrow", "user")
+- `limit` (number, optional): Maximum results to return (default: 10)
+
+**Returns:** List of matching icon components with names and import statements. The `@optimizely/axiom-icons` package contains licensed Font Awesome Pro icons and is only available to Optimizely staff.
+
 ## Available Resources
 
 The MCP server exposes resources that can be accessed via URI patterns:
@@ -142,6 +153,8 @@ Once configured, you can ask your AI assistant:
 - "What design tokens are available for colors?"
 - "Convert this Figma color #4F576E to an Axiom token"
 - "Show me the getting started guide for Axiom"
+- "Search for message icons" (Optimizely staff only)
+- "Find arrow icons" (Optimizely staff only)
 
 The AI assistant will use the MCP server to get accurate, up-to-date information about Axiom components, tokens, and setup instructions.
 

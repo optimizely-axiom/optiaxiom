@@ -3,6 +3,7 @@ import { chromium } from "playwright";
 import {
   generateComponents,
   generateGuides,
+  generateIcons,
   generateMetadataFile,
   generateTokens,
 } from "./generators.mjs";
@@ -34,6 +35,7 @@ export function generateDataPlugin() {
 
         return `export const components = ${JSON.stringify(await generateComponents(context))};
 export const guides = ${JSON.stringify(await generateGuides())};
+export const icons = ${JSON.stringify(await generateIcons())};
 export const metadata = ${JSON.stringify(await generateMetadataFile())};
 export const tokens = ${JSON.stringify(await generateTokens())};
 `;
