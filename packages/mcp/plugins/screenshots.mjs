@@ -6,6 +6,11 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 /**
+ * Padding around screenshots in pixels
+ */
+const SCREENSHOT_PADDING = 24;
+
+/**
  * @typedef {import('playwright').BrowserContext} BrowserContext
  * @typedef {import('../src/types.js').Example} Example
  */
@@ -16,8 +21,10 @@ const __dirname = dirname(__filename);
  * @type {readonly string[]}
  */
 const COMPONENTS_WITH_SCREENSHOTS = [
+  "AlertDialog",
   "Breadcrumb",
-  // "DataTable",
+  "DataTable",
+  "Dialog",
   "Disclosure",
   "Pagination",
   "RadioGroup",
@@ -51,20 +58,83 @@ export async function captureScreenshot(context, componentName, example) {
       loader: { ".jpg": "empty", ".woff2": "empty" },
       logLevel: "error",
       outdir: "dist",
+      plugins: [
+        {
+          name: "virtual-demo-files",
+          setup(build) {
+            // Intercept imports for demo files
+            build.onResolve({ filter: /^\.\/.*/ }, (args) => {
+              // Extract filename from the import path
+              let filename = args.path.replace(/^\.\//, "");
+
+              // Try exact match first
+              if (example.code[filename]) {
+                return {
+                  namespace: "demo-virtual",
+                  path: filename,
+                };
+              }
+
+              for (const extension of ["ts", "tsx"]) {
+                if (example.code[`${filename}.${extension}`]) {
+                  return {
+                    namespace: "demo-virtual",
+                    path: `${filename}.${extension}`,
+                  };
+                }
+              }
+
+              return undefined;
+            });
+
+            // Provide contents for virtual demo files
+            build.onLoad(
+              { filter: /.*/, namespace: "demo-virtual" },
+              (args) => {
+                return {
+                  contents: example.code[args.path],
+                  loader: "tsx",
+                  resolveDir: join(__dirname, "../../../packages/react"),
+                };
+              },
+            );
+          },
+        },
+      ],
       stdin: {
         contents: `
-          import { createRoot } from "react-dom/client";
-          import { AxiomProvider } from "@optiaxiom/react";
-          ${example.code["App.tsx"]};
+import { useEffect } from "react";
+import { createRoot } from "react-dom/client";
+import { AxiomProvider, TransitionGlobalConfig } from "@optiaxiom/react";
+import { App } from "./App.tsx";
 
-          const root = document.getElementById("demo-root");
-          if (root) {
-            createRoot(root).render(
-              <AxiomProvider>
-                <App />
-              </AxiomProvider>,
-            );
-          }
+TransitionGlobalConfig.skipAnimations = true;
+
+function Demo() {
+  useEffect(() => {
+    const button = document.getElementById("demo-root").querySelector('[aria-haspopup="dialog"][aria-expanded="false"]');
+    if (button) {
+      button.click();
+      // Remove focus from all buttons before screenshot
+      setTimeout(() => {
+        if (document.activeElement) {
+          document.activeElement.blur();
+        }
+      }, 0);
+    }
+  }, []);
+
+  return (
+    <AxiomProvider>
+      <App />
+    </AxiomProvider>
+  );
+}
+
+const root = document.getElementById("demo-root");
+if (root) {
+  createRoot(root).render(<Demo />);
+}
         `,
         loader: "tsx",
         resolveDir: join(__dirname, "../../../packages/react"),
@@ -94,8 +164,28 @@ export async function captureScreenshot(context, componentName, example) {
     await page.waitForSelector("#demo-root:not(:empty)", { timeout: 5000 });
     await page.waitForTimeout(500);
 
-    const screenshot = await page.locator("#demo-root").first().screenshot({
-      timeout: 10000,
+    // Check if there's a dialog or other portal-rendered content
+    const dialog = page
+      .locator('[role="dialog"], [role="alertdialog"]')
+      .first();
+    const hasDialog = (await dialog.count()) > 0;
+
+    // Get bounding box and add padding
+    const targetLocator = hasDialog
+      ? dialog
+      : page.locator("#demo-root").first();
+    const box = await targetLocator.boundingBox();
+
+    const screenshot = await page.screenshot({
+      animations: "disabled",
+      clip: box
+        ? {
+            height: box.height + SCREENSHOT_PADDING * 2,
+            width: box.width + SCREENSHOT_PADDING * 2,
+            x: Math.max(0, box.x - SCREENSHOT_PADDING),
+            y: Math.max(0, box.y - SCREENSHOT_PADDING),
+          }
+        : undefined,
       type: "png",
     });
 
@@ -139,7 +229,7 @@ function createDemoHTML(bundledJS, css) {
   <style>
     body {
       margin: 0;
-      padding: 24px;
+      padding: ${SCREENSHOT_PADDING}px;
       font-family: system-ui, -apple-system, sans-serif;
     }
     #demo-root {
