@@ -16,6 +16,8 @@ export interface ArrayResponse<T> {
  * Complete metadata for a single component
  */
 export interface ComponentInfo {
+  /** Component categories for grouping and discovery (e.g., ["form", "input"]) */
+  category?: string[];
   /** All components in this group (only present on primary component) */
   components?: string[];
   /** If deprecated, when and what to use instead */
@@ -44,9 +46,7 @@ export interface ComponentInfo {
  * Deprecation information
  */
 export interface DeprecationInfo {
-  /** Additional migration notes */
-  notes?: string;
-  /** What to use instead */
+  /** Component to use instead */
   replacement?: string;
   /** Version when deprecated */
   since: string;

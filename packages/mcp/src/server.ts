@@ -105,18 +105,22 @@ server.registerTool(
     title: "List Components",
   },
   async () => {
-    // Only return primary components (those without a group, or those where name === group)
-    const data = getAllComponents()
-      .filter((c) => !c.group || c.name === c.group)
-      .map((component) => ({
-        description: component.description,
-        name: component.name,
-      }));
-
     return {
       content: [
         {
-          text: jsonify(createArrayResponse(data)),
+          text: jsonify(
+            createArrayResponse(
+              getAllComponents()
+                // Only return primary components (those without a group, or
+                // those where name === group)
+                .filter((c) => !c.group || c.name === c.group)
+                .map((component) => ({
+                  category: component.category,
+                  description: component.description,
+                  name: component.name,
+                })),
+            ),
+          ),
           type: "text" as const,
         },
       ],
@@ -146,6 +150,12 @@ server.registerTool(
       "After finding a component, ALWAYS use get_component() to read full details - DO NOT assume defaults based on standard HTML/CSS behavior. " +
       "NOTE: All Axiom components are installed via the same npm package: npm install @optiaxiom/react",
     inputSchema: {
+      category: z
+        .string()
+        .optional()
+        .describe(
+          "Filter by category (e.g., 'form', 'layout', 'navigation', 'feedback', 'overlay', 'data-display', 'actions', 'typography')",
+        ),
       limit: z
         .number()
         .optional()
@@ -153,25 +163,34 @@ server.registerTool(
         .describe("Maximum results to return (default: 10)"),
       query: z
         .string()
-        .describe("Search query (component name, keyword, or description)"),
+        .optional()
+        .default("")
+        .describe(
+          "Search query (component name, keyword, or description). Leave empty to browse all components or all components in a category.",
+        ),
     },
     title: "Search Components",
   },
-  async ({ limit, query }) => {
-    const data = searchComponents({
-      components: getAllComponents(),
-      limit,
-      query,
-    }).map((result) => ({
-      description: result.description,
-      import: result.import,
-      name: result.name,
-    }));
-
+  async ({ category, limit, query }) => {
     return {
       content: [
         {
-          text: jsonify(createArrayResponse(data, { query })),
+          text: jsonify(
+            createArrayResponse(
+              searchComponents({
+                category,
+                components: getAllComponents(),
+                limit,
+                query,
+              }).map((result) => ({
+                category: result.category,
+                description: result.description,
+                import: result.import,
+                name: result.name,
+              })),
+              { query },
+            ),
+          ),
           type: "text" as const,
         },
       ],
