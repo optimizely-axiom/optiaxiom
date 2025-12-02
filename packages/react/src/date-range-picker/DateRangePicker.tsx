@@ -30,6 +30,7 @@ type DateRange = { from: Date; to: Date };
 /**
  * Calendar popover that lets user pick date ranges.
  *
+ * @category date
  * @group DateRangePicker
  * @since 1.4.0
  * @extends Popover

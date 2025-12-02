@@ -27,6 +27,7 @@ export type SidebarProps = BoxProps<
  * Primary navigation menu for left side of the page that includes support for branding, links, etc.
  *
  * @group Sidebar
+ * @category navigation
  * @since 0.4.0
  */
 export const Sidebar = forwardRef<HTMLDivElement, SidebarProps>(

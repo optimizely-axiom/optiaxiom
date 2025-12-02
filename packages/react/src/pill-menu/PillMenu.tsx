@@ -35,6 +35,9 @@ export type PillMenuProps = BoxProps<
  *
  * @since 1.6.2
  * @experimental
+ * @category data-display
+ * @category overlay
+
  */
 export const PillMenu = forwardRef<HTMLDivElement, PillMenuProps>(
   (

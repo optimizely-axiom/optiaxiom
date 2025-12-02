@@ -36,6 +36,7 @@ export type FieldProps = BoxProps<
 /**
  * Wrapper for inputs to provide context such as label/help/required etc.
  *
+ * @category form
  * @since 0.1.0
  */
 export const Field = forwardRef<HTMLDivElement, FieldProps>(

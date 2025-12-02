@@ -19,6 +19,7 @@ export type TabsProps = BoxProps<typeof RadixTabs.Root>;
  *
  * @group Tabs
  * @since 0.1.0
+ * @category navigation
  */
 export const Tabs = forwardRef<HTMLDivElement, TabsProps>(
   ({ children, className, ...props }, ref) => {

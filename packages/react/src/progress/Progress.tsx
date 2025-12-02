@@ -11,6 +11,8 @@ export type ProgressProps = BoxProps<typeof ProgressPrimitive.Root> &
  * Display feedback on status of task or length of a process.
  *
  * @since 0.1.0
+ * @category feedback
+ * @category data-display
  */
 export const Progress = forwardRef<HTMLDivElement, ProgressProps>(
   ({ className, intent = "primary", ...props }, ref) => {

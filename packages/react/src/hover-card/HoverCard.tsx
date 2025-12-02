@@ -11,6 +11,7 @@ export type HoverCardProps = ComponentPropsWithoutRef<
 /**
  * Display helpful text or previews inside a dialog when hovering over a link or button.
  *
+ * @category overlay
  * @group HoverCard
  * @since 1.7.6
  * @experimental

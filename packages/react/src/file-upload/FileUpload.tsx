@@ -31,6 +31,7 @@ export type FileUploadProps = BoxProps<
 /**
  * Capture file input from users with drag and drop.
  *
+ * @category form
  * @since 1.6.0
  * @experimental
  */

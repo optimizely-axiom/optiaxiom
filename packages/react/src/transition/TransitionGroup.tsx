@@ -15,6 +15,11 @@ import {
 } from "./TransitionGroupContext";
 import { waitForAnimation } from "./waitForAnimation";
 
+/**
+ * Manages the presence and animation lifecycle of children during transitions.
+ *
+ * @category animation
+ */
 export function TransitionGroup({
   children,
   forceMount,

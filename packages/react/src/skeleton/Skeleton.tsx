@@ -26,6 +26,8 @@ export type SkeletonProps = BoxProps<
 /**
  * Display placeholder content while data is loading.
  *
+ * @category feedback
+ * @category layout
  * @since 0.1.0
  */
 export const Skeleton = forwardRef<HTMLSpanElement, SkeletonProps>(

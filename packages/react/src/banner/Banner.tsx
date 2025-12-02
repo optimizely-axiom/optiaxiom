@@ -33,6 +33,8 @@ const mapIntentToIcon = {
 /**
  * Display a prominent message at the top of the screen.
  *
+ * @category feedback
+ * @category layout
  * @since 0.1.0
  */
 export const Banner = forwardRef<HTMLDivElement, BannerProps>(

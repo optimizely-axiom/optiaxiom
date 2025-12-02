@@ -70,6 +70,7 @@ export type RangeProps = BoxProps<
 /**
  * Allow users to select a numeric value within a range.
  *
+ * @category form
  * @since 1.7.12
  * @experimental
  */

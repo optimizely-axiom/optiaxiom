@@ -43,6 +43,7 @@ export type PaginationProps = BoxProps<
 /**
  * Display active page and navigate between multiple pages.
  *
+ * @category navigation
  * @since 0.1.0
  */
 export const Pagination = forwardRef<HTMLElement, PaginationProps>(

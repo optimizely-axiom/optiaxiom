@@ -20,6 +20,7 @@ export type DataTableProps = BoxProps<
 /**
  * Easy to use table and datagrids built using [TanStack Table](https://tanstack.com/table/latest).
  *
+ * @category data-display
  * @group DataTable
  * @since 1.4.0
  */

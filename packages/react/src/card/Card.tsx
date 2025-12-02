@@ -14,6 +14,7 @@ export type CardProps = BoxProps<"div">;
  *
  * @group Card
  * @since 1.6.0
+ * @category container
  */
 export const Card = forwardRef<HTMLDivElement, CardProps>(
   ({ children, className, ...props }, ref) => {

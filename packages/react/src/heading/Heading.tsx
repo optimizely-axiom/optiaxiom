@@ -59,6 +59,7 @@ const mapLevelToFontSize = {
  *
  * Don't use Text component for headings - it lacks semantic meaning.
  *
+ * @category typography
  * @since 0.1.0
  * @extends Text
  */

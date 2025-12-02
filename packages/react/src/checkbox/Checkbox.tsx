@@ -16,6 +16,7 @@ export type CheckboxProps = BoxProps<
  * Basic control to allow selecting one or more items from a set.
  *
  * @since 0.1.0
+ * @category form
  */
 export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
   ({ children, description, indeterminate, ...props }, ref) => {

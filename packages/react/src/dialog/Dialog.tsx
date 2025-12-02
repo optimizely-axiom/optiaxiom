@@ -29,6 +29,7 @@ export type DialogProps = {
 /**
  * Display a modal dialog box.
  *
+ * @category overlay
  * @group Dialog
  * @since 0.1.0
  */

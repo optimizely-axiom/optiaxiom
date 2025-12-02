@@ -20,6 +20,7 @@ export type SearchInputProps = ComponentPropsWithRef<typeof Input> & {
 /**
  * Basic search input field with clear button.
  *
+ * @category form
  * @since 0.1.0
  * @extends Input
  */

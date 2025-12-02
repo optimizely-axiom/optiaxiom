@@ -35,6 +35,7 @@ const mapIntentToIcon = {
 /**
  * Keeps users informed of important and sometimes time-sensitive changes.
  *
+ * @category feedback
  * @since 0.1.0
  */
 export const Alert = forwardRef<HTMLDivElement, AlertProps>(

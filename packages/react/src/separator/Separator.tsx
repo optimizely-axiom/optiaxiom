@@ -16,6 +16,7 @@ export type SeparatorProps = BoxProps<
  * `Separator` component is used to visually separate items in a list or group. By default the orientation is set to `horizontal`.
  *
  * @since 0.1.0
+ * @category layout
  */
 export const Separator = forwardRef<HTMLDivElement, SeparatorProps>(
   ({ className, orientation = "horizontal", ...props }, ref) => {

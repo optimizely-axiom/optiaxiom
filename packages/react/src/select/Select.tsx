@@ -81,6 +81,7 @@ export type SelectProps = {
  * use Menu instead.
  *
  * @group Select
+ * @category form
  * @since 1.4.0
  */
 export const Select = forwardRef<HTMLSelectElement, SelectProps>(

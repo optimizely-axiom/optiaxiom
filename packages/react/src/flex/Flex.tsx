@@ -49,6 +49,7 @@ const mapDirectionToAlign = {
  * - gap: '16'
  * - alignItems: 'stretch' (when column) or 'center' (when row)
  *
+ * @category layout
  * @extends Box
  */
 export const Flex = forwardRef<HTMLDivElement, FlexProps>(

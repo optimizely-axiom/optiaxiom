@@ -22,6 +22,7 @@ const mapAppearanceToFg = {
 /**
  * Used for indicating an unspecified wait time.
  *
+ * @category feedback
  * @since 0.1.0
  */
 export const Spinner = forwardRef<HTMLDivElement, SpinnerProps>(

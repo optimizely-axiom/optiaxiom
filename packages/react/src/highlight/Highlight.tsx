@@ -22,6 +22,7 @@ export type HighlightProps = BoxProps<
 /**
  * Highlight query terms within text content.
  *
+ * @category data-display
  * @experimental
  */
 export const Highlight = forwardRef<HTMLDivElement, HighlightProps>(

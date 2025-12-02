@@ -40,6 +40,7 @@ export type DisclosureProps = BoxProps<
  * instead.
  *
  * @group Disclosure
+ * @category actions
  * @since 0.1.0
  */
 export const Disclosure = forwardRef<HTMLDivElement, DisclosureProps>(

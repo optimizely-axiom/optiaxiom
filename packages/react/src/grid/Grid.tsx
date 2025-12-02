@@ -8,6 +8,7 @@ export type GridProps = ComponentPropsWithRef<typeof Box>;
  * Use `Grid` component to place items in a grid using equal width columns.
  *
  * @since 0.1.0
+ * @category layout
  */
 export const Grid = forwardRef<HTMLDivElement, GridProps>(
   (
