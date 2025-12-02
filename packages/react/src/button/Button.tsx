@@ -55,6 +55,7 @@ export type ButtonProps<
  *   icon and manual state.
  * - Don't use Button to build tab navigation - use Tabs instead.
  *
+ * @category actions
  * @since 0.1.0
  */
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(

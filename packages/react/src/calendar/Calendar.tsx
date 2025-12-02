@@ -127,6 +127,7 @@ const components = {
 /**
  * Base date picker component.
  *
+ * @category date
  * @since 0.12.1
  * @experimental
  */

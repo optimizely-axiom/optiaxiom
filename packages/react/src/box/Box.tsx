@@ -31,6 +31,16 @@ export type BoxProps<T extends ElementType = "div", P = unknown> = ExtendProps<
   >
 >;
 
+/**
+ * A primitive layout component that provides access to design tokens and
+ * styling without custom CSS.
+ *
+ * Use `Box` for simple styling (padding, margin, colors, borders) when you
+ * don't need flexbox layout features. For flexbox layouts with
+ * direction/alignment, use `Flex` instead.
+ *
+ * @category layout
+ */
 export const Box = forwardRef<HTMLDivElement, BoxProps>(
   ({ asChild, className, ...props }, ref) => {
     const Comp = asChild ? Slot : "div";

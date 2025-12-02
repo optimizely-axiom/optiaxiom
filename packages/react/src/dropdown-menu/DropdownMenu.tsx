@@ -31,8 +31,10 @@ export type DropdownMenuProps = {
 /**
  * Display a dropdown menu.
  *
+ * @category overlay
  * @since 0.1.0
  * @deprecated since 1.6.0 use {@link Menu} instead
+ * @see Menu
  */
 export function DropdownMenu({
   children,

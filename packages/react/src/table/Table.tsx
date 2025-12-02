@@ -26,6 +26,7 @@ export type TableProps = BoxProps<"table", styles.TableVariants>;
  *
  * @group Table
  * @since 1.4.0
+ * @category data-display
  */
 export const Table = forwardRef<HTMLDivElement, TableProps>(
   ({ children, className, layout = "auto", style, ...props }, ref) => {

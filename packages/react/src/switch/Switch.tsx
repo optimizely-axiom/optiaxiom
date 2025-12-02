@@ -24,6 +24,7 @@ export type SwitchProps = BoxProps<
 /**
  * Control to allow toggling between checked and not checked state.
  *
+ * @category form
  * @since 0.1.0
  */
 export const Switch = forwardRef<HTMLInputElement, SwitchProps>(

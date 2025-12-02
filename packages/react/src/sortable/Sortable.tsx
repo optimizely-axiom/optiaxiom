@@ -47,6 +47,7 @@ type Items = Record<string, string[]> | string[];
  * Basic building blocks for sortable interfaces.
  *
  * @group Sortable
+ * @category actions
  * @since 1.5.0
  * @experimental
  */

@@ -19,6 +19,8 @@ export type SegmentedControlProps = BoxProps<
  * Toggle buttons for switching between different values or views.
  *
  * @group SegmentedControl
+ * @category actions
+ * @category form
  * @since 0.2.0
  */
 export const SegmentedControl = forwardRef<

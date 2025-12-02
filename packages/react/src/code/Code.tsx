@@ -12,6 +12,7 @@ export type CodeProps = BoxProps<"code">;
  * Display inline code.
  *
  * @since 0.1.0
+ * @category data-display
  */
 export const Code = forwardRef<HTMLElement, CodeProps>(
   ({ asChild, children, className, ...props }, ref) => {

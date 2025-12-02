@@ -39,6 +39,7 @@ const mapModifierToCode = {
 /**
  * Inline text representing keyboard input.
  *
+ * @category data-display
  * @since 0.1.0
  * @extends Code
  */

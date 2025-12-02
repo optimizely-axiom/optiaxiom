@@ -22,6 +22,7 @@ export type AlertDialogProps = {
 /**
  * Display a modal with important content that expects confirmation from the user.
  *
+ * @category overlay
  * @group AlertDialog
  * @since 0.1.0
  */

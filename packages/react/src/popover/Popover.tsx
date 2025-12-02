@@ -28,6 +28,7 @@ export type PopoverProps = {
 /**
  * Display arbitrary rich content inside a non-modal dialog triggered by a button.
  *
+ * @category overlay
  * @group Popover
  * @since 0.1.0
  */

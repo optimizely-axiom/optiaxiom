@@ -37,6 +37,8 @@ export type IndicatorProps = BoxProps<
 /**
  * Display a badge at the corner of another element.
  *
+ * @category data-display
+ * @category feedback
  * @since 0.1.0
  */
 export const Indicator = forwardRef<HTMLDivElement, IndicatorProps>(

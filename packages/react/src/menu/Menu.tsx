@@ -64,6 +64,7 @@ export type MenuProps = ExcludeProps<
  *
  * For simple single-select form inputs, use Select instead.
  *
+ * @category overlay
  * @group Menu
  * @since 1.6.0
  */

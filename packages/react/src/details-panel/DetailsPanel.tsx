@@ -16,6 +16,7 @@ export type DetailsPanelProps = BoxProps<"aside">;
  * @group DetailsPanel
  * @since 1.6.0
  * @experimental
+ * @category container
  */
 export const DetailsPanel = forwardRef<HTMLElement, DetailsPanelProps>(
   ({ asChild, children, className, ...props }, ref) => {

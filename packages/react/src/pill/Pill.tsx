@@ -22,6 +22,7 @@ export type PillProps = BoxProps<
 /**
  * A pill is a visual representation of an attribute, usually representing tags or metrics.
  *
+ * @category data-display
  * @since 0.12.4
  * @experimental
  */

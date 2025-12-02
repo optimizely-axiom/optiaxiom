@@ -29,6 +29,7 @@ export type LayoutProps = BoxProps<
 /**
  * Implement a basic page layout with multiple content areas.
  *
+ * @category layout
  * @since 1.6.0
  * @experimental
  */

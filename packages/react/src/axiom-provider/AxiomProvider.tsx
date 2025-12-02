@@ -49,6 +49,7 @@ interface TooltipProviderProps
 /**
  * `AxiomProvider` provides all the context managers required for our components to work. It must be rendered at the root of your application and should be used only once.
  *
+ * @category provider
  * @since 0.1.0
  */
 export function AxiomProvider({

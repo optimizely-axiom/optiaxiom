@@ -12,6 +12,8 @@ export type BadgeProps = TextProps<"span", styles.BadgeVariants>;
  * Use to emphasize a status, count, state or value.
  *
  * @since 0.1.0
+ * @category data-display
+ * @category feedback
  */
 export const Badge = forwardRef<HTMLSpanElement, BadgeProps>(
   (

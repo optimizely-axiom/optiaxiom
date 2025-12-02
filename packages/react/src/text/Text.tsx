@@ -26,6 +26,7 @@ export type TextProps<T extends ElementType = "p", P = unknown> = BoxProps<
  *   indicates a heading.
  *
  * @since 0.1.0
+ * @category typography
  */
 export const Text = forwardRef<HTMLParagraphElement, TextProps>(
   ({ asChild, children, className, lineClamp, truncate, ...props }, ref) => {

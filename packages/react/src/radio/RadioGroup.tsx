@@ -55,6 +55,7 @@ const mapGapToOrientation = {
 /**
  * Basic control to allow selecting only one item from a set.
  *
+ * @category form
  * @since 0.1.0
  */
 export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>(

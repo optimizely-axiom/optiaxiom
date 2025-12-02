@@ -40,6 +40,7 @@ export type TextareaProps = InputControlProps<
 /**
  * Multi-line text field for capturing user input.
  *
+ * @category form
  * @since 0.1.0
  */
 export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(

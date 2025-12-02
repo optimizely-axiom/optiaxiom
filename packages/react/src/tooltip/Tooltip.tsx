@@ -41,8 +41,10 @@ export type TooltipProps = ExcludeProps<
 >;
 
 /**
- * Popup with brief information shown when user interacts with an element using keyboard focus or mouse hover.
+ * Popup with brief information shown when user interacts with an element using
+ * keyboard focus or mouse hover.
  *
+ * @category overlay
  * @since 0.1.0
  */
 export function Tooltip({

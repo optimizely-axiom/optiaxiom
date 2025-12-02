@@ -24,6 +24,11 @@ export type TransitionProps = styles.TransitionVariants & {
   type?: "fade" | "pop";
 };
 
+/**
+ * Component for animating element transitions with fade and pop effects.
+ *
+ * @category animation
+ */
 export const Transition = forwardRef<HTMLDivElement, TransitionProps>(
   (
     {
