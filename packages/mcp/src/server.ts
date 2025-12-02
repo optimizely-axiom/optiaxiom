@@ -39,7 +39,14 @@ server.registerTool(
       "- Flex defaults to flexDirection='column' (VERTICAL), NOT 'row' like standard CSS\n" +
       "- Flex defaults to alignItems='stretch' in column layouts, 'center' in row layouts\n" +
       "- For form layouts with Input/Button/Textarea: use alignItems='start' to prevent inputs from stretching to full width\n" +
-      '- Example: <Flex alignItems="start"><Input /><Button /></Flex>\n\n' +
+      '- Example: <Flex alignItems="start"><Input /><Button /></Flex>\n' +
+      "- Best practice: Use Flex for layout direction/alignment, use Box for simple styling (padding, margin, colors)\n" +
+      "- Box is a lighter primitive; only use Flex when you need flexbox layout features\n\n" +
+      "⚠️ TABLE COMPONENT PREFERENCE:\n" +
+      "- ALWAYS use DataTable instead of Table for displaying tabular data\n" +
+      "- Table is a low-level primitive; DataTable provides sorting, pagination, filtering, etc.\n" +
+      "- DataTable is built with TanStack Table and offers a much better developer experience\n" +
+      "- Only use Table directly for very specific custom table layouts\n\n" +
       "---\n\n" +
       "Get detailed information about a specific Axiom component including props, examples, and usage guidelines. " +
       "Pay special attention to the component description and prop defaults, as Axiom components may have different defaults than standard HTML/CSS. " +
@@ -86,6 +93,9 @@ server.registerTool(
       "⚠️ IMPORTANT LAYOUT DEFAULTS:\n" +
       "- Flex defaults to flexDirection='column' and alignItems='stretch'\n" +
       '- For forms with Input/Button: use <Flex alignItems="start"> to prevent stretching\n\n' +
+      "⚠️ TABLE COMPONENTS:\n" +
+      "- ALWAYS use DataTable instead of Table for displaying data\n" +
+      "- DataTable provides sorting, pagination, filtering, and better UX\n\n" +
       "---\n\n" +
       "List all available Axiom components with their descriptions. " +
       "Use this to discover what components are available. " +
@@ -127,6 +137,9 @@ server.registerTool(
       "⚠️ LAYOUT COMPONENT DEFAULTS:\n" +
       "- Flex defaults to flexDirection='column' and alignItems='stretch'\n" +
       '- For forms with Input/Button: use <Flex alignItems="start"> to prevent stretching\n\n' +
+      "⚠️ TABLE COMPONENTS:\n" +
+      "- Prefer DataTable over Table for displaying tabular data\n" +
+      "- DataTable includes sorting, pagination, and filtering out of the box\n\n" +
       "---\n\n" +
       "Search Axiom components by name, description, or keywords. " +
       "Returns a list of matching components. " +

@@ -35,11 +35,14 @@ const mapDirectionToAlign = {
 /**
  * Stack items vertically or horizontally in a flex container.
  *
- * 🚨 CRITICAL: DEFAULT IS VERTICAL (flexDirection='column')
+ * 🚨 Use `<Flex>` for vertical stacking and `<Flex flexDirection="row">` for
+ * horizontal stacking, as our component does NOT use the standard CSS `row`
+ * default.
  *
- * Unlike standard CSS flexbox which defaults to row, Axiom Flex defaults to
- * flexDirection='column' (VERTICAL stacking). For horizontal layouts, you
- * MUST explicitly set flexDirection='row'.
+ * Best Practices:
+ * - Use Flex for layout direction (flexDirection, gap, alignment)
+ * - Use Box for simpler styling needs (padding, margin, borders, colors)
+ * - Box is a lighter primitive; Flex adds flexbox-specific defaults
  *
  * Default Props:
  * - flexDirection: 'column' (NOT 'row' like CSS!)
