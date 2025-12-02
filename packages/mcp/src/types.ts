@@ -104,6 +104,16 @@ export interface Guide {
 }
 
 /**
+ * Icon information
+ */
+export interface IconInfo {
+  /** Import statement example */
+  import: string;
+  /** Icon component name (e.g., "IconMessages") */
+  name: string;
+}
+
+/**
  * Metadata about the component data generation
  */
 export interface Metadata {
