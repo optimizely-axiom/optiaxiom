@@ -1,0 +1,176 @@
+# MCP Server
+
+The Axiom MCP (Model Context Protocol) server enables AI assistants like Claude Code and Cursor to access accurate component metadata, design tokens, and icons from the Axiom Design System.
+
+## What is MCP?
+
+[Model Context Protocol (MCP)](https://modelcontextprotocol.io) is an open protocol by Anthropic that allows AI assistants to securely connect to external data sources and tools. The Axiom MCP server provides AI coding assistants with real-time access to:
+
+- Component documentation and props
+- Design tokens for colors, spacing, typography, and more
+- Icon search capabilities (Optimizely staff only)
+- Setup guides and best practices
+
+## Installation
+
+### Claude Code
+
+Add the MCP server to your workspace configuration file at `.vscode/mcp.json`:
+
+```json
+{
+  "servers": {
+    "axiom": {
+      "command": "npx",
+      "args": ["-y", "@optiaxiom/mcp"]
+    }
+  }
+}
+```
+
+### Cursor
+
+Add to your Cursor MCP configuration:
+
+```json
+{
+  "mcpServers": {
+    "axiom": {
+      "command": "npx",
+      "args": ["-y", "@optiaxiom/mcp"]
+    }
+  }
+}
+```
+
+### Global Installation (Optional)
+
+For faster startup times, you can install the package globally:
+
+```sh npm2yarn
+npm install -g @optiaxiom/mcp
+```
+
+Then update your configuration to use the global installation:
+
+```json
+{
+  "servers": {
+    "axiom": {
+      "command": "@optiaxiom/mcp"
+    }
+  }
+}
+```
+
+## Usage
+
+Once configured, you can ask your AI assistant natural language questions about Axiom:
+
+### Component Discovery
+
+- "What components are available in Axiom?"
+- "Show me how to use the Badge component"
+- "Find navigation components"
+- "Create a form with Input and Button components"
+
+### Component Details
+
+- "What props does the DataTable component accept?"
+- "Show me examples of using the Alert component"
+- "How do I use the Tabs component?"
+
+### Design Tokens
+
+- "What color tokens are available?"
+- "Convert this Figma color #4F576E to an Axiom token"
+- "What spacing values can I use?"
+- "Show me font size tokens"
+
+### Icon Search (Optimizely Staff Only)
+
+- "Search for message icons"
+- "Find arrow icons"
+- "Show user-related icons"
+
+### Setup Guides
+
+- "Show me the getting started guide"
+- "How do I configure CSS imports?"
+- "Explain CSS layers setup"
+
+## Available Tools
+
+The MCP server provides the following tools:
+
+### Component Tools
+
+- **`list_components`** - List all available Axiom components
+- **`get_component`** - Get detailed information about a specific component
+- **`search_components`** - Search for components by name or description
+
+### Design Token Tools
+
+- **`get_tokens`** - Get all design token mappings (colors, spacing, typography, etc.)
+
+### Icon Tools (Optimizely Staff Only)
+
+- **`search_icons`** - Search for icons from the @optimizely/axiom-icons package
+
+## Features
+
+### Accurate Component Metadata
+
+The MCP server provides up-to-date component information extracted directly from the `@optiaxiom/react` package, including:
+
+- Component descriptions and usage guidelines
+- Complete prop definitions with types and defaults
+- Import statements
+- Code examples with screenshots
+- Versioning information
+
+### Design Token Conversion
+
+Convert Figma design values to Axiom semantic tokens:
+
+- Hex colors → `fg.*`, `bg.*` tokens
+- Pixel values → spacing, size tokens
+- Font specifications → typography tokens
+
+### Icon Discovery
+
+Search through 385+ licensed Font Awesome Pro icons by keyword or category. The search intelligently matches icon names (e.g., searching "message" finds `IconMessages`, `IconMessageBot`, `IconMessageLines`).
+
+### Important Notes
+
+The AI assistant will automatically:
+
+- Use correct component names (validates against Figma/external sources)
+- Apply proper default props (Axiom components may differ from standard HTML/CSS)
+- Follow Axiom best practices (e.g., using `DataTable` instead of `Table` for data display)
+- Use semantic tokens instead of hardcoded values
+
+## Troubleshooting
+
+### MCP Server Not Responding
+
+1. Restart your AI assistant (Claude Code or Cursor)
+2. Check that the MCP configuration file is valid JSON
+3. Verify the package is accessible: `npx @optiaxiom/mcp --version`
+
+### Icons Not Available
+
+Icon search is only available to Optimizely staff with access to the `@optimizely/axiom-icons` private package. Third-party developers should use alternative icon libraries.
+
+### Outdated Component Information
+
+The MCP server serves pre-generated metadata. To get the latest component information:
+
+1. Update `@optiaxiom/mcp` to the latest version
+2. Restart your AI assistant
+
+## Resources
+
+- [MCP Specification](https://modelcontextprotocol.io/specification)
+- [Axiom Design System](https://optimizely-axiom.github.io/optiaxiom/)
+- [MCP Package on npm](https://www.npmjs.com/package/@optiaxiom/mcp)

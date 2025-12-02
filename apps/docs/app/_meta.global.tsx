@@ -34,6 +34,8 @@ export default {
       index: "Installation",
       "test-environments": "Test Environments",
 
+      mcp: "MCP Server",
+
       "-- Guides": {
         title: "Guides",
         type: "separator",
