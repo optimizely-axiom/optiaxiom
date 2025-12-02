@@ -1,5 +1,11 @@
 # @optiaxiom/web-components
 
+## 0.11.16
+
+### Patch Changes
+
+- 75b4e29: add metadata to components and improve the docs
+
 ## 0.11.15
 
 ### Patch Changes

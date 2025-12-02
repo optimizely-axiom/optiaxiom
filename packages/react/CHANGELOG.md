@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 1.7.13
+
+### Patch Changes
+
+- 75b4e29: add metadata to components and improve the docs
+
 ## 1.7.12
 
 ### Patch Changes
