@@ -55,6 +55,17 @@ export const content = recipe({
   variants: {
     /**
      * Control the size/width of the dialog box.
+     *
+     * Size guidelines:
+     * - sm (400px): Simple forms, confirmations, 1-2 input fields
+     * - md (600-800px, default): Standard forms, 3-5 fields, medium content
+     * - lg (900-1400px): Complex forms, wide tables, multi-column layouts
+     * - fullscreen: Very large content, editors, dashboards
+     *
+     * 💡 Tip: When matching designs from screenshots, compare the content
+     * density and layout complexity against these guidelines. Start with 'md'
+     * (default) and only increase if the design clearly shows wider content or
+     * multi-column layouts.
      */
     size: {
       sm: style({

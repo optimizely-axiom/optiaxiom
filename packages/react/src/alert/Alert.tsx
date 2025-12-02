@@ -35,6 +35,12 @@ const mapIntentToIcon = {
 /**
  * Keeps users informed of important and sometimes time-sensitive changes.
  *
+ * Important Notes:
+ * - The `intent` prop uses "information" (not "info") for the blue
+ *   informational style
+ * - Default intent is "neutral" - only set intent when you need a specific
+ *   color/emphasis
+ *
  * @category feedback
  * @since 0.1.0
  */

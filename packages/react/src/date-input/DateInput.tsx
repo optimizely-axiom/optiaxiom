@@ -38,6 +38,23 @@ export type DateInputProps = ExtendProps<
     "holiday" | "placeholder" | "weekend"
   > & {
     /**
+     * The default date and time to use in the calendar picker when no value has
+     * been selected.
+     *
+     * **NOTE:** This is NOT a placeholder hint text for the input field. Native
+     * date inputs do not support placeholder text. The value format must be an
+     * Instant, PlainDate, PlainDateTime, or PlainTime (e.g., "2024-01-01",
+     * "2024-01-01T12:00", "12:00").
+     *
+     * @example
+     * // Set default time to noon when picking dates
+     * <DateInput placeholder="12:00" />
+     *
+     * // Set default date to a specific date
+     * <DateInput placeholder="2024-01-01" />
+     */
+    placeholder?: string;
+    /**
      * Control whether the input allows only date or both date and time.
      */
     type?: "date" | "datetime-local";
@@ -46,6 +63,12 @@ export type DateInputProps = ExtendProps<
 
 /**
  * Input field with calendar that lets user enter dates.
+ *
+ * Important Notes:
+ * - The `placeholder` prop sets the default date/time in the calendar picker,
+ *   NOT hint text for the input field (native date inputs don't support that)
+ * - Don't use `addonBefore` as it will override the calendar icon that opens
+ *   the date picker popover
  *
  * @category form
  * @category date

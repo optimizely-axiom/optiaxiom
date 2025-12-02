@@ -17,6 +17,10 @@ export type TextProps<T extends ElementType = "p", P = unknown> = BoxProps<
  * Renders text content for body copy, descriptions, and general text without
  * semantic meaning.
  *
+ * 🚨 Renders a `<p>` tag by default, which cannot be nested inside another
+ * `<p>` tag. For inline text styling within a paragraph, use `asChild` with a
+ * `<span>` element.
+ *
  * Use this for paragraphs, captions, descriptions, and non-heading text.
  *
  * When not to use:
