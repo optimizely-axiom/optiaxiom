@@ -57,7 +57,17 @@ export const content = recipe({
   ],
   variants: {
     /**
-     * Control the size/width of the dialog box.
+     * Control the size/width of the alert dialog box.
+     *
+     * Size guidelines:
+     * - sm (400px, default): Simple confirmations, brief messages, 1-2 actions
+     * - md (600px): Moderate content, longer messages, 2-3 actions
+     * - lg (800px): Detailed alerts with longer descriptions or more context
+     *
+     * 💡 Tip: When matching designs from screenshots, compare the content
+     * density and action count against these guidelines. Most alerts work well
+     * at 'sm' (default) and only need to increase if the design clearly shows
+     * more content.
      */
     size: {
       sm: style({

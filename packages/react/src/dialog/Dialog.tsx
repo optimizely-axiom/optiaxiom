@@ -29,6 +29,29 @@ export type DialogProps = {
 /**
  * Display a modal dialog box.
  *
+ * DialogHeader automatically includes a close button (X) in the top-right
+ * corner - do not manually add a close button to the header.
+ *
+ * Use Dialog for:
+ * - Forms and data entry
+ * - General content display
+ * - Multi-step workflows
+ * - Non-critical interactions
+ *
+ * For confirmations/destructive actions, use AlertDialog instead (which has no
+ * close button and requires explicit user choice).
+ *
+ * Basic structure:
+ * - Dialog: Root component for managing open/close state
+ * - DialogTrigger: Button that opens the dialog
+ * - DialogContent: Container with backdrop and positioning
+ * - DialogHeader: Title with built-in close button (X)
+ * - DialogBody: Main content area
+ * - DialogFooter: Action buttons (use DialogClose for cancel/close actions)
+ *
+ * For forms, wrap DialogBody and DialogFooter in DialogForm and use
+ * type="submit" on the primary action button.
+ *
  * @category overlay
  * @group Dialog
  * @since 0.1.0

@@ -290,31 +290,52 @@ export const unresponsiveProps = defineProperties({
 
     /**
      * Set the element's margin on all sides
+     *
+     * ⚠️ WARNING: Do NOT use arbitrary values like "10px", "5rem", or negative
+     * numbers like "-8". Only predefined spacing tokens are accepted.
      */
     m: ["marginBottom", "marginLeft", "marginRight", "marginTop"],
     /**
      * Set the element's left and right margin
+     *
+     * ⚠️ WARNING: Do NOT use arbitrary values like "10px", "5rem", or negative
+     * numbers like "-8". Only predefined spacing tokens are accepted.
      */
     mx: ["marginLeft", "marginRight"],
     /**
      * Set the element's top and bottom margin
+     *
+     * ⚠️ WARNING: Do NOT use arbitrary values like "10px", "5rem", or negative
+     * numbers like "-8". Only predefined spacing tokens are accepted.
      */
     my: ["marginBottom", "marginTop"],
 
     /**
      * Set the element's bottom margin
+     *
+     * ⚠️ WARNING: Do NOT use arbitrary values like "10px", "5rem", or negative
+     * numbers like "-8". Only predefined spacing tokens are accepted.
      */
     mb: ["marginBottom"],
     /**
      * Set the element's left margin
+     *
+     * ⚠️ WARNING: Do NOT use arbitrary values like "10px", "5rem", or negative
+     * numbers like "-8". Only predefined spacing tokens are accepted.
      */
     ml: ["marginLeft"],
     /**
      * Set the element's right margin
+     *
+     * ⚠️ WARNING: Do NOT use arbitrary values like "10px", "5rem", or negative
+     * numbers like "-8". Only predefined spacing tokens are accepted.
      */
     mr: ["marginRight"],
     /**
      * Set the element's top margin
+     *
+     * ⚠️ WARNING: Do NOT use arbitrary values like "10px", "5rem", or negative
+     * numbers like "-8". Only predefined spacing tokens are accepted.
      */
     mt: ["marginTop"],
 
@@ -325,31 +346,52 @@ export const unresponsiveProps = defineProperties({
 
     /**
      * Set the element's padding on all sides
+     *
+     * ⚠️ WARNING: Do NOT use arbitrary values like "10px" or "5rem". Only
+     * predefined spacing tokens are accepted.
      */
     p: ["paddingBottom", "paddingLeft", "paddingRight", "paddingTop"],
     /**
      * Set the element's left and right padding
+     *
+     * ⚠️ WARNING: Do NOT use arbitrary values like "10px" or "5rem". Only
+     * predefined spacing tokens are accepted.
      */
     px: ["paddingLeft", "paddingRight"],
     /**
      * Set the element's top and bottom padding
+     *
+     * ⚠️ WARNING: Do NOT use arbitrary values like "10px" or "5rem". Only
+     * predefined spacing tokens are accepted.
      */
     py: ["paddingBottom", "paddingTop"],
 
     /**
      * Set the element's bottom padding
+     *
+     * ⚠️ WARNING: Do NOT use arbitrary values like "10px" or "5rem". Only
+     * predefined spacing tokens are accepted.
      */
     pb: ["paddingBottom"],
     /**
      * Set the element's left padding
+     *
+     * ⚠️ WARNING: Do NOT use arbitrary values like "10px" or "5rem". Only
+     * predefined spacing tokens are accepted.
      */
     pl: ["paddingLeft"],
     /**
      * Set the element's right padding
+     *
+     * ⚠️ WARNING: Do NOT use arbitrary values like "10px" or "5rem". Only
+     * predefined spacing tokens are accepted.
      */
     pr: ["paddingRight"],
     /**
      * Set the element's top padding
+     *
+     * ⚠️ WARNING: Do NOT use arbitrary values like "10px" or "5rem". Only
+     * predefined spacing tokens are accepted.
      */
     pt: ["paddingTop"],
 
@@ -483,24 +525,55 @@ export const responsiveProps = defineProperties({
   shorthands: {
     /**
      * Set the element's maximum height. Only accepts predefined maxSize tokens.
+     *
+     * ⚠️ COMMON MISTAKE: Do not use arbitrary pixel values like "200" or "300".
+     * Use the closest valid token from the allowed values instead.
      */
     maxH: ["maxHeight"],
     /**
      * Set the element's maximum width. Only accepts predefined maxSize tokens.
+     *
+     * ⚠️ COMMON MISTAKE: Do not use arbitrary pixel values like "200" or "300".
+     * Use the closest valid token from the allowed values instead.
      */
     maxW: ["maxWidth"],
 
     /**
-     * Set the element's width and height. Only accepts predefined values: size tokens (xs, sm, md, etc.), numeric spacing values (16, 24, 32), fractional percentages (1/2, 1/3), or special keywords (auto, full, fit, max, min).
+     * Set the element's width and height. Only accepts predefined values: size
+     * tokens (xs, sm, md, etc.), numeric spacing values (16, 24, 32),
+     * fractional percentages (1/2, 1/3), or special keywords (auto, full, fit,
+     * max, min).
+     *
+     * ⚠️ COMMON MISTAKE: Do not use arbitrary pixel values like "200" or "300".
+     * Use the closest valid token from the allowed values instead.
+     *
+     * 💡 TIP: When width and height are the same, use `size` instead of setting
+     * both `w` and `h` separately (e.g., prefer `size="24"` over `w="24" h="24"`).
      */
     size: ["height", "width"],
 
     /**
-     * Set the element's height. Only accepts predefined values: size tokens (xs, sm, md, etc.), numeric spacing values (16, 24, 32), fractional percentages (1/2, 1/3), or special keywords (auto, full, fit, max, min).
+     * Set the element's height. Only accepts predefined values: size tokens
+     * (xs, sm, md, etc.), numeric spacing values (16, 24, 32), fractional
+     * percentages (1/2, 1/3), or special keywords (auto, full, fit, max, min).
+     *
+     * ⚠️ COMMON MISTAKE: Do not use arbitrary pixel values like "200" or "300".
+     * Use the closest valid token from the allowed values instead.
+     *
+     * 💡 TIP: When width and height are the same, use `size` instead of setting
+     * both `w` and `h` separately.
      */
     h: ["height"],
     /**
-     * Set the element's width. Only accepts predefined values: size tokens (xs, sm, md, etc.), numeric spacing values (16, 24, 32), fractional percentages (1/2, 1/3), or special keywords (auto, full, fit, max, min).
+     * Set the element's width. Only accepts predefined values: size tokens (xs,
+     * sm, md, etc.), numeric spacing values (16, 24, 32), fractional
+     * percentages (1/2, 1/3), or special keywords (auto, full, fit, max, min).
+     *
+     * ⚠️ COMMON MISTAKE: Do not use arbitrary pixel values like "200" or "300".
+     * Use the closest valid token from the allowed values instead.
+     *
+     * 💡 TIP: When width and height are the same, use `size` instead of setting
+     * both `w` and `h` separately.
      */
     w: ["width"],
   },
