@@ -4,7 +4,7 @@
   "repository": {
     "directory": "packages/mcp",
     "type": "git",
-    "url": "https://github.com/optimizely-axiom/optiaxiom.git"
+    "url": "git+https://github.com/optimizely-axiom/optiaxiom.git"
   },
   "description": "MCP server for Axiom Design System - enables AI assistants to generate accurate Axiom code",
   "keywords": [
@@ -23,7 +23,9 @@
     "README.md"
   ],
   "license": "Apache-2.0",
-  "bin": "dist/src/index.js",
+  "bin": {
+    "axiom-mcp": "dist/src/index.js"
+  },
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
   "scripts": {
