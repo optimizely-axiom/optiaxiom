@@ -1,5 +1,11 @@
 # @optiaxiom/mcp
 
+## 0.1.2
+
+### Patch Changes
+
+- f7bbc94: fix build script
+
 ## 0.1.1
 
 ### Patch Changes
