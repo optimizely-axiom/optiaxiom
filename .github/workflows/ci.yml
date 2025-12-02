@@ -28,6 +28,8 @@ jobs:
 
       - run: pnpm install
 
+      - run: pnpm exec playwright install chromium
+
       - run: |
           pnpm build
           pnpm --silent bundle-size > bundle-size-main.json
@@ -47,6 +49,8 @@ jobs:
           node-version-file: .node-version
 
       - run: pnpm install
+
+      - run: pnpm exec playwright install chromium
 
       - uses: actions/download-artifact@v4
 
