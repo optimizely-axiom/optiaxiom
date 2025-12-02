@@ -11,6 +11,7 @@ import {
   remToPx,
   toKebabCase,
 } from "./parsers.mjs";
+import { shouldGenerateScreenshot } from "./screenshots.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -46,10 +47,15 @@ export async function generateComponents(context) {
       continue;
     }
 
+    const baseDescription =
+      doc.description || `${name} component from Axiom Design System`;
+    const description = shouldGenerateScreenshot(name)
+      ? `${baseDescription}\n\n📸 See the 'usage' example screenshot to visualize how this looks.`
+      : baseDescription;
+
     /** @type {ComponentInfo} */
     const component = {
-      description:
-        doc.description || `${name} component from Axiom Design System`,
+      description,
       import: `import { ${name} } from '${
         "experimental" in doc.tags
           ? `@optiaxiom/react/unstable`
