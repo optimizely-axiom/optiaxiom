@@ -1,5 +1,9 @@
-import { Input } from "@optiaxiom/react";
+import { Field, Input } from "@optiaxiom/react";
 
 export function App() {
-  return <Input defaultValue="Some invalid value" error />;
+  return (
+    <Field error="Please enter a valid email address" label="Email">
+      <Input defaultValue="invalid-email" type="email" />
+    </Field>
+  );
 }
