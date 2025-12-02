@@ -31,26 +31,27 @@ export const server = new McpServer({
 server.registerTool(
   "get_component",
   {
-    description:
-      "🚨 CRITICAL: ALWAYS read component info to get actual defaults and behavior - DO NOT assume based on standard HTML/CSS!\n\n" +
-      "⚠️ VALIDATION REQUIRED WHEN USING EXTERNAL CODE: If component names came from Figma, screenshots, or other external sources, validate them with search_components() FIRST. " +
-      "External tools generate invalid names (BreadcrumbItem, TabsTab don't exist in Axiom).\n\n" +
-      "⚠️ SPECIAL ATTENTION FOR FLEX LAYOUTS:\n" +
-      "- Flex defaults to flexDirection='column' (VERTICAL), NOT 'row' like standard CSS\n" +
-      "- Flex defaults to alignItems='stretch' in column layouts, 'center' in row layouts\n" +
-      "- For form layouts with Input/Button/Textarea: use alignItems='start' to prevent inputs from stretching to full width\n" +
-      '- Example: <Flex alignItems="start"><Input /><Button /></Flex>\n' +
-      "- Best practice: Use Flex for layout direction/alignment, use Box for simple styling (padding, margin, colors)\n" +
-      "- Box is a lighter primitive; only use Flex when you need flexbox layout features\n\n" +
-      "⚠️ TABLE COMPONENT PREFERENCE:\n" +
-      "- ALWAYS use DataTable instead of Table for displaying tabular data\n" +
-      "- Table is a low-level primitive; DataTable provides sorting, pagination, filtering, etc.\n" +
-      "- DataTable is built with TanStack Table and offers a much better developer experience\n" +
-      "- Only use Table directly for very specific custom table layouts\n\n" +
-      "---\n\n" +
-      "Get detailed information about a specific Axiom component including props, examples, and usage guidelines. " +
-      "Pay special attention to the component description and prop defaults, as Axiom components may have different defaults than standard HTML/CSS. " +
-      "NOTE: All Axiom components are installed via the same npm package: npm install @optiaxiom/react",
+    description: `🚨 CRITICAL: ALWAYS read component info to get actual defaults and behavior - DO NOT assume based on standard HTML/CSS!
+
+⚠️ VALIDATION REQUIRED WHEN USING EXTERNAL CODE: If component names came from Figma, screenshots, or other external sources, validate them with search_components() FIRST. External tools generate invalid names (BreadcrumbItem, TabsTab don't exist in Axiom).
+
+⚠️ SPECIAL ATTENTION FOR FLEX LAYOUTS:
+- Flex defaults to flexDirection='column' (VERTICAL), NOT 'row' like standard CSS
+- Flex defaults to alignItems='stretch' in column layouts, 'center' in row layouts
+- For form layouts with Input/Button/Textarea: use alignItems='start' to prevent inputs from stretching to full width
+- Example: <Flex alignItems="start"><Input /><Button /></Flex>
+- Best practice: Use Flex for layout direction/alignment, use Box for simple styling (padding, margin, colors)
+- Box is a lighter primitive; only use Flex when you need flexbox layout features
+
+⚠️ TABLE COMPONENT PREFERENCE:
+- ALWAYS use DataTable instead of Table for displaying tabular data
+- Table is a low-level primitive; DataTable provides sorting, pagination, filtering, etc.
+- DataTable is built with TanStack Table and offers a much better developer experience
+- Only use Table directly for very specific custom table layouts
+
+---
+
+Get detailed information about a specific Axiom component including props, examples, and usage guidelines. Pay special attention to the component description and prop defaults, as Axiom components may have different defaults than standard HTML/CSS. NOTE: All Axiom components are installed via the same npm package: npm install @optiaxiom/react`,
     inputSchema: {
       name: z
         .string()
@@ -87,20 +88,19 @@ server.registerTool(
 server.registerTool(
   "list_components",
   {
-    description:
-      "⚠️ VALIDATION TIP: Use this list to verify component names from Figma/external sources. " +
-      "If a name doesn't appear here, it doesn't exist in Axiom.\n\n" +
-      "⚠️ IMPORTANT LAYOUT DEFAULTS:\n" +
-      "- Flex defaults to flexDirection='column' and alignItems='stretch'\n" +
-      '- For forms with Input/Button: use <Flex alignItems="start"> to prevent stretching\n\n' +
-      "⚠️ TABLE COMPONENTS:\n" +
-      "- ALWAYS use DataTable instead of Table for displaying data\n" +
-      "- DataTable provides sorting, pagination, filtering, and better UX\n\n" +
-      "---\n\n" +
-      "List all available Axiom components with their descriptions. " +
-      "Use this to discover what components are available. " +
-      "IMPORTANT: After selecting a component, ALWAYS use get_component() to read its full documentation - DO NOT assume behavior based on standard HTML/CSS. " +
-      "NOTE: All Axiom components are installed via the same npm package: npm install @optiaxiom/react",
+    description: `⚠️ VALIDATION TIP: Use this list to verify component names from Figma/external sources. If a name doesn't appear here, it doesn't exist in Axiom.
+
+⚠️ IMPORTANT LAYOUT DEFAULTS:
+- Flex defaults to flexDirection='column' and alignItems='stretch'
+- For forms with Input/Button: use <Flex alignItems="start"> to prevent stretching
+
+⚠️ TABLE COMPONENTS:
+- ALWAYS use DataTable instead of Table for displaying data
+- DataTable provides sorting, pagination, filtering, and better UX
+
+---
+
+List all available Axiom components with their descriptions. Use this to discover what components are available. IMPORTANT: After selecting a component, ALWAYS use get_component() to read its full documentation - DO NOT assume behavior based on standard HTML/CSS. NOTE: All Axiom components are installed via the same npm package: npm install @optiaxiom/react`,
     inputSchema: {},
     title: "List Components",
   },
@@ -132,23 +132,23 @@ server.registerTool(
 server.registerTool(
   "search_components",
   {
-    description:
-      "🔍 USE THIS FIRST FOR VALIDATION: When working with Figma/external code, ALWAYS call this tool to validate component names before use. " +
-      "Returns count: 0 if component doesn't exist.\n\n" +
-      "Common invalid names from Figma:\n" +
-      "- BreadcrumbItem, BreadcrumbLink → Use Breadcrumb with items prop\n" +
-      "- TabsTab → Use TabsTrigger\n\n" +
-      "⚠️ LAYOUT COMPONENT DEFAULTS:\n" +
-      "- Flex defaults to flexDirection='column' and alignItems='stretch'\n" +
-      '- For forms with Input/Button: use <Flex alignItems="start"> to prevent stretching\n\n' +
-      "⚠️ TABLE COMPONENTS:\n" +
-      "- Prefer DataTable over Table for displaying tabular data\n" +
-      "- DataTable includes sorting, pagination, and filtering out of the box\n\n" +
-      "---\n\n" +
-      "Search Axiom components by name, description, or keywords. " +
-      "Returns a list of matching components. " +
-      "After finding a component, ALWAYS use get_component() to read full details - DO NOT assume defaults based on standard HTML/CSS behavior. " +
-      "NOTE: All Axiom components are installed via the same npm package: npm install @optiaxiom/react",
+    description: `🔍 USE THIS FIRST FOR VALIDATION: When working with Figma/external code, ALWAYS call this tool to validate component names before use. Returns count: 0 if component doesn't exist.
+
+Common invalid names from Figma:
+- BreadcrumbItem, BreadcrumbLink → Use Breadcrumb with items prop
+- TabsTab → Use TabsTrigger
+
+⚠️ LAYOUT COMPONENT DEFAULTS:
+- Flex defaults to flexDirection='column' and alignItems='stretch'
+- For forms with Input/Button: use <Flex alignItems="start"> to prevent stretching
+
+⚠️ TABLE COMPONENTS:
+- Prefer DataTable over Table for displaying tabular data
+- DataTable includes sorting, pagination, and filtering out of the box
+
+---
+
+Search Axiom components by name, description, or keywords. Returns a list of matching components. After finding a component, ALWAYS use get_component() to read full details - DO NOT assume defaults based on standard HTML/CSS behavior. NOTE: All Axiom components are installed via the same npm package: npm install @optiaxiom/react`,
     inputSchema: {
       category: z
         .string()
@@ -202,23 +202,19 @@ server.registerTool(
 server.registerTool(
   "get_tokens",
   {
-    description:
-      "⚠️ EXTERNAL CODE TIP: Use this to convert Figma's hardcoded values (hex colors, px sizes) to Axiom's semantic tokens (bg.*, fg.*, h='md').\n\n" +
-      "---\n\n" +
-      "Get design token mappings for the Axiom Design System. " +
-      "Returns token-to-value mappings for: colors (hex values for light mode), sizes (px/rem for width/height), spacing (px/rem for margin/padding/gap), borderRadius, fontSize (with lineHeight), boxShadow, duration, fontFamily, and zIndex. " +
-      "Use this to convert Figma design values to semantic tokens (e.g., #4F576E → fg.secondary, 32px height → h='md'). " +
-      "NOTE: All Axiom components are installed via the same npm package: npm install @optiaxiom/react",
+    description: `⚠️ EXTERNAL CODE TIP: Use this to convert Figma's hardcoded values (hex colors, px sizes) to Axiom's semantic tokens (bg.*, fg.*, h='md').
+
+---
+
+Get design token mappings for the Axiom Design System. Returns token-to-value mappings for: colors (hex values for light mode), sizes (px/rem for width/height), spacing (px/rem for margin/padding/gap), borderRadius, fontSize (with lineHeight), boxShadow, duration, fontFamily, and zIndex. Use this to convert Figma design values to semantic tokens (e.g., #4F576E → fg.secondary, 32px height → h='md'). NOTE: All Axiom components are installed via the same npm package: npm install @optiaxiom/react`,
     inputSchema: {},
     title: "Get Design Tokens",
   },
   async () => {
-    const tokens = getTokens();
-
     return {
       content: [
         {
-          text: jsonify(createResponse(tokens)),
+          text: jsonify(createResponse(getTokens())),
           type: "text" as const,
         },
       ],
@@ -230,12 +226,7 @@ server.registerTool(
 server.registerTool(
   "search_icons",
   {
-    description:
-      "Search for icons from the @optimizely/axiom-icons package. " +
-      "This is a private package containing licensed Font Awesome Pro icons for Optimizely staff. " +
-      "Returns a list of matching icon component names. " +
-      "You can search by keywords (e.g., 'message', 'arrow', 'user') and the search will match icon names intelligently. " +
-      "NOTE: The @optimizely/axiom-icons package is private and only available to Optimizely staff.",
+    description: `Search for icons from the @optimizely/axiom-icons package. This is a private package containing licensed Font Awesome Pro icons for Optimizely staff. Returns a list of matching icon component names. You can search by keywords (e.g., 'message', 'arrow', 'user') and the search will match icon names intelligently. NOTE: The @optimizely/axiom-icons package is private and only available to Optimizely staff.`,
     inputSchema: {
       limit: z
         .number()
