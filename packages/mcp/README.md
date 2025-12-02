@@ -166,6 +166,60 @@ The AI assistant will use the MCP server to get accurate, up-to-date information
 pnpm -F mcp... build
 ```
 
+### Architecture
+
+#### Component Metadata Generation
+
+The MCP server serves pre-generated component metadata that is automatically extracted from the `@optiaxiom/react` package:
+
+- **Component descriptions** come from JSDoc comments on component exports (e.g., `packages/react/src/table/Table.tsx`)
+- **Props and types** are extracted from TypeScript definitions
+- **Examples** are pulled from demo files in the docs package
+- **Usage warnings** are embedded in JSDoc and automatically included in the `description` field
+- **Grouping and versioning** use JSDoc tags (`@group` and `@since`)
+
+**Important**: When adding warnings or guidance about component usage, add them to the component's JSDoc comment rather than the MCP server code. This ensures the information is:
+
+- Visible in IDEs (hover tooltips)
+- Included in generated documentation
+- Automatically served by the MCP server
+- Maintained in a single source of truth
+
+#### JSDoc Tags
+
+Use these tags in component JSDoc comments:
+
+- **`@group`**: Groups related components together (e.g., `@group Table` groups Table, TableRow, TableCell, etc.)
+- **`@since`**: Documents the version when the component was introduced (e.g., `@since 1.4.0`)
+- **`@experimental`**: Marks components as experimental/unstable, typically exported from `@optiaxiom/react/unstable`
+
+Example:
+
+```tsx
+/**
+ * Display tabular data using rows and columns.
+ *
+ * ⚠️ **IMPORTANT**: Consider using `DataTable` instead for displaying tabular data.
+ *
+ * @group Table
+ * @since 1.4.0
+ */
+export const Table = ...
+```
+
+For experimental components:
+
+```tsx
+/**
+ * Advanced spotlight component for command palette interfaces.
+ *
+ * @experimental
+ * @group Spotlight
+ * @since 1.5.0
+ */
+export const Spotlight = ...
+```
+
 ## Resources
 
 - [Axiom Design System](https://optimizely-axiom.github.io/optiaxiom/)
