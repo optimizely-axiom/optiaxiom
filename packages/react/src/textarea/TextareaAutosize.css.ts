@@ -47,6 +47,19 @@ export const wrapper = recipe({
       none: {},
       vertical: style({
         resize: "vertical",
+
+        selectors: {
+          "&::after": {
+            bottom: 0,
+            content: "",
+            display: "block",
+            height: 16,
+            pointerEvents: "none",
+            position: "absolute",
+            right: 0,
+            width: 16,
+          },
+        },
       }),
     },
   },
