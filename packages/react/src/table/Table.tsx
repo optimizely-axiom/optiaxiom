@@ -1,9 +1,9 @@
 import { forwardRef } from "react";
 
-import { Box, type BoxProps, extractBoxProps } from "../box";
+import { Box, type BoxProps } from "../box";
 import * as styles from "./Table.css";
 
-export type TableProps = BoxProps<"table", styles.TableVariants>;
+export type TableProps = BoxProps<"div", styles.TableVariants>;
 
 /**
  * Display tabular data using rows and columns.
@@ -30,11 +30,9 @@ export type TableProps = BoxProps<"table", styles.TableVariants>;
  */
 export const Table = forwardRef<HTMLDivElement, TableProps>(
   ({ children, className, layout = "auto", ...props }, ref) => {
-    const { boxProps, restProps } = extractBoxProps(props);
-
     return (
-      <Box ref={ref} {...styles.wrapper({}, className)} {...boxProps}>
-        <Box asChild {...styles.table({ layout })} {...restProps}>
+      <Box ref={ref} {...styles.wrapper({}, className)} {...props}>
+        <Box asChild {...styles.table({ layout })}>
           <table>{children}</table>
         </Box>
       </Box>
