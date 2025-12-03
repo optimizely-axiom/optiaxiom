@@ -17,6 +17,52 @@ const bgHoverColor = createVar({
   syntax: "<color>",
 });
 
+export const root = recipe({
+  base: [
+    {
+      display: "flex",
+      flexDirection: "column",
+      maxW: "full",
+      overflow: "hidden",
+      rounded: "lg",
+    },
+    style({
+      position: "relative",
+
+      selectors: {
+        "&[data-scroll-timeline]::after": {
+          backgroundImage:
+            "linear-gradient(to left, rgb(0 0 0 / 0.1), transparent)",
+          right: rightTotalSizeVar,
+        },
+        "&[data-scroll-timeline]::before": {
+          backgroundImage:
+            "linear-gradient(to right, rgb(0 0 0 / 0.1), transparent)",
+          left: leftTotalSizeVar,
+        },
+        "&[data-scroll-timeline]::before, &[data-scroll-timeline]::after": {
+          content: "",
+          display: "block",
+          height: "100%",
+          opacity: 0,
+          pointerEvents: "none",
+          position: "absolute",
+          top: 0,
+          transition: "0.3s opacity",
+          width: 8,
+          zIndex: 1,
+        },
+        '&[data-scroll-timeline]:not([data-scroll-timeline="left"])::before': {
+          opacity: 1,
+        },
+        '&[data-scroll-timeline]:not([data-scroll-timeline="right"])::after': {
+          opacity: 1,
+        },
+      },
+    }),
+  ],
+});
+
 export const cell = recipe({
   base: [
     {
