@@ -84,6 +84,7 @@ export const FieldLabel = forwardRef<HTMLDivElement, FieldLabelProps>(
           <Tooltip content={info}>
             <Button
               aria-label="Information hover"
+              bg="transparent"
               border="0"
               color="fg.secondary"
               h="2xs"
