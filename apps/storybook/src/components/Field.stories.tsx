@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Field, Flex, Input, Textarea } from "@optiaxiom/react";
+import { Box, Field, Flex, Input, Textarea } from "@optiaxiom/react";
 import { IconCalendar } from "@tabler/icons-react";
 
 export default {
@@ -86,6 +86,11 @@ export const Info: Story = {
   args: {
     info: "This is an important input",
   },
+  decorators: (Story) => (
+    <Box bg="bg.page" p="12">
+      <Story />
+    </Box>
+  ),
 };
 
 export const RequiredAndInfo: Story = {
