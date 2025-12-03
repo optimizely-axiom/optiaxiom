@@ -1,15 +1,17 @@
-import { getDocs } from "@optiaxiom/shared";
 import { createFilter } from "@rollup/pluginutils";
 import { basename, relative } from "node:path";
 import { ERROR_CODES, parse } from "react-docgen";
 import { displayNameHandler } from "react-docgen/dist/handlers";
 
 export function reactDocgenPlugin() {
-  const docs = getDocs();
   const filter = createFilter(
     /..\/..\/packages\/react\/dist\/.*\.js/,
     /-css\.js/,
   );
+
+  let docs: Awaited<
+    ReturnType<(typeof import("@optiaxiom/shared"))["getDocs"]>
+  > | null = null;
 
   return {
     enforce: "pre" as const,
@@ -17,6 +19,11 @@ export function reactDocgenPlugin() {
     async transform(code: string, id: string) {
       if (!filter(relative(process.cwd(), id))) {
         return;
+      }
+
+      if (!docs) {
+        const { getDocs } = await import("@optiaxiom/shared");
+        docs = getDocs();
       }
 
       try {
@@ -29,7 +36,7 @@ export function reactDocgenPlugin() {
 
         docgenResults.forEach((info) => {
           const { displayName } = info;
-          const docgenInfo = docs.find(
+          const docgenInfo = docs?.find(
             (doc: { displayName: string }) => doc.displayName === displayName,
           );
           if (displayName && docgenInfo) {
