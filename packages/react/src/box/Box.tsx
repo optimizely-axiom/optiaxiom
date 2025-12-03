@@ -42,7 +42,7 @@ export type BoxProps<T extends ElementType = "div", P = unknown> = ExtendProps<
  * @category layout
  */
 export const Box = forwardRef<HTMLDivElement, BoxProps>(
-  ({ asChild, className, ...props }, ref) => {
+  ({ asChild, className, style, ...props }, ref) => {
     const Comp = asChild ? Slot : "div";
     const { boxProps, restProps } = extractBoxProps(props);
 
@@ -50,6 +50,7 @@ export const Box = forwardRef<HTMLDivElement, BoxProps>(
       <Comp
         data-axiom={version}
         ref={ref}
+        style={style}
         {...styles.box({}, sprinklesMerge(className, sprinkles(boxProps)))}
         {...restProps}
       />

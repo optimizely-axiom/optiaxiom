@@ -29,16 +29,11 @@ export type TableProps = BoxProps<"table", styles.TableVariants>;
  * @category data-display
  */
 export const Table = forwardRef<HTMLDivElement, TableProps>(
-  ({ children, className, layout = "auto", style, ...props }, ref) => {
+  ({ children, className, layout = "auto", ...props }, ref) => {
     const { boxProps, restProps } = extractBoxProps(props);
 
     return (
-      <Box
-        ref={ref}
-        style={style}
-        {...styles.wrapper({}, className)}
-        {...boxProps}
-      >
+      <Box ref={ref} {...styles.wrapper({}, className)} {...boxProps}>
         <Box asChild {...styles.table({ layout })} {...restProps}>
           <table>{children}</table>
         </Box>
