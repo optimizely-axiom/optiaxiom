@@ -24,7 +24,6 @@ export const cell = recipe({
       display: "flex",
     },
     style({
-      flexGrow: `calc(${cellSizeVar} / ${totalSizeVar})`,
       width: `calc(1px * ${cellSizeVar})`,
     }),
   ],
@@ -74,6 +73,12 @@ export const cell = recipe({
         },
       }),
       header: {},
+    },
+    resizable: {
+      false: {},
+      true: style({
+        flexGrow: `calc(${cellSizeVar} / ${totalSizeVar})`,
+      }),
     },
   },
 });

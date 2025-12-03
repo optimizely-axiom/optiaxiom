@@ -93,7 +93,15 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
         style={assignInlineVars({
           [styles.leftTotalSizeVar]: `${table.getLeftTotalSize()}px`,
           [styles.rightTotalSizeVar]: `${table.getRightTotalSize()}px`,
-          [styles.totalSizeVar]: `${table.getTotalSize()}`,
+          [styles.totalSizeVar]: (
+            table
+              .getHeaderGroups()[0]
+              ?.headers.reduce(
+                (sum, header) =>
+                  sum + (header.column.getCanResize() ? header.getSize() : 0),
+                0,
+              ) ?? 0
+          ).toString(),
         })}
         {...props}
       >
@@ -116,6 +124,7 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
                     pinnedType: header.column.getIsPinned()
                       ? "header"
                       : undefined,
+                    resizable: header.column.getCanResize(),
                   })}
                 >
                   {header.isPlaceholder
@@ -190,6 +199,7 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
                   {...styles.cell({
                     pinned: "left",
                     pinnedType: "body",
+                    resizable: cell.column.getCanResize(),
                   })}
                 >
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
@@ -215,7 +225,9 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
                       [styles.cellSizeVar]: `${cell.column.getSize()}`,
                     }),
                   }}
-                  {...styles.cell()}
+                  {...styles.cell({
+                    resizable: cell.column.getCanResize(),
+                  })}
                 >
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
                 </TableCell>
@@ -234,6 +246,7 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
                   {...styles.cell({
                     pinned: "right",
                     pinnedType: "body",
+                    resizable: cell.column.getCanResize(),
                   })}
                 >
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
