@@ -20,8 +20,6 @@ Enable the `required` prop to display an asterisk for required inputs.
 
 <Demo component="field/required-usage" />
 
-The `required` prop will be available to the input element via a `FieldContext`.
-
 ### Description
 
 Use the `description` prop to provide help text for the input.
@@ -41,6 +39,40 @@ The `error` prop will be available as a boolean to the input element via a `Fiel
 Use the `info` prop to display a help icon with additional context for the input.
 
 <Demo component="field/info-usage" />
+
+### Field Context
+
+Field provides a `FieldContext` that automatically forwards the `error` prop to child input components. This allows inputs to style themselves appropriately (e.g., showing a red outline) when an error is present.
+
+For example, when you set `error` on a Field wrapping an Input, the Input receives the error state as a boolean and can apply error styling automatically.
+
+### Rich Content
+
+The `label`, `description`, `error`, and `info` props all accept `ReactNode`, allowing you to pass rich content beyond simple strings.
+
+<Demo component="field/rich-content-usage" />
+
+### With Different Inputs
+
+Field works with any form input component, not just Input.
+
+<Demo component="field/different-inputs-usage" />
+
+### Accessibility
+
+Field automatically handles accessibility attributes for you:
+
+- Associates labels with inputs using `htmlFor` and `id`
+- Connects error and description text using `aria-describedby`
+- Generates unique IDs for labels and inputs
+
+You can override the auto-generated IDs using the `inputId` and `labelId` props if needed for custom integrations.
+
+### Common Patterns
+
+Here are some common real-world patterns using Field:
+
+<Demo component="field/patterns-usage" />
 
 ## Props
 
