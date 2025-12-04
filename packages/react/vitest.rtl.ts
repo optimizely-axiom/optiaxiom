@@ -1,3 +1,6 @@
+import type {} from "react";
+import type {} from "react-dom/client";
+
 import * as _ from "@testing-library/dom";
 import { render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";

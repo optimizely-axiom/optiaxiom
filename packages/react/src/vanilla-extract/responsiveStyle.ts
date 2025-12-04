@@ -7,7 +7,7 @@ import { style } from "./style";
 type Breakpoint = keyof (typeof tokens)["screens"];
 
 export const responsiveStyle = (
-  rules: Partial<Record<Breakpoint, NonNullable<StyleRule["@media"]>[string]>>,
+  rules: Partial<Record<Breakpoint, Omit<StyleRule, "@media">>>,
 ) =>
   style({
     "@media": Object.fromEntries(

@@ -2,16 +2,15 @@
   "extends": "../../tsconfig.app.json",
   "compilerOptions": {
     "allowJs": true,
-    "baseUrl": ".",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
     "jsx": "preserve",
     "lib": ["dom", "dom.iterable", "esnext"],
     "paths": {
-      "@/components": ["components"],
-      "@/components/*": ["components/*"],
-      "@/demos/*": ["demos/*"],
+      "@/components": ["./components"],
+      "@/components/*": ["./components/*"],
+      "@/demos/*": ["./demos/*"],
       "@optiaxiom/globals": ["../../packages/globals/src"],
       "@optiaxiom/react": ["../../packages/react/src"],
       "@optiaxiom/react/unstable": ["../../packages/react/src/unstable"]

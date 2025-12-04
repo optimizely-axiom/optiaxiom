@@ -54,7 +54,7 @@ export const Layout = forwardRef<HTMLDivElement, LayoutProps>(
           {sidebar}
 
           {resizable ? (
-            <Resizable direction="horizontal">
+            <Resizable>
               <ResizablePanel minSize={33}>
                 <Box asChild h="full">
                   {children}

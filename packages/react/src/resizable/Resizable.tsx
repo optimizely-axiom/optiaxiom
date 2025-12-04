@@ -2,12 +2,15 @@ import type { ComponentPropsWithoutRef } from "react";
 
 import * as ResizablePrimitive from "react-resizable-panels";
 
-export type ResizableProps = ComponentPropsWithoutRef<
-  typeof ResizablePrimitive.PanelGroup
+import type { ExcludeProps } from "../utils";
+
+export type ResizableProps = ExcludeProps<
+  ComponentPropsWithoutRef<typeof ResizablePrimitive.PanelGroup>,
+  "direction"
 >;
 
-export const Resizable = ({ ...props }: ResizableProps) => {
-  return <ResizablePrimitive.PanelGroup {...props} />;
+export const Resizable = ({ ...props }: ResizableProps): JSX.Element => {
+  return <ResizablePrimitive.PanelGroup direction="horizontal" {...props} />;
 };
 
 Resizable.displayName = "@optiaxiom/react/Resizable";

@@ -34,5 +34,5 @@
     "**/dist": true,
     "**/lib": true
   },
-  "typescript.tsdk": "node_modules/typescript/lib"
+  "typescript.experimental.useTsgo": true
 }
