@@ -49,7 +49,7 @@ export const root = recipe({
           position: "absolute",
           top: 0,
           transition: "0.3s opacity",
-          width: 8,
+          width: 16,
           zIndex: 1,
         },
         '&[data-scroll-timeline]:not([data-scroll-timeline="left"])::before': {
