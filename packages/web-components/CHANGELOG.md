@@ -1,5 +1,14 @@
 # @optiaxiom/web-components
 
+## 0.11.17
+
+### Patch Changes
+
+- 46a92b2: handle cases where field info is present on grey bg
+- 9bc57a6: allow fixed column sizes in DataTable
+- 59e2832: fix textarea resize in safari
+- 50eea00: add shadows to scrollable tables
+
 ## 0.11.16
 
 ### Patch Changes
