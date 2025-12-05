@@ -12,7 +12,7 @@ import {
 import { IconLogout, IconPencil } from "@tabler/icons-react";
 import Image from "next/image";
 
-import beach from "@/demos/beach.jpg";
+import beach from "./beach.jpg";
 
 export function App() {
   return (

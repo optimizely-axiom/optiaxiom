@@ -1,19 +1,42 @@
-import { Box } from "@optiaxiom/react";
+import type { ComponentPropsWithoutRef } from "react";
 
-import { Canvas } from "@/demos/Canvas";
+import { Box, Flex } from "@optiaxiom/react";
 
 export function App() {
   return (
-    <Canvas alignItems="end" flexDirection="row" justifyContent="center">
-      <Box display={["none", "grid"]} h="384">
+    <Flex
+      alignItems="end"
+      flexDirection="row"
+      justifyContent="space-around"
+      w="full"
+    >
+      <DemoBox display={["none", "grid"]} h="384">
         h=384
-      </Box>
-      <Box display={["none", "grid"]} h="224">
+      </DemoBox>
+      <DemoBox display={["none", "grid"]} h="224">
         h=224
-      </Box>
-      <Box h="3xl">h=3xl</Box>
-      <Box h="64">h=64</Box>
-      <Box h="xl">h=xl</Box>
-    </Canvas>
+      </DemoBox>
+      <DemoBox h="3xl">h=3xl</DemoBox>
+      <DemoBox h="64">h=64</DemoBox>
+      <DemoBox h="xl">h=xl</DemoBox>
+    </Flex>
+  );
+}
+
+function DemoBox({ children, ...props }: ComponentPropsWithoutRef<typeof Box>) {
+  return (
+    <Box
+      bg="bg.avatar.purple"
+      display="grid"
+      fontFamily="mono"
+      fontSize="md"
+      fontWeight="600"
+      p="16"
+      placeItems="center"
+      rounded="sm"
+      {...props}
+    >
+      {children}
+    </Box>
   );
 }

@@ -1,30 +1,44 @@
-import { Text } from "@optiaxiom/react";
+import type { ComponentPropsWithoutRef } from "react";
 
-import { Canvas } from "../Canvas";
+import { Flex, Text } from "@optiaxiom/react";
 
 export function App() {
   return (
-    <Canvas name="textAlign">
-      <Text textAlign="start">
+    <Flex>
+      <DemoItem textAlign="start">
         Duis id tellus condimentum, tincidunt nulla a, pellentesque dolor. Etiam
         tristique est eu sodales pellentesque. Sed odio eros, mattis a turpis
         non, vulputate bibendum mauris.
-      </Text>
-      <Text textAlign="center">
+      </DemoItem>
+      <DemoItem textAlign="center">
         Duis id tellus condimentum, tincidunt nulla a, pellentesque dolor. Etiam
         tristique est eu sodales pellentesque. Sed odio eros, mattis a turpis
         non, vulputate bibendum mauris.
-      </Text>
-      <Text textAlign="end">
+      </DemoItem>
+      <DemoItem textAlign="end">
         Duis id tellus condimentum, tincidunt nulla a, pellentesque dolor. Etiam
         tristique est eu sodales pellentesque. Sed odio eros, mattis a turpis
         non, vulputate bibendum mauris.
-      </Text>
-      <Text textAlign="justify">
+      </DemoItem>
+      <DemoItem textAlign="justify">
         Duis id tellus condimentum, tincidunt nulla a, pellentesque dolor. Etiam
         tristique est eu sodales pellentesque. Sed odio eros, mattis a turpis
         non, vulputate bibendum mauris.
+      </DemoItem>
+    </Flex>
+  );
+}
+
+function DemoItem({
+  children,
+  ...props
+}: ComponentPropsWithoutRef<typeof Text>) {
+  return (
+    <div>
+      <Text color="fg.tertiary" fontFamily="mono" fontWeight="600">
+        {props.textAlign}
       </Text>
-    </Canvas>
+      <Text {...props}>{children}</Text>
+    </div>
   );
 }

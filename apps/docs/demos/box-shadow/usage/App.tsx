@@ -1,13 +1,35 @@
-import { Box } from "@optiaxiom/react";
+import type { ComponentPropsWithoutRef } from "react";
 
-import { Canvas } from "@/demos/Canvas";
+import { Box, Flex, Text } from "@optiaxiom/react";
 
 export function App() {
   return (
-    <Canvas outside transparent>
-      <Box shadow="sm">shadow=sm</Box>
-      <Box shadow="md">shadow=md</Box>
-      <Box shadow="lg">shadow=lg</Box>
-    </Canvas>
+    <Flex
+      alignItems="center"
+      flexDirection={["column", "row"]}
+      justifyContent="space-around"
+      w="full"
+    >
+      <DemoBox shadow="sm">shadow=sm</DemoBox>
+      <DemoBox shadow="md">shadow=md</DemoBox>
+      <DemoBox shadow="lg">shadow=lg</DemoBox>
+    </Flex>
+  );
+}
+
+function DemoBox({ children, ...props }: ComponentPropsWithoutRef<typeof Box>) {
+  return (
+    <Flex alignItems="center" gap="8">
+      <Text
+        color="fg.tertiary"
+        fontFamily="mono"
+        fontSize="md"
+        fontWeight="600"
+        textAlign="center"
+      >
+        {children}
+      </Text>
+      <Box display="grid" placeItems="center" size="56" {...props} />
+    </Flex>
   );
 }

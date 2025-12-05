@@ -1,4 +1,4 @@
-import { Button } from "@optiaxiom/react";
+import { Box, Button } from "@optiaxiom/react";
 import {
   DetailsPanel,
   DetailsPanelBody,
@@ -6,11 +6,9 @@ import {
   DetailsPanelHeader,
 } from "@optiaxiom/react/unstable";
 
-import { Canvas } from "../Canvas";
-
 export function App() {
   return (
-    <Canvas>
+    <Box bg="bg.page" p="24" style={{ height: "75vh", width: "300px" }}>
       <DetailsPanel>
         <DetailsPanelHeader>Panel Title</DetailsPanelHeader>
         <DetailsPanelBody>This is the details panel body</DetailsPanelBody>
@@ -18,6 +16,6 @@ export function App() {
           <Button>Share</Button>
         </DetailsPanelFooter>
       </DetailsPanel>
-    </Canvas>
+    </Box>
   );
 }

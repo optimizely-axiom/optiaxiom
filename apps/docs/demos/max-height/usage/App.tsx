@@ -1,28 +1,64 @@
-import { Box } from "@optiaxiom/react";
+import type { ComponentPropsWithoutRef } from "react";
 
-import { Canvas } from "@/demos/Canvas";
+import { Box, Flex, theme } from "@optiaxiom/react";
 
 export function App() {
   return (
-    <Canvas
+    <Flex
       alignItems="end"
       flexDirection="row"
       justifyContent="center"
-      striped
-      style={{ height: "576px" }}
+      rounded="md"
+      style={{ height: "576px", ...stripes }}
+      w="full"
     >
-      <Box display={["none", "grid"]} h="full" maxH="lg">
+      <DemoBox display={["none", "grid"]} h="full" maxH="lg">
         maxH=lg
-      </Box>
-      <Box h="full" maxH="md">
+      </DemoBox>
+      <DemoBox h="full" maxH="md">
         maxH=md
-      </Box>
-      <Box h="full" maxH="sm">
+      </DemoBox>
+      <DemoBox h="full" maxH="sm">
         maxH=sm
-      </Box>
-      <Box h="full" maxH="xs">
+      </DemoBox>
+      <DemoBox h="full" maxH="xs">
         maxH=xs
-      </Box>
-    </Canvas>
+      </DemoBox>
+    </Flex>
   );
 }
+
+function DemoBox({ children, ...props }: ComponentPropsWithoutRef<typeof Box>) {
+  return (
+    <Box
+      bg="bg.avatar.purple"
+      display="grid"
+      fontFamily="mono"
+      fontSize="md"
+      fontWeight="600"
+      p="16"
+      placeItems="center"
+      rounded="sm"
+      {...props}
+    >
+      {children}
+    </Box>
+  );
+}
+
+const stripes = {
+  backgroundColor: theme.colors["bg.secondary"],
+  backgroundImage: `
+    linear-gradient(
+      135deg,
+      ${theme.colors["bg.avatar.neutral"]} 10%,
+      transparent 0,
+      transparent 50%,
+      ${theme.colors["bg.avatar.neutral"]} 0,
+      ${theme.colors["bg.avatar.neutral"]} 60%,
+      transparent 0,
+      transparent
+    )
+  `,
+  backgroundSize: "7px 7px",
+};
