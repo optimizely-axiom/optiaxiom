@@ -1,5 +1,16 @@
 # @optiaxiom/react
 
+## 1.7.14
+
+### Patch Changes
+
+- ae51b5d: Add disabled pill support to PillMenu
+- b386822: fix extracting style prop in extractBoxProps
+- 46a92b2: handle cases where field info is present on grey bg
+- 9bc57a6: allow fixed column sizes in DataTable
+- 59e2832: fix textarea resize in safari
+- 50eea00: add shadows to scrollable tables
+
 ## 1.7.13
 
 ### Patch Changes
