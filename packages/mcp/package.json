@@ -41,6 +41,6 @@
     "@optiaxiom/react": "workspace:^",
     "@optiaxiom/shared": "workspace:^",
     "@types/fuzzysearch": "^1.0.2",
-    "@types/node": "^22.17.2"
+    "@types/node": "^24.10.1"
   }
 }
