@@ -10,6 +10,16 @@ Install the package using your package manager of choice:
 npm install @optiaxiom/react
 ```
 
+## AI Assistant Integration
+
+We provide an MCP server that enables AI assistants like Claude Code and Cursor to access accurate Axiom component metadata, design tokens, and usage examples:
+
+```sh
+npm install -g @optiaxiom/mcp
+```
+
+See the [MCP guide](https://optimizely-axiom.github.io/optiaxiom/guides/mcp) for setup instructions.
+
 ## Getting Started
 
 ### 1. Setup CSS Imports
