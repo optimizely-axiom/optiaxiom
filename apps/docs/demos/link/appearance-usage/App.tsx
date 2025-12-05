@@ -2,18 +2,21 @@
 
 import type { ComponentPropsWithRef } from "react";
 
-import { Link } from "@optiaxiom/react";
-
-import { Canvas } from "../Canvas";
+import { Link, Text } from "@optiaxiom/react";
 
 export function App({
   appearance = "default",
 }: Pick<ComponentPropsWithRef<typeof Link>, "appearance">) {
   return (
-    <Canvas appearance={appearance}>
+    <Text
+      bg={appearance === "inverse" ? "bg.default.inverse" : "bg.default"}
+      px="12"
+      py="8"
+      rounded="sm"
+    >
       <Link appearance={appearance} href="data:,">
         Link
       </Link>
-    </Canvas>
+    </Text>
   );
 }

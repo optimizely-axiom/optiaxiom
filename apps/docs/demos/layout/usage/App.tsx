@@ -1,11 +1,11 @@
+import { Box } from "@optiaxiom/react";
 import { Layout, LayoutContent } from "@optiaxiom/react/unstable";
 
-import { Canvas } from "../Canvas";
 import { Panel } from "../Panel";
 
 export function App() {
   return (
-    <Canvas>
+    <Box bg="bg.page" p="24" style={{ height: "400px", width: "600px" }}>
       <Layout
         detailsPanel={<Panel h="full">DetailsPanel</Panel>}
         header={<Panel>Header</Panel>}
@@ -16,6 +16,6 @@ export function App() {
           <Panel h="full">Content</Panel>
         </LayoutContent>
       </Layout>
-    </Canvas>
+    </Box>
   );
 }

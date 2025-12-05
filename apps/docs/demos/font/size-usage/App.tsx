@@ -1,15 +1,39 @@
-import { Text } from "@optiaxiom/react";
+import type { ComponentPropsWithoutRef } from "react";
 
-import { Canvas } from "../Canvas";
+import { Flex, Text } from "@optiaxiom/react";
 
 export function App() {
   return (
-    <Canvas name="fontSize">
-      <Text fontSize="sm">The quick brown fox jumps over the lazy dog.</Text>
-      <Text fontSize="md">The quick brown fox jumps over the lazy dog.</Text>
-      <Text fontSize="lg">The quick brown fox jumps over the lazy dog.</Text>
-      <Text fontSize="xl">The quick brown fox jumps over the lazy dog.</Text>
-      <Text fontSize="2xl">The quick brown fox jumps over the lazy dog.</Text>
-    </Canvas>
+    <Flex>
+      <DemoItem fontSize="sm">
+        The quick brown fox jumps over the lazy dog.
+      </DemoItem>
+      <DemoItem fontSize="md">
+        The quick brown fox jumps over the lazy dog.
+      </DemoItem>
+      <DemoItem fontSize="lg">
+        The quick brown fox jumps over the lazy dog.
+      </DemoItem>
+      <DemoItem fontSize="xl">
+        The quick brown fox jumps over the lazy dog.
+      </DemoItem>
+      <DemoItem fontSize="2xl">
+        The quick brown fox jumps over the lazy dog.
+      </DemoItem>
+    </Flex>
+  );
+}
+
+function DemoItem({
+  children,
+  ...props
+}: ComponentPropsWithoutRef<typeof Text>) {
+  return (
+    <div>
+      <Text color="fg.tertiary" fontFamily="mono" fontWeight="600">
+        {props.fontSize}
+      </Text>
+      <Text {...props}>{children}</Text>
+    </div>
   );
 }
