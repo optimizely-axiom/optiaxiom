@@ -44,7 +44,7 @@
     "rollup": "^4.47.1",
     "rollup-plugin-dts": "^6.2.3",
     "rollup-plugin-esbuild": "^6.2.1",
-    "typescript": "^5.9.2",
+    "typescript": "^5.9.3",
     "vitest": "^3.2.4",
     "wait-on": "^8.0.4"
   },
