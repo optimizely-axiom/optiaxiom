@@ -1,10 +1,18 @@
 import { Cards, Demo, Links, PropsTable } from "@/components";
+import { Alert } from "@optiaxiom/react";
 
 # Flex
 
 Use `Flex` component to stack items vertically or horizontally.
 
 <Links component="flex" />
+
+<Alert intent="danger" mt="16">
+  **Flex** has been deprecated in favor of the new **Stack** component which
+  uses CSS-standard defaults (flexDirection="row", no gap default). See the
+  [Stack component](../stack/) and [migration
+  guide](../../guides/stack-migration/).
+</Alert>
 
 ## Documentation
 
@@ -38,7 +46,7 @@ Use `alignItems` and `justifyContent` prop to control the layout and alignment o
 
 ### Related
 
-<Cards items={["Box", "Grid"]} />
+<Cards items={["Box", "Grid", "Stack"]} />
 
 ## Props
 
