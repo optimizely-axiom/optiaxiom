@@ -34,7 +34,7 @@
     "@vanilla-extract/vite-plugin": "^5.1.1",
     "@vitest/browser": "^3.2.4",
     "concurrently": "^9.2.0",
-    "esbuild": "0.17.6",
+    "esbuild": "0.27.1",
     "eslint": "^9.33.0",
     "happy-dom": "^18.0.1",
     "playwright": "^1.55.0",
