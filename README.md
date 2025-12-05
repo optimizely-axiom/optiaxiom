@@ -13,6 +13,16 @@ npm install @optiaxiom/react
 - [Documentation](https://optimizely-axiom.github.io/optiaxiom/)
 - [Philosophy](./PHILOSOPHY.md)
 
+### AI Assistant Integration
+
+We provide an [MCP server](./packages/mcp) that enables AI assistants like Claude Code and Cursor to access accurate Axiom component metadata, design tokens, and usage examples. This helps AI assistants generate better code using the Axiom design system.
+
+```sh
+npm install -g @optiaxiom/mcp
+```
+
+See the [MCP guide](https://optimizely-axiom.github.io/optiaxiom/guides/mcp) for setup instructions.
+
 ## For Contributors
 
 ### Prerequisites

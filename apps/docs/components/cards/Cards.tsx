@@ -19,6 +19,7 @@ import { HeadingIcon } from "./icons/HeadingIcon";
 import { IconsIcon } from "./icons/IconsIcon";
 import { IndicatorIcon } from "./icons/IndicatorIcon";
 import { InputIcon } from "./icons/InputIcon";
+import { MCPIcon } from "./icons/MCPIcon";
 import { MenuIcon } from "./icons/MenuIcon";
 import { PaginationIcon } from "./icons/PaginationIcon";
 import { ProgressIcon } from "./icons/ProgressIcon";
@@ -148,6 +149,13 @@ const COMPONENTS = {
     href: "/components/input/",
     icon: <InputIcon />,
     title: "Input",
+  },
+  MCP: {
+    description:
+      "MCP server enabling AI assistants to generate accurate Axiom code.",
+    href: "/guides/mcp/",
+    icon: <MCPIcon />,
+    title: "MCP",
   },
   Menu: {
     description: "Dropdown menu for displaying actions.",
