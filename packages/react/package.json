@@ -39,7 +39,7 @@
     "@dnd-kit/helpers": "^0.1.21",
     "@dnd-kit/react": "^0.1.21",
     "@optiaxiom/globals": "workspace:^",
-    "@radix-ui/react-arrow": "^1.1.7",
+    "@radix-ui/react-arrow": "^1.1.8",
     "@radix-ui/react-avatar": "^1.1.10",
     "@radix-ui/react-collapsible": "^1.1.12",
     "@radix-ui/react-compose-refs": "^1.1.2",
