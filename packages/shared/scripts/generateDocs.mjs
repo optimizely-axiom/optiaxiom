@@ -46,7 +46,7 @@ function generateDocs() {
             .filter(([, prop]) =>
               prop.parent
                 ? !prop.parent.fileName.includes("@types/react")
-                : prop.declarations?.length,
+                : prop.declarations?.length && prop.type.name !== "undefined",
             )
             .filter(([, prop]) => !(prop.type.name === "never"))
             .map(
