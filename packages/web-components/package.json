@@ -176,7 +176,7 @@
     "@radix-ui/react-roving-focus": "^1.1.11",
     "@radix-ui/rect": "^1.1.1",
     "@rollup/plugin-commonjs": "^28.0.6",
-    "@types/node": "^22.17.2",
+    "@types/node": "^24.10.1",
     "cssnano": "^7.1.0",
     "fast-glob": "^3.3.3",
     "postcss": "^8.5.6",
