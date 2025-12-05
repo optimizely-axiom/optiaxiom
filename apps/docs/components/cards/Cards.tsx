@@ -213,6 +213,13 @@ const COMPONENTS = {
     icon: <SpinnerIcon />,
     title: "Spinner",
   },
+  Stack: {
+    description:
+      "A flexbox layout component for stacking items horizontally or vertically.",
+    href: "/components/stack/",
+    icon: <FlexIcon />,
+    title: "Stack",
+  },
   Styling: {
     description:
       "Learn about our styling solution and how to consume our design tokens.",

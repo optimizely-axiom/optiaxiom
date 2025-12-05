@@ -48,6 +48,7 @@ export * from "./sidebar";
 export * from "./skeleton";
 export * from "./spinner";
 export * from "./sprinkles";
+export * from "./stack";
 export * from "./sub-nav";
 export * from "./switch";
 export * from "./table";

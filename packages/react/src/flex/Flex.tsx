@@ -1,4 +1,4 @@
-import { forwardRef } from "react";
+import { forwardRef, useEffect } from "react";
 
 import { Box, type BoxProps } from "../box";
 import { mapResponsiveValue } from "../sprinkles";
@@ -32,6 +32,8 @@ const mapDirectionToAlign = {
   "row-reverse": "center",
 } as const;
 
+let hasWarnedDeprecation = false;
+
 /**
  * Stack items vertically or horizontally in a flex container.
  *
@@ -51,6 +53,7 @@ const mapDirectionToAlign = {
  *
  * @category layout
  * @extends Box
+ * @deprecated since 1.8.0 use {@link Stack} instead
  */
 export const Flex = forwardRef<HTMLDivElement, FlexProps>(
   (
@@ -63,6 +66,19 @@ export const Flex = forwardRef<HTMLDivElement, FlexProps>(
     },
     ref,
   ) => {
+    // Runtime deprecation warning (dev only, once per page across all instances)
+    useEffect(() => {
+      if (process.env.NODE_ENV !== "production" && !hasWarnedDeprecation) {
+        hasWarnedDeprecation = true;
+        console.warn(
+          "[Deprecation] Flex is deprecated and will be removed in v2.0.\n" +
+            "Please migrate to Stack which uses CSS-standard defaults.\n" +
+            "Run: npx @optiaxiom/codemod flex-to-stack src/\n" +
+            "Docs: https://optimizely-axiom.github.io/optiaxiom/migration/stack",
+        );
+      }
+    }, []);
+
     return (
       <Box
         alignItems={
