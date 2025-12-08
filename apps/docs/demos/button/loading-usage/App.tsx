@@ -1,14 +1,14 @@
 "use client";
 
-import { Button, Flex, Switch, Tooltip } from "@optiaxiom/react";
+import { Button, Group, Switch, Tooltip } from "@optiaxiom/react";
 import { useState } from "react";
 
 export function App() {
   const [loading, setLoading] = useState(true);
 
   return (
-    <Flex>
-      <Flex flexDirection="row">
+    <Group flexDirection="column" gap="16">
+      <Group gap="16">
         <Tooltip content="Loading button demo">
           <Button appearance="primary" disabled={loading} loading={loading}>
             Primary
@@ -26,14 +26,13 @@ export function App() {
             Subtle
           </Button>
         </Tooltip>
-      </Flex>
-
+      </Group>
       <Switch
         checked={loading}
         onCheckedChange={() => setLoading((loading) => !loading)}
       >
         Loading
       </Switch>
-    </Flex>
+    </Group>
   );
 }

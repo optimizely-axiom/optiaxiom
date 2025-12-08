@@ -1,13 +1,13 @@
 "use client";
 
-import { Button, Flex, Radio, RadioGroup } from "@optiaxiom/react";
+import { Button, Group, Radio, RadioGroup } from "@optiaxiom/react";
 import { useState } from "react";
 
 export function App() {
   const [value, setValue] = useState("");
 
   return (
-    <Flex>
+    <Group flexDirection="column" gap="16">
       <RadioGroup
         name="controlled-usage"
         onValueChange={setValue}
@@ -17,10 +17,9 @@ export function App() {
         <Radio value="two">Option Two</Radio>
         <Radio value="three">Option Three</Radio>
       </RadioGroup>
-
       <Button disabled={!value} onClick={() => setValue("")}>
         Reset
       </Button>
-    </Flex>
+    </Group>
   );
 }

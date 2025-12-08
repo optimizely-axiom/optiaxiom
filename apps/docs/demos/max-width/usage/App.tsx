@@ -1,10 +1,16 @@
 import type { ComponentPropsWithoutRef } from "react";
 
-import { Box, Flex, theme } from "@optiaxiom/react";
+import { Box, Group, theme } from "@optiaxiom/react";
 
 export function App() {
   return (
-    <Flex rounded="md" style={stripes} w="full">
+    <Group
+      flexDirection="column"
+      gap="16"
+      rounded="md"
+      style={stripes}
+      w="full"
+    >
       <DemoBox maxW="lg" w="full">
         maxW=lg
       </DemoBox>
@@ -17,7 +23,7 @@ export function App() {
       <DemoBox maxW="xs" w="full">
         maxW=xs
       </DemoBox>
-    </Flex>
+    </Group>
   );
 }
 

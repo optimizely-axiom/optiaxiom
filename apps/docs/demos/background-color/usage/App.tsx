@@ -1,18 +1,19 @@
 import type { ComponentPropsWithoutRef } from "react";
 
-import { Box, Flex } from "@optiaxiom/react";
+import { Box, Group } from "@optiaxiom/react";
 
 export function App() {
   return (
-    <Flex
+    <Group
       alignItems="center"
       flexDirection={["column", "row"]}
+      gap="16"
       justifyContent="space-around"
       w="full"
     >
       <DemoBox bg="bg.success.light">bg=bg.success.light</DemoBox>
       <DemoBox bg="bg.warning.light">bg=bg.warning.light</DemoBox>
-    </Flex>
+    </Group>
   );
 }
 

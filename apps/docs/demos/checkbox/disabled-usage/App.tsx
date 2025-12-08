@@ -1,12 +1,12 @@
-import { Checkbox, Flex } from "@optiaxiom/react";
+import { Checkbox, Group } from "@optiaxiom/react";
 
 export function App() {
   return (
-    <Flex flexDirection="row">
+    <Group gap="16">
       <Checkbox defaultChecked disabled>
         Label
       </Checkbox>
       <Checkbox disabled>Label</Checkbox>
-    </Flex>
+    </Group>
   );
 }

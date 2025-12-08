@@ -18,10 +18,10 @@ import { Demo, Scale } from "@/components";
 Use the object prop notation where the key is the breakpoint name.
 
 ```tsx
-import { Flex } from "@optiaxiom/react";
+import { Group } from "@optiaxiom/react";
 
 export function App() {
-  return <Flex flexDirection={{ base: "column", sm: "row" }}>...</Flex>;
+  return <Group flexDirection={{ base: "column", sm: "row" }}>...</Group>;
 }
 ```
 
@@ -30,10 +30,10 @@ export function App() {
 Use the array prop notation with the elements in order of condition `[base, sm, md]`.
 
 ```tsx
-import { Flex } from "@optiaxiom/react";
+import { Group } from "@optiaxiom/react";
 
 export function App() {
-  return <Flex flexDirection={["column", "row"]}>...</Flex>;
+  return <Group flexDirection={["column", "row"]}>...</Group>;
 }
 ```
 

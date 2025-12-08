@@ -2,17 +2,17 @@
 
 import type { ComponentPropsWithoutRef } from "react";
 
-import { Box, Flex } from "@optiaxiom/react";
+import { Box } from "@optiaxiom/react";
 
 export function App({
   flexDirection = "column",
-}: Pick<ComponentPropsWithoutRef<typeof Flex>, "flexDirection">) {
+}: Pick<ComponentPropsWithoutRef<typeof Box>, "flexDirection">) {
   return (
-    <Flex flexDirection={flexDirection} w="full">
+    <Box display="flex" flexDirection={flexDirection} gap="16" w="full">
       <DemoBox>01</DemoBox>
       <DemoBox>02</DemoBox>
       <DemoBox>03</DemoBox>
-    </Flex>
+    </Box>
   );
 }
 

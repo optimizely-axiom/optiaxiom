@@ -1,11 +1,11 @@
-import { Checkbox, Flex, Separator } from "@optiaxiom/react";
+import { Checkbox, Group, Separator } from "@optiaxiom/react";
 
 export function App() {
   return (
-    <Flex flexDirection="row">
+    <Group gap="16">
       <Checkbox>Label</Checkbox>
       <Separator orientation="vertical" />
       <Checkbox />
-    </Flex>
+    </Group>
   );
 }

@@ -1,11 +1,11 @@
-import { Flex, Spinner } from "@optiaxiom/react";
+import { Group, Spinner } from "@optiaxiom/react";
 
 export function App() {
   return (
-    <Flex flexDirection="row">
+    <Group gap="16">
       <Spinner size="sm" />
       <Spinner size="md" />
       <Spinner size="lg" />
-    </Flex>
+    </Group>
   );
 }

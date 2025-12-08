@@ -2,7 +2,7 @@
 
 import {
   Button,
-  Flex,
+  Group,
   Select,
   SelectContent,
   SelectTrigger,
@@ -30,7 +30,7 @@ export function App() {
         }
       }}
     >
-      <Flex alignItems="start">
+      <Group alignItems="start" flexDirection="column" gap="16">
         <Select defaultValue={value} name="priority" options={priorities}>
           <SelectTrigger placeholder="Set priority" w="224" />
           <SelectContent />
@@ -39,7 +39,7 @@ export function App() {
         <Button appearance="primary">Submit</Button>
 
         <Text fontSize="md">Submitted: {value}</Text>
-      </Flex>
+      </Group>
     </form>
   );
 }

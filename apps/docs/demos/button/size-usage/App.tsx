@@ -1,15 +1,14 @@
-import { Button, Flex } from "@optiaxiom/react";
+import { Button, Group } from "@optiaxiom/react";
 
 export function App() {
   return (
-    <Flex>
-      <Flex flexDirection="row">
+    <Group flexDirection="column" gap="16">
+      <Group gap="16">
         <Button size="sm">Small</Button>
         <Button size="md">Medium</Button>
         <Button size="lg">Large</Button>
-      </Flex>
-
-      <Flex flexDirection="row">
+      </Group>
+      <Group gap="16">
         <Button appearance="primary" size="sm">
           Small
         </Button>
@@ -19,7 +18,7 @@ export function App() {
         <Button appearance="primary" size="lg">
           Large
         </Button>
-      </Flex>
-    </Flex>
+      </Group>
+    </Group>
   );
 }

@@ -1,11 +1,10 @@
-import { Badge, Flex } from "@optiaxiom/react";
+import { Badge, Group } from "@optiaxiom/react";
 
 export function App() {
   return (
-    <Flex flexDirection="row">
+    <Group gap="16">
       <Badge>Status</Badge>
-
       <Badge intent="danger">99+</Badge>
-    </Flex>
+    </Group>
   );
 }

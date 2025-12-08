@@ -1,6 +1,6 @@
 "use client";
 
-import { DateInput, Flex, Text } from "@optiaxiom/react";
+import { DateInput, Group, Text } from "@optiaxiom/react";
 import { useState } from "react";
 
 export function App() {
@@ -8,8 +8,8 @@ export function App() {
   const [datetimeValue, setDatetimeValue] = useState("2025-01-22T14:30");
 
   return (
-    <Flex>
-      <Flex>
+    <Group flexDirection="column" gap="16">
+      <Group flexDirection="column" gap="16">
         <DateInput onValueChange={setDateValue} type="date" value={dateValue} />
         <Text color="fg.secondary" fontSize="sm">
           Date format:{" "}
@@ -17,9 +17,8 @@ export function App() {
             <span>{dateValue || "YYYY-MM-DD"}</span>
           </Text>
         </Text>
-      </Flex>
-
-      <Flex>
+      </Group>
+      <Group flexDirection="column" gap="16">
         <DateInput
           onValueChange={setDatetimeValue}
           type="datetime-local"
@@ -31,7 +30,7 @@ export function App() {
             <span>{datetimeValue || "YYYY-MM-DDTHH:MM"}</span>
           </Text>
         </Text>
-      </Flex>
-    </Flex>
+      </Group>
+    </Group>
   );
 }

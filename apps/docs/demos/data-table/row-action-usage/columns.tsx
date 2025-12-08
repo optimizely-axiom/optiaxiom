@@ -4,7 +4,7 @@ import {
   DataTableAction,
   DataTableLabel,
   EllipsisMenuButton,
-  Flex,
+  Group,
   Link,
   Menu,
   MenuContent,
@@ -25,7 +25,7 @@ const columnHelper = createColumnHelper<{
 export const columns = [
   columnHelper.display({
     cell: ({ row }) => (
-      <Flex flexDirection="row" justifyContent="space-between" w="full">
+      <Group gap="16" justifyContent="space-between" w="full">
         <DataTableLabel asChild>
           <DataTableAction flex="initial" overflow="hidden" primary>
             <Link
@@ -41,7 +41,7 @@ export const columns = [
           </DataTableAction>
         </DataTableLabel>
 
-        <Flex flex="none" flexDirection="row" gap="8">
+        <Group flex="none" gap="8">
           <Menu
             options={[
               {
@@ -73,8 +73,8 @@ export const columns = [
               size="sm"
             />
           </DataTableAction>
-        </Flex>
-      </Flex>
+        </Group>
+      </Group>
     ),
     header: "Name",
     id: "name",

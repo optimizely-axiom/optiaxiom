@@ -1,4 +1,4 @@
-import { DateInput, Field, Flex } from "@optiaxiom/react";
+import { DateInput, Field, Group } from "@optiaxiom/react";
 
 export function App() {
   const publicHolidays = [
@@ -8,7 +8,7 @@ export function App() {
   ];
 
   return (
-    <Flex>
+    <Group flexDirection="column" gap="16">
       <Field label="Specific dates as holidays">
         <DateInput holiday={publicHolidays} />
       </Field>
@@ -25,6 +25,6 @@ export function App() {
           ]}
         />
       </Field>
-    </Flex>
+    </Group>
   );
 }

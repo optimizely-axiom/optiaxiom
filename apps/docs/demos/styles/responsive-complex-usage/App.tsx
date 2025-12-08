@@ -1,4 +1,4 @@
-import { Box, Flex, Text } from "@optiaxiom/react";
+import { Box, Group, Text } from "@optiaxiom/react";
 import Image from "next/image";
 
 import beach from "./beach.jpg";
@@ -14,7 +14,7 @@ export function App() {
       rounded="sm"
       shadow="sm"
     >
-      <Flex alignItems="start" flexDirection={["column", "row"]} gap="0">
+      <Group alignItems="start" flexDirection={["column", "row"]} gap="0">
         <Box asChild h="auto" maxW="full">
           <Image
             alt="brown glass bottle beside white book on blue and white textile"
@@ -37,7 +37,7 @@ export function App() {
             efficitur feugiat luctus et.
           </Text>
         </Box>
-      </Flex>
+      </Group>
     </Box>
   );
 }

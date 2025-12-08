@@ -1,12 +1,13 @@
 import type { ComponentPropsWithoutRef } from "react";
 
-import { Box, Flex, theme } from "@optiaxiom/react";
+import { Box, Group, theme } from "@optiaxiom/react";
 
 export function App() {
   return (
-    <Flex
+    <Group
       alignItems="center"
       flexDirection={["column", "row"]}
+      gap="16"
       justifyContent="space-around"
       w="full"
     >
@@ -14,7 +15,7 @@ export function App() {
       <DemoBox m="8">m=8</DemoBox>
       <DemoBox m="16">m=16</DemoBox>
       <DemoBox m="24">m=24</DemoBox>
-    </Flex>
+    </Group>
   );
 }
 

@@ -9,7 +9,7 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTrigger,
-  Flex,
+  Group,
   Text,
 } from "@optiaxiom/react";
 import { useState } from "react";
@@ -18,7 +18,7 @@ export function App() {
   const [state, setState] = useState("");
 
   return (
-    <Flex>
+    <Group flexDirection="column" gap="16">
       <AlertDialog>
         <AlertDialogTrigger
           onClick={() => requestAnimationFrame(() => setState(""))}
@@ -42,12 +42,11 @@ export function App() {
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
-
       {state && (
         <Text>
           Clicked <strong>{state}</strong>
         </Text>
       )}
-    </Flex>
+    </Group>
   );
 }

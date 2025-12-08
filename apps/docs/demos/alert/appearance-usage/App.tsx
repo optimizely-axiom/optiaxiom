@@ -1,8 +1,8 @@
-import { Alert, Flex } from "@optiaxiom/react";
+import { Alert, Group } from "@optiaxiom/react";
 
 export function App() {
   return (
-    <Flex>
+    <Group flexDirection="column" gap="16">
       <Alert intent="neutral">This is an example of a neutral alert.</Alert>
       <Alert intent="information">
         This is an example of an information alert.
@@ -11,6 +11,6 @@ export function App() {
       <Alert intent="warning">This is an example of a warning alert.</Alert>
       <Alert intent="danger">This is an example of a danger alert.</Alert>
       <Alert intent="opal">This is an example of an opal alert.</Alert>
-    </Flex>
+    </Group>
   );
 }

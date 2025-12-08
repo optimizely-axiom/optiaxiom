@@ -1,10 +1,10 @@
-import { Box, Flex } from "@optiaxiom/react";
+import { Box, Group } from "@optiaxiom/react";
 
 import { IconText } from "./IconText";
 
 export const RadioGroupIcon = () => (
-  <Flex gap="6" w="56">
-    <Flex flexDirection="row" gap="4">
+  <Group flexDirection="column" gap="6" w="56">
+    <Group gap="4">
       <Box
         bg="bg.default"
         border="1"
@@ -13,9 +13,9 @@ export const RadioGroupIcon = () => (
         rounded="full"
       />
       <IconText w="full" />
-    </Flex>
+    </Group>
 
-    <Flex flexDirection="row" gap="4">
+    <Group gap="4">
       <Box
         bg="bg.default"
         border="1"
@@ -26,9 +26,9 @@ export const RadioGroupIcon = () => (
         <IconText w="2/3" />
       </Box>
       <IconText w="1/2" />
-    </Flex>
+    </Group>
 
-    <Flex flexDirection="row" gap="4">
+    <Group gap="4">
       <Box
         bg="bg.default"
         border="1"
@@ -37,6 +37,6 @@ export const RadioGroupIcon = () => (
         rounded="full"
       />
       <IconText w="2/3" />
-    </Flex>
-  </Flex>
+    </Group>
+  </Group>
 );

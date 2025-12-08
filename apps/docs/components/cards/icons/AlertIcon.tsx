@@ -1,6 +1,6 @@
 import type { ComponentPropsWithoutRef } from "react";
 
-import { Box, Flex, theme } from "@optiaxiom/react";
+import { Box, Group, theme } from "@optiaxiom/react";
 
 import { IconBox } from "./IconBox";
 import { IconText } from "./IconText";
@@ -20,10 +20,10 @@ export const AlertIcon = (props: ComponentPropsWithoutRef<typeof Box>) => (
       rounded="sm"
       style={{ backgroundColor: theme.colors["fg.warning.strong"] }}
     />
-    <Flex flex="1" gap="4">
+    <Group flex="1" flexDirection="column" gap="4">
       <IconText w="1/4" />
       <IconText intent="secondary" w="2/3" />
       <IconText intent="secondary" w="1/2" />
-    </Flex>
+    </Group>
   </IconBox>
 );

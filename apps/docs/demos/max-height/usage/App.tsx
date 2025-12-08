@@ -1,12 +1,12 @@
 import type { ComponentPropsWithoutRef } from "react";
 
-import { Box, Flex, theme } from "@optiaxiom/react";
+import { Box, Group, theme } from "@optiaxiom/react";
 
 export function App() {
   return (
-    <Flex
+    <Group
       alignItems="end"
-      flexDirection="row"
+      gap="16"
       justifyContent="center"
       rounded="md"
       style={{ height: "576px", ...stripes }}
@@ -24,7 +24,7 @@ export function App() {
       <DemoBox h="full" maxH="xs">
         maxH=xs
       </DemoBox>
-    </Flex>
+    </Group>
   );
 }
 

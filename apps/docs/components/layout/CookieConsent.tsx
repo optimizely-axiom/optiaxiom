@@ -2,7 +2,7 @@
 
 import {
   Button,
-  Flex,
+  Group,
   Text,
   theme,
   Transition,
@@ -36,8 +36,8 @@ export function CookieConsent() {
   return (
     <TransitionGroup open={!consent}>
       <Transition>
-        <Flex
-          flexDirection="row"
+        <Group
+          gap="16"
           justifyContent="flex-end"
           pointerEvents="none"
           style={{
@@ -47,12 +47,14 @@ export function CookieConsent() {
             [theme.fontSize.md.fontSize.slice(4, -1)]: "13px",
           }}
         >
-          <Flex
+          <Group
             aria-describedby={id}
             aria-label="Cookie consent prompt"
             bg="bg.default"
             color="fg.default"
+            flexDirection="column"
             fontSize="md"
+            gap="16"
             maxW="xs"
             p="16"
             pointerEvents="auto"
@@ -64,7 +66,7 @@ export function CookieConsent() {
               We use non-essential cookies to improve user experience and
               analyze website traffic.
             </Text>
-            <Flex flexDirection="row" justifyContent="flex-end">
+            <Group gap="16" justifyContent="flex-end">
               <Button
                 appearance="subtle"
                 onClick={() => {
@@ -87,9 +89,9 @@ export function CookieConsent() {
               >
                 Allow cookies
               </Button>
-            </Flex>
-          </Flex>
-        </Flex>
+            </Group>
+          </Group>
+        </Group>
       </Transition>
     </TransitionGroup>
   );

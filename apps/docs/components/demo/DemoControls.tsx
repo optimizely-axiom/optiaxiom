@@ -3,7 +3,7 @@ import type { PropItem, Props } from "react-docgen-typescript";
 
 import {
   Field,
-  Flex,
+  Group,
   Input,
   Select,
   SelectContent,
@@ -12,7 +12,7 @@ import {
 } from "@optiaxiom/react";
 import { Range } from "@optiaxiom/react/unstable";
 
-type DemoControlProps = ComponentPropsWithRef<typeof Flex> & {
+type DemoControlProps = ComponentPropsWithRef<typeof Group> & {
   onChange: Dispatch<
     SetStateAction<Record<keyof Props, boolean | number | string | undefined>>
   >;
@@ -27,7 +27,15 @@ export function DemoControls({
   ...props
 }: DemoControlProps) {
   return (
-    <Flex justifyContent="flex-start" p="16" pb="32" pt="24" {...props}>
+    <Group
+      flexDirection="column"
+      gap="16"
+      justifyContent="flex-start"
+      p="16"
+      pb="32"
+      pt="24"
+      {...props}
+    >
       {Object.values(propTypes)
         .map(itemToControl)
         .filter((a) => !!a)
@@ -108,7 +116,7 @@ export function DemoControls({
             </Field>
           ),
         )}
-    </Flex>
+    </Group>
   );
 }
 

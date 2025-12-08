@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, Flex, SearchInput } from "@optiaxiom/react";
+import { Button, Group, SearchInput } from "@optiaxiom/react";
 import { useRef, useState } from "react";
 
 export function App() {
@@ -8,15 +8,14 @@ export function App() {
   const ref = useRef<HTMLInputElement>(null);
 
   return (
-    <Flex>
+    <Group flexDirection="column" gap="16">
       <SearchInput
         onChange={(event) => setValue(event.target.value)}
         ref={ref}
         value={value}
         w="224"
       />
-
-      <Flex flexDirection="row">
+      <Group gap="16">
         <Button
           onClick={() => {
             setValue("sample");
@@ -29,7 +28,7 @@ export function App() {
         <Button disabled={!value} onClick={() => setValue("")}>
           Reset
         </Button>
-      </Flex>
-    </Flex>
+      </Group>
+    </Group>
   );
 }

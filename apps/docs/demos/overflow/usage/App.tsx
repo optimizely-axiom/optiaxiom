@@ -1,14 +1,14 @@
 import type { ComponentPropsWithoutRef } from "react";
 
-import { Avatar, Flex, Text } from "@optiaxiom/react";
+import { Avatar, Group, Text } from "@optiaxiom/react";
 
 export function App({
   overflow = "visible",
-}: Pick<ComponentPropsWithoutRef<typeof Flex>, "overflow">) {
+}: Pick<ComponentPropsWithoutRef<typeof Group>, "overflow">) {
   return (
-    <Flex
+    <Group
       border="1"
-      flexDirection="row"
+      gap="16"
       maxW="xs"
       overflow={overflow}
       py="16"
@@ -27,6 +27,6 @@ export function App({
       <Text fontSize="md" fontWeight="600">
         Sample User
       </Text>
-    </Flex>
+    </Group>
   );
 }

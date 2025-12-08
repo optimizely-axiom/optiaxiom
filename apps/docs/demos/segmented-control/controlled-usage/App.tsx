@@ -2,7 +2,7 @@
 
 import {
   Button,
-  Flex,
+  Group,
   SegmentedControl,
   SegmentedControlItem,
   Tooltip,
@@ -18,7 +18,7 @@ export function App() {
   const [value, setValue] = useState("desktop");
 
   return (
-    <Flex flexDirection="row">
+    <Group gap="16">
       <SegmentedControl onValueChange={setValue} value={value}>
         <Tooltip content="Desktop">
           <SegmentedControlItem
@@ -45,10 +45,9 @@ export function App() {
           />
         </Tooltip>
       </SegmentedControl>
-
       <Button disabled={!value} onClick={() => setValue("desktop")}>
         Reset
       </Button>
-    </Flex>
+    </Group>
   );
 }

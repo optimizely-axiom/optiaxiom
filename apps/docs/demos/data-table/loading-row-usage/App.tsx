@@ -1,6 +1,6 @@
 "use client";
 
-import { DataTable, DataTableBody, Flex, Switch } from "@optiaxiom/react";
+import { DataTable, DataTableBody, Group, Switch } from "@optiaxiom/react";
 import { getCoreRowModel, useReactTable } from "@tanstack/react-table";
 import { useState } from "react";
 
@@ -20,7 +20,7 @@ export function App() {
   });
 
   return (
-    <Flex alignItems="start" maxW="full">
+    <Group alignItems="start" flexDirection="column" gap="16" maxW="full">
       <Switch
         checked={loading["1"] === "sub-rows"}
         onCheckedChange={(checked) =>
@@ -29,10 +29,9 @@ export function App() {
       >
         Loading
       </Switch>
-
       <DataTable maxH="xs" table={table}>
         <DataTableBody loading={loading} />
       </DataTable>
-    </Flex>
+    </Group>
   );
 }

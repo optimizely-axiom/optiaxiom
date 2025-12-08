@@ -1,4 +1,4 @@
-import { Badge, Flex } from "@optiaxiom/react";
+import { Badge, Group } from "@optiaxiom/react";
 
 const appearances = [
   "neutral",
@@ -11,21 +11,21 @@ const appearances = [
 
 export function App() {
   return (
-    <Flex>
-      <Flex flexDirection="row">
+    <Group flexDirection="column" gap="16">
+      <Group gap="16">
         {appearances.map((intent) => (
           <Badge intent={intent} key={intent}>
             {intent}
           </Badge>
         ))}
-      </Flex>
-      <Flex flexDirection="row">
+      </Group>
+      <Group gap="16">
         {appearances.map((intent) => (
           <Badge intent={intent} key={intent} variant="strong">
             {intent}
           </Badge>
         ))}
-      </Flex>
-    </Flex>
+      </Group>
+    </Group>
   );
 }

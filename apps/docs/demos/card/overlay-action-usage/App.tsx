@@ -7,13 +7,13 @@ import {
   CardCheckbox,
   CardHeader,
   CardPreview,
-  Flex,
+  Group,
 } from "@optiaxiom/react";
 import { IconMusic, IconStar } from "@tabler/icons-react";
 
 export function App() {
   return (
-    <Flex flexDirection={["column", "row"]}>
+    <Group flexDirection={["column", "row"]} gap="16">
       <Card size="224">
         <CardPreview
           addonTopLeft={
@@ -64,6 +64,6 @@ export function App() {
         </CardPreview>
         <CardHeader>Checkbox and star button</CardHeader>
       </Card>
-    </Flex>
+    </Group>
   );
 }

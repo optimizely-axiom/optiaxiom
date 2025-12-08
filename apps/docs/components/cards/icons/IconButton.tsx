@@ -1,6 +1,6 @@
 import type { ComponentPropsWithoutRef } from "react";
 
-import { Box, Flex, theme } from "@optiaxiom/react";
+import { Box, Group, theme } from "@optiaxiom/react";
 
 export const IconButton = ({
   intent = "primary",
@@ -9,9 +9,9 @@ export const IconButton = ({
 }: ComponentPropsWithoutRef<typeof Box> & {
   intent?: "danger" | "primary" | "secondary";
 }) => (
-  <Flex
+  <Group
     bg={intent === "danger" ? "bg.error" : "bg.default"}
-    flexDirection="row"
+    gap="16"
     p="4"
     px="8"
     rounded="sm"

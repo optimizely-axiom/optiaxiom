@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Flex } from "@optiaxiom/react";
+import { Box, Group } from "@optiaxiom/react";
 import {
   Sortable,
   SortableGroup,
@@ -51,7 +51,13 @@ export function App() {
                 >
                   {column}
                 </Box>
-                <Flex flex="1" justifyContent="flex-start" p="12">
+                <Group
+                  flex="1"
+                  flexDirection="column"
+                  gap="16"
+                  justifyContent="flex-start"
+                  p="12"
+                >
                   {items.map((item, index) => (
                     <SortableItem
                       bg="bg.default"
@@ -66,7 +72,7 @@ export function App() {
                       Item {item}
                     </SortableItem>
                   ))}
-                </Flex>
+                </Group>
               </Box>
             )}
           </SortableGroup>

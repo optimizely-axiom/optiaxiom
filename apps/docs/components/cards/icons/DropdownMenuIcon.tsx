@@ -1,11 +1,11 @@
-import { Flex } from "@optiaxiom/react";
+import { Group } from "@optiaxiom/react";
 
 import { IconBox } from "./IconBox";
 import { IconButton } from "./IconButton";
 import { IconText } from "./IconText";
 
 export const DropdownMenuIcon = () => (
-  <Flex alignItems="start" gap="2">
+  <Group alignItems="start" flexDirection="column" gap="2">
     <IconButton pl="20" pr="4">
       <IconText intent="secondary" p="2" rounded="sm" />
     </IconButton>
@@ -22,5 +22,5 @@ export const DropdownMenuIcon = () => (
       <IconText intent="secondary" p="0" style={{ paddingTop: "1px" }} />
       <IconText intent="danger" w="1/2" />
     </IconBox>
-  </Flex>
+  </Group>
 );

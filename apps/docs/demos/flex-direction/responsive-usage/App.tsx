@@ -1,14 +1,14 @@
 import type { ComponentPropsWithoutRef } from "react";
 
-import { Box, Flex } from "@optiaxiom/react";
+import { Box } from "@optiaxiom/react";
 
 export function App() {
   return (
-    <Flex flexDirection={["column", "row"]}>
+    <Box display="flex" flexDirection={["column", "row"]} gap="16">
       <DemoBox>01</DemoBox>
       <DemoBox>02</DemoBox>
       <DemoBox>03</DemoBox>
-    </Flex>
+    </Box>
   );
 }
 

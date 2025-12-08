@@ -1,6 +1,6 @@
 "use client";
 
-import { Field, Flex, Input } from "@optiaxiom/react";
+import { Field, Group, Input } from "@optiaxiom/react";
 import { useState } from "react";
 
 export function App() {
@@ -15,7 +15,7 @@ export function App() {
       : undefined;
 
   return (
-    <Flex>
+    <Group flexDirection="column" gap="16">
       <Field
         description="We'll never share your email with anyone else."
         error={emailError}
@@ -29,7 +29,6 @@ export function App() {
           value={email}
         />
       </Field>
-
       <Field
         description="Must be at least 8 characters"
         error={passwordError}
@@ -44,6 +43,6 @@ export function App() {
           value={password}
         />
       </Field>
-    </Flex>
+    </Group>
   );
 }

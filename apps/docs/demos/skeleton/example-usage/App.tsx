@@ -1,11 +1,11 @@
 "use client";
 
-import { Avatar, Box, Flex, Heading, Skeleton, Text } from "@optiaxiom/react";
+import { Avatar, Box, Group, Heading, Skeleton, Text } from "@optiaxiom/react";
 
 export function App({ loading = true }: { loading: boolean }) {
   return (
     <Box bg="bg.default" maxW="sm" p="16" rounded="sm" shadow="sm" w="full">
-      <Flex alignItems="start" flexDirection="row">
+      <Group alignItems="start" gap="16">
         {loading ? (
           <Skeleton>
             <Avatar size="xl" />
@@ -14,7 +14,7 @@ export function App({ loading = true }: { loading: boolean }) {
           <Avatar name="Sample Person" size="xl" />
         )}
 
-        <Flex flex="1">
+        <Group flex="1" flexDirection="column" gap="16">
           <Heading level="3">
             {loading ? <Skeleton /> : "Lorem ipsum dolor"}
           </Heading>
@@ -24,8 +24,8 @@ export function App({ loading = true }: { loading: boolean }) {
           <Text>
             {loading ? <Skeleton /> : "Phasellus efficitur feugiat luctus et."}
           </Text>
-        </Flex>
-      </Flex>
+        </Group>
+      </Group>
     </Box>
   );
 }
