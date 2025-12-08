@@ -1,5 +1,19 @@
 # @optiaxiom/web-components
 
+## 0.12.0
+
+### Minor Changes
+
+- 9e29cf8: add Group component and deprecate Flex
+
+### Patch Changes
+
+- ef81815: allow height changes in virtualized datatable row
+- 46a92b2: handle cases where field info is present on grey bg
+- 9bc57a6: allow fixed column sizes in DataTable
+- 59e2832: fix textarea resize in safari
+- 50eea00: add shadows to scrollable tables
+
 ## 0.11.16
 
 ### Patch Changes
