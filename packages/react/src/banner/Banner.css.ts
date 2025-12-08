@@ -7,7 +7,6 @@ export const banner = recipe({
     {
       alignItems: "start",
       color: "fg.default",
-      flexDirection: "row",
       fontSize: "md",
       fontWeight: "500",
       gap: "12",
@@ -71,6 +70,7 @@ export const content = recipe({
   base: [
     {
       flex: "1",
+      flexDirection: "column",
       gap: "8",
       justifyContent: "center",
     },

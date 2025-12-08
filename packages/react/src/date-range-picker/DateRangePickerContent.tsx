@@ -8,7 +8,7 @@ import {
 
 import { Calendar } from "../calendar";
 import { useFieldContext } from "../field/internals";
-import { Flex } from "../flex";
+import { Group } from "../group";
 import { PopoverContent } from "../popover";
 import { VisuallyHidden } from "../visually-hidden";
 import * as styles from "./DateRangePickerContent.css";
@@ -69,7 +69,7 @@ export const DateRangePickerContent = forwardRef<
         {...props}
       >
         <VisuallyHidden id={labelId}>{ariaLabel || "Calendar"}</VisuallyHidden>
-        <Flex {...styles.panels()}>
+        <Group {...styles.panels()}>
           {addonBefore}
           <Calendar
             alignSelf="start"
@@ -91,7 +91,7 @@ export const DateRangePickerContent = forwardRef<
             weekend={weekend}
           />
           {addonAfter}
-        </Flex>
+        </Group>
         {children}
       </PopoverContent>
     );

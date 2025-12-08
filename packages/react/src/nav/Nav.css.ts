@@ -7,6 +7,7 @@ export const nav = recipe({
     {
       bg: "bg.default",
       flex: "1",
+      flexDirection: "column",
       gap: "0",
       overflow: "hidden",
       pb: "8",

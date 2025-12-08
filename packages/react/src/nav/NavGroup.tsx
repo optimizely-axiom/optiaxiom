@@ -2,7 +2,7 @@ import { useId } from "@radix-ui/react-id";
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import { Disclosure } from "../disclosure";
-import { Flex } from "../flex";
+import { Group } from "../group";
 import { NavGroupProvider } from "./NavGroupContext";
 
 export type NavGroupProps = ComponentPropsWithoutRef<typeof Disclosure> & {
@@ -24,7 +24,7 @@ export const NavGroup = forwardRef<HTMLDivElement, NavGroupProps>(
     const groupId = useId();
 
     return (
-      <Flex asChild>
+      <Group asChild flexDirection="column" gap="16">
         <li>
           <NavGroupProvider collapsible={collapsible} id={groupId}>
             <Disclosure
@@ -42,7 +42,7 @@ export const NavGroup = forwardRef<HTMLDivElement, NavGroupProps>(
             </Disclosure>
           </NavGroupProvider>
         </li>
-      </Flex>
+      </Group>
     );
   },
 );

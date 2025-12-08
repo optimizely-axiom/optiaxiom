@@ -1,7 +1,7 @@
 import { forwardRef } from "react";
 
 import { type BoxProps } from "../box";
-import { Flex } from "../flex";
+import { Group } from "../group";
 import { useSidebarContext } from "../sidebar/internals";
 import * as styles from "./NavBody.css";
 
@@ -15,14 +15,14 @@ export const NavBody = forwardRef<HTMLDivElement, NavBodyProps>(
     const { expanded, spacing } = useSidebarContext("@optiaxiom/react/NavBody");
 
     return (
-      <Flex
+      <Group
         px={spacing}
         ref={ref}
         {...styles.body({ expanded }, className)}
         {...props}
       >
         {children}
-      </Flex>
+      </Group>
     );
   },
 );

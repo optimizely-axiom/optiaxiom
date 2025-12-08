@@ -8,6 +8,7 @@ export const padding = "24";
 export const viewport = recipe({
   base: [
     {
+      flexDirection: "column",
       gap,
       maxH: "full",
       overflowX: "hidden",

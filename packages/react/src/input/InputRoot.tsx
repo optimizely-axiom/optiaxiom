@@ -1,7 +1,7 @@
 import { type ComponentPropsWithoutRef, forwardRef, useRef } from "react";
 
 import { type BoxProps } from "../box";
-import { Flex } from "../flex";
+import { Group } from "../group";
 import { InputProvider } from "./InputContext";
 import * as styles from "./InputRoot.css";
 
@@ -27,7 +27,7 @@ export const InputRoot = forwardRef<
     const inputRef = useRef<HTMLInputElement & HTMLTextAreaElement>(null);
 
     return (
-      <Flex
+      <Group
         onPointerDown={(event) => {
           onPointerDown?.(event);
           if (event.defaultPrevented) {
@@ -52,7 +52,7 @@ export const InputRoot = forwardRef<
         >
           {children}
         </InputProvider>
-      </Flex>
+      </Group>
     );
   },
 );

@@ -2,7 +2,7 @@ import { createSlot } from "@radix-ui/react-slot";
 import { forwardRef, type ReactNode } from "react";
 
 import { Box, type BoxProps, extractBoxProps } from "../box";
-import { Flex } from "../flex";
+import { Group } from "../group";
 import { Icon } from "../icon";
 import { useSidebarContext } from "../sidebar/internals";
 import { Text } from "../text";
@@ -79,7 +79,7 @@ export const NavItem = forwardRef<HTMLButtonElement, NavItemProps>(
     });
 
     return (
-      <Flex asChild>
+      <Group asChild flexDirection="column" gap="16">
         <li>
           <Tooltip
             content={props["aria-label"] || tooltip}
@@ -99,7 +99,7 @@ export const NavItem = forwardRef<HTMLButtonElement, NavItemProps>(
             </Box>
           </Tooltip>
         </li>
-      </Flex>
+      </Group>
     );
   },
 );

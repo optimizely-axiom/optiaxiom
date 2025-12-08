@@ -2,7 +2,7 @@ import { useId } from "@radix-ui/react-id";
 import { forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
-import { Flex } from "../flex";
+import { Group } from "../group";
 import { Pagination } from "../pagination";
 import { Select, SelectContent, SelectTrigger } from "../select";
 import { Text } from "../text";
@@ -51,10 +51,10 @@ export const DataTableFooter = forwardRef<HTMLDivElement, DataTableFooterProps>(
     const pageSizeId = useId();
 
     return (
-      <Flex
+      <Group
         alignSelf="stretch"
-        flexDirection="row"
         fontSize="md"
+        gap="16"
         justifyContent="space-between"
         mt="auto"
         ref={ref}
@@ -62,7 +62,7 @@ export const DataTableFooter = forwardRef<HTMLDivElement, DataTableFooterProps>(
       >
         <Box {...styles.addon({ slot: "before" })}>
           {showPageSizeOptions && (
-            <Flex flexDirection="row" gap="8">
+            <Group gap="8">
               <Text color="fg.secondary" id={pageSizeId}>
                 Page Size
               </Text>
@@ -79,10 +79,9 @@ export const DataTableFooter = forwardRef<HTMLDivElement, DataTableFooterProps>(
                 />
                 <SelectContent />
               </Select>
-            </Flex>
+            </Group>
           )}
         </Box>
-
         {table.getPageCount() > 1 && (
           <Pagination
             onPageChange={(newPage) => table.setPageIndex(newPage - 1)}
@@ -90,7 +89,6 @@ export const DataTableFooter = forwardRef<HTMLDivElement, DataTableFooterProps>(
             total={table.getPageCount()}
           />
         )}
-
         <Text {...styles.addon({ slot: "after" })}>
           {table.getRowCount() > 0 && (
             <>
@@ -103,7 +101,7 @@ export const DataTableFooter = forwardRef<HTMLDivElement, DataTableFooterProps>(
             </>
           )}
         </Text>
-      </Flex>
+      </Group>
     );
   },
 );

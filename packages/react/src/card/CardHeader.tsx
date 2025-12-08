@@ -1,7 +1,7 @@
 import { forwardRef, type ReactNode } from "react";
 
 import { Box, type BoxProps } from "../box";
-import { Flex } from "../flex";
+import { Group } from "../group";
 import { Heading } from "../heading";
 import { useCardContext } from "./CardContext";
 import * as styles from "./CardHeader.css";
@@ -37,7 +37,7 @@ export const CardHeader = forwardRef<HTMLDivElement, CardHeaderProps>(
     );
 
     return (
-      <Flex ref={ref} {...styles.header({}, className)} {...props}>
+      <Group ref={ref} {...styles.header({}, className)} {...props}>
         <Box {...styles.content()}>
           <Heading fontSize="md" fontWeight="500" id={labelId} level="2">
             {children}
@@ -49,15 +49,13 @@ export const CardHeader = forwardRef<HTMLDivElement, CardHeaderProps>(
             </Box>
           )}
         </Box>
-
         {addonBefore && (
-          <Flex {...styles.addon({ slot: "before" })}>{addonBefore}</Flex>
+          <Group {...styles.addon({ slot: "before" })}>{addonBefore}</Group>
         )}
-
         {addonAfter && (
-          <Flex {...styles.addon({ slot: "after" })}>{addonAfter}</Flex>
+          <Group {...styles.addon({ slot: "after" })}>{addonAfter}</Group>
         )}
-      </Flex>
+      </Group>
     );
   },
 );

@@ -3,7 +3,7 @@ import { forwardRef } from "react";
 
 import type { BoxProps } from "../box";
 
-import { Flex } from "../flex";
+import { Group } from "../group";
 import { Select, SelectContent, SelectTrigger } from "../select";
 import { format, parse, range } from "./utils";
 
@@ -57,7 +57,7 @@ export const Clock = forwardRef<HTMLDivElement, ClockProps>(
     const periods = ["AM" as const, "PM" as const];
 
     return (
-      <Flex flexDirection="row" gap="4" ref={ref} {...props}>
+      <Group gap="4" ref={ref} {...props}>
         <Select
           onValueChange={(hour) =>
             hour && setValue(format({ ...parsed, hour }))
@@ -68,7 +68,6 @@ export const Clock = forwardRef<HTMLDivElement, ClockProps>(
           <SelectTrigger aria-label="Select hour" flex="1" placeholder="HH" />
           <SelectContent />
         </Select>
-
         <Select
           onValueChange={(minute) =>
             minute && setValue(format({ ...parsed, minute }))
@@ -83,7 +82,6 @@ export const Clock = forwardRef<HTMLDivElement, ClockProps>(
           <SelectTrigger aria-label="Select minute" flex="1" placeholder="MM" />
           <SelectContent />
         </Select>
-
         <Select
           onValueChange={(meridiem) =>
             (meridiem === "AM" || meridiem === "PM") &&
@@ -99,7 +97,7 @@ export const Clock = forwardRef<HTMLDivElement, ClockProps>(
           />
           <SelectContent />
         </Select>
-      </Flex>
+      </Group>
     );
   },
 );

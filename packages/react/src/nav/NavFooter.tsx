@@ -1,7 +1,7 @@
 import { forwardRef } from "react";
 
 import { type BoxProps } from "../box";
-import { Flex } from "../flex";
+import { Group } from "../group";
 import { useSidebarContext } from "../sidebar/internals";
 
 export type NavFooterProps = BoxProps<"div">;
@@ -14,7 +14,8 @@ export const NavFooter = forwardRef<HTMLDivElement, NavFooterProps>(
     const { spacing } = useSidebarContext("@optiaxiom/react/NavFooter");
 
     return (
-      <Flex
+      <Group
+        flexDirection="column"
         gap="8"
         mt="auto"
         overflowX="hidden"
@@ -24,7 +25,7 @@ export const NavFooter = forwardRef<HTMLDivElement, NavFooterProps>(
         {...props}
       >
         {children}
-      </Flex>
+      </Group>
     );
   },
 );

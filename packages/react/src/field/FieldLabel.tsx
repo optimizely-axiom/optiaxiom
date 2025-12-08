@@ -4,7 +4,7 @@ import { forwardRef, type ReactNode } from "react";
 
 import { Box, type BoxProps } from "../box";
 import { Button } from "../button";
-import { Flex } from "../flex";
+import { Group } from "../group";
 import { IconCircleQuestion } from "../icons/IconCircleQuestion";
 import { Text } from "../text";
 import { Tooltip } from "../tooltip";
@@ -51,7 +51,7 @@ export const FieldLabel = forwardRef<HTMLDivElement, FieldLabelProps>(
     const labelId = useId(labelIdProp);
 
     return (
-      <Flex flexDirection="row" gap="4" ref={ref} {...props}>
+      <Group gap="4" ref={ref} {...props}>
         <Text
           alignItems="center"
           asChild
@@ -79,7 +79,6 @@ export const FieldLabel = forwardRef<HTMLDivElement, FieldLabelProps>(
             )}
           </RadixLabel.Root>
         </Text>
-
         {info && (
           <Tooltip content={info}>
             <Button
@@ -106,7 +105,7 @@ export const FieldLabel = forwardRef<HTMLDivElement, FieldLabelProps>(
             />
           </Tooltip>
         )}
-      </Flex>
+      </Group>
     );
   },
 );

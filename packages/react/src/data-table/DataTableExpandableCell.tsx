@@ -6,7 +6,7 @@ import { type ReactNode } from "react";
 
 import { Box } from "../box";
 import { Button } from "../button";
-import { Flex } from "../flex";
+import { Group } from "../group";
 import { IconAngleDown } from "../icons/IconAngleDown";
 import { IconAngleRight } from "../icons/IconAngleRight";
 import { useDataTableRowContext } from "./DataTableRowContext";
@@ -34,7 +34,7 @@ export function DataTableExpandableCell<TData, TValue>({
     "@optiaxiom/react/DataTableExpandableCell",
   );
   return (
-    <Flex alignItems="start" flexDirection="row" gap="8">
+    <Group alignItems="start" gap="8">
       {Array.from({ length: row.depth }).map((_, index) => (
         <Box flex="none" key={index} w="sm" />
       ))}
@@ -56,7 +56,7 @@ export function DataTableExpandableCell<TData, TValue>({
         <Box flex="none" w="sm" />
       )}
       {children ?? (getValue() as string)}
-    </Flex>
+    </Group>
   );
 }
 

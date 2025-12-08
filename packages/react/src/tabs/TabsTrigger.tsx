@@ -3,7 +3,7 @@ import * as RadixTabs from "@radix-ui/react-tabs";
 import { forwardRef, type ReactNode } from "react";
 
 import { Box, type BoxProps, extractBoxProps } from "../box";
-import { Flex } from "../flex";
+import { Group } from "../group";
 import { decorateChildren } from "../utils";
 import * as styles from "./TabsTrigger.css";
 
@@ -40,13 +40,13 @@ export const TabsTrigger = forwardRef<HTMLButtonElement, TabsTriggerProps>(
         <RadixTabs.Trigger asChild ref={ref} value={value} {...restProps}>
           <Comp>
             {decorateChildren({ asChild, children }, (children) => (
-              <Flex {...styles.content()}>
+              <Group {...styles.content()}>
                 {addonBefore}
 
                 {children}
 
                 {addonAfter}
-              </Flex>
+              </Group>
             ))}
           </Comp>
         </RadixTabs.Trigger>

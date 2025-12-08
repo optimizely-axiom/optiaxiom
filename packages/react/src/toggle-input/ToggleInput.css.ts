@@ -14,7 +14,6 @@ export const toggleInput = recipe({
     {
       alignItems: "start",
       display: "inline-flex",
-      flexDirection: "row",
       gap: "8",
     },
     style({

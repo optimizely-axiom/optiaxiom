@@ -3,7 +3,7 @@ import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import { type ComponentPropsWithRef, forwardRef, useRef } from "react";
 
 import { Button } from "../button";
-import { Flex } from "../flex";
+import { Group } from "../group";
 import { useObserveValue } from "../hooks";
 import { IconMagnifyingGlass } from "../icons/IconMagnifyingGlass";
 import { IconX } from "../icons/IconX";
@@ -55,10 +55,10 @@ export const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
           )
         }
         addonBefore={
-          <Flex flexDirection="row" gap="8">
+          <Group gap="8">
             <IconMagnifyingGlass />
             {addonBefore}
-          </Flex>
+          </Group>
         }
         addonPointerEvents="none"
         asChild

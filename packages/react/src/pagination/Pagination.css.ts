@@ -5,7 +5,6 @@ import { recipe, style } from "../vanilla-extract";
 export const list = recipe({
   base: [
     {
-      flexDirection: "row",
       gap: "2",
     },
     style({

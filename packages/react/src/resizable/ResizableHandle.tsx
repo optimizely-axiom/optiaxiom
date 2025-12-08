@@ -3,7 +3,7 @@ import type { ComponentPropsWithoutRef } from "react";
 import * as ResizablePrimitive from "react-resizable-panels";
 
 import { Box } from "../box";
-import { Flex } from "../flex";
+import { Group } from "../group";
 import * as styles from "./ResizableHandle.css";
 
 export type ResizableHandleProps = ComponentPropsWithoutRef<
@@ -12,11 +12,11 @@ export type ResizableHandleProps = ComponentPropsWithoutRef<
 
 export const ResizableHandle = (props: ResizableHandleProps) => {
   return (
-    <Flex asChild {...styles.root()}>
+    <Group asChild {...styles.root()}>
       <ResizablePrimitive.PanelResizeHandle {...props}>
         <Box {...styles.handle()} />
       </ResizablePrimitive.PanelResizeHandle>
-    </Flex>
+    </Group>
   );
 };
 

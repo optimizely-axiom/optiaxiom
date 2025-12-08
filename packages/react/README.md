@@ -43,14 +43,14 @@ export function App() {
 Import and use components in your application:
 
 ```jsx
-import { Button, Input, Box, Flex } from "@optiaxiom/react";
+import { Box, Button, Group, Input } from "@optiaxiom/react";
 
 export function MyComponent() {
   return (
-    <Flex alignItems="start">
+    <Group alignItems="start" flexDirection="column" gap="16">
       <Input placeholder="Enter text..." />
       <Button appearance="primary">Submit</Button>
-    </Flex>
+    </Group>
   );
 }
 ```
@@ -68,11 +68,11 @@ import { Button } from "@optiaxiom/react";
 ### Form with Validation
 
 ```jsx
-import { Field, Input, Button, Flex } from "@optiaxiom/react";
+import { Button, Field, Group, Input } from "@optiaxiom/react";
 
 function LoginForm() {
   return (
-    <Flex alignItems="start">
+    <Group alignItems="start" flexDirection="column" gap="16">
       <Field label="Email">
         <Input placeholder="you@example.com" type="email" />
       </Field>
@@ -80,23 +80,23 @@ function LoginForm() {
         <Input type="password" />
       </Field>
       <Button appearance="primary">Sign In</Button>
-    </Flex>
+    </Group>
   );
 }
 ```
 
-### Layout with Box and Flex
+### Layout with Box and Group
 
 ```jsx
-import { Box, Flex, Heading, Text } from "@optiaxiom/react";
+import { Box, Group, Heading, Text } from "@optiaxiom/react";
 
 function Sample() {
   return (
     <Box bg="bg.default" color="fg.default" p="16" rounded="md" shadow="sm">
-      <Flex>
+      <Group flexDirection="column" gap="16">
         <Heading level="3">Sample Title</Heading>
         <Text>Sample description goes here</Text>
-      </Flex>
+      </Group>
     </Box>
   );
 }

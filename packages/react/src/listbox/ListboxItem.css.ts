@@ -18,7 +18,6 @@ export const item = recipe({
   base: [
     {
       alignItems: "start",
-      flexDirection: "row",
       fontSize: "md",
       gap: "8",
       p: "8",
@@ -108,7 +107,6 @@ export const title = recipe({
   base: [
     {
       alignItems: "center",
-      flexDirection: "row",
       gap: "8",
     },
     style({

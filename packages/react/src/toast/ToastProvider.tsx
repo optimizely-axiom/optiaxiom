@@ -6,7 +6,7 @@ import { type ComponentPropsWithoutRef, forwardRef, useRef } from "react";
 import { useSyncExternalStore } from "use-sync-external-store/shim";
 
 import { type BoxProps, extractBoxProps } from "../box";
-import { Flex } from "../flex";
+import { Group } from "../group";
 import { Portal } from "../portal";
 import { Toast } from "./Toast";
 import { ToastAction } from "./ToastAction";
@@ -107,9 +107,8 @@ export const ToastProvider = forwardRef<HTMLOListElement, ToastProviderProps>(
             </Toast>
           </ToastProviderProvider>
         ))}
-
         <Portal asChild {...(container && { container })}>
-          <Flex
+          <Group
             alignItems={
               position.endsWith("left")
                 ? "start"
@@ -126,7 +125,7 @@ export const ToastProvider = forwardRef<HTMLOListElement, ToastProviderProps>(
             {...boxProps}
           >
             <RadixToast.Viewport ref={ref} {...restProps} />
-          </Flex>
+          </Group>
         </Portal>
       </RadixToast.ToastProvider>
     );

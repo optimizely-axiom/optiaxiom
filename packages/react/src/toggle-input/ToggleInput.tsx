@@ -3,7 +3,7 @@ import { createSlot } from "@radix-ui/react-slot";
 import { forwardRef } from "react";
 
 import { type BoxProps, extractBoxProps } from "../box";
-import { Flex } from "../flex";
+import { Group } from "../group";
 import * as styles from "./ToggleInput.css";
 import { ToggleInputProvider } from "./ToggleInputContext";
 
@@ -21,7 +21,7 @@ export const ToggleInput = forwardRef<HTMLLabelElement, ToggleInputProps>(
 
     return (
       <ToggleInputProvider descriptionId={descriptionId} labelId={labelId}>
-        <Flex asChild {...styles.toggleInput({}, className)} {...boxProps}>
+        <Group asChild {...styles.toggleInput({}, className)} {...boxProps}>
           <Comp
             onMouseDown={(event) => {
               onMouseDown?.(event);
@@ -34,7 +34,7 @@ export const ToggleInput = forwardRef<HTMLLabelElement, ToggleInputProps>(
           >
             {children}
           </Comp>
-        </Flex>
+        </Group>
       </ToggleInputProvider>
     );
   },

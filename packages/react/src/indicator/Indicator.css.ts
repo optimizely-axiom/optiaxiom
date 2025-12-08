@@ -4,6 +4,8 @@ export const indicator = recipe({
   base: [
     {
       display: "inline-flex",
+      flexDirection: "column",
+      gap: "16",
     },
     style({
       position: "relative",

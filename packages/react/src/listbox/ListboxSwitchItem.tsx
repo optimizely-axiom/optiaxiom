@@ -1,7 +1,7 @@
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import { Box } from "../box";
-import { Flex } from "../flex";
+import { Group } from "../group";
 import { Switch } from "../switch";
 import * as styles from "./ListboxCheckboxItem.css";
 import { ListboxItem } from "./ListboxItem";
@@ -21,7 +21,7 @@ export const ListboxSwitchItem = forwardRef<
   return (
     <ListboxItem
       addonAfter={
-        <Flex flexDirection="row" gap="8">
+        <Group gap="8">
           {addonAfter}
 
           <Box
@@ -47,7 +47,7 @@ export const ListboxSwitchItem = forwardRef<
               tabIndex={-1}
             />
           </Box>
-        </Flex>
+        </Group>
       }
       ref={ref}
       {...props}

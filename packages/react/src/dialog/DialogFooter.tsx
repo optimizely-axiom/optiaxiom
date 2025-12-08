@@ -2,11 +2,11 @@ import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import { type ComponentPropsWithRef, forwardRef } from "react";
 
 import { ButtonProvider } from "../button/internals";
-import { Flex } from "../flex";
+import { Group } from "../group";
 import { useDialogContext } from "./DialogContext";
 import * as styles from "./DialogFooter.css";
 
-export type DialogFooterProps = ComponentPropsWithRef<typeof Flex>;
+export type DialogFooterProps = ComponentPropsWithRef<typeof Group>;
 
 /**
  * @group Dialog
@@ -18,9 +18,9 @@ export const DialogFooter = forwardRef<HTMLDivElement, DialogFooterProps>(
 
     return (
       <ButtonProvider size="lg">
-        <Flex ref={ref} {...styles.footer({}, className)} {...props}>
+        <Group ref={ref} {...styles.footer({}, className)} {...props}>
           {children}
-        </Flex>
+        </Group>
       </ButtonProvider>
     );
   },

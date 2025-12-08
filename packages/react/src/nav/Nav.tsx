@@ -1,7 +1,7 @@
 import { forwardRef } from "react";
 
 import { type BoxProps } from "../box";
-import { Flex } from "../flex";
+import { Group } from "../group";
 import { useSidebarContext } from "../sidebar/internals";
 import * as styles from "./Nav.css";
 
@@ -34,18 +34,20 @@ export const Nav = forwardRef<HTMLDivElement, NavProps>(
     const { expanded, navId } = useSidebarContext("@optiaxiom/react/Nav");
 
     return (
-      <Flex
+      <Group
         borderColor="border.tertiary"
         borderR="1"
+        flexDirection="column"
+        gap="16"
         h="full"
         ref={ref}
         w="fit"
         {...props}
       >
-        <Flex asChild id={navId} w={expanded ? "224" : "56"} {...styles.nav()}>
+        <Group asChild id={navId} w={expanded ? "224" : "56"} {...styles.nav()}>
           <nav aria-label="Main">{children}</nav>
-        </Flex>
-      </Flex>
+        </Group>
+      </Group>
     );
   },
 );

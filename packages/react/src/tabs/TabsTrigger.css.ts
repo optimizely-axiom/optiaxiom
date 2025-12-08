@@ -60,7 +60,6 @@ export const trigger = recipe({
 export const content = recipe({
   base: [
     {
-      flexDirection: "row",
       gap: "8",
       justifyContent: ["center", "flex-start"],
       py: "6",

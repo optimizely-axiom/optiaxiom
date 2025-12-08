@@ -4,7 +4,6 @@ export const footer = recipe({
   base: [
     {
       bg: "bg.default",
-      flexDirection: "row",
       gap: "8",
       p: "16",
       pt: "8",

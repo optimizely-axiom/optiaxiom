@@ -9,7 +9,6 @@ const marker = styles.className;
 export const root = recipe({
   base: [
     {
-      flexDirection: "row",
       gap: "0",
     },
     style({

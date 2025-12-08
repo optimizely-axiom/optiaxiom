@@ -1,8 +1,8 @@
 import { type ComponentPropsWithRef, forwardRef } from "react";
 
-import { Flex } from "../flex";
+import { Group } from "../group";
 
-export type PillGroupProps = ComponentPropsWithRef<typeof Flex>;
+export type PillGroupProps = ComponentPropsWithRef<typeof Group>;
 
 /**
  * @group Pill
@@ -10,9 +10,9 @@ export type PillGroupProps = ComponentPropsWithRef<typeof Flex>;
 export const PillGroup = forwardRef<HTMLDivElement, PillGroupProps>(
   ({ children, ...props }, ref) => {
     return (
-      <Flex flexDirection="row" flexWrap="wrap" gap="8" ref={ref} {...props}>
+      <Group flexWrap="wrap" gap="8" ref={ref} {...props}>
         {children}
-      </Flex>
+      </Group>
     );
   },
 );
