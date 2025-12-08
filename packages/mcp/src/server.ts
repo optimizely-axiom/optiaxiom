@@ -35,18 +35,37 @@ server.registerTool(
 
 ⚠️ VALIDATION REQUIRED WHEN USING EXTERNAL CODE: If component names came from Figma, screenshots, or other external sources, validate them with search_components() FIRST. External tools generate invalid names (BreadcrumbItem, TabsTab don't exist in Axiom).
 
-⚠️ SPECIAL ATTENTION FOR FLEX LAYOUTS:
-- Flex defaults to flexDirection='column' (VERTICAL), NOT 'row' like standard CSS
-- Flex defaults to alignItems='stretch' in column layouts, 'center' in row layouts
-- For form layouts with Input/Button/Textarea: use alignItems='start' to prevent inputs from stretching to full width
-- Example: <Flex alignItems="start"><Input /><Button /></Flex>
-- Best practice: Use Flex for layout direction/alignment, use Box for simple styling (padding, margin, colors)
-- Box is a lighter primitive; only use Flex when you need flexbox layout features
+✅ USE GROUP FOR FLEXBOX LAYOUTS (PREFERRED):
+- Group is a flexbox layout component for arranging items horizontally or vertically
+- Group defaults to flexDirection='row' (CSS standard - horizontal layout)
+- Group defaults to alignItems='center' (when row) or 'stretch' (when column)
+- Group has NO default gap - you must specify it explicitly
+- For form layouts with Input/Button/Textarea in column direction: use alignItems='start' to prevent inputs from stretching to full width
+- Examples:
+  - Horizontal button group: <Group gap="8"><Button /><Button /></Group>
+  - Vertical form: <Group flexDirection="column" gap="16" alignItems="start"><Input /><Button /></Group>
+  - Icon + text: <Group gap="4"><Icon /><Text /></Group>
+
+⚠️ FLEX COMPONENT IS DEPRECATED (DO NOT USE):
+- Flex is deprecated since v1.8.0 and will be removed in v2.0
+- Use Group instead for all new code
+- To migrate existing Flex code: \`npx @optiaxiom/codemod flex-to-group src/\`
+- If you must use Flex (legacy code only):
+  - Flex defaults to flexDirection='column' (VERTICAL), NOT 'row' like standard CSS
+  - Flex defaults to gap='16' (automatic spacing)
+  - Flex defaults to alignItems='stretch' in column layouts, 'center' in row layouts
+  - For form layouts with Input/Button/Textarea: use alignItems='start' to prevent inputs from stretching
+  - Example: <Flex alignItems="start"><Input /><Button /></Flex>
+
+📋 LAYOUT COMPONENT BEST PRACTICES:
+- Use Group for flexbox layouts (direction, gap, alignment)
+- Use Box for simple styling (padding, margin, borders, colors)
+- Box is a lighter primitive; only use Group when you need flexbox layout features
 
 ⚠️ TABLE COMPONENT PREFERENCE:
 - ALWAYS use DataTable instead of Table for displaying tabular data
 - Table is a low-level primitive; DataTable provides sorting, pagination, filtering, etc.
-- DataTable is built with TanStack Table and offers a much better developer experience
+- DataTable is built with TanGroup Table and offers a much better developer experience
 - Only use Table directly for very specific custom table layouts
 
 ---
@@ -90,9 +109,20 @@ server.registerTool(
   {
     description: `⚠️ VALIDATION TIP: Use this list to verify component names from Figma/external sources. If a name doesn't appear here, it doesn't exist in Axiom.
 
-⚠️ IMPORTANT LAYOUT DEFAULTS:
-- Flex defaults to flexDirection='column' and alignItems='stretch'
-- For forms with Input/Button: use <Flex alignItems="start"> to prevent stretching
+✅ USE GROUP FOR LAYOUTS (PREFERRED):
+- Group is the recommended component for flexbox layouts
+- Group defaults to flexDirection='row' (CSS standard - horizontal)
+- Group has NO default gap - you must specify it
+- For forms with Input/Button in column direction: use alignItems='start' to prevent stretching
+- Example: <Group gap="8"><Button /><Button /></Group>
+
+⚠️ FLEX IS DEPRECATED (DO NOT USE):
+- Flex is deprecated since v1.8.0 - use Group instead
+- To migrate existing code: \`npx @optiaxiom/codemod flex-to-group src/\`
+- If you must use Flex (legacy code only):
+  - Flex defaults to flexDirection='column' and alignItems='stretch'
+  - Flex defaults to gap='16'
+  - For forms with Input/Button: use <Flex alignItems="start"> to prevent stretching
 
 ⚠️ TABLE COMPONENTS:
 - ALWAYS use DataTable instead of Table for displaying data
@@ -138,9 +168,20 @@ Common invalid names from Figma:
 - BreadcrumbItem, BreadcrumbLink → Use Breadcrumb with items prop
 - TabsTab → Use TabsTrigger
 
-⚠️ LAYOUT COMPONENT DEFAULTS:
-- Flex defaults to flexDirection='column' and alignItems='stretch'
-- For forms with Input/Button: use <Flex alignItems="start"> to prevent stretching
+✅ USE GROUP FOR LAYOUTS (PREFERRED):
+- Group is the recommended component for flexbox layouts
+- Group defaults to flexDirection='row' (CSS standard - horizontal)
+- Group has NO default gap - you must specify it
+- For forms with Input/Button in column direction: use alignItems='start' to prevent stretching
+- Example: <Group gap="8"><Button /><Button /></Group>
+
+⚠️ FLEX IS DEPRECATED (DO NOT USE):
+- Flex is deprecated since v1.8.0 - use Group instead
+- To migrate existing code: \`npx @optiaxiom/codemod flex-to-group src/\`
+- If you must use Flex (legacy code only):
+  - Flex defaults to flexDirection='column' and alignItems='stretch'
+  - Flex defaults to gap='16'
+  - For forms with Input/Button: use <Flex alignItems="start"> to prevent stretching
 
 ⚠️ TABLE COMPONENTS:
 - Prefer DataTable over Table for displaying tabular data

@@ -1,10 +1,17 @@
 import { Cards, Demo, Links, PropsTable } from "@/components";
+import { Alert } from "@optiaxiom/react";
 
 # Flex
 
 Use `Flex` component to stack items vertically or horizontally.
 
 <Links component="flex" />
+
+<Alert intent="danger" mt="16">
+  **Flex** has been deprecated in favor of the new **Group** component which
+  uses CSS-standard defaults. See the [Group component](../group/) and
+  [migration guide](../../guides/group-migration/).
+</Alert>
 
 ## Documentation
 
@@ -34,11 +41,16 @@ Use `gap` prop to control the gap between flex items.
 
 Use `alignItems` and `justifyContent` prop to control the layout and alignment of flex items.
 
+The Flex component provides smart `alignItems` defaults:
+
+- When `flexDirection="column"`: defaults to `alignItems="stretch"`
+- When `flexDirection="row"`: defaults to `alignItems="center"`
+
 <Demo component="flex/alignment-usage" />
 
 ### Related
 
-<Cards items={["Box", "Grid"]} />
+<Cards items={["Box", "Grid", "Group"]} />
 
 ## Props
 
@@ -47,6 +59,10 @@ Use `alignItems` and `justifyContent` prop to control the layout and alignment o
 <PropsTable component="Flex" />
 
 ## Changelog
+
+### 1.8.0
+
+- Deprecated component in favor of [Group](../group/)
 
 ### 0.1.0
 

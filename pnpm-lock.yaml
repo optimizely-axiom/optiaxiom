@@ -266,6 +266,15 @@ importers:
         specifier: ^3.2.4
         version: 3.2.4(@types/debug@4.1.12)(@types/node@22.17.2)(@vitest/browser@3.2.4)(happy-dom@18.0.1)(jsdom@24.1.3)(msw@2.7.3(@types/node@22.17.2)(typescript@5.9.2))(terser@5.39.2)(tsx@4.20.6)(yaml@2.8.0)
 
+  packages/codemod:
+    devDependencies:
+      '@types/jscodeshift':
+        specifier: ^17.3.0
+        version: 17.3.0
+      '@types/node':
+        specifier: ^22.17.2
+        version: 22.17.2
+
   packages/globals:
     dependencies:
       '@fontsource-variable/fira-code':
@@ -2743,6 +2752,9 @@ packages:
 
   '@types/hast@3.0.4':
     resolution: {integrity: sha512-WPs+bbQw5aCj+x6laNGWLH3wviHtoCv/P3+otBhbOhJgG8qtpdAMlTCxLtsTWA7LH1Oh/bFCHsBn0TPS5m30EQ==}
+
+  '@types/jscodeshift@17.3.0':
+    resolution: {integrity: sha512-ogvGG8VQQqAQQ096uRh+d6tBHrYuZjsumHirKtvBa5qEyTMN3IQJ7apo+sw9lxaB/iKWIhbbLlF3zmAWk9XQIg==}
 
   '@types/json-schema@7.0.15':
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
@@ -9866,6 +9878,11 @@ snapshots:
   '@types/hast@3.0.4':
     dependencies:
       '@types/unist': 3.0.3
+
+  '@types/jscodeshift@17.3.0':
+    dependencies:
+      ast-types: 0.16.1
+      recast: 0.23.11
 
   '@types/json-schema@7.0.15': {}
 

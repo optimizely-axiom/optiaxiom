@@ -79,6 +79,7 @@
     "./FieldLabel": "./dist/components/FieldLabel.js",
     "./Flex": "./dist/components/Flex.js",
     "./Grid": "./dist/components/Grid.js",
+    "./Group": "./dist/components/Group.js",
     "./Heading": "./dist/components/Heading.js",
     "./Indicator": "./dist/components/Indicator.js",
     "./Input": "./dist/components/Input.js",
