@@ -45,7 +45,7 @@ jobs:
 
       - run: pnpm -F docs... build && echo '' > ./apps/docs/out/.nojekyll
 
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v4
         with:
           path: ./apps/docs/out
 
