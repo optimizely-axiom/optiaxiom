@@ -103,6 +103,54 @@ import { PropsTable } from "@/components";
 <PropsTable component="Button" />
 ```
 
+## Writing Documentation
+
+### Page Structure
+
+All documentation pages must follow this hierarchical structure:
+
+**H2 sections must always be immediately followed by an H3 subsection**
+
+This is a design requirement due to how H2 headings are styled (smaller than typical). Never have content directly under an H2 - always add an H3 first.
+
+```mdx
+✅ CORRECT:
+
+## Installation
+
+### Claude Code
+
+Add the MCP server to your workspace configuration...
+
+### Cursor
+
+Add to your Cursor MCP configuration...
+```
+
+```mdx
+❌ INCORRECT:
+
+## Installation
+
+Add the MCP server to your workspace configuration...
+```
+
+### Heading Capitalization
+
+Use **sentence case** for all headings (H2, H3, H4), not title case:
+
+- ✅ `## Available tools`
+- ❌ `## Available Tools`
+- ✅ `### Natural language queries`
+- ❌ `### Natural Language Queries`
+- ✅ `### Global installation (optional)`
+- ❌ `### Global Installation (Optional)`
+
+**Exception:** Proper nouns and acronyms keep their standard capitalization:
+
+- ✅ `### Claude Code`
+- ✅ `### MCP server not responding`
+
 ## Contributing
 
 ### Development
