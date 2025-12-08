@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Flex, Text, Textarea } from "@optiaxiom/react";
+import { Group, Text, Textarea } from "@optiaxiom/react";
 
 export default {
   args: {
@@ -32,10 +32,10 @@ export const ManualResize: Story = {
     resize: "vertical",
   },
   render: (args) => (
-    <Flex maxW="xs">
+    <Group flexDirection="column" gap="16" maxW="xs">
       <Textarea {...args} />
       <Textarea {...args} resize="none" />
-    </Flex>
+    </Group>
   ),
 };
 
@@ -46,10 +46,10 @@ export const AutoSize: Story = {
     resize: "auto",
   },
   render: (args) => (
-    <Flex maxW="xs">
+    <Group flexDirection="column" gap="16" maxW="xs">
       <Textarea {...args} />
       <Textarea {...args} maxRows={2} />
-    </Flex>
+    </Group>
   ),
 };
 
@@ -58,10 +58,10 @@ export const Disabled: Story = {
     disabled: true,
   },
   render: (args) => (
-    <Flex>
+    <Group flexDirection="column" gap="16">
       <Textarea {...args} placeholder="Disabled placeholder..." />
       <Textarea {...args} defaultValue="Disabled with value" />
-    </Flex>
+    </Group>
   ),
 };
 
@@ -70,10 +70,10 @@ export const Readonly: Story = {
     readOnly: true,
   },
   render: (args) => (
-    <Flex>
+    <Group flexDirection="column" gap="16">
       <Textarea {...args} placeholder="Readonly placeholder..." />
       <Textarea {...args} defaultValue="Readonly with value" />
-    </Flex>
+    </Group>
   ),
 };
 
@@ -82,18 +82,18 @@ export const Error: Story = {
     error: true,
   },
   render: (args) => (
-    <Flex>
+    <Group flexDirection="column" gap="16">
       <Textarea {...args} placeholder="Error placeholder..." />
       <Textarea {...args} defaultValue="Error with value" />
-    </Flex>
+    </Group>
   ),
 };
 
 export const Addons: Story = {
   render: (args) => (
-    <Flex>
+    <Group flexDirection="column" gap="16">
       <Textarea {...args} addonBefore={<Text>Top Section</Text>} />
       <Textarea {...args} addonAfter={<Text>Bottom Section</Text>} />
-    </Flex>
+    </Group>
   ),
 };

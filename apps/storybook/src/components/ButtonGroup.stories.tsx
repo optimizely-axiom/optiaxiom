@@ -5,7 +5,7 @@ import {
   Button,
   ButtonGroup,
   Field,
-  Flex,
+  Group,
   Menu,
   MenuContent,
   MenuTrigger,
@@ -84,13 +84,13 @@ const appearances = [
 
 export const Appearance: Story = {
   render: (args) => (
-    <Flex alignItems="center">
+    <Group alignItems="center" flexDirection="column" gap="16">
       {appearances.map(([appearance, label]) => (
         <ButtonGroup {...args} key={appearance}>
           <BasicContent appearance={appearance}>{label}</BasicContent>
         </ButtonGroup>
       ))}
-    </Flex>
+    </Group>
   ),
 };
 
@@ -99,13 +99,13 @@ export const AppearanceSpacing: Story = {
     gap: "8",
   },
   render: (args) => (
-    <Flex alignItems="center">
+    <Group alignItems="center" flexDirection="column" gap="16">
       {appearances.map(([appearance, label]) => (
         <ButtonGroup {...args} key={appearance}>
           <BasicContent appearance={appearance}>{label}</BasicContent>
         </ButtonGroup>
       ))}
-    </Flex>
+    </Group>
   ),
 };
 

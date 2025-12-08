@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Checkbox, Flex } from "@optiaxiom/react";
+import { Checkbox, Group } from "@optiaxiom/react";
 
 export default {
   args: {
@@ -27,10 +27,10 @@ export const HelperText: Story = {
 
 export const MultiLineLabel: Story = {
   render: (args) => (
-    <Flex w="224">
+    <Group flexDirection="column" gap="16" w="224">
       <Checkbox {...args} />
       <Checkbox {...args}>This is an example of a multi line label</Checkbox>
-    </Flex>
+    </Group>
   ),
 };
 
@@ -39,10 +39,10 @@ export const Checked: Story = {
     defaultChecked: true,
   },
   render: (args) => (
-    <Flex>
+    <Group flexDirection="column" gap="16">
       <Checkbox {...args} />
       <Checkbox {...args} disabled />
-    </Flex>
+    </Group>
   ),
 };
 
@@ -51,10 +51,10 @@ export const Disabled: Story = {
     disabled: true,
   },
   render: (args) => (
-    <Flex>
+    <Group flexDirection="column" gap="16">
       <Checkbox {...args} defaultChecked />
       <Checkbox {...args} />
-    </Flex>
+    </Group>
   ),
 };
 
@@ -64,24 +64,24 @@ export const Intermediate: Story = {
     indeterminate: true,
   },
   render: (args) => (
-    <Flex>
+    <Group flexDirection="column" gap="16">
       <Checkbox {...args} />
       <Checkbox {...args} disabled />
-    </Flex>
+    </Group>
   ),
 };
 
 export const VerticalAlignment: Story = {
   render: (args) => (
-    <Flex flexDirection="row">
-      <Flex border="1">
+    <Group gap="16">
+      <Group border="1" flexDirection="column" gap="16">
         <Checkbox alignItems="center" h="xl" {...args} />
-      </Flex>
-      <Flex border="1">
+      </Group>
+      <Group border="1" flexDirection="column" gap="16">
         <Checkbox alignItems="center" aria-label="Label" h="xl" {...args}>
           {null}
         </Checkbox>
-      </Flex>
-    </Flex>
+      </Group>
+    </Group>
   ),
 };

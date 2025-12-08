@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Avatar, AvatarGroup, Flex, Text, Tooltip } from "@optiaxiom/react";
+import { Avatar, AvatarGroup, Group, Text, Tooltip } from "@optiaxiom/react";
 import {
   HoverCard,
   HoverCardContent,
@@ -78,11 +78,11 @@ const sizes = ["2xs", "xs", "sm", "md", "lg", "xl", "3xl"] as const;
 export const Sizes: Story = {
   render: (args) => {
     return (
-      <Flex gap="16">
+      <Group flexDirection="column" gap="16">
         {sizes.map((size) => (
           <AvatarGroup key={size} {...args} size={size} />
         ))}
-      </Flex>
+      </Group>
     );
   },
 };
@@ -132,17 +132,17 @@ export const WithHoverCard: Story = {
           </HoverCardTrigger>
 
           <HoverCardContent aria-label="Shared users list">
-            <Flex flexDirection="column" gap="8">
+            <Group flexDirection="column" gap="8">
               {users.slice(3).map((user, index) => (
-                <Flex flexDirection="row" gap="4" key={index}>
+                <Group gap="4" key={index}>
                   <Avatar colorScheme="purple" name={user.name} src={user.src}>
                     {user.id}
                   </Avatar>
 
                   <Text>{user.name}</Text>
-                </Flex>
+                </Group>
               ))}
-            </Flex>
+            </Group>
           </HoverCardContent>
         </HoverCard>
       </>

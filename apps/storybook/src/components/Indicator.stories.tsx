@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Avatar, Box, Button, Flex, Indicator } from "@optiaxiom/react";
+import { Avatar, Box, Button, Group, Indicator } from "@optiaxiom/react";
 import { IconBell, IconClockFilled } from "@tabler/icons-react";
 
 export default {
@@ -26,11 +26,11 @@ const positions = ["top-right", "bottom-right"] as const;
 
 const Variants: Story = {
   render: (args) => (
-    <Flex flexDirection="column" gap="12">
+    <Group flexDirection="column" gap="12">
       {intents.map((intent) => (
         <Indicator {...args} content="4" intent={intent} key={intent} />
       ))}
-    </Flex>
+    </Group>
   ),
 };
 
@@ -62,13 +62,13 @@ export const Position: Story = {
     variant: "strong",
   },
   render: (args) => (
-    <Flex gap="24">
+    <Group flexDirection="column" gap="24">
       {positions.map((position) => (
         <Box key={position}>
           <Indicator {...args} position={position} />
         </Box>
       ))}
-    </Flex>
+    </Group>
   ),
 };
 

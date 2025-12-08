@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Box, Flex, Grid, Radio, RadioGroup, Text } from "@optiaxiom/react";
+import { Box, Grid, Group, Radio, RadioGroup, Text } from "@optiaxiom/react";
 
 import styles from "./RadioGroup.module.css";
 
@@ -143,7 +143,7 @@ const props2 = {
 export const ComplexExample2: Story = {
   render: (args) => (
     <RadioGroup borderB="1" {...args} defaultValue="label-1">
-      <Flex {...props2} gap="8">
+      <Group {...props2} gap="8">
         <Radio value="label-1" w="3xl">
           Admin
         </Radio>
@@ -157,8 +157,8 @@ export const ComplexExample2: Story = {
             </li>
           </ul>
         </Box>
-      </Flex>
-      <Flex {...props2} gap="8">
+      </Group>
+      <Group {...props2} gap="8">
         <Radio value="label-2" w="3xl">
           Editor
         </Radio>
@@ -172,7 +172,7 @@ export const ComplexExample2: Story = {
             </li>
           </ul>
         </Box>
-      </Flex>
+      </Group>
     </RadioGroup>
   ),
 };

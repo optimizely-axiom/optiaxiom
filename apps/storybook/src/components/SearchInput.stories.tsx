@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Button, Flex, SearchInput, Text } from "@optiaxiom/react";
+import { Button, Group, SearchInput, Text } from "@optiaxiom/react";
 import { type ChangeEvent, useState } from "react";
 import { expect, userEvent, waitFor } from "storybook/test";
 
@@ -43,7 +43,7 @@ export const Controlled: Story = {
     };
 
     return (
-      <Flex flexDirection="column" gap="12" w="224">
+      <Group flexDirection="column" gap="12" w="224">
         <SearchInput {...args} onChange={handleChange} value={value} />
         <Text fontSize="md">Current value: {value}</Text>
         <Button
@@ -53,7 +53,7 @@ export const Controlled: Story = {
         >
           Clear
         </Button>
-      </Flex>
+      </Group>
     );
   },
 };

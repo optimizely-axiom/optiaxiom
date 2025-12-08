@@ -4,7 +4,7 @@ import {
   Alert,
   Avatar,
   Button,
-  Flex,
+  Group,
   Link,
   Progress,
   Text,
@@ -27,46 +27,50 @@ export const Basic: Story = {
 export const AlertExample: Story = {
   name: "Alert",
   render: () => (
-    <Flex>
+    <Group flexDirection="column" gap="16">
       <Alert intent="opal" onDismiss={() => {}}>
-        <Flex flexDirection="row" justifyContent="space-between">
+        <Group gap="16" justifyContent="space-between">
           <Text>A brief line or two describing the alert information.</Text>
           <Link external href="data:,">
             Link text
           </Link>
-        </Flex>
+        </Group>
       </Alert>
       <Alert intent="opal" onDismiss={() => {}}>
-        <Flex flexDirection="row" justifyContent="space-between">
+        <Group gap="16" justifyContent="space-between">
           <Text>A brief line or two describing the alert information.</Text>
           <Button appearance="primary-opal" size="sm">
             Button
           </Button>
-        </Flex>
+        </Group>
       </Alert>
-    </Flex>
+    </Group>
   ),
 };
 
 export const AvatarExample: Story = {
   name: "Avatar",
   render: () => (
-    <Flex flexDirection="row">
+    <Group gap="16">
       {(["md", "sm", "xs", "2xs"] as const).map((size) => (
         <Avatar fallback="opal" key={size} size={size} />
       ))}
-    </Flex>
+    </Group>
   ),
 };
 
 export const ButtonExample: Story = {
   name: "Button",
   render: () => (
-    <Flex>
+    <Group flexDirection="column" gap="16">
       {(["primary-opal", "default-opal"] as const).map((appearance) =>
         ([false, true] as const).map((disabled) => (
-          <Flex key={`${appearance}-${disabled}`}>
-            <Flex flexDirection="row">
+          <Group
+            flexDirection="column"
+            gap="16"
+            key={`${appearance}-${disabled}`}
+          >
+            <Group gap="16">
               {(["lg", "md", "sm"] as const).map((size) => (
                 <Button
                   appearance={appearance}
@@ -77,8 +81,8 @@ export const ButtonExample: Story = {
                   Button
                 </Button>
               ))}
-            </Flex>
-            <Flex flexDirection="row">
+            </Group>
+            <Group gap="16">
               {(["lg", "md", "sm"] as const).map((size) => (
                 <Button
                   appearance={appearance}
@@ -90,8 +94,8 @@ export const ButtonExample: Story = {
                   Button
                 </Button>
               ))}
-            </Flex>
-            <Flex flexDirection="row">
+            </Group>
+            <Group gap="16">
               {(["lg", "md", "sm"] as const).map((size) => (
                 <Button
                   appearance={appearance}
@@ -102,20 +106,20 @@ export const ButtonExample: Story = {
                   size={size}
                 />
               ))}
-            </Flex>
-          </Flex>
+            </Group>
+          </Group>
         )),
       )}
-    </Flex>
+    </Group>
   ),
 };
 
 export const ProgressExample: Story = {
   name: "Progress",
   render: () => (
-    <Flex w="384">
+    <Group flexDirection="column" gap="16" w="384">
       <Progress aria-label="Label" intent="opal" value={20} />
       <Progress aria-label="Label" intent="opal" value={100} />
-    </Flex>
+    </Group>
   ),
 };

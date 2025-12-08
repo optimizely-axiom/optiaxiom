@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Box, Flex, Heading, Text } from "@optiaxiom/react";
+import { Box, Group, Heading, Text } from "@optiaxiom/react";
 import { InlineInput } from "@optiaxiom/react/unstable";
 
 export default {
@@ -48,14 +48,14 @@ export const Placeholder: Story = {
 
 export const HeadingStyle: Story = {
   render: (args) => (
-    <Flex>
+    <Group flexDirection="column" gap="16">
       <Heading asChild level="4">
         <InlineInput {...args} />
       </Heading>
       <Heading asChild level="4">
         <InlineInput {...args} defaultValue="Some user input value" />
       </Heading>
-    </Flex>
+    </Group>
   ),
 };
 
@@ -65,7 +65,7 @@ export const Multiline: Story = {
     multiline: true,
   },
   render: (args) => (
-    <Flex fontSize="md">
+    <Group flexDirection="column" fontSize="md" gap="16">
       <Text asChild>
         <InlineInput {...args} />
       </Text>
@@ -75,6 +75,6 @@ export const Multiline: Story = {
           defaultValue={"First line of description\nSecond line of description"}
         />
       </Text>
-    </Flex>
+    </Group>
   ),
 };

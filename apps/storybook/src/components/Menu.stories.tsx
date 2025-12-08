@@ -10,7 +10,7 @@ import {
   DialogFooter,
   DialogHeader,
   Field,
-  Flex,
+  Group,
   Input,
   Menu,
   MenuContent,
@@ -479,7 +479,7 @@ const foods = [
   { group: groups[2], label: "Pork" },
 ];
 
-export const Group: Story = {
+export const WithGroup: Story = {
   render: function Group(args) {
     const [value, setValue] = useState<{ label: string }>();
 
@@ -661,7 +661,7 @@ export const WithDialog: Story = {
   },
   render: function WithDialog(args) {
     return (
-      <Flex>
+      <Group flexDirection="column" gap="16">
         <Menu
           {...args}
           options={[
@@ -693,7 +693,7 @@ export const WithDialog: Story = {
           <MenuTrigger>Menu</MenuTrigger>
           <MenuContent />
         </Menu>
-      </Flex>
+      </Group>
     );
   },
 };

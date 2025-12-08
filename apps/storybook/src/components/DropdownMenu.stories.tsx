@@ -19,7 +19,7 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
   Field,
-  Flex,
+  Group,
   Input,
 } from "@optiaxiom/react";
 import { dialogkit } from "@optiaxiom/react/unstable";
@@ -223,7 +223,7 @@ export const Nested: Story = {
 
 export const TriggerWidth: Story = {
   render: (args) => (
-    <Flex flexDirection="row">
+    <Group gap="16">
       <DropdownMenu {...args}>
         <DropdownMenuTrigger>Really long trigger</DropdownMenuTrigger>
 
@@ -241,7 +241,7 @@ export const TriggerWidth: Story = {
           <DropdownMenuItem>Another really long menu item</DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
-    </Flex>
+    </Group>
   ),
 };
 
@@ -263,7 +263,7 @@ export const AvatarTrigger: Story = {
   },
 };
 
-export const Group: Story = {
+export const WithGroup: Story = {
   args: {
     children: (
       <>
@@ -415,7 +415,7 @@ export const WithDialog: Story = {
   },
   render: function WithDialog(args) {
     return (
-      <Flex>
+      <Group flexDirection="column" gap="16">
         <DropdownMenu {...args}>
           <DropdownMenuTrigger>Menu</DropdownMenuTrigger>
 
@@ -449,7 +449,7 @@ export const WithDialog: Story = {
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
-      </Flex>
+      </Group>
     );
   },
 };

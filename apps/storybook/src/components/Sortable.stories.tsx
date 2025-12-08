@@ -9,7 +9,7 @@ import {
   Disclosure,
   DisclosureContent,
   DisclosureTrigger,
-  Flex,
+  Group,
   Text,
 } from "@optiaxiom/react";
 import {
@@ -124,7 +124,13 @@ export const Basic: Story = {
       >
         {(items) =>
           swimlanes.map((swimlane, index) => (
-            <Flex asChild gap="0" justifyContent="flex-start" key={swimlane}>
+            <Group
+              asChild
+              flexDirection="column"
+              gap="0"
+              justifyContent="flex-start"
+              key={swimlane}
+            >
               <Disclosure defaultOpen>
                 <DisclosureTrigger flex="none">
                   <Box alignItems="center" display="flex" gap="8">
@@ -148,7 +154,7 @@ export const Basic: Story = {
                   </Box>
                 </DisclosureTrigger>
                 <DisclosureContent asChild>
-                  <Flex alignItems="stretch" flex="1" flexDirection="row">
+                  <Group alignItems="stretch" flex="1" gap="16">
                     {columns.map((column) => (
                       <SortableGroup
                         asChild
@@ -180,8 +186,10 @@ export const Basic: Story = {
                                 {items[`${swimlane}:${column}`].length}
                               </Badge>
                             </Text>
-                            <Flex
+                            <Group
                               flex="1"
+                              flexDirection="column"
+                              gap="16"
                               justifyContent="flex-start"
                               overflow="auto"
                               px="16"
@@ -196,15 +204,15 @@ export const Basic: Story = {
                                   </Card>
                                 ),
                               )}
-                            </Flex>
+                            </Group>
                           </Box>
                         )}
                       </SortableGroup>
                     ))}
-                  </Flex>
+                  </Group>
                 </DisclosureContent>
               </Disclosure>
-            </Flex>
+            </Group>
           ))
         }
       </Sortable>

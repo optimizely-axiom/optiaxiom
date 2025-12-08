@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Flex } from "@optiaxiom/react";
+import { Group } from "@optiaxiom/react";
 import { Pill } from "@optiaxiom/react/unstable";
 import { action } from "storybook/actions";
 
@@ -19,24 +19,24 @@ export const Basic: Story = {
 
 export const Sizes: Story = {
   render: (args) => (
-    <Flex gap="12">
-      <Flex flexDirection="row" gap="12">
+    <Group flexDirection="column" gap="12">
+      <Group gap="12">
         <Pill {...args} size="xs">
           Configured Commerce
         </Pill>
         <Pill {...args} size="xs">
           3
         </Pill>
-      </Flex>
-      <Flex flexDirection="row" gap="12">
+      </Group>
+      <Group gap="12">
         <Pill {...args} size="sm">
           Configured Commerce
         </Pill>
         <Pill {...args} size="sm">
           3
         </Pill>
-      </Flex>
-    </Flex>
+      </Group>
+    </Group>
   ),
 };
 
@@ -60,9 +60,9 @@ export const LongContent: Story = {
     children: "This is a very long text",
   },
   render: (args) => (
-    <Flex>
+    <Group flexDirection="column" gap="16">
       <Pill {...args} w="3xl" />
       <Pill {...args} w="224" />
-    </Flex>
+    </Group>
   ),
 };

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Button, Flex, Progress } from "@optiaxiom/react";
+import { Button, Group, Progress } from "@optiaxiom/react";
 import { Fragment, useState } from "react";
 import { userEvent } from "storybook/test";
 
@@ -33,14 +33,14 @@ export const Intent: Story = {
   },
 
   render: (args) => (
-    <Flex>
+    <Group flexDirection="column" gap="16">
       {(["primary", "success", "danger", "opal"] as const).map((intent) => (
         <Fragment key={intent}>
           <Progress intent={intent} {...args} value={20} />
           <Progress intent={intent} {...args} />
         </Fragment>
       ))}
-    </Flex>
+    </Group>
   ),
 };
 
@@ -60,12 +60,11 @@ export const CompletionStages: Story = {
   render: function CompletionStagesComponent(args) {
     const [scale, setScale] = useState(1);
     return (
-      <Flex w="384">
-        <Flex flexDirection="row">
+      <Group flexDirection="column" gap="16" w="384">
+        <Group gap="16">
           <Button onClick={() => setScale(1)}>Reset</Button>
           <Button onClick={() => setScale(2)}>Forward</Button>
-        </Flex>
-
+        </Group>
         {values.map(({ max, value }, index) => (
           <Progress
             {...args}
@@ -75,7 +74,7 @@ export const CompletionStages: Story = {
             w="full"
           />
         ))}
-      </Flex>
+      </Group>
     );
   },
 };
