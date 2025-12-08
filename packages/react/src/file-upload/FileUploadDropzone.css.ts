@@ -7,6 +7,8 @@ export const dropzone = recipe({
     {
       alignItems: "center",
       bg: "bg.secondary",
+      flexDirection: "column",
+      gap: "16",
       justifyContent: "center",
       p: "32",
       rounded: "md",
@@ -71,6 +73,7 @@ export const label = recipe({
   base: [
     {
       alignItems: "center",
+      flexDirection: "column",
       gap: "8",
     },
   ],

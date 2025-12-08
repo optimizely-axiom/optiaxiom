@@ -2,7 +2,7 @@ import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import { forwardRef, useRef, useState } from "react";
 
 import { type BoxProps } from "../box";
-import { Flex } from "../flex";
+import { Group } from "../group";
 import { Icon } from "../icon";
 import { IconFileImport } from "../icons/IconFileImport";
 import { Text } from "../text";
@@ -66,7 +66,7 @@ export const FileUploadDropzone = forwardRef<
     const size = useContainerSize(innerRef) ?? 0;
 
     return (
-      <Flex
+      <Group
         fontSize={size > 448 ? "lg" : "md"}
         ref={useComposedRefs(innerRef, outerRef)}
         {...styles.dropzone(
@@ -94,15 +94,15 @@ export const FileUploadDropzone = forwardRef<
             type="file"
           />
         </VisuallyHidden>
-        <Flex {...styles.label({ disabled })}>
+        <Group {...styles.label({ disabled })}>
           <Icon asChild color="fg.secondary" h={size > 448 ? "lg" : "sm"}>
             <IconFileImport />
           </Icon>
           <Text>{label}</Text>
           {description && <Text color="fg.tertiary">{description}</Text>}
-        </Flex>
+        </Group>
         {!overlay && (children ?? <FileUploadTrigger />)}
-      </Flex>
+      </Group>
     );
   },
 );

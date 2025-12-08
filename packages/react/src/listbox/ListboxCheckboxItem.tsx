@@ -2,7 +2,7 @@ import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import { Box } from "../box";
 import { Checkbox } from "../checkbox";
-import { Flex } from "../flex";
+import { Group } from "../group";
 import { Icon } from "../icon";
 import * as styles from "./ListboxCheckboxItem.css";
 import { ListboxItem } from "./ListboxItem";
@@ -26,7 +26,7 @@ export const ListboxCheckboxItem = forwardRef<
   return (
     <ListboxItem
       addonBefore={
-        <Flex flexDirection="row" gap="8">
+        <Group gap="8">
           <Box
             onClick={
               onCheckedChange
@@ -52,7 +52,7 @@ export const ListboxCheckboxItem = forwardRef<
           ) : icon ? (
             <Icon asChild>{icon}</Icon>
           ) : null}
-        </Flex>
+        </Group>
       }
       ref={ref}
       {...props}

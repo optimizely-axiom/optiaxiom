@@ -5,7 +5,7 @@ import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import { ButtonAddon } from "../button/ButtonAddon";
 import { ButtonRoot } from "../button/ButtonRoot";
-import { Flex } from "../flex";
+import { Group } from "../group";
 import { IconAngleDown } from "../icons/IconAngleDown";
 import { Text } from "../text";
 import * as styles from "./LabelMenuButton.css";
@@ -53,14 +53,19 @@ export const LabelMenuButton = forwardRef<
         {...styles.button({}, className)}
         {...props}
       >
-        <Flex gap="0" overflow="hidden" textAlign="start">
+        <Group
+          flexDirection="column"
+          gap="0"
+          overflow="hidden"
+          textAlign="start"
+        >
           <Text asChild id={labelId} truncate {...styles.label({ filled })}>
             <Label>{label}</Label>
           </Text>
           <Text id={valueId} truncate {...styles.content({ filled })}>
             {children ?? <>&nbsp;</>}
           </Text>
-        </Flex>
+        </Group>
         <ButtonAddon asChild>
           <IconAngleDown />
         </ButtonAddon>

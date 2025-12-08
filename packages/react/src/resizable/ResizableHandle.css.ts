@@ -7,6 +7,8 @@ const bgVar = createVar();
 export const root = recipe({
   base: [
     {
+      flexDirection: "column",
+      gap: "16",
       justifyContent: "center",
       rounded: "sm",
       z: "10",

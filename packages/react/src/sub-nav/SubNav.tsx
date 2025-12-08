@@ -1,7 +1,7 @@
 import { forwardRef } from "react";
 
 import { type BoxProps } from "../box";
-import { Flex } from "../flex";
+import { Group } from "../group";
 import { SidebarProvider } from "../sidebar/internals";
 import * as styles from "./SubNav.css";
 
@@ -13,15 +13,17 @@ export type SubNavProps = BoxProps<"nav">;
 export const SubNav = forwardRef<HTMLDivElement, SubNavProps>(
   ({ children, ...props }, ref) => {
     return (
-      <Flex
+      <Group
         borderColor="border.tertiary"
         borderR="1"
+        flexDirection="column"
+        gap="16"
         h="full"
         ref={ref}
         w="fit"
         {...props}
       >
-        <Flex asChild {...styles.nav()}>
+        <Group asChild {...styles.nav()}>
           <nav aria-label="Secondary">
             <SidebarProvider
               expanded
@@ -32,8 +34,8 @@ export const SubNav = forwardRef<HTMLDivElement, SubNavProps>(
               {children}
             </SidebarProvider>
           </nav>
-        </Flex>
-      </Flex>
+        </Group>
+      </Group>
     );
   },
 );

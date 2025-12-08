@@ -4,7 +4,7 @@ export const months = recipe({
   base: [
     {
       alignItems: "start",
-      flexDirection: "row",
+      gap: "16",
     },
     style({
       position: "relative",

@@ -1,7 +1,7 @@
 import { forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
-import { Flex } from "../flex";
+import { Group } from "../group";
 import * as styles from "./Spinner.css";
 
 export type SpinnerProps = BoxProps<
@@ -41,10 +41,12 @@ export const Spinner = forwardRef<HTMLDivElement, SpinnerProps>(
     ref,
   ) => {
     return (
-      <Flex
+      <Group
         alignItems={alignItems}
         aria-label={ariaLabel}
         display={display}
+        flexDirection="column"
+        gap="16"
         justifyContent={justifyContent}
         ref={ref}
         role={role}
@@ -78,9 +80,8 @@ export const Spinner = forwardRef<HTMLDivElement, SpinnerProps>(
             </Box>
           </svg>
         </Box>
-
         {children}
-      </Flex>
+      </Group>
     );
   },
 );

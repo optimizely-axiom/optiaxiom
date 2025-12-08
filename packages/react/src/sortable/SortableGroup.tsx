@@ -3,7 +3,7 @@ import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import { forwardRef, type ReactNode, useState } from "react";
 
 import { type BoxProps } from "../box";
-import { Flex } from "../flex";
+import { Group } from "../group";
 import { SortableGroupProvider } from "./SortableGroupContext";
 
 export type SortableGroupProps = BoxProps<
@@ -37,11 +37,11 @@ export const SortableGroup = forwardRef<HTMLDivElement, SortableGroupProps>(
 
     return (
       <SortableGroupProvider id={id} setHasDropTarget={setHasDropTarget}>
-        <Flex ref={ref} {...props}>
+        <Group flexDirection="column" gap="16" ref={ref} {...props}>
           {typeof children === "function"
             ? children(isDropTarget || hasDropTarget)
             : children}
-        </Flex>
+        </Group>
       </SortableGroupProvider>
     );
   },

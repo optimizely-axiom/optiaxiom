@@ -4,6 +4,7 @@ export const body = recipe({
   base: [
     {
       flex: "1",
+      flexDirection: "column",
       gap: "4",
       justifyContent: "flex-start",
       overflowX: "hidden",

@@ -6,7 +6,6 @@ export const footer = recipe({
       bg: "bg.default",
       borderColor: "border.secondary",
       borderT: "1",
-      flexDirection: "row",
       gap: "16",
       justifyContent: "flex-end",
       px: "24",

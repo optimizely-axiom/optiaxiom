@@ -1,6 +1,6 @@
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
-import { Flex } from "../flex";
+import { Group } from "../group";
 import { ListboxItem } from "./ListboxItem";
 import { ListboxItemIndicator } from "./ListboxItemIndicator";
 
@@ -18,7 +18,7 @@ export const ListboxRadioItem = forwardRef<
   return (
     <ListboxItem
       addonAfter={
-        <Flex flexDirection="row" gap="8">
+        <Group gap="8">
           {addonAfter}
           <ListboxItemIndicator
             active={Boolean(
@@ -27,7 +27,7 @@ export const ListboxRadioItem = forwardRef<
               ],
             )}
           />
-        </Flex>
+        </Group>
       }
       ref={ref}
       {...props}

@@ -3,7 +3,7 @@ import type { Table } from "@tanstack/table-core";
 import { forwardRef, useState } from "react";
 
 import { type BoxProps } from "../box";
-import { Flex } from "../flex";
+import { Group } from "../group";
 import { DataTableProvider } from "./DataTableContext";
 
 export type DataTableProps = BoxProps<
@@ -29,7 +29,14 @@ export const DataTable = forwardRef<HTMLDivElement, DataTableProps>(
     const [highlightedIndex, setHighlightedIndex] = useState(-1);
 
     return (
-      <Flex gap="8" maxH="full" maxW="full" ref={ref} {...props}>
+      <Group
+        flexDirection="column"
+        gap="8"
+        maxH="full"
+        maxW="full"
+        ref={ref}
+        {...props}
+      >
         <DataTableProvider
           highlightedIndex={highlightedIndex}
           setHighlightedIndex={setHighlightedIndex}
@@ -37,7 +44,7 @@ export const DataTable = forwardRef<HTMLDivElement, DataTableProps>(
         >
           {children}
         </DataTableProvider>
-      </Flex>
+      </Group>
     );
   },
 );

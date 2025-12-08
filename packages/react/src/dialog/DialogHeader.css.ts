@@ -41,7 +41,6 @@ export const title = recipe({
 export const actions = recipe({
   base: [
     {
-      flexDirection: "row",
       gap: "8",
     },
     style({

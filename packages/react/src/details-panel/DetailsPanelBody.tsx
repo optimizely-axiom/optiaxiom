@@ -1,7 +1,7 @@
 import { type ComponentPropsWithRef, forwardRef } from "react";
 
 import { Box } from "../box";
-import { Flex } from "../flex";
+import { Group } from "../group";
 
 export type DetailsPanelBodyProps = ComponentPropsWithRef<typeof Box>;
 
@@ -13,9 +13,17 @@ export const DetailsPanelBody = forwardRef<
   DetailsPanelBodyProps
 >(({ children, ...props }, ref) => {
   return (
-    <Flex flex="1" fontSize="md" px="16" ref={ref} {...props}>
+    <Group
+      flex="1"
+      flexDirection="column"
+      fontSize="md"
+      gap="16"
+      px="16"
+      ref={ref}
+      {...props}
+    >
       {children}
-    </Flex>
+    </Group>
   );
 });
 

@@ -9,8 +9,8 @@ import type { ExcludeProps } from "../utils";
 import { Backdrop } from "../backdrop";
 import { Box, type BoxProps } from "../box";
 import { DialogKitContext } from "../dialog-kit/internals";
-import { Flex } from "../flex";
 import { FocusBookmarkProvider } from "../focus-bookmark";
+import { Group } from "../group";
 import { Paper } from "../paper";
 import { Portal } from "../portal";
 import { Transition, TransitionGroup } from "../transition";
@@ -76,7 +76,7 @@ export const AlertDialogContent = forwardRef<
             </Backdrop>
           </Transition>
 
-          <Flex {...styles.root()}>
+          <Group {...styles.root()}>
             <Box flex="1" pointerEvents="none" />
 
             <Transition type="pop">
@@ -131,7 +131,7 @@ export const AlertDialogContent = forwardRef<
 
             <Box flex="1" pointerEvents="none" />
             <Box flex="1" pointerEvents="none" />
-          </Flex>
+          </Group>
         </Portal>
       </TransitionGroup>
     );

@@ -4,7 +4,6 @@ export const header = recipe({
   base: [
     {
       bg: "bg.default",
-      flexDirection: "row",
       gap: "8",
       p: "24",
       pb: "16",

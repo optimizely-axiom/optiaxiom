@@ -1,10 +1,10 @@
 import { type ComponentPropsWithRef, forwardRef } from "react";
 
 import { ButtonProvider } from "../button/internals";
-import { Flex } from "../flex";
+import { Group } from "../group";
 import * as styles from "./AlertDialogFooter.css";
 
-export type AlertDialogFooterProps = ComponentPropsWithRef<typeof Flex>;
+export type AlertDialogFooterProps = ComponentPropsWithRef<typeof Group>;
 
 /**
  * @group AlertDialog
@@ -15,9 +15,9 @@ export const AlertDialogFooter = forwardRef<
 >(({ children, className, ...props }, ref) => {
   return (
     <ButtonProvider size="lg">
-      <Flex {...styles.footer({}, className)} ref={ref} {...props}>
+      <Group {...styles.footer({}, className)} ref={ref} {...props}>
         {children}
-      </Flex>
+      </Group>
     </ButtonProvider>
   );
 });

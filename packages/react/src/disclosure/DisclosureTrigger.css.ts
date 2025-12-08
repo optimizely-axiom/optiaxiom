@@ -5,7 +5,6 @@ import { recipe, style } from "../vanilla-extract";
 export const root = recipe({
   base: [
     {
-      flexDirection: "row",
       fontSize: "md",
       gap: "8",
       py: "8",
@@ -31,7 +30,6 @@ export const root = recipe({
 export const trigger = recipe({
   base: [
     {
-      flexDirection: "row",
       fontSize: "inherit",
       fontWeight: "inherit",
       gap: "4",

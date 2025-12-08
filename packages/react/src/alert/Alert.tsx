@@ -3,7 +3,7 @@ import { createElement, forwardRef } from "react";
 
 import { type BoxProps } from "../box";
 import { Button } from "../button";
-import { Flex } from "../flex";
+import { Group } from "../group";
 import { Icon } from "../icon";
 import { IconCircleCheckSolid } from "../icons/IconCircleCheckSolid";
 import { IconCircleExclamationSolid } from "../icons/IconCircleExclamationSolid";
@@ -49,7 +49,7 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>(
     const labelId = useId();
 
     return (
-      <Flex
+      <Group
         aria-labelledby={labelId}
         ref={ref}
         role="alert"
@@ -59,11 +59,9 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>(
         <Icon asChild {...styles.icon({ intent })}>
           {createElement<object>(mapIntentToIcon[intent])}
         </Icon>
-
-        <Flex id={labelId} {...styles.content()}>
+        <Group id={labelId} {...styles.content()}>
           {children}
-        </Flex>
-
+        </Group>
         {!!onDismiss && (
           <Button
             appearance="subtle"
@@ -75,7 +73,7 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>(
             size="sm"
           />
         )}
-      </Flex>
+      </Group>
     );
   },
 );

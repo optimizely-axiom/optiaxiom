@@ -6,7 +6,7 @@ import {
 } from "react";
 
 import { Box, type BoxProps } from "../box";
-import { Flex } from "../flex";
+import { Group } from "../group";
 import { IconTriangleExclamation } from "../icons/IconTriangleExclamation";
 import { fallbackSpan } from "../utils";
 import { FieldProvider } from "./FieldContext";
@@ -60,7 +60,7 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(
     const labelId = useId(labelIdProp);
 
     return (
-      <Flex flexDirection="column" gap="4" ref={ref} {...props}>
+      <Group flexDirection="column" gap="4" ref={ref} {...props}>
         {label && (
           <FieldLabel
             info={info}
@@ -71,7 +71,6 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(
             {label}
           </FieldLabel>
         )}
-
         <FieldProvider
           descriptionId={description ? descriptionId : undefined}
           error={!!error}
@@ -81,12 +80,10 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(
         >
           {children}
         </FieldProvider>
-
         {error && error !== true && (
-          <Flex
+          <Group
             alignItems="start"
             color="fg.error"
-            flexDirection="row"
             fontSize="sm"
             gap="4"
             id={errorId}
@@ -100,15 +97,14 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(
               />
             </Box>
             {error}
-          </Flex>
+          </Group>
         )}
-
         {description && (
           <Box asChild color="fg.tertiary" fontSize="sm" id={descriptionId}>
             {fallbackSpan(description)}
           </Box>
         )}
-      </Flex>
+      </Group>
     );
   },
 );

@@ -2,7 +2,7 @@ import { forwardRef } from "react";
 
 import type { BoxProps } from "../box";
 
-import { Flex } from "../flex";
+import { Group } from "../group";
 import * as styles from "./ButtonGroup.css";
 
 export type ButtonGroupProps = BoxProps<
@@ -24,7 +24,7 @@ export const ButtonGroup = forwardRef<HTMLDivElement, ButtonGroupProps>(
     ref,
   ) => {
     return (
-      <Flex
+      <Group
         data-orientation={gap === "0" ? orientation : undefined}
         flexDirection={orientation === "vertical" ? "column" : "row"}
         gap={gap}
@@ -33,7 +33,7 @@ export const ButtonGroup = forwardRef<HTMLDivElement, ButtonGroupProps>(
         {...props}
       >
         {children}
-      </Flex>
+      </Group>
     );
   },
 );

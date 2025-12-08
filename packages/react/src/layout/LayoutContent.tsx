@@ -1,7 +1,7 @@
 import { forwardRef } from "react";
 
 import { type BoxProps } from "../box";
-import { Flex } from "../flex";
+import { Group } from "../group";
 import * as styles from "./LayoutContent.css";
 
 export type LayoutContentProps = BoxProps<"div">;
@@ -12,14 +12,14 @@ export type LayoutContentProps = BoxProps<"div">;
 export const LayoutContent = forwardRef<HTMLDivElement, LayoutContentProps>(
   ({ children, className, ...props }, ref) => {
     return (
-      <Flex
+      <Group
         ref={ref}
         tabIndex={0}
         {...styles.content({}, className)}
         {...props}
       >
         {children}
-      </Flex>
+      </Group>
     );
   },
 );

@@ -4,7 +4,7 @@ import { forwardRef, type ReactNode } from "react";
 
 import { Box, type BoxProps } from "../box";
 import { Cover } from "../cover";
-import { Flex } from "../flex";
+import { Group } from "../group";
 import { IconAngleLeft } from "../icons/IconAngleLeft";
 import { IconAngleRight } from "../icons/IconAngleRight";
 import { useDisclosureContext } from "./DisclosureContext";
@@ -56,10 +56,10 @@ export const DisclosureTrigger = forwardRef<
         <RadixCollapsible.Trigger asChild>{children}</RadixCollapsible.Trigger>
       </Slot>
     ) : (
-      <Flex ref={ref} {...styles.root({}, className)} {...props}>
+      <Group ref={ref} {...styles.root({}, className)} {...props}>
         {addonBefore}
 
-        <Flex asChild {...styles.trigger()}>
+        <Group asChild {...styles.trigger()}>
           <Cover asChild>
             <RadixCollapsible.Trigger>
               {chevronPosition === "start" && (
@@ -77,10 +77,10 @@ export const DisclosureTrigger = forwardRef<
               )}
             </RadixCollapsible.Trigger>
           </Cover>
-        </Flex>
+        </Group>
 
         {addonAfter}
-      </Flex>
+      </Group>
     );
   },
 );

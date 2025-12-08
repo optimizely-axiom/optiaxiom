@@ -1,7 +1,7 @@
 import { forwardRef, type ReactNode } from "react";
 
 import { Box, type BoxProps, extractBoxProps } from "../box";
-import { Flex } from "../flex";
+import { Group } from "../group";
 import { fallbackSpan } from "../utils";
 import * as styles from "./BreadcrumbNode.css";
 
@@ -24,9 +24,9 @@ export const BreadcrumbNode = forwardRef<HTMLLIElement, BreadcrumbNodeProps>(
         <li ref={ref} {...restProps}>
           {children}
           {addonAfter && (
-            <Flex asChild flex="none" flexDirection="row" gap="4">
+            <Group asChild flex="none" gap="4">
               {fallbackSpan(addonAfter)}
-            </Flex>
+            </Group>
           )}
         </li>
       </Box>

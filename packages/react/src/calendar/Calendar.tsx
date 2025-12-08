@@ -10,7 +10,7 @@ import { DayPicker, type Matcher } from "react-day-picker";
 
 import { Box, type BoxProps } from "../box";
 import { Clock } from "../clock";
-import { Flex } from "../flex";
+import { Group } from "../group";
 import { usePopoverContentContext } from "../popover/internals";
 import { Text } from "../text";
 import { toInstant, toPlainDate, toPlainTime } from "../utils";
@@ -195,13 +195,14 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
         setView={setView}
         view={view}
       >
-        <Flex
+        <Group
           bg="bg.default"
           color="fg.default"
+          flexDirection="column"
           fontSize="md"
           gap="4"
-          ref={ref}
           {...props}
+          ref={ref}
         >
           <Box asChild {...styles.picker({ side })}>
             {mode === "single" ? (
@@ -294,7 +295,7 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
             )}
           </Box>
           {type === "datetime-local" && mode == "single" && (
-            <Flex gap="8" mt="8">
+            <Group flexDirection="column" gap="8" mt="8">
               <Clock
                 onValueChange={(time) => {
                   setValue(
@@ -320,9 +321,9 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
                   value instanceof Date ? value : placeholderDate,
                 )}
               </Text>
-            </Flex>
+            </Group>
           )}
-        </Flex>
+        </Group>
       </CalendarProvider>
     );
   },

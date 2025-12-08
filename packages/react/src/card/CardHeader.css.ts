@@ -6,7 +6,6 @@ export const header = recipe({
   base: [
     {
       alignSelf: "stretch",
-      flexDirection: "row",
       gap: "12",
       justifyContent: "space-between",
     },
@@ -20,7 +19,6 @@ export const addon = recipe({
   base: [
     {
       flex: "none",
-      flexDirection: "row",
       gap: "8",
     },
   ],

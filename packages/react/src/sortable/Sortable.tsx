@@ -10,7 +10,7 @@ import {
 } from "react";
 
 import { type BoxProps } from "../box";
-import { Flex } from "../flex";
+import { Group } from "../group";
 import { SortableProvider } from "./SortableContext";
 
 export type SortableProps<T extends Items> = BoxProps<
@@ -87,9 +87,9 @@ export const Sortable = forwardRef<HTMLDivElement, SortableProps<Items>>(
         }}
       >
         <SortableProvider cacheRef={cacheRef} isSorting={itemsState !== null}>
-          <Flex ref={ref} {...props}>
+          <Group flexDirection="column" gap="16" {...props} ref={ref}>
             {children?.(items)}
-          </Flex>
+          </Group>
         </SortableProvider>
       </DragDropProvider>
     );

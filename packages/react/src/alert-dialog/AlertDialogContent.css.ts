@@ -20,6 +20,7 @@ export const root = recipe({
   base: [
     {
       alignItems: "center",
+      flexDirection: "column",
       gap: "0",
       z: "popover",
     },

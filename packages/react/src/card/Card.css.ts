@@ -14,6 +14,7 @@ export const card = recipe({
       border: "1",
       borderColor: "border.tertiary",
       color: "fg.default",
+      flexDirection: "column",
       fontSize: "md",
       gap: "8",
       p: "16",

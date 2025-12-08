@@ -3,7 +3,7 @@ import { forwardRef } from "react";
 
 import { ActionsRoot } from "../actions";
 import { type BoxProps } from "../box";
-import { Flex } from "../flex";
+import { Group } from "../group";
 import * as styles from "./Card.css";
 import { CardProvider } from "./CardContext";
 
@@ -24,9 +24,9 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
     return (
       <CardProvider descriptionId={descriptionId} labelId={labelId}>
         <ActionsRoot asChild>
-          <Flex ref={ref} {...styles.card({}, className)} {...props}>
+          <Group ref={ref} {...styles.card({}, className)} {...props}>
             {children}
-          </Flex>
+          </Group>
         </ActionsRoot>
       </CardProvider>
     );

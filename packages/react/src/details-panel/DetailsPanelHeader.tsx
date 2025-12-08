@@ -2,7 +2,7 @@ import { forwardRef, type ReactNode } from "react";
 
 import { Box, type BoxProps } from "../box";
 import { ButtonProvider } from "../button/ButtonContext";
-import { Flex } from "../flex";
+import { Group } from "../group";
 import { Heading } from "../heading";
 import { Text } from "../text";
 import { fallbackSpan } from "../utils";
@@ -45,11 +45,7 @@ export const DetailsPanelHeader = forwardRef<
     return (
       <ButtonProvider size="sm">
         <Box ref={ref} {...styles.header({}, className)} {...props}>
-          {addonBefore && (
-            <Flex flexDirection="row" gap="8">
-              {addonBefore}
-            </Flex>
-          )}
+          {addonBefore && <Group gap="8">{addonBefore}</Group>}
 
           <Heading
             flex="1"
@@ -61,11 +57,7 @@ export const DetailsPanelHeader = forwardRef<
             {children}
           </Heading>
 
-          {addonAfter && (
-            <Flex flexDirection="row" gap="8">
-              {addonAfter}
-            </Flex>
-          )}
+          {addonAfter && <Group gap="8">{addonAfter}</Group>}
 
           {description && (
             <Text

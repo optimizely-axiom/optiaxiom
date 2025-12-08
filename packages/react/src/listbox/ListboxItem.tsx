@@ -3,7 +3,7 @@ import { createSlot } from "@radix-ui/react-slot";
 import { type ElementType, forwardRef, type ReactNode } from "react";
 
 import { Box, type BoxProps } from "../box";
-import { Flex } from "../flex";
+import { Group } from "../group";
 import { Icon } from "../icon";
 import { Text } from "../text";
 import {
@@ -68,7 +68,7 @@ export const ListboxItem = forwardRef<HTMLDivElement, ListboxItemProps>(
     const descriptionId = useId();
 
     return (
-      <Flex
+      <Group
         aria-describedby={description ? descriptionId : undefined}
         aria-labelledby={labelId}
         asChild
@@ -88,17 +88,17 @@ export const ListboxItem = forwardRef<HTMLDivElement, ListboxItemProps>(
                 </Box>
               )}
 
-              <Flex flex="1" gap="0" maxW="full">
-                <Flex asChild {...styles.title()} id={labelId}>
+              <Group flex="1" flexDirection="column" gap="0" maxW="full">
+                <Group asChild {...styles.title()} id={labelId}>
                   {fallbackSpan(children)}
-                </Flex>
+                </Group>
 
                 {description && (
                   <Text asChild {...styles.description()} id={descriptionId}>
                     {fallbackSpan(description)}
                   </Text>
                 )}
-              </Flex>
+              </Group>
 
               {addonAfter && (
                 <Box {...styles.addon({ slot: "after" })}>{addonAfter}</Box>
@@ -106,7 +106,7 @@ export const ListboxItem = forwardRef<HTMLDivElement, ListboxItemProps>(
             </>
           ))}
         </Comp>
-      </Flex>
+      </Group>
     );
   },
 );

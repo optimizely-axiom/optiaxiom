@@ -5,7 +5,7 @@ import { forwardRef, useEffect, useRef, useState } from "react";
 import { Box, type BoxProps } from "../box";
 import { Button } from "../button";
 import { ButtonRoot } from "../button/ButtonRoot";
-import { Flex } from "../flex";
+import { Group } from "../group";
 import { Icon } from "../icon";
 import { IconAngleLeft } from "../icons/IconAngleLeft";
 import { IconAngleRight } from "../icons/IconAngleRight";
@@ -87,7 +87,7 @@ export const Pagination = forwardRef<HTMLElement, PaginationProps>(
     return (
       <Box asChild {...props}>
         <nav aria-label="pagination" ref={ref}>
-          <Flex asChild {...styles.list()}>
+          <Group asChild {...styles.list()}>
             <ul>
               <ButtonRoot
                 appearance="subtle"
@@ -171,7 +171,7 @@ export const Pagination = forwardRef<HTMLElement, PaginationProps>(
                 </Tooltip>
               </li>
             </ul>
-          </Flex>
+          </Group>
         </nav>
       </Box>
     );

@@ -2,7 +2,7 @@ import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import type { BoxProps } from "../box";
 
-import { Flex } from "../flex";
+import { Group } from "../group";
 import { mapResponsiveValue } from "../sprinkles";
 import { RadioGroupProvider } from "./RadioGroupContext";
 
@@ -86,7 +86,7 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>(
         }}
         value={value}
       >
-        <Flex
+        <Group
           flexDirection={flexDirection}
           fontSize="md"
           gap={mapResponsiveValue(
@@ -97,7 +97,7 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>(
           {...props}
         >
           {children}
-        </Flex>
+        </Group>
       </RadioGroupProvider>
     );
   },
