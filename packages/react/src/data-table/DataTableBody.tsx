@@ -211,7 +211,6 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
                 style={
                   virtualRow
                     ? {
-                        minHeight: virtualRow.size,
                         position: "absolute",
                         transform: `translateY(${virtualRow.start}px)`,
                       }
