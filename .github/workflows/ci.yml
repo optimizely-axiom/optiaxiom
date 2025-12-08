@@ -19,7 +19,7 @@ jobs:
         with:
           ref: main
 
-      - uses: pnpm/action-setup@v3
+      - uses: pnpm/action-setup@v4
 
       - uses: actions/setup-node@v6
         with:
@@ -41,7 +41,7 @@ jobs:
 
       - uses: actions/checkout@v6
 
-      - uses: pnpm/action-setup@v3
+      - uses: pnpm/action-setup@v4
 
       - uses: actions/setup-node@v6
         with:
@@ -71,7 +71,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
-      - uses: pnpm/action-setup@v3
+      - uses: pnpm/action-setup@v4
 
       - uses: actions/setup-node@v6
         with:
@@ -95,7 +95,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
-      - uses: pnpm/action-setup@v3
+      - uses: pnpm/action-setup@v4
 
       - uses: actions/setup-node@v6
         with:
@@ -112,7 +112,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
-      - uses: pnpm/action-setup@v3
+      - uses: pnpm/action-setup@v4
 
       - uses: actions/setup-node@v6
         with:
