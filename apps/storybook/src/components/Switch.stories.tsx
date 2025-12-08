@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Flex, Switch, Text, Tooltip } from "@optiaxiom/react";
+import { Group, Switch, Text, Tooltip } from "@optiaxiom/react";
 
 export default {
   args: {
@@ -27,19 +27,19 @@ export const Large: Story = {
 
 export const MultiLineLabel: Story = {
   render: (args) => (
-    <Flex w="224">
+    <Group flexDirection="column" gap="16" w="224">
       <Switch {...args} />
       <Switch {...args}>This is a medium example of a multi line label</Switch>
       <Switch {...args} size="lg">
         This is a large example of a multi line label
       </Switch>
-    </Flex>
+    </Group>
   ),
 };
 
 export const WithTooltip: Story = {
   render: (args) => (
-    <Flex w="224">
+    <Group flexDirection="column" gap="16" w="224">
       <Switch {...args} />
       <Switch {...args}>
         <Tooltip auto content="This is a medium example of a multi line label">
@@ -51,7 +51,7 @@ export const WithTooltip: Story = {
           <Text truncate>This is a large example of a multi line label</Text>
         </Tooltip>
       </Switch>
-    </Flex>
+    </Group>
   ),
 };
 
@@ -60,10 +60,10 @@ export const Checked: Story = {
     defaultChecked: true,
   },
   render: (args) => (
-    <Flex>
+    <Group flexDirection="column" gap="16">
       <Switch {...args} />
       <Switch {...args} disabled />
-    </Flex>
+    </Group>
   ),
 };
 
@@ -72,9 +72,9 @@ export const Disabled: Story = {
     disabled: true,
   },
   render: (args) => (
-    <Flex>
+    <Group flexDirection="column" gap="16">
       <Switch {...args} defaultChecked />
       <Switch {...args} />
-    </Flex>
+    </Group>
   ),
 };

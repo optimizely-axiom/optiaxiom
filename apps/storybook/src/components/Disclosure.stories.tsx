@@ -5,7 +5,7 @@ import {
   Disclosure,
   DisclosureContent,
   DisclosureTrigger,
-  Flex,
+  Group,
 } from "@optiaxiom/react";
 import { IconThumbDown } from "@tabler/icons-react";
 import { useState } from "react";
@@ -40,7 +40,7 @@ export const Basic: Story = {
 
 export const ChevronPosition: Story = {
   render: (args) => (
-    <Flex>
+    <Group flexDirection="column" gap="16">
       <Disclosure {...args}>
         <DisclosureTrigger>Left chevron position</DisclosureTrigger>
         <DisclosureContent>
@@ -55,7 +55,7 @@ export const ChevronPosition: Story = {
           Content for the item. Contains multiple lines of lorem ipsum.
         </DisclosureContent>
       </Disclosure>
-    </Flex>
+    </Group>
   ),
 };
 

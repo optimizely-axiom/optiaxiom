@@ -5,7 +5,7 @@ import {
   AxiomProvider,
   Button,
   createToaster,
-  Flex,
+  Group,
   ToastProvider,
 } from "@optiaxiom/react";
 import { action } from "storybook/actions";
@@ -123,7 +123,7 @@ export const Appearance: Story = {
   },
   render: ({ message, ...args }) => {
     return (
-      <Flex flexDirection="row">
+      <Group gap="16">
         <Button
           onClick={() =>
             toaster.create(message, { ...args, intent: "neutral" })
@@ -157,7 +157,7 @@ export const Appearance: Story = {
         >
           Success
         </Button>
-      </Flex>
+      </Group>
     );
   },
 };

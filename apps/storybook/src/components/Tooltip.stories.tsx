@@ -3,8 +3,8 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import {
   Box,
   Button,
-  Flex,
   Grid,
+  Group,
   Switch,
   Text,
   Tooltip,
@@ -58,11 +58,10 @@ export const Controlled: Story = {
     const [open, setOpen] = useState(false);
 
     return (
-      <Flex flexDirection="row">
+      <Group gap="16">
         <Switch checked={enabled} onCheckedChange={setEnabled}>
           Enable tooltip
         </Switch>
-
         <Tooltip
           content="Add to library"
           onOpenChange={(flag) => enabled && setOpen(flag)}
@@ -70,7 +69,7 @@ export const Controlled: Story = {
         >
           <Button>Hover</Button>
         </Tooltip>
-      </Flex>
+      </Group>
     );
   },
 };
@@ -169,7 +168,7 @@ export const Truncate: Story = {
     );
   },
   render: (args) => (
-    <Flex fontSize="md">
+    <Group flexDirection="column" fontSize="md" gap="16">
       <Tooltip {...args} content="Not truncated text">
         <Text data-testid="not-truncated">
           The quick brown fox jumps over the lazy dog.
@@ -191,7 +190,7 @@ export const Truncate: Story = {
           </button>
         </Box>
       </Tooltip>
-    </Flex>
+    </Group>
   ),
 };
 

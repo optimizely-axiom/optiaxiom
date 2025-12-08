@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Flex, Separator, Text } from "@optiaxiom/react";
+import { Group, Separator, Text } from "@optiaxiom/react";
 
 export default {
   component: Separator,
@@ -16,11 +16,11 @@ export const Basic: Story = {
 
   render: (args) => {
     return (
-      <Flex flexDirection="column" gap="0">
+      <Group flexDirection="column" gap="0">
         <Text>First Item</Text>
         <Separator {...args} />
         <Text>Second Item</Text>
-      </Flex>
+      </Group>
     );
   },
 };
@@ -33,11 +33,11 @@ export const Vertical: Story = {
 
   render: (args) => {
     return (
-      <Flex flexDirection="row" gap="0">
+      <Group gap="0">
         <Text>First Item</Text>
         <Separator {...args} />
         <Text>Second Item</Text>
-      </Flex>
+      </Group>
     );
   },
 };

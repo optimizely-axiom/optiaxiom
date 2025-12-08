@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Flex, ToggleButton } from "@optiaxiom/react";
+import { Group, ToggleButton } from "@optiaxiom/react";
 import { IconLayoutSidebar } from "@tabler/icons-react";
 
 export default {
@@ -26,10 +26,10 @@ export default {
     },
   },
   render: (args) => (
-    <Flex flexDirection="row">
+    <Group gap="16">
       <ToggleButton {...args} appearance="subtle" />
       <ToggleButton {...args} appearance="default" />
-    </Flex>
+    </Group>
   ),
 } as Meta<typeof ToggleButton>;
 

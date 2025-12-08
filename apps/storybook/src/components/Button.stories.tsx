@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Button, Flex, Select, SelectTrigger } from "@optiaxiom/react";
+import { Button, Group, Select, SelectTrigger } from "@optiaxiom/react";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { IconChevronDown, IconCloudUpload } from "@tabler/icons-react";
 
@@ -53,11 +53,11 @@ export const Appearance: Story = {
     children: "Button",
   },
   render: (args) => (
-    <Flex>
+    <Group flexDirection="column" gap="16">
       {appearances.map((appearance) => (
         <Button {...args} appearance={appearance} key={appearance} />
       ))}
-    </Flex>
+    </Group>
   ),
 };
 
@@ -66,13 +66,13 @@ export const Sizes: Story = {
     children: "Button",
   },
   render: (args) => (
-    <Flex flexDirection="row">
+    <Group gap="16">
       {sizes.map(([size, label]) => (
         <Button {...args} key={size} size={size}>
           {args.children ? label : null}
         </Button>
       ))}
-    </Flex>
+    </Group>
   ),
 };
 
@@ -95,17 +95,17 @@ export const Loading: Story = {
     loading: true,
   },
   render: (args) => (
-    <Flex>
+    <Group flexDirection="column" gap="16">
       {appearances.map((appearance) => (
-        <Flex flexDirection="row" key={appearance}>
+        <Group gap="16" key={appearance}>
           <Button {...args} appearance={appearance} icon={null} />
           <Button {...args} appearance={appearance} />
           <Button {...args} appearance={appearance}>
             {null}
           </Button>
-        </Flex>
+        </Group>
       ))}
-    </Flex>
+    </Group>
   ),
 };
 
@@ -124,11 +124,11 @@ export const IconSizes: Story = {
     icon: "chevron-down",
   },
   render: (args) => (
-    <Flex flexDirection="row">
+    <Group gap="16">
       {sizes.map(([size]) => (
         <Button {...args} key={size} size={size} />
       ))}
-    </Flex>
+    </Group>
   ),
 };
 
@@ -138,18 +138,18 @@ export const IconsWithText: Story = {
     icon: "chevron-down",
   },
   render: (args) => (
-    <Flex>
-      <Flex flexDirection="row">
+    <Group flexDirection="column" gap="16">
+      <Group gap="16">
         {sizes.map(([size]) => (
           <Button {...args} iconPosition="start" key={size} size={size} />
         ))}
-      </Flex>
-      <Flex flexDirection="row">
+      </Group>
+      <Group gap="16">
         {sizes.map(([size]) => (
           <Button {...args} iconPosition="end" key={size} size={size} />
         ))}
-      </Flex>
-    </Flex>
+      </Group>
+    </Group>
   ),
 };
 
@@ -159,7 +159,7 @@ export const Link: Story = {
     icon: "chevron-down",
   },
   render: (args) => (
-    <Flex flexDirection="row">
+    <Group gap="16">
       <Button {...args} icon={null}>
         <a href="/">Sample Link</a>
       </Button>
@@ -169,7 +169,7 @@ export const Link: Story = {
       <Button {...args} aria-label="Sample Link">
         <a href="/" />
       </Button>
-    </Flex>
+    </Group>
   ),
 };
 
@@ -187,7 +187,7 @@ export const Upload: Story = {
     icon: "cloud-upload",
   },
   render: (args) => (
-    <Flex>
+    <Group flexDirection="column" gap="16">
       <Button {...args} />
       <Button disabled {...args}>
         <label>
@@ -197,7 +197,7 @@ export const Upload: Story = {
           </VisuallyHidden>
         </label>
       </Button>
-    </Flex>
+    </Group>
   ),
 };
 
@@ -206,13 +206,13 @@ export const Truncate: Story = {
     children: "This is a really long button label",
   },
   render: (args) => (
-    <Flex w="224">
+    <Group flexDirection="column" gap="16" w="224">
       <Button>Short label</Button>
       <Button {...args} />
       <Select options={[]}>
         <SelectTrigger {...args} />
       </Select>
       <Button justifyContent="center">Centered label</Button>
-    </Flex>
+    </Group>
   ),
 };

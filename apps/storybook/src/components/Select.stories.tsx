@@ -4,7 +4,7 @@ import {
   Box,
   Button,
   Field,
-  Flex,
+  Group,
   LabelMenuButton,
   Select,
   SelectContent,
@@ -131,7 +131,7 @@ const foods = [
   { group: groups.meats, label: "Pork", value: "Pork" },
 ];
 
-export const Group: Story = {
+export const WithGroup: Story = {
   args: {
     children: (
       <>
@@ -221,10 +221,10 @@ export const Controlled: Story = {
     const [value, setValue] = useState<string>(books[9].id);
 
     return (
-      <Flex flexDirection="row" fontSize="md">
+      <Group fontSize="md" gap="16">
         <Select {...args} onValueChange={setValue} value={value} />
         <Text>Selected: {value ? value : "None"}</Text>
-      </Flex>
+      </Group>
     );
   },
 };
@@ -271,7 +271,7 @@ export const AlternateTrigger: Story = {
     const [value, setValue] = useState<string>("");
 
     return (
-      <Flex w="224">
+      <Group flexDirection="column" gap="16" w="224">
         <Select
           {...args}
           onValueChange={setValue}
@@ -290,7 +290,6 @@ export const AlternateTrigger: Story = {
           </SelectTrigger>
           <SelectContent />
         </Select>
-
         <Select
           {...args}
           onValueChange={setValue}
@@ -312,7 +311,7 @@ export const AlternateTrigger: Story = {
         <Button alignSelf="start" onClick={() => setValue("")}>
           Reset
         </Button>
-      </Flex>
+      </Group>
     );
   },
 };

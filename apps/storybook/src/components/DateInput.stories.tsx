@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Button, DateInput, Field, Flex, Text } from "@optiaxiom/react";
+import { Button, DateInput, Field, Group, Text } from "@optiaxiom/react";
 import { useState } from "react";
 import { expect, screen, userEvent, waitFor } from "storybook/test";
 
@@ -60,7 +60,7 @@ export const Controlled: Story = {
     const [value, setValue] = useState("");
 
     return (
-      <Flex flexDirection="column" gap="12" w="224">
+      <Group flexDirection="column" gap="12" w="224">
         <DateInput
           {...args}
           onChange={(event) => {
@@ -76,7 +76,7 @@ export const Controlled: Story = {
         >
           Clear
         </Button>
-      </Flex>
+      </Group>
     );
   },
 };

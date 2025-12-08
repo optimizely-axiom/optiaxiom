@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Box, Field, Flex, Text } from "@optiaxiom/react";
+import { Box, Field, Group, Text } from "@optiaxiom/react";
 import { Range } from "@optiaxiom/react/unstable";
 import { useState } from "react";
 import { expect, screen, userEvent, waitFor } from "storybook/internal/test";
@@ -62,10 +62,10 @@ export const Controlled: Story = {
   render: function ControlledRange(args) {
     const [value, setValue] = useState(50);
     return (
-      <Flex fontSize="md">
+      <Group flexDirection="column" fontSize="md" gap="16">
         <Range {...args} onValueChange={setValue} value={value} />
         <Text>Value: {value}</Text>
-      </Flex>
+      </Group>
     );
   },
 };

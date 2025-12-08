@@ -13,7 +13,7 @@ import {
   CardLink,
   CardPreview,
   EllipsisMenuButton,
-  Flex,
+  Group,
   Link,
   Menu,
   MenuContent,
@@ -253,7 +253,7 @@ export const Horizontal: Story = {
     maxW: "full",
   },
   render: (args) => (
-    <Flex maxW="lg" style={{ width: "100vw" }}>
+    <Group flexDirection="column" gap="16" maxW="lg" style={{ width: "100vw" }}>
       <Card {...args}>
         <CardHeader
           addonAfter={
@@ -295,7 +295,7 @@ export const Horizontal: Story = {
           <CardLink href="data:,">Launch Scooter Beta Sign Up</CardLink>
         </CardHeader>
       </Card>
-    </Flex>
+    </Group>
   ),
 };
 
@@ -337,11 +337,11 @@ export const WithSortable: Story = {
           width: "max(512px, calc(100dvw - 2rem))",
         }}
       >
-        <Flex style={{ width: 600 }}>
+        <Group flexDirection="column" gap="16" style={{ width: 600 }}>
           <Sortable items={items} onItemsChange={setItems}>
             {(items) =>
               items.map((item, index) => (
-                <Flex flexDirection="row" key={item}>
+                <Group gap="16" key={item}>
                   <Text color="fg.secondary" fontSize="md" w="20">
                     {index + 1}
                   </Text>
@@ -383,11 +383,11 @@ export const WithSortable: Story = {
                       </CardHeader>
                     </Card>
                   </SortableItem>
-                </Flex>
+                </Group>
               ))
             }
           </Sortable>
-        </Flex>
+        </Group>
       </Box>
     );
   },

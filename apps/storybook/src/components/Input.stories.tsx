@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Flex, Input } from "@optiaxiom/react";
+import { Group, Input } from "@optiaxiom/react";
 import { IconCalendar } from "@tabler/icons-react";
 
 export default {
@@ -28,10 +28,10 @@ export const Value: Story = {
 
 export const Sizes: Story = {
   render: (args) => (
-    <Flex>
+    <Group flexDirection="column" gap="16">
       <Input {...args} size="md" />
       <Input {...args} size="lg" />
-    </Flex>
+    </Group>
   ),
 };
 
@@ -40,10 +40,10 @@ export const Disabled: Story = {
     disabled: true,
   },
   render: (args) => (
-    <Flex>
+    <Group flexDirection="column" gap="16">
       <Input {...args} placeholder="Disabled placeholder..." />
       <Input {...args} defaultValue="Disabled with value" />
-    </Flex>
+    </Group>
   ),
 };
 
@@ -52,10 +52,10 @@ export const Readonly: Story = {
     readOnly: true,
   },
   render: (args) => (
-    <Flex>
+    <Group flexDirection="column" gap="16">
       <Input {...args} placeholder="Readonly placeholder..." />
       <Input {...args} defaultValue="Readonly with value" />
-    </Flex>
+    </Group>
   ),
 };
 
@@ -64,16 +64,16 @@ export const Error: Story = {
     error: true,
   },
   render: (args) => (
-    <Flex>
+    <Group flexDirection="column" gap="16">
       <Input {...args} placeholder="Error placeholder..." />
       <Input {...args} defaultValue="Error with value" />
-    </Flex>
+    </Group>
   ),
 };
 
 export const Addons: Story = {
   render: (args) => (
-    <Flex>
+    <Group flexDirection="column" gap="16">
       <Input
         {...args}
         addonBefore={<IconCalendar size="20" />}
@@ -90,13 +90,13 @@ export const Addons: Story = {
         addonBefore={<IconCalendar size="20" />}
         placeholder="With both Icon"
       />
-    </Flex>
+    </Group>
   ),
 };
 
 export const NumberInput: Story = {
   render: (args) => (
-    <Flex>
+    <Group flexDirection="column" gap="16">
       <Input
         {...args}
         appearance="number"
@@ -106,19 +106,19 @@ export const NumberInput: Story = {
       <Input {...args} appearance="number" placeholder="00.00" />
       <Input {...args} appearance="number" disabled placeholder="00.00" />
       <Input {...args} appearance="number" defaultValue="20.00" error />
-    </Flex>
+    </Group>
   ),
 };
 
 export const Types: Story = {
   render: (args) => (
-    <Flex>
+    <Group flexDirection="column" gap="16">
       <Input {...args} type="date" />
       <Input {...args} type="file" />
       <Input {...args} defaultValue="query" type="password" />
       <Input {...args} autoFocus defaultValue="query" type="search" />
       <Input {...args} defaultValue="query" type="text" />
       <Input {...args} type="time" />
-    </Flex>
+    </Group>
   ),
 };

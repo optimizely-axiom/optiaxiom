@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Button, Flex } from "@optiaxiom/react";
+import { Button, Group } from "@optiaxiom/react";
 import {
   DetailsPanel,
   DetailsPanelBody,
@@ -15,9 +15,11 @@ export default {
   },
   component: DetailsPanel,
   decorators: (Story) => (
-    <Flex
+    <Group
       alignItems="end"
       bg="bg.page"
+      flexDirection="column"
+      gap="16"
       p="24"
       style={{
         height: "80vh",
@@ -25,7 +27,7 @@ export default {
       }}
     >
       <Story />
-    </Flex>
+    </Group>
   ),
 } as Meta<typeof DetailsPanel>;
 

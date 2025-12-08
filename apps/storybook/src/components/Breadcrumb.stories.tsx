@@ -1,12 +1,18 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Breadcrumb, Button, Flex, Separator, toaster } from "@optiaxiom/react";
+import {
+  Breadcrumb,
+  Button,
+  Group,
+  Separator,
+  toaster,
+} from "@optiaxiom/react";
 import { IconPencil } from "@tabler/icons-react";
 
 export default {
   component: Breadcrumb,
   render: ({ items, ...args }) => (
-    <Flex>
+    <Group flexDirection="column" gap="16">
       <Breadcrumb items={items} {...args} />
       <Breadcrumb
         aria-label="Breadcrumb buttons"
@@ -16,7 +22,7 @@ export default {
         }))}
         {...args}
       />
-    </Flex>
+    </Group>
   ),
 } as Meta<typeof Breadcrumb>;
 
@@ -89,10 +95,10 @@ export const Addons: Story = {
       },
       {
         addonAfter: (
-          <Flex flexDirection="row" gap="8" ml="4">
+          <Group gap="8" ml="4">
             <Separator orientation="vertical" />
             CPN-3461
-          </Flex>
+          </Group>
         ),
         href: "/components",
         label: "Campaign",

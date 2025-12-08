@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Box, Field, Flex, Input, Textarea } from "@optiaxiom/react";
+import { Box, Field, Group, Input, Textarea } from "@optiaxiom/react";
 import { IconCalendar } from "@tabler/icons-react";
 
 export default {
@@ -27,14 +27,14 @@ export const Basic: Story = {};
 
 export const sizes: Story = {
   render: () => (
-    <Flex>
+    <Group flexDirection="column" gap="16">
       <Field label="Label">
         <Input placeholder="Enter text..." w="224" />
       </Field>
       <Field label="Label">
         <Input placeholder="Enter text..." size="lg" w="224" />
       </Field>
-    </Flex>
+    </Group>
   ),
 };
 

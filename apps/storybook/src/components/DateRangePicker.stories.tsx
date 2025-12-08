@@ -7,7 +7,7 @@ import {
   DateRangePickerContent,
   DateRangePickerTrigger,
   Field,
-  Flex,
+  Group,
   Text,
 } from "@optiaxiom/react";
 import { useState } from "react";
@@ -118,7 +118,7 @@ export const Addons: Story = {
     const [value, setValue] = useState<null | { from: Date; to: Date }>(null);
 
     return (
-      <Flex>
+      <Group flexDirection="column" gap="16">
         <Text fontSize="md">Start: {value?.from?.toISOString()}</Text>
         <Text fontSize="md">End: {value?.to?.toISOString()}</Text>
         <DateRangePicker
@@ -131,17 +131,17 @@ export const Addons: Story = {
           <DateRangePickerTrigger />
           <DateRangePickerContent
             addonBefore={
-              <Flex gap="2">
+              <Group flexDirection="column" gap="2">
                 <Button appearance="subtle">Today</Button>
                 <Button appearance="subtle">This week</Button>
                 <Button appearance="subtle">This month</Button>
                 <Button appearance="subtle">Next week</Button>
                 <Button appearance="subtle">Next month</Button>
-              </Flex>
+              </Group>
             }
             today={new Date("2025-01-24T00:00:00")}
           >
-            <Flex flexDirection="row">
+            <Group gap="16">
               <Button
                 appearance="primary"
                 ml="auto"
@@ -149,10 +149,10 @@ export const Addons: Story = {
               >
                 Done
               </Button>
-            </Flex>
+            </Group>
           </DateRangePickerContent>
         </DateRangePicker>
-      </Flex>
+      </Group>
     );
   },
 };

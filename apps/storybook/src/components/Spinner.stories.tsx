@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Flex, Spinner } from "@optiaxiom/react";
+import { Group, Spinner } from "@optiaxiom/react";
 
 export default {
   component: Spinner,
@@ -20,20 +20,20 @@ export const Basic: Story = {};
 
 export const Colors: Story = {
   render: (args) => (
-    <Flex flexDirection="row">
+    <Group gap="16">
       <Spinner {...args} appearance="default" />
       <Spinner {...args} appearance="inverse" />
-    </Flex>
+    </Group>
   ),
 };
 
 export const Sizes: Story = {
   render: (args) => (
-    <Flex flexDirection="row">
+    <Group gap="16">
       {sizes.map((size) => (
         <Spinner key={size} {...args} size={size} />
       ))}
-    </Flex>
+    </Group>
   ),
 };
 

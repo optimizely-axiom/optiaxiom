@@ -59,10 +59,10 @@ export const Disabled: Story = {
 ```tsx
 export const Sizes: Story = {
   render: (args) => (
-    <Flex>
+    <Group flexDirection="column" gap="16">
       <Input {...args} />
       <Input {...args} size="lg" />
-    </Flex>
+    </Group>
   ),
 };
 ```
@@ -77,10 +77,10 @@ export const Appearance: Story = {
     children: "Button",
   },
   render: (args) => (
-    <Flex>
+    <Group flexDirection="column" gap="16">
       <Button {...args} />
       <Button {...args} appearance="primary" />
-    </Flex>
+    </Group>
   ),
 };
 
@@ -125,7 +125,7 @@ export const Controlled: Story = {
     const [value, setValue] = useState("");
 
     return (
-      <Flex>
+      <Group flexDirection="column" gap="16">
         <DateInput
           {...args}
           onChange={(event) => setValue(event.target.value)}
@@ -133,7 +133,7 @@ export const Controlled: Story = {
         />
         <Text fontSize="md">Current value: {value}</Text>
         <Button onClick={() => setValue("")}>Clear</Button>
-      </Flex>
+      </Group>
     );
   },
 };

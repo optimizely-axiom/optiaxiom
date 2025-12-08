@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Alert, Flex, Link, Text } from "@optiaxiom/react";
+import { Alert, Group, Link, Text } from "@optiaxiom/react";
 import { action } from "storybook/actions";
 
 export default {
@@ -32,9 +32,9 @@ export const WithCloseButton: Story = {
     onDismiss: action("onDismiss"),
   },
   render: (args) => (
-    <Flex>
+    <Group flexDirection="column" gap="16">
       <Alert {...args} />
-    </Flex>
+    </Group>
   ),
 };
 
@@ -43,14 +43,14 @@ export const Appearance: Story = {
     children: <>This is an inline section message</>,
   },
   render: (args) => (
-    <Flex>
+    <Group flexDirection="column" gap="16">
       <Alert intent="neutral" {...args} />
       <Alert intent="information" {...args} />
       <Alert intent="warning" {...args} />
       <Alert intent="danger" {...args} />
       <Alert intent="success" {...args} />
       <Alert intent="opal" {...args} />
-    </Flex>
+    </Group>
   ),
 };
 

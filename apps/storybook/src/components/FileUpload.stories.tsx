@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import {
   Box,
   Button,
-  Flex,
+  Group,
   Menu,
   MenuContent,
   MenuTrigger,
@@ -62,7 +62,7 @@ export const Overlay: Story = {
       <>
         <Textarea
           addonAfter={
-            <Flex borderT="1" flexDirection="row" gap="4" p="4">
+            <Group borderT="1" gap="4" p="4">
               <Tooltip content="Add images">
                 <FileUploadTrigger asChild>
                   <Button
@@ -83,7 +83,7 @@ export const Overlay: Story = {
                   size="sm"
                 />
               </Tooltip>
-            </Flex>
+            </Group>
           }
           placeholder="Add a comment"
         />
@@ -141,14 +141,14 @@ export const Sizes: Story = {
     w: "384",
   },
   render: (args) => (
-    <Flex flexDirection="row">
+    <Group gap="16">
       <Box display="flex">
         <FileUpload {...args} />
       </Box>
       <Box display="flex" style={{ height: 600 }}>
         <FileUpload {...args} />
       </Box>
-    </Flex>
+    </Group>
   ),
 };
 

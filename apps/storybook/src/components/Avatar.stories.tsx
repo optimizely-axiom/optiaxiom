@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Avatar, Flex, Tooltip } from "@optiaxiom/react";
+import { Avatar, Group, Tooltip } from "@optiaxiom/react";
 
 const fallbacks = ["user", "team"] as const;
 const sizes = ["2xs", "xs", "sm", "md", "lg", "xl", "3xl"] as const;
@@ -14,11 +14,11 @@ export default {
     },
   },
   render: (args) => (
-    <Flex flexDirection="row">
+    <Group gap="16">
       {sizes.map((size) => (
         <Avatar key={size} size={size} {...args} />
       ))}
-    </Flex>
+    </Group>
   ),
 } as Meta<typeof Avatar>;
 
@@ -63,28 +63,28 @@ export const Fallback: Story = {
     colorScheme: "purple",
   },
   render: (args) => (
-    <Flex>
+    <Group flexDirection="column" gap="16">
       {fallbacks.map((fallback) => (
-        <Flex flexDirection="row" key={fallback}>
+        <Group gap="16" key={fallback}>
           {sizes.map((size) => (
             <Avatar fallback={fallback} key={size} size={size} {...args} />
           ))}
-        </Flex>
+        </Group>
       ))}
-    </Flex>
+    </Group>
   ),
 };
 
 export const Colors: Story = {
   render: (args) => (
-    <Flex flexDirection="row">
+    <Group gap="16">
       <Avatar {...args} colorScheme="neutral">
         KP
       </Avatar>
       <Avatar {...args} colorScheme="purple">
         KP
       </Avatar>
-    </Flex>
+    </Group>
   ),
 };
 

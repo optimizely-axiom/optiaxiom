@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Flex, Link, Text } from "@optiaxiom/react";
+import { Group, Link, Text } from "@optiaxiom/react";
 import { Banner } from "@optiaxiom/react";
 import { action } from "storybook/actions";
 
@@ -47,9 +47,9 @@ export const WithCloseButton: Story = {
     onDismiss: action("onDismiss"),
   },
   render: (args) => (
-    <Flex>
+    <Group flexDirection="column" gap="16">
       <Banner {...args} />
-    </Flex>
+    </Group>
   ),
 };
 
@@ -58,13 +58,13 @@ export const Appearance: Story = {
     children: <>This is a site wide banner message</>,
   },
   render: (args) => (
-    <Flex>
+    <Group flexDirection="column" gap="16">
       <Banner intent="neutral" {...args} />
       <Banner intent="information" {...args} />
       <Banner intent="warning" {...args} />
       <Banner intent="danger" {...args} />
       <Banner intent="success" {...args} />
-    </Flex>
+    </Group>
   ),
 };
 
