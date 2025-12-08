@@ -22,7 +22,7 @@ export type DataTableBodyProps = BoxProps<
     /**
      * Whether to show skeleton for the whole table or specific rows.
      */
-    loading?: boolean | Record<string, "sub-rows" | boolean>;
+    loading?: boolean | Record<string, "sub-rows" | false>;
   }
 >;
 

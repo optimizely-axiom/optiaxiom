@@ -324,7 +324,9 @@ export const ExpandingRows: Story = {
       () => flatRows.filter((row) => row.parent === "0"),
       [flatRows],
     );
-    const [loading, setLoading] = useState<Record<string, boolean>>({});
+    const [loading, setLoading] = useState<Record<string, "sub-rows" | false>>(
+      {},
+    );
     const indexRef = useRef(0);
 
     return (
@@ -361,7 +363,7 @@ export const ExpandingRows: Story = {
             const newLoading = { ...loading };
             for (const key in newExpanded) {
               if (!(key in newLoading)) {
-                newLoading[key] = true;
+                newLoading[key] = "sub-rows";
                 setTimeout(() => {
                   setFlatRows((flatRows) => [
                     ...flatRows,
