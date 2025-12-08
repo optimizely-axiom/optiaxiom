@@ -65,6 +65,7 @@ async function measure() {
       external: Object.keys(pkg.peerDependencies ?? {}),
       format: "esm",
       loader: { ".woff2": "empty" },
+      logLevel: "error",
       outdir: "dist",
       tsconfig: (await access(`${packagePath}/tsconfig.build.json`)
         .then(() => true)
