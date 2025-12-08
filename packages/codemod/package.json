@@ -1,0 +1,36 @@
+{
+  "name": "@optiaxiom/codemod",
+  "homepage": "https://github.com/optimizely-axiom/optiaxiom/tree/master/packages/codemod#readme",
+  "repository": {
+    "directory": "packages/codemod",
+    "type": "git",
+    "url": "git+https://github.com/optimizely-axiom/optiaxiom.git"
+  },
+  "description": "Codemods for migrating Axiom Design System code",
+  "keywords": [
+    "codemod",
+    "axiom",
+    "design-system",
+    "migration",
+    "transform"
+  ],
+  "type": "module",
+  "version": "0.1.0",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "license": "Apache-2.0",
+  "bin": {
+    "axiom-codemod": "dist/index.js"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "rm -rf dist && tsc"
+  },
+  "devDependencies": {
+    "@types/jscodeshift": "^17.3.0",
+    "@types/node": "^22.17.2"
+  }
+}

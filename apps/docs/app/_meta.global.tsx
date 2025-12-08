@@ -45,6 +45,12 @@ export default {
       icons: "Icons",
       "module-federation": "Module Federation",
       "react-select": "React Select",
+
+      "-- Migrations": {
+        title: "Migrations",
+        type: "separator",
+      },
+      "group-migration": "Flex to Group migration",
     },
     title: "Guides",
     type: "page",
@@ -59,8 +65,11 @@ export default {
       index: "Box",
 
       cover: "Cover",
-      flex: "Flex",
+      flex: {
+        title: <LegacyItem>Flex</LegacyItem>,
+      },
       grid: "Grid",
+      group: "Group",
       heading: "Heading",
       separator: "Separator",
       text: "Text",

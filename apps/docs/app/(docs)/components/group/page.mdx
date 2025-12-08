@@ -1,0 +1,71 @@
+import { Cards, Demo, Links, PropsTable } from "@/components";
+
+# Group
+
+A flexbox layout component for grouping items horizontally or vertically.
+
+<Links component="group" />
+
+## Documentation
+
+### Usage
+
+The Group component uses CSS-standard defaults: `flexDirection="row"` (horizontal layout) with no default gap. You must explicitly set the gap value.
+
+<Demo component="group/usage" />
+
+### Direction
+
+Use `flexDirection` prop to control whether children are grouped vertically or horizontally. By default `flexDirection` is set to `row` (CSS standard).
+
+Use `flexDirection="row"` or `flexDirection="row-reverse"` to group items horizontally:
+
+<Demo component="group/horizontal-usage" />
+
+Use `flexDirection="column"` or `flexDirection="column-reverse"` to group items vertically:
+
+<Demo component="group/vertical-usage" />
+
+### Gap
+
+Use `gap` prop to control the gap between group items. Unlike the deprecated Flex component, Group has no default gap value - you must specify it explicitly.
+
+<Demo component="group/gap-usage" />
+
+### Alignment
+
+Use `alignItems` and `justifyContent` prop to control the layout and alignment of group items.
+
+The Group component provides smart `alignItems` defaults:
+
+- When `flexDirection="row"`: defaults to `alignItems="center"`
+- When `flexDirection="column"`: defaults to `alignItems="stretch"`
+
+<Demo component="group/alignment-usage" />
+
+### Migrating from Flex
+
+Group is the replacement for the deprecated Flex component. Key differences:
+
+| Property      | Flex (deprecated) | Group (new)          |
+| ------------- | ----------------- | -------------------- |
+| flexDirection | "column"          | "row" (CSS standard) |
+| gap           | "16"              | no default           |
+
+See the [migration guide](../../guides/group-migration/) for more details.
+
+### Related
+
+<Cards items={["Box", "Flex", "Grid"]} />
+
+## Props
+
+### Group
+
+<PropsTable component="Group" />
+
+## Changelog
+
+### 1.8.0
+
+- Added component

@@ -1,0 +1,204 @@
+# Flex to Group migration
+
+## Why Group?
+
+### Background
+
+The [Flex](/components/flex) component has non-standard defaults that cause confusion for developers and AI tools. [Group](/components/group) is the replacement with CSS-standard defaults that align with how flexbox works in standard CSS.
+
+### Key differences
+
+| Property      | Flex (deprecated) | Group (new)          |
+| ------------- | ----------------- | -------------------- |
+| flexDirection | "column"          | "row" (CSS standard) |
+| gap           | "16"              | no default           |
+
+## Migration examples
+
+### Vertical grouping (most common old usage)
+
+```tsx
+// Before
+<Flex>
+  <div>1</div>
+  <div>2</div>
+</Flex>
+
+// After
+<Group flexDirection="column" gap="16">
+  <div>1</div>
+  <div>2</div>
+</Group>
+```
+
+### Horizontal layout
+
+```tsx
+// Before
+<Flex flexDirection="row">
+  <div>1</div>
+  <div>2</div>
+</Flex>
+
+// After
+<Group gap="16">
+  <div>1</div>
+  <div>2</div>
+</Group>
+```
+
+Note: Since Group defaults to `flexDirection="row"`, you don't need to specify it explicitly.
+
+### With custom gap
+
+```tsx
+// Before
+<Flex gap="8">
+  <div>1</div>
+  <div>2</div>
+</Flex>
+
+// After
+<Group flexDirection="column" gap="8">
+  <div>1</div>
+  <div>2</div>
+</Group>
+```
+
+### Horizontal with custom gap
+
+```tsx
+// Before
+<Flex flexDirection="row" gap="8">
+  <div>1</div>
+  <div>2</div>
+</Flex>
+
+// After
+<Group gap="8">
+  <div>1</div>
+  <div>2</div>
+</Group>
+```
+
+### Complex layouts with alignment
+
+```tsx
+// Before
+<Flex alignItems="start" flexDirection="row" gap="12" justifyContent="space-between">
+  <div>Left</div>
+  <div>Right</div>
+</Flex>
+
+// After
+<Group alignItems="start" gap="12" justifyContent="space-between">
+  <div>Left</div>
+  <div>Right</div>
+</Group>
+```
+
+## Automated migration
+
+### Using the codemod
+
+Run the codemod (available in v1.8.0):
+
+```bash
+npx @optiaxiom/codemod flex-to-group src/
+```
+
+The codemod will:
+
+- Transform `<Flex>` → `<Group flexDirection="column" gap="16">`
+- Transform `<Flex flexDirection="row">` → `<Group>`
+- Transform `<Flex flexDirection="column">` → `<Group flexDirection="column">`
+- Update imports: `import { Flex }` → `import { Group }`
+- Preserve all other props and children
+
+## Manual migration
+
+### Step-by-step checklist
+
+If you prefer to migrate manually, follow these steps:
+
+1. **Import Group instead of Flex:**
+
+   ```tsx
+   // Before
+   import { Flex } from "@optiaxiom/react";
+
+   // After
+   import { Group } from "@optiaxiom/react";
+   ```
+
+2. **Update component usage:**
+   - If you had no `flexDirection` prop: add `flexDirection="column" gap="16"`
+   - If you had `flexDirection="row"`: remove it (that's the Group default)
+   - If you had `flexDirection="column"`: keep it
+   - If you had no `gap` prop: add `gap="16"` (or your desired gap)
+
+3. **Test your changes:**
+   - Verify layouts render correctly
+   - Check responsive breakpoints still work
+   - Ensure alignments are as expected
+
+## Common patterns
+
+### Form layouts
+
+```tsx
+// Before
+<Flex gap="16">
+  <Input placeholder="Email" />
+  <Input placeholder="Password" />
+  <Button>Submit</Button>
+</Flex>
+
+// After
+<Group flexDirection="column" gap="16">
+  <Input placeholder="Email" />
+  <Input placeholder="Password" />
+  <Button>Submit</Button>
+</Group>
+```
+
+### Button groups
+
+```tsx
+// Before
+<Flex flexDirection="row" gap="8">
+  <Button>Cancel</Button>
+  <Button>Save</Button>
+</Flex>
+
+// After
+<Group gap="8">
+  <Button>Cancel</Button>
+  <Button>Save</Button>
+</Group>
+```
+
+### Card content
+
+```tsx
+// Before
+<Flex gap="12">
+  <Heading>Title</Heading>
+  <Text>Description</Text>
+  <Button>Action</Button>
+</Flex>
+
+// After
+<Group flexDirection="column" gap="12">
+  <Heading>Title</Heading>
+  <Text>Description</Text>
+  <Button>Action</Button>
+</Group>
+```
+
+## Timeline
+
+### Release schedule
+
+- **v1.8.0 (Current):** Group introduced, Flex deprecated, codemod available
+- **v2.0.0 (Future):** Flex removed, Group renamed to Flex with new defaults

@@ -24,6 +24,7 @@ export * from "./ellipsis-menu-button";
 export * from "./field";
 export * from "./flex";
 export * from "./grid";
+export * from "./group";
 export * from "./heading";
 export * from "./indicator";
 export * from "./input";

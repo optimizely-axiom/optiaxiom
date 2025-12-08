@@ -124,6 +124,13 @@ const COMPONENTS = {
     icon: <GridIcon />,
     title: "Grid",
   },
+  Group: {
+    description:
+      "A flexbox layout component for grouping items horizontally or vertically.",
+    href: "/components/group/",
+    icon: <FlexIcon />,
+    title: "Group",
+  },
   Heading: {
     description:
       "Heading component is used to display page title and section headings. The default root element is h1 which can be configured using the level prop.",
