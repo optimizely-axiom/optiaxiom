@@ -1,5 +1,5 @@
-import { Demo, Links, PropsTable } from "@/components";
-import { Flex, Kbd } from "@optiaxiom/react";
+import { Demo, KeyboardTable, Links, PropsTable } from "@/components";
+import { Kbd } from "@optiaxiom/react";
 
 # DateRangePicker
 
@@ -60,14 +60,40 @@ Use the `addonBefore` and `addonAfter` prop on `DateRangePickerContent` to add c
 
 ### Keyboard interactions
 
-| Key                                                                                                                                                                                      | Description                                                                                                                                                    |
-| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| <Kbd>Space</Kbd>                                                                                                                                                                         | When focus is on `DateRangePickerTrigger`, opens the calendar and focuses the selected day (or today's date). When focus is on a day, selects the focused day. |
-| <Kbd>Enter</Kbd>                                                                                                                                                                         | When focus is on `DateRangePickerTrigger`, opens the calendar and focuses the selected day (or today's date). When focus is on a day, selects the focused day. |
-| <Flex gap="8"><Flex flexDirection="row" gap="8"><Kbd>ArrowUp</Kbd> <Kbd>ArrowDown</Kbd></Flex><Flex flexDirection="row" gap="8"><Kbd>ArrowRight</Kbd> <Kbd>ArrowLeft</Kbd></Flex></Flex> | Navigate between days in the calendar.                                                                                                                         |
-| <Flex flexDirection="row" gap="8"><Kbd>PageUp</Kbd> <Kbd>PageDown</Kbd></Flex>                                                                                                           | Navigate between months in the calendar.                                                                                                                       |
-| <Flex flexDirection="row" gap="8"><Kbd modifiers="shift">PageUp</Kbd> <Kbd modifiers="shift">PageDown</Kbd></Flex>                                                                       | Navigate between years in the calendar.                                                                                                                        |
-| <Kbd>Esc</Kbd>                                                                                                                                                                           | Closes the calendar popover and moves focus back to `DateRangePickerTrigger`.                                                                                  |
+<KeyboardTable
+  interactions={[
+    {
+      keys: "Space",
+      description:
+        "When focus is on `DateRangePickerTrigger`, opens the calendar and focuses the selected day (or today's date). When focus is on a day, selects the focused day.",
+    },
+    {
+      keys: "Enter",
+      description:
+        "When focus is on `DateRangePickerTrigger`, opens the calendar and focuses the selected day (or today's date). When focus is on a day, selects the focused day.",
+    },
+    {
+      keys: ["ArrowUp", "ArrowDown", "ArrowRight", "ArrowLeft"],
+      description: "Navigate between days in the calendar.",
+    },
+    {
+      keys: ["PageUp", "PageDown"],
+      description: "Navigate between months in the calendar.",
+    },
+    {
+      keys: [
+        { key: "PageUp", modifiers: "shift" },
+        { key: "PageDown", modifiers: "shift" },
+      ],
+      description: "Navigate between years in the calendar.",
+    },
+    {
+      keys: "Esc",
+      description:
+        "Closes the calendar popover and moves focus back to `DateRangePickerTrigger`.",
+    },
+  ]}
+/>
 
 ## Changelog
 

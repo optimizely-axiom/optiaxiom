@@ -1,5 +1,5 @@
-import { Cards, Demo, Links, PropsTable } from "@/components";
-import { Alert, Flex, Kbd } from "@optiaxiom/react";
+import { Cards, Demo, KeyboardTable, Links, PropsTable } from "@/components";
+import { Alert, Kbd } from "@optiaxiom/react";
 
 # Menu
 
@@ -227,17 +227,52 @@ Menu automatically uses virtualization to improve performance when rendering a l
 
 ### Keyboard interactions
 
-| Key                                                                                 | Description                                                                                                                                                             |
-| :---------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| <Kbd>Space</Kbd>                                                                    | When focus is on `MenuTrigger`, opens the menu and focuses the first item (or selected item). When focus is on an item, activates the focused item.                     |
-| <Kbd>Enter</Kbd>                                                                    | When focus is on `MenuTrigger`, opens the menu and focuses the first item (or selected item). When focus is on an item, activates the focused item and closes the menu. |
-| <Kbd>ArrowDown</Kbd>                                                                | When focus is on `MenuTrigger`, opens the menu and focuses the first item (or selected item). When focus is on an item, moves focus to the next item.                   |
-| <Kbd>ArrowUp</Kbd>                                                                  | When focus is on an item, moves focus to the previous item.                                                                                                             |
-| <Flex flexDirection="row" gap="8"><Kbd>PageUp</Kbd> <Kbd>PageDown</Kbd></Flex>      | Moves focus up/down by 10 items at a time.                                                                                                                              |
-| <Flex flexDirection="row" gap="8"><Kbd>Home</Kbd> <Kbd>End</Kbd></Flex>             | Moves focus to the first/last item.                                                                                                                                     |
-| <Flex flexDirection="row" gap="8"><Kbd>ArrowRight</Kbd> <Kbd>ArrowLeft</Kbd></Flex> | When focus is on an item with a submenu, opens/closes the submenu.                                                                                                      |
-| <Flex flexDirection="row" gap="8"><Kbd>A</Kbd> - <Kbd>Z</Kbd></Flex>                | When focus is on an item, filter and display matching items as you type.                                                                                                |
-| <Kbd>Esc</Kbd>                                                                      | Closes the menu and moves focus back to `MenuTrigger`.                                                                                                                  |
+<KeyboardTable
+  interactions={[
+    {
+      keys: "Space",
+      description:
+        "When focus is on `MenuTrigger`, opens the menu and focuses the first item (or selected item). When focus is on an item, activates the focused item.",
+    },
+    {
+      keys: "Enter",
+      description:
+        "When focus is on `MenuTrigger`, opens the menu and focuses the first item (or selected item). When focus is on an item, activates the focused item and closes the menu.",
+    },
+    {
+      keys: "ArrowDown",
+      description:
+        "When focus is on `MenuTrigger`, opens the menu and focuses the first item (or selected item). When focus is on an item, moves focus to the next item.",
+    },
+    {
+      keys: "ArrowUp",
+      description:
+        "When focus is on an item, moves focus to the previous item.",
+    },
+    {
+      keys: ["PageUp", "PageDown"],
+      description: "Moves focus up/down by 10 items at a time.",
+    },
+    {
+      keys: ["Home", "End"],
+      description: "Moves focus to the first/last item.",
+    },
+    {
+      keys: ["ArrowRight", "ArrowLeft"],
+      description:
+        "When focus is on an item with a submenu, opens/closes the submenu.",
+    },
+    {
+      keys: "A - Z",
+      description:
+        "When focus is on an item, filter and display matching items as you type.",
+    },
+    {
+      keys: "Esc",
+      description: "Closes the menu and moves focus back to `MenuTrigger`.",
+    },
+  ]}
+/>
 
 ## Changelog
 

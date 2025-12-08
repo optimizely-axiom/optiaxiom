@@ -1,5 +1,5 @@
-import { Cards, Demo, Links, PropsTable } from "@/components";
-import { Flex, Kbd } from "@optiaxiom/react";
+import { Cards, Demo, KeyboardTable, Links, PropsTable } from "@/components";
+import { Kbd } from "@optiaxiom/react";
 
 # Range
 
@@ -79,13 +79,30 @@ Marks can be an array of numbers or objects with `value` and `label` properties.
 
 ### Keyboard interactions
 
-| Key                                                                                 | Description                                   |
-| :---------------------------------------------------------------------------------- | :-------------------------------------------- |
-| <Flex flexDirection="row" gap="8"><Kbd>ArrowUp</Kbd> <Kbd>ArrowLeft</Kbd></Flex>    | Increments by the `step` value.               |
-| <Flex flexDirection="row" gap="8"><Kbd>ArrowDown</Kbd> <Kbd>ArrowRight</Kbd></Flex> | Decrements by the `step` value.               |
-| <Flex flexDirection="row" gap="8"><Kbd>PageUp</Kbd> <Kbd>PageDown</Kbd></Flex>      | Increments/decrements by a larger step value. |
-| <Kbd>Home</Kbd>                                                                     | Sets the value to its minimum.                |
-| <Kbd>End</Kbd>                                                                      | Sets the value to its maximum.                |
+<KeyboardTable
+  interactions={[
+    {
+      keys: ["ArrowUp", "ArrowLeft"],
+      description: "Increments by the `step` value.",
+    },
+    {
+      keys: ["ArrowDown", "ArrowRight"],
+      description: "Decrements by the `step` value.",
+    },
+    {
+      keys: ["PageUp", "PageDown"],
+      description: "Increments/decrements by a larger step value.",
+    },
+    {
+      keys: "Home",
+      description: "Sets the value to its minimum.",
+    },
+    {
+      keys: "End",
+      description: "Sets the value to its maximum.",
+    },
+  ]}
+/>
 
 ## Changelog
 

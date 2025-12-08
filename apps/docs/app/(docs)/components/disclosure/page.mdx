@@ -1,5 +1,5 @@
-import { Demo, Links, PropsTable } from "@/components";
-import { Flex, Kbd } from "@optiaxiom/react";
+import { Demo, KeyboardTable, Links, PropsTable } from "@/components";
+import { Kbd } from "@optiaxiom/react";
 
 # Disclosure
 
@@ -77,9 +77,14 @@ We can also completely change the trigger by using `asChild` and passing our own
 
 ### Keyboard interactions
 
-| Key                                                                        | Description             |
-| :------------------------------------------------------------------------- | :---------------------- |
-| <Flex flexDirection="row" gap="8"><Kbd>Space</Kbd> <Kbd>Enter</Kbd></Flex> | Opens/closes the panel. |
+<KeyboardTable
+  interactions={[
+    {
+      keys: ["Space", "Enter"],
+      description: "Opens/closes the panel.",
+    },
+  ]}
+/>
 
 ## Changelog
 

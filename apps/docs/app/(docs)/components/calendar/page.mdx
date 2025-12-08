@@ -1,5 +1,5 @@
-import { Demo, Links, PropsTable } from "@/components";
-import { Flex, Kbd } from "@optiaxiom/react";
+import { Demo, KeyboardTable, Links, PropsTable } from "@/components";
+import { Kbd } from "@optiaxiom/react";
 
 # Calendar
 
@@ -23,13 +23,33 @@ Base date picker component.
 
 ### Keyboard interactions
 
-| Key                                                                                                                                                                                      | Description                              |
-| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------- |
-| <Kbd>Space</Kbd>                                                                                                                                                                         | Selects the focused day.                 |
-| <Kbd>Enter</Kbd>                                                                                                                                                                         | Selects the focused day.                 |
-| <Flex gap="8"><Flex flexDirection="row" gap="8"><Kbd>ArrowUp</Kbd> <Kbd>ArrowDown</Kbd></Flex><Flex flexDirection="row" gap="8"><Kbd>ArrowRight</Kbd> <Kbd>ArrowLeft</Kbd></Flex></Flex> | Navigate between days in the calendar.   |
-| <Flex flexDirection="row" gap="8"><Kbd>PageUp</Kbd> <Kbd>PageDown</Kbd></Flex>                                                                                                           | Navigate between months in the calendar. |
-| <Flex flexDirection="row" gap="8"><Kbd modifiers="shift">PageUp</Kbd> <Kbd modifiers="shift">PageDown</Kbd></Flex>                                                                       | Navigate between years in the calendar.  |
+<KeyboardTable
+  interactions={[
+    {
+      keys: "Space",
+      description: "Selects the focused day.",
+    },
+    {
+      keys: "Enter",
+      description: "Selects the focused day.",
+    },
+    {
+      keys: ["ArrowUp", "ArrowDown", "ArrowRight", "ArrowLeft"],
+      description: "Navigate between days in the calendar.",
+    },
+    {
+      keys: ["PageUp", "PageDown"],
+      description: "Navigate between months in the calendar.",
+    },
+    {
+      keys: [
+        { key: "PageUp", modifiers: "shift" },
+        { key: "PageDown", modifiers: "shift" },
+      ],
+      description: "Navigate between years in the calendar.",
+    },
+  ]}
+/>
 
 ## Changelog
 
