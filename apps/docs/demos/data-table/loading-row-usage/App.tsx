@@ -15,7 +15,7 @@ export function App() {
     getRowId: (row) => row.id.toString(),
   });
 
-  const [loading, setLoading] = useState<Record<string, "sub-rows" | boolean>>({
+  const [loading, setLoading] = useState<Record<string, "sub-rows" | false>>({
     "1": "sub-rows",
   });
 
