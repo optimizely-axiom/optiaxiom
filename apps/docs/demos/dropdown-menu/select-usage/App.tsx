@@ -7,7 +7,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-  Flex,
+  Group,
   Text,
 } from "@optiaxiom/react";
 import { IconLogout, IconUser } from "@tabler/icons-react";
@@ -17,7 +17,7 @@ export function App() {
   const [selected, setSelected] = useState("");
 
   return (
-    <Flex flexDirection="row">
+    <Group gap="16">
       <DropdownMenu>
         <DropdownMenuTrigger>Open</DropdownMenuTrigger>
 
@@ -38,8 +38,7 @@ export function App() {
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
-
       <Text>Last selected item: {selected}</Text>
-    </Flex>
+    </Group>
   );
 }

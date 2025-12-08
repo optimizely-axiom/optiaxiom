@@ -4,7 +4,7 @@ import {
   DateRangePicker,
   DateRangePickerContent,
   DateRangePickerTrigger,
-  Flex,
+  Group,
   Text,
 } from "@optiaxiom/react";
 import { useState } from "react";
@@ -18,15 +18,14 @@ export function App() {
   });
 
   return (
-    <Flex>
+    <Group flexDirection="column" gap="16">
       <DateRangePicker onValueChange={setValue} value={value}>
         <DateRangePickerTrigger w="224" />
         <DateRangePickerContent />
       </DateRangePicker>
-
       <Text fontSize="md">
         Selected: {value && formatter.formatRange(value.from, value.to)}
       </Text>
-    </Flex>
+    </Group>
   );
 }

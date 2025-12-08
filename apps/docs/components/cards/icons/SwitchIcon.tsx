@@ -1,7 +1,7 @@
-import { Box, Flex } from "@optiaxiom/react";
+import { Box, Group } from "@optiaxiom/react";
 
 export const SwitchIcon = () => (
-  <Flex bg="bg.accent" p="2" rounded="full">
+  <Group bg="bg.accent" flexDirection="column" gap="16" p="2" rounded="full">
     <Box bg="bg.default" ml="16" p="6" rounded="full" />
-  </Flex>
+  </Group>
 );

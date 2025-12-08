@@ -1,10 +1,10 @@
 import type { ComponentPropsWithoutRef } from "react";
 
-import { Box, Flex } from "@optiaxiom/react";
+import { Box } from "@optiaxiom/react";
 
 export function App() {
   return (
-    <Flex flexDirection="row" flexWrap={["wrap", "nowrap"]}>
+    <Box flexDirection="row" flexWrap={["wrap", "nowrap"]} gap="16">
       <DemoBox flex="none" w="224">
         01
       </DemoBox>
@@ -14,7 +14,7 @@ export function App() {
       <DemoBox flex="none" w="224">
         03
       </DemoBox>
-    </Flex>
+    </Box>
   );
 }
 

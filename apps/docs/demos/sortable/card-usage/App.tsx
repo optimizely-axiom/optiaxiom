@@ -6,7 +6,7 @@ import {
   CardHeader,
   CardLink,
   EllipsisMenuButton,
-  Flex,
+  Group,
   Menu,
   MenuContent,
   MenuTrigger,
@@ -29,7 +29,7 @@ export function App() {
     <Sortable items={items} onItemsChange={setItems}>
       {(items) =>
         items.map((item, index) => (
-          <Flex flexDirection="row" key={item}>
+          <Group gap="16" key={item}>
             <Text color="fg.secondary" fontSize="md" w="20">
               {index + 1}
             </Text>
@@ -63,7 +63,7 @@ export function App() {
                 </CardHeader>
               </Card>
             </SortableItem>
-          </Flex>
+          </Group>
         ))
       }
     </Sortable>

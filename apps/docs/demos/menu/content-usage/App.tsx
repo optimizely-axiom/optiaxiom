@@ -1,7 +1,7 @@
 "use client";
 
 import {
-  Flex,
+  Group,
   Menu,
   MenuContent,
   type MenuOption,
@@ -16,7 +16,7 @@ export function App() {
   const [value, setValue] = useState("");
 
   return (
-    <Flex>
+    <Group flexDirection="column" gap="16">
       <Menu
         options={useMemo(
           () =>
@@ -31,6 +31,6 @@ export function App() {
         <MenuContent />
       </Menu>
       <Text fontSize="md">Selected: {value}</Text>
-    </Flex>
+    </Group>
   );
 }

@@ -1,10 +1,10 @@
-import { DateInput, Flex } from "@optiaxiom/react";
+import { DateInput, Group } from "@optiaxiom/react";
 
 export function App() {
   return (
-    <Flex>
+    <Group flexDirection="column" gap="16">
       <DateInput placeholder="Medium (default)" size="md" />
       <DateInput placeholder="Large" size="lg" />
-    </Flex>
+    </Group>
   );
 }

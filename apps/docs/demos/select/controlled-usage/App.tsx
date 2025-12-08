@@ -1,7 +1,7 @@
 "use client";
 
 import {
-  Flex,
+  Group,
   Select,
   SelectContent,
   SelectTrigger,
@@ -21,12 +21,12 @@ export function App() {
   const [value, setValue] = useState("");
 
   return (
-    <Flex>
+    <Group flexDirection="column" gap="16">
       <Select onValueChange={setValue} options={priorities} value={value}>
         <SelectTrigger placeholder="Set priority" w="224" />
         <SelectContent />
       </Select>
       <Text fontSize="md">Selected: {value}</Text>
-    </Flex>
+    </Group>
   );
 }

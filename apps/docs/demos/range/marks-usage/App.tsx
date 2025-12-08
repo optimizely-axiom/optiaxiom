@@ -1,11 +1,11 @@
 "use client";
 
-import { Flex, Text } from "@optiaxiom/react";
+import { Group, Text } from "@optiaxiom/react";
 import { Range } from "@optiaxiom/react/unstable";
 
 export function App() {
   return (
-    <Flex>
+    <Group flexDirection="column" gap="16">
       <Text>Generate labels dynamically</Text>
       <Range
         defaultValue={20}
@@ -23,6 +23,6 @@ export function App() {
         ]}
         w="384"
       />
-    </Flex>
+    </Group>
   );
 }

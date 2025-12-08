@@ -1,11 +1,11 @@
-import { Flex, Skeleton } from "@optiaxiom/react";
+import { Group, Skeleton } from "@optiaxiom/react";
 
 export function App() {
   return (
-    <Flex w="full">
+    <Group flexDirection="column" gap="16" w="full">
       <Skeleton />
       <Skeleton h="56" />
       <Skeleton circle size="56" />
-    </Flex>
+    </Group>
   );
 }

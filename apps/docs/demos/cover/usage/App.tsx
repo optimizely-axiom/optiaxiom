@@ -1,12 +1,12 @@
-import { Button, Cover, Flex, Link } from "@optiaxiom/react";
+import { Button, Cover, Group, Link } from "@optiaxiom/react";
 import { IconStar } from "@tabler/icons-react";
 
 export function App() {
   return (
-    <Flex
+    <Group
       border="1"
-      flexDirection="row"
       fontSize="md"
+      gap="16"
       justifyContent="space-between"
       px="24"
       py="16"
@@ -19,8 +19,7 @@ export function App() {
           Primary Link
         </Link>
       </Cover>
-
       <Button appearance="subtle" icon={<IconStar />} />
-    </Flex>
+    </Group>
   );
 }

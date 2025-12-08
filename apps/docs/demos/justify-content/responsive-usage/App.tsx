@@ -2,12 +2,12 @@
 
 import type { ComponentPropsWithoutRef } from "react";
 
-import { Box, Flex, theme } from "@optiaxiom/react";
+import { Box, Group, theme } from "@optiaxiom/react";
 
 export function App() {
   return (
-    <Flex
-      flexDirection="row"
+    <Group
+      gap="16"
       justifyContent={["center", "flex-end"]}
       rounded="md"
       style={stripes}
@@ -16,7 +16,7 @@ export function App() {
       <DemoBox>01</DemoBox>
       <DemoBox>02</DemoBox>
       <DemoBox>03</DemoBox>
-    </Flex>
+    </Group>
   );
 }
 

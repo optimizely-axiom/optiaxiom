@@ -1,12 +1,12 @@
-import { Avatar, Flex } from "@optiaxiom/react";
+import { Avatar, Group } from "@optiaxiom/react";
 
 export function App() {
   return (
-    <Flex flexDirection="row">
+    <Group gap="16">
       <Avatar />
       <Avatar fallback="user" />
       <Avatar fallback="team" />
       <Avatar fallback="opal" />
-    </Flex>
+    </Group>
   );
 }

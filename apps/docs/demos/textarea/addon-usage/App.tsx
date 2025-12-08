@@ -1,4 +1,4 @@
-import { Button, Flex, Textarea, Tooltip } from "@optiaxiom/react";
+import { Button, Group, Textarea, Tooltip } from "@optiaxiom/react";
 import {
   IconArrowUp,
   IconAt,
@@ -10,7 +10,7 @@ export function App() {
   return (
     <Textarea
       addonAfter={
-        <Flex borderT="1" flexDirection="row" gap="4" p="4">
+        <Group borderT="1" gap="4" p="4">
           <Tooltip content="Add emoji">
             <Button appearance="subtle" icon={<IconMoodSmile />} size="sm" />
           </Tooltip>
@@ -29,7 +29,7 @@ export function App() {
               size="sm"
             />
           </Tooltip>
-        </Flex>
+        </Group>
       }
       placeholder="Add a comment"
       w="224"

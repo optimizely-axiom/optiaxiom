@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Flex } from "@optiaxiom/react";
+import { Box, Group } from "@optiaxiom/react";
 import { type ReactNode, useEffect, useRef, useState } from "react";
 
 import { CopyButton } from "./CopyButton";
@@ -48,12 +48,7 @@ export function DemoCode({
       ref={ref}
     >
       {children}
-      <Flex
-        className={styles.toolbar}
-        flexDirection="row"
-        gap="2"
-        transition="opacity"
-      >
+      <Group className={styles.toolbar} gap="2" transition="opacity">
         <StackblitzButton files={files} />
         <CopyButton
           onCopy={() =>
@@ -64,7 +59,7 @@ export function DemoCode({
             )?.textContent || ""
           }
         />
-      </Flex>
+      </Group>
       {collapsed !== null && (
         <DemoSizeToggle
           collapsed={collapsed}

@@ -1,25 +1,23 @@
 import type { ComponentPropsWithoutRef } from "react";
 
-import { Box, Flex } from "@optiaxiom/react";
+import { Box, Group } from "@optiaxiom/react";
 
 export function App() {
   return (
-    <Flex w="full">
-      <Flex flexDirection="row">
+    <Group flexDirection="column" gap="16" w="full">
+      <Group gap="16">
         <DemoBox w="1/2">w=1/2</DemoBox>
         <DemoBox w="1/2">w=1/2</DemoBox>
-      </Flex>
-
-      <Flex flexDirection="row">
+      </Group>
+      <Group gap="16">
         <DemoBox w="1/3">w=1/3</DemoBox>
         <DemoBox w="2/3">w=2/3</DemoBox>
-      </Flex>
-
-      <Flex display={["none", "flex"]} flexDirection="row">
+      </Group>
+      <Group display={["none", "flex"]} gap="16">
         <DemoBox w="1/4">w=1/4</DemoBox>
         <DemoBox w="3/4">w=3/4</DemoBox>
-      </Flex>
-    </Flex>
+      </Group>
+    </Group>
   );
 }
 

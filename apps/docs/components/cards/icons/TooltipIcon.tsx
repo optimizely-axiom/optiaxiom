@@ -1,9 +1,9 @@
-import { Box, Flex } from "@optiaxiom/react";
+import { Box, Group } from "@optiaxiom/react";
 
 import { IconButton } from "./IconButton";
 
 export const TooltipIcon = () => (
-  <Flex alignItems="center" gap="4" w="56">
+  <Group alignItems="center" flexDirection="column" gap="4" w="56">
     <Box
       bg="bg.default.inverse"
       p="6"
@@ -26,5 +26,5 @@ export const TooltipIcon = () => (
     </Box>
 
     <IconButton />
-  </Flex>
+  </Group>
 );

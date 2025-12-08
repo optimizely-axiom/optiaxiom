@@ -2,23 +2,29 @@
 
 import type { ComponentPropsWithoutRef } from "react";
 
-import { Box, Flex, theme } from "@optiaxiom/react";
+import { Box, Group, theme } from "@optiaxiom/react";
 import Image from "next/image";
 
 import beach from "./beach.jpg";
 
 export function App({
   objectFit = "cover",
-}: Pick<ComponentPropsWithoutRef<typeof Flex>, "objectFit">) {
+}: Pick<ComponentPropsWithoutRef<typeof Group>, "objectFit">) {
   return (
-    <Flex rounded="md" style={{ aspectRatio: 3, ...stripes }} w="full">
+    <Group
+      flexDirection="column"
+      gap="16"
+      rounded="md"
+      style={{ aspectRatio: 3, ...stripes }}
+      w="full"
+    >
       <Box asChild objectFit={objectFit} rounded="inherit" size="full">
         <Image
           alt="brown glass bottle beside white book on blue and white textile"
           src={beach}
         />
       </Box>
-    </Flex>
+    </Group>
   );
 }
 

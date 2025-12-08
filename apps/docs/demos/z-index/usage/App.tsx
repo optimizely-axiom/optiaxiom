@@ -1,16 +1,16 @@
 import type { ComponentPropsWithoutRef } from "react";
 
-import { Box, Flex, theme } from "@optiaxiom/react";
+import { Box, Group, theme } from "@optiaxiom/react";
 
 export function App() {
   return (
-    <Flex flexDirection="row" gap="0" style={{ isolation: "isolate" }}>
+    <Group gap="0" style={{ isolation: "isolate" }}>
       <DemoBox z="popover">05</DemoBox>
       <DemoBox z="30">04</DemoBox>
       <DemoBox z="20">03</DemoBox>
       <DemoBox z="10">02</DemoBox>
       <DemoBox z="0">01</DemoBox>
-    </Flex>
+    </Group>
   );
 }
 

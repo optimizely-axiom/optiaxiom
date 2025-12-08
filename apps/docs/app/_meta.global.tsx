@@ -1,17 +1,17 @@
 import type { ReactNode } from "react";
 
-import { Badge, Flex } from "@optiaxiom/react";
+import { Badge, Group } from "@optiaxiom/react";
 
 const AlphaItem = ({ children }: { children?: ReactNode }) => (
-  <Flex flex="1" flexDirection="row" justifyContent="space-between">
+  <Group flex="1" gap="16" justifyContent="space-between">
     {children} <Badge intent="primary">ALPHA</Badge>
-  </Flex>
+  </Group>
 );
 
 const LegacyItem = ({ children }: { children?: ReactNode }) => (
-  <Flex flex="1" flexDirection="row" justifyContent="space-between">
+  <Group flex="1" gap="16" justifyContent="space-between">
     {children} <Badge intent="danger">LEGACY</Badge>
-  </Flex>
+  </Group>
 );
 
 export default {

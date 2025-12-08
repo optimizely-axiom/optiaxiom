@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-import { Box, Flex, Heading, Link, Text } from "@optiaxiom/react";
+import { Box, Group, Heading, Link, Text } from "@optiaxiom/react";
 import NextLink from "next/link";
 
 import styles from "./CardsItem.module.css";
@@ -17,11 +17,10 @@ export function CardsItem({
   title: string;
 }) {
   return (
-    <Flex
+    <Group
       alignItems="start"
       className={styles.card}
       color="fg.default"
-      flexDirection="row"
       gap="16"
       p="12"
       rounded="md"
@@ -46,6 +45,6 @@ export function CardsItem({
           {children}
         </Text>
       </Box>
-    </Flex>
+    </Group>
   );
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import {
-  Flex,
+  Group,
   Heading,
   Popover,
   PopoverContent,
@@ -16,9 +16,8 @@ export function App() {
   const [open, setOpen] = useState(false);
 
   return (
-    <Flex flexDirection="row">
+    <Group gap="16">
       <Switch onCheckedChange={setKeepOpen}>Keep popover open</Switch>
-
       <Popover onOpenChange={(flag) => setOpen(flag || keepOpen)} open={open}>
         <PopoverTrigger>Open popover</PopoverTrigger>
         <PopoverContent>
@@ -26,6 +25,6 @@ export function App() {
           <Text>This is the popover content</Text>
         </PopoverContent>
       </Popover>
-    </Flex>
+    </Group>
   );
 }

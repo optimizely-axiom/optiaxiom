@@ -1,4 +1,4 @@
-import { Box, Flex, theme } from "@optiaxiom/react";
+import { Box, Group, theme } from "@optiaxiom/react";
 
 import { IconBox } from "./IconBox";
 import { IconText } from "./IconText";
@@ -17,10 +17,10 @@ export const BannerIcon = () => (
       rounded="sm"
       style={{ backgroundColor: theme.colors["fg.error.strong"] }}
     />
-    <Flex flex="1" gap="4">
+    <Group flex="1" flexDirection="column" gap="4">
       <IconText w="1/4" />
       <IconText style={{ opacity: 0.5 }} w="2/3" />
-    </Flex>
+    </Group>
     <IconText ml="auto" />
   </IconBox>
 );

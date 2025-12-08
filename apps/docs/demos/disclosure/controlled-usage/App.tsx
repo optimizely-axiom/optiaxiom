@@ -4,7 +4,7 @@ import {
   Disclosure,
   DisclosureContent,
   DisclosureTrigger,
-  Flex,
+  Group,
   Text,
 } from "@optiaxiom/react";
 import { useState } from "react";
@@ -13,7 +13,7 @@ export function App() {
   const [open, setOpen] = useState(true);
 
   return (
-    <Flex maxW="sm" w="full">
+    <Group flexDirection="column" gap="16" maxW="sm" w="full">
       <Disclosure onOpenChange={setOpen} open={open}>
         <DisclosureTrigger>Disclosure label</DisclosureTrigger>
         <DisclosureContent>
@@ -22,6 +22,6 @@ export function App() {
         </DisclosureContent>
       </Disclosure>
       <Text fontSize="md">State: {open ? "open" : "closed"}</Text>
-    </Flex>
+    </Group>
   );
 }

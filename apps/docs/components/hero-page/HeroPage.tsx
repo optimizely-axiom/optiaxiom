@@ -1,13 +1,15 @@
-import { Box, Flex, Heading, Text } from "@optiaxiom/react";
+import { Box, Group, Heading, Text } from "@optiaxiom/react";
 import Link from "next/link";
 
 import styles from "./HeroPage.module.css";
 
 export function HeroPage() {
   return (
-    <Flex
+    <Group
       alignItems={["start", "center"]}
       className={styles.root}
+      flexDirection="column"
+      gap="16"
       h="full"
       justifyContent="center"
     >
@@ -17,12 +19,10 @@ export function HeroPage() {
         </Box>{" "}
         Design System
       </Heading>
-
       <Text className={styles.fade} mb="24">
         Axiom is a modular design system for efficiently designing and building
         UI at Optimizely.
       </Text>
-
       <Box className={styles.fade}>
         <Box
           asChild
@@ -37,6 +37,6 @@ export function HeroPage() {
           </Link>
         </Box>
       </Box>
-    </Flex>
+    </Group>
   );
 }

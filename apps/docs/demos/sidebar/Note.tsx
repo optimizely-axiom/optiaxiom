@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-import { Flex, Heading, Text } from "@optiaxiom/react";
+import { Group, Heading, Text } from "@optiaxiom/react";
 
 import styles from "./Note.module.css";
 
@@ -14,9 +14,10 @@ export function Note({
   title: ReactNode;
 }) {
   return (
-    <Flex
+    <Group
       bg="bg.warning.subtle"
       className={styles.note}
+      flexDirection="column"
       gap="4"
       p="12"
       rounded="sm"
@@ -24,6 +25,6 @@ export function Note({
       <Heading fontSize="md">{title}</Heading>
       <Text>{description}</Text>
       {children}
-    </Flex>
+    </Group>
   );
 }

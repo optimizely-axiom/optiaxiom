@@ -7,7 +7,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-  Flex,
+  Group,
   Switch,
 } from "@optiaxiom/react";
 import { IconLogout, IconUser } from "@tabler/icons-react";
@@ -18,9 +18,8 @@ export function App() {
   const [open, setOpen] = useState(false);
 
   return (
-    <Flex flexDirection="row">
+    <Group gap="16">
       <Switch onCheckedChange={setKeepOpen}>Keep menu open</Switch>
-
       <DropdownMenu
         modal={false}
         onOpenChange={(flag) => setOpen(flag || keepOpen)}
@@ -35,6 +34,6 @@ export function App() {
           <DropdownMenuItem icon={<IconLogout />}>Logout</DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
-    </Flex>
+    </Group>
   );
 }

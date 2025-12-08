@@ -1,8 +1,8 @@
-import { Field, Flex, Input } from "@optiaxiom/react";
+import { Field, Group, Input } from "@optiaxiom/react";
 
 export function App() {
   return (
-    <Flex>
+    <Group flexDirection="column" gap="16">
       <Field label="Price">
         <Input addonBefore="$" placeholder="0.00" type="number" />
       </Field>
@@ -18,6 +18,6 @@ export function App() {
       <Field label="Username">
         <Input addonBefore="@" placeholder="username" />
       </Field>
-    </Flex>
+    </Group>
   );
 }

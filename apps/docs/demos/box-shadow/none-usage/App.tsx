@@ -1,23 +1,24 @@
 import type { ComponentPropsWithoutRef } from "react";
 
-import { Box, Flex, Text } from "@optiaxiom/react";
+import { Box, Group, Text } from "@optiaxiom/react";
 
 export function App() {
   return (
-    <Flex
+    <Group
       alignItems="center"
       flexDirection={["column", "row"]}
+      gap="16"
       justifyContent="space-around"
       w="full"
     >
       <DemoBox shadow="none">shadow=none</DemoBox>
-    </Flex>
+    </Group>
   );
 }
 
 function DemoBox({ children, ...props }: ComponentPropsWithoutRef<typeof Box>) {
   return (
-    <Flex alignItems="center" gap="8">
+    <Group alignItems="center" flexDirection="column" gap="8">
       <Text
         color="fg.tertiary"
         fontFamily="mono"
@@ -34,6 +35,6 @@ function DemoBox({ children, ...props }: ComponentPropsWithoutRef<typeof Box>) {
         size="56"
         {...props}
       />
-    </Flex>
+    </Group>
   );
 }

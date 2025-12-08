@@ -1,6 +1,6 @@
 import {
   Field,
-  Flex,
+  Group,
   Select,
   SelectContent,
   SelectTrigger,
@@ -9,11 +9,10 @@ import {
 
 export function App() {
   return (
-    <Flex>
+    <Group flexDirection="column" gap="16">
       <Field description="Share your thoughts with us." label="Message">
         <Textarea placeholder="Enter your message..." rows={3} />
       </Field>
-
       <Field label="Country" required>
         <Select
           options={[
@@ -26,6 +25,6 @@ export function App() {
           <SelectContent />
         </Select>
       </Field>
-    </Flex>
+    </Group>
   );
 }

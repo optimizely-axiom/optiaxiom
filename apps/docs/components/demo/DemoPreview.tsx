@@ -2,7 +2,7 @@
 
 import type { Props } from "react-docgen-typescript";
 
-import { Box, Flex, Separator } from "@optiaxiom/react";
+import { Box, Group, Separator } from "@optiaxiom/react";
 import {
   cloneElement,
   type ReactElement,
@@ -78,9 +78,8 @@ export function DemoPreview({
       flexDirection={["column", "row"]}
       ref={ref}
     >
-      <Flex
+      <Group
         flex="1"
-        flexDirection="row"
         gap="0"
         justifyContent={scrollable ? "start" : "center"}
         maxW="full"
@@ -94,7 +93,7 @@ export function DemoPreview({
         ) : (
           cloneElement(component, props)
         )}
-      </Flex>
+      </Group>
       {Object.keys(propTypes).length > 0 && (
         <>
           <Separator

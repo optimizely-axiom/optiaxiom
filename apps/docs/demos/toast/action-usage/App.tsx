@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, Flex, Text, toaster } from "@optiaxiom/react";
+import { Button, Group, Text, toaster } from "@optiaxiom/react";
 import { IconTrash } from "@tabler/icons-react";
 import { useState } from "react";
 
@@ -8,9 +8,8 @@ export function App() {
   const [status, setStatus] = useState("in-progress");
 
   return (
-    <Flex flexDirection="row">
+    <Group gap="16">
       <Text>Task {status}</Text>
-
       <Button
         appearance="danger-outline"
         disabled={status === "deleted"}
@@ -25,13 +24,12 @@ export function App() {
       >
         Delete
       </Button>
-
       <Button
         disabled={status !== "deleted"}
         onClick={() => setStatus("in-progress")}
       >
         Restore
       </Button>
-    </Flex>
+    </Group>
   );
 }

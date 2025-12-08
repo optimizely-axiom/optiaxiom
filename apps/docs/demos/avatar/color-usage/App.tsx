@@ -1,10 +1,10 @@
-import { Avatar, Flex } from "@optiaxiom/react";
+import { Avatar, Group } from "@optiaxiom/react";
 
 export function App() {
   return (
-    <Flex flexDirection="row" flexWrap="wrap">
+    <Group flexWrap="wrap" gap="16">
       <Avatar>KP</Avatar> {/* Neutral is default */}
       <Avatar colorScheme="purple">KP</Avatar>
-    </Flex>
+    </Group>
   );
 }

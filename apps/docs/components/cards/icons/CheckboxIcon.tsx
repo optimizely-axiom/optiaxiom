@@ -1,7 +1,14 @@
-import { Box, Flex } from "@optiaxiom/react";
+import { Box, Group } from "@optiaxiom/react";
 
 export const CheckboxIcon = () => (
-  <Flex bg="bg.accent" p="2" rounded="sm" style={{ aspectRatio: "1" }}>
+  <Group
+    bg="bg.accent"
+    flexDirection="column"
+    gap="16"
+    p="2"
+    rounded="sm"
+    style={{ aspectRatio: "1" }}
+  >
     <Box asChild color="fg.default.inverse">
       <svg
         fill="none"
@@ -19,5 +26,5 @@ export const CheckboxIcon = () => (
         ></path>
       </svg>
     </Box>
-  </Flex>
+  </Group>
 );

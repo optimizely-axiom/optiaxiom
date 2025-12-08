@@ -1,7 +1,7 @@
 "use client";
 
 import { faker } from "@faker-js/faker";
-import { DataTable, DataTableBody, Flex, Text } from "@optiaxiom/react";
+import { DataTable, DataTableBody, Group, Text } from "@optiaxiom/react";
 import { getCoreRowModel, useReactTable } from "@tanstack/react-table";
 
 import { useInViewTimer } from "./useInViewTimer";
@@ -38,11 +38,11 @@ export function App() {
   const [count, ref] = useInViewTimer();
 
   return (
-    <Flex maxW="full" ref={ref}>
+    <Group flexDirection="column" gap="16" maxW="full" ref={ref}>
       <Text>Timer: {count}s (to simulate re-rendering)</Text>
       <DataTable maxH="sm" table={table}>
         <DataTableBody />
       </DataTable>
-    </Flex>
+    </Group>
   );
 }

@@ -1,9 +1,9 @@
-import { Flex, Textarea } from "@optiaxiom/react";
+import { Group, Textarea } from "@optiaxiom/react";
 
 export function App() {
   return (
-    <Flex maxW="xs" w="full">
+    <Group flexDirection="column" gap="16" maxW="xs" w="full">
       <Textarea placeholder="Enter text..." resize="auto" />
-    </Flex>
+    </Group>
   );
 }

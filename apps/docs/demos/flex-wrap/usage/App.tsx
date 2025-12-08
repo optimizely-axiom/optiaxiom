@@ -2,13 +2,19 @@
 
 import type { ComponentPropsWithoutRef } from "react";
 
-import { Box, Flex } from "@optiaxiom/react";
+import { Box } from "@optiaxiom/react";
 
 export function App({
   flexWrap = "nowrap",
-}: Pick<ComponentPropsWithoutRef<typeof Flex>, "flexWrap">) {
+}: Pick<ComponentPropsWithoutRef<typeof Box>, "flexWrap">) {
   return (
-    <Flex flexDirection="row" flexWrap={flexWrap} w="auto">
+    <Box
+      display="flex"
+      flexDirection="row"
+      flexWrap={flexWrap}
+      gap="16"
+      w="auto"
+    >
       <DemoBox flex="none" w="224">
         01
       </DemoBox>
@@ -18,7 +24,7 @@ export function App({
       <DemoBox flex="none" w="224">
         03
       </DemoBox>
-    </Flex>
+    </Box>
   );
 }
 

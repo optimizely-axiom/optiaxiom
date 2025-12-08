@@ -2,20 +2,29 @@
 
 import type { ComponentPropsWithoutRef } from "react";
 
-import { Box, Flex, theme } from "@optiaxiom/react";
+import { Box, theme } from "@optiaxiom/react";
 
 export function App({
   flex = "1",
-}: Pick<ComponentPropsWithoutRef<typeof Flex>, "flex">) {
+}: Pick<ComponentPropsWithoutRef<typeof Box>, "flex">) {
   return (
-    <Flex flexDirection="row" h="224" rounded="md" style={stripes} w="full">
+    <Box
+      alignItems="center"
+      display="flex"
+      flexDirection="row"
+      gap="16"
+      h="224"
+      rounded="md"
+      style={stripes}
+      w="full"
+    >
       <DemoBox flex={flex} w="224">
         01
       </DemoBox>
       <DemoBox flex={flex} w="80">
         02
       </DemoBox>
-    </Flex>
+    </Box>
   );
 }
 

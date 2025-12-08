@@ -1,6 +1,6 @@
 "use client";
 
-import { Flex, Text } from "@optiaxiom/react";
+import { Group, Text } from "@optiaxiom/react";
 import {
   HoverCard,
   HoverCardContent,
@@ -12,7 +12,7 @@ export function App() {
   const [open, setOpen] = useState(false);
 
   return (
-    <Flex flexDirection="row" w="224">
+    <Group gap="16" w="224">
       <HoverCard onOpenChange={setOpen} open={open}>
         <HoverCardTrigger
           bg="bg.secondary"
@@ -30,6 +30,6 @@ export function App() {
         </HoverCardContent>
       </HoverCard>
       <Text fontSize="md">State: {open ? "open" : "closed"}</Text>
-    </Flex>
+    </Group>
   );
 }

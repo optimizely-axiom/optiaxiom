@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Flex, Text, theme } from "@optiaxiom/react";
+import { Box, Group, Text, theme } from "@optiaxiom/react";
 import cssesc from "cssesc";
 import { useTheme } from "nextra-theme-docs";
 import { useEffect, useState } from "react";
@@ -54,7 +54,7 @@ export const ScaleValue = ({
           }
           whiteSpace="nowrap"
         >
-          <Flex gap="0">
+          <Group flexDirection="column" gap="0">
             {(typeof resolvedValue === "object"
               ? Object.entries(resolvedValue)
               : resolvedValue
@@ -108,7 +108,7 @@ export const ScaleValue = ({
                 </code>
               </Text>
             ))}
-          </Flex>
+          </Group>
         </Td>
         {mode === "color" && typeof resolvedValue !== "object" && (
           <Td>

@@ -1,10 +1,10 @@
 import type { ComponentPropsWithoutRef } from "react";
 
-import { Flex, Text } from "@optiaxiom/react";
+import { Group, Text } from "@optiaxiom/react";
 
 export function App() {
   return (
-    <Flex>
+    <Group flexDirection="column" gap="16">
       <DemoItem fontSize="sm">
         The quick brown fox jumps over the lazy dog.
       </DemoItem>
@@ -20,7 +20,7 @@ export function App() {
       <DemoItem fontSize="2xl">
         The quick brown fox jumps over the lazy dog.
       </DemoItem>
-    </Flex>
+    </Group>
   );
 }
 

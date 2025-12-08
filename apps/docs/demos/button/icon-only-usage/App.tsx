@@ -1,15 +1,14 @@
-import { Button, Flex, Tooltip } from "@optiaxiom/react";
+import { Button, Group, Tooltip } from "@optiaxiom/react";
 import { IconPencil, IconTrash } from "@tabler/icons-react";
 
 export function App() {
   return (
-    <Flex flexDirection="row">
+    <Group gap="16">
       <Button
         appearance="subtle"
         aria-label="Edit item"
         icon={<IconPencil />}
       />
-
       <Tooltip content="Remove item">
         <Button
           appearance="subtle"
@@ -17,6 +16,6 @@ export function App() {
           icon={<IconTrash />}
         />
       </Tooltip>
-    </Flex>
+    </Group>
   );
 }

@@ -1,4 +1,4 @@
-import { Box, Code, Flex, Text } from "@optiaxiom/react";
+import { Box, Code, Group, Text } from "@optiaxiom/react";
 import * as Components from "@optiaxiom/react";
 import * as UnstableComponents from "@optiaxiom/react/unstable";
 import { getDocs } from "@optiaxiom/shared";
@@ -60,7 +60,7 @@ export async function PropsTable({ component }: { component: AllComponents }) {
             .map(async (prop) => (
               <Tr key={prop.name}>
                 <Td>
-                  <Flex
+                  <Group
                     alignItems="start"
                     flexDirection={["column", "row"]}
                     gap="12"
@@ -77,7 +77,7 @@ export async function PropsTable({ component }: { component: AllComponents }) {
                         {prop.required ? "*" : ""}
                       </code>
                     </Box>
-                    <Flex flex="1" gap="12">
+                    <Group flex="1" flexDirection="column" gap="12">
                       {prop.description && (
                         <MDXRemote
                           compiledSource={await compileMdx(
@@ -107,8 +107,8 @@ export async function PropsTable({ component }: { component: AllComponents }) {
                         />
                       )}
                       <PropType prop={prop} />
-                    </Flex>
-                  </Flex>
+                    </Group>
+                  </Group>
                 </Td>
               </Tr>
             ))}

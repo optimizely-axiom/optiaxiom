@@ -1,8 +1,8 @@
-import { Field, Flex, Input } from "@optiaxiom/react";
+import { Field, Group, Input } from "@optiaxiom/react";
 
 export function App() {
   return (
-    <Flex>
+    <Group flexDirection="column" gap="16">
       <Field label="Email">
         <Input placeholder="name@example.com" type="email" />
       </Field>
@@ -18,6 +18,6 @@ export function App() {
       <Field label="Number">
         <Input placeholder="0" type="number" />
       </Field>
-    </Flex>
+    </Group>
   );
 }

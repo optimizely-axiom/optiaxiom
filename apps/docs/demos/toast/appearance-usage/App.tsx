@@ -1,10 +1,10 @@
 "use client";
 
-import { Button, Flex, toaster } from "@optiaxiom/react";
+import { Button, Group, toaster } from "@optiaxiom/react";
 
 export function App() {
   return (
-    <Flex flexDirection="row" flexWrap="wrap">
+    <Group flexWrap="wrap" gap="16">
       {(
         ["danger", "information", "neutral", "success", "warning"] as const
       ).map((intent) => (
@@ -17,6 +17,6 @@ export function App() {
           {intent} toast
         </Button>
       ))}
-    </Flex>
+    </Group>
   );
 }
