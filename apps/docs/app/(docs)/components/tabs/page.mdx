@@ -1,5 +1,5 @@
-import { Demo, Links, PropsTable } from "@/components";
-import { Flex, Kbd } from "@optiaxiom/react";
+import { Demo, KeyboardTable, Links, PropsTable } from "@/components";
+import { Kbd } from "@optiaxiom/react";
 
 # Tabs
 
@@ -53,12 +53,30 @@ export default () => (
 
 ### Keyboard interactions
 
-| Key                                                                                 | Description                                                                                                               |
-| :---------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------ |
-| <Kbd>Tab</Kbd>                                                                      | When focus moves onto the tabs, focuses the active trigger. When a trigger is focused, moves focus to the active content. |
-| <Flex flexDirection="row" gap="8"><Kbd>ArrowDown</Kbd> <Kbd>ArrowRight</Kbd></Flex> | Moves focus to the next trigger depending on `orientation` and activates its associated content.                          |
-| <Flex flexDirection="row" gap="8"><Kbd>ArrowUp</Kbd> <Kbd>ArrowLeft</Kbd></Flex>    | Moves focus to the previous trigger depending on `orientation` and activates its associated content.                      |
-| <Flex flexDirection="row" gap="8"><Kbd>Home</Kbd> <Kbd>End</Kbd></Flex>             | Moves focus to the first/last trigger and activates its associated content.                                               |
+<KeyboardTable
+  interactions={[
+    {
+      keys: "Tab",
+      description:
+        "When focus moves onto the tabs, focuses the active trigger. When a trigger is focused, moves focus to the active content.",
+    },
+    {
+      keys: ["ArrowDown", "ArrowRight"],
+      description:
+        "Moves focus to the next trigger depending on `orientation` and activates its associated content.",
+    },
+    {
+      keys: ["ArrowUp", "ArrowLeft"],
+      description:
+        "Moves focus to the previous trigger depending on `orientation` and activates its associated content.",
+    },
+    {
+      keys: ["Home", "End"],
+      description:
+        "Moves focus to the first/last trigger and activates its associated content.",
+    },
+  ]}
+/>
 
 ## Changelog
 

@@ -1,5 +1,5 @@
-import { Cards, Demo, Links, PropsTable } from "@/components";
-import { Alert, Badge, Flex, Kbd } from "@optiaxiom/react";
+import { Cards, Demo, KeyboardTable, Links, PropsTable } from "@/components";
+import { Alert, Badge, Kbd } from "@optiaxiom/react";
 
 # Dialog
 
@@ -138,10 +138,18 @@ Use the `onOpenChange` handler to trigger the nested callback instead of an expl
 
 ### Keyboard interactions
 
-| Key                                                                        | Description                                           |
-| :------------------------------------------------------------------------- | :---------------------------------------------------- |
-| <Flex flexDirection="row" gap="8"><Kbd>Space</Kbd> <Kbd>Enter</Kbd></Flex> | When focus is on `DialogTrigger`, opens the dialog.   |
-| <Kbd>Esc</Kbd>                                                             | Closes the dialog and moves focus to `DialogTrigger`. |
+<KeyboardTable
+  interactions={[
+    {
+      keys: ["Space", "Enter"],
+      description: "When focus is on `DialogTrigger`, opens the dialog.",
+    },
+    {
+      keys: "Esc",
+      description: "Closes the dialog and moves focus to `DialogTrigger`.",
+    },
+  ]}
+/>
 
 ## Changelog
 

@@ -1,5 +1,5 @@
-import { Cards, Demo, Links, PropsTable } from "@/components";
-import { Alert, Flex, Kbd } from "@optiaxiom/react";
+import { Cards, Demo, KeyboardTable, Links, PropsTable } from "@/components";
+import { Alert, Kbd } from "@optiaxiom/react";
 
 # Select
 
@@ -121,14 +121,37 @@ We can group options using the `group` property.
 
 ### Keyboard interactions
 
-| Key                                                                            | Description                                                                                                                                                               |
-| :----------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| <Flex flexDirection="row" gap="8"><Kbd>Space</Kbd> <Kbd>Enter</Kbd></Flex>     | When focus is on `SelectTrigger`, opens the menu and focuses the first item (or selected item). When focus is on an item, activates the focused item and closes the menu. |
-| <Kbd>ArrowDown</Kbd>                                                           | When focus is on `SelectTrigger`, opens the menu and focuses the first item (or selected item). When focus is on an item, moves focus to the next item.                   |
-| <Kbd>ArrowUp</Kbd>                                                             | When focus is on `SelectTrigger`, opens the menu and focuses the last item (or selected item). When focus is on an item, moves focus to the previous item.                |
-| <Flex flexDirection="row" gap="8"><Kbd>PageUp</Kbd> <Kbd>PageDown</Kbd></Flex> | Moves focus up/down by 10 items at a time.                                                                                                                                |
-| <Flex flexDirection="row" gap="8"><Kbd>Home</Kbd> <Kbd>End</Kbd></Flex>        | Moves focus to the first/last item.                                                                                                                                       |
-| <Kbd>Esc</Kbd>                                                                 | Closes the menu and moves focus back to `SelectTrigger`.                                                                                                                  |
+<KeyboardTable
+  interactions={[
+    {
+      keys: ["Space", "Enter"],
+      description:
+        "When focus is on `SelectTrigger`, opens the menu and focuses the first item (or selected item). When focus is on an item, activates the focused item and closes the menu.",
+    },
+    {
+      keys: "ArrowDown",
+      description:
+        "When focus is on `SelectTrigger`, opens the menu and focuses the first item (or selected item). When focus is on an item, moves focus to the next item.",
+    },
+    {
+      keys: "ArrowUp",
+      description:
+        "When focus is on `SelectTrigger`, opens the menu and focuses the last item (or selected item). When focus is on an item, moves focus to the previous item.",
+    },
+    {
+      keys: ["PageUp", "PageDown"],
+      description: "Moves focus up/down by 10 items at a time.",
+    },
+    {
+      keys: ["Home", "End"],
+      description: "Moves focus to the first/last item.",
+    },
+    {
+      keys: "Esc",
+      description: "Closes the menu and moves focus back to `SelectTrigger`.",
+    },
+  ]}
+/>
 
 ## Changelog
 

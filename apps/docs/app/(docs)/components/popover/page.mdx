@@ -1,5 +1,5 @@
-import { Demo, Links, PropsTable } from "@/components";
-import { Flex, Kbd } from "@optiaxiom/react";
+import { Demo, KeyboardTable, Links, PropsTable } from "@/components";
+import { Kbd } from "@optiaxiom/react";
 
 # Popover
 
@@ -62,10 +62,18 @@ We can also completely change the trigger by using `asChild` and passing our own
 
 ### Keyboard interactions
 
-| Key                                                                        | Description                                             |
-| :------------------------------------------------------------------------- | :------------------------------------------------------ |
-| <Flex flexDirection="row" gap="8"><Kbd>Space</Kbd> <Kbd>Enter</Kbd></Flex> | When focus is on `PopoverTrigger`, opens the popover.   |
-| <Kbd>Esc</Kbd>                                                             | Closes the popover and moves focus to `PopoverTrigger`. |
+<KeyboardTable
+  interactions={[
+    {
+      keys: ["Space", "Enter"],
+      description: "When focus is on `PopoverTrigger`, opens the popover.",
+    },
+    {
+      keys: "Esc",
+      description: "Closes the popover and moves focus to `PopoverTrigger`.",
+    },
+  ]}
+/>
 
 ## Changelog
 

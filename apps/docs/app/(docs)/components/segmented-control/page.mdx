@@ -1,5 +1,5 @@
-import { Cards, Demo, Links, PropsTable } from "@/components";
-import { Flex, Kbd } from "@optiaxiom/react";
+import { Cards, Demo, KeyboardTable, Links, PropsTable } from "@/components";
+import { Kbd } from "@optiaxiom/react";
 
 # SegmentedControl
 
@@ -53,13 +53,31 @@ Use the `value` and `defaultValue` props to toggle between controlled and uncont
 
 ### Keyboard interactions
 
-| Key                                                                                 | Description                                                            |
-| :---------------------------------------------------------------------------------- | :--------------------------------------------------------------------- |
-| <Kbd>Tab</Kbd>                                                                      | Moves focus to either the pressed item or the first item in the group. |
-| <Flex flexDirection="row" gap="8"><Kbd>Space</Kbd> <Kbd>Enter</Kbd></Flex>          | Activates/deactivates the item.                                        |
-| <Flex flexDirection="row" gap="8"><Kbd>ArrowDown</Kbd> <Kbd>ArrowRight</Kbd></Flex> | Moves focus to the next item in the group.                             |
-| <Flex flexDirection="row" gap="8"><Kbd>ArrowUp</Kbd> <Kbd>ArrowLeft</Kbd></Flex>    | Moves focus to the previous item in the group.                         |
-| <Flex flexDirection="row" gap="8"><Kbd>Home</Kbd> <Kbd>End</Kbd></Flex>             | Moves focus to the first/last item.                                    |
+<KeyboardTable
+  interactions={[
+    {
+      keys: "Tab",
+      description:
+        "Moves focus to either the pressed item or the first item in the group.",
+    },
+    {
+      keys: ["Space", "Enter"],
+      description: "Activates/deactivates the item.",
+    },
+    {
+      keys: ["ArrowDown", "ArrowRight"],
+      description: "Moves focus to the next item in the group.",
+    },
+    {
+      keys: ["ArrowUp", "ArrowLeft"],
+      description: "Moves focus to the previous item in the group.",
+    },
+    {
+      keys: ["Home", "End"],
+      description: "Moves focus to the first/last item.",
+    },
+  ]}
+/>
 
 ## Changelog
 
