@@ -1,14 +1,14 @@
-import type { ComponentPropsWithoutRef } from "react";
+import { Box, type BoxProps, theme } from "@optiaxiom/react";
 
-import { Box, theme } from "@optiaxiom/react";
+type IconTextProps = BoxProps & {
+  intent?: "danger" | "primary" | "secondary";
+};
 
 export const IconText = ({
   intent = "primary",
   style,
   ...props
-}: ComponentPropsWithoutRef<typeof Box> & {
-  intent?: "danger" | "primary" | "secondary";
-}) => (
+}: IconTextProps) => (
   <Box
     p="2"
     rounded="sm"

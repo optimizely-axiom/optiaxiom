@@ -1,12 +1,11 @@
 import type { ComponentPropsWithRef } from "react";
 
-import { Box } from "@optiaxiom/react";
+import { Box, type BoxProps } from "@optiaxiom/react";
 
-export const Table = ({
-  children,
-  className = "",
-  ...props
-}: ComponentPropsWithRef<typeof Box>) => (
+type TableProps = BoxProps &
+  ComponentPropsWithRef<"table"> & { className?: string };
+
+export const Table = ({ children, className = "", ...props }: TableProps) => (
   <Box
     bg="bg.default"
     border="1"

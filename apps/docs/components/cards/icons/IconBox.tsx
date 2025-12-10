@@ -1,12 +1,6 @@
-import type { ComponentPropsWithoutRef } from "react";
+import { Box, type BoxProps, theme } from "@optiaxiom/react";
 
-import { Box, theme } from "@optiaxiom/react";
-
-export const IconBox = ({
-  shadow,
-  style,
-  ...props
-}: ComponentPropsWithoutRef<typeof Box>) => (
+export const IconBox = ({ shadow, style, ...props }: BoxProps) => (
   <Box
     bg="bg.default"
     p="6"

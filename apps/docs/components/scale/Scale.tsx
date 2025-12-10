@@ -1,7 +1,7 @@
 import type { ComponentPropsWithoutRef } from "react";
 import type { PropItem } from "react-docgen-typescript";
 
-import { sprinkles, Text } from "@optiaxiom/react";
+import { type BoxProps, sprinkles, Text } from "@optiaxiom/react";
 import { getDocs } from "@optiaxiom/shared";
 
 import { Table, Td, Th, Thead, Tr } from "../table";
@@ -21,18 +21,20 @@ const tshirts = [
   "5xl",
 ];
 
+type ScaleProps = BoxProps & {
+  mode?: "color";
+  themeKey?: ComponentPropsWithoutRef<typeof ScaleValue>["themeKey"];
+  valueLabel?: string;
+  values: Record<string, string> | string;
+};
+
 export const Scale = ({
   maxH = "sm",
   mode,
   themeKey,
   valueLabel = "Styles",
   values: sprinklePropOrValues,
-}: ComponentPropsWithoutRef<typeof Table> & {
-  mode?: "color";
-  themeKey?: ComponentPropsWithoutRef<typeof ScaleValue>["themeKey"];
-  valueLabel?: string;
-  values: Record<string, string> | string;
-}) => (
+}: ScaleProps) => (
   <Table maxH={maxH}>
     <Thead>
       <tr>

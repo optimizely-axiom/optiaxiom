@@ -1,12 +1,10 @@
 import type { ComponentPropsWithRef } from "react";
 
-import { Box, Text } from "@optiaxiom/react";
+import { Box, type BoxProps, Text } from "@optiaxiom/react";
 
-export const Th = ({
-  asChild,
-  children,
-  ...props
-}: ComponentPropsWithRef<typeof Box>) => (
+type ThProps = BoxProps & ComponentPropsWithRef<"th">;
+
+export const Th = ({ asChild, children, ...props }: ThProps) => (
   <Box asChild bg="bg.secondary" textAlign="start" {...props}>
     <th>
       <Text asChild={asChild} fontWeight="600" p="12">
