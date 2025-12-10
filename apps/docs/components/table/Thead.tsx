@@ -1,11 +1,10 @@
 import type { ComponentPropsWithRef } from "react";
 
-import { Box } from "@optiaxiom/react";
+import { Box, type BoxProps } from "@optiaxiom/react";
 
-export const Thead = ({
-  children,
-  ...props
-}: ComponentPropsWithRef<typeof Box>) => (
+type TheadProps = BoxProps & ComponentPropsWithRef<"thead">;
+
+export const Thead = ({ children, ...props }: TheadProps) => (
   <Box asChild {...props}>
     <thead>{children}</thead>
   </Box>

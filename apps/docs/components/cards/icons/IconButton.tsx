@@ -1,14 +1,14 @@
-import type { ComponentPropsWithoutRef } from "react";
+import { type BoxProps, Group, theme } from "@optiaxiom/react";
 
-import { Box, Group, theme } from "@optiaxiom/react";
+type IconButtonProps = BoxProps & {
+  intent?: "danger" | "primary" | "secondary";
+};
 
 export const IconButton = ({
   intent = "primary",
   style,
   ...props
-}: ComponentPropsWithoutRef<typeof Box> & {
-  intent?: "danger" | "primary" | "secondary";
-}) => (
+}: IconButtonProps) => (
   <Group
     bg={intent === "danger" ? "bg.error" : "bg.default"}
     gap="16"

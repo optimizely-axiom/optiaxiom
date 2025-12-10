@@ -1,13 +1,9 @@
-import type { ComponentPropsWithoutRef } from "react";
-
-import { Box, Group } from "@optiaxiom/react";
+import { Box, Group, type GroupProps } from "@optiaxiom/react";
 
 import { IconButton } from "./IconButton";
 import { IconText } from "./IconText";
 
-export const AlertDialogIcon = (
-  props: ComponentPropsWithoutRef<typeof Group>,
-) => (
+export const AlertDialogIcon = (props: GroupProps) => (
   <Group
     bg="bg.default"
     border="1"

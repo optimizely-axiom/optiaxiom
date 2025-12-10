@@ -1,11 +1,9 @@
-import type { ComponentPropsWithoutRef } from "react";
-
-import { Box, Group, theme } from "@optiaxiom/react";
+import { Box, type BoxProps, Group, theme } from "@optiaxiom/react";
 
 import { IconBox } from "./IconBox";
 import { IconText } from "./IconText";
 
-export const AlertIcon = (props: ComponentPropsWithoutRef<typeof Box>) => (
+export const AlertIcon = (props: BoxProps) => (
   <IconBox
     alignItems="start"
     bg="bg.warning.subtle"

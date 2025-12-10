@@ -1,11 +1,10 @@
 import type { ComponentPropsWithRef } from "react";
 
-import { Box } from "@optiaxiom/react";
+import { Box, type BoxProps } from "@optiaxiom/react";
 
-export const Tr = ({
-  children,
-  ...props
-}: ComponentPropsWithRef<typeof Box>) => (
+type TrProps = BoxProps & ComponentPropsWithRef<"tr">;
+
+export const Tr = ({ children, ...props }: TrProps) => (
   <Box asChild borderColor="border.tertiary" borderT="1" {...props}>
     <tr>{children}</tr>
   </Box>
