@@ -1,9 +1,9 @@
-import { ESLintUtils } from "@typescript-eslint/utils";
-
-export default ESLintUtils.RuleCreator.withoutDocs({
+/** @type {import('@typescript-eslint/utils').TSESLint.RuleModule<string>} */
+export default {
   create(context) {
     return {
       /**
+       * Check TSX files for component prop descriptions
        * @type {import('@typescript-eslint/utils').TSESLint.RuleListener['TSPropertySignature']}
        */
       "Program > ExportNamedDeclaration > TSTypeAliasDeclaration[id.name=/Props$/] TSPropertySignature":
@@ -30,64 +30,86 @@ export default ESLintUtils.RuleCreator.withoutDocs({
           }
         },
       /**
-       * @type {import('@typescript-eslint/utils').TSESLint.RuleListener['TSQualifiedName']}
+       * Check CSS.ts files for recipe variant descriptions
+       * Matches: export const foo = recipe({ variants: { ... } })
+       * Then checks if there's a corresponding RecipeVariants export
+       * @type {import('@typescript-eslint/utils').TSESLint.RuleListener['CallExpression']}
        */
-      "Program > ExportNamedDeclaration > TSTypeAliasDeclaration[id.name=/Props$/] TSQualifiedName[left.name=styles]":
+      "Program > ExportNamedDeclaration > VariableDeclaration > VariableDeclarator[init.callee.name=recipe] > CallExpression":
         (node) => {
-          let parent =
-            node.parent.type === "TSTypeReference" ? node.parent : null;
-          const exclude = [];
-          while (parent?.type === "TSTypeReference") {
-            if (
-              parent.typeName.type === "Identifier" &&
-              parent.typeName.name === "Omit"
-            ) {
-              const union = parent.typeArguments?.params[1];
-              if (union?.type === "TSUnionType") {
-                exclude.push(
-                  ...union.types.flatMap((type) =>
-                    type.type === "TSLiteralType" &&
-                    type.literal.type === "Literal"
-                      ? [type.literal.value]
-                      : null,
-                  ),
-                );
-              }
-              break;
-            } else if (
-              parent.typeName === node ||
-              (parent.typeName.type === "Identifier" &&
-                parent.typeName.name === "NonNullable")
-            ) {
-              /**
-               * @type {import('@typescript-eslint/utils').TSESTree.Node | undefined}
-               */
-              let cursor = parent.parent;
-              while (cursor && cursor.type !== "TSTypeReference") {
-                cursor = cursor?.parent;
-              }
-              parent = cursor ?? null;
-            } else {
-              break;
-            }
+          // Get the recipe name from the variable declarator
+          const declarator = node.parent;
+          if (
+            declarator.type !== "VariableDeclarator" ||
+            declarator.id.type !== "Identifier"
+          ) {
+            return;
+          }
+          const recipeName = declarator.id.name;
+
+          // Convert recipe name to expected variants type name
+          // e.g., "alert" -> "AlertVariants"
+          const variantsTypeName =
+            recipeName.charAt(0).toUpperCase() +
+            recipeName.slice(1) +
+            "Variants";
+
+          // Check if this file exports the corresponding RecipeVariants type
+          const program = context.sourceCode.ast;
+          const hasVariantsExport = program.body.some(
+            (statement) =>
+              statement.type === "ExportNamedDeclaration" &&
+              statement.declaration?.type === "TSTypeAliasDeclaration" &&
+              statement.declaration.id.name === variantsTypeName &&
+              statement.declaration.typeAnnotation?.type ===
+                "TSTypeReference" &&
+              statement.declaration.typeAnnotation.typeName?.type ===
+                "Identifier" &&
+              statement.declaration.typeAnnotation.typeName.name ===
+                "RecipeVariants",
+          );
+
+          if (!hasVariantsExport) {
+            return;
           }
 
-          const parserServices = ESLintUtils.getParserServices(context);
-          const variants = parserServices.getTypeAtLocation(node.right);
+          // Get the recipe config object (first argument to recipe())
+          const recipeConfig = node.arguments[0];
+          if (!recipeConfig || recipeConfig.type !== "ObjectExpression") {
+            return;
+          }
 
-          for (const property of variants
-            .getNonNullableType()
-            .getProperties()) {
-            if (exclude.includes(property.getEscapedName().toString())) {
+          // Find the variants property
+          const variantsProp = recipeConfig.properties.find(
+            (prop) =>
+              prop.type === "Property" &&
+              prop.key.type === "Identifier" &&
+              prop.key.name === "variants",
+          );
+
+          if (
+            !variantsProp ||
+            variantsProp.type !== "Property" ||
+            variantsProp.value.type !== "ObjectExpression"
+          ) {
+            return;
+          }
+
+          // Check each variant property for JSDoc
+          for (const prop of variantsProp.value.properties) {
+            if (prop.type !== "Property" || prop.key.type !== "Identifier") {
               continue;
             }
 
-            const comments = property.getDocumentationComment(undefined);
+            const comments = context.sourceCode
+              .getCommentsBefore(prop)
+              .filter((comment) => comment.type === "Block");
+
             if (comments.length === 0) {
               context.report({
-                data: { property: property.getEscapedName() },
+                data: { property: prop.key.name },
                 messageId: "expected",
-                node,
+                node: prop,
               });
             }
           }
@@ -105,4 +127,4 @@ export default ESLintUtils.RuleCreator.withoutDocs({
     schema: [],
     type: "suggestion",
   },
-});
+};
