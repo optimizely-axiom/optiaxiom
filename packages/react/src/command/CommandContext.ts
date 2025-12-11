@@ -153,17 +153,16 @@ type CommandOptionGroup = {
   separator?: boolean;
 };
 
-export const resolveItemProperty = <Value>(
+export function resolveItemProperty<Value>(
   property: Value,
   ...context: Value extends (...context: infer Context) => unknown
     ? Context
     : never
-) =>
-  (typeof property === "function"
-    ? property(...context)
-    : property) as Value extends (...args: never) => unknown
-    ? ReturnType<Value>
-    : Value;
+) {
+  return (
+    typeof property === "function" ? property(...context) : property
+  ) as Value extends (...args: never) => unknown ? ReturnType<Value> : Value;
+}
 
 export const [CommandProvider, useCommandContext] = createContext<{
   downshift: UseComboboxReturnValue<CommandOption>;
