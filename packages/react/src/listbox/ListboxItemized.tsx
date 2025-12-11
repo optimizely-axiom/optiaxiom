@@ -73,7 +73,7 @@ export const ListboxItemized = forwardRef<HTMLDivElement, ListboxItemizedProps>(
         requestAnimationFrame(() => onPlacedChangeStable(true)),
       );
       return () => onPlacedChangeStable(false);
-    }, [onPlacedChangeStable]);
+    }, []);
 
     return (
       <Listbox

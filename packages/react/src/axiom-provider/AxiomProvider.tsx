@@ -35,16 +35,16 @@ export type AxiomProviderProps = {
   tooltip?: Omit<TooltipProviderProps, "children">;
 };
 
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 interface DialogKitProviderProps
+  // eslint-disable-next-line @typescript-eslint/no-empty-object-type
   extends ComponentPropsWithoutRef<typeof DialogKitProvider> {}
 
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 interface ToastProviderProps
+  // eslint-disable-next-line @typescript-eslint/no-empty-object-type
   extends ComponentPropsWithoutRef<typeof ToastProvider> {}
 
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 interface TooltipProviderProps
+  // eslint-disable-next-line @typescript-eslint/no-empty-object-type
   extends ComponentPropsWithoutRef<typeof TooltipProvider> {}
 
 /**

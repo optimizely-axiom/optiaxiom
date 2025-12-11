@@ -20,7 +20,7 @@ export const CommandInput = forwardRef<HTMLInputElement, CommandInputProps>(
     const setInputValueStable = useEffectEvent(setInputValue);
     useEffect(() => {
       setInputValueStable("");
-    }, [setInputValueStable]);
+    }, []);
 
     const preventDownshiftBlurRef = useRef(false);
 

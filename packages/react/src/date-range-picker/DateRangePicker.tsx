@@ -75,7 +75,7 @@ export function DateRangePicker({
         setValueStable({ from: from, to: end });
       }
     }
-  }, [from, open, setValueStable]);
+  }, [from, open]);
 
   return (
     <Popover onOpenChange={setOpen} open={open} {...props}>

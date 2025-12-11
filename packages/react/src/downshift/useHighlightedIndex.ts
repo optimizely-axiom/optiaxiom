@@ -23,7 +23,7 @@ export function useHighlightedIndex(
     } else if (open) {
       setHighlightedIndex(getInitialHighlightedIndexStable);
     }
-  }, [getInitialHighlightedIndexStable, open]);
+  }, [open]);
 
   return [
     /**

@@ -35,10 +35,7 @@ export function AuthProvider({
 
   return (
     <AxiomAuthContext.Provider
-      value={useMemo(
-        () => ({ instance, refresh, token }),
-        [instance, refresh, token],
-      )}
+      value={useMemo(() => ({ instance, refresh, token }), [instance, token])}
     >
       {children}
     </AxiomAuthContext.Provider>
