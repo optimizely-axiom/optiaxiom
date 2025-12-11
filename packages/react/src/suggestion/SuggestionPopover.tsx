@@ -27,7 +27,7 @@ export const SuggestionPopover = forwardRef<
   );
   useEffect(() => {
     return register();
-  }, [register]);
+  }, []);
 
   const suggestions = useSuggestions("property", "value");
   const suggestion = suggestions?.find((s) => s.value !== surface?.value);

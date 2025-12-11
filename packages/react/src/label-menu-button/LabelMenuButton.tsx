@@ -49,6 +49,7 @@ export const LabelMenuButton = forwardRef<
         }
         data-filled={filled ? "" : undefined}
         ref={ref}
+        // oxlint-disable-next-line local/consistent-recipe-sprinkles
         size="lg"
         {...styles.button({}, className)}
         {...props}

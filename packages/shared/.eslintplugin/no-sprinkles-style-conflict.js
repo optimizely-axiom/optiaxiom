@@ -97,7 +97,7 @@ export default ESLintUtils.RuleCreator.withoutDocs({
               arg.type === "ObjectExpression" ? [arg] : arg.elements;
             for (const param of params) {
               if (param?.type === "ObjectExpression") {
-                let stack = [...param.properties];
+                const stack = [...param.properties];
                 while (stack.length) {
                   const prop = stack.shift();
                   if (!prop) {

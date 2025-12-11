@@ -25,7 +25,7 @@ export function SuggestionAlert({ ...props }: SuggestionAlertProps) {
   );
   useEffect(() => {
     return register();
-  }, [register]);
+  }, []);
 
   // Show message suggestions first, then value suggestions if no popover is handling them
   const messageSuggestion = messageSuggestions?.[0];

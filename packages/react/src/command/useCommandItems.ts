@@ -113,5 +113,5 @@ export const useCommandItems = ({
         (b.group?.priority ?? 0) + bScore - ((a.group?.priority ?? 0) + aScore)
       );
     });
-  }, [options, filterFn, inputValue, suggestions, surface?.path]);
+  }, [options, inputValue, suggestions, surface?.path]);
 };
