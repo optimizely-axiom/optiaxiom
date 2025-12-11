@@ -24,7 +24,6 @@ storybook-static
 *.tsbuildinfo
 
 # project
-.eslintcache
 .next
 _pagefind/
 

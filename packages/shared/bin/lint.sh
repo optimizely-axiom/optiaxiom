@@ -1,9 +1,9 @@
 set -e
 
 tsgo --build
-e_flag="--fix" p_flag="--log-level silent -w"
-[ "$1" = "--no-fix" ] && e_flag= p_flag="-c"
-if [ -f eslint.config.js ]; then
+p_flag="--log-level silent -w" ox_flag="--fix"
+[ "$1" = "--no-fix" ] && p_flag="-c" ox_flag=
+if [ -f .oxlintrc.json ]; then
   prettier --cache $p_flag .
-  eslint --cache --quiet $e_flag .
+  oxlint --quiet --type-aware $ox_flag .
 fi
