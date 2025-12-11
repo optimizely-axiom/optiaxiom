@@ -15,5 +15,8 @@ for await (const file of files) {
 }
 
 export default {
+  meta: {
+    name: "local",
+  },
   rules,
 };
