@@ -34,7 +34,7 @@ jobs:
           pnpm build
           pnpm --silent bundle-size > bundle-size-main.json
 
-      - uses: actions/upload-artifact@v5
+      - uses: actions/upload-artifact@v6
         with:
           if-no-files-found: error
           path: bundle-size-main.json
@@ -60,7 +60,7 @@ jobs:
           pnpm build
           pnpm --silent bundle-size compare bundle-size-main.json > ./pr/bundle-size.md
 
-      - uses: actions/upload-artifact@v5
+      - uses: actions/upload-artifact@v6
         with:
           name: pr-build
           path: pr/
