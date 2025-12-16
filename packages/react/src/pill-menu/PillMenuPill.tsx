@@ -15,11 +15,17 @@ export type PillMenuPillProps = PillProps & {
    * The exact item object from the collection.
    */
   item: CommandOption;
+  /**
+   * Whether the pill is interactive or not.
+   */
+  readOnly?: boolean;
 };
 
 export const PillMenuPill = forwardRef<HTMLButtonElement, PillMenuPillProps>(
-  ({ item, onKeyDown, ...props }, ref) => {
-    const { options } = usePillMenuContext("@optiaxiom/react/PillMenuPill");
+  ({ item, onKeyDown, readOnly, ...props }, ref) => {
+    const { value: options } = usePillMenuContext(
+      "@optiaxiom/react/PillMenuPill",
+    );
     const { open, setOpen } = useMenuContext("@optiaxiom/react/PillMenuPill");
     const { inputValue } = useCommandContext("@optiaxiom/react/PillMenuPill");
 
@@ -54,12 +60,15 @@ export const PillMenuPill = forwardRef<HTMLButtonElement, PillMenuPillProps>(
               }
 
               item.execute?.({ dismiss: false, inputValue });
+            } else if (event.key === "ArrowDown") {
+              setOpen(!open);
             }
             onKeyDown?.(event);
           }}
           onPointerDown={() => {
             hasInteractedInsideRef.current = Boolean(open);
           }}
+          readOnly={readOnly}
           ref={ref}
           {...props}
         >
