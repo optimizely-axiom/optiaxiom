@@ -6,12 +6,10 @@ import {
   useState,
 } from "react";
 
-import type { BoxProps } from "../box";
-
+import { Box, type BoxProps } from "../box";
 import { resolveItemProperty } from "../command/CommandContext";
 import { Menu, type MenuOption } from "../menu";
 import { PillMenuProvider } from "./PillMenuContext";
-import { PillMenuImpl } from "./PillMenuImpl";
 
 export type PillMenuProps = BoxProps<
   "div",
@@ -66,11 +64,10 @@ export const PillMenu = forwardRef<HTMLDivElement, PillMenuProps>(
     const [optionIndexes, setOptionIndexes] = useState(() =>
       groupOptions(options),
     );
+    const value = options.filter((item) => resolveItemProperty(item.selected));
 
     return (
-      <PillMenuProvider
-        options={options.filter((item) => resolveItemProperty(item.selected))}
-      >
+      <PillMenuProvider value={value}>
         <Menu
           empty={empty}
           inputValue={inputValue}
@@ -100,9 +97,15 @@ export const PillMenu = forwardRef<HTMLDivElement, PillMenuProps>(
           )}
           placeholder={placeholder}
         >
-          <PillMenuImpl ref={ref} {...props}>
+          <Box
+            alignItems={value.length ? undefined : "start"}
+            display="flex"
+            flexDirection="column"
+            ref={ref}
+            {...props}
+          >
             {children}
-          </PillMenuImpl>
+          </Box>
         </Menu>
       </PillMenuProvider>
     );

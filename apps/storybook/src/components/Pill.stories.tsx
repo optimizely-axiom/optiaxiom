@@ -47,6 +47,15 @@ export const Dismiss: Story = {
   },
 };
 
+export const Readonly: Story = {
+  args: {
+    children: "Readonly",
+    onClick: action("onClick"),
+    onDismiss: action("onDismiss"),
+    readOnly: true,
+  },
+};
+
 export const Disabled: Story = {
   args: {
     children: "Disabled",

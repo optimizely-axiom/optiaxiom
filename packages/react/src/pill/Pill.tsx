@@ -16,6 +16,12 @@ export type PillProps = BoxProps<
      * Show a close button inside the pill and invoke this callback when the pill is clicked.
      */
     onDismiss?: () => void;
+    /**
+     * When true, the pill is rendered as a non-interactive span element instead
+     * of a button. Use this for display-only pills that don't respond to
+     * clicks.
+     */
+    readOnly?: boolean;
   }
 >;
 
@@ -35,12 +41,13 @@ export const Pill = forwardRef<HTMLButtonElement, PillProps>(
       disabled,
       onClick,
       onDismiss,
+      readOnly,
       size = "sm",
       ...props
     },
     ref,
   ) => {
-    const Comp = asChild ? Slot : onClick || onDismiss ? "button" : "span";
+    const Comp = asChild ? Slot : readOnly ? "span" : "button";
     const { boxProps, restProps } = extractBoxProps(props);
 
     return (
@@ -49,7 +56,7 @@ export const Pill = forwardRef<HTMLButtonElement, PillProps>(
         data-disabled={disabled ? "" : undefined}
         {...styles.pill(
           {
-            interactive: Boolean(onClick || onDismiss),
+            interactive: Boolean(!readOnly),
             size,
           },
           className,
@@ -59,6 +66,10 @@ export const Pill = forwardRef<HTMLButtonElement, PillProps>(
         <Comp
           disabled={disabled}
           onClick={(event) => {
+            if (readOnly) {
+              return;
+            }
+
             onClick?.(event);
             if (event.defaultPrevented) {
               return;
@@ -71,7 +82,7 @@ export const Pill = forwardRef<HTMLButtonElement, PillProps>(
         >
           <Text truncate>{children}</Text>
 
-          {onDismiss && (
+          {onDismiss && !readOnly && (
             <Icon asChild h="12" ml="auto">
               <IconX />
             </Icon>

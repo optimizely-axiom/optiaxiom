@@ -1,21 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Field, type MenuOption } from "@optiaxiom/react";
+import { Field, Flex, type MenuOption } from "@optiaxiom/react";
 import {
   PillMenu,
   PillMenuContent,
   PillMenuTrigger,
 } from "@optiaxiom/react/unstable";
-import { useMemo, useState } from "react";
-
-type Story = StoryObj<typeof PillMenu>;
-
-export default {
-  args: {
-    defaultOpen: true,
-  },
-  component: PillMenu,
-} as Meta<typeof PillMenu>;
+import { type ComponentPropsWithoutRef, useMemo, useState } from "react";
 
 const languages = [
   "Afrikaans",
@@ -60,41 +51,156 @@ const languages = [
   "Vietnamese",
 ];
 
-export const Basic: Story = {
-  render: function Basic(args) {
-    const [value, setValue] = useState(
-      languages.filter((_, index) => index % 6 === 0),
+type PillMenuStoryProps = Omit<
+  ComponentPropsWithoutRef<typeof PillMenu>,
+  "defaultValue"
+> & {
+  defaultValue: string[];
+};
+
+type Story = StoryObj<PillMenuStoryProps>;
+
+export default {
+  args: {
+    children: (
+      <>
+        <PillMenuTrigger aria-label="Add language" />
+        <PillMenuContent />
+      </>
+    ),
+    defaultOpen: true,
+    defaultValue: languages.filter((_, index) => index % 6 === 0),
+  },
+  component: PillMenu,
+  decorators: (Story, { parameters }) =>
+    parameters.axiom.includeField ? (
+      <Field label="Language" maxW="md" mb="80" style={{ width: "100vw" }}>
+        <Story />
+      </Field>
+    ) : (
+      <Story />
+    ),
+  parameters: {
+    axiom: {
+      includeField: true,
+    },
+  },
+  render: function Render(args) {
+    const [value, setValue] = useState(args.defaultValue);
+
+    return (
+      <PillMenu
+        {...args}
+        options={useMemo(
+          () =>
+            languages.map<MenuOption>((language) => ({
+              execute: () =>
+                setValue((values) =>
+                  values.includes(language)
+                    ? values.filter((v) => v !== language)
+                    : [...values, language],
+                ),
+              label: language,
+              multi: true,
+              selected: () => value.includes(language),
+            })),
+          [value],
+        )}
+      />
+    );
+  },
+} as Meta<PillMenuStoryProps>;
+
+export const Basic: Story = {};
+
+export const Sizes: Story = {
+  parameters: {
+    axiom: {
+      includeField: false,
+    },
+  },
+  render: function Render(args) {
+    const [value, setValue] = useState(args.defaultValue);
+    const options = useMemo(
+      () =>
+        languages.map<MenuOption>((language) => ({
+          execute: () =>
+            setValue((values) =>
+              values.includes(language)
+                ? values.filter((v) => v !== language)
+                : [...values, language],
+            ),
+          label: language,
+          multi: true,
+          selected: () => value.includes(language),
+        })),
+      [value],
     );
 
     return (
-      <Field label="Language" maxW="md" mb="80" style={{ width: "100vw" }}>
-        <PillMenu
-          {...args}
-          options={useMemo(
-            () =>
-              languages.map<MenuOption>((language) => ({
-                execute: () =>
-                  setValue((values) =>
-                    values.includes(language)
-                      ? values.filter((v) => v !== language)
-                      : [...values, language],
-                  ),
-                label: language,
-                multi: true,
-                selected: () => value.includes(language),
-              })),
-            [value],
-          )}
-        >
-          <PillMenuTrigger aria-label="Add language" />
-          <PillMenuContent />
-        </PillMenu>
-      </Field>
+      <Flex>
+        <Field label="Language" maxW="md" mb="80" style={{ width: "100vw" }}>
+          <PillMenu {...args} options={options}>
+            <PillMenuTrigger aria-label="Add language" size="lg" />
+            <PillMenuContent />
+          </PillMenu>
+        </Field>
+
+        <Field label="Language" maxW="md" mb="80" style={{ width: "100vw" }}>
+          <PillMenu {...args} options={options}>
+            <PillMenuTrigger aria-label="Add language" size="md" />
+            <PillMenuContent />
+          </PillMenu>
+        </Field>
+      </Flex>
     );
   },
 };
 
-export const Disabled: Story = {
+export const Empty: Story = {
+  args: {
+    defaultOpen: false,
+    defaultValue: [],
+  },
+};
+
+export const Readonly: Story = {
+  args: {
+    children: (
+      <>
+        <PillMenuTrigger aria-label="Add language" readOnly />
+        <PillMenuContent />
+      </>
+    ),
+    defaultOpen: false,
+  },
+  render: function Render(args) {
+    const [value, setValue] = useState(args.defaultValue);
+
+    return (
+      <PillMenu
+        {...args}
+        options={useMemo(
+          () =>
+            languages.map<MenuOption>((language) => ({
+              execute: () =>
+                setValue((values) =>
+                  values.includes(language)
+                    ? values.filter((v) => v !== language)
+                    : [...values, language],
+                ),
+              label: language,
+              multi: true,
+              selected: () => value.includes(language),
+            })),
+          [value],
+        )}
+      />
+    );
+  },
+};
+
+export const DisabledItems: Story = {
   // play: async () => {
   //   const disabledPill = screen.getByRole("button", { name: "Afrikaans" });
   //   await userEvent.hover(disabledPill);
@@ -127,36 +233,28 @@ export const Disabled: Story = {
   // },
 
   render: function Disabled(args) {
-    const [value, setValue] = useState(
-      languages.filter((_, index) => index % 6 === 0),
-    );
+    const [value, setValue] = useState(args.defaultValue);
 
     return (
-      <Field label="Language" maxW="md" mb="80" style={{ width: "100vw" }}>
-        <PillMenu
-          {...args}
-          options={useMemo(
-            () =>
-              languages.map<MenuOption>((language) => ({
-                disabledReason:
-                  language === "Afrikaans" ? "Required" : undefined,
-                execute: () =>
-                  setValue((values) =>
-                    values.includes(language)
-                      ? values.filter((v) => v !== language)
-                      : [...values, language],
-                  ),
-                label: language,
-                multi: true,
-                selected: () => value.includes(language),
-              })),
-            [value],
-          )}
-        >
-          <PillMenuTrigger aria-label="Add language" />
-          <PillMenuContent />
-        </PillMenu>
-      </Field>
+      <PillMenu
+        {...args}
+        options={useMemo(
+          () =>
+            languages.map<MenuOption>((language) => ({
+              disabledReason: language === "Afrikaans" ? "Required" : undefined,
+              execute: () =>
+                setValue((values) =>
+                  values.includes(language)
+                    ? values.filter((v) => v !== language)
+                    : [...values, language],
+                ),
+              label: language,
+              multi: true,
+              selected: () => value.includes(language),
+            })),
+          [value],
+        )}
+      />
     );
   },
 };
