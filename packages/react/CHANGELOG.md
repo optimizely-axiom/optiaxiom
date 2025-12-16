@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 1.8.1
+
+### Patch Changes
+
+- 97d1477: refactor PillMenu design to match figma
+
 ## 1.8.0
 
 ### Minor Changes
