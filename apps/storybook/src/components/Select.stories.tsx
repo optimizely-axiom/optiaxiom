@@ -110,7 +110,7 @@ export const Disabled: Story = {
 
 const groups = {
   fruits: { label: "Fruits", separator: true },
-  meats: { label: "Meats", separator: true },
+  meats: { label: "Meats", priority: 10, separator: true },
   vegetables: { label: "Vegetables", separator: true },
 };
 

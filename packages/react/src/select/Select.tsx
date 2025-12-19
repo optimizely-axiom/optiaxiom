@@ -98,7 +98,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
       onOpenChange,
       onValueChange,
       open,
-      options: items,
+      options,
       required,
       value,
     },
@@ -115,6 +115,14 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
     });
     const forceValueChange = useObserveValue(innerRef, setShadowValue);
     useObserveReset(innerRef, setShadowValue);
+
+    const items = useMemo(
+      () =>
+        [...options].sort((a, b) => {
+          return (b.group?.priority ?? 0) - (a.group?.priority ?? 0);
+        }),
+      [options],
+    );
 
     const selectedItem = useMemo(
       () =>
@@ -150,7 +158,6 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
           : highlightedIndex,
       isItemDisabled: (item) => !!item.disabledReason,
       isOpen,
-      // @ts-expect-error -- no harm in supporting read only arrays
       items,
       itemToKey: (item) => (item !== null ? item.value : item),
       itemToString: (item) => (item !== null ? item.label : ""),
