@@ -17,11 +17,15 @@ export type SelectOption = {
   /**
    * Add secondary text after the label.
    */
-  description?: string;
+  description?: ReactNode;
+  /**
+   * Secondary text displayed next to the label.
+   */
+  detail?: ReactNode;
   /**
    * Provide a reason why item needs to be marked as disabled and skipped from keyboard navigation.
    */
-  disabledReason?: string;
+  disabledReason?: (() => string) | string;
   /**
    * Provide an optional group that item belongs to.
    */
@@ -50,6 +54,18 @@ type SelectOptionGroup = {
    */
   separator?: boolean;
 };
+
+export const resolveItemProperty = <Value>(
+  property: Value,
+  ...context: Value extends (...context: infer Context) => unknown
+    ? Context
+    : never
+) =>
+  (typeof property === "function"
+    ? property(...context)
+    : property) as Value extends (...args: never) => unknown
+    ? ReturnType<Value>
+    : Value;
 
 export const [SelectProvider, useSelectContext] = createContext<{
   disabled?: boolean;
