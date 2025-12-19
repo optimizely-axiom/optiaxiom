@@ -50,6 +50,11 @@ type SelectOptionGroup = {
    */
   label: string;
   /**
+   * The sorting priority of the group (default: 0).
+   * Groups with higher priority are sorted first.
+   */
+  priority?: number;
+  /**
    * Whether to display a separator before this group.
    */
   separator?: boolean;
