@@ -11,7 +11,9 @@ import {
   SelectTrigger,
   Text,
 } from "@optiaxiom/react";
+import { SurfaceProvider } from "@optiaxiom/react/unstable";
 import { useEffect, useMemo, useState } from "react";
+import { action } from "storybook/actions";
 import { expect, screen, userEvent } from "storybook/test";
 
 type Story = StoryObj<typeof Select>;
@@ -312,6 +314,77 @@ export const AlternateTrigger: Story = {
           Reset
         </Button>
       </Group>
+    );
+  },
+};
+
+export const WithSuggestion: Story = {
+  render: function WithSuggestion() {
+    const [value, setValue] = useState("");
+    const defaultSuggestions = [
+      {
+        id: "sug-1",
+        reason: "Based on the task description and deadline",
+        surface:
+          "product<storybook>/page<demo>/resource<task>/property<priority>",
+        type: "value" as const,
+        value: "Urgent",
+      },
+    ];
+    const [suggestions, setSuggestions] = useState(defaultSuggestions);
+
+    const priorityOptions = [
+      { label: "No priority", value: "" },
+      { label: "Urgent", value: "Urgent" },
+      { label: "High", value: "High" },
+      { label: "Medium", value: "Medium" },
+      { label: "Low", value: "Low" },
+    ];
+
+    return (
+      <SurfaceProvider
+        accept={(suggestionId: string) => {
+          action("accept")(suggestionId);
+          setSuggestions((prev) => prev.filter((s) => s.id !== suggestionId));
+        }}
+        executeTool={action("execute")}
+        metadata={{}}
+        name="priority"
+        pageViewId=""
+        path="product<storybook>/page<demo>/resource<task>/property<priority>"
+        reject={(suggestionId: string) => {
+          action("reject")(suggestionId);
+          setSuggestions((prev) => prev.filter((s) => s.id !== suggestionId));
+        }}
+        suggestionPopover={{ register: () => () => {}, registered: false }}
+        suggestions={suggestions}
+        track={action("track")}
+        type="property"
+      >
+        <Group alignItems="start" flexDirection="column" gap="16">
+          <Select
+            onValueChange={setValue}
+            options={priorityOptions}
+            value={value}
+          >
+            <SelectTrigger placeholder="Select priority" />
+            <SelectContent />
+          </Select>
+
+          <Group gap="8">
+            <Text fontSize="sm">Value: {value || "(empty)"}</Text>
+            <Text fontSize="sm">Suggestions: {suggestions.length}</Text>
+          </Group>
+
+          <Button
+            disabled={suggestions.length > 0}
+            onClick={() => setSuggestions(defaultSuggestions)}
+            size="sm"
+          >
+            Reset Suggestion
+          </Button>
+        </Group>
+      </SurfaceProvider>
     );
   },
 };

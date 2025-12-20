@@ -7,13 +7,16 @@ import {
 } from "react";
 
 import { extractBoxProps } from "../box";
+import { Group } from "../group";
 import {
   InputAddon,
   InputControl,
   type InputControlProps,
   InputRoot,
 } from "../input";
+import { SuggestionPopover } from "../suggestion";
 import { fallbackSpan } from "../utils";
+import * as styles from "./Textarea.css";
 import { TextareaAutosize } from "./TextareaAutosize";
 
 const Slot = createSlot("@optiaxiom/react/Textarea");
@@ -80,9 +83,14 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           </TextareaAutosize>
         </InputControl>
 
-        {addonAfter && (
-          <InputAddon asChild>{fallbackSpan(addonAfter)}</InputAddon>
-        )}
+        <InputAddon {...styles.addon()}>
+          {props.value !== undefined && (
+            <Group justifyContent="end">
+              <SuggestionPopover currentValue={props.value} />
+            </Group>
+          )}
+          {addonAfter}
+        </InputAddon>
       </InputRoot>
     );
   },

@@ -1,8 +1,11 @@
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import { forwardRef, type MouseEvent } from "react";
 
+import { Avatar } from "../avatar";
 import { Box, type BoxProps } from "../box";
 import { IconAngleRight } from "../icons/IconAngleRight";
+import { useSurface } from "../surface";
+import { filterSuggestionsBySurface } from "../surface/internals";
 import { Text } from "../text";
 import { decorateChildren, fallbackSpan } from "../utils";
 import {
@@ -59,6 +62,30 @@ export const CommandItem = forwardRef<HTMLDivElement, CommandItemProps>(
       highlightedItem === item ? highlightedItemRef : undefined,
       outerRef,
     );
+
+    // Get suggestions for this item's property surface
+    const surface = useSurface();
+    const itemSuggestions =
+      item.surface?.type === "property"
+        ? filterSuggestionsBySurface(
+            surface?.suggestions.filter((s) => s.type === "value"),
+            surface?.path,
+            [
+              {
+                name: item.surface.name,
+                type: "property",
+              },
+            ],
+          )
+        : undefined;
+    // Check if this item matches a suggestion and is not already selected
+    const isSuggested =
+      item.surface?.type === "property" &&
+      itemSuggestions?.some((s) => {
+        if (item.surface?.type !== "property") return false;
+        return s.value === item.surface.value;
+      }) &&
+      !resolveItemProperty(item.selected);
 
     const itemProps = downshift.getItemProps({
       "aria-posinset": index + 1,
@@ -169,6 +196,7 @@ export const CommandItem = forwardRef<HTMLDivElement, CommandItemProps>(
                     </>
                   )}
                 {resolveItemProperty(item.label, { inputValue })}
+                {isSuggested && <Avatar fallback="opal" size="2xs" />}
                 {detail && (
                   <Text asChild truncate {...styles.detail()}>
                     {fallbackSpan(detail)}

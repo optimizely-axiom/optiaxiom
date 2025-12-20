@@ -12,3 +12,4 @@ export * from "./pill-menu";
 export * from "./range";
 export * from "./sortable";
 export * from "./spotlight";
+export * from "./surface";

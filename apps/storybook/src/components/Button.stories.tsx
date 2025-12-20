@@ -1,8 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Button, Group, Select, SelectTrigger } from "@optiaxiom/react";
+import { Button, Group, Select, SelectTrigger, Text } from "@optiaxiom/react";
+import { SurfaceProvider } from "@optiaxiom/react/unstable";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { IconChevronDown, IconCloudUpload } from "@tabler/icons-react";
+import { useState } from "react";
+import { action } from "storybook/actions";
 
 export default {
   argTypes: {
@@ -215,4 +218,36 @@ export const Truncate: Story = {
       <Button justifyContent="center">Centered label</Button>
     </Group>
   ),
+};
+
+export const TrackInteraction: Story = {
+  render: function TrackInteraction() {
+    const [clickCount, setClickCount] = useState(0);
+
+    return (
+      <Group alignItems="start" flexDirection="column" gap="16">
+        <SurfaceProvider
+          accept={action("accept")}
+          executeTool={action("execute")}
+          metadata={{}}
+          name="completed"
+          pageViewId=""
+          path="product<storybook>/page<demo>/resource<task>/completed"
+          reject={action("reject")}
+          suggestionPopover={{ register: () => () => {}, registered: false }}
+          suggestions={[]}
+          track={action("track")}
+          type="action"
+        >
+          <Button onClick={() => setClickCount((c) => c + 1)}>
+            Mark Complete
+          </Button>
+        </SurfaceProvider>
+
+        <Group gap="8">
+          <Text fontSize="sm">Button clicks: {clickCount}</Text>
+        </Group>
+      </Group>
+    );
+  },
 };

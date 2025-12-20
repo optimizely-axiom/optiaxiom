@@ -67,7 +67,7 @@ export default ESLintUtils.RuleCreator.withoutDocs({
 
           const expected = [
             `@optiaxiom/react/${provider.name.replace(/Provider$/, "")}`,
-            `@optiaxiom/globals/${provider.name.replace(/Provider$/, "")}`,
+            `@optiaxiom/globals/${provider.name.replace(/^unstable_/, "").replace(/Provider$/, "")}`,
           ];
           if (
             !(typeof name.value === "string" && expected.includes(name.value))

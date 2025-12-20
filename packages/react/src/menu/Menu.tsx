@@ -17,6 +17,7 @@ import { useResponsiveMatches } from "../hooks";
 import { MenuProvider } from "./MenuContext";
 import { MenuPopover } from "./MenuPopover";
 import { MenuSubProvider } from "./MenuSubContext";
+import { useMenuSurface } from "./useMenuSurface";
 
 export type MenuOption = CommandOption;
 
@@ -86,6 +87,8 @@ export function Menu({
     sm: sizeProp ?? "sm",
   });
   const Comp = size === "sm" ? MenuPopover : Dialog;
+
+  const track = useMenuSurface();
 
   const [open, setOpen] = useControllableState({
     caller: "@optiaxiom/react/Menu",
@@ -194,7 +197,9 @@ export function Menu({
         inputRef={inputRef}
         inputVisible={inputVisible}
         onSelect={(item, { dismiss }) => {
+          track(item);
           item.execute?.({ dismiss, inputValue });
+
           if (typeof openProp === "undefined" && dismiss) {
             setOpen(false);
           }
@@ -235,7 +240,10 @@ export function Menu({
                 setSubMenuOpen(true);
               }
             } else {
+              // Track surface interaction
+              track(item);
               item.execute?.({ dismiss, inputValue });
+
               if (typeof openProp === "undefined" && dismiss) {
                 setOpen(false);
               }
