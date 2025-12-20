@@ -224,7 +224,14 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
             disabled={disabled}
             name={name}
             onChange={(event) => {
-              setShadowValue(event.target.value);
+              /**
+               * Explicit wrapper needed to satisfy React's controlled component
+               * requirement. When `value` prop is provided, React expects an
+               * onChange handler to avoid "controlled without onChange"
+               * warnings. Actual value changes are driven by Downshift and the
+               * shadow value system (onValueChange), not by this onChange
+               * handler.
+               */
               onChange?.(event);
             }}
             ref={ref}
