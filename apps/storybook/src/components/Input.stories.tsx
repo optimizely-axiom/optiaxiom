@@ -1,7 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Group, Input } from "@optiaxiom/react";
+import { Button, Group, Input, Text } from "@optiaxiom/react";
+import { SurfaceProvider } from "@optiaxiom/react/unstable";
 import { IconCalendar } from "@tabler/icons-react";
+import { useState } from "react";
+import { action } from "storybook/actions";
 
 export default {
   args: {
@@ -121,4 +124,66 @@ export const Types: Story = {
       <Input {...args} type="time" />
     </Group>
   ),
+};
+
+export const WithSuggestion: Story = {
+  render: function WithSuggestion() {
+    const [value, setValue] = useState("");
+    const defaultSuggestions = [
+      {
+        id: "sug-1",
+        reason: "Based on your previous entries",
+        surface: "product<storybook>/page<demo>/resource<form>/property<email>",
+        type: "value" as const,
+        value: "john.doe@example.com",
+      },
+    ];
+    const [suggestions, setSuggestions] = useState(defaultSuggestions);
+
+    return (
+      <SurfaceProvider
+        accept={(suggestionId: string) => {
+          action("accept")(suggestionId);
+          setValue(
+            String(suggestions.find((s) => s.id === suggestionId)?.value),
+          );
+          setSuggestions((prev) => prev.filter((s) => s.id !== suggestionId));
+        }}
+        executeTool={action("execute")}
+        metadata={{}}
+        name="email"
+        pageViewId=""
+        path="product<storybook>/page<demo>/resource<form>/property<email>"
+        reject={(suggestionId: string) => {
+          action("reject")(suggestionId);
+          setSuggestions((prev) => prev.filter((s) => s.id !== suggestionId));
+        }}
+        suggestionPopover={{ register: () => () => {}, registered: false }}
+        suggestions={suggestions}
+        track={action("track")}
+        type="property"
+      >
+        <Group alignItems="start" flexDirection="column" gap="16">
+          <Input
+            onValueChange={setValue}
+            placeholder="Enter email"
+            value={value}
+          />
+
+          <Group gap="8">
+            <Text fontSize="sm">Value: {value || "(empty)"}</Text>
+            <Text fontSize="sm">Suggestions: {suggestions.length}</Text>
+          </Group>
+
+          <Button
+            disabled={suggestions.length > 0}
+            onClick={() => setSuggestions(defaultSuggestions)}
+            size="sm"
+          >
+            Reset Suggestion
+          </Button>
+        </Group>
+      </SurfaceProvider>
+    );
+  },
 };

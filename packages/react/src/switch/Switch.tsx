@@ -1,6 +1,7 @@
 import { forwardRef, type ReactNode } from "react";
 
 import { Box, type BoxProps, extractBoxProps } from "../box";
+import { SuggestionPopover } from "../suggestion";
 import {
   ToggleInput,
   ToggleInputContent,
@@ -52,6 +53,10 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
               <ToggleInputDescription>{description}</ToggleInputDescription>
             )}
           </ToggleInputContent>
+        )}
+
+        {props.checked !== undefined && (
+          <SuggestionPopover currentValue={props.checked} />
         )}
       </ToggleInput>
     );

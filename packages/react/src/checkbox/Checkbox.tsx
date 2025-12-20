@@ -1,6 +1,8 @@
-import { type ComponentPropsWithoutRef, forwardRef } from "react";
+import { useComposedRefs } from "@radix-ui/react-compose-refs";
+import { type ComponentPropsWithoutRef, forwardRef, useRef } from "react";
 
 import { type BoxProps } from "../box";
+import { SuggestionPopover } from "../suggestion";
 import { ToggleInputHiddenInput } from "../toggle-input";
 import { CheckboxContent } from "./CheckboxContent";
 import { CheckboxControl } from "./CheckboxControl";
@@ -19,7 +21,10 @@ export type CheckboxProps = BoxProps<
  * @category form
  */
 export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
-  ({ children, description, indeterminate, ...props }, ref) => {
+  ({ children, description, indeterminate, ...props }, outerRef) => {
+    const innerRef = useRef<HTMLInputElement>(null);
+    const ref = useComposedRefs(innerRef, outerRef);
+
     return (
       <CheckboxRoot
         aria-checked={indeterminate ? "mixed" : undefined}
@@ -35,6 +40,13 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
           <CheckboxContent description={description}>
             {children}
           </CheckboxContent>
+        )}
+
+        {props.checked !== undefined && (
+          <SuggestionPopover
+            currentValue={props.checked}
+            style={{ marginTop: -2 }}
+          />
         )}
       </CheckboxRoot>
     );

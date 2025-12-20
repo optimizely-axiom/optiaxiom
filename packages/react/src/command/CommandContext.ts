@@ -91,6 +91,36 @@ export type CommandOption = {
    */
   subOptionsInputVisible?: boolean;
   /**
+   * Optional Surface tracking configuration for App Companion integration.
+   * When provided, this menu item becomes a trackable surface that emits
+   * interaction events based on the item's behavior.
+   */
+  surface?: {
+    /** Optional metadata about this interaction */
+    data?: Record<string, unknown>;
+    /**
+     * Surface name used in the surface path.
+     * For properties: the property name (e.g., "status", "priority", "assignee")
+     * For interactions: the action name (e.g., "archived", "deleted", "pinned")
+     */
+    name: string;
+  } & (
+    | {
+        /** Surface type for custom interactions on parent surface */
+        type: "action";
+      }
+    | {
+        /** Surface type for state changes (selections, toggles) */
+        type: "property";
+        /**
+         * The value this menu item represents.
+         * For radio/select items: The value that gets tracked when this item is selected
+         * For toggles: The value is still required but only used for suggestion matching
+         */
+        value: unknown;
+      }
+  );
+  /**
    * Whether to show a switch toggle instead of a check mark.
    */
   switch?: boolean;

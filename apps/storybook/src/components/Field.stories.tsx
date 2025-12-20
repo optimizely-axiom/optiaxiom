@@ -1,7 +1,18 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Box, Field, Group, Input, Textarea } from "@optiaxiom/react";
+import {
+  Box,
+  Button,
+  Field,
+  Group,
+  Input,
+  Text,
+  Textarea,
+} from "@optiaxiom/react";
+import { SurfaceProvider } from "@optiaxiom/react/unstable";
 import { IconCalendar } from "@tabler/icons-react";
+import { useState } from "react";
+import { action } from "storybook/actions";
 
 export default {
   args: {
@@ -106,5 +117,69 @@ export const WithTextarea: Story = {
     info: "This is an important textarea",
     label: "Label",
     required: true,
+  },
+};
+
+export const WithMessageSuggestion: Story = {
+  render: function WithMessageSuggestion() {
+    const [value, setValue] = useState("");
+    const defaultSuggestions = [
+      {
+        id: "sug-1",
+        surface: "product<storybook>/page<demo>/resource<form>/property<email>",
+        text: "We recommend using your work email for better integration with your organization.",
+        tool: {
+          name: "useWorkEmail",
+          parameters: { emailType: "work" },
+        },
+        type: "message" as const,
+      },
+    ];
+    const [suggestions, setSuggestions] = useState(defaultSuggestions);
+
+    return (
+      <SurfaceProvider
+        accept={(suggestionId: string) => {
+          action("accept")(suggestionId);
+          setSuggestions((prev) => prev.filter((s) => s.id !== suggestionId));
+        }}
+        executeTool={action("execute")}
+        metadata={{}}
+        name="email"
+        pageViewId=""
+        path="product<storybook>/page<demo>/resource<form>/property<email>"
+        reject={(suggestionId: string) => {
+          action("reject")(suggestionId);
+          setSuggestions((prev) => prev.filter((s) => s.id !== suggestionId));
+        }}
+        suggestionPopover={{ register: () => () => {}, registered: false }}
+        suggestions={suggestions}
+        track={action("track")}
+        type="property"
+      >
+        <Group alignItems="start" flexDirection="column" gap="16">
+          <Field label="Email">
+            <Input
+              onValueChange={setValue}
+              placeholder="Enter email"
+              value={value}
+            />
+          </Field>
+
+          <Group gap="8">
+            <Text fontSize="sm">Value: {value || "(empty)"}</Text>
+            <Text fontSize="sm">Suggestions: {suggestions.length}</Text>
+          </Group>
+
+          <Button
+            disabled={suggestions.length > 0}
+            onClick={() => setSuggestions(defaultSuggestions)}
+            size="sm"
+          >
+            Reset Suggestion
+          </Button>
+        </Group>
+      </SurfaceProvider>
+    );
   },
 };
