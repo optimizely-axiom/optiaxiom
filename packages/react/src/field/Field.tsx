@@ -8,6 +8,7 @@ import {
 import { Box, type BoxProps } from "../box";
 import { Group } from "../group";
 import { IconTriangleExclamation } from "../icons/IconTriangleExclamation";
+import { Suggestion } from "../suggestion";
 import { fallbackSpan } from "../utils";
 import { FieldProvider } from "./FieldContext";
 import { FieldLabel } from "./FieldLabel";
@@ -104,6 +105,7 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(
             {fallbackSpan(description)}
           </Box>
         )}
+        <Suggestion />
       </Group>
     );
   },

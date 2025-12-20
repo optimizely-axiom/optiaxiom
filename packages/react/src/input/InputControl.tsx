@@ -7,6 +7,8 @@ import type { ExtendProps } from "../utils";
 
 import { Box, type BoxProps, extractBoxProps } from "../box";
 import { useFieldContext } from "../field/internals";
+import { useSurface } from "../surface";
+import { useDebouncedTrack } from "../surface/internals";
 import { useInputContext } from "./InputContext";
 import * as styles from "./InputControl.css";
 
@@ -70,6 +72,10 @@ export const InputControl = forwardRef<
     const { inputRef } = useInputContext("@optiaxiom/react/InputControl");
     const ref = useComposedRefs(inputRef, outerRef);
 
+    const surface = useSurface("property");
+    const { track } = surface ?? {};
+    const debouncedTrack = useDebouncedTrack();
+
     return (
       <Box
         aria-describedby={
@@ -86,6 +92,13 @@ export const InputControl = forwardRef<
       >
         <Comp
           id={inputId}
+          onBlur={(event) => {
+            restProps.onBlur?.(
+              event as React.FocusEvent<HTMLInputElement> &
+                React.FocusEvent<HTMLTextAreaElement>,
+            );
+            track?.({ name: "blurred" });
+          }}
           onChange={(event) => {
             onChange?.(
               event as ChangeEvent<HTMLInputElement> &
@@ -95,8 +108,21 @@ export const InputControl = forwardRef<
               event.target instanceof HTMLInputElement ||
               event.target instanceof HTMLTextAreaElement
             ) {
-              onValueChange?.(event.target.value);
+              const newValue = event.target.value;
+              onValueChange?.(newValue);
+
+              debouncedTrack?.({
+                name: "changed",
+                value: newValue,
+              });
             }
+          }}
+          onFocus={(event) => {
+            restProps.onFocus?.(
+              event as React.FocusEvent<HTMLInputElement> &
+                React.FocusEvent<HTMLTextAreaElement>,
+            );
+            track?.({ name: "focused" });
           }}
           ref={ref}
           {...restProps}

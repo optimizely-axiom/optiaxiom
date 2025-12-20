@@ -4,6 +4,7 @@ import type { BoxProps } from "../box";
 
 import { Group } from "../group";
 import { mapResponsiveValue } from "../sprinkles";
+import { useSurface } from "../surface";
 import { RadioGroupProvider } from "./RadioGroupContext";
 
 export type RadioGroupProps = BoxProps<
@@ -74,6 +75,9 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>(
     },
     ref,
   ) => {
+    const surface = useSurface("property");
+    const { track } = surface ?? {};
+
     return (
       <RadioGroupProvider
         defaultValue={defaultValue}
@@ -81,8 +85,14 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>(
         name={name}
         onBlur={onBlur}
         onChange={(event) => {
+          const newValue = event.target.value;
           onChange?.(event);
-          onValueChange?.(event.target.value);
+          onValueChange?.(newValue);
+
+          track?.({
+            name: "changed",
+            value: newValue,
+          });
         }}
         value={value}
       >

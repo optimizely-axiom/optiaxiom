@@ -11,8 +11,11 @@ import {
   useRef,
 } from "react";
 
+import { Avatar } from "../avatar";
 import { useHighlightedIndex } from "../downshift";
 import { useObserveValue } from "../hooks";
+import { useSurface } from "../surface";
+import { useSuggestions } from "../surface/internals";
 import { type SelectOption, SelectProvider } from "./SelectContext";
 import { SelectHiddenSelect } from "./SelectHiddenSelect";
 import { useObserveReset } from "./useObserveReset";
@@ -107,22 +110,49 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
     const innerRef = useRef<HTMLSelectElement>(null);
     const ref = useComposedRefs(innerRef, outerRef);
 
+    const surface = useSurface("property");
+    const suggestions = useSuggestions("value");
+    const suggestion = suggestions?.[0];
+
     const [shadowValue, setShadowValue] = useControllableState({
       caller: "@optiaxiom/react/Select",
       defaultProp: defaultValue ?? "",
-      onChange: onValueChange,
+      onChange: (newValue) => {
+        surface?.track({
+          name: "changed",
+          value: newValue,
+        });
+
+        if (suggestion && newValue === suggestion.value) {
+          surface?.accept(suggestion.id);
+        }
+
+        onValueChange?.(newValue);
+      },
       prop: value,
     });
     const forceValueChange = useObserveValue(innerRef, setShadowValue);
     useObserveReset(innerRef, setShadowValue);
 
-    const items = useMemo(
-      () =>
-        [...options].sort((a, b) => {
+    const items = useMemo(() => {
+      return options
+        .map((option) =>
+          option.value === suggestion?.value
+            ? {
+                ...option,
+                detail: <Avatar fallback="opal" size="2xs" />,
+                group: {
+                  hidden: true,
+                  label: "Suggested",
+                  priority: 1000,
+                },
+              }
+            : option,
+        )
+        .sort((a, b) => {
           return (b.group?.priority ?? 0) - (a.group?.priority ?? 0);
-        }),
-      [options],
-    );
+        });
+    }, [options, suggestion]);
 
     const selectedItem = useMemo(
       () =>

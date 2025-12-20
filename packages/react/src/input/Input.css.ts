@@ -1,4 +1,4 @@
-import { recipe, type RecipeVariants } from "../vanilla-extract";
+import { recipe, type RecipeVariants, style } from "../vanilla-extract";
 
 export const root = recipe({
   variants: {
@@ -50,10 +50,20 @@ export const input = recipe({
 });
 
 export const addon = recipe({
-  base: {
-    display: "flex",
-    flex: "none",
-  },
+  base: [
+    {
+      flex: "none",
+    },
+    style({
+      display: "flex",
+
+      selectors: {
+        "&:empty": {
+          display: "none",
+        },
+      },
+    }),
+  ],
 });
 
 export type InputVariants = RecipeVariants<typeof input>;
