@@ -1,3 +1,4 @@
+export * from "./block-document";
 export * from "./calendar";
 export * from "./data-table/unstable";
 export * from "./details-panel";
