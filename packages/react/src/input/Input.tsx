@@ -6,6 +6,7 @@ import {
 } from "react";
 
 import { extractBoxProps } from "../box";
+import { SuggestionPopover } from "../suggestion";
 import { fallbackSpan } from "../utils";
 import * as styles from "./Input.css";
 import { InputAddon } from "./InputAddon";
@@ -83,11 +84,10 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           </Comp>
         </InputControl>
 
-        {addonAfter && (
-          <InputAddon asChild {...styles.addon()}>
-            {fallbackSpan(addonAfter)}
-          </InputAddon>
-        )}
+        <InputAddon {...styles.addon()}>
+          <SuggestionPopover currentValue={props.value} />
+          {addonAfter}
+        </InputAddon>
       </InputRoot>
     );
   },

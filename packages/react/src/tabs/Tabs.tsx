@@ -1,7 +1,9 @@
 import * as RadixTabs from "@radix-ui/react-tabs";
-import { forwardRef } from "react";
+import { forwardRef, useEffect, useState } from "react";
 
 import { Box, type BoxProps, extractBoxProps } from "../box";
+import { useEffectEvent } from "../hooks";
+import { useSurface } from "../surface";
 import * as styles from "./Tabs.css";
 
 export type TabsProps = BoxProps<typeof RadixTabs.Root>;
@@ -22,12 +24,30 @@ export type TabsProps = BoxProps<typeof RadixTabs.Root>;
  * @category navigation
  */
 export const Tabs = forwardRef<HTMLDivElement, TabsProps>(
-  ({ children, className, ...props }, ref) => {
+  ({ children, className, onValueChange, ...props }, ref) => {
     const { boxProps, restProps } = extractBoxProps(props);
+    const surface = useSurface("tab");
+    const { track } = surface ?? {};
+    const trackStable = useEffectEvent(track ?? (() => {}));
+
+    // Track initial active tab on mount
+    const [initialValue] = useState(props.value);
+    useEffect(() => {
+      if (initialValue) {
+        trackStable({ id: initialValue, name: "viewed" });
+      }
+    }, [initialValue, trackStable]);
 
     return (
       <Box asChild {...styles.tabs({}, className)} {...boxProps}>
-        <RadixTabs.Root ref={ref} {...restProps}>
+        <RadixTabs.Root
+          onValueChange={(value: string) => {
+            onValueChange?.(value);
+            track?.({ id: value, name: "viewed" });
+          }}
+          ref={ref}
+          {...restProps}
+        >
           {children}
         </RadixTabs.Root>
       </Box>

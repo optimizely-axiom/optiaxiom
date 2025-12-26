@@ -1,6 +1,18 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Box, Grid, Group, Radio, RadioGroup, Text } from "@optiaxiom/react";
+import {
+  Box,
+  Button,
+  Field,
+  Grid,
+  Group,
+  Radio,
+  RadioGroup,
+  Text,
+} from "@optiaxiom/react";
+import { SurfaceProvider } from "@optiaxiom/react/unstable";
+import { useState } from "react";
+import { action } from "storybook/actions";
 
 import styles from "./RadioGroup.module.css";
 
@@ -175,4 +187,70 @@ export const ComplexExample2: Story = {
       </Group>
     </RadioGroup>
   ),
+};
+
+export const WithSuggestion: Story = {
+  render: function WithSuggestion(args) {
+    const [value, setValue] = useState<string>();
+    const defaultSuggestions = [
+      {
+        id: "sug-1",
+        reason: "Based on your recent deployments",
+        surface:
+          "product<storybook>/page<demo>/resource<form>/property<environment>",
+        type: "value" as const,
+        value: "staging",
+      },
+    ];
+    const [suggestions, setSuggestions] = useState(defaultSuggestions);
+
+    return (
+      <SurfaceProvider
+        accept={(suggestionId: string) => {
+          action("accept")(suggestionId);
+          setValue(
+            String(suggestions.find((s) => s.id === suggestionId)?.value),
+          );
+          setSuggestions((prev) => prev.filter((s) => s.id !== suggestionId));
+        }}
+        executeTool={action("execute")}
+        metadata={{}}
+        name="environment"
+        pageViewId=""
+        path="product<storybook>/page<demo>/resource<form>/property<environment>"
+        reject={(suggestionId: string) => {
+          action("reject")(suggestionId);
+          setSuggestions((prev) => prev.filter((s) => s.id !== suggestionId));
+        }}
+        renderSuggestionValue={(v: unknown) => String(v)}
+        suggestionPopover={{ register: () => () => {}, registered: false }}
+        suggestions={suggestions}
+        track={action("track")}
+        type="property"
+      >
+        <Group alignItems="start" flexDirection="column" gap="16">
+          <Field label="Environment">
+            <RadioGroup {...args} onValueChange={setValue} value={value}>
+              <Radio value="development">Development</Radio>
+              <Radio value="staging">Staging</Radio>
+              <Radio value="production">Production</Radio>
+            </RadioGroup>
+          </Field>
+
+          <Group gap="8">
+            <Text fontSize="sm">Selected: {value || "None"}</Text>
+            <Text fontSize="sm">Suggestions: {suggestions.length}</Text>
+          </Group>
+
+          <Button
+            disabled={suggestions.length > 0}
+            onClick={() => setSuggestions(defaultSuggestions)}
+            size="sm"
+          >
+            Reset Suggestion
+          </Button>
+        </Group>
+      </SurfaceProvider>
+    );
+  },
 };

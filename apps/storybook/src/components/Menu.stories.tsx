@@ -4,6 +4,7 @@ import {
   Avatar,
   AvatarGroup,
   Box,
+  Button,
   DialogBody,
   DialogClose,
   DialogContent,
@@ -16,8 +17,9 @@ import {
   MenuContent,
   type MenuOption,
   MenuTrigger,
+  Text,
 } from "@optiaxiom/react";
-import { dialogkit } from "@optiaxiom/react/unstable";
+import { dialogkit, SurfaceProvider } from "@optiaxiom/react/unstable";
 import {
   IconPencil,
   IconSend,
@@ -27,6 +29,7 @@ import {
   IconUserCircle,
 } from "@tabler/icons-react";
 import { useMemo, useRef, useState } from "react";
+import { action } from "storybook/actions";
 import { expect, screen, userEvent, waitFor } from "storybook/test";
 
 type Story = StoryObj<typeof Menu>;
@@ -767,6 +770,203 @@ export const SearchRank: Story = {
     await userEvent.keyboard("brand");
     await waitFor(() =>
       expect(screen.getByRole("combobox")).toHaveValue("brand"),
+    );
+  },
+};
+
+export const WithSuggestion: Story = {
+  render: function WithSuggestion() {
+    const [value, setValue] = useState<string>("");
+    const defaultSuggestions = [
+      {
+        id: "sug-1",
+        reason: "Based on task complexity and team structure",
+        surface:
+          "product<storybook>/page<demo>/resource<task>/property<workflow>",
+        type: "value" as const,
+        value: "review",
+      },
+    ];
+    const [suggestions, setSuggestions] = useState(defaultSuggestions);
+
+    const workflowOptions = useMemo<MenuOption[]>(
+      () => [
+        {
+          execute: () => setValue("draft"),
+          label: "Draft",
+          selected: () => value === "draft",
+          surface: {
+            data: { taskId: "task-123" },
+            name: "workflow",
+            type: "property" as const,
+            value: "draft",
+          },
+        },
+        {
+          execute: () => setValue("review"),
+          label: "Review",
+          selected: () => value === "review",
+          surface: {
+            data: { taskId: "task-123" },
+            name: "workflow",
+            type: "property" as const,
+            value: "review",
+          },
+        },
+        {
+          execute: () => setValue("approved"),
+          label: "Approved",
+          selected: () => value === "approved",
+          surface: {
+            data: { taskId: "task-123" },
+            name: "workflow",
+            type: "property" as const,
+            value: "approved",
+          },
+        },
+        {
+          execute: () => setValue("published"),
+          label: "Published",
+          selected: () => value === "published",
+          surface: {
+            data: { taskId: "task-123" },
+            name: "workflow",
+            type: "property" as const,
+            value: "published",
+          },
+        },
+      ],
+      [value],
+    );
+
+    return (
+      <SurfaceProvider
+        accept={(suggestionId: string) => {
+          action("accept")(suggestionId);
+          setSuggestions((prev) => prev.filter((s) => s.id !== suggestionId));
+        }}
+        executeTool={action("execute")}
+        metadata={{}}
+        name="task"
+        pageViewId=""
+        path="product<storybook>/page<demo>/resource<task>"
+        reject={(suggestionId: string) => {
+          action("reject")(suggestionId);
+          setSuggestions((prev) => prev.filter((s) => s.id !== suggestionId));
+        }}
+        suggestionPopover={{ register: () => () => {}, registered: false }}
+        suggestions={suggestions}
+        track={action("track")}
+        type="resource"
+      >
+        <Group alignItems="start" flexDirection="column" gap="16">
+          <Menu defaultOpen options={workflowOptions}>
+            <MenuTrigger>
+              {value ? `Workflow: ${value}` : "Select workflow"}
+            </MenuTrigger>
+            <MenuContent />
+          </Menu>
+
+          <Group gap="8">
+            <Text fontSize="sm">Value: {value || "(empty)"}</Text>
+            <Text fontSize="sm">Suggestions: {suggestions.length}</Text>
+          </Group>
+
+          <Button
+            disabled={suggestions.length > 0}
+            onClick={() => setSuggestions(defaultSuggestions)}
+            size="sm"
+          >
+            Reset Suggestion
+          </Button>
+        </Group>
+      </SurfaceProvider>
+    );
+  },
+};
+
+export const WithTracking: Story = {
+  render: function WithTracking() {
+    const [isPinned, setIsPinned] = useState(false);
+    const [saveToLibrary, setSaveToLibrary] = useState(false);
+    const [inheritFieldChanges, setInheritFieldChanges] = useState(true);
+
+    const contentOptions = useMemo<MenuOption[]>(() => {
+      const settingsGroup = {
+        label: "Settings",
+        separator: true,
+      } satisfies MenuOption["group"];
+
+      return [
+        {
+          execute: () => setIsPinned((prev) => !prev),
+          label: isPinned ? "Unpin content" : "Pin content",
+          surface: {
+            data: { contentId: "content-123" },
+            name: isPinned ? "unpinContent" : "pinContent",
+            type: "action" as const,
+          },
+        },
+        {
+          execute: () => setSaveToLibrary((prev) => !prev),
+          group: settingsGroup,
+          label: "Save to Library",
+          selected: () => saveToLibrary,
+          surface: {
+            data: { contentId: "content-123" },
+            name: "saveToLibrary",
+            type: "property" as const,
+            value: saveToLibrary,
+          },
+          switch: true,
+        },
+        {
+          execute: () => setInheritFieldChanges((prev) => !prev),
+          group: settingsGroup,
+          label: "Inherit field changes from task",
+          selected: () => inheritFieldChanges,
+          surface: {
+            data: { contentId: "content-123" },
+            name: "inheritFieldChanges",
+            type: "property" as const,
+            value: inheritFieldChanges,
+          },
+          switch: true,
+        },
+      ];
+    }, [inheritFieldChanges, isPinned, saveToLibrary]);
+
+    return (
+      <SurfaceProvider
+        accept={action("accept")}
+        executeTool={action("execute")}
+        metadata={{}}
+        name="content"
+        pageViewId=""
+        path="product<storybook>/page<demo>/resource<content>"
+        reject={action("reject")}
+        suggestionPopover={{ register: () => () => {}, registered: false }}
+        suggestions={[]}
+        track={action("track")}
+        type="resource"
+      >
+        <Group alignItems="start" flexDirection="column" gap="16">
+          <Menu defaultOpen options={contentOptions}>
+            <MenuTrigger>Content options</MenuTrigger>
+            <MenuContent />
+          </Menu>
+
+          <Group flexDirection="column" gap="4">
+            <Text fontSize="sm">Pinned: {isPinned ? "Yes" : "No"}</Text>
+            <Text fontSize="sm">
+              Save to Library: {saveToLibrary ? "On" : "Off"}
+            </Text>
+            <Text fontSize="sm">
+              Inherit field changes: {inheritFieldChanges ? "On" : "Off"}
+            </Text>
+          </Group>
+        </Group>
+      </SurfaceProvider>
     );
   },
 };

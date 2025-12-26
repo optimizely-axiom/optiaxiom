@@ -2,6 +2,7 @@ import { createSlot } from "@radix-ui/react-slot";
 import { type ElementType, forwardRef, type ReactNode, useEffect } from "react";
 
 import { Icon } from "../icon";
+import { useSurface } from "../surface";
 import { decorateChildren, type ExtendProps, fallbackSpan } from "../utils";
 import { ButtonAddon } from "./ButtonAddon";
 import { useButtonContext } from "./ButtonContext";
@@ -67,6 +68,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       children,
       icon,
       iconPosition = "start",
+      onClick,
       size: sizeProp,
       square,
       ...props
@@ -76,6 +78,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const Comp = asChild ? Slot : "button";
 
     const context = useButtonContext("@optiaxiom/react/Button");
+    const surface = useSurface("action");
     const size = sizeProp || context.size || "md";
 
     let isIconOnly = false;
@@ -132,6 +135,12 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
               ? "space-between"
               : "flex-start"
         }
+        onClick={(event) => {
+          onClick?.(event);
+          if (surface) {
+            surface.track({ name: "invoked" });
+          }
+        }}
         ref={ref}
         size={size}
         square={square}

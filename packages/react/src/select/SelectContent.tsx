@@ -8,8 +8,6 @@ import {
   useState,
 } from "react";
 
-import type { ExcludeProps } from "../utils";
-
 import { type BoxProps } from "../box";
 import { useFieldContext } from "../field/internals";
 import { ListboxItemized, ListboxLabel, ListboxSeparator } from "../listbox";
@@ -17,9 +15,15 @@ import { shouldShowGroup, shouldShowSeparator } from "../listbox/utils";
 import { ModalLayer } from "../modal";
 import { ModalListbox } from "../modal/internals";
 import { Portal } from "../portal";
+import { Text } from "../text";
 import { Tooltip } from "../tooltip";
 import { TransitionGroup } from "../transition";
-import { type SelectOption, useSelectContext } from "./SelectContext";
+import { type ExcludeProps, fallbackSpan } from "../utils";
+import {
+  resolveItemProperty,
+  type SelectOption,
+  useSelectContext,
+} from "./SelectContext";
 import { SelectRadioItem } from "./SelectRadioItem";
 
 export type SelectContentProps = ExcludeProps<
@@ -143,7 +147,9 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
                           {shouldShowGroup(group, prevItem) && (
                             <ListboxLabel>{group.label}</ListboxLabel>
                           )}
-                          <Tooltip content={item.disabledReason}>
+                          <Tooltip
+                            content={resolveItemProperty(item.disabledReason)}
+                          >
                             <SelectRadioItem
                               addonBefore={item.addon}
                               aria-label={item["aria-label"]}
@@ -153,6 +159,11 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
                               key={item.value}
                             >
                               {item.label}
+                              {item.detail && (
+                                <Text asChild color="fg.secondary" truncate>
+                                  {fallbackSpan(item.detail)}
+                                </Text>
+                              )}
                             </SelectRadioItem>
                           </Tooltip>
                         </>

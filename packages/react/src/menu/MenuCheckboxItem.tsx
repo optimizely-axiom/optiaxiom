@@ -3,6 +3,7 @@ import { type ComponentPropsWithoutRef, forwardRef } from "react";
 import { CommandItem } from "../command";
 import { resolveItemProperty, useCommandContext } from "../command/internals";
 import { ListboxCheckboxItem } from "../listbox";
+import { useMenuSurface } from "./useMenuSurface";
 
 export type MenuCheckboxItemProps = ComponentPropsWithoutRef<
   typeof CommandItem
@@ -15,6 +16,7 @@ export const MenuCheckboxItem = forwardRef<
 >(({ children, ...props }, ref) => {
   const Comp = props.item.href ? "a" : "div";
   const { inputValue } = useCommandContext("@optiaxiom/react/MenuCheckboxItem");
+  const track = useMenuSurface();
 
   return (
     <CommandItem asChild ref={ref} {...props}>
@@ -24,10 +26,12 @@ export const MenuCheckboxItem = forwardRef<
         description={resolveItemProperty(props.item.description, {
           inputValue,
         })}
-        onCheckedChange={() =>
-          !resolveItemProperty(props.item.disabledReason) &&
-          props.item.execute?.({ dismiss: false, inputValue })
-        }
+        onCheckedChange={() => {
+          if (!resolveItemProperty(props.item.disabledReason)) {
+            track(props.item);
+            props.item.execute?.({ dismiss: false, inputValue });
+          }
+        }}
       >
         <Comp {...(props.item.href && { href: props.item.href })}>
           {children}
