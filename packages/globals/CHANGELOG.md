@@ -1,5 +1,11 @@
 # @optiaxiom/globals
 
+## 1.1.1
+
+### Patch Changes
+
+- 055f753: integrate app companion
+
 ## 1.1.0
 
 ### Minor Changes
