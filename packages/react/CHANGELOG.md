@@ -1,5 +1,17 @@
 # @optiaxiom/react
 
+## 1.8.1
+
+### Patch Changes
+
+- 9d17d05: fix double onValueChange trigger in Select
+- abe4a56: allow details on select options
+- 13d584c: allow priority on select option groups
+- 055f753: integrate app companion
+- 97d1477: refactor PillMenu design to match figma
+- Updated dependencies [055f753]
+  - @optiaxiom/globals@1.1.1
+
 ## 1.8.0
 
 ### Minor Changes

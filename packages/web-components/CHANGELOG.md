@@ -1,5 +1,11 @@
 # @optiaxiom/web-components
 
+## 0.12.1
+
+### Patch Changes
+
+- 9d17d05: fix double onValueChange trigger in Select
+
 ## 0.12.0
 
 ### Minor Changes
