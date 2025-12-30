@@ -125,6 +125,7 @@ export const WithMessageSuggestion: Story = {
     const [value, setValue] = useState("");
     const defaultSuggestions = [
       {
+        createdAt: new Date().toISOString(),
         id: "sug-1",
         surface: "product<storybook>/page<demo>/resource<form>/property<email>",
         text: "We recommend using your work email for better integration with your organization.",

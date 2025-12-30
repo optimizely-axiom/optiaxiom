@@ -779,6 +779,7 @@ export const WithSuggestion: Story = {
     const [value, setValue] = useState<string>("");
     const defaultSuggestions = [
       {
+        createdAt: new Date().toISOString(),
         id: "sug-1",
         reason: "Based on task complexity and team structure",
         surface:

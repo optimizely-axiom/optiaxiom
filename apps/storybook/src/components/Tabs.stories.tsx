@@ -12,7 +12,7 @@ import {
   Text,
 } from "@optiaxiom/react";
 import { SurfaceProvider } from "@optiaxiom/react/unstable";
-import * as React from "react";
+import { useState } from "react";
 import { action } from "storybook/actions";
 
 export default {
@@ -127,7 +127,7 @@ export const Link: Story = {
 export const WithSurface: Story = {
   args: {},
   render: function Render() {
-    const [value, setValue] = React.useState("details");
+    const [value, setValue] = useState("details");
 
     return (
       <SurfaceProvider

@@ -131,6 +131,7 @@ export const WithSuggestion: Story = {
     const [value, setValue] = useState("");
     const defaultSuggestions = [
       {
+        createdAt: new Date().toISOString(),
         id: "sug-1",
         reason: "Based on your previous entries",
         surface: "product<storybook>/page<demo>/resource<form>/property<email>",

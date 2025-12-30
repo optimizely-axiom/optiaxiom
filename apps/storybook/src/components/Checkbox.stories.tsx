@@ -100,6 +100,7 @@ export const WithSuggestion: Story = {
     const [checked, setChecked] = useState(false);
     const defaultSuggestions = [
       {
+        createdAt: new Date().toISOString(),
         id: "sug-1",
         reason: "Required to continue",
         surface: "product<storybook>/page<demo>/resource<form>/property<terms>",
