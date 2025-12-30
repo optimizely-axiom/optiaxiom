@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import {
+  Box,
   Button,
   Dialog,
   DialogBody,
@@ -9,6 +10,7 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTrigger,
+  Group,
   Input,
   Menu,
   MenuContent,
@@ -17,8 +19,10 @@ import {
   Select,
   SelectContent,
   SelectTrigger,
+  Text,
   Textarea,
 } from "@optiaxiom/react";
+import { SurfaceProvider } from "@optiaxiom/react/unstable";
 import { IconArrowsDiagonal } from "@tabler/icons-react";
 import {
   type ComponentPropsWithoutRef,
@@ -26,6 +30,7 @@ import {
   useMemo,
   useState,
 } from "react";
+import { action } from "storybook/actions";
 import { expect, screen, userEvent, waitFor } from "storybook/test";
 
 type DialogStoryProps = ComponentPropsWithoutRef<typeof Dialog> &
@@ -287,5 +292,67 @@ export const WithForm: Story = {
     ),
     size: "sm",
     title: "Personal Details",
+  },
+};
+
+export const WithSurface: Story = {
+  args: {},
+  render: function Render({
+    actions,
+    content,
+    description,
+    size,
+    title = "Dialog",
+    ...args
+  }) {
+    const [open, setOpen] = useState(args.defaultOpen);
+
+    return (
+      <SurfaceProvider
+        accept={() => {}}
+        executeTool={() => {}}
+        metadata={{}}
+        name="main"
+        pageViewId=""
+        path="product<storybook>/page<demo>/resource<task>[task-123]/dialog<main>"
+        reject={() => {}}
+        suggestionPopover={{ register: () => () => {}, registered: false }}
+        suggestions={[]}
+        track={action("track")}
+        type="dialog"
+      >
+        <Group alignItems="start" flexDirection="column" gap="16">
+          <Dialog {...args} onOpenChange={setOpen} open={open}>
+            <DialogTrigger>Open Dialog</DialogTrigger>
+
+            <DialogContent
+              {...(!description && { ["aria-describedby"]: undefined })}
+              size={size}
+            >
+              <DialogHeader addonAfter={actions} description={description}>
+                {title}
+              </DialogHeader>
+              <DialogBody>{content}</DialogBody>
+              <DialogFooter>
+                <DialogClose appearance="primary">Confirm</DialogClose>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
+
+          <Box>
+            <Text fontSize="sm" fontWeight="600">
+              Dialog open: {open}
+            </Text>
+            <Text color="fg.secondary" fontSize="sm" mt="4">
+              Check the Actions panel below to see tracked events
+            </Text>
+          </Box>
+
+          <Button onClick={() => setOpen(true)} size="sm">
+            Open dialog
+          </Button>
+        </Group>
+      </SurfaceProvider>
+    );
   },
 };

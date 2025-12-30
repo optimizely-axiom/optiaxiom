@@ -87,6 +87,7 @@ export const WithSuggestion: Story = {
     const [checked, setChecked] = useState(false);
     const defaultSuggestions = [
       {
+        createdAt: new Date().toISOString(),
         id: "sug-1",
         reason: "Recommended for better collaboration",
         surface:

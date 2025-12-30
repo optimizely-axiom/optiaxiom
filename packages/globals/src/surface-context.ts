@@ -20,6 +20,7 @@ type Surface<
     | "action"
     | "cards"
     | "collection"
+    | "dialog"
     | "page"
     | "product"
     | "property"
@@ -60,6 +61,7 @@ type SurfaceInteraction = { id?: string } & (
 );
 
 type SurfaceSuggestion = {
+  createdAt: string;
   id: string;
   surface: string;
 } & (

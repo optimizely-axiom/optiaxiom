@@ -2,7 +2,7 @@ import { ModalProvider } from "@optiaxiom/globals";
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import * as RadixDialog from "@radix-ui/react-dialog";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
-import { forwardRef, useContext, useRef } from "react";
+import { forwardRef, useContext, useEffect, useRef } from "react";
 
 import { Backdrop } from "../backdrop";
 import { type BoxProps } from "../box";
@@ -10,6 +10,7 @@ import { DialogKitContext } from "../dialog-kit/internals";
 import { FocusBookmarkProvider } from "../focus-bookmark";
 import { Paper } from "../paper";
 import { Portal } from "../portal";
+import { useSurface } from "../surface";
 import { Transition, TransitionGroup } from "../transition";
 import { type ExcludeProps, onReactSelectInputBlur } from "../utils";
 import * as styles from "./DialogContent.css";
@@ -45,6 +46,13 @@ export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
 
     const innerRef = useRef<HTMLDivElement>(null);
     const ref = useComposedRefs(innerRef, outerRef);
+
+    const { track } = useSurface("dialog") ?? {};
+    useEffect(() => {
+      if (open) {
+        track?.({ name: "viewed" });
+      }
+    }, [open, track]);
 
     return (
       <TransitionGroup open={open}>
