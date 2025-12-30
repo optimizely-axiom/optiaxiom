@@ -1,5 +1,11 @@
 # @optiaxiom/globals
 
+## 1.1.2
+
+### Patch Changes
+
+- 924c0d2: add dialog surface
+
 ## 1.1.1
 
 ### Patch Changes
