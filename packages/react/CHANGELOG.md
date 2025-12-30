@@ -1,5 +1,13 @@
 # @optiaxiom/react
 
+## 1.8.2
+
+### Patch Changes
+
+- 4e5bd25: rename SuggestionAlert component and export them
+- Updated dependencies [924c0d2]
+  - @optiaxiom/globals@1.1.2
+
 ## 1.8.1
 
 ### Patch Changes
