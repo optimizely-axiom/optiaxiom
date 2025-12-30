@@ -55,6 +55,7 @@ optiaxiom/
 - [`@optiaxiom/react`](./packages/react): React component library
 - [`@optiaxiom/web-components`](./packages/web-components): Web component library
 - [`@optiaxiom/globals`](./packages/globals): Design tokens and shared React contexts (for module federation)
+- [`@optiaxiom/codemod`](./packages/codemod): Codemods for migrating Axiom code
 - [`@optiaxiom/shared`](./packages/shared): Shared build tools (not for public use)
 
 #### Apps

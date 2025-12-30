@@ -7,9 +7,9 @@ import { useSurface } from "../surface";
 import { useSuggestions } from "../surface/internals";
 import { Text } from "../text";
 
-export type SuggestionProps = ComponentPropsWithoutRef<typeof Alert>;
+export type SuggestionAlertProps = ComponentPropsWithoutRef<typeof Alert>;
 
-export function Suggestion({ ...props }: SuggestionProps) {
+export function SuggestionAlert({ ...props }: SuggestionAlertProps) {
   const surface = useSurface();
   const hasPopover = surface?.suggestionPopover.registered;
   const messageSuggestions = useSuggestions("message");
@@ -71,4 +71,4 @@ export function Suggestion({ ...props }: SuggestionProps) {
   );
 }
 
-Suggestion.displayName = "@optiaxiom/react/Suggestion";
+SuggestionAlert.displayName = "@optiaxiom/react/SuggestionAlert";
