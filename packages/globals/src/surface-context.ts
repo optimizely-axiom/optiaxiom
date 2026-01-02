@@ -63,6 +63,7 @@ type SurfaceInteraction = { id?: string } & (
 type SurfaceSuggestion = {
   createdAt: string;
   id: string;
+  page: string;
   surface: string;
 } & (
   | {

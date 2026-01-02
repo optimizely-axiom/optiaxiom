@@ -196,9 +196,9 @@ export const WithSuggestion: Story = {
       {
         createdAt: new Date().toISOString(),
         id: "sug-1",
+        page: "product<storybook>/page<demo>",
         reason: "Based on your recent deployments",
-        surface:
-          "product<storybook>/page<demo>/resource<form>/property<environment>",
+        surface: "property<environment>",
         type: "value" as const,
         value: "staging",
       },

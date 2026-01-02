@@ -127,7 +127,8 @@ export const WithMessageSuggestion: Story = {
       {
         createdAt: new Date().toISOString(),
         id: "sug-1",
-        surface: "product<storybook>/page<demo>/resource<form>/property<email>",
+        page: "product<storybook>/page<demo>",
+        surface: "property<email>",
         text: "We recommend using your work email for better integration with your organization.",
         tool: {
           name: "useWorkEmail",
