@@ -102,8 +102,9 @@ export const WithSuggestion: Story = {
       {
         createdAt: new Date().toISOString(),
         id: "sug-1",
+        page: "product<storybook>/page<demo>",
         reason: "Required to continue",
-        surface: "product<storybook>/page<demo>/resource<form>/property<terms>",
+        surface: "property<terms>",
         type: "value" as const,
         value: true,
       },

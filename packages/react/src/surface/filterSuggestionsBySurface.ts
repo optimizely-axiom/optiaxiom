@@ -6,7 +6,7 @@ type Suggestion = NonNullable<
   ReturnType<typeof useSurface>
 >["suggestions"][number];
 
-type SurfaceMetadata = {
+type Surface = {
   name: string;
   type: string;
 };
@@ -19,7 +19,7 @@ type SurfaceMetadata = {
 export function filterSuggestionsBySurface<T extends Suggestion>(
   suggestions: T[] | undefined,
   path: string | undefined,
-  surfaces: SurfaceMetadata[] | undefined,
+  surfaces: Surface[] | undefined,
 ) {
   if (!suggestions || !surfaces?.length) {
     return suggestions;
@@ -29,5 +29,7 @@ export function filterSuggestionsBySurface<T extends Suggestion>(
   const targetPath = surfaces.reduce(buildSurfacePath, path ?? "");
 
   // Filter suggestions matching the target path
-  return suggestions.filter((s) => s.surface === targetPath);
+  return suggestions.filter((s) =>
+    ("/" + targetPath).endsWith("/" + s.surface),
+  );
 }

@@ -89,9 +89,9 @@ export const WithSuggestion: Story = {
       {
         createdAt: new Date().toISOString(),
         id: "sug-1",
+        page: "product<storybook>/page<demo>",
         reason: "Recommended for better collaboration",
-        surface:
-          "product<storybook>/page<demo>/resource<settings>/property<notifications>",
+        surface: "property<notifications>",
         type: "value" as const,
         value: true,
       },

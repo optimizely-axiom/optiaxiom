@@ -29,9 +29,9 @@ export function useSuggestions(type?: "cards" | "message" | "value") {
     return undefined;
   }
 
-  // Filter suggestions to only those matching current path exactly
-  const filtered = surface.suggestions.filter(
-    (s) => s.surface === surface.path,
+  // Filter suggestions to only those matching current path
+  const filtered = surface.suggestions.filter((s) =>
+    ("/" + surface.path).endsWith("/" + s.surface),
   );
 
   if (!type) {
