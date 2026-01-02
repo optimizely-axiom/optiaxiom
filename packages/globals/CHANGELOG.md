@@ -1,5 +1,11 @@
 # @optiaxiom/globals
 
+## 1.1.3
+
+### Patch Changes
+
+- 148677f: add page segment to suggestion
+
 ## 1.1.2
 
 ### Patch Changes
