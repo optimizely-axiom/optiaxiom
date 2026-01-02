@@ -141,6 +141,9 @@ export const control = recipe({
             "&:not(:disabled)::-webkit-slider-thumb:hover": {
               cursor: "grab",
             },
+            "&:not(:disabled):active::-webkit-slider-thumb:hover": {
+              cursor: "grabbing",
+            },
           },
         },
       },
@@ -160,9 +163,6 @@ export const control = recipe({
         },
         "&:not(:disabled)": {
           cursor: "pointer",
-        },
-        "&:not(:disabled):active": {
-          cursor: "grabbing",
         },
       },
     }),
