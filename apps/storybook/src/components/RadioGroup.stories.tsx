@@ -224,6 +224,7 @@ export const WithSuggestion: Story = {
           setSuggestions((prev) => prev.filter((s) => s.id !== suggestionId));
         }}
         renderSuggestionValue={(v: unknown) => String(v)}
+        suggestionAlert={{ register: () => () => {}, registered: true }}
         suggestionPopover={{ register: () => () => {}, registered: false }}
         suggestions={suggestions}
         track={action("track")}
@@ -237,6 +238,112 @@ export const WithSuggestion: Story = {
               <Radio value="production">Production</Radio>
             </RadioGroup>
           </Field>
+
+          <Group gap="8">
+            <Text fontSize="sm">Selected: {value || "None"}</Text>
+            <Text fontSize="sm">Suggestions: {suggestions.length}</Text>
+          </Group>
+
+          <Button
+            disabled={suggestions.length > 0}
+            onClick={() => setSuggestions(defaultSuggestions)}
+            size="sm"
+          >
+            Reset Suggestion
+          </Button>
+        </Group>
+      </SurfaceProvider>
+    );
+  },
+};
+
+export const WithSuggestionToast: Story = {
+  render: function WithSuggestion(args) {
+    const [value, setValue] = useState<string>();
+    const defaultSuggestions = [
+      {
+        createdAt: new Date().toISOString(),
+        id: "sug-1",
+        page: "product<storybook>/page<demo>",
+        surface: "property<environment>",
+        text: "We recommend using the development environment for better integration with your organization.",
+        tool: {
+          name: "setEnvironment",
+          parameters: { environment: "development" },
+        },
+        type: "message" as const,
+      },
+    ];
+    const [suggestions, setSuggestions] = useState(defaultSuggestions);
+    const [registered, setRegistered] = useState({
+      alert: false,
+      popover: false,
+    });
+
+    return (
+      <SurfaceProvider
+        accept={(suggestionId: string) => {
+          action("accept")(suggestionId);
+          setSuggestions((prev) => prev.filter((s) => s.id !== suggestionId));
+        }}
+        executeTool={(name, params) => {
+          action("execute")(name, params);
+          if (
+            params &&
+            typeof params === "object" &&
+            "environment" in params &&
+            typeof params.environment === "string"
+          ) {
+            setValue(params.environment);
+          }
+        }}
+        metadata={{}}
+        name="environment"
+        pageViewId=""
+        path="product<storybook>/page<demo>/resource<form>/property<environment>"
+        reject={(suggestionId: string) => {
+          action("reject")(suggestionId);
+          setSuggestions((prev) => prev.filter((s) => s.id !== suggestionId));
+        }}
+        renderSuggestionValue={(v: unknown) => String(v)}
+        suggestionAlert={{
+          register: () => {
+            setRegistered((registered) => ({
+              ...registered,
+              alert: true,
+            }));
+            return () =>
+              setRegistered((registered) => ({
+                ...registered,
+                alert: false,
+              }));
+          },
+          registered: registered.alert,
+        }}
+        suggestionPopover={{
+          register: () => {
+            setRegistered((registered) => ({
+              ...registered,
+              popover: true,
+            }));
+            return () =>
+              setRegistered((registered) => ({
+                ...registered,
+                popover: false,
+              }));
+          },
+          registered: registered.popover,
+        }}
+        suggestions={suggestions}
+        track={action("track")}
+        type="property"
+      >
+        <Group alignItems="start" flexDirection="column" gap="16">
+          <RadioGroup {...args} onValueChange={setValue} value={value}>
+            <Radio value="development">Development</Radio>
+            <Radio value="staging">Staging</Radio>
+            <Radio value="production">Production</Radio>
+          </RadioGroup>
 
           <Group gap="8">
             <Text fontSize="sm">Selected: {value || "None"}</Text>

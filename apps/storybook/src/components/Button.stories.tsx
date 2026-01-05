@@ -234,6 +234,7 @@ export const TrackInteraction: Story = {
           pageViewId=""
           path="product<storybook>/page<demo>/resource<task>/completed"
           reject={action("reject")}
+          suggestionAlert={{ register: () => () => {}, registered: true }}
           suggestionPopover={{ register: () => () => {}, registered: false }}
           suggestions={[]}
           track={action("track")}

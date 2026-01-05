@@ -9,7 +9,11 @@ import esbuild from "rollup-plugin-esbuild";
 
 const env = process.env.NODE_ENV ?? "development";
 const pkg = JSON.parse(readFileSync("./package.json"));
-const bannerFilter = createFilter(["**/context.ts", "**/toast-context.ts"]);
+const bannerFilter = createFilter([
+  "**/context.ts",
+  "**/surface-context.ts",
+  "**/toast-context.ts",
+]);
 
 export default defineConfig([
   {
