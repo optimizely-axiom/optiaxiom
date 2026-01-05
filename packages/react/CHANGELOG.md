@@ -1,5 +1,14 @@
 # @optiaxiom/react
 
+## 1.8.3
+
+### Patch Changes
+
+- 040b277: fix slider cursor when scrubbing
+- 6e437d4: ability to show suggestions in a toast
+- Updated dependencies [6e437d4]
+  - @optiaxiom/globals@1.1.4
+
 ## 1.8.2
 
 ### Patch Changes
