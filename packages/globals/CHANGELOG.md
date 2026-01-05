@@ -1,5 +1,11 @@
 # @optiaxiom/globals
 
+## 1.1.4
+
+### Patch Changes
+
+- 6e437d4: ability to show suggestions in a toast
+
 ## 1.1.3
 
 ### Patch Changes
