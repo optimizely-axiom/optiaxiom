@@ -1,4 +1,10 @@
-import { createContext } from "@radix-ui/react-context";
+import {
+  createContext,
+  createElement,
+  type ReactNode,
+  useContext,
+  useEffect,
+} from "react";
 
 type Surface<
   T extends Record<string, unknown> | undefined =
@@ -37,6 +43,10 @@ type SurfaceContextValue = {
   path: string;
   reject: (suggestionId: string) => void;
   renderSuggestionValue?: (value: unknown) => React.ReactNode;
+  suggestionAlert: {
+    register: () => () => void;
+    registered: boolean;
+  };
   suggestionPopover: {
     register: () => () => void;
     registered: boolean;
@@ -87,5 +97,71 @@ type SurfaceSuggestion = {
     }
 );
 
-export const [unstable_SurfaceProvider, unstable_useSurfaceContext] =
-  createContext<null | SurfaceContextValue>("@optiaxiom/globals/Surface", null);
+const SuggestionContext = createContext<null | {
+  add: (
+    suggestion: Extract<SurfaceSuggestion, { type: "message" | "value" }>,
+    surface: Pick<
+      SurfaceContextValue,
+      "accept" | "executeTool" | "renderSuggestionValue"
+    >,
+  ) => () => void;
+}>(null);
+const SurfaceContext = createContext<null | SurfaceContextValue>(null);
+
+const SurfaceProvider = ({
+  accept,
+  children,
+  executeTool,
+  renderSuggestionValue,
+  ...props
+}: SurfaceContextValue & {
+  children?: ReactNode;
+}) => {
+  const suggestion = props.suggestions.find(
+    (s) => s.type !== "cards" && ("/" + props.path).endsWith("/" + s.surface),
+  );
+  const store = useContext(SuggestionContext);
+  useEffect(() => {
+    if (
+      !store ||
+      !suggestion ||
+      suggestion.type === "cards" ||
+      props.suggestionAlert.registered ||
+      props.suggestionPopover.registered
+    ) {
+      return;
+    }
+
+    return store.add(suggestion, {
+      accept,
+      executeTool,
+      renderSuggestionValue,
+    });
+  }, [
+    accept,
+    executeTool,
+    props.suggestionAlert.registered,
+    props.suggestionPopover.registered,
+    renderSuggestionValue,
+    store,
+    suggestion,
+  ]);
+  return createElement(SurfaceContext.Provider, {
+    children,
+    value: {
+      accept,
+      executeTool,
+      renderSuggestionValue,
+      ...props,
+    },
+  });
+};
+
+function useSurfaceContext() {
+  return useContext(SurfaceContext);
+}
+
+export const unstable_SuggestionContext = SuggestionContext;
+
+export const unstable_SurfaceProvider = SurfaceProvider;
+export const unstable_useSurfaceContext = useSurfaceContext;

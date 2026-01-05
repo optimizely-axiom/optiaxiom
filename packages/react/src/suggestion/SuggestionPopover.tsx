@@ -3,6 +3,7 @@ import { forwardRef, useEffect } from "react";
 import { Avatar } from "../avatar";
 import { Button, type ButtonProps } from "../button";
 import { Heading } from "../heading";
+import { useEffectEvent } from "../hooks";
 import { IconCheck } from "../icons/IconCheck";
 import { Popover, PopoverContent, PopoverTrigger } from "../popover";
 import { Separator } from "../separator";
@@ -26,9 +27,12 @@ export const SuggestionPopover = forwardRef<
 >(({ currentValue, ...props }, ref) => {
   const surface = useSurface();
 
+  const register = useEffectEvent(
+    surface?.suggestionPopover.register ?? (() => {}),
+  );
   useEffect(() => {
-    return surface?.suggestionPopover.register();
-  }, [surface]);
+    return register();
+  }, [register]);
 
   const suggestions = useSuggestions("value");
   const suggestion = suggestions?.find((s) => s.value !== currentValue);

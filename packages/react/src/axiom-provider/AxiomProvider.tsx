@@ -8,6 +8,7 @@ import {
 import { version } from "../../package.json";
 import { DialogKitProvider } from "../dialog-kit/internals";
 import { FocusBookmarkProvider } from "../focus-bookmark";
+import { SuggestionProvider } from "../suggestion/internals";
 import { ThemeProvider } from "../theme-provider";
 import { ToastProvider } from "../toast";
 import { TooltipProvider } from "../tooltip";
@@ -62,9 +63,11 @@ export function AxiomProvider({
   if (!axiom) {
     children = (
       <ThemeProvider>
-        {children}
+        <SuggestionProvider>
+          {children}
 
-        <ToastProvider {...toast} />
+          <ToastProvider {...toast} />
+        </SuggestionProvider>
       </ThemeProvider>
     );
   }

@@ -17,7 +17,7 @@ import { unstable_useSurfaceContext } from "@optiaxiom/globals";
 export function useSurface(
   type?: NonNullable<ReturnType<typeof unstable_useSurfaceContext>>["type"],
 ) {
-  const surface = unstable_useSurfaceContext("@optiaxiom/react/useSurface");
+  const surface = unstable_useSurfaceContext();
 
   if (surface && (!type || surface.type === type)) {
     return surface;

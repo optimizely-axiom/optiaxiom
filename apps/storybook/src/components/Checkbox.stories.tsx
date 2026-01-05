@@ -130,6 +130,7 @@ export const WithSuggestion: Story = {
           setSuggestions((prev) => prev.filter((s) => s.id !== suggestionId));
         }}
         renderSuggestionValue={(value) => (value ? "on" : "off")}
+        suggestionAlert={{ register: () => () => {}, registered: true }}
         suggestionPopover={{ register: () => () => {}, registered: false }}
         suggestions={suggestions}
         track={action("track")}

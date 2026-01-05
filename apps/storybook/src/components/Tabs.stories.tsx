@@ -138,6 +138,7 @@ export const WithSurface: Story = {
         pageViewId=""
         path="product<storybook>/page<demo>/resource<task>[task-123]/tab<main>"
         reject={() => {}}
+        suggestionAlert={{ register: () => () => {}, registered: true }}
         suggestionPopover={{ register: () => () => {}, registered: false }}
         suggestions={[]}
         track={action("track")}
