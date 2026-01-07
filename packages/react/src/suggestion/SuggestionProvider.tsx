@@ -72,7 +72,7 @@ export function SuggestionProvider({ children }: SuggestionProviderProps) {
             }}
             z="toast"
           >
-            {suggestions.slice(0, 3).map(({ suggestion, surface }) => (
+            {suggestions.slice(0, 1).map(({ suggestion, surface }) => (
               <Transition data-side="top" key={suggestion.id} type="pop">
                 <Group
                   aria-describedby={id + "-" + suggestion.id}
