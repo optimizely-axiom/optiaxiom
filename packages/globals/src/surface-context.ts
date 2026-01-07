@@ -102,7 +102,7 @@ const SuggestionContext = createContext<null | {
     suggestion: Extract<SurfaceSuggestion, { type: "message" | "value" }>,
     surface: Pick<
       SurfaceContextValue,
-      "accept" | "executeTool" | "renderSuggestionValue"
+      "accept" | "executeTool" | "reject" | "renderSuggestionValue"
     >,
   ) => () => void;
 }>(null);
@@ -112,6 +112,7 @@ const SurfaceProvider = ({
   accept,
   children,
   executeTool,
+  reject,
   renderSuggestionValue,
   ...props
 }: SurfaceContextValue & {
@@ -135,6 +136,7 @@ const SurfaceProvider = ({
     return store.add(suggestion, {
       accept,
       executeTool,
+      reject,
       renderSuggestionValue,
     });
   }, [
@@ -142,6 +144,7 @@ const SurfaceProvider = ({
     executeTool,
     props.suggestionAlert.registered,
     props.suggestionPopover.registered,
+    reject,
     renderSuggestionValue,
     store,
     suggestion,
@@ -151,6 +154,7 @@ const SurfaceProvider = ({
     value: {
       accept,
       executeTool,
+      reject,
       renderSuggestionValue,
       ...props,
     },

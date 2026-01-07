@@ -12,6 +12,7 @@ import {
 
 import { Button } from "../button";
 import { Group } from "../group";
+import { IconX } from "../icons/IconX";
 import { Portal } from "../portal";
 import { Text } from "../text";
 import { Transition } from "../transition";
@@ -32,7 +33,7 @@ export function SuggestionProvider({ children }: SuggestionProviderProps) {
       >;
       surface: Pick<
         ComponentPropsWithoutRef<typeof unstable_SurfaceProvider>,
-        "accept" | "executeTool" | "renderSuggestionValue"
+        "accept" | "executeTool" | "reject" | "renderSuggestionValue"
       >;
     }>
   >([]);
@@ -124,6 +125,17 @@ export function SuggestionProvider({ children }: SuggestionProviderProps) {
                   >
                     Accept
                   </Button>
+                  <Button
+                    appearance="subtle"
+                    aria-label="close"
+                    color="fg.default"
+                    flex="none"
+                    icon={<IconX />}
+                    onClick={() => {
+                      surface.reject(suggestion.id);
+                    }}
+                    size="sm"
+                  />
                 </Group>
               </Transition>
             ))}
