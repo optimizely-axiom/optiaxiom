@@ -1,5 +1,13 @@
 # @optiaxiom/react
 
+## 1.8.4
+
+### Patch Changes
+
+- de98adf: allow dismissing a suggestion toast
+- Updated dependencies [de98adf]
+  - @optiaxiom/globals@1.1.5
+
 ## 1.8.3
 
 ### Patch Changes

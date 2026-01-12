@@ -1,5 +1,11 @@
 # @optiaxiom/globals
 
+## 1.1.5
+
+### Patch Changes
+
+- de98adf: allow dismissing a suggestion toast
+
 ## 1.1.4
 
 ### Patch Changes
