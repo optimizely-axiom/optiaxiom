@@ -26,17 +26,19 @@ export function SuggestionAlert({ ...props }: SuggestionAlertProps) {
 
   // Show message suggestions first, then value suggestions if no popover is handling them
   const messageSuggestion = messageSuggestions?.[0];
-  const valueSuggestion = !hasPopover ? valueSuggestions?.[0] : undefined;
+  const valueSuggestion = !hasPopover
+    ? valueSuggestions?.find((s) => s.value !== surface?.value)
+    : undefined;
   const suggestion = messageSuggestion ?? valueSuggestion;
 
-  if (!suggestion) {
+  if (!suggestion || !surface) {
     return null;
   }
 
   const text =
     suggestion.type === "message"
       ? suggestion.text
-      : surface?.renderSuggestionValue
+      : surface.renderSuggestionValue
         ? surface.renderSuggestionValue(suggestion.value)
         : String(suggestion.value);
 
@@ -45,7 +47,7 @@ export function SuggestionAlert({ ...props }: SuggestionAlertProps) {
   return (
     <Alert
       intent="opal"
-      onDismiss={() => surface?.reject(suggestion.id)}
+      onDismiss={() => surface.reject(suggestion.id)}
       {...props}
     >
       <Text>{text}</Text>
@@ -59,7 +61,7 @@ export function SuggestionAlert({ ...props }: SuggestionAlertProps) {
             if (suggestion.type === "message" && suggestion.tool) {
               setIsExecuting(true);
               try {
-                await surface?.executeTool(
+                await surface.executeTool(
                   suggestion.tool.name,
                   suggestion.tool.parameters,
                 );
@@ -68,7 +70,7 @@ export function SuggestionAlert({ ...props }: SuggestionAlertProps) {
               }
             }
 
-            surface?.accept(suggestion.id);
+            surface.accept(suggestion.id);
           }}
           size="sm"
         >

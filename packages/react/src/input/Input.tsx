@@ -85,7 +85,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         </InputControl>
 
         <InputAddon {...styles.addon()}>
-          <SuggestionPopover currentValue={props.value} />
+          <SuggestionPopover />
           {addonAfter}
         </InputAddon>
       </InputRoot>

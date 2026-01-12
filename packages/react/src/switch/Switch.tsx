@@ -55,9 +55,7 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
           </ToggleInputContent>
         )}
 
-        {props.checked !== undefined && (
-          <SuggestionPopover currentValue={props.checked} />
-        )}
+        {props.checked !== undefined && <SuggestionPopover />}
       </ToggleInput>
     );
   },

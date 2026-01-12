@@ -265,13 +265,11 @@ export const WithSuggestionToast: Story = {
         createdAt: new Date().toISOString(),
         id: "sug-1",
         page: "product<storybook>/page<demo>",
+        reason:
+          "We recommend using the development environment for better integration with your organization.",
         surface: "property<environment>",
-        text: "We recommend using the development environment for better integration with your organization.",
-        tool: {
-          name: "setEnvironment",
-          parameters: { environment: "development" },
-        },
-        type: "message" as const,
+        type: "value" as const,
+        value: "development",
       },
     ];
     const [suggestions, setSuggestions] = useState(defaultSuggestions);
@@ -286,17 +284,7 @@ export const WithSuggestionToast: Story = {
           action("accept")(suggestionId);
           setSuggestions((prev) => prev.filter((s) => s.id !== suggestionId));
         }}
-        executeTool={(name, params) => {
-          action("execute")(name, params);
-          if (
-            params &&
-            typeof params === "object" &&
-            "environment" in params &&
-            typeof params.environment === "string"
-          ) {
-            setValue(params.environment);
-          }
-        }}
+        executeTool={action("execute")}
         metadata={{}}
         name="environment"
         pageViewId=""
@@ -305,7 +293,6 @@ export const WithSuggestionToast: Story = {
           action("reject")(suggestionId);
           setSuggestions((prev) => prev.filter((s) => s.id !== suggestionId));
         }}
-        renderSuggestionValue={(v: unknown) => String(v)}
         suggestionAlert={{
           register: () => {
             setRegistered((registered) => ({
@@ -337,6 +324,7 @@ export const WithSuggestionToast: Story = {
         suggestions={suggestions}
         track={action("track")}
         type="property"
+        value={value}
       >
         <Group alignItems="start" flexDirection="column" gap="16">
           <RadioGroup {...args} onValueChange={setValue} value={value}>

@@ -43,10 +43,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
         )}
 
         {props.checked !== undefined && (
-          <SuggestionPopover
-            currentValue={props.checked}
-            style={{ marginTop: -2 }}
-          />
+          <SuggestionPopover style={{ marginTop: -2 }} />
         )}
       </CheckboxRoot>
     );
