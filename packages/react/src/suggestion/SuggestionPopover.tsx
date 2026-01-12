@@ -11,20 +11,12 @@ import { useSurface } from "../surface";
 import { useSuggestions } from "../surface/internals";
 import { Text } from "../text";
 
-export type SuggestionPopoverProps = ButtonProps<
-  typeof PopoverTrigger,
-  {
-    /**
-     * The current value to compare against suggestions.
-     */
-    currentValue?: unknown;
-  }
->;
+export type SuggestionPopoverProps = ButtonProps<typeof PopoverTrigger>;
 
 export const SuggestionPopover = forwardRef<
   HTMLButtonElement,
   SuggestionPopoverProps
->(({ currentValue, ...props }, ref) => {
+>((props, ref) => {
   const surface = useSurface();
 
   const register = useEffectEvent(
@@ -35,14 +27,14 @@ export const SuggestionPopover = forwardRef<
   }, [register]);
 
   const suggestions = useSuggestions("value");
-  const suggestion = suggestions?.find((s) => s.value !== currentValue);
+  const suggestion = suggestions?.find((s) => s.value !== surface?.value);
 
   // Return null if no suggestions or current value matches suggestion
-  if (!suggestion || currentValue === undefined) {
+  if (!suggestion || !surface) {
     return null;
   }
 
-  const text = surface?.renderSuggestionValue
+  const text = surface.renderSuggestionValue
     ? surface.renderSuggestionValue(suggestion.value)
     : String(suggestion.value);
 
@@ -72,7 +64,7 @@ export const SuggestionPopover = forwardRef<
           icon={<IconCheck />}
           justifyContent="center"
           onClick={() => {
-            surface?.accept(suggestion.id);
+            surface.accept(suggestion.id);
           }}
           size="sm"
         >

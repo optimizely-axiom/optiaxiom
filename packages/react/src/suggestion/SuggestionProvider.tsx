@@ -21,22 +21,24 @@ export type SuggestionProviderProps = {
   children?: ReactNode;
 };
 
+type StoredSuggestion = {
+  suggestion: Extract<
+    ComponentPropsWithoutRef<
+      typeof unstable_SurfaceProvider
+    >["suggestions"][number],
+    { type: "message" | "value" }
+  >;
+  surface: {
+    accept: (suggestionId: string) => void;
+    executeTool: (name: string, parameters: unknown) => Promise<void> | void;
+    reject: (suggestionId: string) => void;
+    renderSuggestionValue?: (value: unknown) => ReactNode;
+  };
+};
+
 export function SuggestionProvider({ children }: SuggestionProviderProps) {
   const id = useId();
-  const [suggestions, setSuggestions] = useState<
-    Array<{
-      suggestion: Extract<
-        ComponentPropsWithoutRef<
-          typeof unstable_SurfaceProvider
-        >["suggestions"][number],
-        { type: "message" | "value" }
-      >;
-      surface: Pick<
-        ComponentPropsWithoutRef<typeof unstable_SurfaceProvider>,
-        "accept" | "executeTool" | "reject" | "renderSuggestionValue"
-      >;
-    }>
-  >([]);
+  const [suggestions, setSuggestions] = useState<StoredSuggestion[]>([]);
 
   return (
     <SuggestionContext.Provider
@@ -45,7 +47,7 @@ export function SuggestionProvider({ children }: SuggestionProviderProps) {
           add: (suggestion, surface) => {
             setSuggestions((suggestions) => [
               ...suggestions,
-              { suggestion, surface },
+              { suggestion, surface } as StoredSuggestion,
             ]);
             return () => {
               setSuggestions((suggestions) =>

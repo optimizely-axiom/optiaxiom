@@ -6,15 +6,11 @@ import {
   useEffect,
 } from "react";
 
-type Surface<
-  T extends Record<string, unknown> | undefined =
-    | Record<string, unknown>
-    | undefined,
-> = {
+type Surface = {
   /**
    * Optional data associated with this surface.
    */
-  data?: T;
+  data?: Record<string, unknown>;
   /**
    * The surface name (used in surface path).
    */
@@ -32,9 +28,13 @@ type Surface<
     | "property"
     | "resource"
     | "tab";
+  /**
+   * Optional value associated with this surface.
+   */
+  value?: unknown;
 };
 
-type SurfaceContextValue = {
+type SurfaceContextValue<V = unknown> = {
   accept: (suggestionId: string) => void;
   executeTool: (name: string, parameters: unknown) => Promise<void> | void;
   metadata: Record<string, Omit<Surface, "name">>;
@@ -42,7 +42,7 @@ type SurfaceContextValue = {
   pageViewId: string | undefined;
   path: string;
   reject: (suggestionId: string) => void;
-  renderSuggestionValue?: (value: unknown) => React.ReactNode;
+  renderSuggestionValue?: (value: V) => React.ReactNode;
   suggestionAlert: {
     register: () => () => void;
     registered: boolean;
@@ -57,6 +57,7 @@ type SurfaceContextValue = {
     metadata?: Record<string, Omit<Surface, "name">>,
   ) => void;
   type: Surface["type"];
+  value?: V;
 };
 
 type SurfaceInteraction = { id?: string } & (
@@ -98,28 +99,30 @@ type SurfaceSuggestion = {
 );
 
 const SuggestionContext = createContext<null | {
-  add: (
+  add: <V = unknown>(
     suggestion: Extract<SurfaceSuggestion, { type: "message" | "value" }>,
     surface: Pick<
-      SurfaceContextValue,
+      SurfaceContextValue<V>,
       "accept" | "executeTool" | "reject" | "renderSuggestionValue"
     >,
   ) => () => void;
 }>(null);
 const SurfaceContext = createContext<null | SurfaceContextValue>(null);
 
-const SurfaceProvider = ({
+const SurfaceProvider = <V = unknown>({
   accept,
   children,
   executeTool,
   reject,
   renderSuggestionValue,
   ...props
-}: SurfaceContextValue & {
+}: SurfaceContextValue<V> & {
   children?: ReactNode;
 }) => {
   const suggestion = props.suggestions.find(
-    (s) => s.type !== "cards" && ("/" + props.path).endsWith("/" + s.surface),
+    (s) =>
+      ("/" + props.path).endsWith("/" + s.surface) &&
+      (s.type === "message" || (s.type === "value" && s.value !== props.value)),
   );
   const store = useContext(SuggestionContext);
   useEffect(() => {
@@ -157,7 +160,7 @@ const SurfaceProvider = ({
       reject,
       renderSuggestionValue,
       ...props,
-    },
+    } as SurfaceContextValue,
   });
 };
 
