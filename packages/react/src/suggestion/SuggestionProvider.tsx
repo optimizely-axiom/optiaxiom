@@ -70,7 +70,7 @@ export function SuggestionProvider({ children }: SuggestionProviderProps) {
               insetInline: 32,
               position: "fixed",
             }}
-            z="toast"
+            z="popover"
           >
             {suggestions.slice(0, 1).map(({ suggestion, surface }) => (
               <Transition data-side="top" key={suggestion.id} type="pop">
