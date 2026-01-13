@@ -185,7 +185,7 @@ export const colors = {
   "fg.avatar.purple": ld(palette["purple.700"], palette["purple.100"]),
   "fg.default": ld(palette["neutral.800"], palette["neutral.75"]),
   "fg.default.inverse": ld(palette["neutral.00"], palette["neutral.800"]),
-  "fg.disabled": ld(palette["neutral.200"], palette["neutral.50/32"]),
+  "fg.disabled": ld(palette["neutral.500"], palette["neutral.50/32"]),
   "fg.error": ld(palette["red.500"], palette["red.300"]),
   "fg.error.hovered": ld(palette["red.600"], palette["red.600"]),
   "fg.error.light": ld(palette["red.300"], palette["red.500"]),
