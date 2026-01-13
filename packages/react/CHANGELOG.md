@@ -1,5 +1,15 @@
 # @optiaxiom/react
 
+## 1.8.6
+
+### Patch Changes
+
+- db27dd2: track previous value for changed interactions
+- 4a53fac: sync fg.disabled color token with figma
+- Updated dependencies [db27dd2]
+- Updated dependencies [4a53fac]
+  - @optiaxiom/globals@1.1.7
+
 ## 1.8.5
 
 ### Patch Changes

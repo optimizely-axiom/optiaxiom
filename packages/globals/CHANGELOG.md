@@ -1,5 +1,12 @@
 # @optiaxiom/globals
 
+## 1.1.7
+
+### Patch Changes
+
+- db27dd2: track previous value for changed interactions
+- 4a53fac: sync fg.disabled color token with figma
+
 ## 1.1.6
 
 ### Patch Changes
