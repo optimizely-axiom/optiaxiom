@@ -61,7 +61,7 @@ type SurfaceInteraction = { id?: string } & (
   | { checked: boolean; name: "toggled" }
   | { name: "added"; value: unknown }
   | { name: "blurred" }
-  | { name: "changed"; value: unknown }
+  | { name: "changed"; previousValue?: unknown; value: unknown }
   | { name: "focused" }
   | { name: "invoked" }
   | { name: "removed"; value: unknown }

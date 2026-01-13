@@ -74,7 +74,9 @@ export const InputControl = forwardRef<
 
     const surface = useSurface("property");
     const { track } = surface ?? {};
-    const debouncedTrack = useDebouncedTrack();
+    const debouncedTrack = useDebouncedTrack(
+      typeof props.value === "string" ? props.value : props.defaultValue,
+    );
 
     return (
       <Box
@@ -111,10 +113,7 @@ export const InputControl = forwardRef<
               const newValue = event.target.value;
               onValueChange?.(newValue);
 
-              debouncedTrack?.({
-                name: "changed",
-                value: newValue,
-              });
+              debouncedTrack?.(newValue);
             }
           }}
           onFocus={(event) => {
