@@ -8,6 +8,7 @@ import {
 import { useEffectEvent } from "../hooks";
 import { IconMagnifyingGlass } from "../icons/IconMagnifyingGlass";
 import { Input } from "../input";
+import { SurfaceProvider } from "../surface";
 import { useCommandContext } from "./CommandContext";
 
 export type CommandInputProps = ComponentPropsWithoutRef<typeof Input>;
@@ -24,67 +25,70 @@ export const CommandInput = forwardRef<HTMLInputElement, CommandInputProps>(
     const preventDownshiftBlurRef = useRef(false);
 
     return (
-      <Input
-        addonBefore={<IconMagnifyingGlass />}
-        htmlSize={1}
-        size={size}
-        {...downshift.getInputProps({
-          "aria-label": props.placeholder,
-          ref,
-          ...props,
-          onBlur: (event) => {
-            onBlur?.(event);
-            if (event.defaultPrevented) {
-              return;
-            }
-
-            if (preventDownshiftBlurRef.current) {
-              Object.assign(event, { preventDownshiftDefault: true });
-              preventDownshiftBlurRef.current = false;
-            }
-          },
-          onChange: (event) => {
-            setInputValue("value" in event.target ? event.target.value : "");
-          },
-          onKeyDown: (event) => {
-            onKeyDown?.(event);
-            if (event.defaultPrevented) {
-              return;
-            }
-
-            if (!(event.target instanceof HTMLInputElement)) {
-              return;
-            }
-            if (!highlightedItem) {
-              return;
-            }
-
-            const selectedWithSpace = !event.target.value && event.key === " ";
-            if (
-              highlightedItemRef.current instanceof HTMLAnchorElement &&
-              !highlightedItem.execute &&
-              (selectedWithSpace || event.key === "Enter")
-            ) {
-              const { view: _view, ...eventInit } = event;
-
-              event.preventDefault();
-              Object.assign(event, { preventDownshiftDefault: true });
-              if (highlightedItem.external) {
-                eventInit.metaKey = true;
+      <SurfaceProvider disabled>
+        <Input
+          addonBefore={<IconMagnifyingGlass />}
+          htmlSize={1}
+          size={size}
+          {...downshift.getInputProps({
+            "aria-label": props.placeholder,
+            ref,
+            ...props,
+            onBlur: (event) => {
+              onBlur?.(event);
+              if (event.defaultPrevented) {
+                return;
               }
-              preventDownshiftBlurRef.current = true;
 
-              highlightedItemRef.current.dispatchEvent(
-                new MouseEvent("click", eventInit),
-              );
-              downshift.selectItem(highlightedItem);
-            } else if (selectedWithSpace) {
-              event.preventDefault();
-              downshift.selectItem(highlightedItem);
-            }
-          },
-        })}
-      />
+              if (preventDownshiftBlurRef.current) {
+                Object.assign(event, { preventDownshiftDefault: true });
+                preventDownshiftBlurRef.current = false;
+              }
+            },
+            onChange: (event) => {
+              setInputValue("value" in event.target ? event.target.value : "");
+            },
+            onKeyDown: (event) => {
+              onKeyDown?.(event);
+              if (event.defaultPrevented) {
+                return;
+              }
+
+              if (!(event.target instanceof HTMLInputElement)) {
+                return;
+              }
+              if (!highlightedItem) {
+                return;
+              }
+
+              const selectedWithSpace =
+                !event.target.value && event.key === " ";
+              if (
+                highlightedItemRef.current instanceof HTMLAnchorElement &&
+                !highlightedItem.execute &&
+                (selectedWithSpace || event.key === "Enter")
+              ) {
+                const { view: _view, ...eventInit } = event;
+
+                event.preventDefault();
+                Object.assign(event, { preventDownshiftDefault: true });
+                if (highlightedItem.external) {
+                  eventInit.metaKey = true;
+                }
+                preventDownshiftBlurRef.current = true;
+
+                highlightedItemRef.current.dispatchEvent(
+                  new MouseEvent("click", eventInit),
+                );
+                downshift.selectItem(highlightedItem);
+              } else if (selectedWithSpace) {
+                event.preventDefault();
+                downshift.selectItem(highlightedItem);
+              }
+            },
+          })}
+        />
+      </SurfaceProvider>
     );
   },
 );

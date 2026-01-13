@@ -106,29 +106,43 @@ const SuggestionContext = createContext<null | {
 }>(null);
 const SurfaceContext = createContext<null | SurfaceContextValue>(null);
 
-const SurfaceProvider = <V = unknown>({
-  accept,
-  children,
-  executeTool,
-  reject,
-  renderSuggestionValue,
-  ...props
-}: SurfaceContextValue<V> & {
-  children?: ReactNode;
-}) => {
-  const suggestion = props.suggestions.find(
-    (s) =>
-      ("/" + props.path).endsWith("/" + s.surface) &&
-      (s.type === "message" || (s.type === "value" && s.value !== props.value)),
-  );
+const SurfaceProvider = <V = unknown>(
+  props:
+    | (Partial<SurfaceContextValue<V>> & {
+        children?: ReactNode;
+        disabled: true;
+      })
+    | (SurfaceContextValue<V> & { children?: ReactNode; disabled?: false }),
+) => {
+  const {
+    accept,
+    children,
+    disabled,
+    executeTool,
+    reject,
+    renderSuggestionValue,
+    ...rest
+  } = props;
+
   const store = useContext(SuggestionContext);
+  const suggestion =
+    !disabled && "suggestions" in rest
+      ? rest.suggestions?.find(
+          (s) =>
+            ("/" + rest.path).endsWith("/" + s.surface) &&
+            (s.type === "message" ||
+              (s.type === "value" && s.value !== rest.value)),
+        )
+      : undefined;
+
   useEffect(() => {
     if (
+      disabled ||
       !store ||
       !suggestion ||
       suggestion.type === "cards" ||
-      props.suggestionAlert.registered ||
-      props.suggestionPopover.registered
+      rest.suggestionAlert?.registered ||
+      rest.suggestionPopover?.registered
     ) {
       return;
     }
@@ -140,24 +154,28 @@ const SurfaceProvider = <V = unknown>({
       renderSuggestionValue,
     });
   }, [
+    disabled,
     accept,
     executeTool,
-    props.suggestionAlert.registered,
-    props.suggestionPopover.registered,
+    rest.suggestionAlert?.registered,
     reject,
     renderSuggestionValue,
     store,
     suggestion,
+    rest.suggestionPopover?.registered,
   ]);
+
   return createElement(SurfaceContext.Provider, {
     children,
-    value: {
-      accept,
-      executeTool,
-      reject,
-      renderSuggestionValue,
-      ...props,
-    } as SurfaceContextValue,
+    value: disabled
+      ? null
+      : ({
+          accept,
+          executeTool,
+          reject,
+          renderSuggestionValue,
+          ...rest,
+        } as SurfaceContextValue),
   });
 };
 

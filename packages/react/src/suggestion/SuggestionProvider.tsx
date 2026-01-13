@@ -23,9 +23,9 @@ export type SuggestionProviderProps = {
 
 type StoredSuggestion = {
   suggestion: Extract<
-    ComponentPropsWithoutRef<
-      typeof unstable_SurfaceProvider
-    >["suggestions"][number],
+    NonNullable<
+      ComponentPropsWithoutRef<typeof unstable_SurfaceProvider>["suggestions"]
+    >[number],
     { type: "message" | "value" }
   >;
   surface: {
