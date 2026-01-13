@@ -44,12 +44,7 @@ export function useMenuSurface() {
             checked: !resolveItemProperty(item.selected),
             name: "toggled",
           },
-          {
-            [itemSurface.name]: {
-              data: itemSurface.data,
-              type: "property",
-            },
-          },
+          [itemSurface],
         );
       } else if ("selected" in item) {
         // Selection
@@ -58,12 +53,7 @@ export function useMenuSurface() {
             name: "changed",
             value: itemSurface.value,
           },
-          {
-            [itemSurface.name]: {
-              data: itemSurface.data,
-              type: "property",
-            },
-          },
+          [itemSurface],
         );
       }
 
@@ -73,14 +63,7 @@ export function useMenuSurface() {
       }
     } else if (itemSurface.type === "action") {
       // Custom interaction on parent surface
-      surface.track(
-        { name: "invoked" },
-        {
-          [itemSurface.name]: {
-            type: "action",
-          },
-        },
-      );
+      surface.track({ name: "invoked" }, [itemSurface]);
     }
   };
 }
