@@ -1,4 +1,5 @@
 import { useDebouncedCallback } from "@mantine/hooks";
+import { useRef } from "react";
 
 import { useSurface } from "./useSurface";
 
@@ -6,17 +7,23 @@ import { useSurface } from "./useSurface";
  * Hook to track Surface interactions with debouncing (300ms).
  * Use this for high-frequency events like `changed` interactions.
  *
- * @returns A debounced track function, or undefined if not in a Surface context
+ * Automatically tracks previous values for change events.
+ *
+ * @param initialValue - The initial value to use as the first "previous value"
+ * @returns A debounced track function that accepts value, or undefined if not in a Surface context
  */
-export function useDebouncedTrack() {
+export function useDebouncedTrack(initialValue?: unknown) {
   const { track } = useSurface() ?? {};
+  const previousValueRef = useRef<unknown>(initialValue);
 
-  const debouncedTrack = useDebouncedCallback(
-    (interaction: Parameters<NonNullable<typeof track>>[0]) => {
-      track?.(interaction);
-    },
-    300,
-  );
+  const debouncedTrack = useDebouncedCallback((value: unknown) => {
+    track?.({
+      name: "changed",
+      previousValue: previousValueRef.current,
+      value,
+    });
+    previousValueRef.current = value;
+  }, 300);
 
   return track ? debouncedTrack : undefined;
 }
