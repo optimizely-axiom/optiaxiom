@@ -52,10 +52,7 @@ type SurfaceContextValue<V = unknown> = {
     registered: boolean;
   };
   suggestions: SurfaceSuggestion[];
-  track: (
-    interaction: SurfaceInteraction,
-    metadata?: Record<string, Omit<Surface, "name">>,
-  ) => void;
+  track: (interaction: SurfaceInteraction, surfaces?: Surface[]) => void;
   type: Surface["type"];
   value?: V;
 };
