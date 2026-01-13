@@ -1,5 +1,15 @@
 # @optiaxiom/react
 
+## 1.8.5
+
+### Patch Changes
+
+- c1d106a: allow storing value with surfaces
+- 30c5639: send list of surfaces in track call
+- Updated dependencies [c1d106a]
+- Updated dependencies [30c5639]
+  - @optiaxiom/globals@1.1.6
+
 ## 1.8.4
 
 ### Patch Changes

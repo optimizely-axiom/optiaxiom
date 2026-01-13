@@ -1,5 +1,12 @@
 # @optiaxiom/globals
 
+## 1.1.6
+
+### Patch Changes
+
+- c1d106a: allow storing value with surfaces
+- 30c5639: send list of surfaces in track call
+
 ## 1.1.5
 
 ### Patch Changes
