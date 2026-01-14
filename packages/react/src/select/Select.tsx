@@ -111,7 +111,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
     const ref = useComposedRefs(innerRef, outerRef);
 
     const surface = useSurface("property");
-    const suggestions = useSuggestions("value");
+    const suggestions = useSuggestions("property", "value");
     const suggestion = suggestions?.[0];
 
     const [shadowValue, setShadowValue] = useControllableState({

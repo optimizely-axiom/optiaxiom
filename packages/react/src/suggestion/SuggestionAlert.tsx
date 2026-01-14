@@ -11,10 +11,10 @@ import { Text } from "../text";
 export type SuggestionAlertProps = ComponentPropsWithoutRef<typeof Alert>;
 
 export function SuggestionAlert({ ...props }: SuggestionAlertProps) {
-  const surface = useSurface();
+  const surface = useSurface("property");
   const hasPopover = surface?.suggestionPopover.registered;
-  const messageSuggestions = useSuggestions("message");
-  const valueSuggestions = useSuggestions("value");
+  const messageSuggestions = useSuggestions("property", "message");
+  const valueSuggestions = useSuggestions("property", "value");
   const [isExecuting, setIsExecuting] = useState(false);
 
   const register = useEffectEvent(

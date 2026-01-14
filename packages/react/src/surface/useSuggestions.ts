@@ -1,3 +1,5 @@
+import type { unstable_useSurfaceContext } from "@optiaxiom/globals";
+
 import { useSurface } from "./useSurface";
 
 type Suggestion = NonNullable<
@@ -12,18 +14,13 @@ type Suggestion = NonNullable<
  * @param type - Optional type filter ("value", "message", or "cards")
  * @returns Array of suggestions matching current path, or undefined if not in a Surface context
  */
-export function useSuggestions(): Suggestion[] | undefined;
-export function useSuggestions(
-  type: "cards",
-): Extract<Suggestion, { type: "cards" }>[] | undefined;
-export function useSuggestions(
-  type: "message",
-): Extract<Suggestion, { type: "message" }>[] | undefined;
-export function useSuggestions(
-  type: "value",
-): Extract<Suggestion, { type: "value" }>[] | undefined;
-export function useSuggestions(type?: "cards" | "message" | "value") {
-  const surface = useSurface();
+export function useSuggestions<T extends "cards" | "message" | "value">(
+  surfaceType: NonNullable<
+    ReturnType<typeof unstable_useSurfaceContext>
+  >["type"],
+  type?: T,
+) {
+  const surface = useSurface(surfaceType);
 
   if (!surface?.suggestions) {
     return undefined;
@@ -34,9 +31,9 @@ export function useSuggestions(type?: "cards" | "message" | "value") {
     ("/" + surface.path).endsWith("/" + s.surface),
   );
 
-  if (!type) {
-    return filtered;
-  }
-
-  return filtered.filter((s) => s.type === type);
+  return (type ? filtered.filter((s) => s.type === type) : filtered) as [
+    undefined,
+  ] extends [T]
+    ? Suggestion[] | undefined
+    : Extract<Suggestion, { type: T }>[] | undefined;
 }

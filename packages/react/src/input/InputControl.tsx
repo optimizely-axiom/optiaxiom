@@ -75,6 +75,7 @@ export const InputControl = forwardRef<
     const surface = useSurface("property");
     const { track } = surface ?? {};
     const debouncedTrack = useDebouncedTrack(
+      "property",
       typeof props.value === "string" ? props.value : props.defaultValue,
     );
 
