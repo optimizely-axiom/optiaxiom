@@ -32,15 +32,6 @@ export const cell = recipe({
       true: style({
         position: "sticky",
         zIndex: "10",
-
-        selectors: {
-          "&:has(+ :not([data-pinned]))": {
-            borderRightWidth: "1px",
-          },
-          ":not([data-pinned]) + &": {
-            borderLeftWidth: "1px",
-          },
-        },
       }),
     },
   },
