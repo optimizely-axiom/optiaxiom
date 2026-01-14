@@ -1,5 +1,12 @@
 # @optiaxiom/globals
 
+## 1.1.8
+
+### Patch Changes
+
+- 437d1da: clear surface context inside menu filter
+- 219adb9: rename collection surface to group and only track property surfaces
+
 ## 1.1.7
 
 ### Patch Changes

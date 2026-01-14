@@ -1,5 +1,16 @@
 # @optiaxiom/react
 
+## 1.8.7
+
+### Patch Changes
+
+- 437d1da: clear surface context inside menu filter
+- 219adb9: rename collection surface to group and only track property surfaces
+- 06e97ce: remove pinned column borders
+- Updated dependencies [437d1da]
+- Updated dependencies [219adb9]
+  - @optiaxiom/globals@1.1.8
+
 ## 1.8.6
 
 ### Patch Changes
