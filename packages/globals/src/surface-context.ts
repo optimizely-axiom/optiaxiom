@@ -21,8 +21,8 @@ type Surface = {
   type:
     | "action"
     | "cards"
-    | "collection"
     | "dialog"
+    | "group"
     | "page"
     | "product"
     | "property"

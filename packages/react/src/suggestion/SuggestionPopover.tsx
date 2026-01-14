@@ -17,7 +17,7 @@ export const SuggestionPopover = forwardRef<
   HTMLButtonElement,
   SuggestionPopoverProps
 >((props, ref) => {
-  const surface = useSurface();
+  const surface = useSurface("property");
 
   const register = useEffectEvent(
     surface?.suggestionPopover.register ?? (() => {}),
@@ -26,7 +26,7 @@ export const SuggestionPopover = forwardRef<
     return register();
   }, [register]);
 
-  const suggestions = useSuggestions("value");
+  const suggestions = useSuggestions("property", "value");
   const suggestion = suggestions?.find((s) => s.value !== surface?.value);
 
   // Return null if no suggestions or current value matches suggestion

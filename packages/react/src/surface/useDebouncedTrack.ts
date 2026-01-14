@@ -1,3 +1,5 @@
+import type { unstable_useSurfaceContext } from "@optiaxiom/globals";
+
 import { useDebouncedCallback } from "@mantine/hooks";
 import { useRef } from "react";
 
@@ -12,8 +14,11 @@ import { useSurface } from "./useSurface";
  * @param initialValue - The initial value to use as the first "previous value"
  * @returns A debounced track function that accepts value, or undefined if not in a Surface context
  */
-export function useDebouncedTrack(initialValue?: unknown) {
-  const { track } = useSurface() ?? {};
+export function useDebouncedTrack(
+  type: NonNullable<ReturnType<typeof unstable_useSurfaceContext>>["type"],
+  initialValue?: unknown,
+) {
+  const { track } = useSurface(type) ?? {};
   const previousValueRef = useRef<unknown>(initialValue);
 
   const debouncedTrack = useDebouncedCallback((value: unknown) => {
