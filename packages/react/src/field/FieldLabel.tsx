@@ -80,7 +80,7 @@ export const FieldLabel = forwardRef<HTMLDivElement, FieldLabelProps>(
           </RadixLabel.Root>
         </Text>
         {info && (
-          <Tooltip content={info}>
+          <Tooltip content={info} delayDuration={0}>
             <Button
               aria-label="Information hover"
               bg="transparent"
