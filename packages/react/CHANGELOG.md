@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 1.8.8
+
+### Patch Changes
+
+- b1b8372: show field info tooltips immediately without delay
+
 ## 1.8.7
 
 ### Patch Changes
