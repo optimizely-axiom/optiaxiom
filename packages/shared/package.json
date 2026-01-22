@@ -6,6 +6,7 @@
   "bin": {
     "oas-bundle-size": "bin/bundle-size.mjs",
     "oas-design-tokens": "bin/design-tokens.mjs",
+    "oas-flow-spec": "bin/flow-spec.mjs",
     "oas-lint": "bin/lint.sh"
   },
   "main": "src/index.mjs",
@@ -23,6 +24,7 @@
     "yargs": "^18.0.0"
   },
   "devDependencies": {
+    "@types/json-schema": "^7.0.15",
     "@types/node": "^22.17.2",
     "@types/yargs": "^17.0.33",
     "@typescript-eslint/eslint-plugin": "^8.40.0",
