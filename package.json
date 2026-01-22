@@ -12,6 +12,7 @@
     "dev": "pnpm run --parallel -F !web-components dev",
     "dev:docs": "pnpm -F docs... --parallel dev",
     "dev:storybook": "pnpm -F storybook... --parallel dev",
+    "flow-spec": "oas-flow-spec",
     "lint": "oas-lint",
     "release": "pnpm build && changeset publish",
     "test": "vitest run --project=@optiaxiom/globals --project=@optiaxiom/react"

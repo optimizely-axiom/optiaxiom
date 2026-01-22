@@ -521,6 +521,9 @@ importers:
         specifier: ^18.0.0
         version: 18.0.0
     devDependencies:
+      '@types/json-schema':
+        specifier: ^7.0.15
+        version: 7.0.15
       '@types/node':
         specifier: ^22.17.2
         version: 22.17.2
