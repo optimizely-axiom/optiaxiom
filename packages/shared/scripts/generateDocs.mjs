@@ -20,6 +20,7 @@ function generateDocs() {
     savePropValueAsString: true,
     shouldExtractValuesFromUnion: true,
     shouldRemoveUndefinedFromOptional: true,
+    skipChildrenPropWithoutDoc: false,
   });
 
   const docs = parser.parse(
@@ -45,7 +46,10 @@ function generateDocs() {
           Object.entries(props)
             .filter(([, prop]) =>
               prop.parent
-                ? !prop.parent.fileName.includes("@types/react")
+                ? !(
+                    prop.parent.fileName.includes("@types/react") &&
+                    prop.name !== "children"
+                  )
                 : prop.declarations?.length && prop.type.name !== "undefined",
             )
             .filter(([, prop]) => !(prop.type.name === "never"))
