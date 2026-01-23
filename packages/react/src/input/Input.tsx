@@ -31,6 +31,10 @@ export type InputProps = InputControlProps<
        * Control the native input `size` attribute.
        */
       htmlSize?: number;
+      /**
+       * The input type.
+       */
+      type?: ComponentPropsWithoutRef<"input">["type"];
     }
 >;
 

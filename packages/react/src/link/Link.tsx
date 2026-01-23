@@ -1,5 +1,5 @@
 import { createSlot } from "@radix-ui/react-slot";
-import { forwardRef } from "react";
+import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import { Box, type BoxProps, extractBoxProps } from "../box";
 import { Cover } from "../cover";
@@ -24,6 +24,10 @@ export type LinkProps = BoxProps<
      * Shows an external link icon and sets the correct rel/target attributes.
      */
     external?: boolean;
+    /**
+     * The link href.
+     */
+    href?: ComponentPropsWithoutRef<"a">["href"];
   }
 >;
 

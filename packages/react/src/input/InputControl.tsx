@@ -1,7 +1,12 @@
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import { createSlot } from "@radix-ui/react-slot";
 import clsx from "clsx";
-import { type ChangeEvent, type ElementType, forwardRef } from "react";
+import {
+  type ChangeEvent,
+  type ComponentPropsWithoutRef,
+  type ElementType,
+  forwardRef,
+} from "react";
 
 import type { ExtendProps } from "../utils";
 
@@ -31,9 +36,19 @@ export type InputControlProps<
        */
       error?: boolean;
       /**
+       * The name of the form control element.
+       */
+      name?: ComponentPropsWithoutRef<"input" | "textarea">["name"];
+      /**
        * Handler that is called when the value changes.
        */
       onValueChange?: (value: string) => void;
+      /**
+       * The placeholder text to use when control has no value.
+       */
+      placeholder?: ComponentPropsWithoutRef<
+        "input" | "textarea"
+      >["placeholder"];
     },
     P
   >

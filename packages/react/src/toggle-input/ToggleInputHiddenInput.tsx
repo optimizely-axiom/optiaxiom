@@ -12,6 +12,10 @@ export type ToggleInputHiddenInputProps = ExtendProps<
   ComponentPropsWithoutRef<"input">,
   {
     /**
+     * The name of the form control element.
+     */
+    name?: ComponentPropsWithoutRef<"input">["name"];
+    /**
      * Handler that is called when the checked state changes.
      */
     onCheckedChange?: (checked: boolean) => void;

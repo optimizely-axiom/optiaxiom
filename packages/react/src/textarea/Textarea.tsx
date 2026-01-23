@@ -36,6 +36,10 @@ export type TextareaProps = InputControlProps<
        * Display content above the textarea.
        */
       addonBefore?: ReactNode;
+      /**
+       * The number of rows to display.
+       */
+      rows?: ComponentPropsWithoutRef<"textarea">["rows"];
       size?: never;
     }
 >;
