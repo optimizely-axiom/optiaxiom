@@ -158,7 +158,7 @@ export function parsePropDefinition(prop) {
   /** @type {PropDefinition} */
   const propDef = {
     description: prop.description || undefined,
-    type,
+    type: extractedValues && extractedValues.length > 0 ? "enum" : type,
   };
 
   if (extractedValues && extractedValues.length > 0) {
