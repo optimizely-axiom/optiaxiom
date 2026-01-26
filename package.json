@@ -6,13 +6,13 @@
   "version": "0.0.0",
   "license": "Apache-2.0",
   "scripts": {
+    "block-spec": "oas-block-spec",
     "build": "pnpm -F globals... -F mcp... -F react... -F web-components... build",
     "bundle-size": "oas-bundle-size",
     "design-tokens": "oas-design-tokens",
     "dev": "pnpm run --parallel -F !web-components dev",
     "dev:docs": "pnpm -F docs... --parallel dev",
     "dev:storybook": "pnpm -F storybook... --parallel dev",
-    "flow-spec": "oas-flow-spec",
     "lint": "oas-lint",
     "release": "pnpm build && changeset publish",
     "test": "vitest run --project=@optiaxiom/globals --project=@optiaxiom/react"

@@ -22,7 +22,7 @@ import { getDocs } from "../src/index.mjs";
 /**
  * @type {Record<string, ComponentConfig>}
  */
-const FLOW_COMPONENT_CONFIG = {
+const BLOCK_COMPONENT_CONFIG = {
   Alert: {
     allowedProps: ["children", "intent"],
   },
@@ -81,15 +81,15 @@ const FLOW_COMPONENT_CONFIG = {
 };
 
 /**
- * Main function to generate the complete Flow document spec
- * @returns {JSONSchema7} Complete JSON Schema for Flow documents
+ * Main function to generate the complete Adaptive Block document spec
+ * @returns {JSONSchema7} Complete JSON Schema for Block documents
  */
 function generate() {
   const docs = getDocs();
 
   return {
     $schema: "http://json-schema.org/draft-07/schema#",
-    definitions: Object.entries(FLOW_COMPONENT_CONFIG).reduce(
+    definitions: Object.entries(BLOCK_COMPONENT_CONFIG).reduce(
       (
         /** @type {Record<string, JSONSchema7Definition>} */ definitions,
         [componentName, { allowedProps }],
@@ -106,7 +106,7 @@ function generate() {
         /** @type {Record<string, JSONSchema7Definition>} */
         const properties = {
           $type: {
-            const: `Flow.${componentName}`,
+            const: `Block.${componentName}`,
           },
         };
         const required = ["$type"];
@@ -129,24 +129,26 @@ function generate() {
           }
         }
 
-        const flowComponentRef = { $ref: `#/definitions/Flow${componentName}` };
+        const blockComponentRef = {
+          $ref: `#/definitions/Block${componentName}`,
+        };
 
-        definitions[`Flow${componentName}`] = {
+        definitions[`Block${componentName}`] = {
           additionalProperties: false,
           properties,
           required,
           type: "object",
         };
 
-        const flowNode = definitions["FlowNode"];
+        const blockNode = definitions["BlockNode"];
         if (
-          flowNode &&
-          typeof flowNode === "object" &&
-          Array.isArray(flowNode.anyOf)
+          blockNode &&
+          typeof blockNode === "object" &&
+          Array.isArray(blockNode.anyOf)
         ) {
-          flowNode.anyOf.push(flowComponentRef);
+          blockNode.anyOf.push(blockComponentRef);
 
-          const arrayType = flowNode.anyOf[0];
+          const arrayType = blockNode.anyOf[0];
           if (
             arrayType &&
             typeof arrayType === "object" &&
@@ -156,19 +158,19 @@ function generate() {
             "anyOf" in arrayType.items &&
             Array.isArray(arrayType.items.anyOf)
           ) {
-            arrayType.items.anyOf.push(flowComponentRef);
+            arrayType.items.anyOf.push(blockComponentRef);
           }
         }
 
         return definitions;
       },
       {
-        FlowAction: {
+        BlockAction: {
           additionalProperties: false,
           properties: {
-            $type: { const: "Flow.Action" },
+            $type: { const: "Block.Action" },
             children: {
-              $ref: "#/definitions/FlowNode",
+              $ref: "#/definitions/BlockNode",
               description: "Button label",
             },
             name: {
@@ -180,12 +182,12 @@ function generate() {
           required: ["$type", "name", "children"],
           type: "object",
         },
-        FlowCancelAction: {
+        BlockCancelAction: {
           additionalProperties: false,
           properties: {
-            $type: { const: "Flow.CancelAction" },
+            $type: { const: "Block.CancelAction" },
             children: {
-              $ref: "#/definitions/FlowNode",
+              $ref: "#/definitions/BlockNode",
               description: "Button label (e.g., 'Cancel', 'Reject')",
             },
             placeholder: {
@@ -196,16 +198,16 @@ function generate() {
           required: ["$type"],
           type: "object",
         },
-        FlowDocument: {
+        BlockDocument: {
           additionalProperties: false,
           properties: {
-            $type: { const: "Flow.Document" },
+            $type: { const: "Block.Document" },
             actions: {
               description: "Actions available for this document",
               items: {
                 anyOf: [
-                  { $ref: "#/definitions/FlowAction" },
-                  { $ref: "#/definitions/FlowCancelAction" },
+                  { $ref: "#/definitions/BlockAction" },
+                  { $ref: "#/definitions/BlockCancelAction" },
                 ],
               },
               type: "array",
@@ -216,13 +218,13 @@ function generate() {
               type: "boolean",
             },
             children: {
-              anyOf: [{ $ref: "#/definitions/FlowNode" }],
+              anyOf: [{ $ref: "#/definitions/BlockNode" }],
             },
           },
           required: ["$type", "children"],
           type: "object",
         },
-        FlowNode: {
+        BlockNode: {
           anyOf: [
             {
               items: {
@@ -241,11 +243,11 @@ function generate() {
             { type: "null" },
           ],
           description:
-            "A Flow node can be a string, number, boolean, null, a single element, or an array of these types (similar to ReactNode)",
+            "A Block node can be a string, number, boolean, null, a single element, or an array of these types (similar to ReactNode)",
         },
       },
     ),
-    title: "Opal Flow Document Specification",
+    title: "Opal Block Document Specification",
   };
 }
 
@@ -257,7 +259,7 @@ function generate() {
 function parsePropTypeToJsonSchema({ description, name, type }) {
   if (type.raw === "ReactNode") {
     return {
-      $ref: "#/definitions/FlowNode",
+      $ref: "#/definitions/BlockNode",
       description: description,
     };
   } else if (type.name === "enum") {
@@ -346,6 +348,6 @@ function parsePropTypeToJsonSchema({ description, name, type }) {
   );
 }
 
-const outputPath = path.join(process.cwd(), "flow-document-spec.json");
+const outputPath = path.join(process.cwd(), "block-document-spec.json");
 fs.writeFileSync(outputPath, JSON.stringify(generate(), null, 2) + "\n");
 console.log(`Generated: ${outputPath}`);
