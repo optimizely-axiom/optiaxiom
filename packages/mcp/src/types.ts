@@ -40,6 +40,8 @@ export interface ComponentInfo {
   props: Record<string, PropDefinition>;
   /** Version this component was introduced */
   since?: string;
+  /** Names of sprinkle props supported (see Box for full definitions) */
+  sprinkleProps?: string[];
 }
 
 /**
