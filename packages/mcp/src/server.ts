@@ -68,6 +68,10 @@ server.registerTool(
 - DataTable is built with TanGroup Table and offers a much better developer experience
 - Only use Table directly for very specific custom table layouts
 
+📦 SPRINKLE PROPS: Most components support style props (bg, p, m, gap, etc.).
+These are listed in the "sprinkleProps" array. For full prop definitions
+(types, values, descriptions), call get_component("Box").
+
 ---
 
 Get detailed information about a specific Axiom component including props, examples, and usage guidelines. Pay special attention to the component description and prop defaults, as Axiom components may have different defaults than standard HTML/CSS. NOTE: All Axiom components are installed via the same npm package: npm install @optiaxiom/react`,
@@ -186,6 +190,10 @@ Common invalid names from Figma:
 ⚠️ TABLE COMPONENTS:
 - Prefer DataTable over Table for displaying tabular data
 - DataTable includes sorting, pagination, and filtering out of the box
+
+📦 SPRINKLE PROPS: Most components support style props (bg, p, m, gap, etc.).
+These are listed in the "sprinkleProps" array. For full prop definitions
+(types, values, descriptions), call get_component("Box").
 
 ---
 
