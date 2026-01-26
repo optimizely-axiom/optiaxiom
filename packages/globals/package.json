@@ -30,8 +30,8 @@
   ],
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "rm -rf dist && NODE_ENV=production rollup -c",
-    "dev": "rm -rf dist && rollup -cw",
+    "build": "rm -rf dist && NODE_ENV=production rolldown -c",
+    "dev": "rm -rf dist && rolldown -wc",
     "test": "vitest"
   },
   "dependencies": {
