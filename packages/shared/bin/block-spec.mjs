@@ -81,6 +81,59 @@ const BLOCK_COMPONENT_CONFIG = {
 };
 
 /**
+ * @type {Record<string, Record<string, JSONSchema7Definition>>}
+ */
+const PROP_TYPE_OVERRIDES = {
+  Range: {
+    marks: {
+      description: "The marks to display on the range steps.",
+      items: {
+        anyOf: [
+          { type: "number" },
+          {
+            additionalProperties: false,
+            properties: {
+              label: {
+                description: "The label for the mark",
+                type: "string",
+              },
+              value: {
+                description: "The value for the mark",
+                type: "number",
+              },
+            },
+            required: ["label", "value"],
+            type: "object",
+          },
+        ],
+      },
+      type: "array",
+    },
+  },
+  Select: {
+    options: {
+      description: "The select items/options we want to render.",
+      items: {
+        additionalProperties: false,
+        properties: {
+          label: {
+            description: "String representation of items",
+            type: "string",
+          },
+          value: {
+            description: "Return a unique key for each item",
+            type: "string",
+          },
+        },
+        required: ["label", "value"],
+        type: "object",
+      },
+      type: "array",
+    },
+  },
+};
+
+/**
  * Main function to generate the complete Adaptive Block document spec
  * @returns {JSONSchema7} Complete JSON Schema for Block documents
  */
@@ -116,7 +169,15 @@ function generate() {
             continue;
           }
 
-          properties[prop.name] = parsePropTypeToJsonSchema(prop);
+          if (
+            componentName in PROP_TYPE_OVERRIDES &&
+            prop.name in PROP_TYPE_OVERRIDES[componentName]
+          ) {
+            properties[prop.name] =
+              PROP_TYPE_OVERRIDES[componentName][prop.name];
+          } else {
+            properties[prop.name] = parsePropTypeToJsonSchema(prop);
+          }
           if (prop.required) {
             required.push(prop.name);
           }
@@ -282,28 +343,6 @@ function parsePropTypeToJsonSchema({ description, name, type }) {
       !type.raw?.startsWith("ConditionalStyleWithResponsiveArray<") &&
       type.raw?.includes("[]")
     ) {
-      if (type.raw?.includes("SelectOption[]")) {
-        return {
-          description: description,
-          items: {
-            additionalProperties: false,
-            properties: {
-              label: {
-                description: "String representation of items",
-                type: "string",
-              },
-              value: {
-                description: "Return a unique key for each item",
-                type: "string",
-              },
-            },
-            required: ["label", "value"],
-            type: "object",
-          },
-          type: "array",
-        };
-      }
-
       return {
         description: description,
         type: "array",
