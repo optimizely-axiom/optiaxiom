@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 import fs from "fs";
+import { resolveRefs } from "json-refs";
+import { jsonSchemaToZod } from "json-schema-to-zod";
 import path from "path";
 
 import { getDocs } from "../src/index.mjs";
@@ -23,21 +25,6 @@ import { getDocs } from "../src/index.mjs";
  * @type {Record<string, ComponentConfig>}
  */
 const BLOCK_COMPONENT_CONFIG = {
-  Alert: {
-    allowedProps: ["children", "intent"],
-  },
-  Badge: {
-    allowedProps: ["children", "intent", "size"],
-  },
-  Box: {
-    allowedProps: ["children"],
-  },
-  Checkbox: {
-    allowedProps: ["children", "name"],
-  },
-  Code: {
-    allowedProps: ["children"],
-  },
   Field: {
     allowedProps: ["children", "description", "info", "label", "required"],
   },
@@ -53,6 +40,7 @@ const BLOCK_COMPONENT_CONFIG = {
       "addonBefore",
       "appearance",
       "name",
+      "onValueChange",
       "placeholder",
       "type",
     ],
@@ -64,19 +52,29 @@ const BLOCK_COMPONENT_CONFIG = {
     allowedProps: ["marks", "max", "min", "step"],
   },
   Select: {
-    allowedProps: ["children", "options"],
+    allowedProps: ["children", "name", "options"],
+  },
+  SelectContent: {
+    allowedProps: [],
+  },
+  SelectTrigger: {
+    allowedProps: ["children"],
   },
   Separator: {
     allowedProps: [],
-  },
-  Switch: {
-    allowedProps: ["children", "name"],
   },
   Text: {
     allowedProps: ["children"],
   },
   Textarea: {
-    allowedProps: ["maxRows", "name", "placeholder", "resize", "rows"],
+    allowedProps: [
+      "maxRows",
+      "name",
+      "onValueChange",
+      "placeholder",
+      "resize",
+      "rows",
+    ],
   },
 };
 
@@ -84,6 +82,12 @@ const BLOCK_COMPONENT_CONFIG = {
  * @type {Record<string, Record<string, JSONSchema7Definition>>}
  */
 const PROP_TYPE_OVERRIDES = {
+  Input: {
+    onValueChange: {
+      $ref: "#/definitions/BlockEventHandler",
+      description: "Action triggered when input value changes",
+    },
+  },
   Range: {
     marks: {
       description: "The marks to display on the range steps.",
@@ -135,13 +139,24 @@ const PROP_TYPE_OVERRIDES = {
       type: "array",
     },
   },
+  SelectContent: {
+    children: {
+      $ref: "#/definitions/BlockNode",
+    },
+  },
+  Textarea: {
+    onValueChange: {
+      $ref: "#/definitions/BlockEventHandler",
+      description: "Action triggered when textarea value changes",
+    },
+  },
 };
 
 /**
  * Main function to generate the complete Adaptive Block document spec
  * @returns {JSONSchema7} Complete JSON Schema for Block documents
  */
-function generate() {
+function generateJsonSchema() {
   const docs = getDocs();
 
   return {
@@ -253,6 +268,20 @@ function generate() {
               description:
                 "Whether element is visible (default: true). Elements with $visible: false are hidden until shown by an action.",
               type: "boolean",
+            },
+            appearance: {
+              anyOf: [
+                { const: "default" },
+                { const: "danger" },
+                { const: "primary" },
+                { const: "subtle" },
+                { const: "danger-outline" },
+                { const: "default-opal" },
+                { const: "inverse" },
+                { const: "primary-opal" },
+              ],
+              description:
+                "Control the appearance by selecting between the different button types.",
             },
             children: {
               $ref: "#/definitions/BlockNode",
@@ -387,6 +416,79 @@ function generate() {
 }
 
 /**
+ * Convert JSON Schema to Zod schema TypeScript code
+ * @param {JSONSchema7} schema - The JSON Schema
+ * @returns {Promise<string>} TypeScript code with Zod schemas
+ */
+async function generateZodSchemas(schema) {
+  const lines = [];
+
+  lines.push("// This file is auto-generated. Do not edit manually.");
+  lines.push("// Run `pnpm block-spec` to regenerate.");
+  lines.push("");
+  lines.push('import { z } from "zod";');
+  lines.push("");
+  lines.push("type BlockNode = string | BlockElement | BlockElement[]");
+  lines.push("");
+
+  const components = [];
+
+  for (const [name, def] of Object.entries(schema.definitions || {})) {
+    if (typeof def !== "object") continue;
+    if (name === "BlockNode") continue;
+
+    const schemaName = `${name}Schema`;
+    if (!["BlockDocument", "BlockEventHandler"].includes(name)) {
+      components.push(name);
+    }
+
+    lines.push(
+      jsonSchemaToZod(
+        (
+          await resolveRefs({
+            ...def,
+            definitions: {
+              ...schema.definitions,
+              BlockNode: {},
+            },
+          })
+        ).resolved,
+        {
+          module: "esm",
+          name: schemaName,
+          noImport: true,
+        },
+      ),
+    );
+    if (name === "BlockEventHandler") {
+      lines.push(`export type ${name} = z.infer<typeof ${schemaName}>;`);
+    } else {
+      lines.push(
+        `export type ${name} = Omit<z.infer<typeof ${schemaName}>, "children"> & { children?: BlockNode };`,
+      );
+      lines.push(
+        `export type ${name}Props = Omit<z.infer<typeof ${schemaName}>, "$id" | "$type" | "$visible">;`,
+      );
+    }
+    lines.push("");
+  }
+
+  lines.push(
+    'export const BlockElementSchema = z.discriminatedUnion("$type", [' +
+      components.map((component) => `${component}Schema`).join(", ") +
+      "]);",
+  );
+  lines.push(
+    "type BlockElement = " +
+      components.map((component) => component).join(" | ") +
+      ";",
+  );
+  lines.push("");
+
+  return lines.join("\n");
+}
+
+/**
  * Convert TypeScript type info to JSON Schema type definition
  * @param {Prop} prop - The prop from react-docgen-typescript
  * @returns {JSONSchema7Definition} JSON Schema property definition
@@ -461,6 +563,17 @@ function parsePropTypeToJsonSchema({ description, name, type }) {
   );
 }
 
-const outputPath = path.join(process.cwd(), "block-document-spec.json");
-fs.writeFileSync(outputPath, JSON.stringify(generate(), null, 2) + "\n");
-console.log(`Generated: ${outputPath}`);
+// Generate JSON Schema
+const jsonSchema = generateJsonSchema();
+const jsonOutputPath = path.join(process.cwd(), "block-document-spec.json");
+fs.writeFileSync(jsonOutputPath, JSON.stringify(jsonSchema, null, 2) + "\n");
+console.log(`Generated: ${jsonOutputPath}`);
+
+// Generate Zod schemas
+const zodSchemas = await generateZodSchemas(jsonSchema);
+const zodOutputPath = path.join(
+  process.cwd(),
+  "packages/react/src/block-document/schemas.ts",
+);
+fs.writeFileSync(zodOutputPath, zodSchemas);
+console.log(`Generated: ${zodOutputPath}`);
