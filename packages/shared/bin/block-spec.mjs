@@ -258,17 +258,12 @@ function generate() {
               $ref: "#/definitions/BlockNode",
               description: "Button label",
             },
-            name: {
-              description:
-                "Unique identifier for this action (e.g., 'submit', 'confirm', 'create')",
-              type: "string",
-            },
             onClick: {
               $ref: "#/definitions/BlockEventHandler",
               description: "Action triggered when button is clicked",
             },
           },
-          required: ["$type", "name", "children"],
+          required: ["$type", "children"],
           type: "object",
         },
         BlockCancelAction: {
