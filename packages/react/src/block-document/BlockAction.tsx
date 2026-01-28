@@ -1,38 +1,26 @@
-import type { ReactNode } from "react";
-
-import type { BlockActionElement } from "./types";
+import type { BlockActionProps } from "./schemas";
 
 import { Button } from "../button";
+import { useBlockDocumentContext } from "./BlockDocumentContext";
+import { BlockElement } from "./BlockElement";
 
-export type BlockActionProps = Omit<
-  BlockActionElement,
-  "$type" | "children"
-> & {
-  /**
-   * Button label content
-   */
-  children: ReactNode;
-  /**
-   * Callback when the action button is clicked
-   */
-  onClick?: () => void;
-};
+export function BlockAction({ children, onClick, ...props }: BlockActionProps) {
+  const { onEvent } = useBlockDocumentContext("@optiaxiom/react/BlockAction");
 
-export function BlockAction({
-  appearance = "primary-opal",
-  children,
-  name,
-  onClick,
-}: BlockActionProps) {
   return (
     <Button
-      appearance={appearance}
-      data-action-name={name}
       justifyContent="center"
-      onClick={onClick}
+      onClick={() => {
+        if (!onClick) {
+          return;
+        }
+
+        onEvent(onClick);
+      }}
       size="lg"
+      {...props}
     >
-      {children}
+      {children && <BlockElement element={children} />}
     </Button>
   );
 }

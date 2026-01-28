@@ -1,22 +1,13 @@
-import type { ReactNode } from "react";
-
-import type { BlockHeadingElement } from "./types";
+import type { BlockHeadingProps } from "./schemas";
 
 import { Heading } from "../heading";
+import { BlockElement } from "./BlockElement";
 
-export type BlockHeadingProps = Omit<
-  BlockHeadingElement,
-  "$type" | "children"
-> & {
-  /**
-   * Heading content
-   */
-  children: ReactNode;
-};
-
-export function BlockHeading({ children, level = 2 }: BlockHeadingProps) {
+export function BlockHeading({ children, ...props }: BlockHeadingProps) {
   return (
-    <Heading level={String(level) as "1" | "2" | "3" | "4"}>{children}</Heading>
+    <Heading {...props}>
+      {children && <BlockElement element={children} />}
+    </Heading>
   );
 }
 
