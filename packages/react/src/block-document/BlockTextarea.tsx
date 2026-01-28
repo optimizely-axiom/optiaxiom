@@ -23,13 +23,13 @@ export function BlockTextarea({
 }: BlockTextareaProps) {
   return (
     <Textarea
+      defaultValue={value || ""}
       id={name}
       name={name}
       onChange={(e) => onChange?.(e.target.value)}
       placeholder={placeholder}
       readOnly={readOnly}
       rows={rows}
-      value={value || ""}
     />
   );
 }
