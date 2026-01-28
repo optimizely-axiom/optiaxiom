@@ -13,7 +13,6 @@ import type { BlockDocumentElement, BlockElement } from "./types";
 
 import { Box } from "../box";
 import { Card } from "../card";
-import { Flex } from "../flex";
 import { Text } from "../text";
 import { BlockDocumentElementSchema, BlockElementSchema } from "./schemas";
 
@@ -54,22 +53,20 @@ export type ValidationSuccess<T> = {
 export function renderFallbackDisplay(data: unknown): ReactNode {
   return (
     <Card flexDirection="column" gap="16" w="full">
-      <Flex flexDirection="column" gap="8">
-        <Text color="fg.secondary" fontSize="sm">
-          Unable to render Block document. Document data:
-        </Text>
-        <Box
-          asChild
-          bg="bg.secondary"
-          fontSize="xs"
-          overflow="auto"
-          p="12"
-          rounded="sm"
-          style={{ maxHeight: "400px", whiteSpace: "pre-wrap" }}
-        >
-          <pre>{JSON.stringify(data, null, 2)}</pre>
-        </Box>
-      </Flex>
+      <Text color="fg.secondary">
+        Unable to render Block document. Document data:
+      </Text>
+      <Box
+        asChild
+        bg="bg.secondary"
+        fontSize="sm"
+        overflow="auto"
+        p="12"
+        rounded="sm"
+        w="full"
+      >
+        <pre>{JSON.stringify(data, null, 2)}</pre>
+      </Box>
     </Card>
   );
 }

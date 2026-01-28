@@ -33,14 +33,18 @@ export function BlockCancelAction({
 
   return (
     <form onSubmit={handleSubmit}>
-      <Flex flexDirection="row" gap="8">
+      <Flex flexDirection="row" gap="16" w="full">
         <Input
           aria-label="Cancellation reason"
           onChange={(e) => setInputValue(e.target.value)}
           placeholder="Enter your response..."
+          size="lg"
           value={inputValue}
+          w="full"
         />
-        <Button type="submit">{children}</Button>
+        <Button size="lg" type="submit">
+          {children}
+        </Button>
       </Flex>
     </form>
   );

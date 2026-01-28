@@ -30,9 +30,6 @@ export const Basic: Story = {
       ],
       version: "1.0",
     },
-    onAction: (name: string) => console.log("Action:", name),
-    onDataChange: (data: Record<string, any>) =>
-      console.log("Form data:", data),
   },
 };
 
@@ -43,7 +40,7 @@ export const FormWithInputs: Story = {
       actions: [
         {
           $type: "Block.Action",
-          appearance: "primary",
+          appearance: "primary-opal",
           children: "Create Test Plan",
           name: "submit",
         },
@@ -133,63 +130,16 @@ export const WithGroups: Story = {
       ],
       version: "1.0",
     },
-    onAction: (name: string) => console.log("Action:", name),
-    onDataChange: (data: Record<string, any>) =>
-      console.log("Form data:", data),
   },
 };
 
-export const WithActions: Story = {
+export const WithAllActions: Story = {
   args: {
     element: {
       $type: "Block.Document",
       actions: [
         {
           $type: "Block.Action",
-          appearance: "primary",
-          children: "Submit",
-          name: "submit",
-        },
-        {
-          $type: "Block.Action",
-          appearance: "subtle",
-          children: "Cancel",
-          name: "cancel",
-        },
-        {
-          $type: "Block.Action",
-          appearance: "danger",
-          children: "Delete",
-          name: "delete",
-        },
-      ],
-      children: [
-        {
-          $type: "Block.Heading",
-          children: "Document with Actions",
-          level: 2,
-        },
-        {
-          $type: "Block.Text",
-          children: "This document demonstrates different action types.",
-        },
-      ],
-      version: "1.0",
-    },
-    onAction: (name: string) => console.log("Action clicked:", name),
-    onDataChange: (data: Record<string, any>) =>
-      console.log("Form data:", data),
-  },
-};
-
-export const WithCancelAction: Story = {
-  args: {
-    element: {
-      $type: "Block.Document",
-      actions: [
-        {
-          $type: "Block.Action",
-          appearance: "primary",
           children: "Approve",
           name: "approve",
         },
@@ -207,38 +157,6 @@ export const WithCancelAction: Story = {
         {
           $type: "Block.Text",
           children: "Would you like to approve the proposed changes?",
-        },
-      ],
-      version: "1.0",
-    },
-    onAction: (name: string) => console.log("Action:", name),
-    onCancelAction: (text: string) => console.log("Cancel with text:", text),
-    onDataChange: (data: Record<string, any>) =>
-      console.log("Form data:", data),
-  },
-};
-
-export const CancelActionOnly: Story = {
-  args: {
-    element: {
-      $type: "Block.Document",
-      actions: [
-        {
-          $type: "Block.CancelAction",
-          children: "Cancel",
-        },
-      ],
-      children: [
-        {
-          $type: "Block.Heading",
-          children: "Cancel Action Only",
-          level: 2,
-        },
-        {
-          $type: "Block.Text",
-          children:
-            "This document has only a CancelAction button without any regular actions.",
-          color: "secondary",
         },
       ],
       version: "1.0",
@@ -292,56 +210,6 @@ export const ReadonlyMode: Story = {
   },
 };
 
-export const BlockingDocument: Story = {
-  args: {
-    element: {
-      $type: "Block.Document",
-      actions: [
-        {
-          $type: "Block.Action",
-          appearance: "primary",
-          children: "Confirm",
-          name: "confirm",
-        },
-        {
-          $type: "Block.Action",
-          appearance: "subtle",
-          children: "Cancel",
-          name: "cancel",
-        },
-      ],
-      blocking: true,
-      children: [
-        {
-          $type: "Block.Heading",
-          children: "Blocking Document",
-          level: 2,
-        },
-        {
-          $type: "Block.Text",
-          children:
-            "This is a blocking document. When rendered in the chat, it will hide the main prompt.",
-          color: "secondary",
-        },
-        {
-          $type: "Block.Field",
-          children: {
-            $type: "Block.Input",
-            name: "reason",
-            placeholder: "Enter reason...",
-          },
-          label: "Reason",
-          required: true,
-        },
-      ],
-      version: "1.0",
-    },
-    onAction: (name: string) => console.log("Action:", name),
-    onDataChange: (data: Record<string, any>) =>
-      console.log("Form data:", data),
-  },
-};
-
 export const ComplexForm: Story = {
   args: {
     element: {
@@ -349,13 +217,13 @@ export const ComplexForm: Story = {
       actions: [
         {
           $type: "Block.Action",
-          appearance: "primary",
+          appearance: "primary-opal",
           children: "Create Test Plan",
           name: "create",
         },
         {
           $type: "Block.Action",
-          appearance: "subtle",
+          appearance: "default-opal",
           children: "Save as Draft",
           name: "save_draft",
         },
@@ -442,7 +310,6 @@ export const InvalidDocumentFallback: Story = {
       ],
       version: "1.0",
     },
-    onAction: (name: string) => console.log("Action:", name),
   },
   parameters: {
     docs: {

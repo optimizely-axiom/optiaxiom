@@ -190,7 +190,7 @@ export function BlockDocumentRenderer({
     if (readonly) return null;
 
     return (
-      <Flex flexDirection="row" gap="8">
+      <Flex gap="16" w="full">
         {actions.map((action, index) => {
           if (action.$type === "Block.Action") {
             return (
