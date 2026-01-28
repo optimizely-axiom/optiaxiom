@@ -129,7 +129,16 @@ export {
  */
 export const BlockActionElementSchema = z.object({
   $type: z.literal("Block.Action"),
-  appearance: z.enum(["danger", "default", "primary", "subtle"]).optional(),
+  appearance: z
+    .enum([
+      "danger",
+      "default",
+      "primary",
+      "subtle",
+      "primary-opal",
+      "default-opal",
+    ])
+    .optional(),
   children: BlockNodeSchema,
   name: z.string().min(1, { message: "Action name cannot be empty" }),
 });

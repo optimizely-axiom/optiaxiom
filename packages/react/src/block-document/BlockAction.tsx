@@ -19,13 +19,19 @@ export type BlockActionProps = Omit<
 };
 
 export function BlockAction({
-  appearance = "default",
+  appearance = "primary-opal",
   children,
   name,
   onClick,
 }: BlockActionProps) {
   return (
-    <Button appearance={appearance} data-action-name={name} onClick={onClick}>
+    <Button
+      appearance={appearance}
+      data-action-name={name}
+      justifyContent="center"
+      onClick={onClick}
+      size="lg"
+    >
       {children}
     </Button>
   );

@@ -12,7 +12,13 @@ export type BlockActionElement = {
   /**
    * Visual appearance of the action button
    */
-  appearance?: "danger" | "default" | "primary" | "subtle";
+  appearance?:
+    | "danger"
+    | "default"
+    | "default-opal"
+    | "primary"
+    | "primary-opal"
+    | "subtle";
   /**
    * Button label content
    */
