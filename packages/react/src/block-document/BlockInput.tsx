@@ -22,12 +22,13 @@ export function BlockInput({
 }: BlockInputProps) {
   return (
     <Input
+      defaultValue={value || ""}
       id={name}
       name={name}
       onChange={(e) => onChange?.(e.target.value)}
       placeholder={placeholder}
       readOnly={readOnly}
-      value={value || ""}
+      size="lg"
     />
   );
 }
