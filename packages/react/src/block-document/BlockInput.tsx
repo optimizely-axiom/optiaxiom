@@ -1,34 +1,26 @@
-import type { BlockInputElement } from "./types";
+import type { BlockInputProps } from "./schemas";
 
 import { Input } from "../input";
+import { useBlockDocumentContext } from "./BlockDocumentContext";
 
-export type BlockInputProps = Omit<BlockInputElement, "$type"> & {
-  /**
-   * Callback when the input value changes
-   */
-  onChange?: (value: string) => void;
-  /**
-   * Whether the input is read-only
-   */
-  readOnly?: boolean;
-};
+export function BlockInput({ onValueChange, ...props }: BlockInputProps) {
+  const { data, onDataChange, onEvent, readOnly } = useBlockDocumentContext(
+    "@optiaxiom/react/BlockInput",
+  );
 
-export function BlockInput({
-  name,
-  onChange,
-  placeholder,
-  readOnly,
-  value,
-}: BlockInputProps) {
   return (
     <Input
-      defaultValue={value || ""}
-      id={name}
-      name={name}
-      onChange={(e) => onChange?.(e.target.value)}
-      placeholder={placeholder}
+      {...props}
+      onValueChange={(value) => {
+        if (props.name) {
+          onDataChange?.(props.name, value);
+        }
+        if (onValueChange) {
+          onEvent(onValueChange, value);
+        }
+      }}
       readOnly={readOnly}
-      size="lg"
+      value={props.name ? data[props.name] : ""}
     />
   );
 }

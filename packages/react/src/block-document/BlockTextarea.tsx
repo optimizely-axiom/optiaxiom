@@ -1,35 +1,26 @@
-import type { BlockTextareaElement } from "./types";
+import type { BlockTextareaProps } from "./schemas";
 
 import { Textarea } from "../textarea";
+import { useBlockDocumentContext } from "./BlockDocumentContext";
 
-export type BlockTextareaProps = Omit<BlockTextareaElement, "$type"> & {
-  /**
-   * Callback when the textarea value changes
-   */
-  onChange?: (value: string) => void;
-  /**
-   * Whether the textarea is read-only
-   */
-  readOnly?: boolean;
-};
+export function BlockTextarea({ onValueChange, ...props }: BlockTextareaProps) {
+  const { data, onDataChange, onEvent, readOnly } = useBlockDocumentContext(
+    "@optiaxiom/react/BlockTextarea",
+  );
 
-export function BlockTextarea({
-  name,
-  onChange,
-  placeholder,
-  readOnly,
-  rows,
-  value,
-}: BlockTextareaProps) {
   return (
     <Textarea
-      defaultValue={value || ""}
-      id={name}
-      name={name}
-      onChange={(e) => onChange?.(e.target.value)}
-      placeholder={placeholder}
+      {...props}
+      onValueChange={(value) => {
+        if (props.name) {
+          onDataChange?.(props.name, value);
+        }
+        if (onValueChange) {
+          onEvent(onValueChange, value);
+        }
+      }}
       readOnly={readOnly}
-      rows={rows}
+      value={props.name ? data[props.name] : undefined}
     />
   );
 }
