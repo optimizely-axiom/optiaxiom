@@ -159,6 +159,16 @@ const PROP_TYPE_OVERRIDES = {
 function generateJsonSchema() {
   const docs = getDocs();
 
+  // Extract all sprinkle props once to create a shared definition
+  const sprinkleProps = new Map();
+  for (const doc of docs) {
+    for (const prop of doc.props) {
+      if (prop.sprinkle && !sprinkleProps.has(prop.name)) {
+        sprinkleProps.set(prop.name, parsePropTypeToJsonSchema(prop));
+      }
+    }
+  }
+
   return {
     $schema: "http://json-schema.org/draft-07/schema#",
     definitions: Object.entries(BLOCK_COMPONENT_CONFIG).reduce(
@@ -204,6 +214,11 @@ function generateJsonSchema() {
           ) {
             properties[prop.name] =
               PROP_TYPE_OVERRIDES[componentName][prop.name];
+          } else if (prop.sprinkle) {
+            // Reference the shared sprinkle prop definition
+            properties[prop.name] = {
+              $ref: `#/definitions/SprinkleProp_${prop.name}`,
+            };
           } else {
             properties[prop.name] = parsePropTypeToJsonSchema(prop);
           }
@@ -255,6 +270,13 @@ function generateJsonSchema() {
         return definitions;
       },
       {
+        // Add shared sprinkle prop definitions
+        ...Object.fromEntries(
+          Array.from(sprinkleProps.entries()).map(([name, schema]) => [
+            `SprinkleProp_${name}`,
+            schema,
+          ]),
+        ),
         BlockAction: {
           additionalProperties: false,
           properties: {
@@ -431,35 +453,79 @@ async function generateZodSchemas(schema) {
   lines.push("type BlockNode = string | BlockElement | BlockElement[]");
   lines.push("");
 
+  // First, generate Zod schemas for sprinkle props as reusable constants
+  lines.push("// Shared sprinkle prop schemas");
+  const sprinkleSchemas = new Map();
+  for (const [name, def] of Object.entries(schema.definitions || {})) {
+    if (typeof def !== "object") continue;
+    if (!name.startsWith("SprinkleProp_")) continue;
+
+    const propName = name.replace("SprinkleProp_", "");
+    const schemaVarName = `${propName}SprinkleSchema`;
+
+    const zodCode = jsonSchemaToZod(def, {
+      module: "esm",
+      name: schemaVarName,
+      noImport: true,
+    });
+
+    lines.push(zodCode);
+    lines.push("");
+    sprinkleSchemas.set(name, schemaVarName);
+  }
+
   const components = [];
 
   for (const [name, def] of Object.entries(schema.definitions || {})) {
     if (typeof def !== "object") continue;
-    if (name === "BlockNode") continue;
+    if (name === "BlockNode" || name.startsWith("SprinkleProp_")) continue;
 
     const schemaName = `${name}Schema`;
     if (!["BlockDocument", "BlockEventHandler"].includes(name)) {
       components.push(name);
     }
 
-    lines.push(
-      jsonSchemaToZod(
-        (
-          await resolveRefs({
-            ...def,
-            definitions: {
-              ...schema.definitions,
-              BlockNode: {},
-            },
-          })
-        ).resolved,
-        {
-          module: "esm",
-          name: schemaName,
-          noImport: true,
-        },
+    // Create a custom definitions object that excludes sprinkle props
+    const definitionsWithoutSprinkles = Object.fromEntries(
+      Object.entries(schema.definitions || {}).filter(
+        ([key]) => !key.startsWith("SprinkleProp_"),
       ),
     );
+
+    let zodCode = jsonSchemaToZod(
+      (
+        await resolveRefs({
+          ...def,
+          definitions: {
+            ...definitionsWithoutSprinkles,
+            BlockNode: {},
+          },
+        })
+      ).resolved,
+      {
+        module: "esm",
+        name: schemaName,
+        noImport: true,
+      },
+    );
+
+    // Build a map of sprinkle prop names to their schema variable names
+    const sprinkleMap = new Map();
+    for (const [sprinkleName, schemaVarName] of sprinkleSchemas) {
+      const propName = sprinkleName.replace("SprinkleProp_", "");
+      sprinkleMap.set(propName, schemaVarName);
+    }
+
+    // Replace z.any() with sprinkle schema references for sprinkle props
+    // Pattern: "propName": z.any() -> "propName": propNameSprinkleSchema
+    zodCode = zodCode.replace(/"(\w+)":\s*z\.any\(\)/g, (match, propName) => {
+      if (sprinkleMap.has(propName)) {
+        return `"${propName}": ${sprinkleMap.get(propName)}`;
+      }
+      return match;
+    });
+
+    lines.push(zodCode);
     if (name === "BlockEventHandler") {
       lines.push(`export type ${name} = z.infer<typeof ${schemaName}>;`);
     } else {
