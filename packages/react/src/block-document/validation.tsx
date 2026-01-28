@@ -14,7 +14,12 @@ import type { BlockDocumentElement, BlockElement } from "./types";
 import { Box } from "../box";
 import { Card } from "../card";
 import { Text } from "../text";
-import { BlockDocumentElementSchema, BlockElementSchema } from "./schemas";
+import {
+  BlockActionDataSchema,
+  BlockDocumentElementSchema,
+  BlockElementSchema,
+  BlockNodeSchema,
+} from "./schemas";
 
 // ============================================================================
 // Types
@@ -72,7 +77,10 @@ export function renderFallbackDisplay(data: unknown): ReactNode {
 }
 
 /**
- * Validates a complete Block document
+ * Validates a complete Block document with partial rendering support
+ *
+ * Pre-filters invalid children and actions to enable graceful degradation.
+ * Valid elements render even when some siblings are invalid.
  *
  * @param element - The document to validate (unknown type for safety)
  * @returns Validation result with typed data or error details
@@ -88,10 +96,47 @@ export function renderFallbackDisplay(data: unknown): ReactNode {
 export function validateBlockDocument(
   element: unknown,
 ): ValidationResult<BlockDocumentElement> {
-  const result = BlockDocumentElementSchema.safeParse(element);
+  // First check if element has basic document structure
+  if (
+    !element ||
+    typeof element !== "object" ||
+    !("$type" in element) ||
+    element.$type !== "Block.Document"
+  ) {
+    const error = new z.ZodError([
+      {
+        code: "custom",
+        message: "Invalid Block.Document structure",
+        path: [],
+      },
+    ]);
+    logValidationError("Block.Document", error, element);
+    return { error, success: false };
+  }
+
+  // Create a deep copy to avoid mutating the original element
+  const documentData = structuredClone(element) as Record<string, unknown>;
+
+  if (Array.isArray(documentData.children)) {
+    documentData.children = filterValidItems(
+      documentData.children,
+      BlockNodeSchema,
+      "Block.Document child",
+    );
+  }
+
+  if (Array.isArray(documentData.actions)) {
+    documentData.actions = filterValidItems(
+      documentData.actions,
+      BlockActionDataSchema,
+      "Block.Document action",
+    );
+  }
+
+  const result = BlockDocumentElementSchema.safeParse(documentData);
 
   if (!result.success) {
-    logValidationError("Block.Document", result.error, element);
+    logValidationError("Block.Document", result.error, documentData);
     return { error: result.error, success: false };
   }
 
@@ -134,6 +179,39 @@ export function validateBlockElement(
 // ============================================================================
 // Fallback Display
 // ============================================================================
+
+/**
+ * Filters an array of items, keeping only those that pass schema validation
+ *
+ * Invalid items are logged but not included in the result, enabling
+ * graceful degradation and partial rendering.
+ *
+ * @param items - Array of items to validate
+ * @param schema - Zod schema to validate each item against
+ * @param contextPrefix - Context description for error logging (e.g., "Block.Document child")
+ * @returns Array containing only valid items
+ */
+function filterValidItems<T>(
+  items: unknown[],
+  schema: z.ZodType<T>,
+  contextPrefix: string,
+): unknown[] {
+  const validItems: unknown[] = [];
+  items.forEach((item, index) => {
+    const result = schema.safeParse(item);
+    if (result.success) {
+      validItems.push(item);
+    } else {
+      // Log but don't fail - graceful degradation
+      logValidationError(
+        `${contextPrefix} at index ${index}`,
+        result.error,
+        item,
+      );
+    }
+  });
+  return validItems;
+}
 
 /**
  * Logs validation errors to console for monitoring

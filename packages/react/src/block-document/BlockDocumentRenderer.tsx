@@ -30,11 +30,9 @@ export function BlockDocumentRenderer({
   onDataChange,
   readonly = false,
 }: BlockDocumentRendererProps) {
-  // Validate document immediately
   const validationResult = validateBlockDocument(element);
 
   if (!validationResult.success) {
-    // Complete failure: show fallback display
     return renderFallbackDisplay(element);
   }
 
@@ -82,11 +80,9 @@ export function BlockDocumentRenderer({
   };
 
   const renderElement = (el: unknown, index: number): ReactNode => {
-    // Validate element before rendering
     const validationResult = validateBlockElement(el, index);
 
     if (!validationResult.success) {
-      // Graceful degradation: skip this element, continue with siblings
       return null;
     }
 
