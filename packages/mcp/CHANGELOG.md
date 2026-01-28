@@ -1,5 +1,12 @@
 # @optiaxiom/mcp
 
+## 0.2.1
+
+### Patch Changes
+
+- 3814f9f: optimize prop output to reduce token usage for end users
+- 71bf7f3: add new icons
+
 ## 0.2.0
 
 ### Minor Changes
