@@ -116,6 +116,10 @@ const PROP_TYPE_OVERRIDES = {
       items: {
         additionalProperties: false,
         properties: {
+          execute: {
+            $ref: "#/definitions/BlockEventHandler",
+            description: "Action triggered when this option is selected",
+          },
           label: {
             description: "String representation of items",
             type: "string",
@@ -158,8 +162,18 @@ function generate() {
 
         /** @type {Record<string, JSONSchema7Definition>} */
         const properties = {
+          $id: {
+            description:
+              "Unique identifier for targeting by actions (e.g., setVisibility)",
+            type: "string",
+          },
           $type: {
             const: `Block.${componentName}`,
+          },
+          $visible: {
+            description:
+              "Whether element is visible (default: true). Elements with $visible: false are hidden until shown by an action.",
+            type: "boolean",
           },
         };
         const required = ["$type"];
@@ -229,7 +243,17 @@ function generate() {
         BlockAction: {
           additionalProperties: false,
           properties: {
+            $id: {
+              description:
+                "Unique identifier for targeting by actions (e.g., setVisibility)",
+              type: "string",
+            },
             $type: { const: "Block.Action" },
+            $visible: {
+              description:
+                "Whether element is visible (default: true). Elements with $visible: false are hidden until shown by an action.",
+              type: "boolean",
+            },
             children: {
               $ref: "#/definitions/BlockNode",
               description: "Button label",
@@ -239,6 +263,10 @@ function generate() {
                 "Unique identifier for this action (e.g., 'submit', 'confirm', 'create')",
               type: "string",
             },
+            onClick: {
+              $ref: "#/definitions/BlockEventHandler",
+              description: "Action triggered when button is clicked",
+            },
           },
           required: ["$type", "name", "children"],
           type: "object",
@@ -246,7 +274,17 @@ function generate() {
         BlockCancelAction: {
           additionalProperties: false,
           properties: {
+            $id: {
+              description:
+                "Unique identifier for targeting by actions (e.g., setVisibility)",
+              type: "string",
+            },
             $type: { const: "Block.CancelAction" },
+            $visible: {
+              description:
+                "Whether element is visible (default: true). Elements with $visible: false are hidden until shown by an action.",
+              type: "boolean",
+            },
             children: {
               $ref: "#/definitions/BlockNode",
               description: "Button label (e.g., 'Cancel', 'Reject')",
@@ -284,6 +322,47 @@ function generate() {
           },
           required: ["$type", "children"],
           type: "object",
+        },
+        BlockEventHandler: {
+          anyOf: [
+            {
+              additionalProperties: false,
+              description: "Server-side tool call",
+              properties: {
+                tool: {
+                  description: "Name of registered tool to call",
+                  type: "string",
+                },
+              },
+              required: ["tool"],
+              type: "object",
+            },
+            {
+              additionalProperties: false,
+              description: "Client-side setVisibility action",
+              properties: {
+                action: {
+                  const: "setVisibility",
+                  description: "Set visibility of target elements",
+                },
+                params: {
+                  additionalProperties: { type: "boolean" },
+                  description:
+                    "Map of element IDs to visibility state (e.g., { 'step-2': true, 'step-1': false })",
+                  type: "object",
+                },
+                when: {
+                  description:
+                    "Optional regex pattern - action only executes if value matches",
+                  type: "string",
+                },
+              },
+              required: ["action", "params"],
+              type: "object",
+            },
+          ],
+          description:
+            "Handler for user interactions - either a tool call or client-side action",
         },
         BlockNode: {
           anyOf: [
