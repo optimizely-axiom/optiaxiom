@@ -320,3 +320,95 @@ export const InvalidDocumentFallback: Story = {
     },
   },
 };
+
+export const PartialRenderingWithErrors: Story = {
+  args: {
+    element: {
+      $type: "Block.Document",
+      actions: [
+        {
+          $type: "Block.Action",
+          appearance: "primary-opal",
+          children: "Valid Submit",
+          name: "submit",
+        },
+        {
+          $type: "Block.InvalidAction",
+          children: "This action should be skipped",
+          name: "invalid",
+        } as any,
+        {
+          $type: "Block.Action",
+          appearance: "default-opal",
+          children: "Valid Cancel",
+          name: "cancel",
+        },
+      ],
+      children: [
+        {
+          $type: "Block.Heading",
+          children: "Partial Rendering Demo",
+          level: 2,
+        },
+        {
+          $type: "Block.Text",
+          children:
+            "This document contains both valid and invalid elements. Valid elements render, invalid ones are skipped.",
+        },
+        {
+          $type: "Block.InvalidElement",
+          content: "This invalid element should be skipped",
+        } as any,
+        {
+          $type: "Block.Field",
+          children: {
+            $type: "Block.Input",
+            name: "valid_field",
+            placeholder: "This is a valid input",
+          },
+          label: "Valid Field",
+        },
+        {
+          $type: "Block.Text",
+          // Missing children property - invalid
+        } as any,
+        {
+          $type: "Block.Group",
+          children: [
+            {
+              $type: "Block.Text",
+              children: "Valid text in a group",
+            },
+            {
+              $type: "Block.UnknownType",
+              data: "This should be skipped",
+            } as any,
+            {
+              $type: "Block.Text",
+              children: "Another valid text",
+            },
+          ],
+          flexDirection: "vertical",
+          gap: "md",
+        },
+        {
+          $type: "Block.Text",
+          children: "Check the console for validation errors",
+          color: "secondary",
+        },
+      ],
+      version: "1.0",
+    },
+    onAction: (name: string) => console.log("Action:", name),
+    onDataChange: (data: Record<string, unknown>) =>
+      console.log("Form data:", data),
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Demonstrates partial rendering with graceful degradation. Invalid elements are skipped and logged to the console, while valid elements render normally. This allows documents with validation errors to still be partially usable.",
+      },
+    },
+  },
+};
