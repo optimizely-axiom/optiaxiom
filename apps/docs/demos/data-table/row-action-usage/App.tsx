@@ -10,6 +10,7 @@ export function App() {
   const table = useReactTable({
     columns,
     data,
+    enableRowSelection: false,
     getCoreRowModel: getCoreRowModel(),
   });
   return (
