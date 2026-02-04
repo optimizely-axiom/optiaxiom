@@ -85,16 +85,47 @@ export const DataTableRow = forwardRef<HTMLTableRowElement, DataTableRowProps>(
         data-focus-visible={focusManaged ? "" : undefined}
         data-selected={row.getIsSelected() ? "" : undefined}
         onClick={(event) => {
-          if (selector && getAssociatedControl(event) !== selector.current) {
-            table.setRowSelection({ [row.id]: true });
+          if (!(event.target instanceof Element)) {
+            return;
+          }
+
+          if (isPortalClick(event)) {
+            return;
+          }
+
+          if (isInteractiveElement(event)) {
+            return;
+          }
+
+          if (row.getCanSelect()) {
+            if (selector && getAssociatedControl(event) !== selector.current) {
+              table.setRowSelection({ [row.id]: true });
+            }
+          } else if (!primary?.ref.current?.contains(event.target)) {
+            primary?.ref.current?.click();
           }
         }}
         onDoubleClick={(event) => {
+          // Only use double-click for primary action when row is selectable
+          // (otherwise single-click already triggers it)
           if (
+            !row.getCanSelect() ||
             !primary ||
-            (event.target instanceof Element &&
-              primary.ref.current?.contains(event.target))
+            !(event.target instanceof Element)
           ) {
+            return;
+          }
+
+          if (isPortalClick(event)) {
+            return;
+          }
+
+          if (isInteractiveElement(event)) {
+            return;
+          }
+
+          // Don't trigger if they double-clicked the primary action itself
+          if (primary.ref.current?.contains(event.target)) {
             return;
           }
 
@@ -221,4 +252,27 @@ const getAssociatedControl = (event: MouseEvent) => {
     }
   }
   return;
+};
+
+// Interactive element check: don't trigger row action if user clicked
+// on a button, link, input, etc. (or their children like icons/text)
+const isInteractiveElement = (event: MouseEvent) => {
+  if (!(event.target instanceof Element)) {
+    return false;
+  }
+
+  const interactive = event.target.closest(
+    'a, button, input, select, textarea, [contenteditable="true"], [role="button"], [role="link"]',
+  );
+
+  return interactive && interactive !== event.currentTarget;
+};
+
+// Portal check: if click target isn't in the row DOM tree, ignore it
+// This handles clicks in menus, popovers, etc. that are portalled outside
+const isPortalClick = (event: MouseEvent) => {
+  return (
+    event.target instanceof Element &&
+    !event.currentTarget.contains(event.target)
+  );
 };
