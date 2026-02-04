@@ -1,5 +1,13 @@
 # @optiaxiom/react
 
+## 1.9.1
+
+### Patch Changes
+
+- e03dc3a: allow passthrough of additional properties in block schemas
+- 1383009: allow single-click to trigger primary action on non-selectable rows
+- 5212103: fix disclosure chevron direction
+
 ## 1.9.0
 
 ### Minor Changes
