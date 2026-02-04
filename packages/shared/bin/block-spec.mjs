@@ -79,84 +79,11 @@ const BLOCK_COMPONENT_CONFIG = {
 };
 
 /**
- * @type {Record<string, Record<string, JSONSchema7Definition>>}
- */
-const PROP_TYPE_OVERRIDES = {
-  Input: {
-    onValueChange: {
-      $ref: "#/definitions/BlockEventHandler",
-      description: "Action triggered when input value changes",
-    },
-  },
-  Range: {
-    marks: {
-      description: "The marks to display on the range steps.",
-      items: {
-        anyOf: [
-          { type: "number" },
-          {
-            additionalProperties: false,
-            properties: {
-              label: {
-                description: "The label for the mark",
-                type: "string",
-              },
-              value: {
-                description: "The value for the mark",
-                type: "number",
-              },
-            },
-            required: ["label", "value"],
-            type: "object",
-          },
-        ],
-      },
-      type: "array",
-    },
-  },
-  Select: {
-    options: {
-      description: "The select items/options we want to render.",
-      items: {
-        additionalProperties: false,
-        properties: {
-          execute: {
-            $ref: "#/definitions/BlockEventHandler",
-            description: "Action triggered when this option is selected",
-          },
-          label: {
-            description: "String representation of items",
-            type: "string",
-          },
-          value: {
-            description: "Return a unique key for each item",
-            type: "string",
-          },
-        },
-        required: ["label", "value"],
-        type: "object",
-      },
-      type: "array",
-    },
-  },
-  SelectContent: {
-    children: {
-      $ref: "#/definitions/BlockNode",
-    },
-  },
-  Textarea: {
-    onValueChange: {
-      $ref: "#/definitions/BlockEventHandler",
-      description: "Action triggered when textarea value changes",
-    },
-  },
-};
-
-/**
  * Main function to generate the complete Adaptive Block document spec
+ * @param {boolean} [additionalProperties=false] - Whether to allow additional properties in the schema
  * @returns {JSONSchema7} Complete JSON Schema for Block documents
  */
-function generateJsonSchema() {
+function generateJsonSchema(additionalProperties = false) {
   const docs = getDocs();
 
   // Extract all sprinkle props once to create a shared definition
@@ -168,6 +95,8 @@ function generateJsonSchema() {
       }
     }
   }
+
+  const PROP_TYPE_OVERRIDES = getPropTypeOverrides(additionalProperties);
 
   return {
     $schema: "http://json-schema.org/draft-07/schema#",
@@ -239,7 +168,7 @@ function generateJsonSchema() {
         };
 
         definitions[`Block${componentName}`] = {
-          additionalProperties: false,
+          ...(additionalProperties ? {} : { additionalProperties: false }),
           properties,
           required,
           type: "object",
@@ -278,7 +207,7 @@ function generateJsonSchema() {
           ]),
         ),
         BlockAction: {
-          additionalProperties: false,
+          ...(additionalProperties ? {} : { additionalProperties: false }),
           properties: {
             $id: {
               description:
@@ -318,7 +247,7 @@ function generateJsonSchema() {
           type: "object",
         },
         BlockCancelAction: {
-          additionalProperties: false,
+          ...(additionalProperties ? {} : { additionalProperties: false }),
           properties: {
             $id: {
               description:
@@ -344,7 +273,7 @@ function generateJsonSchema() {
           type: "object",
         },
         BlockDocument: {
-          additionalProperties: false,
+          ...(additionalProperties ? {} : { additionalProperties: false }),
           properties: {
             $type: { const: "Block.Document" },
             actions: {
@@ -372,7 +301,7 @@ function generateJsonSchema() {
         BlockEventHandler: {
           anyOf: [
             {
-              additionalProperties: false,
+              ...(additionalProperties ? {} : { additionalProperties: false }),
               description: "Server-side tool call",
               properties: {
                 tool: {
@@ -384,7 +313,7 @@ function generateJsonSchema() {
               type: "object",
             },
             {
-              additionalProperties: false,
+              ...(additionalProperties ? {} : { additionalProperties: false }),
               description: "Client-side setVisibility action",
               properties: {
                 action: {
@@ -555,6 +484,82 @@ async function generateZodSchemas(schema) {
 }
 
 /**
+ * @returns {Record<string, Record<string, JSONSchema7Definition>>}
+ */
+function getPropTypeOverrides(additionalProperties = false) {
+  return {
+    Input: {
+      onValueChange: {
+        $ref: "#/definitions/BlockEventHandler",
+        description: "Action triggered when input value changes",
+      },
+    },
+    Range: {
+      marks: {
+        description: "The marks to display on the range steps.",
+        items: {
+          anyOf: [
+            { type: "number" },
+            {
+              ...(additionalProperties ? {} : { additionalProperties: false }),
+              properties: {
+                label: {
+                  description: "The label for the mark",
+                  type: "string",
+                },
+                value: {
+                  description: "The value for the mark",
+                  type: "number",
+                },
+              },
+              required: ["label", "value"],
+              type: "object",
+            },
+          ],
+        },
+        type: "array",
+      },
+    },
+    Select: {
+      options: {
+        description: "The select items/options we want to render.",
+        items: {
+          ...(additionalProperties ? {} : { additionalProperties: false }),
+          properties: {
+            execute: {
+              $ref: "#/definitions/BlockEventHandler",
+              description: "Action triggered when this option is selected",
+            },
+            label: {
+              description: "String representation of items",
+              type: "string",
+            },
+            value: {
+              description: "Return a unique key for each item",
+              type: "string",
+            },
+          },
+          required: ["label", "value"],
+          type: "object",
+        },
+        type: "array",
+      },
+    },
+    SelectContent: {
+      children: {
+        $ref: "#/definitions/BlockNode",
+      },
+    },
+    Textarea: {
+      onValueChange: {
+        $ref: "#/definitions/BlockEventHandler",
+        description: "Action triggered when textarea value changes",
+      },
+    },
+  };
+}
+
+/**
  * Convert TypeScript type info to JSON Schema type definition
  * @param {Prop} prop - The prop from react-docgen-typescript
  * @returns {JSONSchema7Definition} JSON Schema property definition
@@ -629,14 +634,12 @@ function parsePropTypeToJsonSchema({ description, name, type }) {
   );
 }
 
-// Generate JSON Schema
-const jsonSchema = generateJsonSchema();
+const jsonSchema = generateJsonSchema(false);
 const jsonOutputPath = path.join(process.cwd(), "block-document-spec.json");
 fs.writeFileSync(jsonOutputPath, JSON.stringify(jsonSchema, null, 2) + "\n");
 console.log(`Generated: ${jsonOutputPath}`);
 
-// Generate Zod schemas
-const zodSchemas = await generateZodSchemas(jsonSchema);
+const zodSchemas = await generateZodSchemas(generateJsonSchema(true));
 const zodOutputPath = path.join(
   process.cwd(),
   "packages/react/src/block-document/schemas.ts",
