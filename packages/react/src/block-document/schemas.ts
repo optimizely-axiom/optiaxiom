@@ -836,71 +836,67 @@ export const zSprinkleSchema = z
     "Set the element's stacking order. Only accepts predefined zIndex tokens (e.g., popover, toast, tooltip) or numeric values (0, 10, 20, 30, auto).",
   );
 
-export const BlockActionSchema = z
-  .object({
-    $id: z
-      .string()
-      .describe(
-        "Unique identifier for targeting by actions (e.g., setVisibility)",
-      )
-      .optional(),
-    $type: z.literal("Block.Action"),
-    $visible: z
-      .boolean()
-      .describe(
-        "Whether element is visible (default: true). Elements with $visible: false are hidden until shown by an action.",
-      )
-      .optional(),
-    appearance: z
-      .union([
-        z.literal("default"),
-        z.literal("danger"),
-        z.literal("primary"),
-        z.literal("subtle"),
-        z.literal("danger-outline"),
-        z.literal("default-opal"),
-        z.literal("inverse"),
-        z.literal("primary-opal"),
-      ])
-      .describe(
-        "Control the appearance by selecting between the different button types.",
-      )
-      .optional(),
-    children: z.any(),
-    onClick: z
-      .union([
-        z
-          .object({
-            tool: z.string().describe("Name of registered tool to call"),
-          })
-          .strict()
-          .describe("Server-side tool call"),
-        z
-          .object({
-            action: z
-              .literal("setVisibility")
-              .describe("Set visibility of target elements"),
-            params: z
-              .record(z.boolean())
-              .describe(
-                "Map of element IDs to visibility state (e.g., { 'step-2': true, 'step-1': false })",
-              ),
-            when: z
-              .string()
-              .describe(
-                "Optional regex pattern - action only executes if value matches",
-              )
-              .optional(),
-          })
-          .strict()
-          .describe("Client-side setVisibility action"),
-      ])
-      .describe(
-        "Handler for user interactions - either a tool call or client-side action",
-      )
-      .optional(),
-  })
-  .strict();
+export const BlockActionSchema = z.object({
+  $id: z
+    .string()
+    .describe(
+      "Unique identifier for targeting by actions (e.g., setVisibility)",
+    )
+    .optional(),
+  $type: z.literal("Block.Action"),
+  $visible: z
+    .boolean()
+    .describe(
+      "Whether element is visible (default: true). Elements with $visible: false are hidden until shown by an action.",
+    )
+    .optional(),
+  appearance: z
+    .union([
+      z.literal("default"),
+      z.literal("danger"),
+      z.literal("primary"),
+      z.literal("subtle"),
+      z.literal("danger-outline"),
+      z.literal("default-opal"),
+      z.literal("inverse"),
+      z.literal("primary-opal"),
+    ])
+    .describe(
+      "Control the appearance by selecting between the different button types.",
+    )
+    .optional(),
+  children: z.any(),
+  onClick: z
+    .union([
+      z
+        .object({
+          tool: z.string().describe("Name of registered tool to call"),
+        })
+        .describe("Server-side tool call"),
+      z
+        .object({
+          action: z
+            .literal("setVisibility")
+            .describe("Set visibility of target elements"),
+          params: z
+            .record(z.boolean())
+            .describe(
+              "Map of element IDs to visibility state (e.g., { 'step-2': true, 'step-1': false })",
+            ),
+          when: z
+            .string()
+            .describe(
+              "Optional regex pattern - action only executes if value matches",
+            )
+            .optional(),
+        })
+        .describe("Client-side setVisibility action"),
+    ])
+    .describe(
+      "Handler for user interactions - either a tool call or client-side action",
+    )
+    .optional(),
+});
 
 export type BlockAction = Omit<
   z.infer<typeof BlockActionSchema>,
@@ -911,28 +907,26 @@ export type BlockActionProps = Omit<
   "$id" | "$type" | "$visible"
 >;
 
-export const BlockCancelActionSchema = z
-  .object({
-    $id: z
-      .string()
-      .describe(
-        "Unique identifier for targeting by actions (e.g., setVisibility)",
-      )
-      .optional(),
-    $type: z.literal("Block.CancelAction"),
-    $visible: z
-      .boolean()
-      .describe(
-        "Whether element is visible (default: true). Elements with $visible: false are hidden until shown by an action.",
-      )
-      .optional(),
-    children: z.any().optional(),
-    placeholder: z
-      .string()
-      .describe("Placeholder text for the text input field")
-      .optional(),
-  })
-  .strict();
+export const BlockCancelActionSchema = z.object({
+  $id: z
+    .string()
+    .describe(
+      "Unique identifier for targeting by actions (e.g., setVisibility)",
+    )
+    .optional(),
+  $type: z.literal("Block.CancelAction"),
+  $visible: z
+    .boolean()
+    .describe(
+      "Whether element is visible (default: true). Elements with $visible: false are hidden until shown by an action.",
+    )
+    .optional(),
+  children: z.any().optional(),
+  placeholder: z
+    .string()
+    .describe("Placeholder text for the text input field")
+    .optional(),
+});
 
 export type BlockCancelAction = Omit<
   z.infer<typeof BlockCancelActionSchema>,
@@ -943,114 +937,104 @@ export type BlockCancelActionProps = Omit<
   "$id" | "$type" | "$visible"
 >;
 
-export const BlockDocumentSchema = z
-  .object({
-    $type: z.literal("Block.Document"),
-    actions: z
-      .array(
-        z.union([
-          z
-            .object({
-              $id: z
-                .string()
-                .describe(
-                  "Unique identifier for targeting by actions (e.g., setVisibility)",
-                )
-                .optional(),
-              $type: z.literal("Block.Action"),
-              $visible: z
-                .boolean()
-                .describe(
-                  "Whether element is visible (default: true). Elements with $visible: false are hidden until shown by an action.",
-                )
-                .optional(),
-              appearance: z
-                .union([
-                  z.literal("default"),
-                  z.literal("danger"),
-                  z.literal("primary"),
-                  z.literal("subtle"),
-                  z.literal("danger-outline"),
-                  z.literal("default-opal"),
-                  z.literal("inverse"),
-                  z.literal("primary-opal"),
-                ])
-                .describe(
-                  "Control the appearance by selecting between the different button types.",
-                )
-                .optional(),
-              children: z.any(),
-              onClick: z
-                .union([
-                  z
-                    .object({
-                      tool: z
-                        .string()
-                        .describe("Name of registered tool to call"),
-                    })
-                    .strict()
-                    .describe("Server-side tool call"),
-                  z
-                    .object({
-                      action: z
-                        .literal("setVisibility")
-                        .describe("Set visibility of target elements"),
-                      params: z
-                        .record(z.boolean())
-                        .describe(
-                          "Map of element IDs to visibility state (e.g., { 'step-2': true, 'step-1': false })",
-                        ),
-                      when: z
-                        .string()
-                        .describe(
-                          "Optional regex pattern - action only executes if value matches",
-                        )
-                        .optional(),
-                    })
-                    .strict()
-                    .describe("Client-side setVisibility action"),
-                ])
-                .describe(
-                  "Handler for user interactions - either a tool call or client-side action",
-                )
-                .optional(),
-            })
-            .strict(),
-          z
-            .object({
-              $id: z
-                .string()
-                .describe(
-                  "Unique identifier for targeting by actions (e.g., setVisibility)",
-                )
-                .optional(),
-              $type: z.literal("Block.CancelAction"),
-              $visible: z
-                .boolean()
-                .describe(
-                  "Whether element is visible (default: true). Elements with $visible: false are hidden until shown by an action.",
-                )
-                .optional(),
-              children: z.any().optional(),
-              placeholder: z
-                .string()
-                .describe("Placeholder text for the text input field")
-                .optional(),
-            })
-            .strict(),
-        ]),
-      )
-      .describe("Actions available for this document")
-      .optional(),
-    blocking: z
-      .boolean()
-      .describe(
-        "If true, hides chat prompt and forces user interaction with document. User can press ESC or close to abandon.",
-      )
-      .optional(),
-    children: z.any(),
-  })
-  .strict();
+export const BlockDocumentSchema = z.object({
+  $type: z.literal("Block.Document"),
+  actions: z
+    .array(
+      z.union([
+        z.object({
+          $id: z
+            .string()
+            .describe(
+              "Unique identifier for targeting by actions (e.g., setVisibility)",
+            )
+            .optional(),
+          $type: z.literal("Block.Action"),
+          $visible: z
+            .boolean()
+            .describe(
+              "Whether element is visible (default: true). Elements with $visible: false are hidden until shown by an action.",
+            )
+            .optional(),
+          appearance: z
+            .union([
+              z.literal("default"),
+              z.literal("danger"),
+              z.literal("primary"),
+              z.literal("subtle"),
+              z.literal("danger-outline"),
+              z.literal("default-opal"),
+              z.literal("inverse"),
+              z.literal("primary-opal"),
+            ])
+            .describe(
+              "Control the appearance by selecting between the different button types.",
+            )
+            .optional(),
+          children: z.any(),
+          onClick: z
+            .union([
+              z
+                .object({
+                  tool: z.string().describe("Name of registered tool to call"),
+                })
+                .describe("Server-side tool call"),
+              z
+                .object({
+                  action: z
+                    .literal("setVisibility")
+                    .describe("Set visibility of target elements"),
+                  params: z
+                    .record(z.boolean())
+                    .describe(
+                      "Map of element IDs to visibility state (e.g., { 'step-2': true, 'step-1': false })",
+                    ),
+                  when: z
+                    .string()
+                    .describe(
+                      "Optional regex pattern - action only executes if value matches",
+                    )
+                    .optional(),
+                })
+                .describe("Client-side setVisibility action"),
+            ])
+            .describe(
+              "Handler for user interactions - either a tool call or client-side action",
+            )
+            .optional(),
+        }),
+        z.object({
+          $id: z
+            .string()
+            .describe(
+              "Unique identifier for targeting by actions (e.g., setVisibility)",
+            )
+            .optional(),
+          $type: z.literal("Block.CancelAction"),
+          $visible: z
+            .boolean()
+            .describe(
+              "Whether element is visible (default: true). Elements with $visible: false are hidden until shown by an action.",
+            )
+            .optional(),
+          children: z.any().optional(),
+          placeholder: z
+            .string()
+            .describe("Placeholder text for the text input field")
+            .optional(),
+        }),
+      ]),
+    )
+    .describe("Actions available for this document")
+    .optional(),
+  blocking: z
+    .boolean()
+    .describe(
+      "If true, hides chat prompt and forces user interaction with document. User can press ESC or close to abandon.",
+    )
+    .optional(),
+  children: z.any(),
+});
 
 export type BlockDocument = Omit<
   z.infer<typeof BlockDocumentSchema>,
@@ -1065,7 +1049,6 @@ export const BlockEventHandlerSchema = z
   .union([
     z
       .object({ tool: z.string().describe("Name of registered tool to call") })
-      .strict()
       .describe("Server-side tool call"),
     z
       .object({
@@ -1084,7 +1067,6 @@ export const BlockEventHandlerSchema = z
           )
           .optional(),
       })
-      .strict()
       .describe("Client-side setVisibility action"),
   ])
   .describe(
@@ -1093,88 +1075,86 @@ export const BlockEventHandlerSchema = z
 
 export type BlockEventHandler = z.infer<typeof BlockEventHandlerSchema>;
 
-export const BlockFieldSchema = z
-  .object({
-    $id: z
-      .string()
-      .describe(
-        "Unique identifier for targeting by actions (e.g., setVisibility)",
-      )
-      .optional(),
-    $type: z.literal("Block.Field"),
-    $visible: z
-      .boolean()
-      .describe(
-        "Whether element is visible (default: true). Elements with $visible: false are hidden until shown by an action.",
-      )
-      .optional(),
-    alignItems: alignItemsSprinkleSchema.optional(),
-    alignSelf: alignSelfSprinkleSchema.optional(),
-    animation: animationSprinkleSchema.optional(),
-    backgroundImage: backgroundImageSprinkleSchema.optional(),
-    bg: bgSprinkleSchema.optional(),
-    border: borderSprinkleSchema.optional(),
-    borderB: borderBSprinkleSchema.optional(),
-    borderColor: borderColorSprinkleSchema.optional(),
-    borderL: borderLSprinkleSchema.optional(),
-    borderR: borderRSprinkleSchema.optional(),
-    borderT: borderTSprinkleSchema.optional(),
-    children: z.any().optional(),
-    color: colorSprinkleSchema.optional(),
-    cursor: cursorSprinkleSchema.optional(),
-    description: z.any().optional(),
-    display: displaySprinkleSchema.optional(),
-    flex: flexSprinkleSchema.optional(),
-    flexDirection: flexDirectionSprinkleSchema.optional(),
-    flexWrap: flexWrapSprinkleSchema.optional(),
-    fontFamily: fontFamilySprinkleSchema.optional(),
-    fontSize: fontSizeSprinkleSchema.optional(),
-    fontWeight: fontWeightSprinkleSchema.optional(),
-    gap: gapSprinkleSchema.optional(),
-    gridColumn: gridColumnSprinkleSchema.optional(),
-    gridTemplateColumns: gridTemplateColumnsSprinkleSchema.optional(),
-    h: hSprinkleSchema.optional(),
-    info: z.any().optional(),
-    justifyContent: justifyContentSprinkleSchema.optional(),
-    justifyItems: justifyItemsSprinkleSchema.optional(),
-    label: z.any().optional(),
-    m: mSprinkleSchema.optional(),
-    maxH: maxHSprinkleSchema.optional(),
-    maxW: maxWSprinkleSchema.optional(),
-    mb: mbSprinkleSchema.optional(),
-    ml: mlSprinkleSchema.optional(),
-    mr: mrSprinkleSchema.optional(),
-    mt: mtSprinkleSchema.optional(),
-    mx: mxSprinkleSchema.optional(),
-    my: mySprinkleSchema.optional(),
-    objectFit: objectFitSprinkleSchema.optional(),
-    overflow: overflowSprinkleSchema.optional(),
-    overflowX: overflowXSprinkleSchema.optional(),
-    overflowY: overflowYSprinkleSchema.optional(),
-    p: pSprinkleSchema.optional(),
-    pb: pbSprinkleSchema.optional(),
-    pl: plSprinkleSchema.optional(),
-    placeItems: placeItemsSprinkleSchema.optional(),
-    pointerEvents: pointerEventsSprinkleSchema.optional(),
-    pr: prSprinkleSchema.optional(),
-    pt: ptSprinkleSchema.optional(),
-    px: pxSprinkleSchema.optional(),
-    py: pySprinkleSchema.optional(),
-    required: z
-      .boolean()
-      .describe("Display an asterisk for required inputs.")
-      .optional(),
-    rounded: roundedSprinkleSchema.optional(),
-    shadow: shadowSprinkleSchema.optional(),
-    size: sizeSprinkleSchema.optional(),
-    textAlign: textAlignSprinkleSchema.optional(),
-    textTransform: textTransformSprinkleSchema.optional(),
-    transition: transitionSprinkleSchema.optional(),
-    w: wSprinkleSchema.optional(),
-    whiteSpace: whiteSpaceSprinkleSchema.optional(),
-    z: zSprinkleSchema.optional(),
-  })
-  .strict();
+export const BlockFieldSchema = z.object({
+  $id: z
+    .string()
+    .describe(
+      "Unique identifier for targeting by actions (e.g., setVisibility)",
+    )
+    .optional(),
+  $type: z.literal("Block.Field"),
+  $visible: z
+    .boolean()
+    .describe(
+      "Whether element is visible (default: true). Elements with $visible: false are hidden until shown by an action.",
+    )
+    .optional(),
+  alignItems: alignItemsSprinkleSchema.optional(),
+  alignSelf: alignSelfSprinkleSchema.optional(),
+  animation: animationSprinkleSchema.optional(),
+  backgroundImage: backgroundImageSprinkleSchema.optional(),
+  bg: bgSprinkleSchema.optional(),
+  border: borderSprinkleSchema.optional(),
+  borderB: borderBSprinkleSchema.optional(),
+  borderColor: borderColorSprinkleSchema.optional(),
+  borderL: borderLSprinkleSchema.optional(),
+  borderR: borderRSprinkleSchema.optional(),
+  borderT: borderTSprinkleSchema.optional(),
+  children: z.any().optional(),
+  color: colorSprinkleSchema.optional(),
+  cursor: cursorSprinkleSchema.optional(),
+  description: z.any().optional(),
+  display: displaySprinkleSchema.optional(),
+  flex: flexSprinkleSchema.optional(),
+  flexDirection: flexDirectionSprinkleSchema.optional(),
+  flexWrap: flexWrapSprinkleSchema.optional(),
+  fontFamily: fontFamilySprinkleSchema.optional(),
+  fontSize: fontSizeSprinkleSchema.optional(),
+  fontWeight: fontWeightSprinkleSchema.optional(),
+  gap: gapSprinkleSchema.optional(),
+  gridColumn: gridColumnSprinkleSchema.optional(),
+  gridTemplateColumns: gridTemplateColumnsSprinkleSchema.optional(),
+  h: hSprinkleSchema.optional(),
+  info: z.any().optional(),
+  justifyContent: justifyContentSprinkleSchema.optional(),
+  justifyItems: justifyItemsSprinkleSchema.optional(),
+  label: z.any().optional(),
+  m: mSprinkleSchema.optional(),
+  maxH: maxHSprinkleSchema.optional(),
+  maxW: maxWSprinkleSchema.optional(),
+  mb: mbSprinkleSchema.optional(),
+  ml: mlSprinkleSchema.optional(),
+  mr: mrSprinkleSchema.optional(),
+  mt: mtSprinkleSchema.optional(),
+  mx: mxSprinkleSchema.optional(),
+  my: mySprinkleSchema.optional(),
+  objectFit: objectFitSprinkleSchema.optional(),
+  overflow: overflowSprinkleSchema.optional(),
+  overflowX: overflowXSprinkleSchema.optional(),
+  overflowY: overflowYSprinkleSchema.optional(),
+  p: pSprinkleSchema.optional(),
+  pb: pbSprinkleSchema.optional(),
+  pl: plSprinkleSchema.optional(),
+  placeItems: placeItemsSprinkleSchema.optional(),
+  pointerEvents: pointerEventsSprinkleSchema.optional(),
+  pr: prSprinkleSchema.optional(),
+  pt: ptSprinkleSchema.optional(),
+  px: pxSprinkleSchema.optional(),
+  py: pySprinkleSchema.optional(),
+  required: z
+    .boolean()
+    .describe("Display an asterisk for required inputs.")
+    .optional(),
+  rounded: roundedSprinkleSchema.optional(),
+  shadow: shadowSprinkleSchema.optional(),
+  size: sizeSprinkleSchema.optional(),
+  textAlign: textAlignSprinkleSchema.optional(),
+  textTransform: textTransformSprinkleSchema.optional(),
+  transition: transitionSprinkleSchema.optional(),
+  w: wSprinkleSchema.optional(),
+  whiteSpace: whiteSpaceSprinkleSchema.optional(),
+  z: zSprinkleSchema.optional(),
+});
 
 export type BlockField = Omit<z.infer<typeof BlockFieldSchema>, "children"> & {
   children?: BlockNode;
@@ -1184,102 +1164,100 @@ export type BlockFieldProps = Omit<
   "$id" | "$type" | "$visible"
 >;
 
-export const BlockGroupSchema = z
-  .object({
-    $id: z
-      .string()
-      .describe(
-        "Unique identifier for targeting by actions (e.g., setVisibility)",
-      )
-      .optional(),
-    $type: z.literal("Block.Group"),
-    $visible: z
-      .boolean()
-      .describe(
-        "Whether element is visible (default: true). Elements with $visible: false are hidden until shown by an action.",
-      )
-      .optional(),
-    alignItems: z
-      .union([
-        z.literal("normal"),
-        z.literal("stretch"),
-        z.literal("center"),
-        z.literal("end"),
-        z.literal("start"),
-      ])
-      .describe(
-        "Set the element's `align-items` CSS property. Defaults to `center` when\n`flexDirection='row'`, and `stretch` when `flexDirection='column'`.",
-      )
-      .optional(),
-    alignSelf: alignSelfSprinkleSchema.optional(),
-    animation: animationSprinkleSchema.optional(),
-    backgroundImage: backgroundImageSprinkleSchema.optional(),
-    bg: bgSprinkleSchema.optional(),
-    border: borderSprinkleSchema.optional(),
-    borderB: borderBSprinkleSchema.optional(),
-    borderColor: borderColorSprinkleSchema.optional(),
-    borderL: borderLSprinkleSchema.optional(),
-    borderR: borderRSprinkleSchema.optional(),
-    borderT: borderTSprinkleSchema.optional(),
-    children: z.any().optional(),
-    color: colorSprinkleSchema.optional(),
-    cursor: cursorSprinkleSchema.optional(),
-    display: displaySprinkleSchema.optional(),
-    flex: flexSprinkleSchema.optional(),
-    flexDirection: z
-      .union([
-        z.literal("column"),
-        z.literal("column-reverse"),
-        z.literal("row"),
-        z.literal("row-reverse"),
-      ])
-      .describe(
-        "Set the element's `flex-direction` CSS property.\n\nDefault: 'row' (CSS standard)",
-      )
-      .optional(),
-    flexWrap: flexWrapSprinkleSchema.optional(),
-    fontFamily: fontFamilySprinkleSchema.optional(),
-    fontSize: fontSizeSprinkleSchema.optional(),
-    fontWeight: fontWeightSprinkleSchema.optional(),
-    gap: gapSprinkleSchema.optional(),
-    gridColumn: gridColumnSprinkleSchema.optional(),
-    gridTemplateColumns: gridTemplateColumnsSprinkleSchema.optional(),
-    h: hSprinkleSchema.optional(),
-    justifyContent: justifyContentSprinkleSchema.optional(),
-    justifyItems: justifyItemsSprinkleSchema.optional(),
-    m: mSprinkleSchema.optional(),
-    maxH: maxHSprinkleSchema.optional(),
-    maxW: maxWSprinkleSchema.optional(),
-    mb: mbSprinkleSchema.optional(),
-    ml: mlSprinkleSchema.optional(),
-    mr: mrSprinkleSchema.optional(),
-    mt: mtSprinkleSchema.optional(),
-    mx: mxSprinkleSchema.optional(),
-    my: mySprinkleSchema.optional(),
-    objectFit: objectFitSprinkleSchema.optional(),
-    overflow: overflowSprinkleSchema.optional(),
-    overflowX: overflowXSprinkleSchema.optional(),
-    overflowY: overflowYSprinkleSchema.optional(),
-    p: pSprinkleSchema.optional(),
-    pb: pbSprinkleSchema.optional(),
-    pl: plSprinkleSchema.optional(),
-    placeItems: placeItemsSprinkleSchema.optional(),
-    pointerEvents: pointerEventsSprinkleSchema.optional(),
-    pr: prSprinkleSchema.optional(),
-    pt: ptSprinkleSchema.optional(),
-    px: pxSprinkleSchema.optional(),
-    py: pySprinkleSchema.optional(),
-    rounded: roundedSprinkleSchema.optional(),
-    shadow: shadowSprinkleSchema.optional(),
-    size: sizeSprinkleSchema.optional(),
-    textAlign: textAlignSprinkleSchema.optional(),
-    textTransform: textTransformSprinkleSchema.optional(),
-    transition: transitionSprinkleSchema.optional(),
-    w: wSprinkleSchema.optional(),
-    whiteSpace: whiteSpaceSprinkleSchema.optional(),
-    z: zSprinkleSchema.optional(),
-  })
-  .strict();
+export const BlockGroupSchema = z.object({
+  $id: z
+    .string()
+    .describe(
+      "Unique identifier for targeting by actions (e.g., setVisibility)",
+    )
+    .optional(),
+  $type: z.literal("Block.Group"),
+  $visible: z
+    .boolean()
+    .describe(
+      "Whether element is visible (default: true). Elements with $visible: false are hidden until shown by an action.",
+    )
+    .optional(),
+  alignItems: z
+    .union([
+      z.literal("normal"),
+      z.literal("stretch"),
+      z.literal("center"),
+      z.literal("end"),
+      z.literal("start"),
+    ])
+    .describe(
+      "Set the element's `align-items` CSS property. Defaults to `center` when\n`flexDirection='row'`, and `stretch` when `flexDirection='column'`.",
+    )
+    .optional(),
+  alignSelf: alignSelfSprinkleSchema.optional(),
+  animation: animationSprinkleSchema.optional(),
+  backgroundImage: backgroundImageSprinkleSchema.optional(),
+  bg: bgSprinkleSchema.optional(),
+  border: borderSprinkleSchema.optional(),
+  borderB: borderBSprinkleSchema.optional(),
+  borderColor: borderColorSprinkleSchema.optional(),
+  borderL: borderLSprinkleSchema.optional(),
+  borderR: borderRSprinkleSchema.optional(),
+  borderT: borderTSprinkleSchema.optional(),
+  children: z.any().optional(),
+  color: colorSprinkleSchema.optional(),
+  cursor: cursorSprinkleSchema.optional(),
+  display: displaySprinkleSchema.optional(),
+  flex: flexSprinkleSchema.optional(),
+  flexDirection: z
+    .union([
+      z.literal("column"),
+      z.literal("column-reverse"),
+      z.literal("row"),
+      z.literal("row-reverse"),
+    ])
+    .describe(
+      "Set the element's `flex-direction` CSS property.\n\nDefault: 'row' (CSS standard)",
+    )
+    .optional(),
+  flexWrap: flexWrapSprinkleSchema.optional(),
+  fontFamily: fontFamilySprinkleSchema.optional(),
+  fontSize: fontSizeSprinkleSchema.optional(),
+  fontWeight: fontWeightSprinkleSchema.optional(),
+  gap: gapSprinkleSchema.optional(),
+  gridColumn: gridColumnSprinkleSchema.optional(),
+  gridTemplateColumns: gridTemplateColumnsSprinkleSchema.optional(),
+  h: hSprinkleSchema.optional(),
+  justifyContent: justifyContentSprinkleSchema.optional(),
+  justifyItems: justifyItemsSprinkleSchema.optional(),
+  m: mSprinkleSchema.optional(),
+  maxH: maxHSprinkleSchema.optional(),
+  maxW: maxWSprinkleSchema.optional(),
+  mb: mbSprinkleSchema.optional(),
+  ml: mlSprinkleSchema.optional(),
+  mr: mrSprinkleSchema.optional(),
+  mt: mtSprinkleSchema.optional(),
+  mx: mxSprinkleSchema.optional(),
+  my: mySprinkleSchema.optional(),
+  objectFit: objectFitSprinkleSchema.optional(),
+  overflow: overflowSprinkleSchema.optional(),
+  overflowX: overflowXSprinkleSchema.optional(),
+  overflowY: overflowYSprinkleSchema.optional(),
+  p: pSprinkleSchema.optional(),
+  pb: pbSprinkleSchema.optional(),
+  pl: plSprinkleSchema.optional(),
+  placeItems: placeItemsSprinkleSchema.optional(),
+  pointerEvents: pointerEventsSprinkleSchema.optional(),
+  pr: prSprinkleSchema.optional(),
+  pt: ptSprinkleSchema.optional(),
+  px: pxSprinkleSchema.optional(),
+  py: pySprinkleSchema.optional(),
+  rounded: roundedSprinkleSchema.optional(),
+  shadow: shadowSprinkleSchema.optional(),
+  size: sizeSprinkleSchema.optional(),
+  textAlign: textAlignSprinkleSchema.optional(),
+  textTransform: textTransformSprinkleSchema.optional(),
+  transition: transitionSprinkleSchema.optional(),
+  w: wSprinkleSchema.optional(),
+  whiteSpace: whiteSpaceSprinkleSchema.optional(),
+  z: zSprinkleSchema.optional(),
+});
 
 export type BlockGroup = Omit<z.infer<typeof BlockGroupSchema>, "children"> & {
   children?: BlockNode;
@@ -1289,87 +1267,85 @@ export type BlockGroupProps = Omit<
   "$id" | "$type" | "$visible"
 >;
 
-export const BlockHeadingSchema = z
-  .object({
-    $id: z
-      .string()
-      .describe(
-        "Unique identifier for targeting by actions (e.g., setVisibility)",
-      )
-      .optional(),
-    $type: z.literal("Block.Heading"),
-    $visible: z
-      .boolean()
-      .describe(
-        "Whether element is visible (default: true). Elements with $visible: false are hidden until shown by an action.",
-      )
-      .optional(),
-    alignItems: alignItemsSprinkleSchema.optional(),
-    alignSelf: alignSelfSprinkleSchema.optional(),
-    animation: animationSprinkleSchema.optional(),
-    backgroundImage: backgroundImageSprinkleSchema.optional(),
-    bg: bgSprinkleSchema.optional(),
-    border: borderSprinkleSchema.optional(),
-    borderB: borderBSprinkleSchema.optional(),
-    borderColor: borderColorSprinkleSchema.optional(),
-    borderL: borderLSprinkleSchema.optional(),
-    borderR: borderRSprinkleSchema.optional(),
-    borderT: borderTSprinkleSchema.optional(),
-    children: z.any().optional(),
-    color: colorSprinkleSchema.optional(),
-    cursor: cursorSprinkleSchema.optional(),
-    display: displaySprinkleSchema.optional(),
-    flex: flexSprinkleSchema.optional(),
-    flexDirection: flexDirectionSprinkleSchema.optional(),
-    flexWrap: flexWrapSprinkleSchema.optional(),
-    fontFamily: fontFamilySprinkleSchema.optional(),
-    fontSize: fontSizeSprinkleSchema.optional(),
-    fontWeight: fontWeightSprinkleSchema.optional(),
-    gap: gapSprinkleSchema.optional(),
-    gridColumn: gridColumnSprinkleSchema.optional(),
-    gridTemplateColumns: gridTemplateColumnsSprinkleSchema.optional(),
-    h: hSprinkleSchema.optional(),
-    justifyContent: justifyContentSprinkleSchema.optional(),
-    justifyItems: justifyItemsSprinkleSchema.optional(),
-    level: z
-      .union([z.literal("2"), z.literal("4"), z.literal("1"), z.literal("3")])
-      .describe(
-        'Heading level (1-4) that controls both the semantic HTML tag and font size.\n- `level="1"`: renders `<h1>` with `fontSize="4xl"` (default)\n- `level="2"`: renders `<h2>` with `fontSize="3xl"`\n- `level="3"`: renders `<h3>` with `fontSize="2xl"`\n- `level="4"`: renders `<h4>` with `fontSize="xl"`\n\nUse `asChild` to decouple the semantic level from visual appearance.',
-      )
-      .optional(),
-    m: mSprinkleSchema.optional(),
-    maxH: maxHSprinkleSchema.optional(),
-    maxW: maxWSprinkleSchema.optional(),
-    mb: mbSprinkleSchema.optional(),
-    ml: mlSprinkleSchema.optional(),
-    mr: mrSprinkleSchema.optional(),
-    mt: mtSprinkleSchema.optional(),
-    mx: mxSprinkleSchema.optional(),
-    my: mySprinkleSchema.optional(),
-    objectFit: objectFitSprinkleSchema.optional(),
-    overflow: overflowSprinkleSchema.optional(),
-    overflowX: overflowXSprinkleSchema.optional(),
-    overflowY: overflowYSprinkleSchema.optional(),
-    p: pSprinkleSchema.optional(),
-    pb: pbSprinkleSchema.optional(),
-    pl: plSprinkleSchema.optional(),
-    placeItems: placeItemsSprinkleSchema.optional(),
-    pointerEvents: pointerEventsSprinkleSchema.optional(),
-    pr: prSprinkleSchema.optional(),
-    pt: ptSprinkleSchema.optional(),
-    px: pxSprinkleSchema.optional(),
-    py: pySprinkleSchema.optional(),
-    rounded: roundedSprinkleSchema.optional(),
-    shadow: shadowSprinkleSchema.optional(),
-    size: sizeSprinkleSchema.optional(),
-    textAlign: textAlignSprinkleSchema.optional(),
-    textTransform: textTransformSprinkleSchema.optional(),
-    transition: transitionSprinkleSchema.optional(),
-    w: wSprinkleSchema.optional(),
-    whiteSpace: whiteSpaceSprinkleSchema.optional(),
-    z: zSprinkleSchema.optional(),
-  })
-  .strict();
+export const BlockHeadingSchema = z.object({
+  $id: z
+    .string()
+    .describe(
+      "Unique identifier for targeting by actions (e.g., setVisibility)",
+    )
+    .optional(),
+  $type: z.literal("Block.Heading"),
+  $visible: z
+    .boolean()
+    .describe(
+      "Whether element is visible (default: true). Elements with $visible: false are hidden until shown by an action.",
+    )
+    .optional(),
+  alignItems: alignItemsSprinkleSchema.optional(),
+  alignSelf: alignSelfSprinkleSchema.optional(),
+  animation: animationSprinkleSchema.optional(),
+  backgroundImage: backgroundImageSprinkleSchema.optional(),
+  bg: bgSprinkleSchema.optional(),
+  border: borderSprinkleSchema.optional(),
+  borderB: borderBSprinkleSchema.optional(),
+  borderColor: borderColorSprinkleSchema.optional(),
+  borderL: borderLSprinkleSchema.optional(),
+  borderR: borderRSprinkleSchema.optional(),
+  borderT: borderTSprinkleSchema.optional(),
+  children: z.any().optional(),
+  color: colorSprinkleSchema.optional(),
+  cursor: cursorSprinkleSchema.optional(),
+  display: displaySprinkleSchema.optional(),
+  flex: flexSprinkleSchema.optional(),
+  flexDirection: flexDirectionSprinkleSchema.optional(),
+  flexWrap: flexWrapSprinkleSchema.optional(),
+  fontFamily: fontFamilySprinkleSchema.optional(),
+  fontSize: fontSizeSprinkleSchema.optional(),
+  fontWeight: fontWeightSprinkleSchema.optional(),
+  gap: gapSprinkleSchema.optional(),
+  gridColumn: gridColumnSprinkleSchema.optional(),
+  gridTemplateColumns: gridTemplateColumnsSprinkleSchema.optional(),
+  h: hSprinkleSchema.optional(),
+  justifyContent: justifyContentSprinkleSchema.optional(),
+  justifyItems: justifyItemsSprinkleSchema.optional(),
+  level: z
+    .union([z.literal("2"), z.literal("4"), z.literal("1"), z.literal("3")])
+    .describe(
+      'Heading level (1-4) that controls both the semantic HTML tag and font size.\n- `level="1"`: renders `<h1>` with `fontSize="4xl"` (default)\n- `level="2"`: renders `<h2>` with `fontSize="3xl"`\n- `level="3"`: renders `<h3>` with `fontSize="2xl"`\n- `level="4"`: renders `<h4>` with `fontSize="xl"`\n\nUse `asChild` to decouple the semantic level from visual appearance.',
+    )
+    .optional(),
+  m: mSprinkleSchema.optional(),
+  maxH: maxHSprinkleSchema.optional(),
+  maxW: maxWSprinkleSchema.optional(),
+  mb: mbSprinkleSchema.optional(),
+  ml: mlSprinkleSchema.optional(),
+  mr: mrSprinkleSchema.optional(),
+  mt: mtSprinkleSchema.optional(),
+  mx: mxSprinkleSchema.optional(),
+  my: mySprinkleSchema.optional(),
+  objectFit: objectFitSprinkleSchema.optional(),
+  overflow: overflowSprinkleSchema.optional(),
+  overflowX: overflowXSprinkleSchema.optional(),
+  overflowY: overflowYSprinkleSchema.optional(),
+  p: pSprinkleSchema.optional(),
+  pb: pbSprinkleSchema.optional(),
+  pl: plSprinkleSchema.optional(),
+  placeItems: placeItemsSprinkleSchema.optional(),
+  pointerEvents: pointerEventsSprinkleSchema.optional(),
+  pr: prSprinkleSchema.optional(),
+  pt: ptSprinkleSchema.optional(),
+  px: pxSprinkleSchema.optional(),
+  py: pySprinkleSchema.optional(),
+  rounded: roundedSprinkleSchema.optional(),
+  shadow: shadowSprinkleSchema.optional(),
+  size: sizeSprinkleSchema.optional(),
+  textAlign: textAlignSprinkleSchema.optional(),
+  textTransform: textTransformSprinkleSchema.optional(),
+  transition: transitionSprinkleSchema.optional(),
+  w: wSprinkleSchema.optional(),
+  whiteSpace: whiteSpaceSprinkleSchema.optional(),
+  z: zSprinkleSchema.optional(),
+});
 
 export type BlockHeading = Omit<
   z.infer<typeof BlockHeadingSchema>,
@@ -1380,153 +1356,146 @@ export type BlockHeadingProps = Omit<
   "$id" | "$type" | "$visible"
 >;
 
-export const BlockInputSchema = z
-  .object({
-    $id: z
-      .string()
-      .describe(
-        "Unique identifier for targeting by actions (e.g., setVisibility)",
-      )
-      .optional(),
-    $type: z.literal("Block.Input"),
-    $visible: z
-      .boolean()
-      .describe(
-        "Whether element is visible (default: true). Elements with $visible: false are hidden until shown by an action.",
-      )
-      .optional(),
-    addonAfter: z.any().optional(),
-    addonBefore: z.any().optional(),
-    alignItems: alignItemsSprinkleSchema.optional(),
-    alignSelf: alignSelfSprinkleSchema.optional(),
-    animation: animationSprinkleSchema.optional(),
-    appearance: z
-      .union([z.literal("number"), z.literal("default")])
-      .describe("Control the appearance of the input.")
-      .optional(),
-    backgroundImage: backgroundImageSprinkleSchema.optional(),
-    bg: bgSprinkleSchema.optional(),
-    border: borderSprinkleSchema.optional(),
-    borderB: borderBSprinkleSchema.optional(),
-    borderColor: borderColorSprinkleSchema.optional(),
-    borderL: borderLSprinkleSchema.optional(),
-    borderR: borderRSprinkleSchema.optional(),
-    borderT: borderTSprinkleSchema.optional(),
-    color: colorSprinkleSchema.optional(),
-    cursor: cursorSprinkleSchema.optional(),
-    display: displaySprinkleSchema.optional(),
-    flex: flexSprinkleSchema.optional(),
-    flexDirection: flexDirectionSprinkleSchema.optional(),
-    flexWrap: flexWrapSprinkleSchema.optional(),
-    fontFamily: fontFamilySprinkleSchema.optional(),
-    fontSize: fontSizeSprinkleSchema.optional(),
-    fontWeight: fontWeightSprinkleSchema.optional(),
-    gap: gapSprinkleSchema.optional(),
-    gridColumn: gridColumnSprinkleSchema.optional(),
-    gridTemplateColumns: gridTemplateColumnsSprinkleSchema.optional(),
-    h: hSprinkleSchema.optional(),
-    justifyContent: justifyContentSprinkleSchema.optional(),
-    justifyItems: justifyItemsSprinkleSchema.optional(),
-    m: mSprinkleSchema.optional(),
-    maxH: maxHSprinkleSchema.optional(),
-    maxW: maxWSprinkleSchema.optional(),
-    mb: mbSprinkleSchema.optional(),
-    ml: mlSprinkleSchema.optional(),
-    mr: mrSprinkleSchema.optional(),
-    mt: mtSprinkleSchema.optional(),
-    mx: mxSprinkleSchema.optional(),
-    my: mySprinkleSchema.optional(),
-    name: z
-      .string()
-      .describe("The name of the form control element.")
-      .optional(),
-    objectFit: objectFitSprinkleSchema.optional(),
-    onValueChange: z
-      .union([
-        z
-          .object({
-            tool: z.string().describe("Name of registered tool to call"),
-          })
-          .strict()
-          .describe("Server-side tool call"),
-        z
-          .object({
-            action: z
-              .literal("setVisibility")
-              .describe("Set visibility of target elements"),
-            params: z
-              .record(z.boolean())
-              .describe(
-                "Map of element IDs to visibility state (e.g., { 'step-2': true, 'step-1': false })",
-              ),
-            when: z
-              .string()
-              .describe(
-                "Optional regex pattern - action only executes if value matches",
-              )
-              .optional(),
-          })
-          .strict()
-          .describe("Client-side setVisibility action"),
-      ])
-      .describe(
-        "Handler for user interactions - either a tool call or client-side action",
-      )
-      .optional(),
-    overflow: overflowSprinkleSchema.optional(),
-    overflowX: overflowXSprinkleSchema.optional(),
-    overflowY: overflowYSprinkleSchema.optional(),
-    p: pSprinkleSchema.optional(),
-    pb: pbSprinkleSchema.optional(),
-    pl: plSprinkleSchema.optional(),
-    placeholder: z
-      .string()
-      .describe("The placeholder text to use when control has no value.")
-      .optional(),
-    placeItems: placeItemsSprinkleSchema.optional(),
-    pointerEvents: pointerEventsSprinkleSchema.optional(),
-    pr: prSprinkleSchema.optional(),
-    pt: ptSprinkleSchema.optional(),
-    px: pxSprinkleSchema.optional(),
-    py: pySprinkleSchema.optional(),
-    rounded: roundedSprinkleSchema.optional(),
-    shadow: shadowSprinkleSchema.optional(),
-    textAlign: textAlignSprinkleSchema.optional(),
-    textTransform: textTransformSprinkleSchema.optional(),
-    transition: transitionSprinkleSchema.optional(),
-    type: z
-      .union([
-        z.literal("number"),
-        z.literal("color"),
-        z.literal("button"),
-        z.literal("checkbox"),
-        z.literal("radio"),
-        z.literal("hidden"),
-        z.literal("text"),
-        z.literal("reset"),
-        z.literal("range"),
-        z.literal("search"),
-        z.literal("time"),
-        z.literal("image"),
-        z.literal("tel"),
-        z.literal("url"),
-        z.literal("email"),
-        z.literal("date"),
-        z.literal("submit"),
-        z.literal("month"),
-        z.literal("datetime-local"),
-        z.literal("week"),
-        z.literal("file"),
-        z.literal("password"),
-        z.string(),
-      ])
-      .describe("The input type.")
-      .optional(),
-    w: wSprinkleSchema.optional(),
-    whiteSpace: whiteSpaceSprinkleSchema.optional(),
-    z: zSprinkleSchema.optional(),
-  })
-  .strict();
+export const BlockInputSchema = z.object({
+  $id: z
+    .string()
+    .describe(
+      "Unique identifier for targeting by actions (e.g., setVisibility)",
+    )
+    .optional(),
+  $type: z.literal("Block.Input"),
+  $visible: z
+    .boolean()
+    .describe(
+      "Whether element is visible (default: true). Elements with $visible: false are hidden until shown by an action.",
+    )
+    .optional(),
+  addonAfter: z.any().optional(),
+  addonBefore: z.any().optional(),
+  alignItems: alignItemsSprinkleSchema.optional(),
+  alignSelf: alignSelfSprinkleSchema.optional(),
+  animation: animationSprinkleSchema.optional(),
+  appearance: z
+    .union([z.literal("number"), z.literal("default")])
+    .describe("Control the appearance of the input.")
+    .optional(),
+  backgroundImage: backgroundImageSprinkleSchema.optional(),
+  bg: bgSprinkleSchema.optional(),
+  border: borderSprinkleSchema.optional(),
+  borderB: borderBSprinkleSchema.optional(),
+  borderColor: borderColorSprinkleSchema.optional(),
+  borderL: borderLSprinkleSchema.optional(),
+  borderR: borderRSprinkleSchema.optional(),
+  borderT: borderTSprinkleSchema.optional(),
+  color: colorSprinkleSchema.optional(),
+  cursor: cursorSprinkleSchema.optional(),
+  display: displaySprinkleSchema.optional(),
+  flex: flexSprinkleSchema.optional(),
+  flexDirection: flexDirectionSprinkleSchema.optional(),
+  flexWrap: flexWrapSprinkleSchema.optional(),
+  fontFamily: fontFamilySprinkleSchema.optional(),
+  fontSize: fontSizeSprinkleSchema.optional(),
+  fontWeight: fontWeightSprinkleSchema.optional(),
+  gap: gapSprinkleSchema.optional(),
+  gridColumn: gridColumnSprinkleSchema.optional(),
+  gridTemplateColumns: gridTemplateColumnsSprinkleSchema.optional(),
+  h: hSprinkleSchema.optional(),
+  justifyContent: justifyContentSprinkleSchema.optional(),
+  justifyItems: justifyItemsSprinkleSchema.optional(),
+  m: mSprinkleSchema.optional(),
+  maxH: maxHSprinkleSchema.optional(),
+  maxW: maxWSprinkleSchema.optional(),
+  mb: mbSprinkleSchema.optional(),
+  ml: mlSprinkleSchema.optional(),
+  mr: mrSprinkleSchema.optional(),
+  mt: mtSprinkleSchema.optional(),
+  mx: mxSprinkleSchema.optional(),
+  my: mySprinkleSchema.optional(),
+  name: z.string().describe("The name of the form control element.").optional(),
+  objectFit: objectFitSprinkleSchema.optional(),
+  onValueChange: z
+    .union([
+      z
+        .object({
+          tool: z.string().describe("Name of registered tool to call"),
+        })
+        .describe("Server-side tool call"),
+      z
+        .object({
+          action: z
+            .literal("setVisibility")
+            .describe("Set visibility of target elements"),
+          params: z
+            .record(z.boolean())
+            .describe(
+              "Map of element IDs to visibility state (e.g., { 'step-2': true, 'step-1': false })",
+            ),
+          when: z
+            .string()
+            .describe(
+              "Optional regex pattern - action only executes if value matches",
+            )
+            .optional(),
+        })
+        .describe("Client-side setVisibility action"),
+    ])
+    .describe(
+      "Handler for user interactions - either a tool call or client-side action",
+    )
+    .optional(),
+  overflow: overflowSprinkleSchema.optional(),
+  overflowX: overflowXSprinkleSchema.optional(),
+  overflowY: overflowYSprinkleSchema.optional(),
+  p: pSprinkleSchema.optional(),
+  pb: pbSprinkleSchema.optional(),
+  pl: plSprinkleSchema.optional(),
+  placeholder: z
+    .string()
+    .describe("The placeholder text to use when control has no value.")
+    .optional(),
+  placeItems: placeItemsSprinkleSchema.optional(),
+  pointerEvents: pointerEventsSprinkleSchema.optional(),
+  pr: prSprinkleSchema.optional(),
+  pt: ptSprinkleSchema.optional(),
+  px: pxSprinkleSchema.optional(),
+  py: pySprinkleSchema.optional(),
+  rounded: roundedSprinkleSchema.optional(),
+  shadow: shadowSprinkleSchema.optional(),
+  textAlign: textAlignSprinkleSchema.optional(),
+  textTransform: textTransformSprinkleSchema.optional(),
+  transition: transitionSprinkleSchema.optional(),
+  type: z
+    .union([
+      z.literal("number"),
+      z.literal("color"),
+      z.literal("button"),
+      z.literal("checkbox"),
+      z.literal("radio"),
+      z.literal("hidden"),
+      z.literal("text"),
+      z.literal("reset"),
+      z.literal("range"),
+      z.literal("search"),
+      z.literal("time"),
+      z.literal("image"),
+      z.literal("tel"),
+      z.literal("url"),
+      z.literal("email"),
+      z.literal("date"),
+      z.literal("submit"),
+      z.literal("month"),
+      z.literal("datetime-local"),
+      z.literal("week"),
+      z.literal("file"),
+      z.literal("password"),
+      z.string(),
+    ])
+    .describe("The input type.")
+    .optional(),
+  w: wSprinkleSchema.optional(),
+  whiteSpace: whiteSpaceSprinkleSchema.optional(),
+  z: zSprinkleSchema.optional(),
+});
 
 export type BlockInput = Omit<z.infer<typeof BlockInputSchema>, "children"> & {
   children?: BlockNode;
@@ -1536,82 +1505,80 @@ export type BlockInputProps = Omit<
   "$id" | "$type" | "$visible"
 >;
 
-export const BlockLinkSchema = z
-  .object({
-    $id: z
-      .string()
-      .describe(
-        "Unique identifier for targeting by actions (e.g., setVisibility)",
-      )
-      .optional(),
-    $type: z.literal("Block.Link"),
-    $visible: z
-      .boolean()
-      .describe(
-        "Whether element is visible (default: true). Elements with $visible: false are hidden until shown by an action.",
-      )
-      .optional(),
-    alignItems: alignItemsSprinkleSchema.optional(),
-    alignSelf: alignSelfSprinkleSchema.optional(),
-    animation: animationSprinkleSchema.optional(),
-    backgroundImage: backgroundImageSprinkleSchema.optional(),
-    bg: bgSprinkleSchema.optional(),
-    border: borderSprinkleSchema.optional(),
-    borderB: borderBSprinkleSchema.optional(),
-    borderColor: borderColorSprinkleSchema.optional(),
-    borderL: borderLSprinkleSchema.optional(),
-    borderR: borderRSprinkleSchema.optional(),
-    borderT: borderTSprinkleSchema.optional(),
-    children: z.any().optional(),
-    color: colorSprinkleSchema.optional(),
-    cursor: cursorSprinkleSchema.optional(),
-    display: displaySprinkleSchema.optional(),
-    flex: flexSprinkleSchema.optional(),
-    flexDirection: flexDirectionSprinkleSchema.optional(),
-    flexWrap: flexWrapSprinkleSchema.optional(),
-    fontFamily: fontFamilySprinkleSchema.optional(),
-    fontSize: fontSizeSprinkleSchema.optional(),
-    fontWeight: fontWeightSprinkleSchema.optional(),
-    gap: gapSprinkleSchema.optional(),
-    gridColumn: gridColumnSprinkleSchema.optional(),
-    gridTemplateColumns: gridTemplateColumnsSprinkleSchema.optional(),
-    h: hSprinkleSchema.optional(),
-    href: z.string().describe("The link href.").optional(),
-    justifyContent: justifyContentSprinkleSchema.optional(),
-    justifyItems: justifyItemsSprinkleSchema.optional(),
-    m: mSprinkleSchema.optional(),
-    maxH: maxHSprinkleSchema.optional(),
-    maxW: maxWSprinkleSchema.optional(),
-    mb: mbSprinkleSchema.optional(),
-    ml: mlSprinkleSchema.optional(),
-    mr: mrSprinkleSchema.optional(),
-    mt: mtSprinkleSchema.optional(),
-    mx: mxSprinkleSchema.optional(),
-    my: mySprinkleSchema.optional(),
-    objectFit: objectFitSprinkleSchema.optional(),
-    overflow: overflowSprinkleSchema.optional(),
-    overflowX: overflowXSprinkleSchema.optional(),
-    overflowY: overflowYSprinkleSchema.optional(),
-    p: pSprinkleSchema.optional(),
-    pb: pbSprinkleSchema.optional(),
-    pl: plSprinkleSchema.optional(),
-    placeItems: placeItemsSprinkleSchema.optional(),
-    pointerEvents: pointerEventsSprinkleSchema.optional(),
-    pr: prSprinkleSchema.optional(),
-    pt: ptSprinkleSchema.optional(),
-    px: pxSprinkleSchema.optional(),
-    py: pySprinkleSchema.optional(),
-    rounded: roundedSprinkleSchema.optional(),
-    shadow: shadowSprinkleSchema.optional(),
-    size: sizeSprinkleSchema.optional(),
-    textAlign: textAlignSprinkleSchema.optional(),
-    textTransform: textTransformSprinkleSchema.optional(),
-    transition: transitionSprinkleSchema.optional(),
-    w: wSprinkleSchema.optional(),
-    whiteSpace: whiteSpaceSprinkleSchema.optional(),
-    z: zSprinkleSchema.optional(),
-  })
-  .strict();
+export const BlockLinkSchema = z.object({
+  $id: z
+    .string()
+    .describe(
+      "Unique identifier for targeting by actions (e.g., setVisibility)",
+    )
+    .optional(),
+  $type: z.literal("Block.Link"),
+  $visible: z
+    .boolean()
+    .describe(
+      "Whether element is visible (default: true). Elements with $visible: false are hidden until shown by an action.",
+    )
+    .optional(),
+  alignItems: alignItemsSprinkleSchema.optional(),
+  alignSelf: alignSelfSprinkleSchema.optional(),
+  animation: animationSprinkleSchema.optional(),
+  backgroundImage: backgroundImageSprinkleSchema.optional(),
+  bg: bgSprinkleSchema.optional(),
+  border: borderSprinkleSchema.optional(),
+  borderB: borderBSprinkleSchema.optional(),
+  borderColor: borderColorSprinkleSchema.optional(),
+  borderL: borderLSprinkleSchema.optional(),
+  borderR: borderRSprinkleSchema.optional(),
+  borderT: borderTSprinkleSchema.optional(),
+  children: z.any().optional(),
+  color: colorSprinkleSchema.optional(),
+  cursor: cursorSprinkleSchema.optional(),
+  display: displaySprinkleSchema.optional(),
+  flex: flexSprinkleSchema.optional(),
+  flexDirection: flexDirectionSprinkleSchema.optional(),
+  flexWrap: flexWrapSprinkleSchema.optional(),
+  fontFamily: fontFamilySprinkleSchema.optional(),
+  fontSize: fontSizeSprinkleSchema.optional(),
+  fontWeight: fontWeightSprinkleSchema.optional(),
+  gap: gapSprinkleSchema.optional(),
+  gridColumn: gridColumnSprinkleSchema.optional(),
+  gridTemplateColumns: gridTemplateColumnsSprinkleSchema.optional(),
+  h: hSprinkleSchema.optional(),
+  href: z.string().describe("The link href.").optional(),
+  justifyContent: justifyContentSprinkleSchema.optional(),
+  justifyItems: justifyItemsSprinkleSchema.optional(),
+  m: mSprinkleSchema.optional(),
+  maxH: maxHSprinkleSchema.optional(),
+  maxW: maxWSprinkleSchema.optional(),
+  mb: mbSprinkleSchema.optional(),
+  ml: mlSprinkleSchema.optional(),
+  mr: mrSprinkleSchema.optional(),
+  mt: mtSprinkleSchema.optional(),
+  mx: mxSprinkleSchema.optional(),
+  my: mySprinkleSchema.optional(),
+  objectFit: objectFitSprinkleSchema.optional(),
+  overflow: overflowSprinkleSchema.optional(),
+  overflowX: overflowXSprinkleSchema.optional(),
+  overflowY: overflowYSprinkleSchema.optional(),
+  p: pSprinkleSchema.optional(),
+  pb: pbSprinkleSchema.optional(),
+  pl: plSprinkleSchema.optional(),
+  placeItems: placeItemsSprinkleSchema.optional(),
+  pointerEvents: pointerEventsSprinkleSchema.optional(),
+  pr: prSprinkleSchema.optional(),
+  pt: ptSprinkleSchema.optional(),
+  px: pxSprinkleSchema.optional(),
+  py: pySprinkleSchema.optional(),
+  rounded: roundedSprinkleSchema.optional(),
+  shadow: shadowSprinkleSchema.optional(),
+  size: sizeSprinkleSchema.optional(),
+  textAlign: textAlignSprinkleSchema.optional(),
+  textTransform: textTransformSprinkleSchema.optional(),
+  transition: transitionSprinkleSchema.optional(),
+  w: wSprinkleSchema.optional(),
+  whiteSpace: whiteSpaceSprinkleSchema.optional(),
+  z: zSprinkleSchema.optional(),
+});
 
 export type BlockLink = Omit<z.infer<typeof BlockLinkSchema>, "children"> & {
   children?: BlockNode;
@@ -1621,99 +1588,92 @@ export type BlockLinkProps = Omit<
   "$id" | "$type" | "$visible"
 >;
 
-export const BlockRangeSchema = z
-  .object({
-    $id: z
-      .string()
-      .describe(
-        "Unique identifier for targeting by actions (e.g., setVisibility)",
-      )
-      .optional(),
-    $type: z.literal("Block.Range"),
-    $visible: z
-      .boolean()
-      .describe(
-        "Whether element is visible (default: true). Elements with $visible: false are hidden until shown by an action.",
-      )
-      .optional(),
-    alignItems: alignItemsSprinkleSchema.optional(),
-    alignSelf: alignSelfSprinkleSchema.optional(),
-    animation: animationSprinkleSchema.optional(),
-    backgroundImage: backgroundImageSprinkleSchema.optional(),
-    bg: bgSprinkleSchema.optional(),
-    border: borderSprinkleSchema.optional(),
-    borderB: borderBSprinkleSchema.optional(),
-    borderColor: borderColorSprinkleSchema.optional(),
-    borderL: borderLSprinkleSchema.optional(),
-    borderR: borderRSprinkleSchema.optional(),
-    borderT: borderTSprinkleSchema.optional(),
-    color: colorSprinkleSchema.optional(),
-    cursor: cursorSprinkleSchema.optional(),
-    display: displaySprinkleSchema.optional(),
-    flex: flexSprinkleSchema.optional(),
-    flexDirection: flexDirectionSprinkleSchema.optional(),
-    flexWrap: flexWrapSprinkleSchema.optional(),
-    fontFamily: fontFamilySprinkleSchema.optional(),
-    fontSize: fontSizeSprinkleSchema.optional(),
-    fontWeight: fontWeightSprinkleSchema.optional(),
-    gap: gapSprinkleSchema.optional(),
-    gridColumn: gridColumnSprinkleSchema.optional(),
-    gridTemplateColumns: gridTemplateColumnsSprinkleSchema.optional(),
-    h: hSprinkleSchema.optional(),
-    justifyContent: justifyContentSprinkleSchema.optional(),
-    justifyItems: justifyItemsSprinkleSchema.optional(),
-    m: mSprinkleSchema.optional(),
-    marks: z
-      .array(
-        z.union([
-          z.number(),
-          z
-            .object({
-              label: z.string().describe("The label for the mark"),
-              value: z.number().describe("The value for the mark"),
-            })
-            .strict(),
-        ]),
-      )
-      .describe("The marks to display on the range steps.")
-      .optional(),
-    max: z.number().describe("The maximum value for the range.").optional(),
-    maxH: maxHSprinkleSchema.optional(),
-    maxW: maxWSprinkleSchema.optional(),
-    mb: mbSprinkleSchema.optional(),
-    min: z.number().describe("The minimum value for the range.").optional(),
-    ml: mlSprinkleSchema.optional(),
-    mr: mrSprinkleSchema.optional(),
-    mt: mtSprinkleSchema.optional(),
-    mx: mxSprinkleSchema.optional(),
-    my: mySprinkleSchema.optional(),
-    objectFit: objectFitSprinkleSchema.optional(),
-    overflow: overflowSprinkleSchema.optional(),
-    overflowX: overflowXSprinkleSchema.optional(),
-    overflowY: overflowYSprinkleSchema.optional(),
-    p: pSprinkleSchema.optional(),
-    pb: pbSprinkleSchema.optional(),
-    pl: plSprinkleSchema.optional(),
-    placeItems: placeItemsSprinkleSchema.optional(),
-    pointerEvents: pointerEventsSprinkleSchema.optional(),
-    pr: prSprinkleSchema.optional(),
-    pt: ptSprinkleSchema.optional(),
-    px: pxSprinkleSchema.optional(),
-    py: pySprinkleSchema.optional(),
-    rounded: roundedSprinkleSchema.optional(),
-    shadow: shadowSprinkleSchema.optional(),
-    step: z
-      .number()
-      .describe("The stepping interval for the range.")
-      .optional(),
-    textAlign: textAlignSprinkleSchema.optional(),
-    textTransform: textTransformSprinkleSchema.optional(),
-    transition: transitionSprinkleSchema.optional(),
-    w: wSprinkleSchema.optional(),
-    whiteSpace: whiteSpaceSprinkleSchema.optional(),
-    z: zSprinkleSchema.optional(),
-  })
-  .strict();
+export const BlockRangeSchema = z.object({
+  $id: z
+    .string()
+    .describe(
+      "Unique identifier for targeting by actions (e.g., setVisibility)",
+    )
+    .optional(),
+  $type: z.literal("Block.Range"),
+  $visible: z
+    .boolean()
+    .describe(
+      "Whether element is visible (default: true). Elements with $visible: false are hidden until shown by an action.",
+    )
+    .optional(),
+  alignItems: alignItemsSprinkleSchema.optional(),
+  alignSelf: alignSelfSprinkleSchema.optional(),
+  animation: animationSprinkleSchema.optional(),
+  backgroundImage: backgroundImageSprinkleSchema.optional(),
+  bg: bgSprinkleSchema.optional(),
+  border: borderSprinkleSchema.optional(),
+  borderB: borderBSprinkleSchema.optional(),
+  borderColor: borderColorSprinkleSchema.optional(),
+  borderL: borderLSprinkleSchema.optional(),
+  borderR: borderRSprinkleSchema.optional(),
+  borderT: borderTSprinkleSchema.optional(),
+  color: colorSprinkleSchema.optional(),
+  cursor: cursorSprinkleSchema.optional(),
+  display: displaySprinkleSchema.optional(),
+  flex: flexSprinkleSchema.optional(),
+  flexDirection: flexDirectionSprinkleSchema.optional(),
+  flexWrap: flexWrapSprinkleSchema.optional(),
+  fontFamily: fontFamilySprinkleSchema.optional(),
+  fontSize: fontSizeSprinkleSchema.optional(),
+  fontWeight: fontWeightSprinkleSchema.optional(),
+  gap: gapSprinkleSchema.optional(),
+  gridColumn: gridColumnSprinkleSchema.optional(),
+  gridTemplateColumns: gridTemplateColumnsSprinkleSchema.optional(),
+  h: hSprinkleSchema.optional(),
+  justifyContent: justifyContentSprinkleSchema.optional(),
+  justifyItems: justifyItemsSprinkleSchema.optional(),
+  m: mSprinkleSchema.optional(),
+  marks: z
+    .array(
+      z.union([
+        z.number(),
+        z.object({
+          label: z.string().describe("The label for the mark"),
+          value: z.number().describe("The value for the mark"),
+        }),
+      ]),
+    )
+    .describe("The marks to display on the range steps.")
+    .optional(),
+  max: z.number().describe("The maximum value for the range.").optional(),
+  maxH: maxHSprinkleSchema.optional(),
+  maxW: maxWSprinkleSchema.optional(),
+  mb: mbSprinkleSchema.optional(),
+  min: z.number().describe("The minimum value for the range.").optional(),
+  ml: mlSprinkleSchema.optional(),
+  mr: mrSprinkleSchema.optional(),
+  mt: mtSprinkleSchema.optional(),
+  mx: mxSprinkleSchema.optional(),
+  my: mySprinkleSchema.optional(),
+  objectFit: objectFitSprinkleSchema.optional(),
+  overflow: overflowSprinkleSchema.optional(),
+  overflowX: overflowXSprinkleSchema.optional(),
+  overflowY: overflowYSprinkleSchema.optional(),
+  p: pSprinkleSchema.optional(),
+  pb: pbSprinkleSchema.optional(),
+  pl: plSprinkleSchema.optional(),
+  placeItems: placeItemsSprinkleSchema.optional(),
+  pointerEvents: pointerEventsSprinkleSchema.optional(),
+  pr: prSprinkleSchema.optional(),
+  pt: ptSprinkleSchema.optional(),
+  px: pxSprinkleSchema.optional(),
+  py: pySprinkleSchema.optional(),
+  rounded: roundedSprinkleSchema.optional(),
+  shadow: shadowSprinkleSchema.optional(),
+  step: z.number().describe("The stepping interval for the range.").optional(),
+  textAlign: textAlignSprinkleSchema.optional(),
+  textTransform: textTransformSprinkleSchema.optional(),
+  transition: transitionSprinkleSchema.optional(),
+  w: wSprinkleSchema.optional(),
+  whiteSpace: whiteSpaceSprinkleSchema.optional(),
+  z: zSprinkleSchema.optional(),
+});
 
 export type BlockRange = Omit<z.infer<typeof BlockRangeSchema>, "children"> & {
   children?: BlockNode;
@@ -1723,72 +1683,61 @@ export type BlockRangeProps = Omit<
   "$id" | "$type" | "$visible"
 >;
 
-export const BlockSelectSchema = z
-  .object({
-    $id: z
-      .string()
-      .describe(
-        "Unique identifier for targeting by actions (e.g., setVisibility)",
-      )
-      .optional(),
-    $type: z.literal("Block.Select"),
-    $visible: z
-      .boolean()
-      .describe(
-        "Whether element is visible (default: true). Elements with $visible: false are hidden until shown by an action.",
-      )
-      .optional(),
-    children: z.any().optional(),
-    name: z
-      .string()
-      .describe("The name of the inner select element.")
-      .optional(),
-    options: z
-      .array(
-        z
-          .object({
-            execute: z
-              .union([
-                z
-                  .object({
-                    tool: z
-                      .string()
-                      .describe("Name of registered tool to call"),
-                  })
-                  .strict()
-                  .describe("Server-side tool call"),
-                z
-                  .object({
-                    action: z
-                      .literal("setVisibility")
-                      .describe("Set visibility of target elements"),
-                    params: z
-                      .record(z.boolean())
-                      .describe(
-                        "Map of element IDs to visibility state (e.g., { 'step-2': true, 'step-1': false })",
-                      ),
-                    when: z
-                      .string()
-                      .describe(
-                        "Optional regex pattern - action only executes if value matches",
-                      )
-                      .optional(),
-                  })
-                  .strict()
-                  .describe("Client-side setVisibility action"),
-              ])
-              .describe(
-                "Handler for user interactions - either a tool call or client-side action",
-              )
-              .optional(),
-            label: z.string().describe("String representation of items"),
-            value: z.string().describe("Return a unique key for each item"),
-          })
-          .strict(),
-      )
-      .describe("The select items/options we want to render."),
-  })
-  .strict();
+export const BlockSelectSchema = z.object({
+  $id: z
+    .string()
+    .describe(
+      "Unique identifier for targeting by actions (e.g., setVisibility)",
+    )
+    .optional(),
+  $type: z.literal("Block.Select"),
+  $visible: z
+    .boolean()
+    .describe(
+      "Whether element is visible (default: true). Elements with $visible: false are hidden until shown by an action.",
+    )
+    .optional(),
+  children: z.any().optional(),
+  name: z.string().describe("The name of the inner select element.").optional(),
+  options: z
+    .array(
+      z.object({
+        execute: z
+          .union([
+            z
+              .object({
+                tool: z.string().describe("Name of registered tool to call"),
+              })
+              .describe("Server-side tool call"),
+            z
+              .object({
+                action: z
+                  .literal("setVisibility")
+                  .describe("Set visibility of target elements"),
+                params: z
+                  .record(z.boolean())
+                  .describe(
+                    "Map of element IDs to visibility state (e.g., { 'step-2': true, 'step-1': false })",
+                  ),
+                when: z
+                  .string()
+                  .describe(
+                    "Optional regex pattern - action only executes if value matches",
+                  )
+                  .optional(),
+              })
+              .describe("Client-side setVisibility action"),
+          ])
+          .describe(
+            "Handler for user interactions - either a tool call or client-side action",
+          )
+          .optional(),
+        label: z.string().describe("String representation of items"),
+        value: z.string().describe("Return a unique key for each item"),
+      }),
+    )
+    .describe("The select items/options we want to render."),
+});
 
 export type BlockSelect = Omit<
   z.infer<typeof BlockSelectSchema>,
@@ -1799,79 +1748,77 @@ export type BlockSelectProps = Omit<
   "$id" | "$type" | "$visible"
 >;
 
-export const BlockSelectContentSchema = z
-  .object({
-    $id: z
-      .string()
-      .describe(
-        "Unique identifier for targeting by actions (e.g., setVisibility)",
-      )
-      .optional(),
-    $type: z.literal("Block.SelectContent"),
-    $visible: z
-      .boolean()
-      .describe(
-        "Whether element is visible (default: true). Elements with $visible: false are hidden until shown by an action.",
-      )
-      .optional(),
-    alignItems: alignItemsSprinkleSchema.optional(),
-    alignSelf: alignSelfSprinkleSchema.optional(),
-    animation: animationSprinkleSchema.optional(),
-    backgroundImage: backgroundImageSprinkleSchema.optional(),
-    bg: bgSprinkleSchema.optional(),
-    border: borderSprinkleSchema.optional(),
-    borderB: borderBSprinkleSchema.optional(),
-    borderColor: borderColorSprinkleSchema.optional(),
-    borderL: borderLSprinkleSchema.optional(),
-    borderR: borderRSprinkleSchema.optional(),
-    borderT: borderTSprinkleSchema.optional(),
-    color: colorSprinkleSchema.optional(),
-    cursor: cursorSprinkleSchema.optional(),
-    display: displaySprinkleSchema.optional(),
-    flex: flexSprinkleSchema.optional(),
-    flexDirection: flexDirectionSprinkleSchema.optional(),
-    flexWrap: flexWrapSprinkleSchema.optional(),
-    fontFamily: fontFamilySprinkleSchema.optional(),
-    fontSize: fontSizeSprinkleSchema.optional(),
-    fontWeight: fontWeightSprinkleSchema.optional(),
-    gap: gapSprinkleSchema.optional(),
-    gridColumn: gridColumnSprinkleSchema.optional(),
-    gridTemplateColumns: gridTemplateColumnsSprinkleSchema.optional(),
-    h: hSprinkleSchema.optional(),
-    justifyContent: justifyContentSprinkleSchema.optional(),
-    justifyItems: justifyItemsSprinkleSchema.optional(),
-    m: mSprinkleSchema.optional(),
-    maxW: maxWSprinkleSchema.optional(),
-    mb: mbSprinkleSchema.optional(),
-    ml: mlSprinkleSchema.optional(),
-    mr: mrSprinkleSchema.optional(),
-    mt: mtSprinkleSchema.optional(),
-    mx: mxSprinkleSchema.optional(),
-    my: mySprinkleSchema.optional(),
-    objectFit: objectFitSprinkleSchema.optional(),
-    overflow: overflowSprinkleSchema.optional(),
-    overflowX: overflowXSprinkleSchema.optional(),
-    overflowY: overflowYSprinkleSchema.optional(),
-    p: pSprinkleSchema.optional(),
-    pb: pbSprinkleSchema.optional(),
-    pl: plSprinkleSchema.optional(),
-    placeItems: placeItemsSprinkleSchema.optional(),
-    pointerEvents: pointerEventsSprinkleSchema.optional(),
-    pr: prSprinkleSchema.optional(),
-    pt: ptSprinkleSchema.optional(),
-    px: pxSprinkleSchema.optional(),
-    py: pySprinkleSchema.optional(),
-    rounded: roundedSprinkleSchema.optional(),
-    shadow: shadowSprinkleSchema.optional(),
-    size: sizeSprinkleSchema.optional(),
-    textAlign: textAlignSprinkleSchema.optional(),
-    textTransform: textTransformSprinkleSchema.optional(),
-    transition: transitionSprinkleSchema.optional(),
-    w: wSprinkleSchema.optional(),
-    whiteSpace: whiteSpaceSprinkleSchema.optional(),
-    z: zSprinkleSchema.optional(),
-  })
-  .strict();
+export const BlockSelectContentSchema = z.object({
+  $id: z
+    .string()
+    .describe(
+      "Unique identifier for targeting by actions (e.g., setVisibility)",
+    )
+    .optional(),
+  $type: z.literal("Block.SelectContent"),
+  $visible: z
+    .boolean()
+    .describe(
+      "Whether element is visible (default: true). Elements with $visible: false are hidden until shown by an action.",
+    )
+    .optional(),
+  alignItems: alignItemsSprinkleSchema.optional(),
+  alignSelf: alignSelfSprinkleSchema.optional(),
+  animation: animationSprinkleSchema.optional(),
+  backgroundImage: backgroundImageSprinkleSchema.optional(),
+  bg: bgSprinkleSchema.optional(),
+  border: borderSprinkleSchema.optional(),
+  borderB: borderBSprinkleSchema.optional(),
+  borderColor: borderColorSprinkleSchema.optional(),
+  borderL: borderLSprinkleSchema.optional(),
+  borderR: borderRSprinkleSchema.optional(),
+  borderT: borderTSprinkleSchema.optional(),
+  color: colorSprinkleSchema.optional(),
+  cursor: cursorSprinkleSchema.optional(),
+  display: displaySprinkleSchema.optional(),
+  flex: flexSprinkleSchema.optional(),
+  flexDirection: flexDirectionSprinkleSchema.optional(),
+  flexWrap: flexWrapSprinkleSchema.optional(),
+  fontFamily: fontFamilySprinkleSchema.optional(),
+  fontSize: fontSizeSprinkleSchema.optional(),
+  fontWeight: fontWeightSprinkleSchema.optional(),
+  gap: gapSprinkleSchema.optional(),
+  gridColumn: gridColumnSprinkleSchema.optional(),
+  gridTemplateColumns: gridTemplateColumnsSprinkleSchema.optional(),
+  h: hSprinkleSchema.optional(),
+  justifyContent: justifyContentSprinkleSchema.optional(),
+  justifyItems: justifyItemsSprinkleSchema.optional(),
+  m: mSprinkleSchema.optional(),
+  maxW: maxWSprinkleSchema.optional(),
+  mb: mbSprinkleSchema.optional(),
+  ml: mlSprinkleSchema.optional(),
+  mr: mrSprinkleSchema.optional(),
+  mt: mtSprinkleSchema.optional(),
+  mx: mxSprinkleSchema.optional(),
+  my: mySprinkleSchema.optional(),
+  objectFit: objectFitSprinkleSchema.optional(),
+  overflow: overflowSprinkleSchema.optional(),
+  overflowX: overflowXSprinkleSchema.optional(),
+  overflowY: overflowYSprinkleSchema.optional(),
+  p: pSprinkleSchema.optional(),
+  pb: pbSprinkleSchema.optional(),
+  pl: plSprinkleSchema.optional(),
+  placeItems: placeItemsSprinkleSchema.optional(),
+  pointerEvents: pointerEventsSprinkleSchema.optional(),
+  pr: prSprinkleSchema.optional(),
+  pt: ptSprinkleSchema.optional(),
+  px: pxSprinkleSchema.optional(),
+  py: pySprinkleSchema.optional(),
+  rounded: roundedSprinkleSchema.optional(),
+  shadow: shadowSprinkleSchema.optional(),
+  size: sizeSprinkleSchema.optional(),
+  textAlign: textAlignSprinkleSchema.optional(),
+  textTransform: textTransformSprinkleSchema.optional(),
+  transition: transitionSprinkleSchema.optional(),
+  w: wSprinkleSchema.optional(),
+  whiteSpace: whiteSpaceSprinkleSchema.optional(),
+  z: zSprinkleSchema.optional(),
+});
 
 export type BlockSelectContent = Omit<
   z.infer<typeof BlockSelectContentSchema>,
@@ -1882,80 +1829,78 @@ export type BlockSelectContentProps = Omit<
   "$id" | "$type" | "$visible"
 >;
 
-export const BlockSelectTriggerSchema = z
-  .object({
-    $id: z
-      .string()
-      .describe(
-        "Unique identifier for targeting by actions (e.g., setVisibility)",
-      )
-      .optional(),
-    $type: z.literal("Block.SelectTrigger"),
-    $visible: z
-      .boolean()
-      .describe(
-        "Whether element is visible (default: true). Elements with $visible: false are hidden until shown by an action.",
-      )
-      .optional(),
-    alignItems: alignItemsSprinkleSchema.optional(),
-    alignSelf: alignSelfSprinkleSchema.optional(),
-    animation: animationSprinkleSchema.optional(),
-    backgroundImage: backgroundImageSprinkleSchema.optional(),
-    bg: bgSprinkleSchema.optional(),
-    border: borderSprinkleSchema.optional(),
-    borderB: borderBSprinkleSchema.optional(),
-    borderColor: borderColorSprinkleSchema.optional(),
-    borderL: borderLSprinkleSchema.optional(),
-    borderR: borderRSprinkleSchema.optional(),
-    borderT: borderTSprinkleSchema.optional(),
-    children: z.any().optional(),
-    color: colorSprinkleSchema.optional(),
-    cursor: cursorSprinkleSchema.optional(),
-    display: displaySprinkleSchema.optional(),
-    flex: flexSprinkleSchema.optional(),
-    flexDirection: flexDirectionSprinkleSchema.optional(),
-    flexWrap: flexWrapSprinkleSchema.optional(),
-    fontFamily: fontFamilySprinkleSchema.optional(),
-    fontSize: fontSizeSprinkleSchema.optional(),
-    fontWeight: fontWeightSprinkleSchema.optional(),
-    gap: gapSprinkleSchema.optional(),
-    gridColumn: gridColumnSprinkleSchema.optional(),
-    gridTemplateColumns: gridTemplateColumnsSprinkleSchema.optional(),
-    h: hSprinkleSchema.optional(),
-    justifyContent: justifyContentSprinkleSchema.optional(),
-    justifyItems: justifyItemsSprinkleSchema.optional(),
-    m: mSprinkleSchema.optional(),
-    maxH: maxHSprinkleSchema.optional(),
-    maxW: maxWSprinkleSchema.optional(),
-    mb: mbSprinkleSchema.optional(),
-    ml: mlSprinkleSchema.optional(),
-    mr: mrSprinkleSchema.optional(),
-    mt: mtSprinkleSchema.optional(),
-    mx: mxSprinkleSchema.optional(),
-    my: mySprinkleSchema.optional(),
-    objectFit: objectFitSprinkleSchema.optional(),
-    overflow: overflowSprinkleSchema.optional(),
-    overflowX: overflowXSprinkleSchema.optional(),
-    overflowY: overflowYSprinkleSchema.optional(),
-    p: pSprinkleSchema.optional(),
-    pb: pbSprinkleSchema.optional(),
-    pl: plSprinkleSchema.optional(),
-    placeItems: placeItemsSprinkleSchema.optional(),
-    pointerEvents: pointerEventsSprinkleSchema.optional(),
-    pr: prSprinkleSchema.optional(),
-    pt: ptSprinkleSchema.optional(),
-    px: pxSprinkleSchema.optional(),
-    py: pySprinkleSchema.optional(),
-    rounded: roundedSprinkleSchema.optional(),
-    shadow: shadowSprinkleSchema.optional(),
-    textAlign: textAlignSprinkleSchema.optional(),
-    textTransform: textTransformSprinkleSchema.optional(),
-    transition: transitionSprinkleSchema.optional(),
-    w: wSprinkleSchema.optional(),
-    whiteSpace: whiteSpaceSprinkleSchema.optional(),
-    z: zSprinkleSchema.optional(),
-  })
-  .strict();
+export const BlockSelectTriggerSchema = z.object({
+  $id: z
+    .string()
+    .describe(
+      "Unique identifier for targeting by actions (e.g., setVisibility)",
+    )
+    .optional(),
+  $type: z.literal("Block.SelectTrigger"),
+  $visible: z
+    .boolean()
+    .describe(
+      "Whether element is visible (default: true). Elements with $visible: false are hidden until shown by an action.",
+    )
+    .optional(),
+  alignItems: alignItemsSprinkleSchema.optional(),
+  alignSelf: alignSelfSprinkleSchema.optional(),
+  animation: animationSprinkleSchema.optional(),
+  backgroundImage: backgroundImageSprinkleSchema.optional(),
+  bg: bgSprinkleSchema.optional(),
+  border: borderSprinkleSchema.optional(),
+  borderB: borderBSprinkleSchema.optional(),
+  borderColor: borderColorSprinkleSchema.optional(),
+  borderL: borderLSprinkleSchema.optional(),
+  borderR: borderRSprinkleSchema.optional(),
+  borderT: borderTSprinkleSchema.optional(),
+  children: z.any().optional(),
+  color: colorSprinkleSchema.optional(),
+  cursor: cursorSprinkleSchema.optional(),
+  display: displaySprinkleSchema.optional(),
+  flex: flexSprinkleSchema.optional(),
+  flexDirection: flexDirectionSprinkleSchema.optional(),
+  flexWrap: flexWrapSprinkleSchema.optional(),
+  fontFamily: fontFamilySprinkleSchema.optional(),
+  fontSize: fontSizeSprinkleSchema.optional(),
+  fontWeight: fontWeightSprinkleSchema.optional(),
+  gap: gapSprinkleSchema.optional(),
+  gridColumn: gridColumnSprinkleSchema.optional(),
+  gridTemplateColumns: gridTemplateColumnsSprinkleSchema.optional(),
+  h: hSprinkleSchema.optional(),
+  justifyContent: justifyContentSprinkleSchema.optional(),
+  justifyItems: justifyItemsSprinkleSchema.optional(),
+  m: mSprinkleSchema.optional(),
+  maxH: maxHSprinkleSchema.optional(),
+  maxW: maxWSprinkleSchema.optional(),
+  mb: mbSprinkleSchema.optional(),
+  ml: mlSprinkleSchema.optional(),
+  mr: mrSprinkleSchema.optional(),
+  mt: mtSprinkleSchema.optional(),
+  mx: mxSprinkleSchema.optional(),
+  my: mySprinkleSchema.optional(),
+  objectFit: objectFitSprinkleSchema.optional(),
+  overflow: overflowSprinkleSchema.optional(),
+  overflowX: overflowXSprinkleSchema.optional(),
+  overflowY: overflowYSprinkleSchema.optional(),
+  p: pSprinkleSchema.optional(),
+  pb: pbSprinkleSchema.optional(),
+  pl: plSprinkleSchema.optional(),
+  placeItems: placeItemsSprinkleSchema.optional(),
+  pointerEvents: pointerEventsSprinkleSchema.optional(),
+  pr: prSprinkleSchema.optional(),
+  pt: ptSprinkleSchema.optional(),
+  px: pxSprinkleSchema.optional(),
+  py: pySprinkleSchema.optional(),
+  rounded: roundedSprinkleSchema.optional(),
+  shadow: shadowSprinkleSchema.optional(),
+  textAlign: textAlignSprinkleSchema.optional(),
+  textTransform: textTransformSprinkleSchema.optional(),
+  transition: transitionSprinkleSchema.optional(),
+  w: wSprinkleSchema.optional(),
+  whiteSpace: whiteSpaceSprinkleSchema.optional(),
+  z: zSprinkleSchema.optional(),
+});
 
 export type BlockSelectTrigger = Omit<
   z.infer<typeof BlockSelectTriggerSchema>,
@@ -1966,80 +1911,78 @@ export type BlockSelectTriggerProps = Omit<
   "$id" | "$type" | "$visible"
 >;
 
-export const BlockSeparatorSchema = z
-  .object({
-    $id: z
-      .string()
-      .describe(
-        "Unique identifier for targeting by actions (e.g., setVisibility)",
-      )
-      .optional(),
-    $type: z.literal("Block.Separator"),
-    $visible: z
-      .boolean()
-      .describe(
-        "Whether element is visible (default: true). Elements with $visible: false are hidden until shown by an action.",
-      )
-      .optional(),
-    alignItems: alignItemsSprinkleSchema.optional(),
-    alignSelf: alignSelfSprinkleSchema.optional(),
-    animation: animationSprinkleSchema.optional(),
-    backgroundImage: backgroundImageSprinkleSchema.optional(),
-    bg: bgSprinkleSchema.optional(),
-    border: borderSprinkleSchema.optional(),
-    borderB: borderBSprinkleSchema.optional(),
-    borderColor: borderColorSprinkleSchema.optional(),
-    borderL: borderLSprinkleSchema.optional(),
-    borderR: borderRSprinkleSchema.optional(),
-    borderT: borderTSprinkleSchema.optional(),
-    color: colorSprinkleSchema.optional(),
-    cursor: cursorSprinkleSchema.optional(),
-    display: displaySprinkleSchema.optional(),
-    flex: flexSprinkleSchema.optional(),
-    flexDirection: flexDirectionSprinkleSchema.optional(),
-    flexWrap: flexWrapSprinkleSchema.optional(),
-    fontFamily: fontFamilySprinkleSchema.optional(),
-    fontSize: fontSizeSprinkleSchema.optional(),
-    fontWeight: fontWeightSprinkleSchema.optional(),
-    gap: gapSprinkleSchema.optional(),
-    gridColumn: gridColumnSprinkleSchema.optional(),
-    gridTemplateColumns: gridTemplateColumnsSprinkleSchema.optional(),
-    h: hSprinkleSchema.optional(),
-    justifyContent: justifyContentSprinkleSchema.optional(),
-    justifyItems: justifyItemsSprinkleSchema.optional(),
-    m: mSprinkleSchema.optional(),
-    maxH: maxHSprinkleSchema.optional(),
-    maxW: maxWSprinkleSchema.optional(),
-    mb: mbSprinkleSchema.optional(),
-    ml: mlSprinkleSchema.optional(),
-    mr: mrSprinkleSchema.optional(),
-    mt: mtSprinkleSchema.optional(),
-    mx: mxSprinkleSchema.optional(),
-    my: mySprinkleSchema.optional(),
-    objectFit: objectFitSprinkleSchema.optional(),
-    overflow: overflowSprinkleSchema.optional(),
-    overflowX: overflowXSprinkleSchema.optional(),
-    overflowY: overflowYSprinkleSchema.optional(),
-    p: pSprinkleSchema.optional(),
-    pb: pbSprinkleSchema.optional(),
-    pl: plSprinkleSchema.optional(),
-    placeItems: placeItemsSprinkleSchema.optional(),
-    pointerEvents: pointerEventsSprinkleSchema.optional(),
-    pr: prSprinkleSchema.optional(),
-    pt: ptSprinkleSchema.optional(),
-    px: pxSprinkleSchema.optional(),
-    py: pySprinkleSchema.optional(),
-    rounded: roundedSprinkleSchema.optional(),
-    shadow: shadowSprinkleSchema.optional(),
-    size: sizeSprinkleSchema.optional(),
-    textAlign: textAlignSprinkleSchema.optional(),
-    textTransform: textTransformSprinkleSchema.optional(),
-    transition: transitionSprinkleSchema.optional(),
-    w: wSprinkleSchema.optional(),
-    whiteSpace: whiteSpaceSprinkleSchema.optional(),
-    z: zSprinkleSchema.optional(),
-  })
-  .strict();
+export const BlockSeparatorSchema = z.object({
+  $id: z
+    .string()
+    .describe(
+      "Unique identifier for targeting by actions (e.g., setVisibility)",
+    )
+    .optional(),
+  $type: z.literal("Block.Separator"),
+  $visible: z
+    .boolean()
+    .describe(
+      "Whether element is visible (default: true). Elements with $visible: false are hidden until shown by an action.",
+    )
+    .optional(),
+  alignItems: alignItemsSprinkleSchema.optional(),
+  alignSelf: alignSelfSprinkleSchema.optional(),
+  animation: animationSprinkleSchema.optional(),
+  backgroundImage: backgroundImageSprinkleSchema.optional(),
+  bg: bgSprinkleSchema.optional(),
+  border: borderSprinkleSchema.optional(),
+  borderB: borderBSprinkleSchema.optional(),
+  borderColor: borderColorSprinkleSchema.optional(),
+  borderL: borderLSprinkleSchema.optional(),
+  borderR: borderRSprinkleSchema.optional(),
+  borderT: borderTSprinkleSchema.optional(),
+  color: colorSprinkleSchema.optional(),
+  cursor: cursorSprinkleSchema.optional(),
+  display: displaySprinkleSchema.optional(),
+  flex: flexSprinkleSchema.optional(),
+  flexDirection: flexDirectionSprinkleSchema.optional(),
+  flexWrap: flexWrapSprinkleSchema.optional(),
+  fontFamily: fontFamilySprinkleSchema.optional(),
+  fontSize: fontSizeSprinkleSchema.optional(),
+  fontWeight: fontWeightSprinkleSchema.optional(),
+  gap: gapSprinkleSchema.optional(),
+  gridColumn: gridColumnSprinkleSchema.optional(),
+  gridTemplateColumns: gridTemplateColumnsSprinkleSchema.optional(),
+  h: hSprinkleSchema.optional(),
+  justifyContent: justifyContentSprinkleSchema.optional(),
+  justifyItems: justifyItemsSprinkleSchema.optional(),
+  m: mSprinkleSchema.optional(),
+  maxH: maxHSprinkleSchema.optional(),
+  maxW: maxWSprinkleSchema.optional(),
+  mb: mbSprinkleSchema.optional(),
+  ml: mlSprinkleSchema.optional(),
+  mr: mrSprinkleSchema.optional(),
+  mt: mtSprinkleSchema.optional(),
+  mx: mxSprinkleSchema.optional(),
+  my: mySprinkleSchema.optional(),
+  objectFit: objectFitSprinkleSchema.optional(),
+  overflow: overflowSprinkleSchema.optional(),
+  overflowX: overflowXSprinkleSchema.optional(),
+  overflowY: overflowYSprinkleSchema.optional(),
+  p: pSprinkleSchema.optional(),
+  pb: pbSprinkleSchema.optional(),
+  pl: plSprinkleSchema.optional(),
+  placeItems: placeItemsSprinkleSchema.optional(),
+  pointerEvents: pointerEventsSprinkleSchema.optional(),
+  pr: prSprinkleSchema.optional(),
+  pt: ptSprinkleSchema.optional(),
+  px: pxSprinkleSchema.optional(),
+  py: pySprinkleSchema.optional(),
+  rounded: roundedSprinkleSchema.optional(),
+  shadow: shadowSprinkleSchema.optional(),
+  size: sizeSprinkleSchema.optional(),
+  textAlign: textAlignSprinkleSchema.optional(),
+  textTransform: textTransformSprinkleSchema.optional(),
+  transition: transitionSprinkleSchema.optional(),
+  w: wSprinkleSchema.optional(),
+  whiteSpace: whiteSpaceSprinkleSchema.optional(),
+  z: zSprinkleSchema.optional(),
+});
 
 export type BlockSeparator = Omit<
   z.infer<typeof BlockSeparatorSchema>,
@@ -2050,81 +1993,79 @@ export type BlockSeparatorProps = Omit<
   "$id" | "$type" | "$visible"
 >;
 
-export const BlockTextSchema = z
-  .object({
-    $id: z
-      .string()
-      .describe(
-        "Unique identifier for targeting by actions (e.g., setVisibility)",
-      )
-      .optional(),
-    $type: z.literal("Block.Text"),
-    $visible: z
-      .boolean()
-      .describe(
-        "Whether element is visible (default: true). Elements with $visible: false are hidden until shown by an action.",
-      )
-      .optional(),
-    alignItems: alignItemsSprinkleSchema.optional(),
-    alignSelf: alignSelfSprinkleSchema.optional(),
-    animation: animationSprinkleSchema.optional(),
-    backgroundImage: backgroundImageSprinkleSchema.optional(),
-    bg: bgSprinkleSchema.optional(),
-    border: borderSprinkleSchema.optional(),
-    borderB: borderBSprinkleSchema.optional(),
-    borderColor: borderColorSprinkleSchema.optional(),
-    borderL: borderLSprinkleSchema.optional(),
-    borderR: borderRSprinkleSchema.optional(),
-    borderT: borderTSprinkleSchema.optional(),
-    children: z.any().optional(),
-    color: colorSprinkleSchema.optional(),
-    cursor: cursorSprinkleSchema.optional(),
-    display: displaySprinkleSchema.optional(),
-    flex: flexSprinkleSchema.optional(),
-    flexDirection: flexDirectionSprinkleSchema.optional(),
-    flexWrap: flexWrapSprinkleSchema.optional(),
-    fontFamily: fontFamilySprinkleSchema.optional(),
-    fontSize: fontSizeSprinkleSchema.optional(),
-    fontWeight: fontWeightSprinkleSchema.optional(),
-    gap: gapSprinkleSchema.optional(),
-    gridColumn: gridColumnSprinkleSchema.optional(),
-    gridTemplateColumns: gridTemplateColumnsSprinkleSchema.optional(),
-    h: hSprinkleSchema.optional(),
-    justifyContent: justifyContentSprinkleSchema.optional(),
-    justifyItems: justifyItemsSprinkleSchema.optional(),
-    m: mSprinkleSchema.optional(),
-    maxH: maxHSprinkleSchema.optional(),
-    maxW: maxWSprinkleSchema.optional(),
-    mb: mbSprinkleSchema.optional(),
-    ml: mlSprinkleSchema.optional(),
-    mr: mrSprinkleSchema.optional(),
-    mt: mtSprinkleSchema.optional(),
-    mx: mxSprinkleSchema.optional(),
-    my: mySprinkleSchema.optional(),
-    objectFit: objectFitSprinkleSchema.optional(),
-    overflow: overflowSprinkleSchema.optional(),
-    overflowX: overflowXSprinkleSchema.optional(),
-    overflowY: overflowYSprinkleSchema.optional(),
-    p: pSprinkleSchema.optional(),
-    pb: pbSprinkleSchema.optional(),
-    pl: plSprinkleSchema.optional(),
-    placeItems: placeItemsSprinkleSchema.optional(),
-    pointerEvents: pointerEventsSprinkleSchema.optional(),
-    pr: prSprinkleSchema.optional(),
-    pt: ptSprinkleSchema.optional(),
-    px: pxSprinkleSchema.optional(),
-    py: pySprinkleSchema.optional(),
-    rounded: roundedSprinkleSchema.optional(),
-    shadow: shadowSprinkleSchema.optional(),
-    size: sizeSprinkleSchema.optional(),
-    textAlign: textAlignSprinkleSchema.optional(),
-    textTransform: textTransformSprinkleSchema.optional(),
-    transition: transitionSprinkleSchema.optional(),
-    w: wSprinkleSchema.optional(),
-    whiteSpace: whiteSpaceSprinkleSchema.optional(),
-    z: zSprinkleSchema.optional(),
-  })
-  .strict();
+export const BlockTextSchema = z.object({
+  $id: z
+    .string()
+    .describe(
+      "Unique identifier for targeting by actions (e.g., setVisibility)",
+    )
+    .optional(),
+  $type: z.literal("Block.Text"),
+  $visible: z
+    .boolean()
+    .describe(
+      "Whether element is visible (default: true). Elements with $visible: false are hidden until shown by an action.",
+    )
+    .optional(),
+  alignItems: alignItemsSprinkleSchema.optional(),
+  alignSelf: alignSelfSprinkleSchema.optional(),
+  animation: animationSprinkleSchema.optional(),
+  backgroundImage: backgroundImageSprinkleSchema.optional(),
+  bg: bgSprinkleSchema.optional(),
+  border: borderSprinkleSchema.optional(),
+  borderB: borderBSprinkleSchema.optional(),
+  borderColor: borderColorSprinkleSchema.optional(),
+  borderL: borderLSprinkleSchema.optional(),
+  borderR: borderRSprinkleSchema.optional(),
+  borderT: borderTSprinkleSchema.optional(),
+  children: z.any().optional(),
+  color: colorSprinkleSchema.optional(),
+  cursor: cursorSprinkleSchema.optional(),
+  display: displaySprinkleSchema.optional(),
+  flex: flexSprinkleSchema.optional(),
+  flexDirection: flexDirectionSprinkleSchema.optional(),
+  flexWrap: flexWrapSprinkleSchema.optional(),
+  fontFamily: fontFamilySprinkleSchema.optional(),
+  fontSize: fontSizeSprinkleSchema.optional(),
+  fontWeight: fontWeightSprinkleSchema.optional(),
+  gap: gapSprinkleSchema.optional(),
+  gridColumn: gridColumnSprinkleSchema.optional(),
+  gridTemplateColumns: gridTemplateColumnsSprinkleSchema.optional(),
+  h: hSprinkleSchema.optional(),
+  justifyContent: justifyContentSprinkleSchema.optional(),
+  justifyItems: justifyItemsSprinkleSchema.optional(),
+  m: mSprinkleSchema.optional(),
+  maxH: maxHSprinkleSchema.optional(),
+  maxW: maxWSprinkleSchema.optional(),
+  mb: mbSprinkleSchema.optional(),
+  ml: mlSprinkleSchema.optional(),
+  mr: mrSprinkleSchema.optional(),
+  mt: mtSprinkleSchema.optional(),
+  mx: mxSprinkleSchema.optional(),
+  my: mySprinkleSchema.optional(),
+  objectFit: objectFitSprinkleSchema.optional(),
+  overflow: overflowSprinkleSchema.optional(),
+  overflowX: overflowXSprinkleSchema.optional(),
+  overflowY: overflowYSprinkleSchema.optional(),
+  p: pSprinkleSchema.optional(),
+  pb: pbSprinkleSchema.optional(),
+  pl: plSprinkleSchema.optional(),
+  placeItems: placeItemsSprinkleSchema.optional(),
+  pointerEvents: pointerEventsSprinkleSchema.optional(),
+  pr: prSprinkleSchema.optional(),
+  pt: ptSprinkleSchema.optional(),
+  px: pxSprinkleSchema.optional(),
+  py: pySprinkleSchema.optional(),
+  rounded: roundedSprinkleSchema.optional(),
+  shadow: shadowSprinkleSchema.optional(),
+  size: sizeSprinkleSchema.optional(),
+  textAlign: textAlignSprinkleSchema.optional(),
+  textTransform: textTransformSprinkleSchema.optional(),
+  transition: transitionSprinkleSchema.optional(),
+  w: wSprinkleSchema.optional(),
+  whiteSpace: whiteSpaceSprinkleSchema.optional(),
+  z: zSprinkleSchema.optional(),
+});
 
 export type BlockText = Omit<z.infer<typeof BlockTextSchema>, "children"> & {
   children?: BlockNode;
@@ -2134,136 +2075,129 @@ export type BlockTextProps = Omit<
   "$id" | "$type" | "$visible"
 >;
 
-export const BlockTextareaSchema = z
-  .object({
-    $id: z
-      .string()
-      .describe(
-        "Unique identifier for targeting by actions (e.g., setVisibility)",
-      )
-      .optional(),
-    $type: z.literal("Block.Textarea"),
-    $visible: z
-      .boolean()
-      .describe(
-        "Whether element is visible (default: true). Elements with $visible: false are hidden until shown by an action.",
-      )
-      .optional(),
-    alignItems: alignItemsSprinkleSchema.optional(),
-    alignSelf: alignSelfSprinkleSchema.optional(),
-    animation: animationSprinkleSchema.optional(),
-    backgroundImage: backgroundImageSprinkleSchema.optional(),
-    bg: bgSprinkleSchema.optional(),
-    border: borderSprinkleSchema.optional(),
-    borderB: borderBSprinkleSchema.optional(),
-    borderColor: borderColorSprinkleSchema.optional(),
-    borderL: borderLSprinkleSchema.optional(),
-    borderR: borderRSprinkleSchema.optional(),
-    borderT: borderTSprinkleSchema.optional(),
-    color: colorSprinkleSchema.optional(),
-    cursor: cursorSprinkleSchema.optional(),
-    display: displaySprinkleSchema.optional(),
-    flex: flexSprinkleSchema.optional(),
-    flexDirection: flexDirectionSprinkleSchema.optional(),
-    flexWrap: flexWrapSprinkleSchema.optional(),
-    fontFamily: fontFamilySprinkleSchema.optional(),
-    fontSize: fontSizeSprinkleSchema.optional(),
-    fontWeight: fontWeightSprinkleSchema.optional(),
-    gap: gapSprinkleSchema.optional(),
-    gridColumn: gridColumnSprinkleSchema.optional(),
-    gridTemplateColumns: gridTemplateColumnsSprinkleSchema.optional(),
-    h: hSprinkleSchema.optional(),
-    justifyContent: justifyContentSprinkleSchema.optional(),
-    justifyItems: justifyItemsSprinkleSchema.optional(),
-    m: mSprinkleSchema.optional(),
-    maxH: maxHSprinkleSchema.optional(),
-    maxRows: z
-      .union([
-        z.literal(1),
-        z.literal(2),
-        z.literal(3),
-        z.literal(4),
-        z.literal(5),
-      ])
-      .describe("Limits the height of the textarea when `resize=auto` is used.")
-      .optional(),
-    maxW: maxWSprinkleSchema.optional(),
-    mb: mbSprinkleSchema.optional(),
-    ml: mlSprinkleSchema.optional(),
-    mr: mrSprinkleSchema.optional(),
-    mt: mtSprinkleSchema.optional(),
-    mx: mxSprinkleSchema.optional(),
-    my: mySprinkleSchema.optional(),
-    name: z
-      .string()
-      .describe("The name of the form control element.")
-      .optional(),
-    objectFit: objectFitSprinkleSchema.optional(),
-    onValueChange: z
-      .union([
-        z
-          .object({
-            tool: z.string().describe("Name of registered tool to call"),
-          })
-          .strict()
-          .describe("Server-side tool call"),
-        z
-          .object({
-            action: z
-              .literal("setVisibility")
-              .describe("Set visibility of target elements"),
-            params: z
-              .record(z.boolean())
-              .describe(
-                "Map of element IDs to visibility state (e.g., { 'step-2': true, 'step-1': false })",
-              ),
-            when: z
-              .string()
-              .describe(
-                "Optional regex pattern - action only executes if value matches",
-              )
-              .optional(),
-          })
-          .strict()
-          .describe("Client-side setVisibility action"),
-      ])
-      .describe(
-        "Handler for user interactions - either a tool call or client-side action",
-      )
-      .optional(),
-    overflow: overflowSprinkleSchema.optional(),
-    overflowX: overflowXSprinkleSchema.optional(),
-    overflowY: overflowYSprinkleSchema.optional(),
-    p: pSprinkleSchema.optional(),
-    pb: pbSprinkleSchema.optional(),
-    pl: plSprinkleSchema.optional(),
-    placeholder: z
-      .string()
-      .describe("The placeholder text to use when control has no value.")
-      .optional(),
-    placeItems: placeItemsSprinkleSchema.optional(),
-    pointerEvents: pointerEventsSprinkleSchema.optional(),
-    pr: prSprinkleSchema.optional(),
-    pt: ptSprinkleSchema.optional(),
-    px: pxSprinkleSchema.optional(),
-    py: pySprinkleSchema.optional(),
-    resize: z
-      .union([z.literal("none"), z.literal("auto"), z.literal("vertical")])
-      .describe(
-        "Control whether resizing mode is manual, automatic, or disabled.",
-      )
-      .optional(),
-    rounded: roundedSprinkleSchema.optional(),
-    rows: z.number().describe("The number of rows to display.").optional(),
-    shadow: shadowSprinkleSchema.optional(),
-    textAlign: textAlignSprinkleSchema.optional(),
-    textTransform: textTransformSprinkleSchema.optional(),
-    transition: transitionSprinkleSchema.optional(),
-    w: wSprinkleSchema.optional(),
-    whiteSpace: whiteSpaceSprinkleSchema.optional(),
-    z: zSprinkleSchema.optional(),
-  })
-  .strict();
+export const BlockTextareaSchema = z.object({
+  $id: z
+    .string()
+    .describe(
+      "Unique identifier for targeting by actions (e.g., setVisibility)",
+    )
+    .optional(),
+  $type: z.literal("Block.Textarea"),
+  $visible: z
+    .boolean()
+    .describe(
+      "Whether element is visible (default: true). Elements with $visible: false are hidden until shown by an action.",
+    )
+    .optional(),
+  alignItems: alignItemsSprinkleSchema.optional(),
+  alignSelf: alignSelfSprinkleSchema.optional(),
+  animation: animationSprinkleSchema.optional(),
+  backgroundImage: backgroundImageSprinkleSchema.optional(),
+  bg: bgSprinkleSchema.optional(),
+  border: borderSprinkleSchema.optional(),
+  borderB: borderBSprinkleSchema.optional(),
+  borderColor: borderColorSprinkleSchema.optional(),
+  borderL: borderLSprinkleSchema.optional(),
+  borderR: borderRSprinkleSchema.optional(),
+  borderT: borderTSprinkleSchema.optional(),
+  color: colorSprinkleSchema.optional(),
+  cursor: cursorSprinkleSchema.optional(),
+  display: displaySprinkleSchema.optional(),
+  flex: flexSprinkleSchema.optional(),
+  flexDirection: flexDirectionSprinkleSchema.optional(),
+  flexWrap: flexWrapSprinkleSchema.optional(),
+  fontFamily: fontFamilySprinkleSchema.optional(),
+  fontSize: fontSizeSprinkleSchema.optional(),
+  fontWeight: fontWeightSprinkleSchema.optional(),
+  gap: gapSprinkleSchema.optional(),
+  gridColumn: gridColumnSprinkleSchema.optional(),
+  gridTemplateColumns: gridTemplateColumnsSprinkleSchema.optional(),
+  h: hSprinkleSchema.optional(),
+  justifyContent: justifyContentSprinkleSchema.optional(),
+  justifyItems: justifyItemsSprinkleSchema.optional(),
+  m: mSprinkleSchema.optional(),
+  maxH: maxHSprinkleSchema.optional(),
+  maxRows: z
+    .union([
+      z.literal(1),
+      z.literal(2),
+      z.literal(3),
+      z.literal(4),
+      z.literal(5),
+    ])
+    .describe("Limits the height of the textarea when `resize=auto` is used.")
+    .optional(),
+  maxW: maxWSprinkleSchema.optional(),
+  mb: mbSprinkleSchema.optional(),
+  ml: mlSprinkleSchema.optional(),
+  mr: mrSprinkleSchema.optional(),
+  mt: mtSprinkleSchema.optional(),
+  mx: mxSprinkleSchema.optional(),
+  my: mySprinkleSchema.optional(),
+  name: z.string().describe("The name of the form control element.").optional(),
+  objectFit: objectFitSprinkleSchema.optional(),
+  onValueChange: z
+    .union([
+      z
+        .object({
+          tool: z.string().describe("Name of registered tool to call"),
+        })
+        .describe("Server-side tool call"),
+      z
+        .object({
+          action: z
+            .literal("setVisibility")
+            .describe("Set visibility of target elements"),
+          params: z
+            .record(z.boolean())
+            .describe(
+              "Map of element IDs to visibility state (e.g., { 'step-2': true, 'step-1': false })",
+            ),
+          when: z
+            .string()
+            .describe(
+              "Optional regex pattern - action only executes if value matches",
+            )
+            .optional(),
+        })
+        .describe("Client-side setVisibility action"),
+    ])
+    .describe(
+      "Handler for user interactions - either a tool call or client-side action",
+    )
+    .optional(),
+  overflow: overflowSprinkleSchema.optional(),
+  overflowX: overflowXSprinkleSchema.optional(),
+  overflowY: overflowYSprinkleSchema.optional(),
+  p: pSprinkleSchema.optional(),
+  pb: pbSprinkleSchema.optional(),
+  pl: plSprinkleSchema.optional(),
+  placeholder: z
+    .string()
+    .describe("The placeholder text to use when control has no value.")
+    .optional(),
+  placeItems: placeItemsSprinkleSchema.optional(),
+  pointerEvents: pointerEventsSprinkleSchema.optional(),
+  pr: prSprinkleSchema.optional(),
+  pt: ptSprinkleSchema.optional(),
+  px: pxSprinkleSchema.optional(),
+  py: pySprinkleSchema.optional(),
+  resize: z
+    .union([z.literal("none"), z.literal("auto"), z.literal("vertical")])
+    .describe(
+      "Control whether resizing mode is manual, automatic, or disabled.",
+    )
+    .optional(),
+  rounded: roundedSprinkleSchema.optional(),
+  rows: z.number().describe("The number of rows to display.").optional(),
+  shadow: shadowSprinkleSchema.optional(),
+  textAlign: textAlignSprinkleSchema.optional(),
+  textTransform: textTransformSprinkleSchema.optional(),
+  transition: transitionSprinkleSchema.optional(),
+  w: wSprinkleSchema.optional(),
+  whiteSpace: whiteSpaceSprinkleSchema.optional(),
+  z: zSprinkleSchema.optional(),
+});
 
 export type BlockTextarea = Omit<
   z.infer<typeof BlockTextareaSchema>,
