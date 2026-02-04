@@ -5,7 +5,6 @@ import { forwardRef, type ReactNode } from "react";
 import { Box, type BoxProps } from "../box";
 import { Cover } from "../cover";
 import { Group } from "../group";
-import { IconAngleLeft } from "../icons/IconAngleLeft";
 import { IconAngleRight } from "../icons/IconAngleRight";
 import { useDisclosureContext } from "./DisclosureContext";
 import * as styles from "./DisclosureTrigger.css";
@@ -63,7 +62,7 @@ export const DisclosureTrigger = forwardRef<
           <Cover asChild>
             <RadixCollapsible.Trigger>
               {chevronPosition === "start" && (
-                <Box asChild {...styles.icon({ chevronPosition })}>
+                <Box asChild {...styles.icon()}>
                   <IconAngleRight />
                 </Box>
               )}
@@ -71,8 +70,8 @@ export const DisclosureTrigger = forwardRef<
                 {children}
               </Box>
               {chevronPosition === "end" && (
-                <Box asChild {...styles.icon({ chevronPosition })}>
-                  <IconAngleLeft />
+                <Box asChild {...styles.icon()}>
+                  <IconAngleRight />
                 </Box>
               )}
             </RadixCollapsible.Trigger>
