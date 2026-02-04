@@ -49,23 +49,12 @@ export const icon = recipe({
       flex: "none",
       transition: "transform",
     },
+    style({
+      selectors: {
+        "[data-state=open] > &": {
+          transform: "rotate(90deg)",
+        },
+      },
+    }),
   ],
-  variants: {
-    chevronPosition: {
-      end: style({
-        selectors: {
-          "[data-state=open] > &": {
-            transform: "rotate(-90deg)",
-          },
-        },
-      }),
-      start: style({
-        selectors: {
-          "[data-state=open] > &": {
-            transform: "rotate(90deg)",
-          },
-        },
-      }),
-    },
-  },
 });
