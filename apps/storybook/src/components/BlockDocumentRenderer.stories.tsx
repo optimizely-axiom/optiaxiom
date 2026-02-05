@@ -35,6 +35,7 @@ export const Basic: Story = {
             "This is a basic Block Document that demonstrates rendering elements from JSON.",
         },
       ],
+      subtitle: "Secondary title",
       title: "Welcome to Block Documents",
     },
   },

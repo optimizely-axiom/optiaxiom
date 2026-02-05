@@ -1039,6 +1039,12 @@ export const BlockDocumentSchema = z.object({
     )
     .optional(),
   body: z.any(),
+  subtitle: z
+    .string()
+    .describe(
+      "A brief description or tagline that provides additional context about the Block's purpose.",
+    )
+    .optional(),
   title: z
     .string()
     .describe(

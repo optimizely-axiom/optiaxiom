@@ -9,6 +9,7 @@ import {
 } from "../disclosure";
 import { Flex } from "../flex";
 import { Group } from "../group";
+import { Heading } from "../heading";
 import { useEffectEvent } from "../hooks";
 import { Text } from "../text";
 import { BlockDocumentProvider } from "./BlockDocumentContext";
@@ -121,7 +122,7 @@ export function BlockDocumentRenderer({
               <Group fontSize="sm" gap="8">
                 <Box bg="bg.accent.subtle" rounded="xs" size="20" />
                 <Text fontWeight="500">{result.data.appName}</Text>
-                <Text color="fg.secondary">{result.data.title}</Text>
+                {!open && <Text color="fg.secondary">{result.data.title}</Text>}
               </Group>
             </DisclosureTrigger>
             <DisclosureContent
@@ -131,6 +132,16 @@ export function BlockDocumentRenderer({
               gap="16"
               pt="16"
             >
+              <Group flexDirection="column" gap="4">
+                <Heading fontSize="lg" fontWeight="600" level="2">
+                  {result.data.title}
+                </Heading>
+                {result.data.subtitle && (
+                  <Text color="fg.secondary" fontSize="sm">
+                    {result.data.subtitle}
+                  </Text>
+                )}
+              </Group>
               <BlockElement element={result.data.body} />
               {result.data.actions &&
                 result.data.actions.length > 0 &&
