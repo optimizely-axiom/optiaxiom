@@ -1027,13 +1027,23 @@ export const BlockDocumentSchema = z.object({
     )
     .describe("Actions available for this document")
     .optional(),
+  appIcon: z
+    .string()
+    .describe("A visual representation of the application")
+    .optional(),
+  appName: z.string().describe("The official name of the application"),
   blocking: z
     .boolean()
     .describe(
       "If true, hides chat prompt and forces user interaction with document. User can press ESC or close to abandon.",
     )
     .optional(),
-  children: z.any(),
+  body: z.any(),
+  title: z
+    .string()
+    .describe(
+      "A concise heading that encapsulates the essence of the Block's content or intended action.",
+    ),
 });
 
 export type BlockDocument = Omit<

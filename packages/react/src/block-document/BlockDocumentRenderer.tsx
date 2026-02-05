@@ -1,13 +1,24 @@
-import { useState } from "react";
+import { useControllableState } from "@radix-ui/react-use-controllable-state";
+import { type ComponentPropsWithoutRef, useState } from "react";
 
-import { Card } from "../card";
+import { Box } from "../box";
+import {
+  Disclosure,
+  DisclosureContent,
+  DisclosureTrigger,
+} from "../disclosure";
 import { Flex } from "../flex";
+import { Group } from "../group";
 import { useEffectEvent } from "../hooks";
+import { Text } from "../text";
 import { BlockDocumentProvider } from "./BlockDocumentContext";
 import { BlockElement } from "./BlockElement";
 import { type BlockDocument, BlockDocumentSchema } from "./schemas";
 
-export type BlockDocumentRendererProps = {
+export type BlockDocumentRendererProps = Pick<
+  ComponentPropsWithoutRef<typeof Disclosure>,
+  "defaultOpen" | "onOpenChange" | "open"
+> & {
   /**
    * Current form data (flat object, FormData-like)
    */
@@ -36,12 +47,20 @@ export type BlockDocumentRendererProps = {
 
 export function BlockDocumentRenderer({
   data = {},
+  defaultOpen = true,
   element: elementProp,
   onCancelAction,
   onDataChange,
+  onOpenChange,
   onToolCall,
+  open: openProp,
   readOnly = false,
 }: BlockDocumentRendererProps) {
+  const [open, setOpen] = useControllableState({
+    defaultProp: defaultOpen,
+    onChange: onOpenChange,
+    prop: openProp,
+  });
   const [visibility, setVisibility] = useState<Record<string, boolean>>({});
 
   const result = BlockDocumentSchema.safeParse(elementProp);
@@ -87,20 +106,43 @@ export function BlockDocumentRenderer({
       readOnly={readOnly}
       visibility={visibility}
     >
-      <Card alignItems="stretch" flexDirection="column" gap="16" w="full">
+      <Disclosure
+        bg="bg.default"
+        border="1"
+        borderColor="border.tertiary"
+        onOpenChange={setOpen}
+        open={open}
+        p="16"
+        rounded="lg"
+      >
         {result.success && (
           <>
-            <BlockElement element={result.data.children} />
-            {result.data.actions &&
-              result.data.actions.length > 0 &&
-              !readOnly && (
-                <Flex gap="16" w="full">
-                  <BlockElement element={result.data.actions} />
-                </Flex>
-              )}
+            <DisclosureTrigger chevronPosition="end" py="0">
+              <Group fontSize="sm" gap="8">
+                <Box bg="bg.accent.subtle" rounded="xs" size="20" />
+                <Text fontWeight="500">{result.data.appName}</Text>
+                <Text color="fg.secondary">{result.data.title}</Text>
+              </Group>
+            </DisclosureTrigger>
+            <DisclosureContent
+              alignItems="stretch"
+              display="flex"
+              flexDirection="column"
+              gap="16"
+              pt="16"
+            >
+              <BlockElement element={result.data.body} />
+              {result.data.actions &&
+                result.data.actions.length > 0 &&
+                !readOnly && (
+                  <Flex gap="16" w="full">
+                    <BlockElement element={result.data.actions} />
+                  </Flex>
+                )}
+            </DisclosureContent>
           </>
         )}
-      </Card>
+      </Disclosure>
     </BlockDocumentProvider>
   );
 }

@@ -27,18 +27,15 @@ export const Basic: Story = {
   args: {
     element: {
       $type: "Block.Document",
-      children: [
-        {
-          $type: "Block.Heading",
-          children: "Welcome to Block Documents",
-          level: "2",
-        },
+      appName: "Opal",
+      body: [
         {
           $type: "Block.Text",
           children:
             "This is a basic Block Document that demonstrates rendering elements from JSON.",
         },
       ],
+      title: "Welcome to Block Documents",
     },
   },
 };
@@ -54,7 +51,8 @@ export const FormWithInputs: Story = {
           children: "Create Test Plan",
         },
       ],
-      children: [
+      appName: "Opal",
+      body: [
         {
           $type: "Block.Group",
           children: [
@@ -166,6 +164,7 @@ export const FormWithInputs: Story = {
           gap: "16",
         },
       ],
+      title: "Create a test plan",
     },
   },
   render: function Render(args) {
@@ -193,17 +192,14 @@ export const WithAllActions: Story = {
           children: "Reject",
         },
       ],
-      children: [
-        {
-          $type: "Block.Heading",
-          children: "Approve Changes",
-          level: "2",
-        },
+      appName: "Opal",
+      body: [
         {
           $type: "Block.Text",
           children: "Would you like to approve the proposed changes?",
         },
       ],
+      title: "Approve Changes",
     },
   },
 };
@@ -220,12 +216,8 @@ export const ReadonlyMode: Story = {
           children: "Submit",
         },
       ],
-      children: [
-        {
-          $type: "Block.Heading",
-          children: "Readonly Document",
-          level: "2",
-        },
+      appName: "Opal",
+      body: [
         {
           $type: "Block.Field",
           children: {
@@ -243,6 +235,7 @@ export const ReadonlyMode: Story = {
           label: "Message",
         },
       ],
+      title: "Readonly Document",
     },
     readOnly: true,
   },
@@ -258,13 +251,15 @@ export const PartialRendering: Story = {
           children: "Submit",
         },
       ],
-      children: [
+      appName: "Opal",
+      body: [
         {
           $type: "Block.InvalidElement",
           content: "This is an invalid element type",
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } as any,
       ],
+      title: "Invalid Document Example",
     },
   },
 };
