@@ -99,7 +99,7 @@ export function BlockDocumentRenderer({
             if (event.when && !(value || "").match(new RegExp(event.when))) {
               return;
             }
-            setVisibility(event.params);
+            setVisibility((visibility) => ({ ...visibility, ...event.params }));
           }
         },
       )}

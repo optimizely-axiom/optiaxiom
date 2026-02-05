@@ -58,24 +58,6 @@ export const FormWithInputs: Story = {
           children: [
             {
               $type: "Block.Heading",
-              children: "About your test plan",
-              fontSize: "lg",
-              fontWeight: "600",
-              level: "2",
-            },
-            {
-              $type: "Block.Text",
-              children: "(1 of 3)",
-              color: "fg.secondary",
-            },
-          ],
-          gap: "8",
-        },
-        {
-          $type: "Block.Group",
-          children: [
-            {
-              $type: "Block.Heading",
               children: "1. Where should this test run?",
               fontSize: "md",
               fontWeight: "600",
@@ -129,6 +111,10 @@ export const FormWithInputs: Story = {
               children: {
                 $type: "Block.Input",
                 name: "url",
+                onValueChange: {
+                  action: "setVisibility",
+                  params: { question_2: true },
+                },
                 placeholder: "Add a URL",
               },
               label: "URL",
@@ -158,6 +144,40 @@ export const FormWithInputs: Story = {
                 ],
               },
               label: "Saved Page",
+            },
+          ],
+          flexDirection: "column",
+          gap: "16",
+        },
+        {
+          $id: "question_2",
+          $type: "Block.Group",
+          $visible: false,
+          children: [
+            {
+              $type: "Block.Heading",
+              children: "2. What would you like to test?",
+              fontSize: "md",
+              fontWeight: "600",
+              level: "2",
+            },
+            {
+              $type: "Block.Text",
+              children:
+                "Describe what you'd like to test. If you're not sure, try getting test ideas first.",
+              color: "fg.secondary",
+              fontSize: "md",
+            },
+            {
+              $id: "url",
+              $type: "Block.Field",
+              children: {
+                $type: "Block.Textarea",
+                name: "test_idea",
+                placeholder:
+                  "e.g., Add quantity badges to product thumbnails to show how many of each item they’re buying, improving clarity, confidence, and potentially conversion",
+              },
+              label: "Test Idea",
             },
           ],
           flexDirection: "column",
