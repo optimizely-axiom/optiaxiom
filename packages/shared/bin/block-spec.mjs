@@ -302,6 +302,11 @@ function generateJsonSchema(additionalProperties = false) {
             body: {
               anyOf: [{ $ref: "#/definitions/BlockNode" }],
             },
+            subtitle: {
+              description:
+                "A brief description or tagline that provides additional context about the Block's purpose.",
+              type: "string",
+            },
             title: {
               description:
                 "A concise heading that encapsulates the essence of the Block's content or intended action.",
