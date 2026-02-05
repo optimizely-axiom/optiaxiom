@@ -286,16 +286,29 @@ function generateJsonSchema(additionalProperties = false) {
               },
               type: "array",
             },
+            appIcon: {
+              description: "A visual representation of the application",
+              type: "string",
+            },
+            appName: {
+              description: "The official name of the application",
+              type: "string",
+            },
             blocking: {
               description:
                 "If true, hides chat prompt and forces user interaction with document. User can press ESC or close to abandon.",
               type: "boolean",
             },
-            children: {
+            body: {
               anyOf: [{ $ref: "#/definitions/BlockNode" }],
             },
+            title: {
+              description:
+                "A concise heading that encapsulates the essence of the Block's content or intended action.",
+              type: "string",
+            },
           },
-          required: ["$type", "children"],
+          required: ["$type", "appName", "body", "title"],
           type: "object",
         },
         BlockEventHandler: {
