@@ -21,6 +21,10 @@ export type BlockDocumentRendererProps = Pick<
   "defaultOpen" | "onOpenChange" | "open"
 > & {
   /**
+   * Whether block is collapsible
+   */
+  collapsible?: boolean;
+  /**
    * Current form data (flat object, FormData-like)
    */
   data?: Record<string, string>;
@@ -47,6 +51,7 @@ export type BlockDocumentRendererProps = Pick<
 };
 
 export function BlockDocumentRenderer({
+  collapsible,
   data = {},
   defaultOpen = true,
   element: elementProp,
@@ -73,6 +78,8 @@ export function BlockDocumentRenderer({
       );
     }
   }
+
+  const Trigger = collapsible ? DisclosureTrigger : Box;
 
   return (
     <BlockDocumentProvider
@@ -118,13 +125,16 @@ export function BlockDocumentRenderer({
       >
         {result.success && (
           <>
-            <DisclosureTrigger chevronPosition="end" py="0">
+            <Trigger
+              py="0"
+              {...(collapsible ? { chevronPosition: "end" } : {})}
+            >
               <Group fontSize="sm" gap="8">
                 <Box bg="bg.accent.subtle" rounded="xs" size="20" />
                 <Text fontWeight="500">{result.data.appName}</Text>
                 {!open && <Text color="fg.secondary">{result.data.title}</Text>}
               </Group>
-            </DisclosureTrigger>
+            </Trigger>
             <DisclosureContent
               alignItems="stretch"
               display="flex"
