@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 1.9.3
+
+### Patch Changes
+
+- f64af15: add focus-visible visual indicator to highlighted menu/select items
+
 ## 1.9.2
 
 ### Patch Changes
