@@ -80,7 +80,9 @@ export const buttonBase = recipe({
           [hoverAccentColorVar]: theme.colors["bg.error.hovered"],
           [pressedAccentColorVar]: theme.colors["bg.error.pressed"],
           [subtleHoverAccentColorVar]: theme.colors["bg.error.subtlest"],
+          [subtleHoverOutlineColorVar]: theme.colors["border.error"],
           [subtlePressedAccentColorVar]: theme.colors["bg.error.subtle"],
+          [textColorVar]: theme.colors["fg.error"],
         },
       }),
       neutral: style({
@@ -89,7 +91,7 @@ export const buttonBase = recipe({
           [hoverAccentColorVar]: theme.colors["bg.default.inverse.hovered"],
           [pressedAccentColorVar]: theme.colors["bg.default.inverse.pressed"],
           [solidTextColorVar]: theme.colors["fg.default.inverse"],
-          [subtleHoverAccentColorVar]: theme.colors["bg.page"],
+          [subtleHoverAccentColorVar]: theme.colors["bg.secondary"],
           [subtleHoverOutlineColorVar]: theme.colors["border.default"],
           [subtleOutlineColorVar]: theme.colors["border.default"],
           [subtlePressedAccentColorVar]: theme.colors["bg.secondary"],
