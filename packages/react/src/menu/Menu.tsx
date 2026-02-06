@@ -174,6 +174,7 @@ export function Menu({
   const [inputVisible, setInputVisible] = useState(
     inputDefaultVisibleRef.current,
   );
+  const [focusVisible, setFocusVisible] = useState(false);
   useEffect(() => {
     if (inputValue) {
       setInputVisible(true);
@@ -182,6 +183,8 @@ export function Menu({
   useEffect(() => {
     if (open) {
       setInputVisible(inputDefaultVisibleRef.current);
+    } else {
+      setFocusVisible(false);
     }
   }, [open]);
   useEffect(() => {
@@ -194,6 +197,7 @@ export function Menu({
     <Comp onOpenChange={setOpen} open={open}>
       <MenuProvider
         activeItemStack={activeItemStack}
+        focusVisible={focusVisible}
         inputRef={inputRef}
         inputVisible={inputVisible}
         onSelect={(item, { dismiss }) => {
@@ -214,6 +218,7 @@ export function Menu({
             : placeholder
         }
         setActiveItemStack={setActiveItemStack}
+        setFocusVisible={setFocusVisible}
         setOpen={setOpen}
         size={size}
         triggerRef={triggerRef}
@@ -222,6 +227,9 @@ export function Menu({
           enabled={open ? activeItemStack.length + 1 : false}
           inputValue={inputValue}
           onHover={(item, pointer) => {
+            if (!pointer) {
+              setFocusVisible(true);
+            }
             setSubMenuOpen(
               pointer &&
                 (typeof item.subOptions === "function" ||

@@ -14,12 +14,14 @@ import type { CommandOption } from "../command/internals";
 
 export const [MenuProvider, useMenuContext] = createContext<{
   activeItemStack: CommandOption[];
+  focusVisible: boolean;
   inputRef: RefObject<HTMLInputElement>;
   inputVisible: boolean;
   onSelect: NonNullable<ComponentPropsWithoutRef<typeof Command>["onSelect"]>;
   open?: boolean | undefined;
   placeholder: string | undefined;
   setActiveItemStack: Dispatch<SetStateAction<CommandOption[]>>;
+  setFocusVisible: Dispatch<SetStateAction<boolean>>;
   setOpen: (open: boolean) => void;
   size: "lg" | "sm";
   triggerRef: RefObject<HTMLButtonElement>;

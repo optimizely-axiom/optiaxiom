@@ -1,7 +1,13 @@
 "use client";
 
 import type { UseSelectReturnValue } from "downshift";
-import type { FocusEventHandler, ReactNode, RefObject } from "react";
+import type {
+  Dispatch,
+  FocusEventHandler,
+  ReactNode,
+  RefObject,
+  SetStateAction,
+} from "react";
 
 import { createContext } from "@radix-ui/react-context";
 
@@ -75,6 +81,7 @@ export const resolveItemProperty = <Value>(
 export const [SelectProvider, useSelectContext] = createContext<{
   disabled?: boolean;
   downshift: UseSelectReturnValue<SelectOption>;
+  focusVisible: boolean;
   highlightedItem: SelectOption;
   highlightedItemRef: RefObject<HTMLElement>;
   isOpen: boolean | undefined;
@@ -82,4 +89,5 @@ export const [SelectProvider, useSelectContext] = createContext<{
   loading: boolean | undefined;
   onBlur: FocusEventHandler<HTMLElement> | undefined;
   selectedItem: SelectOption | undefined;
+  setFocusVisible: Dispatch<SetStateAction<boolean>>;
 }>("@optiaxiom/react/Select");

@@ -47,6 +47,7 @@ export const item = recipe({
           color: fallbackVar(pressedTextColorVar, textColorVar),
         },
         "&:not([data-disabled])[data-highlighted][data-focus-visible]": {
+          outline: `2px solid ${theme.colors["border.control"]}`,
           outlineOffset: "-2px",
         },
         "&[data-disabled]": {

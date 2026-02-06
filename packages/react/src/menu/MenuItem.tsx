@@ -4,6 +4,7 @@ import { CommandItem } from "../command";
 import { resolveItemProperty, useCommandContext } from "../command/internals";
 import { IconUpRightFromSquare } from "../icons/IconUpRightFromSquare";
 import { ListboxItem } from "../listbox";
+import { useMenuContext } from "./MenuContext";
 
 export type MenuItemProps = ComponentPropsWithoutRef<typeof CommandItem> &
   ComponentPropsWithoutRef<typeof ListboxItem>;
@@ -11,7 +12,10 @@ export type MenuItemProps = ComponentPropsWithoutRef<typeof CommandItem> &
 export const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>(
   ({ addonAfter, children, ...props }, ref) => {
     const Comp = props.item.href ? "a" : "div";
-    const { inputValue } = useCommandContext("@optiaxiom/react/MenuItem");
+    const { highlightedItem, inputValue } = useCommandContext(
+      "@optiaxiom/react/MenuItem",
+    );
+    const { focusVisible } = useMenuContext("@optiaxiom/react/MenuItem");
 
     return (
       <CommandItem asChild ref={ref} {...props}>
@@ -25,6 +29,9 @@ export const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>(
           }
           addonBefore={resolveItemProperty(props.item.addon, { inputValue })}
           asChild
+          data-focus-visible={
+            focusVisible && highlightedItem === props.item ? "" : undefined
+          }
           description={resolveItemProperty(props.item.description, {
             inputValue,
           })}
