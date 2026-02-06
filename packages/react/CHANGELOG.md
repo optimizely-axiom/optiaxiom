@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 1.9.2
+
+### Patch Changes
+
+- 1fe0a39: add app icon, name, title to block document
+
 ## 1.9.1
 
 ### Patch Changes
