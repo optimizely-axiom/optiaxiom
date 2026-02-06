@@ -34,7 +34,7 @@ export const MenuTrigger = forwardRef<HTMLButtonElement, MenuTriggerProps>(
     },
     outerRef,
   ) => {
-    const { setOpen, size, triggerRef } = useMenuContext(
+    const { setFocusVisible, setOpen, size, triggerRef } = useMenuContext(
       "@optiaxiom/react/MenuTrigger",
     );
     const Comp = size === "sm" ? PopoverTrigger : DialogTrigger;
@@ -58,6 +58,7 @@ export const MenuTrigger = forwardRef<HTMLButtonElement, MenuTriggerProps>(
           switch (event.key) {
             case "ArrowDown":
               event.preventDefault();
+              setFocusVisible(true);
               setOpen(true);
           }
         }}

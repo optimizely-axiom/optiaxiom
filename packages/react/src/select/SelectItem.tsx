@@ -22,6 +22,7 @@ export const SelectItem = forwardRef<HTMLDivElement, SelectItemProps>(
   ({ children, index, item, onMouseMove, size, ...props }, outerRef) => {
     const {
       downshift,
+      focusVisible,
       highlightedItem,
       highlightedItemRef,
       isOpen,
@@ -65,6 +66,9 @@ export const SelectItem = forwardRef<HTMLDivElement, SelectItemProps>(
     return (
       <Box
         data-disabled={itemProps["aria-disabled"] ? "" : undefined}
+        data-focus-visible={
+          focusVisible && highlightedItem === item ? "" : undefined
+        }
         data-highlighted={highlightedItem === item ? "" : undefined}
         data-selected={selectedItem === item ? "" : undefined}
         size={size}

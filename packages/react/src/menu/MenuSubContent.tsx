@@ -23,9 +23,11 @@ export type MenuSubContentProps = ExcludeProps<
 
 export const MenuSubContent = forwardRef<HTMLDivElement, MenuSubContentProps>(
   ({ align = "start", side = "right", ...props }, outerRef) => {
-    const { onSelect, setOpen: setRootMenuOpen } = useMenuContext(
-      "@optiaxiom/react/MenuSubContent",
-    );
+    const {
+      onSelect,
+      setFocusVisible,
+      setOpen: setRootMenuOpen,
+    } = useMenuContext("@optiaxiom/react/MenuSubContent");
     const {
       highlightedItem: item,
       inputValue: parentInputValue,
@@ -128,6 +130,9 @@ export const MenuSubContent = forwardRef<HTMLDivElement, MenuSubContentProps>(
               })
             }
             onHover={(item, pointer) => {
+              if (!pointer) {
+                setFocusVisible(true);
+              }
               setSubMenuOpen(
                 pointer &&
                   (typeof item.subOptions === "function" ||

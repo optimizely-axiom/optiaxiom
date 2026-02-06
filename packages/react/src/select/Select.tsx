@@ -7,8 +7,10 @@ import {
   type FocusEventHandler,
   forwardRef,
   type ReactNode,
+  useEffect,
   useMemo,
   useRef,
+  useState,
 } from "react";
 
 import { Avatar } from "../avatar";
@@ -181,6 +183,13 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
     );
     const highlightedItemRef = useRef<HTMLElement>(null);
 
+    const [focusVisible, setFocusVisible] = useState(false);
+    useEffect(() => {
+      if (!isOpen) {
+        setFocusVisible(false);
+      }
+    }, [isOpen]);
+
     const downshift = useSelect({
       highlightedIndex:
         highlightedIndex === -1
@@ -203,9 +212,20 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
         ) {
           setHighlightedIndex(changes.highlightedIndex);
         }
+
+        if (changes.type !== useSelect.stateChangeTypes.ItemMouseMove) {
+          setFocusVisible(true);
+        }
       },
-      onIsOpenChange({ isOpen }) {
+      onIsOpenChange({ isOpen, type }) {
         setIsOpen(isOpen);
+        if (
+          isOpen &&
+          (type === useSelect.stateChangeTypes.ToggleButtonKeyDownArrowDown ||
+            type === useSelect.stateChangeTypes.ToggleButtonKeyDownArrowUp)
+        ) {
+          setFocusVisible(true);
+        }
       },
       onSelectedItemChange({ selectedItem }) {
         forceValueChange(selectedItem?.value ?? "");
@@ -241,6 +261,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
         <SelectProvider
           disabled={disabled}
           downshift={downshift}
+          focusVisible={focusVisible}
           highlightedItem={items[downshift.highlightedIndex]}
           highlightedItemRef={highlightedItemRef}
           isOpen={isOpen}
@@ -248,6 +269,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
           loading={loading}
           onBlur={onBlur}
           selectedItem={selectedItem}
+          setFocusVisible={setFocusVisible}
         >
           <SelectHiddenSelect
             defaultValue={defaultValue}
