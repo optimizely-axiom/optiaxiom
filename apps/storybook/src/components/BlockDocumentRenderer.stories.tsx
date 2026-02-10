@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Box } from "@optiaxiom/react";
 import { BlockDocumentRenderer } from "@optiaxiom/react/unstable";
 import { useState } from "react";
-import { action } from "storybook/internal/actions";
+import { action } from "storybook/actions";
 
 export default {
   args: {

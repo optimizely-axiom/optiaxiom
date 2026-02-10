@@ -1,7 +1,7 @@
 import { createFilter } from "@rollup/pluginutils";
 import { basename, relative } from "node:path";
 import { ERROR_CODES, parse } from "react-docgen";
-import { displayNameHandler } from "react-docgen/dist/handlers";
+import { builtinHandlers } from "react-docgen";
 
 export function reactDocgenPlugin() {
   const filter = createFilter(
@@ -28,7 +28,7 @@ export function reactDocgenPlugin() {
 
       try {
         const docgenResults = parse(code, {
-          handlers: [displayNameHandler],
+          handlers: [builtinHandlers.displayNameHandler],
         });
         if (!docgenResults.length) {
           return;

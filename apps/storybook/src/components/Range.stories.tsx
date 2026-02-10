@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Box, Field, Group, Text } from "@optiaxiom/react";
 import { Range } from "@optiaxiom/react/unstable";
 import { useState } from "react";
-import { expect, screen, userEvent, waitFor } from "storybook/internal/test";
+import { expect, screen, userEvent, waitFor } from "storybook/test";
 
 export default {
   args: {

@@ -1,6 +1,6 @@
 import type { StorybookConfig } from "@storybook/react-vite";
 
-import { reactDocgenPlugin } from "./react-docgen-plugin";
+import { reactDocgenPlugin } from "./react-docgen-plugin.ts";
 
 const config: StorybookConfig = {
   addons: [
