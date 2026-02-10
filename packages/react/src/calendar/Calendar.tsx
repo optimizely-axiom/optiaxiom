@@ -30,6 +30,13 @@ import { CalendarWeekday } from "./CalendarWeekday";
 import { CalendarWeekdays } from "./CalendarWeekdays";
 import { toTimeZoneName } from "./toTimeZoneName";
 
+const locale = new Intl.Locale(navigator.language ?? "en-US");
+const weekInfo =
+  "getWeekInfo" in locale && typeof locale.getWeekInfo === "function"
+    ? (locale.getWeekInfo() as { firstDay: number })
+    : { firstDay: 0 };
+const weekStartsOn = (weekInfo.firstDay % 7) as 0 | 1 | 2 | 3 | 4 | 5 | 6;
+
 export type CalendarProps = BoxProps<
   "div",
   Pick<ComponentPropsWithoutRef<typeof DayPicker>, "today"> & {
@@ -228,6 +235,7 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
                 required
                 selected={value instanceof Date ? value : undefined}
                 today={today}
+                weekStartsOn={weekStartsOn}
               />
             ) : (
               <DayPicker
@@ -291,6 +299,7 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
                 }
                 showOutsideDays
                 today={today}
+                weekStartsOn={weekStartsOn}
               />
             )}
           </Box>

@@ -107,6 +107,8 @@ jobs:
       - run: pnpm lint --no-fix
 
   test:
+    env:
+      LC_ALL: en_US.UTF-8
     if: ${{ github.event_name == 'pull_request' || github.repository_owner == 'optimizely-axiom' }}
     runs-on: ubuntu-latest
     steps:
