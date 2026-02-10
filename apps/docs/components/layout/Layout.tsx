@@ -47,6 +47,7 @@ export async function Layout({ children }: { children: ReactNode }) {
       <body>
         <AxiomProvider>
           <NextraLayout
+            copyPageButton={false}
             docsRepositoryBase="https://github.com/optimizely-axiom/optiaxiom/tree/main/apps/docs"
             footer={<Footer>Copyright 2024-present © Optimizely.</Footer>}
             navbar={
