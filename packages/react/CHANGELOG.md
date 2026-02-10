@@ -1,5 +1,15 @@
 # @optiaxiom/react
 
+## 1.9.3
+
+### Patch Changes
+
+- 4f5c164: add new xl box shadow token
+- f64af15: add focus-visible visual indicator to highlighted menu/select items
+- 80d8175: set calendar week start based on user locale
+- Updated dependencies [4f5c164]
+  - @optiaxiom/globals@1.1.9
+
 ## 1.9.2
 
 ### Patch Changes

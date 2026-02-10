@@ -1,5 +1,11 @@
 # @optiaxiom/globals
 
+## 1.1.9
+
+### Patch Changes
+
+- 4f5c164: add new xl box shadow token
+
 ## 1.1.8
 
 ### Patch Changes
