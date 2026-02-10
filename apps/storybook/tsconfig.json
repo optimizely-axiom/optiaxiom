@@ -1,6 +1,7 @@
 {
   "extends": "../../tsconfig.app.json",
   "compilerOptions": {
+    "allowImportingTsExtensions": true,
     "paths": {
       "@optiaxiom/react": ["../../packages/react/src"],
       "@optiaxiom/react/unstable": ["../../packages/react/src/unstable.ts"]
