@@ -17,7 +17,7 @@
   margin-bottom: 0;
 
   /* replace nextra code buttons with custom ones */
-  .x\:group-hover:opacity-100 {
+  :global(.x\:group-hover\:opacity-100) {
     display: none;
   }
 }

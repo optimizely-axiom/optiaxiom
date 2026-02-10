@@ -14,9 +14,6 @@ const withNextra = createNextra(nextraOptions);
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   basePath: process.env.NEXT_PUBLIC_BASE_PATH,
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
   experimental: {
     cssChunking: "strict",
   },
@@ -25,6 +22,11 @@ const nextConfig = {
   },
   output: "export",
   trailingSlash: true,
+  turbopack: {
+    resolveAlias: {
+      "next-mdx-import-source-file": "./mdx-components.tsx",
+    },
+  },
   typescript: {
     tsconfigPath: "tsconfig.next.json",
   },
