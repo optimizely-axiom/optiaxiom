@@ -713,7 +713,13 @@ export const roundedSprinkleSchema = z
   );
 
 export const shadowSprinkleSchema = z
-  .union([z.literal("none"), z.literal("sm"), z.literal("md"), z.literal("lg")])
+  .union([
+    z.literal("none"),
+    z.literal("sm"),
+    z.literal("md"),
+    z.literal("lg"),
+    z.literal("xl"),
+  ])
   .describe(
     "Set the element's box shadow. Only accepts predefined boxShadow tokens.",
   );

@@ -39,8 +39,8 @@ describe("tokens", () => {
       count: Object.keys(tokens.boxShadow).length,
       keys: Object.keys(tokens.boxShadow),
     }).toEqual({
-      count: 3,
-      keys: ["sm", "md", "lg"],
+      count: 4,
+      keys: ["sm", "md", "lg", "xl"],
     });
   });
 
