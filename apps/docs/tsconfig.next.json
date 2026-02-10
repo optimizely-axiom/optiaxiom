@@ -5,7 +5,10 @@
     "paths": {
       "@/components": ["components"],
       "@/components/*": ["components/*"],
-      "@/demos/*": ["demos/*"]
+      "@/demos/*": ["demos/*"],
+      "@optiaxiom/globals": ["../../packages/globals/dist"],
+      "@optiaxiom/react": ["../../packages/react/dist"],
+      "@optiaxiom/react/unstable": ["../../packages/react/dist/unstable"]
     }
   }
 }
