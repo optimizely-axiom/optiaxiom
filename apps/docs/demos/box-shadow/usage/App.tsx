@@ -14,6 +14,7 @@ export function App() {
       <DemoBox shadow="sm">shadow=sm</DemoBox>
       <DemoBox shadow="md">shadow=md</DemoBox>
       <DemoBox shadow="lg">shadow=lg</DemoBox>
+      <DemoBox shadow="xl">shadow=xl</DemoBox>
     </Group>
   );
 }
