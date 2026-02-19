@@ -1378,6 +1378,92 @@ export type BlockHeadingProps = Omit<
   "$id" | "$type" | "$visible"
 >;
 
+export const BlockImageSchema = z.object({
+  $id: z
+    .string()
+    .describe(
+      "Unique identifier for targeting by actions (e.g., setVisibility)",
+    )
+    .optional(),
+  $type: z.literal("Block.Image"),
+  $visible: z
+    .boolean()
+    .describe(
+      "Whether element is visible (default: true). Elements with $visible: false are hidden until shown by an action.",
+    )
+    .optional(),
+  alignItems: alignItemsSprinkleSchema.optional(),
+  alignSelf: alignSelfSprinkleSchema.optional(),
+  alt: z
+    .string()
+    .describe("Alt text for the image, used for accessibility.")
+    .optional(),
+  animation: animationSprinkleSchema.optional(),
+  backgroundImage: backgroundImageSprinkleSchema.optional(),
+  bg: bgSprinkleSchema.optional(),
+  border: borderSprinkleSchema.optional(),
+  borderB: borderBSprinkleSchema.optional(),
+  borderColor: borderColorSprinkleSchema.optional(),
+  borderL: borderLSprinkleSchema.optional(),
+  borderR: borderRSprinkleSchema.optional(),
+  borderT: borderTSprinkleSchema.optional(),
+  color: colorSprinkleSchema.optional(),
+  cursor: cursorSprinkleSchema.optional(),
+  display: displaySprinkleSchema.optional(),
+  flex: flexSprinkleSchema.optional(),
+  flexDirection: flexDirectionSprinkleSchema.optional(),
+  flexWrap: flexWrapSprinkleSchema.optional(),
+  fontFamily: fontFamilySprinkleSchema.optional(),
+  fontSize: fontSizeSprinkleSchema.optional(),
+  fontWeight: fontWeightSprinkleSchema.optional(),
+  gap: gapSprinkleSchema.optional(),
+  gridColumn: gridColumnSprinkleSchema.optional(),
+  gridTemplateColumns: gridTemplateColumnsSprinkleSchema.optional(),
+  h: hSprinkleSchema.optional(),
+  justifyContent: justifyContentSprinkleSchema.optional(),
+  justifyItems: justifyItemsSprinkleSchema.optional(),
+  m: mSprinkleSchema.optional(),
+  maxH: maxHSprinkleSchema.optional(),
+  maxW: maxWSprinkleSchema.optional(),
+  mb: mbSprinkleSchema.optional(),
+  ml: mlSprinkleSchema.optional(),
+  mr: mrSprinkleSchema.optional(),
+  mt: mtSprinkleSchema.optional(),
+  mx: mxSprinkleSchema.optional(),
+  my: mySprinkleSchema.optional(),
+  objectFit: objectFitSprinkleSchema.optional(),
+  overflow: overflowSprinkleSchema.optional(),
+  overflowX: overflowXSprinkleSchema.optional(),
+  overflowY: overflowYSprinkleSchema.optional(),
+  p: pSprinkleSchema.optional(),
+  pb: pbSprinkleSchema.optional(),
+  pl: plSprinkleSchema.optional(),
+  placeItems: placeItemsSprinkleSchema.optional(),
+  pointerEvents: pointerEventsSprinkleSchema.optional(),
+  pr: prSprinkleSchema.optional(),
+  pt: ptSprinkleSchema.optional(),
+  px: pxSprinkleSchema.optional(),
+  py: pySprinkleSchema.optional(),
+  rounded: roundedSprinkleSchema.optional(),
+  shadow: shadowSprinkleSchema.optional(),
+  size: sizeSprinkleSchema.optional(),
+  src: z.string().describe("The URL of the image to display."),
+  textAlign: textAlignSprinkleSchema.optional(),
+  textTransform: textTransformSprinkleSchema.optional(),
+  transition: transitionSprinkleSchema.optional(),
+  w: wSprinkleSchema.optional(),
+  whiteSpace: whiteSpaceSprinkleSchema.optional(),
+  z: zSprinkleSchema.optional(),
+});
+
+export type BlockImage = Omit<z.infer<typeof BlockImageSchema>, "children"> & {
+  children?: BlockNode;
+};
+export type BlockImageProps = Omit<
+  z.infer<typeof BlockImageSchema>,
+  "$id" | "$type" | "$visible"
+>;
+
 export const BlockInputSchema = z.object({
   $id: z
     .string()
@@ -2236,6 +2322,7 @@ export const BlockElementSchema = z.discriminatedUnion("$type", [
   BlockFieldSchema,
   BlockGroupSchema,
   BlockHeadingSchema,
+  BlockImageSchema,
   BlockInputSchema,
   BlockLinkSchema,
   BlockRangeSchema,
@@ -2252,6 +2339,7 @@ type BlockElement =
   | BlockField
   | BlockGroup
   | BlockHeading
+  | BlockImage
   | BlockInput
   | BlockLink
   | BlockRange

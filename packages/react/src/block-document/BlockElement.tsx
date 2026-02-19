@@ -4,6 +4,7 @@ import { useBlockDocumentContext } from "./BlockDocumentContext";
 import { BlockField } from "./BlockField";
 import { BlockGroup } from "./BlockGroup";
 import { BlockHeading } from "./BlockHeading";
+import { BlockImage } from "./BlockImage";
 import { BlockInput } from "./BlockInput";
 import { BlockLink } from "./BlockLink";
 import { BlockRange } from "./BlockRange";
@@ -70,6 +71,8 @@ export const BlockElement = ({ element: elementProp }: BlockElementProps) => {
       return <BlockGroup {...omitType(element)} />;
     case "Block.Heading":
       return <BlockHeading {...omitType(element)} />;
+    case "Block.Image":
+      return <BlockImage {...omitType(element)} />;
     case "Block.Input":
       return <BlockInput {...omitType(element)} />;
     case "Block.Link":

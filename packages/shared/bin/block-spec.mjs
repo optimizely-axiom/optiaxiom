@@ -34,6 +34,9 @@ const BLOCK_COMPONENT_CONFIG = {
   Heading: {
     allowedProps: ["children", "level"],
   },
+  Image: {
+    allowedProps: ["alt", "src"],
+  },
   Input: {
     allowedProps: [
       "addonAfter",
