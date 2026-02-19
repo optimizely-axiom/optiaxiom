@@ -198,6 +198,143 @@ export const FormWithInputs: Story = {
   },
 };
 
+export const WithImage: Story = {
+  args: {
+    element: {
+      $type: "Block.Document",
+      actions: [
+        {
+          $type: "Block.Action",
+          appearance: "primary",
+          children: "Download",
+        },
+      ],
+      appName: "Opal",
+      body: [
+        {
+          $type: "Block.Image",
+          alt: "A delicious, juicy pan-seared chicken breast dish with broccoli sides",
+          src: "https://placehold.co/600x400",
+        },
+        {
+          $type: "Block.Group",
+          border: "1",
+          borderColor: "border.tertiary",
+          children: [
+            {
+              $type: "Block.Group",
+              children: [
+                {
+                  $type: "Block.Text",
+                  children: "Alt Text",
+                  fontSize: "md",
+                  fontWeight: "500",
+                },
+                {
+                  $type: "Block.Text",
+                  children:
+                    "A delicious, juicy pan-seared chicken breast dish with broccoli sides",
+                  color: "fg.secondary",
+                  fontSize: "sm",
+                },
+              ],
+              flex: "1",
+              flexDirection: "column",
+              gap: "8",
+            },
+          ],
+          gap: "8",
+          px: "16",
+          py: "12",
+          rounded: "lg",
+        },
+      ],
+      subtitle: "Created Jan 15, 2025",
+      title: "Juicy Chicken with Broccoli",
+    },
+  },
+};
+
+export const WithImageGrid: Story = {
+  args: {
+    element: {
+      $type: "Block.Document",
+      actions: [
+        {
+          $type: "Block.Action",
+          appearance: "primary",
+          children: "Download",
+        },
+      ],
+      appName: "Opal",
+      body: [
+        {
+          $type: "Block.Group",
+          children: [
+            {
+              $type: "Block.Image",
+              alt: "Lime chicken thighs on a plate",
+              src: "https://placehold.co/274x250",
+            },
+            {
+              $type: "Block.Image",
+              alt: "Chicken with lemon sauce and broccoli",
+              src: "https://placehold.co/274x250",
+            },
+            {
+              $type: "Block.Image",
+              alt: "Sliced roasted chicken breast with broccoli",
+              src: "https://placehold.co/274x250",
+            },
+            {
+              $type: "Block.Image",
+              alt: "Sesame chicken with broccoli",
+              src: "https://placehold.co/274x250",
+            },
+          ],
+          display: "grid",
+          gap: "12",
+          gridTemplateColumns: "2",
+        },
+        {
+          $type: "Block.Group",
+          border: "1",
+          borderColor: "border.tertiary",
+          children: [
+            {
+              $type: "Block.Group",
+              children: [
+                {
+                  $type: "Block.Text",
+                  children: "Alt Text",
+                  fontSize: "md",
+                  fontWeight: "500",
+                },
+                {
+                  $type: "Block.Text",
+                  children:
+                    "A delicious, juicy pan-seared chicken breast dish with broccoli sides",
+                  color: "fg.secondary",
+                  fontSize: "sm",
+                },
+              ],
+              flex: "1",
+              flexDirection: "column",
+              gap: "8",
+            },
+          ],
+          gap: "8",
+          px: "16",
+          py: "12",
+          rounded: "lg",
+        },
+      ],
+      subtitle: "Created Jan 15, 2025",
+      title: "Juicy Chicken with Broccoli",
+    },
+  },
+};
+
 export const WithAllActions: Story = {
   args: {
     element: {
