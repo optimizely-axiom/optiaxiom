@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Box } from "@optiaxiom/react";
-import { BlockDocumentRenderer } from "@optiaxiom/react/unstable";
+import { ProteusDocumentRenderer } from "@optiaxiom/react/unstable";
 import { useState } from "react";
 import { action } from "storybook/actions";
 
@@ -10,7 +10,7 @@ export default {
     onCancelAction: action("onCancelAction"),
     onToolCall: action("onToolCall"),
   },
-  component: BlockDocumentRenderer,
+  component: ProteusDocumentRenderer,
   decorators: (Story) => (
     <Box maxW="lg">
       <Story />
@@ -19,24 +19,24 @@ export default {
   parameters: {
     layout: "padded",
   },
-} as Meta<typeof BlockDocumentRenderer>;
+} as Meta<typeof ProteusDocumentRenderer>;
 
-type Story = StoryObj<typeof BlockDocumentRenderer>;
+type Story = StoryObj<typeof ProteusDocumentRenderer>;
 
 export const Basic: Story = {
   args: {
     element: {
-      $type: "Block.Document",
+      $type: "Proteus.Document",
       appName: "Opal",
       body: [
         {
-          $type: "Block.Text",
+          $type: "Proteus.Text",
           children:
-            "This is a basic Block Document that demonstrates rendering elements from JSON.",
+            "This is a basic Proteus Document that demonstrates rendering elements from JSON.",
         },
       ],
       subtitle: "Secondary title",
-      title: "Welcome to Block Documents",
+      title: "Welcome to Proteus Documents",
     },
   },
 };
@@ -44,10 +44,10 @@ export const Basic: Story = {
 export const FormWithInputs: Story = {
   args: {
     element: {
-      $type: "Block.Document",
+      $type: "Proteus.Document",
       actions: [
         {
-          $type: "Block.Action",
+          $type: "Proteus.Action",
           appearance: "primary-opal",
           children: "Create Test Plan",
         },
@@ -55,33 +55,33 @@ export const FormWithInputs: Story = {
       appName: "Opal",
       body: [
         {
-          $type: "Block.Group",
+          $type: "Proteus.Group",
           children: [
             {
-              $type: "Block.Heading",
+              $type: "Proteus.Heading",
               children: "1. Where should this test run?",
               fontSize: "md",
               fontWeight: "600",
               level: "2",
             },
             {
-              $type: "Block.Text",
+              $type: "Proteus.Text",
               children:
                 "Select how you'd like to define the page or experience.",
               color: "fg.secondary",
               fontSize: "md",
             },
             {
-              $type: "Block.Field",
+              $type: "Proteus.Field",
               children: {
-                $type: "Block.Select",
+                $type: "Proteus.Select",
                 children: [
                   {
-                    $type: "Block.SelectTrigger",
+                    $type: "Proteus.SelectTrigger",
                     w: "full",
                   },
                   {
-                    $type: "Block.SelectContent",
+                    $type: "Proteus.SelectContent",
                   },
                 ],
                 name: "target_by",
@@ -108,9 +108,9 @@ export const FormWithInputs: Story = {
             },
             {
               $id: "url",
-              $type: "Block.Field",
+              $type: "Proteus.Field",
               children: {
-                $type: "Block.Input",
+                $type: "Proteus.Input",
                 name: "url",
                 onValueChange: {
                   action: "setVisibility",
@@ -122,17 +122,17 @@ export const FormWithInputs: Story = {
             },
             {
               $id: "page",
-              $type: "Block.Field",
+              $type: "Proteus.Field",
               $visible: false,
               children: {
-                $type: "Block.Select",
+                $type: "Proteus.Select",
                 children: [
                   {
-                    $type: "Block.SelectTrigger",
+                    $type: "Proteus.SelectTrigger",
                     w: "full",
                   },
                   {
-                    $type: "Block.SelectContent",
+                    $type: "Proteus.SelectContent",
                   },
                 ],
                 name: "saved_page",
@@ -152,18 +152,18 @@ export const FormWithInputs: Story = {
         },
         {
           $id: "question_2",
-          $type: "Block.Group",
+          $type: "Proteus.Group",
           $visible: false,
           children: [
             {
-              $type: "Block.Heading",
+              $type: "Proteus.Heading",
               children: "2. What would you like to test?",
               fontSize: "md",
               fontWeight: "600",
               level: "2",
             },
             {
-              $type: "Block.Text",
+              $type: "Proteus.Text",
               children:
                 "Describe what you'd like to test. If you're not sure, try getting test ideas first.",
               color: "fg.secondary",
@@ -171,12 +171,12 @@ export const FormWithInputs: Story = {
             },
             {
               $id: "url",
-              $type: "Block.Field",
+              $type: "Proteus.Field",
               children: {
-                $type: "Block.Textarea",
+                $type: "Proteus.Textarea",
                 name: "test_idea",
                 placeholder:
-                  "e.g., Add quantity badges to product thumbnails to show how many of each item they’re buying, improving clarity, confidence, and potentially conversion",
+                  "e.g., Add quantity badges to product thumbnails to show how many of each item they're buying, improving clarity, confidence, and potentially conversion",
               },
               label: "Test Idea",
             },
@@ -193,7 +193,7 @@ export const FormWithInputs: Story = {
       target_by: "url",
     });
     return (
-      <BlockDocumentRenderer {...args} data={data} onDataChange={setData} />
+      <ProteusDocumentRenderer {...args} data={data} onDataChange={setData} />
     );
   },
 };
@@ -201,10 +201,10 @@ export const FormWithInputs: Story = {
 export const WithImage: Story = {
   args: {
     element: {
-      $type: "Block.Document",
+      $type: "Proteus.Document",
       actions: [
         {
-          $type: "Block.Action",
+          $type: "Proteus.Action",
           appearance: "primary",
           children: "Download",
         },
@@ -212,26 +212,26 @@ export const WithImage: Story = {
       appName: "Opal",
       body: [
         {
-          $type: "Block.Image",
+          $type: "Proteus.Image",
           alt: "A delicious, juicy pan-seared chicken breast dish with broccoli sides",
           src: "https://placehold.co/600x400",
         },
         {
-          $type: "Block.Group",
+          $type: "Proteus.Group",
           border: "1",
           borderColor: "border.tertiary",
           children: [
             {
-              $type: "Block.Group",
+              $type: "Proteus.Group",
               children: [
                 {
-                  $type: "Block.Text",
+                  $type: "Proteus.Text",
                   children: "Alt Text",
                   fontSize: "md",
                   fontWeight: "500",
                 },
                 {
-                  $type: "Block.Text",
+                  $type: "Proteus.Text",
                   children:
                     "A delicious, juicy pan-seared chicken breast dish with broccoli sides",
                   color: "fg.secondary",
@@ -258,10 +258,10 @@ export const WithImage: Story = {
 export const WithImageGrid: Story = {
   args: {
     element: {
-      $type: "Block.Document",
+      $type: "Proteus.Document",
       actions: [
         {
-          $type: "Block.Action",
+          $type: "Proteus.Action",
           appearance: "primary",
           children: "Download",
         },
@@ -269,25 +269,25 @@ export const WithImageGrid: Story = {
       appName: "Opal",
       body: [
         {
-          $type: "Block.Group",
+          $type: "Proteus.Group",
           children: [
             {
-              $type: "Block.Image",
+              $type: "Proteus.Image",
               alt: "Lime chicken thighs on a plate",
               src: "https://placehold.co/274x250",
             },
             {
-              $type: "Block.Image",
+              $type: "Proteus.Image",
               alt: "Chicken with lemon sauce and broccoli",
               src: "https://placehold.co/274x250",
             },
             {
-              $type: "Block.Image",
+              $type: "Proteus.Image",
               alt: "Sliced roasted chicken breast with broccoli",
               src: "https://placehold.co/274x250",
             },
             {
-              $type: "Block.Image",
+              $type: "Proteus.Image",
               alt: "Sesame chicken with broccoli",
               src: "https://placehold.co/274x250",
             },
@@ -297,21 +297,21 @@ export const WithImageGrid: Story = {
           gridTemplateColumns: "2",
         },
         {
-          $type: "Block.Group",
+          $type: "Proteus.Group",
           border: "1",
           borderColor: "border.tertiary",
           children: [
             {
-              $type: "Block.Group",
+              $type: "Proteus.Group",
               children: [
                 {
-                  $type: "Block.Text",
+                  $type: "Proteus.Text",
                   children: "Alt Text",
                   fontSize: "md",
                   fontWeight: "500",
                 },
                 {
-                  $type: "Block.Text",
+                  $type: "Proteus.Text",
                   children:
                     "A delicious, juicy pan-seared chicken breast dish with broccoli sides",
                   color: "fg.secondary",
@@ -338,22 +338,22 @@ export const WithImageGrid: Story = {
 export const WithAllActions: Story = {
   args: {
     element: {
-      $type: "Block.Document",
+      $type: "Proteus.Document",
       actions: [
         {
-          $type: "Block.Action",
+          $type: "Proteus.Action",
           appearance: "primary",
           children: "Approve",
         },
         {
-          $type: "Block.CancelAction",
+          $type: "Proteus.CancelAction",
           children: "Reject",
         },
       ],
       appName: "Opal",
       body: [
         {
-          $type: "Block.Text",
+          $type: "Proteus.Text",
           children: "Would you like to approve the proposed changes?",
         },
       ],
@@ -366,10 +366,10 @@ export const ReadonlyMode: Story = {
   args: {
     data: { message: "This form is readonly", name: "John Doe" },
     element: {
-      $type: "Block.Document",
+      $type: "Proteus.Document",
       actions: [
         {
-          $type: "Block.Action",
+          $type: "Proteus.Action",
           appearance: "primary",
           children: "Submit",
         },
@@ -377,17 +377,17 @@ export const ReadonlyMode: Story = {
       appName: "Opal",
       body: [
         {
-          $type: "Block.Field",
+          $type: "Proteus.Field",
           children: {
-            $type: "Block.Input",
+            $type: "Proteus.Input",
             name: "name",
           },
           label: "Name",
         },
         {
-          $type: "Block.Field",
+          $type: "Proteus.Field",
           children: {
-            $type: "Block.Textarea",
+            $type: "Proteus.Textarea",
             name: "message",
           },
           label: "Message",
@@ -402,17 +402,17 @@ export const ReadonlyMode: Story = {
 export const PartialRendering: Story = {
   args: {
     element: {
-      $type: "Block.Document",
+      $type: "Proteus.Document",
       actions: [
         {
-          $type: "Block.Action",
+          $type: "Proteus.Action",
           children: "Submit",
         },
       ],
       appName: "Opal",
       body: [
         {
-          $type: "Block.InvalidElement",
+          $type: "Proteus.InvalidElement",
           content: "This is an invalid element type",
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } as any,
