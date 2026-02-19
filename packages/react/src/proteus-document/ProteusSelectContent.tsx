@@ -1,9 +1,9 @@
-import type { BlockSelectContentProps } from "./schemas";
+import type { ProteusSelectContentProps } from "./schemas";
 
 import { SelectContent } from "../select";
 
-export function BlockSelectContent(props: BlockSelectContentProps) {
+export function ProteusSelectContent(props: ProteusSelectContentProps) {
   return <SelectContent {...props} />;
 }
 
-BlockSelectContent.displayName = "@optiaxiom/react/BlockSelectContent";
+ProteusSelectContent.displayName = "@optiaxiom/react/ProteusSelectContent";

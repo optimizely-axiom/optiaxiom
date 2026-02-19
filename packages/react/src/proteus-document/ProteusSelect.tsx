@@ -1,14 +1,18 @@
 import { useEffect, useRef } from "react";
 
-import type { BlockSelectProps } from "./schemas";
+import type { ProteusSelectProps } from "./schemas";
 
 import { Select } from "../select";
-import { useBlockDocumentContext } from "./BlockDocumentContext";
-import { BlockElement } from "./BlockElement";
+import { useProteusDocumentContext } from "./ProteusDocumentContext";
+import { ProteusElement } from "./ProteusElement";
 
-export function BlockSelect({ children, options, ...props }: BlockSelectProps) {
-  const { data, onDataChange, onEvent, readOnly } = useBlockDocumentContext(
-    "@optiaxiom/react/BlockSelect",
+export function ProteusSelect({
+  children,
+  options,
+  ...props
+}: ProteusSelectProps) {
+  const { data, onDataChange, onEvent, readOnly } = useProteusDocumentContext(
+    "@optiaxiom/react/ProteusSelect",
   );
 
   const optionsRef = useRef(options);
@@ -36,9 +40,9 @@ export function BlockSelect({ children, options, ...props }: BlockSelectProps) {
       options={options}
       value={value}
     >
-      {children && <BlockElement element={children} />}
+      {children && <ProteusElement element={children} />}
     </Select>
   );
 }
 
-BlockSelect.displayName = "@optiaxiom/react/BlockSelect";
+ProteusSelect.displayName = "@optiaxiom/react/ProteusSelect";

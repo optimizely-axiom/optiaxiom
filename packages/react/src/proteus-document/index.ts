@@ -1,1 +1,1 @@
-export * from "./BlockDocumentRenderer";
+export * from "./ProteusDocumentRenderer";

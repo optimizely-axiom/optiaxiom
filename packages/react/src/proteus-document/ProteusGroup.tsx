@@ -1,12 +1,14 @@
-import type { BlockGroupProps } from "./schemas";
+import type { ProteusGroupProps } from "./schemas";
 
 import { Group } from "../group";
-import { BlockElement } from "./BlockElement";
+import { ProteusElement } from "./ProteusElement";
 
-export function BlockGroup({ children, ...props }: BlockGroupProps) {
+export function ProteusGroup({ children, ...props }: ProteusGroupProps) {
   return (
-    <Group {...props}>{children && <BlockElement element={children} />}</Group>
+    <Group {...props}>
+      {children && <ProteusElement element={children} />}
+    </Group>
   );
 }
 
-BlockGroup.displayName = "@optiaxiom/react/BlockGroup";
+ProteusGroup.displayName = "@optiaxiom/react/ProteusGroup";

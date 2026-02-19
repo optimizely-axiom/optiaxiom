@@ -1,4 +1,3 @@
-export * from "./block-document";
 export * from "./calendar";
 export * from "./data-table/unstable";
 export * from "./details-panel";
@@ -10,6 +9,7 @@ export * from "./inline-input";
 export * from "./layout";
 export * from "./pill";
 export * from "./pill-menu";
+export * from "./proteus-document";
 export * from "./range";
 export * from "./sortable";
 export * from "./spotlight";

@@ -12,11 +12,11 @@ import { Group } from "../group";
 import { Heading } from "../heading";
 import { useEffectEvent } from "../hooks";
 import { Text } from "../text";
-import { BlockDocumentProvider } from "./BlockDocumentContext";
-import { BlockElement } from "./BlockElement";
-import { type BlockDocument, BlockDocumentSchema } from "./schemas";
+import { ProteusDocumentProvider } from "./ProteusDocumentContext";
+import { ProteusElement } from "./ProteusElement";
+import { type ProteusDocument, ProteusDocumentSchema } from "./schemas";
 
-export type BlockDocumentRendererProps = Pick<
+export type ProteusDocumentRendererProps = Pick<
   ComponentPropsWithoutRef<typeof Disclosure>,
   "defaultOpen" | "onOpenChange" | "open"
 > & {
@@ -29,9 +29,9 @@ export type BlockDocumentRendererProps = Pick<
    */
   data?: Record<string, string>;
   /**
-   * The Block document to render
+   * The Proteus document to render
    */
-  element: BlockDocument;
+  element: ProteusDocument;
   /**
    * Callback when user submits the CancelAction input
    */
@@ -41,7 +41,7 @@ export type BlockDocumentRendererProps = Pick<
    */
   onDataChange?: (data: Record<string, string>) => void;
   /**
-   * Callback when user clicks a Block.Action button
+   * Callback when user clicks a Proteus.Action button
    */
   onToolCall?: (toolName: string) => void;
   /**
@@ -50,7 +50,7 @@ export type BlockDocumentRendererProps = Pick<
   readOnly?: boolean;
 };
 
-export function BlockDocumentRenderer({
+export function ProteusDocumentRenderer({
   collapsible,
   data = {},
   defaultOpen = true,
@@ -61,7 +61,7 @@ export function BlockDocumentRenderer({
   onToolCall,
   open: openProp,
   readOnly = false,
-}: BlockDocumentRendererProps) {
+}: ProteusDocumentRendererProps) {
   const [open, setOpen] = useControllableState({
     defaultProp: defaultOpen,
     onChange: onOpenChange,
@@ -69,11 +69,11 @@ export function BlockDocumentRenderer({
   });
   const [visibility, setVisibility] = useState<Record<string, boolean>>({});
 
-  const result = BlockDocumentSchema.safeParse(elementProp);
+  const result = ProteusDocumentSchema.safeParse(elementProp);
   if (!result.success) {
     if (process.env.NODE_ENV !== "production") {
       console.error(
-        `[optiaxiom][react][BlockElement] Invalid block element:`,
+        `[optiaxiom][react][ProteusElement] Invalid block element:`,
         result.error,
       );
     }
@@ -82,7 +82,7 @@ export function BlockDocumentRenderer({
   const Trigger = collapsible ? DisclosureTrigger : Box;
 
   return (
-    <BlockDocumentProvider
+    <ProteusDocumentProvider
       data={data}
       onCancelAction={onCancelAction}
       onDataChange={useEffectEvent((name: string, value: string) => {
@@ -152,20 +152,21 @@ export function BlockDocumentRenderer({
                   </Text>
                 )}
               </Group>
-              <BlockElement element={result.data.body} />
+              <ProteusElement element={result.data.body} />
               {result.data.actions &&
                 result.data.actions.length > 0 &&
                 !readOnly && (
                   <Flex gap="16" w="full">
-                    <BlockElement element={result.data.actions} />
+                    <ProteusElement element={result.data.actions} />
                   </Flex>
                 )}
             </DisclosureContent>
           </>
         )}
       </Disclosure>
-    </BlockDocumentProvider>
+    </ProteusDocumentProvider>
   );
 }
 
-BlockDocumentRenderer.displayName = "@optiaxiom/react/BlockDocumentRenderer";
+ProteusDocumentRenderer.displayName =
+  "@optiaxiom/react/ProteusDocumentRenderer";

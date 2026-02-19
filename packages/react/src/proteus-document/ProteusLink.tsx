@@ -1,12 +1,12 @@
-import type { BlockLinkProps } from "./schemas";
+import type { ProteusLinkProps } from "./schemas";
 
 import { Link } from "../link";
-import { BlockElement } from "./BlockElement";
+import { ProteusElement } from "./ProteusElement";
 
-export function BlockLink({ children, ...props }: BlockLinkProps) {
+export function ProteusLink({ children, ...props }: ProteusLinkProps) {
   return (
-    <Link {...props}>{children && <BlockElement element={children} />}</Link>
+    <Link {...props}>{children && <ProteusElement element={children} />}</Link>
   );
 }
 
-BlockLink.displayName = "@optiaxiom/react/BlockLink";
+ProteusLink.displayName = "@optiaxiom/react/ProteusLink";

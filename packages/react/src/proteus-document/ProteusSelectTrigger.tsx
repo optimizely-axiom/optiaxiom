@@ -1,17 +1,17 @@
-import type { BlockSelectTriggerProps } from "./schemas";
+import type { ProteusSelectTriggerProps } from "./schemas";
 
 import { SelectTrigger } from "../select";
-import { BlockElement } from "./BlockElement";
+import { ProteusElement } from "./ProteusElement";
 
-export function BlockSelectTrigger({
+export function ProteusSelectTrigger({
   children,
   ...props
-}: BlockSelectTriggerProps) {
+}: ProteusSelectTriggerProps) {
   return (
     <SelectTrigger {...props}>
-      {children && <BlockElement element={children} />}
+      {children && <ProteusElement element={children} />}
     </SelectTrigger>
   );
 }
 
-BlockSelectTrigger.displayName = "@optiaxiom/react/BlockSelectTrigger";
+ProteusSelectTrigger.displayName = "@optiaxiom/react/ProteusSelectTrigger";

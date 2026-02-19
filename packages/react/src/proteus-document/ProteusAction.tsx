@@ -1,11 +1,17 @@
-import type { BlockActionProps } from "./schemas";
+import type { ProteusActionProps } from "./schemas";
 
 import { Button } from "../button";
-import { useBlockDocumentContext } from "./BlockDocumentContext";
-import { BlockElement } from "./BlockElement";
+import { useProteusDocumentContext } from "./ProteusDocumentContext";
+import { ProteusElement } from "./ProteusElement";
 
-export function BlockAction({ children, onClick, ...props }: BlockActionProps) {
-  const { onEvent } = useBlockDocumentContext("@optiaxiom/react/BlockAction");
+export function ProteusAction({
+  children,
+  onClick,
+  ...props
+}: ProteusActionProps) {
+  const { onEvent } = useProteusDocumentContext(
+    "@optiaxiom/react/ProteusAction",
+  );
 
   return (
     <Button
@@ -20,9 +26,9 @@ export function BlockAction({ children, onClick, ...props }: BlockActionProps) {
       size="lg"
       {...props}
     >
-      {children && <BlockElement element={children} />}
+      {children && <ProteusElement element={children} />}
     </Button>
   );
 }
 
-BlockAction.displayName = "@optiaxiom/react/BlockAction";
+ProteusAction.displayName = "@optiaxiom/react/ProteusAction";
