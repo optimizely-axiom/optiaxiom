@@ -1,6 +1,7 @@
 import type { Preview } from "@storybook/react-vite";
 
 import { AxiomProvider, TransitionGlobalConfig } from "@optiaxiom/react";
+import { withThemeByClassName } from "@storybook/addon-themes";
 import isChromatic from "chromatic/isChromatic";
 
 import "./preview.css";
@@ -9,6 +10,13 @@ TransitionGlobalConfig.skipAnimations = isChromatic();
 
 export default {
   decorators: [
+    withThemeByClassName({
+      defaultTheme: "light",
+      themes: {
+        dark: "dark",
+        light: "",
+      },
+    }),
     (Story, context) =>
       context.parameters.useAxiomProvider ? (
         <AxiomProvider>
