@@ -24,7 +24,7 @@ import { getDocs } from "../src/index.mjs";
 /**
  * @type {Record<string, ComponentConfig>}
  */
-const BLOCK_COMPONENT_CONFIG = {
+const PROTEUS_COMPONENT_CONFIG = {
   Field: {
     allowedProps: ["children", "description", "info", "label", "required"],
   },
@@ -82,9 +82,9 @@ const BLOCK_COMPONENT_CONFIG = {
 };
 
 /**
- * Main function to generate the complete Adaptive Block document spec
+ * Main function to generate the complete Adaptive Proteus document spec
  * @param {boolean} [additionalProperties=false] - Whether to allow additional properties in the schema
- * @returns {JSONSchema7} Complete JSON Schema for Block documents
+ * @returns {JSONSchema7} Complete JSON Schema for Proteus documents
  */
 function generateJsonSchema(additionalProperties = false) {
   const docs = getDocs();
@@ -103,7 +103,7 @@ function generateJsonSchema(additionalProperties = false) {
 
   return {
     $schema: "http://json-schema.org/draft-07/schema#",
-    definitions: Object.entries(BLOCK_COMPONENT_CONFIG).reduce(
+    definitions: Object.entries(PROTEUS_COMPONENT_CONFIG).reduce(
       (
         /** @type {Record<string, JSONSchema7Definition>} */ definitions,
         [componentName, { allowedProps }],
@@ -125,7 +125,7 @@ function generateJsonSchema(additionalProperties = false) {
             type: "string",
           },
           $type: {
-            const: `Block.${componentName}`,
+            const: `Proteus.${componentName}`,
           },
           $visible: {
             description:
@@ -166,26 +166,26 @@ function generateJsonSchema(additionalProperties = false) {
           }
         }
 
-        const blockComponentRef = {
-          $ref: `#/definitions/Block${componentName}`,
+        const proteusComponentRef = {
+          $ref: `#/definitions/Proteus${componentName}`,
         };
 
-        definitions[`Block${componentName}`] = {
+        definitions[`Proteus${componentName}`] = {
           ...(additionalProperties ? {} : { additionalProperties: false }),
           properties,
           required,
           type: "object",
         };
 
-        const blockNode = definitions["BlockNode"];
+        const proteusNode = definitions["ProteusNode"];
         if (
-          blockNode &&
-          typeof blockNode === "object" &&
-          Array.isArray(blockNode.anyOf)
+          proteusNode &&
+          typeof proteusNode === "object" &&
+          Array.isArray(proteusNode.anyOf)
         ) {
-          blockNode.anyOf.push(blockComponentRef);
+          proteusNode.anyOf.push(proteusComponentRef);
 
-          const arrayType = blockNode.anyOf[0];
+          const arrayType = proteusNode.anyOf[0];
           if (
             arrayType &&
             typeof arrayType === "object" &&
@@ -195,7 +195,7 @@ function generateJsonSchema(additionalProperties = false) {
             "anyOf" in arrayType.items &&
             Array.isArray(arrayType.items.anyOf)
           ) {
-            arrayType.items.anyOf.push(blockComponentRef);
+            arrayType.items.anyOf.push(proteusComponentRef);
           }
         }
 
@@ -209,7 +209,7 @@ function generateJsonSchema(additionalProperties = false) {
             schema,
           ]),
         ),
-        BlockAction: {
+        ProteusAction: {
           ...(additionalProperties ? {} : { additionalProperties: false }),
           properties: {
             $id: {
@@ -217,7 +217,7 @@ function generateJsonSchema(additionalProperties = false) {
                 "Unique identifier for targeting by actions (e.g., setVisibility)",
               type: "string",
             },
-            $type: { const: "Block.Action" },
+            $type: { const: "Proteus.Action" },
             $visible: {
               description:
                 "Whether element is visible (default: true). Elements with $visible: false are hidden until shown by an action.",
@@ -238,18 +238,18 @@ function generateJsonSchema(additionalProperties = false) {
                 "Control the appearance by selecting between the different button types.",
             },
             children: {
-              $ref: "#/definitions/BlockNode",
+              $ref: "#/definitions/ProteusNode",
               description: "Button label",
             },
             onClick: {
-              $ref: "#/definitions/BlockEventHandler",
+              $ref: "#/definitions/ProteusEventHandler",
               description: "Action triggered when button is clicked",
             },
           },
           required: ["$type", "children"],
           type: "object",
         },
-        BlockCancelAction: {
+        ProteusCancelAction: {
           ...(additionalProperties ? {} : { additionalProperties: false }),
           properties: {
             $id: {
@@ -257,14 +257,14 @@ function generateJsonSchema(additionalProperties = false) {
                 "Unique identifier for targeting by actions (e.g., setVisibility)",
               type: "string",
             },
-            $type: { const: "Block.CancelAction" },
+            $type: { const: "Proteus.CancelAction" },
             $visible: {
               description:
                 "Whether element is visible (default: true). Elements with $visible: false are hidden until shown by an action.",
               type: "boolean",
             },
             children: {
-              $ref: "#/definitions/BlockNode",
+              $ref: "#/definitions/ProteusNode",
               description: "Button label (e.g., 'Cancel', 'Reject')",
             },
             placeholder: {
@@ -275,16 +275,16 @@ function generateJsonSchema(additionalProperties = false) {
           required: ["$type"],
           type: "object",
         },
-        BlockDocument: {
+        ProteusDocument: {
           ...(additionalProperties ? {} : { additionalProperties: false }),
           properties: {
-            $type: { const: "Block.Document" },
+            $type: { const: "Proteus.Document" },
             actions: {
               description: "Actions available for this document",
               items: {
                 anyOf: [
-                  { $ref: "#/definitions/BlockAction" },
-                  { $ref: "#/definitions/BlockCancelAction" },
+                  { $ref: "#/definitions/ProteusAction" },
+                  { $ref: "#/definitions/ProteusCancelAction" },
                 ],
               },
               type: "array",
@@ -303,23 +303,23 @@ function generateJsonSchema(additionalProperties = false) {
               type: "boolean",
             },
             body: {
-              anyOf: [{ $ref: "#/definitions/BlockNode" }],
+              anyOf: [{ $ref: "#/definitions/ProteusNode" }],
             },
             subtitle: {
               description:
-                "A brief description or tagline that provides additional context about the Block's purpose.",
+                "A brief description or tagline that provides additional context about the Proteus document's purpose.",
               type: "string",
             },
             title: {
               description:
-                "A concise heading that encapsulates the essence of the Block's content or intended action.",
+                "A concise heading that encapsulates the essence of the Proteus document's content or intended action.",
               type: "string",
             },
           },
           required: ["$type", "appName", "body", "title"],
           type: "object",
         },
-        BlockEventHandler: {
+        ProteusEventHandler: {
           anyOf: [
             {
               ...(additionalProperties ? {} : { additionalProperties: false }),
@@ -360,7 +360,7 @@ function generateJsonSchema(additionalProperties = false) {
           description:
             "Handler for user interactions - either a tool call or client-side action",
         },
-        BlockNode: {
+        ProteusNode: {
           anyOf: [
             {
               items: {
@@ -379,11 +379,11 @@ function generateJsonSchema(additionalProperties = false) {
             { type: "null" },
           ],
           description:
-            "A Block node can be a string, number, boolean, null, a single element, or an array of these types (similar to ReactNode)",
+            "A Proteus node can be a string, number, boolean, null, a single element, or an array of these types (similar to ReactNode)",
         },
       },
     ),
-    title: "Opal Block Document Specification",
+    title: "Opal Proteus Document Specification",
   };
 }
 
@@ -396,11 +396,11 @@ async function generateZodSchemas(schema) {
   const lines = [];
 
   lines.push("// This file is auto-generated. Do not edit manually.");
-  lines.push("// Run `pnpm block-spec` to regenerate.");
+  lines.push("// Run `pnpm proteus-spec` to regenerate.");
   lines.push("");
   lines.push('import { z } from "zod";');
   lines.push("");
-  lines.push("type BlockNode = string | BlockElement | BlockElement[]");
+  lines.push("type ProteusNode = string | ProteusElement | ProteusElement[]");
   lines.push("");
 
   // First, generate Zod schemas for sprinkle props as reusable constants
@@ -428,10 +428,10 @@ async function generateZodSchemas(schema) {
 
   for (const [name, def] of Object.entries(schema.definitions || {})) {
     if (typeof def !== "object") continue;
-    if (name === "BlockNode" || name.startsWith("SprinkleProp_")) continue;
+    if (name === "ProteusNode" || name.startsWith("SprinkleProp_")) continue;
 
     const schemaName = `${name}Schema`;
-    if (!["BlockDocument", "BlockEventHandler"].includes(name)) {
+    if (!["ProteusDocument", "ProteusEventHandler"].includes(name)) {
       components.push(name);
     }
 
@@ -448,7 +448,7 @@ async function generateZodSchemas(schema) {
           ...def,
           definitions: {
             ...definitionsWithoutSprinkles,
-            BlockNode: {},
+            ProteusNode: {},
           },
         })
       ).resolved,
@@ -476,11 +476,11 @@ async function generateZodSchemas(schema) {
     });
 
     lines.push(zodCode);
-    if (name === "BlockEventHandler") {
+    if (name === "ProteusEventHandler") {
       lines.push(`export type ${name} = z.infer<typeof ${schemaName}>;`);
     } else {
       lines.push(
-        `export type ${name} = Omit<z.infer<typeof ${schemaName}>, "children"> & { children?: BlockNode };`,
+        `export type ${name} = Omit<z.infer<typeof ${schemaName}>, "children"> & { children?: ProteusNode };`,
       );
       lines.push(
         `export type ${name}Props = Omit<z.infer<typeof ${schemaName}>, "$id" | "$type" | "$visible">;`,
@@ -490,12 +490,12 @@ async function generateZodSchemas(schema) {
   }
 
   lines.push(
-    'export const BlockElementSchema = z.discriminatedUnion("$type", [' +
+    'export const ProteusElementSchema = z.discriminatedUnion("$type", [' +
       components.map((component) => `${component}Schema`).join(", ") +
       "]);",
   );
   lines.push(
-    "type BlockElement = " +
+    "type ProteusElement = " +
       components.map((component) => component).join(" | ") +
       ";",
   );
@@ -511,7 +511,7 @@ function getPropTypeOverrides(additionalProperties = false) {
   return {
     Input: {
       onValueChange: {
-        $ref: "#/definitions/BlockEventHandler",
+        $ref: "#/definitions/ProteusEventHandler",
         description: "Action triggered when input value changes",
       },
     },
@@ -548,7 +548,7 @@ function getPropTypeOverrides(additionalProperties = false) {
           ...(additionalProperties ? {} : { additionalProperties: false }),
           properties: {
             execute: {
-              $ref: "#/definitions/BlockEventHandler",
+              $ref: "#/definitions/ProteusEventHandler",
               description: "Action triggered when this option is selected",
             },
             label: {
@@ -568,12 +568,12 @@ function getPropTypeOverrides(additionalProperties = false) {
     },
     SelectContent: {
       children: {
-        $ref: "#/definitions/BlockNode",
+        $ref: "#/definitions/ProteusNode",
       },
     },
     Textarea: {
       onValueChange: {
-        $ref: "#/definitions/BlockEventHandler",
+        $ref: "#/definitions/ProteusEventHandler",
         description: "Action triggered when textarea value changes",
       },
     },
@@ -588,7 +588,7 @@ function getPropTypeOverrides(additionalProperties = false) {
 function parsePropTypeToJsonSchema({ description, name, type }) {
   if (type.raw === "ReactNode") {
     return {
-      $ref: "#/definitions/BlockNode",
+      $ref: "#/definitions/ProteusNode",
       description: description,
     };
   } else if (type.name === "enum") {
@@ -656,14 +656,14 @@ function parsePropTypeToJsonSchema({ description, name, type }) {
 }
 
 const jsonSchema = generateJsonSchema(false);
-const jsonOutputPath = path.join(process.cwd(), "block-document-spec.json");
+const jsonOutputPath = path.join(process.cwd(), "proteus-document-spec.json");
 fs.writeFileSync(jsonOutputPath, JSON.stringify(jsonSchema, null, 2) + "\n");
 console.log(`Generated: ${jsonOutputPath}`);
 
 const zodSchemas = await generateZodSchemas(generateJsonSchema(true));
 const zodOutputPath = path.join(
   process.cwd(),
-  "packages/react/src/block-document/schemas.ts",
+  "packages/react/src/proteus-document/schemas.ts",
 );
 fs.writeFileSync(zodOutputPath, zodSchemas);
 console.log(`Generated: ${zodOutputPath}`);

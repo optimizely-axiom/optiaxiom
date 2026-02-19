@@ -6,7 +6,7 @@
   "version": "0.0.0",
   "license": "Apache-2.0",
   "scripts": {
-    "block-spec": "oas-block-spec",
+    "proteus-spec": "oas-proteus-spec",
     "build": "pnpm -F globals... -F mcp... -F react... -F web-components... build",
     "bundle-size": "oas-bundle-size",
     "design-tokens": "oas-design-tokens",
