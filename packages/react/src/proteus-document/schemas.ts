@@ -1,9 +1,9 @@
 // This file is auto-generated. Do not edit manually.
-// Run `pnpm block-spec` to regenerate.
+// Run `pnpm proteus-spec` to regenerate.
 
 import { z } from "zod";
 
-type BlockNode = BlockElement | BlockElement[] | string;
+type ProteusNode = ProteusElement | ProteusElement[] | string;
 
 // Shared sprinkle prop schemas
 export const alignItemsSprinkleSchema = z
@@ -842,14 +842,14 @@ export const zSprinkleSchema = z
     "Set the element's stacking order. Only accepts predefined zIndex tokens (e.g., popover, toast, tooltip) or numeric values (0, 10, 20, 30, auto).",
   );
 
-export const BlockActionSchema = z.object({
+export const ProteusActionSchema = z.object({
   $id: z
     .string()
     .describe(
       "Unique identifier for targeting by actions (e.g., setVisibility)",
     )
     .optional(),
-  $type: z.literal("Block.Action"),
+  $type: z.literal("Proteus.Action"),
   $visible: z
     .boolean()
     .describe(
@@ -904,23 +904,23 @@ export const BlockActionSchema = z.object({
     .optional(),
 });
 
-export type BlockAction = Omit<
-  z.infer<typeof BlockActionSchema>,
+export type ProteusAction = Omit<
+  z.infer<typeof ProteusActionSchema>,
   "children"
-> & { children?: BlockNode };
-export type BlockActionProps = Omit<
-  z.infer<typeof BlockActionSchema>,
+> & { children?: ProteusNode };
+export type ProteusActionProps = Omit<
+  z.infer<typeof ProteusActionSchema>,
   "$id" | "$type" | "$visible"
 >;
 
-export const BlockCancelActionSchema = z.object({
+export const ProteusCancelActionSchema = z.object({
   $id: z
     .string()
     .describe(
       "Unique identifier for targeting by actions (e.g., setVisibility)",
     )
     .optional(),
-  $type: z.literal("Block.CancelAction"),
+  $type: z.literal("Proteus.CancelAction"),
   $visible: z
     .boolean()
     .describe(
@@ -934,17 +934,17 @@ export const BlockCancelActionSchema = z.object({
     .optional(),
 });
 
-export type BlockCancelAction = Omit<
-  z.infer<typeof BlockCancelActionSchema>,
+export type ProteusCancelAction = Omit<
+  z.infer<typeof ProteusCancelActionSchema>,
   "children"
-> & { children?: BlockNode };
-export type BlockCancelActionProps = Omit<
-  z.infer<typeof BlockCancelActionSchema>,
+> & { children?: ProteusNode };
+export type ProteusCancelActionProps = Omit<
+  z.infer<typeof ProteusCancelActionSchema>,
   "$id" | "$type" | "$visible"
 >;
 
-export const BlockDocumentSchema = z.object({
-  $type: z.literal("Block.Document"),
+export const ProteusDocumentSchema = z.object({
+  $type: z.literal("Proteus.Document"),
   actions: z
     .array(
       z.union([
@@ -955,7 +955,7 @@ export const BlockDocumentSchema = z.object({
               "Unique identifier for targeting by actions (e.g., setVisibility)",
             )
             .optional(),
-          $type: z.literal("Block.Action"),
+          $type: z.literal("Proteus.Action"),
           $visible: z
             .boolean()
             .describe(
@@ -1016,7 +1016,7 @@ export const BlockDocumentSchema = z.object({
               "Unique identifier for targeting by actions (e.g., setVisibility)",
             )
             .optional(),
-          $type: z.literal("Block.CancelAction"),
+          $type: z.literal("Proteus.CancelAction"),
           $visible: z
             .boolean()
             .describe(
@@ -1048,26 +1048,26 @@ export const BlockDocumentSchema = z.object({
   subtitle: z
     .string()
     .describe(
-      "A brief description or tagline that provides additional context about the Block's purpose.",
+      "A brief description or tagline that provides additional context about the Proteus document's purpose.",
     )
     .optional(),
   title: z
     .string()
     .describe(
-      "A concise heading that encapsulates the essence of the Block's content or intended action.",
+      "A concise heading that encapsulates the essence of the Proteus document's content or intended action.",
     ),
 });
 
-export type BlockDocument = Omit<
-  z.infer<typeof BlockDocumentSchema>,
+export type ProteusDocument = Omit<
+  z.infer<typeof ProteusDocumentSchema>,
   "children"
-> & { children?: BlockNode };
-export type BlockDocumentProps = Omit<
-  z.infer<typeof BlockDocumentSchema>,
+> & { children?: ProteusNode };
+export type ProteusDocumentProps = Omit<
+  z.infer<typeof ProteusDocumentSchema>,
   "$id" | "$type" | "$visible"
 >;
 
-export const BlockEventHandlerSchema = z
+export const ProteusEventHandlerSchema = z
   .union([
     z
       .object({ tool: z.string().describe("Name of registered tool to call") })
@@ -1095,16 +1095,16 @@ export const BlockEventHandlerSchema = z
     "Handler for user interactions - either a tool call or client-side action",
   );
 
-export type BlockEventHandler = z.infer<typeof BlockEventHandlerSchema>;
+export type ProteusEventHandler = z.infer<typeof ProteusEventHandlerSchema>;
 
-export const BlockFieldSchema = z.object({
+export const ProteusFieldSchema = z.object({
   $id: z
     .string()
     .describe(
       "Unique identifier for targeting by actions (e.g., setVisibility)",
     )
     .optional(),
-  $type: z.literal("Block.Field"),
+  $type: z.literal("Proteus.Field"),
   $visible: z
     .boolean()
     .describe(
@@ -1178,22 +1178,23 @@ export const BlockFieldSchema = z.object({
   z: zSprinkleSchema.optional(),
 });
 
-export type BlockField = Omit<z.infer<typeof BlockFieldSchema>, "children"> & {
-  children?: BlockNode;
-};
-export type BlockFieldProps = Omit<
-  z.infer<typeof BlockFieldSchema>,
+export type ProteusField = Omit<
+  z.infer<typeof ProteusFieldSchema>,
+  "children"
+> & { children?: ProteusNode };
+export type ProteusFieldProps = Omit<
+  z.infer<typeof ProteusFieldSchema>,
   "$id" | "$type" | "$visible"
 >;
 
-export const BlockGroupSchema = z.object({
+export const ProteusGroupSchema = z.object({
   $id: z
     .string()
     .describe(
       "Unique identifier for targeting by actions (e.g., setVisibility)",
     )
     .optional(),
-  $type: z.literal("Block.Group"),
+  $type: z.literal("Proteus.Group"),
   $visible: z
     .boolean()
     .describe(
@@ -1281,22 +1282,23 @@ export const BlockGroupSchema = z.object({
   z: zSprinkleSchema.optional(),
 });
 
-export type BlockGroup = Omit<z.infer<typeof BlockGroupSchema>, "children"> & {
-  children?: BlockNode;
-};
-export type BlockGroupProps = Omit<
-  z.infer<typeof BlockGroupSchema>,
+export type ProteusGroup = Omit<
+  z.infer<typeof ProteusGroupSchema>,
+  "children"
+> & { children?: ProteusNode };
+export type ProteusGroupProps = Omit<
+  z.infer<typeof ProteusGroupSchema>,
   "$id" | "$type" | "$visible"
 >;
 
-export const BlockHeadingSchema = z.object({
+export const ProteusHeadingSchema = z.object({
   $id: z
     .string()
     .describe(
       "Unique identifier for targeting by actions (e.g., setVisibility)",
     )
     .optional(),
-  $type: z.literal("Block.Heading"),
+  $type: z.literal("Proteus.Heading"),
   $visible: z
     .boolean()
     .describe(
@@ -1369,23 +1371,23 @@ export const BlockHeadingSchema = z.object({
   z: zSprinkleSchema.optional(),
 });
 
-export type BlockHeading = Omit<
-  z.infer<typeof BlockHeadingSchema>,
+export type ProteusHeading = Omit<
+  z.infer<typeof ProteusHeadingSchema>,
   "children"
-> & { children?: BlockNode };
-export type BlockHeadingProps = Omit<
-  z.infer<typeof BlockHeadingSchema>,
+> & { children?: ProteusNode };
+export type ProteusHeadingProps = Omit<
+  z.infer<typeof ProteusHeadingSchema>,
   "$id" | "$type" | "$visible"
 >;
 
-export const BlockImageSchema = z.object({
+export const ProteusImageSchema = z.object({
   $id: z
     .string()
     .describe(
       "Unique identifier for targeting by actions (e.g., setVisibility)",
     )
     .optional(),
-  $type: z.literal("Block.Image"),
+  $type: z.literal("Proteus.Image"),
   $visible: z
     .boolean()
     .describe(
@@ -1456,22 +1458,23 @@ export const BlockImageSchema = z.object({
   z: zSprinkleSchema.optional(),
 });
 
-export type BlockImage = Omit<z.infer<typeof BlockImageSchema>, "children"> & {
-  children?: BlockNode;
-};
-export type BlockImageProps = Omit<
-  z.infer<typeof BlockImageSchema>,
+export type ProteusImage = Omit<
+  z.infer<typeof ProteusImageSchema>,
+  "children"
+> & { children?: ProteusNode };
+export type ProteusImageProps = Omit<
+  z.infer<typeof ProteusImageSchema>,
   "$id" | "$type" | "$visible"
 >;
 
-export const BlockInputSchema = z.object({
+export const ProteusInputSchema = z.object({
   $id: z
     .string()
     .describe(
       "Unique identifier for targeting by actions (e.g., setVisibility)",
     )
     .optional(),
-  $type: z.literal("Block.Input"),
+  $type: z.literal("Proteus.Input"),
   $visible: z
     .boolean()
     .describe(
@@ -1605,22 +1608,23 @@ export const BlockInputSchema = z.object({
   z: zSprinkleSchema.optional(),
 });
 
-export type BlockInput = Omit<z.infer<typeof BlockInputSchema>, "children"> & {
-  children?: BlockNode;
-};
-export type BlockInputProps = Omit<
-  z.infer<typeof BlockInputSchema>,
+export type ProteusInput = Omit<
+  z.infer<typeof ProteusInputSchema>,
+  "children"
+> & { children?: ProteusNode };
+export type ProteusInputProps = Omit<
+  z.infer<typeof ProteusInputSchema>,
   "$id" | "$type" | "$visible"
 >;
 
-export const BlockLinkSchema = z.object({
+export const ProteusLinkSchema = z.object({
   $id: z
     .string()
     .describe(
       "Unique identifier for targeting by actions (e.g., setVisibility)",
     )
     .optional(),
-  $type: z.literal("Block.Link"),
+  $type: z.literal("Proteus.Link"),
   $visible: z
     .boolean()
     .describe(
@@ -1688,22 +1692,23 @@ export const BlockLinkSchema = z.object({
   z: zSprinkleSchema.optional(),
 });
 
-export type BlockLink = Omit<z.infer<typeof BlockLinkSchema>, "children"> & {
-  children?: BlockNode;
-};
-export type BlockLinkProps = Omit<
-  z.infer<typeof BlockLinkSchema>,
+export type ProteusLink = Omit<
+  z.infer<typeof ProteusLinkSchema>,
+  "children"
+> & { children?: ProteusNode };
+export type ProteusLinkProps = Omit<
+  z.infer<typeof ProteusLinkSchema>,
   "$id" | "$type" | "$visible"
 >;
 
-export const BlockRangeSchema = z.object({
+export const ProteusRangeSchema = z.object({
   $id: z
     .string()
     .describe(
       "Unique identifier for targeting by actions (e.g., setVisibility)",
     )
     .optional(),
-  $type: z.literal("Block.Range"),
+  $type: z.literal("Proteus.Range"),
   $visible: z
     .boolean()
     .describe(
@@ -1783,22 +1788,23 @@ export const BlockRangeSchema = z.object({
   z: zSprinkleSchema.optional(),
 });
 
-export type BlockRange = Omit<z.infer<typeof BlockRangeSchema>, "children"> & {
-  children?: BlockNode;
-};
-export type BlockRangeProps = Omit<
-  z.infer<typeof BlockRangeSchema>,
+export type ProteusRange = Omit<
+  z.infer<typeof ProteusRangeSchema>,
+  "children"
+> & { children?: ProteusNode };
+export type ProteusRangeProps = Omit<
+  z.infer<typeof ProteusRangeSchema>,
   "$id" | "$type" | "$visible"
 >;
 
-export const BlockSelectSchema = z.object({
+export const ProteusSelectSchema = z.object({
   $id: z
     .string()
     .describe(
       "Unique identifier for targeting by actions (e.g., setVisibility)",
     )
     .optional(),
-  $type: z.literal("Block.Select"),
+  $type: z.literal("Proteus.Select"),
   $visible: z
     .boolean()
     .describe(
@@ -1847,23 +1853,23 @@ export const BlockSelectSchema = z.object({
     .describe("The select items/options we want to render."),
 });
 
-export type BlockSelect = Omit<
-  z.infer<typeof BlockSelectSchema>,
+export type ProteusSelect = Omit<
+  z.infer<typeof ProteusSelectSchema>,
   "children"
-> & { children?: BlockNode };
-export type BlockSelectProps = Omit<
-  z.infer<typeof BlockSelectSchema>,
+> & { children?: ProteusNode };
+export type ProteusSelectProps = Omit<
+  z.infer<typeof ProteusSelectSchema>,
   "$id" | "$type" | "$visible"
 >;
 
-export const BlockSelectContentSchema = z.object({
+export const ProteusSelectContentSchema = z.object({
   $id: z
     .string()
     .describe(
       "Unique identifier for targeting by actions (e.g., setVisibility)",
     )
     .optional(),
-  $type: z.literal("Block.SelectContent"),
+  $type: z.literal("Proteus.SelectContent"),
   $visible: z
     .boolean()
     .describe(
@@ -1928,23 +1934,23 @@ export const BlockSelectContentSchema = z.object({
   z: zSprinkleSchema.optional(),
 });
 
-export type BlockSelectContent = Omit<
-  z.infer<typeof BlockSelectContentSchema>,
+export type ProteusSelectContent = Omit<
+  z.infer<typeof ProteusSelectContentSchema>,
   "children"
-> & { children?: BlockNode };
-export type BlockSelectContentProps = Omit<
-  z.infer<typeof BlockSelectContentSchema>,
+> & { children?: ProteusNode };
+export type ProteusSelectContentProps = Omit<
+  z.infer<typeof ProteusSelectContentSchema>,
   "$id" | "$type" | "$visible"
 >;
 
-export const BlockSelectTriggerSchema = z.object({
+export const ProteusSelectTriggerSchema = z.object({
   $id: z
     .string()
     .describe(
       "Unique identifier for targeting by actions (e.g., setVisibility)",
     )
     .optional(),
-  $type: z.literal("Block.SelectTrigger"),
+  $type: z.literal("Proteus.SelectTrigger"),
   $visible: z
     .boolean()
     .describe(
@@ -2010,23 +2016,23 @@ export const BlockSelectTriggerSchema = z.object({
   z: zSprinkleSchema.optional(),
 });
 
-export type BlockSelectTrigger = Omit<
-  z.infer<typeof BlockSelectTriggerSchema>,
+export type ProteusSelectTrigger = Omit<
+  z.infer<typeof ProteusSelectTriggerSchema>,
   "children"
-> & { children?: BlockNode };
-export type BlockSelectTriggerProps = Omit<
-  z.infer<typeof BlockSelectTriggerSchema>,
+> & { children?: ProteusNode };
+export type ProteusSelectTriggerProps = Omit<
+  z.infer<typeof ProteusSelectTriggerSchema>,
   "$id" | "$type" | "$visible"
 >;
 
-export const BlockSeparatorSchema = z.object({
+export const ProteusSeparatorSchema = z.object({
   $id: z
     .string()
     .describe(
       "Unique identifier for targeting by actions (e.g., setVisibility)",
     )
     .optional(),
-  $type: z.literal("Block.Separator"),
+  $type: z.literal("Proteus.Separator"),
   $visible: z
     .boolean()
     .describe(
@@ -2092,23 +2098,23 @@ export const BlockSeparatorSchema = z.object({
   z: zSprinkleSchema.optional(),
 });
 
-export type BlockSeparator = Omit<
-  z.infer<typeof BlockSeparatorSchema>,
+export type ProteusSeparator = Omit<
+  z.infer<typeof ProteusSeparatorSchema>,
   "children"
-> & { children?: BlockNode };
-export type BlockSeparatorProps = Omit<
-  z.infer<typeof BlockSeparatorSchema>,
+> & { children?: ProteusNode };
+export type ProteusSeparatorProps = Omit<
+  z.infer<typeof ProteusSeparatorSchema>,
   "$id" | "$type" | "$visible"
 >;
 
-export const BlockTextSchema = z.object({
+export const ProteusTextSchema = z.object({
   $id: z
     .string()
     .describe(
       "Unique identifier for targeting by actions (e.g., setVisibility)",
     )
     .optional(),
-  $type: z.literal("Block.Text"),
+  $type: z.literal("Proteus.Text"),
   $visible: z
     .boolean()
     .describe(
@@ -2175,22 +2181,23 @@ export const BlockTextSchema = z.object({
   z: zSprinkleSchema.optional(),
 });
 
-export type BlockText = Omit<z.infer<typeof BlockTextSchema>, "children"> & {
-  children?: BlockNode;
-};
-export type BlockTextProps = Omit<
-  z.infer<typeof BlockTextSchema>,
+export type ProteusText = Omit<
+  z.infer<typeof ProteusTextSchema>,
+  "children"
+> & { children?: ProteusNode };
+export type ProteusTextProps = Omit<
+  z.infer<typeof ProteusTextSchema>,
   "$id" | "$type" | "$visible"
 >;
 
-export const BlockTextareaSchema = z.object({
+export const ProteusTextareaSchema = z.object({
   $id: z
     .string()
     .describe(
       "Unique identifier for targeting by actions (e.g., setVisibility)",
     )
     .optional(),
-  $type: z.literal("Block.Textarea"),
+  $type: z.literal("Proteus.Textarea"),
   $visible: z
     .boolean()
     .describe(
@@ -2307,45 +2314,45 @@ export const BlockTextareaSchema = z.object({
   z: zSprinkleSchema.optional(),
 });
 
-export type BlockTextarea = Omit<
-  z.infer<typeof BlockTextareaSchema>,
+export type ProteusTextarea = Omit<
+  z.infer<typeof ProteusTextareaSchema>,
   "children"
-> & { children?: BlockNode };
-export type BlockTextareaProps = Omit<
-  z.infer<typeof BlockTextareaSchema>,
+> & { children?: ProteusNode };
+export type ProteusTextareaProps = Omit<
+  z.infer<typeof ProteusTextareaSchema>,
   "$id" | "$type" | "$visible"
 >;
 
-export const BlockElementSchema = z.discriminatedUnion("$type", [
-  BlockActionSchema,
-  BlockCancelActionSchema,
-  BlockFieldSchema,
-  BlockGroupSchema,
-  BlockHeadingSchema,
-  BlockImageSchema,
-  BlockInputSchema,
-  BlockLinkSchema,
-  BlockRangeSchema,
-  BlockSelectSchema,
-  BlockSelectContentSchema,
-  BlockSelectTriggerSchema,
-  BlockSeparatorSchema,
-  BlockTextSchema,
-  BlockTextareaSchema,
+export const ProteusElementSchema = z.discriminatedUnion("$type", [
+  ProteusActionSchema,
+  ProteusCancelActionSchema,
+  ProteusFieldSchema,
+  ProteusGroupSchema,
+  ProteusHeadingSchema,
+  ProteusImageSchema,
+  ProteusInputSchema,
+  ProteusLinkSchema,
+  ProteusRangeSchema,
+  ProteusSelectSchema,
+  ProteusSelectContentSchema,
+  ProteusSelectTriggerSchema,
+  ProteusSeparatorSchema,
+  ProteusTextSchema,
+  ProteusTextareaSchema,
 ]);
-type BlockElement =
-  | BlockAction
-  | BlockCancelAction
-  | BlockField
-  | BlockGroup
-  | BlockHeading
-  | BlockImage
-  | BlockInput
-  | BlockLink
-  | BlockRange
-  | BlockSelect
-  | BlockSelectContent
-  | BlockSelectTrigger
-  | BlockSeparator
-  | BlockText
-  | BlockTextarea;
+type ProteusElement =
+  | ProteusAction
+  | ProteusCancelAction
+  | ProteusField
+  | ProteusGroup
+  | ProteusHeading
+  | ProteusImage
+  | ProteusInput
+  | ProteusLink
+  | ProteusRange
+  | ProteusSelect
+  | ProteusSelectContent
+  | ProteusSelectTrigger
+  | ProteusSeparator
+  | ProteusText
+  | ProteusTextarea;
