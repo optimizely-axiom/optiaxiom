@@ -5,7 +5,7 @@ import type { BoxProps } from "../box";
 
 import { Group } from "../group";
 import { Select, SelectContent, SelectTrigger } from "../select";
-import { format, parse, range } from "./utils";
+import { format, is24Hour, parse, range } from "./utils";
 
 export type ClockProps = BoxProps<
   "div",
@@ -50,7 +50,9 @@ export const Clock = forwardRef<HTMLDivElement, ClockProps>(
       (typeof step === "string" ? parseInt(step) : step) / 60;
     const parsed = parse(value, stepInMinutes);
 
-    const hours = range(1, 12);
+    const hours = is24Hour
+      ? range(0, 23).map((hour) => hour.padStart(2, "0"))
+      : range(1, 12);
     const minutes = range(0, 59, stepInMinutes).map((minute) =>
       minute.padStart(2, "0"),
     );
@@ -82,21 +84,26 @@ export const Clock = forwardRef<HTMLDivElement, ClockProps>(
           <SelectTrigger aria-label="Select minute" flex="1" placeholder="MM" />
           <SelectContent />
         </Select>
-        <Select
-          onValueChange={(meridiem) =>
-            (meridiem === "AM" || meridiem === "PM") &&
-            setValue(format({ ...parsed, meridiem }))
-          }
-          options={periods.map((period) => ({ label: period, value: period }))}
-          value={parsed.meridiem}
-        >
-          <SelectTrigger
-            aria-label="Select AM or PM"
-            flex="1"
-            placeholder="--"
-          />
-          <SelectContent />
-        </Select>
+        {!is24Hour && (
+          <Select
+            onValueChange={(meridiem) =>
+              (meridiem === "AM" || meridiem === "PM") &&
+              setValue(format({ ...parsed, meridiem }))
+            }
+            options={periods.map((period) => ({
+              label: period,
+              value: period,
+            }))}
+            value={parsed.meridiem}
+          >
+            <SelectTrigger
+              aria-label="Select AM or PM"
+              flex="1"
+              placeholder="--"
+            />
+            <SelectContent />
+          </Select>
+        )}
       </Group>
     );
   },
