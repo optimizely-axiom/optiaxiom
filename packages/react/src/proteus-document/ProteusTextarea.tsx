@@ -1,11 +1,14 @@
-import type { BlockTextareaProps } from "./schemas";
+import type { ProteusTextareaProps } from "./schemas";
 
 import { Textarea } from "../textarea";
-import { useBlockDocumentContext } from "./BlockDocumentContext";
+import { useProteusDocumentContext } from "./ProteusDocumentContext";
 
-export function BlockTextarea({ onValueChange, ...props }: BlockTextareaProps) {
-  const { data, onDataChange, onEvent, readOnly } = useBlockDocumentContext(
-    "@optiaxiom/react/BlockTextarea",
+export function ProteusTextarea({
+  onValueChange,
+  ...props
+}: ProteusTextareaProps) {
+  const { data, onDataChange, onEvent, readOnly } = useProteusDocumentContext(
+    "@optiaxiom/react/ProteusTextarea",
   );
 
   return (
@@ -25,4 +28,4 @@ export function BlockTextarea({ onValueChange, ...props }: BlockTextareaProps) {
   );
 }
 
-BlockTextarea.displayName = "@optiaxiom/react/BlockTextarea";
+ProteusTextarea.displayName = "@optiaxiom/react/ProteusTextarea";

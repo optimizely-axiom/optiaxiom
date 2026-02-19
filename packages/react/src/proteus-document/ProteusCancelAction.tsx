@@ -1,19 +1,19 @@
 import { useState } from "react";
 
-import type { BlockCancelActionProps } from "./schemas";
+import type { ProteusCancelActionProps } from "./schemas";
 
 import { Button } from "../button";
 import { Flex } from "../flex";
 import { Input } from "../input";
-import { useBlockDocumentContext } from "./BlockDocumentContext";
-import { BlockElement } from "./BlockElement";
+import { useProteusDocumentContext } from "./ProteusDocumentContext";
+import { ProteusElement } from "./ProteusElement";
 
-export function BlockCancelAction({
+export function ProteusCancelAction({
   children,
   placeholder = "Tell Opal what to do instead",
-}: BlockCancelActionProps) {
-  const { onCancelAction } = useBlockDocumentContext(
-    "@optiaxiom/react/BlockCancelAction",
+}: ProteusCancelActionProps) {
+  const { onCancelAction } = useProteusDocumentContext(
+    "@optiaxiom/react/ProteusCancelAction",
   );
 
   const [inputValue, setInputValue] = useState("");
@@ -35,11 +35,11 @@ export function BlockCancelAction({
           w="full"
         />
         <Button size="lg" type="submit">
-          {children && <BlockElement element={children} />}
+          {children && <ProteusElement element={children} />}
         </Button>
       </Flex>
     </form>
   );
 }
 
-BlockCancelAction.displayName = "@optiaxiom/react/BlockCancelAction";
+ProteusCancelAction.displayName = "@optiaxiom/react/ProteusCancelAction";

@@ -1,11 +1,11 @@
-import type { BlockInputProps } from "./schemas";
+import type { ProteusInputProps } from "./schemas";
 
 import { Input } from "../input";
-import { useBlockDocumentContext } from "./BlockDocumentContext";
+import { useProteusDocumentContext } from "./ProteusDocumentContext";
 
-export function BlockInput({ onValueChange, ...props }: BlockInputProps) {
-  const { data, onDataChange, onEvent, readOnly } = useBlockDocumentContext(
-    "@optiaxiom/react/BlockInput",
+export function ProteusInput({ onValueChange, ...props }: ProteusInputProps) {
+  const { data, onDataChange, onEvent, readOnly } = useProteusDocumentContext(
+    "@optiaxiom/react/ProteusInput",
   );
 
   return (
@@ -25,4 +25,4 @@ export function BlockInput({ onValueChange, ...props }: BlockInputProps) {
   );
 }
 
-BlockInput.displayName = "@optiaxiom/react/BlockInput";
+ProteusInput.displayName = "@optiaxiom/react/ProteusInput";

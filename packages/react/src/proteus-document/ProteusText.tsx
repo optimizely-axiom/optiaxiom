@@ -1,12 +1,12 @@
-import type { BlockTextProps } from "./schemas";
+import type { ProteusTextProps } from "./schemas";
 
 import { Text } from "../text";
-import { BlockElement } from "./BlockElement";
+import { ProteusElement } from "./ProteusElement";
 
-export function BlockText({ children, ...props }: BlockTextProps) {
+export function ProteusText({ children, ...props }: ProteusTextProps) {
   return (
-    <Text {...props}>{children && <BlockElement element={children} />}</Text>
+    <Text {...props}>{children && <ProteusElement element={children} />}</Text>
   );
 }
 
-BlockText.displayName = "@optiaxiom/react/BlockText";
+ProteusText.displayName = "@optiaxiom/react/ProteusText";

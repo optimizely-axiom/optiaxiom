@@ -1,14 +1,14 @@
-import type { BlockHeadingProps } from "./schemas";
+import type { ProteusHeadingProps } from "./schemas";
 
 import { Heading } from "../heading";
-import { BlockElement } from "./BlockElement";
+import { ProteusElement } from "./ProteusElement";
 
-export function BlockHeading({ children, ...props }: BlockHeadingProps) {
+export function ProteusHeading({ children, ...props }: ProteusHeadingProps) {
   return (
     <Heading {...props}>
-      {children && <BlockElement element={children} />}
+      {children && <ProteusElement element={children} />}
     </Heading>
   );
 }
 
-BlockHeading.displayName = "@optiaxiom/react/BlockHeading";
+ProteusHeading.displayName = "@optiaxiom/react/ProteusHeading";

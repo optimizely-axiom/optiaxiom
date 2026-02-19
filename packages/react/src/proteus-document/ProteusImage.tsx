@@ -1,6 +1,6 @@
 import { Box, type BoxProps } from "../box";
 
-export type BlockImageProps = BoxProps<
+export type ProteusImageProps = BoxProps<
   "img",
   {
     /**
@@ -14,7 +14,7 @@ export type BlockImageProps = BoxProps<
   }
 >;
 
-export function BlockImage(props: BlockImageProps) {
+export function ProteusImage(props: ProteusImageProps) {
   return (
     <Box asChild display="block" objectFit="cover" {...props}>
       <img />
@@ -22,4 +22,4 @@ export function BlockImage(props: BlockImageProps) {
   );
 }
 
-BlockImage.displayName = "@optiaxiom/react/BlockImage";
+ProteusImage.displayName = "@optiaxiom/react/ProteusImage";

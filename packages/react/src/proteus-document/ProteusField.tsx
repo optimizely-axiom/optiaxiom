@@ -1,12 +1,14 @@
-import type { BlockFieldProps } from "./schemas";
+import type { ProteusFieldProps } from "./schemas";
 
 import { Field } from "../field";
-import { BlockElement } from "./BlockElement";
+import { ProteusElement } from "./ProteusElement";
 
-export function BlockField({ children, ...props }: BlockFieldProps) {
+export function ProteusField({ children, ...props }: ProteusFieldProps) {
   return (
-    <Field {...props}>{children && <BlockElement element={children} />}</Field>
+    <Field {...props}>
+      {children && <ProteusElement element={children} />}
+    </Field>
   );
 }
 
-BlockField.displayName = "@optiaxiom/react/BlockField";
+ProteusField.displayName = "@optiaxiom/react/ProteusField";

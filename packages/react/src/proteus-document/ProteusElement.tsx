@@ -1,31 +1,33 @@
-import { BlockAction } from "./BlockAction";
-import { BlockCancelAction } from "./BlockCancelAction";
-import { useBlockDocumentContext } from "./BlockDocumentContext";
-import { BlockField } from "./BlockField";
-import { BlockGroup } from "./BlockGroup";
-import { BlockHeading } from "./BlockHeading";
-import { BlockImage } from "./BlockImage";
-import { BlockInput } from "./BlockInput";
-import { BlockLink } from "./BlockLink";
-import { BlockRange } from "./BlockRange";
-import { BlockSelect } from "./BlockSelect";
-import { BlockSelectContent } from "./BlockSelectContent";
-import { BlockSelectTrigger } from "./BlockSelectTrigger";
-import { BlockSeparator } from "./BlockSeparator";
-import { BlockText } from "./BlockText";
-import { BlockTextarea } from "./BlockTextarea";
-import { BlockElementSchema } from "./schemas";
+import { ProteusAction } from "./ProteusAction";
+import { ProteusCancelAction } from "./ProteusCancelAction";
+import { useProteusDocumentContext } from "./ProteusDocumentContext";
+import { ProteusField } from "./ProteusField";
+import { ProteusGroup } from "./ProteusGroup";
+import { ProteusHeading } from "./ProteusHeading";
+import { ProteusImage } from "./ProteusImage";
+import { ProteusInput } from "./ProteusInput";
+import { ProteusLink } from "./ProteusLink";
+import { ProteusRange } from "./ProteusRange";
+import { ProteusSelect } from "./ProteusSelect";
+import { ProteusSelectContent } from "./ProteusSelectContent";
+import { ProteusSelectTrigger } from "./ProteusSelectTrigger";
+import { ProteusSeparator } from "./ProteusSeparator";
+import { ProteusText } from "./ProteusText";
+import { ProteusTextarea } from "./ProteusTextarea";
+import { ProteusElementSchema } from "./schemas";
 
-export type BlockElementProps = {
+export type ProteusElementProps = {
   /**
    * The block children element(s) to render.
    */
   element: unknown;
 };
 
-export const BlockElement = ({ element: elementProp }: BlockElementProps) => {
-  const { visibility } = useBlockDocumentContext(
-    "@optiaxiom/react/BlockElement",
+export const ProteusElement = ({
+  element: elementProp,
+}: ProteusElementProps) => {
+  const { visibility } = useProteusDocumentContext(
+    "@optiaxiom/react/ProteusElement",
   );
 
   if (!elementProp) {
@@ -39,17 +41,17 @@ export const BlockElement = ({ element: elementProp }: BlockElementProps) => {
     return (
       <>
         {elementProp.map((element, index) => (
-          <BlockElement element={element} key={index} />
+          <ProteusElement element={element} key={index} />
         ))}
       </>
     );
   }
 
-  const result = BlockElementSchema.safeParse(elementProp);
+  const result = ProteusElementSchema.safeParse(elementProp);
   if (!result.success) {
     if (process.env.NODE_ENV !== "production") {
       console.error(
-        `[optiaxiom][react][BlockElement] Invalid block element:`,
+        `[optiaxiom][react][ProteusElement] Invalid block element:`,
         result.error,
       );
     }
@@ -61,43 +63,43 @@ export const BlockElement = ({ element: elementProp }: BlockElementProps) => {
     return null;
   }
   switch (element.$type) {
-    case "Block.Action":
-      return <BlockAction {...omitType(element)} />;
-    case "Block.CancelAction":
-      return <BlockCancelAction {...omitType(element)} />;
-    case "Block.Field":
-      return <BlockField {...omitType(element)} />;
-    case "Block.Group":
-      return <BlockGroup {...omitType(element)} />;
-    case "Block.Heading":
-      return <BlockHeading {...omitType(element)} />;
-    case "Block.Image":
-      return <BlockImage {...omitType(element)} />;
-    case "Block.Input":
-      return <BlockInput {...omitType(element)} />;
-    case "Block.Link":
-      return <BlockLink {...omitType(element)} />;
-    case "Block.Range":
-      return <BlockRange {...omitType(element)} />;
-    case "Block.Select":
-      return <BlockSelect {...omitType(element)} />;
-    case "Block.SelectContent":
-      return <BlockSelectContent {...omitType(element)} />;
-    case "Block.SelectTrigger":
-      return <BlockSelectTrigger {...omitType(element)} />;
-    case "Block.Separator":
-      return <BlockSeparator {...omitType(element)} />;
-    case "Block.Text":
-      return <BlockText {...omitType(element)} />;
-    case "Block.Textarea":
-      return <BlockTextarea {...omitType(element)} />;
+    case "Proteus.Action":
+      return <ProteusAction {...omitType(element)} />;
+    case "Proteus.CancelAction":
+      return <ProteusCancelAction {...omitType(element)} />;
+    case "Proteus.Field":
+      return <ProteusField {...omitType(element)} />;
+    case "Proteus.Group":
+      return <ProteusGroup {...omitType(element)} />;
+    case "Proteus.Heading":
+      return <ProteusHeading {...omitType(element)} />;
+    case "Proteus.Image":
+      return <ProteusImage {...omitType(element)} />;
+    case "Proteus.Input":
+      return <ProteusInput {...omitType(element)} />;
+    case "Proteus.Link":
+      return <ProteusLink {...omitType(element)} />;
+    case "Proteus.Range":
+      return <ProteusRange {...omitType(element)} />;
+    case "Proteus.Select":
+      return <ProteusSelect {...omitType(element)} />;
+    case "Proteus.SelectContent":
+      return <ProteusSelectContent {...omitType(element)} />;
+    case "Proteus.SelectTrigger":
+      return <ProteusSelectTrigger {...omitType(element)} />;
+    case "Proteus.Separator":
+      return <ProteusSeparator {...omitType(element)} />;
+    case "Proteus.Text":
+      return <ProteusText {...omitType(element)} />;
+    case "Proteus.Textarea":
+      return <ProteusTextarea {...omitType(element)} />;
     default:
       element satisfies never;
       return null;
   }
 };
 
-BlockElement.displayName = "@optiaxiom/react/BlockElement";
+ProteusElement.displayName = "@optiaxiom/react/ProteusElement";
 
 const omitType = <T extends { $type: string }>(obj: T) => {
   const { $type: _$type, ...rest } = obj;

@@ -1,9 +1,9 @@
-import type { BlockSeparatorProps } from "./schemas";
+import type { ProteusSeparatorProps } from "./schemas";
 
 import { Separator } from "../separator";
 
-export function BlockSeparator(props: BlockSeparatorProps) {
+export function ProteusSeparator(props: ProteusSeparatorProps) {
   return <Separator {...props} />;
 }
 
-BlockSeparator.displayName = "@optiaxiom/react/BlockSeparator";
+ProteusSeparator.displayName = "@optiaxiom/react/ProteusSeparator";
