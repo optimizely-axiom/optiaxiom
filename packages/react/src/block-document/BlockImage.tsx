@@ -16,7 +16,7 @@ export type BlockImageProps = BoxProps<
 
 export function BlockImage(props: BlockImageProps) {
   return (
-    <Box asChild display="block" objectFit="cover" rounded="lg" {...props}>
+    <Box asChild display="block" objectFit="cover" {...props}>
       <img />
     </Box>
   );
