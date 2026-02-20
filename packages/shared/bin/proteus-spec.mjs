@@ -19,12 +19,21 @@ import { getDocs } from "../src/index.mjs";
 /**
  * @typedef {Object} ComponentConfig
  * @property {string[]} allowedProps - List of allowed prop names
+ * @property {string} [extends] - Base Axiom component this extends (e.g., "Button", "Box")
  */
 
 /**
  * @type {Record<string, ComponentConfig>}
  */
 const PROTEUS_COMPONENT_CONFIG = {
+  Action: {
+    allowedProps: ["appearance", "children", "onClick"],
+    extends: "Button",
+  },
+  CancelAction: {
+    allowedProps: ["children", "placeholder"],
+    extends: "Button",
+  },
   Field: {
     allowedProps: ["children", "description", "info", "label", "required"],
   },
@@ -36,6 +45,7 @@ const PROTEUS_COMPONENT_CONFIG = {
   },
   Image: {
     allowedProps: ["alt", "src"],
+    extends: "Box",
   },
   Input: {
     allowedProps: [
@@ -106,14 +116,16 @@ function generateJsonSchema(additionalProperties = false) {
     definitions: Object.entries(PROTEUS_COMPONENT_CONFIG).reduce(
       (
         /** @type {Record<string, JSONSchema7Definition>} */ definitions,
-        [componentName, { allowedProps }],
+        [componentName, { allowedProps, extends: extendsComponent }],
       ) => {
+        // For components that extend another component, find the base component docs
+        const baseComponentName = extendsComponent || componentName;
         const doc = docs.find(
-          (doc) => doc.displayName === `@optiaxiom/react/${componentName}`,
+          (doc) => doc.displayName === `@optiaxiom/react/${baseComponentName}`,
         );
         if (!doc) {
           throw new Error(
-            `Could not find documentation for component "${componentName}"`,
+            `Could not find documentation for component "${baseComponentName}"${extendsComponent ? ` (extended by "${componentName}")` : ""}`,
           );
         }
 
@@ -140,13 +152,7 @@ function generateJsonSchema(additionalProperties = false) {
             continue;
           }
 
-          if (
-            componentName in PROP_TYPE_OVERRIDES &&
-            prop.name in PROP_TYPE_OVERRIDES[componentName]
-          ) {
-            properties[prop.name] =
-              PROP_TYPE_OVERRIDES[componentName][prop.name];
-          } else if (prop.sprinkle) {
+          if (prop.sprinkle) {
             // Reference the shared sprinkle prop definition
             properties[prop.name] = {
               $ref: `#/definitions/SprinkleProp_${prop.name}`,
@@ -158,6 +164,17 @@ function generateJsonSchema(additionalProperties = false) {
             required.push(prop.name);
           }
         }
+
+        if (componentName in PROP_TYPE_OVERRIDES) {
+          for (const [propName, propSchema] of Object.entries(
+            PROP_TYPE_OVERRIDES[componentName],
+          )) {
+            if (allowedProps.includes(propName)) {
+              properties[propName] = propSchema;
+            }
+          }
+        }
+
         for (const prop of allowedProps) {
           if (!(prop in properties)) {
             throw new Error(
@@ -209,72 +226,6 @@ function generateJsonSchema(additionalProperties = false) {
             schema,
           ]),
         ),
-        ProteusAction: {
-          ...(additionalProperties ? {} : { additionalProperties: false }),
-          properties: {
-            $id: {
-              description:
-                "Unique identifier for targeting by actions (e.g., setVisibility)",
-              type: "string",
-            },
-            $type: { const: "Proteus.Action" },
-            $visible: {
-              description:
-                "Whether element is visible (default: true). Elements with $visible: false are hidden until shown by an action.",
-              type: "boolean",
-            },
-            appearance: {
-              anyOf: [
-                { const: "default" },
-                { const: "danger" },
-                { const: "primary" },
-                { const: "subtle" },
-                { const: "danger-outline" },
-                { const: "default-opal" },
-                { const: "inverse" },
-                { const: "primary-opal" },
-              ],
-              description:
-                "Control the appearance by selecting between the different button types.",
-            },
-            children: {
-              $ref: "#/definitions/ProteusNode",
-              description: "Button label",
-            },
-            onClick: {
-              $ref: "#/definitions/ProteusEventHandler",
-              description: "Action triggered when button is clicked",
-            },
-          },
-          required: ["$type", "children"],
-          type: "object",
-        },
-        ProteusCancelAction: {
-          ...(additionalProperties ? {} : { additionalProperties: false }),
-          properties: {
-            $id: {
-              description:
-                "Unique identifier for targeting by actions (e.g., setVisibility)",
-              type: "string",
-            },
-            $type: { const: "Proteus.CancelAction" },
-            $visible: {
-              description:
-                "Whether element is visible (default: true). Elements with $visible: false are hidden until shown by an action.",
-              type: "boolean",
-            },
-            children: {
-              $ref: "#/definitions/ProteusNode",
-              description: "Button label (e.g., 'Cancel', 'Reject')",
-            },
-            placeholder: {
-              description: "Placeholder text for the text input field",
-              type: "string",
-            },
-          },
-          required: ["$type"],
-          type: "object",
-        },
         ProteusDocument: {
           ...(additionalProperties ? {} : { additionalProperties: false }),
           properties: {
@@ -509,6 +460,28 @@ async function generateZodSchemas(schema) {
  */
 function getPropTypeOverrides(additionalProperties = false) {
   return {
+    Action: {
+      onClick: {
+        $ref: "#/definitions/ProteusEventHandler",
+        description: "Action triggered when button is clicked",
+      },
+    },
+    CancelAction: {
+      placeholder: {
+        description: "Placeholder text for the text input field",
+        type: "string",
+      },
+    },
+    Image: {
+      alt: {
+        description: "Alternative text for the image",
+        type: "string",
+      },
+      src: {
+        description: "The image source URL",
+        type: "string",
+      },
+    },
     Input: {
       onValueChange: {
         $ref: "#/definitions/ProteusEventHandler",
