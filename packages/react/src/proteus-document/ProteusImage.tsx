@@ -1,18 +1,6 @@
-import { Box, type BoxProps } from "../box";
+import type { ProteusImageProps } from "./schemas";
 
-export type ProteusImageProps = BoxProps<
-  "img",
-  {
-    /**
-     * Alt text for the image, used for accessibility.
-     */
-    alt?: string;
-    /**
-     * The URL of the image to display.
-     */
-    src: string;
-  }
->;
+import { Box } from "../box";
 
 export function ProteusImage(props: ProteusImageProps) {
   return (
