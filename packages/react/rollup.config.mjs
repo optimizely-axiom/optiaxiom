@@ -124,7 +124,7 @@ export default defineConfig([
               const existing = await readFile(resolve(options.dir, fileName), {
                 encoding: "utf-8",
               });
-              if (existing === chunk.code) {
+              if (existing === (chunk.code ?? chunk.source)) {
                 delete bundle[fileName];
               }
             } catch {
