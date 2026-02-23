@@ -1,5 +1,11 @@
 # @optiaxiom/web-components
 
+## 0.12.2
+
+### Patch Changes
+
+- def4427: revert border radius and spinning gradient for primary opal button
+
 ## 0.12.1
 
 ### Patch Changes
