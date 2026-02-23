@@ -46,6 +46,13 @@ export async function generateComponents(context) {
       continue;
     }
 
+    // Exclude *Root components and their sub-components — these are advanced
+    // decomposed APIs that should be used manually rather than with AI.
+    // The convenience wrappers (Input, Button, Tooltip, etc.) are preferred.
+    if (name.endsWith("Root") || (group && group.endsWith("Root"))) {
+      continue;
+    }
+
     const baseDescription =
       doc.description || `${name} component from Axiom Design System`;
     const description = shouldGenerateScreenshot(name)
