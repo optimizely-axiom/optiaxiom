@@ -2,13 +2,10 @@ import { readdir, readFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
-import { captureScreenshot } from "./screenshots.mjs";
-
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 /**
- * @typedef {import('playwright').BrowserContext} BrowserContext
  * @typedef {import('@optiaxiom/shared').Prop} PropItem
  * @typedef {import('../src/types.js').Example} Example
  * @typedef {import('../src/types.js').PropDefinition} PropDefinition
@@ -17,10 +14,9 @@ const __dirname = dirname(__filename);
 /**
  * Parse demo files from apps/docs/demos/{component-name}/ folders
  * @param {string} componentName - The component name (will be converted to kebab-case)
- * @param {BrowserContext} context
  * @returns {Promise<Example[]>}
  */
-export async function parseDemosFromFiles(componentName, context) {
+export async function parseDemosFromFiles(componentName) {
   const demosPath = join(
     __dirname,
     "../../../apps/docs/demos",
@@ -58,13 +54,11 @@ export async function parseDemosFromFiles(componentName, context) {
 
         // Only add if we found at least one file
         if (Object.keys(code).length > 0) {
-          examples.push(
-            await captureScreenshot(context, componentName, {
-              code,
-              components: extractAxiomImports(code),
-              title: folder.name,
-            }),
-          );
+          examples.push({
+            code,
+            components: extractAxiomImports(code),
+            title: folder.name,
+          });
         }
       } catch {
         // Skip if folder can't be read

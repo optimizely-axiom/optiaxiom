@@ -1,5 +1,3 @@
-import { chromium } from "playwright";
-
 import {
   generateComponents,
   generateGuides,
@@ -26,20 +24,11 @@ export function generateDataPlugin() {
         return null;
       }
 
-      const browser = await chromium.launch({ headless: true });
-      try {
-        const context = await browser.newContext({
-          viewport: { height: 800, width: 1200 },
-        });
-
-        return `export const components = ${JSON.stringify(await generateComponents(context))};
+      return `export const components = ${JSON.stringify(await generateComponents())};
 export const guides = ${JSON.stringify(await generateGuides())};
 export const icons = ${JSON.stringify(await generateIcons())};
 export const tokens = ${JSON.stringify(await generateTokens())};
 `;
-      } finally {
-        await browser.close();
-      }
     },
   };
 }
