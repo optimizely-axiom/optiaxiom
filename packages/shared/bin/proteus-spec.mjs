@@ -20,6 +20,7 @@ import { getDocs } from "../src/index.mjs";
  * @typedef {Object} ComponentConfig
  * @property {string[]} allowedProps - List of allowed prop names
  * @property {string} [extends] - Base Axiom component this extends (e.g., "Button", "Box")
+ * @property {string[]} [requiredProps] - List of props that should be marked as required
  */
 
 /**
@@ -53,13 +54,17 @@ const PROTEUS_COMPONENT_CONFIG = {
       "addonBefore",
       "appearance",
       "name",
-      "onValueChange",
       "placeholder",
       "type",
     ],
   },
   Link: {
     allowedProps: ["children", "href"],
+  },
+  Map: {
+    allowedProps: ["path", "children"],
+    extends: "Fragment",
+    requiredProps: ["path"],
   },
   Range: {
     allowedProps: ["marks", "max", "min", "step"],
@@ -76,18 +81,20 @@ const PROTEUS_COMPONENT_CONFIG = {
   Separator: {
     allowedProps: [],
   },
+  Show: {
+    allowedProps: ["when", "children"],
+    extends: "Fragment",
+  },
   Text: {
     allowedProps: ["children"],
   },
   Textarea: {
-    allowedProps: [
-      "maxRows",
-      "name",
-      "onValueChange",
-      "placeholder",
-      "resize",
-      "rows",
-    ],
+    allowedProps: ["maxRows", "name", "placeholder", "resize", "rows"],
+  },
+  Value: {
+    allowedProps: ["path"],
+    extends: "Fragment",
+    requiredProps: ["path"],
   },
 };
 
@@ -116,13 +123,20 @@ function generateJsonSchema(additionalProperties = false) {
     definitions: Object.entries(PROTEUS_COMPONENT_CONFIG).reduce(
       (
         /** @type {Record<string, JSONSchema7Definition>} */ definitions,
-        [componentName, { allowedProps, extends: extendsComponent }],
+        [
+          componentName,
+          { allowedProps, extends: extendsComponent, requiredProps = [] },
+        ],
       ) => {
         // For components that extend another component, find the base component docs
         const baseComponentName = extendsComponent || componentName;
-        const doc = docs.find(
-          (doc) => doc.displayName === `@optiaxiom/react/${baseComponentName}`,
-        );
+        const doc =
+          baseComponentName === "Fragment"
+            ? { props: [] }
+            : docs.find(
+                (doc) =>
+                  doc.displayName === `@optiaxiom/react/${baseComponentName}`,
+              );
         if (!doc) {
           throw new Error(
             `Could not find documentation for component "${baseComponentName}"${extendsComponent ? ` (extended by "${componentName}")` : ""}`,
@@ -131,18 +145,8 @@ function generateJsonSchema(additionalProperties = false) {
 
         /** @type {Record<string, JSONSchema7Definition>} */
         const properties = {
-          $id: {
-            description:
-              "Unique identifier for targeting by actions (e.g., setVisibility)",
-            type: "string",
-          },
           $type: {
             const: `Proteus.${componentName}`,
-          },
-          $visible: {
-            description:
-              "Whether element is visible (default: true). Elements with $visible: false are hidden until shown by an action.",
-            type: "boolean",
           },
         };
         const required = ["$type"];
@@ -171,6 +175,15 @@ function generateJsonSchema(additionalProperties = false) {
           )) {
             if (allowedProps.includes(propName)) {
               properties[propName] = propSchema;
+            }
+          }
+        }
+
+        // Mark props as required if specified in config
+        if (requiredProps) {
+          for (const propName of requiredProps) {
+            if (!required.includes(propName)) {
+              required.push(propName);
             }
           }
         }
@@ -226,6 +239,205 @@ function generateJsonSchema(additionalProperties = false) {
             schema,
           ]),
         ),
+        ProteusAtomicCondition: {
+          anyOf: [
+            {
+              ...(additionalProperties ? {} : { additionalProperties: false }),
+              properties: {
+                "!=": {
+                  description: "Inequality comparison",
+                  items: {
+                    anyOf: [
+                      { type: "string" },
+                      { type: "number" },
+                      { type: "boolean" },
+                      { type: "null" },
+                      { $ref: "#/definitions/ProteusValue" },
+                    ],
+                  },
+                  maxItems: 2,
+                  minItems: 2,
+                  type: "array",
+                },
+              },
+              required: ["!="],
+              type: "object",
+            },
+            {
+              ...(additionalProperties ? {} : { additionalProperties: false }),
+              properties: {
+                "<": {
+                  description: "Less than comparison",
+                  items: {
+                    anyOf: [
+                      { type: "string" },
+                      { type: "number" },
+                      { type: "boolean" },
+                      { type: "null" },
+                      { $ref: "#/definitions/ProteusValue" },
+                    ],
+                  },
+                  maxItems: 2,
+                  minItems: 2,
+                  type: "array",
+                },
+              },
+              required: ["<"],
+              type: "object",
+            },
+            {
+              ...(additionalProperties ? {} : { additionalProperties: false }),
+              properties: {
+                "<=": {
+                  description: "Less than or equal comparison",
+                  items: {
+                    anyOf: [
+                      { type: "string" },
+                      { type: "number" },
+                      { type: "boolean" },
+                      { type: "null" },
+                      { $ref: "#/definitions/ProteusValue" },
+                    ],
+                  },
+                  maxItems: 2,
+                  minItems: 2,
+                  type: "array",
+                },
+              },
+              required: ["<="],
+              type: "object",
+            },
+            {
+              ...(additionalProperties ? {} : { additionalProperties: false }),
+              properties: {
+                "==": {
+                  description: "Equality comparison",
+                  items: {
+                    anyOf: [
+                      { type: "string" },
+                      { type: "number" },
+                      { type: "boolean" },
+                      { type: "null" },
+                      { $ref: "#/definitions/ProteusValue" },
+                    ],
+                  },
+                  maxItems: 2,
+                  minItems: 2,
+                  type: "array",
+                },
+              },
+              required: ["=="],
+              type: "object",
+            },
+            {
+              ...(additionalProperties ? {} : { additionalProperties: false }),
+              properties: {
+                ">": {
+                  description: "Greater than comparison",
+                  items: {
+                    anyOf: [
+                      { type: "string" },
+                      { type: "number" },
+                      { type: "boolean" },
+                      { type: "null" },
+                      { $ref: "#/definitions/ProteusValue" },
+                    ],
+                  },
+                  maxItems: 2,
+                  minItems: 2,
+                  type: "array",
+                },
+              },
+              required: [">"],
+              type: "object",
+            },
+            {
+              ...(additionalProperties ? {} : { additionalProperties: false }),
+              properties: {
+                ">=": {
+                  description: "Greater than or equal comparison",
+                  items: {
+                    anyOf: [
+                      { type: "string" },
+                      { type: "number" },
+                      { type: "boolean" },
+                      { type: "null" },
+                      { $ref: "#/definitions/ProteusValue" },
+                    ],
+                  },
+                  maxItems: 2,
+                  minItems: 2,
+                  type: "array",
+                },
+              },
+              required: [">="],
+              type: "object",
+            },
+            {
+              ...(additionalProperties ? {} : { additionalProperties: false }),
+              properties: {
+                "!!": {
+                  anyOf: [
+                    { type: "string" },
+                    { type: "number" },
+                    { type: "boolean" },
+                    { type: "null" },
+                    { $ref: "#/definitions/ProteusValue" },
+                  ],
+                  description:
+                    "Truthy check - returns true if value is truthy (not null, undefined, false, 0, or empty string)",
+                },
+              },
+              required: ["!!"],
+              type: "object",
+            },
+          ],
+          description:
+            "Simple comparison condition - single operator only (used in OR arrays to avoid recursion)",
+        },
+        ProteusCondition: {
+          anyOf: [
+            { $ref: "#/definitions/ProteusAtomicCondition" },
+            {
+              ...(additionalProperties ? {} : { additionalProperties: false }),
+              properties: {
+                or: {
+                  description:
+                    "Logical OR - returns true if any condition is true",
+                  items: {
+                    anyOf: [
+                      {
+                        ...(additionalProperties
+                          ? {}
+                          : { additionalProperties: false }),
+                        properties: {
+                          and: {
+                            description:
+                              "Logical AND - returns true if all conditions are true",
+                            items: {
+                              $ref: "#/definitions/ProteusAtomicCondition",
+                            },
+                            minItems: 1,
+                            type: "array",
+                          },
+                        },
+                        required: ["and"],
+                        type: "object",
+                      },
+                      { $ref: "#/definitions/ProteusAtomicCondition" },
+                    ],
+                  },
+                  minItems: 1,
+                  type: "array",
+                },
+              },
+              required: ["or"],
+              type: "object",
+            },
+          ],
+          description:
+            "Condition for Proteus.Show component. Can be a comparison operator, logical AND, or logical OR. Supports nesting.",
+        },
         ProteusDocument: {
           ...(additionalProperties ? {} : { additionalProperties: false }),
           properties: {
@@ -286,30 +498,19 @@ function generateJsonSchema(additionalProperties = false) {
             },
             {
               ...(additionalProperties ? {} : { additionalProperties: false }),
-              description: "Client-side setVisibility action",
+              description: "Client-side message action",
               properties: {
-                action: {
-                  const: "setVisibility",
-                  description: "Set visibility of target elements",
-                },
-                params: {
-                  additionalProperties: { type: "boolean" },
-                  description:
-                    "Map of element IDs to visibility state (e.g., { 'step-2': true, 'step-1': false })",
-                  type: "object",
-                },
-                when: {
-                  description:
-                    "Optional regex pattern - action only executes if value matches",
+                message: {
+                  description: "Message to send to LLM via sendNewMessage()",
                   type: "string",
                 },
               },
-              required: ["action", "params"],
+              required: ["message"],
               type: "object",
             },
           ],
           description:
-            "Handler for user interactions - either a tool call or client-side action",
+            "Handler for user interactions - either a server-side tool call or client-side message",
         },
         ProteusNode: {
           anyOf: [
@@ -382,14 +583,24 @@ async function generateZodSchemas(schema) {
     if (name === "ProteusNode" || name.startsWith("SprinkleProp_")) continue;
 
     const schemaName = `${name}Schema`;
-    if (!["ProteusDocument", "ProteusEventHandler"].includes(name)) {
+    if (
+      ![
+        "ProteusAtomicCondition",
+        "ProteusCondition",
+        "ProteusDocument",
+        "ProteusEventHandler",
+      ].includes(name)
+    ) {
       components.push(name);
     }
 
-    // Create a custom definitions object that excludes sprinkle props
+    // Create a custom definitions object that excludes sprinkle props and condition types
     const definitionsWithoutSprinkles = Object.fromEntries(
       Object.entries(schema.definitions || {}).filter(
-        ([key]) => !key.startsWith("SprinkleProp_"),
+        ([key]) =>
+          !key.startsWith("SprinkleProp_") &&
+          key !== "ProteusCondition" &&
+          key !== "ProteusAtomicCondition",
       ),
     );
 
@@ -407,34 +618,38 @@ async function generateZodSchemas(schema) {
         module: "esm",
         name: schemaName,
         noImport: true,
+        parserOverride: (schema) => {
+          if (schema.$ref === "#/definitions/ProteusCondition") {
+            return "ProteusConditionSchema";
+          } else if (schema.$ref === "#/definitions/ProteusAtomicCondition") {
+            return "ProteusAtomicConditionSchema";
+          } else if (schema.$ref?.startsWith("#/definitions/SprinkleProp_")) {
+            const propName = schema.$ref.replace(
+              "#/definitions/SprinkleProp_",
+              "",
+            );
+            return `${propName}SprinkleSchema`;
+          }
+          return;
+        },
       },
     );
 
-    // Build a map of sprinkle prop names to their schema variable names
-    const sprinkleMap = new Map();
-    for (const [sprinkleName, schemaVarName] of sprinkleSchemas) {
-      const propName = sprinkleName.replace("SprinkleProp_", "");
-      sprinkleMap.set(propName, schemaVarName);
-    }
-
-    // Replace z.any() with sprinkle schema references for sprinkle props
-    // Pattern: "propName": z.any() -> "propName": propNameSprinkleSchema
-    zodCode = zodCode.replace(/"(\w+)":\s*z\.any\(\)/g, (match, propName) => {
-      if (sprinkleMap.has(propName)) {
-        return `"${propName}": ${sprinkleMap.get(propName)}`;
-      }
-      return match;
-    });
-
     lines.push(zodCode);
-    if (name === "ProteusEventHandler") {
+    if (
+      [
+        "ProteusAtomicCondition",
+        "ProteusCondition",
+        "ProteusEventHandler",
+      ].includes(name)
+    ) {
       lines.push(`export type ${name} = z.infer<typeof ${schemaName}>;`);
     } else {
       lines.push(
         `export type ${name} = Omit<z.infer<typeof ${schemaName}>, "children"> & { children?: ProteusNode };`,
       );
       lines.push(
-        `export type ${name}Props = Omit<z.infer<typeof ${schemaName}>, "$id" | "$type" | "$visible">;`,
+        `export type ${name}Props = Omit<z.infer<typeof ${schemaName}>, "$type">;`,
       );
     }
     lines.push("");
@@ -482,10 +697,15 @@ function getPropTypeOverrides(additionalProperties = false) {
         type: "string",
       },
     },
-    Input: {
-      onValueChange: {
-        $ref: "#/definitions/ProteusEventHandler",
-        description: "Action triggered when input value changes",
+    Map: {
+      children: {
+        description:
+          "Template object to render for each item in the array. Proteus.Value paths are relative to current item.",
+        type: "object",
+      },
+      path: {
+        description: "JSON pointer path to array (e.g., '/questions')",
+        type: "string",
       },
     },
     Range: {
@@ -520,10 +740,6 @@ function getPropTypeOverrides(additionalProperties = false) {
         items: {
           ...(additionalProperties ? {} : { additionalProperties: false }),
           properties: {
-            execute: {
-              $ref: "#/definitions/ProteusEventHandler",
-              description: "Action triggered when this option is selected",
-            },
             label: {
               description: "String representation of items",
               type: "string",
@@ -544,10 +760,28 @@ function getPropTypeOverrides(additionalProperties = false) {
         $ref: "#/definitions/ProteusNode",
       },
     },
-    Textarea: {
-      onValueChange: {
-        $ref: "#/definitions/ProteusEventHandler",
-        description: "Action triggered when textarea value changes",
+    Show: {
+      children: {
+        $ref: "#/definitions/ProteusNode",
+        description: "Content to show when condition is true",
+      },
+      when: {
+        anyOf: [
+          { $ref: "#/definitions/ProteusCondition" },
+          {
+            items: { $ref: "#/definitions/ProteusCondition" },
+            type: "array",
+          },
+        ],
+        description:
+          "Single condition or array of conditions (AND logic). Each condition is an object with one operator key.",
+      },
+    },
+    Value: {
+      path: {
+        description:
+          "JSON pointer path to value (e.g., '/question', '/options/0/label')",
+        type: "string",
       },
     },
   };

@@ -23,7 +23,6 @@ export function ProteusAction({
 
         onEvent(onClick);
       }}
-      size="lg"
       {...props}
     >
       {children && <ProteusElement element={children} />}

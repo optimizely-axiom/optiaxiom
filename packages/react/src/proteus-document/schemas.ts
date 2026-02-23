@@ -842,25 +842,204 @@ export const zSprinkleSchema = z
     "Set the element's stacking order. Only accepts predefined zIndex tokens (e.g., popover, toast, tooltip) or numeric values (0, 10, 20, 30, auto).",
   );
 
+export const ProteusAtomicConditionSchema = z
+  .union([
+    z.object({
+      "!=": z
+        .array(
+          z.union([
+            z.string(),
+            z.number(),
+            z.boolean(),
+            z.null(),
+            z.object({
+              $type: z.literal("Proteus.Value"),
+              path: z
+                .string()
+                .describe(
+                  "JSON pointer path to value (e.g., '/question', '/options/0/label')",
+                ),
+            }),
+          ]),
+        )
+        .min(2)
+        .max(2)
+        .describe("Inequality comparison"),
+    }),
+    z.object({
+      "<": z
+        .array(
+          z.union([
+            z.string(),
+            z.number(),
+            z.boolean(),
+            z.null(),
+            z.object({
+              $type: z.literal("Proteus.Value"),
+              path: z
+                .string()
+                .describe(
+                  "JSON pointer path to value (e.g., '/question', '/options/0/label')",
+                ),
+            }),
+          ]),
+        )
+        .min(2)
+        .max(2)
+        .describe("Less than comparison"),
+    }),
+    z.object({
+      "<=": z
+        .array(
+          z.union([
+            z.string(),
+            z.number(),
+            z.boolean(),
+            z.null(),
+            z.object({
+              $type: z.literal("Proteus.Value"),
+              path: z
+                .string()
+                .describe(
+                  "JSON pointer path to value (e.g., '/question', '/options/0/label')",
+                ),
+            }),
+          ]),
+        )
+        .min(2)
+        .max(2)
+        .describe("Less than or equal comparison"),
+    }),
+    z.object({
+      "==": z
+        .array(
+          z.union([
+            z.string(),
+            z.number(),
+            z.boolean(),
+            z.null(),
+            z.object({
+              $type: z.literal("Proteus.Value"),
+              path: z
+                .string()
+                .describe(
+                  "JSON pointer path to value (e.g., '/question', '/options/0/label')",
+                ),
+            }),
+          ]),
+        )
+        .min(2)
+        .max(2)
+        .describe("Equality comparison"),
+    }),
+    z.object({
+      ">": z
+        .array(
+          z.union([
+            z.string(),
+            z.number(),
+            z.boolean(),
+            z.null(),
+            z.object({
+              $type: z.literal("Proteus.Value"),
+              path: z
+                .string()
+                .describe(
+                  "JSON pointer path to value (e.g., '/question', '/options/0/label')",
+                ),
+            }),
+          ]),
+        )
+        .min(2)
+        .max(2)
+        .describe("Greater than comparison"),
+    }),
+    z.object({
+      ">=": z
+        .array(
+          z.union([
+            z.string(),
+            z.number(),
+            z.boolean(),
+            z.null(),
+            z.object({
+              $type: z.literal("Proteus.Value"),
+              path: z
+                .string()
+                .describe(
+                  "JSON pointer path to value (e.g., '/question', '/options/0/label')",
+                ),
+            }),
+          ]),
+        )
+        .min(2)
+        .max(2)
+        .describe("Greater than or equal comparison"),
+    }),
+    z.object({
+      "!!": z
+        .union([
+          z.string(),
+          z.number(),
+          z.boolean(),
+          z.null(),
+          z.object({
+            $type: z.literal("Proteus.Value"),
+            path: z
+              .string()
+              .describe(
+                "JSON pointer path to value (e.g., '/question', '/options/0/label')",
+              ),
+          }),
+        ])
+        .describe(
+          "Truthy check - returns true if value is truthy (not null, undefined, false, 0, or empty string)",
+        ),
+    }),
+  ])
+  .describe(
+    "Simple comparison condition - single operator only (used in OR arrays to avoid recursion)",
+  );
+
+export type ProteusAtomicCondition = z.infer<
+  typeof ProteusAtomicConditionSchema
+>;
+
+export const ProteusConditionSchema = z
+  .union([
+    ProteusAtomicConditionSchema,
+    z.object({
+      or: z
+        .array(
+          z.union([
+            z.object({
+              and: z
+                .array(ProteusAtomicConditionSchema)
+                .min(1)
+                .describe(
+                  "Logical AND - returns true if all conditions are true",
+                ),
+            }),
+            ProteusAtomicConditionSchema,
+          ]),
+        )
+        .min(1)
+        .describe("Logical OR - returns true if any condition is true"),
+    }),
+  ])
+  .describe(
+    "Condition for Proteus.Show component. Can be a comparison operator, logical AND, or logical OR. Supports nesting.",
+  );
+
+export type ProteusCondition = z.infer<typeof ProteusConditionSchema>;
+
 export const ProteusDocumentSchema = z.object({
   $type: z.literal("Proteus.Document"),
   actions: z
     .array(
       z.union([
         z.object({
-          $id: z
-            .string()
-            .describe(
-              "Unique identifier for targeting by actions (e.g., setVisibility)",
-            )
-            .optional(),
           $type: z.literal("Proteus.Action"),
-          $visible: z
-            .boolean()
-            .describe(
-              "Whether element is visible (default: true). Elements with $visible: false are hidden until shown by an action.",
-            )
-            .optional(),
           alignItems: alignItemsSprinkleSchema.optional(),
           alignSelf: alignSelfSprinkleSchema.optional(),
           animation: animationSprinkleSchema.optional(),
@@ -922,25 +1101,14 @@ export const ProteusDocumentSchema = z.object({
                 .describe("Server-side tool call"),
               z
                 .object({
-                  action: z
-                    .literal("setVisibility")
-                    .describe("Set visibility of target elements"),
-                  params: z
-                    .record(z.boolean())
-                    .describe(
-                      "Map of element IDs to visibility state (e.g., { 'step-2': true, 'step-1': false })",
-                    ),
-                  when: z
+                  message: z
                     .string()
-                    .describe(
-                      "Optional regex pattern - action only executes if value matches",
-                    )
-                    .optional(),
+                    .describe("Message to send to LLM via sendNewMessage()"),
                 })
-                .describe("Client-side setVisibility action"),
+                .describe("Client-side message action"),
             ])
             .describe(
-              "Handler for user interactions - either a tool call or client-side action",
+              "Handler for user interactions - either a server-side tool call or client-side message",
             )
             .optional(),
           overflow: overflowSprinkleSchema.optional(),
@@ -965,19 +1133,7 @@ export const ProteusDocumentSchema = z.object({
           z: zSprinkleSchema.optional(),
         }),
         z.object({
-          $id: z
-            .string()
-            .describe(
-              "Unique identifier for targeting by actions (e.g., setVisibility)",
-            )
-            .optional(),
           $type: z.literal("Proteus.CancelAction"),
-          $visible: z
-            .boolean()
-            .describe(
-              "Whether element is visible (default: true). Elements with $visible: false are hidden until shown by an action.",
-            )
-            .optional(),
           alignItems: alignItemsSprinkleSchema.optional(),
           alignSelf: alignSelfSprinkleSchema.optional(),
           animation: animationSprinkleSchema.optional(),
@@ -1075,7 +1231,7 @@ export type ProteusDocument = Omit<
 > & { children?: ProteusNode };
 export type ProteusDocumentProps = Omit<
   z.infer<typeof ProteusDocumentSchema>,
-  "$id" | "$type" | "$visible"
+  "$type"
 >;
 
 export const ProteusEventHandlerSchema = z
@@ -1085,43 +1241,20 @@ export const ProteusEventHandlerSchema = z
       .describe("Server-side tool call"),
     z
       .object({
-        action: z
-          .literal("setVisibility")
-          .describe("Set visibility of target elements"),
-        params: z
-          .record(z.boolean())
-          .describe(
-            "Map of element IDs to visibility state (e.g., { 'step-2': true, 'step-1': false })",
-          ),
-        when: z
+        message: z
           .string()
-          .describe(
-            "Optional regex pattern - action only executes if value matches",
-          )
-          .optional(),
+          .describe("Message to send to LLM via sendNewMessage()"),
       })
-      .describe("Client-side setVisibility action"),
+      .describe("Client-side message action"),
   ])
   .describe(
-    "Handler for user interactions - either a tool call or client-side action",
+    "Handler for user interactions - either a server-side tool call or client-side message",
   );
 
 export type ProteusEventHandler = z.infer<typeof ProteusEventHandlerSchema>;
 
 export const ProteusActionSchema = z.object({
-  $id: z
-    .string()
-    .describe(
-      "Unique identifier for targeting by actions (e.g., setVisibility)",
-    )
-    .optional(),
   $type: z.literal("Proteus.Action"),
-  $visible: z
-    .boolean()
-    .describe(
-      "Whether element is visible (default: true). Elements with $visible: false are hidden until shown by an action.",
-    )
-    .optional(),
   alignItems: alignItemsSprinkleSchema.optional(),
   alignSelf: alignSelfSprinkleSchema.optional(),
   animation: animationSprinkleSchema.optional(),
@@ -1183,25 +1316,14 @@ export const ProteusActionSchema = z.object({
         .describe("Server-side tool call"),
       z
         .object({
-          action: z
-            .literal("setVisibility")
-            .describe("Set visibility of target elements"),
-          params: z
-            .record(z.boolean())
-            .describe(
-              "Map of element IDs to visibility state (e.g., { 'step-2': true, 'step-1': false })",
-            ),
-          when: z
+          message: z
             .string()
-            .describe(
-              "Optional regex pattern - action only executes if value matches",
-            )
-            .optional(),
+            .describe("Message to send to LLM via sendNewMessage()"),
         })
-        .describe("Client-side setVisibility action"),
+        .describe("Client-side message action"),
     ])
     .describe(
-      "Handler for user interactions - either a tool call or client-side action",
+      "Handler for user interactions - either a server-side tool call or client-side message",
     )
     .optional(),
   overflow: overflowSprinkleSchema.optional(),
@@ -1232,23 +1354,11 @@ export type ProteusAction = Omit<
 > & { children?: ProteusNode };
 export type ProteusActionProps = Omit<
   z.infer<typeof ProteusActionSchema>,
-  "$id" | "$type" | "$visible"
+  "$type"
 >;
 
 export const ProteusCancelActionSchema = z.object({
-  $id: z
-    .string()
-    .describe(
-      "Unique identifier for targeting by actions (e.g., setVisibility)",
-    )
-    .optional(),
   $type: z.literal("Proteus.CancelAction"),
-  $visible: z
-    .boolean()
-    .describe(
-      "Whether element is visible (default: true). Elements with $visible: false are hidden until shown by an action.",
-    )
-    .optional(),
   alignItems: alignItemsSprinkleSchema.optional(),
   alignSelf: alignSelfSprinkleSchema.optional(),
   animation: animationSprinkleSchema.optional(),
@@ -1318,23 +1428,11 @@ export type ProteusCancelAction = Omit<
 > & { children?: ProteusNode };
 export type ProteusCancelActionProps = Omit<
   z.infer<typeof ProteusCancelActionSchema>,
-  "$id" | "$type" | "$visible"
+  "$type"
 >;
 
 export const ProteusFieldSchema = z.object({
-  $id: z
-    .string()
-    .describe(
-      "Unique identifier for targeting by actions (e.g., setVisibility)",
-    )
-    .optional(),
   $type: z.literal("Proteus.Field"),
-  $visible: z
-    .boolean()
-    .describe(
-      "Whether element is visible (default: true). Elements with $visible: false are hidden until shown by an action.",
-    )
-    .optional(),
   alignItems: alignItemsSprinkleSchema.optional(),
   alignSelf: alignSelfSprinkleSchema.optional(),
   animation: animationSprinkleSchema.optional(),
@@ -1408,23 +1506,11 @@ export type ProteusField = Omit<
 > & { children?: ProteusNode };
 export type ProteusFieldProps = Omit<
   z.infer<typeof ProteusFieldSchema>,
-  "$id" | "$type" | "$visible"
+  "$type"
 >;
 
 export const ProteusGroupSchema = z.object({
-  $id: z
-    .string()
-    .describe(
-      "Unique identifier for targeting by actions (e.g., setVisibility)",
-    )
-    .optional(),
   $type: z.literal("Proteus.Group"),
-  $visible: z
-    .boolean()
-    .describe(
-      "Whether element is visible (default: true). Elements with $visible: false are hidden until shown by an action.",
-    )
-    .optional(),
   alignItems: z
     .union([
       z.literal("normal"),
@@ -1512,23 +1598,11 @@ export type ProteusGroup = Omit<
 > & { children?: ProteusNode };
 export type ProteusGroupProps = Omit<
   z.infer<typeof ProteusGroupSchema>,
-  "$id" | "$type" | "$visible"
+  "$type"
 >;
 
 export const ProteusHeadingSchema = z.object({
-  $id: z
-    .string()
-    .describe(
-      "Unique identifier for targeting by actions (e.g., setVisibility)",
-    )
-    .optional(),
   $type: z.literal("Proteus.Heading"),
-  $visible: z
-    .boolean()
-    .describe(
-      "Whether element is visible (default: true). Elements with $visible: false are hidden until shown by an action.",
-    )
-    .optional(),
   alignItems: alignItemsSprinkleSchema.optional(),
   alignSelf: alignSelfSprinkleSchema.optional(),
   animation: animationSprinkleSchema.optional(),
@@ -1601,23 +1675,11 @@ export type ProteusHeading = Omit<
 > & { children?: ProteusNode };
 export type ProteusHeadingProps = Omit<
   z.infer<typeof ProteusHeadingSchema>,
-  "$id" | "$type" | "$visible"
+  "$type"
 >;
 
 export const ProteusImageSchema = z.object({
-  $id: z
-    .string()
-    .describe(
-      "Unique identifier for targeting by actions (e.g., setVisibility)",
-    )
-    .optional(),
   $type: z.literal("Proteus.Image"),
-  $visible: z
-    .boolean()
-    .describe(
-      "Whether element is visible (default: true). Elements with $visible: false are hidden until shown by an action.",
-    )
-    .optional(),
   alignItems: alignItemsSprinkleSchema.optional(),
   alignSelf: alignSelfSprinkleSchema.optional(),
   alt: z.string().describe("Alternative text for the image").optional(),
@@ -1685,23 +1747,11 @@ export type ProteusImage = Omit<
 > & { children?: ProteusNode };
 export type ProteusImageProps = Omit<
   z.infer<typeof ProteusImageSchema>,
-  "$id" | "$type" | "$visible"
+  "$type"
 >;
 
 export const ProteusInputSchema = z.object({
-  $id: z
-    .string()
-    .describe(
-      "Unique identifier for targeting by actions (e.g., setVisibility)",
-    )
-    .optional(),
   $type: z.literal("Proteus.Input"),
-  $visible: z
-    .boolean()
-    .describe(
-      "Whether element is visible (default: true). Elements with $visible: false are hidden until shown by an action.",
-    )
-    .optional(),
   addonAfter: z.any().optional(),
   addonBefore: z.any().optional(),
   alignItems: alignItemsSprinkleSchema.optional(),
@@ -1754,25 +1804,14 @@ export const ProteusInputSchema = z.object({
         .describe("Server-side tool call"),
       z
         .object({
-          action: z
-            .literal("setVisibility")
-            .describe("Set visibility of target elements"),
-          params: z
-            .record(z.boolean())
-            .describe(
-              "Map of element IDs to visibility state (e.g., { 'step-2': true, 'step-1': false })",
-            ),
-          when: z
+          message: z
             .string()
-            .describe(
-              "Optional regex pattern - action only executes if value matches",
-            )
-            .optional(),
+            .describe("Message to send to LLM via sendNewMessage()"),
         })
-        .describe("Client-side setVisibility action"),
+        .describe("Client-side message action"),
     ])
     .describe(
-      "Handler for user interactions - either a tool call or client-side action",
+      "Handler for user interactions - either a server-side tool call or client-side message",
     )
     .optional(),
   overflow: overflowSprinkleSchema.optional(),
@@ -1835,23 +1874,11 @@ export type ProteusInput = Omit<
 > & { children?: ProteusNode };
 export type ProteusInputProps = Omit<
   z.infer<typeof ProteusInputSchema>,
-  "$id" | "$type" | "$visible"
+  "$type"
 >;
 
 export const ProteusLinkSchema = z.object({
-  $id: z
-    .string()
-    .describe(
-      "Unique identifier for targeting by actions (e.g., setVisibility)",
-    )
-    .optional(),
   $type: z.literal("Proteus.Link"),
-  $visible: z
-    .boolean()
-    .describe(
-      "Whether element is visible (default: true). Elements with $visible: false are hidden until shown by an action.",
-    )
-    .optional(),
   alignItems: alignItemsSprinkleSchema.optional(),
   alignSelf: alignSelfSprinkleSchema.optional(),
   animation: animationSprinkleSchema.optional(),
@@ -1917,25 +1944,26 @@ export type ProteusLink = Omit<
   z.infer<typeof ProteusLinkSchema>,
   "children"
 > & { children?: ProteusNode };
-export type ProteusLinkProps = Omit<
-  z.infer<typeof ProteusLinkSchema>,
-  "$id" | "$type" | "$visible"
->;
+export type ProteusLinkProps = Omit<z.infer<typeof ProteusLinkSchema>, "$type">;
+
+export const ProteusMapSchema = z.object({
+  $type: z.literal("Proteus.Map"),
+  children: z
+    .record(z.any())
+    .describe(
+      "Template object to render for each item in the array. Proteus.Value paths are relative to current item.",
+    )
+    .optional(),
+  path: z.string().describe("JSON pointer path to array (e.g., '/questions')"),
+});
+
+export type ProteusMap = Omit<z.infer<typeof ProteusMapSchema>, "children"> & {
+  children?: ProteusNode;
+};
+export type ProteusMapProps = Omit<z.infer<typeof ProteusMapSchema>, "$type">;
 
 export const ProteusRangeSchema = z.object({
-  $id: z
-    .string()
-    .describe(
-      "Unique identifier for targeting by actions (e.g., setVisibility)",
-    )
-    .optional(),
   $type: z.literal("Proteus.Range"),
-  $visible: z
-    .boolean()
-    .describe(
-      "Whether element is visible (default: true). Elements with $visible: false are hidden until shown by an action.",
-    )
-    .optional(),
   alignItems: alignItemsSprinkleSchema.optional(),
   alignSelf: alignSelfSprinkleSchema.optional(),
   animation: animationSprinkleSchema.optional(),
@@ -2015,23 +2043,11 @@ export type ProteusRange = Omit<
 > & { children?: ProteusNode };
 export type ProteusRangeProps = Omit<
   z.infer<typeof ProteusRangeSchema>,
-  "$id" | "$type" | "$visible"
+  "$type"
 >;
 
 export const ProteusSelectSchema = z.object({
-  $id: z
-    .string()
-    .describe(
-      "Unique identifier for targeting by actions (e.g., setVisibility)",
-    )
-    .optional(),
   $type: z.literal("Proteus.Select"),
-  $visible: z
-    .boolean()
-    .describe(
-      "Whether element is visible (default: true). Elements with $visible: false are hidden until shown by an action.",
-    )
-    .optional(),
   children: z.any().optional(),
   name: z.string().describe("The name of the inner select element.").optional(),
   options: z
@@ -2046,25 +2062,14 @@ export const ProteusSelectSchema = z.object({
               .describe("Server-side tool call"),
             z
               .object({
-                action: z
-                  .literal("setVisibility")
-                  .describe("Set visibility of target elements"),
-                params: z
-                  .record(z.boolean())
-                  .describe(
-                    "Map of element IDs to visibility state (e.g., { 'step-2': true, 'step-1': false })",
-                  ),
-                when: z
+                message: z
                   .string()
-                  .describe(
-                    "Optional regex pattern - action only executes if value matches",
-                  )
-                  .optional(),
+                  .describe("Message to send to LLM via sendNewMessage()"),
               })
-              .describe("Client-side setVisibility action"),
+              .describe("Client-side message action"),
           ])
           .describe(
-            "Handler for user interactions - either a tool call or client-side action",
+            "Handler for user interactions - either a server-side tool call or client-side message",
           )
           .optional(),
         label: z.string().describe("String representation of items"),
@@ -2080,23 +2085,11 @@ export type ProteusSelect = Omit<
 > & { children?: ProteusNode };
 export type ProteusSelectProps = Omit<
   z.infer<typeof ProteusSelectSchema>,
-  "$id" | "$type" | "$visible"
+  "$type"
 >;
 
 export const ProteusSelectContentSchema = z.object({
-  $id: z
-    .string()
-    .describe(
-      "Unique identifier for targeting by actions (e.g., setVisibility)",
-    )
-    .optional(),
   $type: z.literal("Proteus.SelectContent"),
-  $visible: z
-    .boolean()
-    .describe(
-      "Whether element is visible (default: true). Elements with $visible: false are hidden until shown by an action.",
-    )
-    .optional(),
   alignItems: alignItemsSprinkleSchema.optional(),
   alignSelf: alignSelfSprinkleSchema.optional(),
   animation: animationSprinkleSchema.optional(),
@@ -2161,23 +2154,11 @@ export type ProteusSelectContent = Omit<
 > & { children?: ProteusNode };
 export type ProteusSelectContentProps = Omit<
   z.infer<typeof ProteusSelectContentSchema>,
-  "$id" | "$type" | "$visible"
+  "$type"
 >;
 
 export const ProteusSelectTriggerSchema = z.object({
-  $id: z
-    .string()
-    .describe(
-      "Unique identifier for targeting by actions (e.g., setVisibility)",
-    )
-    .optional(),
   $type: z.literal("Proteus.SelectTrigger"),
-  $visible: z
-    .boolean()
-    .describe(
-      "Whether element is visible (default: true). Elements with $visible: false are hidden until shown by an action.",
-    )
-    .optional(),
   alignItems: alignItemsSprinkleSchema.optional(),
   alignSelf: alignSelfSprinkleSchema.optional(),
   animation: animationSprinkleSchema.optional(),
@@ -2243,23 +2224,11 @@ export type ProteusSelectTrigger = Omit<
 > & { children?: ProteusNode };
 export type ProteusSelectTriggerProps = Omit<
   z.infer<typeof ProteusSelectTriggerSchema>,
-  "$id" | "$type" | "$visible"
+  "$type"
 >;
 
 export const ProteusSeparatorSchema = z.object({
-  $id: z
-    .string()
-    .describe(
-      "Unique identifier for targeting by actions (e.g., setVisibility)",
-    )
-    .optional(),
   $type: z.literal("Proteus.Separator"),
-  $visible: z
-    .boolean()
-    .describe(
-      "Whether element is visible (default: true). Elements with $visible: false are hidden until shown by an action.",
-    )
-    .optional(),
   alignItems: alignItemsSprinkleSchema.optional(),
   alignSelf: alignSelfSprinkleSchema.optional(),
   animation: animationSprinkleSchema.optional(),
@@ -2325,23 +2294,28 @@ export type ProteusSeparator = Omit<
 > & { children?: ProteusNode };
 export type ProteusSeparatorProps = Omit<
   z.infer<typeof ProteusSeparatorSchema>,
-  "$id" | "$type" | "$visible"
+  "$type"
 >;
 
+export const ProteusShowSchema = z.object({
+  $type: z.literal("Proteus.Show"),
+  children: z.any().optional(),
+  when: z
+    .union([ProteusConditionSchema, z.array(ProteusConditionSchema)])
+    .describe(
+      "Single condition or array of conditions (AND logic). Each condition is an object with one operator key.",
+    )
+    .optional(),
+});
+
+export type ProteusShow = Omit<
+  z.infer<typeof ProteusShowSchema>,
+  "children"
+> & { children?: ProteusNode };
+export type ProteusShowProps = Omit<z.infer<typeof ProteusShowSchema>, "$type">;
+
 export const ProteusTextSchema = z.object({
-  $id: z
-    .string()
-    .describe(
-      "Unique identifier for targeting by actions (e.g., setVisibility)",
-    )
-    .optional(),
   $type: z.literal("Proteus.Text"),
-  $visible: z
-    .boolean()
-    .describe(
-      "Whether element is visible (default: true). Elements with $visible: false are hidden until shown by an action.",
-    )
-    .optional(),
   alignItems: alignItemsSprinkleSchema.optional(),
   alignSelf: alignSelfSprinkleSchema.optional(),
   animation: animationSprinkleSchema.optional(),
@@ -2406,25 +2380,10 @@ export type ProteusText = Omit<
   z.infer<typeof ProteusTextSchema>,
   "children"
 > & { children?: ProteusNode };
-export type ProteusTextProps = Omit<
-  z.infer<typeof ProteusTextSchema>,
-  "$id" | "$type" | "$visible"
->;
+export type ProteusTextProps = Omit<z.infer<typeof ProteusTextSchema>, "$type">;
 
 export const ProteusTextareaSchema = z.object({
-  $id: z
-    .string()
-    .describe(
-      "Unique identifier for targeting by actions (e.g., setVisibility)",
-    )
-    .optional(),
   $type: z.literal("Proteus.Textarea"),
-  $visible: z
-    .boolean()
-    .describe(
-      "Whether element is visible (default: true). Elements with $visible: false are hidden until shown by an action.",
-    )
-    .optional(),
   alignItems: alignItemsSprinkleSchema.optional(),
   alignSelf: alignSelfSprinkleSchema.optional(),
   animation: animationSprinkleSchema.optional(),
@@ -2481,25 +2440,14 @@ export const ProteusTextareaSchema = z.object({
         .describe("Server-side tool call"),
       z
         .object({
-          action: z
-            .literal("setVisibility")
-            .describe("Set visibility of target elements"),
-          params: z
-            .record(z.boolean())
-            .describe(
-              "Map of element IDs to visibility state (e.g., { 'step-2': true, 'step-1': false })",
-            ),
-          when: z
+          message: z
             .string()
-            .describe(
-              "Optional regex pattern - action only executes if value matches",
-            )
-            .optional(),
+            .describe("Message to send to LLM via sendNewMessage()"),
         })
-        .describe("Client-side setVisibility action"),
+        .describe("Client-side message action"),
     ])
     .describe(
-      "Handler for user interactions - either a tool call or client-side action",
+      "Handler for user interactions - either a server-side tool call or client-side message",
     )
     .optional(),
   overflow: overflowSprinkleSchema.optional(),
@@ -2541,7 +2489,25 @@ export type ProteusTextarea = Omit<
 > & { children?: ProteusNode };
 export type ProteusTextareaProps = Omit<
   z.infer<typeof ProteusTextareaSchema>,
-  "$id" | "$type" | "$visible"
+  "$type"
+>;
+
+export const ProteusValueSchema = z.object({
+  $type: z.literal("Proteus.Value"),
+  path: z
+    .string()
+    .describe(
+      "JSON pointer path to value (e.g., '/question', '/options/0/label')",
+    ),
+});
+
+export type ProteusValue = Omit<
+  z.infer<typeof ProteusValueSchema>,
+  "children"
+> & { children?: ProteusNode };
+export type ProteusValueProps = Omit<
+  z.infer<typeof ProteusValueSchema>,
+  "$type"
 >;
 
 export const ProteusElementSchema = z.discriminatedUnion("$type", [
@@ -2553,13 +2519,16 @@ export const ProteusElementSchema = z.discriminatedUnion("$type", [
   ProteusImageSchema,
   ProteusInputSchema,
   ProteusLinkSchema,
+  ProteusMapSchema,
   ProteusRangeSchema,
   ProteusSelectSchema,
   ProteusSelectContentSchema,
   ProteusSelectTriggerSchema,
   ProteusSeparatorSchema,
+  ProteusShowSchema,
   ProteusTextSchema,
   ProteusTextareaSchema,
+  ProteusValueSchema,
 ]);
 type ProteusElement =
   | ProteusAction
@@ -2570,10 +2539,13 @@ type ProteusElement =
   | ProteusImage
   | ProteusInput
   | ProteusLink
+  | ProteusMap
   | ProteusRange
   | ProteusSelect
   | ProteusSelectContent
   | ProteusSelectTrigger
   | ProteusSeparator
+  | ProteusShow
   | ProteusText
-  | ProteusTextarea;
+  | ProteusTextarea
+  | ProteusValue;

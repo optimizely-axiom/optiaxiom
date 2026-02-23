@@ -1,5 +1,5 @@
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
-import { type ComponentPropsWithoutRef, useState } from "react";
+import { type ComponentPropsWithoutRef } from "react";
 
 import { Box } from "../box";
 import {
@@ -7,7 +7,6 @@ import {
   DisclosureContent,
   DisclosureTrigger,
 } from "../disclosure";
-import { Flex } from "../flex";
 import { Group } from "../group";
 import { Heading } from "../heading";
 import { useEffectEvent } from "../hooks";
@@ -41,7 +40,11 @@ export type ProteusDocumentRendererProps = Pick<
    */
   onDataChange?: (data: Record<string, string>) => void;
   /**
-   * Callback when user clicks a Proteus.Action button
+   * Callback when user sends a message action
+   */
+  onMessage?: (message: string) => void;
+  /**
+   * Callback when user clicks a Proteus.Action button with tool handler
    */
   onToolCall?: (toolName: string) => void;
   /**
@@ -57,6 +60,7 @@ export function ProteusDocumentRenderer({
   element: elementProp,
   onCancelAction,
   onDataChange,
+  onMessage,
   onOpenChange,
   onToolCall,
   open: openProp,
@@ -67,7 +71,6 @@ export function ProteusDocumentRenderer({
     onChange: onOpenChange,
     prop: openProp,
   });
-  const [visibility, setVisibility] = useState<Record<string, boolean>>({});
 
   const result = ProteusDocumentSchema.safeParse(elementProp);
   if (!result.success) {
@@ -89,30 +92,15 @@ export function ProteusDocumentRenderer({
         onDataChange?.({ ...data, [name]: value });
       })}
       onEvent={useEffectEvent(
-        (
-          event:
-            | {
-                action: "setVisibility";
-                params: Record<string, boolean>;
-                when?: string;
-              }
-            | {
-                tool: string;
-              },
-          value?: string,
-        ) => {
+        (event: { message: string } | { tool: string }) => {
           if ("tool" in event) {
             onToolCall?.(event.tool);
-          } else if (event.action === "setVisibility") {
-            if (event.when && !(value || "").match(new RegExp(event.when))) {
-              return;
-            }
-            setVisibility((visibility) => ({ ...visibility, ...event.params }));
+          } else if ("message" in event) {
+            onMessage?.(event.message);
           }
         },
       )}
       readOnly={readOnly}
-      visibility={visibility}
     >
       <Disclosure
         bg="bg.default"
@@ -156,9 +144,9 @@ export function ProteusDocumentRenderer({
               {result.data.actions &&
                 result.data.actions.length > 0 &&
                 !readOnly && (
-                  <Flex gap="16" w="full">
+                  <Group gap="16" justifyContent="end" w="full">
                     <ProteusElement element={result.data.actions} />
-                  </Flex>
+                  </Group>
                 )}
             </DisclosureContent>
           </>

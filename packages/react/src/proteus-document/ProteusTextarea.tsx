@@ -3,11 +3,8 @@ import type { ProteusTextareaProps } from "./schemas";
 import { Textarea } from "../textarea";
 import { useProteusDocumentContext } from "./ProteusDocumentContext";
 
-export function ProteusTextarea({
-  onValueChange,
-  ...props
-}: ProteusTextareaProps) {
-  const { data, onDataChange, onEvent, readOnly } = useProteusDocumentContext(
+export function ProteusTextarea(props: ProteusTextareaProps) {
+  const { data, onDataChange, readOnly } = useProteusDocumentContext(
     "@optiaxiom/react/ProteusTextarea",
   );
 
@@ -17,9 +14,6 @@ export function ProteusTextarea({
       onValueChange={(value) => {
         if (props.name) {
           onDataChange?.(props.name, value);
-        }
-        if (onValueChange) {
-          onEvent(onValueChange, value);
         }
       }}
       readOnly={readOnly}
