@@ -32,7 +32,7 @@
     "build": "wait-on ../../packages/react/dist/index.d.ts && rm -rf dist && NODE_ENV=production rollup -c"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.0.4",
+    "@modelcontextprotocol/sdk": "^1.26.0",
     "fuzzysearch": "^1.0.3",
     "zod": "^3.25.58"
   },
