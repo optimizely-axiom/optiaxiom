@@ -1,5 +1,11 @@
 # @optiaxiom/mcp
 
+## 0.2.2
+
+### Patch Changes
+
+- 433d7b8: reduce MCP tool response size and improve search capabilities
+
 ## 0.2.1
 
 ### Patch Changes
