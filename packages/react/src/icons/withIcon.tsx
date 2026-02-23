@@ -25,7 +25,6 @@ export const withIcon = (
       <svg
         fill={fill}
         height={height}
-        overflow="visible"
         ref={ref}
         viewBox={viewBox ?? `0 0 ${width} ${height}`}
         width={width}
