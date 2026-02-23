@@ -55,7 +55,7 @@ interface RelevanceScoreOptions {
 export function searchComponents({
   category,
   components,
-  limit = 10,
+  limit = 5,
   query,
 }: SearchOptions): ComponentInfo[] {
   // Filter by category first if specified

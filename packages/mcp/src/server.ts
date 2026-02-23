@@ -198,8 +198,8 @@ NOTE: All Axiom components are installed via the same npm package: npm install @
       limit: z
         .number()
         .optional()
-        .default(10)
-        .describe("Maximum results to return (default: 10)"),
+        .default(5)
+        .describe("Maximum results to return (default: 5)"),
       query: z
         .string()
         .optional()
@@ -218,11 +218,12 @@ NOTE: All Axiom components are installed via the same npm package: npm install @
             createArrayResponse(
               searchComponents({
                 category,
-                components: getAllComponents(),
+                components: getAllComponents().filter(
+                  (c) => !c.group || c.name === c.group,
+                ),
                 limit,
                 query,
               }).map((result) => ({
-                category: result.category,
                 description: result.description,
                 import: result.import,
                 name: result.name,
