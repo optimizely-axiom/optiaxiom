@@ -1,6 +1,6 @@
 import { tokens } from "@optiaxiom/globals";
 import { getDocs } from "@optiaxiom/shared";
-import { readFile, stat } from "node:fs/promises";
+import { readFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -23,7 +23,6 @@ const __dirname = dirname(__filename);
  * @typedef {import('../src/types.js').DesignTokens} DesignTokens
  * @typedef {import('../src/types.js').Guide} Guide
  * @typedef {import('../src/types.js').IconInfo} IconInfo
- * @typedef {import('../src/types.js').Metadata} Metadata
  */
 
 /**
@@ -581,33 +580,6 @@ export async function generateIcons() {
       },
     ]),
   );
-}
-
-/**
- * @returns {Promise<Metadata>}
- */
-export async function generateMetadataFile() {
-  const packageJsonPath = join(__dirname, "..", "package.json");
-  const packageJson = JSON.parse(await readFile(packageJsonPath, "utf-8"));
-  const axiomPackageJson = JSON.parse(
-    await readFile(
-      join(__dirname, "..", "..", "react", "package.json"),
-      "utf-8",
-    ),
-  );
-
-  return {
-    // Use mtime of package.json for deterministic timestamps
-    generatedAt: (await stat(packageJsonPath)).mtime.toISOString(),
-    generator: {
-      name: packageJson.name,
-      version: packageJson.version,
-    },
-    source: {
-      package: axiomPackageJson.name,
-      version: axiomPackageJson.version,
-    },
-  };
 }
 
 /**
