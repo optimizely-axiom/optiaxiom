@@ -35,9 +35,9 @@ export type BoxProps<T extends ElementType = "div", P = unknown> = ExtendProps<
  * A primitive layout component that provides access to design tokens and
  * styling without custom CSS.
  *
- * Use `Box` for simple styling (padding, margin, colors, borders) when you
+ * Use Box for simple styling (padding, margin, colors, borders) when you
  * don't need flexbox layout features. For flexbox layouts with
- * direction/alignment, use `Flex` instead.
+ * direction/alignment/gap, use Group instead.
  *
  * @category layout
  */

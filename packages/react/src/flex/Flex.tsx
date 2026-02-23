@@ -35,19 +35,13 @@ const mapDirectionToAlign = {
 /**
  * Stack items vertically or horizontally in a flex container.
  *
- * 🚨 Use `<Flex>` for vertical stacking and `<Flex flexDirection="row">` for
- * horizontal stacking, as our component does NOT use the standard CSS `row`
- * default.
+ * @deprecated since 1.8.0 - use {@link Group} instead.
  *
- * Best Practices:
- * - Use Flex for layout direction (flexDirection, gap, alignment)
- * - Use Box for simpler styling needs (padding, margin, borders, colors)
- * - Box is a lighter primitive; Flex adds flexbox-specific defaults
+ * To migrate existing Flex code: `npx @optiaxiom/codemod flex-to-group src/`
  *
- * Default Props:
- * - flexDirection: 'column' (NOT 'row' like CSS!)
- * - gap: '16'
- * - alignItems: 'stretch' (when column) or 'center' (when row)
+ * ⚠️ Flex defaults to flexDirection='column' (NOT 'row' like standard CSS)
+ * and gap='16'. Group uses standard CSS defaults (flexDirection='row', no
+ * default gap).
  *
  * @category layout
  * @extends Box
