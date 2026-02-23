@@ -1,18 +1,4 @@
 /**
- * Standard response format for array responses
- */
-export interface ArrayResponse<T> {
-  /** Metadata about the data generation */
-  _meta: Metadata;
-  /** Total count of items */
-  count: number;
-  /** Array of response items */
-  data: T[];
-  /** Optional search query that produced these results */
-  query?: string;
-}
-
-/**
  * Complete metadata for a single component
  */
 export interface ComponentInfo {
@@ -116,28 +102,6 @@ export interface IconInfo {
 }
 
 /**
- * Metadata about the component data generation
- */
-export interface Metadata {
-  /** ISO timestamp when this was generated */
-  generatedAt: string;
-  /** Information about the tool that generated this data */
-  generator: {
-    /** Package name of the MCP server */
-    name: string;
-    /** Version of the MCP server */
-    version: string;
-  };
-  /** Information about the source package */
-  source: {
-    /** Package name that was analyzed */
-    package: string;
-    /** Version of the source package */
-    version: string;
-  };
-}
-
-/**
  * Component prop definition
  */
 export interface PropDefinition {
@@ -153,14 +117,4 @@ export interface PropDefinition {
   type: string;
   /** For enum types, possible values */
   values?: Array<number | string>;
-}
-
-/**
- * Standard response format for single item responses
- */
-export interface StandardResponse<T> {
-  /** Metadata about the data generation */
-  _meta: Metadata;
-  /** The response data */
-  data: T;
 }

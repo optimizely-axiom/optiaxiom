@@ -12,17 +12,12 @@ import {
   getGuide,
   getTokens,
 } from "./loaders.js";
-import { createArrayResponse, createResponse } from "./responses.js";
 import {
   searchComponents,
   searchExamples,
   searchIcons,
   searchProps,
 } from "./search.js";
-
-function jsonify(data: unknown): string {
-  return JSON.stringify(data, null, 2);
-}
 
 /**
  * Axiom Design System MCP Server
@@ -118,7 +113,7 @@ NOTE: All Axiom components are installed via the same npm package: npm install @
     return {
       content: [
         {
-          text: jsonify({
+          text: JSON.stringify({
             components: component.components,
             deprecated: component.deprecated,
             description: component.description,
@@ -155,18 +150,16 @@ NOTE: All Axiom components are installed via the same npm package: npm install @
     return {
       content: [
         {
-          text: jsonify(
-            createArrayResponse(
-              getAllComponents()
-                // Only return primary components (those without a group, or
-                // those where name === group)
-                .filter((c) => !c.group || c.name === c.group)
-                .map((component) => ({
-                  category: component.category,
-                  description: component.description,
-                  name: component.name,
-                })),
-            ),
+          text: JSON.stringify(
+            getAllComponents()
+              // Only return primary components (those without a group, or
+              // those where name === group)
+              .filter((c) => !c.group || c.name === c.group)
+              .map((component) => ({
+                category: component.category,
+                description: component.description,
+                name: component.name,
+              })),
           ),
           type: "text" as const,
         },
@@ -214,22 +207,19 @@ NOTE: All Axiom components are installed via the same npm package: npm install @
     return {
       content: [
         {
-          text: jsonify(
-            createArrayResponse(
-              searchComponents({
-                category,
-                components: getAllComponents().filter(
-                  (c) => !c.group || c.name === c.group,
-                ),
-                limit,
-                query,
-              }).map((result) => ({
-                description: result.description,
-                import: result.import,
-                name: result.name,
-              })),
-              { query },
-            ),
+          text: JSON.stringify(
+            searchComponents({
+              category,
+              components: getAllComponents().filter(
+                (c) => !c.group || c.name === c.group,
+              ),
+              limit,
+              query,
+            }).map((result) => ({
+              description: result.description,
+              import: result.import,
+              name: result.name,
+            })),
           ),
           type: "text" as const,
         },
@@ -277,7 +267,7 @@ NOTE: All Axiom components are installed via the same npm package: npm install @
     return {
       content: [
         {
-          text: jsonify(
+          text: JSON.stringify(
             searchExamples({
               components,
               data: getAllComponents(),
@@ -308,7 +298,7 @@ Get design token mappings for the Axiom Design System. Returns token-to-value ma
     return {
       content: [
         {
-          text: jsonify(createResponse(getTokens())),
+          text: JSON.stringify(getTokens()),
           type: "text" as const,
         },
       ],
@@ -339,18 +329,15 @@ server.registerTool(
     return {
       content: [
         {
-          text: jsonify(
-            createArrayResponse(
-              searchIcons({
-                icons: getAllIcons(),
-                limit,
-                query,
-              }).map((icon) => ({
-                import: icon.import,
-                name: icon.name,
-              })),
-              { query },
-            ),
+          text: JSON.stringify(
+            searchIcons({
+              icons: getAllIcons(),
+              limit,
+              query,
+            }).map((icon) => ({
+              import: icon.import,
+              name: icon.name,
+            })),
           ),
           type: "text" as const,
         },
@@ -380,7 +367,7 @@ server.registerResource(
       contents: [
         {
           mimeType: "application/json",
-          text: jsonify(createResponse(component)),
+          text: JSON.stringify(component),
           uri: uri.href,
         },
       ],
