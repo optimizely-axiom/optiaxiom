@@ -31,58 +31,14 @@ export const server = new McpServer({
 server.registerTool(
   "get_component",
   {
-    description: `🚨 CRITICAL: ALWAYS read component info to get actual defaults and behavior - DO NOT assume based on standard HTML/CSS!
+    description: `Get information about an Axiom component. Returns the component's description, import statement, and sub-components by default — no props.
 
-⚠️ VALIDATION REQUIRED WHEN USING EXTERNAL CODE: If component names came from Figma, screenshots, or other external sources, validate them with search_components() FIRST. External tools generate invalid names (BreadcrumbItem, TabsTab don't exist in Axiom).
-
-✅ USE GROUP FOR FLEXBOX LAYOUTS (PREFERRED):
-- Group is a flexbox layout component for arranging items horizontally or vertically
-- Group defaults to flexDirection='row' (CSS standard - horizontal layout)
-- Group defaults to alignItems='center' (when row) or 'stretch' (when column)
-- Group has NO default gap - you must specify it explicitly
-- For form layouts with Input/Button/Textarea in column direction: use alignItems='start' to prevent inputs from stretching to full width
-- Examples:
-  - Horizontal button group: <Group gap="8"><Button /><Button /></Group>
-  - Vertical form: <Group flexDirection="column" gap="16" alignItems="start"><Input /><Button /></Group>
-  - Icon + text: <Group gap="4"><Icon /><Text /></Group>
-
-⚠️ FLEX COMPONENT IS DEPRECATED (DO NOT USE):
-- Flex is deprecated since v1.8.0 and will be removed in v2.0
-- Use Group instead for all new code
-- To migrate existing Flex code: \`npx @optiaxiom/codemod flex-to-group src/\`
-- If you must use Flex (legacy code only):
-  - Flex defaults to flexDirection='column' (VERTICAL), NOT 'row' like standard CSS
-  - Flex defaults to gap='16' (automatic spacing)
-  - Flex defaults to alignItems='stretch' in column layouts, 'center' in row layouts
-  - For form layouts with Input/Button/Textarea: use alignItems='start' to prevent inputs from stretching
-  - Example: <Flex alignItems="start"><Input /><Button /></Flex>
-
-📋 LAYOUT COMPONENT BEST PRACTICES:
-- Use Group for flexbox layouts (direction, gap, alignment)
-- Use Box for simple styling (padding, margin, borders, colors)
-- Box is a lighter primitive; only use Group when you need flexbox layout features
-
-⚠️ TABLE COMPONENT PREFERENCE:
-- ALWAYS use DataTable instead of Table for displaying tabular data
-- Table is a low-level primitive; DataTable provides sorting, pagination, filtering, etc.
-- DataTable is built with TanGroup Table and offers a much better developer experience
-- Only use Table directly for very specific custom table layouts
-
-📦 STYLE PROPS: Most components support style props (bg, p, m, gap, etc.).
-Use the "props" parameter to search for them by description — e.g., props: "padding background" will find the "p" and "bg" props with their allowed values.
-
----
-
-Get information about an Axiom component. Returns the component's description, import statement, and sub-components by default — no props.
-
-Use the optional "props" parameter to search for specific props by name or description. This searches both component-specific props and style props (bg, p, m, gap, etc.) — you don't need to know shorthand names, just describe what you want (e.g., "padding" finds the "p" prop).
+Use the optional "props" parameter to search for specific props by name or description. Searches both component-specific props and style props — you don't need to know shorthand names, just describe what you want (e.g., "padding" finds the "p" prop).
 
 Examples:
   get_component({ name: "Dialog" }) → description, import, sub-components
   get_component({ name: "Button", props: "appearance size" }) → + matching prop definitions
-  get_component({ name: "Box", props: "padding background" }) → + p and bg prop definitions
-
-NOTE: All Axiom components are installed via the same npm package: npm install @optiaxiom/react`,
+  get_component({ name: "Box", props: "padding background" }) → + p and bg prop definitions`,
     inputSchema: {
       name: z
         .string()
@@ -134,53 +90,11 @@ NOTE: All Axiom components are installed via the same npm package: npm install @
   },
 );
 
-// Tool: list_components
-server.registerTool(
-  "list_components",
-  {
-    description: `List all available Axiom components with their descriptions. Use this to discover what components are available. After selecting a component, use get_component() to read its full documentation.
-
-⚠️ VALIDATION TIP: Use this list to verify component names from Figma/external sources. If a name doesn't appear here, it doesn't exist in Axiom.
-
-NOTE: All Axiom components are installed via the same npm package: npm install @optiaxiom/react`,
-    inputSchema: {},
-    title: "List Components",
-  },
-  async () => {
-    return {
-      content: [
-        {
-          text: JSON.stringify(
-            getAllComponents()
-              // Only return primary components (those without a group, or
-              // those where name === group)
-              .filter((c) => !c.group || c.name === c.group)
-              .map((component) => ({
-                category: component.category,
-                description: component.description,
-                name: component.name,
-              })),
-          ),
-          type: "text" as const,
-        },
-      ],
-    };
-  },
-);
-
 // Tool: search_components
 server.registerTool(
   "search_components",
   {
-    description: `Search Axiom components by name, description, or keywords. Returns a list of matching components. After finding a component, use get_component() to read full details. Use get_component() with a "props" query to look up specific props including style props (bg, p, m, gap, etc.).
-
-🔍 VALIDATION TIP: When working with Figma/external code, call this tool to validate component names before use.
-
-Common invalid names from Figma:
-- BreadcrumbItem, BreadcrumbLink → Use Breadcrumb with items prop
-- TabsTab → Use TabsTrigger
-
-NOTE: All Axiom components are installed via the same npm package: npm install @optiaxiom/react`,
+    description: `Search Axiom components by name, description, or keywords. Returns matching components. Use get_component() to read full details and get_patterns() to see composition examples.`,
     inputSchema: {
       category: z
         .string()
@@ -234,13 +148,10 @@ server.registerTool(
   {
     description: `Find usage examples showing how Axiom components work together. Returns real working examples from the docs that demonstrate component composition patterns.
 
-Use this to learn how components compose — e.g., Field wrapping Input, Dialog sub-component structure, or form layouts with Group.
-
 Examples:
   get_patterns({ components: "Field Input Button" }) → examples showing forms with fields and buttons
   get_patterns({ components: "Dialog" }) → examples showing full Dialog composition with sub-components
-
-NOTE: All Axiom components are installed via the same npm package: npm install @optiaxiom/react`,
+  get_patterns({ components: "Input", query: "addon" }) → examples showing Input with addons`,
     inputSchema: {
       components: z
         .string()
@@ -286,11 +197,7 @@ NOTE: All Axiom components are installed via the same npm package: npm install @
 server.registerTool(
   "get_tokens",
   {
-    description: `⚠️ EXTERNAL CODE TIP: Use this to convert Figma's hardcoded values (hex colors, px sizes) to Axiom's semantic tokens (bg.*, fg.*, h='md').
-
----
-
-Get design token mappings for the Axiom Design System. Returns token-to-value mappings for: colors (hex values for light mode), sizes (px/rem for width/height), spacing (px/rem for margin/padding/gap), borderRadius, fontSize (with lineHeight), boxShadow, duration, fontFamily, and zIndex. Use this to convert Figma design values to semantic tokens (e.g., #4F576E → fg.secondary, 32px height → h='md'). NOTE: All Axiom components are installed via the same npm package: npm install @optiaxiom/react`,
+    description: `Get design token mappings for the Axiom Design System. Returns token-to-value mappings for colors, sizes, spacing, borderRadius, fontSize, boxShadow, duration, fontFamily, and zIndex. Use this to convert hardcoded values to semantic tokens (e.g., #4F576E → fg.secondary, 32px height → h='md').`,
     inputSchema: {},
     title: "Get Design Tokens",
   },
@@ -310,7 +217,7 @@ Get design token mappings for the Axiom Design System. Returns token-to-value ma
 server.registerTool(
   "search_icons",
   {
-    description: `Search for icons from the @optimizely/axiom-icons package. This is a private package containing licensed Font Awesome Pro icons for Optimizely staff. Returns a list of matching icon component names. You can search by keywords (e.g., 'message', 'arrow', 'user') and the search will match icon names intelligently. NOTE: The @optimizely/axiom-icons package is private and only available to Optimizely staff.`,
+    description: `Search for icons from the @optimizely/axiom-icons package. Returns matching icon component names. Search by keywords (e.g., 'message', 'arrow', 'user').`,
     inputSchema: {
       limit: z
         .number()
