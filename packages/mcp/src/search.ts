@@ -1,10 +1,19 @@
 import fuzzysearch from "fuzzysearch";
 
-import type { ComponentInfo, IconInfo } from "./types.js";
+import type { ComponentInfo, IconInfo, PropDefinition } from "./types.js";
 
 export interface IconSearchOptions {
   icons: IconInfo[];
   limit?: number;
+  query: string;
+}
+
+export interface PropSearchOptions {
+  /** Maximum number of props to return */
+  limit?: number;
+  /** All props to search through */
+  props: Record<string, PropDefinition>;
+  /** Search query (e.g., "appearance size", "padding background") */
   query: string;
 }
 
@@ -85,6 +94,34 @@ export function searchIcons({
     .sort((a, b) => b.score - a.score)
     .slice(0, limit)
     .map((result) => result.icon);
+}
+
+export function searchProps({
+  limit = 5,
+  props,
+  query,
+}: PropSearchOptions): Record<string, PropDefinition> {
+  if (!query.trim()) {
+    return {};
+  }
+
+  const results = Object.entries(props)
+    .map(([name, definition]) => ({
+      definition,
+      name,
+      score: calculateRelevanceScore({
+        description: definition.description ?? undefined,
+        name,
+        query,
+      }),
+    }))
+    .filter((result) => result.score > 0)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, limit);
+
+  return Object.fromEntries(
+    results.map(({ definition, name }) => [name, definition]),
+  );
 }
 
 function calculateRelevanceScore({
