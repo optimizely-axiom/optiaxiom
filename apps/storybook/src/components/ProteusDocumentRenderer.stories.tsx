@@ -87,18 +87,10 @@ export const FormWithInputs: Story = {
                 name: "target_by",
                 options: [
                   {
-                    execute: {
-                      action: "setVisibility",
-                      params: { page: false, url: true },
-                    },
                     label: "URL",
                     value: "url",
                   },
                   {
-                    execute: {
-                      action: "setVisibility",
-                      params: { page: true, url: false },
-                    },
                     label: "Saved Pages",
                     value: "page",
                   },
@@ -107,82 +99,113 @@ export const FormWithInputs: Story = {
               label: "Target by",
             },
             {
-              $id: "url",
-              $type: "Proteus.Field",
+              $type: "Proteus.Show",
               children: {
-                $type: "Proteus.Input",
-                name: "url",
-                onValueChange: {
-                  action: "setVisibility",
-                  params: { question_2: true },
+                $type: "Proteus.Field",
+                children: {
+                  $type: "Proteus.Input",
+                  name: "url",
+                  placeholder: "Add a URL",
                 },
-                placeholder: "Add a URL",
+                label: "URL",
               },
-              label: "URL",
+              when: {
+                "==": [{ $type: "Proteus.Value", path: "/target_by" }, "url"],
+              },
             },
             {
-              $id: "page",
-              $type: "Proteus.Field",
-              $visible: false,
+              $type: "Proteus.Show",
               children: {
-                $type: "Proteus.Select",
-                children: [
-                  {
-                    $type: "Proteus.SelectTrigger",
-                    w: "full",
-                  },
-                  {
-                    $type: "Proteus.SelectContent",
-                  },
-                ],
-                name: "saved_page",
-                options: [
-                  { label: "Home page", value: "home" },
-                  { label: "Marketplace", value: "marketplace" },
-                  { label: "Product Details", value: "product_details" },
-                  { label: "Shopping Cart", value: "cart" },
-                  { label: "Checkout", value: "checkout" },
-                ],
+                $type: "Proteus.Field",
+                children: {
+                  $type: "Proteus.Select",
+                  children: [
+                    {
+                      $type: "Proteus.SelectTrigger",
+                      w: "full",
+                    },
+                    {
+                      $type: "Proteus.SelectContent",
+                    },
+                  ],
+                  name: "saved_page",
+                  options: [
+                    { label: "Home page", value: "home" },
+                    { label: "Marketplace", value: "marketplace" },
+                    { label: "Product Details", value: "product_details" },
+                    { label: "Shopping Cart", value: "cart" },
+                    { label: "Checkout", value: "checkout" },
+                  ],
+                },
+                label: "Saved Page",
               },
-              label: "Saved Page",
+              when: {
+                "==": [{ $type: "Proteus.Value", path: "/target_by" }, "page"],
+              },
             },
           ],
           flexDirection: "column",
           gap: "16",
         },
         {
-          $id: "question_2",
-          $type: "Proteus.Group",
-          $visible: false,
-          children: [
-            {
-              $type: "Proteus.Heading",
-              children: "2. What would you like to test?",
-              fontSize: "md",
-              fontWeight: "600",
-              level: "2",
-            },
-            {
-              $type: "Proteus.Text",
-              children:
-                "Describe what you'd like to test. If you're not sure, try getting test ideas first.",
-              color: "fg.secondary",
-              fontSize: "md",
-            },
-            {
-              $id: "url",
-              $type: "Proteus.Field",
-              children: {
-                $type: "Proteus.Textarea",
-                name: "test_idea",
-                placeholder:
-                  "e.g., Add quantity badges to product thumbnails to show how many of each item they're buying, improving clarity, confidence, and potentially conversion",
+          $type: "Proteus.Show",
+          children: {
+            $type: "Proteus.Group",
+            children: [
+              {
+                $type: "Proteus.Heading",
+                children: "2. What would you like to test?",
+                fontSize: "md",
+                fontWeight: "600",
+                level: "2",
               },
-              label: "Test Idea",
-            },
-          ],
-          flexDirection: "column",
-          gap: "16",
+              {
+                $type: "Proteus.Text",
+                children:
+                  "Describe what you'd like to test. If you're not sure, try getting test ideas first.",
+                color: "fg.secondary",
+                fontSize: "md",
+              },
+              {
+                $type: "Proteus.Field",
+                children: {
+                  $type: "Proteus.Textarea",
+                  name: "test_idea",
+                  placeholder:
+                    "e.g., Add quantity badges to product thumbnails to show how many of each item they're buying, improving clarity, confidence, and potentially conversion",
+                },
+                label: "Test Idea",
+              },
+            ],
+            flexDirection: "column",
+            gap: "16",
+          },
+          when: {
+            or: [
+              {
+                and: [
+                  {
+                    "==": [
+                      { $type: "Proteus.Value", path: "/target_by" },
+                      "url",
+                    ],
+                  },
+                  { "!!": { $type: "Proteus.Value", path: "/url" } },
+                ],
+              },
+              {
+                and: [
+                  {
+                    "==": [
+                      { $type: "Proteus.Value", path: "/target_by" },
+                      "page",
+                    ],
+                  },
+                  { "!!": { $type: "Proteus.Value", path: "/saved_page" } },
+                ],
+              },
+            ],
+          },
         },
       ],
       title: "Create a test plan",

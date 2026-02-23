@@ -1,19 +1,21 @@
 import { ProteusAction } from "./ProteusAction";
 import { ProteusCancelAction } from "./ProteusCancelAction";
-import { useProteusDocumentContext } from "./ProteusDocumentContext";
 import { ProteusField } from "./ProteusField";
 import { ProteusGroup } from "./ProteusGroup";
 import { ProteusHeading } from "./ProteusHeading";
 import { ProteusImage } from "./ProteusImage";
 import { ProteusInput } from "./ProteusInput";
 import { ProteusLink } from "./ProteusLink";
+import { ProteusMap } from "./ProteusMap";
 import { ProteusRange } from "./ProteusRange";
 import { ProteusSelect } from "./ProteusSelect";
 import { ProteusSelectContent } from "./ProteusSelectContent";
 import { ProteusSelectTrigger } from "./ProteusSelectTrigger";
 import { ProteusSeparator } from "./ProteusSeparator";
+import { ProteusShow } from "./ProteusShow";
 import { ProteusText } from "./ProteusText";
 import { ProteusTextarea } from "./ProteusTextarea";
+import { ProteusValue } from "./ProteusValue";
 import { ProteusElementSchema } from "./schemas";
 
 export type ProteusElementProps = {
@@ -26,10 +28,6 @@ export type ProteusElementProps = {
 export const ProteusElement = ({
   element: elementProp,
 }: ProteusElementProps) => {
-  const { visibility } = useProteusDocumentContext(
-    "@optiaxiom/react/ProteusElement",
-  );
-
   if (!elementProp) {
     return null;
   } else if (
@@ -58,10 +56,7 @@ export const ProteusElement = ({
     return null;
   }
 
-  const { $id, $visible, ...element } = result.data;
-  if (!($id && $id in visibility ? visibility[$id] : $visible !== false)) {
-    return null;
-  }
+  const element = result.data;
   switch (element.$type) {
     case "Proteus.Action":
       return <ProteusAction {...omitType(element)} />;
@@ -79,6 +74,8 @@ export const ProteusElement = ({
       return <ProteusInput {...omitType(element)} />;
     case "Proteus.Link":
       return <ProteusLink {...omitType(element)} />;
+    case "Proteus.Map":
+      return <ProteusMap {...omitType(element)} />;
     case "Proteus.Range":
       return <ProteusRange {...omitType(element)} />;
     case "Proteus.Select":
@@ -89,10 +86,14 @@ export const ProteusElement = ({
       return <ProteusSelectTrigger {...omitType(element)} />;
     case "Proteus.Separator":
       return <ProteusSeparator {...omitType(element)} />;
+    case "Proteus.Show":
+      return <ProteusShow {...omitType(element)} />;
     case "Proteus.Text":
       return <ProteusText {...omitType(element)} />;
     case "Proteus.Textarea":
       return <ProteusTextarea {...omitType(element)} />;
+    case "Proteus.Value":
+      return <ProteusValue {...omitType(element)} />;
     default:
       element satisfies never;
       return null;

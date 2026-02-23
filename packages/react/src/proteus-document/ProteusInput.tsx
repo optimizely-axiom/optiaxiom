@@ -3,8 +3,8 @@ import type { ProteusInputProps } from "./schemas";
 import { Input } from "../input";
 import { useProteusDocumentContext } from "./ProteusDocumentContext";
 
-export function ProteusInput({ onValueChange, ...props }: ProteusInputProps) {
-  const { data, onDataChange, onEvent, readOnly } = useProteusDocumentContext(
+export function ProteusInput(props: ProteusInputProps) {
+  const { data, onDataChange, readOnly } = useProteusDocumentContext(
     "@optiaxiom/react/ProteusInput",
   );
 
@@ -14,9 +14,6 @@ export function ProteusInput({ onValueChange, ...props }: ProteusInputProps) {
       onValueChange={(value) => {
         if (props.name) {
           onDataChange?.(props.name, value);
-        }
-        if (onValueChange) {
-          onEvent(onValueChange, value);
         }
       }}
       readOnly={readOnly}
