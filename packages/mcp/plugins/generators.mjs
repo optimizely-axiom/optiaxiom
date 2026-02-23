@@ -11,13 +11,11 @@ import {
   remToPx,
   toKebabCase,
 } from "./parsers.mjs";
-import { shouldGenerateScreenshot } from "./screenshots.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 /**
- * @typedef {import('playwright').BrowserContext} BrowserContext
  * @typedef {import('../src/types.js').ComponentInfo} ComponentInfo
  * @typedef {import('../src/types.js').DeprecationInfo} DeprecationInfo
  * @typedef {import('../src/types.js').DesignTokens} DesignTokens
@@ -26,10 +24,9 @@ const __dirname = dirname(__filename);
  */
 
 /**
- * @param {BrowserContext} context
  * @returns {Promise<Record<string, ComponentInfo>>}
  */
-export async function generateComponents(context) {
+export async function generateComponents() {
   const docs = getDocs();
   /** @type {Record<string, ComponentInfo>} */
   const components = {};
@@ -53,11 +50,8 @@ export async function generateComponents(context) {
       continue;
     }
 
-    const baseDescription =
+    const description =
       doc.description || `${name} component from Axiom Design System`;
-    const description = shouldGenerateScreenshot(name)
-      ? `${baseDescription}\n\n📸 See the 'usage' example screenshot to visualize how this looks.`
-      : baseDescription;
 
     /** @type {ComponentInfo} */
     const component = {
@@ -134,7 +128,7 @@ export async function generateComponents(context) {
     }
   }
 
-  // Third pass: Parse all component demos in parallel (includes screenshot capture)
+  // Third pass: Parse all component demos in parallel
   await Promise.all(
     Object.values(components)
       .filter(
@@ -145,7 +139,6 @@ export async function generateComponents(context) {
         component.examples = await parseDemosFromFiles(
           // Special case: ToastProvider demos are in "toast" folder
           component.name === "ToastProvider" ? "Toast" : component.name,
-          context,
         );
       }),
   );

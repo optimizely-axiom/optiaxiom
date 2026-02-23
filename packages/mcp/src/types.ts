@@ -73,8 +73,6 @@ export interface Example {
   code: Record<string, string>;
   /** Axiom component names imported in this example */
   components: string[];
-  /** Base64 encoded screenshot (data URL format) */
-  screenshot?: string;
   /** Example title */
   title: string;
 }
