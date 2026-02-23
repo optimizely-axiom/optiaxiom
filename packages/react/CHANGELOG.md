@@ -1,5 +1,24 @@
 # @optiaxiom/react
 
+## 1.9.4
+
+### Patch Changes
+
+- def4427: revert border radius and spinning gradient for primary opal button
+- fdc8cc5: Add declarative conditional rendering with Proteus.Show and Proteus.Value
+- cf8e510: Support both 12-hour and 24-hour time formats based on locale
+- 1d09b9b: Rename Block Document to Proteus Document
+
+  All Block-related components, types, and discriminator values have been renamed to Proteus:
+  - `BlockDocumentRenderer` → `ProteusDocumentRenderer`
+  - `BlockAction`, `BlockField`, `BlockGroup`, `BlockHeading`, `BlockImage`, `BlockInput`, `BlockLink`, `BlockRange`, `BlockSelect`, `BlockSelectContent`, `BlockSelectTrigger`, `BlockSeparator`, `BlockText`, `BlockTextarea`, `BlockCancelAction` → `ProteusAction`, `ProteusField`, `ProteusGroup`, `ProteusHeading`, `ProteusImage`, `ProteusInput`, `ProteusLink`, `ProteusRange`, `ProteusSelect`, `ProteusSelectContent`, `ProteusSelectTrigger`, `ProteusSeparator`, `ProteusText`, `ProteusTextarea`, `ProteusCancelAction`
+  - Discriminator values: `"Block.Document"` → `"Proteus.Document"`, `"Block.Action"` → `"Proteus.Action"`, etc.
+  - Types: `BlockDocument`, `BlockElement`, `BlockNode`, etc. → `ProteusDocument`, `ProteusElement`, `ProteusNode`, etc.
+
+  This is an unstable API exported from `@optiaxiom/react/unstable`.
+
+- f191003: Add support for rendering images in block documents.
+
 ## 1.9.3
 
 ### Patch Changes
