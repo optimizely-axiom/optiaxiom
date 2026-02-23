@@ -61,6 +61,7 @@ export async function parseDemosFromFiles(componentName, context) {
           examples.push(
             await captureScreenshot(context, componentName, {
               code,
+              components: extractAxiomImports(code),
               title: folder.name,
             }),
           );
@@ -194,4 +195,30 @@ export function remToPx(rem) {
  */
 export function toKebabCase(str) {
   return str.replace(/([a-z])([A-Z])/g, "$1-$2").toLowerCase();
+}
+
+/**
+ * Extract Axiom component names imported from @optiaxiom/react across all files in an example.
+ * @param {Record<string, string>} code - Mapping of filename to file contents
+ * @returns {string[]}
+ */
+function extractAxiomImports(code) {
+  /** @type {Set<string>} */
+  const components = new Set();
+  const importPattern =
+    /import\s*\{([^}]+)\}\s*from\s*["']@optiaxiom\/react(?:\/[^"']+)?["']/g;
+
+  for (const source of Object.values(code)) {
+    let match;
+    while ((match = importPattern.exec(source)) !== null) {
+      for (const name of match[1].split(",")) {
+        const trimmed = name.trim();
+        if (trimmed) {
+          components.add(trimmed);
+        }
+      }
+    }
+  }
+
+  return [...components].sort();
 }

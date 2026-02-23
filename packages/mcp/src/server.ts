@@ -13,7 +13,12 @@ import {
   getTokens,
 } from "./loaders.js";
 import { createArrayResponse, createResponse } from "./responses.js";
-import { searchComponents, searchIcons, searchProps } from "./search.js";
+import {
+  searchComponents,
+  searchExamples,
+  searchIcons,
+  searchProps,
+} from "./search.js";
 
 function jsonify(data: unknown): string {
   return JSON.stringify(data, null, 2);
@@ -138,30 +143,11 @@ NOTE: All Axiom components are installed via the same npm package: npm install @
 server.registerTool(
   "list_components",
   {
-    description: `⚠️ VALIDATION TIP: Use this list to verify component names from Figma/external sources. If a name doesn't appear here, it doesn't exist in Axiom.
+    description: `List all available Axiom components with their descriptions. Use this to discover what components are available. After selecting a component, use get_component() to read its full documentation.
 
-✅ USE GROUP FOR LAYOUTS (PREFERRED):
-- Group is the recommended component for flexbox layouts
-- Group defaults to flexDirection='row' (CSS standard - horizontal)
-- Group has NO default gap - you must specify it
-- For forms with Input/Button in column direction: use alignItems='start' to prevent stretching
-- Example: <Group gap="8"><Button /><Button /></Group>
+⚠️ VALIDATION TIP: Use this list to verify component names from Figma/external sources. If a name doesn't appear here, it doesn't exist in Axiom.
 
-⚠️ FLEX IS DEPRECATED (DO NOT USE):
-- Flex is deprecated since v1.8.0 - use Group instead
-- To migrate existing code: \`npx @optiaxiom/codemod flex-to-group src/\`
-- If you must use Flex (legacy code only):
-  - Flex defaults to flexDirection='column' and alignItems='stretch'
-  - Flex defaults to gap='16'
-  - For forms with Input/Button: use <Flex alignItems="start"> to prevent stretching
-
-⚠️ TABLE COMPONENTS:
-- ALWAYS use DataTable instead of Table for displaying data
-- DataTable provides sorting, pagination, filtering, and better UX
-
----
-
-List all available Axiom components with their descriptions. Use this to discover what components are available. IMPORTANT: After selecting a component, ALWAYS use get_component() to read its full documentation - DO NOT assume behavior based on standard HTML/CSS. NOTE: All Axiom components are installed via the same npm package: npm install @optiaxiom/react`,
+NOTE: All Axiom components are installed via the same npm package: npm install @optiaxiom/react`,
     inputSchema: {},
     title: "List Components",
   },
@@ -193,34 +179,15 @@ List all available Axiom components with their descriptions. Use this to discove
 server.registerTool(
   "search_components",
   {
-    description: `🔍 USE THIS FIRST FOR VALIDATION: When working with Figma/external code, ALWAYS call this tool to validate component names before use. Returns count: 0 if component doesn't exist.
+    description: `Search Axiom components by name, description, or keywords. Returns a list of matching components. After finding a component, use get_component() to read full details. Use get_component() with a "props" query to look up specific props including style props (bg, p, m, gap, etc.).
+
+🔍 VALIDATION TIP: When working with Figma/external code, call this tool to validate component names before use.
 
 Common invalid names from Figma:
 - BreadcrumbItem, BreadcrumbLink → Use Breadcrumb with items prop
 - TabsTab → Use TabsTrigger
 
-✅ USE GROUP FOR LAYOUTS (PREFERRED):
-- Group is the recommended component for flexbox layouts
-- Group defaults to flexDirection='row' (CSS standard - horizontal)
-- Group has NO default gap - you must specify it
-- For forms with Input/Button in column direction: use alignItems='start' to prevent stretching
-- Example: <Group gap="8"><Button /><Button /></Group>
-
-⚠️ FLEX IS DEPRECATED (DO NOT USE):
-- Flex is deprecated since v1.8.0 - use Group instead
-- To migrate existing code: \`npx @optiaxiom/codemod flex-to-group src/\`
-- If you must use Flex (legacy code only):
-  - Flex defaults to flexDirection='column' and alignItems='stretch'
-  - Flex defaults to gap='16'
-  - For forms with Input/Button: use <Flex alignItems="start"> to prevent stretching
-
-⚠️ TABLE COMPONENTS:
-- Prefer DataTable over Table for displaying tabular data
-- DataTable includes sorting, pagination, and filtering out of the box
-
----
-
-Search Axiom components by name, description, or keywords. Returns a list of matching components. After finding a component, use get_component() to read full details. Use get_component() with a "props" query to look up specific props including style props (bg, p, m, gap, etc.). NOTE: All Axiom components are installed via the same npm package: npm install @optiaxiom/react`,
+NOTE: All Axiom components are installed via the same npm package: npm install @optiaxiom/react`,
     inputSchema: {
       category: z
         .string()
@@ -262,6 +229,60 @@ Search Axiom components by name, description, or keywords. Returns a list of mat
               })),
               { query },
             ),
+          ),
+          type: "text" as const,
+        },
+      ],
+    };
+  },
+);
+
+// Tool: get_patterns
+server.registerTool(
+  "get_patterns",
+  {
+    description: `Find usage examples showing how Axiom components work together. Returns real working examples from the docs that demonstrate component composition patterns.
+
+Use this to learn how components compose — e.g., Field wrapping Input, Dialog sub-component structure, or form layouts with Group.
+
+Examples:
+  get_patterns({ components: "Field Input Button" }) → examples showing forms with fields and buttons
+  get_patterns({ components: "Dialog" }) → examples showing full Dialog composition with sub-components
+
+NOTE: All Axiom components are installed via the same npm package: npm install @optiaxiom/react`,
+    inputSchema: {
+      components: z
+        .string()
+        .describe(
+          'Space-separated component names to find patterns for (e.g., "Field Input Button"). Returns examples that use these components together.',
+        ),
+      limit: z
+        .number()
+        .min(1)
+        .max(10)
+        .optional()
+        .default(5)
+        .describe("Maximum number of examples to return (default: 5)."),
+      query: z
+        .string()
+        .optional()
+        .describe(
+          "Search within example titles to find specific patterns (e.g., 'addon', 'form', 'disabled').",
+        ),
+    },
+    title: "Get Patterns",
+  },
+  async ({ components, limit, query }) => {
+    return {
+      content: [
+        {
+          text: jsonify(
+            searchExamples({
+              components,
+              data: getAllComponents(),
+              limit,
+              query,
+            }),
           ),
           type: "text" as const,
         },

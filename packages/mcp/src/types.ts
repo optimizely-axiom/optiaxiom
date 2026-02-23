@@ -85,6 +85,8 @@ export interface Example {
    * Object mapping filename to file contents (e.g., { "App.tsx": "...", "utils.ts": "..." })
    */
   code: Record<string, string>;
+  /** Axiom component names imported in this example */
+  components: string[];
   /** Base64 encoded screenshot (data URL format) */
   screenshot?: string;
   /** Example title */

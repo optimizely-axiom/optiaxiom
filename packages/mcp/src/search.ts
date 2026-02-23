@@ -1,6 +1,22 @@
 import fuzzysearch from "fuzzysearch";
 
-import type { ComponentInfo, IconInfo, PropDefinition } from "./types.js";
+import type {
+  ComponentInfo,
+  Example,
+  IconInfo,
+  PropDefinition,
+} from "./types.js";
+
+export interface ExampleSearchOptions {
+  /** Space-separated component names to match */
+  components: string;
+  /** All components to search through */
+  data: ComponentInfo[];
+  /** Maximum number of examples to return */
+  limit?: number;
+  /** Search within example titles */
+  query?: string;
+}
 
 export interface IconSearchOptions {
   icons: IconInfo[];
@@ -72,6 +88,51 @@ export function searchComponents({
     .map((result) => result.component);
 }
 
+export function searchExamples({
+  components,
+  data,
+  limit = 5,
+  query,
+}: ExampleSearchOptions): Array<Pick<Example, "code" | "title">> {
+  const requested = components.trim().split(/\s+/);
+  const queryTerms = query
+    ?.toLowerCase()
+    .split(/\s+/)
+    .filter((t) => t.length > 0);
+
+  return data
+    .flatMap((component) =>
+      (component.examples ?? []).flatMap((example) => {
+        const matches = requested.filter((c) =>
+          example.components.includes(c),
+        ).length;
+        return matches > 0 &&
+          (!queryTerms?.length ||
+            queryTerms.some((term) =>
+              example.title.toLowerCase().includes(term),
+            ))
+          ? [
+              {
+                component: component.name,
+                example,
+                matches,
+              },
+            ]
+          : [];
+      }),
+    )
+    .map((entry) => ({
+      ...entry,
+      score: calculateExampleScore(entry, requested, queryTerms),
+    }))
+    .sort((a, b) => b.score - a.score)
+    .slice(0, limit)
+    .map(({ component, example }) => ({
+      code: example.code,
+      title: `${component}/${example.title}`,
+    }));
+}
+
 export function searchIcons({
   icons,
   limit = 10,
@@ -122,6 +183,43 @@ export function searchProps({
   return Object.fromEntries(
     results.map(({ definition, name }) => [name, definition]),
   );
+}
+
+function calculateExampleScore(
+  entry: {
+    component: string;
+    example: { components: string[]; title: string };
+    matches: number;
+  },
+  requested: string[],
+  queryTerms?: string[],
+): number {
+  let score = 0;
+
+  // Query match is the strongest signal — user explicitly asked for it
+  if (queryTerms?.length) {
+    const title = entry.example.title.toLowerCase();
+    const matched = queryTerms.filter((term) => title.includes(term)).length;
+    score += matched * 50;
+  }
+
+  // More requested components matched in the example
+  score += entry.matches * 20;
+
+  // Example is owned by a requested component (not just importing it)
+  if (requested.includes(entry.component)) {
+    score += 15;
+  }
+
+  // Canonical "usage" examples are the primary docs demos
+  if (entry.example.title === "usage") {
+    score += 10;
+  }
+
+  // Prefer focused examples (fewer unrelated components)
+  score -= entry.example.components.length;
+
+  return score;
 }
 
 function calculateRelevanceScore({
