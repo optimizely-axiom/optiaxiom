@@ -261,15 +261,7 @@ export const buttonBase = recipe({
         },
       }),
       "strong-opal": style({
-        animation: `${opalRingSpinAnim} 6s linear infinite`,
-        backgroundImage: `
-          conic-gradient(
-            from ${opalRingAngleVar},
-            #392ecf,
-            #7740ec,
-            #392ecf
-          )
-        `,
+        backgroundImage: `linear-gradient(135deg, #392ECF 16%, #7740EC 85%)`,
         color: fallbackVar(solidTextColorVar, theme.colors["fg.white"]),
 
         selectors: {
@@ -322,15 +314,6 @@ export const buttonBase = recipe({
     },
   },
   variantsCompounded: [
-    {
-      style: style({
-        borderRadius: theme.borderRadius.full,
-      }),
-      variants: {
-        size: ["sm", "md"],
-        variant: ["outline-opal", "strong-opal"],
-      },
-    },
     {
       style: {
         w: "sm",
