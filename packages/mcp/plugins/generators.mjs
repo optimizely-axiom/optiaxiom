@@ -53,15 +53,6 @@ export async function generateComponents(context) {
       ? `${baseDescription}\n\n📸 See the 'usage' example screenshot to visualize how this looks.`
       : baseDescription;
 
-    // Split props into sprinkle and non-sprinkle
-    const sprinkleProps = doc.props
-      .filter((prop) => prop.sprinkle)
-      .map((prop) => prop.name)
-      .sort();
-
-    const propsToInclude =
-      name === "Box" ? doc.props : doc.props.filter((prop) => !prop.sprinkle);
-
     /** @type {ComponentInfo} */
     const component = {
       description,
@@ -72,14 +63,9 @@ export async function generateComponents(context) {
       }';`,
       name,
       props: Object.fromEntries(
-        propsToInclude.map((prop) => [prop.name, parsePropDefinition(prop)]),
+        doc.props.map((prop) => [prop.name, parsePropDefinition(prop)]),
       ),
     };
-
-    // Add sprinkleProps array only if not Box and there are sprinkle props
-    if (name !== "Box" && sprinkleProps.length > 0) {
-      component.sprinkleProps = sprinkleProps;
-    }
 
     if ("since" in doc.tags && typeof doc.tags.since === "string") {
       component.since = doc.tags.since;

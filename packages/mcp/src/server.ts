@@ -13,7 +13,7 @@ import {
   getTokens,
 } from "./loaders.js";
 import { createArrayResponse, createResponse } from "./responses.js";
-import { searchComponents, searchIcons } from "./search.js";
+import { searchComponents, searchIcons, searchProps } from "./search.js";
 
 function jsonify(data: unknown): string {
   return JSON.stringify(data, null, 2);
@@ -68,21 +68,35 @@ server.registerTool(
 - DataTable is built with TanGroup Table and offers a much better developer experience
 - Only use Table directly for very specific custom table layouts
 
-📦 SPRINKLE PROPS: Most components support style props (bg, p, m, gap, etc.).
-These are listed in the "sprinkleProps" array. For full prop definitions
-(types, values, descriptions), call get_component("Box").
+📦 STYLE PROPS: Most components support style props (bg, p, m, gap, etc.).
+Use the "props" parameter to search for them by description — e.g., props: "padding background" will find the "p" and "bg" props with their allowed values.
 
 ---
 
-Get detailed information about a specific Axiom component including props, examples, and usage guidelines. Pay special attention to the component description and prop defaults, as Axiom components may have different defaults than standard HTML/CSS. NOTE: All Axiom components are installed via the same npm package: npm install @optiaxiom/react`,
+Get information about an Axiom component. Returns the component's description, import statement, and sub-components by default — no props.
+
+Use the optional "props" parameter to search for specific props by name or description. This searches both component-specific props and style props (bg, p, m, gap, etc.) — you don't need to know shorthand names, just describe what you want (e.g., "padding" finds the "p" prop).
+
+Examples:
+  get_component({ name: "Dialog" }) → description, import, sub-components
+  get_component({ name: "Button", props: "appearance size" }) → + matching prop definitions
+  get_component({ name: "Box", props: "padding background" }) → + p and bg prop definitions
+
+NOTE: All Axiom components are installed via the same npm package: npm install @optiaxiom/react`,
     inputSchema: {
       name: z
         .string()
         .describe('Component name (e.g., "Badge", "Button", "Alert")'),
+      props: z
+        .string()
+        .optional()
+        .describe(
+          "Search query to find specific props by name or description (e.g., 'appearance size', 'loading', 'padding background'). Omit to get just the component description, import, and sub-components without any props.",
+        ),
     },
     title: "Get Component",
   },
-  async ({ name }) => {
+  async ({ name, props: propsQuery }) => {
     const component = getComponent(name);
 
     if (!component) {
@@ -99,7 +113,20 @@ Get detailed information about a specific Axiom component including props, examp
     return {
       content: [
         {
-          text: jsonify(createResponse(component)),
+          text: jsonify({
+            components: component.components,
+            deprecated: component.deprecated,
+            description: component.description,
+            examples: component.examples?.map((e) => e.title),
+            import: component.import,
+            name: component.name,
+            props: propsQuery
+              ? searchProps({
+                  props: component.props,
+                  query: propsQuery,
+                })
+              : Object.keys(component.props),
+          }),
           type: "text" as const,
         },
       ],
@@ -191,13 +218,9 @@ Common invalid names from Figma:
 - Prefer DataTable over Table for displaying tabular data
 - DataTable includes sorting, pagination, and filtering out of the box
 
-📦 SPRINKLE PROPS: Most components support style props (bg, p, m, gap, etc.).
-These are listed in the "sprinkleProps" array. For full prop definitions
-(types, values, descriptions), call get_component("Box").
-
 ---
 
-Search Axiom components by name, description, or keywords. Returns a list of matching components. After finding a component, ALWAYS use get_component() to read full details - DO NOT assume defaults based on standard HTML/CSS behavior. NOTE: All Axiom components are installed via the same npm package: npm install @optiaxiom/react`,
+Search Axiom components by name, description, or keywords. Returns a list of matching components. After finding a component, use get_component() to read full details. Use get_component() with a "props" query to look up specific props including style props (bg, p, m, gap, etc.). NOTE: All Axiom components are installed via the same npm package: npm install @optiaxiom/react`,
     inputSchema: {
       category: z
         .string()
