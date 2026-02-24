@@ -300,9 +300,7 @@ export const hSprinkleSchema = z
     z.literal("max"),
     z.literal("min"),
   ])
-  .describe(
-    'Set the element\'s height. Only accepts predefined values: size tokens\n(xs, sm, md, etc.), numeric spacing values (16, 24, 32), fractional\npercentages (1/2, 1/3), or special keywords (auto, full, fit, max, min).\n\n⚠️ COMMON MISTAKE: Do not use arbitrary pixel values like "200" or "300".\nUse the closest valid token from the allowed values instead.\n\n💡 TIP: When width and height are the same, use `size` instead of setting\nboth `w` and `h` separately.',
-  );
+  .describe("Set the element's height. Only accepts predefined size tokens.");
 
 export const justifyContentSprinkleSchema = z
   .union([
@@ -349,7 +347,7 @@ export const mSprinkleSchema = z
     z.literal("64"),
   ])
   .describe(
-    'Set the element\'s margin on all sides\n\n⚠️ WARNING: Do NOT use arbitrary values like "10px", "5rem", or negative\nnumbers like "-8". Only predefined spacing tokens are accepted.',
+    "Set the element's margin on all sides. Only accepts predefined spacing tokens.",
   );
 
 export const maxHSprinkleSchema = z
@@ -361,7 +359,7 @@ export const maxHSprinkleSchema = z
     z.literal("full"),
   ])
   .describe(
-    'Set the element\'s maximum height. Only accepts predefined maxSize tokens.\n\n⚠️ COMMON MISTAKE: Do not use arbitrary pixel values like "200" or "300".\nUse the closest valid token from the allowed values instead.',
+    "Set the element's maximum height. Only accepts predefined maxSize tokens.",
   );
 
 export const maxWSprinkleSchema = z
@@ -373,7 +371,7 @@ export const maxWSprinkleSchema = z
     z.literal("full"),
   ])
   .describe(
-    'Set the element\'s maximum width. Only accepts predefined maxSize tokens.\n\n⚠️ COMMON MISTAKE: Do not use arbitrary pixel values like "200" or "300".\nUse the closest valid token from the allowed values instead.',
+    "Set the element's maximum width. Only accepts predefined maxSize tokens.",
   );
 
 export const mbSprinkleSchema = z
@@ -396,7 +394,7 @@ export const mbSprinkleSchema = z
     z.literal("64"),
   ])
   .describe(
-    'Set the element\'s bottom margin\n\n⚠️ WARNING: Do NOT use arbitrary values like "10px", "5rem", or negative\nnumbers like "-8". Only predefined spacing tokens are accepted.',
+    "Set the element's bottom margin. Only accepts predefined spacing tokens.",
   );
 
 export const mlSprinkleSchema = z
@@ -419,7 +417,7 @@ export const mlSprinkleSchema = z
     z.literal("64"),
   ])
   .describe(
-    'Set the element\'s left margin\n\n⚠️ WARNING: Do NOT use arbitrary values like "10px", "5rem", or negative\nnumbers like "-8". Only predefined spacing tokens are accepted.',
+    "Set the element's left margin. Only accepts predefined spacing tokens.",
   );
 
 export const mrSprinkleSchema = z
@@ -442,7 +440,7 @@ export const mrSprinkleSchema = z
     z.literal("64"),
   ])
   .describe(
-    'Set the element\'s right margin\n\n⚠️ WARNING: Do NOT use arbitrary values like "10px", "5rem", or negative\nnumbers like "-8". Only predefined spacing tokens are accepted.',
+    "Set the element's right margin. Only accepts predefined spacing tokens.",
   );
 
 export const mtSprinkleSchema = z
@@ -465,7 +463,7 @@ export const mtSprinkleSchema = z
     z.literal("64"),
   ])
   .describe(
-    'Set the element\'s top margin\n\n⚠️ WARNING: Do NOT use arbitrary values like "10px", "5rem", or negative\nnumbers like "-8". Only predefined spacing tokens are accepted.',
+    "Set the element's top margin. Only accepts predefined spacing tokens.",
   );
 
 export const mxSprinkleSchema = z
@@ -488,7 +486,7 @@ export const mxSprinkleSchema = z
     z.literal("64"),
   ])
   .describe(
-    'Set the element\'s left and right margin\n\n⚠️ WARNING: Do NOT use arbitrary values like "10px", "5rem", or negative\nnumbers like "-8". Only predefined spacing tokens are accepted.',
+    "Set the element's left and right margin. Only accepts predefined spacing tokens.",
   );
 
 export const mySprinkleSchema = z
@@ -511,7 +509,7 @@ export const mySprinkleSchema = z
     z.literal("64"),
   ])
   .describe(
-    'Set the element\'s top and bottom margin\n\n⚠️ WARNING: Do NOT use arbitrary values like "10px", "5rem", or negative\nnumbers like "-8". Only predefined spacing tokens are accepted.',
+    "Set the element's top and bottom margin. Only accepts predefined spacing tokens.",
   );
 
 export const objectFitSprinkleSchema = z
@@ -554,7 +552,7 @@ export const pSprinkleSchema = z
     z.literal("64"),
   ])
   .describe(
-    'Set the element\'s padding on all sides\n\n⚠️ WARNING: Do NOT use arbitrary values like "10px" or "5rem". Only\npredefined spacing tokens are accepted.',
+    "Set the element's padding on all sides. Only accepts predefined spacing tokens.",
   );
 
 export const pbSprinkleSchema = z
@@ -576,7 +574,7 @@ export const pbSprinkleSchema = z
     z.literal("64"),
   ])
   .describe(
-    'Set the element\'s bottom padding\n\n⚠️ WARNING: Do NOT use arbitrary values like "10px" or "5rem". Only\npredefined spacing tokens are accepted.',
+    "Set the element's bottom padding. Only accepts predefined spacing tokens.",
   );
 
 export const plSprinkleSchema = z
@@ -598,7 +596,7 @@ export const plSprinkleSchema = z
     z.literal("64"),
   ])
   .describe(
-    'Set the element\'s left padding\n\n⚠️ WARNING: Do NOT use arbitrary values like "10px" or "5rem". Only\npredefined spacing tokens are accepted.',
+    "Set the element's left padding. Only accepts predefined spacing tokens.",
   );
 
 export const placeItemsSprinkleSchema = z
@@ -628,7 +626,7 @@ export const prSprinkleSchema = z
     z.literal("64"),
   ])
   .describe(
-    'Set the element\'s right padding\n\n⚠️ WARNING: Do NOT use arbitrary values like "10px" or "5rem". Only\npredefined spacing tokens are accepted.',
+    "Set the element's right padding. Only accepts predefined spacing tokens.",
   );
 
 export const ptSprinkleSchema = z
@@ -650,7 +648,7 @@ export const ptSprinkleSchema = z
     z.literal("64"),
   ])
   .describe(
-    'Set the element\'s top padding\n\n⚠️ WARNING: Do NOT use arbitrary values like "10px" or "5rem". Only\npredefined spacing tokens are accepted.',
+    "Set the element's top padding. Only accepts predefined spacing tokens.",
   );
 
 export const pxSprinkleSchema = z
@@ -672,7 +670,7 @@ export const pxSprinkleSchema = z
     z.literal("64"),
   ])
   .describe(
-    'Set the element\'s left and right padding\n\n⚠️ WARNING: Do NOT use arbitrary values like "10px" or "5rem". Only\npredefined spacing tokens are accepted.',
+    "Set the element's left and right padding. Only accepts predefined spacing tokens.",
   );
 
 export const pySprinkleSchema = z
@@ -694,7 +692,7 @@ export const pySprinkleSchema = z
     z.literal("64"),
   ])
   .describe(
-    'Set the element\'s top and bottom padding\n\n⚠️ WARNING: Do NOT use arbitrary values like "10px" or "5rem". Only\npredefined spacing tokens are accepted.',
+    "Set the element's top and bottom padding. Only accepts predefined spacing tokens.",
   );
 
 export const roundedSprinkleSchema = z
@@ -759,7 +757,7 @@ export const sizeSprinkleSchema = z
     z.literal("min"),
   ])
   .describe(
-    'Set the element\'s width and height. Only accepts predefined values: size\ntokens (xs, sm, md, etc.), numeric spacing values (16, 24, 32),\nfractional percentages (1/2, 1/3), or special keywords (auto, full, fit,\nmax, min).\n\n⚠️ COMMON MISTAKE: Do not use arbitrary pixel values like "200" or "300".\nUse the closest valid token from the allowed values instead.\n\n💡 TIP: When width and height are the same, use `size` instead of setting\nboth `w` and `h` separately (e.g., prefer `size="24"` over `w="24" h="24"`).',
+    'Set the element\'s width and height. Only accepts predefined size tokens.\n\nWhen width and height are the same, use `size` instead of setting both\n`w` and `h` separately (e.g., prefer `size="24"` over `w="24" h="24"`).',
   );
 
 export const textAlignSprinkleSchema = z
@@ -819,9 +817,7 @@ export const wSprinkleSchema = z
     z.literal("max"),
     z.literal("min"),
   ])
-  .describe(
-    'Set the element\'s width. Only accepts predefined values: size tokens (xs,\nsm, md, etc.), numeric spacing values (16, 24, 32), fractional\npercentages (1/2, 1/3), or special keywords (auto, full, fit, max, min).\n\n⚠️ COMMON MISTAKE: Do not use arbitrary pixel values like "200" or "300".\nUse the closest valid token from the allowed values instead.\n\n💡 TIP: When width and height are the same, use `size` instead of setting\nboth `w` and `h` separately.',
-  );
+  .describe("Set the element's width. Only accepts predefined size tokens.");
 
 export const whiteSpaceSprinkleSchema = z
   .literal("nowrap")
@@ -1795,25 +1791,6 @@ export const ProteusInputSchema = z.object({
   my: mySprinkleSchema.optional(),
   name: z.string().describe("The name of the form control element.").optional(),
   objectFit: objectFitSprinkleSchema.optional(),
-  onValueChange: z
-    .union([
-      z
-        .object({
-          tool: z.string().describe("Name of registered tool to call"),
-        })
-        .describe("Server-side tool call"),
-      z
-        .object({
-          message: z
-            .string()
-            .describe("Message to send to LLM via sendNewMessage()"),
-        })
-        .describe("Client-side message action"),
-    ])
-    .describe(
-      "Handler for user interactions - either a server-side tool call or client-side message",
-    )
-    .optional(),
   overflow: overflowSprinkleSchema.optional(),
   overflowX: overflowXSprinkleSchema.optional(),
   overflowY: overflowYSprinkleSchema.optional(),
@@ -2053,25 +2030,6 @@ export const ProteusSelectSchema = z.object({
   options: z
     .array(
       z.object({
-        execute: z
-          .union([
-            z
-              .object({
-                tool: z.string().describe("Name of registered tool to call"),
-              })
-              .describe("Server-side tool call"),
-            z
-              .object({
-                message: z
-                  .string()
-                  .describe("Message to send to LLM via sendNewMessage()"),
-              })
-              .describe("Client-side message action"),
-          ])
-          .describe(
-            "Handler for user interactions - either a server-side tool call or client-side message",
-          )
-          .optional(),
         label: z.string().describe("String representation of items"),
         value: z.string().describe("Return a unique key for each item"),
       }),
@@ -2431,25 +2389,6 @@ export const ProteusTextareaSchema = z.object({
   my: mySprinkleSchema.optional(),
   name: z.string().describe("The name of the form control element.").optional(),
   objectFit: objectFitSprinkleSchema.optional(),
-  onValueChange: z
-    .union([
-      z
-        .object({
-          tool: z.string().describe("Name of registered tool to call"),
-        })
-        .describe("Server-side tool call"),
-      z
-        .object({
-          message: z
-            .string()
-            .describe("Message to send to LLM via sendNewMessage()"),
-        })
-        .describe("Client-side message action"),
-    ])
-    .describe(
-      "Handler for user interactions - either a server-side tool call or client-side message",
-    )
-    .optional(),
   overflow: overflowSprinkleSchema.optional(),
   overflowX: overflowXSprinkleSchema.optional(),
   overflowY: overflowYSprinkleSchema.optional(),
