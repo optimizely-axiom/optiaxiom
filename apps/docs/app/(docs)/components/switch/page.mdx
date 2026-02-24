@@ -1,4 +1,4 @@
-import { Cards, Demo, Links, PropsTable } from "@/components";
+import { Cards, Demo, KeyboardTable, Links, PropsTable } from "@/components";
 
 # Switch
 
@@ -18,11 +18,29 @@ The `children` prop is used as the label of the switch control.
 
 <Demo component="switch/label-usage" />
 
+### Description
+
+Use the `description` prop to add helper text after the label.
+
+<Demo component="switch/description-usage" />
+
+### Error state
+
+Wrap `Switch` in a `Field` component and use the `error` prop to display validation errors.
+
+<Demo component="switch/error-usage" />
+
 ### Controlled
 
 Use the `checked` and `defaultChecked` props to toggle between controlled and uncontrolled usage. And combine it with `onCheckedChange` to listen for changes to the state.
 
 <Demo component="switch/controlled-usage" />
+
+### Form integration
+
+Integrate with form libraries like react-hook-form for validation and error handling.
+
+<Demo component="switch/form-integration-usage" />
 
 ### Sizes
 
@@ -45,6 +63,28 @@ Enable the `disabled` prop to toggle the disabled state of the input field.
 ### Switch
 
 <PropsTable component="Switch" />
+
+## Accessibility
+
+### Keyboard interactions
+
+<KeyboardTable
+  interactions={[
+    { keys: ["Space"], description: "Toggles the switch between on and off" },
+    { keys: ["Enter"], description: "Toggles the switch between on and off" },
+    { keys: ["Tab"], description: "Moves focus to or away from the switch" },
+    {
+      keys: ["Shift + Tab"],
+      description: "Moves focus to the previous focusable element",
+    },
+  ]}
+/>
+
+Switch automatically handles accessibility:
+
+- Uses proper `role="switch"` and ARIA attributes
+- Supports `aria-checked` for on/off states
+- Associates label text with the switch control
 
 ## Changelog
 
