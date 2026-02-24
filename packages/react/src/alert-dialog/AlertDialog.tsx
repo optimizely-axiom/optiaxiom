@@ -23,24 +23,12 @@ export type AlertDialogProps = {
  * Display a modal with important content that expects confirmation from the
  * user.
  *
- * IMPORTANT: AlertDialog does NOT have a close (X) button in the header - users
- * must explicitly choose an action. This is intentional for confirmation
- * dialogs to prevent accidental dismissal of critical actions.
+ * AlertDialog does NOT have a close (X) button in the header - users must
+ * explicitly choose an action. This is intentional for confirmation dialogs to
+ * prevent accidental dismissal of critical actions.
  *
- * Key differences from Dialog:
- * - No automatic close button (requires explicit user choice)
- * - AlertDialogCancel: Cancel/dismiss button (defaults to "Cancel" text)
- * - AlertDialogAction: Primary/destructive action button
- * - Use for: Confirmations, destructive actions, critical decisions
- * - DO NOT use for: General forms, informational content (use Dialog instead)
- *
- * Basic structure:
- * - AlertDialog: Root component for managing state
- * - AlertDialogTrigger: Button that opens the alert
- * - AlertDialogContent: Container with backdrop
- * - AlertDialogHeader: Title (no close button)
- * - AlertDialogBody: Warning/confirmation message
- * - AlertDialogFooter: Action buttons (Cancel + Action)
+ * Use for confirmations, destructive actions, and critical decisions. Do not
+ * use for general forms or informational content (use Dialog instead).
  *
  * For async operations, use event.preventDefault() in AlertDialogAction onClick
  * to prevent auto-close, then manually close after completion.
