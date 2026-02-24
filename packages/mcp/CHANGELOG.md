@@ -1,5 +1,11 @@
 # @optiaxiom/mcp
 
+## 0.2.3
+
+### Patch Changes
+
+- 8ecffd0: optimize the get_tokens tool
+
 ## 0.2.2
 
 ### Patch Changes
