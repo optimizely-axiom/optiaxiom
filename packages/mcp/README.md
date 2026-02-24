@@ -120,9 +120,11 @@ Find usage examples showing how Axiom components work together. Returns real wor
 
 Get design token mappings for the Axiom Design System.
 
-**Parameters:** None
+**Parameters:**
 
-**Returns:** Token-to-value mappings for colors, sizes, spacing, borderRadius, fontSize, boxShadow, duration, fontFamily, and zIndex. Useful for converting Figma design values to semantic tokens (e.g., `#4F576E` → `fg.secondary`, `32px` height → `h='md'`).
+- `categories` (string[], optional): Filter to specific token categories (e.g., `["colors", "boxShadow"]`). Returns all categories if omitted. Valid values: `borderRadius`, `boxShadow`, `colors`, `duration`, `fontFamily`, `fontSize`, `maxSize`, `size`, `zIndex`.
+
+**Returns:** Token-to-value mappings for the requested categories. Useful for converting Figma design values to semantic tokens (e.g., `#4F576E` → `fg.secondary`, `32px` height → `h='md'`).
 
 ### `search_icons`
 

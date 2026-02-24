@@ -194,18 +194,42 @@ Examples:
 );
 
 // Tool: get_tokens
+const tokenCategories = [
+  "borderRadius",
+  "boxShadow",
+  "colors",
+  "duration",
+  "fontFamily",
+  "fontSize",
+  "maxSize",
+  "size",
+  "zIndex",
+] as const;
+
 server.registerTool(
   "get_tokens",
   {
     description: `Get design token mappings for the Axiom Design System. Returns token-to-value mappings for colors, sizes, spacing, borderRadius, fontSize, boxShadow, duration, fontFamily, and zIndex. Use this to convert hardcoded values to semantic tokens (e.g., #4F576E → fg.secondary, 32px height → h='md').`,
-    inputSchema: {},
+    inputSchema: {
+      categories: z
+        .array(z.enum(tokenCategories))
+        .optional()
+        .describe(
+          "Filter to specific token categories (e.g., ['colors', 'boxShadow']). Returns all categories if omitted.",
+        ),
+    },
     title: "Get Design Tokens",
   },
-  async () => {
+  async ({ categories }) => {
+    const tokens = getTokens();
+    const result = categories
+      ? Object.fromEntries(categories.map((cat) => [cat, tokens[cat]]))
+      : tokens;
+
     return {
       content: [
         {
-          text: JSON.stringify(getTokens()),
+          text: JSON.stringify(result),
           type: "text" as const,
         },
       ],
