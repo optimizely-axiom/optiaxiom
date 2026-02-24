@@ -1,4 +1,4 @@
-import { Cards, Demo, Links, PropsTable } from "@/components";
+import { Cards, Demo, KeyboardTable, Links, PropsTable } from "@/components";
 import { Alert } from "@optiaxiom/react";
 
 # Input
@@ -24,6 +24,12 @@ Using `onValueChange`:
 Using `onChange`:
 
 <Demo component="input/controlled-onchange-usage" />
+
+### Form integration
+
+Integrate with form libraries like react-hook-form for validation and error handling.
+
+<Demo component="input/form-integration-usage" />
 
 ### Input types
 
@@ -105,6 +111,20 @@ Use the `maxLength` prop to limit the number of characters users can enter. Comb
 
 <Demo component="input/maxlength-usage" />
 
+### Common patterns
+
+#### Async validation
+
+Show a loading spinner in the addon while performing an asynchronous check such as username availability.
+
+<Demo component="input/pattern-loading-usage" />
+
+#### Copy to clipboard
+
+Add a copy button in the addon to let users copy the input value to their clipboard.
+
+<Demo component="input/pattern-copy-usage" />
+
 ### Related
 
 <Cards items={["SearchInput", "Textarea"]} />
@@ -114,6 +134,26 @@ Use the `maxLength` prop to limit the number of characters users can enter. Comb
 ### Input
 
 <PropsTable component="Input" />
+
+## Accessibility
+
+Input automatically handles accessibility attributes when wrapped in `Field`:
+
+- Properly associates labels via `Field`
+- Supports ARIA attributes for error states
+- Manages focus states appropriately
+
+### Keyboard interactions
+
+<KeyboardTable
+  interactions={[
+    { keys: ["Tab"], description: "Moves focus to or away from the input" },
+    {
+      keys: ["Shift + Tab"],
+      description: "Moves focus to the previous focusable element",
+    },
+  ]}
+/>
 
 ## Changelog
 

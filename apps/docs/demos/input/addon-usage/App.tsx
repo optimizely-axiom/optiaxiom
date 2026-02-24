@@ -12,6 +12,7 @@ export function App() {
       addonAfter={
         <Button
           appearance="subtle"
+          aria-label={hidden ? "Show password" : "Hide password"}
           icon={hidden ? <IconEye /> : <IconEyeSlash />}
           onClick={() => setHidden((flag) => !flag)}
           rounded="full"
