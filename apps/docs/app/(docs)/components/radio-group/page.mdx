@@ -1,4 +1,4 @@
-import { Cards, Demo, Links, PropsTable } from "@/components";
+import { Cards, Demo, KeyboardTable, Links, PropsTable } from "@/components";
 
 # RadioGroup
 
@@ -26,6 +26,12 @@ Use the `value` and `defaultValue` props on `RadioGroup` to toggle between contr
 
 <Demo component="radio-group/controlled-usage" />
 
+### Form integration
+
+Use `Controller` from react-hook-form to integrate RadioGroup with form validation.
+
+<Demo component="radio-group/form-integration-usage" />
+
 ### Disabled state
 
 Enable the `disabled` prop on the `RadioGroup` to toggle the disabled state of all the radio controls.
@@ -42,6 +48,20 @@ Use the `description` prop to add helper text after the label.
 
 <Demo component="radio-group/description-usage" />
 
+### Error state
+
+Wrap `RadioGroup` in a `Field` component and use the `error` prop to display validation errors.
+
+<Demo component="radio-group/error-usage" />
+
+### Common patterns
+
+#### Conditional fields
+
+Use the selected radio value to conditionally show additional fields.
+
+<Demo component="radio-group/pattern-conditional-usage" />
+
 ### Related
 
 <Cards items={["Checkbox", "Select", "Switch"]} />
@@ -55,6 +75,37 @@ Use the `description` prop to add helper text after the label.
 ### Radio
 
 <PropsTable component="Radio" />
+
+## Accessibility
+
+### Keyboard interactions
+
+<KeyboardTable
+  interactions={[
+    {
+      keys: ["Tab"],
+      description: "Moves focus into and out of the radio group",
+    },
+    {
+      keys: ["Space"],
+      description: "Selects the focused radio if not already selected",
+    },
+    {
+      keys: ["ArrowDown", "ArrowRight"],
+      description: "Moves focus to and selects the next radio",
+    },
+    {
+      keys: ["ArrowUp", "ArrowLeft"],
+      description: "Moves focus to and selects the previous radio",
+    },
+  ]}
+/>
+
+RadioGroup automatically handles accessibility:
+
+- Uses proper `role="radiogroup"` and individual `role="radio"` attributes
+- Supports `aria-checked` for selected state
+- Groups radios with proper keyboard navigation
 
 ## Changelog
 
