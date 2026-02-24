@@ -2,7 +2,7 @@
 
 The Axiom [Model Context Protocol (MCP)](https://modelcontextprotocol.io) server enables AI assistants like Claude Code and Cursor to access the Axiom Design System through real-time access to:
 
-- Component documentation and props
+- Component documentation, props, and usage patterns
 - Design tokens for colors, spacing, typography, and more
 - Icon search capabilities
 - Setup guides and best practices
@@ -59,95 +59,56 @@ Then update your configuration to use the global installation:
 }
 ```
 
-## Usage
+## Available Tools
 
-### Natural language queries
+### `search_components`
+
+Search Axiom components by name, description, or keywords.
+
+- `query` (string, optional): Search query (component name, keyword, or description). Leave empty to browse all components.
+- `category` (string, optional): Filter by category (e.g., "form", "layout", "navigation", "feedback", "overlay", "data-display", "actions", "typography")
+- `limit` (number, optional): Maximum results to return (default: 5)
+
+### `get_component`
+
+Get information about a specific component. Returns the component's description, import statement, sub-components, and example titles by default. Use the optional `props` parameter to search for specific props.
+
+- `name` (string, required): Component name (e.g., "Button", "Dialog", "Alert")
+- `props` (string, optional): Search query to find specific props by name or description (e.g., "appearance size", "loading", "padding background"). Searches both component-specific props and style props. Omit to get just the component overview without any prop definitions.
+
+### `get_patterns`
+
+Find usage examples showing how Axiom components work together. Returns real working examples from the docs.
+
+- `components` (string, required): Space-separated component names to find patterns for (e.g., "Field Input Button"). Returns examples that use these components together.
+- `query` (string, optional): Search within example titles to find specific patterns (e.g., "addon", "form", "disabled").
+- `limit` (number, optional): Maximum number of examples to return (default: 5, max: 10)
+
+### `get_tokens`
+
+Get design token mappings for converting hardcoded values to semantic tokens (e.g., `#4F576E` → `fg.secondary`, `32px` height → `h="md"`).
+
+- `categories` (string[], optional): Filter to specific token categories. Valid values: `borderRadius`, `boxShadow`, `colors`, `duration`, `fontFamily`, `fontSize`, `maxSize`, `size`, `zIndex`. Returns all categories if omitted.
+
+### `search_icons`
+
+Search for icons from the `@optimizely/axiom-icons` package by keyword.
+
+- `query` (string, required): Search query (e.g., "message", "arrow", "user")
+- `limit` (number, optional): Maximum results to return (default: 10)
+
+## Usage
 
 Once configured, you can ask your AI assistant natural language questions about Axiom:
 
-#### Component Discovery
-
-- "What components are available in Axiom?"
-- "Show me how to use the Badge component"
-- "Find navigation components"
 - "Create a form with Input and Button components"
-
-#### Component Details
-
-- "What props does the DataTable component accept?"
-- "Show me examples of using the Alert component"
-- "How do I use the Tabs component?"
-
-#### Design Tokens
-
-- "What color tokens are available?"
+- "What props does the Button component accept for styling?"
+- "Show me how Dialog and DialogForm work together"
 - "Convert this Figma color #4F576E to an Axiom token"
-- "What spacing values can I use?"
-- "Show me font size tokens"
-
-#### Icon Search
-
 - "Search for message icons"
-- "Find arrow icons"
-- "Show user-related icons"
-
-#### Setup Guides
-
-- "Show me the getting started guide"
-- "How do I configure CSS imports?"
-- "Explain CSS layers setup"
-
-## Available Tools
-
-### Component tools
-
-- **`list_components`** - List all available Axiom components
-- **`get_component`** - Get detailed information about a specific component
-- **`search_components`** - Search for components by name or description
-
-### Design token tools
-
-- **`get_tokens`** - Get all design token mappings (colors, spacing, typography, etc.)
-
-### Icon tools
-
-- **`search_icons`** - Search for icons from the @optimizely/axiom-icons package
-
-## Features
-
-### Component metadata
-
-The MCP server provides up-to-date component information extracted directly from the `@optiaxiom/react` package, including:
-
-- Component descriptions and usage guidelines
-- Complete prop definitions with types and defaults
-- Import statements
-- Code examples with screenshots
-- Versioning information
-
-The AI assistant will automatically:
-
-- Use correct component names (validates against Figma/external sources)
-- Apply proper default props (Axiom components may differ from standard HTML/CSS)
-- Follow Axiom best practices (e.g., using `DataTable` instead of `Table` for data display)
-
-### Design token conversion
-
-Convert Figma design values to Axiom semantic tokens:
-
-- Hex colors → `fg.*`, `bg.*` tokens
-- Pixel values → spacing, size tokens
-- Font specifications → typography tokens
-
-The AI assistant will use semantic tokens instead of hardcoded values.
-
-### Icon discovery
-
-Search through 385+ licensed Font Awesome Pro icons by keyword or category. The search intelligently matches icon names (e.g., searching "message" finds `IconMessages`, `IconMessageBot`, `IconMessageLines`).
+- "What navigation components are available?"
 
 ## Resources
-
-### Additional links
 
 - [MCP Specification](https://modelcontextprotocol.io/specification)
 - [Axiom Design System](https://optimizely-axiom.github.io/optiaxiom/)
