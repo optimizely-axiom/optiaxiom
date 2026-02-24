@@ -9,8 +9,8 @@ MCP (Model Context Protocol) server for Axiom Design System. This server enables
 ## Features
 
 - **Component Metadata**: Detailed information about all Axiom components including props, types, and descriptions
-- **Search & Discovery**: Find components by name, keywords, or list all available components
-- **Usage Examples**: Real-world code examples with screenshots for each component
+- **Search & Discovery**: Find components by name, keywords, or category
+- **Usage Patterns**: Real-world code examples showing how components work together
 - **Design Tokens**: Access to the complete design token system for Figma-to-code workflows
 - **Setup Guides**: Markdown guides for getting started, CSS configuration, and icon usage
 - **Fast & Lightweight**: Pre-generated metadata with instant response times
@@ -18,8 +18,6 @@ MCP (Model Context Protocol) server for Axiom Design System. This server enables
 ## Important Note
 
 **All Axiom components are installed via a single npm package: `@optiaxiom/react`**
-
-This MCP server provides metadata about components from both stable (`@optiaxiom/react`) and experimental (`@optiaxiom/react/unstable`) exports, but they all come from the same npm package. When the AI assistant generates code using Axiom components, it only needs to install `@optiaxiom/react`.
 
 ## Installation
 
@@ -85,32 +83,38 @@ The MCP server provides the following tools that AI assistants can use:
 
 ### `get_component`
 
-Get detailed information about a specific component including props, examples, and usage guidelines.
+Get information about an Axiom component. Returns the component's description, import statement, and sub-components by default — no props. Use the optional `props` parameter to search for specific props by name or description.
 
 **Parameters:**
 
 - `name` (string, required): Component name (e.g., "Badge", "Button", "Alert")
+- `props` (string, optional): Search query to find specific props by name or description (e.g., "appearance size", "loading", "padding background"). Omit to get just the component description, import, and sub-components without any props.
 
-**Returns:** Complete component metadata with props, examples, screenshots, and usage information.
-
-### `list_components`
-
-List all available Axiom components with their descriptions. Use this to discover what components are available.
-
-**Parameters:** None
-
-**Returns:** Array of all primary components with names and descriptions.
+**Returns:** Component metadata with description, import statement, sub-components, examples, and optionally matching prop definitions.
 
 ### `search_components`
 
-Search for components by name, description, or keywords.
+Search Axiom components by name, description, or keywords. Returns matching components.
 
 **Parameters:**
 
-- `query` (string, required): Search query (component name, keyword, or description)
-- `limit` (number, optional): Maximum results to return (default: 10)
+- `query` (string, optional): Search query (component name, keyword, or description). Leave empty to browse all components or all components in a category.
+- `category` (string, optional): Filter by category (e.g., "form", "layout", "navigation", "feedback", "overlay", "data-display", "actions", "typography")
+- `limit` (number, optional): Maximum results to return (default: 5)
 
 **Returns:** List of matching components with names, descriptions, and import statements.
+
+### `get_patterns`
+
+Find usage examples showing how Axiom components work together. Returns real working examples from the docs that demonstrate component composition patterns.
+
+**Parameters:**
+
+- `components` (string, required): Space-separated component names to find patterns for (e.g., "Field Input Button"). Returns examples that use these components together.
+- `query` (string, optional): Search within example titles to find specific patterns (e.g., "addon", "form", "disabled").
+- `limit` (number, optional): Maximum number of examples to return (default: 5, max: 10)
+
+**Returns:** Array of matching examples with code (filename → file contents) and title.
 
 ### `get_tokens`
 
@@ -118,18 +122,18 @@ Get design token mappings for the Axiom Design System.
 
 **Parameters:** None
 
-**Returns:** Token-to-value mappings for colors (hex values for light mode), sizes (px/rem for width/height), spacing, borderRadius, fontSize (with lineHeight), boxShadow, duration, fontFamily, and zIndex. Useful for converting Figma design values to semantic tokens (e.g., `#4F576E` → `fg.secondary`, `32px` height → `h='md'`).
+**Returns:** Token-to-value mappings for colors, sizes, spacing, borderRadius, fontSize, boxShadow, duration, fontFamily, and zIndex. Useful for converting Figma design values to semantic tokens (e.g., `#4F576E` → `fg.secondary`, `32px` height → `h='md'`).
 
 ### `search_icons`
 
-Search for icons from the `@optimizely/axiom-icons` package (Optimizely staff only).
+Search for icons from the `@optimizely/axiom-icons` package.
 
 **Parameters:**
 
 - `query` (string, required): Search query (icon keyword or name, e.g., "message", "arrow", "user")
 - `limit` (number, optional): Maximum results to return (default: 10)
 
-**Returns:** List of matching icon components with names and import statements. The `@optimizely/axiom-icons` package contains licensed Font Awesome Pro icons and is only available to Optimizely staff.
+**Returns:** List of matching icon components with names and import statements.
 
 ## Available Resources
 
@@ -161,10 +165,10 @@ Available guides:
 Once configured, you can ask your AI assistant:
 
 - "Show me how to use the Badge component"
-- "List all available Axiom components"
+- "Search for form components"
 - "Create a form with Input and Button components from Axiom"
 - "What navigation components are available?"
-- "Create a card layout using Axiom components"
+- "Show me patterns for Field and Select together"
 - "What design tokens are available for colors?"
 - "Convert this Figma color #4F576E to an Axiom token"
 - "Show me the getting started guide for Axiom"
@@ -185,13 +189,15 @@ pnpm -F mcp... build
 
 #### Component Metadata Generation
 
-The MCP server serves pre-generated component metadata that is automatically extracted from the `@optiaxiom/react` package:
+The MCP server serves pre-generated component metadata that is automatically extracted from the `@optiaxiom/react` package at build time:
 
 - **Component descriptions** come from JSDoc comments on component exports (e.g., `packages/react/src/table/Table.tsx`)
 - **Props and types** are extracted from TypeScript definitions
-- **Examples** are pulled from demo files in the docs package
+- **Examples** are pulled from demo files in `apps/docs/demos/`
 - **Usage warnings** are embedded in JSDoc and automatically included in the `description` field
 - **Grouping and versioning** use JSDoc tags (`@group` and `@since`)
+
+All data is bundled into the published package — there is no filesystem or network I/O at runtime.
 
 **Important**: When adding warnings or guidance about component usage, add them to the component's JSDoc comment rather than the MCP server code. This ensures the information is:
 
@@ -206,7 +212,7 @@ Use these tags in component JSDoc comments:
 
 - **`@group`**: Groups related components together (e.g., `@group Table` groups Table, TableRow, TableCell, etc.)
 - **`@since`**: Documents the version when the component was introduced (e.g., `@since 1.4.0`)
-- **`@experimental`**: Marks components as experimental/unstable, typically exported from `@optiaxiom/react/unstable`
+- **`@experimental`**: Marks components as experimental/unstable
 
 Example:
 
@@ -214,25 +220,10 @@ Example:
 /**
  * Display tabular data using rows and columns.
  *
- * ⚠️ **IMPORTANT**: Consider using `DataTable` instead for displaying tabular data.
- *
  * @group Table
  * @since 1.4.0
  */
 export const Table = ...
-```
-
-For experimental components:
-
-```tsx
-/**
- * Advanced spotlight component for command palette interfaces.
- *
- * @experimental
- * @group Spotlight
- * @since 1.5.0
- */
-export const Spotlight = ...
 ```
 
 ## Resources
