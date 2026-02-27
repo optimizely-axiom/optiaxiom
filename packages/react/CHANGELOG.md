@@ -1,5 +1,12 @@
 # @optiaxiom/react
 
+## 1.9.5
+
+### Patch Changes
+
+- 257ad48: replace zod with @cfworker/json-schema in proteus
+- de98c09: remove Proteus prefix from component names
+
 ## 1.9.4
 
 ### Patch Changes
