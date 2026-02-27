@@ -206,7 +206,7 @@ export const FormWithInputs: Story = {
     },
   },
   render: function Render(args) {
-    const [data, setData] = useState<Record<string, string>>({
+    const [data, setData] = useState<Record<string, unknown>>({
       target_by: "url",
     });
     return (

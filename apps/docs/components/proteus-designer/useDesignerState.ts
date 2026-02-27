@@ -12,7 +12,7 @@ const initialDocument: ProteusDoc = {
 };
 
 export interface DesignerState {
-  data: Record<string, string>;
+  data: Record<string, unknown>;
   document: ProteusDoc;
   selectedPath: null | string;
 }
@@ -82,7 +82,7 @@ export function useDesignerState() {
     });
   }, []);
 
-  const setData = useCallback((data: Record<string, string>) => {
+  const setData = useCallback((data: Record<string, unknown>) => {
     setState((s) => ({ ...s, data }));
   }, []);
 
