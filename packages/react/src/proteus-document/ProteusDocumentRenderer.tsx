@@ -53,6 +53,9 @@ export type ProteusDocumentRendererProps = Pick<
   readOnly?: boolean;
 };
 
+/**
+ * @experimental
+ */
 export function ProteusDocumentRenderer({
   collapsible,
   data = {},

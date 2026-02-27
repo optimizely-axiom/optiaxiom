@@ -8,6 +8,7 @@ import { ListboxSeparator } from "../listbox";
 export type DropdownMenuSeparatorProps = BoxProps<typeof RadixMenu.Separator>;
 
 /**
+ * @group DropdownMenu
  * @extends Separator
  */
 export const DropdownMenuSeparator = forwardRef<

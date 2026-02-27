@@ -24,6 +24,9 @@ export type DropdownMenuSubProps = {
   open?: boolean;
 };
 
+/**
+ * @group DropdownMenu
+ */
 export function DropdownMenuSub({
   children,
   defaultOpen = false,

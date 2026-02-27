@@ -7,6 +7,9 @@ export type DropdownMenuCheckboxItemProps = ListboxItemProps<
   typeof RadixMenu.CheckboxItem
 >;
 
+/**
+ * @group DropdownMenu
+ */
 export const DropdownMenuCheckboxItem = forwardRef<
   HTMLDivElement,
   DropdownMenuCheckboxItemProps

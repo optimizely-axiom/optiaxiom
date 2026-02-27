@@ -6,6 +6,9 @@ import { useDropdownMenuContext } from "./DropdownMenuContext";
 
 export type DropdownMenuItemProps = ListboxItemProps<typeof RadixMenu.Item>;
 
+/**
+ * @group DropdownMenu
+ */
 export const DropdownMenuItem = forwardRef<
   HTMLDivElement,
   DropdownMenuItemProps

@@ -29,6 +29,10 @@ const remapSize = {
   lg: "sm",
 } as const;
 
+/**
+ * @group PillMenu
+ * @extends PillGroup
+ */
 export const PillMenuTrigger = forwardRef<HTMLDivElement, PillMenuTriggerProps>(
   ({ children, className, readOnly, size = "md", ...props }, outerRef) => {
     const { value } = usePillMenuContext("@optiaxiom/react/PillMenuTrigger");

@@ -11,6 +11,7 @@ const Slot = createSlot("@optiaxiom/react/FileUploadTrigger");
 export type FileUploadTriggerProps = ButtonProps;
 
 /**
+ * @group FileUpload
  * @extends Button
  */
 export const FileUploadTrigger = forwardRef<
