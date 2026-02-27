@@ -1,8 +1,7 @@
-import type { ProteusSeparatorProps } from "./schemas";
-
 import { Separator } from "../separator";
 
-export function ProteusSeparator(props: ProteusSeparatorProps) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function ProteusSeparator(props: Record<string, any>) {
   return <Separator {...props} />;
 }
 

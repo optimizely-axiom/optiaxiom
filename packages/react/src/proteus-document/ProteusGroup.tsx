@@ -1,9 +1,8 @@
-import type { ProteusGroupProps } from "./schemas";
-
 import { Group } from "../group";
 import { ProteusElement } from "./ProteusElement";
 
-export function ProteusGroup({ children, ...props }: ProteusGroupProps) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function ProteusGroup({ children, ...props }: Record<string, any>) {
   return (
     <Group {...props}>
       {children && <ProteusElement element={children} />}

@@ -3,10 +3,16 @@ import {
   useProteusDocumentPathContext,
 } from "./ProteusDocumentPathContext";
 import { ProteusElement } from "./ProteusElement";
-import { type ProteusMapProps } from "./schemas";
 import { useProteusValue } from "./useProteusValue";
 
-export function ProteusMap({ children, path }: ProteusMapProps) {
+export function ProteusMap({
+  children,
+  path,
+}: {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  children?: any;
+  path: string;
+}) {
   const { path: parentPath } = useProteusDocumentPathContext(
     "@optiaxiom/react/ProteusMap",
   );

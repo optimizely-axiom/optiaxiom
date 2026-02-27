@@ -1,4 +1,4 @@
-import type { ProteusActionProps } from "./schemas";
+import type { ProteusEventHandler } from "./schemas";
 
 import { Button } from "../button";
 import { useProteusDocumentContext } from "./ProteusDocumentContext";
@@ -8,7 +8,11 @@ export function ProteusAction({
   children,
   onClick,
   ...props
-}: ProteusActionProps) {
+}: {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  children?: any;
+  onClick?: ProteusEventHandler;
+}) {
   const { onEvent } = useProteusDocumentContext(
     "@optiaxiom/react/ProteusAction",
   );

@@ -1,9 +1,8 @@
-import type { ProteusInputProps } from "./schemas";
-
 import { Input } from "../input";
 import { useProteusDocumentContext } from "./ProteusDocumentContext";
 
-export function ProteusInput(props: ProteusInputProps) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function ProteusInput(props: Record<string, any>) {
   const { data, onDataChange, readOnly } = useProteusDocumentContext(
     "@optiaxiom/react/ProteusInput",
   );

@@ -1,7 +1,5 @@
 import { useState } from "react";
 
-import type { ProteusCancelActionProps } from "./schemas";
-
 import { Button } from "../button";
 import { Flex } from "../flex";
 import { Input } from "../input";
@@ -11,7 +9,11 @@ import { ProteusElement } from "./ProteusElement";
 export function ProteusCancelAction({
   children,
   placeholder = "Tell Opal what to do instead",
-}: ProteusCancelActionProps) {
+}: {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  children?: any;
+  placeholder?: string;
+}) {
   const { onCancelAction } = useProteusDocumentContext(
     "@optiaxiom/react/ProteusCancelAction",
   );

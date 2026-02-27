@@ -1,8 +1,7 @@
-import type { ProteusRangeProps } from "./schemas";
-
 import { Range } from "../range";
 
-export function ProteusRange(props: ProteusRangeProps) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function ProteusRange(props: Record<string, any>) {
   return <Range {...props} />;
 }
 
