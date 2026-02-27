@@ -44,7 +44,7 @@ export type ProteusDocumentRendererProps = Pick<
    */
   onMessage?: (message: string) => void;
   /**
-   * Callback when user clicks a Proteus.Action button with tool handler
+   * Callback when user clicks a Action button with tool handler
    */
   onToolCall?: (toolName: string) => void;
   /**

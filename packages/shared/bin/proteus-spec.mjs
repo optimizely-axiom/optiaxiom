@@ -19,6 +19,7 @@ import { getDocs } from "../src/index.mjs";
 /**
  * @typedef {Object} ComponentConfig
  * @property {string[]} allowedProps - List of allowed prop names
+ * @property {object} [example] - Example instance for tooling (e.g., designer insert templates)
  * @property {string} [extends] - Base Axiom component this extends (e.g., "Button", "Box")
  * @property {string[]} [requiredProps] - List of props that should be marked as required
  */
@@ -29,23 +30,32 @@ import { getDocs } from "../src/index.mjs";
 const PROTEUS_COMPONENT_CONFIG = {
   Action: {
     allowedProps: ["appearance", "children", "onClick"],
+    example: { appearance: "primary", children: "Action" },
     extends: "Button",
   },
   CancelAction: {
     allowedProps: ["children", "placeholder"],
+    example: { children: "Cancel" },
     extends: "Button",
   },
   Field: {
     allowedProps: ["children", "description", "info", "label", "required"],
+    example: {
+      children: { $type: "Input", name: "field_name" },
+      label: "Field Label",
+    },
   },
   Group: {
     allowedProps: ["alignItems", "children", "flexDirection"],
+    example: { children: [], flexDirection: "column", gap: "16" },
   },
   Heading: {
     allowedProps: ["children", "level"],
+    example: { children: "New heading", level: "2" },
   },
   Image: {
     allowedProps: ["alt", "src"],
+    example: { alt: "Placeholder", src: "https://placehold.co/600x400" },
     extends: "Box",
   },
   Input: {
@@ -57,20 +67,38 @@ const PROTEUS_COMPONENT_CONFIG = {
       "placeholder",
       "type",
     ],
+    example: { name: "field_name", placeholder: "Enter value" },
   },
   Link: {
     allowedProps: ["children", "href"],
+    example: { children: "Link text", href: "https://example.com" },
   },
   Map: {
     allowedProps: ["path", "children"],
+    example: {
+      children: { $type: "Text", children: "Item" },
+      path: "/items",
+    },
     extends: "Fragment",
     requiredProps: ["path"],
   },
   Range: {
     allowedProps: ["marks", "max", "min", "step"],
+    example: { max: 100, min: 0, step: 1 },
   },
   Select: {
     allowedProps: ["children", "name", "options"],
+    example: {
+      children: [
+        { $type: "SelectTrigger", w: "full" },
+        { $type: "SelectContent" },
+      ],
+      name: "select_field",
+      options: [
+        { label: "Option 1", value: "option1" },
+        { label: "Option 2", value: "option2" },
+      ],
+    },
   },
   SelectContent: {
     allowedProps: [],
@@ -83,16 +111,23 @@ const PROTEUS_COMPONENT_CONFIG = {
   },
   Show: {
     allowedProps: ["when", "children"],
+    example: {
+      children: { $type: "Text", children: "Shown conditionally" },
+      when: { "!!": { $type: "Value", path: "/field_name" } },
+    },
     extends: "Fragment",
   },
   Text: {
     allowedProps: ["children"],
+    example: { children: "New text" },
   },
   Textarea: {
     allowedProps: ["maxRows", "name", "placeholder", "resize", "rows"],
+    example: { name: "field_name", placeholder: "Enter text" },
   },
   Value: {
     allowedProps: ["path"],
+    example: { path: "/field_name" },
     extends: "Fragment",
     requiredProps: ["path"],
   },
@@ -125,7 +160,12 @@ function generateJsonSchema(additionalProperties = false) {
         /** @type {Record<string, JSONSchema7Definition>} */ definitions,
         [
           componentName,
-          { allowedProps, extends: extendsComponent, requiredProps = [] },
+          {
+            allowedProps,
+            example,
+            extends: extendsComponent,
+            requiredProps = [],
+          },
         ],
       ) => {
         // For components that extend another component, find the base component docs
@@ -146,7 +186,7 @@ function generateJsonSchema(additionalProperties = false) {
         /** @type {Record<string, JSONSchema7Definition>} */
         const properties = {
           $type: {
-            const: `Proteus.${componentName}`,
+            const: componentName,
           },
         };
         const required = ["$type"];
@@ -202,6 +242,9 @@ function generateJsonSchema(additionalProperties = false) {
 
         definitions[`Proteus${componentName}`] = {
           ...(additionalProperties ? {} : { additionalProperties: false }),
+          ...(example
+            ? { examples: [{ $type: componentName, ...example }] }
+            : {}),
           properties,
           required,
           type: "object",
@@ -436,12 +479,140 @@ function generateJsonSchema(additionalProperties = false) {
             },
           ],
           description:
-            "Condition for Proteus.Show component. Can be a comparison operator, logical AND, or logical OR. Supports nesting.",
+            "Condition for Show component. Can be a comparison operator, logical AND, or logical OR. Supports nesting.",
         },
         ProteusDocument: {
           ...(additionalProperties ? {} : { additionalProperties: false }),
+          examples: [
+            {
+              $type: "Document",
+              appName: "Opal",
+              body: [],
+              title: "New Document",
+            },
+            {
+              $type: "Document",
+              actions: [
+                {
+                  $type: "Action",
+                  appearance: "primary",
+                  children: "Submit",
+                  onClick: { tool: "submit_feedback" },
+                },
+              ],
+              appName: "Opal",
+              body: [
+                {
+                  $type: "Group",
+                  children: [
+                    {
+                      $type: "Field",
+                      children: {
+                        $type: "Input",
+                        name: "name",
+                        placeholder: "Enter your name",
+                      },
+                      label: "Your Name",
+                    },
+                    {
+                      $type: "Field",
+                      children: {
+                        $type: "Textarea",
+                        name: "feedback",
+                        placeholder: "What's on your mind?",
+                        rows: 4,
+                      },
+                      label: "Feedback",
+                    },
+                  ],
+                  flexDirection: "column",
+                  gap: "16",
+                },
+              ],
+              subtitle: "We'd love to hear from you",
+              title: "Submit Feedback",
+            },
+            {
+              $type: "Document",
+              actions: [
+                {
+                  $type: "Action",
+                  appearance: "primary",
+                  children: "Create Test Plan",
+                  onClick: { tool: "create_test_plan" },
+                },
+              ],
+              appName: "Opal",
+              body: [
+                {
+                  $type: "Group",
+                  children: [
+                    {
+                      $type: "Heading",
+                      children: "1. Configure your test",
+                      fontSize: "md",
+                      fontWeight: "600",
+                      level: "2",
+                    },
+                    {
+                      $type: "Field",
+                      children: {
+                        $type: "Select",
+                        children: [
+                          { $type: "SelectTrigger", w: "full" },
+                          { $type: "SelectContent" },
+                        ],
+                        name: "target_by",
+                        options: [
+                          { label: "URL", value: "url" },
+                          { label: "CSS Selector", value: "selector" },
+                        ],
+                      },
+                      label: "Target by",
+                    },
+                    {
+                      $type: "Show",
+                      children: {
+                        $type: "Field",
+                        children: {
+                          $type: "Input",
+                          name: "url",
+                          placeholder: "https://example.com",
+                        },
+                        label: "URL",
+                      },
+                      when: {
+                        "==": [{ $type: "Value", path: "/target_by" }, "url"],
+                      },
+                    },
+                    {
+                      $type: "Show",
+                      children: {
+                        $type: "Field",
+                        children: {
+                          $type: "Input",
+                          name: "selector",
+                          placeholder: "#main-content",
+                        },
+                        label: "CSS Selector",
+                      },
+                      when: {
+                        "==": [
+                          { $type: "Value", path: "/target_by" },
+                          "selector",
+                        ],
+                      },
+                    },
+                  ],
+                  flexDirection: "column",
+                  gap: "16",
+                },
+              ],
+              title: "Create Test Plan",
+            },
+          ],
           properties: {
-            $type: { const: "Proteus.Document" },
+            $type: { const: "Document" },
             actions: {
               description: "Actions available for this document",
               items: {
@@ -550,7 +721,7 @@ async function generateZodSchemas(schema) {
   lines.push("// This file is auto-generated. Do not edit manually.");
   lines.push("// Run `pnpm proteus-spec` to regenerate.");
   lines.push("");
-  lines.push('import { z } from "zod";');
+  lines.push('import { z } from "zod/v4";');
   lines.push("");
   lines.push("type ProteusNode = string | ProteusElement | ProteusElement[]");
   lines.push("");
@@ -633,7 +804,14 @@ async function generateZodSchemas(schema) {
           return;
         },
       },
-    );
+    )
+      // zod v4 workaround
+      .replace(/\.record\(/g, ".record(z.string(),");
+
+    // Append .meta({ examples }) if the definition has examples
+    if (Array.isArray(def.examples) && def.examples?.length) {
+      zodCode += `.meta(${JSON.stringify({ examples: def.examples })})` + "\n";
+    }
 
     lines.push(zodCode);
     if (
@@ -700,7 +878,7 @@ function getPropTypeOverrides(additionalProperties = false) {
     Map: {
       children: {
         description:
-          "Template object to render for each item in the array. Proteus.Value paths are relative to current item.",
+          "Template object to render for each item in the array. Value paths are relative to current item.",
         type: "object",
       },
       path: {
