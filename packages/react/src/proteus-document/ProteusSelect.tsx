@@ -2,7 +2,9 @@ import { useRef } from "react";
 
 import { Select } from "../select";
 import { useProteusDocumentContext } from "./ProteusDocumentContext";
+import { useProteusDocumentPathContext } from "./ProteusDocumentPathContext";
 import { ProteusElement } from "./ProteusElement";
+import { useProteusValue } from "./useProteusValue";
 
 export function ProteusSelect({
   children,
@@ -17,13 +19,19 @@ export function ProteusSelect({
     value: string;
   }>;
 }) {
-  const { data, onDataChange, readOnly } = useProteusDocumentContext(
+  const { onDataChange, readOnly } = useProteusDocumentContext(
+    "@optiaxiom/react/ProteusSelect",
+  );
+  const { path: parentPath } = useProteusDocumentPathContext(
     "@optiaxiom/react/ProteusSelect",
   );
 
   const optionsRef = useRef(options);
   optionsRef.current = options;
-  const value = props.name ? data[props.name] : (options[0]?.value ?? "");
+  const resolved = useProteusValue(props.name ?? "");
+  const value = props.name
+    ? String(resolved ?? options[0]?.value ?? "")
+    : (options[0]?.value ?? "");
 
   return (
     <Select
@@ -34,7 +42,7 @@ export function ProteusSelect({
         }
 
         if (props.name) {
-          onDataChange?.(props.name, value);
+          onDataChange?.(`${parentPath}/${props.name}`, value);
         }
       }}
       options={options}

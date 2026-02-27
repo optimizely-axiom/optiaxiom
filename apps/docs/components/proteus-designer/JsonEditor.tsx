@@ -17,9 +17,9 @@ if (typeof window !== "undefined") {
 }
 
 interface JsonEditorProps {
-  data: Record<string, string>;
+  data: Record<string, unknown>;
   document: Record<string, unknown>;
-  onDataChange: (data: Record<string, string>) => void;
+  onDataChange: (data: Record<string, unknown>) => void;
   onDocumentChange: (doc: Record<string, unknown>) => void;
   onDocumentError: (error: null | string) => void;
 }
