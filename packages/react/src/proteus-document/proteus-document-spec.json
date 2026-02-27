@@ -1,0 +1,5617 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "SprinkleProp_alignItems": {
+      "anyOf": [
+        {
+          "const": "normal"
+        },
+        {
+          "const": "stretch"
+        },
+        {
+          "const": "center"
+        },
+        {
+          "const": "end"
+        },
+        {
+          "const": "start"
+        }
+      ],
+      "description": "Set the element's `align-items` CSS property"
+    },
+    "SprinkleProp_alignSelf": {
+      "anyOf": [
+        {
+          "const": "normal"
+        },
+        {
+          "const": "stretch"
+        },
+        {
+          "const": "center"
+        },
+        {
+          "const": "end"
+        },
+        {
+          "const": "start"
+        }
+      ],
+      "description": "Set the element's `align-self` CSS property"
+    },
+    "SprinkleProp_animation": {
+      "anyOf": [
+        {
+          "const": "ping"
+        },
+        {
+          "const": "pulse"
+        },
+        {
+          "const": "spin"
+        }
+      ],
+      "description": "Animate element with CSS animations"
+    },
+    "SprinkleProp_backgroundImage": {
+      "anyOf": [
+        {
+          "const": "gradient.opal"
+        }
+      ],
+      "description": "Set the element's `background-image` CSS property"
+    },
+    "SprinkleProp_bg": {
+      "anyOf": [
+        {
+          "const": "transparent"
+        },
+        {
+          "const": "bg.accent"
+        },
+        {
+          "const": "bg.accent.hovered"
+        },
+        {
+          "const": "bg.accent.light"
+        },
+        {
+          "const": "bg.accent.pressed"
+        },
+        {
+          "const": "bg.accent.subtle"
+        },
+        {
+          "const": "bg.avatar.neutral"
+        },
+        {
+          "const": "bg.avatar.purple"
+        },
+        {
+          "const": "bg.default"
+        },
+        {
+          "const": "bg.default.hovered"
+        },
+        {
+          "const": "bg.default.inverse"
+        },
+        {
+          "const": "bg.default.inverse.hovered"
+        },
+        {
+          "const": "bg.default.inverse.pressed"
+        },
+        {
+          "const": "bg.default.pressed"
+        },
+        {
+          "const": "bg.error"
+        },
+        {
+          "const": "bg.error.hovered"
+        },
+        {
+          "const": "bg.error.light"
+        },
+        {
+          "const": "bg.error.pressed"
+        },
+        {
+          "const": "bg.error.subtle"
+        },
+        {
+          "const": "bg.error.subtlest"
+        },
+        {
+          "const": "bg.information"
+        },
+        {
+          "const": "bg.information.light"
+        },
+        {
+          "const": "bg.information.subtle"
+        },
+        {
+          "const": "bg.overlay"
+        },
+        {
+          "const": "bg.page"
+        },
+        {
+          "const": "bg.secondary"
+        },
+        {
+          "const": "bg.secondary.hovered"
+        },
+        {
+          "const": "bg.spinner.default"
+        },
+        {
+          "const": "bg.spinner.inverse"
+        },
+        {
+          "const": "bg.success"
+        },
+        {
+          "const": "bg.success.hovered"
+        },
+        {
+          "const": "bg.success.light"
+        },
+        {
+          "const": "bg.success.subtle"
+        },
+        {
+          "const": "bg.tertiary"
+        },
+        {
+          "const": "bg.tertiary.hovered"
+        },
+        {
+          "const": "bg.warning"
+        },
+        {
+          "const": "bg.warning.hovered"
+        },
+        {
+          "const": "bg.warning.light"
+        },
+        {
+          "const": "bg.warning.subtle"
+        },
+        {
+          "const": "current"
+        }
+      ],
+      "description": "Set the element's background color. Only accepts predefined color tokens starting with `bg.` (e.g., `bg.default`, `bg.accent`, `bg.error`), or the special values `current` and `transparent`."
+    },
+    "SprinkleProp_border": {
+      "anyOf": [
+        {
+          "const": "2"
+        },
+        {
+          "const": "0"
+        },
+        {
+          "const": "1"
+        }
+      ],
+      "description": "Set the element's `border-width` CSS property"
+    },
+    "SprinkleProp_borderB": {
+      "anyOf": [
+        {
+          "const": "2"
+        },
+        {
+          "const": "0"
+        },
+        {
+          "const": "1"
+        }
+      ],
+      "description": "Set the element's `border-bottom-width` CSS property"
+    },
+    "SprinkleProp_borderColor": {
+      "anyOf": [
+        {
+          "const": "transparent"
+        },
+        {
+          "const": "border.accent"
+        },
+        {
+          "const": "border.control"
+        },
+        {
+          "const": "border.control.hovered"
+        },
+        {
+          "const": "border.default"
+        },
+        {
+          "const": "border.disabled"
+        },
+        {
+          "const": "border.error"
+        },
+        {
+          "const": "border.focus"
+        },
+        {
+          "const": "border.focus.error"
+        },
+        {
+          "const": "border.secondary"
+        },
+        {
+          "const": "border.success"
+        },
+        {
+          "const": "border.tertiary"
+        },
+        {
+          "const": "border.warning"
+        },
+        {
+          "const": "current"
+        }
+      ],
+      "description": "Set the element's border color. Only accepts predefined color tokens starting with `border.` (e.g., `border.default`, `border.accent`, `border.error`), or the special values `current` and `transparent`."
+    },
+    "SprinkleProp_borderL": {
+      "anyOf": [
+        {
+          "const": "2"
+        },
+        {
+          "const": "0"
+        },
+        {
+          "const": "1"
+        }
+      ],
+      "description": "Set the element's `border-left-width` CSS property"
+    },
+    "SprinkleProp_borderR": {
+      "anyOf": [
+        {
+          "const": "2"
+        },
+        {
+          "const": "0"
+        },
+        {
+          "const": "1"
+        }
+      ],
+      "description": "Set the element's `border-right-width` CSS property"
+    },
+    "SprinkleProp_borderT": {
+      "anyOf": [
+        {
+          "const": "2"
+        },
+        {
+          "const": "0"
+        },
+        {
+          "const": "1"
+        }
+      ],
+      "description": "Set the element's `border-top-width` CSS property"
+    },
+    "SprinkleProp_color": {
+      "anyOf": [
+        {
+          "const": "transparent"
+        },
+        {
+          "const": "fg.accent"
+        },
+        {
+          "const": "fg.accent.hovered"
+        },
+        {
+          "const": "fg.accent.strong"
+        },
+        {
+          "const": "fg.avatar.neutral"
+        },
+        {
+          "const": "fg.avatar.purple"
+        },
+        {
+          "const": "fg.default"
+        },
+        {
+          "const": "fg.default.inverse"
+        },
+        {
+          "const": "fg.disabled"
+        },
+        {
+          "const": "fg.error"
+        },
+        {
+          "const": "fg.error.hovered"
+        },
+        {
+          "const": "fg.error.light"
+        },
+        {
+          "const": "fg.error.strong"
+        },
+        {
+          "const": "fg.information"
+        },
+        {
+          "const": "fg.information.light"
+        },
+        {
+          "const": "fg.information.strong"
+        },
+        {
+          "const": "fg.link.default"
+        },
+        {
+          "const": "fg.link.default.hovered"
+        },
+        {
+          "const": "fg.link.inverse"
+        },
+        {
+          "const": "fg.link.subtle"
+        },
+        {
+          "const": "fg.link.visited"
+        },
+        {
+          "const": "fg.secondary"
+        },
+        {
+          "const": "fg.spinner.default"
+        },
+        {
+          "const": "fg.spinner.inverse"
+        },
+        {
+          "const": "fg.success"
+        },
+        {
+          "const": "fg.success.hovered"
+        },
+        {
+          "const": "fg.success.light"
+        },
+        {
+          "const": "fg.success.strong"
+        },
+        {
+          "const": "fg.tertiary"
+        },
+        {
+          "const": "fg.warning"
+        },
+        {
+          "const": "fg.warning.hovered"
+        },
+        {
+          "const": "fg.warning.inverse"
+        },
+        {
+          "const": "fg.warning.light"
+        },
+        {
+          "const": "fg.warning.strong"
+        },
+        {
+          "const": "fg.white"
+        },
+        {
+          "const": "current"
+        }
+      ],
+      "description": "Set the element's text color. Only accepts predefined color tokens starting with `fg.` (e.g., `fg.default`, `fg.accent`, `fg.error`), or the special values `current` and `transparent`."
+    },
+    "SprinkleProp_cursor": {
+      "anyOf": [
+        {
+          "const": "default"
+        },
+        {
+          "const": "pointer"
+        },
+        {
+          "const": "text"
+        }
+      ],
+      "description": "Set the element's `cursor` CSS property"
+    },
+    "SprinkleProp_display": {
+      "anyOf": [
+        {
+          "const": "flex"
+        },
+        {
+          "const": "grid"
+        },
+        {
+          "const": "none"
+        },
+        {
+          "const": "block"
+        },
+        {
+          "const": "inline"
+        },
+        {
+          "const": "table"
+        },
+        {
+          "const": "table-cell"
+        },
+        {
+          "const": "table-row"
+        },
+        {
+          "const": "inline-block"
+        },
+        {
+          "const": "inline-flex"
+        }
+      ],
+      "description": "Set the element's `display` CSS property"
+    },
+    "SprinkleProp_flex": {
+      "anyOf": [
+        {
+          "const": "initial"
+        },
+        {
+          "const": "none"
+        },
+        {
+          "const": "auto"
+        },
+        {
+          "const": "1"
+        }
+      ],
+      "description": "Set the element's `flex` CSS property"
+    },
+    "SprinkleProp_flexDirection": {
+      "anyOf": [
+        {
+          "const": "column"
+        },
+        {
+          "const": "column-reverse"
+        },
+        {
+          "const": "row"
+        },
+        {
+          "const": "row-reverse"
+        }
+      ],
+      "description": "Set the element's `flex-direction` CSS property"
+    },
+    "SprinkleProp_flexWrap": {
+      "anyOf": [
+        {
+          "const": "nowrap"
+        },
+        {
+          "const": "wrap"
+        }
+      ],
+      "description": "Set the element's `flex-wrap` CSS property"
+    },
+    "SprinkleProp_fontFamily": {
+      "anyOf": [
+        {
+          "const": "mono"
+        },
+        {
+          "const": "sans"
+        }
+      ],
+      "description": "Set the element's font family. Only accepts predefined fontFamily tokens."
+    },
+    "SprinkleProp_fontSize": {
+      "anyOf": [
+        {
+          "const": "inherit"
+        },
+        {
+          "const": "xs"
+        },
+        {
+          "const": "sm"
+        },
+        {
+          "const": "md"
+        },
+        {
+          "const": "lg"
+        },
+        {
+          "const": "xl"
+        },
+        {
+          "const": "2xl"
+        },
+        {
+          "const": "3xl"
+        },
+        {
+          "const": "4xl"
+        }
+      ],
+      "description": "Set the element's font size and line height (both properties are set together). Only accepts predefined fontSize tokens."
+    },
+    "SprinkleProp_fontWeight": {
+      "anyOf": [
+        {
+          "const": "inherit"
+        },
+        {
+          "const": "600"
+        },
+        {
+          "const": "400"
+        },
+        {
+          "const": "500"
+        },
+        {
+          "const": "700"
+        }
+      ],
+      "description": "Set the element's `font-weight` CSS property"
+    },
+    "SprinkleProp_gap": {
+      "anyOf": [
+        {
+          "const": "2"
+        },
+        {
+          "const": "4"
+        },
+        {
+          "const": "6"
+        },
+        {
+          "const": "8"
+        },
+        {
+          "const": "12"
+        },
+        {
+          "const": "10"
+        },
+        {
+          "const": "16"
+        },
+        {
+          "const": "20"
+        },
+        {
+          "const": "24"
+        },
+        {
+          "const": "32"
+        },
+        {
+          "const": "40"
+        },
+        {
+          "const": "48"
+        },
+        {
+          "const": "80"
+        },
+        {
+          "const": "0"
+        },
+        {
+          "const": "64"
+        }
+      ],
+      "description": "Set the element's `gap` CSS property"
+    },
+    "SprinkleProp_gridColumn": {
+      "anyOf": [
+        {
+          "const": "2"
+        },
+        {
+          "const": "4"
+        },
+        {
+          "const": "1"
+        },
+        {
+          "const": "3"
+        }
+      ],
+      "description": "Set the element's size across grid columns"
+    },
+    "SprinkleProp_gridTemplateColumns": {
+      "anyOf": [
+        {
+          "const": "2"
+        },
+        {
+          "const": "4"
+        },
+        {
+          "const": "1"
+        },
+        {
+          "const": "3"
+        }
+      ],
+      "description": "Control number of columns in a grid layout"
+    },
+    "SprinkleProp_h": {
+      "anyOf": [
+        {
+          "const": "auto"
+        },
+        {
+          "const": "12"
+        },
+        {
+          "const": "10"
+        },
+        {
+          "const": "16"
+        },
+        {
+          "const": "20"
+        },
+        {
+          "const": "24"
+        },
+        {
+          "const": "32"
+        },
+        {
+          "const": "40"
+        },
+        {
+          "const": "384"
+        },
+        {
+          "const": "48"
+        },
+        {
+          "const": "80"
+        },
+        {
+          "const": "xs"
+        },
+        {
+          "const": "sm"
+        },
+        {
+          "const": "md"
+        },
+        {
+          "const": "lg"
+        },
+        {
+          "const": "xl"
+        },
+        {
+          "const": "full"
+        },
+        {
+          "const": "3xl"
+        },
+        {
+          "const": "2xs"
+        },
+        {
+          "const": "0"
+        },
+        {
+          "const": "64"
+        },
+        {
+          "const": "56"
+        },
+        {
+          "const": "224"
+        },
+        {
+          "const": "1/2"
+        },
+        {
+          "const": "1/3"
+        },
+        {
+          "const": "2/3"
+        },
+        {
+          "const": "1/4"
+        },
+        {
+          "const": "3/4"
+        },
+        {
+          "const": "fit"
+        },
+        {
+          "const": "max"
+        },
+        {
+          "const": "min"
+        }
+      ],
+      "description": "Set the element's height. Only accepts predefined size tokens."
+    },
+    "SprinkleProp_justifyContent": {
+      "anyOf": [
+        {
+          "const": "normal"
+        },
+        {
+          "const": "space-around"
+        },
+        {
+          "const": "space-between"
+        },
+        {
+          "const": "space-evenly"
+        },
+        {
+          "const": "stretch"
+        },
+        {
+          "const": "center"
+        },
+        {
+          "const": "end"
+        },
+        {
+          "const": "flex-end"
+        },
+        {
+          "const": "flex-start"
+        },
+        {
+          "const": "start"
+        }
+      ],
+      "description": "Set the element's `justify-content` CSS property"
+    },
+    "SprinkleProp_justifyItems": {
+      "anyOf": [
+        {
+          "const": "normal"
+        },
+        {
+          "const": "stretch"
+        },
+        {
+          "const": "center"
+        },
+        {
+          "const": "end"
+        },
+        {
+          "const": "start"
+        }
+      ],
+      "description": "Set the element's `justify-items` CSS property"
+    },
+    "SprinkleProp_m": {
+      "anyOf": [
+        {
+          "const": "auto"
+        },
+        {
+          "const": "2"
+        },
+        {
+          "const": "4"
+        },
+        {
+          "const": "6"
+        },
+        {
+          "const": "8"
+        },
+        {
+          "const": "12"
+        },
+        {
+          "const": "10"
+        },
+        {
+          "const": "16"
+        },
+        {
+          "const": "20"
+        },
+        {
+          "const": "24"
+        },
+        {
+          "const": "32"
+        },
+        {
+          "const": "40"
+        },
+        {
+          "const": "48"
+        },
+        {
+          "const": "80"
+        },
+        {
+          "const": "0"
+        },
+        {
+          "const": "64"
+        }
+      ],
+      "description": "Set the element's margin on all sides. Only accepts predefined spacing tokens."
+    },
+    "SprinkleProp_maxH": {
+      "anyOf": [
+        {
+          "const": "xs"
+        },
+        {
+          "const": "sm"
+        },
+        {
+          "const": "md"
+        },
+        {
+          "const": "lg"
+        },
+        {
+          "const": "full"
+        }
+      ],
+      "description": "Set the element's maximum height. Only accepts predefined maxSize tokens."
+    },
+    "SprinkleProp_maxW": {
+      "anyOf": [
+        {
+          "const": "xs"
+        },
+        {
+          "const": "sm"
+        },
+        {
+          "const": "md"
+        },
+        {
+          "const": "lg"
+        },
+        {
+          "const": "full"
+        }
+      ],
+      "description": "Set the element's maximum width. Only accepts predefined maxSize tokens."
+    },
+    "SprinkleProp_mb": {
+      "anyOf": [
+        {
+          "const": "auto"
+        },
+        {
+          "const": "2"
+        },
+        {
+          "const": "4"
+        },
+        {
+          "const": "6"
+        },
+        {
+          "const": "8"
+        },
+        {
+          "const": "12"
+        },
+        {
+          "const": "10"
+        },
+        {
+          "const": "16"
+        },
+        {
+          "const": "20"
+        },
+        {
+          "const": "24"
+        },
+        {
+          "const": "32"
+        },
+        {
+          "const": "40"
+        },
+        {
+          "const": "48"
+        },
+        {
+          "const": "80"
+        },
+        {
+          "const": "0"
+        },
+        {
+          "const": "64"
+        }
+      ],
+      "description": "Set the element's bottom margin. Only accepts predefined spacing tokens."
+    },
+    "SprinkleProp_ml": {
+      "anyOf": [
+        {
+          "const": "auto"
+        },
+        {
+          "const": "2"
+        },
+        {
+          "const": "4"
+        },
+        {
+          "const": "6"
+        },
+        {
+          "const": "8"
+        },
+        {
+          "const": "12"
+        },
+        {
+          "const": "10"
+        },
+        {
+          "const": "16"
+        },
+        {
+          "const": "20"
+        },
+        {
+          "const": "24"
+        },
+        {
+          "const": "32"
+        },
+        {
+          "const": "40"
+        },
+        {
+          "const": "48"
+        },
+        {
+          "const": "80"
+        },
+        {
+          "const": "0"
+        },
+        {
+          "const": "64"
+        }
+      ],
+      "description": "Set the element's left margin. Only accepts predefined spacing tokens."
+    },
+    "SprinkleProp_mr": {
+      "anyOf": [
+        {
+          "const": "auto"
+        },
+        {
+          "const": "2"
+        },
+        {
+          "const": "4"
+        },
+        {
+          "const": "6"
+        },
+        {
+          "const": "8"
+        },
+        {
+          "const": "12"
+        },
+        {
+          "const": "10"
+        },
+        {
+          "const": "16"
+        },
+        {
+          "const": "20"
+        },
+        {
+          "const": "24"
+        },
+        {
+          "const": "32"
+        },
+        {
+          "const": "40"
+        },
+        {
+          "const": "48"
+        },
+        {
+          "const": "80"
+        },
+        {
+          "const": "0"
+        },
+        {
+          "const": "64"
+        }
+      ],
+      "description": "Set the element's right margin. Only accepts predefined spacing tokens."
+    },
+    "SprinkleProp_mt": {
+      "anyOf": [
+        {
+          "const": "auto"
+        },
+        {
+          "const": "2"
+        },
+        {
+          "const": "4"
+        },
+        {
+          "const": "6"
+        },
+        {
+          "const": "8"
+        },
+        {
+          "const": "12"
+        },
+        {
+          "const": "10"
+        },
+        {
+          "const": "16"
+        },
+        {
+          "const": "20"
+        },
+        {
+          "const": "24"
+        },
+        {
+          "const": "32"
+        },
+        {
+          "const": "40"
+        },
+        {
+          "const": "48"
+        },
+        {
+          "const": "80"
+        },
+        {
+          "const": "0"
+        },
+        {
+          "const": "64"
+        }
+      ],
+      "description": "Set the element's top margin. Only accepts predefined spacing tokens."
+    },
+    "SprinkleProp_mx": {
+      "anyOf": [
+        {
+          "const": "auto"
+        },
+        {
+          "const": "2"
+        },
+        {
+          "const": "4"
+        },
+        {
+          "const": "6"
+        },
+        {
+          "const": "8"
+        },
+        {
+          "const": "12"
+        },
+        {
+          "const": "10"
+        },
+        {
+          "const": "16"
+        },
+        {
+          "const": "20"
+        },
+        {
+          "const": "24"
+        },
+        {
+          "const": "32"
+        },
+        {
+          "const": "40"
+        },
+        {
+          "const": "48"
+        },
+        {
+          "const": "80"
+        },
+        {
+          "const": "0"
+        },
+        {
+          "const": "64"
+        }
+      ],
+      "description": "Set the element's left and right margin. Only accepts predefined spacing tokens."
+    },
+    "SprinkleProp_my": {
+      "anyOf": [
+        {
+          "const": "auto"
+        },
+        {
+          "const": "2"
+        },
+        {
+          "const": "4"
+        },
+        {
+          "const": "6"
+        },
+        {
+          "const": "8"
+        },
+        {
+          "const": "12"
+        },
+        {
+          "const": "10"
+        },
+        {
+          "const": "16"
+        },
+        {
+          "const": "20"
+        },
+        {
+          "const": "24"
+        },
+        {
+          "const": "32"
+        },
+        {
+          "const": "40"
+        },
+        {
+          "const": "48"
+        },
+        {
+          "const": "80"
+        },
+        {
+          "const": "0"
+        },
+        {
+          "const": "64"
+        }
+      ],
+      "description": "Set the element's top and bottom margin. Only accepts predefined spacing tokens."
+    },
+    "SprinkleProp_objectFit": {
+      "anyOf": [
+        {
+          "const": "contain"
+        },
+        {
+          "const": "fill"
+        },
+        {
+          "const": "none"
+        },
+        {
+          "const": "cover"
+        }
+      ],
+      "description": "Set the element's `object-fit` CSS property"
+    },
+    "SprinkleProp_overflow": {
+      "anyOf": [
+        {
+          "const": "auto"
+        },
+        {
+          "const": "hidden"
+        },
+        {
+          "const": "visible"
+        }
+      ],
+      "description": "Set the element's `overflow` CSS property"
+    },
+    "SprinkleProp_overflowX": {
+      "anyOf": [
+        {
+          "const": "auto"
+        },
+        {
+          "const": "hidden"
+        },
+        {
+          "const": "visible"
+        }
+      ],
+      "description": "Set the element's `overflow-x` CSS property"
+    },
+    "SprinkleProp_overflowY": {
+      "anyOf": [
+        {
+          "const": "auto"
+        },
+        {
+          "const": "hidden"
+        },
+        {
+          "const": "visible"
+        }
+      ],
+      "description": "Set the element's `overflow-y` CSS property"
+    },
+    "SprinkleProp_p": {
+      "anyOf": [
+        {
+          "const": "2"
+        },
+        {
+          "const": "4"
+        },
+        {
+          "const": "6"
+        },
+        {
+          "const": "8"
+        },
+        {
+          "const": "12"
+        },
+        {
+          "const": "10"
+        },
+        {
+          "const": "16"
+        },
+        {
+          "const": "20"
+        },
+        {
+          "const": "24"
+        },
+        {
+          "const": "32"
+        },
+        {
+          "const": "40"
+        },
+        {
+          "const": "48"
+        },
+        {
+          "const": "80"
+        },
+        {
+          "const": "0"
+        },
+        {
+          "const": "64"
+        }
+      ],
+      "description": "Set the element's padding on all sides. Only accepts predefined spacing tokens."
+    },
+    "SprinkleProp_pb": {
+      "anyOf": [
+        {
+          "const": "2"
+        },
+        {
+          "const": "4"
+        },
+        {
+          "const": "6"
+        },
+        {
+          "const": "8"
+        },
+        {
+          "const": "12"
+        },
+        {
+          "const": "10"
+        },
+        {
+          "const": "16"
+        },
+        {
+          "const": "20"
+        },
+        {
+          "const": "24"
+        },
+        {
+          "const": "32"
+        },
+        {
+          "const": "40"
+        },
+        {
+          "const": "48"
+        },
+        {
+          "const": "80"
+        },
+        {
+          "const": "0"
+        },
+        {
+          "const": "64"
+        }
+      ],
+      "description": "Set the element's bottom padding. Only accepts predefined spacing tokens."
+    },
+    "SprinkleProp_pl": {
+      "anyOf": [
+        {
+          "const": "2"
+        },
+        {
+          "const": "4"
+        },
+        {
+          "const": "6"
+        },
+        {
+          "const": "8"
+        },
+        {
+          "const": "12"
+        },
+        {
+          "const": "10"
+        },
+        {
+          "const": "16"
+        },
+        {
+          "const": "20"
+        },
+        {
+          "const": "24"
+        },
+        {
+          "const": "32"
+        },
+        {
+          "const": "40"
+        },
+        {
+          "const": "48"
+        },
+        {
+          "const": "80"
+        },
+        {
+          "const": "0"
+        },
+        {
+          "const": "64"
+        }
+      ],
+      "description": "Set the element's left padding. Only accepts predefined spacing tokens."
+    },
+    "SprinkleProp_placeItems": {
+      "anyOf": [
+        {
+          "const": "center"
+        }
+      ],
+      "description": "Set the element's `place-items` CSS property"
+    },
+    "SprinkleProp_pointerEvents": {
+      "anyOf": [
+        {
+          "const": "none"
+        },
+        {
+          "const": "auto"
+        }
+      ],
+      "description": "Set the element's `pointer-events` CSS property"
+    },
+    "SprinkleProp_pr": {
+      "anyOf": [
+        {
+          "const": "2"
+        },
+        {
+          "const": "4"
+        },
+        {
+          "const": "6"
+        },
+        {
+          "const": "8"
+        },
+        {
+          "const": "12"
+        },
+        {
+          "const": "10"
+        },
+        {
+          "const": "16"
+        },
+        {
+          "const": "20"
+        },
+        {
+          "const": "24"
+        },
+        {
+          "const": "32"
+        },
+        {
+          "const": "40"
+        },
+        {
+          "const": "48"
+        },
+        {
+          "const": "80"
+        },
+        {
+          "const": "0"
+        },
+        {
+          "const": "64"
+        }
+      ],
+      "description": "Set the element's right padding. Only accepts predefined spacing tokens."
+    },
+    "SprinkleProp_pt": {
+      "anyOf": [
+        {
+          "const": "2"
+        },
+        {
+          "const": "4"
+        },
+        {
+          "const": "6"
+        },
+        {
+          "const": "8"
+        },
+        {
+          "const": "12"
+        },
+        {
+          "const": "10"
+        },
+        {
+          "const": "16"
+        },
+        {
+          "const": "20"
+        },
+        {
+          "const": "24"
+        },
+        {
+          "const": "32"
+        },
+        {
+          "const": "40"
+        },
+        {
+          "const": "48"
+        },
+        {
+          "const": "80"
+        },
+        {
+          "const": "0"
+        },
+        {
+          "const": "64"
+        }
+      ],
+      "description": "Set the element's top padding. Only accepts predefined spacing tokens."
+    },
+    "SprinkleProp_px": {
+      "anyOf": [
+        {
+          "const": "2"
+        },
+        {
+          "const": "4"
+        },
+        {
+          "const": "6"
+        },
+        {
+          "const": "8"
+        },
+        {
+          "const": "12"
+        },
+        {
+          "const": "10"
+        },
+        {
+          "const": "16"
+        },
+        {
+          "const": "20"
+        },
+        {
+          "const": "24"
+        },
+        {
+          "const": "32"
+        },
+        {
+          "const": "40"
+        },
+        {
+          "const": "48"
+        },
+        {
+          "const": "80"
+        },
+        {
+          "const": "0"
+        },
+        {
+          "const": "64"
+        }
+      ],
+      "description": "Set the element's left and right padding. Only accepts predefined spacing tokens."
+    },
+    "SprinkleProp_py": {
+      "anyOf": [
+        {
+          "const": "2"
+        },
+        {
+          "const": "4"
+        },
+        {
+          "const": "6"
+        },
+        {
+          "const": "8"
+        },
+        {
+          "const": "12"
+        },
+        {
+          "const": "10"
+        },
+        {
+          "const": "16"
+        },
+        {
+          "const": "20"
+        },
+        {
+          "const": "24"
+        },
+        {
+          "const": "32"
+        },
+        {
+          "const": "40"
+        },
+        {
+          "const": "48"
+        },
+        {
+          "const": "80"
+        },
+        {
+          "const": "0"
+        },
+        {
+          "const": "64"
+        }
+      ],
+      "description": "Set the element's top and bottom padding. Only accepts predefined spacing tokens."
+    },
+    "SprinkleProp_rounded": {
+      "anyOf": [
+        {
+          "const": "inherit"
+        },
+        {
+          "const": "none"
+        },
+        {
+          "const": "xs"
+        },
+        {
+          "const": "sm"
+        },
+        {
+          "const": "md"
+        },
+        {
+          "const": "lg"
+        },
+        {
+          "const": "xl"
+        },
+        {
+          "const": "full"
+        }
+      ],
+      "description": "Set the element's border radius. Only accepts predefined borderRadius tokens."
+    },
+    "SprinkleProp_shadow": {
+      "anyOf": [
+        {
+          "const": "none"
+        },
+        {
+          "const": "sm"
+        },
+        {
+          "const": "md"
+        },
+        {
+          "const": "lg"
+        },
+        {
+          "const": "xl"
+        }
+      ],
+      "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens."
+    },
+    "SprinkleProp_size": {
+      "anyOf": [
+        {
+          "const": "auto"
+        },
+        {
+          "const": "12"
+        },
+        {
+          "const": "10"
+        },
+        {
+          "const": "16"
+        },
+        {
+          "const": "20"
+        },
+        {
+          "const": "24"
+        },
+        {
+          "const": "32"
+        },
+        {
+          "const": "40"
+        },
+        {
+          "const": "384"
+        },
+        {
+          "const": "48"
+        },
+        {
+          "const": "80"
+        },
+        {
+          "const": "xs"
+        },
+        {
+          "const": "sm"
+        },
+        {
+          "const": "md"
+        },
+        {
+          "const": "lg"
+        },
+        {
+          "const": "xl"
+        },
+        {
+          "const": "full"
+        },
+        {
+          "const": "3xl"
+        },
+        {
+          "const": "2xs"
+        },
+        {
+          "const": "0"
+        },
+        {
+          "const": "64"
+        },
+        {
+          "const": "56"
+        },
+        {
+          "const": "224"
+        },
+        {
+          "const": "1/2"
+        },
+        {
+          "const": "1/3"
+        },
+        {
+          "const": "2/3"
+        },
+        {
+          "const": "1/4"
+        },
+        {
+          "const": "3/4"
+        },
+        {
+          "const": "fit"
+        },
+        {
+          "const": "max"
+        },
+        {
+          "const": "min"
+        }
+      ],
+      "description": "Set the element's width and height. Only accepts predefined size tokens.\n\nWhen width and height are the same, use `size` instead of setting both\n`w` and `h` separately (e.g., prefer `size=\"24\"` over `w=\"24\" h=\"24\"`)."
+    },
+    "SprinkleProp_textAlign": {
+      "anyOf": [
+        {
+          "const": "center"
+        },
+        {
+          "const": "end"
+        },
+        {
+          "const": "start"
+        },
+        {
+          "const": "justify"
+        }
+      ],
+      "description": "Set the element's `text-align` CSS property"
+    },
+    "SprinkleProp_textTransform": {
+      "anyOf": [
+        {
+          "const": "none"
+        },
+        {
+          "const": "capitalize"
+        },
+        {
+          "const": "uppercase"
+        }
+      ],
+      "description": "Set the element's `text-transform` CSS property"
+    },
+    "SprinkleProp_transition": {
+      "anyOf": [
+        {
+          "const": "opacity"
+        },
+        {
+          "const": "transform"
+        },
+        {
+          "const": "all"
+        },
+        {
+          "const": "none"
+        },
+        {
+          "const": "colors"
+        }
+      ],
+      "description": "Control which CSS properties should transition"
+    },
+    "SprinkleProp_w": {
+      "anyOf": [
+        {
+          "const": "auto"
+        },
+        {
+          "const": "12"
+        },
+        {
+          "const": "10"
+        },
+        {
+          "const": "16"
+        },
+        {
+          "const": "20"
+        },
+        {
+          "const": "24"
+        },
+        {
+          "const": "32"
+        },
+        {
+          "const": "40"
+        },
+        {
+          "const": "384"
+        },
+        {
+          "const": "48"
+        },
+        {
+          "const": "80"
+        },
+        {
+          "const": "xs"
+        },
+        {
+          "const": "sm"
+        },
+        {
+          "const": "md"
+        },
+        {
+          "const": "lg"
+        },
+        {
+          "const": "xl"
+        },
+        {
+          "const": "full"
+        },
+        {
+          "const": "3xl"
+        },
+        {
+          "const": "2xs"
+        },
+        {
+          "const": "0"
+        },
+        {
+          "const": "64"
+        },
+        {
+          "const": "56"
+        },
+        {
+          "const": "224"
+        },
+        {
+          "const": "1/2"
+        },
+        {
+          "const": "1/3"
+        },
+        {
+          "const": "2/3"
+        },
+        {
+          "const": "1/4"
+        },
+        {
+          "const": "3/4"
+        },
+        {
+          "const": "fit"
+        },
+        {
+          "const": "max"
+        },
+        {
+          "const": "min"
+        }
+      ],
+      "description": "Set the element's width. Only accepts predefined size tokens."
+    },
+    "SprinkleProp_whiteSpace": {
+      "anyOf": [
+        {
+          "const": "nowrap"
+        }
+      ],
+      "description": "Set the element's `white-space` CSS property"
+    },
+    "SprinkleProp_z": {
+      "anyOf": [
+        {
+          "const": "auto"
+        },
+        {
+          "const": "tooltip"
+        },
+        {
+          "const": "10"
+        },
+        {
+          "const": "20"
+        },
+        {
+          "const": "popover"
+        },
+        {
+          "const": "toast"
+        },
+        {
+          "const": "0"
+        },
+        {
+          "const": "30"
+        }
+      ],
+      "description": "Set the element's stacking order. Only accepts predefined zIndex tokens (e.g., popover, toast, tooltip) or numeric values (0, 10, 20, 30, auto)."
+    },
+    "ProteusAtomicCondition": {
+      "anyOf": [
+        {
+          "properties": {
+            "!=": {
+              "description": "Inequality comparison",
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "boolean"
+                  },
+                  {
+                    "type": "null"
+                  },
+                  {
+                    "$ref": "#/definitions/ProteusValue"
+                  }
+                ]
+              },
+              "maxItems": 2,
+              "minItems": 2,
+              "type": "array"
+            }
+          },
+          "required": ["!="],
+          "type": "object"
+        },
+        {
+          "properties": {
+            "<": {
+              "description": "Less than comparison",
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "boolean"
+                  },
+                  {
+                    "type": "null"
+                  },
+                  {
+                    "$ref": "#/definitions/ProteusValue"
+                  }
+                ]
+              },
+              "maxItems": 2,
+              "minItems": 2,
+              "type": "array"
+            }
+          },
+          "required": ["<"],
+          "type": "object"
+        },
+        {
+          "properties": {
+            "<=": {
+              "description": "Less than or equal comparison",
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "boolean"
+                  },
+                  {
+                    "type": "null"
+                  },
+                  {
+                    "$ref": "#/definitions/ProteusValue"
+                  }
+                ]
+              },
+              "maxItems": 2,
+              "minItems": 2,
+              "type": "array"
+            }
+          },
+          "required": ["<="],
+          "type": "object"
+        },
+        {
+          "properties": {
+            "==": {
+              "description": "Equality comparison",
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "boolean"
+                  },
+                  {
+                    "type": "null"
+                  },
+                  {
+                    "$ref": "#/definitions/ProteusValue"
+                  }
+                ]
+              },
+              "maxItems": 2,
+              "minItems": 2,
+              "type": "array"
+            }
+          },
+          "required": ["=="],
+          "type": "object"
+        },
+        {
+          "properties": {
+            ">": {
+              "description": "Greater than comparison",
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "boolean"
+                  },
+                  {
+                    "type": "null"
+                  },
+                  {
+                    "$ref": "#/definitions/ProteusValue"
+                  }
+                ]
+              },
+              "maxItems": 2,
+              "minItems": 2,
+              "type": "array"
+            }
+          },
+          "required": [">"],
+          "type": "object"
+        },
+        {
+          "properties": {
+            ">=": {
+              "description": "Greater than or equal comparison",
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "boolean"
+                  },
+                  {
+                    "type": "null"
+                  },
+                  {
+                    "$ref": "#/definitions/ProteusValue"
+                  }
+                ]
+              },
+              "maxItems": 2,
+              "minItems": 2,
+              "type": "array"
+            }
+          },
+          "required": [">="],
+          "type": "object"
+        },
+        {
+          "properties": {
+            "!!": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                },
+                {
+                  "$ref": "#/definitions/ProteusValue"
+                }
+              ],
+              "description": "Truthy check - returns true if value is truthy (not null, undefined, false, 0, or empty string)"
+            }
+          },
+          "required": ["!!"],
+          "type": "object"
+        }
+      ],
+      "description": "Simple comparison condition - single operator only (used in OR arrays to avoid recursion)"
+    },
+    "ProteusCondition": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/ProteusAtomicCondition"
+        },
+        {
+          "properties": {
+            "or": {
+              "description": "Logical OR - returns true if any condition is true",
+              "items": {
+                "anyOf": [
+                  {
+                    "properties": {
+                      "and": {
+                        "description": "Logical AND - returns true if all conditions are true",
+                        "items": {
+                          "$ref": "#/definitions/ProteusAtomicCondition"
+                        },
+                        "minItems": 1,
+                        "type": "array"
+                      }
+                    },
+                    "required": ["and"],
+                    "type": "object"
+                  },
+                  {
+                    "$ref": "#/definitions/ProteusAtomicCondition"
+                  }
+                ]
+              },
+              "minItems": 1,
+              "type": "array"
+            }
+          },
+          "required": ["or"],
+          "type": "object"
+        }
+      ],
+      "description": "Condition for Show component. Can be a comparison operator, logical AND, or logical OR. Supports nesting."
+    },
+    "ProteusDocument": {
+      "examples": [
+        {
+          "$type": "Document",
+          "appName": "Opal",
+          "body": [],
+          "title": "New Document"
+        },
+        {
+          "$type": "Document",
+          "actions": [
+            {
+              "$type": "Action",
+              "appearance": "primary",
+              "children": "Submit",
+              "onClick": {
+                "tool": "submit_feedback"
+              }
+            }
+          ],
+          "appName": "Opal",
+          "body": [
+            {
+              "$type": "Group",
+              "children": [
+                {
+                  "$type": "Field",
+                  "children": {
+                    "$type": "Input",
+                    "name": "name",
+                    "placeholder": "Enter your name"
+                  },
+                  "label": "Your Name"
+                },
+                {
+                  "$type": "Field",
+                  "children": {
+                    "$type": "Textarea",
+                    "name": "feedback",
+                    "placeholder": "What's on your mind?",
+                    "rows": 4
+                  },
+                  "label": "Feedback"
+                }
+              ],
+              "flexDirection": "column",
+              "gap": "16"
+            }
+          ],
+          "subtitle": "We'd love to hear from you",
+          "title": "Submit Feedback"
+        },
+        {
+          "$type": "Document",
+          "actions": [
+            {
+              "$type": "Action",
+              "appearance": "primary",
+              "children": "Create Test Plan",
+              "onClick": {
+                "tool": "create_test_plan"
+              }
+            }
+          ],
+          "appName": "Opal",
+          "body": [
+            {
+              "$type": "Group",
+              "children": [
+                {
+                  "$type": "Heading",
+                  "children": "1. Configure your test",
+                  "fontSize": "md",
+                  "fontWeight": "600",
+                  "level": "2"
+                },
+                {
+                  "$type": "Field",
+                  "children": {
+                    "$type": "Select",
+                    "children": [
+                      {
+                        "$type": "SelectTrigger",
+                        "w": "full"
+                      },
+                      {
+                        "$type": "SelectContent"
+                      }
+                    ],
+                    "name": "target_by",
+                    "options": [
+                      {
+                        "label": "URL",
+                        "value": "url"
+                      },
+                      {
+                        "label": "CSS Selector",
+                        "value": "selector"
+                      }
+                    ]
+                  },
+                  "label": "Target by"
+                },
+                {
+                  "$type": "Show",
+                  "children": {
+                    "$type": "Field",
+                    "children": {
+                      "$type": "Input",
+                      "name": "url",
+                      "placeholder": "https://example.com"
+                    },
+                    "label": "URL"
+                  },
+                  "when": {
+                    "==": [
+                      {
+                        "$type": "Value",
+                        "path": "/target_by"
+                      },
+                      "url"
+                    ]
+                  }
+                },
+                {
+                  "$type": "Show",
+                  "children": {
+                    "$type": "Field",
+                    "children": {
+                      "$type": "Input",
+                      "name": "selector",
+                      "placeholder": "#main-content"
+                    },
+                    "label": "CSS Selector"
+                  },
+                  "when": {
+                    "==": [
+                      {
+                        "$type": "Value",
+                        "path": "/target_by"
+                      },
+                      "selector"
+                    ]
+                  }
+                }
+              ],
+              "flexDirection": "column",
+              "gap": "16"
+            }
+          ],
+          "title": "Create Test Plan"
+        }
+      ],
+      "properties": {
+        "$type": {
+          "const": "Document"
+        },
+        "actions": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ProteusNode"
+            }
+          ],
+          "description": "Actions available for this document"
+        },
+        "appIcon": {
+          "description": "A visual representation of the application",
+          "type": "string"
+        },
+        "appName": {
+          "description": "The official name of the application",
+          "type": "string"
+        },
+        "blocking": {
+          "description": "If true, hides chat prompt and forces user interaction with document. User can press ESC or close to abandon.",
+          "type": "boolean"
+        },
+        "body": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ProteusNode"
+            }
+          ]
+        },
+        "subtitle": {
+          "description": "A brief description or tagline that provides additional context about the Proteus document's purpose.",
+          "type": "string"
+        },
+        "title": {
+          "description": "A concise heading that encapsulates the essence of the Proteus document's content or intended action.",
+          "type": "string"
+        }
+      },
+      "required": ["$type", "appName", "body", "title"],
+      "type": "object"
+    },
+    "ProteusElement": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/ProteusAction"
+        },
+        {
+          "$ref": "#/definitions/ProteusCancelAction"
+        },
+        {
+          "$ref": "#/definitions/ProteusField"
+        },
+        {
+          "$ref": "#/definitions/ProteusGroup"
+        },
+        {
+          "$ref": "#/definitions/ProteusHeading"
+        },
+        {
+          "$ref": "#/definitions/ProteusImage"
+        },
+        {
+          "$ref": "#/definitions/ProteusInput"
+        },
+        {
+          "$ref": "#/definitions/ProteusLink"
+        },
+        {
+          "$ref": "#/definitions/ProteusMap"
+        },
+        {
+          "$ref": "#/definitions/ProteusRange"
+        },
+        {
+          "$ref": "#/definitions/ProteusSelect"
+        },
+        {
+          "$ref": "#/definitions/ProteusSelectContent"
+        },
+        {
+          "$ref": "#/definitions/ProteusSelectTrigger"
+        },
+        {
+          "$ref": "#/definitions/ProteusSeparator"
+        },
+        {
+          "$ref": "#/definitions/ProteusShow"
+        },
+        {
+          "$ref": "#/definitions/ProteusText"
+        },
+        {
+          "$ref": "#/definitions/ProteusTextarea"
+        },
+        {
+          "$ref": "#/definitions/ProteusValue"
+        }
+      ],
+      "description": "A single Proteus UI component element identified by its $type discriminator"
+    },
+    "ProteusEventHandler": {
+      "anyOf": [
+        {
+          "description": "Server-side tool call",
+          "properties": {
+            "tool": {
+              "description": "Name of registered tool to call",
+              "type": "string"
+            }
+          },
+          "required": ["tool"],
+          "type": "object"
+        },
+        {
+          "description": "Client-side message action",
+          "properties": {
+            "message": {
+              "description": "Message to send to LLM via sendNewMessage()",
+              "type": "string"
+            }
+          },
+          "required": ["message"],
+          "type": "object"
+        }
+      ],
+      "description": "Handler for user interactions - either a server-side tool call or client-side message"
+    },
+    "ProteusNode": {
+      "anyOf": [
+        {
+          "items": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/definitions/ProteusElement"
+              }
+            ]
+          },
+          "type": "array"
+        },
+        {
+          "type": "string"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/definitions/ProteusElement"
+        }
+      ],
+      "description": "A Proteus node can be a string, number, boolean, null, a single element, or an array of these types (similar to ReactNode)"
+    },
+    "ProteusAction": {
+      "examples": [
+        {
+          "$type": "Action",
+          "appearance": "primary",
+          "children": "Action"
+        }
+      ],
+      "properties": {
+        "$type": {
+          "const": "Action"
+        },
+        "alignItems": {
+          "$ref": "#/definitions/SprinkleProp_alignItems"
+        },
+        "alignSelf": {
+          "$ref": "#/definitions/SprinkleProp_alignSelf"
+        },
+        "animation": {
+          "$ref": "#/definitions/SprinkleProp_animation"
+        },
+        "appearance": {
+          "anyOf": [
+            {
+              "const": "default"
+            },
+            {
+              "const": "danger"
+            },
+            {
+              "const": "primary"
+            },
+            {
+              "const": "subtle"
+            },
+            {
+              "const": "danger-outline"
+            },
+            {
+              "const": "default-opal"
+            },
+            {
+              "const": "inverse"
+            },
+            {
+              "const": "primary-opal"
+            }
+          ],
+          "description": "Control the appearance by selecting between the different button types."
+        },
+        "backgroundImage": {
+          "$ref": "#/definitions/SprinkleProp_backgroundImage"
+        },
+        "bg": {
+          "$ref": "#/definitions/SprinkleProp_bg"
+        },
+        "border": {
+          "$ref": "#/definitions/SprinkleProp_border"
+        },
+        "borderB": {
+          "$ref": "#/definitions/SprinkleProp_borderB"
+        },
+        "borderColor": {
+          "$ref": "#/definitions/SprinkleProp_borderColor"
+        },
+        "borderL": {
+          "$ref": "#/definitions/SprinkleProp_borderL"
+        },
+        "borderR": {
+          "$ref": "#/definitions/SprinkleProp_borderR"
+        },
+        "borderT": {
+          "$ref": "#/definitions/SprinkleProp_borderT"
+        },
+        "children": {
+          "$ref": "#/definitions/ProteusNode"
+        },
+        "color": {
+          "$ref": "#/definitions/SprinkleProp_color"
+        },
+        "cursor": {
+          "$ref": "#/definitions/SprinkleProp_cursor"
+        },
+        "display": {
+          "$ref": "#/definitions/SprinkleProp_display"
+        },
+        "flex": {
+          "$ref": "#/definitions/SprinkleProp_flex"
+        },
+        "flexDirection": {
+          "$ref": "#/definitions/SprinkleProp_flexDirection"
+        },
+        "flexWrap": {
+          "$ref": "#/definitions/SprinkleProp_flexWrap"
+        },
+        "fontFamily": {
+          "$ref": "#/definitions/SprinkleProp_fontFamily"
+        },
+        "fontSize": {
+          "$ref": "#/definitions/SprinkleProp_fontSize"
+        },
+        "fontWeight": {
+          "$ref": "#/definitions/SprinkleProp_fontWeight"
+        },
+        "gap": {
+          "$ref": "#/definitions/SprinkleProp_gap"
+        },
+        "gridColumn": {
+          "$ref": "#/definitions/SprinkleProp_gridColumn"
+        },
+        "gridTemplateColumns": {
+          "$ref": "#/definitions/SprinkleProp_gridTemplateColumns"
+        },
+        "h": {
+          "$ref": "#/definitions/SprinkleProp_h"
+        },
+        "justifyContent": {
+          "$ref": "#/definitions/SprinkleProp_justifyContent"
+        },
+        "justifyItems": {
+          "$ref": "#/definitions/SprinkleProp_justifyItems"
+        },
+        "m": {
+          "$ref": "#/definitions/SprinkleProp_m"
+        },
+        "maxH": {
+          "$ref": "#/definitions/SprinkleProp_maxH"
+        },
+        "maxW": {
+          "$ref": "#/definitions/SprinkleProp_maxW"
+        },
+        "mb": {
+          "$ref": "#/definitions/SprinkleProp_mb"
+        },
+        "ml": {
+          "$ref": "#/definitions/SprinkleProp_ml"
+        },
+        "mr": {
+          "$ref": "#/definitions/SprinkleProp_mr"
+        },
+        "mt": {
+          "$ref": "#/definitions/SprinkleProp_mt"
+        },
+        "mx": {
+          "$ref": "#/definitions/SprinkleProp_mx"
+        },
+        "my": {
+          "$ref": "#/definitions/SprinkleProp_my"
+        },
+        "objectFit": {
+          "$ref": "#/definitions/SprinkleProp_objectFit"
+        },
+        "overflow": {
+          "$ref": "#/definitions/SprinkleProp_overflow"
+        },
+        "overflowX": {
+          "$ref": "#/definitions/SprinkleProp_overflowX"
+        },
+        "overflowY": {
+          "$ref": "#/definitions/SprinkleProp_overflowY"
+        },
+        "p": {
+          "$ref": "#/definitions/SprinkleProp_p"
+        },
+        "pb": {
+          "$ref": "#/definitions/SprinkleProp_pb"
+        },
+        "pl": {
+          "$ref": "#/definitions/SprinkleProp_pl"
+        },
+        "placeItems": {
+          "$ref": "#/definitions/SprinkleProp_placeItems"
+        },
+        "pointerEvents": {
+          "$ref": "#/definitions/SprinkleProp_pointerEvents"
+        },
+        "pr": {
+          "$ref": "#/definitions/SprinkleProp_pr"
+        },
+        "pt": {
+          "$ref": "#/definitions/SprinkleProp_pt"
+        },
+        "px": {
+          "$ref": "#/definitions/SprinkleProp_px"
+        },
+        "py": {
+          "$ref": "#/definitions/SprinkleProp_py"
+        },
+        "rounded": {
+          "$ref": "#/definitions/SprinkleProp_rounded"
+        },
+        "shadow": {
+          "$ref": "#/definitions/SprinkleProp_shadow"
+        },
+        "textAlign": {
+          "$ref": "#/definitions/SprinkleProp_textAlign"
+        },
+        "textTransform": {
+          "$ref": "#/definitions/SprinkleProp_textTransform"
+        },
+        "transition": {
+          "$ref": "#/definitions/SprinkleProp_transition"
+        },
+        "w": {
+          "$ref": "#/definitions/SprinkleProp_w"
+        },
+        "whiteSpace": {
+          "$ref": "#/definitions/SprinkleProp_whiteSpace"
+        },
+        "z": {
+          "$ref": "#/definitions/SprinkleProp_z"
+        },
+        "onClick": {
+          "$ref": "#/definitions/ProteusEventHandler",
+          "description": "Action triggered when button is clicked"
+        }
+      },
+      "required": ["$type"],
+      "type": "object"
+    },
+    "ProteusCancelAction": {
+      "examples": [
+        {
+          "$type": "CancelAction",
+          "children": "Cancel"
+        }
+      ],
+      "properties": {
+        "$type": {
+          "const": "CancelAction"
+        },
+        "alignItems": {
+          "$ref": "#/definitions/SprinkleProp_alignItems"
+        },
+        "alignSelf": {
+          "$ref": "#/definitions/SprinkleProp_alignSelf"
+        },
+        "animation": {
+          "$ref": "#/definitions/SprinkleProp_animation"
+        },
+        "backgroundImage": {
+          "$ref": "#/definitions/SprinkleProp_backgroundImage"
+        },
+        "bg": {
+          "$ref": "#/definitions/SprinkleProp_bg"
+        },
+        "border": {
+          "$ref": "#/definitions/SprinkleProp_border"
+        },
+        "borderB": {
+          "$ref": "#/definitions/SprinkleProp_borderB"
+        },
+        "borderColor": {
+          "$ref": "#/definitions/SprinkleProp_borderColor"
+        },
+        "borderL": {
+          "$ref": "#/definitions/SprinkleProp_borderL"
+        },
+        "borderR": {
+          "$ref": "#/definitions/SprinkleProp_borderR"
+        },
+        "borderT": {
+          "$ref": "#/definitions/SprinkleProp_borderT"
+        },
+        "children": {
+          "$ref": "#/definitions/ProteusNode"
+        },
+        "color": {
+          "$ref": "#/definitions/SprinkleProp_color"
+        },
+        "cursor": {
+          "$ref": "#/definitions/SprinkleProp_cursor"
+        },
+        "display": {
+          "$ref": "#/definitions/SprinkleProp_display"
+        },
+        "flex": {
+          "$ref": "#/definitions/SprinkleProp_flex"
+        },
+        "flexDirection": {
+          "$ref": "#/definitions/SprinkleProp_flexDirection"
+        },
+        "flexWrap": {
+          "$ref": "#/definitions/SprinkleProp_flexWrap"
+        },
+        "fontFamily": {
+          "$ref": "#/definitions/SprinkleProp_fontFamily"
+        },
+        "fontSize": {
+          "$ref": "#/definitions/SprinkleProp_fontSize"
+        },
+        "fontWeight": {
+          "$ref": "#/definitions/SprinkleProp_fontWeight"
+        },
+        "gap": {
+          "$ref": "#/definitions/SprinkleProp_gap"
+        },
+        "gridColumn": {
+          "$ref": "#/definitions/SprinkleProp_gridColumn"
+        },
+        "gridTemplateColumns": {
+          "$ref": "#/definitions/SprinkleProp_gridTemplateColumns"
+        },
+        "h": {
+          "$ref": "#/definitions/SprinkleProp_h"
+        },
+        "justifyContent": {
+          "$ref": "#/definitions/SprinkleProp_justifyContent"
+        },
+        "justifyItems": {
+          "$ref": "#/definitions/SprinkleProp_justifyItems"
+        },
+        "m": {
+          "$ref": "#/definitions/SprinkleProp_m"
+        },
+        "maxH": {
+          "$ref": "#/definitions/SprinkleProp_maxH"
+        },
+        "maxW": {
+          "$ref": "#/definitions/SprinkleProp_maxW"
+        },
+        "mb": {
+          "$ref": "#/definitions/SprinkleProp_mb"
+        },
+        "ml": {
+          "$ref": "#/definitions/SprinkleProp_ml"
+        },
+        "mr": {
+          "$ref": "#/definitions/SprinkleProp_mr"
+        },
+        "mt": {
+          "$ref": "#/definitions/SprinkleProp_mt"
+        },
+        "mx": {
+          "$ref": "#/definitions/SprinkleProp_mx"
+        },
+        "my": {
+          "$ref": "#/definitions/SprinkleProp_my"
+        },
+        "objectFit": {
+          "$ref": "#/definitions/SprinkleProp_objectFit"
+        },
+        "overflow": {
+          "$ref": "#/definitions/SprinkleProp_overflow"
+        },
+        "overflowX": {
+          "$ref": "#/definitions/SprinkleProp_overflowX"
+        },
+        "overflowY": {
+          "$ref": "#/definitions/SprinkleProp_overflowY"
+        },
+        "p": {
+          "$ref": "#/definitions/SprinkleProp_p"
+        },
+        "pb": {
+          "$ref": "#/definitions/SprinkleProp_pb"
+        },
+        "pl": {
+          "$ref": "#/definitions/SprinkleProp_pl"
+        },
+        "placeItems": {
+          "$ref": "#/definitions/SprinkleProp_placeItems"
+        },
+        "pointerEvents": {
+          "$ref": "#/definitions/SprinkleProp_pointerEvents"
+        },
+        "pr": {
+          "$ref": "#/definitions/SprinkleProp_pr"
+        },
+        "pt": {
+          "$ref": "#/definitions/SprinkleProp_pt"
+        },
+        "px": {
+          "$ref": "#/definitions/SprinkleProp_px"
+        },
+        "py": {
+          "$ref": "#/definitions/SprinkleProp_py"
+        },
+        "rounded": {
+          "$ref": "#/definitions/SprinkleProp_rounded"
+        },
+        "shadow": {
+          "$ref": "#/definitions/SprinkleProp_shadow"
+        },
+        "textAlign": {
+          "$ref": "#/definitions/SprinkleProp_textAlign"
+        },
+        "textTransform": {
+          "$ref": "#/definitions/SprinkleProp_textTransform"
+        },
+        "transition": {
+          "$ref": "#/definitions/SprinkleProp_transition"
+        },
+        "w": {
+          "$ref": "#/definitions/SprinkleProp_w"
+        },
+        "whiteSpace": {
+          "$ref": "#/definitions/SprinkleProp_whiteSpace"
+        },
+        "z": {
+          "$ref": "#/definitions/SprinkleProp_z"
+        },
+        "placeholder": {
+          "description": "Placeholder text for the text input field",
+          "type": "string"
+        }
+      },
+      "required": ["$type"],
+      "type": "object"
+    },
+    "ProteusField": {
+      "examples": [
+        {
+          "$type": "Field",
+          "children": {
+            "$type": "Input",
+            "name": "field_name"
+          },
+          "label": "Field Label"
+        }
+      ],
+      "properties": {
+        "$type": {
+          "const": "Field"
+        },
+        "alignItems": {
+          "$ref": "#/definitions/SprinkleProp_alignItems"
+        },
+        "alignSelf": {
+          "$ref": "#/definitions/SprinkleProp_alignSelf"
+        },
+        "animation": {
+          "$ref": "#/definitions/SprinkleProp_animation"
+        },
+        "backgroundImage": {
+          "$ref": "#/definitions/SprinkleProp_backgroundImage"
+        },
+        "bg": {
+          "$ref": "#/definitions/SprinkleProp_bg"
+        },
+        "border": {
+          "$ref": "#/definitions/SprinkleProp_border"
+        },
+        "borderB": {
+          "$ref": "#/definitions/SprinkleProp_borderB"
+        },
+        "borderColor": {
+          "$ref": "#/definitions/SprinkleProp_borderColor"
+        },
+        "borderL": {
+          "$ref": "#/definitions/SprinkleProp_borderL"
+        },
+        "borderR": {
+          "$ref": "#/definitions/SprinkleProp_borderR"
+        },
+        "borderT": {
+          "$ref": "#/definitions/SprinkleProp_borderT"
+        },
+        "children": {
+          "$ref": "#/definitions/ProteusNode"
+        },
+        "color": {
+          "$ref": "#/definitions/SprinkleProp_color"
+        },
+        "cursor": {
+          "$ref": "#/definitions/SprinkleProp_cursor"
+        },
+        "description": {
+          "$ref": "#/definitions/ProteusNode",
+          "description": "Provide description and help text for the field."
+        },
+        "display": {
+          "$ref": "#/definitions/SprinkleProp_display"
+        },
+        "flex": {
+          "$ref": "#/definitions/SprinkleProp_flex"
+        },
+        "flexDirection": {
+          "$ref": "#/definitions/SprinkleProp_flexDirection"
+        },
+        "flexWrap": {
+          "$ref": "#/definitions/SprinkleProp_flexWrap"
+        },
+        "fontFamily": {
+          "$ref": "#/definitions/SprinkleProp_fontFamily"
+        },
+        "fontSize": {
+          "$ref": "#/definitions/SprinkleProp_fontSize"
+        },
+        "fontWeight": {
+          "$ref": "#/definitions/SprinkleProp_fontWeight"
+        },
+        "gap": {
+          "$ref": "#/definitions/SprinkleProp_gap"
+        },
+        "gridColumn": {
+          "$ref": "#/definitions/SprinkleProp_gridColumn"
+        },
+        "gridTemplateColumns": {
+          "$ref": "#/definitions/SprinkleProp_gridTemplateColumns"
+        },
+        "h": {
+          "$ref": "#/definitions/SprinkleProp_h"
+        },
+        "info": {
+          "$ref": "#/definitions/ProteusNode",
+          "description": "Display a help icon with additional context for the input."
+        },
+        "justifyContent": {
+          "$ref": "#/definitions/SprinkleProp_justifyContent"
+        },
+        "justifyItems": {
+          "$ref": "#/definitions/SprinkleProp_justifyItems"
+        },
+        "label": {
+          "$ref": "#/definitions/ProteusNode",
+          "description": "The label of the field."
+        },
+        "m": {
+          "$ref": "#/definitions/SprinkleProp_m"
+        },
+        "maxH": {
+          "$ref": "#/definitions/SprinkleProp_maxH"
+        },
+        "maxW": {
+          "$ref": "#/definitions/SprinkleProp_maxW"
+        },
+        "mb": {
+          "$ref": "#/definitions/SprinkleProp_mb"
+        },
+        "ml": {
+          "$ref": "#/definitions/SprinkleProp_ml"
+        },
+        "mr": {
+          "$ref": "#/definitions/SprinkleProp_mr"
+        },
+        "mt": {
+          "$ref": "#/definitions/SprinkleProp_mt"
+        },
+        "mx": {
+          "$ref": "#/definitions/SprinkleProp_mx"
+        },
+        "my": {
+          "$ref": "#/definitions/SprinkleProp_my"
+        },
+        "objectFit": {
+          "$ref": "#/definitions/SprinkleProp_objectFit"
+        },
+        "overflow": {
+          "$ref": "#/definitions/SprinkleProp_overflow"
+        },
+        "overflowX": {
+          "$ref": "#/definitions/SprinkleProp_overflowX"
+        },
+        "overflowY": {
+          "$ref": "#/definitions/SprinkleProp_overflowY"
+        },
+        "p": {
+          "$ref": "#/definitions/SprinkleProp_p"
+        },
+        "pb": {
+          "$ref": "#/definitions/SprinkleProp_pb"
+        },
+        "pl": {
+          "$ref": "#/definitions/SprinkleProp_pl"
+        },
+        "placeItems": {
+          "$ref": "#/definitions/SprinkleProp_placeItems"
+        },
+        "pointerEvents": {
+          "$ref": "#/definitions/SprinkleProp_pointerEvents"
+        },
+        "pr": {
+          "$ref": "#/definitions/SprinkleProp_pr"
+        },
+        "pt": {
+          "$ref": "#/definitions/SprinkleProp_pt"
+        },
+        "px": {
+          "$ref": "#/definitions/SprinkleProp_px"
+        },
+        "py": {
+          "$ref": "#/definitions/SprinkleProp_py"
+        },
+        "required": {
+          "description": "Display an asterisk for required inputs.",
+          "type": "boolean"
+        },
+        "rounded": {
+          "$ref": "#/definitions/SprinkleProp_rounded"
+        },
+        "shadow": {
+          "$ref": "#/definitions/SprinkleProp_shadow"
+        },
+        "size": {
+          "$ref": "#/definitions/SprinkleProp_size"
+        },
+        "textAlign": {
+          "$ref": "#/definitions/SprinkleProp_textAlign"
+        },
+        "textTransform": {
+          "$ref": "#/definitions/SprinkleProp_textTransform"
+        },
+        "transition": {
+          "$ref": "#/definitions/SprinkleProp_transition"
+        },
+        "w": {
+          "$ref": "#/definitions/SprinkleProp_w"
+        },
+        "whiteSpace": {
+          "$ref": "#/definitions/SprinkleProp_whiteSpace"
+        },
+        "z": {
+          "$ref": "#/definitions/SprinkleProp_z"
+        }
+      },
+      "required": ["$type"],
+      "type": "object"
+    },
+    "ProteusGroup": {
+      "examples": [
+        {
+          "$type": "Group",
+          "children": [],
+          "flexDirection": "column",
+          "gap": "16"
+        }
+      ],
+      "properties": {
+        "$type": {
+          "const": "Group"
+        },
+        "alignItems": {
+          "anyOf": [
+            {
+              "const": "normal"
+            },
+            {
+              "const": "stretch"
+            },
+            {
+              "const": "center"
+            },
+            {
+              "const": "end"
+            },
+            {
+              "const": "start"
+            }
+          ],
+          "description": "Set the element's `align-items` CSS property. Defaults to `center` when\n`flexDirection='row'`, and `stretch` when `flexDirection='column'`."
+        },
+        "alignSelf": {
+          "$ref": "#/definitions/SprinkleProp_alignSelf"
+        },
+        "animation": {
+          "$ref": "#/definitions/SprinkleProp_animation"
+        },
+        "backgroundImage": {
+          "$ref": "#/definitions/SprinkleProp_backgroundImage"
+        },
+        "bg": {
+          "$ref": "#/definitions/SprinkleProp_bg"
+        },
+        "border": {
+          "$ref": "#/definitions/SprinkleProp_border"
+        },
+        "borderB": {
+          "$ref": "#/definitions/SprinkleProp_borderB"
+        },
+        "borderColor": {
+          "$ref": "#/definitions/SprinkleProp_borderColor"
+        },
+        "borderL": {
+          "$ref": "#/definitions/SprinkleProp_borderL"
+        },
+        "borderR": {
+          "$ref": "#/definitions/SprinkleProp_borderR"
+        },
+        "borderT": {
+          "$ref": "#/definitions/SprinkleProp_borderT"
+        },
+        "children": {
+          "$ref": "#/definitions/ProteusNode"
+        },
+        "color": {
+          "$ref": "#/definitions/SprinkleProp_color"
+        },
+        "cursor": {
+          "$ref": "#/definitions/SprinkleProp_cursor"
+        },
+        "display": {
+          "$ref": "#/definitions/SprinkleProp_display"
+        },
+        "flex": {
+          "$ref": "#/definitions/SprinkleProp_flex"
+        },
+        "flexDirection": {
+          "anyOf": [
+            {
+              "const": "column"
+            },
+            {
+              "const": "column-reverse"
+            },
+            {
+              "const": "row"
+            },
+            {
+              "const": "row-reverse"
+            }
+          ],
+          "description": "Set the element's `flex-direction` CSS property.\n\nDefault: 'row' (CSS standard)"
+        },
+        "flexWrap": {
+          "$ref": "#/definitions/SprinkleProp_flexWrap"
+        },
+        "fontFamily": {
+          "$ref": "#/definitions/SprinkleProp_fontFamily"
+        },
+        "fontSize": {
+          "$ref": "#/definitions/SprinkleProp_fontSize"
+        },
+        "fontWeight": {
+          "$ref": "#/definitions/SprinkleProp_fontWeight"
+        },
+        "gap": {
+          "$ref": "#/definitions/SprinkleProp_gap"
+        },
+        "gridColumn": {
+          "$ref": "#/definitions/SprinkleProp_gridColumn"
+        },
+        "gridTemplateColumns": {
+          "$ref": "#/definitions/SprinkleProp_gridTemplateColumns"
+        },
+        "h": {
+          "$ref": "#/definitions/SprinkleProp_h"
+        },
+        "justifyContent": {
+          "$ref": "#/definitions/SprinkleProp_justifyContent"
+        },
+        "justifyItems": {
+          "$ref": "#/definitions/SprinkleProp_justifyItems"
+        },
+        "m": {
+          "$ref": "#/definitions/SprinkleProp_m"
+        },
+        "maxH": {
+          "$ref": "#/definitions/SprinkleProp_maxH"
+        },
+        "maxW": {
+          "$ref": "#/definitions/SprinkleProp_maxW"
+        },
+        "mb": {
+          "$ref": "#/definitions/SprinkleProp_mb"
+        },
+        "ml": {
+          "$ref": "#/definitions/SprinkleProp_ml"
+        },
+        "mr": {
+          "$ref": "#/definitions/SprinkleProp_mr"
+        },
+        "mt": {
+          "$ref": "#/definitions/SprinkleProp_mt"
+        },
+        "mx": {
+          "$ref": "#/definitions/SprinkleProp_mx"
+        },
+        "my": {
+          "$ref": "#/definitions/SprinkleProp_my"
+        },
+        "objectFit": {
+          "$ref": "#/definitions/SprinkleProp_objectFit"
+        },
+        "overflow": {
+          "$ref": "#/definitions/SprinkleProp_overflow"
+        },
+        "overflowX": {
+          "$ref": "#/definitions/SprinkleProp_overflowX"
+        },
+        "overflowY": {
+          "$ref": "#/definitions/SprinkleProp_overflowY"
+        },
+        "p": {
+          "$ref": "#/definitions/SprinkleProp_p"
+        },
+        "pb": {
+          "$ref": "#/definitions/SprinkleProp_pb"
+        },
+        "pl": {
+          "$ref": "#/definitions/SprinkleProp_pl"
+        },
+        "placeItems": {
+          "$ref": "#/definitions/SprinkleProp_placeItems"
+        },
+        "pointerEvents": {
+          "$ref": "#/definitions/SprinkleProp_pointerEvents"
+        },
+        "pr": {
+          "$ref": "#/definitions/SprinkleProp_pr"
+        },
+        "pt": {
+          "$ref": "#/definitions/SprinkleProp_pt"
+        },
+        "px": {
+          "$ref": "#/definitions/SprinkleProp_px"
+        },
+        "py": {
+          "$ref": "#/definitions/SprinkleProp_py"
+        },
+        "rounded": {
+          "$ref": "#/definitions/SprinkleProp_rounded"
+        },
+        "shadow": {
+          "$ref": "#/definitions/SprinkleProp_shadow"
+        },
+        "size": {
+          "$ref": "#/definitions/SprinkleProp_size"
+        },
+        "textAlign": {
+          "$ref": "#/definitions/SprinkleProp_textAlign"
+        },
+        "textTransform": {
+          "$ref": "#/definitions/SprinkleProp_textTransform"
+        },
+        "transition": {
+          "$ref": "#/definitions/SprinkleProp_transition"
+        },
+        "w": {
+          "$ref": "#/definitions/SprinkleProp_w"
+        },
+        "whiteSpace": {
+          "$ref": "#/definitions/SprinkleProp_whiteSpace"
+        },
+        "z": {
+          "$ref": "#/definitions/SprinkleProp_z"
+        }
+      },
+      "required": ["$type"],
+      "type": "object"
+    },
+    "ProteusHeading": {
+      "examples": [
+        {
+          "$type": "Heading",
+          "children": "New heading",
+          "level": "2"
+        }
+      ],
+      "properties": {
+        "$type": {
+          "const": "Heading"
+        },
+        "alignItems": {
+          "$ref": "#/definitions/SprinkleProp_alignItems"
+        },
+        "alignSelf": {
+          "$ref": "#/definitions/SprinkleProp_alignSelf"
+        },
+        "animation": {
+          "$ref": "#/definitions/SprinkleProp_animation"
+        },
+        "backgroundImage": {
+          "$ref": "#/definitions/SprinkleProp_backgroundImage"
+        },
+        "bg": {
+          "$ref": "#/definitions/SprinkleProp_bg"
+        },
+        "border": {
+          "$ref": "#/definitions/SprinkleProp_border"
+        },
+        "borderB": {
+          "$ref": "#/definitions/SprinkleProp_borderB"
+        },
+        "borderColor": {
+          "$ref": "#/definitions/SprinkleProp_borderColor"
+        },
+        "borderL": {
+          "$ref": "#/definitions/SprinkleProp_borderL"
+        },
+        "borderR": {
+          "$ref": "#/definitions/SprinkleProp_borderR"
+        },
+        "borderT": {
+          "$ref": "#/definitions/SprinkleProp_borderT"
+        },
+        "children": {
+          "$ref": "#/definitions/ProteusNode"
+        },
+        "color": {
+          "$ref": "#/definitions/SprinkleProp_color"
+        },
+        "cursor": {
+          "$ref": "#/definitions/SprinkleProp_cursor"
+        },
+        "display": {
+          "$ref": "#/definitions/SprinkleProp_display"
+        },
+        "flex": {
+          "$ref": "#/definitions/SprinkleProp_flex"
+        },
+        "flexDirection": {
+          "$ref": "#/definitions/SprinkleProp_flexDirection"
+        },
+        "flexWrap": {
+          "$ref": "#/definitions/SprinkleProp_flexWrap"
+        },
+        "fontFamily": {
+          "$ref": "#/definitions/SprinkleProp_fontFamily"
+        },
+        "fontSize": {
+          "$ref": "#/definitions/SprinkleProp_fontSize"
+        },
+        "fontWeight": {
+          "$ref": "#/definitions/SprinkleProp_fontWeight"
+        },
+        "gap": {
+          "$ref": "#/definitions/SprinkleProp_gap"
+        },
+        "gridColumn": {
+          "$ref": "#/definitions/SprinkleProp_gridColumn"
+        },
+        "gridTemplateColumns": {
+          "$ref": "#/definitions/SprinkleProp_gridTemplateColumns"
+        },
+        "h": {
+          "$ref": "#/definitions/SprinkleProp_h"
+        },
+        "justifyContent": {
+          "$ref": "#/definitions/SprinkleProp_justifyContent"
+        },
+        "justifyItems": {
+          "$ref": "#/definitions/SprinkleProp_justifyItems"
+        },
+        "level": {
+          "anyOf": [
+            {
+              "const": "2"
+            },
+            {
+              "const": "4"
+            },
+            {
+              "const": "1"
+            },
+            {
+              "const": "3"
+            }
+          ],
+          "description": "Heading level (1-4) that controls both the semantic HTML tag and font size.\n- `level=\"1\"`: renders `<h1>` with `fontSize=\"4xl\"` (default)\n- `level=\"2\"`: renders `<h2>` with `fontSize=\"3xl\"`\n- `level=\"3\"`: renders `<h3>` with `fontSize=\"2xl\"`\n- `level=\"4\"`: renders `<h4>` with `fontSize=\"xl\"`\n\nUse `asChild` to decouple the semantic level from visual appearance."
+        },
+        "m": {
+          "$ref": "#/definitions/SprinkleProp_m"
+        },
+        "maxH": {
+          "$ref": "#/definitions/SprinkleProp_maxH"
+        },
+        "maxW": {
+          "$ref": "#/definitions/SprinkleProp_maxW"
+        },
+        "mb": {
+          "$ref": "#/definitions/SprinkleProp_mb"
+        },
+        "ml": {
+          "$ref": "#/definitions/SprinkleProp_ml"
+        },
+        "mr": {
+          "$ref": "#/definitions/SprinkleProp_mr"
+        },
+        "mt": {
+          "$ref": "#/definitions/SprinkleProp_mt"
+        },
+        "mx": {
+          "$ref": "#/definitions/SprinkleProp_mx"
+        },
+        "my": {
+          "$ref": "#/definitions/SprinkleProp_my"
+        },
+        "objectFit": {
+          "$ref": "#/definitions/SprinkleProp_objectFit"
+        },
+        "overflow": {
+          "$ref": "#/definitions/SprinkleProp_overflow"
+        },
+        "overflowX": {
+          "$ref": "#/definitions/SprinkleProp_overflowX"
+        },
+        "overflowY": {
+          "$ref": "#/definitions/SprinkleProp_overflowY"
+        },
+        "p": {
+          "$ref": "#/definitions/SprinkleProp_p"
+        },
+        "pb": {
+          "$ref": "#/definitions/SprinkleProp_pb"
+        },
+        "pl": {
+          "$ref": "#/definitions/SprinkleProp_pl"
+        },
+        "placeItems": {
+          "$ref": "#/definitions/SprinkleProp_placeItems"
+        },
+        "pointerEvents": {
+          "$ref": "#/definitions/SprinkleProp_pointerEvents"
+        },
+        "pr": {
+          "$ref": "#/definitions/SprinkleProp_pr"
+        },
+        "pt": {
+          "$ref": "#/definitions/SprinkleProp_pt"
+        },
+        "px": {
+          "$ref": "#/definitions/SprinkleProp_px"
+        },
+        "py": {
+          "$ref": "#/definitions/SprinkleProp_py"
+        },
+        "rounded": {
+          "$ref": "#/definitions/SprinkleProp_rounded"
+        },
+        "shadow": {
+          "$ref": "#/definitions/SprinkleProp_shadow"
+        },
+        "size": {
+          "$ref": "#/definitions/SprinkleProp_size"
+        },
+        "textAlign": {
+          "$ref": "#/definitions/SprinkleProp_textAlign"
+        },
+        "textTransform": {
+          "$ref": "#/definitions/SprinkleProp_textTransform"
+        },
+        "transition": {
+          "$ref": "#/definitions/SprinkleProp_transition"
+        },
+        "w": {
+          "$ref": "#/definitions/SprinkleProp_w"
+        },
+        "whiteSpace": {
+          "$ref": "#/definitions/SprinkleProp_whiteSpace"
+        },
+        "z": {
+          "$ref": "#/definitions/SprinkleProp_z"
+        }
+      },
+      "required": ["$type"],
+      "type": "object"
+    },
+    "ProteusImage": {
+      "examples": [
+        {
+          "$type": "Image",
+          "alt": "Placeholder",
+          "src": "https://placehold.co/600x400"
+        }
+      ],
+      "properties": {
+        "$type": {
+          "const": "Image"
+        },
+        "alignItems": {
+          "$ref": "#/definitions/SprinkleProp_alignItems"
+        },
+        "alignSelf": {
+          "$ref": "#/definitions/SprinkleProp_alignSelf"
+        },
+        "animation": {
+          "$ref": "#/definitions/SprinkleProp_animation"
+        },
+        "backgroundImage": {
+          "$ref": "#/definitions/SprinkleProp_backgroundImage"
+        },
+        "bg": {
+          "$ref": "#/definitions/SprinkleProp_bg"
+        },
+        "border": {
+          "$ref": "#/definitions/SprinkleProp_border"
+        },
+        "borderB": {
+          "$ref": "#/definitions/SprinkleProp_borderB"
+        },
+        "borderColor": {
+          "$ref": "#/definitions/SprinkleProp_borderColor"
+        },
+        "borderL": {
+          "$ref": "#/definitions/SprinkleProp_borderL"
+        },
+        "borderR": {
+          "$ref": "#/definitions/SprinkleProp_borderR"
+        },
+        "borderT": {
+          "$ref": "#/definitions/SprinkleProp_borderT"
+        },
+        "color": {
+          "$ref": "#/definitions/SprinkleProp_color"
+        },
+        "cursor": {
+          "$ref": "#/definitions/SprinkleProp_cursor"
+        },
+        "display": {
+          "$ref": "#/definitions/SprinkleProp_display"
+        },
+        "flex": {
+          "$ref": "#/definitions/SprinkleProp_flex"
+        },
+        "flexDirection": {
+          "$ref": "#/definitions/SprinkleProp_flexDirection"
+        },
+        "flexWrap": {
+          "$ref": "#/definitions/SprinkleProp_flexWrap"
+        },
+        "fontFamily": {
+          "$ref": "#/definitions/SprinkleProp_fontFamily"
+        },
+        "fontSize": {
+          "$ref": "#/definitions/SprinkleProp_fontSize"
+        },
+        "fontWeight": {
+          "$ref": "#/definitions/SprinkleProp_fontWeight"
+        },
+        "gap": {
+          "$ref": "#/definitions/SprinkleProp_gap"
+        },
+        "gridColumn": {
+          "$ref": "#/definitions/SprinkleProp_gridColumn"
+        },
+        "gridTemplateColumns": {
+          "$ref": "#/definitions/SprinkleProp_gridTemplateColumns"
+        },
+        "h": {
+          "$ref": "#/definitions/SprinkleProp_h"
+        },
+        "justifyContent": {
+          "$ref": "#/definitions/SprinkleProp_justifyContent"
+        },
+        "justifyItems": {
+          "$ref": "#/definitions/SprinkleProp_justifyItems"
+        },
+        "m": {
+          "$ref": "#/definitions/SprinkleProp_m"
+        },
+        "maxH": {
+          "$ref": "#/definitions/SprinkleProp_maxH"
+        },
+        "maxW": {
+          "$ref": "#/definitions/SprinkleProp_maxW"
+        },
+        "mb": {
+          "$ref": "#/definitions/SprinkleProp_mb"
+        },
+        "ml": {
+          "$ref": "#/definitions/SprinkleProp_ml"
+        },
+        "mr": {
+          "$ref": "#/definitions/SprinkleProp_mr"
+        },
+        "mt": {
+          "$ref": "#/definitions/SprinkleProp_mt"
+        },
+        "mx": {
+          "$ref": "#/definitions/SprinkleProp_mx"
+        },
+        "my": {
+          "$ref": "#/definitions/SprinkleProp_my"
+        },
+        "objectFit": {
+          "$ref": "#/definitions/SprinkleProp_objectFit"
+        },
+        "overflow": {
+          "$ref": "#/definitions/SprinkleProp_overflow"
+        },
+        "overflowX": {
+          "$ref": "#/definitions/SprinkleProp_overflowX"
+        },
+        "overflowY": {
+          "$ref": "#/definitions/SprinkleProp_overflowY"
+        },
+        "p": {
+          "$ref": "#/definitions/SprinkleProp_p"
+        },
+        "pb": {
+          "$ref": "#/definitions/SprinkleProp_pb"
+        },
+        "pl": {
+          "$ref": "#/definitions/SprinkleProp_pl"
+        },
+        "placeItems": {
+          "$ref": "#/definitions/SprinkleProp_placeItems"
+        },
+        "pointerEvents": {
+          "$ref": "#/definitions/SprinkleProp_pointerEvents"
+        },
+        "pr": {
+          "$ref": "#/definitions/SprinkleProp_pr"
+        },
+        "pt": {
+          "$ref": "#/definitions/SprinkleProp_pt"
+        },
+        "px": {
+          "$ref": "#/definitions/SprinkleProp_px"
+        },
+        "py": {
+          "$ref": "#/definitions/SprinkleProp_py"
+        },
+        "rounded": {
+          "$ref": "#/definitions/SprinkleProp_rounded"
+        },
+        "shadow": {
+          "$ref": "#/definitions/SprinkleProp_shadow"
+        },
+        "size": {
+          "$ref": "#/definitions/SprinkleProp_size"
+        },
+        "textAlign": {
+          "$ref": "#/definitions/SprinkleProp_textAlign"
+        },
+        "textTransform": {
+          "$ref": "#/definitions/SprinkleProp_textTransform"
+        },
+        "transition": {
+          "$ref": "#/definitions/SprinkleProp_transition"
+        },
+        "w": {
+          "$ref": "#/definitions/SprinkleProp_w"
+        },
+        "whiteSpace": {
+          "$ref": "#/definitions/SprinkleProp_whiteSpace"
+        },
+        "z": {
+          "$ref": "#/definitions/SprinkleProp_z"
+        },
+        "alt": {
+          "description": "Alternative text for the image",
+          "type": "string"
+        },
+        "src": {
+          "description": "The image source URL",
+          "type": "string"
+        }
+      },
+      "required": ["$type"],
+      "type": "object"
+    },
+    "ProteusInput": {
+      "examples": [
+        {
+          "$type": "Input",
+          "name": "field_name",
+          "placeholder": "Enter value"
+        }
+      ],
+      "properties": {
+        "$type": {
+          "const": "Input"
+        },
+        "addonAfter": {
+          "$ref": "#/definitions/ProteusNode",
+          "description": "Display content inside the input at the end."
+        },
+        "addonBefore": {
+          "$ref": "#/definitions/ProteusNode",
+          "description": "Display content inside the input at the start."
+        },
+        "alignItems": {
+          "$ref": "#/definitions/SprinkleProp_alignItems"
+        },
+        "alignSelf": {
+          "$ref": "#/definitions/SprinkleProp_alignSelf"
+        },
+        "animation": {
+          "$ref": "#/definitions/SprinkleProp_animation"
+        },
+        "appearance": {
+          "anyOf": [
+            {
+              "const": "number"
+            },
+            {
+              "const": "default"
+            }
+          ],
+          "description": "Control the appearance of the input."
+        },
+        "backgroundImage": {
+          "$ref": "#/definitions/SprinkleProp_backgroundImage"
+        },
+        "bg": {
+          "$ref": "#/definitions/SprinkleProp_bg"
+        },
+        "border": {
+          "$ref": "#/definitions/SprinkleProp_border"
+        },
+        "borderB": {
+          "$ref": "#/definitions/SprinkleProp_borderB"
+        },
+        "borderColor": {
+          "$ref": "#/definitions/SprinkleProp_borderColor"
+        },
+        "borderL": {
+          "$ref": "#/definitions/SprinkleProp_borderL"
+        },
+        "borderR": {
+          "$ref": "#/definitions/SprinkleProp_borderR"
+        },
+        "borderT": {
+          "$ref": "#/definitions/SprinkleProp_borderT"
+        },
+        "color": {
+          "$ref": "#/definitions/SprinkleProp_color"
+        },
+        "cursor": {
+          "$ref": "#/definitions/SprinkleProp_cursor"
+        },
+        "display": {
+          "$ref": "#/definitions/SprinkleProp_display"
+        },
+        "flex": {
+          "$ref": "#/definitions/SprinkleProp_flex"
+        },
+        "flexDirection": {
+          "$ref": "#/definitions/SprinkleProp_flexDirection"
+        },
+        "flexWrap": {
+          "$ref": "#/definitions/SprinkleProp_flexWrap"
+        },
+        "fontFamily": {
+          "$ref": "#/definitions/SprinkleProp_fontFamily"
+        },
+        "fontSize": {
+          "$ref": "#/definitions/SprinkleProp_fontSize"
+        },
+        "fontWeight": {
+          "$ref": "#/definitions/SprinkleProp_fontWeight"
+        },
+        "gap": {
+          "$ref": "#/definitions/SprinkleProp_gap"
+        },
+        "gridColumn": {
+          "$ref": "#/definitions/SprinkleProp_gridColumn"
+        },
+        "gridTemplateColumns": {
+          "$ref": "#/definitions/SprinkleProp_gridTemplateColumns"
+        },
+        "h": {
+          "$ref": "#/definitions/SprinkleProp_h"
+        },
+        "justifyContent": {
+          "$ref": "#/definitions/SprinkleProp_justifyContent"
+        },
+        "justifyItems": {
+          "$ref": "#/definitions/SprinkleProp_justifyItems"
+        },
+        "m": {
+          "$ref": "#/definitions/SprinkleProp_m"
+        },
+        "maxH": {
+          "$ref": "#/definitions/SprinkleProp_maxH"
+        },
+        "maxW": {
+          "$ref": "#/definitions/SprinkleProp_maxW"
+        },
+        "mb": {
+          "$ref": "#/definitions/SprinkleProp_mb"
+        },
+        "ml": {
+          "$ref": "#/definitions/SprinkleProp_ml"
+        },
+        "mr": {
+          "$ref": "#/definitions/SprinkleProp_mr"
+        },
+        "mt": {
+          "$ref": "#/definitions/SprinkleProp_mt"
+        },
+        "mx": {
+          "$ref": "#/definitions/SprinkleProp_mx"
+        },
+        "my": {
+          "$ref": "#/definitions/SprinkleProp_my"
+        },
+        "name": {
+          "description": "The name of the form control element.",
+          "type": "string"
+        },
+        "objectFit": {
+          "$ref": "#/definitions/SprinkleProp_objectFit"
+        },
+        "overflow": {
+          "$ref": "#/definitions/SprinkleProp_overflow"
+        },
+        "overflowX": {
+          "$ref": "#/definitions/SprinkleProp_overflowX"
+        },
+        "overflowY": {
+          "$ref": "#/definitions/SprinkleProp_overflowY"
+        },
+        "p": {
+          "$ref": "#/definitions/SprinkleProp_p"
+        },
+        "pb": {
+          "$ref": "#/definitions/SprinkleProp_pb"
+        },
+        "pl": {
+          "$ref": "#/definitions/SprinkleProp_pl"
+        },
+        "placeholder": {
+          "description": "The placeholder text to use when control has no value.",
+          "type": "string"
+        },
+        "placeItems": {
+          "$ref": "#/definitions/SprinkleProp_placeItems"
+        },
+        "pointerEvents": {
+          "$ref": "#/definitions/SprinkleProp_pointerEvents"
+        },
+        "pr": {
+          "$ref": "#/definitions/SprinkleProp_pr"
+        },
+        "pt": {
+          "$ref": "#/definitions/SprinkleProp_pt"
+        },
+        "px": {
+          "$ref": "#/definitions/SprinkleProp_px"
+        },
+        "py": {
+          "$ref": "#/definitions/SprinkleProp_py"
+        },
+        "rounded": {
+          "$ref": "#/definitions/SprinkleProp_rounded"
+        },
+        "shadow": {
+          "$ref": "#/definitions/SprinkleProp_shadow"
+        },
+        "textAlign": {
+          "$ref": "#/definitions/SprinkleProp_textAlign"
+        },
+        "textTransform": {
+          "$ref": "#/definitions/SprinkleProp_textTransform"
+        },
+        "transition": {
+          "$ref": "#/definitions/SprinkleProp_transition"
+        },
+        "type": {
+          "anyOf": [
+            {
+              "const": "number"
+            },
+            {
+              "const": "color"
+            },
+            {
+              "const": "button"
+            },
+            {
+              "const": "checkbox"
+            },
+            {
+              "const": "radio"
+            },
+            {
+              "const": "hidden"
+            },
+            {
+              "const": "text"
+            },
+            {
+              "const": "reset"
+            },
+            {
+              "const": "range"
+            },
+            {
+              "const": "search"
+            },
+            {
+              "const": "time"
+            },
+            {
+              "const": "image"
+            },
+            {
+              "const": "tel"
+            },
+            {
+              "const": "url"
+            },
+            {
+              "const": "email"
+            },
+            {
+              "const": "date"
+            },
+            {
+              "const": "submit"
+            },
+            {
+              "const": "month"
+            },
+            {
+              "const": "datetime-local"
+            },
+            {
+              "const": "week"
+            },
+            {
+              "const": "file"
+            },
+            {
+              "const": "password"
+            },
+            {
+              "type": "string"
+            }
+          ],
+          "description": "The input type."
+        },
+        "w": {
+          "$ref": "#/definitions/SprinkleProp_w"
+        },
+        "whiteSpace": {
+          "$ref": "#/definitions/SprinkleProp_whiteSpace"
+        },
+        "z": {
+          "$ref": "#/definitions/SprinkleProp_z"
+        }
+      },
+      "required": ["$type"],
+      "type": "object"
+    },
+    "ProteusLink": {
+      "examples": [
+        {
+          "$type": "Link",
+          "children": "Link text",
+          "href": "https://example.com"
+        }
+      ],
+      "properties": {
+        "$type": {
+          "const": "Link"
+        },
+        "alignItems": {
+          "$ref": "#/definitions/SprinkleProp_alignItems"
+        },
+        "alignSelf": {
+          "$ref": "#/definitions/SprinkleProp_alignSelf"
+        },
+        "animation": {
+          "$ref": "#/definitions/SprinkleProp_animation"
+        },
+        "backgroundImage": {
+          "$ref": "#/definitions/SprinkleProp_backgroundImage"
+        },
+        "bg": {
+          "$ref": "#/definitions/SprinkleProp_bg"
+        },
+        "border": {
+          "$ref": "#/definitions/SprinkleProp_border"
+        },
+        "borderB": {
+          "$ref": "#/definitions/SprinkleProp_borderB"
+        },
+        "borderColor": {
+          "$ref": "#/definitions/SprinkleProp_borderColor"
+        },
+        "borderL": {
+          "$ref": "#/definitions/SprinkleProp_borderL"
+        },
+        "borderR": {
+          "$ref": "#/definitions/SprinkleProp_borderR"
+        },
+        "borderT": {
+          "$ref": "#/definitions/SprinkleProp_borderT"
+        },
+        "children": {
+          "$ref": "#/definitions/ProteusNode"
+        },
+        "color": {
+          "$ref": "#/definitions/SprinkleProp_color"
+        },
+        "cursor": {
+          "$ref": "#/definitions/SprinkleProp_cursor"
+        },
+        "display": {
+          "$ref": "#/definitions/SprinkleProp_display"
+        },
+        "flex": {
+          "$ref": "#/definitions/SprinkleProp_flex"
+        },
+        "flexDirection": {
+          "$ref": "#/definitions/SprinkleProp_flexDirection"
+        },
+        "flexWrap": {
+          "$ref": "#/definitions/SprinkleProp_flexWrap"
+        },
+        "fontFamily": {
+          "$ref": "#/definitions/SprinkleProp_fontFamily"
+        },
+        "fontSize": {
+          "$ref": "#/definitions/SprinkleProp_fontSize"
+        },
+        "fontWeight": {
+          "$ref": "#/definitions/SprinkleProp_fontWeight"
+        },
+        "gap": {
+          "$ref": "#/definitions/SprinkleProp_gap"
+        },
+        "gridColumn": {
+          "$ref": "#/definitions/SprinkleProp_gridColumn"
+        },
+        "gridTemplateColumns": {
+          "$ref": "#/definitions/SprinkleProp_gridTemplateColumns"
+        },
+        "h": {
+          "$ref": "#/definitions/SprinkleProp_h"
+        },
+        "href": {
+          "description": "The link href.",
+          "type": "string"
+        },
+        "justifyContent": {
+          "$ref": "#/definitions/SprinkleProp_justifyContent"
+        },
+        "justifyItems": {
+          "$ref": "#/definitions/SprinkleProp_justifyItems"
+        },
+        "m": {
+          "$ref": "#/definitions/SprinkleProp_m"
+        },
+        "maxH": {
+          "$ref": "#/definitions/SprinkleProp_maxH"
+        },
+        "maxW": {
+          "$ref": "#/definitions/SprinkleProp_maxW"
+        },
+        "mb": {
+          "$ref": "#/definitions/SprinkleProp_mb"
+        },
+        "ml": {
+          "$ref": "#/definitions/SprinkleProp_ml"
+        },
+        "mr": {
+          "$ref": "#/definitions/SprinkleProp_mr"
+        },
+        "mt": {
+          "$ref": "#/definitions/SprinkleProp_mt"
+        },
+        "mx": {
+          "$ref": "#/definitions/SprinkleProp_mx"
+        },
+        "my": {
+          "$ref": "#/definitions/SprinkleProp_my"
+        },
+        "objectFit": {
+          "$ref": "#/definitions/SprinkleProp_objectFit"
+        },
+        "overflow": {
+          "$ref": "#/definitions/SprinkleProp_overflow"
+        },
+        "overflowX": {
+          "$ref": "#/definitions/SprinkleProp_overflowX"
+        },
+        "overflowY": {
+          "$ref": "#/definitions/SprinkleProp_overflowY"
+        },
+        "p": {
+          "$ref": "#/definitions/SprinkleProp_p"
+        },
+        "pb": {
+          "$ref": "#/definitions/SprinkleProp_pb"
+        },
+        "pl": {
+          "$ref": "#/definitions/SprinkleProp_pl"
+        },
+        "placeItems": {
+          "$ref": "#/definitions/SprinkleProp_placeItems"
+        },
+        "pointerEvents": {
+          "$ref": "#/definitions/SprinkleProp_pointerEvents"
+        },
+        "pr": {
+          "$ref": "#/definitions/SprinkleProp_pr"
+        },
+        "pt": {
+          "$ref": "#/definitions/SprinkleProp_pt"
+        },
+        "px": {
+          "$ref": "#/definitions/SprinkleProp_px"
+        },
+        "py": {
+          "$ref": "#/definitions/SprinkleProp_py"
+        },
+        "rounded": {
+          "$ref": "#/definitions/SprinkleProp_rounded"
+        },
+        "shadow": {
+          "$ref": "#/definitions/SprinkleProp_shadow"
+        },
+        "size": {
+          "$ref": "#/definitions/SprinkleProp_size"
+        },
+        "textAlign": {
+          "$ref": "#/definitions/SprinkleProp_textAlign"
+        },
+        "textTransform": {
+          "$ref": "#/definitions/SprinkleProp_textTransform"
+        },
+        "transition": {
+          "$ref": "#/definitions/SprinkleProp_transition"
+        },
+        "w": {
+          "$ref": "#/definitions/SprinkleProp_w"
+        },
+        "whiteSpace": {
+          "$ref": "#/definitions/SprinkleProp_whiteSpace"
+        },
+        "z": {
+          "$ref": "#/definitions/SprinkleProp_z"
+        }
+      },
+      "required": ["$type"],
+      "type": "object"
+    },
+    "ProteusMap": {
+      "examples": [
+        {
+          "$type": "Map",
+          "children": {
+            "$type": "Text",
+            "children": "Item"
+          },
+          "path": "/items"
+        }
+      ],
+      "properties": {
+        "$type": {
+          "const": "Map"
+        },
+        "children": {
+          "description": "Template object to render for each item in the array. Value paths are relative to current item.",
+          "type": "object"
+        },
+        "path": {
+          "description": "JSON pointer path to array (e.g., '/questions')",
+          "type": "string"
+        }
+      },
+      "required": ["$type", "path"],
+      "type": "object"
+    },
+    "ProteusRange": {
+      "examples": [
+        {
+          "$type": "Range",
+          "max": 100,
+          "min": 0,
+          "step": 1
+        }
+      ],
+      "properties": {
+        "$type": {
+          "const": "Range"
+        },
+        "alignItems": {
+          "$ref": "#/definitions/SprinkleProp_alignItems"
+        },
+        "alignSelf": {
+          "$ref": "#/definitions/SprinkleProp_alignSelf"
+        },
+        "animation": {
+          "$ref": "#/definitions/SprinkleProp_animation"
+        },
+        "backgroundImage": {
+          "$ref": "#/definitions/SprinkleProp_backgroundImage"
+        },
+        "bg": {
+          "$ref": "#/definitions/SprinkleProp_bg"
+        },
+        "border": {
+          "$ref": "#/definitions/SprinkleProp_border"
+        },
+        "borderB": {
+          "$ref": "#/definitions/SprinkleProp_borderB"
+        },
+        "borderColor": {
+          "$ref": "#/definitions/SprinkleProp_borderColor"
+        },
+        "borderL": {
+          "$ref": "#/definitions/SprinkleProp_borderL"
+        },
+        "borderR": {
+          "$ref": "#/definitions/SprinkleProp_borderR"
+        },
+        "borderT": {
+          "$ref": "#/definitions/SprinkleProp_borderT"
+        },
+        "color": {
+          "$ref": "#/definitions/SprinkleProp_color"
+        },
+        "cursor": {
+          "$ref": "#/definitions/SprinkleProp_cursor"
+        },
+        "display": {
+          "$ref": "#/definitions/SprinkleProp_display"
+        },
+        "flex": {
+          "$ref": "#/definitions/SprinkleProp_flex"
+        },
+        "flexDirection": {
+          "$ref": "#/definitions/SprinkleProp_flexDirection"
+        },
+        "flexWrap": {
+          "$ref": "#/definitions/SprinkleProp_flexWrap"
+        },
+        "fontFamily": {
+          "$ref": "#/definitions/SprinkleProp_fontFamily"
+        },
+        "fontSize": {
+          "$ref": "#/definitions/SprinkleProp_fontSize"
+        },
+        "fontWeight": {
+          "$ref": "#/definitions/SprinkleProp_fontWeight"
+        },
+        "gap": {
+          "$ref": "#/definitions/SprinkleProp_gap"
+        },
+        "gridColumn": {
+          "$ref": "#/definitions/SprinkleProp_gridColumn"
+        },
+        "gridTemplateColumns": {
+          "$ref": "#/definitions/SprinkleProp_gridTemplateColumns"
+        },
+        "h": {
+          "$ref": "#/definitions/SprinkleProp_h"
+        },
+        "justifyContent": {
+          "$ref": "#/definitions/SprinkleProp_justifyContent"
+        },
+        "justifyItems": {
+          "$ref": "#/definitions/SprinkleProp_justifyItems"
+        },
+        "m": {
+          "$ref": "#/definitions/SprinkleProp_m"
+        },
+        "marks": {
+          "description": "The marks to display on the range steps.",
+          "items": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "properties": {
+                  "label": {
+                    "description": "The label for the mark",
+                    "type": "string"
+                  },
+                  "value": {
+                    "description": "The value for the mark",
+                    "type": "number"
+                  }
+                },
+                "required": ["label", "value"],
+                "type": "object"
+              }
+            ]
+          },
+          "type": "array"
+        },
+        "max": {
+          "description": "The maximum value for the range.",
+          "type": "number"
+        },
+        "maxH": {
+          "$ref": "#/definitions/SprinkleProp_maxH"
+        },
+        "maxW": {
+          "$ref": "#/definitions/SprinkleProp_maxW"
+        },
+        "mb": {
+          "$ref": "#/definitions/SprinkleProp_mb"
+        },
+        "min": {
+          "description": "The minimum value for the range.",
+          "type": "number"
+        },
+        "ml": {
+          "$ref": "#/definitions/SprinkleProp_ml"
+        },
+        "mr": {
+          "$ref": "#/definitions/SprinkleProp_mr"
+        },
+        "mt": {
+          "$ref": "#/definitions/SprinkleProp_mt"
+        },
+        "mx": {
+          "$ref": "#/definitions/SprinkleProp_mx"
+        },
+        "my": {
+          "$ref": "#/definitions/SprinkleProp_my"
+        },
+        "objectFit": {
+          "$ref": "#/definitions/SprinkleProp_objectFit"
+        },
+        "overflow": {
+          "$ref": "#/definitions/SprinkleProp_overflow"
+        },
+        "overflowX": {
+          "$ref": "#/definitions/SprinkleProp_overflowX"
+        },
+        "overflowY": {
+          "$ref": "#/definitions/SprinkleProp_overflowY"
+        },
+        "p": {
+          "$ref": "#/definitions/SprinkleProp_p"
+        },
+        "pb": {
+          "$ref": "#/definitions/SprinkleProp_pb"
+        },
+        "pl": {
+          "$ref": "#/definitions/SprinkleProp_pl"
+        },
+        "placeItems": {
+          "$ref": "#/definitions/SprinkleProp_placeItems"
+        },
+        "pointerEvents": {
+          "$ref": "#/definitions/SprinkleProp_pointerEvents"
+        },
+        "pr": {
+          "$ref": "#/definitions/SprinkleProp_pr"
+        },
+        "pt": {
+          "$ref": "#/definitions/SprinkleProp_pt"
+        },
+        "px": {
+          "$ref": "#/definitions/SprinkleProp_px"
+        },
+        "py": {
+          "$ref": "#/definitions/SprinkleProp_py"
+        },
+        "rounded": {
+          "$ref": "#/definitions/SprinkleProp_rounded"
+        },
+        "shadow": {
+          "$ref": "#/definitions/SprinkleProp_shadow"
+        },
+        "step": {
+          "description": "The stepping interval for the range.",
+          "type": "number"
+        },
+        "textAlign": {
+          "$ref": "#/definitions/SprinkleProp_textAlign"
+        },
+        "textTransform": {
+          "$ref": "#/definitions/SprinkleProp_textTransform"
+        },
+        "transition": {
+          "$ref": "#/definitions/SprinkleProp_transition"
+        },
+        "w": {
+          "$ref": "#/definitions/SprinkleProp_w"
+        },
+        "whiteSpace": {
+          "$ref": "#/definitions/SprinkleProp_whiteSpace"
+        },
+        "z": {
+          "$ref": "#/definitions/SprinkleProp_z"
+        }
+      },
+      "required": ["$type"],
+      "type": "object"
+    },
+    "ProteusSelect": {
+      "examples": [
+        {
+          "$type": "Select",
+          "children": [
+            {
+              "$type": "SelectTrigger",
+              "w": "full"
+            },
+            {
+              "$type": "SelectContent"
+            }
+          ],
+          "name": "select_field",
+          "options": [
+            {
+              "label": "Option 1",
+              "value": "option1"
+            },
+            {
+              "label": "Option 2",
+              "value": "option2"
+            }
+          ]
+        }
+      ],
+      "properties": {
+        "$type": {
+          "const": "Select"
+        },
+        "children": {
+          "$ref": "#/definitions/ProteusNode"
+        },
+        "name": {
+          "description": "The name of the inner select element.",
+          "type": "string"
+        },
+        "options": {
+          "description": "The select items/options we want to render.",
+          "items": {
+            "properties": {
+              "label": {
+                "description": "String representation of items",
+                "type": "string"
+              },
+              "value": {
+                "description": "Return a unique key for each item",
+                "type": "string"
+              }
+            },
+            "required": ["label", "value"],
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "required": ["$type", "options"],
+      "type": "object"
+    },
+    "ProteusSelectContent": {
+      "properties": {
+        "$type": {
+          "const": "SelectContent"
+        },
+        "alignItems": {
+          "$ref": "#/definitions/SprinkleProp_alignItems"
+        },
+        "alignSelf": {
+          "$ref": "#/definitions/SprinkleProp_alignSelf"
+        },
+        "animation": {
+          "$ref": "#/definitions/SprinkleProp_animation"
+        },
+        "backgroundImage": {
+          "$ref": "#/definitions/SprinkleProp_backgroundImage"
+        },
+        "bg": {
+          "$ref": "#/definitions/SprinkleProp_bg"
+        },
+        "border": {
+          "$ref": "#/definitions/SprinkleProp_border"
+        },
+        "borderB": {
+          "$ref": "#/definitions/SprinkleProp_borderB"
+        },
+        "borderColor": {
+          "$ref": "#/definitions/SprinkleProp_borderColor"
+        },
+        "borderL": {
+          "$ref": "#/definitions/SprinkleProp_borderL"
+        },
+        "borderR": {
+          "$ref": "#/definitions/SprinkleProp_borderR"
+        },
+        "borderT": {
+          "$ref": "#/definitions/SprinkleProp_borderT"
+        },
+        "color": {
+          "$ref": "#/definitions/SprinkleProp_color"
+        },
+        "cursor": {
+          "$ref": "#/definitions/SprinkleProp_cursor"
+        },
+        "display": {
+          "$ref": "#/definitions/SprinkleProp_display"
+        },
+        "flex": {
+          "$ref": "#/definitions/SprinkleProp_flex"
+        },
+        "flexDirection": {
+          "$ref": "#/definitions/SprinkleProp_flexDirection"
+        },
+        "flexWrap": {
+          "$ref": "#/definitions/SprinkleProp_flexWrap"
+        },
+        "fontFamily": {
+          "$ref": "#/definitions/SprinkleProp_fontFamily"
+        },
+        "fontSize": {
+          "$ref": "#/definitions/SprinkleProp_fontSize"
+        },
+        "fontWeight": {
+          "$ref": "#/definitions/SprinkleProp_fontWeight"
+        },
+        "gap": {
+          "$ref": "#/definitions/SprinkleProp_gap"
+        },
+        "gridColumn": {
+          "$ref": "#/definitions/SprinkleProp_gridColumn"
+        },
+        "gridTemplateColumns": {
+          "$ref": "#/definitions/SprinkleProp_gridTemplateColumns"
+        },
+        "h": {
+          "$ref": "#/definitions/SprinkleProp_h"
+        },
+        "justifyContent": {
+          "$ref": "#/definitions/SprinkleProp_justifyContent"
+        },
+        "justifyItems": {
+          "$ref": "#/definitions/SprinkleProp_justifyItems"
+        },
+        "m": {
+          "$ref": "#/definitions/SprinkleProp_m"
+        },
+        "maxW": {
+          "$ref": "#/definitions/SprinkleProp_maxW"
+        },
+        "mb": {
+          "$ref": "#/definitions/SprinkleProp_mb"
+        },
+        "ml": {
+          "$ref": "#/definitions/SprinkleProp_ml"
+        },
+        "mr": {
+          "$ref": "#/definitions/SprinkleProp_mr"
+        },
+        "mt": {
+          "$ref": "#/definitions/SprinkleProp_mt"
+        },
+        "mx": {
+          "$ref": "#/definitions/SprinkleProp_mx"
+        },
+        "my": {
+          "$ref": "#/definitions/SprinkleProp_my"
+        },
+        "objectFit": {
+          "$ref": "#/definitions/SprinkleProp_objectFit"
+        },
+        "overflow": {
+          "$ref": "#/definitions/SprinkleProp_overflow"
+        },
+        "overflowX": {
+          "$ref": "#/definitions/SprinkleProp_overflowX"
+        },
+        "overflowY": {
+          "$ref": "#/definitions/SprinkleProp_overflowY"
+        },
+        "p": {
+          "$ref": "#/definitions/SprinkleProp_p"
+        },
+        "pb": {
+          "$ref": "#/definitions/SprinkleProp_pb"
+        },
+        "pl": {
+          "$ref": "#/definitions/SprinkleProp_pl"
+        },
+        "placeItems": {
+          "$ref": "#/definitions/SprinkleProp_placeItems"
+        },
+        "pointerEvents": {
+          "$ref": "#/definitions/SprinkleProp_pointerEvents"
+        },
+        "pr": {
+          "$ref": "#/definitions/SprinkleProp_pr"
+        },
+        "pt": {
+          "$ref": "#/definitions/SprinkleProp_pt"
+        },
+        "px": {
+          "$ref": "#/definitions/SprinkleProp_px"
+        },
+        "py": {
+          "$ref": "#/definitions/SprinkleProp_py"
+        },
+        "rounded": {
+          "$ref": "#/definitions/SprinkleProp_rounded"
+        },
+        "shadow": {
+          "$ref": "#/definitions/SprinkleProp_shadow"
+        },
+        "size": {
+          "$ref": "#/definitions/SprinkleProp_size"
+        },
+        "textAlign": {
+          "$ref": "#/definitions/SprinkleProp_textAlign"
+        },
+        "textTransform": {
+          "$ref": "#/definitions/SprinkleProp_textTransform"
+        },
+        "transition": {
+          "$ref": "#/definitions/SprinkleProp_transition"
+        },
+        "w": {
+          "$ref": "#/definitions/SprinkleProp_w"
+        },
+        "whiteSpace": {
+          "$ref": "#/definitions/SprinkleProp_whiteSpace"
+        },
+        "z": {
+          "$ref": "#/definitions/SprinkleProp_z"
+        }
+      },
+      "required": ["$type"],
+      "type": "object"
+    },
+    "ProteusSelectTrigger": {
+      "properties": {
+        "$type": {
+          "const": "SelectTrigger"
+        },
+        "alignItems": {
+          "$ref": "#/definitions/SprinkleProp_alignItems"
+        },
+        "alignSelf": {
+          "$ref": "#/definitions/SprinkleProp_alignSelf"
+        },
+        "animation": {
+          "$ref": "#/definitions/SprinkleProp_animation"
+        },
+        "backgroundImage": {
+          "$ref": "#/definitions/SprinkleProp_backgroundImage"
+        },
+        "bg": {
+          "$ref": "#/definitions/SprinkleProp_bg"
+        },
+        "border": {
+          "$ref": "#/definitions/SprinkleProp_border"
+        },
+        "borderB": {
+          "$ref": "#/definitions/SprinkleProp_borderB"
+        },
+        "borderColor": {
+          "$ref": "#/definitions/SprinkleProp_borderColor"
+        },
+        "borderL": {
+          "$ref": "#/definitions/SprinkleProp_borderL"
+        },
+        "borderR": {
+          "$ref": "#/definitions/SprinkleProp_borderR"
+        },
+        "borderT": {
+          "$ref": "#/definitions/SprinkleProp_borderT"
+        },
+        "children": {
+          "$ref": "#/definitions/ProteusNode"
+        },
+        "color": {
+          "$ref": "#/definitions/SprinkleProp_color"
+        },
+        "cursor": {
+          "$ref": "#/definitions/SprinkleProp_cursor"
+        },
+        "display": {
+          "$ref": "#/definitions/SprinkleProp_display"
+        },
+        "flex": {
+          "$ref": "#/definitions/SprinkleProp_flex"
+        },
+        "flexDirection": {
+          "$ref": "#/definitions/SprinkleProp_flexDirection"
+        },
+        "flexWrap": {
+          "$ref": "#/definitions/SprinkleProp_flexWrap"
+        },
+        "fontFamily": {
+          "$ref": "#/definitions/SprinkleProp_fontFamily"
+        },
+        "fontSize": {
+          "$ref": "#/definitions/SprinkleProp_fontSize"
+        },
+        "fontWeight": {
+          "$ref": "#/definitions/SprinkleProp_fontWeight"
+        },
+        "gap": {
+          "$ref": "#/definitions/SprinkleProp_gap"
+        },
+        "gridColumn": {
+          "$ref": "#/definitions/SprinkleProp_gridColumn"
+        },
+        "gridTemplateColumns": {
+          "$ref": "#/definitions/SprinkleProp_gridTemplateColumns"
+        },
+        "h": {
+          "$ref": "#/definitions/SprinkleProp_h"
+        },
+        "justifyContent": {
+          "$ref": "#/definitions/SprinkleProp_justifyContent"
+        },
+        "justifyItems": {
+          "$ref": "#/definitions/SprinkleProp_justifyItems"
+        },
+        "m": {
+          "$ref": "#/definitions/SprinkleProp_m"
+        },
+        "maxH": {
+          "$ref": "#/definitions/SprinkleProp_maxH"
+        },
+        "maxW": {
+          "$ref": "#/definitions/SprinkleProp_maxW"
+        },
+        "mb": {
+          "$ref": "#/definitions/SprinkleProp_mb"
+        },
+        "ml": {
+          "$ref": "#/definitions/SprinkleProp_ml"
+        },
+        "mr": {
+          "$ref": "#/definitions/SprinkleProp_mr"
+        },
+        "mt": {
+          "$ref": "#/definitions/SprinkleProp_mt"
+        },
+        "mx": {
+          "$ref": "#/definitions/SprinkleProp_mx"
+        },
+        "my": {
+          "$ref": "#/definitions/SprinkleProp_my"
+        },
+        "objectFit": {
+          "$ref": "#/definitions/SprinkleProp_objectFit"
+        },
+        "overflow": {
+          "$ref": "#/definitions/SprinkleProp_overflow"
+        },
+        "overflowX": {
+          "$ref": "#/definitions/SprinkleProp_overflowX"
+        },
+        "overflowY": {
+          "$ref": "#/definitions/SprinkleProp_overflowY"
+        },
+        "p": {
+          "$ref": "#/definitions/SprinkleProp_p"
+        },
+        "pb": {
+          "$ref": "#/definitions/SprinkleProp_pb"
+        },
+        "pl": {
+          "$ref": "#/definitions/SprinkleProp_pl"
+        },
+        "placeItems": {
+          "$ref": "#/definitions/SprinkleProp_placeItems"
+        },
+        "pointerEvents": {
+          "$ref": "#/definitions/SprinkleProp_pointerEvents"
+        },
+        "pr": {
+          "$ref": "#/definitions/SprinkleProp_pr"
+        },
+        "pt": {
+          "$ref": "#/definitions/SprinkleProp_pt"
+        },
+        "px": {
+          "$ref": "#/definitions/SprinkleProp_px"
+        },
+        "py": {
+          "$ref": "#/definitions/SprinkleProp_py"
+        },
+        "rounded": {
+          "$ref": "#/definitions/SprinkleProp_rounded"
+        },
+        "shadow": {
+          "$ref": "#/definitions/SprinkleProp_shadow"
+        },
+        "textAlign": {
+          "$ref": "#/definitions/SprinkleProp_textAlign"
+        },
+        "textTransform": {
+          "$ref": "#/definitions/SprinkleProp_textTransform"
+        },
+        "transition": {
+          "$ref": "#/definitions/SprinkleProp_transition"
+        },
+        "w": {
+          "$ref": "#/definitions/SprinkleProp_w"
+        },
+        "whiteSpace": {
+          "$ref": "#/definitions/SprinkleProp_whiteSpace"
+        },
+        "z": {
+          "$ref": "#/definitions/SprinkleProp_z"
+        }
+      },
+      "required": ["$type"],
+      "type": "object"
+    },
+    "ProteusSeparator": {
+      "properties": {
+        "$type": {
+          "const": "Separator"
+        },
+        "alignItems": {
+          "$ref": "#/definitions/SprinkleProp_alignItems"
+        },
+        "alignSelf": {
+          "$ref": "#/definitions/SprinkleProp_alignSelf"
+        },
+        "animation": {
+          "$ref": "#/definitions/SprinkleProp_animation"
+        },
+        "backgroundImage": {
+          "$ref": "#/definitions/SprinkleProp_backgroundImage"
+        },
+        "bg": {
+          "$ref": "#/definitions/SprinkleProp_bg"
+        },
+        "border": {
+          "$ref": "#/definitions/SprinkleProp_border"
+        },
+        "borderB": {
+          "$ref": "#/definitions/SprinkleProp_borderB"
+        },
+        "borderColor": {
+          "$ref": "#/definitions/SprinkleProp_borderColor"
+        },
+        "borderL": {
+          "$ref": "#/definitions/SprinkleProp_borderL"
+        },
+        "borderR": {
+          "$ref": "#/definitions/SprinkleProp_borderR"
+        },
+        "borderT": {
+          "$ref": "#/definitions/SprinkleProp_borderT"
+        },
+        "color": {
+          "$ref": "#/definitions/SprinkleProp_color"
+        },
+        "cursor": {
+          "$ref": "#/definitions/SprinkleProp_cursor"
+        },
+        "display": {
+          "$ref": "#/definitions/SprinkleProp_display"
+        },
+        "flex": {
+          "$ref": "#/definitions/SprinkleProp_flex"
+        },
+        "flexDirection": {
+          "$ref": "#/definitions/SprinkleProp_flexDirection"
+        },
+        "flexWrap": {
+          "$ref": "#/definitions/SprinkleProp_flexWrap"
+        },
+        "fontFamily": {
+          "$ref": "#/definitions/SprinkleProp_fontFamily"
+        },
+        "fontSize": {
+          "$ref": "#/definitions/SprinkleProp_fontSize"
+        },
+        "fontWeight": {
+          "$ref": "#/definitions/SprinkleProp_fontWeight"
+        },
+        "gap": {
+          "$ref": "#/definitions/SprinkleProp_gap"
+        },
+        "gridColumn": {
+          "$ref": "#/definitions/SprinkleProp_gridColumn"
+        },
+        "gridTemplateColumns": {
+          "$ref": "#/definitions/SprinkleProp_gridTemplateColumns"
+        },
+        "h": {
+          "$ref": "#/definitions/SprinkleProp_h"
+        },
+        "justifyContent": {
+          "$ref": "#/definitions/SprinkleProp_justifyContent"
+        },
+        "justifyItems": {
+          "$ref": "#/definitions/SprinkleProp_justifyItems"
+        },
+        "m": {
+          "$ref": "#/definitions/SprinkleProp_m"
+        },
+        "maxH": {
+          "$ref": "#/definitions/SprinkleProp_maxH"
+        },
+        "maxW": {
+          "$ref": "#/definitions/SprinkleProp_maxW"
+        },
+        "mb": {
+          "$ref": "#/definitions/SprinkleProp_mb"
+        },
+        "ml": {
+          "$ref": "#/definitions/SprinkleProp_ml"
+        },
+        "mr": {
+          "$ref": "#/definitions/SprinkleProp_mr"
+        },
+        "mt": {
+          "$ref": "#/definitions/SprinkleProp_mt"
+        },
+        "mx": {
+          "$ref": "#/definitions/SprinkleProp_mx"
+        },
+        "my": {
+          "$ref": "#/definitions/SprinkleProp_my"
+        },
+        "objectFit": {
+          "$ref": "#/definitions/SprinkleProp_objectFit"
+        },
+        "overflow": {
+          "$ref": "#/definitions/SprinkleProp_overflow"
+        },
+        "overflowX": {
+          "$ref": "#/definitions/SprinkleProp_overflowX"
+        },
+        "overflowY": {
+          "$ref": "#/definitions/SprinkleProp_overflowY"
+        },
+        "p": {
+          "$ref": "#/definitions/SprinkleProp_p"
+        },
+        "pb": {
+          "$ref": "#/definitions/SprinkleProp_pb"
+        },
+        "pl": {
+          "$ref": "#/definitions/SprinkleProp_pl"
+        },
+        "placeItems": {
+          "$ref": "#/definitions/SprinkleProp_placeItems"
+        },
+        "pointerEvents": {
+          "$ref": "#/definitions/SprinkleProp_pointerEvents"
+        },
+        "pr": {
+          "$ref": "#/definitions/SprinkleProp_pr"
+        },
+        "pt": {
+          "$ref": "#/definitions/SprinkleProp_pt"
+        },
+        "px": {
+          "$ref": "#/definitions/SprinkleProp_px"
+        },
+        "py": {
+          "$ref": "#/definitions/SprinkleProp_py"
+        },
+        "rounded": {
+          "$ref": "#/definitions/SprinkleProp_rounded"
+        },
+        "shadow": {
+          "$ref": "#/definitions/SprinkleProp_shadow"
+        },
+        "size": {
+          "$ref": "#/definitions/SprinkleProp_size"
+        },
+        "textAlign": {
+          "$ref": "#/definitions/SprinkleProp_textAlign"
+        },
+        "textTransform": {
+          "$ref": "#/definitions/SprinkleProp_textTransform"
+        },
+        "transition": {
+          "$ref": "#/definitions/SprinkleProp_transition"
+        },
+        "w": {
+          "$ref": "#/definitions/SprinkleProp_w"
+        },
+        "whiteSpace": {
+          "$ref": "#/definitions/SprinkleProp_whiteSpace"
+        },
+        "z": {
+          "$ref": "#/definitions/SprinkleProp_z"
+        }
+      },
+      "required": ["$type"],
+      "type": "object"
+    },
+    "ProteusShow": {
+      "examples": [
+        {
+          "$type": "Show",
+          "children": {
+            "$type": "Text",
+            "children": "Shown conditionally"
+          },
+          "when": {
+            "!!": {
+              "$type": "Value",
+              "path": "/field_name"
+            }
+          }
+        }
+      ],
+      "properties": {
+        "$type": {
+          "const": "Show"
+        },
+        "children": {
+          "$ref": "#/definitions/ProteusNode",
+          "description": "Content to show when condition is true"
+        },
+        "when": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ProteusCondition"
+            },
+            {
+              "items": {
+                "$ref": "#/definitions/ProteusCondition"
+              },
+              "type": "array"
+            }
+          ],
+          "description": "Single condition or array of conditions (AND logic). Each condition is an object with one operator key."
+        }
+      },
+      "required": ["$type"],
+      "type": "object"
+    },
+    "ProteusText": {
+      "examples": [
+        {
+          "$type": "Text",
+          "children": "New text"
+        }
+      ],
+      "properties": {
+        "$type": {
+          "const": "Text"
+        },
+        "alignItems": {
+          "$ref": "#/definitions/SprinkleProp_alignItems"
+        },
+        "alignSelf": {
+          "$ref": "#/definitions/SprinkleProp_alignSelf"
+        },
+        "animation": {
+          "$ref": "#/definitions/SprinkleProp_animation"
+        },
+        "backgroundImage": {
+          "$ref": "#/definitions/SprinkleProp_backgroundImage"
+        },
+        "bg": {
+          "$ref": "#/definitions/SprinkleProp_bg"
+        },
+        "border": {
+          "$ref": "#/definitions/SprinkleProp_border"
+        },
+        "borderB": {
+          "$ref": "#/definitions/SprinkleProp_borderB"
+        },
+        "borderColor": {
+          "$ref": "#/definitions/SprinkleProp_borderColor"
+        },
+        "borderL": {
+          "$ref": "#/definitions/SprinkleProp_borderL"
+        },
+        "borderR": {
+          "$ref": "#/definitions/SprinkleProp_borderR"
+        },
+        "borderT": {
+          "$ref": "#/definitions/SprinkleProp_borderT"
+        },
+        "children": {
+          "$ref": "#/definitions/ProteusNode"
+        },
+        "color": {
+          "$ref": "#/definitions/SprinkleProp_color"
+        },
+        "cursor": {
+          "$ref": "#/definitions/SprinkleProp_cursor"
+        },
+        "display": {
+          "$ref": "#/definitions/SprinkleProp_display"
+        },
+        "flex": {
+          "$ref": "#/definitions/SprinkleProp_flex"
+        },
+        "flexDirection": {
+          "$ref": "#/definitions/SprinkleProp_flexDirection"
+        },
+        "flexWrap": {
+          "$ref": "#/definitions/SprinkleProp_flexWrap"
+        },
+        "fontFamily": {
+          "$ref": "#/definitions/SprinkleProp_fontFamily"
+        },
+        "fontSize": {
+          "$ref": "#/definitions/SprinkleProp_fontSize"
+        },
+        "fontWeight": {
+          "$ref": "#/definitions/SprinkleProp_fontWeight"
+        },
+        "gap": {
+          "$ref": "#/definitions/SprinkleProp_gap"
+        },
+        "gridColumn": {
+          "$ref": "#/definitions/SprinkleProp_gridColumn"
+        },
+        "gridTemplateColumns": {
+          "$ref": "#/definitions/SprinkleProp_gridTemplateColumns"
+        },
+        "h": {
+          "$ref": "#/definitions/SprinkleProp_h"
+        },
+        "justifyContent": {
+          "$ref": "#/definitions/SprinkleProp_justifyContent"
+        },
+        "justifyItems": {
+          "$ref": "#/definitions/SprinkleProp_justifyItems"
+        },
+        "m": {
+          "$ref": "#/definitions/SprinkleProp_m"
+        },
+        "maxH": {
+          "$ref": "#/definitions/SprinkleProp_maxH"
+        },
+        "maxW": {
+          "$ref": "#/definitions/SprinkleProp_maxW"
+        },
+        "mb": {
+          "$ref": "#/definitions/SprinkleProp_mb"
+        },
+        "ml": {
+          "$ref": "#/definitions/SprinkleProp_ml"
+        },
+        "mr": {
+          "$ref": "#/definitions/SprinkleProp_mr"
+        },
+        "mt": {
+          "$ref": "#/definitions/SprinkleProp_mt"
+        },
+        "mx": {
+          "$ref": "#/definitions/SprinkleProp_mx"
+        },
+        "my": {
+          "$ref": "#/definitions/SprinkleProp_my"
+        },
+        "objectFit": {
+          "$ref": "#/definitions/SprinkleProp_objectFit"
+        },
+        "overflow": {
+          "$ref": "#/definitions/SprinkleProp_overflow"
+        },
+        "overflowX": {
+          "$ref": "#/definitions/SprinkleProp_overflowX"
+        },
+        "overflowY": {
+          "$ref": "#/definitions/SprinkleProp_overflowY"
+        },
+        "p": {
+          "$ref": "#/definitions/SprinkleProp_p"
+        },
+        "pb": {
+          "$ref": "#/definitions/SprinkleProp_pb"
+        },
+        "pl": {
+          "$ref": "#/definitions/SprinkleProp_pl"
+        },
+        "placeItems": {
+          "$ref": "#/definitions/SprinkleProp_placeItems"
+        },
+        "pointerEvents": {
+          "$ref": "#/definitions/SprinkleProp_pointerEvents"
+        },
+        "pr": {
+          "$ref": "#/definitions/SprinkleProp_pr"
+        },
+        "pt": {
+          "$ref": "#/definitions/SprinkleProp_pt"
+        },
+        "px": {
+          "$ref": "#/definitions/SprinkleProp_px"
+        },
+        "py": {
+          "$ref": "#/definitions/SprinkleProp_py"
+        },
+        "rounded": {
+          "$ref": "#/definitions/SprinkleProp_rounded"
+        },
+        "shadow": {
+          "$ref": "#/definitions/SprinkleProp_shadow"
+        },
+        "size": {
+          "$ref": "#/definitions/SprinkleProp_size"
+        },
+        "textAlign": {
+          "$ref": "#/definitions/SprinkleProp_textAlign"
+        },
+        "textTransform": {
+          "$ref": "#/definitions/SprinkleProp_textTransform"
+        },
+        "transition": {
+          "$ref": "#/definitions/SprinkleProp_transition"
+        },
+        "w": {
+          "$ref": "#/definitions/SprinkleProp_w"
+        },
+        "whiteSpace": {
+          "$ref": "#/definitions/SprinkleProp_whiteSpace"
+        },
+        "z": {
+          "$ref": "#/definitions/SprinkleProp_z"
+        }
+      },
+      "required": ["$type"],
+      "type": "object"
+    },
+    "ProteusTextarea": {
+      "examples": [
+        {
+          "$type": "Textarea",
+          "name": "field_name",
+          "placeholder": "Enter text"
+        }
+      ],
+      "properties": {
+        "$type": {
+          "const": "Textarea"
+        },
+        "alignItems": {
+          "$ref": "#/definitions/SprinkleProp_alignItems"
+        },
+        "alignSelf": {
+          "$ref": "#/definitions/SprinkleProp_alignSelf"
+        },
+        "animation": {
+          "$ref": "#/definitions/SprinkleProp_animation"
+        },
+        "backgroundImage": {
+          "$ref": "#/definitions/SprinkleProp_backgroundImage"
+        },
+        "bg": {
+          "$ref": "#/definitions/SprinkleProp_bg"
+        },
+        "border": {
+          "$ref": "#/definitions/SprinkleProp_border"
+        },
+        "borderB": {
+          "$ref": "#/definitions/SprinkleProp_borderB"
+        },
+        "borderColor": {
+          "$ref": "#/definitions/SprinkleProp_borderColor"
+        },
+        "borderL": {
+          "$ref": "#/definitions/SprinkleProp_borderL"
+        },
+        "borderR": {
+          "$ref": "#/definitions/SprinkleProp_borderR"
+        },
+        "borderT": {
+          "$ref": "#/definitions/SprinkleProp_borderT"
+        },
+        "color": {
+          "$ref": "#/definitions/SprinkleProp_color"
+        },
+        "cursor": {
+          "$ref": "#/definitions/SprinkleProp_cursor"
+        },
+        "display": {
+          "$ref": "#/definitions/SprinkleProp_display"
+        },
+        "flex": {
+          "$ref": "#/definitions/SprinkleProp_flex"
+        },
+        "flexDirection": {
+          "$ref": "#/definitions/SprinkleProp_flexDirection"
+        },
+        "flexWrap": {
+          "$ref": "#/definitions/SprinkleProp_flexWrap"
+        },
+        "fontFamily": {
+          "$ref": "#/definitions/SprinkleProp_fontFamily"
+        },
+        "fontSize": {
+          "$ref": "#/definitions/SprinkleProp_fontSize"
+        },
+        "fontWeight": {
+          "$ref": "#/definitions/SprinkleProp_fontWeight"
+        },
+        "gap": {
+          "$ref": "#/definitions/SprinkleProp_gap"
+        },
+        "gridColumn": {
+          "$ref": "#/definitions/SprinkleProp_gridColumn"
+        },
+        "gridTemplateColumns": {
+          "$ref": "#/definitions/SprinkleProp_gridTemplateColumns"
+        },
+        "h": {
+          "$ref": "#/definitions/SprinkleProp_h"
+        },
+        "justifyContent": {
+          "$ref": "#/definitions/SprinkleProp_justifyContent"
+        },
+        "justifyItems": {
+          "$ref": "#/definitions/SprinkleProp_justifyItems"
+        },
+        "m": {
+          "$ref": "#/definitions/SprinkleProp_m"
+        },
+        "maxH": {
+          "$ref": "#/definitions/SprinkleProp_maxH"
+        },
+        "maxRows": {
+          "anyOf": [
+            {
+              "const": 1
+            },
+            {
+              "const": 2
+            },
+            {
+              "const": 3
+            },
+            {
+              "const": 4
+            },
+            {
+              "const": 5
+            }
+          ],
+          "description": "Limits the height of the textarea when `resize=auto` is used."
+        },
+        "maxW": {
+          "$ref": "#/definitions/SprinkleProp_maxW"
+        },
+        "mb": {
+          "$ref": "#/definitions/SprinkleProp_mb"
+        },
+        "ml": {
+          "$ref": "#/definitions/SprinkleProp_ml"
+        },
+        "mr": {
+          "$ref": "#/definitions/SprinkleProp_mr"
+        },
+        "mt": {
+          "$ref": "#/definitions/SprinkleProp_mt"
+        },
+        "mx": {
+          "$ref": "#/definitions/SprinkleProp_mx"
+        },
+        "my": {
+          "$ref": "#/definitions/SprinkleProp_my"
+        },
+        "name": {
+          "description": "The name of the form control element.",
+          "type": "string"
+        },
+        "objectFit": {
+          "$ref": "#/definitions/SprinkleProp_objectFit"
+        },
+        "overflow": {
+          "$ref": "#/definitions/SprinkleProp_overflow"
+        },
+        "overflowX": {
+          "$ref": "#/definitions/SprinkleProp_overflowX"
+        },
+        "overflowY": {
+          "$ref": "#/definitions/SprinkleProp_overflowY"
+        },
+        "p": {
+          "$ref": "#/definitions/SprinkleProp_p"
+        },
+        "pb": {
+          "$ref": "#/definitions/SprinkleProp_pb"
+        },
+        "pl": {
+          "$ref": "#/definitions/SprinkleProp_pl"
+        },
+        "placeholder": {
+          "description": "The placeholder text to use when control has no value.",
+          "type": "string"
+        },
+        "placeItems": {
+          "$ref": "#/definitions/SprinkleProp_placeItems"
+        },
+        "pointerEvents": {
+          "$ref": "#/definitions/SprinkleProp_pointerEvents"
+        },
+        "pr": {
+          "$ref": "#/definitions/SprinkleProp_pr"
+        },
+        "pt": {
+          "$ref": "#/definitions/SprinkleProp_pt"
+        },
+        "px": {
+          "$ref": "#/definitions/SprinkleProp_px"
+        },
+        "py": {
+          "$ref": "#/definitions/SprinkleProp_py"
+        },
+        "resize": {
+          "anyOf": [
+            {
+              "const": "none"
+            },
+            {
+              "const": "auto"
+            },
+            {
+              "const": "vertical"
+            }
+          ],
+          "description": "Control whether resizing mode is manual, automatic, or disabled."
+        },
+        "rounded": {
+          "$ref": "#/definitions/SprinkleProp_rounded"
+        },
+        "rows": {
+          "description": "The number of rows to display.",
+          "type": "number"
+        },
+        "shadow": {
+          "$ref": "#/definitions/SprinkleProp_shadow"
+        },
+        "textAlign": {
+          "$ref": "#/definitions/SprinkleProp_textAlign"
+        },
+        "textTransform": {
+          "$ref": "#/definitions/SprinkleProp_textTransform"
+        },
+        "transition": {
+          "$ref": "#/definitions/SprinkleProp_transition"
+        },
+        "w": {
+          "$ref": "#/definitions/SprinkleProp_w"
+        },
+        "whiteSpace": {
+          "$ref": "#/definitions/SprinkleProp_whiteSpace"
+        },
+        "z": {
+          "$ref": "#/definitions/SprinkleProp_z"
+        }
+      },
+      "required": ["$type"],
+      "type": "object"
+    },
+    "ProteusValue": {
+      "examples": [
+        {
+          "$type": "Value",
+          "path": "/field_name"
+        }
+      ],
+      "properties": {
+        "$type": {
+          "const": "Value"
+        },
+        "path": {
+          "description": "JSON pointer path to value (e.g., '/question', '/options/0/label')",
+          "type": "string"
+        }
+      },
+      "required": ["$type", "path"],
+      "type": "object"
+    }
+  },
+  "title": "Opal Proteus Document Specification"
+}

@@ -1,9 +1,8 @@
-import type { ProteusTextareaProps } from "./schemas";
-
 import { Textarea } from "../textarea";
 import { useProteusDocumentContext } from "./ProteusDocumentContext";
 
-export function ProteusTextarea(props: ProteusTextareaProps) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function ProteusTextarea(props: Record<string, any>) {
   const { data, onDataChange, readOnly } = useProteusDocumentContext(
     "@optiaxiom/react/ProteusTextarea",
   );

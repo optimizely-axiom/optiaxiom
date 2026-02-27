@@ -13,7 +13,7 @@ import { useEffectEvent } from "../hooks";
 import { Text } from "../text";
 import { ProteusDocumentProvider } from "./ProteusDocumentContext";
 import { ProteusElement } from "./ProteusElement";
-import { type ProteusDocument, ProteusDocumentSchema } from "./schemas";
+import { type ProteusDocument, safeParseDocument } from "./schemas";
 
 export type ProteusDocumentRendererProps = Pick<
   ComponentPropsWithoutRef<typeof Disclosure>,
@@ -75,7 +75,7 @@ export function ProteusDocumentRenderer({
     prop: openProp,
   });
 
-  const result = ProteusDocumentSchema.safeParse(elementProp);
+  const result = safeParseDocument(elementProp);
   if (!result.success) {
     if (process.env.NODE_ENV !== "production") {
       console.error(
@@ -144,13 +144,11 @@ export function ProteusDocumentRenderer({
                 )}
               </Group>
               <ProteusElement element={result.data.body} />
-              {result.data.actions &&
-                result.data.actions.length > 0 &&
-                !readOnly && (
-                  <Group gap="16" justifyContent="end" w="full">
-                    <ProteusElement element={result.data.actions} />
-                  </Group>
-                )}
+              {!!result.data.actions && !readOnly && (
+                <Group gap="16" justifyContent="end" w="full">
+                  <ProteusElement element={result.data.actions} />
+                </Group>
+              )}
             </DisclosureContent>
           </>
         )}

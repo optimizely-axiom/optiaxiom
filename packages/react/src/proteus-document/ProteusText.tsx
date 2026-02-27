@@ -1,9 +1,8 @@
-import type { ProteusTextProps } from "./schemas";
-
 import { Text } from "../text";
 import { ProteusElement } from "./ProteusElement";
 
-export function ProteusText({ children, ...props }: ProteusTextProps) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function ProteusText({ children, ...props }: Record<string, any>) {
   return (
     <Text {...props}>{children && <ProteusElement element={children} />}</Text>
   );

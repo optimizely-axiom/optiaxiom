@@ -429,10 +429,18 @@ export const PartialRendering: Story = {
       appName: "Opal",
       body: [
         {
-          $type: "InvalidElement",
-          content: "This is an invalid element type",
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        } as any,
+          $type: "Group",
+          children: [
+            {
+              $type: "Text",
+              children: "Sample text",
+            },
+            {
+              $type: "InvalidElement",
+              content: "This is an invalid element type",
+            },
+          ],
+        },
       ],
       title: "Invalid Document Example",
     },

@@ -1,8 +1,7 @@
-import type { ProteusImageProps } from "./schemas";
-
 import { Box } from "../box";
 
-export function ProteusImage(props: ProteusImageProps) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function ProteusImage(props: Record<string, any>) {
   return (
     <Box asChild display="block" objectFit="cover" {...props}>
       <img />

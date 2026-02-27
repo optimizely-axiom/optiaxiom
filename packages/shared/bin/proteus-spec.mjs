@@ -1,7 +1,5 @@
 #!/usr/bin/env node
 import fs from "fs";
-import { resolveRefs } from "json-refs";
-import { jsonSchemaToZod } from "json-schema-to-zod";
 import path from "path";
 
 import { getDocs } from "../src/index.mjs";
@@ -250,26 +248,13 @@ function generateJsonSchema(additionalProperties = false) {
           type: "object",
         };
 
-        const proteusNode = definitions["ProteusNode"];
+        const proteusElement = definitions["ProteusElement"];
         if (
-          proteusNode &&
-          typeof proteusNode === "object" &&
-          Array.isArray(proteusNode.anyOf)
+          proteusElement &&
+          typeof proteusElement === "object" &&
+          Array.isArray(proteusElement.anyOf)
         ) {
-          proteusNode.anyOf.push(proteusComponentRef);
-
-          const arrayType = proteusNode.anyOf[0];
-          if (
-            arrayType &&
-            typeof arrayType === "object" &&
-            "items" in arrayType &&
-            arrayType.items &&
-            typeof arrayType.items === "object" &&
-            "anyOf" in arrayType.items &&
-            Array.isArray(arrayType.items.anyOf)
-          ) {
-            arrayType.items.anyOf.push(proteusComponentRef);
-          }
+          proteusElement.anyOf.push(proteusComponentRef);
         }
 
         return definitions;
@@ -614,14 +599,8 @@ function generateJsonSchema(additionalProperties = false) {
           properties: {
             $type: { const: "Document" },
             actions: {
+              anyOf: [{ $ref: "#/definitions/ProteusNode" }],
               description: "Actions available for this document",
-              items: {
-                anyOf: [
-                  { $ref: "#/definitions/ProteusAction" },
-                  { $ref: "#/definitions/ProteusCancelAction" },
-                ],
-              },
-              type: "array",
             },
             appIcon: {
               description: "A visual representation of the application",
@@ -652,6 +631,11 @@ function generateJsonSchema(additionalProperties = false) {
           },
           required: ["$type", "appName", "body", "title"],
           type: "object",
+        },
+        ProteusElement: {
+          anyOf: [],
+          description:
+            "A single Proteus UI component element identified by its $type discriminator",
         },
         ProteusEventHandler: {
           anyOf: [
@@ -692,6 +676,7 @@ function generateJsonSchema(additionalProperties = false) {
                   { type: "number" },
                   { type: "boolean" },
                   { type: "null" },
+                  { $ref: "#/definitions/ProteusElement" },
                 ],
               },
               type: "array",
@@ -700,6 +685,7 @@ function generateJsonSchema(additionalProperties = false) {
             { type: "number" },
             { type: "boolean" },
             { type: "null" },
+            { $ref: "#/definitions/ProteusElement" },
           ],
           description:
             "A Proteus node can be a string, number, boolean, null, a single element, or an array of these types (similar to ReactNode)",
@@ -711,138 +697,103 @@ function generateJsonSchema(additionalProperties = false) {
 }
 
 /**
- * Convert JSON Schema to Zod schema TypeScript code
- * @param {JSONSchema7} schema - The JSON Schema
- * @returns {Promise<string>} TypeScript code with Zod schemas
+ * Generate minimal TypeScript types + safeParse wrappers using @cfworker/json-schema
+ * @returns {string} TypeScript code
  */
-async function generateZodSchemas(schema) {
+function generateTypeScriptTypes() {
   const lines = [];
 
   lines.push("// This file is auto-generated. Do not edit manually.");
   lines.push("// Run `pnpm proteus-spec` to regenerate.");
   lines.push("");
-  lines.push('import { z } from "zod/v4";');
+  lines.push('import { Validator } from "@cfworker/json-schema";');
   lines.push("");
-  lines.push("type ProteusNode = string | ProteusElement | ProteusElement[]");
+  lines.push("import proteusDocumentSpec from './proteus-document-spec.json';");
   lines.push("");
 
-  // First, generate Zod schemas for sprinkle props as reusable constants
-  lines.push("// Shared sprinkle prop schemas");
-  const sprinkleSchemas = new Map();
-  for (const [name, def] of Object.entries(schema.definitions || {})) {
-    if (typeof def !== "object") continue;
-    if (!name.startsWith("SprinkleProp_")) continue;
+  // --- ProteusEventHandler ---
+  lines.push("// --- ProteusEventHandler ---");
+  lines.push("");
+  lines.push("export type ProteusEventHandler =");
+  lines.push("  | { tool: string }");
+  lines.push("  | { message: string };");
+  lines.push("");
 
-    const propName = name.replace("SprinkleProp_", "");
-    const schemaVarName = `${propName}SprinkleSchema`;
+  // --- ProteusDocument ---
+  lines.push("// --- ProteusDocument ---");
+  lines.push("");
+  lines.push("export interface ProteusDocument {");
+  lines.push('  $type: "Document";');
+  lines.push("  [key: string]: unknown;");
+  lines.push("  actions?: unknown;");
+  lines.push("  appIcon?: string;");
+  lines.push("  appName: string;");
+  lines.push("  blocking?: boolean;");
+  lines.push("  body: unknown;");
+  lines.push("  subtitle?: string;");
+  lines.push("  title: string;");
+  lines.push("}");
+  lines.push("");
 
-    const zodCode = jsonSchemaToZod(def, {
-      module: "esm",
-      name: schemaVarName,
-      noImport: true,
-    });
-
-    lines.push(zodCode);
-    lines.push("");
-    sprinkleSchemas.set(name, schemaVarName);
-  }
-
-  const components = [];
-
-  for (const [name, def] of Object.entries(schema.definitions || {})) {
-    if (typeof def !== "object") continue;
-    if (name === "ProteusNode" || name.startsWith("SprinkleProp_")) continue;
-
-    const schemaName = `${name}Schema`;
-    if (
-      ![
-        "ProteusAtomicCondition",
-        "ProteusCondition",
-        "ProteusDocument",
-        "ProteusEventHandler",
-      ].includes(name)
-    ) {
-      components.push(name);
-    }
-
-    // Create a custom definitions object that excludes sprinkle props and condition types
-    const definitionsWithoutSprinkles = Object.fromEntries(
-      Object.entries(schema.definitions || {}).filter(
-        ([key]) =>
-          !key.startsWith("SprinkleProp_") &&
-          key !== "ProteusCondition" &&
-          key !== "ProteusAtomicCondition",
-      ),
-    );
-
-    let zodCode = jsonSchemaToZod(
-      (
-        await resolveRefs({
-          ...def,
-          definitions: {
-            ...definitionsWithoutSprinkles,
-            ProteusNode: {},
-          },
-        })
-      ).resolved,
-      {
-        module: "esm",
-        name: schemaName,
-        noImport: true,
-        parserOverride: (schema) => {
-          if (schema.$ref === "#/definitions/ProteusCondition") {
-            return "ProteusConditionSchema";
-          } else if (schema.$ref === "#/definitions/ProteusAtomicCondition") {
-            return "ProteusAtomicConditionSchema";
-          } else if (schema.$ref?.startsWith("#/definitions/SprinkleProp_")) {
-            const propName = schema.$ref.replace(
-              "#/definitions/SprinkleProp_",
-              "",
-            );
-            return `${propName}SprinkleSchema`;
-          }
-          return;
-        },
-      },
-    )
-      // zod v4 workaround
-      .replace(/\.record\(/g, ".record(z.string(),");
-
-    // Append .meta({ examples }) if the definition has examples
-    if (Array.isArray(def.examples) && def.examples?.length) {
-      zodCode += `.meta(${JSON.stringify({ examples: def.examples })})` + "\n";
-    }
-
-    lines.push(zodCode);
-    if (
-      [
-        "ProteusAtomicCondition",
-        "ProteusCondition",
-        "ProteusEventHandler",
-      ].includes(name)
-    ) {
-      lines.push(`export type ${name} = z.infer<typeof ${schemaName}>;`);
-    } else {
-      lines.push(
-        `export type ${name} = Omit<z.infer<typeof ${schemaName}>, "children"> & { children?: ProteusNode };`,
-      );
-      lines.push(
-        `export type ${name}Props = Omit<z.infer<typeof ${schemaName}>, "$type">;`,
-      );
-    }
-    lines.push("");
-  }
-
+  // --- ProteusElement (discriminated union for switch exhaustiveness) ---
   lines.push(
-    'export const ProteusElementSchema = z.discriminatedUnion("$type", [' +
-      components.map((component) => `${component}Schema`).join(", ") +
-      "]);",
+    "// --- ProteusElement (discriminated union for switch exhaustiveness) ---",
+  );
+  lines.push("");
+  lines.push("export type ProteusElement =");
+  const componentNames = Object.keys(PROTEUS_COMPONENT_CONFIG);
+  componentNames.forEach((name, index) => {
+    const separator = index < componentNames.length - 1 ? "" : ";";
+    lines.push(`  | { $type: "${name}"; [key: string]: unknown }${separator}`);
+  });
+  lines.push("");
+
+  // --- safeParse ---
+  lines.push("// --- safeParse ---");
+  lines.push("");
+  lines.push("const documentValidator = new Validator(");
+  lines.push(
+    '  { $ref: "#/definitions/ProteusDocument", definitions: proteusDocumentSpec.definitions } as any, // eslint-disable-line @typescript-eslint/no-explicit-any',
+  );
+  lines.push('  "7",');
+  lines.push(");");
+  lines.push("");
+  lines.push("const elementValidator = new Validator(");
+  lines.push(
+    '  { $ref: "#/definitions/ProteusNode", definitions: proteusDocumentSpec.definitions } as any, // eslint-disable-line @typescript-eslint/no-explicit-any',
+  );
+  lines.push('  "7",');
+  lines.push(");");
+  lines.push("");
+  lines.push("type SafeParseResult<T> =");
+  lines.push("  | { success: true; data: T }");
+  lines.push("  | { success: false; error: unknown[] };");
+  lines.push("");
+  lines.push(
+    "export function safeParseDocument({ actions, body, ...data }: Record<string, unknown>): SafeParseResult<ProteusDocument> {",
   );
   lines.push(
-    "type ProteusElement = " +
-      components.map((component) => component).join(" | ") +
-      ";",
+    "  const result = documentValidator.validate({ body: [], ...data });",
   );
+  lines.push("  if (result.valid) {");
+  lines.push(
+    "    return { success: true, data: { actions, body, ...data } as ProteusDocument };",
+  );
+  lines.push("  }");
+  lines.push("  return { success: false, error: result.errors };");
+  lines.push("}");
+  lines.push("");
+  lines.push(
+    "export function safeParseElement({ children, ...data }: Record<string, unknown>): SafeParseResult<ProteusElement> {",
+  );
+  lines.push("  const result = elementValidator.validate(data);");
+  lines.push("  if (result.valid) {");
+  lines.push(
+    "    return { success: true, data: { children, ...data } as unknown as ProteusElement };",
+  );
+  lines.push("  }");
+  lines.push("  return { success: false, error: result.errors };");
+  lines.push("}");
   lines.push("");
 
   return lines.join("\n");
@@ -1045,10 +996,21 @@ const jsonOutputPath = path.join(process.cwd(), "proteus-document-spec.json");
 fs.writeFileSync(jsonOutputPath, JSON.stringify(jsonSchema, null, 2) + "\n");
 console.log(`Generated: ${jsonOutputPath}`);
 
-const zodSchemas = await generateZodSchemas(generateJsonSchema(true));
-const zodOutputPath = path.join(
+const jsonSchemaForRuntime = generateJsonSchema(true);
+const jsonRuntimeOutputPath = path.join(
+  process.cwd(),
+  "packages/react/src/proteus-document/proteus-document-spec.json",
+);
+fs.writeFileSync(
+  jsonRuntimeOutputPath,
+  JSON.stringify(jsonSchemaForRuntime, null, 2) + "\n",
+);
+console.log(`Generated: ${jsonRuntimeOutputPath}`);
+
+const typeScriptTypes = generateTypeScriptTypes();
+const tsOutputPath = path.join(
   process.cwd(),
   "packages/react/src/proteus-document/schemas.ts",
 );
-fs.writeFileSync(zodOutputPath, zodSchemas);
-console.log(`Generated: ${zodOutputPath}`);
+fs.writeFileSync(tsOutputPath, typeScriptTypes);
+console.log(`Generated: ${tsOutputPath}`);

@@ -1,12 +1,11 @@
-import type { ProteusSelectTriggerProps } from "./schemas";
-
 import { SelectTrigger } from "../select";
 import { ProteusElement } from "./ProteusElement";
 
 export function ProteusSelectTrigger({
   children,
   ...props
-}: ProteusSelectTriggerProps) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+}: Record<string, any>) {
   return (
     <SelectTrigger {...props}>
       {children && <ProteusElement element={children} />}

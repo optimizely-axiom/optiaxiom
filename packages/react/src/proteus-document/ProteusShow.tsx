@@ -2,9 +2,13 @@ import { getProteusValue } from "./getProteusValue";
 import { useProteusDocumentContext } from "./ProteusDocumentContext";
 import { useProteusDocumentPathContext } from "./ProteusDocumentPathContext";
 import { ProteusElement } from "./ProteusElement";
-import { type ProteusShowProps, type ProteusValueProps } from "./schemas";
 
-type ComparisonValue = boolean | null | number | ProteusValueProps | string;
+type ComparisonValue =
+  | boolean
+  | null
+  | number
+  | string
+  | { $type: "Value"; path: string };
 
 type ProteusCondition =
   | { "!!": ComparisonValue }
@@ -17,7 +21,14 @@ type ProteusCondition =
   | { and: ProteusCondition[] }
   | { or: ProteusCondition[] };
 
-export function ProteusShow({ children, when }: ProteusShowProps) {
+export function ProteusShow({
+  children,
+  when,
+}: {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  children?: any;
+  when: ProteusCondition;
+}) {
   const { data } = useProteusDocumentContext("@optiaxiom/react/ProteusShow");
   const { path: parentPath } = useProteusDocumentPathContext(
     "@optiaxiom/react/ProteusShow",

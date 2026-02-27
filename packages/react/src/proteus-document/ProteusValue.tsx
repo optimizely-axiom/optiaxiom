@@ -1,7 +1,6 @@
-import { type ProteusValueProps } from "./schemas";
 import { useProteusValue } from "./useProteusValue";
 
-export function ProteusValue({ path }: ProteusValueProps) {
+export function ProteusValue({ path }: { path: string }) {
   return useProteusValue(path);
 }
 

@@ -1,3 +1,5 @@
+import type { ComponentPropsWithoutRef } from "react";
+
 import { ProteusAction } from "./ProteusAction";
 import { ProteusCancelAction } from "./ProteusCancelAction";
 import { ProteusField } from "./ProteusField";
@@ -16,7 +18,7 @@ import { ProteusShow } from "./ProteusShow";
 import { ProteusText } from "./ProteusText";
 import { ProteusTextarea } from "./ProteusTextarea";
 import { ProteusValue } from "./ProteusValue";
-import { ProteusElementSchema } from "./schemas";
+import { safeParseElement } from "./schemas";
 
 export type ProteusElementProps = {
   /**
@@ -45,7 +47,7 @@ export const ProteusElement = ({
     );
   }
 
-  const result = ProteusElementSchema.safeParse(elementProp);
+  const result = safeParseElement(elementProp as Record<string, unknown>);
   if (!result.success) {
     if (process.env.NODE_ENV !== "production") {
       console.error(
@@ -75,7 +77,13 @@ export const ProteusElement = ({
     case "Link":
       return <ProteusLink {...omitType(element)} />;
     case "Map":
-      return <ProteusMap {...omitType(element)} />;
+      return (
+        <ProteusMap
+          {...(omitType(element) as ComponentPropsWithoutRef<
+            typeof ProteusMap
+          >)}
+        />
+      );
     case "Range":
       return <ProteusRange {...omitType(element)} />;
     case "Select":
@@ -87,13 +95,25 @@ export const ProteusElement = ({
     case "Separator":
       return <ProteusSeparator {...omitType(element)} />;
     case "Show":
-      return <ProteusShow {...omitType(element)} />;
+      return (
+        <ProteusShow
+          {...(omitType(element) as ComponentPropsWithoutRef<
+            typeof ProteusShow
+          >)}
+        />
+      );
     case "Text":
       return <ProteusText {...omitType(element)} />;
     case "Textarea":
       return <ProteusTextarea {...omitType(element)} />;
     case "Value":
-      return <ProteusValue {...omitType(element)} />;
+      return (
+        <ProteusValue
+          {...(omitType(element) as ComponentPropsWithoutRef<
+            typeof ProteusValue
+          >)}
+        />
+      );
     default:
       element satisfies never;
       return null;

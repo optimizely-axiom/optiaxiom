@@ -1,9 +1,8 @@
-import type { ProteusHeadingProps } from "./schemas";
-
 import { Heading } from "../heading";
 import { ProteusElement } from "./ProteusElement";
 
-export function ProteusHeading({ children, ...props }: ProteusHeadingProps) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function ProteusHeading({ children, ...props }: Record<string, any>) {
   return (
     <Heading {...props}>
       {children && <ProteusElement element={children} />}

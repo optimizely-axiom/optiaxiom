@@ -1,16 +1,22 @@
 import { useRef } from "react";
 
-import type { ProteusSelectProps } from "./schemas";
-
 import { Select } from "../select";
 import { useProteusDocumentContext } from "./ProteusDocumentContext";
 import { ProteusElement } from "./ProteusElement";
 
 export function ProteusSelect({
   children,
-  options,
+  options = [],
   ...props
-}: ProteusSelectProps) {
+}: {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  children?: any;
+  name?: string;
+  options?: Array<{
+    label: string;
+    value: string;
+  }>;
+}) {
   const { data, onDataChange, readOnly } = useProteusDocumentContext(
     "@optiaxiom/react/ProteusSelect",
   );
