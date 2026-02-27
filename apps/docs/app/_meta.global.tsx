@@ -51,6 +51,16 @@ export default {
         type: "separator",
       },
       "group-migration": "Flex to Group migration",
+
+      "proteus-designer": {
+        display: "hidden",
+        theme: {
+          layout: "full",
+          toc: false,
+        },
+        title: "Proteus Designer",
+        type: "page",
+      },
     },
     title: "Guides",
     type: "page",
