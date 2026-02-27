@@ -42,6 +42,8 @@ export interface SearchOptions {
 }
 
 interface RelevanceScoreOptions {
+  /** Whether the item is deprecated */
+  deprecated?: boolean;
   /** Optional description to search against */
   description?: string;
   /** Name to search against */
@@ -77,6 +79,7 @@ export function searchComponents({
     .map((component) => ({
       component,
       score: calculateRelevanceScore({
+        deprecated: !!component.deprecated,
         description: component.description,
         name: component.name,
         query,
@@ -223,6 +226,7 @@ function calculateExampleScore(
 }
 
 function calculateRelevanceScore({
+  deprecated,
   description,
   name,
   namePrefix,
@@ -293,5 +297,12 @@ function calculateRelevanceScore({
   const matchRatio = matchedTerms / terms.length;
 
   // Boost score based on percentage of terms matched
-  return averageScore * matchRatio;
+  let score = averageScore * matchRatio;
+
+  // Penalize deprecated items so active alternatives rank higher
+  if (deprecated) {
+    score -= 20;
+  }
+
+  return score;
 }
