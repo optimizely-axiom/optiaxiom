@@ -58,41 +58,41 @@ export const ProteusElement = ({
 
   const element = result.data;
   switch (element.$type) {
-    case "Proteus.Action":
+    case "Action":
       return <ProteusAction {...omitType(element)} />;
-    case "Proteus.CancelAction":
+    case "CancelAction":
       return <ProteusCancelAction {...omitType(element)} />;
-    case "Proteus.Field":
+    case "Field":
       return <ProteusField {...omitType(element)} />;
-    case "Proteus.Group":
+    case "Group":
       return <ProteusGroup {...omitType(element)} />;
-    case "Proteus.Heading":
+    case "Heading":
       return <ProteusHeading {...omitType(element)} />;
-    case "Proteus.Image":
+    case "Image":
       return <ProteusImage {...omitType(element)} />;
-    case "Proteus.Input":
+    case "Input":
       return <ProteusInput {...omitType(element)} />;
-    case "Proteus.Link":
+    case "Link":
       return <ProteusLink {...omitType(element)} />;
-    case "Proteus.Map":
+    case "Map":
       return <ProteusMap {...omitType(element)} />;
-    case "Proteus.Range":
+    case "Range":
       return <ProteusRange {...omitType(element)} />;
-    case "Proteus.Select":
+    case "Select":
       return <ProteusSelect {...omitType(element)} />;
-    case "Proteus.SelectContent":
+    case "SelectContent":
       return <ProteusSelectContent {...omitType(element)} />;
-    case "Proteus.SelectTrigger":
+    case "SelectTrigger":
       return <ProteusSelectTrigger {...omitType(element)} />;
-    case "Proteus.Separator":
+    case "Separator":
       return <ProteusSeparator {...omitType(element)} />;
-    case "Proteus.Show":
+    case "Show":
       return <ProteusShow {...omitType(element)} />;
-    case "Proteus.Text":
+    case "Text":
       return <ProteusText {...omitType(element)} />;
-    case "Proteus.Textarea":
+    case "Textarea":
       return <ProteusTextarea {...omitType(element)} />;
-    case "Proteus.Value":
+    case "Value":
       return <ProteusValue {...omitType(element)} />;
     default:
       element satisfies never;

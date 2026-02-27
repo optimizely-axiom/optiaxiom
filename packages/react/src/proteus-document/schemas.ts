@@ -1,7 +1,7 @@
 // This file is auto-generated. Do not edit manually.
 // Run `pnpm proteus-spec` to regenerate.
 
-import { z } from "zod";
+import { z } from "zod/v4";
 
 type ProteusNode = ProteusElement | ProteusElement[] | string;
 
@@ -849,7 +849,7 @@ export const ProteusAtomicConditionSchema = z
             z.boolean(),
             z.null(),
             z.object({
-              $type: z.literal("Proteus.Value"),
+              $type: z.literal("Value"),
               path: z
                 .string()
                 .describe(
@@ -871,7 +871,7 @@ export const ProteusAtomicConditionSchema = z
             z.boolean(),
             z.null(),
             z.object({
-              $type: z.literal("Proteus.Value"),
+              $type: z.literal("Value"),
               path: z
                 .string()
                 .describe(
@@ -893,7 +893,7 @@ export const ProteusAtomicConditionSchema = z
             z.boolean(),
             z.null(),
             z.object({
-              $type: z.literal("Proteus.Value"),
+              $type: z.literal("Value"),
               path: z
                 .string()
                 .describe(
@@ -915,7 +915,7 @@ export const ProteusAtomicConditionSchema = z
             z.boolean(),
             z.null(),
             z.object({
-              $type: z.literal("Proteus.Value"),
+              $type: z.literal("Value"),
               path: z
                 .string()
                 .describe(
@@ -937,7 +937,7 @@ export const ProteusAtomicConditionSchema = z
             z.boolean(),
             z.null(),
             z.object({
-              $type: z.literal("Proteus.Value"),
+              $type: z.literal("Value"),
               path: z
                 .string()
                 .describe(
@@ -959,7 +959,7 @@ export const ProteusAtomicConditionSchema = z
             z.boolean(),
             z.null(),
             z.object({
-              $type: z.literal("Proteus.Value"),
+              $type: z.literal("Value"),
               path: z
                 .string()
                 .describe(
@@ -980,7 +980,7 @@ export const ProteusAtomicConditionSchema = z
           z.boolean(),
           z.null(),
           z.object({
-            $type: z.literal("Proteus.Value"),
+            $type: z.literal("Value"),
             path: z
               .string()
               .describe(
@@ -1024,202 +1024,325 @@ export const ProteusConditionSchema = z
     }),
   ])
   .describe(
-    "Condition for Proteus.Show component. Can be a comparison operator, logical AND, or logical OR. Supports nesting.",
+    "Condition for Show component. Can be a comparison operator, logical AND, or logical OR. Supports nesting.",
   );
 
 export type ProteusCondition = z.infer<typeof ProteusConditionSchema>;
 
-export const ProteusDocumentSchema = z.object({
-  $type: z.literal("Proteus.Document"),
-  actions: z
-    .array(
-      z.union([
-        z.object({
-          $type: z.literal("Proteus.Action"),
-          alignItems: alignItemsSprinkleSchema.optional(),
-          alignSelf: alignSelfSprinkleSchema.optional(),
-          animation: animationSprinkleSchema.optional(),
-          appearance: z
-            .union([
-              z.literal("default"),
-              z.literal("danger"),
-              z.literal("primary"),
-              z.literal("subtle"),
-              z.literal("danger-outline"),
-              z.literal("default-opal"),
-              z.literal("inverse"),
-              z.literal("primary-opal"),
-            ])
-            .describe(
-              "Control the appearance by selecting between the different button types.",
-            )
-            .optional(),
-          backgroundImage: backgroundImageSprinkleSchema.optional(),
-          bg: bgSprinkleSchema.optional(),
-          border: borderSprinkleSchema.optional(),
-          borderB: borderBSprinkleSchema.optional(),
-          borderColor: borderColorSprinkleSchema.optional(),
-          borderL: borderLSprinkleSchema.optional(),
-          borderR: borderRSprinkleSchema.optional(),
-          borderT: borderTSprinkleSchema.optional(),
-          children: z.any().optional(),
-          color: colorSprinkleSchema.optional(),
-          cursor: cursorSprinkleSchema.optional(),
-          display: displaySprinkleSchema.optional(),
-          flex: flexSprinkleSchema.optional(),
-          flexDirection: flexDirectionSprinkleSchema.optional(),
-          flexWrap: flexWrapSprinkleSchema.optional(),
-          fontFamily: fontFamilySprinkleSchema.optional(),
-          fontSize: fontSizeSprinkleSchema.optional(),
-          fontWeight: fontWeightSprinkleSchema.optional(),
-          gap: gapSprinkleSchema.optional(),
-          gridColumn: gridColumnSprinkleSchema.optional(),
-          gridTemplateColumns: gridTemplateColumnsSprinkleSchema.optional(),
-          h: hSprinkleSchema.optional(),
-          justifyContent: justifyContentSprinkleSchema.optional(),
-          justifyItems: justifyItemsSprinkleSchema.optional(),
-          m: mSprinkleSchema.optional(),
-          maxH: maxHSprinkleSchema.optional(),
-          maxW: maxWSprinkleSchema.optional(),
-          mb: mbSprinkleSchema.optional(),
-          ml: mlSprinkleSchema.optional(),
-          mr: mrSprinkleSchema.optional(),
-          mt: mtSprinkleSchema.optional(),
-          mx: mxSprinkleSchema.optional(),
-          my: mySprinkleSchema.optional(),
-          objectFit: objectFitSprinkleSchema.optional(),
-          onClick: z
-            .union([
-              z
-                .object({
-                  tool: z.string().describe("Name of registered tool to call"),
-                })
-                .describe("Server-side tool call"),
-              z
-                .object({
-                  message: z
-                    .string()
-                    .describe("Message to send to LLM via sendNewMessage()"),
-                })
-                .describe("Client-side message action"),
-            ])
-            .describe(
-              "Handler for user interactions - either a server-side tool call or client-side message",
-            )
-            .optional(),
-          overflow: overflowSprinkleSchema.optional(),
-          overflowX: overflowXSprinkleSchema.optional(),
-          overflowY: overflowYSprinkleSchema.optional(),
-          p: pSprinkleSchema.optional(),
-          pb: pbSprinkleSchema.optional(),
-          pl: plSprinkleSchema.optional(),
-          placeItems: placeItemsSprinkleSchema.optional(),
-          pointerEvents: pointerEventsSprinkleSchema.optional(),
-          pr: prSprinkleSchema.optional(),
-          pt: ptSprinkleSchema.optional(),
-          px: pxSprinkleSchema.optional(),
-          py: pySprinkleSchema.optional(),
-          rounded: roundedSprinkleSchema.optional(),
-          shadow: shadowSprinkleSchema.optional(),
-          textAlign: textAlignSprinkleSchema.optional(),
-          textTransform: textTransformSprinkleSchema.optional(),
-          transition: transitionSprinkleSchema.optional(),
-          w: wSprinkleSchema.optional(),
-          whiteSpace: whiteSpaceSprinkleSchema.optional(),
-          z: zSprinkleSchema.optional(),
-        }),
-        z.object({
-          $type: z.literal("Proteus.CancelAction"),
-          alignItems: alignItemsSprinkleSchema.optional(),
-          alignSelf: alignSelfSprinkleSchema.optional(),
-          animation: animationSprinkleSchema.optional(),
-          backgroundImage: backgroundImageSprinkleSchema.optional(),
-          bg: bgSprinkleSchema.optional(),
-          border: borderSprinkleSchema.optional(),
-          borderB: borderBSprinkleSchema.optional(),
-          borderColor: borderColorSprinkleSchema.optional(),
-          borderL: borderLSprinkleSchema.optional(),
-          borderR: borderRSprinkleSchema.optional(),
-          borderT: borderTSprinkleSchema.optional(),
-          children: z.any().optional(),
-          color: colorSprinkleSchema.optional(),
-          cursor: cursorSprinkleSchema.optional(),
-          display: displaySprinkleSchema.optional(),
-          flex: flexSprinkleSchema.optional(),
-          flexDirection: flexDirectionSprinkleSchema.optional(),
-          flexWrap: flexWrapSprinkleSchema.optional(),
-          fontFamily: fontFamilySprinkleSchema.optional(),
-          fontSize: fontSizeSprinkleSchema.optional(),
-          fontWeight: fontWeightSprinkleSchema.optional(),
-          gap: gapSprinkleSchema.optional(),
-          gridColumn: gridColumnSprinkleSchema.optional(),
-          gridTemplateColumns: gridTemplateColumnsSprinkleSchema.optional(),
-          h: hSprinkleSchema.optional(),
-          justifyContent: justifyContentSprinkleSchema.optional(),
-          justifyItems: justifyItemsSprinkleSchema.optional(),
-          m: mSprinkleSchema.optional(),
-          maxH: maxHSprinkleSchema.optional(),
-          maxW: maxWSprinkleSchema.optional(),
-          mb: mbSprinkleSchema.optional(),
-          ml: mlSprinkleSchema.optional(),
-          mr: mrSprinkleSchema.optional(),
-          mt: mtSprinkleSchema.optional(),
-          mx: mxSprinkleSchema.optional(),
-          my: mySprinkleSchema.optional(),
-          objectFit: objectFitSprinkleSchema.optional(),
-          overflow: overflowSprinkleSchema.optional(),
-          overflowX: overflowXSprinkleSchema.optional(),
-          overflowY: overflowYSprinkleSchema.optional(),
-          p: pSprinkleSchema.optional(),
-          pb: pbSprinkleSchema.optional(),
-          pl: plSprinkleSchema.optional(),
-          placeholder: z
-            .string()
-            .describe("Placeholder text for the text input field")
-            .optional(),
-          placeItems: placeItemsSprinkleSchema.optional(),
-          pointerEvents: pointerEventsSprinkleSchema.optional(),
-          pr: prSprinkleSchema.optional(),
-          pt: ptSprinkleSchema.optional(),
-          px: pxSprinkleSchema.optional(),
-          py: pySprinkleSchema.optional(),
-          rounded: roundedSprinkleSchema.optional(),
-          shadow: shadowSprinkleSchema.optional(),
-          textAlign: textAlignSprinkleSchema.optional(),
-          textTransform: textTransformSprinkleSchema.optional(),
-          transition: transitionSprinkleSchema.optional(),
-          w: wSprinkleSchema.optional(),
-          whiteSpace: whiteSpaceSprinkleSchema.optional(),
-          z: zSprinkleSchema.optional(),
-        }),
-      ]),
-    )
-    .describe("Actions available for this document")
-    .optional(),
-  appIcon: z
-    .string()
-    .describe("A visual representation of the application")
-    .optional(),
-  appName: z.string().describe("The official name of the application"),
-  blocking: z
-    .boolean()
-    .describe(
-      "If true, hides chat prompt and forces user interaction with document. User can press ESC or close to abandon.",
-    )
-    .optional(),
-  body: z.any(),
-  subtitle: z
-    .string()
-    .describe(
-      "A brief description or tagline that provides additional context about the Proteus document's purpose.",
-    )
-    .optional(),
-  title: z
-    .string()
-    .describe(
-      "A concise heading that encapsulates the essence of the Proteus document's content or intended action.",
-    ),
-});
+export const ProteusDocumentSchema = z
+  .object({
+    $type: z.literal("Document"),
+    actions: z
+      .array(
+        z.union([
+          z.object({
+            $type: z.literal("Action"),
+            alignItems: alignItemsSprinkleSchema.optional(),
+            alignSelf: alignSelfSprinkleSchema.optional(),
+            animation: animationSprinkleSchema.optional(),
+            appearance: z
+              .union([
+                z.literal("default"),
+                z.literal("danger"),
+                z.literal("primary"),
+                z.literal("subtle"),
+                z.literal("danger-outline"),
+                z.literal("default-opal"),
+                z.literal("inverse"),
+                z.literal("primary-opal"),
+              ])
+              .describe(
+                "Control the appearance by selecting between the different button types.",
+              )
+              .optional(),
+            backgroundImage: backgroundImageSprinkleSchema.optional(),
+            bg: bgSprinkleSchema.optional(),
+            border: borderSprinkleSchema.optional(),
+            borderB: borderBSprinkleSchema.optional(),
+            borderColor: borderColorSprinkleSchema.optional(),
+            borderL: borderLSprinkleSchema.optional(),
+            borderR: borderRSprinkleSchema.optional(),
+            borderT: borderTSprinkleSchema.optional(),
+            children: z.any().optional(),
+            color: colorSprinkleSchema.optional(),
+            cursor: cursorSprinkleSchema.optional(),
+            display: displaySprinkleSchema.optional(),
+            flex: flexSprinkleSchema.optional(),
+            flexDirection: flexDirectionSprinkleSchema.optional(),
+            flexWrap: flexWrapSprinkleSchema.optional(),
+            fontFamily: fontFamilySprinkleSchema.optional(),
+            fontSize: fontSizeSprinkleSchema.optional(),
+            fontWeight: fontWeightSprinkleSchema.optional(),
+            gap: gapSprinkleSchema.optional(),
+            gridColumn: gridColumnSprinkleSchema.optional(),
+            gridTemplateColumns: gridTemplateColumnsSprinkleSchema.optional(),
+            h: hSprinkleSchema.optional(),
+            justifyContent: justifyContentSprinkleSchema.optional(),
+            justifyItems: justifyItemsSprinkleSchema.optional(),
+            m: mSprinkleSchema.optional(),
+            maxH: maxHSprinkleSchema.optional(),
+            maxW: maxWSprinkleSchema.optional(),
+            mb: mbSprinkleSchema.optional(),
+            ml: mlSprinkleSchema.optional(),
+            mr: mrSprinkleSchema.optional(),
+            mt: mtSprinkleSchema.optional(),
+            mx: mxSprinkleSchema.optional(),
+            my: mySprinkleSchema.optional(),
+            objectFit: objectFitSprinkleSchema.optional(),
+            onClick: z
+              .union([
+                z
+                  .object({
+                    tool: z
+                      .string()
+                      .describe("Name of registered tool to call"),
+                  })
+                  .describe("Server-side tool call"),
+                z
+                  .object({
+                    message: z
+                      .string()
+                      .describe("Message to send to LLM via sendNewMessage()"),
+                  })
+                  .describe("Client-side message action"),
+              ])
+              .describe(
+                "Handler for user interactions - either a server-side tool call or client-side message",
+              )
+              .optional(),
+            overflow: overflowSprinkleSchema.optional(),
+            overflowX: overflowXSprinkleSchema.optional(),
+            overflowY: overflowYSprinkleSchema.optional(),
+            p: pSprinkleSchema.optional(),
+            pb: pbSprinkleSchema.optional(),
+            pl: plSprinkleSchema.optional(),
+            placeItems: placeItemsSprinkleSchema.optional(),
+            pointerEvents: pointerEventsSprinkleSchema.optional(),
+            pr: prSprinkleSchema.optional(),
+            pt: ptSprinkleSchema.optional(),
+            px: pxSprinkleSchema.optional(),
+            py: pySprinkleSchema.optional(),
+            rounded: roundedSprinkleSchema.optional(),
+            shadow: shadowSprinkleSchema.optional(),
+            textAlign: textAlignSprinkleSchema.optional(),
+            textTransform: textTransformSprinkleSchema.optional(),
+            transition: transitionSprinkleSchema.optional(),
+            w: wSprinkleSchema.optional(),
+            whiteSpace: whiteSpaceSprinkleSchema.optional(),
+            z: zSprinkleSchema.optional(),
+          }),
+          z.object({
+            $type: z.literal("CancelAction"),
+            alignItems: alignItemsSprinkleSchema.optional(),
+            alignSelf: alignSelfSprinkleSchema.optional(),
+            animation: animationSprinkleSchema.optional(),
+            backgroundImage: backgroundImageSprinkleSchema.optional(),
+            bg: bgSprinkleSchema.optional(),
+            border: borderSprinkleSchema.optional(),
+            borderB: borderBSprinkleSchema.optional(),
+            borderColor: borderColorSprinkleSchema.optional(),
+            borderL: borderLSprinkleSchema.optional(),
+            borderR: borderRSprinkleSchema.optional(),
+            borderT: borderTSprinkleSchema.optional(),
+            children: z.any().optional(),
+            color: colorSprinkleSchema.optional(),
+            cursor: cursorSprinkleSchema.optional(),
+            display: displaySprinkleSchema.optional(),
+            flex: flexSprinkleSchema.optional(),
+            flexDirection: flexDirectionSprinkleSchema.optional(),
+            flexWrap: flexWrapSprinkleSchema.optional(),
+            fontFamily: fontFamilySprinkleSchema.optional(),
+            fontSize: fontSizeSprinkleSchema.optional(),
+            fontWeight: fontWeightSprinkleSchema.optional(),
+            gap: gapSprinkleSchema.optional(),
+            gridColumn: gridColumnSprinkleSchema.optional(),
+            gridTemplateColumns: gridTemplateColumnsSprinkleSchema.optional(),
+            h: hSprinkleSchema.optional(),
+            justifyContent: justifyContentSprinkleSchema.optional(),
+            justifyItems: justifyItemsSprinkleSchema.optional(),
+            m: mSprinkleSchema.optional(),
+            maxH: maxHSprinkleSchema.optional(),
+            maxW: maxWSprinkleSchema.optional(),
+            mb: mbSprinkleSchema.optional(),
+            ml: mlSprinkleSchema.optional(),
+            mr: mrSprinkleSchema.optional(),
+            mt: mtSprinkleSchema.optional(),
+            mx: mxSprinkleSchema.optional(),
+            my: mySprinkleSchema.optional(),
+            objectFit: objectFitSprinkleSchema.optional(),
+            overflow: overflowSprinkleSchema.optional(),
+            overflowX: overflowXSprinkleSchema.optional(),
+            overflowY: overflowYSprinkleSchema.optional(),
+            p: pSprinkleSchema.optional(),
+            pb: pbSprinkleSchema.optional(),
+            pl: plSprinkleSchema.optional(),
+            placeholder: z
+              .string()
+              .describe("Placeholder text for the text input field")
+              .optional(),
+            placeItems: placeItemsSprinkleSchema.optional(),
+            pointerEvents: pointerEventsSprinkleSchema.optional(),
+            pr: prSprinkleSchema.optional(),
+            pt: ptSprinkleSchema.optional(),
+            px: pxSprinkleSchema.optional(),
+            py: pySprinkleSchema.optional(),
+            rounded: roundedSprinkleSchema.optional(),
+            shadow: shadowSprinkleSchema.optional(),
+            textAlign: textAlignSprinkleSchema.optional(),
+            textTransform: textTransformSprinkleSchema.optional(),
+            transition: transitionSprinkleSchema.optional(),
+            w: wSprinkleSchema.optional(),
+            whiteSpace: whiteSpaceSprinkleSchema.optional(),
+            z: zSprinkleSchema.optional(),
+          }),
+        ]),
+      )
+      .describe("Actions available for this document")
+      .optional(),
+    appIcon: z
+      .string()
+      .describe("A visual representation of the application")
+      .optional(),
+    appName: z.string().describe("The official name of the application"),
+    blocking: z
+      .boolean()
+      .describe(
+        "If true, hides chat prompt and forces user interaction with document. User can press ESC or close to abandon.",
+      )
+      .optional(),
+    body: z.any(),
+    subtitle: z
+      .string()
+      .describe(
+        "A brief description or tagline that provides additional context about the Proteus document's purpose.",
+      )
+      .optional(),
+    title: z
+      .string()
+      .describe(
+        "A concise heading that encapsulates the essence of the Proteus document's content or intended action.",
+      ),
+  })
+  .meta({
+    examples: [
+      { $type: "Document", appName: "Opal", body: [], title: "New Document" },
+      {
+        $type: "Document",
+        actions: [
+          {
+            $type: "Action",
+            appearance: "primary",
+            children: "Submit",
+            onClick: { tool: "submit_feedback" },
+          },
+        ],
+        appName: "Opal",
+        body: [
+          {
+            $type: "Group",
+            children: [
+              {
+                $type: "Field",
+                children: {
+                  $type: "Input",
+                  name: "name",
+                  placeholder: "Enter your name",
+                },
+                label: "Your Name",
+              },
+              {
+                $type: "Field",
+                children: {
+                  $type: "Textarea",
+                  name: "feedback",
+                  placeholder: "What's on your mind?",
+                  rows: 4,
+                },
+                label: "Feedback",
+              },
+            ],
+            flexDirection: "column",
+            gap: "16",
+          },
+        ],
+        subtitle: "We'd love to hear from you",
+        title: "Submit Feedback",
+      },
+      {
+        $type: "Document",
+        actions: [
+          {
+            $type: "Action",
+            appearance: "primary",
+            children: "Create Test Plan",
+            onClick: { tool: "create_test_plan" },
+          },
+        ],
+        appName: "Opal",
+        body: [
+          {
+            $type: "Group",
+            children: [
+              {
+                $type: "Heading",
+                children: "1. Configure your test",
+                fontSize: "md",
+                fontWeight: "600",
+                level: "2",
+              },
+              {
+                $type: "Field",
+                children: {
+                  $type: "Select",
+                  children: [
+                    { $type: "SelectTrigger", w: "full" },
+                    { $type: "SelectContent" },
+                  ],
+                  name: "target_by",
+                  options: [
+                    { label: "URL", value: "url" },
+                    { label: "CSS Selector", value: "selector" },
+                  ],
+                },
+                label: "Target by",
+              },
+              {
+                $type: "Show",
+                children: {
+                  $type: "Field",
+                  children: {
+                    $type: "Input",
+                    name: "url",
+                    placeholder: "https://example.com",
+                  },
+                  label: "URL",
+                },
+                when: { "==": [{ $type: "Value", path: "/target_by" }, "url"] },
+              },
+              {
+                $type: "Show",
+                children: {
+                  $type: "Field",
+                  children: {
+                    $type: "Input",
+                    name: "selector",
+                    placeholder: "#main-content",
+                  },
+                  label: "CSS Selector",
+                },
+                when: {
+                  "==": [{ $type: "Value", path: "/target_by" }, "selector"],
+                },
+              },
+            ],
+            flexDirection: "column",
+            gap: "16",
+          },
+        ],
+        title: "Create Test Plan",
+      },
+    ],
+  });
 
 export type ProteusDocument = Omit<
   z.infer<typeof ProteusDocumentSchema>,
@@ -1249,100 +1372,104 @@ export const ProteusEventHandlerSchema = z
 
 export type ProteusEventHandler = z.infer<typeof ProteusEventHandlerSchema>;
 
-export const ProteusActionSchema = z.object({
-  $type: z.literal("Proteus.Action"),
-  alignItems: alignItemsSprinkleSchema.optional(),
-  alignSelf: alignSelfSprinkleSchema.optional(),
-  animation: animationSprinkleSchema.optional(),
-  appearance: z
-    .union([
-      z.literal("default"),
-      z.literal("danger"),
-      z.literal("primary"),
-      z.literal("subtle"),
-      z.literal("danger-outline"),
-      z.literal("default-opal"),
-      z.literal("inverse"),
-      z.literal("primary-opal"),
-    ])
-    .describe(
-      "Control the appearance by selecting between the different button types.",
-    )
-    .optional(),
-  backgroundImage: backgroundImageSprinkleSchema.optional(),
-  bg: bgSprinkleSchema.optional(),
-  border: borderSprinkleSchema.optional(),
-  borderB: borderBSprinkleSchema.optional(),
-  borderColor: borderColorSprinkleSchema.optional(),
-  borderL: borderLSprinkleSchema.optional(),
-  borderR: borderRSprinkleSchema.optional(),
-  borderT: borderTSprinkleSchema.optional(),
-  children: z.any().optional(),
-  color: colorSprinkleSchema.optional(),
-  cursor: cursorSprinkleSchema.optional(),
-  display: displaySprinkleSchema.optional(),
-  flex: flexSprinkleSchema.optional(),
-  flexDirection: flexDirectionSprinkleSchema.optional(),
-  flexWrap: flexWrapSprinkleSchema.optional(),
-  fontFamily: fontFamilySprinkleSchema.optional(),
-  fontSize: fontSizeSprinkleSchema.optional(),
-  fontWeight: fontWeightSprinkleSchema.optional(),
-  gap: gapSprinkleSchema.optional(),
-  gridColumn: gridColumnSprinkleSchema.optional(),
-  gridTemplateColumns: gridTemplateColumnsSprinkleSchema.optional(),
-  h: hSprinkleSchema.optional(),
-  justifyContent: justifyContentSprinkleSchema.optional(),
-  justifyItems: justifyItemsSprinkleSchema.optional(),
-  m: mSprinkleSchema.optional(),
-  maxH: maxHSprinkleSchema.optional(),
-  maxW: maxWSprinkleSchema.optional(),
-  mb: mbSprinkleSchema.optional(),
-  ml: mlSprinkleSchema.optional(),
-  mr: mrSprinkleSchema.optional(),
-  mt: mtSprinkleSchema.optional(),
-  mx: mxSprinkleSchema.optional(),
-  my: mySprinkleSchema.optional(),
-  objectFit: objectFitSprinkleSchema.optional(),
-  onClick: z
-    .union([
-      z
-        .object({
-          tool: z.string().describe("Name of registered tool to call"),
-        })
-        .describe("Server-side tool call"),
-      z
-        .object({
-          message: z
-            .string()
-            .describe("Message to send to LLM via sendNewMessage()"),
-        })
-        .describe("Client-side message action"),
-    ])
-    .describe(
-      "Handler for user interactions - either a server-side tool call or client-side message",
-    )
-    .optional(),
-  overflow: overflowSprinkleSchema.optional(),
-  overflowX: overflowXSprinkleSchema.optional(),
-  overflowY: overflowYSprinkleSchema.optional(),
-  p: pSprinkleSchema.optional(),
-  pb: pbSprinkleSchema.optional(),
-  pl: plSprinkleSchema.optional(),
-  placeItems: placeItemsSprinkleSchema.optional(),
-  pointerEvents: pointerEventsSprinkleSchema.optional(),
-  pr: prSprinkleSchema.optional(),
-  pt: ptSprinkleSchema.optional(),
-  px: pxSprinkleSchema.optional(),
-  py: pySprinkleSchema.optional(),
-  rounded: roundedSprinkleSchema.optional(),
-  shadow: shadowSprinkleSchema.optional(),
-  textAlign: textAlignSprinkleSchema.optional(),
-  textTransform: textTransformSprinkleSchema.optional(),
-  transition: transitionSprinkleSchema.optional(),
-  w: wSprinkleSchema.optional(),
-  whiteSpace: whiteSpaceSprinkleSchema.optional(),
-  z: zSprinkleSchema.optional(),
-});
+export const ProteusActionSchema = z
+  .object({
+    $type: z.literal("Action"),
+    alignItems: alignItemsSprinkleSchema.optional(),
+    alignSelf: alignSelfSprinkleSchema.optional(),
+    animation: animationSprinkleSchema.optional(),
+    appearance: z
+      .union([
+        z.literal("default"),
+        z.literal("danger"),
+        z.literal("primary"),
+        z.literal("subtle"),
+        z.literal("danger-outline"),
+        z.literal("default-opal"),
+        z.literal("inverse"),
+        z.literal("primary-opal"),
+      ])
+      .describe(
+        "Control the appearance by selecting between the different button types.",
+      )
+      .optional(),
+    backgroundImage: backgroundImageSprinkleSchema.optional(),
+    bg: bgSprinkleSchema.optional(),
+    border: borderSprinkleSchema.optional(),
+    borderB: borderBSprinkleSchema.optional(),
+    borderColor: borderColorSprinkleSchema.optional(),
+    borderL: borderLSprinkleSchema.optional(),
+    borderR: borderRSprinkleSchema.optional(),
+    borderT: borderTSprinkleSchema.optional(),
+    children: z.any().optional(),
+    color: colorSprinkleSchema.optional(),
+    cursor: cursorSprinkleSchema.optional(),
+    display: displaySprinkleSchema.optional(),
+    flex: flexSprinkleSchema.optional(),
+    flexDirection: flexDirectionSprinkleSchema.optional(),
+    flexWrap: flexWrapSprinkleSchema.optional(),
+    fontFamily: fontFamilySprinkleSchema.optional(),
+    fontSize: fontSizeSprinkleSchema.optional(),
+    fontWeight: fontWeightSprinkleSchema.optional(),
+    gap: gapSprinkleSchema.optional(),
+    gridColumn: gridColumnSprinkleSchema.optional(),
+    gridTemplateColumns: gridTemplateColumnsSprinkleSchema.optional(),
+    h: hSprinkleSchema.optional(),
+    justifyContent: justifyContentSprinkleSchema.optional(),
+    justifyItems: justifyItemsSprinkleSchema.optional(),
+    m: mSprinkleSchema.optional(),
+    maxH: maxHSprinkleSchema.optional(),
+    maxW: maxWSprinkleSchema.optional(),
+    mb: mbSprinkleSchema.optional(),
+    ml: mlSprinkleSchema.optional(),
+    mr: mrSprinkleSchema.optional(),
+    mt: mtSprinkleSchema.optional(),
+    mx: mxSprinkleSchema.optional(),
+    my: mySprinkleSchema.optional(),
+    objectFit: objectFitSprinkleSchema.optional(),
+    onClick: z
+      .union([
+        z
+          .object({
+            tool: z.string().describe("Name of registered tool to call"),
+          })
+          .describe("Server-side tool call"),
+        z
+          .object({
+            message: z
+              .string()
+              .describe("Message to send to LLM via sendNewMessage()"),
+          })
+          .describe("Client-side message action"),
+      ])
+      .describe(
+        "Handler for user interactions - either a server-side tool call or client-side message",
+      )
+      .optional(),
+    overflow: overflowSprinkleSchema.optional(),
+    overflowX: overflowXSprinkleSchema.optional(),
+    overflowY: overflowYSprinkleSchema.optional(),
+    p: pSprinkleSchema.optional(),
+    pb: pbSprinkleSchema.optional(),
+    pl: plSprinkleSchema.optional(),
+    placeItems: placeItemsSprinkleSchema.optional(),
+    pointerEvents: pointerEventsSprinkleSchema.optional(),
+    pr: prSprinkleSchema.optional(),
+    pt: ptSprinkleSchema.optional(),
+    px: pxSprinkleSchema.optional(),
+    py: pySprinkleSchema.optional(),
+    rounded: roundedSprinkleSchema.optional(),
+    shadow: shadowSprinkleSchema.optional(),
+    textAlign: textAlignSprinkleSchema.optional(),
+    textTransform: textTransformSprinkleSchema.optional(),
+    transition: transitionSprinkleSchema.optional(),
+    w: wSprinkleSchema.optional(),
+    whiteSpace: whiteSpaceSprinkleSchema.optional(),
+    z: zSprinkleSchema.optional(),
+  })
+  .meta({
+    examples: [{ $type: "Action", appearance: "primary", children: "Action" }],
+  });
 
 export type ProteusAction = Omit<
   z.infer<typeof ProteusActionSchema>,
@@ -1353,70 +1480,72 @@ export type ProteusActionProps = Omit<
   "$type"
 >;
 
-export const ProteusCancelActionSchema = z.object({
-  $type: z.literal("Proteus.CancelAction"),
-  alignItems: alignItemsSprinkleSchema.optional(),
-  alignSelf: alignSelfSprinkleSchema.optional(),
-  animation: animationSprinkleSchema.optional(),
-  backgroundImage: backgroundImageSprinkleSchema.optional(),
-  bg: bgSprinkleSchema.optional(),
-  border: borderSprinkleSchema.optional(),
-  borderB: borderBSprinkleSchema.optional(),
-  borderColor: borderColorSprinkleSchema.optional(),
-  borderL: borderLSprinkleSchema.optional(),
-  borderR: borderRSprinkleSchema.optional(),
-  borderT: borderTSprinkleSchema.optional(),
-  children: z.any().optional(),
-  color: colorSprinkleSchema.optional(),
-  cursor: cursorSprinkleSchema.optional(),
-  display: displaySprinkleSchema.optional(),
-  flex: flexSprinkleSchema.optional(),
-  flexDirection: flexDirectionSprinkleSchema.optional(),
-  flexWrap: flexWrapSprinkleSchema.optional(),
-  fontFamily: fontFamilySprinkleSchema.optional(),
-  fontSize: fontSizeSprinkleSchema.optional(),
-  fontWeight: fontWeightSprinkleSchema.optional(),
-  gap: gapSprinkleSchema.optional(),
-  gridColumn: gridColumnSprinkleSchema.optional(),
-  gridTemplateColumns: gridTemplateColumnsSprinkleSchema.optional(),
-  h: hSprinkleSchema.optional(),
-  justifyContent: justifyContentSprinkleSchema.optional(),
-  justifyItems: justifyItemsSprinkleSchema.optional(),
-  m: mSprinkleSchema.optional(),
-  maxH: maxHSprinkleSchema.optional(),
-  maxW: maxWSprinkleSchema.optional(),
-  mb: mbSprinkleSchema.optional(),
-  ml: mlSprinkleSchema.optional(),
-  mr: mrSprinkleSchema.optional(),
-  mt: mtSprinkleSchema.optional(),
-  mx: mxSprinkleSchema.optional(),
-  my: mySprinkleSchema.optional(),
-  objectFit: objectFitSprinkleSchema.optional(),
-  overflow: overflowSprinkleSchema.optional(),
-  overflowX: overflowXSprinkleSchema.optional(),
-  overflowY: overflowYSprinkleSchema.optional(),
-  p: pSprinkleSchema.optional(),
-  pb: pbSprinkleSchema.optional(),
-  pl: plSprinkleSchema.optional(),
-  placeholder: z
-    .string()
-    .describe("Placeholder text for the text input field")
-    .optional(),
-  placeItems: placeItemsSprinkleSchema.optional(),
-  pointerEvents: pointerEventsSprinkleSchema.optional(),
-  pr: prSprinkleSchema.optional(),
-  pt: ptSprinkleSchema.optional(),
-  px: pxSprinkleSchema.optional(),
-  py: pySprinkleSchema.optional(),
-  rounded: roundedSprinkleSchema.optional(),
-  shadow: shadowSprinkleSchema.optional(),
-  textAlign: textAlignSprinkleSchema.optional(),
-  textTransform: textTransformSprinkleSchema.optional(),
-  transition: transitionSprinkleSchema.optional(),
-  w: wSprinkleSchema.optional(),
-  whiteSpace: whiteSpaceSprinkleSchema.optional(),
-  z: zSprinkleSchema.optional(),
-});
+export const ProteusCancelActionSchema = z
+  .object({
+    $type: z.literal("CancelAction"),
+    alignItems: alignItemsSprinkleSchema.optional(),
+    alignSelf: alignSelfSprinkleSchema.optional(),
+    animation: animationSprinkleSchema.optional(),
+    backgroundImage: backgroundImageSprinkleSchema.optional(),
+    bg: bgSprinkleSchema.optional(),
+    border: borderSprinkleSchema.optional(),
+    borderB: borderBSprinkleSchema.optional(),
+    borderColor: borderColorSprinkleSchema.optional(),
+    borderL: borderLSprinkleSchema.optional(),
+    borderR: borderRSprinkleSchema.optional(),
+    borderT: borderTSprinkleSchema.optional(),
+    children: z.any().optional(),
+    color: colorSprinkleSchema.optional(),
+    cursor: cursorSprinkleSchema.optional(),
+    display: displaySprinkleSchema.optional(),
+    flex: flexSprinkleSchema.optional(),
+    flexDirection: flexDirectionSprinkleSchema.optional(),
+    flexWrap: flexWrapSprinkleSchema.optional(),
+    fontFamily: fontFamilySprinkleSchema.optional(),
+    fontSize: fontSizeSprinkleSchema.optional(),
+    fontWeight: fontWeightSprinkleSchema.optional(),
+    gap: gapSprinkleSchema.optional(),
+    gridColumn: gridColumnSprinkleSchema.optional(),
+    gridTemplateColumns: gridTemplateColumnsSprinkleSchema.optional(),
+    h: hSprinkleSchema.optional(),
+    justifyContent: justifyContentSprinkleSchema.optional(),
+    justifyItems: justifyItemsSprinkleSchema.optional(),
+    m: mSprinkleSchema.optional(),
+    maxH: maxHSprinkleSchema.optional(),
+    maxW: maxWSprinkleSchema.optional(),
+    mb: mbSprinkleSchema.optional(),
+    ml: mlSprinkleSchema.optional(),
+    mr: mrSprinkleSchema.optional(),
+    mt: mtSprinkleSchema.optional(),
+    mx: mxSprinkleSchema.optional(),
+    my: mySprinkleSchema.optional(),
+    objectFit: objectFitSprinkleSchema.optional(),
+    overflow: overflowSprinkleSchema.optional(),
+    overflowX: overflowXSprinkleSchema.optional(),
+    overflowY: overflowYSprinkleSchema.optional(),
+    p: pSprinkleSchema.optional(),
+    pb: pbSprinkleSchema.optional(),
+    pl: plSprinkleSchema.optional(),
+    placeholder: z
+      .string()
+      .describe("Placeholder text for the text input field")
+      .optional(),
+    placeItems: placeItemsSprinkleSchema.optional(),
+    pointerEvents: pointerEventsSprinkleSchema.optional(),
+    pr: prSprinkleSchema.optional(),
+    pt: ptSprinkleSchema.optional(),
+    px: pxSprinkleSchema.optional(),
+    py: pySprinkleSchema.optional(),
+    rounded: roundedSprinkleSchema.optional(),
+    shadow: shadowSprinkleSchema.optional(),
+    textAlign: textAlignSprinkleSchema.optional(),
+    textTransform: textTransformSprinkleSchema.optional(),
+    transition: transitionSprinkleSchema.optional(),
+    w: wSprinkleSchema.optional(),
+    whiteSpace: whiteSpaceSprinkleSchema.optional(),
+    z: zSprinkleSchema.optional(),
+  })
+  .meta({ examples: [{ $type: "CancelAction", children: "Cancel" }] });
 
 export type ProteusCancelAction = Omit<
   z.infer<typeof ProteusCancelActionSchema>,
@@ -1427,74 +1556,84 @@ export type ProteusCancelActionProps = Omit<
   "$type"
 >;
 
-export const ProteusFieldSchema = z.object({
-  $type: z.literal("Proteus.Field"),
-  alignItems: alignItemsSprinkleSchema.optional(),
-  alignSelf: alignSelfSprinkleSchema.optional(),
-  animation: animationSprinkleSchema.optional(),
-  backgroundImage: backgroundImageSprinkleSchema.optional(),
-  bg: bgSprinkleSchema.optional(),
-  border: borderSprinkleSchema.optional(),
-  borderB: borderBSprinkleSchema.optional(),
-  borderColor: borderColorSprinkleSchema.optional(),
-  borderL: borderLSprinkleSchema.optional(),
-  borderR: borderRSprinkleSchema.optional(),
-  borderT: borderTSprinkleSchema.optional(),
-  children: z.any().optional(),
-  color: colorSprinkleSchema.optional(),
-  cursor: cursorSprinkleSchema.optional(),
-  description: z.any().optional(),
-  display: displaySprinkleSchema.optional(),
-  flex: flexSprinkleSchema.optional(),
-  flexDirection: flexDirectionSprinkleSchema.optional(),
-  flexWrap: flexWrapSprinkleSchema.optional(),
-  fontFamily: fontFamilySprinkleSchema.optional(),
-  fontSize: fontSizeSprinkleSchema.optional(),
-  fontWeight: fontWeightSprinkleSchema.optional(),
-  gap: gapSprinkleSchema.optional(),
-  gridColumn: gridColumnSprinkleSchema.optional(),
-  gridTemplateColumns: gridTemplateColumnsSprinkleSchema.optional(),
-  h: hSprinkleSchema.optional(),
-  info: z.any().optional(),
-  justifyContent: justifyContentSprinkleSchema.optional(),
-  justifyItems: justifyItemsSprinkleSchema.optional(),
-  label: z.any().optional(),
-  m: mSprinkleSchema.optional(),
-  maxH: maxHSprinkleSchema.optional(),
-  maxW: maxWSprinkleSchema.optional(),
-  mb: mbSprinkleSchema.optional(),
-  ml: mlSprinkleSchema.optional(),
-  mr: mrSprinkleSchema.optional(),
-  mt: mtSprinkleSchema.optional(),
-  mx: mxSprinkleSchema.optional(),
-  my: mySprinkleSchema.optional(),
-  objectFit: objectFitSprinkleSchema.optional(),
-  overflow: overflowSprinkleSchema.optional(),
-  overflowX: overflowXSprinkleSchema.optional(),
-  overflowY: overflowYSprinkleSchema.optional(),
-  p: pSprinkleSchema.optional(),
-  pb: pbSprinkleSchema.optional(),
-  pl: plSprinkleSchema.optional(),
-  placeItems: placeItemsSprinkleSchema.optional(),
-  pointerEvents: pointerEventsSprinkleSchema.optional(),
-  pr: prSprinkleSchema.optional(),
-  pt: ptSprinkleSchema.optional(),
-  px: pxSprinkleSchema.optional(),
-  py: pySprinkleSchema.optional(),
-  required: z
-    .boolean()
-    .describe("Display an asterisk for required inputs.")
-    .optional(),
-  rounded: roundedSprinkleSchema.optional(),
-  shadow: shadowSprinkleSchema.optional(),
-  size: sizeSprinkleSchema.optional(),
-  textAlign: textAlignSprinkleSchema.optional(),
-  textTransform: textTransformSprinkleSchema.optional(),
-  transition: transitionSprinkleSchema.optional(),
-  w: wSprinkleSchema.optional(),
-  whiteSpace: whiteSpaceSprinkleSchema.optional(),
-  z: zSprinkleSchema.optional(),
-});
+export const ProteusFieldSchema = z
+  .object({
+    $type: z.literal("Field"),
+    alignItems: alignItemsSprinkleSchema.optional(),
+    alignSelf: alignSelfSprinkleSchema.optional(),
+    animation: animationSprinkleSchema.optional(),
+    backgroundImage: backgroundImageSprinkleSchema.optional(),
+    bg: bgSprinkleSchema.optional(),
+    border: borderSprinkleSchema.optional(),
+    borderB: borderBSprinkleSchema.optional(),
+    borderColor: borderColorSprinkleSchema.optional(),
+    borderL: borderLSprinkleSchema.optional(),
+    borderR: borderRSprinkleSchema.optional(),
+    borderT: borderTSprinkleSchema.optional(),
+    children: z.any().optional(),
+    color: colorSprinkleSchema.optional(),
+    cursor: cursorSprinkleSchema.optional(),
+    description: z.any().optional(),
+    display: displaySprinkleSchema.optional(),
+    flex: flexSprinkleSchema.optional(),
+    flexDirection: flexDirectionSprinkleSchema.optional(),
+    flexWrap: flexWrapSprinkleSchema.optional(),
+    fontFamily: fontFamilySprinkleSchema.optional(),
+    fontSize: fontSizeSprinkleSchema.optional(),
+    fontWeight: fontWeightSprinkleSchema.optional(),
+    gap: gapSprinkleSchema.optional(),
+    gridColumn: gridColumnSprinkleSchema.optional(),
+    gridTemplateColumns: gridTemplateColumnsSprinkleSchema.optional(),
+    h: hSprinkleSchema.optional(),
+    info: z.any().optional(),
+    justifyContent: justifyContentSprinkleSchema.optional(),
+    justifyItems: justifyItemsSprinkleSchema.optional(),
+    label: z.any().optional(),
+    m: mSprinkleSchema.optional(),
+    maxH: maxHSprinkleSchema.optional(),
+    maxW: maxWSprinkleSchema.optional(),
+    mb: mbSprinkleSchema.optional(),
+    ml: mlSprinkleSchema.optional(),
+    mr: mrSprinkleSchema.optional(),
+    mt: mtSprinkleSchema.optional(),
+    mx: mxSprinkleSchema.optional(),
+    my: mySprinkleSchema.optional(),
+    objectFit: objectFitSprinkleSchema.optional(),
+    overflow: overflowSprinkleSchema.optional(),
+    overflowX: overflowXSprinkleSchema.optional(),
+    overflowY: overflowYSprinkleSchema.optional(),
+    p: pSprinkleSchema.optional(),
+    pb: pbSprinkleSchema.optional(),
+    pl: plSprinkleSchema.optional(),
+    placeItems: placeItemsSprinkleSchema.optional(),
+    pointerEvents: pointerEventsSprinkleSchema.optional(),
+    pr: prSprinkleSchema.optional(),
+    pt: ptSprinkleSchema.optional(),
+    px: pxSprinkleSchema.optional(),
+    py: pySprinkleSchema.optional(),
+    required: z
+      .boolean()
+      .describe("Display an asterisk for required inputs.")
+      .optional(),
+    rounded: roundedSprinkleSchema.optional(),
+    shadow: shadowSprinkleSchema.optional(),
+    size: sizeSprinkleSchema.optional(),
+    textAlign: textAlignSprinkleSchema.optional(),
+    textTransform: textTransformSprinkleSchema.optional(),
+    transition: transitionSprinkleSchema.optional(),
+    w: wSprinkleSchema.optional(),
+    whiteSpace: whiteSpaceSprinkleSchema.optional(),
+    z: zSprinkleSchema.optional(),
+  })
+  .meta({
+    examples: [
+      {
+        $type: "Field",
+        children: { $type: "Input", name: "field_name" },
+        label: "Field Label",
+      },
+    ],
+  });
 
 export type ProteusField = Omit<
   z.infer<typeof ProteusFieldSchema>,
@@ -1505,88 +1644,94 @@ export type ProteusFieldProps = Omit<
   "$type"
 >;
 
-export const ProteusGroupSchema = z.object({
-  $type: z.literal("Proteus.Group"),
-  alignItems: z
-    .union([
-      z.literal("normal"),
-      z.literal("stretch"),
-      z.literal("center"),
-      z.literal("end"),
-      z.literal("start"),
-    ])
-    .describe(
-      "Set the element's `align-items` CSS property. Defaults to `center` when\n`flexDirection='row'`, and `stretch` when `flexDirection='column'`.",
-    )
-    .optional(),
-  alignSelf: alignSelfSprinkleSchema.optional(),
-  animation: animationSprinkleSchema.optional(),
-  backgroundImage: backgroundImageSprinkleSchema.optional(),
-  bg: bgSprinkleSchema.optional(),
-  border: borderSprinkleSchema.optional(),
-  borderB: borderBSprinkleSchema.optional(),
-  borderColor: borderColorSprinkleSchema.optional(),
-  borderL: borderLSprinkleSchema.optional(),
-  borderR: borderRSprinkleSchema.optional(),
-  borderT: borderTSprinkleSchema.optional(),
-  children: z.any().optional(),
-  color: colorSprinkleSchema.optional(),
-  cursor: cursorSprinkleSchema.optional(),
-  display: displaySprinkleSchema.optional(),
-  flex: flexSprinkleSchema.optional(),
-  flexDirection: z
-    .union([
-      z.literal("column"),
-      z.literal("column-reverse"),
-      z.literal("row"),
-      z.literal("row-reverse"),
-    ])
-    .describe(
-      "Set the element's `flex-direction` CSS property.\n\nDefault: 'row' (CSS standard)",
-    )
-    .optional(),
-  flexWrap: flexWrapSprinkleSchema.optional(),
-  fontFamily: fontFamilySprinkleSchema.optional(),
-  fontSize: fontSizeSprinkleSchema.optional(),
-  fontWeight: fontWeightSprinkleSchema.optional(),
-  gap: gapSprinkleSchema.optional(),
-  gridColumn: gridColumnSprinkleSchema.optional(),
-  gridTemplateColumns: gridTemplateColumnsSprinkleSchema.optional(),
-  h: hSprinkleSchema.optional(),
-  justifyContent: justifyContentSprinkleSchema.optional(),
-  justifyItems: justifyItemsSprinkleSchema.optional(),
-  m: mSprinkleSchema.optional(),
-  maxH: maxHSprinkleSchema.optional(),
-  maxW: maxWSprinkleSchema.optional(),
-  mb: mbSprinkleSchema.optional(),
-  ml: mlSprinkleSchema.optional(),
-  mr: mrSprinkleSchema.optional(),
-  mt: mtSprinkleSchema.optional(),
-  mx: mxSprinkleSchema.optional(),
-  my: mySprinkleSchema.optional(),
-  objectFit: objectFitSprinkleSchema.optional(),
-  overflow: overflowSprinkleSchema.optional(),
-  overflowX: overflowXSprinkleSchema.optional(),
-  overflowY: overflowYSprinkleSchema.optional(),
-  p: pSprinkleSchema.optional(),
-  pb: pbSprinkleSchema.optional(),
-  pl: plSprinkleSchema.optional(),
-  placeItems: placeItemsSprinkleSchema.optional(),
-  pointerEvents: pointerEventsSprinkleSchema.optional(),
-  pr: prSprinkleSchema.optional(),
-  pt: ptSprinkleSchema.optional(),
-  px: pxSprinkleSchema.optional(),
-  py: pySprinkleSchema.optional(),
-  rounded: roundedSprinkleSchema.optional(),
-  shadow: shadowSprinkleSchema.optional(),
-  size: sizeSprinkleSchema.optional(),
-  textAlign: textAlignSprinkleSchema.optional(),
-  textTransform: textTransformSprinkleSchema.optional(),
-  transition: transitionSprinkleSchema.optional(),
-  w: wSprinkleSchema.optional(),
-  whiteSpace: whiteSpaceSprinkleSchema.optional(),
-  z: zSprinkleSchema.optional(),
-});
+export const ProteusGroupSchema = z
+  .object({
+    $type: z.literal("Group"),
+    alignItems: z
+      .union([
+        z.literal("normal"),
+        z.literal("stretch"),
+        z.literal("center"),
+        z.literal("end"),
+        z.literal("start"),
+      ])
+      .describe(
+        "Set the element's `align-items` CSS property. Defaults to `center` when\n`flexDirection='row'`, and `stretch` when `flexDirection='column'`.",
+      )
+      .optional(),
+    alignSelf: alignSelfSprinkleSchema.optional(),
+    animation: animationSprinkleSchema.optional(),
+    backgroundImage: backgroundImageSprinkleSchema.optional(),
+    bg: bgSprinkleSchema.optional(),
+    border: borderSprinkleSchema.optional(),
+    borderB: borderBSprinkleSchema.optional(),
+    borderColor: borderColorSprinkleSchema.optional(),
+    borderL: borderLSprinkleSchema.optional(),
+    borderR: borderRSprinkleSchema.optional(),
+    borderT: borderTSprinkleSchema.optional(),
+    children: z.any().optional(),
+    color: colorSprinkleSchema.optional(),
+    cursor: cursorSprinkleSchema.optional(),
+    display: displaySprinkleSchema.optional(),
+    flex: flexSprinkleSchema.optional(),
+    flexDirection: z
+      .union([
+        z.literal("column"),
+        z.literal("column-reverse"),
+        z.literal("row"),
+        z.literal("row-reverse"),
+      ])
+      .describe(
+        "Set the element's `flex-direction` CSS property.\n\nDefault: 'row' (CSS standard)",
+      )
+      .optional(),
+    flexWrap: flexWrapSprinkleSchema.optional(),
+    fontFamily: fontFamilySprinkleSchema.optional(),
+    fontSize: fontSizeSprinkleSchema.optional(),
+    fontWeight: fontWeightSprinkleSchema.optional(),
+    gap: gapSprinkleSchema.optional(),
+    gridColumn: gridColumnSprinkleSchema.optional(),
+    gridTemplateColumns: gridTemplateColumnsSprinkleSchema.optional(),
+    h: hSprinkleSchema.optional(),
+    justifyContent: justifyContentSprinkleSchema.optional(),
+    justifyItems: justifyItemsSprinkleSchema.optional(),
+    m: mSprinkleSchema.optional(),
+    maxH: maxHSprinkleSchema.optional(),
+    maxW: maxWSprinkleSchema.optional(),
+    mb: mbSprinkleSchema.optional(),
+    ml: mlSprinkleSchema.optional(),
+    mr: mrSprinkleSchema.optional(),
+    mt: mtSprinkleSchema.optional(),
+    mx: mxSprinkleSchema.optional(),
+    my: mySprinkleSchema.optional(),
+    objectFit: objectFitSprinkleSchema.optional(),
+    overflow: overflowSprinkleSchema.optional(),
+    overflowX: overflowXSprinkleSchema.optional(),
+    overflowY: overflowYSprinkleSchema.optional(),
+    p: pSprinkleSchema.optional(),
+    pb: pbSprinkleSchema.optional(),
+    pl: plSprinkleSchema.optional(),
+    placeItems: placeItemsSprinkleSchema.optional(),
+    pointerEvents: pointerEventsSprinkleSchema.optional(),
+    pr: prSprinkleSchema.optional(),
+    pt: ptSprinkleSchema.optional(),
+    px: pxSprinkleSchema.optional(),
+    py: pySprinkleSchema.optional(),
+    rounded: roundedSprinkleSchema.optional(),
+    shadow: shadowSprinkleSchema.optional(),
+    size: sizeSprinkleSchema.optional(),
+    textAlign: textAlignSprinkleSchema.optional(),
+    textTransform: textTransformSprinkleSchema.optional(),
+    transition: transitionSprinkleSchema.optional(),
+    w: wSprinkleSchema.optional(),
+    whiteSpace: whiteSpaceSprinkleSchema.optional(),
+    z: zSprinkleSchema.optional(),
+  })
+  .meta({
+    examples: [
+      { $type: "Group", children: [], flexDirection: "column", gap: "16" },
+    ],
+  });
 
 export type ProteusGroup = Omit<
   z.infer<typeof ProteusGroupSchema>,
@@ -1597,73 +1742,77 @@ export type ProteusGroupProps = Omit<
   "$type"
 >;
 
-export const ProteusHeadingSchema = z.object({
-  $type: z.literal("Proteus.Heading"),
-  alignItems: alignItemsSprinkleSchema.optional(),
-  alignSelf: alignSelfSprinkleSchema.optional(),
-  animation: animationSprinkleSchema.optional(),
-  backgroundImage: backgroundImageSprinkleSchema.optional(),
-  bg: bgSprinkleSchema.optional(),
-  border: borderSprinkleSchema.optional(),
-  borderB: borderBSprinkleSchema.optional(),
-  borderColor: borderColorSprinkleSchema.optional(),
-  borderL: borderLSprinkleSchema.optional(),
-  borderR: borderRSprinkleSchema.optional(),
-  borderT: borderTSprinkleSchema.optional(),
-  children: z.any().optional(),
-  color: colorSprinkleSchema.optional(),
-  cursor: cursorSprinkleSchema.optional(),
-  display: displaySprinkleSchema.optional(),
-  flex: flexSprinkleSchema.optional(),
-  flexDirection: flexDirectionSprinkleSchema.optional(),
-  flexWrap: flexWrapSprinkleSchema.optional(),
-  fontFamily: fontFamilySprinkleSchema.optional(),
-  fontSize: fontSizeSprinkleSchema.optional(),
-  fontWeight: fontWeightSprinkleSchema.optional(),
-  gap: gapSprinkleSchema.optional(),
-  gridColumn: gridColumnSprinkleSchema.optional(),
-  gridTemplateColumns: gridTemplateColumnsSprinkleSchema.optional(),
-  h: hSprinkleSchema.optional(),
-  justifyContent: justifyContentSprinkleSchema.optional(),
-  justifyItems: justifyItemsSprinkleSchema.optional(),
-  level: z
-    .union([z.literal("2"), z.literal("4"), z.literal("1"), z.literal("3")])
-    .describe(
-      'Heading level (1-4) that controls both the semantic HTML tag and font size.\n- `level="1"`: renders `<h1>` with `fontSize="4xl"` (default)\n- `level="2"`: renders `<h2>` with `fontSize="3xl"`\n- `level="3"`: renders `<h3>` with `fontSize="2xl"`\n- `level="4"`: renders `<h4>` with `fontSize="xl"`\n\nUse `asChild` to decouple the semantic level from visual appearance.',
-    )
-    .optional(),
-  m: mSprinkleSchema.optional(),
-  maxH: maxHSprinkleSchema.optional(),
-  maxW: maxWSprinkleSchema.optional(),
-  mb: mbSprinkleSchema.optional(),
-  ml: mlSprinkleSchema.optional(),
-  mr: mrSprinkleSchema.optional(),
-  mt: mtSprinkleSchema.optional(),
-  mx: mxSprinkleSchema.optional(),
-  my: mySprinkleSchema.optional(),
-  objectFit: objectFitSprinkleSchema.optional(),
-  overflow: overflowSprinkleSchema.optional(),
-  overflowX: overflowXSprinkleSchema.optional(),
-  overflowY: overflowYSprinkleSchema.optional(),
-  p: pSprinkleSchema.optional(),
-  pb: pbSprinkleSchema.optional(),
-  pl: plSprinkleSchema.optional(),
-  placeItems: placeItemsSprinkleSchema.optional(),
-  pointerEvents: pointerEventsSprinkleSchema.optional(),
-  pr: prSprinkleSchema.optional(),
-  pt: ptSprinkleSchema.optional(),
-  px: pxSprinkleSchema.optional(),
-  py: pySprinkleSchema.optional(),
-  rounded: roundedSprinkleSchema.optional(),
-  shadow: shadowSprinkleSchema.optional(),
-  size: sizeSprinkleSchema.optional(),
-  textAlign: textAlignSprinkleSchema.optional(),
-  textTransform: textTransformSprinkleSchema.optional(),
-  transition: transitionSprinkleSchema.optional(),
-  w: wSprinkleSchema.optional(),
-  whiteSpace: whiteSpaceSprinkleSchema.optional(),
-  z: zSprinkleSchema.optional(),
-});
+export const ProteusHeadingSchema = z
+  .object({
+    $type: z.literal("Heading"),
+    alignItems: alignItemsSprinkleSchema.optional(),
+    alignSelf: alignSelfSprinkleSchema.optional(),
+    animation: animationSprinkleSchema.optional(),
+    backgroundImage: backgroundImageSprinkleSchema.optional(),
+    bg: bgSprinkleSchema.optional(),
+    border: borderSprinkleSchema.optional(),
+    borderB: borderBSprinkleSchema.optional(),
+    borderColor: borderColorSprinkleSchema.optional(),
+    borderL: borderLSprinkleSchema.optional(),
+    borderR: borderRSprinkleSchema.optional(),
+    borderT: borderTSprinkleSchema.optional(),
+    children: z.any().optional(),
+    color: colorSprinkleSchema.optional(),
+    cursor: cursorSprinkleSchema.optional(),
+    display: displaySprinkleSchema.optional(),
+    flex: flexSprinkleSchema.optional(),
+    flexDirection: flexDirectionSprinkleSchema.optional(),
+    flexWrap: flexWrapSprinkleSchema.optional(),
+    fontFamily: fontFamilySprinkleSchema.optional(),
+    fontSize: fontSizeSprinkleSchema.optional(),
+    fontWeight: fontWeightSprinkleSchema.optional(),
+    gap: gapSprinkleSchema.optional(),
+    gridColumn: gridColumnSprinkleSchema.optional(),
+    gridTemplateColumns: gridTemplateColumnsSprinkleSchema.optional(),
+    h: hSprinkleSchema.optional(),
+    justifyContent: justifyContentSprinkleSchema.optional(),
+    justifyItems: justifyItemsSprinkleSchema.optional(),
+    level: z
+      .union([z.literal("2"), z.literal("4"), z.literal("1"), z.literal("3")])
+      .describe(
+        'Heading level (1-4) that controls both the semantic HTML tag and font size.\n- `level="1"`: renders `<h1>` with `fontSize="4xl"` (default)\n- `level="2"`: renders `<h2>` with `fontSize="3xl"`\n- `level="3"`: renders `<h3>` with `fontSize="2xl"`\n- `level="4"`: renders `<h4>` with `fontSize="xl"`\n\nUse `asChild` to decouple the semantic level from visual appearance.',
+      )
+      .optional(),
+    m: mSprinkleSchema.optional(),
+    maxH: maxHSprinkleSchema.optional(),
+    maxW: maxWSprinkleSchema.optional(),
+    mb: mbSprinkleSchema.optional(),
+    ml: mlSprinkleSchema.optional(),
+    mr: mrSprinkleSchema.optional(),
+    mt: mtSprinkleSchema.optional(),
+    mx: mxSprinkleSchema.optional(),
+    my: mySprinkleSchema.optional(),
+    objectFit: objectFitSprinkleSchema.optional(),
+    overflow: overflowSprinkleSchema.optional(),
+    overflowX: overflowXSprinkleSchema.optional(),
+    overflowY: overflowYSprinkleSchema.optional(),
+    p: pSprinkleSchema.optional(),
+    pb: pbSprinkleSchema.optional(),
+    pl: plSprinkleSchema.optional(),
+    placeItems: placeItemsSprinkleSchema.optional(),
+    pointerEvents: pointerEventsSprinkleSchema.optional(),
+    pr: prSprinkleSchema.optional(),
+    pt: ptSprinkleSchema.optional(),
+    px: pxSprinkleSchema.optional(),
+    py: pySprinkleSchema.optional(),
+    rounded: roundedSprinkleSchema.optional(),
+    shadow: shadowSprinkleSchema.optional(),
+    size: sizeSprinkleSchema.optional(),
+    textAlign: textAlignSprinkleSchema.optional(),
+    textTransform: textTransformSprinkleSchema.optional(),
+    transition: transitionSprinkleSchema.optional(),
+    w: wSprinkleSchema.optional(),
+    whiteSpace: whiteSpaceSprinkleSchema.optional(),
+    z: zSprinkleSchema.optional(),
+  })
+  .meta({
+    examples: [{ $type: "Heading", children: "New heading", level: "2" }],
+  });
 
 export type ProteusHeading = Omit<
   z.infer<typeof ProteusHeadingSchema>,
@@ -1674,68 +1823,78 @@ export type ProteusHeadingProps = Omit<
   "$type"
 >;
 
-export const ProteusImageSchema = z.object({
-  $type: z.literal("Proteus.Image"),
-  alignItems: alignItemsSprinkleSchema.optional(),
-  alignSelf: alignSelfSprinkleSchema.optional(),
-  alt: z.string().describe("Alternative text for the image").optional(),
-  animation: animationSprinkleSchema.optional(),
-  backgroundImage: backgroundImageSprinkleSchema.optional(),
-  bg: bgSprinkleSchema.optional(),
-  border: borderSprinkleSchema.optional(),
-  borderB: borderBSprinkleSchema.optional(),
-  borderColor: borderColorSprinkleSchema.optional(),
-  borderL: borderLSprinkleSchema.optional(),
-  borderR: borderRSprinkleSchema.optional(),
-  borderT: borderTSprinkleSchema.optional(),
-  color: colorSprinkleSchema.optional(),
-  cursor: cursorSprinkleSchema.optional(),
-  display: displaySprinkleSchema.optional(),
-  flex: flexSprinkleSchema.optional(),
-  flexDirection: flexDirectionSprinkleSchema.optional(),
-  flexWrap: flexWrapSprinkleSchema.optional(),
-  fontFamily: fontFamilySprinkleSchema.optional(),
-  fontSize: fontSizeSprinkleSchema.optional(),
-  fontWeight: fontWeightSprinkleSchema.optional(),
-  gap: gapSprinkleSchema.optional(),
-  gridColumn: gridColumnSprinkleSchema.optional(),
-  gridTemplateColumns: gridTemplateColumnsSprinkleSchema.optional(),
-  h: hSprinkleSchema.optional(),
-  justifyContent: justifyContentSprinkleSchema.optional(),
-  justifyItems: justifyItemsSprinkleSchema.optional(),
-  m: mSprinkleSchema.optional(),
-  maxH: maxHSprinkleSchema.optional(),
-  maxW: maxWSprinkleSchema.optional(),
-  mb: mbSprinkleSchema.optional(),
-  ml: mlSprinkleSchema.optional(),
-  mr: mrSprinkleSchema.optional(),
-  mt: mtSprinkleSchema.optional(),
-  mx: mxSprinkleSchema.optional(),
-  my: mySprinkleSchema.optional(),
-  objectFit: objectFitSprinkleSchema.optional(),
-  overflow: overflowSprinkleSchema.optional(),
-  overflowX: overflowXSprinkleSchema.optional(),
-  overflowY: overflowYSprinkleSchema.optional(),
-  p: pSprinkleSchema.optional(),
-  pb: pbSprinkleSchema.optional(),
-  pl: plSprinkleSchema.optional(),
-  placeItems: placeItemsSprinkleSchema.optional(),
-  pointerEvents: pointerEventsSprinkleSchema.optional(),
-  pr: prSprinkleSchema.optional(),
-  pt: ptSprinkleSchema.optional(),
-  px: pxSprinkleSchema.optional(),
-  py: pySprinkleSchema.optional(),
-  rounded: roundedSprinkleSchema.optional(),
-  shadow: shadowSprinkleSchema.optional(),
-  size: sizeSprinkleSchema.optional(),
-  src: z.string().describe("The image source URL").optional(),
-  textAlign: textAlignSprinkleSchema.optional(),
-  textTransform: textTransformSprinkleSchema.optional(),
-  transition: transitionSprinkleSchema.optional(),
-  w: wSprinkleSchema.optional(),
-  whiteSpace: whiteSpaceSprinkleSchema.optional(),
-  z: zSprinkleSchema.optional(),
-});
+export const ProteusImageSchema = z
+  .object({
+    $type: z.literal("Image"),
+    alignItems: alignItemsSprinkleSchema.optional(),
+    alignSelf: alignSelfSprinkleSchema.optional(),
+    alt: z.string().describe("Alternative text for the image").optional(),
+    animation: animationSprinkleSchema.optional(),
+    backgroundImage: backgroundImageSprinkleSchema.optional(),
+    bg: bgSprinkleSchema.optional(),
+    border: borderSprinkleSchema.optional(),
+    borderB: borderBSprinkleSchema.optional(),
+    borderColor: borderColorSprinkleSchema.optional(),
+    borderL: borderLSprinkleSchema.optional(),
+    borderR: borderRSprinkleSchema.optional(),
+    borderT: borderTSprinkleSchema.optional(),
+    color: colorSprinkleSchema.optional(),
+    cursor: cursorSprinkleSchema.optional(),
+    display: displaySprinkleSchema.optional(),
+    flex: flexSprinkleSchema.optional(),
+    flexDirection: flexDirectionSprinkleSchema.optional(),
+    flexWrap: flexWrapSprinkleSchema.optional(),
+    fontFamily: fontFamilySprinkleSchema.optional(),
+    fontSize: fontSizeSprinkleSchema.optional(),
+    fontWeight: fontWeightSprinkleSchema.optional(),
+    gap: gapSprinkleSchema.optional(),
+    gridColumn: gridColumnSprinkleSchema.optional(),
+    gridTemplateColumns: gridTemplateColumnsSprinkleSchema.optional(),
+    h: hSprinkleSchema.optional(),
+    justifyContent: justifyContentSprinkleSchema.optional(),
+    justifyItems: justifyItemsSprinkleSchema.optional(),
+    m: mSprinkleSchema.optional(),
+    maxH: maxHSprinkleSchema.optional(),
+    maxW: maxWSprinkleSchema.optional(),
+    mb: mbSprinkleSchema.optional(),
+    ml: mlSprinkleSchema.optional(),
+    mr: mrSprinkleSchema.optional(),
+    mt: mtSprinkleSchema.optional(),
+    mx: mxSprinkleSchema.optional(),
+    my: mySprinkleSchema.optional(),
+    objectFit: objectFitSprinkleSchema.optional(),
+    overflow: overflowSprinkleSchema.optional(),
+    overflowX: overflowXSprinkleSchema.optional(),
+    overflowY: overflowYSprinkleSchema.optional(),
+    p: pSprinkleSchema.optional(),
+    pb: pbSprinkleSchema.optional(),
+    pl: plSprinkleSchema.optional(),
+    placeItems: placeItemsSprinkleSchema.optional(),
+    pointerEvents: pointerEventsSprinkleSchema.optional(),
+    pr: prSprinkleSchema.optional(),
+    pt: ptSprinkleSchema.optional(),
+    px: pxSprinkleSchema.optional(),
+    py: pySprinkleSchema.optional(),
+    rounded: roundedSprinkleSchema.optional(),
+    shadow: shadowSprinkleSchema.optional(),
+    size: sizeSprinkleSchema.optional(),
+    src: z.string().describe("The image source URL").optional(),
+    textAlign: textAlignSprinkleSchema.optional(),
+    textTransform: textTransformSprinkleSchema.optional(),
+    transition: transitionSprinkleSchema.optional(),
+    w: wSprinkleSchema.optional(),
+    whiteSpace: whiteSpaceSprinkleSchema.optional(),
+    z: zSprinkleSchema.optional(),
+  })
+  .meta({
+    examples: [
+      {
+        $type: "Image",
+        alt: "Placeholder",
+        src: "https://placehold.co/600x400",
+      },
+    ],
+  });
 
 export type ProteusImage = Omit<
   z.infer<typeof ProteusImageSchema>,
@@ -1746,104 +1905,113 @@ export type ProteusImageProps = Omit<
   "$type"
 >;
 
-export const ProteusInputSchema = z.object({
-  $type: z.literal("Proteus.Input"),
-  addonAfter: z.any().optional(),
-  addonBefore: z.any().optional(),
-  alignItems: alignItemsSprinkleSchema.optional(),
-  alignSelf: alignSelfSprinkleSchema.optional(),
-  animation: animationSprinkleSchema.optional(),
-  appearance: z
-    .union([z.literal("number"), z.literal("default")])
-    .describe("Control the appearance of the input.")
-    .optional(),
-  backgroundImage: backgroundImageSprinkleSchema.optional(),
-  bg: bgSprinkleSchema.optional(),
-  border: borderSprinkleSchema.optional(),
-  borderB: borderBSprinkleSchema.optional(),
-  borderColor: borderColorSprinkleSchema.optional(),
-  borderL: borderLSprinkleSchema.optional(),
-  borderR: borderRSprinkleSchema.optional(),
-  borderT: borderTSprinkleSchema.optional(),
-  color: colorSprinkleSchema.optional(),
-  cursor: cursorSprinkleSchema.optional(),
-  display: displaySprinkleSchema.optional(),
-  flex: flexSprinkleSchema.optional(),
-  flexDirection: flexDirectionSprinkleSchema.optional(),
-  flexWrap: flexWrapSprinkleSchema.optional(),
-  fontFamily: fontFamilySprinkleSchema.optional(),
-  fontSize: fontSizeSprinkleSchema.optional(),
-  fontWeight: fontWeightSprinkleSchema.optional(),
-  gap: gapSprinkleSchema.optional(),
-  gridColumn: gridColumnSprinkleSchema.optional(),
-  gridTemplateColumns: gridTemplateColumnsSprinkleSchema.optional(),
-  h: hSprinkleSchema.optional(),
-  justifyContent: justifyContentSprinkleSchema.optional(),
-  justifyItems: justifyItemsSprinkleSchema.optional(),
-  m: mSprinkleSchema.optional(),
-  maxH: maxHSprinkleSchema.optional(),
-  maxW: maxWSprinkleSchema.optional(),
-  mb: mbSprinkleSchema.optional(),
-  ml: mlSprinkleSchema.optional(),
-  mr: mrSprinkleSchema.optional(),
-  mt: mtSprinkleSchema.optional(),
-  mx: mxSprinkleSchema.optional(),
-  my: mySprinkleSchema.optional(),
-  name: z.string().describe("The name of the form control element.").optional(),
-  objectFit: objectFitSprinkleSchema.optional(),
-  overflow: overflowSprinkleSchema.optional(),
-  overflowX: overflowXSprinkleSchema.optional(),
-  overflowY: overflowYSprinkleSchema.optional(),
-  p: pSprinkleSchema.optional(),
-  pb: pbSprinkleSchema.optional(),
-  pl: plSprinkleSchema.optional(),
-  placeholder: z
-    .string()
-    .describe("The placeholder text to use when control has no value.")
-    .optional(),
-  placeItems: placeItemsSprinkleSchema.optional(),
-  pointerEvents: pointerEventsSprinkleSchema.optional(),
-  pr: prSprinkleSchema.optional(),
-  pt: ptSprinkleSchema.optional(),
-  px: pxSprinkleSchema.optional(),
-  py: pySprinkleSchema.optional(),
-  rounded: roundedSprinkleSchema.optional(),
-  shadow: shadowSprinkleSchema.optional(),
-  textAlign: textAlignSprinkleSchema.optional(),
-  textTransform: textTransformSprinkleSchema.optional(),
-  transition: transitionSprinkleSchema.optional(),
-  type: z
-    .union([
-      z.literal("number"),
-      z.literal("color"),
-      z.literal("button"),
-      z.literal("checkbox"),
-      z.literal("radio"),
-      z.literal("hidden"),
-      z.literal("text"),
-      z.literal("reset"),
-      z.literal("range"),
-      z.literal("search"),
-      z.literal("time"),
-      z.literal("image"),
-      z.literal("tel"),
-      z.literal("url"),
-      z.literal("email"),
-      z.literal("date"),
-      z.literal("submit"),
-      z.literal("month"),
-      z.literal("datetime-local"),
-      z.literal("week"),
-      z.literal("file"),
-      z.literal("password"),
-      z.string(),
-    ])
-    .describe("The input type.")
-    .optional(),
-  w: wSprinkleSchema.optional(),
-  whiteSpace: whiteSpaceSprinkleSchema.optional(),
-  z: zSprinkleSchema.optional(),
-});
+export const ProteusInputSchema = z
+  .object({
+    $type: z.literal("Input"),
+    addonAfter: z.any().optional(),
+    addonBefore: z.any().optional(),
+    alignItems: alignItemsSprinkleSchema.optional(),
+    alignSelf: alignSelfSprinkleSchema.optional(),
+    animation: animationSprinkleSchema.optional(),
+    appearance: z
+      .union([z.literal("number"), z.literal("default")])
+      .describe("Control the appearance of the input.")
+      .optional(),
+    backgroundImage: backgroundImageSprinkleSchema.optional(),
+    bg: bgSprinkleSchema.optional(),
+    border: borderSprinkleSchema.optional(),
+    borderB: borderBSprinkleSchema.optional(),
+    borderColor: borderColorSprinkleSchema.optional(),
+    borderL: borderLSprinkleSchema.optional(),
+    borderR: borderRSprinkleSchema.optional(),
+    borderT: borderTSprinkleSchema.optional(),
+    color: colorSprinkleSchema.optional(),
+    cursor: cursorSprinkleSchema.optional(),
+    display: displaySprinkleSchema.optional(),
+    flex: flexSprinkleSchema.optional(),
+    flexDirection: flexDirectionSprinkleSchema.optional(),
+    flexWrap: flexWrapSprinkleSchema.optional(),
+    fontFamily: fontFamilySprinkleSchema.optional(),
+    fontSize: fontSizeSprinkleSchema.optional(),
+    fontWeight: fontWeightSprinkleSchema.optional(),
+    gap: gapSprinkleSchema.optional(),
+    gridColumn: gridColumnSprinkleSchema.optional(),
+    gridTemplateColumns: gridTemplateColumnsSprinkleSchema.optional(),
+    h: hSprinkleSchema.optional(),
+    justifyContent: justifyContentSprinkleSchema.optional(),
+    justifyItems: justifyItemsSprinkleSchema.optional(),
+    m: mSprinkleSchema.optional(),
+    maxH: maxHSprinkleSchema.optional(),
+    maxW: maxWSprinkleSchema.optional(),
+    mb: mbSprinkleSchema.optional(),
+    ml: mlSprinkleSchema.optional(),
+    mr: mrSprinkleSchema.optional(),
+    mt: mtSprinkleSchema.optional(),
+    mx: mxSprinkleSchema.optional(),
+    my: mySprinkleSchema.optional(),
+    name: z
+      .string()
+      .describe("The name of the form control element.")
+      .optional(),
+    objectFit: objectFitSprinkleSchema.optional(),
+    overflow: overflowSprinkleSchema.optional(),
+    overflowX: overflowXSprinkleSchema.optional(),
+    overflowY: overflowYSprinkleSchema.optional(),
+    p: pSprinkleSchema.optional(),
+    pb: pbSprinkleSchema.optional(),
+    pl: plSprinkleSchema.optional(),
+    placeholder: z
+      .string()
+      .describe("The placeholder text to use when control has no value.")
+      .optional(),
+    placeItems: placeItemsSprinkleSchema.optional(),
+    pointerEvents: pointerEventsSprinkleSchema.optional(),
+    pr: prSprinkleSchema.optional(),
+    pt: ptSprinkleSchema.optional(),
+    px: pxSprinkleSchema.optional(),
+    py: pySprinkleSchema.optional(),
+    rounded: roundedSprinkleSchema.optional(),
+    shadow: shadowSprinkleSchema.optional(),
+    textAlign: textAlignSprinkleSchema.optional(),
+    textTransform: textTransformSprinkleSchema.optional(),
+    transition: transitionSprinkleSchema.optional(),
+    type: z
+      .union([
+        z.literal("number"),
+        z.literal("color"),
+        z.literal("button"),
+        z.literal("checkbox"),
+        z.literal("radio"),
+        z.literal("hidden"),
+        z.literal("text"),
+        z.literal("reset"),
+        z.literal("range"),
+        z.literal("search"),
+        z.literal("time"),
+        z.literal("image"),
+        z.literal("tel"),
+        z.literal("url"),
+        z.literal("email"),
+        z.literal("date"),
+        z.literal("submit"),
+        z.literal("month"),
+        z.literal("datetime-local"),
+        z.literal("week"),
+        z.literal("file"),
+        z.literal("password"),
+        z.string(),
+      ])
+      .describe("The input type.")
+      .optional(),
+    w: wSprinkleSchema.optional(),
+    whiteSpace: whiteSpaceSprinkleSchema.optional(),
+    z: zSprinkleSchema.optional(),
+  })
+  .meta({
+    examples: [
+      { $type: "Input", name: "field_name", placeholder: "Enter value" },
+    ],
+  });
 
 export type ProteusInput = Omit<
   z.infer<typeof ProteusInputSchema>,
@@ -1854,68 +2022,74 @@ export type ProteusInputProps = Omit<
   "$type"
 >;
 
-export const ProteusLinkSchema = z.object({
-  $type: z.literal("Proteus.Link"),
-  alignItems: alignItemsSprinkleSchema.optional(),
-  alignSelf: alignSelfSprinkleSchema.optional(),
-  animation: animationSprinkleSchema.optional(),
-  backgroundImage: backgroundImageSprinkleSchema.optional(),
-  bg: bgSprinkleSchema.optional(),
-  border: borderSprinkleSchema.optional(),
-  borderB: borderBSprinkleSchema.optional(),
-  borderColor: borderColorSprinkleSchema.optional(),
-  borderL: borderLSprinkleSchema.optional(),
-  borderR: borderRSprinkleSchema.optional(),
-  borderT: borderTSprinkleSchema.optional(),
-  children: z.any().optional(),
-  color: colorSprinkleSchema.optional(),
-  cursor: cursorSprinkleSchema.optional(),
-  display: displaySprinkleSchema.optional(),
-  flex: flexSprinkleSchema.optional(),
-  flexDirection: flexDirectionSprinkleSchema.optional(),
-  flexWrap: flexWrapSprinkleSchema.optional(),
-  fontFamily: fontFamilySprinkleSchema.optional(),
-  fontSize: fontSizeSprinkleSchema.optional(),
-  fontWeight: fontWeightSprinkleSchema.optional(),
-  gap: gapSprinkleSchema.optional(),
-  gridColumn: gridColumnSprinkleSchema.optional(),
-  gridTemplateColumns: gridTemplateColumnsSprinkleSchema.optional(),
-  h: hSprinkleSchema.optional(),
-  href: z.string().describe("The link href.").optional(),
-  justifyContent: justifyContentSprinkleSchema.optional(),
-  justifyItems: justifyItemsSprinkleSchema.optional(),
-  m: mSprinkleSchema.optional(),
-  maxH: maxHSprinkleSchema.optional(),
-  maxW: maxWSprinkleSchema.optional(),
-  mb: mbSprinkleSchema.optional(),
-  ml: mlSprinkleSchema.optional(),
-  mr: mrSprinkleSchema.optional(),
-  mt: mtSprinkleSchema.optional(),
-  mx: mxSprinkleSchema.optional(),
-  my: mySprinkleSchema.optional(),
-  objectFit: objectFitSprinkleSchema.optional(),
-  overflow: overflowSprinkleSchema.optional(),
-  overflowX: overflowXSprinkleSchema.optional(),
-  overflowY: overflowYSprinkleSchema.optional(),
-  p: pSprinkleSchema.optional(),
-  pb: pbSprinkleSchema.optional(),
-  pl: plSprinkleSchema.optional(),
-  placeItems: placeItemsSprinkleSchema.optional(),
-  pointerEvents: pointerEventsSprinkleSchema.optional(),
-  pr: prSprinkleSchema.optional(),
-  pt: ptSprinkleSchema.optional(),
-  px: pxSprinkleSchema.optional(),
-  py: pySprinkleSchema.optional(),
-  rounded: roundedSprinkleSchema.optional(),
-  shadow: shadowSprinkleSchema.optional(),
-  size: sizeSprinkleSchema.optional(),
-  textAlign: textAlignSprinkleSchema.optional(),
-  textTransform: textTransformSprinkleSchema.optional(),
-  transition: transitionSprinkleSchema.optional(),
-  w: wSprinkleSchema.optional(),
-  whiteSpace: whiteSpaceSprinkleSchema.optional(),
-  z: zSprinkleSchema.optional(),
-});
+export const ProteusLinkSchema = z
+  .object({
+    $type: z.literal("Link"),
+    alignItems: alignItemsSprinkleSchema.optional(),
+    alignSelf: alignSelfSprinkleSchema.optional(),
+    animation: animationSprinkleSchema.optional(),
+    backgroundImage: backgroundImageSprinkleSchema.optional(),
+    bg: bgSprinkleSchema.optional(),
+    border: borderSprinkleSchema.optional(),
+    borderB: borderBSprinkleSchema.optional(),
+    borderColor: borderColorSprinkleSchema.optional(),
+    borderL: borderLSprinkleSchema.optional(),
+    borderR: borderRSprinkleSchema.optional(),
+    borderT: borderTSprinkleSchema.optional(),
+    children: z.any().optional(),
+    color: colorSprinkleSchema.optional(),
+    cursor: cursorSprinkleSchema.optional(),
+    display: displaySprinkleSchema.optional(),
+    flex: flexSprinkleSchema.optional(),
+    flexDirection: flexDirectionSprinkleSchema.optional(),
+    flexWrap: flexWrapSprinkleSchema.optional(),
+    fontFamily: fontFamilySprinkleSchema.optional(),
+    fontSize: fontSizeSprinkleSchema.optional(),
+    fontWeight: fontWeightSprinkleSchema.optional(),
+    gap: gapSprinkleSchema.optional(),
+    gridColumn: gridColumnSprinkleSchema.optional(),
+    gridTemplateColumns: gridTemplateColumnsSprinkleSchema.optional(),
+    h: hSprinkleSchema.optional(),
+    href: z.string().describe("The link href.").optional(),
+    justifyContent: justifyContentSprinkleSchema.optional(),
+    justifyItems: justifyItemsSprinkleSchema.optional(),
+    m: mSprinkleSchema.optional(),
+    maxH: maxHSprinkleSchema.optional(),
+    maxW: maxWSprinkleSchema.optional(),
+    mb: mbSprinkleSchema.optional(),
+    ml: mlSprinkleSchema.optional(),
+    mr: mrSprinkleSchema.optional(),
+    mt: mtSprinkleSchema.optional(),
+    mx: mxSprinkleSchema.optional(),
+    my: mySprinkleSchema.optional(),
+    objectFit: objectFitSprinkleSchema.optional(),
+    overflow: overflowSprinkleSchema.optional(),
+    overflowX: overflowXSprinkleSchema.optional(),
+    overflowY: overflowYSprinkleSchema.optional(),
+    p: pSprinkleSchema.optional(),
+    pb: pbSprinkleSchema.optional(),
+    pl: plSprinkleSchema.optional(),
+    placeItems: placeItemsSprinkleSchema.optional(),
+    pointerEvents: pointerEventsSprinkleSchema.optional(),
+    pr: prSprinkleSchema.optional(),
+    pt: ptSprinkleSchema.optional(),
+    px: pxSprinkleSchema.optional(),
+    py: pySprinkleSchema.optional(),
+    rounded: roundedSprinkleSchema.optional(),
+    shadow: shadowSprinkleSchema.optional(),
+    size: sizeSprinkleSchema.optional(),
+    textAlign: textAlignSprinkleSchema.optional(),
+    textTransform: textTransformSprinkleSchema.optional(),
+    transition: transitionSprinkleSchema.optional(),
+    w: wSprinkleSchema.optional(),
+    whiteSpace: whiteSpaceSprinkleSchema.optional(),
+    z: zSprinkleSchema.optional(),
+  })
+  .meta({
+    examples: [
+      { $type: "Link", children: "Link text", href: "https://example.com" },
+    ],
+  });
 
 export type ProteusLink = Omit<
   z.infer<typeof ProteusLinkSchema>,
@@ -1923,96 +2097,113 @@ export type ProteusLink = Omit<
 > & { children?: ProteusNode };
 export type ProteusLinkProps = Omit<z.infer<typeof ProteusLinkSchema>, "$type">;
 
-export const ProteusMapSchema = z.object({
-  $type: z.literal("Proteus.Map"),
-  children: z
-    .record(z.any())
-    .describe(
-      "Template object to render for each item in the array. Proteus.Value paths are relative to current item.",
-    )
-    .optional(),
-  path: z.string().describe("JSON pointer path to array (e.g., '/questions')"),
-});
+export const ProteusMapSchema = z
+  .object({
+    $type: z.literal("Map"),
+    children: z
+      .record(z.string(), z.any())
+      .describe(
+        "Template object to render for each item in the array. Value paths are relative to current item.",
+      )
+      .optional(),
+    path: z
+      .string()
+      .describe("JSON pointer path to array (e.g., '/questions')"),
+  })
+  .meta({
+    examples: [
+      {
+        $type: "Map",
+        children: { $type: "Text", children: "Item" },
+        path: "/items",
+      },
+    ],
+  });
 
 export type ProteusMap = Omit<z.infer<typeof ProteusMapSchema>, "children"> & {
   children?: ProteusNode;
 };
 export type ProteusMapProps = Omit<z.infer<typeof ProteusMapSchema>, "$type">;
 
-export const ProteusRangeSchema = z.object({
-  $type: z.literal("Proteus.Range"),
-  alignItems: alignItemsSprinkleSchema.optional(),
-  alignSelf: alignSelfSprinkleSchema.optional(),
-  animation: animationSprinkleSchema.optional(),
-  backgroundImage: backgroundImageSprinkleSchema.optional(),
-  bg: bgSprinkleSchema.optional(),
-  border: borderSprinkleSchema.optional(),
-  borderB: borderBSprinkleSchema.optional(),
-  borderColor: borderColorSprinkleSchema.optional(),
-  borderL: borderLSprinkleSchema.optional(),
-  borderR: borderRSprinkleSchema.optional(),
-  borderT: borderTSprinkleSchema.optional(),
-  color: colorSprinkleSchema.optional(),
-  cursor: cursorSprinkleSchema.optional(),
-  display: displaySprinkleSchema.optional(),
-  flex: flexSprinkleSchema.optional(),
-  flexDirection: flexDirectionSprinkleSchema.optional(),
-  flexWrap: flexWrapSprinkleSchema.optional(),
-  fontFamily: fontFamilySprinkleSchema.optional(),
-  fontSize: fontSizeSprinkleSchema.optional(),
-  fontWeight: fontWeightSprinkleSchema.optional(),
-  gap: gapSprinkleSchema.optional(),
-  gridColumn: gridColumnSprinkleSchema.optional(),
-  gridTemplateColumns: gridTemplateColumnsSprinkleSchema.optional(),
-  h: hSprinkleSchema.optional(),
-  justifyContent: justifyContentSprinkleSchema.optional(),
-  justifyItems: justifyItemsSprinkleSchema.optional(),
-  m: mSprinkleSchema.optional(),
-  marks: z
-    .array(
-      z.union([
-        z.number(),
-        z.object({
-          label: z.string().describe("The label for the mark"),
-          value: z.number().describe("The value for the mark"),
-        }),
-      ]),
-    )
-    .describe("The marks to display on the range steps.")
-    .optional(),
-  max: z.number().describe("The maximum value for the range.").optional(),
-  maxH: maxHSprinkleSchema.optional(),
-  maxW: maxWSprinkleSchema.optional(),
-  mb: mbSprinkleSchema.optional(),
-  min: z.number().describe("The minimum value for the range.").optional(),
-  ml: mlSprinkleSchema.optional(),
-  mr: mrSprinkleSchema.optional(),
-  mt: mtSprinkleSchema.optional(),
-  mx: mxSprinkleSchema.optional(),
-  my: mySprinkleSchema.optional(),
-  objectFit: objectFitSprinkleSchema.optional(),
-  overflow: overflowSprinkleSchema.optional(),
-  overflowX: overflowXSprinkleSchema.optional(),
-  overflowY: overflowYSprinkleSchema.optional(),
-  p: pSprinkleSchema.optional(),
-  pb: pbSprinkleSchema.optional(),
-  pl: plSprinkleSchema.optional(),
-  placeItems: placeItemsSprinkleSchema.optional(),
-  pointerEvents: pointerEventsSprinkleSchema.optional(),
-  pr: prSprinkleSchema.optional(),
-  pt: ptSprinkleSchema.optional(),
-  px: pxSprinkleSchema.optional(),
-  py: pySprinkleSchema.optional(),
-  rounded: roundedSprinkleSchema.optional(),
-  shadow: shadowSprinkleSchema.optional(),
-  step: z.number().describe("The stepping interval for the range.").optional(),
-  textAlign: textAlignSprinkleSchema.optional(),
-  textTransform: textTransformSprinkleSchema.optional(),
-  transition: transitionSprinkleSchema.optional(),
-  w: wSprinkleSchema.optional(),
-  whiteSpace: whiteSpaceSprinkleSchema.optional(),
-  z: zSprinkleSchema.optional(),
-});
+export const ProteusRangeSchema = z
+  .object({
+    $type: z.literal("Range"),
+    alignItems: alignItemsSprinkleSchema.optional(),
+    alignSelf: alignSelfSprinkleSchema.optional(),
+    animation: animationSprinkleSchema.optional(),
+    backgroundImage: backgroundImageSprinkleSchema.optional(),
+    bg: bgSprinkleSchema.optional(),
+    border: borderSprinkleSchema.optional(),
+    borderB: borderBSprinkleSchema.optional(),
+    borderColor: borderColorSprinkleSchema.optional(),
+    borderL: borderLSprinkleSchema.optional(),
+    borderR: borderRSprinkleSchema.optional(),
+    borderT: borderTSprinkleSchema.optional(),
+    color: colorSprinkleSchema.optional(),
+    cursor: cursorSprinkleSchema.optional(),
+    display: displaySprinkleSchema.optional(),
+    flex: flexSprinkleSchema.optional(),
+    flexDirection: flexDirectionSprinkleSchema.optional(),
+    flexWrap: flexWrapSprinkleSchema.optional(),
+    fontFamily: fontFamilySprinkleSchema.optional(),
+    fontSize: fontSizeSprinkleSchema.optional(),
+    fontWeight: fontWeightSprinkleSchema.optional(),
+    gap: gapSprinkleSchema.optional(),
+    gridColumn: gridColumnSprinkleSchema.optional(),
+    gridTemplateColumns: gridTemplateColumnsSprinkleSchema.optional(),
+    h: hSprinkleSchema.optional(),
+    justifyContent: justifyContentSprinkleSchema.optional(),
+    justifyItems: justifyItemsSprinkleSchema.optional(),
+    m: mSprinkleSchema.optional(),
+    marks: z
+      .array(
+        z.union([
+          z.number(),
+          z.object({
+            label: z.string().describe("The label for the mark"),
+            value: z.number().describe("The value for the mark"),
+          }),
+        ]),
+      )
+      .describe("The marks to display on the range steps.")
+      .optional(),
+    max: z.number().describe("The maximum value for the range.").optional(),
+    maxH: maxHSprinkleSchema.optional(),
+    maxW: maxWSprinkleSchema.optional(),
+    mb: mbSprinkleSchema.optional(),
+    min: z.number().describe("The minimum value for the range.").optional(),
+    ml: mlSprinkleSchema.optional(),
+    mr: mrSprinkleSchema.optional(),
+    mt: mtSprinkleSchema.optional(),
+    mx: mxSprinkleSchema.optional(),
+    my: mySprinkleSchema.optional(),
+    objectFit: objectFitSprinkleSchema.optional(),
+    overflow: overflowSprinkleSchema.optional(),
+    overflowX: overflowXSprinkleSchema.optional(),
+    overflowY: overflowYSprinkleSchema.optional(),
+    p: pSprinkleSchema.optional(),
+    pb: pbSprinkleSchema.optional(),
+    pl: plSprinkleSchema.optional(),
+    placeItems: placeItemsSprinkleSchema.optional(),
+    pointerEvents: pointerEventsSprinkleSchema.optional(),
+    pr: prSprinkleSchema.optional(),
+    pt: ptSprinkleSchema.optional(),
+    px: pxSprinkleSchema.optional(),
+    py: pySprinkleSchema.optional(),
+    rounded: roundedSprinkleSchema.optional(),
+    shadow: shadowSprinkleSchema.optional(),
+    step: z
+      .number()
+      .describe("The stepping interval for the range.")
+      .optional(),
+    textAlign: textAlignSprinkleSchema.optional(),
+    textTransform: textTransformSprinkleSchema.optional(),
+    transition: transitionSprinkleSchema.optional(),
+    w: wSprinkleSchema.optional(),
+    whiteSpace: whiteSpaceSprinkleSchema.optional(),
+    z: zSprinkleSchema.optional(),
+  })
+  .meta({ examples: [{ $type: "Range", max: 100, min: 0, step: 1 }] });
 
 export type ProteusRange = Omit<
   z.infer<typeof ProteusRangeSchema>,
@@ -2023,19 +2214,39 @@ export type ProteusRangeProps = Omit<
   "$type"
 >;
 
-export const ProteusSelectSchema = z.object({
-  $type: z.literal("Proteus.Select"),
-  children: z.any().optional(),
-  name: z.string().describe("The name of the inner select element.").optional(),
-  options: z
-    .array(
-      z.object({
-        label: z.string().describe("String representation of items"),
-        value: z.string().describe("Return a unique key for each item"),
-      }),
-    )
-    .describe("The select items/options we want to render."),
-});
+export const ProteusSelectSchema = z
+  .object({
+    $type: z.literal("Select"),
+    children: z.any().optional(),
+    name: z
+      .string()
+      .describe("The name of the inner select element.")
+      .optional(),
+    options: z
+      .array(
+        z.object({
+          label: z.string().describe("String representation of items"),
+          value: z.string().describe("Return a unique key for each item"),
+        }),
+      )
+      .describe("The select items/options we want to render."),
+  })
+  .meta({
+    examples: [
+      {
+        $type: "Select",
+        children: [
+          { $type: "SelectTrigger", w: "full" },
+          { $type: "SelectContent" },
+        ],
+        name: "select_field",
+        options: [
+          { label: "Option 1", value: "option1" },
+          { label: "Option 2", value: "option2" },
+        ],
+      },
+    ],
+  });
 
 export type ProteusSelect = Omit<
   z.infer<typeof ProteusSelectSchema>,
@@ -2047,7 +2258,7 @@ export type ProteusSelectProps = Omit<
 >;
 
 export const ProteusSelectContentSchema = z.object({
-  $type: z.literal("Proteus.SelectContent"),
+  $type: z.literal("SelectContent"),
   alignItems: alignItemsSprinkleSchema.optional(),
   alignSelf: alignSelfSprinkleSchema.optional(),
   animation: animationSprinkleSchema.optional(),
@@ -2116,7 +2327,7 @@ export type ProteusSelectContentProps = Omit<
 >;
 
 export const ProteusSelectTriggerSchema = z.object({
-  $type: z.literal("Proteus.SelectTrigger"),
+  $type: z.literal("SelectTrigger"),
   alignItems: alignItemsSprinkleSchema.optional(),
   alignSelf: alignSelfSprinkleSchema.optional(),
   animation: animationSprinkleSchema.optional(),
@@ -2186,7 +2397,7 @@ export type ProteusSelectTriggerProps = Omit<
 >;
 
 export const ProteusSeparatorSchema = z.object({
-  $type: z.literal("Proteus.Separator"),
+  $type: z.literal("Separator"),
   alignItems: alignItemsSprinkleSchema.optional(),
   alignSelf: alignSelfSprinkleSchema.optional(),
   animation: animationSprinkleSchema.optional(),
@@ -2255,16 +2466,26 @@ export type ProteusSeparatorProps = Omit<
   "$type"
 >;
 
-export const ProteusShowSchema = z.object({
-  $type: z.literal("Proteus.Show"),
-  children: z.any().optional(),
-  when: z
-    .union([ProteusConditionSchema, z.array(ProteusConditionSchema)])
-    .describe(
-      "Single condition or array of conditions (AND logic). Each condition is an object with one operator key.",
-    )
-    .optional(),
-});
+export const ProteusShowSchema = z
+  .object({
+    $type: z.literal("Show"),
+    children: z.any().optional(),
+    when: z
+      .union([ProteusConditionSchema, z.array(ProteusConditionSchema)])
+      .describe(
+        "Single condition or array of conditions (AND logic). Each condition is an object with one operator key.",
+      )
+      .optional(),
+  })
+  .meta({
+    examples: [
+      {
+        $type: "Show",
+        children: { $type: "Text", children: "Shown conditionally" },
+        when: { "!!": { $type: "Value", path: "/field_name" } },
+      },
+    ],
+  });
 
 export type ProteusShow = Omit<
   z.infer<typeof ProteusShowSchema>,
@@ -2272,67 +2493,69 @@ export type ProteusShow = Omit<
 > & { children?: ProteusNode };
 export type ProteusShowProps = Omit<z.infer<typeof ProteusShowSchema>, "$type">;
 
-export const ProteusTextSchema = z.object({
-  $type: z.literal("Proteus.Text"),
-  alignItems: alignItemsSprinkleSchema.optional(),
-  alignSelf: alignSelfSprinkleSchema.optional(),
-  animation: animationSprinkleSchema.optional(),
-  backgroundImage: backgroundImageSprinkleSchema.optional(),
-  bg: bgSprinkleSchema.optional(),
-  border: borderSprinkleSchema.optional(),
-  borderB: borderBSprinkleSchema.optional(),
-  borderColor: borderColorSprinkleSchema.optional(),
-  borderL: borderLSprinkleSchema.optional(),
-  borderR: borderRSprinkleSchema.optional(),
-  borderT: borderTSprinkleSchema.optional(),
-  children: z.any().optional(),
-  color: colorSprinkleSchema.optional(),
-  cursor: cursorSprinkleSchema.optional(),
-  display: displaySprinkleSchema.optional(),
-  flex: flexSprinkleSchema.optional(),
-  flexDirection: flexDirectionSprinkleSchema.optional(),
-  flexWrap: flexWrapSprinkleSchema.optional(),
-  fontFamily: fontFamilySprinkleSchema.optional(),
-  fontSize: fontSizeSprinkleSchema.optional(),
-  fontWeight: fontWeightSprinkleSchema.optional(),
-  gap: gapSprinkleSchema.optional(),
-  gridColumn: gridColumnSprinkleSchema.optional(),
-  gridTemplateColumns: gridTemplateColumnsSprinkleSchema.optional(),
-  h: hSprinkleSchema.optional(),
-  justifyContent: justifyContentSprinkleSchema.optional(),
-  justifyItems: justifyItemsSprinkleSchema.optional(),
-  m: mSprinkleSchema.optional(),
-  maxH: maxHSprinkleSchema.optional(),
-  maxW: maxWSprinkleSchema.optional(),
-  mb: mbSprinkleSchema.optional(),
-  ml: mlSprinkleSchema.optional(),
-  mr: mrSprinkleSchema.optional(),
-  mt: mtSprinkleSchema.optional(),
-  mx: mxSprinkleSchema.optional(),
-  my: mySprinkleSchema.optional(),
-  objectFit: objectFitSprinkleSchema.optional(),
-  overflow: overflowSprinkleSchema.optional(),
-  overflowX: overflowXSprinkleSchema.optional(),
-  overflowY: overflowYSprinkleSchema.optional(),
-  p: pSprinkleSchema.optional(),
-  pb: pbSprinkleSchema.optional(),
-  pl: plSprinkleSchema.optional(),
-  placeItems: placeItemsSprinkleSchema.optional(),
-  pointerEvents: pointerEventsSprinkleSchema.optional(),
-  pr: prSprinkleSchema.optional(),
-  pt: ptSprinkleSchema.optional(),
-  px: pxSprinkleSchema.optional(),
-  py: pySprinkleSchema.optional(),
-  rounded: roundedSprinkleSchema.optional(),
-  shadow: shadowSprinkleSchema.optional(),
-  size: sizeSprinkleSchema.optional(),
-  textAlign: textAlignSprinkleSchema.optional(),
-  textTransform: textTransformSprinkleSchema.optional(),
-  transition: transitionSprinkleSchema.optional(),
-  w: wSprinkleSchema.optional(),
-  whiteSpace: whiteSpaceSprinkleSchema.optional(),
-  z: zSprinkleSchema.optional(),
-});
+export const ProteusTextSchema = z
+  .object({
+    $type: z.literal("Text"),
+    alignItems: alignItemsSprinkleSchema.optional(),
+    alignSelf: alignSelfSprinkleSchema.optional(),
+    animation: animationSprinkleSchema.optional(),
+    backgroundImage: backgroundImageSprinkleSchema.optional(),
+    bg: bgSprinkleSchema.optional(),
+    border: borderSprinkleSchema.optional(),
+    borderB: borderBSprinkleSchema.optional(),
+    borderColor: borderColorSprinkleSchema.optional(),
+    borderL: borderLSprinkleSchema.optional(),
+    borderR: borderRSprinkleSchema.optional(),
+    borderT: borderTSprinkleSchema.optional(),
+    children: z.any().optional(),
+    color: colorSprinkleSchema.optional(),
+    cursor: cursorSprinkleSchema.optional(),
+    display: displaySprinkleSchema.optional(),
+    flex: flexSprinkleSchema.optional(),
+    flexDirection: flexDirectionSprinkleSchema.optional(),
+    flexWrap: flexWrapSprinkleSchema.optional(),
+    fontFamily: fontFamilySprinkleSchema.optional(),
+    fontSize: fontSizeSprinkleSchema.optional(),
+    fontWeight: fontWeightSprinkleSchema.optional(),
+    gap: gapSprinkleSchema.optional(),
+    gridColumn: gridColumnSprinkleSchema.optional(),
+    gridTemplateColumns: gridTemplateColumnsSprinkleSchema.optional(),
+    h: hSprinkleSchema.optional(),
+    justifyContent: justifyContentSprinkleSchema.optional(),
+    justifyItems: justifyItemsSprinkleSchema.optional(),
+    m: mSprinkleSchema.optional(),
+    maxH: maxHSprinkleSchema.optional(),
+    maxW: maxWSprinkleSchema.optional(),
+    mb: mbSprinkleSchema.optional(),
+    ml: mlSprinkleSchema.optional(),
+    mr: mrSprinkleSchema.optional(),
+    mt: mtSprinkleSchema.optional(),
+    mx: mxSprinkleSchema.optional(),
+    my: mySprinkleSchema.optional(),
+    objectFit: objectFitSprinkleSchema.optional(),
+    overflow: overflowSprinkleSchema.optional(),
+    overflowX: overflowXSprinkleSchema.optional(),
+    overflowY: overflowYSprinkleSchema.optional(),
+    p: pSprinkleSchema.optional(),
+    pb: pbSprinkleSchema.optional(),
+    pl: plSprinkleSchema.optional(),
+    placeItems: placeItemsSprinkleSchema.optional(),
+    pointerEvents: pointerEventsSprinkleSchema.optional(),
+    pr: prSprinkleSchema.optional(),
+    pt: ptSprinkleSchema.optional(),
+    px: pxSprinkleSchema.optional(),
+    py: pySprinkleSchema.optional(),
+    rounded: roundedSprinkleSchema.optional(),
+    shadow: shadowSprinkleSchema.optional(),
+    size: sizeSprinkleSchema.optional(),
+    textAlign: textAlignSprinkleSchema.optional(),
+    textTransform: textTransformSprinkleSchema.optional(),
+    transition: transitionSprinkleSchema.optional(),
+    w: wSprinkleSchema.optional(),
+    whiteSpace: whiteSpaceSprinkleSchema.optional(),
+    z: zSprinkleSchema.optional(),
+  })
+  .meta({ examples: [{ $type: "Text", children: "New text" }] });
 
 export type ProteusText = Omit<
   z.infer<typeof ProteusTextSchema>,
@@ -2340,87 +2563,96 @@ export type ProteusText = Omit<
 > & { children?: ProteusNode };
 export type ProteusTextProps = Omit<z.infer<typeof ProteusTextSchema>, "$type">;
 
-export const ProteusTextareaSchema = z.object({
-  $type: z.literal("Proteus.Textarea"),
-  alignItems: alignItemsSprinkleSchema.optional(),
-  alignSelf: alignSelfSprinkleSchema.optional(),
-  animation: animationSprinkleSchema.optional(),
-  backgroundImage: backgroundImageSprinkleSchema.optional(),
-  bg: bgSprinkleSchema.optional(),
-  border: borderSprinkleSchema.optional(),
-  borderB: borderBSprinkleSchema.optional(),
-  borderColor: borderColorSprinkleSchema.optional(),
-  borderL: borderLSprinkleSchema.optional(),
-  borderR: borderRSprinkleSchema.optional(),
-  borderT: borderTSprinkleSchema.optional(),
-  color: colorSprinkleSchema.optional(),
-  cursor: cursorSprinkleSchema.optional(),
-  display: displaySprinkleSchema.optional(),
-  flex: flexSprinkleSchema.optional(),
-  flexDirection: flexDirectionSprinkleSchema.optional(),
-  flexWrap: flexWrapSprinkleSchema.optional(),
-  fontFamily: fontFamilySprinkleSchema.optional(),
-  fontSize: fontSizeSprinkleSchema.optional(),
-  fontWeight: fontWeightSprinkleSchema.optional(),
-  gap: gapSprinkleSchema.optional(),
-  gridColumn: gridColumnSprinkleSchema.optional(),
-  gridTemplateColumns: gridTemplateColumnsSprinkleSchema.optional(),
-  h: hSprinkleSchema.optional(),
-  justifyContent: justifyContentSprinkleSchema.optional(),
-  justifyItems: justifyItemsSprinkleSchema.optional(),
-  m: mSprinkleSchema.optional(),
-  maxH: maxHSprinkleSchema.optional(),
-  maxRows: z
-    .union([
-      z.literal(1),
-      z.literal(2),
-      z.literal(3),
-      z.literal(4),
-      z.literal(5),
-    ])
-    .describe("Limits the height of the textarea when `resize=auto` is used.")
-    .optional(),
-  maxW: maxWSprinkleSchema.optional(),
-  mb: mbSprinkleSchema.optional(),
-  ml: mlSprinkleSchema.optional(),
-  mr: mrSprinkleSchema.optional(),
-  mt: mtSprinkleSchema.optional(),
-  mx: mxSprinkleSchema.optional(),
-  my: mySprinkleSchema.optional(),
-  name: z.string().describe("The name of the form control element.").optional(),
-  objectFit: objectFitSprinkleSchema.optional(),
-  overflow: overflowSprinkleSchema.optional(),
-  overflowX: overflowXSprinkleSchema.optional(),
-  overflowY: overflowYSprinkleSchema.optional(),
-  p: pSprinkleSchema.optional(),
-  pb: pbSprinkleSchema.optional(),
-  pl: plSprinkleSchema.optional(),
-  placeholder: z
-    .string()
-    .describe("The placeholder text to use when control has no value.")
-    .optional(),
-  placeItems: placeItemsSprinkleSchema.optional(),
-  pointerEvents: pointerEventsSprinkleSchema.optional(),
-  pr: prSprinkleSchema.optional(),
-  pt: ptSprinkleSchema.optional(),
-  px: pxSprinkleSchema.optional(),
-  py: pySprinkleSchema.optional(),
-  resize: z
-    .union([z.literal("none"), z.literal("auto"), z.literal("vertical")])
-    .describe(
-      "Control whether resizing mode is manual, automatic, or disabled.",
-    )
-    .optional(),
-  rounded: roundedSprinkleSchema.optional(),
-  rows: z.number().describe("The number of rows to display.").optional(),
-  shadow: shadowSprinkleSchema.optional(),
-  textAlign: textAlignSprinkleSchema.optional(),
-  textTransform: textTransformSprinkleSchema.optional(),
-  transition: transitionSprinkleSchema.optional(),
-  w: wSprinkleSchema.optional(),
-  whiteSpace: whiteSpaceSprinkleSchema.optional(),
-  z: zSprinkleSchema.optional(),
-});
+export const ProteusTextareaSchema = z
+  .object({
+    $type: z.literal("Textarea"),
+    alignItems: alignItemsSprinkleSchema.optional(),
+    alignSelf: alignSelfSprinkleSchema.optional(),
+    animation: animationSprinkleSchema.optional(),
+    backgroundImage: backgroundImageSprinkleSchema.optional(),
+    bg: bgSprinkleSchema.optional(),
+    border: borderSprinkleSchema.optional(),
+    borderB: borderBSprinkleSchema.optional(),
+    borderColor: borderColorSprinkleSchema.optional(),
+    borderL: borderLSprinkleSchema.optional(),
+    borderR: borderRSprinkleSchema.optional(),
+    borderT: borderTSprinkleSchema.optional(),
+    color: colorSprinkleSchema.optional(),
+    cursor: cursorSprinkleSchema.optional(),
+    display: displaySprinkleSchema.optional(),
+    flex: flexSprinkleSchema.optional(),
+    flexDirection: flexDirectionSprinkleSchema.optional(),
+    flexWrap: flexWrapSprinkleSchema.optional(),
+    fontFamily: fontFamilySprinkleSchema.optional(),
+    fontSize: fontSizeSprinkleSchema.optional(),
+    fontWeight: fontWeightSprinkleSchema.optional(),
+    gap: gapSprinkleSchema.optional(),
+    gridColumn: gridColumnSprinkleSchema.optional(),
+    gridTemplateColumns: gridTemplateColumnsSprinkleSchema.optional(),
+    h: hSprinkleSchema.optional(),
+    justifyContent: justifyContentSprinkleSchema.optional(),
+    justifyItems: justifyItemsSprinkleSchema.optional(),
+    m: mSprinkleSchema.optional(),
+    maxH: maxHSprinkleSchema.optional(),
+    maxRows: z
+      .union([
+        z.literal(1),
+        z.literal(2),
+        z.literal(3),
+        z.literal(4),
+        z.literal(5),
+      ])
+      .describe("Limits the height of the textarea when `resize=auto` is used.")
+      .optional(),
+    maxW: maxWSprinkleSchema.optional(),
+    mb: mbSprinkleSchema.optional(),
+    ml: mlSprinkleSchema.optional(),
+    mr: mrSprinkleSchema.optional(),
+    mt: mtSprinkleSchema.optional(),
+    mx: mxSprinkleSchema.optional(),
+    my: mySprinkleSchema.optional(),
+    name: z
+      .string()
+      .describe("The name of the form control element.")
+      .optional(),
+    objectFit: objectFitSprinkleSchema.optional(),
+    overflow: overflowSprinkleSchema.optional(),
+    overflowX: overflowXSprinkleSchema.optional(),
+    overflowY: overflowYSprinkleSchema.optional(),
+    p: pSprinkleSchema.optional(),
+    pb: pbSprinkleSchema.optional(),
+    pl: plSprinkleSchema.optional(),
+    placeholder: z
+      .string()
+      .describe("The placeholder text to use when control has no value.")
+      .optional(),
+    placeItems: placeItemsSprinkleSchema.optional(),
+    pointerEvents: pointerEventsSprinkleSchema.optional(),
+    pr: prSprinkleSchema.optional(),
+    pt: ptSprinkleSchema.optional(),
+    px: pxSprinkleSchema.optional(),
+    py: pySprinkleSchema.optional(),
+    resize: z
+      .union([z.literal("none"), z.literal("auto"), z.literal("vertical")])
+      .describe(
+        "Control whether resizing mode is manual, automatic, or disabled.",
+      )
+      .optional(),
+    rounded: roundedSprinkleSchema.optional(),
+    rows: z.number().describe("The number of rows to display.").optional(),
+    shadow: shadowSprinkleSchema.optional(),
+    textAlign: textAlignSprinkleSchema.optional(),
+    textTransform: textTransformSprinkleSchema.optional(),
+    transition: transitionSprinkleSchema.optional(),
+    w: wSprinkleSchema.optional(),
+    whiteSpace: whiteSpaceSprinkleSchema.optional(),
+    z: zSprinkleSchema.optional(),
+  })
+  .meta({
+    examples: [
+      { $type: "Textarea", name: "field_name", placeholder: "Enter text" },
+    ],
+  });
 
 export type ProteusTextarea = Omit<
   z.infer<typeof ProteusTextareaSchema>,
@@ -2431,14 +2663,16 @@ export type ProteusTextareaProps = Omit<
   "$type"
 >;
 
-export const ProteusValueSchema = z.object({
-  $type: z.literal("Proteus.Value"),
-  path: z
-    .string()
-    .describe(
-      "JSON pointer path to value (e.g., '/question', '/options/0/label')",
-    ),
-});
+export const ProteusValueSchema = z
+  .object({
+    $type: z.literal("Value"),
+    path: z
+      .string()
+      .describe(
+        "JSON pointer path to value (e.g., '/question', '/options/0/label')",
+      ),
+  })
+  .meta({ examples: [{ $type: "Value", path: "/field_name" }] });
 
 export type ProteusValue = Omit<
   z.infer<typeof ProteusValueSchema>,

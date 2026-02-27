@@ -124,12 +124,12 @@ function resolveValue(
   data: Record<string, unknown>,
   parentPath: string,
 ): unknown {
-  // If value is a Proteus.Value reference object
+  // If value is a Value reference object
   if (
     typeof value === "object" &&
     value !== null &&
     "$type" in value &&
-    value.$type === "Proteus.Value" &&
+    value.$type === "Value" &&
     "path" in value &&
     typeof value.path === "string"
   ) {
