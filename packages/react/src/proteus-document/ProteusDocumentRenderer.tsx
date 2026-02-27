@@ -1,4 +1,5 @@
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
+import { set } from "jsonpointer";
 import { type ComponentPropsWithoutRef } from "react";
 
 import { Box } from "../box";
@@ -24,9 +25,9 @@ export type ProteusDocumentRendererProps = Pick<
    */
   collapsible?: boolean;
   /**
-   * Current form data (flat object, FormData-like)
+   * Current form data
    */
-  data?: Record<string, string>;
+  data?: Record<string, unknown>;
   /**
    * The Proteus document to render
    */
@@ -38,7 +39,7 @@ export type ProteusDocumentRendererProps = Pick<
   /**
    * Callback when form fields change
    */
-  onDataChange?: (data: Record<string, string>) => void;
+  onDataChange?: (data: Record<string, unknown>) => void;
   /**
    * Callback when user sends a message action
    */
@@ -91,8 +92,10 @@ export function ProteusDocumentRenderer({
     <ProteusDocumentProvider
       data={data}
       onCancelAction={onCancelAction}
-      onDataChange={useEffectEvent((name: string, value: string) => {
-        onDataChange?.({ ...data, [name]: value });
+      onDataChange={useEffectEvent((path: string, value: unknown) => {
+        const next = structuredClone(data);
+        set(next, path, value);
+        onDataChange?.(next);
       })}
       onEvent={useEffectEvent(
         (event: { message: string } | { tool: string }) => {
