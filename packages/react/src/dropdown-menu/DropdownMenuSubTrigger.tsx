@@ -8,6 +8,9 @@ export type DropdownMenuSubTriggerProps = ListboxItemProps<
   typeof RadixMenu.SubTrigger
 >;
 
+/**
+ * @group DropdownMenu
+ */
 export const DropdownMenuSubTrigger = forwardRef<
   HTMLDivElement,
   DropdownMenuSubTriggerProps

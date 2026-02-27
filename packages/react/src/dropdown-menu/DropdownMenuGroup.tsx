@@ -5,6 +5,9 @@ import { Box, type BoxProps } from "../box";
 
 export type DropdownMenuGroupProps = BoxProps<typeof RadixMenu.Group>;
 
+/**
+ * @group DropdownMenu
+ */
 export const DropdownMenuGroup = forwardRef<
   HTMLDivElement,
   DropdownMenuGroupProps

@@ -10,6 +10,9 @@ import { Text } from "../text";
 
 export type SuggestionAlertProps = ComponentPropsWithoutRef<typeof Alert>;
 
+/**
+ * @experimental
+ */
 export function SuggestionAlert({ ...props }: SuggestionAlertProps) {
   const surface = useSurface("property");
   const hasPopover = surface?.suggestionPopover.registered;

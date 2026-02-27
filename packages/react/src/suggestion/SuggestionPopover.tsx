@@ -13,6 +13,9 @@ import { Text } from "../text";
 
 export type SuggestionPopoverProps = ButtonProps<typeof PopoverTrigger>;
 
+/**
+ * @experimental
+ */
 export const SuggestionPopover = forwardRef<
   HTMLButtonElement,
   SuggestionPopoverProps

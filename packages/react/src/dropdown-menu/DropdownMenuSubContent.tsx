@@ -27,6 +27,9 @@ export type DropdownMenuSubContentProps = ExcludeProps<
   | "updatePositionStrategy"
 >;
 
+/**
+ * @group DropdownMenu
+ */
 export const DropdownMenuSubContent = forwardRef<
   HTMLDivElement,
   DropdownMenuSubContentProps
