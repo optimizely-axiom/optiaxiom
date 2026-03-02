@@ -154,8 +154,8 @@ describe("tokens", () => {
       count: Object.keys(tokens.fontFamily).length,
       keys: Object.keys(tokens.fontFamily),
     }).toEqual({
-      count: 2,
-      keys: ["mono", "sans"],
+      count: 3,
+      keys: ["heading", "mono", "sans"],
     });
   });
 
