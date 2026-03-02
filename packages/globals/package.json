@@ -35,9 +35,10 @@
     "test": "vitest"
   },
   "dependencies": {
-    "@fontsource-variable/fira-code": "^5.2.6",
-    "@radix-ui/react-context": "^1.1.2",
-    "inter-ui": "^4.1.1"
+    "@fontsource-variable/roboto": "^5.2.10",
+    "@fontsource-variable/roboto-condensed": "^5.2.8",
+    "@fontsource-variable/roboto-mono": "^5.2.8",
+    "@radix-ui/react-context": "^1.1.2"
   },
   "devDependencies": {
     "@optiaxiom/shared": "workspace:^",
