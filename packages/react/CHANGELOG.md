@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 1.9.6
+
+### Patch Changes
+
+- ab3c6b1: allow handling nested data change in proteus
+
 ## 1.9.5
 
 ### Patch Changes
