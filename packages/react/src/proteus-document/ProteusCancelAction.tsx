@@ -14,7 +14,7 @@ export function ProteusCancelAction({
   children?: any;
   placeholder?: string;
 }) {
-  const { onCancelAction } = useProteusDocumentContext(
+  const { onEvent } = useProteusDocumentContext(
     "@optiaxiom/react/ProteusCancelAction",
   );
 
@@ -24,7 +24,7 @@ export function ProteusCancelAction({
     <form
       onSubmit={(event) => {
         event.preventDefault();
-        onCancelAction?.(inputValue);
+        onEvent?.({ message: inputValue });
       }}
     >
       <Flex flexDirection="row" gap="16" w="full">
