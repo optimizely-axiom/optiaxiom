@@ -34,7 +34,7 @@ export const trigger = recipe({
       selectors: {
         "&:focus-visible": {
           outline: `2px solid ${theme.colors["border.focus"]}`,
-          outlineOffset: "1px",
+          outlineOffset: "2px",
         },
         "&[data-disabled]": {
           color: theme.colors["fg.disabled"],

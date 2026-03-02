@@ -8,22 +8,24 @@ export const pill = recipe({
       alignItems: "center",
       color: "fg.default",
       display: "flex",
+      fontFamily: "mono",
       fontSize: "sm",
       gap: "4",
       px: "6",
       rounded: "md",
+      textTransform: "uppercase",
       transition: "colors",
       whiteSpace: "nowrap",
     },
     style({
-      backgroundColor: theme.colors["bg.tertiary"],
+      backgroundColor: theme.colors["bg.pill.default"],
       position: "relative",
       userSelect: "none",
 
       selectors: {
         "&:focus-visible": {
           outline: `2px solid ${theme.colors["border.focus"]}`,
-          outlineOffset: "1px",
+          outlineOffset: "2px",
         },
 
         "&[data-disabled]": {
@@ -40,7 +42,7 @@ export const pill = recipe({
           "(hover: hover)": {
             selectors: {
               "&:not([data-disabled]):hover": {
-                backgroundColor: theme.colors["bg.tertiary.hovered"],
+                backgroundColor: theme.colors["bg.pill.hovered"],
               },
             },
           },
