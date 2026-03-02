@@ -1,2 +1,3 @@
-import "@fontsource-variable/fira-code/index.css";
-import "inter-ui/inter-variable.css";
+import "@fontsource-variable/roboto";
+import "@fontsource-variable/roboto-condensed";
+import "@fontsource-variable/roboto-mono";

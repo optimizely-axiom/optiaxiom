@@ -30,7 +30,7 @@ export const fontSize = {
     lineHeight: rem("40px"),
   },
   "4xl": {
-    fontSize: rem("32px"),
-    lineHeight: rem("44px"),
+    fontSize: rem("50px"),
+    lineHeight: rem("60px"),
   },
 } as const;
