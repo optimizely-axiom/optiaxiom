@@ -7,7 +7,7 @@ import { action } from "storybook/actions";
 
 export default {
   args: {
-    onCancelAction: action("onCancelAction"),
+    onMessage: action("onMessage"),
     onToolCall: action("onToolCall"),
   },
   component: ProteusDocumentRenderer,

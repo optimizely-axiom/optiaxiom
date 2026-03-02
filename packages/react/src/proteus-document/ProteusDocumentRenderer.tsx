@@ -33,10 +33,6 @@ export type ProteusDocumentRendererProps = Pick<
    */
   element: ProteusDocument;
   /**
-   * Callback when user submits the CancelAction input
-   */
-  onCancelAction?: (prompt: string) => void;
-  /**
    * Callback when form fields change
    */
   onDataChange?: (data: Record<string, unknown>) => void;
@@ -62,7 +58,6 @@ export function ProteusDocumentRenderer({
   data = {},
   defaultOpen = true,
   element: elementProp,
-  onCancelAction,
   onDataChange,
   onMessage,
   onOpenChange,
@@ -91,7 +86,6 @@ export function ProteusDocumentRenderer({
   return (
     <ProteusDocumentProvider
       data={data}
-      onCancelAction={onCancelAction}
       onDataChange={useEffectEvent((path: string, value: unknown) => {
         const next = structuredClone(data);
         set(next, path, value);
