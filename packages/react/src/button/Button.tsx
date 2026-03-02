@@ -1,11 +1,11 @@
 import { createSlot } from "@radix-ui/react-slot";
 import { type ElementType, forwardRef, type ReactNode, useEffect } from "react";
 
-import { Icon } from "../icon";
 import { useSurface } from "../surface";
 import { decorateChildren, type ExtendProps, fallbackSpan } from "../utils";
 import { ButtonAddon } from "./ButtonAddon";
 import { useButtonContext } from "./ButtonContext";
+import { ButtonIcon } from "./ButtonIcon";
 import { ButtonLabel } from "./ButtonLabel";
 import { ButtonLoadable } from "./ButtonLoadable";
 import { ButtonRoot, type ButtonRootProps } from "./ButtonRoot";
@@ -89,9 +89,25 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       }
       if (icon && !isIconOnly) {
         if (iconPosition === "start") {
-          addonBefore = <Icon asChild>{icon}</Icon>;
+          addonBefore = (
+            <ButtonIcon
+              addon
+              inverse={props.appearance === "primary"}
+              size={size}
+            >
+              {icon}
+            </ButtonIcon>
+          );
         } else if (iconPosition === "end") {
-          addonAfter = <Icon asChild>{icon}</Icon>;
+          addonAfter = (
+            <ButtonIcon
+              addon
+              inverse={props.appearance === "primary"}
+              size={size}
+            >
+              {icon}
+            </ButtonIcon>
+          );
         }
       }
 
@@ -103,10 +119,14 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
           {square ? (
             <ButtonLoadable asChild>
-              {children ? fallbackSpan(children) : <Icon asChild>{icon}</Icon>}
+              {children ? (
+                fallbackSpan(children)
+              ) : (
+                <ButtonIcon size={size}>{icon}</ButtonIcon>
+              )}
             </ButtonLoadable>
           ) : (
-            <ButtonLabel>{children}</ButtonLabel>
+            <ButtonLabel size={size}>{children}</ButtonLabel>
           )}
 
           {addonAfter && (

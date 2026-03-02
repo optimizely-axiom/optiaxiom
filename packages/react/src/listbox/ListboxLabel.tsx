@@ -13,7 +13,16 @@ export const ListboxLabel = forwardRef<HTMLDivElement, ListboxLabelProps>(
     const { id } = useListboxGroupContext("@optiaxiom/react/ListboxLabel");
 
     return (
-      <Box color="fg.tertiary" fontSize="sm" id={id} p="8" ref={ref} {...props}>
+      <Box
+        color="fg.tertiary"
+        fontFamily="mono"
+        fontSize="sm"
+        id={id}
+        p="8"
+        ref={ref}
+        textTransform="uppercase"
+        {...props}
+      >
         {children}
       </Box>
     );
