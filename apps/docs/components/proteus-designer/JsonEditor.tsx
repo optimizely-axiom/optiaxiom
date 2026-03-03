@@ -39,6 +39,7 @@ export function JsonEditor({
   const docEditorRef = useRef<null | Parameters<OnMount>[0]>(null);
   const dataEditorRef = useRef<null | Parameters<OnMount>[0]>(null);
   const editorIsSourceRef = useRef(false);
+  const dataEditorIsSourceRef = useRef(false);
   const debounceRef = useRef<ReturnType<typeof setTimeout>>();
 
   // Update editor when document changes externally (from tree/inspector)
@@ -53,6 +54,10 @@ export function JsonEditor({
   }, [document]);
 
   useEffect(() => {
+    if (dataEditorIsSourceRef.current) {
+      dataEditorIsSourceRef.current = false;
+      return;
+    }
     const newText = JSON.stringify(data, null, 2);
     dataEditorRef.current?.setValue(newText);
   }, [data]);
@@ -95,6 +100,7 @@ export function JsonEditor({
         try {
           const parsed = JSON.parse(value);
           if (typeof parsed === "object" && parsed !== null) {
+            dataEditorIsSourceRef.current = true;
             onDataChange(parsed);
           }
         } catch {
