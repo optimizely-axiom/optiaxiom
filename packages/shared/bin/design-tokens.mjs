@@ -37,18 +37,7 @@ async function importTokens(file) {
   );
 
   /** @type {Record<string, Token & { type: 'color' | 'number' }>} */
-  const tokens = {
-    "Colors/Neutral/300": {
-      name: "Colors/Neutral/300",
-      type: "color",
-      value: "#B8BECB",
-    },
-    "Colors/Neutral/1200": {
-      name: "Colors/Neutral/1200",
-      type: "color",
-      value: "#091e42",
-    },
-  };
+  const tokens = {};
   /** @type {Record<string, Token & { type: 'color' | 'number' }>} */
   const tokensDark = {};
   for (const collection of collections) {
@@ -82,32 +71,78 @@ async function importTokens(file) {
 
   /** @type {Record<string, { light: string, dark: string; variable?: string }>} */
   const colors = {
-    "bg.spinner.default": { dark: "neutral.50", light: "neutral.1200" },
+    "bg.accent.light": { dark: "brand.dark.800", light: "brand.200" },
+    "bg.secondary.hovered": { dark: "neutral.50/18", light: "neutral.75" },
+    "bg.spinner.default": { dark: "neutral.50", light: "neutral.1100" },
     "bg.spinner.inverse": { dark: "neutral.50", light: "neutral.50" },
+    "bg.tertiary.hovered": { dark: "neutral.50/18", light: "neutral.200" },
+    "border.accent": { dark: "brand.300", light: "brand.500" },
+    "border.success": { dark: "green.500", light: "green.500" },
     "fg.warning.inverse": { dark: "neutral.800", light: "neutral.800" },
   };
   /** @type {Record<string, string>} */
   const index = {};
+  /** @type {Set<string>} */
+  const paletteNames = new Set();
   for (const token of Object.values(tokens)) {
     try {
-      if (token.type === "color" && token.name.startsWith("Colors/")) {
-        const name = normalizeColorName(token.name, token.value, index);
+      if (
+        token.type === "color" &&
+        token.name.startsWith("Colors/") &&
+        !token.name.includes(" Dark/")
+      ) {
+        const name = normalizeColorName(token.name);
         colors[name] = { dark: token.value, light: token.value };
-        index[token.value] = name;
-
+        index[token.value.toLowerCase()] = name;
+        paletteNames.add(name);
         delete mapCodeToFigmaName[name];
       }
     } catch {
       warnings.push(token.name);
     }
   }
+  // Index dark palette values — dark-specific entries (e.g. red.dark.200) become
+  // new palette entries; shared entries (where normalized name already exists in
+  // light palette) keep the light palette name in the index.
+  for (const token of Object.values(tokens)) {
+    try {
+      if (
+        token.type === "color" &&
+        token.name.startsWith("Colors/") &&
+        token.name.includes(" Dark/")
+      ) {
+        const name = normalizeColorName(token.name);
+        if (!paletteNames.has(name)) {
+          // Dark-specific palette entry (e.g. red.dark.200)
+          colors[name] = { dark: token.value, light: token.value };
+          paletteNames.add(name);
+        }
+        index[token.value.toLowerCase()] ??= name;
+      }
+    } catch {
+      // skip
+    }
+  }
   for (const token of Object.values(tokens)) {
     try {
       if (token.type === "color" && !token.name.startsWith("Colors/")) {
         const name = normalizeColorName(token.name);
+        const lightValue = index[token.value.toLowerCase()];
+        if (!lightValue) {
+          warnings.push(token.name);
+          continue;
+        }
+        const darkToken = tokensDark[token.name];
+        const darkValue = darkToken
+          ? index[darkToken.value.toLowerCase()]
+          : undefined;
+        if (darkToken && !darkValue) {
+          warnings.push(token.name);
+          continue;
+        }
         colors[name] = {
-          dark: index[tokensDark[token.name].value],
-          light: index[token.value],
+          dark: darkValue ?? lightValue,
+          light: lightValue,
           variable: token.name,
         };
         delete mapCodeToFigmaName[name];
@@ -118,20 +153,6 @@ async function importTokens(file) {
   }
 
   warnings.push(...Object.values(mapCodeToFigmaName));
-
-  colors["bg.avatar.neutral"].dark = "neutral.800";
-  colors["fg.avatar.neutral"].dark = "neutral.100";
-  colors["bg.avatar.purple"].dark = "purple.700";
-  colors["fg.avatar.purple"].dark = "purple.100";
-
-  colors["bg.default.inverse.hovered"].dark = "neutral.200";
-  colors["bg.default.inverse.pressed"].dark = "neutral.300";
-  colors["bg.default.hovered"].light = "neutral.1200/4";
-  colors["bg.default.pressed"].dark = "neutral.50/12";
-  colors["bg.default.pressed"].light = "neutral.1200/8";
-
-  colors["border.disabled"].light = "neutral.75";
-  colors["border.disabled"].dark = "neutral.800";
 
   return /** @type {const} */ ([
     Object.entries(colors).sort(([a], [b]) => naturalSortComparator(a, b)),
@@ -174,20 +195,20 @@ const mapFigmaNameToCode = {
   "bg/overlay": "bg.overlay",
   "bg/page bg": "bg.page",
   "bg/secondary": "bg.secondary",
-  "bg/states/default-hover": "_bg.secondary",
-  "bg/states/default-hover opacity": "bg.default.hovered",
+  "bg/states/default-hover": "bg.default.hovered",
   "bg/states/default-pressed": "bg.default.pressed",
-  "bg/states/secondary-hover": "bg.secondary.hovered",
-  "bg/states/tertiary-hover": "bg.tertiary.hovered",
+  "bg/states/default-selected": "_bg.default.selected",
   "bg/tertiary": "bg.tertiary",
   "border/accent": "border.accent",
   "border/control": "border.control",
   "border/control_hover": "border.control.hovered",
   "border/default": "border.default",
+  "border/default_hover": "_border.default.hovered",
   "border/disabled": "border.disabled",
   "border/error": "border.error",
   "border/focus-default": "border.focus",
   "border/focus-error": "border.focus.error",
+  "border/light": "_border.light",
   "border/secondary": "border.secondary",
   "border/success": "border.success",
   "border/tertiary": "border.tertiary",
@@ -196,18 +217,27 @@ const mapFigmaNameToCode = {
   "component/Avatar/bg-purple": "bg.avatar.purple",
   "component/Avatar/fg-neutral": "fg.avatar.neutral",
   "component/Avatar/fg-purple": "fg.avatar.purple",
+  "component/Link/disabled": "_fg.link.disabled",
   "component/Link/fg-default": "fg.link.default",
   "component/Link/fg-default-hover": "fg.link.default.hovered",
   "component/Link/inverse": "fg.link.inverse",
+  "component/Link/inverse-visited": "_fg.link.inverse.visited",
   "component/Link/subtle": "fg.link.subtle",
   "component/Link/visited": "fg.link.visited",
+  "component/Pill/bg-default": "_bg.pill.default",
   "component/Spinner/bg-default": "_bg.spinner.default",
   "component/Spinner/bg-inverse": "_bg.spinner.inverse",
   "component/Spinner/indicator-default": "fg.spinner.default",
   "component/Spinner/indicator-inverse": "fg.spinner.inverse",
+  "component/Switch/bg-default": "_bg.switch.default",
+  "component/Switch/bg-hover": "_bg.switch.hovered",
+  "component/Table/bg": "_bg.table",
+  "component/Table/bg-hover": "_bg.table.hovered",
+  "component/Table/border": "_border.table",
   "fg/accent/base": "fg.accent",
   "fg/accent/base-hover": "fg.accent.hovered",
   "fg/accent/strong": "fg.accent.strong",
+  "fg/dark": "fg.black",
   "fg/default": "fg.default",
   "fg/default-inverse": "fg.default.inverse",
   "fg/disabled": "fg.disabled",
@@ -226,18 +256,34 @@ const mapFigmaNameToCode = {
   "fg/feedback/warning-base": "fg.warning",
   "fg/feedback/warning-light": "fg.warning.light",
   "fg/feedback/warning-strong": "fg.warning.strong",
+  "fg/light": "fg.white",
   "fg/placeholder": "fg.tertiary",
   "fg/secondary": "fg.secondary",
   "fg/tertiary": "fg.tertiary",
-  "fg/white": "fg.white",
+  "fg/white": "_fg.white",
+};
+
+/**
+ * Mapping from new alpha primitive names to output palette names.
+ * "dark" alphas are light-on-dark (neutral.50/*), "light" alphas are dark-on-light (neutral.1200/*).
+ */
+const mapAlphaToCode = {
+  "dark 50": "neutral.50/6",
+  "dark 75": "neutral.50/12",
+  "dark 100": "neutral.50/18",
+  "dark 150": "neutral.50/22",
+  "dark 200": "neutral.50/32",
+  "light 50": "neutral.1200/4",
+  "light 75": "neutral.1200/8",
+  "light 100": "neutral.1200/16",
+  "light 150": "neutral.1200/22",
+  "light 200": "neutral.1200/32",
 };
 
 /**
  * @param {string} name
- * @param {string} [value]
- * @param {Record<string, string>=} [palette]
  */
-function normalizeColorName(name, value, palette) {
+function normalizeColorName(name) {
   const isPalette = name.startsWith("Colors/");
   if (name.startsWith("Colors/") || name.startsWith("colors/")) {
     name = name.slice("Colors/".length);
@@ -245,22 +291,40 @@ function normalizeColorName(name, value, palette) {
 
   const isAlpha = name.startsWith("Neutral/Alpha/");
   if (isAlpha) {
-    name = name.slice("Neutral/Alpha/".length);
+    const alphaKey = name.slice("Neutral/Alpha/".length);
+    if (alphaKey in mapAlphaToCode) {
+      return mapAlphaToCode[
+        /** @type {keyof typeof mapAlphaToCode} */ (alphaKey)
+      ];
+    }
+    throw new Error("Unknown alpha token: " + name);
   }
 
   if (isPalette) {
-    if (isAlpha && value && palette) {
-      const color = value.slice(0, -2);
-      const colorToken = palette[color];
-      const alpha = Math.round((100 * parseInt(value.slice(-2), 16)) / 256);
-      return `${colorToken}/${alpha}`;
-    } else {
-      return name.toLowerCase().replace("primary", "brand").replace("/", ".");
+    // Strip parenthetical suffixes like "500 (LFGreen)" → "500"
+    const parts = name.split("/");
+    if (parts.length === 2) {
+      let [group, stop] = parts;
+      const isDark = group.includes(" Dark");
+      if (isDark) {
+        group = group.replace(" Dark", "");
+      }
+      stop = stop.replace(/\s*\(.*\)$/, "");
+      const base = group.toLowerCase().replace("primary", "brand");
+      return isDark ? base + ".dark." + stop : base + "." + stop;
     }
-  } else if (name in mapFigmaNameToCode) {
-    return mapFigmaNameToCode[name];
+    throw new Error("Unexpected palette format: " + name);
   } else {
-    throw new Error("Invalid color");
+    // Semantic token — strip "colors/" prefix and handle suffixes
+    if (name.startsWith("colors/")) {
+      name = name.slice("colors/".length);
+    }
+    // Strip (?) and (deprecated) suffixes
+    name = name.replace(/\s*\(\??\)$/, "").replace(/\s*\(deprecated\)$/, "");
+    if (name in mapFigmaNameToCode) {
+      return mapFigmaNameToCode[name];
+    }
+    throw new Error("Invalid color: " + name);
   }
 }
 
