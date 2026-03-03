@@ -1,6 +1,7 @@
 import type { ComponentPropsWithoutRef } from "react";
 
 import { ProteusAction } from "./ProteusAction";
+import { ProteusBadge } from "./ProteusBadge";
 import { ProteusCancelAction } from "./ProteusCancelAction";
 import { ProteusField } from "./ProteusField";
 import { ProteusGroup } from "./ProteusGroup";
@@ -62,6 +63,8 @@ export const ProteusElement = ({
   switch (element.$type) {
     case "Action":
       return <ProteusAction {...omitType(element)} />;
+    case "Badge":
+      return <ProteusBadge {...omitType(element)} />;
     case "CancelAction":
       return <ProteusCancelAction {...omitType(element)} />;
     case "Field":
