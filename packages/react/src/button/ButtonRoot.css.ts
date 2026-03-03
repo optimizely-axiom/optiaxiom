@@ -103,7 +103,7 @@ export const buttonBase = recipe({
       }),
       primary: style({
         vars: {
-          [accentColorVar]: theme.colors["bg.accent"],
+          [accentColorVar]: theme.colors["bg.accent.light"],
           [hoverAccentColorVar]: theme.colors["bg.accent.hovered"],
           [pressedAccentColorVar]: theme.colors["bg.accent.pressed"],
           [subtleHoverAccentColorVar]: theme.colors["bg.accent.subtle"],
@@ -237,7 +237,7 @@ export const buttonBase = recipe({
       }),
       strong: style({
         backgroundColor: accentColorVar,
-        color: fallbackVar(solidTextColorVar, theme.colors["fg.white"]),
+        color: theme.colors["fg.default"],
 
         "@media": {
           "(hover: hover)": {
