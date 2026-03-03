@@ -118,9 +118,24 @@ export function ProteusDocumentRenderer({
               {...(collapsible ? { chevronPosition: "end" } : {})}
             >
               <Group fontSize="sm" gap="8">
-                <Box bg="bg.accent.subtle" rounded="xs" size="20" />
+                <Box
+                  asChild
+                  bg={result.data.appIcon ? undefined : "bg.accent.subtle"}
+                  rounded="xs"
+                  size="20"
+                >
+                  {result.data.appIcon ? (
+                    <img src={result.data.appIcon} />
+                  ) : (
+                    <div />
+                  )}
+                </Box>
                 <Text fontWeight="500">{result.data.appName}</Text>
-                {!open && <Text color="fg.secondary">{result.data.title}</Text>}
+                {!open && (
+                  <Text color="fg.secondary">
+                    <ProteusElement element={result.data.title} />
+                  </Text>
+                )}
               </Group>
             </Trigger>
             <DisclosureContent
@@ -132,11 +147,11 @@ export function ProteusDocumentRenderer({
             >
               <Group flexDirection="column" gap="4">
                 <Heading fontSize="lg" fontWeight="600" level="2">
-                  {result.data.title}
+                  <ProteusElement element={result.data.title} />
                 </Heading>
-                {result.data.subtitle && (
+                {!!result.data.subtitle && (
                   <Text color="fg.secondary" fontSize="sm">
-                    {result.data.subtitle}
+                    <ProteusElement element={result.data.subtitle} />
                   </Text>
                 )}
               </Group>

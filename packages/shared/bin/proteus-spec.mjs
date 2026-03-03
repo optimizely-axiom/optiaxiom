@@ -31,6 +31,10 @@ const PROTEUS_COMPONENT_CONFIG = {
     example: { appearance: "primary", children: "Action" },
     extends: "Button",
   },
+  Badge: {
+    allowedProps: ["children", "intent"],
+    example: { children: "Badge", intent: "success" },
+  },
   CancelAction: {
     allowedProps: ["children", "placeholder"],
     example: { children: "Cancel" },
@@ -116,7 +120,7 @@ const PROTEUS_COMPONENT_CONFIG = {
     extends: "Fragment",
   },
   Text: {
-    allowedProps: ["children"],
+    allowedProps: ["children", "lineClamp", "truncate"],
     example: { children: "New text" },
   },
   Textarea: {
@@ -599,11 +603,12 @@ function generateJsonSchema(additionalProperties = false) {
           properties: {
             $type: { const: "Document" },
             actions: {
-              anyOf: [{ $ref: "#/definitions/ProteusNode" }],
+              $ref: "#/definitions/ProteusNode",
               description: "Actions available for this document",
             },
             appIcon: {
-              description: "A visual representation of the application",
+              description:
+                "URL or data URI for the application icon (e.g., 'https://example.com/icon.png' or 'data:image/svg+xml,...'). Rendered as an <img> element.",
               type: "string",
             },
             appName: {
@@ -616,17 +621,18 @@ function generateJsonSchema(additionalProperties = false) {
               type: "boolean",
             },
             body: {
-              anyOf: [{ $ref: "#/definitions/ProteusNode" }],
+              $ref: "#/definitions/ProteusNode",
+              description: "The main content of the document.",
             },
             subtitle: {
+              $ref: "#/definitions/ProteusNode",
               description:
                 "A brief description or tagline that provides additional context about the Proteus document's purpose.",
-              type: "string",
             },
             title: {
+              $ref: "#/definitions/ProteusNode",
               description:
                 "A concise heading that encapsulates the essence of the Proteus document's content or intended action.",
-              type: "string",
             },
           },
           required: ["$type", "appName", "body", "title"],
@@ -730,8 +736,8 @@ function generateTypeScriptTypes() {
   lines.push("  appName: string;");
   lines.push("  blocking?: boolean;");
   lines.push("  body: unknown;");
-  lines.push("  subtitle?: string;");
-  lines.push("  title: string;");
+  lines.push("  subtitle?: unknown;");
+  lines.push("  title: unknown;");
   lines.push("}");
   lines.push("");
 
@@ -829,11 +835,12 @@ function getPropTypeOverrides(additionalProperties = false) {
     Map: {
       children: {
         description:
-          "Template object to render for each item in the array. Value paths are relative to current item.",
+          "Template object to render for each item in the array. Value paths inside this template are relative to the current item (e.g., path='title' resolves to each item's 'title' field). Use a leading '/' to reference top-level data (e.g., path='/title' resolves to the root data's 'title').",
         type: "object",
       },
       path: {
-        description: "JSON pointer path to array (e.g., '/questions')",
+        description:
+          "JSON pointer path to the source array in the data (e.g., '/results')",
         type: "string",
       },
     },
@@ -909,7 +916,7 @@ function getPropTypeOverrides(additionalProperties = false) {
     Value: {
       path: {
         description:
-          "JSON pointer path to value (e.g., '/question', '/options/0/label')",
+          "Path to a value in the data. Absolute paths start with '/' and resolve from the root (e.g., '/title', '/options/0/label'). Inside a Map template, paths without a leading '/' are relative to the current item (e.g., 'title' resolves to each item's 'title' field).",
         type: "string",
       },
     },

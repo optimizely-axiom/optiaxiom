@@ -15,14 +15,15 @@ export interface ProteusDocument {
   appName: string;
   blocking?: boolean;
   body: unknown;
-  subtitle?: string;
-  title: string;
+  subtitle?: unknown;
+  title: unknown;
 }
 
 // --- ProteusDocument ---
 
 export type ProteusElement =
   | { $type: "Action"; [key: string]: unknown }
+  | { $type: "Badge"; [key: string]: unknown }
   | { $type: "CancelAction"; [key: string]: unknown }
   | { $type: "Field"; [key: string]: unknown }
   | { $type: "Group"; [key: string]: unknown }
