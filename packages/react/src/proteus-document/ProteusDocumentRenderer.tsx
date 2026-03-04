@@ -109,7 +109,7 @@ export function ProteusDocumentRenderer({
         onOpenChange={setOpen}
         open={open}
         p="16"
-        rounded="lg"
+        rounded="xl"
       >
         {result.success && (
           <>
