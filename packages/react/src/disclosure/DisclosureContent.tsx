@@ -45,7 +45,7 @@ export const DisclosureContent = forwardRef<
           {...styles.outer({
             scale: Boolean(
               "data-transition-scale" in props &&
-                props["data-transition-scale"],
+              props["data-transition-scale"],
             ),
           })}
         >

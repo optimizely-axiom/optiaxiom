@@ -30,9 +30,8 @@ async function compare({ file }) {
       encoding: "utf-8",
     }),
   );
-  const { compareResultsInReports } = await import(
-    "monosize/src/utils/compareResultsInReports.mjs"
-  );
+  const { compareResultsInReports } =
+    await import("monosize/src/utils/compareResultsInReports.mjs");
   return compareResultsInReports(
     localReport.map((value) => ({
       ...value,

@@ -14,7 +14,7 @@ export type ListboxItemizedProps = BoxProps<
   "div",
   {
     children?: // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    ((item: any, index: number, prevItem: any) => ReactNode) | ReactNode;
+      ((item: any, index: number, prevItem: any) => ReactNode) | ReactNode;
     /**
      * Custom empty state content.
      */
