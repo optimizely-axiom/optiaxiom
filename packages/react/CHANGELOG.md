@@ -1,5 +1,12 @@
 # @optiaxiom/react
 
+## 1.9.7
+
+### Patch Changes
+
+- 2295835: Add ProteusDataTable and ProteusChart components for rendering data tables and charts in Proteus documents
+- b5b9d5b: add badge and allow nodes in title for proteus
+
 ## 1.9.6
 
 ### Patch Changes
@@ -23,6 +30,7 @@
 - 1d09b9b: Rename Block Document to Proteus Document
 
   All Block-related components, types, and discriminator values have been renamed to Proteus:
+
   - `BlockDocumentRenderer` → `ProteusDocumentRenderer`
   - `BlockAction`, `BlockField`, `BlockGroup`, `BlockHeading`, `BlockImage`, `BlockInput`, `BlockLink`, `BlockRange`, `BlockSelect`, `BlockSelectContent`, `BlockSelectTrigger`, `BlockSeparator`, `BlockText`, `BlockTextarea`, `BlockCancelAction` → `ProteusAction`, `ProteusField`, `ProteusGroup`, `ProteusHeading`, `ProteusImage`, `ProteusInput`, `ProteusLink`, `ProteusRange`, `ProteusSelect`, `ProteusSelectContent`, `ProteusSelectTrigger`, `ProteusSeparator`, `ProteusText`, `ProteusTextarea`, `ProteusCancelAction`
   - Discriminator values: `"Block.Document"` → `"Proteus.Document"`, `"Block.Action"` → `"Proteus.Action"`, etc.
@@ -63,12 +71,14 @@
 - 15a57c3: Rename Flow Document to Block Document
 
   All Flow-related components, types, and discriminator values have been renamed to Block:
+
   - `FlowDocumentRenderer` → `BlockDocumentRenderer`
   - `FlowAction`, `FlowField`, `FlowGroup`, `FlowHeading`, `FlowInput`, `FlowText`, `FlowTextarea`, `FlowCancelAction` → `BlockAction`, `BlockField`, `BlockGroup`, `BlockHeading`, `BlockInput`, `BlockText`, `BlockTextarea`, `BlockCancelAction`
   - Discriminator values: `"Flow.Document"` → `"Block.Document"`, `"Flow.Action"` → `"Block.Action"`, etc.
   - Types: `FlowDocumentElement`, `FlowElement`, `FlowNode`, etc. → `BlockDocumentElement`, `BlockElement`, `BlockNode`, etc.
 
   The `BlockDocumentRenderer` component supports:
+
   - Layout with Block.Group (flexDirection, gap)
   - Typography with Block.Heading and Block.Text
   - Form inputs with Block.Field, Block.Input, Block.Textarea
