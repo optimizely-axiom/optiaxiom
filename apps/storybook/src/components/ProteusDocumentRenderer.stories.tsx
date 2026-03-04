@@ -395,6 +395,120 @@ export const ReadonlyMode: Story = {
   },
 };
 
+export const WithDataTable: Story = {
+  args: {
+    element: {
+      $type: "Document",
+      appName: "Opal",
+      body: [
+        {
+          $type: "DataTable",
+          columns: [
+            { accessorKey: "name", header: "Name" },
+            { accessorKey: "role", header: "Role" },
+            { accessorKey: "status", header: "Status" },
+          ],
+          data: [
+            { name: "Alice", role: "Engineer", status: "Active" },
+            { name: "Bob", role: "Designer", status: "Active" },
+            { name: "Charlie", role: "PM", status: "On Leave" },
+          ],
+        },
+      ],
+      title: "Team Members",
+    },
+  },
+};
+
+export const WithChart: Story = {
+  args: {
+    element: {
+      $type: "Document",
+      appName: "Opal",
+      body: [
+        {
+          $type: "Chart",
+          data: [
+            { expenses: 2400, name: "Jan", revenue: 4000 },
+            { expenses: 1398, name: "Feb", revenue: 3000 },
+            { expenses: 9800, name: "Mar", revenue: 2000 },
+            { expenses: 3908, name: "Apr", revenue: 2780 },
+          ],
+          series: [
+            { dataKey: "revenue", name: "Revenue" },
+            { dataKey: "expenses", name: "Expenses" },
+          ],
+          type: "bar",
+          xAxisKey: "name",
+        },
+      ],
+      title: "Quarterly Report",
+    },
+  },
+};
+
+export const ExploreReport: Story = {
+  args: {
+    element: {
+      $type: "Document",
+      appName: "Opal",
+      body: [
+        {
+          $type: "Text",
+          children: "Daily Active Users Last 7 Days",
+          fontSize: "lg",
+          fontWeight: "600",
+        },
+        {
+          $type: "Text",
+          children:
+            "Measures daily unique users performing any event over the last 7 days.",
+          color: "fg.secondary",
+          fontSize: "md",
+        },
+        {
+          $type: "Chart",
+          data: [
+            { date: "2024-02-23", uniqueActorCount: 1500 },
+            { date: "2024-02-24", uniqueActorCount: 1650 },
+            { date: "2024-02-25", uniqueActorCount: 1400 },
+            { date: "2024-02-26", uniqueActorCount: 1720 },
+            { date: "2024-02-27", uniqueActorCount: 1800 },
+            { date: "2024-02-28", uniqueActorCount: 1750 },
+            { date: "2024-02-29", uniqueActorCount: 1900 },
+          ],
+          series: [{ dataKey: "uniqueActorCount", name: "Unique Actor Count" }],
+          type: "line",
+          xAxisKey: "date",
+        },
+        {
+          $type: "DataTable",
+          columns: [
+            { accessorKey: "date", header: "Date" },
+            { accessorKey: "uniqueActorCount", header: "Unique Actor Count" },
+          ],
+          data: [
+            { date: "2024-02-23", uniqueActorCount: 1500 },
+            { date: "2024-02-24", uniqueActorCount: 1650 },
+            { date: "2024-02-25", uniqueActorCount: 1400 },
+            { date: "2024-02-26", uniqueActorCount: 1720 },
+            { date: "2024-02-27", uniqueActorCount: 1800 },
+            { date: "2024-02-28", uniqueActorCount: 1750 },
+            { date: "2024-02-29", uniqueActorCount: 1900 },
+          ],
+        },
+      ],
+      subtitle: "Events: page_view, add_to_cart, purchase | Time grain: 1 DAY",
+      title: "Explore: Daily Active Users",
+    },
+  },
+  decorators: (Story) => (
+    <Box maxW="full">
+      <Story />
+    </Box>
+  ),
+};
+
 export const PartialRendering: Story = {
   args: {
     element: {
