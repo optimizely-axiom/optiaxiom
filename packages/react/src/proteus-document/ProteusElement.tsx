@@ -1,9 +1,8 @@
-import type { ComponentPropsWithoutRef } from "react";
+import { type ComponentPropsWithoutRef, lazy, Suspense } from "react";
 
 import { ProteusAction } from "./ProteusAction";
 import { ProteusBadge } from "./ProteusBadge";
 import { ProteusCancelAction } from "./ProteusCancelAction";
-import { ProteusChart } from "./ProteusChart";
 import { ProteusDataTable } from "./ProteusDataTable";
 import { ProteusField } from "./ProteusField";
 import { ProteusGroup } from "./ProteusGroup";
@@ -22,6 +21,12 @@ import { ProteusText } from "./ProteusText";
 import { ProteusTextarea } from "./ProteusTextarea";
 import { ProteusValue } from "./ProteusValue";
 import { safeParseElement } from "./schemas";
+
+const ProteusChart = lazy(async () => {
+  return {
+    default: (await import("./ProteusChart")).ProteusChart,
+  };
+});
 
 export type ProteusElementProps = {
   /**
@@ -71,11 +76,13 @@ export const ProteusElement = ({
       return <ProteusCancelAction {...omitType(element)} />;
     case "Chart":
       return (
-        <ProteusChart
-          {...(omitType(element) as ComponentPropsWithoutRef<
-            typeof ProteusChart
-          >)}
-        />
+        <Suspense fallback={null}>
+          <ProteusChart
+            {...(omitType(element) as ComponentPropsWithoutRef<
+              typeof ProteusChart
+            >)}
+          />
+        </Suspense>
       );
     case "DataTable":
       return (
