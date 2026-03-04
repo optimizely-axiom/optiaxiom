@@ -1,7 +1,0 @@
-.changeset/pre.json
-.next
-apps/docs/data/
-dist
-lib
-out
-pnpm-lock.yaml

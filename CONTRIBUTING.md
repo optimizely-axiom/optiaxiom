@@ -167,7 +167,7 @@ Required documentation:
 ## Code Style
 
 - **Linting**: We use Oxlint - run `pnpm lint` before committing
-- **Formatting**: We use Prettier - configured to run automatically
+- **Formatting**: We use Oxfmt - configured to run automatically
 - **TypeScript**: All code must be properly typed
 - **Design Principles**: Follow our [Philosophy](PHILOSOPHY.md) for component architecture, type safety, and naming conventions
 
