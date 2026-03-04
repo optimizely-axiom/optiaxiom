@@ -40,6 +40,27 @@ const PROTEUS_COMPONENT_CONFIG = {
     example: { children: "Cancel" },
     extends: "Button",
   },
+  Chart: {
+    allowedProps: ["data", "height", "path", "series", "type", "xAxisKey"],
+    example: {
+      data: [
+        { name: "Jan", revenue: 4000 },
+        { name: "Feb", revenue: 3000 },
+      ],
+      series: [{ dataKey: "revenue", name: "Revenue" }],
+      type: "bar",
+      xAxisKey: "name",
+    },
+    extends: "Fragment",
+  },
+  DataTable: {
+    allowedProps: ["columns", "data", "path"],
+    example: {
+      columns: [{ accessorKey: "name", header: "Name" }],
+      data: [{ name: "Alice" }],
+    },
+    extends: "Fragment",
+  },
   Field: {
     allowedProps: ["children", "description", "info", "label", "required"],
     example: {
@@ -819,6 +840,82 @@ function getPropTypeOverrides(additionalProperties = false) {
     CancelAction: {
       placeholder: {
         description: "Placeholder text for the text input field",
+        type: "string",
+      },
+    },
+    Chart: {
+      data: {
+        description: "Inline chart data array",
+        items: { type: "object" },
+        type: "array",
+      },
+      height: { description: "Chart height in pixels", type: "number" },
+      path: {
+        description: "JSON pointer path to data array",
+        type: "string",
+      },
+      series: {
+        description: "Data series configuration",
+        items: {
+          ...(additionalProperties ? {} : { additionalProperties: false }),
+          properties: {
+            color: { description: "Series color", type: "string" },
+            dataKey: {
+              description: "Key in data objects for this series",
+              type: "string",
+            },
+            name: { description: "Display name for legend", type: "string" },
+          },
+          required: ["dataKey"],
+          type: "object",
+        },
+        type: "array",
+      },
+      type: {
+        anyOf: [
+          { const: "area" },
+          { const: "bar" },
+          { const: "line" },
+          { const: "pie" },
+        ],
+        description: "Chart type",
+      },
+      xAxisKey: {
+        description: "Key in data objects for x-axis labels",
+        type: "string",
+      },
+    },
+    DataTable: {
+      columns: {
+        description: "Column definitions",
+        items: {
+          ...(additionalProperties ? {} : { additionalProperties: false }),
+          properties: {
+            accessorKey: {
+              description: "Key in data objects",
+              type: "string",
+            },
+            format: {
+              description: "Value format (e.g. 'number' for 1500 -> 1,500)",
+              type: "string",
+            },
+            header: {
+              description: "Column header text",
+              type: "string",
+            },
+          },
+          required: ["accessorKey", "header"],
+          type: "object",
+        },
+        type: "array",
+      },
+      data: {
+        description: "Inline data array",
+        items: { type: "object" },
+        type: "array",
+      },
+      path: {
+        description: "JSON pointer path to data array",
         type: "string",
       },
     },
