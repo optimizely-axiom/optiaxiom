@@ -3,6 +3,8 @@ import type { ComponentPropsWithoutRef } from "react";
 import { ProteusAction } from "./ProteusAction";
 import { ProteusBadge } from "./ProteusBadge";
 import { ProteusCancelAction } from "./ProteusCancelAction";
+import { ProteusChart } from "./ProteusChart";
+import { ProteusDataTable } from "./ProteusDataTable";
 import { ProteusField } from "./ProteusField";
 import { ProteusGroup } from "./ProteusGroup";
 import { ProteusHeading } from "./ProteusHeading";
@@ -67,6 +69,22 @@ export const ProteusElement = ({
       return <ProteusBadge {...omitType(element)} />;
     case "CancelAction":
       return <ProteusCancelAction {...omitType(element)} />;
+    case "Chart":
+      return (
+        <ProteusChart
+          {...(omitType(element) as ComponentPropsWithoutRef<
+            typeof ProteusChart
+          >)}
+        />
+      );
+    case "DataTable":
+      return (
+        <ProteusDataTable
+          {...(omitType(element) as ComponentPropsWithoutRef<
+            typeof ProteusDataTable
+          >)}
+        />
+      );
     case "Field":
       return <ProteusField {...omitType(element)} />;
     case "Group":
