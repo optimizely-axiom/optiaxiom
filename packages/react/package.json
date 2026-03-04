@@ -77,8 +77,8 @@
     "jsonpointer": "^5.0.1",
     "react-day-picker": "^9.9.0",
     "react-remove-scroll": "^2.7.1",
-    "recharts": "^2.15.3",
     "react-resizable-panels": "^3.0.4",
+    "recharts": "^3.7.0",
     "use-sync-external-store": "^1.5.0"
   },
   "devDependencies": {

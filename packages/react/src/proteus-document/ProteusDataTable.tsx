@@ -6,19 +6,16 @@ import {
 
 import { DataTable } from "../data-table/DataTable";
 import { DataTableBody } from "../data-table/DataTableBody";
-import { useProteusValue } from "./useProteusValue";
+import { useResolvedProteusValue } from "./useResolvedProteusValue";
 
 export const ProteusDataTable = ({
   columns,
   data,
-  path,
 }: {
   columns: { accessorKey: string; header: string }[];
-  data?: Record<string, unknown>[];
-  path?: string;
+  data?: Record<string, unknown>[] | { $type: "Value"; path: string };
 }) => {
-  const resolvedData = useProteusValue(path ?? "");
-  const tableData = data ?? (Array.isArray(resolvedData) ? resolvedData : []);
+  const tableData = useResolvedProteusValue(data) as Record<string, unknown>[];
 
   const columnHelper = createColumnHelper<Record<string, unknown>>();
   const columnDefs = columns.map((col) =>
@@ -35,7 +32,7 @@ export const ProteusDataTable = ({
   });
 
   return (
-    <DataTable table={table}>
+    <DataTable maxH="md" table={table}>
       <DataTableBody />
     </DataTable>
   );

@@ -429,17 +429,42 @@ export const WithChart: Story = {
         {
           $type: "Chart",
           data: [
-            { expenses: 2400, name: "Jan", revenue: 4000 },
-            { expenses: 1398, name: "Feb", revenue: 3000 },
-            { expenses: 9800, name: "Mar", revenue: 2000 },
-            { expenses: 3908, name: "Apr", revenue: 2780 },
+            { month: "Jan", revenue: 4000, revenueLabel: "$4K" },
+            { month: "Feb", revenue: 3000, revenueLabel: "$3K" },
+            { month: "Mar", revenue: 2000, revenueLabel: "$2K" },
+            { month: "Apr", revenue: 2780, revenueLabel: "$2.8K" },
+            { month: "May", revenue: 2780, revenueLabel: "$2.8K" },
+            { month: "Jun", revenue: 2780, revenueLabel: "$2.8K" },
           ],
           series: [
-            { dataKey: "revenue", name: "Revenue" },
-            { dataKey: "expenses", name: "Expenses" },
+            { dataKey: "revenue", labelKey: "revenueLabel", name: "Revenue" },
           ],
           type: "bar",
-          xAxisKey: "name",
+          xAxisKey: "month",
+        },
+        {
+          $type: "Chart",
+          data: [
+            {
+              central: 41000000,
+              centralLabel: "$41M",
+              east: 57000000,
+              eastLabel: "$57M",
+              month: "Jan",
+              south: 38000000,
+              southLabel: "$38M",
+              west: 68000000,
+              westLabel: "$68M",
+            },
+          ],
+          series: [
+            { dataKey: "west", labelKey: "westLabel", name: "West" },
+            { dataKey: "east", labelKey: "eastLabel", name: "East" },
+            { dataKey: "central", labelKey: "centralLabel", name: "Central" },
+            { dataKey: "south", labelKey: "southLabel", name: "South" },
+          ],
+          type: "bar",
+          xAxisKey: "month",
         },
       ],
       title: "Quarterly Report",
@@ -449,53 +474,77 @@ export const WithChart: Story = {
 
 export const ExploreReport: Story = {
   args: {
+    data: {
+      results: [
+        {
+          date: "23 Feb",
+          uniqueActorCount: 1500,
+          uniqueActorCountFormatted: "1,500",
+        },
+        {
+          date: "24 Feb",
+          uniqueActorCount: 1650,
+          uniqueActorCountFormatted: "1,650",
+        },
+        {
+          date: "25 Feb",
+          uniqueActorCount: 1400,
+          uniqueActorCountFormatted: "1,400",
+        },
+        {
+          date: "26 Feb",
+          uniqueActorCount: 1720,
+          uniqueActorCountFormatted: "1,720",
+        },
+        {
+          date: "27 Feb",
+          uniqueActorCount: 1800,
+          uniqueActorCountFormatted: "1,800",
+        },
+        {
+          date: "28 Feb",
+          uniqueActorCount: 1750,
+          uniqueActorCountFormatted: "1,750",
+        },
+        {
+          date: "29 Feb",
+          uniqueActorCount: 1900,
+          uniqueActorCountFormatted: "1,900",
+        },
+      ],
+    },
     element: {
       $type: "Document",
       appName: "Opal",
       body: [
         {
           $type: "Text",
-          children: "Daily Active Users Last 7 Days",
-          fontSize: "lg",
-          fontWeight: "600",
-        },
-        {
-          $type: "Text",
+          bg: "bg.page",
           children:
             "Measures daily unique users performing any event over the last 7 days.",
           color: "fg.secondary",
           fontSize: "md",
+          p: "16",
+          rounded: "md",
         },
         {
           $type: "Chart",
-          data: [
-            { date: "2024-02-23", uniqueActorCount: 1500 },
-            { date: "2024-02-24", uniqueActorCount: 1650 },
-            { date: "2024-02-25", uniqueActorCount: 1400 },
-            { date: "2024-02-26", uniqueActorCount: 1720 },
-            { date: "2024-02-27", uniqueActorCount: 1800 },
-            { date: "2024-02-28", uniqueActorCount: 1750 },
-            { date: "2024-02-29", uniqueActorCount: 1900 },
-          ],
+          data: { $type: "Value", path: "/results" },
           series: [{ dataKey: "uniqueActorCount", name: "Unique Actor Count" }],
-          type: "line",
+          type: "bar",
           xAxisKey: "date",
         },
         {
           $type: "DataTable",
           columns: [
             { accessorKey: "date", header: "Date" },
-            { accessorKey: "uniqueActorCount", header: "Unique Actor Count" },
+            {
+              accessorKey: "uniqueActorCountFormatted",
+              format: "number",
+              header: "Unique Actor Count",
+            },
           ],
-          data: [
-            { date: "2024-02-23", uniqueActorCount: 1500 },
-            { date: "2024-02-24", uniqueActorCount: 1650 },
-            { date: "2024-02-25", uniqueActorCount: 1400 },
-            { date: "2024-02-26", uniqueActorCount: 1720 },
-            { date: "2024-02-27", uniqueActorCount: 1800 },
-            { date: "2024-02-28", uniqueActorCount: 1750 },
-            { date: "2024-02-29", uniqueActorCount: 1900 },
-          ],
+          data: { $type: "Value", path: "/results" },
         },
       ],
       subtitle: "Events: page_view, add_to_cart, purchase | Time grain: 1 DAY",

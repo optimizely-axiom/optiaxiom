@@ -41,7 +41,7 @@ const PROTEUS_COMPONENT_CONFIG = {
     extends: "Button",
   },
   Chart: {
-    allowedProps: ["data", "height", "path", "series", "type", "xAxisKey"],
+    allowedProps: ["data", "series", "type", "xAxisKey"],
     example: {
       data: [
         { name: "Jan", revenue: 4000 },
@@ -54,7 +54,7 @@ const PROTEUS_COMPONENT_CONFIG = {
     extends: "Fragment",
   },
   DataTable: {
-    allowedProps: ["columns", "data", "path"],
+    allowedProps: ["columns", "data"],
     example: {
       columns: [{ accessorKey: "name", header: "Name" }],
       data: [{ name: "Alice" }],
@@ -845,14 +845,16 @@ function getPropTypeOverrides(additionalProperties = false) {
     },
     Chart: {
       data: {
-        description: "Inline chart data array",
-        items: { type: "object" },
-        type: "array",
-      },
-      height: { description: "Chart height in pixels", type: "number" },
-      path: {
-        description: "JSON pointer path to data array",
-        type: "string",
+        anyOf: [
+          {
+            description: "Inline data records array",
+            items: { type: "object" },
+            type: "array",
+          },
+          { $ref: "#/definitions/ProteusValue" },
+        ],
+        description:
+          "Chart data records, either inline or a ProteusValue reference",
       },
       series: {
         description: "Data series configuration",
@@ -861,10 +863,18 @@ function getPropTypeOverrides(additionalProperties = false) {
           properties: {
             color: { description: "Series color", type: "string" },
             dataKey: {
-              description: "Key in data objects for this series",
+              description: "Key in data records for this series",
               type: "string",
             },
-            name: { description: "Display name for legend", type: "string" },
+            labelKey: {
+              description:
+                "Key in data records for pre-formatted labels displayed above bars",
+              type: "string",
+            },
+            name: {
+              description: "Display name for legend",
+              type: "string",
+            },
           },
           required: ["dataKey"],
           type: "object",
@@ -872,16 +882,11 @@ function getPropTypeOverrides(additionalProperties = false) {
         type: "array",
       },
       type: {
-        anyOf: [
-          { const: "area" },
-          { const: "bar" },
-          { const: "line" },
-          { const: "pie" },
-        ],
+        const: "bar",
         description: "Chart type",
       },
       xAxisKey: {
-        description: "Key in data objects for x-axis labels",
+        description: "Key in data records for x-axis labels",
         type: "string",
       },
     },
@@ -895,10 +900,6 @@ function getPropTypeOverrides(additionalProperties = false) {
               description: "Key in data objects",
               type: "string",
             },
-            format: {
-              description: "Value format (e.g. 'number' for 1500 -> 1,500)",
-              type: "string",
-            },
             header: {
               description: "Column header text",
               type: "string",
@@ -910,13 +911,14 @@ function getPropTypeOverrides(additionalProperties = false) {
         type: "array",
       },
       data: {
-        description: "Inline data array",
-        items: { type: "object" },
-        type: "array",
-      },
-      path: {
-        description: "JSON pointer path to data array",
-        type: "string",
+        anyOf: [
+          {
+            description: "Inline data array",
+            items: { type: "object" },
+            type: "array",
+          },
+          { $ref: "#/definitions/ProteusValue" },
+        ],
       },
     },
     Image: {
