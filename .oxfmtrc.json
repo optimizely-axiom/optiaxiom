@@ -6,6 +6,7 @@
     ".changeset/pre.json",
     ".next",
     "apps/docs/data/",
+    "CHANGELOG.md",
     "dist",
     "lib",
     "out",
