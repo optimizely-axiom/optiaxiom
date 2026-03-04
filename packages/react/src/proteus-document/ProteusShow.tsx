@@ -1,7 +1,7 @@
-import { getProteusValue } from "./getProteusValue";
 import { useProteusDocumentContext } from "./ProteusDocumentContext";
 import { useProteusDocumentPathContext } from "./ProteusDocumentPathContext";
 import { ProteusElement } from "./ProteusElement";
+import { resolveProteusValue } from "./resolveProteusValue";
 
 type ComparisonValue =
   | boolean
@@ -72,7 +72,7 @@ function evaluateCondition(
 
   // Handle logical NOT operator (truthy check)
   if ("!!" in condition) {
-    const value = resolveValue(condition["!!"], data, parentPath);
+    const value = resolveProteusValue(condition["!!"], data, parentPath);
     return !!value;
   }
 
@@ -80,19 +80,19 @@ function evaluateCondition(
   if ("==" in condition) {
     const [left, right] = condition["=="];
     return (
-      resolveValue(left, data, parentPath) ===
-      resolveValue(right, data, parentPath)
+      resolveProteusValue(left, data, parentPath) ===
+      resolveProteusValue(right, data, parentPath)
     );
   } else if ("!=" in condition) {
     const [left, right] = condition["!="];
     return (
-      resolveValue(left, data, parentPath) !==
-      resolveValue(right, data, parentPath)
+      resolveProteusValue(left, data, parentPath) !==
+      resolveProteusValue(right, data, parentPath)
     );
   } else if ("<" in condition) {
     const [left, right] = condition["<"];
-    const leftVal = resolveValue(left, data, parentPath);
-    const rightVal = resolveValue(right, data, parentPath);
+    const leftVal = resolveProteusValue(left, data, parentPath);
+    const rightVal = resolveProteusValue(right, data, parentPath);
     return (
       typeof leftVal === "number" &&
       typeof rightVal === "number" &&
@@ -100,8 +100,8 @@ function evaluateCondition(
     );
   } else if ("<=" in condition) {
     const [left, right] = condition["<="];
-    const leftVal = resolveValue(left, data, parentPath);
-    const rightVal = resolveValue(right, data, parentPath);
+    const leftVal = resolveProteusValue(left, data, parentPath);
+    const rightVal = resolveProteusValue(right, data, parentPath);
     return (
       typeof leftVal === "number" &&
       typeof rightVal === "number" &&
@@ -109,8 +109,8 @@ function evaluateCondition(
     );
   } else if (">" in condition) {
     const [left, right] = condition[">"];
-    const leftVal = resolveValue(left, data, parentPath);
-    const rightVal = resolveValue(right, data, parentPath);
+    const leftVal = resolveProteusValue(left, data, parentPath);
+    const rightVal = resolveProteusValue(right, data, parentPath);
     return (
       typeof leftVal === "number" &&
       typeof rightVal === "number" &&
@@ -118,8 +118,8 @@ function evaluateCondition(
     );
   } else if (">=" in condition) {
     const [left, right] = condition[">="];
-    const leftVal = resolveValue(left, data, parentPath);
-    const rightVal = resolveValue(right, data, parentPath);
+    const leftVal = resolveProteusValue(left, data, parentPath);
+    const rightVal = resolveProteusValue(right, data, parentPath);
     return (
       typeof leftVal === "number" &&
       typeof rightVal === "number" &&
@@ -128,25 +128,6 @@ function evaluateCondition(
   }
 
   return false;
-}
-
-function resolveValue(
-  value: unknown,
-  data: Record<string, unknown>,
-  parentPath: string,
-): unknown {
-  // If value is a Value reference object
-  if (
-    typeof value === "object" &&
-    value !== null &&
-    "$type" in value &&
-    value.$type === "Value" &&
-    "path" in value &&
-    typeof value.path === "string"
-  ) {
-    return getProteusValue(data, value.path, parentPath);
-  }
-  return value;
 }
 
 ProteusShow.displayName = "@optiaxiom/react/ProteusShow";

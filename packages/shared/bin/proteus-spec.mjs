@@ -824,12 +824,12 @@ function getPropTypeOverrides(additionalProperties = false) {
     },
     Image: {
       alt: {
+        anyOf: [{ $ref: "#/definitions/ProteusValue" }, { type: "string" }],
         description: "Alternative text for the image",
-        type: "string",
       },
       src: {
+        anyOf: [{ $ref: "#/definitions/ProteusValue" }, { type: "string" }],
         description: "The image source URL",
-        type: "string",
       },
     },
     Map: {

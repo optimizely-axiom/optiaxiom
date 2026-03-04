@@ -4006,12 +4006,26 @@
           "$ref": "#/definitions/SprinkleProp_z"
         },
         "alt": {
-          "description": "Alternative text for the image",
-          "type": "string"
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ProteusValue"
+            },
+            {
+              "type": "string"
+            }
+          ],
+          "description": "Alternative text for the image"
         },
         "src": {
-          "description": "The image source URL",
-          "type": "string"
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ProteusValue"
+            },
+            {
+              "type": "string"
+            }
+          ],
+          "description": "The image source URL"
         }
       },
       "required": ["$type"],
