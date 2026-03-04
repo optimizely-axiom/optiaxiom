@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 1.9.8
+
+### Patch Changes
+
+- ce28a38: fix Box passing style={undefined} via Slot when asChild is used
+
 ## 1.9.7
 
 ### Patch Changes
