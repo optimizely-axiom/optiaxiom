@@ -269,11 +269,32 @@ export const WithImage: Story = {
       subtitle: "Created Jan 15, 2025",
       title: "Juicy Chicken with Broccoli",
     },
+    readOnly: true,
   },
 };
 
 export const WithImageGrid: Story = {
   args: {
+    data: {
+      images: [
+        {
+          alt: "Lime chicken thighs on a plate",
+          src: "https://placehold.co/274x250",
+        },
+        {
+          alt: "Chicken with lemon sauce and broccoli",
+          src: "https://placehold.co/274x250",
+        },
+        {
+          alt: "Sliced roasted chicken breast with broccoli",
+          src: "https://placehold.co/274x250",
+        },
+        {
+          alt: "Sesame chicken with broccoli",
+          src: "https://placehold.co/274x250",
+        },
+      ],
+    },
     element: {
       $type: "Document",
       actions: [
@@ -287,68 +308,26 @@ export const WithImageGrid: Story = {
       body: [
         {
           $type: "Group",
-          children: [
-            {
+          children: {
+            $type: "Map",
+            children: {
               $type: "Image",
-              alt: "Lime chicken thighs on a plate",
-              src: "https://placehold.co/274x250",
+              alt: { $type: "Value", path: "alt" },
+              rounded: "md",
+              src: { $type: "Value", path: "src" },
+              w: "full",
             },
-            {
-              $type: "Image",
-              alt: "Chicken with lemon sauce and broccoli",
-              src: "https://placehold.co/274x250",
-            },
-            {
-              $type: "Image",
-              alt: "Sliced roasted chicken breast with broccoli",
-              src: "https://placehold.co/274x250",
-            },
-            {
-              $type: "Image",
-              alt: "Sesame chicken with broccoli",
-              src: "https://placehold.co/274x250",
-            },
-          ],
+            path: "/images",
+          },
           display: "grid",
           gap: "12",
           gridTemplateColumns: "2",
         },
-        {
-          $type: "Group",
-          border: "1",
-          borderColor: "border.tertiary",
-          children: [
-            {
-              $type: "Group",
-              children: [
-                {
-                  $type: "Text",
-                  children: "Alt Text",
-                  fontSize: "md",
-                  fontWeight: "500",
-                },
-                {
-                  $type: "Text",
-                  children:
-                    "A delicious, juicy pan-seared chicken breast dish with broccoli sides",
-                  color: "fg.secondary",
-                  fontSize: "sm",
-                },
-              ],
-              flex: "1",
-              flexDirection: "column",
-              gap: "8",
-            },
-          ],
-          gap: "8",
-          px: "16",
-          py: "12",
-          rounded: "lg",
-        },
       ],
-      subtitle: "Created Jan 15, 2025",
-      title: "Juicy Chicken with Broccoli",
+      subtitle: "4 variations generated",
+      title: "Generated Images",
     },
+    readOnly: true,
   },
 };
 
