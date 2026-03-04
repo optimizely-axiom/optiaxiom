@@ -2,6 +2,7 @@
 
 import Editor, { loader, type OnMount } from "@monaco-editor/react";
 import { Box, Group, Heading } from "@optiaxiom/react";
+import { useTheme } from "next-themes";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 import { safeParseDocument } from "./schemaUtils";
@@ -31,6 +32,9 @@ export function JsonEditor({
   onDocumentChange,
   onDocumentError,
 }: JsonEditorProps) {
+  const { resolvedTheme } = useTheme();
+  const monacoTheme = resolvedTheme === "dark" ? "vs-dark" : "light";
+
   const [docText, setDocText] = useState(() =>
     JSON.stringify(document, null, 2),
   );
@@ -143,6 +147,7 @@ export function JsonEditor({
               fontSize: 12,
               minimap: { enabled: false },
             }}
+            theme={monacoTheme}
           />
         </Box>
       </Group>
@@ -160,6 +165,7 @@ export function JsonEditor({
               fontSize: 12,
               minimap: { enabled: false },
             }}
+            theme={monacoTheme}
           />
         </Box>
       </Group>
