@@ -17,6 +17,7 @@ import { IconArrowsDiagonal } from "../icons/IconArrowsDiagonal";
 import { IconCheck } from "../icons/IconCheck";
 import { IconCopy } from "../icons/IconCopy";
 import { IconDownload } from "../icons/IconDownload";
+import { Spinner } from "../spinner";
 import * as styles from "./ProteusImage.css";
 import { useResolvedProteusValue } from "./useResolvedProteusValue";
 
@@ -26,12 +27,35 @@ export function ProteusImage(props: Record<string, any>) {
   const resolvedAlt = useResolvedProteusValue(props.alt);
 
   const [isCopied, setIsCopied] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
   const timerRef = useRef<number>();
 
   return (
     <ActionsRoot {...styles.root()}>
-      <Box asChild display="block" objectFit="cover" {...props}>
-        <img alt={String(resolvedAlt)} src={String(resolvedSrc)} />
+      {!isLoaded && (
+        <Box
+          alignItems="center"
+          bg="bg.tertiary"
+          display="flex"
+          justifyContent="center"
+          p="24"
+          rounded="md"
+          style={{ aspectRatio: "16 / 9" }}
+        >
+          <Spinner />
+        </Box>
+      )}
+      <Box
+        asChild
+        display={isLoaded ? "block" : "none"}
+        objectFit="cover"
+        {...props}
+      >
+        <img
+          alt={String(resolvedAlt)}
+          onLoad={() => setIsLoaded(true)}
+          src={String(resolvedSrc)}
+        />
       </Box>
       <ActionsContent {...styles.actions()}>
         <Group bg="bg.default" gap="4" p="4" rounded="md">
