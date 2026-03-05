@@ -933,9 +933,9 @@ function getPropTypeOverrides(additionalProperties = false) {
     },
     Map: {
       children: {
+        $ref: "#/definitions/ProteusNode",
         description:
           "Template object to render for each item in the array. Value paths inside this template are relative to the current item (e.g., path='title' resolves to each item's 'title' field). Use a leading '/' to reference top-level data (e.g., path='/title' resolves to the root data's 'title').",
-        type: "object",
       },
       path: {
         description:
