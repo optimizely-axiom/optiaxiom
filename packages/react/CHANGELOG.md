@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 1.9.10
+
+### Patch Changes
+
+- 8b91bab: show loading spinner for proteus image
+
 ## 1.9.9
 
 ### Patch Changes
