@@ -27,6 +27,7 @@ export function ProteusImage(props: Record<string, any>) {
   const resolvedAlt = useResolvedProteusValue(props.alt);
 
   const [isCopied, setIsCopied] = useState(false);
+  const [isDownloading, setIsDownloading] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const timerRef = useRef<number>();
 
@@ -105,6 +106,28 @@ export function ProteusImage(props: Record<string, any>) {
             aria-label="Download"
             asChild
             icon={<IconDownload />}
+            loading={isDownloading}
+            onClick={async (event) => {
+              event.preventDefault();
+
+              if (isDownloading) {
+                return;
+              }
+
+              setIsDownloading(true);
+              try {
+                const response = await fetch(String(resolvedSrc));
+                const blob = await response.blob();
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement("a");
+                a.href = url;
+                a.download = String(resolvedSrc).split("/").pop() || "image";
+                a.click();
+                URL.revokeObjectURL(url);
+              } finally {
+                setIsDownloading(false);
+              }
+            }}
             size="sm"
           >
             <a download href={String(resolvedSrc)} />
