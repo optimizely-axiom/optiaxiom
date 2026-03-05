@@ -656,7 +656,7 @@ function generateJsonSchema(additionalProperties = false) {
                 "A concise heading that encapsulates the essence of the Proteus document's content or intended action.",
             },
           },
-          required: ["$type", "appName", "body", "title"],
+          required: ["$type", "body", "title"],
           type: "object",
         },
         ProteusElement: {
@@ -754,7 +754,7 @@ function generateTypeScriptTypes() {
   lines.push("  [key: string]: unknown;");
   lines.push("  actions?: unknown;");
   lines.push("  appIcon?: string;");
-  lines.push("  appName: string;");
+  lines.push("  appName?: string;");
   lines.push("  blocking?: boolean;");
   lines.push("  body: unknown;");
   lines.push("  subtitle?: unknown;");
