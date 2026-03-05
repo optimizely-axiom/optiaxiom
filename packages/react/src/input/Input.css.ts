@@ -3,6 +3,10 @@ import { recipe, type RecipeVariants, style } from "../vanilla-extract";
 export const root = recipe({
   variants: {
     size: {
+      sm: {
+        gap: "4",
+        px: "8",
+      },
       md: {
         gap: "8",
         px: "8",
@@ -36,6 +40,9 @@ export const input = recipe({
      * Control the size of the input.
      */
     size: {
+      sm: {
+        py: "2",
+      },
       md: {
         py: "4",
       },
