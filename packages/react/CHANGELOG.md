@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 1.9.9
+
+### Patch Changes
+
+- 6ee2850: allow omitting appName from proteus document
+
 ## 1.9.8
 
 ### Patch Changes
