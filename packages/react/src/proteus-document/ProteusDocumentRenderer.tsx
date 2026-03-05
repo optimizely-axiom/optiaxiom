@@ -54,7 +54,7 @@ export type ProteusDocumentRendererProps = Pick<
  * @experimental
  */
 export function ProteusDocumentRenderer({
-  collapsible,
+  collapsible: collapsibleProp,
   data = {},
   defaultOpen = true,
   element: elementProp,
@@ -81,6 +81,7 @@ export function ProteusDocumentRenderer({
     }
   }
 
+  const collapsible = collapsibleProp && result.success && result.data.appName;
   const Trigger = collapsible ? DisclosureTrigger : Box;
 
   return (
@@ -113,37 +114,40 @@ export function ProteusDocumentRenderer({
       >
         {result.success && (
           <>
-            <Trigger
-              py="0"
-              {...(collapsible ? { chevronPosition: "end" } : {})}
-            >
-              <Group fontSize="sm" gap="8">
-                <Box
-                  asChild
-                  bg={result.data.appIcon ? undefined : "bg.accent.subtle"}
-                  rounded="xs"
-                  size="20"
-                >
-                  {result.data.appIcon ? (
-                    <img src={result.data.appIcon} />
-                  ) : (
-                    <div />
+            {result.data.appName && (
+              <Trigger
+                py="0"
+                {...(collapsible ? { chevronPosition: "end" } : {})}
+              >
+                <Group fontSize="sm" gap="8">
+                  <Box
+                    asChild
+                    bg={result.data.appIcon ? undefined : "bg.accent.subtle"}
+                    rounded="xs"
+                    size="20"
+                  >
+                    {result.data.appIcon ? (
+                      <img src={result.data.appIcon} />
+                    ) : (
+                      <div />
+                    )}
+                  </Box>
+                  <Text fontWeight="500">{result.data.appName}</Text>
+                  {!open && (
+                    <Text color="fg.secondary">
+                      <ProteusElement element={result.data.title} />
+                    </Text>
                   )}
-                </Box>
-                <Text fontWeight="500">{result.data.appName}</Text>
-                {!open && (
-                  <Text color="fg.secondary">
-                    <ProteusElement element={result.data.title} />
-                  </Text>
-                )}
-              </Group>
-            </Trigger>
+                </Group>
+              </Trigger>
+            )}
             <DisclosureContent
               alignItems="stretch"
               display="flex"
               flexDirection="column"
               gap="16"
-              pt="16"
+              pb="0"
+              pt={result.data.appName ? "16" : "0"}
             >
               <Group flexDirection="column" gap="4">
                 <Heading fontSize="lg" fontWeight="600" level="2">

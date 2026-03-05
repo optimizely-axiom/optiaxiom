@@ -2427,7 +2427,7 @@
           "description": "A concise heading that encapsulates the essence of the Proteus document's content or intended action."
         }
       },
-      "required": ["$type", "appName", "body", "title"],
+      "required": ["$type", "body", "title"],
       "type": "object"
     },
     "ProteusElement": {

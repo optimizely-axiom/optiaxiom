@@ -12,7 +12,7 @@ export interface ProteusDocument {
   [key: string]: unknown;
   actions?: unknown;
   appIcon?: string;
-  appName: string;
+  appName?: string;
   blocking?: boolean;
   body: unknown;
   subtitle?: unknown;

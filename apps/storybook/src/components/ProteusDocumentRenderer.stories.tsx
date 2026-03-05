@@ -226,7 +226,6 @@ export const WithImage: Story = {
           children: "Download",
         },
       ],
-      appName: "Opal",
       body: [
         {
           $type: "Image",
