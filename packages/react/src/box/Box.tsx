@@ -39,6 +39,9 @@ export type BoxProps<T extends ElementType = "div", P = unknown> = ExtendProps<
  * don't need flexbox layout features. For flexbox layouts with
  * direction/alignment/gap, use Group instead.
  *
+ * Use `extractBoxProps` to separate sprinkle props from the rest when
+ * rendering non-div elements with `asChild`.
+ *
  * @category layout
  */
 export const Box = forwardRef<HTMLDivElement, BoxProps>(
