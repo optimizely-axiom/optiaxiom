@@ -30,6 +30,7 @@ export function ProteusImage(props: Record<string, any>) {
   const [isCopied, setIsCopied] = useState(false);
   const [isDownloading, setIsDownloading] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
+  const imgRef = useRef<HTMLImageElement>(null);
   const timerRef = useRef<number>();
 
   return (
@@ -56,78 +57,102 @@ export function ProteusImage(props: Record<string, any>) {
         <img
           alt={String(resolvedAlt)}
           onLoad={() => setIsLoaded(true)}
+          ref={imgRef}
           src={String(resolvedSrc)}
         />
       </Box>
-      <ActionsContent {...styles.actions()}>
-        <Group bg="bg.default" gap="4" p="4" rounded="md">
-          <Button
-            appearance="subtle"
-            aria-label="Copy"
-            icon={
-              isCopied ? (
-                <IconCheck pointerEvents="none" />
-              ) : (
-                <IconCopy pointerEvents="none" />
-              )
-            }
-            onClick={async (event) => {
-              event.preventDefault();
-
-              setIsCopied(true);
-              await navigator.clipboard.writeText(String(resolvedSrc));
-              clearTimeout(timerRef.current);
-              timerRef.current = window.setTimeout(() => {
-                setIsCopied(false);
-              }, 2000);
-            }}
-            size="sm"
-          />
-          <Dialog>
-            <DialogTrigger
+      {isLoaded && (
+        <ActionsContent {...styles.actions()}>
+          <Group bg="bg.default" gap="4" p="4" rounded="md">
+            <Button
               appearance="subtle"
-              aria-label="Expand"
-              icon={<IconArrowsDiagonal />}
+              aria-label="Copy"
+              icon={
+                isCopied ? (
+                  <IconCheck pointerEvents="none" />
+                ) : (
+                  <IconCopy pointerEvents="none" />
+                )
+              }
+              onClick={async () => {
+                if (!imgRef.current) {
+                  return;
+                }
+
+                setIsCopied(true);
+
+                const canvas = document.createElement("canvas");
+                canvas.width = imgRef.current.naturalWidth;
+                canvas.height = imgRef.current.naturalHeight;
+                canvas.getContext("2d")?.drawImage(imgRef.current, 0, 0);
+                const blob = await new Promise<Blob | null>((resolve) => {
+                  try {
+                    canvas.toBlob(resolve, "image/png");
+                  } catch {
+                    resolve(null);
+                  }
+                });
+                if (blob) {
+                  await navigator.clipboard.write([
+                    new ClipboardItem({ "image/png": blob }),
+                  ]);
+                } else {
+                  await navigator.clipboard.writeText(String(resolvedSrc));
+                }
+
+                clearTimeout(timerRef.current);
+                timerRef.current = window.setTimeout(() => {
+                  setIsCopied(false);
+                }, 2000);
+              }}
               size="sm"
             />
-            <DialogContent size="lg">
-              <DialogHeader>{String(resolvedAlt)}</DialogHeader>
-              <DialogBody>
-                <Box asChild display="block" objectFit="cover" {...props}>
-                  <img alt={String(resolvedAlt)} src={String(resolvedSrc)} />
-                </Box>
-              </DialogBody>
-              <DialogFooter>
-                <DialogClose>Close</DialogClose>
-              </DialogFooter>
-            </DialogContent>
-          </Dialog>
-          <Button
-            appearance="subtle"
-            aria-label="Download"
-            asChild
-            icon={<IconDownload />}
-            loading={isDownloading}
-            onClick={async (event) => {
-              event.preventDefault();
+            <Dialog>
+              <DialogTrigger
+                appearance="subtle"
+                aria-label="Expand"
+                icon={<IconArrowsDiagonal />}
+                size="sm"
+              />
+              <DialogContent size="lg">
+                <DialogHeader>{String(resolvedAlt)}</DialogHeader>
+                <DialogBody>
+                  <Box asChild display="block" objectFit="cover" {...props}>
+                    <img alt={String(resolvedAlt)} src={String(resolvedSrc)} />
+                  </Box>
+                </DialogBody>
+                <DialogFooter>
+                  <DialogClose>Close</DialogClose>
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
+            <Button
+              appearance="subtle"
+              aria-label="Download"
+              asChild
+              icon={<IconDownload />}
+              loading={isDownloading}
+              onClick={async (event) => {
+                event.preventDefault();
 
-              if (isDownloading) {
-                return;
-              }
+                if (isDownloading) {
+                  return;
+                }
 
-              setIsDownloading(true);
-              try {
-                await downloadFile(String(resolvedSrc));
-              } finally {
-                setIsDownloading(false);
-              }
-            }}
-            size="sm"
-          >
-            <a download href={String(resolvedSrc)} />
-          </Button>
-        </Group>
-      </ActionsContent>
+                setIsDownloading(true);
+                try {
+                  await downloadFile(String(resolvedSrc));
+                } finally {
+                  setIsDownloading(false);
+                }
+              }}
+              size="sm"
+            >
+              <a download href={String(resolvedSrc)} />
+            </Button>
+          </Group>
+        </ActionsContent>
+      )}
     </ActionsRoot>
   );
 }
