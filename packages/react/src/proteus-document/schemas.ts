@@ -42,6 +42,7 @@ export type ProteusElement =
   | { $type: "Show"; [key: string]: unknown }
   | { $type: "Text"; [key: string]: unknown }
   | { $type: "Textarea"; [key: string]: unknown }
+  | { $type: "Time"; [key: string]: unknown }
   | { $type: "Value"; [key: string]: unknown };
 
 // --- ProteusElement (discriminated union for switch exhaustiveness) ---
