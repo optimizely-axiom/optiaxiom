@@ -123,6 +123,7 @@ export function ProteusDocumentRenderer({
                   <Box
                     asChild
                     bg={result.data.appIcon ? undefined : "bg.accent.subtle"}
+                    flex="none"
                     rounded="xs"
                     size="20"
                   >
@@ -134,7 +135,7 @@ export function ProteusDocumentRenderer({
                   </Box>
                   <Text fontWeight="500">{result.data.appName}</Text>
                   {!open && (
-                    <Text color="fg.secondary">
+                    <Text color="fg.secondary" lineClamp="1">
                       <ProteusElement element={result.data.title} />
                     </Text>
                   )}
@@ -150,7 +151,7 @@ export function ProteusDocumentRenderer({
               pt={result.data.appName ? "16" : "0"}
             >
               <Group flexDirection="column" gap="4">
-                <Heading fontSize="lg" fontWeight="600" level="2">
+                <Heading fontSize="lg" fontWeight="600" level="2" lineClamp="2">
                   <ProteusElement element={result.data.title} />
                 </Heading>
                 {!!result.data.subtitle && (
