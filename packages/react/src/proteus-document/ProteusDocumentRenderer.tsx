@@ -12,9 +12,14 @@ import { Group } from "../group";
 import { Heading } from "../heading";
 import { useEffectEvent } from "../hooks";
 import { Text } from "../text";
+import { downloadFile } from "./downloadFile";
 import { ProteusDocumentProvider } from "./ProteusDocumentContext";
 import { ProteusElement } from "./ProteusElement";
-import { type ProteusDocument, safeParseDocument } from "./schemas";
+import {
+  type ProteusDocument,
+  type ProteusEventHandler,
+  safeParseDocument,
+} from "./schemas";
 
 export type ProteusDocumentRendererProps = Pick<
   ComponentPropsWithoutRef<typeof Disclosure>,
@@ -39,11 +44,11 @@ export type ProteusDocumentRendererProps = Pick<
   /**
    * Callback when user sends a message action
    */
-  onMessage?: (message: string) => void;
+  onMessage?: (message: string) => Promise<void> | void;
   /**
    * Callback when user clicks a Action button with tool handler
    */
-  onToolCall?: (toolName: string) => void;
+  onToolCall?: (toolName: string) => Promise<void> | void;
   /**
    * Whether form is readonly
    */
@@ -92,15 +97,15 @@ export function ProteusDocumentRenderer({
         set(next, path, value);
         onDataChange?.(next);
       })}
-      onEvent={useEffectEvent(
-        (event: { message: string } | { tool: string }) => {
-          if ("tool" in event) {
-            onToolCall?.(event.tool);
-          } else if ("message" in event) {
-            onMessage?.(event.message);
-          }
-        },
-      )}
+      onEvent={useEffectEvent(async (event: ProteusEventHandler) => {
+        if ("tool" in event) {
+          await onToolCall?.(event.tool);
+        } else if ("message" in event) {
+          await onMessage?.(event.message);
+        } else if (event.action === "download") {
+          await downloadFile(event.url);
+        }
+      })}
       readOnly={readOnly}
     >
       <Disclosure

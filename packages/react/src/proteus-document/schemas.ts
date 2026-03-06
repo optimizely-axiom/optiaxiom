@@ -47,7 +47,10 @@ export type ProteusElement =
 
 // --- ProteusElement (discriminated union for switch exhaustiveness) ---
 
-export type ProteusEventHandler = { message: string } | { tool: string };
+export type ProteusEventHandler =
+  | { action: "download"; url: string }
+  | { message: string }
+  | { tool: string };
 
 // --- safeParse ---
 

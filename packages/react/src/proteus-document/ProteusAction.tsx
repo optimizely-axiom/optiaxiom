@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import type { ProteusEventHandler } from "./schemas";
 
 import { Button } from "../button";
@@ -17,15 +19,20 @@ export function ProteusAction({
     "@optiaxiom/react/ProteusAction",
   );
 
+  const [loading, setLoading] = useState(false);
+
   return (
     <Button
       justifyContent="center"
-      onClick={() => {
-        if (!onClick) {
+      loading={loading}
+      onClick={async () => {
+        if (!onClick || loading) {
           return;
         }
 
-        onEvent(onClick);
+        setLoading(true);
+        await onEvent(onClick);
+        setLoading(false);
       }}
       {...props}
     >

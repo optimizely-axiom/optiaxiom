@@ -24,7 +24,7 @@ export function ProteusCancelAction({
     <form
       onSubmit={(event) => {
         event.preventDefault();
-        onEvent?.({ message: inputValue });
+        void onEvent?.({ message: inputValue });
       }}
     >
       <Flex flexDirection="row" gap="16" w="full">

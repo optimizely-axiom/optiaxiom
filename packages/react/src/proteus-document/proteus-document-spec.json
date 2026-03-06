@@ -2524,9 +2524,25 @@
           },
           "required": ["message"],
           "type": "object"
+        },
+        {
+          "description": "Client-side component action - for downloading a URL",
+          "properties": {
+            "action": {
+              "const": "download",
+              "description": "The action type",
+              "type": "string"
+            },
+            "url": {
+              "description": "URL to download",
+              "type": "string"
+            }
+          },
+          "required": ["action", "url"],
+          "type": "object"
         }
       ],
-      "description": "Handler for user interactions - either a server-side tool call or client-side message"
+      "description": "Handler for user interactions - a server-side tool call, client-side message, or client-side component action"
     },
     "ProteusNode": {
       "anyOf": [

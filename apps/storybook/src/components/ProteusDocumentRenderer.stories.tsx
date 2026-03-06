@@ -224,6 +224,7 @@ export const WithImage: Story = {
           $type: "Action",
           appearance: "primary",
           children: "Download",
+          onClick: { action: "download", url: "https://placehold.co/600x400" },
         },
       ],
       body: [
@@ -268,7 +269,6 @@ export const WithImage: Story = {
       subtitle: "Created Jan 15, 2025",
       title: "Juicy Chicken with Broccoli",
     },
-    readOnly: true,
   },
 };
 
