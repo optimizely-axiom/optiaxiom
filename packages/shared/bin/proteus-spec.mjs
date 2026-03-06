@@ -694,9 +694,27 @@ function generateJsonSchema(additionalProperties = false) {
               required: ["message"],
               type: "object",
             },
+            {
+              ...(additionalProperties ? {} : { additionalProperties: false }),
+              description:
+                "Client-side component action - for downloading a URL",
+              properties: {
+                action: {
+                  const: "download",
+                  description: "The action type",
+                  type: "string",
+                },
+                url: {
+                  description: "URL to download",
+                  type: "string",
+                },
+              },
+              required: ["action", "url"],
+              type: "object",
+            },
           ],
           description:
-            "Handler for user interactions - either a server-side tool call or client-side message",
+            "Handler for user interactions - a server-side tool call, client-side message, or client-side component action",
         },
         ProteusNode: {
           anyOf: [
@@ -729,9 +747,10 @@ function generateJsonSchema(additionalProperties = false) {
 
 /**
  * Generate minimal TypeScript types + safeParse wrappers using @cfworker/json-schema
+ * @param {JSONSchema7} schema
  * @returns {string} TypeScript code
  */
-function generateTypeScriptTypes() {
+function generateTypeScriptTypes(schema) {
   const lines = [];
 
   lines.push("// This file is auto-generated. Do not edit manually.");
@@ -746,8 +765,32 @@ function generateTypeScriptTypes() {
   lines.push("// --- ProteusEventHandler ---");
   lines.push("");
   lines.push("export type ProteusEventHandler =");
-  lines.push("  | { tool: string }");
-  lines.push("  | { message: string };");
+  const eventHandlerSchema = schema.definitions?.ProteusEventHandler;
+  const eventHandlerVariants =
+    eventHandlerSchema &&
+    typeof eventHandlerSchema === "object" &&
+    "anyOf" in eventHandlerSchema
+      ? eventHandlerSchema?.anyOf
+      : [];
+  eventHandlerVariants?.forEach((variant) => {
+    if (!variant || typeof variant !== "object" || !variant.properties) {
+      return;
+    }
+
+    const props = Object.entries(variant.properties)
+      .flatMap(([key, prop]) => {
+        if (!prop || prop === true) {
+          return [];
+        }
+
+        const type =
+          prop && prop.const ? JSON.stringify(prop.const) : prop.type;
+        return [`${key}: ${type}`];
+      })
+      .join("; ");
+    lines.push(`  | { ${props} }`);
+  });
+  lines.push(";");
   lines.push("");
 
   // --- ProteusDocument ---
@@ -1117,7 +1160,7 @@ fs.writeFileSync(
 );
 console.log(`Generated: ${jsonRuntimeOutputPath}`);
 
-const typeScriptTypes = generateTypeScriptTypes();
+const typeScriptTypes = generateTypeScriptTypes(jsonSchemaForRuntime);
 const tsOutputPath = path.join(
   process.cwd(),
   "packages/react/src/proteus-document/schemas.ts",

@@ -18,6 +18,7 @@ import { IconCheck } from "../icons/IconCheck";
 import { IconCopy } from "../icons/IconCopy";
 import { IconDownload } from "../icons/IconDownload";
 import { Spinner } from "../spinner";
+import { downloadFile } from "./downloadFile";
 import * as styles from "./ProteusImage.css";
 import { useResolvedProteusValue } from "./useResolvedProteusValue";
 
@@ -116,14 +117,7 @@ export function ProteusImage(props: Record<string, any>) {
 
               setIsDownloading(true);
               try {
-                const response = await fetch(String(resolvedSrc));
-                const blob = await response.blob();
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement("a");
-                a.href = url;
-                a.download = String(resolvedSrc).split("/").pop() || "image";
-                a.click();
-                URL.revokeObjectURL(url);
+                await downloadFile(String(resolvedSrc));
               } finally {
                 setIsDownloading(false);
               }
