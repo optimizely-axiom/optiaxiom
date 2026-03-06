@@ -19,6 +19,7 @@ import { ProteusSeparator } from "./ProteusSeparator";
 import { ProteusShow } from "./ProteusShow";
 import { ProteusText } from "./ProteusText";
 import { ProteusTextarea } from "./ProteusTextarea";
+import { ProteusTime } from "./ProteusTime";
 import { ProteusValue } from "./ProteusValue";
 import { safeParseElement } from "./schemas";
 
@@ -134,6 +135,8 @@ export const ProteusElement = ({
       return <ProteusText {...omitType(element)} />;
     case "Textarea":
       return <ProteusTextarea {...omitType(element)} />;
+    case "Time":
+      return <ProteusTime {...omitType(element)} />;
     case "Value":
       return (
         <ProteusValue

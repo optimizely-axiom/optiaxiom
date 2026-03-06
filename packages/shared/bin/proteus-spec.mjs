@@ -148,6 +148,10 @@ const PROTEUS_COMPONENT_CONFIG = {
     allowedProps: ["maxRows", "name", "placeholder", "resize", "rows"],
     example: { name: "field_name", placeholder: "Enter text" },
   },
+  Time: {
+    allowedProps: ["date", "showDate", "showTime"],
+    example: { date: "2025-01-22T14:30:00Z" },
+  },
   Value: {
     allowedProps: ["path"],
     example: { path: "/field_name" },
@@ -1039,7 +1043,7 @@ function parsePropTypeToJsonSchema({ description, name, type }) {
         description: description,
         type: "number",
       };
-    } else if (type.raw === "string") {
+    } else if (type.raw === "string" || type.raw === "string | Date") {
       return {
         description: description,
         type: "string",
