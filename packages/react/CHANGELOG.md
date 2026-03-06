@@ -1,5 +1,15 @@
 # @optiaxiom/react
 
+## 1.9.11
+
+### Patch Changes
+
+- ba50ffb: add download action to proteus spec
+- 70f5ab8: allow arbitrary values for any props
+- f605a85: add experimental Time component
+- 095e212: clamp proteus title
+- b20303f: manually handle image download
+
 ## 1.9.10
 
 ### Patch Changes
