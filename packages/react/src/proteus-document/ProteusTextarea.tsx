@@ -2,6 +2,7 @@ import { Textarea } from "../textarea";
 import { useProteusDocumentContext } from "./ProteusDocumentContext";
 import { useProteusDocumentPathContext } from "./ProteusDocumentPathContext";
 import { useProteusValue } from "./useProteusValue";
+import { useResolvedProteusProps } from "./useResolvedProteusProps";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function ProteusTextarea(props: Record<string, any>) {
@@ -16,7 +17,7 @@ export function ProteusTextarea(props: Record<string, any>) {
 
   return (
     <Textarea
-      {...props}
+      {...useResolvedProteusProps(props)}
       onValueChange={(value) => {
         if (props.name) {
           onDataChange?.(`${parentPath}/${props.name}`, value);
