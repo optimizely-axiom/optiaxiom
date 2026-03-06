@@ -1083,18 +1083,27 @@ function parsePropTypeToJsonSchema({ description, name, type }) {
   } else if (type.name === "enum") {
     if (type.raw === "number") {
       return {
+        anyOf: [
+          { type: /** @type {const} */ ("number") },
+          { $ref: "#/definitions/ProteusValue" },
+        ],
         description: description,
-        type: "number",
       };
     } else if (type.raw === "string" || type.raw === "string | Date") {
       return {
+        anyOf: [
+          { type: /** @type {const} */ ("string") },
+          { $ref: "#/definitions/ProteusValue" },
+        ],
         description: description,
-        type: "string",
       };
     } else if (type.raw === "boolean") {
       return {
+        anyOf: [
+          { type: /** @type {const} */ ("boolean") },
+          { $ref: "#/definitions/ProteusValue" },
+        ],
         description: description,
-        type: "boolean",
       };
     } else if (
       !type.raw?.startsWith("ConditionalStyleWithResponsiveArray<") &&
@@ -1127,15 +1136,29 @@ function parsePropTypeToJsonSchema({ description, name, type }) {
         ...(hasStringFallback
           ? [{ type: /** @type {const} */ ("string") }]
           : []),
+        { $ref: "#/definitions/ProteusValue" },
       ],
       description: description,
     };
   }
 
-  if (["boolean", "number", "string"].includes(type.name)) {
+  if (type.name === "string") {
     return {
+      anyOf: [
+        { type: /** @type {const} */ ("string") },
+        { $ref: "#/definitions/ProteusValue" },
+      ],
       description: description,
-      type: /** @type {"boolean" | "number" | "string"} */ (type.name),
+    };
+  }
+
+  if (["boolean", "number"].includes(type.name)) {
+    return {
+      anyOf: [
+        { type: /** @type {"boolean" | "number"} */ (type.name) },
+        { $ref: "#/definitions/ProteusValue" },
+      ],
+      description: description,
     };
   }
 

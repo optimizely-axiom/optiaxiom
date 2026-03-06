@@ -17,6 +17,9 @@
         },
         {
           "const": "start"
+        },
+        {
+          "$ref": "#/definitions/ProteusValue"
         }
       ],
       "description": "Set the element's `align-items` CSS property"
@@ -37,6 +40,9 @@
         },
         {
           "const": "start"
+        },
+        {
+          "$ref": "#/definitions/ProteusValue"
         }
       ],
       "description": "Set the element's `align-self` CSS property"
@@ -51,6 +57,9 @@
         },
         {
           "const": "spin"
+        },
+        {
+          "$ref": "#/definitions/ProteusValue"
         }
       ],
       "description": "Animate element with CSS animations"
@@ -59,6 +68,9 @@
       "anyOf": [
         {
           "const": "gradient.opal"
+        },
+        {
+          "$ref": "#/definitions/ProteusValue"
         }
       ],
       "description": "Set the element's `background-image` CSS property"
@@ -184,6 +196,9 @@
         },
         {
           "const": "current"
+        },
+        {
+          "$ref": "#/definitions/ProteusValue"
         }
       ],
       "description": "Set the element's background color. Only accepts predefined color tokens starting with `bg.` (e.g., `bg.default`, `bg.accent`, `bg.error`), or the special values `current` and `transparent`."
@@ -198,6 +213,9 @@
         },
         {
           "const": "1"
+        },
+        {
+          "$ref": "#/definitions/ProteusValue"
         }
       ],
       "description": "Set the element's `border-width` CSS property"
@@ -212,6 +230,9 @@
         },
         {
           "const": "1"
+        },
+        {
+          "$ref": "#/definitions/ProteusValue"
         }
       ],
       "description": "Set the element's `border-bottom-width` CSS property"
@@ -259,6 +280,9 @@
         },
         {
           "const": "current"
+        },
+        {
+          "$ref": "#/definitions/ProteusValue"
         }
       ],
       "description": "Set the element's border color. Only accepts predefined color tokens starting with `border.` (e.g., `border.default`, `border.accent`, `border.error`), or the special values `current` and `transparent`."
@@ -273,6 +297,9 @@
         },
         {
           "const": "1"
+        },
+        {
+          "$ref": "#/definitions/ProteusValue"
         }
       ],
       "description": "Set the element's `border-left-width` CSS property"
@@ -287,6 +314,9 @@
         },
         {
           "const": "1"
+        },
+        {
+          "$ref": "#/definitions/ProteusValue"
         }
       ],
       "description": "Set the element's `border-right-width` CSS property"
@@ -301,6 +331,9 @@
         },
         {
           "const": "1"
+        },
+        {
+          "$ref": "#/definitions/ProteusValue"
         }
       ],
       "description": "Set the element's `border-top-width` CSS property"
@@ -414,6 +447,9 @@
         },
         {
           "const": "current"
+        },
+        {
+          "$ref": "#/definitions/ProteusValue"
         }
       ],
       "description": "Set the element's text color. Only accepts predefined color tokens starting with `fg.` (e.g., `fg.default`, `fg.accent`, `fg.error`), or the special values `current` and `transparent`."
@@ -428,6 +464,9 @@
         },
         {
           "const": "text"
+        },
+        {
+          "$ref": "#/definitions/ProteusValue"
         }
       ],
       "description": "Set the element's `cursor` CSS property"
@@ -463,6 +502,9 @@
         },
         {
           "const": "inline-flex"
+        },
+        {
+          "$ref": "#/definitions/ProteusValue"
         }
       ],
       "description": "Set the element's `display` CSS property"
@@ -480,6 +522,9 @@
         },
         {
           "const": "1"
+        },
+        {
+          "$ref": "#/definitions/ProteusValue"
         }
       ],
       "description": "Set the element's `flex` CSS property"
@@ -497,6 +542,9 @@
         },
         {
           "const": "row-reverse"
+        },
+        {
+          "$ref": "#/definitions/ProteusValue"
         }
       ],
       "description": "Set the element's `flex-direction` CSS property"
@@ -508,6 +556,9 @@
         },
         {
           "const": "wrap"
+        },
+        {
+          "$ref": "#/definitions/ProteusValue"
         }
       ],
       "description": "Set the element's `flex-wrap` CSS property"
@@ -519,6 +570,9 @@
         },
         {
           "const": "sans"
+        },
+        {
+          "$ref": "#/definitions/ProteusValue"
         }
       ],
       "description": "Set the element's font family. Only accepts predefined fontFamily tokens."
@@ -551,6 +605,9 @@
         },
         {
           "const": "4xl"
+        },
+        {
+          "$ref": "#/definitions/ProteusValue"
         }
       ],
       "description": "Set the element's font size and line height (both properties are set together). Only accepts predefined fontSize tokens."
@@ -571,6 +628,9 @@
         },
         {
           "const": "700"
+        },
+        {
+          "$ref": "#/definitions/ProteusValue"
         }
       ],
       "description": "Set the element's `font-weight` CSS property"
@@ -621,6 +681,9 @@
         },
         {
           "const": "64"
+        },
+        {
+          "$ref": "#/definitions/ProteusValue"
         }
       ],
       "description": "Set the element's `gap` CSS property"
@@ -638,6 +701,9 @@
         },
         {
           "const": "3"
+        },
+        {
+          "$ref": "#/definitions/ProteusValue"
         }
       ],
       "description": "Set the element's size across grid columns"
@@ -655,6 +721,9 @@
         },
         {
           "const": "3"
+        },
+        {
+          "$ref": "#/definitions/ProteusValue"
         }
       ],
       "description": "Control number of columns in a grid layout"
@@ -753,6 +822,9 @@
         },
         {
           "const": "min"
+        },
+        {
+          "$ref": "#/definitions/ProteusValue"
         }
       ],
       "description": "Set the element's height. Only accepts predefined size tokens."
@@ -788,6 +860,9 @@
         },
         {
           "const": "start"
+        },
+        {
+          "$ref": "#/definitions/ProteusValue"
         }
       ],
       "description": "Set the element's `justify-content` CSS property"
@@ -808,6 +883,9 @@
         },
         {
           "const": "start"
+        },
+        {
+          "$ref": "#/definitions/ProteusValue"
         }
       ],
       "description": "Set the element's `justify-items` CSS property"
@@ -861,6 +939,9 @@
         },
         {
           "const": "64"
+        },
+        {
+          "$ref": "#/definitions/ProteusValue"
         }
       ],
       "description": "Set the element's margin on all sides. Only accepts predefined spacing tokens."
@@ -881,6 +962,9 @@
         },
         {
           "const": "full"
+        },
+        {
+          "$ref": "#/definitions/ProteusValue"
         }
       ],
       "description": "Set the element's maximum height. Only accepts predefined maxSize tokens."
@@ -901,6 +985,9 @@
         },
         {
           "const": "full"
+        },
+        {
+          "$ref": "#/definitions/ProteusValue"
         }
       ],
       "description": "Set the element's maximum width. Only accepts predefined maxSize tokens."
@@ -954,6 +1041,9 @@
         },
         {
           "const": "64"
+        },
+        {
+          "$ref": "#/definitions/ProteusValue"
         }
       ],
       "description": "Set the element's bottom margin. Only accepts predefined spacing tokens."
@@ -1007,6 +1097,9 @@
         },
         {
           "const": "64"
+        },
+        {
+          "$ref": "#/definitions/ProteusValue"
         }
       ],
       "description": "Set the element's left margin. Only accepts predefined spacing tokens."
@@ -1060,6 +1153,9 @@
         },
         {
           "const": "64"
+        },
+        {
+          "$ref": "#/definitions/ProteusValue"
         }
       ],
       "description": "Set the element's right margin. Only accepts predefined spacing tokens."
@@ -1113,6 +1209,9 @@
         },
         {
           "const": "64"
+        },
+        {
+          "$ref": "#/definitions/ProteusValue"
         }
       ],
       "description": "Set the element's top margin. Only accepts predefined spacing tokens."
@@ -1166,6 +1265,9 @@
         },
         {
           "const": "64"
+        },
+        {
+          "$ref": "#/definitions/ProteusValue"
         }
       ],
       "description": "Set the element's left and right margin. Only accepts predefined spacing tokens."
@@ -1219,6 +1321,9 @@
         },
         {
           "const": "64"
+        },
+        {
+          "$ref": "#/definitions/ProteusValue"
         }
       ],
       "description": "Set the element's top and bottom margin. Only accepts predefined spacing tokens."
@@ -1236,6 +1341,9 @@
         },
         {
           "const": "cover"
+        },
+        {
+          "$ref": "#/definitions/ProteusValue"
         }
       ],
       "description": "Set the element's `object-fit` CSS property"
@@ -1250,6 +1358,9 @@
         },
         {
           "const": "visible"
+        },
+        {
+          "$ref": "#/definitions/ProteusValue"
         }
       ],
       "description": "Set the element's `overflow` CSS property"
@@ -1264,6 +1375,9 @@
         },
         {
           "const": "visible"
+        },
+        {
+          "$ref": "#/definitions/ProteusValue"
         }
       ],
       "description": "Set the element's `overflow-x` CSS property"
@@ -1278,6 +1392,9 @@
         },
         {
           "const": "visible"
+        },
+        {
+          "$ref": "#/definitions/ProteusValue"
         }
       ],
       "description": "Set the element's `overflow-y` CSS property"
@@ -1328,6 +1445,9 @@
         },
         {
           "const": "64"
+        },
+        {
+          "$ref": "#/definitions/ProteusValue"
         }
       ],
       "description": "Set the element's padding on all sides. Only accepts predefined spacing tokens."
@@ -1378,6 +1498,9 @@
         },
         {
           "const": "64"
+        },
+        {
+          "$ref": "#/definitions/ProteusValue"
         }
       ],
       "description": "Set the element's bottom padding. Only accepts predefined spacing tokens."
@@ -1428,6 +1551,9 @@
         },
         {
           "const": "64"
+        },
+        {
+          "$ref": "#/definitions/ProteusValue"
         }
       ],
       "description": "Set the element's left padding. Only accepts predefined spacing tokens."
@@ -1436,6 +1562,9 @@
       "anyOf": [
         {
           "const": "center"
+        },
+        {
+          "$ref": "#/definitions/ProteusValue"
         }
       ],
       "description": "Set the element's `place-items` CSS property"
@@ -1447,6 +1576,9 @@
         },
         {
           "const": "auto"
+        },
+        {
+          "$ref": "#/definitions/ProteusValue"
         }
       ],
       "description": "Set the element's `pointer-events` CSS property"
@@ -1497,6 +1629,9 @@
         },
         {
           "const": "64"
+        },
+        {
+          "$ref": "#/definitions/ProteusValue"
         }
       ],
       "description": "Set the element's right padding. Only accepts predefined spacing tokens."
@@ -1547,6 +1682,9 @@
         },
         {
           "const": "64"
+        },
+        {
+          "$ref": "#/definitions/ProteusValue"
         }
       ],
       "description": "Set the element's top padding. Only accepts predefined spacing tokens."
@@ -1597,6 +1735,9 @@
         },
         {
           "const": "64"
+        },
+        {
+          "$ref": "#/definitions/ProteusValue"
         }
       ],
       "description": "Set the element's left and right padding. Only accepts predefined spacing tokens."
@@ -1647,6 +1788,9 @@
         },
         {
           "const": "64"
+        },
+        {
+          "$ref": "#/definitions/ProteusValue"
         }
       ],
       "description": "Set the element's top and bottom padding. Only accepts predefined spacing tokens."
@@ -1676,6 +1820,9 @@
         },
         {
           "const": "full"
+        },
+        {
+          "$ref": "#/definitions/ProteusValue"
         }
       ],
       "description": "Set the element's border radius. Only accepts predefined borderRadius tokens."
@@ -1696,6 +1843,9 @@
         },
         {
           "const": "xl"
+        },
+        {
+          "$ref": "#/definitions/ProteusValue"
         }
       ],
       "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens."
@@ -1794,6 +1944,9 @@
         },
         {
           "const": "min"
+        },
+        {
+          "$ref": "#/definitions/ProteusValue"
         }
       ],
       "description": "Set the element's width and height. Only accepts predefined size tokens.\n\nWhen width and height are the same, use `size` instead of setting both\n`w` and `h` separately (e.g., prefer `size=\"24\"` over `w=\"24\" h=\"24\"`)."
@@ -1811,6 +1964,9 @@
         },
         {
           "const": "justify"
+        },
+        {
+          "$ref": "#/definitions/ProteusValue"
         }
       ],
       "description": "Set the element's `text-align` CSS property"
@@ -1825,6 +1981,9 @@
         },
         {
           "const": "uppercase"
+        },
+        {
+          "$ref": "#/definitions/ProteusValue"
         }
       ],
       "description": "Set the element's `text-transform` CSS property"
@@ -1845,6 +2004,9 @@
         },
         {
           "const": "colors"
+        },
+        {
+          "$ref": "#/definitions/ProteusValue"
         }
       ],
       "description": "Control which CSS properties should transition"
@@ -1943,6 +2105,9 @@
         },
         {
           "const": "min"
+        },
+        {
+          "$ref": "#/definitions/ProteusValue"
         }
       ],
       "description": "Set the element's width. Only accepts predefined size tokens."
@@ -1951,6 +2116,9 @@
       "anyOf": [
         {
           "const": "nowrap"
+        },
+        {
+          "$ref": "#/definitions/ProteusValue"
         }
       ],
       "description": "Set the element's `white-space` CSS property"
@@ -1980,6 +2148,9 @@
         },
         {
           "const": "30"
+        },
+        {
+          "$ref": "#/definitions/ProteusValue"
         }
       ],
       "description": "Set the element's stacking order. Only accepts predefined zIndex tokens (e.g., popover, toast, tooltip) or numeric values (0, 10, 20, 30, auto)."
@@ -2632,6 +2803,9 @@
             },
             {
               "const": "primary-opal"
+            },
+            {
+              "$ref": "#/definitions/ProteusValue"
             }
           ],
           "description": "Control the appearance by selecting between the different button types."
@@ -2912,6 +3086,9 @@
             },
             {
               "const": "primary"
+            },
+            {
+              "$ref": "#/definitions/ProteusValue"
             }
           ],
           "description": "Control the appearance by selecting between the different badge types."
@@ -3522,8 +3699,15 @@
           "$ref": "#/definitions/SprinkleProp_py"
         },
         "required": {
-          "description": "Display an asterisk for required inputs.",
-          "type": "boolean"
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "#/definitions/ProteusValue"
+            }
+          ],
+          "description": "Display an asterisk for required inputs."
         },
         "rounded": {
           "$ref": "#/definitions/SprinkleProp_rounded"
@@ -3585,6 +3769,9 @@
             },
             {
               "const": "start"
+            },
+            {
+              "$ref": "#/definitions/ProteusValue"
             }
           ],
           "description": "Set the element's `align-items` CSS property. Defaults to `center` when\n`flexDirection='row'`, and `stretch` when `flexDirection='column'`."
@@ -3647,6 +3834,9 @@
             },
             {
               "const": "row-reverse"
+            },
+            {
+              "$ref": "#/definitions/ProteusValue"
             }
           ],
           "description": "Set the element's `flex-direction` CSS property.\n\nDefault: 'row' (CSS standard)"
@@ -3884,6 +4074,9 @@
             },
             {
               "const": "3"
+            },
+            {
+              "$ref": "#/definitions/ProteusValue"
             }
           ],
           "description": "Heading level (1-4) that controls both the semantic HTML tag and font size.\n- `level=\"1\"`: renders `<h1>` with `fontSize=\"4xl\"` (default)\n- `level=\"2\"`: renders `<h2>` with `fontSize=\"3xl\"`\n- `level=\"3\"`: renders `<h3>` with `fontSize=\"2xl\"`\n- `level=\"4\"`: renders `<h4>` with `fontSize=\"xl\"`\n\nUse `asChild` to decouple the semantic level from visual appearance."
@@ -4230,6 +4423,9 @@
             },
             {
               "const": "default"
+            },
+            {
+              "$ref": "#/definitions/ProteusValue"
             }
           ],
           "description": "Control the appearance of the input."
@@ -4331,8 +4527,15 @@
           "$ref": "#/definitions/SprinkleProp_my"
         },
         "name": {
-          "description": "The name of the form control element.",
-          "type": "string"
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "$ref": "#/definitions/ProteusValue"
+            }
+          ],
+          "description": "The name of the form control element."
         },
         "objectFit": {
           "$ref": "#/definitions/SprinkleProp_objectFit"
@@ -4356,8 +4559,15 @@
           "$ref": "#/definitions/SprinkleProp_pl"
         },
         "placeholder": {
-          "description": "The placeholder text to use when control has no value.",
-          "type": "string"
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "$ref": "#/definitions/ProteusValue"
+            }
+          ],
+          "description": "The placeholder text to use when control has no value."
         },
         "placeItems": {
           "$ref": "#/definitions/SprinkleProp_placeItems"
@@ -4462,6 +4672,9 @@
             },
             {
               "type": "string"
+            },
+            {
+              "$ref": "#/definitions/ProteusValue"
             }
           ],
           "description": "The input type."
@@ -4567,8 +4780,15 @@
           "$ref": "#/definitions/SprinkleProp_h"
         },
         "href": {
-          "description": "The link href.",
-          "type": "string"
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "$ref": "#/definitions/ProteusValue"
+            }
+          ],
+          "description": "The link href."
         },
         "justifyContent": {
           "$ref": "#/definitions/SprinkleProp_justifyContent"
@@ -4820,8 +5040,15 @@
           "type": "array"
         },
         "max": {
-          "description": "The maximum value for the range.",
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ProteusValue"
+            }
+          ],
+          "description": "The maximum value for the range."
         },
         "maxH": {
           "$ref": "#/definitions/SprinkleProp_maxH"
@@ -4833,8 +5060,15 @@
           "$ref": "#/definitions/SprinkleProp_mb"
         },
         "min": {
-          "description": "The minimum value for the range.",
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ProteusValue"
+            }
+          ],
+          "description": "The minimum value for the range."
         },
         "ml": {
           "$ref": "#/definitions/SprinkleProp_ml"
@@ -4897,8 +5131,15 @@
           "$ref": "#/definitions/SprinkleProp_shadow"
         },
         "step": {
-          "description": "The stepping interval for the range.",
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ProteusValue"
+            }
+          ],
+          "description": "The stepping interval for the range."
         },
         "textAlign": {
           "$ref": "#/definitions/SprinkleProp_textAlign"
@@ -4956,8 +5197,15 @@
           "$ref": "#/definitions/ProteusNode"
         },
         "name": {
-          "description": "The name of the inner select element.",
-          "type": "string"
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "$ref": "#/definitions/ProteusValue"
+            }
+          ],
+          "description": "The name of the inner select element."
         },
         "options": {
           "description": "The select items/options we want to render.",
@@ -5665,6 +5913,9 @@
             },
             {
               "const": "3"
+            },
+            {
+              "$ref": "#/definitions/ProteusValue"
             }
           ],
           "description": "Truncate the text at specific number of lines."
@@ -5754,8 +6005,15 @@
           "$ref": "#/definitions/SprinkleProp_transition"
         },
         "truncate": {
-          "description": "Whether to truncate the text and add an ellipsis at the end.",
-          "type": "boolean"
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "#/definitions/ProteusValue"
+            }
+          ],
+          "description": "Whether to truncate the text and add an ellipsis at the end."
         },
         "w": {
           "$ref": "#/definitions/SprinkleProp_w"
@@ -5882,6 +6140,9 @@
             },
             {
               "const": 5
+            },
+            {
+              "$ref": "#/definitions/ProteusValue"
             }
           ],
           "description": "Limits the height of the textarea when `resize=auto` is used."
@@ -5908,8 +6169,15 @@
           "$ref": "#/definitions/SprinkleProp_my"
         },
         "name": {
-          "description": "The name of the form control element.",
-          "type": "string"
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "$ref": "#/definitions/ProteusValue"
+            }
+          ],
+          "description": "The name of the form control element."
         },
         "objectFit": {
           "$ref": "#/definitions/SprinkleProp_objectFit"
@@ -5933,8 +6201,15 @@
           "$ref": "#/definitions/SprinkleProp_pl"
         },
         "placeholder": {
-          "description": "The placeholder text to use when control has no value.",
-          "type": "string"
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "$ref": "#/definitions/ProteusValue"
+            }
+          ],
+          "description": "The placeholder text to use when control has no value."
         },
         "placeItems": {
           "$ref": "#/definitions/SprinkleProp_placeItems"
@@ -5964,6 +6239,9 @@
             },
             {
               "const": "vertical"
+            },
+            {
+              "$ref": "#/definitions/ProteusValue"
             }
           ],
           "description": "Control whether resizing mode is manual, automatic, or disabled."
@@ -5972,8 +6250,15 @@
           "$ref": "#/definitions/SprinkleProp_rounded"
         },
         "rows": {
-          "description": "The number of rows to display.",
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ProteusValue"
+            }
+          ],
+          "description": "The number of rows to display."
         },
         "shadow": {
           "$ref": "#/definitions/SprinkleProp_shadow"
@@ -6051,8 +6336,15 @@
           "$ref": "#/definitions/SprinkleProp_cursor"
         },
         "date": {
-          "description": "The date to display. Can be a `Date` object or an ISO 8601 string.",
-          "type": "string"
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "$ref": "#/definitions/ProteusValue"
+            }
+          ],
+          "description": "The date to display. Can be a `Date` object or an ISO 8601 string."
         },
         "display": {
           "$ref": "#/definitions/SprinkleProp_display"
@@ -6166,12 +6458,26 @@
           "$ref": "#/definitions/SprinkleProp_shadow"
         },
         "showDate": {
-          "description": "Whether to show the date part of the value. Defaults to `true`.",
-          "type": "boolean"
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "#/definitions/ProteusValue"
+            }
+          ],
+          "description": "Whether to show the date part of the value. Defaults to `true`."
         },
         "showTime": {
-          "description": "Whether to show the time part of the value. Defaults to `false`.",
-          "type": "boolean"
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "#/definitions/ProteusValue"
+            }
+          ],
+          "description": "Whether to show the time part of the value. Defaults to `false`."
         },
         "size": {
           "$ref": "#/definitions/SprinkleProp_size"

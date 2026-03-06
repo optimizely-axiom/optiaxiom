@@ -25,14 +25,26 @@ type Story = StoryObj<typeof ProteusDocumentRenderer>;
 
 export const Basic: Story = {
   args: {
+    data: {
+      badge_intent: "success",
+    },
     element: {
       $type: "Document",
       appName: "Opal",
       body: [
         {
           $type: "Text",
-          children:
-            "This is a basic Proteus Document that demonstrates rendering elements from JSON.",
+          children: [
+            "This is a basic Proteus Document that demonstrates rendering elements from JSON. ",
+            {
+              $type: "Badge",
+              children: "Sample",
+              intent: {
+                $type: "Value",
+                path: "/badge_intent",
+              },
+            },
+          ],
         },
       ],
       subtitle: "Secondary title",
