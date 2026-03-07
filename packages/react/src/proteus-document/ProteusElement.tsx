@@ -4,6 +4,8 @@ import { ProteusAction } from "./ProteusAction";
 import { ProteusBadge } from "./ProteusBadge";
 import { ProteusCancelAction } from "./ProteusCancelAction";
 import { ProteusDataTable } from "./ProteusDataTable";
+import { useProteusDocumentContext } from "./ProteusDocumentContext";
+import { useProteusDocumentPathContext } from "./ProteusDocumentPathContext";
 import { ProteusField } from "./ProteusField";
 import { ProteusGroup } from "./ProteusGroup";
 import { ProteusHeading } from "./ProteusHeading";
@@ -21,6 +23,7 @@ import { ProteusText } from "./ProteusText";
 import { ProteusTextarea } from "./ProteusTextarea";
 import { ProteusTime } from "./ProteusTime";
 import { ProteusValue } from "./ProteusValue";
+import { resolveProteusValue } from "./resolveProteusValue";
 import { safeParseElement } from "./schemas";
 
 const ProteusChart = lazy(async () => {
@@ -39,6 +42,10 @@ export type ProteusElementProps = {
 export const ProteusElement = ({
   element: elementProp,
 }: ProteusElementProps) => {
+  const { data } = useProteusDocumentContext("@optiaxiom/react/ProteusElement");
+  const { path: parentPath } = useProteusDocumentPathContext(
+    "@optiaxiom/react/ProteusElement",
+  );
   if (!elementProp) {
     return null;
   } else if (
@@ -68,18 +75,27 @@ export const ProteusElement = ({
   }
 
   const element = result.data;
+  const resolve = (obj: Record<string, unknown>) => {
+    const { $type: _$type, ...rest } = obj;
+    const resolved: Record<string, unknown> = {};
+    for (const [key, value] of Object.entries(rest)) {
+      resolved[key] = resolveProteusValue(value, data, parentPath);
+    }
+    return resolved;
+  };
+
   switch (element.$type) {
     case "Action":
-      return <ProteusAction {...omitType(element)} />;
+      return <ProteusAction {...resolve(element)} />;
     case "Badge":
-      return <ProteusBadge {...omitType(element)} />;
+      return <ProteusBadge {...resolve(element)} />;
     case "CancelAction":
-      return <ProteusCancelAction {...omitType(element)} />;
+      return <ProteusCancelAction {...resolve(element)} />;
     case "Chart":
       return (
         <Suspense fallback={null}>
           <ProteusChart
-            {...(omitType(element) as ComponentPropsWithoutRef<
+            {...(resolve(element) as ComponentPropsWithoutRef<
               typeof ProteusChart
             >)}
           />
@@ -88,59 +104,57 @@ export const ProteusElement = ({
     case "DataTable":
       return (
         <ProteusDataTable
-          {...(omitType(element) as ComponentPropsWithoutRef<
+          {...(resolve(element) as ComponentPropsWithoutRef<
             typeof ProteusDataTable
           >)}
         />
       );
     case "Field":
-      return <ProteusField {...omitType(element)} />;
+      return <ProteusField {...resolve(element)} />;
     case "Group":
-      return <ProteusGroup {...omitType(element)} />;
+      return <ProteusGroup {...resolve(element)} />;
     case "Heading":
-      return <ProteusHeading {...omitType(element)} />;
+      return <ProteusHeading {...resolve(element)} />;
     case "Image":
-      return <ProteusImage {...omitType(element)} />;
+      return <ProteusImage {...resolve(element)} />;
     case "Input":
-      return <ProteusInput {...omitType(element)} />;
+      return <ProteusInput {...resolve(element)} />;
     case "Link":
-      return <ProteusLink {...omitType(element)} />;
+      return <ProteusLink {...resolve(element)} />;
     case "Map":
       return (
         <ProteusMap
-          {...(omitType(element) as ComponentPropsWithoutRef<
-            typeof ProteusMap
-          >)}
+          {...(resolve(element) as ComponentPropsWithoutRef<typeof ProteusMap>)}
         />
       );
     case "Range":
-      return <ProteusRange {...omitType(element)} />;
+      return <ProteusRange {...resolve(element)} />;
     case "Select":
-      return <ProteusSelect {...omitType(element)} />;
+      return <ProteusSelect {...resolve(element)} />;
     case "SelectContent":
-      return <ProteusSelectContent {...omitType(element)} />;
+      return <ProteusSelectContent {...resolve(element)} />;
     case "SelectTrigger":
-      return <ProteusSelectTrigger {...omitType(element)} />;
+      return <ProteusSelectTrigger {...resolve(element)} />;
     case "Separator":
-      return <ProteusSeparator {...omitType(element)} />;
+      return <ProteusSeparator {...resolve(element)} />;
     case "Show":
       return (
         <ProteusShow
-          {...(omitType(element) as ComponentPropsWithoutRef<
+          {...(resolve(element) as ComponentPropsWithoutRef<
             typeof ProteusShow
           >)}
         />
       );
     case "Text":
-      return <ProteusText {...omitType(element)} />;
+      return <ProteusText {...resolve(element)} />;
     case "Textarea":
-      return <ProteusTextarea {...omitType(element)} />;
+      return <ProteusTextarea {...resolve(element)} />;
     case "Time":
-      return <ProteusTime {...omitType(element)} />;
+      return <ProteusTime {...resolve(element)} />;
     case "Value":
       return (
         <ProteusValue
-          {...(omitType(element) as ComponentPropsWithoutRef<
+          {...(resolve(element) as ComponentPropsWithoutRef<
             typeof ProteusValue
           >)}
         />
@@ -152,8 +166,3 @@ export const ProteusElement = ({
 };
 
 ProteusElement.displayName = "@optiaxiom/react/ProteusElement";
-
-const omitType = <T extends { $type: string }>(obj: T) => {
-  const { $type: _$type, ...rest } = obj;
-  return rest;
-};

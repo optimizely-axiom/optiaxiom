@@ -5,7 +5,6 @@ import { useProteusDocumentContext } from "./ProteusDocumentContext";
 import { useProteusDocumentPathContext } from "./ProteusDocumentPathContext";
 import { ProteusElement } from "./ProteusElement";
 import { useProteusValue } from "./useProteusValue";
-import { useResolvedProteusProps } from "./useResolvedProteusProps";
 
 export function ProteusSelect({
   children,
@@ -36,7 +35,7 @@ export function ProteusSelect({
 
   return (
     <Select
-      {...useResolvedProteusProps(props)}
+      {...props}
       onValueChange={(value) => {
         if (readOnly) {
           return;

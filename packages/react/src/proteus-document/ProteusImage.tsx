@@ -20,13 +20,9 @@ import { IconDownload } from "../icons/IconDownload";
 import { Spinner } from "../spinner";
 import { downloadFile } from "./downloadFile";
 import * as styles from "./ProteusImage.css";
-import { useResolvedProteusValue } from "./useResolvedProteusValue";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function ProteusImage(props: Record<string, any>) {
-  const resolvedSrc = useResolvedProteusValue(props.src);
-  const resolvedAlt = useResolvedProteusValue(props.alt);
-
   const [isCopied, setIsCopied] = useState(false);
   const [isDownloading, setIsDownloading] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -55,10 +51,10 @@ export function ProteusImage(props: Record<string, any>) {
         {...props}
       >
         <img
-          alt={String(resolvedAlt)}
+          alt={props.alt}
           onLoad={() => setIsLoaded(true)}
           ref={imgRef}
-          src={String(resolvedSrc)}
+          src={props.src}
         />
       </Box>
       {isLoaded && (
@@ -97,7 +93,7 @@ export function ProteusImage(props: Record<string, any>) {
                     new ClipboardItem({ "image/png": blob }),
                   ]);
                 } else {
-                  await navigator.clipboard.writeText(String(resolvedSrc));
+                  await navigator.clipboard.writeText(String(props.src));
                 }
 
                 clearTimeout(timerRef.current);
@@ -115,10 +111,10 @@ export function ProteusImage(props: Record<string, any>) {
                 size="sm"
               />
               <DialogContent size="lg">
-                <DialogHeader>{String(resolvedAlt)}</DialogHeader>
+                <DialogHeader>{props.alt}</DialogHeader>
                 <DialogBody>
                   <Box asChild display="block" objectFit="cover" {...props}>
-                    <img alt={String(resolvedAlt)} src={String(resolvedSrc)} />
+                    <img alt={props.alt} src={props.src} />
                   </Box>
                 </DialogBody>
                 <DialogFooter>
@@ -141,14 +137,14 @@ export function ProteusImage(props: Record<string, any>) {
 
                 setIsDownloading(true);
                 try {
-                  await downloadFile(String(resolvedSrc));
+                  await downloadFile(String(props.src));
                 } finally {
                   setIsDownloading(false);
                 }
               }}
               size="sm"
             >
-              <a download href={String(resolvedSrc)} />
+              <a download href={props.src} />
             </Button>
           </Group>
         </ActionsContent>
