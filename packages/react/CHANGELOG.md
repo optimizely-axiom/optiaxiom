@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 1.9.12
+
+### Patch Changes
+
+- 342150d: fix allowing dynamic values for download action
+
 ## 1.9.11
 
 ### Patch Changes
