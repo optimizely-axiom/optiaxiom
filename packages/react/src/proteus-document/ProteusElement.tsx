@@ -76,8 +76,8 @@ export const ProteusElement = ({
 
   const element = result.data;
   const resolve = (obj: Record<string, unknown>) => {
-    const { $type: _$type, ...rest } = obj;
-    const resolved: Record<string, unknown> = {};
+    const { $type: _$type, children, ...rest } = obj;
+    const resolved: Record<string, unknown> = { children };
     for (const [key, value] of Object.entries(rest)) {
       resolved[key] = resolveProteusValue(value, data, parentPath);
     }
