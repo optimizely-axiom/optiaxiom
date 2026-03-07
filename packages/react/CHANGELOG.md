@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 1.9.13
+
+### Patch Changes
+
+- d00d3b3: fix resolving props for time component
+
 ## 1.9.12
 
 ### Patch Changes
