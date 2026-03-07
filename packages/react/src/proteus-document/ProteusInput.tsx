@@ -2,7 +2,6 @@ import { Input } from "../input";
 import { useProteusDocumentContext } from "./ProteusDocumentContext";
 import { useProteusDocumentPathContext } from "./ProteusDocumentPathContext";
 import { useProteusValue } from "./useProteusValue";
-import { useResolvedProteusProps } from "./useResolvedProteusProps";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function ProteusInput(props: Record<string, any>) {
@@ -17,7 +16,7 @@ export function ProteusInput(props: Record<string, any>) {
 
   return (
     <Input
-      {...useResolvedProteusProps(props)}
+      {...props}
       onValueChange={(value) => {
         if (props.name) {
           onDataChange?.(`${parentPath}/${props.name}`, value);

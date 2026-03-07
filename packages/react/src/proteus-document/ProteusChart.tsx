@@ -12,7 +12,6 @@ import {
 import { Box } from "../box";
 import * as styles from "./ProteusChart.css";
 import { ProteusChartTooltipContent } from "./ProteusChartTooltipContent";
-import { useResolvedProteusValue } from "./useResolvedProteusValue";
 
 type Series = {
   color?: string;
@@ -31,17 +30,15 @@ export const ProteusChart = ({
   series,
   xAxisKey,
 }: {
-  data: Record<string, unknown>[] | { $type: "Value"; path: string };
+  data: Record<string, unknown>[];
   series: Series[];
   type: "bar";
   xAxisKey?: string;
 }) => {
-  const records = useResolvedProteusValue(data) as Record<string, unknown>[];
-
   return (
     <Box asChild {...styles.chart()}>
       <ResponsiveContainer aspect={16 / 9} width="100%">
-        <BarChart data={records} margin={{ top: 20 }}>
+        <BarChart data={data} margin={{ top: 20 }}>
           <CartesianGrid
             stroke="#E0E0E0"
             strokeDasharray="4 4"
