@@ -5,7 +5,7 @@ import { Validator } from "@cfworker/json-schema";
 
 import proteusDocumentSpec from "./proteus-document-spec.json";
 
-// --- ProteusDocument ---
+// --- ProteusValue ---
 
 export interface ProteusDocument {
   $type: "Document";
@@ -19,7 +19,7 @@ export interface ProteusDocument {
   title: unknown;
 }
 
-// --- ProteusElement (discriminated union for switch exhaustiveness) ---
+// --- ProteusEventHandler ---
 
 export type ProteusElement =
   | { $type: "Action"; [key: string]: unknown }
@@ -45,14 +45,14 @@ export type ProteusElement =
   | { $type: "Time"; [key: string]: unknown }
   | { $type: "Value"; [key: string]: unknown };
 
-// --- ProteusEventHandler ---
+// --- ProteusDocument ---
 
 export type ProteusEventHandler =
   | { action: "download"; url: ProteusValue | string }
   | { message: string }
   | { tool: string };
 
-// --- ProteusValue ---
+// --- ProteusElement (discriminated union for switch exhaustiveness) ---
 
 export interface ProteusValue {
   $type: "Value";
