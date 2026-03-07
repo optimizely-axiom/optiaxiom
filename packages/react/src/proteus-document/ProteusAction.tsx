@@ -19,6 +19,9 @@ export function ProteusAction({
   const { onEvent } = useProteusDocumentContext(
     "@optiaxiom/react/ProteusAction",
   );
+  const resolvedOnClick = useResolvedProteusProps(
+    onClick ?? {},
+  ) as ProteusEventHandler;
 
   const [loading, setLoading] = useState(false);
 
@@ -32,7 +35,7 @@ export function ProteusAction({
         }
 
         setLoading(true);
-        await onEvent(onClick);
+        await onEvent(resolvedOnClick);
         setLoading(false);
       }}
       {...useResolvedProteusProps(props)}
