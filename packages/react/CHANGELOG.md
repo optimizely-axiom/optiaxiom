@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 1.9.14
+
+### Patch Changes
+
+- e238236: fix resolving nested props for Action
+
 ## 1.9.13
 
 ### Patch Changes
