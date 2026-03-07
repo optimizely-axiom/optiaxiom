@@ -5,6 +5,7 @@ import type { ProteusEventHandler } from "./schemas";
 import { Button } from "../button";
 import { useProteusDocumentContext } from "./ProteusDocumentContext";
 import { ProteusElement } from "./ProteusElement";
+import { useResolvedProteusProps } from "./useResolvedProteusProps";
 
 export function ProteusAction({
   children,
@@ -18,6 +19,9 @@ export function ProteusAction({
   const { onEvent } = useProteusDocumentContext(
     "@optiaxiom/react/ProteusAction",
   );
+  const resolvedOnClick = useResolvedProteusProps(
+    (onClick ?? {}) as Record<string, unknown>,
+  ) as ProteusEventHandler;
 
   const [loading, setLoading] = useState(false);
 
@@ -31,7 +35,7 @@ export function ProteusAction({
         }
 
         setLoading(true);
-        await onEvent(onClick);
+        await onEvent(resolvedOnClick);
         setLoading(false);
       }}
       {...props}
