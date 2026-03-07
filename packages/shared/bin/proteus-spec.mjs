@@ -705,8 +705,11 @@ function generateJsonSchema(additionalProperties = false) {
                   type: "string",
                 },
                 url: {
+                  anyOf: [
+                    { $ref: "#/definitions/ProteusValue" },
+                    { type: "string" },
+                  ],
                   description: "URL to download",
-                  type: "string",
                 },
               },
               required: ["action", "url"],
@@ -761,6 +764,14 @@ function generateTypeScriptTypes(schema) {
   lines.push("import proteusDocumentSpec from './proteus-document-spec.json';");
   lines.push("");
 
+  // --- ProteusValue ---
+  lines.push("// --- ProteusValue ---");
+  lines.push("");
+  lines.push(
+    'export interface ProteusValue { $type: "Value"; path: string; [key: string]: unknown }',
+  );
+  lines.push("");
+
   // --- ProteusEventHandler ---
   lines.push("// --- ProteusEventHandler ---");
   lines.push("");
@@ -783,8 +794,25 @@ function generateTypeScriptTypes(schema) {
           return [];
         }
 
-        const type =
-          prop && prop.const ? JSON.stringify(prop.const) : prop.type;
+        let type;
+        if (prop.const) {
+          type = JSON.stringify(prop.const);
+        } else if (prop.type) {
+          type = prop.type;
+        } else if (prop.anyOf) {
+          const types = /** @type {string[]} */ (
+            prop.anyOf.flatMap((/** @type {JSONSchema7Definition} */ s) => {
+              if (typeof s !== "object") return [];
+              if (s.type) return [String(s.type)];
+              if (s.$ref === "#/definitions/ProteusValue")
+                return ["ProteusValue"];
+              return [];
+            })
+          );
+          type = types.join(" | ") || "unknown";
+        } else {
+          type = "unknown";
+        }
         return [`${key}: ${type}`];
       })
       .join("; ");

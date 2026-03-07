@@ -103,7 +103,11 @@ export function ProteusDocumentRenderer({
         } else if ("message" in event) {
           await onMessage?.(event.message);
         } else if (event.action === "download") {
-          await downloadFile(event.url);
+          if (typeof event.url === "string") {
+            await downloadFile(event.url);
+          } else {
+            throw new Error("Invalid URL for download action");
+          }
         }
       })}
       readOnly={readOnly}

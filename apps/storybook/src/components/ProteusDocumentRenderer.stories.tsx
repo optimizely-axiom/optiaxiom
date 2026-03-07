@@ -229,6 +229,9 @@ export const FormWithInputs: Story = {
 
 export const WithImage: Story = {
   args: {
+    data: {
+      link: "https://placehold.co/600x400",
+    },
     element: {
       $type: "Document",
       actions: [
@@ -236,7 +239,10 @@ export const WithImage: Story = {
           $type: "Action",
           appearance: "primary",
           children: "Download",
-          onClick: { action: "download", url: "https://placehold.co/600x400" },
+          onClick: {
+            action: "download",
+            url: { $type: "Value", path: "/link" },
+          },
         },
       ],
       body: [
