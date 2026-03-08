@@ -33,13 +33,14 @@ export type TextProps<T extends ElementType = "p", P = unknown> = BoxProps<
  * @category typography
  */
 export const Text = forwardRef<HTMLParagraphElement, TextProps>(
-  ({ asChild, children, className, lineClamp, truncate, ...props }, ref) => {
+  ({ asChild, children, className, color = "fg.default", lineClamp, truncate, ...props }, ref) => {
     const Comp = asChild ? Slot : "p";
 
     return (
       <Box
         asChild
         ref={ref}
+        color={color}
         {...styles.text({ lineClamp, truncate }, className)}
         {...props}
       >
