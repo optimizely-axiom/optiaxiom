@@ -28,7 +28,7 @@ export function ProteusSelect({
 
   const optionsRef = useRef(options);
   optionsRef.current = options;
-  const resolved = useProteusValue(props.name ?? "");
+  const resolved = useProteusValue({ path: props.name ?? "" });
   const value = props.name
     ? String(resolved ?? options[0]?.value ?? "")
     : (options[0]?.value ?? "");

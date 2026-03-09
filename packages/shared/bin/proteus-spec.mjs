@@ -153,7 +153,7 @@ const PROTEUS_COMPONENT_CONFIG = {
     example: { date: "2025-01-22T14:30:00Z" },
   },
   Value: {
-    allowedProps: ["path"],
+    allowedProps: ["formatter", "path"],
     example: { path: "/field_name" },
     extends: "Fragment",
     requiredProps: ["path"],
@@ -801,7 +801,7 @@ function generateTypeScriptTypes(schema) {
   lines.push("// --- ProteusValue ---");
   lines.push("");
   lines.push(
-    'export interface ProteusValue { $type: "Value"; path: string; [key: string]: unknown }',
+    'export interface ProteusValue { $type: "Value"; formatter?: { options?: Record<string, unknown>; type: string } | string; path: string; [key: string]: unknown }',
   );
   lines.push("");
 
@@ -1123,6 +1123,37 @@ function getPropTypeOverrides(additionalProperties = false) {
       },
     },
     Value: {
+      formatter: {
+        anyOf: [
+          {
+            description:
+              "Shorthand formatter name. 'DateTime' formats timestamps using Intl.DateTimeFormat (default: month short, day numeric). 'Number' formats numbers using Intl.NumberFormat.",
+            enum: ["DateTime", "Number"],
+            type: "string",
+          },
+          {
+            ...(additionalProperties ? {} : { additionalProperties: false }),
+            description:
+              "Formatter with custom Intl options. 'type' selects the formatter, 'options' are passed to the Intl constructor.",
+            properties: {
+              options: {
+                description:
+                  "Options passed to the Intl formatter constructor (e.g., Intl.DateTimeFormatOptions or Intl.NumberFormatOptions)",
+                type: "object",
+              },
+              type: {
+                description: "Formatter type",
+                enum: ["DateTime", "Number"],
+                type: "string",
+              },
+            },
+            required: ["type"],
+            type: "object",
+          },
+        ],
+        description:
+          "Optional formatter to apply to the resolved value. Can be a string shorthand or an object with type and options for Intl formatters.",
+      },
       path: {
         description:
           "Path to a value in the data. Absolute paths start with '/' and resolve from the root (e.g., '/title', '/options/0/label'). Inside a Map template, paths without a leading '/' are relative to the current item (e.g., 'title' resolves to each item's 'title' field).",

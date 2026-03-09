@@ -559,6 +559,7 @@ export const ExploreReport: Story = {
             sources: {
               date: {
                 $type: "Value",
+                formatter: "DateTime",
                 path: "/data/upserts/0/i",
               },
               measure0: { $type: "Value", path: "/data/upserts/1/i" },
@@ -587,6 +588,10 @@ export const ExploreReport: Story = {
             sources: {
               date: {
                 $type: "Value",
+                formatter: {
+                  options: { month: "short", year: "numeric" },
+                  type: "DateTime",
+                },
                 path: "/data/upserts/0/i",
               },
               measure0: { $type: "Value", path: "/data/upserts/1/i" },

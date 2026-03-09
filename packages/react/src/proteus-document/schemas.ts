@@ -57,6 +57,7 @@ export type ProteusEventHandler =
 export interface ProteusValue {
   $type: "Value";
   [key: string]: unknown;
+  formatter?: string | { options?: Record<string, unknown>; type: string };
   path: string;
 }
 

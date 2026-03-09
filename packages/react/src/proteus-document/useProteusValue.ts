@@ -1,8 +1,12 @@
+import type { ProteusValue } from "./schemas";
+
 import { getProteusValue } from "./getProteusValue";
 import { useProteusDocumentContext } from "./ProteusDocumentContext";
 import { useProteusDocumentPathContext } from "./ProteusDocumentPathContext";
 
-export function useProteusValue(path: string) {
+export function useProteusValue(
+  element: Pick<ProteusValue, "formatter" | "path">,
+) {
   const { data } = useProteusDocumentContext(
     "@optiaxiom/react/useProteusValue",
   );
@@ -10,5 +14,5 @@ export function useProteusValue(path: string) {
     "@optiaxiom/react/useProteusValue",
   );
 
-  return getProteusValue(data, path, parentPath);
+  return getProteusValue(data, element, parentPath);
 }
