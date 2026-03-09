@@ -154,7 +154,7 @@ export const ProteusElement = ({
     case "Value":
       return (
         <ProteusValue
-          {...(resolve(element) as ComponentPropsWithoutRef<
+          {...(element as unknown as ComponentPropsWithoutRef<
             typeof ProteusValue
           >)}
         />
