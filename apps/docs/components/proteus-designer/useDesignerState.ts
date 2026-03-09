@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 
 type ProteusDoc = Record<string, unknown>;
 
-const STORAGE_KEY = "proteus-designer-document";
+const STORAGE_KEY = "proteus-designer";
 
 const initialDocument: ProteusDoc = {
   $type: "Document",
@@ -18,19 +18,15 @@ export interface DesignerState {
 }
 
 export function useDesignerState() {
-  const [state, setState] = useState<DesignerState>(() => ({
-    data: {},
-    document: loadDocument(),
-    selectedPath: null,
-  }));
+  const [state, setState] = useState<DesignerState>(loadData);
 
   useEffect(() => {
     try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(state.document));
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
     } catch {
       // ignore quota errors
     }
-  }, [state.document]);
+  }, [state]);
 
   const setDocument = useCallback((doc: ProteusDoc) => {
     setState((s) => {
@@ -164,15 +160,24 @@ function insertAtPath(
   return clone;
 }
 
-function loadDocument(): ProteusDoc {
-  if (typeof window === "undefined") return initialDocument;
+function loadData(): DesignerState {
+  if (typeof window === "undefined")
+    return {
+      data: {},
+      document: initialDocument,
+      selectedPath: null,
+    };
   try {
     const stored = localStorage.getItem(STORAGE_KEY);
     if (stored) return JSON.parse(stored);
   } catch {
     // ignore corrupt data
   }
-  return initialDocument;
+  return {
+    data: {},
+    document: initialDocument,
+    selectedPath: null,
+  };
 }
 
 function removeAtPath(obj: ProteusDoc, path: string): ProteusDoc {
