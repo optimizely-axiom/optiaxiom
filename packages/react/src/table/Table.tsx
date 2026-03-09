@@ -31,7 +31,7 @@ export type TableProps = BoxProps<"div", styles.TableVariants>;
 export const Table = forwardRef<HTMLDivElement, TableProps>(
   ({ children, className, layout = "auto", ...props }, ref) => {
     return (
-      <Box ref={ref} {...styles.wrapper({}, className)} {...props}>
+      <Box ref={ref} tabIndex={0} {...styles.wrapper({}, className)} {...props}>
         <Box asChild {...styles.table({ layout })}>
           <table>{children}</table>
         </Box>

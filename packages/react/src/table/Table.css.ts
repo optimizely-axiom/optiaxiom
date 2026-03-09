@@ -50,6 +50,12 @@ export const wrapper = recipe({
     },
     style({
       position: "relative",
+
+      selectors: {
+        "&:focus-visible": {
+          outline: "none",
+        },
+      },
     }),
   ],
 });
