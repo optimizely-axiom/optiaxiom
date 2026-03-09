@@ -16,7 +16,7 @@ export function ProteusMap({
   const { path: parentPath } = useProteusDocumentPathContext(
     "@optiaxiom/react/ProteusMap",
   );
-  const array = useProteusValue(path);
+  const array = useProteusValue({ path });
 
   if (!Array.isArray(array)) {
     if (process.env.NODE_ENV !== "production") {

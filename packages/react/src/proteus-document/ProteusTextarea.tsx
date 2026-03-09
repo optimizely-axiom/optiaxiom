@@ -12,7 +12,7 @@ export function ProteusTextarea(props: Record<string, any>) {
     "@optiaxiom/react/ProteusTextarea",
   );
 
-  const value = useProteusValue(props.name ?? "");
+  const value = useProteusValue({ path: props.name ?? "" });
 
   return (
     <Textarea

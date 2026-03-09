@@ -12,7 +12,7 @@ export function ProteusInput(props: Record<string, any>) {
     "@optiaxiom/react/ProteusInput",
   );
 
-  const value = useProteusValue(props.name ?? "");
+  const value = useProteusValue({ path: props.name ?? "" });
 
   return (
     <Input
