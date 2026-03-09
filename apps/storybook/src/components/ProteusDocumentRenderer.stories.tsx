@@ -570,7 +570,7 @@ export const ExploreReport: Story = {
               name: "Unique Accounts",
             },
           ],
-          type: "bar",
+          type: "line",
           xAxisKey: "date",
         },
         {
