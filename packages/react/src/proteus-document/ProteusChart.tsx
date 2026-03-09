@@ -43,7 +43,10 @@ export const ProteusChart = ({
   return (
     <Box asChild {...styles.chart()}>
       <ResponsiveContainer aspect={16 / 9} width="100%">
-        <ChartComponent data={data} margin={{ top: 20 }}>
+        <ChartComponent
+          data={data}
+          margin={{ bottom: 20, left: 20, right: 20, top: 20 }}
+        >
           <CartesianGrid
             stroke="#E0E0E0"
             strokeDasharray="4 4"
@@ -52,9 +55,10 @@ export const ProteusChart = ({
           <XAxis
             axisLine={false}
             dataKey={xAxisKey}
+            minTickGap={32}
             tick={{ fill: theme.colors["fg.secondary"] }}
             tickLine={false}
-            tickMargin={10}
+            tickMargin={8}
           />
           <Tooltip content={ProteusChartTooltipContent} cursor={false} />
           {series.map((s, i) => (
@@ -71,7 +75,7 @@ export const ProteusChart = ({
                 <LabelList
                   dataKey={s.labelKey}
                   fill={theme.colors["fg.secondary"]}
-                  offset={12}
+                  offset={8}
                   position="top"
                 />
               )}
