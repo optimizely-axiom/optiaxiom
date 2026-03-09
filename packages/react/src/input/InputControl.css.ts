@@ -54,6 +54,7 @@ export const control = recipe({
      * Control the size of the input.
      */
     size: {
+      sm: {},
       md: {},
       lg: {},
       xl: [
