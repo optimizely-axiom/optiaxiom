@@ -742,6 +742,39 @@ function generateJsonSchema(additionalProperties = false) {
           description:
             "A Proteus node can be a string, number, boolean, null, a single element, or an array of these types (similar to ReactNode)",
         },
+        ProteusZip: {
+          ...(additionalProperties ? {} : { additionalProperties: false }),
+          description:
+            "Zips multiple parallel arrays into an array of objects. Each key in 'sources' becomes a property in the resulting row objects.",
+          examples: [
+            {
+              $type: "Zip",
+              sources: {
+                date: { $type: "Value", path: "/upserts/0/i" },
+                measure0: { $type: "Value", path: "/upserts/1/i" },
+              },
+            },
+          ],
+          properties: {
+            $type: { const: "Zip" },
+            sources: {
+              ...(additionalProperties ? {} : { additionalProperties: false }),
+              description:
+                "Map of output property names to array sources. Each source should resolve to an array of the same length.",
+              patternProperties: {
+                ".*": {
+                  anyOf: [
+                    { $ref: "#/definitions/ProteusValue" },
+                    { items: {}, type: "array" },
+                  ],
+                },
+              },
+              type: "object",
+            },
+          },
+          required: ["$type", "sources"],
+          type: "object",
+        },
       },
     ),
     title: "Opal Proteus Document Specification",
@@ -927,9 +960,10 @@ function getPropTypeOverrides(additionalProperties = false) {
             type: "array",
           },
           { $ref: "#/definitions/ProteusValue" },
+          { $ref: "#/definitions/ProteusZip" },
         ],
         description:
-          "Chart data records, either inline or a ProteusValue reference",
+          "Chart data records, either inline, a ProteusValue reference, or a ProteusZip transformation",
       },
       series: {
         description: "Data series configuration",
@@ -993,6 +1027,7 @@ function getPropTypeOverrides(additionalProperties = false) {
             type: "array",
           },
           { $ref: "#/definitions/ProteusValue" },
+          { $ref: "#/definitions/ProteusZip" },
         ],
       },
     },
