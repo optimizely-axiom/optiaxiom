@@ -492,43 +492,52 @@ export const WithChart: Story = {
 export const ExploreReport: Story = {
   args: {
     data: {
-      results: [
-        {
-          date: "23 Feb",
-          uniqueActorCount: 1500,
-          uniqueActorCountFormatted: "1,500",
+      data: {
+        schema: {
+          columns: [
+            {
+              dataType: "DATA_TYPE_TIMESTAMP",
+              displayName: "Time Bucket",
+              key: "Time Bucket",
+            },
+            {
+              dataType: "DATA_TYPE_INT64",
+              displayName: "measure0",
+              key: "Measure 0",
+            },
+          ],
         },
-        {
-          date: "24 Feb",
-          uniqueActorCount: 1650,
-          uniqueActorCountFormatted: "1,650",
-        },
-        {
-          date: "25 Feb",
-          uniqueActorCount: 1400,
-          uniqueActorCountFormatted: "1,400",
-        },
-        {
-          date: "26 Feb",
-          uniqueActorCount: 1720,
-          uniqueActorCountFormatted: "1,720",
-        },
-        {
-          date: "27 Feb",
-          uniqueActorCount: 1800,
-          uniqueActorCountFormatted: "1,800",
-        },
-        {
-          date: "28 Feb",
-          uniqueActorCount: 1750,
-          uniqueActorCountFormatted: "1,750",
-        },
-        {
-          date: "29 Feb",
-          uniqueActorCount: 1900,
-          uniqueActorCountFormatted: "1,900",
-        },
-      ],
+        upserts: [
+          {
+            i: [
+              1765180800000, 1765785600000, 1766390400000, 1766995200000,
+              1767600000000, 1768204800000, 1768809600000, 1769414400000,
+              1770019200000, 1770624000000, 1771228800000, 1771833600000,
+              1772438400000,
+            ],
+            schema: {
+              dataType: "DATA_TYPE_TIMESTAMP",
+              displayName: "Time Bucket",
+              key: "Time Bucket",
+            },
+          },
+          {
+            i: [
+              495, 494, 237, 176, 435, 488, 485, 496, 492, 534, 477, 526, 496,
+            ],
+            schema: {
+              dataType: "DATA_TYPE_INT64",
+              displayName: "measure0",
+              key: "Measure 0",
+            },
+          },
+        ],
+      },
+      explore: {
+        description:
+          "Event segmentation showing the weekly unique count of users who started an experiment over the past 3 months.",
+        name: "Unique Users Starting Experiments (Last 3 Months, Weekly)",
+      },
     },
     element: {
       $type: "Document",
@@ -537,8 +546,7 @@ export const ExploreReport: Story = {
         {
           $type: "Text",
           bg: "bg.page",
-          children:
-            "Measures daily unique users performing any event over the last 7 days.",
+          children: { $type: "Value", path: "/explore/description" },
           color: "fg.secondary",
           fontSize: "md",
           p: "16",
@@ -546,33 +554,49 @@ export const ExploreReport: Story = {
         },
         {
           $type: "Chart",
-          data: { $type: "Value", path: "/results" },
-          series: [{ dataKey: "uniqueActorCount", name: "Unique Actor Count" }],
+          data: {
+            $type: "Zip",
+            sources: {
+              date: {
+                $type: "Value",
+                path: "/data/upserts/0/i",
+              },
+              measure0: { $type: "Value", path: "/data/upserts/1/i" },
+            },
+          },
+          series: [
+            {
+              dataKey: "measure0",
+              name: "Unique Accounts",
+            },
+          ],
           type: "bar",
           xAxisKey: "date",
         },
         {
           $type: "DataTable",
           columns: [
-            { accessorKey: "date", header: "Date" },
+            { accessorKey: "date", header: "Time Bucket" },
             {
-              accessorKey: "uniqueActorCountFormatted",
-              format: "number",
-              header: "Unique Actor Count",
+              accessorKey: "measure0",
+              header: "Unique Accounts",
             },
           ],
-          data: { $type: "Value", path: "/results" },
+          data: {
+            $type: "Zip",
+            sources: {
+              date: {
+                $type: "Value",
+                path: "/data/upserts/0/i",
+              },
+              measure0: { $type: "Value", path: "/data/upserts/1/i" },
+            },
+          },
         },
       ],
-      subtitle: "Events: page_view, add_to_cart, purchase | Time grain: 1 DAY",
-      title: "Explore: Daily Active Users",
+      title: { $type: "Value", path: "/explore/name" },
     },
   },
-  decorators: (Story) => (
-    <Box maxW="full">
-      <Story />
-    </Box>
-  ),
 };
 
 export const PartialRendering: Story = {
