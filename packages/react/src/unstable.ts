@@ -10,6 +10,7 @@ export * from "./layout";
 export * from "./pill";
 export * from "./pill-menu";
 export * from "./proteus-document";
+export * from "./proteus-document/internal";
 export * from "./range";
 export * from "./sortable";
 export * from "./spotlight";
