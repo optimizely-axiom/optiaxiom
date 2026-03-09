@@ -78,6 +78,7 @@ export const MenuSubContent = forwardRef<HTMLDivElement, MenuSubContentProps>(
           align={align}
           alignOffset={item.subOptionsInputVisible ? -46 : -4}
           aria-labelledby={clsx(parentItemRef.current?.id, labelId)}
+          maxH="lg"
           onCloseAutoFocus={(event) => {
             event.preventDefault();
             parentInputRef.current?.focus();
