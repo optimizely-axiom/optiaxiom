@@ -2,7 +2,6 @@ import {
   ProteusDocumentPathProvider,
   useProteusDocumentPathContext,
 } from "./ProteusDocumentPathContext";
-import { ProteusElement } from "./ProteusElement";
 import { useProteusValue } from "./useProteusValue";
 
 export function ProteusMap({
@@ -35,7 +34,7 @@ export function ProteusMap({
           key={index}
           path={`${path.startsWith("/") ? path : `${parentPath}/${path}`}/${index}`}
         >
-          <ProteusElement element={children} />
+          {children}
         </ProteusDocumentPathProvider>
       ))}
     </>

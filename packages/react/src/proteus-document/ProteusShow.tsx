@@ -1,6 +1,5 @@
 import { useProteusDocumentContext } from "./ProteusDocumentContext";
 import { useProteusDocumentPathContext } from "./ProteusDocumentPathContext";
-import { ProteusElement } from "./ProteusElement";
 import { resolveProteusValue } from "./resolveProteusValue";
 
 type ComparisonValue =
@@ -44,7 +43,7 @@ export function ProteusShow({
     return null;
   }
 
-  return <ProteusElement element={children} />;
+  return <>{children}</>;
 }
 
 function evaluateCondition(

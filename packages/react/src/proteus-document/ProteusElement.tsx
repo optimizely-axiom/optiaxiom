@@ -1,27 +1,27 @@
 import { type ComponentPropsWithoutRef, lazy, Suspense } from "react";
 
+import { Badge } from "../badge";
+import { Field } from "../field";
+import { Group } from "../group";
+import { Heading } from "../heading";
+import { Link } from "../link";
+import { Range } from "../range";
+import { SelectTrigger } from "../select";
+import { SelectContent } from "../select";
+import { Separator } from "../separator";
+import { Text } from "../text";
+import { Time } from "../time";
 import { ProteusAction } from "./ProteusAction";
-import { ProteusBadge } from "./ProteusBadge";
 import { ProteusCancelAction } from "./ProteusCancelAction";
 import { ProteusDataTable } from "./ProteusDataTable";
 import { useProteusDocumentContext } from "./ProteusDocumentContext";
 import { useProteusDocumentPathContext } from "./ProteusDocumentPathContext";
-import { ProteusField } from "./ProteusField";
-import { ProteusGroup } from "./ProteusGroup";
-import { ProteusHeading } from "./ProteusHeading";
 import { ProteusImage } from "./ProteusImage";
 import { ProteusInput } from "./ProteusInput";
-import { ProteusLink } from "./ProteusLink";
 import { ProteusMap } from "./ProteusMap";
-import { ProteusRange } from "./ProteusRange";
 import { ProteusSelect } from "./ProteusSelect";
-import { ProteusSelectContent } from "./ProteusSelectContent";
-import { ProteusSelectTrigger } from "./ProteusSelectTrigger";
-import { ProteusSeparator } from "./ProteusSeparator";
 import { ProteusShow } from "./ProteusShow";
-import { ProteusText } from "./ProteusText";
 import { ProteusTextarea } from "./ProteusTextarea";
-import { ProteusTime } from "./ProteusTime";
 import { ProteusValue } from "./ProteusValue";
 import { resolveProteusValue } from "./resolveProteusValue";
 import { safeParseElement } from "./schemas";
@@ -77,7 +77,9 @@ export const ProteusElement = ({
   const element = result.data;
   const resolve = (obj: Record<string, unknown>) => {
     const { $type: _$type, children, ...rest } = obj;
-    const resolved: Record<string, unknown> = { children };
+    const resolved: Record<string, unknown> = {
+      children: children ? <ProteusElement element={children} /> : children,
+    };
     for (const [key, value] of Object.entries(rest)) {
       resolved[key] = resolveProteusValue(value, data, parentPath);
     }
@@ -88,7 +90,7 @@ export const ProteusElement = ({
     case "Action":
       return <ProteusAction {...resolve(element)} />;
     case "Badge":
-      return <ProteusBadge {...resolve(element)} />;
+      return <Badge {...resolve(element)} />;
     case "CancelAction":
       return <ProteusCancelAction {...resolve(element)} />;
     case "Chart":
@@ -110,17 +112,17 @@ export const ProteusElement = ({
         />
       );
     case "Field":
-      return <ProteusField {...resolve(element)} />;
+      return <Field {...resolve(element)} />;
     case "Group":
-      return <ProteusGroup {...resolve(element)} />;
+      return <Group {...resolve(element)} />;
     case "Heading":
-      return <ProteusHeading {...resolve(element)} />;
+      return <Heading {...resolve(element)} />;
     case "Image":
       return <ProteusImage {...resolve(element)} />;
     case "Input":
       return <ProteusInput {...resolve(element)} />;
     case "Link":
-      return <ProteusLink {...resolve(element)} />;
+      return <Link {...resolve(element)} />;
     case "Map":
       return (
         <ProteusMap
@@ -128,15 +130,15 @@ export const ProteusElement = ({
         />
       );
     case "Range":
-      return <ProteusRange {...resolve(element)} />;
+      return <Range {...resolve(element)} />;
     case "Select":
       return <ProteusSelect {...resolve(element)} />;
     case "SelectContent":
-      return <ProteusSelectContent {...resolve(element)} />;
+      return <SelectContent {...resolve(element)} />;
     case "SelectTrigger":
-      return <ProteusSelectTrigger {...resolve(element)} />;
+      return <SelectTrigger {...resolve(element)} />;
     case "Separator":
-      return <ProteusSeparator {...resolve(element)} />;
+      return <Separator {...resolve(element)} />;
     case "Show":
       return (
         <ProteusShow
@@ -146,11 +148,15 @@ export const ProteusElement = ({
         />
       );
     case "Text":
-      return <ProteusText {...resolve(element)} />;
+      return <Text {...resolve(element)} />;
     case "Textarea":
       return <ProteusTextarea {...resolve(element)} />;
     case "Time":
-      return <ProteusTime {...resolve(element)} />;
+      return (
+        <Time
+          {...(resolve(element) as ComponentPropsWithoutRef<typeof Time>)}
+        />
+      );
     case "Value":
       return (
         <ProteusValue
