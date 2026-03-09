@@ -4,7 +4,6 @@ import type { ProteusEventHandler } from "./schemas";
 
 import { Button } from "../button";
 import { useProteusDocumentContext } from "./ProteusDocumentContext";
-import { ProteusElement } from "./ProteusElement";
 import { useResolvedProteusProps } from "./useResolvedProteusProps";
 
 export function ProteusAction({
@@ -40,7 +39,7 @@ export function ProteusAction({
       }}
       {...props}
     >
-      {children && <ProteusElement element={children} />}
+      {children}
     </Button>
   );
 }

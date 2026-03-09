@@ -3,7 +3,6 @@ import { useRef } from "react";
 import { Select } from "../select";
 import { useProteusDocumentContext } from "./ProteusDocumentContext";
 import { useProteusDocumentPathContext } from "./ProteusDocumentPathContext";
-import { ProteusElement } from "./ProteusElement";
 import { useProteusValue } from "./useProteusValue";
 
 export function ProteusSelect({
@@ -48,7 +47,7 @@ export function ProteusSelect({
       options={options}
       value={value}
     >
-      {children && <ProteusElement element={children} />}
+      {children}
     </Select>
   );
 }

@@ -4,7 +4,6 @@ import { Button } from "../button";
 import { Flex } from "../flex";
 import { Input } from "../input";
 import { useProteusDocumentContext } from "./ProteusDocumentContext";
-import { ProteusElement } from "./ProteusElement";
 
 export function ProteusCancelAction({
   children,
@@ -37,7 +36,7 @@ export function ProteusCancelAction({
           w="full"
         />
         <Button size="lg" type="submit">
-          {children && <ProteusElement element={children} />}
+          {children}
         </Button>
       </Flex>
     </form>
