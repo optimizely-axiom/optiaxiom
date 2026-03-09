@@ -991,7 +991,7 @@ function getPropTypeOverrides(additionalProperties = false) {
         type: "array",
       },
       type: {
-        const: "bar",
+        anyOf: [{ const: "bar" }, { const: "line" }],
         description: "Chart type",
       },
       xAxisKey: {

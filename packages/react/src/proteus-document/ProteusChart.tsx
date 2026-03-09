@@ -4,6 +4,8 @@ import {
   BarChart,
   CartesianGrid,
   LabelList,
+  Line,
+  LineChart,
   ResponsiveContainer,
   Tooltip,
   XAxis,
@@ -28,17 +30,20 @@ const getColor = (series: Series, index: number) =>
 export const ProteusChart = ({
   data,
   series,
+  type,
   xAxisKey,
 }: {
   data: Record<string, unknown>[];
   series: Series[];
-  type: "bar";
+  type: "bar" | "line";
   xAxisKey?: string;
 }) => {
+  const ChartComponent = type === "bar" ? BarChart : LineChart;
+  const Chart = type === "bar" ? Bar : Line;
   return (
     <Box asChild {...styles.chart()}>
       <ResponsiveContainer aspect={16 / 9} width="100%">
-        <BarChart data={data} margin={{ top: 20 }}>
+        <ChartComponent data={data} margin={{ top: 20 }}>
           <CartesianGrid
             stroke="#E0E0E0"
             strokeDasharray="4 4"
@@ -53,12 +58,14 @@ export const ProteusChart = ({
           />
           <Tooltip content={ProteusChartTooltipContent} cursor={false} />
           {series.map((s, i) => (
-            <Bar
+            <Chart
               dataKey={s.dataKey}
+              dot={false}
               fill={getColor(s, i)}
               key={s.dataKey}
               name={s.name ?? s.dataKey}
-              radius={[4, 4, 0, 0]}
+              radius={type === "bar" ? 4 : undefined}
+              type="natural"
             >
               {s.labelKey && (
                 <LabelList
@@ -68,9 +75,9 @@ export const ProteusChart = ({
                   position="top"
                 />
               )}
-            </Bar>
+            </Chart>
           ))}
-        </BarChart>
+        </ChartComponent>
       </ResponsiveContainer>
     </Box>
   );
