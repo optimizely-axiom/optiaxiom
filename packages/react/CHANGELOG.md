@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 1.9.16
+
+### Patch Changes
+
+- 6ae0521: design feedback for proteus image
+
 ## 1.9.15
 
 ### Patch Changes
