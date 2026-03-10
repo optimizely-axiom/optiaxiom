@@ -22,7 +22,7 @@ export function ProteusImage(props: Record<string, any>) {
   const imgRef = useRef<HTMLImageElement>(null);
 
   return (
-    <Box>
+    <>
       {!isLoaded && (
         <Box
           alignItems="center"
@@ -32,39 +32,43 @@ export function ProteusImage(props: Record<string, any>) {
           p="24"
           rounded="md"
           style={{ aspectRatio: "16 / 9" }}
+          w="full"
+          {...props}
         >
           <Spinner />
         </Box>
       )}
       <Dialog onOpenChange={setOpen} open={open}>
         <DialogTrigger aria-label="Expand" asChild>
-          <a
-            href={props.src}
-            onClick={(event) => {
-              event.preventDefault();
-              setOpen(true);
-            }}
-            type=""
-          >
-            <Box
-              asChild
-              display={isLoaded ? "block" : "none"}
-              objectFit="cover"
-              {...props}
+          <Box asChild display={isLoaded ? "block" : "none"} {...props}>
+            <a
+              href={props.src}
+              onClick={(event) => {
+                event.preventDefault();
+                setOpen(true);
+              }}
+              type=""
             >
-              <img
-                alt={props.alt}
-                onLoad={() => setIsLoaded(true)}
-                ref={imgRef}
-                src={props.src}
-              />
-            </Box>
-          </a>
+              <Box
+                asChild
+                objectFit="cover"
+                overflow="hidden"
+                rounded="inherit"
+              >
+                <img
+                  alt={props.alt}
+                  onLoad={() => setIsLoaded(true)}
+                  ref={imgRef}
+                  src={props.src}
+                />
+              </Box>
+            </a>
+          </Box>
         </DialogTrigger>
         <DialogContent size="lg">
-          <DialogHeader lineClamp="2">{props.alt}</DialogHeader>
+          <DialogHeader lineClamp="1">{props.alt}</DialogHeader>
           <DialogBody>
-            <Box asChild display="block" objectFit="cover" {...props}>
+            <Box asChild display="block" objectFit="cover">
               <img alt={props.alt} src={props.src} />
             </Box>
           </DialogBody>
@@ -96,7 +100,7 @@ export function ProteusImage(props: Record<string, any>) {
           </DialogFooter>
         </DialogContent>
       </Dialog>
-    </Box>
+    </>
   );
 }
 
