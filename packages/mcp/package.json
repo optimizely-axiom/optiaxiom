@@ -32,15 +32,15 @@
     "build": "wait-on ../../packages/react/dist/index.d.ts && rm -rf dist && NODE_ENV=production rollup -c"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.26.0",
+    "@modelcontextprotocol/sdk": "^1.27.1",
     "fuzzysearch": "^1.0.3",
-    "zod": "^3.25.58"
+    "zod": "^3.25.76"
   },
   "devDependencies": {
     "@optiaxiom/globals": "workspace:^",
     "@optiaxiom/react": "workspace:^",
     "@optiaxiom/shared": "workspace:^",
     "@types/fuzzysearch": "^1.0.2",
-    "@types/node": "^22.17.2"
+    "@types/node": "^22.19.15"
   }
 }
