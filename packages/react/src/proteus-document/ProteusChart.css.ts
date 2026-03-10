@@ -5,8 +5,14 @@ const className = style({});
 export const chart = recipe({
   base: [
     {
+      border: "1",
+      borderColor: "border.tertiary",
       fontSize: "sm",
+      p: "16",
     },
+    style({
+      borderRadius: "16px",
+    }),
     className,
   ],
 });
