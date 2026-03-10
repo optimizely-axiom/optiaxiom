@@ -1,6 +1,5 @@
 import { useRef, useState } from "react";
 
-import { ActionsContent, ActionsRoot } from "../actions";
 import { Box } from "../box";
 import { Button } from "../button";
 import {
@@ -12,25 +11,18 @@ import {
   DialogHeader,
   DialogTrigger,
 } from "../dialog";
-import { Group } from "../group";
-import { IconArrowsDiagonal } from "../icons/IconArrowsDiagonal";
-import { IconCheck } from "../icons/IconCheck";
-import { IconCopy } from "../icons/IconCopy";
-import { IconDownload } from "../icons/IconDownload";
 import { Spinner } from "../spinner";
 import { downloadFile } from "./downloadFile";
-import * as styles from "./ProteusImage.css";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function ProteusImage(props: Record<string, any>) {
-  const [isCopied, setIsCopied] = useState(false);
+  const [open, setOpen] = useState(false);
   const [isDownloading, setIsDownloading] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const imgRef = useRef<HTMLImageElement>(null);
-  const timerRef = useRef<number>();
 
   return (
-    <ActionsRoot {...styles.root()}>
+    <Box>
       {!isLoaded && (
         <Box
           alignItems="center"
@@ -44,89 +36,43 @@ export function ProteusImage(props: Record<string, any>) {
           <Spinner />
         </Box>
       )}
-      <Box
-        asChild
-        display={isLoaded ? "block" : "none"}
-        objectFit="cover"
-        {...props}
-      >
-        <img
-          alt={props.alt}
-          onLoad={() => setIsLoaded(true)}
-          ref={imgRef}
-          src={props.src}
-        />
-      </Box>
-      {isLoaded && (
-        <ActionsContent {...styles.actions()}>
-          <Group bg="bg.default" gap="4" p="4" rounded="md">
-            <Button
-              appearance="subtle"
-              aria-label="Copy"
-              icon={
-                isCopied ? (
-                  <IconCheck pointerEvents="none" />
-                ) : (
-                  <IconCopy pointerEvents="none" />
-                )
-              }
-              onClick={async () => {
-                if (!imgRef.current) {
-                  return;
-                }
-
-                setIsCopied(true);
-
-                const canvas = document.createElement("canvas");
-                canvas.width = imgRef.current.naturalWidth;
-                canvas.height = imgRef.current.naturalHeight;
-                canvas.getContext("2d")?.drawImage(imgRef.current, 0, 0);
-                const blob = await new Promise<Blob | null>((resolve) => {
-                  try {
-                    canvas.toBlob(resolve, "image/png");
-                  } catch {
-                    resolve(null);
-                  }
-                });
-                if (blob) {
-                  await navigator.clipboard.write([
-                    new ClipboardItem({ "image/png": blob }),
-                  ]);
-                } else {
-                  await navigator.clipboard.writeText(String(props.src));
-                }
-
-                clearTimeout(timerRef.current);
-                timerRef.current = window.setTimeout(() => {
-                  setIsCopied(false);
-                }, 2000);
-              }}
-              size="sm"
-            />
-            <Dialog>
-              <DialogTrigger
-                appearance="subtle"
-                aria-label="Expand"
-                icon={<IconArrowsDiagonal />}
-                size="sm"
-              />
-              <DialogContent size="lg">
-                <DialogHeader>{props.alt}</DialogHeader>
-                <DialogBody>
-                  <Box asChild display="block" objectFit="cover" {...props}>
-                    <img alt={props.alt} src={props.src} />
-                  </Box>
-                </DialogBody>
-                <DialogFooter>
-                  <DialogClose>Close</DialogClose>
-                </DialogFooter>
-              </DialogContent>
-            </Dialog>
-            <Button
-              appearance="subtle"
-              aria-label="Download"
+      <Dialog onOpenChange={setOpen} open={open}>
+        <DialogTrigger aria-label="Expand" asChild>
+          <a
+            href={props.src}
+            onClick={(event) => {
+              event.preventDefault();
+              setOpen(true);
+            }}
+            type=""
+          >
+            <Box
               asChild
-              icon={<IconDownload />}
+              display={isLoaded ? "block" : "none"}
+              objectFit="cover"
+              {...props}
+            >
+              <img
+                alt={props.alt}
+                onLoad={() => setIsLoaded(true)}
+                ref={imgRef}
+                src={props.src}
+              />
+            </Box>
+          </a>
+        </DialogTrigger>
+        <DialogContent size="lg">
+          <DialogHeader>{props.alt}</DialogHeader>
+          <DialogBody>
+            <Box asChild display="block" objectFit="cover" {...props}>
+              <img alt={props.alt} src={props.src} />
+            </Box>
+          </DialogBody>
+          <DialogFooter>
+            <DialogClose>Close</DialogClose>
+            <Button
+              appearance="primary"
+              asChild
               loading={isDownloading}
               onClick={async (event) => {
                 event.preventDefault();
@@ -142,14 +88,15 @@ export function ProteusImage(props: Record<string, any>) {
                   setIsDownloading(false);
                 }
               }}
-              size="sm"
             >
-              <a download href={props.src} />
+              <a download href={props.src}>
+                Download
+              </a>
             </Button>
-          </Group>
-        </ActionsContent>
-      )}
-    </ActionsRoot>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    </Box>
   );
 }
 
