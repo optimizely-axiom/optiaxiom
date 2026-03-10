@@ -12,7 +12,7 @@ export default {
   },
   component: ProteusDocumentRenderer,
   decorators: (Story) => (
-    <Box style={{ maxWidth: "768px" }}>
+    <Box maxW="lg">
       <Story />
     </Box>
   ),
@@ -249,8 +249,6 @@ export const WithImage: Story = {
         {
           $type: "Image",
           alt: "A delicious, juicy pan-seared chicken breast dish with broccoli sides",
-          m: "auto",
-          maxW: "md",
           src: "https://placehold.co/600x400",
         },
         {
@@ -341,9 +339,6 @@ export const WithImageGrid: Story = {
           display: "grid",
           gap: "12",
           gridTemplateColumns: "2",
-          m: "auto",
-          maxW: "lg",
-          w: "full",
         },
       ],
       subtitle: "4 variations generated",
