@@ -1,5 +1,19 @@
 # @optiaxiom/react
 
+## 1.9.15
+
+### Patch Changes
+
+- 782c1d2: allow lineClamp support on DialogHeader
+- 9aa36e6: contain scrolling within listboxes
+- 6c92108: add support for line charts
+- 517da0b: restrict height of sub menus
+- b90a6e6: design feedback for proteus image
+- 3cbd2cc: export internal proteus components
+- b162371: match chart design with figma
+- 8b1ada3: allow formatting ProteusValue results
+- a96f6b9: add ProteusZip to merge arrays
+
 ## 1.9.14
 
 ### Patch Changes
