@@ -62,7 +62,7 @@ export function ProteusImage(props: Record<string, any>) {
           </a>
         </DialogTrigger>
         <DialogContent size="lg">
-          <DialogHeader>{props.alt}</DialogHeader>
+          <DialogHeader lineClamp="2">{props.alt}</DialogHeader>
           <DialogBody>
             <Box asChild display="block" objectFit="cover" {...props}>
               <img alt={props.alt} src={props.src} />

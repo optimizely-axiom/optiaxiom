@@ -2,17 +2,17 @@ import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import * as RadixDialog from "@radix-ui/react-dialog";
 import { forwardRef, type ReactNode } from "react";
 
-import { Box, type BoxProps } from "../box";
+import { Box } from "../box";
 import { Group } from "../group";
 import { Heading } from "../heading";
 import { IconX } from "../icons/IconX";
-import { Text } from "../text";
+import { Text, type TextProps } from "../text";
 import { VisuallyHidden } from "../visually-hidden";
 import { DialogClose } from "./DialogClose";
 import { useDialogContext } from "./DialogContext";
 import * as styles from "./DialogHeader.css";
 
-export type DialogHeaderProps = BoxProps<
+export type DialogHeaderProps = TextProps<
   "div",
   {
     /**
@@ -30,7 +30,18 @@ export type DialogHeaderProps = BoxProps<
  * @group Dialog
  */
 export const DialogHeader = forwardRef<HTMLDivElement, DialogHeaderProps>(
-  ({ addonAfter, children, className, description, ...props }, outerRef) => {
+  (
+    {
+      addonAfter,
+      children,
+      className,
+      description,
+      lineClamp,
+      truncate,
+      ...props
+    },
+    outerRef,
+  ) => {
     const { headerRef } = useDialogContext("@optiaxiom/react/DialogHeader");
     const ref = useComposedRefs(headerRef, outerRef);
 
@@ -42,7 +53,13 @@ export const DialogHeader = forwardRef<HTMLDivElement, DialogHeaderProps>(
           icon={<IconX />}
           {...styles.close()}
         />
-        <Heading asChild level="3" {...styles.title()}>
+        <Heading
+          asChild
+          level="3"
+          lineClamp={lineClamp}
+          truncate={truncate}
+          {...styles.title()}
+        >
           <RadixDialog.Title>{children}</RadixDialog.Title>
         </Heading>
         {addonAfter && <Group {...styles.actions()}>{addonAfter}</Group>}
