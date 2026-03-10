@@ -3,12 +3,12 @@ import {
   Bar,
   BarChart,
   CartesianGrid,
-  LabelList,
   Line,
   LineChart,
   ResponsiveContainer,
   Tooltip,
   XAxis,
+  YAxis,
 } from "recharts";
 
 import { Box } from "../box";
@@ -16,16 +16,14 @@ import * as styles from "./ProteusChart.css";
 import { ProteusChartTooltipContent } from "./ProteusChartTooltipContent";
 
 type Series = {
-  color?: string;
   dataKey: string;
-  labelKey?: string;
   name?: string;
 };
 
 const DEFAULT_COLORS = ["#096DD9", "#E59700", "#38C56C", "#D1D8DE"];
 
-const getColor = (series: Series, index: number) =>
-  series.color ?? DEFAULT_COLORS[index % DEFAULT_COLORS.length];
+const getColor = (index: number) =>
+  DEFAULT_COLORS[index % DEFAULT_COLORS.length];
 
 export const ProteusChart = ({
   data,
@@ -43,10 +41,7 @@ export const ProteusChart = ({
   return (
     <Box asChild {...styles.chart()}>
       <ResponsiveContainer aspect={16 / 9} width="100%">
-        <ChartComponent
-          data={data}
-          margin={{ bottom: 20, left: 20, right: 20, top: 20 }}
-        >
+        <ChartComponent data={data}>
           <CartesianGrid
             stroke="#E0E0E0"
             strokeDasharray="4 4"
@@ -56,30 +51,35 @@ export const ProteusChart = ({
             axisLine={false}
             dataKey={xAxisKey}
             minTickGap={32}
+            padding={{ left: 16, right: 16 }}
             tick={{ fill: theme.colors["fg.secondary"] }}
             tickLine={false}
             tickMargin={8}
+          />
+          <YAxis
+            axisLine={{ stroke: "#CBD5E1" }}
+            minTickGap={32}
+            tick={{ fill: theme.colors["fg.secondary"] }}
+            tickFormatter={(value) =>
+              new Intl.NumberFormat(undefined, {
+                compactDisplay: "short",
+                notation: "compact",
+              }).format(value)
+            }
+            tickMargin={8}
+            width="auto"
           />
           <Tooltip content={ProteusChartTooltipContent} cursor={false} />
           {series.map((s, i) => (
             <Chart
               dataKey={s.dataKey}
               dot={false}
-              fill={getColor(s, i)}
+              fill={getColor(i)}
               key={s.dataKey}
               name={s.name ?? s.dataKey}
               radius={type === "bar" ? 4 : undefined}
               type="natural"
-            >
-              {s.labelKey && (
-                <LabelList
-                  dataKey={s.labelKey}
-                  fill={theme.colors["fg.secondary"]}
-                  offset={8}
-                  position="top"
-                />
-              )}
-            </Chart>
+            />
           ))}
         </ChartComponent>
       </ResponsiveContainer>

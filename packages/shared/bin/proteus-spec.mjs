@@ -970,14 +970,8 @@ function getPropTypeOverrides(additionalProperties = false) {
         items: {
           ...(additionalProperties ? {} : { additionalProperties: false }),
           properties: {
-            color: { description: "Series color", type: "string" },
             dataKey: {
               description: "Key in data records for this series",
-              type: "string",
-            },
-            labelKey: {
-              description:
-                "Key in data records for pre-formatted labels displayed above bars",
               type: "string",
             },
             name: {
