@@ -10,4 +10,5 @@ export const [ProteusDocumentProvider, useProteusDocumentContext] =
     onDataChange: (path: string, value: unknown) => void;
     onEvent: (event: ProteusEventHandler) => Promise<void>;
     readOnly: boolean | undefined;
+    valid: boolean | undefined;
   }>("@optiaxiom/react/ProteusDocument");

@@ -16,6 +16,8 @@ import { Text } from "../text";
 import { Time } from "../time";
 import { ProteusAction } from "./ProteusAction";
 import { ProteusCancelAction } from "./ProteusCancelAction";
+import { ProteusChoice } from "./ProteusChoice";
+import { ProteusChoiceGroup } from "./ProteusChoiceGroup";
 import { ProteusDataTable } from "./ProteusDataTable";
 import { useProteusDocumentContext } from "./ProteusDocumentContext";
 import { useProteusDocumentPathContext } from "./ProteusDocumentPathContext";
@@ -109,6 +111,22 @@ export const ProteusElement = ({
             >)}
           />
         </Suspense>
+      );
+    case "Choice":
+      return (
+        <ProteusChoice
+          {...(resolve(element) as ComponentPropsWithoutRef<
+            typeof ProteusChoice
+          >)}
+        />
+      );
+    case "ChoiceGroup":
+      return (
+        <ProteusChoiceGroup
+          {...(resolve(element) as ComponentPropsWithoutRef<
+            typeof ProteusChoiceGroup
+          >)}
+        />
       );
     case "DataTable":
       return (

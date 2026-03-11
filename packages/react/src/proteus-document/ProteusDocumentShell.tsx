@@ -1,7 +1,12 @@
-import type { ComponentPropsWithoutRef, ReactNode } from "react";
-
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import { set } from "jsonpointer";
+import {
+  type ComponentPropsWithoutRef,
+  type ReactNode,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 
 import type { ProteusEventHandler } from "./schemas";
 
@@ -74,6 +79,14 @@ export function ProteusDocumentShell({
   open: openProp,
   readOnly = false,
 }: ProteusDocumentShellProps) {
+  const [valid, setValid] = useState(false);
+  const formRef = useRef<HTMLFormElement | null>(null);
+  useEffect(() => {
+    if (formRef.current) {
+      setValid(formRef.current.checkValidity());
+    }
+  }, []);
+
   const [open, setOpen] = useControllableState({
     defaultProp: defaultOpen,
     onChange: onOpenChange,
@@ -105,6 +118,7 @@ export function ProteusDocumentShell({
         }
       })}
       readOnly={readOnly}
+      valid={valid}
     >
       <Disclosure
         bg="bg.default"
@@ -154,7 +168,19 @@ export function ProteusDocumentShell({
               </Text>
             )}
           </Group>
-          {element.body}
+          <Group asChild flexDirection="column" gap="4">
+            <form
+              onChange={(event) => {
+                const form = event.currentTarget;
+                setTimeout(() => {
+                  setValid(form.checkValidity());
+                });
+              }}
+              ref={formRef}
+            >
+              {element.body}
+            </form>
+          </Group>
           {!readOnly && (
             <Group gap="16" justifyContent="end" w="full">
               {element.actions}

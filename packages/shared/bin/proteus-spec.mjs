@@ -74,6 +74,40 @@ const PROTEUS_COMPONENT_CONFIG = {
     },
     extends: "Fragment",
   },
+  Choice: {
+    allowedProps: [
+      "addonBefore",
+      "children",
+      "description",
+      "onClick",
+      "required",
+      "value",
+    ],
+    example: {
+      children: "Option 1",
+      description: "Description of option 1",
+      value: "option1",
+    },
+    extends: "Fragment",
+  },
+  ChoiceGroup: {
+    allowedProps: ["children", "name"],
+    example: {
+      children: [
+        {
+          $type: "Choice",
+          children: "Option 1",
+          value: "option1",
+        },
+        {
+          $type: "Choice",
+          children: "Option 2",
+          value: "option2",
+        },
+      ],
+    },
+    extends: "Fragment",
+  },
   DataTable: {
     allowedProps: ["columns", "data"],
     example: {
@@ -109,6 +143,7 @@ const PROTEUS_COMPONENT_CONFIG = {
       "appearance",
       "name",
       "placeholder",
+      "required",
       "type",
     ],
     example: { name: "field_name", placeholder: "Enter value" },
@@ -131,7 +166,7 @@ const PROTEUS_COMPONENT_CONFIG = {
     example: { max: 100, min: 0, step: 1 },
   },
   Select: {
-    allowedProps: ["children", "name", "options"],
+    allowedProps: ["children", "name", "required", "options"],
     example: {
       children: [
         { $type: "SelectTrigger", w: "full" },
@@ -166,7 +201,14 @@ const PROTEUS_COMPONENT_CONFIG = {
     example: { children: "New text" },
   },
   Textarea: {
-    allowedProps: ["maxRows", "name", "placeholder", "resize", "rows"],
+    allowedProps: [
+      "maxRows",
+      "name",
+      "placeholder",
+      "resize",
+      "required",
+      "rows",
+    ],
     example: { name: "field_name", placeholder: "Enter text" },
   },
   Time: {
@@ -1014,6 +1056,43 @@ function getPropTypeOverrides(additionalProperties = false) {
         type: "string",
       },
     },
+    Choice: {
+      addonBefore: {
+        $ref: "#/definitions/ProteusNode",
+        description:
+          "Content to display before the choice text (e.g., numbered badge)",
+      },
+      children: {
+        $ref: "#/definitions/ProteusNode",
+        description: "Title/label of the choice",
+      },
+      description: {
+        $ref: "#/definitions/ProteusNode",
+        description: "Secondary description text shown below the title",
+      },
+      onClick: {
+        $ref: "#/definitions/ProteusEventHandler",
+        description: "Action triggered when choice is selected",
+      },
+      required: {
+        description: "Whether selecting this choice is required to proceed",
+        type: "boolean",
+      },
+      value: {
+        description: "Value associated with this choice",
+        type: "string",
+      },
+    },
+    ChoiceGroup: {
+      children: {
+        $ref: "#/definitions/ProteusNode",
+        description: "Choice elements to render",
+      },
+      name: {
+        description: "Data field name for the selected value",
+        type: "string",
+      },
+    },
     DataTable: {
       columns: {
         description: "Column definitions",
@@ -1221,7 +1300,11 @@ function parsePropTypeToJsonSchema({ description, name, type }) {
         ],
         description: description,
       };
-    } else if (type.raw === "string" || type.raw === "string | Date") {
+    } else if (
+      type.raw === "string" ||
+      type.raw === "string | Date" ||
+      type.raw === "string | number | readonly string[]" // Handle value prop for inputs
+    ) {
       return {
         anyOf: [
           { type: /** @type {const} */ ("string") },
