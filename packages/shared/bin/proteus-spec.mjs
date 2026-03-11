@@ -1003,9 +1003,32 @@ function getPropTypeOverrides(additionalProperties = false) {
               description: "Key in data objects",
               type: "string",
             },
+            format: {
+              anyOf: [
+                {
+                  description: "Formatter name",
+                  type: "string",
+                },
+                {
+                  description: "Formatter with options",
+                  properties: {
+                    options: { type: "object" },
+                    type: { type: "string" },
+                  },
+                  required: ["type"],
+                  type: "object",
+                },
+              ],
+              description:
+                "Format to apply to cell values (e.g. 'Number', 'DateTime')",
+            },
             header: {
               description: "Column header text",
               type: "string",
+            },
+            size: {
+              description: "Column size",
+              type: "number",
             },
           },
           required: ["accessorKey", "header"],

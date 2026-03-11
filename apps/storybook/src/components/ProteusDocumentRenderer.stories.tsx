@@ -492,114 +492,115 @@ export const WithChart: Story = {
 export const ExploreReport: Story = {
   args: {
     data: {
-      data: {
-        schema: {
-          columns: [
-            {
-              dataType: "DATA_TYPE_TIMESTAMP",
-              displayName: "Time Bucket",
-              key: "Time Bucket",
-            },
-            {
-              dataType: "DATA_TYPE_INT64",
-              displayName: "measure0",
-              key: "Measure 0",
-            },
-          ],
+      dimensionHeaders: [
+        {
+          name: "sessionSource",
         },
-        upserts: [
-          {
-            i: [
-              1765180800000, 1765785600000, 1766390400000, 1766995200000,
-              1767600000000, 1768204800000, 1768809600000, 1769414400000,
-              1770019200000, 1770624000000, 1771228800000, 1771833600000,
-              1772438400000,
-            ],
-            schema: {
-              dataType: "DATA_TYPE_TIMESTAMP",
-              displayName: "Time Bucket",
-              key: "Time Bucket",
-            },
-          },
-          {
-            i: [
-              495, 494, 237, 176, 435, 488, 485, 496, 492, 534, 477, 526, 496,
-            ],
-            schema: {
-              dataType: "DATA_TYPE_INT64",
-              displayName: "measure0",
-              key: "Measure 0",
-            },
-          },
-        ],
+      ],
+      kind: "analyticsData#runReport",
+      metadata: {
+        currencyCode: "USD",
+        timeZone: "America/New_York",
       },
-      explore: {
-        description:
-          "Event segmentation showing the weekly unique count of users who started an experiment over the past 3 months.",
-        name: "Unique Users Starting Experiments (Last 3 Months, Weekly)",
-      },
+      metricHeaders: [
+        {
+          name: "sessions",
+          type: "TYPE_INTEGER",
+        },
+        {
+          name: "activeUsers",
+          type: "TYPE_INTEGER",
+        },
+      ],
+      rowCount: 1001,
+      rows: [
+        {
+          dimensionValues: [{ value: "(direct)" }],
+          metricValues: [{ value: "206188" }, { value: "202176" }],
+        },
+        {
+          dimensionValues: [{ value: "google" }],
+          metricValues: [{ value: "34845" }, { value: "18965" }],
+        },
+        {
+          dimensionValues: [{ value: "(not set)" }],
+          metricValues: [{ value: "18657" }, { value: "13535" }],
+        },
+        {
+          dimensionValues: [{ value: "bing" }],
+          metricValues: [{ value: "2734" }, { value: "1414" }],
+        },
+        {
+          dimensionValues: [{ value: "marketo-hostedevent" }],
+          metricValues: [{ value: "2608" }, { value: "1576" }],
+        },
+        {
+          dimensionValues: [{ value: "optimizely.zoom.us" }],
+          metricValues: [{ value: "1778" }, { value: "562" }],
+        },
+        {
+          dimensionValues: [{ value: "marketo" }],
+          metricValues: [{ value: "941" }, { value: "618" }],
+        },
+        {
+          dimensionValues: [{ value: "chatgpt.com" }],
+          metricValues: [{ value: "689" }, { value: "337" }],
+        },
+        {
+          dimensionValues: [{ value: "marketo-hostedwebinar" }],
+          metricValues: [{ value: "646" }, { value: "476" }],
+        },
+        {
+          dimensionValues: [{ value: "linkedin" }],
+          metricValues: [{ value: "638" }, { value: "531" }],
+        },
+      ],
     },
     element: {
       $type: "Document",
       appName: "Opal",
       body: [
         {
-          $type: "Text",
-          bg: "bg.page",
-          children: { $type: "Value", path: "/explore/description" },
-          color: "fg.secondary",
-          fontSize: "md",
-          p: "16",
-          rounded: "md",
-        },
-        {
           $type: "Chart",
-          data: {
-            $type: "Zip",
-            sources: {
-              date: {
-                $type: "Value",
-                formatter: "DateTime",
-                path: "/data/upserts/0/i",
-              },
-              measure0: { $type: "Value", path: "/data/upserts/1/i" },
-            },
-          },
+          data: { $type: "Value", path: "/rows" },
           series: [
             {
-              dataKey: "measure0",
-              name: "Unique Accounts",
+              dataKey: "metricValues/0/value",
+              name: "Sessions",
+            },
+            {
+              dataKey: "metricValues/1/value",
+              name: "Active Users",
             },
           ],
-          type: "line",
-          xAxisKey: "date",
+          type: "bar",
+          xAxisKey: "dimensionValues/0/value",
         },
         {
           $type: "DataTable",
           columns: [
-            { accessorKey: "date", header: "Time Bucket" },
             {
-              accessorKey: "measure0",
-              header: "Unique Accounts",
+              accessorKey: "dimensionValues/0/value",
+              header: "Session Source",
+              size: 200,
+            },
+            {
+              accessorKey: "metricValues/0/value",
+              format: "Number",
+              header: "Sessions",
+              size: 100,
+            },
+            {
+              accessorKey: "metricValues/1/value",
+              format: "Number",
+              header: "Active Users",
+              size: 100,
             },
           ],
-          data: {
-            $type: "Zip",
-            sources: {
-              date: {
-                $type: "Value",
-                formatter: {
-                  options: { month: "short", year: "numeric" },
-                  type: "DateTime",
-                },
-                path: "/data/upserts/0/i",
-              },
-              measure0: { $type: "Value", path: "/data/upserts/1/i" },
-            },
-          },
+          data: { $type: "Value", path: "/rows" },
         },
       ],
-      title: { $type: "Value", path: "/explore/name" },
+      title: "Sessions by Source",
     },
   },
 };

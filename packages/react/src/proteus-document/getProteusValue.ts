@@ -46,14 +46,20 @@ const formatters: Record<
     return value;
   },
   Number: (value, options) => {
-    if (typeof value === "number") {
-      return new Intl.NumberFormat(undefined, options).format(value);
+    const num =
+      typeof value === "number"
+        ? value
+        : typeof value === "string" && value !== ""
+          ? Number(value)
+          : NaN;
+    if (!Number.isNaN(num)) {
+      return new Intl.NumberFormat(undefined, options).format(num);
     }
     return value;
   },
 };
 
-function applyFormatter(
+export function applyFormatter(
   value: unknown,
   formatter: string | { options?: Record<string, unknown>; type: string },
 ): unknown {

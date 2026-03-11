@@ -2,6 +2,7 @@ import type { TooltipContentProps } from "recharts";
 
 import { Box } from "../box";
 import { Group } from "../group";
+import { applyFormatter } from "./getProteusValue";
 import * as styles from "./ProteusChartTooltipContent.css";
 
 export function ProteusChartTooltipContent({
@@ -19,13 +20,13 @@ export function ProteusChartTooltipContent({
       <div>
         {payload
           .filter((item) => item.type !== "none")
-          .map((item) => (
+          .map((item, i) => (
             <Box
               alignItems="center"
               display="flex"
               gap="8"
               justifyContent="space-between"
-              key={item.dataKey}
+              key={i}
             >
               <Group gap="8">
                 <Box
@@ -37,9 +38,7 @@ export function ProteusChartTooltipContent({
                 <Box color="fg.tertiary">{item.name ?? item.dataKey}</Box>
               </Group>
               <Box {...styles.value()}>
-                {typeof item.value === "number"
-                  ? item.value.toLocaleString()
-                  : item.value}
+                {applyFormatter(item.value, "Number") as string}
               </Box>
             </Box>
           ))}

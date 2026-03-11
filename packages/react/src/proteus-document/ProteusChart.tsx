@@ -1,4 +1,5 @@
 import { theme } from "@optiaxiom/globals";
+import { get } from "jsonpointer";
 import {
   Bar,
   BarChart,
@@ -49,7 +50,7 @@ export const ProteusChart = ({
           />
           <XAxis
             axisLine={false}
-            dataKey={xAxisKey}
+            dataKey={(row: Record<string, unknown>) => get(row, "/" + xAxisKey)}
             minTickGap={32}
             padding={{ left: 16, right: 16 }}
             tick={{ fill: theme.colors["fg.secondary"] }}
@@ -72,10 +73,12 @@ export const ProteusChart = ({
           <Tooltip content={ProteusChartTooltipContent} cursor={false} />
           {series.map((s, i) => (
             <Chart
-              dataKey={s.dataKey}
+              dataKey={(row: Record<string, unknown>) =>
+                get(row, "/" + s.dataKey) as number
+              }
               dot={false}
               fill={getColor(i)}
-              key={s.dataKey}
+              key={i}
               name={s.name ?? s.dataKey}
               radius={type === "bar" ? 4 : undefined}
               type="natural"
