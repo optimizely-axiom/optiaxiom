@@ -40,6 +40,27 @@ const PROTEUS_COMPONENT_CONFIG = {
     example: { children: "Cancel" },
     extends: "Button",
   },
+  Card: {
+    allowedProps: ["children"],
+    example: {
+      children: [
+        {
+          $type: "CardHeader",
+          children: "Card title",
+          description: "Card description",
+        },
+      ],
+    },
+  },
+  CardHeader: {
+    allowedProps: ["addonAfter", "addonBefore", "children", "description"],
+    example: { children: "Header", description: "Subtitle" },
+  },
+  CardLink: {
+    allowedProps: ["children", "href"],
+    example: { children: "Link text", href: "https://example.com" },
+    extends: "Link",
+  },
   Chart: {
     allowedProps: ["data", "series", "type", "xAxisKey"],
     example: {

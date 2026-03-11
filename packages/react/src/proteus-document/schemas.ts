@@ -25,6 +25,9 @@ export type ProteusElement =
   | { $type: "Action"; [key: string]: unknown }
   | { $type: "Badge"; [key: string]: unknown }
   | { $type: "CancelAction"; [key: string]: unknown }
+  | { $type: "Card"; [key: string]: unknown }
+  | { $type: "CardHeader"; [key: string]: unknown }
+  | { $type: "CardLink"; [key: string]: unknown }
   | { $type: "Chart"; [key: string]: unknown }
   | { $type: "DataTable"; [key: string]: unknown }
   | { $type: "Field"; [key: string]: unknown }
