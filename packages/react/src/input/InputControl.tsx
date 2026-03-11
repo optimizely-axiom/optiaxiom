@@ -49,6 +49,10 @@ export type InputControlProps<
       placeholder?: ComponentPropsWithoutRef<
         "input" | "textarea"
       >["placeholder"];
+      /**
+       * Whether selecting this input is required.
+       */
+      required?: ComponentPropsWithoutRef<"input" | "textarea">["required"];
     },
     P
   >

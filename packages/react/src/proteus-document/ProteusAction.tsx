@@ -15,7 +15,7 @@ export function ProteusAction({
   children?: any;
   onClick?: ProteusEventHandler;
 }) {
-  const { onEvent } = useProteusDocumentContext(
+  const { onEvent, valid } = useProteusDocumentContext(
     "@optiaxiom/react/ProteusAction",
   );
   const resolvedOnClick = useResolvedProteusProps(
@@ -26,6 +26,7 @@ export function ProteusAction({
 
   return (
     <Button
+      disabled={!valid}
       justifyContent="center"
       loading={loading}
       onClick={async () => {

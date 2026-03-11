@@ -1,0 +1,78 @@
+import { theme } from "@optiaxiom/globals";
+
+import { recipe, style } from "../vanilla-extract";
+
+const marker = style({});
+const inputMarker = style({});
+
+export const choiceGroup = recipe({
+  base: {
+    flexDirection: "column",
+    gap: "8",
+  },
+});
+
+export const choice = recipe({
+  base: [
+    {
+      border: "1",
+      color: "fg.default",
+      cursor: "pointer",
+      flexDirection: "column",
+      fontSize: "md",
+      gap: "8",
+      px: "16",
+      py: "12",
+      rounded: "lg",
+      transition: "colors",
+    },
+    style({
+      backgroundColor: theme.colors["bg.page"],
+      borderColor: theme.colors["bg.page"],
+
+      "@media": {
+        "(hover: hover)": {
+          selectors: {
+            "&:hover": {
+              backgroundColor: theme.colors["bg.secondary"],
+            },
+          },
+        },
+      },
+
+      selectors: {
+        [`&:has(${inputMarker}:checked)`]: {
+          backgroundColor: theme.colors["bg.accent.subtle"],
+          borderColor: theme.colors["bg.accent.light"],
+        },
+      },
+    }),
+    marker,
+  ],
+});
+
+export const input = recipe({
+  base: inputMarker,
+});
+
+export const addon = recipe({
+  base: [
+    {
+      display: "grid",
+      fontWeight: "500",
+      placeItems: "center",
+      rounded: "lg",
+      size: "md",
+      transition: "colors",
+    },
+    style({
+      backgroundColor: theme.colors["bg.avatar.neutral"],
+
+      selectors: {
+        [`${marker}:has(${inputMarker}:checked) &`]: {
+          backgroundColor: theme.colors["bg.accent.light"],
+        },
+      },
+    }),
+  ],
+});

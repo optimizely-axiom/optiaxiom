@@ -2625,6 +2625,12 @@
           "$ref": "#/definitions/ProteusChart"
         },
         {
+          "$ref": "#/definitions/ProteusChoice"
+        },
+        {
+          "$ref": "#/definitions/ProteusChoiceGroup"
+        },
+        {
           "$ref": "#/definitions/ProteusDataTable"
         },
         {
@@ -4125,6 +4131,81 @@
       "required": ["$type"],
       "type": "object"
     },
+    "ProteusChoice": {
+      "examples": [
+        {
+          "$type": "Choice",
+          "children": "Option 1",
+          "description": "Description of option 1",
+          "value": "option1"
+        }
+      ],
+      "properties": {
+        "$type": {
+          "const": "Choice"
+        },
+        "addonBefore": {
+          "$ref": "#/definitions/ProteusNode",
+          "description": "Content to display before the choice text (e.g., numbered badge)"
+        },
+        "children": {
+          "$ref": "#/definitions/ProteusNode",
+          "description": "Title/label of the choice"
+        },
+        "description": {
+          "$ref": "#/definitions/ProteusNode",
+          "description": "Secondary description text shown below the title"
+        },
+        "onClick": {
+          "$ref": "#/definitions/ProteusEventHandler",
+          "description": "Action triggered when choice is selected"
+        },
+        "required": {
+          "description": "Whether selecting this choice is required to proceed",
+          "type": "boolean"
+        },
+        "value": {
+          "description": "Value associated with this choice",
+          "type": "string"
+        }
+      },
+      "required": ["$type"],
+      "type": "object"
+    },
+    "ProteusChoiceGroup": {
+      "examples": [
+        {
+          "$type": "ChoiceGroup",
+          "children": [
+            {
+              "$type": "Choice",
+              "children": "Option 1",
+              "value": "option1"
+            },
+            {
+              "$type": "Choice",
+              "children": "Option 2",
+              "value": "option2"
+            }
+          ]
+        }
+      ],
+      "properties": {
+        "$type": {
+          "const": "ChoiceGroup"
+        },
+        "children": {
+          "$ref": "#/definitions/ProteusNode",
+          "description": "Choice elements to render"
+        },
+        "name": {
+          "description": "Data field name for the selected value",
+          "type": "string"
+        }
+      },
+      "required": ["$type"],
+      "type": "object"
+    },
     "ProteusDataTable": {
       "examples": [
         {
@@ -5274,6 +5355,17 @@
         "py": {
           "$ref": "#/definitions/SprinkleProp_py"
         },
+        "required": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "#/definitions/ProteusValue"
+            }
+          ],
+          "description": "Whether selecting this input is required."
+        },
         "rounded": {
           "$ref": "#/definitions/SprinkleProp_rounded"
         },
@@ -5911,6 +6003,17 @@
             "type": "object"
           },
           "type": "array"
+        },
+        "required": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "#/definitions/ProteusValue"
+            }
+          ],
+          "description": "Whether the select value is required."
         }
       },
       "required": ["$type", "options"],
@@ -6915,6 +7018,17 @@
         },
         "py": {
           "$ref": "#/definitions/SprinkleProp_py"
+        },
+        "required": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "#/definitions/ProteusValue"
+            }
+          ],
+          "description": "Whether selecting this input is required."
         },
         "resize": {
           "anyOf": [
