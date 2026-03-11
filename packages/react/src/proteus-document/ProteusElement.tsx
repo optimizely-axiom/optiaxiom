@@ -1,6 +1,9 @@
 import { type ComponentPropsWithoutRef, lazy, Suspense } from "react";
 
 import { Badge } from "../badge";
+import { Card } from "../card";
+import { CardHeader } from "../card";
+import { CardLink } from "../card";
 import { Field } from "../field";
 import { Group } from "../group";
 import { Heading } from "../heading";
@@ -23,7 +26,7 @@ import { ProteusSelect } from "./ProteusSelect";
 import { ProteusShow } from "./ProteusShow";
 import { ProteusTextarea } from "./ProteusTextarea";
 import { ProteusValue } from "./ProteusValue";
-import { resolveProteusValue } from "./resolveProteusValue";
+import { resolveProteusProp } from "./resolveProteusProp";
 import { safeParseElement } from "./schemas";
 
 const ProteusChart = lazy(async () => {
@@ -76,12 +79,10 @@ export const ProteusElement = ({
 
   const element = result.data;
   const resolve = (obj: Record<string, unknown>) => {
-    const { $type: _$type, children, ...rest } = obj;
-    const resolved: Record<string, unknown> = {
-      children: children ? <ProteusElement element={children} /> : children,
-    };
+    const { $type: _$type, ...rest } = obj;
+    const resolved: Record<string, unknown> = {};
     for (const [key, value] of Object.entries(rest)) {
-      resolved[key] = resolveProteusValue(value, data, parentPath);
+      resolved[key] = resolveProteusProp(value, data, parentPath);
     }
     return resolved;
   };
@@ -93,6 +94,12 @@ export const ProteusElement = ({
       return <Badge {...resolve(element)} />;
     case "CancelAction":
       return <ProteusCancelAction {...resolve(element)} />;
+    case "Card":
+      return <Card {...resolve(element)} />;
+    case "CardHeader":
+      return <CardHeader {...resolve(element)} />;
+    case "CardLink":
+      return <CardLink {...resolve(element)} />;
     case "Chart":
       return (
         <Suspense fallback={null}>
