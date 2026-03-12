@@ -181,7 +181,7 @@ export function ProteusDocumentShell({
               {element.body}
             </form>
           </Group>
-          {!readOnly && (
+          {element.actions && !readOnly && (
             <Group gap="16" justifyContent="end" w="full">
               {element.actions}
             </Group>

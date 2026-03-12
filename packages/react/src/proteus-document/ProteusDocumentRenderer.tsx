@@ -36,10 +36,18 @@ export function ProteusDocumentRenderer({
     <ProteusDocumentShell
       element={{
         ...result.data,
-        actions: <ProteusElement element={result.data.actions} />,
-        body: <ProteusElement element={result.data.body} />,
-        subtitle: <ProteusElement element={result.data.subtitle} />,
-        title: <ProteusElement element={result.data.title} />,
+        actions: hasValue(result.data.actions) && (
+          <ProteusElement element={result.data.actions} />
+        ),
+        body: hasValue(result.data.body) && (
+          <ProteusElement element={result.data.body} />
+        ),
+        subtitle: hasValue(result.data.subtitle) && (
+          <ProteusElement element={result.data.subtitle} />
+        ),
+        title: hasValue(result.data.title) && (
+          <ProteusElement element={result.data.title} />
+        ),
       }}
       {...props}
     />
@@ -48,3 +56,7 @@ export function ProteusDocumentRenderer({
 
 ProteusDocumentRenderer.displayName =
   "@optiaxiom/react/ProteusDocumentRenderer";
+
+function hasValue(value: unknown): boolean {
+  return !!value && (!Array.isArray(value) || value.length > 0);
+}
