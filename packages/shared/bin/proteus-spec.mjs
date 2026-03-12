@@ -31,6 +31,16 @@ const PROTEUS_COMPONENT_CONFIG = {
     example: { appearance: "primary", children: "Action" },
     extends: "Button",
   },
+  Avatar: {
+    allowedProps: [
+      "children",
+      "colorScheme",
+      "fallback",
+      "name",
+      "size",
+      "src",
+    ],
+  },
   Badge: {
     allowedProps: ["children", "intent"],
     example: { children: "Badge", intent: "success" },
@@ -130,6 +140,10 @@ const PROTEUS_COMPONENT_CONFIG = {
   Heading: {
     allowedProps: ["children", "level"],
     example: { children: "New heading", level: "2" },
+  },
+  IconCalendar: {
+    allowedProps: [],
+    extends: "Box",
   },
   Image: {
     allowedProps: ["alt", "src"],
