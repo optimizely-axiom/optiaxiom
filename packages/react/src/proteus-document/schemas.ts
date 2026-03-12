@@ -23,6 +23,7 @@ export interface ProteusDocument {
 
 export type ProteusElement =
   | { $type: "Action"; [key: string]: unknown }
+  | { $type: "Avatar"; [key: string]: unknown }
   | { $type: "Badge"; [key: string]: unknown }
   | { $type: "CancelAction"; [key: string]: unknown }
   | { $type: "Card"; [key: string]: unknown }
@@ -35,6 +36,7 @@ export type ProteusElement =
   | { $type: "Field"; [key: string]: unknown }
   | { $type: "Group"; [key: string]: unknown }
   | { $type: "Heading"; [key: string]: unknown }
+  | { $type: "IconCalendar"; [key: string]: unknown }
   | { $type: "Image"; [key: string]: unknown }
   | { $type: "Input"; [key: string]: unknown }
   | { $type: "Link"; [key: string]: unknown }

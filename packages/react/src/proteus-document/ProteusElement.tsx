@@ -1,12 +1,15 @@
 import { type ComponentPropsWithoutRef, lazy, Suspense } from "react";
 
+import { Avatar } from "../avatar";
 import { Badge } from "../badge";
+import { Box } from "../box";
 import { Card } from "../card";
 import { CardHeader } from "../card";
 import { CardLink } from "../card";
 import { Field } from "../field";
 import { Group } from "../group";
 import { Heading } from "../heading";
+import { IconCalendar } from "../icons/IconCalendar";
 import { Link } from "../link";
 import { Range } from "../range";
 import { SelectTrigger } from "../select";
@@ -92,6 +95,8 @@ export const ProteusElement = ({
   switch (element.$type) {
     case "Action":
       return <ProteusAction {...resolve(element)} />;
+    case "Avatar":
+      return <Avatar {...resolve(element)} />;
     case "Badge":
       return <Badge {...resolve(element)} />;
     case "CancelAction":
@@ -142,6 +147,12 @@ export const ProteusElement = ({
       return <Group {...resolve(element)} />;
     case "Heading":
       return <Heading {...resolve(element)} />;
+    case "IconCalendar":
+      return (
+        <Box asChild {...resolve(element)}>
+          <IconCalendar />
+        </Box>
+      );
     case "Image":
       return <ProteusImage {...resolve(element)} />;
     case "Input":
