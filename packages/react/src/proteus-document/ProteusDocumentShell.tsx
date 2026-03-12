@@ -172,7 +172,7 @@ export function ProteusDocumentShell({
               </Text>
             )}
           </Group>
-          <Group asChild flexDirection="column" gap="4">
+          <Group asChild flexDirection="column" gap="16">
             <form
               onChange={(event) => {
                 const form = event.currentTarget;
