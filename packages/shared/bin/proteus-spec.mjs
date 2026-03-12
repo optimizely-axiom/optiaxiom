@@ -153,7 +153,7 @@ const PROTEUS_COMPONENT_CONFIG = {
     example: { children: "Link text", href: "https://example.com" },
   },
   Map: {
-    allowedProps: ["path", "children"],
+    allowedProps: ["path", "children", "separator"],
     example: {
       children: { $type: "Text", children: "Item" },
       path: "/items",
@@ -1157,6 +1157,11 @@ function getPropTypeOverrides(additionalProperties = false) {
         description:
           "JSON pointer path to the source array in the data (e.g., '/results')",
         type: "string",
+      },
+      separator: {
+        $ref: "#/definitions/ProteusNode",
+        description:
+          "Optional separator to render between items. Can be a string or a ProteusNode for more complex separators.",
       },
     },
     Range: {
