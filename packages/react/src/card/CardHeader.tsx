@@ -1,12 +1,14 @@
 import { forwardRef, type ReactNode } from "react";
 
-import { Box, type BoxProps } from "../box";
+import type { TextProps } from "../text";
+
+import { Box } from "../box";
 import { Group } from "../group";
 import { Heading } from "../heading";
 import { useCardContext } from "./CardContext";
 import * as styles from "./CardHeader.css";
 
-export type CardHeaderProps = BoxProps<
+export type CardHeaderProps = TextProps<
   "div",
   {
     /**
@@ -29,7 +31,16 @@ export type CardHeaderProps = BoxProps<
  */
 export const CardHeader = forwardRef<HTMLDivElement, CardHeaderProps>(
   (
-    { addonAfter, addonBefore, children, className, description, ...props },
+    {
+      addonAfter,
+      addonBefore,
+      children,
+      className,
+      description,
+      lineClamp,
+      truncate,
+      ...props
+    },
     ref,
   ) => {
     const { descriptionId, labelId } = useCardContext(
@@ -39,7 +50,14 @@ export const CardHeader = forwardRef<HTMLDivElement, CardHeaderProps>(
     return (
       <Group ref={ref} {...styles.header({}, className)} {...props}>
         <Box {...styles.content()}>
-          <Heading fontSize="md" fontWeight="500" id={labelId} level="2">
+          <Heading
+            fontSize="md"
+            fontWeight="500"
+            id={labelId}
+            level="2"
+            lineClamp={lineClamp}
+            truncate={truncate}
+          >
             {children}
           </Heading>
 
