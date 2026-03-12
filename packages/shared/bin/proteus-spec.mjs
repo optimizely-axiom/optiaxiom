@@ -359,7 +359,7 @@ function generateJsonSchema(additionalProperties = false) {
             schema,
           ]),
         ),
-        ProteusAtomicCondition: {
+        ProteusCondition: {
           anyOf: [
             {
               ...(additionalProperties ? {} : { additionalProperties: false }),
@@ -511,13 +511,22 @@ function generateJsonSchema(additionalProperties = false) {
               required: ["!!"],
               type: "object",
             },
-          ],
-          description:
-            "Simple comparison condition - single operator only (used in OR arrays to avoid recursion)",
-        },
-        ProteusCondition: {
-          anyOf: [
-            { $ref: "#/definitions/ProteusAtomicCondition" },
+            {
+              ...(additionalProperties ? {} : { additionalProperties: false }),
+              properties: {
+                and: {
+                  description:
+                    "Logical AND - returns true if all conditions are true",
+                  items: {
+                    $ref: "#/definitions/ProteusCondition",
+                  },
+                  minItems: 1,
+                  type: "array",
+                },
+              },
+              required: ["and"],
+              type: "object",
+            },
             {
               ...(additionalProperties ? {} : { additionalProperties: false }),
               properties: {
@@ -525,27 +534,7 @@ function generateJsonSchema(additionalProperties = false) {
                   description:
                     "Logical OR - returns true if any condition is true",
                   items: {
-                    anyOf: [
-                      {
-                        ...(additionalProperties
-                          ? {}
-                          : { additionalProperties: false }),
-                        properties: {
-                          and: {
-                            description:
-                              "Logical AND - returns true if all conditions are true",
-                            items: {
-                              $ref: "#/definitions/ProteusAtomicCondition",
-                            },
-                            minItems: 1,
-                            type: "array",
-                          },
-                        },
-                        required: ["and"],
-                        type: "object",
-                      },
-                      { $ref: "#/definitions/ProteusAtomicCondition" },
-                    ],
+                    anyOf: [{ $ref: "#/definitions/ProteusCondition" }],
                   },
                   minItems: 1,
                   type: "array",

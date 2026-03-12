@@ -2155,7 +2155,7 @@
       ],
       "description": "Set the element's stacking order. Only accepts predefined zIndex tokens (e.g., popover, toast, tooltip) or numeric values (0, 10, 20, 30, auto)."
     },
-    "ProteusAtomicCondition": {
+    "ProteusCondition": {
       "anyOf": [
         {
           "properties": {
@@ -2368,14 +2368,20 @@
           },
           "required": ["!!"],
           "type": "object"
-        }
-      ],
-      "description": "Simple comparison condition - single operator only (used in OR arrays to avoid recursion)"
-    },
-    "ProteusCondition": {
-      "anyOf": [
+        },
         {
-          "$ref": "#/definitions/ProteusAtomicCondition"
+          "properties": {
+            "and": {
+              "description": "Logical AND - returns true if all conditions are true",
+              "items": {
+                "$ref": "#/definitions/ProteusCondition"
+              },
+              "minItems": 1,
+              "type": "array"
+            }
+          },
+          "required": ["and"],
+          "type": "object"
         },
         {
           "properties": {
@@ -2384,21 +2390,7 @@
               "items": {
                 "anyOf": [
                   {
-                    "properties": {
-                      "and": {
-                        "description": "Logical AND - returns true if all conditions are true",
-                        "items": {
-                          "$ref": "#/definitions/ProteusAtomicCondition"
-                        },
-                        "minItems": 1,
-                        "type": "array"
-                      }
-                    },
-                    "required": ["and"],
-                    "type": "object"
-                  },
-                  {
-                    "$ref": "#/definitions/ProteusAtomicCondition"
+                    "$ref": "#/definitions/ProteusCondition"
                   }
                 ]
               },
