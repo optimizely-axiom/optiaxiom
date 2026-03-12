@@ -691,6 +691,277 @@ export const ExploreReport: Story = {
   },
 };
 
+export const ExploreResources: Story = {
+  args: {
+    data: {
+      table_data: [
+        {
+          cmp_url: "https://example/task/id-123",
+          due_date: "2025-12-01T01:30:00Z",
+          owner: "John Doe",
+          reference: "TSK-8526",
+          status: "Overdue",
+          title: "Add quantity badges to product thumbnails",
+          type: "Task",
+        },
+        {
+          cmp_url: "https://example/task/id-345",
+          due_date: "2026-02-06T11:00:00Z",
+          owner: "Jane Doe",
+          reference: "TSK-9102",
+          status: "In Progress",
+          title: "D-Congress 2026 - Digital screen content",
+          type: "Task",
+        },
+        {
+          cmp_url: "https://example/asset/id-456",
+          owner: "Sample User",
+          status: null,
+          title: "User Initiated Enrollment.docx",
+          type: "Asset",
+        },
+      ],
+      total_results: 3,
+    },
+    element: {
+      $type: "Document",
+      appIcon:
+        "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2020%2020%22%20fill%3D%22none%22%3E%3Crect%20width%3D%2220%22%20height%3D%2220%22%20rx%3D%224%22%20fill%3D%22%23F0F3FF%22%2F%3E%3Cpath%20d%3D%22M16.1963%2015.4847V16.1976H3.70117V15.4847H16.1963ZM14.034%205.84521C14.0339%205.11412%2013.4342%204.51465%2012.703%204.51465H7.15169C6.42066%204.51476%205.82124%205.11413%205.82113%205.84521V11.3966C5.82113%2012.1277%206.42054%2012.7274%207.15169%2012.7275H12.703C13.4342%2012.7275%2014.034%2012.1278%2014.034%2011.3966V8.25203L12.3246%209.95695C11.5283%2010.7513%2010.229%2010.7497%209.43481%209.95329L7.66398%208.17757L7.91585%207.9257L8.16813%207.67423L9.93937%209.45036C10.4557%209.96804%2011.304%209.96917%2011.8217%209.4528L14.034%207.24577V5.84521ZM14.7465%206.53491L16.0465%205.23853L16.5499%205.74308L14.7465%207.54159V11.3966C14.7465%2012.5213%2013.8277%2013.44%2012.703%2013.44H7.15169C6.02701%2013.4399%205.10824%2012.5212%205.10824%2011.3966V5.84521C5.10835%204.7206%206.02718%203.80186%207.15169%203.80176H12.703C13.8277%203.80176%2014.7464%204.72064%2014.7465%205.84521V6.53491Z%22%20fill%3D%22%230037FF%22%2F%3E%3C%2Fsvg%3E",
+      appName: "Content Marketing Platform",
+      body: [
+        {
+          $type: "Group",
+          border: "1",
+          borderColor: "border.tertiary",
+          children: {
+            $type: "Map",
+            children: [
+              {
+                $type: "Card",
+                border: "0",
+                children: [
+                  {
+                    $type: "CardHeader",
+                    children: {
+                      $type: "CardLink",
+                      children: {
+                        $type: "Value",
+                        path: "title",
+                      },
+                      href: {
+                        $type: "Value",
+                        path: "cmp_url",
+                      },
+                    },
+                    lineClamp: "2",
+                  },
+                  {
+                    $type: "Group",
+                    alignItems: "center",
+                    children: [
+                      {
+                        $type: "Group",
+                        alignItems: "center",
+                        children: [
+                          {
+                            $type: "Show",
+                            children: {
+                              $type: "Text",
+                              children: {
+                                $type: "Value",
+                                path: "reference",
+                              },
+                              whiteSpace: "nowrap",
+                            },
+                            when: {
+                              "!!": {
+                                $type: "Value",
+                                path: "reference",
+                              },
+                            },
+                          },
+                          {
+                            $type: "Show",
+                            children: {
+                              $type: "Group",
+                              children: [
+                                {
+                                  $type: "IconCalendar",
+                                  h: "auto",
+                                  w: "16",
+                                },
+                                {
+                                  $type: "Time",
+                                  date: {
+                                    $type: "Value",
+                                    path: "due_date",
+                                  },
+                                  whiteSpace: "nowrap",
+                                },
+                              ],
+                              gap: "2",
+                            },
+                            when: {
+                              "!!": {
+                                $type: "Value",
+                                path: "due_date",
+                              },
+                            },
+                          },
+                          {
+                            $type: "Show",
+                            children: {
+                              $type: "Group",
+                              children: [
+                                {
+                                  $type: "Avatar",
+                                  colorScheme: "purple",
+                                  name: {
+                                    $type: "Value",
+                                    path: "owner",
+                                  },
+                                  size: "2xs",
+                                },
+                                {
+                                  $type: "Text",
+                                  children: {
+                                    $type: "Value",
+                                    path: "owner",
+                                  },
+                                  lineClamp: "1",
+                                },
+                              ],
+                              gap: "2",
+                            },
+                            when: {
+                              "!!": {
+                                $type: "Value",
+                                path: "owner",
+                              },
+                            },
+                          },
+                        ],
+                        color: "fg.tertiary",
+                        flexDirection: "row",
+                        gap: "12",
+                      },
+                      {
+                        $type: "Show",
+                        children: {
+                          $type: "Badge",
+                          children: {
+                            $type: "Value",
+                            path: "status",
+                          },
+                          intent: "danger",
+                        },
+                        when: {
+                          "==": [{ $type: "Value", path: "status" }, "Overdue"],
+                        },
+                      },
+                      {
+                        $type: "Show",
+                        children: {
+                          $type: "Badge",
+                          children: {
+                            $type: "Value",
+                            path: "status",
+                          },
+                          intent: "success",
+                        },
+                        when: {
+                          "==": [
+                            { $type: "Value", path: "status" },
+                            "Completed",
+                          ],
+                        },
+                      },
+                      {
+                        $type: "Show",
+                        children: {
+                          $type: "Badge",
+                          children: {
+                            $type: "Value",
+                            path: "status",
+                          },
+                          intent: "information",
+                        },
+                        when: {
+                          "==": [
+                            { $type: "Value", path: "status" },
+                            "In Progress",
+                          ],
+                        },
+                      },
+                      {
+                        $type: "Show",
+                        children: {
+                          $type: "Badge",
+                          children: {
+                            $type: "Value",
+                            path: "status",
+                          },
+                        },
+                        when: [
+                          {
+                            "!!": {
+                              $type: "Value",
+                              path: "status",
+                            },
+                          },
+                          {
+                            "!=": [
+                              { $type: "Value", path: "status" },
+                              "Overdue",
+                            ],
+                          },
+                          {
+                            "!=": [
+                              { $type: "Value", path: "status" },
+                              "Completed",
+                            ],
+                          },
+                          {
+                            "!=": [
+                              { $type: "Value", path: "status" },
+                              "In Progress",
+                            ],
+                          },
+                        ],
+                      },
+                    ],
+                    flexDirection: "row",
+                    fontSize: "sm",
+                    justifyContent: "space-between",
+                    w: "full",
+                  },
+                ],
+                p: "12",
+              },
+            ],
+            path: "/table_data",
+            separator: {
+              $type: "Separator",
+              borderColor: "border.tertiary",
+            },
+          },
+          flexDirection: "column",
+          maxH: "sm",
+          overflow: "auto",
+          rounded: "md",
+        },
+      ],
+      title: [
+        {
+          $type: "Value",
+          path: "/total_results",
+        },
+        " results found",
+      ],
+    },
+  },
+};
+
 export const PartialRendering: Story = {
   args: {
     element: {
