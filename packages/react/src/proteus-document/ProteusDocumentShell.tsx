@@ -139,7 +139,11 @@ export function ProteusDocumentShell({
                 rounded="xs"
                 size="20"
               >
-                {element.appIcon ? <img src={element.appIcon} /> : <div />}
+                {element.appIcon ? (
+                  <img alt="" src={element.appIcon} />
+                ) : (
+                  <div />
+                )}
               </Box>
               <Text fontWeight="500">{element.appName}</Text>
               {!open && (
