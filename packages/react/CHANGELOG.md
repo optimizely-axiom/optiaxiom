@@ -1,5 +1,16 @@
 # @optiaxiom/react
 
+## 1.9.17
+
+### Patch Changes
+
+- 440c848: allow lineClamp on CardHeader
+- 5f2ee1e: add Choice/ChoiceGroup components
+- 1d23b19: add Avatar and IconCalendar
+- 4c02bb6: add getter and formatter to chart and table
+- 29fba58: add separator to Map
+- 950059e: add cards to proteus
+
 ## 1.9.16
 
 ### Patch Changes
