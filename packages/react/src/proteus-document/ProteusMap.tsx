@@ -7,10 +7,12 @@ import { useProteusValue } from "./useProteusValue";
 export function ProteusMap({
   children,
   path,
+  separator,
 }: {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   children?: any;
   path: string;
+  separator?: unknown;
 }) {
   const { path: parentPath } = useProteusDocumentPathContext(
     "@optiaxiom/react/ProteusMap",
@@ -34,6 +36,7 @@ export function ProteusMap({
           key={index}
           path={`${path.startsWith("/") ? path : `${parentPath}/${path}`}/${index}`}
         >
+          {index > 0 && separator}
           {children}
         </ProteusDocumentPathProvider>
       ))}
