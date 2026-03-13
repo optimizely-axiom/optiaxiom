@@ -5,10 +5,11 @@
   "version": "0.0.0",
   "scripts": {
     "build": "storybook build --docs",
-    "dev": "wait-on ../../packages/react/dist/index.d.ts ../../packages/react/dist/unstable.d.ts ../../packages/shared/data/docs.json && storybook dev -p 6006",
+    "dev": "wait-on ../../packages/proteus/dist/index.d.ts ../../packages/react/dist/index.d.ts ../../packages/react/dist/unstable.d.ts ../../packages/shared/data/docs.json && storybook dev -p 6006",
     "test": "vitest"
   },
   "devDependencies": {
+    "@optiaxiom/proteus": "workspace:^",
     "@optiaxiom/react": "workspace:^",
     "@optiaxiom/shared": "workspace:^",
     "@radix-ui/react-visually-hidden": "^1.2.3",

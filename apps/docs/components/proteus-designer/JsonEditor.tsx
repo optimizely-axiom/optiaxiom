@@ -80,14 +80,7 @@ export function JsonEditor({
           onDocumentChange(parsed);
           onDocumentError(null);
         } else {
-          onDocumentError(
-            (result.error as Array<{ error: string; keywordLocation: string }>)
-              .map(
-                (i: { error: string; keywordLocation: string }) =>
-                  `${i.keywordLocation}: ${i.error}`,
-              )
-              .join(", "),
-          );
+          onDocumentError(result.error.join(", "));
         }
       } catch (e) {
         onDocumentError(e instanceof Error ? e.message : "Invalid JSON");

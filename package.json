@@ -6,8 +6,7 @@
   "version": "0.0.0",
   "license": "Apache-2.0",
   "scripts": {
-    "proteus-spec": "oas-proteus-spec",
-    "build": "pnpm -F globals... -F mcp... -F react... -F web-components... build",
+    "build": "pnpm -F \"./packages/**\" build",
     "bundle-size": "oas-bundle-size",
     "design-tokens": "oas-design-tokens",
     "dev": "pnpm run --parallel -F !web-components dev",

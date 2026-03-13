@@ -1,0 +1,22 @@
+{
+  "extends": "../../tsconfig.pkg.json",
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "paths": {
+      "@optiaxiom/globals": ["../globals/src"],
+      "@optiaxiom/globals/fonts": ["../globals/src/fonts"],
+      "@optiaxiom/react": ["../react/src"],
+      "@optiaxiom/react/css": ["../react/src/css"],
+      "@optiaxiom/react/unstable": ["../react/src/unstable"]
+    }
+  },
+  "include": [
+    ".",
+    "package.json",
+    "src/schema/public-schema.json",
+    "src/schema/runtime-schema.json"
+  ],
+  "exclude": ["dist", "lib", "node_modules"],
+  "references": [{ "path": "../globals" }, { "path": "../react" }]
+}
