@@ -19,6 +19,11 @@
       "import": "./dist/esm/index.js",
       "require": "./dist/cjs/index.js"
     },
+    "./css": {
+      "types": "./dist/css.d.ts",
+      "import": "./dist/esm/css.js",
+      "require": "./dist/cjs/css.cjs"
+    },
     "./unstable": {
       "types": "./dist/unstable.d.ts",
       "import": "./dist/esm/unstable.js",
