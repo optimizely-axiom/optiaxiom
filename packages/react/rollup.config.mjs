@@ -30,6 +30,7 @@ export default defineConfig([
   {
     external,
     input: {
+      css: "src/css.ts",
       index: "src/index.ts",
       unstable: "src/unstable.ts",
     },
@@ -139,6 +140,7 @@ export default defineConfig([
   {
     external,
     input: {
+      css: "src/css.ts",
       index: "src/index.ts",
       unstable: "src/unstable.ts",
     },
