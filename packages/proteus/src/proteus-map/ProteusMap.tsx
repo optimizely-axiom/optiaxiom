@@ -1,20 +1,26 @@
-import { useProteusDocumentContext } from "./ProteusDocumentContext";
+import type { ReactNode } from "react";
+
+import { useProteusDocumentContext } from "../proteus-document/ProteusDocumentContext";
 import {
   ProteusDocumentPathProvider,
   useProteusDocumentPathContext,
-} from "./ProteusDocumentPathContext";
-import { useProteusValue } from "./useProteusValue";
+} from "../proteus-document/ProteusDocumentPathContext";
+import { useProteusValue } from "../proteus-document/useProteusValue";
 
-export function ProteusMap({
-  children,
-  path,
-  separator,
-}: {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  children?: any;
+export type ProteusMapProps = {
+  children?: ReactNode;
+  /**
+   * JSON pointer path to the source array in the data (e.g., '/results')
+   */
   path: string;
-  separator?: unknown;
-}) {
+  /**
+   * Optional separator to render between items. Can be a string or a
+   * ReactNode for more complex separators.
+   */
+  separator?: ReactNode;
+};
+
+export function ProteusMap({ children, path, separator }: ProteusMapProps) {
   const { strict } = useProteusDocumentContext("@optiaxiom/proteus/ProteusMap");
   const { path: parentPath } = useProteusDocumentPathContext(
     "@optiaxiom/proteus/ProteusMap",
@@ -23,9 +29,8 @@ export function ProteusMap({
 
   if (!Array.isArray(array)) {
     if (strict) {
-      console.error(
-        `[optiaxiom][react][ProteusMap] Path "${path}" did not resolve to an array:`,
-        array,
+      throw new Error(
+        `Expected value at "${path}" to be an array got "${typeof array}" instead`,
       );
     }
     return null;

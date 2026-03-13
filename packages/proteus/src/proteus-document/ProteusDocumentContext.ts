@@ -12,4 +12,4 @@ export const [ProteusDocumentProvider, useProteusDocumentContext] =
     readOnly: boolean | undefined;
     strict: boolean | undefined;
     valid: boolean | undefined;
-  }>("@optiaxiom/react/ProteusDocument");
+  }>("@optiaxiom/proteus/ProteusDocument");

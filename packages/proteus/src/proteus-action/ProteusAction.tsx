@@ -1,20 +1,25 @@
+import type { ButtonProps } from "@optiaxiom/react";
+
 import { Button } from "@optiaxiom/react";
 import { useState } from "react";
 
-import type { ProteusEventHandler } from "./schemas";
+import type { ProteusEventHandler } from "../proteus-document/schemas";
 
-import { useProteusDocumentContext } from "./ProteusDocumentContext";
-import { useResolvedProteusProps } from "./useResolvedProteusProps";
+import { useProteusDocumentContext } from "../proteus-document/ProteusDocumentContext";
+import { useResolvedProteusProps } from "../proteus-document/useResolvedProteusProps";
+
+export type ProteusActionProps = Omit<ButtonProps, "onClick"> & {
+  /**
+   * Action triggered when button is clicked
+   */
+  onClick?: ProteusEventHandler;
+};
 
 export function ProteusAction({
   children,
   onClick,
   ...props
-}: {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  children?: any;
-  onClick?: ProteusEventHandler;
-}) {
+}: ProteusActionProps) {
   const { onEvent, valid } = useProteusDocumentContext(
     "@optiaxiom/proteus/ProteusAction",
   );

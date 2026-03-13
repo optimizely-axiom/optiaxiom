@@ -98,7 +98,7 @@ const PROTEUS_COMPONENT_CONFIG = {
       description: "Description of option 1",
       value: "option1",
     },
-    extends: "Fragment",
+    extends: "Radio",
   },
   ChoiceGroup: {
     allowedProps: ["children", "name"],
@@ -116,7 +116,7 @@ const PROTEUS_COMPONENT_CONFIG = {
         },
       ],
     },
-    extends: "Fragment",
+    extends: "Group",
   },
   DataTable: {
     allowedProps: ["columns", "data"],

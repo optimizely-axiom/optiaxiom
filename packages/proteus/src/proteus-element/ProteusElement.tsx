@@ -18,26 +18,26 @@ import { Range, Time } from "@optiaxiom/react/unstable";
 import { type ComponentPropsWithoutRef, lazy, Suspense } from "react";
 
 import { IconCalendar } from "../icons/IconCalendar";
-import { ProteusAction } from "./ProteusAction";
-import { ProteusCancelAction } from "./ProteusCancelAction";
-import { ProteusChoice } from "./ProteusChoice";
-import { ProteusChoiceGroup } from "./ProteusChoiceGroup";
-import { ProteusDataTable } from "./ProteusDataTable";
-import { useProteusDocumentContext } from "./ProteusDocumentContext";
-import { useProteusDocumentPathContext } from "./ProteusDocumentPathContext";
-import { ProteusImage } from "./ProteusImage";
-import { ProteusInput } from "./ProteusInput";
-import { ProteusMap } from "./ProteusMap";
-import { ProteusSelect } from "./ProteusSelect";
-import { ProteusShow } from "./ProteusShow";
-import { ProteusTextarea } from "./ProteusTextarea";
-import { ProteusValue } from "./ProteusValue";
-import { resolveProteusProp } from "./resolveProteusProp";
-import { safeParseElement } from "./schemas";
+import { ProteusAction } from "../proteus-action/ProteusAction";
+import { ProteusCancelAction } from "../proteus-action/ProteusCancelAction";
+import { ProteusChoice } from "../proteus-choice/ProteusChoice";
+import { ProteusChoiceGroup } from "../proteus-choice/ProteusChoiceGroup";
+import { ProteusDataTable } from "../proteus-data-table/ProteusDataTable";
+import { useProteusDocumentContext } from "../proteus-document/ProteusDocumentContext";
+import { useProteusDocumentPathContext } from "../proteus-document/ProteusDocumentPathContext";
+import { resolveProteusProp } from "../proteus-document/resolveProteusProp";
+import { safeParseElement } from "../proteus-document/schemas";
+import { ProteusImage } from "../proteus-image/ProteusImage";
+import { ProteusInput } from "../proteus-input/ProteusInput";
+import { ProteusMap } from "../proteus-map/ProteusMap";
+import { ProteusSelect } from "../proteus-select/ProteusSelect";
+import { ProteusShow } from "../proteus-show/ProteusShow";
+import { ProteusTextarea } from "../proteus-textarea/ProteusTextarea";
+import { ProteusValue } from "../proteus-value/ProteusValue";
 
 const ProteusChart = lazy(async () => {
   return {
-    default: (await import("./ProteusChart")).ProteusChart,
+    default: (await import("../proteus-chart/ProteusChart")).ProteusChart,
   };
 });
 
@@ -52,10 +52,10 @@ export const ProteusElement = ({
   element: elementProp,
 }: ProteusElementProps) => {
   const { data, strict } = useProteusDocumentContext(
-    "@optiaxiom/react/ProteusElement",
+    "@optiaxiom/proteus/ProteusElement",
   );
   const { path: parentPath } = useProteusDocumentPathContext(
-    "@optiaxiom/react/ProteusElement",
+    "@optiaxiom/proteus/ProteusElement",
   );
   if (!elementProp) {
     return null;
@@ -77,21 +77,19 @@ export const ProteusElement = ({
   const result = safeParseElement(elementProp as Record<string, unknown>);
   if (!result.success) {
     if (strict) {
-      throw new Error(
-        `[optiaxiom][react][ProteusElement] Invalid block element: ${result.error.join("\n")}`,
-      );
+      throw new Error(`Invalid element: ${result.error.join("\n")}`);
     }
     return null;
   }
 
   const element = result.data;
-  const resolve = (obj: Record<string, unknown>) => {
+  const resolve = <T extends { $type: string }>(obj: T) => {
     const { $type: _$type, ...rest } = obj;
     const resolved: Record<string, unknown> = {};
     for (const [key, value] of Object.entries(rest)) {
       resolved[key] = resolveProteusProp(value, data, parentPath);
     }
-    return resolved;
+    return resolved as Omit<T, "$type">;
   };
 
   switch (element.$type) {
@@ -209,4 +207,4 @@ export const ProteusElement = ({
   }
 };
 
-ProteusElement.displayName = "@optiaxiom/react/ProteusElement";
+ProteusElement.displayName = "@optiaxiom/proteus/ProteusElement";

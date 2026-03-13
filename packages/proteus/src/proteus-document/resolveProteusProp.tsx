@@ -1,5 +1,5 @@
+import { ProteusElement } from "../proteus-element";
 import { getProteusValue } from "./getProteusValue";
-import { ProteusElement } from "./ProteusElement";
 
 export function resolveProteusProp(
   value: unknown,

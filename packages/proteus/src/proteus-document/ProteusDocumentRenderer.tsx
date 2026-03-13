@@ -1,8 +1,8 @@
 import { type ComponentPropsWithoutRef } from "react";
 
+import { ProteusElement } from "../proteus-element";
 import { ProteusDocumentShell } from "./ProteusDocumentShell";
-import { ProteusElement } from "./ProteusElement";
-import { type ProteusDocument, safeParseDocument } from "./schemas";
+import { safeParseDocument } from "./schemas";
 
 export type ProteusDocumentRendererProps = Omit<
   ComponentPropsWithoutRef<typeof ProteusDocumentShell>,
@@ -18,6 +18,17 @@ export type ProteusDocumentRendererProps = Omit<
   strict?: boolean;
 };
 
+type ProteusDocument = {
+  $type: "Document";
+  actions?: unknown;
+  appIcon?: string;
+  appName?: string;
+  blocking?: boolean;
+  body: unknown;
+  subtitle?: unknown;
+  title: unknown;
+};
+
 export function ProteusDocumentRenderer({
   element: elementProp,
   strict = false,
@@ -26,9 +37,7 @@ export function ProteusDocumentRenderer({
   const result = safeParseDocument(elementProp);
   if (!result.success) {
     if (strict) {
-      throw new Error(
-        `[optiaxiom][react][ProteusElement] Invalid block element: ${result.error.join("\n")}`,
-      );
+      throw new Error(`Invalid document: ${result.error.join("\n")}`);
     }
     return null;
   }
@@ -57,7 +66,7 @@ export function ProteusDocumentRenderer({
 }
 
 ProteusDocumentRenderer.displayName =
-  "@optiaxiom/react/ProteusDocumentRenderer";
+  "@optiaxiom/proteus/ProteusDocumentRenderer";
 
 function hasValue(value: unknown): boolean {
   return !!value && (!Array.isArray(value) || value.length > 0);

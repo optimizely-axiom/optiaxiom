@@ -1,14 +1,26 @@
+import type { RadioProps } from "@optiaxiom/react";
 import type { ReactNode } from "react";
 
 import { Box, extractBoxProps, Group, Text } from "@optiaxiom/react";
 import { VisuallyHidden } from "@optiaxiom/react/unstable";
 
-import type { ProteusEventHandler } from "./schemas";
+import type { ProteusEventHandler } from "../proteus-document/schemas";
 
+import { useProteusDocumentContext } from "../proteus-document/ProteusDocumentContext";
+import { useResolvedProteusProps } from "../proteus-document/useResolvedProteusProps";
 import * as styles from "./ProteusChoiceGroup.css";
-import { useProteusDocumentContext } from "./ProteusDocumentContext";
-import { useRadioGroupContext } from "./RadioGroupContext";
-import { useResolvedProteusProps } from "./useResolvedProteusProps";
+import { useProteusChoiceGroupContext } from "./ProteusChoiceGroupContext";
+
+export type ProteusChoiceProps = Omit<RadioProps, "onClick"> & {
+  /**
+   * Content to display before the choice text (e.g., numbered badge)
+   */
+  addonBefore?: ReactNode;
+  /**
+   * Action triggered when choice is selected
+   */
+  onClick?: ProteusEventHandler;
+};
 
 export function ProteusChoice({
   addonBefore,
@@ -18,18 +30,13 @@ export function ProteusChoice({
   onClick,
   value,
   ...props
-}: {
-  addonBefore?: ReactNode;
-  children?: ReactNode;
-  className?: string;
-  description?: ReactNode;
-  onClick?: ProteusEventHandler;
-  value?: string;
-}) {
+}: ProteusChoiceProps) {
   const { boxProps, restProps } = extractBoxProps(props);
-  const groupContext = useRadioGroupContext("@optiaxiom/react/ProteusChoice");
+  const groupContext = useProteusChoiceGroupContext(
+    "@optiaxiom/proteus/ProteusChoice",
+  );
   const { onEvent } = useProteusDocumentContext(
-    "@optiaxiom/react/ProteusChoice",
+    "@optiaxiom/proteus/ProteusChoice",
   );
   const resolvedOnClick = useResolvedProteusProps(
     (onClick ?? {}) as Record<string, unknown>,
@@ -73,4 +80,4 @@ export function ProteusChoice({
   );
 }
 
-ProteusChoice.displayName = "@optiaxiom/react/ProteusChoice";
+ProteusChoice.displayName = "@optiaxiom/proteus/ProteusChoice";

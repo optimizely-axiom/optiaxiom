@@ -1,6 +1,17 @@
-import { useProteusDocumentContext } from "./ProteusDocumentContext";
-import { useProteusDocumentPathContext } from "./ProteusDocumentPathContext";
-import { resolveProteusValue } from "./resolveProteusValue";
+import type { ReactNode } from "react";
+
+import { useProteusDocumentContext } from "../proteus-document/ProteusDocumentContext";
+import { useProteusDocumentPathContext } from "../proteus-document/ProteusDocumentPathContext";
+import { resolveProteusValue } from "../proteus-document/resolveProteusValue";
+
+export type ProteusShowProps = {
+  children?: ReactNode;
+  /**
+   * Single condition or array of conditions (AND logic). Each condition is an
+   * object with one operator key.
+   */
+  when: ProteusCondition;
+};
 
 type ComparisonValue =
   | boolean
@@ -20,17 +31,10 @@ type ProteusCondition =
   | { and: ProteusCondition[] }
   | { or: ProteusCondition[] };
 
-export function ProteusShow({
-  children,
-  when,
-}: {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  children?: any;
-  when: ProteusCondition;
-}) {
-  const { data } = useProteusDocumentContext("@optiaxiom/react/ProteusShow");
+export function ProteusShow({ children, when }: ProteusShowProps) {
+  const { data } = useProteusDocumentContext("@optiaxiom/proteus/ProteusShow");
   const { path: parentPath } = useProteusDocumentPathContext(
-    "@optiaxiom/react/ProteusShow",
+    "@optiaxiom/proteus/ProteusShow",
   );
 
   const conditions = Array.isArray(when) ? when : [when];
@@ -129,4 +133,4 @@ function evaluateCondition(
   return false;
 }
 
-ProteusShow.displayName = "@optiaxiom/react/ProteusShow";
+ProteusShow.displayName = "@optiaxiom/proteus/ProteusShow";

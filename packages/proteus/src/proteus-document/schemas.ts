@@ -1,69 +1,82 @@
+import type {
+  AvatarProps,
+  BadgeProps,
+  BoxProps,
+  CardHeaderProps,
+  CardLinkProps,
+  CardProps,
+  FieldProps,
+  GroupProps,
+  HeadingProps,
+  InputProps,
+  LinkProps,
+  SelectContentProps,
+  SelectTriggerProps,
+  SeparatorProps,
+  TextareaProps,
+  TextProps,
+} from "@optiaxiom/react";
+import type { RangeProps, TimeProps } from "@optiaxiom/react/unstable";
+
 import { Validator } from "@cfworker/json-schema";
+
+import type { ProteusActionProps } from "../proteus-action/ProteusAction";
+import type { ProteusCancelActionProps } from "../proteus-action/ProteusCancelAction";
+import type { ProteusChartProps } from "../proteus-chart/ProteusChart";
+import type { ProteusChoiceProps } from "../proteus-choice/ProteusChoice";
+import type { ProteusChoiceGroupProps } from "../proteus-choice/ProteusChoiceGroup";
+import type { ProteusDataTableProps } from "../proteus-data-table/ProteusDataTable";
+import type { ProteusImageProps } from "../proteus-image/ProteusImage";
+import type { ProteusMapProps } from "../proteus-map/ProteusMap";
+import type { ProteusSelectProps } from "../proteus-select/ProteusSelect";
+import type { ProteusShowProps } from "../proteus-show/ProteusShow";
+import type { ProteusValueProps } from "../proteus-value/ProteusValue";
+import type { ProteusDocumentShellProps } from "./ProteusDocumentShell";
 
 import proteusDocumentSpec from "../schema/runtime-schema.json";
 
-// --- ProteusValue ---
-
-export interface ProteusDocument {
-  $type: "Document";
-  [key: string]: unknown;
-  actions?: unknown;
-  appIcon?: string;
-  appName?: string;
-  blocking?: boolean;
-  body: unknown;
-  subtitle?: unknown;
-  title: unknown;
-}
-
-// --- ProteusEventHandler ---
-
 export type ProteusElement =
-  | { $type: "Action"; [key: string]: unknown }
-  | { $type: "Avatar"; [key: string]: unknown }
-  | { $type: "Badge"; [key: string]: unknown }
-  | { $type: "CancelAction"; [key: string]: unknown }
-  | { $type: "Card"; [key: string]: unknown }
-  | { $type: "CardHeader"; [key: string]: unknown }
-  | { $type: "CardLink"; [key: string]: unknown }
-  | { $type: "Chart"; [key: string]: unknown }
-  | { $type: "Choice"; [key: string]: unknown }
-  | { $type: "ChoiceGroup"; [key: string]: unknown }
-  | { $type: "DataTable"; [key: string]: unknown }
-  | { $type: "Field"; [key: string]: unknown }
-  | { $type: "Group"; [key: string]: unknown }
-  | { $type: "Heading"; [key: string]: unknown }
-  | { $type: "IconCalendar"; [key: string]: unknown }
-  | { $type: "Image"; [key: string]: unknown }
-  | { $type: "Input"; [key: string]: unknown }
-  | { $type: "Link"; [key: string]: unknown }
-  | { $type: "Map"; [key: string]: unknown }
-  | { $type: "Range"; [key: string]: unknown }
-  | { $type: "Select"; [key: string]: unknown }
-  | { $type: "SelectContent"; [key: string]: unknown }
-  | { $type: "SelectTrigger"; [key: string]: unknown }
-  | { $type: "Separator"; [key: string]: unknown }
-  | { $type: "Show"; [key: string]: unknown }
-  | { $type: "Text"; [key: string]: unknown }
-  | { $type: "Textarea"; [key: string]: unknown }
-  | { $type: "Time"; [key: string]: unknown }
-  | { $type: "Value"; [key: string]: unknown };
-
-// --- ProteusDocument ---
+  | (AvatarProps & { $type: "Avatar" })
+  | (BadgeProps & { $type: "Badge" })
+  | (BoxProps & { $type: "IconCalendar" })
+  | (CardHeaderProps & { $type: "CardHeader" })
+  | (CardLinkProps & { $type: "CardLink" })
+  | (CardProps & { $type: "Card" })
+  | (FieldProps & { $type: "Field" })
+  | (GroupProps & { $type: "Group" })
+  | (HeadingProps & { $type: "Heading" })
+  | (InputProps & { $type: "Input" })
+  | (LinkProps & { $type: "Link" })
+  | (ProteusActionProps & { $type: "Action" })
+  | (ProteusCancelActionProps & { $type: "CancelAction" })
+  | (ProteusChartProps & { $type: "Chart" })
+  | (ProteusChoiceGroupProps & { $type: "ChoiceGroup" })
+  | (ProteusChoiceProps & { $type: "Choice" })
+  | (ProteusDataTableProps & { $type: "DataTable" })
+  | (ProteusImageProps & { $type: "Image" })
+  | (ProteusMapProps & { $type: "Map" })
+  | (ProteusSelectProps & { $type: "Select" })
+  | (ProteusShowProps & { $type: "Show" })
+  | (ProteusValueProps & { $type: "Value" })
+  | (RangeProps & { $type: "Range" })
+  | (SelectContentProps & { $type: "SelectContent" })
+  | (SelectTriggerProps & { $type: "SelectTrigger" })
+  | (SeparatorProps & { $type: "Separator" })
+  | (TextareaProps & { $type: "Textarea" })
+  | (TextProps & { $type: "Text" })
+  | (TimeProps & { $type: "Time" });
 
 export type ProteusEventHandler =
-  | { action: "download"; url: ProteusValue | string }
+  | {
+      action: "download";
+      url: (ProteusValueProps & { $type: "Value" }) | string;
+    }
   | { message: string }
   | { tool: string };
 
-// --- ProteusElement (discriminated union for switch exhaustiveness) ---
-
-export interface ProteusValue {
-  $type: "Value";
-  [key: string]: unknown;
-  formatter?: string | { options?: Record<string, unknown>; type: string };
-  path: string;
-}
+type ProteusDocument = ProteusDocumentShellProps["element"] & {
+  $type: "Document";
+};
 
 // --- safeParse ---
 

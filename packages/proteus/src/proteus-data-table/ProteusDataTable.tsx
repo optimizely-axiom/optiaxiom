@@ -6,7 +6,18 @@ import {
 } from "@tanstack/react-table";
 import { get } from "jsonpointer";
 
-import { applyFormatter } from "./getProteusValue";
+import { applyFormatter } from "../proteus-document/getProteusValue";
+
+export type ProteusDataTableProps = {
+  /**
+   * Column definitions
+   */
+  columns: ColumnDef[];
+  /**
+   * Column data
+   */
+  data?: Record<string, unknown>[];
+};
 
 type ColumnDef = {
   accessorKey: string;
@@ -15,13 +26,7 @@ type ColumnDef = {
   size?: number;
 };
 
-export const ProteusDataTable = ({
-  columns,
-  data,
-}: {
-  columns: ColumnDef[];
-  data?: Record<string, unknown>[];
-}) => {
+export const ProteusDataTable = ({ columns, data }: ProteusDataTableProps) => {
   const tableData = data as Record<string, unknown>[];
 
   const columnHelper = createColumnHelper<Record<string, unknown>>();
@@ -53,4 +58,4 @@ export const ProteusDataTable = ({
   );
 };
 
-ProteusDataTable.displayName = "@optiaxiom/react/ProteusDataTable";
+ProteusDataTable.displayName = "@optiaxiom/proteus/ProteusDataTable";

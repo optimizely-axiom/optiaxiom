@@ -2,7 +2,7 @@ import type { TooltipContentProps } from "recharts";
 
 import { Box, Group } from "@optiaxiom/react";
 
-import { applyFormatter } from "./getProteusValue";
+import { applyFormatter } from "../proteus-document/getProteusValue";
 import * as styles from "./ProteusChartTooltipContent.css";
 
 export function ProteusChartTooltipContent({

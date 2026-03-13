@@ -1,10 +1,10 @@
 import { get } from "jsonpointer";
 
-import type { ProteusValue } from "./schemas";
+import type { ProteusValueProps } from "../proteus-value/ProteusValue";
 
 export function getProteusValue(
   data: Record<string, unknown>,
-  element: Pick<ProteusValue, "formatter" | "path">,
+  element: ProteusValueProps,
   parentPath: string,
 ) {
   try {

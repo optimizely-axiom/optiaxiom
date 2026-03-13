@@ -26,17 +26,32 @@ const DEFAULT_COLORS = ["#096DD9", "#E59700", "#38C56C", "#D1D8DE"];
 const getColor = (index: number) =>
   DEFAULT_COLORS[index % DEFAULT_COLORS.length];
 
+export type ProteusChartProps = {
+  /**
+   * Chart data records, either inline, a ProteusValue reference, or a
+   * ProteusZip transformation
+   */
+  data: Record<string, unknown>[];
+  /**
+   * Data series configuration
+   */
+  series: Series[];
+  /**
+   * Chart type
+   */
+  type: "bar" | "line";
+  /**
+   * Key in data records for x-axis labels
+   */
+  xAxisKey?: string;
+};
+
 export const ProteusChart = ({
   data,
   series,
   type,
   xAxisKey,
-}: {
-  data: Record<string, unknown>[];
-  series: Series[];
-  type: "bar" | "line";
-  xAxisKey?: string;
-}) => {
+}: ProteusChartProps) => {
   const ChartComponent = type === "bar" ? BarChart : LineChart;
   const Chart = type === "bar" ? Bar : Line;
   return (
@@ -90,4 +105,4 @@ export const ProteusChart = ({
   );
 };
 
-ProteusChart.displayName = "@optiaxiom/react/ProteusChart";
+ProteusChart.displayName = "@optiaxiom/proteus/ProteusChart";

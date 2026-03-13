@@ -1,18 +1,22 @@
 import { Button, Flex, Input } from "@optiaxiom/react";
-import { useState } from "react";
+import { type ReactNode, useState } from "react";
 
-import { useProteusDocumentContext } from "./ProteusDocumentContext";
+import { useProteusDocumentContext } from "../proteus-document/ProteusDocumentContext";
+
+export type ProteusCancelActionProps = {
+  children?: ReactNode;
+  /**
+   * Placeholder text for the text input field
+   */
+  placeholder?: string;
+};
 
 export function ProteusCancelAction({
   children,
   placeholder = "Tell Opal what to do instead",
-}: {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  children?: any;
-  placeholder?: string;
-}) {
+}: ProteusCancelActionProps) {
   const { onEvent } = useProteusDocumentContext(
-    "@optiaxiom/react/ProteusCancelAction",
+    "@optiaxiom/proteus/ProteusCancelAction",
   );
 
   const [inputValue, setInputValue] = useState("");
@@ -41,4 +45,4 @@ export function ProteusCancelAction({
   );
 }
 
-ProteusCancelAction.displayName = "@optiaxiom/react/ProteusCancelAction";
+ProteusCancelAction.displayName = "@optiaxiom/proteus/ProteusCancelAction";
