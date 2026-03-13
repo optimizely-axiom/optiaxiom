@@ -1,28 +1,36 @@
-import { Select } from "@optiaxiom/react";
+import { Select, type SelectProps } from "@optiaxiom/react";
 import { useRef } from "react";
 
-import { useProteusDocumentContext } from "./ProteusDocumentContext";
-import { useProteusDocumentPathContext } from "./ProteusDocumentPathContext";
-import { useProteusValue } from "./useProteusValue";
+import { useProteusDocumentContext } from "../proteus-document/ProteusDocumentContext";
+import { useProteusDocumentPathContext } from "../proteus-document/ProteusDocumentPathContext";
+import { useProteusValue } from "../proteus-document/useProteusValue";
+
+export type ProteusSelectProps = Omit<SelectProps, "options"> & {
+  /**
+   * The select items/options we want to render.
+   */
+  options?: Array<{
+    /**
+     * String representation of items
+     */
+    label: string;
+    /**
+     * Return a unique key for each item
+     */
+    value: string;
+  }>;
+};
 
 export function ProteusSelect({
   children,
   options = [],
   ...props
-}: {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  children?: any;
-  name?: string;
-  options?: Array<{
-    label: string;
-    value: string;
-  }>;
-}) {
+}: ProteusSelectProps) {
   const { onDataChange, readOnly } = useProteusDocumentContext(
-    "@optiaxiom/react/ProteusSelect",
+    "@optiaxiom/proteus/ProteusSelect",
   );
   const { path: parentPath } = useProteusDocumentPathContext(
-    "@optiaxiom/react/ProteusSelect",
+    "@optiaxiom/proteus/ProteusSelect",
   );
 
   const optionsRef = useRef(options);
@@ -52,4 +60,4 @@ export function ProteusSelect({
   );
 }
 
-ProteusSelect.displayName = "@optiaxiom/react/ProteusSelect";
+ProteusSelect.displayName = "@optiaxiom/proteus/ProteusSelect";

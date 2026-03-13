@@ -2,31 +2,36 @@ import type { ReactNode } from "react";
 
 import { Group } from "@optiaxiom/react";
 
+import { useProteusDocumentContext } from "../proteus-document/ProteusDocumentContext";
+import { useProteusDocumentPathContext } from "../proteus-document/ProteusDocumentPathContext";
+import { useProteusValue } from "../proteus-document/useProteusValue";
 import * as styles from "./ProteusChoiceGroup.css";
-import { useProteusDocumentContext } from "./ProteusDocumentContext";
-import { useProteusDocumentPathContext } from "./ProteusDocumentPathContext";
-import { RadioGroupProvider } from "./RadioGroupContext";
-import { useProteusValue } from "./useProteusValue";
+import { ProteusChoiceGroupProvider } from "./ProteusChoiceGroupContext";
+
+export type ProteusChoiceGroupProps = {
+  children?: ReactNode;
+  /**
+   * Data field name for the selected value.
+   */
+  name?: string;
+};
 
 export function ProteusChoiceGroup({
   children,
   name,
-}: {
-  children?: ReactNode;
-  name?: string;
-}) {
+}: ProteusChoiceGroupProps) {
   const { onDataChange, readOnly } = useProteusDocumentContext(
-    "@optiaxiom/react/ProteusChoiceGroup",
+    "@optiaxiom/proteus/ProteusChoiceGroup",
   );
   const { path: parentPath } = useProteusDocumentPathContext(
-    "@optiaxiom/react/ProteusChoiceGroup",
+    "@optiaxiom/proteus/ProteusChoiceGroup",
   );
 
   const resolved = useProteusValue({ path: name ?? "" });
   const value = name ? String(resolved ?? "") : "";
 
   return (
-    <RadioGroupProvider
+    <ProteusChoiceGroupProvider
       disabled={readOnly ?? false}
       name={name}
       onChange={(event) => {
@@ -37,8 +42,8 @@ export function ProteusChoiceGroup({
       value={value}
     >
       <Group {...styles.choiceGroup()}>{children}</Group>
-    </RadioGroupProvider>
+    </ProteusChoiceGroupProvider>
   );
 }
 
-ProteusChoiceGroup.displayName = "@optiaxiom/react/ProteusChoiceGroup";
+ProteusChoiceGroup.displayName = "@optiaxiom/proteus/ProteusChoiceGroup";

@@ -1,0 +1,1 @@
+export { ProteusDataTable } from "./ProteusDataTable";

@@ -20,7 +20,7 @@ import {
 import type { ProteusEventHandler } from "./schemas";
 
 import { useEffectEvent } from "../hooks";
-import { downloadFile } from "./downloadFile";
+import { downloadFile } from "../proteus-image/downloadFile";
 import { ProteusDocumentProvider } from "./ProteusDocumentContext";
 
 export type ProteusDocumentShellProps = Pick<
@@ -202,4 +202,4 @@ export function ProteusDocumentShell({
   );
 }
 
-ProteusDocumentShell.displayName = "@optiaxiom/react/ProteusDocumentShell";
+ProteusDocumentShell.displayName = "@optiaxiom/proteus/ProteusDocumentShell";

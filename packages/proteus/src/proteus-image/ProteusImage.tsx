@@ -1,5 +1,6 @@
 import {
   Box,
+  type BoxProps,
   Button,
   Dialog,
   DialogBody,
@@ -14,8 +15,9 @@ import { useRef, useState } from "react";
 
 import { downloadFile } from "./downloadFile";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function ProteusImage(props: Record<string, any>) {
+export type ProteusImageProps = BoxProps<"img">;
+
+export function ProteusImage(props: ProteusImageProps) {
   const [open, setOpen] = useState(false);
   const [isDownloading, setIsDownloading] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -104,4 +106,4 @@ export function ProteusImage(props: Record<string, any>) {
   );
 }
 
-ProteusImage.displayName = "@optiaxiom/react/ProteusImage";
+ProteusImage.displayName = "@optiaxiom/proteus/ProteusImage";
