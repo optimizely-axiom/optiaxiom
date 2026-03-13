@@ -10,11 +10,7 @@
     },
     "types": ["@testing-library/jest-dom"]
   },
-  "include": [
-    ".",
-    "package.json",
-    "src/proteus-document/proteus-document-spec.json"
-  ],
+  "include": [".", "package.json"],
   "exclude": ["dist", "lib", "node_modules"],
   "references": [{ "path": "../globals" }]
 }

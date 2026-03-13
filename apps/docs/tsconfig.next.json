@@ -7,6 +7,8 @@
       "@/components/*": ["components/*"],
       "@/demos/*": ["demos/*"],
       "@optiaxiom/globals": ["../../packages/globals/dist"],
+      "@optiaxiom/proteus": ["../../packages/proteus/dist"],
+      "@optiaxiom/proteus/spec": ["../../packages/proteus/dist/spec"],
       "@optiaxiom/react": ["../../packages/react/dist"],
       "@optiaxiom/react/unstable": ["../../packages/react/dist/unstable"]
     }

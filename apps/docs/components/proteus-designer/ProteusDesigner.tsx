@@ -1,7 +1,7 @@
 "use client";
 
+import { ProteusDocumentRenderer } from "@optiaxiom/proteus";
 import { Alert, Box, Button, Group, Separator, Text } from "@optiaxiom/react";
-import { ProteusDocumentRenderer } from "@optiaxiom/react/unstable";
 import { useState } from "react";
 
 import { DocumentTree } from "./DocumentTree";
@@ -12,7 +12,7 @@ import { useDesignerState } from "./useDesignerState";
 
 const templates = Object.fromEntries(
   documentExamples.map((example) => [
-    String(example.title ?? "Untitled"),
+    String("title" in example ? (example.title ?? "Untitled") : "Untitled"),
     example as unknown as Record<string, unknown>,
   ]),
 );

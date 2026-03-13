@@ -1,9 +1,5 @@
-import type { ProteusDocument } from "../../../../packages/react/src/proteus-document/schemas";
-
-import proteusDocumentSpec from "../../../../packages/react/src/proteus-document/proteus-document-spec.json";
-import { safeParseDocument } from "../../../../packages/react/src/proteus-document/schemas";
-
-export type ProteusDocumentProps = ProteusDocument;
+import { safeParseDocument } from "@optiaxiom/proteus";
+import { schema as proteusDocumentSpec } from "@optiaxiom/proteus/spec";
 
 type JSONSchema7 = {
   $ref?: string;
@@ -35,8 +31,7 @@ const documentDef = definitions["ProteusDocument"] as JSONSchema7;
 
 // --- Helpers to extract document-level examples and safeParse ---
 
-export const documentExamples: ProteusDocumentProps[] = (documentDef.examples ??
-  []) as ProteusDocumentProps[];
+export const documentExamples = documentDef.examples ?? [];
 
 export { safeParseDocument };
 

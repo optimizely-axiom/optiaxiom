@@ -7,8 +7,9 @@
     { "path": "apps/storybook" },
     { "path": "packages/globals" },
     { "path": "packages/mcp" },
-    { "path": "packages/shared" },
+    { "path": "packages/proteus" },
     { "path": "packages/react" },
+    { "path": "packages/shared" },
     { "path": "packages/web-components" }
   ]
 }

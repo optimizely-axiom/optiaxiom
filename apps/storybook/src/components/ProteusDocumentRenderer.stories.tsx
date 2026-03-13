@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
+import { ProteusDocumentRenderer } from "@optiaxiom/proteus";
 import { Box } from "@optiaxiom/react";
-import { ProteusDocumentRenderer } from "@optiaxiom/react/unstable";
 import { useState } from "react";
 import { action } from "storybook/actions";
 
@@ -9,6 +9,7 @@ export default {
   args: {
     onMessage: action("onMessage"),
     onToolCall: action("onToolCall"),
+    strict: true,
   },
   component: ProteusDocumentRenderer,
   decorators: (Story) => (
@@ -990,5 +991,6 @@ export const PartialRendering: Story = {
       ],
       title: "Invalid Document Example",
     },
+    strict: false,
   },
 };

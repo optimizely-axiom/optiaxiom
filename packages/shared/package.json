@@ -4,7 +4,6 @@
   "type": "module",
   "version": "0.0.0",
   "bin": {
-    "oas-proteus-spec": "bin/proteus-spec.mjs",
     "oas-bundle-size": "bin/bundle-size.mjs",
     "oas-design-tokens": "bin/design-tokens.mjs",
     "oas-lint": "bin/lint.sh"
