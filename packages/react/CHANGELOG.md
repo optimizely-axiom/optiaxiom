@@ -1,5 +1,12 @@
 # @optiaxiom/react
 
+## 1.9.18
+
+### Patch Changes
+
+- 3faa23b: split proteus into separate package
+- c2e3650: export a css entry point
+
 ## 1.9.17
 
 ### Patch Changes
