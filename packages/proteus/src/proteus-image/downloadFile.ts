@@ -1,5 +1,5 @@
 export async function downloadFile(url: string) {
-  const response = await fetch(url);
+  const response = await fetch(url, { credentials: "include" });
   const blob = await response.blob();
   const objectUrl = URL.createObjectURL(blob);
   const a = document.createElement("a");
