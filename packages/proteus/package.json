@@ -36,7 +36,7 @@
     "@optiaxiom/react": "workspace:*",
     "@radix-ui/react-context": "^1.1.2",
     "@radix-ui/react-use-controllable-state": "^1.2.2",
-    "@tanstack/react-table": "^8.21.3",
+    "@tanstack/react-table": "^8.0.0",
     "jsonpointer": "^5.0.1",
     "recharts": "^3.7.0"
   },
