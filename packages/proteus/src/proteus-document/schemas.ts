@@ -23,11 +23,10 @@ import { Validator } from "@cfworker/json-schema";
 import type { ProteusActionProps } from "../proteus-action/ProteusAction";
 import type { ProteusCancelActionProps } from "../proteus-action/ProteusCancelAction";
 import type { ProteusChartProps } from "../proteus-chart/ProteusChart";
-import type { ProteusChoiceProps } from "../proteus-choice/ProteusChoice";
-import type { ProteusChoiceGroupProps } from "../proteus-choice/ProteusChoiceGroup";
 import type { ProteusDataTableProps } from "../proteus-data-table/ProteusDataTable";
 import type { ProteusImageProps } from "../proteus-image/ProteusImage";
 import type { ProteusMapProps } from "../proteus-map/ProteusMap";
+import type { ProteusQuestionProps } from "../proteus-question/ProteusQuestion";
 import type { ProteusSelectProps } from "../proteus-select/ProteusSelect";
 import type { ProteusShowProps } from "../proteus-show/ProteusShow";
 import type { ProteusValueProps } from "../proteus-value/ProteusValue";
@@ -50,11 +49,10 @@ export type ProteusElement =
   | (ProteusActionProps & { $type: "Action" })
   | (ProteusCancelActionProps & { $type: "CancelAction" })
   | (ProteusChartProps & { $type: "Chart" })
-  | (ProteusChoiceGroupProps & { $type: "ChoiceGroup" })
-  | (ProteusChoiceProps & { $type: "Choice" })
   | (ProteusDataTableProps & { $type: "DataTable" })
   | (ProteusImageProps & { $type: "Image" })
   | (ProteusMapProps & { $type: "Map" })
+  | (ProteusQuestionProps & { $type: "Question" })
   | (ProteusSelectProps & { $type: "Select" })
   | (ProteusShowProps & { $type: "Show" })
   | (ProteusValueProps & { $type: "Value" })

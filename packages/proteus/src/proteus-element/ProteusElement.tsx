@@ -20,8 +20,6 @@ import { type ComponentPropsWithoutRef, lazy, Suspense } from "react";
 import { IconCalendar } from "../icons/IconCalendar";
 import { ProteusAction } from "../proteus-action/ProteusAction";
 import { ProteusCancelAction } from "../proteus-action/ProteusCancelAction";
-import { ProteusChoice } from "../proteus-choice/ProteusChoice";
-import { ProteusChoiceGroup } from "../proteus-choice/ProteusChoiceGroup";
 import { ProteusDataTable } from "../proteus-data-table/ProteusDataTable";
 import { useProteusDocumentContext } from "../proteus-document/ProteusDocumentContext";
 import { useProteusDocumentPathContext } from "../proteus-document/ProteusDocumentPathContext";
@@ -30,6 +28,7 @@ import { safeParseElement } from "../proteus-document/schemas";
 import { ProteusImage } from "../proteus-image/ProteusImage";
 import { ProteusInput } from "../proteus-input/ProteusInput";
 import { ProteusMap } from "../proteus-map/ProteusMap";
+import { ProteusQuestion } from "../proteus-question/ProteusQuestion";
 import { ProteusSelect } from "../proteus-select/ProteusSelect";
 import { ProteusShow } from "../proteus-show/ProteusShow";
 import { ProteusTextarea } from "../proteus-textarea/ProteusTextarea";
@@ -117,22 +116,6 @@ export const ProteusElement = ({
           />
         </Suspense>
       );
-    case "Choice":
-      return (
-        <ProteusChoice
-          {...(resolve(element) as ComponentPropsWithoutRef<
-            typeof ProteusChoice
-          >)}
-        />
-      );
-    case "ChoiceGroup":
-      return (
-        <ProteusChoiceGroup
-          {...(resolve(element) as ComponentPropsWithoutRef<
-            typeof ProteusChoiceGroup
-          >)}
-        />
-      );
     case "DataTable":
       return (
         <ProteusDataTable
@@ -165,6 +148,8 @@ export const ProteusElement = ({
           {...(resolve(element) as ComponentPropsWithoutRef<typeof ProteusMap>)}
         />
       );
+    case "Question":
+      return <ProteusQuestion {...resolve(element)} />;
     case "Range":
       return <Range {...resolve(element)} />;
     case "Select":

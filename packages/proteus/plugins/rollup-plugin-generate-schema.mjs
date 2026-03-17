@@ -84,40 +84,6 @@ const PROTEUS_COMPONENT_CONFIG = {
     },
     extends: "Fragment",
   },
-  Choice: {
-    allowedProps: [
-      "addonBefore",
-      "children",
-      "description",
-      "onClick",
-      "required",
-      "value",
-    ],
-    example: {
-      children: "Option 1",
-      description: "Description of option 1",
-      value: "option1",
-    },
-    extends: "Radio",
-  },
-  ChoiceGroup: {
-    allowedProps: ["children", "name"],
-    example: {
-      children: [
-        {
-          $type: "Choice",
-          children: "Option 1",
-          value: "option1",
-        },
-        {
-          $type: "Choice",
-          children: "Option 2",
-          value: "option2",
-        },
-      ],
-    },
-    extends: "Group",
-  },
   DataTable: {
     allowedProps: ["columns", "data"],
     example: {
@@ -174,6 +140,11 @@ const PROTEUS_COMPONENT_CONFIG = {
     },
     extends: "Fragment",
     requiredProps: ["path"],
+  },
+  Question: {
+    allowedProps: ["questions"],
+    extends: "Fragment",
+    requiredProps: ["questions"],
   },
   Range: {
     allowedProps: ["marks", "max", "min", "step"],
@@ -934,43 +905,6 @@ function getPropTypeOverrides(additionalProperties = false) {
         type: "string",
       },
     },
-    Choice: {
-      addonBefore: {
-        $ref: "#/definitions/ProteusNode",
-        description:
-          "Content to display before the choice text (e.g., numbered badge)",
-      },
-      children: {
-        $ref: "#/definitions/ProteusNode",
-        description: "Title/label of the choice",
-      },
-      description: {
-        $ref: "#/definitions/ProteusNode",
-        description: "Secondary description text shown below the title",
-      },
-      onClick: {
-        $ref: "#/definitions/ProteusEventHandler",
-        description: "Action triggered when choice is selected",
-      },
-      required: {
-        description: "Whether selecting this choice is required to proceed",
-        type: "boolean",
-      },
-      value: {
-        description: "Value associated with this choice",
-        type: "string",
-      },
-    },
-    ChoiceGroup: {
-      children: {
-        $ref: "#/definitions/ProteusNode",
-        description: "Choice elements to render",
-      },
-      name: {
-        description: "Data field name for the selected value",
-        type: "string",
-      },
-    },
     DataTable: {
       columns: {
         description: "Column definitions",
@@ -1051,6 +985,12 @@ function getPropTypeOverrides(additionalProperties = false) {
         $ref: "#/definitions/ProteusNode",
         description:
           "Optional separator to render between items. Can be a string or a ProteusNode for more complex separators.",
+      },
+    },
+    Question: {
+      questions: {
+        $ref: "#/definitions/ProteusValue",
+        description: "Array of questions data",
       },
     },
     Range: {
