@@ -1,4 +1,4 @@
-import { layers } from "@optiaxiom/react/css";
+import { layers } from "@optiaxiom/react/css-runtime";
 import { globalStyle as veGlobalStyle } from "@vanilla-extract/css";
 
 export const globalStyle = (...args: Parameters<typeof veGlobalStyle>) =>

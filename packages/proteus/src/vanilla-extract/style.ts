@@ -1,4 +1,4 @@
-import { layers } from "@optiaxiom/react/css";
+import { layers } from "@optiaxiom/react/css-runtime";
 import { style as veStyle } from "@vanilla-extract/css";
 
 export const style = (...args: Parameters<typeof veStyle>) =>

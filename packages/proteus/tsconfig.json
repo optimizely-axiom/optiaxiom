@@ -7,7 +7,7 @@
       "@optiaxiom/globals": ["../globals/src"],
       "@optiaxiom/globals/fonts": ["../globals/src/fonts"],
       "@optiaxiom/react": ["../react/src"],
-      "@optiaxiom/react/css": ["../react/src/css"],
+      "@optiaxiom/react/css-runtime": ["../react/src/css-runtime"],
       "@optiaxiom/react/unstable": ["../react/src/unstable"]
     }
   },

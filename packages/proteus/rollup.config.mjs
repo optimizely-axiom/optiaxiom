@@ -82,9 +82,6 @@ export default defineConfig([
       env === "production" && stylePlugin(),
       vanillaExtractPlugin({
         esbuildOptions: {
-          loader: {
-            ".css": "empty",
-          },
           tsconfig: "tsconfig.build.json",
         },
         ...(env === "production"

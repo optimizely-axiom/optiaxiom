@@ -1,4 +1,4 @@
-import { recipe as recipeRuntime } from "@optiaxiom/react/css";
+import { recipe as recipeRuntime } from "@optiaxiom/react/css-runtime";
 /**
  * Forked from https://vanilla-extract.style/documentation/packages/recipes/
  */
@@ -10,7 +10,7 @@ export const recipe: typeof recipeRuntime = (options) => {
     // @ts-expect-error -- too complex
     args: [options],
     importName: "recipe",
-    importPath: "@optiaxiom/react/css",
+    importPath: "@optiaxiom/react/css-runtime",
   });
   return recipe;
 };
