@@ -24,8 +24,10 @@ export function ProteusQuestion({ questions }: ProteusQuestionProps) {
     "@optiaxiom/proteus/ProteusQuestion",
   );
   const [answers, setAnswers] = useState<Array<null | string[]>>([]);
-
   const [currentIndex, setCurrentIndex] = useState(0);
+  const answer = answers[currentIndex];
+  const valid =
+    Array.isArray(answer) && answer.length > 0 && answer.every(Boolean);
 
   if (currentIndex >= questions.length) {
     return null;
@@ -90,6 +92,7 @@ export function ProteusQuestion({ questions }: ProteusQuestionProps) {
         </Button>
         <Button
           appearance="primary"
+          disabled={!valid}
           onClick={(event) => {
             event.preventDefault();
             if (isLast) {
