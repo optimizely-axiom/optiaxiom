@@ -415,87 +415,40 @@ export const ReadonlyMode: Story = {
 
 export const AskUserQuestion: Story = {
   args: {
-    element: {
-      $type: "Document",
-      actions: {
-        $type: "Show",
-        children: {
-          $type: "Action",
-          appearance: "primary",
-          children: "Submit answers",
-          onClick: {
-            tool: "submit_answers",
-          },
-        },
-      },
-      body: [
+    data: {
+      questions: [
         {
-          $type: "Group",
-          children: [
-            {
-              $type: "Text",
-              children:
-                "Are the Flow components (Flow.Group, etc.) already defined in the codebase, or should I base them on the existing Axiom components from getDocs?",
-            },
-            {
-              $type: "ChoiceGroup",
-              children: [
-                {
-                  $type: "Choice",
-                  addonBefore: "1",
-                  children:
-                    "Flow components are already defined somewhere in the code",
-                  description:
-                    "I should search for existing Flow component definitions",
-                  required: true,
-                  value: "existing",
-                },
-                {
-                  $type: "Choice",
-                  addonBefore: "2",
-                  children:
-                    "Generate Flow spec based on existing Axiom components",
-                  description:
-                    "Transform the component docs from getDocs() into a Flow document specification",
-                  required: true,
-                  value: "generate",
-                },
-                {
-                  $type: "Choice",
-                  addonBefore: "3",
-                  children: "Other",
-                  required: true,
-                  value: "other",
-                },
-              ],
-              name: "selected_option",
-            },
-            {
-              $type: "Show",
-              children: {
-                $type: "Textarea",
-                autoFocus: true,
-                name: "other_answer",
-                placeholder: "Type your answer here...",
-                required: true,
-              },
-              when: {
-                "==": [{ $type: "Value", path: "/selected_option" }, "other"],
-              },
-            },
+          options: [
+            "Search existing",
+            "Generate from Axiom",
+            "Start from scratch",
           ],
-          flexDirection: "column",
-          gap: "16",
+          question: "How should I handle the Flow components?",
+          type: "single_select",
+        },
+        {
+          options: [
+            "Unit",
+            "Integration",
+            "Visual regression",
+            "Accessibility",
+          ],
+          question: "Which tests should I add?",
+          type: "multi_select",
         },
       ],
-      title: "Flow source",
     },
-  },
-  render: function Render(args) {
-    const [data, setData] = useState<Record<string, unknown>>({});
-    return (
-      <ProteusDocumentRenderer {...args} data={data} onDataChange={setData} />
-    );
+    element: {
+      $type: "Document",
+      body: {
+        $type: "Question",
+        questions: {
+          $type: "Value",
+          path: "/questions",
+        },
+      },
+      title: "Questions",
+    },
   },
 };
 

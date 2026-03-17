@@ -1,0 +1,101 @@
+import { Box, Group, Text } from "@optiaxiom/react";
+import { Checkbox } from "@optiaxiom/react";
+import { VisuallyHidden } from "@optiaxiom/react/unstable";
+
+import * as styles from "./ProteusQuestionItem.css";
+export type ProteusQuestionItemProps = {
+  /**
+   * Handler that is called when the selected value changes.
+   */
+  onValueChange: (value: null | string[]) => void;
+  /**
+   * Choices presented to the user.
+   */
+  options: string[];
+  /**
+   * The question being presented.
+   */
+  question: string;
+  /**
+   * Whether the user can select multiple or single answers.
+   */
+  type: "multi_select" | "single_select";
+  /**
+   * The selected value in controlled mode.
+   */
+  value: null | string[];
+};
+
+export function ProteusQuestionItem({
+  onValueChange,
+  options,
+  question,
+  type,
+  value,
+}: ProteusQuestionItemProps) {
+  return (
+    <Group flexDirection="column" gap="16">
+      <Text fontWeight="500">{question}</Text>
+
+      <Group {...styles.choiceGroup()}>
+        {options.map((option, index) => {
+          const checked =
+            type === "single_select"
+              ? value?.[0] === option
+              : Array.isArray(value) && value.includes(option);
+
+          return (
+            <Box asChild {...styles.choice()} key={option}>
+              <label>
+                <VisuallyHidden>
+                  <Box asChild {...styles.input()}>
+                    <input
+                      checked={checked}
+                      name={
+                        type === "single_select" ? "question-item" : undefined
+                      }
+                      onChange={() => {
+                        if (type === "single_select") {
+                          onValueChange([option]);
+                        } else {
+                          const current = Array.isArray(value) ? value : [];
+                          onValueChange(
+                            checked
+                              ? current.filter((v) => v !== option)
+                              : [...current, option],
+                          );
+                        }
+                      }}
+                      type={type === "single_select" ? "radio" : "checkbox"}
+                      value={option}
+                    />
+                  </Box>
+                </VisuallyHidden>
+
+                <Group gap="12">
+                  <Box {...styles.addon()}>
+                    {type === "single_select" ? (
+                      index + 1
+                    ) : (
+                      <Checkbox
+                        checked={checked}
+                        hidden
+                        pointerEvents="none"
+                        tabIndex={-1}
+                      />
+                    )}
+                  </Box>
+                  <Group flex="1" flexDirection="column" gap="2">
+                    <Text fontWeight="500">{option}</Text>
+                  </Group>
+                </Group>
+              </label>
+            </Box>
+          );
+        })}
+      </Group>
+    </Group>
+  );
+}
+
+ProteusQuestionItem.displayName = "@optiaxiom/proteus/ProteusQuestionItem";

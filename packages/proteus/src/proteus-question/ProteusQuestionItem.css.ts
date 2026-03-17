@@ -45,6 +45,10 @@ export const choice = recipe({
           backgroundColor: theme.colors["bg.accent.subtle"],
           borderColor: theme.colors["bg.accent.light"],
         },
+        [`&:has(${inputMarker}:focus-visible)`]: {
+          outline: `2px solid ${theme.colors["border.focus"]}`,
+          outlineOffset: "1px",
+        },
       },
     }),
     marker,
@@ -70,7 +74,7 @@ export const addon = recipe({
 
       selectors: {
         [`${marker}:has(${inputMarker}:checked) &`]: {
-          backgroundColor: theme.colors["bg.accent.light"],
+          backgroundColor: "#CDD8FC",
         },
       },
     }),
