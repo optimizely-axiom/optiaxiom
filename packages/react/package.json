@@ -19,10 +19,10 @@
       "import": "./dist/esm/index.js",
       "require": "./dist/cjs/index.js"
     },
-    "./css": {
-      "types": "./dist/css.d.ts",
-      "import": "./dist/esm/css.js",
-      "require": "./dist/cjs/css.cjs"
+    "./css-runtime": {
+      "types": "./dist/css-runtime.d.ts",
+      "import": "./dist/esm/css-runtime.js",
+      "require": "./dist/cjs/css-runtime.cjs"
     },
     "./unstable": {
       "types": "./dist/unstable.d.ts",
