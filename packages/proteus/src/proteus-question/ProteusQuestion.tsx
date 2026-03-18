@@ -1,6 +1,6 @@
 import { Button, Group } from "@optiaxiom/react";
 import { Text } from "@optiaxiom/react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { IconAngleLeft } from "../icons/IconAngleLeft";
 import { IconAngleRight } from "../icons/IconAngleRight";
@@ -29,6 +29,29 @@ export function ProteusQuestion({ questions }: ProteusQuestionProps) {
   const answer = answers[currentIndex];
   const valid =
     Array.isArray(answer) && answer.length > 0 && answer.every(Boolean);
+
+  const questionRef = useRef<HTMLDivElement>(null);
+  const lastIndexRef = useRef(currentIndex);
+  useEffect(() => {
+    if (lastIndexRef.current !== currentIndex) {
+      questionRef.current?.animate(
+        [
+          {
+            opacity: 0,
+            translate: currentIndex > lastIndexRef.current ? "8px" : "-8px",
+          },
+          {
+            opacity: 1,
+            translate: "0px",
+          },
+        ],
+        {
+          duration: 150,
+        },
+      );
+      lastIndexRef.current = currentIndex;
+    }
+  }, [currentIndex]);
 
   if (currentIndex >= questions.length) {
     return null;
@@ -79,6 +102,7 @@ export function ProteusQuestion({ questions }: ProteusQuestionProps) {
             </Group>
           )
         }
+        choiceRef={questionRef}
         onValueChange={(value) => {
           answers[currentIndex] = value;
           setAnswers([...answers]);
