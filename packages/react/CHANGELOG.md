@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 1.9.19
+
+### Patch Changes
+
+- 52c9599: replace input with inline input
+
 ## 1.9.18
 
 ### Patch Changes

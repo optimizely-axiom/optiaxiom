@@ -1,5 +1,16 @@
 # @optiaxiom/proteus
 
+## 0.1.1
+
+### Patch Changes
+
+- 4577299: add other option and disable buttons until filled out
+- 172d250: relax version constraint on tanstack table
+- 52c9599: replace input with inline input
+- cd38713: move next/previous to top right
+- Updated dependencies [52c9599]
+  - @optiaxiom/react@1.9.19
+
 ## 0.1.0
 
 ### Minor Changes
