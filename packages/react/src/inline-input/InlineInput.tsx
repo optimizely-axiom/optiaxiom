@@ -1,3 +1,4 @@
+import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import { forwardRef, useEffect, useRef } from "react";
 
@@ -58,7 +59,7 @@ export const InlineInput = forwardRef<HTMLDivElement, InlineInputProps>(
       value: valueProp,
       ...props
     },
-    ref,
+    outerRef,
   ) => {
     const [value, setValue] = useControllableState({
       caller: "@optiaxiom/react/InlineInput",
@@ -68,6 +69,7 @@ export const InlineInput = forwardRef<HTMLDivElement, InlineInputProps>(
     });
 
     const editorRef = useRef<HTMLDivElement>(null);
+    const ref = useComposedRefs(editorRef, outerRef);
     useEffect(() => {
       if (!editorRef.current) {
         return;
@@ -93,7 +95,7 @@ export const InlineInput = forwardRef<HTMLDivElement, InlineInputProps>(
     }, [multiline, value]);
 
     return (
-      <Box ref={ref} {...styles.input({}, className)} {...props}>
+      <Box {...styles.input({}, className)} {...props}>
         <Box
           aria-multiline={multiline}
           aria-readonly={disabled}
@@ -117,7 +119,7 @@ export const InlineInput = forwardRef<HTMLDivElement, InlineInputProps>(
               setValue(getText(event.currentTarget));
             }
           }}
-          ref={editorRef}
+          ref={ref}
           role="textbox"
           spellCheck="true"
           {...(label && { "aria-label": label })}
