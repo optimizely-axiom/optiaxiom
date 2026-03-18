@@ -3,6 +3,7 @@ import { Text } from "@optiaxiom/react";
 import { useState } from "react";
 
 import { IconAngleLeft } from "../icons/IconAngleLeft";
+import { IconAngleRight } from "../icons/IconAngleRight";
 import { useProteusDocumentContext } from "../proteus-document/ProteusDocumentContext";
 import { ProteusQuestionItem } from "./ProteusQuestionItem";
 
@@ -49,6 +50,35 @@ export function ProteusQuestion({ questions }: ProteusQuestionProps) {
   return (
     <Group flexDirection="column" gap="16">
       <ProteusQuestionItem
+        addonAfter={
+          questions.length > 1 && (
+            <Group gap="6">
+              <Button
+                aria-label="Previous"
+                disabled={currentIndex === 0}
+                icon={<IconAngleLeft />}
+                onClick={(event) => {
+                  event.preventDefault();
+                  setCurrentIndex((i) => i - 1);
+                }}
+                size="sm"
+              />
+              <Text color="fg.tertiary" fontSize="sm">
+                {currentIndex + 1} of {questions.length}
+              </Text>
+              <Button
+                aria-label="Next"
+                disabled={isLast}
+                icon={<IconAngleRight />}
+                onClick={(event) => {
+                  event.preventDefault();
+                  setCurrentIndex((i) => i + 1);
+                }}
+                size="sm"
+              />
+            </Group>
+          )
+        }
         onValueChange={(value) => {
           answers[currentIndex] = value;
           setAnswers([...answers]);
@@ -60,22 +90,6 @@ export function ProteusQuestion({ questions }: ProteusQuestionProps) {
       />
 
       <Group gap="8" justifyContent="end">
-        {questions.length > 1 && (
-          <>
-            <Button
-              aria-label="Previous"
-              disabled={currentIndex === 0}
-              icon={<IconAngleLeft />}
-              onClick={(event) => {
-                event.preventDefault();
-                setCurrentIndex((i) => i - 1);
-              }}
-            />
-            <Text color="fg.tertiary">
-              {currentIndex + 1} of {questions.length}
-            </Text>
-          </>
-        )}
         <Button
           onClick={(event) => {
             event.preventDefault();

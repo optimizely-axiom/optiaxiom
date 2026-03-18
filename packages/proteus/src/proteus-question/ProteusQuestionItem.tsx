@@ -6,6 +6,10 @@ import { useRef } from "react";
 import * as styles from "./ProteusQuestionItem.css";
 export type ProteusQuestionItemProps = {
   /**
+   * Addons to place after the question text.
+   */
+  addonAfter?: ReactNode;
+  /**
    * Handler that is called when the selected value changes.
    */
   onValueChange: (value: null | string[]) => void;
@@ -28,6 +32,7 @@ export type ProteusQuestionItemProps = {
 };
 
 export function ProteusQuestionItem({
+  addonAfter,
   onValueChange,
   options,
   question,
@@ -41,7 +46,12 @@ export function ProteusQuestionItem({
 
   return (
     <Group flexDirection="column" gap="16">
-      <Text fontWeight="500">{question}</Text>
+      <Group>
+        <Text flex="1" fontWeight="500">
+          {question}
+        </Text>
+        {addonAfter}
+      </Group>
 
       <Group {...styles.choiceGroup()}>
         {options.map((option, index) => {
@@ -92,7 +102,7 @@ export function ProteusQuestionItem({
                     )}
                   </Box>
                   <Group flex="1" flexDirection="column" gap="2">
-                    <Text fontWeight="500">{option}</Text>
+                    <Text>{option}</Text>
                   </Group>
                 </Group>
               </label>
