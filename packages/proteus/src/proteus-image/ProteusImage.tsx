@@ -42,7 +42,12 @@ export function ProteusImage(props: ProteusImageProps) {
       )}
       <Dialog onOpenChange={setOpen} open={open}>
         <DialogTrigger aria-label="Expand" asChild>
-          <Box asChild display={isLoaded ? "block" : "none"} {...props}>
+          <Box
+            alignSelf="center"
+            asChild
+            display={isLoaded ? "block" : "none"}
+            {...props}
+          >
             <a
               href={props.src}
               onClick={(event) => {
