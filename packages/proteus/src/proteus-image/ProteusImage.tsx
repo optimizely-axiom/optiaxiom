@@ -67,10 +67,16 @@ export function ProteusImage(props: ProteusImageProps) {
             </a>
           </Box>
         </DialogTrigger>
-        <DialogContent size="lg">
+        <DialogContent size="fullscreen">
           <DialogHeader lineClamp="1">{props.alt}</DialogHeader>
-          <DialogBody>
-            <Box asChild display="block" objectFit="cover">
+          <DialogBody overflow="hidden">
+            <Box
+              asChild
+              display="block"
+              maxH="full"
+              maxW="full"
+              objectFit="contain"
+            >
               <img alt={props.alt} src={props.src} />
             </Box>
           </DialogBody>
