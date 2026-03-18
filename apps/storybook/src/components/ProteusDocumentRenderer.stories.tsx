@@ -447,7 +447,6 @@ export const AskUserQuestion: Story = {
           path: "/questions",
         },
       },
-      title: "Questions",
     },
   },
 };

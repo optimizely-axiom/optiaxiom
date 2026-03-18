@@ -725,7 +725,7 @@ function generateSpec(additionalProperties = false) {
                 "A concise heading that encapsulates the essence of the Proteus document's content or intended action.",
             },
           },
-          required: ["$type", "body", "title"],
+          required: ["$type", "body"],
           type: "object",
         },
         ProteusElement: {
