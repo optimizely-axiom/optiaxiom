@@ -68,7 +68,7 @@ type ProteusDocument = {
   blocking?: boolean;
   body: ReactNode;
   subtitle?: ReactNode;
-  title: ReactNode;
+  title?: ReactNode;
 };
 
 export function ProteusDocumentShell({
@@ -168,16 +168,18 @@ export function ProteusDocumentShell({
           pb="0"
           pt={element.appName ? "16" : "0"}
         >
-          <Group flexDirection="column" gap="4">
-            <Heading fontSize="lg" fontWeight="600" level="2" lineClamp="2">
-              {element.title}
-            </Heading>
-            {!!element.subtitle && (
-              <Text color="fg.secondary" fontSize="sm">
-                {element.subtitle}
-              </Text>
-            )}
-          </Group>
+          {element.title && (
+            <Group flexDirection="column" gap="4">
+              <Heading fontSize="lg" fontWeight="600" level="2" lineClamp="2">
+                {element.title}
+              </Heading>
+              {!!element.subtitle && (
+                <Text color="fg.secondary" fontSize="sm">
+                  {element.subtitle}
+                </Text>
+              )}
+            </Group>
+          )}
           <Group asChild flexDirection="column" gap="16">
             <form
               onChange={(event) => {
