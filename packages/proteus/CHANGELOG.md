@@ -1,5 +1,12 @@
 # @optiaxiom/proteus
 
+## 0.1.2
+
+### Patch Changes
+
+- 38fe2d0: show fullscreen preview for image
+- 0592f99: allow empty title for proteus cards
+
 ## 0.1.1
 
 ### Patch Changes
