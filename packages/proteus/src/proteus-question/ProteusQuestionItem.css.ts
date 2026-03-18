@@ -17,7 +17,6 @@ export const choice = recipe({
     {
       border: "1",
       color: "fg.default",
-      cursor: "pointer",
       flexDirection: "column",
       fontSize: "md",
       gap: "8",
@@ -29,6 +28,7 @@ export const choice = recipe({
     style({
       backgroundColor: theme.colors["bg.page"],
       borderColor: theme.colors["bg.page"],
+      cursor: "pointer",
 
       "@media": {
         "(hover: hover)": {
@@ -45,6 +45,11 @@ export const choice = recipe({
           backgroundColor: theme.colors["bg.accent.subtle"],
           borderColor: theme.colors["bg.accent.light"],
         },
+        [`&:has(${inputMarker}:disabled)`]: {
+          cursor: "default",
+          opacity: 0.5,
+          pointerEvents: "none",
+        },
         [`&:has(${inputMarker}:focus-visible)`]: {
           outline: `2px solid ${theme.colors["border.focus"]}`,
           outlineOffset: "1px",
@@ -53,6 +58,13 @@ export const choice = recipe({
     }),
     marker,
   ],
+  variants: {
+    cursor: {
+      text: {
+        cursor: "text",
+      },
+    },
+  },
 });
 
 export const input = recipe({
@@ -79,4 +91,11 @@ export const addon = recipe({
       },
     }),
   ],
+  variants: {
+    cursor: {
+      pointer: {
+        cursor: "pointer",
+      },
+    },
+  },
 });

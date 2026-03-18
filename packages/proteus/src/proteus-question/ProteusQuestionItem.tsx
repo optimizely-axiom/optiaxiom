@@ -1,8 +1,9 @@
-import { Box, Group, Input, Text } from "@optiaxiom/react";
+import { Box, Group, Text } from "@optiaxiom/react";
 import { Checkbox } from "@optiaxiom/react";
-import { VisuallyHidden } from "@optiaxiom/react/unstable";
-import { useRef } from "react";
+import { InlineInput, VisuallyHidden } from "@optiaxiom/react/unstable";
+import { type ReactNode, useRef } from "react";
 
+import { IconPencil } from "../icons/IconPencil";
 import * as styles from "./ProteusQuestionItem.css";
 export type ProteusQuestionItemProps = {
   /**
@@ -58,7 +59,10 @@ export function ProteusQuestionItem({
           const checked =
             type === "single_select"
               ? value?.[0] === option
-              : Array.isArray(value) && value.includes(option);
+              : value?.includes(option);
+
+          const disabled =
+            type === "single_select" && otherChecked && !!otherValue;
 
           return (
             <Box asChild {...styles.choice()} key={option}>
@@ -67,6 +71,7 @@ export function ProteusQuestionItem({
                   <Box asChild {...styles.input()}>
                     <input
                       checked={checked}
+                      disabled={disabled}
                       name={
                         type === "single_select" ? "question-item" : undefined
                       }
@@ -74,7 +79,7 @@ export function ProteusQuestionItem({
                         if (type === "single_select") {
                           onValueChange([option]);
                         } else {
-                          const current = Array.isArray(value) ? value : [];
+                          const current = value ?? [];
                           onValueChange(
                             checked
                               ? current.filter((v) => v !== option)
@@ -110,7 +115,7 @@ export function ProteusQuestionItem({
           );
         })}
 
-        <Box asChild {...styles.choice()} key="other">
+        <Box asChild {...styles.choice({ cursor: "text" })} key="other">
           <label>
             <VisuallyHidden>
               <Box asChild {...styles.input()}>
@@ -119,27 +124,22 @@ export function ProteusQuestionItem({
                   name={type === "single_select" ? "question-item" : undefined}
                   onChange={() => {
                     if (type === "single_select") {
-                      onValueChange([""]);
-                    } else {
-                      const current = Array.isArray(value) ? value : [];
-                      onValueChange(
-                        otherChecked
-                          ? current.filter((v) => options.includes(v))
-                          : [...current, ""],
-                      );
+                      if (!otherValue) {
+                        onValueChange([""]);
+                      }
                     }
                     otherInputRef.current?.focus();
                   }}
-                  type={type === "single_select" ? "radio" : "checkbox"}
+                  type="checkbox"
                   value="other"
                 />
               </Box>
             </VisuallyHidden>
 
             <Group gap="12">
-              <Box {...styles.addon()}>
+              <Box {...styles.addon({ cursor: "pointer" })}>
                 {type === "single_select" ? (
-                  options.length + 1
+                  <IconPencil />
                 ) : (
                   <Checkbox
                     checked={otherChecked}
@@ -150,21 +150,19 @@ export function ProteusQuestionItem({
                 )}
               </Box>
               <Group flex="1" flexDirection="column" gap="2">
-                <Input
-                  onChange={(event) => {
-                    const text = event.target.value;
+                <InlineInput
+                  label="Something else"
+                  onValueChange={(text) => {
                     if (type === "single_select") {
                       onValueChange([text]);
                     } else {
-                      const current = Array.isArray(value) ? value : [];
+                      const current = value ?? [];
                       onValueChange([
                         ...current.filter((v) => options.includes(v)),
-                        text,
+                        ...(text ? [text] : []),
                       ]);
                     }
                   }}
-                  onClick={(event) => event.stopPropagation()}
-                  placeholder="Other"
                   ref={otherInputRef}
                   value={otherValue ?? ""}
                 />
