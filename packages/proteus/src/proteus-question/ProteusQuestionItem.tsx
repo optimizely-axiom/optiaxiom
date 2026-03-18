@@ -1,7 +1,7 @@
 import { Box, Group, Text } from "@optiaxiom/react";
 import { Checkbox } from "@optiaxiom/react";
 import { InlineInput, VisuallyHidden } from "@optiaxiom/react/unstable";
-import { type ReactNode, useRef } from "react";
+import { type ReactNode, type RefObject, useRef } from "react";
 
 import { IconPencil } from "../icons/IconPencil";
 import * as styles from "./ProteusQuestionItem.css";
@@ -10,6 +10,10 @@ export type ProteusQuestionItemProps = {
    * Addons to place after the question text.
    */
   addonAfter?: ReactNode;
+  /**
+   * A ref pointing to the choice/options container element.
+   */
+  choiceRef?: RefObject<HTMLDivElement>;
   /**
    * Handler that is called when the selected value changes.
    */
@@ -34,6 +38,7 @@ export type ProteusQuestionItemProps = {
 
 export function ProteusQuestionItem({
   addonAfter,
+  choiceRef,
   onValueChange,
   options,
   question,
@@ -54,7 +59,7 @@ export function ProteusQuestionItem({
         {addonAfter}
       </Group>
 
-      <Group {...styles.choiceGroup()}>
+      <Group ref={choiceRef} {...styles.choiceGroup()}>
         {options.map((option, index) => {
           const checked =
             type === "single_select"
