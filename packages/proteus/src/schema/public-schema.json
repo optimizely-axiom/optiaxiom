@@ -1250,6 +1250,10 @@
         "title": {
           "$ref": "#/definitions/ProteusNode",
           "description": "A concise heading that encapsulates the essence of the Proteus document's content or intended action."
+        },
+        "titleIcon": {
+          "description": "URL or data URI for an icon displayed alongside the title in a block-style header.",
+          "type": "string"
         }
       },
       "required": ["$type", "body"],
@@ -1269,6 +1273,7 @@
         { "$ref": "#/definitions/ProteusField" },
         { "$ref": "#/definitions/ProteusGroup" },
         { "$ref": "#/definitions/ProteusHeading" },
+        { "$ref": "#/definitions/ProteusIcon" },
         { "$ref": "#/definitions/ProteusIconCalendar" },
         { "$ref": "#/definitions/ProteusImage" },
         { "$ref": "#/definitions/ProteusInput" },
@@ -1281,6 +1286,7 @@
         { "$ref": "#/definitions/ProteusSelectTrigger" },
         { "$ref": "#/definitions/ProteusSeparator" },
         { "$ref": "#/definitions/ProteusShow" },
+        { "$ref": "#/definitions/ProteusSwitch" },
         { "$ref": "#/definitions/ProteusText" },
         { "$ref": "#/definitions/ProteusTextarea" },
         { "$ref": "#/definitions/ProteusTime" },
@@ -1332,6 +1338,23 @@
             }
           },
           "required": ["action", "url"],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "description": "Client-side component action - collects name/value pairs from a data array and sends as a message",
+          "properties": {
+            "action": {
+              "const": "message-from",
+              "description": "The action type",
+              "type": "string"
+            },
+            "path": {
+              "description": "JSON pointer to an array of objects with name and value fields",
+              "type": "string"
+            }
+          },
+          "required": ["action", "path"],
           "type": "object"
         }
       ],
@@ -2423,6 +2446,84 @@
       "required": ["$type"],
       "type": "object"
     },
+    "ProteusIcon": {
+      "additionalProperties": false,
+      "properties": {
+        "$type": { "const": "Icon" },
+        "alignItems": { "$ref": "#/definitions/SprinkleProp_alignItems" },
+        "alignSelf": { "$ref": "#/definitions/SprinkleProp_alignSelf" },
+        "animation": { "$ref": "#/definitions/SprinkleProp_animation" },
+        "backgroundImage": {
+          "$ref": "#/definitions/SprinkleProp_backgroundImage"
+        },
+        "bg": { "$ref": "#/definitions/SprinkleProp_bg" },
+        "border": { "$ref": "#/definitions/SprinkleProp_border" },
+        "borderB": { "$ref": "#/definitions/SprinkleProp_borderB" },
+        "borderColor": { "$ref": "#/definitions/SprinkleProp_borderColor" },
+        "borderL": { "$ref": "#/definitions/SprinkleProp_borderL" },
+        "borderR": { "$ref": "#/definitions/SprinkleProp_borderR" },
+        "borderT": { "$ref": "#/definitions/SprinkleProp_borderT" },
+        "color": { "$ref": "#/definitions/SprinkleProp_color" },
+        "cursor": { "$ref": "#/definitions/SprinkleProp_cursor" },
+        "display": { "$ref": "#/definitions/SprinkleProp_display" },
+        "flex": { "$ref": "#/definitions/SprinkleProp_flex" },
+        "flexDirection": { "$ref": "#/definitions/SprinkleProp_flexDirection" },
+        "flexWrap": { "$ref": "#/definitions/SprinkleProp_flexWrap" },
+        "fontFamily": { "$ref": "#/definitions/SprinkleProp_fontFamily" },
+        "fontSize": { "$ref": "#/definitions/SprinkleProp_fontSize" },
+        "fontWeight": { "$ref": "#/definitions/SprinkleProp_fontWeight" },
+        "gap": { "$ref": "#/definitions/SprinkleProp_gap" },
+        "gridColumn": { "$ref": "#/definitions/SprinkleProp_gridColumn" },
+        "gridTemplateColumns": {
+          "$ref": "#/definitions/SprinkleProp_gridTemplateColumns"
+        },
+        "h": { "$ref": "#/definitions/SprinkleProp_h" },
+        "justifyContent": {
+          "$ref": "#/definitions/SprinkleProp_justifyContent"
+        },
+        "justifyItems": { "$ref": "#/definitions/SprinkleProp_justifyItems" },
+        "m": { "$ref": "#/definitions/SprinkleProp_m" },
+        "maxH": { "$ref": "#/definitions/SprinkleProp_maxH" },
+        "maxW": { "$ref": "#/definitions/SprinkleProp_maxW" },
+        "mb": { "$ref": "#/definitions/SprinkleProp_mb" },
+        "ml": { "$ref": "#/definitions/SprinkleProp_ml" },
+        "mr": { "$ref": "#/definitions/SprinkleProp_mr" },
+        "mt": { "$ref": "#/definitions/SprinkleProp_mt" },
+        "mx": { "$ref": "#/definitions/SprinkleProp_mx" },
+        "my": { "$ref": "#/definitions/SprinkleProp_my" },
+        "objectFit": { "$ref": "#/definitions/SprinkleProp_objectFit" },
+        "overflow": { "$ref": "#/definitions/SprinkleProp_overflow" },
+        "overflowX": { "$ref": "#/definitions/SprinkleProp_overflowX" },
+        "overflowY": { "$ref": "#/definitions/SprinkleProp_overflowY" },
+        "p": { "$ref": "#/definitions/SprinkleProp_p" },
+        "pb": { "$ref": "#/definitions/SprinkleProp_pb" },
+        "pl": { "$ref": "#/definitions/SprinkleProp_pl" },
+        "placeItems": { "$ref": "#/definitions/SprinkleProp_placeItems" },
+        "pointerEvents": { "$ref": "#/definitions/SprinkleProp_pointerEvents" },
+        "pr": { "$ref": "#/definitions/SprinkleProp_pr" },
+        "pt": { "$ref": "#/definitions/SprinkleProp_pt" },
+        "px": { "$ref": "#/definitions/SprinkleProp_px" },
+        "py": { "$ref": "#/definitions/SprinkleProp_py" },
+        "rounded": { "$ref": "#/definitions/SprinkleProp_rounded" },
+        "shadow": { "$ref": "#/definitions/SprinkleProp_shadow" },
+        "size": { "$ref": "#/definitions/SprinkleProp_size" },
+        "textAlign": { "$ref": "#/definitions/SprinkleProp_textAlign" },
+        "textTransform": { "$ref": "#/definitions/SprinkleProp_textTransform" },
+        "transition": { "$ref": "#/definitions/SprinkleProp_transition" },
+        "w": { "$ref": "#/definitions/SprinkleProp_w" },
+        "whiteSpace": { "$ref": "#/definitions/SprinkleProp_whiteSpace" },
+        "z": { "$ref": "#/definitions/SprinkleProp_z" },
+        "src": {
+          "anyOf": [
+            { "$ref": "#/definitions/ProteusValue" },
+            { "type": "string" }
+          ],
+          "description": "The icon source URL"
+        }
+      },
+      "required": ["$type"],
+      "type": "object"
+    },
     "ProteusIconCalendar": {
       "additionalProperties": false,
       "properties": {
@@ -3259,6 +3360,96 @@
           ],
           "description": "Single condition or array of conditions (AND logic). Each condition is an object with one operator key."
         }
+      },
+      "required": ["$type"],
+      "type": "object"
+    },
+    "ProteusSwitch": {
+      "additionalProperties": false,
+      "examples": [{ "$type": "Switch", "name": "field_name" }],
+      "properties": {
+        "$type": { "const": "Switch" },
+        "alignItems": { "$ref": "#/definitions/SprinkleProp_alignItems" },
+        "alignSelf": { "$ref": "#/definitions/SprinkleProp_alignSelf" },
+        "animation": { "$ref": "#/definitions/SprinkleProp_animation" },
+        "backgroundImage": {
+          "$ref": "#/definitions/SprinkleProp_backgroundImage"
+        },
+        "bg": { "$ref": "#/definitions/SprinkleProp_bg" },
+        "border": { "$ref": "#/definitions/SprinkleProp_border" },
+        "borderB": { "$ref": "#/definitions/SprinkleProp_borderB" },
+        "borderColor": { "$ref": "#/definitions/SprinkleProp_borderColor" },
+        "borderL": { "$ref": "#/definitions/SprinkleProp_borderL" },
+        "borderR": { "$ref": "#/definitions/SprinkleProp_borderR" },
+        "borderT": { "$ref": "#/definitions/SprinkleProp_borderT" },
+        "children": { "$ref": "#/definitions/ProteusNode" },
+        "color": { "$ref": "#/definitions/SprinkleProp_color" },
+        "cursor": { "$ref": "#/definitions/SprinkleProp_cursor" },
+        "description": {
+          "$ref": "#/definitions/ProteusNode",
+          "description": "Add secondary text after the label."
+        },
+        "display": { "$ref": "#/definitions/SprinkleProp_display" },
+        "flex": { "$ref": "#/definitions/SprinkleProp_flex" },
+        "flexDirection": { "$ref": "#/definitions/SprinkleProp_flexDirection" },
+        "flexWrap": { "$ref": "#/definitions/SprinkleProp_flexWrap" },
+        "fontFamily": { "$ref": "#/definitions/SprinkleProp_fontFamily" },
+        "fontSize": { "$ref": "#/definitions/SprinkleProp_fontSize" },
+        "fontWeight": { "$ref": "#/definitions/SprinkleProp_fontWeight" },
+        "gap": { "$ref": "#/definitions/SprinkleProp_gap" },
+        "gridColumn": { "$ref": "#/definitions/SprinkleProp_gridColumn" },
+        "gridTemplateColumns": {
+          "$ref": "#/definitions/SprinkleProp_gridTemplateColumns"
+        },
+        "h": { "$ref": "#/definitions/SprinkleProp_h" },
+        "justifyContent": {
+          "$ref": "#/definitions/SprinkleProp_justifyContent"
+        },
+        "justifyItems": { "$ref": "#/definitions/SprinkleProp_justifyItems" },
+        "m": { "$ref": "#/definitions/SprinkleProp_m" },
+        "maxH": { "$ref": "#/definitions/SprinkleProp_maxH" },
+        "maxW": { "$ref": "#/definitions/SprinkleProp_maxW" },
+        "mb": { "$ref": "#/definitions/SprinkleProp_mb" },
+        "ml": { "$ref": "#/definitions/SprinkleProp_ml" },
+        "mr": { "$ref": "#/definitions/SprinkleProp_mr" },
+        "mt": { "$ref": "#/definitions/SprinkleProp_mt" },
+        "mx": { "$ref": "#/definitions/SprinkleProp_mx" },
+        "my": { "$ref": "#/definitions/SprinkleProp_my" },
+        "name": {
+          "anyOf": [
+            { "type": "string" },
+            { "$ref": "#/definitions/ProteusValue" }
+          ],
+          "description": "The name of the form control element."
+        },
+        "objectFit": { "$ref": "#/definitions/SprinkleProp_objectFit" },
+        "overflow": { "$ref": "#/definitions/SprinkleProp_overflow" },
+        "overflowX": { "$ref": "#/definitions/SprinkleProp_overflowX" },
+        "overflowY": { "$ref": "#/definitions/SprinkleProp_overflowY" },
+        "p": { "$ref": "#/definitions/SprinkleProp_p" },
+        "pb": { "$ref": "#/definitions/SprinkleProp_pb" },
+        "pl": { "$ref": "#/definitions/SprinkleProp_pl" },
+        "placeItems": { "$ref": "#/definitions/SprinkleProp_placeItems" },
+        "pointerEvents": { "$ref": "#/definitions/SprinkleProp_pointerEvents" },
+        "pr": { "$ref": "#/definitions/SprinkleProp_pr" },
+        "pt": { "$ref": "#/definitions/SprinkleProp_pt" },
+        "px": { "$ref": "#/definitions/SprinkleProp_px" },
+        "py": { "$ref": "#/definitions/SprinkleProp_py" },
+        "required": {
+          "anyOf": [
+            { "type": "boolean" },
+            { "$ref": "#/definitions/ProteusValue" }
+          ],
+          "description": "Whether selecting this input is required."
+        },
+        "rounded": { "$ref": "#/definitions/SprinkleProp_rounded" },
+        "shadow": { "$ref": "#/definitions/SprinkleProp_shadow" },
+        "textAlign": { "$ref": "#/definitions/SprinkleProp_textAlign" },
+        "textTransform": { "$ref": "#/definitions/SprinkleProp_textTransform" },
+        "transition": { "$ref": "#/definitions/SprinkleProp_transition" },
+        "w": { "$ref": "#/definitions/SprinkleProp_w" },
+        "whiteSpace": { "$ref": "#/definitions/SprinkleProp_whiteSpace" },
+        "z": { "$ref": "#/definitions/SprinkleProp_z" }
       },
       "required": ["$type"],
       "type": "object"

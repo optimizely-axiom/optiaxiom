@@ -451,6 +451,132 @@ export const AskUserQuestion: Story = {
   },
 };
 
+export const AskAgentInput: Story = {
+  args: {
+    data: {
+      agent: {
+        description:
+          "Simplifies UTM parameter creation for campaign tracking by using campaign details (source, medium, campaign, content, term) and automatically generates correctly formatted UTM links. This agent ensures accurate attribution tracking, improves data quality, and simplifies campaign analysis.",
+        name: "UTM Creation",
+      },
+      parameters: [
+        {
+          description:
+            "Marketing channel where link is used. If none provided, all included",
+          name: "Channel",
+          placeholder: "e.g., Social, Email, Paid Search",
+          required: false,
+          type: "string",
+          value: null,
+        },
+        {
+          description: "Name of the asset or campaign that you're promoting",
+          name: "Campaign Name",
+          placeholder: "e.g., spring-sale-2024",
+          required: true,
+          type: "string",
+          value: null,
+        },
+        {
+          description: "The destination URL",
+          name: "Landing Page URL",
+          placeholder: "e.g., https://example.com/landing-page",
+          required: true,
+          type: "string",
+          value: null,
+        },
+        {
+          description: "Additional content if needed",
+          name: "Content",
+          placeholder: "e.g., hero-banner, sidebar-cta",
+          required: false,
+          type: "string",
+          value: null,
+        },
+        {
+          description: "Whether to include metadata in the output",
+          name: "Include Metadata",
+          required: false,
+          type: "boolean",
+          value: null,
+        },
+      ],
+    },
+    element: {
+      $type: "Document",
+      actions: [
+        {
+          $type: "Action",
+          appearance: "primary",
+          children: "Run agent",
+          onClick: {
+            action: "message-from",
+            path: "/parameters",
+          },
+        },
+      ],
+      body: [
+        {
+          $type: "Map",
+          children: [
+            {
+              $type: "Show",
+              children: {
+                $type: "Field",
+                children: {
+                  $type: "Input",
+                  name: "value",
+                  placeholder: { $type: "Value", path: "placeholder" },
+                  required: { $type: "Value", path: "required" },
+                },
+                description: { $type: "Value", path: "description" },
+                label: { $type: "Value", path: "name" },
+                required: { $type: "Value", path: "required" },
+              },
+              when: {
+                "==": [{ $type: "Value", path: "type" }, "string"],
+              },
+            },
+            {
+              $type: "Show",
+              children: {
+                $type: "Switch",
+                children: {
+                  $type: "Value",
+                  path: "name",
+                },
+                description: { $type: "Value", path: "description" },
+                name: "value",
+                value: "Yes",
+              },
+              when: {
+                "==": [{ $type: "Value", path: "type" }, "boolean"],
+              },
+            },
+          ],
+          path: "/parameters",
+        },
+      ],
+      subtitle: {
+        $type: "Value",
+        path: "/agent/description",
+      },
+      title: {
+        $type: "Value",
+        path: "/agent/name",
+      },
+      titleIcon:
+        "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2221%22%20height%3D%2220%22%20fill%3D%22none%22%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M9.463%208.198c.184-.052.437-.005.616.064l9.73%203.361c.226.095.4.286.462.507a.87.87%200%200%201-.608%201.09l-3.795%201.374c-.896.286-.934.773-.934.785l-1.177%203.656c-.095.226-.296.364-.517.427-.48.136-.907-.102-1.044-.581l-3.33-9.556c-.136-.48.117-.99.597-1.127M15.972%200a2.45%202.45%200%200%201%202.457%202.457v4.3c0%20.308-.307.615-.614.615a.63.63%200%200%201-.615-.614V2.457c0-.691-.576-1.228-1.228-1.228H2.457c-.691%200-1.228.537-1.228%201.228v13.515c0%20.652.537%201.228%201.228%201.228h4.3c.307%200%20.614.27.614.614%200%20.308-.307.615-.614.615h-4.3A2.45%202.45%200%200%201%200%2015.972V2.457A2.426%202.426%200%200%201%202.457%200zm-3.486%2017.418.767-2.385q.013-.057.031-.119a2%202%200%200%201%20.295-.558c.294-.39.746-.709%201.371-.916l2.859-1.036L9.77%209.627zM3.51%209.762l2.62.824a.63.63%200%200%201%20.422.78.63.63%200%200%201-.78.421l-2.622-.824c-.327-.103-.497-.48-.42-.78.102-.328.48-.497.78-.421m1.832-4.406a.63.63%200%200%201%20.868-.014l1.768%201.707c.22.213.228.648.014.869a.63.63%200%200%201-.869.015L5.356%206.225a.606.606%200%200%201-.014-.869m4.79-2.615a.63.63%200%200%201%20.794.395l.913%202.59a.63.63%200%200%201-.394.795.63.63%200%200%201-.794-.394l-.913-2.59c-.086-.298.07-.682.394-.796%22%2F%3E%3C%2Fsvg%3E",
+    },
+  },
+  render: function Render(args) {
+    const [data, setData] = useState<Record<string, unknown>>(args.data ?? {});
+    return (
+      <ProteusDocumentRenderer {...args} data={data} onDataChange={setData} />
+    );
+  },
+};
+
 export const WithDataTable: Story = {
   args: {
     element: {

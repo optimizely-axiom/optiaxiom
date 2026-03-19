@@ -27,6 +27,7 @@ type ProteusDocument = {
   body: unknown;
   subtitle?: unknown;
   title?: unknown;
+  titleIcon?: string;
 };
 
 export function ProteusDocumentRenderer({
