@@ -6,9 +6,10 @@ import {
   Group,
   Heading,
   Text,
+  Tooltip,
 } from "@optiaxiom/react";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
-import { set } from "jsonpointer";
+import { get, set } from "jsonpointer";
 import {
   type ComponentPropsWithoutRef,
   type ReactNode,
@@ -69,6 +70,7 @@ type ProteusDocument = {
   body: ReactNode;
   subtitle?: ReactNode;
   title?: ReactNode;
+  titleIcon?: string;
 };
 
 export function ProteusDocumentShell({
@@ -114,6 +116,17 @@ export function ProteusDocumentShell({
           await onToolCall?.(event.tool);
         } else if ("message" in event) {
           await onMessage?.(event.message);
+        } else if (event.action === "message-from") {
+          const items = get(data, event.path);
+          if (!Array.isArray(items)) {
+            throw new Error(
+              `Expected array at "${event.path}" for message-from action`,
+            );
+          }
+          const message = items
+            .map((item) => `${item.name}: ${item.value || "[Not specified]"}`)
+            .join("\n");
+          await onMessage?.(message);
         } else if (event.action === "download") {
           if (typeof event.url === "string") {
             await downloadFile(event.url);
@@ -169,15 +182,37 @@ export function ProteusDocumentShell({
           pt={element.appName ? "16" : "0"}
         >
           {element.title && (
-            <Group flexDirection="column" gap="4">
-              <Heading fontSize="lg" fontWeight="600" level="2" lineClamp="2">
-                {element.title}
-              </Heading>
-              {!!element.subtitle && (
-                <Text color="fg.secondary" fontSize="sm">
-                  {element.subtitle}
-                </Text>
+            <Group
+              bg={element.titleIcon ? "bg.page" : "transparent"}
+              gap="8"
+              p={element.titleIcon ? "12" : undefined}
+              rounded="lg"
+            >
+              {element.titleIcon && (
+                <Group
+                  bg="bg.avatar.purple"
+                  flex="none"
+                  justifyContent="center"
+                  rounded="lg"
+                  size="lg"
+                >
+                  <Box asChild>
+                    <img alt="" src={element.titleIcon} />
+                  </Box>
+                </Group>
               )}
+              <Group flex="1" flexDirection="column" gap="4">
+                <Heading fontSize="lg" fontWeight="600" level="2" lineClamp="2">
+                  {element.title}
+                </Heading>
+                {!!element.subtitle && (
+                  <Tooltip auto content={element.subtitle}>
+                    <Text color="fg.secondary" lineClamp="2">
+                      {element.subtitle}
+                    </Text>
+                  </Tooltip>
+                )}
+              </Group>
             </Group>
           )}
           <Group asChild flexDirection="column" gap="16">

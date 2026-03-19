@@ -13,6 +13,7 @@ import type {
   SelectContentProps,
   SelectTriggerProps,
   SeparatorProps,
+  SwitchProps,
   TextareaProps,
   TextProps,
 } from "@optiaxiom/react";
@@ -37,6 +38,7 @@ import proteusDocumentSpec from "../schema/runtime-schema.json";
 export type ProteusElement =
   | (AvatarProps & { $type: "Avatar" })
   | (BadgeProps & { $type: "Badge" })
+  | (BoxProps & { $type: "Icon" })
   | (BoxProps & { $type: "IconCalendar" })
   | (CardHeaderProps & { $type: "CardHeader" })
   | (CardLinkProps & { $type: "CardLink" })
@@ -60,6 +62,7 @@ export type ProteusElement =
   | (SelectContentProps & { $type: "SelectContent" })
   | (SelectTriggerProps & { $type: "SelectTrigger" })
   | (SeparatorProps & { $type: "Separator" })
+  | (SwitchProps & { $type: "Switch" })
   | (TextareaProps & { $type: "Textarea" })
   | (TextProps & { $type: "Text" })
   | (TimeProps & { $type: "Time" });
@@ -68,6 +71,10 @@ export type ProteusEventHandler =
   | {
       action: "download";
       url: (ProteusValueProps & { $type: "Value" }) | string;
+    }
+  | {
+      action: "message-from";
+      path: string;
     }
   | { message: string }
   | { tool: string };

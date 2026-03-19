@@ -20,6 +20,10 @@ export type ToggleInputHiddenInputProps = ExtendProps<
      */
     onCheckedChange?: (checked: boolean) => void;
     /**
+     * Whether selecting this input is required.
+     */
+    required?: ComponentPropsWithoutRef<"input">["required"];
+    /**
      * The value of the form control element.
      */
     value?: ComponentPropsWithoutRef<"input">["value"];

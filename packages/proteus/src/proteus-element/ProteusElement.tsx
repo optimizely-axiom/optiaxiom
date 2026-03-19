@@ -31,6 +31,7 @@ import { ProteusMap } from "../proteus-map/ProteusMap";
 import { ProteusQuestion } from "../proteus-question/ProteusQuestion";
 import { ProteusSelect } from "../proteus-select/ProteusSelect";
 import { ProteusShow } from "../proteus-show/ProteusShow";
+import { ProteusSwitch } from "../proteus-switch/ProteusSwitch";
 import { ProteusTextarea } from "../proteus-textarea/ProteusTextarea";
 import { ProteusValue } from "../proteus-value/ProteusValue";
 
@@ -130,6 +131,12 @@ export const ProteusElement = ({
       return <Group {...resolve(element)} />;
     case "Heading":
       return <Heading {...resolve(element)} />;
+    case "Icon":
+      return (
+        <Box asChild {...resolve(element)}>
+          <img />
+        </Box>
+      );
     case "IconCalendar":
       return (
         <Box asChild {...resolve(element)}>
@@ -168,6 +175,8 @@ export const ProteusElement = ({
           >)}
         />
       );
+    case "Switch":
+      return <ProteusSwitch {...resolve(element)} />;
     case "Text":
       return <Text {...resolve(element)} />;
     case "Textarea":

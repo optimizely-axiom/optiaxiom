@@ -107,6 +107,10 @@ const PROTEUS_COMPONENT_CONFIG = {
     allowedProps: ["children", "level"],
     example: { children: "New heading", level: "2" },
   },
+  Icon: {
+    allowedProps: ["src"],
+    extends: "Box",
+  },
   IconCalendar: {
     allowedProps: [],
     extends: "Box",
@@ -180,6 +184,10 @@ const PROTEUS_COMPONENT_CONFIG = {
       when: { "!!": { $type: "Value", path: "/field_name" } },
     },
     extends: "Fragment",
+  },
+  Switch: {
+    allowedProps: ["children", "description", "name", "required"],
+    example: { name: "field_name" },
   },
   Text: {
     allowedProps: ["children", "lineClamp", "truncate"],
@@ -724,6 +732,11 @@ function generateSpec(additionalProperties = false) {
               description:
                 "A concise heading that encapsulates the essence of the Proteus document's content or intended action.",
             },
+            titleIcon: {
+              description:
+                "URL or data URI for an icon displayed alongside the title in a block-style header.",
+              type: "string",
+            },
           },
           required: ["$type", "body"],
           type: "object",
@@ -778,6 +791,25 @@ function generateSpec(additionalProperties = false) {
                 },
               },
               required: ["action", "url"],
+              type: "object",
+            },
+            {
+              ...(additionalProperties ? {} : { additionalProperties: false }),
+              description:
+                "Client-side component action - collects name/value pairs from a data array and sends as a message",
+              properties: {
+                action: {
+                  const: "message-from",
+                  description: "The action type",
+                  type: "string",
+                },
+                path: {
+                  description:
+                    "JSON pointer to an array of objects with name and value fields",
+                  type: "string",
+                },
+              },
+              required: ["action", "path"],
               type: "object",
             },
           ],
@@ -958,6 +990,12 @@ function getPropTypeOverrides(additionalProperties = false) {
           { $ref: "#/definitions/ProteusValue" },
           { $ref: "#/definitions/ProteusZip" },
         ],
+      },
+    },
+    Icon: {
+      src: {
+        anyOf: [{ $ref: "#/definitions/ProteusValue" }, { type: "string" }],
+        description: "The icon source URL",
       },
     },
     Image: {
