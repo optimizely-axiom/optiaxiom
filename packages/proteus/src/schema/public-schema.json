@@ -300,6 +300,10 @@
       ],
       "description": "Set the element's `gap` CSS property"
     },
+    "SprinkleProp_gridAutoRows": {
+      "anyOf": [{ "const": "fr" }, { "$ref": "#/definitions/ProteusValue" }],
+      "description": "Set the element's `grid-auto-rows` CSS property"
+    },
     "SprinkleProp_gridColumn": {
       "anyOf": [
         { "const": "2" },
@@ -1458,6 +1462,7 @@
         "fontSize": { "$ref": "#/definitions/SprinkleProp_fontSize" },
         "fontWeight": { "$ref": "#/definitions/SprinkleProp_fontWeight" },
         "gap": { "$ref": "#/definitions/SprinkleProp_gap" },
+        "gridAutoRows": { "$ref": "#/definitions/SprinkleProp_gridAutoRows" },
         "gridColumn": { "$ref": "#/definitions/SprinkleProp_gridColumn" },
         "gridTemplateColumns": {
           "$ref": "#/definitions/SprinkleProp_gridTemplateColumns"
@@ -1550,6 +1555,7 @@
         "fontSize": { "$ref": "#/definitions/SprinkleProp_fontSize" },
         "fontWeight": { "$ref": "#/definitions/SprinkleProp_fontWeight" },
         "gap": { "$ref": "#/definitions/SprinkleProp_gap" },
+        "gridAutoRows": { "$ref": "#/definitions/SprinkleProp_gridAutoRows" },
         "gridColumn": { "$ref": "#/definitions/SprinkleProp_gridColumn" },
         "gridTemplateColumns": {
           "$ref": "#/definitions/SprinkleProp_gridTemplateColumns"
@@ -1651,6 +1657,7 @@
         "fontSize": { "$ref": "#/definitions/SprinkleProp_fontSize" },
         "fontWeight": { "$ref": "#/definitions/SprinkleProp_fontWeight" },
         "gap": { "$ref": "#/definitions/SprinkleProp_gap" },
+        "gridAutoRows": { "$ref": "#/definitions/SprinkleProp_gridAutoRows" },
         "gridColumn": { "$ref": "#/definitions/SprinkleProp_gridColumn" },
         "gridTemplateColumns": {
           "$ref": "#/definitions/SprinkleProp_gridTemplateColumns"
@@ -1736,6 +1743,7 @@
         "fontSize": { "$ref": "#/definitions/SprinkleProp_fontSize" },
         "fontWeight": { "$ref": "#/definitions/SprinkleProp_fontWeight" },
         "gap": { "$ref": "#/definitions/SprinkleProp_gap" },
+        "gridAutoRows": { "$ref": "#/definitions/SprinkleProp_gridAutoRows" },
         "gridColumn": { "$ref": "#/definitions/SprinkleProp_gridColumn" },
         "gridTemplateColumns": {
           "$ref": "#/definitions/SprinkleProp_gridTemplateColumns"
@@ -1823,6 +1831,7 @@
         "fontSize": { "$ref": "#/definitions/SprinkleProp_fontSize" },
         "fontWeight": { "$ref": "#/definitions/SprinkleProp_fontWeight" },
         "gap": { "$ref": "#/definitions/SprinkleProp_gap" },
+        "gridAutoRows": { "$ref": "#/definitions/SprinkleProp_gridAutoRows" },
         "gridColumn": { "$ref": "#/definitions/SprinkleProp_gridColumn" },
         "gridTemplateColumns": {
           "$ref": "#/definitions/SprinkleProp_gridTemplateColumns"
@@ -1914,6 +1923,7 @@
         "fontSize": { "$ref": "#/definitions/SprinkleProp_fontSize" },
         "fontWeight": { "$ref": "#/definitions/SprinkleProp_fontWeight" },
         "gap": { "$ref": "#/definitions/SprinkleProp_gap" },
+        "gridAutoRows": { "$ref": "#/definitions/SprinkleProp_gridAutoRows" },
         "gridColumn": { "$ref": "#/definitions/SprinkleProp_gridColumn" },
         "gridTemplateColumns": {
           "$ref": "#/definitions/SprinkleProp_gridTemplateColumns"
@@ -1993,6 +2003,7 @@
         "fontSize": { "$ref": "#/definitions/SprinkleProp_fontSize" },
         "fontWeight": { "$ref": "#/definitions/SprinkleProp_fontWeight" },
         "gap": { "$ref": "#/definitions/SprinkleProp_gap" },
+        "gridAutoRows": { "$ref": "#/definitions/SprinkleProp_gridAutoRows" },
         "gridColumn": { "$ref": "#/definitions/SprinkleProp_gridColumn" },
         "gridTemplateColumns": {
           "$ref": "#/definitions/SprinkleProp_gridTemplateColumns"
@@ -2203,6 +2214,7 @@
         "fontSize": { "$ref": "#/definitions/SprinkleProp_fontSize" },
         "fontWeight": { "$ref": "#/definitions/SprinkleProp_fontWeight" },
         "gap": { "$ref": "#/definitions/SprinkleProp_gap" },
+        "gridAutoRows": { "$ref": "#/definitions/SprinkleProp_gridAutoRows" },
         "gridColumn": { "$ref": "#/definitions/SprinkleProp_gridColumn" },
         "gridTemplateColumns": {
           "$ref": "#/definitions/SprinkleProp_gridTemplateColumns"
@@ -2317,6 +2329,7 @@
         "fontSize": { "$ref": "#/definitions/SprinkleProp_fontSize" },
         "fontWeight": { "$ref": "#/definitions/SprinkleProp_fontWeight" },
         "gap": { "$ref": "#/definitions/SprinkleProp_gap" },
+        "gridAutoRows": { "$ref": "#/definitions/SprinkleProp_gridAutoRows" },
         "gridColumn": { "$ref": "#/definitions/SprinkleProp_gridColumn" },
         "gridTemplateColumns": {
           "$ref": "#/definitions/SprinkleProp_gridTemplateColumns"
@@ -2392,6 +2405,7 @@
         "fontSize": { "$ref": "#/definitions/SprinkleProp_fontSize" },
         "fontWeight": { "$ref": "#/definitions/SprinkleProp_fontWeight" },
         "gap": { "$ref": "#/definitions/SprinkleProp_gap" },
+        "gridAutoRows": { "$ref": "#/definitions/SprinkleProp_gridAutoRows" },
         "gridColumn": { "$ref": "#/definitions/SprinkleProp_gridColumn" },
         "gridTemplateColumns": {
           "$ref": "#/definitions/SprinkleProp_gridTemplateColumns"
@@ -2473,6 +2487,7 @@
         "fontSize": { "$ref": "#/definitions/SprinkleProp_fontSize" },
         "fontWeight": { "$ref": "#/definitions/SprinkleProp_fontWeight" },
         "gap": { "$ref": "#/definitions/SprinkleProp_gap" },
+        "gridAutoRows": { "$ref": "#/definitions/SprinkleProp_gridAutoRows" },
         "gridColumn": { "$ref": "#/definitions/SprinkleProp_gridColumn" },
         "gridTemplateColumns": {
           "$ref": "#/definitions/SprinkleProp_gridTemplateColumns"
@@ -2551,6 +2566,7 @@
         "fontSize": { "$ref": "#/definitions/SprinkleProp_fontSize" },
         "fontWeight": { "$ref": "#/definitions/SprinkleProp_fontWeight" },
         "gap": { "$ref": "#/definitions/SprinkleProp_gap" },
+        "gridAutoRows": { "$ref": "#/definitions/SprinkleProp_gridAutoRows" },
         "gridColumn": { "$ref": "#/definitions/SprinkleProp_gridColumn" },
         "gridTemplateColumns": {
           "$ref": "#/definitions/SprinkleProp_gridTemplateColumns"
@@ -2629,6 +2645,7 @@
         "fontSize": { "$ref": "#/definitions/SprinkleProp_fontSize" },
         "fontWeight": { "$ref": "#/definitions/SprinkleProp_fontWeight" },
         "gap": { "$ref": "#/definitions/SprinkleProp_gap" },
+        "gridAutoRows": { "$ref": "#/definitions/SprinkleProp_gridAutoRows" },
         "gridColumn": { "$ref": "#/definitions/SprinkleProp_gridColumn" },
         "gridTemplateColumns": {
           "$ref": "#/definitions/SprinkleProp_gridTemplateColumns"
@@ -2733,6 +2750,7 @@
         "fontSize": { "$ref": "#/definitions/SprinkleProp_fontSize" },
         "fontWeight": { "$ref": "#/definitions/SprinkleProp_fontWeight" },
         "gap": { "$ref": "#/definitions/SprinkleProp_gap" },
+        "gridAutoRows": { "$ref": "#/definitions/SprinkleProp_gridAutoRows" },
         "gridColumn": { "$ref": "#/definitions/SprinkleProp_gridColumn" },
         "gridTemplateColumns": {
           "$ref": "#/definitions/SprinkleProp_gridTemplateColumns"
@@ -2861,6 +2879,7 @@
         "fontSize": { "$ref": "#/definitions/SprinkleProp_fontSize" },
         "fontWeight": { "$ref": "#/definitions/SprinkleProp_fontWeight" },
         "gap": { "$ref": "#/definitions/SprinkleProp_gap" },
+        "gridAutoRows": { "$ref": "#/definitions/SprinkleProp_gridAutoRows" },
         "gridColumn": { "$ref": "#/definitions/SprinkleProp_gridColumn" },
         "gridTemplateColumns": {
           "$ref": "#/definitions/SprinkleProp_gridTemplateColumns"
@@ -2979,6 +2998,7 @@
         "fontSize": { "$ref": "#/definitions/SprinkleProp_fontSize" },
         "fontWeight": { "$ref": "#/definitions/SprinkleProp_fontWeight" },
         "gap": { "$ref": "#/definitions/SprinkleProp_gap" },
+        "gridAutoRows": { "$ref": "#/definitions/SprinkleProp_gridAutoRows" },
         "gridColumn": { "$ref": "#/definitions/SprinkleProp_gridColumn" },
         "gridTemplateColumns": {
           "$ref": "#/definitions/SprinkleProp_gridTemplateColumns"
@@ -3150,6 +3170,7 @@
         "fontSize": { "$ref": "#/definitions/SprinkleProp_fontSize" },
         "fontWeight": { "$ref": "#/definitions/SprinkleProp_fontWeight" },
         "gap": { "$ref": "#/definitions/SprinkleProp_gap" },
+        "gridAutoRows": { "$ref": "#/definitions/SprinkleProp_gridAutoRows" },
         "gridColumn": { "$ref": "#/definitions/SprinkleProp_gridColumn" },
         "gridTemplateColumns": {
           "$ref": "#/definitions/SprinkleProp_gridTemplateColumns"
@@ -3221,6 +3242,7 @@
         "fontSize": { "$ref": "#/definitions/SprinkleProp_fontSize" },
         "fontWeight": { "$ref": "#/definitions/SprinkleProp_fontWeight" },
         "gap": { "$ref": "#/definitions/SprinkleProp_gap" },
+        "gridAutoRows": { "$ref": "#/definitions/SprinkleProp_gridAutoRows" },
         "gridColumn": { "$ref": "#/definitions/SprinkleProp_gridColumn" },
         "gridTemplateColumns": {
           "$ref": "#/definitions/SprinkleProp_gridTemplateColumns"
@@ -3291,6 +3313,7 @@
         "fontSize": { "$ref": "#/definitions/SprinkleProp_fontSize" },
         "fontWeight": { "$ref": "#/definitions/SprinkleProp_fontWeight" },
         "gap": { "$ref": "#/definitions/SprinkleProp_gap" },
+        "gridAutoRows": { "$ref": "#/definitions/SprinkleProp_gridAutoRows" },
         "gridColumn": { "$ref": "#/definitions/SprinkleProp_gridColumn" },
         "gridTemplateColumns": {
           "$ref": "#/definitions/SprinkleProp_gridTemplateColumns"
@@ -3397,6 +3420,7 @@
         "fontSize": { "$ref": "#/definitions/SprinkleProp_fontSize" },
         "fontWeight": { "$ref": "#/definitions/SprinkleProp_fontWeight" },
         "gap": { "$ref": "#/definitions/SprinkleProp_gap" },
+        "gridAutoRows": { "$ref": "#/definitions/SprinkleProp_gridAutoRows" },
         "gridColumn": { "$ref": "#/definitions/SprinkleProp_gridColumn" },
         "gridTemplateColumns": {
           "$ref": "#/definitions/SprinkleProp_gridTemplateColumns"
@@ -3483,6 +3507,7 @@
         "fontSize": { "$ref": "#/definitions/SprinkleProp_fontSize" },
         "fontWeight": { "$ref": "#/definitions/SprinkleProp_fontWeight" },
         "gap": { "$ref": "#/definitions/SprinkleProp_gap" },
+        "gridAutoRows": { "$ref": "#/definitions/SprinkleProp_gridAutoRows" },
         "gridColumn": { "$ref": "#/definitions/SprinkleProp_gridColumn" },
         "gridTemplateColumns": {
           "$ref": "#/definitions/SprinkleProp_gridTemplateColumns"
@@ -3578,6 +3603,7 @@
         "fontSize": { "$ref": "#/definitions/SprinkleProp_fontSize" },
         "fontWeight": { "$ref": "#/definitions/SprinkleProp_fontWeight" },
         "gap": { "$ref": "#/definitions/SprinkleProp_gap" },
+        "gridAutoRows": { "$ref": "#/definitions/SprinkleProp_gridAutoRows" },
         "gridColumn": { "$ref": "#/definitions/SprinkleProp_gridColumn" },
         "gridTemplateColumns": {
           "$ref": "#/definitions/SprinkleProp_gridTemplateColumns"
@@ -3704,6 +3730,7 @@
         "fontSize": { "$ref": "#/definitions/SprinkleProp_fontSize" },
         "fontWeight": { "$ref": "#/definitions/SprinkleProp_fontWeight" },
         "gap": { "$ref": "#/definitions/SprinkleProp_gap" },
+        "gridAutoRows": { "$ref": "#/definitions/SprinkleProp_gridAutoRows" },
         "gridColumn": { "$ref": "#/definitions/SprinkleProp_gridColumn" },
         "gridTemplateColumns": {
           "$ref": "#/definitions/SprinkleProp_gridTemplateColumns"

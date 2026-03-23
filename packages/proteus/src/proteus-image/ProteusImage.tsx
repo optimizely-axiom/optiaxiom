@@ -45,7 +45,7 @@ export function ProteusImage(props: ProteusImageProps) {
           <Box
             alignSelf="center"
             asChild
-            display={isLoaded ? "block" : "none"}
+            display={isLoaded ? "flex" : "none"}
             {...props}
           >
             <a
@@ -58,7 +58,7 @@ export function ProteusImage(props: ProteusImageProps) {
             >
               <Box
                 asChild
-                objectFit="cover"
+                objectFit="contain"
                 overflow="hidden"
                 rounded="inherit"
               >
