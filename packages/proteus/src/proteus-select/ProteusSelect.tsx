@@ -3,7 +3,7 @@ import { useRef } from "react";
 
 import { useProteusDocumentContext } from "../proteus-document/ProteusDocumentContext";
 import { useProteusDocumentPathContext } from "../proteus-document/ProteusDocumentPathContext";
-import { useProteusValue } from "../proteus-document/useProteusValue";
+import { useProteusValue } from "../use-proteus-value";
 
 export type ProteusSelectProps = Omit<SelectProps, "options"> & {
   /**

@@ -2,7 +2,7 @@ import { Input, type InputProps } from "@optiaxiom/react";
 
 import { useProteusDocumentContext } from "../proteus-document/ProteusDocumentContext";
 import { useProteusDocumentPathContext } from "../proteus-document/ProteusDocumentPathContext";
-import { useProteusValue } from "../proteus-document/useProteusValue";
+import { useProteusValue } from "../use-proteus-value";
 
 export function ProteusInput(props: InputProps) {
   const { onDataChange, readOnly } = useProteusDocumentContext(

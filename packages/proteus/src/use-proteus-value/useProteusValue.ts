@@ -1,8 +1,8 @@
 import type { ProteusValueProps } from "../proteus-value/ProteusValue";
 
-import { getProteusValue } from "./getProteusValue";
-import { useProteusDocumentContext } from "./ProteusDocumentContext";
-import { useProteusDocumentPathContext } from "./ProteusDocumentPathContext";
+import { getProteusValue } from "../proteus-document/getProteusValue";
+import { useProteusDocumentContext } from "../proteus-document/ProteusDocumentContext";
+import { useProteusDocumentPathContext } from "../proteus-document/ProteusDocumentPathContext";
 
 export function useProteusValue(element: ProteusValueProps) {
   const { data } = useProteusDocumentContext(
