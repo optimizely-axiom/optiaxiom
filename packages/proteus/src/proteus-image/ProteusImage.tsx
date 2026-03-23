@@ -23,6 +23,14 @@ export function ProteusImage(props: ProteusImageProps) {
   const [isLoaded, setIsLoaded] = useState(false);
   const imgRef = useRef<HTMLImageElement>(null);
 
+  if (props.objectFit === "cover") {
+    return (
+      <Box asChild objectFit="cover" overflow="hidden" {...props}>
+        <img alt={props.alt} src={props.src} />
+      </Box>
+    );
+  }
+
   return (
     <>
       {!isLoaded && (

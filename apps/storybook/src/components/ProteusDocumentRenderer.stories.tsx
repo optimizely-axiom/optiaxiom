@@ -779,6 +779,8 @@ export const ExploreResources: Story = {
         },
         {
           cmp_url: "https://example/asset/id-456",
+          image_url:
+            "https://placehold.co/600x400/e2e8f0/475569?text=Enrollment",
           owner: "Sample User",
           status: null,
           title: "User Initiated Enrollment.docx",
@@ -803,29 +805,44 @@ export const ExploreResources: Story = {
               {
                 $type: "Card",
                 border: "0",
-                children: [
-                  {
-                    $type: "CardHeader",
+                children: {
+                  $type: "CardHeader",
+                  addonBefore: {
+                    $type: "Show",
                     children: {
-                      $type: "CardLink",
-                      children: {
+                      $type: "Image",
+                      alt: "",
+                      objectFit: "cover",
+                      rounded: "sm",
+                      size: "xl",
+                      src: {
                         $type: "Value",
-                        path: "title",
-                      },
-                      href: {
-                        $type: "Value",
-                        path: "cmp_url",
+                        path: "image_url",
                       },
                     },
-                    lineClamp: "2",
+                    when: {
+                      "!!": {
+                        $type: "Value",
+                        path: "image_url",
+                      },
+                    },
                   },
-                  {
+                  children: {
+                    $type: "CardLink",
+                    children: {
+                      $type: "Value",
+                      path: "title",
+                    },
+                    href: {
+                      $type: "Value",
+                      path: "cmp_url",
+                    },
+                  },
+                  description: {
                     $type: "Group",
-                    alignItems: "center",
                     children: [
                       {
                         $type: "Group",
-                        alignItems: "center",
                         children: [
                           {
                             $type: "Show",
@@ -905,7 +922,6 @@ export const ExploreResources: Story = {
                             },
                           },
                         ],
-                        color: "fg.tertiary",
                         flexDirection: "row",
                         gap: "12",
                       },
@@ -997,9 +1013,10 @@ export const ExploreResources: Story = {
                     flexDirection: "row",
                     fontSize: "sm",
                     justifyContent: "space-between",
-                    w: "full",
+                    mt: "8",
                   },
-                ],
+                  lineClamp: "2",
+                },
                 p: "12",
               },
             ],
