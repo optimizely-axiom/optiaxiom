@@ -8,4 +8,4 @@ export * from "./proteus-map";
 export * from "./proteus-select";
 export * from "./proteus-show";
 export * from "./proteus-textarea";
-export * from "./proteus-value";
+export * from "./use-proteus-value";
