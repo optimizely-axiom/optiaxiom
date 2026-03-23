@@ -1,5 +1,14 @@
 # @optiaxiom/proteus
 
+## 0.1.3
+
+### Patch Changes
+
+- 1d45d77: add AskAgentInput story
+- 2db55bd: export useProteusValue hook
+- Updated dependencies [1d45d77]
+  - @optiaxiom/react@1.9.20
+
 ## 0.1.2
 
 ### Patch Changes
