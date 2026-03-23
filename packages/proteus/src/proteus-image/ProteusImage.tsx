@@ -64,6 +64,19 @@ export function ProteusImage(props: ProteusImageProps) {
               >
                 <img
                   alt={props.alt}
+                  draggable
+                  onDragStart={(event) => {
+                    event.stopPropagation();
+                    event.dataTransfer.effectAllowed = "copy";
+                    event.dataTransfer.setData(
+                      "opal-chat-dnd-data",
+                      JSON.stringify({
+                        link: props.src,
+                        mime_type: "image/*",
+                        name: props.src?.split("/").pop(),
+                      }),
+                    );
+                  }}
                   onLoad={() => setIsLoaded(true)}
                   ref={imgRef}
                   src={props.src}
