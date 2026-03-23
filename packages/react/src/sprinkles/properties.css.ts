@@ -417,6 +417,12 @@ export const responsiveProps = defineProperties({
      */
     gap: spacing,
     /**
+     * Set the element's `grid-auto-rows` CSS property
+     */
+    gridAutoRows: {
+      fr: "minmax(0, 1fr)",
+    },
+    /**
      * Set the element's size across grid columns
      */
     gridColumn: mapValues(

@@ -13,7 +13,7 @@ export default {
   },
   component: ProteusDocumentRenderer,
   decorators: (Story) => (
-    <Box maxW="lg">
+    <Box style={{ maxWidth: 600 }}>
       <Story />
     </Box>
   ),
@@ -230,9 +230,6 @@ export const FormWithInputs: Story = {
 
 export const WithImage: Story = {
   args: {
-    data: {
-      link: "https://placehold.co/600x400",
-    },
     element: {
       $type: "Document",
       actions: [
@@ -250,39 +247,20 @@ export const WithImage: Story = {
         {
           $type: "Image",
           alt: "A delicious, juicy pan-seared chicken breast dish with broccoli sides",
-          src: "https://placehold.co/600x400",
+          maxH: "xs",
+          src: "https://placehold.co/1600x900",
         },
         {
-          $type: "Group",
-          border: "1",
-          borderColor: "border.tertiary",
-          children: [
-            {
-              $type: "Group",
-              children: [
-                {
-                  $type: "Text",
-                  children: "Alt Text",
-                  fontSize: "md",
-                  fontWeight: "500",
-                },
-                {
-                  $type: "Text",
-                  children:
-                    "A delicious, juicy pan-seared chicken breast dish with broccoli sides",
-                  color: "fg.secondary",
-                  fontSize: "sm",
-                },
-              ],
-              flex: "1",
-              flexDirection: "column",
-              gap: "8",
-            },
-          ],
-          gap: "8",
-          px: "16",
-          py: "12",
-          rounded: "lg",
+          $type: "Image",
+          alt: "A delicious, juicy pan-seared chicken breast dish with broccoli sides",
+          maxH: "xs",
+          src: "https://placehold.co/900x1600",
+        },
+        {
+          $type: "Image",
+          alt: "A delicious, juicy pan-seared chicken breast dish with broccoli sides",
+          maxH: "xs",
+          src: "https://placehold.co/400x600",
         },
       ],
       subtitle: "Created Jan 15, 2025",
@@ -297,19 +275,19 @@ export const WithImageGrid: Story = {
       images: [
         {
           alt: "Lime chicken thighs on a plate",
-          src: "https://placehold.co/274x250",
+          src: "https://placehold.co/600x400",
         },
         {
           alt: "Chicken with lemon sauce and broccoli",
-          src: "https://placehold.co/274x250",
+          src: "https://placehold.co/600x400",
         },
         {
           alt: "Sliced roasted chicken breast with broccoli",
-          src: "https://placehold.co/274x250",
+          src: "https://placehold.co/600x400",
         },
         {
           alt: "Sesame chicken with broccoli",
-          src: "https://placehold.co/274x250",
+          src: "https://placehold.co/600x400",
         },
       ],
     },
@@ -329,17 +307,24 @@ export const WithImageGrid: Story = {
           children: {
             $type: "Map",
             children: {
-              $type: "Image",
-              alt: { $type: "Value", path: "alt" },
-              rounded: "md",
-              src: { $type: "Value", path: "src" },
-              w: "full",
+              $type: "Group",
+              children: {
+                $type: "Image",
+                alt: { $type: "Value", path: "alt" },
+                overflow: "hidden",
+                rounded: "md",
+                src: { $type: "Value", path: "src" },
+              },
+              flexDirection: "column",
+              maxH: "full",
             },
             path: "/images",
           },
           display: "grid",
           gap: "12",
+          gridAutoRows: "fr",
           gridTemplateColumns: "2",
+          maxH: "md",
         },
       ],
       subtitle: "4 variations generated",
