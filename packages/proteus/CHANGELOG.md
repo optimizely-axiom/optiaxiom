@@ -1,5 +1,14 @@
 # @optiaxiom/proteus
 
+## 0.1.4
+
+### Patch Changes
+
+- 6e677ec: allow image dnd
+- 1c8a580: allow setting max-height on image
+- Updated dependencies [1c8a580]
+  - @optiaxiom/react@1.9.21
+
 ## 0.1.3
 
 ### Patch Changes

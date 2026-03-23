@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 1.9.21
+
+### Patch Changes
+
+- 1c8a580: allow setting max-height on image
+
 ## 1.9.20
 
 ### Patch Changes
