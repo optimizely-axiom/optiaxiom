@@ -1,5 +1,11 @@
 # @optiaxiom/proteus
 
+## 0.1.5
+
+### Patch Changes
+
+- aba28a1: include card image
+
 ## 0.1.4
 
 ### Patch Changes
