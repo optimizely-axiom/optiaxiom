@@ -38,7 +38,6 @@ import proteusDocumentSpec from "../schema/runtime-schema.json";
 export type ProteusElement =
   | (AvatarProps & { $type: "Avatar" })
   | (BadgeProps & { $type: "Badge" })
-  | (BoxProps & { $type: "Icon" })
   | (BoxProps & { $type: "IconCalendar" })
   | (CardHeaderProps & { $type: "CardHeader" })
   | (CardLinkProps & { $type: "CardLink" })
