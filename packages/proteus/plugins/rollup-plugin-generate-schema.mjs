@@ -107,10 +107,6 @@ const PROTEUS_COMPONENT_CONFIG = {
     allowedProps: ["children", "level"],
     example: { children: "New heading", level: "2" },
   },
-  Icon: {
-    allowedProps: ["src"],
-    extends: "Box",
-  },
   IconCalendar: {
     allowedProps: [],
     extends: "Box",
@@ -990,12 +986,6 @@ function getPropTypeOverrides(additionalProperties = false) {
           { $ref: "#/definitions/ProteusValue" },
           { $ref: "#/definitions/ProteusZip" },
         ],
-      },
-    },
-    Icon: {
-      src: {
-        anyOf: [{ $ref: "#/definitions/ProteusValue" }, { type: "string" }],
-        description: "The icon source URL",
       },
     },
     Image: {

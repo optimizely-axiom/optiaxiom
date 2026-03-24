@@ -131,12 +131,6 @@ export const ProteusElement = ({
       return <Group {...resolve(element)} />;
     case "Heading":
       return <Heading {...resolve(element)} />;
-    case "Icon":
-      return (
-        <Box asChild {...resolve(element)}>
-          <img />
-        </Box>
-      );
     case "IconCalendar":
       return (
         <Box asChild {...resolve(element)}>
