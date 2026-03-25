@@ -297,7 +297,15 @@ export const WithImageGrid: Story = {
         {
           $type: "Action",
           appearance: "primary",
-          children: "Download",
+          children: "Download All",
+          onClick: {
+            action: "download",
+            url: {
+              $type: "Map",
+              children: { $type: "Value", path: "src" },
+              path: "/images",
+            },
+          },
         },
       ],
       appName: "Opal",
@@ -330,7 +338,6 @@ export const WithImageGrid: Story = {
       subtitle: "4 variations generated",
       title: "Generated Images",
     },
-    readOnly: true,
   },
 };
 

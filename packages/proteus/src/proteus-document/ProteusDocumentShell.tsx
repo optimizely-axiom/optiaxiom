@@ -130,6 +130,15 @@ export function ProteusDocumentShell({
         } else if (event.action === "download") {
           if (typeof event.url === "string") {
             await downloadFile(event.url);
+          } else if (Array.isArray(event.url)) {
+            await Promise.all(
+              event.url.map((u) => {
+                if (typeof u !== "string") {
+                  throw new Error("Invalid URL in download array");
+                }
+                return downloadFile(u);
+              }),
+            );
           } else {
             throw new Error("Invalid URL for download action");
           }
