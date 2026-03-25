@@ -9,7 +9,7 @@ import {
   Tooltip,
 } from "@optiaxiom/react";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
-import { get, set } from "jsonpointer";
+import { set } from "jsonpointer";
 import {
   type ComponentPropsWithoutRef,
   type ReactNode,
@@ -116,17 +116,6 @@ export function ProteusDocumentShell({
           await onToolCall?.(event.tool);
         } else if ("message" in event) {
           await onMessage?.(event.message);
-        } else if (event.action === "message-from") {
-          const items = get(data, event.path);
-          if (!Array.isArray(items)) {
-            throw new Error(
-              `Expected array at "${event.path}" for message-from action`,
-            );
-          }
-          const message = items
-            .map((item) => `${item.name}: ${item.value || "[Not specified]"}`)
-            .join("\n");
-          await onMessage?.(message);
         } else if (event.action === "download") {
           if (typeof event.url === "string") {
             await downloadFile(event.url);

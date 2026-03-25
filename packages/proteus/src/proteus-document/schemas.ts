@@ -71,10 +71,6 @@ export type ProteusEventHandler =
       action: "download";
       url: (ProteusValueProps & { $type: "Value" }) | string | string[];
     }
-  | {
-      action: "message-from";
-      path: string;
-    }
   | { message: string }
   | { tool: string };
 

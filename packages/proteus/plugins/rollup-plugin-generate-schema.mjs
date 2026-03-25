@@ -84,6 +84,10 @@ const PROTEUS_COMPONENT_CONFIG = {
     },
     extends: "Fragment",
   },
+  Concat: {
+    allowedProps: ["children"],
+    extends: "Fragment",
+  },
   DataTable: {
     allowedProps: ["columns", "data"],
     example: {
@@ -531,6 +535,24 @@ function generateSpec(additionalProperties = false) {
             {
               ...(additionalProperties ? {} : { additionalProperties: false }),
               properties: {
+                "!": {
+                  anyOf: [
+                    { type: "string" },
+                    { type: "number" },
+                    { type: "boolean" },
+                    { type: "null" },
+                    { $ref: "#/definitions/ProteusValue" },
+                  ],
+                  description:
+                    "Falsy check - returns true if value is falsy (null, undefined, false, 0, or empty string)",
+                },
+              },
+              required: ["!"],
+              type: "object",
+            },
+            {
+              ...(additionalProperties ? {} : { additionalProperties: false }),
+              properties: {
                 and: {
                   description:
                     "Logical AND - returns true if all conditions are true",
@@ -761,8 +783,13 @@ function generateSpec(additionalProperties = false) {
               description: "Client-side message action",
               properties: {
                 message: {
-                  description: "Message to send to LLM via sendNewMessage()",
-                  type: "string",
+                  anyOf: [
+                    { $ref: "#/definitions/ProteusMap" },
+                    { $ref: "#/definitions/ProteusValue" },
+                    { type: "string" },
+                  ],
+                  description:
+                    "Message to send to LLM via sendNewMessage(). Can be a string, a Value reference, or a Map expression.",
                 },
               },
               required: ["message"],
@@ -789,25 +816,6 @@ function generateSpec(additionalProperties = false) {
                 },
               },
               required: ["action", "url"],
-              type: "object",
-            },
-            {
-              ...(additionalProperties ? {} : { additionalProperties: false }),
-              description:
-                "Client-side component action - collects name/value pairs from a data array and sends as a message",
-              properties: {
-                action: {
-                  const: "message-from",
-                  description: "The action type",
-                  type: "string",
-                },
-                path: {
-                  description:
-                    "JSON pointer to an array of objects with name and value fields",
-                  type: "string",
-                },
-              },
-              required: ["action", "path"],
               type: "object",
             },
           ],
@@ -933,6 +941,16 @@ function getPropTypeOverrides(additionalProperties = false) {
       xAxisKey: {
         description: "Key in data records for x-axis labels",
         type: "string",
+      },
+    },
+    Concat: {
+      children: {
+        description:
+          "Array of values to concatenate into a single string. Each item is resolved and joined together.",
+        items: {
+          anyOf: [{ $ref: "#/definitions/ProteusNode" }, { type: "string" }],
+        },
+        type: "array",
       },
     },
     DataTable: {
