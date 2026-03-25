@@ -780,10 +780,12 @@ function generateSpec(additionalProperties = false) {
                 },
                 url: {
                   anyOf: [
+                    { $ref: "#/definitions/ProteusMap" },
                     { $ref: "#/definitions/ProteusValue" },
                     { type: "string" },
                   ],
-                  description: "URL to download",
+                  description:
+                    "URL to download, or a Map expression resolving to multiple URLs",
                 },
               },
               required: ["action", "url"],
