@@ -2,7 +2,7 @@ import { useProteusDocumentContext } from "./ProteusDocumentContext";
 import { useProteusDocumentPathContext } from "./ProteusDocumentPathContext";
 import { resolveProteusValue } from "./resolveProteusValue";
 
-export function useResolvedProteusProps(
+export function useResolveProteusValues(
   props: Record<string, unknown>,
 ): Record<string, unknown> {
   const { data } = useProteusDocumentContext(

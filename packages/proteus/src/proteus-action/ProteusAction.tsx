@@ -6,7 +6,7 @@ import { useState } from "react";
 import type { ProteusEventHandler } from "../proteus-document/schemas";
 
 import { useProteusDocumentContext } from "../proteus-document/ProteusDocumentContext";
-import { useResolvedProteusProps } from "../proteus-document/useResolvedProteusProps";
+import { useResolveProteusValues } from "../proteus-document/useResolveProteusValues";
 
 export type ProteusActionProps = Omit<ButtonProps, "onClick"> & {
   /**
@@ -23,7 +23,7 @@ export function ProteusAction({
   const { onEvent, valid } = useProteusDocumentContext(
     "@optiaxiom/proteus/ProteusAction",
   );
-  const resolvedOnClick = useResolvedProteusProps(
+  const resolvedOnClick = useResolveProteusValues(
     (onClick ?? {}) as Record<string, unknown>,
   ) as ProteusEventHandler;
 
