@@ -1,5 +1,9 @@
 import { ProteusElement } from "../proteus-element";
 import { getProteusValue } from "./getProteusValue";
+import {
+  evaluateCondition,
+  type ProteusCondition,
+} from "./resolveProteusValue";
 
 export function resolveProteusProp(
   value: unknown,
@@ -44,6 +48,23 @@ export function resolveProteusProp(
       }
       return row;
     });
+  }
+
+  if (
+    "$type" in value &&
+    value.$type === "Show" &&
+    "when" in value &&
+    "children" in value
+  ) {
+    const conditions = Array.isArray(value.when) ? value.when : [value.when];
+    const shouldShow = conditions.every(
+      (condition: ProteusCondition | undefined) =>
+        evaluateCondition(condition, data, parentPath),
+    );
+    if (!shouldShow) {
+      return undefined;
+    }
+    return resolveProteusProp(value.children, data, parentPath);
   }
 
   return "$type" in value ||
