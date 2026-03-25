@@ -223,16 +223,19 @@ export function ProteusDocumentShell({
                   setValid(form.checkValidity());
                 });
               }}
+              onSubmit={(event) => {
+                event.preventDefault();
+              }}
               ref={formRef}
             >
               {element.body}
+              {element.actions && !readOnly && (
+                <Group gap="16" justifyContent="end" w="full">
+                  {element.actions}
+                </Group>
+              )}
             </form>
           </Group>
-          {element.actions && !readOnly && (
-            <Group gap="16" justifyContent="end" w="full">
-              {element.actions}
-            </Group>
-          )}
         </DisclosureContent>
       </Disclosure>
     </ProteusDocumentProvider>
