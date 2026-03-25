@@ -1,5 +1,12 @@
 # @optiaxiom/proteus
 
+## 0.1.7
+
+### Patch Changes
+
+- d56fec5: allow resolving Show in prop
+- b345e37: add new Concat type
+
 ## 0.1.6
 
 ### Patch Changes
