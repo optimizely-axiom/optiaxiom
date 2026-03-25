@@ -6,10 +6,10 @@ export function useResolveProteusValues(
   props: Record<string, unknown>,
 ): Record<string, unknown> {
   const { data } = useProteusDocumentContext(
-    "@optiaxiom/react/useResolvedProteusProps",
+    "@optiaxiom/react/useResolveProteusValues",
   );
   const { path: parentPath } = useProteusDocumentPathContext(
-    "@optiaxiom/react/useResolvedProteusProps",
+    "@optiaxiom/react/useResolveProteusValues",
   );
 
   const resolved: Record<string, unknown> = {};

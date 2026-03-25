@@ -502,8 +502,28 @@ export const AskAgentInput: Story = {
           appearance: "primary",
           children: "Run agent",
           onClick: {
-            action: "message-from",
-            path: "/parameters",
+            message: {
+              $type: "Map",
+              children: {
+                $type: "Concat",
+                children: [
+                  { $type: "Value", path: "name" },
+                  ": ",
+                  {
+                    $type: "Show",
+                    children: "[Not specified]",
+                    when: { "!": { $type: "Value", path: "value" } },
+                  },
+                  {
+                    $type: "Show",
+                    children: { $type: "Value", path: "value" },
+                    when: { "!!": { $type: "Value", path: "value" } },
+                  },
+                ],
+              },
+              path: "/parameters",
+              separator: "\n",
+            },
           },
         },
       ],
