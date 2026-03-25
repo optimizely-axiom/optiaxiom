@@ -1,5 +1,12 @@
 # @optiaxiom/proteus
 
+## 0.1.6
+
+### Patch Changes
+
+- f444bda: allow batch download of multiple files
+- 21c25dc: move actions inside main form
+
 ## 0.1.5
 
 ### Patch Changes
