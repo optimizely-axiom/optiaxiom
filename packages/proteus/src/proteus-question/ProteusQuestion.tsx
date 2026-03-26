@@ -65,7 +65,7 @@ export function ProteusQuestion({ questions }: ProteusQuestionProps) {
       message: answers
         .map(
           (value, index) =>
-            `Q: ${questions[index].question}\nA: ${value === null ? "[Not specified]" : value}`,
+            `Q: ${questions[index].question}\nA: ${value || "[Not specified]"}`,
         )
         .join("\n\n"),
     });
