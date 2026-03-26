@@ -10,7 +10,7 @@ export const ButtonLabel = forwardRef<HTMLDivElement, ButtonLabelProps>(
   ({ children, ...props }, ref) => {
     return (
       <ButtonLoadable asChild>
-        <Text asChild mx="4" truncate>
+        <Text asChild mx="8" truncate>
           <div ref={ref} {...props}>
             {children}
           </div>
