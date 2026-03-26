@@ -47,6 +47,7 @@ export const buttonBase = recipe({
       alignItems: "center",
       display: "inline-flex",
       flexDirection: "row",
+      fontWeight: "500",
       justifyContent: "flex-start",
       transition: "colors",
     },
@@ -81,6 +82,7 @@ export const buttonBase = recipe({
           [accentColorVar]: theme.colors["bg.error"],
           [hoverAccentColorVar]: theme.colors["bg.error.hovered"],
           [pressedAccentColorVar]: theme.colors["bg.error.pressed"],
+          [solidTextColorVar]: theme.colors["fg.default.inverse"],
           [subtleHoverAccentColorVar]: theme.colors["bg.error.subtlest"],
           [subtlePressedAccentColorVar]: theme.colors["bg.error.subtle"],
         },
@@ -103,11 +105,11 @@ export const buttonBase = recipe({
       }),
       primary: style({
         vars: {
-          [accentColorVar]: theme.colors["bg.accent.light"],
+          [accentColorVar]: theme.colors["bg.accent"],
           [hoverAccentColorVar]: theme.colors["bg.accent.hovered"],
           [pressedAccentColorVar]: theme.colors["bg.accent.pressed"],
           [subtleHoverAccentColorVar]: theme.colors["bg.accent.subtle"],
-          [subtlePressedAccentColorVar]: theme.colors["bg.accent.light"],
+          [subtlePressedAccentColorVar]: theme.colors["bg.accent"],
         },
       }),
     },
@@ -121,12 +123,10 @@ export const buttonBase = recipe({
       },
       md: {
         fontSize: "md",
-        gap: "2",
         h: "md",
       },
       lg: {
-        fontSize: "md",
-        gap: "4",
+        fontSize: "lg",
         h: "lg",
       },
     },
@@ -170,9 +170,8 @@ export const buttonBase = recipe({
             },
 
           '&:is([data-state="active"], [data-state="on"])': {
-            backgroundColor: theme.colors["bg.accent.subtle"],
+            backgroundColor: theme.colors["bg.accent"],
             borderColor: theme.colors["fg.accent"],
-            color: theme.colors["fg.accent"],
           },
           "&[data-disabled]:not([data-loading])": {
             borderColor: theme.colors["border.disabled"],
@@ -237,7 +236,7 @@ export const buttonBase = recipe({
       }),
       strong: style({
         backgroundColor: accentColorVar,
-        color: theme.colors["fg.default"],
+        color: fallbackVar(solidTextColorVar, theme.colors["fg.default"]),
 
         "@media": {
           "(hover: hover)": {
@@ -305,8 +304,7 @@ export const buttonBase = recipe({
             },
 
           '&:is([data-state="active"], [data-state="on"])': {
-            backgroundColor: theme.colors["bg.accent.subtle"],
-            color: theme.colors["fg.accent"],
+            backgroundColor: theme.colors["bg.tertiary"],
           },
           "&[data-disabled]:not([data-loading])": {
             color: theme.colors["fg.disabled"],
@@ -340,7 +338,7 @@ export const buttonBase = recipe({
     {
       style: style({
         vars: {
-          [paddingInlineVar]: "6px",
+          [paddingInlineVar]: "4px",
         },
       }),
       variants: {
@@ -361,7 +359,7 @@ export const buttonBase = recipe({
     {
       style: style({
         vars: {
-          [paddingInlineVar]: "8px",
+          [paddingInlineVar]: "6px",
         },
       }),
       variants: {
@@ -381,7 +379,7 @@ export const buttonBase = recipe({
     {
       style: style({
         vars: {
-          [paddingInlineVar]: "12px",
+          [paddingInlineVar]: "8px",
         },
       }),
       variants: {
