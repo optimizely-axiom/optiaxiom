@@ -54,6 +54,7 @@ export function ProteusImage(props: ProteusImageProps) {
             alignSelf="center"
             asChild
             display={isLoaded ? "flex" : "none"}
+            justifyContent="center"
             {...props}
           >
             <a
