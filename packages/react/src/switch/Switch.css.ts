@@ -15,25 +15,24 @@ export const root = recipe({
   base: [
     marker,
     style({
-      vars: {
-        [styles.controlColorVar]: theme.colors["bg.tertiary"],
-      },
-
-      "@media": {
-        "(hover: hover)": {
-          selectors: {
-            [`&:has(${inputMarker}:not(:disabled):not(:checked, [type=checkbox]:indeterminate)):hover`]:
-              {
-                vars: {
-                  [styles.controlColorVar]: theme.colors["bg.tertiary.hovered"],
-                },
-              },
+      selectors: {
+        [`&:has(${inputMarker}:checked:disabled)`]: {
+          vars: {
+            [styles.controlAccentVar]: theme.colors["bg.accent"],
+            [styles.controlColorVar]: theme.colors["fg.black"],
+          },
+        },
+        [`&:has(${inputMarker}:not(checked):disabled)`]: {
+          vars: {
+            [styles.controlColorVar]: theme.colors["border.control"],
           },
         },
       },
     }),
   ],
 });
+
+const sizeVar = createVar();
 
 export const input = recipe({
   base: inputMarker,
@@ -42,19 +41,53 @@ export const input = recipe({
 export const control = recipe({
   base: [
     {
-      px: "12",
-      py: "2",
+      display: "grid",
       rounded: "full",
-      transition: "colors",
     },
     style({
-      backgroundColor: styles.controlColorVar,
+      borderColor: styles.controlAccentVar,
+      borderWidth: "2px",
+      height: `calc(4px + ${sizeVar} + 4px)`,
+      placeContent: "center",
       position: "relative",
+      transitionDuration: theme.duration.sm,
+      transitionProperty: "border-color, border-width",
+      transitionTimingFunction: "ease",
+      width: `calc(4px + ${sizeVar} * 1.5 + 12px + 4px)`,
+
+      selectors: {
+        [`${marker}:has(${inputMarker}:checked) &`]: {
+          borderBlockWidth: `calc((4px + ${sizeVar} + 4px) / 2)`,
+          borderInlineWidth: `calc((4px + ${sizeVar} * 1.5 + 12px + 4px) / 2)`,
+        },
+      },
     }),
   ],
+  variants: {
+    /**
+     * Control the size of the switch.
+     */
+    size: {
+      md: [
+        {
+          mt: "2",
+        },
+        style({
+          vars: {
+            [sizeVar]: "8px",
+          },
+        }),
+      ],
+      lg: [
+        style({
+          vars: {
+            [sizeVar]: theme.size["2xs"],
+          },
+        }),
+      ],
+    },
+  },
 });
-
-const sizeVar = createVar();
 
 export const thumb = recipe({
   base: [
@@ -64,9 +97,9 @@ export const thumb = recipe({
       transition: "all",
     },
     style({
-      backgroundColor: theme.colors["bg.default"],
+      backgroundColor: styles.controlColorVar,
       height: sizeVar,
-      transform: "translateX(-10px)",
+      transform: `translateX(calc(-6px - ${sizeVar} / 4))`,
       width: sizeVar,
 
       selectors: {
@@ -80,10 +113,7 @@ export const thumb = recipe({
           marginRight: `calc(${sizeVar} * -0.25)`,
         },
         [`${marker}:has(${inputMarker}:checked) &`]: {
-          transform: "translateX(10px)",
-        },
-        [`${marker}:has(${inputMarker}:disabled) &`]: {
-          backgroundColor: theme.colors["bg.page"],
+          transform: `translateX(calc(6px + ${sizeVar} / 4))`,
         },
         [`${marker}:has(${inputMarker}:not(:disabled)) &`]: {
           boxShadow: theme.boxShadow["sm"],
@@ -91,23 +121,6 @@ export const thumb = recipe({
       },
     }),
   ],
-  variants: {
-    /**
-     * Control the size of the switch.
-     */
-    size: {
-      md: style({
-        vars: {
-          [sizeVar]: theme.size["2xs"],
-        },
-      }),
-      lg: style({
-        vars: {
-          [sizeVar]: theme.size["xs"],
-        },
-      }),
-    },
-  },
 });
 
-export type SwitchVariants = RecipeVariants<typeof thumb>;
+export type SwitchVariants = RecipeVariants<typeof control>;

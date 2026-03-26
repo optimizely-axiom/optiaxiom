@@ -90,7 +90,10 @@ export const buttonBase = recipe({
           [pressedAccentColorVar]: theme.colors["bg.error.pressed"],
           [solidTextColorVar]: theme.colors["fg.white"],
           [subtleHoverAccentColorVar]: theme.colors["bg.error.subtlest"],
+          [subtleHoverOutlineColorVar]: theme.colors["border.error"],
+          [subtleOutlineColorVar]: theme.colors["border.error"],
           [subtlePressedAccentColorVar]: theme.colors["bg.error.subtle"],
+          [textColorVar]: theme.colors["fg.error"],
         },
       }),
       neutral: style({

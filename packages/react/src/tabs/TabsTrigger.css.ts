@@ -49,7 +49,7 @@ export const trigger = recipe({
           paddingInline: "10px",
         },
         '&[data-state="active"]': {
-          borderColor: theme.colors["border.accent"],
+          borderColor: theme.colors["fg.default"],
           color: theme.colors["fg.default"],
         },
       },
