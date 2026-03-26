@@ -35,9 +35,11 @@ export const content = recipe({
       bg: "bg.default",
       color: "fg.tertiary",
       display: "flex",
-      fontSize: "sm",
+      fontFamily: "mono",
+      fontSize: "xs",
       fontWeight: "400",
       size: "full",
+      textTransform: "uppercase",
     },
     style({
       boxShadow: `0 1px 0 ${theme.colors["border.tertiary"]}`,
