@@ -1,0 +1,17 @@
+{
+  "mode": "pre",
+  "tag": "next",
+  "initialVersions": {
+    "@optiaxiom/docs": "0.0.0",
+    "@optiaxiom/figma": "0.0.0",
+    "@optiaxiom/storybook": "0.0.0",
+    "@optiaxiom/codemod": "0.1.1",
+    "@optiaxiom/globals": "1.1.9",
+    "@optiaxiom/mcp": "0.2.5",
+    "@optiaxiom/proteus": "0.1.8",
+    "@optiaxiom/react": "1.9.21",
+    "@optiaxiom/shared": "0.0.0",
+    "@optiaxiom/web-components": "0.12.2"
+  },
+  "changesets": []
+}
