@@ -91,7 +91,8 @@ export const ButtonRoot = forwardRef<HTMLButtonElement, ButtonRootProps>(
                 <Transition>
                   <Spinner
                     appearance={
-                      variant === "strong" || variant === "strong-opal"
+                      (variant === "strong" && intent !== "primary") ||
+                      variant === "strong-opal"
                         ? "inverse"
                         : "default"
                     }
