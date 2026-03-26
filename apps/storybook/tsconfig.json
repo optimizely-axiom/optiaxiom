@@ -3,6 +3,7 @@
   "compilerOptions": {
     "allowImportingTsExtensions": true,
     "paths": {
+      "@optiaxiom/icons": ["../../packages/icons/src"],
       "@optiaxiom/proteus": ["../../packages/proteus/src"],
       "@optiaxiom/react": ["../../packages/react/src"],
       "@optiaxiom/react/unstable": ["../../packages/react/src/unstable.ts"]
@@ -11,6 +12,7 @@
   "include": [".", ".storybook/*.ts*"],
   "exclude": ["storybook-static", "node_modules"],
   "references": [
+    { "path": "../../packages/icons" },
     { "path": "../../packages/proteus" },
     { "path": "../../packages/react" }
   ]
