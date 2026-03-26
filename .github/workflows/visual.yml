@@ -6,6 +6,7 @@ on:
     types: [labeled]
   push:
     branches: [main]
+  workflow_dispatch:
 
 jobs:
   chromatic:
