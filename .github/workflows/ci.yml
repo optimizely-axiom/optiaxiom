@@ -125,7 +125,7 @@ jobs:
 
       - run: pnpm exec playwright install chromium
 
-      - run: pnpm -F proteus... -F web-components... build
+      - run: pnpm -F icons... -F proteus... -F web-components... build
 
       - name: Check schema files are up-to-date
         run: |
