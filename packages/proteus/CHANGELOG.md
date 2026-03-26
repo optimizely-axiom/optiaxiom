@@ -1,5 +1,11 @@
 # @optiaxiom/proteus
 
+## 0.1.8
+
+### Patch Changes
+
+- 438bf65: handle falsy answers better
+
 ## 0.1.7
 
 ### Patch Changes
