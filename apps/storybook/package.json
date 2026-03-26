@@ -5,10 +5,11 @@
   "version": "0.0.0",
   "scripts": {
     "build": "storybook build --docs",
-    "dev": "wait-on ../../packages/proteus/dist/index.d.ts ../../packages/react/dist/index.d.ts ../../packages/react/dist/unstable.d.ts ../../packages/shared/data/docs.json && storybook dev -p 6006",
+    "dev": "wait-on ../../packages/icons/dist/index.d.ts ../../packages/proteus/dist/index.d.ts ../../packages/react/dist/index.d.ts ../../packages/react/dist/unstable.d.ts ../../packages/shared/data/docs.json && storybook dev -p 6006",
     "test": "vitest"
   },
   "devDependencies": {
+    "@optiaxiom/icons": "workspace:^",
     "@optiaxiom/proteus": "workspace:^",
     "@optiaxiom/react": "workspace:^",
     "@optiaxiom/shared": "workspace:^",
@@ -30,6 +31,7 @@
     "storybook": "^10.2.8",
     "storybook-addon-test-codegen": "^3.0.1",
     "vite": "^7.1.3",
+    "vite-plugin-svgr": "^5.0.0",
     "vitest": "^3.2.4",
     "zod": "^3.25.58"
   }
