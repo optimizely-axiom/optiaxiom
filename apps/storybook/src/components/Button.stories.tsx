@@ -1,7 +1,25 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { IconAngleDown, IconUpload } from "@optiaxiom/icons";
-import { Button, Group, Select, SelectTrigger, Text } from "@optiaxiom/react";
+import {
+  IconAngleDown,
+  IconAnglesUpDown,
+  IconEye,
+  IconFlask,
+  IconPen,
+  IconPlus,
+  IconSquarePlus,
+  IconStar,
+  IconTrashCan,
+  IconUpload,
+} from "@optiaxiom/icons";
+import {
+  Button,
+  Group,
+  Heading,
+  Select,
+  SelectTrigger,
+  Text,
+} from "@optiaxiom/react";
 import { SurfaceProvider } from "@optiaxiom/react/unstable";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { useState } from "react";
@@ -251,4 +269,67 @@ export const TrackInteraction: Story = {
       </Group>
     );
   },
+};
+
+export const MaterialIcons: Story = {
+  render: () => (
+    <Group alignItems="start" flexDirection="column" gap="32">
+      <Heading>Buttons</Heading>
+
+      {sizes.map(([size]) => (
+        <Group alignItems="start" flexDirection="column" gap="16" key={size}>
+          <Text fontSize="lg" fontWeight="600">
+            {size === "lg" ? "Large" : size === "md" ? "Medium" : "Small"}
+          </Text>
+
+          <Group flexWrap="wrap" gap="8">
+            <Button appearance="subtle" icon={<IconFlask />} size={size}>
+              Tweak
+            </Button>
+            <Button
+              appearance="default"
+              icon={size === "lg" ? <IconStar /> : <IconPen />}
+              size={size}
+            >
+              Edit
+            </Button>
+            <Button appearance="primary" icon={<IconSquarePlus />} size={size}>
+              Create Something
+            </Button>
+            <Button
+              appearance="default"
+              aria-label="Star"
+              icon={<IconStar />}
+              size={size}
+            />
+            <Button
+              appearance="default"
+              aria-label="Sort"
+              icon={<IconAnglesUpDown />}
+              size={size}
+            />
+            <Button
+              appearance="default"
+              aria-label="View"
+              icon={<IconEye />}
+              size={size}
+            />
+          </Group>
+
+          <Group gap="8">
+            <Button appearance="danger" icon={<IconPlus />} size={size}>
+              Destroy
+            </Button>
+            <Button
+              appearance="danger-outline"
+              icon={<IconTrashCan />}
+              size={size}
+            >
+              Remove
+            </Button>
+          </Group>
+        </Group>
+      ))}
+    </Group>
+  ),
 };
