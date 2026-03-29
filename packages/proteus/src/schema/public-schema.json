@@ -1947,6 +1947,16 @@
           "$ref": "#/definitions/SprinkleProp_justifyContent"
         },
         "justifyItems": { "$ref": "#/definitions/SprinkleProp_justifyItems" },
+        "lineClamp": {
+          "anyOf": [
+            { "const": "2" },
+            { "const": "4" },
+            { "const": "1" },
+            { "const": "3" },
+            { "$ref": "#/definitions/ProteusValue" }
+          ],
+          "description": "Truncate the text at specific number of lines."
+        },
         "m": { "$ref": "#/definitions/SprinkleProp_m" },
         "maxH": { "$ref": "#/definitions/SprinkleProp_maxH" },
         "maxW": { "$ref": "#/definitions/SprinkleProp_maxW" },

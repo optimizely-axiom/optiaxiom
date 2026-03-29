@@ -63,7 +63,13 @@ const PROTEUS_COMPONENT_CONFIG = {
     },
   },
   CardHeader: {
-    allowedProps: ["addonAfter", "addonBefore", "children", "description"],
+    allowedProps: [
+      "addonAfter",
+      "addonBefore",
+      "children",
+      "description",
+      "lineClamp",
+    ],
     example: { children: "Header", description: "Subtitle" },
   },
   CardLink: {
