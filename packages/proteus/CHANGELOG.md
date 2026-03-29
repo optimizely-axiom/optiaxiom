@@ -1,5 +1,11 @@
 # @optiaxiom/proteus
 
+## 0.1.9
+
+### Patch Changes
+
+- e4fb348: simply open in new tab for download
+
 ## 0.1.8
 
 ### Patch Changes
