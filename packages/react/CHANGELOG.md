@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 1.9.22
+
+### Patch Changes
+
+- 2721b28: fix select focus visible state detection
+
 ## 1.9.21
 
 ### Patch Changes
