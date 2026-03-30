@@ -14,7 +14,7 @@ export const ToggleInputLabel = forwardRef<
   );
 
   return (
-    <Box id={labelId} ref={ref} {...props}>
+    <Box fontWeight="500" id={labelId} ref={ref} {...props}>
       {children}
     </Box>
   );

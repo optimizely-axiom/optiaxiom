@@ -26,15 +26,15 @@ export const icon = recipe({
 export const control = recipe({
   base: [
     {
-      color: "fg.default.inverse",
+      color: "fg.default",
       display: "grid",
-      rounded: "xs",
-      size: "2xs",
+      rounded: "md",
+      size: "sm",
     },
     style({
       backgroundColor: theme.colors["bg.default"],
       borderColor: rootStyles.controlColorVar,
-      borderWidth: "1px",
+      borderWidth: "2px",
       placeContent: "center",
       transitionDuration: theme.duration.sm,
       transitionProperty: "border-width",
@@ -43,7 +43,7 @@ export const control = recipe({
       selectors: {
         [`${rootStyles.className}:has(${inputStyles.className}:checked, ${inputStyles.className}:indeterminate) &`]:
           {
-            borderWidth: "8px",
+            borderWidth: "12px",
           },
       },
     }),
@@ -52,9 +52,9 @@ export const control = recipe({
   variants: {
     shift: {
       false: {},
-      true: {
-        mt: "2",
-      },
+      true: style({
+        marginBlock: "-2px",
+      }),
     },
   },
 });
