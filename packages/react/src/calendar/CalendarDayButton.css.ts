@@ -79,9 +79,6 @@ export const button = recipe({
         },
       }),
       selected: [
-        {
-          color: "fg.white",
-        },
         style({
           vars: {
             [bgVar]: theme.colors["bg.accent"],
@@ -124,12 +121,12 @@ export const button = recipe({
 export const today = recipe({
   base: [
     {
-      bg: "bg.accent",
       mx: "auto",
       rounded: "full",
     },
     style({
-      bottom: 0,
+      backgroundColor: theme.colors["fg.default"],
+      bottom: 2,
       height: 6,
       insetInline: 0,
       position: "absolute",
