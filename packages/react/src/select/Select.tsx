@@ -213,7 +213,12 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
           setHighlightedIndex(changes.highlightedIndex);
         }
 
-        if (changes.type !== useSelect.stateChangeTypes.ItemMouseMove) {
+        if (
+          !(
+            changes.type === useSelect.stateChangeTypes.ItemMouseMove ||
+            changes.type === useSelect.stateChangeTypes.ToggleButtonClick
+          )
+        ) {
           setFocusVisible(true);
         }
       },
