@@ -1,0 +1,9 @@
+{
+  "extends": "../../tsconfig.pkg.json",
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true
+  },
+  "include": ["."],
+  "exclude": ["dist", "lib", "node_modules"]
+}

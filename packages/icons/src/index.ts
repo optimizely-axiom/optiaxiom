@@ -1,0 +1,9 @@
+export { default as IconAdd } from "@material-symbols/svg-300/rounded/add.svg";
+export { default as IconAddBoxFilled } from "@material-symbols/svg-300/rounded/add_box-fill.svg";
+export { default as IconAddBox } from "@material-symbols/svg-300/rounded/add_box.svg";
+export { default as IconDelete } from "@material-symbols/svg-300/rounded/delete.svg";
+export { default as IconEdit } from "@material-symbols/svg-300/rounded/edit.svg";
+export { default as IconExperiment } from "@material-symbols/svg-300/rounded/experiment.svg";
+export { default as IconStar } from "@material-symbols/svg-300/rounded/star.svg";
+export { default as IconUnfoldMore } from "@material-symbols/svg-300/rounded/unfold_more.svg";
+export { default as IconVisibility } from "@material-symbols/svg-300/rounded/visibility.svg";

@@ -1,0 +1,37 @@
+{
+  "name": "@optiaxiom/icons",
+  "homepage": "https://github.com/optimizely-axiom/optiaxiom/tree/master/packages/icons#readme",
+  "repository": {
+    "directory": "packages/icons",
+    "type": "git",
+    "url": "git+https://github.com/optimizely-axiom/optiaxiom.git"
+  },
+  "type": "module",
+  "version": "0.1.0",
+  "files": [
+    "dist/**",
+    "LICENSE"
+  ],
+  "license": "Apache-2.0",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    }
+  },
+  "sideEffects": false,
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "rm -rf dist && NODE_ENV=production rollup -c",
+    "dev": "rm -rf dist && rollup -cw"
+  },
+  "devDependencies": {
+    "@material-symbols/svg-300": "^0.43.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "peerDependencies": {
+    "react": "^16.14.0 || ^17.0.0 || ^18.0.0 || ^19.0.0"
+  }
+}

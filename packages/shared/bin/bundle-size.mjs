@@ -8,6 +8,7 @@ import { hideBin } from "yargs/helpers";
 
 const packages = [
   "packages/globals",
+  "packages/icons",
   "packages/proteus",
   "packages/react",
   "packages/web-components",

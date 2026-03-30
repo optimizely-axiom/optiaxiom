@@ -440,6 +440,12 @@
       }
     },
     {
+      "files": ["**/packages/icons/src/index.ts"],
+      "rules": {
+        "local/consistent-icon-name": "error"
+      }
+    },
+    {
       "files": ["**/*.spec.{ts,tsx}"],
       "rules": {
         "local/prefer-testing-library": "error",
