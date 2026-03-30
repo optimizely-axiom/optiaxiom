@@ -68,6 +68,7 @@ export const badge = recipe({
       primary: style({
         vars: {
           [solidBackgroundColorVar]: theme.colors["bg.accent"],
+          [solidColorVar]: theme.colors["fg.default"],
           [subtleBackgroundColorVar]: theme.colors["bg.accent.subtle"],
           [subtleColorVar]: theme.colors["fg.accent.strong"],
         },
