@@ -64,13 +64,24 @@ const mapLevelToFontSize = {
  * @extends Text
  */
 export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
-  ({ asChild, children, fontWeight = "700", level = "1", ...props }, ref) => {
+  (
+    {
+      asChild,
+      children,
+      fontFamily = "heading",
+      fontWeight = "700",
+      level = "1",
+      ...props
+    },
+    ref,
+  ) => {
     const Comp = asChild ? Slot : (mapLevelToTag[level] ?? "h1");
     const fontSize = mapLevelToFontSize[level] ?? "4xl";
 
     return (
       <Text
         asChild
+        fontFamily={fontFamily}
         fontSize={fontSize}
         fontWeight={fontWeight}
         ref={ref}
