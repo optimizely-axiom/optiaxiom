@@ -41,6 +41,7 @@ export const label = recipe({
     {
       color: "fg.secondary",
       cursor: "pointer",
+      fontFamily: "mono",
       maxW: "full",
       transition: "all",
     },
