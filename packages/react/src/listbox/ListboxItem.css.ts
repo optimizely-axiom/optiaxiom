@@ -122,7 +122,7 @@ export const description = recipe({
       fontSize: "sm",
     },
     style({
-      color: theme.colors["fg.tertiary"],
+      color: theme.colors["fg.secondary"],
     }),
   ],
 });
