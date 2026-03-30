@@ -16,7 +16,7 @@ export const root = recipe({
     marker,
     style({
       vars: {
-        [styles.controlColorVar]: theme.colors["bg.tertiary"],
+        [styles.controlColorVar]: theme.colors["fg.tertiary"],
       },
 
       "@media": {
@@ -25,7 +25,7 @@ export const root = recipe({
             [`&:has(${inputMarker}:not(:disabled):not(:checked, [type=checkbox]:indeterminate)):hover`]:
               {
                 vars: {
-                  [styles.controlColorVar]: theme.colors["bg.tertiary.hovered"],
+                  [styles.controlColorVar]: theme.colors["fg.secondary"],
                 },
               },
           },

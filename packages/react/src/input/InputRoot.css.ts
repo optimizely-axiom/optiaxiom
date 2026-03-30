@@ -42,7 +42,7 @@ export const root = recipe({
           outlineOffset: "1px",
         },
         [`&:has(${marker}:focus:not([data-invalid]):not([data-readonly]))`]: {
-          borderColor: theme.colors["border.accent"],
+          borderColor: theme.colors["border.control"],
         },
 
         [`&:has(${marker}:is([data-invalid]))`]: {
