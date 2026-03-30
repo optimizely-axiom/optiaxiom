@@ -30,7 +30,7 @@ export const title = recipe({
   base: [
     {
       flex: "1",
-      fontWeight: "500",
+      fontWeight: "600",
     },
     style({
       order: "1",
