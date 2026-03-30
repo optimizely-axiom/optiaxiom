@@ -11,7 +11,7 @@ import {
   DialogTrigger,
   Spinner,
 } from "@optiaxiom/react";
-import { useRef, useState } from "react";
+import { useState } from "react";
 
 import { downloadFile } from "./downloadFile";
 
@@ -21,15 +21,6 @@ export function ProteusImage(props: ProteusImageProps) {
   const [open, setOpen] = useState(false);
   const [isDownloading, setIsDownloading] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
-  const imgRef = useRef<HTMLImageElement>(null);
-
-  if (props.objectFit === "cover") {
-    return (
-      <Box asChild objectFit="cover" overflow="hidden" {...props}>
-        <img alt={props.alt} src={props.src} />
-      </Box>
-    );
-  }
 
   return (
     <>
@@ -51,47 +42,33 @@ export function ProteusImage(props: ProteusImageProps) {
       <Dialog onOpenChange={setOpen} open={open}>
         <DialogTrigger aria-label="Expand" asChild>
           <Box
-            alignSelf="center"
             asChild
+            cursor="pointer"
             display={isLoaded ? "flex" : "none"}
-            justifyContent="center"
+            objectFit="contain"
+            overflow="hidden"
+            rounded="inherit"
+            size="full"
             {...props}
           >
-            <a
-              href={props.src}
-              onClick={(event) => {
-                event.preventDefault();
-                setOpen(true);
+            <img
+              alt={props.alt}
+              draggable
+              onDragStart={(event) => {
+                event.stopPropagation();
+                event.dataTransfer.effectAllowed = "copy";
+                event.dataTransfer.setData(
+                  "opal-chat-dnd-data",
+                  JSON.stringify({
+                    link: props.src,
+                    mime_type: "image/*",
+                    name: props.src?.split("/").pop(),
+                  }),
+                );
               }}
-              type=""
-            >
-              <Box
-                asChild
-                objectFit="contain"
-                overflow="hidden"
-                rounded="inherit"
-              >
-                <img
-                  alt={props.alt}
-                  draggable
-                  onDragStart={(event) => {
-                    event.stopPropagation();
-                    event.dataTransfer.effectAllowed = "copy";
-                    event.dataTransfer.setData(
-                      "opal-chat-dnd-data",
-                      JSON.stringify({
-                        link: props.src,
-                        mime_type: "image/*",
-                        name: props.src?.split("/").pop(),
-                      }),
-                    );
-                  }}
-                  onLoad={() => setIsLoaded(true)}
-                  ref={imgRef}
-                  src={props.src}
-                />
-              </Box>
-            </a>
+              onLoad={() => setIsLoaded(true)}
+              src={props.src}
+            />
           </Box>
         </DialogTrigger>
         <DialogContent size="fullscreen">
