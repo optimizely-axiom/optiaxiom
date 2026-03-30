@@ -248,18 +248,21 @@ export const WithImage: Story = {
           $type: "Image",
           alt: "A delicious, juicy pan-seared chicken breast dish with broccoli sides",
           maxH: "xs",
+          objectFit: "cover",
           src: "https://placehold.co/1600x900",
         },
         {
           $type: "Image",
           alt: "A delicious, juicy pan-seared chicken breast dish with broccoli sides",
           maxH: "xs",
+          objectFit: "cover",
           src: "https://placehold.co/900x1600",
         },
         {
           $type: "Image",
           alt: "A delicious, juicy pan-seared chicken breast dish with broccoli sides",
           maxH: "xs",
+          objectFit: "cover",
           src: "https://placehold.co/400x600",
         },
       ],
@@ -275,19 +278,19 @@ export const WithImageGrid: Story = {
       images: [
         {
           alt: "Lime chicken thighs on a plate",
-          src: "https://placehold.co/600x400",
+          src: "https://placehold.co/400x600",
         },
         {
           alt: "Chicken with lemon sauce and broccoli",
-          src: "https://placehold.co/600x400",
+          src: "https://placehold.co/400x600",
         },
         {
           alt: "Sliced roasted chicken breast with broccoli",
-          src: "https://placehold.co/600x400",
+          src: "https://placehold.co/400x600",
         },
         {
           alt: "Sesame chicken with broccoli",
-          src: "https://placehold.co/600x400",
+          src: "https://placehold.co/400x600",
         },
       ],
     },
@@ -319,6 +322,7 @@ export const WithImageGrid: Story = {
               children: {
                 $type: "Image",
                 alt: { $type: "Value", path: "alt" },
+                objectFit: "cover",
                 overflow: "hidden",
                 rounded: "md",
                 src: { $type: "Value", path: "src" },
