@@ -30,10 +30,6 @@ export const item = recipe({
           selectors: {
             "&:hover:not([data-state=active]):not(:active)": {
               backgroundColor: theme.colors["bg.default.hovered"],
-              color: theme.colors["fg.default"],
-            },
-            "&:hover[data-state=active]:not(:active)": {
-              color: theme.colors["fg.accent.hovered"],
             },
           },
         },
@@ -54,8 +50,7 @@ export const item = recipe({
           color: theme.colors["fg.default"],
         },
         "&[data-state=active]": {
-          backgroundColor: theme.colors["bg.accent.subtle"],
-          color: theme.colors["fg.accent"],
+          backgroundColor: theme.colors["bg.tertiary"],
         },
       },
     }),
