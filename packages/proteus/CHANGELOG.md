@@ -1,5 +1,13 @@
 # @optiaxiom/proteus
 
+## 0.1.10
+
+### Patch Changes
+
+- 73f8309: allow image object-fit customization
+- Updated dependencies [2721b28]
+  - @optiaxiom/react@1.9.22
+
 ## 0.1.9
 
 ### Patch Changes
