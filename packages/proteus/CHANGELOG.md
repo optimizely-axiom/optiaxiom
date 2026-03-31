@@ -1,5 +1,19 @@
 # @optiaxiom/proteus
 
+## 0.1.11-next.0
+
+### Patch Changes
+
+- Updated dependencies [29c1c9b]
+- Updated dependencies [19378ab]
+- Updated dependencies [3e02ef8]
+- Updated dependencies [bd44a5f]
+- Updated dependencies [09a54d1]
+- Updated dependencies [51f0282]
+- Updated dependencies [78412c3]
+- Updated dependencies [f34ae4d]
+  - @optiaxiom/react@2.0.0-next.0
+
 ## 0.1.10
 
 ### Patch Changes

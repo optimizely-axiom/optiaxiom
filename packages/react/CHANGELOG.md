@@ -1,5 +1,23 @@
 # @optiaxiom/react
 
+## 2.0.0-next.0
+
+### Major Changes
+
+- 29c1c9b: update input control styles to v3
+- 19378ab: update table styles to v3
+- 3e02ef8: update tab styles to v3
+- bd44a5f: update calendar styles to v3
+- 09a54d1: update badge styles to v3
+- 51f0282: update typography styles to v3
+- 78412c3: update sidebar styles to v3
+- f34ae4d: update button styles
+
+### Patch Changes
+
+- Updated dependencies [34d376d]
+  - @optiaxiom/globals@2.0.0-next.0
+
 ## 1.9.22
 
 ### Patch Changes

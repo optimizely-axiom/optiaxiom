@@ -11,7 +11,19 @@
     "@optiaxiom/proteus": "0.1.8",
     "@optiaxiom/react": "1.9.21",
     "@optiaxiom/shared": "0.0.0",
-    "@optiaxiom/web-components": "0.12.2"
+    "@optiaxiom/web-components": "0.12.2",
+    "@optiaxiom/icons": "0.1.0"
   },
-  "changesets": []
+  "changesets": [
+    "breezy-hotels-think",
+    "kind-lions-strive",
+    "mighty-paws-crash",
+    "olive-yaks-yawn",
+    "poor-books-strive",
+    "public-heads-behave",
+    "seven-pens-tap",
+    "three-steaks-poke",
+    "tough-onions-sin",
+    "wide-cities-sip"
+  ]
 }

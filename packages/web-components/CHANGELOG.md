@@ -1,5 +1,11 @@
 # @optiaxiom/web-components
 
+## 1.0.0-next.0
+
+### Major Changes
+
+- 19378ab: update table styles to v3
+
 ## 0.12.2
 
 ### Patch Changes
