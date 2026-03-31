@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 
-import { AxiomProvider, Badge, tokens } from "@optiaxiom/react";
+import { AxiomProvider, tokens } from "@optiaxiom/react";
 import { Footer, Navbar, Layout as NextraLayout } from "nextra-theme-docs";
 import { Head } from "nextra/components";
 import { getPageMap } from "nextra/page-map";
 
-import pkg from "../../../../packages/react/package.json";
 import { CookieConsent } from "./CookieConsent";
 import "./Layout.css";
+import { VersionSwitcher } from "./VersionSwitcher";
 
 export const metadata: Metadata = {
   openGraph: {
@@ -70,16 +70,7 @@ export async function Layout({ children }: { children: ReactNode }) {
                 }
                 projectLink="https://github.com/optimizely-axiom/optiaxiom"
               >
-                <Badge
-                  asChild
-                  className="version"
-                  intent="success"
-                  variant="strong"
-                >
-                  <a href="https://www.npmjs.com/package/@optiaxiom/react">
-                    v{pkg.version}
-                  </a>
-                </Badge>
+                <VersionSwitcher />
               </Navbar>
             }
             pageMap={await getPageMap()}
