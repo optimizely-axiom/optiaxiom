@@ -810,8 +810,8 @@ export const ExploreResources: Story = {
         },
         {
           cmp_url: "https://example/asset/id-456",
-          image_url:
-            "https://placehold.co/600x400/e2e8f0/475569?text=Enrollment",
+          // image_url:
+          //   "https://placehold.co/600x400/e2e8f0/475569?text=Enrollment",
           owner: "Sample User",
           status: null,
           title: "User Initiated Enrollment.docx",
