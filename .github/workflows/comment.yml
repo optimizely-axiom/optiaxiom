@@ -44,7 +44,13 @@ jobs:
             const fs = require("fs");
             const issue_number = Number(fs.readFileSync("./ID"));
             const marker = "<!-- bundle-size-report -->";
-            const body = marker + "\n" + fs.readFileSync("./bundle-size.md");
+            const maxLength = 65536;
+            let body = marker + "\n" + fs.readFileSync("./bundle-size.md");
+            if (body.length > maxLength) {
+              const truncated = body.substring(0, maxLength - 200);
+              const lastNewline = truncated.lastIndexOf("\n|");
+              body = truncated.substring(0, lastNewline > 0 ? lastNewline : truncated.length) + "\n\n---\n\n> **Note:** Report truncated due to GitHub's 65,536 character limit.";
+            }
 
             const { data: comments } = await github.rest.issues.listComments({
               issue_number,
