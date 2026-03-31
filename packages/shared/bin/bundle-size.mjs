@@ -174,7 +174,7 @@ void yargs(hideBin(process.argv))
         commitSHA: `${process.env.GITHUB_SHA}`,
         deltaFormat: "delta",
         repository: `https://github.com/${process.env.GITHUB_REPOSITORY}`,
-        showUnchanged: true,
+        showUnchanged: false,
       });
     },
   })
