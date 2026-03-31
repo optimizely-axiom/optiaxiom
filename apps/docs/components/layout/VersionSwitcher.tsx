@@ -5,12 +5,12 @@ import { useEffect, useState } from "react";
 
 export function VersionSwitcher() {
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
-  const isNext = basePath.endsWith("/v3");
-  const root = basePath.replace(/\/v3$/, "") || "";
+  const isV1 = basePath.endsWith("/v1");
+  const root = basePath.replace(/\/v1$/, "") || "";
 
   const [versions, setVersions] = useState([
-    { detail: "", label: "v1", value: "v1" as const },
     { detail: "", label: "v3", value: "v3" as const },
+    { detail: "", label: "v1", value: "v1" as const },
   ]);
 
   useEffect(() => {
@@ -18,20 +18,20 @@ export function VersionSwitcher() {
       fetch(`${root}/version.json`)
         .then((res) => res.json())
         .catch(() => null),
-      fetch(`${root}/v3/version.json`)
+      fetch(`${root}/v1/version.json`)
         .then((res) => res.json())
         .catch(() => null),
-    ]).then(([main, next]) => {
+    ]).then(([v3, v1]) => {
       setVersions([
         {
-          detail: main?.version ? `(${main.version})` : "",
-          label: "v1",
-          value: "v1",
-        },
-        {
-          detail: next?.version ? `(${next.version})` : "",
+          detail: v3?.version ? `(${v3.version})` : "",
           label: "v3",
           value: "v3",
+        },
+        {
+          detail: v1?.version ? `(${v1.version})` : "",
+          label: "v1",
+          value: "v1",
         },
       ]);
     });
@@ -39,10 +39,10 @@ export function VersionSwitcher() {
 
   return (
     <Select
-      defaultValue={isNext ? "v3" : "v1"}
+      defaultValue={isV1 ? "v1" : "v3"}
       onValueChange={(value) => {
-        if (value === "v3") {
-          window.location.href = `${root}/v3/`;
+        if (value === "v1") {
+          window.location.href = `${root}/v1/`;
         } else {
           window.location.href = `${root}/`;
         }
@@ -50,9 +50,9 @@ export function VersionSwitcher() {
       options={versions}
     >
       <SelectTrigger className="version-switcher">
-        {isNext
-          ? `v${versions[1].detail ? versions[1].detail.slice(1, -1) : "3"}`
-          : `v${versions[0].detail ? versions[0].detail.slice(1, -1) : "1"}`}
+        {isV1
+          ? `v${versions[1].detail ? versions[1].detail.slice(1, -1) : "1"}`
+          : `v${versions[0].detail ? versions[0].detail.slice(1, -1) : "3"}`}
       </SelectTrigger>
       <SelectContent />
     </Select>
