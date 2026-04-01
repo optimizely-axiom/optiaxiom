@@ -71,8 +71,8 @@ export type ProteusEventHandler =
       action: "download";
       url: (ProteusValueProps & { $type: "Value" }) | string | string[];
     }
-  | { message: string }
-  | { tool: string };
+  | { interaction: string }
+  | { message: string };
 
 type ProteusDocument = ProteusDocumentShellProps["element"] & {
   $type: "Document";
