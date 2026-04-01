@@ -39,6 +39,10 @@ export type ButtonRootProps<
        * Whether to show loading spinner inside the button.
        */
       loading?: boolean;
+      /**
+       * The default behavior of the button.
+       */
+      type?: "button" | "reset" | "submit" | undefined;
     },
     P
   >

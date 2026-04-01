@@ -1504,6 +1504,15 @@
         "textAlign": { "$ref": "#/definitions/SprinkleProp_textAlign" },
         "textTransform": { "$ref": "#/definitions/SprinkleProp_textTransform" },
         "transition": { "$ref": "#/definitions/SprinkleProp_transition" },
+        "type": {
+          "anyOf": [
+            { "const": "button" },
+            { "const": "reset" },
+            { "const": "submit" },
+            { "$ref": "#/definitions/ProteusValue" }
+          ],
+          "description": "The default behavior of the button."
+        },
         "w": { "$ref": "#/definitions/SprinkleProp_w" },
         "whiteSpace": { "$ref": "#/definitions/SprinkleProp_whiteSpace" },
         "z": { "$ref": "#/definitions/SprinkleProp_z" },
