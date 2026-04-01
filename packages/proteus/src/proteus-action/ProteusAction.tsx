@@ -31,7 +31,7 @@ export function ProteusAction({
 
   return (
     <Button
-      disabled={!valid}
+      disabled={props.appearance === "primary" ? !valid : undefined}
       justifyContent="center"
       loading={loading}
       onClick={async () => {
