@@ -1,5 +1,12 @@
 # @optiaxiom/proteus
 
+## 0.1.13
+
+### Patch Changes
+
+- 3ecbf36: proper type on action buttons
+- 6e13769: rename onToolCall to onInteraction
+
 ## 0.1.12
 
 ### Patch Changes
