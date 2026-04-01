@@ -225,6 +225,10 @@ keep(el.parentNode instanceof ShadowRoot ? el.parentNode.host : el.parentNode)`,
               /(\w+)\.contains\(/g,
               `((container, target) => {
   if (container.getRootNode() instanceof ShadowRoot) {
+    // If both elements are in the same shadow root, use native contains
+    if (container.getRootNode() === target?.getRootNode?.()) {
+      return container.contains(target);
+    }
     return container.getRootNode().host.contains(target);
   } else {
     return container.contains(target);
