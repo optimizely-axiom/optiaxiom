@@ -1,5 +1,11 @@
 # @optiaxiom/proteus
 
+## 0.1.12
+
+### Patch Changes
+
+- daf736e: only disable primary action buttons when form is invalid
+
 ## 0.1.11
 
 ### Patch Changes
