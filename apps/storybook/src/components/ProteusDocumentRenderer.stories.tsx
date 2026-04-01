@@ -7,8 +7,8 @@ import { action } from "storybook/actions";
 
 export default {
   args: {
+    onInteraction: action("onInteraction"),
     onMessage: action("onMessage"),
-    onToolCall: action("onToolCall"),
     strict: true,
   },
   component: ProteusDocumentRenderer,

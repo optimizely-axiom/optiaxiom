@@ -45,13 +45,13 @@ export type ProteusDocumentShellProps = Pick<
    */
   onDataChange?: (data: Record<string, unknown>) => void;
   /**
+   * Callback when user clicks a Action button with interaction handler
+   */
+  onInteraction?: (name: string) => Promise<void> | void;
+  /**
    * Callback when user sends a message action
    */
   onMessage?: (message: string) => Promise<void> | void;
-  /**
-   * Callback when user clicks a Action button with tool handler
-   */
-  onToolCall?: (toolName: string) => Promise<void> | void;
   /**
    * Whether form is readonly
    */
@@ -79,9 +79,9 @@ export function ProteusDocumentShell({
   defaultOpen = true,
   element,
   onDataChange,
+  onInteraction,
   onMessage,
   onOpenChange,
-  onToolCall,
   open: openProp,
   readOnly = false,
   strict,
@@ -112,8 +112,8 @@ export function ProteusDocumentShell({
         onDataChange?.(next);
       })}
       onEvent={useEffectEvent(async (event: ProteusEventHandler) => {
-        if ("tool" in event) {
-          await onToolCall?.(event.tool);
+        if ("interaction" in event) {
+          await onInteraction?.(event.interaction);
         } else if ("message" in event) {
           await onMessage?.(event.message);
         } else if (event.action === "download") {

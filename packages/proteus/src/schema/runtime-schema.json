@@ -1117,7 +1117,7 @@
               "$type": "Action",
               "appearance": "primary",
               "children": "Submit",
-              "onClick": { "tool": "submit_feedback" }
+              "onClick": { "interaction": "submit_feedback" }
             }
           ],
           "appName": "Opal",
@@ -1159,7 +1159,7 @@
               "$type": "Action",
               "appearance": "primary",
               "children": "Create Test Plan",
-              "onClick": { "tool": "create_test_plan" }
+              "onClick": { "interaction": "create_test_plan" }
             }
           ],
           "appName": "Opal",
@@ -1307,14 +1307,14 @@
     "ProteusEventHandler": {
       "anyOf": [
         {
-          "description": "Server-side tool call",
+          "description": "Server-side interaction call",
           "properties": {
-            "tool": {
-              "description": "Name of registered tool to call",
+            "interaction": {
+              "description": "Name of registered interaction to call",
               "type": "string"
             }
           },
-          "required": ["tool"],
+          "required": ["interaction"],
           "type": "object"
         },
         {
@@ -1353,7 +1353,7 @@
           "type": "object"
         }
       ],
-      "description": "Handler for user interactions - a server-side tool call, client-side message, or client-side component action"
+      "description": "Handler for user interactions - a server-side interaction call, client-side message, or client-side component action"
     },
     "ProteusNode": {
       "anyOf": [

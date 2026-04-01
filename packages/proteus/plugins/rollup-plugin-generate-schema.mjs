@@ -602,7 +602,7 @@ function generateSpec(additionalProperties = false) {
                   $type: "Action",
                   appearance: "primary",
                   children: "Submit",
-                  onClick: { tool: "submit_feedback" },
+                  onClick: { interaction: "submit_feedback" },
                 },
               ],
               appName: "Opal",
@@ -644,7 +644,7 @@ function generateSpec(additionalProperties = false) {
                   $type: "Action",
                   appearance: "primary",
                   children: "Create Test Plan",
-                  onClick: { tool: "create_test_plan" },
+                  onClick: { interaction: "create_test_plan" },
                 },
               ],
               appName: "Opal",
@@ -768,14 +768,14 @@ function generateSpec(additionalProperties = false) {
           anyOf: [
             {
               ...(additionalProperties ? {} : { additionalProperties: false }),
-              description: "Server-side tool call",
+              description: "Server-side interaction call",
               properties: {
-                tool: {
-                  description: "Name of registered tool to call",
+                interaction: {
+                  description: "Name of registered interaction to call",
                   type: "string",
                 },
               },
-              required: ["tool"],
+              required: ["interaction"],
               type: "object",
             },
             {
@@ -820,7 +820,7 @@ function generateSpec(additionalProperties = false) {
             },
           ],
           description:
-            "Handler for user interactions - a server-side tool call, client-side message, or client-side component action",
+            "Handler for user interactions - a server-side interaction call, client-side message, or client-side component action",
         },
         ProteusNode: {
           anyOf: [
