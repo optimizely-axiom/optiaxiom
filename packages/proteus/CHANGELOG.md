@@ -1,5 +1,11 @@
 # @optiaxiom/proteus
 
+## 0.1.11
+
+### Patch Changes
+
+- 27f54fa: fix title icon gap and size in document shell
+
 ## 0.1.10
 
 ### Patch Changes
