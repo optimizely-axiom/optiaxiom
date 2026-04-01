@@ -182,7 +182,7 @@ export function ProteusDocumentShell({
           {element.title && (
             <Group
               bg={element.titleIcon ? "bg.page" : "transparent"}
-              gap="8"
+              gap="12"
               p={element.titleIcon ? "12" : undefined}
               rounded="lg"
             >
@@ -192,7 +192,7 @@ export function ProteusDocumentShell({
                   flex="none"
                   justifyContent="center"
                   rounded="lg"
-                  size="lg"
+                  size="md"
                 >
                   <Box asChild>
                     <img alt="" src={element.titleIcon} />
