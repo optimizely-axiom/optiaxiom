@@ -127,6 +127,13 @@ jobs:
 
       - run: pnpm -F proteus... -F web-components... build
 
+      - name: Check schema files are up-to-date
+        run: |
+          git diff --exit-code packages/proteus/src/schema/public-schema.json packages/proteus/src/schema/runtime-schema.json || {
+            echo "Error: Schema files are out of date. Please run 'pnpm -F proteus build' and commit the changes."
+            exit 1
+          }
+
       - if: ${{ github.event_name == 'push' }}
         run: pnpm exec vitest run --project=@optiaxiom/globals --project=@optiaxiom/react --project=@optiaxiom/web-components
 
