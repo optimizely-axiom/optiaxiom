@@ -503,6 +503,13 @@ export const AskAgentInput: Story = {
       actions: [
         {
           $type: "Action",
+          children: "Cancel",
+          onClick: {
+            message: "[User declined to run the agent]",
+          },
+        },
+        {
+          $type: "Action",
           appearance: "primary",
           children: "Run agent",
           onClick: {
@@ -529,6 +536,7 @@ export const AskAgentInput: Story = {
               separator: "\n",
             },
           },
+          type: "submit",
         },
       ],
       body: [

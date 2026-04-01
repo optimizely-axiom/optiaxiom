@@ -18,6 +18,7 @@ export type ProteusActionProps = Omit<ButtonProps, "onClick"> & {
 export function ProteusAction({
   children,
   onClick,
+  type = "button",
   ...props
 }: ProteusActionProps) {
   const { onEvent, valid } = useProteusDocumentContext(
@@ -31,7 +32,7 @@ export function ProteusAction({
 
   return (
     <Button
-      disabled={props.appearance === "primary" ? !valid : undefined}
+      disabled={type === "submit" && !valid}
       justifyContent="center"
       loading={loading}
       onClick={async () => {
@@ -43,6 +44,7 @@ export function ProteusAction({
         await onEvent(resolvedOnClick);
         setLoading(false);
       }}
+      type={type}
       {...props}
     >
       {children}

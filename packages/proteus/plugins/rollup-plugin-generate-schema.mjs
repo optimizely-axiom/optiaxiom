@@ -27,7 +27,7 @@ import { fileURLToPath } from "url";
  */
 const PROTEUS_COMPONENT_CONFIG = {
   Action: {
-    allowedProps: ["appearance", "children", "onClick"],
+    allowedProps: ["appearance", "children", "onClick", "type"],
     example: { appearance: "primary", children: "Action" },
     extends: "Button",
   },
