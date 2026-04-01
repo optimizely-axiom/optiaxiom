@@ -1,5 +1,11 @@
 # @optiaxiom/web-components
 
+## 0.12.3
+
+### Patch Changes
+
+- 815af58: fix menu input focus
+
 ## 0.12.2
 
 ### Patch Changes
