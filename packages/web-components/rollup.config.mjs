@@ -60,8 +60,38 @@ export default defineConfig([
           "**/node_modules/use-sync-external-store/**",
         ],
       }),
+      /**
+       * ============================================================================
+       * SHADOW DOM COMPATIBILITY PATCHES
+       * ============================================================================
+       *
+       * These rollup transforms modify third-party libraries (Radix, Downshift) at
+       * BUILD TIME to work correctly inside Web Components with Shadow DOM.
+       *
+       * IMPORTANT: These patches ONLY apply to the web-components package build.
+       * The React package, Storybook, and tests use the unmodified libraries.
+       *
+       * Why not use pnpm patch?
+       * - pnpm patch affects ALL packages in the monorepo globally
+       * - We only need shadow DOM fixes for web-components, not for React components
+       * - Rollup transforms are scoped to this package's build process
+       *
+       * Each transform below documents:
+       * - What problem it solves
+       * - Why it's needed
+       * - Examples of when it matters
+       * ============================================================================
+       */
       {
         name: "axiom:theme-provider",
+        /**
+         * Shadow DOM Compatibility: CSS :root selector
+         *
+         * Problem: In shadow DOM, :root refers to the document root, not the shadow root
+         * Solution: Replace :root with :host to target the shadow root host element
+         *
+         * This ensures theme CSS variables are scoped to each web component instance
+         */
         transform(code, id) {
           if (
             !(
@@ -77,14 +107,24 @@ export default defineConfig([
       },
       {
         name: "downshift",
+        /**
+         * Downshift Library Optimization
+         *
+         * Problem: Downshift includes class components and PropTypes that don't work with Preact
+         * Solution: Strip out the class-based Downshift component and PropTypes validation
+         *
+         * What's removed:
+         * - Class-based Downshift component (we only use useCombobox hook)
+         * - react-is dependency (not needed for hooks)
+         * - PropTypes declarations and validation calls
+         *
+         * This reduces bundle size and prevents Preact compatibility issues
+         */
         transform(code, id) {
           if (!id.includes("node_modules/downshift")) {
             return null;
           }
 
-          /**
-           * Remove incompatible and unused Downshift class based component
-           */
           return (
             code.slice(
               0,
@@ -114,6 +154,19 @@ export default defineConfig([
       },
       {
         name: "radix-collection:document-querySelectorAll",
+        /**
+         * Shadow DOM Compatibility: querySelectorAll across shadow boundaries
+         *
+         * Problem: querySelectorAll() doesn't pierce shadow DOM boundaries
+         * Solution: Also search inside slotted elements' shadow roots
+         *
+         * Why needed: Radix Collection uses querySelectorAll to find items (e.g., menu items).
+         * In web components, some items might be slotted from light DOM and have their own
+         * shadow roots. We need to search those too.
+         *
+         * Example: <ax-dropdown-menu-item> is slotted but has its own shadow root with
+         * the actual focusable element inside
+         */
         transform(code, id) {
           if (
             !(
@@ -141,6 +194,22 @@ export default defineConfig([
       },
       {
         name: "radix-collection:react-useEffect",
+        /**
+         * Timing Fix: useEffect → useLayoutEffect
+         *
+         * Problem: useEffect runs AFTER the dropdown menu content gets focus, so Radix
+         * Collection's DOM query hasn't run yet and can't find child nodes to focus
+         * the first focusable item.
+         *
+         * Solution: Use useLayoutEffect to run synchronously before paint, ensuring
+         * the collection is populated before focus management happens.
+         *
+         * Why needed: In DropdownMenu, focus moves to the menu content immediately on open.
+         * Radix tries to focus the first item, but with useEffect, the collection hasn't
+         * been built yet, so there are no items to focus.
+         *
+         * Original issue: commit 2557cbe2 (Oct 31, 2024)
+         */
         transform(code, id) {
           if (
             !(code.includes("useEffect") && id.includes("react-collection"))
@@ -153,6 +222,19 @@ export default defineConfig([
       },
       {
         name: "active-element",
+        /**
+         * Shadow DOM Compatibility: document.activeElement traversal
+         *
+         * Problem: document.activeElement stops at shadow host, doesn't show actual focused element
+         * Solution: Traverse shadow roots to find the deepest focused element
+         *
+         * Example:
+         * Without patch: document.activeElement = <ax-menu-content>
+         * With patch: document.activeElement = <input> (inside shadow root)
+         *
+         * Why needed: Many libraries check document.activeElement for focus management.
+         * In shadow DOM, this needs to traverse into shadow roots to find the real target.
+         */
         transform(code) {
           if (!code.includes("document.activeElement")) {
             return null;
@@ -172,6 +254,22 @@ export default defineConfig([
       },
       {
         name: "aria-hidden",
+        /**
+         * Shadow DOM Compatibility: aria-hidden management
+         *
+         * Problem: @radix-ui/react-aria-hidden sets aria-hidden on siblings to trap focus,
+         * but doesn't handle shadow DOM boundaries
+         *
+         * Solution 1: When keeping elements, also keep slotted elements
+         * - If parent is a shadow root, keep all slotted elements (they're outside the shadow)
+         * - Navigate through shadow root to host for parent traversal
+         *
+         * Solution 2: Fix .contains() to work across shadow boundaries
+         * - Traverse from target up through shadow roots to find if container contains it
+         *
+         * Why needed: Focus trap dialogs hide other content with aria-hidden. In shadow DOM,
+         * we need to preserve slotted content and check containment across boundaries.
+         */
         transform(code, id) {
           if (!id.includes("aria-hidden")) {
             return null;
@@ -202,6 +300,40 @@ keep(el.parentNode instanceof ShadowRoot ? el.parentNode.host : el.parentNode)`,
       },
       {
         name: "radix-focus-scope",
+        /**
+         * Shadow DOM Compatibility: Radix FocusScope focus management
+         *
+         * This is the most complex patch - it fixes multiple issues with focus trapping in shadow DOM.
+         *
+         * Patch 1: Track focus through shadow roots
+         * - Problem: event.target stops at shadow host
+         * - Solution: Use composedPath()[0] to get the actual target inside shadow
+         *
+         * Patch 2: Scope event listeners to shadow root
+         * - Problem: document.addEventListener in shadow DOM won't catch events inside
+         * - Solution: Add listeners to the shadow root instead of document
+         *
+         * Patch 3: Fix .contains() for shadow DOM ⭐ THE MENU FIX
+         * - Problem: container.contains() doesn't work across shadow boundaries
+         * - Solution: If both elements are in the same shadow root, use native contains().
+         *   Otherwise check if container's root host contains the target.
+         * - Why needed for Menu: When FocusScope opens, downshift has already focused the
+         *   input via useEffect. FocusScope then checks if a focused element is inside the
+         *   container with contains(). Without this patch, it incorrectly returns false
+         *   (because it traverses to the host), so FocusScope re-runs focusFirst() and
+         *   falls back to focusing the dialog container, stealing focus from the input.
+         *
+         * Example (Menu):
+         *   <ax-menu-content shadow>
+         *     <div role="dialog" tabindex="-1">  ← FocusScope container
+         *       <input role="combobox">          ← Already focused by downshift
+         *   → container.contains(input) must return true (same shadow root)
+         *
+         * Example (cross-boundary):
+         *   <ax-alert-dialog-content shadow>     ← FocusScope container is inside
+         *     <ax-alert-dialog-cancel>           ← Target is in light DOM (slotted)
+         *   → Must traverse to host to check containment
+         */
         transform(code, id) {
           if (!id.includes("react-focus-scope")) {
             return null;
@@ -239,6 +371,21 @@ keep(el.parentNode instanceof ShadowRoot ? el.parentNode.host : el.parentNode)`,
       },
       {
         name: "radix-portal:react-Portal",
+        /**
+         * Shadow DOM Compatibility: Disable React Portal
+         *
+         * Problem: React Portal renders to document.body, breaking shadow DOM encapsulation
+         * Solution: Replace Portal with a simple pass-through component
+         *
+         * Why needed: In web components, we want everything to stay within the shadow root
+         * for proper encapsulation and styling. Radix Portal would break out of the shadow
+         * DOM and render at document level, causing:
+         * - Style inheritance issues (theme tokens wouldn't apply)
+         * - Event handling problems (clicks wouldn't bubble correctly)
+         * - Z-index/stacking context issues
+         *
+         * Our replacement just clones the children with the ref, keeping everything local.
+         */
         transform(_code, id) {
           if (!id.includes("react-portal")) {
             return null;
