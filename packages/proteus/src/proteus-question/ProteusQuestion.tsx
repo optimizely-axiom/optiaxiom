@@ -162,7 +162,7 @@ export function ProteusQuestion({ questions }: ProteusQuestionProps) {
 
             return (
               <Fragment key={option}>
-                <Box asChild {...styles.choice()}>
+                <Box asChild {...styles.choice({ cursor: "pointer" })}>
                   <label>
                     <VisuallyHidden>
                       <Box asChild {...styles.input()}>

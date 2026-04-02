@@ -14,7 +14,6 @@ export const choiceGroup = recipe({
 export const choice = recipe({
   base: [
     {
-      borderB: "1",
       color: "fg.default",
       flexDirection: "column",
       fontSize: "md",
@@ -62,6 +61,9 @@ export const choice = recipe({
   ],
   variants: {
     cursor: {
+      pointer: {
+        borderB: "1",
+      },
       text: {
         cursor: "text",
       },
