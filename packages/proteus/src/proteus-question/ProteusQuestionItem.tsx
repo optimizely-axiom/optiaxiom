@@ -1,7 +1,7 @@
-import { Box, Group, Text } from "@optiaxiom/react";
+import { Box, Group, Separator, Text } from "@optiaxiom/react";
 import { Checkbox } from "@optiaxiom/react";
 import { InlineInput, VisuallyHidden } from "@optiaxiom/react/unstable";
-import { type ReactNode, type RefObject, useRef } from "react";
+import { Fragment, type ReactNode, type RefObject, useRef } from "react";
 
 import { IconPencil } from "../icons/IconPencil";
 import * as styles from "./ProteusQuestionItem.css";
@@ -52,7 +52,7 @@ export function ProteusQuestionItem({
 
   return (
     <Group flexDirection="column" gap="16">
-      <Group>
+      <Group pl="16">
         <Text flex="1" fontWeight="500">
           {question}
         </Text>
@@ -70,56 +70,62 @@ export function ProteusQuestionItem({
             type === "single_select" && otherChecked && !!otherValue;
 
           return (
-            <Box asChild {...styles.choice()} key={option}>
-              <label>
-                <VisuallyHidden>
-                  <Box asChild {...styles.input()}>
-                    <input
-                      checked={checked}
-                      disabled={disabled}
-                      name={
-                        type === "single_select" ? "question-item" : undefined
-                      }
-                      onChange={() => {
-                        if (type === "single_select") {
-                          onValueChange([option]);
-                        } else {
-                          const current = value ?? [];
-                          onValueChange(
-                            checked
-                              ? current.filter((v) => v !== option)
-                              : [...current, option],
-                          );
-                        }
-                      }}
-                      type={type === "single_select" ? "radio" : "checkbox"}
-                      value={option}
-                    />
-                  </Box>
-                </VisuallyHidden>
-
-                <Group gap="12">
-                  <Box {...styles.addon()}>
-                    {type === "single_select" ? (
-                      index + 1
-                    ) : (
-                      <Checkbox
+            <Fragment key={option}>
+              {index > 0 && <Separator />}
+              <Box asChild {...styles.choice()}>
+                <label>
+                  <VisuallyHidden>
+                    <Box asChild {...styles.input()}>
+                      <input
                         checked={checked}
-                        hidden
-                        pointerEvents="none"
-                        tabIndex={-1}
+                        disabled={disabled}
+                        name={
+                          type === "single_select"
+                            ? "question-item"
+                            : undefined
+                        }
+                        onChange={() => {
+                          if (type === "single_select") {
+                            onValueChange([option]);
+                          } else {
+                            const current = value ?? [];
+                            onValueChange(
+                              checked
+                                ? current.filter((v) => v !== option)
+                                : [...current, option],
+                            );
+                          }
+                        }}
+                        type={type === "single_select" ? "radio" : "checkbox"}
+                        value={option}
                       />
-                    )}
-                  </Box>
-                  <Group flex="1" flexDirection="column" gap="2">
-                    <Text>{option}</Text>
+                    </Box>
+                  </VisuallyHidden>
+
+                  <Group gap="12">
+                    <Box {...styles.addon()}>
+                      {type === "single_select" ? (
+                        index + 1
+                      ) : (
+                        <Checkbox
+                          checked={checked}
+                          hidden
+                          pointerEvents="none"
+                          tabIndex={-1}
+                        />
+                      )}
+                    </Box>
+                    <Group flex="1" flexDirection="column" gap="2">
+                      <Text>{option}</Text>
+                    </Group>
                   </Group>
-                </Group>
-              </label>
-            </Box>
+                </label>
+              </Box>
+            </Fragment>
           );
         })}
 
+        <Separator />
         <Box asChild {...styles.choice({ cursor: "text" })} key="other">
           <label>
             <VisuallyHidden>

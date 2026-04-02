@@ -1,9 +1,11 @@
 import { Button, Group } from "@optiaxiom/react";
 import { Text } from "@optiaxiom/react";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import { IconAngleLeft } from "../icons/IconAngleLeft";
 import { IconAngleRight } from "../icons/IconAngleRight";
+import { IconArrowUp } from "../icons/IconArrowUp";
+import { IconX } from "../icons/IconX";
 import { useProteusDocumentContext } from "../proteus-document/ProteusDocumentContext";
 import { ProteusQuestionItem } from "./ProteusQuestionItem";
 
@@ -29,6 +31,23 @@ export function ProteusQuestion({ questions }: ProteusQuestionProps) {
   const answer = answers[currentIndex];
   const valid =
     Array.isArray(answer) && answer.length > 0 && answer.every(Boolean);
+
+  const onDismiss = useCallback(() => {
+    void onEvent({
+      message: "[User declined to answer the question]",
+    });
+  }, [onEvent]);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        e.preventDefault();
+        onDismiss();
+      }
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [onDismiss]);
 
   const questionRef = useRef<HTMLDivElement>(null);
   const lastIndexRef = useRef(currentIndex);
@@ -74,33 +93,47 @@ export function ProteusQuestion({ questions }: ProteusQuestionProps) {
     <Group flexDirection="column" gap="16">
       <ProteusQuestionItem
         addonAfter={
-          questions.length > 1 && (
-            <Group gap="6">
-              <Button
-                aria-label="Previous"
-                disabled={currentIndex === 0}
-                icon={<IconAngleLeft />}
-                onClick={(event) => {
-                  event.preventDefault();
-                  setCurrentIndex((i) => i - 1);
-                }}
-                size="sm"
-              />
-              <Text color="fg.tertiary" fontSize="sm">
-                {currentIndex + 1} of {questions.length}
-              </Text>
-              <Button
-                aria-label="Next"
-                disabled={isLast}
-                icon={<IconAngleRight />}
-                onClick={(event) => {
-                  event.preventDefault();
-                  setCurrentIndex((i) => i + 1);
-                }}
-                size="sm"
-              />
-            </Group>
-          )
+          <Group gap="6">
+            {questions.length > 1 && (
+              <>
+                <Button
+                  appearance="subtle"
+                  aria-label="Previous"
+                  disabled={currentIndex === 0}
+                  icon={<IconAngleLeft />}
+                  onClick={(event) => {
+                    event.preventDefault();
+                    setCurrentIndex((i) => i - 1);
+                  }}
+                  size="sm"
+                />
+                <Text color="fg.tertiary" fontSize="sm">
+                  {currentIndex + 1} of {questions.length}
+                </Text>
+                <Button
+                  appearance="subtle"
+                  aria-label="Next"
+                  disabled={isLast}
+                  icon={<IconAngleRight />}
+                  onClick={(event) => {
+                    event.preventDefault();
+                    setCurrentIndex((i) => i + 1);
+                  }}
+                  size="sm"
+                />
+              </>
+            )}
+            <Button
+              appearance="subtle"
+              aria-label="Dismiss"
+              icon={<IconX />}
+              onClick={(event) => {
+                event.preventDefault();
+                onDismiss();
+              }}
+              size="sm"
+            />
+          </Group>
         }
         choiceRef={questionRef}
         onValueChange={(value) => {
@@ -130,7 +163,9 @@ export function ProteusQuestion({ questions }: ProteusQuestionProps) {
         </Button>
         <Button
           appearance="primary"
+          aria-label={isLast ? "Submit" : "Next"}
           disabled={!valid}
+          icon={<IconArrowUp />}
           onClick={(event) => {
             event.preventDefault();
             if (isLast) {
@@ -139,9 +174,7 @@ export function ProteusQuestion({ questions }: ProteusQuestionProps) {
               setCurrentIndex((i) => i + 1);
             }
           }}
-        >
-          {isLast ? "Submit" : "Next"}
-        </Button>
+        />
       </Group>
     </Group>
   );
