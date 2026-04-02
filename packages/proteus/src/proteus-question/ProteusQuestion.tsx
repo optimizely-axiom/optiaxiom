@@ -1,11 +1,11 @@
-import { Box, Button, Checkbox, Group } from "@optiaxiom/react";
-import { Text } from "@optiaxiom/react";
-import { InlineInput, VisuallyHidden } from "@optiaxiom/react/unstable";
-import { Fragment, useCallback, useEffect, useRef, useState } from "react";
+import { IconNorth } from "@optiaxiom/icons";
+import { Box, Button, Checkbox, Group, Text } from "@optiaxiom/react";
+import { InlineInput } from "@optiaxiom/react/unstable";
+import * as RovingFocus from "@radix-ui/react-roving-focus";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import { IconAngleLeft } from "../icons/IconAngleLeft";
 import { IconAngleRight } from "../icons/IconAngleRight";
-import { IconArrowUp } from "../icons/IconArrowUp";
 import { IconPencil } from "../icons/IconPencil";
 import { IconX } from "../icons/IconX";
 import { useProteusDocumentContext } from "../proteus-document/ProteusDocumentContext";
@@ -60,10 +60,15 @@ export function ProteusQuestion({ questions }: ProteusQuestionProps) {
         },
       );
       lastIndexRef.current = currentIndex;
+      const item =
+        questionRef.current?.querySelector<HTMLElement>("[data-selected]") ??
+        questionRef.current?.querySelector<HTMLElement>("[tabindex]");
+      item?.focus();
     }
   }, [currentIndex]);
 
   const otherInputRef = useRef<HTMLInputElement>(null);
+  const otherItemRef = useRef<HTMLDivElement>(null);
 
   if (currentIndex >= questions.length) {
     return null;
@@ -90,17 +95,49 @@ export function ProteusQuestion({ questions }: ProteusQuestionProps) {
     setAnswers([...answers]);
   };
 
+  const onSkip = () => {
+    answers[currentIndex] = null;
+    setAnswers([...answers]);
+    if (isLast) {
+      void onComplete();
+    } else {
+      setCurrentIndex((i) => i + 1);
+    }
+  };
+  const onSubmit = () => {
+    if (isLast) {
+      void onComplete();
+    } else {
+      setCurrentIndex((i) => i + 1);
+    }
+  };
+
   return (
     <Group
-      flexDirection="column"
-      gap="16"
       onKeyDown={(event) => {
         if (event.key === "Escape") {
           event.preventDefault();
-          onDismiss();
+          if (valid) {
+            onValueChange(null);
+          } else {
+            onSkip();
+          }
+        }
+        if (
+          (event.key === "ArrowLeft" || event.key === "ArrowRight") &&
+          !(event.target instanceof HTMLInputElement) &&
+          !(event.target as HTMLElement).isContentEditable
+        ) {
+          event.preventDefault();
+          if (event.key === "ArrowLeft" && currentIndex > 0) {
+            setCurrentIndex((i) => i - 1);
+          } else if (event.key === "ArrowRight" && !isLast) {
+            setCurrentIndex((i) => i + 1);
+          }
         }
       }}
-      p="4"
+      tabIndex={-1}
+      {...styles.question()}
     >
       <Group flexDirection="column" gap="16">
         <Group pl="16">
@@ -150,48 +187,69 @@ export function ProteusQuestion({ questions }: ProteusQuestionProps) {
           </Group>
         </Group>
 
-        <Group ref={questionRef} {...styles.choiceGroup()}>
-          {options.map((option, index) => {
-            const checked =
-              type === "single_select"
-                ? value?.[0] === option
-                : value?.includes(option);
+        <RovingFocus.Root asChild loop orientation="vertical" ref={questionRef}>
+          <Group
+            role={type === "single_select" ? "radiogroup" : "listbox"}
+            {...styles.choiceGroup()}
+          >
+            {options.map((option, index) => {
+              const checked =
+                type === "single_select"
+                  ? value?.[0] === option
+                  : value?.includes(option);
 
-            const disabled =
-              type === "single_select" && otherChecked && !!otherValue;
+              const disabled =
+                type === "single_select" && otherChecked && !!otherValue;
 
-            return (
-              <Fragment key={option}>
-                <Box asChild {...styles.choice({ cursor: "pointer" })}>
-                  <label>
-                    <VisuallyHidden>
-                      <Box asChild {...styles.input()}>
-                        <input
-                          checked={checked}
-                          disabled={disabled}
-                          name={
-                            type === "single_select"
-                              ? "question-item"
-                              : undefined
-                          }
-                          onChange={() => {
-                            if (type === "single_select") {
-                              onValueChange([option]);
-                            } else {
-                              const current = value ?? [];
-                              onValueChange(
-                                checked
-                                  ? current.filter((v) => v !== option)
-                                  : [...current, option],
-                              );
-                            }
-                          }}
-                          type={type === "single_select" ? "radio" : "checkbox"}
-                          value={option}
-                        />
-                      </Box>
-                    </VisuallyHidden>
-
+              return (
+                <RovingFocus.Item asChild key={option}>
+                  <Box
+                    aria-checked={
+                      type === "single_select" ? checked : undefined
+                    }
+                    data-disabled={disabled ? "" : undefined}
+                    data-selected={
+                      checked && type === "single_select" ? "" : undefined
+                    }
+                    onClick={() => {
+                      if (type === "single_select") {
+                        onValueChange([option]);
+                        onSubmit();
+                      } else {
+                        const current = value ?? [];
+                        onValueChange(
+                          checked
+                            ? current.filter((v) => v !== option)
+                            : [...current, option],
+                        );
+                      }
+                    }}
+                    onFocus={() => {
+                      if (type === "single_select") {
+                        onValueChange([option]);
+                      }
+                    }}
+                    onKeyDown={(event) => {
+                      if (type === "single_select" && event.key === "Enter") {
+                        event.preventDefault();
+                        onSubmit();
+                      } else if (
+                        type === "multi_select" &&
+                        (event.key === "Enter" || event.key === " ")
+                      ) {
+                        event.preventDefault();
+                        const current = value ?? [];
+                        onValueChange(
+                          checked
+                            ? current.filter((v) => v !== option)
+                            : [...current, option],
+                        );
+                      }
+                    }}
+                    role={type === "single_select" ? "radio" : "option"}
+                    tabIndex={0}
+                    {...styles.choice({ cursor: "pointer" })}
+                  >
                     <Group gap="12">
                       <Box {...styles.addon()}>
                         {type === "single_select" ? (
@@ -208,36 +266,24 @@ export function ProteusQuestion({ questions }: ProteusQuestionProps) {
                       <Group flex="1" flexDirection="column" gap="2">
                         <Text>{option}</Text>
                       </Group>
+                      {type === "single_select" && checked && (
+                        <Box asChild color="fg.tertiary" ml="auto">
+                          <IconNorth />
+                        </Box>
+                      )}
                     </Group>
-                  </label>
-                </Box>
-              </Fragment>
-            );
-          })}
+                  </Box>
+                </RovingFocus.Item>
+              );
+            })}
 
-          <Box asChild {...styles.choice({ cursor: "text" })} key="other">
-            <label>
-              <VisuallyHidden>
-                <Box asChild {...styles.input()}>
-                  <input
-                    checked={otherChecked}
-                    name={
-                      type === "single_select" ? "question-item" : undefined
-                    }
-                    onChange={() => {
-                      if (type === "single_select") {
-                        if (!otherValue) {
-                          onValueChange([""]);
-                        }
-                      }
-                      otherInputRef.current?.focus();
-                    }}
-                    type="checkbox"
-                    value="other"
-                  />
-                </Box>
-              </VisuallyHidden>
-
+            <Box
+              aria-label="Something else"
+              data-selected={otherChecked ? "" : undefined}
+              key="other"
+              role="group"
+              {...styles.choice({ cursor: "text" })}
+            >
               <Group gap="12">
                 <Box {...styles.addon({ cursor: "pointer" })}>
                   {type === "single_select" ? (
@@ -251,60 +297,112 @@ export function ProteusQuestion({ questions }: ProteusQuestionProps) {
                     />
                   )}
                 </Box>
-                <Group flex="1" flexDirection="column" gap="2">
-                  <InlineInput
-                    label="Something else"
-                    onValueChange={(text) => {
-                      if (type === "single_select") {
-                        onValueChange([text]);
+                <RovingFocus.Item asChild>
+                  <Group
+                    flex="1"
+                    flexDirection="column"
+                    gap="2"
+                    onFocus={() => {
+                      if (type === "single_select" && !otherValue) {
+                        onValueChange([""]);
+                      }
+                      otherInputRef.current?.focus();
+                    }}
+                    ref={otherItemRef}
+                  >
+                    <InlineInput
+                      label="Something else"
+                      onKeyDown={(event) => {
+                        if (
+                          event.key === "ArrowUp" ||
+                          event.key === "ArrowDown"
+                        ) {
+                          event.preventDefault();
+                          otherItemRef.current?.focus();
+                          otherItemRef.current?.dispatchEvent(
+                            new KeyboardEvent("keydown", {
+                              bubbles: true,
+                              key: event.key,
+                            }),
+                          );
+                        } else if (event.key === "Enter") {
+                          onSubmit();
+                        }
+                      }}
+                      onValueChange={(text) => {
+                        if (type === "single_select") {
+                          onValueChange([text]);
+                        } else {
+                          const current = value ?? [];
+                          onValueChange([
+                            ...current.filter((v) => options.includes(v)),
+                            ...(text ? [text] : []),
+                          ]);
+                        }
+                      }}
+                      ref={otherInputRef}
+                      value={otherValue ?? ""}
+                    />
+                  </Group>
+                </RovingFocus.Item>
+                {type === "single_select" && (
+                  <Button
+                    appearance={otherValue ? "primary" : "default"}
+                    aria-label={otherValue && (isLast ? "Submit" : "Next")}
+                    icon={otherValue && <IconNorth />}
+                    ml="auto"
+                    onClick={(event) => {
+                      event.preventDefault();
+                      if (otherValue) {
+                        onSubmit();
                       } else {
-                        const current = value ?? [];
-                        onValueChange([
-                          ...current.filter((v) => options.includes(v)),
-                          ...(text ? [text] : []),
-                        ]);
+                        onSkip();
                       }
                     }}
-                    ref={otherInputRef}
-                    value={otherValue ?? ""}
-                  />
-                </Group>
+                  >
+                    {!otherValue && "Skip"}
+                  </Button>
+                )}
               </Group>
-            </label>
-          </Box>
-        </Group>
+            </Box>
+          </Group>
+        </RovingFocus.Root>
       </Group>
 
-      <Group gap="8" justifyContent="end">
-        <Button
-          onClick={(event) => {
-            event.preventDefault();
-            answers[currentIndex] = null;
-            setAnswers([...answers]);
-            if (isLast) {
-              void onComplete();
-            } else {
-              setCurrentIndex((i) => i + 1);
-            }
-          }}
+      {type === "multi_select" && (
+        <Group
+          borderColor="border.secondary"
+          borderT="1"
+          gap="8"
+          pt="16"
+          px="16"
         >
-          Skip
-        </Button>
-        <Button
-          appearance="primary"
-          aria-label={isLast ? "Submit" : "Next"}
-          disabled={!valid}
-          icon={<IconArrowUp />}
-          onClick={(event) => {
-            event.preventDefault();
-            if (isLast) {
-              void onComplete();
-            } else {
-              setCurrentIndex((i) => i + 1);
-            }
-          }}
-        />
-      </Group>
+          <Text>{value?.length || 0} selected</Text>
+          {(value?.length || 0) > 0 ? (
+            <Button
+              appearance="primary"
+              aria-label={isLast ? "Submit" : "Next"}
+              disabled={!valid}
+              icon={<IconNorth />}
+              ml="auto"
+              onClick={(event) => {
+                event.preventDefault();
+                onSubmit();
+              }}
+            />
+          ) : (
+            <Button
+              ml="auto"
+              onClick={(event) => {
+                event.preventDefault();
+                onSkip();
+              }}
+            >
+              Skip
+            </Button>
+          )}
+        </Group>
+      )}
     </Group>
   );
 }

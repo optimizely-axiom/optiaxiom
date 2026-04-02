@@ -375,12 +375,18 @@ importers:
       '@cfworker/json-schema':
         specifier: ^4.1.1
         version: 4.1.1
+      '@optiaxiom/icons':
+        specifier: workspace:*
+        version: link:../icons
       '@optiaxiom/react':
         specifier: workspace:*
         version: link:../react
       '@radix-ui/react-context':
         specifier: ^1.1.2
         version: 1.1.2(@types/react@18.3.23)(react@18.3.1)
+      '@radix-ui/react-roving-focus':
+        specifier: ^1.1.11
+        version: 1.1.11(@types/react-dom@18.3.7(@types/react@18.3.23))(@types/react@18.3.23)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@radix-ui/react-use-controllable-state':
         specifier: ^1.2.2
         version: 1.2.2(@types/react@18.3.23)(react@18.3.1)

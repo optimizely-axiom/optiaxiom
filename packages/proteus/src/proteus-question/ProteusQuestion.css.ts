@@ -2,8 +2,20 @@ import { theme } from "@optiaxiom/react/css-runtime";
 
 import { recipe, style } from "../vanilla-extract";
 
+export const question = recipe({
+  base: [
+    {
+      flexDirection: "column",
+      gap: "16",
+      p: "4",
+    },
+    style({
+      outline: "none",
+    }),
+  ],
+});
+
 const marker = style({});
-const inputMarker = style({});
 
 export const choiceGroup = recipe({
   base: {
@@ -29,30 +41,31 @@ export const choice = recipe({
       borderInlineColor: "transparent",
       borderInlineWidth: "6px",
       cursor: "pointer",
+      userSelect: "none",
 
       "@media": {
         "(hover: hover)": {
           selectors: {
-            [`&:hover, &:has(${inputMarker}[type=radio]:checked), &:has([contenteditable]:focus)`]:
-              {
-                backgroundColor: theme.colors["bg.page"],
-                borderColor: theme.colors["bg.page"],
-              },
+            [`&:hover, &[data-selected], &:has([contenteditable]:focus)`]: {
+              backgroundColor: theme.colors["bg.page"],
+              borderColor: theme.colors["bg.page"],
+            },
           },
         },
       },
 
       selectors: {
-        [`&:has(${inputMarker}:disabled)`]: {
+        "&:focus-visible": {
+          outline: `2px solid ${theme.colors["border.focus"]}`,
+          outlineOffset: "1px",
+          zIndex: "1",
+        },
+        "&[data-disabled]": {
           cursor: "default",
           opacity: 0.5,
           pointerEvents: "none",
         },
-        [`&:has(${inputMarker}:focus-visible)`]: {
-          outline: `2px solid ${theme.colors["border.focus"]}`,
-          outlineOffset: "1px",
-        },
-        [`&:has(+ ${marker}:hover, + ${marker} ${inputMarker}[type=radio]:checked, + ${marker} [contenteditable]:focus)`]:
+        [`&:has(+ ${marker}:hover, + ${marker}[data-selected], + ${marker} [contenteditable]:focus)`]:
           {
             borderBottomColor: "transparent",
           },
@@ -70,10 +83,6 @@ export const choice = recipe({
       },
     },
   },
-});
-
-export const input = recipe({
-  base: inputMarker,
 });
 
 export const addon = recipe({
