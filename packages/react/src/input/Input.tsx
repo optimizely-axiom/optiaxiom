@@ -24,6 +24,10 @@ export type InputProps = InputControlProps<
        */
       addonAfter?: ReactNode;
       /**
+       * Whether the input should be focused on mount.
+       */
+      autoFocus?: boolean;
+      /**
        * Display content inside the input at the start.
        */
       addonBefore?: ReactNode;
