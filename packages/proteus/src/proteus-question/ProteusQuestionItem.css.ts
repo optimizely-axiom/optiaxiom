@@ -8,14 +8,12 @@ const inputMarker = style({});
 export const choiceGroup = recipe({
   base: {
     flexDirection: "column",
-    gap: "8",
   },
 });
 
 export const choice = recipe({
   base: [
     {
-      border: "1",
       color: "fg.default",
       flexDirection: "column",
       fontSize: "md",
@@ -26,8 +24,7 @@ export const choice = recipe({
       transition: "colors",
     },
     style({
-      backgroundColor: theme.colors["bg.page"],
-      borderColor: theme.colors["bg.page"],
+      backgroundColor: "transparent",
       cursor: "pointer",
 
       "@media": {
@@ -43,7 +40,6 @@ export const choice = recipe({
       selectors: {
         [`&:has(${inputMarker}:checked)`]: {
           backgroundColor: theme.colors["bg.accent.subtle"],
-          borderColor: theme.colors["bg.accent.light"],
         },
         [`&:has(${inputMarker}:disabled)`]: {
           cursor: "default",
