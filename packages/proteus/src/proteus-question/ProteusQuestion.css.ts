@@ -33,10 +33,11 @@ export const choice = recipe({
       "@media": {
         "(hover: hover)": {
           selectors: {
-            [`&:hover, &:has(${inputMarker}[type=radio]:checked)`]: {
-              backgroundColor: theme.colors["bg.page"],
-              borderColor: theme.colors["bg.page"],
-            },
+            [`&:hover, &:has(${inputMarker}[type=radio]:checked), &:has([contenteditable]:focus)`]:
+              {
+                backgroundColor: theme.colors["bg.page"],
+                borderColor: theme.colors["bg.page"],
+              },
           },
         },
       },
@@ -51,7 +52,7 @@ export const choice = recipe({
           outline: `2px solid ${theme.colors["border.focus"]}`,
           outlineOffset: "1px",
         },
-        [`&:has(+ ${marker}:hover, + ${marker} ${inputMarker}[type=radio]:checked)`]:
+        [`&:has(+ ${marker}:hover, + ${marker} ${inputMarker}[type=radio]:checked, + ${marker} [contenteditable]:focus)`]:
           {
             borderBottomColor: "transparent",
           },
