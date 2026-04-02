@@ -125,6 +125,7 @@ const PROTEUS_COMPONENT_CONFIG = {
       "addonAfter",
       "addonBefore",
       "appearance",
+      "autoFocus",
       "name",
       "placeholder",
       "required",

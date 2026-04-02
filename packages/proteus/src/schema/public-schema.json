@@ -2674,6 +2674,13 @@
           ],
           "description": "Control the appearance of the input."
         },
+        "autoFocus": {
+          "anyOf": [
+            { "type": "boolean" },
+            { "$ref": "#/definitions/ProteusValue" }
+          ],
+          "description": "Whether the input should be focused on mount."
+        },
         "backgroundImage": {
           "$ref": "#/definitions/SprinkleProp_backgroundImage"
         },
