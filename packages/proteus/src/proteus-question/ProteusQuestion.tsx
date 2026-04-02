@@ -1,13 +1,15 @@
-import { Button, Group } from "@optiaxiom/react";
+import { Box, Button, Checkbox, Group } from "@optiaxiom/react";
 import { Text } from "@optiaxiom/react";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { InlineInput, VisuallyHidden } from "@optiaxiom/react/unstable";
+import { Fragment, useCallback, useEffect, useRef, useState } from "react";
 
 import { IconAngleLeft } from "../icons/IconAngleLeft";
 import { IconAngleRight } from "../icons/IconAngleRight";
 import { IconArrowUp } from "../icons/IconArrowUp";
+import { IconPencil } from "../icons/IconPencil";
 import { IconX } from "../icons/IconX";
 import { useProteusDocumentContext } from "../proteus-document/ProteusDocumentContext";
-import { ProteusQuestionItem } from "./ProteusQuestionItem";
+import * as styles from "./ProteusQuestion.css";
 
 export type ProteusQuestionProps = {
   /**
@@ -28,9 +30,9 @@ export function ProteusQuestion({ questions }: ProteusQuestionProps) {
   );
   const [answers, setAnswers] = useState<Array<null | string[]>>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const answer = answers[currentIndex];
+  const value = answers[currentIndex];
   const valid =
-    Array.isArray(answer) && answer.length > 0 && answer.every(Boolean);
+    Array.isArray(value) && value.length > 0 && value.every(Boolean);
 
   const onDismiss = useCallback(() => {
     void onEvent({
@@ -61,12 +63,17 @@ export function ProteusQuestion({ questions }: ProteusQuestionProps) {
     }
   }, [currentIndex]);
 
+  const otherInputRef = useRef<HTMLInputElement>(null);
+
   if (currentIndex >= questions.length) {
     return null;
   }
 
-  const current = questions[currentIndex];
+  const { options, question, type } = questions[currentIndex];
   const isLast = currentIndex === questions.length - 1;
+
+  const otherValue = value?.find((v) => !options.includes(v));
+  const otherChecked = otherValue !== undefined;
 
   const onComplete = () =>
     onEvent({
@@ -77,6 +84,11 @@ export function ProteusQuestion({ questions }: ProteusQuestionProps) {
         )
         .join("\n\n"),
     });
+
+  const onValueChange = (value: null | string[]) => {
+    answers[currentIndex] = value;
+    setAnswers([...answers]);
+  };
 
   return (
     <Group
@@ -90,8 +102,11 @@ export function ProteusQuestion({ questions }: ProteusQuestionProps) {
       }}
       p="4"
     >
-      <ProteusQuestionItem
-        addonAfter={
+      <Group flexDirection="column" gap="16">
+        <Group pl="16">
+          <Text flex="1" fontWeight="500">
+            {question}
+          </Text>
           <Group gap="6">
             {questions.length > 1 && (
               <>
@@ -133,17 +148,132 @@ export function ProteusQuestion({ questions }: ProteusQuestionProps) {
               size="sm"
             />
           </Group>
-        }
-        choiceRef={questionRef}
-        onValueChange={(value) => {
-          answers[currentIndex] = value;
-          setAnswers([...answers]);
-        }}
-        options={current.options}
-        question={current.question}
-        type={current.type}
-        value={answers[currentIndex] ?? null}
-      />
+        </Group>
+
+        <Group ref={questionRef} {...styles.choiceGroup()}>
+          {options.map((option, index) => {
+            const checked =
+              type === "single_select"
+                ? value?.[0] === option
+                : value?.includes(option);
+
+            const disabled =
+              type === "single_select" && otherChecked && !!otherValue;
+
+            return (
+              <Fragment key={option}>
+                <Box asChild {...styles.choice()}>
+                  <label>
+                    <VisuallyHidden>
+                      <Box asChild {...styles.input()}>
+                        <input
+                          checked={checked}
+                          disabled={disabled}
+                          name={
+                            type === "single_select"
+                              ? "question-item"
+                              : undefined
+                          }
+                          onChange={() => {
+                            if (type === "single_select") {
+                              onValueChange([option]);
+                            } else {
+                              const current = value ?? [];
+                              onValueChange(
+                                checked
+                                  ? current.filter((v) => v !== option)
+                                  : [...current, option],
+                              );
+                            }
+                          }}
+                          type={type === "single_select" ? "radio" : "checkbox"}
+                          value={option}
+                        />
+                      </Box>
+                    </VisuallyHidden>
+
+                    <Group gap="12">
+                      <Box {...styles.addon()}>
+                        {type === "single_select" ? (
+                          index + 1
+                        ) : (
+                          <Checkbox
+                            checked={checked}
+                            hidden
+                            pointerEvents="none"
+                            tabIndex={-1}
+                          />
+                        )}
+                      </Box>
+                      <Group flex="1" flexDirection="column" gap="2">
+                        <Text>{option}</Text>
+                      </Group>
+                    </Group>
+                  </label>
+                </Box>
+              </Fragment>
+            );
+          })}
+
+          <Box asChild {...styles.choice({ cursor: "text" })} key="other">
+            <label>
+              <VisuallyHidden>
+                <Box asChild {...styles.input()}>
+                  <input
+                    checked={otherChecked}
+                    name={
+                      type === "single_select" ? "question-item" : undefined
+                    }
+                    onChange={() => {
+                      if (type === "single_select") {
+                        if (!otherValue) {
+                          onValueChange([""]);
+                        }
+                      }
+                      otherInputRef.current?.focus();
+                    }}
+                    type="checkbox"
+                    value="other"
+                  />
+                </Box>
+              </VisuallyHidden>
+
+              <Group gap="12">
+                <Box {...styles.addon({ cursor: "pointer" })}>
+                  {type === "single_select" ? (
+                    <IconPencil />
+                  ) : (
+                    <Checkbox
+                      checked={otherChecked}
+                      hidden
+                      pointerEvents="none"
+                      tabIndex={-1}
+                    />
+                  )}
+                </Box>
+                <Group flex="1" flexDirection="column" gap="2">
+                  <InlineInput
+                    label="Something else"
+                    onValueChange={(text) => {
+                      if (type === "single_select") {
+                        onValueChange([text]);
+                      } else {
+                        const current = value ?? [];
+                        onValueChange([
+                          ...current.filter((v) => options.includes(v)),
+                          ...(text ? [text] : []),
+                        ]);
+                      }
+                    }}
+                    ref={otherInputRef}
+                    value={otherValue ?? ""}
+                  />
+                </Group>
+              </Group>
+            </label>
+          </Box>
+        </Group>
+      </Group>
 
       <Group gap="8" justifyContent="end">
         <Button
