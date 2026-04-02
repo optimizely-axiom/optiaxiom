@@ -38,17 +38,6 @@ export function ProteusQuestion({ questions }: ProteusQuestionProps) {
     });
   }, [onEvent]);
 
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        e.preventDefault();
-        onDismiss();
-      }
-    };
-    document.addEventListener("keydown", handleKeyDown);
-    return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [onDismiss]);
-
   const questionRef = useRef<HTMLDivElement>(null);
   const lastIndexRef = useRef(currentIndex);
   useEffect(() => {
@@ -90,7 +79,17 @@ export function ProteusQuestion({ questions }: ProteusQuestionProps) {
     });
 
   return (
-    <Group flexDirection="column" gap="16">
+    <Group
+      flexDirection="column"
+      gap="16"
+      onKeyDown={(event) => {
+        if (event.key === "Escape") {
+          event.preventDefault();
+          onDismiss();
+        }
+      }}
+      p="4"
+    >
       <ProteusQuestionItem
         addonAfter={
           <Group gap="6">
