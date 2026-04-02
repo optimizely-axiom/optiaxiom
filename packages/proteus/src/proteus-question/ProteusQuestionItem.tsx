@@ -1,4 +1,4 @@
-import { Box, Group, Separator, Text } from "@optiaxiom/react";
+import { Box, Group, Text } from "@optiaxiom/react";
 import { Checkbox } from "@optiaxiom/react";
 import { InlineInput, VisuallyHidden } from "@optiaxiom/react/unstable";
 import { Fragment, type ReactNode, type RefObject, useRef } from "react";
@@ -71,7 +71,6 @@ export function ProteusQuestionItem({
 
           return (
             <Fragment key={option}>
-              {index > 0 && <Separator />}
               <Box asChild {...styles.choice()}>
                 <label>
                   <VisuallyHidden>
@@ -80,9 +79,7 @@ export function ProteusQuestionItem({
                         checked={checked}
                         disabled={disabled}
                         name={
-                          type === "single_select"
-                            ? "question-item"
-                            : undefined
+                          type === "single_select" ? "question-item" : undefined
                         }
                         onChange={() => {
                           if (type === "single_select") {
@@ -125,7 +122,6 @@ export function ProteusQuestionItem({
           );
         })}
 
-        <Separator />
         <Box asChild {...styles.choice({ cursor: "text" })} key="other">
           <label>
             <VisuallyHidden>
