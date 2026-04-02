@@ -14,33 +14,35 @@ export const choiceGroup = recipe({
 export const choice = recipe({
   base: [
     {
+      borderB: "1",
       color: "fg.default",
       flexDirection: "column",
       fontSize: "md",
       gap: "8",
-      px: "16",
-      py: "12",
+      px: "10",
+      py: "16",
       rounded: "lg",
       transition: "colors",
     },
     style({
       backgroundColor: "transparent",
+      borderColor: theme.colors["border.secondary"],
+      borderInlineColor: "transparent",
+      borderInlineWidth: "6px",
       cursor: "pointer",
 
       "@media": {
         "(hover: hover)": {
           selectors: {
-            "&:hover": {
-              backgroundColor: theme.colors["bg.secondary"],
+            [`&:hover, &:has(${inputMarker}[type=radio]:checked)`]: {
+              backgroundColor: theme.colors["bg.page"],
+              borderColor: theme.colors["bg.page"],
             },
           },
         },
       },
 
       selectors: {
-        [`&:has(${inputMarker}:checked)`]: {
-          backgroundColor: theme.colors["bg.accent.subtle"],
-        },
         [`&:has(${inputMarker}:disabled)`]: {
           cursor: "default",
           opacity: 0.5,
@@ -50,6 +52,10 @@ export const choice = recipe({
           outline: `2px solid ${theme.colors["border.focus"]}`,
           outlineOffset: "1px",
         },
+        [`&:has(+ ${marker}:hover, + ${marker} ${inputMarker}[type=radio]:checked)`]:
+          {
+            borderBottomColor: "transparent",
+          },
       },
     }),
     marker,
@@ -79,12 +85,6 @@ export const addon = recipe({
     },
     style({
       backgroundColor: theme.colors["bg.avatar.neutral"],
-
-      selectors: {
-        [`${marker}:has(${inputMarker}:checked) &`]: {
-          backgroundColor: "#CDD8FC",
-        },
-      },
     }),
   ],
   variants: {
