@@ -4,6 +4,7 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "paths": {
+      "@optiaxiom/icons": ["../icons/src"],
       "@optiaxiom/react": ["../react/src"],
       "@optiaxiom/react/css-runtime": ["../react/src/css-runtime"],
       "@optiaxiom/react/unstable": ["../react/src/unstable"]
@@ -16,5 +17,9 @@
     "src/schema/runtime-schema.json"
   ],
   "exclude": ["dist", "lib", "node_modules"],
-  "references": [{ "path": "../globals" }, { "path": "../react" }]
+  "references": [
+    { "path": "../globals" },
+    { "path": "../icons" },
+    { "path": "../react" }
+  ]
 }
