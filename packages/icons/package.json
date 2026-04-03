@@ -20,14 +20,18 @@
       "require": "./dist/cjs/index.js"
     }
   },
-  "sideEffects": false,
+  "sideEffects": [
+    "*.css"
+  ],
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "rm -rf dist && NODE_ENV=production rollup -c",
-    "dev": "rm -rf dist && rollup -cw"
+    "build": "node scripts/download.mjs && rm -rf dist && NODE_ENV=production rollup -c",
+    "dev": "node scripts/download.mjs && rm -rf dist && rollup -cw"
+  },
+  "dependencies": {
+    "@optiaxiom/react": "workspace:*"
   },
   "devDependencies": {
-    "@material-symbols/svg-300": "^0.43.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
