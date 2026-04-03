@@ -2,8 +2,13 @@
   "extends": "../../tsconfig.pkg.json",
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "paths": {
+      "@optiaxiom/react": ["../react/src"],
+      "@optiaxiom/react/unstable": ["../react/src/unstable"]
+    }
   },
   "include": ["."],
-  "exclude": ["dist", "lib", "node_modules"]
+  "exclude": ["dist", "lib", "node_modules"],
+  "references": [{ "path": "../react" }]
 }

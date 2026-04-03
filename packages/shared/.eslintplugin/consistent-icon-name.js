@@ -12,7 +12,6 @@ function parseSvgSource(source) {
  *
  * - `add.svg` → `IconAdd`
  * - `add_box.svg` → `IconAddBox`
- * - `add_box-fill.svg` → `IconAddBoxFilled`
  */
 /** @param {string} source */
 function svgToComponentName(source) {
@@ -21,23 +20,18 @@ function svgToComponentName(source) {
     return null;
   }
 
-  const name = match[1];
-  const filled = name.endsWith("-fill");
-  const base = filled ? name.replace(/-fill$/, "") : name;
+  const name = match[1].replace(/-fill$/, "");
 
-  const pascal = base
+  const pascal = name
     .split("_")
     .map((s) => s.charAt(0).toUpperCase() + s.slice(1))
     .join("");
 
-  return `Icon${pascal}${filled ? "Filled" : ""}`;
+  return `Icon${pascal}`;
 }
 
 export default ESLintUtils.RuleCreator.withoutDocs({
   create(context) {
-    /** @type {Map<string, import("@typescript-eslint/utils").TSESTree.ExportNamedDeclaration>} */
-    const exports = new Map();
-
     return {
       ExportNamedDeclaration(node) {
         if (
@@ -96,50 +90,6 @@ export default ESLintUtils.RuleCreator.withoutDocs({
             });
           }
         }
-
-        const baseName = parsed.name.replace(/-fill$/, "");
-        exports.set(source, node);
-
-        if (parsed.name.endsWith("-fill")) {
-          const outlinedSource = source.replace(
-            `${parsed.name}.svg`,
-            `${baseName}.svg`,
-          );
-          if (!exports.has(outlinedSource)) {
-            exports.set(`pending:${outlinedSource}`, node);
-          }
-        } else {
-          const filledSource = source.replace(
-            `${parsed.name}.svg`,
-            `${baseName}-fill.svg`,
-          );
-          if (!exports.has(filledSource)) {
-            exports.set(`pending:${filledSource}`, node);
-          }
-        }
-      },
-
-      "Program:exit"() {
-        for (const [key, node] of exports) {
-          if (!key.startsWith("pending:")) {
-            continue;
-          }
-
-          const source = key.slice("pending:".length);
-          if (exports.has(source)) {
-            continue;
-          }
-
-          const isFilled = source.endsWith("-fill.svg");
-          context.report({
-            data: {
-              missing: isFilled ? "filled" : "outlined",
-              source,
-            },
-            messageId: "missingVariant",
-            node,
-          });
-        }
       },
     };
   },
@@ -151,8 +101,6 @@ export default ESLintUtils.RuleCreator.withoutDocs({
     messages: {
       mismatch:
         'Icon export name "{{ got }}" does not match SVG source. Expected "{{ expected }}".',
-      missingVariant:
-        'Missing {{ missing }} variant. Expected an export from "{{ source }}".',
       wrongStyle: 'Icon must use "rounded" style, but found "{{ got }}".',
       wrongWeight: 'Icon must use weight "300", but found "{{ got }}".',
     },

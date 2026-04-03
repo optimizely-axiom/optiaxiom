@@ -31,5 +31,6 @@ _pagefind/
 /apps/docs/components/demo/demos.ts
 /apps/docs/components/props-table/components.ts
 /apps/docs/data/
+/packages/icons/svg/*.svg
 /packages/shared/data/
 /packages/web-components/*/package.json
