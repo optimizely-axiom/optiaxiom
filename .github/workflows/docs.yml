@@ -77,7 +77,7 @@ jobs:
           fi
 
       - name: Download other branch artifact
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         id: download-other
         continue-on-error: true
         with:
