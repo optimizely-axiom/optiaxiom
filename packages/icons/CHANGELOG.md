@@ -1,5 +1,13 @@
 # @optiaxiom/icons
 
+## 0.1.2
+
+### Patch Changes
+
+- 29f5e2a: fix icon size and fetch icons directly
+- Updated dependencies [29f5e2a]
+  - @optiaxiom/react@1.9.23
+
 ## 0.1.1
 
 ### Patch Changes

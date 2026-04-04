@@ -1,5 +1,15 @@
 # @optiaxiom/proteus
 
+## 0.1.14
+
+### Patch Changes
+
+- c1af0d0: support autoFocus prop for Input
+- 7ba5602: Update question card design with dismiss button, keyboard support, and separator styling
+- Updated dependencies [29f5e2a]
+  - @optiaxiom/icons@0.1.2
+  - @optiaxiom/react@1.9.23
+
 ## 0.1.13
 
 ### Patch Changes
