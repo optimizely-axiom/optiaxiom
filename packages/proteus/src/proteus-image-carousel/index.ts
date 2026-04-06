@@ -1,0 +1,1 @@
+export { ProteusImageCarousel } from "./ProteusImageCarousel";

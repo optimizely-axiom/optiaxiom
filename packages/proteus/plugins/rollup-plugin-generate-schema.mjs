@@ -126,6 +126,17 @@ const PROTEUS_COMPONENT_CONFIG = {
     example: { alt: "Placeholder", src: "https://placehold.co/600x400" },
     extends: "Box",
   },
+  ImageCarousel: {
+    allowedProps: ["downloadAll", "images", "title"],
+    example: {
+      images: [
+        { alt: "Image 1", src: "https://placehold.co/600x400" },
+        { alt: "Image 2", src: "https://placehold.co/600x400" },
+      ],
+    },
+    extends: "Fragment",
+    requiredProps: ["images"],
+  },
   Input: {
     allowedProps: [
       "addonAfter",
@@ -1023,6 +1034,47 @@ function getPropTypeOverrides(additionalProperties = false) {
       src: {
         anyOf: [{ $ref: "#/definitions/ProteusValue" }, { type: "string" }],
         description: "The image source URL",
+      },
+    },
+    ImageCarousel: {
+      downloadAll: {
+        anyOf: [{ $ref: "#/definitions/ProteusValue" }, { type: "string" }],
+        description:
+          "URL to download all images (e.g. as a zip file). Falls back to downloading each image individually.",
+      },
+      images: {
+        anyOf: [
+          {
+            description: "Inline array of image objects",
+            items: {
+              ...(additionalProperties ? {} : { additionalProperties: false }),
+              properties: {
+                alt: {
+                  description: "Alternative text for the image",
+                  type: "string",
+                },
+                src: {
+                  description: "The image source URL",
+                  type: "string",
+                },
+                thumb: {
+                  description:
+                    "The URL to the image thumbnail. Falls back to src if not provided.",
+                  type: "string",
+                },
+              },
+              required: ["src"],
+              type: "object",
+            },
+            type: "array",
+          },
+          { $ref: "#/definitions/ProteusValue" },
+        ],
+        description: "Array of image data to display in the carousel",
+      },
+      title: {
+        anyOf: [{ $ref: "#/definitions/ProteusValue" }, { type: "string" }],
+        description: "Accessible label for the carousel region.",
       },
     },
     Map: {

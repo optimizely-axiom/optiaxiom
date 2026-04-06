@@ -25,6 +25,7 @@ import type { ProteusActionProps } from "../proteus-action/ProteusAction";
 import type { ProteusCancelActionProps } from "../proteus-action/ProteusCancelAction";
 import type { ProteusChartProps } from "../proteus-chart/ProteusChart";
 import type { ProteusDataTableProps } from "../proteus-data-table/ProteusDataTable";
+import type { ProteusImageCarouselProps } from "../proteus-image-carousel/ProteusImageCarousel";
 import type { ProteusImageProps } from "../proteus-image/ProteusImage";
 import type { ProteusMapProps } from "../proteus-map/ProteusMap";
 import type { ProteusQuestionProps } from "../proteus-question/ProteusQuestion";
@@ -51,6 +52,7 @@ export type ProteusElement =
   | (ProteusCancelActionProps & { $type: "CancelAction" })
   | (ProteusChartProps & { $type: "Chart" })
   | (ProteusDataTableProps & { $type: "DataTable" })
+  | (ProteusImageCarouselProps & { $type: "ImageCarousel" })
   | (ProteusImageProps & { $type: "Image" })
   | (ProteusMapProps & { $type: "Map" })
   | (ProteusQuestionProps & { $type: "Question" })
