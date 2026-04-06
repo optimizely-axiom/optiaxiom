@@ -81,7 +81,8 @@ export type CommandOption = {
    */
   skipFilterScoring?: boolean;
   /**
-   * An array of sub items that will be displayed in a nested menu.
+   * Nested menu items (same shape as the top-level options) displayed
+   * as a sub-menu when this item is selected.
    */
   subOptions?:
     | ((context: { inputValue: string | undefined }) => CommandOption[])

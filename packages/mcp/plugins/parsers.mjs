@@ -125,6 +125,7 @@ export function parsePropDefinition(prop) {
 
   // Extract values from union types (e.g., "sm" | "md" | "lg")
   // Skip simple types like boolean, ReactNode, etc that aren't useful as enum values
+  // Also skip complex array/object types — those are shapes, not enum values
   const skipTypes = [
     "boolean",
     "ReactNode",
@@ -136,7 +137,8 @@ export function parsePropDefinition(prop) {
     !extractedValues &&
     !skipTypes.includes(type) &&
     prop.type.value &&
-    Array.isArray(prop.type.value)
+    Array.isArray(prop.type.value) &&
+    !prop.type.value.every((v) => String(v.value).includes("[]"))
   ) {
     const values = /** @type {Array<{value: string, description?: string}>} */ (
       prop.type.value

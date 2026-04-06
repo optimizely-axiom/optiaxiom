@@ -8,6 +8,59 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+/**
+ * Build a map of type name → expanded shape string from *Doc dummy components.
+ * e.g. SelectDoc (whose props are SelectOption's fields) → "SelectOption" → "{ label: string; value: string; ... }"
+ *
+ * Convention: a component named `FooDoc` with displayName `@optiaxiom/react/FooDoc`
+ * describes the type `Foo` (the Doc suffix is stripped to get the type name).
+ *
+ * @param {docgen.ComponentDoc[]} docs
+ * @returns {Record<string, string>}
+ */
+function buildTypeExpansions(docs) {
+  /** @type {Record<string, string>} */
+  const expansions = {};
+
+  for (const doc of docs) {
+    const match = doc.displayName.match(/^@optiaxiom\/react\/(\w+)Doc$/);
+    if (!match) continue;
+
+    const typeName = match[1];
+    const props = Object.entries(doc.props)
+      .filter(
+        ([, prop]) =>
+          prop.declarations?.length && prop.type.name !== "undefined",
+      )
+      .map(([name, prop]) => {
+        const type = prop.type.raw || prop.type.name || "unknown";
+        return `${name}${prop.required ? "" : "?"}: ${type}`;
+      });
+
+    if (props.length > 0) {
+      expansions[typeName] = `{ ${props.join("; ")} }`;
+    }
+  }
+
+  return expansions;
+}
+
+/**
+ * Replace custom type references in a raw type string with their expanded shape.
+ * e.g. "readonly SelectOption[] | SelectOption[]" → "readonly { label: string; value: string }[] | { ... }[]"
+ *
+ * @param {string} rawType
+ * @param {Record<string, string>} expansions
+ * @returns {string}
+ */
+function expandTypeReferences(rawType, expansions) {
+  let result = rawType;
+  for (const [typeName, shape] of Object.entries(expansions)) {
+    result = result.replaceAll(typeName, shape);
+  }
+  return result;
+}
+
 function generateDocs() {
   const exportedComponents = getExportedComponentsFromSource();
   const reactSrcPath = path.resolve(__dirname, "../../react/src");
@@ -32,6 +85,11 @@ function generateDocs() {
   if (!sprinkles) {
     throw new Error("Could not find sprinkles docgen");
   }
+  // Build type expansion map from *Doc dummy components.
+  // e.g. SelectDoc's props describe the shape of SelectOption,
+  // so "SelectOption" → "{ label: string; value: string; ... }"
+  const typeExpansions = buildTypeExpansions(docs);
+
   return docs
     .map(
       ({
@@ -59,6 +117,14 @@ function generateDocs() {
                 { declarations, defaultValue, description, required, ...prop },
               ]) => {
                 delete prop.parent;
+
+                // Expand custom type references in raw type strings
+                if (prop.type.raw) {
+                  prop.type.raw = expandTypeReferences(
+                    prop.type.raw,
+                    typeExpansions,
+                  );
+                }
 
                 return [
                   name,
