@@ -1,5 +1,18 @@
 # @optiaxiom/react
 
+## 3.0.0-next.0
+
+### Major Changes
+
+- 3bdfe5f: update input control styles to v3
+- 8ed30f8: update table styles to v3
+- 2af4820: update tab styles to v3
+- 411e084: update calendar styles to v3
+- 706349b: update badge styles to v3
+- 9d5e048: update typography styles to v3
+- 7f92a84: update sidebar styles to v3
+- 479d9da: update button styles
+
 ## 1.9.33
 
 ### Patch Changes
@@ -55,6 +68,11 @@
 - e5340fe: inline material icon logic in icons package
 - Updated dependencies [4de6dc5]
   - @optiaxiom/globals@1.1.10
+
+### Patch Changes
+
+- Updated dependencies [648df58]
+  - @optiaxiom/globals@3.0.0-next.0
 
 ## 1.9.25
 
