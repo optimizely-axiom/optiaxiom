@@ -1,5 +1,11 @@
 # @optiaxiom/web-components
 
+## 0.13.0-next.0
+
+### Minor Changes
+
+- 648df58: update tokens to v3
+
 ## 0.12.3
 
 ### Patch Changes
