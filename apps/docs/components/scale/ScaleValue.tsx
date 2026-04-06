@@ -213,7 +213,20 @@ const getStyleValues = (selector: string) => {
     return { padding: styles["padding-top"] };
   }
 
-  return selector.startsWith("var(") ? styles["property"] : styles;
+  const mapped = Object.fromEntries(
+    Object.entries(styles).map(([key, value]) =>
+      key.startsWith("--")
+        ? [
+            key
+              .replace(/^--ax-styles-/, "")
+              .replace(/[A-Z]/g, (c) => `-${c.toLowerCase()}`),
+            value,
+          ]
+        : [key, value],
+    ),
+  );
+
+  return selector.startsWith("var(") ? styles["property"] : mapped;
 };
 
 const isColorType = (value: unknown) =>
