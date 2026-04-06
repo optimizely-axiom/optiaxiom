@@ -14,5 +14,15 @@
     "@optiaxiom/shared": "0.0.0",
     "@optiaxiom/web-components": "0.12.3"
   },
-  "changesets": []
+  "changesets": [
+    "breezy-hotels-think",
+    "kind-lions-strive",
+    "mighty-paws-crash",
+    "olive-yaks-yawn",
+    "poor-books-strive",
+    "public-heads-behave",
+    "three-steaks-poke",
+    "tough-onions-sin",
+    "wide-cities-sip"
+  ]
 }
