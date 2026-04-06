@@ -143,7 +143,7 @@ export function ProteusDocumentShell({
         borderColor="border.tertiary"
         onOpenChange={setOpen}
         open={open}
-        p="16"
+        p="20"
         rounded="xl"
       >
         {element.appName && (
