@@ -66,9 +66,9 @@ export default ESLintUtils.RuleCreator.withoutDocs({
           }
 
           const expected = [
-            `@optiaxiom/proteus/${provider.name.replace(/Provider$/, "")}`,
             `@optiaxiom/react/${provider.name.replace(/Provider$/, "")}`,
             `@optiaxiom/globals/${provider.name.replace(/^unstable_/, "").replace(/Provider$/, "")}`,
+            `@optiaxiom/proteus/${provider.name.replace(/Provider$/, "")}`,
           ];
           if (
             !(typeof name.value === "string" && expected.includes(name.value))
@@ -94,9 +94,9 @@ export default ESLintUtils.RuleCreator.withoutDocs({
           }
 
           const expected = [
-            `@optiaxiom/proteus/${node.left.object.name}`,
             `@optiaxiom/react/${node.left.object.name}`,
             `@optiaxiom/docs/${node.left.object.name}`,
+            `@optiaxiom/proteus/${node.left.object.name}`,
           ];
           if (
             !(
