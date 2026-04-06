@@ -135,7 +135,7 @@ jobs:
           }
 
       - if: ${{ github.event_name == 'push' }}
-        run: pnpm exec vitest run --project=@optiaxiom/globals --project=@optiaxiom/react --project=@optiaxiom/web-components
+        run: pnpm exec vitest run '--project=!storybook'
 
       - if: ${{ github.event_name != 'push' }}
         run: pnpm exec vitest run
