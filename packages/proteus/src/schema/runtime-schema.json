@@ -1286,6 +1286,7 @@
         { "$ref": "#/definitions/ProteusHeading" },
         { "$ref": "#/definitions/ProteusIconCalendar" },
         { "$ref": "#/definitions/ProteusImage" },
+        { "$ref": "#/definitions/ProteusImageCarousel" },
         { "$ref": "#/definitions/ProteusInput" },
         { "$ref": "#/definitions/ProteusLink" },
         { "$ref": "#/definitions/ProteusMap" },
@@ -2632,6 +2633,64 @@
         }
       },
       "required": ["$type"],
+      "type": "object"
+    },
+    "ProteusImageCarousel": {
+      "examples": [
+        {
+          "$type": "ImageCarousel",
+          "images": [
+            { "alt": "Image 1", "src": "https://placehold.co/600x400" },
+            { "alt": "Image 2", "src": "https://placehold.co/600x400" }
+          ]
+        }
+      ],
+      "properties": {
+        "$type": { "const": "ImageCarousel" },
+        "downloadAll": {
+          "anyOf": [
+            { "$ref": "#/definitions/ProteusValue" },
+            { "type": "string" }
+          ],
+          "description": "URL to download all images (e.g. as a zip file). Falls back to downloading each image individually."
+        },
+        "images": {
+          "anyOf": [
+            {
+              "description": "Inline array of image objects",
+              "items": {
+                "properties": {
+                  "alt": {
+                    "description": "Alternative text for the image",
+                    "type": "string"
+                  },
+                  "src": {
+                    "description": "The image source URL",
+                    "type": "string"
+                  },
+                  "thumb": {
+                    "description": "The URL to the image thumbnail. Falls back to src if not provided.",
+                    "type": "string"
+                  }
+                },
+                "required": ["src"],
+                "type": "object"
+              },
+              "type": "array"
+            },
+            { "$ref": "#/definitions/ProteusValue" }
+          ],
+          "description": "Array of image data to display in the carousel"
+        },
+        "title": {
+          "anyOf": [
+            { "$ref": "#/definitions/ProteusValue" },
+            { "type": "string" }
+          ],
+          "description": "Accessible label for the carousel region."
+        }
+      },
+      "required": ["$type", "images"],
       "type": "object"
     },
     "ProteusInput": {

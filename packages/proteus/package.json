@@ -39,6 +39,7 @@
     "@radix-ui/react-roving-focus": "^1.1.11",
     "@radix-ui/react-use-controllable-state": "^1.2.2",
     "@tanstack/react-table": "^8.0.0",
+    "embla-carousel-react": "^8.6.0",
     "jsonpointer": "^5.0.1",
     "recharts": "^3.7.0"
   },

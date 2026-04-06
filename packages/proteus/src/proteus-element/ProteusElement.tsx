@@ -25,6 +25,7 @@ import { useProteusDocumentContext } from "../proteus-document/ProteusDocumentCo
 import { useProteusDocumentPathContext } from "../proteus-document/ProteusDocumentPathContext";
 import { resolveProteusProp } from "../proteus-document/resolveProteusProp";
 import { safeParseElement } from "../proteus-document/schemas";
+import { ProteusImageCarousel } from "../proteus-image-carousel/ProteusImageCarousel";
 import { ProteusImage } from "../proteus-image/ProteusImage";
 import { ProteusInput } from "../proteus-input/ProteusInput";
 import { ProteusMap } from "../proteus-map/ProteusMap";
@@ -139,6 +140,14 @@ export const ProteusElement = ({
       );
     case "Image":
       return <ProteusImage {...resolve(element)} />;
+    case "ImageCarousel":
+      return (
+        <ProteusImageCarousel
+          {...(resolve(element) as ComponentPropsWithoutRef<
+            typeof ProteusImageCarousel
+          >)}
+        />
+      );
     case "Input":
       return <ProteusInput {...resolve(element)} />;
     case "Link":

@@ -232,38 +232,35 @@ export const WithImage: Story = {
   args: {
     element: {
       $type: "Document",
-      actions: [
-        {
-          $type: "Action",
-          appearance: "primary",
-          children: "Download",
-          onClick: {
-            action: "download",
-            url: { $type: "Value", path: "/link" },
-          },
-        },
-      ],
       body: [
         {
-          $type: "Image",
-          alt: "A delicious, juicy pan-seared chicken breast dish with broccoli sides",
-          maxH: "xs",
-          objectFit: "cover",
-          src: "https://placehold.co/1600x900",
+          $type: "ImageCarousel",
+          images: [
+            {
+              alt: "A delicious, juicy pan-seared chicken breast dish with broccoli sides",
+              src: "https://placehold.co/1600x900",
+            },
+          ],
         },
         {
-          $type: "Image",
-          alt: "A delicious, juicy pan-seared chicken breast dish with broccoli sides",
-          maxH: "xs",
-          objectFit: "cover",
-          src: "https://placehold.co/900x1600",
+          $type: "ImageCarousel",
+          images: [
+            {
+              alt: "A delicious, juicy pan-seared chicken breast dish with broccoli sides",
+              src: "https://placehold.co/900x1600",
+            },
+          ],
+          title: "Sample 2",
         },
         {
-          $type: "Image",
-          alt: "A delicious, juicy pan-seared chicken breast dish with broccoli sides",
-          maxH: "xs",
-          objectFit: "cover",
-          src: "https://placehold.co/400x600",
+          $type: "ImageCarousel",
+          images: [
+            {
+              alt: "A delicious, juicy pan-seared chicken breast dish with broccoli sides",
+              src: "https://placehold.co/400x600",
+            },
+          ],
+          title: "Sample 3",
         },
       ],
       subtitle: "Created Jan 15, 2025",
@@ -272,7 +269,7 @@ export const WithImage: Story = {
   },
 };
 
-export const WithImageGrid: Story = {
+export const WithImageCarousel: Story = {
   args: {
     data: {
       images: [
@@ -282,7 +279,7 @@ export const WithImageGrid: Story = {
         },
         {
           alt: "Chicken with lemon sauce and broccoli",
-          src: "https://placehold.co/400x600",
+          src: "https://placehold.co/600x400",
         },
         {
           alt: "Sliced roasted chicken breast with broccoli",
@@ -290,57 +287,40 @@ export const WithImageGrid: Story = {
         },
         {
           alt: "Sesame chicken with broccoli",
+          src: "https://placehold.co/600x400",
+        },
+        {
+          alt: "Grilled chicken with vegetables",
           src: "https://placehold.co/400x600",
+        },
+        {
+          alt: "Roasted chicken with potatoes",
+          src: "https://placehold.co/600x400",
+        },
+        {
+          alt: "Chicken salad bowl",
+          src: "https://placehold.co/400x600",
+        },
+        {
+          alt: "BBQ chicken wings",
+          src: "https://placehold.co/600x400",
         },
       ],
     },
     element: {
       $type: "Document",
-      actions: [
-        {
-          $type: "Action",
-          appearance: "primary",
-          children: "Download All",
-          onClick: {
-            action: "download",
-            url: {
-              $type: "Map",
-              children: { $type: "Value", path: "src" },
-              path: "/images",
-            },
-          },
-        },
-      ],
       appName: "Opal",
       body: [
         {
-          $type: "Group",
-          children: {
-            $type: "Map",
-            children: {
-              $type: "Group",
-              children: {
-                $type: "Image",
-                alt: { $type: "Value", path: "alt" },
-                objectFit: "cover",
-                overflow: "hidden",
-                rounded: "md",
-                src: { $type: "Value", path: "src" },
-              },
-              flexDirection: "column",
-              maxH: "full",
-            },
+          $type: "ImageCarousel",
+          images: {
+            $type: "Value",
             path: "/images",
           },
-          display: "grid",
-          gap: "12",
-          gridAutoRows: "fr",
-          gridTemplateColumns: "2",
-          maxH: "md",
         },
       ],
-      subtitle: "4 variations generated",
-      title: "Generated Images",
+      subtitle: "Created Jan 15, 2025",
+      title: "Images created",
     },
   },
 };
