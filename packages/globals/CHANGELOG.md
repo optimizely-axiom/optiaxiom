@@ -1,5 +1,11 @@
 # @optiaxiom/globals
 
+## 3.0.0-next.0
+
+### Major Changes
+
+- 648df58: update tokens to v3
+
 ## 1.1.9
 
 ### Patch Changes
