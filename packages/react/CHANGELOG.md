@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 1.9.24
+
+### Patch Changes
+
+- 83105d7: fix icon swipe animation
+
 ## 1.9.23
 
 ### Patch Changes

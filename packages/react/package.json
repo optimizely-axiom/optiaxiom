@@ -7,7 +7,7 @@
     "url": "git+https://github.com/optimizely-axiom/optiaxiom.git"
   },
   "type": "module",
-  "version": "1.9.23",
+  "version": "1.9.24",
   "files": [
     "dist/**",
     "LICENSE"
