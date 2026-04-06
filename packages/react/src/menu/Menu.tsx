@@ -56,14 +56,19 @@ export type MenuProps = ExcludeProps<
 >;
 
 /**
- * Dropdown menu component for displaying a list of actions or options with
- * support for multi-select, filtering, and complex interactions.
+ * Dropdown menu for actions, multi-select, and complex interactions.
+ * Supports filtering/search, checkbox/radio items, nested sub-menus,
+ * links, and action handlers via `execute`.
  *
  * Must be used with MenuTrigger and MenuContent sub-components. MenuTrigger
  * automatically renders a button with chevron icon, or use MenuTrigger asChild
  * with custom buttons like EllipsisMenuButton for overflow menus.
  *
- * For simple single-select form inputs, use Select instead.
+ * Use Menu when: action menus (edit/delete/archive), multi-select dropdowns,
+ * filterable lists, nested menus, or items with links/navigation.
+ *
+ * Use Select instead when: you need a simple single-select form input
+ * with `value`/`onChange` and form submission support.
  *
  * @category overlay
  * @group Menu
