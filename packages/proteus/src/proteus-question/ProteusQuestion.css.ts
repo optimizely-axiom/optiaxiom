@@ -7,7 +7,6 @@ export const question = recipe({
     {
       flexDirection: "column",
       gap: "16",
-      p: "4",
     },
     style({
       outline: "none",
