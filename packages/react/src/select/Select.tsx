@@ -49,7 +49,7 @@ export type SelectProps = {
    */
   onBlur?: FocusEventHandler<HTMLElement>;
   /**
-   * Handler for `change` event forwarded to inner select element.
+   * Native `change` event handler for the hidden select element. Prefer `onValueChange` for most use cases.
    */
   onChange?: ChangeEventHandler<HTMLSelectElement>;
   /**
@@ -57,7 +57,7 @@ export type SelectProps = {
    */
   onOpenChange?: (open: boolean) => void;
   /**
-   * Handler that is called when the selected value changes.
+   * Handler that is called when the selected value changes. Use this to track the selected value.
    */
   onValueChange?: (value: string) => void;
   /**
