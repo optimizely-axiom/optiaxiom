@@ -79,13 +79,17 @@ export type SelectProps = {
 };
 
 /**
- * Form input for selecting a value from a dropdown list. Use this to capture
- * user input in forms as an alternative to radios when you have many options.
+ * Single-select form input for choosing one value from a dropdown list.
+ * Works like a native `<select>` — supports `name`, `value`, `onChange`,
+ * and works with `<form>` submissions.
  *
  * Must be used with SelectTrigger and SelectContent sub-components.
  *
- * Use this for form inputs only. For action menus or multi-select dropdowns,
- * use Menu instead.
+ * Use Select when: single value selection in a form, controlled/uncontrolled
+ * form input, you need form submission support.
+ *
+ * Use Menu instead when: you need multi-select, actions (edit/delete),
+ * links, filtering/search, nested sub-menus, or checkbox/radio items.
  *
  * @group Select
  * @category form
