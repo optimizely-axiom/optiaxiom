@@ -59,7 +59,7 @@ export type MenuProps = ExcludeProps<
  * Dropdown menu component for displaying a list of actions or options with
  * support for multi-select, filtering, and complex interactions.
  *
- * Use this with MenuTrigger for action menus and dropdowns. MenuTrigger
+ * Must be used with MenuTrigger and MenuContent sub-components. MenuTrigger
  * automatically renders a button with chevron icon, or use MenuTrigger asChild
  * with custom buttons like EllipsisMenuButton for overflow menus.
  *
