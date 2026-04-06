@@ -1,6 +1,6 @@
 import { theme } from "@optiaxiom/globals";
 
-import { createVar, getVarName, recipe, style } from "../vanilla-extract";
+import { recipe, style } from "../vanilla-extract";
 
 export const icon = recipe({
   base: [
@@ -13,37 +13,58 @@ export const icon = recipe({
   ],
 });
 
-const fillVar = createVar({
-  inherits: false,
-  initialValue: "0%",
-  syntax: "<percentage>",
-});
-
 export const path = recipe({
   base: style({
-    transition: `${getVarName(fillVar)} ${theme.duration.md}`,
+    transition: `clip-path ${theme.duration.md}`,
   }),
 
   variants: {
     filled: {
-      false: style({
-        vars: {
-          [fillVar]: "0%",
-        },
-      }),
-      true: style({
-        vars: {
-          [fillVar]: "100%",
-        },
-      }),
+      false: {},
+      true: {},
     },
     type: {
-      filled: style({
-        mask: `linear-gradient(225deg, black ${fillVar}, transparent ${fillVar})`,
-      }),
-      unfilled: style({
-        mask: `linear-gradient(225deg, transparent ${fillVar}, black ${fillVar})`,
-      }),
+      filled: {},
+      unfilled: {},
     },
   },
+
+  variantsCompounded: [
+    {
+      style: style({
+        clipPath: "polygon(100% 0, 100% 0, 100% 0)",
+      }),
+      variants: {
+        filled: false,
+        type: "filled",
+      },
+    },
+    {
+      style: style({
+        clipPath: "polygon(0 -100%, 200% 100%, 0 100%)",
+      }),
+      variants: {
+        filled: false,
+        type: "unfilled",
+      },
+    },
+    {
+      style: style({
+        clipPath: "polygon(-100% 0, 100% 200%, 100% 0)",
+      }),
+      variants: {
+        filled: true,
+        type: "filled",
+      },
+    },
+    {
+      style: style({
+        clipPath: "polygon(0 100%, 0 100%, 0 100%)",
+      }),
+      variants: {
+        filled: true,
+        type: "unfilled",
+      },
+    },
+  ],
 });
