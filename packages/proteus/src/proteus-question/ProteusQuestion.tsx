@@ -60,11 +60,11 @@ export function ProteusQuestion({ questions }: ProteusQuestionProps) {
         },
       );
       lastIndexRef.current = currentIndex;
-      const item =
-        questionRef.current?.querySelector<HTMLElement>("[data-selected]") ??
-        questionRef.current?.querySelector<HTMLElement>("[tabindex]");
-      item?.focus();
     }
+    const item =
+      questionRef.current?.querySelector<HTMLElement>("[data-selected]") ??
+      questionRef.current?.querySelector<HTMLElement>("[tabindex]");
+    item?.focus();
   }, [currentIndex]);
 
   const otherInputRef = useRef<HTMLInputElement>(null);

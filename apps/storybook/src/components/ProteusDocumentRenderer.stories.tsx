@@ -416,6 +416,7 @@ export const AskUserQuestion: Story = {
     },
     element: {
       $type: "Document",
+      blocking: true,
       body: {
         $type: "Question",
         questions: {
@@ -519,6 +520,7 @@ export const AskAgentInput: Story = {
           type: "submit",
         },
       ],
+      blocking: true,
       body: [
         {
           $type: "Map",
