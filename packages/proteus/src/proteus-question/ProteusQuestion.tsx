@@ -117,7 +117,7 @@ export function ProteusQuestion({ questions }: ProteusQuestionProps) {
       onKeyDown={(event) => {
         if (event.key === "Escape") {
           event.preventDefault();
-          if (valid) {
+          if (type === "multi_select" && valid) {
             onValueChange(null);
           } else {
             onSkip();
