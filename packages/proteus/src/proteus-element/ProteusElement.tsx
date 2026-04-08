@@ -151,7 +151,7 @@ export const ProteusElement = ({
     case "Input":
       return <ProteusInput {...resolve(element)} />;
     case "Link":
-      return <Link {...resolve(element)} />;
+      return <Link target="_blank" {...resolve(element)} />;
     case "Map":
       return (
         <ProteusMap
