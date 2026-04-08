@@ -27,7 +27,7 @@ describe("Button component", () => {
       withinShadowRoot(screen.getByText("Primary")).getByRole("button"),
     ).toHaveStyle({
       "background-color": "rgb(171, 255, 68)",
-      color: "rgb(28, 39, 29)",
+      color: "rgb(32, 35, 32)",
     });
     await document.fonts.load("1rem InterVariable");
   });

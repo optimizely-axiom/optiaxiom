@@ -65,7 +65,7 @@ describe("Box component", () => {
       withinShadowRoot(screen.getByText("Click")).getByRole("button"),
     ).toHaveStyle({
       "background-color": "rgb(171, 255, 68)",
-      color: "rgb(28, 39, 29)",
+      color: "rgb(32, 35, 32)",
     });
   });
 });
