@@ -107,7 +107,7 @@ export const ProteusElement = ({
     case "CardHeader":
       return <CardHeader {...resolve(element)} />;
     case "CardLink":
-      return <CardLink {...resolve(element)} />;
+      return <CardLink target="_blank" {...resolve(element)} />;
     case "Chart":
       return (
         <Suspense fallback={null}>
