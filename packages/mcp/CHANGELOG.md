@@ -1,5 +1,12 @@
 # @optiaxiom/mcp
 
+## 0.2.6-next.0
+
+### Patch Changes
+
+- 0fd224c: expand and include exact shape of select/menu options
+- c04d42e: document required sub-components for Menu and Select
+
 ## 0.2.5
 
 ### Patch Changes

@@ -17,7 +17,7 @@
     "cursor"
   ],
   "type": "module",
-  "version": "0.2.5",
+  "version": "0.2.6-next.0",
   "files": [
     "dist",
     "README.md"

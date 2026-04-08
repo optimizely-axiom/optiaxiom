@@ -1,5 +1,20 @@
 # @optiaxiom/proteus
 
+## 0.1.16-next.1
+
+### Patch Changes
+
+- a6fffc6: bump up padding of action card
+- b3259ab: sync colors tokens
+- 3e7a35f: add proteus image carousel
+- 7e1ca0a: render CardLink with `target=_blank` by default
+- Updated dependencies [b3259ab]
+- Updated dependencies [0fd224c]
+- Updated dependencies [c04d42e]
+- Updated dependencies [f2cb3f0]
+  - @optiaxiom/react@3.0.0-next.1
+  - @optiaxiom/icons@0.1.4-next.1
+
 ## 0.1.16-next.0
 
 ### Patch Changes

@@ -15,14 +15,21 @@
     "@optiaxiom/web-components": "0.12.3"
   },
   "changesets": [
+    "brave-brooms-boil",
     "breezy-hotels-think",
     "kind-lions-strive",
     "mighty-paws-crash",
+    "modern-pens-hide",
     "olive-yaks-yawn",
     "poor-books-strive",
     "public-heads-behave",
+    "shiny-ends-invent",
+    "shy-baboons-lead",
+    "silver-points-invent",
+    "six-donuts-send",
     "three-steaks-poke",
     "tough-onions-sin",
+    "warm-links-open",
     "wide-cities-sip"
   ]
 }
