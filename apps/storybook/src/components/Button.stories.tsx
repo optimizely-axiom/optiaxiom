@@ -293,7 +293,11 @@ export const MaterialIcons: Story = {
             >
               Edit
             </Button>
-            <Button appearance="primary" icon={<IconSquarePlus />} size={size}>
+            <Button
+              appearance="primary"
+              icon={<IconSquarePlus filled />}
+              size={size}
+            >
               Create Something
             </Button>
             <Button
