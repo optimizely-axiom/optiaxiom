@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import {
   IconAdd2,
-  IconAddBoxFilled,
+  IconAddBox,
   IconDelete,
   IconEdit,
   IconExperiment,
@@ -294,7 +294,7 @@ export const MaterialIcons: Story = {
             </Button>
             <Button
               appearance="primary"
-              icon={<IconAddBoxFilled />}
+              icon={<IconAddBox filled />}
               size={size}
             >
               Create Something
