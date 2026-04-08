@@ -1,7 +1,5 @@
 import type { StorybookConfig } from "@storybook/react-vite";
 
-import svgr from "vite-plugin-svgr";
-
 import { reactDocgenPlugin } from "./react-docgen-plugin.ts";
 
 const config: StorybookConfig = {
@@ -29,14 +27,7 @@ const config: StorybookConfig = {
     }
 
     config.logLevel = "error";
-    config.plugins?.push(
-      svgr({
-        svgrOptions: {
-          svgProps: { fill: "currentColor" },
-        },
-      }),
-      reactDocgenPlugin(),
-    );
+    config.plugins?.push(reactDocgenPlugin());
     config.optimizeDeps?.include?.push(
       "chromatic/isChromatic",
       "react/jsx-dev-runtime",
