@@ -1,5 +1,15 @@
 # @optiaxiom/icons
 
+## 0.1.4-next.1
+
+### Patch Changes
+
+- Updated dependencies [b3259ab]
+- Updated dependencies [0fd224c]
+- Updated dependencies [c04d42e]
+- Updated dependencies [f2cb3f0]
+  - @optiaxiom/react@3.0.0-next.1
+
 ## 0.1.4-next.0
 
 ### Patch Changes
