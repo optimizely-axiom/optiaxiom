@@ -378,29 +378,25 @@ export function ProteusQuestion({ questions }: ProteusQuestionProps) {
           px="16"
         >
           <Text>{value?.length || 0} selected</Text>
-          {(value?.length || 0) > 0 ? (
-            <Button
-              appearance="primary"
-              aria-label={isLast ? "Submit" : "Next"}
-              disabled={!valid}
-              icon={<IconNorth />}
-              ml="auto"
-              onClick={(event) => {
-                event.preventDefault();
-                onSubmit();
-              }}
-            />
-          ) : (
-            <Button
-              ml="auto"
-              onClick={(event) => {
-                event.preventDefault();
-                onSkip();
-              }}
-            >
-              Skip
-            </Button>
-          )}
+          <Button
+            ml="auto"
+            onClick={(event) => {
+              event.preventDefault();
+              onSkip();
+            }}
+          >
+            Skip
+          </Button>
+          <Button
+            appearance={valid ? "primary" : "default"}
+            aria-label={isLast ? "Submit" : "Next"}
+            disabled={!valid}
+            icon={<IconNorth />}
+            onClick={(event) => {
+              event.preventDefault();
+              onSubmit();
+            }}
+          />
         </Group>
       )}
     </Group>
