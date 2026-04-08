@@ -66,6 +66,8 @@
         { "const": "bg.information.subtle" },
         { "const": "bg.overlay" },
         { "const": "bg.page" },
+        { "const": "bg.pill.default" },
+        { "const": "bg.pill.hovered" },
         { "const": "bg.secondary" },
         { "const": "bg.secondary.hovered" },
         { "const": "bg.spinner.default" },
@@ -158,6 +160,7 @@
         { "const": "fg.accent.strong" },
         { "const": "fg.avatar.neutral" },
         { "const": "fg.avatar.purple" },
+        { "const": "fg.black" },
         { "const": "fg.default" },
         { "const": "fg.default.inverse" },
         { "const": "fg.disabled" },
@@ -247,6 +250,7 @@
     },
     "SprinkleProp_fontFamily": {
       "anyOf": [
+        { "const": "heading" },
         { "const": "mono" },
         { "const": "sans" },
         { "$ref": "#/definitions/ProteusExpression" }
@@ -272,6 +276,7 @@
       "anyOf": [
         { "const": "inherit" },
         { "const": "600" },
+        { "const": "900" },
         { "const": "400" },
         { "const": "500" },
         { "const": "700" },
@@ -282,12 +287,11 @@
     "SprinkleProp_gap": {
       "anyOf": [
         { "const": "2" },
-        { "const": "4" },
         { "const": "6" },
         { "const": "8" },
         { "const": "12" },
-        { "const": "10" },
         { "const": "16" },
+        { "const": "10" },
         { "const": "20" },
         { "const": "24" },
         { "const": "32" },
@@ -295,6 +299,7 @@
         { "const": "48" },
         { "const": "80" },
         { "const": "0" },
+        { "const": "4" },
         { "const": "64" },
         { "$ref": "#/definitions/ProteusExpression" }
       ],
@@ -310,9 +315,9 @@
     "SprinkleProp_gridColumn": {
       "anyOf": [
         { "const": "2" },
-        { "const": "4" },
         { "const": "1" },
         { "const": "3" },
+        { "const": "4" },
         { "$ref": "#/definitions/ProteusExpression" }
       ],
       "description": "Set the element's size across grid columns"
@@ -320,9 +325,9 @@
     "SprinkleProp_gridTemplateColumns": {
       "anyOf": [
         { "const": "2" },
-        { "const": "4" },
         { "const": "1" },
         { "const": "3" },
+        { "const": "4" },
         { "$ref": "#/definitions/ProteusExpression" }
       ],
       "description": "Control number of columns in a grid layout"
@@ -331,8 +336,8 @@
       "anyOf": [
         { "const": "auto" },
         { "const": "12" },
-        { "const": "10" },
         { "const": "16" },
+        { "const": "10" },
         { "const": "20" },
         { "const": "24" },
         { "const": "32" },
@@ -395,12 +400,11 @@
       "anyOf": [
         { "const": "auto" },
         { "const": "2" },
-        { "const": "4" },
         { "const": "6" },
         { "const": "8" },
         { "const": "12" },
-        { "const": "10" },
         { "const": "16" },
+        { "const": "10" },
         { "const": "20" },
         { "const": "24" },
         { "const": "32" },
@@ -408,6 +412,7 @@
         { "const": "48" },
         { "const": "80" },
         { "const": "0" },
+        { "const": "4" },
         { "const": "64" },
         { "$ref": "#/definitions/ProteusExpression" }
       ],
@@ -439,12 +444,11 @@
       "anyOf": [
         { "const": "auto" },
         { "const": "2" },
-        { "const": "4" },
         { "const": "6" },
         { "const": "8" },
         { "const": "12" },
-        { "const": "10" },
         { "const": "16" },
+        { "const": "10" },
         { "const": "20" },
         { "const": "24" },
         { "const": "32" },
@@ -452,6 +456,7 @@
         { "const": "48" },
         { "const": "80" },
         { "const": "0" },
+        { "const": "4" },
         { "const": "64" },
         { "$ref": "#/definitions/ProteusExpression" }
       ],
@@ -461,12 +466,11 @@
       "anyOf": [
         { "const": "auto" },
         { "const": "2" },
-        { "const": "4" },
         { "const": "6" },
         { "const": "8" },
         { "const": "12" },
-        { "const": "10" },
         { "const": "16" },
+        { "const": "10" },
         { "const": "20" },
         { "const": "24" },
         { "const": "32" },
@@ -474,6 +478,7 @@
         { "const": "48" },
         { "const": "80" },
         { "const": "0" },
+        { "const": "4" },
         { "const": "64" },
         { "$ref": "#/definitions/ProteusExpression" }
       ],
@@ -483,12 +488,11 @@
       "anyOf": [
         { "const": "auto" },
         { "const": "2" },
-        { "const": "4" },
         { "const": "6" },
         { "const": "8" },
         { "const": "12" },
-        { "const": "10" },
         { "const": "16" },
+        { "const": "10" },
         { "const": "20" },
         { "const": "24" },
         { "const": "32" },
@@ -496,6 +500,7 @@
         { "const": "48" },
         { "const": "80" },
         { "const": "0" },
+        { "const": "4" },
         { "const": "64" },
         { "$ref": "#/definitions/ProteusExpression" }
       ],
@@ -505,12 +510,11 @@
       "anyOf": [
         { "const": "auto" },
         { "const": "2" },
-        { "const": "4" },
         { "const": "6" },
         { "const": "8" },
         { "const": "12" },
-        { "const": "10" },
         { "const": "16" },
+        { "const": "10" },
         { "const": "20" },
         { "const": "24" },
         { "const": "32" },
@@ -518,6 +522,7 @@
         { "const": "48" },
         { "const": "80" },
         { "const": "0" },
+        { "const": "4" },
         { "const": "64" },
         { "$ref": "#/definitions/ProteusExpression" }
       ],
@@ -527,12 +532,11 @@
       "anyOf": [
         { "const": "auto" },
         { "const": "2" },
-        { "const": "4" },
         { "const": "6" },
         { "const": "8" },
         { "const": "12" },
-        { "const": "10" },
         { "const": "16" },
+        { "const": "10" },
         { "const": "20" },
         { "const": "24" },
         { "const": "32" },
@@ -540,6 +544,7 @@
         { "const": "48" },
         { "const": "80" },
         { "const": "0" },
+        { "const": "4" },
         { "const": "64" },
         { "$ref": "#/definitions/ProteusExpression" }
       ],
@@ -549,12 +554,11 @@
       "anyOf": [
         { "const": "auto" },
         { "const": "2" },
-        { "const": "4" },
         { "const": "6" },
         { "const": "8" },
         { "const": "12" },
-        { "const": "10" },
         { "const": "16" },
+        { "const": "10" },
         { "const": "20" },
         { "const": "24" },
         { "const": "32" },
@@ -562,6 +566,7 @@
         { "const": "48" },
         { "const": "80" },
         { "const": "0" },
+        { "const": "4" },
         { "const": "64" },
         { "$ref": "#/definitions/ProteusExpression" }
       ],
@@ -607,12 +612,11 @@
     "SprinkleProp_p": {
       "anyOf": [
         { "const": "2" },
-        { "const": "4" },
         { "const": "6" },
         { "const": "8" },
         { "const": "12" },
-        { "const": "10" },
         { "const": "16" },
+        { "const": "10" },
         { "const": "20" },
         { "const": "24" },
         { "const": "32" },
@@ -620,6 +624,7 @@
         { "const": "48" },
         { "const": "80" },
         { "const": "0" },
+        { "const": "4" },
         { "const": "64" },
         { "$ref": "#/definitions/ProteusExpression" }
       ],
@@ -628,12 +633,11 @@
     "SprinkleProp_pb": {
       "anyOf": [
         { "const": "2" },
-        { "const": "4" },
         { "const": "6" },
         { "const": "8" },
         { "const": "12" },
-        { "const": "10" },
         { "const": "16" },
+        { "const": "10" },
         { "const": "20" },
         { "const": "24" },
         { "const": "32" },
@@ -641,6 +645,7 @@
         { "const": "48" },
         { "const": "80" },
         { "const": "0" },
+        { "const": "4" },
         { "const": "64" },
         { "$ref": "#/definitions/ProteusExpression" }
       ],
@@ -649,12 +654,11 @@
     "SprinkleProp_pl": {
       "anyOf": [
         { "const": "2" },
-        { "const": "4" },
         { "const": "6" },
         { "const": "8" },
         { "const": "12" },
-        { "const": "10" },
         { "const": "16" },
+        { "const": "10" },
         { "const": "20" },
         { "const": "24" },
         { "const": "32" },
@@ -662,6 +666,7 @@
         { "const": "48" },
         { "const": "80" },
         { "const": "0" },
+        { "const": "4" },
         { "const": "64" },
         { "$ref": "#/definitions/ProteusExpression" }
       ],
@@ -685,12 +690,11 @@
     "SprinkleProp_pr": {
       "anyOf": [
         { "const": "2" },
-        { "const": "4" },
         { "const": "6" },
         { "const": "8" },
         { "const": "12" },
-        { "const": "10" },
         { "const": "16" },
+        { "const": "10" },
         { "const": "20" },
         { "const": "24" },
         { "const": "32" },
@@ -698,6 +702,7 @@
         { "const": "48" },
         { "const": "80" },
         { "const": "0" },
+        { "const": "4" },
         { "const": "64" },
         { "$ref": "#/definitions/ProteusExpression" }
       ],
@@ -706,12 +711,11 @@
     "SprinkleProp_pt": {
       "anyOf": [
         { "const": "2" },
-        { "const": "4" },
         { "const": "6" },
         { "const": "8" },
         { "const": "12" },
-        { "const": "10" },
         { "const": "16" },
+        { "const": "10" },
         { "const": "20" },
         { "const": "24" },
         { "const": "32" },
@@ -719,6 +723,7 @@
         { "const": "48" },
         { "const": "80" },
         { "const": "0" },
+        { "const": "4" },
         { "const": "64" },
         { "$ref": "#/definitions/ProteusExpression" }
       ],
@@ -727,12 +732,11 @@
     "SprinkleProp_px": {
       "anyOf": [
         { "const": "2" },
-        { "const": "4" },
         { "const": "6" },
         { "const": "8" },
         { "const": "12" },
-        { "const": "10" },
         { "const": "16" },
+        { "const": "10" },
         { "const": "20" },
         { "const": "24" },
         { "const": "32" },
@@ -740,6 +744,7 @@
         { "const": "48" },
         { "const": "80" },
         { "const": "0" },
+        { "const": "4" },
         { "const": "64" },
         { "$ref": "#/definitions/ProteusExpression" }
       ],
@@ -748,12 +753,11 @@
     "SprinkleProp_py": {
       "anyOf": [
         { "const": "2" },
-        { "const": "4" },
         { "const": "6" },
         { "const": "8" },
         { "const": "12" },
-        { "const": "10" },
         { "const": "16" },
+        { "const": "10" },
         { "const": "20" },
         { "const": "24" },
         { "const": "32" },
@@ -761,6 +765,7 @@
         { "const": "48" },
         { "const": "80" },
         { "const": "0" },
+        { "const": "4" },
         { "const": "64" },
         { "$ref": "#/definitions/ProteusExpression" }
       ],
@@ -795,8 +800,8 @@
       "anyOf": [
         { "const": "auto" },
         { "const": "12" },
-        { "const": "10" },
         { "const": "16" },
+        { "const": "10" },
         { "const": "20" },
         { "const": "24" },
         { "const": "32" },
@@ -862,8 +867,8 @@
       "anyOf": [
         { "const": "auto" },
         { "const": "12" },
-        { "const": "10" },
         { "const": "16" },
+        { "const": "10" },
         { "const": "20" },
         { "const": "24" },
         { "const": "32" },
@@ -2028,9 +2033,9 @@
         "lineClamp": {
           "anyOf": [
             { "const": "2" },
-            { "const": "4" },
             { "const": "1" },
             { "const": "3" },
+            { "const": "4" },
             { "$ref": "#/definitions/ProteusExpression" }
           ],
           "description": "Truncate the text at specific number of lines."
@@ -2542,9 +2547,9 @@
         "level": {
           "anyOf": [
             { "const": "2" },
-            { "const": "4" },
             { "const": "1" },
             { "const": "3" },
+            { "const": "4" },
             { "$ref": "#/definitions/ProteusExpression" }
           ],
           "description": "Heading level (1-4) that controls both the semantic HTML tag and font size.\n- `level=\"1\"`: renders `<h1>` with `fontSize=\"4xl\"` (default)\n- `level=\"2\"`: renders `<h2>` with `fontSize=\"3xl\"`\n- `level=\"3\"`: renders `<h3>` with `fontSize=\"2xl\"`\n- `level=\"4\"`: renders `<h4>` with `fontSize=\"xl\"`\n\nUse `asChild` to decouple the semantic level from visual appearance."
@@ -3632,9 +3637,9 @@
         "lineClamp": {
           "anyOf": [
             { "const": "2" },
-            { "const": "4" },
             { "const": "1" },
             { "const": "3" },
+            { "const": "4" },
             { "$ref": "#/definitions/ProteusExpression" }
           ],
           "description": "Truncate the text at specific number of lines."
