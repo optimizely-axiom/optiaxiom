@@ -20,6 +20,7 @@ import { type ComponentPropsWithoutRef, lazy, Suspense } from "react";
 import { IconCalendar } from "../icons/IconCalendar";
 import { ProteusAction } from "../proteus-action/ProteusAction";
 import { ProteusCancelAction } from "../proteus-action/ProteusCancelAction";
+import { ProteusBridge } from "../proteus-bridge/ProteusBridge";
 import { ProteusDataTable } from "../proteus-data-table/ProteusDataTable";
 import { useProteusDocumentContext } from "../proteus-document/ProteusDocumentContext";
 import { useProteusDocumentPathContext } from "../proteus-document/ProteusDocumentPathContext";
@@ -99,6 +100,14 @@ export const ProteusElement = ({
       return <Avatar {...resolve(element)} />;
     case "Badge":
       return <Badge {...resolve(element)} />;
+    case "Bridge":
+      return (
+        <ProteusBridge
+          {...(resolve(element) as ComponentPropsWithoutRef<
+            typeof ProteusBridge
+          >)}
+        />
+      );
     case "CancelAction":
       return <ProteusCancelAction {...resolve(element)} />;
     case "Card":
