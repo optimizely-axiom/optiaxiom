@@ -45,6 +45,12 @@ const PROTEUS_COMPONENT_CONFIG = {
     allowedProps: ["children", "intent"],
     example: { children: "Badge", intent: "success" },
   },
+  Bridge: {
+    allowedProps: ["fallback", "height", "resource"],
+    example: { height: 400, resource: "ui://sample-widget" },
+    extends: "Fragment",
+    requiredProps: ["resource"],
+  },
   CancelAction: {
     allowedProps: ["children", "placeholder"],
     example: { children: "Cancel" },
@@ -893,6 +899,22 @@ function getPropTypeOverrides(additionalProperties = false) {
       onClick: {
         $ref: "#/definitions/ProteusEventHandler",
         description: "Action triggered when button is clicked",
+      },
+    },
+    Bridge: {
+      fallback: {
+        $ref: "#/definitions/ProteusNode",
+        description:
+          "Content rendered on platforms without iframe support (Teams, Slack, mobile). If omitted, a default 'View in Opal web' message is shown.",
+      },
+      height: {
+        description: "Height of the iframe in pixels",
+        type: "number",
+      },
+      resource: {
+        description:
+          "Resource URI identifying the MCP app to render (e.g., 'ui://sample-widget')",
+        type: "string",
       },
     },
     CancelAction: {
