@@ -1,5 +1,12 @@
 # @optiaxiom/react
 
+## 1.9.25
+
+### Patch Changes
+
+- 0fd224c: expand and include exact shape of select/menu options
+- c04d42e: document required sub-components for Menu and Select
+
 ## 1.9.24
 
 ### Patch Changes

@@ -1,5 +1,19 @@
 # @optiaxiom/proteus
 
+## 0.1.16
+
+### Patch Changes
+
+- a6fffc6: bump up padding of action card
+- 1800f82: Fix escape key in Question component to skip directly when no user interaction occurred.
+- 2b8907e: Auto-focus first interactive element in Proteus documents on mount.
+- 3e7a35f: add proteus image carousel
+- 7e1ca0a: render CardLink with `target=_blank` by default
+- Updated dependencies [0fd224c]
+- Updated dependencies [c04d42e]
+  - @optiaxiom/react@1.9.25
+  - @optiaxiom/icons@0.1.4
+
 ## 0.1.15
 
 ### Patch Changes
