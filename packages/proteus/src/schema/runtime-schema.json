@@ -1287,7 +1287,6 @@
         { "$ref": "#/definitions/ProteusHeading" },
         { "$ref": "#/definitions/ProteusIconCalendar" },
         { "$ref": "#/definitions/ProteusImage" },
-        { "$ref": "#/definitions/ProteusImageCarousel" },
         { "$ref": "#/definitions/ProteusInput" },
         { "$ref": "#/definitions/ProteusLink" },
         { "$ref": "#/definitions/ProteusMap" },
@@ -1927,16 +1926,6 @@
           "$ref": "#/definitions/SprinkleProp_justifyContent"
         },
         "justifyItems": { "$ref": "#/definitions/SprinkleProp_justifyItems" },
-        "lineClamp": {
-          "anyOf": [
-            { "const": "2" },
-            { "const": "1" },
-            { "const": "3" },
-            { "const": "4" },
-            { "$ref": "#/definitions/ProteusValue" }
-          ],
-          "description": "Truncate the text at specific number of lines."
-        },
         "m": { "$ref": "#/definitions/SprinkleProp_m" },
         "maxH": { "$ref": "#/definitions/SprinkleProp_maxH" },
         "maxW": { "$ref": "#/definitions/SprinkleProp_maxW" },
@@ -2634,64 +2623,6 @@
         }
       },
       "required": ["$type"],
-      "type": "object"
-    },
-    "ProteusImageCarousel": {
-      "examples": [
-        {
-          "$type": "ImageCarousel",
-          "images": [
-            { "alt": "Image 1", "src": "https://placehold.co/600x400" },
-            { "alt": "Image 2", "src": "https://placehold.co/600x400" }
-          ]
-        }
-      ],
-      "properties": {
-        "$type": { "const": "ImageCarousel" },
-        "downloadAll": {
-          "anyOf": [
-            { "$ref": "#/definitions/ProteusValue" },
-            { "type": "string" }
-          ],
-          "description": "URL to download all images (e.g. as a zip file). Falls back to downloading each image individually."
-        },
-        "images": {
-          "anyOf": [
-            {
-              "description": "Inline array of image objects",
-              "items": {
-                "properties": {
-                  "alt": {
-                    "description": "Alternative text for the image",
-                    "type": "string"
-                  },
-                  "src": {
-                    "description": "The image source URL",
-                    "type": "string"
-                  },
-                  "thumb": {
-                    "description": "The URL to the image thumbnail. Falls back to src if not provided.",
-                    "type": "string"
-                  }
-                },
-                "required": ["src"],
-                "type": "object"
-              },
-              "type": "array"
-            },
-            { "$ref": "#/definitions/ProteusValue" }
-          ],
-          "description": "Array of image data to display in the carousel"
-        },
-        "title": {
-          "anyOf": [
-            { "$ref": "#/definitions/ProteusValue" },
-            { "type": "string" }
-          ],
-          "description": "Accessible label for the carousel region."
-        }
-      },
-      "required": ["$type", "images"],
       "type": "object"
     },
     "ProteusInput": {

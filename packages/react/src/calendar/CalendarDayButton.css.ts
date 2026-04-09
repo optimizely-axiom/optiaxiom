@@ -46,7 +46,7 @@ export const button = recipe({
       selectors: {
         "&:focus-visible": {
           outline: `2px solid ${theme.colors["border.focus"]}`,
-          outlineOffset: "1px",
+          outlineOffset: "2px",
           zIndex: "10",
         },
         "&[disabled]": {
@@ -79,6 +79,7 @@ export const button = recipe({
         },
       }),
       selected: [
+        {color: "fg.dark"},
         style({
           vars: {
             [bgVar]: theme.colors["bg.accent"],
@@ -92,6 +93,13 @@ export const button = recipe({
         style({
           vars: {
             [bgVar]: theme.colors["bg.page"],
+          },
+        }),
+      ],
+      today: [
+        style({
+          vars: {
+            [bgVar]: theme.colors["bg.default.pressed"],
           },
         }),
       ],
@@ -112,6 +120,7 @@ export const button = recipe({
         style({
           borderBottomRightRadius: "0",
           borderTopRightRadius: "0",
+          top: "0",
         }),
       ],
     },
@@ -127,10 +136,10 @@ export const today = recipe({
     style({
       backgroundColor: theme.colors["fg.default"],
       bottom: 2,
-      height: 6,
+      height: 5,
       insetInline: 0,
       position: "absolute",
-      width: 6,
+      width: 5,
     }),
   ],
 });

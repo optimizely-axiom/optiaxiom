@@ -26,7 +26,7 @@ export const icon = recipe({
 export const control = recipe({
   base: [
     {
-      color: "fg.default",
+      color: "fg.dark",
       display: "grid",
       rounded: "md",
       size: "sm",

@@ -15,7 +15,7 @@ const Slot = createSlot("@optiaxiom/react/Button");
 const iconSizeMap = {
   sm: "2xs",
   md: "xs",
-  lg: "sm",
+  lg: "xs",
 } as const;
 
 export type ButtonProps<
@@ -96,13 +96,13 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       if (icon && !isIconOnly) {
         if (iconPosition === "start") {
           addonBefore = (
-            <Icon asChild h={iconSizeMap[size ?? "md"]}>
+            <Icon asChild h={iconSizeMap[size ?? "sm"]}>
               {icon}
             </Icon>
           );
         } else if (iconPosition === "end") {
           addonAfter = (
-            <Icon asChild h={iconSizeMap[size ?? "md"]}>
+            <Icon asChild h={iconSizeMap[size ?? "sm"]}>
               {icon}
             </Icon>
           );
@@ -126,7 +126,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
               )}
             </ButtonLoadable>
           ) : (
-            <ButtonLabel>{children}</ButtonLabel>
+            <ButtonLabel size={size}>{children}</ButtonLabel>
           )}
 
           {addonAfter && (

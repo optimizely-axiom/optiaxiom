@@ -65,7 +65,7 @@ export const buttonBase = recipe({
         "&:is(:focus-visible, :has(:focus-visible)):not([data-disabled], [data-loading])":
           {
             outline: `2px solid ${theme.colors["border.focus"]}`,
-            outlineOffset: "1px",
+            outlineOffset: "2px",
             zIndex: "10",
           },
         "&[data-disabled]": {
@@ -316,6 +316,23 @@ export const buttonBase = recipe({
   variantsCompounded: [
     {
       style: {
+        color: "fg.dark",
+      },
+      variants: {
+        variant: ["strong"],
+      },
+    },
+    {
+      style: {
+        color: "fg.light",
+      },
+      variants: {
+        variant: ["strong"],
+        intent: "danger",
+      },
+    },
+    {
+      style: {
         w: "sm",
       },
       variants: {
@@ -390,8 +407,22 @@ export const buttonBase = recipe({
     {
       style: style({
         borderWidth: "2px",
+        color: theme.colors["fg.error"],
+        borderColor: theme.colors["border.error"],
         paddingInline: `calc(${paddingInlineVar} - 2px)`,
+
+        "@media": {
+          "(hover: hover)": {
+            selectors: {
+              '&:hover:not(:active, [data-disabled], [data-loading], [data-state="active"], [data-state="on"])':
+                {
+                  borderColor: theme.colors["border.error"],
+                },
+            },
+          },
+        },
       }),
+      
       variants: {
         intent: "danger",
         variant: "outline",
