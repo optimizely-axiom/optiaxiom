@@ -1,22 +1,16 @@
 import { createSlot } from "@radix-ui/react-slot";
 import { type ElementType, forwardRef, type ReactNode, useEffect } from "react";
 
-import { Icon } from "../icon";
 import { useSurface } from "../surface";
 import { decorateChildren, type ExtendProps, fallbackSpan } from "../utils";
 import { ButtonAddon } from "./ButtonAddon";
 import { useButtonContext } from "./ButtonContext";
+import { ButtonIcon } from "./ButtonIcon";
 import { ButtonLabel } from "./ButtonLabel";
 import { ButtonLoadable } from "./ButtonLoadable";
 import { ButtonRoot, type ButtonRootProps } from "./ButtonRoot";
 
 const Slot = createSlot("@optiaxiom/react/Button");
-
-const iconSizeMap = {
-  sm: "2xs",
-  md: "xs",
-  lg: "sm",
-} as const;
 
 export type ButtonProps<
   T extends ElementType = "button",
@@ -96,15 +90,23 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       if (icon && !isIconOnly) {
         if (iconPosition === "start") {
           addonBefore = (
-            <Icon asChild h={iconSizeMap[size ?? "md"]}>
+            <ButtonIcon
+              addon
+              inverse={props.appearance === "primary"}
+              size={size}
+            >
               {icon}
-            </Icon>
+            </ButtonIcon>
           );
         } else if (iconPosition === "end") {
           addonAfter = (
-            <Icon asChild h={iconSizeMap[size ?? "md"]}>
+            <ButtonIcon
+              addon
+              inverse={props.appearance === "primary"}
+              size={size}
+            >
               {icon}
-            </Icon>
+            </ButtonIcon>
           );
         }
       }
@@ -120,13 +122,11 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
               {children ? (
                 fallbackSpan(children)
               ) : (
-                <Icon asChild h={iconSizeMap[size ?? "md"]}>
-                  {icon}
-                </Icon>
+                <ButtonIcon size={size}>{icon}</ButtonIcon>
               )}
             </ButtonLoadable>
           ) : (
-            <ButtonLabel>{children}</ButtonLabel>
+            <ButtonLabel size={size}>{children}</ButtonLabel>
           )}
 
           {addonAfter && (

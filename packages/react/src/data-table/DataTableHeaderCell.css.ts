@@ -11,6 +11,7 @@ export const button = recipe({
       justifyContent: "flex-start",
       rounded: "md",
       textAlign: "start",
+      textTransform: "uppercase",
       transition: "colors",
       w: "full",
     },
