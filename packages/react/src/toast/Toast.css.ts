@@ -80,7 +80,7 @@ export const root = recipe({
         },
         "&:focus-visible": {
           outline: `2px solid ${theme.colors["border.focus"]}`,
-          outlineOffset: "1px",
+          outlineOffset: "2px",
         },
         '&[data-state="closed"]': {
           opacity: "0",
