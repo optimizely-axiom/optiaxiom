@@ -71,6 +71,7 @@ async function importTokens(file) {
 
   /** @type {Record<string, { light: string, dark: string; variable?: string }>} */
   const colors = {
+    "bg.accent.light": { dark: "brand.dark.800", light: "brand.200" },
     "bg.secondary.hovered": { dark: "neutral.50/18", light: "neutral.75" },
     "bg.spinner.default": { dark: "neutral.50", light: "neutral.1100" },
     "bg.spinner.inverse": { dark: "neutral.50", light: "neutral.50" },
@@ -78,7 +79,6 @@ async function importTokens(file) {
     "border.accent": { dark: "brand.300", light: "brand.500" },
     "border.success": { dark: "green.500", light: "green.500" },
     "fg.warning.inverse": { dark: "neutral.800", light: "neutral.800" },
-    "fg.white": { dark: "neutral.00", light: "neutral.00" },
   };
   /** @type {Record<string, string>} */
   const index = {};
@@ -101,7 +101,9 @@ async function importTokens(file) {
       warnings.push(token.name);
     }
   }
-  // Index dark palette values only if the normalized name exists in the light palette
+  // Index dark palette values — dark-specific entries (e.g. red.dark.200) become
+  // new palette entries; shared entries (where normalized name already exists in
+  // light palette) keep the light palette name in the index.
   for (const token of Object.values(tokens)) {
     try {
       if (
@@ -110,9 +112,12 @@ async function importTokens(file) {
         token.name.includes(" Dark/")
       ) {
         const name = normalizeColorName(token.name);
-        if (paletteNames.has(name)) {
-          index[token.value.toLowerCase()] = name;
+        if (!paletteNames.has(name)) {
+          // Dark-specific palette entry (e.g. red.dark.200)
+          colors[name] = { dark: token.value, light: token.value };
+          paletteNames.add(name);
         }
+        index[token.value.toLowerCase()] ??= name;
       }
     } catch {
       // skip
@@ -122,16 +127,21 @@ async function importTokens(file) {
     try {
       if (token.type === "color" && !token.name.startsWith("Colors/")) {
         const name = normalizeColorName(token.name);
-        const lightValue =
-          index[token.value.toLowerCase()] ??
-          findClosestColor(token.value, index);
+        const lightValue = index[token.value.toLowerCase()];
+        if (!lightValue) {
+          warnings.push(token.name);
+          continue;
+        }
         const darkToken = tokensDark[token.name];
         const darkValue = darkToken
-          ? (index[darkToken.value.toLowerCase()] ??
-            findClosestColor(darkToken.value, index))
-          : lightValue;
+          ? index[darkToken.value.toLowerCase()]
+          : undefined;
+        if (darkToken && !darkValue) {
+          warnings.push(token.name);
+          continue;
+        }
         colors[name] = {
-          dark: darkValue,
+          dark: darkValue ?? lightValue,
           light: lightValue,
           variable: token.name,
         };
@@ -227,7 +237,7 @@ const mapFigmaNameToCode = {
   "fg/accent/base": "fg.accent",
   "fg/accent/base-hover": "fg.accent.hovered",
   "fg/accent/strong": "fg.accent.strong",
-  "fg/dark": "_fg.dark",
+  "fg/dark": "fg.black",
   "fg/default": "fg.default",
   "fg/default-inverse": "fg.default.inverse",
   "fg/disabled": "fg.disabled",
@@ -246,48 +256,12 @@ const mapFigmaNameToCode = {
   "fg/feedback/warning-base": "fg.warning",
   "fg/feedback/warning-light": "fg.warning.light",
   "fg/feedback/warning-strong": "fg.warning.strong",
-  "fg/light": "_fg.light",
+  "fg/light": "fg.white",
   "fg/placeholder": "fg.tertiary",
   "fg/secondary": "fg.secondary",
   "fg/tertiary": "fg.tertiary",
-  "fg/white": "fg.white",
+  "fg/white": "_fg.white",
 };
-
-/**
- * Find the closest palette color to a given hex value.
- * @param {string} hex
- * @param {Record<string, string>} index - maps hex values to palette names
- * @returns {string}
- */
-function findClosestColor(hex, index) {
-  const [r, g, b] = hexToRgb(hex);
-  let bestName = "";
-  let bestDist = Infinity;
-  for (const [paletteHex, name] of Object.entries(index)) {
-    // Skip alpha palette entries
-    if (paletteHex.length > 7) continue;
-    const [pr, pg, pb] = hexToRgb(paletteHex);
-    const dist = (r - pr) ** 2 + (g - pg) ** 2 + (b - pb) ** 2;
-    if (dist < bestDist) {
-      bestDist = dist;
-      bestName = name;
-    }
-  }
-  return bestName;
-}
-
-/**
- * @param {string} hex
- * @returns {[number, number, number]}
- */
-function hexToRgb(hex) {
-  hex = hex.replace("#", "").slice(0, 6);
-  return [
-    parseInt(hex.slice(0, 2), 16),
-    parseInt(hex.slice(2, 4), 16),
-    parseInt(hex.slice(4, 6), 16),
-  ];
-}
 
 /**
  * Mapping from new alpha primitive names to output palette names.
@@ -328,16 +302,16 @@ function normalizeColorName(name) {
 
   if (isPalette) {
     // Strip parenthetical suffixes like "500 (LFGreen)" → "500"
-    // and "Dark" palette suffixes like "Brand Dark/500" → skip
     const parts = name.split("/");
     if (parts.length === 2) {
       let [group, stop] = parts;
-      // Skip "Dark" variant palettes — they share values with the light palette
-      if (group.includes(" Dark")) {
+      const isDark = group.includes(" Dark");
+      if (isDark) {
         group = group.replace(" Dark", "");
       }
       stop = stop.replace(/\s*\(.*\)$/, "");
-      return group.toLowerCase().replace("primary", "brand") + "." + stop;
+      const base = group.toLowerCase().replace("primary", "brand");
+      return isDark ? base + ".dark." + stop : base + "." + stop;
     }
     throw new Error("Unexpected palette format: " + name);
   } else {
