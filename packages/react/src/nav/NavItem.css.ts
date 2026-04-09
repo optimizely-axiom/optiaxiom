@@ -38,7 +38,7 @@ export const item = recipe({
       selectors: {
         "&:focus-visible:not([data-disabled])": {
           outline: `2px solid ${theme.colors["border.focus"]}`,
-          outlineOffset: "1px",
+          outlineOffset: "2px",
           zIndex: "10",
         },
         "&[data-disabled]": {
@@ -50,7 +50,7 @@ export const item = recipe({
           color: theme.colors["fg.default"],
         },
         "&[data-state=active]": {
-          backgroundColor: theme.colors["bg.tertiary"],
+          backgroundColor: theme.colors["bg.default.pressed"],
         },
       },
     }),
