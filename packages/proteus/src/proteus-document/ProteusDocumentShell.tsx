@@ -23,7 +23,10 @@ import type { ProteusEventHandler } from "./schemas";
 
 import { useEffectEvent } from "../hooks";
 import { downloadFile } from "../proteus-image/downloadFile";
-import { ProteusDocumentProvider } from "./ProteusDocumentContext";
+import {
+  ProteusDocumentProvider,
+  type UseResource,
+} from "./ProteusDocumentContext";
 import * as styles from "./ProteusDocumentShell.css";
 
 export type ProteusDocumentShellProps = Pick<
@@ -68,6 +71,10 @@ export type ProteusDocumentShellProps = Pick<
    * If true, the renderer will throw an error if the provided document is invalid. Otherwise, it will fail silently and render nothing.
    */
   strict?: boolean;
+  /**
+   * Hook to resolve a resource URI to HTML content for Bridge elements
+   */
+  useResource?: UseResource;
 };
 
 type ProteusDocument = {
@@ -95,6 +102,7 @@ export function ProteusDocumentShell({
   open: openProp,
   readOnly = false,
   strict,
+  useResource,
 }: ProteusDocumentShellProps) {
   const [valid, setValid] = useState(false);
   const formRef = useRef<HTMLFormElement | null>(null);
@@ -171,6 +179,7 @@ export function ProteusDocumentShell({
       })}
       readOnly={readOnly}
       strict={strict}
+      useResource={useResource}
       valid={valid}
     >
       <Disclosure
