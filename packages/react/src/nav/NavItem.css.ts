@@ -50,7 +50,7 @@ export const item = recipe({
           color: theme.colors["fg.default"],
         },
         "&[data-state=active]": {
-          backgroundColor: theme.colors["bg.tertiary"],
+          backgroundColor: theme.colors["bg.default.pressed"],
         },
       },
     }),
