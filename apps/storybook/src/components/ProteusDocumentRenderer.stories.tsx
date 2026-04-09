@@ -5,6 +5,36 @@ import { Box } from "@optiaxiom/react";
 import { useState } from "react";
 import { action } from "storybook/actions";
 
+const sampleHtml = `
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 0; padding: 16px; }
+    h1 { font-size: 18px; color: #1a1a1a; }
+    p { color: #666; }
+    button { padding: 8px 16px; background: #0037FF; color: white; border: none; border-radius: 6px; cursor: pointer; }
+    button:hover { background: #0029cc; }
+  </style>
+</head>
+<body>
+  <h1>MCP App Bridge Widget</h1>
+  <p>This is an interactive UI rendered inside a sandboxed iframe via the Bridge component.</p>
+  <button onclick="document.getElementById('output').textContent = 'Button clicked at ' + new Date().toLocaleTimeString()">Click me</button>
+  <p id="output"></p>
+</body>
+</html>
+`;
+
+const mockResources: Record<string, { html: string; mimeType: string }> = {
+  "ui://sample-widget": { html: sampleHtml, mimeType: "text/html" },
+};
+
+const useResource = (resource: string) => ({
+  data: mockResources[resource] ?? { html: "", mimeType: "text/html" },
+  isLoading: false,
+});
+
 export default {
   args: {
     onInteraction: action("onInteraction"),
@@ -1079,6 +1109,28 @@ export const ExploreResources: Story = {
         " results found",
       ],
     },
+  },
+};
+
+export const WithBridge: Story = {
+  args: {
+    element: {
+      $type: "Document",
+      appName: "MCP App",
+      body: [
+        {
+          $type: "Text",
+          children: "Embedded MCP app widget:",
+        },
+        {
+          $type: "Bridge",
+          height: 200,
+          resource: "ui://sample-widget",
+        },
+      ],
+      title: "Bridge Component",
+    },
+    useResource,
   },
 };
 
