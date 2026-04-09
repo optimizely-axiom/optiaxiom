@@ -1,5 +1,7 @@
 import { type ComponentPropsWithoutRef } from "react";
 
+import type { UseResource } from "./ProteusDocumentContext";
+
 import { ProteusElement } from "../proteus-element";
 import { ProteusDocumentShell } from "./ProteusDocumentShell";
 import { safeParseDocument } from "./schemas";
@@ -16,6 +18,10 @@ export type ProteusDocumentRendererProps = Omit<
    * If true, the renderer will throw an error if the provided document is invalid. Otherwise, it will fail silently and render nothing.
    */
   strict?: boolean;
+  /**
+   * Hook to resolve a resource URI to HTML content for Bridge elements
+   */
+  useResource?: UseResource;
 };
 
 type ProteusDocument = {
@@ -33,6 +39,7 @@ type ProteusDocument = {
 export function ProteusDocumentRenderer({
   element: elementProp,
   strict = false,
+  useResource,
   ...props
 }: ProteusDocumentRendererProps) {
   const result = safeParseDocument(elementProp);
@@ -61,6 +68,7 @@ export function ProteusDocumentRenderer({
         ),
       }}
       strict={strict}
+      useResource={useResource}
       {...props}
     />
   );
