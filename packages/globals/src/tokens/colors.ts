@@ -117,6 +117,9 @@ const palette = {
   "yellow.700": "#B54707" as const,
   "yellow.800": "#7A2E0D" as const,
   "yellow.900": "#4E1D09" as const,
+
+  "alpha.50": "#5f931f14" as const,
+  "alpha.200": "#5e8b2729" as const,
 } as const;
 
 const ld = <A extends string, B extends string>(a: A, b: B) =>
@@ -131,7 +134,7 @@ export const colors = {
   "bg.avatar.neutral": ld(palette["neutral.75"], palette["neutral.1100"]),
   "bg.avatar.purple": ld(palette["purple.100"], palette["purple.500"]),
   "bg.default": ld(palette["neutral.00"], palette["neutral.1000"]),
-  "bg.default.hovered": ld(palette["neutral.1200/4"], palette["neutral.50/6"]),
+  "bg.default.hovered": ld(palette["alpha.50"], palette["neutral.50/6"]),
   "bg.default.inverse": ld(palette["neutral.1050"], palette["neutral.25"]),
   "bg.default.inverse.hovered": ld(
     palette["neutral.900"],
@@ -141,10 +144,7 @@ export const colors = {
     palette["neutral.1000"],
     palette["neutral.200"],
   ),
-  "bg.default.pressed": ld(
-    palette["neutral.1200/16"],
-    palette["neutral.50/18"],
-  ),
+  "bg.default.pressed": ld(palette["alpha.200"], palette["neutral.50/18"]),
   "bg.error": ld(palette["red.500"], palette["red.500"]),
   "bg.error.hovered": ld(palette["red.600"], palette["red.500"]),
   "bg.error.light": ld(palette["red.200"], palette["red.700"]),
@@ -157,7 +157,7 @@ export const colors = {
   "bg.overlay": ld(palette["neutral.1200/32"], palette["neutral.1200/32"]),
   "bg.page": ld(palette["neutral.25"], palette["neutral.1050"]),
   "bg.secondary": ld(palette["neutral.75"], palette["neutral.1100"]),
-  "bg.secondary.hovered": ld(palette["neutral.75"], palette["neutral.50/18"]),
+  "bg.secondary.hovered": ld(palette["alpha.50"], palette["neutral.50/18"]),
   "bg.spinner.default": ld(palette["neutral.1100"], palette["neutral.50"]),
   "bg.spinner.inverse": ld(palette["neutral.50"], palette["neutral.50"]),
   "bg.success": ld(palette["brand.500"], palette["brand.500"]),
