@@ -2,6 +2,7 @@ import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import { Box } from "../box";
 import { DisclosureTrigger } from "../disclosure";
+import { Text } from "../text";
 import { useNavGroupContext } from "./NavGroupContext";
 
 export type NavGroupTriggerProps = ComponentPropsWithoutRef<
@@ -32,13 +33,16 @@ export const NavGroupTrigger = forwardRef<HTMLDivElement, NavGroupTriggerProps>(
         w="auto"
         {...props}
       >
-        {children}
+        <Text fontFamily="mono" textTransform="uppercase">
+          {children}
+        </Text>
       </DisclosureTrigger>
     ) : (
       <Box
         alignItems="center"
         color="fg.tertiary"
         display="flex"
+        fontFamily="mono"
         fontSize="sm"
         h="sm"
         id={id}
@@ -47,6 +51,7 @@ export const NavGroupTrigger = forwardRef<HTMLDivElement, NavGroupTriggerProps>(
         p="0"
         px="12"
         ref={ref}
+        textTransform="uppercase"
         w="auto"
       >
         {children}
