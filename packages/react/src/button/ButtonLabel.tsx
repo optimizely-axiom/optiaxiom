@@ -11,7 +11,7 @@ export type ButtonLabelProps = BoxProps<"div"> & {
 const labelMarginMap = {
   sm: "4",
   md: "6",
-  lg: "8",
+  lg: "6",
 } as const;
 
 export const ButtonLabel = forwardRef<HTMLDivElement, ButtonLabelProps>(

@@ -36,7 +36,7 @@ export const NavGroupTrigger = forwardRef<HTMLDivElement, NavGroupTriggerProps>(
         <Text
           textTransform="uppercase" 
           fontFamily="mono"
-          style={{letterSpacing: "0.03em"}}>{children}</Text>
+          >{children}</Text>
       </DisclosureTrigger>
     ) : (
       <Box
@@ -54,7 +54,6 @@ export const NavGroupTrigger = forwardRef<HTMLDivElement, NavGroupTriggerProps>(
         px="12"
         ref={ref}
         w="auto"
-        style={{letterSpacing: "0.03em"}}
       >
         {children}
       </Box>

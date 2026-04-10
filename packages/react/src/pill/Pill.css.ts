@@ -18,7 +18,6 @@ export const pill = recipe({
       whiteSpace: "nowrap",
     },
     style({
-      letterSpacing: "0.03em",
       backgroundColor: theme.colors["bg.tertiary"],
       position: "relative",
       userSelect: "none",

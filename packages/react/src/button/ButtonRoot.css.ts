@@ -343,7 +343,7 @@ export const buttonBase = recipe({
     {
       style: style({
         vars: {
-          [paddingInlineVar]: "4px",
+          [paddingInlineVar]: "6px",
         },
       }),
       variants: {
@@ -355,7 +355,7 @@ export const buttonBase = recipe({
     {
       style: style({
         vars: {
-          [paddingInlineVar]: "4px",
+          [paddingInlineVar]: "6px",
         },
       }),
       variants: {
@@ -376,7 +376,7 @@ export const buttonBase = recipe({
     {
       style: style({
         vars: {
-          [paddingInlineVar]: "6px",
+          [paddingInlineVar]: "8px",
         },
       }),
       variants: {

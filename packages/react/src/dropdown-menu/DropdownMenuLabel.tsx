@@ -13,7 +13,7 @@ export const DropdownMenuLabel = forwardRef<
   DropdownMenuLabelProps
 >(({ children, ...props }, ref) => {
   return (
-    <Box asChild color="fg.tertiary" fontSize="sm" p="8" ref={ref} {...props}>
+    <Box asChild color="fg.tertiary" fontFamily="mono" textTransform="uppercase" fontSize="sm" p="8" ref={ref} {...props}>
       <RadixMenu.Label>{children}</RadixMenu.Label>
     </Box>
   );
