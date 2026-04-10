@@ -15,7 +15,6 @@ export const SubNav = forwardRef<HTMLDivElement, SubNavProps>(
     return (
       <Group
         borderColor="border.tertiary"
-        borderR="1"
         flexDirection="column"
         gap="16"
         h="full"
