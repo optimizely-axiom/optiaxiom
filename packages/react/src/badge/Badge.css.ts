@@ -18,7 +18,9 @@ export const badge = recipe({
       display: "inline-flex",
       flex: "none",
       fontSize: "sm",
-      fontWeight: "500",
+      fontWeight: "400",
+      fontFamily: "mono",
+      textTransform: "uppercase",
       justifyContent: "center",
       px: "6",
       py: "2",
@@ -67,10 +69,10 @@ export const badge = recipe({
       }),
       primary: style({
         vars: {
-          [solidBackgroundColorVar]: theme.colors["bg.accent"],
-          [solidColorVar]: theme.colors["fg.default"],
-          [subtleBackgroundColorVar]: theme.colors["bg.accent.subtle"],
-          [subtleColorVar]: theme.colors["fg.accent.strong"],
+          [solidBackgroundColorVar]: theme.colors["bg.default.inverse"],
+          [solidColorVar]: theme.colors["fg.default.inverse"],
+          [subtleBackgroundColorVar]: theme.colors["bg.default.inverse"],
+          [subtleColorVar]: theme.colors["fg.default.inverse"],
         },
       }),
       success: style({

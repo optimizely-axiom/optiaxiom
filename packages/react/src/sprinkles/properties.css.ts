@@ -190,7 +190,7 @@ export const unresponsiveProps = defineProperties({
     /**
      * Set the element's `font-weight` CSS property
      */
-    fontWeight: ["400", "500", "600", "700", "inherit"] as const,
+    fontWeight: ["400", "500", "600", "700", "900", "inherit"] as const,
     marginBottom: margins,
     marginLeft: margins,
     marginRight: margins,

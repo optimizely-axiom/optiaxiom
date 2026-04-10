@@ -8,6 +8,9 @@ export const content = recipe({
       overflow: "auto",
       px: "32",
       py: "24",
+      m: "8",
+      rounded: "xl",
+      bg: "bg.page"
     },
     style({
       selectors: {

@@ -9,7 +9,7 @@ export const control = recipe({
       selectors: {
         [`${styles.className}:has(:focus-visible) &`]: {
           outline: `2px solid ${theme.colors["border.focus"]}`,
-          outlineOffset: "1px",
+          outlineOffset: "2px",
         },
 
         [`${styles.className}:has(input:disabled) &`]: {

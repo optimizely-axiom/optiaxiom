@@ -21,19 +21,19 @@ export const banner = recipe({
      */
     intent: {
       danger: {
-        bg: "bg.error.light",
+        bg: "bg.error.subtle",
       },
       information: {
-        bg: "bg.information.light",
+        bg: "bg.information.subtle",
       },
       neutral: {
         bg: "bg.tertiary",
       },
       success: {
-        bg: "bg.success.light",
+        bg: "bg.success.subtle",
       },
       warning: {
-        bg: "bg.warning.light",
+        bg: "bg.warning.subtle",
       },
     },
   },

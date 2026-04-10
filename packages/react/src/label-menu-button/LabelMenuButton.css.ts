@@ -39,11 +39,13 @@ export const content = recipe({
 export const label = recipe({
   base: [
     {
-      color: "fg.secondary",
+      color: "fg.tertiary",
+      fontWeight: "400",
       cursor: "pointer",
       fontFamily: "mono",
       maxW: "full",
       transition: "all",
+      textTransform: "uppercase",
     },
   ],
 

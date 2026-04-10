@@ -12,10 +12,15 @@ import {
   NavAccountItem,
   NavBody,
   NavFooter,
+  NavGroup,
+  NavGroupContent,
+  NavGroupTrigger,
   NavItem,
   NavList,
+  NavSeparator,
   Sidebar,
   SidebarToggle,
+  SubNav,
   Text,
 } from "@optiaxiom/react";
 import {
@@ -99,16 +104,17 @@ const SidebarExample = () => (
 );
 
 const HeaderExample = () => (
-  <Box bg="bg.default.inverse" color="fg.default.inverse" p="16">
+  <Box bg="bg.default" color="fg.default" borderB="1" p="16">
     <Heading level="4">Header</Heading>
   </Box>
 );
 
 const ContentExample = (props: BoxProps) => (
   <LayoutContent display="flex" flexDirection="column" gap="16" {...props}>
-    <Heading level="3">Main Content</Heading>
+    <Heading level="1" >Main Content</Heading>
     {[1, 2, 3].map((item) => (
       <Fragment key={item}>
+        <Heading level="2">Section {item}</Heading>
         <Text>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed rhoncus
           tincidunt massa, quis euismod diam fringilla eu. Mauris lobortis
@@ -121,6 +127,7 @@ const ContentExample = (props: BoxProps) => (
           Etiam sed erat eu libero mollis tempor. Praesent scelerisque mi eu
           enim lobortis venenatis ut sed ligula.
         </Text>
+        <Heading level="3">Subsection</Heading>
         <Text>
           Praesent dolor dui, finibus id libero tincidunt, aliquam vehicula
           lectus. Duis tempor et nunc eu scelerisque. Sed luctus at nibh sed
@@ -134,6 +141,7 @@ const ContentExample = (props: BoxProps) => (
           faucibus sodales, sodales vitae ligula. Praesent non orci id sapien
           malesuada rhoncus et id ante.
         </Text>
+        <Heading level="4">Subsection</Heading>
         <Text>
           In semper aliquam lectus, non pulvinar lectus dapibus in. Quisque
           tellus massa, sodales sed porttitor sed, luctus tincidunt ipsum.
@@ -291,5 +299,112 @@ export const Nested: Story = {
     ),
     header: <HeaderExample />,
     sidebar: <SidebarExample />,
+  },
+};
+
+const SidebarWithSubnavExample = () => (
+  <Sidebar>
+    <Nav>
+      <NavBody>
+        <NavList>
+          <NavItem icon={<IconBinaryTree />}>Projects</NavItem>
+          <NavItem active icon={<IconFlag2 />}>
+            Flags
+          </NavItem>
+          <NavItem icon={<IconChartInfographic />}>Idea Lab</NavItem>
+          <NavItem icon={<IconUsers />}>Audiences</NavItem>
+          <NavItem icon={<IconHistory />}>History</NavItem>
+          <NavItem icon={<IconChartLine />}>Events</NavItem>
+          <NavItem icon={<IconSettings />}>Settings</NavItem>
+          <NavItem
+            addonAfter={<IconExternalLink size="16" />}
+            asChild
+            icon={<IconVocabulary />}
+          >
+            Tutorial
+          </NavItem>
+        </NavList>
+      </NavBody>
+
+      <NavFooter>
+        <NavList>
+          <SidebarToggle icon={<IconLayoutSidebar />} />
+          <Menu
+            options={[
+              { label: "View Profile" },
+              { label: "Settings" },
+              { label: "Logout" },
+            ]}
+          >
+            <MenuTrigger asChild>
+              <NavAccountItem
+                name="Rhaenyra Targaryen"
+                organization="Optimizely"
+                src="https://i.pravatar.cc/150?img=10"
+              />
+            </MenuTrigger>
+            <MenuContent align="end" side="right" />
+          </Menu>
+        </NavList>
+      </NavFooter>
+    </Nav>
+
+    <SubNav>
+      <NavBody>
+        <NavList>
+          <NavGroup collapsible>
+            <NavGroupTrigger>Group 1</NavGroupTrigger>
+            <NavGroupContent>
+              <NavItem>Item 1</NavItem>
+              <NavItem>Item 2</NavItem>
+              <NavItem>Item 3</NavItem>
+              <NavItem>Item 4</NavItem>
+              <NavItem>Item 5</NavItem>
+            </NavGroupContent>
+          </NavGroup>
+
+          <NavGroup collapsible>
+            <NavGroupTrigger>Group 2</NavGroupTrigger>
+            <NavGroupContent>
+              <NavItem>Item 6</NavItem>
+              <NavItem>Item 7</NavItem>
+              <NavItem>Item 8</NavItem>
+              <NavItem>Item 9</NavItem>
+              <NavItem>Item 10</NavItem>
+            </NavGroupContent>
+          </NavGroup>
+
+          <NavGroup collapsible>
+            <NavGroupTrigger>Group 3</NavGroupTrigger>
+            <NavGroupContent>
+              <NavItem>Item 11</NavItem>
+              <NavItem>Item 12</NavItem>
+              <NavItem>Item 13</NavItem>
+              <NavItem>Item 14</NavItem>
+              <NavItem>Item 15</NavItem>
+            </NavGroupContent>
+          </NavGroup>
+
+          <NavGroup collapsible>
+            <NavGroupTrigger>Group 4</NavGroupTrigger>
+            <NavGroupContent>
+              <NavItem>Item 16</NavItem>
+              <NavItem>Item 17</NavItem>
+              <NavItem>Item 18</NavItem>
+              <NavItem>Item 19</NavItem>
+              <NavItem>Item 20</NavItem>
+            </NavGroupContent>
+          </NavGroup>
+        </NavList>
+      </NavBody>
+    </SubNav>
+  </Sidebar>
+);
+
+export const WithSubnav: Story = {
+  args: {
+    children: <ContentExample />,
+    header: <HeaderExample />,
+    sidebar: <SidebarWithSubnavExample />,
   },
 };

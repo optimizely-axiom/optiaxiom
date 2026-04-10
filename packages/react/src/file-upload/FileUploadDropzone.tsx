@@ -99,7 +99,7 @@ export const FileUploadDropzone = forwardRef<
             <IconFileImport />
           </Icon>
           <Text>{label}</Text>
-          {description && <Text color="fg.secondary">{description}</Text>}
+          {description && <Text color="fg.tertiary">{description}</Text>}
         </Group>
         {!overlay && (children ?? <FileUploadTrigger />)}
       </Group>

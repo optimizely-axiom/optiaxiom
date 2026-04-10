@@ -12,6 +12,8 @@ export const pill = recipe({
       gap: "4",
       px: "6",
       rounded: "md",
+      fontFamily: "mono",
+      textTransform: "uppercase",
       transition: "colors",
       whiteSpace: "nowrap",
     },
@@ -23,7 +25,7 @@ export const pill = recipe({
       selectors: {
         "&:focus-visible": {
           outline: `2px solid ${theme.colors["border.focus"]}`,
-          outlineOffset: "1px",
+          outlineOffset: "2px",
         },
 
         "&[data-disabled]": {

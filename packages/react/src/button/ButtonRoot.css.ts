@@ -65,7 +65,7 @@ export const buttonBase = recipe({
         "&:is(:focus-visible, :has(:focus-visible)):not([data-disabled], [data-loading])":
           {
             outline: `2px solid ${theme.colors["border.focus"]}`,
-            outlineOffset: "1px",
+            outlineOffset: "2px",
             zIndex: "10",
           },
         "&[data-disabled]": {
@@ -93,10 +93,10 @@ export const buttonBase = recipe({
           [hoverAccentColorVar]: theme.colors["bg.default.inverse.hovered"],
           [pressedAccentColorVar]: theme.colors["bg.default.inverse.pressed"],
           [solidTextColorVar]: theme.colors["fg.default.inverse"],
-          [subtleHoverAccentColorVar]: theme.colors["bg.page"],
+          [subtleHoverAccentColorVar]: theme.colors["bg.default.hovered"],
           [subtleHoverOutlineColorVar]: theme.colors["border.default"],
           [subtleOutlineColorVar]: theme.colors["border.default"],
-          [subtlePressedAccentColorVar]: theme.colors["bg.secondary"],
+          [subtlePressedAccentColorVar]: theme.colors["bg.default.pressed"],
           [textColorVar]: theme.colors["fg.default"],
           [transparentHoverAccentColorVar]: theme.colors["bg.default.hovered"],
           [transparentPressedAccentColorVar]:
@@ -304,7 +304,7 @@ export const buttonBase = recipe({
             },
 
           '&:is([data-state="active"], [data-state="on"])': {
-            backgroundColor: theme.colors["bg.tertiary"],
+            backgroundColor: theme.colors["bg.default.pressed"],
           },
           "&[data-disabled]:not([data-loading])": {
             color: theme.colors["fg.disabled"],
@@ -314,6 +314,33 @@ export const buttonBase = recipe({
     },
   },
   variantsCompounded: [
+    {
+      style: {
+        color: "fg.dark",
+      },
+      variants: {
+        variant: ["strong"],
+      },
+    },
+    {
+      style: {
+        rounded: "lg",
+        pl: "6",
+      },
+      variants: {
+        variant: ["strong"],
+        size: "lg",
+      },
+    },
+    {
+      style: {
+        color: "fg.light",
+      },
+      variants: {
+        variant: ["strong"],
+        intent: "danger",
+      },
+    },
     {
       style: {
         w: "sm",
@@ -326,7 +353,7 @@ export const buttonBase = recipe({
     {
       style: style({
         vars: {
-          [paddingInlineVar]: "4px",
+          [paddingInlineVar]: "6px",
         },
       }),
       variants: {
@@ -338,7 +365,7 @@ export const buttonBase = recipe({
     {
       style: style({
         vars: {
-          [paddingInlineVar]: "4px",
+          [paddingInlineVar]: "6px",
         },
       }),
       variants: {
@@ -359,7 +386,7 @@ export const buttonBase = recipe({
     {
       style: style({
         vars: {
-          [paddingInlineVar]: "6px",
+          [paddingInlineVar]: "8px",
         },
       }),
       variants: {
@@ -385,6 +412,30 @@ export const buttonBase = recipe({
       variants: {
         size: "lg",
         square: false,
+      },
+    },
+    {
+      style: style({
+        borderWidth: "2px",
+        color: theme.colors["fg.error"],
+        borderColor: theme.colors["border.error"],
+        paddingInline: `calc(${paddingInlineVar} - 2px)`,
+
+        "@media": {
+          "(hover: hover)": {
+            selectors: {
+              '&:hover:not(:active, [data-disabled], [data-loading], [data-state="active"], [data-state="on"])':
+                {
+                  borderColor: theme.colors["border.error"],
+                },
+            },
+          },
+        },
+      }),
+      
+      variants: {
+        intent: "danger",
+        variant: "outline",
       },
     },
   ],

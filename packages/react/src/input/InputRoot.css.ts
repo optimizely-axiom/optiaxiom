@@ -35,11 +35,11 @@ export const root = recipe({
         },
         [`&:has(${marker}:focus:is([data-invalid]))`]: {
           outline: `2px solid ${theme.colors["border.focus.error"]}`,
-          outlineOffset: "1px",
+          outlineOffset: "2px",
         },
         [`&:has(${marker}:focus:not([data-invalid]))`]: {
           outline: `2px solid ${theme.colors["border.focus"]}`,
-          outlineOffset: "1px",
+          outlineOffset: "2px",
         },
         [`&:has(${marker}:focus:not([data-invalid]):not([data-readonly]))`]: {
           borderColor: theme.colors["border.control"],
