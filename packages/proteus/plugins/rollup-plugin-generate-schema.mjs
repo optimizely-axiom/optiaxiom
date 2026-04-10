@@ -163,6 +163,11 @@ const PROTEUS_COMPONENT_CONFIG = {
     extends: "Fragment",
     requiredProps: ["path"],
   },
+  MapIndex: {
+    allowedProps: [],
+    example: {},
+    extends: "Fragment",
+  },
   Question: {
     allowedProps: ["questions"],
     extends: "Fragment",
@@ -398,212 +403,97 @@ function generateSpec(additionalProperties = false) {
             schema,
           ]),
         ),
-        ProteusCondition: {
-          anyOf: [
-            {
-              ...(additionalProperties ? {} : { additionalProperties: false }),
-              properties: {
-                "!=": {
-                  description: "Inequality comparison",
-                  items: {
-                    anyOf: [
-                      { type: "string" },
-                      { type: "number" },
-                      { type: "boolean" },
-                      { type: "null" },
-                      { $ref: "#/definitions/ProteusValue" },
-                    ],
+        ProteusCondition: (() => {
+          const comparisonValueTypes = [
+            { type: "string" },
+            { type: "number" },
+            { type: "boolean" },
+            { type: "null" },
+            { $ref: "#/definitions/ProteusMapIndex" },
+            { $ref: "#/definitions/ProteusValue" },
+          ];
+          const binaryOp = (op, description) => ({
+            ...(additionalProperties ? {} : { additionalProperties: false }),
+            properties: {
+              [op]: {
+                description,
+                items: { anyOf: comparisonValueTypes },
+                maxItems: 2,
+                minItems: 2,
+                type: "array",
+              },
+            },
+            required: [op],
+            type: "object",
+          });
+          const unaryOp = (op, description) => ({
+            ...(additionalProperties ? {} : { additionalProperties: false }),
+            properties: {
+              [op]: {
+                anyOf: comparisonValueTypes,
+                description,
+              },
+            },
+            required: [op],
+            type: "object",
+          });
+          return {
+            anyOf: [
+              binaryOp("!=", "Inequality comparison"),
+              binaryOp("<", "Less than comparison"),
+              binaryOp("<=", "Less than or equal comparison"),
+              binaryOp("==", "Equality comparison"),
+              binaryOp(">", "Greater than comparison"),
+              binaryOp(">=", "Greater than or equal comparison"),
+              unaryOp(
+                "!!",
+                "Truthy check - returns true if value is truthy (not null, undefined, false, 0, or empty string)",
+              ),
+              unaryOp(
+                "!",
+                "Falsy check - returns true if value is falsy (null, undefined, false, 0, or empty string)",
+              ),
+              {
+                ...(additionalProperties
+                  ? {}
+                  : { additionalProperties: false }),
+                properties: {
+                  and: {
+                    description:
+                      "Logical AND - returns true if all conditions are true",
+                    items: {
+                      $ref: "#/definitions/ProteusCondition",
+                    },
+                    minItems: 1,
+                    type: "array",
                   },
-                  maxItems: 2,
-                  minItems: 2,
-                  type: "array",
                 },
+                required: ["and"],
+                type: "object",
               },
-              required: ["!="],
-              type: "object",
-            },
-            {
-              ...(additionalProperties ? {} : { additionalProperties: false }),
-              properties: {
-                "<": {
-                  description: "Less than comparison",
-                  items: {
-                    anyOf: [
-                      { type: "string" },
-                      { type: "number" },
-                      { type: "boolean" },
-                      { type: "null" },
-                      { $ref: "#/definitions/ProteusValue" },
-                    ],
+              {
+                ...(additionalProperties
+                  ? {}
+                  : { additionalProperties: false }),
+                properties: {
+                  or: {
+                    description:
+                      "Logical OR - returns true if any condition is true",
+                    items: {
+                      anyOf: [{ $ref: "#/definitions/ProteusCondition" }],
+                    },
+                    minItems: 1,
+                    type: "array",
                   },
-                  maxItems: 2,
-                  minItems: 2,
-                  type: "array",
                 },
+                required: ["or"],
+                type: "object",
               },
-              required: ["<"],
-              type: "object",
-            },
-            {
-              ...(additionalProperties ? {} : { additionalProperties: false }),
-              properties: {
-                "<=": {
-                  description: "Less than or equal comparison",
-                  items: {
-                    anyOf: [
-                      { type: "string" },
-                      { type: "number" },
-                      { type: "boolean" },
-                      { type: "null" },
-                      { $ref: "#/definitions/ProteusValue" },
-                    ],
-                  },
-                  maxItems: 2,
-                  minItems: 2,
-                  type: "array",
-                },
-              },
-              required: ["<="],
-              type: "object",
-            },
-            {
-              ...(additionalProperties ? {} : { additionalProperties: false }),
-              properties: {
-                "==": {
-                  description: "Equality comparison",
-                  items: {
-                    anyOf: [
-                      { type: "string" },
-                      { type: "number" },
-                      { type: "boolean" },
-                      { type: "null" },
-                      { $ref: "#/definitions/ProteusValue" },
-                    ],
-                  },
-                  maxItems: 2,
-                  minItems: 2,
-                  type: "array",
-                },
-              },
-              required: ["=="],
-              type: "object",
-            },
-            {
-              ...(additionalProperties ? {} : { additionalProperties: false }),
-              properties: {
-                ">": {
-                  description: "Greater than comparison",
-                  items: {
-                    anyOf: [
-                      { type: "string" },
-                      { type: "number" },
-                      { type: "boolean" },
-                      { type: "null" },
-                      { $ref: "#/definitions/ProteusValue" },
-                    ],
-                  },
-                  maxItems: 2,
-                  minItems: 2,
-                  type: "array",
-                },
-              },
-              required: [">"],
-              type: "object",
-            },
-            {
-              ...(additionalProperties ? {} : { additionalProperties: false }),
-              properties: {
-                ">=": {
-                  description: "Greater than or equal comparison",
-                  items: {
-                    anyOf: [
-                      { type: "string" },
-                      { type: "number" },
-                      { type: "boolean" },
-                      { type: "null" },
-                      { $ref: "#/definitions/ProteusValue" },
-                    ],
-                  },
-                  maxItems: 2,
-                  minItems: 2,
-                  type: "array",
-                },
-              },
-              required: [">="],
-              type: "object",
-            },
-            {
-              ...(additionalProperties ? {} : { additionalProperties: false }),
-              properties: {
-                "!!": {
-                  anyOf: [
-                    { type: "string" },
-                    { type: "number" },
-                    { type: "boolean" },
-                    { type: "null" },
-                    { $ref: "#/definitions/ProteusValue" },
-                  ],
-                  description:
-                    "Truthy check - returns true if value is truthy (not null, undefined, false, 0, or empty string)",
-                },
-              },
-              required: ["!!"],
-              type: "object",
-            },
-            {
-              ...(additionalProperties ? {} : { additionalProperties: false }),
-              properties: {
-                "!": {
-                  anyOf: [
-                    { type: "string" },
-                    { type: "number" },
-                    { type: "boolean" },
-                    { type: "null" },
-                    { $ref: "#/definitions/ProteusValue" },
-                  ],
-                  description:
-                    "Falsy check - returns true if value is falsy (null, undefined, false, 0, or empty string)",
-                },
-              },
-              required: ["!"],
-              type: "object",
-            },
-            {
-              ...(additionalProperties ? {} : { additionalProperties: false }),
-              properties: {
-                and: {
-                  description:
-                    "Logical AND - returns true if all conditions are true",
-                  items: {
-                    $ref: "#/definitions/ProteusCondition",
-                  },
-                  minItems: 1,
-                  type: "array",
-                },
-              },
-              required: ["and"],
-              type: "object",
-            },
-            {
-              ...(additionalProperties ? {} : { additionalProperties: false }),
-              properties: {
-                or: {
-                  description:
-                    "Logical OR - returns true if any condition is true",
-                  items: {
-                    anyOf: [{ $ref: "#/definitions/ProteusCondition" }],
-                  },
-                  minItems: 1,
-                  type: "array",
-                },
-              },
-              required: ["or"],
-              type: "object",
-            },
-          ],
-          description:
-            "Condition for Show component. Can be a comparison operator, logical AND, or logical OR. Supports nesting.",
-        },
+            ],
+            description:
+              "Condition for Show component. Can be a comparison operator, logical AND, or logical OR. Supports nesting.",
+          };
+        })(),
         ProteusDocument: {
           ...(additionalProperties ? {} : { additionalProperties: false }),
           examples: [
@@ -803,6 +693,7 @@ function generateSpec(additionalProperties = false) {
                 message: {
                   anyOf: [
                     { $ref: "#/definitions/ProteusMap" },
+                    { $ref: "#/definitions/ProteusShow" },
                     { $ref: "#/definitions/ProteusValue" },
                     { type: "string" },
                   ],
@@ -826,6 +717,7 @@ function generateSpec(additionalProperties = false) {
                 url: {
                   anyOf: [
                     { $ref: "#/definitions/ProteusMap" },
+                    { $ref: "#/definitions/ProteusShow" },
                     { $ref: "#/definitions/ProteusValue" },
                     { type: "string" },
                   ],
@@ -885,6 +777,7 @@ function generateSpec(additionalProperties = false) {
               patternProperties: {
                 ".*": {
                   anyOf: [
+                    { $ref: "#/definitions/ProteusShow" },
                     { $ref: "#/definitions/ProteusValue" },
                     { items: {}, type: "array" },
                   ],
@@ -927,6 +820,7 @@ function getPropTypeOverrides(additionalProperties = false) {
             items: { type: "object" },
             type: "array",
           },
+          { $ref: "#/definitions/ProteusShow" },
           { $ref: "#/definitions/ProteusValue" },
           { $ref: "#/definitions/ProteusZip" },
         ],
@@ -1021,6 +915,7 @@ function getPropTypeOverrides(additionalProperties = false) {
             items: { type: "object" },
             type: "array",
           },
+          { $ref: "#/definitions/ProteusShow" },
           { $ref: "#/definitions/ProteusValue" },
           { $ref: "#/definitions/ProteusZip" },
         ],
@@ -1028,17 +923,29 @@ function getPropTypeOverrides(additionalProperties = false) {
     },
     Image: {
       alt: {
-        anyOf: [{ $ref: "#/definitions/ProteusValue" }, { type: "string" }],
+        anyOf: [
+          { $ref: "#/definitions/ProteusShow" },
+          { $ref: "#/definitions/ProteusValue" },
+          { type: "string" },
+        ],
         description: "Alternative text for the image",
       },
       src: {
-        anyOf: [{ $ref: "#/definitions/ProteusValue" }, { type: "string" }],
+        anyOf: [
+          { $ref: "#/definitions/ProteusShow" },
+          { $ref: "#/definitions/ProteusValue" },
+          { type: "string" },
+        ],
         description: "The image source URL",
       },
     },
     ImageCarousel: {
       downloadAll: {
-        anyOf: [{ $ref: "#/definitions/ProteusValue" }, { type: "string" }],
+        anyOf: [
+          { $ref: "#/definitions/ProteusShow" },
+          { $ref: "#/definitions/ProteusValue" },
+          { type: "string" },
+        ],
         description:
           "URL to download all images (e.g. as a zip file). Falls back to downloading each image individually.",
       },
@@ -1068,12 +975,17 @@ function getPropTypeOverrides(additionalProperties = false) {
             },
             type: "array",
           },
+          { $ref: "#/definitions/ProteusShow" },
           { $ref: "#/definitions/ProteusValue" },
         ],
         description: "Array of image data to display in the carousel",
       },
       title: {
-        anyOf: [{ $ref: "#/definitions/ProteusValue" }, { type: "string" }],
+        anyOf: [
+          { $ref: "#/definitions/ProteusShow" },
+          { $ref: "#/definitions/ProteusValue" },
+          { type: "string" },
+        ],
         description: "Accessible label for the carousel region.",
       },
     },
@@ -1096,7 +1008,10 @@ function getPropTypeOverrides(additionalProperties = false) {
     },
     Question: {
       questions: {
-        $ref: "#/definitions/ProteusValue",
+        anyOf: [
+          { $ref: "#/definitions/ProteusShow" },
+          { $ref: "#/definitions/ProteusValue" },
+        ],
         description: "Array of questions data",
       },
     },
@@ -1216,6 +1131,12 @@ function getPropTypeOverrides(additionalProperties = false) {
  * @returns {JSONSchema7Definition} JSON Schema property definition
  */
 function parsePropTypeToJsonSchema({ description, name, type }) {
+  /** @type {JSONSchema7Definition[]} */
+  const proteusDynamicRefs = [
+    { $ref: "#/definitions/ProteusShow" },
+    { $ref: "#/definitions/ProteusValue" },
+  ];
+
   if (type.raw === "ReactNode") {
     return {
       $ref: "#/definitions/ProteusNode",
@@ -1226,7 +1147,7 @@ function parsePropTypeToJsonSchema({ description, name, type }) {
       return {
         anyOf: [
           { type: /** @type {const} */ ("number") },
-          { $ref: "#/definitions/ProteusValue" },
+          ...proteusDynamicRefs,
         ],
         description: description,
       };
@@ -1238,7 +1159,7 @@ function parsePropTypeToJsonSchema({ description, name, type }) {
       return {
         anyOf: [
           { type: /** @type {const} */ ("string") },
-          { $ref: "#/definitions/ProteusValue" },
+          ...proteusDynamicRefs,
         ],
         description: description,
       };
@@ -1246,7 +1167,7 @@ function parsePropTypeToJsonSchema({ description, name, type }) {
       return {
         anyOf: [
           { type: /** @type {const} */ ("boolean") },
-          { $ref: "#/definitions/ProteusValue" },
+          ...proteusDynamicRefs,
         ],
         description: description,
       };
@@ -1281,7 +1202,7 @@ function parsePropTypeToJsonSchema({ description, name, type }) {
         ...(hasStringFallback
           ? [{ type: /** @type {const} */ ("string") }]
           : []),
-        { $ref: "#/definitions/ProteusValue" },
+        ...proteusDynamicRefs,
       ],
       description: description,
     };
@@ -1289,10 +1210,7 @@ function parsePropTypeToJsonSchema({ description, name, type }) {
 
   if (type.name === "string") {
     return {
-      anyOf: [
-        { type: /** @type {const} */ ("string") },
-        { $ref: "#/definitions/ProteusValue" },
-      ],
+      anyOf: [{ type: /** @type {const} */ ("string") }, ...proteusDynamicRefs],
       description: description,
     };
   }
@@ -1301,7 +1219,7 @@ function parsePropTypeToJsonSchema({ description, name, type }) {
     return {
       anyOf: [
         { type: /** @type {"boolean" | "number"} */ (type.name) },
-        { $ref: "#/definitions/ProteusValue" },
+        ...proteusDynamicRefs,
       ],
       description: description,
     };

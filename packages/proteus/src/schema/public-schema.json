@@ -8,6 +8,7 @@
         { "const": "center" },
         { "const": "end" },
         { "const": "start" },
+        { "$ref": "#/definitions/ProteusShow" },
         { "$ref": "#/definitions/ProteusValue" }
       ],
       "description": "Set the element's `align-items` CSS property"
@@ -19,6 +20,7 @@
         { "const": "center" },
         { "const": "end" },
         { "const": "start" },
+        { "$ref": "#/definitions/ProteusShow" },
         { "$ref": "#/definitions/ProteusValue" }
       ],
       "description": "Set the element's `align-self` CSS property"
@@ -28,6 +30,7 @@
         { "const": "ping" },
         { "const": "pulse" },
         { "const": "spin" },
+        { "$ref": "#/definitions/ProteusShow" },
         { "$ref": "#/definitions/ProteusValue" }
       ],
       "description": "Animate element with CSS animations"
@@ -35,6 +38,7 @@
     "SprinkleProp_backgroundImage": {
       "anyOf": [
         { "const": "gradient.opal" },
+        { "$ref": "#/definitions/ProteusShow" },
         { "$ref": "#/definitions/ProteusValue" }
       ],
       "description": "Set the element's `background-image` CSS property"
@@ -81,6 +85,7 @@
         { "const": "bg.warning.light" },
         { "const": "bg.warning.subtle" },
         { "const": "current" },
+        { "$ref": "#/definitions/ProteusShow" },
         { "$ref": "#/definitions/ProteusValue" }
       ],
       "description": "Set the element's background color. Only accepts predefined color tokens starting with `bg.` (e.g., `bg.default`, `bg.accent`, `bg.error`), or the special values `current` and `transparent`."
@@ -90,6 +95,7 @@
         { "const": "2" },
         { "const": "0" },
         { "const": "1" },
+        { "$ref": "#/definitions/ProteusShow" },
         { "$ref": "#/definitions/ProteusValue" }
       ],
       "description": "Set the element's `border-width` CSS property"
@@ -99,6 +105,7 @@
         { "const": "2" },
         { "const": "0" },
         { "const": "1" },
+        { "$ref": "#/definitions/ProteusShow" },
         { "$ref": "#/definitions/ProteusValue" }
       ],
       "description": "Set the element's `border-bottom-width` CSS property"
@@ -119,6 +126,7 @@
         { "const": "border.tertiary" },
         { "const": "border.warning" },
         { "const": "current" },
+        { "$ref": "#/definitions/ProteusShow" },
         { "$ref": "#/definitions/ProteusValue" }
       ],
       "description": "Set the element's border color. Only accepts predefined color tokens starting with `border.` (e.g., `border.default`, `border.accent`, `border.error`), or the special values `current` and `transparent`."
@@ -128,6 +136,7 @@
         { "const": "2" },
         { "const": "0" },
         { "const": "1" },
+        { "$ref": "#/definitions/ProteusShow" },
         { "$ref": "#/definitions/ProteusValue" }
       ],
       "description": "Set the element's `border-left-width` CSS property"
@@ -137,6 +146,7 @@
         { "const": "2" },
         { "const": "0" },
         { "const": "1" },
+        { "$ref": "#/definitions/ProteusShow" },
         { "$ref": "#/definitions/ProteusValue" }
       ],
       "description": "Set the element's `border-right-width` CSS property"
@@ -146,6 +156,7 @@
         { "const": "2" },
         { "const": "0" },
         { "const": "1" },
+        { "$ref": "#/definitions/ProteusShow" },
         { "$ref": "#/definitions/ProteusValue" }
       ],
       "description": "Set the element's `border-top-width` CSS property"
@@ -188,6 +199,7 @@
         { "const": "fg.warning.strong" },
         { "const": "fg.white" },
         { "const": "current" },
+        { "$ref": "#/definitions/ProteusShow" },
         { "$ref": "#/definitions/ProteusValue" }
       ],
       "description": "Set the element's text color. Only accepts predefined color tokens starting with `fg.` (e.g., `fg.default`, `fg.accent`, `fg.error`), or the special values `current` and `transparent`."
@@ -197,6 +209,7 @@
         { "const": "default" },
         { "const": "pointer" },
         { "const": "text" },
+        { "$ref": "#/definitions/ProteusShow" },
         { "$ref": "#/definitions/ProteusValue" }
       ],
       "description": "Set the element's `cursor` CSS property"
@@ -213,6 +226,7 @@
         { "const": "table-row" },
         { "const": "inline-block" },
         { "const": "inline-flex" },
+        { "$ref": "#/definitions/ProteusShow" },
         { "$ref": "#/definitions/ProteusValue" }
       ],
       "description": "Set the element's `display` CSS property"
@@ -223,6 +237,7 @@
         { "const": "none" },
         { "const": "auto" },
         { "const": "1" },
+        { "$ref": "#/definitions/ProteusShow" },
         { "$ref": "#/definitions/ProteusValue" }
       ],
       "description": "Set the element's `flex` CSS property"
@@ -233,6 +248,7 @@
         { "const": "column-reverse" },
         { "const": "row" },
         { "const": "row-reverse" },
+        { "$ref": "#/definitions/ProteusShow" },
         { "$ref": "#/definitions/ProteusValue" }
       ],
       "description": "Set the element's `flex-direction` CSS property"
@@ -241,6 +257,7 @@
       "anyOf": [
         { "const": "nowrap" },
         { "const": "wrap" },
+        { "$ref": "#/definitions/ProteusShow" },
         { "$ref": "#/definitions/ProteusValue" }
       ],
       "description": "Set the element's `flex-wrap` CSS property"
@@ -249,6 +266,7 @@
       "anyOf": [
         { "const": "mono" },
         { "const": "sans" },
+        { "$ref": "#/definitions/ProteusShow" },
         { "$ref": "#/definitions/ProteusValue" }
       ],
       "description": "Set the element's font family. Only accepts predefined fontFamily tokens."
@@ -264,6 +282,7 @@
         { "const": "2xl" },
         { "const": "3xl" },
         { "const": "4xl" },
+        { "$ref": "#/definitions/ProteusShow" },
         { "$ref": "#/definitions/ProteusValue" }
       ],
       "description": "Set the element's font size and line height (both properties are set together). Only accepts predefined fontSize tokens."
@@ -275,6 +294,7 @@
         { "const": "400" },
         { "const": "500" },
         { "const": "700" },
+        { "$ref": "#/definitions/ProteusShow" },
         { "$ref": "#/definitions/ProteusValue" }
       ],
       "description": "Set the element's `font-weight` CSS property"
@@ -296,12 +316,17 @@
         { "const": "80" },
         { "const": "0" },
         { "const": "64" },
+        { "$ref": "#/definitions/ProteusShow" },
         { "$ref": "#/definitions/ProteusValue" }
       ],
       "description": "Set the element's `gap` CSS property"
     },
     "SprinkleProp_gridAutoRows": {
-      "anyOf": [{ "const": "fr" }, { "$ref": "#/definitions/ProteusValue" }],
+      "anyOf": [
+        { "const": "fr" },
+        { "$ref": "#/definitions/ProteusShow" },
+        { "$ref": "#/definitions/ProteusValue" }
+      ],
       "description": "Set the element's `grid-auto-rows` CSS property"
     },
     "SprinkleProp_gridColumn": {
@@ -310,6 +335,7 @@
         { "const": "4" },
         { "const": "1" },
         { "const": "3" },
+        { "$ref": "#/definitions/ProteusShow" },
         { "$ref": "#/definitions/ProteusValue" }
       ],
       "description": "Set the element's size across grid columns"
@@ -320,6 +346,7 @@
         { "const": "4" },
         { "const": "1" },
         { "const": "3" },
+        { "$ref": "#/definitions/ProteusShow" },
         { "$ref": "#/definitions/ProteusValue" }
       ],
       "description": "Control number of columns in a grid layout"
@@ -357,6 +384,7 @@
         { "const": "fit" },
         { "const": "max" },
         { "const": "min" },
+        { "$ref": "#/definitions/ProteusShow" },
         { "$ref": "#/definitions/ProteusValue" }
       ],
       "description": "Set the element's height. Only accepts predefined size tokens."
@@ -373,6 +401,7 @@
         { "const": "flex-end" },
         { "const": "flex-start" },
         { "const": "start" },
+        { "$ref": "#/definitions/ProteusShow" },
         { "$ref": "#/definitions/ProteusValue" }
       ],
       "description": "Set the element's `justify-content` CSS property"
@@ -384,6 +413,7 @@
         { "const": "center" },
         { "const": "end" },
         { "const": "start" },
+        { "$ref": "#/definitions/ProteusShow" },
         { "$ref": "#/definitions/ProteusValue" }
       ],
       "description": "Set the element's `justify-items` CSS property"
@@ -406,6 +436,7 @@
         { "const": "80" },
         { "const": "0" },
         { "const": "64" },
+        { "$ref": "#/definitions/ProteusShow" },
         { "$ref": "#/definitions/ProteusValue" }
       ],
       "description": "Set the element's margin on all sides. Only accepts predefined spacing tokens."
@@ -417,6 +448,7 @@
         { "const": "md" },
         { "const": "lg" },
         { "const": "full" },
+        { "$ref": "#/definitions/ProteusShow" },
         { "$ref": "#/definitions/ProteusValue" }
       ],
       "description": "Set the element's maximum height. Only accepts predefined maxSize tokens."
@@ -428,6 +460,7 @@
         { "const": "md" },
         { "const": "lg" },
         { "const": "full" },
+        { "$ref": "#/definitions/ProteusShow" },
         { "$ref": "#/definitions/ProteusValue" }
       ],
       "description": "Set the element's maximum width. Only accepts predefined maxSize tokens."
@@ -450,6 +483,7 @@
         { "const": "80" },
         { "const": "0" },
         { "const": "64" },
+        { "$ref": "#/definitions/ProteusShow" },
         { "$ref": "#/definitions/ProteusValue" }
       ],
       "description": "Set the element's bottom margin. Only accepts predefined spacing tokens."
@@ -472,6 +506,7 @@
         { "const": "80" },
         { "const": "0" },
         { "const": "64" },
+        { "$ref": "#/definitions/ProteusShow" },
         { "$ref": "#/definitions/ProteusValue" }
       ],
       "description": "Set the element's left margin. Only accepts predefined spacing tokens."
@@ -494,6 +529,7 @@
         { "const": "80" },
         { "const": "0" },
         { "const": "64" },
+        { "$ref": "#/definitions/ProteusShow" },
         { "$ref": "#/definitions/ProteusValue" }
       ],
       "description": "Set the element's right margin. Only accepts predefined spacing tokens."
@@ -516,6 +552,7 @@
         { "const": "80" },
         { "const": "0" },
         { "const": "64" },
+        { "$ref": "#/definitions/ProteusShow" },
         { "$ref": "#/definitions/ProteusValue" }
       ],
       "description": "Set the element's top margin. Only accepts predefined spacing tokens."
@@ -538,6 +575,7 @@
         { "const": "80" },
         { "const": "0" },
         { "const": "64" },
+        { "$ref": "#/definitions/ProteusShow" },
         { "$ref": "#/definitions/ProteusValue" }
       ],
       "description": "Set the element's left and right margin. Only accepts predefined spacing tokens."
@@ -560,6 +598,7 @@
         { "const": "80" },
         { "const": "0" },
         { "const": "64" },
+        { "$ref": "#/definitions/ProteusShow" },
         { "$ref": "#/definitions/ProteusValue" }
       ],
       "description": "Set the element's top and bottom margin. Only accepts predefined spacing tokens."
@@ -570,6 +609,7 @@
         { "const": "fill" },
         { "const": "none" },
         { "const": "cover" },
+        { "$ref": "#/definitions/ProteusShow" },
         { "$ref": "#/definitions/ProteusValue" }
       ],
       "description": "Set the element's `object-fit` CSS property"
@@ -579,6 +619,7 @@
         { "const": "auto" },
         { "const": "hidden" },
         { "const": "visible" },
+        { "$ref": "#/definitions/ProteusShow" },
         { "$ref": "#/definitions/ProteusValue" }
       ],
       "description": "Set the element's `overflow` CSS property"
@@ -588,6 +629,7 @@
         { "const": "auto" },
         { "const": "hidden" },
         { "const": "visible" },
+        { "$ref": "#/definitions/ProteusShow" },
         { "$ref": "#/definitions/ProteusValue" }
       ],
       "description": "Set the element's `overflow-x` CSS property"
@@ -597,6 +639,7 @@
         { "const": "auto" },
         { "const": "hidden" },
         { "const": "visible" },
+        { "$ref": "#/definitions/ProteusShow" },
         { "$ref": "#/definitions/ProteusValue" }
       ],
       "description": "Set the element's `overflow-y` CSS property"
@@ -618,6 +661,7 @@
         { "const": "80" },
         { "const": "0" },
         { "const": "64" },
+        { "$ref": "#/definitions/ProteusShow" },
         { "$ref": "#/definitions/ProteusValue" }
       ],
       "description": "Set the element's padding on all sides. Only accepts predefined spacing tokens."
@@ -639,6 +683,7 @@
         { "const": "80" },
         { "const": "0" },
         { "const": "64" },
+        { "$ref": "#/definitions/ProteusShow" },
         { "$ref": "#/definitions/ProteusValue" }
       ],
       "description": "Set the element's bottom padding. Only accepts predefined spacing tokens."
@@ -660,6 +705,7 @@
         { "const": "80" },
         { "const": "0" },
         { "const": "64" },
+        { "$ref": "#/definitions/ProteusShow" },
         { "$ref": "#/definitions/ProteusValue" }
       ],
       "description": "Set the element's left padding. Only accepts predefined spacing tokens."
@@ -667,6 +713,7 @@
     "SprinkleProp_placeItems": {
       "anyOf": [
         { "const": "center" },
+        { "$ref": "#/definitions/ProteusShow" },
         { "$ref": "#/definitions/ProteusValue" }
       ],
       "description": "Set the element's `place-items` CSS property"
@@ -675,6 +722,7 @@
       "anyOf": [
         { "const": "none" },
         { "const": "auto" },
+        { "$ref": "#/definitions/ProteusShow" },
         { "$ref": "#/definitions/ProteusValue" }
       ],
       "description": "Set the element's `pointer-events` CSS property"
@@ -696,6 +744,7 @@
         { "const": "80" },
         { "const": "0" },
         { "const": "64" },
+        { "$ref": "#/definitions/ProteusShow" },
         { "$ref": "#/definitions/ProteusValue" }
       ],
       "description": "Set the element's right padding. Only accepts predefined spacing tokens."
@@ -717,6 +766,7 @@
         { "const": "80" },
         { "const": "0" },
         { "const": "64" },
+        { "$ref": "#/definitions/ProteusShow" },
         { "$ref": "#/definitions/ProteusValue" }
       ],
       "description": "Set the element's top padding. Only accepts predefined spacing tokens."
@@ -738,6 +788,7 @@
         { "const": "80" },
         { "const": "0" },
         { "const": "64" },
+        { "$ref": "#/definitions/ProteusShow" },
         { "$ref": "#/definitions/ProteusValue" }
       ],
       "description": "Set the element's left and right padding. Only accepts predefined spacing tokens."
@@ -759,6 +810,7 @@
         { "const": "80" },
         { "const": "0" },
         { "const": "64" },
+        { "$ref": "#/definitions/ProteusShow" },
         { "$ref": "#/definitions/ProteusValue" }
       ],
       "description": "Set the element's top and bottom padding. Only accepts predefined spacing tokens."
@@ -773,6 +825,7 @@
         { "const": "lg" },
         { "const": "xl" },
         { "const": "full" },
+        { "$ref": "#/definitions/ProteusShow" },
         { "$ref": "#/definitions/ProteusValue" }
       ],
       "description": "Set the element's border radius. Only accepts predefined borderRadius tokens."
@@ -784,6 +837,7 @@
         { "const": "md" },
         { "const": "lg" },
         { "const": "xl" },
+        { "$ref": "#/definitions/ProteusShow" },
         { "$ref": "#/definitions/ProteusValue" }
       ],
       "description": "Set the element's box shadow. Only accepts predefined boxShadow tokens."
@@ -821,6 +875,7 @@
         { "const": "fit" },
         { "const": "max" },
         { "const": "min" },
+        { "$ref": "#/definitions/ProteusShow" },
         { "$ref": "#/definitions/ProteusValue" }
       ],
       "description": "Set the element's width and height. Only accepts predefined size tokens.\n\nWhen width and height are the same, use `size` instead of setting both\n`w` and `h` separately (e.g., prefer `size=\"24\"` over `w=\"24\" h=\"24\"`)."
@@ -831,6 +886,7 @@
         { "const": "end" },
         { "const": "start" },
         { "const": "justify" },
+        { "$ref": "#/definitions/ProteusShow" },
         { "$ref": "#/definitions/ProteusValue" }
       ],
       "description": "Set the element's `text-align` CSS property"
@@ -840,6 +896,7 @@
         { "const": "none" },
         { "const": "capitalize" },
         { "const": "uppercase" },
+        { "$ref": "#/definitions/ProteusShow" },
         { "$ref": "#/definitions/ProteusValue" }
       ],
       "description": "Set the element's `text-transform` CSS property"
@@ -851,6 +908,7 @@
         { "const": "all" },
         { "const": "none" },
         { "const": "colors" },
+        { "$ref": "#/definitions/ProteusShow" },
         { "$ref": "#/definitions/ProteusValue" }
       ],
       "description": "Control which CSS properties should transition"
@@ -888,6 +946,7 @@
         { "const": "fit" },
         { "const": "max" },
         { "const": "min" },
+        { "$ref": "#/definitions/ProteusShow" },
         { "$ref": "#/definitions/ProteusValue" }
       ],
       "description": "Set the element's width. Only accepts predefined size tokens."
@@ -895,6 +954,7 @@
     "SprinkleProp_whiteSpace": {
       "anyOf": [
         { "const": "nowrap" },
+        { "$ref": "#/definitions/ProteusShow" },
         { "$ref": "#/definitions/ProteusValue" }
       ],
       "description": "Set the element's `white-space` CSS property"
@@ -909,6 +969,7 @@
         { "const": "toast" },
         { "const": "0" },
         { "const": "30" },
+        { "$ref": "#/definitions/ProteusShow" },
         { "$ref": "#/definitions/ProteusValue" }
       ],
       "description": "Set the element's stacking order. Only accepts predefined zIndex tokens (e.g., popover, toast, tooltip) or numeric values (0, 10, 20, 30, auto)."
@@ -926,6 +987,7 @@
                   { "type": "number" },
                   { "type": "boolean" },
                   { "type": "null" },
+                  { "$ref": "#/definitions/ProteusMapIndex" },
                   { "$ref": "#/definitions/ProteusValue" }
                 ]
               },
@@ -948,6 +1010,7 @@
                   { "type": "number" },
                   { "type": "boolean" },
                   { "type": "null" },
+                  { "$ref": "#/definitions/ProteusMapIndex" },
                   { "$ref": "#/definitions/ProteusValue" }
                 ]
               },
@@ -970,6 +1033,7 @@
                   { "type": "number" },
                   { "type": "boolean" },
                   { "type": "null" },
+                  { "$ref": "#/definitions/ProteusMapIndex" },
                   { "$ref": "#/definitions/ProteusValue" }
                 ]
               },
@@ -992,6 +1056,7 @@
                   { "type": "number" },
                   { "type": "boolean" },
                   { "type": "null" },
+                  { "$ref": "#/definitions/ProteusMapIndex" },
                   { "$ref": "#/definitions/ProteusValue" }
                 ]
               },
@@ -1014,6 +1079,7 @@
                   { "type": "number" },
                   { "type": "boolean" },
                   { "type": "null" },
+                  { "$ref": "#/definitions/ProteusMapIndex" },
                   { "$ref": "#/definitions/ProteusValue" }
                 ]
               },
@@ -1036,6 +1102,7 @@
                   { "type": "number" },
                   { "type": "boolean" },
                   { "type": "null" },
+                  { "$ref": "#/definitions/ProteusMapIndex" },
                   { "$ref": "#/definitions/ProteusValue" }
                 ]
               },
@@ -1056,6 +1123,7 @@
                 { "type": "number" },
                 { "type": "boolean" },
                 { "type": "null" },
+                { "$ref": "#/definitions/ProteusMapIndex" },
                 { "$ref": "#/definitions/ProteusValue" }
               ],
               "description": "Truthy check - returns true if value is truthy (not null, undefined, false, 0, or empty string)"
@@ -1073,6 +1141,7 @@
                 { "type": "number" },
                 { "type": "boolean" },
                 { "type": "null" },
+                { "$ref": "#/definitions/ProteusMapIndex" },
                 { "$ref": "#/definitions/ProteusValue" }
               ],
               "description": "Falsy check - returns true if value is falsy (null, undefined, false, 0, or empty string)"
@@ -1301,6 +1370,7 @@
         { "$ref": "#/definitions/ProteusInput" },
         { "$ref": "#/definitions/ProteusLink" },
         { "$ref": "#/definitions/ProteusMap" },
+        { "$ref": "#/definitions/ProteusMapIndex" },
         { "$ref": "#/definitions/ProteusQuestion" },
         { "$ref": "#/definitions/ProteusRange" },
         { "$ref": "#/definitions/ProteusSelect" },
@@ -1337,6 +1407,7 @@
             "message": {
               "anyOf": [
                 { "$ref": "#/definitions/ProteusMap" },
+                { "$ref": "#/definitions/ProteusShow" },
                 { "$ref": "#/definitions/ProteusValue" },
                 { "type": "string" }
               ],
@@ -1358,6 +1429,7 @@
             "url": {
               "anyOf": [
                 { "$ref": "#/definitions/ProteusMap" },
+                { "$ref": "#/definitions/ProteusShow" },
                 { "$ref": "#/definitions/ProteusValue" },
                 { "type": "string" }
               ],
@@ -1412,6 +1484,7 @@
           "patternProperties": {
             ".*": {
               "anyOf": [
+                { "$ref": "#/definitions/ProteusShow" },
                 { "$ref": "#/definitions/ProteusValue" },
                 { "items": {}, "type": "array" }
               ]
@@ -1443,6 +1516,7 @@
             { "const": "default-opal" },
             { "const": "inverse" },
             { "const": "primary-opal" },
+            { "$ref": "#/definitions/ProteusShow" },
             { "$ref": "#/definitions/ProteusValue" }
           ],
           "description": "Control the appearance by selecting between the different button types."
@@ -1510,6 +1584,7 @@
             { "const": "button" },
             { "const": "reset" },
             { "const": "submit" },
+            { "$ref": "#/definitions/ProteusShow" },
             { "$ref": "#/definitions/ProteusValue" }
           ],
           "description": "The default behavior of the button."
@@ -1548,6 +1623,7 @@
           "anyOf": [
             { "const": "purple" },
             { "const": "neutral" },
+            { "$ref": "#/definitions/ProteusShow" },
             { "$ref": "#/definitions/ProteusValue" }
           ],
           "description": "Control the avatar fallback background and text colors."
@@ -1559,6 +1635,7 @@
             { "const": "opal" },
             { "const": "team" },
             { "const": "user" },
+            { "$ref": "#/definitions/ProteusShow" },
             { "$ref": "#/definitions/ProteusValue" }
           ],
           "description": "The fallback icon to display when no name or image is given."
@@ -1592,6 +1669,7 @@
         "name": {
           "anyOf": [
             { "type": "string" },
+            { "$ref": "#/definitions/ProteusShow" },
             { "$ref": "#/definitions/ProteusValue" }
           ],
           "description": "Use name to generate initials to show inside the avatar."
@@ -1620,6 +1698,7 @@
             { "const": "xl" },
             { "const": "3xl" },
             { "const": "2xs" },
+            { "$ref": "#/definitions/ProteusShow" },
             { "$ref": "#/definitions/ProteusValue" }
           ],
           "description": "Control the size of the avatar."
@@ -1627,6 +1706,7 @@
         "src": {
           "anyOf": [
             { "type": "string" },
+            { "$ref": "#/definitions/ProteusShow" },
             { "$ref": "#/definitions/ProteusValue" }
           ],
           "description": "Render the image inside the avatar."
@@ -1686,6 +1766,7 @@
             { "const": "danger" },
             { "const": "neutral" },
             { "const": "primary" },
+            { "$ref": "#/definitions/ProteusShow" },
             { "$ref": "#/definitions/ProteusValue" }
           ],
           "description": "Control the appearance by selecting between the different badge types."
@@ -1954,6 +2035,7 @@
             { "const": "4" },
             { "const": "1" },
             { "const": "3" },
+            { "$ref": "#/definitions/ProteusShow" },
             { "$ref": "#/definitions/ProteusValue" }
           ],
           "description": "Truncate the text at specific number of lines."
@@ -2037,6 +2119,7 @@
         "href": {
           "anyOf": [
             { "type": "string" },
+            { "$ref": "#/definitions/ProteusShow" },
             { "$ref": "#/definitions/ProteusValue" }
           ],
           "description": "The link href."
@@ -2103,6 +2186,7 @@
               "items": { "type": "object" },
               "type": "array"
             },
+            { "$ref": "#/definitions/ProteusShow" },
             { "$ref": "#/definitions/ProteusValue" },
             { "$ref": "#/definitions/ProteusZip" }
           ],
@@ -2210,6 +2294,7 @@
               "items": { "type": "object" },
               "type": "array"
             },
+            { "$ref": "#/definitions/ProteusShow" },
             { "$ref": "#/definitions/ProteusValue" },
             { "$ref": "#/definitions/ProteusZip" }
           ]
@@ -2300,6 +2385,7 @@
         "required": {
           "anyOf": [
             { "type": "boolean" },
+            { "$ref": "#/definitions/ProteusShow" },
             { "$ref": "#/definitions/ProteusValue" }
           ],
           "description": "Display an asterisk for required inputs."
@@ -2336,6 +2422,7 @@
             { "const": "center" },
             { "const": "end" },
             { "const": "start" },
+            { "$ref": "#/definitions/ProteusShow" },
             { "$ref": "#/definitions/ProteusValue" }
           ],
           "description": "Set the element's `align-items` CSS property. Defaults to `center` when\n`flexDirection='row'`, and `stretch` when `flexDirection='column'`."
@@ -2363,6 +2450,7 @@
             { "const": "column-reverse" },
             { "const": "row" },
             { "const": "row-reverse" },
+            { "$ref": "#/definitions/ProteusShow" },
             { "$ref": "#/definitions/ProteusValue" }
           ],
           "description": "Set the element's `flex-direction` CSS property.\n\nDefault: 'row' (CSS standard)"
@@ -2464,6 +2552,7 @@
             { "const": "4" },
             { "const": "1" },
             { "const": "3" },
+            { "$ref": "#/definitions/ProteusShow" },
             { "$ref": "#/definitions/ProteusValue" }
           ],
           "description": "Heading level (1-4) that controls both the semantic HTML tag and font size.\n- `level=\"1\"`: renders `<h1>` with `fontSize=\"4xl\"` (default)\n- `level=\"2\"`: renders `<h2>` with `fontSize=\"3xl\"`\n- `level=\"3\"`: renders `<h3>` with `fontSize=\"2xl\"`\n- `level=\"4\"`: renders `<h4>` with `fontSize=\"xl\"`\n\nUse `asChild` to decouple the semantic level from visual appearance."
@@ -2652,6 +2741,7 @@
         "z": { "$ref": "#/definitions/SprinkleProp_z" },
         "alt": {
           "anyOf": [
+            { "$ref": "#/definitions/ProteusShow" },
             { "$ref": "#/definitions/ProteusValue" },
             { "type": "string" }
           ],
@@ -2659,6 +2749,7 @@
         },
         "src": {
           "anyOf": [
+            { "$ref": "#/definitions/ProteusShow" },
             { "$ref": "#/definitions/ProteusValue" },
             { "type": "string" }
           ],
@@ -2683,6 +2774,7 @@
         "$type": { "const": "ImageCarousel" },
         "downloadAll": {
           "anyOf": [
+            { "$ref": "#/definitions/ProteusShow" },
             { "$ref": "#/definitions/ProteusValue" },
             { "type": "string" }
           ],
@@ -2713,12 +2805,14 @@
               },
               "type": "array"
             },
+            { "$ref": "#/definitions/ProteusShow" },
             { "$ref": "#/definitions/ProteusValue" }
           ],
           "description": "Array of image data to display in the carousel"
         },
         "title": {
           "anyOf": [
+            { "$ref": "#/definitions/ProteusShow" },
             { "$ref": "#/definitions/ProteusValue" },
             { "type": "string" }
           ],
@@ -2750,6 +2844,7 @@
           "anyOf": [
             { "const": "number" },
             { "const": "default" },
+            { "$ref": "#/definitions/ProteusShow" },
             { "$ref": "#/definitions/ProteusValue" }
           ],
           "description": "Control the appearance of the input."
@@ -2757,6 +2852,7 @@
         "autoFocus": {
           "anyOf": [
             { "type": "boolean" },
+            { "$ref": "#/definitions/ProteusShow" },
             { "$ref": "#/definitions/ProteusValue" }
           ],
           "description": "Whether the input should be focused on mount."
@@ -2803,6 +2899,7 @@
         "name": {
           "anyOf": [
             { "type": "string" },
+            { "$ref": "#/definitions/ProteusShow" },
             { "$ref": "#/definitions/ProteusValue" }
           ],
           "description": "The name of the form control element."
@@ -2817,6 +2914,7 @@
         "placeholder": {
           "anyOf": [
             { "type": "string" },
+            { "$ref": "#/definitions/ProteusShow" },
             { "$ref": "#/definitions/ProteusValue" }
           ],
           "description": "The placeholder text to use when control has no value."
@@ -2830,6 +2928,7 @@
         "required": {
           "anyOf": [
             { "type": "boolean" },
+            { "$ref": "#/definitions/ProteusShow" },
             { "$ref": "#/definitions/ProteusValue" }
           ],
           "description": "Whether selecting this input is required."
@@ -2864,6 +2963,7 @@
             { "const": "file" },
             { "const": "password" },
             { "type": "string" },
+            { "$ref": "#/definitions/ProteusShow" },
             { "$ref": "#/definitions/ProteusValue" }
           ],
           "description": "The input type."
@@ -2919,6 +3019,7 @@
         "href": {
           "anyOf": [
             { "type": "string" },
+            { "$ref": "#/definitions/ProteusShow" },
             { "$ref": "#/definitions/ProteusValue" }
           ],
           "description": "The link href."
@@ -2989,12 +3090,22 @@
       "required": ["$type", "path"],
       "type": "object"
     },
+    "ProteusMapIndex": {
+      "additionalProperties": false,
+      "examples": [{ "$type": "MapIndex" }],
+      "properties": { "$type": { "const": "MapIndex" } },
+      "required": ["$type"],
+      "type": "object"
+    },
     "ProteusQuestion": {
       "additionalProperties": false,
       "properties": {
         "$type": { "const": "Question" },
         "questions": {
-          "$ref": "#/definitions/ProteusValue",
+          "anyOf": [
+            { "$ref": "#/definitions/ProteusShow" },
+            { "$ref": "#/definitions/ProteusValue" }
+          ],
           "description": "Array of questions data"
         }
       },
@@ -3067,6 +3178,7 @@
         "max": {
           "anyOf": [
             { "type": "number" },
+            { "$ref": "#/definitions/ProteusShow" },
             { "$ref": "#/definitions/ProteusValue" }
           ],
           "description": "The maximum value for the range."
@@ -3077,6 +3189,7 @@
         "min": {
           "anyOf": [
             { "type": "number" },
+            { "$ref": "#/definitions/ProteusShow" },
             { "$ref": "#/definitions/ProteusValue" }
           ],
           "description": "The minimum value for the range."
@@ -3104,6 +3217,7 @@
         "step": {
           "anyOf": [
             { "type": "number" },
+            { "$ref": "#/definitions/ProteusShow" },
             { "$ref": "#/definitions/ProteusValue" }
           ],
           "description": "The stepping interval for the range."
@@ -3140,6 +3254,7 @@
         "name": {
           "anyOf": [
             { "type": "string" },
+            { "$ref": "#/definitions/ProteusShow" },
             { "$ref": "#/definitions/ProteusValue" }
           ],
           "description": "The name of the inner select element."
@@ -3166,6 +3281,7 @@
         "required": {
           "anyOf": [
             { "type": "boolean" },
+            { "$ref": "#/definitions/ProteusShow" },
             { "$ref": "#/definitions/ProteusValue" }
           ],
           "description": "Whether the select value is required."
@@ -3473,6 +3589,7 @@
         "name": {
           "anyOf": [
             { "type": "string" },
+            { "$ref": "#/definitions/ProteusShow" },
             { "$ref": "#/definitions/ProteusValue" }
           ],
           "description": "The name of the form control element."
@@ -3493,6 +3610,7 @@
         "required": {
           "anyOf": [
             { "type": "boolean" },
+            { "$ref": "#/definitions/ProteusShow" },
             { "$ref": "#/definitions/ProteusValue" }
           ],
           "description": "Whether selecting this input is required."
@@ -3554,6 +3672,7 @@
             { "const": "4" },
             { "const": "1" },
             { "const": "3" },
+            { "$ref": "#/definitions/ProteusShow" },
             { "$ref": "#/definitions/ProteusValue" }
           ],
           "description": "Truncate the text at specific number of lines."
@@ -3589,6 +3708,7 @@
         "truncate": {
           "anyOf": [
             { "type": "boolean" },
+            { "$ref": "#/definitions/ProteusShow" },
             { "$ref": "#/definitions/ProteusValue" }
           ],
           "description": "Whether to truncate the text and add an ellipsis at the end."
@@ -3653,6 +3773,7 @@
             { "const": 3 },
             { "const": 4 },
             { "const": 5 },
+            { "$ref": "#/definitions/ProteusShow" },
             { "$ref": "#/definitions/ProteusValue" }
           ],
           "description": "Limits the height of the textarea when `resize=auto` is used."
@@ -3667,6 +3788,7 @@
         "name": {
           "anyOf": [
             { "type": "string" },
+            { "$ref": "#/definitions/ProteusShow" },
             { "$ref": "#/definitions/ProteusValue" }
           ],
           "description": "The name of the form control element."
@@ -3681,6 +3803,7 @@
         "placeholder": {
           "anyOf": [
             { "type": "string" },
+            { "$ref": "#/definitions/ProteusShow" },
             { "$ref": "#/definitions/ProteusValue" }
           ],
           "description": "The placeholder text to use when control has no value."
@@ -3694,6 +3817,7 @@
         "required": {
           "anyOf": [
             { "type": "boolean" },
+            { "$ref": "#/definitions/ProteusShow" },
             { "$ref": "#/definitions/ProteusValue" }
           ],
           "description": "Whether selecting this input is required."
@@ -3703,6 +3827,7 @@
             { "const": "none" },
             { "const": "auto" },
             { "const": "vertical" },
+            { "$ref": "#/definitions/ProteusShow" },
             { "$ref": "#/definitions/ProteusValue" }
           ],
           "description": "Control whether resizing mode is manual, automatic, or disabled."
@@ -3711,6 +3836,7 @@
         "rows": {
           "anyOf": [
             { "type": "number" },
+            { "$ref": "#/definitions/ProteusShow" },
             { "$ref": "#/definitions/ProteusValue" }
           ],
           "description": "The number of rows to display."
@@ -3749,6 +3875,7 @@
         "date": {
           "anyOf": [
             { "type": "string" },
+            { "$ref": "#/definitions/ProteusShow" },
             { "$ref": "#/definitions/ProteusValue" }
           ],
           "description": "The date to display. Can be a `Date` object or an ISO 8601 string."
@@ -3798,6 +3925,7 @@
         "showDate": {
           "anyOf": [
             { "type": "boolean" },
+            { "$ref": "#/definitions/ProteusShow" },
             { "$ref": "#/definitions/ProteusValue" }
           ],
           "description": "Whether to show the date part of the value. Defaults to `true`."
@@ -3805,6 +3933,7 @@
         "showTime": {
           "anyOf": [
             { "type": "boolean" },
+            { "$ref": "#/definitions/ProteusShow" },
             { "$ref": "#/definitions/ProteusValue" }
           ],
           "description": "Whether to show the time part of the value. Defaults to `false`."

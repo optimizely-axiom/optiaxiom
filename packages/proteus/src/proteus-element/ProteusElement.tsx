@@ -55,7 +55,7 @@ export const ProteusElement = ({
   const { data, strict } = useProteusDocumentContext(
     "@optiaxiom/proteus/ProteusElement",
   );
-  const { path: parentPath } = useProteusDocumentPathContext(
+  const { mapIndices, path: parentPath } = useProteusDocumentPathContext(
     "@optiaxiom/proteus/ProteusElement",
   );
   if (!elementProp) {
@@ -88,7 +88,7 @@ export const ProteusElement = ({
     const { $type: _$type, ...rest } = obj;
     const resolved: Record<string, unknown> = {};
     for (const [key, value] of Object.entries(rest)) {
-      resolved[key] = resolveProteusProp(value, data, parentPath);
+      resolved[key] = resolveProteusProp(value, data, parentPath, mapIndices);
     }
     return resolved as Omit<T, "$type">;
   };
