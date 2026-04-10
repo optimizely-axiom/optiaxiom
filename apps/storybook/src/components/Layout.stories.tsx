@@ -111,9 +111,10 @@ const HeaderExample = () => (
 
 const ContentExample = (props: BoxProps) => (
   <LayoutContent display="flex" flexDirection="column" gap="16" {...props}>
-    <Heading level="3">Main Content</Heading>
+    <Heading level="1" >Main Content</Heading>
     {[1, 2, 3].map((item) => (
       <Fragment key={item}>
+        <Heading level="2">Section {item}</Heading>
         <Text>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed rhoncus
           tincidunt massa, quis euismod diam fringilla eu. Mauris lobortis
@@ -126,6 +127,7 @@ const ContentExample = (props: BoxProps) => (
           Etiam sed erat eu libero mollis tempor. Praesent scelerisque mi eu
           enim lobortis venenatis ut sed ligula.
         </Text>
+        <Heading level="3">Subsection</Heading>
         <Text>
           Praesent dolor dui, finibus id libero tincidunt, aliquam vehicula
           lectus. Duis tempor et nunc eu scelerisque. Sed luctus at nibh sed
@@ -139,6 +141,7 @@ const ContentExample = (props: BoxProps) => (
           faucibus sodales, sodales vitae ligula. Praesent non orci id sapien
           malesuada rhoncus et id ante.
         </Text>
+        <Heading level="4">Subsection</Heading>
         <Text>
           In semper aliquam lectus, non pulvinar lectus dapibus in. Quisque
           tellus massa, sodales sed porttitor sed, luctus tincidunt ipsum.
