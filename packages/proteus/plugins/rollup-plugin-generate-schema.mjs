@@ -692,9 +692,7 @@ function generateSpec(additionalProperties = false) {
               properties: {
                 message: {
                   anyOf: [
-                    { $ref: "#/definitions/ProteusMap" },
-                    { $ref: "#/definitions/ProteusShow" },
-                    { $ref: "#/definitions/ProteusValue" },
+                    { $ref: "#/definitions/ProteusExpression" },
                     { type: "string" },
                   ],
                   description:
@@ -716,9 +714,7 @@ function generateSpec(additionalProperties = false) {
                 },
                 url: {
                   anyOf: [
-                    { $ref: "#/definitions/ProteusMap" },
-                    { $ref: "#/definitions/ProteusShow" },
-                    { $ref: "#/definitions/ProteusValue" },
+                    { $ref: "#/definitions/ProteusExpression" },
                     { type: "string" },
                   ],
                   description:
@@ -731,6 +727,16 @@ function generateSpec(additionalProperties = false) {
           ],
           description:
             "Handler for user interactions - a server-side interaction call, client-side message, or client-side component action",
+        },
+        ProteusExpression: {
+          anyOf: [
+            { $ref: "#/definitions/ProteusMap" },
+            { $ref: "#/definitions/ProteusMapIndex" },
+            { $ref: "#/definitions/ProteusShow" },
+            { $ref: "#/definitions/ProteusValue" },
+          ],
+          description:
+            "A dynamic Proteus expression that resolves to a value at render time.",
         },
         ProteusNode: {
           anyOf: [
@@ -777,8 +783,7 @@ function generateSpec(additionalProperties = false) {
               patternProperties: {
                 ".*": {
                   anyOf: [
-                    { $ref: "#/definitions/ProteusShow" },
-                    { $ref: "#/definitions/ProteusValue" },
+                    { $ref: "#/definitions/ProteusExpression" },
                     { items: {}, type: "array" },
                   ],
                 },
@@ -820,12 +825,11 @@ function getPropTypeOverrides(additionalProperties = false) {
             items: { type: "object" },
             type: "array",
           },
-          { $ref: "#/definitions/ProteusShow" },
-          { $ref: "#/definitions/ProteusValue" },
+          { $ref: "#/definitions/ProteusExpression" },
           { $ref: "#/definitions/ProteusZip" },
         ],
         description:
-          "Chart data records, either inline, a ProteusValue reference, or a ProteusZip transformation",
+          "Chart data records, either inline, a ProteusExpression, or a ProteusZip transformation",
       },
       series: {
         description: "Data series configuration",
@@ -915,8 +919,7 @@ function getPropTypeOverrides(additionalProperties = false) {
             items: { type: "object" },
             type: "array",
           },
-          { $ref: "#/definitions/ProteusShow" },
-          { $ref: "#/definitions/ProteusValue" },
+          { $ref: "#/definitions/ProteusExpression" },
           { $ref: "#/definitions/ProteusZip" },
         ],
       },
@@ -924,16 +927,14 @@ function getPropTypeOverrides(additionalProperties = false) {
     Image: {
       alt: {
         anyOf: [
-          { $ref: "#/definitions/ProteusShow" },
-          { $ref: "#/definitions/ProteusValue" },
+          { $ref: "#/definitions/ProteusExpression" },
           { type: "string" },
         ],
         description: "Alternative text for the image",
       },
       src: {
         anyOf: [
-          { $ref: "#/definitions/ProteusShow" },
-          { $ref: "#/definitions/ProteusValue" },
+          { $ref: "#/definitions/ProteusExpression" },
           { type: "string" },
         ],
         description: "The image source URL",
@@ -942,8 +943,7 @@ function getPropTypeOverrides(additionalProperties = false) {
     ImageCarousel: {
       downloadAll: {
         anyOf: [
-          { $ref: "#/definitions/ProteusShow" },
-          { $ref: "#/definitions/ProteusValue" },
+          { $ref: "#/definitions/ProteusExpression" },
           { type: "string" },
         ],
         description:
@@ -975,15 +975,13 @@ function getPropTypeOverrides(additionalProperties = false) {
             },
             type: "array",
           },
-          { $ref: "#/definitions/ProteusShow" },
-          { $ref: "#/definitions/ProteusValue" },
+          { $ref: "#/definitions/ProteusExpression" },
         ],
         description: "Array of image data to display in the carousel",
       },
       title: {
         anyOf: [
-          { $ref: "#/definitions/ProteusShow" },
-          { $ref: "#/definitions/ProteusValue" },
+          { $ref: "#/definitions/ProteusExpression" },
           { type: "string" },
         ],
         description: "Accessible label for the carousel region.",
@@ -1008,10 +1006,7 @@ function getPropTypeOverrides(additionalProperties = false) {
     },
     Question: {
       questions: {
-        anyOf: [
-          { $ref: "#/definitions/ProteusShow" },
-          { $ref: "#/definitions/ProteusValue" },
-        ],
+        $ref: "#/definitions/ProteusExpression",
         description: "Array of questions data",
       },
     },
@@ -1131,12 +1126,6 @@ function getPropTypeOverrides(additionalProperties = false) {
  * @returns {JSONSchema7Definition} JSON Schema property definition
  */
 function parsePropTypeToJsonSchema({ description, name, type }) {
-  /** @type {JSONSchema7Definition[]} */
-  const proteusDynamicRefs = [
-    { $ref: "#/definitions/ProteusShow" },
-    { $ref: "#/definitions/ProteusValue" },
-  ];
-
   if (type.raw === "ReactNode") {
     return {
       $ref: "#/definitions/ProteusNode",
@@ -1147,7 +1136,7 @@ function parsePropTypeToJsonSchema({ description, name, type }) {
       return {
         anyOf: [
           { type: /** @type {const} */ ("number") },
-          ...proteusDynamicRefs,
+          { $ref: "#/definitions/ProteusExpression" },
         ],
         description: description,
       };
@@ -1159,7 +1148,7 @@ function parsePropTypeToJsonSchema({ description, name, type }) {
       return {
         anyOf: [
           { type: /** @type {const} */ ("string") },
-          ...proteusDynamicRefs,
+          { $ref: "#/definitions/ProteusExpression" },
         ],
         description: description,
       };
@@ -1167,7 +1156,7 @@ function parsePropTypeToJsonSchema({ description, name, type }) {
       return {
         anyOf: [
           { type: /** @type {const} */ ("boolean") },
-          ...proteusDynamicRefs,
+          { $ref: "#/definitions/ProteusExpression" },
         ],
         description: description,
       };
@@ -1202,7 +1191,7 @@ function parsePropTypeToJsonSchema({ description, name, type }) {
         ...(hasStringFallback
           ? [{ type: /** @type {const} */ ("string") }]
           : []),
-        ...proteusDynamicRefs,
+        { $ref: "#/definitions/ProteusExpression" },
       ],
       description: description,
     };
@@ -1210,7 +1199,10 @@ function parsePropTypeToJsonSchema({ description, name, type }) {
 
   if (type.name === "string") {
     return {
-      anyOf: [{ type: /** @type {const} */ ("string") }, ...proteusDynamicRefs],
+      anyOf: [
+        { type: /** @type {const} */ ("string") },
+        { $ref: "#/definitions/ProteusExpression" },
+      ],
       description: description,
     };
   }
@@ -1219,7 +1211,7 @@ function parsePropTypeToJsonSchema({ description, name, type }) {
     return {
       anyOf: [
         { type: /** @type {"boolean" | "number"} */ (type.name) },
-        ...proteusDynamicRefs,
+        { $ref: "#/definitions/ProteusExpression" },
       ],
       description: description,
     };
