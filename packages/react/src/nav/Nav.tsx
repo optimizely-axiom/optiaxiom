@@ -36,7 +36,6 @@ export const Nav = forwardRef<HTMLDivElement, NavProps>(
     return (
       <Group
         borderColor="border.tertiary"
-        borderR="1"
         flexDirection="column"
         gap="16"
         h="full"

@@ -3,7 +3,6 @@ import { recipe, type RecipeVariants, style } from "../vanilla-extract";
 export const layout = recipe({
   base: [
     {
-      bg: "bg.page",
       display: "flex",
       flexDirection: "column",
       fontSize: "md",

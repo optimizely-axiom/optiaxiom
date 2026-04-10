@@ -31,7 +31,6 @@ export const badge = recipe({
         [solidColorVar]: theme.colors["fg.white"],
       },
 
-      letterSpacing: "0.03em",
       userSelect: "none",
 
       selectors: {

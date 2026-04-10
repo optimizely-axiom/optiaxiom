@@ -324,6 +324,16 @@ export const buttonBase = recipe({
     },
     {
       style: {
+        rounded: "lg",
+        pl: "6",
+      },
+      variants: {
+        variant: ["strong"],
+        size: "lg",
+      },
+    },
+    {
+      style: {
         color: "fg.light",
       },
       variants: {
