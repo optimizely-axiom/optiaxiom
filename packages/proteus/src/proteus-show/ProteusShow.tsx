@@ -18,14 +18,14 @@ export type ProteusShowProps = {
 
 export function ProteusShow({ children, when }: ProteusShowProps) {
   const { data } = useProteusDocumentContext("@optiaxiom/proteus/ProteusShow");
-  const { path: parentPath } = useProteusDocumentPathContext(
+  const { mapIndices, path: parentPath } = useProteusDocumentPathContext(
     "@optiaxiom/proteus/ProteusShow",
   );
 
   const conditions = Array.isArray(when) ? when : [when];
   // All conditions must be true (AND logic)
   const shouldShow = conditions.every((condition) =>
-    evaluateCondition(condition, data, parentPath),
+    evaluateCondition(condition, data, parentPath, mapIndices),
   );
 
   if (!shouldShow) {

@@ -9,9 +9,14 @@ export function resolveProteusProp(
   value: unknown,
   data: Record<string, unknown>,
   parentPath: string,
+  mapIndices: number[] = [],
 ): unknown {
   if (typeof value !== "object" || value === null) {
     return value;
+  }
+
+  if ("$type" in value && value.$type === "MapIndex") {
+    return mapIndices.at(-1);
   }
 
   if (
@@ -35,7 +40,7 @@ export function resolveProteusProp(
     const resolved: Record<string, unknown[]> = {};
     let length = 0;
     for (const [k, v] of Object.entries(sources)) {
-      const arr = resolveProteusProp(v, data, parentPath);
+      const arr = resolveProteusProp(v, data, parentPath, mapIndices);
       if (Array.isArray(arr)) {
         resolved[k] = arr;
         length = Math.max(length, arr.length);
@@ -59,12 +64,12 @@ export function resolveProteusProp(
     const conditions = Array.isArray(value.when) ? value.when : [value.when];
     const shouldShow = conditions.every(
       (condition: ProteusCondition | undefined) =>
-        evaluateCondition(condition, data, parentPath),
+        evaluateCondition(condition, data, parentPath, mapIndices),
     );
     if (!shouldShow) {
       return undefined;
     }
-    return resolveProteusProp(value.children, data, parentPath);
+    return resolveProteusProp(value.children, data, parentPath, mapIndices);
   }
 
   return "$type" in value ||

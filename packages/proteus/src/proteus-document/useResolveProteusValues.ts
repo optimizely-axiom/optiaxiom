@@ -8,13 +8,13 @@ export function useResolveProteusValues(
   const { data } = useProteusDocumentContext(
     "@optiaxiom/react/useResolveProteusValues",
   );
-  const { path: parentPath } = useProteusDocumentPathContext(
+  const { mapIndices, path: parentPath } = useProteusDocumentPathContext(
     "@optiaxiom/react/useResolveProteusValues",
   );
 
   const resolved: Record<string, unknown> = {};
   for (const [key, value] of Object.entries(props)) {
-    resolved[key] = resolveProteusValue(value, data, parentPath);
+    resolved[key] = resolveProteusValue(value, data, parentPath, mapIndices);
   }
   return resolved;
 }

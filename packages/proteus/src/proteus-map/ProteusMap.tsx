@@ -22,7 +22,7 @@ export type ProteusMapProps = {
 
 export function ProteusMap({ children, path, separator }: ProteusMapProps) {
   const { strict } = useProteusDocumentContext("@optiaxiom/proteus/ProteusMap");
-  const { path: parentPath } = useProteusDocumentPathContext(
+  const { mapIndices, path: parentPath } = useProteusDocumentPathContext(
     "@optiaxiom/proteus/ProteusMap",
   );
   const array = useProteusValue({ path });
@@ -41,6 +41,7 @@ export function ProteusMap({ children, path, separator }: ProteusMapProps) {
       {array.map((_, index) => (
         <ProteusDocumentPathProvider
           key={index}
+          mapIndices={[...mapIndices, index]}
           path={`${path.startsWith("/") ? path : `${parentPath}/${path}`}/${index}`}
         >
           {index > 0 && separator}

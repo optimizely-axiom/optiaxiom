@@ -531,6 +531,11 @@ export const AskAgentInput: Story = {
                 $type: "Field",
                 children: {
                   $type: "Input",
+                  autoFocus: {
+                    $type: "Show",
+                    children: true,
+                    when: { "==": [{ $type: "MapIndex" }, 0] },
+                  },
                   name: "value",
                   placeholder: { $type: "Value", path: "placeholder" },
                   required: { $type: "Value", path: "required" },
