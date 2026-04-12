@@ -53,6 +53,12 @@ export type ProteusDocumentShellProps = Pick<
    */
   onMessage?: (message: string) => Promise<void> | void;
   /**
+   * Callback when user triggers a download action; receives the resolved URL(s).
+   * When provided, the host is responsible for the actual download/zip.
+   * Falls back to built-in window.open behaviour when absent.
+   */
+  onDownload?: (urls: string[]) => Promise<void> | void;
+  /**
    * Whether form is readonly
    */
   readOnly?: boolean;
@@ -79,6 +85,7 @@ export function ProteusDocumentShell({
   defaultOpen = true,
   element,
   onDataChange,
+  onDownload,
   onInteraction,
   onMessage,
   onOpenChange,
@@ -117,19 +124,23 @@ export function ProteusDocumentShell({
         } else if ("message" in event) {
           await onMessage?.(event.message);
         } else if (event.action === "download") {
+          const urls: string[] = [];
           if (typeof event.url === "string") {
-            await downloadFile(event.url);
+            urls.push(event.url);
           } else if (Array.isArray(event.url)) {
-            await Promise.all(
-              event.url.map((u) => {
-                if (typeof u !== "string") {
-                  throw new Error("Invalid URL in download array");
-                }
-                return downloadFile(u);
-              }),
-            );
+            for (const u of event.url) {
+              if (typeof u !== "string") {
+                throw new Error("Invalid URL in download array");
+              }
+              urls.push(u);
+            }
           } else {
             throw new Error("Invalid URL for download action");
+          }
+          if (onDownload) {
+            await onDownload(urls);
+          } else {
+            await Promise.all(urls.map((u) => downloadFile(u)));
           }
         }
       })}
