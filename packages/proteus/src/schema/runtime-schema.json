@@ -158,6 +158,7 @@
         { "const": "fg.accent.strong" },
         { "const": "fg.avatar.neutral" },
         { "const": "fg.avatar.purple" },
+        { "const": "fg.black" },
         { "const": "fg.default" },
         { "const": "fg.default.inverse" },
         { "const": "fg.disabled" },
@@ -273,6 +274,7 @@
       "anyOf": [
         { "const": "inherit" },
         { "const": "600" },
+        { "const": "900" },
         { "const": "400" },
         { "const": "500" },
         { "const": "700" },
