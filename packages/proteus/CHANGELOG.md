@@ -1,5 +1,12 @@
 # @optiaxiom/proteus
 
+## 0.1.17
+
+### Patch Changes
+
+- f7f9220: Remove tree walker auto-focus from ProteusDocumentShell
+- b6f1eb7: add MapIndex to allow index based logic within loops
+
 ## 0.1.16
 
 ### Patch Changes
