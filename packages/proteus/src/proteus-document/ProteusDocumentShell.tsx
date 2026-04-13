@@ -94,25 +94,6 @@ export function ProteusDocumentShell({
     }
   }, []);
 
-  useEffect(() => {
-    if (!element.blocking || !formRef.current) return;
-    const walker = document.createTreeWalker(
-      formRef.current,
-      NodeFilter.SHOW_ELEMENT,
-      {
-        acceptNode: (node: Element) => {
-          if (node instanceof HTMLInputElement && node.type === "hidden")
-            return NodeFilter.FILTER_SKIP;
-          if ((node as HTMLElement).hidden) return NodeFilter.FILTER_SKIP;
-          return (node as HTMLElement).tabIndex >= 0
-            ? NodeFilter.FILTER_ACCEPT
-            : NodeFilter.FILTER_SKIP;
-        },
-      },
-    );
-    (walker.nextNode() as HTMLElement | null)?.focus();
-  }, [element.blocking]);
-
   const [open, setOpen] = useControllableState({
     defaultProp: defaultOpen,
     onChange: onOpenChange,
