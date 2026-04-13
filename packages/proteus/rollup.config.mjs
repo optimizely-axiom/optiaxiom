@@ -16,6 +16,7 @@ import dts from "rollup-plugin-dts";
 import esbuild from "rollup-plugin-esbuild";
 
 import { generateSpecPlugin } from "./plugins/rollup-plugin-generate-schema.mjs";
+import { openaiShimPlugin } from "./plugins/rollup-plugin-openai-shim.mjs";
 
 const env = process.env.NODE_ENV ?? "development";
 const pkg = JSON.parse(readFileSync("./package.json"));
@@ -53,6 +54,7 @@ export default defineConfig([
     },
     plugins: [
       generateSpecPlugin(),
+      openaiShimPlugin(),
       {
         name: "preserve-directives",
         renderChunk(code, chunk) {
