@@ -1285,6 +1285,7 @@
         { "$ref": "#/definitions/ProteusAction" },
         { "$ref": "#/definitions/ProteusAvatar" },
         { "$ref": "#/definitions/ProteusBadge" },
+        { "$ref": "#/definitions/ProteusBridge" },
         { "$ref": "#/definitions/ProteusCancelAction" },
         { "$ref": "#/definitions/ProteusCard" },
         { "$ref": "#/definitions/ProteusCardHeader" },
@@ -1727,6 +1728,28 @@
         "z": { "$ref": "#/definitions/SprinkleProp_z" }
       },
       "required": ["$type"],
+      "type": "object"
+    },
+    "ProteusBridge": {
+      "examples": [
+        { "$type": "Bridge", "height": 400, "resource": "ui://sample-widget" }
+      ],
+      "properties": {
+        "$type": { "const": "Bridge" },
+        "fallback": {
+          "$ref": "#/definitions/ProteusNode",
+          "description": "Content rendered on platforms without iframe support (Teams, Slack, mobile). If omitted, a default 'View in Opal web' message is shown."
+        },
+        "height": {
+          "description": "Height of the iframe in pixels",
+          "type": "number"
+        },
+        "resource": {
+          "description": "Resource URI identifying the MCP app to render (e.g., 'ui://sample-widget')",
+          "type": "string"
+        }
+      },
+      "required": ["$type", "resource"],
       "type": "object"
     },
     "ProteusCancelAction": {

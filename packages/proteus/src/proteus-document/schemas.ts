@@ -23,6 +23,7 @@ import { Validator } from "@cfworker/json-schema";
 
 import type { ProteusActionProps } from "../proteus-action/ProteusAction";
 import type { ProteusCancelActionProps } from "../proteus-action/ProteusCancelAction";
+import type { ProteusBridgeProps } from "../proteus-bridge/ProteusBridge";
 import type { ProteusChartProps } from "../proteus-chart/ProteusChart";
 import type { ProteusDataTableProps } from "../proteus-data-table/ProteusDataTable";
 import type { ProteusImageCarouselProps } from "../proteus-image-carousel/ProteusImageCarousel";
@@ -49,6 +50,7 @@ export type ProteusElement =
   | (InputProps & { $type: "Input" })
   | (LinkProps & { $type: "Link" })
   | (ProteusActionProps & { $type: "Action" })
+  | (ProteusBridgeProps & { $type: "Bridge" })
   | (ProteusCancelActionProps & { $type: "CancelAction" })
   | (ProteusChartProps & { $type: "Chart" })
   | (ProteusDataTableProps & { $type: "DataTable" })

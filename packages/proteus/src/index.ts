@@ -1,4 +1,5 @@
 export * from "./proteus-action";
+export * from "./proteus-bridge";
 export * from "./proteus-chart";
 export * from "./proteus-data-table";
 export * from "./proteus-document";
