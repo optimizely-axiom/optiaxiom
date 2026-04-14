@@ -31,6 +31,10 @@ const PROTEUS_COMPONENT_CONFIG = {
     example: { appearance: "primary", children: "Action" },
     extends: "Button",
   },
+  Alert: {
+    allowedProps: ["children", "intent"],
+    example: { children: "This is an alert", intent: "information" },
+  },
   Avatar: {
     allowedProps: [
       "children",
@@ -40,6 +44,9 @@ const PROTEUS_COMPONENT_CONFIG = {
       "size",
       "src",
     ],
+  },
+  AvatarGroup: {
+    allowedProps: ["children", "size"],
   },
   Badge: {
     allowedProps: ["children", "intent"],
@@ -107,6 +114,25 @@ const PROTEUS_COMPONENT_CONFIG = {
     },
     extends: "Fragment",
   },
+  DateInput: {
+    allowedProps: ["name", "placeholder", "required", "type"],
+    example: { name: "date_field", type: "date" },
+  },
+  Disclosure: {
+    allowedProps: ["children", "defaultOpen"],
+    example: {
+      children: [
+        { $type: "DisclosureTrigger", children: "Show details" },
+        { $type: "DisclosureContent", children: "Hidden content" },
+      ],
+    },
+  },
+  DisclosureContent: {
+    allowedProps: ["children"],
+  },
+  DisclosureTrigger: {
+    allowedProps: ["children", "chevronPosition"],
+  },
   Federated: {
     allowedProps: ["entry", "exposeKey", "fallback"],
     example: { entry: "https://widgets.example.com/remoteEntry.js" },
@@ -138,9 +164,11 @@ const PROTEUS_COMPONENT_CONFIG = {
     allowedProps: ["children", "level"],
     example: { children: "New heading", level: "2" },
   },
-  IconCalendar: {
-    allowedProps: [],
+  Icon: {
+    allowedProps: ["name"],
+    example: { name: "Calendar" },
     extends: "Box",
+    requiredProps: ["name"],
   },
   Image: {
     allowedProps: ["alt", "src"],
@@ -187,6 +215,17 @@ const PROTEUS_COMPONENT_CONFIG = {
   MapIndex: {
     allowedProps: [],
     example: {},
+    extends: "Fragment",
+  },
+  PillMenu: {
+    allowedProps: ["inputName", "name", "onInputValueChange", "options"],
+    example: {
+      name: "selected_items",
+      options: [
+        { label: "Option 1", value: "option1" },
+        { label: "Option 2", value: "option2" },
+      ],
+    },
     extends: "Fragment",
   },
   Question: {
@@ -729,7 +768,8 @@ function generateSpec(additionalProperties = false) {
                 },
                 params: {
                   additionalProperties: {},
-                  description: "Parameters to pass to the interaction handler",
+                  description:
+                    "Parameters to pass to the interaction handler. Values can be ProteusExpressions that resolve at call time.",
                   type: "object",
                 },
               },
@@ -1157,6 +1197,13 @@ function getPropTypeOverrides(additionalProperties = false) {
           "The name of the form control element. The resolved metadata array is written at parentPath/name in form data.",
       },
     },
+    Icon: {
+      name: {
+        description:
+          "Name of the icon to render. Must match a key in the icons map passed to ProteusDocumentRenderer.",
+        type: "string",
+      },
+    },
     Image: {
       alt: {
         anyOf: [
@@ -1240,6 +1287,49 @@ function getPropTypeOverrides(additionalProperties = false) {
         $ref: "#/definitions/ProteusNode",
         description:
           "Optional separator to render between items. Can be a string or a ProteusNode for more complex separators.",
+      },
+    },
+    PillMenu: {
+      inputName: {
+        description:
+          "The data binding name for the search input value. Written to data on each keystroke.",
+        type: "string",
+      },
+      name: {
+        description:
+          "The data binding name for this pill menu's selected values. Stored as a string array in the data.",
+        type: "string",
+      },
+      onInputValueChange: {
+        $ref: "#/definitions/ProteusEventHandler",
+        description:
+          "Event handler triggered when the search input value changes. Use with inputName to pass the current query via params.",
+      },
+      options: {
+        anyOf: [
+          {
+            description: "Inline array of options",
+            items: {
+              ...(additionalProperties ? {} : { additionalProperties: false }),
+              properties: {
+                label: {
+                  description: "Display label for the option",
+                  type: "string",
+                },
+                value: {
+                  description: "Unique value for the option",
+                  type: "string",
+                },
+              },
+              required: ["label", "value"],
+              type: "object",
+            },
+            type: "array",
+          },
+          { $ref: "#/definitions/ProteusExpression" },
+        ],
+        description:
+          "The available options to select from. Can be an inline array or a ProteusExpression.",
       },
     },
     Question: {
