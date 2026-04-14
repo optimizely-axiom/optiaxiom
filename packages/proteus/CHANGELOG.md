@@ -1,5 +1,11 @@
 # @optiaxiom/proteus
 
+## 0.1.18
+
+### Patch Changes
+
+- ed78c5c: add onDownload prop to proteus
+
 ## 0.1.17
 
 ### Patch Changes
