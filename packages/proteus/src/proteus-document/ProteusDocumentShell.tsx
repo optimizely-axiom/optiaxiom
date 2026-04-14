@@ -192,6 +192,7 @@ export function ProteusDocumentShell({
         >
           {element.title && (
             <Group
+              alignItems={element.titleIcon ? "start" : undefined}
               bg={element.titleIcon ? "bg.page" : "transparent"}
               gap="12"
               p={element.titleIcon ? "12" : undefined}
