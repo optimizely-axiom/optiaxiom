@@ -31,6 +31,10 @@ const PROTEUS_COMPONENT_CONFIG = {
     example: { appearance: "primary", children: "Action" },
     extends: "Button",
   },
+  Alert: {
+    allowedProps: ["children", "intent"],
+    example: { children: "This is an alert", intent: "information" },
+  },
   Avatar: {
     allowedProps: [
       "children",
@@ -40,6 +44,9 @@ const PROTEUS_COMPONENT_CONFIG = {
       "size",
       "src",
     ],
+  },
+  AvatarGroup: {
+    allowedProps: ["children", "size"],
   },
   Badge: {
     allowedProps: ["children", "intent"],
@@ -101,6 +108,10 @@ const PROTEUS_COMPONENT_CONFIG = {
       data: [{ name: "Alice" }],
     },
     extends: "Fragment",
+  },
+  DateInput: {
+    allowedProps: ["name", "placeholder", "required", "type"],
+    example: { name: "date_field", type: "date" },
   },
   Field: {
     allowedProps: ["children", "description", "info", "label", "required"],
@@ -166,6 +177,17 @@ const PROTEUS_COMPONENT_CONFIG = {
   MapIndex: {
     allowedProps: [],
     example: {},
+    extends: "Fragment",
+  },
+  PillMenu: {
+    allowedProps: ["name", "options"],
+    example: {
+      name: "selected_items",
+      options: [
+        { label: "Option 1", value: "option1" },
+        { label: "Option 2", value: "option2" },
+      ],
+    },
     extends: "Fragment",
   },
   Question: {
@@ -1002,6 +1024,32 @@ function getPropTypeOverrides(additionalProperties = false) {
         $ref: "#/definitions/ProteusNode",
         description:
           "Optional separator to render between items. Can be a string or a ProteusNode for more complex separators.",
+      },
+    },
+    PillMenu: {
+      name: {
+        description:
+          "The data binding name for this pill menu's selected values. Stored as a string array in the data.",
+        type: "string",
+      },
+      options: {
+        description: "The available options to select from.",
+        items: {
+          ...(additionalProperties ? {} : { additionalProperties: false }),
+          properties: {
+            label: {
+              description: "Display label for the option",
+              type: "string",
+            },
+            value: {
+              description: "Unique value for the option",
+              type: "string",
+            },
+          },
+          required: ["label", "value"],
+          type: "object",
+        },
+        type: "array",
       },
     },
     Question: {

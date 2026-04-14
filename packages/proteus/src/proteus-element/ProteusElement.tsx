@@ -1,5 +1,7 @@
 import {
+  Alert,
   Avatar,
+  AvatarGroup,
   Badge,
   Box,
   Card,
@@ -21,6 +23,7 @@ import { IconCalendar } from "../icons/IconCalendar";
 import { ProteusAction } from "../proteus-action/ProteusAction";
 import { ProteusCancelAction } from "../proteus-action/ProteusCancelAction";
 import { ProteusDataTable } from "../proteus-data-table/ProteusDataTable";
+import { ProteusDateInput } from "../proteus-date-input/ProteusDateInput";
 import { useProteusDocumentContext } from "../proteus-document/ProteusDocumentContext";
 import { useProteusDocumentPathContext } from "../proteus-document/ProteusDocumentPathContext";
 import { resolveProteusProp } from "../proteus-document/resolveProteusProp";
@@ -29,6 +32,7 @@ import { ProteusImageCarousel } from "../proteus-image-carousel/ProteusImageCaro
 import { ProteusImage } from "../proteus-image/ProteusImage";
 import { ProteusInput } from "../proteus-input/ProteusInput";
 import { ProteusMap } from "../proteus-map/ProteusMap";
+import { ProteusPillMenu } from "../proteus-pill-menu/ProteusPillMenu";
 import { ProteusQuestion } from "../proteus-question/ProteusQuestion";
 import { ProteusSelect } from "../proteus-select/ProteusSelect";
 import { ProteusShow } from "../proteus-show/ProteusShow";
@@ -96,8 +100,12 @@ export const ProteusElement = ({
   switch (element.$type) {
     case "Action":
       return <ProteusAction {...resolve(element)} />;
+    case "Alert":
+      return <Alert {...resolve(element)} />;
     case "Avatar":
       return <Avatar {...resolve(element)} />;
+    case "AvatarGroup":
+      return <AvatarGroup {...resolve(element)} />;
     case "Badge":
       return <Badge {...resolve(element)} />;
     case "CancelAction":
@@ -126,6 +134,8 @@ export const ProteusElement = ({
           >)}
         />
       );
+    case "DateInput":
+      return <ProteusDateInput {...resolve(element)} />;
     case "Field":
       return <Field {...resolve(element)} />;
     case "Group":
@@ -158,6 +168,8 @@ export const ProteusElement = ({
           {...(resolve(element) as ComponentPropsWithoutRef<typeof ProteusMap>)}
         />
       );
+    case "PillMenu":
+      return <ProteusPillMenu {...resolve(element)} />;
     case "Question":
       return <ProteusQuestion {...resolve(element)} />;
     case "Range":

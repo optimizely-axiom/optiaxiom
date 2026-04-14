@@ -1069,6 +1069,258 @@ export const ExploreResources: Story = {
   },
 };
 
+export const CreateMeetingEvent: Story = {
+  args: {
+    element: {
+      $type: "Document",
+      actions: {
+        $type: "Show",
+        children: [
+          {
+            $type: "Action",
+            children: "Cancel",
+            onClick: {
+              interaction: "cancel",
+            },
+          },
+          {
+            $type: "Action",
+            appearance: "primary",
+            children: "Create event",
+            onClick: {
+              interaction: "create_event",
+            },
+            type: "submit",
+          },
+        ],
+        when: {
+          "!": { $type: "Value", path: "/submitted" },
+        },
+      },
+      appIcon:
+        "https://upload.wikimedia.org/wikipedia/commons/a/a5/Google_Calendar_icon_%282020%29.svg",
+      appName: "Google Calendar",
+      body: [
+        {
+          $type: "Show",
+          children: [
+            {
+              $type: "Alert",
+              children: "I'll help you schedule this meeting",
+            },
+            {
+              $type: "Field",
+              children: {
+                $type: "Input",
+                name: "event_title",
+                placeholder: "Add a title",
+              },
+              label: "Event title",
+              required: true,
+            },
+            {
+              $type: "Field",
+              children: {
+                $type: "DateInput",
+                name: "date_time",
+                type: "datetime-local",
+              },
+              label: "Date & time",
+              required: true,
+            },
+            {
+              $type: "Field",
+              children: {
+                $type: "Select",
+                children: [
+                  {
+                    $type: "SelectTrigger",
+                    w: "full",
+                  },
+                  {
+                    $type: "SelectContent",
+                  },
+                ],
+                name: "duration",
+                options: [
+                  { label: "15 minutes", value: "15m" },
+                  { label: "30 minutes", value: "30m" },
+                  { label: "45 minutes", value: "45m" },
+                  { label: "1 hour", value: "1h" },
+                  { label: "1.5 hours", value: "1.5h" },
+                  { label: "2 hours", value: "2h" },
+                ],
+              },
+              label: "Duration",
+              required: true,
+            },
+            {
+              $type: "Field",
+              children: {
+                $type: "PillMenu",
+                name: "attendees",
+                options: [
+                  {
+                    label: "sarah@optimizely.com",
+                    value: "sarah@optimizely.com",
+                  },
+                  {
+                    label: "john@optimizely.com",
+                    value: "john@optimizely.com",
+                  },
+                  {
+                    label: "alice@optimizely.com",
+                    value: "alice@optimizely.com",
+                  },
+                  {
+                    label: "bob@optimizely.com",
+                    value: "bob@optimizely.com",
+                  },
+                  {
+                    label: "carol@optimizely.com",
+                    value: "carol@optimizely.com",
+                  },
+                ],
+              },
+              label: "Add people",
+            },
+          ],
+          when: {
+            "!": { $type: "Value", path: "/submitted" },
+          },
+        },
+        {
+          $type: "Show",
+          children: [
+            {
+              $type: "Heading",
+              children: { $type: "Value", path: "/event_title" },
+              fontSize: "lg",
+              fontWeight: "600",
+              level: "2",
+            },
+            {
+              $type: "Text",
+              children: "Event created",
+              color: "fg.success",
+              fontSize: "sm",
+            },
+            {
+              $type: "Separator",
+            },
+            {
+              $type: "Group",
+              children: [
+                {
+                  $type: "Group",
+                  children: [
+                    {
+                      $type: "IconCalendar",
+                      h: "auto",
+                      w: "16",
+                    },
+                    {
+                      $type: "Time",
+                      date: { $type: "Value", path: "/date_time" },
+                      showTime: true,
+                    },
+                  ],
+                  gap: "8",
+                },
+                {
+                  $type: "Text",
+                  children: "Google Meet (link in calendar)",
+                },
+                {
+                  $type: "Group",
+                  children: [
+                    {
+                      $type: "AvatarGroup",
+                      children: {
+                        $type: "Map",
+                        children: {
+                          $type: "Avatar",
+                          colorScheme: "purple",
+                          name: { $type: "Value", path: "" },
+                        },
+                        path: "/attendees",
+                      },
+                      size: "2xs",
+                    },
+                    {
+                      $type: "Text",
+                      children: { $type: "Value", path: "/attendee_count" },
+                    },
+                  ],
+                  gap: "8",
+                },
+              ],
+              flexDirection: "column",
+              gap: "12",
+            },
+            {
+              $type: "Separator",
+            },
+            {
+              $type: "Group",
+              children: [
+                {
+                  $type: "Link",
+                  children: "Add to another calendar",
+                  href: "#",
+                },
+                {
+                  $type: "Action",
+                  appearance: "primary",
+                  children: "Open in Google Calendar",
+                  onClick: {
+                    interaction: "open_calendar",
+                  },
+                },
+              ],
+              flexDirection: "row",
+              gap: "16",
+              justifyContent: "flex-end",
+            },
+          ],
+          when: {
+            "!!": { $type: "Value", path: "/submitted" },
+          },
+        },
+      ],
+    },
+  },
+  render: function Render(args) {
+    const [data, setData] = useState<Record<string, unknown>>({
+      attendees: ["sarah@optimizely.com"],
+      date_time: "2026-02-14T14:00",
+      duration: "1h",
+      event_title: "Q1 Planning Meeting",
+    });
+    return (
+      <ProteusDocumentRenderer
+        {...args}
+        data={data}
+        onDataChange={setData}
+        onInteraction={(name) => {
+          if (name === "create_event") {
+            setData((prev) => {
+              const attendees = Array.isArray(prev.attendees)
+                ? prev.attendees
+                : [];
+              return {
+                ...prev,
+                attendee_count: `${attendees.length} people invited`,
+                submitted: true,
+              };
+            });
+          }
+        }}
+      />
+    );
+  },
+};
+
 export const PartialRendering: Story = {
   args: {
     element: {
