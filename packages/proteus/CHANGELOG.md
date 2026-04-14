@@ -1,5 +1,11 @@
 # @optiaxiom/proteus
 
+## 0.1.20
+
+### Patch Changes
+
+- f3a9ce9: design feedback
+
 ## 0.1.19
 
 ### Patch Changes
