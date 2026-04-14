@@ -1,9 +1,14 @@
 import {
+  Alert,
   Avatar,
+  AvatarGroup,
   Badge,
   Box,
   Card,
   CardHeader,
+  Disclosure,
+  DisclosureContent,
+  DisclosureTrigger,
   Field,
   Group,
   Heading,
@@ -16,11 +21,11 @@ import {
 import { Range, Time } from "@optiaxiom/react/unstable";
 import { type ComponentPropsWithoutRef, lazy, Suspense } from "react";
 
-import { IconCalendar } from "../icons/IconCalendar";
 import { ProteusAction } from "../proteus-action/ProteusAction";
 import { ProteusBridge } from "../proteus-bridge/ProteusBridge";
 import { ProteusCardLink } from "../proteus-card-link/ProteusCardLink";
 import { ProteusDataTable } from "../proteus-data-table/ProteusDataTable";
+import { ProteusDateInput } from "../proteus-date-input/ProteusDateInput";
 import { useProteusDocumentContext } from "../proteus-document/ProteusDocumentContext";
 import { useProteusDocumentPathContext } from "../proteus-document/ProteusDocumentPathContext";
 import { resolveProteusProp } from "../proteus-document/resolveProteusProp";
@@ -32,6 +37,7 @@ import { ProteusImageCarousel } from "../proteus-image-carousel/ProteusImageCaro
 import { ProteusImage } from "../proteus-image/ProteusImage";
 import { ProteusInput } from "../proteus-input/ProteusInput";
 import { ProteusMap } from "../proteus-map/ProteusMap";
+import { ProteusPillMenu } from "../proteus-pill-menu/ProteusPillMenu";
 import { ProteusQuestion } from "../proteus-question/ProteusQuestion";
 import { ProteusSelect } from "../proteus-select/ProteusSelect";
 import { ProteusShow } from "../proteus-show/ProteusShow";
@@ -55,7 +61,7 @@ export type ProteusElementProps = {
 export const ProteusElement = ({
   element: elementProp,
 }: ProteusElementProps) => {
-  const { data, strict } = useProteusDocumentContext(
+  const { data, icons, strict } = useProteusDocumentContext(
     "@optiaxiom/proteus/ProteusElement",
   );
   const { mapIndices, path: parentPath } = useProteusDocumentPathContext(
@@ -99,8 +105,12 @@ export const ProteusElement = ({
   switch (element.$type) {
     case "Action":
       return <ProteusAction {...resolve(element)} />;
+    case "Alert":
+      return <Alert {...resolve(element)} />;
     case "Avatar":
       return <Avatar {...resolve(element)} />;
+    case "AvatarGroup":
+      return <AvatarGroup {...resolve(element)} />;
     case "Badge":
       return <Badge {...resolve(element)} />;
     case "Bridge":
@@ -137,6 +147,14 @@ export const ProteusElement = ({
           >)}
         />
       );
+    case "DateInput":
+      return <ProteusDateInput {...resolve(element)} />;
+    case "Disclosure":
+      return <Disclosure {...resolve(element)} />;
+    case "DisclosureContent":
+      return <DisclosureContent {...resolve(element)} />;
+    case "DisclosureTrigger":
+      return <DisclosureTrigger {...resolve(element)} />;
     case "Federated":
       return (
         <ProteusFederated
@@ -155,12 +173,23 @@ export const ProteusElement = ({
       return <Group {...resolve(element)} />;
     case "Heading":
       return <Heading {...resolve(element)} />;
-    case "IconCalendar":
+    case "Icon": {
+      const { name, ...rest } = resolve(element);
+      const IconComp = icons?.[name as string];
+      if (!IconComp) {
+        if (strict) {
+          throw new Error(
+            `Icon "${name}" not registered. Pass it via the \`icons\` prop on ProteusDocumentRenderer.`,
+          );
+        }
+        return null;
+      }
       return (
-        <Box asChild {...resolve(element)}>
-          <IconCalendar />
+        <Box asChild {...rest}>
+          <IconComp />
         </Box>
       );
+    }
     case "Image":
       return <ProteusImage {...resolve(element)} />;
     case "ImageCarousel":
@@ -181,6 +210,8 @@ export const ProteusElement = ({
           {...(resolve(element) as ComponentPropsWithoutRef<typeof ProteusMap>)}
         />
       );
+    case "PillMenu":
+      return <ProteusPillMenu {...resolve(element)} />;
     case "Question":
       return <ProteusQuestion {...resolve(element)} />;
     case "Range":

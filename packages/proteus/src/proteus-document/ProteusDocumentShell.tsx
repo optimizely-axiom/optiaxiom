@@ -25,6 +25,7 @@ import { useEffectEvent } from "../hooks";
 import { downloadFile } from "../proteus-image/downloadFile";
 import {
   ProteusDocumentProvider,
+  type ProteusIconMap,
   type UploadFile,
   type UseResource,
 } from "./ProteusDocumentContext";
@@ -47,6 +48,10 @@ export type ProteusDocumentShellProps = Pick<
    * The Proteus document to render
    */
   element: ProteusDocument;
+  /**
+   * Map of icon name to React component. Referenced by `{ $type: "Icon", name }` elements.
+   */
+  icons?: ProteusIconMap;
   /**
    * Callback when form fields change
    */
@@ -116,6 +121,7 @@ export function ProteusDocumentShell({
   data = {},
   defaultOpen = true,
   element,
+  icons,
   onDataChange,
   onDownload,
   onInteraction,
@@ -173,6 +179,7 @@ export function ProteusDocumentShell({
   return (
     <ProteusDocumentProvider
       data={data}
+      icons={icons}
       onDataChange={useEffectEvent((path: string, value: unknown) => {
         const next = structuredClone(data);
         set(next, path, value);

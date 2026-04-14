@@ -1,8 +1,14 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
+import {
+  IconCalendar,
+  IconClock,
+  IconLocationDot,
+  IconUserGroup,
+} from "@optiaxiom/icons";
 import { ProteusDocumentRenderer } from "@optiaxiom/proteus";
 import { Box } from "@optiaxiom/react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { action } from "storybook/actions";
 
 export default {
@@ -1542,8 +1548,9 @@ export const ExploreResources: Story = {
                               $type: "Group",
                               children: [
                                 {
-                                  $type: "IconCalendar",
+                                  $type: "Icon",
                                   h: "auto",
+                                  name: "Calendar",
                                   w: "16",
                                 },
                                 {
@@ -1715,6 +1722,9 @@ export const ExploreResources: Story = {
         " results found",
       ],
     },
+    icons: {
+      Calendar: IconCalendar,
+    },
   },
 };
 
@@ -1739,6 +1749,7 @@ export const WithBridge: Story = {
       ],
       title: "Bridge Component (OpenAI Profile)",
     },
+    icons: { Calendar: IconCalendar },
   },
   render: function Render(args) {
     const [resource, setResource] = useState<{
@@ -1934,6 +1945,377 @@ export const FederatedWithFallback: Story = {
       ],
       title: "Federated with Fallback",
     },
+  },
+};
+
+export const CreateMeetingEvent: Story = {
+  args: {
+    element: {
+      $type: "Document",
+      actions: {
+        $type: "Show",
+        children: [
+          {
+            $type: "Action",
+            appearance: "subtle",
+            children: "Cancel",
+            onClick: {
+              interaction: "cancel",
+            },
+          },
+          {
+            $type: "Action",
+            appearance: "primary",
+            children: "Create event",
+            onClick: {
+              interaction: "create_event",
+            },
+            type: "submit",
+          },
+        ],
+        when: {
+          "!": { $type: "Value", path: "/submitted" },
+        },
+      },
+      appIcon:
+        "https://upload.wikimedia.org/wikipedia/commons/a/a5/Google_Calendar_icon_%282020%29.svg",
+      appName: "Google Calendar",
+      body: [
+        {
+          $type: "Show",
+          children: [
+            {
+              $type: "Alert",
+              children: "I'll help you schedule this meeting",
+            },
+            {
+              $type: "Field",
+              children: {
+                $type: "Input",
+                name: "event_title",
+                placeholder: "Add a title",
+              },
+              label: "Event title",
+              required: true,
+            },
+            {
+              $type: "Field",
+              children: {
+                $type: "DateInput",
+                name: "date_time",
+                type: "datetime-local",
+              },
+              label: "Date & time",
+              required: true,
+            },
+            {
+              $type: "Field",
+              children: {
+                $type: "Select",
+                children: [
+                  {
+                    $type: "SelectTrigger",
+                    w: "full",
+                  },
+                  {
+                    $type: "SelectContent",
+                  },
+                ],
+                name: "duration",
+                options: [
+                  { label: "15 minutes", value: "15m" },
+                  { label: "30 minutes", value: "30m" },
+                  { label: "45 minutes", value: "45m" },
+                  { label: "1 hour", value: "1h" },
+                  { label: "1.5 hours", value: "1.5h" },
+                  { label: "2 hours", value: "2h" },
+                ],
+              },
+              label: "Duration",
+              required: true,
+            },
+            {
+              $type: "Field",
+              children: {
+                $type: "PillMenu",
+                inputName: "attendees_query",
+                name: "attendees",
+                onInputValueChange: {
+                  interaction: "search_people",
+                  params: {
+                    query: {
+                      $type: "Value",
+                      path: "/attendees_query",
+                    },
+                  },
+                },
+                options: {
+                  $type: "Value",
+                  path: "/people_results",
+                },
+              },
+              label: "Add people",
+            },
+          ],
+          when: {
+            "!": { $type: "Value", path: "/submitted" },
+          },
+        },
+        {
+          $type: "Show",
+          children: [
+            {
+              $type: "Group",
+              children: [
+                {
+                  $type: "Heading",
+                  children: { $type: "Value", path: "/event_title" },
+                  fontSize: "lg",
+                  fontWeight: "600",
+                  level: "2",
+                },
+                {
+                  $type: "Text",
+                  children: "Event created",
+                  color: "fg.secondary",
+                  fontSize: "sm",
+                },
+              ],
+              flexDirection: "column",
+            },
+            {
+              $type: "Group",
+              children: [
+                {
+                  $type: "Group",
+                  children: [
+                    {
+                      $type: "Icon",
+                      name: "Clock",
+                    },
+                    {
+                      $type: "Time",
+                      date: { $type: "Value", path: "/date_time" },
+                      showTime: true,
+                    },
+                  ],
+                  gap: "8",
+                },
+                {
+                  $type: "Group",
+                  children: [
+                    {
+                      $type: "Icon",
+                      name: "LocationDot",
+                    },
+                    {
+                      $type: "Text",
+                      children: "Google Meet (link in calendar)",
+                    },
+                  ],
+                  gap: "8",
+                },
+                {
+                  $type: "Disclosure",
+                  children: [
+                    {
+                      $type: "DisclosureTrigger",
+                      chevronPosition: "end",
+                      children: {
+                        $type: "Group",
+                        children: [
+                          {
+                            $type: "Icon",
+                            name: "UserGroup",
+                          },
+                          {
+                            $type: "Text",
+                            children: {
+                              $type: "Value",
+                              path: "/attendee_count",
+                            },
+                          },
+                        ],
+                        gap: "8",
+                      },
+                      display: "inline-flex",
+                    },
+                    {
+                      $type: "DisclosureContent",
+                      children: {
+                        $type: "Group",
+                        children: {
+                          $type: "Map",
+                          children: {
+                            $type: "Group",
+                            children: [
+                              {
+                                $type: "Avatar",
+                                colorScheme: "purple",
+                                name: { $type: "Value", path: "label" },
+                                size: "xs",
+                              },
+                              {
+                                $type: "Text",
+                                children: { $type: "Value", path: "label" },
+                              },
+                            ],
+                            gap: "8",
+                          },
+                          path: "/attendees",
+                        },
+                        flexDirection: "column",
+                        gap: "8",
+                      },
+                    },
+                  ],
+                },
+              ],
+              flexDirection: "column",
+              gap: "12",
+            },
+            {
+              $type: "Separator",
+            },
+            {
+              $type: "Group",
+              children: [
+                {
+                  $type: "Action",
+                  appearance: "subtle",
+                  children: "Add to another calendar",
+                  type: "button",
+                },
+                {
+                  $type: "Action",
+                  appearance: "primary",
+                  children: "Open in Google Calendar",
+                  onClick: {
+                    interaction: "open_calendar",
+                  },
+                },
+              ],
+              flexDirection: "row",
+              gap: "16",
+              justifyContent: "flex-end",
+            },
+          ],
+          when: {
+            "!!": { $type: "Value", path: "/submitted" },
+          },
+        },
+      ],
+    },
+    icons: {
+      Clock: IconClock,
+      LocationDot: IconLocationDot,
+      UserGroup: IconUserGroup,
+    },
+  },
+  render: function Render(args) {
+    const allPeople = [
+      {
+        label: "sarah@optimizely.com",
+        skipFilterScoring: true,
+        value: "sarah@optimizely.com",
+        visible: true,
+      },
+      {
+        label: "john@optimizely.com",
+        skipFilterScoring: true,
+        value: "john@optimizely.com",
+        visible: true,
+      },
+      {
+        label: "alice@optimizely.com",
+        skipFilterScoring: true,
+        value: "alice@optimizely.com",
+        visible: true,
+      },
+      {
+        label: "bob@optimizely.com",
+        skipFilterScoring: true,
+        value: "bob@optimizely.com",
+        visible: true,
+      },
+      {
+        label: "carol@optimizely.com",
+        skipFilterScoring: true,
+        value: "carol@optimizely.com",
+        visible: true,
+      },
+      {
+        label: "diana@optimizely.com",
+        skipFilterScoring: true,
+        value: "diana@optimizely.com",
+        visible: true,
+      },
+      {
+        label: "eve@optimizely.com",
+        skipFilterScoring: true,
+        value: "eve@optimizely.com",
+        visible: true,
+      },
+    ];
+
+    const [data, setData] = useState<Record<string, unknown>>({
+      attendees: [
+        { label: "sarah@optimizely.com", value: "sarah@optimizely.com" },
+      ],
+      attendees_query: "",
+      date_time: "2026-02-14T14:00",
+      duration: "1h",
+      event_title: "Q1 Planning Meeting",
+      people_results: allPeople,
+    });
+
+    const searchTimerRef = useRef<null | {
+      resolve: () => void;
+      timer: ReturnType<typeof setTimeout>;
+    }>(null);
+
+    return (
+      <ProteusDocumentRenderer
+        {...args}
+        data={data}
+        onDataChange={setData}
+        onInteraction={(name): Promise<void> | void => {
+          if (name === "search_people") {
+            if (searchTimerRef.current) {
+              clearTimeout(searchTimerRef.current.timer);
+              searchTimerRef.current.resolve();
+              searchTimerRef.current = null;
+            }
+            return new Promise<void>((resolve) => {
+              const timer = setTimeout(() => {
+                searchTimerRef.current = null;
+                setData((prev) => {
+                  const query = (prev.attendees_query as string) ?? "";
+                  const filtered = allPeople.filter((p) =>
+                    p.label.toLowerCase().includes(query),
+                  );
+                  return { ...prev, people_results: filtered };
+                });
+                resolve();
+              }, 1000);
+              searchTimerRef.current = { resolve, timer };
+            });
+          }
+          if (name === "create_event") {
+            setData((prev) => {
+              const attendees = Array.isArray(prev.attendees)
+                ? prev.attendees
+                : [];
+              return {
+                ...prev,
+                attendee_count: `${attendees.length} people invited`,
+                submitted: true,
+              };
+            });
+          }
+        }}
+      />
+    );
   },
 };
 

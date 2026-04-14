@@ -1,9 +1,15 @@
 import type {
+  AlertProps,
+  AvatarGroupProps,
   AvatarProps,
   BadgeProps,
   BoxProps,
   CardHeaderProps,
   CardProps,
+  DateInputProps,
+  DisclosureContentProps,
+  DisclosureProps,
+  DisclosureTriggerProps,
   FieldProps,
   GroupProps,
   HeadingProps,
@@ -31,6 +37,7 @@ import type { ProteusFileUploadProps } from "../proteus-file-upload/ProteusFileU
 import type { ProteusImageCarouselProps } from "../proteus-image-carousel/ProteusImageCarousel";
 import type { ProteusImageProps } from "../proteus-image/ProteusImage";
 import type { ProteusMapProps } from "../proteus-map/ProteusMap";
+import type { ProteusPillMenuProps } from "../proteus-pill-menu/ProteusPillMenu";
 import type { ProteusQuestionProps } from "../proteus-question/ProteusQuestion";
 import type { ProteusSelectProps } from "../proteus-select/ProteusSelect";
 import type { ProteusShowProps } from "../proteus-show/ProteusShow";
@@ -41,11 +48,17 @@ import type { ProteusDocumentShellProps } from "./ProteusDocumentShell";
 import proteusDocumentSpec from "../schema/runtime-schema.json";
 
 export type ProteusElement =
+  | (AlertProps & { $type: "Alert" })
+  | (AvatarGroupProps & { $type: "AvatarGroup" })
   | (AvatarProps & { $type: "Avatar" })
   | (BadgeProps & { $type: "Badge" })
-  | (BoxProps & { $type: "IconCalendar" })
+  | (BoxProps & { $type: "Icon"; name: string })
   | (CardHeaderProps & { $type: "CardHeader" })
   | (CardProps & { $type: "Card" })
+  | (DateInputProps & { $type: "DateInput" })
+  | (DisclosureContentProps & { $type: "DisclosureContent" })
+  | (DisclosureProps & { $type: "Disclosure" })
+  | (DisclosureTriggerProps & { $type: "DisclosureTrigger" })
   | (FieldProps & { $type: "Field" })
   | (GroupProps & { $type: "Group" })
   | (HeadingProps & { $type: "Heading" })
@@ -63,6 +76,7 @@ export type ProteusElement =
   | (ProteusImageCarouselProps & { $type: "ImageCarousel" })
   | (ProteusImageProps & { $type: "Image" })
   | (ProteusMapProps & { $type: "Map" })
+  | (ProteusPillMenuProps & { $type: "PillMenu" })
   | (ProteusQuestionProps & { $type: "Question" })
   | (ProteusSelectProps & { $type: "Select" })
   | (ProteusShowProps & { $type: "Show" })
