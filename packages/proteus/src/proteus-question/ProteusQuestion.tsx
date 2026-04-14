@@ -1,4 +1,4 @@
-import { IconNorth } from "@optiaxiom/icons";
+import { IconArrowRightAlt, IconEdit } from "@optiaxiom/icons";
 import { Box, Button, Checkbox, Group, Text } from "@optiaxiom/react";
 import { InlineInput } from "@optiaxiom/react/unstable";
 import * as RovingFocus from "@radix-ui/react-roving-focus";
@@ -6,7 +6,6 @@ import { useCallback, useEffect, useRef, useState } from "react";
 
 import { IconAngleLeft } from "../icons/IconAngleLeft";
 import { IconAngleRight } from "../icons/IconAngleRight";
-import { IconPencil } from "../icons/IconPencil";
 import { IconX } from "../icons/IconX";
 import { useProteusDocumentContext } from "../proteus-document/ProteusDocumentContext";
 import * as styles from "./ProteusQuestion.css";
@@ -251,24 +250,28 @@ export function ProteusQuestion({ questions }: ProteusQuestionProps) {
                     {...styles.choice({ cursor: "pointer" })}
                   >
                     <Group gap="12">
-                      <Box {...styles.addon()}>
-                        {type === "single_select" ? (
-                          index + 1
-                        ) : (
-                          <Checkbox
-                            checked={checked}
-                            hidden
-                            pointerEvents="none"
-                            tabIndex={-1}
-                          />
-                        )}
-                      </Box>
+                      {type === "single_select" ? (
+                        <Box {...styles.addon()}>{index + 1}</Box>
+                      ) : (
+                        <Checkbox
+                          checked={checked}
+                          hidden
+                          pointerEvents="none"
+                          tabIndex={-1}
+                        />
+                      )}
                       <Group flex="1" flexDirection="column" gap="2">
                         <Text>{option}</Text>
                       </Group>
                       {type === "single_select" && checked && (
-                        <Box asChild color="fg.tertiary" ml="auto">
-                          <IconNorth />
+                        <Box
+                          asChild
+                          color="fg.tertiary"
+                          h="24"
+                          ml="auto"
+                          w="24"
+                        >
+                          <IconArrowRightAlt />
                         </Box>
                       )}
                     </Group>
@@ -285,18 +288,18 @@ export function ProteusQuestion({ questions }: ProteusQuestionProps) {
               {...styles.choice({ cursor: "text" })}
             >
               <Group gap="12">
-                <Box {...styles.addon({ cursor: "pointer" })}>
-                  {type === "single_select" ? (
-                    <IconPencil />
-                  ) : (
-                    <Checkbox
-                      checked={otherChecked}
-                      hidden
-                      pointerEvents="none"
-                      tabIndex={-1}
-                    />
-                  )}
-                </Box>
+                {type === "single_select" ? (
+                  <Box {...styles.addon({ cursor: "pointer" })}>
+                    <IconEdit />
+                  </Box>
+                ) : (
+                  <Checkbox
+                    checked={otherChecked}
+                    hidden
+                    pointerEvents="none"
+                    tabIndex={-1}
+                  />
+                )}
                 <RovingFocus.Item asChild>
                   <Group
                     flex="1"
@@ -347,9 +350,9 @@ export function ProteusQuestion({ questions }: ProteusQuestionProps) {
                 </RovingFocus.Item>
                 {type === "single_select" && (
                   <Button
-                    appearance={otherValue ? "primary" : "default"}
+                    appearance={otherValue ? "primary-opal" : "default"}
                     aria-label={otherValue && (isLast ? "Submit" : "Next")}
-                    icon={otherValue && <IconNorth />}
+                    icon={otherValue && <IconArrowRightAlt />}
                     ml="auto"
                     onClick={(event) => {
                       event.preventDefault();
@@ -388,10 +391,10 @@ export function ProteusQuestion({ questions }: ProteusQuestionProps) {
             Skip
           </Button>
           <Button
-            appearance={valid ? "primary" : "default"}
+            appearance={valid ? "primary-opal" : "default"}
             aria-label={isLast ? "Submit" : "Next"}
             disabled={!valid}
-            icon={<IconNorth />}
+            icon={<IconArrowRightAlt />}
             onClick={(event) => {
               event.preventDefault();
               onSubmit();

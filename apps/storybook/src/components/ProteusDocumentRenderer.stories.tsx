@@ -491,7 +491,7 @@ export const AskAgentInput: Story = {
         },
         {
           $type: "Action",
-          appearance: "primary",
+          appearance: "primary-opal",
           children: "Run agent",
           onClick: {
             message: {
