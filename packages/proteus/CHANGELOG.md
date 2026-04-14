@@ -1,5 +1,11 @@
 # @optiaxiom/proteus
 
+## 0.1.19
+
+### Patch Changes
+
+- 5df5a11: fix download for carousel
+
 ## 0.1.18
 
 ### Patch Changes
