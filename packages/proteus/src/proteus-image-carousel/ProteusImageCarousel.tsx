@@ -12,15 +12,11 @@ import { useCallback, useEffect, useState } from "react";
 
 import { IconAngleLeft } from "../icons/IconAngleLeft";
 import { IconAngleRight } from "../icons/IconAngleRight";
-import { downloadFile } from "../proteus-image/downloadFile";
+import { useProteusDocumentContext } from "../proteus-document/ProteusDocumentContext";
 import { ProteusImage } from "../proteus-image/ProteusImage";
 import * as styles from "./ProteusImageCarousel.css";
 
 export type ProteusImageCarouselProps = {
-  /**
-   * URL to download all images (e.g. as a zip file).
-   */
-  downloadAll?: string;
   /**
    * Array of image data to display in the carousel.
    */
@@ -45,10 +41,12 @@ export type ProteusImageCarouselProps = {
 };
 
 export function ProteusImageCarousel({
-  downloadAll,
   images,
   title,
 }: ProteusImageCarouselProps) {
+  const { onEvent } = useProteusDocumentContext(
+    "@optiaxiom/proteus/ProteusImageCarousel",
+  );
   const [emblaMainRef, emblaMainApi] = useEmblaCarousel({ loop: false });
   const [emblaThumbsRef, emblaThumbsApi] = useEmblaCarousel({
     containScroll: "keepSnaps",
@@ -173,19 +171,19 @@ export function ProteusImageCarousel({
           <Menu
             options={[
               {
-                execute: () => downloadFile(images[selectedIndex].src),
+                execute: () =>
+                  onEvent({
+                    action: "download",
+                    url: images[selectedIndex].src,
+                  }),
                 label: "Download this image",
               },
               {
-                execute: () => {
-                  if (downloadAll) {
-                    window.open(downloadAll, "_blank");
-                  } else {
-                    for (const image of images) {
-                      void downloadFile(image.src);
-                    }
-                  }
-                },
+                execute: () =>
+                  onEvent({
+                    action: "download",
+                    url: images.map((image) => image.src),
+                  }),
                 label: "Download all images",
               },
             ]}
@@ -199,7 +197,7 @@ export function ProteusImageCarousel({
           <Button
             appearance="primary"
             ml="auto"
-            onClick={() => downloadFile(images[0].src)}
+            onClick={() => onEvent({ action: "download", url: images[0].src })}
           >
             Download
           </Button>
