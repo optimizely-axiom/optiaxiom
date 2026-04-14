@@ -13,11 +13,14 @@ import {
 } from "@optiaxiom/react";
 import { useState } from "react";
 
-import { downloadFile } from "./downloadFile";
+import { useProteusDocumentContext } from "../proteus-document/ProteusDocumentContext";
 
 export type ProteusImageProps = BoxProps<"img">;
 
 export function ProteusImage(props: ProteusImageProps) {
+  const { onEvent } = useProteusDocumentContext(
+    "@optiaxiom/proteus/ProteusImage",
+  );
   const [open, setOpen] = useState(false);
   const [isDownloading, setIsDownloading] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -99,7 +102,10 @@ export function ProteusImage(props: ProteusImageProps) {
 
                 setIsDownloading(true);
                 try {
-                  await downloadFile(String(props.src));
+                  await onEvent({
+                    action: "download",
+                    url: String(props.src),
+                  });
                 } finally {
                   setIsDownloading(false);
                 }

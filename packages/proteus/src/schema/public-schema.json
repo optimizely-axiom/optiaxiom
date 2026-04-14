@@ -2700,13 +2700,6 @@
       ],
       "properties": {
         "$type": { "const": "ImageCarousel" },
-        "downloadAll": {
-          "anyOf": [
-            { "$ref": "#/definitions/ProteusExpression" },
-            { "type": "string" }
-          ],
-          "description": "URL to download all images (e.g. as a zip file). Falls back to downloading each image individually."
-        },
         "images": {
           "anyOf": [
             {

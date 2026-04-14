@@ -127,7 +127,7 @@ const PROTEUS_COMPONENT_CONFIG = {
     extends: "Box",
   },
   ImageCarousel: {
-    allowedProps: ["downloadAll", "images", "title"],
+    allowedProps: ["images", "title"],
     example: {
       images: [
         { alt: "Image 1", src: "https://placehold.co/600x400" },
