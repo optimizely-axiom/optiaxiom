@@ -28,9 +28,7 @@
     "build": "node scripts/download.mjs && rm -rf dist && NODE_ENV=production rollup -c",
     "dev": "node scripts/download.mjs && rm -rf dist && rollup -cw"
   },
-  "dependencies": {
-    "@optiaxiom/react": "workspace:*"
-  },
+  "dependencies": {},
   "devDependencies": {
     "react": "^18.3.1",
     "react-dom": "^18.3.1"

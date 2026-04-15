@@ -19,11 +19,16 @@ const external = new RegExp(
 /** @returns {import('rollup').Plugin} */
 function materialSymbolsPlugin() {
   const prefix = "\0material-symbol:";
+  const materialIconId = "\0material-icon:";
+  const materialIconPath = resolve("src/MaterialIcon.tsx");
 
   return {
     name: "material-symbols",
 
     resolveId(source, importer) {
+      if (source === materialIconId) {
+        return { id: materialIconPath };
+      }
       if (source.endsWith(".svg") && importer) {
         const resolved = resolve(dirname(importer), source);
         return { id: `${prefix}${resolved}` };
@@ -50,7 +55,7 @@ function materialSymbolsPlugin() {
       return {
         code: `
 import { createElement, forwardRef } from "react";
-import { MaterialIcon } from "@optiaxiom/react/unstable";
+import { MaterialIcon } from "${materialIconId}";
 
 const ${componentName} = forwardRef(
   function ${componentName}(props, ref) {

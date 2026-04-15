@@ -7,7 +7,6 @@ export * from "./highlight";
 export * from "./hover-card";
 export * from "./inline-input";
 export * from "./layout";
-export * from "./material-icon";
 export * from "./pill";
 export * from "./pill-menu";
 export * from "./range";
