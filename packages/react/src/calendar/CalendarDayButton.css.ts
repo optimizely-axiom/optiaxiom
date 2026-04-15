@@ -65,7 +65,7 @@ export const button = recipe({
       }),
       holiday: [
         {
-          color: "fg.error.strong",
+          color: "fg.error",
         },
         style({
           vars: {
@@ -87,7 +87,7 @@ export const button = recipe({
       ],
       weekend: [
         {
-          color: "fg.secondary",
+          color: "fg.tertiary",
         },
         style({
           vars: {
