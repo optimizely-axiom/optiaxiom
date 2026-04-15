@@ -21,7 +21,7 @@ type IconComponent = ComponentType<{
 }>;
 
 const iconEntries = Object.entries(tags)
-  .filter(([key]) => key !== "//")
+  .filter(([key]) => !key.startsWith("//"))
   .map(([component, keywords]) => {
     const label = component
       .replace(/^Icon/, "")
