@@ -68,6 +68,7 @@ export default ESLintUtils.RuleCreator.withoutDocs({
           const expected = [
             `@optiaxiom/react/${provider.name.replace(/Provider$/, "")}`,
             `@optiaxiom/globals/${provider.name.replace(/^unstable_/, "").replace(/Provider$/, "")}`,
+            `@optiaxiom/icons/${provider.name.replace(/Provider$/, "")}`,
             `@optiaxiom/proteus/${provider.name.replace(/Provider$/, "")}`,
           ];
           if (
@@ -96,6 +97,7 @@ export default ESLintUtils.RuleCreator.withoutDocs({
           const expected = [
             `@optiaxiom/react/${node.left.object.name}`,
             `@optiaxiom/docs/${node.left.object.name}`,
+            `@optiaxiom/icons/${node.left.object.name}`,
             `@optiaxiom/proteus/${node.left.object.name}`,
           ];
           if (
