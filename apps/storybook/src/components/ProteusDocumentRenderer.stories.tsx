@@ -1158,29 +1158,21 @@ export const CreateMeetingEvent: Story = {
               $type: "Field",
               children: {
                 $type: "PillMenu",
+                inputName: "attendees_query",
                 name: "attendees",
-                options: [
-                  {
-                    label: "sarah@optimizely.com",
-                    value: "sarah@optimizely.com",
+                onInputValueChange: {
+                  interaction: "search_people",
+                  params: {
+                    query: {
+                      $type: "Value",
+                      path: "/attendees_query",
+                    },
                   },
-                  {
-                    label: "john@optimizely.com",
-                    value: "john@optimizely.com",
-                  },
-                  {
-                    label: "alice@optimizely.com",
-                    value: "alice@optimizely.com",
-                  },
-                  {
-                    label: "bob@optimizely.com",
-                    value: "bob@optimizely.com",
-                  },
-                  {
-                    label: "carol@optimizely.com",
-                    value: "carol@optimizely.com",
-                  },
-                ],
+                },
+                options: {
+                  $type: "Value",
+                  path: "/people_results",
+                },
               },
               label: "Add people",
             },
@@ -1291,11 +1283,23 @@ export const CreateMeetingEvent: Story = {
     },
   },
   render: function Render(args) {
+    const allPeople = [
+      { label: "sarah@optimizely.com", value: "sarah@optimizely.com" },
+      { label: "john@optimizely.com", value: "john@optimizely.com" },
+      { label: "alice@optimizely.com", value: "alice@optimizely.com" },
+      { label: "bob@optimizely.com", value: "bob@optimizely.com" },
+      { label: "carol@optimizely.com", value: "carol@optimizely.com" },
+      { label: "diana@optimizely.com", value: "diana@optimizely.com" },
+      { label: "eve@optimizely.com", value: "eve@optimizely.com" },
+    ];
+
     const [data, setData] = useState<Record<string, unknown>>({
       attendees: ["sarah@optimizely.com"],
+      attendees_query: "",
       date_time: "2026-02-14T14:00",
       duration: "1h",
       event_title: "Q1 Planning Meeting",
+      people_results: allPeople,
     });
     return (
       <ProteusDocumentRenderer
@@ -1303,6 +1307,13 @@ export const CreateMeetingEvent: Story = {
         data={data}
         onDataChange={setData}
         onInteraction={(name) => {
+          if (name === "search_people") {
+            const query = (data.attendees_query as string) ?? "";
+            const filtered = allPeople.filter((p) =>
+              p.label.toLowerCase().includes(query),
+            );
+            setData((prev) => ({ ...prev, people_results: filtered }));
+          }
           if (name === "create_event") {
             setData((prev) => {
               const attendees = Array.isArray(prev.attendees)

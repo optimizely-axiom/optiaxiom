@@ -3,7 +3,7 @@ import {
   type ComponentPropsWithoutRef,
   forwardRef,
   useMemo,
-  useState,
+  useRef,
 } from "react";
 
 import { Box, type BoxProps } from "../box";
@@ -61,9 +61,26 @@ export const PillMenu = forwardRef<HTMLDivElement, PillMenuProps>(
       onChange: onOpenChange,
       prop: openProp,
     });
-    const [optionIndexes, setOptionIndexes] = useState(() =>
-      groupOptions(options),
-    );
+    const identity = options
+      .map(
+        ({ key, label }) =>
+          key ?? resolveItemProperty(label, { inputValue: undefined }),
+      )
+      .join(":::");
+    const prevOpenRef = useRef(false);
+    const prevIdentityRef = useRef(identity);
+    const optionIndexesRef = useRef(groupOptions(options));
+
+    if (
+      (open && !prevOpenRef.current) ||
+      (open && identity !== prevIdentityRef.current)
+    ) {
+      optionIndexesRef.current = groupOptions(options);
+    }
+    prevOpenRef.current = open;
+    prevIdentityRef.current = identity;
+
+    const optionIndexes = optionIndexesRef.current;
     const value = options.filter((item) => resolveItemProperty(item.selected));
 
     return (
@@ -76,9 +93,6 @@ export const PillMenu = forwardRef<HTMLDivElement, PillMenuProps>(
           onInputValueChange={onInputValueChange}
           onOpenChange={(open) => {
             setOpen(open);
-            if (open) {
-              setOptionIndexes(groupOptions(options));
-            }
           }}
           open={open}
           options={useMemo(
@@ -89,6 +103,7 @@ export const PillMenu = forwardRef<HTMLDivElement, PillMenuProps>(
                   group: {
                     hidden: true,
                     label: group,
+                    priority: 100,
                     separator: true,
                   },
                 }),

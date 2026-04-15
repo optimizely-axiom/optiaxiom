@@ -180,7 +180,7 @@ const PROTEUS_COMPONENT_CONFIG = {
     extends: "Fragment",
   },
   PillMenu: {
-    allowedProps: ["name", "options"],
+    allowedProps: ["inputName", "name", "onInputValueChange", "options"],
     example: {
       name: "selected_items",
       options: [
@@ -704,6 +704,11 @@ function generateSpec(additionalProperties = false) {
                   description: "Name of registered interaction to call",
                   type: "string",
                 },
+                params: {
+                  description:
+                    "Parameters to pass to the interaction handler. Values can be ProteusExpressions that resolve at call time.",
+                  type: "object",
+                },
               },
               required: ["interaction"],
               type: "object",
@@ -1027,29 +1032,46 @@ function getPropTypeOverrides(additionalProperties = false) {
       },
     },
     PillMenu: {
+      inputName: {
+        description:
+          "The data binding name for the search input value. Written to data on each keystroke.",
+        type: "string",
+      },
       name: {
         description:
           "The data binding name for this pill menu's selected values. Stored as a string array in the data.",
         type: "string",
       },
+      onInputValueChange: {
+        $ref: "#/definitions/ProteusEventHandler",
+        description:
+          "Event handler triggered when the search input value changes. Use with inputName to pass the current query via params.",
+      },
       options: {
-        description: "The available options to select from.",
-        items: {
-          ...(additionalProperties ? {} : { additionalProperties: false }),
-          properties: {
-            label: {
-              description: "Display label for the option",
-              type: "string",
+        anyOf: [
+          {
+            description: "Inline array of options",
+            items: {
+              ...(additionalProperties ? {} : { additionalProperties: false }),
+              properties: {
+                label: {
+                  description: "Display label for the option",
+                  type: "string",
+                },
+                value: {
+                  description: "Unique value for the option",
+                  type: "string",
+                },
+              },
+              required: ["label", "value"],
+              type: "object",
             },
-            value: {
-              description: "Unique value for the option",
-              type: "string",
-            },
+            type: "array",
           },
-          required: ["label", "value"],
-          type: "object",
-        },
-        type: "array",
+          { $ref: "#/definitions/ProteusExpression" },
+        ],
+        description:
+          "The available options to select from. Can be an inline array or a ProteusExpression.",
       },
     },
     Question: {
