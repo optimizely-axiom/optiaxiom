@@ -2,10 +2,8 @@
 
 import { Select, SelectContent, SelectTrigger } from "@optiaxiom/react";
 
-import pkg from "../../../../packages/react/package.json";
-
 const versions = [
-  { label: `v${pkg.version}`, value: "v1" },
+  { label: "v1", value: "v1" },
   { label: "v3 (next)", value: "v3" },
 ] as const;
 
