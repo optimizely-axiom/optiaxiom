@@ -143,7 +143,7 @@ export const Basic: Story = {
                       size="sm"
                     />
                     {store.users[swimlane].name}
-                    <Text color="fg.secondary" display="inline">
+                    <Text color="fg.tertiary" display="inline">
                       {columns.reduce(
                         (count, column) =>
                           count + items[`${swimlane}:${column}`].length,
