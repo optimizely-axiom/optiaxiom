@@ -9,7 +9,7 @@ export function ProteusChartTooltipContent({
   active,
   label,
   payload,
-}: TooltipContentProps<number | string, string>) {
+}: TooltipContentProps) {
   if (!active || !payload?.length) {
     return null;
   }
@@ -35,7 +35,9 @@ export function ProteusChartTooltipContent({
                   size="10"
                   style={{ backgroundColor: item.color }}
                 />
-                <Box color="fg.tertiary">{item.name ?? item.dataKey}</Box>
+                <Box color="fg.tertiary">
+                  {item.name ?? String(item.dataKey)}
+                </Box>
               </Group>
               <Box {...styles.value()}>
                 {applyFormatter(item.value, "Number") as string}
