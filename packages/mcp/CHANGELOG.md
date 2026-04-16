@@ -1,5 +1,11 @@
 # @optiaxiom/mcp
 
+## 0.2.7
+
+### Patch Changes
+
+- 4de6dc5: update dependencies
+
 ## 0.2.6
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @optiaxiom/web-components
 
+## 0.12.4
+
+### Patch Changes
+
+- 4de6dc5: update dependencies
+
 ## 0.12.3
 
 ### Patch Changes

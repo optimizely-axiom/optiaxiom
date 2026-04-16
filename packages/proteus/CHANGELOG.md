@@ -1,5 +1,17 @@
 # @optiaxiom/proteus
 
+## 0.1.21
+
+### Patch Changes
+
+- 4de6dc5: update dependencies
+- Updated dependencies [ae5e8f8]
+- Updated dependencies [ff7bdef]
+- Updated dependencies [4de6dc5]
+- Updated dependencies [e5340fe]
+  - @optiaxiom/icons@1.0.0
+  - @optiaxiom/react@1.9.26
+
 ## 0.1.20
 
 ### Patch Changes
