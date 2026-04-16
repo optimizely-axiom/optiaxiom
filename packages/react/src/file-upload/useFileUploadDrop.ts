@@ -34,7 +34,7 @@ export const useFileUploadDrop = ({
         event.dataTransfer.items
           ? (
               await Promise.all(
-                Array.from(event.dataTransfer.items).map((item) => {
+                Array.from(event.dataTransfer.items).map(async (item) => {
                   if (item.kind === "file") {
                     const file = item.getAsFile();
                     return file && isValidFile(file, accept) ? file : null;
