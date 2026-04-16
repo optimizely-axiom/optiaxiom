@@ -1,5 +1,9 @@
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
+import "./MaterialIcon.css";
+
+const ICON_CLASSNAME = "_9939fd78";
+
 export type MaterialIconProps = Omit<
   ComponentPropsWithoutRef<"svg">,
   "height" | "width"
@@ -41,18 +45,30 @@ function resolveSize(size: number | string) {
 
 export const MaterialIcon = forwardRef<SVGSVGElement, MaterialIconProps>(
   (
-    { filled = false, filledPath, size, style, unfilledPath, ...props },
+    {
+      className,
+      filled = false,
+      filledPath,
+      size,
+      style,
+      unfilledPath,
+      ...props
+    },
     ref,
   ) => {
     const resolved = size !== undefined ? resolveSize(size) : undefined;
 
     return (
       <svg
-        height={resolved ?? 20}
+        className={
+          className ? `${ICON_CLASSNAME} ${className}` : ICON_CLASSNAME
+        }
         ref={ref}
-        style={{ fill: "currentColor", flex: "none", ...style }}
+        style={{
+          ...(resolved && { height: resolved, width: resolved }),
+          ...style,
+        }}
         viewBox="0 -960 960 960"
-        width={resolved ?? 20}
         xmlns="http://www.w3.org/2000/svg"
         {...props}
       >

@@ -120,6 +120,22 @@ export default defineConfig([
     ],
     plugins: [
       materialSymbolsPlugin(),
+      {
+        generateBundle() {
+          this.emitFile({
+            fileName: "MaterialIcon.css",
+            source: readFileSync(resolve("src/MaterialIcon.css"), "utf-8"),
+            type: "asset",
+          });
+        },
+        name: "css",
+        resolveId(id) {
+          if (!id.endsWith(".css")) {
+            return null;
+          }
+          return { external: true, id: `./${basename(id)}` };
+        },
+      },
       esbuild({
         jsx: "automatic",
         target: "esnext",
@@ -153,6 +169,15 @@ export default defineConfig([
       format: "es",
     },
     plugins: [
+      {
+        name: "css",
+        resolveId(id) {
+          if (id.endsWith(".css")) {
+            return { external: true, id };
+          }
+          return null;
+        },
+      },
       dts({
         tsconfig: "tsconfig.build.json",
       }),
