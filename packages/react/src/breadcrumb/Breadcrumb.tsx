@@ -1,7 +1,7 @@
+import { IconMoreHoriz } from "@optiaxiom/icons";
 import { forwardRef, Fragment, type ReactNode } from "react";
 
 import { Box, type BoxProps, extractBoxProps } from "../box";
-import { IconEllipsisSolid } from "../icons/IconEllipsisSolid";
 import { Link } from "../link";
 import { Menu, MenuContent, MenuTrigger } from "../menu";
 import { Text } from "../text";
@@ -131,7 +131,7 @@ const renderItems = (
             aria-label="More items"
             icon={
               <Box asChild color="fg.tertiary">
-                <IconEllipsisSolid />
+                <IconMoreHoriz />
               </Box>
             }
           />

@@ -1,5 +1,6 @@
 import type { CellContext } from "@tanstack/table-core";
 
+import { IconChevronRight, IconKeyboardArrowDown } from "@optiaxiom/icons";
 import { useId } from "@radix-ui/react-id";
 import clsx from "clsx";
 import { type ReactNode } from "react";
@@ -7,8 +8,6 @@ import { type ReactNode } from "react";
 import { Box } from "../box";
 import { Button } from "../button";
 import { Group } from "../group";
-import { IconAngleDown } from "../icons/IconAngleDown";
-import { IconAngleRight } from "../icons/IconAngleRight";
 import { useDataTableRowContext } from "./DataTableRowContext";
 
 export type DataTableExpandableCellProps<TData, TValue> = CellContext<
@@ -45,7 +44,7 @@ export function DataTableExpandableCell<TData, TValue>({
           aria-label="Toggle row"
           aria-labelledby={clsx(labelPrefixId, labelId)}
           flex="none"
-          icon={row.getIsExpanded() ? <IconAngleDown /> : <IconAngleRight />}
+          icon={row.getIsExpanded() ? <IconKeyboardArrowDown /> : <IconChevronRight />}
           id={labelPrefixId}
           onClick={row.getToggleExpandedHandler()}
           size="sm"

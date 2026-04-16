@@ -1,9 +1,9 @@
+import { IconClose } from "@optiaxiom/icons";
 import { createSlot } from "@radix-ui/react-slot";
 import { forwardRef } from "react";
 
 import { Box, type BoxProps, extractBoxProps } from "../box";
 import { Icon } from "../icon";
-import { IconX } from "../icons/IconX";
 import { Text } from "../text";
 import * as styles from "./Pill.css";
 
@@ -84,7 +84,7 @@ export const Pill = forwardRef<HTMLButtonElement, PillProps>(
 
           {onDismiss && !readOnly && (
             <Icon asChild h="12" ml="auto">
-              <IconX />
+              <IconClose />
             </Icon>
           )}
         </Comp>
