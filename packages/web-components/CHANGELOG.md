@@ -1,5 +1,12 @@
 # @optiaxiom/web-components
 
+## 0.13.0-next.1
+
+### Patch Changes
+
+- 5dc9972: sync colors tokens
+- 0cd7892: update color tokens
+
 ## 0.13.0-next.0
 
 ### Minor Changes

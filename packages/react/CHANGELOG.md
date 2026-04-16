@@ -1,5 +1,19 @@
 # @optiaxiom/react
 
+## 3.0.0-next.1
+
+### Patch Changes
+
+- 99b9f8f: replace with material icons
+- 1c4c8c9: fix how button icon size is set
+- 5dc9972: sync colors tokens
+- 0cd7892: update color tokens
+- c5dee67: fix badge color token for success strong
+- Updated dependencies [5dc9972]
+- Updated dependencies [0cd7892]
+  - @optiaxiom/globals@3.0.0-next.1
+  - @optiaxiom/icons@1.0.1-next.1
+
 ## 3.0.0-next.0
 
 ### Major Changes

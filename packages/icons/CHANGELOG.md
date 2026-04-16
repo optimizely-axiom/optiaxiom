@@ -1,5 +1,11 @@
 # @optiaxiom/icons
 
+## 1.1.2-next.1
+
+### Patch Changes
+
+- 0cd7892: update color tokens
+
 ## 1.1.2-next.0
 
 ### Patch Changes
