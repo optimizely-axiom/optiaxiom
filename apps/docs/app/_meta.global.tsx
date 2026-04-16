@@ -4,7 +4,7 @@ import { Badge, Group } from "@optiaxiom/react";
 
 const AlphaItem = ({ children }: { children?: ReactNode }) => (
   <Group flex="1" gap="16" justifyContent="space-between">
-    {children} <Badge intent="primary">ALPHA</Badge>
+    {children} <Badge intent="warning">ALPHA</Badge>
   </Group>
 );
 
