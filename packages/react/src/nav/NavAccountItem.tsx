@@ -1,9 +1,9 @@
+import { IconEllipsisStroke } from "@optiaxiom/icons";
 import { forwardRef } from "react";
 
 import { Avatar } from "../avatar";
 import { Box, type BoxProps } from "../box";
 import { Group } from "../group";
-import { IconEllipsis } from "../icons/IconEllipsis";
 import { useSidebarContext } from "../sidebar/internals";
 import { Text } from "../text";
 import * as styles from "./NavAccountItem.css";
@@ -60,7 +60,7 @@ export const NavAccountItem = forwardRef<
               </Group>
 
               <Box asChild>
-                <IconEllipsis />
+                <IconEllipsisStroke />
               </Box>
             </Group>
           </button>

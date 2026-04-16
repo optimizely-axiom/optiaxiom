@@ -1,10 +1,10 @@
+import { IconCheck } from "@optiaxiom/icons";
 import { forwardRef, useEffect } from "react";
 
 import { Avatar } from "../avatar";
 import { Button, type ButtonProps } from "../button";
 import { Heading } from "../heading";
 import { useEffectEvent } from "../hooks";
-import { IconCheck } from "../icons/IconCheck";
 import { Popover, PopoverContent, PopoverTrigger } from "../popover";
 import { Separator } from "../separator";
 import { useSurface } from "../surface";

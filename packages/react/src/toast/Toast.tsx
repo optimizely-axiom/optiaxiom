@@ -1,4 +1,11 @@
 import { useToastProviderContext } from "@optiaxiom/globals";
+import {
+  IconCheckCircleSolid,
+  IconCircleExclamation,
+  IconCircleInfo,
+  IconTriangleExclamation,
+  IconXmark,
+} from "@optiaxiom/icons";
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import * as RadixToast from "@radix-ui/react-toast";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
@@ -9,11 +16,6 @@ import type { ExcludeProps } from "../utils";
 import { Box, type BoxProps, extractBoxProps } from "../box";
 import { Button } from "../button";
 import { Icon } from "../icon";
-import { IconCircleCheckSolid } from "../icons/IconCircleCheckSolid";
-import { IconCircleExclamationSolid } from "../icons/IconCircleExclamationSolid";
-import { IconCircleInfoSolid } from "../icons/IconCircleInfoSolid";
-import { IconTriangleExclamationSolid } from "../icons/IconTriangleExclamationSolid";
-import { IconX } from "../icons/IconX";
 import * as styles from "./Toast.css";
 
 export type ToastProps = ExcludeProps<
@@ -22,11 +24,11 @@ export type ToastProps = ExcludeProps<
 >;
 
 const mapIntentToIcon = {
-  danger: IconCircleExclamationSolid,
-  information: IconCircleInfoSolid,
-  neutral: IconCircleInfoSolid,
-  success: IconCircleCheckSolid,
-  warning: IconTriangleExclamationSolid,
+  danger: IconCircleExclamation,
+  information: IconCircleInfo,
+  neutral: IconCircleInfo,
+  success: IconCheckCircleSolid,
+  warning: IconTriangleExclamation,
 };
 
 /**
@@ -67,7 +69,7 @@ export const Toast = forwardRef<HTMLLIElement, ToastProps>(
           {...restProps}
         >
           <Icon asChild {...styles.icon()}>
-            {createElement(mapIntentToIcon[intent])}
+            {createElement(mapIntentToIcon[intent], { filled: true })}
           </Icon>
 
           {children}
@@ -76,7 +78,7 @@ export const Toast = forwardRef<HTMLLIElement, ToastProps>(
             <Button
               appearance="inverse"
               aria-label="close"
-              icon={<IconX />}
+              icon={<IconXmark />}
               size="sm"
             />
           </RadixToast.Close>

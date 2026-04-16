@@ -46,7 +46,7 @@ export const alert = recipe({
 export const icon = recipe({
   base: [
     {
-      mt: "4",
+      mt: "2",
     },
   ],
 
@@ -63,7 +63,6 @@ export const icon = recipe({
       },
       opal: {
         h: "xs",
-        mt: "2",
       },
       success: {
         color: "fg.success.strong",

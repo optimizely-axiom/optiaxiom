@@ -1,5 +1,14 @@
-import { recipe, type RecipeVariants, style } from "../vanilla-extract";
+import { theme } from "@optiaxiom/globals";
+
+import {
+  createGlobalVar,
+  recipe,
+  type RecipeVariants,
+  style,
+} from "../vanilla-extract";
 import * as styles from "./ButtonRoot.css";
+
+const iconSizeVar = createGlobalVar("ax-styles-iconSize");
 
 export const icon = recipe({
   variants: {
@@ -7,9 +16,10 @@ export const icon = recipe({
      * Whether it is a icon only button or the icon is an addon to the text.
      */
     addon: {
-      false: {
-        size: "sm",
-      },
+      false: style({
+        height: theme.size.sm,
+        width: theme.size.sm,
+      }),
       true: {},
     },
     /**
@@ -30,27 +40,33 @@ export const icon = recipe({
   },
   variantsCompounded: [
     {
-      style: {
-        h: "2xs",
-      },
+      style: style({
+        vars: {
+          [iconSizeVar]: theme.size["2xs"],
+        },
+      }),
       variants: {
         addon: true,
         size: "sm",
       },
     },
     {
-      style: {
-        h: "xs",
-      },
+      style: style({
+        vars: {
+          [iconSizeVar]: theme.size.xs,
+        },
+      }),
       variants: {
         addon: true,
         size: "md",
       },
     },
     {
-      style: {
-        h: "sm",
-      },
+      style: style({
+        vars: {
+          [iconSizeVar]: theme.size.xs,
+        },
+      }),
       variants: {
         addon: true,
         size: "lg",
@@ -59,13 +75,20 @@ export const icon = recipe({
     {
       style: [
         {
-          h: "sm",
-          p: "4",
           rounded: "sm",
         },
         style({
           backgroundColor: styles.solidTextColorVar,
           color: styles.accentColorVar,
+          height: "auto",
+          padding: "4px",
+          width: "28px",
+
+          selectors: {
+            "&[data-prefix]": {
+              paddingBlock: "6px",
+            },
+          },
         }),
       ],
       variants: {
