@@ -306,19 +306,19 @@ const SidebarWithSubnavExample = () => (
     <Nav>
       <NavBody>
         <NavList>
-          <NavItem icon={<IconBinaryTree />}>Projects</NavItem>
+          <NavItem icon={<IconAccountTree />}>Projects</NavItem>
           <NavItem active icon={<IconFlag2 />}>
             Flags
           </NavItem>
-          <NavItem icon={<IconChartInfographic />}>Idea Lab</NavItem>
-          <NavItem icon={<IconUsers />}>Audiences</NavItem>
+          <NavItem icon={<IconBarChart4Bars />}>Idea Lab</NavItem>
+          <NavItem icon={<IconGroup />}>Audiences</NavItem>
           <NavItem icon={<IconHistory />}>History</NavItem>
-          <NavItem icon={<IconChartLine />}>Events</NavItem>
+          <NavItem icon={<IconShowChart />}>Events</NavItem>
           <NavItem icon={<IconSettings />}>Settings</NavItem>
           <NavItem
-            addonAfter={<IconExternalLink size="16" />}
+            addonAfter={<IconOpenInNew />}
             asChild
-            icon={<IconVocabulary />}
+            icon={<IconMenuBook />}
           >
             Tutorial
           </NavItem>
@@ -327,7 +327,7 @@ const SidebarWithSubnavExample = () => (
 
       <NavFooter>
         <NavList>
-          <SidebarToggle icon={<IconLayoutSidebar />} />
+          <SidebarToggle icon={<IconDockToRight />} />
           <Menu
             options={[
               { label: "View Profile" },
