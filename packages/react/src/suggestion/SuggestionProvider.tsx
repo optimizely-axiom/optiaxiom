@@ -2,6 +2,7 @@ import {
   unstable_SuggestionContext as SuggestionContext,
   unstable_SurfaceProvider,
 } from "@optiaxiom/globals";
+import { IconClose } from "@optiaxiom/icons";
 import { useId } from "@radix-ui/react-id";
 import {
   type ComponentPropsWithoutRef,
@@ -12,7 +13,6 @@ import {
 
 import { Button } from "../button";
 import { Group } from "../group";
-import { IconX } from "../icons/IconX";
 import { Portal } from "../portal";
 import { Text } from "../text";
 import { Transition } from "../transition";
@@ -132,7 +132,7 @@ export function SuggestionProvider({ children }: SuggestionProviderProps) {
                     aria-label="close"
                     color="fg.default"
                     flex="none"
-                    icon={<IconX />}
+                    icon={<IconClose />}
                     onClick={() => {
                       surface.reject(suggestion.id);
                     }}
