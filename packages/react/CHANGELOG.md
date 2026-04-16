@@ -1,5 +1,15 @@
 # @optiaxiom/react
 
+## 1.9.26
+
+### Patch Changes
+
+- ff7bdef: use css custom property to set icon size
+- 4de6dc5: update dependencies
+- e5340fe: inline material icon logic in icons package
+- Updated dependencies [4de6dc5]
+  - @optiaxiom/globals@1.1.10
+
 ## 1.9.25
 
 ### Patch Changes

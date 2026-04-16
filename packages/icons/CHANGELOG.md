@@ -1,5 +1,16 @@
 # @optiaxiom/icons
 
+## 1.0.0
+
+### Major Changes
+
+- ae5e8f8: release icons package
+
+### Patch Changes
+
+- ff7bdef: use css custom property to set icon size
+- e5340fe: inline material icon logic in icons package
+
 ## 0.1.4
 
 ### Patch Changes
