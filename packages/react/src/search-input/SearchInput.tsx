@@ -1,3 +1,4 @@
+import { IconSearch, IconXmark } from "@optiaxiom/icons";
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import { type ComponentPropsWithRef, forwardRef, useRef } from "react";
@@ -5,8 +6,6 @@ import { type ComponentPropsWithRef, forwardRef, useRef } from "react";
 import { Button } from "../button";
 import { Group } from "../group";
 import { useObserveValue } from "../hooks";
-import { IconMagnifyingGlass } from "../icons/IconMagnifyingGlass";
-import { IconX } from "../icons/IconX";
 import { Input } from "../input";
 import * as styles from "./SearchInput.css";
 
@@ -43,7 +42,7 @@ export const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
             <Button
               appearance="subtle"
               aria-label="Clear"
-              icon={value && <IconX />}
+              icon={value && <IconXmark />}
               onPointerDown={(event) => {
                 event.preventDefault();
                 forceValueChange("");
@@ -56,7 +55,7 @@ export const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
         }
         addonBefore={
           <Group gap="8">
-            <IconMagnifyingGlass />
+            <IconSearch />
             {addonBefore}
           </Group>
         }

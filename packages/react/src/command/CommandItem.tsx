@@ -1,9 +1,9 @@
+import { IconChevronRight } from "@optiaxiom/icons";
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import { forwardRef, type MouseEvent } from "react";
 
 import { Avatar } from "../avatar";
 import { Box, type BoxProps } from "../box";
-import { IconAngleRight } from "../icons/IconAngleRight";
 import { useSurface } from "../surface";
 import { filterSuggestionsBySurface } from "../surface/internals";
 import { Text } from "../text";
@@ -192,7 +192,7 @@ export const CommandItem = forwardRef<HTMLDivElement, CommandItemProps>(
                         })}
                       </Text>
                       <Box asChild h="10" w="auto">
-                        <IconAngleRight />
+                        <IconChevronRight />
                       </Box>
                     </>
                   )}

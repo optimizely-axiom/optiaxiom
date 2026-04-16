@@ -1,9 +1,7 @@
 import type { ComponentPropsWithoutRef } from "react";
 
+import { IconChevronLeft, IconChevronRight } from "@optiaxiom/icons";
 import { Chevron } from "react-day-picker";
-
-import { IconAngleLeft } from "../icons/IconAngleLeft";
-import { IconAngleRight } from "../icons/IconAngleRight";
 
 export type CalendarChevronProps = ComponentPropsWithoutRef<typeof Chevron>;
 
@@ -12,9 +10,9 @@ export function CalendarChevron({
   ...props
 }: CalendarChevronProps) {
   return orientation === "left" ? (
-    <IconAngleLeft {...props} />
+    <IconChevronLeft {...props} />
   ) : (
-    <IconAngleRight {...props} />
+    <IconChevronRight {...props} />
   );
 }
 

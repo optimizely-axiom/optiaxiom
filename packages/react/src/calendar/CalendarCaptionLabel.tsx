@@ -1,9 +1,9 @@
 import type { ComponentPropsWithoutRef } from "react";
 
+import { IconAngleDown } from "@optiaxiom/icons";
 import { CaptionLabel } from "react-day-picker";
 
 import { Button } from "../button";
-import { IconAngleDown } from "../icons/IconAngleDown";
 import { VisuallyHidden } from "../visually-hidden";
 import { useCalendarContext } from "./CalendarContext";
 

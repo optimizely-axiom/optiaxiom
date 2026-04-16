@@ -1,10 +1,10 @@
+import { IconUpload } from "@optiaxiom/icons";
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import { forwardRef, useRef, useState } from "react";
 
 import { type BoxProps } from "../box";
 import { Group } from "../group";
 import { Icon } from "../icon";
-import { IconFileImport } from "../icons/IconFileImport";
 import { Text } from "../text";
 import { VisuallyHidden } from "../visually-hidden";
 import { useFileUploadContext } from "./FileUploadContext";
@@ -96,7 +96,7 @@ export const FileUploadDropzone = forwardRef<
         </VisuallyHidden>
         <Group {...styles.label({ disabled })}>
           <Icon asChild color="fg.secondary" h={size > 448 ? "lg" : "sm"}>
-            <IconFileImport />
+            <IconUpload />
           </Icon>
           <Text>{label}</Text>
           {description && <Text color="fg.tertiary">{description}</Text>}

@@ -1,3 +1,4 @@
+import { IconCircleQuestion } from "@optiaxiom/icons";
 import { useId } from "@radix-ui/react-id";
 import * as RadixLabel from "@radix-ui/react-label";
 import { forwardRef, type ReactNode } from "react";
@@ -5,7 +6,6 @@ import { forwardRef, type ReactNode } from "react";
 import { Box, type BoxProps } from "../box";
 import { Button } from "../button";
 import { Group } from "../group";
-import { IconCircleQuestion } from "../icons/IconCircleQuestion";
 import { Text } from "../text";
 import { Tooltip } from "../tooltip";
 import { VisuallyHidden } from "../visually-hidden";
