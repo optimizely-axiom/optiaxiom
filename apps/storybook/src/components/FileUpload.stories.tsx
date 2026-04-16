@@ -101,12 +101,12 @@ function FileUploadMenu() {
     <Menu
       options={[
         {
-          addon: <IconUpload />,
+          addon: <IconUpload size="16" />,
           execute: triggerFileUpload,
           label: "Your device",
         },
         {
-          addon: <IconBooks />,
+          addon: <IconBooks size="16" />,
           execute: () => toaster.create("Uploading from library..."),
           label: "Library",
         },

@@ -69,23 +69,35 @@ export const Basic: Story = {
         <DropdownMenuTrigger>Download</DropdownMenuTrigger>
 
         <DropdownMenuContent>
-          <DropdownMenuItem icon={<IconFileExcel />} onSelect={action("excel")}>
+          <DropdownMenuItem
+            icon={<IconFileExcel size="16" />}
+            onSelect={action("excel")}
+          >
             Excel
           </DropdownMenuItem>
           <DropdownMenuItem
             disabled
-            icon={<IconFileTypePdf />}
+            icon={<IconFileTypePdf size="16" />}
             onSelect={action("pdf")}
           >
             PDF
           </DropdownMenuItem>
-          <DropdownMenuItem icon={<IconFileTypePpt />} onSelect={action("ppt")}>
+          <DropdownMenuItem
+            icon={<IconFileTypePpt size="16" />}
+            onSelect={action("ppt")}
+          >
             Powerpoint
           </DropdownMenuItem>
-          <DropdownMenuItem icon={<IconVideo />} onSelect={action("video")}>
+          <DropdownMenuItem
+            icon={<IconVideo size="16" />}
+            onSelect={action("video")}
+          >
             Video
           </DropdownMenuItem>
-          <DropdownMenuItem icon={<IconFileWord />} onSelect={action("word")}>
+          <DropdownMenuItem
+            icon={<IconFileWord size="16" />}
+            onSelect={action("word")}
+          >
             Word
           </DropdownMenuItem>
         </DropdownMenuContent>
@@ -277,32 +289,32 @@ export const WithGroup: Story = {
 
         <DropdownMenuContent>
           <DropdownMenuGroup>
-            <DropdownMenuItem addonBefore={<IconUser />}>
+            <DropdownMenuItem addonBefore={<IconUser size="16" />}>
               Account
             </DropdownMenuItem>
-            <DropdownMenuItem addonBefore={<IconSettings />}>
+            <DropdownMenuItem addonBefore={<IconSettings size="16" />}>
               Settings
             </DropdownMenuItem>
-            <DropdownMenuItem addonBefore={<IconLock />}>
+            <DropdownMenuItem addonBefore={<IconLock size="16" />}>
               Privacy
             </DropdownMenuItem>
-            <DropdownMenuItem addonBefore={<IconBell />}>
+            <DropdownMenuItem addonBefore={<IconBell size="16" />}>
               Notifications
             </DropdownMenuItem>
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
 
           <DropdownMenuGroup>
-            <DropdownMenuItem addonBefore={<IconBook />}>
+            <DropdownMenuItem addonBefore={<IconBook size="16" />}>
               Help Guide
             </DropdownMenuItem>
-            <DropdownMenuItem addonBefore={<IconHelp />}>
+            <DropdownMenuItem addonBefore={<IconHelp size="16" />}>
               Help Center
             </DropdownMenuItem>
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
 
-          <DropdownMenuItem addonBefore={<IconLogout />}>
+          <DropdownMenuItem addonBefore={<IconLogout size="16" />}>
             Log out
           </DropdownMenuItem>
         </DropdownMenuContent>
