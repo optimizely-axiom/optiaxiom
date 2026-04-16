@@ -1,5 +1,9 @@
-import { IconChevronLeft, IconChevronRight, IconMoreHoriz } from "@optiaxiom/icons";
 import { usePagination } from "@mantine/hooks";
+import {
+  IconChevronLeft,
+  IconChevronRight,
+  IconMoreHoriz,
+} from "@optiaxiom/icons";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import { forwardRef, useEffect, useRef, useState } from "react";
 
