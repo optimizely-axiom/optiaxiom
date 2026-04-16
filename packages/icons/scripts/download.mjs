@@ -137,6 +137,7 @@ async function main() {
       const componentName = svgToComponentName(task.name);
       return `export { ${componentName} } from "../svg/${task.name}";`;
     })
+    .sort()
     .join("\n");
 
   writeFileSync(resolve(srcDir, "index.ts"), `${indexExports}\n`);
