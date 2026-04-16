@@ -7,12 +7,15 @@ import * as styles from "./ButtonIcon.css";
 export type ButtonIconProps = BoxProps<"div", NonNullable<styles.IconVariants>>;
 
 export const ButtonIcon = forwardRef<HTMLDivElement, ButtonIconProps>(
-  ({ children, className, inverse = false, size = "md", ...props }, ref) => {
+  (
+    { addon, children, className, inverse = false, size = "md", ...props },
+    ref,
+  ) => {
     return (
       <Icon
         asChild
         ref={ref}
-        {...styles.icon({ inverse, size }, className)}
+        {...styles.icon({ addon, inverse, size }, className)}
         {...props}
       >
         {children}
