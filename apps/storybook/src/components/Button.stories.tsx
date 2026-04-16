@@ -7,7 +7,6 @@ import {
   IconFlask,
   IconPen,
   IconPlus,
-  IconSquarePlus,
   IconStar,
   IconTrashCan,
   IconUpload,
@@ -293,7 +292,7 @@ export const MaterialIcons: Story = {
             >
               Edit
             </Button>
-            <Button appearance="primary" icon={<IconSquarePlus />} size={size}>
+            <Button appearance="primary" icon={<IconPlus />} size={size}>
               Create Something
             </Button>
             <Button

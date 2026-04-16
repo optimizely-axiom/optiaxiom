@@ -1,3 +1,4 @@
+import { IconChevronRight } from "@optiaxiom/icons";
 import * as RadixCollapsible from "@radix-ui/react-collapsible";
 import { createSlot } from "@radix-ui/react-slot";
 import { forwardRef, type ReactNode } from "react";
@@ -5,7 +6,6 @@ import { forwardRef, type ReactNode } from "react";
 import { Box, type BoxProps } from "../box";
 import { Cover } from "../cover";
 import { Group } from "../group";
-import { IconAngleRight } from "../icons/IconAngleRight";
 import { useDisclosureContext } from "./DisclosureContext";
 import * as styles from "./DisclosureTrigger.css";
 
@@ -63,7 +63,7 @@ export const DisclosureTrigger = forwardRef<
             <RadixCollapsible.Trigger>
               {chevronPosition === "start" && (
                 <Box asChild {...styles.icon()}>
-                  <IconAngleRight />
+                  <IconChevronRight />
                 </Box>
               )}
               <Box flex="1" overflow="hidden">
@@ -71,7 +71,7 @@ export const DisclosureTrigger = forwardRef<
               </Box>
               {chevronPosition === "end" && (
                 <Box asChild {...styles.icon()}>
-                  <IconAngleRight />
+                  <IconChevronRight />
                 </Box>
               )}
             </RadixCollapsible.Trigger>

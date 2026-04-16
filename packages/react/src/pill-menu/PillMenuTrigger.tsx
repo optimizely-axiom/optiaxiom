@@ -1,10 +1,10 @@
+import { IconPlus } from "@optiaxiom/icons";
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import { forwardRef, useRef } from "react";
 
 import { Box, type BoxProps } from "../box";
 import { resolveItemProperty, useCommandContext } from "../command/internals";
 import { Cover } from "../cover";
-import { IconPlus } from "../icons/IconPlus";
 import { MenuTrigger } from "../menu";
 import { useMenuContext } from "../menu/internals";
 import { PillGroup } from "../pill";
@@ -113,7 +113,7 @@ export const PillMenuTrigger = forwardRef<HTMLDivElement, PillMenuTriggerProps>(
                     <Cover asChild>
                       <Box asChild size={remapSize[size]} {...styles.trigger()}>
                         <button>
-                          <IconPlus />
+                          <IconPlus size="16" />
                         </button>
                       </Box>
                     </Cover>

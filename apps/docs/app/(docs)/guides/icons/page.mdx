@@ -1,41 +1,43 @@
-import { Alert } from "@optiaxiom/react";
+import { IconGallery } from "@/components";
 
-# Icons (Optimizely staff only)
+# Icons
 
-We use a licensed **Font Awesome** icon kit with our Optimizely Design System.
-
-<Alert intent="warning" mt="16">
-<p style={{ margin: 0 }}>**Optimizely staff** should always use icons from our **Font Awesome** icon kit.</p>
-
-<p style={{ margin: 0 }}>**Third party developers** can use any available icon library to build extensions.</p>
-</Alert>
+We use **Google Material Symbols** icons with our Optimizely Design System via the `@optiaxiom/icons` package.
 
 ## Installation
 
 ### Install package
 
-Make sure you have access to our private package repository and install the `@optimizely/axiom-icons` package.
-
 ```sh npm2yarn
-npm install @optimizely/axiom-icons
+npm install @optiaxiom/icons
 ```
 
 ### Basic usage
 
-Simply import the components and use them in your application.
+Simply import the icon components and use them in your application.
 
 ```tsx
-import { IconMessages } from "@optimizely/axiom-icons";
+import { IconDelete } from "@optiaxiom/icons";
 
-<IconMessages />;
+<IconDelete />;
 ```
 
-## Available Icons
+Icons accept a `size` prop to control their dimensions:
 
-When using AI assistants like Claude Code with the Axiom MCP server, you can search for available icons using natural language:
+```tsx
+import { IconDelete } from "@optiaxiom/icons";
 
-- "Search for message icons"
-- "Find arrow icons"
-- "Show user-related icons"
+<IconDelete size="sm" />;
+```
 
-The MCP server includes a `search_icons` tool that helps you discover the right icon component for your needs from our collection of licensed Font Awesome Pro icons.
+Each icon also has a filled variant via the `filled` prop:
+
+```tsx
+import { IconDelete } from "@optiaxiom/icons";
+
+<IconDelete filled />;
+```
+
+### Available Icons
+
+<IconGallery />

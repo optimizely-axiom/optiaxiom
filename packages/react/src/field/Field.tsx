@@ -1,3 +1,4 @@
+import { IconTriangleExclamation } from "@optiaxiom/icons";
 import { useId } from "@radix-ui/react-id";
 import {
   type ComponentPropsWithoutRef,
@@ -7,7 +8,6 @@ import {
 
 import { Box, type BoxProps } from "../box";
 import { Group } from "../group";
-import { IconTriangleExclamation } from "../icons/IconTriangleExclamation";
 import { SuggestionAlert } from "../suggestion";
 import { fallbackSpan } from "../utils";
 import { FieldProvider } from "./FieldContext";
@@ -90,12 +90,8 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(
             id={errorId}
             role="alert"
           >
-            <Box asChild flex="none" mt="2">
-              <IconTriangleExclamation
-                aria-label="Error"
-                height={12}
-                width={14}
-              />
+            <Box asChild flex="none" size="16">
+              <IconTriangleExclamation aria-label="Error" />
             </Box>
             {error}
           </Group>

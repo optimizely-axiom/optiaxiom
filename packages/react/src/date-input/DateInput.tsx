@@ -1,3 +1,4 @@
+import { IconCalendar, IconXmark } from "@optiaxiom/icons";
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import { useId } from "@radix-ui/react-id";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
@@ -13,8 +14,6 @@ import { Button } from "../button";
 import { Calendar } from "../calendar";
 import { useFieldContext } from "../field/internals";
 import { useObserveValue } from "../hooks";
-import { IconCalendar } from "../icons/IconCalendar";
-import { IconX } from "../icons/IconX";
 import { Input } from "../input";
 import {
   Popover,
@@ -128,7 +127,7 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
                 <Button
                   appearance="subtle"
                   aria-label="Clear"
-                  icon={<IconX />}
+                  icon={<IconXmark />}
                   onPointerDown={(event) => {
                     event.preventDefault();
                     forceValueChange("");

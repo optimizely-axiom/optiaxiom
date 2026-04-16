@@ -128,7 +128,7 @@ export const avatar = recipe({
           size: "3xl",
         },
         style({
-          fontSize: theme.fontSize["4xl"].fontSize,
+          fontSize: "32px",
           selectors: {
             [`${styles.className} &:not(:first-child)`]: {
               marginLeft: "-13px",
@@ -159,13 +159,13 @@ export const icon = recipe({
   ],
   variants: {
     size: {
-      "2xs": { h: "10" },
-      xs: { h: "10" },
-      sm: { h: "12" },
-      md: { h: "12" },
-      lg: { h: "2xs" },
-      xl: { h: "2xs" },
-      "3xl": { h: "sm" },
+      "2xs": { h: "12" },
+      xs: [{ h: "16" }, style({ padding: "1px" })],
+      sm: { h: "16" },
+      md: { h: "xs" },
+      lg: { h: "sm" },
+      xl: { h: "sm" },
+      "3xl": { h: "lg" },
     },
   },
 });
