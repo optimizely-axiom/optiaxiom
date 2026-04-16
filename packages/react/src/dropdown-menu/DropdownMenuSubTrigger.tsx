@@ -1,7 +1,6 @@
+import { IconChevronRight } from "@optiaxiom/icons";
 import * as RadixMenu from "@radix-ui/react-dropdown-menu";
 import { forwardRef } from "react";
-
-import { IconAngleRight } from "../icons/IconAngleRight";
 import { ListboxItem, type ListboxItemProps } from "../listbox";
 
 export type DropdownMenuSubTriggerProps = ListboxItemProps<
@@ -16,7 +15,7 @@ export const DropdownMenuSubTrigger = forwardRef<
   DropdownMenuSubTriggerProps
 >(({ children, ...props }, ref) => {
   return (
-    <ListboxItem addonAfter={<IconAngleRight />} asChild ref={ref} {...props}>
+    <ListboxItem addonAfter={<IconChevronRight />} asChild ref={ref} {...props}>
       <RadixMenu.SubTrigger>{children}</RadixMenu.SubTrigger>
     </ListboxItem>
   );

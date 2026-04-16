@@ -1,9 +1,9 @@
+import { IconSearch } from "@optiaxiom/icons";
 import { useHotkeys } from "@mantine/hooks";
 import { forwardRef } from "react";
 
 import { Box } from "../box";
 import { Button, type ButtonProps } from "../button";
-import { IconMagnifyingGlass } from "../icons/IconMagnifyingGlass";
 import { MenuTrigger } from "../menu";
 import { useMenuContext } from "../menu/internals";
 
@@ -24,7 +24,7 @@ export const SpotlightTrigger = forwardRef<
 
   return (
     <MenuTrigger asChild ref={ref} {...props}>
-      <Button icon={<IconMagnifyingGlass />}>
+      <Button icon={<IconSearch />}>
         <Box color="fg.tertiary">{children}</Box>
       </Button>
     </MenuTrigger>

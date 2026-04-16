@@ -1,3 +1,4 @@
+import { IconSearch } from "@optiaxiom/icons";
 import {
   type ComponentPropsWithoutRef,
   forwardRef,
@@ -6,7 +7,6 @@ import {
 } from "react";
 
 import { useEffectEvent } from "../hooks";
-import { IconMagnifyingGlass } from "../icons/IconMagnifyingGlass";
 import { Input } from "../input";
 import { SurfaceProvider } from "../surface";
 import { useCommandContext } from "./CommandContext";
@@ -27,7 +27,7 @@ export const CommandInput = forwardRef<HTMLInputElement, CommandInputProps>(
     return (
       <SurfaceProvider disabled>
         <Input
-          addonBefore={<IconMagnifyingGlass />}
+          addonBefore={<IconSearch />}
           htmlSize={1}
           size={size}
           {...downshift.getInputProps({
