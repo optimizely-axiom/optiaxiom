@@ -1,9 +1,9 @@
+import { IconChevronRight } from "@optiaxiom/icons";
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import { forwardRef, useEffect, useRef } from "react";
 
 import { type BoxProps } from "../box";
 import { useCommandContext } from "../command/internals";
-import { IconAngleRight } from "../icons/IconAngleRight";
 import { usePopoverContext } from "../popover/internals";
 import { MenuItem } from "./MenuItem";
 import { useMenuSubContext } from "./MenuSubContext";
@@ -50,7 +50,7 @@ export const MenuSubTrigger = forwardRef<HTMLDivElement, MenuSubTriggerProps>(
 
     return (
       <MenuItem
-        addonAfter={<IconAngleRight />}
+        addonAfter={<IconChevronRight />}
         item={item}
         onPointerDown={(event) => {
           onPointerDown?.(event);

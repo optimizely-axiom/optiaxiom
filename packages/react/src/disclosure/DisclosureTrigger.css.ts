@@ -47,6 +47,7 @@ export const icon = recipe({
   base: [
     {
       flex: "none",
+      size: "sm",
       transition: "transform",
     },
     style({
