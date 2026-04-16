@@ -12,7 +12,7 @@ export const icon = recipe({
     },
     veStyle({
       "@layer": {
-        [layers.theme]: {
+        [layers.theme + ".icons"]: {
           height: theme.size["2xs"],
         },
       },
