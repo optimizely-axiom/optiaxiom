@@ -31,10 +31,9 @@ export const control = recipe({
       transitionTimingFunction: "ease",
 
       selectors: {
-        [`${marker}:has(${inputMarker}:checked, ${inputMarker}:indeterminate) &`]:
-          {
-            borderWidth: "12px",
-          },
+        [`${marker}:has(${inputMarker}:checked) &`]: {
+          borderWidth: "12px",
+        },
       },
     }),
   ],
