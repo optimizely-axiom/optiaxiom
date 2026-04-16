@@ -11,11 +11,11 @@ export function App() {
     <Menu
       options={[
         {
-          addon: <IconUser />,
+          addon: <IconUser size="16" />,
           label: "My Profile",
         },
         {
-          addon: <IconSparkles />,
+          addon: <IconSparkles size="16" />,
           execute: () => setEnabled(!enabled),
           label: "New UI (Beta)",
           selected: enabled,

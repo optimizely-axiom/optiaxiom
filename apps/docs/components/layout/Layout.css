@@ -195,11 +195,6 @@
 
   .tabler-icon {
     stroke-width: 1.5;
-
-    &[height="24"] {
-      height: 16px;
-      width: auto;
-    }
   }
 
   .hover\:_underline:hover {

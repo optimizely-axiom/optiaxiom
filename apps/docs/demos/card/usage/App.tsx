@@ -30,8 +30,12 @@ export function App() {
         addonAfter={
           <Menu
             options={[
-              { addon: <IconPencil />, label: "Edit" },
-              { addon: <IconLogout />, intent: "danger", label: "Delete" },
+              { addon: <IconPencil size="16" />, label: "Edit" },
+              {
+                addon: <IconLogout size="16" />,
+                intent: "danger",
+                label: "Delete",
+              },
             ]}
           >
             <MenuTrigger asChild>

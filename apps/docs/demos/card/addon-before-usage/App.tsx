@@ -5,7 +5,7 @@ export function App() {
   return (
     <Box maxW="sm" w="full">
       <Card>
-        <CardHeader addonBefore={<IconFolder />}>
+        <CardHeader addonBefore={<IconFolder size="16" />}>
           The majestic world of turtles
         </CardHeader>
       </Card>

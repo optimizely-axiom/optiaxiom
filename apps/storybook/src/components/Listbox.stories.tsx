@@ -225,7 +225,7 @@ export const ComplexContent: Story = {
             key={item}
             role="option"
           >
-            <IconLanguage />
+            <IconLanguage size="16" />
             {item}
           </ListboxRadioItem>
         ))}

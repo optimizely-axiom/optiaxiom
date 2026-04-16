@@ -11,14 +11,14 @@ export function App() {
     <Menu
       options={[
         {
-          addon: <IconUser />,
+          addon: <IconUser size="16" />,
           group: {
             label: "My Account",
           },
           label: "View Profile",
         },
         {
-          addon: <IconLogout />,
+          addon: <IconLogout size="16" />,
           group: {
             hidden: true,
             label: "Logout",
