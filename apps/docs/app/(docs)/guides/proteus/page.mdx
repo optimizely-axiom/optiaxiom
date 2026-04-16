@@ -1,0 +1,433 @@
+# Proteus
+
+Proteus is a JSON-based UI specification for building interactive tool interfaces. You define your UI as a JSON document, and the Proteus renderer (`@optiaxiom/proteus`) turns it into interactive Axiom components.
+
+## Document structure
+
+### Minimal document
+
+A Proteus document is a JSON object with `$type: "Document"`. At minimum it needs a `body`:
+
+```json
+{
+  "$type": "Document",
+  "body": [
+    { "$type": "Heading", "children": "Hello World" },
+    { "$type": "Text", "children": "Welcome to Proteus." }
+  ]
+}
+```
+
+Every element has a `$type` that identifies the component. The `children` property holds nested content: a string, number, another element, or an array of elements.
+
+### Document properties
+
+Documents also support `title`, `subtitle`, `appName`, `appIcon`, and `actions` (buttons rendered at the bottom). Set `blocking` to `true` to hide the chat input and force the user to interact with the UI before continuing.
+
+```json
+{
+  "$type": "Document",
+  "appName": "Task Manager",
+  "title": "Create Task",
+  "subtitle": "Fill out the form below",
+  "body": [
+    {
+      "$type": "Field",
+      "label": "Task Name",
+      "children": {
+        "$type": "Input",
+        "name": "task_name",
+        "placeholder": "Enter task name",
+        "required": true
+      }
+    }
+  ],
+  "actions": [
+    { "$type": "Action", "children": "Create", "appearance": "primary" },
+    { "$type": "CancelAction", "children": "Cancel" }
+  ],
+  "blocking": true
+}
+```
+
+## Components
+
+### Layout and structure
+
+Use `Group` as a flexbox container to arrange child elements. It supports `flexDirection`, `gap`, `alignItems`, and `justifyContent`. `Card`, `CardHeader`, and `CardLink` provide card-based layouts. `Separator` adds a visual divider.
+
+```json
+{
+  "$type": "Group",
+  "flexDirection": "column",
+  "gap": "12",
+  "children": [
+    {
+      "$type": "Card",
+      "children": [
+        { "$type": "CardHeader", "children": "Settings" },
+        { "$type": "Text", "children": "Configure your preferences below." }
+      ]
+    },
+    { "$type": "Separator" },
+    { "$type": "Text", "children": "More content here." }
+  ]
+}
+```
+
+### Typography
+
+`Heading` renders section headings, `Text` renders inline or block text, and `Link` renders a hyperlink with an `href` prop.
+
+```json
+[
+  { "$type": "Heading", "children": "Welcome" },
+  { "$type": "Text", "children": "Get started by filling out the form.", "fontSize": "sm", "color": "fg.secondary" },
+  { "$type": "Link", "href": "https://example.com", "children": "Learn more" }
+]
+```
+
+### Data display
+
+`DataTable` renders structured data with columns, sorting, and pagination. `Chart` renders bar or line charts. `Image` and `ImageCarousel` display images. `Avatar`, `Badge`, and `Time` handle user avatars, status tags, and formatted timestamps.
+
+```json
+{
+  "$type": "DataTable",
+  "columns": [
+    { "header": "Name", "accessorKey": "name" },
+    { "header": "Status", "accessorKey": "status" }
+  ],
+  "rows": { "$type": "Value", "path": "/items" }
+}
+```
+
+### Form controls
+
+Wrap inputs with `Field` to add a label. Available inputs include `Input`, `Textarea`, `Select` (composed from `SelectTrigger` and `SelectContent`), `Switch`, `Range`, and `Question` (a multi-question dynamic form).
+
+```json
+[
+  {
+    "$type": "Field",
+    "label": "Email",
+    "children": {
+      "$type": "Input",
+      "name": "email",
+      "placeholder": "you@example.com",
+      "required": true
+    }
+  },
+  {
+    "$type": "Field",
+    "label": "Category",
+    "children": {
+      "$type": "Select",
+      "name": "category",
+      "children": [
+        { "$type": "SelectTrigger", "children": "Choose a category" },
+        { "$type": "SelectContent" }
+      ]
+    }
+  },
+  {
+    "$type": "Field",
+    "label": "Notifications",
+    "children": { "$type": "Switch", "name": "notifications" }
+  }
+]
+```
+
+### Actions
+
+`Action` renders a button with an `onClick` handler (see [Interactions](#interactions) below). `CancelAction` renders a cancel button that abandons the current interaction.
+
+```json
+[
+  { "$type": "Action", "children": "Submit", "appearance": "primary", "onClick": { "interaction": "submit_form" } },
+  { "$type": "CancelAction", "children": "Cancel" }
+]
+```
+
+### Styling props
+
+All components accept Axiom styling props for spacing, colors, layout, and typography:
+
+```json
+{
+  "$type": "Group",
+  "flexDirection": "column",
+  "gap": "8",
+  "p": "12",
+  "bg": "bg.error.subtle",
+  "rounded": "md",
+  "maxH": "sm",
+  "children": {
+    "$type": "Text",
+    "children": "Styled container",
+    "color": "fg.error",
+    "fontSize": "sm",
+    "fontWeight": "500"
+  }
+}
+```
+
+Available props include `p`, `px`, `py`, `m`, `mb`, `mt`, `bg`, `color`, `fontSize`, `fontWeight`, `rounded`, `display`, `gap`, `flexDirection`, `alignItems`, `justifyContent`, `maxH`, `maxW`, `overflow`, and `objectFit`.
+
+## Data binding
+
+### Value
+
+Reads a field from the tool response using a JSON Pointer path:
+
+```json
+{ "$type": "Value", "path": "/title" }
+```
+
+Paths starting with `/` are absolute (from the root of the tool response). Paths without a leading `/` are relative (resolved from the current context, like inside a `Map`).
+
+### Map
+
+Iterates over an array, rendering `children` once per item. Inside a `Map`, relative paths resolve against the current item:
+
+```json
+{
+  "$type": "Map",
+  "path": "/results",
+  "children": {
+    "$type": "Text",
+    "children": { "$type": "Value", "path": "name" }
+  }
+}
+```
+
+### Other expressions
+
+`MapIndex` gives you the current iteration index inside a `Map`. `Concat` joins multiple values into a single string. `Zip` combines parallel arrays into an array of objects.
+
+```json
+{
+  "$type": "Concat",
+  "children": ["Item #", { "$type": "MapIndex" }, ": ", { "$type": "Value", "path": "name" }]
+}
+```
+
+### Putting it together
+
+Given this tool response:
+
+```json
+{
+  "title": "Search Results",
+  "results": [
+    { "name": "Widget A", "price": 9.99 },
+    { "name": "Widget B", "price": 14.99 }
+  ]
+}
+```
+
+This template renders the results dynamically:
+
+```json
+{
+  "$type": "Document",
+  "title": { "$type": "Value", "path": "/title" },
+  "body": {
+    "$type": "Map",
+    "path": "/results",
+    "children": {
+      "$type": "Card",
+      "children": [
+        { "$type": "Heading", "children": { "$type": "Value", "path": "name" } },
+        {
+          "$type": "Text",
+          "children": {
+            "$type": "Concat",
+            "children": ["$", { "$type": "Value", "path": "price" }]
+          }
+        }
+      ]
+    }
+  }
+}
+```
+
+## Conditional rendering
+
+### Show
+
+Use `Show` to render content only when a condition is met:
+
+```json
+{
+  "$type": "Show",
+  "when": { "!!": { "$type": "Value", "path": "/error" } },
+  "children": {
+    "$type": "Text",
+    "children": "An error occurred",
+    "color": "fg.error"
+  }
+}
+```
+
+### Operators
+
+Supported operators: `==`, `!=`, `<`, `<=`, `>`, `>=`, `!!` (truthy), `!` (falsy). Combine conditions with `and` and `or`:
+
+```json
+{
+  "$type": "Show",
+  "when": {
+    "and": [
+      { "!!": { "$type": "Value", "path": "/items" } },
+      { "!=": [{ "$type": "Value", "path": "/status" }, "loading"] }
+    ]
+  },
+  "children": { "$type": "Text", "children": "Items loaded" }
+}
+```
+
+## Interactions
+
+### Interaction handler
+
+Calls a server-side interaction handler registered with the SDK:
+
+```json
+{ "$type": "Action", "children": "Submit", "appearance": "primary", "onClick": { "interaction": "submit_form" } }
+```
+
+### Message handler
+
+Sends a text message back to the LLM:
+
+```json
+{ "$type": "Action", "children": "Continue", "onClick": { "message": "User confirmed the selection" } }
+```
+
+### Download handler
+
+Triggers a file download:
+
+```json
+{
+  "$type": "Action",
+  "children": "Download Report",
+  "onClick": {
+    "action": "download",
+    "url": { "$type": "Value", "path": "/download_url" }
+  }
+}
+```
+
+### Blocking mode
+
+When `blocking` is set to `true` on the Document, the chat input is hidden and the user must click an `Action` or `CancelAction` to continue. Use this for forms that require explicit user input before proceeding.
+
+## SDK integration
+
+### Python
+
+Define a resource that returns a `UI.Document`, then link it to a tool with `ui_resource`:
+
+```python
+from opal_tools_sdk import UI
+from opal_tools_sdk.decorators import resource, tool
+
+@resource(
+    uri="ui://my-app/create-form",
+    name="create-form",
+    description="Form for creating items",
+)
+async def get_create_form():
+    return UI.Document(
+        title="Create Item",
+        body=[
+            UI.Field(label="Name", children=UI.Input(name="name")),
+            UI.Field(label="Description", children=UI.Textarea(name="description")),
+        ],
+        actions=[
+            UI.Action(children="Save", appearance="primary"),
+            UI.CancelAction(children="Cancel"),
+        ],
+    )
+
+@tool("create_item", "Create a new item", ui_resource="ui://my-app/create-form")
+async def create_item(parameters):
+    return {"id": "123", "status": "created"}
+```
+
+### TypeScript
+
+Use `registerResource` and `registerTool` with the `uiResource` option:
+
+```typescript
+import { registerResource, registerTool, UI } from '@optimizely-opal/opal-tools-sdk';
+
+registerResource('create-form', {
+  uri: 'ui://my-app/create-form',
+  description: 'Form for creating items',
+}, async () => {
+  return UI.Document({
+    title: 'Create Item',
+    body: [
+      UI.Field({ label: 'Name', children: UI.Input({ name: 'name' }) }),
+      UI.Field({ label: 'Description', children: UI.Textarea({ name: 'description' }) }),
+    ],
+    actions: [
+      UI.Action({ children: 'Save', appearance: 'primary' }),
+      UI.CancelAction({ children: 'Cancel' }),
+    ],
+  });
+});
+
+registerTool('create_item', {
+  description: 'Create a new item',
+  uiResource: 'ui://my-app/create-form',
+}, async (parameters) => {
+  return { id: '123', status: 'created' };
+});
+```
+
+### C\#
+
+Use `[OpalResource]` to define a resource and `UiResource` on `[OpalTool]` to link it:
+
+```csharp
+public class ItemTools
+{
+    [OpalResource("create-form", "ui://my-app/create-form",
+        Description = "Form for creating items")]
+    public ProteusDocument GetCreateForm()
+    {
+        return UI.Document(
+            title: "Create Item",
+            body: new object[]
+            {
+                UI.Field(label: "Name", children: UI.Input(name: "name")),
+                UI.Field(label: "Description", children: UI.Textarea(name: "description")),
+            },
+            actions: new List<object>
+            {
+                UI.Action(children: "Save", appearance: "primary"),
+                UI.CancelAction(children: "Cancel"),
+            }
+        );
+    }
+
+    [OpalTool(Name = "create-item", UiResource = "ui://my-app/create-form")]
+    [Description("Create a new item")]
+    public object CreateItem(CreateItemParameters parameters)
+    {
+        return new { id = "123", status = "created" };
+    }
+}
+```
+
+See each SDK's README for the full documentation on resources, `ui_resource` linking, and the `UI` builder API.
+
+## Proteus Designer
+
+### Visual editor
+
+The [Proteus Designer](/guides/proteus-designer) is a visual editor for building Proteus documents. You can build a component tree, edit properties in the inspector, see a live preview of how the document renders, and copy the final JSON into your resource handler. You can also provide sample data to test how dynamic values resolve.
