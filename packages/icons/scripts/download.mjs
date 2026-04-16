@@ -34,6 +34,7 @@ async function main() {
   const concurrency = 8;
   let completed = 0;
   let failed = 0;
+  let retriesLeft = 3;
 
   async function downloadTask(task) {
     const filePath = resolve(svgDir, task.name);
@@ -53,8 +54,14 @@ async function main() {
       writeFileSync(filePath, svg);
       completed++;
     } catch (error) {
+      if (retriesLeft > 0) {
+        retriesLeft--;
+        console.error(`\nRetrying: ${task.name} - ${error.message}`);
+        await new Promise((r) => setTimeout(r, 1000));
+        return downloadTask(task);
+      }
       failed++;
-      console.error(`Failed: ${task.name} - ${error.message}`);
+      console.error(`\nFailed: ${task.name} - ${error.message}`);
     }
   }
 
