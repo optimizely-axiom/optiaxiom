@@ -44,7 +44,13 @@ export function DataTableExpandableCell<TData, TValue>({
           aria-label="Toggle row"
           aria-labelledby={clsx(labelPrefixId, labelId)}
           flex="none"
-          icon={row.getIsExpanded() ? <IconKeyboardArrowDown /> : <IconChevronRight />}
+          icon={
+            row.getIsExpanded() ? (
+              <IconKeyboardArrowDown />
+            ) : (
+              <IconChevronRight />
+            )
+          }
           id={labelPrefixId}
           onClick={row.getToggleExpandedHandler()}
           size="sm"
