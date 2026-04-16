@@ -3,22 +3,22 @@
   "definitions": {
     "SprinkleProp_alignItems": {
       "anyOf": [
-        { "const": "normal" },
         { "const": "stretch" },
         { "const": "center" },
         { "const": "end" },
         { "const": "start" },
+        { "const": "normal" },
         { "$ref": "#/definitions/ProteusExpression" }
       ],
       "description": "Set the element's `align-items` CSS property"
     },
     "SprinkleProp_alignSelf": {
       "anyOf": [
-        { "const": "normal" },
         { "const": "stretch" },
         { "const": "center" },
         { "const": "end" },
         { "const": "start" },
+        { "const": "normal" },
         { "$ref": "#/definitions/ProteusExpression" }
       ],
       "description": "Set the element's `align-self` CSS property"
@@ -194,9 +194,9 @@
     },
     "SprinkleProp_cursor": {
       "anyOf": [
+        { "const": "text" },
         { "const": "default" },
         { "const": "pointer" },
-        { "const": "text" },
         { "$ref": "#/definitions/ProteusExpression" }
       ],
       "description": "Set the element's `cursor` CSS property"
@@ -366,7 +366,6 @@
     },
     "SprinkleProp_justifyContent": {
       "anyOf": [
-        { "const": "normal" },
         { "const": "space-around" },
         { "const": "space-between" },
         { "const": "space-evenly" },
@@ -376,17 +375,18 @@
         { "const": "flex-end" },
         { "const": "flex-start" },
         { "const": "start" },
+        { "const": "normal" },
         { "$ref": "#/definitions/ProteusExpression" }
       ],
       "description": "Set the element's `justify-content` CSS property"
     },
     "SprinkleProp_justifyItems": {
       "anyOf": [
-        { "const": "normal" },
         { "const": "stretch" },
         { "const": "center" },
         { "const": "end" },
         { "const": "start" },
+        { "const": "normal" },
         { "$ref": "#/definitions/ProteusExpression" }
       ],
       "description": "Set the element's `justify-items` CSS property"
@@ -2350,11 +2350,11 @@
         "$type": { "const": "Group" },
         "alignItems": {
           "anyOf": [
-            { "const": "normal" },
             { "const": "stretch" },
             { "const": "center" },
             { "const": "end" },
             { "const": "start" },
+            { "const": "normal" },
             { "$ref": "#/definitions/ProteusExpression" }
           ],
           "description": "Set the element's `align-items` CSS property. Defaults to `center` when\n`flexDirection='row'`, and `stretch` when `flexDirection='column'`."
