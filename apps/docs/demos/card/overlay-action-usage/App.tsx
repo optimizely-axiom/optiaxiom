@@ -1,3 +1,4 @@
+import { IconMusicNote2, IconStar } from "@optiaxiom/icons";
 import {
   Badge,
   Box,
@@ -9,7 +10,6 @@ import {
   CardPreview,
   Group,
 } from "@optiaxiom/react";
-import { IconMusic, IconStar } from "@tabler/icons-react";
 
 export function App() {
   return (
@@ -31,7 +31,7 @@ export function App() {
             rounded="md"
             shadow="sm"
           >
-            <IconMusic size="32" />
+            <IconMusicNote2 size="32" />
           </Box>
         </CardPreview>
         <CardHeader>Checkbox</CardHeader>
@@ -59,7 +59,7 @@ export function App() {
             rounded="md"
             shadow="sm"
           >
-            <IconMusic size="32" />
+            <IconMusicNote2 size="32" />
           </Box>
         </CardPreview>
         <CardHeader>Checkbox and star button</CardHeader>

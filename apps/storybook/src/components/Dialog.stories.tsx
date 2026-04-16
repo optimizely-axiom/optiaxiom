@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
+import { IconExpandContent } from "@optiaxiom/icons";
 import {
   Box,
   Button,
@@ -23,7 +24,6 @@ import {
   Textarea,
 } from "@optiaxiom/react";
 import { SurfaceProvider } from "@optiaxiom/react/unstable";
-import { IconArrowsDiagonal } from "@tabler/icons-react";
 import {
   type ComponentPropsWithoutRef,
   type ReactNode,
@@ -164,7 +164,7 @@ export const Actions: Story = {
       <Button
         appearance="subtle"
         aria-label="maximize"
-        icon={<IconArrowsDiagonal />}
+        icon={<IconExpandContent />}
       />
     ),
   },

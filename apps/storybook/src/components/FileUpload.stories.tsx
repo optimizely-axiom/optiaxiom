@@ -1,6 +1,13 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import {
+  IconAdd2,
+  IconImagesmode,
+  IconMenuBook,
+  IconNorth,
+  IconUpload,
+} from "@optiaxiom/icons";
+import {
   Box,
   Button,
   Group,
@@ -17,13 +24,6 @@ import {
   FileUploadTrigger,
   useFileUploadTrigger,
 } from "@optiaxiom/react/unstable";
-import {
-  IconArrowUp,
-  IconBooks,
-  IconPhoto,
-  IconPlus,
-  IconUpload,
-} from "@tabler/icons-react";
 
 export default {
   args: {
@@ -68,7 +68,7 @@ export const Overlay: Story = {
                   <Button
                     appearance="subtle"
                     aria-label="Add images"
-                    icon={<IconPhoto />}
+                    icon={<IconImagesmode />}
                     size="sm"
                   />
                 </FileUploadTrigger>
@@ -78,7 +78,7 @@ export const Overlay: Story = {
                 <Button
                   appearance="primary"
                   aria-label="Submit"
-                  icon={<IconArrowUp />}
+                  icon={<IconNorth />}
                   ml="auto"
                   size="sm"
                 />
@@ -101,18 +101,18 @@ function FileUploadMenu() {
     <Menu
       options={[
         {
-          addon: <IconUpload size="16" />,
+          addon: <IconUpload />,
           execute: triggerFileUpload,
           label: "Your device",
         },
         {
-          addon: <IconBooks size="16" />,
+          addon: <IconMenuBook />,
           execute: () => toaster.create("Uploading from library..."),
           label: "Library",
         },
       ]}
     >
-      <MenuTrigger icon={<IconPlus />} iconPosition="start">
+      <MenuTrigger icon={<IconAdd2 />} iconPosition="start">
         Add Content
       </MenuTrigger>
       <MenuContent />

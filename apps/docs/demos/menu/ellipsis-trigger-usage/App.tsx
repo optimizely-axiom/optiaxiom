@@ -1,24 +1,24 @@
+import { IconLogout, IconPerson } from "@optiaxiom/icons";
 import {
   EllipsisMenuButton,
   Menu,
   MenuContent,
   MenuTrigger,
 } from "@optiaxiom/react";
-import { IconLogout, IconUser } from "@tabler/icons-react";
 
 export function App() {
   return (
     <Menu
       options={[
         {
-          addon: <IconUser size="16" />,
+          addon: <IconPerson />,
           group: {
             label: "My Account",
           },
           label: "View Profile",
         },
         {
-          addon: <IconLogout size="16" />,
+          addon: <IconLogout />,
           group: {
             hidden: true,
             label: "Logout",

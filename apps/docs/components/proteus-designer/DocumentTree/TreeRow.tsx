@@ -162,22 +162,22 @@ export function TreeRow({
 }
 
 export const ELEMENT_ICONS: Record<string, ReactNode> = {
-  Action: <IconClick />,
-  CancelAction: <IconClick />,
-  Field: <IconForms />,
-  Group: <IconLayoutList />,
-  Heading: <IconHeading />,
-  Image: <IconPhoto />,
-  Input: <IconInputSearch />,
-  Link: <IconLink />,
-  Map: <IconArrowsShuffle />,
-  Range: <IconAdjustmentsHorizontal />,
-  Select: <IconColumnInsertRight />,
-  Separator: <IconMinus />,
-  Show: <IconAlertTriangle />,
-  Text: <IconLetterT />,
-  Textarea: <IconNotes />,
-  Value: <IconVariable />,
+  Action: <IconClick size="16" />,
+  CancelAction: <IconClick size="16" />,
+  Field: <IconForms size="16" />,
+  Group: <IconLayoutList size="16" />,
+  Heading: <IconHeading size="16" />,
+  Image: <IconPhoto size="16" />,
+  Input: <IconInputSearch size="16" />,
+  Link: <IconLink size="16" />,
+  Map: <IconArrowsShuffle size="16" />,
+  Range: <IconAdjustmentsHorizontal size="16" />,
+  Select: <IconColumnInsertRight size="16" />,
+  Separator: <IconMinus size="16" />,
+  Show: <IconAlertTriangle size="16" />,
+  Text: <IconLetterT size="16" />,
+  Textarea: <IconNotes size="16" />,
+  Value: <IconVariable size="16" />,
 };
 
 const ACTION_TYPES = new Set(["Action", "CancelAction"]);

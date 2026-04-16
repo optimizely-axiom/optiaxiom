@@ -1,11 +1,11 @@
 "use client";
 
-import { Nav, NavBody, NavItem, NavList, Sidebar } from "@optiaxiom/react";
 import {
-  IconDashboard,
-  IconDeviceDesktop,
-  IconTestPipe,
-} from "@tabler/icons-react";
+  IconDesktopWindows,
+  IconExperiment,
+  IconTeamDashboard,
+} from "@optiaxiom/icons";
+import { Nav, NavBody, NavItem, NavList, Sidebar } from "@optiaxiom/react";
 import { useState } from "react";
 
 import { Canvas } from "../../Canvas";
@@ -21,21 +21,21 @@ export function App() {
             <NavList>
               <NavItem
                 active={selected === "CMP"}
-                icon={<IconDashboard />}
+                icon={<IconTeamDashboard />}
                 onClick={() => setSelected("CMP")}
               >
                 CMP
               </NavItem>
               <NavItem
                 active={selected === "CMS"}
-                icon={<IconDeviceDesktop />}
+                icon={<IconDesktopWindows />}
                 onClick={() => setSelected("CMS")}
               >
                 CMS
               </NavItem>
               <NavItem
                 active={selected === "Experimentation"}
-                icon={<IconTestPipe />}
+                icon={<IconExperiment />}
                 onClick={() => setSelected("Experimentation")}
               >
                 Experimentation

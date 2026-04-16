@@ -1,11 +1,13 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
+import { IconNotifications, IconSchedule } from "@optiaxiom/icons";
 import { Avatar, Box, Button, Group, Indicator } from "@optiaxiom/react";
-import { IconBell, IconClockFilled } from "@tabler/icons-react";
 
 export default {
   args: {
-    children: <Button aria-label="Notifications" icon={<IconBell />} />,
+    children: (
+      <Button aria-label="Notifications" icon={<IconNotifications />} />
+    ),
     content: "1",
   },
   component: Indicator,
@@ -89,7 +91,7 @@ export const Presence: Story = {
     ),
     content: (
       <Box asChild bg="bg.default" color="fg.warning.light" rounded="full">
-        <IconClockFilled size="14" />
+        <IconSchedule size="14" />
       </Box>
     ),
     offset: false,

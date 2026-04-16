@@ -1,20 +1,20 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
+import { IconDockToRight } from "@optiaxiom/icons";
 import { Group, ToggleButton } from "@optiaxiom/react";
-import { IconLayoutSidebar } from "@tabler/icons-react";
 
 export default {
   args: {
     "aria-label": "Toggle sidebar",
-    icon: "layout-sidebar",
+    icon: "dock-to-right",
   },
   argTypes: {
     icon: {
       control: { type: "select" },
       mapping: {
-        "layout-sidebar": <IconLayoutSidebar />,
+        "dock-to-right": <IconDockToRight />,
       },
-      options: ["layout-sidebar"],
+      options: ["dock-to-right"],
     },
     onClick: { action: "click" },
   },
@@ -40,6 +40,6 @@ export const Basic: Story = {};
 export const Pressed: Story = {
   args: {
     defaultPressed: true,
-    icon: "layout-sidebar",
+    icon: "dock-to-right",
   },
 };

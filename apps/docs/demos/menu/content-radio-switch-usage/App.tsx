@@ -1,7 +1,7 @@
 "use client";
 
+import { IconPerson, IconWandShine } from "@optiaxiom/icons";
 import { Menu, MenuContent, MenuTrigger } from "@optiaxiom/react";
-import { IconSparkles, IconUser } from "@tabler/icons-react";
 import { useState } from "react";
 
 export function App() {
@@ -11,11 +11,11 @@ export function App() {
     <Menu
       options={[
         {
-          addon: <IconUser size="16" />,
+          addon: <IconPerson />,
           label: "My Profile",
         },
         {
-          addon: <IconSparkles size="16" />,
+          addon: <IconWandShine />,
           execute: () => setEnabled(!enabled),
           label: "New UI (Beta)",
           selected: enabled,

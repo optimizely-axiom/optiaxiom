@@ -1,5 +1,5 @@
+import { IconStar } from "@optiaxiom/icons";
 import { Button, Cover, Group, Link } from "@optiaxiom/react";
-import { IconStar } from "@tabler/icons-react";
 
 export function App() {
   return (

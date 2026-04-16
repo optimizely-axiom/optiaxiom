@@ -1,10 +1,10 @@
+import { IconMail } from "@optiaxiom/icons";
 import { Button, Text } from "@optiaxiom/react";
 import {
   HoverCard,
   HoverCardContent,
   HoverCardTrigger,
 } from "@optiaxiom/react/unstable";
-import { IconMailQuestion } from "@tabler/icons-react";
 
 export function App() {
   return (
@@ -13,7 +13,7 @@ export function App() {
         <Button
           appearance="subtle"
           aria-label="Information hover"
-          icon={<IconMailQuestion />}
+          icon={<IconMail />}
         />
       </HoverCardTrigger>
 

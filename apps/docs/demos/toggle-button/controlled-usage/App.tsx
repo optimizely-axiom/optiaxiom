@@ -1,7 +1,7 @@
 "use client";
 
+import { IconDockToRight } from "@optiaxiom/icons";
 import { Button, Group, ToggleButton } from "@optiaxiom/react";
-import { IconLayoutSidebar } from "@tabler/icons-react";
 import { useState } from "react";
 
 export function App() {
@@ -11,7 +11,7 @@ export function App() {
     <Group gap="16">
       <ToggleButton
         aria-label="Toggle sidebar"
-        icon={<IconLayoutSidebar />}
+        icon={<IconDockToRight />}
         onPressedChange={setValue}
         pressed={value}
       />

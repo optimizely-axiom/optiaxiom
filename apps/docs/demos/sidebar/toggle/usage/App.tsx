@@ -1,3 +1,4 @@
+import { IconDockToRight } from "@optiaxiom/icons";
 import {
   Nav,
   NavFooter,
@@ -5,7 +6,6 @@ import {
   Sidebar,
   SidebarToggle,
 } from "@optiaxiom/react";
-import { IconLayoutSidebar } from "@tabler/icons-react";
 
 import { Canvas } from "../../Canvas";
 
@@ -16,7 +16,7 @@ export function App() {
         <Nav>
           <NavFooter>
             <NavList>
-              <SidebarToggle icon={<IconLayoutSidebar />} />
+              <SidebarToggle icon={<IconDockToRight />} />
             </NavList>
           </NavFooter>
         </Nav>

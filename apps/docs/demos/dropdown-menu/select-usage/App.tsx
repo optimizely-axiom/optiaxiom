@@ -1,5 +1,6 @@
 "use client";
 
+import { IconLogout, IconPerson } from "@optiaxiom/icons";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,7 +11,6 @@ import {
   Group,
   Text,
 } from "@optiaxiom/react";
-import { IconLogout, IconUser } from "@tabler/icons-react";
 import { useState } from "react";
 
 export function App() {
@@ -24,7 +24,7 @@ export function App() {
         <DropdownMenuContent>
           <DropdownMenuLabel>My Account</DropdownMenuLabel>
           <DropdownMenuItem
-            icon={<IconUser />}
+            icon={<IconPerson />}
             onSelect={() => setSelected("view")}
           >
             View Profile

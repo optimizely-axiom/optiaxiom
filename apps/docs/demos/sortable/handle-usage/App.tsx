@@ -1,11 +1,11 @@
 "use client";
 
+import { IconDragIndicator } from "@optiaxiom/icons";
 import {
   Sortable,
   SortableHandle,
   SortableItem,
 } from "@optiaxiom/react/unstable";
-import { IconGripVertical } from "@tabler/icons-react";
 import { useState } from "react";
 
 export function App() {
@@ -24,7 +24,7 @@ export function App() {
             key={item}
           >
             <SortableHandle>
-              <IconGripVertical size={20} />
+              <IconDragIndicator />
             </SortableHandle>
             Item {item}
           </SortableItem>

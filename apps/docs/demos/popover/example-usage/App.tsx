@@ -1,3 +1,4 @@
+import { IconGridView, IconListAlt, IconTune } from "@optiaxiom/icons";
 import {
   Field,
   Popover,
@@ -11,25 +12,18 @@ import {
   Separator,
   Tooltip,
 } from "@optiaxiom/react";
-import {
-  IconAdjustmentsHorizontal,
-  IconLayoutGrid,
-  IconList,
-} from "@tabler/icons-react";
 
 export function App() {
   return (
     <Popover>
-      <PopoverTrigger icon={<IconAdjustmentsHorizontal />}>
-        Display
-      </PopoverTrigger>
+      <PopoverTrigger icon={<IconTune />}>Display</PopoverTrigger>
 
       <PopoverContent align="end" gap="12" px="0">
         <SegmentedControl defaultValue="list" gap="12" px="16">
           <Tooltip content="List">
             <SegmentedControlItem
               aria-label="List"
-              icon={<IconList />}
+              icon={<IconListAlt />}
               size="lg"
               value="list"
             />
@@ -38,7 +32,7 @@ export function App() {
           <Tooltip content="Grid">
             <SegmentedControlItem
               aria-label="Grid"
-              icon={<IconLayoutGrid />}
+              icon={<IconGridView />}
               size="lg"
               value="grid"
             />

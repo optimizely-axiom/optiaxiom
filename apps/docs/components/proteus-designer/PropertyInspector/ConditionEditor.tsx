@@ -1,3 +1,4 @@
+import { IconAdd2, IconDelete } from "@optiaxiom/icons";
 import {
   Box,
   Button,
@@ -8,7 +9,6 @@ import {
   Separator,
   Text,
 } from "@optiaxiom/react";
-import { IconPlus, IconTrash } from "@tabler/icons-react";
 import { useCallback, useMemo } from "react";
 
 const OPERATORS = ["==", "!=", "<", "<=", ">", ">=", "!!"] as const;
@@ -154,7 +154,7 @@ export function ConditionEditor({
             <Button
               alignSelf="start"
               appearance="subtle"
-              icon={<IconPlus size={14} />}
+              icon={<IconAdd2 size={14} />}
               onClick={() => addRowToGroup(gi)}
               size="sm"
             >
@@ -167,7 +167,7 @@ export function ConditionEditor({
       <Button
         alignSelf="start"
         appearance="subtle"
-        icon={<IconPlus size={14} />}
+        icon={<IconAdd2 size={14} />}
         onClick={addOrGroup}
         size="sm"
       >
@@ -254,7 +254,7 @@ function ConditionRowEditor({
 
       <Button
         appearance="subtle"
-        icon={<IconTrash size={14} />}
+        icon={<IconDelete size={14} />}
         onClick={onRemove}
         size="sm"
       />

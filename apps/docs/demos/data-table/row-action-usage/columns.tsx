@@ -1,3 +1,4 @@
+import { IconShare } from "@optiaxiom/icons";
 import {
   Box,
   Button,
@@ -12,7 +13,6 @@ import {
   Text,
   toaster,
 } from "@optiaxiom/react";
-import { IconShare3 } from "@tabler/icons-react";
 import { createColumnHelper } from "@tanstack/react-table";
 
 const columnHelper = createColumnHelper<{
@@ -69,7 +69,7 @@ export const columns = [
             <Button
               appearance="subtle"
               aria-label="Share"
-              icon={<IconShare3 />}
+              icon={<IconShare />}
               size="sm"
             />
           </DataTableAction>

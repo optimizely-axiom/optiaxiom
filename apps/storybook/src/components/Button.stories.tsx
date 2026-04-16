@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
+import { IconKeyboardArrowDown, IconUpload } from "@optiaxiom/icons";
 import { Button, Group, Select, SelectTrigger, Text } from "@optiaxiom/react";
 import { SurfaceProvider } from "@optiaxiom/react/unstable";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
-import { IconChevronDown, IconCloudUpload } from "@tabler/icons-react";
 import { useState } from "react";
 import { action } from "storybook/actions";
 
@@ -12,10 +12,10 @@ export default {
     icon: {
       control: { type: "select" },
       mapping: {
-        "chevron-down": <IconChevronDown />,
-        "cloud-upload": <IconCloudUpload />,
+        "arrow-drop-down": <IconKeyboardArrowDown />,
+        upload: <IconUpload />,
       },
-      options: ["chevron-down", "cloud-upload"],
+      options: ["arrow-drop-down", "upload"],
     },
     onClick: { action: "click" },
   },
@@ -93,7 +93,7 @@ export const Loading: Story = {
     "aria-label": "Loading",
     children: "Button",
     disabled: true,
-    icon: "chevron-down",
+    icon: "arrow-drop-down",
     justifyContent: "flex-start",
     loading: true,
   },
@@ -116,7 +116,7 @@ export const IconButton: Story = {
   ...Appearance,
   args: {
     "aria-label": "Button",
-    icon: "chevron-down",
+    icon: "arrow-drop-down",
   },
 };
 
@@ -124,7 +124,7 @@ export const IconSizes: Story = {
   ...Appearance,
   args: {
     "aria-label": "Button",
-    icon: "chevron-down",
+    icon: "arrow-drop-down",
   },
   render: (args) => (
     <Group gap="16">
@@ -138,7 +138,7 @@ export const IconSizes: Story = {
 export const IconsWithText: Story = {
   args: {
     children: "Button",
-    icon: "chevron-down",
+    icon: "arrow-drop-down",
   },
   render: (args) => (
     <Group flexDirection="column" gap="16">
@@ -159,7 +159,7 @@ export const IconsWithText: Story = {
 export const Link: Story = {
   args: {
     asChild: true,
-    icon: "chevron-down",
+    icon: "arrow-drop-down",
   },
   render: (args) => (
     <Group gap="16">
@@ -187,7 +187,7 @@ export const Upload: Story = {
         </VisuallyHidden>
       </label>
     ),
-    icon: "cloud-upload",
+    icon: "upload",
   },
   render: (args) => (
     <Group flexDirection="column" gap="16">

@@ -2,13 +2,13 @@
 
 import type { ComponentPropsWithoutRef } from "react";
 
-import { Button, Group, Textarea, Tooltip } from "@optiaxiom/react";
 import {
-  IconArrowUp,
-  IconAt,
-  IconMoodSmile,
-  IconPhoto,
-} from "@tabler/icons-react";
+  IconAddComment,
+  IconAtr,
+  IconImagesmode,
+  IconNorth,
+} from "@optiaxiom/icons";
+import { Button, Group, Textarea, Tooltip } from "@optiaxiom/react";
 
 export function App({
   addonPointerEvents = "none",
@@ -18,19 +18,19 @@ export function App({
       addonAfter={
         <Group gap="4" p="4">
           <Tooltip content="Add emoji">
-            <Button appearance="subtle" icon={<IconMoodSmile />} size="sm" />
+            <Button appearance="subtle" icon={<IconAddComment />} size="sm" />
           </Tooltip>
           <Tooltip content="Add mention">
-            <Button appearance="subtle" icon={<IconAt />} size="sm" />
+            <Button appearance="subtle" icon={<IconAtr />} size="sm" />
           </Tooltip>
           <Tooltip content="Upload images">
-            <Button appearance="subtle" icon={<IconPhoto />} size="sm" />
+            <Button appearance="subtle" icon={<IconImagesmode />} size="sm" />
           </Tooltip>
 
           <Tooltip content="Submit">
             <Button
               appearance="primary"
-              icon={<IconArrowUp />}
+              icon={<IconNorth />}
               ml="auto"
               size="sm"
             />

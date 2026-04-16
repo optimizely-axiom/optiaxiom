@@ -1,6 +1,16 @@
 "use client";
 
 import {
+  IconContentCopy,
+  IconCropSquare,
+  IconDelete,
+  IconDesktopWindows,
+  IconExperiment,
+  IconMonitoring,
+  IconStar,
+  IconTeamDashboard,
+} from "@optiaxiom/icons";
+import {
   NavBody,
   NavGroup,
   NavGroupContent,
@@ -11,16 +21,6 @@ import {
   Sidebar,
   SubNav,
 } from "@optiaxiom/react";
-import {
-  IconCopy,
-  IconDashboard,
-  IconDeviceDesktop,
-  IconRectangle,
-  IconReport,
-  IconStar,
-  IconTestPipe,
-  IconTrash,
-} from "@tabler/icons-react";
 import { useState } from "react";
 
 import { Canvas } from "../Canvas";
@@ -39,14 +39,14 @@ export function App() {
             <NavList>
               <NavItem
                 active={selected === "All"}
-                icon={<IconCopy />}
+                icon={<IconContentCopy />}
                 onClick={() => setSelected("All")}
               >
                 All
               </NavItem>
               <NavItem
                 active={selected === "Recent"}
-                icon={<IconRectangle />}
+                icon={<IconCropSquare />}
                 onClick={() => setSelected("Recent")}
               >
                 Recent
@@ -60,7 +60,7 @@ export function App() {
               </NavItem>
               <NavItem
                 active={selected === "Trash"}
-                icon={<IconTrash />}
+                icon={<IconDelete />}
                 onClick={() => setSelected("Trash")}
               >
                 Trash
@@ -72,21 +72,21 @@ export function App() {
                 <NavGroupContent>
                   <NavItem
                     active={selected === "CMP"}
-                    icon={<IconDashboard />}
+                    icon={<IconTeamDashboard />}
                     onClick={() => setSelected("CMP")}
                   >
                     CMP
                   </NavItem>
                   <NavItem
                     active={selected === "CMS"}
-                    icon={<IconDeviceDesktop />}
+                    icon={<IconDesktopWindows />}
                     onClick={() => setSelected("CMS")}
                   >
                     CMS
                   </NavItem>
                   <NavItem
                     active={selected === "Experimentation"}
-                    icon={<IconTestPipe />}
+                    icon={<IconExperiment />}
                     onClick={() => setSelected("Experimentation")}
                   >
                     Experimentation
@@ -100,14 +100,14 @@ export function App() {
                 <NavGroupContent>
                   <NavItem
                     active={selected === "Dashboard"}
-                    icon={<IconDashboard />}
+                    icon={<IconTeamDashboard />}
                     onClick={() => setSelected("Dashboard")}
                   >
                     Dashboard
                   </NavItem>
                   <NavItem
                     active={selected === "Reports"}
-                    icon={<IconReport />}
+                    icon={<IconMonitoring />}
                     onClick={() => setSelected("Reports")}
                   >
                     Reports

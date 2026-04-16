@@ -1,6 +1,15 @@
 "use client";
 
 import {
+  IconAccountTree,
+  IconDockToRight,
+  IconFlag2,
+  IconMenuBook,
+  IconOpenInNew,
+  IconSettings,
+  IconShowChart,
+} from "@optiaxiom/icons";
+import {
   Menu,
   MenuContent,
   MenuTrigger,
@@ -13,15 +22,6 @@ import {
   Sidebar,
   SidebarToggle,
 } from "@optiaxiom/react";
-import {
-  IconBinaryTree,
-  IconChartLine,
-  IconExternalLink,
-  IconFlag2,
-  IconLayoutSidebar,
-  IconSettings,
-  IconVocabulary,
-} from "@tabler/icons-react";
 import { useState } from "react";
 
 import { Canvas } from "../Canvas";
@@ -37,7 +37,7 @@ export function App() {
             <NavList>
               <NavItem
                 active={selected === "projects"}
-                icon={<IconBinaryTree />}
+                icon={<IconAccountTree />}
                 onClick={() => setSelected("projects")}
               >
                 Projects
@@ -51,7 +51,7 @@ export function App() {
               </NavItem>
               <NavItem
                 active={selected === "events"}
-                icon={<IconChartLine />}
+                icon={<IconShowChart />}
                 onClick={() => setSelected("events")}
               >
                 Events
@@ -64,9 +64,9 @@ export function App() {
                 Settings
               </NavItem>
               <NavItem
-                addonAfter={<IconExternalLink size="16" />}
+                addonAfter={<IconOpenInNew />}
                 asChild
-                icon={<IconVocabulary />}
+                icon={<IconMenuBook />}
               >
                 <a href="/">Tutorial</a>
               </NavItem>
@@ -75,7 +75,7 @@ export function App() {
 
           <NavFooter>
             <NavList>
-              <SidebarToggle icon={<IconLayoutSidebar />} />
+              <SidebarToggle icon={<IconDockToRight />} />
               <Menu
                 options={[
                   { label: "View Profile" },

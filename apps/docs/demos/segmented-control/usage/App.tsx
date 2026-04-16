@@ -1,9 +1,9 @@
+import { IconGridView, IconListAlt } from "@optiaxiom/icons";
 import {
   SegmentedControl,
   SegmentedControlItem,
   Tooltip,
 } from "@optiaxiom/react";
-import { IconLayoutGrid, IconList } from "@tabler/icons-react";
 
 export function App() {
   return (
@@ -11,7 +11,7 @@ export function App() {
       <Tooltip content="List">
         <SegmentedControlItem
           aria-label="List"
-          icon={<IconList />}
+          icon={<IconListAlt />}
           value="list"
         />
       </Tooltip>
@@ -19,7 +19,7 @@ export function App() {
       <Tooltip content="Grid">
         <SegmentedControlItem
           aria-label="Grid"
-          icon={<IconLayoutGrid />}
+          icon={<IconGridView />}
           value="grid"
         />
       </Tooltip>

@@ -1,10 +1,10 @@
+import { IconThumbDown } from "@optiaxiom/icons";
 import {
   Button,
   Disclosure,
   DisclosureContent,
   DisclosureTrigger,
 } from "@optiaxiom/react";
-import { IconThumbDown } from "@tabler/icons-react";
 
 export function App() {
   return (

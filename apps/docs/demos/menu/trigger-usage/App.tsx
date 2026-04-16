@@ -1,19 +1,19 @@
+import { IconFilterAlt, IconLogout, IconPerson } from "@optiaxiom/icons";
 import { Menu, MenuContent, MenuTrigger } from "@optiaxiom/react";
-import { IconFilter, IconLogout, IconUser } from "@tabler/icons-react";
 
 export function App() {
   return (
     <Menu
       options={[
         {
-          addon: <IconUser size="16" />,
+          addon: <IconPerson />,
           group: {
             label: "My Account",
           },
           label: "View Profile",
         },
         {
-          addon: <IconLogout size="16" />,
+          addon: <IconLogout />,
           group: {
             hidden: true,
             label: "Logout",
@@ -26,7 +26,7 @@ export function App() {
       <MenuTrigger
         appearance="subtle"
         aria-label="Filters"
-        icon={<IconFilter />}
+        icon={<IconFilterAlt />}
       />
       <MenuContent />
     </Menu>

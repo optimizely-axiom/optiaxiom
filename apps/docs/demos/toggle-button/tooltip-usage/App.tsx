@@ -1,12 +1,12 @@
 "use client";
 
+import { IconDockToRight } from "@optiaxiom/icons";
 import { ToggleButton, Tooltip } from "@optiaxiom/react";
-import { IconLayoutSidebar } from "@tabler/icons-react";
 
 export function App() {
   return (
     <Tooltip content="Toggle sidebar">
-      <ToggleButton aria-label="Toggle sidebar" icon={<IconLayoutSidebar />} />
+      <ToggleButton aria-label="Toggle sidebar" icon={<IconDockToRight />} />
     </Tooltip>
   );
 }

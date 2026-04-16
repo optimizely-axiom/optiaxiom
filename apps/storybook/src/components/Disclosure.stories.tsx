@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
+import { IconThumbDown } from "@optiaxiom/icons";
 import {
   Button,
   Disclosure,
@@ -7,7 +8,6 @@ import {
   DisclosureTrigger,
   Group,
 } from "@optiaxiom/react";
-import { IconThumbDown } from "@tabler/icons-react";
 import { useState } from "react";
 // import { expect } from "storybook/test";
 

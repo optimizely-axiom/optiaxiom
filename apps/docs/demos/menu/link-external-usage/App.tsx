@@ -1,5 +1,5 @@
+import { IconHelp } from "@optiaxiom/icons";
 import { Menu, MenuContent, MenuTrigger } from "@optiaxiom/react";
-import { IconHelp } from "@tabler/icons-react";
 
 export function App() {
   return (
