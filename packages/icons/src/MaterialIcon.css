@@ -1,0 +1,8 @@
+@layer optiaxiom.base {
+  ._9939fd78 {
+    fill: currentColor;
+    flex: none;
+    height: var(--ax-styles-iconSize, 20px);
+    width: var(--ax-styles-iconSize, 20px);
+  }
+}

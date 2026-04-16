@@ -1,13 +1,14 @@
 import { type ComponentPropsWithRef, forwardRef } from "react";
 
 import { Box } from "../box";
+import * as styles from "./Icon.css";
 
 export type IconProps = ComponentPropsWithRef<typeof Box>;
 
 export const Icon = forwardRef<HTMLDivElement, IconProps>(
-  ({ children, ...props }, ref) => {
+  ({ children, className, ...props }, ref) => {
     return (
-      <Box flex="none" h="2xs" ref={ref} w="auto" {...props}>
+      <Box ref={ref} {...styles.icon({}, className)} {...props}>
         {children}
       </Box>
     );
