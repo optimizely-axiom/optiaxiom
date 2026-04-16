@@ -1,13 +1,8 @@
 import { theme } from "@optiaxiom/globals";
+import { style as veStyle } from "@vanilla-extract/css";
 
-import {
-  createGlobalVar,
-  fallbackVar,
-  recipe,
-  style,
-} from "../vanilla-extract";
-
-const iconSizeVar = createGlobalVar("ax-styles-iconSize");
+import { layers } from "../layers";
+import { recipe } from "../vanilla-extract";
 
 export const icon = recipe({
   base: [
@@ -15,8 +10,12 @@ export const icon = recipe({
       flex: "none",
       w: "auto",
     },
-    style({
-      height: fallbackVar(iconSizeVar, theme.size["2xs"]),
+    veStyle({
+      "@layer": {
+        [layers.theme]: {
+          height: theme.size["2xs"],
+        },
+      },
     }),
   ],
 });
