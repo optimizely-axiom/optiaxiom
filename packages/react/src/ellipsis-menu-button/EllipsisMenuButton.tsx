@@ -20,12 +20,7 @@ export const EllipsisMenuButton = forwardRef<
   EllipsisMenuButtonProps
 >(({ children, ...props }, ref) => {
   return (
-    <Button
-      icon={<IconMoreHoriz />}
-      iconPosition="end"
-      ref={ref}
-      {...props}
-    >
+    <Button icon={<IconMoreHoriz />} iconPosition="end" ref={ref} {...props}>
       {children}
     </Button>
   );
