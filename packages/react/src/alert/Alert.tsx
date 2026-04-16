@@ -1,3 +1,10 @@
+import {
+  IconCheckCircle,
+  IconClose,
+  IconError,
+  IconInfo,
+  IconWarning,
+} from "@optiaxiom/icons";
 import { useId } from "@radix-ui/react-id";
 import { createElement, forwardRef } from "react";
 
@@ -5,12 +12,7 @@ import { type BoxProps } from "../box";
 import { Button } from "../button";
 import { Group } from "../group";
 import { Icon } from "../icon";
-import { IconCircleCheckSolid } from "../icons/IconCircleCheckSolid";
-import { IconCircleExclamationSolid } from "../icons/IconCircleExclamationSolid";
-import { IconCircleInfoSolid } from "../icons/IconCircleInfoSolid";
 import { IconOpal } from "../icons/IconOpal";
-import { IconTriangleExclamationSolid } from "../icons/IconTriangleExclamationSolid";
-import { IconX } from "../icons/IconX";
 import * as styles from "./Alert.css";
 
 export type AlertProps = BoxProps<
@@ -24,12 +26,12 @@ export type AlertProps = BoxProps<
 >;
 
 const mapIntentToIcon = {
-  danger: IconCircleExclamationSolid,
-  information: IconCircleInfoSolid,
-  neutral: IconCircleInfoSolid,
+  danger: IconError,
+  information: IconInfo,
+  neutral: IconInfo,
   opal: IconOpal,
-  success: IconCircleCheckSolid,
-  warning: IconTriangleExclamationSolid,
+  success: IconCheckCircle,
+  warning: IconWarning,
 };
 
 /**
@@ -57,7 +59,11 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>(
         {...props}
       >
         <Icon asChild {...styles.icon({ intent })}>
-          {createElement<object>(mapIntentToIcon[intent])}
+          {intent === "opal" ? (
+            <IconOpal />
+          ) : (
+            createElement(mapIntentToIcon[intent], { filled: true })
+          )}
         </Icon>
         <Group id={labelId} {...styles.content()}>
           {children}
@@ -68,7 +74,7 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>(
             aria-label="close"
             color="fg.default"
             flex="none"
-            icon={<IconX />}
+            icon={<IconClose />}
             onClick={onDismiss}
             size="sm"
           />
