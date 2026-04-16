@@ -131,7 +131,7 @@ export default defineConfig([
               code.indexOf("var Downshift = /*#__PURE__*/function () {"),
             ) +
             "\n" +
-            code.slice(code.indexOf("var dropdownDefaultStateValues = {"))
+            code.slice(code.indexOf("// Shared between all exports."))
           )
             .replace("Downshift as default,", "")
             .replace("import { isForwardRef } from 'react-is';", "")
