@@ -9,12 +9,12 @@ import {
   useState,
 } from "react";
 
+import { IconCalendarToday, IconClose } from "@optiaxiom/icons";
+
 import { Button } from "../button";
 import { Calendar } from "../calendar";
 import { useFieldContext } from "../field/internals";
 import { useObserveValue } from "../hooks";
-import { IconCalendar } from "../icons/IconCalendar";
-import { IconX } from "../icons/IconX";
 import { Input } from "../input";
 import {
   Popover,
@@ -128,7 +128,7 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
                 <Button
                   appearance="subtle"
                   aria-label="Clear"
-                  icon={<IconX />}
+                  icon={<IconClose />}
                   onPointerDown={(event) => {
                     event.preventDefault();
                     forceValueChange("");
@@ -151,7 +151,7 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
                 role="img"
                 {...styles.picker()}
               >
-                <IconCalendar />
+                <IconCalendarToday />
               </PopoverTrigger>
             }
             asChild
