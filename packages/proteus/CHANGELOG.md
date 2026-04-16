@@ -1,5 +1,12 @@
 # @optiaxiom/proteus
 
+## 0.1.22-next.2
+
+### Patch Changes
+
+- Updated dependencies [dc5d6b6]
+  - @optiaxiom/icons@1.0.1-next.2
+
 ## 0.1.22-next.1
 
 ### Patch Changes
