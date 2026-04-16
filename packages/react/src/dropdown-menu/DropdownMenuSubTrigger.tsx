@@ -1,6 +1,7 @@
 import { IconChevronRight } from "@optiaxiom/icons";
 import * as RadixMenu from "@radix-ui/react-dropdown-menu";
 import { forwardRef } from "react";
+
 import { ListboxItem, type ListboxItemProps } from "../listbox";
 
 export type DropdownMenuSubTriggerProps = ListboxItemProps<

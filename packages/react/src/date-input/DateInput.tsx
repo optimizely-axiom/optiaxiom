@@ -1,3 +1,4 @@
+import { IconCalendarToday, IconClose } from "@optiaxiom/icons";
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import { useId } from "@radix-ui/react-id";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
@@ -8,8 +9,6 @@ import {
   useRef,
   useState,
 } from "react";
-
-import { IconCalendarToday, IconClose } from "@optiaxiom/icons";
 
 import { Button } from "../button";
 import { Calendar } from "../calendar";
