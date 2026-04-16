@@ -1,5 +1,12 @@
 # @optiaxiom/globals
 
+## 3.0.0-next.1
+
+### Patch Changes
+
+- 8ea80b1: sync colors tokens
+- 93a5c9b: update color tokens
+
 ## 3.0.0-next.0
 
 ### Major Changes

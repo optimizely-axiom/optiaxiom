@@ -1,5 +1,20 @@
 # @optiaxiom/proteus
 
+## 0.1.22-next.1
+
+### Patch Changes
+
+- 8ea80b1: sync colors tokens
+- 93a5c9b: update color tokens
+- Updated dependencies [355b0f9]
+- Updated dependencies [c65713c]
+- Updated dependencies [8ea80b1]
+- Updated dependencies [93a5c9b]
+- Updated dependencies [fc2bd74]
+- Updated dependencies [dc5d6b6]
+  - @optiaxiom/react@3.0.0-next.1
+  - @optiaxiom/icons@1.0.1-next.1
+
 ## 0.1.22-next.0
 
 ### Patch Changes

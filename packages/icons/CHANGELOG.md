@@ -1,5 +1,12 @@
 # @optiaxiom/icons
 
+## 1.0.1-next.1
+
+### Patch Changes
+
+- 93a5c9b: update color tokens
+- dc5d6b6: add more icons
+
 ## 1.0.1-next.0
 
 ### Patch Changes
