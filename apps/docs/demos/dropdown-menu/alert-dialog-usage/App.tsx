@@ -1,5 +1,6 @@
 "use client";
 
+import { IconDelete, IconEdit } from "@optiaxiom/icons";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -13,7 +14,6 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@optiaxiom/react";
-import { IconPencil, IconTrash } from "@tabler/icons-react";
 import { useState } from "react";
 
 export function App() {
@@ -24,9 +24,9 @@ export function App() {
       <DropdownMenuTrigger>Open</DropdownMenuTrigger>
 
       <DropdownMenuContent>
-        <DropdownMenuItem icon={<IconPencil />}>Edit</DropdownMenuItem>
+        <DropdownMenuItem icon={<IconEdit />}>Edit</DropdownMenuItem>
         <DropdownMenuItem
-          icon={<IconTrash />}
+          icon={<IconDelete />}
           intent="danger"
           onSelect={() => setOpen(true)}
         >

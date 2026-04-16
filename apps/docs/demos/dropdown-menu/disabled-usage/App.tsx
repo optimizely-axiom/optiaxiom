@@ -1,3 +1,4 @@
+import { IconGroup, IconLogout, IconPerson } from "@optiaxiom/icons";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -6,7 +7,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@optiaxiom/react";
-import { IconLogout, IconUser, IconUsers } from "@tabler/icons-react";
 
 export function App() {
   return (
@@ -15,8 +15,8 @@ export function App() {
 
       <DropdownMenuContent>
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
-        <DropdownMenuItem icon={<IconUser />}>View Profile</DropdownMenuItem>
-        <DropdownMenuItem disabled icon={<IconUsers />}>
+        <DropdownMenuItem icon={<IconPerson />}>View Profile</DropdownMenuItem>
+        <DropdownMenuItem disabled icon={<IconGroup />}>
           Team Management
         </DropdownMenuItem>
         <DropdownMenuSeparator />

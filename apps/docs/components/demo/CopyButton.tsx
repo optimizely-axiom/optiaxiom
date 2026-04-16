@@ -1,10 +1,10 @@
+import { IconCheck, IconContentCopy } from "@optiaxiom/icons";
 import {
   Button,
   TooltipContent,
   TooltipRoot,
   TooltipTrigger,
 } from "@optiaxiom/react";
-import { IconCheck, IconCopy } from "@tabler/icons-react";
 import { useRef, useState } from "react";
 
 export function CopyButton({ onCopy }: { onCopy: () => string }) {
@@ -38,7 +38,7 @@ export function CopyButton({ onCopy }: { onCopy: () => string }) {
             isCopied ? (
               <IconCheck pointerEvents="none" />
             ) : (
-              <IconCopy pointerEvents="none" />
+              <IconContentCopy pointerEvents="none" />
             )
           }
         />

@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
+import { IconCalendarMonth } from "@optiaxiom/icons";
 import {
   Box,
   Button,
@@ -10,7 +11,6 @@ import {
   Textarea,
 } from "@optiaxiom/react";
 import { SurfaceProvider } from "@optiaxiom/react/unstable";
-import { IconCalendar } from "@tabler/icons-react";
 import { useState } from "react";
 import { action } from "storybook/actions";
 
@@ -53,7 +53,7 @@ export const Required: Story = {
   args: {
     children: (
       <Input
-        addonBefore={<IconCalendar size="20" />}
+        addonBefore={<IconCalendarMonth />}
         placeholder="Enter date..."
         w="224"
       />

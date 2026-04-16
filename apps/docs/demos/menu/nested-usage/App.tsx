@@ -1,40 +1,40 @@
 "use client";
 
 import {
+  IconAdd2,
+  IconBook,
+  IconLink,
+  IconUpload,
+  IconWandShine,
+} from "@optiaxiom/icons";
+import {
   Menu,
   MenuContent,
   type MenuOption,
   MenuTrigger,
 } from "@optiaxiom/react";
-import {
-  IconBooks,
-  IconLink,
-  IconPlus,
-  IconSparkles,
-  IconUpload,
-} from "@tabler/icons-react";
 
 const options: MenuOption[] = [
   {
-    addon: <IconUpload size="16" />,
+    addon: <IconUpload />,
     label: "Select from…",
     subOptions: [
       {
-        addon: <IconUpload size="16" />,
+        addon: <IconUpload />,
         label: "Your device",
       },
       {
-        addon: <IconBooks size="16" />,
+        addon: <IconBook />,
         label: "Library",
       },
     ],
   },
   {
-    addon: <IconLink size="16" />,
+    addon: <IconLink />,
     label: "Add URL",
   },
   {
-    addon: <IconSparkles size="16" />,
+    addon: <IconWandShine />,
     label: "Generate",
   },
 ];
@@ -42,7 +42,7 @@ const options: MenuOption[] = [
 export function App() {
   return (
     <Menu options={options}>
-      <MenuTrigger icon={<IconPlus />} iconPosition="start">
+      <MenuTrigger icon={<IconAdd2 />} iconPosition="start">
         Add Content
       </MenuTrigger>
       <MenuContent />

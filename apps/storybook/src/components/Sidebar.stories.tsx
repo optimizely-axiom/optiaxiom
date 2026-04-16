@@ -1,6 +1,25 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import {
+  IconAccountTree,
+  IconArticle,
+  IconBarChart4Bars,
+  IconContentCopy,
+  IconDashboardCustomize,
+  IconDelete,
+  IconDesktopWindows,
+  IconDockToRight,
+  IconExperiment,
+  IconFlag2,
+  IconGroup,
+  IconHistory,
+  IconMenuBook,
+  IconOpenInNew,
+  IconSettings,
+  IconShowChart,
+  IconStar,
+} from "@optiaxiom/icons";
+import {
   Box,
   Menu,
   MenuContent,
@@ -19,43 +38,20 @@ import {
   SidebarToggle,
   SubNav,
 } from "@optiaxiom/react";
-import {
-  IconBinaryTree,
-  IconChartInfographic,
-  IconChartLine,
-  IconCopy,
-  IconDashboard,
-  IconDeviceDesktop,
-  IconExternalLink,
-  IconFlag2,
-  IconHistory,
-  IconLayoutSidebar,
-  IconReport,
-  IconSettings,
-  IconStar,
-  IconTestPipe,
-  IconTrash,
-  IconUsers,
-  IconVocabulary,
-} from "@tabler/icons-react";
 
 const body = (
   <NavBody>
     <NavList>
-      <NavItem icon={<IconBinaryTree />}>Projects</NavItem>
+      <NavItem icon={<IconAccountTree />}>Projects</NavItem>
       <NavItem active icon={<IconFlag2 />}>
         Flags
       </NavItem>
-      <NavItem icon={<IconChartInfographic />}>Idea Lab</NavItem>
-      <NavItem icon={<IconUsers />}>Audiences</NavItem>
+      <NavItem icon={<IconBarChart4Bars />}>Idea Lab</NavItem>
+      <NavItem icon={<IconGroup />}>Audiences</NavItem>
       <NavItem icon={<IconHistory />}>History</NavItem>
-      <NavItem icon={<IconChartLine />}>Events</NavItem>
+      <NavItem icon={<IconShowChart />}>Events</NavItem>
       <NavItem icon={<IconSettings />}>Settings</NavItem>
-      <NavItem
-        addonAfter={<IconExternalLink size="16" />}
-        asChild
-        icon={<IconVocabulary />}
-      >
+      <NavItem addonAfter={<IconOpenInNew />} asChild icon={<IconMenuBook />}>
         <a href="/">Tutorial</a>
       </NavItem>
     </NavList>
@@ -70,7 +66,7 @@ export default {
 
         <NavFooter>
           <NavList>
-            <SidebarToggle icon={<IconLayoutSidebar />} />
+            <SidebarToggle icon={<IconDockToRight />} />
             <Menu
               options={[
                 { label: "View Profile" },
@@ -159,7 +155,7 @@ export const WithSubNav: Story = {
 
           <NavFooter>
             <NavList>
-              <SidebarToggle icon={<IconLayoutSidebar />} />
+              <SidebarToggle icon={<IconDockToRight />} />
               <Menu
                 options={[
                   { label: "View Profile" },
@@ -183,20 +179,20 @@ export const WithSubNav: Story = {
         <SubNav>
           <NavBody>
             <NavList>
-              <NavItem icon={<IconCopy />}>All</NavItem>
+              <NavItem icon={<IconContentCopy />}>All</NavItem>
               <NavItem>Recent</NavItem>
               <NavItem icon={<IconStar />}>Favorites</NavItem>
-              <NavItem icon={<IconTrash />}>Trash</NavItem>
+              <NavItem icon={<IconDelete />}>Trash</NavItem>
 
               <NavGroup collapsible>
                 <NavGroupTrigger>Location</NavGroupTrigger>
 
                 <NavGroupContent>
-                  <NavItem active icon={<IconDashboard />}>
+                  <NavItem active icon={<IconDashboardCustomize />}>
                     CMP
                   </NavItem>
-                  <NavItem icon={<IconDeviceDesktop />}>CMS</NavItem>
-                  <NavItem icon={<IconTestPipe />}>Experimentation</NavItem>
+                  <NavItem icon={<IconDesktopWindows />}>CMS</NavItem>
+                  <NavItem icon={<IconExperiment />}>Experimentation</NavItem>
                 </NavGroupContent>
               </NavGroup>
 
@@ -206,8 +202,8 @@ export const WithSubNav: Story = {
                 <NavGroupTrigger>Analytics</NavGroupTrigger>
 
                 <NavGroupContent>
-                  <NavItem icon={<IconDashboard />}>Dashboard</NavItem>
-                  <NavItem icon={<IconReport />}>Reports</NavItem>
+                  <NavItem icon={<IconDashboardCustomize />}>Dashboard</NavItem>
+                  <NavItem icon={<IconArticle />}>Reports</NavItem>
                 </NavGroupContent>
               </NavGroup>
             </NavList>

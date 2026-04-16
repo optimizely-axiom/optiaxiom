@@ -1,3 +1,4 @@
+import { IconRefresh } from "@optiaxiom/icons";
 import {
   Dialog,
   DialogBody,
@@ -7,7 +8,6 @@ import {
   DialogHeader,
   DialogTrigger,
 } from "@optiaxiom/react";
-import { IconRefresh } from "@tabler/icons-react";
 
 export function App() {
   return (

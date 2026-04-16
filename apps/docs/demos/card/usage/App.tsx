@@ -1,3 +1,4 @@
+import { IconEdit, IconLogout } from "@optiaxiom/icons";
 import {
   Card,
   CardHeader,
@@ -9,7 +10,6 @@ import {
   MenuContent,
   MenuTrigger,
 } from "@optiaxiom/react";
-import { IconLogout, IconPencil } from "@tabler/icons-react";
 import Image from "next/image";
 
 import beach from "./beach.jpg";
@@ -30,9 +30,9 @@ export function App() {
         addonAfter={
           <Menu
             options={[
-              { addon: <IconPencil size="16" />, label: "Edit" },
+              { addon: <IconEdit />, label: "Edit" },
               {
-                addon: <IconLogout size="16" />,
+                addon: <IconLogout />,
                 intent: "danger",
                 label: "Delete",
               },

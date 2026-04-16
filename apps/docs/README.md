@@ -83,7 +83,7 @@ export function App({
 **Imports:**
 
 - Always import components from `@optiaxiom/react`
-- Icons should use `@tabler/icons-react`
+- Icons should use `@optiaxiom/icons`
 - Import React types from `react` (e.g., `ComponentPropsWithRef`, `useState`)
 
 **Demo Complexity:**

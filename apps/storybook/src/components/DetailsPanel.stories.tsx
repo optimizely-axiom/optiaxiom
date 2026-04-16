@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
+import { IconClose } from "@optiaxiom/icons";
 import { Button, Group } from "@optiaxiom/react";
 import {
   DetailsPanel,
@@ -7,7 +8,6 @@ import {
   DetailsPanelFooter,
   DetailsPanelHeader,
 } from "@optiaxiom/react/unstable";
-import { IconX } from "@tabler/icons-react";
 
 export default {
   args: {
@@ -39,7 +39,11 @@ export const Basic: Story = {
       <>
         <DetailsPanelHeader
           addonAfter={
-            <Button appearance="subtle" aria-label="Close" icon={<IconX />} />
+            <Button
+              appearance="subtle"
+              aria-label="Close"
+              icon={<IconClose />}
+            />
           }
           description="Original Image (Oct 23, 2024)"
         >

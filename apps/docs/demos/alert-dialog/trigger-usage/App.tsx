@@ -1,3 +1,4 @@
+import { IconDelete } from "@optiaxiom/icons";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -8,7 +9,6 @@ import {
   AlertDialogHeader,
   AlertDialogTrigger,
 } from "@optiaxiom/react";
-import { IconTrash } from "@tabler/icons-react";
 
 export function App() {
   return (
@@ -16,7 +16,7 @@ export function App() {
       <AlertDialogTrigger
         appearance="danger-outline"
         aria-label="Delete task"
-        icon={<IconTrash />}
+        icon={<IconDelete />}
       />
 
       <AlertDialogContent>

@@ -1,5 +1,5 @@
+import { IconMenuBook, IconOpenInNew } from "@optiaxiom/icons";
 import { Nav, NavBody, NavItem, NavList, Sidebar } from "@optiaxiom/react";
-import { IconExternalLink, IconVocabulary } from "@tabler/icons-react";
 
 import { Canvas } from "../../Canvas";
 
@@ -11,9 +11,9 @@ export function App() {
           <NavBody>
             <NavList>
               <NavItem
-                addonAfter={<IconExternalLink size="16" />}
+                addonAfter={<IconOpenInNew />}
                 asChild
-                icon={<IconVocabulary />}
+                icon={<IconMenuBook />}
               >
                 <a href="/">Tutorial</a>
               </NavItem>

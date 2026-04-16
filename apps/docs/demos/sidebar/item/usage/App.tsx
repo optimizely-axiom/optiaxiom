@@ -1,9 +1,9 @@
-import { Nav, NavBody, NavItem, NavList, Sidebar } from "@optiaxiom/react";
 import {
-  IconDashboard,
-  IconDeviceDesktop,
-  IconTestPipe,
-} from "@tabler/icons-react";
+  IconDesktopWindows,
+  IconExperiment,
+  IconTeamDashboard,
+} from "@optiaxiom/icons";
+import { Nav, NavBody, NavItem, NavList, Sidebar } from "@optiaxiom/react";
 
 import { Canvas } from "../../Canvas";
 
@@ -14,9 +14,9 @@ export function App() {
         <Nav>
           <NavBody>
             <NavList>
-              <NavItem icon={<IconDashboard />}>CMP</NavItem>
-              <NavItem icon={<IconDeviceDesktop />}>CMS</NavItem>
-              <NavItem icon={<IconTestPipe />}>Experimentation</NavItem>
+              <NavItem icon={<IconTeamDashboard />}>CMP</NavItem>
+              <NavItem icon={<IconDesktopWindows />}>CMS</NavItem>
+              <NavItem icon={<IconExperiment />}>Experimentation</NavItem>
             </NavList>
           </NavBody>
         </Nav>

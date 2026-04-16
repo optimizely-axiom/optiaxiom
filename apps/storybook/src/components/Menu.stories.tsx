@@ -1,6 +1,14 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import {
+  IconAccountCircle,
+  IconDelete,
+  IconEdit,
+  IconPerson,
+  IconSend,
+  IconWandShine,
+} from "@optiaxiom/icons";
+import {
   Avatar,
   AvatarGroup,
   Box,
@@ -20,14 +28,6 @@ import {
   Text,
 } from "@optiaxiom/react";
 import { dialogkit, SurfaceProvider } from "@optiaxiom/react/unstable";
-import {
-  IconPencil,
-  IconSend,
-  IconSparkles,
-  IconTrash,
-  IconUser,
-  IconUserCircle,
-} from "@tabler/icons-react";
 import { useMemo, useRef, useState } from "react";
 import { action } from "storybook/actions";
 import { expect, screen, userEvent, waitFor } from "storybook/test";
@@ -306,7 +306,7 @@ export const People: Story = {
         options={useMemo<MenuOption[]>(
           () => [
             {
-              addon: <IconUserCircle size={20} />,
+              addon: <IconAccountCircle />,
               execute: () => setValue([users[0]]),
               label: "Assign to me",
               visible: () => !inputValue,
@@ -335,7 +335,7 @@ export const People: Story = {
                 item.name.toLowerCase().includes(inputValue.toLowerCase()),
             })),
             {
-              addon: <IconSend size={20} />,
+              addon: <IconSend />,
               group: inviteGroup,
               label: "Invite user",
               visible: () => !!inputValue,
@@ -629,11 +629,11 @@ export const Addons: Story = {
             label: "External link",
           },
           {
-            addon: <IconPencil size="16" />,
+            addon: <IconEdit />,
             label: "Edit",
           },
           {
-            addon: <IconTrash size="16" />,
+            addon: <IconDelete />,
             intent: "danger",
             label: "Delete",
           },
@@ -669,11 +669,11 @@ export const WithDialog: Story = {
           {...args}
           options={[
             {
-              addon: <IconPencil size="16" />,
+              addon: <IconEdit />,
               label: "Edit",
             },
             {
-              addon: <IconTrash size="16" />,
+              addon: <IconDelete />,
               execute: () =>
                 dialogkit.create(
                   <DialogContent>
@@ -710,11 +710,11 @@ export const SwitchItem: Story = {
         {...args}
         options={[
           {
-            addon: <IconUser size="16" />,
+            addon: <IconPerson />,
             label: "My Profile",
           },
           {
-            addon: <IconSparkles size="16" />,
+            addon: <IconWandShine />,
             execute: () => setEnabled(!enabled),
             label: "New UI (Beta)",
             selected: enabled,

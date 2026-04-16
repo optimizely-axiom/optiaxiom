@@ -1,5 +1,6 @@
 "use client";
 
+import { IconDragIndicator } from "@optiaxiom/icons";
 import {
   Button,
   Card,
@@ -17,7 +18,6 @@ import {
   SortableHandle,
   SortableItem,
 } from "@optiaxiom/react/unstable";
-import { IconGripVertical } from "@tabler/icons-react";
 import { useState } from "react";
 
 import { data } from "./data";
@@ -54,7 +54,10 @@ export function App() {
                       color="fg.tertiary"
                       transition="colors"
                     >
-                      <Button appearance="subtle" icon={<IconGripVertical />} />
+                      <Button
+                        appearance="subtle"
+                        icon={<IconDragIndicator />}
+                      />
                     </SortableHandle>
                   }
                   description={data[item].description}

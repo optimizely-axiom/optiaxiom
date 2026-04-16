@@ -1,6 +1,18 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import {
+  IconAccountTree,
+  IconBarChart4Bars,
+  IconDockToRight,
+  IconFlag2,
+  IconGroup,
+  IconHistory,
+  IconMenuBook,
+  IconOpenInNew,
+  IconSettings,
+  IconShowChart,
+} from "@optiaxiom/icons";
+import {
   Box,
   type BoxProps,
   Button,
@@ -26,18 +38,6 @@ import {
   Layout,
   LayoutContent,
 } from "@optiaxiom/react/unstable";
-import {
-  IconBinaryTree,
-  IconChartInfographic,
-  IconChartLine,
-  IconExternalLink,
-  IconFlag2,
-  IconHistory,
-  IconLayoutSidebar,
-  IconSettings,
-  IconUsers,
-  IconVocabulary,
-} from "@tabler/icons-react";
 import { Fragment } from "react/jsx-runtime";
 
 export default {
@@ -54,19 +54,19 @@ const SidebarExample = () => (
     <Nav>
       <NavBody>
         <NavList>
-          <NavItem icon={<IconBinaryTree />}>Projects</NavItem>
+          <NavItem icon={<IconAccountTree />}>Projects</NavItem>
           <NavItem active icon={<IconFlag2 />}>
             Flags
           </NavItem>
-          <NavItem icon={<IconChartInfographic />}>Idea Lab</NavItem>
-          <NavItem icon={<IconUsers />}>Audiences</NavItem>
+          <NavItem icon={<IconBarChart4Bars />}>Idea Lab</NavItem>
+          <NavItem icon={<IconGroup />}>Audiences</NavItem>
           <NavItem icon={<IconHistory />}>History</NavItem>
-          <NavItem icon={<IconChartLine />}>Events</NavItem>
+          <NavItem icon={<IconShowChart />}>Events</NavItem>
           <NavItem icon={<IconSettings />}>Settings</NavItem>
           <NavItem
-            addonAfter={<IconExternalLink size="16" />}
+            addonAfter={<IconOpenInNew />}
             asChild
-            icon={<IconVocabulary />}
+            icon={<IconMenuBook />}
           >
             Tutorial
           </NavItem>
@@ -75,7 +75,7 @@ const SidebarExample = () => (
 
       <NavFooter>
         <NavList>
-          <SidebarToggle icon={<IconLayoutSidebar />} />
+          <SidebarToggle icon={<IconDockToRight />} />
           <Menu
             options={[
               { label: "View Profile" },

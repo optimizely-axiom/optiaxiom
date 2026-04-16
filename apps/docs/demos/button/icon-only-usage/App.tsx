@@ -1,19 +1,15 @@
+import { IconDelete, IconEdit } from "@optiaxiom/icons";
 import { Button, Group, Tooltip } from "@optiaxiom/react";
-import { IconPencil, IconTrash } from "@tabler/icons-react";
 
 export function App() {
   return (
     <Group gap="16">
-      <Button
-        appearance="subtle"
-        aria-label="Edit item"
-        icon={<IconPencil />}
-      />
+      <Button appearance="subtle" aria-label="Edit item" icon={<IconEdit />} />
       <Tooltip content="Remove item">
         <Button
           appearance="subtle"
           aria-label="Remove item"
-          icon={<IconTrash />}
+          icon={<IconDelete />}
         />
       </Tooltip>
     </Group>

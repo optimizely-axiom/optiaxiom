@@ -1,10 +1,10 @@
+import { IconDelete, IconEdit } from "@optiaxiom/icons";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@optiaxiom/react";
-import { IconPencil, IconTrash } from "@tabler/icons-react";
 
 export function App() {
   return (
@@ -12,8 +12,8 @@ export function App() {
       <DropdownMenuTrigger>Open</DropdownMenuTrigger>
 
       <DropdownMenuContent>
-        <DropdownMenuItem icon={<IconPencil />}>Edit</DropdownMenuItem>
-        <DropdownMenuItem icon={<IconTrash />} intent="danger">
+        <DropdownMenuItem icon={<IconEdit />}>Edit</DropdownMenuItem>
+        <DropdownMenuItem icon={<IconDelete />} intent="danger">
           Delete
         </DropdownMenuItem>
       </DropdownMenuContent>

@@ -1,5 +1,6 @@
 "use client";
 
+import { IconDelete, IconEdit } from "@optiaxiom/icons";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -12,7 +13,6 @@ import {
   MenuContent,
   MenuTrigger,
 } from "@optiaxiom/react";
-import { IconPencil, IconTrash } from "@tabler/icons-react";
 import { useState } from "react";
 
 export function App() {
@@ -22,11 +22,11 @@ export function App() {
     <Menu
       options={[
         {
-          addon: <IconPencil size="16" />,
+          addon: <IconEdit />,
           label: "Edit",
         },
         {
-          addon: <IconTrash size="16" />,
+          addon: <IconDelete />,
           execute: () => setOpen(true),
           intent: "danger",
           label: "Delete",

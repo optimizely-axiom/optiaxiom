@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
+import { IconMic } from "@optiaxiom/icons";
 import {
   Alert,
   Avatar,
@@ -9,7 +10,6 @@ import {
   Progress,
   Text,
 } from "@optiaxiom/react";
-import { IconMicrophone } from "@tabler/icons-react";
 
 export default {
   component: Button,
@@ -101,7 +101,7 @@ export const ButtonExample: Story = {
                   appearance={appearance}
                   aria-label="Submit"
                   disabled={disabled}
-                  icon={<IconMicrophone />}
+                  icon={<IconMic />}
                   key={size}
                   size={size}
                 />

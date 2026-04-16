@@ -1,6 +1,19 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import {
+  IconArticle,
+  IconBook,
+  IconDocs,
+  IconDraft,
+  IconHelp,
+  IconLock,
+  IconLogout,
+  IconNotifications,
+  IconPerson,
+  IconSettings,
+  IconVideocam,
+} from "@optiaxiom/icons";
+import {
   Avatar,
   DialogBody,
   DialogClose,
@@ -23,20 +36,6 @@ import {
   Input,
 } from "@optiaxiom/react";
 import { dialogkit } from "@optiaxiom/react/unstable";
-import {
-  IconBell,
-  IconBook,
-  IconFileExcel,
-  IconFileTypePdf,
-  IconFileTypePpt,
-  IconFileWord,
-  IconHelp,
-  IconLock,
-  IconLogout,
-  IconSettings,
-  IconUser,
-  IconVideo,
-} from "@tabler/icons-react";
 import { useEffect, useState } from "react";
 import { action } from "storybook/actions";
 import { expect, screen, userEvent, waitFor } from "storybook/test";
@@ -69,35 +68,23 @@ export const Basic: Story = {
         <DropdownMenuTrigger>Download</DropdownMenuTrigger>
 
         <DropdownMenuContent>
-          <DropdownMenuItem
-            icon={<IconFileExcel size="16" />}
-            onSelect={action("excel")}
-          >
+          <DropdownMenuItem icon={<IconArticle />} onSelect={action("excel")}>
             Excel
           </DropdownMenuItem>
           <DropdownMenuItem
             disabled
-            icon={<IconFileTypePdf size="16" />}
+            icon={<IconDocs />}
             onSelect={action("pdf")}
           >
             PDF
           </DropdownMenuItem>
-          <DropdownMenuItem
-            icon={<IconFileTypePpt size="16" />}
-            onSelect={action("ppt")}
-          >
+          <DropdownMenuItem icon={<IconDraft />} onSelect={action("ppt")}>
             Powerpoint
           </DropdownMenuItem>
-          <DropdownMenuItem
-            icon={<IconVideo size="16" />}
-            onSelect={action("video")}
-          >
+          <DropdownMenuItem icon={<IconVideocam />} onSelect={action("video")}>
             Video
           </DropdownMenuItem>
-          <DropdownMenuItem
-            icon={<IconFileWord size="16" />}
-            onSelect={action("word")}
-          >
+          <DropdownMenuItem icon={<IconArticle />} onSelect={action("word")}>
             Word
           </DropdownMenuItem>
         </DropdownMenuContent>
@@ -289,32 +276,32 @@ export const WithGroup: Story = {
 
         <DropdownMenuContent>
           <DropdownMenuGroup>
-            <DropdownMenuItem addonBefore={<IconUser size="16" />}>
+            <DropdownMenuItem addonBefore={<IconPerson />}>
               Account
             </DropdownMenuItem>
-            <DropdownMenuItem addonBefore={<IconSettings size="16" />}>
+            <DropdownMenuItem addonBefore={<IconSettings />}>
               Settings
             </DropdownMenuItem>
-            <DropdownMenuItem addonBefore={<IconLock size="16" />}>
+            <DropdownMenuItem addonBefore={<IconLock />}>
               Privacy
             </DropdownMenuItem>
-            <DropdownMenuItem addonBefore={<IconBell size="16" />}>
+            <DropdownMenuItem addonBefore={<IconNotifications />}>
               Notifications
             </DropdownMenuItem>
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
 
           <DropdownMenuGroup>
-            <DropdownMenuItem addonBefore={<IconBook size="16" />}>
+            <DropdownMenuItem addonBefore={<IconBook />}>
               Help Guide
             </DropdownMenuItem>
-            <DropdownMenuItem addonBefore={<IconHelp size="16" />}>
+            <DropdownMenuItem addonBefore={<IconHelp />}>
               Help Center
             </DropdownMenuItem>
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
 
-          <DropdownMenuItem addonBefore={<IconLogout size="16" />}>
+          <DropdownMenuItem addonBefore={<IconLogout />}>
             Log out
           </DropdownMenuItem>
         </DropdownMenuContent>
