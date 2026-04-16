@@ -1,3 +1,4 @@
+import { IconChevronLeft, IconChevronRight, IconMoreHoriz } from "@optiaxiom/icons";
 import { usePagination } from "@mantine/hooks";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import { forwardRef, useEffect, useRef, useState } from "react";
@@ -7,9 +8,6 @@ import { Button } from "../button";
 import { ButtonRoot } from "../button/ButtonRoot";
 import { Group } from "../group";
 import { Icon } from "../icon";
-import { IconAngleLeft } from "../icons/IconAngleLeft";
-import { IconAngleRight } from "../icons/IconAngleRight";
-import { IconEllipsis } from "../icons/IconEllipsis";
 import { Tooltip } from "../tooltip";
 import { VisuallyHidden } from "../visually-hidden";
 import * as styles from "./Pagination.css";
@@ -107,7 +105,7 @@ export const Pagination = forwardRef<HTMLElement, PaginationProps>(
                     appearance="subtle"
                     aria-label="Previous page"
                     disabled={disabled || active === 1}
-                    icon={<IconAngleLeft />}
+                    icon={<IconChevronLeft />}
                     onClick={previous}
                   />
                 </Tooltip>
@@ -136,7 +134,7 @@ export const Pagination = forwardRef<HTMLElement, PaginationProps>(
                         asChild
                         color={disabled ? "fg.disabled" : "fg.default"}
                       >
-                        <IconEllipsis />
+                        <IconMoreHoriz />
                       </Icon>
                     </Box>
                   ) : (
@@ -165,7 +163,7 @@ export const Pagination = forwardRef<HTMLElement, PaginationProps>(
                     appearance="subtle"
                     aria-label="Next page"
                     disabled={disabled || active === total}
-                    icon={<IconAngleRight />}
+                    icon={<IconChevronRight />}
                     onClick={next}
                   />
                 </Tooltip>

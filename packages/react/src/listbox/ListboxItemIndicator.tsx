@@ -1,7 +1,7 @@
+import { IconCheck } from "@optiaxiom/icons";
 import { forwardRef } from "react";
 
 import { Box, type BoxProps } from "../box";
-import { IconCheck } from "../icons/IconCheck";
 import * as styles from "./ListboxItemIndicator.css";
 
 export type ListboxItemIndicatorProps = BoxProps<
