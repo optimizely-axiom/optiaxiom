@@ -32,6 +32,10 @@ export type ProteusChartProps = {
    */
   data: Record<string, unknown>[];
   /**
+   * Chart layout direction
+   */
+  layout?: "horizontal" | "vertical";
+  /**
    * Data series configuration
    */
   series: Series[];
@@ -47,31 +51,36 @@ export type ProteusChartProps = {
 
 export const ProteusChart = ({
   data,
+  layout = "horizontal",
   series,
   type,
   xAxisKey,
 }: ProteusChartProps) => {
+  const isVertical = layout === "vertical";
   const ChartComponent = type === "bar" ? BarChart : LineChart;
   const Chart = type === "bar" ? Bar : Line;
+  const CategoryAxis = isVertical ? YAxis : XAxis;
+  const ValueAxis = isVertical ? XAxis : YAxis;
   return (
     <Box asChild {...styles.chart()}>
       <ResponsiveContainer aspect={16 / 9} width="100%">
-        <ChartComponent data={data}>
+        <ChartComponent data={data} layout={layout}>
           <CartesianGrid
             stroke="#E0E0E0"
             strokeDasharray="4 4"
             vertical={false}
           />
-          <XAxis
+          <CategoryAxis
             axisLine={false}
             dataKey={(row: Record<string, unknown>) => get(row, "/" + xAxisKey)}
-            minTickGap={32}
             padding={{ left: 16, right: 16 }}
             tick={{ fill: theme.colors["fg.secondary"] }}
             tickLine={false}
             tickMargin={8}
+            type="category"
+            width={isVertical ? "auto" : undefined}
           />
-          <YAxis
+          <ValueAxis
             axisLine={{ stroke: "#CBD5E1" }}
             minTickGap={32}
             tick={{ fill: theme.colors["fg.secondary"] }}
@@ -82,7 +91,8 @@ export const ProteusChart = ({
               }).format(value)
             }
             tickMargin={8}
-            width="auto"
+            type="number"
+            width={isVertical ? undefined : "auto"}
           />
           <Tooltip content={ProteusChartTooltipContent} cursor={false} />
           {series.map((s, i) => (

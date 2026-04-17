@@ -78,7 +78,7 @@ const PROTEUS_COMPONENT_CONFIG = {
     extends: "Link",
   },
   Chart: {
-    allowedProps: ["data", "series", "type", "xAxisKey"],
+    allowedProps: ["data", "layout", "series", "type", "xAxisKey"],
     example: {
       data: [
         { name: "Jan", revenue: 4000 },
@@ -830,6 +830,10 @@ function getPropTypeOverrides(additionalProperties = false) {
         ],
         description:
           "Chart data records, either inline, a ProteusExpression, or a ProteusZip transformation",
+      },
+      layout: {
+        anyOf: [{ const: "horizontal" }, { const: "vertical" }],
+        description: "Chart layout direction",
       },
       series: {
         description: "Data series configuration",
