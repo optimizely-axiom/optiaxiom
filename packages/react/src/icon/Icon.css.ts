@@ -8,12 +8,12 @@ export const icon = recipe({
   base: [
     {
       flex: "none",
-      w: "auto",
     },
     veStyle({
       "@layer": {
         [layers.theme + ".icons"]: {
           height: theme.size["2xs"],
+          width: "auto",
         },
       },
     }),
