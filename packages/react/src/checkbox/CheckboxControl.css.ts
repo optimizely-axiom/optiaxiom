@@ -26,15 +26,15 @@ export const icon = recipe({
 export const control = recipe({
   base: [
     {
-      color: "fg.black",
       display: "grid",
       rounded: "md",
       size: "sm",
     },
     style({
       backgroundColor: theme.colors["bg.default"],
-      borderColor: rootStyles.controlColorVar,
+      borderColor: rootStyles.controlAccentVar,
       borderWidth: "2px",
+      color: rootStyles.controlColorVar,
       placeContent: "center",
       transitionDuration: theme.duration.sm,
       transitionProperty: "border-width",
