@@ -23,7 +23,7 @@ export const control = recipe({
       size: "sm",
     },
     style({
-      borderColor: styles.controlColorVar,
+      borderColor: styles.controlAccentVar,
       borderWidth: "2px",
       placeContent: "center",
       transitionDuration: theme.duration.sm,
@@ -55,7 +55,7 @@ export const indicator = recipe({
       transition: "transform",
     },
     style({
-      backgroundColor: theme.colors["fg.default"],
+      backgroundColor: styles.controlColorVar,
       height: "8px",
       transform: "scale(0)",
       width: "8px",
