@@ -18,7 +18,7 @@ export const pill = recipe({
       whiteSpace: "nowrap",
     },
     style({
-      backgroundColor: theme.colors["bg.tertiary"],
+      backgroundColor: theme.colors["bg.pill.default"],
       position: "relative",
       userSelect: "none",
 
@@ -42,7 +42,7 @@ export const pill = recipe({
           "(hover: hover)": {
             selectors: {
               "&:not([data-disabled]):hover": {
-                backgroundColor: theme.colors["bg.tertiary.hovered"],
+                backgroundColor: theme.colors["bg.pill.hovered"],
               },
             },
           },
