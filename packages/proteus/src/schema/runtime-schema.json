@@ -66,6 +66,8 @@
         { "const": "bg.information.subtle" },
         { "const": "bg.overlay" },
         { "const": "bg.page" },
+        { "const": "bg.pill.default" },
+        { "const": "bg.pill.hovered" },
         { "const": "bg.secondary" },
         { "const": "bg.secondary.hovered" },
         { "const": "bg.spinner.default" },
