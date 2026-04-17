@@ -91,7 +91,7 @@ export const Presence: Story = {
     ),
     content: (
       <Box asChild bg="bg.default" color="fg.warning.light" rounded="full">
-        <IconSchedule size="14" />
+        <IconSchedule filled size="14" />
       </Box>
     ),
     offset: false,
