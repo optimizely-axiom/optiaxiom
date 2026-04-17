@@ -181,6 +181,8 @@ export const colors = {
   "bg.information.subtle": ld(palette["blue.100"], palette["blue.dark.900"]),
   "bg.overlay": ld(palette["neutral.1200/32"], palette["neutral.1200/32"]),
   "bg.page": ld(palette["neutral.25"], palette["neutral.1050"]),
+  "bg.pill.default": ld(palette["neutral.150"], palette["neutral.800"]),
+  "bg.pill.hovered": ld(palette["neutral.200"], palette["neutral.700"]),
   "bg.secondary": ld(palette["neutral.75"], palette["neutral.1100"]),
   "bg.secondary.hovered": ld(palette["neutral.75"], palette["neutral.50/18"]),
   "bg.spinner.default": ld(palette["neutral.1100"], palette["neutral.50"]),
