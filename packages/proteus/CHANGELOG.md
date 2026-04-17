@@ -1,5 +1,11 @@
 # @optiaxiom/proteus
 
+## 0.1.23
+
+### Patch Changes
+
+- e92056b: simplify proteus button
+
 ## 0.1.22
 
 ### Patch Changes
