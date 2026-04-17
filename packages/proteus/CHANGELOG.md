@@ -1,5 +1,11 @@
 # @optiaxiom/proteus
 
+## 0.1.22
+
+### Patch Changes
+
+- 15f5398: add horizontal bar charts
+
 ## 0.1.21
 
 ### Patch Changes
