@@ -1296,7 +1296,7 @@
         { "$ref": "#/definitions/ProteusAction" },
         { "$ref": "#/definitions/ProteusAvatar" },
         { "$ref": "#/definitions/ProteusBadge" },
-        { "$ref": "#/definitions/ProteusCancelAction" },
+        { "$ref": "#/definitions/ProteusButton" },
         { "$ref": "#/definitions/ProteusCard" },
         { "$ref": "#/definitions/ProteusCardHeader" },
         { "$ref": "#/definitions/ProteusCardLink" },
@@ -1748,14 +1748,30 @@
       "required": ["$type"],
       "type": "object"
     },
-    "ProteusCancelAction": {
+    "ProteusButton": {
       "additionalProperties": false,
-      "examples": [{ "$type": "CancelAction", "children": "Cancel" }],
+      "examples": [
+        { "$type": "Button", "appearance": "primary", "children": "Action" }
+      ],
       "properties": {
-        "$type": { "const": "CancelAction" },
+        "$type": { "const": "Button" },
         "alignItems": { "$ref": "#/definitions/SprinkleProp_alignItems" },
         "alignSelf": { "$ref": "#/definitions/SprinkleProp_alignSelf" },
         "animation": { "$ref": "#/definitions/SprinkleProp_animation" },
+        "appearance": {
+          "anyOf": [
+            { "const": "default" },
+            { "const": "danger" },
+            { "const": "primary" },
+            { "const": "subtle" },
+            { "const": "danger-outline" },
+            { "const": "default-opal" },
+            { "const": "inverse" },
+            { "const": "primary-opal" },
+            { "$ref": "#/definitions/ProteusExpression" }
+          ],
+          "description": "Control the appearance by selecting between the different button types."
+        },
         "backgroundImage": {
           "$ref": "#/definitions/SprinkleProp_backgroundImage"
         },
@@ -1814,12 +1830,21 @@
         "textAlign": { "$ref": "#/definitions/SprinkleProp_textAlign" },
         "textTransform": { "$ref": "#/definitions/SprinkleProp_textTransform" },
         "transition": { "$ref": "#/definitions/SprinkleProp_transition" },
+        "type": {
+          "anyOf": [
+            { "const": "button" },
+            { "const": "reset" },
+            { "const": "submit" },
+            { "$ref": "#/definitions/ProteusExpression" }
+          ],
+          "description": "The default behavior of the button."
+        },
         "w": { "$ref": "#/definitions/SprinkleProp_w" },
         "whiteSpace": { "$ref": "#/definitions/SprinkleProp_whiteSpace" },
         "z": { "$ref": "#/definitions/SprinkleProp_z" },
-        "placeholder": {
-          "description": "Placeholder text for the text input field",
-          "type": "string"
+        "onClick": {
+          "$ref": "#/definitions/ProteusEventHandler",
+          "description": "Action triggered when button is clicked"
         }
       },
       "required": ["$type"],

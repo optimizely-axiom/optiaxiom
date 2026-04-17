@@ -45,10 +45,9 @@ const PROTEUS_COMPONENT_CONFIG = {
     allowedProps: ["children", "intent"],
     example: { children: "Badge", intent: "success" },
   },
-  CancelAction: {
-    allowedProps: ["children", "placeholder"],
-    example: { children: "Cancel" },
-    extends: "Button",
+  Button: {
+    allowedProps: ["appearance", "children", "onClick", "type"],
+    example: { appearance: "primary", children: "Action" },
   },
   Card: {
     allowedProps: ["children"],
@@ -811,10 +810,10 @@ function getPropTypeOverrides(additionalProperties = false) {
         description: "Action triggered when button is clicked",
       },
     },
-    CancelAction: {
-      placeholder: {
-        description: "Placeholder text for the text input field",
-        type: "string",
+    Button: {
+      onClick: {
+        $ref: "#/definitions/ProteusEventHandler",
+        description: "Action triggered when button is clicked",
       },
     },
     Chart: {
