@@ -16,7 +16,7 @@ export const root = recipe({
     marker,
     style({
       vars: {
-        [styles.controlColorVar]: theme.colors["fg.tertiary"],
+        [styles.controlAccentVar]: theme.colors["border.control.hovered"],
       },
 
       "@media": {
@@ -25,9 +25,17 @@ export const root = recipe({
             [`&:has(${inputMarker}:not(:disabled):not(:checked, [type=checkbox]:indeterminate)):hover`]:
               {
                 vars: {
-                  [styles.controlColorVar]: theme.colors["fg.secondary"],
+                  [styles.controlAccentVar]: theme.colors["fg.secondary"],
                 },
               },
+          },
+        },
+      },
+
+      selectors: {
+        [`&:has(${inputMarker}:checked:disabled)`]: {
+          vars: {
+            [styles.controlAccentVar]: theme.colors["bg.accent.hovered"],
           },
         },
       },
@@ -48,7 +56,7 @@ export const control = recipe({
       transition: "colors",
     },
     style({
-      backgroundColor: styles.controlColorVar,
+      backgroundColor: styles.controlAccentVar,
       position: "relative",
     }),
   ],
