@@ -668,69 +668,175 @@ export const WithChart: Story = {
 export const ExploreReport: Story = {
   args: {
     data: {
-      dimensionHeaders: [
-        {
-          name: "sessionSource",
+      data: {
+        chart: {
+          chartData: [
+            {
+              label: "page_view",
+              value: 64,
+            },
+            {
+              label: "purchase",
+              value: 23,
+            },
+            {
+              label: "user_engagement_tracking",
+              value: 18,
+            },
+            {
+              label: "session_start",
+              value: 15,
+            },
+            {
+              label: "first_visit",
+              value: 12,
+            },
+            {
+              label: "scroll_depth_tracking_event",
+              value: 9,
+            },
+            {
+              label: "button_click_homepage_hero",
+              value: 7,
+            },
+            {
+              label: "video_start",
+              value: 5,
+            },
+            {
+              label: "add_to_cart",
+              value: 4,
+            },
+            {
+              label: "newsletter_subscription_form",
+              value: 2,
+            },
+          ],
         },
-      ],
-      kind: "analyticsData#runReport",
-      metadata: {
-        currencyCode: "USD",
-        timeZone: "America/New_York",
+        rows: [
+          {
+            dimensionValues: [
+              {
+                value: "page_view",
+              },
+            ],
+            metricValues: [
+              {
+                value: "64",
+              },
+            ],
+          },
+          {
+            dimensionValues: [
+              {
+                value: "purchase",
+              },
+            ],
+            metricValues: [
+              {
+                value: "23",
+              },
+            ],
+          },
+          {
+            dimensionValues: [
+              {
+                value: "user_engagement_tracking",
+              },
+            ],
+            metricValues: [
+              {
+                value: "18",
+              },
+            ],
+          },
+          {
+            dimensionValues: [
+              {
+                value: "session_start",
+              },
+            ],
+            metricValues: [
+              {
+                value: "15",
+              },
+            ],
+          },
+          {
+            dimensionValues: [
+              {
+                value: "first_visit",
+              },
+            ],
+            metricValues: [
+              {
+                value: "12",
+              },
+            ],
+          },
+          {
+            dimensionValues: [
+              {
+                value: "scroll_depth_tracking_event",
+              },
+            ],
+            metricValues: [
+              {
+                value: "9",
+              },
+            ],
+          },
+          {
+            dimensionValues: [
+              {
+                value: "button_click_homepage_hero",
+              },
+            ],
+            metricValues: [
+              {
+                value: "7",
+              },
+            ],
+          },
+          {
+            dimensionValues: [
+              {
+                value: "video_start",
+              },
+            ],
+            metricValues: [
+              {
+                value: "5",
+              },
+            ],
+          },
+          {
+            dimensionValues: [
+              {
+                value: "add_to_cart",
+              },
+            ],
+            metricValues: [
+              {
+                value: "4",
+              },
+            ],
+          },
+          {
+            dimensionValues: [
+              {
+                value: "newsletter_subscription_form",
+              },
+            ],
+            metricValues: [
+              {
+                value: "2",
+              },
+            ],
+          },
+        ],
+        title: "GA4 Realtime Report",
       },
-      metricHeaders: [
-        {
-          name: "sessions",
-          type: "TYPE_INTEGER",
-        },
-        {
-          name: "activeUsers",
-          type: "TYPE_INTEGER",
-        },
-      ],
-      rowCount: 1001,
-      rows: [
-        {
-          dimensionValues: [{ value: "(direct)" }],
-          metricValues: [{ value: "206188" }, { value: "202176" }],
-        },
-        {
-          dimensionValues: [{ value: "google" }],
-          metricValues: [{ value: "34845" }, { value: "18965" }],
-        },
-        {
-          dimensionValues: [{ value: "(not set)" }],
-          metricValues: [{ value: "18657" }, { value: "13535" }],
-        },
-        {
-          dimensionValues: [{ value: "bing" }],
-          metricValues: [{ value: "2734" }, { value: "1414" }],
-        },
-        {
-          dimensionValues: [{ value: "marketo-hostedevent" }],
-          metricValues: [{ value: "2608" }, { value: "1576" }],
-        },
-        {
-          dimensionValues: [{ value: "optimizely.zoom.us" }],
-          metricValues: [{ value: "1778" }, { value: "562" }],
-        },
-        {
-          dimensionValues: [{ value: "marketo" }],
-          metricValues: [{ value: "941" }, { value: "618" }],
-        },
-        {
-          dimensionValues: [{ value: "chatgpt.com" }],
-          metricValues: [{ value: "689" }, { value: "337" }],
-        },
-        {
-          dimensionValues: [{ value: "marketo-hostedwebinar" }],
-          metricValues: [{ value: "646" }, { value: "476" }],
-        },
-        {
-          dimensionValues: [{ value: "linkedin" }],
-          metricValues: [{ value: "638" }, { value: "531" }],
-        },
-      ],
     },
     element: {
       $type: "Document",
@@ -738,45 +844,36 @@ export const ExploreReport: Story = {
       body: [
         {
           $type: "Chart",
-          data: { $type: "Value", path: "/rows" },
+          data: { $type: "Value", path: "/data/chart/chartData" },
+          layout: "vertical",
           series: [
             {
-              dataKey: "metricValues/0/value",
-              name: "Sessions",
-            },
-            {
-              dataKey: "metricValues/1/value",
-              name: "Active Users",
+              dataKey: "value",
+              name: "Event Count",
             },
           ],
           type: "bar",
-          xAxisKey: "dimensionValues/0/value",
+          xAxisKey: "label",
         },
         {
           $type: "DataTable",
           columns: [
             {
               accessorKey: "dimensionValues/0/value",
-              header: "Session Source",
+              header: "Event Name",
               size: 200,
             },
             {
               accessorKey: "metricValues/0/value",
               format: "Number",
-              header: "Sessions",
-              size: 100,
-            },
-            {
-              accessorKey: "metricValues/1/value",
-              format: "Number",
-              header: "Active Users",
+              header: "Event Count",
               size: 100,
             },
           ],
-          data: { $type: "Value", path: "/rows" },
+          data: { $type: "Value", path: "/data/rows" },
         },
       ],
-      title: "Sessions by Source",
+      title: { $type: "Value", path: "/data/title" },
     },
   },
 };
