@@ -163,7 +163,7 @@ export function TreeRow({
 
 export const ELEMENT_ICONS: Record<string, ReactNode> = {
   Action: <IconClick size="16" />,
-  CancelAction: <IconClick size="16" />,
+  Button: <IconClick size="16" />,
   Field: <IconForms size="16" />,
   Group: <IconLayoutList size="16" />,
   Heading: <IconHeading size="16" />,
@@ -180,7 +180,7 @@ export const ELEMENT_ICONS: Record<string, ReactNode> = {
   Value: <IconVariable size="16" />,
 };
 
-const ACTION_TYPES = new Set(["Action", "CancelAction"]);
+const ACTION_TYPES = new Set(["Action", "Button"]);
 
 export function getContainerOptions(
   onInsertInside: (element: object) => void,

@@ -336,7 +336,7 @@ export const WithAllActions: Story = {
           children: "Approve",
         },
         {
-          $type: "CancelAction",
+          $type: "Button",
           children: "Reject",
         },
       ],
