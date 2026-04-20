@@ -1,5 +1,11 @@
 # @optiaxiom/proteus
 
+## 0.1.24
+
+### Patch Changes
+
+- 0e5e9a1: add compact body support to proteus document shell
+
 ## 0.1.23
 
 ### Patch Changes
