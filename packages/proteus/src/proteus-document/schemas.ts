@@ -22,7 +22,6 @@ import type { RangeProps, TimeProps } from "@optiaxiom/react/unstable";
 import { Validator } from "@cfworker/json-schema";
 
 import type { ProteusActionProps } from "../proteus-action/ProteusAction";
-import type { ProteusCancelActionProps } from "../proteus-action/ProteusCancelAction";
 import type { ProteusBridgeProps } from "../proteus-bridge/ProteusBridge";
 import type { ProteusChartProps } from "../proteus-chart/ProteusChart";
 import type { ProteusDataTableProps } from "../proteus-data-table/ProteusDataTable";
@@ -50,9 +49,8 @@ export type ProteusElement =
   | (InputProps & { $type: "Input" })
   | (LinkProps & { $type: "Link" })
   | (ProteusActionProps & { $type: "Action" })
-  | (ProteusBridgeProps & { $type: "Bridge" })
   | (ProteusActionProps & { $type: "Button" })
-  | (ProteusCancelActionProps & { $type: "CancelAction" })
+  | (ProteusBridgeProps & { $type: "Bridge" })
   | (ProteusChartProps & { $type: "Chart" })
   | (ProteusDataTableProps & { $type: "DataTable" })
   | (ProteusImageCarouselProps & { $type: "ImageCarousel" })
@@ -76,7 +74,7 @@ export type ProteusEventHandler =
       action: "download";
       url: (ProteusValueProps & { $type: "Value" }) | string | string[];
     }
-  | { interaction: string }
+  | { interaction: string; params?: Record<string, unknown> }
   | { message: string };
 
 type ProteusDocument = ProteusDocumentShellProps["element"] & {

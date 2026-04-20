@@ -2,52 +2,8 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { ProteusDocumentRenderer } from "@optiaxiom/proteus";
 import { Box } from "@optiaxiom/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { action } from "storybook/actions";
-
-const openAiBridgeHtml = `
-<!DOCTYPE html>
-<html>
-<head>
-  <style>
-    body { font-family: system-ui, sans-serif; margin: 0; padding: 16px; }
-    h1 { font-size: 18px; color: #1a1a1a; }
-    p { color: #666; }
-    button { padding: 8px 16px; background: #0037FF; color: white; border: none; border-radius: 6px; cursor: pointer; margin-right: 8px; }
-    button:hover { background: #0029cc; }
-  </style>
-</head>
-<body>
-  <h1>MCP App Bridge Widget (OpenAI)</h1>
-  <p>This widget uses the OpenAI shim. Click to trigger actions visible in the Storybook Actions panel.</p>
-  <button id="btn-tool">Call Tool</button>
-  <button id="btn-msg">Send Message</button>
-  <p id="output"></p>
-  <script>
-    document.getElementById('btn-tool').addEventListener('click', function() {
-      if (window.openai && window.openai.callTool) {
-        window.openai.callTool('refresh_data', { range: 'Q1' });
-        document.getElementById('output').textContent = 'callTool fired at ' + new Date().toLocaleTimeString();
-      }
-    });
-    document.getElementById('btn-msg').addEventListener('click', function() {
-      if (window.openai && window.openai.sendFollowUpMessage) {
-        window.openai.sendFollowUpMessage('Hello from the widget');
-        document.getElementById('output').textContent = 'sendFollowUpMessage fired at ' + new Date().toLocaleTimeString();
-      }
-    });
-  </script>
-</body>
-</html>
-`;
-
-const useResource = (resource: string) => ({
-  data: {
-    html: openAiBridgeHtml,
-    mimeType: "text/html;profile=openai-app",
-  },
-  isLoading: resource ? false : false,
-});
 
 export default {
   args: {
@@ -1307,8 +1263,11 @@ export const ExploreResources: Story = {
   },
 };
 
-export const WithBridgeOpenAi: Story = {
+export const WithBridge: Story = {
   args: {
+    data: {
+      state: "init",
+    },
     element: {
       $type: "Document",
       appName: "MCP App (OpenAI Shim)",
@@ -1325,7 +1284,104 @@ export const WithBridgeOpenAi: Story = {
       ],
       title: "Bridge Component (OpenAI Profile)",
     },
-    useResource,
+  },
+  render: function Render(args) {
+    const [resource, setResource] = useState<{
+      data: undefined | { mimeType: string; text: string };
+      isError: boolean;
+    }>({
+      data: undefined,
+      isError: false,
+    });
+
+    useEffect(() => {
+      setTimeout(() => {
+        setResource({
+          data: {
+            mimeType: "text/html;profile=openai-app",
+            text: `
+              <!DOCTYPE html>
+              <html>
+                <head>
+                  <style>
+                    body {
+                      font-family: system-ui, sans-serif;
+                      margin: 0;
+                      padding: 16px;
+                    }
+                    h1 {
+                      font-size: 18px;
+                      color: #1a1a1a;
+                    }
+                    p {
+                      color: #666;
+                    }
+                    button {
+                      padding: 8px 16px;
+                      background: #0037ff;
+                      color: white;
+                      border: none;
+                      border-radius: 6px;
+                      cursor: pointer;
+                      margin-right: 8px;
+                    }
+                    button:hover {
+                      background: #0029cc;
+                    }
+                  </style>
+                </head>
+                <body>
+                  <h1>MCP App Bridge Widget (OpenAI)</h1>
+                  <p>
+                    This widget uses the OpenAI shim. Click to trigger actions
+                    visible in the Storybook Actions panel.
+                  </p>
+                  <button id="btn-tool">Call Tool</button>
+                  <button id="btn-msg">Send Message</button>
+                  <p id="output"></p>
+                  <script>
+                    document.getElementById('btn-tool').addEventListener('click', async function() {
+                      if (window.openai && window.openai.callTool) {
+                        const response = await window.openai.callTool('refresh_data', { range: 'Q1' });
+                        document.getElementById('output').textContent = 'callTool response: ' + JSON.stringify(response);
+                      }
+                    });
+                    document.getElementById('btn-msg').addEventListener('click', function() {
+                      if (window.openai && window.openai.sendFollowUpMessage) {
+                        window.openai.sendFollowUpMessage('Hello from the widget');
+                      }
+                    });
+                    const listener = (event) => {
+                      const toolOutput = event.detail.globals.toolOutput;
+                      if (toolOutput) {
+                        document.getElementById('output').textContent = 'toolOutput: ' + JSON.stringify(toolOutput);
+                      }
+                      window.removeEventListener('openai:set_globals', listener)
+                    };
+                    window.addEventListener('openai:set_globals', listener)
+                  </script>
+                </body>
+              </html>
+            `,
+          },
+          isError: false,
+        });
+      }, 1000);
+    }, []);
+
+    return (
+      <ProteusDocumentRenderer
+        {...args}
+        onInteraction={(name, params) => {
+          action("onInteraction")(name, params);
+          return { state: "next" };
+        }}
+        onMessage={(message) => {
+          action("onMessage")(message);
+        }}
+        useResource={() => resource}
+      />
+    );
   },
 };
 

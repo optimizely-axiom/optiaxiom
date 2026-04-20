@@ -1,7 +1,6 @@
-import { App } from "@modelcontextprotocol/ext-apps";
-import { PostMessageTransport } from "@modelcontextprotocol/ext-apps";
+import { App, PostMessageTransport } from "@modelcontextprotocol/ext-apps";
 
-const app = new App({ name: "OpenAI-Compat-Widget", version: "1.0.0" }, {});
+const app = new App({ name: "Opal Widget", version: "1.0.0" }, {});
 
 let toolInput: Record<string, unknown> = {};
 let toolOutput: unknown = null;
@@ -40,8 +39,8 @@ app.onhostcontextchanged = (params) => {
   dispatchGlobals();
 };
 
-(window as unknown as Record<string, unknown>).mcpApp = app;
-(window as unknown as Record<string, unknown>).openai = {
+// @ts-expect-error -- injected
+window.openai = {
   get displayMode() {
     return hostContext.displayMode;
   },
@@ -61,17 +60,12 @@ app.onhostcontextchanged = (params) => {
 
   callTool: (name: string, args: Record<string, unknown>) =>
     app.callServerTool({ arguments: args, name }),
-  openExternal: (args: string | { href: string }) =>
-    app.openLink({ url: typeof args === "string" ? args : args.href }),
-  requestClose: () => Promise.resolve(),
-  requestDisplayMode: (mode?: "fullscreen" | "inline" | "pip") =>
-    app.requestDisplayMode({ mode: mode ?? "inline" }),
-  requestModal: () => Promise.resolve(),
-  sendFollowUpMessage: (args: string | { prompt: string }) =>
+  openExternal: (args: { href: string }) => app.openLink({ url: args.href }),
+  sendFollowUpMessage: (args: { prompt: string }) =>
     app.sendMessage({
       content: [
         {
-          text: typeof args === "string" ? args : args.prompt,
+          text: args.prompt,
           type: "text",
         },
       ],
