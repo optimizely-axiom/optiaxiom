@@ -55,11 +55,6 @@ const PROTEUS_COMPONENT_CONFIG = {
     allowedProps: ["appearance", "children", "onClick", "type"],
     example: { appearance: "primary", children: "Action" },
   },
-  CancelAction: {
-    allowedProps: ["children", "placeholder"],
-    example: { children: "Cancel" },
-    extends: "Button",
-  },
   Card: {
     allowedProps: ["children"],
     example: {
@@ -697,6 +692,11 @@ function generateSpec(additionalProperties = false) {
                   description: "Name of registered interaction to call",
                   type: "string",
                 },
+                params: {
+                  additionalProperties: {},
+                  description: "Parameters to pass to the interaction handler",
+                  type: "object",
+                },
               },
               required: ["interaction"],
               type: "object",
@@ -846,12 +846,6 @@ function getPropTypeOverrides(additionalProperties = false) {
       onClick: {
         $ref: "#/definitions/ProteusEventHandler",
         description: "Action triggered when button is clicked",
-      },
-    },
-    CancelAction: {
-      placeholder: {
-        description: "Placeholder text for the text input field",
-        type: "string",
       },
     },
     Chart: {

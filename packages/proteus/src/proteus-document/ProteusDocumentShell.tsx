@@ -58,7 +58,10 @@ export type ProteusDocumentShellProps = Pick<
   /**
    * Callback when user clicks a Action button with interaction handler
    */
-  onInteraction?: (name: string) => Promise<void> | void;
+  onInteraction?: (
+    name: string,
+    params?: Record<string, unknown>,
+  ) => Promise<unknown> | unknown;
   /**
    * Callback when user sends a message action
    */
@@ -153,7 +156,7 @@ export function ProteusDocumentShell({
       })}
       onEvent={useEffectEvent(async (event: ProteusEventHandler) => {
         if ("interaction" in event) {
-          await onInteraction?.(event.interaction);
+          return await onInteraction?.(event.interaction, event.params);
         } else if ("message" in event) {
           await onMessage?.(event.message);
         } else if (event.action === "download") {
@@ -176,6 +179,7 @@ export function ProteusDocumentShell({
             await Promise.all(urls.map((u) => downloadFile(u)));
           }
         }
+        return;
       })}
       readOnly={readOnly}
       strict={strict}
