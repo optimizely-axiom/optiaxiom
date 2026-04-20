@@ -1,3 +1,4 @@
+import { IconSouth } from "@optiaxiom/icons";
 import {
   Box,
   Disclosure,
@@ -108,6 +109,28 @@ export function ProteusDocumentShell({
     onChange: onOpenChange,
     prop: openProp,
   });
+
+  const bodyRef = useRef<HTMLDivElement | null>(null);
+  useEffect(() => {
+    const node = bodyRef.current;
+    if (!node) return;
+
+    const update = () => {
+      if (node.scrollHeight - node.scrollTop - node.clientHeight > 1) {
+        node.dataset.canScroll = "";
+      } else {
+        delete node.dataset.canScroll;
+      }
+    };
+
+    const observer = new ResizeObserver(update);
+    observer.observe(node);
+    node.addEventListener("scroll", update, { passive: true });
+    return () => {
+      observer.disconnect();
+      node.removeEventListener("scroll", update);
+    };
+  }, []);
 
   const collapsible = collapsibleProp && element.appName;
   const Trigger = collapsible ? DisclosureTrigger : Box;
@@ -240,8 +263,16 @@ export function ProteusDocumentShell({
               }}
               ref={formRef}
             >
-              <Group {...styles.body({ truncate: element.compact })}>
+              <Group
+                ref={element.compact ? bodyRef : undefined}
+                {...styles.body({ truncate: element.compact })}
+              >
                 {element.body}
+                {element.compact && (
+                  <Box {...styles.scrollIndicator()}>
+                    <IconSouth />
+                  </Box>
+                )}
               </Group>
               {element.actions && !readOnly && (
                 <Group gap="16" justifyContent="end" w="full">
