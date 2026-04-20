@@ -23,6 +23,7 @@ import type { ProteusEventHandler } from "./schemas";
 import { useEffectEvent } from "../hooks";
 import { downloadFile } from "../proteus-image/downloadFile";
 import { ProteusDocumentProvider } from "./ProteusDocumentContext";
+import * as styles from "./ProteusDocumentShell.css";
 
 export type ProteusDocumentShellProps = Pick<
   ComponentPropsWithoutRef<typeof Disclosure>,
@@ -74,6 +75,7 @@ type ProteusDocument = {
   appName?: string;
   blocking?: boolean;
   body: ReactNode;
+  compact?: boolean;
   subtitle?: ReactNode;
   title?: ReactNode;
   titleIcon?: string;
@@ -238,7 +240,9 @@ export function ProteusDocumentShell({
               }}
               ref={formRef}
             >
-              {element.body}
+              <Group {...styles.body({ truncate: element.compact })}>
+                {element.body}
+              </Group>
               {element.actions && !readOnly && (
                 <Group gap="16" justifyContent="end" w="full">
                   {element.actions}

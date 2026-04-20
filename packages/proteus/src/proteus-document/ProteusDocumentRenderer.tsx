@@ -25,6 +25,7 @@ type ProteusDocument = {
   appName?: string;
   blocking?: boolean;
   body: unknown;
+  compact?: boolean;
   subtitle?: unknown;
   title?: unknown;
   titleIcon?: string;

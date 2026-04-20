@@ -647,6 +647,11 @@ function generateSpec(additionalProperties = false) {
               $ref: "#/definitions/ProteusNode",
               description: "The main content of the document.",
             },
+            compact: {
+              description:
+                "If true, constrains the body to a max height and makes it scrollable when content overflows.",
+              type: "boolean",
+            },
             subtitle: {
               $ref: "#/definitions/ProteusNode",
               description:
