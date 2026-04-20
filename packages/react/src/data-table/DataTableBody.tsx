@@ -85,7 +85,16 @@ export const DataTableBody = forwardRef<HTMLDivElement, DataTableBodyProps>(
         delete innerRef.current.dataset.scrollTimeline;
       }
     };
-    useEffect(calculateScrollTimeline, []);
+    useEffect(() => {
+      calculateScrollTimeline();
+
+      const node = scrollContainerRef.current;
+      if (!node) return;
+
+      const observer = new ResizeObserver(calculateScrollTimeline);
+      observer.observe(node);
+      return () => observer.disconnect();
+    }, []);
     const centerColumns = table.getCenterVisibleLeafColumns();
 
     const columnVirtualizer = useVirtualizer({
