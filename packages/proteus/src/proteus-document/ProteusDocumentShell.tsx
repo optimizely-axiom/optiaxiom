@@ -67,6 +67,10 @@ export type ProteusDocumentShellProps = Pick<
    */
   onMessage?: (message: string) => Promise<void> | void;
   /**
+   * Callback when an analytics event is fired
+   */
+  onTrack?: (event: string, properties: Record<string, unknown>) => void;
+  /**
    * Whether form is readonly
    */
   readOnly?: boolean;
@@ -102,6 +106,7 @@ export function ProteusDocumentShell({
   onInteraction,
   onMessage,
   onOpenChange,
+  onTrack,
   open: openProp,
   readOnly = false,
   strict,
@@ -181,6 +186,7 @@ export function ProteusDocumentShell({
         }
         return;
       })}
+      onTrack={onTrack}
       readOnly={readOnly}
       strict={strict}
       useResource={useResource}

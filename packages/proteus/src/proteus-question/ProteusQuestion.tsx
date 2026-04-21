@@ -24,7 +24,7 @@ type QuestionData = {
 };
 
 export function ProteusQuestion({ questions }: ProteusQuestionProps) {
-  const { onEvent } = useProteusDocumentContext(
+  const { onEvent, onTrack } = useProteusDocumentContext(
     "@optiaxiom/proteus/ProteusQuestion",
   );
   const [answers, setAnswers] = useState<Array<null | string[]>>([]);
@@ -34,10 +34,13 @@ export function ProteusQuestion({ questions }: ProteusQuestionProps) {
     Array.isArray(value) && value.length > 0 && value.every(Boolean);
 
   const onDismiss = useCallback(() => {
+    onTrack?.("ask_question_card_dismissed", {
+      question_index_at_dismiss: currentIndex,
+    });
     void onEvent({
       message: "[User declined to answer the question]",
     });
-  }, [onEvent]);
+  }, [currentIndex, onEvent, onTrack]);
 
   const questionRef = useRef<HTMLDivElement>(null);
   const lastIndexRef = useRef(currentIndex);
@@ -79,8 +82,16 @@ export function ProteusQuestion({ questions }: ProteusQuestionProps) {
   const otherValue = value?.find((v) => !options.includes(v));
   const otherChecked = otherValue !== undefined;
 
-  const onComplete = () =>
-    onEvent({
+  const onComplete = () => {
+    const answeredCount = answers.filter(
+      (a) => Array.isArray(a) && a.length > 0,
+    ).length;
+    onTrack?.("ask_user_question_submitted", {
+      answered_count: answeredCount,
+      skipped_count: questions.length - answeredCount,
+      total_questions: questions.length,
+    });
+    return onEvent({
       message: answers
         .map(
           (value, index) =>
@@ -88,6 +99,7 @@ export function ProteusQuestion({ questions }: ProteusQuestionProps) {
         )
         .join("\n\n"),
     });
+  };
 
   const onValueChange = (value: null | string[]) => {
     answers[currentIndex] = value;
@@ -95,6 +107,9 @@ export function ProteusQuestion({ questions }: ProteusQuestionProps) {
   };
 
   const onSkip = () => {
+    onTrack?.("ask_user_question_skipped", {
+      question_index: currentIndex,
+    });
     answers[currentIndex] = null;
     setAnswers([...answers]);
     if (isLast) {
@@ -104,6 +119,16 @@ export function ProteusQuestion({ questions }: ProteusQuestionProps) {
     }
   };
   const onSubmit = () => {
+    const currentValue = answers[currentIndex];
+    if (currentValue) {
+      const indices = currentValue.map((v) => options.indexOf(v));
+      onTrack?.("ask_user_question_selected", {
+        question_index: currentIndex,
+        option_index: indices[0],
+        option_indices: indices,
+        is_custom_text: currentValue.some((v) => !options.includes(v)),
+      });
+    }
     if (isLast) {
       void onComplete();
     } else {
@@ -129,6 +154,10 @@ export function ProteusQuestion({ questions }: ProteusQuestionProps) {
         ) {
           event.preventDefault();
           if (event.key === "ArrowLeft" && currentIndex > 0) {
+            onTrack?.("ask_user_question_back", {
+              from_index: currentIndex,
+              to_index: currentIndex - 1,
+            });
             setCurrentIndex((i) => i - 1);
           } else if (event.key === "ArrowRight" && !isLast) {
             setCurrentIndex((i) => i + 1);
@@ -153,6 +182,10 @@ export function ProteusQuestion({ questions }: ProteusQuestionProps) {
                   icon={<IconAngleLeft />}
                   onClick={(event) => {
                     event.preventDefault();
+                    onTrack?.("ask_user_question_back", {
+                      from_index: currentIndex,
+                      to_index: currentIndex - 1,
+                    });
                     setCurrentIndex((i) => i - 1);
                   }}
                   size="sm"
