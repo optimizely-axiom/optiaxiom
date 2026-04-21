@@ -1,6 +1,6 @@
 "use client";
 
-import { IconDragIndicator } from "@optiaxiom/icons";
+import { IconGrip } from "@optiaxiom/icons";
 import {
   Button,
   Card,
@@ -54,10 +54,7 @@ export function App() {
                       color="fg.tertiary"
                       transition="colors"
                     >
-                      <Button
-                        appearance="subtle"
-                        icon={<IconDragIndicator />}
-                      />
+                      <Button appearance="subtle" icon={<IconGrip />} />
                     </SortableHandle>
                   }
                   description={data[item].description}

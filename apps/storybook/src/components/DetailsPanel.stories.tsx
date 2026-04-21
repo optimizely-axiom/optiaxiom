@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { IconClose } from "@optiaxiom/icons";
+import { IconXmark } from "@optiaxiom/icons";
 import { Button, Group } from "@optiaxiom/react";
 import {
   DetailsPanel,
@@ -42,7 +42,7 @@ export const Basic: Story = {
             <Button
               appearance="subtle"
               aria-label="Close"
-              icon={<IconClose />}
+              icon={<IconXmark />}
             />
           }
           description="Original Image (Oct 23, 2024)"

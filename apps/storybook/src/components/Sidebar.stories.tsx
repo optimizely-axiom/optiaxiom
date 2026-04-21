@@ -1,23 +1,23 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import {
-  IconAccountTree,
-  IconArticle,
-  IconBarChart4Bars,
-  IconContentCopy,
-  IconDashboardCustomize,
-  IconDelete,
-  IconDesktopWindows,
-  IconDockToRight,
-  IconExperiment,
-  IconFlag2,
-  IconGroup,
-  IconHistory,
-  IconMenuBook,
-  IconOpenInNew,
-  IconSettings,
-  IconShowChart,
+  IconArrowUpRightFromSquare,
+  IconBookOpen,
+  IconChartColumn,
+  IconChartLine,
+  IconClockRotateLeft,
+  IconClone,
+  IconDiagramSubtask,
+  IconDisplay,
+  IconFileLines,
+  IconFlag,
+  IconFlask,
+  IconGear,
+  IconGrid2Plus,
+  IconPeopleSimple,
+  IconSidebar,
   IconStar,
+  IconTrashCan,
 } from "@optiaxiom/icons";
 import {
   Box,
@@ -42,16 +42,20 @@ import {
 const body = (
   <NavBody>
     <NavList>
-      <NavItem icon={<IconAccountTree />}>Projects</NavItem>
-      <NavItem active icon={<IconFlag2 />}>
+      <NavItem icon={<IconDiagramSubtask />}>Projects</NavItem>
+      <NavItem active icon={<IconFlag />}>
         Flags
       </NavItem>
-      <NavItem icon={<IconBarChart4Bars />}>Idea Lab</NavItem>
-      <NavItem icon={<IconGroup />}>Audiences</NavItem>
-      <NavItem icon={<IconHistory />}>History</NavItem>
-      <NavItem icon={<IconShowChart />}>Events</NavItem>
-      <NavItem icon={<IconSettings />}>Settings</NavItem>
-      <NavItem addonAfter={<IconOpenInNew />} asChild icon={<IconMenuBook />}>
+      <NavItem icon={<IconChartColumn />}>Idea Lab</NavItem>
+      <NavItem icon={<IconPeopleSimple />}>Audiences</NavItem>
+      <NavItem icon={<IconClockRotateLeft />}>History</NavItem>
+      <NavItem icon={<IconChartLine />}>Events</NavItem>
+      <NavItem icon={<IconGear />}>Settings</NavItem>
+      <NavItem
+        addonAfter={<IconArrowUpRightFromSquare />}
+        asChild
+        icon={<IconBookOpen />}
+      >
         <a href="/">Tutorial</a>
       </NavItem>
     </NavList>
@@ -66,7 +70,7 @@ export default {
 
         <NavFooter>
           <NavList>
-            <SidebarToggle icon={<IconDockToRight />} />
+            <SidebarToggle icon={<IconSidebar />} />
             <Menu
               options={[
                 { label: "View Profile" },
@@ -155,7 +159,7 @@ export const WithSubNav: Story = {
 
           <NavFooter>
             <NavList>
-              <SidebarToggle icon={<IconDockToRight />} />
+              <SidebarToggle icon={<IconSidebar />} />
               <Menu
                 options={[
                   { label: "View Profile" },
@@ -179,20 +183,20 @@ export const WithSubNav: Story = {
         <SubNav>
           <NavBody>
             <NavList>
-              <NavItem icon={<IconContentCopy />}>All</NavItem>
+              <NavItem icon={<IconClone />}>All</NavItem>
               <NavItem>Recent</NavItem>
               <NavItem icon={<IconStar />}>Favorites</NavItem>
-              <NavItem icon={<IconDelete />}>Trash</NavItem>
+              <NavItem icon={<IconTrashCan />}>Trash</NavItem>
 
               <NavGroup collapsible>
                 <NavGroupTrigger>Location</NavGroupTrigger>
 
                 <NavGroupContent>
-                  <NavItem active icon={<IconDashboardCustomize />}>
+                  <NavItem active icon={<IconGrid2Plus />}>
                     CMP
                   </NavItem>
-                  <NavItem icon={<IconDesktopWindows />}>CMS</NavItem>
-                  <NavItem icon={<IconExperiment />}>Experimentation</NavItem>
+                  <NavItem icon={<IconDisplay />}>CMS</NavItem>
+                  <NavItem icon={<IconFlask />}>Experimentation</NavItem>
                 </NavGroupContent>
               </NavGroup>
 
@@ -202,8 +206,8 @@ export const WithSubNav: Story = {
                 <NavGroupTrigger>Analytics</NavGroupTrigger>
 
                 <NavGroupContent>
-                  <NavItem icon={<IconDashboardCustomize />}>Dashboard</NavItem>
-                  <NavItem icon={<IconArticle />}>Reports</NavItem>
+                  <NavItem icon={<IconGrid2Plus />}>Dashboard</NavItem>
+                  <NavItem icon={<IconFileLines />}>Reports</NavItem>
                 </NavGroupContent>
               </NavGroup>
             </NavList>

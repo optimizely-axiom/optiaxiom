@@ -1,4 +1,4 @@
-import { IconHelp } from "@optiaxiom/icons";
+import { IconCircleQuestion } from "@optiaxiom/icons";
 import { Menu, MenuContent, MenuTrigger } from "@optiaxiom/react";
 
 export function App() {
@@ -12,7 +12,7 @@ export function App() {
         },
       ]}
     >
-      <MenuTrigger aria-label="Help menu" icon={<IconHelp />} />
+      <MenuTrigger aria-label="Help menu" icon={<IconCircleQuestion />} />
       <MenuContent />
     </Menu>
   );

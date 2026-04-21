@@ -1,6 +1,6 @@
 "use client";
 
-import { IconDesktopMac, IconMobile, IconTablet } from "@optiaxiom/icons";
+import { IconDesktop, IconMobile, IconTablet } from "@optiaxiom/icons";
 import {
   Button,
   Group,
@@ -19,7 +19,7 @@ export function App() {
         <Tooltip content="Desktop">
           <SegmentedControlItem
             aria-label="Desktop"
-            icon={<IconDesktopMac />}
+            icon={<IconDesktop />}
             key="desktop"
             value="desktop"
           />

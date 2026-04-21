@@ -1,13 +1,13 @@
 "use client";
 
 import {
-  IconAccountTree,
-  IconDockToRight,
-  IconFlag2,
-  IconMenuBook,
-  IconOpenInNew,
-  IconSettings,
-  IconShowChart,
+  IconArrowUpRightFromSquare,
+  IconBookOpen,
+  IconChartLine,
+  IconDiagramSubtask,
+  IconFlag,
+  IconGear,
+  IconSidebar,
 } from "@optiaxiom/icons";
 import {
   Menu,
@@ -37,36 +37,36 @@ export function App() {
             <NavList>
               <NavItem
                 active={selected === "projects"}
-                icon={<IconAccountTree />}
+                icon={<IconDiagramSubtask />}
                 onClick={() => setSelected("projects")}
               >
                 Projects
               </NavItem>
               <NavItem
                 active={selected === "flags"}
-                icon={<IconFlag2 />}
+                icon={<IconFlag />}
                 onClick={() => setSelected("flags")}
               >
                 Flags
               </NavItem>
               <NavItem
                 active={selected === "events"}
-                icon={<IconShowChart />}
+                icon={<IconChartLine />}
                 onClick={() => setSelected("events")}
               >
                 Events
               </NavItem>
               <NavItem
                 active={selected === "settings"}
-                icon={<IconSettings />}
+                icon={<IconGear />}
                 onClick={() => setSelected("settings")}
               >
                 Settings
               </NavItem>
               <NavItem
-                addonAfter={<IconOpenInNew />}
+                addonAfter={<IconArrowUpRightFromSquare />}
                 asChild
-                icon={<IconMenuBook />}
+                icon={<IconBookOpen />}
               >
                 <a href="/">Tutorial</a>
               </NavItem>
@@ -75,7 +75,7 @@ export function App() {
 
           <NavFooter>
             <NavList>
-              <SidebarToggle icon={<IconDockToRight />} />
+              <SidebarToggle icon={<IconSidebar />} />
               <Menu
                 options={[
                   { label: "View Profile" },

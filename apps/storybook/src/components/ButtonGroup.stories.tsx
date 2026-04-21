@@ -2,10 +2,10 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import type { ComponentPropsWithRef } from "react";
 
 import {
-  IconArrowRightAlt,
-  IconClose,
+  IconArrowRight,
   IconDownload,
-  IconImagesmode,
+  IconFileImage,
+  IconXmark,
 } from "@optiaxiom/icons";
 import {
   Button,
@@ -28,7 +28,7 @@ const Content = ({
   appearance,
 }: Pick<ComponentPropsWithRef<typeof Button>, "appearance">) => (
   <>
-    <Button appearance={appearance} icon={<IconImagesmode />}>
+    <Button appearance={appearance} icon={<IconFileImage />}>
       Gallery
     </Button>
     <Button appearance={appearance} icon={<IconDownload />} iconPosition="end">
@@ -36,7 +36,7 @@ const Content = ({
     </Button>
     <Button
       appearance={appearance}
-      icon={<IconArrowRightAlt />}
+      icon={<IconArrowRight />}
       iconPosition="end"
     >
       Enter Gallery
@@ -126,7 +126,7 @@ export const WithInput: Story = {
         <Field>
           <SearchInput aria-label="Search" />
         </Field>
-        <Button aria-label="clear" icon={<IconClose />} />
+        <Button aria-label="clear" icon={<IconXmark />} />
       </>
     ),
   },

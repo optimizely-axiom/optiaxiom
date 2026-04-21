@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { IconPerson } from "@optiaxiom/icons";
+import { IconUser } from "@optiaxiom/icons";
 import { Box, Grid, Group, Skeleton } from "@optiaxiom/react";
 
 export default {
@@ -40,7 +40,7 @@ export const Card: Story = {
 
 export const Children: Story = {
   args: {
-    children: <IconPerson filled />,
+    children: <IconUser filled />,
     color: "fg.default.inverse",
     p: "8",
     rounded: "full",

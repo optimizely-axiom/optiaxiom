@@ -1,6 +1,6 @@
 "use client";
 
-import { IconVisibility, IconVisibilityOff } from "@optiaxiom/icons";
+import { IconEye, IconEyeSlash } from "@optiaxiom/icons";
 import { Button, Input } from "@optiaxiom/react";
 import { useState } from "react";
 
@@ -12,7 +12,7 @@ export function App() {
       addonAfter={
         <Button
           appearance="subtle"
-          icon={hidden ? <IconVisibility /> : <IconVisibilityOff />}
+          icon={hidden ? <IconEye /> : <IconEyeSlash />}
           onClick={() => setHidden((flag) => !flag)}
           rounded="full"
           size="sm"

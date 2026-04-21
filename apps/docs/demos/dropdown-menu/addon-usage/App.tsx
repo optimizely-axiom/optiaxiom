@@ -1,4 +1,8 @@
-import { IconLogout, IconPerson, IconSettings } from "@optiaxiom/icons";
+import {
+  IconArrowRightFromBracket,
+  IconGear,
+  IconUser,
+} from "@optiaxiom/icons";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -22,11 +26,11 @@ export function App() {
               P
             </Kbd>
           }
-          icon={<IconSettings />}
+          icon={<IconGear />}
         >
           Preferences
         </DropdownMenuItem>
-        <DropdownMenuItem icon={<IconPerson />}>View Profile</DropdownMenuItem>
+        <DropdownMenuItem icon={<IconUser />}>View Profile</DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem
           addonAfter={
@@ -34,7 +38,7 @@ export function App() {
               Q
             </Kbd>
           }
-          icon={<IconLogout />}
+          icon={<IconArrowRightFromBracket />}
         >
           Logout
         </DropdownMenuItem>

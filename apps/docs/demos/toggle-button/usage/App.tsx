@@ -2,7 +2,7 @@
 
 import type { ComponentPropsWithRef } from "react";
 
-import { IconDockToRight } from "@optiaxiom/icons";
+import { IconSidebar } from "@optiaxiom/icons";
 import { ToggleButton } from "@optiaxiom/react";
 
 export function App({
@@ -11,7 +11,7 @@ export function App({
   return (
     <ToggleButton
       aria-label="Toggle sidebar"
-      icon={<IconDockToRight />}
+      icon={<IconSidebar />}
       size={size}
     />
   );

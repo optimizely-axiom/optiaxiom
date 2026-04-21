@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { IconCalendarMonth } from "@optiaxiom/icons";
+import { IconCalendarDays } from "@optiaxiom/icons";
 import { Button, Group, Input, Text } from "@optiaxiom/react";
 import { SurfaceProvider } from "@optiaxiom/react/unstable";
 import { useState } from "react";
@@ -79,18 +79,18 @@ export const Addons: Story = {
     <Group flexDirection="column" gap="16">
       <Input
         {...args}
-        addonBefore={<IconCalendarMonth />}
+        addonBefore={<IconCalendarDays />}
         placeholder="With left Icon"
       />
       <Input
         {...args}
-        addonAfter={<IconCalendarMonth />}
+        addonAfter={<IconCalendarDays />}
         placeholder="With right Icon"
       />
       <Input
         {...args}
-        addonAfter={<IconCalendarMonth />}
-        addonBefore={<IconCalendarMonth />}
+        addonAfter={<IconCalendarDays />}
+        addonBefore={<IconCalendarDays />}
         placeholder="With both Icon"
       />
     </Group>

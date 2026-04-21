@@ -1,10 +1,6 @@
 "use client";
 
-import {
-  IconDesktopWindows,
-  IconExperiment,
-  IconTeamDashboard,
-} from "@optiaxiom/icons";
+import { IconDisplay, IconFlask, IconGrid } from "@optiaxiom/icons";
 import { Nav, NavBody, NavItem, NavList, Sidebar } from "@optiaxiom/react";
 import { useState } from "react";
 
@@ -21,21 +17,21 @@ export function App() {
             <NavList>
               <NavItem
                 active={selected === "CMP"}
-                icon={<IconTeamDashboard />}
+                icon={<IconGrid />}
                 onClick={() => setSelected("CMP")}
               >
                 CMP
               </NavItem>
               <NavItem
                 active={selected === "CMS"}
-                icon={<IconDesktopWindows />}
+                icon={<IconDisplay />}
                 onClick={() => setSelected("CMS")}
               >
                 CMS
               </NavItem>
               <NavItem
                 active={selected === "Experimentation"}
-                icon={<IconExperiment />}
+                icon={<IconFlask />}
                 onClick={() => setSelected("Experimentation")}
               >
                 Experimentation

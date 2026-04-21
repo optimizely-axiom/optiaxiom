@@ -1,4 +1,4 @@
-import { IconGridView, IconListAlt, IconTune } from "@optiaxiom/icons";
+import { IconGrid, IconRectangleList, IconSliders } from "@optiaxiom/icons";
 import {
   Field,
   Popover,
@@ -16,14 +16,14 @@ import {
 export function App() {
   return (
     <Popover>
-      <PopoverTrigger icon={<IconTune />}>Display</PopoverTrigger>
+      <PopoverTrigger icon={<IconSliders />}>Display</PopoverTrigger>
 
       <PopoverContent align="end" gap="12" px="0">
         <SegmentedControl defaultValue="list" gap="12" px="16">
           <Tooltip content="List">
             <SegmentedControlItem
               aria-label="List"
-              icon={<IconListAlt />}
+              icon={<IconRectangleList />}
               size="lg"
               value="list"
             />
@@ -32,7 +32,7 @@ export function App() {
           <Tooltip content="Grid">
             <SegmentedControlItem
               aria-label="Grid"
-              icon={<IconGridView />}
+              icon={<IconGrid />}
               size="lg"
               value="grid"
             />

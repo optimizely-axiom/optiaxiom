@@ -1,8 +1,4 @@
-import {
-  IconDesktopWindows,
-  IconExperiment,
-  IconTeamDashboard,
-} from "@optiaxiom/icons";
+import { IconDisplay, IconFlask, IconGrid } from "@optiaxiom/icons";
 import {
   Nav,
   NavBody,
@@ -26,9 +22,9 @@ export function App() {
               <NavGroup>
                 <NavGroupTrigger>Location</NavGroupTrigger>
                 <NavGroupContent>
-                  <NavItem icon={<IconTeamDashboard />}>CMP</NavItem>
-                  <NavItem icon={<IconDesktopWindows />}>CMS</NavItem>
-                  <NavItem icon={<IconExperiment />}>Experimentation</NavItem>
+                  <NavItem icon={<IconGrid />}>CMP</NavItem>
+                  <NavItem icon={<IconDisplay />}>CMS</NavItem>
+                  <NavItem icon={<IconFlask />}>Experimentation</NavItem>
                 </NavGroupContent>
               </NavGroup>
             </NavList>

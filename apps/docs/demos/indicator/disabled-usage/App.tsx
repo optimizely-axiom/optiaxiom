@@ -2,7 +2,7 @@
 
 import type { ComponentPropsWithRef } from "react";
 
-import { IconNotifications } from "@optiaxiom/icons";
+import { IconBell } from "@optiaxiom/icons";
 import { Button, Indicator } from "@optiaxiom/react";
 
 export function App({
@@ -10,7 +10,7 @@ export function App({
 }: Pick<ComponentPropsWithRef<typeof Indicator>, "disabled">) {
   return (
     <Indicator content="4" disabled={disabled} intent="danger">
-      <Button aria-label="Notifications" icon={<IconNotifications />} />
+      <Button aria-label="Notifications" icon={<IconBell />} />
     </Indicator>
   );
 }

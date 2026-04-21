@@ -1,4 +1,8 @@
-import { IconGroup, IconLogout, IconPerson } from "@optiaxiom/icons";
+import {
+  IconArrowRightFromBracket,
+  IconPeopleSimple,
+  IconUser,
+} from "@optiaxiom/icons";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -15,12 +19,14 @@ export function App() {
 
       <DropdownMenuContent>
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
-        <DropdownMenuItem icon={<IconPerson />}>View Profile</DropdownMenuItem>
-        <DropdownMenuItem disabled icon={<IconGroup />}>
+        <DropdownMenuItem icon={<IconUser />}>View Profile</DropdownMenuItem>
+        <DropdownMenuItem disabled icon={<IconPeopleSimple />}>
           Team Management
         </DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem icon={<IconLogout />}>Logout</DropdownMenuItem>
+        <DropdownMenuItem icon={<IconArrowRightFromBracket />}>
+          Logout
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );

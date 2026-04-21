@@ -1,4 +1,4 @@
-import { IconGridView, IconListAlt } from "@optiaxiom/icons";
+import { IconGrid, IconRectangleList } from "@optiaxiom/icons";
 import {
   SegmentedControl,
   SegmentedControlItem,
@@ -11,7 +11,7 @@ export function App() {
       <Tooltip content="List">
         <SegmentedControlItem
           aria-label="List"
-          icon={<IconListAlt />}
+          icon={<IconRectangleList />}
           value="list"
         />
       </Tooltip>
@@ -19,7 +19,7 @@ export function App() {
       <Tooltip content="Grid">
         <SegmentedControlItem
           aria-label="Grid"
-          icon={<IconGridView />}
+          icon={<IconGrid />}
           value="grid"
         />
       </Tooltip>

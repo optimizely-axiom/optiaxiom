@@ -1,4 +1,4 @@
-import { IconElectricBolt } from "@optiaxiom/icons";
+import { IconBolt } from "@optiaxiom/icons";
 import { Button, Tooltip } from "@optiaxiom/react";
 import StackBlitzSDK from "@stackblitz/sdk";
 
@@ -8,7 +8,7 @@ export function StackblitzButton({ files }: { files: Record<string, string> }) {
       <Button
         appearance="subtle"
         aria-label="Open in Stackblitz"
-        icon={<IconElectricBolt />}
+        icon={<IconBolt />}
         onClick={() => {
           StackBlitzSDK.openProject(
             {

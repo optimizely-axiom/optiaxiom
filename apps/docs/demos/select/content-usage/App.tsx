@@ -1,10 +1,10 @@
 "use client";
 
 import {
-  IconCancel,
-  IconCheckCircle,
-  IconCircle,
-  IconProgressActivity,
+  IconCheckCircleSolid,
+  IconCircleSolid,
+  IconCircleXmark,
+  IconSpinner,
 } from "@optiaxiom/icons";
 import { Select, SelectContent, SelectTrigger } from "@optiaxiom/react";
 
@@ -13,22 +13,22 @@ export function App() {
     <Select
       options={[
         {
-          addon: <IconCircle />,
+          addon: <IconCircleSolid />,
           label: "Todo",
           value: "Todo",
         },
         {
-          addon: <IconProgressActivity />,
+          addon: <IconSpinner />,
           label: "In progress",
           value: "In progress",
         },
         {
-          addon: <IconCheckCircle />,
+          addon: <IconCheckCircleSolid />,
           label: "Done",
           value: "Done",
         },
         {
-          addon: <IconCancel />,
+          addon: <IconCircleXmark />,
           label: "Closed",
           value: "Closed",
         },

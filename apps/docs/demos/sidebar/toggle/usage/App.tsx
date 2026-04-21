@@ -1,4 +1,4 @@
-import { IconDockToRight } from "@optiaxiom/icons";
+import { IconSidebar } from "@optiaxiom/icons";
 import {
   Nav,
   NavFooter,
@@ -16,7 +16,7 @@ export function App() {
         <Nav>
           <NavFooter>
             <NavList>
-              <SidebarToggle icon={<IconDockToRight />} />
+              <SidebarToggle icon={<IconSidebar />} />
             </NavList>
           </NavFooter>
         </Nav>

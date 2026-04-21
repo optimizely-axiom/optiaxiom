@@ -1,4 +1,4 @@
-import { IconRefresh } from "@optiaxiom/icons";
+import { IconArrowRotateLeft } from "@optiaxiom/icons";
 import {
   Dialog,
   DialogBody,
@@ -15,7 +15,7 @@ export function App() {
       <DialogTrigger
         appearance="primary"
         aria-label="Re-publish changes"
-        icon={<IconRefresh />}
+        icon={<IconArrowRotateLeft />}
       />
 
       <DialogContent>

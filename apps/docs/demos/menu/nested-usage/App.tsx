@@ -1,11 +1,11 @@
 "use client";
 
 import {
-  IconAdd2,
+  IconBolt,
   IconBook,
-  IconLink,
+  IconLinkHorizontal,
+  IconPlus,
   IconUpload,
-  IconWandShine,
 } from "@optiaxiom/icons";
 import {
   Menu,
@@ -30,11 +30,11 @@ const options: MenuOption[] = [
     ],
   },
   {
-    addon: <IconLink />,
+    addon: <IconLinkHorizontal />,
     label: "Add URL",
   },
   {
-    addon: <IconWandShine />,
+    addon: <IconBolt />,
     label: "Generate",
   },
 ];
@@ -42,7 +42,7 @@ const options: MenuOption[] = [
 export function App() {
   return (
     <Menu options={options}>
-      <MenuTrigger icon={<IconAdd2 />} iconPosition="start">
+      <MenuTrigger icon={<IconPlus />} iconPosition="start">
         Add Content
       </MenuTrigger>
       <MenuContent />

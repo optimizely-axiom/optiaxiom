@@ -1,9 +1,9 @@
 import {
-  IconContentCopy,
-  IconCropSquare,
-  IconDesktopWindows,
-  IconExperiment,
-  IconTeamDashboard,
+  IconClone,
+  IconDisplay,
+  IconFlask,
+  IconGrid,
+  IconSquare,
 } from "@optiaxiom/icons";
 import {
   Nav,
@@ -26,15 +26,15 @@ export function App() {
         <Nav>
           <NavBody>
             <NavList>
-              <NavItem icon={<IconContentCopy />}>All</NavItem>
-              <NavItem icon={<IconCropSquare />}>Recent</NavItem>
+              <NavItem icon={<IconClone />}>All</NavItem>
+              <NavItem icon={<IconSquare />}>Recent</NavItem>
               <NavGroup>
                 <NavSeparator />
                 <NavGroupTrigger>Location</NavGroupTrigger>
                 <NavGroupContent>
-                  <NavItem icon={<IconTeamDashboard />}>CMP</NavItem>
-                  <NavItem icon={<IconDesktopWindows />}>CMS</NavItem>
-                  <NavItem icon={<IconExperiment />}>Experimentation</NavItem>
+                  <NavItem icon={<IconGrid />}>CMP</NavItem>
+                  <NavItem icon={<IconDisplay />}>CMS</NavItem>
+                  <NavItem icon={<IconFlask />}>Experimentation</NavItem>
                 </NavGroupContent>
               </NavGroup>
             </NavList>

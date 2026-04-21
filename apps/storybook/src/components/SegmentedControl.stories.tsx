@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { IconDesktopMac, IconMobile, IconTablet } from "@optiaxiom/icons";
+import { IconDesktop, IconMobile, IconTablet } from "@optiaxiom/icons";
 import {
   SegmentedControl,
   SegmentedControlItem,
@@ -14,7 +14,7 @@ export default {
         <Tooltip content="Desktop">
           <SegmentedControlItem
             aria-label="Desktop"
-            icon={<IconDesktopMac />}
+            icon={<IconDesktop />}
             key="desktop"
             value="desktop"
           />
@@ -75,7 +75,7 @@ export const DisabledItem: Story = {
         <SegmentedControlItem
           aria-label="Desktop"
           disabled
-          icon={<IconDesktopMac />}
+          icon={<IconDesktop />}
           key="desktop"
           value="desktop"
         />

@@ -1,6 +1,6 @@
 "use client";
 
-import { IconLogout, IconPerson } from "@optiaxiom/icons";
+import { IconArrowRightFromBracket, IconUser } from "@optiaxiom/icons";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -29,11 +29,11 @@ export function App() {
 
         <DropdownMenuContent>
           <DropdownMenuLabel>My Account</DropdownMenuLabel>
-          <DropdownMenuItem icon={<IconPerson />}>
-            View Profile
-          </DropdownMenuItem>
+          <DropdownMenuItem icon={<IconUser />}>View Profile</DropdownMenuItem>
           <DropdownMenuSeparator />
-          <DropdownMenuItem icon={<IconLogout />}>Logout</DropdownMenuItem>
+          <DropdownMenuItem icon={<IconArrowRightFromBracket />}>
+            Logout
+          </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
     </Group>
