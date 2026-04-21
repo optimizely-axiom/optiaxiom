@@ -42,13 +42,14 @@ function materialSymbolsPlugin() {
       }
 
       const filePath = id.slice(prefix.length);
+      const isFilled = basename(filePath).includes("-fill");
 
       const svgContent = readFileSync(filePath, "utf-8");
       const componentName = svgToComponentName(basename(filePath));
       const unfilledPath = parseSvgPath(svgContent);
 
       // Read the corresponding filled SVG
-      const fillFilePath = filePath.replace(/\.svg$/, "-fill.svg");
+      const fillFilePath = filePath.replace(/(-fill)?\.svg$/, "-fill.svg");
       const fillSvgContent = readFileSync(fillFilePath, "utf-8");
       const filledPath = parseSvgPath(fillSvgContent);
 
@@ -60,7 +61,8 @@ import { MaterialIcon } from "${materialIconId}";
 const ${componentName} = forwardRef(
   function ${componentName}(props, ref) {
     return createElement(MaterialIcon, {
-      filledPath: ${unfilledPath === filledPath ? "undefined" : JSON.stringify(filledPath)},
+      ${isFilled && unfilledPath !== filledPath ? "filled: true," : ""}
+      ${unfilledPath === filledPath ? "" : `filledPath: ${JSON.stringify(filledPath)},`}
       ref,
       unfilledPath: ${JSON.stringify(unfilledPath)},
       ...props,
@@ -90,9 +92,8 @@ function parseSvgPath(svgContent) {
  * Map from SVG file base name to exported component name.
  */
 function svgToComponentName(svgFileName) {
-  const name = svgFileName.replace(/\.svg$/, "").replace(/-fill$/, "");
+  const name = svgFileName.replace(/\.svg$/, "").replace(/-fill$/, "_fill");
 
-  // Convert snake_case to PascalCase
   const pascal = name
     .split("_")
     .map((s) => s.charAt(0).toUpperCase() + s.slice(1))
