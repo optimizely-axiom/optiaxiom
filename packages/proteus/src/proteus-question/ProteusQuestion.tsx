@@ -153,9 +153,9 @@ export function ProteusQuestion({ questions }: ProteusQuestionProps) {
         ) {
           event.preventDefault();
           if (event.key === "ArrowLeft" && currentIndex > 0) {
-            onTrack?.("Ask User Question Back", {
-              from_index: currentIndex,
-              to_index: currentIndex - 1,
+            onTrack?.("ask_user_question_back", {
+              from_index: String(currentIndex),
+              to_index: String(currentIndex - 1),
             });
             setCurrentIndex((i) => i - 1);
           } else if (event.key === "ArrowRight" && !isLast) {
