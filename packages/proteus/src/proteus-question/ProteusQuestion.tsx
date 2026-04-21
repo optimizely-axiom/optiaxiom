@@ -123,9 +123,9 @@ export function ProteusQuestion({ questions }: ProteusQuestionProps) {
     if (currentValue) {
       const indices = currentValue.map((v) => options.indexOf(v));
       onTrack?.("ask_user_question_option_selected", {
-        question_index: String(currentIndex),
-        option_index: String(indices[0]),
         is_custom_text: String(currentValue.some((v) => !options.includes(v))),
+        option_index: String(indices[0]),
+        question_index: String(currentIndex),
       });
     }
     if (isLast) {
