@@ -69,7 +69,7 @@ export type ProteusDocumentShellProps = Pick<
   /**
    * Callback when an analytics event is fired
    */
-  onTrack?: (event: string, properties: Record<string, unknown>) => void;
+  onTrack?: (event: string, properties: Record<string, string>) => void;
   /**
    * Whether form is readonly
    */

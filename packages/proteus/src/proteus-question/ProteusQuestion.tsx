@@ -34,8 +34,8 @@ export function ProteusQuestion({ questions }: ProteusQuestionProps) {
     Array.isArray(value) && value.length > 0 && value.every(Boolean);
 
   const onDismiss = useCallback(() => {
-    onTrack?.("Ask Question Card Dismissed", {
-      question_index_at_dismiss: currentIndex,
+    onTrack?.("ask_question_card_dismissed", {
+      question_index_at_dismiss: String(currentIndex),
     });
     void onEvent({
       message: "[User declined to answer the question]",
@@ -86,10 +86,10 @@ export function ProteusQuestion({ questions }: ProteusQuestionProps) {
     const answeredCount = answers.filter(
       (a) => Array.isArray(a) && a.length > 0,
     ).length;
-    onTrack?.("Ask User Question Submitted", {
-      answered_count: answeredCount,
-      skipped_count: questions.length - answeredCount,
-      total_questions: questions.length,
+    onTrack?.("ask_user_question_submitted", {
+      answered_count: String(answeredCount),
+      skipped_count: String(questions.length - answeredCount),
+      total_questions: String(questions.length),
     });
     return onEvent({
       message: answers
@@ -107,8 +107,8 @@ export function ProteusQuestion({ questions }: ProteusQuestionProps) {
   };
 
   const onSkip = () => {
-    onTrack?.("Ask User Question Skipped", {
-      question_index: currentIndex,
+    onTrack?.("ask_user_question_skipped", {
+      question_index: String(currentIndex),
     });
     answers[currentIndex] = null;
     setAnswers([...answers]);
@@ -122,11 +122,10 @@ export function ProteusQuestion({ questions }: ProteusQuestionProps) {
     const currentValue = answers[currentIndex];
     if (currentValue) {
       const indices = currentValue.map((v) => options.indexOf(v));
-      onTrack?.("Ask User Question Selected", {
-        question_index: currentIndex,
-        option_index: indices[0],
-        option_indices: indices,
-        is_custom_text: currentValue.some((v) => !options.includes(v)),
+      onTrack?.("ask_user_question_option_selected", {
+        question_index: String(currentIndex),
+        option_index: String(indices[0]),
+        is_custom_text: String(currentValue.some((v) => !options.includes(v))),
       });
     }
     if (isLast) {
@@ -182,9 +181,9 @@ export function ProteusQuestion({ questions }: ProteusQuestionProps) {
                   icon={<IconAngleLeft />}
                   onClick={(event) => {
                     event.preventDefault();
-                    onTrack?.("Ask User Question Back", {
-                      from_index: currentIndex,
-                      to_index: currentIndex - 1,
+                    onTrack?.("ask_user_question_back", {
+                      from_index: String(currentIndex),
+                      to_index: String(currentIndex - 1),
                     });
                     setCurrentIndex((i) => i - 1);
                   }}
