@@ -34,16 +34,16 @@ export function ProteusQuestion({ questions }: ProteusQuestionProps) {
     Array.isArray(value) && value.length > 0 && value.every(Boolean);
 
   const goBack = useCallback(() => {
-    onTrack?.("ask_user_question_back", {
-      from_index: String(currentIndex),
-      to_index: String(currentIndex - 1),
+    onTrack?.("Ask User Question Back", {
+      fromIndex: String(currentIndex),
+      toIndex: String(currentIndex - 1),
     });
     setCurrentIndex((i) => i - 1);
   }, [currentIndex, onTrack]);
 
   const onDismiss = useCallback(() => {
-    onTrack?.("ask_question_card_dismissed", {
-      question_index_at_dismiss: String(currentIndex),
+    onTrack?.("Ask Question Card Dismissed", {
+      questionIndex: String(currentIndex),
     });
     void onEvent({
       message: "[User declined to answer the question]",
@@ -92,12 +92,12 @@ export function ProteusQuestion({ questions }: ProteusQuestionProps) {
 
   const onComplete = () => {
     const answeredCount = answers.filter(
-      (a) => Array.isArray(a) && a.length > 0,
+      (answer) => Array.isArray(answer) && answer.length > 0,
     ).length;
-    onTrack?.("ask_user_question_submitted", {
-      answered_count: String(answeredCount),
-      skipped_count: String(questions.length - answeredCount),
-      total_questions: String(questions.length),
+    onTrack?.("Ask User Question Submitted", {
+      answeredCount: String(answeredCount),
+      skippedCount: String(questions.length - answeredCount),
+      totalQuestions: String(questions.length),
     });
     return onEvent({
       message: answers
@@ -115,8 +115,8 @@ export function ProteusQuestion({ questions }: ProteusQuestionProps) {
   };
 
   const onSkip = () => {
-    onTrack?.("ask_user_question_skipped", {
-      question_index: String(currentIndex),
+    onTrack?.("Ask User Question Skipped", {
+      questionIndex: String(currentIndex),
     });
     answers[currentIndex] = null;
     setAnswers([...answers]);
@@ -130,10 +130,10 @@ export function ProteusQuestion({ questions }: ProteusQuestionProps) {
     const currentValue = answers[currentIndex];
     if (currentValue) {
       const firstIndex = options.indexOf(currentValue[0]);
-      onTrack?.("ask_user_question_option_selected", {
-        is_custom_text: String(currentValue.some((v) => !options.includes(v))),
-        option_index: firstIndex === -1 ? "custom" : String(firstIndex),
-        question_index: String(currentIndex),
+      onTrack?.("Ask User Question Option Selected", {
+        isCustomText: String(currentValue.some((v) => !options.includes(v))),
+        optionIndex: String(firstIndex),
+        questionIndex: String(currentIndex),
       });
     }
     if (isLast) {

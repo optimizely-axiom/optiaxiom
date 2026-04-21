@@ -186,7 +186,11 @@ export function ProteusDocumentShell({
         }
         return;
       })}
-      onTrack={onTrack}
+      onTrack={useEffectEvent(
+        (event: string, properties: Record<string, string>) => {
+          onTrack?.(event, properties);
+        },
+      )}
       readOnly={readOnly}
       strict={strict}
       useResource={useResource}
