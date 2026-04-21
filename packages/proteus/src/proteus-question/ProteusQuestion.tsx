@@ -34,7 +34,7 @@ export function ProteusQuestion({ questions }: ProteusQuestionProps) {
     Array.isArray(value) && value.length > 0 && value.every(Boolean);
 
   const onDismiss = useCallback(() => {
-    onTrack?.("ask_question_card_dismissed", {
+    onTrack?.("Ask Question Card Dismissed", {
       question_index_at_dismiss: currentIndex,
     });
     void onEvent({
@@ -86,7 +86,7 @@ export function ProteusQuestion({ questions }: ProteusQuestionProps) {
     const answeredCount = answers.filter(
       (a) => Array.isArray(a) && a.length > 0,
     ).length;
-    onTrack?.("ask_user_question_submitted", {
+    onTrack?.("Ask User Question Submitted", {
       answered_count: answeredCount,
       skipped_count: questions.length - answeredCount,
       total_questions: questions.length,
@@ -107,7 +107,7 @@ export function ProteusQuestion({ questions }: ProteusQuestionProps) {
   };
 
   const onSkip = () => {
-    onTrack?.("ask_user_question_skipped", {
+    onTrack?.("Ask User Question Skipped", {
       question_index: currentIndex,
     });
     answers[currentIndex] = null;
@@ -122,7 +122,7 @@ export function ProteusQuestion({ questions }: ProteusQuestionProps) {
     const currentValue = answers[currentIndex];
     if (currentValue) {
       const indices = currentValue.map((v) => options.indexOf(v));
-      onTrack?.("ask_user_question_selected", {
+      onTrack?.("Ask User Question Selected", {
         question_index: currentIndex,
         option_index: indices[0],
         option_indices: indices,
@@ -154,7 +154,7 @@ export function ProteusQuestion({ questions }: ProteusQuestionProps) {
         ) {
           event.preventDefault();
           if (event.key === "ArrowLeft" && currentIndex > 0) {
-            onTrack?.("ask_user_question_back", {
+            onTrack?.("Ask User Question Back", {
               from_index: currentIndex,
               to_index: currentIndex - 1,
             });
@@ -182,7 +182,7 @@ export function ProteusQuestion({ questions }: ProteusQuestionProps) {
                   icon={<IconAngleLeft />}
                   onClick={(event) => {
                     event.preventDefault();
-                    onTrack?.("ask_user_question_back", {
+                    onTrack?.("Ask User Question Back", {
                       from_index: currentIndex,
                       to_index: currentIndex - 1,
                     });
