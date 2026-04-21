@@ -30,8 +30,9 @@ const iconEntries = Object.entries(tags)
       .replace(/(\d)([a-zA-Z])/g, "$1 $2");
     return {
       component,
+      keywords: (keywords as string[]).join(" ").toLowerCase(),
       label,
-      searchText: [label, ...keywords].join(" ").toLowerCase(),
+      labelLower: label.toLowerCase(),
     };
   })
   .sort((a, b) => a.label.localeCompare(b.label));
@@ -44,8 +45,11 @@ export function IconGallery() {
 
   const filtered = useMemo(() => {
     if (!search) return iconEntries;
-    const lower = search.toLowerCase();
-    return iconEntries.filter((entry) => entry.searchText.includes(lower));
+    return iconEntries
+      .map((entry) => ({ entry, score: searchScore(entry, search) }))
+      .filter(({ score }) => score > 0)
+      .sort((a, b) => b.score - a.score)
+      .map(({ entry }) => entry);
   }, [search]);
 
   const handleCopy = async (component: string) => {
@@ -155,4 +159,22 @@ function IconCell({
       <TooltipContent>Copied!</TooltipContent>
     </TooltipRoot>
   );
+}
+
+function searchScore(entry: (typeof iconEntries)[number], search: string) {
+  const words = search.toLowerCase().split(/\s+/).filter(Boolean);
+  if (
+    !words.every(
+      (w) => entry.labelLower.includes(w) || entry.keywords.includes(w),
+    )
+  ) {
+    return 0;
+  }
+
+  const joined = words.join("");
+  if (entry.labelLower === joined) return 1;
+  if (entry.labelLower.startsWith(joined)) return 0.9;
+  if (entry.labelLower.includes(joined)) return 0.8;
+  if (words.every((w) => entry.labelLower.includes(w))) return 0.7;
+  return 0.5;
 }
