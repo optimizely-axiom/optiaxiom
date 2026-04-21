@@ -14,7 +14,7 @@ export const [ProteusDocumentProvider, useProteusDocumentContext] =
     data: Record<string, unknown>;
     onDataChange: (path: string, value: unknown) => void;
     onEvent: (event: ProteusEventHandler) => Promise<unknown>;
-    onTrack?: (event: string, properties: Record<string, unknown>) => void;
+    onTrack?: (event: string, properties: Record<string, string>) => void;
     readOnly: boolean | undefined;
     strict: boolean | undefined;
     useResource?: UseResource;
