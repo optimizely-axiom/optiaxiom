@@ -33,6 +33,14 @@ export function ProteusQuestion({ questions }: ProteusQuestionProps) {
   const valid =
     Array.isArray(value) && value.length > 0 && value.every(Boolean);
 
+  const goBack = useCallback(() => {
+    onTrack?.("ask_user_question_back", {
+      from_index: String(currentIndex),
+      to_index: String(currentIndex - 1),
+    });
+    setCurrentIndex((i) => i - 1);
+  }, [currentIndex, onTrack]);
+
   const onDismiss = useCallback(() => {
     onTrack?.("ask_question_card_dismissed", {
       question_index_at_dismiss: String(currentIndex),
@@ -121,10 +129,10 @@ export function ProteusQuestion({ questions }: ProteusQuestionProps) {
   const onSubmit = () => {
     const currentValue = answers[currentIndex];
     if (currentValue) {
-      const indices = currentValue.map((v) => options.indexOf(v));
+      const firstIndex = options.indexOf(currentValue[0]);
       onTrack?.("ask_user_question_option_selected", {
         is_custom_text: String(currentValue.some((v) => !options.includes(v))),
-        option_index: String(indices[0]),
+        option_index: firstIndex === -1 ? "custom" : String(firstIndex),
         question_index: String(currentIndex),
       });
     }
@@ -153,11 +161,7 @@ export function ProteusQuestion({ questions }: ProteusQuestionProps) {
         ) {
           event.preventDefault();
           if (event.key === "ArrowLeft" && currentIndex > 0) {
-            onTrack?.("ask_user_question_back", {
-              from_index: String(currentIndex),
-              to_index: String(currentIndex - 1),
-            });
-            setCurrentIndex((i) => i - 1);
+            goBack();
           } else if (event.key === "ArrowRight" && !isLast) {
             setCurrentIndex((i) => i + 1);
           }
@@ -181,11 +185,7 @@ export function ProteusQuestion({ questions }: ProteusQuestionProps) {
                   icon={<IconAngleLeft />}
                   onClick={(event) => {
                     event.preventDefault();
-                    onTrack?.("ask_user_question_back", {
-                      from_index: String(currentIndex),
-                      to_index: String(currentIndex - 1),
-                    });
-                    setCurrentIndex((i) => i - 1);
+                    goBack();
                   }}
                   size="sm"
                 />
