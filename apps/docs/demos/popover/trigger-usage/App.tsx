@@ -1,4 +1,4 @@
-import { IconFilterAlt } from "@optiaxiom/icons";
+import { IconFilter } from "@optiaxiom/icons";
 import {
   Indicator,
   Popover,
@@ -14,7 +14,7 @@ export function App() {
         <PopoverTrigger
           appearance="subtle"
           aria-label="Filters"
-          icon={<IconFilterAlt />}
+          icon={<IconFilter />}
         />
       </Indicator>
 

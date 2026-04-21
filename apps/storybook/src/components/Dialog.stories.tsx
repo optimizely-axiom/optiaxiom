@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { IconExpandContent } from "@optiaxiom/icons";
+import { IconExpand } from "@optiaxiom/icons";
 import {
   Box,
   Button,
@@ -161,11 +161,7 @@ export const CloseButton: Story = {
 export const Actions: Story = {
   args: {
     actions: (
-      <Button
-        appearance="subtle"
-        aria-label="maximize"
-        icon={<IconExpandContent />}
-      />
+      <Button appearance="subtle" aria-label="maximize" icon={<IconExpand />} />
     ),
   },
 };

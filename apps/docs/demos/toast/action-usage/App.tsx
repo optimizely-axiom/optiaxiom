@@ -1,6 +1,6 @@
 "use client";
 
-import { IconDelete } from "@optiaxiom/icons";
+import { IconTrashCan } from "@optiaxiom/icons";
 import { Button, Group, Text, toaster } from "@optiaxiom/react";
 import { useState } from "react";
 
@@ -13,7 +13,7 @@ export function App() {
       <Button
         appearance="danger-outline"
         disabled={status === "deleted"}
-        icon={<IconDelete />}
+        icon={<IconTrashCan />}
         onClick={() => {
           setStatus("deleted");
           toaster.create("Task Deleted", {

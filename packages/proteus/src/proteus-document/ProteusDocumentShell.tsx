@@ -1,4 +1,4 @@
-import { IconSouth } from "@optiaxiom/icons";
+import { IconArrowDown } from "@optiaxiom/icons";
 import {
   Box,
   Disclosure,
@@ -283,7 +283,7 @@ export function ProteusDocumentShell({
                 {element.body}
                 {element.compact && (
                   <Box {...styles.scrollIndicator()}>
-                    <IconSouth />
+                    <IconArrowDown />
                   </Box>
                 )}
               </Group>

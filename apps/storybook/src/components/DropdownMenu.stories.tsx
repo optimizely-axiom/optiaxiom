@@ -1,17 +1,16 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import {
-  IconArticle,
+  IconArrowRightFromBracket,
+  IconBell,
   IconBook,
-  IconDocs,
-  IconDraft,
-  IconHelp,
+  IconCircleQuestion,
+  IconFile,
+  IconFileLines,
+  IconGear,
   IconLock,
-  IconLogout,
-  IconNotifications,
-  IconPerson,
-  IconSettings,
-  IconVideocam,
+  IconUser,
+  IconVideo,
 } from "@optiaxiom/icons";
 import {
   Avatar,
@@ -68,23 +67,23 @@ export const Basic: Story = {
         <DropdownMenuTrigger>Download</DropdownMenuTrigger>
 
         <DropdownMenuContent>
-          <DropdownMenuItem icon={<IconArticle />} onSelect={action("excel")}>
+          <DropdownMenuItem icon={<IconFileLines />} onSelect={action("excel")}>
             Excel
           </DropdownMenuItem>
           <DropdownMenuItem
             disabled
-            icon={<IconDocs />}
+            icon={<IconFileLines />}
             onSelect={action("pdf")}
           >
             PDF
           </DropdownMenuItem>
-          <DropdownMenuItem icon={<IconDraft />} onSelect={action("ppt")}>
+          <DropdownMenuItem icon={<IconFile />} onSelect={action("ppt")}>
             Powerpoint
           </DropdownMenuItem>
-          <DropdownMenuItem icon={<IconVideocam />} onSelect={action("video")}>
+          <DropdownMenuItem icon={<IconVideo />} onSelect={action("video")}>
             Video
           </DropdownMenuItem>
-          <DropdownMenuItem icon={<IconArticle />} onSelect={action("word")}>
+          <DropdownMenuItem icon={<IconFileLines />} onSelect={action("word")}>
             Word
           </DropdownMenuItem>
         </DropdownMenuContent>
@@ -276,16 +275,16 @@ export const WithGroup: Story = {
 
         <DropdownMenuContent>
           <DropdownMenuGroup>
-            <DropdownMenuItem addonBefore={<IconPerson />}>
+            <DropdownMenuItem addonBefore={<IconUser />}>
               Account
             </DropdownMenuItem>
-            <DropdownMenuItem addonBefore={<IconSettings />}>
+            <DropdownMenuItem addonBefore={<IconGear />}>
               Settings
             </DropdownMenuItem>
             <DropdownMenuItem addonBefore={<IconLock />}>
               Privacy
             </DropdownMenuItem>
-            <DropdownMenuItem addonBefore={<IconNotifications />}>
+            <DropdownMenuItem addonBefore={<IconBell />}>
               Notifications
             </DropdownMenuItem>
           </DropdownMenuGroup>
@@ -295,13 +294,13 @@ export const WithGroup: Story = {
             <DropdownMenuItem addonBefore={<IconBook />}>
               Help Guide
             </DropdownMenuItem>
-            <DropdownMenuItem addonBefore={<IconHelp />}>
+            <DropdownMenuItem addonBefore={<IconCircleQuestion />}>
               Help Center
             </DropdownMenuItem>
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
 
-          <DropdownMenuItem addonBefore={<IconLogout />}>
+          <DropdownMenuItem addonBefore={<IconArrowRightFromBracket />}>
             Log out
           </DropdownMenuItem>
         </DropdownMenuContent>

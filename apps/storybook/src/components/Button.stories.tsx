@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { IconKeyboardArrowDown, IconUpload } from "@optiaxiom/icons";
+import { IconAngleDown, IconUpload } from "@optiaxiom/icons";
 import { Button, Group, Select, SelectTrigger, Text } from "@optiaxiom/react";
 import { SurfaceProvider } from "@optiaxiom/react/unstable";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
@@ -12,7 +12,7 @@ export default {
     icon: {
       control: { type: "select" },
       mapping: {
-        "arrow-drop-down": <IconKeyboardArrowDown />,
+        "arrow-drop-down": <IconAngleDown />,
         upload: <IconUpload />,
       },
       options: ["arrow-drop-down", "upload"],

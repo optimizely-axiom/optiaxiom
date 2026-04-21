@@ -1,4 +1,4 @@
-import { IconDelete, IconEdit } from "@optiaxiom/icons";
+import { IconPen, IconTrashCan } from "@optiaxiom/icons";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,8 +12,8 @@ export function App() {
       <DropdownMenuTrigger>Open</DropdownMenuTrigger>
 
       <DropdownMenuContent>
-        <DropdownMenuItem icon={<IconEdit />}>Edit</DropdownMenuItem>
-        <DropdownMenuItem icon={<IconDelete />} intent="danger">
+        <DropdownMenuItem icon={<IconPen />}>Edit</DropdownMenuItem>
+        <DropdownMenuItem icon={<IconTrashCan />} intent="danger">
           Delete
         </DropdownMenuItem>
       </DropdownMenuContent>

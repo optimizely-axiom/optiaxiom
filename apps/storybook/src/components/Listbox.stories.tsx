@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { IconLanguage, IconStar } from "@optiaxiom/icons";
+import { IconGlobe, IconStar } from "@optiaxiom/icons";
 import {
   Box,
   type BoxProps,
@@ -225,7 +225,7 @@ export const ComplexContent: Story = {
             key={item}
             role="option"
           >
-            <IconLanguage />
+            <IconGlobe />
             {item}
           </ListboxRadioItem>
         ))}

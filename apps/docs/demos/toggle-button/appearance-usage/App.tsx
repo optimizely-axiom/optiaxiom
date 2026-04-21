@@ -1,4 +1,4 @@
-import { IconDockToRight } from "@optiaxiom/icons";
+import { IconSidebar } from "@optiaxiom/icons";
 import { Group, ToggleButton } from "@optiaxiom/react";
 
 export function App() {
@@ -7,9 +7,9 @@ export function App() {
       <ToggleButton
         appearance="subtle"
         aria-label="Toggle sidebar"
-        icon={<IconDockToRight />}
+        icon={<IconSidebar />}
       />
-      <ToggleButton aria-label="Toggle sidebar" icon={<IconDockToRight />} />
+      <ToggleButton aria-label="Toggle sidebar" icon={<IconSidebar />} />
     </Group>
   );
 }

@@ -1,4 +1,4 @@
-import { IconMusicNote2, IconStar } from "@optiaxiom/icons";
+import { IconMusic, IconStar } from "@optiaxiom/icons";
 import {
   Badge,
   Box,
@@ -31,7 +31,7 @@ export function App() {
             rounded="md"
             shadow="sm"
           >
-            <IconMusicNote2 size="32" />
+            <IconMusic size="32" />
           </Box>
         </CardPreview>
         <CardHeader>Checkbox</CardHeader>
@@ -59,7 +59,7 @@ export function App() {
             rounded="md"
             shadow="sm"
           >
-            <IconMusicNote2 size="32" />
+            <IconMusic size="32" />
           </Box>
         </CardPreview>
         <CardHeader>Checkbox and star button</CardHeader>

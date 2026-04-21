@@ -1,4 +1,4 @@
-import { IconCheck, IconContentCopy } from "@optiaxiom/icons";
+import { IconCheck, IconClone } from "@optiaxiom/icons";
 import {
   Button,
   TooltipContent,
@@ -38,7 +38,7 @@ export function CopyButton({ onCopy }: { onCopy: () => string }) {
             isCopied ? (
               <IconCheck pointerEvents="none" />
             ) : (
-              <IconContentCopy pointerEvents="none" />
+              <IconClone pointerEvents="none" />
             )
           }
         />

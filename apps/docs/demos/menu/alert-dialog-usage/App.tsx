@@ -1,6 +1,6 @@
 "use client";
 
-import { IconDelete, IconEdit } from "@optiaxiom/icons";
+import { IconPen, IconTrashCan } from "@optiaxiom/icons";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -22,11 +22,11 @@ export function App() {
     <Menu
       options={[
         {
-          addon: <IconEdit />,
+          addon: <IconPen />,
           label: "Edit",
         },
         {
-          addon: <IconDelete />,
+          addon: <IconTrashCan />,
           execute: () => setOpen(true),
           intent: "danger",
           label: "Delete",

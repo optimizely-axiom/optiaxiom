@@ -1,6 +1,6 @@
 "use client";
 
-import { IconDragIndicator } from "@optiaxiom/icons";
+import { IconGrip } from "@optiaxiom/icons";
 import {
   Sortable,
   SortableHandle,
@@ -24,7 +24,7 @@ export function App() {
             key={item}
           >
             <SortableHandle>
-              <IconDragIndicator />
+              <IconGrip />
             </SortableHandle>
             Item {item}
           </SortableItem>

@@ -1,4 +1,4 @@
-import { IconDelete } from "@optiaxiom/icons";
+import { IconTrashCan } from "@optiaxiom/icons";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -16,7 +16,7 @@ export function App() {
       <AlertDialogTrigger
         appearance="danger-outline"
         aria-label="Delete task"
-        icon={<IconDelete />}
+        icon={<IconTrashCan />}
       />
 
       <AlertDialogContent>

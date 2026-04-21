@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { IconThumbDown } from "@optiaxiom/icons";
+import { IconThumbsDown } from "@optiaxiom/icons";
 import {
   Button,
   Disclosure,
@@ -119,7 +119,7 @@ export const CustomTrigger: Story = {
     children: (
       <>
         <DisclosureTrigger asChild>
-          <Button aria-label="Dislike" icon={<IconThumbDown />} />
+          <Button aria-label="Dislike" icon={<IconThumbsDown />} />
         </DisclosureTrigger>
         <DisclosureContent>
           Content for the item. Contains multiple lines of lorem ipsum.

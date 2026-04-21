@@ -1,4 +1,4 @@
-import { IconEdit } from "@optiaxiom/icons";
+import { IconPen } from "@optiaxiom/icons";
 import { Breadcrumb, Button } from "@optiaxiom/react";
 
 export function App() {
@@ -14,7 +14,7 @@ export function App() {
             <Button
               appearance="subtle"
               aria-label="Edit parent page"
-              icon={<IconEdit />}
+              icon={<IconPen />}
               size="sm"
             />
           ),

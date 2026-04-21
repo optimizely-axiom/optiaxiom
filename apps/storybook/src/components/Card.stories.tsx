@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { IconDragIndicator } from "@optiaxiom/icons";
+import { IconGrip } from "@optiaxiom/icons";
 import {
   Badge,
   Box,
@@ -371,10 +371,7 @@ export const WithSortable: Story = {
                             color="fg.tertiary"
                             transition="colors"
                           >
-                            <Button
-                              appearance="subtle"
-                              icon={<IconDragIndicator />}
-                            />
+                            <Button appearance="subtle" icon={<IconGrip />} />
                           </SortableHandle>
                         }
                         description={data[item].description}

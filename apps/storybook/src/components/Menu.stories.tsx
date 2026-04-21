@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import {
-  IconAccountCircle,
-  IconDelete,
-  IconEdit,
-  IconPerson,
-  IconSend,
-  IconWandShine,
+  IconBolt,
+  IconCircleUser,
+  IconPaperPlaneTop,
+  IconPen,
+  IconTrashCan,
+  IconUser,
 } from "@optiaxiom/icons";
 import {
   Avatar,
@@ -306,7 +306,7 @@ export const People: Story = {
         options={useMemo<MenuOption[]>(
           () => [
             {
-              addon: <IconAccountCircle />,
+              addon: <IconCircleUser />,
               execute: () => setValue([users[0]]),
               label: "Assign to me",
               visible: () => !inputValue,
@@ -335,7 +335,7 @@ export const People: Story = {
                 item.name.toLowerCase().includes(inputValue.toLowerCase()),
             })),
             {
-              addon: <IconSend />,
+              addon: <IconPaperPlaneTop />,
               group: inviteGroup,
               label: "Invite user",
               visible: () => !!inputValue,
@@ -629,11 +629,11 @@ export const Addons: Story = {
             label: "External link",
           },
           {
-            addon: <IconEdit />,
+            addon: <IconPen />,
             label: "Edit",
           },
           {
-            addon: <IconDelete />,
+            addon: <IconTrashCan />,
             intent: "danger",
             label: "Delete",
           },
@@ -669,11 +669,11 @@ export const WithDialog: Story = {
           {...args}
           options={[
             {
-              addon: <IconEdit />,
+              addon: <IconPen />,
               label: "Edit",
             },
             {
-              addon: <IconDelete />,
+              addon: <IconTrashCan />,
               execute: () =>
                 dialogkit.create(
                   <DialogContent>
@@ -710,11 +710,11 @@ export const SwitchItem: Story = {
         {...args}
         options={[
           {
-            addon: <IconPerson />,
+            addon: <IconUser />,
             label: "My Profile",
           },
           {
-            addon: <IconWandShine />,
+            addon: <IconBolt />,
             execute: () => setEnabled(!enabled),
             label: "New UI (Beta)",
             selected: enabled,

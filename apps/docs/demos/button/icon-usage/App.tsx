@@ -2,7 +2,7 @@
 
 import type { ComponentPropsWithRef } from "react";
 
-import { IconDelete } from "@optiaxiom/icons";
+import { IconTrashCan } from "@optiaxiom/icons";
 import { Button } from "@optiaxiom/react";
 
 export function App({
@@ -12,7 +12,7 @@ export function App({
   return (
     <Button
       appearance={appearance}
-      icon={<IconDelete />}
+      icon={<IconTrashCan />}
       iconPosition={iconPosition}
     >
       Delete

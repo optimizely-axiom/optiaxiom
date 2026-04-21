@@ -1,4 +1,4 @@
-import { IconChevronRight, IconKeyboardArrowDown } from "@optiaxiom/icons";
+import { IconAngleDown, IconAngleRight } from "@optiaxiom/icons";
 import { type MenuOption } from "@optiaxiom/react";
 import { useMemo, useState } from "react";
 
@@ -65,9 +65,9 @@ export function TreeNode({
         icon={
           hasChildren &&
           (collapsed ? (
-            <IconChevronRight size={14} />
+            <IconAngleRight size={14} />
           ) : (
-            <IconKeyboardArrowDown size={14} />
+            <IconAngleDown size={14} />
           ))
         }
         isSelected={selectedPath === path}

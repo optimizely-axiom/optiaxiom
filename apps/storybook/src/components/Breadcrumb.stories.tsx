@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { IconEdit } from "@optiaxiom/icons";
+import { IconPen } from "@optiaxiom/icons";
 import {
   Breadcrumb,
   Button,
@@ -86,7 +86,7 @@ export const Addons: Story = {
           <Button
             appearance="subtle"
             aria-label="Edit"
-            icon={<IconEdit />}
+            icon={<IconPen />}
             size="sm"
           />
         ),
@@ -119,7 +119,7 @@ export const Truncated: Story = {
           <Button
             appearance="subtle"
             aria-label="Edit"
-            icon={<IconEdit />}
+            icon={<IconPen />}
             size="sm"
           />
         ),

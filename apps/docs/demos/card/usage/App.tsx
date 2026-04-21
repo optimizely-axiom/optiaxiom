@@ -1,4 +1,4 @@
-import { IconEdit, IconLogout } from "@optiaxiom/icons";
+import { IconArrowRightFromBracket, IconPen } from "@optiaxiom/icons";
 import {
   Card,
   CardHeader,
@@ -30,9 +30,9 @@ export function App() {
         addonAfter={
           <Menu
             options={[
-              { addon: <IconEdit />, label: "Edit" },
+              { addon: <IconPen />, label: "Edit" },
               {
-                addon: <IconLogout />,
+                addon: <IconArrowRightFromBracket />,
                 intent: "danger",
                 label: "Delete",
               },

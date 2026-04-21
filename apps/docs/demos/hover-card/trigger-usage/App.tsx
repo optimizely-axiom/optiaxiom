@@ -1,4 +1,4 @@
-import { IconMail } from "@optiaxiom/icons";
+import { IconEnvelope } from "@optiaxiom/icons";
 import { Button, Text } from "@optiaxiom/react";
 import {
   HoverCard,
@@ -13,7 +13,7 @@ export function App() {
         <Button
           appearance="subtle"
           aria-label="Information hover"
-          icon={<IconMail />}
+          icon={<IconEnvelope />}
         />
       </HoverCardTrigger>
 

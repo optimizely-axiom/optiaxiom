@@ -1,4 +1,4 @@
-import { IconAdd2, IconDelete } from "@optiaxiom/icons";
+import { IconPlus, IconTrashCan } from "@optiaxiom/icons";
 import {
   Box,
   Button,
@@ -154,7 +154,7 @@ export function ConditionEditor({
             <Button
               alignSelf="start"
               appearance="subtle"
-              icon={<IconAdd2 size={14} />}
+              icon={<IconPlus size={14} />}
               onClick={() => addRowToGroup(gi)}
               size="sm"
             >
@@ -167,7 +167,7 @@ export function ConditionEditor({
       <Button
         alignSelf="start"
         appearance="subtle"
-        icon={<IconAdd2 size={14} />}
+        icon={<IconPlus size={14} />}
         onClick={addOrGroup}
         size="sm"
       >
@@ -254,7 +254,7 @@ function ConditionRowEditor({
 
       <Button
         appearance="subtle"
-        icon={<IconDelete size={14} />}
+        icon={<IconTrashCan size={14} />}
         onClick={onRemove}
         size="sm"
       />

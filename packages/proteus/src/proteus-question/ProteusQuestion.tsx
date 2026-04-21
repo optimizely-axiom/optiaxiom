@@ -1,4 +1,4 @@
-import { IconArrowRightAlt, IconEdit } from "@optiaxiom/icons";
+import { IconArrowRight, IconPen } from "@optiaxiom/icons";
 import { Box, Button, Checkbox, Group, Text } from "@optiaxiom/react";
 import { InlineInput } from "@optiaxiom/react/unstable";
 import * as RovingFocus from "@radix-ui/react-roving-focus";
@@ -271,7 +271,7 @@ export function ProteusQuestion({ questions }: ProteusQuestionProps) {
                           ml="auto"
                           w="24"
                         >
-                          <IconArrowRightAlt />
+                          <IconArrowRight />
                         </Box>
                       )}
                     </Group>
@@ -290,7 +290,7 @@ export function ProteusQuestion({ questions }: ProteusQuestionProps) {
               <Group gap="12">
                 {type === "single_select" ? (
                   <Box {...styles.addon({ cursor: "pointer" })}>
-                    <IconEdit />
+                    <IconPen />
                   </Box>
                 ) : (
                   <Checkbox
@@ -352,7 +352,7 @@ export function ProteusQuestion({ questions }: ProteusQuestionProps) {
                   <Button
                     appearance={otherValue ? "primary-opal" : "default"}
                     aria-label={otherValue && (isLast ? "Submit" : "Next")}
-                    icon={otherValue && <IconArrowRightAlt />}
+                    icon={otherValue && <IconArrowRight />}
                     ml="auto"
                     onClick={(event) => {
                       event.preventDefault();
@@ -394,7 +394,7 @@ export function ProteusQuestion({ questions }: ProteusQuestionProps) {
             appearance={valid ? "primary-opal" : "default"}
             aria-label={isLast ? "Submit" : "Next"}
             disabled={!valid}
-            icon={<IconArrowRightAlt />}
+            icon={<IconArrowRight />}
             onClick={(event) => {
               event.preventDefault();
               onSubmit();

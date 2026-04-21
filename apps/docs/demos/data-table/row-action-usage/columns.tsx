@@ -1,4 +1,4 @@
-import { IconShare } from "@optiaxiom/icons";
+import { IconShareNodes } from "@optiaxiom/icons";
 import {
   Box,
   Button,
@@ -69,7 +69,7 @@ export const columns = [
             <Button
               appearance="subtle"
               aria-label="Share"
-              icon={<IconShare />}
+              icon={<IconShareNodes />}
               size="sm"
             />
           </DataTableAction>
