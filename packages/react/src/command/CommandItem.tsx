@@ -91,6 +91,7 @@ export const CommandItem = forwardRef<HTMLDivElement, CommandItemProps>(
       "aria-posinset": index + 1,
       "aria-selected": selected ?? resolveItemProperty(item.selected),
       "aria-setsize": items.length,
+      index,
       item,
       onClick: (event: MouseEvent<HTMLDivElement>) => {
         onClick?.(event);
