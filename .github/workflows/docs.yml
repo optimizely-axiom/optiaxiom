@@ -2,7 +2,7 @@ name: Docs
 
 on:
   push:
-    branches: [main]
+    branches: [main, v1]
   workflow_dispatch:
 
 permissions:
@@ -72,11 +72,9 @@ jobs:
         id: other
         run: |
           if [ "${{ github.ref_name }}" = "main" ]; then
-            echo "branch=next" >> "$GITHUB_OUTPUT"
-            echo "subpath=v3" >> "$GITHUB_OUTPUT"
+            echo "branch=v1" >> "$GITHUB_OUTPUT"
           else
             echo "branch=main" >> "$GITHUB_OUTPUT"
-            echo "subpath=" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Download other branch artifact
@@ -132,19 +130,18 @@ jobs:
       - name: Merge other branch docs
         if: ${{ steps.download-other.outputs.found == 'true' }}
         run: |
-          if [ "${{ steps.other.outputs.branch }}" = "next" ]; then
-            # We're on main, merge next into combined/v3/
-            mkdir -p combined/v3
-            unzip -o other-docs.zip -d combined/v3
+          if [ "${{ steps.other.outputs.branch }}" = "v1" ]; then
+            # We're on main, merge v1 into combined/v1/
+            mkdir -p combined/v1
+            unzip -o other-docs.zip -d combined/v1
           else
-            # We're on next, merge main as the root and move our build into v3/
+            # We're on v1, merge main as the root and move our build into v1/
             mkdir -p other-root
             unzip -o other-docs.zip -d other-root
-            # Move current build (next) into v3 subfolder of main's output
             mv combined other-build
             cp -r other-root/* combined/ 2>/dev/null || mv other-root combined
-            mkdir -p combined/v3
-            cp -r other-build/* combined/v3/
+            mkdir -p combined/v1
+            cp -r other-build/* combined/v1/
           fi
 
       - name: Upload combined pages artifact

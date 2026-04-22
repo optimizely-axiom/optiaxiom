@@ -2,10 +2,10 @@ name: Visual
 
 on:
   pull_request:
-    branches: [main]
+    branches: [main, v1]
     types: [labeled]
   push:
-    branches: [main]
+    branches: [main, v1]
 
 jobs:
   chromatic:
