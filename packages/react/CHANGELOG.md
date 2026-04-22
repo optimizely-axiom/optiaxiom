@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 1.9.28
+
+### Patch Changes
+
+- bf96c0a: fix react-table peer deps version
+
 ## 1.9.27
 
 ### Patch Changes

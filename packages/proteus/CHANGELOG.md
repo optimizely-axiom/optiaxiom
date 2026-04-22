@@ -1,5 +1,16 @@
 # @optiaxiom/proteus
 
+## 0.2.0
+
+### Minor Changes
+
+- 6c3250e: adds onTrack prop for analytics tracking
+
+### Patch Changes
+
+- Updated dependencies [bf96c0a]
+  - @optiaxiom/react@1.9.28
+
 ## 0.1.26
 
 ### Patch Changes
