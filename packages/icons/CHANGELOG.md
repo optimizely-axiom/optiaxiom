@@ -1,5 +1,11 @@
 # @optiaxiom/icons
 
+## 1.1.1
+
+### Patch Changes
+
+- 87d7a9c: add more missing icons
+
 ## 1.1.0
 
 ### Minor Changes
