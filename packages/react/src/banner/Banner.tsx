@@ -1,9 +1,9 @@
 import {
-  IconCheckCircle,
-  IconClose,
-  IconError,
-  IconInfo,
-  IconWarning,
+  IconCheckCircleSolid,
+  IconCircleExclamation,
+  IconCircleInfo,
+  IconTriangleExclamation,
+  IconXmark,
 } from "@optiaxiom/icons";
 import { useId } from "@radix-ui/react-id";
 import { createElement, forwardRef } from "react";
@@ -25,11 +25,11 @@ export type BannerProps = BoxProps<
 >;
 
 const mapIntentToIcon = {
-  danger: IconError,
-  information: IconInfo,
-  neutral: IconInfo,
-  success: IconCheckCircle,
-  warning: IconWarning,
+  danger: IconCircleExclamation,
+  information: IconCircleInfo,
+  neutral: IconCircleInfo,
+  success: IconCheckCircleSolid,
+  warning: IconTriangleExclamation,
 };
 
 /**
@@ -63,7 +63,7 @@ export const Banner = forwardRef<HTMLDivElement, BannerProps>(
             aria-label="close"
             color="fg.default"
             flex="none"
-            icon={<IconClose />}
+            icon={<IconXmark />}
             onClick={onDismiss}
             size="sm"
           />

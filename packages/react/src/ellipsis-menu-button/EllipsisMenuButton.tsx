@@ -1,4 +1,4 @@
-import { IconMoreHoriz } from "@optiaxiom/icons";
+import { IconEllipsisStroke } from "@optiaxiom/icons";
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import { Button } from "../button";
@@ -20,7 +20,12 @@ export const EllipsisMenuButton = forwardRef<
   EllipsisMenuButtonProps
 >(({ children, ...props }, ref) => {
   return (
-    <Button icon={<IconMoreHoriz />} iconPosition="end" ref={ref} {...props}>
+    <Button
+      icon={<IconEllipsisStroke />}
+      iconPosition="end"
+      ref={ref}
+      {...props}
+    >
       {children}
     </Button>
   );

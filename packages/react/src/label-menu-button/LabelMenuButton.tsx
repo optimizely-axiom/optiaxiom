@@ -1,4 +1,4 @@
-import { IconKeyboardArrowDown } from "@optiaxiom/icons";
+import { IconAngleDown } from "@optiaxiom/icons";
 import { useId } from "@radix-ui/react-id";
 import { Label } from "@radix-ui/react-label";
 import clsx from "clsx";
@@ -68,7 +68,7 @@ export const LabelMenuButton = forwardRef<
           </Text>
         </Group>
         <ButtonAddon asChild>
-          <IconKeyboardArrowDown />
+          <IconAngleDown />
         </ButtonAddon>
       </ButtonRoot>
     );

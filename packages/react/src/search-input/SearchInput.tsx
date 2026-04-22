@@ -1,4 +1,4 @@
-import { IconClose, IconSearch } from "@optiaxiom/icons";
+import { IconSearch, IconXmark } from "@optiaxiom/icons";
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import { type ComponentPropsWithRef, forwardRef, useRef } from "react";
@@ -42,7 +42,7 @@ export const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
             <Button
               appearance="subtle"
               aria-label="Clear"
-              icon={value && <IconClose />}
+              icon={value && <IconXmark />}
               onPointerDown={(event) => {
                 event.preventDefault();
                 forceValueChange("");

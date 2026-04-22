@@ -1,4 +1,4 @@
-import { IconGroups, IconPerson } from "@optiaxiom/icons";
+import { IconUser, IconUserGroup } from "@optiaxiom/icons";
 import * as RadixAvatar from "@radix-ui/react-avatar";
 import { forwardRef } from "react";
 
@@ -36,8 +36,8 @@ function getInitialsFromName(name: string) {
 
 const mapFallbackToIcon = {
   opal: null,
-  team: <IconGroups />,
-  user: <IconPerson filled />,
+  team: <IconUserGroup />,
+  user: <IconUser filled />,
 };
 
 /**

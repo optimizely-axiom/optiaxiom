@@ -1,4 +1,4 @@
-import { IconHelp } from "@optiaxiom/icons";
+import { IconCircleQuestion } from "@optiaxiom/icons";
 import { useId } from "@radix-ui/react-id";
 import * as RadixLabel from "@radix-ui/react-label";
 import { forwardRef, type ReactNode } from "react";
@@ -89,7 +89,7 @@ export const FieldLabel = forwardRef<HTMLDivElement, FieldLabelProps>(
               h="2xs"
               icon={
                 <Box asChild flex="initial">
-                  <IconHelp />
+                  <IconCircleQuestion />
                 </Box>
               }
               onClick={(event) => {

@@ -1,4 +1,4 @@
-import { IconKeyboardArrowDown } from "@optiaxiom/icons";
+import { IconAngleDown } from "@optiaxiom/icons";
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import { Button } from "../button";
@@ -18,12 +18,7 @@ export const AngleMenuButton = forwardRef<
   AngleMenuButtonProps
 >(({ children, ...props }, ref) => {
   return (
-    <Button
-      icon={<IconKeyboardArrowDown />}
-      iconPosition="end"
-      ref={ref}
-      {...props}
-    >
+    <Button icon={<IconAngleDown />} iconPosition="end" ref={ref} {...props}>
       {children}
     </Button>
   );
