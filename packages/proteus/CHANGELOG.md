@@ -1,5 +1,13 @@
 # @optiaxiom/proteus
 
+## 0.2.1
+
+### Patch Changes
+
+- eb59439: render chart tooltip via portals
+- 62cbb1b: fix hard coded colors in chart
+- fe4ab70: truncate long labels
+
 ## 0.2.0
 
 ### Minor Changes
