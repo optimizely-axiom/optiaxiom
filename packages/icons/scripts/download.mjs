@@ -162,7 +162,19 @@ async function main() {
         return `export { ${svgToComponentName(svgFile)} as Icon${alias} } from "../svg/${svgFile}";`;
       });
     })
-    .sort()
+    .sort((a, b) => {
+      const pathA = a.match(/from "(.+)"/)?.[1] ?? "";
+      const pathB = b.match(/from "(.+)"/)?.[1] ?? "";
+      return pathA < pathB
+        ? -1
+        : pathA > pathB
+          ? 1
+          : a < b
+            ? -1
+            : a > b
+              ? 1
+              : 0;
+    })
     .join("\n");
 
   writeFileSync(
