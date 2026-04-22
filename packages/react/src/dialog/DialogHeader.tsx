@@ -1,4 +1,4 @@
-import { IconClose } from "@optiaxiom/icons";
+import { IconXmark } from "@optiaxiom/icons";
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import * as RadixDialog from "@radix-ui/react-dialog";
 import { forwardRef, type ReactNode } from "react";
@@ -50,7 +50,7 @@ export const DialogHeader = forwardRef<HTMLDivElement, DialogHeaderProps>(
         <DialogClose
           appearance="subtle"
           aria-label="Close"
-          icon={<IconClose />}
+          icon={<IconXmark />}
           {...styles.close()}
         />
         <Heading
