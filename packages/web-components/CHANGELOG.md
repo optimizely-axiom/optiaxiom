@@ -1,5 +1,11 @@
 # @optiaxiom/web-components
 
+## 0.13.0-next.2
+
+### Patch Changes
+
+- d3c1bd2: fix icons
+
 ## 0.13.0-next.1
 
 ### Patch Changes

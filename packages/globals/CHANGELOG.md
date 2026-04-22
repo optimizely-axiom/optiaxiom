@@ -1,5 +1,11 @@
 # @optiaxiom/globals
 
+## 3.0.0-next.2
+
+### Patch Changes
+
+- 4bb18d5: update pill color tokens
+
 ## 3.0.0-next.1
 
 ### Patch Changes

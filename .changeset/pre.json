@@ -15,10 +15,15 @@
     "@optiaxiom/web-components": "0.12.3"
   },
   "changesets": [
+    "big-knives-build",
+    "bitter-rocks-greet",
     "breezy-hotels-think",
     "bright-poems-smash",
     "bright-turkeys-yawn",
+    "cute-laws-mix",
+    "free-games-flash",
     "kind-lions-strive",
+    "long-lines-wonder",
     "mighty-paws-crash",
     "modern-pens-hide",
     "olive-yaks-yawn",
@@ -28,6 +33,8 @@
     "six-donuts-send",
     "three-steaks-poke",
     "tough-onions-sin",
+    "tough-papayas-relate",
+    "two-shrimps-brush",
     "wide-cities-sip"
   ]
 }
