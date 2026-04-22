@@ -42,7 +42,7 @@ export function ProteusQuestion({ questions }: ProteusQuestionProps) {
   }, [currentIndex, onTrack]);
 
   const onDismiss = useCallback(() => {
-    onTrack?.("Ask Question Card Dismissed", {
+    onTrack?.("Ask User Question Dismissed", {
       questionIndex: String(currentIndex),
     });
     void onEvent({
