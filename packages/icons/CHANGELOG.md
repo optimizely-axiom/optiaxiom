@@ -1,5 +1,11 @@
 # @optiaxiom/icons
 
+## 1.1.2-next.2
+
+### Patch Changes
+
+- d3c1bd2: fix icons
+
 ## 1.1.2-next.1
 
 ### Patch Changes
