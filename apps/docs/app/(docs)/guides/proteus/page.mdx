@@ -82,7 +82,12 @@ Use `Group` as a flexbox container to arrange child elements. It supports `flexD
 ```json
 [
   { "$type": "Heading", "children": "Welcome" },
-  { "$type": "Text", "children": "Get started by filling out the form.", "fontSize": "sm", "color": "fg.secondary" },
+  {
+    "$type": "Text",
+    "children": "Get started by filling out the form.",
+    "fontSize": "sm",
+    "color": "fg.secondary"
+  },
   { "$type": "Link", "href": "https://example.com", "children": "Learn more" }
 ]
 ```
@@ -144,7 +149,12 @@ Wrap inputs with `Field` to add a label. Available inputs include `Input`, `Text
 
 ```json
 [
-  { "$type": "Action", "children": "Submit", "appearance": "primary", "onClick": { "interaction": "submit_form" } },
+  {
+    "$type": "Action",
+    "children": "Submit",
+    "appearance": "primary",
+    "onClick": { "interaction": "submit_form" }
+  },
   { "$type": "CancelAction", "children": "Cancel" }
 ]
 ```
@@ -208,7 +218,12 @@ Iterates over an array, rendering `children` once per item. Inside a `Map`, rela
 ```json
 {
   "$type": "Concat",
-  "children": ["Item #", { "$type": "MapIndex" }, ": ", { "$type": "Value", "path": "name" }]
+  "children": [
+    "Item #",
+    { "$type": "MapIndex" },
+    ": ",
+    { "$type": "Value", "path": "name" }
+  ]
 }
 ```
 
@@ -238,7 +253,10 @@ This template renders the results dynamically:
     "children": {
       "$type": "Card",
       "children": [
-        { "$type": "Heading", "children": { "$type": "Value", "path": "name" } },
+        {
+          "$type": "Heading",
+          "children": { "$type": "Value", "path": "name" }
+        },
         {
           "$type": "Text",
           "children": {
@@ -294,7 +312,12 @@ Supported operators: `==`, `!=`, `<`, `<=`, `>`, `>=`, `!!` (truthy), `!` (falsy
 Calls a server-side interaction handler registered with the SDK:
 
 ```json
-{ "$type": "Action", "children": "Submit", "appearance": "primary", "onClick": { "interaction": "submit_form" } }
+{
+  "$type": "Action",
+  "children": "Submit",
+  "appearance": "primary",
+  "onClick": { "interaction": "submit_form" }
+}
 ```
 
 ### Message handler
@@ -302,7 +325,11 @@ Calls a server-side interaction handler registered with the SDK:
 Sends a text message back to the LLM:
 
 ```json
-{ "$type": "Action", "children": "Continue", "onClick": { "message": "User confirmed the selection" } }
+{
+  "$type": "Action",
+  "children": "Continue",
+  "onClick": { "message": "User confirmed the selection" }
+}
 ```
 
 ### Download handler
@@ -323,108 +350,6 @@ Triggers a file download:
 ### Blocking mode
 
 When `blocking` is set to `true` on the Document, the chat input is hidden and the user must click an `Action` or `CancelAction` to continue. Use this for forms that require explicit user input before proceeding.
-
-## SDK integration
-
-### Python
-
-Define a resource that returns a `UI.Document`, then link it to a tool with `ui_resource`:
-
-```python
-from opal_tools_sdk import UI
-from opal_tools_sdk.decorators import resource, tool
-
-@resource(
-    uri="ui://my-app/create-form",
-    name="create-form",
-    description="Form for creating items",
-)
-async def get_create_form():
-    return UI.Document(
-        title="Create Item",
-        body=[
-            UI.Field(label="Name", children=UI.Input(name="name")),
-            UI.Field(label="Description", children=UI.Textarea(name="description")),
-        ],
-        actions=[
-            UI.Action(children="Save", appearance="primary"),
-            UI.CancelAction(children="Cancel"),
-        ],
-    )
-
-@tool("create_item", "Create a new item", ui_resource="ui://my-app/create-form")
-async def create_item(parameters):
-    return {"id": "123", "status": "created"}
-```
-
-### TypeScript
-
-Use `registerResource` and `registerTool` with the `uiResource` option:
-
-```typescript
-import { registerResource, registerTool, UI } from '@optimizely-opal/opal-tools-sdk';
-
-registerResource('create-form', {
-  uri: 'ui://my-app/create-form',
-  description: 'Form for creating items',
-}, async () => {
-  return UI.Document({
-    title: 'Create Item',
-    body: [
-      UI.Field({ label: 'Name', children: UI.Input({ name: 'name' }) }),
-      UI.Field({ label: 'Description', children: UI.Textarea({ name: 'description' }) }),
-    ],
-    actions: [
-      UI.Action({ children: 'Save', appearance: 'primary' }),
-      UI.CancelAction({ children: 'Cancel' }),
-    ],
-  });
-});
-
-registerTool('create_item', {
-  description: 'Create a new item',
-  uiResource: 'ui://my-app/create-form',
-}, async (parameters) => {
-  return { id: '123', status: 'created' };
-});
-```
-
-### C\#
-
-Use `[OpalResource]` to define a resource and `UiResource` on `[OpalTool]` to link it:
-
-```csharp
-public class ItemTools
-{
-    [OpalResource("create-form", "ui://my-app/create-form",
-        Description = "Form for creating items")]
-    public ProteusDocument GetCreateForm()
-    {
-        return UI.Document(
-            title: "Create Item",
-            body: new object[]
-            {
-                UI.Field(label: "Name", children: UI.Input(name: "name")),
-                UI.Field(label: "Description", children: UI.Textarea(name: "description")),
-            },
-            actions: new List<object>
-            {
-                UI.Action(children: "Save", appearance: "primary"),
-                UI.CancelAction(children: "Cancel"),
-            }
-        );
-    }
-
-    [OpalTool(Name = "create-item", UiResource = "ui://my-app/create-form")]
-    [Description("Create a new item")]
-    public object CreateItem(CreateItemParameters parameters)
-    {
-        return new { id = "123", status = "created" };
-    }
-}
-```
-
-See each SDK's README for the full documentation on resources, `ui_resource` linking, and the `UI` builder API.
 
 ## Proteus Designer
 
