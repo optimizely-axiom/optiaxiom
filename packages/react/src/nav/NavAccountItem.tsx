@@ -1,4 +1,4 @@
-import { IconMoreHoriz } from "@optiaxiom/icons";
+import { IconEllipsisStroke } from "@optiaxiom/icons";
 import { forwardRef } from "react";
 
 import { Avatar } from "../avatar";
@@ -60,7 +60,7 @@ export const NavAccountItem = forwardRef<
               </Group>
 
               <Box asChild>
-                <IconMoreHoriz />
+                <IconEllipsisStroke />
               </Box>
             </Group>
           </button>

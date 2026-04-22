@@ -1,4 +1,4 @@
-import { IconOpenInNew } from "@optiaxiom/icons";
+import { IconArrowUpRightFromSquare } from "@optiaxiom/icons";
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
 import { CommandItem } from "../command";
@@ -22,7 +22,7 @@ export const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>(
         <ListboxItem
           addonAfter={
             props.item.href && props.item.external ? (
-              <IconOpenInNew />
+              <IconArrowUpRightFromSquare />
             ) : (
               addonAfter
             )

@@ -1,4 +1,4 @@
-import { IconCalendarToday } from "@optiaxiom/icons";
+import { IconCalendar } from "@optiaxiom/icons";
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import { useId } from "@radix-ui/react-id";
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
@@ -59,7 +59,7 @@ export const DateRangePickerTrigger = forwardRef<
       <PopoverTrigger
         aria-labelledby={labelId}
         disabled={disabled}
-        icon={<IconCalendarToday />}
+        icon={<IconCalendar />}
         id={id}
         ref={ref}
         {...props}

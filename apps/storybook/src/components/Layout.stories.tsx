@@ -306,19 +306,19 @@ const SidebarWithSubnavExample = () => (
     <Nav>
       <NavBody>
         <NavList>
-          <NavItem icon={<IconAccountTree />}>Projects</NavItem>
-          <NavItem active icon={<IconFlag2 />}>
+          <NavItem icon={<IconDiagramSubtask />}>Projects</NavItem>
+          <NavItem active icon={<IconFlag />}>
             Flags
           </NavItem>
-          <NavItem icon={<IconBarChart4Bars />}>Idea Lab</NavItem>
-          <NavItem icon={<IconGroup />}>Audiences</NavItem>
-          <NavItem icon={<IconHistory />}>History</NavItem>
-          <NavItem icon={<IconShowChart />}>Events</NavItem>
-          <NavItem icon={<IconSettings />}>Settings</NavItem>
+          <NavItem icon={<IconChartColumn />}>Idea Lab</NavItem>
+          <NavItem icon={<IconPeopleSimple />}>Audiences</NavItem>
+          <NavItem icon={<IconClockRotateLeft />}>History</NavItem>
+          <NavItem icon={<IconChartLine />}>Events</NavItem>
+          <NavItem icon={<IconGear />}>Settings</NavItem>
           <NavItem
-            addonAfter={<IconOpenInNew />}
+            addonAfter={<IconArrowUpRightFromSquare />}
             asChild
-            icon={<IconMenuBook />}
+            icon={<IconBookOpen />}
           >
             Tutorial
           </NavItem>
@@ -327,7 +327,7 @@ const SidebarWithSubnavExample = () => (
 
       <NavFooter>
         <NavList>
-          <SidebarToggle icon={<IconDockToRight />} />
+          <SidebarToggle icon={<IconSidebar />} />
           <Menu
             options={[
               { label: "View Profile" },

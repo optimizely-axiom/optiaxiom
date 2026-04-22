@@ -1,4 +1,4 @@
-import { IconCalendarToday, IconClose } from "@optiaxiom/icons";
+import { IconCalendar, IconXmark } from "@optiaxiom/icons";
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import { useId } from "@radix-ui/react-id";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
@@ -127,7 +127,7 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
                 <Button
                   appearance="subtle"
                   aria-label="Clear"
-                  icon={<IconClose />}
+                  icon={<IconXmark />}
                   onPointerDown={(event) => {
                     event.preventDefault();
                     forceValueChange("");
@@ -150,7 +150,7 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
                 role="img"
                 {...styles.picker()}
               >
-                <IconCalendarToday />
+                <IconCalendar />
               </PopoverTrigger>
             }
             asChild

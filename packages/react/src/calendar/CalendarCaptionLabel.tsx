@@ -1,6 +1,6 @@
 import type { ComponentPropsWithoutRef } from "react";
 
-import { IconKeyboardArrowDown } from "@optiaxiom/icons";
+import { IconAngleDown } from "@optiaxiom/icons";
 import { CaptionLabel } from "react-day-picker";
 
 import { Button } from "../button";
@@ -22,7 +22,7 @@ export function CalendarCaptionLabel({
   return (
     <Button
       appearance="subtle"
-      icon={<IconKeyboardArrowDown />}
+      icon={<IconAngleDown />}
       iconPosition="end"
       onClick={() => {
         if (view === "month") {
