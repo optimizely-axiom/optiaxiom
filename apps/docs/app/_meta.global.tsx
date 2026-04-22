@@ -44,8 +44,8 @@ export default {
       "css-layers": "CSS Layers",
       icons: "Icons",
       "module-federation": "Module Federation",
-      "react-select": "React Select",
       proteus: "Proteus",
+      "react-select": "React Select",
 
       "-- Migrations": {
         title: "Migrations",
