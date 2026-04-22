@@ -70,7 +70,7 @@ export const ProteusChart = ({
         <ResponsiveContainer aspect={16 / 9} width="100%">
           <ChartComponent data={data} layout={layout}>
             <CartesianGrid
-              stroke="#E0E0E0"
+              stroke={theme.colors["border.secondary"]}
               strokeDasharray="4 4"
               vertical={false}
             />
@@ -90,7 +90,7 @@ export const ProteusChart = ({
               width={isVertical ? "auto" : undefined}
             />
             <ValueAxis
-              axisLine={{ stroke: "#CBD5E1" }}
+              axisLine={{ stroke: theme.colors["border.default"] }}
               minTickGap={32}
               tick={{ fill: theme.colors["fg.secondary"] }}
               tickFormatter={(value) =>
