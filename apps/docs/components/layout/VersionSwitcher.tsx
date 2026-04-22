@@ -1,21 +1,46 @@
 "use client";
 
 import { Select, SelectContent, SelectTrigger } from "@optiaxiom/react";
-
-const versions = [
-  { label: "v1", value: "v1" },
-  { label: "v3 (next)", value: "v3" },
-] as const;
+import { useEffect, useState } from "react";
 
 export function VersionSwitcher() {
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
   const isNext = basePath.endsWith("/v3");
+  const root = basePath.replace(/\/v3$/, "") || "";
+
+  const [versions, setVersions] = useState([
+    { detail: "", label: "v1", value: "v1" as const },
+    { detail: "", label: "v3", value: "v3" as const },
+  ]);
+
+  useEffect(() => {
+    void Promise.all([
+      fetch(`${root}/version.json`)
+        .then((res) => res.json())
+        .catch(() => null),
+      fetch(`${root}/v3/version.json`)
+        .then((res) => res.json())
+        .catch(() => null),
+    ]).then(([main, next]) => {
+      setVersions([
+        {
+          detail: main?.version ? `(${main.version})` : "",
+          label: "v1",
+          value: "v1",
+        },
+        {
+          detail: next?.version ? `(${next.version})` : "",
+          label: "v3",
+          value: "v3",
+        },
+      ]);
+    });
+  }, [root]);
 
   return (
     <Select
       defaultValue={isNext ? "v3" : "v1"}
       onValueChange={(value) => {
-        const root = basePath.replace(/\/v3$/, "") || "";
         if (value === "v3") {
           window.location.href = `${root}/v3/`;
         } else {
@@ -24,7 +49,11 @@ export function VersionSwitcher() {
       }}
       options={versions}
     >
-      <SelectTrigger className="version-switcher" />
+      <SelectTrigger className="version-switcher">
+        {isNext
+          ? `v${versions[1].detail || "3"}`
+          : `v${versions[0].detail || "1"}`}
+      </SelectTrigger>
       <SelectContent />
     </Select>
   );

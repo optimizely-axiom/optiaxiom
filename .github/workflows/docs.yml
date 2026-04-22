@@ -44,6 +44,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-nextjs-${{ hashFiles('pnpm-lock.yaml') }}-
 
+      - run: |
+          node -e "var p = require('./packages/react/package.json'); require('fs').writeFileSync('./apps/docs/public/version.json', JSON.stringify({ version: p.version }))"
+
       - run: pnpm -F docs... build && echo '' > ./apps/docs/out/.nojekyll
 
       - uses: actions/upload-artifact@v4
