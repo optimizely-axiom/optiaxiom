@@ -10,10 +10,10 @@ import {
 } from "../vanilla-extract";
 import { groupStyle } from "./groupStyle";
 
-const accentColorVar = createVar();
+export const accentColorVar = createVar();
 const hoverAccentColorVar = createVar();
 const pressedAccentColorVar = createVar();
-const solidTextColorVar = createVar();
+export const solidTextColorVar = createVar();
 const subtleHoverAccentColorVar = createVar();
 const subtleHoverOutlineColorVar = createVar();
 const subtlePressedAccentColorVar = createVar();
@@ -21,6 +21,7 @@ const subtleOutlineColorVar = createVar();
 export const textColorVar = createVar();
 const transparentHoverAccentColorVar = createVar();
 const transparentPressedAccentColorVar = createVar();
+const borderWidthVar = createVar();
 
 const opalRingAngleVar = createVar({
   inherits: false,
@@ -47,10 +48,15 @@ export const buttonBase = recipe({
       alignItems: "center",
       display: "inline-flex",
       flexDirection: "row",
+      fontWeight: "500",
       justifyContent: "flex-start",
       transition: "colors",
     },
     style({
+      vars: {
+        [borderWidthVar]: "1px",
+      },
+
       borderRadius: theme.borderRadius.md,
       cursor: "pointer",
       fontFamily:
@@ -64,7 +70,7 @@ export const buttonBase = recipe({
         "&:is(:focus-visible, :has(:focus-visible)):not([data-disabled], [data-loading])":
           {
             outline: `2px solid ${theme.colors["border.focus"]}`,
-            outlineOffset: "1px",
+            outlineOffset: "2px",
             zIndex: "10",
           },
         "&[data-disabled]": {
@@ -79,10 +85,15 @@ export const buttonBase = recipe({
       danger: style({
         vars: {
           [accentColorVar]: theme.colors["bg.error"],
+          [borderWidthVar]: "2px",
           [hoverAccentColorVar]: theme.colors["bg.error.hovered"],
           [pressedAccentColorVar]: theme.colors["bg.error.pressed"],
+          [solidTextColorVar]: theme.colors["fg.white"],
           [subtleHoverAccentColorVar]: theme.colors["bg.error.subtlest"],
+          [subtleHoverOutlineColorVar]: theme.colors["border.error"],
+          [subtleOutlineColorVar]: theme.colors["border.error"],
           [subtlePressedAccentColorVar]: theme.colors["bg.error.subtle"],
+          [textColorVar]: theme.colors["fg.error"],
         },
       }),
       neutral: style({
@@ -91,10 +102,10 @@ export const buttonBase = recipe({
           [hoverAccentColorVar]: theme.colors["bg.default.inverse.hovered"],
           [pressedAccentColorVar]: theme.colors["bg.default.inverse.pressed"],
           [solidTextColorVar]: theme.colors["fg.default.inverse"],
-          [subtleHoverAccentColorVar]: theme.colors["bg.page"],
+          [subtleHoverAccentColorVar]: theme.colors["bg.default.hovered"],
           [subtleHoverOutlineColorVar]: theme.colors["border.default"],
           [subtleOutlineColorVar]: theme.colors["border.default"],
-          [subtlePressedAccentColorVar]: theme.colors["bg.secondary"],
+          [subtlePressedAccentColorVar]: theme.colors["bg.default.pressed"],
           [textColorVar]: theme.colors["fg.default"],
           [transparentHoverAccentColorVar]: theme.colors["bg.default.hovered"],
           [transparentPressedAccentColorVar]:
@@ -106,8 +117,9 @@ export const buttonBase = recipe({
           [accentColorVar]: theme.colors["bg.accent"],
           [hoverAccentColorVar]: theme.colors["bg.accent.hovered"],
           [pressedAccentColorVar]: theme.colors["bg.accent.pressed"],
+          [solidTextColorVar]: theme.colors["fg.black"],
           [subtleHoverAccentColorVar]: theme.colors["bg.accent.subtle"],
-          [subtlePressedAccentColorVar]: theme.colors["bg.accent.light"],
+          [subtlePressedAccentColorVar]: theme.colors["bg.accent"],
         },
       }),
     },
@@ -121,12 +133,10 @@ export const buttonBase = recipe({
       },
       md: {
         fontSize: "md",
-        gap: "2",
         h: "md",
       },
       lg: {
-        fontSize: "md",
-        gap: "4",
+        fontSize: "lg",
         h: "lg",
       },
     },
@@ -140,9 +150,9 @@ export const buttonBase = recipe({
     variant: {
       outline: style({
         backgroundColor: theme.colors["bg.default"],
-        border: `1px solid ${fallbackVar(subtleOutlineColorVar, accentColorVar)}`,
+        border: `${borderWidthVar} solid ${fallbackVar(subtleOutlineColorVar, accentColorVar)}`,
         color: fallbackVar(textColorVar, accentColorVar),
-        paddingInline: `calc(${paddingInlineVar} - 1px)`,
+        paddingInline: `calc(${paddingInlineVar} - ${borderWidthVar})`,
 
         "@media": {
           "(hover: hover)": {
@@ -170,9 +180,8 @@ export const buttonBase = recipe({
             },
 
           '&:is([data-state="active"], [data-state="on"])': {
-            backgroundColor: theme.colors["bg.accent.subtle"],
+            backgroundColor: theme.colors["bg.accent"],
             borderColor: theme.colors["fg.accent"],
-            color: theme.colors["fg.accent"],
           },
           "&[data-disabled]:not([data-loading])": {
             borderColor: theme.colors["border.disabled"],
@@ -237,7 +246,7 @@ export const buttonBase = recipe({
       }),
       strong: style({
         backgroundColor: accentColorVar,
-        color: fallbackVar(solidTextColorVar, theme.colors["fg.white"]),
+        color: fallbackVar(solidTextColorVar, theme.colors["fg.default"]),
 
         "@media": {
           "(hover: hover)": {
@@ -256,15 +265,15 @@ export const buttonBase = recipe({
 
           "&[data-disabled]:not([data-loading])": {
             backgroundColor: theme.colors["bg.secondary"],
-            border: `1px solid ${theme.colors["border.disabled"]}`,
+            border: `${borderWidthVar} solid ${theme.colors["border.disabled"]}`,
             color: theme.colors["fg.disabled"],
-            paddingInline: `calc(${paddingInlineVar} - 1px)`,
+            paddingInline: `calc(${paddingInlineVar} - ${borderWidthVar})`,
           },
         },
       }),
       "strong-opal": style({
         backgroundImage: `linear-gradient(135deg, #392ECF 16%, #7740EC 85%)`,
-        color: fallbackVar(solidTextColorVar, theme.colors["fg.white"]),
+        color: theme.colors["fg.white"],
 
         selectors: {
           "&[data-disabled]:not([data-loading])": {
@@ -305,8 +314,7 @@ export const buttonBase = recipe({
             },
 
           '&:is([data-state="active"], [data-state="on"])': {
-            backgroundColor: theme.colors["bg.accent.subtle"],
-            color: theme.colors["fg.accent"],
+            backgroundColor: theme.colors["bg.default.pressed"],
           },
           "&[data-disabled]:not([data-loading])": {
             color: theme.colors["fg.disabled"],
@@ -316,6 +324,21 @@ export const buttonBase = recipe({
     },
   },
   variantsCompounded: [
+    {
+      style: [
+        {
+          pl: "6",
+        },
+        style({
+          borderRadius: theme.borderRadius.lg,
+        }),
+      ],
+      variants: {
+        intent: "primary",
+        size: "lg",
+        variant: "strong",
+      },
+    },
     {
       style: {
         w: "sm",
@@ -328,7 +351,7 @@ export const buttonBase = recipe({
     {
       style: style({
         vars: {
-          [paddingInlineVar]: "4px",
+          [paddingInlineVar]: "6px",
         },
       }),
       variants: {
@@ -381,7 +404,7 @@ export const buttonBase = recipe({
     {
       style: style({
         vars: {
-          [paddingInlineVar]: "12px",
+          [paddingInlineVar]: "8px",
         },
       }),
       variants: {

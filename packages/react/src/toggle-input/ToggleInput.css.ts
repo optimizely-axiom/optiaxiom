@@ -6,6 +6,7 @@ import * as styles from "./ToggleInputHiddenInput.css";
 const input = styles.className;
 
 export const className = style({});
+export const controlAccentVar = createVar();
 export const controlColorVar = createVar();
 
 export const toggleInput = recipe({
@@ -18,7 +19,8 @@ export const toggleInput = recipe({
     },
     style({
       vars: {
-        [controlColorVar]: theme.colors["border.control"],
+        [controlAccentVar]: theme.colors["border.control"],
+        [controlColorVar]: theme.colors["fg.default.inverse"],
       },
 
       color: theme.colors["fg.default"],
@@ -30,13 +32,13 @@ export const toggleInput = recipe({
             [`&:has(${input}:not(:disabled):is(:checked, [type=checkbox]:indeterminate)):hover`]:
               {
                 vars: {
-                  [controlColorVar]: theme.colors["bg.accent.hovered"],
+                  [controlAccentVar]: theme.colors["bg.accent.hovered"],
                 },
               },
             [`&:has(${input}:not(:disabled):not(:checked, [type=checkbox]:indeterminate)):hover`]:
               {
                 vars: {
-                  [controlColorVar]: theme.colors["border.control.hovered"],
+                  [controlAccentVar]: theme.colors["border.control.hovered"],
                 },
               },
           },
@@ -44,13 +46,19 @@ export const toggleInput = recipe({
       },
 
       selectors: {
-        [`&:has(${input}:is(:checked, [type=checkbox]:indeterminate))`]: {
-          vars: {
-            [controlColorVar]: theme.colors["bg.accent"],
+        [`&:has(${input}:not(:disabled):is(:checked, [type=checkbox]:indeterminate))`]:
+          {
+            vars: {
+              [controlAccentVar]: theme.colors["bg.accent"],
+              [controlColorVar]: theme.colors["fg.black"],
+            },
           },
-        },
 
         [`&:has(${input}:disabled)`]: {
+          vars: {
+            [controlAccentVar]: theme.colors["fg.disabled"],
+          },
+
           color: theme.colors["fg.disabled"],
         },
         [`&:not(:has(${input}:disabled))`]: {

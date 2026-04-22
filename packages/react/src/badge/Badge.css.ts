@@ -17,12 +17,14 @@ export const badge = recipe({
     {
       display: "inline-flex",
       flex: "none",
+      fontFamily: "mono",
       fontSize: "sm",
-      fontWeight: "500",
+      fontWeight: "400",
       justifyContent: "center",
       px: "6",
       py: "2",
       rounded: "full",
+      textTransform: "uppercase",
     },
     style({
       vars: {
@@ -67,14 +69,16 @@ export const badge = recipe({
       }),
       primary: style({
         vars: {
-          [solidBackgroundColorVar]: theme.colors["bg.accent"],
-          [subtleBackgroundColorVar]: theme.colors["bg.accent.subtle"],
-          [subtleColorVar]: theme.colors["fg.accent.strong"],
+          [solidBackgroundColorVar]: theme.colors["bg.default.inverse"],
+          [solidColorVar]: theme.colors["fg.default.inverse"],
+          [subtleBackgroundColorVar]: theme.colors["bg.default.inverse"],
+          [subtleColorVar]: theme.colors["fg.default.inverse"],
         },
       }),
       success: style({
         vars: {
           [solidBackgroundColorVar]: theme.colors["bg.success"],
+          [solidColorVar]: theme.colors["fg.black"],
           [subtleBackgroundColorVar]: theme.colors["bg.success.subtle"],
           [subtleColorVar]: theme.colors["fg.success.strong"],
         },
