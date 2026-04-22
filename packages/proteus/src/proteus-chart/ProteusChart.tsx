@@ -75,6 +75,9 @@ export const ProteusChart = ({
             dataKey={(row: Record<string, unknown>) => get(row, "/" + xAxisKey)}
             padding={{ left: 16, right: 16 }}
             tick={{ fill: theme.colors["fg.secondary"] }}
+            tickFormatter={(value: string) =>
+              value.length > 30 ? value.slice(0, 30) + "…" : value
+            }
             tickLine={false}
             tickMargin={8}
             type="category"
