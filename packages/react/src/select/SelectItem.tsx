@@ -37,6 +37,7 @@ export const SelectItem = forwardRef<HTMLDivElement, SelectItemProps>(
     const itemProps = downshift.getItemProps({
       "aria-posinset": index + 1,
       "aria-setsize": items.length,
+      index,
       item,
       onMouseMove: (event: MouseEvent<HTMLDivElement>) => {
         onMouseMove?.(event);
