@@ -536,13 +536,13 @@ importers:
         specifier: ^1.2.3
         version: 1.2.3(@types/react-dom@18.3.7(@types/react@18.3.28))(@types/react@18.3.28)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@tanstack/react-table':
-        specifier: ^8.0.0
+        specifier: ^8.13.0
         version: 8.21.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@tanstack/react-virtual':
         specifier: ^3.13.23
         version: 3.13.24(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@tanstack/table-core':
-        specifier: ^8.0.0
+        specifier: ^8.13.0
         version: 8.21.3
       '@tanstack/virtual-core':
         specifier: ^3.13.23
@@ -12041,7 +12041,7 @@ snapshots:
       graceful-fs: 4.2.11
       is-stream: 2.0.1
       lazystream: 1.0.1
-      lodash: 4.17.21
+      lodash: 4.17.23
       normalize-path: 3.0.0
       readable-stream: 4.7.0
     optional: true
