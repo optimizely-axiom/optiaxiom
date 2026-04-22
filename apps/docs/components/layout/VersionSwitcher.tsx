@@ -51,8 +51,8 @@ export function VersionSwitcher() {
     >
       <SelectTrigger className="version-switcher">
         {isNext
-          ? `v${versions[1].detail || "3"}`
-          : `v${versions[0].detail || "1"}`}
+          ? `v${versions[1].detail ? versions[1].detail.slice(1, -1) : "3"}`
+          : `v${versions[0].detail ? versions[0].detail.slice(1, -1) : "1"}`}
       </SelectTrigger>
       <SelectContent />
     </Select>
