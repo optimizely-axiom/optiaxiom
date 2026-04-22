@@ -9,13 +9,16 @@ export const tooltip = recipe({
       display: "grid",
       fontSize: "sm",
       gap: "6",
+      pointerEvents: "none",
       px: "8",
       py: "10",
       rounded: "lg",
       shadow: "lg",
+      transition: "all",
     },
     style({
       minWidth: "128px",
+      position: "absolute",
     }),
   ],
 });
