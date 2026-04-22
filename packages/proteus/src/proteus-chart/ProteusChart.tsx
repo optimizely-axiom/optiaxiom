@@ -1,5 +1,6 @@
 import { Box, theme } from "@optiaxiom/react";
 import { get } from "jsonpointer";
+import { useRef } from "react";
 import {
   Bar,
   BarChart,
@@ -13,6 +14,7 @@ import {
 } from "recharts";
 
 import * as styles from "./ProteusChart.css";
+import { ProteusChartContext } from "./ProteusChartContext";
 import { ProteusChartTooltipContent } from "./ProteusChartTooltipContent";
 
 type Series = {
@@ -61,59 +63,68 @@ export const ProteusChart = ({
   const Chart = type === "bar" ? Bar : Line;
   const CategoryAxis = isVertical ? YAxis : XAxis;
   const ValueAxis = isVertical ? XAxis : YAxis;
+  const containerRef = useRef<HTMLDivElement>(null);
   return (
-    <Box asChild {...styles.chart()}>
-      <ResponsiveContainer aspect={16 / 9} width="100%">
-        <ChartComponent data={data} layout={layout}>
-          <CartesianGrid
-            stroke="#E0E0E0"
-            strokeDasharray="4 4"
-            vertical={false}
-          />
-          <CategoryAxis
-            axisLine={false}
-            dataKey={(row: Record<string, unknown>) => get(row, "/" + xAxisKey)}
-            padding={{ left: 16, right: 16 }}
-            tick={{ fill: theme.colors["fg.secondary"] }}
-            tickFormatter={(value: string) =>
-              value.length > 30 ? value.slice(0, 30) + "…" : value
-            }
-            tickLine={false}
-            tickMargin={8}
-            type="category"
-            width={isVertical ? "auto" : undefined}
-          />
-          <ValueAxis
-            axisLine={{ stroke: "#CBD5E1" }}
-            minTickGap={32}
-            tick={{ fill: theme.colors["fg.secondary"] }}
-            tickFormatter={(value) =>
-              new Intl.NumberFormat(undefined, {
-                compactDisplay: "short",
-                notation: "compact",
-              }).format(value)
-            }
-            tickMargin={8}
-            type="number"
-            width={isVertical ? undefined : "auto"}
-          />
-          <Tooltip content={ProteusChartTooltipContent} cursor={false} />
-          {series.map((s, i) => (
-            <Chart
-              dataKey={(row: Record<string, unknown>) =>
-                get(row, "/" + s.dataKey) as number
-              }
-              dot={false}
-              fill={getColor(i)}
-              key={i}
-              name={s.name ?? s.dataKey}
-              radius={type === "bar" ? 4 : undefined}
-              type="natural"
+    <ProteusChartContext.Provider value={containerRef}>
+      <Box asChild ref={containerRef} {...styles.chart()}>
+        <ResponsiveContainer aspect={16 / 9} width="100%">
+          <ChartComponent data={data} layout={layout}>
+            <CartesianGrid
+              stroke="#E0E0E0"
+              strokeDasharray="4 4"
+              vertical={false}
             />
-          ))}
-        </ChartComponent>
-      </ResponsiveContainer>
-    </Box>
+            <CategoryAxis
+              axisLine={false}
+              dataKey={(row: Record<string, unknown>) =>
+                get(row, "/" + xAxisKey)
+              }
+              padding={{ left: 16, right: 16 }}
+              tick={{ fill: theme.colors["fg.secondary"] }}
+              tickFormatter={(value: string) =>
+                value.length > 30 ? value.slice(0, 30) + "…" : value
+              }
+              tickLine={false}
+              tickMargin={8}
+              type="category"
+              width={isVertical ? "auto" : undefined}
+            />
+            <ValueAxis
+              axisLine={{ stroke: "#CBD5E1" }}
+              minTickGap={32}
+              tick={{ fill: theme.colors["fg.secondary"] }}
+              tickFormatter={(value) =>
+                new Intl.NumberFormat(undefined, {
+                  compactDisplay: "short",
+                  notation: "compact",
+                }).format(value)
+              }
+              tickMargin={8}
+              type="number"
+              width={isVertical ? undefined : "auto"}
+            />
+            <Tooltip
+              content={ProteusChartTooltipContent}
+              cursor={false}
+              portal={document.body}
+            />
+            {series.map((s, i) => (
+              <Chart
+                dataKey={(row: Record<string, unknown>) =>
+                  get(row, "/" + s.dataKey) as number
+                }
+                dot={false}
+                fill={getColor(i)}
+                key={i}
+                name={s.name ?? s.dataKey}
+                radius={type === "bar" ? 4 : undefined}
+                type="natural"
+              />
+            ))}
+          </ChartComponent>
+        </ResponsiveContainer>
+      </Box>
+    </ProteusChartContext.Provider>
   );
 };
 

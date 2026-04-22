@@ -1,21 +1,49 @@
 import type { TooltipContentProps } from "recharts";
 
 import { Box, Group } from "@optiaxiom/react";
+import { useRef } from "react";
 
 import { applyFormatter } from "../proteus-document/getProteusValue";
+import { useProteusChartContainer } from "./ProteusChartContext";
 import * as styles from "./ProteusChartTooltipContent.css";
+
+const OFFSET = 10;
 
 export function ProteusChartTooltipContent({
   active,
+  coordinate,
   label,
   payload,
 }: TooltipContentProps) {
+  const containerRef = useProteusChartContainer();
+  const ref = useRef<HTMLDivElement>(null);
+
   if (!active || !payload?.length) {
     return null;
   }
 
+  const wrapperRect = containerRef?.current
+    ?.querySelector(".recharts-wrapper")
+    ?.getBoundingClientRect();
+  const tooltipRect = ref.current?.getBoundingClientRect();
+
+  const cx = coordinate?.x ?? 0;
+  const cy = coordinate?.y ?? 0;
+  const th = tooltipRect?.height ?? 0;
+
+  const translateX = cx + OFFSET;
+  const translateY = cy - th / 2;
+
   return (
-    <Box {...styles.tooltip()}>
+    <Box
+      ref={ref}
+      style={{
+        left: 0,
+        top: 0,
+        transform: `translate(${(wrapperRect?.left ?? 0) + translateX + window.scrollX}px, ${(wrapperRect?.top ?? 0) + translateY + window.scrollY}px)`,
+      }}
+      {...styles.tooltip()}
+    >
       {label && <Box fontWeight="500">{label}</Box>}
       <div>
         {payload
