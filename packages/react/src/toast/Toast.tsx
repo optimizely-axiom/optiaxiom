@@ -1,10 +1,10 @@
 import { useToastProviderContext } from "@optiaxiom/globals";
 import {
-  IconCheckCircle,
-  IconClose,
-  IconError,
-  IconInfo,
-  IconWarning,
+  IconCheckCircleSolid,
+  IconCircleExclamation,
+  IconCircleInfo,
+  IconTriangleExclamation,
+  IconXmark,
 } from "@optiaxiom/icons";
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import * as RadixToast from "@radix-ui/react-toast";
@@ -24,11 +24,11 @@ export type ToastProps = ExcludeProps<
 >;
 
 const mapIntentToIcon = {
-  danger: IconError,
-  information: IconInfo,
-  neutral: IconInfo,
-  success: IconCheckCircle,
-  warning: IconWarning,
+  danger: IconCircleExclamation,
+  information: IconCircleInfo,
+  neutral: IconCircleInfo,
+  success: IconCheckCircleSolid,
+  warning: IconTriangleExclamation,
 };
 
 /**
@@ -78,7 +78,7 @@ export const Toast = forwardRef<HTMLLIElement, ToastProps>(
             <Button
               appearance="inverse"
               aria-label="close"
-              icon={<IconClose />}
+              icon={<IconXmark />}
               size="sm"
             />
           </RadixToast.Close>

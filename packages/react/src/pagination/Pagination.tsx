@@ -2,7 +2,7 @@ import { usePagination } from "@mantine/hooks";
 import {
   IconChevronLeft,
   IconChevronRight,
-  IconMoreHoriz,
+  IconEllipsisStroke,
 } from "@optiaxiom/icons";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import { forwardRef, useEffect, useRef, useState } from "react";
@@ -138,7 +138,7 @@ export const Pagination = forwardRef<HTMLElement, PaginationProps>(
                         asChild
                         color={disabled ? "fg.disabled" : "fg.default"}
                       >
-                        <IconMoreHoriz />
+                        <IconEllipsisStroke />
                       </Icon>
                     </Box>
                   ) : (

@@ -1,4 +1,4 @@
-import { IconAdd2 } from "@optiaxiom/icons";
+import { IconPlus } from "@optiaxiom/icons";
 import { useComposedRefs } from "@radix-ui/react-compose-refs";
 import { forwardRef, useRef } from "react";
 
@@ -113,7 +113,7 @@ export const PillMenuTrigger = forwardRef<HTMLDivElement, PillMenuTriggerProps>(
                     <Cover asChild>
                       <Box asChild size={remapSize[size]} {...styles.trigger()}>
                         <button>
-                          <IconAdd2 size="16" />
+                          <IconPlus size="16" />
                         </button>
                       </Box>
                     </Cover>

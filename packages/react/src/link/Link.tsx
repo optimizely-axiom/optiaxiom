@@ -1,4 +1,4 @@
-import { IconOpenInNew } from "@optiaxiom/icons";
+import { IconArrowUpRightFromSquare } from "@optiaxiom/icons";
 import { createSlot } from "@radix-ui/react-slot";
 import { type ComponentPropsWithoutRef, forwardRef } from "react";
 
@@ -74,7 +74,7 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
 
                 {external && (
                   <Box asChild {...styles.icon()}>
-                    <IconOpenInNew />
+                    <IconArrowUpRightFromSquare />
                   </Box>
                 )}
               </>
