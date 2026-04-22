@@ -1,5 +1,17 @@
 # @optiaxiom/proteus
 
+## 0.1.25
+
+### Patch Changes
+
+- 6305936: Add Bridge component for rendering MCP apps via iframe
+- 13d0cc1: update icon import names
+- Updated dependencies [7c51620]
+- Updated dependencies [babaea0]
+- Updated dependencies [79561f1]
+  - @optiaxiom/react@1.9.27
+  - @optiaxiom/icons@1.1.0
+
 ## 0.1.24
 
 ### Patch Changes

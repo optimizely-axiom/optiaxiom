@@ -1,5 +1,12 @@
 # @optiaxiom/react
 
+## 1.9.27
+
+### Patch Changes
+
+- 7c51620: fix data table scroll indicator on element resize
+- babaea0: fix Select and Menu downshift getItemProps usage
+
 ## 1.9.26
 
 ### Patch Changes

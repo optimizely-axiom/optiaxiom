@@ -1,5 +1,11 @@
 # @optiaxiom/icons
 
+## 1.1.0
+
+### Minor Changes
+
+- 79561f1: BREAKING: only re-export legacy icon names
+
 ## 1.0.0
 
 ### Major Changes
