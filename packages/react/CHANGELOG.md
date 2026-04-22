@@ -1,5 +1,21 @@
 # @optiaxiom/react
 
+## 3.0.0-next.2
+
+### Patch Changes
+
+- 7308022: fix danger outline button styles
+- 3a04fa7: handle font awesome icons in button icon
+- 0e88afa: fix success badge color token
+- d3c1bd2: fix icons
+- bf96c0a: fix react-table peer deps version
+- 4bb18d5: update pill color tokens
+- badc541: fix toggle input styles
+- Updated dependencies [d3c1bd2]
+- Updated dependencies [4bb18d5]
+  - @optiaxiom/icons@1.1.2-next.2
+  - @optiaxiom/globals@3.0.0-next.2
+
 ## 3.0.0-next.1
 
 ### Patch Changes
