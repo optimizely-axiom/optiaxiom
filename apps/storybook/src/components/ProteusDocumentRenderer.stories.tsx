@@ -1373,7 +1373,7 @@ export const WithBridge: Story = {
       setTimeout(() => {
         setResource({
           data: {
-            mimeType: "text/html;profile=openai-app",
+            mimeType: "text/html+skybridge",
             text: `
               <!DOCTYPE html>
               <html>
@@ -1417,13 +1417,13 @@ export const WithBridge: Story = {
                   <script>
                     document.getElementById('btn-tool').addEventListener('click', async function() {
                       if (window.openai && window.openai.callTool) {
-                        const response = await window.openai.callTool('refresh_data', { range: 'Q1' });
-                        document.getElementById('output').textContent = 'callTool response: ' + JSON.stringify(response);
+                        const response = window.openai.callTool('refresh_data', { range: 'Q1' });
+                        document.getElementById('output').textContent = 'callTool response: ' + JSON.stringify(await response);
                       }
                     });
                     document.getElementById('btn-msg').addEventListener('click', function() {
                       if (window.openai && window.openai.sendFollowUpMessage) {
-                        window.openai.sendFollowUpMessage('Hello from the widget');
+                        window.openai.sendFollowUpMessage({ prompt: 'Hello from the widget' });
                       }
                     });
                     const listener = (event) => {
@@ -1433,7 +1433,7 @@ export const WithBridge: Story = {
                       }
                       window.removeEventListener('openai:set_globals', listener)
                     };
-                    window.addEventListener('openai:set_globals', listener)
+                    window.addEventListener('openai:set_globals', listener);
                   </script>
                 </body>
               </html>
