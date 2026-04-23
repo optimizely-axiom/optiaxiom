@@ -1,5 +1,11 @@
 # @optiaxiom/react
 
+## 1.9.29
+
+### Patch Changes
+
+- b459535: truncate long toast title text to 2 lines
+
 ## 1.9.28
 
 ### Patch Changes

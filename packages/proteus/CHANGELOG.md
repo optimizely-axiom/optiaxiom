@@ -1,5 +1,12 @@
 # @optiaxiom/proteus
 
+## 0.2.2
+
+### Patch Changes
+
+- Updated dependencies [b459535]
+  - @optiaxiom/react@1.9.29
+
 ## 0.2.1
 
 ### Patch Changes
