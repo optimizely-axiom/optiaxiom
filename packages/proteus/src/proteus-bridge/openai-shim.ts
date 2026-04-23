@@ -58,8 +58,9 @@ window.openai = {
     return toolOutput;
   },
 
-  callTool: (name: string, args: Record<string, unknown>) =>
-    app.callServerTool({ arguments: args, name }),
+  callTool: async (name: string, args: Record<string, unknown>) => ({
+    result: await app.callServerTool({ arguments: args, name }),
+  }),
   openExternal: (args: { href: string }) => app.openLink({ url: args.href }),
   sendFollowUpMessage: (args: { prompt: string }) =>
     app.sendMessage({
