@@ -112,7 +112,7 @@ export function ProteusBridge({ height = 400, resource }: ProteusBridgeProps) {
       ref={setIframe}
       sandbox="allow-scripts allow-popups allow-popups-to-escape-sandbox allow-forms"
       srcDoc={
-        mimeType === "text/html;profile=openai-app"
+        mimeType === "text/html+skybridge"
           ? (OPENAI_SHIM_SCRIPT as string) + html
           : html
       }
