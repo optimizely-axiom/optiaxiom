@@ -2,6 +2,7 @@ import * as RadixToast from "@radix-ui/react-toast";
 import { forwardRef } from "react";
 
 import { Text, type TextProps } from "../text";
+import * as styles from "./ToastTitle.css";
 
 export type ToastTitleProps = TextProps<typeof RadixToast.Title>;
 
@@ -10,9 +11,9 @@ export type ToastTitleProps = TextProps<typeof RadixToast.Title>;
  * @extends Text
  */
 export const ToastTitle = forwardRef<HTMLDivElement, ToastTitleProps>(
-  ({ children, ...props }, ref) => {
+  ({ children, className, ...props }, ref) => {
     return (
-      <Text asChild flex="1" {...props}>
+      <Text asChild lineClamp="2" {...styles.title({}, className)} {...props}>
         <RadixToast.Title ref={ref}>{children}</RadixToast.Title>
       </Text>
     );
