@@ -15,6 +15,7 @@ export const tooltip = recipe({
       rounded: "lg",
       shadow: "lg",
       transition: "all",
+      z: "popover",
     },
     style({
       minWidth: "128px",
