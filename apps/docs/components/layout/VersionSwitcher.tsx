@@ -6,7 +6,12 @@ import pkg from "../../../../packages/react/package.json";
 
 export function VersionSwitcher() {
   return (
-    <Badge asChild className="version" intent="success" variant="strong">
+    <Badge
+      asChild
+      className="version-switcher"
+      intent="success"
+      variant="strong"
+    >
       <a href="https://www.npmjs.com/package/@optiaxiom/react">
         v{pkg.version}
       </a>
