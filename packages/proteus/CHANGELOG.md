@@ -1,5 +1,12 @@
 # @optiaxiom/proteus
 
+## 0.2.3
+
+### Patch Changes
+
+- 030dfa5: fix tooltip z-index
+- 2cc2bf4: change dependency on react and icons to version range
+
 ## 0.2.2
 
 ### Patch Changes
