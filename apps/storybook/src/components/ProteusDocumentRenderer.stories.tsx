@@ -810,6 +810,19 @@ export const ExploreReport: Story = {
             },
           ],
         },
+        columns: [
+          {
+            accessorKey: "dimensionValues/0/value",
+            header: "Event Name",
+            size: 200,
+          },
+          {
+            accessorKey: "metricValues/0/value",
+            format: "Number",
+            header: "Event Count",
+            size: 100,
+          },
+        ],
         rows: [
           {
             dimensionValues: [
@@ -954,19 +967,7 @@ export const ExploreReport: Story = {
         },
         {
           $type: "DataTable",
-          columns: [
-            {
-              accessorKey: "dimensionValues/0/value",
-              header: "Event Name",
-              size: 200,
-            },
-            {
-              accessorKey: "metricValues/0/value",
-              format: "Number",
-              header: "Event Count",
-              size: 100,
-            },
-          ],
+          columns: { $type: "Value", path: "/data/columns" },
           data: { $type: "Value", path: "/data/rows" },
         },
       ],

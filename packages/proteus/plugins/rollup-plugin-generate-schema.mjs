@@ -906,46 +906,51 @@ function getPropTypeOverrides(additionalProperties = false) {
     },
     DataTable: {
       columns: {
-        description: "Column definitions",
-        items: {
-          ...(additionalProperties ? {} : { additionalProperties: false }),
-          properties: {
-            accessorKey: {
-              description: "Key in data objects",
-              type: "string",
-            },
-            format: {
-              anyOf: [
-                {
-                  description: "Formatter name",
+        anyOf: [
+          {
+            description: "Column definitions",
+            items: {
+              ...(additionalProperties ? {} : { additionalProperties: false }),
+              properties: {
+                accessorKey: {
+                  description: "Key in data objects",
                   type: "string",
                 },
-                {
-                  description: "Formatter with options",
-                  properties: {
-                    options: { type: "object" },
-                    type: { type: "string" },
-                  },
-                  required: ["type"],
-                  type: "object",
+                format: {
+                  anyOf: [
+                    {
+                      description: "Formatter name",
+                      type: "string",
+                    },
+                    {
+                      description: "Formatter with options",
+                      properties: {
+                        options: { type: "object" },
+                        type: { type: "string" },
+                      },
+                      required: ["type"],
+                      type: "object",
+                    },
+                  ],
+                  description:
+                    "Format to apply to cell values (e.g. 'Number', 'DateTime')",
                 },
-              ],
-              description:
-                "Format to apply to cell values (e.g. 'Number', 'DateTime')",
+                header: {
+                  description: "Column header text",
+                  type: "string",
+                },
+                size: {
+                  description: "Column size",
+                  type: "number",
+                },
+              },
+              required: ["accessorKey", "header"],
+              type: "object",
             },
-            header: {
-              description: "Column header text",
-              type: "string",
-            },
-            size: {
-              description: "Column size",
-              type: "number",
-            },
+            type: "array",
           },
-          required: ["accessorKey", "header"],
-          type: "object",
-        },
-        type: "array",
+          { $ref: "#/definitions/ProteusExpression" },
+        ],
       },
       data: {
         anyOf: [
