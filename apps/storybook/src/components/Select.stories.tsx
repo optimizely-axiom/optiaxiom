@@ -231,6 +231,37 @@ export const Controlled: Story = {
   },
 };
 
+export const ControlledValueChange: Story = {
+  args: {
+    defaultOpen: false,
+    defaultValue: undefined,
+  },
+  play: async ({ canvas }) => {
+    await userEvent.click(canvas.getByRole("combobox", { name: "A" }));
+    await new Promise((resolve) => setTimeout(resolve, 300));
+    await userEvent.click(await screen.findByRole("option", { name: "B" }));
+    await expect(canvas.getByRole("combobox")).toHaveTextContent("B");
+  },
+  render: function ControlledValueChange(args) {
+    const [value, setValue] = useState("a");
+
+    return (
+      <Select
+        {...args}
+        onValueChange={setValue}
+        options={["a", "b", "c"].map((v) => ({
+          label: v.toUpperCase(),
+          value: v,
+        }))}
+        value={value}
+      >
+        <SelectTrigger />
+        <SelectContent />
+      </Select>
+    );
+  },
+};
+
 export const AsyncLoading: Story = {
   render: function AsyncLoading(args) {
     const [items, setItems] = useState<
