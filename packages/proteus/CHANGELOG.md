@@ -1,5 +1,11 @@
 # @optiaxiom/proteus
 
+## 0.2.4
+
+### Patch Changes
+
+- 73159b0: allow expression in table column configuration
+
 ## 0.2.3
 
 ### Patch Changes
