@@ -762,6 +762,80 @@ export const WithChart: Story = {
   },
 };
 
+export const WithMetricCards: Story = {
+  args: {
+    data: {
+      metrics: [
+        {
+          label: "Title",
+          trend: "+12% vs last quarter",
+          trendColor: "fg.success.strong",
+          value: "$204M",
+        },
+        {
+          label: "TOTAL CLOSE RATE",
+          trend: "-3% vs last quarter",
+          trendColor: "fg.error.strong",
+          value: "83%",
+        },
+        {
+          label: "TOTAL DEALS CLOSED",
+          trend: "+18 vs last quarter",
+          trendColor: "fg.success.strong",
+          value: "230",
+        },
+      ],
+    },
+    element: {
+      $type: "Document",
+      appName: "Salesforce CRM",
+      body: [
+        {
+          $type: "Group",
+          children: {
+            $type: "Map",
+            children: {
+              $type: "Group",
+              border: "1",
+              borderColor: "border.tertiary",
+              children: [
+                {
+                  $type: "Text",
+                  children: { $type: "Value", path: "label" },
+                  color: "fg.tertiary",
+                  fontSize: "xs",
+                  textTransform: "uppercase",
+                },
+                {
+                  $type: "Text",
+                  children: { $type: "Value", path: "value" },
+                  fontSize: "2xl",
+                  fontWeight: "700",
+                },
+                {
+                  $type: "Text",
+                  children: { $type: "Value", path: "trend" },
+                  color: { $type: "Value", path: "trendColor" },
+                  fontSize: "sm",
+                },
+              ],
+              flex: "1",
+              flexDirection: "column",
+              gap: "4",
+              p: "12",
+              rounded: "xl",
+            },
+            path: "/metrics",
+          },
+          gap: "16",
+        },
+      ],
+      subtitle: "October 1 - December 31, 2025",
+      title: "Q4 2024 Sales Performance",
+    },
+  },
+};
+
 export const ExploreReport: Story = {
   args: {
     data: {
